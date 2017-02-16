@@ -1,5 +1,5 @@
 ---
-title: "Azure 和 Linux | Microsoft Docs"
+title: "Azure 以及 Linux | Microsoft Docs"
 description: "描述 Azure 計算、儲存體和網路服務與 Linux 虛擬機器。"
 services: virtual-machines-linux
 documentationcenter: virtual-machines-linux
