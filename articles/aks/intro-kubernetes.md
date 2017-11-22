@@ -29,6 +29,18 @@ Azure Container Service (AKS) 可讓您輕鬆建立、設定及管理虛擬機�
 
 藉由使用 AKS，您可以充分利用 Azure 的企業級功能，同時仍可保有應用程式在 Kubernetes 內的可攜性和 Docker 映像格式。
 
+## <a name="managed-kubernetes-in-azure"></a> Azure 內的受管理 Kubernetes
+
+AKS 利用將責任轉移給 Azure 的方式減少了複雜度與管理 Kubernetes 叢集營運的負擔，作為一個主控的 Kebernetes 服務，Azure 處理了如健康監測與維護的關鍵性工作，你只需要支付你的叢集內的代理節點 (agent node) 的使用，而不需支付主控節點 (master)，作為一個受管理的 Kubernetes 服務，AKS 提供了：
+
+> [!div class="checklist"]
+> * 自動化的 Kubernetes 版本升級與修補。
+> * 簡易的叢集擴展。
+> * 自我修復的主控制台 (masters)。
+> * 節省成本-只需要支付您執行的代理池節點。
+
+Azure 會在您的 AKS 叢集內處理管理工作，您不需要手動執行許多工作，像叢集升級。因為 Azure 為您處理這些關鍵維護工作，AKS 不提供對叢集的直接存取 (像是SSH)。
+
 ## <a name="using-azure-container-service-aks"></a>使用 Azure Container Service (AKS)
 我們對於 AKS 的目標，是要使用現今頗受客戶歡迎的開放原始碼工具和技術，提供容器主控環境。 為了這個目的，我們已公開標準 Kubernetes API 端點。 透過這些標準端點，您可以利用任何能夠與 Kubernetes 叢集通訊的軟體。 例如，您可能會選擇 [kubectl](https://kubernetes.io/docs/user-guide/kubectl-overview/)、[helm](https://helm.sh/) 或 [draft](https://github.com/Azure/draft)。
 
