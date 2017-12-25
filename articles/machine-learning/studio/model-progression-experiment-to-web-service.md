@@ -44,7 +44,7 @@ Azure Machine Learning Studio 提供互動式畫布，可讓您開發、執行�
 ## <a name="developing-and-deploying-a-predictive-web-service"></a>開發及部署預測性 Web 服務
 以下是使用 Machine Learning Studio 進行開發及部署時一般解決方案所遵循的階段：
 
-![部署流程](./media/model-progression-experiment-to-web-service/model-stages-from-experiment-to-web-service.png)
+![部署流程](https://docs.microsoft.com/zh-tw/azure/machine-learning/studio/media/model-progression-experiment-to-web-service/model-stages-from-experiment-to-web-service.png)
 
 *圖 1 - 一般預測性分析模型的階段*
 
