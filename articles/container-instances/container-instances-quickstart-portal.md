@@ -57,7 +57,7 @@ Azure Container Instances 可讓您輕鬆地在 Azure 中建立和管理容器�
 
 ![Azure 入口網站中的容器群組概觀][aci-portal-06]
 
-一旦容器轉換為 [正在執行] 狀態，請瀏覽至您在上一個步驟中記下的 IP 位址，以顯示裝載在新容器中的應用程式。
+一旦容器轉換為 [執行中] 狀態，請瀏覽至您在上一個步驟中記下的 IP 位址，以顯示裝載在新容器中的應用程式。
 
 ![在瀏覽器中檢視使用 Azure Container Instances 所部署的應用程式][aci-portal-07]
 
