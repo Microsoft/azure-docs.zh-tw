@@ -162,7 +162,7 @@ Azure Machine Learning Workbench 適用於 Windows 或 macOS。 請查看[支援
 
 1. 在 [專案儀表板] 頁面頂端的命令列中，選取 **local** 作為執行目標，以及選取 **iris_sklearn.py** 作為要執行的指令碼。 預設會預先選取這些值。 
 
-   範例中包含其他檔案，可供您稍後簽出，但是在本快速入門中，我們對 **iris_sklearn.py** 感興趣。 
+   範例中包含其他檔案，可供您稍後瞧瞧，但是在本快速入門中，我們著重在 **iris_sklearn.py** 。 
 
    ![命令列](./media/quickstart-installation/run_control.png)
 
