@@ -21,6 +21,7 @@ ms.lasthandoff: 05/10/2018
 ---
 # <a name="filtering-and-preprocessing-telemetry-in-the-application-insights-sdk"></a>在 Application Insights SDK 中篩選及前置處理遙測
 
+
 您可以針對 Application Insights SDK 撰寫與設定外掛程式，以自訂在遙測傳送至 Application Insights 服務之前，擷取與處理它的方式。
 
 * [取樣](app-insights-sampling.md) 可減少遙測的量而不會影響統計資料。 它可將相關資料點寶持放在一起，因此您診斷問題時，能夠在資料點之間瀏覽。 在入口網站中將乘以總計數，以補償取樣。
@@ -44,6 +45,7 @@ ms.lasthandoff: 05/10/2018
 >
 > 請考慮改用 [取樣](app-insights-sampling.md)。
 >
+>
 
 ### <a name="create-a-telemetry-processor-c"></a>建立遙測處理器 (C#)
 1. 確認專案中的 Application Insights SDK 為 2.0.0 版或更新版本。 在 Visual Studio 方案總管中以滑鼠右鍵按一下專案，然後選擇 [管理 NuGet 封裝]。 檢查 NuGet 封裝管理員中的 Microsoft.ApplicationInsights.Web。
@@ -52,6 +54,7 @@ ms.lasthandoff: 05/10/2018
     請注意，遙測處理器建構一連串的處理。 當您具現化遙測處理器時，您會傳遞連結至鏈結中的下一個處理器。 遙測資料點傳遞至處理序方法時，它會完成其工作並接著呼叫鏈結中的下一個遙測處理器。
 
 ```csharp
+
 using Microsoft.ApplicationInsights.Channel;
 using Microsoft.ApplicationInsights.Extensibility;
 
@@ -93,6 +96,7 @@ public class SuccessfulDependencyFilter : ITelemetryProcessor
         item.Context.Properties.Add("app-version", "1." + MyParamFromConfigFile);
     }
 }
+
 ```
 
 1. 在 ApplicationInsights.config 中插入：
@@ -104,6 +108,7 @@ public class SuccessfulDependencyFilter : ITelemetryProcessor
         <MyParamFromConfigFile>2-beta</MyParamFromConfigFile>
     </Add>
 </TelemetryProcessors>
+
 ```
 
 (這是您用來初始化取樣篩選器的相同區段)。
@@ -118,6 +123,7 @@ public class SuccessfulDependencyFilter : ITelemetryProcessor
 ，您也可以在程式碼中初始化篩選。 在適當的初始化類別中 - 例如在 Global.asax.cs 中的 AppStart - 插入您的處理器至鏈結：
 
 ```csharp
+
 var builder = TelemetryConfiguration.Active.TelemetryProcessorChainBuilder;
 builder.Use((next) => new SuccessfulDependencyFilter(next));
 
@@ -125,6 +131,7 @@ builder.Use((next) => new SuccessfulDependencyFilter(next));
 builder.Use((next) => new AnotherProcessor(next));
 
 builder.Build();
+
 ```
 
 在這個點之後建立的 TelemetryClients 會使用您的處理器。
@@ -134,6 +141,7 @@ builder.Build();
 篩選出 bot 和 Web 測試。 雖然計量瀏覽器可讓您篩選出綜合來源，此選項會藉由在 SDK 篩選它們以降低流量。
 
 ```csharp
+
 public void Process(ITelemetry item)
 {
     if (!string.IsNullOrEmpty(item.Context.Operation.SyntheticSource)) {return;}
@@ -141,12 +149,14 @@ public void Process(ITelemetry item)
     // Send everything else:
     this.Next.Process(item);
 }
+
 ```
 
 #### <a name="failed-authentication"></a>驗證失敗
 篩選出具有 "401" 回應的要求。
 
 ```csharp
+
 public void Process(ITelemetry item)
 {
     var request = item as RequestTelemetry;
@@ -160,6 +170,7 @@ public void Process(ITelemetry item)
     // Send everything else:
     this.Next.Process(item);
 }
+
 ```
 
 #### <a name="filter-out-fast-remote-dependency-calls"></a>篩選出快速遠端相依性呼叫
@@ -171,6 +182,7 @@ public void Process(ITelemetry item)
 >
 
 ```csharp
+
 public void Process(ITelemetry item)
 {
     var request = item as DependencyTelemetry;
@@ -181,6 +193,7 @@ public void Process(ITelemetry item)
     }
     this.Next.Process(item);
 }
+
 ```
 
 #### <a name="diagnose-dependency-issues"></a>診斷相依性問題
@@ -201,6 +214,7 @@ public void Process(ITelemetry item)
 *C#*
 
 ```csharp
+
 using System;
 using Microsoft.ApplicationInsights.Channel;
 using Microsoft.ApplicationInsights.DataContracts;
@@ -272,12 +286,14 @@ protected void Application_Start()
 在您從入口網站取得的初始化程式碼之後立即插入遙測初始設定式：
 
 ```JS
+
 <script type="text/javascript">
     // ... initialization code
     ...({
         instrumentationKey: "your instrumentation key"
     });
     window.appInsights = appInsights;
+
 
     // Adding telemetry initializer.
     // This is called whenever a new telemetry item
