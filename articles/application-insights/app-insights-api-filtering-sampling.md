@@ -53,61 +53,61 @@ ms.lasthandoff: 05/10/2018
 
     請注意，遙測處理器建構一連串的處理。 當您具現化遙測處理器時，您會傳遞連結至鏈結中的下一個處理器。 遙測資料點傳遞至處理序方法時，它會完成其工作並接著呼叫鏈結中的下一個遙測處理器。
 
-    ``` C#
+```csharp
 
-    using Microsoft.ApplicationInsights.Channel;
-    using Microsoft.ApplicationInsights.Extensibility;
+using Microsoft.ApplicationInsights.Channel;
+using Microsoft.ApplicationInsights.Extensibility;
 
-    public class SuccessfulDependencyFilter : ITelemetryProcessor
-      {
+public class SuccessfulDependencyFilter : ITelemetryProcessor
+    {
 
-        private ITelemetryProcessor Next { get; set; }
+    private ITelemetryProcessor Next { get; set; }
 
-        // You can pass values from .config
-        public string MyParamFromConfigFile { get; set; }
+    // You can pass values from .config
+    public string MyParamFromConfigFile { get; set; }
 
-        // Link processors to each other in a chain.
-        public SuccessfulDependencyFilter(ITelemetryProcessor next)
-        {
-            this.Next = next;
-        }
-        public void Process(ITelemetry item)
-        {
-            // To filter out an item, just return
-            if (!OKtoSend(item)) { return; }
-            // Modify the item if required
-            ModifyItem(item);
+    // Link processors to each other in a chain.
+    public SuccessfulDependencyFilter(ITelemetryProcessor next)
+    {
+        this.Next = next;
+    }
+    public void Process(ITelemetry item)
+    {
+        // To filter out an item, just return
+        if (!OKtoSend(item)) { return; }
+        // Modify the item if required
+        ModifyItem(item);
 
-            this.Next.Process(item);
-        }
-
-        // Example: replace with your own criteria.
-        private bool OKtoSend (ITelemetry item)
-        {
-            var dependency = item as DependencyTelemetry;
-            if (dependency == null) return true;
-
-            return dependency.Success != true;
-        }
-
-        // Example: replace with your own modifiers.
-        private void ModifyItem (ITelemetry item)
-        {
-            item.Context.Properties.Add("app-version", "1." + MyParamFromConfigFile);
-        }
+        this.Next.Process(item);
     }
 
-    ```
+    // Example: replace with your own criteria.
+    private bool OKtoSend (ITelemetry item)
+    {
+        var dependency = item as DependencyTelemetry;
+        if (dependency == null) return true;
+
+        return dependency.Success != true;
+    }
+
+    // Example: replace with your own modifiers.
+    private void ModifyItem (ITelemetry item)
+    {
+        item.Context.Properties.Add("app-version", "1." + MyParamFromConfigFile);
+    }
+}
+
+```
 1. 在 ApplicationInsights.config 中插入：
 
-```XML
+```xml
 
-    <TelemetryProcessors>
-      <Add Type="WebApplication9.SuccessfulDependencyFilter, WebApplication9">
-         <!-- Set public property -->
-         <MyParamFromConfigFile>2-beta</MyParamFromConfigFile>
-      </Add>
-    </TelemetryProcessors>
+<TelemetryProcessors>
+    <Add Type="WebApplication9.SuccessfulDependencyFilter, WebApplication9">
+        <!-- Set public property -->
+        <MyParamFromConfigFile>2-beta</MyParamFromConfigFile>
+    </Add>
+</TelemetryProcessors>
 
 ```
 
@@ -120,17 +120,17 @@ ms.lasthandoff: 05/10/2018
 >
 >
 
- ，您也可以在程式碼中初始化篩選。 在適當的初始化類別中 - 例如在 Global.asax.cs 中的 AppStart - 插入您的處理器至鏈結：
+，您也可以在程式碼中初始化篩選。 在適當的初始化類別中 - 例如在 Global.asax.cs 中的 AppStart - 插入您的處理器至鏈結：
 
 ```csharp
 
-    var builder = TelemetryConfiguration.Active.TelemetryProcessorChainBuilder;
-    builder.Use((next) => new SuccessfulDependencyFilter(next));
+var builder = TelemetryConfiguration.Active.TelemetryProcessorChainBuilder;
+builder.Use((next) => new SuccessfulDependencyFilter(next));
 
-    // If you have more processors:
-    builder.Use((next) => new AnotherProcessor(next));
+// If you have more processors:
+builder.Use((next) => new AnotherProcessor(next));
 
-    builder.Build();
+builder.Build();
 
 ```
 
@@ -140,15 +140,15 @@ ms.lasthandoff: 05/10/2018
 #### <a name="synthetic-requests"></a>綜合要求
 篩選出 bot 和 Web 測試。 雖然計量瀏覽器可讓您篩選出綜合來源，此選項會藉由在 SDK 篩選它們以降低流量。
 
-``` C#
+```csharp
 
-    public void Process(ITelemetry item)
-    {
-      if (!string.IsNullOrEmpty(item.Context.Operation.SyntheticSource)) {return;}
+public void Process(ITelemetry item)
+{
+    if (!string.IsNullOrEmpty(item.Context.Operation.SyntheticSource)) {return;}
 
-      // Send everything else:
-      this.Next.Process(item);
-    }
+    // Send everything else:
+    this.Next.Process(item);
+}
 
 ```
 
@@ -181,7 +181,7 @@ public void Process(ITelemetry item)
 >
 >
 
-``` C#
+```csharp
 
 public void Process(ITelemetry item)
 {
@@ -215,62 +215,64 @@ public void Process(ITelemetry item)
 
 ```csharp
 
-    using System;
-    using Microsoft.ApplicationInsights.Channel;
-    using Microsoft.ApplicationInsights.DataContracts;
-    using Microsoft.ApplicationInsights.Extensibility;
+using System;
+using Microsoft.ApplicationInsights.Channel;
+using Microsoft.ApplicationInsights.DataContracts;
+using Microsoft.ApplicationInsights.Extensibility;
 
-    namespace MvcWebRole.Telemetry
+namespace MvcWebRole.Telemetry
+{
+    /*
+    * Custom TelemetryInitializer that overrides the default SDK
+    * behavior of treating response codes >= 400 as failed requests
+    *
+    */
+    public class MyTelemetryInitializer : ITelemetryInitializer
     {
-      /*
-       * Custom TelemetryInitializer that overrides the default SDK
-       * behavior of treating response codes >= 400 as failed requests
-       *
-       */
-      public class MyTelemetryInitializer : ITelemetryInitializer
-      {
-        public void Initialize(ITelemetry telemetry)
+    public void Initialize(ITelemetry telemetry)
+    {
+        var requestTelemetry = telemetry as RequestTelemetry;
+        // Is this a TrackRequest() ?
+        if (requestTelemetry == null) return;
+        int code;
+        bool parsed = Int32.TryParse(requestTelemetry.ResponseCode, out code);
+        if (!parsed) return;
+        if (code >= 400 && code < 500)
         {
-            var requestTelemetry = telemetry as RequestTelemetry;
-            // Is this a TrackRequest() ?
-            if (requestTelemetry == null) return;
-            int code;
-            bool parsed = Int32.TryParse(requestTelemetry.ResponseCode, out code);
-            if (!parsed) return;
-            if (code >= 400 && code < 500)
-            {
-                // If we set the Success property, the SDK won't change it:
-                requestTelemetry.Success = true;
-                // Allow us to filter these requests in the portal:
-                requestTelemetry.Context.Properties["Overridden400s"] = "true";
-            }
-            // else leave the SDK to set the Success property      
+            // If we set the Success property, the SDK won't change it:
+            requestTelemetry.Success = true;
+            // Allow us to filter these requests in the portal:
+            requestTelemetry.Context.Properties["Overridden400s"] = "true";
         }
-      }
+        // else leave the SDK to set the Success property      
     }
+    }
+}
 ```
 
 **載入您的初始設定式**
 
 在 ApplicationInsights.config 中：
 
-    <ApplicationInsights>
-      <TelemetryInitializers>
-        <!-- Fully qualified type name, assembly name: -->
-        <Add Type="MvcWebRole.Telemetry.MyTelemetryInitializer, MvcWebRole"/>
-        ...
-      </TelemetryInitializers>
-    </ApplicationInsights>
+```xml
+<ApplicationInsights>
+    <TelemetryInitializers>
+    <!-- Fully qualified type name, assembly name: -->
+    <Add Type="MvcWebRole.Telemetry.MyTelemetryInitializer, MvcWebRole"/>
+    ...
+    </TelemetryInitializers>
+</ApplicationInsights>
+```
 
 *或者* ，您也可以在程式碼 (如 Global.aspx.cs) 中具現化初始設定式：
 
 ```csharp
-    protected void Application_Start()
-    {
-        // ...
-        TelemetryConfiguration.Active.TelemetryInitializers
-        .Add(new MyTelemetryInitializer());
-    }
+protected void Application_Start()
+{
+    // ...
+    TelemetryConfiguration.Active.TelemetryInitializers
+    .Add(new MyTelemetryInitializer());
+}
 ```
 
 
@@ -285,42 +287,42 @@ public void Process(ITelemetry item)
 
 ```JS
 
-    <script type="text/javascript">
-        // ... initialization code
-        ...({
-            instrumentationKey: "your instrumentation key"
+<script type="text/javascript">
+    // ... initialization code
+    ...({
+        instrumentationKey: "your instrumentation key"
+    });
+    window.appInsights = appInsights;
+
+
+    // Adding telemetry initializer.
+    // This is called whenever a new telemetry item
+    // is created.
+
+    appInsights.queue.push(function () {
+        appInsights.context.addTelemetryInitializer(function (envelope) {
+            var telemetryItem = envelope.data.baseData;
+
+            // To check the telemetry item’s type - for example PageView:
+            if (envelope.name == Microsoft.ApplicationInsights.Telemetry.PageView.envelopeType) {
+                // this statement removes url from all page view documents
+                telemetryItem.url = "URL CENSORED";
+            }
+
+            // To set custom properties:
+            telemetryItem.properties = telemetryItem.properties || {};
+            telemetryItem.properties["globalProperty"] = "boo";
+
+            // To set custom metrics:
+            telemetryItem.measurements = telemetryItem.measurements || {};
+            telemetryItem.measurements["globalMetric"] = 100;
         });
-        window.appInsights = appInsights;
+    });
 
+    // End of inserted code.
 
-        // Adding telemetry initializer.
-        // This is called whenever a new telemetry item
-        // is created.
-
-        appInsights.queue.push(function () {
-            appInsights.context.addTelemetryInitializer(function (envelope) {
-                var telemetryItem = envelope.data.baseData;
-
-                // To check the telemetry item’s type - for example PageView:
-                if (envelope.name == Microsoft.ApplicationInsights.Telemetry.PageView.envelopeType) {
-                    // this statement removes url from all page view documents
-                    telemetryItem.url = "URL CENSORED";
-                }
-
-                // To set custom properties:
-                telemetryItem.properties = telemetryItem.properties || {};
-                telemetryItem.properties["globalProperty"] = "boo";
-
-                // To set custom metrics:
-                telemetryItem.measurements = telemetryItem.measurements || {};
-                telemetryItem.measurements["globalMetric"] = 100;
-            });
-        });
-
-        // End of inserted code.
-
-        appInsights.trackPageView();
-    </script>
+    appInsights.trackPageView();
+</script>
 ```
 
 如需 telemetryItem 上可用的非自訂屬性摘要，請參閱 [Application Insights 匯出資料模型](app-insights-export-data-model.md)。
