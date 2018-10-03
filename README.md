@@ -38,7 +38,7 @@ azure-docs 存放庫中的內容會遵循 https://docs.microsoft.com/azure 上�
 此儲存機制中的所有文章都使用 GitHub 風格的 Markdown。  其資源清單如下。
 
 * [Markdown 基本概念](https://help.github.com/articles/markdown-basics/)
-* [可列印的 Markdown 速查表](./contributor-guide/media/documents/markdown-cheatsheet.pdf?raw=true)
+* [可列印的 Markdown 速查表](https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf)
 
 
 ## <a name="labels"></a>標籤
