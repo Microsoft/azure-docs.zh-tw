@@ -1,13 +1,13 @@
 ---
-title: "Azure PowerShell 指令碼範例 - 備份 Azure 虛擬機器 | Microsoft Docs"
-description: "Azure PowerShell 指令碼範例 - 備份 Azure 虛擬機器"
+title: Azure PowerShell 指令碼範例 - 備份 Azure 虛擬機器 | Microsoft Docs
+description: Azure PowerShell 指令碼範例 - 備份 Azure 虛擬機器
 services: backup
-documentationcenter: 
+documentationcenter: ''
 author: markgalioto
 manager: carmonm
-editor: 
-tags: 
-ms.assetid: 
+editor: ''
+tags: ''
+ms.assetid: ''
 ms.service: backup
 ms.devlang: na
 ms.topic: sample
@@ -21,6 +21,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "22997523"
 ---
 # <a name="back-up-an-encrypted-azure-virtual-machine-with-powershell"></a>使用 PowerShell 備份已加密的 Azure 虛擬機器
 

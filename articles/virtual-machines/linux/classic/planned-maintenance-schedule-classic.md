@@ -1,11 +1,11 @@
 ---
-title: "如何為 Azure 中的 Linux VM 排定計劃性維護 | Microsoft Docs"
-description: "了解如何排定在 Azure VM 上的計劃性維護。"
+title: 如何為 Azure 中的 Linux VM 排定計劃性維護 | Microsoft Docs
+description: 了解如何排定在 Azure VM 上的計劃性維護。
 services: virtual-machines-linux
-documentationcenter: 
+documentationcenter: ''
 author: igalf
-manager: timlt
-editor: 
+manager: jeconnoc
+editor: ''
 tags: azure-service-management
 ROBOTS: NOINDEX
 ms.assetid: 619a65ce-f913-4c92-a7ba-2971a839c306
@@ -16,11 +16,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/23/2017
 ms.author: igalf
-ms.openlocfilehash: 332a25abc544d121e5fbc41bd52d4290508cc94a
-ms.sourcegitcommit: 9a8b9a24d67ba7b779fa34e67d7f2b45c941785e
+ms.openlocfilehash: 0214aac013a20a72c54b29598268584cec6f60fc
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2018
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38701789"
 ---
 # <a name="how-to-schedule-planned-maintenance-on-azure-vms"></a>如何排定在 Azure VM 上的計劃性維護
 > [!IMPORTANT]

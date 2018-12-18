@@ -1,18 +1,19 @@
 ---
-title: "設定在使用 Site Recovery 容錯移轉後用來連線至次要內部部署網站的 IP 定址 | Microsoft Docs"
-description: "說明如何設定在使用 Azure Site Recovery 容錯移轉後用來連線至次要內部部署網站 VM 的 IP 定址。"
+title: 設定在使用 Site Recovery 容錯移轉後用來連線至次要內部部署網站的 IP 定址 | Microsoft Docs
+description: 說明如何設定在使用 Azure Site Recovery 容錯移轉後用來連線至次要內部部署網站 VM 的 IP 定址。
 services: site-recovery
 author: rayne-wiselman
 manager: carmonm
 ms.service: site-recovery
-ms.topic: article
-ms.date: 02/12/2018
+ms.topic: conceptual
+ms.date: 10/10/2018
 ms.author: rayne
-ms.openlocfilehash: 531705bc704b3366c1c670ecf07c809ade67bc55
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.openlocfilehash: dc28611f4b27d263e19f76ce4313f8d531a8cba2
+ms.sourcegitcommit: 4b1083fa9c78cd03633f11abb7a69fdbc740afd1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 10/10/2018
+ms.locfileid: "49076996"
 ---
 # <a name="set-up-ip-addressing-to-connect-to-a-secondary-on-premises-site-after-failover"></a>設定在容錯移轉後用來連線至次要內部部署網站的 IP 定址
 

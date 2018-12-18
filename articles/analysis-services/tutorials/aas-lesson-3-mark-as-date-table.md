@@ -1,25 +1,19 @@
 ---
-title: "Azure Analysis Services 教學課程第 3 課：標記為日期資料表 | Microsoft Docs"
-description: "說明如何在 Azure Analysis Services 教學課程專案中標記日期資料表。"
-services: analysis-services
-documentationcenter: 
-author: Minewiskan
+title: Azure Analysis Services 教學課程第 3 課：標記為日期資料表 | Microsoft Docs
+description: 說明如何在 Azure Analysis Services 教學課程專案中標記日期資料表。
+author: minewiskan
 manager: kfile
-editor: 
-tags: 
-ms.assetid: 
-ms.service: analysis-services
-ms.devlang: NA
-ms.topic: get-started-article
-ms.tgt_pltfrm: NA
-ms.workload: na
-ms.date: 01/08/2018
+ms.service: azure-analysis-services
+ms.topic: conceptual
+ms.date: 07/03/2018
 ms.author: owend
-ms.openlocfilehash: 25e4475c77a25e4dcdcb90729f8633656bb186ff
-ms.sourcegitcommit: 176c575aea7602682afd6214880aad0be6167c52
+ms.reviewer: minewiskan
+ms.openlocfilehash: 6627cf74154e66a84f34d5d5bc1d78ed3e0c38a2
+ms.sourcegitcommit: 86cb3855e1368e5a74f21fdd71684c78a1f907ac
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/09/2018
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37443594"
 ---
 # <a name="mark-as-date-table"></a>標示為日期資料表
 
@@ -49,7 +43,7 @@ ms.lasthandoff: 01/09/2018
   
 2.  依序按一下 [資料表] 功能表、[日期]和 [標記為日期資料表]。  
   
-3.  在 [標記為日期資料表] 對話方塊中，在 [日期] 清單方塊中選取 [Date] 資料行當作唯一識別碼。 依預設通常會選取它。 按一下 [SERVICEPRINCIPAL] 。 
+3.  在 [標記為日期資料表] 對話方塊中，在 [日期] 清單方塊中選取 [Date] 資料行當作唯一識別碼。 依預設通常會選取它。 按一下 [確定]。 
 
     ![aas-lesson3-date-table](../tutorials/media/aas-lesson3-date-table.png)
   

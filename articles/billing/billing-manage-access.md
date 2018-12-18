@@ -1,29 +1,30 @@
 ---
-title: "使用角色來管理對 Azure 帳單的存取 | Microsoft Docs"
-description: 
-services: 
-documentationcenter: 
+title: 使用角色來管理對 Azure 帳單的存取 | Microsoft Docs
+description: ''
+services: ''
+documentationcenter: ''
 author: vikramdesai01
 manager: vikdesai
-editor: 
+editor: ''
 tags: billing
 ms.assetid: e4c4d136-2826-4938-868f-a7e67ff6b025
 ms.service: billing
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 08/22/2017
-ms.author: vikdesai
-ms.openlocfilehash: c70904097f139bc2178feed83f1cf1274f3c738d
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.author: cwatson
+ms.openlocfilehash: 623856f05eed44eca3752d56f047f9bb282bdc8e
+ms.sourcegitcommit: d1aef670b97061507dc1343450211a2042b01641
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47392072"
 ---
 # <a name="manage-access-to-billing-information-for-azure-using-role-based-access-control"></a>使用角色型存取控制來管理對 Azure 帳單資訊的存取
 
-您可以透過將下列其中一個使用者角色指派給您的訂用帳戶，將 Azure 帳單資訊的存取權授與您的小組成員：帳戶管理員、服務管理員、共同管理員、擁有者、參與者，以及帳單讀者。 他們將可在 [Azure 入口網站](https://portal.azure.com/)中存取帳單資訊，並且可以使用[計費 API](billing-usage-rate-card-overview.md) 透過程式設計方式取得發票 (選擇加入後) 和使用量詳細資料。 如需有關角色授權者及角色功能的詳細資訊，請參閱 [Azure RBAC 中的角色](../active-directory/role-based-access-built-in-roles.md)。
+您可以透過將下列其中一個使用者角色指派給您的訂用帳戶，將 Azure 帳單資訊的存取權授與您的小組成員：帳戶管理員、服務管理員、共同管理員、擁有者、參與者，以及帳單讀者。 他們將可在 [Azure 入口網站](https://portal.azure.com/)中存取帳單資訊，並且可以使用[計費 API](billing-usage-rate-card-overview.md) 透過程式設計方式取得發票 (選擇加入後) 和使用量詳細資料。 如需有關角色授權者及角色功能的詳細資訊，請參閱 [Azure RBAC 中的角色](../role-based-access-control/built-in-roles.md)。
 
 ## <a name="opt-in"></a> 允許額外的使用者存取發票
 
@@ -70,7 +71,7 @@ ms.lasthandoff: 10/11/2017
 
 ## <a name="adding-users-to-other-roles"></a>將使用者新增到其他角色
 
-具備其他角色 (例如「擁有者」和「參與者」) 的使用者不僅可存取帳單資訊，還可存取 Azure 服務。 若要管理這些角色，請參閱[新增或變更管理訂用帳戶或服務的 Azure 系統管理員角色](billing-add-change-azure-subscription-administrator.md)。
+具備其他角色 (例如「擁有者」和「參與者」) 的使用者不僅可存取帳單資訊，還可存取 Azure 服務。 若要管理這些角色，請參閱[使用 RBAC 和 Azure 入口網站來管理存取權](../role-based-access-control/role-assignments-portal.md)。
 
 ## <a name="who-can-access-the-account-centerhttpsaccountwindowsazurecom"></a>誰可以存取[帳戶中心](https://account.windowsazure.com)？
 

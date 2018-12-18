@@ -1,0 +1,52 @@
+items:
+- name: 自訂決策服務文件
+  href: index.yml
+- name: 概觀
+  items:
+  - name: 什麼是自訂決策服務？
+    href: custom-decision-service-overview.md
+  - name: 自訂決策服務工作流程
+    href: custom-decision-service-workflow.md
+- name: 快速入門
+  items:
+  - name: 註冊您的應用程式
+    href: custom-decision-service-get-started-register.md
+  - name: 從瀏覽器呼叫 API
+    href: custom-decision-service-get-started-browser.md
+  - name: 從應用程式呼叫 API
+    href: custom-decision-service-get-started-app.md
+  expanded: true
+- name: 教學課程
+  items:
+  - name: 文章個人化
+    href: custom-decision-service-tutorial-news.md
+  - name: 機器學習服務
+    href: custom-decision-service-tutorial-ml.md
+- name: 參考
+  items:
+  - name: API
+    href: custom-decision-service-api-reference.md
+  - name: 測試
+    href: custom-decision-service-experimentation-reference.md
+  - name: LogDownloader
+    href: custom-decision-service-log-downloader-reference.md
+- name: 資源
+  items:
+  - name: 區域可用性
+    href: https://azure.microsoft.com/global-infrastructure/services/
+  - name: 價格 (免費)
+    href: https://azure.microsoft.com/pricing/details/cognitive-services/custom-decision-service/
+  - name: UserVoice
+    href: https://cognitive.uservoice.com/forums/598138-custom-decision-service
+  - name: 堆疊溢位
+    href: https://stackoverflow.com/questions/tagged/microsoft-cognitive
+  - name: 知識庫
+    href: https://cognitive.uservoice.com/knowledgebase
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/
+ms.openlocfilehash: 7ab7a5126602d2efb3c568cd547900e527740587
+ms.sourcegitcommit: 6361a3d20ac1b902d22119b640909c3a002185b3
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49363516"

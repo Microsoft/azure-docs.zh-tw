@@ -3,22 +3,23 @@ title: ApplicationInsights.config 參考 - Azure | Microsoft Docs
 description: 啟用或停用資料收集模組，以及加入效能計數器和其他參數。
 services: application-insights
 documentationcenter: ''
-author: OlegAnaniev-MSFT
-editor: mrbullwinkle
+author: mrbullwinkle
 manager: carmonm
 ms.assetid: 6e397752-c086-46e9-8648-a1196e8078c2
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
-ms.topic: article
-ms.date: 05/03/2017
+ms.topic: conceptual
+ms.date: 09/19/2018
+ms.reviewer: olegan
 ms.author: mbullwin
-ms.openlocfilehash: a35da5c84e4e79d7bc6f2167ec7e172970992612
-ms.sourcegitcommit: a0be2dc237d30b7f79914e8adfb85299571374ec
+ms.openlocfilehash: f3bc64bd010bed9e177fd18cc6cb238b94669248
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/12/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46990226"
 ---
 # <a name="configuring-the-application-insights-sdk-with-applicationinsightsconfig-or-xml"></a>使用 ApplicationInsights.config 或 .xml 設定 Application Insights SDK
 Application Insights .NET SDK 是由數個 NuGet 封裝所組成。 [核心封裝](http://www.nuget.org/packages/Microsoft.ApplicationInsights) 提供 API，用於傳送遙測至 Application Insights。 [其他套件](http://www.nuget.org/packages?q=Microsoft.ApplicationInsights)提供遙測*模組*和*初始設定式*，用於自動從您的應用程式和其內容追蹤遙測。 您可以藉由調整組態檔，來啟用或停用遙測模組和初始設定式，並為其設定一些參數。
@@ -30,7 +31,7 @@ Application Insights .NET SDK 是由數個 NuGet 封裝所組成。 [核心封�
 本文件說明您在組態檔中看到的內容、控制 SDK 元件的方式，以及哪些 NuGet 封裝載入這些元件。
 
 > [!NOTE]
-> ApplicationInsights.config 和 .xml 指示不適用 .NET Core SDK。 對於 .NET Core 應用程式的變更，我們通常會使用 appsettings.json 檔案。 如需這類範例，請參閱[快照偵錯工具文件](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-snapshot-debugger#configure-snapshot-collection-for-aspnet-core-20-applications)。
+> ApplicationInsights.config 和 .xml 指示不適用 .NET Core SDK。 對於 .NET Core 應用程式的變更，我們通常會使用 appsettings.json 檔案。 如需這類範例，請參閱[快照偵錯工具文件](https://docs.microsoft.com/azure/application-insights/app-insights-snapshot-debugger#configure-snapshot-collection-for-aspnet-core-20-applications)。
 
 ## <a name="telemetry-modules-aspnet"></a>遙測模組 (ASP.NET)
 每個遙測模組收集特定類型的資料，以及使用核心 API 來傳送資料。 模組由不同的 NuGet 封裝安裝，也會將必要的行加入 .config 檔案。
@@ -46,7 +47,7 @@ Application Insights .NET SDK 是由數個 NuGet 封裝所組成。 [核心封�
 * [Microsoft.ApplicationInsights.DependencyCollector](http://www.nuget.org/packages/Microsoft.ApplicationInsights.DependencyCollector) NuGet 封裝。
 
 ### <a name="performance-collector"></a>效能收集器
-[收集系統效能計數器](app-insights-performance-counters.md)，例如 CPU、記憶體和網路負載 (從 IIS 安裝)。 您可以指定要收集哪些計數器，包括您自己所設定的效能計數器。
+[收集系統效能計數器](app-insights-performance-counters.md)，例如 IIS 安裝的 CPU、記憶體和網路負載。 您可以指定要收集哪些計數器，包括您自己所設定的效能計數器。
 
 * `Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector.PerformanceCollectorModule`
 * [Microsoft.ApplicationInsights.PerfCounterCollector](http://www.nuget.org/packages/Microsoft.ApplicationInsights.PerfCounterCollector) NuGet 封裝。
@@ -132,7 +133,7 @@ Microsoft.ApplicationInsights 封裝提供 SDK 的 [核心 API](https://msdn.mic
 * `WebTestTelemetryInitializer` 會設定使用者識別碼、工作階段識別碼，以及來自 [可用性測試](app-insights-monitor-web-app-availability.md)的 HTTP 要求的綜合來源屬性。
   `<Filters>` 會設定要求的識別屬性。
 
-針對 Service Fabric 中執行的 .NET 應用程式，您可以包含 `Microsoft.ApplicationInsights.ServiceFabric` NuGet 套件。 此套件包含的 `FabricTelemetryInitializer` 會將 Service Fabric 屬性新增至遙測項目。 如需詳細資訊，請參閱 [GitHub 頁面](https://go.microsoft.com/fwlink/?linkid=848457)了解這個 NuGet 套件所新增之屬性的相關資訊。
+針對 Service Fabric 中執行的 .NET 應用程式，您可以包含 `Microsoft.ApplicationInsights.ServiceFabric` NuGet 套件。 此套件包含的 `FabricTelemetryInitializer` 會將 Service Fabric 屬性新增至遙測項目。 如需詳細資訊，請參閱 [GitHub 頁面](https://github.com/Microsoft/ApplicationInsights-ServiceFabric/blob/master/README.md)了解這個 NuGet 套件所新增之屬性的相關資訊。
 
 ## <a name="telemetry-processors-aspnet"></a>遙測處理器 (ASP.NET)
 遙測處理器可以在遙測從 SDK 傳送至入口網站之前篩選並修改每個遙測項目。
@@ -231,7 +232,29 @@ Microsoft.ApplicationInsights 封裝提供 SDK 的 [核心 API](https://msdn.mic
    </ApplicationInsights>
 ```
 
+#### <a name="local-forwarder"></a>本機轉送工具
 
+[本機轉送工具](https://docs.microsoft.com/azure/application-insights/local-forwarder)是會從各種 SDK 和架構收集 Application Insights 或 [OpenCensus](https://opencensus.io/) 遙測資料的代理程式，並且會將這些資料路由至 Application Insights。 此工具能夠在 Windows 和 Linux 下執行。 
+
+```xml
+<Channel type="com.microsoft.applicationinsights.channel.concrete.localforwarder.LocalForwarderTelemetryChannel">
+<DeveloperMode>false</DeveloperMode>
+<EndpointAddress><!-- put the hostname:port of your LocalForwarder instance here --></EndpointAddress>
+<!-- The properties below are optional. The values shown are the defaults for each property -->
+<FlushIntervalInSeconds>5</FlushIntervalInSeconds><!-- must be between [1, 500]. values outside the bound will be rounded to nearest bound -->
+<MaxTelemetryBufferCapacity>500</MaxTelemetryBufferCapacity><!-- units=number of telemetry items; must be between [1, 1000] -->
+</Channel>
+```
+
+如果您使用 SpringBoot 入門版，請將下列項目新增至組態檔 (application.properies)：
+
+```yml
+azure.application-insights.channel.local-forwarder.endpoint-address=<!--put the hostname:port of your LocalForwarder instance here-->
+azure.application-insights.channel.local-forwarder.flush-interval-in-seconds=<!--optional-->
+azure.application-insights.channel.local-forwarder.max-telemetry-buffer-capacity=<!--optional-->
+```
+
+SpringBoot application.properties 和 applicationinsights.xml 組態的預設值相同。
 
 ## <a name="instrumentationkey"></a>InstrumentationKey
 這會決定顯示您資料的 Application Insights 資源。 通常您會針對每個應用程式，用個別的金鑰建立個別資源。
@@ -263,6 +286,91 @@ Microsoft.ApplicationInsights 封裝提供 SDK 的 [核心 API](https://msdn.mic
 ```
 
 若要取得新的金鑰，請[在 Application Insights 入口網站中建立新的資源][new]。
+
+
+
+## <a name="applicationid-provider"></a>ApplicationId 提供者
+
+_從 v2.6.0 開始可供使用_
+
+提供者的用途是要查閱以檢測金鑰為基礎的應用程式識別碼。 應用程式識別碼包含在 RequestTelemetry 和 DependencyTelemetry 中，並且用來判斷入口網站中的相互關聯。
+
+可藉由在程式碼或組態中設定 `TelemetryConfiguration.ApplicationIdProvider` 來使用此功能。
+
+### <a name="interface-iapplicationidprovider"></a>介面：IApplicationIdProvider
+
+```csharp
+public interface IApplicationIdProvider
+{
+    bool TryGetApplicationId(string instrumentationKey, out string applicationId);
+}
+```
+
+
+我們在 [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights) SDK 中提供兩個實作：`ApplicationInsightsApplicationIdProvider` 和 `DictionaryApplicationIdProvider`。
+
+### <a name="applicationinsightsapplicationidprovider"></a>ApplicationInsightsApplicationIdProvider
+
+這是我們設定檔 API 的包裝函式。 它會對要求進行節流處理並快取結果。
+
+當您安裝 [Microsoft.ApplicationInsights.DependencyCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.DependencyCollector) 或 [Microsoft.ApplicationInsights.Web](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web/) 時，此提供者會新增至組態檔
+
+此類別具有選擇性屬性 `ProfileQueryEndpoint`。
+依預設，這會設定為 `https://dc.services.visualstudio.com/api/profiles/{0}/appId`。
+如果您需要為此組態設定 Proxy，我們建議對基底位址 (Base Address) 使用 Proxy 並包括 "/api/profiles/{0}/appId"。 請注意，在每個要求的執行階段上，'{0}' 會替代為檢測金鑰。
+
+#### <a name="example-configuration-via-applicationinsightsconfig"></a>透過 ApplicationInsights.config 的範例組態：
+```xml
+<ApplicationInsights>
+    ...
+    <ApplicationIdProvider Type="Microsoft.ApplicationInsights.Extensibility.Implementation.ApplicationId.ApplicationInsightsApplicationIdProvider, Microsoft.ApplicationInsights">
+        <ProfileQueryEndpoint>https://dc.services.visualstudio.com/api/profiles/{0}/appId</ProfileQueryEndpoint>
+    </ApplicationIdProvider>
+    ...
+</ApplicationInsights>
+```
+
+#### <a name="example-configuration-via-code"></a>透過程式碼的範例組態：
+```csharp
+TelemetryConfiguration.Active.ApplicationIdProvider = new ApplicationInsightsApplicationIdProvider();
+```
+
+### <a name="dictionaryapplicationidprovider"></a>DictionaryApplicationIdProvider
+
+這是靜態提供者，將依賴您設定的檢測金鑰/應用程式識別碼配對。
+
+此類別具有 `Defined` 屬性，也就是檢測金鑰與應用程式識別碼配對的「字典<string,string>」。
+
+此類別具有選擇性的 `Next` 屬性，可在您組態中不存在要求的檢測金鑰時，用來設定其他提供者。
+
+#### <a name="example-configuration-via-applicationinsightsconfig"></a>透過 ApplicationInsights.config 的範例組態：
+```xml
+<ApplicationInsights>
+    ...
+    <ApplicationIdProvider Type="Microsoft.ApplicationInsights.Extensibility.Implementation.ApplicationId.DictionaryApplicationIdProvider, Microsoft.ApplicationInsights">
+        <Defined>
+            <Type key="InstrumentationKey_1" value="ApplicationId_1"/>
+            <Type key="InstrumentationKey_2" value="ApplicationId_2"/>
+        </Defined>
+        <Next Type="Microsoft.ApplicationInsights.Extensibility.Implementation.ApplicationId.ApplicationInsightsApplicationIdProvider, Microsoft.ApplicationInsights" />
+    </ApplicationIdProvider>
+    ...
+</ApplicationInsights>
+```
+
+#### <a name="example-configuration-via-code"></a>透過程式碼的範例組態：
+```csharp
+TelemetryConfiguration.Active.ApplicationIdProvider = new DictionaryApplicationIdProvider{
+ Defined = new Dictionary<string, string>
+    {
+        {"InstrumentationKey_1", "ApplicationId_1"},
+        {"InstrumentationKey_2", "ApplicationId_2"}
+    }
+};
+```
+
+
+
 
 ## <a name="next-steps"></a>後續步驟
 [深入了解 API][api]。

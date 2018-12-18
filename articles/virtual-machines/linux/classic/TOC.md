@@ -4,7 +4,7 @@
 ## [常見問題集](faq-classic.md)
 
 # 開始使用
-## [使用 Azure 入口網站建立 Linux VM](createportal-classic.md)
+## [建立 Linux VM](createportal-classic.md)
 
 # 作法
 ## 計算
@@ -33,7 +33,6 @@
 ### [Rails Web 應用程式上的 Ruby](ruby-rails-web-app.md)
 ### [Cassandra 和 Node.js 用戶端](cassandra-nodejs.md)
 ### [Tomcat](setup-tomcat.md)
-### [用以執行 MPI 應用程式的 RDMA 叢集](rdma-cluster.md)
 ### HPC Pack
 #### [為 Linux 工作負載建立叢集](hpcpack-cluster-powershell-script.md)
 #### [管理具有 Linux 節點的叢集](hpcpack-cluster.md)

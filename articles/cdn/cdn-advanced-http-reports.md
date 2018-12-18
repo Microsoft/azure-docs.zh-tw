@@ -1,11 +1,11 @@
 ---
-title: "使用 Azure CDN 進階 HTTP 報告分析使用量統計資料 | Microsoft Docs"
-description: "了解如何在 Microsoft Azure CDN 中建立進階 HTTP 報告。 這些報告提供有關 CDN 活動的詳細資訊。"
+title: 使用 Azure CDN 進階 HTTP 報告分析使用量統計資料 | Microsoft Docs
+description: 了解如何在 Microsoft Azure CDN 中建立進階 HTTP 報告。 這些報告提供有關 CDN 活動的詳細資訊。
 services: cdn
-documentationcenter: 
+documentationcenter: ''
 author: zhangmanling
 manager: erikre
-editor: 
+editor: ''
 ms.assetid: ef90adc1-580e-4955-8ff1-bde3f3cafc5d
 ms.service: cdn
 ms.workload: tbd
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "22999033"
 ---
 # <a name="analyze-usage-statistics-with-azure-cdn-advanced-http-reports"></a>使用 Azure CDN 進階 HTTP 報告分析使用量統計資料
 ## <a name="overview"></a>概觀

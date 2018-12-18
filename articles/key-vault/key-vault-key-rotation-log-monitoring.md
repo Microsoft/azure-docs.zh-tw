@@ -1,33 +1,40 @@
 ---
-title: "使用端對端金鑰輪替和稽核設定 Azure 金鑰保存庫 | Microsoft Docs"
-description: "使用此操作說明可協助您使用金鑰輪替和監視金鑰保存庫記錄檔來進行設定。"
+title: 使用端對端金鑰輪替和稽核設定 Azure 金鑰保存庫 | Microsoft Docs
+description: 使用此操作說明可協助您使用金鑰輪替和監視金鑰保存庫記錄檔來進行設定。
 services: key-vault
-documentationcenter: 
-author: swgriffith
+documentationcenter: ''
+author: barclayn
 manager: mbaldwin
-tags: 
+tags: ''
 ms.assetid: 9cd7e15e-23b8-41c0-a10a-06e6207ed157
 ms.service: key-vault
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 03/01/2018
-ms.author: jodehavi;stgriffi
-ms.openlocfilehash: edc9a870257536235c2bef139dc4d1ead7dd7a8f
-ms.sourcegitcommit: 0b02e180f02ca3acbfb2f91ca3e36989df0f2d9c
+ms.topic: conceptual
+ms.date: 06/12/2018
+ms.author: barclayn
+ms.openlocfilehash: bf3aba431e7b417b2213bc3410fd7722d7888d15
+ms.sourcegitcommit: f3bd5c17a3a189f144008faf1acb9fabc5bc9ab7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/05/2018
+ms.lasthandoff: 09/10/2018
+ms.locfileid: "44302012"
 ---
-# <a name="set-up-azure-key-vault-with-end-to-end-key-rotation-and-auditing"></a>使用端對端金鑰輪替和稽核設定 Azure 金鑰保存庫
+# <a name="set-up-azure-key-vault-with-key-rotation-and-auditing"></a>使用金鑰輪替和稽核設定 Azure Key Vault
+
 ## <a name="introduction"></a>簡介
-在建立金鑰保存庫之後，您可以開始使用該保存庫來儲存金鑰和密碼。 應用程式不再需要保存金鑰或密碼，而是視需要從金鑰保存庫要求取得。 這可讓您更新金鑰和密碼，而不會影響應用程式的行為，讓您有各種可能方式來管理金鑰和密碼。
+
+當您具有金鑰保存庫之後，即可開始用它來儲存金鑰和秘密。 應用程式不再需要保存您的金鑰或秘密，而是可視需要從保存庫要求取得。 這可讓您更新金鑰和密碼，而不會影響應用程式的行為，讓您有各種可能方式來管理金鑰和密碼。
 
 >[!IMPORTANT]
 > 本文中的範例僅供說明之用。 不適用於生產環境。 
 
-本文逐步解說使用 Azure 金鑰保存庫來儲存密碼的範例，在此案例中就是應用程式所存取的 Azure 儲存體帳戶金鑰。 文中也會示範如何實作該儲存體帳戶金鑰的排程輪替。 最後，本文會逐步示範如何監視金鑰保存庫稽核記錄檔，並在提出未預期的要求時發出警示。
+本文將逐步解說：
+
+- 使用 Azure Key Vault 來儲存秘密的範例。 在本教學課程中，儲存的秘密會是應用程式所存取的 Azure 儲存體帳戶金鑰。 
+- 文中也會示範如何實作該儲存體帳戶金鑰的排程輪替。
+- 文中示範如何監視金鑰保存庫稽核記錄，並在有非預期的要求提出時引發警示。
 
 > [!NOTE]
 > 本教學課程並不打算詳細說明金鑰保存庫的初始設定。 如需這方面的資訊，請參閱 [開始使用 Azure 金鑰保存庫](key-vault-get-started.md)。 如需跨平台命令列介面的指示，請參閱[使用 CLI 管理金鑰保存庫](key-vault-manage-with-cli2.md)。
@@ -35,10 +42,11 @@ ms.lasthandoff: 03/05/2018
 >
 
 ## <a name="set-up-key-vault"></a>設定金鑰保存庫
+
 若要讓應用程式能夠從金鑰保存庫擷取密碼，您必須先建立此密碼，並上傳至保存庫。 開始 Azure PowerShell 工作階段，並使用下列命令登入您的 Azure 帳戶，即可完成此作業：
 
 ```powershell
-Login-AzureRmAccount
+Connect-AzureRmAccount
 ```
 
 在快顯瀏覽器視窗中，輸入您的 Azure 帳戶使用者名稱與密碼。 PowerShell 會取得與此帳戶相關聯的所有訂用帳戶。 PowerShell 使用預設第一個訂用帳戶。
@@ -68,6 +76,7 @@ $secretvalue = ConvertTo-SecureString <storageAccountKey> -AsPlainText -Force
 
 Set-AzureKeyVaultSecret -VaultName <vaultName> -Name <secretName> -SecretValue $secretvalue
 ```
+
 接下來，取得您建立之密碼的 URI。 在稍後的步驟中，當您呼叫金鑰保存庫以擷取密碼時將會用到。 執行下列 PowerShell 命令，並記下 ID 值，也就是密碼的 URI：
 
 ```powershell
@@ -75,6 +84,7 @@ Get-AzureKeyVaultSecret –VaultName <vaultName>
 ```
 
 ## <a name="set-up-the-application"></a>設定範例應用程式
+
 現在您已儲存密碼，您可以使用程式碼進行擷取並加以使用。 需要執行幾個步驟才能達到這個目的。 第一個也是最重要的步驟是向 Azure Active Directory 註冊應用程式，然後讓金鑰保存庫知道應用程式的資訊，以便允許來自應用程式的要求。
 
 > [!NOTE]
@@ -82,29 +92,23 @@ Get-AzureKeyVaultSecret –VaultName <vaultName>
 >
 >
 
-開啟 Azure Active Directory 的 [應用程式] 索引標籤。
+1. 瀏覽至 Azure Active Directory。
+2. 選擇 [應用程式註冊] 
+3. 選擇 [新增應用程式註冊]，將應用程式新增至您的 Azure Active Directory。
 
-![在 Azure Active Directory 中開啟應用程式](./media/keyvault-keyrotation/AzureAD_Header.png)
+    ![在 Azure Active Directory 中開啟應用程式](./media/keyvault-keyrotation/azure-ad-application.png)
 
-選擇 [新增] 將應用程式新增到 Azure Active Directory。
+4. 在 [建立] 區段中，讓應用程式類型保持為 [Web 應用程式和/或 WEB API]，然後為應用程式提供名稱。 為應用程式提供 **SIGN-ON URL**。 這可以是任何您要用於此示範的項目。
 
-![選擇 [新增]](./media/keyvault-keyrotation/Azure_AD_AddApp.png)
+    ![建立應用程式註冊](./media/keyvault-keyrotation/create-app.png)
 
-讓應用程式類型保持使用 [Web 應用程式和/或 WEB API]，然後為應用程式提供名稱。
+5. 在應用程式新增至 Azure Active Directory 之後，您將會進入應用程式頁面。 選取 [設定]，然後選取屬性。 複製 [應用程式識別碼] 值。 在後續的步驟中將需使用此值。
 
-![為應用程式命名](./media/keyvault-keyrotation/AzureAD_NewApp1.png)
+接下來，產生金鑰，以便應用程式與 Azure Active Directory 互動。 您可以瀏覽至 [設定] 下方的 [金鑰] 區段，以建立金鑰。 記下從 Azure Active Directory 應用程式新產生的金鑰，以供後續步驟使用。 請注意，在瀏覽出此區段之後，金鑰將無法使用。 
 
-為應用程式提供 [登入 URL] 和 [應用程式識別碼 URI]。 這些可以是任何想用於此示範的值，並可在稍後視需要加以變更。
+![Azure Active Directory 應用程式金鑰](./media/keyvault-keyrotation/create-key.png)
 
-![提供必要的 URI](./media/keyvault-keyrotation/AzureAD_NewApp2.png)
-
-在應用程式新增至 Azure Active Directory 之後，您將會進入應用程式頁面。 按一下 [設定] 索引標籤，然後尋找並複製 [用戶端識別碼] 值。 記下用戶端識別碼以供後續步驟使用。
-
-接下來，產生金鑰，以便應用程式與 Azure Active Directory 互動。 您可以在 [設定] 索引標籤的 [金鑰] 區段底下建立此金鑰。記下從 Azure Active Directory 應用程式新產生的金鑰，以供後續步驟使用。
-
-![Azure Active Directory 應用程式金鑰](./media/keyvault-keyrotation/Azure_AD_AppKeys.png)
-
-在建立任何從應用程式到金鑰保存庫的呼叫之前，您必須讓金鑰保存庫知道應用程式及其權限。 下列命令會從 Azure Active Directory 應用程式取得保存庫名稱和用戶端識別碼，並授與 **Get** 權限給應用程式的金鑰保存庫。
+在建立任何從應用程式到金鑰保存庫的呼叫之前，您必須讓金鑰保存庫知道應用程式及其權限。 下列命令會從您的 Azure Active Directory 應用程式取得保存庫名稱和應用程式識別碼，並為應用程式授與對您金鑰保存庫的 **Get** 存取權。
 
 ```powershell
 Set-AzureRmKeyVaultAccessPolicy -VaultName <vaultName> -ServicePrincipalName <clientIDfromAzureAD> -PermissionsToSecrets Get
@@ -160,6 +164,7 @@ var sec = kv.GetSecretAsync(<SecretID>).Result.Value;
 當您執行應用程式時，您現在應該向 Azure Active Directory 進行驗證，然後從 Azure 金鑰保存庫中擷取密碼值。
 
 ## <a name="key-rotation-using-azure-automation"></a>使用 Azure 自動化的金鑰輪替
+
 針對儲存為 Azure 金鑰保存庫密碼的值，有各種選項可用來實作其輪替策略。 密碼可以在進行手動程序時輪替、使用 API 呼叫以程式設計的方式輪替，或是透過自動化指令碼來輪替。 基於本文的目的，您將會使用 Azure PowerShell 並結合 Azure 自動化，以變更 Azure 儲存體帳戶存取金鑰。 然後您將使用這個新金鑰來更新金鑰保存庫密碼。
 
 若要允許 Azure 自動化在金鑰保存庫中設定密碼值，您必須取得建立 Azure 自動化執行個體時所建立、名為 'AzureRunAsConnection' 的連線的用戶端識別碼。 從 Azure 自動化執行個體選擇 [資產]，即可尋找這個識別碼。 在該處選擇 [連線]，然後選取 [AzureRunAsConnection] 服務主體。 請記下 [應用程式識別碼]。
@@ -201,7 +206,7 @@ try
     $servicePrincipalConnection=Get-AutomationConnection -Name $connectionName         
 
     "Logging in to Azure..."
-    Add-AzureRmAccount `
+    Connect-AzureRmAccount `
         -ServicePrincipal `
         -TenantId $servicePrincipalConnection.TenantId `
         -ApplicationId $servicePrincipalConnection.ApplicationId `
@@ -406,6 +411,7 @@ static string GetContainerSasUri(CloudBlockBlob blob)
        }
     }
 ```
+
 在 [儲存] 時，Azure Functions 會下載所需的二進位檔。
 
 切換至 [整合]  索引標籤，然後為計時器參數提供有意義的名稱以在函式內使用。 前面的程式碼預期計時器名稱為 myTimer。 依下列方式為計時器指定 [CRON 運算式](../app-service/web-sites-create-web-jobs.md#CreateScheduledCRON)︰0 \* \* \* \* \*，這會讓函式每分鐘執行一次。
@@ -417,6 +423,7 @@ static string GetContainerSasUri(CloudBlockBlob blob)
 此時，函式已準備就緒。 請務必切換回 [開發] 索引標籤並儲存程式碼。 檢查 [輸出] 視窗中是否有任何編譯錯誤，並據以更正。 如果程式碼進行編譯，則程式碼現在應該會每隔一分鐘檢查金鑰保存庫的記錄檔，並將任何新事件推送到已定義的服務匯流排佇列。 您應該會在每次觸發函式時看到記錄資訊寫入到 [記錄檔] 視窗。
 
 ### <a name="azure-logic-app"></a>Azure 邏輯應用程式
+
 接下來，您必須建立 Azure 邏輯應用程式，以挑選函式推送至服務匯流排佇列的事件、剖析內容，以及根據符合的條件傳送電子郵件。
 
 移至 [新增] -> [邏輯應用程式] 以[建立邏輯應用程式](../logic-apps/quickstart-create-first-logic-app-workflow.md)。

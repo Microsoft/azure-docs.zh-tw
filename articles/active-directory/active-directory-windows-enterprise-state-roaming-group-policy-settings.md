@@ -1,25 +1,27 @@
 ---
-title: "群組原則和 MDM 設定 | Microsoft Docs"
-description: "提供應該在公司所擁有的裝置上使用的群組原則和行動裝置管理 (MDM) 設定的相關資訊。 這些原則會套用至使用者的整個裝置。"
+title: 群組原則和 MDM 設定 | Microsoft Docs
+description: 提供應該在公司所擁有的裝置上使用的群組原則和行動裝置管理 (MDM) 設定的相關資訊。 這些原則會套用至使用者的整個裝置。
 services: active-directory
-keywords: "什麼是企業狀態漫遊的群組原則和 MDM 設定, 企業狀態漫遊, windows 雲端"
-documentationcenter: 
-author: tanning
+keywords: 什麼是企業狀態漫遊的群組原則和 MDM 設定, 企業狀態漫遊, windows 雲端
+documentationcenter: ''
+author: MarkusVi
 manager: mtillman
 editor: curtand
+ms.component: devices
 ms.assetid: 6471a9b3-8dd4-4237-89d1-bfbeca9f8252
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/08/2017
+ms.date: 07/23/2018
 ms.author: markvi
-ms.openlocfilehash: 588084481ffc5cbbeed34e9527271179fa359ed5
-ms.sourcegitcommit: e266df9f97d04acfc4a843770fadfd8edf4fa2b7
+ms.openlocfilehash: f1bbbecf1f40b110614b3da9874d5d2c560f9e58
+ms.sourcegitcommit: d211f1d24c669b459a3910761b5cacb4b4f46ac9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/11/2017
+ms.lasthandoff: 09/06/2018
+ms.locfileid: "44024630"
 ---
 # <a name="group-policy-and-mdm-settings"></a>群組原則和 MDM 設定
 只在公司所擁有的裝置上使用這些群組原則和行動裝置管理 (MDM) 設定，因為這些原則會套用到使用者的整個裝置。 套用 MDM 原則來停用個人、使用者所擁有的裝置的設定同步處理，會對使用該裝置造成負面影響。 此外，在裝置上的其他使用者帳戶也會被原則影響。
@@ -28,9 +30,9 @@ ms.lasthandoff: 12/11/2017
 下表描述可用的原則設定。
 
 ## <a name="mdm-settings"></a>MDM 設定
-MDM 原則設定會套用至 Windows 10 及 Windows 10 行動裝置版。  Windows 10 行動裝置版支援僅適用於以 Microsoft 帳戶為基礎且透過使用者的 OneDrive 帳戶進行的漫遊。  如需哪些裝置支援以 Azure AD 為基礎的同步處理的詳細資訊，請參閱＜裝置與端點＞一節。
+MDM 原則設定會套用至 Windows 10 及 Windows 10 行動裝置版。  Windows 10 行動裝置版支援僅適用於以 Microsoft 帳戶為基礎且透過使用者的 OneDrive 帳戶進行的漫遊。  如需哪些裝置支援以 Azure AD 為基礎的同步處理的詳細資訊，請參閱[裝置與端點](active-directory-windows-enterprise-state-roaming-windows-settings-reference.md)。
 
-| Name | 說明 |
+| 名稱 | 說明 |
 | --- | --- |
 | 允許 Microsoft 帳戶連接 |允許使用者在裝置上使用 Microsoft 帳戶進行驗證 |
 | 允許同步處理我的設定 |讓使用者能夠漫遊 Windows 設定和應用程式資料。停用此原則，將停用行動裝置上的同步處理及備份 |
@@ -38,7 +40,7 @@ MDM 原則設定會套用至 Windows 10 及 Windows 10 行動裝置版。  Windo
 ## <a name="group-policy-settings"></a>群組原則設定
 群組原則設定會套用至加入 Active Directory 網域的 Windows 10 裝置上。 資料表也包含看似可管理同步處理設定的舊版設定，但不適用於 Windows 10 的企業狀態漫遊 (已在其說明中註明「不要使用」)。
 
-| Name | 說明 |
+| 名稱 | 說明 |
 | --- | --- |
 | 帳戶：封鎖 Microsoft 帳戶 |此原則設定會防止使用者在這部電腦上新增新的 Microsoft 帳戶 |
 | 不要同步處理 |防止使用者漫遊 Windows 設定和應用程式資料 |

@@ -20,6 +20,7 @@ ms.sourcegitcommit: 20d103fb8658b29b48115782fe01f76239b240aa
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 04/03/2018
+ms.locfileid: "30314025"
 ---
 # <a name="create-and-modify-peering-for-an-expressroute-circuit"></a>建立和修改 ExpressRoute 線路的對等互連
 
@@ -72,9 +73,9 @@ ms.lasthandoff: 04/03/2018
   * 供建立此對等的有效 VLAN ID。 請確定線路有沒有其他對等使用相同的 VLAN ID。
   * 對等的 AS 編號。 您可以使用 2 位元組和 4 位元組 AS 編號。
   * 公告的首碼：您必須提供一份您打算在 BGP 工作階段上公告的所有首碼的清單。 只接受公用 IP 位址首碼。 如果計劃傳送一組首碼，可以傳送以逗號分隔的清單。 這些首碼必須在 RIR / IRR 中註冊給您。
-  * **選用：**客戶 ASN：如果您要公告的首碼未註冊給對等互連 AS 編號，則可以指定它們所註冊的 AS 編號。
+  * **選用：** 客戶 ASN：如果您要公告的首碼未註冊給對等互連 AS 編號，則可以指定它們所註冊的 AS 編號。
   * 路由登錄名稱：您可以指定可供註冊 AS 編號和首碼的 RIR / IRR。
-  * **選用：**MD5 雜湊 (如果選擇使用)。
+  * **選用：** MD5 雜湊 (如果選擇使用)。
 3. 如下列範例所示，您可以選取要設定的對等互連。 選取 Microsoft 對等資料列。
 
   ![選取 Microsoft 對等互連列](./media/expressroute-howto-routing-portal-resource-manager/rmicrosoft1.png)
@@ -129,7 +130,7 @@ ms.lasthandoff: 04/03/2018
   * 次要連結的 /30 子網路。 子網路不能在保留給虛擬網路的任何位址空間中。
   * 供建立此對等的有效 VLAN ID。 請確定線路有沒有其他對等使用相同的 VLAN ID。
   * 對等的 AS 編號。 您可以使用 2 位元組和 4 位元組 AS 編號。 您可以將私用 AS 編號用於此對等。 請確定您不是使用 65515。
-  * **選用：**MD5 雜湊 (如果選擇使用)。
+  * **選用：** MD5 雜湊 (如果選擇使用)。
 3. 如下列範例所示，選取 Azure 私用對等互連列：
 
   ![私用](./media/expressroute-howto-routing-portal-resource-manager/rprivate1.png)
@@ -173,7 +174,7 @@ ms.lasthandoff: 04/03/2018
   * 次要連結的 /30 子網路。 這必須是有效的公用 IPv4 首碼。
   * 供建立此對等的有效 VLAN ID。 請確定線路有沒有其他對等使用相同的 VLAN ID。
   * 對等的 AS 編號。 您可以使用 2 位元組和 4 位元組 AS 編號。
-  * **選用：**MD5 雜湊 (如果選擇使用)。
+  * **選用：** MD5 雜湊 (如果選擇使用)。
 3. 如下圖所示，選取 Azure 公用對等互連列：
 
   ![選取公用對等互連列](./media/expressroute-howto-routing-portal-resource-manager/rpublic1.png)

@@ -1,26 +1,20 @@
 ---
-title: "監視叢集效能 - Azure HDInsight | Microsoft Docs"
-description: "如何監視 HDInsight 叢集的容量和效能。"
+title: 監視叢集效能 - Azure HDInsight
+description: 如何監視 HDInsight 叢集的容量和效能。
 services: hdinsight
-documentationcenter: 
-tags: azure-portal
 author: maxluk
-manager: jhubbard
-editor: cgronlun
-ms.assetid: 
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 09/27/2017
 ms.author: maxluk
-ms.openlocfilehash: f2333202cdccc82edea649ff1c295752a414c8b8
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 434b3ecf65aaa5ecea81f5a9773f1bc6e8f6f2be
+ms.sourcegitcommit: f6e2a03076679d53b550a24828141c4fb978dcf9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43092322"
 ---
 # <a name="monitor-cluster-performance"></a>監視叢集效能
 

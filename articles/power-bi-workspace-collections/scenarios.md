@@ -1,26 +1,21 @@
 ---
-title: "常見的 Microsoft Power BI 工作區集合案例"
-description: "Microsoft Power BI Embedded 常見案例"
+title: 常見的 Microsoft Power BI 工作區集合案例
+description: Microsoft Power BI Embedded 常見案例
 services: power-bi-embedded
-documentationcenter: 
-author: guyinacube
-manager: erikre
-editor: 
-tags: 
+author: markingmyname
 ROBOTS: NOINDEX
 ms.assetid: 0bf9706c-11bd-432a-bab3-89c04bc4dd1f
 ms.service: power-bi-embedded
-ms.devlang: NA
 ms.topic: article
-ms.tgt_pltfrm: NA
 ms.workload: powerbi
 ms.date: 09/20/2017
-ms.author: asaxton
-ms.openlocfilehash: f0c64995a14c92bee56e4b7722afda2f7e1ece73
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.author: maghan
+ms.openlocfilehash: 04c54250a12e2f5989b474b7c6865ff8052743ef
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43041880"
 ---
 # <a name="common-power-bi-workspace-collection-scenarios"></a>常見的 Power BI 工作區集合情節
 

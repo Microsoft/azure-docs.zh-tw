@@ -15,11 +15,12 @@ ms.workload: big-compute
 ms.date: 05/22/2017
 ms.author: danlep
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: ba85e075c39251b0b3d7c4b8bc3f8d53a1afadf7
-ms.sourcegitcommit: 20d103fb8658b29b48115782fe01f76239b240aa
+ms.openlocfilehash: 6a9b44ed56774466bae2f0f5d48b5e012382721b
+ms.sourcegitcommit: ab3b2482704758ed13cccafcf24345e833ceaff3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2018
+ms.lasthandoff: 07/06/2018
+ms.locfileid: "37865228"
 ---
 # <a name="create-task-dependencies-to-run-tasks-that-depend-on-other-tasks"></a>建立工作相依性，以便執行相依於其他工作的工作
 
@@ -67,7 +68,7 @@ new CloudTask("Flowers", "cmd.exe /c echo Flowers")
 此程式碼片段會使用工作識別碼 "Flowers" 建立相依工作。 "Flowers" 工作相依於 "Rain" 和 "Sun" 工作。 "Flowers" 工作將排定為只會在 "Rain" 和 "Sun" 工作順利完成後，才於計算節點上執行。
 
 > [!NOTE]
-> 當工作處於**已完成**狀態且其**結束代碼** 是 `0` 時，才會將其視為已順利完成。 在 Batch .NET 中，這表示 [CloudTask][net_cloudtask].[State][net_taskstate] 屬性值為 `Completed`，而 CloudTask 的 [TaskExecutionInformation][net_taskexecutioninformation].[ExitCode][net_exitcode] 屬性值為 `0`。
+> 根據預設，當工作處於**已完成**狀態且其**結束代碼**是 `0` 時，才會將其視為已順利完成。 在 Batch .NET 中，這表示 [CloudTask][net_cloudtask].[State][net_taskstate] 屬性值為 `Completed`，而 CloudTask 的 [TaskExecutionInformation][net_taskexecutioninformation].[ExitCode][net_exitcode] 屬性值為 `0`。 如需變更方式的相關資訊，請參閱[相依性動作](#dependency-actions)一節。
 > 
 > 
 
@@ -120,7 +121,9 @@ new CloudTask("Flowers", "cmd.exe /c echo Flowers")
 若要建立相依性，請在填入 [CloudTask][net_cloudtask] 的 [DependsOn][net_dependson] 屬性時，對 [TaskDependencies][net_taskdependencies].[OnIdRange][net_onidrange] 靜態方法提供範圍中的第一個和最後一個工作識別碼。
 
 > [!IMPORTANT]
-> 當您針對相依性使用工作識別碼範圍時，該範圍內的工作識別碼「必須」是以字串表示的整數值。
+> 在使用相依性的工作識別碼範圍時，範圍中只會選出識別碼代表的是整數值的工作。 因此，範圍 `1..10` 會選出工作 `3` 和 `7`，而非 `5flamingoes`。 
+> 
+> 在評估範圍相依性時，前置的零並不具有任何意義，所以字串識別碼為 `4`、`04` 及 `004` 的工作都會落在範圍「之內」，而且都會被視為工作 `4`，因此第一項完成的工作將能滿足相依性。
 > 
 > 範圍中的每項工作必須藉由下列方式來符合相依性：順利完成，或完成但對應至相依性動作的錯誤設定為 [符合]。 如需詳細資訊，請參閱[相依性動作](#dependency-actions)一節。
 >

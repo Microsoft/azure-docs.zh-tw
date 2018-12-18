@@ -1,5 +1,5 @@
 ---
-title: 建立 Service Fabric 的 Java 應用程式 |Microsoft Docs
+title: 在 Azure 中的 Service Fabric 上建立 Java 應用程式 | Microsoft Docs
 description: 在本教學課程中，了解如何建立含有前端的可靠服務 Java 應用程式、建立具狀態可靠服務後端，以及將應用程式部署到叢集。
 services: service-fabric
 documentationcenter: java
@@ -12,16 +12,18 @@ ms.devlang: java
 ms.topic: tutorial
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 02/26/2018
+ms.date: 09/01/2018
 ms.author: suhuruli
 ms.custom: mvc
-ms.openlocfilehash: dc67de00abb2eac2eeb6e2b6bf3798e3aa210152
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: e4552157cab846356c57a135d4e273f5a545bce9
+ms.sourcegitcommit: 31241b7ef35c37749b4261644adf1f5a029b2b8e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/04/2018
+ms.locfileid: "43667212"
 ---
-# <a name="tutorial-create-and-deploy-an-application-with-a-java-web-api-front-end-service-and-a-stateful-back-end-service"></a>教學課程：使用 Java Web API 前端服務和具狀態後端服務建立和部署應用程式
+# <a name="tutorial-create-an-application-with-a-java-web-api-front-end-service-and-a-stateful-back-end-service-on-service-fabric"></a>教學課程：在 Service Fabric 上使用 Java Web API 前端服務和具狀態後端服務建立應用程式
+
 本教學課程是一個系列的第一部分。 當您完成時，您會有一個 Voting 應用程式，其 Java Web 前端會將投票結果儲存在叢集中具狀態的後端服務。 此教學課程系列要求您具備一部運作中的 Mac OSX 或 Linux 開發人員電腦。 如果您不需要以手動建立 Voting 應用程式，可以[下載已完成應用程式的原始程式碼](https://github.com/Azure-Samples/service-fabric-java-quickstart)並直接前往[逐步解說投票範例應用程式](service-fabric-tutorial-create-java-app.md#walk-through-the-voting-sample-application)。
 
 ![本機 Voting 應用程式](./media/service-fabric-tutorial-create-java-app/votingjavalocal.png)
@@ -36,32 +38,35 @@ ms.lasthandoff: 03/16/2018
 
 在本教學課程系列中，您將了解如何：
 > [!div class="checklist"]
-> *  建置 Java Service Fabric Reliable Services 應用程式
+> * 建置 Java Service Fabric Reliable Services 應用程式
 > * [在本機叢集上部署及偵錯應用程式](service-fabric-tutorial-debug-log-local-cluster.md)
 > * [將應用程式部署至 Azure 叢集](service-fabric-tutorial-java-deploy-azure.md)
 > * [設定應用程式的監視和診斷](service-fabric-tutorial-java-elk.md)
 > * [設定 CI/CD](service-fabric-tutorial-java-jenkins.md)
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
+
 開始進行本教學課程之前：
-- 如果您沒有 Azure 訂用帳戶，請建立[免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F)。
-- 在 [Mac](service-fabric-get-started-mac.md) 或 [Linux](service-fabric-get-started-linux.md) 上設定開發環境。 請遵循指示來安裝 Eclipse 外掛程式、 Gradle、Service Fabric SDK 和 Service Fabric CLI (sfctl)。
+
+* 如果您沒有 Azure 訂用帳戶，請建立[免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F)。
+* 在 [Mac](service-fabric-get-started-mac.md) 或 [Linux](service-fabric-get-started-linux.md) 上設定開發環境。 請遵循指示來安裝 Eclipse 外掛程式、 Gradle、Service Fabric SDK 和 Service Fabric CLI (sfctl)。
 
 ## <a name="create-the-front-end-java-stateless-service"></a>建立前端 Java 無狀態服務
+
 首先，建立 Voting 應用程式的 Web 前端。 Java 無狀態服務代表輕量型 HTTP 伺服器，其裝載由 AngularJS 支援的 Web UI。 此無狀態服務會處理使用者的要求，並將其當作具狀態服務的遠端程序呼叫傳送以儲存選票。 
 
-1. 啟動 Eclipse
+1. 啟動 Eclipse。
 
-2. 透過 [檔案]->[新增]->[其他]->[Service Fabric]->[Service Fabric 專案] 建立專案
+2. 透過 [檔案]->[新增]->[其他]->[Service Fabric]->[Service Fabric 專案] 來建立專案。
 
     ![Eclipse 中的 [新增專案] 對話方塊](./media/service-fabric-tutorial-create-java-app/create-sf-proj-wizard.png)
 
-3. 在 [ServiceFabric 專案精靈] 對話方塊中，將專案命名為 **Voting** 並且按 [下一步]
+3. 在 [ServiceFabric 專案精靈] 對話方塊中，將專案命名為 **Voting**，然後按 [下一步]。
 
     ![在新增服務對話方塊中選擇 Java 具狀態服務](./media/service-fabric-tutorial-create-java-app/name-sf-proj-wizard.png) 
 
 4. 在 [新增服務] 頁面上，選擇 [具狀態服務]，並將服務命名為 **VotingWeb**。 按一下 [完成] 以建立專案。
-   
+
     ![建立無狀態服務]( ./media/service-fabric-tutorial-create-java-app/createvotingweb.png)
 
     Eclipse 會建立應用程式和服務專案並顯示在 [套件總管] 中。
@@ -79,13 +84,14 @@ ms.lasthandoff: 03/16/2018
 | settings.gradle | 包含此資料夾中的 Gradle 專案名稱。 |
 
 ### <a name="add-html-and-javascript-to-the-votingweb-service"></a>將 HTML 和 Javascript 新增至 VotingWeb 服務
-若要新增可由無狀態服務轉譯的 UI，請在 VotingApplication/VotingWebPkg/Code 中新增 HTML 檔案。 然後，無狀態 Java 服務中嵌入的輕量型 HTTP 伺服器會轉譯此 HTML 檔案。 
 
-1. 展開 VotingApplication 目錄以到達 VotingApplication/VotingWebPkg/Code 目錄。 
+若要新增可由無狀態服務轉譯的 UI，請在 VotingApplication/VotingWebPkg/Code 中新增 HTML 檔案。 然後，無狀態 Java 服務中嵌入的輕量型 HTTP 伺服器會轉譯此 HTML 檔案。
 
-2. 以滑鼠右鍵按一下 Code 目錄，然後按一下 [新增] -> [其他]
+1. 展開 VotingApplication 目錄以到達 VotingApplication/VotingWebPkg/Code 目錄。
 
-3. 建立名為 wwwroot 的資料夾，然後按一下 [完成]
+2. 以滑鼠右鍵按一下 [Code] 目錄，然後按一下 [新增]->[資料夾]。
+
+3. 將資料夾命名為 wwwroot，然後按一下 [完成]。
 
     ![Eclipse 建立 wwwroot 資料夾](./media/service-fabric-tutorial-create-java-app/create-wwwroot-folder.png)
 
@@ -199,8 +205,9 @@ app.controller("VotingAppController", ['$rootScope', '$scope', '$http', '$timeou
 </html>
 ```
 
-### <a name="update-the-votingwebservicejava-file"></a>更新 VotingWebService.java 檔案
-在 **VotingWeb** 子專案中，開啟 VotingWeb/src/statelessservice/VotingWebService.java 檔案。 **VotingWebService** 是無狀態服務的閘道，負責設定前端 API 的通訊接聽程式。 
+### <a name="update-the-votingwebjava-file"></a>更新 VotingWeb.java 檔案
+
+在 **VotingWeb** 子專案中，開啟 VotingWeb/src/statelessservice/VotingWeb.java 檔案。 **VotingWebService** 服務是進入無狀態服務的閘道，負責設定前端 API 的通訊接聽程式。
 
 以下列內容取代檔案中 **createServiceInstanceListeners** 方法的內容並儲存變更。
 
@@ -218,7 +225,8 @@ protected List<ServiceInstanceListener> createServiceInstanceListeners() {
 ```
 
 ### <a name="add-the-httpcommunicationlistenerjava-file"></a>新增 HTTPCommunicationListener.java 檔案
-HTTP 通訊接聽程式可作為控制器，以設定 HTTP 伺服器及公開用來定義投票動作的 API。 以滑鼠右鍵按一下 VotingWeb/src/statelessservice 資料夾中的 statelessservice 套件，然後選取 [新增] -> [其他...] -> [一般] -> [檔案]，然後按 [下一步]。  將檔案命名為 HttpCommunicationListener.java，然後按一下 [完成]。  
+
+HTTP 通訊接聽程式可作為控制器，以設定 HTTP 伺服器及公開用來定義投票動作的 API。 以滑鼠右鍵按一下 VotingWeb/src/statelessservice 資料夾中的 [statelessservice] 套件，然後選取 [新增] -> [檔案]。  將檔案命名為 HttpCommunicationListener.java，然後按一下 [完成]。
 
 將檔案內容取代為下列項目，然後儲存變更。  稍後，在[更新 HttpCommunicationListener.java 檔案](#updatelistener_anchor)中，這個檔案會經過修改，以從後端服務轉譯、讀取和寫入投票資料。  現在，接聽程式只會傳回 Voting 應用程式的靜態 HTML。
 
@@ -258,7 +266,7 @@ import system.fabric.CancellationToken;
 public class HttpCommunicationListener implements CommunicationListener {
 
     private static final Logger logger = Logger.getLogger(HttpCommunicationListener.class.getName());
-    
+
     private static final String HEADER_CONTENT_TYPE = "Content-Type";
     private static final int STATUS_OK = 200;
     private static final int STATUS_NOT_FOUND = 404; 
@@ -266,7 +274,7 @@ public class HttpCommunicationListener implements CommunicationListener {
     private static final String RESPONSE_NOT_FOUND = "404 (Not Found) \n";
     private static final String MIME = "text/html";  
     private static final String ENCODING = "UTF-8";
-    
+
     private static final String ROOT = "wwwroot/";
     private static final String FILE_NAME = "index.html";
     private StatelessServiceContext context;
@@ -289,7 +297,7 @@ public class HttpCommunicationListener implements CommunicationListener {
             logger.log(Level.SEVERE, null, ex);
             throw new RuntimeException(ex);
         }
-        
+
         // Responsible for rendering the HTML layout described in the previous step
         server.createContext("/", new HttpHandler() {
             @Override
@@ -306,7 +314,7 @@ public class HttpCommunicationListener implements CommunicationListener {
                     } else {    
                       Headers h = t.getResponseHeaders();
                       h.set(HEADER_CONTENT_TYPE, MIME);
-                      t.sendResponseHeaders(STATUS_OK, 0);              
+                      t.sendResponseHeaders(STATUS_OK, 0);
     
                       OutputStream os = t.getResponseBody();
                       FileInputStream fs = new FileInputStream(file);
@@ -315,7 +323,7 @@ public class HttpCommunicationListener implements CommunicationListener {
                       while ((count = fs.read(buffer)) >= 0) {
                         os.write(buffer,0,count);
                       }
-                      
+
                       fs.close();
                       os.close();
                     }  
@@ -328,11 +336,11 @@ public class HttpCommunicationListener implements CommunicationListener {
         /*
         [Replace this entire comment block in the 'Connect the services' section]
         */
-        
+
         server.setExecutor(null);
         server.start();
     }
-    
+
     //Helper method to parse raw HTTP requests
     private Map<String, String> queryToMap(String query){
         Map<String, String> result = new HashMap<String, String>();
@@ -378,7 +386,8 @@ public class HttpCommunicationListener implements CommunicationListener {
 ```
 
 ### <a name="configure-the-listening-port"></a>設定接聽連接埠
-建立 VotingWebService 前端服務時，Service Fabric 會選取服務要接聽的連接埠。  VotingWebService 是作為此應用程式的前端，並接受外部流量，因此讓我們將該服務繫結至固定的已知連接埠。 在 [套件總管] 中，開啟 VotingWebService/VotingWebServicePkg/ServiceManifest.xml。  在 [資源] 區段中尋找 [端點] 資源，並將 [連接埠] 的值變更為 8080，或變更為另一個連接埠。 若要在本機上部署並執行應用程式，則必須在您的電腦上開啟應用程式接聽連接埠，並讓此連接埠可供使用。 將下列程式碼片段貼在 **ServiceManifest** 標記下方。
+
+建立 VotingWebService 前端服務時，Service Fabric 會選取供服務接聽的連接埠。  VotingWeb 服務會充當此應用程式的前端，可接受外部流量，因此讓我們將該服務繫結至固定的已知連接埠。 在 [套件總管] 中，開啟 VotingApplication/VotingWebPkg/ServiceManifest.xml。  在 [資源] 區段中尋找 [端點] 資源，並將 [連接埠] 的值變更為 8080，或變更為另一個連接埠。 若要在本機上部署並執行應用程式，則必須在您的電腦上開啟應用程式接聽連接埠，並讓此連接埠可供使用。 將下列程式碼片段貼在 **ServiceManifest** 元素內 (也就是 ```<DataPackage>``` 元素的正下方)。
 
 ```xml
 <Resources>
@@ -389,18 +398,17 @@ public class HttpCommunicationListener implements CommunicationListener {
         <Endpoint Name="WebEndpoint" Protocol="http" Port="8080" />
     </Endpoints>
   </Resources>
-```  
+```
 
 ## <a name="add-a-stateful-back-end-service-to-your-application"></a>將具狀態後端服務新增到應用程式
+
 現在已完成 Java Web API 服務的基本架構，讓我們繼續完成具狀態後端服務。
 
 Service Fabric 可讓您使用可靠集合，直接在服務內以一致且可靠的方式儲存資料。 可靠集合是一組高可用性和可靠的集合類別。 任何用過 Java 集合的人都很熟悉這些類別的使用方式。
 
 1. 在 [套件總管] 中，以滑鼠右鍵按一下應用程式專案中的 [Voting]，然後選擇 [Service Fabric] > [新增 Service Fabric 服務]。
-   
-2. 在 [新增服務] 對話方塊中，選擇 [具狀態服務]，並將服務命名為 **VotingData**，然後按一下 [新增服務]。 
 
-    ![將新服務加入至現有的應用程式](./media/service-fabric-tutorial-create-java-app/addstatefuljava.png)
+2. 在 [新增服務] 對話方塊中，選擇 [具狀態服務]，並將服務命名為 **VotingDataService**，然後按一下 [新增服務]。
 
     建立服務專案後，您的應用程式中會有兩個服務。 隨著您繼續組建應用程式，您可以用相同的方式新增更多服務。 每個服務都可以獨立設定版本和升級。
 
@@ -410,7 +418,7 @@ Service Fabric 可讓您使用可靠集合，直接在服務內以一致且可�
 
 ### <a name="add-the-votingdataservicejava-file"></a>新增 VotingDataService.java 檔案
 
-VotingDataService.java 檔案包含一些方法，其中包含用於從可靠集合中擷取、新增和移除選票的邏輯。 將下列方法新增至所建立 VotingDataService/src/statefulservice/VotingDataService.java 檔案中的 **VotingDataService** 類別。
+VotingDataService.java 檔案包含一些方法，其中包含用於從可靠集合中擷取、新增和移除選票的邏輯。 將下列 **VotingDataService** 類別方法新增至 VotingDataService/src/statefulservice/VotingDataService.java 檔案。
 
 ```java
 package statefulservice;
@@ -539,19 +547,18 @@ class VotingDataService extends StatefulService implements VotingRPC {
 }
 ```
 
-## <a name="create-the-communication-interface-to-your-application"></a>建立您的應用程式的通訊介面 
-現在已建立無狀態前端服務和後端服務的基本架構。 下一步是連線這兩項服務。 前端和後端服務都會利用稱為 VotingRPC 的介面，該介面可定義 Voting 應用程式的作業。 前端和後端服務都會實作這個介面，以啟用這兩項服務之間的遠端程序呼叫 (RPC)。 Eclipse 不支援新增 Gradle 子專案，所以必須以手動方式新增包含此介面的套件。 
+## <a name="create-the-communication-interface-to-your-application"></a>建立您的應用程式的通訊介面
 
-1. 在 [套件總管] 中，以滑鼠右鍵按一下 **Voting** 專案，然後按一下 [新增] -> [其他...]。
+現在已建立無狀態前端服務和後端服務的基本架構。 下一步是連線這兩項服務。 前端和後端服務都會利用稱為 VotingRPC 的介面，該介面可定義 Voting 應用程式的作業。 前端和後端服務都會實作這個介面，以啟用這兩項服務之間的遠端程序呼叫 (RPC)。 Eclipse 不支援新增 Gradle 子專案，所以必須以手動方式新增包含此介面的套件。
 
-2. 在精靈中，按一下 [一般] -> [資料夾]，將資料夾命名為 **VotingRPC/src/rpcmethods** 
+1. 在 [套件總管] 中，以滑鼠右鍵按一下 **Voting** 專案，然後按一下 [新增] -> [資料夾]。 將資料夾命名為 **VotingRPC/src/rpcmethods**。
 
     ![建立 VotingRPC 套件](./media/service-fabric-tutorial-create-java-app/createvotingrpcpackage.png)
 
 3. 在 *Voting/VotingRPC/src/rpcmethods* 之下建立一個名為 VotingRPC.java 的檔案，並將下列內容貼在 **VotingRPC.java** 檔案中。 
 
     ```java
-    package rpcmethods; 
+    package rpcmethods;
     
     import java.util.ArrayList;
     import java.util.concurrent.CompletableFuture;
@@ -569,7 +576,7 @@ class VotingDataService extends StatefulService implements VotingRPC {
     }
     ``` 
 
-4. 在 Voting/VotingRPC 目錄之下建立名為 build.gradle 的檔案，並且在其中貼上下列內容。 這個 gradle 檔案用來建置和建立由其他服務匯入的 jar 檔案。 
+4. 在 Voting/VotingRPC 目錄中建立名為 build.gradle 的檔案，並將下列內容貼在此檔案中。 這個 gradle 檔案用來建置和建立由其他服務匯入的 jar 檔案。 
 
     ```gradle
     apply plugin: 'java'
@@ -595,7 +602,7 @@ class VotingDataService extends StatefulService implements VotingRPC {
     }
     
     dependencies {
-        compile ('com.microsoft.servicefabric:sf-actors:1.0.0-preview1')
+        compile ('com.microsoft.servicefabric:sf-actors:1.0.0')
     }
     
     jar {
@@ -621,7 +628,7 @@ class VotingDataService extends StatefulService implements VotingRPC {
     include ':VotingRPC'
     ```
 
-6. 在 Voting/VotingWebService/src/statelessservice/HttpCommunicationListener.java 檔案中，以下列內容取代註解區塊。  
+6. 在 Voting/VotingWeb/src/statelessservice/HttpCommunicationListener.java 檔案中，以下列內容取代註解區塊。  
 
     ```java
     server.createContext("/getStatelessList", new HttpHandler() {
@@ -735,7 +742,7 @@ class VotingDataService extends StatefulService implements VotingRPC {
     defaultTasks 'clean', 'jar', 'copyDeps'
     ```
 
-2. 取代 Voting/VotingWeb/build.gradle 檔案的內容。
+2. 以下列內容取代 Voting/VotingWeb/build.gradle 檔案的內容。
 
     ```gradle
     apply plugin: 'java'
@@ -805,7 +812,7 @@ class VotingDataService extends StatefulService implements VotingRPC {
     defaultTasks 'clean', 'jar', 'copyDeps'
     ``` 
 
-3. 取代 Voting/VotingData/build.gradle 檔案的內容。 
+3. 取代 Voting/VotingDataService/build.gradle 檔案的內容。 
 
     ```gradle
     apply plugin: 'java'
@@ -877,6 +884,7 @@ class VotingDataService extends StatefulService implements VotingRPC {
     ```
 
 ## <a name="deploy-application-to-local-cluster"></a>將應用程式部署至本機叢集
+
 此時，應用程式已準備好部署到本機 Service Fabric 叢集。
 
 1. 在 [套件總管] 中，以滑鼠右鍵按一下 **Voting** 專案，然後按一下 [Service Fabric] -> [建置應用程式] 以建置應用程式。
@@ -900,6 +908,7 @@ class VotingDataService extends StatefulService implements VotingRPC {
 6. 請移至您的網頁瀏覽器並存取 **http://localhost:8080**，以檢視本機 Service Fabric 叢集上執行中的應用程式。 
 
 ## <a name="next-steps"></a>後續步驟
+
 在教學課程的這個部分中，您已了解如何：
 
 > [!div class="checklist"]

@@ -1,6 +1,6 @@
 ---
 title: 將用於使用量與帳單的租用戶新增至 Azure Stack | Microsoft Docs
-description: 必要步驟會將終端使用者新增至雲端服務提供者所管理的 Azure Stack。
+description: 必要步驟會將終端使用者新增至由雲端服務提供者 (CSP) 所管理的 Azure Stack 中。
 services: azure-stack
 documentationcenter: ''
 author: mattbriggs
@@ -11,14 +11,15 @@ ms.workload: na
 pms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/08/2018
-ms.author: mabrigg
+ms.date: 07/12/2018
+ms.author: brenduns
 ms.reviewer: alfredo
-ms.openlocfilehash: 67e5a67d7cd5caf6bd4d2625969b139411d62696
-ms.sourcegitcommit: a0be2dc237d30b7f79914e8adfb85299571374ec
+ms.openlocfilehash: d3fc3ef6c5fdcf5a87c691c73169ef2bec95805e
+ms.sourcegitcommit: a3a0f42a166e2e71fa2ffe081f38a8bd8b1aeb7b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/12/2018
+ms.lasthandoff: 09/01/2018
+ms.locfileid: "43382683"
 ---
 # <a name="add-tenant-for-usage-and-billing-to-azure-stack"></a>將用於使用量與帳單的租用戶新增至 Azure Stack
 
@@ -26,11 +27,11 @@ ms.lasthandoff: 03/12/2018
 
 本文說明必要步驟會將終端使用者新增至雲端服務提供者 (CSP) 所管理的 Azure Stack。 當新的租用戶使用資源時，Azure Stack 將會向其 CSP 訂用帳戶報告使用量。
 
-CSP 通常會為其 Azure Stack 部署上的多個客戶 (租用戶) 提供服務。 將租用戶新增到 Azure Stack 註冊可確保系統會報告每個租用戶的使用量，且費用會計入相對應的 CSP 訂用帳戶。 如果您未完成本文中的步驟，租用戶使用量費用會計入 Azure Stack 初始註冊所使用的訂用帳戶。 您必須先將 Azure Stack 設定為 CSP 後，才能將終端客戶新增至 Azure Stack，以進行使用量追蹤並管理其租用戶。 如需步驟和資源，請參閱[以雲端服務提供者身分管理 Azure Stack 的使用量和帳單](azure-stack-add-manage-billing-as-a-csp.md)。
+CSP 通常會為其 Azure Stack 部署上的多位終端客戶 (租用戶) 提供服務。 將租用戶新增到 Azure Stack 註冊可確保系統會報告每個租用戶的使用量，且費用會計入相對應的 CSP 訂用帳戶。 如果您未完成本文中的步驟，租用戶使用量費用會計入 Azure Stack 初始註冊所使用的訂用帳戶。 您必須先將 Azure Stack 設定為 CSP 後，才能將終端客戶新增至 Azure Stack，以進行使用量追蹤並管理其租用戶。 如需步驟和資源，請參閱[以雲端服務提供者身分管理 Azure Stack 的使用量和帳單](azure-stack-add-manage-billing-as-a-csp.md)。
 
 下圖顯示 CSP 要讓新客戶能夠使用 Azure Stack 以及設定客戶使用量追蹤所必須遵循的步驟。 透過新增終端客戶，您也將能夠管理 Azure Stack 中的資源。 您有兩個選項可管理其資源：
 
-1. 您可以維護終端客戶租用戶，並將本機 Azure Stack 訂用帳戶的認證提供給終端客戶。  
+1. 您可以保有終端客戶，並將本機 Azure Stack 訂用帳戶的認證提供給終端客戶。  
 2. 或者終端客戶可在本機使用其訂用帳戶，並將 CSP 新增為具有擁有者權限的來賓。  
 
 **新增終端客戶的步驟**
@@ -58,12 +59,12 @@ CSP 通常會為其 Azure Stack 部署上的多個客戶 (租用戶) 提供服�
 > 若要執行此步驟，您必須[已註冊 Azure Stack](azure-stack-register.md)。
 
 1. 使用提升權限提示字元開啟 Windows PowerShell，並執行：  
-    `Login-AzureRmAccount`
+    `Add-AzureRmAccount`
 2. 輸入您的 Azure 認證。
 3. 在 PowerShell 工作階段中，執行：
 
 ```powershell
-    New-AzureRmResource -ResourceId "subscriptions/{registrationSubscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AzureStack/registrations/{registrationName}/customerSubscriptions/{customerSubscriptionId}" -ApiVersion 2017-06-01 -Properties
+    New-AzureRmResource -ResourceId "subscriptions/{registrationSubscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AzureStack/registrations/{registrationName}/customerSubscriptions/{customerSubscriptionId}" -ApiVersion 2017-06-01 -Properties <PSObject>
 ```
 ### <a name="new-azurermresource-powershell-parameters"></a>New-AzureRmResource PowerShell 參數
 | 參數 | 說明 |
@@ -72,6 +73,7 @@ CSP 通常會為其 Azure Stack 部署上的多個客戶 (租用戶) 提供服�
 | customerSubscriptionID | 屬於要註冊之客戶的 Azure 訂用帳戶 (非 Azure Stack)。 必須建立在 CSP 供應項目中；實務上，這表示要透過合作夥伴中心。 如果客戶有多個 Azure Active Directory 租用戶，則必須將此訂用帳戶建立在要用來登入 Azure Stack 的租用戶中。
 | resourceGroup | Azure 中用來儲存註冊的資源群組。 
 | registrationName | 您 Azure Stack 註冊的名稱。 它是儲存在 Azure 中的物件。 | 
+| properties | 指定資源的屬性。 使用此參數來指定資源類型特有的屬性值。
 
 
 > [!Note]  
@@ -89,5 +91,5 @@ CSP 通常會為其 Azure Stack 部署上的多個客戶 (租用戶) 提供服�
 ## <a name="next-steps"></a>後續步驟
 
  - 如果錯誤訊息在您的註冊過程中觸發，且您要檢閱這些錯誤訊息，請參閱[租用戶註冊錯誤訊息](azure-stack-csp-ref-infrastructure.md#usage-and-billing-error-codes)。
- - 若要深入了解如何取出 Azure Stack 的資源使用量資訊，請參閱 [Azure Stack 中的使用量與帳單](/azure-stack-billing-and-chargeback.md)。
+ - 若要深入了解如何取出 Azure Stack 的資源使用量資訊，請參閱 [Azure Stack 中的使用量與帳單](azure-stack-billing-and-chargeback.md)。
  - 若要檢閱終端客戶如何將身為 CSP 的您新增作為其 Azure Stack (租用戶) 的管理員，請參閱[讓雲端服務提供者能夠管理您的 Azure Stack 訂用帳戶](user\azure-stack-csp-enable-billing-usage-tracking.md)。

@@ -5,14 +5,15 @@ services: vpn-gateway
 author: cherylmc
 ms.service: vpn-gateway
 ms.topic: include
-ms.date: 03/21/2018
+ms.date: 04/19/2018
 ms.author: cherylmc
 ms.custom: include file
-ms.openlocfilehash: c133b51a9d2bb0719d6a41504bffea39a3160b03
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 2c4eef702ed204141ea038773eedc5bdb20169a4
+ms.sourcegitcommit: fa493b66552af11260db48d89e3ddfcdcb5e3152
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 04/23/2018
+ms.locfileid: "31805249"
 ---
 **Azure 原生憑證驗證**
 

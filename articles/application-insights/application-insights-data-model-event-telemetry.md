@@ -1,22 +1,24 @@
 ---
-title: "Azure Application Insights 遙測資料模型 - 事件遙測 | Microsoft Docs"
-description: "事件遙測的 Application Insights 資料模型"
+title: Azure Application Insights 遙測資料模型 - 事件遙測 | Microsoft Docs
+description: 事件遙測的 Application Insights 資料模型
 services: application-insights
 documentationcenter: .net
-author: SergeyKanzhelev
+author: mrbullwinkle
 manager: carmonm
 ms.service: application-insights
 ms.workload: TBD
 ms.tgt_pltfrm: ibiza
 ms.devlang: multiple
-ms.topic: article
+ms.topic: conceptual
 ms.date: 04/25/2017
+ms.reviewer: sergkanz
 ms.author: mbullwin
-ms.openlocfilehash: dc6ef1771f4f09b274f12606d1278e1f29c23103
-ms.sourcegitcommit: e462e5cca2424ce36423f9eff3a0cf250ac146ad
+ms.openlocfilehash: 062478783465edc2d3afa4b80a22f119e68da049
+ms.sourcegitcommit: cc4fdd6f0f12b44c244abc7f6bc4b181a2d05302
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/01/2017
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47091701"
 ---
 # <a name="event-telemetry-application-insights-data-model"></a>事件遙測：Application Insights 資料模型
 
@@ -24,7 +26,7 @@ ms.lasthandoff: 11/01/2017
 
 事件在語意上不一定會與要求相互關聯。 不過，如果使用得當，事件遙測比要求或追蹤更重要。 事件代表商務遙測，且應該會受到個別、較不積極[取樣](app-insights-api-filtering-sampling.md)所影響。
 
-## <a name="name"></a>Name
+## <a name="name"></a>名稱
 
 事件名稱。 若要有適當的分組與實用的計量，請限制應用程式，使其產生少量的個別事件名稱。 例如，針對每個產生的事件執行個體，不要使用不同的名稱。
 

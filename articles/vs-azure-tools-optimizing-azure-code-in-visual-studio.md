@@ -1,24 +1,26 @@
 ---
-title: "最佳化 Visual Studio 中的 Azure 程式碼 | Microsoft Docs"
-description: "了解 Visual Studio 中的 Azure 程式碼最佳化工具如何協助讓程式碼更穩定且有更好的效能。"
+title: 最佳化 Visual Studio 中的 Azure 程式碼 | Microsoft Docs
+description: 了解 Visual Studio 中的 Azure 程式碼最佳化工具如何協助讓程式碼更穩定且有更好的效能。
 services: visual-studio-online
 documentationcenter: na
 author: cawa
 manager: paulyuk
-editor: 
+editor: ''
 ms.assetid: ed48ee06-e2d2-4322-af22-07200fb16987
 ms.service: multiple
 ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
-ms.workload: multiple
+ms.custom: vs-azure
+ms.workload: azure-vs
 ms.date: 11/11/2016
 ms.author: cawa
-ms.openlocfilehash: a606c8e7d8b730b67bd8481656e099900eb39fbc
-ms.sourcegitcommit: 9ae92168678610f97ed466206063ec658261b195
+ms.openlocfilehash: 0497ac628d7882a0b722796493c10c0d8b04e759
+ms.sourcegitcommit: fab878ff9aaf4efb3eaff6b7656184b0bafba13b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/17/2017
+ms.lasthandoff: 08/22/2018
+ms.locfileid: "42443663"
 ---
 # <a name="optimizing-your-azure-code"></a>最佳化您的 Azure 程式碼
 當您在撰寫使用 Microsoft Azure 的應用程式時，請遵循某些程式碼撰寫實務，以避免應用程式在雲端環境中發生延展性、行為和效能方面的問題。 Microsoft 有提供 Azure Code Analysis 工具，可辨識並找出許多常見問題，並幫助您解決這些問題。 您可以在 Visual Studio 中透過 NuGet 下載此工具。
@@ -98,7 +100,7 @@ AP2000
 請在 [Azure Code Analysis 意見反應](http://go.microsoft.com/fwlink/?LinkId=403771)分享您的想法和意見。
 
 ### <a name="reason"></a>原因
-為加強安全性，Azure Active Directory 將以 SAS 驗證取代 ACS 驗證。 請參閱 [Azure Active Directory 是 ACS 的未來](http://blogs.technet.com/b/ad/archive/2013/06/22/azure-active-directory-is-the-future-of-acs.aspx) ，以取得轉換計畫的相關資訊。
+為加強安全性，Azure Active Directory 將以 SAS 驗證取代 ACS 驗證。 請參閱 [Azure Active Directory 是 ACS 的未來](https://cloudblogs.microsoft.com/enterprisemobility/2013/06/22/azure-active-directory-is-the-future-of-acs/) ，以取得轉換計畫的相關資訊。
 
 ### <a name="solution"></a>解決方法
 在應用程式中使用 SAS 驗證。 下列範例顯示如何使用現有 SAS 權杖存取服務匯流排命名空間或實體。

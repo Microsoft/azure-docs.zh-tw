@@ -1,11 +1,11 @@
 ---
-title: "Azure BizTalk 服務的版本資訊 | Microsoft Docs"
-description: "列出 Azure BizTalk 服務的已知問題"
+title: Azure BizTalk 服務的版本資訊 | Microsoft Docs
+description: 列出 Azure BizTalk 服務的已知問題
 services: biztalk-services
-documentationcenter: 
+documentationcenter: ''
 author: msftman
 manager: erikre
-editor: 
+editor: ''
 ms.assetid: f4906fdc-4cd9-4a57-a007-a88c2e51a18f
 ms.service: biztalk-services
 ms.workload: integration
@@ -14,11 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/15/2016
 ms.author: deonhe
-ms.openlocfilehash: 0f3662ed386c3a3d2d132a483e7192bddc26de06
-ms.sourcegitcommit: e266df9f97d04acfc4a843770fadfd8edf4fa2b7
+ms.openlocfilehash: db79ee85c19e5f3cdced9b894aca48de4d7d1c42
+ms.sourcegitcommit: e2ea404126bdd990570b4417794d63367a417856
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/11/2017
+ms.lasthandoff: 09/14/2018
+ms.locfileid: "45576465"
 ---
 # <a name="release-notes-for-azure-biztalk-services"></a>Azure BizTalk 服務的版本資訊
 
@@ -65,11 +66,11 @@ Microsoft Azure BizTalk 服務的版本資訊包含此版本已知的問題。
   無法將檔案 <Path to DLL> 複製到 “bin\Debug\FileName.dll”。 由於已有另一個處理序正在使用該檔案，所以無法存取該檔案。  
 
 #### <a name="workaround"></a>因應措施
-* 如果已安裝 [Visual Studio 2012 Update 3](https://www.microsoft.com/download/details.aspx?id=39305) ，您有下列兩個選項：
+* 如果已安裝 [Visual Studio 2012 Update 3](https://docs.microsoft.com/visualstudio/releasenotes/vs2012-update3-vs) ，您有下列兩個選項：
   
   * 重新啟動 Visual Studio，或
   * 重新啟動方案。 然後，在方案上只執行「建置」。  
-* 如果未安裝 [Visual Studio 2012 Update 3](https://www.microsoft.com/download/details.aspx?id=39305) ，請開啟 [工作管理員]，按一下 [處理程序] 索引標籤，按一下 MSBuild.exe 處理程序，然後按一下 [結束處理程序] 按鈕。  
+* 如果未安裝 [Visual Studio 2012 Update 3](https://docs.microsoft.com/visualstudio/releasenotes/vs2012-update3-vs) ，請開啟 [工作管理員]，按一下 [處理程序] 索引標籤，按一下 MSBuild.exe 處理程序，然後按一下 [結束處理程序] 按鈕。  
 
 ### <a name="routing-to-basichttprelay-endpoints-is-not-supported-from-bridges-and-biztalk-services-portal-if-non-printable-characters-are-promoted-as-http-headers"></a>如果不可列印字元升級為 HTTP 標頭，則不支援從橋接器和 BizTalk 服務入口網站路由傳送至 BasicHttpRelay 端點
 如果您在訊息的升級屬性中使用不可列印字元，這些訊息無法路由傳送至使用 BasicHttpRelay 繫結的轉送目的地。 此外，可供追蹤的升級屬性對 blob 而言是 URL 編碼，對目的地而言是未編碼。  

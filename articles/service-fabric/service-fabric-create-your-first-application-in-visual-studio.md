@@ -9,16 +9,17 @@ editor: vturecek
 ms.assetid: c3655b7b-de78-4eac-99eb-012f8e042109
 ms.service: service-fabric
 ms.devlang: dotNet
-ms.topic: hero-article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 03/14/2018
+ms.date: 05/21/2018
 ms.author: ryanwi
-ms.openlocfilehash: 858e322fd7e516f756aa209be92745efa6cf75f7
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: 7dadaadd0e6a6e6d71685356568076ad26305cc2
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34642218"
 ---
 # <a name="create-your-first-c-service-fabric-stateful-reliable-services-application"></a>建立第一個 C# Service Fabric 具狀態 Reliable Services 應用程式
 
@@ -67,12 +68,15 @@ ms.lasthandoff: 03/16/2018
 
 您現在有一個應用程式，請採取下列步驟來執行、部署它，以及進行偵錯。
 
-1. 在 Visual Studio 中，選取 F5 部署應用程式以供偵錯。
+1. 在 Visual Studio 中，選取 **F5** 部署應用程式以供偵錯。  如果出現訊息方塊，詢問您是否要將 Visual Studio 專案目錄的讀取和執行權限授與 'ServiceFabricAllowedUsers' 群組，請按一下 [是]。
 
     >[!NOTE]
     >您第一次在本機執行及部署應用程式時，Visual Studio 會建立本機叢集以供偵錯。 這可能需要一些時間。 叢集建立狀態會顯示在 Visual Studio 輸出視窗中。
-
-    備妥叢集時，您會收到來自 SDK 隨附的本機叢集系統匣管理員應用程式通知。
+    
+     備妥叢集時，您會收到來自 SDK 隨附的本機叢集系統匣管理員應用程式通知。
+     
+    >[!NOTE]
+    >此練習需要 5 個節點 (vs.1 個節點) 的叢集。 您可以如下確認這點：以滑鼠右鍵按一下 [Service Fabric 本機叢集管理員] 系統匣應用程式，然後按一下 [切換叢集模式]，以啟動 Service Fabric Explorer 工具。 如果目前選取 [1 個節點]，則按一下 [5 個節點]。
     
     ![本機叢集系統匣通知][4]
 
@@ -106,17 +110,18 @@ ms.lasthandoff: 03/16/2018
 
     ![具狀態服務 RunAsync 方法的中斷點][7]
 
-7. 以滑鼠右鍵按一下 [本機叢集管理員] 系統匣應用程式，然後選取 [管理本機叢集]，以啟動 Service Fabric Explorer 工具。
+7. 以滑鼠右鍵按一下 [Service Fabric 本機叢集管理員] 系統匣應用程式，然後選取 [管理本機叢集]，以啟動 Service Fabric Explorer 工具。
 
     ![從本機叢集管理員啟動 Service Fabric Explorer][systray-launch-sfx]
 
-    [Service Fabric Explorer](service-fabric-visualizing-your-cluster.md) 會提供叢集的視覺表示法。 其中包括部署至叢集的應用程式集，以及構成叢集的實體節點集合。
+    
+  [Service Fabric Explorer](service-fabric-visualizing-your-cluster.md) 會提供叢集的視覺表示法。 其中包括部署至叢集的應用程式集，以及構成叢集的實體節點集合。
 
 8. 在左窗格中展開 [叢集] > [節點]，並尋找您的程式碼執行所在的節點。 然後選取 [動作] > [停用 (重新啟動)] 來模擬電腦重新啟動。
 
     ![在 Service Fabric Explorer 中停止節點][sfx-stop-node]
 
-    您應該會在 Visual Studio 中短暫看見達到您的中斷點，因為您一個節點上所做的計算完美地容錯移轉至另一個節點。
+    您應該會在 Visual Studio 中短暫看見達到您的中斷點，因為您一個節點上所做的計算完美地容錯移轉至另一個節點。 按 **F5** 繼續。
 
 9. 接下來，返回 [診斷事件檢視器] 並觀察訊息。 計數器已繼續遞增，即使事件實際上來自不同的節點。
 

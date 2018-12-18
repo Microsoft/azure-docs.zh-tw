@@ -1,22 +1,21 @@
 ---
-title: "使用 Python 向 Azure 裝置佈建服務註冊 TPM 裝置 | Microsoft Docs"
-description: "Azure 快速入門 - 使用 Python 佈建服務 SDK 向 Azure IoT 中樞裝置佈建服務註冊 TPM 裝置"
-services: iot-dps
-keywords: 
-author: msebolt
-ms.author: v-masebo
+title: 使用 Python 向 Azure 裝置佈建服務註冊 TPM 裝置 | Microsoft Docs
+description: Azure 快速入門 - 使用 Python 佈建服務 SDK 向 Azure IoT 中樞裝置佈建服務註冊 TPM 裝置
+author: wesmc7777
+ms.author: wesmc
 ms.date: 01/26/2018
-ms.topic: hero-article
+ms.topic: quickstart
 ms.service: iot-dps
-documentationcenter: 
+services: iot-dps
 manager: timlt
-ms.devlang: na
+ms.devlang: python
 ms.custom: mvc
-ms.openlocfilehash: 941e6d53b136a3cfef368e436b31a3022f5223fa
-ms.sourcegitcommit: 059dae3d8a0e716adc95ad2296843a45745a415d
+ms.openlocfilehash: ff6200abd88144a530a243b508fd4878126fdb4b
+ms.sourcegitcommit: 3f8f973f095f6f878aa3e2383db0d296365a4b18
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 08/20/2018
+ms.locfileid: "40234011"
 ---
 # <a name="enroll-tpm-device-to-iot-hub-device-provisioning-service-using-python-provisioning-service-sdk"></a>使用 Python 佈建服務 SDK 向 IoT 中樞裝置佈建服務註冊 TPM 裝置
 [!INCLUDE [iot-dps-selector-quick-enroll-device-tpm](../../includes/iot-dps-selector-quick-enroll-device-tpm.md)]

@@ -10,22 +10,20 @@ ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 02/06/2018
+ms.topic: conceptual
+ms.date: 07/12/2018
 ms.author: shlo
-ms.openlocfilehash: b67c384ffd04176653ad434d39361ee67dc1ffea
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 4b3828e1857d17a128de346449d5cf2041709e50
+ms.sourcegitcommit: 7208bfe8878f83d5ec92e54e2f1222ffd41bf931
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 07/14/2018
+ms.locfileid: "39041070"
 ---
 # <a name="visually-monitor-azure-data-factories"></a>以視覺化方式監視 Azure 資料處理站
 Azure Data Factory 是雲端式資料整合服務，可讓您在雲端建立資料驅動工作流程，以便協調及自動進行資料移動和資料轉換。 使用 Azure Data Factory，您可以建立和排程資料驅動工作流程 (稱為管線)，這類工作流程可以從不同資料存放區內嵌資料，使用計算服務 (例如 Azure HDInsight Hadoop、Spark、Azure Data Lake Analytics 和 Azure Machine Learning) 來處理/轉換資料，以及將輸出資料發佈至資料存放區 (例如 Azure SQL 資料倉儲)，以供商業智慧 (BI) 應用程式使用。
 在此快速入門中，您將了解如何在不用撰寫任何程式碼的情況下，以視覺方式監視資料處理站 v2 管線。
-如果您沒有 Azure 訂用帳戶，請在開始前建立[免費帳戶](https://azure.microsoft.com/free/) 。
-
-> [!NOTE]
-> 本文適用於第 2 版的 Data Fatory (目前為預覽版)。 如果您使用第 1 版 Data Factory 服務 (正式運作版 (GA))，請參閱[在 Data Factory 第 1 版中監視和管理管線](v1/data-factory-monitor-manage-app.md)。
+如果您沒有 Azure 訂用帳戶，請在開始前建立[免費帳戶](https://azure.microsoft.com/free/)。
 
 ## <a name="monitor-data-factory-v2-pipelines"></a>監視資料處理站 v2 管線
 
@@ -78,6 +76,11 @@ Azure Data Factory 是雲端式資料整合服務，可讓您在雲端建立資�
 
 ## <a name="features"></a>特性
 
+#### <a name="select-a-data-factory-to-monitor"></a>選取要監視的資料處理站
+將滑鼠游標暫留於左上方的 **Data Factory** 圖示上。 按一下「箭號」圖示以查看可監視的 Azure 訂用帳戶及資料處理站清單。
+
+![選取 Data Factory](media/monitor-visually/select-datafactory.png)
+
 #### <a name="rich-ordering-and-filtering"></a>豐富的排序和篩選功能
 
 依 [回合開始] 以遞減/遞增的順序對管線回合進行排序，然後依下列資料行對管線回合進行篩選：
@@ -90,7 +93,7 @@ Azure Data Factory 是雲端式資料整合服務，可讓您在雲端建立資�
 
 ![Filter](media/monitor-visually/filter.png)
 
-#### <a name="addremove-columns-to-list-view"></a>針對清單檢視新增/移除資料行
+#### <a name="addremove-columns-in-list-view"></a>在清單檢視中新增/移除資料行
 以滑鼠右鍵按一下清單檢視標頭，然後選擇要顯示於清單檢視中的資料行
 
 ![資料行](media/monitor-visually/columns.png)
@@ -98,10 +101,22 @@ Azure Data Factory 是雲端式資料整合服務，可讓您在雲端建立資�
 #### <a name="reorder-column-widths-in-list-view"></a>重新排列清單檢視中的資料行寬度
 若要增加或減少清單檢視中的資料行寬度，請直接將滑鼠游標暫留於資料行標頭上方
 
-#### <a name="select-data-factory"></a>選取 Data Factory
-將滑鼠游標暫留於左上方的 [資料處理站] 圖示上。 按一下「箭號」圖示以查看可監視的 Azure 訂用帳戶及資料處理站清單。
+#### <a name="user-properties"></a>使用者屬性
 
-![選取 Data Factory](media/monitor-visually/select-datafactory.png)
+您可以將任何管線活動屬性升階為使用者屬性，讓它變成您可以監視的實體。 例如，您可以將管線中「複製」活動的 **Source** 和 **Destination** 屬性升階為使用者屬性。 您也可以選取 [自動產生]，為「複製」活動產生 **Source** 和 **Destination** 使用者屬性。
+
+![建立使用者屬性](media/monitor-visually/monitor-user-properties-image1.png)
+
+> [!NOTE]
+> 您最多只能將 5 個管線活動屬性升階為使用者屬性。
+
+建立使用者屬性之後，您就可以在監視清單檢視中監視它們。 如果「複製」活動的來源是資料表名稱，您可以活動執行清單檢視中資料行的形式，監視來源資料表名稱。
+
+![活動執行清單沒有使用者屬性](media/monitor-visually/monitor-user-properties-image2.png)
+
+![將使用者屬性的資料行新增到活動執行清單](media/monitor-visually/monitor-user-properties-image3.png)
+
+![活動執行清單具有使用者屬性的資料行](media/monitor-visually/monitor-user-properties-image4.png)
 
 #### <a name="guided-tours"></a>導覽
 按一下左下方的 [資訊] 圖示，然後按一下 [導覽] 以取得監視管線及活動回合的逐步指示。

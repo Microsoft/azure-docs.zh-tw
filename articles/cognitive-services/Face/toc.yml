@@ -1,0 +1,106 @@
+items:
+- name: 臉部 API 文件
+  href: index.yml
+- name: 概觀
+  items:
+  - name: 什麼是臉部 API？
+    href: Overview.md
+  expanded: true
+- name: 快速入門
+  items:
+  - name: 使用用戶端 SDK
+    items:
+    - name: C#
+      href: QuickStarts/csharp-detect-sdk.md
+  - name: 使用 REST API
+    items:
+    - name: C#
+      href: QuickStarts/CSharp.md
+    - name: cURL
+      href: QuickStarts/curl.md
+    - name: Go
+      href: QuickStarts/go.md
+    - name: Java
+      href: QuickStarts/Java.md
+    - name: JavaScript
+      href: QuickStarts/JavaScript.md
+    - name: Node.js
+      href: QuickStarts/node.md
+    - name: PHP
+      href: QuickStarts/PHP.md
+    - name: Python
+      href: QuickStarts/Python.md
+    - name: Ruby
+      href: QuickStarts/Ruby.md
+- name: 教學課程
+  items:
+  - name: 使用用戶端 SDK
+    href: Tutorials/FaceAPIinJavaForAndroidTutorial.md
+    items:
+    - name: C#
+      href: Tutorials/FaceAPIinCSharpTutorial.md
+    - name: Android
+- name: 使用說明指南
+  items:
+  - name: 第一個臉部 API 應用程式
+    items:
+    - name: Python
+      href: Tutorials/FaceAPIinPythonTutorial.md
+  - name: 偵測影像中的人臉
+    href: Face-API-How-to-Topics/HowtoDetectFacesinImage.md
+  - name: 識別影像中的人臉
+    href: Face-API-How-to-Topics/HowtoIdentifyFacesinImage.md
+  - name: 新增人臉
+    href: Face-API-How-to-Topics/how-to-add-faces.md
+  - name: 使用大型功能
+    href: Face-API-How-to-Topics/how-to-use-large-scale.md
+  - name: 即時分析影片
+    href: Face-API-How-to-Topics/HowtoAnalyzeVideo_Face.md
+  - name: 使用 Visual Studio
+    items:
+    - name: 使用臉部 API 連線服務
+      href: vs-face-connected-service.md
+- name: 參考
+  items:
+  - name: 人臉識別 API
+    href: APIReference.md
+  - name: 詞彙
+    href: Glossary.md
+  - name: SDK
+    items:
+    - name: Windows
+      href: https://github.com/Microsoft/Cognitive-Face-Windows
+    - name: Node.js
+      href: https://docs.microsoft.com/javascript/api/overview/azure/cognitive-services?view=azure-node-latest#vision-modules
+    - name: Python
+      href: https://github.com/Microsoft/Cognitive-Face-Python
+    - name: Go
+      href: https://github.com/Azure/azure-sdk-for-go/tree/master/services/cognitiveservices/v1.0/face
+    - name: Android
+      href: https://github.com/Microsoft/Cognitive-Face-Android
+    - name: iOS
+      href: https://github.com/Microsoft/Cognitive-Face-iOS
+- name: 資源
+  items:
+  - name: 範例
+    href: https://azure.microsoft.com/resources/samples/?service=cognitive-services&term=Face
+  - name: 常見問題集
+    href: FAQ.md
+  - name: 價格和限制
+    href: https://azure.microsoft.com/pricing/details/cognitive-services/face-api
+  - name: UserVoice
+    href: https://cognitive.uservoice.com/forums/430315-face-api
+  - name: 堆疊溢位
+    href: https://stackoverflow.com/questions/tagged/microsoft-cognitive
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/?category=ai-machine-learning
+  - name: 區域可用性
+    href: https://azure.microsoft.com/global-infrastructure/services/
+  - name: 版本資訊
+    href: ReleaseNotes.md
+ms.openlocfilehash: b704ef7fc33964eb12b6b4268ff6a3375c3f7c9b
+ms.sourcegitcommit: 5c00e98c0d825f7005cb0f07d62052aff0bc0ca8
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49954193"

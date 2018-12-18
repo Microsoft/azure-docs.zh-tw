@@ -1,26 +1,23 @@
 ---
-title: "XML 驗證的結構描述 - Azure Logic Apps | Microsoft Docs"
-description: "使用適用於 Azure Logic Apps 與企業整合套件的結構描述來驗證 XML 文件"
+title: 因增 XML 驗證的結構描述 - Azure Logic Apps | Microsoft Docs
+description: 建立結構描述以在採用 Enterprise Integration Pack 的 Azure Logic Apps 中驗證 XML 文件
 services: logic-apps
-documentationcenter: .net,nodejs,java
-author: msftman
-manager: anneta
-editor: cgronlun
-ms.assetid: 56c5846c-5d8c-4ad4-9652-60b07aa8fc3b
 ms.service: logic-apps
-ms.workload: integration
-ms.tgt_pltfrm: na
-ms.devlang: na
+ms.suite: integration
+author: divyaswarnkar
+ms.author: divswa
+ms.reviewer: jonfan, estfan, LADocs
 ms.topic: article
+ms.assetid: 56c5846c-5d8c-4ad4-9652-60b07aa8fc3b
 ms.date: 07/29/2016
-ms.author: LADocs; padmavc
-ms.openlocfilehash: db2d9313e443ebc9dd32fcb905b0ae62219e4bbf
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.openlocfilehash: e03346da1c2b77f885c39d5329f990684979c56e
+ms.sourcegitcommit: 2ad510772e28f5eddd15ba265746c368356244ae
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "43123068"
 ---
-# <a name="validate-xml-with-schemas-for-azure-logic-apps-and-the-enterprise-integration-pack"></a>使用適用於 Azure Logic Apps 與企業整合套件的結構描述來驗證 XML
+# <a name="validate-xml-with-schemas-in-azure-logic-apps-with-enterprise-integration-pack"></a>在採用 Enterprise Integration Pack 的 Azure Logic Apps 中使用結構描述來驗證 XML
 
 結構描述可確認您收到的 XML 文件都有效，而且包含具有預先定義格式的預期資料。 結構描述也可用來驗證在 B2B 案例中交換的訊息。
 

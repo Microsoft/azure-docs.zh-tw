@@ -6,15 +6,16 @@ author: MightyPen
 manager: craigg
 ms.service: sql-database
 ms.custom: DNS alias
-ms.topic: article
+ms.topic: conceptual
 ms.date: 02/05/2018
 ms.reviewer: genemi;ayolubek
 ms.author: dmalik
-ms.openlocfilehash: c2a2bce3b385bd5700bf327f283289cf4d94b057
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: da771f71566a912a3f172a1382bcd90ab0c3a0a2
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34646063"
 ---
 # <a name="dns-alias-for-azure-sql-database"></a>Azure SQL Database 的 DNS 別名
 
@@ -55,15 +56,15 @@ Azure SQL Database 的 DNS 別名功能適用於下列案例：
 
 下列屬性適用於 SQL Database 伺服器的每個 DNS 別名：
 
-- *唯一名稱：*就像伺服器名稱一樣，您所建立的每個別名名稱都是所有 Azure SQL Database 伺服器中的唯一名稱。
+- *唯一名稱：* 就像伺服器名稱一樣，您所建立的每個別名名稱都是所有 Azure SQL Database 伺服器中的唯一名稱。
 
-- *伺服器是必要的：*無法建立 DNS 別名，除非該名稱參照正好一部伺服器，且該伺服器必須已存在。 更新後的別名必須一律參照正好一部現有的伺服器。
+- *伺服器是必要的：* 無法建立 DNS 別名，除非該名稱參照正好一部伺服器，且該伺服器必須已存在。 更新後的別名必須一律參照正好一部現有的伺服器。
     - 當您卸除 SQL Database 伺服器時，Azure 系統也會卸除參照該伺服器的所有 DNS 別名。
 
-- *未繫結至任何區域：*DNS 別名未繫結至任何區域。 您可以將任何 DNS 別名更新為參照位於任何地理區域的 Azure SQL Database 伺服器。
+- *未繫結至任何區域：* DNS 別名未繫結至任何區域。 您可以將任何 DNS 別名更新為參照位於任何地理區域的 Azure SQL Database 伺服器。
     - 不過，將別名更新為參照另一部伺服器時，這兩部伺服器都必須存在於相同的 Azure 訂用帳戶中。
 
-- *權限：*若要管理 DNS 別名，使用者必須擁有「伺服器參與者」權限或更高階的權限。 如需詳細資訊，請參閱[在 Azure 入口網站中開始使用角色型存取控制](../active-directory/role-based-access-control-what-is.md)。
+- *權限：* 若要管理 DNS 別名，使用者必須擁有「伺服器參與者」權限或更高階的權限。 如需詳細資訊，請參閱[在 Azure 入口網站中開始使用角色型存取控制](../role-based-access-control/overview.md)。
 
 
 
@@ -114,10 +115,10 @@ PowerShell Cmdlet 可用於呼叫 REST API。
 
 目前，DNS 別名具有下列限制：
 
-- *最多 2 分鐘的延遲：*更新或移除 DNS 別名最多需要 2 分鐘的時間。
+- *最多 2 分鐘的延遲：* 更新或移除 DNS 別名最多需要 2 分鐘的時間。
     - 不論是否有任何短暫的延遲，別名都會立即停止讓用戶端連線參照舊版伺服器。
 
-- *DNS 查閱：*現在，若要檢查指定的 DNS 別名是參照哪部伺服器，唯一的權威性方式便是執行 [DNS 查閱](https://docs.microsoft.com/windows-server/administration/windows-commands/nslookup)。
+- *DNS 查閱：* 現在，若要檢查指定的 DNS 別名是參照哪部伺服器，唯一的權威性方式便是執行 [DNS 查閱](https://docs.microsoft.com/windows-server/administration/windows-commands/nslookup)。
 
 - [不支援資料表稽核](sql-database-auditing-and-dynamic-data-masking-downlevel-clients.md)：您無法在資料庫已啟用「資料表稽核」的 Azure SQL Database 伺服器上使用 DNS 別名。
     - 資料表稽核功能已淘汰。

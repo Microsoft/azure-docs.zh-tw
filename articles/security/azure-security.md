@@ -1,12 +1,12 @@
 ---
-title: "Azure 安全性簡介 | Microsoft Docs"
-description: "了解 Azure 安全性、它的服務及運作方式。"
+title: Azure 安全性簡介 | Microsoft Docs
+description: 了解 Azure 安全性、它的服務及運作方式。
 services: security
 documentationcenter: na
 author: UnifyCloud
-manager: swadhwa
+manager: mbaldwin
 editor: TomSh
-ms.assetid: 
+ms.assetid: ''
 ms.service: security
 ms.devlang: na
 ms.topic: article
@@ -14,11 +14,12 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/21/2017
 ms.author: TomSh
-ms.openlocfilehash: 68bba95e177fa8d0261b84f51b0f5285c7fb7417
-ms.sourcegitcommit: b07d06ea51a20e32fdc61980667e801cb5db7333
+ms.openlocfilehash: 81eb23a0955bbc6a5f9dcd95c6874f0c5a8c286c
+ms.sourcegitcommit: 7c4fd6fe267f79e760dc9aa8b432caa03d34615d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2017
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47434023"
 ---
 # <a name="introduction-to-azure-security"></a>Azure 安全性簡介
 ## <a name="overview"></a>概觀
@@ -33,10 +34,10 @@ Azure 公用雲端服務支援數百萬名開發人員和 IT 專家早已仰賴�
 
 Azure 的基礎結構設計涵蓋設備與應用程式，可同時裝載數以百萬計的客戶，並提供值得信任的基礎以使企業可符合其安全性需求。
 
-此外，Azure 也為您提供各式各樣可設定的安全性選項及控制它們的功能，讓您能夠自訂安全性以符合組織部署的特殊需求。 本文件有助於您了解 Azure 安全性功能如何協助您滿足這些需求。
+此外，Azure 也為您提供各式各樣可設定的安全性選項及控制它們的功能，讓您能夠自訂安全性以符合組織部署的特殊需求。 此文件有助於您了解 Azure 安全性功能如何協助您滿足這些需求。
 
 > [!Note]
-> 本文件的主要焦點是客戶面對的控制，您可以使用這些控制來自訂並提升應用程式和服務的安全性。
+> 此文件的主要焦點是客戶面對的控制，您可以使用這些控制來自訂並提升應用程式和服務的安全性。
 >
 > 我們會提供一些概觀資訊，但如需 Microsoft 如何保護 Azure 平台本身的詳細資訊，請參閱 [Microsoft 信任中心 (英文)](https://www.microsoft.com/TrustCenter/default.aspx) 中提供的資訊。
 
@@ -58,8 +59,8 @@ Azure 的基礎結構設計涵蓋設備與應用程式，可同時裝載數以�
 | [安全的平台](https://www.microsoft.com/en-us/trustcenter/Security/default.aspx)  | [隱私權與控制](https://www.microsoft.com/en-us/trustcenter/Privacy/default.aspx)  |[合規性](https://www.microsoft.com/en-us/trustcenter/Compliance/default.aspx)   | [透明度](https://www.microsoft.com/en-us/trustcenter/Transparency/default.aspx) |
 | :-- | :-- | :-- | :-- |
 | [安全性開發週期 (英文)](https://www.microsoft.com/en-us/sdl/)、內建稽核 | [隨時管理您的資料 (英文)](https://www.microsoft.com/en-us/trustcenter/Privacy/You-own-your-data) | [信任中心](https://www.microsoft.com/en-us/trustcenter/default.aspx) |[Microsoft 如何保護 Azure 服務中的客戶資料 (英文)](https://www.microsoft.com/en-us/trustcenter/Transparency/default.aspx) |
-| [必要的安全性訓練、背景檢查 (英文)](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=0ahUKEwiwsOCpganRAhWqxVQKHUdiDsMQFghAMAE&url=https%3A%2F%2Fdownloads.cloudsecurityalliance.org%2Fstar%2Fself-assessment%2FStandardResponsetoRequestforInformationWindowsAzureSecurityPrivacy.docx&usg=AFQjCNEYvBky4zNeDQPN6YJGPFRZA7eeZg&sig2=2kkw1lOCP_kzLzgE9RS2Tg&bvm=bv.142059868,d.amc) |  [資料位置控制 (英文)](https://www.microsoft.com/en-us/trustcenter/Privacy/Where-your-data-is-located) |  [Common Controls Hub (英文)](https://www.microsoft.com/en-us/trustcenter/Common-Controls-Hub) |[Microsoft 如何管理 Azure 服務中的資料位置 (英文)](http://azuredatacentermap.azurewebsites.net/)|
-| [滲透測試 (英文)](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=0ahUKEwiwsOCpganRAhWqxVQKHUdiDsMQFghAMAE&url=https%3A%2F%2Fdownloads.cloudsecurityalliance.org%2Fstar%2Fself-assessment%2FStandardResponsetoRequestforInformationWindowsAzureSecurityPrivacy.docx&usg=AFQjCNEYvBky4zNeDQPN6YJGPFRZA7eeZg&sig2=2kkw1lOCP_kzLzgE9RS2Tg&bvm=bv.142059868,d.amc)、[入侵偵測、DDoS (英文)](https://www.microsoft.com/en-us/trustcenter/Security/ThreatManagement)、[稽核和記錄(英文)](https://www.microsoft.com/en-us/trustcenter/Security/AuditingAndLogging) | [根據您的條款提供資料存取 (英文)](https://www.microsoft.com/en-us/trustcenter/Privacy/Who-can-access-your-data-and-on-what-terms) |  [雲端服務審查評鑑檢查表 (英文)](https://www.microsoft.com/en-us/trustcenter/Compliance/Due-Diligence-Checklist) |[Microsoft 內部的哪些人員可根據哪些條款存取您的資料 (英文)](https://www.microsoft.com/en-us/trustcenter/Privacy/Who-can-access-your-data-and-on-what-terms)|
+| [必要的安全性訓練、背景檢查 (英文)](https://downloads.cloudsecurityalliance.org/star/self-assessment/StandardResponsetoRequestforInformationWindowsAzureSecurityPrivacy.docx) |  [資料位置控制 (英文)](https://www.microsoft.com/en-us/trustcenter/Privacy/Where-your-data-is-located) |  [Common Controls Hub (英文)](https://www.microsoft.com/en-us/trustcenter/Common-Controls-Hub) |[Microsoft 如何管理 Azure 服務中的資料位置 (英文)](http://azuredatacentermap.azurewebsites.net/)|
+| [滲透測試 (英文)](https://downloads.cloudsecurityalliance.org/star/self-assessment/StandardResponsetoRequestforInformationWindowsAzureSecurityPrivacy.docx)、[入侵偵測、DDoS (英文)](https://www.microsoft.com/en-us/trustcenter/Security/ThreatManagement)、[稽核和記錄(英文)](https://www.microsoft.com/en-us/trustcenter/Security/AuditingAndLogging) | [根據您的條款提供資料存取 (英文)](https://www.microsoft.com/en-us/trustcenter/Privacy/Who-can-access-your-data-and-on-what-terms) |  [雲端服務審查評鑑檢查表 (英文)](https://www.microsoft.com/en-us/trustcenter/Compliance/Due-Diligence-Checklist) |[Microsoft 內部的哪些人員可根據哪些條款存取您的資料 (英文)](https://www.microsoft.com/en-us/trustcenter/Privacy/Who-can-access-your-data-and-on-what-terms)|
 | [技術資料中心的狀態 (英文)](https://www.microsoft.com/en-us/cloud-platform/global-datacenters)、實體安全性、[安全網路](https://docs.microsoft.com/azure/security/security-network-overview) | [回應執法機關 (英文)](https://www.microsoft.com/en-us/trustcenter/Privacy/Responding-to-govt-agency-requests-for-customer-data) |  [依服務、位置和產業的合規性 (英文)](https://www.microsoft.com/en-us/trustcenter/Compliance/default.aspx) |[Microsoft 如何保護 Azure 服務中的客戶資料 (英文)](https://www.microsoft.com/en-us/trustcenter/Transparency/default.aspx)|
 |  [安全性事件回應 (英文)](http://aka.ms/SecurityResponsepaper)[共同責任 (英文)](http://aka.ms/sharedresponsibility) |[嚴格的隱私權標準 (英文)](https://www.microsoft.com/en-us/TrustCenter/Privacy/We-set-and-adhere-to-stringent-standards) |  | [檢閱 Azure 服務的憑證、透明度中樞 (英文)](https://www.microsoft.com/en-us/trustcenter/Compliance/default.aspx)|
 
@@ -84,7 +85,7 @@ Azure 的基礎結構設計涵蓋設備與應用程式，可同時裝載數以�
 以 Azure Resource Manager 範本為基礎的部署，有助於提升部署於 Azure 中之解決方案的安全性 (因為標準的安全性控制設定)，並且可整合至以標準化範本為基礎的部署中。 這會降低可能需要在手動部署期間執行的安全性設定錯誤風險。
 
 ### <a name="application-insights"></a>Application Insights
-[Application Insights](https://docs.microsoft.com/azure/application-insights/) 是適用於 Web 開發人員的可延伸「應用程式效能管理」(APM) 服務。 使用 Application Insights，您可以即時監視 Web 應用程式，並自動偵測效能異常。 其中包括強大的分析工具可協助您診斷問題，並了解使用者實際如何運用您的應用程式。 它會在您的應用程式執行時全程加以監視，包括測試期間，以及您加以發佈或部署之後。
+[Application Insights](https://docs.microsoft.com/azure/application-insights/) 是適用於 Web 開發人員的可延伸「應用程式效能管理」(APM) 服務。 使用 Application Insights，您可以即時監視 Web 應用程式，並自動偵測效能異常。 其中包括強大的分析工具可協助您診斷問題，並了解使用者實際如何運用您的應用程式。 它會在您的應用程式執行時全程監視，包括測試期間，以及您發佈或部署之後。
 
 Application Insights 會建立圖表和資料表為您顯示多種資訊，例如，您在一天中的哪些時間有最多使用者、應用程式的回應性如何，以及它所依存的任何外部服務是否順暢地為其提供服務。
 
@@ -98,7 +99,7 @@ Application Insights 會建立圖表和資料表為您顯示多種資訊，例�
 
 Log Analytics 在鑑識和其他安全性分析方面是一個非常實用的工具，因為此工具可讓您利用彈性查詢方法快速搜尋大量的安全性相關項目。 此外，內部部署的[防火牆和 Proxy 記錄可匯出到 Azure，並使用 Log Analytics 來分析它們。](https://docs.microsoft.com/azure/log-analytics/log-analytics-proxy-firewall)
 
-### <a name="azure-advisor"></a>Azure 建議程式
+### <a name="azure-advisor"></a>Azure Advisor
 [Azure Advisor](https://docs.microsoft.com/azure/advisor/) 是個人化雲端顧問，可協助您將 Azure 部署最佳化。 它會分析您的資源及用量遙測， 接著會建議解決方案，以協助改善資源的[效能](https://docs.microsoft.com/azure/advisor/advisor-performance-recommendations)、[安全性](https://docs.microsoft.com/azure/advisor/advisor-security-recommendations)及[高可用性](https://docs.microsoft.com/azure/advisor/advisor-high-availability-recommendations)，同時尋找[降低整體 Azure 費用](https://docs.microsoft.com/azure/advisor/advisor-cost-recommendations)的機會。 Azure Advisor 提供安全性建議，讓您能夠大幅改善您部署於 Azure 中之解決方案的整體安全性狀態。 這些建議均取自 [Azure 資訊安全中心](https://docs.microsoft.com/azure/security-center/security-center-intro)所執行的安全性分析。
 
 ### <a name="azure-security-center"></a>Azure 資訊安全中心
@@ -112,7 +113,7 @@ Log Analytics 在鑑識和其他安全性分析方面是一個非常實用的工
 開始測試您 [App Service 應用程式](https://docs.microsoft.com/azure/app-service/app-service-web-overview)上是否有弱點的最簡單方式之一是使用[與 Tinfoil Security 的整合 (英文)](https://azure.microsoft.com/blog/web-vulnerability-scanning-for-azure-app-service-powered-by-tinfoil-security/)，以在您的應用程式上執行單鍵弱點掃描。 您可以在容易了解的報告中檢視測試結果，並且了解如何以逐步指示修正每個弱點。
 
 ### <a name="penetration-testing"></a>滲透測試
-如果您想要執行專屬的滲透測試，或想要使用另一個掃描器套件或提供者，您必須依照 [Azure 滲透測試核准程序](https://security-forms.azure.com/penetration-testing/terms) 並取得先前核准，才能執行所需的滲透測試。
+如果您想要執行專屬的滲透測試，或想要使用另一個掃描器套件或提供者，您必須依照 [Azure 滲透測試核准程序](https://docs.microsoft.com/azure/security/azure-security-pen-testing ) 並取得先前核准，才能執行所需的滲透測試。
 
 ### <a name="web-application-firewall"></a>Web 應用程式防火牆
 [Azure 應用程式閘道](https://azure.microsoft.com/services/application-gateway/)中的 Web 應用程式防火牆 (WAF) 可協助保護 Web 應用程式，以免於常見的 Web 型攻擊，例如 SQL 插入式攻擊、跨網站指令碼攻擊和工作階段攔截。 其已預先設定 [Open Web Application Security Project (OWASP) 認定為前 10 大常見漏洞](https://msdn.microsoft.com/library/)的威脅防護。
@@ -152,7 +153,7 @@ App Service Web 應用程式會針對來自 Web 伺服器和 Web 應用程式的
 本節提供關於 Azure 儲存體安全性中主要功能的其他資訊，以及這些功能的摘要資訊。
 
 ### <a name="role-based-access-control-rbac"></a>角色型存取控制 (RBAC)
-您可以使用角色型存取控制 (RBAC) 來保護儲存體帳戶。 對於想要強制執行資料存取安全性原則的組織，根據[需要知道 (英文)](https://en.wikipedia.org/wiki/Need_to_know) 和[最低權限 (英文)](https://en.wikipedia.org/wiki/Principle_of_least_privilege) 安全性主體限制存取權限是必須做的事。 在特定範圍將適當的 RBAC 角色指派給群組和應用程式，即可授與這些存取權限。 您可以使用 [內建的 RBAC 角色](https://docs.microsoft.com/azure/active-directory/role-based-access-built-in-roles)(例如儲存體帳戶參與者) 將權限指派給使用者。 使用 [Azure Resource Manager](https://docs.microsoft.com/azure/storage/storage-security-guide) 模型來存取儲存體帳戶的儲存體金鑰，可以透過角色型存取控制 (RBAC) 來控制。
+您可以使用角色型存取控制 (RBAC) 來保護儲存體帳戶。 對於想要強制執行資料存取安全性原則的組織，根據[需要知道 (英文)](https://en.wikipedia.org/wiki/Need_to_know) 和[最低權限 (英文)](https://en.wikipedia.org/wiki/Principle_of_least_privilege) 安全性主體限制存取權限是必須做的事。 在特定範圍將適當的 RBAC 角色指派給群組和應用程式，即可授與這些存取權限。 您可以使用 [內建的 RBAC 角色](https://docs.microsoft.com/azure/role-based-access-control/built-in-roles)(例如儲存體帳戶參與者) 將權限指派給使用者。 使用 [Azure Resource Manager](https://docs.microsoft.com/azure/storage/storage-security-guide) 模型來存取儲存體帳戶的儲存體金鑰，可以透過角色型存取控制 (RBAC) 來控制。
 
 ### <a name="shared-access-signature"></a>共用存取簽章
 [共用存取簽章 (SAS)](https://docs.microsoft.com/azure/storage/storage-dotnet-shared-access-signature-part-1) 可提供您儲存體帳戶中資源的委派存取。 SAS 意謂著您可以將儲存體帳戶中物件的有限權限授與用戶端，讓該用戶端可以在一段指定期間內使用一組指定的權限進行存取。 您可以在不須分享您帳戶存取金鑰的情況下，授與這些有限的權限。
@@ -175,7 +176,7 @@ App Service Web 應用程式會針對來自 Web 伺服器和 Web 應用程式的
 -   [Azure 磁碟加密](https://docs.microsoft.com/azure/security/azure-security-disk-encryption) 允許您加密 IaaS 虛擬機器所使用的作業系統磁碟和資料磁碟。
 
 ### <a name="storage-analytics"></a>儲存體分析
-[Azure 儲存體分析](https://docs.microsoft.com/rest/api/storageservices/fileservices/storage-analytics)會執行記錄，並提供儲存體帳戶的計量資料。 您可以使用此資料來追蹤要求、分析使用量趨勢，以及診斷儲存體帳戶的問題。 儲存體分析會記錄對儲存體服務之成功和失敗要求的詳細資訊。 這項資訊可用來監視個別要求，並診斷儲存體服務的問題。 系統會以最佳方式來記錄要求。 系統將記錄下列類型的驗證要求：
+[Azure 儲存體分析](https://docs.microsoft.com/rest/api/storageservices/fileservices/storage-analytics)會執行記錄，並提供儲存體帳戶的計量資料。 您可以使用此資料來追蹤要求、分析使用量趨勢，以及診斷儲存體帳戶的問題。 儲存體分析會記錄對儲存體服務之成功和失敗要求的詳細資訊。 此資訊可用來監視個別要求，並診斷儲存體服務的問題。 系統會以最佳方式來記錄要求。 系統將記錄下列類型的驗證要求：
 -   成功的要求。
 
 -   失敗的要求，包括逾時、節流、網路、授權和其他錯誤。
@@ -188,7 +189,7 @@ App Service Web 應用程式會針對來自 Web 伺服器和 Web 應用程式的
 [跨原始來源資源共用 (CORS)](https://docs.microsoft.com/rest/api/storageservices/fileservices/cross-origin-resource-sharing--cors--support-for-the-azure-storage-services) 這個機制可讓網域能夠為彼此提供權限來存取彼此的資源。 使用者代理程式會傳送額外的標頭，以確保允許從特定網域載入的 JavaScript 程式碼存取位於另一個網域的資源。 第二個網域接著會利用額外的標頭回覆，以允許或拒絕對其資源的原始網域存取。
 
 Azure 儲存體服務目前支援 CORS，因此，一旦您設定服務的 CORS 規則之後，即會評估從不同網域對服務所提出的適當驗證要求，以判斷是否可根據您指定的規則來允許它。
-## <a name="networking"></a>網路
+## <a name="networking"></a>網路功能
 本節提供關於 Azure 網路安全性中主要功能的其他資訊，以及這些功能的摘要資訊。
 
 ### <a name="network-layer-controls"></a>網路層控制
@@ -250,7 +251,7 @@ Microsoft [Azure 應用程式閘道](https://docs.microsoft.com/azure/applicatio
 應用程式提供許多應用程式傳遞控制器 (ADC) 功能，包括 HTTP 負載平衡、以 Cookie 為基礎的工作階段同質性、[安全通訊端層 (SSL)](https://docs.microsoft.com/azure/application-gateway/application-gateway-web-application-firewall-powershell) 卸載、自訂健康狀態探查、支援多網站，以及許多其他功能。
 
 ### <a name="web-application-firewall"></a>Web 應用程式防火牆
-Web 應用程式防火牆是 [Azure 應用程式閘道](https://docs.microsoft.com/azure/application-gateway/application-gateway-introduction)的一項功能，可保護使用應用程式閘道執行標準應用程式傳遞控制 (ADC) 功能的 Web 應用程式。 Web 應用程式防火牆的做法是保護應用程式以防範 OWASP 前 10 個最常見的 Web 弱點。
+Web 應用程式防火牆是 [Azure 應用程式閘道](https://docs.microsoft.com/azure/application-gateway/application-gateway-introduction)的一個功能，可保護使用應用程式閘道執行標準應用程式傳遞控制 (ADC) 功能的 Web 應用程式。 Web 應用程式防火牆的做法是保護應用程式以防範 OWASP 前 10 個最常見的 Web 弱點。
 
 ![Web 應用程式防火牆](./media/azure-security/azure-security-fig1.png)
 
@@ -311,10 +312,10 @@ Microsoft [Azure 流量管理員](https://docs.microsoft.com/azure/traffic-manag
 本節提供關於這個領域中主要功能的其他資訊，以及這些功能的摘要資訊。
 
 ### <a name="antimalware--antivirus"></a>反惡意程式碼與防毒軟體
-運用 Azure IaaS，您可以使用來自安全性廠商 (例如 Microsoft、Symantec、Trend Micro、McAfee 和 Kaspersky) 的反惡意程式碼軟體，以保護您的虛擬機器來抵禦惡意檔案、廣告軟體和其他威脅。 適用於 Azure 雲端服務和虛擬機器的 [Microsoft Antimalware](https://docs.microsoft.com/azure/security/azure-security-antimalware) 是一項保護功能，有助於識別和移除病毒、間諜軟體和其他惡意軟體。 Microsoft Antimalware 會提供可設定的警示，在已知的惡意或垃圾軟體嘗試自行安裝或在您的 Azure 系統上執行時發出警示。 您也可以使用 Azure 資訊安全中心來部署 Microsoft Antimalware。
+運用 Azure IaaS，您可以使用來自安全性廠商 (例如 Microsoft、Symantec、Trend Micro、McAfee 和 Kaspersky) 的反惡意程式碼軟體，以保護您的虛擬機器來抵禦惡意檔案、廣告軟體和其他威脅。 適用於 Azure 雲端服務和虛擬機器的 [Microsoft Antimalware](https://docs.microsoft.com/azure/security/azure-security-antimalware) 是一個保護功能，有助於識別和移除病毒、間諜軟體和其他惡意軟體。 Microsoft Antimalware 會提供可設定的警示，在已知的惡意或垃圾軟體嘗試自行安裝或在您的 Azure 系統上執行時發出警示。 您也可以使用 Azure 資訊安全中心來部署 Microsoft Antimalware。
 
 ### <a name="hardware-security-module"></a>硬體安全性模型
-加密和驗證不會改善安全性，除非金鑰本身也受到保護。 您可以藉由將關鍵密碼和金鑰存放在 [Azure Key Vault](https://docs.microsoft.com/azure/key-vault/key-vault-whatis)，來簡化其管理與安全性。 Key Vault 讓您能選擇將金鑰存放在通過 FIPS 140-2 Level 2 標準認證的硬體安全性模組 (HSM) 中。 備份或 [透明資料加密](https://msdn.microsoft.com/library/bb934049.aspx) 的 SQL Server 加密金鑰都能與應用程式的任何金鑰或密碼一起存放在金鑰保存庫中。 這些受保護項目的權限和存取權是透過 [Azure Active Directory](https://azure.microsoft.com/documentation/services/active-directory/)來管理。
+加密和驗證不會改善安全性，除非金鑰本身也受到保護。 您可以透過將關鍵密碼和金鑰存放在 [Azure Key Vault](https://docs.microsoft.com/azure/key-vault/key-vault-whatis)，來簡化其管理與安全性。 Key Vault 讓您能選擇將金鑰存放在通過 FIPS 140-2 Level 2 標準認證的硬體安全性模組 (HSM) 中。 備份或 [透明資料加密](https://msdn.microsoft.com/library/bb934049.aspx) 的 SQL Server 加密金鑰都能與應用程式的任何金鑰或密碼一起存放在金鑰保存庫中。 這些受保護項目的權限和存取權是透過 [Azure Active Directory](https://azure.microsoft.com/documentation/services/active-directory/)來管理。
 
 ### <a name="virtual-machine-backup"></a>虛擬機器備份
 [Azure 備份](https://docs.microsoft.com/azure/backup/backup-introduction-to-azure-backup)是一種解決方案，可以不需成本地保護您的應用程式資料，以及將操作成本降到最低。 應用程式錯誤可能導致資料損毀，而人為錯誤可能會將 Bug 導入應用程式，因而引發安全性問題。 使用 Azure 備份，您執行 Windows 與 Linux 的虛擬機器會受到保護。
@@ -327,10 +328,10 @@ Microsoft [Azure 流量管理員](https://docs.microsoft.com/azure/traffic-manag
 
 Azure 金鑰保存庫 (AKV) 服務是設計來改善這些金鑰在安全且高度可用位置的安全性和管理。 SQL Server 連接器讓 SQL Server 可以從 Azure Key Vault 使用這些金鑰。
 
-如果您使用內部部署機器執行 SQL Server，則可遵循一些步驟來從內部部署 SQL Server 機器存取 Azure Key Vault。 但是對於 Azure VM 中的 SQL Server，您可以使用 Azure Key Vault 整合功能來節省時間。 使用一些 Azure PowerShell Cmdlet 來啟用這項功能，您可以自動化 SQL VM 存取您的金鑰保存庫所需的組態。
+如果您使用內部部署機器執行 SQL Server，則可遵循一些步驟來從內部部署 SQL Server 機器存取 Azure Key Vault。 但是對於 Azure VM 中的 SQL Server，您可以使用 Azure Key Vault 整合功能來節省時間。 使用一些 Azure PowerShell Cmdlet 來啟用此功能，您可以自動化 SQL VM 存取您的金鑰保存庫所需的組態。
 
 ### <a name="vm-disk-encryption"></a>VM 磁碟加密
-[Azure 磁碟加密](https://docs.microsoft.com/azure/security/azure-security-disk-encryption)是一項新功能，可協助您加密 Windows 和 Linux IaaS 虛擬機器磁碟。 它運用 Windows 的業界標準 BitLocker 功能和 Linux 的 DM-Crypt 功能，為 OS 和資料磁碟提供磁碟區加密。 此解決方案會與 Azure Key Vault 整合，以協助您控制及管理 Key Vault 訂用帳戶中的磁碟加密金鑰與密碼。 此解決方案也可確保虛擬機器磁碟上的所有待用資料都會在您的 Azure 儲存體中加密。
+[Azure 磁碟加密](https://docs.microsoft.com/azure/security/azure-security-disk-encryption)是一個新功能，可協助您加密 Windows 和 Linux IaaS 虛擬機器磁碟。 它運用 Windows 的業界標準 BitLocker 功能和 Linux 的 DM-Crypt 功能，為 OS 和資料磁碟提供磁碟區加密。 此解決方案會與 Azure Key Vault 整合，以協助您控制及管理 Key Vault 訂用帳戶中的磁碟加密金鑰與密碼。 此解決方案也可確保虛擬機器磁碟上的所有待用資料都會在您的 Azure 儲存體中加密。
 
 ### <a name="virtual-networking"></a>虛擬網路
 虛擬機器需要遠端連線。 為了支援該需求，Azure 需要虛擬機器連接到 Azure 虛擬網路。 Azure 虛擬網路是以實體 Azure 網路網狀架構為基礎所建置的邏輯建構。 每個邏輯 [Azure 虛擬網路](https://docs.microsoft.com/azure/virtual-network/virtual-networks-overview)都會與其他所有 Azure 虛擬網路隔離。 此隔離可協助確保其他 Microsoft Azure 客戶無法存取您部署中的網路流量。
@@ -354,9 +355,9 @@ Microsoft 在其產品與服務上使用多個安全性作法與技術來管理�
 
 -   [Microsoft Authenticator (英文)](https://aka.ms/authenticator) 提供易於使用的 Multi-Factor Authentication 體驗，可搭配 Microsoft Azure Active Directory 和 Microsoft 帳戶一起使用，並包括對於穿戴式裝置與指紋式核准的支援。
 
--   [密碼原則強制執行](https://azure.microsoft.com/documentation/articles/active-directory-passwords-policy/)藉由加強長度和複雜度需求、強制定期循環，以及在失敗的驗證嘗試之後鎖定帳戶，來提高傳統密碼的安全性。
+-   [密碼原則強制執行](https://azure.microsoft.com/documentation/articles/active-directory-passwords-policy/)透過加強長度和複雜度需求、強制定期循環，以及在失敗的驗證嘗試之後鎖定帳戶，來提高傳統密碼的安全性。
 
--   [權杖型驗證](https://azure.microsoft.com/documentation/articles/active-directory-authentication-scenarios/)會透過 Active Directory 同盟服務 (AD FS) 或協力廠商的安全性權杖系統來啟用驗證。
+-   [權杖型驗證](https://azure.microsoft.com/documentation/articles/active-directory-authentication-scenarios/)可透過 Azure Active Directory 啟用驗證。
 
 -   [角色型存取控制 (RBAC)](https://azure.microsoft.com/documentation/articles/role-based-access-built-in-roles/) 可讓您根據使用者指派的角色來授與存取權限，以便輕鬆地只為使用者提供執行其作業內容所需的存取權限。 您可以針對每個組織的商務模型和風險承受度自訂 RBAC。
 

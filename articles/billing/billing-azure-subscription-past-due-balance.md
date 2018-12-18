@@ -1,25 +1,26 @@
 ---
-title: "來自 Azure 的逾期未付帳款電子郵件 | Microsoft Docs"
-description: "描述如果 Azure 訂用帳戶有逾期未付帳款要如何付款"
-services: 
-documentationcenter: 
+title: 來自 Azure 的逾期未付帳款電子郵件 | Microsoft Docs
+description: 描述如果 Azure 訂用帳戶有逾期未付帳款要如何付款
+services: ''
+documentationcenter: ''
 author: genlin
 manager: jlian
-editor: 
+editor: ''
 tags: billing
 ms.assetid: d0b88c92-fb9d-4d12-931b-c26104ad63e9
 ms.service: billing
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 08/30/2017
-ms.author: genli
-ms.openlocfilehash: 20761f9c6caf029b2b6bbc8e02b2f041c45abf01
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.topic: conceptual
+ms.date: 05/11/2018
+ms.author: cwatson
+ms.openlocfilehash: fbc1f906812c0fb40a173fd90eac315753c893ef
+ms.sourcegitcommit: d1aef670b97061507dc1343450211a2042b01641
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47393226"
 ---
 # <a name="resolve-past-due-balance-for-your-azure-subscription-after-getting-an-email-from-azure"></a>收到 Azure 寄來的電子郵件之後，處理 Azure 訂用帳戶的逾期未付帳款
 

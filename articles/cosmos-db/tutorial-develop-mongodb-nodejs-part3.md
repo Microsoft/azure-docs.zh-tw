@@ -1,25 +1,23 @@
 ---
-title: "適用於 Azure 的 MongoDB、Angular 及 Node 教學課程 - 第 3 部分 | Microsoft Docs"
-description: "本教學課程系列的第 3 部分，有關使用您用於 MongoDB 的完全相同 API，以 Azure Cosmos DB 上的 Angular 和 Node 建立 MongoDB 應用程式。"
+title: 適用於 Azure 的 MongoDB、Angular 及 Node 教學課程 - 第 3 部分 | Microsoft Docs
+description: 本教學課程系列的第 3 部分，有關使用您用於 MongoDB 的完全相同 API，以 Azure Cosmos DB 上的 Angular 和 Node 建立 MongoDB 應用程式。
 services: cosmos-db
-documentationcenter: 
-author: mimig1
-manager: jhubbard
-editor: 
-ms.assetid: 
+author: johnpapa
+manager: kfile
+editor: ''
 ms.service: cosmos-db
-ms.workload: 
-ms.tgt_pltfrm: na
+ms.component: cosmosdb-mongo
 ms.devlang: nodejs
 ms.topic: tutorial
 ms.date: 09/05/2017
-ms.author: mimig
+ms.author: jopapa
 ms.custom: mvc
-ms.openlocfilehash: ff75b4546a85c1c0bbf5c256977a3d33016c8c44
-ms.sourcegitcommit: 7136d06474dd20bb8ef6a821c8d7e31edf3a2820
+ms.openlocfilehash: c71e0d221e4605d95dc754127ec44c62a64472f1
+ms.sourcegitcommit: cb61439cf0ae2a3f4b07a98da4df258bfb479845
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/05/2017
+ms.lasthandoff: 09/05/2018
+ms.locfileid: "43702277"
 ---
 # <a name="create-a-mongodb-app-with-angular-and-azure-cosmos-db---part-3-build-the-ui-with-angular"></a>使用 Angular 和 Azure Cosmos DB 建立 MongoDB 應用程式 - 第 3 部分：使用 Angular 建置 UI
 
@@ -36,7 +34,7 @@ ms.lasthandoff: 12/05/2017
 
 > [!VIDEO https://www.youtube.com/embed/MnxHuqcJVoM]
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 開始本教學課程的這個部分之前，請確定您已完成本教學課程[第 2 部分](tutorial-develop-mongodb-nodejs-part2.md)中的步驟。
 
@@ -55,56 +53,20 @@ ms.lasthandoff: 12/05/2017
 
     終端機視窗會顯示新元件的確認。
 
-    ```bash
-    installing component
-      create src\client\app\heroes.component.ts
-      update src\client\app\app.module.ts 
-    ```
+    ![正在安裝 hero 元件](./media/tutorial-develop-mongodb-nodejs-part3/install-heros-component.png)
 
     讓我們查看已建立和更新的檔案。 
 
-3. 在 Visual Studio Code 的 [總管] 窗格中，瀏覽至新的 **src\client\app** 資料夾，然後開啟步驟 2 所建立的新 **heroes.component.ts** 檔案。 前一個命令會建立這個 TypeScript 元件檔案。
+3. 在 Visual Studio Code 的 [總管] 窗格中，瀏覽至新的 **src\app** 資料夾，然後開啟 app 資料夾內所產生的新 **heroes.component.ts** 檔案。 前一個命令會建立這個 TypeScript 元件檔案。
 
     > [!TIP]
     > 如果應用程式資料夾未顯示在 Visual Studio Code 中，在 Mac 上輸入 CMD + SHIFT P 或在 Windows 上輸入 Ctrl + Shift + P 以開啟 [命令選擇區]，然後進入 [重新載入視窗] 以挑選系統變更。
-
-    ![開啟 heroes.component.ts 檔案](./media/tutorial-develop-mongodb-nodejs-part3/open-folder.png)
 
 4. 在相同的資料夾中，開啟 **app.module.ts** 檔案，並請注意它已將 `HeroesComponent` 新增至第 5 行上的宣告，並且也在第 10 行上匯入它。
 
     ![開啟 app-module.ts 檔案](./media/tutorial-develop-mongodb-nodejs-part3/app-module-file.png)
 
-    您現在已有 Hero 元件，請針對 heroes 元件 HTML 建立新檔案。 因為我們已建立最小應用程式，所以 HTML 預定會進入與 TypeScript 檔案相同的檔案中，但我們想要將它打散並建立個別的檔案。
-
-5. 在 [總管] 窗格中，以滑鼠右鍵按一下 **app** 資料夾中，按一下 [新增檔案]，並將新檔案命名為 heroes.component.html。
-
-6. 在 **heroes.component.ts** 檔案中，刪除第 5 到 9 行 
-
-    ```ts
-    template: `
-        <p>
-          heroes Works!
-        </p>
-      `,
-      ```
-      並將它取代為
-  
-    ```ts
-    templateUrl: './heroes.component.html',
-    ```
-
-    以參考新的 HTML 檔案。
- 
-    > [!TIP]
-    > 您可以使用 John Papa 的 Angular Essentials 擴充功能和 Visual Studio Code 的程式碼片段，加速您的開發。 
-    > 1. 按一下 [擴充功能] 按鈕![Visual Studio Code 擴充功能按鈕](./media/tutorial-develop-mongodb-nodejs-part3/extensions-button.png)。
-    > 2. 在搜尋方塊中輸入 angular essentials。
-    > 3. 按一下 [Install] 。 
-    > 4. 按一下 [重新載入] 按鈕以使用新的擴充功能。
-    > 或者，從 [http://jpapa.me/angularessentials](http://jpapa.me/angularessentials) 下載。 
-    > ![Angular Essentials 擴充功能](./media/tutorial-develop-mongodb-nodejs-part3/angular-essentials-extension.png)
-
-7. 請回到 **heroes.component.html** 檔案並在此程式碼中複製。 `<div>` 是整個頁面的容器。 容器內部有我們需要建立的 Hero 清單，因此當您按一下其中一個 Hero 時，您可以在 UI 中選取您、編輯或刪除它。 然後在 HTML 中，我們已取得一些樣式，因此您知道已選取哪一個 Hero。 另外還有一個編輯區域，以便您新增 Hero 或編輯現有的 Hero。 
+5. 請回到 **heroes.component.html** 檔案並在此程式碼中複製。 `<div>` 是整個頁面的容器。 容器內部有我們需要建立的 Hero 清單，因此當您按一下其中一個 Hero 時，您可以在 UI 中選取您、編輯或刪除它。 然後在 HTML 中，我們已取得一些樣式，因此您知道已選取哪一個 Hero。 另外還有一個編輯區域，以便您新增 Hero 或編輯現有的 Hero。 
 
     ```html
     <div>
@@ -143,14 +105,15 @@ ms.lasthandoff: 12/05/2017
     </div>
     ```
 
-8. 我們現在已備妥 HTML，我們需要將它新增至 **heroes.component.ts** 檔案，以便與範本互動。 下面已新增至 **heroes.component.ts** 的新程式碼會將範本新增至我們的元件檔案。 已新增建構函式，以取得一些 Hero，並初始化 Hero 服務元件以取得所有資料。 此程式碼也會新增所有必要的方法，以便在 UI 中處理事件。 您可以複製下列程式碼並蓋掉 **heroes.component.ts** 中的現有程式碼。 
+7. 我們現在已備妥 HTML，我們需要將它新增至 **heroes.component.ts** 檔案，以便與範本互動。 下列程式碼會在元件檔案中新增範本。 已新增建構函式，以取得一些 Hero，並初始化 Hero 服務元件以取得所有資料。 此程式碼也會新增所有必要的方法，以便在 UI 中處理事件。 您可以複製下列程式碼並蓋掉 **heroes.component.ts** 中的現有程式碼。 您應該會在 Hero 和 HeroService 區域看到錯誤，因為對應的元件尚未匯入，下一節您會修正這些錯誤。 
 
     ```ts
     import { Component, OnInit } from '@angular/core';
 
     @Component({
       selector: 'app-heroes',
-      templateUrl: './heroes.component.html'
+      templateUrl: './heroes.component.html',
+      styleUrls: ['./heroes.component.scss']
     })
     export class HeroesComponent implements OnInit {
       addingHero = false;
@@ -210,7 +173,7 @@ ms.lasthandoff: 12/05/2017
     }
     ```
 
-9. 在 [總管] 中，開啟 **app/app.module.ts** 檔案並更新第 13 行 (加上逗號) 和第 14 行，以針對 `FormsModule` 新增 import。 import 區段現在應該如下所示︰
+8. 在 [總管] 中，開啟 **app/app.module.ts** 檔案，並更新 import 區段，以針對 `FormsModule` 新增 import。 import 區段現在應該如下所示︰
 
     ```
     imports: [
@@ -219,7 +182,7 @@ ms.lasthandoff: 12/05/2017
     ],
     ```
 
-10. 在第 3 上為新的 FormsModule 模組新增 import。 
+9. 在 **app/app.module.ts** 檔案的第 3 行，為新的 FormsModule 模組新增 import。 
 
     ```
     import { BrowserModule } from '@angular/platform-browser';
@@ -229,7 +192,7 @@ ms.lasthandoff: 12/05/2017
 
 ## <a name="use-css-to-set-the-look-and-feel"></a>使用 CSS 來設定外觀與風格
 
-1. 在 [總管] 窗格中，開啟 **src/client/styles.scss** 檔案。
+1. 在 [總管] 窗格中，開啟 **src/styles.scss** 檔案。
 
 2. 將下列程式碼複製到 **styles.scss** 檔案，並取代檔案的現有內容。
 
@@ -392,34 +355,34 @@ ms.lasthandoff: 12/05/2017
 
 我們現在已有元件，如何讓它顯示在螢幕上？ 讓我們在 **app.component.ts** 中修改預設元件。
 
-1. 在 [總管] 窗格中，開啟 **client/app/app.component.ts**。
-
-2. 在第 6 到 8 行中，將標題變更為 Heroes，然後放置我們在 **heroes.components.ts** 中建立的元件名稱 (app-heroes) 以參照該新元件。 template 區段現在應該如下所示︰ 
+1. 在 [總管] 窗格中，開啟 **/app/app.component.ts**，將標題變更為 Heroes，然後放置我們在 **heroes.components.ts** 中建立的元件名稱 (app-heroes) 以參照該新元件。 此檔案的內容應該如下所示： 
 
     ```ts
-    template: `
+    import { Component } from '@angular/core';
+
+    @Component({
+      selector: 'app-root',
+      templateUrl: './app.component.html',
+      styleUrls: ['./app.component.scss'],
+      template: `
       <h1>Heroes</h1>
       <div class="header-bar"></div>
       <app-heroes></app-heroes>
-    `,
+    `
+    })
+    export class AppComponent {
+      title = 'app';
+    }
+
     ```
 
-3. **heroes.components.ts** 中還有我們參照的其他元件，像是 Hero 元件，所以我們也需要建立該元件。 在 Angular CLI 命令提示字元中，使用下列命令以建立 Hero 模型和名為 **hero.ts** 的檔案，其中 g=產生、cl=類別，而 hero=類別名稱。
+2. **heroes.components.ts** 中還有我們參照的其他元件，像是 Hero 元件，所以我們也需要建立該元件。 在 Angular CLI 命令提示字元中，使用下列命令以建立 Hero 模型和名為 **hero.ts** 的檔案，其中 g=產生、cl=類別，而 hero=類別名稱。
 
     ```bash
     ng g cl hero
     ```
 
-    終端機視窗會顯示新類型的確認。
-
-    ```bash
-    installing class
-    create src\client\app\hero.ts
-    ```
-
-4. 在 [總管] 窗格中，開啟 **src\client\app\hero.ts**。
-
-5. 在 **hero.ts** 中，以下列程式碼取代檔案內容，其可新增包含識別碼、名稱和招呼語的 Hero 類別。 
+3. 在 [總管] 窗格中，開啟 **src\app\hero.ts**。 在 **hero.ts** 中，以下列程式碼取代檔案內容，其可新增包含識別碼、名稱和招呼語的 Hero 類別。
 
     ```ts
       export class Hero {
@@ -429,15 +392,15 @@ ms.lasthandoff: 12/05/2017
     }
     ```
 
-6. 回到 **heroes.components.ts**，並請注意 `selectedHero: Hero;` 行 (第 10 行) 上的 `Hero` 底下有紅線。 
+4. 回到 **heroes.components.ts**，並請注意 `selectedHero: Hero;` 行 (第 10 行) 上的 `Hero` 底下有紅線。 
 
-7. 以滑鼠左鍵按一下 `Hero` 一詞，而 Visual Studio 會在程式碼區塊的左側顯示燈泡圖示。 
+5. 以滑鼠左鍵按一下 `Hero` 一詞，而 Visual Studio 會在程式碼區塊的左側顯示燈泡圖示。 
 
     ![Visual Studio Code 中的燈泡](./media/tutorial-develop-mongodb-nodejs-part3/light-bulb.png)
 
-8. 按一下燈泡，然後按一下 [從 "client/app/hero" 匯入 Hero]。 或 [從 "./hero" 匯入 Hero]。 (此訊息會根據您的設定而變更)
+6. 按一下燈泡，然後按一下 [從 "app/hero" 匯入 Hero]。 或 [從 "./hero" 匯入 Hero]。 (此訊息會根據您的設定而變更)
 
-    第 2 行上會出現一行新程式碼。 如果第 2 行參照用戶端/應用程式/hero，請加以修改，讓它從本機資料夾 (./hero) 參照 Hero 檔案。 第 2 行看起來應該如下所示：
+    第 2 行上會出現一行新程式碼。 如果第 2 行參照 /app/hero，請加以修改，讓它從本機資料夾 (./hero) 參照 Hero 檔案。 第 2 行看起來應該如下所示：
 
    ```
    import { Hero } from "./hero";
@@ -453,23 +416,15 @@ ms.lasthandoff: 12/05/2017
     ng g s hero -m app.module
     ```
 
-    輸出指出已建立 **hero.service.ts** 並已更新 **app.module.ts**。
-  
-    ```bash
-    installing service
-      create src\client\app\hero.service.ts
-      update src\client\app\app.module.ts
-    ```
+2. 在 Visual Studio Code 中，回到 **heroes.components.ts**。 請注意 `constructor(private heroService: HeroService) {}` 行 (第 13 行) 上的 `HeroService` 底下有紅線。 按一下 `HeroService`，您將會在程式碼區塊的左側取得燈泡。 按一下燈泡，然後按一下 [從 "./hero.service 匯入 HeroService]。 或 [從 "app/hero.service" 匯入 HeroService]。
+
+    按一下燈泡會在第 2 行上插入一行新程式碼。 如果第 2 行參照 /app/hero.service 資料夾，請加以修改，讓它從本機資料夾 (./hero.serivce) 參照 Hero 檔案。 第 2 行看起來應該如下所示：
     
-    在 app.module.ts 中，已新增下列幾行程式碼 (第 6 和 17 行)：
-    
-    ```typescript
-    import { HeroService } from './hero.service';
-    ...
-        providers: [HeroService],
+    ```javascript
+    import { HeroService } from "./hero.service"
     ```
 
-2. 在 Visual Studio Code 中，開啟 **hero.service.ts**，複製下列程式碼並取代檔案內容。
+3. 在 Visual Studio Code 中，開啟 **hero.service.ts**，複製下列程式碼並取代檔案內容。
 
     ```ts
     import { Injectable } from '@angular/core';
@@ -503,7 +458,7 @@ ms.lasthandoff: 12/05/2017
 
     此程式碼使用 Angular 提供的最新版 HttpClient，這是您需要提供的模組，因此我們接下來會執行該作業。
 
-3. 在 Visual Studio Code 中，開啟 **app.module.ts**，並藉由更新 import 區段以包含 HttpClientModule 來匯入 HttpClientModule。
+4. 在 Visual Studio Code 中，開啟 **app.module.ts**，並藉由更新 import 區段以包含 HttpClientModule 來匯入 HttpClientModule。
 
     ```ts
     imports: [
@@ -513,18 +468,10 @@ ms.lasthandoff: 12/05/2017
     ],
     ```
 
-4. 在 **app.module.ts** 中，將 HttpClientModule import 陳述式新增至 import 清單。
+5. 在 **app.module.ts** 中，將 HttpClientModule import 陳述式新增至 import 清單。
 
     ```ts
     import { HttpClientModule } from '@angular/common/http';
-    ```
-
-5. 在 Visual Studio Code 中，回到 **heroes.components.ts**。 請注意 `constructor(private heroService: HeroService) {}` 行 (第 13 行) 上的 `HeroService` 底下有紅線。 按一下 `HeroService`，您將會在程式碼區塊的左側取得燈泡。 按一下燈泡，然後按一下 [從 "./hero.service 匯入 HeroService]。 或 [從 "client/app/hero.service" 匯入 HeroService]。
-
-    按一下燈泡會在第 2 行上插入一行新程式碼。 如果第 2 行參照用戶端/應用程式/hero.service 資料夾，請加以修改，讓它從本機資料夾 (./hero.serivce) 參照 Hero 檔案。 第 2 行看起來應該如下所示：
-    
-    ```javascript
-    import { HeroService } from "./hero.service"
     ```
 
 6. 在 Visual Studio Code 中儲存所有檔案。

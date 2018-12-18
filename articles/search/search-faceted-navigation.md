@@ -1,24 +1,19 @@
 ---
-title: "如何在 Azure 搜尋服務中實作多面向導覽 | Microsoft Docs"
-description: "將「多面向導覽」加入與 Azure 搜尋服務 (Microsoft Azure 上之託管的雲端搜尋服務) 整合的應用程式。"
-services: search
-documentationcenter: 
+title: 如何在 Azure 搜尋服務中實作多面向導覽 | Microsoft Docs
+description: 將「多面向導覽」加入與 Azure 搜尋服務 (Microsoft Azure 上之託管的雲端搜尋服務) 整合的應用程式。
 author: HeidiSteen
-manager: mblythe
-editor: 
-ms.assetid: cdf98fd4-63fd-4b50-b0b0-835cb08ad4d3
+manager: cgronlun
+services: search
 ms.service: search
-ms.devlang: rest-api
-ms.workload: search
-ms.topic: article
-ms.tgt_pltfrm: na
+ms.topic: conceptual
 ms.date: 3/10/2017
 ms.author: heidist
-ms.openlocfilehash: 413f498eeb0bbc9a971c7a65200ed2fd8caa9aaf
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: e00e875619e4ed6800f5739362ff0c52971f6f16
+ms.sourcegitcommit: e2adef58c03b0a780173df2d988907b5cb809c82
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 04/28/2018
+ms.locfileid: "32195289"
 ---
 # <a name="how-to-implement-faceted-navigation-in-azure-search"></a>如何在 Azure 搜尋服務中實作多面向導覽
 多面向導覽是一個篩選機制，它在搜尋應用程式中提供自動導向的向下鑽研導覽。 「多面向導覽」一詞可能讓您感到陌生，但您可能早已使用過它。 如下列範例所示，多面向導覽其實就是用來篩選結果的類別。
@@ -67,7 +62,7 @@ ms.lasthandoff: 10/11/2017
 
 ### <a name="query-basics"></a>查詢基本概念
 
-在 Azure 搜尋服務中，要求是透過一或多個查詢參數 (如需個別的詳細描述，請參閱 [搜尋文件](http://msdn.microsoft.com/library/azure/dn798927.aspx) ) 指定。 沒有任何一個查詢參數是必要的，但您至少要有一個才能讓查詢有效。
+在 Azure 搜尋服務中，要求是透過一或多個查詢參數 (如需個別的詳細描述，請參閱 [搜尋文件](https://docs.microsoft.com/rest/api/searchservice/Search-Documents) ) 指定。 沒有任何一個查詢參數是必要的，但您至少要有一個才能讓查詢有效。
 
 精確度 (視為篩選並排除不相關項目的能力) 是透過下列運算式而達到：
 
@@ -234,7 +229,7 @@ SearchParameters sp = new SearchParameters()
 };
 ```
 
-面向查詢參數已設定至欄位，且根據資料類型能夠由包含 `count:<integer>`、`sort:<>`、`interval:<integer>` 與 `values:<list>` 的逗號分隔清單進一步參數化。 當設定範圍時，針對數值資料支援值清單。 如需用量詳細資訊，請參閱 [搜尋文件 (Azure 搜尋服務 API)](http://msdn.microsoft.com/library/azure/dn798927.aspx) 。
+面向查詢參數已設定至欄位，且根據資料類型能夠由包含 `count:<integer>`、`sort:<>`、`interval:<integer>` 與 `values:<list>` 的逗號分隔清單進一步參數化。 當設定範圍時，針對數值資料支援值清單。 如需用量詳細資訊，請參閱 [搜尋文件 (Azure 搜尋服務 API)](https://docs.microsoft.com/rest/api/searchservice/Search-Documents) 。
 
 由您的應用程式制訂的要求也應該與面向一起建置篩選條件，以根據選取的面向值縮小候選文件集的範圍。 就單車店而言，多面向導覽可提供「有哪些顏色、製造商和單車類型可供販售？」等問題的線索。 篩選功能可解答「哪些單車確實是位於此價格帶內的紅色登山車？」之類的問題。 當您按一下 [紅色] 來表示僅顯示紅色的商品，應用程式傳送的下一個查詢會包含 `$filter=Color eq ‘Red’`。
 
@@ -335,7 +330,7 @@ if (businessTitleFacet != "")
 <a name="rangefacets"></a>
 
 ## <a name="filter-based-on-a-range"></a>根據範圍進行篩選
-透過值範圍進行面向化是常見的搜尋應用程式需求。 範圍支援數值資料與日期時間值。 您可以在 [搜尋文件 (Azure Search API)](http://msdn.microsoft.com/library/azure/dn798927.aspx)中閱讀各方法的相關資訊。
+透過值範圍進行面向化是常見的搜尋應用程式需求。 範圍支援數值資料與日期時間值。 您可以在 [搜尋文件 (Azure Search API)](https://docs.microsoft.com/rest/api/searchservice/Search-Documents)中閱讀各方法的相關資訊。
 
 Azure Search 透過提供兩種方法進行範圍運算，來簡化範圍建構。 針對這兩種方法，Azure Search 會依照您提供的輸入建立適當的範圍。 例如，如果您指定 10|20|30 的值範圍，它會自動建立 0-10、10-20、20-30 的範圍。 您的應用程式可以選擇性地移除任何空白間隔。 
 
@@ -368,7 +363,7 @@ Azure Search 透過提供兩種方法進行範圍運算，來簡化範圍建構�
 * **geo.distance** 函式會傳回兩點之間的距離 (以公里為單位)。 一個點是欄位，另一個點則是傳遞作為篩選條件一部分的常數。 
 * 如果給定的點位於給定的多邊形內，**geo.distance** 函式會傳回 true。 該點為欄位，而多邊形則會指定作為座標的常數清單，並傳遞作為篩選條件的一部分。
 
-您可以在 [OData 運算式語法 (Azure Search)](http://msdn.microsoft.com/library/azure/dn798921.aspx)中找到篩選條件範例。
+您可以在 [OData 運算式語法 (Azure Search)](https://docs.microsoft.com/rest/api/searchservice/odata-expression-syntax-for-azure-search)中找到篩選條件範例。
 
 <a name="tryitout"></a>
 
@@ -437,9 +432,9 @@ Azure 搜尋服務作業入口網站示範包含了本文所參考的範例。
 [Designing for Faceted Search]: http://www.uie.com/articles/faceted_search/
 [Design Patterns: Faceted Navigation]: http://alistapart.com/article/design-patterns-faceted-navigation
 [Create your first application]: search-create-first-solution.md
-[OData expression syntax (Azure Search)]: http://msdn.microsoft.com/library/azure/dn798921.aspx
+[OData expression syntax (Azure Search)]: https://docs.microsoft.com/rest/api/searchservice/odata-expression-syntax-for-azure-search
 [Azure Search Adventure Works Demo]: https://azuresearchadventureworksdemo.codeplex.com/
 [http://www.odata.org/documentation/odata-version-2-0/overview/]: http://www.odata.org/documentation/odata-version-2-0/overview/ 
 [Faceting on Azure Search forum post]: ../faceting-on-azure-search.md?forum=azuresearch
-[Search Documents (Azure Search API)]: http://msdn.microsoft.com/library/azure/dn798927.aspx
+[Search Documents (Azure Search API)]: https://docs.microsoft.com/rest/api/searchservice/Search-Documents
 

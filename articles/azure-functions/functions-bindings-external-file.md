@@ -1,24 +1,21 @@
 ---
-title: "Azure Functions 的外部檔案繫結 (實驗性)"
-description: "使用 Azure Functions 中的外部檔案繫結"
+title: Azure Functions 的外部檔案繫結 (實驗性)
+description: 使用 Azure Functions 中的外部檔案繫結
 services: functions
-documentationcenter: 
 author: alexkarcher-msft
-manager: cfowler
-editor: 
-ms.assetid: 
-ms.service: functions
-ms.workload: na
-ms.tgt_pltfrm: na
+manager: jeconnoc
+ms.assetid: ''
+ms.service: azure-functions
 ms.devlang: multiple
-ms.topic: article
+ms.topic: conceptual
 ms.date: 11/27/2017
 ms.author: alkarche
-ms.openlocfilehash: 4e9c2c336df465d7488de84bd2a02cc5d9e42f30
-ms.sourcegitcommit: d6984ef8cc057423ff81efb4645af9d0b902f843
+ms.openlocfilehash: be2d34202b88d0d424eb23c4e078c2fdc45c6ab6
+ms.sourcegitcommit: af60bd400e18fd4cf4965f90094e2411a22e1e77
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/05/2018
+ms.lasthandoff: 09/07/2018
+ms.locfileid: "44093765"
 ---
 # <a name="azure-functions-external-file-bindings-experimental"></a>Azure Functions 外部檔案繫結 (實驗性)
 本文示範如何在 Azure Functions 中操作不同 SaaS 提供者 (例如 Dropbox 或 Google Drive) 的檔案。 Azure Functions 支援適用於外部檔案的觸發程序、輸入和輸出繫結。 這些繫結會建立與 SaaS 提供者的 API 連線，或使用函式應用程式之資源群組的現有 API 連線。
@@ -161,7 +158,7 @@ module.exports = function(context) {
 "path": "images/{{20140101}}-{name}",
 ```
 
-此路徑會在 *images* 資料夾中尋找名為 *{20140101}-soundfile.mp3* 的檔案，而函數程式碼中的 `name` 變數值會是 *soundfile.mp3*。
+此路徑會在 images 資料夾中尋找名為 {20140101}-soundfile.mp3 的檔案，而函數程式碼中的 `name` 變數值會是 soundfile.mp3。
 
 ## <a name="trigger---usage"></a>觸發程序 - 使用方式
 

@@ -3,20 +3,22 @@ title: 針對裝載於 Azure 雲端服務資源上的應用程式啟用 Applicat
 description: 了解如何在 Azure 雲端服務中執行的應用程式上設定 Application Insights Profiler。
 services: application-insights
 documentationcenter: ''
-author: ramach-msft
+author: mrbullwinkle
 manager: carmonm
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 10/16/2017
-ms.author: ramach
-ms.openlocfilehash: a24695f7bbb5fb0546e27c934319a60a3418b9e1
-ms.sourcegitcommit: 168426c3545eae6287febecc8804b1035171c048
+ms.reviewer: ramach
+ms.author: mbullwin
+ms.openlocfilehash: eb2ec0c0b77e71a54d1e7f852a22d82203abf7b6
+ms.sourcegitcommit: 4047b262cf2a1441a7ae82f8ac7a80ec148c40c4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/08/2018
+ms.lasthandoff: 10/11/2018
+ms.locfileid: "49091975"
 ---
 # <a name="enable-application-insights-profiler-for-azure-vms-service-fabric-and-azure-cloud-services"></a>針對 Azure VM、Service Fabric 和 Azure 雲端服務啟用 Application Insights Profiler
 
@@ -40,13 +42,13 @@ ms.lasthandoff: 03/08/2018
 
 ## <a name="set-up-the-application-insights-instance"></a>設定 Application Insights 執行個體
 
-1. [建立新的 Application Insights 資源](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-create-new-resource)或選取現有資源。 
+1. [建立新的 Application Insights 資源](https://docs.microsoft.com/azure/application-insights/app-insights-create-new-resource)或選取現有資源。 
 
-2. 前往 Application Insights 資源，然後複製檢測金鑰。
+1. 前往 Application Insights 資源，然後複製檢測金鑰。
 
    ![檢測金鑰的位置](./media/enable-profiler-compute/CopyAIKey.png)
 
-3. 若要為 Profiler 完成 Application Insights 執行個體的設定，請完成 [啟用 Profiler] 中所述的程序。 您不需要連結 Web 應用程式，因為步驟僅適用於應用程式服務資源。 請確定您已於 [設定 Profiler] 窗格中啟用 Profiler。
+1. 若要為 Profiler 完成 Application Insights 執行個體的設定，請完成[啟用 Profiler](https://docs.microsoft.com/azure/application-insights/app-insights-profiler) 中所述的程序。 您不需要連結 Web 應用程式，因為步驟僅適用於應用程式服務資源。 請確定您已於 [設定 Profiler] 窗格中啟用 Profiler。
 
 
 ## <a name="set-up-the-application-source-code"></a>設定應用程式原始程式碼
@@ -72,7 +74,7 @@ ms.lasthandoff: 03/08/2018
         ```
       如需這個全域檢測金鑰設定的詳細資訊，請參閱[搭配 Application Insights 使用 Service Fabric](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/blob/dev/appinsights/ApplicationInsights.md)。  
 
-  2. 針對您想要檢測的任何程式碼片段，在其周圍新增 `StartOperation<RequestTelemetry>` **USING** 陳述式，如下列範例所示：
+  1. 針對您想要檢測的任何程式碼片段，在其周圍新增 `StartOperation<RequestTelemetry>` **USING** 陳述式，如下列範例所示：
 
         ```csharp
         using Microsoft.ApplicationInsights;
@@ -141,7 +143,7 @@ ms.lasthandoff: 03/08/2018
 若要設定您的環境，請執行下列作業：
 1. 若要確保使用的是 [.NET Framework 4.6.1](https://docs.microsoft.com/dotnet/framework/migration-guide/how-to-determine-which-versions-are-installed) 或更新版本，確認部署的作業系統是 `Windows Server 2012 R2` 或更新版本就足夠。
 
-2. 在部署範本檔案中搜尋 [Azure 診斷](https://docs.microsoft.com/azure/monitoring-and-diagnostics/azure-diagnostics)擴充功能，並新增下列 `SinksConfig` 區段作為 `WadCfg` 的子元素。 將 `ApplicationInsightsProfiler` 屬性值取代為您自己的 Application Insights 檢測金鑰：  
+1. 在部署範本檔案中搜尋 [Azure 診斷](https://docs.microsoft.com/azure/monitoring-and-diagnostics/azure-diagnostics)擴充功能，並新增下列 `SinksConfig` 區段作為 `WadCfg` 的子元素。 將 `ApplicationInsightsProfiler` 屬性值取代為您自己的 Application Insights 檢測金鑰：  
 
       ```json
       "SinksConfig": {
@@ -163,13 +165,13 @@ ms.lasthandoff: 03/08/2018
 
 1. 若要確保使用的是 [.NET Framework 4.6.1](https://docs.microsoft.com/dotnet/framework/migration-guide/how-to-determine-which-versions-are-installed) 或更新版本，確認 ServiceConfiguration.\*.cscfg 檔案的 `osFamily` 值為 "5" 或更新版本就足夠。
 
-2. 針對您的應用程式角色找出 [Azure 診斷](https://docs.microsoft.com/azure/monitoring-and-diagnostics/azure-diagnostics) diagnostics.wadcfgx 檔案，如下所示：  
+1. 針對您的應用程式角色找出 [Azure 診斷](https://docs.microsoft.com/azure/monitoring-and-diagnostics/azure-diagnostics) diagnostics.wadcfgx 檔案，如下所示：  
 
    ![診斷組態檔的位置](./media/enable-profiler-compute/cloudservice-solutionexplorer.png)  
 
    如果找不到檔案以便了解如何在您的 Azure 雲端服務專案中啟用診斷擴充功能，請參閱[為 Azure 雲端服務和虛擬機器設定診斷](https://docs.microsoft.com/azure/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines#enable-diagnostics-in-cloud-service-projects-before-deploying-them)。
 
-3. 新增下列 `SinksConfig` 區段作為 `WadCfg` 的子元素：  
+1. 新增下列 `SinksConfig` 區段作為 `WadCfg` 的子元素：  
 
       ```xml
       <WadCfg>
@@ -210,7 +212,7 @@ ms.lasthandoff: 03/08/2018
     Set-AzureRmVMDiagnosticsExtension -ResourceGroupName "MyRG" -VMName "MyVM" -DiagnosticsConfigurationPath $ConfigFilePath
     ```
 
-2. 如果預期的應用程式是透過 [IIS](https://www.microsoft.com/web/platform/server.aspx) 執行，則藉由執行下列作業來啟用 `IIS Http Tracing` Windows 功能：  
+1. 如果預期的應用程式是透過 [IIS](https://www.microsoft.com/web/downloads/platform.aspx) 執行，則藉由執行下列作業來啟用 `IIS Http Tracing` Windows 功能：  
 
    a. 建立環境的遠端存取，然後使用 [新增 Windows 功能]( https://docs.microsoft.com/iis/configuration/system.webserver/tracing/) 視窗或在 PowerShell 中執行下列命令 (以系統管理員身分)：  
 

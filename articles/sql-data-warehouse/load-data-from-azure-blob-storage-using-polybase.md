@@ -1,31 +1,25 @@
 ---
-title: 教學課程：Polybase 資料載入 - 從 Azure 儲存體 Blob 到 Azure SQL 資料倉儲 | Microsoft Docs
-description: 本教學課程使用 Azure 入口網站和 SQL Server Management Studio，將紐約計程車資料從 Azure blob 儲存體載入 Azure SQL 資料倉儲中。
+title: 教學課程：將紐約計程車資料載入 Azure SQL 資料倉儲 | Microsoft Docs
+description: 教學課程使用 Azure 入口網站和 SQL Server Management Studio，將紐約計程車資料從公用 Azure Blob 載入 Azure SQL 資料倉儲中。
 services: sql-data-warehouse
-documentationcenter: ''
 author: ckarst
-manager: jhubbard
-editor: ''
-tags: ''
-ms.assetid: ''
+manager: craigg
 ms.service: sql-data-warehouse
-ms.custom: mvc,develop data warehouses
-ms.devlang: na
-ms.topic: tutorial
-ms.tgt_pltfrm: na
-ms.workload: Active
-ms.date: 03/16/2018
+ms.topic: conceptual
+ms.component: implement
+ms.date: 09/12/2018
 ms.author: cakarst
-ms.reviewer: barbkess
-ms.openlocfilehash: 77e1666a5c8cc51495f2058ff76b2b99a3212db0
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.reviewer: igorstan
+ms.openlocfilehash: b9c42f5b0fc6fb9468d8fd0a1c34270d1734391a
+ms.sourcegitcommit: e2ea404126bdd990570b4417794d63367a417856
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/14/2018
+ms.locfileid: "45579906"
 ---
-# <a name="tutorial-use-polybase-to-load-data-from-azure-blob-storage-to-azure-sql-data-warehouse"></a>教學課程：使用 PolyBase 將資料從 Azure Blob 儲存體載入 SQL 資料倉儲中
+# <a name="tutorial-load-new-york-taxicab-data-to-azure-sql-data-warehouse"></a>教學課程：將紐約計程車資料載入 Azure SQL 資料倉儲
 
-PolyBase 是將資料放入 SQL 資料倉儲的標準載入技術。 本教學課程中，您可以使用 PolyBase 將紐約計程車資料從 Azure blob 儲存體載入 Azure SQL 資料倉儲中。 本教學課程是使用 [Azure 入口網站](https://portal.azure.com)和 [SQL Server Management Studio](/sql/ssms/download-sql-server-management-studio-ssms) (SSMS)： 
+本教學課程會使用 PolyBase 將紐約計程車資料從公用 Azure Blob 載入 Azure SQL 資料倉儲中。 本教學課程是使用 [Azure 入口網站](https://portal.azure.com)和 [SQL Server Management Studio](/sql/ssms/download-sql-server-management-studio-ssms) (SSMS)： 
 
 > [!div class="checklist"]
 > * 在 Azure 入口網站中建立資料倉儲
@@ -50,7 +44,7 @@ PolyBase 是將資料放入 SQL 資料倉儲的標準載入技術。 本教學�
 
 ## <a name="create-a-blank-sql-data-warehouse"></a>建立空白的 SQL 資料倉儲
 
-Azure SQL 資料倉儲會使用一組定義的[計算資源](performance-tiers.md)建立。 此資料庫建立於 [Azure 資源群組](../azure-resource-manager/resource-group-overview.md)和 [Azure SQL 邏輯伺服器](../sql-database/sql-database-features.md)內。 
+Azure SQL 資料倉儲會使用一組定義的[計算資源](memory-and-concurrency-limits.md)建立。 此資料庫建立於 [Azure 資源群組](../azure-resource-manager/resource-group-overview.md)和 [Azure SQL 邏輯伺服器](../sql-database/sql-database-features.md)內。 
 
 遵循以下步驟來建立空白 SQL 資料倉儲。 
 
@@ -84,9 +78,9 @@ Azure SQL 資料倉儲會使用一組定義的[計算資源](performance-tiers.m
 
 5. 按一下 [選取] 。
 
-6. 按一下 [效能層] 可指定資料倉儲是否針對彈性或計算最佳化，以及資料倉儲單位的數目。 
+6. 按一下 [效能等級] 以指定資料倉儲是 Gen1 或 Gen2，以及資料倉儲單位的數目。 
 
-7. 此教學課程中，選取 [針對彈性最佳化] 服務層。 根據預設，滑桿會設定為 **DW400**。  請嘗試向上和向下移動以查看其運作方式。 
+7. 針對本教學課程，請選取 **Gen1** 的 SQL 資料倉儲。 根據預設，滑桿會設定為 [DW1000c]。  請嘗試向上和向下移動以查看其運作方式。 
 
     ![設定效能](media/load-data-from-azure-blob-storage-using-polybase/configure-performance.png)
 
@@ -109,7 +103,7 @@ SQL 資料倉儲服務會在伺服器層級建立防火牆，防止外部應用�
 > SQL 資料倉儲會透過連接埠 1433 通訊。 如果您嘗試從公司網路內進行連線，您網路的防火牆可能不允許透過連接埠 1433 的輸出流量。 若情況如此，除非 IT 部門開啟連接埠 1433，否則您無法連線至 Azure SQL Database 伺服器。
 >
 
-1. 部署完成之後，按一下左側功能表中的 [SQL Database]，然後按一下 [SQL Database] 頁面上的 [mySampleDatabase]。 資料庫的概觀頁面隨即開啟，其中會顯示完整伺服器名稱 (例如 **mynewserver-20171113.database.windows.net**)，並提供進一步的組態選項。 
+1. 部署完成之後，按一下左側功能表中的 [SQL Database]，然後按一下 [SQL Database] 頁面上的 [mySampleDatabase]。 資料庫的概觀頁面隨即開啟，其中會顯示完整伺服器名稱 (例如 **mynewserver-20180430.database.windows.net**)，並提供進一步的設定選項。 
 
 2. 在後續的快速入門中，請複製此完整伺服器名稱，才能用來連線到伺服器及其資料庫。 然後按一下伺服器名稱以開啟伺服器設定。
 
@@ -139,8 +133,8 @@ SQL 資料倉儲服務會在伺服器層級建立防火牆，防止外部應用�
 請在 Azure 入口網站中取得 SQL 伺服器的完整伺服器名稱。 稍後您在連線到伺服器時，要使用完整伺服器名稱。
 
 1. 登入 [Azure 入口網站](https://portal.azure.com/)。
-2. 從左側功能表中選取 [SQL Database]，按一下 [SQL Database]頁面上您的資料庫。 
-3. 在 Azure 入口網站中您資料庫的 [基本資訊] 窗格中，找到後複製 [伺服器名稱]。 在此範例中，完整的名稱是 mynewserver 20171113.database.windows.net。 
+2. 從左側功能表中選取 [SQL 資料倉儲]，在 [SQL 資料倉儲] 頁面上按一下您的資料庫。 
+3. 在 Azure 入口網站中您資料庫的 [基本資訊] 窗格中，找到後複製 [伺服器名稱]。 在此範例中，完整名稱是 mynewserver 20180430.database.windows.net。 
 
     ![連線資訊](media/load-data-from-azure-blob-storage-using-polybase/find-server-name.png)  
 
@@ -155,7 +149,7 @@ SQL 資料倉儲服務會在伺服器層級建立防火牆，防止外部應用�
     | 設定      | 建議的值 | 說明 | 
     | ------------ | --------------- | ----------- | 
     | 伺服器類型 | 資料庫引擎 | 這是必要值 |
-    | 伺服器名稱 | 完整伺服器名稱 | 名稱應該類似這樣︰**mynewserver-20171113.database.windows.net**。 |
+    | 伺服器名稱 | 完整伺服器名稱 | 名稱應該類似這樣︰**mynewserver-20180430.database.windows.net**。 |
     | 驗證 | SQL Server 驗證 | 在本教學課程中，我們只設定了 SQL 驗證這個驗證類型。 |
     | 登入 | 伺服器管理帳戶 | 這是您在建立伺服器時所指定的帳戶。 |
     | 密碼 | 伺服器管理帳戶的密碼 | 這是您在建立伺服器時所指定的密碼。 |
@@ -170,7 +164,7 @@ SQL 資料倉儲服務會在伺服器層級建立防火牆，防止外部應用�
 
 ## <a name="create-a-user-for-loading-data"></a>建立載入資料的使用者
 
-伺服器系統管理員帳戶旨在執行管理作業，並不適合用於在使用者資料上執行查詢。 載入資料是需要大量記憶體的作業。 [記憶體的最大值](performance-tiers.md#memory-maximums)是根據[效能層級](performance-tiers.md)和[資源類別](resource-classes-for-workload-management.md)來定義。 
+伺服器系統管理員帳戶旨在執行管理作業，並不適合用於在使用者資料上執行查詢。 載入資料是需要大量記憶體的作業。 記憶體的最大值會依據您佈建的 SQL 資料倉儲世代、[資料倉儲單位](what-is-a-data-warehouse-unit-dwu-cdwu.md)與[資源類別](resource-classes-for-workload-management.md)而定。 
 
 您最好建立載入資料專用的登入和使用者。 然後將載入使用者新增至可進行適當最大記憶體配置的[資源類別](resource-classes-for-workload-management.md)。
 
@@ -221,7 +215,7 @@ SQL 資料倉儲服務會在伺服器層級建立防火牆，防止外部應用�
 
 ## <a name="create-external-tables-for-the-sample-data"></a>為範例資料建立外部資料表
 
-您已準備好開始將資料載入新資料倉儲的程序。 本教學課程會示範如何使用 [Polybase](/sql/relational-databases/polybase/polybase-guide)從 Azure 儲存體 blob 載入紐約市計程車資料。 如需日後參考，要了解如何將您的資料置於 Azure blob 儲存體，或直接從您的來源將資料載入 SQL 資料倉儲，請參閱[載入概觀](sql-data-warehouse-overview-load.md)。
+您已準備好開始將資料載入新資料倉儲的程序。 本教學課程會示範如何使用外部資料表從 Azure 儲存體 blob 載入紐約市計程車資料。 如需日後參考，要了解如何將您的資料置於 Azure blob 儲存體，或直接從您的來源將資料載入 SQL 資料倉儲，請參閱[載入概觀](sql-data-warehouse-overview-load.md)。
 
 執行下列 SQL 指令碼可指定您要載入之資料的相關資訊。 這項資訊包括資料所在位置、資料內容的格式，以及資料的資料表定義。 
 
@@ -535,7 +529,7 @@ SQL 資料倉儲服務會在伺服器層級建立防火牆，防止外部應用�
         s.request_id,
         r.status,
         count(distinct input_name) as nbr_files,
-        sum(s.bytes_processed)/1024/1024/1024 as gb_processed
+        sum(s.bytes_processed)/1024/1024/1024.0 as gb_processed
     FROM 
         sys.dm_pdw_exec_requests r
         INNER JOIN sys.dm_pdw_dms_external_work s
@@ -567,16 +561,6 @@ SQL 資料倉儲服務會在伺服器層級建立防火牆，防止外部應用�
 
     ![檢視載入的資料表](media/load-data-from-azure-blob-storage-using-polybase/view-loaded-tables.png)
 
-## <a name="create-statistics-on-newly-loaded-data"></a>建立新載入資料的統計資料
-
-SQL 資料倉儲不會自動建立或自動更新統計資料。 因此，若要達到高查詢效能，請務必在第一次載入後，於每個資料表的每個資料行上建立統計資料。 另外，也請務必在大幅變更資料後更新統計資料。
-
-執行這些命令可在要用於聯結的資料行上建立統計資料。
-
-    ```sql
-    CREATE STATISTICS [dbo.Date DateID stats] ON dbo.Date (DateID);
-    CREATE STATISTICS [dbo.Trip DateID stats] ON dbo.Trip (DateID);
-    ```
 
 ## <a name="clean-up-resources"></a>清除資源
 
@@ -595,7 +579,7 @@ SQL 資料倉儲不會自動建立或自動更新統計資料。 因此，若要
 
 3. 若要移除資料倉儲而不再支付運算或儲存體的費用，請按一下 [刪除]。
 
-4. 若要移除您所建立的 SQL Server，請按一下先前映像中的 [mynewserver 20171113.database.windows.net]，然後按一下 [刪除]。  請謹慎使用這個，因為刪除伺服器會將所有指派給伺服器的資料庫刪除。
+4. 若要移除您所建立的 SQL Server，請按一下先前映像中的 [mynewserver 20180430.database.windows.net]，然後按一下 [刪除]。  請謹慎使用這個，因為刪除伺服器會將所有指派給伺服器的資料庫刪除。
 
 5. 若要移除此資源群組，請按一下 [myResourceGroup]，然後按一下 [刪除資源群組]。
 

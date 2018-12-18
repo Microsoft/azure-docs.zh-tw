@@ -1,40 +1,89 @@
+items:
 - name: Azure Migrate 文件
   href: index.yml
 - name: 概觀
   items:
-    - name: 關於 Azure Migrate
-      href: migrate-overview.md
+  - name: 關於 Azure Migrate
+    href: migrate-overview.md
 - name: 教學課程
   items:
-    - name: 探索和評定 VMware VM
-      href: tutorial-assessment-vmware.md
+  - name: 探索和評定 VMware VM
+    href: tutorial-assessment-vmware.md
 - name: 概念
   items:
-    - name: 收集器概念
-      href: concepts-collector.md
-    - name: 評量計算
-      href: concepts-assessment-calculation.md
-    - name: 相依性視覺效果
-      href: concepts-dependency-visualization.md
+  - name: 關於收集器
+    href: concepts-collector.md
+  - name: 收集器版本升級
+    href: concepts-collector-upgrade.md
+  - name: 評量計算
+    href: concepts-assessment-calculation.md
+  - name: 關於相依性視覺效果
+    href: concepts-dependency-visualization.md
 - name: 使用說明指南
   items:
-    - name: 探索及評定大型環境
-      href: how-to-scale-assessment.md
-    - name: 群組機器
-      href: how-to-create-a-group.md
-    - name: 使用機器相依性的群組機器
-      href: how-to-create-group-machine-dependencies.md
-    - name: 使用群組相依性調整群組
-      href: how-to-create-group-dependencies.md
-    - name: 自訂評量
-      href: how-to-modify-assessment.md
-    - name: 評量之後移轉機器
-      href: how-to-get-migration-tool.md
-    - name: 為 Azure Migrate 疑難排解
-      href: troubleshooting-general.md
+  - name: Contoso 移轉系列
+    items:
+    - name: 1. Contoso 移轉概觀
+      href: contoso-migration-overview.md
+    - name: 2. Contoso - 部署 Azure 基礎結構
+      href: contoso-migration-infrastructure.md
+    - name: 3. Contoso - 存取內部部署資源以移轉至 Azure
+      href: contoso-migration-assessment.md
+    - name: 4. Contoso - 在 Azure VM 和 Azure SQL Database 受控執行個體上重新裝載應用程式
+      href: contoso-migration-rehost-vm-sql-managed-instance.md
+    - name: 5. Contoso - 在 Azure VN 上重新裝載應用程式
+      href: contoso-migration-rehost-vm.md
+    - name: 6. Contoso - 在 Azure VM 和 Azure SQL Server AlwaysOn 可用性群組上重新裝載應用程式
+      href: contoso-migration-rehost-vm-sql-ag.md
+    - name: 7. Contoso - 在 Azure VM 上重新裝載 Linux 應用程式
+      href: contoso-migration-rehost-linux-vm.md
+    - name: 8. Contoso - 在 Azure MySQL 上重新裝載 Linux 應用程式
+      href: contoso-migration-rehost-linux-vm-mysql.md
+    - name: 9. Contoso 重構 Azure Web Apps 和 Azure SQL Database 上的應用程式
+      href: contoso-migration-refactor-web-app-sql.md
+    - name: 10. Contoso 重構 Azure Web Apps 和 Azure MySQL 上的 Linux 應用程式
+      href: contoso-migration-refactor-linux-app-service-mysql.md
+    - name: 11. Contoso 移轉 TFS 至 VSTS
+      href: contoso-migration-tfs-vsts.md
+    - name: 12. Contoso - 在 Azure 容器 和 Azure SQL Database 上重新架構應用程式
+      href: contoso-migration-rearchitect-container-sql.md
+    - name: 13. Contoso - 在 Azure 重建應用程式
+      href: contoso-migration-rebuild.md
+  - name: 探索及評定大型環境
+    href: how-to-scale-assessment.md
+  - name: 群組機器
+    href: how-to-create-a-group.md
+  - name: 使用機器相依性的群組機器
+    href: how-to-create-group-machine-dependencies.md
+  - name: 使用群組相依性調整群組
+    href: how-to-create-group-dependencies.md
+  - name: 自訂評量
+    href: how-to-modify-assessment.md
+  - name: 評量之後移轉機器
+    href: how-to-get-migration-tool.md
+  - name: 為 Azure Migrate 疑難排解
+    href: troubleshooting-general.md
 - name: 資源
   items:
-    - name: Azure Migrate
-      href: 'https://azure.microsoft.com/migrate'
-    - name: Azure 藍圖
-      href: 'https://azure.microsoft.com/roadmap/'
+  - name: 常見問題集
+    href: resources-faq.md
+  - name: REST API
+    href: https://docs.microsoft.com/rest/api/migrate/
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/azure-migrate/
+  - name: UserVoice
+    href: http://aka.ms/AzureMigrateUservoice
+  - name: 論壇
+    href: http://aka.ms/AzureMigrateForum
+  - name: 部落格
+    href: https://azure.microsoft.com/blog/tag/azure-migrate/
+  - name: Azure Migrate
+    href: https://azure.microsoft.com/migrate
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/
+ms.openlocfilehash: a16444b1b2441ab58f8500784e668409697cef43
+ms.sourcegitcommit: 51a1476c85ca518a6d8b4cc35aed7a76b33e130f
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47161789"

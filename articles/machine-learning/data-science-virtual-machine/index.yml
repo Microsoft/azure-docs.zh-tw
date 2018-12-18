@@ -1,61 +1,63 @@
 ### YamlMime:YamlDocument
+ms.openlocfilehash: fd2a030d3529857b5a68aeaf28494e76d416e6fd
+ms.sourcegitcommit: e2348a7a40dc352677ae0d7e4096540b47704374
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/05/2018
+ms.locfileid: "43781034"
 documentType: LandingData
-title: "Azure 資料科學虛擬機器文件"
+title: Azure 資料科學虛擬機器文件
 metadata:
-  title: "Azure 資料科學虛擬機器文件"
-  description: "了解如何使用資料科學虛擬機器。"
+  title: 資料科學虛擬機器文件 - Azure
+  description: 了解如何使用資料科學虛擬機器，特別是針對執行資料科學所建置的 Azure 雲端中的實驗環境。 它已預先安裝和預先設定許多常用的資料科學和其他工具，以開始建置智慧應用程式進行進階分析。
   services: machine-learning
-  author: bradsev
+  author: gopitk
   manager: cgronlun
   ms.service: machine-learning
+  ms.component: data-science-vm
   ms.tgt_pltfrm: na
   ms.devlang: na
   ms.topic: landing-page
   ms.date: 01/18/2018
-  ms.author: bradsev
-  ms.openlocfilehash: 291d38522adfa780629892ea6d7f7a17a82a0e39
-  ms.sourcegitcommit: b32d6948033e7f85e3362e13347a664c0aaa04c1
-  ms.translationtype: HT
-  ms.contentlocale: zh-TW
-  ms.lasthandoff: 02/13/2018
+  ms.author: gokuma
 abstract:
-  description: "資料科學和深入學習虛擬機器是 Azure 中自訂的 VM 映像，由用來建置智慧型應用程式以進行進階分析的資料科學工具載入。"
+  description: 資料科學和深入學習虛擬機器是 Azure 中自訂的 VM 映像，由用來建置智慧型應用程式以進行進階分析的資料科學工具載入。
 sections:
-- title: "5 分鐘快速入門"
+- title: 5 分鐘快速入門
   items:
   - type: paragraph
-    text: "了解如何設定以 Windows 或 Linux 為基礎的資料科學虛擬機器："
+    text: 了解如何設定以 Windows 或 Linux 為基礎的資料科學虛擬機器：
   - type: list
     style: unordered
     items:
     - html: <a href="provision-vm.md">Windows</a>
     - html: <a href="linux-dsvm-intro.md">Linux CentOS</a>
     - html: <a href="dsvm-ubuntu-intro.md">Linux Ubuntu</a>
-- title: "逐步教學課程"
+- title: 逐步教學課程
   items:
   - type: paragraph
-    text: "了解如何佈建和使用資料科學虛擬機器："
+    text: 了解如何佈建和使用資料科學虛擬機器：
   - type: list
     style: ordered
     items:
-    - html: "<a href=\"provision-vm\">佈建 Windows DSVM</a>"
-    - html: "<a href=\"vm-do-ten-thing\">使用 Windows DSVM</a>"
-    - html: "<a href:\"linux-dsvm-intro\">佈建 Linux CentOS DSVM</a>"
-    - html: "<a href=\"dsvm-ubuntu-intro\">佈建 Linux Ubuntu DSVM</a>"
-    - html: "<a href=\"linux-dsvm-walkthrough\">使用 Linux DSVM</a>"
-- title: "更多的 Azure Machine Learning 技術"
+    - html: <a href="provision-vm">佈建 Windows DSVM</a>
+    - html: <a href="vm-do-ten-things">使用 Windows DSVM</a>
+    - html: <a href="linux-dsvm-intro">佈建 Linux CentOS DSVM</a>
+    - html: <a href="dsvm-ubuntu-intro">佈建 Linux Ubuntu DSVM</a>
+    - html: <a href="linux-dsvm-walkthrough">使用 Linux DSVM</a>
+- title: 更多的 Azure Machine Learning 技術
   items:
   - type: paragraph
-    text: "Azure Machine Learning 中其他可用的技術："
+    text: Azure Machine Learning 中其他可用的技術：
   - type: list
     style: cards
     className: cardsFTitle
     items:
-    - title: "Azure Machine Learning 服務 (預覽)"
-      href: /azure/machine-learning/preview/
+    - title: Azure Machine Learning 服務 (預覽)
+      href: /azure/machine-learning/service/
       image:
         src: media/index/i_machine-learning.svg
-        href: /azure/machine-learning/preview/
+        href: /azure/machine-learning/service/
     - title: Azure Machine Learning Studio
       href: /azure/machine-learning/studio/
       image:

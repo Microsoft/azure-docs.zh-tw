@@ -1,0 +1,42 @@
+### YamlMime:YamlDocument
+ms.openlocfilehash: 67299955e00f2bb5fb409420dd951357f89e1996
+ms.sourcegitcommit: f20e43e436bfeafd333da75754cd32d405903b07
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49384917"
+documentType: LandingData
+title: Azure IoT Central 文件
+metadata:
+  title: Azure IoT Central 文件 - 教學課程和 API 參考 | Microsoft Docs
+  description: Azure IoT Central 是完全受控的 SaaS (軟體即服務) 解決方案，可讓您輕鬆地大規模連線、監視和管理 IoT 資產。 Azure IoT Central 可簡化 IoT 解決方案的初始設定並減少管理負擔、營運成本以及一般 IoT 專案的額外負荷。 了解如何透過快速入門和教學課程，建立、自訂、管理以及使用的 Azure IoT Central 應用程式。
+  author: dominicbetts
+  ms.topic: landing-page
+  ms.date: 11/08/2017
+  ms.author: dobett
+  ms.service: iot-central
+  services: iot-central
+  manager: timlt
+abstract:
+  description: Azure IoT Central 是完全受控的 SaaS (軟體即服務) 解決方案，可讓您輕鬆地大規模連線、監視和管理 IoT 資產。 Azure IoT Central 可簡化 IoT 解決方案的初始設定並減少管理負擔、營運成本以及一般 IoT 專案的額外負荷。 了解如何透過快速入門和教學課程，建立、自訂、管理以及使用的 Azure IoT Central 應用程式。
+sections:
+- title: 功能警示
+  items:
+  - type: paragraph
+    text: Azure IoT Central 已使用 IoT 中樞裝置佈建服務 (DPS) 轉換所有裝置連線。 您必須使用 DPS SDK 來註冊並將裝置連線到 Azure IoT Central 應用程式。 <a href="https://docs.microsoft.com/azure/iot-central/concepts-connectivity">深入了解 Azure IoT Central 中的裝置連線能力</a> 所有使用連續資料匯出功能和/或 Power BI 解決方案的應用程式都需要變更目的地儲存體容器，並建立新的解決方案範本。
+- title: 5 分鐘快速入門
+  items:
+  - type: paragraph
+    text: 了解如何<a href="quick-deploy-iot-central">建立新的 Azure IoT Central 應用程式</a>。
+- title: 逐步教學課程
+  items:
+  - type: paragraph
+    text: 了解如何自訂和使用您的 Azure IoT Central 應用程式。
+  - type: list
+    style: ordered
+    items:
+    - html: <a href="tutorial-define-device-type">定義新的裝置類型</a>
+    - html: <a href="tutorial-configure-rules">設定規則</a>
+    - html: <a href="tutorial-customize-operator">自訂操作者檢視</a>
+    - html: <a href="tutorial-monitor-devices">監視您的裝置</a>
+    - html: <a href="tutorial-add-device">新增真實裝置</a>

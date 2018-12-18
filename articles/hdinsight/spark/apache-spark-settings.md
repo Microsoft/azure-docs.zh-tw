@@ -1,30 +1,24 @@
 ---
-title: "設定 Spark 設定 - Azure HDInsight | Microsoft Docs"
-description: "如何為 HDInsight 叢集設定 Spark。"
+title: 設定 Spark 設定 - Azure HDInsight
+description: 如何為 Azure HDInsight 叢集設定 Spark。
 services: hdinsight
-documentationcenter: 
-tags: azure-portal
 author: maxluk
-manager: jhubbard
-editor: cgronlun
-ms.assetid: 
+ms.author: maxluk
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 01/26/2018
-ms.author: maxluk
-ms.openlocfilehash: 1dd0ff26cdb39feacec697d7900ad7abaa5f1996
-ms.sourcegitcommit: 9d317dabf4a5cca13308c50a10349af0e72e1b7e
+ms.openlocfilehash: 926ce58872b06b41a0c7942b7090dcb4d5c8df03
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46956484"
 ---
 # <a name="configure-spark-settings"></a>設定 Spark 設定
 
-HDInsight Spark 叢集包含 Apache Spark 程式庫的安裝。  每個 HDInsight 叢集都包含其所有已安裝服務的預設組態參數，包括 Spark。  管理 HDInsight Hadoop 叢集的重要環節之一，是要監視工作負載 (包括 Spark 作業)，以確定它們以可預測的方式執行。 若要以最佳方式執行 Spark 作業，在決定如何最佳化叢集的邏輯組態時，請考慮使用實體叢集組態。
+HDInsight Spark 叢集包含 Apache Spark 程式庫的安裝。  每個 HDInsight 叢集都包含其所有已安裝服務的預設組態參數，包括 Spark。  管理 HDInsight Hadoop 叢集的重要環節之一，是要監視工作負載 (包括 Spark 作業)，以確定作業以可預測的方式執行。 若要以最佳方式執行 Spark 作業，在決定如何最佳化叢集的邏輯組態時，請考慮使用實體叢集組態。
 
 預設 HDInsight Apache Spark 叢集包含下列節點：三個 ZooKeeper 節點、兩個前端節點，和一或多個背景工作角色節點：
 
@@ -34,12 +28,16 @@ HDInsight 叢集中各個節點的虛擬機器數目和大小也可能對您的 
 
 ## <a name="spark-versions"></a>Spark 版本
 
-您也應考慮將最佳版本的 Spark 用於您的叢集。  Spark 2.x 的執行效能遠優於 Spark 1.x。 Spark 2.x 有多項效能最佳化，例如 Tungsten、Catalyst 查詢最佳化等等。  HDInsight 服務包含多種版本的 Spark 和 HDInsight。  每個版本的 Spark 都包含一組預設叢集設定。  在您建立新的叢集時，目前可供選擇的 Spark 版本如下所示：
+使用最適合您的叢集的 Spark 版本。  HDInsight 服務包含數種版本的 Spark 和 HDInsight。  每個版本的 Spark 都包含一組預設叢集設定。  
+
+在您建立新的叢集時，目前可供選擇的 Spark 版本如下所示：
 
 ![Spark 版本](./media/apache-spark-settings/spark-version.png)
 
+Spark 2.x 的執行效能遠優於 Spark 1.x。 Spark 2.x 有多項效能最佳化，例如 Tungsten、Catalyst 查詢最佳化等等。  
+
 > [!NOTE]
-> HDInsight 服務中的預設 Apache Spark 版本可能會變更，且不另行通知。 如需依存於某個版本，Microsoft 建議您在使用 .NET SDK/Azure PowerShell 和 Azure CLI 建立叢集時指定該版本。
+> HDInsight 服務中的預設 Apache Spark 版本可能會變更，且不另行通知。 如需依存於某個版本，Microsoft 建議您在使用 .NET SDK、Azure PowerShell 與 Azure 傳統 CLI 建立叢集時指定該特定版本。
 
 Apache Spark 有三個系統組態位置：
 
@@ -47,7 +45,7 @@ Apache Spark 有三個系統組態位置：
 * 環境變數可讓您透過每個節點上的 `conf/spark-env.sh` 指令碼來設定個別機器的設定，例如 IP 位址，。
 * 記錄可透過 `log4j.properties` 進行設定。
 
-當您選取特定版本的 Spark 時，叢集將會包含預設組態設定。  您可以藉由提供自訂的 Spark 設定檔，來變更預設 Spark 設定值。  範例如下所示。
+當您選取特定版本的 Spark 時，叢集將會包含預設組態設定。  您可以藉由使用自訂的 Spark 設定檔，來變更預設 Spark 設定值。  範例如下所示。
 
 ```
     spark.hadoop.io.compression.codecs org.apache.hadoop.io.compress.GzipCodec
@@ -57,7 +55,7 @@ Apache Spark 有三個系統組態位置：
     spark.sql.files.openCostInBytes 1099511627776
 ```
 
-上方顯示的範例會覆寫五個 Spark 設定參數的數個預設值。  它們分別是壓縮轉碼器、Hadoop mapreduce 分割大小下限和 parquet 區塊大小，以及 Spar SQL 資料分割和開啟檔案大小的預設值。  之所以會選擇這些設定變更，是因為相關聯的資料和作業 (在此範例中為基因組資料) 具有特定特性，而在使用這些自訂組態設定時會有較好的執行效能。
+上方顯示的範例會覆寫五個 Spark 設定參數的數個預設值。  它們分別是壓縮轉碼器、Hadoop MapReduce 分割大小下限和 parquet 區塊大小，以及 Spar SQL 資料分割和開啟檔案大小的預設值。  之所以會選擇這些設定變更，是因為相關聯的資料和作業 (在此範例中為基因組資料) 具有特定特性，而在使用這些自訂組態設定時會有較好的執行效能。
 
 ---
 
@@ -86,7 +84,7 @@ Ambari Web UI 隨即出現，並顯示主要叢集資源使用率計量的儀表
 
 ## <a name="configuring-spark-executors"></a>設定 Spark 執行程式
 
-下圖顯示主要 Spark 物件：驅動程式及其相關聯的 Spark 內容，和叢集管理員及其 n 個背景工作角色節點。  每個背景工作角色節點都包含一個執行程式、一個快取和 n 個工作執行個體。
+下圖顯示主要 Spark 物件：驅動程式及其相關聯的 Spark 內容，和叢集管理員及其 *n* 個背景工作角色節點。  每個背景工作角色節點都包含一個執行程式、一個快取和 *n* 個工作執行個體。
 
 ![叢集物件](./media/apache-spark-settings/spark-arch.png)
 

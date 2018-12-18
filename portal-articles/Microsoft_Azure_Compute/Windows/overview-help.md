@@ -1,6 +1,6 @@
 ---
-title: "Windows 虛擬機器說明文件 | Microsoft Docs"
-description: "Azure 入口網站中 Windows 虛擬機器概觀的說明內容"
+title: Windows 虛擬機器說明文件 | Microsoft Docs
+description: Azure 入口網站中 Windows 虛擬機器概觀的說明內容
 services: virtual-machines-windows
 author: sewatson
 manager: lwelicki
@@ -13,6 +13,7 @@ ms.sourcegitcommit: adf6a4c89364394931c1d29e4057a50799c90fc0
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 11/09/2017
+ms.locfileid: "24057683"
 ---
 # <a name="windows-virtual-machines-documentation"></a>Windows 虛擬機器文件
 

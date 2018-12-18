@@ -1,11 +1,11 @@
 ---
-title: "將 ExpressRoute 線路從傳統部署模型移至 Resource Manager | Microsoft Docs"
-description: "此頁面提供銜接傳統與 Resource Manager 部署模型的相關概觀。"
+title: 將 ExpressRoute 線路從傳統部署模型移至 Resource Manager | Microsoft Docs
+description: 此頁面提供銜接傳統與 Resource Manager 部署模型的相關概觀。
 documentationcenter: na
 services: expressroute
 author: ganesr
 manager: carmonm
-editor: 
+editor: ''
 ms.assetid: bdf01217-1a98-4ec0-a08e-d84fd37f78af
 ms.service: expressroute
 ms.devlang: na
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "22710060"
 ---
 # <a name="moving-expressroute-circuits-from-the-classic-to-the-resource-manager-deployment-model"></a>將 ExpressRoute 線路從傳統部署模型移至 Resource Manager 部署模型
 本文提供將 Azure ExpressRoute 線路從傳統部署模型移至 Azure Resource Manager 部署模型的概觀。

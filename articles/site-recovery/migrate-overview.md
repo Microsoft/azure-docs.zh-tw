@@ -1,17 +1,19 @@
 ---
-title: "關於在 Azure Site Recovery 中進行移轉 | Microsoft Docs"
-description: "本文說明如何使用 Azure Site Recovery 服務來移轉內部部署和 Azure VM。"
+title: 關於在 Azure Site Recovery 中進行移轉 | Microsoft Docs
+description: 本文說明如何使用 Azure Site Recovery 服務來移轉內部部署和 Azure VM。
 services: site-recovery
 author: rayne-wiselman
+manager: carmonm
 ms.service: site-recovery
-ms.topic: article
-ms.date: 03/05/2018
+ms.topic: conceptual
+ms.date: 10/10/2018
 ms.author: raynew
-ms.openlocfilehash: edf6ffe1cd55884f1c18498213df290cb19bb246
-ms.sourcegitcommit: 168426c3545eae6287febecc8804b1035171c048
+ms.openlocfilehash: 329f03c30af167b147e5e45c618e6ec4e58efd3f
+ms.sourcegitcommit: 4b1083fa9c78cd03633f11abb7a69fdbc740afd1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/08/2018
+ms.lasthandoff: 10/10/2018
+ms.locfileid: "49075994"
 ---
 # <a name="about-migration"></a>關於移轉
 
@@ -38,7 +40,7 @@ ms.lasthandoff: 03/08/2018
 --- | ---
 **從內部部署移轉至 Azure** | 您可以將內部部署 VMware VM、Hyper-V VM 和實體伺服器移轉至 Azure。 若要這樣做，就要完成與完整災害復原幾乎相同的步驟。 只是不要將機器從 Azure 容錯移轉回到內部部署站台。
 **在不同的 Azure 地區之間移轉** | 您可以將 Azure VM 從一個 Azure 區域移轉至另一個 Azure 區域。 完成移轉之後，現在您就可以在移轉前往的次要區域中，設定 Azure VM 的災害復原。
-**將 AWS 移轉至 Azure** | 您可以將 AWS 執行個體移轉至 Azure VM。 在進行移轉時，Site Recovery 會將 AWS 實體視為實體伺服器。 
+**將 AWS 移轉至 Azure** | 您可以將 AWS 執行個體移轉至 Azure VM。 在進行移轉時，Site Recovery 會將 AWS 執行個體視為實體伺服器。 
 
 ## <a name="next-steps"></a>後續步驟
 

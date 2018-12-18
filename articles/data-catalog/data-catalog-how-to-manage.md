@@ -1,25 +1,19 @@
 ---
-title: "管理 Azure 資料目錄中的資料資產 | Microsoft Docs"
-description: "本文專門說明如何控制 Azure 資料目錄中已註冊資料資產的可見性和擁有權。"
+title: 管理 Azure 資料目錄中的資料資產
+description: 本文專門說明如何控制 Azure 資料目錄中已註冊資料資產的可見性和擁有權。
 services: data-catalog
-documentationcenter: 
-author: steelanddata
-manager: NA
-editor: 
-tags: 
+author: markingmyname
+ms.author: maghan
 ms.assetid: 623f5ed4-8da7-48f5-943a-448d0b7cba69
 ms.service: data-catalog
-ms.devlang: NA
-ms.topic: article
-ms.tgt_pltfrm: NA
-ms.workload: data-catalog
+ms.topic: conceptual
 ms.date: 01/18/2018
-ms.author: maroche
-ms.openlocfilehash: 5a4b2b5734bf8bfbbc45a65b02362d1fa37b1a87
-ms.sourcegitcommit: be9a42d7b321304d9a33786ed8e2b9b972a5977e
+ms.openlocfilehash: 46af78dae6d5c1607f56d36732adce5e677e0c65
+ms.sourcegitcommit: b7e5bbbabc21df9fe93b4c18cc825920a0ab6fab
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/19/2018
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47407633"
 ---
 # <a name="manage-data-assets-in-azure-data-catalog"></a>管理 Azure 資料目錄中的資料資產
 ## <a name="introduction"></a>簡介

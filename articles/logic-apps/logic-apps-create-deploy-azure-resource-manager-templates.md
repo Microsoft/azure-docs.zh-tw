@@ -1,24 +1,21 @@
 ---
-title: 從 Azure Resource Manager 範本建立邏輯應用程式 | Microsoft Docs
-description: 使用 Azure Resource Manager 範本建立和部署邏輯應用程式工作流程
+title: 使用 Azure Resource Manager 範本建立邏輯應用程式 - Azure Logic Apps | Microsoft Docs
+description: 在 Azure Logic Apps 中使用 Azure Resource Manager 範本建立和部署邏輯應用程式工作流程
 services: logic-apps
-documentationcenter: ''
-author: ecfan
-manager: anneta
-editor: ''
-ms.assetid: 7574cc7c-e5a1-4b7c-97f6-0cffb1a5d536
 ms.service: logic-apps
-ms.workload: integration
-ms.tgt_pltfrm: na
-ms.devlang: na
+ms.suite: integration
+author: ecfan
+ms.author: estfan
+ms.reviewer: klam, LADocs
 ms.topic: article
+ms.assetid: 7574cc7c-e5a1-4b7c-97f6-0cffb1a5d536
 ms.date: 10/15/2017
-ms.author: LADocs; estfan
-ms.openlocfilehash: 9e696f6e4614052456cf2b55123d98d61b8b3b9c
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: 70af92c2afd450d357bf9f30187ef200334698ba
+ms.sourcegitcommit: 2ad510772e28f5eddd15ba265746c368356244ae
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "43124712"
 ---
 # <a name="create-and-deploy-logic-apps-with-azure-resource-manager-templates"></a>使用 Azure Resource Manager 範本建立和部署邏輯應用程式
 
@@ -31,46 +28,46 @@ Azure Logic Apps 提供 Azure Resource Manager 範本，不僅可用來建立自
 
 ``` json
 {
-    "type": "Microsoft.Logic/workflows",
-    "apiVersion": "2016-06-01",
-    "name": "[parameters('logicAppName')]",
-    "location": "[resourceGroup().location]",
-    "tags": {
-        "displayName": "LogicApp"
-    },
-    "properties": {
-        "definition": {
-            "$schema": "http://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
-            "contentVersion": "1.0.0.0",
-            "parameters": {
-                "testURI": {
-                "type": "string",
-                "defaultValue": "[parameters('testUri')]"
-                }
-            },
-            "triggers": {
-                "Recurrence": {
-                    "type": "Recurrence",
-                    "recurrence": {
-                        "frequency": "Hour",
-                        "interval": 1
-                    }
-                }
-            },
-            "actions": {
-                "Http": {
-                    "type": "Http",
-                    "inputs": {
-                        "method": "GET",
-                        "uri": "@parameters('testUri')"
-                    },
-                    "runAfter": {}
-                }
-            },
-            "outputs": {}
-        },
-        "parameters": {}
-    }
+   "type": "Microsoft.Logic/workflows",
+   "apiVersion": "2016-06-01",
+   "name": "[parameters('logicAppName')]",
+   "location": "[resourceGroup().location]",
+   "tags": {
+      "displayName": "LogicApp"
+   },
+   "properties": {
+      "definition": {
+         "$schema": "https://schema.management.azure.com/schemas/2016-06-01/Microsoft.Logic.json",
+         "contentVersion": "1.0.0.0",
+         "parameters": {
+            "testURI": {
+               "type": "string",
+               "defaultValue": "[parameters('testUri')]"
+            }
+         },
+         "triggers": {
+            "Recurrence": {
+               "type": "Recurrence",
+               "recurrence": {
+                  "frequency": "Hour",
+                  "interval": 1
+               }
+            }
+         },
+         "actions": {
+            "Http": {
+              "type": "Http",
+              "inputs": {
+                  "method": "GET",
+                  "uri": "@parameters('testUri')"
+              },
+              "runAfter": {}
+           }
+         },
+         "outputs": {}
+      },
+      "parameters": {}
+   }
 }
 ``` 
 

@@ -1,24 +1,20 @@
 ---
-title: 針對失敗 Azure Data Lake U-SQL 作業的使用者定義 C# 程式碼進行偵錯 | Microsoft Docs
-description: 了解如何使用 Azure Data Lake Tools for Visual Studio 針對 U-SQL 失敗的頂點進行偵錯。
+title: 針對已失敗 Azure Data Lake U-SQL 作業的使用者定義 C# 程式碼進行偵錯
+description: 本文說明如何使用 Azure Data Lake Tools for Visual Studio 針對 U-SQL 失敗的頂點進行偵錯。
 services: data-lake-analytics
-documentationcenter: ''
-author: yanancai
-manager: jhubbard
-editor: cgronlun
-ms.assetid: bcd0b01e-1755-4112-8e8a-a5cabdca4df2
 ms.service: data-lake-analytics
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 11/31/2017
+author: yanancai
 ms.author: yanacai
-ms.openlocfilehash: b614583079347c2634f8d03531517d1d32c75132
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.reviewer: jasonwhowell
+ms.assetid: bcd0b01e-1755-4112-8e8a-a5cabdca4df2
+ms.topic: conceptual
+ms.date: 11/30/2017
+ms.openlocfilehash: 1fd1ce54dea672b19baea84bbf3a40b4365093b8
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43046213"
 ---
 # <a name="debug-user-defined-c-code-for-failed-u-sql-jobs"></a>對 U-SQL 失敗作業的使用者定義 C# 程式碼進行偵錯
 

@@ -1,25 +1,20 @@
 ---
-title: "Azure 備份：使用 Azure 入口網站還原虛擬機器 | Microsoft Docs"
-description: "使用 Azure 入口網站從復原點還原 Azure 虛擬機器"
+title: Azure 備份：使用 Azure 入口網站還原虛擬機器
+description: 使用 Azure 入口網站從復原點還原 Azure 虛擬機器
 services: backup
-documentationcenter: 
 author: markgalioto
 manager: carmonm
-editor: 
-keywords: "還原備份；如何還原；復原點；"
-ms.assetid: 372b87c6-3544-4dc5-bbc9-c742ca502159
+keywords: 還原備份；如何還原；復原點；
 ms.service: backup
-ms.workload: storage-backup-recovery
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 09/04/2017
-ms.author: markgal;trinadhk;
-ms.openlocfilehash: 84fb2cc08e97541d2d9d327ca2b6865ff9a6fe20
-ms.sourcegitcommit: 059dae3d8a0e716adc95ad2296843a45745a415d
+ms.author: markgal
+ms.openlocfilehash: 872bfc0027fd5b69bb42f391c036f7116789f529
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39431142"
 ---
 # <a name="use-the-azure-portal-to-restore-virtual-machines"></a>使用 Azure 入口網站來還原虛擬機器
 於定義的間隔進行資料快照，來保護您的資料。 這些快照稱為復原點，而且儲存在復原服務保存庫中。 如果需要修復或重新建立虛擬機器 (VM)，您可以從任何已儲存的復原點還原 VM。 當您還原復原點時，您可以：
@@ -44,34 +39,34 @@ ms.lasthandoff: 02/09/2018
 ## <a name="select-a-restore-point-for-restore"></a>選取要還原的還原點
 1. 登入 [Azure 入口網站](http://portal.azure.com/)。
 
-2. 在 Azure 功能表中，選取 [瀏覽]。 在服務清單中輸入**復原服務**。 服務清單會調整成您輸入的內容。 當您看到 [復原服務保存庫] 時，請選取它。
+1. 在 Azure 功能表中，選取 [瀏覽]。 在服務清單中輸入**復原服務**。 服務清單會調整成您輸入的內容。 當您看到 [復原服務保存庫] 時，請選取它。
 
     ![復原服務保存庫](./media/backup-azure-arm-restore-vms/open-recovery-services-vault.png)
 
     便會顯示訂用帳戶中保存庫的清單。
 
     ![復原服務保存庫清單](./media/backup-azure-arm-restore-vms/list-of-rs-vaults.png)
-3. 從這份清單，選取與您要還原的 VM 相關聯的保存庫。 當您選取保存庫時，其儀表板隨即開啟。
+1. 從這份清單，選取與您要還原的 VM 相關聯的保存庫。 當您選取保存庫時，其儀表板隨即開啟。
 
     ![已選取的復原服務保存庫](./media/backup-azure-arm-restore-vms/select-vault-open-vault-blade.png)
-4. 在保存庫儀表板的 [備份項目] 圖格上，選取 [Azure 虛擬機器]。
+1. 在保存庫儀表板的 [備份項目] 圖格上，選取 [Azure 虛擬機器]。
 
     ![保存庫儀表板](./media/backup-azure-arm-restore-vms/vault-dashboard.png)
 
     [備份項目]  刀鋒視窗會開啟並顯示 Azure VM 的清單。
 
     ![保存庫中的 VM 清單](./media/backup-azure-arm-restore-vms/list-of-vms-in-vault.png)
-5. 從清單中選取 VM，以開啟儀表板。 VM 儀表板會開啟至包含 [還原點] 圖格的 [監視] 區域。
+1. 從清單中選取 VM，以開啟儀表板。 VM 儀表板會開啟至包含 [還原點] 圖格的 [監視] 區域。
 
     ![還原點](./media/backup-azure-arm-restore-vms/vm-blade.png)
-6. 在 VM 的儀表板功能表上，選取 [還原]。
+1. 在 VM 的儀表板功能表上，選取 [還原]。
 
     ![[還原] 按鈕](./media/backup-azure-arm-restore-vms/vm-blade-menu-restore.png)
 
     [還原] 刀鋒視窗隨即開啟。
 
     ![[還原] 刀鋒視窗](./media/backup-azure-arm-restore-vms/restore-blade.png)
-7. 在 [還原] 刀鋒視窗中，選取 [還原點]。 [選取還原點] 刀鋒視窗隨即開啟。
+1. 在 [還原] 刀鋒視窗中，選取 [還原點]。 [選取還原點] 刀鋒視窗隨即開啟。
 
     ![選取還原點](./media/backup-azure-arm-restore-vms/recovery-point-selector.png)
 
@@ -84,21 +79,21 @@ ms.lasthandoff: 02/09/2018
      * 系統檔案保持一致還原點
      * 所有還原點
 
-8. 選擇還原點，然後選取 [確定]。
+1. 選擇還原點，然後選取 [確定]。
 
     ![還原點選項](./media/backup-azure-arm-restore-vms/select-recovery-point.png)
 
     [還原] 刀鋒視窗會顯示已設定還原點。
 
-9. 如果您尚未到達該位置，請移至 [還原] 刀鋒視窗。 確定[已選取還原點](#select-restore-point-for-restore)，然後選取**還原組態**。 [還原組態] 刀鋒視窗隨即開啟。
+1. 如果您尚未到達該位置，請移至 [還原] 刀鋒視窗。 確定[已選取還原點](#select-a-restore-point-for-restore)，然後選取**還原組態**。 [還原組態] 刀鋒視窗隨即開啟。
 
 ## <a name="choose-a-vm-restore-configuration"></a>選擇 VM 還原組態
 在選取還原點之後，請選擇 VM 還原組態。 若要設定還原的 VM，您可以使用 Azure 入口網站或 PowerShell。
 
-1. 如果您尚未到達該位置，請移至 [還原] 刀鋒視窗。 確定[已選取還原點](#select-restore-point-for-restore)，然後選取**還原組態**。 [還原組態] 刀鋒視窗隨即開啟。
+1. 如果您尚未到達該位置，請移至 [還原] 刀鋒視窗。 確定[已選取還原點](#select-a-restore-point-for-restore)，然後選取**還原組態**。 [還原組態] 刀鋒視窗隨即開啟。
 
     ![還原組態精靈](./media/backup-azure-arm-restore-vms/recovery-configuration-wizard-recovery-type.png)
-2. 在 [還原組態] 刀鋒視窗上有兩個選擇︰
+1. 在 [還原組態] 刀鋒視窗上有兩個選擇︰
 
    * **建立虛擬機器**
 
@@ -132,7 +127,7 @@ ms.lasthandoff: 02/09/2018
     >
     >
 
-2. 在 [還原組態] 刀鋒視窗上，選取 [確定] 完成還原組態。 在 [還原] 刀鋒視窗上，選取 [還原] 以觸發還原作業。
+1. 在 [還原組態] 刀鋒視窗上，選取 [確定] 完成還原組態。 在 [還原] 刀鋒視窗上，選取 [還原] 以觸發還原作業。
 
 ## <a name="restore-backed-up-disks"></a>還原備份的磁碟
 若要自訂您從備份的磁碟 (而非 [還原組態] 刀鋒視窗中顯示的磁碟) 建立的 VM，請選取 [還原磁碟] 做為 [還原類型] 值。 此選擇需要儲存體帳戶，以作為備份中磁碟的複製目的地。 選擇儲存體帳戶時，請選取與「復原服務」保存庫共用相同位置的帳戶。 不支援區域備援的儲存體帳戶。 如果沒有與復原服務保存庫相同位置的儲存體帳戶，您必須在開始還原作業之前，建立一個儲存體帳戶。 儲存體帳戶的複寫類型會顯示在括號中。
@@ -161,9 +156,9 @@ ms.lasthandoff: 02/09/2018
     便會顯示訂用帳戶中保存庫的清單。
 
     ![復原服務保存庫清單](./media/backup-azure-arm-restore-vms/list-of-rs-vaults.png)
-2. 從這份清單，選取與您還原的 VM 相關聯的保存庫。 當您選取保存庫時，其儀表板隨即開啟。
+1. 從這份清單，選取與您還原的 VM 相關聯的保存庫。 當您選取保存庫時，其儀表板隨即開啟。
 
-3. 在保存庫儀表板中的 [備份作業] 圖格上，選取 [Azure 虛擬機器] 以顯示與保存庫相關聯的作業。
+1. 在保存庫儀表板中的 [備份作業] 圖格上，選取 [Azure 虛擬機器] 以顯示與保存庫相關聯的作業。
 
     ![保存庫儀表板](./media/backup-azure-arm-restore-vms/vault-dashboard-jobs.png)
 
@@ -183,15 +178,15 @@ ms.lasthandoff: 02/09/2018
 
 1. 請移至對應於作業的還原作業詳細資料。
 
-2. 在 [還原作業詳細資料] 畫面上，選取 [部署範本] 來起始範本部署。 
+1. 在 [還原作業詳細資料] 畫面上，選取 [部署範本] 來起始範本部署。 
 
      ![還原作業向下鑽研](./media/backup-azure-arm-restore-vms/restore-job-drill-down.png)
    
-3. 在自訂部署的 [部署範本] 刀鋒視窗上，使用範本部署來[編輯和部署範本](../azure-resource-manager/resource-group-template-deploy-portal.md#deploy-resources-from-custom-template)，或在部署之前[撰寫範本](../azure-resource-manager/resource-group-authoring-templates.md)以附加更多自訂。 
+1. 在自訂部署的 [部署範本] 刀鋒視窗上，使用範本部署來[編輯和部署範本](../azure-resource-manager/resource-group-template-deploy-portal.md#deploy-resources-from-custom-template)，或在部署之前[撰寫範本](../azure-resource-manager/resource-group-authoring-templates.md)以附加更多自訂。 
 
    ![載入範本部署](./media/backup-azure-arm-restore-vms/loading-template.png)
    
-4. 輸入所需值之後，接受 [條款及條件]，然後選取 [購買]。
+1. 輸入所需值之後，接受 [條款及條件]，然後選取 [購買]。
 
    ![提交範本部署](./media/backup-azure-arm-restore-vms/submitting-template.png)
 
@@ -211,7 +206,7 @@ ms.lasthandoff: 02/09/2018
 ## <a name="restore-domain-controller-vms"></a>還原網域控制站 VM
 備份網域控制站 (DC) VM 是備份支援的案例。 不過，在還原程序進行期間請務必小心。 正確的還原程序取決於網域結構。 最簡單的情況是您在單一網域中擁有單一 DC。 而在生產環境的負載中，較常見的情況是您擁有單一網域且內含多個 DC，其中有些 DC 可能位於內部部署環境。 最後，您也可能擁有內含多個網域的樹系。 
 
-從 Active Directory 的觀點來看，Azure VM 就像是位於新式的受支援 Hypervisor 上的其他 VM。 與內部部署 Hypervisor 的主要差異是，Azure 沒有提供 VM 主控台。 在某些情況下，您必須使用主控台，例如使用裸機復原 (BMR) 類型的備份進行復原。 不過，從備份保存庫來還原 VM 可完整取代 BMR。 我們也提供了目錄服務還原模式 (DSRM)，因此，您可以進行所有的 Active Directory 復原案例。 如需詳細資訊，請參閱[虛擬網域控制站的備份和還原考量](https://technet.microsoft.com/en-us/library/virtual_active_directory_domain_controller_virtualization_hyperv(v=ws.10).aspx#backup_and_restore_considerations_for_virtualized_domain_controllers)以及[規劃 Active Directory 樹系復原](https://technet.microsoft.com/en-us/library/planning-active-directory-forest-recovery(v=ws.10).aspx)。
+從 Active Directory 的觀點來看，Azure VM 就像是位於新式的受支援 Hypervisor 上的其他 VM。 與內部部署 Hypervisor 的主要差異是，Azure 沒有提供 VM 主控台。 在某些情況下，您必須使用主控台，例如使用裸機復原 (BMR) 類型的備份進行復原。 不過，從備份保存庫來還原 VM 可完整取代 BMR。 我們也提供了目錄服務還原模式 (DSRM)，因此，您可以進行所有的 Active Directory 復原案例。 如需詳細資訊，請參閱[虛擬網域控制站的備份和還原考量](https://technet.microsoft.com/library/virtual_active_directory_domain_controller_virtualization_hyperv(v=ws.10).aspx#backup_and_restore_considerations_for_virtualized_domain_controllers)以及[規劃 Active Directory 樹系復原](https://technet.microsoft.com/library/planning-active-directory-forest-recovery(v=ws.10).aspx)。
 
 ### <a name="single-dc-in-a-single-domain"></a>單一網域中的單一 DC
 VM 可以從 Azure 入口網站或使用 PowerShell 還原 (就像任何其他 VM)。
@@ -238,11 +233,11 @@ VM 可以從 Azure 入口網站或使用 PowerShell 還原 (就像任何其他 V
 
 1. 使用 [PowerShell](backup-azure-vms-automation.md#restore-an-azure-vm) 從復原服務保存庫還原磁碟。
 
-2. 使用 PowerShell Cmdlet 建立負載平衡器/多個 NIC/多個保留的 IP 所需的 VM 組態。 使用該組態建立具備想要之組態的 VM：
+1. 使用 PowerShell Cmdlet 建立負載平衡器/多個 NIC/多個保留的 IP 所需的 VM 組態。 使用該組態建立具備想要之組態的 VM：
 
    a. 在具有[內部負載平衡器](https://azure.microsoft.com/documentation/articles/load-balancer-internal-getstarted/)的雲端服務中建立 VM。
 
-   b. 建立 VM 來連線至[網際網路面向負載平衡器](https://azure.microsoft.com/en-us/documentation/articles/load-balancer-internet-getstarted/)。
+   b. 建立 VM 來連線至[網際網路面向負載平衡器](https://azure.microsoft.com/documentation/articles/load-balancer-internet-getstarted/)。
 
    c. 建立具有[多個 NIC](https://azure.microsoft.com/documentation/articles/virtual-networks-multiple-nics/) 的 VM。
 

@@ -1,8 +1,8 @@
 ---
-title: "為 Azure Application Insights 中的 Analytics 進行疑難排解 | Microsoft Docs"
-description: "有關於 Application Insights 分析的問題嗎？ 從這裡開始。 "
+title: 為 Azure Application Insights 中的 Analytics 進行疑難排解 | Microsoft Docs
+description: '有關於 Application Insights 分析的問題嗎？ 從這裡開始。 '
 services: application-insights
-documentationcenter: 
+documentationcenter: ''
 author: mrbullwinkle
 manager: carmonm
 ms.assetid: 9bbd5859-3584-4d80-9b6d-d5910fa48baa
@@ -10,14 +10,15 @@ ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 07/11/2016
 ms.author: mbullwin
-ms.openlocfilehash: 3ef9150cad62e9f9fc43f7afcbbbc01d89884a12
-ms.sourcegitcommit: e462e5cca2424ce36423f9eff3a0cf250ac146ad
+ms.openlocfilehash: eeda0fa6ad8faa05baf0a9344e958d298fb80d8e
+ms.sourcegitcommit: 828d8ef0ec47767d251355c2002ade13d1c162af
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/01/2017
+ms.lasthandoff: 06/25/2018
+ms.locfileid: "36936678"
 ---
 # <a name="troubleshoot-analytics-in-application-insights"></a>疑難排解 Application Insights 中的分析
 有關於 [Application Insights 分析](app-insights-analytics.md)的問題嗎？ 從這裡開始。 「分析」是強大的 Azure Application Insights 搜尋工具。
@@ -56,7 +57,7 @@ ms.lasthandoff: 11/01/2017
 4. 開啟另一個 (一般) 瀏覽器視窗並前往 [Azure](https://portal.azure.com)。 登出。然後開啟您的連結並使用正確的認證登入。
 5. Edge 和 Internet Explorer 的使用者也會在不支援信任的區域設定時收到此錯誤。
    
-    確認[分析入口網站](https://analytics.applicationinsights.io)和 [Azure Active Directory 入口網站](https://portal.azure.com)位於相同的安全性區域：
+    確認[分析入口網站](https://portal.azure.com)和 [Azure Active Directory 入口網站](https://portal.azure.com)位於相同的安全性區域：
    
    * 在 Internet Explorer 中，開啟 [網際網路選項]、[安全性]、[信任的網站]、[網站]：
      

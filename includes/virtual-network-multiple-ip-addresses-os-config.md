@@ -1,6 +1,23 @@
+---
+title: 包含檔案
+description: 包含檔案
+services: virtual-network
+author: jimdial
+ms.service: virtual-network
+ms.topic: include
+ms.date: 04/09/2018
+ms.author: jdial
+ms.custom: include file
+ms.openlocfilehash: ec1727926f6dbfeead9932004715a8bb1dfbb0cd
+ms.sourcegitcommit: 0408c7d1b6dd7ffd376a2241936167cc95cfe10f
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 06/26/2018
+ms.locfileid: "36964530"
+---
 ## <a name="os-config"></a>將 IP 位址新增至 VM 作業系統
 
-連接並登入您使用多個私人 IP 位址建立的 VM。 您必須手動新增您新增至 VM 的所有私人 IP 位址 (包括主要位址)。 對您的 VM 作業系統完成下列步驟：
+連線並登入您使用多個私人 IP 位址建立的 VM。 您必須手動新增您新增至 VM 的所有私人 IP 位址 (包括主要位址)。 對您的 VM 作業系統完成後續步驟。
 
 ### <a name="windows"></a>Windows
 
@@ -13,17 +30,16 @@
     * **IP 位址**︰輸入 *Primary* 私人 IP 位址
     * **子網路遮罩**︰根據您的子網路設定。 例如，如果子網路為 /24 子網路，則子網路遮罩為 255.255.255.0。
     * **預設閘道**︰子網路中的第一個 IP 位址。 如果您的子網路為 10.0.0.0/24，則閘道 IP 位址為 10.0.0.1。
-    * 按一下 [使用下列 DNS 伺服器位址]  並輸入下列值︰
+    * 選取 [使用下列 DNS 伺服器位址]  並輸入下列值︰
         * **慣用 DNS 伺服器**︰如果您不是使用自己的 DNS 伺服器，請輸入 168.63.129.16。  如果您是使用自己的 DNS 伺服器，請輸入您的伺服器 IP 位址。
-    * 按一下 [進階]  按鈕，然後新增其他 IP 位址。 使用為主要 IP 位址指定時相同的子網路，對 NIC 新增步驟 8 中列出的每個次要私人 IP 位址。
-        >[!WARNING] 
-        >如果您未正確地遵循上述步驟，您的 VM 可能會中斷連線。 請先確定針對步驟 5 輸入的資訊正確無誤﹐再繼續進行。
+    * 選取 [進階] 按鈕，然後新增其他 IP 位址。 將您在上一個步驟中新增至 Azure 網路介面的每個次要私人 IP 位址新增至 Windows 網路介面，而該 Windows 網路介面已獲取指派給 Azure 網路介面的主要 IP 位址。
+
+        您絕對不能手動指派在虛擬機器的作業系統內已指派給 Azure 虛擬機器的公用 IP 位址。 當您手動設定作業系統內的 IP 位址時，請確保它的位址與指派給 Azure [網路介面](../articles/virtual-network/virtual-network-network-interface-addresses.md#change-ip-address-settings)的私人 IP 位址相同，否則您可能會失去與虛擬機器的連線。 深入了解[私人 IP 位址](../articles/virtual-network/virtual-network-network-interface-addresses.md#private)設定。 您絕對不能指派作業系統內的 Azure 公用 IP 位址。
 
     * 按一下 [確定] 關閉 TCP/IP 設定，然後再按一次 [確定] 關閉介面卡設定。 您的 RDP 連接已重建。
 
 6. 從命令提示字元輸入 *ipconfig /all*。 此時會顯示您加入的所有 IP 位址，而 DHCP 是關閉的。
 7. 設定 Windows 在 Azure 中使用主要 IP 設定的私人 IP 位址，作為適用於 Windows 的主要 IP 位址。 如需詳細資訊，請參閱[從具有多個 IP 位址的 Azure Windows VM 無權存取網際網路](https://support.microsoft.com/help/4040882/no-internet-access-from-azure-windows-vm-that-has-multiple-ip-addresse)。 
-
 
 ### <a name="validation-windows"></a>驗證 (Windows)
 
@@ -94,7 +110,7 @@ ping -S 10.0.0.5 hotmail.com
 
     您應該會在清單中看到您加入的 IP 位址。
 
-### <a name="linux-redhat-centos-and-others"></a>Linux (Redhat、CentOS 以及其他)
+### <a name="linux-red-hat-centos-and-others"></a>Linux (Red Hat、CentOS 以及其他)
 
 1. 開啟終端機視窗。
 2. 請確定您是 root 使用者。 如果不是，請輸入下列命令：

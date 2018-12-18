@@ -1,9 +1,9 @@
 ---
-title: 在 Azure 中使用 Jenkins 建立開發管線 | Microsoft Docs
-description: 了解如何在 Azure 中建立 Jenkins 虛擬機器，用於在每次程式碼認可時從 GitHub 提取資料，並建立新的 Docker 容器來執行應用程式
+title: 教學課程 - 在 Azure 中使用 Jenkins 建立開發管線 | Microsoft Docs
+description: 教學課程 - 在本教學課程中，您會了解如何在 Azure 中建立 Jenkins 虛擬機器，用於在每次程式碼認可時從 GitHub 提取資料，並建立新的 Docker 容器來執行應用程式。
 services: virtual-machines-linux
 documentationcenter: virtual-machines
-author: iainfoulds
+author: cynthn
 manager: jeconnoc
 editor: tysonn
 tags: azure-resource-manager
@@ -14,15 +14,17 @@ ms.topic: tutorial
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 03/27/2017
-ms.author: iainfou
+ms.author: cynthn
 ms.custom: mvc
-ms.openlocfilehash: 9250e40c491257b554333f4606cbf0b476d8db21
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: d1d760c2642e0c986e50570630d31dda11d17478
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46964732"
 ---
-# <a name="how-to-create-a-development-infrastructure-on-a-linux-vm-in-azure-with-jenkins-github-and-docker"></a>如何在 Azure 中的 Linux VM 上以 Jenkins、GitHub 及 Docker 建立開發基礎結構
+# <a name="tutorial-create-a-development-infrastructure-on-a-linux-vm-in-azure-with-jenkins-github-and-docker"></a>教學課程：在 Azure 中的 Linux VM 上以 Jenkins、GitHub 及 Docker 建立開發基礎結構
+
 若要將應用程式開發的組建和測試階段自動化，可以使用持續整合和部署 (CI/CD) 管線。 在本教學課程中，您會在 Azure VM 上建立 CI/CD 管線，包括如何︰
 
 > [!div class="checklist"]
@@ -33,10 +35,9 @@ ms.lasthandoff: 03/28/2018
 > * 建立應用程式的 Docker 映像
 > * 確認 GitHub 已認可組建的新 Docker 映像，並更新了執行中的應用程式
 
-
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-如果您選擇在本機安裝和使用 CLI，本教學課程會要求您執行 Azure CLI 2.0.22 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
+如果您選擇在本機安裝和使用 CLI，本教學課程會要求您執行 Azure CLI 2.0.30 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI]( /cli/azure/install-azure-cli)。
 
 ## <a name="create-jenkins-instance"></a>建立 Jenkins 執行個體
 在[如何在首次開機時自訂 Linux 虛擬機器](tutorial-automate-vm-deployment.md)的先前教學課程中，您已了解如何使用 cloud-init 自動進行 VM 自訂。 本教學課程使用 cloud-init 檔案在 VM 上安裝 Jenkins 和 Docker。 Jenkins 是熱門的開放原始碼 Automation 伺服程式，可順暢地與 Azure 整合，以進行持續整合 (CI) 及持續傳遞 (CD)。 如需如何使用 Jenkins 的更多教學課程，請參閱 [Azure 中樞中的 Jenkins](https://docs.microsoft.com/azure/jenkins/)。
@@ -58,8 +59,9 @@ write_files:
         "hosts": ["fd://","tcp://127.0.0.1:2375"]
       }
 runcmd:
-  - wget -q -O - https://jenkins-ci.org/debian/jenkins-ci.org.key | apt-key add -
-  - sh -c 'echo deb http://pkg.jenkins-ci.org/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+  - apt install default-jre -y
+  - wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -
+  - sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
   - apt-get update && apt-get install jenkins -y
   - curl -sSL https://get.docker.com/ | sh
   - usermod -aG docker azureuser
@@ -146,10 +148,10 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 在您的 Jenkins 網站中，選取首頁中的 [建立新作業]︰
 
 - 輸入 HelloWorld 作為作業名稱。 選擇 [自由樣式專案]，然後選取 [確定]。
-- 在 [一般] 區段下，選取 [GitHub 專案]，然後輸入您的分支存放庫 URL，例如 *https://github.com/iainfoulds/nodejs-docs-hello-world*
-- 在 [原始碼管理] 區段中，選取 [Git]，輸入您的分支存放庫 *.git* URL，例如 *https://github.com/iainfoulds/nodejs-docs-hello-world.git*
+- 在 [一般] 區段下，選取 [GitHub 專案]，然後輸入您的分支存放庫 URL，例如 *https://github.com/cynthn/nodejs-docs-hello-world*
+- 在 [原始碼管理] 區段中，選取 [Git]，輸入您的分支存放庫 *.git* URL，例如 *https://github.com/cynthn/nodejs-docs-hello-world.git*
 - 在 [組建觸發程序] 下，選取 [GITScm 輪詢的 GitHub 勾點觸發程序]。
-- 在 [組建] 區段中，選擇 [新增組建步驟]。 選取 [執行殼層]，然後在命令視窗中輸入 `echo "Testing"`。
+- 在 [組建] 區段中，選擇 [新增組建步驟]。 選取 [執行殼層]，然後在命令視窗中輸入 `echo "Test"`。
 - 選取作業視窗底部的 [儲存]。
 
 
@@ -239,7 +241,7 @@ az vm show --resource-group myResourceGroupJenkins --name myVM -d --query [publi
 > * 建立應用程式的 Docker 映像
 > * 確認 GitHub 已認可組建的新 Docker 映像，並更新了執行中的應用程式
 
-前進到下一個教學課程，以深入了解如何整合 Jenkins 與 Visual Studio Team Services。
+前進到下一個教學課程，以深入了解如何整合 Jenkins 與 Azure DevOps Services。
 
 > [!div class="nextstepaction"]
-> [使用 Jenkins 和 Team Services 部署應用程式](tutorial-build-deploy-jenkins.md)
+> [使用 Jenkins 和 Azure DevOps Services 部署應用程式](tutorial-build-deploy-jenkins.md)

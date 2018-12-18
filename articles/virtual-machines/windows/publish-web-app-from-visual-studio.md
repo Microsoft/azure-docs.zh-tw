@@ -1,31 +1,30 @@
 ---
-title: 從 Visual Studio 將 Web 應用程式發行到 Azure VM | Microsoft Docs
+title: 從 Visual Studio 將 Web 應用程式發行到 Azure VM
 description: 從 Visual Studio 將 ASP.NET Web 應用程式發行到 Azure 虛擬機器
 services: virtual-machines-windows
-documentationcenter: ''
 author: ghogen
 manager: douge
-editor: ''
 tags: azure-service-management
 ms.assetid: 70267837-3629-41e0-bb58-2167ac4932b3
-ms.service: virtual-machines-windows
-ms.workload: infrastructure-services
-ms.tgt_pltfrm: vm-windows
-ms.devlang: dotnet
-ms.topic: article
+ms.prod: visual-studio-dev15
+ms.technology: vs-azure
+ms.custom: vs-azure
+ms.workload: azure-vs
+ms.topic: conceptual
 ms.date: 11/03/2017
 ms.author: ghogen
-ms.openlocfilehash: f236a00ef86f58d4d266a19d74485984d9ddb691
-ms.sourcegitcommit: 34e0b4a7427f9d2a74164a18c3063c8be967b194
+ms.openlocfilehash: d5fd6041f21700ffddd3b2c4755b7ce01691681e
+ms.sourcegitcommit: f3bd5c17a3a189f144008faf1acb9fabc5bc9ab7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/30/2018
+ms.lasthandoff: 09/10/2018
+ms.locfileid: "44304075"
 ---
 # <a name="publish-an-aspnet-web-app-to-an-azure-vm-from-visual-studio"></a>從 Visual Studio 將 ASP.NET Web 應用程式發行到 Azure VM
 
 本文件說明如何使用 Visual Studio 2017 中的 [Microsoft Azure 虛擬機器] 發佈功能，將 ASP.NET Web 應用程式發行到 Azure 虛擬機器 (VM)。  
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 若要使用 Visual Studio 將 ASP.NET 專案發行到 Azure VM，必須正確設定 VM。
 
 - 機器必須設定為執行 ASP.NET web 應用程式，並安裝 WebDeploy。
@@ -115,7 +114,7 @@ ms.lasthandoff: 03/30/2018
 
 ### <a name="set-up-cicd-for-automated-deployment-to-azure-vm"></a>設定 CI/CD 以自動化部署到 Azure VM
 
-若要以 Visual Studio Team Service 設定持續交付管線，請參閱[部署到 Windows 虛擬機器](https://docs.microsoft.com/vsts/build-release/apps/cd/deploy-webdeploy-iis-deploygroups)。
+若要以 Azure Pipelines 設定持續傳遞管線，請參閱[部署到 Windows 虛擬機器](https://docs.microsoft.com/vsts/build-release/apps/cd/deploy-webdeploy-iis-deploygroups)。
 
 [VM Overview - DNS Name]: ../../../includes/media/publish-web-app-from-visual-studio/VMOverviewDNSName.png
 [IP Address Config - DNS Name]: ../../../includes/media/publish-web-app-from-visual-studio/IPAddressConfigDNSName.png

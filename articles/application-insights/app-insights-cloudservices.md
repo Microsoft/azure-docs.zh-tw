@@ -1,30 +1,30 @@
 ---
-title: "Azure 雲端服務的 Application Insights | Microsoft Docs"
-description: "使用 Application Insights 有效地監視您的 Web 和背景工作角色"
+title: Azure 雲端服務的 Application Insights | Microsoft Docs
+description: 使用 Application Insights 有效地監視您的 Web 和背景工作角色
 services: application-insights
-documentationcenter: 
-keywords: "WAD2AI, Azure 診斷"
+documentationcenter: ''
+keywords: WAD2AI, Azure 診斷
 author: mrbullwinkle
 manager: carmonm
-editor: alancameronwills
 ms.assetid: 5c7a5b34-329e-42b7-9330-9dcbb9ff1f88
 ms.service: application-insights
 ms.devlang: na
 ms.tgt_pltfrm: ibiza
-ms.topic: get-started-article
+ms.topic: conceptual
 ms.workload: tbd
-ms.date: 05/05/2017
+ms.date: 09/05/2018
 ms.author: mbullwin
-ms.openlocfilehash: dd35ef2239469be6ecf478f44a7e97389e5c5dd3
-ms.sourcegitcommit: 9890483687a2b28860ec179f5fd0a292cdf11d22
+ms.openlocfilehash: 3b06ec3b10edc39d770e5a724125e70afd5e5477
+ms.sourcegitcommit: e2348a7a40dc352677ae0d7e4096540b47704374
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/24/2018
+ms.lasthandoff: 09/05/2018
+ms.locfileid: "43783489"
 ---
 # <a name="application-insights-for-azure-cloud-services"></a>Azure 雲端服務的 Application Insights
 您可以透過 [Application Insights][start] 來監視 [Microsoft Azure 雲端服務應用程式](https://azure.microsoft.com/services/cloud-services/)，它會結合 Application Insights SDK 的資料與雲端服務的 [Azure 診斷](https://docs.microsoft.com/azure/monitoring-and-diagnostics/azure-diagnostics)資料，來讓您了解應用程式的可用性、效能、失敗和使用情形。 當您取得有關應用程式在現實世界的效能和效率的意見反應時，您可以在每個開發生命週期中針對設計方向做出明智的抉擇。
 
-![範例](./media/app-insights-cloudservices/sample.png)
+![概觀儀表板的螢幕擷取畫面](./media/app-insights-cloudservices/overview-graphs.png)
 
 ## <a name="before-you-start"></a>開始之前
 您需要：
@@ -81,9 +81,8 @@ ms.lasthandoff: 01/24/2018
 1. 在 [Azure 入口網站][portal]中，建立新的 Application Insights 資源。 針對應用程式類型，選擇 ASP.NET 應用程式。 
 
     ![按一下 [新增]，然後按一下 [Application Insights]](./media/app-insights-cloudservices/01-new.png)
-2. 請注意，每個資源都是以「檢測金鑰」作為識別。 如果您想要手動設定或確認 SDK 的組態，稍後可能會需要此金鑰。
+2. 每項資源均會以「檢測金鑰」來識別。 如果您想要手動設定或確認 SDK 的組態，稍後可能會需要此金鑰。
 
-    ![按一下 [屬性]，選取金鑰，然後按下 CTRL+C](./media/app-insights-cloudservices/02-props.png) 
 
 ## <a name="set-up-azure-diagnostics-for-each-role"></a>設定每個角色的 Azure 診斷
 設定此選項即可使用 Application Insights 來監視您的應用程式。 針對 Web 角色，這除了提供使用情況分析之外，也提供效能監視、警示及診斷。 針對他角色，您可以搜尋和監視 Azure 診斷，例如重新啟動、效能計數器及對 System.Diagnostics.Trace 的呼叫。 
@@ -114,7 +113,7 @@ ms.lasthandoff: 01/24/2018
 
 3. 設定 SDK 以將資料傳送給 Application Insights 資源。
 
-    在適合的啟動函式中，從 .cscfg 檔案中的組態設定設定檢測金鑰：
+    在適合的啟動函式中，從 ``.cscfg file`` 中的組態設定設定檢測金鑰：
  
     ```csharp
    
@@ -128,7 +127,7 @@ ms.lasthandoff: 01/24/2018
    * [針對網頁](https://github.com/Microsoft/ApplicationInsights-Home/blob/master/Samples/AzureEmailService/MvcWebRole/Views/Shared/_Layout.cshtml#L13) 
 4. 將 ApplicationInsights.config 設定為一律複製到輸出目錄。 
    
-    (在 .config 檔案中，您會看到訊息詢問您將檢測金鑰放至該處。 不過，針對雲端應用程式，最好是從 .cscfg 檔案中設定。 這可確保角色會在入口網站中正確識別。)
+    (在 .config 檔案中，您會看到訊息詢問您將檢測金鑰放至該處。 不過，針對雲端應用程式，最好是從 ``.cscfg file`` 中設定。 這可確保角色會在入口網站中正確識別。)
 
 #### <a name="run-and-publish-the-app"></a>執行和發佈應用程式
 執行應用程式，並且登入 Azure。 開啟您建立的 Application Insights 資源，您會看到個別資料點顯示在[搜尋](app-insights-diagnostic-search.md)中，並且在[計量瀏覽器](app-insights-metrics-explorer.md)中彙總資料。 
@@ -197,7 +196,7 @@ ms.lasthandoff: 01/24/2018
 
 您可以藉由編輯 ApplicationInsights.config 來指定額外的自訂或其他 Windows 效能計數器，[如此範例所示](https://github.com/Microsoft/ApplicationInsights-Home/blob/master/Samples/AzureEmailService/WorkerRoleA/ApplicationInsights.config#L14)。
 
-  ![效能計數器](./media/app-insights-cloudservices/OLfMo2f.png)
+  ![效能計數器](./media/app-insights-cloudservices/002-servers.png)
 
 ## <a name="correlated-telemetry-for-worker-roles"></a>背景工作角色的相互關聯遙測
 當您可以看見導致失敗或高延遲要求的原因時，診斷體驗會更加豐富。 使用 Web 角色，SDK 會在關聯的遙測間自動設定相互關聯。 針對背景工作角色，您可以使用自訂遙測初始設定式，來設定一個通用 Operation.Id 內容屬性，讓所有的遙測可以達到此目的。 這可讓您查看是否因為相依性或程式碼導致延遲/失敗問題，一目了然！ 
@@ -206,11 +205,7 @@ ms.lasthandoff: 01/24/2018
 
 * 設定相互關聯識別碼到 CallContext 中，如 [這裡](https://github.com/Microsoft/ApplicationInsights-Home/blob/master/Samples/AzureEmailService/WorkerRoleA/WorkerRoleA.cs#L36)所示。 在此案例中，我們使用「要求 ID」做為相互關聯識別碼
 * 新增自訂的 TelemetryInitializer 實作，其會將 Operation.Id 設為前面所設定的 correlationId。 範例如下：[ItemCorrelationTelemetryInitializer](https://github.com/Microsoft/ApplicationInsights-Home/blob/master/Samples/AzureEmailService/WorkerRoleA/Telemetry/ItemCorrelationTelemetryInitializer.cs#L13)
-* 新增自訂的遙測初始設定式。 您可以在 ApplicationInsights.config 檔案，或在程式碼中執行，如 [這裡](https://github.com/Microsoft/ApplicationInsights-Home/blob/master/Samples/AzureEmailService/WorkerRoleA/WorkerRoleA.cs#L233)
-
-就這麼簡單！ 入口網站體驗已經準備好協助您一覽所有相關聯的遙測：
-
-![相互關聯的遙測](./media/app-insights-cloudservices/bHxuUhd.png)
+* 新增自訂的遙測初始設定式。 您可以在 ApplicationInsights.config 檔案或程式碼中執行此作業，如[此處](https://github.com/Microsoft/ApplicationInsights-Home/blob/master/Samples/AzureEmailService/WorkerRoleA/WorkerRoleA.cs#L233)所示。
 
 ## <a name="client-telemetry"></a>用戶端遙測
 [將 JavaScript SDK 新增至網頁][client]以取得瀏覽器型遙測 (例如頁面檢視計數、頁面載入時間、指令碼例外狀況)，並讓您在頁面指令碼中撰寫自訂遙測。
@@ -223,7 +218,7 @@ ms.lasthandoff: 01/24/2018
 
 如果您的系統使用其他 Azure 服務 (例如「串流分析」)，請將它們的監視圖表一併納入。 
 
-如果您有用戶端行動應用程式，請插入一些會在進行主要使用者操作時傳送自訂事件的程式碼，並建立 [HockeyApp bridge](app-insights-hockeyapp-bridge-app.md)。 請在[分析](app-insights-analytics.md)中建立查詢以顯示事件計數，並將它們釘選到儀表板。
+如果您有用戶端行動應用程式，請使用 [App Center](app-insights-mobile-center-quickstart.md)。 請在[分析](app-insights-analytics.md)中建立查詢以顯示事件計數，並將它們釘選到儀表板。
 
 ## <a name="example"></a>範例
 [此範例](https://github.com/Microsoft/ApplicationInsights-Home/tree/master/Samples/AzureEmailService) 監視具有 Web 角色和兩個背景工作角色的服務。

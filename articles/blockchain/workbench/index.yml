@@ -1,0 +1,42 @@
+### YamlMime:YamlDocument
+ms.openlocfilehash: a42db3dd4af0e02e001b3a4fbcc5f3b126606a6f
+ms.sourcegitcommit: 1981c65544e642958917a5ffa2b09d6b7345475d
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/03/2018
+ms.locfileid: "48239758"
+documentType: LandingData
+title: Azure Blockchain Workbench 文件
+metadata:
+  title: Azure Blockchain Workbench 文件 - 教學課程和 API 參考 | Microsoft Docs
+  description: 了解如何建立區塊鏈應用程式。 教學課程、API 參考及其他文件會示範如何部署 Azure Blockchain Workbench，以及如何在 Azure 上建立和管理區塊鏈。
+  services: blockchain-workbench
+  author: patricka
+  manager: femila
+  ms.service: blockchain-workbench
+  ms.tgt_pltfrm: na
+  ms.devlang: na
+  ms.topic: landing-page
+  ms.date: 04/17/2018
+  ms.author: patricka
+abstract:
+  description: 了解如何建立區塊鏈應用程式。 教學課程、API 參考及其他文件會示範如何部署 Azure Blockchain Workbench，以便在 Azure 上建立及使用區塊鏈。
+sections:
+- title: 逐步教學課程
+  items:
+  - type: paragraph
+    text: 了解如何在 Azure 上部署、建立及使用區塊鏈應用程式。
+  - type: list
+    style: ordered
+    items:
+    - html: <a href="/azure/blockchain-workbench/blockchain-workbench-deploy">部署 Azure Blockchain Workbench</a>
+    - html: <a href="/azure/blockchain-workbench/blockchain-workbench-create-app">建立區塊鏈應用程式</a>
+    - html: <a href="/azure/blockchain-workbench/blockchain-workbench-use">使用區塊鏈應用程式</a>
+- title: 參考
+  items:
+  - type: list
+    style: cards
+    className: cardsD
+    items:
+    - title: REST
+      html: <p><a href="https://docs.microsoft.com/rest/api/azure-blockchain-workbench">REST API</a></p>

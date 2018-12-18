@@ -2,34 +2,38 @@
 title: 設定 Azure SQL Database 安全性以供災害復原使用 | Microsoft Docs
 description: 了解在資料庫還原或容錯移轉至次要伺服器之後，設定和管理安全性時的安全性考量。
 services: sql-database
-author: anosov1960
-manager: craigg
 ms.service: sql-database
-ms.custom: business continuity
-ms.topic: article
-ms.date: 10/13/2016
+ms.subservice: operations
+ms.custom: ''
+ms.devlang: ''
+ms.topic: conceptual
+author: anosov1960
 ms.author: sashan
-ms.openlocfilehash: 758096692c83ae08c8ef2bce8ec67dd9bc6e878d
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.reviewer: carlrab
+manager: craigg
+ms.date: 04/01/2018
+ms.openlocfilehash: 2f5a455cecfbf4b40b1a410a756117d70c4a4b69
+ms.sourcegitcommit: 51a1476c85ca518a6d8b4cc35aed7a76b33e130f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47166821"
 ---
 # <a name="configure-and-manage-azure-sql-database-security-for-geo-restore-or-failover"></a>建立和管理 Azure SQL Database 安全性以供異地還原或容錯移轉使用 
 
-本主題描述設定和控制[主動式異地複寫](sql-database-geo-replication-overview.md)的驗證需求，以及設定次要資料庫之使用者存取所需的步驟。 它也會描述如何在使用[異地還原](sql-database-recovery-using-backups.md#geo-restore)之後啟用復原資料庫的存取權。 如需復原選項的詳細資訊，請參閱 [商務持續性概觀](sql-database-business-continuity.md)。
+本主題描述設定和控制[主動式異地複寫](sql-database-geo-replication-overview.md)的驗證需求，以及設定次要資料庫之使用者存取所需的步驟。 它也會描述如何在使用[異地還原](sql-database-recovery-using-backups.md#geo-restore)之後啟用復原資料庫的存取權。 如需復原選項的詳細資訊，請參閱[商務持續性概觀](sql-database-business-continuity.md)。
 
 > [!NOTE]
 > [作用中異地複寫](sql-database-geo-replication-overview.md)現在可供所有服務層中的所有資料庫使用。
 >  
 
 ## <a name="disaster-recovery-with-contained-users"></a>災害復原與自主使用者
-不同於傳統的使用者必須對應到 master 資料庫中的登入，自主使用者完全由資料庫本身管理。 這樣有兩個優點。 在災害復原案例中，使用者可以繼續連線到新的主要資料庫或使用異地還原復原的資料庫，而不需任何額外的組態，因為資料庫可管理使用者。 從登入的觀點來看，這個組態也有潛在的延展性和效能優勢。 如需詳細資訊，請參閱 [自主資料庫使用者 - 讓資料庫具有可攜性](https://msdn.microsoft.com/library/ff929188.aspx)。 
+不同於傳統的使用者必須對應到 master 資料庫中的登入，自主使用者完全由資料庫本身管理。 這樣有兩個優點。 在災害復原案例中，使用者可以繼續連線到新的主要資料庫或使用異地還原復原的資料庫，而不需任何額外的組態，因為資料庫可管理使用者。 從登入的觀點來看，這個組態也有潛在的延展性和效能優勢。 如需詳細資訊，請參閱[自主資料庫使用者 - 讓資料庫具有可攜性](https://msdn.microsoft.com/library/ff929188.aspx)。 
 
 主要的缺點是管理大規模災害復原程序更具挑戰性。 當您有使用相同登入的多個資料庫時，維護在多個資料庫中使用自主使用者的認證可能不利於自主使用者。 例如，密碼替換原則需要在多個資料庫中進行一致的變更，而不是在主要資料庫一次變更登入的密碼。 基於這個理由，如果您有使用相同使用者名稱和密碼的多個資料庫，則不建議使用自主使用者。 
 
 ## <a name="how-to-configure-logins-and-users"></a>如何設定登入和使用者
-如果您使用登入和使用者 (而非自主使用者)，必須採取額外步驟以確保主要資料庫中具有相同的登入。 下列各節概述涉及的步驟和其他考量。
+如果您使用登入和使用者 (而非自主使用者)，您必須採取額外步驟以確保主要資料庫中有相同的登入。 下列各節概述涉及的步驟和其他考量。
 
 ### <a name="set-up-user-access-to-a-secondary-or-recovered-database"></a>設定次要或復原資料庫的使用者存取
 為了讓次要資料庫可做為唯讀次要資料庫使用，並確保可適當存取新的主要資料庫或使用異地還原復原的資料庫，目標伺服器的主要資料庫必須在復原之前具有適當的安全性組態。

@@ -1,24 +1,19 @@
 ---
-title: "建立 Azure 匯入/匯出的匯出作業 | Microsoft Docs"
-description: "了解如何建立 Microsoft Azure 匯入/匯出服務的匯出作業。"
+title: 建立 Azure 匯入/匯出的匯出作業 | Microsoft Docs
+description: 了解如何建立 Microsoft Azure 匯入/匯出服務的匯出作業。
 author: muralikk
-manager: syadav
-editor: tysonn
 services: storage
-documentationcenter: 
-ms.assetid: 613d480b-a8ef-4b28-8f54-54174d59b3f4
 ms.service: storage
-ms.workload: storage
-ms.tgt_pltfrm: na
-ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: 70f74b685f4d5b902b6f6780f7c1de4d357164b8
-ms.sourcegitcommit: fa28ca091317eba4e55cef17766e72475bdd4c96
+ms.component: common
+ms.openlocfilehash: 0066ec20c68d70fac9a6529f8f5b85855d6c5349
+ms.sourcegitcommit: 31241b7ef35c37749b4261644adf1f5a029b2b8e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/14/2017
+ms.lasthandoff: 09/04/2018
+ms.locfileid: "43666819"
 ---
 # <a name="creating-an-export-job-for-the-azure-importexport-service"></a>建立 Azure 匯入/匯出服務的匯出作業
 使用 REST API 建立 Microsoft Azure 匯入/匯出服務的匯出作業包含下列步驟︰
@@ -53,7 +48,7 @@ ms.lasthandoff: 12/14/2017
  如需指定要匯出之 blob 的詳細資訊，請參閱 [Put Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) 作業。
 
 ## <a name="obtaining-your-shipping-location"></a>取得寄送位置
-在建立匯出作業之前，您需要藉由呼叫 [Get Location](https://portal.azure.com) 或 [List Locations](/rest/api/storageimportexport/listlocations) 作業來取得寄送位置名稱和地址。 `List Locations` 會傳回位置及其郵寄地址的清單。 您可以從傳回的清單中選取位置，並將您的硬碟寄送至該地址。 您也可以使用 `Get Location` 作業來直接取得特定位置的寄送地址。
+在建立匯出作業之前，您需要藉由呼叫 [Get Location](https://portal.azure.com) 或 [List Locations](https://docs.microsoft.com/rest/api/storageimportexport/locations/list) 作業來取得寄送位置名稱和地址。 `List Locations` 會傳回位置及其郵寄地址的清單。 您可以從傳回的清單中選取位置，並將您的硬碟寄送至該地址。 您也可以使用 `Get Location` 作業來直接取得特定位置的寄送地址。
 
 請遵循下列步驟來取得寄送位置︰
 
@@ -91,6 +86,8 @@ ms.lasthandoff: 12/14/2017
 
 ## <a name="receiving-the-package"></a>接收包裹
  匯出作業處理完成之後，會將您的磁碟機退回給您，並包含您的加密資料。 您也可以藉由呼叫 [Get Job](/rest/api/storageimportexport/jobs#Jobs_Get) 作業來擷取每個磁碟機的 BitLocker 金鑰。 然後您就可以使用金鑰來解除鎖定磁碟機。 每個磁碟機上的磁碟機資訊清單檔案包含磁碟機上的檔案清單，以及每個檔案的原始 blob 位址。
+
+[!INCLUDE [storage-import-export-delete-personal-info.md](../../../includes/storage-import-export-delete-personal-info.md)]
 
 ## <a name="next-steps"></a>後續步驟
 

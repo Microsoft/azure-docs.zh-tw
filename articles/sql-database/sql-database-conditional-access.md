@@ -2,24 +2,33 @@
 title: 條件式存取 - Azure SQL Database 和 Data Warehouse | Microsoft Doc
 description: 了解如何設定 Azure SQL Database 和資料倉儲的條件式存取。
 services: sql-database
-author: GithubMirek
-manager: johammer
-ms.custom: security
 ms.service: sql-database
-ms.topic: article
-ms.date: 06/07/2017
+ms.subservice: security
+ms.custom: sql-data-warehouse
+ms.devlang: ''
+ms.topic: conceptual
+author: GithubMirek
 ms.author: mireks
-ms.openlocfilehash: f32928805275c9d797c8cb15bb731fe172d5903f
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.reviewer: vanto
+manager: craigg
+ms.date: 04/01/2018
+ms.openlocfilehash: e7386e2f926132f5657bdb17011dafe1e1c7b101
+ms.sourcegitcommit: cc4fdd6f0f12b44c244abc7f6bc4b181a2d05302
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47063076"
 ---
 # <a name="conditional-access-mfa-with-azure-sql-database-and-data-warehouse"></a>使用 Azure SQL Database 和資料倉儲的條件式存取 (MFA)  
 
-SQL Database 和 SQL 資料倉儲都支援 Microsoft 條件式存取。 下列步驟示範如何將 SQL Database 設定為強制執行條件式存取原則。  
+Azure [SQL Database](sql-database-technical-overview.md) 與 [SQL 資料倉儲](../sql-data-warehouse/sql-data-warehouse-overview-what-is.md)都支援 Microsoft 條件式取。 
 
-## <a name="prerequisites"></a>先決條件  
+> [!NOTE]
+> 本主題適用於 Azure SQL 伺服器，以及在 Azure SQL Server 上建立的 SQL Database 和 SQL 資料倉儲資料庫。 為了簡單起見，參考 SQL Database 和 SQL 資料倉儲時都會使用 SQL Database。
+
+下列步驟示範如何將 SQL Database 設定為強制執行條件式存取原則。  
+
+## <a name="prerequisites"></a>必要條件  
 - 您必須將 SQL Database 或 SQL 資料倉儲設定為支援 Azure Active Directory 驗證。 如需特定步驟，請參閱[使用 SQL Database 或 SQL 資料倉儲設定和管理 Azure Active Directory 驗證](sql-database-aad-authentication-configure.md)。  
 - 啟用多重要素驗證時，您必須在支援的工具進行連線，例如最新的 SSMS。 如需詳細資訊，請參閱[設定適用於 SQL Server Management Studio 的 Azure SQL Database 多重要素驗證](sql-database-ssms-mfa-authentication-configure.md)。  
 

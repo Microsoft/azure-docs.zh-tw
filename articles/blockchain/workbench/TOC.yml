@@ -1,0 +1,77 @@
+items:
+- name: Azure Blockchain Workbench (公開預覽)
+  href: index.yml
+- name: 概觀
+  items:
+  - name: 關於 Azure Blockchain Workbench
+    href: overview.md
+  expanded: true
+- name: 概念
+  items:
+  - name: 架構
+    href: architecture.md
+  - name: 整合模式
+    href: integration-patterns.md
+- name: 使用說明指南
+  items:
+  - name: 部署 Workbench
+    href: deploy.md
+  - name: 建立區塊鏈應用程式
+    href: create-app.md
+  - name: 管理 Workbench 使用者
+    href: manage-users.md
+  - name: 使用區塊鏈應用程式
+    href: use.md
+  - name: 使用 Workbench API
+    href: use-api.md
+  - name: 針對應用程式進行疑難排解
+    href: troubleshooting.md
+  - name: 使用 Workbench 資料
+    items:
+    - name: 設定 DB 防火牆
+      href: database-firewall.md
+    - name: 取得 DB 詳細資料
+      href: getdb-details.md
+    - name: 在 Excel 中使用資料
+      href: data-excel.md
+    - name: 在 Power BI 中使用資料
+      href: data-powerbi.md
+    - name: 在 SQL Management Studio 中使用資料
+      href: data-sql-management-studio.md
+  expanded: true
+- name: 參考
+  items:
+  - name: 組態
+    href: configuration.md
+  - name: 資料庫檢視
+    href: database-views.md
+  - name: 傳訊 API
+    href: messages-overview.md
+  - name: REST API
+    href: https://docs.microsoft.com/rest/api/azure-blockchain-workbench
+- name: 資源
+  items:
+  - name: 部落格
+    href: https://azure.microsoft.com/blog/topics/blockchain/
+  - name: 程式碼範例
+    href: https://github.com/Azure-Samples/blockchain
+  - name: 社群
+    href: https://techcommunity.microsoft.com/t5/Blockchain/bd-p/AzureBlockchain
+  - name: 論壇
+    href: https://aka.ms/workbenchforum
+  - name: 產品意見反應
+    href: https://aka.ms/blockchainuservoice
+- name: 解決方案範本
+  items:
+  - name: 以太坊權威證明聯盟
+    href: ../templates/ethereum-poa-deployment.md
+  - name: 以太坊工作量證明聯盟
+    href: ../templates/ethereum-deployment.md
+  - name: Hyperledger Fabric 聯盟
+    href: ../templates/hyperledger-fabric-single-member-blockchain.md
+ms.openlocfilehash: de9b0906450f3ba26ebfac6699c07d93039db6a7
+ms.sourcegitcommit: 1981c65544e642958917a5ffa2b09d6b7345475d
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/03/2018
+ms.locfileid: "48239755"

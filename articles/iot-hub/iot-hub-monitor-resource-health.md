@@ -1,30 +1,28 @@
 ---
-title: "監視 Azure IoT 中樞的健康情況 | Microsoft Docs"
-description: "使用「Azure 監視器」和「Azure 資源健康狀態」來監視您的「IoT 中樞」並快速診斷問題"
-services: iot-hub
-documentationcenter: 
+title: 監視 Azure IoT 中樞的健康情況 | Microsoft Docs
+description: 使用「Azure 監視器」和「Azure 資源健康狀態」來監視您的「IoT 中樞」並快速診斷問題
 author: kgremban
 manager: timlt
-editor: 
-ms.assetid: 
 ms.service: iot-hub
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: na
-ms.date: 10/09/2017
+services: iot-hub
+ms.topic: conceptual
+ms.date: 08/09/2018
 ms.author: kgremban
-ms.openlocfilehash: 3051af03d0c1433db98bcc674a072188e7ce80e0
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: d3c32c2258f7542a02549fbc531aa9e8293d0235
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46996293"
 ---
 # <a name="monitor-the-health-of-azure-iot-hub-and-diagnose-problems-quickly"></a>監視 Azure IoT 中樞的健康情況並快速診斷問題
 
 實作「Azure IoT 中樞」的企業會期望其資源有可靠的效能。 為了協助您對作業維持密切的監看，「IoT 中樞」已與 [Azure 監視器][lnk-AM]和 [Azure 資源健康狀態][lnk-ARH]完全整合。 這兩項服務會一前一後協力運作，為您提供讓 IoT 解決方案以健全狀態啟動並執行所需的資料。 
 
-「Azure 監視器」是您所有 Azure 服務之監視和記錄功能的單一來源。 您可以將「Azure 監視器」產生的記錄傳送給 OMS Log Analytics、「事件中樞」或「Azure 儲存體」來進行自訂的處理。 「Azure 監視器」的計量和診斷設定可讓您即時檢視資源的效能。 請繼續閱讀本文來了解如何搭配您的 IoT 中樞來[使用 Azure 監視器](#use-azure-monitor)。 
+「Azure 監視器」是您所有 Azure 服務之監視和記錄功能的單一來源。 您可以將 Azure 監視器產生的診斷記錄傳送給 Log Analytics、事件中樞或 Azure 儲存體來進行自訂處理。 Azure 監視器的計量和診斷設定可讓您檢視資源的效能。 請繼續閱讀本文來了解如何搭配您的 IoT 中樞來[使用 Azure 監視器](#use-azure-monitor)。 
+
+> [!IMPORTANT]
+> 不保證使用 Azure 監視器診斷記錄透過 IoT 中樞服務發出的事件是可靠的或按順序的。 某些事件可能會遺失，或未按順序傳遞。 診斷記錄也不是即時的，而且它可能需要幾分鐘的時間才能將事件記錄到您所選擇的目的地。
 
 「Azure 資源健康狀態」可協助您在 Azure 問題影響您的資源時，進行診斷並取得支援。 個人化儀表板可提供您「IoT 中樞」的目前和過去健全狀態。 請繼續閱讀本文來了解如何搭配您的 IoT 中樞來[使用 Azure 資源健康狀態](#use-azure-resource-health)。 
 
@@ -46,7 +44,10 @@ ms.lasthandoff: 10/11/2017
 
 #### <a name="connections"></a>連線
 
-連線類別會追蹤當裝置與 IoT 中樞連線或中斷連線時發生的錯誤。 若想識別未經授權的連線嘗試，以及在連線品質不佳之區域內的裝置中斷連線時進行追蹤，就很適合追蹤此類別。
+連線類別會追蹤來自 IoT 中樞的裝置連線和中斷連線事件以及錯誤。 若想識別未經授權的連線嘗試，以及在連線品質不佳之區域內的裝置中斷連線時進行追蹤，就很適合追蹤此類別。
+
+> [!NOTE]
+> 針對可靠的裝置連線狀態，勾選 [裝置活動訊號][lnk-devguide-heartbeat]。
 
 ```json
 {
@@ -157,7 +158,7 @@ ms.lasthandoff: 10/11/2017
 
 #### <a name="cloud-to-device-twin-operations"></a>雲端到裝置對應項作業
 
-雲端到裝置對應項作業類別會追蹤裝置對應項上服務起始的事件。 這些作業可能包括取得對應項、更新回報的屬性，以及訂閱所需的屬性
+雲端到裝置對應項作業類別會追蹤裝置對應項上服務起始的事件。 這些作業可能包括取得對應項、更新或取代標記，以及更新或取代所需的屬性。 
 
 ```json
 {
@@ -174,7 +175,7 @@ ms.lasthandoff: 10/11/2017
 
 #### <a name="device-to-cloud-twin-operations"></a>裝置到雲端對應項作業
 
-裝置到雲端對應項作業類別會追蹤裝置對應項上裝置起始的事件。 這些作業可能包括取得對應項、更新或取代標記，以及更新或取代所需的屬性。 
+裝置到雲端對應項作業類別會追蹤裝置對應項上裝置起始的事件。 這些作業可能包括取得對應項、更新回報的屬性，以及訂閱所需的屬性。
 
 ```json
 {
@@ -244,7 +245,7 @@ ms.lasthandoff: 10/11/2017
 
 在透過診斷設定來設定事件記錄功能之後，您可以建立會將記錄讀出的應用程式，以便根據記錄中的資訊來採取行動。 以下範例程式碼會從事件中樞擷取記錄：
 
-```
+```csharp
 class Program 
 { 
     static string connectionString = "{your AMS eventhub endpoint connection string}"; 
@@ -328,7 +329,7 @@ class Program
 - [搭配連接 IoT 中樞和信箱的 Azure Logic Apps 進行 IoT 遠端監視和通知][lnk-monitoring-notifications]
 
 
-[lnk-AM]: ../monitoring-and-diagnostics/index.yml
+[lnk-AM]: ../azure-monitor/index.yml
 [lnk-ARH]: ../service-health/resource-health-overview.md
 [lnk-metrics]: iot-hub-metrics.md
 [lnk-migrate]: iot-hub-migrate-to-diagnostics-settings.md
@@ -336,3 +337,4 @@ class Program
 [lnk-AM-schemas]: ../monitoring-and-diagnostics/monitoring-diagnostic-logs-schema.md
 [lnk-ARH-checks]: ../service-health/resource-health-checks-resource-types.md
 [lnk-monitoring-notifications]: iot-hub-monitoring-notifications-with-azure-logic-apps.md
+[lnk-devguide-heartbeat]: iot-hub-devguide-identity-registry.md#device-heartbeat

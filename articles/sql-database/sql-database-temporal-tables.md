@@ -2,18 +2,22 @@
 title: 開始使用 Azure SQL Database 中的時態表 | Microsoft Docs
 description: 了解如何開始使用 Azure SQL Database 中的時態表。
 services: sql-database
-author: bonova
-ms.date: 03/21/2018
-manager: craigg
 ms.service: sql-database
-ms.custom: develop databases
-ms.topic: article
+ms.subservice: development
+ms.custom: ''
+ms.devlang: ''
+ms.topic: conceptual
+author: bonova
 ms.author: bonova
-ms.openlocfilehash: 0299d52396549baf8ea7e5eb7145585c7b5900a6
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.reviewer: carlrab
+manager: craigg
+ms.date: 03/21/2018
+ms.openlocfilehash: d18630f9b4cea28bd19b2ac24e7b8c3d1822e17c
+ms.sourcegitcommit: 51a1476c85ca518a6d8b4cc35aed7a76b33e130f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47166413"
 ---
 # <a name="getting-started-with-temporal-tables-in-azure-sql-database"></a>開始使用 Azure SQL Database 中的時態表
 時態表是 Azure SQL Database 的一個新的可程式性功能，可讓您追蹤和分析資料變更的完整歷程記錄，而不需要撰寫自訂程式碼。 時態表會保持資料與時間內容之間的密切關係，因此只有在特定期間內，才會將預存的事實解譯為有效。 時態表的這個屬性允許進行以有效時間為基礎的分析，並可從資料演進中取得獨到見解。
@@ -21,7 +25,7 @@ ms.lasthandoff: 03/23/2018
 ## <a name="temporal-scenario"></a>時態表案例
 本文說明在應用程式案例中使用時態表的步驟。 假設您想要從頭開始追蹤正在開發的新網站上的使用者活動，或您想要使用使用者活動分析擴充的現有網站上的使用者活動。 在這個簡化的範例中，我們假設在一段時間內瀏覽過的網頁數目是必須在裝載於 Azure SQL Database 的網站資料庫中擷取和監視的指標。 使用者活動歷史分析的目標是要獲得重新設計網站的意見，並為訪客提供更好的經驗。
 
-此案例的資料庫模型非常簡單：使用者活動度量是以單一整數欄位 **PageVisited** 表示，而且會與使用者設定檔上的基本資訊一起被擷取。 此外，對於以時間為基礎的分析，您要為每個使用者保留一連串的資料列，其中每個資料列都代表特定的一段時間內特定使用者瀏覽過的頁數。
+此案例的資料庫模型非常簡單：使用者活動度量是以單一整數欄位 **PageVisited** 表示，而且會與使用者設定檔上的基本資訊一起被擷取。 此外，對於以時間為基礎的分析，您要為每個使用者保留一連串的資料列，其中每個資料列都代表一段特定時間內特定使用者瀏覽過的頁數。
 
 ![結構描述](./media/sql-database-temporal-tables/AzureTemporal1.png)
 
@@ -40,11 +44,11 @@ ms.lasthandoff: 03/23/2018
 
 ![SSMSNewTable](./media/sql-database-temporal-tables/AzureTemporal2.png)
 
-在 SSDT 中，將新項目加入至資料庫專案時，選擇 [時態表 (系統設定版本)] 範本。 這將會開啟資料表設計工具，並讓您輕鬆地指定資料表配置︰
+在 SSDT 中，將新項目新增至資料庫專案時，請選擇 [時態表 (系統建立版本)] 範本。 這將會開啟資料表設計工具，並讓您輕鬆地指定資料表配置︰
 
 ![SSDTNewTable](./media/sql-database-temporal-tables/AzureTemporal3.png)
 
-您也可以透過直接指定 Transact-SQL 陳述式來建立時態表，如以下範例所示。 請注意，每個時態表的必要元素為 PERIOD 定義以及可參照將儲存歷史資料列版本的另一個使用者資料表的 SYSTEM_VERSIONING 子句︰
+您也可以透過直接指定 Transact-SQL 陳述式來建立時態表，如下列範例所示。 請注意，每個時態表的必要元素為 PERIOD 定義以及可參照將儲存歷史資料列版本的另一個使用者資料表的 SYSTEM_VERSIONING 子句︰
 
 ````
 CREATE TABLE WebsiteUserInfo 

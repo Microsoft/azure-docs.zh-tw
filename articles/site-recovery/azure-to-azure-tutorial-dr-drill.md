@@ -1,21 +1,22 @@
 ---
-title: "使用 Azure Site Recovery 執行 Azure VM 到次要 Azure 區域的災害復原演練 (預覽)"
-description: "了解如何使用 Azure Site Recovery 服務執行 Azure VM 到次要 Azure 區域的災害復原演練。"
+title: 使用 Azure Site Recovery 執行 Azure VM 到次要 Azure 區域的災害復原演練
+description: 了解如何使用 Azure Site Recovery 服務執行 Azure VM 到次要 Azure 區域的災害復原演練。
 services: site-recovery
 author: rayne-wiselman
 manager: carmonm
 ms.service: site-recovery
 ms.topic: tutorial
-ms.date: 02/07/2018
+ms.date: 07/06/2018
 ms.author: raynew
 ms.custom: mvc
-ms.openlocfilehash: 66ad4f782917d41a0fd1fbbe5ce50de0dda4589e
-ms.sourcegitcommit: 059dae3d8a0e716adc95ad2296843a45745a415d
+ms.openlocfilehash: 789e637f3a5806aafe0ca8cad5b6408ef77b32d0
+ms.sourcegitcommit: a06c4177068aafc8387ddcd54e3071099faf659d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 07/09/2018
+ms.locfileid: "37919609"
 ---
-# <a name="run-a-disaster-recovery-drill-for-azure-vms-to-a-secondary-azure-region-preview"></a>執行 Azure VM 到次要 Azure 區域的災害復原演練 (預覽)
+# <a name="run-a-disaster-recovery-drill-for-azure-vms-to-a-secondary-azure-region"></a>執行 Azure VM 到次要 Azure 區域的災害復原演練
 
 [Azure Site Recovery](site-recovery-overview.md) 服務藉由確保您的商務應用程式可在計劃性與非計劃性中斷期間持續啟動並執行，來提供商務持續性和災害復原 (BCDR) 策略。 Site Recovery 會管理並協調內部部署機器和 Azure 虛擬機器 (VM) 的災害復原，包括複寫、容錯移轉和復原。
 
@@ -24,6 +25,8 @@ ms.lasthandoff: 02/09/2018
 > [!div class="checklist"]
 > * 檢查必要條件
 > * 執行單一 VM 測試容錯移轉
+
+
 
 ## <a name="prerequisites"></a>先決條件
 

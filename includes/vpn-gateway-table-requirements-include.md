@@ -8,11 +8,12 @@ ms.topic: include
 ms.date: 03/21/2018
 ms.author: cherylmc
 ms.custom: include file
-ms.openlocfilehash: d8091fdade9cd417af58755d8245c2fb091b86b3
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 5e7e365a73c9ba9cfd91d4f93759e7af55a0ad48
+ms.sourcegitcommit: 95d9a6acf29405a533db943b1688612980374272
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 06/23/2018
+ms.locfileid: "30929320"
 ---
 下表列出 PolicyBased 和 RouteBased VPN 閘道的需求。 此資料表適用於資源管理員與傳統部署模型。 就傳統模型而言，PolicyBased VPN 閘道與「靜態」閘道相同，而 RouteBased 閘道則與「動態」閘道相同。
 
@@ -23,4 +24,6 @@ ms.lasthandoff: 03/23/2018
 | **驗證方法** |預先共用金鑰 |S2S 連線的預先共用金鑰，P2S 連線的憑證 |S2S 連線的預先共用金鑰，P2S 連線的憑證 |S2S 連線的預先共用金鑰，P2S 連線的憑證 |
 | **S2S 連接的數目上限** |1 |10 |10 |30 |
 | **P2S 連接的數目上限** |不支援 |128 |128 |128 |
-| **作用中路由支援 (BGP)** |不支援 |不支援 |支援 |支援 |
+| **作用中路由支援 (BGP)** (*) |不支援 |不支援 |支援 |支援 |
+
+  (*) BGP 傳統部署模型則不支援。

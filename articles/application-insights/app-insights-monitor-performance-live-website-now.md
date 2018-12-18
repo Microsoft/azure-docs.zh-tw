@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure Application Insights 監視即時 ASP.NET Web 應用程式 | Microsoft Docs"
-description: "監視網站的效能而不重新部署網站。 使用裝載於內部部署、VM 中或 Azure 上的 ASP.NET Web 應用程式。"
+title: 使用 Azure Application Insights 監視即時 ASP.NET Web 應用程式 | Microsoft Docs
+description: 監視網站的效能而不重新部署網站。 使用裝載於內部部署、VM 中或 Azure 上的 ASP.NET Web 應用程式。
 services: application-insights
 documentationcenter: .net
 author: mrbullwinkle
@@ -10,21 +10,21 @@ ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
-ms.topic: get-started-article
-ms.date: 05/05/2017
+ms.topic: conceptual
+ms.date: 09/05/2018
 ms.author: mbullwin
-ms.openlocfilehash: 869ea96072b1492db929c16cfb1e22b0c96bca7d
-ms.sourcegitcommit: e462e5cca2424ce36423f9eff3a0cf250ac146ad
+ms.openlocfilehash: 54a335cf1386ab29c0e0214bccf1f53a076da02b
+ms.sourcegitcommit: e2348a7a40dc352677ae0d7e4096540b47704374
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/01/2017
+ms.lasthandoff: 09/05/2018
+ms.locfileid: "43783488"
 ---
 # <a name="instrument-web-apps-at-runtime-with-application-insights"></a>在執行階段使用 Application Insights 檢測 Web 應用程式
 
-
 您可以使用 Azure Application Insights 檢測即時 Web 應用程式，而不需修改或重新部署您的程式碼。 如果您的應用程式是由內部部署 IIS 伺服器裝載，請安裝狀態監視器。 如果這些是 Azure Web 應用程式或在 Azure VM 中執行，您可以從 Azure 控制台切換為 Application Insights 監視。 (我們還提供有關檢測[即時 J2EE Web 應用程式](app-insights-java-live.md)和 [Azure 雲端服務](app-insights-cloudservices.md)的個別文章)。您需要 [Microsoft Azure](http://azure.com) 訂用帳戶。
 
-![範例圖表](./media/app-insights-monitor-performance-live-website-now/10-intro.png)
+![App Insights 概觀圖表的螢幕擷取畫面，包含失敗的要求、伺服器回應時間和伺服器要求的相關資訊](./media/app-insights-monitor-performance-live-website-now/overview-graphs.png)
 
 下列三種途徑均可讓您將 Application Insights 套用至 .NET Web 應用程式：
 
@@ -36,14 +36,14 @@ ms.lasthandoff: 11/01/2017
 
 |  | 建置階段 | 執行階段 |
 | --- | --- | --- |
-| 要求和例外狀況 |yes |yes |
-| [更詳細的例外狀況](app-insights-asp-net-exceptions.md) | |yes |
+| 要求和例外狀況 |是 |是 |
+| [更詳細的例外狀況](app-insights-asp-net-exceptions.md) | |是 |
 | [相依性診斷](app-insights-asp-net-dependencies.md) |在 .Net 4.6 + 上，但較少細節 |是，完整詳細資料︰結果碼、SQL 命令文字、HTTP 指令動詞|
-| [系統效能計數器](app-insights-performance-counters.md) |yes |yes |
-| [自訂遙測的 API][api] |yes |否 |
-| [追蹤記錄檔整合](app-insights-asp-net-trace-logs.md) |yes |否 |
-| [頁面檢視和使用者資料](app-insights-javascript.md) |yes |否 |
-| 需要重新建置程式碼 |yes | 否 |
+| [系統效能計數器](app-insights-performance-counters.md) |是 |是 |
+| [自訂遙測的 API][api] |是 |否 |
+| [追蹤記錄檔整合](app-insights-asp-net-trace-logs.md) |是 |否 |
+| [頁面檢視和使用者資料](app-insights-javascript.md) |是 |否 |
+| 需要重新建置程式碼 |是 | 否 |
 
 
 ## <a name="monitor-a-live-azure-web-app"></a>監視即時 Azure Web 應用程式

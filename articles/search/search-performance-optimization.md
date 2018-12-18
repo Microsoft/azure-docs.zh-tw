@@ -1,24 +1,20 @@
 ---
-title: "Azure 搜尋服務的效能與最佳化考量 | Microsoft Docs"
-description: "調整 Azure 搜尋服務效能並設定最佳規模"
-services: search
-documentationcenter: 
+title: Azure 搜尋服務的效能與最佳化考量 | Microsoft Docs
+description: 調整 Azure 搜尋服務效能並設定最佳規模
 author: LiamCavanagh
-manager: pablocas
-editor: 
-ms.assetid: 4d3cd864-29d2-4921-be0d-a3f1a819de46
+manager: jlembicz
+services: search
 ms.service: search
 ms.devlang: rest-api
-ms.workload: search
-ms.topic: article
-ms.tgt_pltfrm: na
+ms.topic: conceptual
 ms.date: 05/01/2017
 ms.author: liamca
-ms.openlocfilehash: f4e371fc16bc57e6963f1ec51c0ea864fa568f0c
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 89c0352723f1ed00784250b566902028af853d10
+ms.sourcegitcommit: fa493b66552af11260db48d89e3ddfcdcb5e3152
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 04/23/2018
+ms.locfileid: "31797757"
 ---
 # <a name="azure-search-performance-and-optimization-considerations"></a>Azure 搜尋服務的效能與最佳化考量
 絕佳搜尋體驗是許多行動和 Web 應用程式成功的關鍵。 從房地產到二手車市場，再到線上目錄，快速搜尋和相關結果都將影響客戶體驗。 本文旨在協助您探索如何充分利用 Azure 搜尋服務的最佳做法，特別適用於對延展性、多語言支援或自訂排名有複雜需求的進階案例。  此外，本文件也會概述本質，並涵蓋可在真實世界客戶應用程式中有效率地工作的處理方法。
@@ -46,8 +42,8 @@ ms.lasthandoff: 10/11/2017
 ## <a name="scaling-azure-search-for-high-query-rates-and-throttled-requests"></a>調整 Azure 搜尋服務以提供高速查詢和節流要求
 當您收到太多節流要求或增加的查詢負載已超過目標延遲率時，您可以使用下列其中一種方式來查看以降低延遲率：
 
-1. **增加複本︰**複本就像是您的資料複本，允許 Azure 搜尋服務針對多個複本進行要求的負載平衡。  在複本之間針對資料進行的所有負載平衡和複寫都是由 Azure 搜尋服務所管理，而您可以隨時變更配置給服務的複本數目。  您最多可在標準搜尋服務中配置 12 個複本，並在基本搜尋服務中配置 3 個複本。 您可以從 [Azure 入口網站](search-create-service-portal.md)或 [PowerShell](search-manage-powershell.md) 來調整複本。
-2. **增加搜尋服務層︰**Azure 搜尋服務來自[層數](https://azure.microsoft.com/pricing/details/search/)，而這其中的每一層都會提供不同等級的效能。  在某些情況下，您可能會有這麼多查詢，即使當複本超量時，您所在的層仍不足以提供低延遲率。在此情況下，您可能要考慮使用較高的搜尋層，例如 Azure 搜尋服務 S3 層，這非常適合具有大量文件且有極高查詢工作負載的案例。
+1. **增加複本︰** 複本就像是您的資料複本，允許 Azure 搜尋服務針對多個複本進行要求的負載平衡。  在複本之間針對資料進行的所有負載平衡和複寫都是由 Azure 搜尋服務所管理，而您可以隨時變更配置給服務的複本數目。  您最多可在標準搜尋服務中配置 12 個複本，並在基本搜尋服務中配置 3 個複本。 您可以從 [Azure 入口網站](search-create-service-portal.md)或 [PowerShell](search-manage-powershell.md) 來調整複本。
+2. **增加搜尋服務層︰** Azure 搜尋服務來自[層數](https://azure.microsoft.com/pricing/details/search/)，而這其中的每一層都會提供不同等級的效能。  在某些情況下，您可能會有這麼多查詢，即使當複本超量時，您所在的層仍不足以提供低延遲率。在此情況下，您可能要考慮使用較高的搜尋層，例如 Azure 搜尋服務 S3 層，這非常適合具有大量文件且有極高查詢工作負載的案例。
 
 ## <a name="scaling-azure-search-for-slow-individual-queries"></a>針對速度較慢的個別查詢調整 Azure 搜尋服務
 延遲率為什麼很慢的另一個原因是，因為單一查詢花費太長的時間才能完成。  在此情況下，新增複本將無法改善延遲率。  在此情況下，有兩個可用選項：
@@ -56,7 +52,7 @@ ms.lasthandoff: 10/11/2017
    
    在標準搜尋服務中最多可有 12 個分割區，在基本搜尋服務中則為 1 個分割區。  您可以從 [Azure 入口網站](search-create-service-portal.md)或 [PowerShell](search-manage-powershell.md) 來調整分割區。
 2. **限制高基數欄位︰** 高基數欄位包含具有大量唯一值的可 Facet 或可篩選欄位，因此，會取得許多要在其上計算結果的資源。   例如，將 [產品識別碼] 或 [說明] 欄位設定為可 Facet 或可篩選的會導致高基數，因為文件彼此間大多數值都是唯一的。 如果可能，請限制高基數欄位數目。
-3. **增加搜尋服務層︰**另一種方式是往上移動到更高的 Azure 搜尋服務層，可為速度較慢的查詢改善效能。  每一個較高的層也會提供更快速的 CPU 和更多記憶體，可以對查詢效能產生正面的影響。
+3. **增加搜尋服務層︰** 另一種方式是往上移動到更高的 Azure 搜尋服務層，可為速度較慢的查詢改善效能。  每一個較高的層也會提供更快速的 CPU 和更多記憶體，可以對查詢效能產生正面的影響。
 
 ## <a name="scaling-for-availability"></a>調整可用性
 複本不僅有助於減少查詢延遲，也可以允許高可用性。  利用單一複本，您應該可以預期定期的停機時間，因為伺服器會在軟體更新之後重新開機，或針對其他將發生的維護事件重新開機。  因此，請務必考慮應用程式是否需要搜尋 (查詢) 及寫入 (編製事件的索引) 的高可用性。  Azure 搜尋服務在具有下列屬性的所有付費搜尋供應項目上提供 SLA 選項：

@@ -1,25 +1,23 @@
 ---
-title: "適用於 Azure 的 MongoDB、React 及 Node.js 教學課程 | Microsoft Docs"
-description: "了解如何透過此影片式教學課程系列，使用您用於 MongoDB 的完全相同 API，以 Azure Cosmos DB 上的 React 和 Node.js 建立 MongoDB 應用程式。"
+title: 適用於 Azure 的 MongoDB、React 及 Node.js 教學課程 | Microsoft Docs
+description: 了解如何透過此影片式教學課程系列，使用您用於 MongoDB 的完全相同 API，以 Azure Cosmos DB 上的 React 和 Node.js 建立 MongoDB 應用程式。
 services: cosmos-db
-documentationcenter: 
-author: mimig1
-manager: jhubbard
-editor: 
-ms.assetid: 
+author: johnpapa
+manager: kfile
+editor: ''
 ms.service: cosmos-db
-ms.workload: 
-ms.tgt_pltfrm: na
+ms.component: cosmosdb-mongo
 ms.devlang: nodejs
 ms.topic: tutorial
 ms.date: 09/05/2017
-ms.author: mimig
+ms.author: jopapa
 ms.custom: mvc
-ms.openlocfilehash: 96cd397a7f04fe579b9c6331423abe107ad1c6d9
-ms.sourcegitcommit: 7136d06474dd20bb8ef6a821c8d7e31edf3a2820
+ms.openlocfilehash: 28651f0b9a2c775292b5c9406f676b45fc4e5d14
+ms.sourcegitcommit: cb61439cf0ae2a3f4b07a98da4df258bfb479845
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/05/2017
+ms.lasthandoff: 09/05/2018
+ms.locfileid: "43701777"
 ---
 # <a name="create-a-mongodb-app-with-react-and-azure-cosmos-db"></a>使用 React 和 Azure Cosmos DB 建立 MongoDB 應用程式  
 
@@ -39,7 +37,7 @@ ms.lasthandoff: 12/05/2017
 
 您想要以 Angular 建置此範例應用程式嗎？ 請參閱 [Angular 教學課程影片系列](tutorial-develop-mongodb-nodejs.md)。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 * [Node.js](https://www.nodejs.org)
 
 ### <a name="finished-project"></a>已完成的專案

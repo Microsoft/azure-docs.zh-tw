@@ -7,7 +7,7 @@ VM 擴充功能可協助您：
 * 重設或安裝連線功能，例如 RDP 和 SSH
 * 診斷、監視和管理您的 VM
 
-也有許多其他功能。 會定期發行新的 VM 擴充功能。 這篇文章描述 Windows 和 Linux 的 Azure VM 代理程式，以及它們如何支援 VM 擴充功能。 如需依功能分類的 VM 延伸模組清單，請參閱 [Azure VM 延伸模組與功能](../articles/virtual-machines/windows/extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+也有許多其他功能。 會定期發行新的 VM 擴充功能。 這篇文章描述 Windows 和 Linux 的 Azure VM 代理程式，以及它們如何支援 VM 擴充功能。 如需依功能分類的 VM 延伸模組清單，請參閱 [Azure VM 延伸模組與功能](../articles/virtual-machines/extensions/features-windows.md)。
 
 ## <a name="azure-vm-agents-for-windows-and-linux"></a>適用於 Windows 和 Linux 的 Azure VM 代理程式
 Azure 虛擬機器代理程式 (VM 代理程式) 是一個安全、輕量級程序，它會安裝、設定和移除 Azure 虛擬機器執行個體上的 VM 擴充功能。 VM 代理程式會做為 Azure VM 的安全本機控制服務。 代理程式載入的擴充功能提供特定功能，以提升使用執行個體時的產能。
@@ -31,7 +31,7 @@ Azure 虛擬機器代理程式 (VM 代理程式) 是一個安全、輕量級程�
       $vm.VM.ProvisionGuestAgent = $TRUE
       Update-AzureVM –Name $name –VM $vm.VM –ServiceName $svc
 
-* 當您建立 VM 映像時，會包含已安裝的 VM 代理程式。 一旦具有 VM 代理程式的映像存在，您可以將該映像上傳至 Azure。 若為 Windows VM，請下載 [Windows VM Agent.msi 檔案](http://go.microsoft.com/fwlink/?LinkID=394789) ，然後安裝 VM 代理程式。 若為 Linux VM，從位於 <https://github.com/Azure/WALinuxAgent> 的 GitHub 儲存機制安裝 VM 代理程式。 如需如何在 Linux 上安裝 VM 代理程式的詳細資訊，請參閱[Azure Linux VM 代理程式使用者指南](../articles/virtual-machines/linux/agent-user-guide.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+* 當您建立 VM 映像時，會包含已安裝的 VM 代理程式。 一旦具有 VM 代理程式的映像存在，您可以將該映像上傳至 Azure。 若為 Windows VM，請下載 [Windows VM Agent.msi 檔案](http://go.microsoft.com/fwlink/?LinkID=394789) ，然後安裝 VM 代理程式。 若為 Linux VM，請從位於 <https://github.com/Azure/WALinuxAgent> 的 GitHub 存放庫安裝 VM 代理程式。 如需如何在 Linux 上安裝 VM 代理程式的詳細資訊，請參閱[Azure Linux VM 代理程式使用者指南](../articles/virtual-machines/extensions/agent-linux.md)。
 
 > [!NOTE]
 > 在 PaaS 中，VM 代理程式稱為 **WindowsAzureGuestAgent**，且在 Web 和背景工作角色 VM 中皆可使用。 (如需詳細資訊，請參閱 [Azure 角色架構](http://blogs.msdn.com/b/kwill/archive/2011/05/05/windows-azure-role-architecture.aspx))。角色 VM 的 VM 代理程式現已可將延伸模組加入雲端服務 VM，其方法與永續性虛擬機器相同。 角色 VM 和永續性 VM 上 VM 擴充功能之間最大的差異是新增 VM 擴充功能的時機。 使用角色 VM 時，擴充功能會先新增至雲端服務，然後新增至該雲端服務內的部署。

@@ -1,45 +1,41 @@
 ---
-title: 使用 Azure CLI 2.0 搭配 Azure 儲存體 | Microsoft Docs
-description: 了解如何使用「Azure 命令列介面」(Azure CLI) 2.0 搭配「Azure 儲存體」來建立和管理儲存體帳戶，以及處理 Azure Blob 和檔案。 Azure CLI 2.0 是一種以 Python 撰寫的跨平台工具。
+title: 使用 Azure CLI 搭配 Azure 儲存體 | Microsoft Docs
+description: 了解如何搭配 Azure 儲存體使用 Azure 命令列介面 (Azure CLI) 來建立和管理儲存體帳戶，以及使用 Azure Blob 和檔案。
 services: storage
-documentationcenter: na
 author: roygara
-manager: jeconnoc
-editor: tysonn
-ms.assetid: ''
 ms.service: storage
-ms.workload: storage
-ms.tgt_pltfrm: na
 ms.devlang: azurecli
 ms.topic: article
 ms.date: 06/02/2017
 ms.author: rogarana
-ms.openlocfilehash: 99e67b9c8469f08f1cbfc980568eec35694d1ae2
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.component: common
+ms.openlocfilehash: cd2399e25889cdc9c885b76e002e47415c0629e5
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46984367"
 ---
-# <a name="using-the-azure-cli-20-with-azure-storage"></a>使用 Azure CLI 2.0 搭配 Azure 儲存體
+# <a name="using-the-azure-cli-with-azure-storage"></a>使用 Azure CLI 搭配 Azure 儲存體
 
-開放原始碼、跨平台的 Azure CLI 2.0 提供一組命令，供您運用在 Azure 平台上。 它提供許多與 [Azure 入口網站](https://portal.azure.com)相同的功能，包括豐富的資料存取功能。
+開放原始碼、跨平台的 Azure CLI 提供一組命令，供您使用 Azure 平台。 它提供許多與 [Azure 入口網站](https://portal.azure.com)相同的功能，包括豐富的資料存取功能。
 
-在本指南中，我們會說明如何使用 [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2) 來執行數項工作，以便使用您的 Azure 儲存體帳戶中的資源。 建議您在使用本指南之前，先下載並安裝或升級至最新版的 CLI 2.0。
+在此指南中，我們會說明如何使用 [Azure CLI](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2) 來執行數種工作，以便使用您 Azure 儲存體帳戶中的資源。 建議您在使用此指南之前，先下載並安裝或升級到最新版的 CLI。
 
 本指南中的範例假設在 Ubuntu 上使用 Bash 殼層，但其他平台應以類似方式執行。 
 
 [!INCLUDE [storage-cli-versions](../../../includes/storage-cli-versions.md)]
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 本指南假設您已了解 Azure 儲存體的基本概念。 而且假設您可以滿足針對 Azure 和儲存體服務所指定的帳戶建立需求。
 
 ### <a name="accounts"></a>帳戶
 * **Azure 帳戶**：如果您沒有 Azure 訂用帳戶，請[建立免費的 Azure 帳戶](https://azure.microsoft.com/free/)。
-* **儲存體帳戶**：請參閱[關於 Azure 儲存體帳戶](storage-create-storage-account.md)中的[建立儲存體帳戶](storage-create-storage-account.md#create-a-storage-account)。
+* **儲存體帳戶**：請參閱[關於 Azure 儲存體帳戶](storage-create-storage-account.md)中的[建立儲存體帳戶](storage-quickstart-create-account.md)。
 
-### <a name="install-the-azure-cli-20"></a>安裝 Azure CLI 2.0
+### <a name="install-the-azure-cli"></a>安裝 Azure CLI
 
-依照[安裝 Azure CLI 2.0](/cli/azure/install-az-cli2) 中的指示下載並安裝 Azure CLI 2.0。
+依照[安裝 Azure CLI](/cli/azure/install-az-cli2) 中的指示下載並安裝 Azure CLI。
 
 > [!TIP]
 > 如果您有安裝問題，請參閱本文的[安裝疑難排解](/cli/azure/install-az-cli2#installation-troubleshooting)一節，以及 GitHub 上的[安裝疑難排解](https://github.com/Azure/azure-cli/blob/master/doc/install_troubleshooting.md)指南。
@@ -100,16 +96,16 @@ Subgroups:
   * 這不適用於 Microsoft 帳戶或使用 Multi-Factor Authentication 的帳戶。
 * **登入服務主體**：`az login --service-principal -u http://azure-cli-2016-08-05-14-31-15 -p VerySecret --tenant contoso.onmicrosoft.com`
 
-## <a name="azure-cli-20-sample-script"></a>Azure CLI 2.0 範例指令碼
+## <a name="azure-cli-sample-script"></a>Azure CLI 範例指令碼
 
-接下來，我們將使用可發出一些基本 Azure CLI 2.0 命令的小型殼層指令碼，來與 Azure 儲存體資源問題互動。 指令碼會先在儲存體帳戶中建立新的容器，然後將現有的檔案 (以 blob 形式) 上傳至該容器。 它會接著列出容器中的所有 blob，最後，將此檔案下載至您指定的本機電腦上的目的地。
+接下來，我們將使用可發出一些基本 Azure CLI 命令的小型殼層指令碼，來與 Azure 儲存體資源互動。 指令碼會先在儲存體帳戶中建立新的容器，然後將現有的檔案 (以 blob 形式) 上傳至該容器。 它會接著列出容器中的所有 blob，最後，將此檔案下載至您指定的本機電腦上的目的地。
 
 ```bash
 #!/bin/bash
 # A simple Azure Storage example script
 
 export AZURE_STORAGE_ACCOUNT=<storage_account_name>
-export AZURE_STORAGE_ACCESS_KEY=<storage_account_key>
+export AZURE_STORAGE_KEY=<storage_account_key>
 
 export container_name=<container_name>
 export blob_name=<blob_name>
@@ -197,13 +193,24 @@ az storage account create \
   * `Standard_RAGRS`
   * `Standard_ZRS`
 
-
 ### <a name="set-default-azure-storage-account-environment-variables"></a>設定預設 Azure 儲存體帳戶環境變數
+
 您可以在 Azure 訂用帳戶中有多個儲存體帳戶。 若要選取其中一個來用於所有後續的儲存體命令，您可以設定下列環境變數︰
+
+首先，使用 [az storage account keys list](/cli/azure/storage/account/keys#list) 命令顯示您的儲存體帳戶金鑰：
+
+```azurecli-interactive
+az storage account keys list \
+    --account-name <account_name> \
+    --resource-group <resource_group> \
+    --output table
+```
+
+現在您有了金鑰，您可以將其和帳戶名稱定義為環境變數：
 
 ```azurecli
 export AZURE_STORAGE_ACCOUNT=<account_name>
-export AZURE_STORAGE_ACCESS_KEY=<key>
+export AZURE_STORAGE_KEY=<key>
 ```
 
 另一種設定預設儲存體帳戶的方法是使用連接字串。 首先，透過 `show-connection-string` 命令取得連接字串︰
@@ -221,8 +228,7 @@ export AZURE_STORAGE_CONNECTION_STRING="<connection_string>"
 ```
 
 > [!NOTE]
-> 本文下列各節中的所有範例都假設您已設定 `AZURE_STORAGE_ACCOUNT` 和 `AZURE_STORAGE_ACCESS_KEY` 環境變數。
->
+> 本文下列各節中的所有範例都假設您已設定 `AZURE_STORAGE_ACCOUNT` 和 `AZURE_STORAGE_KEY` 環境變數。
 
 ## <a name="create-and-manage-blobs"></a>建立和管理 Blob
 Azure Blob 儲存體是一項儲存大量非結構化資料的服務 (例如文字或二進位資料)，全球任何地方都可透過 HTTP 或 HTTPS 來存取這些資料。 本節假設您已熟悉 Azure Blob 儲存體的概念。 如需詳細資訊，請參閱[使用 .NET 開始使用 Azure Blob 儲存體](../blobs/storage-dotnet-how-to-use-blobs.md)和 [Blob 服務概念](/rest/api/storageservices/blob-service-concepts)。
@@ -251,6 +257,8 @@ az storage blob upload \
     --container-name <container_name> \
     --name <blob_name>
 ```
+
+如果您想直接上傳到儲存體帳戶中容器內的資料夾，請將 `--name <blob_name>` 取代為 `--name <folder/blob_name>`。
 
  根據預設，`blob upload` 命令會將 *.vhd 檔案上傳至分頁 blob 或者區塊 blob。 若要在上傳 blob 時指定另一種類型，您可以使用 `--type` 引數 - 允許的值為 `append`、`block` 和 `page`。
 
@@ -511,8 +519,8 @@ az storage share delete -n <share name> --snapshot '2017-10-04T23:28:35.0000000Z
 ```
 
 ## <a name="next-steps"></a>後續步驟
-以下有一些額外的資源，可供深入了解如何使用 Azure CLI 2.0。
+以下有一些額外的資源，可供深入了解如何使用 Azure CLI。 
 
-* [開始使用 Azure CLI 2.0](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)
-* [Azure CLI 2.0 命令參考](/cli/azure)
-* [GitHub 上的 Azure CLI 2.0](https://github.com/Azure/azure-cli)
+* [開始使用 Azure CLI](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)
+* [Azure CLI 命令參考](/cli/azure)
+* [GitHub 上的 Azure CLI](https://github.com/Azure/azure-cli)

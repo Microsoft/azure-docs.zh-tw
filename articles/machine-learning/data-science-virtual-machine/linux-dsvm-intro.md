@@ -3,22 +3,23 @@ title: 在 Azure 上佈建 Linux CentOS 資料科學虛擬機器 | Microsoft Doc
 description: 在 Azure 上設定和建立 Linux 資料科學虛擬機器以進行分析和機器學習服務。
 services: machine-learning
 documentationcenter: ''
-author: bradsev
+author: gopitk
 manager: cgronlun
-editor: cgronlun
 ms.assetid: 3bab0ab9-3ea5-41a6-a62a-8c44fdbae43b
 ms.service: machine-learning
+ms.component: data-science-vm
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 03/16/2018
-ms.author: bradsev
-ms.openlocfilehash: 550d49e3d6007c6b494deec95b785ea9bc214f3a
-ms.sourcegitcommit: a36a1ae91968de3fd68ff2f0c1697effbb210ba8
+ms.author: gokuma
+ms.openlocfilehash: db1d449e5c9f66446f00b637c5550dc9144920ff
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/17/2018
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39446760"
 ---
 # <a name="provision-a-linux-centos-data-science-virtual-machine-on-azure"></a>在 Azure 上佈建 Linux CentOS 資料科學虛擬機器
 
@@ -46,8 +47,8 @@ Linux 資料科學虛擬機器是以 CentOS 為基礎的 Azure 虛擬機器，�
 執行資料科學涉及反覆進行一連串的工作︰
 
 1. 尋找、載入和前置處理資料
-2. 建置和測試模型
-3. 部署要在智慧型應用程式中使用的模型
+1. 建置和測試模型
+1. 部署要在智慧型應用程式中使用的模型
 
 資料科學家使用各種工具來完成這些工作。 尋找適當版本的軟體然後下載、編譯並安裝這些版本是相當耗費時間的工作。
 
@@ -58,7 +59,7 @@ Linux 資料科學虛擬機器可以大幅減輕這樣的負擔。 使用它可�
 ## <a name="other-versions-of-the-data-science-virtual-machine"></a>其他版本的資料科學虛擬機器
 另提供 [Ubuntu](dsvm-ubuntu-intro.md) 映像，其中包含許多與 CentOS 映像相同的工具及深入學習架構。 亦提供 [Windows](provision-vm.md) 映像。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 您必須先具有下列項目，才可以建立 Linux 資料科學虛擬機器：
 
 * **Azure 訂用帳戶**：若要取得訂用帳戶，請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/free/)。
@@ -68,8 +69,8 @@ Linux 資料科學虛擬機器可以大幅減輕這樣的負擔。 使用它可�
 建立 Linux 資料科學虛擬機器執行個體的步驟如下：
 
 1. 瀏覽至 [Azure 入口網站](https://portal.azure.com/#create/microsoft-ads.linux-data-science-vmlinuxdsvm)上的虛擬機器清單。
-2. 按一下底部的 [建立] 以進入 wizard.![configure-data-science-vm](./media/linux-dsvm-intro/configure-linux-data-science-virtual-machine.png)
-3. 下列各節提供精靈中每個步驟 (列舉於上圖的右邊) 的輸入，可用來建立 Microsoft 資料科學虛擬機器。 以下是設定每個步驟所需的輸入：
+1. 按一下底部的 [建立] 以進入 wizard.![configure-data-science-vm](./media/linux-dsvm-intro/configure-linux-data-science-virtual-machine.png)
+1. 下列各節提供精靈中每個步驟 (列舉於上圖的右邊) 的輸入，可用來建立 Microsoft 資料科學虛擬機器。 以下是設定每個步驟所需的輸入：
    
    a. **基本**：
    
@@ -112,7 +113,7 @@ Linux 資料科學虛擬機器可以大幅減輕這樣的負擔。 使用它可�
 Linux VM 已經佈建了 X2Go 伺服器，並準備接受用戶端連接。 若要連接到 Linux VM 圖形化桌面，請在用戶端上進行下列動作：
 
 1. 從 [X2Go](http://wiki.x2go.org/doku.php/doc:installation:x2goclient)下載並安裝您用戶端平台適用的 X2Go 用戶端。    
-2. 執行 X2Go 用戶端，然後選取 [新增工作階段] 。 會開啟具有多個索引標籤的組態視窗。 輸入下列組態參數︰
+1. 執行 X2Go 用戶端，然後選取 [新增工作階段] 。 會開啟具有多個索引標籤的組態視窗。 輸入下列組態參數︰
    * **[工作階段] 索引標籤**：
      * **主機**︰Linux 資料科學 VM 的主機名稱或 IP 位址。
      * **登入**︰Linux VM 上的使用者名稱。
@@ -153,14 +154,16 @@ Python 3.5 安裝於 */anaconda/envs/py35/bin*上。
 
 若要安裝其他的 Python 程式庫，您需要在 sudo 底下執行 ```conda``` 或 ````pip```` 命令，並提供 Python 套件管理員的完整路徑 (conda 或 pip) 以安裝到正確的 Python 環境。 例如︰
 
-    sudo /anaconda/bin/pip install -n <package> #for Python 2.7 environment
-    sudo /anaconda/envs/py35/bin/pip install -n <package> # for Python 3.5 environment
+    sudo /anaconda/bin/pip install <package> #pip for Python 2.7
+    sudo /anaconda/envs/py35/bin/pip install <package> #pip for Python 3.5
+    sudo /anaconda/bin/conda install [-n py27] <package> #conda for Python 2.7, default behavior
+    sudo /anaconda/bin/conda install -n py35 <package> #conda for Python 3.5
 
 
 ### <a name="jupyter-notebook"></a>Jupyter 筆記本
 Jupyter Notebook 中也隨附 Anaconda 散發套件，這是一個共用程式碼與分析的環境。 Jupyter 筆記本是透過 JupyterHub 來存取。 您可以使用本機 Linux 使用者名稱和密碼來登入。
 
-Jupyter 筆記本伺服器已使用 Python 2、Python 3 及 R 核心進行預先設定。 有一個名為「Jupyter 筆記本」的桌面圖示可以啟動瀏覽器來存取 Notebook 伺服器。 如果您是透過 SSH 或 X2Go 用戶端進入 VM，您也可以造訪 [https://localhost:8000/](https://localhost:8000/) 來存取 Jupyter 筆記本伺服器。
+Jupyter 筆記本伺服器已使用 Python 2、Python 3 及 R 核心進行預先設定。 有一個名為「Jupyter 筆記本」的桌面圖示可以啟動瀏覽器來存取 Notebook 伺服器。 如果您透過 SSH 或 X2Go 用戶端進入 VM，則也可以造訪 [https://localhost:8000/](https://localhost:8000/) 來存取 Jupyter 筆記本伺服器。
 
 > [!NOTE]
 > 如果您收到任何憑證警告，請繼續。
@@ -353,16 +356,16 @@ Rattle (**R** **A**nalytical **T**ool **T**o **L**earn **E**asily) 會使用 GUI
 > 
 
 1. 按一下 [Execute (執行)] 。
-2. 隨即會顯示對話方塊，詢問您是否要使用範例天氣資料集。 按一下 [是]  載入範例。
-3. 按一下 [模型]  索引標籤。
-4. 按一下 [執行]  建立決策樹。
-5. 按一下 [繪圖]  顯示決策樹。
-6. 按一下 [樹系] 選項按鈕，然後按一下 [執行] 建置隨機樹系。
-7. 按一下 [評估]  索引標籤。
-8. 按一下 [風險] 選項按鈕，然後按一下 [執行] 顯示兩個風險 (累積) 效能繪圖。
-9. 按一下 [記錄檔] 索引標籤，顯示針對先前作業產生的 R 程式碼。
+1. 隨即會顯示對話方塊，詢問您是否要使用範例天氣資料集。 按一下 [是]  載入範例。
+1. 按一下 [模型]  索引標籤。
+1. 按一下 [執行]  建立決策樹。
+1. 按一下 [繪圖]  顯示決策樹。
+1. 按一下 [樹系] 選項按鈕，然後按一下 [執行] 建置隨機樹系。
+1. 按一下 [評估]  索引標籤。
+1. 按一下 [風險] 選項按鈕，然後按一下 [執行] 顯示兩個風險 (累積) 效能繪圖。
+1. 按一下 [記錄檔] 索引標籤，顯示針對先前作業產生的 R 程式碼。
    (由於目 Rattle 版本中的錯誤，您必須在記錄檔的文字中，於 *Export this log ...* 前面插入 *#* 字元。)
-10. 按一下 [匯出] 按鈕，將名為 weather_script.R 的 R 指令碼檔案儲存到主資料夾。
+1. 按一下 [匯出] 按鈕，將名為 weather_script.R 的 R 指令碼檔案儲存到主資料夾。
 
 您可以結束 Rattle 和 R。現在您可以修改產生的 R 指令碼，或照原樣使用它，隨時執行，以便重複執行在 Rattle UI 中完成的所有動作。 這是特別適合 R 初學者的簡單方式，讓他們得以在簡單的圖形介面中快速進行分析和機器學習，同時自動產生 R 程式碼來修改及/或學習。
 

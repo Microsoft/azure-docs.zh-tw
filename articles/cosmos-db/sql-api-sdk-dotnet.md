@@ -2,24 +2,22 @@
 title: Azure Cosmos DB：SQL .NET API、SDK 和資源 | Microsoft Docs
 description: 全面了解 SQL .NET API 和 SDK，包括發行日期、停用日期及 Azure Cosmos DB .NET SDK 每個版本之間的變更。
 services: cosmos-db
-documentationcenter: .net
 author: rnagpal
-manager: jhubbard
+manager: kfile
 editor: cgronlun
-ms.assetid: 8e239217-9085-49f5-b0a7-58d6e6b61949
 ms.service: cosmos-db
-ms.workload: data-services
-ms.tgt_pltfrm: na
+ms.component: cosmosdb-sql
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: reference
 ms.date: 03/09/2018
 ms.author: rnagpal
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 662a1d1d0f13b64cc87ab6eb0eee6af94cd97c54
-ms.sourcegitcommit: 34e0b4a7427f9d2a74164a18c3063c8be967b194
+ms.openlocfilehash: b7de476c6b96856e9b783ed8182985846bb39cfa
+ms.sourcegitcommit: f31bfb398430ed7d66a85c7ca1f1cc9943656678
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/30/2018
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47452389"
 ---
 # <a name="azure-cosmos-db-net-sdk-for-sql-api-download-and-release-notes"></a>Azure Cosmos DB .NET SDK for SQL API：下載和版本資訊
 > [!div class="op_single_selector"]
@@ -33,8 +31,8 @@ ms.lasthandoff: 03/30/2018
 > * [REST](https://docs.microsoft.com/rest/api/cosmos-db/)
 > * [REST 資源提供者](https://docs.microsoft.com/rest/api/cosmos-db-resource-provider/)
 > * [SQL](https://msdn.microsoft.com/library/azure/dn782250.aspx)
-> 
-> 
+> * [BulkExecutor - .NET](sql-api-sdk-bulk-executor-dot-net.md)
+> * [BulkExecutor - Java](sql-api-sdk-bulk-executor-java.md)
 
 <table>
 
@@ -52,10 +50,46 @@ ms.lasthandoff: 03/30/2018
 </table></br>
 
 ## <a name="release-notes"></a>版本資訊
+### <a name="a-name211211"></a><a name="2.1.1"/>2.1.1
+
+* 對多區域要求暫時性失敗新增更多復原能力。
+
+### <a name="a-name210210"></a><a name="2.1.0"/>2.1.0
+
+* 已新增多區域寫入支援。
+* 透過 TOP 和 MaxBufferedItemCount 改善了跨分割區查詢效能。
+
+### <a name="a-name200200"></a><a name="2.0.0"/>2.0.0
+
+* 已新增要求取消支援。
+* 已將 SetCurrentLocation 新增至 ConnectionPolicy，以根據區域自動填入所要的位置。
+* 已修正具有 Min/Max 和篩選條件且不符合個別分割區上任何文件的跨分割區查詢所發生的錯誤。
+* DocumentClient 方法現在會與 IDocumentClient 對應。
+* 已更新直接 TCP 傳輸堆疊來減少所建立的連線數。
+* 已新增對於非 Windows 用戶端的直接模式 TCP 支援。
+
+### <a name="a-name200-preview2200-preview2"></a><a name="2.0.0-preview2"/>2.0.0-preview2
+
+* 已新增要求取消支援。
+* 已將 SetCurrentLocation 新增至 ConnectionPolicy，以根據區域自動填入所要的位置。
+* 已修正具有 Min/Max 和篩選條件且不符合個別分割區上任何文件的跨分割區查詢所發生的錯誤。
+
+### <a name="a-name200-preview200-preview"></a><a name="2.0.0-preview"/>2.0.0-preview
+
+* DocumentClient 方法現在會與 IDocumentClient 對應。
+* 已更新直接 TCP 傳輸堆疊來減少所建立的連線數。
+* 已新增對於非 Windows 用戶端的直接模式 TCP 支援。
+
+### <a name="a-name12201220"></a><a name="1.22.0"/>1.22.0
+
+* 已將 ConsistencyLevel 屬性新增至 FeedOptions。
+* 已將 JsonSerializerSettings 新增至 RequestOptions 和 FeedOptions。
+* 已將 EnableReadRequestsFallback 新增至 ConnectionPolicy。
+
 ### <a name="a-name12111211"></a><a name="1.21.1"/>1.21.1
 
 * 修正跨分割區 Order By 查詢在邊角案例中的 KeyNotFoundException。
-* 修正在 LINQ 查詢的 select 子句中，JsonPropery 屬性未被接受的錯誤 (bug)。
+* 修正在 LINQ 查詢的 select 子句中，JsonProperty 屬性未被接受的錯誤。
 
 ### <a name="a-name12021202"></a><a name="1.20.2"/>1.20.2
 
@@ -293,6 +327,10 @@ Microsoft 至少會在停用 SDK 的 **12 個月** 之前提供通知，以供�
 
 | 版本 | 發行日期 | 停用日期 |
 | --- | --- | --- |
+| [2.1.1](#2.1.1) |2018 年 9 月 27 日 |--- |
+| [2.1.0](#2.1.0) |2018 年 9 月 21 日 |--- |
+| [2.0.0](#2.0.0) |2018 年 9 月 7 日 |--- |
+| [1.22.0](#1.22.0) |2018 年 4 月 19 日 |--- |
 | [1.21.1](#1.20.1) |2018 年 3 月 9 日 |--- |
 | [1.20.2](#1.20.1) |2018 年 2 月 21 日 |--- |
 | [1.20.1](#1.20.1) |2018 年 2 月 5 日 |--- |

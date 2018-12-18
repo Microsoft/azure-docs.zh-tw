@@ -14,13 +14,14 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 11/17/2017
 ms.author: mezha
-ms.openlocfilehash: f6d008a92677d28d0184e64637dcb2e093299519
-ms.sourcegitcommit: 4ea06f52af0a8799561125497f2c2d28db7818e7
+ms.openlocfilehash: aaec713a7680aeda8317f5af41b9b99bcbdca4b7
+ms.sourcegitcommit: 5b2ac9e6d8539c11ab0891b686b8afa12441a8f3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/21/2017
+ms.lasthandoff: 04/06/2018
+ms.locfileid: "30905141"
 ---
-# <a name="securing-azure-content-delivery-network-assets-with-token-authentication"></a>使用權杖驗證來保護 Azure 內容傳遞網路資產
+# <a name="securing-azure-cdn-assets-with-token-authentication"></a>使用權杖驗證保護 Azure CDN 資產
 
 [!INCLUDE [cdn-premium-feature](../../includes/cdn-premium-feature.md)]
 
@@ -42,6 +43,9 @@ ms.lasthandoff: 11/21/2017
 
 如需詳細資訊，請參閱[設定權杖驗證](#setting-up-token-authentication)中每個參數的詳細設定範例。
 
+>[!IMPORTANT] 
+> 如果已針對此帳戶上的任何路徑啟用權杖授權，則標準快取模式就會是唯一可用於查詢字串快取的模式。 如需詳細資訊，請參閱[使用查詢字串控制 Azure CDN 快取行為](cdn-query-string-premium.md)。
+
 ## <a name="reference-architecture"></a>參考架構
 
 以下工作流程圖說明 CDN 如何使用權帳驗證來與您的 Web 應用程式搭配運作。
@@ -56,11 +60,11 @@ ms.lasthandoff: 11/21/2017
 
 ## <a name="setting-up-token-authentication"></a>設定權杖驗證
 
-1. 從 [Azure 入口網站](https://portal.azure.com)，瀏覽至您的 CDN 設定檔，然後按一下 [管理] 來啟動補充入口網站。
+1. 從 [Azure 入口網站](https://portal.azure.com)，瀏覽至您的 CDN 設定檔，然後選取 [管理] 來啟動補充入口網站。
 
     ![CDN 設定檔 [管理] 按鈕](./media/cdn-token-auth/cdn-manage-btn.png)
 
-2. 將滑鼠移至 [HTTP 大型] 上，然後按一下飛出視窗上的 [權杖驗證]。 接著，您便可以依下列方式設定加密金鑰和加密參數：
+2. 將滑鼠移至 [HTTP 大型] 上，然後選取飛出視窗上的 [權杖驗證]。 接著，您便可以依下列方式設定加密金鑰和加密參數：
 
     1. 建立一或多個加密金鑰。 加密金鑰會區分大小寫，可包含英數字元的任何組合。 不允許任何其他類型的字元，包括空格。 長度上限是 250 個字元。 為了確保加密金鑰為隨機的，建議使用 [OpenSSL 工具](https://www.openssl.org/)建立金鑰。 
 
@@ -76,7 +80,7 @@ ms.lasthandoff: 11/21/2017
     
     2. 在 [Primary Key] \(主要金鑰\) 方塊中輸入唯一加密金鑰，並視需要在 [Backup Key] \(備份金鑰\) 方塊中輸入備份金鑰。
 
-    3. 從每個金鑰的 [最低加密版本] 清單中選取其最低加密版本，然後按一下 [更新]：
+    3. 從每個金鑰的 [最低加密版本] 清單中選取其最低加密版本，然後選取 [更新]：
        - **V2**：指出金鑰可用來產生 2.0 和 3.0 版權杖。 只有當您會將舊的 2.0 版加密金鑰轉換成 3.0 版金鑰，才使用此選項。
        - **V3**：(建議選項) 指出金鑰僅可用來產生 3.0 版權杖。
 
@@ -156,27 +160,29 @@ ms.lasthandoff: 11/21/2017
     
     6. 從 [加密版本] 清單中選取加密版本：版本 2 請選 [V2]，版本 3 請選 [V3] \(建議選項)。 
 
-    7. 按一下 [加密] 來產生權杖。
+    7. 選取 [加密] 來產生權杖。
 
     權杖產生之後，會顯示在 [產生的權杖] 方塊中。 若要使用此權杖，將它以查詢字串的形式，附加在 URL 路徑中檔案的結尾。 例如： `http://www.domain.com/content.mov?a4fbc3710fd3449a7c99986b`。
         
-    8. 視需要使用解密工具來測試您的權杖，使您能夠檢視權杖的參數。 將權杖值貼到 [Token to Decrypt] \(要解密的權杖\) 方塊中。 從 [要解密的金鑰] 清單中選取要使用的加密金鑰，然後按一下 [解密]。
+    8. 視需要使用解密工具來測試您的權杖，使您能夠檢視權杖的參數。 將權杖值貼到 [Token to Decrypt] \(要解密的權杖\) 方塊中。 從 [要解密的金鑰] 清單中選取要使用的加密金鑰，然後選取 [解密]。
 
     權杖被解密之後，其參數會顯示在 [原始參數] 方塊中。
 
-    9. 視需要自訂要求遭拒時傳回的回應碼類型。 選取 [已啟用]，然後從 [回應碼] 清單中選取回應碼。 [標頭名稱] 會自動設為 [位置]。 按一下 [儲存] 來實作新的回應碼。 針對特定回應碼，您還必須在 [標頭值] 方塊中輸入您錯誤頁面的 URL。 預設選取的回應碼是 **403** (禁止)。 
+    9. 視需要自訂要求遭拒時傳回的回應碼類型。 選取 [已啟用]，然後從 [回應碼] 清單中選取回應碼。 [標頭名稱] 會自動設為 [位置]。 選取 [儲存] 來實作新的回應碼。 針對特定回應碼，您還必須在 [標頭值] 方塊中輸入您錯誤頁面的 URL。 預設選取的回應碼是 **403** (禁止)。 
 
-3. 在 [HTTP Large] \(HTTP 大型\) 底下，按一下 [Rules Engine] \(規則引擎\)。 您需使用此規則引擎來定義路徑，以套用功能、啟用權杖驗證功能，以及啟用其他與權杖驗證相關的功能。 如需詳細資訊，請參閱[規則引擎參考](cdn-rules-engine-reference.md)。
+3. 在 [HTTP 大型] 底下，選取 [規則引擎]。 您需使用此規則引擎來定義路徑，以套用功能、啟用權杖驗證功能，以及啟用其他與權杖驗證相關的功能。 如需詳細資訊，請參閱[規則引擎參考](cdn-rules-engine-reference.md)。
 
     1. 選取現有規則或建立新規則，以定義您想要套用權杖驗證的資產或路徑。 
-    2. 若要在規則啟用權杖驗證，請從 **功能** 清單中選取 **[Token Auth](cdn-rules-engine-reference-features.md#token-auth)** 權杖驗證，然後選取 **已啟用**。 如果您要更新規則，請按一下 [Update] \(更新\)，或如果您要建立規則，請按一下 [Add] \(新增\)。
+    2. 若要在規則啟用權杖驗證，請從 **功能** 清單中選取 **[Token Auth](cdn-rules-engine-reference-features.md#token-auth)** 權杖驗證，然後選取 **已啟用**。 如果您要更新規則，請選取 [更新]，或如果您要建立規則，請選取 [新增]。
         
     ![CDN 規則引擎權杖驗證啟用範例](./media/cdn-token-auth/cdn-rules-engine-enable2.png)
 
 4. 在規則引擎中，您還可以啟用其他權杖驗證相關功能。 若要啟用下列任何功能，請從 [功能] 清單中選取該功能，然後選取 [已啟用]。
     
     - **[Token Auth Denial Code](cdn-rules-engine-reference-features.md#token-auth-denial-code)** \(權杖驗證拒絕碼\)：決定當要求遭拒時傳回給使用者的回應類型。 這裡設定的規則會覆寫權杖型驗證頁面之 [Custom Denial Handling] \(自訂拒絕處理\) 區段中設定的回應碼。
+
     - **[Token Auth Ignore URL Case](cdn-rules-engine-reference-features.md#token-auth-ignore-url-case)** \(權杖驗證忽略 URL 大小寫\)︰決定用來驗證權杖的 URL 是否區分大小寫。
+
     - **[Token Auth Parameter](cdn-rules-engine-reference-features.md#token-auth-parameter)** \(權杖驗證參數\)︰會將出現在所要求 URL 中的權杖驗證查詢字串參數重新命名。 
         
     ![CDN 規則引擎權杖驗證設定範例](./media/cdn-token-auth/cdn-rules-engine2.png)
@@ -193,4 +199,4 @@ ms.lasthandoff: 11/21/2017
 
 ## <a name="azure-cdn-features-and-provider-pricing"></a>Azure CDN 功能和提供者定價
 
-如需功能的詳細資訊，請參閱 [CDN 概觀](cdn-overview.md)。 如需價格的詳細資訊，請參閱[內容傳遞網路的價格](https://azure.microsoft.com/pricing/details/cdn/)。
+如需功能的相關資訊，請參閱 [Azure CDN 產品功能](cdn-features.md)。 如需價格的詳細資訊，請參閱[內容傳遞網路的價格](https://azure.microsoft.com/pricing/details/cdn/)。

@@ -1,23 +1,24 @@
 ---
-title: "節省成本的 Azure 虛擬機器預付 | Microsoft Docs"
-description: "瞭解如何購買 Azure 保留的虛擬機器執行個體，以節省您的計算成本。"
+title: 節省成本的 Azure 虛擬機器預付 | Microsoft Docs
+description: 瞭解如何購買 Azure 保留的虛擬機器執行個體，以節省您的計算成本。
 services: virtual-machines-windows
-documentationcenter: 
-author: vikramdesai01
-manager: vikramdesai01
-editor: 
+documentationcenter: ''
+author: yashar
+manager: yashar
+editor: ''
 ms.service: virtual-machines-windows
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
-ms.date: 10/30/2017
-ms.author: vikdesai
-ms.openlocfilehash: 4c69ea588d499fb7fa7cc9068a8868b977fd7354
-ms.sourcegitcommit: 7d107bb9768b7f32ec5d93ae6ede40899cbaa894
+ms.date: 06/14/2018
+ms.author: yashar
+ms.openlocfilehash: 02c54bef1da5972d4bf43cfbedb9a3911bf07f0d
+ms.sourcegitcommit: 1fb353cfca800e741678b200f23af6f31bd03e87
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/16/2017
+ms.lasthandoff: 08/30/2018
+ms.locfileid: "43307572"
 ---
 [!INCLUDE [virtual-machines-buy-compute-reservations](../../../includes/virtual-machines-common-prepay-reserved-vm-instances.md)]
 

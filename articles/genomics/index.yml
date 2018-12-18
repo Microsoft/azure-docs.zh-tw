@@ -1,34 +1,33 @@
 ### YamlMime:YamlDocument
+ms.openlocfilehash: 3fa75710adacf71214c977465bcd696500c55e32
+ms.sourcegitcommit: 1b561b77aa080416b094b6f41fce5b6a4721e7d5
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/17/2018
+ms.locfileid: "45733441"
 documentType: LandingData
-title: "Microsoft Genomics 文件"
+title: Microsoft Genomics 文件
 metadata:
-  title: "Microsoft Genomics 文件"
-  meta.description: Learn how to use the Microsoft Genomics service.
-  services: microsoft-genomics
+  title: Microsoft Genomics 文件
+  meta.description: Learn how Microsoft Genomics can power genome sequencing using a cloud implementation of the Burrows-Wheeler Aligner (BWA) and the Genome Analysis Toolkit (GATK) for secondary analysis.
+  services: genomics
   author: grhuynh
-  manager: jhubbard
-  editor: jasonwhowell
+  manager: cgronlun
   ms.author: grhuynh
-  ms.service: microsoft-genomics
-  ms.workload: genomics
+  ms.service: genomics
   ms.topic: landing-page
   ms.date: 12/07/2017
-  ms.openlocfilehash: 8a86847a27981ef814efc74755796c31fde85acc
-  ms.sourcegitcommit: 922687d91838b77c038c68b415ab87d94729555e
-  ms.translationtype: HT
-  ms.contentlocale: zh-TW
-  ms.lasthandoff: 12/13/2017
 abstract:
-  description: "了解 Microsoft Genomics 如何透過 Burrows-Wheeler Aligner (BWA) 和 Genome Analysis Toolkit (GATK) 的雲端實作以進行次級分析。"
+  description: 了解 Microsoft Genomics 如何透過 Burrows-Wheeler Aligner (BWA) 和 Genome Analysis Toolkit (GATK) 的雲端實作以進行次級分析。
 sections:
-- title: "5 分鐘快速入門"
+- title: 5 分鐘快速入門
   items:
   - type: paragraph
-    text: "透過 Microsoft Genomics 服務提交工作流程。"
+    text: 透過 Microsoft Genomics 服務提交工作流程。
   - type: list
     style: icon48
     items:
     - image:
         src: media/index/helix-blue-orange.svg
-      text: "提交工作流程"
+      text: 提交工作流程
       href: quickstart-run-genomics-workflow-portal

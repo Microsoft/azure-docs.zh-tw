@@ -1,37 +1,43 @@
 ---
-title: "在 Azure 資訊安全中心調查事件和警示 | Microsoft Docs"
-description: "這份文件可協助您使用 Azure 資訊安全中心的調查功能，以調查安全性事件和警示。"
+title: 在 Azure 資訊安全中心調查事件和警示 | Microsoft Docs
+description: 這份文件可協助您使用 Azure 資訊安全中心的調查功能，以調查安全性事件和警示。
 services: security-center
 documentationcenter: na
-author: YuriDio
+author: TerryLanfear
 manager: mbaldwin
-editor: 
+editor: ''
 ms.assetid: a8e894a9-8781-4749-ae8f-8c8e01658566
 ms.service: security-center
 ms.devlang: na
-ms.topic: hero-article
+ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/18/2017
-ms.author: yurid
-ms.openlocfilehash: 818c257d1959936f0dc326486e372677aacb065a
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.date: 06/29/2018
+ms.author: terrylan
+ms.openlocfilehash: 010c641c247552a8994c9d1c945cd585148fadf9
+ms.sourcegitcommit: 4597964eba08b7e0584d2b275cc33a370c25e027
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 07/02/2018
+ms.locfileid: "37340785"
 ---
 # <a name="investigate-incidents-and-alerts-in-azure-security-center-preview"></a>在 Azure 資訊安全中心調查事件和警示 (預覽)
 這份文件可協助您使用 Azure 資訊安全中心的調查功能，以調查安全性事件和警示。
 
 ## <a name="what-is-investigation-in-security-center"></a>資訊安全中心的調查是什麼？
 資訊安全中心的 [調查] 功能可讓您分級、了解範圍，並追蹤可能[安全性事件](https://docs.microsoft.com/azure/security-center/security-center-incident)的根本原因。
- 
+
 其目的是加速調查程序，方法是連結與您正在調查之事件有關的所有實體 ([安全性警示](https://docs.microsoft.com/azure/security-center/security-center-alerts-type)、使用者、電腦和事件)。  資訊安全中心可以藉由使相關資料與相關實體相互關聯，並且使用即時圖表 (協助您瀏覽物件及視覺化相關資訊) 公開此相互關聯，來完成這項工作。
+
+> [!NOTE]
+> 資訊安全中心的調查功能不支援[自訂警示](security-center-custom-alert.md)。
+>
+>
 
 
 ## <a name="how-investigation-works"></a>調查的運作方式？
 調查是由佔用調查儀表板中央區域的圖表組成。 圖表永遠會將焦點放在特定實體，並且呈現與它相關的實體。 實體可以是安全性警示、使用者、電腦或事件。
- 
+
 ![對應](./media/security-center-investigation/security-center-investigation-fig1.png)
 
 使用者可以藉由在圖表中按一下某個實體，從該實體瀏覽到另一個實體。 圖表會自動將選取的實體及其相關實體置中。 不再相關的實體可能會從圖表中移除。
@@ -42,7 +48,7 @@ ms.lasthandoff: 10/11/2017
 ![Path](./media/security-center-investigation/security-center-investigation-fig2.png)
 
 ### <a name="general-information"></a>一般資訊
-當實體出現在圖表中時，索引標籤會顯示這個實體的其他資訊。 [資訊] 索引標籤會顯示各種可用資訊來源的實體一般資訊。 
+當實體出現在圖表中時，索引標籤會顯示這個實體的其他資訊。 [資訊] 索引標籤會顯示各種可用資訊來源的實體一般資訊。
 
 ![一般資訊](./media/security-center-investigation/security-center-investigation-fig3.png)
 
@@ -70,7 +76,7 @@ ms.lasthandoff: 10/11/2017
 
 ### <a name="timeline"></a>時間軸
 
-圖表中顯示的大部分資料和各種索引標籤，是在特定時間週期相關。 此時間範圍是使用圖表左上方的時間範圍選取器進行設定。 調查員有各種方法可以選取時間範圍。 
+圖表中顯示的大部分資料和各種索引標籤，是在特定時間週期相關。 此時間範圍是使用圖表左上方的時間範圍選取器進行設定。 調查員有各種方法可以選取時間範圍。
 
 ![時間軸](./media/security-center-investigation/security-center-investigation-fig7.png)
 
@@ -102,7 +108,7 @@ ms.lasthandoff: 10/11/2017
 
     ![調查儀表板](./media/security-center-investigation/security-center-investigation-fig9.png)
 
-從此刻起您可以探索此事件涉及的實體，並且探索更多詳細資料。 
+從此刻起您可以探索此事件涉及的實體，並且探索更多詳細資料。
 
 ## <a name="see-also"></a>另請參閱
 在本文件中，您已了解如何使用資訊安全中心的調查功能。 如要深入了解資訊安全中心，請參閱下列主題：
@@ -110,7 +116,6 @@ ms.lasthandoff: 10/11/2017
 * [管理及回應 Azure 資訊安全中心的安全性警示](https://docs.microsoft.com/azure/security-center/security-center-managing-and-responding-alerts)。 了解如何在資訊安全中心管理警示，以及回應安全性事件。
 * [Azure 資訊安全中心的安全性健全狀況監視](security-center-monitoring.md)。 了解如何監視 Azure 資源的健全狀況。
 * [了解 Azure 資訊安全中心的安全性警示](https://docs.microsoft.com/azure/security-center/security-center-alerts-type)。 了解不同類型的安全性警示。
-* [Azure 資訊安全中心疑難排解指南](https://docs.microsoft.com/azure/security-center/security-center-troubleshooting-guide)。 了解如何針對資訊安全中心的常見問題進行疑難排解。 
+* [Azure 資訊安全中心疑難排解指南](https://docs.microsoft.com/azure/security-center/security-center-troubleshooting-guide)。 了解如何針對資訊安全中心的常見問題進行疑難排解。
 * [Azure 資訊安全中心常見問題集](security-center-faq.md)。 尋找有關使用服務的常見問題。
 * [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/)。 尋找有關 Azure 安全性與相容性的部落格文章。
-

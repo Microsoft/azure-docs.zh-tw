@@ -1,22 +1,24 @@
 ---
-title: "Azure Application Insights 中的使用者、工作階段和事件分析 | Microsoft Docs"
-description: "您 Web 應用程式的使用者人口統計分析。"
+title: Azure Application Insights 中的使用者、工作階段和事件分析 | Microsoft Docs
+description: 您 Web 應用程式的使用者人口統計分析。
 services: application-insights
-documentationcenter: 
-author: botatoes
+documentationcenter: ''
+author: mrbullwinkle
 manager: carmonm
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: multiple
-ms.topic: article
+ms.topic: conceptual
 ms.date: 01/24/2018
-ms.author: mbullwin; daviste
-ms.openlocfilehash: 1a5380cac08ab32cfea4cf457aed1fb1510099ed
-ms.sourcegitcommit: 99d29d0aa8ec15ec96b3b057629d00c70d30cfec
+ms.reviewer: daviste
+ms.author: mbullwin
+ms.openlocfilehash: 2bc10a292855832b7ddb9b8e3a59fbe0f17d8dc6
+ms.sourcegitcommit: cc4fdd6f0f12b44c244abc7f6bc4b181a2d05302
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/25/2018
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47093803"
 ---
 # <a name="users-sessions-and-events-analysis-in-application-insights"></a>Application Insights 中的使用者、工作階段和事件分析
 

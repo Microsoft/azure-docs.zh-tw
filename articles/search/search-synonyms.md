@@ -1,25 +1,22 @@
 ---
-pageTitle: Synonyms in Azure Search (preview) | Microsoft Docs
-description: "Azure Search REST API 中公開的同義字 (預覽) 功能預備文件。"
-services: search
-documentationCenter: 
+pageTitle: Synonyms in Azure Search | Microsoft Docs
+description: 使用同義字以擴充搜尋查詢的範圍
 authors: mhko
-manager: pablocas
-editor: 
+services: search
 ms.service: search
 ms.devlang: rest-api
-ms.workload: search
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.date: 07/07/2016
+ms.topic: conceptual
+ms.date: 04/20/2018
+manager: jlembicz
 ms.author: nateko
-ms.openlocfilehash: 447abc48cca3dee398e641f8458e52a5b2cb8e42
-ms.sourcegitcommit: f8437edf5de144b40aed00af5c52a20e35d10ba1
+ms.openlocfilehash: 579d92f41e41cdb38d4a1eb0bb6e56ce4d4b2a45
+ms.sourcegitcommit: cc4fdd6f0f12b44c244abc7f6bc4b181a2d05302
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/03/2017
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47093209"
 ---
-# <a name="synonyms-in-azure-search-preview"></a>Azure 搜尋服務的同義字 (預覽)
+# <a name="synonyms-in-azure-search"></a>Azure 搜尋服務的同義字
 
 搜尋引擎中與對等詞彙相關聯的同義字，讓使用者不必實際提供詞彙，就能以隱含方式擴充查詢範圍。 例如，給定詞彙「狗」與關聯的同義字「犬科動物」和「小狗」，任何包含「狗」、「犬科動物」和「小狗」的文件都會包含在查詢範圍內。
 
@@ -27,7 +24,7 @@ ms.lasthandoff: 11/03/2017
 
 ## <a name="feature-availability"></a>功能可用性
 
-同義字功能目前僅提供預覽，因此只在最新的預覽 API 版本 (api-version=2016-09-01-Preview) 中提供支援。 目前 Azure 入口網站並不支援此功能。 因為需在要求中指定才能取得 API 版本，因此可以在同一個應用程式中結合就可以結合正式推出 (GA) 與預覽 API 功能。 然而，預覽 API 不受 SLA 約束，且功能可能會變更，因此不建議在生產應用程式中使用。
+最新的 api-version (api-version=2017-11-11) 支援同義字功能。 目前 Azure 入口網站並不支援此功能。
 
 ## <a name="how-to-use-synonyms-in-azure-search"></a>如何在 Azure 搜尋服務中使用同義字
 
@@ -47,11 +44,11 @@ Azure 搜尋服務是根據您定義並上傳至服務的同義字地圖，提�
 
 同義地圖會透過 POST 或 PUT 上傳至服務。 每個規則都必須以新行字元 ('\n') 分隔。 在免費服務中，每個同義字地圖最多可以定義 5,000 條規則，而其他所有 SKU 最多可以定義 10,000 條規則。 每條規則最多可以有 20 個擴充詞彙。
 
-在此預覽中，同義字地圖必須使用 Apache Solr 格式，下列會加以說明。 如果您有現有的同義字字典使用的是不同格式，而您想直接使用此字典，請透過 [UserVoice](https://feedback.azure.com/forums/263029-azure-search) 讓我們知道。
+同義字地圖必須使用 Apache Solr 格式，以下會加以說明。 如果您有現有的同義字字典使用的是不同格式，而您想直接使用此字典，請透過 [UserVoice](https://feedback.azure.com/forums/263029-azure-search) 讓我們知道。
 
 您可以使用 HTTP POST 建立新的同義字地圖，如下列範例所示︰
 
-    POST https://[servicename].search.windows.net/synonymmaps?api-version=2016-09-01-Preview
+    POST https://[servicename].search.windows.net/synonymmaps?api-version=2017-11-11
     api-key: [admin key]
 
     {  
@@ -64,7 +61,7 @@ Azure 搜尋服務是根據您定義並上傳至服務的同義字地圖，提�
 
 或者，您也可以使用 PUT，並在 URI 中指定同義字地圖名稱。 如果同義字地圖不存在，系統就會加以建立。
 
-    PUT https://[servicename].search.windows.net/synonymmaps/mysynonymmap?api-version=2016-09-01-Preview
+    PUT https://[servicename].search.windows.net/synonymmaps/mysynonymmap?api-version=2017-11-11
     api-key: [admin key]
 
     {  
@@ -90,24 +87,24 @@ Washington, Wash., WA => WA
 
 #### <a name="list-synonym-maps-under-your-service"></a>您服務中的同義字地圖清單。
 
-    GET https://[servicename].search.windows.net/synonymmaps?api-version=2016-09-01-Preview
+    GET https://[servicename].search.windows.net/synonymmaps?api-version=2017-11-11
     api-key: [admin key]
 
 #### <a name="get-a-synonym-map-under-your-service"></a>在您的服務中取得同義字地圖。
 
-    GET https://[servicename].search.windows.net/synonymmaps/mysynonymmap?api-version=2016-09-01-Preview
+    GET https://[servicename].search.windows.net/synonymmaps/mysynonymmap?api-version=2017-11-11
     api-key: [admin key]
 
 #### <a name="delete-a-synonyms-map-under-your-service"></a>刪除您服務中的同義字地圖。
 
-    DELETE https://[servicename].search.windows.net/synonymmaps/mysynonymmap?api-version=2016-09-01-Preview
+    DELETE https://[servicename].search.windows.net/synonymmaps/mysynonymmap?api-version=2017-11-11
     api-key: [admin key]
 
 ### <a name="configure-a-searchable-field-to-use-the-synonym-map-in-the-index-definition"></a>在索引定義中設定要使用同義字地圖的可搜尋欄位。
 
 您可以使用新的欄位屬性 **synonymMaps**，來指定要在可搜尋欄位中使用的同義字地圖。 同義字地圖屬於服務層級的資源，且服務中的任何索引欄位均可參考。
 
-    POST https://[servicename].search.windows.net/indexes?api-version=2016-09-01-Preview
+    POST https://[servicename].search.windows.net/indexes?api-version=2017-11-11
     api-key: [admin key]
 
     {
@@ -142,7 +139,7 @@ Washington, Wash., WA => WA
 可以為「Edm.String」或「Collection(Edm.String)」類型的可搜尋欄位指定 **synonymMaps**。
 
 > [!NOTE]
-> 在此預覽中，每一個欄位僅能有一個同義字地圖。 如果您想要使用多個同義字地圖，請透過 [UserVoice](https://feedback.azure.com/forums/263029-azure-search) 讓我們知道。
+> 每一個欄位僅能有一個同義字地圖。 如果您想要使用多個同義字地圖，請透過 [UserVoice](https://feedback.azure.com/forums/263029-azure-search) 讓我們知道。
 
 ## <a name="impact-of-synonyms-on-other-search-features"></a>同義字對其他搜尋功能的影響
 

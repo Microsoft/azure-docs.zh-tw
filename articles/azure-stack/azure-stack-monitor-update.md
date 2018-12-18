@@ -1,24 +1,25 @@
 ---
-title: "使用具有特殊權限的端點來監視 Azure Stack 中的更新 | Microsoft Docs"
-description: "了解如何使用具有特殊權限的端點來監視 Azure Stack 整合系統的更新狀態。"
+title: 使用具有特殊權限的端點來監視 Azure Stack 中的更新 | Microsoft Docs
+description: 了解如何使用具有特殊權限的端點來監視 Azure Stack 整合系統的更新狀態。
 services: azure-stack
-documentationcenter: 
+documentationcenter: ''
 author: mattbriggs
 manager: femila
-editor: 
+editor: ''
 ms.assetid: 449ae53e-b951-401a-b2c9-17fee2f491f1
 ms.service: azure-stack
 ms.workload: na
 pms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/18/2017
+ms.date: 08/17/2018
 ms.author: mabrigg
-ms.openlocfilehash: 96eebf340f13f2f5e9e922fee8032d04fce1d130
-ms.sourcegitcommit: 0e1c4b925c778de4924c4985504a1791b8330c71
+ms.openlocfilehash: 8f384a79811c9a9b104acb98c8f6b6e162946ab8
+ms.sourcegitcommit: 974c478174f14f8e4361a1af6656e9362a30f515
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/06/2018
+ms.lasthandoff: 08/20/2018
+ms.locfileid: "41947933"
 ---
 # <a name="monitor-updates-in-azure-stack-using-the-privileged-endpoint"></a>使用具有特殊權限的端點來監視 Azure Stack 中的更新
 
@@ -31,7 +32,6 @@ ms.lasthandoff: 01/06/2018
 | Cmdlet  | 說明  |
 |---------|---------|
 | `Get-AzureStackUpdateStatus` | 傳回目前正在執行、已完成或失敗之更新的狀態。 提供更新作業的高階狀態，以及說明目前步驟和對應狀態的 XML 文件。 |
-| `Get-AzureStackUpdateVerboseLog` | 傳回更新所產生的詳細資訊記錄。 |
 | `Resume-AzureStackUpdate` | 從更新失敗的地方繼續執行失敗的更新。 在某些情況下，您可能必須先完成風險降低步驟，然後才能繼續執行更新。         |
 | | |
 
@@ -77,7 +77,6 @@ ms.lasthandoff: 01/06/2018
    CommandType     Name                                               Version    Source                                                  PSComputerName
     -----------     ----                                               -------    ------                                                  --------------
    Function        Get-AzureStackUpdateStatus                         0.0        Microsoft.Azurestack.UpdateManagement                   Contoso-ercs01
-   Function        Get-AzureStackUpdateVerboseLog                     0.0        Microsoft.Azurestack.UpdateManagement                   Contoso-ercs01
    Function        Resume-AzureStackUpdate                            0.0        Microsoft.Azurestack.UpdateManagement                   Contoso-ercs01
    ``` 
 
@@ -158,29 +157,6 @@ $updateStatus.SelectNodes("//Step[@Status='InProgress']")
     Status        : InProgress
     Task          : Task
 ```
-
-### <a name="get-the-verbose-progress-log"></a>取得詳細進度記錄
-
-您可以將記錄寫入檔案，以供檢查之用。 這可協助您診斷更新失敗。
-
-```powershell
-$log = Invoke-Command -Session $pepSession -ScriptBlock { Get-AzureStackUpdateVerboseLog }
-
-$log > ".\UpdateVerboseLog.txt" 
-```
-
-### <a name="actively-view-the-verbose-logging"></a>主動檢視詳細資訊記錄
-
-若要在更新執行期間主動檢視詳細資訊記錄，並跳至最新項目，請執行下列命令，以互動模式進入工作階段，並顯示記錄：
-
-```powershell
-Enter-PSSession -Session $pepSession 
-
-Get-AzureStackUpdateVerboseLog -Wait 
-```
-記錄每隔 60 秒就會更新，而且會將新的內容 (如果有的話) 寫入主控台。 
-
-在長時間執行的背景處理程序期間，可能有某段時間不會將主控台輸出寫入主控台。 若要取消互動式輸出，請按 Ctrl+C。 
 
 ### <a name="resume-a-failed-update-operation"></a>繼續執行失敗的更新作業
 

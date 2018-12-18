@@ -10,19 +10,20 @@ ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: get-started-article
+ms.topic: overview
 ms.date: 01/11/2018
 ms.author: shlo
-ms.openlocfilehash: 89f5391cfbfd85f9f0715a8c7d288cc3981cc618
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: 87df752f62956cffd455358059a3ab7b275b6a5d
+ms.sourcegitcommit: f6e2a03076679d53b550a24828141c4fb978dcf9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43090491"
 ---
 # <a name="introduction-to-azure-data-factory"></a>Azure Data Factory 簡介 
 > [!div class="op_single_selector" title1="Select the version of Data Factory service you are using:"]
-> * [第 1 版 - 正式推出](v1/data-factory-introduction.md)
-> * [第 2 版 - 預覽](introduction.md)
+> * [第 1 版](v1/data-factory-introduction.md)
+> * [目前的版本](introduction.md)
 
 在巨量資料的世界中，未經處理、未經組織的資料通常是儲存在關聯式、非關聯式及其他儲存體系統中。 不過，未經處理資料本身並沒有適當的內容或意義，因此無法為分析人員、資料科學人員或業務決策者提供有意義的深入解析。 
 
@@ -39,9 +40,6 @@ Azure Data Factory 就是解決這類資料案例的平台。 這是一項*雲�
 此外，您可以將輸出資料發佈至資料存放區，例如 Azure SQL 資料倉儲，讓商業智慧 (BI) 應用程式取用。 最後，透過 Azure Data Factory，即可將未經處理資料組織到有意義的資料存放區和資料湖中，以供做出更好的業務決策。
 
 ![Data Factory 的最上層檢視](media/introduction/big-picture.png)
-
-> [!NOTE]
-> 本文適用於第 2 版的 Data Fatory (目前為預覽版)。 如果您使用第 1 版的 Data Factory 服務 (也就是正式推出版 (GA))，請參閱 [Data Factory 第 1 版簡介](v1/data-factory-introduction.md)。
 
 ## <a name="how-does-it-work"></a>運作方式
 Azure Data Factory 中的管線 (資料導向工作流程) 通常會執行下列四個步驟︰
@@ -91,7 +89,7 @@ Data Factory 中的連結服務，有兩個用途：
 - 用來代表可裝載活動執行的 **計算資源** 。 例如，HDInsightHive 活動會在 HDInsight Hadoop 叢集上執行。 如需轉換活動和所支援計算環境的清單，請參閱[轉換資料](transform-data.md)一文。
 
 ### <a name="triggers"></a>觸發程序
-觸發程序是一種處理單位，可用來決定何時需要開始執行管線。 針對不同類型的事件，有不同類型的觸發程序。 就預覽版而言，Data Factory 支援時鐘排程器觸發程序。 
+觸發程序是一種處理單位，可用來決定何時需要開始執行管線。 針對不同類型的事件，有不同類型的觸發程序。
 
 ### <a name="pipeline-runs"></a>管線執行
 管線執行是執行管線的執行個體。 「管線執行」通常是藉由將引數傳遞給管線中定義的參數來具現化。 傳遞引數時，可以藉由手動方式傳遞，或在觸發程序定義內傳遞。
@@ -115,16 +113,20 @@ Data Factory 中的連結服務，有兩個用途：
 
 ## <a name="supported-regions"></a>支援區域
 
-您目前可以在「美國東部」、「美國東部 2」和「西歐」區域建立資料處理站。 不過，Data Factory 可以存取其他 Azure 區域的資料存放區和計算資料，以在資料存放區之間移動資料或使用計算服務處理資料。
+如需目前可使用 Data Factory 的 Azure 區域清單，請在下列頁面上選取您感興趣的區域，然後展開 [分析] 以找出 [Data Factory]：[依區域提供的產品](https://azure.microsoft.com/global-infrastructure/services/)。 不過，Data Factory 可以存取其他 Azure 區域的資料存放區和計算資料，以在資料存放區之間移動資料或使用計算服務處理資料。
 
 Azure Data Factory 本身不會儲存任何資料。 它可讓您建立資料導向工作流程，藉由使用其他區域或內部部署環境中的計算服務，協調所支援資料存放區之間的資料移動和資料處理。 它也可讓您使用程式設計方式和 UI 機制來監視和管理工作流程。
 
-雖然只有「美國東部」、「美國東部 2」和「西歐」區域提供 Data Factory，但為 Data Factory 中的資料移動提供技術支援的服務卻是全球數個區域中都有提供。 如果資料存放區位於防火牆後面，就會改由內部部署環境中所安裝的自我裝載 Integration Runtime 負責移動資料。
+雖然只有特定區域有提供 Data Factory，但為 Data Factory 中的資料移動提供技術支援的服務卻是全球數個區域中都有提供。 如果資料存放區位於防火牆後面，就會改由內部部署環境中所安裝的自我裝載 Integration Runtime 負責移動資料。
 
 如需範例，讓我們假設您的計算環境 (例如 Azure HDInsight 叢集和 Azure 機器學習服務) 即將用盡西歐區域的資源。 您可以在美國東部或美國東部 2 建立和利用 Azure Data Factory 執行個體，並用它來排程您在西歐計算環境的作業。 只要幾毫秒的時間，Data Factory 就能觸發計算環境上的作業，但執行計算環境上作業所需的時間則不會改變。
 
-## <a name="compare-with-version-2"></a>與第 2 版比較
-如需第 1 版與第 2 版 Data Factory 服務之間的差異清單，請參閱[與第 1 版比較](compare-versions.md)。 
+## <a name="accessibility"></a>協助工具
+
+可存取 Azure 入口網站中的 Data Factory 使用者體驗。
+
+## <a name="compare-with-version-1"></a>與第 1 版比較
+如需 Data Factory 服務第 1 版與目前版本的差異清單，請參閱[與第 1 版比較](compare-versions.md)。 
 
 ## <a name="next-steps"></a>後續步驟
 使用下列其中一個工具/SDK，開始建立 Data Factory 管線： 

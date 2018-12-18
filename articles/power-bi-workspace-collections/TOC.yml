@@ -1,0 +1,74 @@
+- name: 概觀
+  items:
+    - name: 什麼是 Power BI 工作區集合？
+      href: what-are-power-bi-workspace-collections.md
+    - name: Power BI 工作區集合的新功能
+      href: whats-new.md
+- name: 開始使用
+  items:
+    - name: 開始使用 Power BI 工作區集合
+      href: get-started.md
+    - name: 以範例作為起始
+      href: get-started-sample.md
+    - name: 常見問題集
+      href: faq.md
+- name: 作法
+  items:
+    - name: 規劃和設計
+      items:
+        - name: 常見案例
+          href: scenarios.md
+    - name: 管理
+      items:
+        - name: 連接到資料來源
+          href: connect-datasource.md
+        - name: 內嵌 Power BI 報告
+          href: embed-report.md
+        - name: 與報表互動
+          href: interact-with-reports.md
+        - name: 從資料集建立新的報告
+          href: create-report-from-dataset.md
+        - name: 儲存報告
+          href: save-reports.md
+        - name: 在檢視和編輯間切換
+          href: toggle-mode.md
+    - name: 安全
+      items:
+        - name: 驗證與授權
+          href: app-token-flow.md
+        - name: Power BI 工作區集合的資料列層級安全性
+          href: row-level-security.md
+- name: 參考
+  items:
+    - name: 程式碼範例
+      href: 'https://azure.microsoft.com/resources/samples/?service=power-bi-embedded'
+    - name: PowerShell
+      href: /powershell/module/azurerm.powerbiembedded
+    - name: .NET Azure Resource Manager
+      href: /dotnet/api/microsoft.azure.management.powerbiembedded
+    - name: .NET SDK 下載
+      href: 'https://www.nuget.org/profiles/powerbi'
+    - name: JavaScript
+      href: 'https://github.com/Microsoft/PowerBI-JavaScript/wiki'
+    - name: 管理 REST API
+      href: 'https://docs.microsoft.com/rest/api/power-bi-workspace-collections/'
+    - name: REST API
+      href: 'https://msdn.microsoft.com/library/azure/mt711507.aspx'
+- name: 資源
+  items:
+    - name: Azure 藍圖
+      href: 'https://azure.microsoft.com/roadmap/?category=intelligence-analytics'
+    - name: JavaScript 內嵌範例
+      href: 'https://microsoft.github.io/PowerBI-JavaScript/demo/'
+    - name: JavaScript Git 存放庫
+      href: 'https://github.com/Microsoft/PowerBI-JavaScript'
+    - name: 'Power BI C# Git 存放庫'
+      href: 'https://github.com/Microsoft/PowerBI-CSharp'
+    - name: Power BI 社群
+      href: 'http://community.powerbi.com/t5/Developer/bd-p/Developer'
+    - name: 定價計算機
+      href: 'https://azure.microsoft.com/pricing/calculator/'
+    - name: 範例應用程式
+      href: 'https://github.com/Azure-Samples/power-bi-embedded-integrate-report-into-web-app/'
+    - name: 堆疊溢位
+      href: 'http://stackoverflow.com/questions/tagged/powerbi'

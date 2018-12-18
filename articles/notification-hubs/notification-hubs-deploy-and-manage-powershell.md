@@ -1,28 +1,29 @@
 ---
-title: "使用 PowerShell 來部署和管理通知中樞"
-description: "如何使用 PowerShell 來進行自動化的通知中樞建立和管理"
+title: 使用 PowerShell 來部署和管理通知中樞
+description: 如何使用 PowerShell 來進行自動化的通知中樞建立和管理
 services: notification-hubs
-documentationcenter: 
-author: ysxu
-manager: erikre
-editor: 
+documentationcenter: ''
+author: dimazaid
+manager: kpiteira
+editor: spelluru
 ms.assetid: 7c58f2c8-0399-42bc-9e1e-a7f073426451
 ms.service: notification-hubs
 ms.workload: mobile
 ms.tgt_pltfrm: powershell
 ms.devlang: na
 ms.topic: article
-ms.date: 06/29/2016
-ms.author: yuaxu
-ms.openlocfilehash: 4db058e4bd91dc287b14e887abc6c378c65c4a2b
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.date: 04/14/2018
+ms.author: dimazaid
+ms.openlocfilehash: 8312841b5f8e4b9979de8abf32ce1009b4243f06
+ms.sourcegitcommit: f20e43e436bfeafd333da75754cd32d405903b07
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49388144"
 ---
 # <a name="deploy-and-manage-notification-hubs-using-powershell"></a>使用 PowerShell 來部署和管理通知中樞
 ## <a name="overview"></a>概觀
-本文將說明如何使用 PowerShell 來建立和管理 Azure 通知中樞。 本主題示範下列一般自動化工作。
+本文將說明如何使用 PowerShell 來建立和管理 Azure 通知中樞。 本文示範下列一般自動化工作。
 
 * 建立通知中樞
 * 設定認證
@@ -31,10 +32,9 @@ ms.lasthandoff: 10/11/2017
 
 Azure PowerShell 隨附的 Cmdlet 無法直接支援「管理通知中樞」。 從 PowerShell 進行的最佳方法，是參考 Microsoft.Azure.NotificationHubs.dll 組件。 組件隨附於 [Microsoft Azure 通知中樞 NuGet 套件](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/)。
 
-## <a name="prerequisites"></a>先決條件
-開始閱讀本文之前，您必須符合下列必要條件：
+## <a name="prerequisites"></a>必要條件
 
-* Azure 訂用帳戶。 Azure 是訂閱型平台。 如需取得訂用帳戶的詳細資訊，請參閱[購買選項]、[成員優惠]或[免費試用版]。
+* Azure 訂用帳戶。 Azure 是訂閱型平台。 如需取得訂用帳戶的詳細資訊，請參閱[購買選項]、[成員供應項目]或[免費試用版]。
 * 具備 Azure PowerShell 的電腦。 如需指示，請參閱 [安裝並設定 Azure PowerShell]。
 * 大致了解 PowerShell 指令碼、NuGet 封裝和 .NET Framework。
 
@@ -73,7 +73,7 @@ catch [System.Exception]
 ## <a name="create-the-namespacemanager-class"></a>建立 NamespaceManager 類別
 若要佈建通知中樞，請從 SDK 建立 [NamespaceManager](https://msdn.microsoft.com/library/azure/microsoft.azure.notificationhubs.namespacemanager.aspx) 類別的執行個體。 
 
-您可以使用 Azure PowerShell 隨附的 [Get-AzureSBAuthorizationRule] Cmdlet 來擷取用來提供連接字串的授權規則。 我們將會在 `$NamespaceManager` 變數中儲存對 `NamespaceManager` 執行個體的參照。 我們將使用 `$NamespaceManager` 佈建通知中樞。
+您可以使用 Azure PowerShell 隨附的 [Get-AzureSBAuthorizationRule] Cmdlet 來擷取用來提供連接字串的授權規則。 `$NamespaceManager` 變數會儲存 `NamespaceManager` 執行個體的參照。 使用 `$NamespaceManager` 佈建通知中樞。
 
 ``` powershell
 $sbr = Get-AzureSBAuthorizationRule -Namespace $Namespace
@@ -87,12 +87,12 @@ Write-Output "NamespaceManager object for the [$Namespace] namespace has been su
 ## <a name="provisioning-a-new-notification-hub"></a>佈建新的通知中樞
 若要佈建新的通知中樞，請使用 [通知中樞的 .NET API]。
 
-您會在指令碼的這個部分設定四個本機變數。 
+您會在指令碼的這個部分設定四個區域變數。 
 
-1. `$Namespace` ：將此變數設定為要建立通知中樞之命名空間的名稱。
-2. `$Path` ：將此路徑設定為新的通知中樞之名稱。  例如，"MyHub"。    
-3. `$WnsPackageSid` ：從 [Windows 開發人員中心](http://go.microsoft.com/fwlink/p/?linkid=266582&clcid=0x409)將此變數設定為 Windows 應用程式的封裝 SID。
-4. `$WnsSecretkey`：從 [Windows 開發人員中心](http://go.microsoft.com/fwlink/p/?linkid=266582&clcid=0x409)將此變數設定為 Windows 應用程式的祕密金鑰。
+1. `$Namespace`：將此變數設定為要在其中建立通知中樞的命名空間名稱。
+2. `$Path`：將此路徑設定為新的通知中樞名稱。  例如，"MyHub"。    
+3. `$WnsPackageSid`：從 [Windows 開發人員中心](https://developer.microsoft.com/en-us/windows)，將此變數設定為 Windows 應用程式的套件 SID。
+4. `$WnsSecretkey`：從 [Windows 開發人員中心](https://developer.microsoft.com/en-us/windows)，將此變數設定為 Windows 應用程式的祕密金鑰。
 
 這些變數可用以連接命名空間，以及建立新的通知中樞，並將其設定為利用 WNS 認證，為 Windows 應用程式處理 Windows Notification Services (WNS) 通知。 如需取得封裝 SID 與祕密金鑰的相關資訊，請參閱 [開始使用通知中樞](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md) 教學課程。 
 
@@ -155,11 +155,11 @@ else
 * [服務匯流排 PowerShell 指令碼](https://code.msdn.microsoft.com/windowsazure/Service-Bus-PowerShell-a46b7059)
 
 [購買選項]: http://azure.microsoft.com/pricing/purchase-options/
-[成員優惠]: http://azure.microsoft.com/pricing/member-offers/
+[成員供應項目]: http://azure.microsoft.com/pricing/member-offers/
 [免費試用版]: http://azure.microsoft.com/pricing/free-trial/
 [安裝並設定 Azure PowerShell]: /powershell/azureps-cmdlets-docs
-[通知中樞的 .NET API]: https://msdn.microsoft.com/library/azure/mt414893.aspx
-[Get-AzureSBNamespace]: https://msdn.microsoft.com/library/azure/dn495122.aspx
-[New-AzureSBNamespace]: https://msdn.microsoft.com/library/azure/dn495165.aspx
-[Get-AzureSBAuthorizationRule]: https://msdn.microsoft.com/library/azure/dn495113.aspx
+[通知中樞的 .NET API]: https://docs.microsoft.com/dotnet/api/overview/azure/notification-hubs?view=azure-dotnet
+[Get-AzureSBNamespace]: https://docs.microsoft.com/powershell/module/servicemanagement/azure/get-azuresbnamespace
+[New-AzureSBNamespace]: https://docs.microsoft.com/powershell/module/servicemanagement/azure/new-azuresbnamespace
+[Get-AzureSBAuthorizationRule]: https://docs.microsoft.com/powershell/module/servicemanagement/azure/get-azuresbauthorizationrule
 

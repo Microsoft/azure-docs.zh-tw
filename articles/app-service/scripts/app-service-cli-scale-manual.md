@@ -1,6 +1,6 @@
 ---
-title: Azure CLI 指令碼範例 - 使用 Azure CLI 2.0 手動調整 Web 應用程式 | Microsoft Docs
-description: Azure CLI 指令碼範例 - 使用 Azure CLI 2.0 手動調整 Web 應用程式
+title: Azure CLI 指令碼範例 - 使用 Azure CLI 手動調整 Web 應用程式 | Microsoft Docs
+description: Azure CLI 指令碼範例 - 使用 Azure CLI 手動調整 Web 應用程式
 services: appservice
 documentationcenter: appservice
 author: syntaxc4
@@ -16,11 +16,12 @@ ms.workload: web
 ms.date: 12/11/2017
 ms.author: cfowler
 ms.custom: mvc
-ms.openlocfilehash: 844250dce567bac280ae3a9a688cc8e5bc5852c9
-ms.sourcegitcommit: 34e0b4a7427f9d2a74164a18c3063c8be967b194
+ms.openlocfilehash: 28ca20d44d18e8fe25153b7f9298d5174412ad79
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/30/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46988575"
 ---
 # <a name="scale-a-web-app-manually"></a>手動調整 Web 應用程式
 
@@ -30,7 +31,7 @@ ms.lasthandoff: 03/30/2018
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-如果您選擇在本機安裝和使用 CLI，需要 Azure CLI 2.0 版或更新版本。 若要尋找版本，請執行 `az --version`。 如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。
+如果您選擇在本機安裝和使用 CLI，需要 Azure CLI 2.0 版或更新版本。 若要尋找版本，請執行 `az --version`。 如果您需要安裝或升級，請參閱[安裝 Azure CLI]( /cli/azure/install-azure-cli)。
 
 ## <a name="sample-script"></a>範例指令碼
 

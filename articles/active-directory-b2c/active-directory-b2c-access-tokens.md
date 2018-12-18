@@ -1,21 +1,21 @@
 ---
-title: 要求存取權杖 - Azure AD B2C | Microsoft Docs
+title: 在 Azure Active Directory B2C 中要求存取權杖 | Microsoft Docs
 description: 本文將說明如何設定用戶端應用程式，並取得存取權杖。
 services: active-directory-b2c
-documentationcenter: android
 author: davidmu1
 manager: mtillman
-editor: ''
-ms.service: active-directory-b2c
+ms.service: active-directory
 ms.workload: identity
-ms.topic: article
+ms.topic: conceptual
 ms.date: 08/09/2017
 ms.author: davidmu
-ms.openlocfilehash: bd919543072a8d2bf5fb0ebba17e69ba2f467218
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: B2C
+ms.openlocfilehash: 9cd5789cd2ee6e167f3d3ed05c2fde077f7ec9a3
+ms.sourcegitcommit: 0c64460a345c89a6b579b1d7e273435a5ab4157a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43344936"
 ---
 # <a name="azure-ad-b2c-requesting-access-tokens"></a>Azure AD B2C︰要求存取權杖
 
@@ -66,7 +66,7 @@ ms.lasthandoff: 03/23/2018
 1. 按一下 [API 存取]。
 1. 按一下 [新增]。
 1. 選取您的 web API，以及您想要授與的範圍 (權限)。
-1. 按一下 [SERVICEPRINCIPAL] 。
+1. 按一下 [確定]。
 
 > [!NOTE]
 > Azure AD B2C 不會要求您的用戶端應用程式使用者同意。 相反地，根據上述應用程式之間設定的權限，所有同意都係由系統管理員提供。 如果已撤銷應用程式的權限授與，所有先前能夠取得該權限的使用者將不再能夠執行這項操作。
@@ -79,7 +79,7 @@ ms.lasthandoff: 03/23/2018
 > 目前，自訂網域並未和存取權杖一起受到支援。 您必須在要求 URL 中使用您的 tenantName.onmicrosoft.com 網域。
 
 ```
-https://login.microsoftonline.com/<tenantName>.onmicrosoft.com/oauth2/v2.0/authorize?p=<yourPolicyId>&client_id=<appID_of_your_client_application>&nonce=anyRandomValue&redirect_uri=<redirect_uri_of_your_client_application>&scope=https%3A%2F%2Fcontoso.onmicrosoft.com%2Fnotes%2Fread&response_type=code 
+https://<tenantName>.b2clogin.com/tfp/<tenantName>.onmicrosoft.com/<yourPolicyId>/oauth2/v2.0/authorize?client_id=<appID_of_your_client_application>&nonce=anyRandomValue&redirect_uri=<redirect_uri_of_your_client_application>&scope=https%3A%2F%2Fcontoso.onmicrosoft.com%2Fnotes%2Fread&response_type=code 
 ```
 
 要在相同的要求中取得多個權限，您可以在單一**範圍**參數中新增多個項目，以空格分隔。 例如︰
@@ -114,10 +114,10 @@ OpenID Connect 標準會指定數個特殊的「範圍」值。 下列特殊範�
 
 在成功產生**存取\_權杖** (從 `/authorize` 或 `/token` 端點)，會出現下列宣告︰
 
-| Name | 宣告 | 說明 |
+| 名稱 | 宣告 | 說明 |
 | --- | --- | --- |
 |對象 |`aud` |權杖授與存取權的單一資源之應用程式識別碼。 |
-|Scope |`scp` |授與給資源的權限。 多個授與權限將會以空格隔開。 |
+|影響範圍 |`scp` |授與給資源的權限。 多個授與權限將會以空格隔開。 |
 |授權的合作對象 |`azp` |起始要求之用戶端應用程式的應用程式識別碼。 |
 
 當您的 API 收到**存取\_權杖**時，它必須[驗證權杖](active-directory-b2c-reference-tokens.md)以證明權杖的真實性，並具有正確的宣告。

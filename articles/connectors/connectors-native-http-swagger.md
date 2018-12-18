@@ -1,27 +1,24 @@
 ---
-title: "透過適用於 Azure Logic Apps 的 HTTP + Swagger 連接器呼叫 REST 端點 | Microsoft Docs"
-description: "透過 Swagger 搭配 HTTP + Swagger 連接器，從邏輯應用程式連線至 REST 端點"
+title: 從 Azure Logic Apps 呼叫 REST Twilio | Microsoft Docs
+description: 使用 Azure Logic Apps 中的 HTTP + Swagger 連接器，自動執行可與 REST 端點通訊的工作和工作流程
 services: logic-apps
-author: jeffhollan
-manager: anneta
-editor: 
-documentationcenter: 
-tags: connectors
-ms.assetid: eccfd87c-c5fe-4cf7-b564-9752775fd667
 ms.service: logic-apps
-ms.devlang: na
+ms.suite: integration
+author: ecfan
+ms.author: estfan
+ms.reviewer: klam, jehollan, LADocs
+ms.assetid: eccfd87c-c5fe-4cf7-b564-9752775fd667
+tags: connectors
 ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: na
 ms.date: 07/18/2016
-ms.author: jehollan; LADocs
-ms.openlocfilehash: 0487dbedddee684c75420bd66effe2c963a18624
-ms.sourcegitcommit: be9a42d7b321304d9a33786ed8e2b9b972a5977e
+ms.openlocfilehash: e96e271fbb50a2485a22fab061ea160dc00cf3d6
+ms.sourcegitcommit: 2ad510772e28f5eddd15ba265746c368356244ae
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/19/2018
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "43123167"
 ---
-# <a name="get-started-with-the-http--swagger-action"></a>開始使用 HTTP + Swagger 動作
+# <a name="call-rest-endpoints-with-http--swagger-connector-in-azure-logic-apps"></a>透過 Azure Logic Apps 中的 HTTP + Swagger 連接器呼叫 REST 端點
 
 當您在邏輯應用程式工作流程中使用 HTTP + Swagger 動作時，可以透過 [Swagger 文件](https://swagger.io)在任一 REST 端點建立第一級的連接器。 您也可以使用第一級的邏輯應用程式設計工具體驗，擴充邏輯應用程式以呼叫任何 REST 端點。
 
@@ -116,7 +113,7 @@ HTTP 回應
 ### <a name="http-responses"></a>HTTP 回應
 呼叫不同動作時，您可能會收到特定回應。 下表概述對應的回應及說明。
 
-| Name | 說明 |
+| 名稱 | 說明 |
 | --- | --- |
 | 200 |OK |
 | 202 |已接受 |

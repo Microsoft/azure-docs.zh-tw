@@ -1,20 +1,20 @@
 ---
-title: "在 Azure Container Instances 中執行容器化工作"
-description: "了解如何使用 Azure Container Instances 來執行工作，該工作會執行到完成為止，例如建置、測試或映像轉譯作業。"
+title: 在 Azure Container Instances 中使用重新啟動原則執行容器化工作
+description: 了解如何使用 Azure Container Instances 來執行工作，該工作會執行到完成為止，例如建置、測試或映像轉譯作業。
 services: container-instances
-author: mmacy
-manager: timlt
+author: dlepow
 ms.service: container-instances
 ms.topic: article
-ms.date: 11/16/2017
-ms.author: marsma
-ms.openlocfilehash: a922525970eac9af6657e58daae971912183b369
-ms.sourcegitcommit: 85012dbead7879f1f6c2965daa61302eb78bd366
+ms.date: 07/26/2018
+ms.author: danlep
+ms.openlocfilehash: c9e3fadd5164ca0d770f36ba95c30db933efcd39
+ms.sourcegitcommit: 67abaa44871ab98770b22b29d899ff2f396bdae3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/02/2018
+ms.lasthandoff: 10/08/2018
+ms.locfileid: "48853879"
 ---
-# <a name="run-a-containerized-task-in-azure-container-instances"></a>在 Azure Container Instances 中執行容器化工作
+# <a name="run-containerized-tasks-with-restart-policies"></a>使用重新啟動原則執行容器化工作
 
 在 Azure Container Instances 中部署容器的簡易和快速，提供令人信服的平台，可以用來進行執行一次的工作，例如在容器執行個體中建置、測試和映像轉譯。
 
@@ -172,7 +172,7 @@ az container logs --resource-group myResourceGroup --name mycontainer3
 [aci-wordcount-image]: https://hub.docker.com/r/microsoft/aci-wordcount/
 
 <!-- LINKS - Internal -->
-[az-container-create]: /cli/azure/container?view=azure-cli-latest#az_container_create
-[az-container-logs]: /cli/azure/container?view=azure-cli-latest#az_container_logs
-[az-container-show]: /cli/azure/container?view=azure-cli-latest#az_container_show
+[az-container-create]: /cli/azure/container?view=azure-cli-latest#az-container-create
+[az-container-logs]: /cli/azure/container?view=azure-cli-latest#az-container-logs
+[az-container-show]: /cli/azure/container?view=azure-cli-latest#az-container-show
 [azure-cli-install]: /cli/azure/install-azure-cli

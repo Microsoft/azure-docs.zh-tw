@@ -1,13 +1,13 @@
 ---
-title: "在 Azure 中使用檔案共用於 Windows 容錯移轉叢集上進行 SAP ASCS/SCS 執行個體叢集處理 | Microsoft Docs"
-description: "了解如何在 Azure 中使用檔案共用於 Windows 容錯移轉叢集上進行 SAP ASCS/SCS 執行個體叢集處理。"
+title: 在 Azure 中使用檔案共用於 Windows 容錯移轉叢集上進行 SAP ASCS/SCS 執行個體叢集處理 | Microsoft Docs
+description: 了解如何在 Azure 中使用檔案共用於 Windows 容錯移轉叢集上進行 SAP ASCS/SCS 執行個體叢集處理。
 services: virtual-machines-windows,virtual-network,storage
 documentationcenter: saponazure
 author: goraco
-manager: timlt
-editor: 
+manager: jeconnoc
+editor: ''
 tags: azure-resource-manager
-keywords: 
+keywords: ''
 ms.assetid: 5e514964-c907-4324-b659-16dd825f6f87
 ms.service: virtual-machines-windows
 ms.devlang: NA
@@ -17,11 +17,12 @@ ms.workload: infrastructure-services
 ms.date: 05/05/2017
 ms.author: rclaus
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 7fa09de63c6f148064861479138934976f1f3e38
-ms.sourcegitcommit: b07d06ea51a20e32fdc61980667e801cb5db7333
+ms.openlocfilehash: 646c30be171a5aaaa17e40eae3cef6952b2b2747
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2017
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34657055"
 ---
 [1928533]:https://launchpad.support.sap.com/#/notes/1928533
 [1999351]:https://launchpad.support.sap.com/#/notes/1999351
@@ -90,7 +91,7 @@ ms.lasthandoff: 12/08/2017
 [sap-ha-guide-9.1]:#31c6bd4f-51df-4057-9fdf-3fcbc619c170
 [sap-ha-guide-9.1.1]:#a97ad604-9094-44fe-a364-f89cb39bf097
 
-[sap-ha-multi-sid-guide]:sap-high-availability-multi-sid.md (SAP multi-SID high-availability configuration)
+[sap-ha-multi-sid-guide]:sap-high-availability-multi-sid.md (SAP 多重 SID 高可用性設定)
 
 [Logo_Linux]:media/virtual-machines-shared-sap-shared/Linux.png
 [Logo_Windows]:media/virtual-machines-shared-sap-shared/Windows.png
@@ -257,7 +258,7 @@ SAP 已針對在 Windows 容錯移轉叢集上進行 SAP ASCS/SCS 執行個體�
 
 ![圖 2：含 SMB 檔案共用的 SAP ASCS/SCS HA 架構][sap-ha-guide-figure-8004]
 
-_**圖 2：**含 SMB 檔案共用的新 SAP ASCS/SCS HA 架構_
+_**圖 2：** 含 SMB 檔案共用的新 SAP ASCS/SCS HA 架構_
 
 SMB 檔案共用的必要條件：
 
@@ -272,7 +273,7 @@ SAP \<SID\> 叢集角色不包含叢集共用磁碟或一般檔案共用叢集�
 
 ![圖 3：可用於檔案共用的 SAP \<SID\> 叢集角色資源][sap-ha-guide-figure-8005]
 
-_**圖 3：**可用於檔案共用的 SAP &lt;SID&gt; 叢集角色資源_
+_**圖 3：** 可用於檔案共用的 SAP &lt;SID&gt; 叢集角色資源_
 
 
 ## <a name="scale-out-file-shares-with-storage-spaces-direct-in-azure-as-an-sapmnt-file-share"></a>在 Azure 中將包含儲存空間直接存取的向外延展檔案共用作為 SAPMNT 檔案共用
@@ -281,7 +282,7 @@ _**圖 3：**可用於檔案共用的 SAP &lt;SID&gt; 叢集角色資源_
 
 ![圖 4：用來保護 SAP 全域主機檔案的向外延展檔案共用][sap-ha-guide-figure-8006]
 
-_**圖 4：**用來保護 SAP 全域主機檔案的向外延展檔案共用_
+_**圖 4：** 用來保護 SAP 全域主機檔案的向外延展檔案共用_
 
 > [!IMPORTANT]
 > 在 Microsoft Azure 雲端和內部部署環境中完全支援向外延展檔案共用。
@@ -334,7 +335,7 @@ _**圖 4：**用來保護 SAP 全域主機檔案的向外延展檔案共用_
 
 ![圖 5：在兩個叢集中部署的 SAP ASCS/SCS 執行個體和向外延展檔案共用][sap-ha-guide-figure-8007]
 
-_**圖 5：**在兩個叢集中部署的 SAP ASCS/SCS 執行個體和向外延展檔案共用_
+_**圖 5：** 在兩個叢集中部署的 SAP ASCS/SCS 執行個體和向外延展檔案共用_
 
 > [!IMPORTANT]
 > 在 Azure 雲端中，用於 SAP 和向外延展檔案共用的每個叢集都必須部署在自己的 Azure 可用性設定組中。 這可確保叢集 VM 在基礎 Azure 基礎結構中，以分散方式放置。

@@ -1,6 +1,6 @@
 ---
-title: "連線到 SQL Server 虛擬機器 (資源管理員) | Microsoft Docs"
-description: "了解如何連接在 Azure 虛擬機器上執行的 SQL Server。 本主題使用傳統部署模型。 案例會視網路組態和用戶端的位置而有所不同。"
+title: 連線到 SQL Server 虛擬機器 (資源管理員) | Microsoft Docs
+description: 了解如何連接在 Azure 虛擬機器上執行的 SQL Server。 本主題使用傳統部署模型。 案例會視網路組態和用戶端的位置而有所不同。
 services: virtual-machines-windows
 documentationcenter: na
 author: rothja
@@ -14,11 +14,12 @@ ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
 ms.date: 12/12/2017
 ms.author: jroth
-ms.openlocfilehash: 7285cf47c3a5ec731cd9cfe311053e9d19886f1d
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.openlocfilehash: 522ece2528e43c1037dc6bb707201ecda8074dd9
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38705957"
 ---
 # <a name="connect-to-a-sql-server-virtual-machine-on-azure"></a>連線到 Azure 上的 SQL Server 虛擬機器
 
@@ -138,7 +139,7 @@ Server=mysqlvm;Integrated Security=true
 | [建立 SQL 登入](https://docs.microsoft.com/sql/relational-databases/security/authentication-access/create-a-login) | 如果您使用的是 SQL 驗證，則需要包含使用者名稱和密碼，且具備目標資料庫權限的 SQL 登入。 |
 | [啟用 TCP/IP 通訊協定](#manualTCP) | SQL Server 必須允許透過 TCP 連線。 |
 | [啟用 SQL Server 連接埠的防火牆規則](https://docs.microsoft.com/sql/database-engine/configure-windows/configure-a-windows-firewall-for-database-engine-access) | VM 上的防火牆必須允許 SQL Server 連接埠 (預設 1433) 上的連入流量。 |
-| [建立 TCP 1433 的網路安全性群組規則](../../../virtual-network/virtual-networks-create-nsg-arm-pportal.md#create-rules-in-an-existing-nsg) | 如果您想要透過網際網路連線，則必須允許 VM 接收 SQL Server 連接埠 (預設 1433) 上的流量。 只有本機和虛擬網路之間的連線不需要如此。 這是在 Azure 入口網站所需的唯一步驟。 |
+| [建立 TCP 1433 的網路安全性群組規則](../../../virtual-network/manage-network-security-group.md#create-a-security-rule) | 如果您想要透過網際網路連線，則必須允許 VM 接收 SQL Server 連接埠 (預設 1433) 上的流量。 只有本機和虛擬網路之間的連線不需要如此。 這是在 Azure 入口網站所需的唯一步驟。 |
 
 > [!TIP]
 > 在入口網站中設定連線時，系統會為您完成上表中的步驟。 僅使用這些步驟確認您的設定，或手動設定 SQL Server 的連線。

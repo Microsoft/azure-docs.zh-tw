@@ -1,11 +1,11 @@
 ---
-title: "Microsoft Azure 雲端服務之部署問題的常見問題集 | Microsoft Docs"
-description: "本文列出 Microsoft Azure 雲端服務之部署的相關常見問題集。"
+title: Microsoft Azure 雲端服務之部署問題的常見問題集 | Microsoft Docs
+description: 本文列出 Microsoft Azure 雲端服務之部署的相關常見問題集。
 services: cloud-services
-documentationcenter: 
+documentationcenter: ''
 author: genlin
 manager: cshepard
-editor: 
+editor: ''
 tags: top-support-issue
 ms.assetid: 84985660-2cfd-483a-8378-50eef6a0151d
 ms.service: cloud-services
@@ -13,13 +13,14 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/12/2017
+ms.date: 05/11/2018
 ms.author: genli
-ms.openlocfilehash: 61d1cc511bf541e75ffda3e84b116f78a434f6f1
-ms.sourcegitcommit: aaba209b9cea87cb983e6f498e7a820616a77471
+ms.openlocfilehash: 05217129d4993514acaf8c717847040584984cb3
+ms.sourcegitcommit: c52123364e2ba086722bc860f2972642115316ef
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/12/2017
+ms.lasthandoff: 05/11/2018
+ms.locfileid: "34068899"
 ---
 # <a name="deployment-issues-for-azure-cloud-services-frequently-asked-questions-faqs"></a>Azure 雲端服務之部署問題：常見問題集 (FAQ)
 
@@ -79,4 +80,4 @@ ms.lasthandoff: 12/12/2017
 
 在傳統入口網站中，套件已直接上傳到管理 API 層，然而 API 層會將套件暫時放入內部儲存體帳戶中。  此程序會造成效能和延展性問題，因為 API 層並未設計成檔案上傳服務。  在 Azure 入口網站 (Resource Manager 部署模型) 中，我們已略過新上傳到 API 層的暫時步驟，而造成更快速且更可靠的部署。 
 
-其成本非常低，您可以在所有部署中重複使用相同的儲存體帳戶。 您可以使用[儲存體成本計算機](https://azure.microsoft.com/en-us/pricing/calculator/#storage1)來判斷上傳服務套件 (CSPKG)、下載 CSPKG，然後刪除 CSPKG 的成本。 
+其成本非常低，您可以在所有部署中重複使用相同的儲存體帳戶。 您可以使用[儲存體成本計算機](https://azure.microsoft.com/pricing/calculator/#storage1)來判斷上傳服務套件 (CSPKG)、下載 CSPKG，然後刪除 CSPKG 的成本。 

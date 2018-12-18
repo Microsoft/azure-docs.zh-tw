@@ -1,13 +1,13 @@
 ---
-title: "使用 Azure CLI 2.0 管理 Web App for Containers | Microsoft Docs"
-description: "使用 Azure CLI 管理 Web App for Containers。"
-keywords: "azure app service, web 應用程式, cli, linux, oss"
+title: 使用 Azure CLI 管理用於容器的 Web App | Microsoft Docs
+description: 使用 Azure CLI 管理 Web App for Containers。
+keywords: azure app service, web 應用程式, cli, linux, oss
 services: app-service
-documentationCenter: 
+documentationCenter: ''
 author: ahmedelnably
 manager: cfowler
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: app-service
 ms.workload: na
 ms.tgt_pltfrm: na
@@ -15,18 +15,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/22/2017
 ms.author: aelnably
-ms.openlocfilehash: 54c979313a6ffa43008aa9870332b92d2b2f182a
-ms.sourcegitcommit: bc8d39fa83b3c4a66457fba007d215bccd8be985
+ms.openlocfilehash: 024ca5bcf9c1f82f07656691d6ef5358ca3d5111
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/10/2017
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46998486"
 ---
 # <a name="manage-web-app-for-containers-using-azure-cli"></a>使用 Azure CLI 管理 Web App for Containers
 
-使用本文中的命令，即可使用 Azure CLI 2.0 建立和管理 Web App for Containers。
+使用本文中的命令，即可使用 Azure CLI 建立和管理用於容器的 Web App。
 開始使用新版 CLI 的方式有兩種：
 
-* 在您的電腦上[安裝 Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli)。
+* 在您的機器上[安裝 Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)。
 * 使用 [Azure Cloud Shell (預覽)](../../cloud-shell/overview.md)
 
 ## <a name="create-a-linux-app-service-plan"></a>建立 Linux App Service 方案
@@ -104,7 +105,7 @@ az webapp deployment source config -n sname -g rgname --repo-url <gitrepo url> -
 ## <a name="next-steps"></a>後續步驟
 
 * [何謂 Linux 上的 Azure App Service？](app-service-linux-intro.md)
-* [安裝 Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli)
+* [安裝 Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)
 * [Azure Cloud Shell (預覽)](../../cloud-shell/overview.md)
 * [在 Azure App Service 中設定預備環境](../../app-service/web-sites-staged-publishing.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json)
 * [使用用於容器的 Web 應用程式進行持續部署](app-service-linux-ci-cd.md)

@@ -1,24 +1,26 @@
 ---
-title: "在 Azure 上執行 Team Data Science Process 的逐步解說 | Microsoft Docs"
-description: "如何將雲端和內部部署工具及服務組合成工作流程或管線，以建立智慧型應用程式。"
+title: 在 Azure 上執行 Team Data Science Process 的逐步解說 | Microsoft Docs
+description: 如何將雲端和內部部署工具及服務組合成工作流程或管線，以建立智慧型應用程式。
 services: machine-learning
-documentationcenter: 
-author: bradsev
-manager: jhubbard
+documentationcenter: ''
+author: deguhath
+manager: cgronlun
 editor: cgronlun
 ms.assetid: aa63d5a5-25ee-4c4b-9a4c-7553b98d7f6e
 ms.service: machine-learning
+ms.component: team-data-science-process
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 08/17/2017
-ms.author: bradsev
-ms.openlocfilehash: 3a536c432f3a095d75beb57f8203f10afc074fdf
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.author: deguhath
+ms.openlocfilehash: 4ac07d9d56862f315f7ef1f68fdecad1af700dbf
+ms.sourcegitcommit: b4a46897fa52b1e04dd31e30677023a29d9ee0d9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49395003"
 ---
 # <a name="walkthroughs-executing-the-team-data-science-process"></a>執行 Team Data Science Process 的逐步解說
 

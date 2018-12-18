@@ -1,11 +1,11 @@
 ---
-title: "使用 STONITH 為 SAP HANA on Azure (大型執行個體) 進行高可用性設定 | Microsoft Docs"
-description: "使用 STONITH 在 SUSE 中為 Azure 上的 SAP HANA (大型執行個體) 建立高可用性"
+title: 使用 STONITH 為 SAP HANA on Azure (大型執行個體) 進行高可用性設定 | Microsoft Docs
+description: 使用 STONITH 在 SUSE 中為 Azure 上的 SAP HANA (大型執行個體) 建立高可用性
 services: virtual-machines-linux
-documentationcenter: 
+documentationcenter: ''
 author: saghorpa
-manager: timlt
-editor: 
+manager: jeconnoc
+editor: ''
 ms.service: virtual-machines-linux
 ms.devlang: NA
 ms.topic: article
@@ -14,11 +14,12 @@ ms.workload: infrastructure
 ms.date: 11/21/2017
 ms.author: saghorpa
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: d710fe24673c6ddc581d36e4f0cacdb750ff74f9
-ms.sourcegitcommit: 62eaa376437687de4ef2e325ac3d7e195d158f9f
+ms.openlocfilehash: 982c6112a19654e268c9c50fec35d65fbc1766c2
+ms.sourcegitcommit: f06925d15cfe1b3872c22497577ea745ca9a4881
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/22/2017
+ms.lasthandoff: 06/27/2018
+ms.locfileid: "37062015"
 ---
 # <a name="high-availability-set-up-in-suse-using-the-stonith"></a>使用 STONITH 在 SUSE 中進行高可用性設定
 本文件提供使用 STONITH 裝置在 SUSE 作業系統上進行高可用性設定的詳細逐步指示。
@@ -34,8 +35,8 @@ ms.lasthandoff: 11/22/2017
 - NTP (時間伺服器) 已設定
 - 閱讀並了解有關 HA 設定的最新 SUSE 文件版本
 
-### <a name="set-up-details"></a>設定詳細資料
-- 在本指南中，我們使用下列設定：
+### <a name="setup-details"></a>設定詳細資料
+本指南使用下列設定：
 - 作業系統：適用於 SAP 的 SLES 12 SP1
 - HANA 大型執行個體：2xS192 (4 個插槽，2 TB)
 - HANA 版本：HANA 2.0 SP1
@@ -134,12 +135,12 @@ zypper in SAPHanaSR SAPHanaSR-doc
 ![zypperpatternSAPHANASR-doc.png](media/HowToHLI/HASetupWithStonith/zypperpatternSAPHANASR-doc.png)
 
 ### <a name="32-setting-up-the-cluster"></a>3.2 設定叢集
-3.2.1   您可以使用 *ha-cluster-init* 命令或使用 yast2 精靈來設定叢集。 在此案例中，我們使用 yast2 精靈。 您**只能在主要節點上**執行這個步驟。
+3.2.1   您可以使用 *ha-cluster-init* 命令或使用 yast2 精靈來設定叢集。 在此案例中，使用 yast2 精靈。 您**只能在主要節點上**執行這個步驟。
 
 依序選取 [yast2] > [High Availability] > [Cluster] \([yast2] > [ 高可用性] > [叢集]\) ![yast-control-center.png](media/HowToHLI/HASetupWithStonith/yast-control-center.png)
 ![yast-hawk-install.png](media/HowToHLI/HASetupWithStonith/yast-hawk-install.png)
 
-因為我們已經安裝 halk2 套件，請按一下 [取消]。
+因為已經安裝 halk2 套件，請按一下 [取消]。
 
 ![yast-hawk-continue.png](media/HowToHLI/HASetupWithStonith/yast-hawk-continue.png)
 
@@ -154,7 +155,7 @@ zypper in SAPHanaSR SAPHanaSR-doc
 
 ![yast-key-file.png](media/HowToHLI/HASetupWithStonith/yast-key-file.png)
 
-按一下 [確定] 
+按一下 [檔案] &gt; [新增] &gt; [專案] 
 
 驗證會使用 IP 位址和 Csync2 中的預先共用金鑰執行。 金鑰檔案是使用 csync2 -k /etc/csync2/key_hagroup 產生。 檔案 key_hagroup 應在建立之後手動複製到叢集的所有成員。 **務必將檔案從 node1 複製到 node2**。
 
@@ -261,7 +262,7 @@ crm_mon
 
 ## <a name="7-configure-cluster-properties-and-resources"></a>7.設定叢集屬性及資源 
 本節說明設定叢集資源的步驟。
-在此範例中，我們會設定下列資源，其他部分可以 (視需要) 參考 SUSE HA 指南來設定。 只需要在**其中一個節點**執行此設定。 請在主要節點上執行。
+在此範例中，設定下列資源，其他部分可以 (視需要) 參考 SUSE HA 指南來設定。 只需要在**其中一個節點**執行此設定。 請在主要節點上執行。
 
 - 叢集啟動程序
 - STONITH 裝置
@@ -342,7 +343,7 @@ Service pacemaker stop
 
 
 ## <a name="9-troubleshooting"></a>9.疑難排解
-本節說明在設定期間可能會遇到的一些失敗案例。 您不一定會遇到這些問題。
+本節說明可能會在設定期間遇到的一些失敗案例。 您不一定會遇到這些問題。
 
 ### <a name="scenario-1-cluster-node-not-online"></a>案例 1：叢集節點未連線
 如果任一節點未在叢集管理員中顯示為連線，您可以嘗試下列執行動作使其連線。
@@ -369,7 +370,7 @@ Login to [iface: default, target: iqn.1992-08.com.netapp:hanadc11:1:t020, portal
 Login to [iface: default, target: iqn.1992-08.com.netapp:hanadc11:1:t020, portal: 10.250.22.21,3260] successful.
 ```
 ### <a name="scenario-2-yast2-does-not-show-graphical-view"></a>案例 2：yast2 未顯示圖形檢視
-我們在此文件中使用 yast2 圖形畫面來設定高可用性叢集。 如果 yast2 並未如圖所示以圖形視窗開啟，並擲回 Qt 錯誤，請依照下列步驟執行。 如果它以圖形視窗開啟，您可以略過步驟。
+此文件使用 yast2 圖形畫面來設定高可用性叢集。 如果 yast2 並未如圖所示以圖形視窗開啟，並擲回 Qt 錯誤，請依照下列步驟執行。 如果它以圖形視窗開啟，您可以略過步驟。
 
 **錯誤**
 
@@ -444,7 +445,7 @@ zypper -n install libyui-qt
 
 ![yast2-performing-installation.png](media/HowToHLI/HASetupWithStonith/yast2-performing-installation.png)
 
-安裝完成時，按一下 [下一步]
+安裝完成時，按 [下一步]
 
 ![yast2-installation-report.png](media/HowToHLI/HASetupWithStonith/yast2-installation-report.png)
 
@@ -537,6 +538,6 @@ cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
 您可以在下列文章中找到有關 SUSE HA 設定的詳細資訊： 
 
 - [SAP HANA SR 效能最佳化案例](https://www.suse.com/docrep/documents/ir8w88iwu7/suse_linux_enterprise_server_for_sap_applications_12_sp1.pdf ) \(英文\)
-- [以儲存體為基礎的隔離](https://www.suse.com/documentation/sle-ha-2/book_sleha/data/sec_ha_storage_protect_fencing.html) \(英文\)
+- [以儲存體為基礎的隔離](https://www.suse.com/documentation/sle_ha/book_sleha/data/sec_ha_storage_protect_fencing.html) \(英文\)
 - [部落格 - 針對 SAP HANA 使用 Pacemaker 叢集 - 第 1 部分](https://blogs.sap.com/2017/11/19/be-prepared-for-using-pacemaker-cluster-for-sap-hana-part-1-basics/) \(英文\)
 - [部落格 - 針對 SAP HANA 使用 Pacemaker 叢集 - 第 2 部分](https://blogs.sap.com/2017/11/19/be-prepared-for-using-pacemaker-cluster-for-sap-hana-part-2-failure-of-both-nodes/) \(英文\)

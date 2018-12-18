@@ -1,24 +1,26 @@
 ---
-title: "Team Data Science Process 實務 - 在 1 TB 資料集上使用 Azure HDInsight Hadoop 叢集 | Microsoft Docs"
-description: "對採用 HDInsight Hadoop 叢集來建置和部署使用大型 (1 TB) 公開可用資料集模型的端對端案例使用 Team Data Science Process"
+title: Team Data Science Process 實務 - 在 1 TB 資料集上使用 Azure HDInsight Hadoop 叢集 | Microsoft Docs
+description: 對採用 HDInsight Hadoop 叢集來建置和部署使用大型 (1 TB) 公開可用資料集模型的端對端案例使用 Team Data Science Process
 services: machine-learning,hdinsight
-documentationcenter: 
-author: bradsev
+documentationcenter: ''
+author: deguhath
 manager: cgronlun
 editor: cgronlun
 ms.assetid: 72d958c4-3205-49b9-ad82-47998d400d2b
 ms.service: machine-learning
+ms.component: team-data-science-process
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 11/29/2017
-ms.author: bradsev
-ms.openlocfilehash: 760e08643fb3e71478fc899278591569da1d515b
-ms.sourcegitcommit: 5a6e943718a8d2bc5babea3cd624c0557ab67bd5
+ms.author: deguhath
+ms.openlocfilehash: 4c368c3f06347b1164731d056a7341bdabb759b4
+ms.sourcegitcommit: 3c3488fb16a3c3287c3e1cd11435174711e92126
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/01/2017
+ms.lasthandoff: 06/08/2018
+ms.locfileid: "34837339"
 ---
 # <a name="the-team-data-science-process-in-action---using-an-azure-hdinsight-hadoop-cluster-on-a-1-tb-dataset"></a>Team Data Science Process 實務 - 在 1 TB 資料集上使用 Azure HDInsight Hadoop 叢集
 
@@ -58,7 +60,7 @@ Criteo 資料是點選預測的資料集，大約是 370 GB 的 gzip 壓縮 TSV 
 2. **迴歸**：預測使用者按一下廣告機率的功能。
 
 ## <a name="setup"></a>為資料科學設定 HDInsight Hadoop 叢集
-**附註：**這通常是**管理**工作。
+**附註：** 這通常是**管理**工作。
 
 設定 Azure 資料科學環境，用於使用 HDInsight 叢集以三個步驟建置預測性的分析解決方案：
 
@@ -80,9 +82,9 @@ Criteo 資料是點選預測的資料集，大約是 370 GB 的 gzip 壓縮 TSV 
 
 1. 這個公用 Blob 儲存體中的資料是由所解壓縮資料的三個子資料夾所組成。
    
-   1. 子資料夾 *raw/count/*包含前 21 天的資料 - 從 day\_00 到 day\_20
-   2. 子資料夾 *raw/train/*由單一天 day\_21 的資料組成
-   3. 子資料夾 *raw/test/*由兩天 day\_22 和 day\_23 的資料組成
+   1. 子資料夾 *raw/count/* 包含前 21 天的資料 - 從 day\_00 到 day\_20
+   2. 子資料夾 *raw/train/* 由單一天 day\_21 的資料組成
+   3. 子資料夾 *raw/test/* 由兩天 day\_22 和 day\_23 的資料組成
 2. 對於想要從原始 gzip 資料開始的使用者，這些也可以在主要資料夾 *raw/* 取得，形式為 day_NN.gz，其中 NN 從 00 到 23。
 
 本逐步解說中稍後會在我們建立 Hive 資料表時說明存取、瀏覽和模型化此資料而不需要任何本機下載的另一種方法。
@@ -437,7 +439,7 @@ Hive REPL "hive >" 出現記號後，只需剪下並貼上查詢即可執行。
 
 1. 對 **資料來源**
 2. 在 [Hive 資料庫查詢] 方塊中，簡單的 SELECT * FROM <your\_database\_name.your\_table\_name> - 就已經足夠。
-3. **Hcatalog 伺服器 URI**：如果您的叢集是 "abc"，那麼這就是：https://abc.azurehdinsight.net
+3. **Hcatalog 伺服器 URI**：如果您的叢集是 "abc"，那麼就是：https://abc.azurehdinsight.net
 4. **Hadoop 使用者帳戶名稱**：委任叢集時選擇的使用者名稱。 (非遠端存取使用者名稱！)
 5. **Hadoop 使用者帳戶密碼**：委任叢集時選擇之使用者名稱的密碼。 (非遠端存取密碼！)
 6. **輸出資料的位置**：選擇 "Azure"
@@ -456,7 +458,7 @@ Hive REPL "hive >" 出現記號後，只需剪下並貼上查詢即可執行。
 ![將資料集拖曳到主要面板中](./media/hive-criteo-walkthrough/cl5tpGw.png)
 
 > [!NOTE]
-> 為訓練和測試資料集執行這項操作。 此外，請記住要使用您為此目的提供的資料庫名稱和資料表名稱。 在圖中所使用的值僅供說明之用。\**
+> 為訓練和測試資料集執行這項操作。 此外，請記住要使用您為此目的提供的資料庫名稱和資料表名稱。 在圖中所使用的值僅供說明之用。
 > 
 > 
 

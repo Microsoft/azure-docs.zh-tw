@@ -2,32 +2,37 @@
 title: 使用 Java 建立 Azure Cosmos DB 文件資料庫 | Microsoft Docs'
 description: 提供 Java 程式碼範例，您可用來連線及查詢 Azure Cosmos DB SQL API
 services: cosmos-db
-documentationcenter: ''
-author: mimig1
-manager: jhubbard
-editor: ''
-ms.assetid: 89ea62bb-c620-46d5-baa0-eefd9888557c
+author: SnehaGunda
+manager: kfile
 ms.service: cosmos-db
+ms.component: cosmosdb-sql
 ms.custom: quick start connect, mvc, devcenter
-ms.workload: ''
-ms.tgt_pltfrm: na
 ms.devlang: java
 ms.topic: quickstart
 ms.date: 03/26/2018
-ms.author: mimig
-ms.openlocfilehash: 99c4c15893d1318be13781558fb7ed35203bd971
-ms.sourcegitcommit: c3d53d8901622f93efcd13a31863161019325216
+ms.author: sngun
+ms.openlocfilehash: 85a7a6f5b1224c732f5a385789aef13e1d7bd1db
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/29/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46961241"
 ---
 # <a name="azure-cosmos-db-create-a-document-database-using-java-and-the-azure-portal"></a>Azure Cosmos DB︰使用 Java 和 Azure 入口網站建立文件資料庫
+
+> [!div class="op_single_selector"]
+> * [.NET](create-sql-api-dotnet.md)
+> * [Java](create-sql-api-java.md)
+> * [Node.js](create-sql-api-nodejs.md)
+> * [Python](create-sql-api-python.md)
+> * [Xamarin](create-sql-api-xamarin-dotnet.md)
+>  
 
 Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您可使用 Azure Cosmos DB 快速地建立和查詢受控文件、資料表及圖形資料庫。
 
 本快速入門會使用 Azure Cosmos DB [SQL API](sql-api-introduction.md)適用的 Azure 入口網站工具建立文件資料庫。 本快速入門也會說明如何使用 [SQL Java API](sql-api-sdk-java.md) 快速建立 Java 主控台應用程式。 本快速入門中的指示可運用在任何足以執行 Java 應用程式的作業系統上。 完成本快速入門，您就會熟悉如何在 UI 中或以程式設計的方式，建立和修改文件資料庫資源 (不論您偏好哪種方式)。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)] 
 [!INCLUDE [cosmos-db-emulator-docdb-api](../../includes/cosmos-db-emulator-docdb-api.md)]
@@ -55,43 +60,11 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
 <a id="add-sample-data"></a>
 ## <a name="add-sample-data"></a>新增範例資料
 
-您現在可以使用 [資料總管] 將資料新增至您的新集合。
-
-1. 展開 [項目] 集合，按一下 [文件] > [新文件]。
-
-   ![在 Azure 入口網站的 [資料總管] 中建立新文件](./media/create-sql-api-java/azure-cosmosdb-data-explorer-new-document.png)
-  
-2. 現在將文件新增至具有下列結構的集合，然後按一下 [儲存]。 使用程式碼方塊中的 [複製] 按鈕，將 json 複製到剪貼簿。
-
-     ```json
-     {
-         "id": "1",
-         "category": "personal",
-         "name": "groceries",
-         "description": "Pick up apples and strawberries.",
-         "isComplete": false
-     }
-     ```
-
-    ![將 json 資料複製在 Azure 入口網站的 [資料總管] 中並按一下 [儲存]](./media/create-sql-api-java/azure-cosmosdb-data-explorer-save-document.png)
-
-3.  多建立並儲存一份文件，將其中的 `id` 變更為 2，並適當變更其他屬性。 新文件可擁有您想要的任何結構，因為 Azure Cosmos DB 不會對您的資料強加任何結構描述。
+[!INCLUDE [cosmos-db-create-sql-api-add-sample-data](../../includes/cosmos-db-create-sql-api-add-sample-data.md)]
 
 ## <a name="query-your-data"></a>查詢資料
 
-您現可在 [資料總管] 中，使用查詢來擷取和篩選您的資料。
-
-1. 依預設，此查詢會設為 `SELECT * FROM c`。 此預設查詢會擷取並顯示集合中的所有文件。 
-
-    ![[資料總管] 中的預設查詢為 `SELECT * FROM c`](./media/create-sql-api-java/azure-cosmosdb-data-explorer-query.png)
-
-2. 停留在 [文件] 索引標籤，藉由按一下 [編輯篩選條件] 按鈕、將 `ORDER BY c._ts DESC` 新增至查詢述詞方塊，然後再按一下 [套用篩選條件] 即可變更查詢。
-
-    ![新增 ORDER BY c._ts DESC 並按一下 [套用篩選]，以變更預設查詢](./media/create-sql-api-java/azure-cosmosdb-data-explorer-edit-query.png)
-
-此經過修改的查詢清單會根據文件的時間戳記，依遞減順序列出文件，因此現會最先列出您的第二份文件。 若您熟悉 SQL 語法，則可在此方塊中輸入任一受支援的 [SQL 查詢](sql-api-sql-query.md)。 
-
-其會在 [資料總管] 中完成工作。 繼續使用程式碼之前，請注意您也可以使用 [資料總管] 來建立預存程序、UDF 和觸發程序，以執行伺服器端商務邏輯及調整輸送量。 [資料總管] 會公開 API 中所有可用的內建程式設計資料存取，但可讓您在 Azure 入口網站中輕鬆存取您的資料。
+[!INCLUDE [cosmos-db-create-sql-api-query-data](../../includes/cosmos-db-create-sql-api-query-data.md)]
 
 ## <a name="clone-the-sample-application"></a>複製範例應用程式
 

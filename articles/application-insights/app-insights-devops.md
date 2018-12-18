@@ -1,8 +1,8 @@
 ---
-title: "Web 應用程式效能監視 - Azure Application Insights | Microsoft Docs"
-description: "Application Insights 如何融入 DevOps 循環"
+title: Web 應用程式效能監視 - Azure Application Insights | Microsoft Docs
+description: Application Insights 如何融入 DevOps 循環
 services: application-insights
-documentationcenter: 
+documentationcenter: ''
 author: mrbullwinkle
 manager: carmonm
 ms.assetid: 479522a9-ff5c-471e-a405-b8fa221aedb3
@@ -10,14 +10,15 @@ ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: multiple
-ms.topic: article
+ms.topic: conceptual
 ms.date: 03/14/2017
 ms.author: mbullwin
-ms.openlocfilehash: 24e249bb515c509f2fba1f943ac5e23a1ea9965e
-ms.sourcegitcommit: e462e5cca2424ce36423f9eff3a0cf250ac146ad
+ms.openlocfilehash: e77389411e52853efb52252a17c8612f0480fa61
+ms.sourcegitcommit: f3bd5c17a3a189f144008faf1acb9fabc5bc9ab7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/01/2017
+ms.lasthandoff: 09/10/2018
+ms.locfileid: "44298637"
 ---
 # <a name="deep-diagnostics-for-web-apps-and-services-with-application-insights"></a>使用 Application Insights 深入診斷 Web 應用程式
 ## <a name="why-do-i-need-application-insights"></a>我為什麼需要 Application Insights 呢？
@@ -151,7 +152,7 @@ Visual Studio 和 Eclipse 提供工具，可為您正在開發的專案設定正
 偵錯期間，您可以選擇將遙測保留於開發電腦中，在 Visual Studio 中加以檢視，但不會將它傳送到入口網站。 此本機選項可避免與生產環境的遙測偵錯混合在一起。
 
 ### <a name="build-annotations"></a>建置註解
-如果您使用 Visual Studio Team Services 來建置和部署應用程式，則部署註解會出現在入口網站的圖表中。 如果您的最新版本會在計量上產生任何效果，則會變得很明顯。
+如果您使用 Azure DevOps 來建置和部署應用程式，則入口網站中的圖表上會顯示部署註解。 如果您的最新版本會在計量上產生任何效果，則會變得很明顯。
 
 ![建置註解](./media/app-insights-devops/070.png)
 

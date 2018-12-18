@@ -23,4 +23,4 @@
  
     ![匯出至 PowerApps 和 Microsoft Flow](media/functions-export-api-definition/export-api-2.png)
 
-1. 按一下 [SERVICEPRINCIPAL] 。 自訂 API 現已建置並新增至您指定的環境。
+1. 按一下 [確定]。 自訂 API 現已建置並新增至您指定的環境。

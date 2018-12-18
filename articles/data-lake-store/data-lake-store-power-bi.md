@@ -1,53 +1,52 @@
 ---
-title: "使用 Power BI 分析 Data Lake Store 中的資料 | Microsoft Docs"
-description: "使用 Power BI 分析 Azure Data Lake Store 中所儲存的資料"
+title: 使用 Power BI 分析 Azure Data Lake Storage Gen1 中的資料 | Microsoft Docs
+description: 使用 Power BI 分析儲存在 Azure Data Lake Storage Gen1 的資料
 services: data-lake-store
-documentationcenter: 
+documentationcenter: ''
 author: nitinme
 manager: jhubbard
 editor: cgronlun
 ms.assetid: 57d19d27-e135-49d9-a7ea-46c48ef4e3bd
 ms.service: data-lake-store
 ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 02/21/2018
+ms.topic: conceptual
+ms.date: 05/29/2018
 ms.author: nitinme
-ms.openlocfilehash: 4a10dac1eca85b54ef144a91445af6dad3b5d93e
-ms.sourcegitcommit: 12fa5f8018d4f34077d5bab323ce7c919e51ce47
+ms.openlocfilehash: 5db9d18a31af4d6b407fcd9172ac80fc6f93f085
+ms.sourcegitcommit: cf606b01726df2c9c1789d851de326c873f4209a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/23/2018
+ms.lasthandoff: 09/19/2018
+ms.locfileid: "46297174"
 ---
-# <a name="analyze-data-in-data-lake-store-by-using-power-bi"></a>使用 Power BI 分析 Data Lake Store 中的資料
-在本文中，您將了解如何使用 Power BI Desktop 分析 Azure Data Lake Store 中所儲存的資料並加以視覺化。
+# <a name="analyze-data-in-azure-data-lake-storage-gen1-by-using-power-bi"></a>使用 Power BI 分析 Azure Data Lake Storage Gen1 中的資料
+在本文中，您將了解如何使用 Power BI Desktop 分析儲存在 Azure Data Lake Storage Gen1 的資料並加以視覺化。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 開始進行本教學課程之前，您必須具備下列條件：
 
 * **Azure 訂用帳戶**。 請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
-* **Azure Data Lake Store 帳戶**。 遵循 [使用 Azure 入口網站開始使用 Azure 資料湖存放區](data-lake-store-get-started-portal.md)的指示。 本文假設您已經建立稱為 **mybidatalakestore** 的 Data Lake Store 帳戶，並將範例資料檔案 (**Drivers.txt**) 上傳到其中。 此範例檔案可從 [Azure Data Lake Git 儲存機制](https://github.com/Azure/usql/tree/master/Examples/Samples/Data/AmbulanceData/Drivers.txt)進行下載。
+* **Data Lake Storage Gen1 帳戶**。 請遵循[透過 Azure 入口網站開始使用 Azure Data Lake Storage Gen1](data-lake-store-get-started-portal.md) 的指示。 本文假設您已經建立稱為 **myadlsg1** 的 Data Lake Storage Gen1 帳戶，並將範例資料檔案 (**Drivers.txt**) 上載到其中。 此範例檔案可從 [Azure Data Lake Git 儲存機制](https://github.com/Azure/usql/tree/master/Examples/Samples/Data/AmbulanceData/Drivers.txt)進行下載。
 * **Power BI Desktop**。 您可以從 [Microsoft 下載中心](https://www.microsoft.com/en-us/download/details.aspx?id=45331)下載此項目。 
 
 ## <a name="create-a-report-in-power-bi-desktop"></a>在 Power BI Desktop 中建立報表
 1. 在您的電腦上啟動 Power BI Desktop。
 2. 從 [首頁] 功能區中，按一下 [取得資料]，然後按一下 [其他]。 在 [取得資料] 對話方塊中，依序按一下 [Azure]、[Azure Data Lake Store] 和 [連線]。
    
-    ![連線至 Data Lake Store](./media/data-lake-store-power-bi/get-data-lake-store-account.png "連線至 Data Lake Store")
+    ![連線至 Data Lake Storage Gen1](./media/data-lake-store-power-bi/get-data-lake-store-account.png "連線至 Data Lake Storage Gen1")
 3. 如果您看到連接器處於開發階段的對話方塊，請選擇繼續。
-4. 在 [Microsoft Azure Data Lake Store] 對話方塊中，提供 Data Lake Store 帳戶的 URL，然後按 [確定]。
+4. 在 [Azure Data Lake Store] 對話方塊中，提供 Data Lake Storage Gen1 帳戶的 URL，然後按一下 [確定]。
    
-    ![Data Lake Store 的 URL](./media/data-lake-store-power-bi/get-data-lake-store-account-url.png "Data Lake Store 的 URL")
-5. 在下一個對話方塊中，按一下 [登入]  登入 Data Lake Store 帳戶。 您將會被重新導向至組織的登入頁面。 遵循提示登入此帳戶。
+    ![Data Lake Storage Gen1 的 URL](./media/data-lake-store-power-bi/get-data-lake-store-account-url.png "Data Lake Storage Gen1 的 URL")
+5. 在下一個對話方塊中，按一下 [登入] 登入 Data Lake Storage Gen1 帳戶。 您將會被重新導向至組織的登入頁面。 遵循提示登入此帳戶。
    
-    ![登入 Data Lake Store](./media/data-lake-store-power-bi/get-data-lake-store-account-signin.png "登入 Data Lake Store")
+    ![登入 Data Lake Storage Gen1](./media/data-lake-store-power-bi/get-data-lake-store-account-signin.png "登入 Data Lake Storage Gen1")
 6. 順利登入之後，請按一下 [連線] 。
    
-    ![連線至 Data Lake Store](./media/data-lake-store-power-bi/get-data-lake-store-account-connect.png "連線至 Data Lake Store")
-7. 下一個對話方塊會顯示您已上傳至 Data Lake Store 帳戶的檔案。 驗證資訊，然後按一下 [載入] 。
+    ![連線至 Data Lake Storage Gen1](./media/data-lake-store-power-bi/get-data-lake-store-account-connect.png "連線至 Data Lake Storage Gen1")
+7. 下一個對話方塊會顯示您已上載至 Data Lake Storage Gen1 帳戶的檔案。 驗證資訊，然後按一下 [載入] 。
    
-    ![從 Data Lake Store 載入資料](./media/data-lake-store-power-bi/get-data-lake-store-account-load.png "從 Data Lake Store 載入資料")
+    ![從 Data Lake Storage Gen1 載入資料](./media/data-lake-store-power-bi/get-data-lake-store-account-load.png "從 Data Lake Storage Gen1 載入資料")
 8. 順利將資料載入至 Power BI 之後，即會在 [欄位]  索引標籤中看到下列欄位。
    
     ![匯入的欄位](./media/data-lake-store-power-bi/imported-fields.png "匯入的欄位")
@@ -98,5 +97,5 @@ ms.lasthandoff: 02/23/2018
 在 Power BI Desktop 中建立視覺效果之後，即可將它發佈到 Power BI 服務，與其他人共用。 如需如何執行的指示，請參閱[從 Power BI Desktop 發佈](https://powerbi.microsoft.com/documentation/powerbi-desktop-upload-desktop-files/)。
 
 ## <a name="see-also"></a>另請參閱
-* [使用 Data Lake Analytics 分析 Data Lake Store 中的資料](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
+* [使用 Data Lake Analytics 分析 Data Lake Storage Gen1 中的資料](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
 

@@ -3,28 +3,29 @@ title: 將現有應用程式快速部署至 Azure Service Fabric 叢集
 description: 使用 Azure Service Fabric 叢集來裝載現有的 Node.js 應用程式與 Visual Studio。
 services: service-fabric
 documentationcenter: nodejs
-author: thraka
+author: rwike77
 manager: timlt
 editor: ''
 ms.assetid: ''
 ms.service: service-fabric
 ms.devlang: dotNet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 12/06/2017
-ms.author: adegeo
-ms.openlocfilehash: 65185a2d594a4a251cf87ece6f758ab3db223d7d
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.author: ryanwi
+ms.openlocfilehash: 2e7511f0efa36243a9e7e8e25f1697bdd3e60b63
+ms.sourcegitcommit: e0a678acb0dc928e5c5edde3ca04e6854eb05ea6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 07/13/2018
+ms.locfileid: "39005289"
 ---
 # <a name="host-a-nodejs-application-on-azure-service-fabric"></a>在 Azure Service Fabric 上裝載 Node.js 應用程式
 
 本快速入門可協助您將現有的應用程式 (在此範例中為 Node.js) 部署到在 Azure 上執行的 Service Fabric 叢集。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 開始之前，請確定您已 [設定開發環境](service-fabric-get-started.md)。 這包括安裝 Service Fabric SDK 及 Visual Studio 2017 或 2015。
 
@@ -43,7 +44,7 @@ ms.lasthandoff: 03/16/2018
 將應用程式命名為 **MyGuestApp**，然後按 [確定]。
 
 >[!IMPORTANT]
->Node.js 可以輕易打破 Windows 具有之路徑的 260 字元限制。 對專案本身使用短路徑，例如 **c:\code\svc1**。 選擇性地，您可以依照**[這些指示](https://stackoverflow.com/a/41687101/1664231)**在 Windows 10 中啟用完整檔案路徑。
+>Node.js 可以輕易打破 Windows 具有之路徑的 260 字元限制。 對專案本身使用短路徑，例如 **c:\code\svc1**。 選擇性地，您可以依照**[這些指示](https://stackoverflow.com/a/41687101/1664231)** 在 Windows 10 中啟用完整檔案路徑。
    
 ![Visual Studio 中的新增專案對話方塊][new-project]
 

@@ -1,11 +1,11 @@
 ---
-title: "在 Linux VM 上裝載 Ruby on Rails 網站 | Microsoft 文件"
-description: "在使用 Linux 虛擬機器的 Azure 上設定及裝載 Ruby on Rails 型網站。"
+title: 在 Linux VM 上裝載 Ruby on Rails 網站 | Microsoft 文件
+description: 在使用 Linux 虛擬機器的 Azure 上設定及裝載 Ruby on Rails 型網站。
 services: virtual-machines-linux
 documentationcenter: ruby
 author: rmcmurray
 manager: erikre
-editor: 
+editor: ''
 tags: azure-service-management
 ms.assetid: aad32685-3550-4bff-9c73-beb8d70b3291
 ms.service: virtual-machines-linux
@@ -15,11 +15,12 @@ ms.devlang: ruby
 ms.topic: article
 ms.date: 06/27/2017
 ms.author: robmcm
-ms.openlocfilehash: fa19f3dc7dded712102d4ba9b66dd4df1bfd20dd
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.openlocfilehash: 6ea1d249b7f9aec3a45923b162a97ce7f83d0d31
+ms.sourcegitcommit: d551ddf8d6c0fd3a884c9852bc4443c1a1485899
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 07/07/2018
+ms.locfileid: "37901148"
 ---
 # <a name="ruby-on-rails-web-application-on-an-azure-vm"></a>Azure VM 上的 Ruby on Rails Web 應用程式
 此教學課程說明如何在 Azure 上使用 Linux 虛擬機器，於 Rails 網站裝載 Ruby。  
@@ -99,7 +100,7 @@ ms.lasthandoff: 02/21/2018
     [2015-06-09 23:34:23] INFO  WEBrick::HTTPServer#start: pid=27766 port=3000
 
 ## <a name="add-an-endpoint"></a>新增端點。
-1. 移至 [Azure 入口網站][https://portal.azure.com] 並選取您的 VM。
+1. 移至 \[Azure 入口網站\][https://portal.azure.com] 並選取您的虛擬機器。
 
 2. 在頁面左邊，選取 [設定] 中的 [端點]。
 
@@ -128,7 +129,7 @@ ms.lasthandoff: 02/21/2018
     ![預設 rails 頁面][default-rails-cloud]
 
 ## <a name="next-steps"></a>後續步驟
-在此教學課程中，您必須手動執行大部分的步驟。 在生產環境中，您會在開發電腦上撰寫應用程式，並將它部署至 Azure VM。 另外，大部分生產環境均代管 Rails 應用程式以及 Apache 或 NginX 之類的其他伺服器程序，處理傳送至多個 Rails 應用程式及執行個體並提供靜態資源的要求。 如需詳細資訊，請參閱 http://rubyonrails.org/deploy/。
+在此教學課程中，您必須手動執行大部分的步驟。 在生產環境中，您會在開發電腦上撰寫應用程式，並將它部署至 Azure VM。 另外，大部分生產環境均代管 Rails 應用程式以及 Apache 或 NginX 之類的其他伺服器程序，處理傳送至多個 Rails 應用程式及執行個體並提供靜態資源的要求。 如需詳細資訊，請參閱 http://guides.rubyonrails.org/routing.html。
 
 若要深入了解 Ruby on Rails，請瀏覽 [Ruby on Rails 指南 (英文)][rails-guides]。
 

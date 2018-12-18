@@ -1,26 +1,29 @@
 ---
-title: "教學課程 - 使用 Azure 成本管理來管理成本 | Microsoft Docs"
-description: "在本教學課程中，您會了解如何使用成本配置以及回報和退款報告來管理成本。"
+title: 教學課程 - 在 Azure 中使用 Cloudyn 管理成本 | Microsoft Docs
+description: 在本教學課程中，您會了解如何使用成本配置以及回報和退款報告來管理成本。
 services: cost-management
-keywords: 
+keywords: ''
 author: bandersmsft
 ms.author: banders
-ms.date: 02/27/2018
+ms.date: 09/18/2018
 ms.topic: tutorial
 ms.service: cost-management
-ms.custom: mvc
-manager: carmonm
-ms.openlocfilehash: 238964540bffaf8d05148c587462256ce20d87f4
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+ms.custom: ''
+manager: dougeby
+ms.openlocfilehash: 743576d8cbd7135369fb692e601360cb57a6c3bd
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46989630"
 ---
-# <a name="tutorial-manage-costs-by-using-azure-cost-management"></a>教學課程：使用 Azure 成本管理來管理成本
+# <a name="tutorial-manage-costs-by-using-cloudyn"></a>教學課程：使用 Cloudyn 來管理成本
 
-在 Azure 成本管理中，您會透過根據標記配置成本的方式，來管理成本並產生回報報告。 成本配置的程序會將成本指派給已使用的雲端資源。 當所有的資源都搭配標記完成分類之後，成本便會被完全配置。 在成本完成配置之後，您可以透過儀表板和報表為使用者提供回報或退款。 不過，當您開始使用成本管理時，有許多資源可能會被取消標記或是無法標記。
+在 Cloudyn 中，您可以透過根據標記配置成本的方式，來管理成本並產生回報報告。 成本配置的程序會將成本指派給已使用的雲端資源。 當所有的資源都搭配標記完成分類之後，成本便會被完全配置。 在成本完成配置之後，您可以透過儀表板和報表為使用者提供回報或退款。 不過，當您開始使用 Cloudyn 時，有許多資源可能會被取消標記或是無法標記。
 
 例如，您可能會想要取得工程成本上的補償。 您必須能根據資源成本，向工程團隊顯示您所需的特定金額。 您可以向他們顯示包含所有標記為*工程*之已使用資源的報表。
+
+在本文中，標記和類別有時是同義詞。 類別是廣泛的集合，可代表許多項目。 其中可能包括營業單位、成本中心、Web 服務，或任何標記的項目。 標記是成對的名稱和值，可讓您藉由將相同標記套用至多個資源與資源群組進行資源分類，以及檢視和管理合併的帳單資訊。 在舊版的 Azure 入口網站中，*標記名稱*稱為*索引鍵*。 系統會為單一 Azure 訂用帳戶建立標記，並由該訂用帳戶管理。 AWS 中的標記由成對的「索引鍵/值」組成。 Azure 和 AWS 均使用*索引鍵*一詞，因此 Cloudyn 也使用此詞彙。 類別管理員會使用索引鍵 (標記名稱) 來合併標記。
 
 在本教學課程中，您了解如何：
 
@@ -30,16 +33,25 @@ ms.lasthandoff: 03/09/2018
 
 如果您沒有 Azure 訂用帳戶，請在開始前建立[免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F)。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 - 您必須具有 Azure 帳號。
-- 您必須有 Azure 成本管理的試用版註冊或付費訂用帳戶。
+- 您必須具有 Cloudyn 的試用版註冊或付費訂用帳戶。
+- [未啟用的帳戶必須在 Cloudyn 入口網站中啟用](activate-subs-accounts.md)。
+- 您必須在虛擬機器上啟用[來賓層級監視](azure-vm-extended-metrics.md)。
+
 
 ## <a name="use-custom-tags-to-allocate-costs"></a>使用自訂標記來配置成本
 
+Cloudyn 會從 Azure 取得資源群組標記資料，並自動將標記資訊傳播至資源。 在成本配置中，您可以依據資源標記查看成本。
+
+使用成本配置模型時，您可以定義類別 (標記)並在內部套用至未分類 (未標記) 的資源，以進行成本的分組，並定義相關規則來處理未標記的成本。 成本配置規則是指您已儲存、據以將某服務的成本分配到其他服務的指示。 其後，只要選取您所建立的模型，這些資源就會在*成本配置*報告中顯示標記/類別。
+
+請注意，這些資源的標記資訊不會出現在*成本分析*報告中。 此外，在 Cloudyn 中使用成本配置套用的標記並不會傳送至 Azure，如此您在 Azure 入口網站中不會看到這些標記。
+
 當您開始進行成本配置時，必須先使用成本模型來定義範圍。 成本模型並不會變更成本，而是會分配它們。 當您建立成本模型時，會依成本實體、帳戶或訂用帳戶，並透過多個標記將資料分割。 常見的範例標記可能會包含帳單代碼、成本中心或群組名稱。 標記也能協助針對組織的其他部分執行回報或退款。
 
-若要建立自訂的成本配置模型，請選取報表功能表上的 [Cost] \(成本\) &gt; [Cost Management] \(成本管理\) &gt; [Cost Allocation 360°] \(成本配置 360°\)。
+若要建立自訂的成本配置模型，請選取報告功能表上的 [成本] &gt; [成本管理] &gt; [成本配置 360°]。
 
 ![選取 [Cost Allocation 360] \(成本配置 360\)](./media/tutorial-manage-costs/cost-allocation-360.png)
 
@@ -59,7 +71,7 @@ ms.lasthandoff: 03/09/2018
 
 
 
-在不同的範例中，您可能會想要將所有的 Azure 網路成本配置給組織中特定的營業單位。 若要這麼做，請選取 [Azure/Network] \(Azure/網路\) 服務，然後選取 [Explicit Distribution] \(明確分配\)。 接著，將分配百分比設為 100，並選取下列影像中的營業單位 [**G&amp;A**]：
+在不同的範例中，您可能會想要將所有的 Azure 網路成本配置給組織中特定的營業單位。 若要這麼做，請選取 [Azure/網路] 服務，然後在 [定義配置規則] 下方選取 [明確分配]。 接著，將分配百分比設為 100，並選取下列影像中的營業單位 [**G&amp;A**]：
 
 ![特定營業單位的範例成本模型配置規則](./media/tutorial-manage-costs/cost-model03.png)
 
@@ -97,9 +109,9 @@ ms.lasthandoff: 03/09/2018
     - Cloudyn 實體標記：套用至 Cloudyn 實體的使用者定義中繼資料
     - 類別管理員：會根據套用至現有標記之規則建立新標記的資料清理工具
 
-若要在 Cloudyn 成本報表中檢視雲端提供者標記，您必須使用 [Cost Allocation 360] \(成本配置 360\) 來建立自訂成本配置模型。 若要這麼做，請移至 [Cost] \(成本\) > [Cost Management] \(成本管理\) > [Cost Allocation 360] \(成本配置 360\)，選取所需的標記，然後定義規則以處理未標記的成本。 接著，建立新的成本模型。 之後，您可以在 [Cost Allocation Analysis] \(成本配置分析\) 中檢視報表，以針對您的 Azure 資源標記進行檢視、篩選及排序。
+若要在 Cloudyn 成本報表中檢視雲端提供者標記，您必須使用 [Cost Allocation 360] \(成本配置 360\) 來建立自訂成本配置模型。 若要這麼做，請移至 [成本] > [成本管理] > [成本配置 360]，選取所需的標記，然後定義規則以處理未標記的成本。 接著，建立新的成本模型。 之後，您可以在 [Cost Allocation Analysis] \(成本配置分析\) 中檢視報表，以針對您的 Azure 資源標記進行檢視、篩選及排序。
 
-Azure 資源標記只會出現在 [Cost Allocation Analysis] \(成本配置分析\) 報表中。
+Azure 資源標記只會出現在 [成本] > [成本配置分析] 報告中。
 
 雲端提供者計費標記會出現在所有成本報表中。
 

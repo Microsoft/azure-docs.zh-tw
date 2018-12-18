@@ -1,26 +1,27 @@
 ---
-title: "Azure PowerShell 指令碼範例 - OMS | Microsoft Docs"
-description: "Azure PowerShell 指令碼範例 - OMS"
+title: Azure PowerShell 指令碼範例 - OMS | Microsoft Docs
+description: Azure PowerShell 指令碼範例 - OMS
 services: virtual-machines-windows
 documentationcenter: virtual-machines
-author: neilpeterson
-manager: timlt
+author: cynthn
+manager: jeconnoc
 editor: tysonn
 tags: azure-service-management
-ms.assetid: 
+ms.assetid: ''
 ms.service: virtual-machines-windows
 ms.devlang: na
 ms.topic: sample
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 ms.date: 12/12/2017
-ms.author: nepeters
+ms.author: cynthn
 ms.custom: mvc
-ms.openlocfilehash: 2f9303568838113335343a420913b8dcb84cb49c
-ms.sourcegitcommit: d247d29b70bdb3044bff6a78443f275c4a943b11
+ms.openlocfilehash: 5befcb526f6337c05c33bb9b13aa1354ee046248
+ms.sourcegitcommit: aa988666476c05787afc84db94cfa50bc6852520
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/13/2017
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37930363"
 ---
 # <a name="create-an-operations-management-suite-monitored-vm-with-powershell"></a>使用 PowerShell 建立 Operations Management Suite 監視的 VM
 
@@ -34,7 +35,7 @@ ms.lasthandoff: 12/13/2017
 
 [!code-powershell[main](../../../powershell_scripts/virtual-machine/create-vm-monitor-oms/create-windows-vm-detailed-oms.ps1 "Create VM OMS")]
 
-## <a name="clean-up-deployment"></a>清除部署 
+## <a name="clean-up-deployment"></a>清除部署
 
 執行下列命令來移除資源群組、VM 和所有相關資源。
 

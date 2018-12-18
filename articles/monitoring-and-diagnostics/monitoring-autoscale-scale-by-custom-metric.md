@@ -1,29 +1,24 @@
 ---
-title: "開始在 Azure 中依自訂計量自動調整規模 | Microsoft Docs"
-description: "了解如何在 Azure 中依自訂計量調整資源的規模。"
+title: 使用自訂計量在 Azure 中自動調整規模
+description: 了解如何在 Azure 中依自訂計量調整資源的規模。
 author: anirudhcavale
-manager: orenr
-editor: 
-services: monitoring-and-diagnostics
-documentationcenter: monitoring-and-diagnostics
-ms.assetid: d37d3fda-8ef1-477c-a360-a855b418de84
-ms.service: monitoring-and-diagnostics
-ms.workload: na
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+services: azure-monitor
+ms.service: azure-monitor
+ms.topic: conceptual
 ms.date: 05/07/2017
 ms.author: ancav
-ms.openlocfilehash: 72b6a68d0dbad4639f21aa701ec4865f36409f0a
-ms.sourcegitcommit: b07d06ea51a20e32fdc61980667e801cb5db7333
+ms.component: autoscale
+ms.openlocfilehash: 9df587d92b9e35db496c787186ff2945db7965ce
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2017
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46987810"
 ---
 # <a name="get-started-with-auto-scale-by-custom-metric-in-azure"></a>開始在 Azure 中依自訂計量自動調整規模
 本文說明如何在 Azure 入口網站中依自訂計量調整您資源的規模。
 
-Azure 監視器自動調整規模僅適用於虛擬機器擴展集 (VMSS)、雲端服務、App Service 方案及 App Service 環境。 
+Azure 監視器自動調整僅適用於[虛擬機器擴展集](https://azure.microsoft.com/services/virtual-machine-scale-sets/)、[雲端服務](https://azure.microsoft.com/services/cloud-services/)、[App Service - Web Apps](https://azure.microsoft.com/services/app-service/web/)和 [API 管理服務](https://docs.microsoft.com/azure/api-management/api-management-key-concepts)。
 
 # <a name="lets-get-started"></a>開始使用
 本文假設您的 Web 應用程式已設定 Application Insights。 如果您還沒有，則可[設定 ASP.NET 網站的 Application Insights][1]

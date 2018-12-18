@@ -3,21 +3,22 @@ title: 使用變更追蹤和 Azure Data Factory 以累加方式複製資料 | Mi
 description: '在本教學課程中，您會建立 Azure Data Factory 管線，透過累加方式將差異資料從內部部署 SQL Server 資料庫中的多個資料表，複製到 Azure SQL Database。 '
 services: data-factory
 documentationcenter: ''
-author: linda33wj
+author: dearandyxu
 manager: craigg
 ms.reviewer: douglasl
 ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: get-started-article
+ms.topic: tutorial
 ms.date: 01/22/2018
-ms.author: jingwang
-ms.openlocfilehash: d8299778ce5b713f4275a28c7f174a300197a6a2
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.author: yexu
+ms.openlocfilehash: 246b423e69fa8fb73db45f44fa17c1bc65407681
+ms.sourcegitcommit: f6e2a03076679d53b550a24828141c4fb978dcf9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43090720"
 ---
 # <a name="incrementally-load-data-from-azure-sql-database-to-azure-blob-storage-using-change-tracking-information"></a>使用變更追蹤資訊，以累加方式將資料從 Azure SQL Database 載入到 Azure Blob 儲存體 
 在本教學課程中，您會建立一個 Azure Data Factory 並讓其具有管線，以根據來源 Azure SQL Database 中的**變更追蹤**資訊，將差異資料載入到 Azure Blob 儲存體。  
@@ -33,11 +34,8 @@ ms.lasthandoff: 03/23/2018
 > * 新增或更新來源資料表中的資料
 > * 建立、執行和監視累加複製管線
 
-> [!NOTE]
-> 本文適用於第 2 版的 Data Fatory (目前為預覽版)。 如果您使用第 1 版的 Data Factory 服務 (正式推出版本 (GA))，請參閱 [Data Factory 第 1 版文件](v1/data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
-
 ## <a name="overview"></a>概觀
-在資料整合解決方案中，我們經常會見到在初次載入資料之後，再以累加方式載入資料的情形。 在某些情況下，您的來源資料存放區於某一期間內所變更的資料，可以輕鬆地到加以切割 (例如，LastModifyTime、CreationTime)。 但也有某些情況是，您並無法明確地識別自上次處理資料後所產生的差異資料。 Azure SQL Database 和 SQL Server 等資料存放區所支援的變更追蹤技術，可供您用來識別差異資料。  本教學課程說明如何使用 Azure Data Factory 第 2 版來與 SQL 變更追蹤技術搭配運作，透過累加方式從 Azure SQL Database 將差異資料載入到 Azure Blob 儲存體。  如需更為具體的 SQL 變更追蹤技術資訊，請參閱 [SQL Server 中的變更追蹤](/sql/relational-databases/track-changes/about-change-tracking-sql-server)。 
+在資料整合解決方案中，我們經常會見到在初次載入資料之後，再以累加方式載入資料的情形。 在某些情況下，您的來源資料存放區於某一期間內所變更的資料，可以輕鬆地到加以切割 (例如，LastModifyTime、CreationTime)。 但也有某些情況是，您並無法明確地識別自上次處理資料後所產生的差異資料。 Azure SQL Database 和 SQL Server 等資料存放區所支援的變更追蹤技術，可供您用來識別差異資料。  本教學課程說明如何搭配使用 Azure Data Factory 與 SQL 變更追蹤技術，以透過累加方式從 Azure SQL Database 將差異資料載入至 Azure Blob 儲存體。  如需更為具體的 SQL 變更追蹤技術資訊，請參閱 [SQL Server 中的變更追蹤](/sql/relational-databases/track-changes/about-change-tracking-sql-server)。 
 
 ## <a name="end-to-end-workflow"></a>端對端工作流程
 以下是使用變更追蹤技術，以累加方式載入資料的典型端對端工作流程步驟。
@@ -51,16 +49,16 @@ ms.lasthandoff: 03/23/2018
     3. 將完整資料從 Azure SQL Database 載入到 Azure Blob 儲存體。 
 2. **依排程累加載入差異資料** (在初始載入資料後定期執行)：
     1. 取得 SYS_CHANGE_VERSION 的舊值和新值。
-    3. 藉由將 **sys.change_tracking_tables** 中有所變更之資料列 (介於兩個 SYS_CHANGE_VERSION 值之間) 的主索引鍵，聯結到**來源資料表**中的資料來載入差異資料，然後將差異資料移動到目的地。
+    3. 藉由將 **sys.change_tracking_tables** 中有所變更資料列 (介於兩個 SYS_CHANGE_VERSION 值之間) 的主索引鍵，聯結到**來源資料表**中的資料來載入差異資料，然後將差異資料移動到目的地。
     4. 針對要在下一次載入的差異更新其 SYS_CHANGE_VERSION。
 
 ## <a name="high-level-solution"></a>高階解決方案
 在本教學課程中，您會建立兩個管線以執行下列兩項作業：  
 
-1. **初始載入：**您會使用複製活動建立管線，以將整個資料從來源資料存放區 (Azure SQL Database) 複製到目的地資料存放區 (Azure Blob 儲存體)。
+1. **初始載入：** 您會使用複製活動建立管線，以將整個資料從來源資料存放區 (Azure SQL Database) 複製到目的地資料存放區 (Azure Blob 儲存體)。
 
     ![完整載入資料](media/tutorial-incremental-copy-change-tracking-feature-powershell/full-load-flow-diagram.png)
-1.  **累加載入：**您會使用下列活動建立管線，然後定期執行該管線。 
+1.  **累加載入：** 您會使用下列活動建立管線，然後定期執行該管線。 
     1. 建立**兩個查閱活動**，從 Azure SQL Database 取得舊的和新的 SYS_CHANGE_VERSION，並將其傳遞給複製活動。
     2. 建立**一個複製活動**，將兩個 SYS_CHANGE_VERSION 值之間所插入/更新/刪除的資料，從 Azure SQL Database 複製到 Azure Blob 儲存體。
     3. 建立**一個預存程序活動**，以更新下一次管線執行的 SYS_CHANGE_VERSION 值。
@@ -68,12 +66,12 @@ ms.lasthandoff: 03/23/2018
     ![累加載入流程圖](media/tutorial-incremental-copy-change-tracking-feature-powershell/incremental-load-flow-diagram.png)
 
 
-如果您沒有 Azure 訂用帳戶，請在開始前建立[免費帳戶](https://azure.microsoft.com/free/) 。
+如果您沒有 Azure 訂用帳戶，請在開始前建立[免費帳戶](https://azure.microsoft.com/free/)。
 
 ## <a name="prerequisites"></a>先決條件
 * Azure PowerShell。 依照[如何安裝和設定 Azure PowerShell](/powershell/azure/install-azurerm-ps)中的指示，安裝最新的 Azure PowerShell 模組。
 * **Azure SQL Database**。 您需要使用資料庫作為**來源**資料存放區。 如果您沒有 Azure SQL Database，請參閱[建立 Azure SQL 資料庫](../sql-database/sql-database-get-started-portal.md)一文，按照步驟建立資料庫。
-* **Azure 儲存體帳戶**。 您需要使用 Blob 儲存體作為**接收**資料存放區。 如果您沒有 Azure 儲存體帳戶，請參閱[建立儲存體帳戶](../storage/common/storage-create-storage-account.md#create-a-storage-account)一文，按照步驟來建立帳戶。 建立名為 **adftutorial** 的容器。 
+* **Azure 儲存體帳戶**。 您需要使用 Blob 儲存體作為**接收**資料存放區。 如果您沒有 Azure 儲存體帳戶，請參閱[建立儲存體帳戶](../storage/common/storage-quickstart-create-account.md)一文，按照步驟來建立帳戶。 建立名為 **adftutorial** 的容器。 
 
 ### <a name="create-a-data-source-table-in-your-azure-sql-database"></a>在 Azure SQL 資料庫中建立資料來源資料表
 1. 啟動 **SQL Server Management Studio**，然後連線到 Azure SQL Server。 
@@ -102,8 +100,8 @@ ms.lasthandoff: 03/23/2018
 4. 執行下列 SQL 查詢，在您的資料庫和來源資料表 (data_source_table) 啟用**變更追蹤**機制： 
 
     > [!NOTE]
-    > - 將 &lt;your database name&gt; 替換為具有 data_source_table 之 Azure SQL Database 的名稱。 
-    > - 在目前的範例中，有變更的資料會保留兩天。 如果您每隔三天以上才會載入變更的資料，則裡面可能不會包含某些已變更的資料。  您必須將 CHANGE_RETENTION 的值變更為更大的數字。 或者，請確保您用來載入已變更之資料的期間是在兩天內。 如需詳細資訊，請參閱[啟用資料庫的變更追蹤](/sql/relational-databases/track-changes/enable-and-disable-change-tracking-sql-server#enable-change-tracking-for-a-database)
+    > - 將 &lt;your database name&gt; 替換為具有 data_source_table 的 Azure SQL Database 名稱。 
+    > - 在目前的範例中，有變更的資料會保留兩天。 如果您每隔三天以上才會載入變更的資料，則裡面可能不會包含某些已變更的資料。  您必須將 CHANGE_RETENTION 的值變更為更大的數字。 或者，請確保您用來載入已變更資料的期間是在兩天內。 如需詳細資訊，請參閱[啟用資料庫的變更追蹤](/sql/relational-databases/track-changes/enable-and-disable-change-tracking-sql-server#enable-change-tracking-for-a-database)
  
     ```sql
     ALTER DATABASE <your database name>
@@ -132,7 +130,7 @@ ms.lasthandoff: 03/23/2018
     
     > [!NOTE]
     > 如果在您啟用 SQL Database 的變更追蹤後，資料並未變更，變更追蹤版本的值會是 0。
-6. 執行下列查詢，在您的 Azure SQL Database 中建立預存程序。 該管線會叫用此預存程序，以更新您在上一個步驟建立之資料表的變更追蹤版本。 
+6. 執行下列查詢，在您的 Azure SQL Database 中建立預存程序。 該管線會叫用此預存程序，以更新您在上一個步驟建立的資料表變更追蹤版本。 
 
     ```sql
     CREATE PROCEDURE Update_ChangeTracking_Version @CurrentTrackingVersion BIGINT, @TableName varchar(50)
@@ -191,7 +189,7 @@ ms.lasthandoff: 03/23/2018
     The specified Data Factory name 'ADFIncCopyChangeTrackingTestFactory' is already in use. Data Factory names must be globally unique.
     ```
 * 若要建立 Data Factory 執行個體，您用來登入 Azure 的使用者帳戶必須為**參與者**或**擁有者**角色，或是 Azure 訂用帳戶的**管理員**。
-* 目前，Data Factory 第 2 版只允許您在美國東部、美國東部 2 和西歐區域中建立資料處理站。 資料處理站所使用的資料存放區 (Azure 儲存體、Azure SQL Database 等) 和計算 (HDInsight 等) 可位於其他區域。
+* 如需目前可使用 Data Factory 的 Azure 區域清單，請在下列頁面上選取您感興趣的區域，然後展開 [分析] 以找出 [Data Factory]：[依區域提供的產品](https://azure.microsoft.com/global-infrastructure/services/)。 資料處理站所使用的資料存放區 (Azure 儲存體、Azure SQL Database 等) 和計算 (HDInsight 等) 可位於其他區域。
 
 
 ## <a name="create-linked-services"></a>建立連結的服務
@@ -652,7 +650,7 @@ Invoke-AzureRmDataFactoryV2Pipeline -PipelineName "IncrementalCopyPipeline" -Res
 1,update,10,2,U
 6,new,50,1,I
 ```
-前三個資料行是 data_source_table 中已變更的資料。 最後兩個資料行是變更追蹤系統資料表中的中繼資料。 第四個資料行是每個已變更之資料列的 SYS_CHANGE_VERSION。 第五個資料行是作業：U = 更新、I = 插入。  如需變更追蹤資訊的詳細資料，請參閱 [CHANGETABLE](/sql/relational-databases/system-functions/changetable-transact-sql)。 
+前三個資料行是 data_source_table 中已變更的資料。 最後兩個資料行是變更追蹤系統資料表中的中繼資料。 第四個資料行是每個已變更資料列的 SYS_CHANGE_VERSION。 第五個資料行是作業：U = 更新、I = 插入。  如需變更追蹤資訊的詳細資料，請參閱 [CHANGETABLE](/sql/relational-databases/system-functions/changetable-transact-sql)。 
 
 ```
 ==================================================================

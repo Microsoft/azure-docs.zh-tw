@@ -8,25 +8,26 @@ ms.service: sql-database
 ms.custom: mvc,develop apps
 ms.devlang: dotnet
 ms.topic: quickstart
-ms.date: 07/07/2017
+ms.date: 04/01/2018
 ms.author: carlrab
-ms.openlocfilehash: 4d858606b0c645069602fba80cdba3d13582170d
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: 9336de3e244f7a7373f7c1ca3ac8eedd06473d3c
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38630130"
 ---
 # <a name="use-net-core-c-to-query-an-azure-sql-database"></a>使用 .NET Core (C#) 查詢 Azure SQL 資料庫
 
-本快速入門教學課程示範如何在 Windows/Linux/macOS 上使用 [.NET Core](https://www.microsoft.com/net/) 來建立 C# 程式，以連線至 Azure SQL 資料庫，並使用 Transact-SQL 陳述式來查詢資料。
+此快速入門示範如何在 Windows/Linux/macOS 上使用 [.NET Core](https://www.microsoft.com/net/) 建立 C# 程式以連線至 Azure SQL 資料庫，並使用 Transact-SQL 陳述式來查詢資料。
 
 ## <a name="prerequisites"></a>先決條件
 
-若要完成本快速入門教學課程，請確定您具有下列項目︰
+若要完成本快速入門，請確定您具備下列項目︰
 
 [!INCLUDE [prerequisites-create-db](../../includes/sql-database-connect-query-prerequisites-create-db-includes.md)]
 
-- 在此快速入門教學課程中，您所使用電腦的公用 IP 位址[伺服器層級防火牆規則](sql-database-get-started-portal.md#create-a-server-level-firewall-rule)。
+- 在此快速入門中，您所使用電腦的公用 IP 位址[伺服器層級防火牆規則](sql-database-get-started-portal.md#create-a-server-level-firewall-rule)。
 
 - 您已安裝[適用於您作業系統的 .NET Core](https://www.microsoft.com/net/core)。 
 

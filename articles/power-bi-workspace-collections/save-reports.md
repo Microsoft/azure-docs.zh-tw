@@ -1,26 +1,21 @@
 ---
-title: "在 Power BI 工作區集合中儲存報表 | Microsoft Docs"
-description: "了解如何在 Power BI 工作區集合中儲存報表。 這需要適當權限才能順利運作。"
+title: 在 Power BI 工作區集合中儲存報表 | Microsoft Docs
+description: 了解如何在 Power BI 工作區集合中儲存報表。 這需要適當權限才能順利運作。
 services: power-bi-embedded
-documentationcenter: 
-author: guyinacube
-manager: erikre
-editor: 
-tags: 
+author: markingmyname
 ROBOTS: NOINDEX
-ms.assetid: 
+ms.assetid: ''
 ms.service: power-bi-embedded
-ms.devlang: NA
 ms.topic: article
-ms.tgt_pltfrm: NA
 ms.workload: powerbi
 ms.date: 09/20/2017
-ms.author: asaxton
-ms.openlocfilehash: 94a72ba4478aa317b4a1930b2894c1346d0590c1
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.author: maghan
+ms.openlocfilehash: 277667bb3b4e39acbb935285e984660a3b44993d
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43047951"
 ---
 # <a name="save-reports-in-power-bi-workspace-collections"></a>在 Power BI 工作區集合中報表儲存
 

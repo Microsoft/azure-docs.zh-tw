@@ -1,0 +1,51 @@
+### YamlMime:YamlDocument
+ms.openlocfilehash: 19e9bbafa1c560e7fa28be9945bc13cb0e342edc
+ms.sourcegitcommit: f20e43e436bfeafd333da75754cd32d405903b07
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49388556"
+documentType: LandingData
+title: Azure Front Door Service (預覽)
+metadata:
+  title: Azure Front Door Service (預覽)
+  meta.description: Azure Front Door Service provides a scalable and secure entry point for fast delivery of your global web applications. Learn how to use Front Door with our quickstarts, tutorials, and samples.
+  services: frontdoor
+  author: dlepow
+  ms.service: frontdoor
+  ms.topic: landing-page
+  ms.date: 9/14/2018
+  ms.author: danlep
+abstract:
+  description: Azure Front Door Service 會提供可調整且安全的進入點，讓您快速提供全球 Web 應用程式。 了解如何透過快速入門、教學課程和範例使用 Front Door。
+sections:
+- title: 5 分鐘快速入門
+  items:
+  - type: paragraph
+    text: 為高可用性的全球 Web 應用程式建立 Front Door。
+  - type: list
+    style: icon48
+    items:
+    - image:
+        src: https://docs.microsoft.com/media/common/i_portal.svg
+      text: Azure 入口網站
+      href: quickstart-create-front-door.md
+- title: 逐步教學課程
+  items:
+  - type: paragraph
+    text: 了解如何針對您的需求設定 Azure Front Door Service。
+  - type: list
+    style: unordered
+    items:
+    - html: <a href="front-door-custom-domain.md">將自訂網域新增到您的 Front Door</a>
+    - html: <a href="front-door-custom-domain-https.md">針對自訂網域啟用 HTTPS</a>
+- title: 參考
+  items:
+  - type: list
+    style: cards
+    className: cardsD
+    items:
+    - title: 命令列
+      html: <p><a href="/cli/azure/ext/front-door">Azure CLI</a></p><p><a href="https://go.microsoft.com/fwlink/?linkid=2020942">Azure PowerShell</a></p>
+    - title: REST
+      html: <p><a href="/rest/api/frontdoor">REST API</a></p>

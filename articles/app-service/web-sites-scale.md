@@ -1,8 +1,8 @@
 ---
-title: "在 Azure 中相應增加應用程式的規模 | Microsoft Docs"
-description: "了解如何在 Azure App Service 中相應增加應用程式的規模，以增加容量和功能。"
+title: 在 Azure 中相應增加應用程式的規模 | Microsoft Docs
+description: 了解如何在 Azure App Service 中相應增加應用程式的規模，以增加容量和功能。
 services: app-service
-documentationcenter: 
+documentationcenter: ''
 author: cephalin
 manager: erikre
 editor: mollybos
@@ -14,11 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/05/2016
 ms.author: cephalin
-ms.openlocfilehash: f6244e3f739424be169f1ea117500159bd5e4254
-ms.sourcegitcommit: 95500c068100d9c9415e8368bdffb1f1fd53714e
+ms.openlocfilehash: 79450cdd0928304c3b98cf13f8aaca7a1bf11d33
+ms.sourcegitcommit: a3a0f42a166e2e71fa2ffe081f38a8bd8b1aeb7b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 09/01/2018
+ms.locfileid: "43381930"
 ---
 # <a name="scale-up-an-app-in-azure"></a>在 Azure 中相應增加應用程式的規模
 
@@ -50,7 +51,7 @@ ms.lasthandoff: 02/14/2018
 2. 在 App Service 應用程式頁面中，按一下 [所有設定]，然後按一下 [Scale Up]\(相應增加\)。
    
     ![瀏覽以相應增加您的 Azure 應用程式規模。][ChooseWHP]
-3. 選擇您的定價層，然後按一下 [選取] 。
+3. 選擇您的定價層，然後按一下 [套用]。
    
     當操作完成時，[通知] 索引標籤會有綠色的「成功」字樣閃爍顯示。
 
@@ -97,7 +98,7 @@ ms.lasthandoff: 02/14/2018
   
     [Microsoft Azure 的虛擬機器和雲端服務大小][vmsizes]
   
-* 如需 Azure App Service 最佳作法 (包括建置可調整且具彈性的架構) 的詳細資訊，請參閱 [最佳作法：Azure App Service Web Apps](http://blogs.msdn.com/b/windowsazure/archive/2014/02/10/best-practices-windows-azure-websites-waws.aspx)。
+* 如需 Azure App Service 最佳作法 (包括建置可調整且具彈性的架構) 的詳細資訊，請參閱 [最佳作法：Azure App Service Web Apps](https://azure.microsoft.com/blog/best-practices-windows-azure-websites-waws/)。
 * 如需調整 App Service 應用程式的相關影片，請參閱下列資源：
   
   * [何時該調整 Azure 網站 - Stefan Schackow](https://azure.microsoft.com/resources/videos/azure-web-sites-free-vs-standard-scaling/)
@@ -105,9 +106,9 @@ ms.lasthandoff: 02/14/2018
   * [如何調整 Azure 網站 - Stefan Schackow](https://azure.microsoft.com/resources/videos/how-azure-web-sites-scale/)
 
 <!-- LINKS -->
-[vmsizes]:/pricing/details/app-service/
+[vmsizes]:https://azure.microsoft.com/pricing/details/app-service/
 [SQLaccountsbilling]:http://go.microsoft.com/fwlink/?LinkId=234930
-[azuresubscriptions]:http://go.microsoft.com/fwlink/?LinkID=235288
+[azuresubscriptions]:https://account.windowsazure.com/subscriptions
 [portal]: https://portal.azure.com/
 
 <!-- IMAGES -->

@@ -1,27 +1,22 @@
 ---
-title: "Azure 檔案服務簡介 | Microsoft Docs"
-description: "Azure 檔案服務的概觀，此服務可讓您使用業界標準 SMB 通訊協定在雲端建立和使用網路檔案共用。"
+title: Azure 檔案服務簡介 | Microsoft Docs
+description: Azure 檔案服務的概觀，此服務可讓您使用業界標準 SMB 通訊協定在雲端建立和使用網路檔案共用。
 services: storage
-documentationcenter: 
 author: RenaShahMSFT
-manager: aungoo
-editor: tysonn
-ms.assetid: 
 ms.service: storage
-ms.workload: storage
-ms.tgt_pltfrm: na
-ms.devlang: na
 ms.topic: get-started-article
-ms.date: 10/08/2017
+ms.date: 07/19/2018
 ms.author: renash
-ms.openlocfilehash: f96aa9fe12aba28e1ac3429f012419341bdf92c1
-ms.sourcegitcommit: c4cc4d76932b059f8c2657081577412e8f405478
+ms.component: files
+ms.openlocfilehash: 7501d28d75f180f289f4e3e130e0a5f7219835b9
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2018
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39526016"
 ---
 # <a name="introduction-to-azure-files"></a>Azure 檔案服務簡介
-Azure 檔案服務提供雲端中完全受控的檔案共用，可透過業界標準[伺服器訊息區塊 (SMB) 通訊協定](https://msdn.microsoft.com/library/windows/desktop/aa365233.aspx) (也稱為 Common Internet File System 或 CIFS) 存取。 Windows、Linux 和 macOS 的雲端部署或內部部署可同時掛接 Azure 檔案共用。 此外，透過 Azure 檔案同步 (預覽) 可以在 Windows Server 上快取 Azure 檔案共用，以便在資料的使用位置附近快速存取。
+Azure 檔案提供雲端中完全受控的檔案共用，可透過業界標準[伺服器訊息區 (SMB) 通訊協定](https://msdn.microsoft.com/library/windows/desktop/aa365233.aspx)存取。 Windows、Linux 和 macOS 的雲端部署或內部部署可同時掛接 Azure 檔案共用。 此外，透過 Azure 檔案同步可以在 Windows Server 上快取 Azure 檔案共用，以便在資料的使用位置附近快速存取。
 
 ## <a name="videos"></a>影片
 | Azure 檔案同步簡介 (2 分鐘) | 同步的 Azure 檔案 (Ignite 2017) (85 分鐘)  |
@@ -50,8 +45,7 @@ Azure 檔案共用可以用來：
 
 ## <a name="key-benefits"></a>主要權益
 * **共用存取**。 Azure 檔案共用支援業界標準 SMB 通訊協定，這表示您可以使用 Azure 檔案共用順暢地取代您的內部檔案共用，而不需擔心應用程式相容性。 能夠跨多部電腦和應用程式/執行個體共用檔案系統，是 Azure 檔案服務的重大優勢，尤其是針對需要共用能力的應用程式。 
-* 
-            **完全受控**。 不需要管理硬體或作業系統就可以建立 Azure 檔案共用。 這表示您不必透過重大安全性升級或替換故障硬碟來處理修補伺服器作業系統。
+* **完全受控**。 不需要管理硬體或作業系統就可以建立 Azure 檔案共用。 這表示您不必透過重大安全性升級或替換故障硬碟來處理修補伺服器作業系統。
 * **指令碼和工具**。 PowerShell Cmdlet 和 Azure CLI 可用來建立、掛接和管理 Azure 檔案共用，作為 Azure 應用程式系統管理的一部分。您可以使用 Azure 入口網站和 Azure 儲存體總管來建立及管理 Azure 檔案共用。 
 * **復原功能**。 Azure 檔案服務已從頭建置，可讓您隨時使用。 使用 Azure 檔案服務取代內部部署檔案共用，表示您不再需要被吵醒去處理本機電源中斷或網路問題。 
 * **熟悉的可程式性**。 Azure 中執行的應用程式可透過檔案[系統 I/O API](https://msdn.microsoft.com/library/system.io.file.aspx) 來存取共用中的資料。 因此，開發人員可利用現有的程式碼和技能來移轉現有的應用程式。 除了系統 IO API，您也可以使用 [Azure 儲存體用戶端程式庫](https://msdn.microsoft.com/library/azure/dn261237.aspx)或 [Azure 儲存體的 REST API](/rest/api/storageservices/file-service-rest-api)。

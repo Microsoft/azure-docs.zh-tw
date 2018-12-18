@@ -1,58 +1,74 @@
 ---
-title: 管理 SQL 資料倉儲中的資料表的統計資料 | Microsoft Docs
-description: 開始使用 Azure SQL 資料倉儲中的資料表的統計資料。
+title: 建立、更新統計資料 - Azure SQL 資料倉儲 | Microsoft Docs
+description: 建立和更新 Azure SQL 資料倉儲中資料表的查詢最佳化統計資料。
 services: sql-data-warehouse
-documentationcenter: NA
-author: barbkess
-manager: jenniehubbard
-editor: ''
-ms.assetid: faa1034d-314c-4f9d-af81-f5a9aedf33e4
+author: ckarst
+manager: craigg
 ms.service: sql-data-warehouse
-ms.devlang: NA
-ms.topic: article
-ms.tgt_pltfrm: NA
-ms.workload: data-services
-ms.custom: tables
-ms.date: 11/06/2017
-ms.author: barbkess
-ms.openlocfilehash: 5e7fd3c8790bb9a1a7ae8662f9a7047ae54892d2
-ms.sourcegitcommit: 168426c3545eae6287febecc8804b1035171c048
+ms.topic: conceptual
+ms.component: implement
+ms.date: 05/09/2018
+ms.author: kevin
+ms.reviewer: igorstan
+ms.openlocfilehash: 1a7ea00e8bdf4fa1a22dd765e5108dce72e2d380
+ms.sourcegitcommit: 1fb353cfca800e741678b200f23af6f31bd03e87
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/08/2018
+ms.lasthandoff: 08/30/2018
+ms.locfileid: "43307457"
 ---
-# <a name="managing-statistics-on-tables-in-sql-data-warehouse"></a>管理 SQL 資料倉儲中的資料表的統計資料
-> [!div class="op_single_selector"]
-> * [概觀][Overview]
-> * [資料類型][Data Types]
-> * [散發][Distribute]
-> * [索引][Index]
-> * [資料分割][Partition]
-> * [統計資料][Statistics]
-> * [暫存][Temporary]
-> 
-> 
+# <a name="creating-updating-statistics-on-tables-in-azure-sql-data-warehouse"></a>建立、更新 Azure SQL 資料倉儲中資料表的查詢最佳化統計資料
+建立和更新 Azure SQL 資料倉儲中資料表的查詢最佳化統計資料。
 
+## <a name="why-use-statistics"></a>為何要使用統計資料？
 Azure SQL 資料倉儲越了解您的資料，執行查詢的速度就越快。 從資料中收集統計資料，然後將其載入 SQL 資料倉儲是將查詢最佳化最重要的工作之一。 這是因為 SQL 資料倉儲查詢最佳化工具是一種以成本為考量的最佳化工具。 它會比較各種查詢計畫的成本，然後選擇成本最低的計畫，也就是執行速度最快的計畫。 例如，如果最佳化工具估計您在查詢中篩選的日期會傳回一個資料列，一旦它估計選取的日期會傳回一百萬個資料列，它可能會選擇不同的計畫。
 
-建立和更新統計資料的程序目前是手動程序，但做起來很簡單。  很快地，您將能夠自動建立及更新單一資料行和索引上的統計資料。  使用下列資訊可讓您在管理資料的統計資料時，發揮更高的自動化程度。 
+## <a name="automatic-creation-of-statistics"></a>自動建立統計資料
+當自動建立統計資料選項開啟時，AUTO_CREATE_STATISTICS，SQL 資料倉儲會分析連入的使用者查詢，其中會為缺少統計資料的資料行建立單一資料行的統計資料。 查詢最佳化工具會在查詢述詞或聯結條件中的個別資料行上建立統計資料，以改善查詢計劃的基數估計值。 自動建立統計資料目前依預設開啟。
 
-## <a name="getting-started-with-statistics"></a>開始使用統計資料
-建立每個資料行的範本統計資料是一個簡單的入門方法。 過期的統計資料會導致查詢效能欠佳。 不過，隨著資料不斷成長，更新所有資料行的統計資料可能會消耗記憶體。 
+可以執行下列命令，檢查您的資料倉儲是否已將之設定完畢：
 
-以下是針對不同案例的建議：
-| **案例** | 建議 |
-|:--- |:--- |
-| **開始使用** | 移轉至 SQL 資料倉儲後更新所有資料行 |
-| **最重要的統計資料資料行** | 雜湊散發索引鍵 |
-| **次要的統計資料資料行** | 資料分割索引鍵 |
-| **其他重要的統計資料資料行** | Date、常見 JOIN、GROUP BY、HAVING 和 WHERE |
-| **統計資料更新的頻率**  | 保守：每日 <br></br> 載入或轉換資料之後 |
-| **取樣** |  小於 10 億個資料列，使用預設取樣 (20%) <br></br> 超過 10 億個資料列，2% 範圍的統計資料是理想狀況 |
+```sql
+SELECT name, is_auto_create_stats_on 
+FROM sys.databases
+```
+如果您的資料倉儲尚未設定 AUTO_CREATE_STATISTICS，建議執行以下命令來啟用此屬性：
+
+```sql
+ALTER DATABASE <yourdatawarehousename> 
+SET AUTO_CREATE_STATISTICS ON
+```
+若含有聯結或偵測到有述詞存在，下列陳述式將觸發統計資料的自動建立動作：SELECT、INSERT-SELECT、CTAS、UPDATE、DELETE、EXPLAIN。 
+
+> [!NOTE]
+> 不會在暫存或外部資料表上建立自動建立統計資料。
+> 
+
+系統會同步產生自動建立統計資料，因此如果您的資料行尚未為這些陳述式建立統計資料，效能可能會略為降低。 在單一資料行上建立統計資料需要數秒的時間，視資料表大小而定。 若要避免測量效能降低 (尤其在進行效能基準測試時)，請在分析系統前先執行基準測試的工作負載，以確定會先建立統計資料。
+
+> [!NOTE]
+> 統計資料的建立也會記錄在不同使用者內容之下的 [sys.dm_pdw_exec_requests](https://docs.microsoft.com/sql/relational-databases/system-dynamic-management-views/sys-dm-pdw-exec-requests-transact-sql?view=aps-pdw-2016) 中。
+> 
+
+當自動統計資料建立完成時，會採用以下格式：_WA_Sys_<8 digit column id in Hex>_<8 digit table id in Hex>。 您可以執行 [DBCC SHOW_STATISTICS](https://docs.microsoft.com/sql/t-sql/database-console-commands/dbcc-show-statistics-transact-sql?view=sql-server-2017) 命令來檢視已建立的統計資料：
+
+```sql
+DBCC SHOW_STATISTICS (<tablename>, <targetname>)
+```
+第一個引數是資料表，其中包含要顯示的統計資料。 不能是外部資料表。 第二個引數是用來顯示統計資料資訊的目標索引、統計資料或資料行名稱。
+
+
 
 ## <a name="updating-statistics"></a>更新統計資料
 
 其中一個最佳做法，是隨著新增新的日期，每天在日期資料行上更新統計資料。 每次有新資料列載入資料倉儲時，就會加入新的載入日期或交易日期。 這些會改變資料散發情況並使統計資料過時。 相反地，客戶資料表中國家/地區資料行上的統計資料，可能永遠不需要更新，因為值散發通常不會變更。 假設客戶間的散發固定不變，將新資料列加入至資料表變化並不會改變資料散發情況。 不過，如果您的資料倉儲原本只包含單一國家/地區，而您又帶入來自新國家/地區的資料，並導致資料倉儲儲存了來自多個國家/地區的資料，您便必須更新國家/地區資料行上的統計資料。
+
+以下為更新統計資料的相關建議：
+
+|||
+|-|-|
+| **統計資料更新的頻率**  | 保守：每日 <br></br> 載入或轉換資料之後 |
+| **取樣** |  小於 10 億個資料列，使用預設取樣 (20%) <br></br> 超過 10 億個資料列，2% 範圍的統計資料是理想狀況 |
 
 為查詢疑難排解時，首先要詢問的問題之一就是「統計資料是最新的嗎？」
 
@@ -94,7 +110,7 @@ WHERE
 
 例如，資料倉儲中的**日期資料行**通常需要經常更新統計資料。 每次有新資料列載入資料倉儲時，就會加入新的載入日期或交易日期。 這些會改變資料散發情況並使統計資料過時。  相反地，客戶資料表上性別資料行的統計資料可能永遠不需要更新。 假設客戶間的散發固定不變，將新資料列加入至資料表變化並不會改變資料散發情況。 不過，如果資料倉儲只包含一種性別，而新的需求導致多種性別，則需要更新性別資料行的統計資料。
 
-如需進一步說明，請參閱 MSDN 上的[統計資料][Statistics]。
+如需詳細資訊，請參閱[統計資料](/sql/relational-databases/statistics/statistics)的一般指引。
 
 ## <a name="implementing-statistics-management"></a>實作統計資料管理
 擴充您的資料載入程序通常是個不錯的主意，可確保在載入結束時更新統計資料。 當資料表變更其大小和/或其值散發時，資料載入最為頻繁。 因此，這是實作某些管理程序的合理位置。
@@ -107,7 +123,7 @@ WHERE
 * 考慮較不常更新靜態散發資料行。
 * 請記得，每個統計資料物件會依序更新。 僅只實作 `UPDATE STATISTICS <TABLE_NAME>` 不一定理想，尤其是對具有許多統計資料物件的寬型資料表而言。
 
-如需進一步說明，請參閱 MSDN 上的[基數估計][Cardinality Estimation]。
+如需詳細資訊，請參閱[基數估計](/sql/relational-databases/performance/cardinality-estimation-sql-server)。
 
 ## <a name="examples-create-statistics"></a>範例：建立統計資料
 下列範例顯示如何使用各種選項來建立統計資料。 您用於每個資料行的選項取決於您的資料特定以及在查詢中使用資料行的方式。
@@ -172,7 +188,7 @@ CREATE STATISTICS stats_col1 ON table1(col1) WHERE col1 > '2000101' AND col1 < '
 CREATE STATISTICS stats_col1 ON table1 (col1) WHERE col1 > '2000101' AND col1 < '20001231' WITH SAMPLE = 50 PERCENT;
 ```
 
-如需完整參考，請參閱 MSDN 上的 [CREATE STATISTICS][CREATE STATISTICS]。
+如需完整參考，請參閱 [CREATE STATISTICS](/sql/t-sql/statements/create-statistics-transact-sql)。
 
 ### <a name="create-multi-column-statistics"></a>建立多重資料行統計資料
 若要建立多重資料行統計資料物件，只需利用上述範例，但要指定更多資料行。
@@ -362,9 +378,9 @@ UPDATE STATISTICS dbo.table1;
 > 
 > 
 
-如需 `UPDATE STATISTICS` 程序的實作，請參閱[暫存資料表][Temporary]。 實作方法與上述的 `CREATE STATISTICS` 程序有點不同，但結果相同。
+如需 `UPDATE STATISTICS` 程序的實作，請參閱[暫存資料表](sql-data-warehouse-tables-temporary.md)。 實作方法與上述的 `CREATE STATISTICS` 程序有點不同，但結果相同。
 
-如需完整語法，請參閱 MSDN 上的[更新統計資料][Update Statistics]。
+如需完整語法，請參閱[更新統計資料](/sql/t-sql/statements/update-statistics-transact-sql)。
 
 ## <a name="statistics-metadata"></a>統計資料中繼資料
 您可利用數個系統檢視和函式來尋找統計資料相關資訊。 例如，使用 stats-date 函式來查看最後建立或更新統計資料的時間，即可查看統計資料物件是否可能過期。
@@ -374,21 +390,21 @@ UPDATE STATISTICS dbo.table1;
 
 | 目錄檢視 | 說明 |
 |:--- |:--- |
-| [sys.columns][sys.columns] |每個資料行有一個資料列。 |
-| [sys.objects][sys.objects] |資料庫中每個物件有一個資料列。 |
-| [sys.schemas][sys.schemas] |資料庫中每個結構描述有一個資料列。 |
-| [sys.stats][sys.stats] |每個統計資料物件有一個資料列。 |
-| [sys.stats_columns][sys.stats_columns] |統計資料物件中每個資料行有一個資料列。 連結回到 sys.columns。 |
-| [sys.tables][sys.tables] |每個資料表 (包括外部資料表) 有一個資料列。 |
-| [sys.table_types][sys.table_types] |每個資料類型有一個資料列。 |
+| [sys.columns](/sql/relational-databases/system-catalog-views/sys-columns-transact-sql) |每個資料行有一個資料列。 |
+| [sys.objects](/sql/relational-databases/system-catalog-views/sys-objects-transact-sql) |資料庫中每個物件有一個資料列。 |
+| [sys.schemas](/sql/relational-databases/system-catalog-views/sys-objects-transact-sql) |資料庫中每個結構描述有一個資料列。 |
+| [sys.stats](/sql/relational-databases/system-catalog-views/sys-stats-transact-sql) |每個統計資料物件有一個資料列。 |
+| [sys.stats_columns](/sql/relational-databases/system-catalog-views/sys-stats-columns-transact-sql) |統計資料物件中每個資料行有一個資料列。 連結回到 sys.columns。 |
+| [sys.tables](/sql/relational-databases/system-catalog-views/sys-tables-transact-sql) |每個資料表 (包括外部資料表) 有一個資料列。 |
+| [sys.table_types](/sql/relational-databases/system-catalog-views/sys-table-types-transact-sql) |每個資料類型有一個資料列。 |
 
 ### <a name="system-functions-for-statistics"></a>統計資料的系統函式
 這些系統函式很適合用於處理統計資料：
 
 | 系統函式 | 說明 |
 |:--- |:--- |
-| [STATS_DATE][STATS_DATE] |上次更新統計資料物件的日期。 |
-| [DBCC SHOW_STATISTICS][DBCC SHOW_STATISTICS] |有關統計資料物件所理解之值散發的摘要層級和詳細資訊。 |
+| [STATS_DATE](/sql/t-sql/functions/stats-date-transact-sql) |上次更新統計資料物件的日期。 |
+| [DBCC SHOW_STATISTICS](/sql/t-sql/database-console-commands/dbcc-show-statistics-transact-sql) |有關統計資料物件所理解之值散發的摘要層級和詳細資訊。 |
 
 ### <a name="combine-statistics-columns-and-functions-into-one-view"></a>將統計資料資料行和函式結合成一個檢視
 此檢視會一起顯示與統計資料相關的資料行，以及 STATS_DATE() 函式的結果。
@@ -476,37 +492,5 @@ DBCC SHOW_STATISTICS (dbo.table1, stats_col1) WITH histogram, density_vector
 - 不支援自訂錯誤 2767。
 
 ## <a name="next-steps"></a>後續步驟
-如需詳細資訊，請參閱 MSDN 上的 [DBCC SHOW_STATISTICS][DBCC SHOW_STATISTICS]。
+如需進一步改善查詢效能，請參閱[監視工作負載](sql-data-warehouse-manage-monitor.md)
 
-  若要深入了解，請參閱[資料表概觀][Overview]、[資料表的資料類型][Data Types]、[散發資料表][Distribute]、[編製資料表的索引][Index]、[分割資料表][Partition]和[暫存資料表][Temporary]等文章。
-  
-   若要深入了解最佳作法，請參閱 [SQL Data 資料倉儲最佳作法][SQL Data Warehouse Best Practices]。  
-
-<!--Image references-->
-
-<!--Article references-->
-[Overview]: ./sql-data-warehouse-tables-overview.md
-[Data Types]: ./sql-data-warehouse-tables-data-types.md
-[Distribute]: ./sql-data-warehouse-tables-distribute.md
-[Index]: ./sql-data-warehouse-tables-index.md
-[Partition]: ./sql-data-warehouse-tables-partition.md
-[Statistics]: ./sql-data-warehouse-tables-statistics.md
-[Temporary]: ./sql-data-warehouse-tables-temporary.md
-[SQL Data Warehouse Best Practices]: ./sql-data-warehouse-best-practices.md
-
-<!--MSDN references-->  
-[Cardinality Estimation]: https://msdn.microsoft.com/library/dn600374.aspx
-[CREATE STATISTICS]: https://msdn.microsoft.com/library/ms188038.aspx
-[DBCC SHOW_STATISTICS]:https://msdn.microsoft.com/library/ms174384.aspx
-[Statistics]: https://msdn.microsoft.com/library/ms190397.aspx
-[STATS_DATE]: https://msdn.microsoft.com/library/ms190330.aspx
-[sys.columns]: https://msdn.microsoft.com/library/ms176106.aspx
-[sys.objects]: https://msdn.microsoft.com/library/ms190324.aspx
-[sys.schemas]: https://msdn.microsoft.com/library/ms190324.aspx
-[sys.stats]: https://msdn.microsoft.com/library/ms177623.aspx
-[sys.stats_columns]: https://msdn.microsoft.com/library/ms187340.aspx
-[sys.tables]: https://msdn.microsoft.com/library/ms187406.aspx
-[sys.table_types]: https://msdn.microsoft.com/library/bb510623.aspx
-[UPDATE STATISTICS]: https://msdn.microsoft.com/library/ms187348.aspx
-
-<!--Other Web references-->  

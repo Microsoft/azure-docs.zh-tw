@@ -1,25 +1,19 @@
 ---
-title: "採用 Azure 資料目錄的方法和程序 | Microsoft Docs"
-description: "本文將為考慮採用 Azure 資料目錄的組織介紹一種方法和程序，包括定義願景、找出重要的商業使用案例，以及選擇試驗專案。"
+title: 採用 Azure 資料目錄的方法和程序
+description: 本文將為考慮採用 Azure 資料目錄的組織介紹一種方法和程序，包括定義願景、找出重要的商業使用案例，以及選擇試驗專案。
 services: data-catalog
-documentationcenter: 
 author: steelanddata
-manager: NA
-editor: 
-tags: 
+ms.author: maroche
 ms.assetid: 0c771e7a-6fcd-417f-9247-897177719567
 ms.service: data-catalog
-ms.devlang: NA
-ms.topic: hero-article
-ms.tgt_pltfrm: NA
-ms.workload: data-catalog
+ms.topic: conceptual
 ms.date: 01/18/2018
-ms.author: maroche
-ms.openlocfilehash: d092613d88a4186c17c8c91046bb598c4f60b307
-ms.sourcegitcommit: be9a42d7b321304d9a33786ed8e2b9b972a5977e
+ms.openlocfilehash: daeb8abdf52466ad5231e9d08e4eb6d853d1f4a8
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/19/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43053231"
 ---
 # <a name="approach-and-process-for-adopting-azure-data-catalog"></a>採用 Azure 資料目錄的方法和程序
 本文會協助您在組織中開始採用 **Azure 資料目錄**。 為了能順利採用 **Azure 資料目錄**，您必須將重點放在三大要項：定義願景、找出組織內的重要商業使用案例，以及選擇試驗專案。
@@ -31,11 +25,10 @@ ms.lasthandoff: 01/19/2018
 
 **什麼是 Azure 資料目錄？**
 
-
-            **Azure 資料目錄** 是 Azure 中完全受控的服務，且為能夠以自助方式探索資料來源的全企業資訊 (中繼資料) 目錄。 使用資料目錄，您就能註冊、探索、註解以及連接到資料資產。 資料目錄設計用來管理不同的資訊資產，使其能夠輕易尋找、了解資料資產，以及加以連線。 它可減少從可用資料獲得深入解析的時間，並增加組織的價值。 若要深入了解，請參閱 [Microsoft Azure 資料目錄](https://azure.microsoft.com/services/data-catalog/)。
+**Azure 資料目錄** 是 Azure 中完全受控的服務，且為能夠以自助方式探索資料來源的全企業資訊 (中繼資料) 目錄。 使用資料目錄，您就能註冊、探索、註解以及連接到資料資產。 資料目錄設計用來管理不同的資訊資產，使其能夠輕易尋找、了解資料資產，以及加以連線。 它可減少從可用資料獲得深入解析的時間，並增加組織的價值。 若要深入了解，請參閱 [Microsoft Azure 資料目錄](https://azure.microsoft.com/services/data-catalog/)。
 
 ## <a name="azure-data-catalog-adoption-plan"></a>Azure 資料目錄採用方案
-**Azure 資料目錄**採用方案將說明如何將使用此服務的好處傳達給專案關係人和使用者，以及您會提供使用者什麼樣的訓練。 想要成功促成資料目錄採用，其中一個關鍵要素是能否有效地將這項服務的價值傳達給使用者和專案關係人知道。 採用方案一開始的主要對象是服務的使用者。 不論專案關係人有多麼同意這項方案，如果資料目錄服務的使用者或客戶沒有將方案融入他們的用法，採用方案就不會成功。 因此，本文假設您的專案關係人已同意此方案，並且會將重點放在為使用者建立資料目錄採用方案。
+**Azure 資料目錄**採用方案將說明如何將使用此服務的好處傳達給專案關係人和使用者，以及您會提供使用者什麼樣的訓練。 想要成功促成資料目錄採用，其中一個關鍵要素是能否有效地將這項服務的價值傳達給使用者和專案關係人知道。 採用方案一開始的主要對象是服務的使用者。 不論專案關係人有多麼同意這項方案，如果資料目錄供應項目的使用者或客戶沒有將方案融入他們的用法，採用方案就不會成功。 因此，本文假設您的專案關係人已同意此方案，並且會將重點放在為使用者建立資料目錄採用方案。
 有效的採用方案能成功地讓人們注意資料目錄的可行目標，並提供他們想要達成此目標所需要的資訊和指引。 使用者必須了解資料目錄能提供什麼價值來幫助他們成功完成作業。 當人們看到資料目錄如何幫助他們從資料中獲取更多成果時，採用資料目錄的價值便會清楚浮現。 要讓人們改變並不容易，因此有效的方案必須將改變所伴隨而來的挑戰納入考量。
 
 採用方案可幫助您傳達讓人們成功達到和實現其目標的關鍵因素為何。 典型的方案會說明資料目錄將會如何讓使用者的生活變得更輕鬆，且其中會包含下列幾個部分：

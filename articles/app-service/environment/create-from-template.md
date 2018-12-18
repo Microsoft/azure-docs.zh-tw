@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/13/2017
 ms.author: ccompy
-ms.openlocfilehash: d85384620b2e4c7ba0de84e0fe82ef3e83376dd8
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: 92422a254bcfd5b31731dda6d1790cc85f467860
+ms.sourcegitcommit: cc4fdd6f0f12b44c244abc7f6bc4b181a2d05302
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47094975"
 ---
 # <a name="create-an-ase-by-using-an-azure-resource-manager-template"></a>使用 Azure Resource Manager 範本立 ASE
 
@@ -29,7 +30,7 @@ ASE 可以使用 Azure 入口網站或 Azure Resource Manager 範本來建立。
 在入口網站中建立 ASE 時，可以選擇同時建立 VNet，或選擇要部署至既有 VNet。 從範本建立 ASE 時，必須具備下列項目： 
 
 * Resource Manager VNet。
-* 該 VNet 中的子網路。 建議的 ASE 子網路是 `/25`，並具有 128 個位址，以容納未來成長。 ASE 建立之後，無法變更大小。
+* 該 VNet 中的子網路。 建議的 ASE 子網路大小是具有 256 個位址的 `/24`，以容納未來成長和規模調整需求。 ASE 建立之後，無法變更大小。
 * 您的 VNnet 中的資源識別碼。 您可以從 Azure 入口網站中的虛擬網路屬性底下取得這項資訊。
 * 您想要部署的訂用帳戶。
 * 您想要部署的位置。
@@ -69,7 +70,7 @@ SSL 憑證必須與 ASE 相關聯，作為用來建立應用程式的 SSL 連線
 使用內部憑證授權單位、向外部簽發者購買憑證、或使用自我簽署的憑證，取得有效的 SSL 憑證。 無論 SSL 憑證的來源為何，都需要正確設定下列憑證屬性︰
 
 * **Subject**：此屬性必須設為 *.your-root-domain-here.com。
-* **Subject Alternative Name**此屬性必須同時包含 *.your-root-domain-here.com 和 *.scm.your-root-domain-here.com。系統將使用 your-app-name.scm.your-root-domain-here.com 形式的位址，進行與每個應用程式相關聯的 SCM/Kudu 網站的 SSL 連線。
+* **Subject Alternative Name**此屬性必須同時包含 *.your-root-domain-here.com 和 *.scm.your-root-domain-here.com。 系統將使用 your-app-name.scm.your-root-domain-here.com 形式的位址，進行與每個應用程式相關聯的 SCM/Kudu 網站的 SSL 連線。
 
 備妥有效的 SSL 憑證，還需要兩個額外的準備步驟。 將 SSL 憑證轉換/儲存為 .pfx 檔案。 請記住，.pfx 檔案必須包含所有中繼和根憑證。 使用密碼保護其安全。
 
@@ -149,7 +150,7 @@ New-AzureRmResourceGroupDeployment -Name "CHANGEME" -ResourceGroupName "YOUR-RG-
 
 每個 ASE 前端套用變更大約需要 40 分鐘。 例如，有一個預設大小的 ASE 使用兩個前端，則範本將需要大約一小時 20 分鐘的時間才能完成。 執行範本時，無法調整 ASE。  
 
-範本完成之後，可以透過 HTTPS 存取 ILB ASE 上的應用程式。 此連線使用預設 SSL 憑證加以保護。 如果 ILB ASE 上的應用程式是使用應用程式名稱加上預設主機名稱的組合來定址，則會使用預設 SSL 憑證。 例如，https://mycustomapp.internal-contoso.com 會使用 **.internal-contoso.com* 的預設 SSL 憑證。
+範本完成之後，可以透過 HTTPS 存取 ILB ASE 上的應用程式。 此連線使用預設 SSL 憑證加以保護。 如果 ILB ASE 上的應用程式是使用應用程式名稱加上預設主機名稱的組合來定址，則會使用預設 SSL 憑證。 例如， https://mycustomapp.internal-contoso.com 會使用 **.internal-contoso.com* 的預設 SSL 憑證。
 
 不過，就如同在公用多租用戶服務上執行的應用程式，開發人員可以為個別的應用程式設定自訂主機名稱。 他們也可以為個別的應用程式設定唯一 SNI SSL 憑證繫結。
 
@@ -177,7 +178,7 @@ ASEv1 使用與 ASEv2 不同的定價模式。 在 ASEv1 中，您需要支付�
 [ASENetwork]: ./network-info.md
 [UsingASE]: ./using-an-ase.md
 [UDRs]: ../../virtual-network/virtual-networks-udr-overview.md
-[NSGs]: ../../virtual-network/virtual-networks-nsg.md
+[NSGs]: ../../virtual-network/security-overview.md
 [ConfigureASEv1]: app-service-web-configure-an-app-service-environment.md
 [ASEv1Intro]: app-service-app-service-environment-intro.md
 [mobileapps]: ../../app-service-mobile/app-service-mobile-value-prop.md

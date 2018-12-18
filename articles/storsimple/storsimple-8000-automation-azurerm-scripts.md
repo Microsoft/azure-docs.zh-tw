@@ -1,12 +1,12 @@
 ---
-title: "使用 Azure Resource Manager 指令碼管理 StorSimple 裝置 | Microsoft Docs"
-description: "了解如何使用 Azure Resource Manager 指令碼將 StorSimple 作業自動化"
+title: 使用 Azure Resource Manager 指令碼管理 StorSimple 裝置 | Microsoft Docs
+description: 了解如何使用 Azure Resource Manager 指令碼將 StorSimple 作業自動化
 services: storsimple
 documentationcenter: NA
 author: alkohli
 manager: jeconnoc
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: NA
 ms.topic: article
@@ -19,6 +19,7 @@ ms.sourcegitcommit: b07d06ea51a20e32fdc61980667e801cb5db7333
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 12/08/2017
+ms.locfileid: "26373936"
 ---
 # <a name="use-azure-resource-manager-sdk-based-scripts-to-manage-storsimple-devices"></a>使用 Azure Resource Manager SDK 型指令碼管理 StorSimple 裝置
 

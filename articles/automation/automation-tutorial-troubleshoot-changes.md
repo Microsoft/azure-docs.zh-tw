@@ -1,19 +1,22 @@
 ---
-title: "針對 Azure 虛擬機器上的變更進行疑難排解 | Microsoft Docs"
-description: "使用變更追蹤來針對 Azure 虛擬機器上的變更進行疑難排解。"
+title: 針對 Azure 虛擬機器上的變更進行疑難排解 | Microsoft Docs
+description: 使用變更追蹤來針對 Azure 虛擬機器上的變更進行疑難排解。
 services: automation
-keywords: "變更, 追蹤, 自動化"
+ms.service: automation
+ms.component: change-inventory-management
+keywords: 變更, 追蹤, 自動化
 author: jennyhunter-msft
 ms.author: jehunte
-ms.date: 02/28/2018
+ms.date: 09/12/2018
 ms.topic: tutorial
 ms.custom: mvc
 manager: carmonm
-ms.openlocfilehash: f0af493036740b854609cea07e01136aac808579
-ms.sourcegitcommit: 83ea7c4e12fc47b83978a1e9391f8bb808b41f97
+ms.openlocfilehash: 16d5a025f0c0ff571298e0f528fb9119e37950f3
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/28/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46995244"
 ---
 # <a name="troubleshoot-changes-in-your-environment"></a>針對您環境中的變更進行疑難排解
 
@@ -29,8 +32,9 @@ ms.lasthandoff: 02/28/2018
 > * 啟用活動記錄連線
 > * 觸發事件
 > * 檢視變更
+> * 設定警示
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 若要完成本教學課程，您需要：
 
@@ -38,9 +42,9 @@ ms.lasthandoff: 02/28/2018
 * [自動化帳戶](automation-offering-get-started.md)可保存監看員和動作 Runbook，以及監看員工作。
 * 要上架的[虛擬機器](../virtual-machines/windows/quick-create-portal.md)。
 
-## <a name="log-in-to-azure"></a>登入 Azure
+## <a name="sign-in-to-azure"></a>登入 Azure
 
-登入 Azure 入口網站，網址是 http://portal.azure.com/。
+在 http://portal.azure.com 登入 Azure 入口網站。
 
 ## <a name="enable-change-tracking-and-inventory"></a>啟用變更追蹤和清查
 
@@ -63,20 +67,22 @@ ms.lasthandoff: 02/28/2018
 
 ## <a name="using-change-tracking-in-log-analytics"></a>使用 Log Analytics 中的變更追蹤
 
-變更追蹤所產生的記錄資料會傳送到 Log Analytics。 若要透過執行查詢來搜尋記錄，請選取 [變更追蹤] 視窗頂端的 [Log Analytics]。
-變更追蹤資料會儲存在 **ConfigurationChange** 類型之下。 下列範例 Log Analytics 查詢會傳回所有已停止的 Windows 服務。
+變更追蹤所產生的記錄資料會傳送到 Log Analytics。
+若要透過執行查詢來搜尋記錄，請選取 [變更追蹤] 視窗頂端的 [Log Analytics]。
+變更追蹤資料會儲存在 **ConfigurationChange** 類型之下。
+下列範例 Log Analytics 查詢會傳回所有已停止的 Windows 服務。
 
 ```
 ConfigurationChange
 | where ConfigChangeType == "WindowsServices" and SvcState == "Stopped"
 ```
 
-若要深入了解在 Log Analytics 中執行和搜尋記錄檔，請參閱 [Azure Log Analytics](https://docs.loganalytics.io/index)。
+若要深入了解在 Log Analytics 中執行和搜尋記錄檔，請參閱 [Azure Log Analytics](../log-analytics/log-analytics-queries.md)。
 
 ## <a name="configure-change-tracking"></a>設定變更追蹤
 
 變更追蹤可讓您追蹤您 VM 上的設定變更。 下列步驟說明如何設定登錄機碼和檔案的追蹤。
- 
+
 如需選擇要收集及追蹤的檔案和登錄機碼，請選取 [變更追蹤] 頁面頂端的 [編輯設定]。
 
 > [!NOTE]
@@ -89,7 +95,7 @@ ConfigurationChange
 1. 在 [Windows 登錄] 索引標籤上，選取 [新增]。
     [為變更追蹤新增 Windows 登錄] 視窗隨即開啟。
 
-3. 在 [為變更追蹤新增 Windows 登錄] 上，輸入要追蹤的機碼資訊，然後按一下 [儲存]
+1. 在 [為變更追蹤新增 Windows 登錄] 上，輸入要追蹤的機碼資訊，然後按一下 [儲存]
 
 |屬性  |說明  |
 |---------|---------|
@@ -109,7 +115,9 @@ ConfigurationChange
 |已啟用     | 判斷是否已套用設定        |
 |項目名稱     | 所要追蹤檔案的易記名稱        |
 |群組     | 用於將檔案以邏輯方式分組的群組名稱        |
-|輸入路徑     | 要檢查檔案的路徑。例如："c:\temp\myfile.txt"       |
+|輸入路徑     | 要檢查檔案的路徑，例如："c:\temp\\\*.txt"<br>您也可以使用環境變數，例如 "%winDir%\System32\\\*.*"         |
+|遞迴     | 決定在尋找所要追蹤的項目時是否使用遞迴。        |
+|上傳所有的檔案內容設定| 開啟或關閉追蹤變更上的檔案內容上傳。 可用的選項：**True** 或 **False**。|
 
 ### <a name="add-a-linux-file"></a>新增 Linux 檔案
 
@@ -127,8 +135,9 @@ ConfigurationChange
 |遞迴     | 決定在尋找所要追蹤的項目時是否使用遞迴。        |
 |使用 Sudo     | 此設定會決定在檢查項目時是否使用 sudo。         |
 |連結     | 此設定會決定在周遊目錄時處理符號連結的方式。<br> **忽略** - 忽略符號連結，而不包含參考的檔案/目錄<br>**遵循** - 遵循遞迴期間的符號連結，而且包含參考的檔案/目錄<br>**管理** - 遵循符號連結並允許變更所傳回內容的處理方式      |
+|上傳所有的檔案內容設定| 開啟或關閉追蹤變更上的檔案內容上傳。 可用的選項：**True** 或 **False**。|
 
-   > [!NOTE]   
+   > [!NOTE]
    > 不建議選擇「管理」連結選項。 不支援檔案內容擷取。
 
 ## <a name="enable-activity-log-connection"></a>啟用活動記錄連線
@@ -162,6 +171,49 @@ ConfigurationChange
 
 ![在入口網站中檢視變更詳細資料](./media/automation-tutorial-troubleshoot-changes/change-details.png)
 
+## <a name="configure-alerts"></a>設定警示
+
+在 Azure 入口網站中檢視變更會有幫助，但能夠在發生變更 (例如服務已停止) 時收到警示會更有用。
+
+若要在 Azure 入口網站中針對停止的服務新增警示，請移至 [監視器]。 然後在 [共用服務] 下選取 [警示]，並按一下 [+ 新增警示規則]
+
+在 [1. 定義警示條件] 下，按一下 [+ 選取目標]。 在 [依資源類型篩選] 下，選取 [Log Analytics]。 選取您的 Log Analytics 工作區，然後選取 [完成]。
+
+![選取資源](./media/automation-tutorial-troubleshoot-changes/select-a-resource.png)
+
+選取 [+ 新增準則]。
+在 [設定訊號邏輯] 之下的資料表中，選取 [自訂記錄檔搜尋]。 在 [搜尋查詢] 文字方塊中，輸入下列查詢：
+
+```loganalytics
+ConfigurationChange | where ConfigChangeType == "WindowsServices" and SvcName == "W3SVC" and SvcState == "Stopped" | summarize by Computer
+```
+
+此查詢會傳回在指定時間範圍內有 W3SVC 服務停止的電腦。
+
+在 [警示邏輯] 之下，針對 [閾值]，輸入 **0**。 完成之後，選取 [完成]。
+
+![設定訊號邏輯](./media/automation-tutorial-troubleshoot-changes/configure-signal-logic.png)
+
+在 **2.** 定義警示詳細資料 之下，輸入警示的名稱和描述。 將 [嚴重性] 設定為 [資訊 (Sev 2)]、[警告 (Sev 1)] 或 [重大 (Sev 0)]。
+
+![定義警示詳細資料](./media/automation-tutorial-troubleshoot-changes/define-alert-details.png)
+
+在 [3. 定義動作群組] 之下，選取 [新增動作群組]。 動作群組是一組可讓您跨多個警示使用的動作。 這些動作可包括 (但不限於) 電子郵件通知、Runbook、Webhook 和等多種項目。 若要深入了解動作群組，請參閱[建立及管理動作群組](../monitoring-and-diagnostics/monitoring-action-groups.md)。
+
+在 [動作群組名稱] 方塊中，輸入警示名稱和簡短名稱。 使用這個群組傳送通知時，會使用簡短名稱來取代完整的動作群組名稱。
+
+在 [動作] 底下，輸入動作的名稱，像是 [傳送電子郵件給系統管理員]。 在 [動作類型] 之下，選取 [電子郵件/簡訊/推播/語音]。 在 [詳細資料] 下，選取 [編輯詳細資料]。
+
+![新增動作群組](./media/automation-tutorial-troubleshoot-changes/add-action-group.png)
+
+在 [電子郵件/簡訊/推播/語音] 窗格中，輸入名稱。 選取 [電子郵件] 核取方塊，然後輸入有效的電子郵件地址。 在 [電子郵件/簡訊/推播/語音] 頁面上按一下 [確定]，然後按一下 [新增動作群組] 頁面上的 [確定]。
+
+若要自訂警示電子郵件的主旨，請在 [建立規則] 的 [自訂動作] 之下，選取 [電子郵件主旨]。 當您完成時，選取 [建立警示規則]。 警示會在更新部署成功時，告知您有哪些機器包含在該更新部署執行中。
+
+下圖是 W3SVC 服務停止時所收到的電子郵件範例。
+
+![電子郵件](./media/automation-tutorial-troubleshoot-changes/email.png)
+
 ## <a name="next-steps"></a>後續步驟
 
 在本教學課程中，您已了解如何：
@@ -173,6 +225,7 @@ ConfigurationChange
 > * 啟用活動記錄連線
 > * 觸發事件
 > * 檢視變更
+> * 設定警示
 
 如需深入了解，請繼續閱讀變更追蹤和清查解決方案的概觀。
 

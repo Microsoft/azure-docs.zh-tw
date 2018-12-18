@@ -1,24 +1,26 @@
 ---
-title: "將 Azure 裝載 API 匯出至 PowerApps 和 Microsoft Flow | Microsoft Docs"
-description: "如何向 PowerApps 和 Microsoft Flow 公開 App Service 中裝載之 API 的概觀"
+title: 將 Azure 裝載 API 匯出至 PowerApps 和 Microsoft Flow | Microsoft Docs
+description: 如何向 PowerApps 和 Microsoft Flow 公開 App Service 中裝載之 API 的概觀
 services: app-service
-documentationcenter: 
-author: mattchenderson
-manager: erikre
-editor: 
-ms.assetid: 
+documentationcenter: ''
+author: ggailey777
+manager: cfowler
+editor: ''
+ms.assetid: ''
 ms.service: app-service
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: multiple
 ms.topic: article
 ms.date: 12/15/2017
-ms.author: mahender; mblythe
-ms.openlocfilehash: 2d7ef0d4b2669b774b1d218d244052083e883517
-ms.sourcegitcommit: 782d5955e1bec50a17d9366a8e2bf583559dca9e
+ms.author: glenga
+ms.reviewer: sunayv
+ms.openlocfilehash: ef3fe5002a28c66478a10909a7e9556449cd9712
+ms.sourcegitcommit: 4e36ef0edff463c1edc51bce7832e75760248f82
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/02/2018
+ms.lasthandoff: 06/08/2018
+ms.locfileid: "35234762"
 ---
 # <a name="exporting-an-azure-hosted-api-to-powerapps-and-microsoft-flow"></a>將 Azure 裝載 API 匯出至 PowerApps 和 Microsoft Flow
 
@@ -76,7 +78,7 @@ ms.lasthandoff: 03/02/2018
  
     ![快速匯出至 PowerApps 和 Microsoft Flow](media/app-service-export-api-to-powerapps-and-flow/export-express.png)
 
-3. 按一下 [SERVICEPRINCIPAL] 。 自訂連接現已建置並新增至您指定的環境。
+3. 按一下 [確定]。 自訂連接現已建置並新增至您指定的環境。
 
 如需使用「快速」模式搭配 Azure Functions 的範例，請參閱[從 PowerApps 呼叫函式](functions-powerapps-scenario.md)和[從 Microsoft Flow 呼叫函式](functions-flow-scenario.md)。
 

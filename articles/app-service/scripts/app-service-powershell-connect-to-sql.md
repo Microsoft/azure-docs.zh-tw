@@ -1,11 +1,11 @@
 ---
-title: "Azure PowerShell 指令碼範例 - 將 Web 應用程式連線至 SQL 資料庫 | Microsoft Docs"
-description: "Azure PowerShell 指令碼範例 - 將 Web 應用程式連線至 SQL 資料庫"
+title: Azure PowerShell 指令碼範例 - 將 Web 應用程式連線至 SQL 資料庫 | Microsoft Docs
+description: Azure PowerShell 指令碼範例 - 將 Web 應用程式連線至 SQL 資料庫
 services: app-service\web
-documentationcenter: 
+documentationcenter: ''
 author: syntaxc4
 manager: erikre
-editor: 
+editor: ''
 tags: azure-service-management
 ms.assetid: 055440a9-fff1-49b2-b964-9c95b364e533
 ms.service: app-service
@@ -16,21 +16,22 @@ ms.workload: web
 ms.date: 03/20/2017
 ms.author: cfowler
 ms.custom: mvc
-ms.openlocfilehash: 5312bf6b81d1cc48490b71c3f77323cca23e1559
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: be9a1f138ce858465ba8ded85365043cd823dac1
+ms.sourcegitcommit: 7ad9db3d5f5fd35cfaa9f0735e8c0187b9c32ab1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 07/27/2018
+ms.locfileid: "39324740"
 ---
 # <a name="connect-a-web-app-to-a-sql-database"></a>將 Web 應用程式連接至 SQL Database
 
 在此案例中，您會學習如何建立 Azure SQL Database 和 Azure Web 應用程式。 然後，您會使用應用程式設定將 SQL Database 連結到 Web 應用程式。
 
-您可以視需要使用 [Azure PowerShell 指南](/powershell/azure/overview) \(英文\) 中的指示來安裝 Azure PowerShell，然後執行 `Login-AzureRmAccount` 來建立與 Azure 的連線。
+您可以視需要使用 [Azure PowerShell 指南](/powershell/azure/overview) \(英文\) 中的指示來安裝 Azure PowerShell，然後執行 `Connect-AzureRmAccount` 來建立與 Azure 的連線。
 
 ## <a name="sample-script"></a>範例指令碼
 
-[!code-powershell[main](../../../powershell_scripts/app-service/connect-to-sql/connect-to-sql.ps1?highlight=13 "Connect a web app to a SQL database")]
+[!code-azurepowershell-interactive[main](../../../powershell_scripts/app-service/connect-to-sql/connect-to-sql.ps1?highlight=13 "Connect a web app to a SQL database")]
 
 ## <a name="clean-up-deployment"></a>清除部署 
 

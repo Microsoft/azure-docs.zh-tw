@@ -27,7 +27,7 @@
 ## [檢視相關的資料資產](data-catalog-how-to-view-related-data-assets.md) 
 
 # 參考
-## [程式碼範例](https://azure.microsoft.com/en-us/resources/samples/?service=data-catalog)
+## [程式碼範例](https://azure.microsoft.com/resources/samples/?service=data-catalog)
 ## [REST](/rest/api/datacatalog/)
 ## [搜尋語法參考](/rest/api/datacatalog/data-catalog-search-syntax-reference)
 ## [開發人員概念](data-catalog-developer-concepts.md)
@@ -38,7 +38,7 @@
 ## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azuredatacatalog)
 ## [定價](https://azure.microsoft.com/pricing/details/data-catalog/)
 ## [定價計算機](https://azure.microsoft.com/pricing/calculator/)
-## [版本資訊](data-catalog-whats-new.md)
+## [版本資訊](../active-directory/fundamentals/whats-new.md)
 ## [服務更新](https://azure.microsoft.com/updates/?product=data-catalog)
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-data-catalog)
 ## [術語](data-catalog-terminology.md)

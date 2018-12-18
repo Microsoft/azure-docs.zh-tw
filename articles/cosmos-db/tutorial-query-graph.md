@@ -2,38 +2,36 @@
 title: 如何在 Azure Cosmos DB 中查詢圖形資料？ | Microsoft Docs
 description: 了解如何在 Azure Cosmos DB 中查詢圖形資料
 services: cosmos-db
-documentationcenter: ''
 author: luisbosquez
-manager: jhubbard
+manager: kfile
 editor: ''
 tags: ''
-ms.assetid: 8bde5c80-581c-4f70-acb4-9578873c92fa
 ms.service: cosmos-db
+ms.component: cosmosdb-graph
 ms.devlang: na
 ms.topic: tutorial
-ms.tgt_pltfrm: na
-ms.workload: ''
 ms.date: 01/02/2018
 ms.author: lbosq
 ms.custom: mvc
-ms.openlocfilehash: eb1da11c8b27a429ffcf9ea8fb50b6c7cee26ec0
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: e3ed90d0b706e742588a5a0966d9ac3bda44ecbd
+ms.sourcegitcommit: cb61439cf0ae2a3f4b07a98da4df258bfb479845
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/05/2018
+ms.locfileid: "43697437"
 ---
-# <a name="tutorial-query-azure-cosmos-db-graph-api-by-using-gremlin"></a>教學課程：使用 Gremlin 查詢 Azure Cosmos DB 圖形 API
+# <a name="tutorial-query-azure-cosmos-db-gremlin-api-by-using-gremlin"></a>教學課程：使用 Gremlin 查詢 Azure Cosmos DB Gremlin API
 
-Azure Cosmos DB [圖形 API](graph-introduction.md) 支援 [Gremlin](https://github.com/tinkerpop/gremlin/wiki) 查詢。 本文提供範例文件和查詢來協助您開始操作。 如需詳細的 Gremlin 參考資料，請參閱 [Gremlin 支援](gremlin-support.md)一文。
+Azure Cosmos DB [Gremlin API](graph-introduction.md) 支援 [Gremlin](https://github.com/tinkerpop/gremlin/wiki) 查詢。 本文提供範例文件和查詢來協助您開始操作。 如需詳細的 Gremlin 參考資料，請參閱 [Gremlin 支援](gremlin-support.md)一文。
 
 本文涵蓋下列工作： 
 
 > [!div class="checklist"]
 > * 使用 Gremlin 來查詢資料
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
-若要讓這些查詢能夠運作，您必須具備 Azure Cosmos DB 帳戶，並且在容器中有圖形資料。 不符合上述其中任何一項條件嗎？ 請完成 [5 分鐘快速入門](create-graph-dotnet.md)或[開發人員教學課程](tutorial-query-graph.md)，以建立帳戶並在資料庫中填入資料。 您可以使用 [Azure Cosmos DB .NET 圖形程式庫](graph-sdk-dotnet.md)、[Gremlin 主控台](https://tinkerpop.apache.org/docs/current/reference/#gremlin-console)或慣用的 Gremlin 驅動程式，來執行下列查詢。
+若要讓這些查詢能夠運作，您必須具備 Azure Cosmos DB 帳戶，並且在容器中有圖形資料。 不符合上述其中任何一項條件嗎？ 請完成 [5 分鐘快速入門](create-graph-dotnet.md)或[開發人員教學課程](tutorial-query-graph.md)，以建立帳戶並在資料庫中填入資料。 您可以使用 [Gremlin 主控台](https://tinkerpop.apache.org/docs/current/reference/#gremlin-console)或慣用的 Gremlin 驅動程式，執行下列查詢。
 
 ## <a name="count-vertices-in-the-graph"></a>計算圖形中的頂點
 
@@ -82,7 +80,8 @@ g.V('thomas').outE('knows').inV().hasLabel('person').outE('knows').inV().hasLabe
 > [!div class="checklist"]
 > * 了解如何使用「圖形」來進行查詢 
 
-您現在可以繼續進行到下一個教學課程，以了解如何全域散發您的資料。
+您現在可以繼續進行＜概念＞一節了解有關 Cosmos DB 的詳細資訊。
 
 > [!div class="nextstepaction"]
-> [全域散發您的資料](tutorial-global-distribution-sql-api.md)
+> [全球發佈](distribute-data-globally.md) 
+

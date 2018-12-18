@@ -1,11 +1,11 @@
 ---
-title: "Azure DMZ 範例 – 建置具有 NSG 的簡單 DMZ | Microsoft Docs"
-description: "建置具有網路安全性群組 (NSG) 的 DMZ"
+title: Azure DMZ 範例 – 建置具有 NSG 的簡單 DMZ | Microsoft Docs
+description: 建置具有網路安全性群組 (NSG) 的 DMZ
 services: virtual-network
 documentationcenter: na
 author: tracsman
 manager: rossort
-editor: 
+editor: ''
 ms.assetid: f8622b1d-c07d-4ea6-b41c-4ae98d998fff
 ms.service: virtual-network
 ms.devlang: na
@@ -15,10 +15,11 @@ ms.workload: infrastructure-services
 ms.date: 01/03/2017
 ms.author: jonor
 ms.openlocfilehash: ed172d552e1e4c9ee27c58abcd7ad2d98df21579
-ms.sourcegitcommit: b5c6197f997aa6858f420302d375896360dd7ceb
+ms.sourcegitcommit: 6fcd9e220b9cd4cb2d4365de0299bf48fbb18c17
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/21/2017
+ms.lasthandoff: 04/05/2018
+ms.locfileid: "23125496"
 ---
 # <a name="example-1--build-a-simple-dmz-using-nsgs-with-classic-powershell"></a>範例 1 – 使用 NSG 搭配傳統 PowerShell 建立簡單的 DMZ
 [返回 [安全性界限最佳作法] 頁面][HOME]

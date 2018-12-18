@@ -1,11 +1,11 @@
 ---
-title: "Azure API 管理原則範例 - 產生共用存取簽章 | Microsoft Docs"
-description: "Azure API 管理原則範例 - 示範如何使用運算式來產生共用存取簽章，並使用 rewrite-uri 原則來將要求轉送到 Azure 儲存體。"
+title: Azure API 管理原則範例 - 產生共用存取簽章 | Microsoft Docs
+description: Azure API 管理原則範例 - 示範如何使用運算式來產生共用存取簽章，並使用 rewrite-uri 原則來將要求轉送到 Azure 儲存體。
 services: api-management
-documentationcenter: 
-author: juliako
+documentationcenter: ''
+author: vladvino
 manager: cfowler
-editor: 
+editor: ''
 ms.service: api-management
 ms.workload: mobile
 ms.tgt_pltfrm: na
@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/13/2017
 ms.author: apimpm
-ms.openlocfilehash: 9b0d37e4f7930389d3399e51de905db2b2ce8c27
-ms.sourcegitcommit: b07d06ea51a20e32fdc61980667e801cb5db7333
+ms.openlocfilehash: c8a4d25211a0030c013628e69865406bb6e8899e
+ms.sourcegitcommit: d8ffb4a8cef3c6df8ab049a4540fc5e0fa7476ba
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2017
+ms.lasthandoff: 06/20/2018
+ms.locfileid: "36286283"
 ---
 # <a name="generate-shared-access-signature"></a>產生共用存取簽章
 
@@ -27,7 +28,7 @@ ms.lasthandoff: 12/08/2017
 
 將程式碼貼至 [輸入] 區塊。
 
-[!code-xml[Main](../../../api-management-policy-samples/Snippets/Generate Shared Access Signature and forward request to Azure storage.policy.xml)]
+[!code-xml[Main](../../../api-management-policy-samples/examples/Generate Shared Access Signature and forward request to Azure storage.policy.xml)]
 
 ## <a name="next-steps"></a>後續步驟
 

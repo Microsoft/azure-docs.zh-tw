@@ -1,314 +1,396 @@
+items:
 - name: Azure Stack 操作員文件
   href: index.yml
 - name: 概觀
   items:
-    - name: 什麼是 Azure Stack？
-      href: azure-stack-poc.md
-    - name: 版本資訊
-      items:
-        - name: 1803 更新
-          href: azure-stack-update-1803.md
-        - name: 1802 更新
-          href: azure-stack-update-1802.md
-        - name: 1712 更新
-          href: azure-stack-update-1712.md
-        - name: 1711 更新
-          href: azure-stack-update-1711.md
+  - name: 什麼是 Azure Stack？
+    href: azure-stack-poc.md
+  - name: 版本資訊
+    items:
+    - name: 最近更新
+      href: azure-stack-servicing-policy.md#update-package-release-cadence
+    - name: 1808 更新
+      href: azure-stack-update-1808.md
+    - name: 1807 更新
+      href: azure-stack-update-1807.md
+    - name: 1805 更新
+      href: azure-stack-update-1805.md
 - name: 快速入門
-  expanded: true
   items:
-    - name: 評估 Azure Stack
-      href: azure-stack-deploy-overview.md
+  - name: 評估 Azure Stack
+    href: azure-stack-deploy-overview.md
+  expanded: true
 - name: 教學課程
   items:
-    - name: 提供虛擬機器
-      href: azure-stack-tutorial-tenant-vm.md
-    - name: 提供 SQL 資料庫
-      href: azure-stack-tutorial-sql-server.md
-    - name: 提供 Web 應用程式
-      href: azure-stack-tutorial-app-service.md
+  - name: 提供虛擬機器
+    href: azure-stack-tutorial-tenant-vm.md
+  - name: 提供 SQL 資料庫
+    href: azure-stack-tutorial-sql-server.md
+  - name: 提供高可用性的 SQL 資料庫
+    href: azure-stack-tutorial-sql.md
+  - name: 提供高可用性的 MyQL 資料庫
+    href: azure-stack-tutorial-mysql.md
+  - name: 提供 Web 應用程式
+    href: azure-stack-tutorial-app-service.md
+  - name: 部署 Ethereum
+    href: azure-stack-ethereum.md
 - name: 概念
   items:
-    - name: 資料中心整合
+  - name: 容量規劃
+    href: capacity-planning.md
+    items:
+    - name: 計算容量規劃
+      href: capacity-planning-compute.md
+    - name: 儲存體容量規劃
+      href: capacity-planning-storage.md
+    - name: Azure Stack Capacity Planner
+      href: capacity-planning-spreadsheet.md
+  - name: 資料中心整合
+    items:
+    - name: 一般 Azure Stack 整合考量
+      href: azure-stack-datacenter-integration.md
+    - name: Azure Stack 部署連線模型
+      href: azure-stack-connection-models.md
+    - name: 已連線的部署考量
+      href: azure-stack-connected-deployment.md
+    - name: 已中斷連線的部署考量
+      href: azure-stack-disconnected-deployment.md
+    - name: 資料中心網路整合
       items:
-        - name: 一般 Azure Stack 整合考量
-          href: azure-stack-datacenter-integration.md
-        - name: Azure Stack 部署連線模型
-          href: azure-stack-connection-models.md
-        - name: 已連線的部署考量
-          href: azure-stack-connected-deployment.md
-        - name: 已中斷連線的部署考量
-          href: azure-stack-disconnected-deployment.md
-        - name: 資料中心網路整合
-          items:
-            - name: 網路整合
-              href: azure-stack-network.md
-            - name: 界限連線能力
-              href: azure-stack-border-connectivity.md
-            - name: DNS 整合
-              href: azure-stack-integrate-dns.md
-            - name: 防火牆整合
-              href: azure-stack-firewall.md
-              items:
-                - name: 發佈端點
-                  href: azure-stack-integrate-endpoints.md
-        - name: Azure Stack 部署 PKI 先決條件
-          href: azure-stack-pki-certs.md
-          items:
-            - name: 取得 Azure Stack PKI 憑證
-              href: azure-stack-get-pki-certs.md
-            - name: 準備 Azure Stack PKI 憑證
-              href: azure-stack-prepare-pki-certs.md
-            - name: 驗證 Azure Stack PKI 憑證
-              href: azure-stack-validate-pki-certs.md
-        - name: 身分識別整合
-          href: azure-stack-integrate-identity.md
-        - name: 外部監視
-          href: azure-stack-integrate-monitor.md
-        - name: 安全性整合
-          href: azure-stack-integrate-security.md
-    - name: 服務原則
-      href: azure-stack-servicing-policy.md
-    - name: 重要功能與概念
-      href: azure-stack-key-features.md
-    - name: 管理基本概念
-      href: azure-stack-manage-basics.md
+      - name: 網路整合
+        href: azure-stack-network.md
+      - name: 界限連線能力
+        href: azure-stack-border-connectivity.md
+      - name: DNS 整合
+        href: azure-stack-integrate-dns.md
+      - name: 防火牆整合
+        href: azure-stack-firewall.md
+        items:
+        - name: 發佈端點
+          href: azure-stack-integrate-endpoints.md
+        - name: 延伸主機
+          href: azure-stack-extension-host-prepare.md
+    - name: 身分識別整合
+      items:
+      - name: 選擇身分識別提供者
+        href: azure-stack-integrate-identity.md
+      - name: 驗證 Azure 身分識別
+        href: azure-stack-validate-identity.md
+      - name: 驗證 ADFS 整合
+        href: azure-stack-validate-adfs.md
+      - name: 驗證圖表整合
+        href: azure-stack-validate-graph.md
+    - name: Azure Stack 部署 PKI 先決條件
+      href: azure-stack-pki-certs.md
+      items:
+      - name: 產生 PKI 憑證
+        href: azure-stack-get-pki-certs.md
+      - name: 準備 Azure Stack PKI 憑證
+        href: azure-stack-prepare-pki-certs.md
+      - name: 驗證 PKI 憑證
+        href: azure-stack-validate-pki-certs.md
+      - name: 修復 PKI 憑證
+        href: azure-stack-remediate-certs.md
+    - name: 部署資源
+      items:
+      - name: 關於部署網路功能
+        href: deployment-networking.md
+    - name: 驗證 Azure 註冊
+      href: azure-stack-validate-registration.md
+      items:
+      - name: Start-AzsReadiness Cmdlet 參考
+        href: azure-stack-azsreadiness-cmdlet.md
+      - name: 檢視整備報表
+        href: azure-stack-validation-report.md
+    - name: 外部監視
+      href: azure-stack-integrate-monitor.md
+    - name: 外部稽核
+      items:
+      - name: Syslog 轉送
+        href: azure-stack-integrate-security.md
+      - name: 裝置稽核
+        href: azure-stack-integrate-physical-device-auditing.md
+  - name: 服務原則
+    href: azure-stack-servicing-policy.md
+  - name: 重要功能與概念
+    href: azure-stack-key-features.md
+  - name: 管理基本概念
+    href: azure-stack-manage-basics.md
 - name: 使用說明指南
   items:
+  - name: 管理 Azure Stack
+    items:
     - name: 設定遙測資料收集
       href: azure-stack-telemetry.md
     - name: 註冊 Azure Stack
       href: azure-stack-registration.md
-    - name: 管理
+    - name: 區域管理
+      href: azure-stack-region-management.md
+    - name: 使用系統管理員入口網站
+      href: azure-stack-manage-portals.md
+    - name: 連線至 Azure Stack
+      href: azure-stack-connect-azure-stack.md
+    - name: 連接到 Azure
       items:
-        - name: 區域管理
-          href: azure-stack-region-management.md
-        - name: 使用系統管理員入口網站
-          href: azure-stack-manage-portals.md
-        - name: 連線至 Azure Stack
-          href: azure-stack-connect-azure-stack.md
-        - name: 啟用使用者適用的 CLI
-          href: azure-stack-cli-admin.md
-        - name: 設定管理環境
-          items:
-            - name: 安裝 Azure Stack PowerShell
-              href: azure-stack-powershell-install.md
-            - name: 下載工具
-              href: azure-stack-powershell-download.md
-            - name: 設定 PowerShell - 雲端運算子
-              href: azure-stack-powershell-configure-admin.md
-            - name: 透過 PowerShell 執行
-              href: azure-stack-powershell-configure-quickstart.md
-        - name: 存取具有特殊權限的端點
-          href: azure-stack-privileged-endpoint.md
-        - name: 管理更新
-          items:
-            - name: 管理更新概觀
-              href: azure-stack-updates.md
-            - name: 套用更新
-              href: azure-stack-apply-updates.md
-            - name: 監視更新狀態
-              href: azure-stack-monitor-update.md
-        - name: 監視健康情況和警示
-          href: azure-stack-monitor-health.md
-        - name: 管理網路資源
-          href: azure-stack-viewing-public-ip-address-consumption.md
-        - name: 管理 Windows Azure 套件 VM
-          href: azure-stack-manage-windows-azure-pack.md
-        - name: 啟動及停止 Azure Stack
-          href: azure-stack-start-and-stop.md
-        - name: 管理容量
-          items:
-            - name: 管理儲存體資源
-              href: azure-stack-manage-storage-accounts.md
-            - name: 管理儲存體容量
-              href: azure-stack-manage-storage-shares.md
-            - name: 管理 Azure Stack 的實際儲存體容量
-              href: azure-stack-manage-storage-physical-memory-capacity.md
-        - name: 更換硬體
-          items:
-            - name: 節點動作
-              href: azure-stack-node-actions.md
-            - name: 更換節點
-              href: azure-stack-replace-node.md
-            - name: 更換磁碟
-              href: azure-stack-replace-disk.md
-            - name: 更換元件
-              href: azure-stack-replace-component.md
-        - name: 備份 Azure Stack
-          href: azure-stack-backup-infrastructure-backup.md
-          items:
-            - name: 從管理主控台啟用 Azure Stack 備份
-              href: azure-stack-backup-enable-backup-console.md
-            - name: 使用 PowerShell 啟用 Azure Stack 備份
-              href: azure-stack-backup-enable-backup-powershell.md
-            - name: 備份 Azure Stack
-              href: azure-stack-backup-back-up-azure-stack.md
-            - name: 從重大資料遺失的情況下復原
-              href: azure-stack-backup-recover-data.md
-            - name: 備份最佳做法
-              href: azure-stack-backup-best-practices.md
-            - name: 備份參考
-              href: azure-stack-backup-reference.md
-    - name: 安全性、合規性和身分識別
+      - name: 使用 VPN 連線
+        href: azure-stack-connect-vpn.md
+      - name: 關於 VPN 閘道
+        href: azure-stack-vpn-gateway-about-vpn-gateways.md
+      - name: VPN 閘道設定
+        href: azure-stack-vpn-gateway-settings.md
+      - name: 使用 ExpressRoute 連線
+        href: azure-stack-connect-expressroute.md
+    - name: 啟用使用者適用的 CLI
+      href: azure-stack-cli-admin.md
+    - name: 設定管理環境
       items:
-        - name: 安全性概觀
-          href: azure-stack-security-foundations.md
-        - name: 身分識別
-          items:
-            - name: 身分識別概觀
-              href: azure-stack-identity-overview.md
-            - name: 身分識別架構
-              href: azure-stack-identity-architecture.md
-            - name: 管理 RBAC
-              href: azure-stack-manage-permissions.md
-            - name: 為 Azure AD 新增使用者
-              href: azure-stack-add-new-user-aad.md
-            - name: 為 AD FS 新增使用者
-              href: azure-stack-add-users-adfs.md
-            - name: 建立服務主體
-              href: Azure-stack-create-service-principals.md
-            - name: 啟用多租用戶
-              href: azure-stack-enable-multitenancy.md
-        - name: 旋轉祕密
-          href: azure-stack-rotate-secrets.md
-    - name: 優惠服務
+      - name: 安裝 Azure Stack PowerShell
+        href: azure-stack-powershell-install.md
+      - name: 下載工具
+        href: azure-stack-powershell-download.md
+      - name: 設定 PowerShell - 雲端運算子
+        href: azure-stack-powershell-configure-admin.md
+    - name: 存取具有特殊權限的端點
+      href: azure-stack-privileged-endpoint.md
+    - name: 管理更新
       items:
-        - name: 優惠服務概觀
-          href: azure-stack-offer-services-overview.md
-        - name: 建立方案、優惠和配額
-          items:
-            - name: 方案、優惠、配頭和訂用帳戶概觀
-              href: azure-stack-plan-offer-quota-overview.md
-            - name: 建立方案
-              href: azure-stack-create-plan.md
-            - name: 建立優惠
-              href: azure-stack-create-offer.md
-            - name: 訂閱優惠
-              href: azure-stack-subscribe-plan-provision-vm.md
-            - name: 在 Azure Stack 中委派優惠
-              href: azure-stack-delegated-provider.md
-            - name: 配額類型
-              href: azure-stack-quota-types.md
-        - name: 提供 SQL 或 MySQL 做為 PaaS
-          items:
-            - name: PaaS 服務概觀
-              href: azure-stack-tools-paas-services.md
-            - name: 部署 MySQL 資源提供者
-              href: azure-stack-mysql-resource-provider-deploy.md
-            - name: 部署 SQL 資源提供者
-              href: azure-stack-sql-resource-provider-deploy.md
-            - name: 新增主機伺服器
-              href: azure-stack-sql-resource-provider-hosting-servers.md
-            - name: 建立 SQL 資料庫
-              href: azure-stack-sql-resource-provider-databases.md
-        - name: 提供 App Service 做為 PaaS
-          items:
-            - name: Azure Stack 概觀上的 App Service
-              href: azure-stack-app-service-overview.md
-            - name: 容量規劃
-              href: azure-stack-app-service-capacity-planning.md
-            - name: 開始之前
-              href: azure-stack-app-service-before-you-get-started.md
-            - name: 如何跨容錯網域，在 Azure Stack 上轉散發 Azure App Service
-              href: azure-stack-app-service-fault-domain-update.md
-            - name: 部署 App Service 資源提供者
-              href: azure-stack-app-service-deploy.md
-            - name: 離線部署 App Service
-              href: azure-stack-app-service-deploy-offline.md
-            - name: 更新 App Service
-              href: azure-stack-app-service-update.md
-            - name: 離線更新 App Service
-              href: azure-stack-app-service-update-offline.md
-            - name: 新增更多 Web 背景工作角色
-              href: azure-stack-app-service-add-worker-roles.md
-            - name: 設定部署來源
-              href: azure-stack-app-service-configure-deployment-sources.md
-            - name: App Service on Azure Stack 更新 1 版本資訊
-              href: azure-stack-app-service-release-notes-update-one.md
-        - name: 植入 Marketplace
-          items:
-            - name: Marketplace 概觀
-              href: azure-stack-marketplace.md
-            - name: 下載 Marketplace 項目
-              href: azure-stack-download-azure-marketplace-item.md
-            - name: 適用於 Azure Stack 的 Azure Marketplace 項目
-              href: azure-stack-marketplace-azure-items.md
-            - name: 建立及發佈 Marketplace 項目
-              href: azure-stack-create-and-publish-marketplace-item.md
-            - name: 使用 Marketplace 發佈工具
-              href: azure-stack-marketplace-publisher.md
-            - name: 適用於 Azure Stack 的支援客體作業系統
-              href: azure-stack-supported-os.md
-            - name: 新增自訂虛擬機器映像
-              href: azure-stack-add-vm-image.md
-            - name: 提供虛擬機器擴展集
-              href: azure-stack-compute-add-scalesets.md
-            - name: 提供 Linux 虛擬機器
-              href: azure-stack-linux.md
-        - name: 使用量與計費
-          items:
-            - name: 概觀
-              href: azure-stack-billing-and-chargeback.md
-            - name: 透過 CSP 管理使用量和帳單
-              href: azure-stack-add-manage-billing-as-a-csp.md
-            - name: 新增租用戶使用方式與帳單
-              href: azure-stack-csp-howto-register-tenants.md
-            - name: 管理租用戶註冊
-              href: azure-stack-csp-ref-operations.md
-            - name: 使用方式與帳單參考
-              items:
-                - name: 使用量資料報告
-                  href: azure-stack-usage-reporting.md
-                - name: 適月於雲端服務提供者的使用方式報告基礎結構
-                  href: azure-stack-csp-ref-infrastructure.md
-                - name: 提供者使用量 API
-                  href: azure-stack-provider-resource-api.md
-                - name: 租用戶使用量 API
-                  href: azure-stack-tenant-resource-usage-api.md
-                - name: 使用狀況常見問題集
-                  href: azure-stack-usage-related-faq.md
-        - name: 連接到 Azure
-          items:
-            - name: 使用 VPN 連線
-              href: azure-stack-connect-vpn.md
-            - name: 關於 VPN 閘道
-              href: azure-stack-vpn-gateway-about-vpn-gateways.md
-            - name: VPN 閘道設定
-              href: azure-stack-vpn-gateway-settings.md
-            - name: 使用 ExpressRoute 連線
-              href: azure-stack-connect-expressroute.md
-    - name: 疑難排解
+      - name: 管理更新概觀
+        href: azure-stack-updates.md
+      - name: 套用更新
+        href: azure-stack-apply-updates.md
+      - name: 監視更新狀態
+        href: azure-stack-monitor-update.md
+    - name: 監視健康情況和警示
+      href: azure-stack-monitor-health.md
+    - name: 管理網路資源
+      href: azure-stack-viewing-public-ip-address-consumption.md
+    - name: 變更使用者訂用帳戶擁有者
+      href: azure-stack-change-subscription-owner.md
+    - name: 啟動及停止 Azure Stack
+      href: azure-stack-start-and-stop.md
+    - name: 管理容量
       items:
-        - name: 已知問題
-          href: azure-stack-troubleshooting.md
-        - name: Azure Stack 中的診斷功能
-          href: azure-stack-diagnostics.md
-        - name: Azure Stack 驗證
-          href: azure-stack-diagnostic-test.md
-        - name: 重新部署 Azure Stack 開發套件
-          href: azure-stack-redeploy.md
+      - name: 管理儲存體資源
+        href: azure-stack-manage-storage-accounts.md
+      - name: 管理儲存體容量
+        href: azure-stack-manage-storage-shares.md
+      - name: 管理實際記憶體容量
+        href: azure-stack-manage-storage-physical-memory-capacity.md
+      - name: 新增縮放單位節點
+        href: azure-stack-add-scale-node.md
+      - name: 新增公用 IP 位址
+        href: azure-stack-add-ips.md
+    - name: 更換硬體
+      items:
+      - name: 節點動作
+        href: azure-stack-node-actions.md
+      - name: 更換節點
+        href: azure-stack-replace-node.md
+      - name: 更換磁碟
+        href: azure-stack-replace-disk.md
+      - name: 更換元件
+        href: azure-stack-replace-component.md
+  - name: 安全性、合規性和身分識別
+    items:
+    - name: 安全性概觀
+      href: azure-stack-security-foundations.md
+    - name: 身分識別
+      items:
+      - name: 身分識別概觀
+        href: azure-stack-identity-overview.md
+      - name: 身分識別架構
+        href: azure-stack-identity-architecture.md
+      - name: 管理 RBAC
+        href: azure-stack-manage-permissions.md
+      - name: 為 Azure AD 新增使用者
+        href: azure-stack-add-new-user-aad.md
+      - name: 為 AD FS 新增使用者
+        href: azure-stack-add-users-adfs.md
+      - name: 建立服務主體
+        href: Azure-stack-create-service-principals.md
+      - name: 啟用多租用戶
+        href: azure-stack-enable-multitenancy.md
+    - name: 旋轉祕密
+      href: azure-stack-rotate-secrets.md
+    - name: 更新防毒軟體
+      href: azure-stack-security-av.md
+  - name: 植入 Marketplace
+    items:
+    - name: Marketplace 概觀
+      href: azure-stack-marketplace.md
+    - name: 下載 Marketplace 項目
+      href: azure-stack-download-azure-marketplace-item.md
+    - name: 適用於 Azure Stack 的 Azure Marketplace 項目
+      href: azure-stack-marketplace-azure-items.md
+    - name: 建立及發佈 Marketplace 項目
+      href: azure-stack-create-and-publish-marketplace-item.md
+    - name: 使用 Marketplace 發佈工具
+      href: azure-stack-marketplace-publisher.md
+    - name: 適用於 Azure Stack 的支援客體作業系統
+      href: azure-stack-supported-os.md
+    - name: 新增自訂虛擬機器映像
+      href: azure-stack-add-vm-image.md
+    - name: 提供虛擬機器擴展集
+      href: azure-stack-compute-add-scalesets.md
+    - name: 提供 Linux 虛擬機器
+      href: azure-stack-linux.md
+    - name: 新增 Red Hat 虛擬機器
+      href: azure-stack-redhat-create-upload-vhd.md
+    - name: 提供 Kubernetes 叢集
+      href: azure-stack-solution-template-kubernetes-cluster-add.md
+  - name: 供應項目服務
+    href: azure-stack-offer-services-overview.md
+  - name: 提供 SQL 做為 PaaS
+    href: azure-stack-sql-resource-provider.md
+    items:
+    - name: 部署 SQL Server 資源提供者
+      href: azure-stack-sql-resource-provider-deploy.md
+    - name: 新增 SQL 主機伺服器
+      href: azure-stack-sql-resource-provider-hosting-servers.md
+    - name: 建立 SQL 資料庫
+      href: azure-stack-sql-resource-provider-databases.md
+    - name: 更新 SQL Server 資源提供者
+      href: azure-stack-sql-resource-provider-update.md
+    - name: 維護 SQL Server 資源提供者
+      href: azure-stack-sql-resource-provider-maintain.md
+    - name: 移除 SQL Server 資源提供者
+      href: azure-stack-sql-resource-provider-remove.md
+  - name: 提供 MySQL 做為 PaaS
+    href: azure-stack-mysql-resource-provider.md
+    items:
+    - name: 部署 MySQL Server 資源提供者
+      href: azure-stack-mysql-resource-provider-deploy.md
+    - name: 新增 MySQL 主機伺服器
+      href: azure-stack-mysql-resource-provider-hosting-servers.md
+    - name: 建立 MySQL 資料庫
+      href: azure-stack-mysql-resource-provider-databases.md
+    - name: 更新 MySQL Server 資源提供者
+      href: azure-stack-mysql-resource-provider-update.md
+    - name: 維護 MySQL Server 資源提供者
+      href: azure-stack-mysql-resource-provider-maintain.md
+    - name: 移除 MySQL Server 資源提供者
+      href: azure-stack-mysql-resource-provider-remove.md
+  - name: 提供 App Service 做為 PaaS
+    href: azure-stack-app-service-overview.md
+    items:
+    - name: App Service 容量規劃
+      href: azure-stack-app-service-capacity-planning.md
+    - name: 開始之前
+      href: azure-stack-app-service-before-you-get-started.md
+    - name: 如何跨容錯網域，在 Azure Stack 上轉散發 Azure App Service
+      href: azure-stack-app-service-fault-domain-update.md
+    - name: 部署 App Service 資源提供者
+      href: azure-stack-app-service-deploy.md
+    - name: 離線部署 App Service
+      href: azure-stack-app-service-deploy-offline.md
+    - name: 更新 App Service
+      href: azure-stack-app-service-update.md
+    - name: 離線更新 App Service
+      href: azure-stack-app-service-update-offline.md
+    - name: 新增更多 Web 背景工作角色
+      href: azure-stack-app-service-add-worker-roles.md
+    - name: 設定部署來源
+      href: azure-stack-app-service-configure-deployment-sources.md
+    - name: App Service on Azure Stack 版本資訊
+      items:
+      - name: App Service on Azure Stack 更新 1 版本資訊
+        href: azure-stack-app-service-release-notes-update-one.md
+      - name: App Service on Azure Stack 更新 2 版本資訊
+        href: azure-stack-app-service-release-notes-update-two.md
+      - name: App Service on Azure Stack 更新 3 版本資訊
+        href: azure-stack-app-service-release-notes-update-three.md
+  - name: 建立方案、供應項目和配額
+    items:
+    - name: 方案、供應項目、配頭和訂用帳戶概觀
+      href: azure-stack-plan-offer-quota-overview.md
+    - name: 建立方案
+      href: azure-stack-create-plan.md
+    - name: 建立附加方案
+      href: create-add-on-plan.md
+    - name: 建立供應項目
+      href: azure-stack-create-offer.md
+    - name: 訂閱供應項目
+      href: azure-stack-subscribe-plan-provision-vm.md
+    - name: 在 Azure Stack 中委派供應項目
+      href: azure-stack-delegated-provider.md
+    - name: 配額類型
+      href: azure-stack-quota-types.md
+  - name: 使用量與計費
+    href: azure-stack-billing-and-chargeback.md
+    items:
+    - name: 透過 CSP 管理使用量和帳單
+      href: azure-stack-add-manage-billing-as-a-csp.md
+      items:
+      - name: 新增租用戶使用方式與帳單
+        href: azure-stack-csp-howto-register-tenants.md
+      - name: 管理租用戶註冊
+        href: azure-stack-csp-ref-operations.md
+    - name: 使用方式與帳單參考
+      items:
+      - name: 使用量資料報告
+        href: azure-stack-usage-reporting.md
+      - name: 適月於雲端服務提供者的使用方式報告基礎結構
+        href: azure-stack-csp-ref-infrastructure.md
+      - name: 提供者使用量 API
+        href: azure-stack-provider-resource-api.md
+      - name: 租用戶使用量 API
+        href: azure-stack-tenant-resource-usage-api.md
+      - name: 使用狀況常見問題集
+        href: azure-stack-usage-related-faq.md
+  - name: 備份 Azure Stack
+    href: azure-stack-backup-infrastructure-backup.md
+    items:
+    - name: 從管理主控台啟用 Azure Stack 備份
+      href: azure-stack-backup-enable-backup-console.md
+    - name: 使用 PowerShell 啟用 Azure Stack 備份
+      href: azure-stack-backup-enable-backup-powershell.md
+    - name: 備份 Azure Stack
+      href: azure-stack-backup-back-up-azure-stack.md
+    - name: 備份 Azure Stack 上的檔案和應用程式
+      href: ../backup/backup-mabs-files-applications-azure-stack.md?toc=/azure/azure-stack/toc.json&bc=/azure/azure-stack/breadcrumb/toc.json
+    - name: 將 Azure Stack VM 複寫至 Azure
+      href: ../site-recovery/azure-stack-site-recovery.md?toc=/azure/azure-stack/toc.json&bc=/azure/azure-stack/breadcrumb/toc.json
+    - name: 從重大資料遺失的情況下復原
+      href: azure-stack-backup-recover-data.md
+    - name: 備份最佳做法
+      href: azure-stack-backup-best-practices.md
+    - name: 備份參考
+      href: azure-stack-backup-reference.md
+  - name: 疑難排解
+    items:
+    - name: 已知問題
+      href: azure-stack-troubleshooting.md
+    - name: Azure Stack 中的診斷功能
+      href: azure-stack-diagnostics.md
+    - name: Azure Stack 驗證
+      href: azure-stack-diagnostic-test.md
 - name: 參考
   items:
-    - name: Azure Stack PowerShell
-      href: /powershell/azure/azure-stack/overview?view=azurestackps-1.2.9
+  - name: Azure Stack PowerShell
+    href: /powershell/azure/azure-stack/overview
 - name: 相關參考
   items:
-    - name: Azure Stack 使用者文件
-      href: /azure/azure-stack/user/
-    - name: ASDK 文件
-      href: /azure/azure-stack/asdk/
+  - name: Azure Stack 使用者文件
+    href: /azure/azure-stack/user/
+  - name: ASDK 文件
+    href: /azure/azure-stack/asdk/
 - name: 資源
   items:
-    - name: Azure Stack 藍圖
-      href: 'https://azure.microsoft.com/roadmap/?tag=azure-stack'
-    - name: Azure Stack MSDN 論壇
-      href: 'https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStack'
-    - name: Azure Stack 文件意見
-      href: 'https://feedback.azure.com/forums/344565-azure-stack?category_id=160275'
-    - name: 定價資訊
-      href: 'https://azure.microsoft.com/overview/azure-stack/how-to-buy/'
-    - name: 堆疊溢位
-      href: 'http://stackoverflow.com/questions/tagged/azure-stack'
-    - name: 訓練與憑證
-      href: 'https://docs.microsoft.com/azure/azure-stack/azure-stack-train-and-cert'
+  - name: Azure Stack 藍圖
+    href: https://azure.microsoft.com/roadmap/?tag=azure-stack
+  - name: Azure Stack MSDN 論壇
+    href: https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStack
+  - name: Azure Stack 文件意見
+    href: https://feedback.azure.com/forums/344565-azure-stack?category_id=160275
+  - name: 定價資訊
+    href: https://azure.microsoft.com/overview/azure-stack/how-to-buy/
+  - name: 堆疊溢位
+    href: http://stackoverflow.com/questions/tagged/azure-stack
+  - name: 訓練與憑證
+    href: https://docs.microsoft.com/azure/azure-stack/azure-stack-train-and-cert
+ms.openlocfilehash: 07db25425bf9ef753c1561803dd1cdf838ef3457
+ms.sourcegitcommit: 9e179a577533ab3b2c0c7a4899ae13a7a0d5252b
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/23/2018
+ms.locfileid: "49944949"

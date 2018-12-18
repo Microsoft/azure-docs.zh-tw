@@ -1,19 +1,18 @@
 ---
-title: "在適用於 PostgreSQL 的 Azure 資料庫伺服器中建立使用者"
-description: "本文說明如何建立新的使用者帳戶，來與「適用於 PostgreSQL 的 Azure 資料庫」伺服器互動。"
-services: postgresql
+title: 在適用於 PostgreSQL 的 Azure 資料庫伺服器中建立使用者
+description: 本文說明如何建立新的使用者帳戶，來與「適用於 PostgreSQL 的 Azure 資料庫」伺服器互動。
 author: jasonwhowell
 ms.author: jasonh
 editor: jasonwhowell
-manager: jhubbard
-ms.service: postgresql-database
-ms.topic: article
-ms.date: 02/28/2018
-ms.openlocfilehash: 87a73929185112190d5dd6698e014db225ebc08e
-ms.sourcegitcommit: 088a8788d69a63a8e1333ad272d4a299cb19316e
+ms.service: postgresql
+ms.topic: conceptual
+ms.date: 10/16/2018
+ms.openlocfilehash: 05bdc841108bf1fb909375b6f2c6399f8121ceeb
+ms.sourcegitcommit: 1aacea6bf8e31128c6d489fa6e614856cf89af19
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/27/2018
+ms.lasthandoff: 10/16/2018
+ms.locfileid: "49344646"
 ---
 # <a name="create-users-in-azure-database-for-postgresql-server"></a>在適用於 PostgreSQL 的 Azure 資料庫伺服器中建立使用者 
 本主題說明如在「適用於 PostgreSQL 的 Azure 資料庫」伺服器中建立使用者。
@@ -63,7 +62,7 @@ PostgreSQL 引擎會使用權限來控制資料庫物件的存取，如 [Postgre
    
    CREATE ROLE <db_user> WITH LOGIN NOSUPERUSER INHERIT CREATEDB NOCREATEROLE NOREPLICATION PASSWORD '<StrongPassword!>';
    
-   GRANT CONNECT ON DATABASE testdb TO <db_user>;
+   GRANT CONNECT ON DATABASE <newdb> TO <db_user>;
    ```
 
 4. 由於使用管理帳戶，您可能需要授與其他權限來保護資料庫中的物件。 請參閱 [PostgreSQL 文件](https://www.postgresql.org/docs/current/static/ddl-priv.html)，以深入了解資料庫角色和權限。 例如︰ 

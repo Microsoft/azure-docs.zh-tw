@@ -9,10 +9,11 @@ ms.date: 03/28/2018
 ms.author: ''
 ms.custom: include file
 ms.openlocfilehash: f9005a5f0d327fd59a1b665cb8e714716908ea81
-ms.sourcegitcommit: c3d53d8901622f93efcd13a31863161019325216
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/29/2018
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38755652"
 ---
 | 資源 | 預設限制 |
 | --- | --- |

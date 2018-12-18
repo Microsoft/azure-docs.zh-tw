@@ -1,0 +1,2 @@
+>[!Note]
+>**此文章已過時。** 針對這個服務之舊版本的支援將逐漸終止。 [檢視支援時間表](../articles/machine-learning/service/overview-what-happened-to-workbench.md#timeline)。 依照此[快速入門](../articles/machine-learning/service/index.yml)開始使用最新版本。

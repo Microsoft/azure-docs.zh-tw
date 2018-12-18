@@ -1,12 +1,12 @@
 ---
-title: "更換 StorSimple 8000 系列裝置上的 PCM | Microsoft Docs"
-description: "說明如何取下及更換 StorSimple 裝置上的電源和冷卻模組"
+title: 更換 StorSimple 8000 系列裝置上的 PCM | Microsoft Docs
+description: 說明如何取下及更換 StorSimple 裝置上的電源和冷卻模組
 services: storsimple
-documentationcenter: 
+documentationcenter: ''
 author: alkohli
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: NA
 ms.topic: article
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23108596"
 ---
 # <a name="replace-a-power-and-cooling-module-on-your-storsimple-device"></a>更換 StorSimple 裝置上的電源和冷卻模組
 ## <a name="overview"></a>概觀

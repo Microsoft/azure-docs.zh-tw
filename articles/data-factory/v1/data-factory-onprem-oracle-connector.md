@@ -10,23 +10,24 @@ ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 01/10/2018
+ms.topic: conceptual
+ms.date: 05/15/2018
 ms.author: jingwang
 robots: noindex
-ms.openlocfilehash: 64e8a20f72d451908c12751c0f8062bf4ae86370
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 10535e75a32a9f95e759340cf14d693f43639473
+ms.sourcegitcommit: 0b4da003fc0063c6232f795d6b67fa8101695b61
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 07/05/2018
+ms.locfileid: "37856836"
 ---
-# <a name="copy-data-tofrom-on-premises-oracle-using-azure-data-factory"></a>使用 Azure Data Factory 從內部部署 Oracle 來回複製資料
+# <a name="copy-data-to-or-from-on-premises-oracle-using-azure-data-factory"></a>使用 Azure Data Factory 從內部部署 Oracle 來回複製資料
 > [!div class="op_single_selector" title1="Select the version of Data Factory service you are using:"]
-> * [第 1 版 - 正式推出](data-factory-onprem-oracle-connector.md)
-> * [第 2 版 - 預覽](../connector-oracle.md)
+> * [第 1 版](data-factory-onprem-oracle-connector.md)
+> * [第 2 版 (目前的版本)](../connector-oracle.md)
 
 > [!NOTE]
-> 本文適用於正式推出 (GA) 的第 1 版 Data Factory。 如果您使用處於預覽狀態的 Data Factory 第 2 版，請參閱[第 2 版中的 Oracle 連接器](../connector-oracle.md)。
+> 本文適用於 Data Factory 第 1 版。 如果您使用目前版本的 Data Factory 服務，請參閱[第 2 版中的 Oracle 連接器](../connector-oracle.md)。
 
 
 本文說明如何使用 Azure Data Factory 中的「複製活動」，將資料移進/移出內部部署的 Oracle 資料庫。 本文是根據[資料移動活動](data-factory-data-movement-activities.md)一文，該文提供使用複製活動來移動資料的一般概觀。
@@ -58,11 +59,14 @@ Data Factory 支援使用資料管理閘道連接至內部部署 Oracle 來源�
     - Oracle 9i R1、R2 (9.0.1、9.2)
     - Oracle 8i R3 (8.1.7)
 
+> [!NOTE]
+> 不支援 Oracle Proxy 伺服器。
+
 > [!IMPORTANT]
 > 目前適用於 Oracle 的 Microsoft 驅動程式僅支援從 Oracle 複製資料，但不支援將資料寫入 Oracle。 請注意，[資料管理閘道診斷] 索引標籤中的測試連線功能不支援此驅動程式。 您可以選擇使用複製精靈來驗證連線。
 >
 
-- **.NET 的 Oracle 資料提供者︰**您也可以選擇使用 Oracle 資料提供者，從 Oracle 複製資料/將資料複製到 Oracle。 此元件包含於 [適用於 Windows 的 Oracle 資料存取元件](http://www.oracle.com/technetwork/topics/dotnet/downloads/)中。 在安裝閘道的電腦上安裝適當版本 (32/64 位元)。 [Oracle Data Provider .NET 12.1](http://docs.oracle.com/database/121/ODPNT/InstallSystemRequirements.htm#ODPNT149) 可以存取 Oracle Database 10g Release 2 或更新版本。
+- **.NET 的 Oracle 資料提供者︰** 您也可以選擇使用 Oracle 資料提供者，從 Oracle 複製資料/將資料複製到 Oracle。 此元件包含於 [適用於 Windows 的 Oracle 資料存取元件](http://www.oracle.com/technetwork/topics/dotnet/downloads/)中。 在安裝閘道的電腦上安裝適當版本 (32/64 位元)。 [Oracle Data Provider .NET 12.1](http://docs.oracle.com/database/121/ODPNT/InstallSystemRequirements.htm#ODPNT149) 可以存取 Oracle Database 10g Release 2 或更新版本。
 
     如果您選擇「XCopy 安裝」，請依照 readme.htm 中的步驟進行。 建議您選擇含有 UI 的安裝程式 (非 XCopy 安裝)。
 
@@ -96,9 +100,13 @@ Data Factory 支援使用資料管理閘道連接至內部部署 Oracle 來源�
 | type |類型屬性必須設為： **OnPremisesOracle** |yes |
 | driverType | 指定要用來從 Oracle 複製資料/將資料複製到 Oracle 資料庫的驅動程式。 允許的值為 **Microsoft** 或 **ODP** (預設值)。 如需驅動程式詳細資料，請參閱[支援的版本和安裝](#supported-versions-and-installation)一節。 | 否 |
 | connectionString | 針對 connectionString 屬性指定連接到 Oracle 資料庫執行個體所需的資訊。 | yes |
-| gatewayName | 用來連接到內部部署 Oracle 伺服器的閘道器名稱 |yes |
+| gatewayName | 用來連線內部部署 Oracle 伺服器的閘道名稱 |yes |
 
 **範例︰使用 Microsoft 驅動程式：**
+
+>[!TIP]
+>如果您遇到指出「ORA-01025: UPI 參數超出範圍」的錯誤，而且您的 Oracle 版本為 8i，請將 `WireProtocolMode=1` 新增至連接字串並再試一次。
+
 ```json
 {
     "name": "OnPremisesOracleLinkedService",

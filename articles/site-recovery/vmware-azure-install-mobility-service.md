@@ -1,18 +1,17 @@
 ---
 title: 安裝行動服務 (VMware 或實體至 Azure) | Microsoft Docs
 description: 了解如何安裝行動服務代理程式，以使用 Azure Site Recovery 保護您的內部部署 VMware VM 和實體伺服器。
-services: site-recovery
-author: AnoopVasudavan
-manager: gauravd
+author: Rajeswari-Mamilla
 ms.service: site-recovery
 ms.topic: article
-ms.date: 03/05/2018
-ms.author: anoopkv
-ms.openlocfilehash: 445a5f10eac0959dab57e10680659c0792ad6fba
-ms.sourcegitcommit: 168426c3545eae6287febecc8804b1035171c048
+ms.date: 07/06/2018
+ms.author: ramamill
+ms.openlocfilehash: 094c1776c0760c04d85aff6ad3d812a2ad7afa56
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/08/2018
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39526992"
 ---
 # <a name="install-the-mobility-service"></a>安裝行動服務 
 
@@ -27,9 +26,10 @@ Azure Site Recovery 行動服務安裝在您想要複寫到 Azure 的 VMware VM 
 
 
 >[!IMPORTANT]
-> 從版本 9.7.0.0 開始，在 Windows VM 上，行動服務安裝程式也會安裝最新可用的 [Azure VM 代理程式](../virtual-machines/windows/extensions-features.md#azure-vm-agent)。 當電腦容錯移轉至 Azure 時，該電腦必須符合代理程式安裝必要條件，才能使用任何 VM 擴充功能。
+> 從版本 9.7.0.0 開始，在 **Windows VM** 上，行動服務安裝程式也會安裝最新可用的 [Azure VM 代理程式](../virtual-machines/extensions/features-windows.md#azure-vm-agent)。 當電腦容錯移轉至 Azure 時，該電腦必須符合代理程式安裝必要條件，才能使用任何 VM 擴充功能。
+> </br>在 **Linux VM** 上，WALinuxAgent 必須手動安裝。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 在伺服器上手動安裝行動服務之前，必須先完成下列必要條件步驟：
 1. 登入組態伺服器，然後以系統管理員身分開啟命令提示字元視窗。
 2. 將目錄切換至 bin 資料夾，然後建立複雜密碼檔案。
@@ -43,11 +43,14 @@ Azure Site Recovery 行動服務安裝在您想要複寫到 Azure 的 VMware VM 
 
 ### <a name="mobility-service-installer-to-operating-system-mapping"></a>行動服務安裝程式與作業系統之間的對應
 
+若要查看具有相容行動服務套件的作業系統版本清單，請參閱清單 [VMware 虛擬機器和實體伺服器支援的作業系統](vmware-physical-azure-support-matrix.md#replicated-machines)。
+
 | 安裝程式檔案的範本名稱| 作業系統 |
 |---|--|
 |Microsoft-ASR\_UA\*Windows\*release.exe | Windows Server 2008 R2 SP1 (64 位元) </br> Windows Server 2012 (64 位元) </br> Windows Server 2012 R2 (64 位元) </br> Windows Server 2016 (64 位元) |
-|Microsoft-ASR\_UA\*RHEL6-64*release.tar.gz| Red Hat Enterprise Linux (RHEL) 6.4、6.5、6.6、6.7、6.8、6.9 (僅限 64 位元) </br> CentOS 6.4、6.5、6.6、6.7、6.8、6.9 (僅限 64 位元) |
-|Microsoft-ASR\_UA\*RHEL7-64\*release.tar.gz | Red Hat Enterprise Linux (RHEL) 7.1、7.2、7.3 (僅限 64 位元) </br> CentOS 7.0、7.1、7.2、7.3 (僅限 64 位元) |
+|Microsoft-ASR\_UA\*RHEL6-64\*release.tar.gz | Red Hat Enterprise Linux (RHEL) 6.* (僅限 64 位元) </br> CentOS 6.* (僅限 64 位元) |
+|Microsoft-ASR\_UA\*RHEL7-64\*release.tar.gz | Red Hat Enterprise Linux (RHEL) 7.* (僅限 64 位元) </br> CentOS 7.* (僅限 64 位元) |
+|Microsoft-ASR\_UA\*SLES12-64\*release.tar.gz | SUSE Linux Enterprise Server 12 SP1、SP2、SP3 (僅限 64 位元)|
 |Microsoft-ASR\_UA\*SLES11-SP3-64\*release.tar.gz| SUSE Linux Enterprise Server 11 SP3 (僅限 64 位元)|
 |Microsoft-ASR\_UA\*SLES11-SP4-64\*release.tar.gz| SUSE Linux Enterprise Server 11 SP4 (僅限 64 位元)|
 |Microsoft-ASR\_UA\*OL6-64\*release.tar.gz | Oracle Enterprise Linux 6.4、6.5 (僅限 64 位元)|
@@ -55,7 +58,6 @@ Azure Site Recovery 行動服務安裝在您想要複寫到 Azure 的 VMware VM 
 |Microsoft-ASR\_UA\*UBUNTU-16.04-64\*release.tar.gz | Ubuntu Linux 16.04 LTS 伺服器 (僅限 64 位元)|
 |Microsoft-ASR_UA\*DEBIAN7-64\*release.tar.gz | Debian 7 (僅限 64 位元)|
 |Microsoft-ASR_UA\*DEBIAN8-64\*release.tar.gz | Debian 8 (僅限 64 位元)|
-
 
 ## <a name="install-mobility-service-manually-by-using-the-gui"></a>使用 GUI 手動安裝行動服務
 

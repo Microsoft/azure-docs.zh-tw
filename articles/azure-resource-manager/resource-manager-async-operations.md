@@ -1,27 +1,26 @@
 ---
-title: "Azure 非同步作業 | Microsoft Docs"
-description: "描述如何在 Azure 中追蹤非同步作業。"
+title: Azure 非同步作業 | Microsoft Docs
+description: 描述如何在 Azure 中追蹤非同步作業。
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
-manager: timlt
-editor: tysonn
-ms.assetid: 
+ms.assetid: ''
 ms.service: azure-resource-manager
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/11/2017
+ms.date: 08/21/2018
 ms.author: tomfitz
-ms.openlocfilehash: 9015347042ea9cce221ec5febd4ae60cbeac9315
-ms.sourcegitcommit: 088a8788d69a63a8e1333ad272d4a299cb19316e
+ms.openlocfilehash: 601f4a899393d8ddd5ea698d4d01ade7141ee91f
+ms.sourcegitcommit: 76797c962fa04d8af9a7b9153eaa042cf74b2699
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/27/2018
+ms.lasthandoff: 08/21/2018
+ms.locfileid: "42139891"
 ---
 # <a name="track-asynchronous-azure-operations"></a>追蹤非同步 Azure 作業
-某些 Azure REST 作業因為無法快速完成，而以非同步方式執行。 本主題說明如何透過回應中傳回的值，以追蹤非同步作業的狀態。  
+某些 Azure REST 作業因為無法快速完成，而以非同步方式執行。 本文說明如何透過回應中傳回的值，以追蹤非同步作業的狀態。  
 
 ## <a name="status-codes-for-asynchronous-operations"></a>非同步作業的狀態碼
 非同步作業最初會傳回下列其中一個 HTTP 狀態碼︰
@@ -34,7 +33,7 @@ ms.lasthandoff: 02/27/2018
 * 200 (確定)
 * 204 (沒有內容) 
 
-請參閱 [REST API 文件](/rest/api/)，查看您執行之作業的回應。 
+請參閱 [REST API 文件](/rest/api/)，查看您執行作業的回應。
 
 ## <a name="monitor-status-of-operation"></a>監視作業的狀態
 非同步 REST 作業傳回的標頭值，可用來判斷作業的狀態。 可能有三個標頭值可檢查︰

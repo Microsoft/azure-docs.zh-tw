@@ -1,18 +1,18 @@
 ---
-title: "使用來自 Azure 容器執行個體的 Azure Container Registry 進行驗證"
-description: "了解如何使用 Azure Active Directory 服務主體，從 Azure 容器執行個體提供私人容器登錄中映像的存取權。"
+title: 使用來自 Azure 容器執行個體的 Azure Container Registry 進行驗證
+description: 了解如何使用 Azure Active Directory 服務主體，從 Azure 容器執行個體提供私人容器登錄中映像的存取權。
 services: container-registry
-author: mmacy
-manager: timlt
+author: dlepow
 ms.service: container-registry
 ms.topic: article
-ms.date: 01/24/2018
-ms.author: marsma
-ms.openlocfilehash: 00d9632a5d0c42eceee1b412f8963bbadbea651f
-ms.sourcegitcommit: 79683e67911c3ab14bcae668f7551e57f3095425
+ms.date: 04/23/2018
+ms.author: danlep
+ms.openlocfilehash: 32b1788d73e1c323d93b40b778bc64a1ba45c4ad
+ms.sourcegitcommit: 67abaa44871ab98770b22b29d899ff2f396bdae3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/25/2018
+ms.lasthandoff: 10/08/2018
+ms.locfileid: "48855828"
 ---
 # <a name="authenticate-with-azure-container-registry-from-azure-container-instances"></a>使用來自 Azure 容器執行個體的 Azure Container Registry 進行驗證
 
@@ -44,15 +44,24 @@ az container create \
     --registry-password <service-principal-password>
 ```
 
+## <a name="sample-scripts"></a>範例指令碼
+
+您可以找到前述適用於 GitHub 上的 Azure CLI 的範例指令碼，以及適用於 Azure PowerShell 的版本：
+
+* [Azure CLI][acr-scripts-cli]
+* [Azure PowerShell][acr-scripts-psh]
+
 ## <a name="next-steps"></a>後續步驟
 
 下列文章包含運用服務主體與 ACR 的其他詳細資料：
 
 * [使用服務主體進行 Azure Container Registry 驗證](container-registry-auth-service-principal.md)
-* [使用來自 Azure Container Service (AKS) 的 Azure Container Registry 進行驗證](container-registry-auth-aks.md)
+* [從 Azure Kubernetes Service 對 Azure Container Registry 進行驗證 (AKS)](container-registry-auth-aks.md)
 
 <!-- IMAGES -->
 
 <!-- LINKS - External -->
+[acr-scripts-cli]: https://github.com/Azure/azure-docs-cli-python-samples/tree/master/container-registry
+[acr-scripts-psh]: https://github.com/Azure/azure-docs-powershell-samples/tree/master/container-registry
 
 <!-- LINKS - Internal -->

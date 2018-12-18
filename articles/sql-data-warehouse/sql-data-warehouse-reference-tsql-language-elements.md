@@ -1,29 +1,27 @@
 ---
-title: SQL 資料倉儲 Transact-SQL Language 元素 | Microsoft Docs
-description: SQL 資料倉儲所使用的 Transact-SQL Language 元素的參考內容連結清單。
+title: T-SQL 語言元素 - Azure SQL 資料倉儲 | Microsoft Docs
+description: Azure SQL 資料倉儲中所支援 T-SQL 陳述式的文件連結。
 services: sql-data-warehouse
-documentationcenter: NA
-author: kevinvngo
-manager: jhubbard
-editor: ''
-ms.assetid: ea0b9a3e-e489-458e-addc-cc153e5cc158
+author: twounder
+manager: craigg
 ms.service: sql-data-warehouse
-ms.devlang: NA
-ms.topic: article
-ms.tgt_pltfrm: NA
-ms.workload: data-services
-ms.custom: reference
-ms.date: 10/31/2016
-ms.author: kevin;barbkess
-ms.openlocfilehash: dd9dc070c817a7276369a9be7126b0d48dc9e4eb
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.topic: conceptual
+ms.component: implement
+ms.date: 06/13/2018
+ms.author: mausher
+ms.reviewer: igorstan
+ms.openlocfilehash: d40861650f479f8ef840c5150b2153f461871331
+ms.sourcegitcommit: 1fb353cfca800e741678b200f23af6f31bd03e87
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 08/30/2018
+ms.locfileid: "43311002"
 ---
-# <a name="language-elements"></a>語言元素
+# <a name="t-sql-language-elements-supported-in-azure-sql-data-warehouse"></a>Azure SQL 資料倉儲中支援的 T-SQL 語言元素
+Azure SQL 資料倉儲中所支援 T-SQL 語言元素的文件連結。
+
 ## <a name="core-elements"></a>核心元素
-* [語法慣例](https://msdn.microsoft.com/library/ms177563.aspx)
+* [語法慣例](/sql/t-sql/language-elements/transact-sql-syntax-conventions-transact-sql)
 * [物件命名規則](https://msdn.microsoft.com/library/ms175874.aspx)
 * [保留的關鍵字](https://msdn.microsoft.com/library/ms189822.aspx)
 * [定序](https://msdn.microsoft.com/library/ff848763.aspx)
@@ -279,5 +277,5 @@ ms.lasthandoff: 03/28/2018
 * [SET XACT_ABORT](https://msdn.microsoft.com/library/ms188792.aspx)
 
 ## <a name="next-steps"></a>後續步驟
-如需更多 TSQL 參考，請參閱 [SQL 資料倉儲 T-SQL 陳述式](sql-data-warehouse-reference-tsql-statements.md)。
+如需更多的參考資訊，請參閱 [Azure SQL 資料倉儲中的 T-SQL 陳述式](sql-data-warehouse-reference-tsql-statements.md)和 [Azure SQL 資料倉儲中的系統檢視表](sql-data-warehouse-reference-tsql-system-views.md)。
 

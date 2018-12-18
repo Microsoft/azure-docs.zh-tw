@@ -1,27 +1,22 @@
 ---
-title: "在 Azure 搜尋服務中編製 Azure SQL Database 索引的教學課程 | Microsoft Docs"
-description: "搜耙 Azure SQL Database，以擷取可搜尋的資料並填入 Azure 搜尋服務索引。"
-services: search
-documentationcenter: 
+title: 在 Azure 搜尋服務中編製 Azure SQL Database 索引的教學課程 | Microsoft Docs
+description: 在本教學課程中，對 Azure SQL 資料庫進行編目，以擷取可搜尋的資料，並填入 Azure 搜尋服務索引。
 author: HeidiSteen
-manager: jhubbard
-editor: 
-tags: 
-ms.assetid: 
+manager: cgronlun
+services: search
 ms.service: search
 ms.devlang: na
-ms.workload: search
-ms.topic: get-started-article
-ms.tgt_pltfrm: na
-ms.date: 11/10/2017
+ms.topic: tutorial
+ms.date: 07/10/2018
 ms.author: heidist
-ms.openlocfilehash: 22eeccfd692cca74bc0cf12c3400d717c103332f
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.openlocfilehash: b40d3a74904d6814eb01b5d41d10632e8c9af5be
+ms.sourcegitcommit: df50934d52b0b227d7d796e2522f1fd7c6393478
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 07/12/2018
+ms.locfileid: "38988790"
 ---
-# <a name="how-to-crawl-an-azure-sql-database-using-azure-search-indexers"></a>如何使用 Azure 搜尋索引子搜耙 Azure SQL 資料庫
+# <a name="tutorial-crawl-an-azure-sql-database-using-azure-search-indexers"></a>教學課程：使用 Azure 搜尋索引子對 Azure SQL 資料庫進行編目
 
 本教學課程示範如何設定索引子，以便從範例 Azure SQL Database 擷取可搜尋的資料。 [索引子](search-indexer-overview.md)是 Azure 搜尋服務的元件，可搜耙外部資料來源，以內容填入[搜尋索引](search-what-is-an-index.md)。 在所有索引子中，Azure SQL Database 的索引子最廣泛使用。 
 
@@ -38,9 +33,9 @@ ms.lasthandoff: 02/21/2018
 > * 搜尋索引
 > * 在入口網站中檢視索引子組態
 
-## <a name="prerequisites"></a>先決條件
+如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
 
-* 使用中的 Azure 帳戶。 如果您沒有帳戶，您可以註冊[免費試用](https://azure.microsoft.com/free/)。 
+## <a name="prerequisites"></a>必要條件
 
 * Azure 搜尋服務。 如需設定搜尋服務的說明，請參閱[建立搜尋服務](search-create-service-portal.md)。
 
@@ -95,7 +90,7 @@ ms.lasthandoff: 02/21/2018
 4. 複製並貼上該服務名稱，作為您在 Visual Studio 的 **appsettings.json** 中輸入的第一項資料。
 
   > [!Note]
-  > 服務名稱屬於包含 search.windows.net 的端點。 如果您很好奇，您可以在 [概觀] 頁面上的 [基本資訊] 中查看完整 URL。 URL 如同此範例所示：https://your-service-name.search.windows.net
+  > 服務名稱屬於包含 search.windows.net 的端點。 如果您很好奇，您可以在 [概觀] 頁面上的 [基本資訊] 中查看完整 URL。 URL 看起來像這個範例：https://your-service-name.search.windows.net
 
 5. 在左側的 [設定] > [金鑰] 中，複製其中一個系統管理金鑰並將它當作第二個項目貼到 **appsettings.json** 中。 金鑰是在佈建期間為您的服務產生的英數字元字串，而且是獲得授權存取服務作業的必要項目。 
 
@@ -274,21 +269,14 @@ public string HotelName { get; set; }
 
   ![索引子和資料來源圖格](./media/search-indexer-tutorial/tiles-portal.png)
 
+
 ## <a name="clean-up-resources"></a>清除資源
 
-如果您不要繼續使用這些服務，請使用下列步驟在 Azure 入口網站中刪除本教學課程所建立的所有資源。 
-
-1. 從 Azure 入口網站的左側功能表中，按一下 [資源群組]，然後按一下您所建立資源的名稱。 
-2. 在資源群組頁面上，按一下 [刪除資源群組]，在文字方塊中輸入要刪除的資源名稱，然後按一下 [刪除]。
+在完成教學課程後，最快速的清除方式是刪除包含 Azure 搜尋服務的資源群組。 您現在可以刪除資源群組，以永久刪除當中所包含的所有項目。 在入口網站中，資源群組名稱位在 Azure 搜尋服務的 [概觀] 頁面上。
 
 ## <a name="next-steps"></a>後續步驟
 
-如需其他支援之資料來源的詳細資訊和特有工作，請參閱下列文章︰
+您可以將 AI 功能的演算法附加至索引子的管線。 下一個步驟中，繼續進行下列教學課程。
 
-* [Azure SQL Database 或 Azure 虛擬機器中的 SQL Server](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)
-* [Azure Cosmos DB](search-howto-index-cosmosdb.md)
-* [Azure 資料表儲存體](search-howto-indexing-azure-tables.md)
-* [Azure Blob 儲存體](search-howto-indexing-azure-blob-storage.md)
-* [使用 Azure 搜尋服務 Blob 索引子編製索引 CSV Blob](search-howto-index-csv-blobs.md)
-* [使用 Azure 搜尋服務 Blob 索引子編製索引 JSON Blob](search-howto-index-json-blobs.md)
-
+> [!div class="nextstepaction"]
+> [在 Azure Blob 儲存體中為文件編製索引](search-howto-indexing-azure-blob-storage.md)

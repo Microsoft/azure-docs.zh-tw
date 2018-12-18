@@ -2,22 +2,24 @@
 title: Team 資料科學程序群組管理員工作 - Azure | Microsoft Docs
 description: 資料科學 Team 專案上群組管理員工作的概述。
 documentationcenter: ''
-author: bradsev
+author: deguhath
 manager: cgronlun
 editor: cgronlun
 ms.assetid: ''
 ms.service: machine-learning
+ms.component: team-data-science-process
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 11/13/2017
-ms.author: bradsev
-ms.openlocfilehash: 3c39ae865ec26567f70706b042dab2aa8e4939d3
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.author: deguhath
+ms.openlocfilehash: a89c0f916f67de1bae81a5e1b3dcfc2cae41d248
+ms.sourcegitcommit: f3bd5c17a3a189f144008faf1acb9fabc5bc9ab7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 09/10/2018
+ms.locfileid: "44304181"
 ---
 # <a name="group-manager-tasks"></a>群組管理員工作
 
@@ -28,13 +30,13 @@ ms.lasthandoff: 03/28/2018
 ![0](./media/group-manager-tasks/tdsp-group-manager.png)
 
 
->[AZURE.NOTE] 我們概述在下列指示中使用 VSTS 來設定 TDSP 群組環境所需的步驟。 我們會指定如何使用 VSTS 完成這些工作，因為這是我們在 Microsoft 中實作 TDSP 的方式。 如果針對您的群組使用另一個程式碼裝載平台，必須由群組管理員完成的工作通常不會變更。 但是完成這些工作的方式將會不同。
+>[AZURE.NOTE] 我們概述在下列指示中使用 Azure DevOps Services 來設定 TDSP 群組環境所需的步驟。 我們會指定如何使用 Azure DevOps Services 完成這些工作，因為這是我們在 Microsoft 中實作 TDSP 的方式。 如果針對您的群組使用另一個程式碼裝載平台，必須由群組管理員完成的工作通常不會變更。 但是完成這些工作的方式將會不同。
 
-1. 設定群組適用的 **Visual Studio Team Services (VSTS) 伺服器**。
-2. 在 Visual Studio Team Services 伺服器上建立**群組 Team 專案** (適用於 VSTS 使用者)
+1. 設定群組的 **Azure DevOps Services**。
+2. 在 Azure DevOps Services 上建立**群組專案** (針對 Azure DevOps Services 使用者)
 3. 建立 **GroupProjectTemplate** 存放庫
 4. 建立 **GroupUtilities** 存放庫
-5. 針對含有 TDSP 存放庫內容的 VSTS 伺服器，植入 **GroupProjectTemplate** 和 **GroupUtilities** 存放庫。
+5. 針對含有 TDSP 存放庫內容的 Azure DevOps Services，植入 **GroupProjectTemplate** 和 **GroupUtilities** 存放庫。
 6. 為小組成員設定**安全性控制**，以存取 GroupProjectTemplate 和 GroupUtilities 存放庫。
 
 以下將詳細說明上述各步驟。 但首先，我們要讓您熟悉各個縮寫，並討論使用存放庫的必要條件。
@@ -45,8 +47,8 @@ ms.lasthandoff: 03/28/2018
 
 - **G1**：由 Microsoft 的 TDSP 小組所開發與管理的專案範本存放庫。
 - **G2**：由 Microsoft 的 TDSP 小組所開發與管理的公用程式存放庫。
-- **R1**：Git 上的 GroupProjectTemplate 存放庫，您已在 VSTS 群組伺服器上加以設定。
-- **R2**：Git 上的 GroupUtilities 存放庫，您已在 VSTS 群組伺服器上加以設定。
+- **R1**：Git 上的 GroupProjectTemplate 存放庫，由您設定於 Azure DevOps Services 群組伺服器上。
+- **R2**：Git 上的 GroupUtilities 存放庫，由您設定於 Azure DevOps Services 群組伺服器上。
 - **LG1** 和 **LG2**：您機器上的本機目錄，您會分別將 G1 和 G2 複製到其中。
 - **LR1** 和 **LR2**：您機器上的本機目錄，您會分別將 R1 和 R2 複製到其中。
 
@@ -54,19 +56,19 @@ ms.lasthandoff: 03/28/2018
  
 - Git 必須安裝在您的機器上。 如果您使用資料科學虛擬機器 (DSVM)，則已預先安裝 Git，而您可以繼續作業。 否則，請參閱[平台和工具附錄](platforms-and-tools.md#appendix)。  
 - 如果您使用 **Windows DSVM**，您必須在機器上安裝 [Git 認證管理員 (GCM)](https://github.com/Microsoft/Git-Credential-Manager-for-Windows) \(英文\)。 在 README.md 檔案中，向下捲動至 [下載並安裝] 區段，然後按一下 [最新的安裝程式]。 這個步驟會帶您到最新的安裝程式頁面。 從這裡下載 .exe 安裝程式並執行它。 
-- 如果您使用 **Linux DSVM**，在您的 DSVM 上建立 SSH 公開金鑰，並將它新增到您的群組 VSTS 伺服器。 如需 SSH 的詳細資訊，請參閱[平台和工具附錄](platforms-and-tools.md#appendix)中的**建立 SSH 公開金鑰**一節。 
+- 如果您使用 **Linux DSVM**，請在您的 DSVM 上建立 SSH 公開金鑰，並將它新增到您的群組 Azure DevOps Services。 如需 SSH 的詳細資訊，請參閱[平台和工具附錄](platforms-and-tools.md#appendix)中的**建立 SSH 公開金鑰**一節。 
 
 
-## <a name="1-create-account-on-vsts-server"></a>1.在 VSTS 伺服器上建立帳戶
+## <a name="1-create-account-on-azure-devops-services"></a>1.建立 Azure DevOps Services 的帳戶
 
-VSTS 伺服器會裝載下列存放庫：
+Azure DevOps Services 會裝載下列存放庫：
 
 - **群組通用的存放庫**：一般用途的存放庫，可由群組內的多個小組針對多個資料科學專案加以採用。 例如，*GroupProjectTemplate* 和 *GroupUtilities* 存放庫。
 - **小組存放庫**：群組內特定小組的存放庫。 這些存放庫是針對小組的需求而定，可能會由該小組執行的多個專案所採用，但通常不足以供資料科學群組內的多個小組使用。 
 - **專案存放庫**：適用於特定專案的存放庫。 這類存放庫通常不足以供由小組執行的多個專案，以及資料科學群組中的多個小組使用。
 
 
-### <a name="setting-up-the-vsts-server-sign-into-your-microsoft-account"></a>設定 VSTS 伺服器登入您的 Microsoft 帳戶
+### <a name="setting-up-the-azure-devops-services-sign-into-your-microsoft-account"></a>設定 Azure DevOps Services 登入您的 Microsoft 帳戶
     
 移至 [Visual Studio Online](https://www.visualstudio.com/)、按一下右上角的 [登入]，然後登入您的 Microsoft 帳戶。 
     
@@ -84,13 +86,13 @@ VSTS 伺服器會裝載下列存放庫：
         
 ![3](./media/group-manager-tasks/create-account-1.PNG)
         
-使用下列值，針對您想要在 [建立您的帳戶] 精靈中建立的 VSTS 伺服器填入資訊： 
+使用下列值，為您想要在 [建立您的帳戶] 精靈中建立的 Azure DevOps Services 填入資訊： 
 
-- **伺服器 URL**：使用您自己的「伺服器名稱」取代 mysamplegroup。 伺服器的 URL 將會是：https://\<servername\>.visualstudio.com。 
-- **使用以下項目管理程式碼：**選取 [Git]。
-- **專案名稱：**輸入 *GroupCommon*。 
-- **工作的組織方式：**選擇 [Agile]。
-- **您專案的裝載位置：**選擇地理位置。 在此範例中，我們選擇 [美國中南部]。 
+- **伺服器 URL**：使用您自己的「伺服器名稱」取代 mysamplegroup。 伺服器的 URL 將會是： https://\<servername\>.visualstudio.com。 
+- **使用以下項目管理程式碼：** 選取 [Git]。
+- **專案名稱：** 輸入 *GroupCommon*。 
+- **工作的組織方式：** 選擇 [Agile]。
+- **您專案的裝載位置：** 選擇地理位置。 在此範例中，我們選擇 [美國中南部]。 
         
 ![4](./media/group-manager-tasks/fill-in-account-information.png)
 
@@ -101,17 +103,17 @@ VSTS 伺服器會裝載下列存放庫：
 
 按一下 [繼續]。 
 
-## <a name="2-groupcommon-team-project"></a>2.GroupCommon Team 專案
+## <a name="2-groupcommon-project"></a>2.GroupCommon 專案
 
-[GroupCommon] 頁面 (https://\<servername\>.visualstudio.com/GroupCommon) 會在建立 VSTS 伺服器之後開啟。
+[GroupCommon] 頁面 (https://\<servername\>.visualstudio.com/GroupCommon) 會在您的 Azure DevOps Services 建立之後開啟。
                             
 ![6](./media/group-manager-tasks/server-created-2.PNG)
 
 ## <a name="3-create-the-grouputilities-r2-repository"></a>3.建立 GroupUtilities (R2) 存放庫
 
-在 VSTS 伺服器底下建立 **GroupUtilities** (R2) 存放庫：
+若要在 Azure DevOps Services 下建立 **GroupUtilities** (R2) 存放庫：
 
-- 若要開啟 [建立新的存放庫] 精靈，按一下 Team 專案之 [版本控制] 索引標籤上的 [新增存放庫]。 
+- 若要開啟 [建立新的存放庫] 精靈，請在專案的 [版本控制] 索引標籤上按一下 [新增存放庫]。 
 
 ![7](./media/group-manager-tasks/create-grouputilities-repo-1.png) 
 
@@ -126,10 +128,10 @@ VSTS 伺服器會裝載下列存放庫：
 
 ## <a name="4-create-the-groupprojecttemplate-r1-repository"></a>4.建立 GroupProjectTemplate (R1) 存放庫
 
-VSTS 群組伺服器適用的儲存庫設定包含兩個工作：
+Azure DevOps 群組伺服器適用的儲存庫設定包含兩個工作：
 
 - 將預設的 **GroupCommon** 存放庫重新命名為 ***GroupProjectTemplate***。
-- 在 Team 專案 **GroupCommon** 下方的 VSTS 伺服器上建立 **GroupUtilities** 存放庫。 
+- 在專案 **GroupCommon** 下方的 Azure DevOps Services 上建立 **GroupUtilities** 存放庫。 
 
 本節會在有關重新命名慣例或我們的存放庫和目錄的備註之後包含第一個工作的指示。 第二個工作的指示則包含於下一節的步驟 4 中。
 
@@ -137,12 +139,12 @@ VSTS 群組伺服器適用的儲存庫設定包含兩個工作：
 
 將預設的 **GroupCommon** 存放庫重新命名為 GroupProjectTemplate (在本教學課程中稱為 **R1**)：
     
-- 按一下 [GroupCommon] Team 專案頁面上 [在程式碼上共同作業]。 這會帶您前往 Team 專案 **GroupCommon** 的預設 Git 存放庫頁面。 此 Git 存放庫目前是空的。 
+- 按一下 [GroupCommon] 專案頁面上的 [在程式碼上共同作業]。 這會帶您前往專案 **GroupCommon** 的預設 Git 存放庫頁面。 此 Git 存放庫目前是空的。 
 
 ![10](./media/group-manager-tasks/rename-groupcommon-repo-3.png)
         
 - 在 [GroupCommon] 之 Git 存放庫頁面上，按一下左上角的 [GroupCommon] (下圖中使用紅色方塊反白顯示的選項)，然後選取 [管理存放庫] (下圖中使用綠色方塊反白顯示的選項)。 此程序會開啟 [控制台]。 
-- 選取 Team 專案的 [版本控制] 索引標籤。 
+- 選取專案的 [版本控制] 索引標籤。 
 
 ![11](./media/group-manager-tasks/rename-groupcommon-repo-4.png)
 
@@ -156,7 +158,7 @@ VSTS 群組伺服器適用的儲存庫設定包含兩個工作：
 
 
 
-## <a name="5-seed-the-r1--r2-repositories-on-the-vsts-server"></a>5.在 VSTS 伺服器上植入 R1 & R2 存放庫
+## <a name="5-seed-the-r1--r2-repositories-on-the-azure-devops-services"></a>5.在 Azure DevOps Services 上植入 R1 和 R2 存放庫
 
 在程序的這個階段中，您會植入您在上一節中設定的 *GroupProjectTemplate* (R1) 和 *GroupUtilities* (R2) 存放庫。 這些存放庫是使用由 Microsoft 針對 Team 資料科學程序所管理的 ***ProjectTemplate*** (**G1**) 和 ***Utilities*** (**G2**) 存放庫來植入的。 完成此植入時：
 
@@ -196,7 +198,7 @@ VSTS 群組伺服器適用的儲存庫設定包含兩個工作：
 
 在此步驟中，您會在 DSVM 上的 **GitRepos\GroupCommon** 下方，於本機目錄上複製 GroupProjectTemplate 存放庫 (R1) 和 GroupUtilities 存放庫 (R2) (分別稱為 LR1 和 LR2)。
 
-- 若要取得 R1 和 R2 存放庫的 URL，請移至您在 VSTS 上的 **GroupCommon** 首頁。 這通常會有 URL https://\<您的 VSTS 伺服器名稱\>.visualstudio.com/GroupCommon。 
+- 若要取得 R1 和 R2 存放庫的 URL，請移至 Azure DevOps Services 的 **GroupCommon** 首頁。 這通常會有 URL https://\<您的 Azure DevOps Services 名稱\>.visualstudio.com/GroupCommon。 
 - 按一下 [程式碼]。 
 - 選擇 [GroupProjectTemplate] 和 [GroupUtilities] 存放庫。 從 [複製 URL] 元素中複製並儲存每個 URL (如果是 Windows 為 HTTPS；如果是 Linux 則為 SSH)，接著在下列指令碼中使用：  
 
@@ -281,7 +283,7 @@ VSTS 群組伺服器適用的儲存庫設定包含兩個工作：
 
 ![22](./media/group-manager-tasks/push-to-group-server-2.PNG)
 
-您可以看到在群組的 VSTS 伺服器內，於 GroupProjectTemplate 存放庫中立即同步處理檔案。
+您可以在群組的 Azure DevOps Services 中看到 GroupProjectTemplate 存放庫中的檔案立即同步。
 
 ![23](./media/group-manager-tasks/push-to-group-server-showed-up-2.PNG)
 
@@ -306,7 +308,7 @@ VSTS 群組伺服器適用的儲存庫設定包含兩個工作：
 
 ## <a name="6-add-group-members-to-the-group-server"></a>6.將群組成員新增到群組伺服器
 
-從群組 VSTS 伺服器首頁，按一下右上角使用者名稱旁邊的**齒輪圖示**，然後選取 [安全性] 索引標籤。您可以在這裡將成員新增至您的群組，並授與各種權限。
+群組 Azure DevOps Services 首頁的右上角，按一下您的使用者名稱旁邊的**齒輪圖示**，然後選取 [安全性] 索引標籤。您可以在這裡將成員新增至您的群組，並授與各種權限。
 
 ![24](./media/group-manager-tasks/add_member_to_group.PNG) 
 

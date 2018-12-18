@@ -1,11 +1,11 @@
 ---
-title: "如何搭配使用 Azure 從屬外掛程式與 Hudson 連續整合 | Microsoft Docs"
-description: "說明如何搭配使用 Azure 從屬外掛程式與 Hudson 連續整合。"
+title: 如何搭配使用 Azure 從屬外掛程式與 Hudson 連續整合 | Microsoft Docs
+description: 說明如何搭配使用 Azure 從屬外掛程式與 Hudson 連續整合。
 services: virtual-machines-linux
-documentationcenter: 
+documentationcenter: ''
 author: rmcmurray
 manager: wpickett
-editor: 
+editor: ''
 ms.assetid: b2083d1c-4de8-4a19-a615-ccc9d9b6e1d9
 ms.service: virtual-machines-linux
 ms.workload: infrastructure-services
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 9a8b9a24d67ba7b779fa34e67d7f2b45c941785e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 01/08/2018
+ms.locfileid: "27704419"
 ---
 # <a name="how-to-use-the-azure-slave-plug-in-with-hudson-continuous-integration"></a>如何搭配使用 Azure 從屬外掛程式與 Hudson 連續整合
 適用於 Hudson 的 Azure 從屬外掛程式可讓您在執行分散式組建時在 Azure 上佈建從屬節點。

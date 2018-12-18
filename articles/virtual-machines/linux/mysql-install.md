@@ -1,9 +1,9 @@
 ---
 title: 設定 Azure 中 Linux VM 上的 MySQL| Microsoft Docs
-description: 了解如何在 Azure 中的 Linux 虛擬機器 (Ubuntu 或 RedHat 系列 OS) 上安裝 MySQL 堆疊
+description: 了解如何在 Azure 中的 Linux 虛擬機器 (Ubuntu 或 Red Hat 系列 OS) 上安裝 MySQL 堆疊
 services: virtual-machines-linux
 documentationcenter: ''
-author: iainfoulds
+author: cynthn
 manager: jeconnoc
 editor: ''
 tags: azure-resource-manager,azure-service-management
@@ -14,12 +14,13 @@ ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: article
 ms.date: 02/01/2016
-ms.author: iainfou
-ms.openlocfilehash: d91f8cf8455a60d3e0afb2f209ba07933bcdee1c
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.author: cynthn
+ms.openlocfilehash: c8043064ac1df40eaa31ae56e9ec31c0152e0130
+ms.sourcegitcommit: aa988666476c05787afc84db94cfa50bc6852520
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37933530"
 ---
 # <a name="how-to-install-mysql-on-azure"></a>如何在 Azure 上安裝 MySQL
 本文將示範如何在執行 Linux 的 Azure 虛擬機器上安裝和設定 MySQL

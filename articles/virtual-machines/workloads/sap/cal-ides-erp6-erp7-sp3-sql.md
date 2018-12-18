@@ -1,13 +1,13 @@
 ---
-title: "在 Azure 上部署適用於 SAP ERP 6.0 的 SAP IDES EHP7 SP3 | Microsoft Docs"
-description: "在 Azure 上部署適用於 SAP ERP 6.0 的 SAP IDES EHP7 SP3"
+title: 在 Azure 上部署適用於 SAP ERP 6.0 的 SAP IDES EHP7 SP3 | Microsoft Docs
+description: 在 Azure 上部署適用於 SAP ERP 6.0 的 SAP IDES EHP7 SP3
 services: virtual-machines-windows
-documentationcenter: 
+documentationcenter: ''
 author: hermanndms
-manager: timlt
-editor: 
+manager: jeconnoc
+editor: ''
 tags: azure-resource-manager
-keywords: 
+keywords: ''
 ms.assetid: 626c1523-1026-478f-bd8a-22c83b869231
 ms.service: virtual-machines-windows
 ms.devlang: na
@@ -16,11 +16,12 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 09/16/2016
 ms.author: hermannd
-ms.openlocfilehash: 91eed294077ff72d0760018b10c98f32db88f3be
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 93824c8f0e7667fcb58fd6b8292cddfa2b4a482a
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39441454"
 ---
 # <a name="deploy-sap-ides-ehp7-sp3-for-sap-erp-60-on-azure"></a>在 Azure 上部署適用於 SAP ERP 6.0 的 SAP IDES EHP7 SP3
 本文說明如何透過 SAP Cloud Appliance Library (SAP CAL) 3.0 在 Azure 上部署與 SQL Server 和 Windows 作業系統搭配執行的 SAP IDES 系統。 螢幕擷取畫面會顯示逐步程序。 若要部署不同的解決方案，請遵循相同的步驟。
@@ -48,7 +49,7 @@ ms.lasthandoff: 10/11/2017
     > [!NOTE]
     接下來的步驟會示範如何針對 Resource Manager 部署建立 SAP CAL 帳戶。 如果您已有連結至傳統部署模型的 SAP CAL 帳戶，則您「必須」遵循下列步驟來建立新的 SAP CAL 帳戶。 新的 SAP CAL 帳戶必須以 Resource Manager 模式部署。
 
-2. 若要建立新的 SAP CAL 帳戶，[帳戶] 頁面會顯示兩個適用於 Azure 的選項： 
+1. 若要建立新的 SAP CAL 帳戶，[帳戶] 頁面會顯示兩個適用於 Azure 的選項： 
 
     a. **Microsoft Azure (傳統)** 是傳統部署模型，目前不再建議使用。
 
@@ -60,27 +61,27 @@ ms.lasthandoff: 10/11/2017
 
     ![SAP CAL 帳戶](./media/cal-ides-erp6-ehp7-sp3-sql/s4h-pic3c.PNG)
 
-3. 輸入可在 Azure 入口網站上找到的 Azure **訂用帳戶識別碼**。 
+1. 輸入可在 Azure 入口網站上找到的 Azure **訂用帳戶識別碼**。 
 
     ![SAP CAL 訂用帳戶識別碼](./media/cal-ides-erp6-ehp7-sp3-sql/s4h-pic3c.PNG)
 
-4. 若要授權 SAP CAL 部署到您所定義的 Azure 訂用帳戶，請按一下 [授權]。 瀏覽器索引標籤中會出現下列頁面：
+1. 若要授權 SAP CAL 部署到您所定義的 Azure 訂用帳戶，請按一下 [授權]。 瀏覽器索引標籤中會出現下列頁面：
 
     ![Internet Explorer 雲端服務登入](./media/cal-ides-erp6-ehp7-sp3-sql/s4h-pic4c.PNG)
 
-5. 如果頁面中列出多個使用者，請選擇連結至成為您所選 Azure 訂用帳戶共同管理員的 Microsoft 帳戶。 瀏覽器索引標籤中會出現下列頁面：
+1. 如果頁面中列出多個使用者，請選擇連結至成為您所選 Azure 訂用帳戶共同管理員的 Microsoft 帳戶。 瀏覽器索引標籤中會出現下列頁面：
 
     ![Internet Explorer 雲端服務確認](./media/cal-ides-erp6-ehp7-sp3-sql/s4h-pic5a.PNG)
 
-6. 按一下 [接受]。 如果授權成功，SAP CAL 帳戶定義便會再次顯示。 片刻之後便會出現訊息來確認授權程序已成功。
+1. 按一下 [接受]。 如果授權成功，SAP CAL 帳戶定義便會再次顯示。 片刻之後便會出現訊息來確認授權程序已成功。
 
-7. 若要將新建立的 SAP CAL 帳戶指派給您的使用者，請在右邊的文字方塊中輸入您的 [使用者識別碼]，然後按一下 [新增]。 
+1. 若要將新建立的 SAP CAL 帳戶指派給您的使用者，請在右邊的文字方塊中輸入您的 [使用者識別碼]，然後按一下 [新增]。 
 
     ![帳戶與使用者的關聯](./media/cal-ides-erp6-ehp7-sp3-sql/s4h-pic8a.PNG)
 
-8. 若要讓您的帳戶與您用來登入 SAP CAL 的使用者產生關聯，請按一下 [檢閱]。 
+1. 若要讓您的帳戶與您用來登入 SAP CAL 的使用者產生關聯，請按一下 [檢閱]。 
 
-9. 若要在使用者與新建立的 SAP CAL 帳戶之間建立關聯，請按一下 [建立]。
+1. 若要在使用者與新建立的 SAP CAL 帳戶之間建立關聯，請按一下 [建立]。
 
     ![使用者與帳戶的關聯](./media/cal-ides-erp6-ehp7-sp3-sql/s4h-pic9b.PNG)
 
@@ -95,7 +96,7 @@ ms.lasthandoff: 10/11/2017
 ### <a name="deploy-a-solution"></a>部署解決方案
 1. 在設定 SAP CAL 帳戶之後，請選取 [Windows 和 SQL Server 上的 SAP IDES 解決方案] 解決方案。 按一下 [建立執行個體]，並確認使用條款和條件。 
 
-2. 在 [基本模式: 建立執行個體] 頁面上，您必須：
+1. 在 [基本模式: 建立執行個體] 頁面上，您必須：
 
     a. 輸入執行個體**名稱**。
 
@@ -105,19 +106,19 @@ ms.lasthandoff: 10/11/2017
 
     ![SAP CAL 基本模式：建立執行個體](./media/cal-ides-erp6-ehp7-sp3-sql/ides-pic10a.png)
 
-3. 按一下頁面底部的 [新增] 。 在一段時間之後，視解決方案的大小和複雜性 (SAP CAL 會提供預估) 而定，狀態將會顯示為作用中並可供使用： 
+1. 按一下頁面底部的 [新增] 。 在一段時間之後，視解決方案的大小和複雜性 (SAP CAL 會提供預估) 而定，狀態將會顯示為作用中並可供使用： 
 
     ![SAP CAL 執行個體](./media/cal-ides-erp6-ehp7-sp3-sql/ides-pic12a.png)
 
-4. 若要尋找 SAP CAL 所建立的資源群組及其所有物件，請移至 Azure 入口網站。 您會發現以 SAP CAL 中所提供的相同執行個體名稱開頭的虛擬機器。
+1. 若要尋找 SAP CAL 所建立的資源群組及其所有物件，請移至 Azure 入口網站。 您會發現以 SAP CAL 中所提供的相同執行個體名稱開頭的虛擬機器。
 
     ![資源群組物件](./media/cal-ides-erp6-ehp7-sp3-sql/ides_resource_group.PNG)
 
-5. 在 SAP CAL 入口網站中，移至已部署的執行個體，然後按一下 [連線]。 下列快顯視窗隨即出現： 
+1. 在 SAP CAL 入口網站中，移至已部署的執行個體，然後按一下 [連線]。 下列快顯視窗隨即出現： 
 
     ![連線到執行個體](./media/cal-ides-erp6-ehp7-sp3-sql/ides-pic14a.PNG)
 
-6. 請先按一下 [開始使用指南]，之後您才能使用其中一個選項來連線至已部署的系統。 文件會指出每個連線方法的使用者。 這些使用者的密碼會設定為您在部署程序開始時所定義的主要密碼。 文件中會另外列出多名功能使用者及其密碼，以供您用來登入已部署的系統。
+1. 請先按一下 [開始使用指南]，之後您才能使用其中一個選項來連線至已部署的系統。 文件會指出每個連線方法的使用者。 這些使用者的密碼會設定為您在部署程序開始時所定義的主要密碼。 文件中會另外列出多名功能使用者及其密碼，以供您用來登入已部署的系統。
 
     ![SAP 歡迎使用文件](./media/cal-ides-erp6-ehp7-sp3-sql/ides-pic15.jpg)
 

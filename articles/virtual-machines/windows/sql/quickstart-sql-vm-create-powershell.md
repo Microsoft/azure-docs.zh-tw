@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure PowerShell 建立 SQL Server Windows VM | Microsoft Docs"
-description: "本教學課程會示範如何使用 Azure PowerShell 建立 Windows SQL Server 2017 虛擬機器。"
+title: 使用 Azure PowerShell 建立 SQL Server Windows VM | Microsoft Docs
+description: 本教學課程會示範如何使用 Azure PowerShell 建立 Windows SQL Server 2017 虛擬機器。
 services: virtual-machines-windows
 documentationcenter: na
 author: rothja
@@ -13,11 +13,12 @@ ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: infrastructure-services
 ms.date: 02/15/2018
 ms.author: jroth
-ms.openlocfilehash: daa5043a948e660b6c3e685e933855afff8f7671
-ms.sourcegitcommit: 168426c3545eae6287febecc8804b1035171c048
+ms.openlocfilehash: bebb153d5ff840a0eed7d6afffccd03a5236592d
+ms.sourcegitcommit: 17fe5fe119bdd82e011f8235283e599931fa671a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/08/2018
+ms.lasthandoff: 08/11/2018
+ms.locfileid: "42024021"
 ---
 # <a name="quickstart-create-a-sql-server-windows-virtual-machine-with-azure-powershell"></a>快速入門：使用 Azure PowerShell 來建立 SQL Server Windows 虛擬機器
 
@@ -27,7 +28,7 @@ ms.lasthandoff: 03/08/2018
 > 本快速入門提供快速佈建及連線到 SQL VM 的途徑。 如需其他用於建立 SQL VM 之 Azure PowerShell 選項的詳細資訊，請參閱[使用 Azure PowerShell 佈建 SQL Server VM 的指南](virtual-machines-windows-ps-sql-create.md)。
 
 > [!TIP]
-> 如果您有 SQL Server 虛擬機器相關問題，請參閱[常見問題集](virtual-machines-windows-sql-server-iaas-faq.md)。
+> 如果您有 SQL Server 虛擬機器的相關問題，請參閱[常見問題集](virtual-machines-windows-sql-server-iaas-faq.md)。
 
 ## <a id="subscription"></a> 取得 Azure 訂用帳戶
 
@@ -40,10 +41,10 @@ ms.lasthandoff: 03/08/2018
 
 ## <a name="configure-powershell"></a>設定 PowerShell
 
-1. 開啟 PowerShell 並執行 **Add-AzureRmAccount** 來建立您的 Azure 帳戶存取權限。
+1. 開啟 PowerShell 並執行 **Connect-AzureRmAccount** 來建立您的 Azure 帳戶存取權限。
 
    ```PowerShell
-   Add-AzureRmAccount
+   Connect-AzureRmAccount
    ```
 
 1. 您會看到要輸入認證的登入畫面。 請使用與登入 Azure 入口網站相同的電子郵件和密碼。
@@ -82,7 +83,7 @@ ms.lasthandoff: 03/08/2018
 
    # Create a virtual network
    $Vnet = New-AzureRmVirtualNetwork -ResourceGroupName $ResourceGroupName -Location $Location `
-      -Name VnetName -AddressPrefix 192.168.0.0/16 -Subnet $SubnetConfig
+      -Name $VnetName -AddressPrefix 192.168.0.0/16 -Subnet $SubnetConfig
 
    # Create a public IP address and specify a DNS name
    $Pip = New-AzureRmPublicIpAddress -ResourceGroupName $ResourceGroupName -Location $Location `

@@ -3,20 +3,18 @@ title: 模擬在 Azure 中存取讀取權限備援儲存體時失敗 | Microsoft
 description: 模擬存取讀取權限異地備援儲存體時發生錯誤
 services: storage
 author: tamram
-manager: jeconnoc
 ms.service: storage
-ms.tgt_pltfrm: na
-ms.devlang: ''
 ms.topic: tutorial
 ms.date: 12/23/2017
 ms.author: tamram
-ms.openlocfilehash: 0e7ab68075fbce729d3905375acce0dace22c483
-ms.sourcegitcommit: 20d103fb8658b29b48115782fe01f76239b240aa
+ms.openlocfilehash: 84ced8a529c2e717dc3e5888466d9a2e1e7e928a
+ms.sourcegitcommit: 5b8d9dc7c50a26d8f085a10c7281683ea2da9c10
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2018
+ms.lasthandoff: 09/26/2018
+ms.locfileid: "47180938"
 ---
-# <a name="simulate-a-failure-in-accessing-read-access-redundant-storage"></a>模擬存取讀取權限備援儲存體時失敗
+# <a name="tutorial-simulate-a-failure-in-accessing-read-access-redundant-storage"></a>教學課程：模擬存取讀取權限備援儲存體時失敗
 
 本教學課程是一個系列的第二部分。  在本教學課程中，您可以使用 [Fiddler](#simulate-a-failure-with-fiddler) 或[靜態路由](#simulate-a-failure-with-an-invalid-static-route)，模擬對您 [read-access geo-redundant](../common/storage-redundancy-grs.md#read-access-geo-redundant-storage) (RA-GRS) 儲存體帳戶的主要端點要求失敗，而從次要端點讀取應用程式的情況。
 
@@ -32,7 +30,7 @@ ms.lasthandoff: 04/03/2018
 > * 模擬主要端點還原
 
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 若要使用 Fiddler 模擬失敗： 
 
@@ -179,9 +177,9 @@ route delete <destination_ip>
 > * 使用 [fiddler](#simulate-a-failure-with-fiddler) 或[無效的靜態路由](#simulate-a-failure-with-an-invalid-static-route)模擬失敗 
 > * 模擬主要端點還原
 
-遵循以下連結以查看預先建立的儲存體範例。
+請閱讀下列文章，以深入了解 RA-GRS 儲存體的運作方式 (及其相關聯的風險)。
 
 > [!div class="nextstepaction"]
-> [Azure 儲存體指令碼範例](storage-samples-blobs-cli.md)
+> [使用 RA-GRS 設計 HA 應用程式](../common/storage-designing-ha-apps-with-ragrs.md)
 
 [previous-tutorial]: storage-create-geo-redundant-storage.md

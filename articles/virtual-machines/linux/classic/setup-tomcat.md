@@ -1,11 +1,11 @@
 ---
-title: "在 Linux 虛擬機器上設定 Apache Tomcat | Microsoft Docs"
-description: "了解如何使用執行 Linux 的 Azure 虛擬機器設定 Apache Tomcat7。"
+title: 在 Linux 虛擬機器上設定 Apache Tomcat | Microsoft Docs
+description: 了解如何使用執行 Linux 的 Azure 虛擬機器設定 Apache Tomcat7。
 services: virtual-machines-linux
-documentationcenter: 
+documentationcenter: ''
 author: NingKuang
-manager: timlt
-editor: 
+manager: jeconnoc
+editor: ''
 tags: azure-service-management
 ms.assetid: 45ecc89c-1cb0-4e80-8944-bd0d0bbedfdc
 ms.service: virtual-machines-linux
@@ -15,11 +15,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/15/2015
 ms.author: ningk
-ms.openlocfilehash: f3bd3167c9a879a876774e5d91fbb10fd340c6a8
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.openlocfilehash: 161a56a019f8c2c8ce5e3890e73ad5c5710e7b82
+ms.sourcegitcommit: 6fcd9e220b9cd4cb2d4365de0299bf48fbb18c17
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 04/05/2018
+ms.locfileid: "30841610"
 ---
 # <a name="set-up-tomcat7-on-a-linux-virtual-machine-with-azure"></a>使用 Azure 在 Linux 虛擬機器上設定 Tomcat7
 Apache Tomcat (或直接稱為 Tomcat，以往也稱為 Jakarta Tomcat) 是 Apache Software Foundation (ASF) 開發的開放原始碼 Web 伺服器和 Servlet 容器。 Tomcat 會實作 Sun Microsystems 提供的 Java Servlet 和 JavaServer Pages (JSP) 規格。 Tomcat 提供用來執行 Java 程式碼的純 Java HTTP 網頁伺服器環境。 在最簡單的組態中，Tomcat 會在單一作業系統處理序中執行。 此程序會執行 Java 虛擬機器 (JVM)。 從瀏覽器到 Tomcat 的每個 HTTP 要求都會以 Tomcat 程序中個別的執行緒形式予以處理。  
@@ -90,7 +91,7 @@ TCP 連接埠 8080 是 Tomcat 用於接聽的預設連接埠號碼。 如果使�
 
    1. 對於端點，在 [端點] 中輸入端點的名稱，然後在 [公用連接埠] 中輸入 80。  
 
-      如果設定為 80，您就不需要在用來存取 Tomcat 的 URL 中包含連接埠號碼。 例如，http://tomcatdemo.cloudapp.net。    
+      如果設定為 80，您就不需要在用來存取 Tomcat 的 URL 中包含連接埠號碼。 例如： http://tomcatdemo.cloudapp.net。    
 
       如果您將它設定為另一個值 (例如 81)，您就必須將此連接埠號碼新增 URL 才能存取 Tomcat。 例如，http://tomcatdemo.cloudapp.net:81/。
    2. 在 [私人連接埠] 中輸入 8080。 Tomcat 預設會接聽 TCP 連接埠 8080。 如果您變更 Tomcat 的預設接聽連接埠，則必須更新 [私人連接埠]，使其與 Tomcat 接聽連接埠相同。  
@@ -231,7 +232,7 @@ Tomcat7 伺服器會在您進行安裝時自動啟動。 您也可以使用下�
 
     sudo /etc/init.d/tomcat7 restart  
 
-開啟瀏覽器，並輸入 **http://<your tomcat server DNS name>/manager/html** 做為 URL。 對於本文中的範例，URL 是 http://tomcatexample.cloudapp.net/manager/html。  
+開啟瀏覽器，並輸入 **http://<your tomcat server DNS name>/manager/html** 做為 URL。 針對本文中的範例，URL 是 http://tomcatexample.cloudapp.net/manager/html。  
 
 連接之後，您應該會看到類似下面的內容：  
 ![Tomcat Web 應用程式管理員的螢幕擷取畫面][18]

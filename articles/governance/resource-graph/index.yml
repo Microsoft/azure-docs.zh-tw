@@ -1,0 +1,49 @@
+### YamlMime:YamlDocument
+ms.openlocfilehash: 7adbe7055fa37c5cf3774caae3a33790d2adf354
+ms.sourcegitcommit: 9e179a577533ab3b2c0c7a4899ae13a7a0d5252b
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/23/2018
+ms.locfileid: "49943985"
+documentType: LandingData
+title: Azure Resource Graph 文件
+metadata:
+  title: Azure Resource Graph 文件 - 教學課程、API 參考
+  description: Azure Resource Graph 是 Azure 中的一項服務，能夠大規模進行複雜的資源查詢。
+  services: resource-graph
+  author: DCtheGeek
+  manager: carmonm
+  ms.service: resource-graph
+  ms.topic: landing-page
+  ms.date: 09/18/2018
+  ms.author: dacoulte
+abstract:
+  description: Azure Resource Graph 文件可協助您設定及了解查詢語言，進而大規模探索您的資源。
+sections:
+- title: 5 分鐘快速入門
+  items:
+  - type: paragraph
+    text: 設定 Resource Graph 並執行您的第一個查詢。
+  - type: list
+    style: icon48
+    items:
+    - image:
+        src: ./media/cli.svg
+      text: Azure CLI
+      href: first-query-azurecli.md
+    - image:
+        src: ./media/powershell.svg
+      text: Azure PowerShell
+      href: first-query-powershell.md
+- title: 意見反應
+  items:
+  - type: paragraph
+    text: 若要針對此功能提供意見反應或有任何疑問需要協助，請造訪 Azure 入口網站中 <b>Azure 原則</b> 的 <b>Resource Graph (預覽)</b> 頁面，並按一下 [意見反應]。 您也可以在 <a href="https://feedback.azure.com/forums/915958-azure-governance">UserVoice</a>將建議傳送給我們。
+- title: 參考
+  items:
+  - type: list
+    style: cards
+    className: cardsD
+    items:
+    - title: REST API
+      html: <p><a href="/rest/api/azureresourcegraph/resources/resources">資源</a></p>

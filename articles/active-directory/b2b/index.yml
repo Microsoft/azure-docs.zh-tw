@@ -1,0 +1,59 @@
+### YamlMime:YamlDocument
+ms.openlocfilehash: 45ce7413a3974ec8018db3c5287aa922a76f072b
+ms.sourcegitcommit: 776b450b73db66469cb63130c6cf9696f9152b6a
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "45986676"
+documentType: LandingData
+title: Azure Active Directory B2B 文件
+metadata:
+  document_id: 
+  title: Azure Active Directory B2B 文件 - 教學課程、快速入門、概念和參考 | Microsoft Docs
+  description: 了解如何使用 B2B 來賓使用者存取權，以便您可安全地共用資源，並與外部夥伴共同作業。
+  services: active-directory
+  ms.component: authentication
+  author: msmimart
+  manager: mtillman
+  ms.service: active-directory
+  ms.tgt_pltfrm: na
+  ms.devlang: na
+  ms.topic: landing-page
+  ms.date: 09/10/2018
+  ms.author: mimart
+abstract:
+  description: 了解如何使用 Azure AD 企業對企業 (B2B) 共同作業，以與來賓使用者和來自任何組織的外部夥伴安全地共用公司的應用程式及服務，同時持續控制貴公司的資料。  以下是幾個主要功能：<ul><li>透過簡單的邀請和兌換程序，來賓使用者可以開始在您想要其存取的資源上進行共同作業。</li><li>您的來賓使用者和外部夥伴可透過 Azure AD、社交電子郵件帳戶或任何識別提供者來管理自己的身分識別。</li><li>您可以使用 Azure AD 功能 (如多重要素驗證) 來保護公司資源。</li><li>您可以使用 API 自訂體驗，例如透過自助式註冊入口網站。</li></ul>下列資源可協助您快速開始使用。
+  aside:
+    image:
+      alt: 
+      height: 110
+      src: ./media/index/video.png
+      width: 246
+    title: Azure AD B2B 的說明
+    href: https://www.youtube.com/watch?v=AhwrweCBdsc
+    width: 246
+sections:
+- title: 5 分鐘快速入門
+  items:
+  - type: paragraph
+    text: 了解如何邀請來賓使用者，並開始使用 B2B 共同作業。
+  - type: list
+    style: icon48
+    items:
+    - image:
+        src: ./media/index/i_security-management.png
+      text: 在 Azure 入口網站中新增來賓使用者
+      href: b2b-quickstart-add-guest-users-portal.md
+    - image:
+        src: ./media/index/i_security-management.png
+      text: 使用 PowerShell 新增來賓使用者
+      href: b2b-quickstart-invite-powershell.md
+- title: 逐步教學課程
+  items:
+  - type: paragraph
+    text: 深入了解如何設定 B2B 共同作業和保護公司資源。
+  - type: list
+    style: unordered
+    items:
+    - html: <a href="/azure/active-directory/b2b/tutorial-bulk-invite">使用 PowerShell 大量邀請 B2B 來賓使用者</a>
+    - html: <a href="/azure/active-directory/b2b/b2b-tutorial-require-mfa">為 B2B 來賓使用者強制執行多重要素驗證</a>

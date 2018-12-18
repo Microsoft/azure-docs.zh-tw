@@ -1,11 +1,11 @@
 ---
-title: "管理 Azure 內容傳遞網路中 Azure Blob 儲存體的期限 | Microsoft Docs"
-description: "深入了解選項，以控制 Azure CDN 快取中的 Blob 存留時間。"
+title: 管理 Azure 內容傳遞網路中 Azure Blob 儲存體的期限 | Microsoft Docs
+description: 深入了解選項，以控制 Azure CDN 快取中的 Blob 存留時間。
 services: cdn
-documentationcenter: 
+documentationcenter: ''
 author: zhangmanling
 manager: erikre
-editor: 
+editor: ''
 ms.assetid: ad4801e9-d09a-49bf-b35c-efdc4e6034e8
 ms.service: cdn
 ms.workload: media
@@ -14,13 +14,14 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 02/1/2018
 ms.author: mazha
-ms.openlocfilehash: bafb04a1a19c4436d8f6c1c21700e9463334b3de
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+ms.openlocfilehash: a0f89a272fa300f6acced2de02ba5465ab282079
+ms.sourcegitcommit: e221d1a2e0fb245610a6dd886e7e74c362f06467
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 05/07/2018
+ms.locfileid: "33765631"
 ---
-# <a name="manage-expiration-of-azure-blob-storage-in-azure-content-delivery-network"></a>管理 Azure 內容傳遞網路中 Azure Blob 儲存體的期限
+# <a name="manage-expiration-of-azure-blob-storage-in-azure-cdn"></a>在 Azure CDN 中管理 Azure Blob 儲存體的到期
 > [!div class="op_single_selector"]
 > * [Azure 網頁內容](cdn-manage-expiration-of-cloud-service-content.md)
 > * [Azure Blob 儲存體](cdn-manage-expiration-of-blob-content.md)
@@ -43,7 +44,7 @@ Azure 儲存體中的 [Blob 儲存體服務](../storage/common/storage-introduct
 設定 blob `Cache-Control` 標頭的慣用方法為在 Azure 入口網站中使用快取規則。 如需 CDN 快取規則的詳細資訊，請參閱[使用快取規則控制 Azure CDN 快取行為](cdn-caching-rules.md)。
 
 > [!NOTE] 
-> 快取規則僅適用於**來自 Verizon 的 Azure CDN 標準**和**來自 Akamai 的 Azure CDN 標準**設定檔。 針對**來自 Verizon Premium 的 Azure CDN** 設定檔，您必須使用 [管理] 入口網站中的 [Azure CDN 規則引擎](cdn-rules-engine.md)來執行類似功能。
+> 快取規則僅適用於「**來自 Verizon 的 Azure CDN 標準**」和「**來自 Akamai 的 Azure CDN 標準**」的設定檔。 針對「**來自 Verizon 的 Azure CDN 進階**」設定檔，您必須使用 [管理] 入口網站中的 [Azure CDN 規則引擎](cdn-rules-engine.md)來執行類似功能。
 
 **瀏覽至 CDN 快取規則頁面**：
 
@@ -148,7 +149,7 @@ class Program
 ## <a name="setting-cache-control-headers-by-using-other-methods"></a>使用其他方法設定 Cache-Control 標頭
 
 ### <a name="azure-storage-explorer"></a>Azure 儲存體總管
-透過 [Azure 儲存體總管](https://azure.microsoft.com/en-us/features/storage-explorer/)，您可以檢視和編輯您的 Blob 儲存體資源，包括如 *CacheControl* 屬性的屬性。 
+透過 [Azure 儲存體總管](https://azure.microsoft.com/features/storage-explorer/)，您可以檢視和編輯您的 Blob 儲存體資源，包括如 *CacheControl* 屬性的屬性。 
 
 若要使用 Azure 儲存體總管更新 blob 的 CacheControl 屬性：
    1. 選取 blob，然後從捷徑功能表選取 [屬性]。 
@@ -168,8 +169,8 @@ azure storage blob upload -c <connectionstring> -p cacheControl="max-age=3600" .
 ### <a name="azure-storage-services-rest-api"></a>Azure 儲存體服務 REST API
 您可以使用 [Azure 儲存體服務 REST API](https://msdn.microsoft.com/library/azure/dd179355.aspx) \(英文\)，在要求上使用下列作業來明確設定 *x-ms-blob-cache-control* 屬性：
   
-   - [Put Blob](https://msdn.microsoft.com/en-us/library/azure/dd179451.aspx) \(英文\)
-   - [Put Block List](https://msdn.microsoft.com/en-us/library/azure/dd179467.aspx) \(英文\)
+   - [Put Blob](https://msdn.microsoft.com/library/azure/dd179451.aspx) \(英文\)
+   - [Put Block List](https://msdn.microsoft.com/library/azure/dd179467.aspx) \(英文\)
    - [Set Blob Properties](https://msdn.microsoft.com/library/azure/ee691966.aspx) \(英文\)
 
 ## <a name="testing-the-cache-control-header"></a>測試 Cache-Control 標頭

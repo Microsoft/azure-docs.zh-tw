@@ -1,24 +1,19 @@
 ---
-title: "使用 Azure Data Lake Tools for Visual Studio 解決資料扭曲問題 | Microsoft Docs"
-description: "使用 Azure Data Lake Tools for Visual Studio 針對資料扭曲問題的可能解決方案進行疑難排解。"
+title: 使用 Azure Data Lake Tools for Visual Studio 解決資料扭曲問題
+description: 使用 Azure Data Lake Tools for Visual Studio 針對資料扭曲問題的可能解決方案進行疑難排解。
 services: data-lake-analytics
-documentationcenter: 
 author: yanancai
-manager: 
-editor: 
-ms.assetid: 
-ms.service: data-lake-analytics
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 12/16/2016
 ms.author: yanacai
-ms.openlocfilehash: 9b284ef33be4b935569fc368d81ddf040b2c2b7d
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.reviewer: jasonwhowell
+ms.service: data-lake-analytics
+ms.topic: conceptual
+ms.date: 12/16/2016
+ms.openlocfilehash: b3079a7f2e71e26164d96cf167b67f1a60f7a23b
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43046468"
 ---
 # <a name="resolve-data-skew-problems-by-using-azure-data-lake-tools-for-visual-studio"></a>使用 Azure Data Lake Tools for Visual Studio 解決資料扭曲問題
 
@@ -49,13 +44,13 @@ Azure Data Lake Tools for Visual Studio 可協助偵測出您的作業是否有�
 
 ### <a name="option-4-use-round-robin-distribution"></a>選項 4：使用循環配置資源散發
 
-如果您針對分割區和散發找不到適合的索引鍵，便可以嘗試使用循環配置資源散發。 循環配置資源散發會平等對待所有資料列，並將資料列隨機放到對應的貯體。 資料會平均地散發，但將會失去位置資訊，這項缺點也會減少部分作業的作業效能。 此外，如果您原本便打算針對扭曲索引鍵進行彙總，資料扭曲的問題會持續存在。 若要深入了解循環配置資源散發，請參閱[CREATE TABLE (U-SQL)：使用結構描述建立資料表](https://msdn.microsoft.com/en-us/library/mt706196.aspx#dis_sch)中的＜U-SQL 資料表散發＞一節。
+如果您針對分割區和散發找不到適合的索引鍵，便可以嘗試使用循環配置資源散發。 循環配置資源散發會平等對待所有資料列，並將資料列隨機放到對應的貯體。 資料會平均地散發，但將會失去位置資訊，這項缺點也會減少部分作業的作業效能。 此外，如果您原本便打算針對扭曲索引鍵進行彙總，資料扭曲的問題會持續存在。 若要深入了解循環配置資源散發，請參閱[CREATE TABLE (U-SQL)：使用結構描述建立資料表](https://msdn.microsoft.com/library/mt706196.aspx#dis_sch)中的＜U-SQL 資料表散發＞一節。
 
 ## <a name="solution-2-improve-the-query-plan"></a>解決方案 2︰改善查詢計劃
 
 ### <a name="option-1-use-the-create-statistics-statement"></a>選項 1︰使用 CREATE STATISTICS 陳述式
 
-U-SQL 針對資料表提供 CREATE STATISTICS 陳述式。 此陳述式可提供更多關於資料表中所儲存之資料特性 (例如值的散發) 的資訊給查詢最佳化工具。 對於大部分查詢而言，查詢最佳化工具已為高品質的查詢計劃產生所需的統計資料。 但有時候您可能需要藉由使用 CREATE STATISTICS 建立其他統計資料或藉由修改查詢設計來改善查詢效能。 如需詳細資訊，請參閱 [CREATE STATISTICS (U-SQL)](https://msdn.microsoft.com/en-us/library/azure/mt771898.aspx) 頁面。
+U-SQL 針對資料表提供 CREATE STATISTICS 陳述式。 此陳述式可提供更多關於資料表中所儲存之資料特性 (例如值的散發) 的資訊給查詢最佳化工具。 對於大部分查詢而言，查詢最佳化工具已為高品質的查詢計劃產生所需的統計資料。 但有時候您可能需要藉由使用 CREATE STATISTICS 建立其他統計資料或藉由修改查詢設計來改善查詢效能。 如需詳細資訊，請參閱 [CREATE STATISTICS (U-SQL)](https://msdn.microsoft.com/library/azure/mt771898.aspx) 頁面。
 
 程式碼範例：
 

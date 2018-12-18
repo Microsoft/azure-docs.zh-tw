@@ -1,6 +1,6 @@
 ---
-title: "使用 Docker API 管理 Azure Swarm 叢集"
-description: "在 Azure Container Service 中將容器部署至 Docker Swarm 叢集"
+title: 使用 Docker API 管理 Azure Swarm 叢集
+description: 在 Azure Container Service 中將容器部署至 Docker Swarm 叢集
 services: container-service
 author: rgardler
 manager: madhana
@@ -14,6 +14,7 @@ ms.sourcegitcommit: 5d3e99478a5f26e92d1e7f3cec6b0ff5fbd7cedf
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 12/06/2017
+ms.locfileid: "26331540"
 ---
 # <a name="container-management-with-docker-swarm"></a>使用 Docker Swarm 管理容器
 

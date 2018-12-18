@@ -1,12 +1,12 @@
 ---
-title: "管理 StorSimple 8000 系列的頻寬範本 | Microsoft Docs"
-description: "描述如何管理可讓您控制頻寬耗用量的 StorSimple 頻寬範本。"
+title: 管理 StorSimple 8000 系列的頻寬範本 | Microsoft Docs
+description: 描述如何管理可讓您控制頻寬耗用量的 StorSimple 頻寬範本。
 services: storsimple
-documentationcenter: 
+documentationcenter: ''
 author: alkohli
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: na
 ms.topic: article
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23108616"
 ---
 # <a name="use-the-storsimple-device-manager-service-to-manage-storsimple-bandwidth-templates"></a>使用 StorSimple 裝置管理員服務管理 StorSimple 頻寬範本
 

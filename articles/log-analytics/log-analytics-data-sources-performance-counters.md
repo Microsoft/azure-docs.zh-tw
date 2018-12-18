@@ -1,24 +1,26 @@
 ---
-title: "在 Azure Log Analytics 中收集並分析效能計數器 | Microsoft Docs"
-description: "Log Analytics 會收集效能計數器以分析 Windows 和 Linux 代理程式的效能。  本文說明如何設定 Windows 和 Linux 代理程式的效能計數器收集、儲存在工作區中的相關詳細資料，以及如何在 Azure 入口網站中分析這些資料。"
+title: 在 Azure Log Analytics 中收集並分析效能計數器 | Microsoft Docs
+description: Log Analytics 會收集效能計數器以分析 Windows 和 Linux 代理程式的效能。  本文說明如何設定 Windows 和 Linux 代理程式的效能計數器收集、儲存在工作區中的相關詳細資料，以及如何在 Azure 入口網站中分析這些資料。
 services: log-analytics
-documentationcenter: 
+documentationcenter: ''
 author: mgoedtel
 manager: carmonm
 editor: tysonn
 ms.assetid: 20e145e4-2ace-4cd9-b252-71fb4f94099e
 ms.service: log-analytics
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 12/19/2017
 ms.author: magoedte
-ms.openlocfilehash: 0f7119f280f2eb51222ade2ea7984b560a02f667
-ms.sourcegitcommit: f46cbcff710f590aebe437c6dd459452ddf0af09
+ms.component: ''
+ms.openlocfilehash: 5822d32906419e8b0615dd8686ec47de28deb38f
+ms.sourcegitcommit: 5b8d9dc7c50a26d8f085a10c7281683ea2da9c10
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/20/2017
+ms.lasthandoff: 09/26/2018
+ms.locfileid: "47182201"
 ---
 # <a name="windows-and-linux-performance-data-sources-in-log-analytics"></a>Log Analytics 中的 Windows 和 Linux 效能資料來源
 Windows 和 Linux 的效能計數器可讓您深入了解硬體元件、作業系統及應用程式的效能。  Log Analytics 可收集效能計數器，以頻繁間隔進行接近即時 (NRT) 的分析，並彙總較長期分析和報告所需的效能資料。
@@ -83,7 +85,7 @@ Windows 和 Linux 的效能計數器可讓您深入了解硬體元件、作業�
 | 參數 | 說明 |
 |:--|:--|
 | object\_name | 收集的物件名稱。 |
-| instance\_regex |  此「規則運算式」定義要收集的執行個體。 值 `.*` 指定所有執行個體。 若只要收集 \_Total 執行個體的處理器計量，您可以指定 `_Total`。 若只要收集 crond 或 sshd 執行個體的程序計量，您可以指定：`(crond\|sshd)`。 |
+| instance\_regex |  此「規則運算式」定義要收集的執行個體。 值 `.*` 指定所有執行個體。 若只要收集 \_Total 執行個體的處理器計量，您可以指定 `_Total`。 若只要收集 crond 或 sshd 執行個體的程序計量，您可以指定： `(crond\|sshd)`。 |
 | counter\_name\_regex | 此「規則運算式」定義要收集的計數器 (針對物件)。 若要收集物件的所有計數器，請指定︰ `.*`。 若只要收集記憶體物件的交換空間計數器，舉例來說，您可以指定︰`.+Swap.+` |
 | interval | 物件計數器的收集頻率。 |
 

@@ -1,11 +1,11 @@
 ---
-title: "Azure API 管理概觀和索引鍵概念 | Microsoft Docs"
-description: "了解 API、產品、角色、群組及其他 API 管理的主要概念。"
+title: Azure API 管理概觀和索引鍵概念 | Microsoft Docs
+description: 了解 API、產品、角色、群組及其他 API 管理的主要概念。
 services: api-management
-documentationcenter: 
+documentationcenter: ''
 author: vladvino
 manager: erikre
-editor: 
+editor: ''
 ms.service: api-management
 ms.workload: mobile
 ms.tgt_pltfrm: na
@@ -14,11 +14,12 @@ ms.topic: overview
 ms.date: 11/15/2017
 ms.author: apimpm
 ms.custom: mvc
-ms.openlocfilehash: 0410e0176d5c853e1110fe3460c7d9314e7fd397
-ms.sourcegitcommit: 83ea7c4e12fc47b83978a1e9391f8bb808b41f97
+ms.openlocfilehash: cded90d4f36e353241bb594bae35b7c7e03599b9
+ms.sourcegitcommit: e0834ad0bad38f4fb007053a472bde918d69f6cb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/28/2018
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37435995"
 ---
 # <a name="what-is-api-management"></a>什麼是 API 管理？
 
@@ -31,8 +32,10 @@ ms.lasthandoff: 02/28/2018
 為了使用 API 管理，管理員會建立 API。 每個 API 都包含一或多個作業，而每個 API 則可加入至一或多個產品。 為了使用 API，開發人員會訂閱包含該 API 的產品，而且他們之後可呼叫 API 的作業，但需受限於可能生效的任何使用原則。 常見案例包括：
 
 * **保護行動基礎結構** 。
-* **促成 ISV 合作夥伴生態系統** 。
-* **執行內部 API 方案** 。
+* 
+  **促成 ISV 合作夥伴生態系統** 。
+* 
+  **執行內部 API 方案**。
 
 系統是由下列元件所組成：
 

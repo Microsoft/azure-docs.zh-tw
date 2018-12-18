@@ -3,24 +3,20 @@ title: Azure Cosmos DB 中的一致性層級 | Microsoft Docs
 description: Azure Cosmos DB 具有五個一致性層級，有助於在最終一致性、可用性和延遲的取捨之間取得平衡。
 keywords: 最終一致性, azure cosmos db, azure, Microsoft azure
 services: cosmos-db
-author: mimig1
-manager: jhubbard
-editor: cgronlun
-documentationcenter: ''
-ms.assetid: 3fe51cfa-a889-4a4a-b320-16bf871fe74c
+author: aliuy
+manager: kfile
 ms.service: cosmos-db
-ms.workload: data-services
-ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 03/27/2018
-ms.author: mimig
+ms.author: andrl
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 5b0e46eb001e0b100ad1e181b02c18cfe67648f9
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: 8d95790dc09f6d26c6ae749ed0cd386053c5cb35
+ms.sourcegitcommit: 7b845d3b9a5a4487d5df89906cc5d5bbdb0507c8
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 08/14/2018
+ms.locfileid: "42144216"
 ---
 # <a name="tunable-data-consistency-levels-in-azure-cosmos-db"></a>Azure Cosmos DB 中的 Tunable 資料一致性層級
 Azure Cosmos DB 是針對每個資料模型考量到全球發佈的全新設計。 它的設計目的是提供可預測的低延遲保證，以及多個定義完善且寬鬆的一致性層級模型。 Azure Cosmos DB 目前提供五種一致性層級：強式、限定過期、工作階段、一致的前置和最終。 限定過期、工作階段、一致前置詞、最終，統稱為「寬鬆的一致性模型」，因為它們提供的一致性比強式更小，後者是最高一致性的模型。 
@@ -45,7 +41,7 @@ Azure Cosmos DB 是針對每個資料模型考量到全球發佈的全新設計�
 | 一致性層級 | 保證 |
 | --- | --- |
 | 強式 | 線性化能力。 保證讀取一定會傳回最新版本的項目。|
-| 限定過期 | 一致前置詞。 讀取落後寫入 (k 前置詞或 t 間隔) |
+| 限定過期 | 一致前置詞。 讀取延遲寫入 (最多 k 前置詞或 t 間隔) |
 | 工作階段   | 一致前置詞。 單純讀取、單純寫入、讀取您的寫入、讀取後接寫入 |
 | 一致前置詞 | 傳回的更新是所有更新的部分前置詞 (沒有間隔) |
 | 最終  | 次序錯誤讀取 |
@@ -62,7 +58,7 @@ Azure Cosmos DB 提供全面性的 99.99% [SLA](https://azure.microsoft.com/supp
 已將一致性的規模範圍限制為單一使用者要求。 寫入要求可能會對應至插入、取代、更新插入或刪除交易。 如同寫入，讀取/查詢交易也會將範圍限制為單一使用者要求。 使用者可能需要在大型結果集 (橫跨多個分割區) 上編頁，但是每一個讀取交易的範圍都會限制為單一頁面，並從單一分割區中提供服務。
 
 ## <a name="consistency-levels"></a>一致性層級
-您可以設定資料庫帳戶的「預設一致性層級」，以套用至 Cosmos DB 帳戶底下的所有集合 (和資料庫)。 所有對使用者定義的資源發出的讀取和查詢，預設都會使用資料庫帳戶上所指定的預設一致性層級。 您可以使用每個支援的 API，放寬特定讀取/查詢要求的一致性層級。 Azure Cosmos DB 複寫通訊協定支援五種類型的一致性層級，可在特定一致性保證和效能之間明確進行取捨，如本章節所述。
+您可以設定資料庫帳戶的預設一致性層級，以套用至 Cosmos DB 帳戶下的所有容器 (和資料庫)。 所有對使用者定義的資源發出的讀取和查詢，預設都會使用資料庫帳戶上所指定的預設一致性層級。 您可以使用每個支援的 API，放寬特定讀取/查詢要求的一致性層級。 Azure Cosmos DB 複寫通訊協定支援五種類型的一致性層級，可在特定一致性保證和效能之間明確進行取捨，如本章節所述。
 
 <a id="strong"></a>
 **強式**： 
@@ -116,7 +112,7 @@ Azure Cosmos DB 提供全面性的 99.99% [SLA](https://azure.microsoft.com/supp
     ![此螢幕擷取畫面反白顯示 [設定] 圖示和 [預設一致性] 項目](./media/consistency-levels/database-consistency-level-1.png)
 
 ## <a name="consistency-levels-for-queries"></a>查詢的一致性層級
-根據預設，針對使用者定義的資源，查詢的一致性層級會與讀取的一致性層級相同。 每次在集合中插入、取代或刪除項目時，預設會同步更新索引到 Cosmos DB 容器。 這個行為讓查詢能夠使用與點的讀取相同的一致性層級。 雖然 Azure Cosmos DB 的寫入已經過最佳化處理，並支援持續的寫入數量、同步索引維護，以及提供一致的查詢，但您還是可以設定特定集合，讓集合的索引更新速度變慢。 讓索引速度變慢可提升寫入效能，而且適合用於工作負載主要是進行大量讀取的大量擷取案例。  
+根據預設，針對使用者定義的資源，查詢的一致性層級會與讀取的一致性層級相同。 每次在集合中插入、取代或刪除項目時，預設會同步更新索引到 Cosmos DB 容器。 這個行為讓查詢能夠使用與點的讀取相同的一致性層級。 雖然 Azure Cosmos DB 的寫入已經過最佳化處理，並支援持續的寫入數量、同步索引維護，以及提供一致的查詢，但您還是可以設定特定容器，讓集合的索引更新速度變慢。 讓索引速度變慢可提升寫入效能，而且適合用於工作負載主要是進行大量讀取的大量擷取案例。  
 
 | 索引模式 | 讀取 | 查詢 |
 | --- | --- | --- |
@@ -136,7 +132,7 @@ Azure Cosmos DB 目前實作 MongoDB 3.4 版，有強式與最終這兩種一致
 * [Doug Terry 透過棒球來解說複寫的資料一致性 (影片)](https://www.youtube.com/watch?v=gluIh8zd26I)
 * [Doug Terry 透過棒球來解說複寫的資料一致性 (白皮書)](http://research.microsoft.com/pubs/157411/ConsistencyAndBaseballReport.pdf)
 * [弱式一致複寫資料的工作階段保證](http://dl.acm.org/citation.cfm?id=383631)
-* [現代分散式資料庫系統設計的一致性取捨：CAP 是整個過程中的唯一解決方案](http://computer.org/csdl/mags/co/2012/02/mco2012020037-abs.html)
+* [現代分散式資料庫系統設計的一致性取捨：CAP 是整個過程中的唯一解決方案](https://www.computer.org/web/csdl/index/-/csdl/mags/co/2012/02/mco2012020037-abs.html)
 * [實際部分仲裁的隨機限定過期 (PBS) (英文)](http://vldb.org/pvldb/vol5/p776_peterbailis_vldb2012.pdf)
 * [再論最終一致](http://allthingsdistributed.com/2008/12/eventually_consistent.html)
 * [仲裁系統的負載、容量及可用性，SIAM 計算期刊](http://epubs.siam.org/doi/abs/10.1137/S0097539795281232)

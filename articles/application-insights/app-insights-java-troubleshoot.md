@@ -1,5 +1,5 @@
 ---
-title: 針對 Java Web 專案中的 Application Insights 進行疑難排解
+title: 疑難排解 Java Web 專案中的 Application Insights
 description: 疑難排解指南 - 使用 Application Insights 監視即時的 Java 應用程式。
 services: application-insights
 documentationcenter: java
@@ -10,22 +10,23 @@ ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
-ms.topic: article
-ms.date: 11/16/2016
+ms.topic: conceptual
+ms.date: 04/02/2018
 ms.author: mbullwin
-ms.openlocfilehash: 894b2234074dcfb262de9033a7728cad3bef2248
-ms.sourcegitcommit: c3d53d8901622f93efcd13a31863161019325216
+ms.openlocfilehash: 26899ea62b8caa872b6c99b94976c87f84ba7176
+ms.sourcegitcommit: e8f443ac09eaa6ef1d56a60cd6ac7d351d9271b9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/29/2018
+ms.lasthandoff: 09/12/2018
+ms.locfileid: "35632992"
 ---
 # <a name="troubleshooting-and-q-and-a-for-application-insights-for-java"></a>Application Insights for Java 的疑難排解和問答集
-[Java 中的 Azure Application Insights][java] 疑問或問題？ 以下是一些祕訣。
+[Java 中的 Azure Application Insights][java] 疑問或問題？ 以下是一些秘訣。
 
 ## <a name="build-errors"></a>建置錯誤
 **在 Eclipse 或 Intellij Idea 中，透過 Maven 或 Gradle 加入 Application Insights SDK 時，我收到建置或總和檢查碼驗證錯誤。**
 
-* 如果相依性 <version> 元素使用具有萬用字元的模式 (例如 (Maven) `<version>[2.0,)</version>` 或 (Gradle) `version:'2.0.+'`)，請嘗試改為指定特定版本 (例如 `2.0.1`)。 請參閱最新版本的[版本資訊](https://github.com/Microsoft/ApplicationInsights-Java/releases) 。
+* 如果相依性 <version> 元素使用具有萬用字元的模式 (例如 (Maven) `<version>[2.0,)</version>` 或 (Gradle) `version:'2.0.+'`)，請嘗試改為指定特定版本 (例如 `2.0.1`)。 請參閱最新版本的 [版本資訊](https://github.com/Microsoft/ApplicationInsights-Java/releases) 。
 
 ## <a name="no-data"></a>沒有資料
 **我已成功加入 Application Insights 並執行我的應用程式，但在入口網站中從未看到資料。**
@@ -33,7 +34,7 @@ ms.lasthandoff: 03/29/2018
 * 請稍等片刻，然後按一下 [重新整理]。 圖表會定期自行重新整理，但您也可以手動重新整理。 重新整理間隔取決於圖表的時間範圍。
 * 檢查 ApplicationInsights.xml 檔案 (位於專案的 resources 資料夾) 中是否已定義檢測金鑰，或已將檢測金鑰設為環境變數。
 * 確認 xml 檔案中沒有 `<DisableTelemetry>true</DisableTelemetry>` 節點。
-* 在防火牆中，您可能必須開啟 TCP 連接埠 80 和 443，以允許連出流量送往 dc.services.visualstudio.com。請參閱[完整的防火牆例外清單](app-insights-ip-addresses.md)
+* 在防火牆中，您可能必須開啟 TCP 連接埠 80 和 443，以允許連出流量送往 dc.services.visualstudio.com。 請參閱 [完整的防火牆例外狀況清單](app-insights-ip-addresses.md)
 * 在 Microsoft Azure 開始面板中，查看服務狀態對應。 如果看到一些警示指示，請等待它們恢復 [正常]，然後關閉再重新開啟 Application Insights 應用程式刀鋒視窗。
 * 在 ApplicationInsights.xml 檔案 (位於專案的 resources 資料夾) 的根節點下加入 `<SDKLogger />` 元素，以開啟記錄至 IDE 主控台視窗，然後檢查前面加上 AI: INFO/WARN/ERROR 的項目，看看是否有任何可疑記錄。
 * 藉由查看主控台的輸出訊息「已成功找到組態檔」陳述式，確定 Java SDK 已成功載入正確的 ApplicationInsights.xml 檔案。
@@ -43,12 +44,12 @@ ms.lasthandoff: 03/29/2018
 
 #### <a name="i-used-to-see-data-but-it-has-stopped"></a>我曾經看到資料，但是已停止
 * 檢查 [狀態部落格](http://blogs.msdn.com/b/applicationinsights-status/)。
-* 您有達到資料點的每月配額嗎？ 開啟 [設定/配額和定價] 即可查看。若有達到配額，您可以升級您的方案，或付費取得額外容量。 請參閱[定價配置](https://azure.microsoft.com/pricing/details/application-insights/)。
+* 您有達到資料點的每月配額嗎？ 開啟 [設定/配額和定價] 即可查看。若有達到配額，您可以升級您的方案，或付費取得額外容量。 請參閱 [定價配置](https://azure.microsoft.com/pricing/details/application-insights/)。
 * 您最近是否升級了 SDK？ 請確定專案目錄中只有「唯一」的 SDK jar。 不應該有兩個不同版本的 SDK 存在。
 * 正在尋找適當的 AI 資源嗎？ 請比對應用程式的 iKey 與您預期遙測的資源。 它們應該相同。
 
 #### <a name="i-dont-see-all-the-data-im-expecting"></a>我並沒有看到預期的所有資料
-* 開啟 [配額和價格] 刀鋒視窗，檢查是否正在進行[取樣](app-insights-sampling.md) 。 (100% 傳輸表示目前未進行取樣。)Application Insights 服務可以設定為只接受來自您的應用程式的一小部分遙測。 這有助於您維持在每月的遙測配額內。 
+* 開啟 [使用量和估計成本] 頁面，並檢查[取樣](app-insights-sampling.md)是否正在運作。 (100% 傳輸表示目前未進行取樣。)Application Insights 服務可以設定為只接受來自您的應用程式的一小部分遙測。 這有助於您維持在每月的遙測配額內。 
 * 您是否已開啟 SDK 取樣？ 如果是，則應該會針對所有適用的類型以指定的速率進行資料取樣。
 * 您正在執行較舊版本的 Java SDK？ 從 2.0.1 版開始，我們引進容錯機制來處理間歇性的網路和後端失敗，以及本機磁碟上的資料持續性。
 * 是否因為過多的遙測而遭到節流？ 如果您開啟 INFO 記錄，將會看到記錄訊息「應用程式已節流」。 我們目前的限制為每秒 32,000 個遙測項目。

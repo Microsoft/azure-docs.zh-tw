@@ -1,30 +1,33 @@
 ---
-title: Azure Active Directory B2C：使用 HTTP 基本驗證保護您的 RESTful 服務
-description: 使用 HTTP 基本驗證在您的 Azure AD B2C 中保護您的自訂 REST API 宣告交換
+title: 在 Azure Active Directory B2C 中使用 HTTP 基本驗證保護 RESTful 服務 | Microsoft Docs
+description: 使用 HTTP 基本驗證在您的 Azure AD B2C 中保護您的自訂 REST API 宣告交換。
 services: active-directory-b2c
-documentationcenter: ''
 author: davidmu1
 manager: mtillman
-editor: ''
-ms.service: active-directory-b2c
+ms.service: active-directory
 ms.workload: identity
-ms.topic: article
+ms.topic: conceptual
 ms.date: 09/25/2017
 ms.author: davidmu
-ms.openlocfilehash: 90bbcc865f13a1d048ea12fdccd3ca848cf362ba
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: B2C
+ms.openlocfilehash: e6cff4e2daf86b63bc0db0d4f2d537322d2841df
+ms.sourcegitcommit: b7e5bbbabc21df9fe93b4c18cc825920a0ab6fab
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47409298"
 ---
 # <a name="secure-your-restful-services-by-using-http-basic-authentication"></a>使用 HTTP 基本驗證保護 RESTful 服務
+
+[!INCLUDE [active-directory-b2c-advanced-audience-warning](../../includes/active-directory-b2c-advanced-audience-warning.md)]
+
 在 [Azure AD B2C 相關文章](active-directory-b2c-custom-rest-api-netfw.md)中，您在未經驗證的情況下，即建立了與 Azure Active Directory B2C (Azure AD B2C) 使用者旅程圖整合的 RESTful 服務 (Web API)。 
 
 在此文章中，您將 HTTP 基本驗證新增至 RESTful 服務，使得只有經過驗證的使用者 (包括 B2C) 可存取您的 API。 利用 HTTP 基本驗證，您可以在自訂原則中設定使用者認證 (應用程式識別碼和應用程式密碼)。 
 
 如需詳細資訊，請參閱[ASP.NET Web API 中的基本驗證](https://docs.microsoft.com/aspnet/web-api/overview/security/basic-authentication)。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 完成[將 REST API 宣告交換整合到 Azure AD B2C 使用者旅程圖中](active-directory-b2c-custom-rest-api-netfw.md)文章的步驟。
 
 ## <a name="step-1-add-authentication-support"></a>步驟 1：新增驗證支援
@@ -234,18 +237,18 @@ PM> Install-Package Microsoft.Owin.Host.SystemWeb
 
 6. 在 [密碼] 方塊中，輸入您先前定義的應用程式識別碼。
 
-7. 針對 [金鑰使用方法]，選取 [密碼]。
+7. 針對 [金鑰使用方法] 選取 [簽章]。
 
-8. 選取 [建立] 。
+8. 選取 [建立]。
 
 9. 確認您已建立 `B2C_1A_B2cRestClientId` 金鑰。
 
 ### <a name="step-32-add-a-restful-services-client-secret"></a>步驟 3.2：新增 RESTful 服務用戶端密碼
 1. 在您的 Azure AD B2C 租用戶中，選取 [B2C 設定] > [識別體驗架構]。
 
-2. 選取**原則金鑰**以檢視您的租用戶中可用的金鑰。
+2. 選取 [原則金鑰] 以檢視您的租用戶中可用的金鑰。
 
-3. 選取 [新增] 。
+3. 選取 [新增]。
 
 4. 針對 [選項]，選取 [手動]。
 
@@ -254,9 +257,9 @@ PM> Install-Package Microsoft.Owin.Host.SystemWeb
 
 6. 在 [密碼] 方塊中，輸入您先前定義的應用程式密碼。
 
-7. 針對 [金鑰使用方法]，選取 [密碼]。
+7. 針對 [金鑰使用方法] 選取 [簽章]。
 
-8. 選取 [建立] 。
+8. 選取 [建立]。
 
 9. 確認您已建立 `B2C_1A_B2cRestClientSecret` 金鑰。
 
@@ -267,7 +270,7 @@ PM> Install-Package Microsoft.Owin.Host.SystemWeb
 
 3. 找出 `<Metadata>` 元素。
 
-4. 將 AuthenticationType 變更為 Basic，如下所示：
+4. 將 *AuthenticationType* 變更為 *Basic*，如下所示：
     ```xml
     <Item Key="AuthenticationType">Basic</Item>
     ```
@@ -323,7 +326,7 @@ PM> Install-Package Microsoft.Owin.Host.SystemWeb
       "exp": 1507125903,
       "nbf": 1507122303,
       "ver": "1.0",
-      "iss": "https://login.microsoftonline.com/f06c2fe8-709f-4030-85dc-38a4bfd9e82d/v2.0/",
+      "iss": "https://contoso.b2clogin.com/f06c2fe8-709f-4030-85dc-38a4bfd9e82d/v2.0/",
       "aud": "e1d2612f-c2bc-4599-8e7b-d874eaca1ee1",
       "acr": "b2c_1a_signup_signin",
       "nonce": "defaultNonce",

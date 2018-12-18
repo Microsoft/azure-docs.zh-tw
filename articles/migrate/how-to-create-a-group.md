@@ -3,15 +3,15 @@ title: 使用 Azure Migrate 分組機器以進行評量 | Microsoft Docs
 description: 說明如何在使用 Azure Migrate 服務進行評量之前先分組機器。
 author: rayne-wiselman
 ms.service: azure-migrate
-ms.devlang: na
 ms.topic: article
-ms.date: 12/19/2017
+ms.date: 06/19/2018
 ms.author: raynew
-ms.openlocfilehash: f42b184cddb3274d7ee0163c10cac002ccfbef62
-ms.sourcegitcommit: c87e036fe898318487ea8df31b13b328985ce0e1
+ms.openlocfilehash: ccab88c0195a7ca459c8579b7870d121dfd0fe1d
+ms.sourcegitcommit: 16ddc345abd6e10a7a3714f12780958f60d339b6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/19/2017
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36231401"
 ---
 # <a name="group-machines-for-assessment"></a>分組機器以進行評量
 

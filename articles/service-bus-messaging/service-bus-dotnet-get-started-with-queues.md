@@ -1,24 +1,25 @@
 ---
-title: "開始使用 Azure 服務匯流排佇列 | Microsoft Docs"
-description: "撰寫使用服務匯流排傳訊佇列的 C# 主控台應用程式。"
+title: 開始使用 Azure 服務匯流排佇列 | Microsoft Docs
+description: 撰寫使用服務匯流排傳訊佇列的 C# 主控台應用程式。
 services: service-bus-messaging
 documentationcenter: .net
-author: sethmanheim
+author: spelluru
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 68a34c00-5600-43f6-bbcc-fea599d500da
 ms.service: service-bus-messaging
 ms.devlang: tbd
 ms.topic: hero-article
 ms.tgt_pltfrm: dotnet
 ms.workload: na
-ms.date: 12/7/2017
-ms.author: sethm
-ms.openlocfilehash: 6af7e4d238c10c0fed3443db58644e3557525993
-ms.sourcegitcommit: a5f16c1e2e0573204581c072cf7d237745ff98dc
+ms.date: 09/07/2018
+ms.author: spelluru
+ms.openlocfilehash: 30ff970a1f6243bbba6aa42046cf6e08c808f4e5
+ms.sourcegitcommit: 7b0778a1488e8fd70ee57e55bde783a69521c912
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/11/2017
+ms.lasthandoff: 10/10/2018
+ms.locfileid: "49068855"
 ---
 # <a name="get-started-with-service-bus-queues"></a>開始使用服務匯流排佇列
 
@@ -31,7 +32,7 @@ ms.lasthandoff: 12/11/2017
 3. 撰寫 .NET Core 主控台應用程式，以將一組訊息傳送到佇列。
 4. 撰寫 .NET Core 主控台應用程式，以從佇列接收這些訊息。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 1. [Visual Studio 2017 Update 3 (版本 15.3, 26730.01)](http://www.visualstudio.com/vs) 或更新版本。
 2. [.NET Core SDK](https://www.microsoft.com/net/download/windows)，2.0 版或更新版本。
@@ -172,7 +173,7 @@ ms.lasthandoff: 12/11/2017
                 queueClient = new QueueClient(ServiceBusConnectionString, QueueName);
 
                 Console.WriteLine("======================================================");
-                Console.WriteLine("Press ENTER key to exit after receiving all the messages.");
+                Console.WriteLine("Press ENTER key to exit after sending all the messages.");
                 Console.WriteLine("======================================================");
 
                 // Send Messages

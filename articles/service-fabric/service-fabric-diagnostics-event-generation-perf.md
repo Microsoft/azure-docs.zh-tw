@@ -1,24 +1,25 @@
 ---
-title: "Azure Service Fabric 效能監視 | Microsoft Docs"
-description: "了解用於監視及診斷 Azure Service Fabric 叢集的效能計數器。"
+title: Azure Service Fabric 效能監視 | Microsoft Docs
+description: 了解用於監視及診斷 Azure Service Fabric 叢集的效能計數器。
 services: service-fabric
 documentationcenter: .net
-author: dkkapur
+author: srrengar
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 10/15/2017
-ms.author: dekapur
-ms.openlocfilehash: b19a2db85b2e1cc4c5f79f6b0dee97965f40ef88
-ms.sourcegitcommit: a7c01dbb03870adcb04ca34745ef256414dfc0b3
+ms.date: 04/16/2018
+ms.author: srrengar
+ms.openlocfilehash: 9e740dd3acce842f888e5994fe8f46222477adc1
+ms.sourcegitcommit: eb75f177fc59d90b1b667afcfe64ac51936e2638
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/17/2017
+ms.lasthandoff: 05/16/2018
+ms.locfileid: "34208228"
 ---
 # <a name="performance-metrics"></a>效能度量
 
@@ -83,4 +84,4 @@ Service Fabric 可產生大量的自訂效能計數器。 如果您已安裝 SDK
 ## <a name="next-steps"></a>後續步驟
 
 * 深入了解 Service Fabric 中的[平台層級的事件產生](service-fabric-diagnostics-event-generation-infra.md)
-* 透過 [Azure 診斷](service-fabric-diagnostics-event-aggregation-wad.md)收集效能計量
+* 透過 [OMS 代理程式](service-fabric-diagnostics-oms-agent.md)收集效能計量

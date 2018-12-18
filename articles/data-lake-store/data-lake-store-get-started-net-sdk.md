@@ -1,26 +1,25 @@
 ---
-title: ".NET SDK：Azure Data Lake Store 的帳戶管理作業 | Microsoft Docs"
-description: "使用 Azure Data Lake Store 的 .NET SDK 在 Data Lake Store 中執行帳戶管理作業"
+title: .NET SDK：Azure Data Lake Storage Gen1 的帳戶管理作業 | Microsoft Docs
+description: 使用 Azure Data Lake Storage Gen1 的 .NET SDK 在 Data Lake Storage Gen1 中執行帳戶管理作業
 services: data-lake-store
-documentationcenter: 
+documentationcenter: ''
 author: nitinme
 manager: jhubbard
 editor: cgronlun
 ms.assetid: ea57d5a9-2929-4473-9d30-08227912aba7
 ms.service: data-lake-store
 ms.devlang: na
-ms.topic: get-started-article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 01/30/2018
+ms.topic: conceptual
+ms.date: 05/29/2018
 ms.author: nitinme
-ms.openlocfilehash: cb44fb1cbc279f12f970237f1498a570a63544bd
-ms.sourcegitcommit: 9d317dabf4a5cca13308c50a10349af0e72e1b7e
+ms.openlocfilehash: 2ed9f534c0eb27601243428f8e4b9d95db5d16b0
+ms.sourcegitcommit: f10653b10c2ad745f446b54a31664b7d9f9253fe
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46123907"
 ---
-# <a name="account-management-operations-on-azure-data-lake-store-using-net-sdk"></a>使用 .NET SDK 在 Data Lake Store 上進行帳戶管理作業
+# <a name="account-management-operations-on-azure-data-lake-storage-gen1-using-net-sdk"></a>使用 .NET SDK 對 Azure Data Lake Storage Gen1 進行帳戶管理作業。
 > [!div class="op_single_selector"]
 > * [.NET SDK](data-lake-store-get-started-net-sdk.md)
 > * [REST API](data-lake-store-get-started-rest-api.md)
@@ -28,11 +27,11 @@ ms.lasthandoff: 02/01/2018
 >
 >
 
-在本文中，您會了解如何使用 .NET SDK 在 Data Lake Store 上執行帳戶管理作業。 帳戶管理作業包括建立 Data Lake Store 帳戶、列出 Azure 訂用帳戶中的帳戶、刪除帳戶等。
+在本文中，您會了解如何使用 .NET SDK 對 Azure Data Lake Storage Gen1 執行帳戶管理作業。 帳戶管理作業包括建立 Data Lake Storage Gen1 帳戶、列出 Azure 訂用帳戶中的帳戶、刪除帳戶等。
 
-如需有關如何使用 .NET SDK 在 Data Lake Store 上執行帳戶管理作業的指示，請參閱[使用.NET SDK 在 Data Lake Store 上進行檔案系統作業](data-lake-store-data-operations-net-sdk.md)。
+如需有關如何使用 .NET SDK 對 Data Lake Storage Gen1 執行資料管理作業的指示，請參閱[使用 .NET SDK 對 Data Lake Storage Gen1 進行檔案系統作業](data-lake-store-data-operations-net-sdk.md)。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 * **Visual Studio 2013、2015 或 2017**。 以下指示使用 Visual Studio 2017。
 
 * **Azure 訂用帳戶**。 請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
@@ -46,7 +45,7 @@ ms.lasthandoff: 02/01/2018
    | --- | --- |
    | 類別 |範本/Visual C#/Windows |
    | 範本 |主控台應用程式 |
-   | Name |CreateADLApplication |
+   | 名稱 |CreateADLApplication |
 4. 按一下 [確定]  以建立專案。
 5. 將 NuGet 套件新增至您的專案。
 
@@ -90,7 +89,7 @@ ms.lasthandoff: 02/01/2018
 
                 private static void Main(string[] args)
                 {
-                    _adlsAccountName = "<DATA-LAKE-STORE-NAME>.azuredatalakestore.net"; 
+                    _adlsAccountName = "<DATA-LAKE-STORAGE-GEN1-NAME>.azuredatalakestore.net"; 
                     _resourceGroupName = "<RESOURCE-GROUP-NAME>"; 
                     _location = "East US 2";
                     _subId = "<SUBSCRIPTION-ID>";                    
@@ -102,26 +101,26 @@ ms.lasthandoff: 02/01/2018
 
 ## <a name="authentication"></a>驗證
 
-* 如需讓應用程式進行使用者驗證，請參閱[使用 .NET SDK 向 Data Lake Store 進行使用者驗證](data-lake-store-end-user-authenticate-net-sdk.md)。
-* 如需讓應用程式進行服務對服務驗證，請參閱[使用 .NET SDK 向 Data Lake Store 進行服務對服務驗證](data-lake-store-service-to-service-authenticate-net-sdk.md)。
+* 如需讓應用程式進行使用者驗證，請參閱[使用 .NET SDK 向 Data Lake Storage Gen1 進行使用者驗證](data-lake-store-end-user-authenticate-net-sdk.md)。
+* 如需讓應用程式進行服務對服務驗證，請參閱[使用 .NET SDK 向 Data Lake Storage Gen1 進行服務對服務驗證](data-lake-store-service-to-service-authenticate-net-sdk.md)。
 
 ## <a name="create-client-object"></a>建立用戶端物件
-下列程式碼片段會建立 Data Lake Store 帳戶用戶端物件，此物件用於對服務發出帳戶管理要求，例如建立帳戶、刪除帳戶等。
+下列程式碼片段會建立 Data Lake Storage Gen1 帳戶用戶端物件，此物件用於對服務發出帳戶管理要求，例如建立帳戶、刪除帳戶等。
 
     // Create client objects and set the subscription ID
     _adlsClient = new DataLakeStoreAccountManagementClient(armCreds) { SubscriptionId = _subId };
     
-## <a name="create-a-data-lake-store-account"></a>建立 Data Lake Store 帳戶
-下列程式碼片段會在您建立 Data Lake Store 帳戶用戶端物件時所提供的 Azure 訂用帳戶中，建立 Data Lake Store 帳戶。
+## <a name="create-a-data-lake-storage-gen1-account"></a>建立 Data Lake Storage Gen1 帳戶
+下列程式碼片段會在您建立 Data Lake Storage Gen1 帳戶用戶端物件時所提供的 Azure 訂用帳戶中，建立 Data Lake Storage Gen1 帳戶。
 
-    // Create Data Lake Store account
+    // Create Data Lake Storage Gen1 account
     var adlsParameters = new DataLakeStoreAccount(location: _location);
     _adlsClient.Account.Create(_resourceGroupName, _adlsAccountName, adlsParameters);
 
-## <a name="list-all-data-lake-store-accounts-within-a-subscription"></a>列出訂用帳戶內的所有 Data Lake Store 帳戶
-將下列方法新增至您的類別定義。 下列程式碼片段列出指定的 Azure 訂用帳戶中的所有 Data Lake Store 帳戶。
+## <a name="list-all-data-lake-storage-gen1-accounts-within-a-subscription"></a>列出訂用帳戶內的所有 Data Lake Storage Gen1 帳戶
+將下列方法新增至您的類別定義。 下列程式碼片段會列出指定 Azure 訂用帳戶內的所有 Data Lake Storage Gen1 帳戶。
 
-    // List all Data Lake Store accounts within the subscription
+    // List all Data Lake Storage Gen1 accounts within the subscription
     public static List<DataLakeStoreAccountBasic> ListAdlStoreAccounts()
     {
         var response = _adlsClient.Account.List(_adlsAccountName);
@@ -136,15 +135,15 @@ ms.lasthandoff: 02/01/2018
         return accounts;
     }
 
-## <a name="delete-a-data-lake-store-account"></a>刪除 Data Lake Store 帳戶
-以下程式碼片段會刪除您稍早建立的 Data Lake Store 帳戶。
+## <a name="delete-a-data-lake-storage-gen1-account"></a>刪除 Data Lake Storage Gen1 帳戶
+下列程式碼片段會刪除您之前建立的 Data Lake Storage Gen1 帳戶。
 
-    // Delete Data Lake Store account
+    // Delete Data Lake Storage Gen1 account
     _adlsClient.Account.Delete(_resourceGroupName, _adlsAccountName);
 
 ## <a name="see-also"></a>另請參閱
-* [使用 .NET SDK 在 Data Lake Store 上進行檔案系統作業](data-lake-store-data-operations-net-sdk.md)
-* [Data Lake Store .NET SDK 參考](https://docs.microsoft.com/dotnet/api/overview/azure/data-lake-store?view=azure-dotnet)
+* [使用 .NET SDK 對 Data Lake Storage Gen1 進行檔案系統作業](data-lake-store-data-operations-net-sdk.md)
+* [Data Lake Storage Gen1 .NET SDK 參考](https://docs.microsoft.com/dotnet/api/overview/azure/data-lake-store?view=azure-dotnet)
 
 ## <a name="next-steps"></a>後續步驟
-* [保護 Data Lake Store 中的資料](data-lake-store-secure-data.md)
+* [保護 Data Lake Storage Gen1 中的資料](data-lake-store-secure-data.md)

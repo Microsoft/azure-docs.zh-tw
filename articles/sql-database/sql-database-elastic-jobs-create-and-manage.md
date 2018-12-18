@@ -2,25 +2,32 @@
 title: 管理 Azure SQL Database 的群組 | Microsoft Docs
 description: 逐步解說如何建立和管理彈性工作。
 services: sql-database
-manager: craigg
-author: stevestein
 ms.service: sql-database
-ms.custom: scale out apps
-ms.topic: article
-ms.date: 10/24/2016
+subservice: operations
+ms.custom: ''
+ms.devlang: ''
+ms.topic: conceptual
+author: stevestein
 ms.author: sstein
-ms.openlocfilehash: 77204e167d298ad77b2786b5d0a3dab1b557ccfc
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.reviewer: ''
+manager: craigg
+ms.date: 07/16/2018
+ms.openlocfilehash: dca4ae2c8aa75b7af40ed4f8430968b8477c6802
+ms.sourcegitcommit: 51a1476c85ca518a6d8b4cc35aed7a76b33e130f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47165665"
 ---
-# <a name="create-and-manage-scaled-out-azure-sql-databases-using-elastic-jobs-preview"></a>使用彈性工作建立和管理相應放大的 Azure SQL Database (預覽)
+# <a name="create-and-manage-scaled-out-azure-sql-databases-using-elastic-jobs-preview"></a>使用彈性工作建立和管理相應放大的 Azure SQL 資料庫 (預覽)
 
 
-**彈性資料庫工作** 可以簡化資料庫群組的管理，方法是執行系統管理作業 (例如結構描述變更、認證管理、參考資料更新、效能資料收集，或租用戶 (客戶) 遙測收集)。 彈性資料庫工作目前可透過 Azure 入口網站和 PowerShell Cmdlet 使用。 不過，Azure 入口網站呈現精簡功能會限制為跨[彈性集區 (預覽)](sql-database-elastic-pool.md) 中的所有資料庫執行。 若要存取其他功能以及跨資料庫群組執行指令碼，包括自訂定義集合或分區集 (使用[彈性資料庫用戶端程式庫](sql-database-elastic-scale-introduction.md)建立)，請參閱[使用 PowerShell 建立和管理作業](sql-database-elastic-jobs-powershell.md)。 如需工作的詳細資訊，請參閱 [彈性資料庫工作概觀](sql-database-elastic-jobs-overview.md)。 
+[!INCLUDE [elastic-database-jobs-deprecation](../../includes/sql-database-elastic-jobs-deprecate.md)]
 
-## <a name="prerequisites"></a>先決條件
+
+**彈性資料庫工作** 可以簡化資料庫群組的管理，方法是執行系統管理作業 (例如結構描述變更、認證管理、參考資料更新、效能資料收集，或租用戶 (客戶) 遙測收集)。 彈性資料庫工作目前可透過 Azure 入口網站和 PowerShell Cmdlet 使用。 不過，Azure 入口網站呈現精簡功能會限制為跨[彈性集區](sql-database-elastic-pool.md) 中的所有資料庫執行。 若要存取其他功能以及跨資料庫群組執行指令碼，包括自訂定義集合或分區集 (使用[彈性資料庫用戶端程式庫](sql-database-elastic-scale-introduction.md)建立)，請參閱[使用 PowerShell 建立和管理作業](sql-database-elastic-jobs-powershell.md)。 如需工作的詳細資訊，請參閱 [彈性資料庫工作概觀](sql-database-elastic-jobs-overview.md)。 
+
+## <a name="prerequisites"></a>必要條件
 * Azure 訂用帳戶。 如需免費試用版，請參閱 [免費試用版](https://azure.microsoft.com/pricing/free-trial/)。
 * 彈性集區。 請參閱[關於彈性集區](sql-database-elastic-pool.md)。
 * 安裝彈性資料庫工作服務元件。 請參閱 [安裝彈性資料庫工作服務](sql-database-elastic-jobs-service-installation.md)。

@@ -5,14 +5,15 @@ services: site-recovery
 author: rayne-wiselman
 ms.service: site-recovery
 ms.topic: tutorial
-ms.date: 03/24/2018
+ms.date: 10/10/2018
 ms.author: raynew
 ms.custom: MVC
-ms.openlocfilehash: 8de067ece55e13d32af6822e114cb9dab000bdff
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: 9bd5c1b2bad475dbb2c8ce216ed7d3f57ace0696
+ms.sourcegitcommit: 7b0778a1488e8fd70ee57e55bde783a69521c912
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 10/10/2018
+ms.locfileid: "49067609"
 ---
 # <a name="migrate-azure-vms-to-another-region"></a>將 Azure VM 移轉到另一個區域
 
@@ -27,13 +28,11 @@ ms.lasthandoff: 03/28/2018
 
 本教學課程假設您已有 Azure 訂用帳戶。 如果沒有，請在開始前建立[免費帳戶](https://azure.microsoft.com/pricing/free-trial/)。
 
->[!NOTE]
->
-> Azure VM 的 Site Recovery 複寫目前為預覽狀態。
 
 
 
-## <a name="prerequisites"></a>先決條件
+
+## <a name="prerequisites"></a>必要條件
 
 - 請確定 Azure 區域中有 Azure VM，以便您從中進行遷移。
 - 請確定您了解[情節架構和元件](azure-to-azure-architecture.md)。
@@ -102,7 +101,7 @@ ms.lasthandoff: 03/28/2018
 ## <a name="select-the-source"></a>選取來源
 
 1. 在復原服務保存庫中，按一下 [ConsotoVMVault] > [+複寫]。
-2. 在 [來源] 中，選取 [Azure-PREVIEW]。
+2. 在 [來源] 中，選取 [Azure]。
 3. 在 [來源位置] 中，選取 VM 目前執行所在的來源 Azure 區域。
 4. 選取 Resource Manager 部署模型。 然後選取 [來源資源群組]。
 5. 按一下 [確定]  來儲存設定。
@@ -115,7 +114,7 @@ Site Recovery 會擷取與訂用帳戶和資源群組建立關聯的 VM 清單�
 
 1. 在 Azure 入口網站中，按一下 [虛擬機器]。
 2. 選取您要移轉的 VM。 然後按一下 [確定] 。
-3. 在 [設定] 中，按一下 [災害復原 (預覽)]。
+3. 在 [設定] 中，按一下 [災害復原]。
 4. 在 [設定災害復原] >  [目標區域] 中，選取您要複寫至的目標區域。
 5. 在本教學課程中，接受其他預設設定。
 6. 按一下 [啟用複寫]。 這會開始一項作業來啟用 VM 的複寫。

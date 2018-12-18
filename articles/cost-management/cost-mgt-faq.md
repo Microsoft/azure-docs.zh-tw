@@ -1,30 +1,31 @@
 ---
-title: Azure 成本管理的常見問題集 | Microsoft Docs
-description: 提供一些關於 Azure 成本管理常見問題的解答。
+title: Azure 中 Cloudyn 的常見問題集 | Microsoft Docs
+description: 提供一些關於 Cloudyn 常見問題的解答。
 services: cost-management
 keywords: ''
 author: bandersmsft
 ms.author: banders
-ms.date: 02/14/2018
-ms.topic: article
+ms.date: 09/18/2018
+ms.topic: troubleshooting
 ms.service: cost-management
-manager: carmonm
+manager: dougeby
 ms.custom: ''
-ms.openlocfilehash: 8920ff082fa1b442aa147068080085c40760e290
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+ms.openlocfilehash: 4984332e1a149ae838bc76a24abec90364f5699e
+ms.sourcegitcommit: ad08b2db50d63c8f550575d2e7bb9a0852efb12f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 09/26/2018
+ms.locfileid: "47221973"
 ---
-# <a name="frequently-asked-questions-for-azure-cost-management"></a>Azure 成本管理的常見問題集
+# <a name="frequently-asked-questions-for-cloudyn"></a>Cloudyn 的常見問題集
 
-本文說明 Azure 成本管理 (也稱為 Cloudyn) 的一些常見問題。 如果您有關於成本管理的問題，可以在 [Azure 成本管理的常見問題集](https://social.msdn.microsoft.com/Forums/en-US/231bf072-2c71-4121-8339-ac9d868137b9/faqs-for-azure-cost-management-by-cloudyn?forum=Cloudyn) \(英文\) 上詢問。
+本文說明 Cloudyn 的一些常見問題。 如果您有關於 Cloudyn 的問題，可在 [Cloudyn 的常見問題集](https://social.msdn.microsoft.com/Forums/231bf072-2c71-4121-8339-ac9d868137b9/faqs-for-azure-cost-management-by-cloudyn?forum=Cloudyn)發問。
 
 ## <a name="how-can-i-resolve-common-indirect-enterprise-setup-problems"></a>如何解決常見的間接企業設定問題？
 
 當您第一次使用 Cloudyn 入口網站時，如果您是 Enterprise 合約或雲端解決方案提供者 (CSP) 使用者，您可能會看到下列訊息：
 
-- 在「設定 Azure 成本管理」精靈中顯示「指定的 API 金鑰不是最上層的註冊金鑰」。
+- 在 [設定 Cloudyn 精靈] 中顯示「指定的 API 金鑰不是最上層的註冊金鑰」。
 - 在 Enterprise 合約入口網站中顯示「直接註冊 – 否」。
 - 在 Cloudyn 入口網站中顯示：「找不到過去 30 天的使用方式資料。 請連絡您的散發者以確定您的 Azure 帳戶已啟用標記」。
 
@@ -34,9 +35,9 @@ ms.lasthandoff: 03/09/2018
 
 1. 您的轉銷商必須為您的帳戶啟用「標記」。 如需指示，請參閱[間接客戶上線指南](https://ea.azure.com/api/v3Help/v2IndirectCustomerOnboardingGuide)。
 
-2. 您要產生用於 Cloudyn 的 Azure Enterprise 合約金鑰。 如需指示，請參閱[新增您的 Azure EA](https://support.cloudyn.com/hc/en-us/articles/210429585-Adding-Your-AZURE-EA) 或[如何尋找您的 EA 註冊識別碼和 API 金鑰](https://youtu.be/u_phLs_udig)。
+2. 您要產生用於 Cloudyn 的 Azure Enterprise 合約金鑰。 如需指示，請參閱[新增您的 Azure EA](https://support.cloudyn.com/hc/articles/210429585-Adding-Your-AZURE-EA) 或[如何尋找您的 EA 註冊識別碼和 API 金鑰](https://youtu.be/u_phLs_udig)。
 
-只有 Azure 服務系統管理員可以啟用「成本管理」。 共同管理員的權限不足。
+只有 Azure 服務系統管理員可以啟用 Cloudyn。 共同管理員的權限不足。
 
 在您可以產生 Azure Enterprise 合約 API 金鑰以設定 Cloudyn 之前，您必須啟用 Azure 帳單 API，方法是遵循下列文章中的指示：
 
@@ -71,16 +72,20 @@ ms.lasthandoff: 03/09/2018
 
 ## <a name="how-do-i-enable-suspended-or-locked-out-users"></a>如何讓暫時停權或被鎖住的使用者恢復使用？
 
+首先，讓我們來看看造成使用者帳戶發生 initiallySuspended 的最常見案例。
+
+> Admin1 可能是 Microsoft 雲端解決方案提供者或 Enterprise 合約使用者。 其組織已準備好開始使用 Cloudyn。  他透過 Azure 入口網站註冊，並登入 Cloudyn 入口網站。 註冊 Cloudyn 服務並登入 Cloudyn 入口網站的人員會成為「主要管理員」。 Admin1 不會建立任何使用者帳戶。 不過，他會使用 Cloudyn 入口網站建立 Azure 帳戶並設定實體階層。 Admin1 通知身為租用戶系統管理員的 Admin2，告訴其必須向 Cloudyn 註冊，並登入 Cloudyn 入口網站。
+
+> Admin2 透過 Azure 入口網站註冊。 不過，當他嘗試登入 Cloudyn 入口網站時，他收到錯誤訊息，其中顯示他的帳戶遭到**暫時停權**。 主要管理員 Admin1 會收到帳戶暫時停權的通知。 Admin1 必須啟用 Admin2 的帳戶，授與適當實體的「管理員實體存取權」，然後允許使用者管理存取權並啟用使用者帳戶。
+
+
 如果您收到要求允許使用者存取權的警示，則需要啟用使用者帳戶。
 
 啟用使用者帳戶：
 
 1. 使用您用來設定 Cloudyn 的 Azure 系統管理使用者帳戶，登入 Cloudyn。 或者，使用已被授與系統管理員存取權的使用者帳戶登入。
-
 2. 選取右上角的齒輪符號，選取 [使用者管理]。
-
 3. 尋找使用者，選取鉛筆符號，然後編輯使用者。
-
 4. 在 [User status] \(使用者狀態\) 下，將狀態從 [Suspended] \(已暫時停權\) 變更為 [Active] \(作用中\)。
 
 Cloudyn 使用者帳戶使用單一登入從 Azure 連線。 如果使用者輸入錯誤的密碼，可能會被鎖住而無法進入 Cloudyn，但可能還是可以存取 Azure。
@@ -89,13 +94,13 @@ Cloudyn 使用者帳戶使用單一登入從 Azure 連線。 如果使用者輸�
 
 我們建議您至少建立兩個 Cloudyn 系統管理員帳戶，以免其中一個帳戶被鎖住。
 
-如果您無法登入 Cloudyn 入口網站，請確定您使用正確的 Azure 成本管理 URL 登入 Cloudyn。 使用 [https://azure.cloudyn.com](https://ms.portal.azure.com/#blade/Microsoft_Azure_CostManagement/CloudynMainBlade)。
+如果您無法登入 Cloudyn 入口網站，請確定您使用正確的 URL 登入 Cloudyn。 使用 [https://azure.cloudyn.com](https://ms.portal.azure.com/#blade/Microsoft_Azure_CostManagement/CloudynMainBlade)。
 
 請避免使用 Cloudyn 直接 URL https://app.cloudyn.com。
 
 ## <a name="how-do-i-activate-unactivated-accounts-with-azure-credentials"></a>如何使用 Azure 認證啟用尚未啟用的帳戶？
 
-一旦 Cloudyn 探索到您的 Azure 帳戶，與成本相關的報表就會立即提供成本資料。 不過，要讓 Cloudyn 提供使用方式和效能資料，您還必須為帳戶註冊您的 Azure 認證。 如需指示，請參閱[新增 Azure Resource Manager](https://support.cloudyn.com/hc/en-us/articles/212784085-Adding-Azure-Resource-Manager)。
+一旦 Cloudyn 探索到您的 Azure 帳戶，與成本相關的報表就會立即提供成本資料。 不過，要讓 Cloudyn 提供使用方式和效能資料，您還必須為帳戶註冊您的 Azure 認證。 如需指示，請參閱[新增 Azure Resource Manager](https://support.cloudyn.com/hc/articles/212784085-Adding-Azure-Resource-Manager)。
 
 若要為帳戶新增 Azure 認證，請在 Cloudyn 入口網站中，選取帳戶名稱 (不是訂用帳戶) 右邊的編輯符號。
 
@@ -105,8 +110,8 @@ Cloudyn 使用者帳戶使用單一登入從 Azure 連線。 如果使用者輸�
 
 其他實體可用來將其他的 Enterprise 合約新增到 Cloudyn 訂用帳戶。 下列連結說明如何新增其他實體：
 
-- [新增實體](https://support.cloudyn.com/hc/en-us/articles/212016145-Adding-an-Entity) \(英文\) 文章
-- [使用成本實體定義您的階層](https://support.cloudyn.com/hc/en-us/articles/115005142529-Video-Defining-your-hierarchy-with-Cost-Entities) \(英文\) 影片
+- [新增實體](https://support.cloudyn.com/hc/articles/212016145-Adding-an-Entity) \(英文\) 文章
+- [使用成本實體定義您的階層](https://support.cloudyn.com/hc/articles/115005142529-Video-Defining-your-hierarchy-with-Cost-Entities) \(英文\) 影片
 
 如果是雲端解決方案提供者：
 
@@ -134,6 +139,14 @@ Cloudyn 有下列資料重新整理時間軸：
 
 如果從 Azure 傳送資料到 Cloudyn 時發生延遲，資料仍會記錄在 Azure 中。 連線恢復時，資料就會傳送至 Cloudyn。
 
+## <a name="cost-fluctuations-in-cloudyn-cost-reports"></a>Cloudyn 成本報表中的成本變動
+
+每當雲端服務提供者傳送更新的計費檔案時，成本報告中就會顯示成本變動。 如果在一般的每日或每月報告排程外，收到來自雲端服務提供者的新檔案，就會發生成本變動。 Cloudyn 重新計算不會造成成本變更。
+
+雲端服務提供者在整個月中傳送的所有計費檔案都是每日成本的估計。 有時資料會頻繁地更新，偶爾會一天更新多次。 AWS 的更新會比 Azure 更頻繁。 當上個月的計費計算完畢，並且收到最後的計費檔案時，成本總計應該就會保持穩定。 通常會在當月 10 日前完成。
+
+當您從雲端服務提供者收到成本調整時，就會發生變更。 收到信用額度即是一例。 變更可能會在相關月份結束後的幾個月中發生。 每當雲端服務提供者進行重新計算時，即會出現變更。 Cloudyn 會更新其歷史資料，以確保所有調整都會重新計算。 它也會驗證報告中顯示的成本是否正確。
+
 ## <a name="how-can-a-direct-csp-configure-cloudyn-access-for-indirect-csp-customers-or-partners"></a>直接雲端解決方案提供者如何設定間接雲端解決方案提供者客戶或合作夥伴的 Cloudyn 存取？
 
 如需指示，請參閱[設定 Cloudyn 中的間接 CSP 存取](quick-register-csp.md#configure-indirect-csp-access-in-cloudyn)。
@@ -142,10 +155,10 @@ Cloudyn 有下列資料重新整理時間軸：
 
 在您新增 Azure Resource Manager 存取，且系統已收集資料之後，您應該會看見 [最佳化工具] 選項。 若要啟動 Azure Resource Manager 存取，請參閱[如何使用 Azure 認證啟用尚未啟用的帳戶？](#how-do-i-activate-unactivated-accounts-with-azure-credentials)
 
-## <a name="is-cost-managementcloudyn-agent-based"></a>是否會使用成本管理/Cloudyn 代理程式？
+## <a name="is-cloudyn-agent-based"></a>Cloudyn 是否以代理程式為基礎？
 
-編號 不會使用代理程式。 VM 的 Azure 虛擬機器計量資料，是從 Microsoft Insights API 收集而來。 如果您想要收集來自 Azure VM 的計量資料，便必須啟用它們的診斷設定。
+否。 不會使用代理程式。 VM 的 Azure 虛擬機器計量資料，是從 Microsoft Insights API 收集而來。 如果您想要收集來自 Azure VM 的計量資料，便必須啟用它們的診斷設定。
 
 ## <a name="do-cloudyn-reports-show-more-than-one-ad-tenant-per-report"></a>每份 Cloudyn 報告是否能顯示超過一個 AD 租用戶的資料？
 
-是。 您可以針對您所擁有的每個 AD 租用戶[建立相對應的雲端帳戶實體](tutorial-user-access.md#create-entities)。 如此一來，您便可以檢視所有的 Azure AD 租用戶資料，以及其他雲端平台提供者 (包括 Amazon Web Services 和 Google Cloud Platform)。
+是。 您可以針對您所擁有的每個 AD 租用戶[建立相對應的雲端帳戶實體](tutorial-user-access.md#create-and-manage-entities)。 如此一來，您便可以檢視所有的 Azure AD 租用戶資料，以及其他雲端平台提供者 (包括 Amazon Web Services 和 Google Cloud Platform)。

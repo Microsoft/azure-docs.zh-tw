@@ -1,4 +1,10 @@
 ### YamlMime:YamlDocument
+ms.openlocfilehash: 0e1c246a0132c53656cb0b993b870677698fe65f
+ms.sourcegitcommit: 1b561b77aa080416b094b6f41fce5b6a4721e7d5
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/17/2018
+ms.locfileid: "45732884"
 documentType: LandingData
 title: Azure SQL Database 文件
 metadata:
@@ -7,20 +13,15 @@ metadata:
   meta.description: Learn how to use Azure SQL databases.
   services: sql-database
   author: CarlRabeler
-  manager: carigg
+  manager: craigg
   ms.service: sql-database
   ms.tgt_pltfrm: na
   ms.devlang: 
-  ms.topic: landing-page
-  ms.date: 04/01/2018
+  ms.topic: overview
+  ms.date: 07/07/2018
   ms.author: carlrab
-  ms.openlocfilehash: b7888a2bece1a9b601c3629deb1c1dd1fc5cbbe3
-  ms.sourcegitcommit: 3a4ebcb58192f5bf7969482393090cb356294399
-  ms.translationtype: HT
-  ms.contentlocale: zh-TW
-  ms.lasthandoff: 04/06/2018
 abstract:
-  description: Azure SQL Database 是關聯式資料庫即服務，使用 Microsoft SQL Server 引擎。 SQL Database 是高效能、可靠且安全的資料庫，您可以使用選定的程式設計語言來建置資料驅動的應用程式和網站，無需管理基礎結構。 了解如何透過我們的快速入門、教學課程和範例使用 SQL Database。
+  description: Azure SQL Database 是關聯式資料庫即服務 (DBaaS)，它是根據最新穩定版本的 Microsoft SQL Server 資料庫引擎而建置。 SQL Database 是高效能、可靠且安全的資料庫，您可以使用選定的程式設計語言來建置資料驅動的應用程式和網站，無需管理基礎結構。 了解如何透過我們的快速入門、教學課程和範例使用 SQL Database。
   aside:
     image:
       alt: 
@@ -31,25 +32,118 @@ abstract:
     href: https://azure.microsoft.com/resources/videos/create-sql-database-on-azure/
     width: 250
 sections:
+- items:
+  - type: list
+    style: cards
+    className: cardsM
+    columns: 3
+    items:
+    - href: /azure/sql-database/sql-database-technical-overview
+      html: <p>PaaS 資料庫一律在最新穩定版本的 SQL Server 資料庫引擎上執行，並可在已修補作業系統達 99.99% 的可用性。</p>
+      image:
+        src: media/index/i_managed.svg
+      title: 完全受控
+    - href: /azure/sql-database/sql-database-service-tiers
+      html: <p>透過彈性的服務層級 (從經濟實惠的 $5 美元/月到強大的 80 核心資料庫)，為您量身打造符合需求的性價比。</p>
+      image:
+        src: media/index/i_perftier.svg
+      title: 價格/服務層
+    - href: /azure/sql-database/sql-database-scale-resources
+      html: <p>簡單地相應增加或相應放大，或根據需求將您的資料庫分區以提高應用程式的效能。</p>
+      image:
+        src: media/index/i_scale.svg
+      title: 延展性
+    - href: /azure/sql-database/sql-database-servers-databases
+      html: <p>將邏輯伺服器中託管的單一資料庫用於 SaaS 應用程式和微服務 (需要具有可預測效能的單一資料庫)。</p>
+      image:
+        src: media/index/i_db.svg
+      title: 單一資料庫
+    - href: /azure/sql-database/sql-database-elastic-pool
+      html: <p>SQL Database 彈性集區是簡單、符合成本效益的解決方案，可用來管理及調整使用需求變化不定且無法預測的多個資料庫。</p>
+      image:
+        src: media/index/i_elasticpool.svg
+      title: 彈性集區
+    - href: /azure/sql-database/sql-database-managed-instance
+      html: <p>使用受控執行個體，輕鬆地將內部部署資料庫遷移至完全受控的 Azure PaaS 資料庫服務，而只需變更極少或不需變更資料庫程式碼。</p>
+      image:
+        src: media/index/i_mi.svg
+      title: 受控執行個體
+    - href: /azure/sql-database/sql-database-business-continuity
+      html: <p>內建的高可用性、自動備份和異地複寫，讓您免於受到維護作業、基礎結構或硬體失敗而導致的業務中斷。</p>
+      image:
+        src: media/index/gear.svg
+      title: 業務持續性
+    - href: /azure/sql-database/sql-database-security-overview
+      html: <p>透過 Azure AD 驗證、虛擬網路、防火牆及 Always Encrypted 等功能，保護您的資料庫。 使用內建的安全性識別威脅與弱點。</p>
+      image:
+        src: media/index/i_security.svg
+      title: 進階安全性
+    - href: /azure/sql-database/sql-database-technical-overview#built-in-intelligence
+      html: <p>內建智慧功能可協助您大幅降低執行和管理資料庫的成本，並將應用程式的效能和安全性最大化。</p>
+      image:
+        src: media/index/i_intelligence.svg
+      title: 內建智慧
 - title: 5 分鐘快速入門
   items:
   - type: paragraph
-    text: 了解如何建立 SQL Database、使用 SQL Management Studio 加以管理，並以 C#、Java、Python、Node.js 和 Ruby 等進行開發：
-  - type: list
-    style: icon48
-    items:
+    text: Azure SQL Database 可讓您使用 Azure 入口網站、Azure CLI 和 Azure PowerShell，輕鬆地執行基本管理工作。 深入了解如何使用下列快速入門範例來執行基本管理工作：
+  - type: table
+    style: dataMatrix
+    columns:
     - image:
-        src: https://docs.microsoft.com/azure/sql-database/media/index/portal.svg
-      text: Azure 入口網站
-      href: https://docs.microsoft.com/azure/sql-database/sql-database-get-started-portal
+        src: media/index/portal.svg
+      title: Azure 入口網站
     - image:
-        src: https://docs.microsoft.com/azure/sql-database/media/index/cli.svg
-      text: Azure CLI
-      href: https://docs.microsoft.com/azure/sql-database/sql-database-get-started-cli
+        src: media/index/cli.svg
+      title: Azure CLI
     - image:
-        src: https://docs.microsoft.com/azure/sql-database/media/index/logo_powershell.svg
-      text: Azure PowerShell
-      href: https://docs.microsoft.com/azure/sql-database/sql-database-get-started-powershell
+        src: media/index/logo_powershell.svg
+      title: PowerShell
+    - image:
+        src: media/index/logo_arm.svg
+      title: Azure Resource Manager 範本
+    rows:
+    - title: 建立單一 SQL Database
+      values:
+      - href: /azure/sql-database/sql-database-get-started-portal
+      - href: /azure/sql-database/scripts/sql-database-create-and-configure-database-cli
+      - href: /azure/sql-database/scripts/sql-database-create-and-configure-database-powershell
+      - href: 
+    - title: 建立 SQL 受控執行個體
+      values:
+      - href: /azure/sql-database/sql-database-managed-instance-get-started
+      - href: https://medium.com/azure-sqldb-managed-instance/working-with-sql-managed-instance-using-azure-cli-611795fe0b44
+      - href: https://blogs.msdn.microsoft.com/sqlserverstorageengine/2018/06/27/quick-start-script-create-azure-sql-managed-instance-using-powershell/
+      - href: https://github.com/Azure/azure-quickstart-templates/tree/master/101-sqlmi-new-vnet
+    - title: 建立 SQL 彈性集區
+      values:
+      - href: 
+      - href: /azure/sql-database/scripts/sql-database-move-database-between-pools-cli
+      - href: /azure/sql-database/scripts/sql-database-move-database-between-pools-powershell
+      - href: https://github.com/Azure/azure-quickstart-templates/tree/master/101-sql-elastic-pool-create
+    - title: 調整單一 SQL Database
+      values:
+      - href: 
+      - href: /azure/sql-database/scripts/sql-database-monitor-and-scale-database-cli
+      - href: /azure/sql-database/scripts/sql-database-monitor-and-scale-database-powershell
+      - href: 
+    - title: 調整 SQL 彈性集區
+      values:
+      - href: 
+      - href: /azure/sql-database/scripts/sql-database-scale-pool-cli
+      - href: /azure/sql-database/scripts/sql-database-monitor-and-scale-pool-powershell
+    - title: 調整受控執行個體
+      values:
+      - href: 
+      - href: https://medium.com/azure-sqldb-managed-instance/working-with-sql-managed-instance-using-azure-cli-611795fe0b44
+      - href: https://blogs.msdn.microsoft.com/sqlserverstorageengine/2018/05/31/change-size-azure-sql-managed-instance-using-powershell/
+      - href: 
+    - title: 針對受控執行個體設定 Azure 網路
+      values:
+      - href: /azure/sql-database/sql-database-managed-instance-get-started
+      - href: 
+      - href: https://blogs.msdn.microsoft.com/sqlserverstorageengine/2018/06/25/quick-start-script-setup-azure-network-environment-for-azure-sql-managed-instance/
+      - href: https://github.com/Azure/azure-quickstart-templates/tree/master/101-sql-managed-instance-azure-environment
 - title: 逐步教學課程
   items:
   - type: paragraph
@@ -58,9 +152,9 @@ sections:
     style: ordered
     items:
     - html: 使用 <a href="/azure/sql-database/sql-database-design-first-database">SSMS</a> 或 <a href="/azure/sql-database/sql-database-design-first-database-csharp">.NET</a> 建立和設計新 SQL Database 的結構描述
-    - html: <a href="/azure/sql-database/sql-database-migrate-your-sql-server-database">將現有的 SQL Server 資料庫移轉至 Azure SQL Database</a>
+    - html: 使用 <a href="/azure/sql-database/sql-database-managed-instance-get-started-restore">Database RESTORE</a>、<a href="/azure/sql-database/sql-database-migrate-your-sql-server-database">資料庫移轉小幫手</a>或 <a href="/azure/sql-database/sql-database-import">BACPAC Import</a> 將現有資料庫遷移至 Azure
     - html: <a href="/azure/sql-database/sql-database-security-tutorial">保護您的 SQL Database</a>
-    - html: <a href="/azure/sql-database/sql-database-implement-geo-distributed-database">實作異地分散式資料庫</a>
+    - html: 使用<a href="/azure/sql-database/sql-database-implement-geo-distributed-database">異地分散資料庫</a>將資料散發到全域
 - title: 免費 Pluralsight 影片訓練
   items:
   - type: list
@@ -95,6 +189,6 @@ sections:
     - title: REST
       html: <p><a href="/rest/api/sql/">REST API 參考</a></p>
     - title: SQL Server 工具
-      html: <p><a href="https://msdn.microsoft.com/library/mt238365.aspx">SQL Server 工具</a></p><p><a href="https://msdn.microsoft.com/library/mt238290.aspx">SQL Server Management Studio (SSMS)</a></p><p><a href="https://msdn.microsoft.com/library/mt204009.aspx">SQL Server Data Tools (SSDT)</a></p><p><a href="https://msdn.microsoft.com/library/ms162802.aspx">BCP</a></p><p><a href="https://msdn.microsoft.com/library/ms162773.aspx">SQLCMD</a></p><p><a href="https://msdn.microsoft.com/hh550080.aspx">SqlPackage</a></p><p><a href="https://www.nuget.org/packages/Microsoft.Azure.Management.Sql">SQL Database 管理程式庫套件</a></p>
+      html: <p><a href="https://msdn.microsoft.com/library/mt238365.aspx">SQL Server 工具</a></p><p><a href="https://msdn.microsoft.com/library/mt238290.aspx">SQL Server Management Studio (SSMS)</a></p><p><a href="https://msdn.microsoft.com/library/mt204009.aspx">SQL Server Data Tools (SSDT)</a></p><p><a href="https://msdn.microsoft.com/library/ms162802.aspx">BCP</a></p><p><a href="https://msdn.microsoft.com/library/ms162773.aspx">SQLCMD</a></p><p><a href="https://docs.microsoft.com/sql/tools/sqlpackage">SqlPackage</a></p><p><a href="https://www.nuget.org/packages/Microsoft.Azure.Management.Sql">SQL Database 管理程式庫套件</a></p>
     - title: SQL Server 驅動程式
       html: <p><a href="https://msdn.microsoft.com/library/mt654049.aspx">SQL Server 驅動程式</a></p><p><a href="https://msdn.microsoft.com/library/mt657768.aspx">ADO.NET</a></p><p><a href="https://msdn.microsoft.com/library/mt484311.aspx">JDBC</a></p><p><a href="https://msdn.microsoft.com/library/mt654048.aspx">ODBC</a></p>

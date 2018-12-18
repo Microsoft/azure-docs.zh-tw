@@ -1,6 +1,6 @@
 ---
-title: "在適用於 PostgreSQL 的 Azure 資料庫中備份與還原"
-description: "了解自動備份和還原適用於 PostgreSQL 的 Azure 資料庫資料庫。"
+title: 在適用於 PostgreSQL 的 Azure 資料庫中備份與還原
+description: 了解自動備份和還原適用於 PostgreSQL 的 Azure 資料庫資料庫。
 services: postgresql
 author: kamathsun
 ms.author: sukamat
@@ -14,6 +14,7 @@ ms.sourcegitcommit: c765cbd9c379ed00f1e2394374efa8e1915321b9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 02/28/2018
+ms.locfileid: "29693046"
 ---
 # <a name="backup-and-restore-in-azure-database-for-postgresql"></a>在適用於 PostgreSQL 的 Azure 資料庫中備份與還原
 

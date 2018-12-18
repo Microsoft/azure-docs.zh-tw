@@ -1,27 +1,25 @@
 ---
-title: Jenkins 與 Azure 的概觀 | Microsoft Docs
+title: Jenkins 與 Azure 的概觀
 description: 在 Azure 中裝載 Jenkins 組建和部署自動化伺服器，以及使用 Azure 計算和儲存體資源來擴充您的持續整合和部署 (CI/CD) 管線。
-services: jenkins
-author: rloutlaw
-manager: justhe
 ms.service: jenkins
-ms.devlang: NA
-ms.topic: article
-ms.workload: na
-ms.date: 08/22/2017
-ms.author: routlaw
-ms.custom: mvc
-ms.openlocfilehash: 08906939ecc80999de94ad7e7141081f959fb6f2
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+keywords: jenkins, azure, devops, 概觀
+author: tomarcher
+manager: jeconnoc
+ms.author: tarcher
+ms.topic: overview
+ms.date: 07/25/2018
+ms.openlocfilehash: cb4082046e57ac16abd6cdef3d5779525e7cfc82
+ms.sourcegitcommit: f6e2a03076679d53b550a24828141c4fb978dcf9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43105524"
 ---
 # <a name="azure-and-jenkins"></a>Azure 與 Jenkins
 
 [Jenkins](https://jenkins.io/) 是熱門的開放原始碼自動化伺服器，用來設定軟體專案的持續整合與傳遞 (CI/CD)。 您可以將 Jenkins 部署裝載在 Azure 中，或是使用 Azure 資源來延伸現有的 Jenkins 組態。 Jenkins 外掛程式也可用來簡化您的應用程式對 Azure 的 CI/CD。
 
-本文介紹如何使用 Azure 搭配 Jenkins，並詳述可供 Jenkins 使用者使用的核心 Azure 功能。 若要開始在 Azure 中使用您自己的 Jenkins 伺服器，請參閱我們的[快速入門](install-jenkins-solution-template.md)。
+本文介紹如何使用 Azure 搭配 Jenkins，並詳述可供 Jenkins 使用者使用的核心 Azure 功能。 如需如何開始在 Azure 中自行使用 Jenkins 伺服器的詳細資訊，請參閱[在 Azure 上建立 Jenkins 伺服器](install-jenkins-solution-template.md)。
 
 ## <a name="host-your-jenkins-servers-in-azure"></a>在 Azure 中裝載 Jenkins 伺服器
 
@@ -31,7 +29,7 @@ ms.lasthandoff: 03/09/2018
 - [Azure 虛擬機器](/azure/virtual-machines/linux/overview)。 請參閱我們的[教學課程](/azure/virtual-machines/linux/tutorial-jenkins-github-docker-cicd)以在 VM 上建立 Jenkins 執行個體。
 - 在 [Azure Container Service](/azure/container-service/kubernetes/container-service-kubernetes-walkthrough) 中執行的 Kubernetes 叢集上，請參閱我們的[作法](/azure/container-service/kubernetes/container-service-kubernetes-jenkins)。
 
-使用 [Log Analytics](/azure/log-analytics/log-analytics-overview)、[Operations Management Suite](/azure/operations-management-suite/operations-management-suite-overview) 及 [Azure CLI](/cli/azure)，來監視和管理 Azure Jenkins 部署。
+使用 [Log Analytics](/azure/log-analytics/log-analytics-overview) 和 [Azure CLI](/cli/azure) 來監視和管理 Azure Jenkins 部署。
 
 ## <a name="scale-your-build-automation-on-demand"></a>依照需求調整您的組建自動化
 
@@ -50,4 +48,3 @@ ms.lasthandoff: 03/09/2018
 
 - [Linux 上的 Azure Web 應用程式](/azure/app-service/containers/app-service-linux-intro)。 請參閱[教學課程](java-deploy-webapp-tutorial.md)以便開始使用。
 - [Azure Web 應用程式](/azure/app-service/app-service-web-overview)。 請參閱[作法](deploy-Jenkins-app-service-plugin.md)以便開始使用。
-

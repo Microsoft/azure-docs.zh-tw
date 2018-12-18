@@ -9,16 +9,17 @@ editor: vturecek;
 ms.assetid: ''
 ms.service: Service-Fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/18/2017
 ms.author: masnider
-ms.openlocfilehash: 9cb017997c528c987403186097599a721ee591bc
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: f301c0156265f055f0ebf7cdad8dba7f39f5ba2b
+ms.sourcegitcommit: 7208bfe8878f83d5ec92e54e2f1222ffd41bf931
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 07/14/2018
+ms.locfileid: "39044572"
 ---
 # <a name="reliable-services-lifecycle-overview"></a>Reliable Services 生命週期概觀
 > [!div class="op_single_selector"]
@@ -78,7 +79,10 @@ ms.lasthandoff: 03/28/2018
     - 如果服務目前是「主要」，會呼叫此服務的 `StatefulServiceBase.RunAsync()` 方法。
 4. 當所有複本接聽程式的 `OpenAsync()` 呼叫完成，而且呼叫 `RunAsync()` 之後，會呼叫 `StatefulServiceBase.OnChangeRoleAsync()`。 這個呼叫在服務中不常覆寫。
 
-類似於無狀態服務，在建立和開啟接聽程式及呼叫 **RunAsync** 時，不會協調先後順序。 如果您需要協調，解決方案大致相同。 具狀態服務還有一個額外情況。 假設抵達通訊接聽程式的呼叫需要[可靠的集合](service-fabric-reliable-services-reliable-collections.md)內保留的資訊。 因為在還無法讀取或寫入可靠的集合，且 **RunAsync** 也還無法啟動之前，通訊接聽程式可能先開啟，因此，一些額外的協調有必要。 最簡單且最常見的解決方法是由通訊接聽程式傳回錯誤碼，讓用戶端知道要重試要求。
+類似於無狀態服務，在建立和開啟接聽程式及呼叫 **RunAsync** 時，不會協調先後順序。 如果您需要協調，解決方案大致相同。 具狀態服務還有一個額外情況。 假設抵達通訊接聽程式的呼叫需要[可靠的集合](service-fabric-reliable-services-reliable-collections.md)內保留的資訊。
+
+   > [!NOTE]  
+   > 因為在還無法讀取或寫入可靠的集合，且 **RunAsync** 也還無法啟動之前，通訊接聽程式可能先開啟，因此，一些額外的協調有必要。 最簡單且最常見的解決方法是由通訊接聽程式傳回錯誤碼，讓用戶端知道要重試要求。
 
 ## <a name="stateful-service-shutdown"></a>具狀態服務關閉
 類似於無狀態服務，關閉期間的生命週期事件與啟動期間相同，但順序相反。 具狀態服務關閉時會發生下列事件︰

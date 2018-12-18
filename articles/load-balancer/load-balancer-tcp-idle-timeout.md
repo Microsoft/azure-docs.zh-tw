@@ -1,6 +1,6 @@
 ---
-title: "設定負載平衡器 TCP 閒置逾時 | Microsoft Docs"
-description: "設定負載平衡器 TCP 閒置逾時"
+title: 設定負載平衡器 TCP 閒置逾時 | Microsoft Docs
+description: 設定負載平衡器 TCP 閒置逾時
 services: load-balancer
 documentationcenter: na
 author: kumudd
@@ -18,6 +18,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23020903"
 ---
 # <a name="configure-tcp-idle-timeout-settings-for-azure-load-balancer"></a>設定 Azure Load Balancer 的 TCP 閒置逾時設定
 

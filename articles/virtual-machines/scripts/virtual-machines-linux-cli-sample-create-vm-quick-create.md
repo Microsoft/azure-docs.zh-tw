@@ -1,26 +1,27 @@
 ---
-title: "Azure CLI 指令碼範例 - 快速建立 Linux VM | Microsoft Docs"
-description: "Azure CLI 指令碼範例 - 快速建立 Linux VM"
+title: Azure CLI 指令碼範例 - 快速建立 Linux VM | Microsoft Docs
+description: Azure CLI 指令碼範例 - 快速建立 Linux VM
 services: virtual-machines-linux
 documentationcenter: virtual-machines
-author: neilpeterson
-manager: timlt
+author: cynthn
+manager: jeconnoc
 editor: tysonn
 tags: azure-service-management
-ms.assetid: 
+ms.assetid: ''
 ms.service: virtual-machines-linux
 ms.devlang: azurecli
 ms.topic: sample
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 02/27/2017
-ms.author: nepeters
+ms.author: cynthn
 ms.custom: mvc
-ms.openlocfilehash: 7aec40fe3ad65fea18dcc0b243f0b203f9f70765
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+ms.openlocfilehash: ec60bf2a67aebed4650edde337a40b2346eac20f
+ms.sourcegitcommit: aa988666476c05787afc84db94cfa50bc6852520
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37932284"
 ---
 # <a name="create-a-virtual-machine"></a>建立虛擬機器
 
@@ -34,11 +35,11 @@ ms.lasthandoff: 03/09/2018
 
 [!code-azurecli-interactive[main](../../../cli_scripts/virtual-machine/create-vm-quick/create-vm-quick.sh "Quick Create VM")]
 
-## <a name="clean-up-deployment"></a>清除部署 
+## <a name="clean-up-deployment"></a>清除部署
 
 執行下列命令來移除資源群組、VM 和所有相關資源。
 
-```azurecli-interactive 
+```azurecli-interactive
 az group delete --name myResourceGroup
 ```
 

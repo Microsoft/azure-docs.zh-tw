@@ -1,33 +1,29 @@
 ---
-title: Azure 訂用帳戶限制與配額 | Microsoft Docs
+title: Azure 訂用帳戶限制與配額
 description: 提供通用的 Azure 訂用帳戶和服務限制、配額和條件約束的清單。 這包括如何增加限制和最大值的詳細資訊。
-services: ''
-documentationcenter: ''
+services: multiple
 author: rothja
 manager: jeffreyg
-editor: ''
 tags: billing
 ms.assetid: 60d848f9-ff26-496e-a5ec-ccf92ad7d125
 ms.service: billing
-ms.workload: na
-ms.tgt_pltfrm: na
-ms.devlang: na
 ms.topic: article
-ms.date: 03/27/2018
+ms.date: 09/11/2018
 ms.author: byvinyal
-ms.openlocfilehash: 3218778640acc5d08cef94849e25323650c42c6c
-ms.sourcegitcommit: c3d53d8901622f93efcd13a31863161019325216
+ms.openlocfilehash: efaca1b9506ada02c52ad0833139d3b4e441d456
+ms.sourcegitcommit: d1aef670b97061507dc1343450211a2042b01641
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/29/2018
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47393608"
 ---
 # <a name="azure-subscription-and-service-limits-quotas-and-constraints"></a>Azure 訂用帳戶和服務限制、配額與限制
-本文件列出一些最常見的 Microsoft Azure 限制，有時也稱為配額。 本文件目前未涵蓋所有 Azure 服務。 清單將隨著時間擴展並更新以涵蓋更多平台。
+此文件列出一些最常見的 Microsoft Azure 限制，有時也稱為配額。 此文件目前未涵蓋所有 Azure 服務。 清單將隨著時間擴展並更新以涵蓋更多平台。
 
 請瀏覽 [Azure 定價一覽](https://azure.microsoft.com/pricing/) 以深入了解 Azure 定價。 您可以在那裡使用[定價計算機](https://azure.microsoft.com/pricing/calculator/)或透過瀏覽服務 (例如，[Windows VM](https://azure.microsoft.com/pricing/details/virtual-machines/#Windows)) 的定價詳細資料頁面來估計成本。 如需協助您管理成本的祕訣，請參閱[使用 Azure 計費與成本管理避免非預期的成本](billing/billing-getting-started.md)。
 
 > [!NOTE]
-> 如果您想要將限制或配額提升到**預設限制**以上，您可以[免費提出線上客戶支援要求](azure-supportability/resource-manager-core-quotas-request.md)。 您無法將限制提升到高於下表中所示的**上限**值。 如果沒有**上限**欄，資源即沒有可調整的限制。
+> 如果您想要將限制或配額提升到**預設限制**以上，您可以[免費提出線上客戶支援要求](azure-resource-manager/resource-manager-quota-errors.md)。 您無法將限制提升到高於下表中所示的**上限**值。 如果沒有**上限**欄，資源即沒有可調整的限制。
 >
 > [免費試用訂用帳戶](https://azure.microsoft.com/offers/ms-azr-0044p)無法增加限制或配額。 如果您有[免費試用訂用帳戶](https://azure.microsoft.com/offers/ms-azr-0044p)，則可以升級到[預付型方案](https://azure.microsoft.com/offers/ms-azr-0003p/)訂用帳戶。 如需詳細資訊，請參閱[將 Azure 免費試用升級至預付型方案](billing/billing-upgrade-azure-subscription.md)和[免費試用訂用帳戶常見問題集](https://azure.microsoft.com/free/free-account-faq)。
 >
@@ -52,38 +48,48 @@ ms.lasthandoff: 03/29/2018
 * [Application Insights](#application-insights-limits)
 * [自動化](#automation-limits)
 * [Azure Cosmos DB](#azure-cosmos-db-limits)
-* [事件格線](#azure-event-grid-limits)
+* [適用於 MySQL 的 Azure 資料庫](#azure-database-for-mysql)
+* [適用於 PostgreSQL 的 Azure 資料庫](#azure-database-for-postgresql)
+* [事件方格](#azure-event-grid-limits)
+* [Azure 地圖服務](#azure-maps-limits)
+* [Azure 監視器](#monitor-limits)
+* [Azure 原則](#azure-policy-limits)
 * [Azure Redis 快取](#azure-redis-cache-limits)
 * [備份](#backup-limits)
-* [批次](#batch-limits)
+* [Batch](#batch-limits)
+* [Batch AI](#batch-ai-limits)
 * [BizTalk 服務](#biztalk-services-limits)
 * [CDN](#cdn-limits)
 * [雲端服務](#cloud-services-limits)
 * [Container Instances](#container-instances-limits)
 * [容器登錄](#container-registry-limits)
-* [Container Service (AKS)](#container-service-aks-limits)
+* [Kubernetes 服務](#kubernetes-service-limits)
 * [Data Factory](#data-factory-limits)
 * [Data Lake Analytics](#data-lake-analytics-limits)
 * [Data Lake Store](#data-lake-store-limits)
 * [Database Migration Service](#database-migration-service-limits)
 * [DNS](#dns-limits)
 * [事件中樞](#event-hubs-limits)
+* [Azure 防火牆](#azure-firewall-limits)
+* [Front Door](#azure-front-door-service-limits)
 * [IoT 中心](#iot-hub-limits)
 * [IoT 中樞裝置佈建服務](#iot-hub-device-provisioning-service-limits)
 * [金鑰保存庫](#key-vault-limits)
-* [Log Analytics / Operational Insights](#log-analytics-limits)
+* [Log Analytics](#log-analytics-limits)
+* [受控身分識別](#managed-identity-limits)
 * [媒體服務](#media-services-limits)
 * [Mobile Engagement](#mobile-engagement-limits)
 * [行動服務](#mobile-services-limits)
-* [監視](#monitor-limits)
 * [Multi-Factor Authentication](#multi-factor-authentication)
 * [網路功能](#networking-limits)
 * [網路監看員](#network-watcher-limits)
 * [通知中樞服務](#notification-hub-service-limits)
 * [資源群組](#resource-group-limits)
+* [角色型存取控制](#role-based-access-control-limits)
 * [排程器](#scheduler-limits)
 * [Search](#search-limits)
 * [服務匯流排](#service-bus-limits)
+* [SignalR 服務](#signalr-service-limits)
 * [站台復原](#site-recovery-limits)
 * [SQL Database](#sql-database-limits)
 * [SQL 資料倉儲](#sql-data-warehouse-limits)
@@ -129,7 +135,7 @@ ms.lasthandoff: 03/29/2018
 
 [!INCLUDE [container-registry-limits](../includes/container-registry-limits.md)]
 
-### <a name="container-service-aks-limits"></a>Container Service (AKS) 限制
+### <a name="kubernetes-service-limits"></a>Kubernetes 服務限制
 [!INCLUDE [container-service-limits](../includes/container-service-limits.md)]
 
 ### <a name="networking-limits"></a>網路限制
@@ -150,11 +156,19 @@ ms.lasthandoff: 03/29/2018
 #### <a name="dns-limits"></a>DNS 限制
 [!INCLUDE [dns-limits](../includes/dns-limits.md)]
 
-### <a name="storage-limits"></a>儲存體限制
-如需儲存體帳戶限制的其他詳細資訊，請參閱 [Azure 儲存體延展性和效能目標](storage/common/storage-scalability-targets.md)。
+#### <a name="azure-firewall-limits"></a>Azure 防火牆限制
+[!INCLUDE [azure-firewall-limits](../includes/firewall-limits.md)]
 
+#### <a name="azure-front-door-service-limits"></a>Azure Front Door Service 限制
+[!INCLUDE [azure-front-door-service-limits](../includes/front-door-limits.md)]
+
+### <a name="storage-limits"></a>儲存體限制
 <!--like # storage accts -->
 [!INCLUDE [azure-storage-limits](../includes/azure-storage-limits.md)]
+
+如需儲存體帳戶限制的其他詳細資訊，請參閱 [Azure 儲存體延展性和效能目標](storage/common/storage-scalability-targets.md)。
+
+#### <a name="storage-resource-provider-limits"></a>儲存體資源提供者限制 
 
 [!INCLUDE [azure-storage-limits-azure-resource-manager](../includes/azure-storage-limits-azure-resource-manager.md)]
 
@@ -195,7 +209,7 @@ ms.lasthandoff: 03/29/2018
 [!INCLUDE [azure-cloud-services-limits](../includes/azure-cloud-services-limits.md)]
 
 ### <a name="app-service-limits"></a>應用程式服務限制
-下列應用程式服務限制包含 Web 應用程式、行動應用程式、API 應用程式和邏輯應用程式的限制。
+下列 App Service 限制包含 Web 應用程式、行動應用程式和 API 應用程式的限制。
 
 [!INCLUDE [azure-websites-limits](../includes/azure-websites-limits.md)]
 
@@ -205,6 +219,9 @@ ms.lasthandoff: 03/29/2018
 ### <a name="batch-limits"></a>Batch 限制
 [!INCLUDE [azure-batch-limits](../includes/azure-batch-limits.md)]
 
+### <a name="batch-ai-limits"></a>Batch AI 限制
+[!INCLUDE [azure-batch-ai-limits](../includes/azure-batch-ai-limits.md)]
+
 ### <a name="biztalk-services-limits"></a>BizTalk 服務限制
 下表顯示 Azure Biztalk 服務的限制。
 
@@ -213,8 +230,11 @@ ms.lasthandoff: 03/29/2018
 ### <a name="azure-cosmos-db-limits"></a>Azure Cosmos DB 限制
 Azure Cosmos DB 是一個全域調整資料庫，可以調整輸送量和儲存體來因應您應用程式的需要。 如果您有關於 Azure Cosmos DB 調整的問題，請傳送電子郵件給 askcosmosdb@microsoft.com。
 
-### <a name="mobile-engagement-limits"></a>Mobile Engagement 限制
-[!INCLUDE [azure-mobile-engagement-limits](../includes/azure-mobile-engagement-limits.md)]
+### <a name="azure-database-for-mysql"></a>適用於 MySQL 的 Azure 資料庫
+如需適用於 MySQL 的 Azure 資料庫限制詳細資訊，請參閱[適用於 MySQL 的 Azure 資料庫中的限制](mysql/concepts-limits.md)。
+
+### <a name="azure-database-for-postgresql"></a>適用於 PostgreSQL 的 Azure 資料庫
+如需適用於 PostgreSQL 的 Azure 資料庫限制詳細資訊，請參閱[適用於 PostgreSQL 的 Azure 資料庫中的限制](postgresql/concepts-limits.md)。
 
 ### <a name="search-limits"></a>搜尋限制
 定價層會決定搜尋服務的容量和限制。 層級包括：
@@ -281,6 +301,12 @@ Azure Cosmos DB 是一個全域調整資料庫，可以調整輸送量和儲存�
 ### <a name="azure-event-grid-limits"></a>Azure Event Grid 限制
 [!INCLUDE [event-grid-limits](../includes/event-grid-limits.md)]
 
+### <a name="azure-maps-limits"></a>Azure 地圖服務限制
+[!INCLUDE [maps-limits](../includes/maps-limits.md)]
+
+### <a name="azure-policy-limits"></a>Azure 原則限制
+[!INCLUDE [policy-limits](../includes/azure-policy-limits.md)]
+
 ### <a name="storsimple-system-limits"></a>StorSimple 系統限制
 [!INCLUDE [storsimple-limits-table](../includes/storsimple-limits-table.md)]
 
@@ -289,6 +315,9 @@ Azure Cosmos DB 是一個全域調整資料庫，可以調整輸送量和儲存�
 
 ### <a name="backup-limits"></a>備份限制
 [!INCLUDE [azure-backup-limits](../includes/azure-backup-limits.md)]
+
+### <a name="signalr-service-limits"></a>SignalR 服務限制
+[!INCLUDE [signalr-service-limits](../includes/signalr-service-limits.md)]
 
 ### <a name="site-recovery-limits"></a>Site Recovery 限制
 [!INCLUDE [site-recovery-limits](../includes/site-recovery-limits.md)]
@@ -311,8 +340,14 @@ Azure Cosmos DB 是一個全域調整資料庫，可以調整輸送量和儲存�
 ### <a name="automation-limits"></a>自動化限制
 [!INCLUDE [automation-limits](../includes/azure-automation-service-limits.md)]
 
+### <a name="managed-identity-limits"></a>受控身分識別限制
+[!INCLUDE [automation-limits](~/includes/managed-identity-limits.md)]
+
+### <a name="role-based-access-control-limits"></a>角色型存取控制限制
+[!INCLUDE [role-based-access-control-limits](../includes/role-based-access-control-limits.md)]
+
 ### <a name="sql-database-limits"></a>SQL Database 限制
-如需 SQL Database 的限制，請參閱 [SQL Database 資源限制](sql-database/sql-database-resource-limits.md)。
+如需了解 SQL Database 限制，請參閱 [單一資料庫的 SQL Database 資源限制](sql-database/sql-database-vcore-resource-limits-single-databases.md)和[彈性集區與集區資料庫的 SQL Database 資源限制](sql-database/sql-database-vcore-resource-limits-elastic-pools.md)。
 
 ### <a name="sql-data-warehouse-limits"></a>SQL 資料倉儲限制
 如需了解 SQL 資料倉儲限制，請參閱 [SQL 資料倉儲資源限制](sql-data-warehouse/sql-data-warehouse-service-capacity-limits.md)。

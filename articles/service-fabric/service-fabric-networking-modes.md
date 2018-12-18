@@ -1,24 +1,25 @@
 ---
-title: "設定 Azure Service Fabric 容器服務的網路模式 | Microsoft Docs"
-description: "了解如何設定 Azure Service Fabric 所支援的不同網路模式。"
+title: 設定 Azure Service Fabric 容器服務的網路模式 | Microsoft Docs
+description: 了解如何設定 Azure Service Fabric 所支援的不同網路模式。
 services: service-fabric
 documentationcenter: .net
 author: mani-ramaswamy
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: d552c8cd-67d1-45e8-91dc-871853f44fc6
 ms.service: service-fabric
 ms.devlang: dotNet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 2/23/2018
 ms.author: subramar
-ms.openlocfilehash: fafa7dc9ae84e49cdadcb047984792b353429df7
-ms.sourcegitcommit: fbba5027fa76674b64294f47baef85b669de04b7
+ms.openlocfilehash: 869b87b8df3b1f532a33e943e728681b358ed8b4
+ms.sourcegitcommit: d8ffb4a8cef3c6df8ab049a4540fc5e0fa7476ba
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/24/2018
+ms.lasthandoff: 06/20/2018
+ms.locfileid: "36287621"
 ---
 # <a name="service-fabric-container-networking-modes"></a>Service Fabric 容器網路模式
 
@@ -230,7 +231,23 @@ ms.lasthandoff: 02/24/2018
      </Endpoints>
    </Resources>
    ```
+   
+6. 就 Windows 而言、VM 重新開機將會導致開放式網路重新建立。 這是為了緩解網路堆疊中潛藏的問題。 預設行為是重新建立網路。 如果必須關閉此行為，您可以在進行組態升級之前使用下列組態。
 
+```json
+"fabricSettings": [
+                {
+                    "name": "Setup",
+                    "parameters": [
+                    {
+                            "name": "SkipContainerNetworkResetOnReboot",
+                            "value": "true"
+                    }
+                    ]
+                }
+            ],          
+ ``` 
+ 
 ## <a name="next-steps"></a>後續步驟
 * [了解 Service Fabric 應用程式模型](service-fabric-application-model.md)
 * [深入了解 Service Fabric 服務資訊清單資源](https://docs.microsoft.com/azure/service-fabric/service-fabric-service-manifest-resources)

@@ -1,6 +1,6 @@
 ---
-title: "Azure Service Fabric 應用程式模型 | Microsoft Docs"
-description: "如何在 Service Fabric 中建立模型和描述應用程式與服務。"
+title: Azure Service Fabric 應用程式模型 | Microsoft Docs
+description: 如何在 Service Fabric 中建立模型和描述應用程式與服務。
 services: service-fabric
 documentationcenter: .net
 author: rwike77
@@ -9,16 +9,17 @@ editor: mani-ramaswamy
 ms.assetid: 17a99380-5ed8-4ed9-b884-e9b827431b02
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 12/07/2017
+ms.date: 2/23/2018
 ms.author: ryanwi
-ms.openlocfilehash: d5f6fbb9d9c0bc0d9762f8d6b4b4eb3b02d29adc
-ms.sourcegitcommit: e266df9f97d04acfc4a843770fadfd8edf4fa2b7
+ms.openlocfilehash: dd453f393620923041eb8fa07b551f4945f48235
+ms.sourcegitcommit: eb75f177fc59d90b1b667afcfe64ac51936e2638
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/11/2017
+ms.lasthandoff: 05/16/2018
+ms.locfileid: "34204629"
 ---
 # <a name="model-an-application-in-service-fabric"></a>在 Service Fabric 中模型化應用程式
 本文提供 Azure Service Fabric 應用程式模型的概觀，以及如何透過資訊清單檔案定義應用程式和服務。

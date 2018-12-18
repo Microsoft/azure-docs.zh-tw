@@ -2,18 +2,22 @@
 title: Azure SQL Database 記憶體內部技術 | Microsoft Docs
 description: SQL Database 記憶體內部技術大幅提升交易和分析工作負載的效能。
 services: sql-database
-author: jodebrui
-manager: craigg
 ms.service: sql-database
-ms.custom: develop databases
-ms.topic: article
-ms.date: 03/21/2018
+ms.subservice: development
+ms.custom: ''
+ms.devlang: ''
+ms.topic: conceptual
+author: jodebrui
 ms.author: jodebrui
-ms.openlocfilehash: 442c860a13e2af1d5398fb30a6069a0e3764ee64
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.reviewer: ''
+manager: craigg
+ms.date: 07/16/2018
+ms.openlocfilehash: 8fd430aa710c7e36133b40c7079b9d727774c68f
+ms.sourcegitcommit: 51a1476c85ca518a6d8b4cc35aed7a76b33e130f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47166923"
 ---
 # <a name="optimize-performance-by-using-in-memory-technologies-in-sql-database"></a>使用 SQL Database 中的記憶體內部技術將效能最佳化
 
@@ -22,7 +26,7 @@ ms.lasthandoff: 03/23/2018
 以下是記憶體內部 OLTP 如何幫助大幅提升效能的兩個範例︰
 
 - 由於使用記憶體內部 OLTP，[Quorum Business Solutions 能使其工作負載倍增，同時將 DTU 提高 70%](https://customers.microsoft.com/story/quorum-doubles-key-databases-workload-while-lowering-dtu-with-sql-database)。
-    - DTU 表示「資料庫輸送量單位」，其中包含對資源耗用的測量。
+    - DTU 表示「資料庫交易單位」，其中包含對資源耗用的測量。
 - 下列影片以範例工作負載示範資源耗用量的重大改進︰[Azure SQL Database 影片中的記憶體內部 OLTP](https://channel9.msdn.com/Shows/Data-Exposed/In-Memory-OTLP-in-Azure-SQL-DB)。
     - 如需詳細資訊，請參閱部落格文章︰[Azure SQL Database 中的記憶體內 OLTP 部落格文章](https://azure.microsoft.com/blog/in-memory-oltp-in-azure-sql-database/) \(英文\)
 
@@ -36,14 +40,14 @@ ms.lasthandoff: 03/23/2018
 
 Azure SQL Database 擁有下列記憶體內部技術︰
 
-- 「記憶體內部 OLTP」可增加輸送量並減少交易處理的延遲。 受益於記憶體內部 OLTP 的案例包括︰高輸送量的交易處理 (例如股票交易和網路遊戲)、從事件或 IoT 裝置擷取資料、快取、資料載入，以及暫存資料表和資料表變數等案例。
+- 「記憶體內部 OLTP」可增加交易並減少交易處理的延遲。 受益於記憶體內部 OLTP 的案例包括︰高輸送量的交易處理 (例如股票交易和網路遊戲)、從事件或 IoT 裝置擷取資料、快取、資料載入，以及暫存資料表和資料表變數等案例。
 - 「叢集資料行存放區索引」可減少儲存體使用量 (最多 10 倍)，並提升報告和分析查詢的效能。 您可以將它用於資料超市中的事實資料表，在資料庫中容納更多資料並提升效能。 另外，您還可以將它用於操作資料庫中的歷史資料，則可封存並查詢多達 10 倍以上的資料。
 - 「非叢集資料行存放區索引」 (適用於 HTAP) 可讓您透過直接查詢操作資料庫，即時深入了解您的業務，而不必執行昂貴的擷取、轉換和載入 (ETL) 程序並等候資料倉儲填入資料。 非叢集資料行存放區索引可極為快速地對 OLTP 資料庫執行分析查詢，同時降低對操作工作負載的影響。
 - 您也可以結合記憶體最佳化資料表與資料行存放區索引。 結合它們可讓您執行非常快速的交易處理，並快速地*同時*對相同的資料執行分析查詢。
 
 資料行存放區和記憶體內部 OLTP 已分別於 2012 年和 2014 年起納入成為 SQL Server 產品的一部分。 Azure SQL Database 和 SQL Server 共用相同的記憶體內部技術實作。 未來，這些技術的新功能會先在 Azure SQL Database 中推出，然後才在 SQL Server 中推出。
 
-本主題從各個面向說明 Azure SQL Database 特有的記憶體內部 OLTP 和資料行存放區索引，還包含範例：
+本文從各個面向說明 Azure SQL Database 特有的記憶體內部 OLTP 和資料行存放區索引，還包含範例：
 - 您將了解這些技術對儲存體和資料大小限制的影響。
 - 您將了解如何管理在不同定價層之間移動採用這些技術的資料庫。
 - 您將看到兩個範例，其分別示範如何在 Azure SQL Database 中使用記憶體內部 OLTP 以及資料行存放區索引。
@@ -71,7 +75,7 @@ Azure SQL Database 擁有下列記憶體內部技術︰
 
 記憶體內部 OLTP 包含記憶體最佳化資料表，以用來儲存使用者資料。 這些資料表必須可容納於記憶體。 因為您是直接在 SQL Database 服務中管理記憶體，我們有使用者資料配額的概念。 這個概念稱為「記憶體內部 OLAP 儲存體」。
 
-每個受支援的獨立資料庫定價層以及每個彈性集區定價層都包含一定數量的記憶體內部 OLTP 儲存體。 在撰寫本文時，每 125 個資料庫交易單位 (DTU) 或彈性資料庫交易單位 (eDTU)，您會取得 1 GB 的儲存體。 如需詳細資訊，請參閱[資源限制](sql-database-resource-limits.md)。
+每個受支援的單一資料庫定價層以及每個彈性集區定價層都包含一定數量的記憶體內部 OLTP 儲存體。 請參閱[以 DTU 為基礎的資源限制 - 單一資料庫](sql-database-dtu-resource-limits-single-databases.md)、[以 DTU 為基礎的資源限制 - 彈性集區](sql-database-dtu-resource-limits-elastic-pools.md)、[以虛擬核心為基礎的資源限制 - 單一資料庫](sql-database-vcore-resource-limits-single-databases.md)及[以虛擬核心為基礎的資源限制 - 彈性集區](sql-database-vcore-resource-limits-elastic-pools.md)。
 
 下列項目計入記憶體內部 OLTP 儲存體容量上限︰
 
@@ -87,12 +91,12 @@ Azure SQL Database 擁有下列記憶體內部技術︰
 
 使用彈性集區時，集區中的所有資料庫會共用記憶體內部 OLTP 儲存體。 因此，一個資料庫中的使用量可能會影響其他資料庫。 對此，您可以採取以下兩個對策︰
 
-- 將資料庫的最大 eDTU 設定為低於整個集區的 eDTU 計數。 此最大值會將集區中任何資料庫的記憶體內部 OLTP 儲存體使用量上限，限制為對應到 eDTU 計數的大小。
-- 設定大於 0 的最小 eDTU。 此最小值可確保集區中的每個資料庫，都能擁有與所設定之最小 eDTU 相對應的可用記憶體內部 OLTP 儲存體數量。
+- 將資料庫的 `Max-eDTU` 或 `MaxvCore` 設定為低於整個集區的 eDTU 或虛擬核心計數。 此最大值會將集區中任何資料庫的記憶體內部 OLTP 儲存體使用量上限，限制為對應到 eDTU 計數的大小。
+- 設定大於 0 的 `Min-eDTU` 或 `MinvCore`。 此最小值可確保集區中的每個資料庫，都能擁有與所設定 `Min-eDTU` 或 `vCore` 相對應的可用記憶體內部 OLTP 儲存體數量。
 
 ### <a name="data-size-and-storage-for-columnstore-indexes"></a>資料行存放區索引的資料大小和儲存體
 
-資料行存放區索引不需要納入記憶體中。 因此，索引大小的唯一上限是整體資料庫大小上限，相關說明請參閱 [SQL Database 服務層](sql-database-service-tiers.md)一文。
+資料行存放區索引不需要納入記憶體中。 因此，索引大小的唯一上限是整體資料庫大小上限，相關說明請參閱 [DTU 形式的購買模型](sql-database-service-tiers-dtu.md)和[虛擬核心形式的購買模型](sql-database-service-tiers-vcore.md) 一文。
 
 當您使用叢集資料行存放區索引時，基底表格儲存體會使用單資料行式壓縮。 壓縮可大幅降低使用者資料的儲存體使用量，這表示您可以在資料庫中容納更多資料。 若要再進一步壓縮，您可以使用[單資料行式封存壓縮](https://msdn.microsoft.com/library/cc280449.aspx#Using Columnstore and Columnstore Archive Compression)。 能達到多大壓縮量取決於資料性質，但 10 倍的壓縮並不罕見。
 
@@ -152,7 +156,7 @@ SELECT * FROM sys.sql_modules WHERE uses_native_compilation=1
 
 #### <a name="installation-steps"></a>安裝步驟
 
-1. 在 [Azure 入口網站](https://portal.azure.com/)中，於伺服器上建立進階資料庫。 將 [來源]  設定為 AdventureWorksLT 範例資料庫。 如需詳細指示，請參閱[建立您的第一個 Azure SQL Database](sql-database-get-started-portal.md)。
+1. 在 [Azure 入口網站](https://portal.azure.com/)中，於伺服器上建立進階或業務關鍵資料庫。 將 [來源]  設定為 AdventureWorksLT 範例資料庫。 如需詳細指示，請參閱[建立您的第一個 Azure SQL Database](sql-database-get-started-portal.md)。
 
 2. 使用 SQL Server Management Studio [(SSMS.exe)](http://msdn.microsoft.com/library/mt238290.aspx)連接到資料庫。
 
@@ -223,8 +227,8 @@ SELECT uses_native_compilation, OBJECT_NAME(object_id), definition
 
 下列兩個預存程序  的唯一差別在於第一個程序會使用記憶體最佳化資料表版本，而第二個程序會使用一般磁碟資料表：
 
-- SalesLT**.**usp_InsertSalesOrder**_inmem**
-- SalesLT**.**usp_InsertSalesOrder**_ondisk**
+- SalesLT **.** usp_InsertSalesOrder **_inmem**
+- SalesLT **.** usp_InsertSalesOrder **_ondisk**
 
 
 在本節中，您會了解如何使用便利的 **ostress.exe** 公用程式，在壓力層級執行兩個預存程序。 您可以比較完成兩個壓力回合所需的時間。

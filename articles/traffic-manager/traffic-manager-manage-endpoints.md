@@ -1,11 +1,11 @@
 ---
-title: "在 Azure 流量管理員中管理端點 | Microsoft Docs"
-description: "本文將協助您從 Azure 流量管理員加入、移除、啟用和停用端點。"
+title: 在 Azure 流量管理員中管理端點 | Microsoft Docs
+description: 本文將協助您從 Azure 流量管理員加入、移除、啟用和停用端點。
 services: traffic-manager
-documentationcenter: 
+documentationcenter: ''
 author: kumudd
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: ade2bbc2-35a7-43c5-8001-4698f7254526
 ms.service: traffic-manager
 ms.devlang: na
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 094061b19b0a707eace42ae47f39d7a666364d58
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 12/08/2017
+ms.locfileid: "26577374"
 ---
 # <a name="add-disable-enable-or-delete-endpoints"></a>新增、停用、啟用或刪除端點
 

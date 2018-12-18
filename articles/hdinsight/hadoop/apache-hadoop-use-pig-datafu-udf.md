@@ -1,31 +1,29 @@
 ---
-title: "在 HDInsight 中搭配使用 DataFu 與 Pig - Azure | Microsoft Docs"
-description: "DataFu 是搭配 Hadoop 使用的程式庫集合。 了解如何在 HDInsight 叢集上搭配使用 DataFu 與 Pig。"
+title: 在 HDInsight 上搭配使用 Apache DataFu 與 Pig - Azure
+description: Apache DataFu Pig 是搭配 Hadoop 上 Pig 使用的程式庫集合。 了解如何在 HDInsight 叢集上搭配使用 DataFu 與 Pig。
 services: hdinsight
-documentationcenter: 
-author: Blackmist
-manager: jhubbard
-editor: cgronlun
-ms.assetid: 0016721a-82be-4773-88ad-91e6b2c21cbb
+author: jasonwhowell
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 01/17/2018
-ms.author: larryfr
-ms.openlocfilehash: d9aaef778f08500f45b6d1260f2a5d301fabeba8
-ms.sourcegitcommit: f1c1789f2f2502d683afaf5a2f46cc548c0dea50
+ms.topic: conceptual
+ms.date: 06/16/2018
+ms.author: jasonh
+ms.openlocfilehash: 3d276de1910289e1f79d07c111eee1ac33e247ba
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/18/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43045847"
 ---
-# <a name="use-datafu-with-pig-on-hdinsight"></a>在 HDInsight 上搭配使用 DataFu 與 Pig
+# <a name="use-apache-datafu-pig-with-pig-on-hdinsight"></a>搭配使用 Apache DataFu Pig 與 HDInsight 上的 Pig
 
-了解如何搭配 HDInsight 使用 DataFu。 DataFu 是搭配 Hadoop 上的 Pig 使用的開放原始碼程式庫集合。
+了解如何使用 Apache DataFu Pig 搭配 HDInsight。
 
-## <a name="prerequisites"></a>先決條件
+DataFu Pig 是搭配 Hadoop 上 Pig 使用的開放原始碼程式庫集合。
+如需有關 DataFu Pig 的詳細資訊，請參閱 [https://datafu.apache.org/](https://datafu.apache.org/)。
+
+## <a name="prerequisites"></a>必要條件
 
 * Azure 訂用帳戶。
 
@@ -43,20 +41,41 @@ ms.lasthandoff: 01/18/2018
 >
 > 如果您使用 Windows 架構的叢集或是高於 3.3 版的 Linux 架構叢集，請略過本節。
 
-可以從 Maven 儲存機制下載並安裝 DataFu。 使用下列步驟將 DataFu 新增至您的 HDInsight 叢集：
+可以從 Maven 儲存機制下載並安裝 DataFu。 使用下列步驟來尋找您所需的版本，並將其新增至您的 HDInsight 叢集：
+
+> [!WARNING]
+> DataFu 版本中可能會有 HDInsight 不符合的需求。 例如，如果您使用較舊版的 DataFu 時，可能需要與 HDInsight 中所包含不同版本的 Pig。
+
+### <a name="find-a-version"></a>尋找版本
+
+1. 在 Web 瀏覽器中，巡覽至 https://mvnrepository.com/artifact/org.apache.datafu/datafu-pig 並尋找您所需的版本。
+
+2. 選取連結的版本號碼。
+
+3. 選取 [檢視所有] 來檢視所有檔案。
+
+4. 在檔案清單中，尋找 .jar 檔案。 通常這是所列出的最大檔案，因為它包含所有相依性。 以滑鼠右鍵按一下連結，並複製連結位址。
+
+### <a name="download-datafu-to-hdinsight"></a>將 DataFu 下載到 HDInsight
 
 1. 使用 SSH 連線至以 Linux 為基礎的 HDInsight 叢集： 如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](../hdinsight-hadoop-linux-use-ssh-unix.md)。
 
-2. 使用下列命令以 wget 公用程式下載 DataFu jar 檔案，或複製連結並在瀏覽器中貼上來開始下載。
+2. 使用下列命令來下載使用 wget 公用程式的 DataFu jar 檔案：
+
+    > [!IMPORTANT]
+    > 將命令中的連結取代為您稍早複製的 URL。
 
     ```
-    wget http://central.maven.org/maven2/com/linkedin/datafu/datafu/1.2.0/datafu-1.2.0.jar
+    wget http://central.maven.org/maven2/org/apache/datafu/datafu-pig/1.4.0/datafu-pig-1.4.0.jar
     ```
 
 3. 接下來，將檔案上傳至 HDInsight 叢集的預設儲存體。 如果將檔案放在預設儲存體中，則叢集的所有節點都可使用此檔案。
 
+    > [!IMPORTANT]
+    > 將檔案名稱中的版本號碼取代為您已下載的版本。
+
     ```
-    hdfs dfs -put datafu-1.2.0.jar /example/jars
+    hdfs dfs -put datafu-pig-1.4.0.jar /example/jars
     ```
 
     > [!NOTE]
@@ -69,9 +88,9 @@ ms.lasthandoff: 01/18/2018
 > [!IMPORTANT]
 > 如果您使用上一節的步驟手動安裝 DataFu，您必須先進行註冊才能使用。
 >
-> * 如果叢集使用 Azure 儲存體，請使用 `wasb://` 路徑。 例如： `register wasb:///example/jars/datafu-1.2.0.jar`。
+> * 如果叢集使用 Azure 儲存體，請使用 `wasb://` 路徑。 例如： `register wasb:///example/jars/datafu-pig-1.4.0.jar`。
 >
-> * 如果叢集使用 Azure Data Lake Store，請使用 `adl://` 路徑。 例如： `register adl://home/example/jars/datafu-1.2.0.jar`。
+> * 如果叢集使用 Azure Data Lake Store，請使用 `adl://` 路徑。 例如： `register adl://home/example/jars/datafu-pig-1.4.0.jar`。
 
 您通常會定義 DataFu 函式的別名。 下列範例會定義 `SHA` 的別名：
 
@@ -120,5 +139,5 @@ DUMP mask;
 
 如需 DataFu 或 Pig 的詳細資訊，請參閱下列文件：
 
-* [Apache DataFu Pig 指南](http://datafu.incubator.apache.org/docs/datafu/guide.html)(英文)。
+* [開始使用 Apache DataFu Pig](https://datafu.apache.org/docs/datafu/getting-started.html)。
 * [搭配 HDInsight 使用 Pig](hdinsight-use-pig.md)

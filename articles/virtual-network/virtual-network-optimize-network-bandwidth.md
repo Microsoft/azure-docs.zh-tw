@@ -1,12 +1,12 @@
 ---
-title: "最佳化 VM 網路輸送量 | Microsoft Docs"
-description: "了解如何最佳化 Azure 虛擬機器網路輸送量。"
+title: 最佳化 VM 網路輸送量 | Microsoft Docs
+description: 了解如何最佳化 Azure 虛擬機器網路輸送量。
 services: virtual-network
 documentationcenter: na
 author: steveesp
 manager: Gerald DeGrace
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: virtual-network
 ms.devlang: na
 ms.topic: article
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 059dae3d8a0e716adc95ad2296843a45745a415d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 02/09/2018
+ms.locfileid: "29132886"
 ---
 # <a name="optimize-network-throughput-for-azure-virtual-machines"></a>最佳化 Azure 虛擬機器的網路輸送量
 

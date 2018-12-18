@@ -1,0 +1,223 @@
+items:
+- name: 驗證文件
+  href: index.yml
+- name: 概觀
+  items:
+  - name: 什麼是驗證？
+    href: overview-authentication.md
+- name: 快速入門
+  items:
+  - name: 設定密碼重設
+    href: quickstart-sspr.md
+- name: 教學課程
+  items:
+  - name: 1 為應用程式啟用 MFA
+    href: tutorial-mfa-applications.md
+  - name: 2 啟用 SSPR 試驗
+    href: tutorial-sspr-pilot.md
+  - name: 啟用 SSPR 內部部署整合
+    href: tutorial-enable-writeback.md
+  - name: 啟用 Windows 10 密碼重設
+    href: tutorial-sspr-windows.md
+  - name: 整合 Azure Identity Protection
+    href: tutorial-risk-based-sspr-mfa.md
+- name: 概念
+  items:
+  - name: 驗證方法
+    href: concept-authentication-methods.md
+  - name: 聚合式註冊
+    href: concept-registration-mfa-sspr-converged.md
+  - name: 密碼重設
+    items:
+    - name: 密碼重設如何運作
+      href: concept-sspr-howitworks.md
+    - name: 密碼重設選項
+      href: concept-sspr-customization.md
+    - name: 密碼重設原則
+      href: concept-sspr-policy.md
+    - name: 我需要哪些授權？
+      href: concept-sspr-licensing.md
+    - name: 內部部署整合
+      href: concept-sspr-writeback.md
+  - name: Multi-Factor Authentication
+    items:
+    - name: MFA 的運作方式
+      href: concept-mfa-howitworks.md
+    - name: 我應該使用哪個版本？
+      href: concept-mfa-whichversion.md
+    - name: 授權您的使用者
+      href: concept-mfa-licensing.md
+    - name: 管理驗證提供者
+      href: concept-mfa-authprovider.md
+    - name: 安全性指導
+      href: multi-factor-authentication-security-best-practices.md
+    - name: MFA for Office 365
+      href: https://support.office.com/article/Plan-for-multi-factor-authentication-for-Office-365-Deployments-043807b2-21db-4d5c-b430-c8a6dee0e6ba
+    - name: MFA 常見問題集
+      href: multi-factor-authentication-faq.md
+  - name: Azure AD 密碼保護
+    items:
+    - name: 避免在雲端使用弱式密碼
+      href: concept-password-ban-bad.md
+    - name: 避免在內部部署時使用弱式密碼
+      href: concept-password-ban-bad-on-premises.md
+  expanded: true
+- name: 使用說明指南
+  items:
+  - name: 自助式密碼重設
+    items:
+    - name: 部署自助密碼重設
+      href: howto-sspr-deployment.md
+    - name: 預先登錄驗證資料
+      href: howto-sspr-authenticationdata.md
+    - name: 啟用密碼回寫
+      href: howto-sspr-writeback.md
+    - name: 適用於 Windows 7、8 和 8.1 的 SSPR
+      href: howto-sspr-windows-7-8.md
+  - name: 雲端式 MFA
+    items:
+    - name: 部署雲端式 MFA
+      href: howto-mfa-getstarted.md
+    - name: 每個使用者 MFA
+      href: howto-mfa-userstates.md
+    - name: 使用者與裝置設定
+      href: howto-mfa-userdevicesettings.md
+    - name: 配置設定
+      href: howto-mfa-mfasettings.md
+    - name: 目錄同盟
+      items:
+      - name: Windows Server 2016 AD FS 介面卡
+        href: https://docs.microsoft.com/windows-server/identity/ad-fs/operations/configure-ad-fs-and-azure-mfa
+      - name: 同盟服務
+        href: multi-factor-authentication-get-started-adfs.md
+      - name: 使用 AD FS
+        href: howto-mfa-adfs.md
+    - name: RADIUS 整合
+      items:
+      - name: 使用現有的網路原則伺服器
+        href: howto-mfa-nps-extension.md
+      - name: NPS 擴充功能的進階組態
+        href: howto-mfa-nps-extension-advanced.md
+      - name: 遠端桌面閘道器
+        href: howto-mfa-nps-extension-rdg.md
+      - name: VPN
+        href: howto-mfa-nps-extension-vpn.md
+  - name: 禁用密碼清單
+    items:
+    - name: 設定禁用密碼清單
+      href: howto-password-ban-bad.md
+    - name: 部署 Azure AD 密碼保護
+      href: howto-password-ban-bad-on-premises.md
+    - name: 設定 Azure AD 密碼保護
+      href: howto-password-ban-bad-on-premises-operations.md
+    - name: 監視 Azure AD 密碼保護
+      href: howto-password-ban-bad-on-premises-troubleshoot.md
+  - name: Azure AD 智慧鎖定
+    href: howto-password-smart-lockout.md
+  - name: Windows Hello 企業版
+    href: https://docs.microsoft.com/windows/security/identity-protection/hello-for-business/hello-identity-verification
+  - name: 手機無密碼登入
+    href: howto-authentication-phone-sign-in.md
+  - name: 憑證式驗證
+    items:
+    - name: 開始使用憑證驗證
+      href: active-directory-certificate-based-authentication-get-started.md
+      items:
+      - name: Android 裝置上的 CBA
+        href: active-directory-certificate-based-authentication-android.md
+      - name: iOS 裝置上的 CBA
+        href: active-directory-certificate-based-authentication-ios.md
+  - name: 開發
+    items:
+    - name: 將 MFA 建置到自訂應用程式中
+      href: howto-mfa-sdk.md
+  - name: 報告
+    items:
+    - name: SSPR 報告
+      href: howto-sspr-reporting.md
+    - name: MFA 報告
+      href: howto-mfa-reporting.md
+    - name: 資料收集
+      href: howto-mfa-reporting-datacollection.md
+  - name: MFA Server
+    items:
+    - name: 部署 MFA 內部部署
+      href: howto-mfaserver-deploy.md
+    - name: '安裝使用者入口網站 '
+      href: howto-mfaserver-deploy-userportal.md
+    - name: Mobile App Web 服務
+      href: howto-mfaserver-deploy-mobileapp.md
+    - name: 設定高可用性
+      href: howto-mfaserver-deploy-ha.md
+    - name: 升級 MFA 伺服器
+      href: howto-mfaserver-deploy-upgrade.md
+    - name: 從 PhoneFactor 升級
+      href: howto-mfaserver-deploy-upgrade-pf.md
+    - name: Windows 驗證
+      href: howto-mfaserver-windows.md
+    - name: IIS Web Apps
+      href: howto-mfaserver-iis.md
+    - name: 目錄整合
+      items:
+      - name: LDAP 驗證
+        href: howto-mfaserver-dir-ldap.md
+      - name: RADIUS 驗證
+        href: howto-mfaserver-dir-radius.md
+      - name: Active Directory
+        href: howto-mfaserver-dir-ad.md
+    - name: 目錄同盟
+      items:
+      - name: 使用 AD FS 2.0
+        href: howto-mfaserver-adfs-2.md
+      - name: 使用 Windows Server 2012 R2 AD FS
+        href: howto-mfaserver-adfs-2012.md
+    - name: RADIUS 整合
+      items:
+      - name: 遠端桌面閘道器
+        href: howto-mfaserver-nps-rdg.md
+      - name: 進階 VPN 設定
+        href: howto-mfaserver-nps-vpn.md
+      - name: NPS 擴充功能錯誤
+        href: howto-mfa-nps-extension-errors.md
+  - name: 疑難排解
+    items:
+    - name: 停用聚合式註冊
+      href: howto-registration-mfa-sspr-converged-troubleshoot.md
+    - name: SSPR 疑難排解
+      href: active-directory-passwords-troubleshoot.md
+    - name: SSPR 常見問題集
+      href: active-directory-passwords-faq.md
+    - name: MFA 常見問題集
+      href: multi-factor-authentication-faq.md
+    - name: NPS 擴充功能
+      href: howto-mfa-nps-extension-errors.md
+- name: 參考
+  items:
+  - name: MFA 使用者指南
+    href: ./end-user/current/multi-factor-authentication-end-user.md
+  - name: 程式碼範例
+    href: https://azure.microsoft.com/resources/samples/?service=active-directory
+  - name: Azure PowerShell Cmdlet
+    href: /powershell/azure/overview
+  - name: 服務限制
+    href: ../users-groups-roles/directory-service-limits-restrictions.md
+- name: 資源
+  items:
+  - name: Azure 意見反應論壇
+    href: https://feedback.azure.com/forums/169401-azure-active-directory
+  - name: MSDN 論壇
+    href: https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=WindowsAzureAD
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/active-directory/
+  - name: 服務更新
+    href: ../fundamentals/whats-new.md
+  - name: 堆疊溢位
+    href: http://stackoverflow.com/questions/tagged/azure-active-directory
+  - name: 影片
+    href: https://azure.microsoft.com/documentation/videos/index/?services=active-directory
+ms.openlocfilehash: 089a72487d919c6726bb4c5565e856c5c9f1b691
+ms.sourcegitcommit: 51a1476c85ca518a6d8b4cc35aed7a76b33e130f
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47161721"

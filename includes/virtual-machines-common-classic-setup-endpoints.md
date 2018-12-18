@@ -1,4 +1,20 @@
-
+---
+title: 包含檔案
+description: 包含檔案
+services: virtual-machines-windows
+author: cynthn
+ms.service: virtual-machines-windows
+ms.topic: include
+ms.date: 05/17/2018
+ms.author: cynthn
+ms.custom: include file
+ms.openlocfilehash: cfe675ca269a69c7c2bfa67638acd0afbcd1c8ea
+ms.sourcegitcommit: b6319f1a87d9316122f96769aab0d92b46a6879a
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 05/20/2018
+ms.locfileid: "34371281"
+---
 每個端點都有一個公用連接埠和一個私人連接埠：
 
 * Azure 負載平衡器使用公用連接埠接聽從網際網路到虛擬機器的連入流量。
@@ -6,7 +22,7 @@
 
 當您使用 Azure 入口網站建立端點時，會提供 IP 通訊協定的預設值以及已知網路通訊協定的 TCP 或 UDP 通訊埠。 針對自訂端點，您必須指定正確的 IP 通訊協定 (TCP 或 UDP) 以及公用和私人連接埠。 若要將連入流量隨機分散到多部虛擬機器，您必須建立負載平衡的集合，其中包含多個端點。
 
-建立端點之後，您可以使用存取控制清單 (ACL) 定義規則，根據來源 IP 位址允許或拒絕端點公用連接埠的連入流量。 不過，如果虛擬機器位於 Azure 虛擬網路，請改用網路安全性群組。 如需詳細資訊，請參閱 [關於網路安全性群組](../articles/virtual-network/virtual-networks-nsg.md)。
+建立端點之後，您可以使用存取控制清單 (ACL) 定義規則，根據來源 IP 位址允許或拒絕端點公用連接埠的連入流量。 不過，如果虛擬機器位於 Azure 虛擬網路，請改用網路安全性群組。 如需詳細資訊，請參閱 [關於網路安全性群組](../articles/virtual-network/security-overview.md)。
 
 > [!NOTE]
 > Azure 虛擬機器的防火牆組態會針對連接埠自動完成，該連接埠與 Azure 自動設定的遠端連線端點相關聯。 至於其他所有端點的指定連接埠，不會自動設定虛擬機器的防火牆。 您建立虛擬機器的端點時，需要確定虛擬機器的防火牆也允許端點組態相對應通訊協定和私人連接埠的流量。 若要設定防火牆，請參閱文件或虛擬機器上執行之作業系統的線上說明。
@@ -39,7 +55,7 @@
 >
 >
 
-如果虛擬機器位於 Azure 虛擬網路，建議使用網路安全性群組而非 ACL。 如需詳細資訊，請參閱 [關於網路安全性群組](../articles/virtual-network/virtual-networks-nsg.md)。
+如果虛擬機器位於 Azure 虛擬網路，建議使用網路安全性群組而非 ACL。 如需詳細資訊，請參閱 [關於網路安全性群組](../articles/virtual-network/security-overview.md)。
 
 1. 如果您尚未登入 Azure 入口網站，請先登入。
 2. 按一下 [虛擬機器] ，然後按一下要設定的虛擬機器名稱。

@@ -5,20 +5,21 @@ services: service-fabric
 documentationcenter: .net
 author: motanv
 manager: timlt
-editor: toddabel
+editor: heeldin
 ms.assetid: ed53ca5c-4d5e-4b48-93c9-e386f32d8b7a
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/07/2017
-ms.author: motanv;heeldin
-ms.openlocfilehash: c8ddc7732999ae555323bebaef60aa34c8f2ec17
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.author: motanv
+ms.openlocfilehash: 27c6671c170f4c03c63270772651051830d8e4ec
+ms.sourcegitcommit: 4f9fa86166b50e86cf089f31d85e16155b60559f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 06/04/2018
+ms.locfileid: "34757616"
 ---
 # <a name="testability-actions"></a>Testability 動作
 為了模擬不可靠的基礎結構，Azure Service Fabric 會提供開發人員用於模擬各種真實失敗案例及狀態轉換的方法。 這些方法會以 Testability 動作的形式公開。 這些動作是低階 API，會導致特定錯誤插入、狀態轉換或驗證。 結合這些動作後，便可以為您的服務撰寫完整的測試案例。
@@ -41,8 +42,8 @@ Testability 動作分為兩個主要貯體：
 | CleanTestState |會移除叢集的所有測試狀態，以防止測試驅動程式不正確關閉。 |CleanTestStateAsync |Remove-ServiceFabricTestState |不適用 |
 | InvokeDataLoss |會引發資料遺失至服務分割區中。 |InvokeDataLossAsync |Invoke-ServiceFabricPartitionDataLoss |非失誤性 |
 | InvokeQuorumLoss |會放置指定狀態服務分割區至仲裁遺失中。 |InvokeQuorumLossAsync |Invoke-ServiceFabricQuorumLoss |非失誤性 |
-| 移動主要複本 |將指定的狀態服務主要複本移動至指定的叢集節點。 |MovePrimaryAsync |Move-ServiceFabricPrimaryReplica |非失誤性 |
-| 移動次要複本 |將目前的服務狀態次要複本移動至不同的叢集節點。 |MoveSecondaryAsync |Move-ServiceFabricSecondaryReplica |非失誤性 |
+| MovePrimary |將指定的狀態服務主要複本移動至指定的叢集節點。 |MovePrimaryAsync |Move-ServiceFabricPrimaryReplica |非失誤性 |
+| MoveSecondary |將目前的服務狀態次要複本移動至不同的叢集節點。 |MoveSecondaryAsync |Move-ServiceFabricSecondaryReplica |非失誤性 |
 | RemoveReplica |移除叢集中的複本以模擬複本失敗案例。 這將會關閉複本，並將其轉換為 'None' 角色，進而移除其在叢集中的所有狀態。 |RemoveReplicaAsync |Remove-ServiceFabricReplica |非失誤性 |
 | RestartDeployedCodePackage |藉由重新啟動部署在叢集中之節點上的程式碼封裝，模擬程式碼封裝處理程序的失敗案例。 這會中止程式碼封裝處理程序 (會重新啟動所有由其代管的使用者服務複本)。 |RestartDeployedCodePackageAsync |Restart-ServiceFabricDeployedCodePackage |失誤性 |
 | RestartNode |藉由重新啟動節點，模擬 Service Fabric 叢集節點的失敗案例。 |RestartNodeAsync |Restart-ServiceFabricNode |失誤性 |

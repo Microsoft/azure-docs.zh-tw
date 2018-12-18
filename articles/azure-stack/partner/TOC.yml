@@ -1,0 +1,70 @@
+items:
+- name: Azure Stack 合作夥伴文件
+  href: index.yml
+- name: 概觀
+  href: index.yml
+  items:
+  - name: 適用於 Azure Stack 的驗證即服務
+    href: azure-stack-vaas-overview.md
+  - name: 版本資訊
+    href: azure-stack-vaas-release-notes.md
+  expanded: true
+- name: 教學課程
+  items:
+  - name: 設定資源
+    href: azure-stack-vaas-set-up-resources.md
+  - name: 使用 PowerShell 將 Azure Stack 驗證設為自動化
+    href: azure-stack-vaas-automate-with-powershell.md
+- name: 使用說明指南
+  items:
+  - name: 排程第一個測試
+    href: azure-stack-vaas-schedule-test-pass.md
+  - name: 部署本機代理程式
+    href: azure-stack-vaas-local-agent.md
+  - name: 驗證新的 Azure Stack 解決方案
+    href: azure-stack-vaas-validate-solution-new.md
+  - name: 建立 OEM 套件
+    href: azure-stack-vaas-create-oem-package.md
+  - name: 驗證 OEM 套件
+    href: azure-stack-vaas-validate-oem-package.md
+  - name: 驗證來自 Microsoft 的軟體更新
+    href: azure-stack-vaas-validate-microsoft-updates.md
+- name: 概念
+  items:
+  - name: 重要概念
+    href: azure-stack-vaas-key-concepts.md
+  - name: 最佳作法
+    href: azure-stack-vaas-best-practice.md
+  - name: 監視和管理 VaaS 入口網站中的測試
+    href: azure-stack-vaas-monitor-test.md
+  - name: 工作流程一般參數
+    href: azure-stack-vaas-parameters.md
+  - name: 針對驗證即服務進行疑難排解
+    href: azure-stack-vaas-troubleshoot.md
+- name: 相關參考
+  items:
+  - name: Azure Stack 文件
+    href: /azure/azure-stack
+  - name: Azure Active Directory
+    href: /azure/active-directory/
+    maintainContext: true
+- name: 資源
+  items:
+  - name: Azure Stack 藍圖
+    href: https://azure.microsoft.com/roadmap/?tag=azure-stack
+  - name: Azure Stack MSDN 論壇
+    href: https://social.msdn.microsoft.com/Forums/home?forum=AzureStack
+  - name: Azure Stack 文件意見
+    href: https://feedback.azure.com/forums/344565-azure-stack?category_id=160275
+  - name: 定價資訊
+    href: https://azure.microsoft.com/overview/azure-stack/how-to-buy/
+  - name: 堆疊溢位
+    href: http://stackoverflow.com/questions/tagged/azure-stack
+  - name: 訓練與憑證
+    href: https://docs.microsoft.com/azure/azure-stack/azure-stack-train-and-cert
+ms.openlocfilehash: 3b15fbab72d094a18a1c794ca556a719efd376dd
+ms.sourcegitcommit: ccdea744097d1ad196b605ffae2d09141d9c0bd9
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/23/2018
+ms.locfileid: "49649681"

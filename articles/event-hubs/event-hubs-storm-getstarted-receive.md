@@ -1,24 +1,25 @@
 ---
-title: "使用 Apache Storm 從 Azure 事件中樞接收事件 | Microsoft Docs"
-description: "開始使用 Apache Storm 從事件中樞接收事件"
+title: 使用 Apache Storm 從 Azure 事件中樞接收事件 | Microsoft Docs
+description: 開始使用 Apache Storm 從事件中樞接收事件
 services: event-hubs
-documentationcenter: 
-author: sethmanheim
+documentationcenter: ''
+author: ShubhaVijayasarathy
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: event-hubs
 ms.workload: na
 ms.tgt_pltfrm: java
 ms.devlang: multiple
 ms.topic: article
-ms.date: 08/15/2017
-ms.author: sethm
-ms.openlocfilehash: 5a120cc38b8ecfc6ec29be35eda12978ca8b035e
-ms.sourcegitcommit: 9a8b9a24d67ba7b779fa34e67d7f2b45c941785e
+ms.date: 04/12/2018
+ms.author: shvija
+ms.openlocfilehash: 3880ffe1b61b59e4d05e594a34e1119188177b56
+ms.sourcegitcommit: d0ea925701e72755d0b62a903d4334a3980f2149
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2018
+ms.lasthandoff: 08/09/2018
+ms.locfileid: "40002758"
 ---
 # <a name="receive-events-from-event-hubs-using-apache-storm"></a>使用 Apache Storm 從事件中樞接收事件
 

@@ -1,24 +1,25 @@
 ---
-title: "進階應用程式升級主題 | Microsoft Docs"
-description: "本文章涵蓋升級 Service Fabric 應用程式相關的一些進階主題。"
+title: 進階應用程式升級主題 | Microsoft Docs
+description: 本文章涵蓋升級 Service Fabric 應用程式相關的一些進階主題。
 services: service-fabric
 documentationcenter: .net
 author: mani-ramaswamy
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: e29585ff-e96f-46f4-a07f-6682bbe63281
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 2/5/2018
-ms.author: subramar;chackdan
-ms.openlocfilehash: 0b0ca553fb96b0a54f3b76d306ed98d95026dcd9
-ms.sourcegitcommit: 059dae3d8a0e716adc95ad2296843a45745a415d
+ms.date: 2/23/2018
+ms.author: subramar
+ms.openlocfilehash: 168d944f72c1409b5b69c9ab7c07f7fcfa04c7c8
+ms.sourcegitcommit: eb75f177fc59d90b1b667afcfe64ac51936e2638
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 05/16/2018
+ms.locfileid: "34212318"
 ---
 # <a name="service-fabric-application-upgrade-advanced-topics"></a>Service Fabric 應用程式升級：進階主題
 ## <a name="adding-or-removing-service-types-during-an-application-upgrade"></a>在應用程式升級期間新增或移除服務類型

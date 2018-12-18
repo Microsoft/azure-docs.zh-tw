@@ -1,22 +1,19 @@
 ---
-title: "Azure 搜尋服務中的索引 | Microsoft Docs"
-description: "深入了解 Azure 搜尋服務中的索引概念以及索引的使用方式。"
+title: Azure 搜尋服務中的索引 | Microsoft Docs
+description: 深入了解 Azure 搜尋服務中的索引概念以及索引的使用方式。
+author: brjohnstmsft
+manager: jlembicz
+ms.author: brjohnst
 services: search
-documentationcenter: 
-author: ashmaka
-ms.assetid: a395e166-bf2e-4fca-8bfc-116a46c5f7b1
 ms.service: search
-ms.devlang: na
-ms.workload: search
-ms.topic: get-started-article
-ms.tgt_pltfrm: na
+ms.topic: conceptual
 ms.date: 11/08/2017
-ms.author: ashmaka
-ms.openlocfilehash: 87f1121594d8577b5dacac4026aa7d86b2921d10
-ms.sourcegitcommit: 68aec76e471d677fd9a6333dc60ed098d1072cfc
+ms.openlocfilehash: cc2c56d4463203aa2561e820540acdfff651d80a
+ms.sourcegitcommit: fa493b66552af11260db48d89e3ddfcdcb5e3152
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/18/2017
+ms.lasthandoff: 04/23/2018
+ms.locfileid: "31793397"
 ---
 # <a name="indexes-in-azure-search"></a>Azure 搜尋服務中的索引
 > [!div class="op_single_selector"]

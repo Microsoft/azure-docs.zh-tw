@@ -1,11 +1,11 @@
 ---
-title: "透過 StorSimple 裝置管理員記錄支援票證 | Microsoft Docs"
-description: "描述 StorSimple 裝置管理員診斷功能，並說明如何使用它來針對 StorSimple Virtual Array 進行疑難排解。"
+title: 透過 StorSimple 裝置管理員記錄支援票證 | Microsoft Docs
+description: 描述 StorSimple 裝置管理員診斷功能，並說明如何使用它來針對 StorSimple Virtual Array 進行疑難排解。
 services: storsimple
-documentationcenter: 
+documentationcenter: ''
 author: manuaery
 manager: syadav
-editor: 
+editor: ''
 ms.assetid: a0c394df-957b-49b3-a283-38824f8847fd
 ms.service: storsimple
 ms.devlang: na
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23109996"
 ---
 # <a name="use-the-storsimple-device-manager-service-to-log-a-support-request-for-the-storsimple-virtual-array"></a>使用 StorSimple 裝置管理員服務來登錄 StorSimple Virtual Array 的支援要求
 

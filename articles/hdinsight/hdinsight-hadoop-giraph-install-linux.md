@@ -1,26 +1,20 @@
 ---
-title: "安裝並使用 HDInsight (Hadoop) 上的 Giraph | Microsoft Docs"
-description: "在本主題中，您將學習如何使用指令碼動作在以 Linux 為基礎的 HDInsight 叢集上安裝 Giraph。 透過變更叢集組態或自訂安裝服務與公用程式，指令碼動作可讓您在叢集建立期間自訂叢集。"
+title: 安裝並使用 HDInsight (Hadoop) 上的 Giraph
+description: 在本主題中，您將學習如何使用指令碼動作在以 Linux 為基礎的 HDInsight 叢集上安裝 Giraph。 透過變更叢集組態或自訂安裝服務與公用程式，指令碼動作可讓您在叢集建立期間自訂叢集。
 services: hdinsight
-documentationcenter: 
-author: Blackmist
-manager: jhubbard
-editor: cgronlun
-tags: azure-portal
-ms.assetid: 9fcac906-8f06-4002-9fe8-473e42f8fd0f
+author: jasonwhowell
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
-ms.date: 01/22/2018
-ms.author: larryfr
-ms.openlocfilehash: 1f2ee45d5d3a4dbb53faf43f67989ea92488b92a
-ms.sourcegitcommit: 1fbaa2ccda2fb826c74755d42a31835d9d30e05f
+ms.topic: conceptual
+ms.date: 04/23/2018
+ms.author: jasonh
+ms.openlocfilehash: f5d7a5587d47f7601f8dc3f65318a6b7d486f58e
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/22/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46953288"
 ---
 # <a name="install-giraph-on-hdinsight-hadoop-clusters-and-use-giraph-to-process-large-scale-graphs"></a>在 HDInsight Hadoop 叢集上安裝 Giraph，以及使用 Giraph 來處理大規模圖形
 
@@ -42,7 +36,7 @@ ms.lasthandoff: 01/22/2018
 > [!WARNING]
 > 完全支援 HDInsight 叢集隨附的元件 - Microsoft 支援服務會協助釐清與解決這些元件的相關問題。
 >
-> 自訂元件 (例如 Giraph) 則獲得商務上合理的支援，協助您進一步對問題進行疑難排解。 Microsoft 支援服務可能有能力解決問題。 如果無法解決，則您必須諮詢開放原始碼社群，以尋求該項技術的深厚專業知識。 例如，有許多社群網站可以使用，像是：[HDInsight 的 MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=hdinsight)、[http://stackoverflow.com](http://stackoverflow.com)。另外，Apache 專案在 [http://apache.org](http://apache.org) 上有專案網站，例如 [Hadoop](http://hadoop.apache.org/)。
+> 自訂元件 (例如 Giraph) 則獲得商務上合理的支援，協助您進一步對問題進行疑難排解。 Microsoft 支援服務可能有能力解決問題。 如果無法解決，則您必須諮詢開放原始碼社群，以尋求該項技術的深厚專業知識。 例如，有許多社群網站可供使用，例如：[MSDN 的 HDInsight 論壇](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=hdinsight) \(英文\)、[http://stackoverflow.com](http://stackoverflow.com) \(英文\)。 此外，Apache 專案在 [http://apache.org](http://apache.org) 上也有專案網站，例如 [Hadoop](http://hadoop.apache.org/)。
 
 
 ## <a name="what-the-script-does"></a>指令碼會執行哪些作業
@@ -64,7 +58,7 @@ ms.lasthandoff: 01/22/2018
 > [!NOTE]
 > 您可以使用下列任何方法套用指令碼動作︰
 > * Azure PowerShell
-> * Azure CLI
+> * Azure 傳統 CLI
 > * HDInsight .NET SDK
 > * Azure 資源管理員範本
 > 
@@ -76,7 +70,7 @@ ms.lasthandoff: 01/22/2018
 
    * **名稱**：輸入指令碼動作的易記名稱。
 
-   * **指令碼 URI**：https://hdiconfigactions.blob.core.windows.net/linuxgiraphconfigactionv01/giraph-installer-v01.sh
+   * **指令碼 URI**： https://hdiconfigactions.blob.core.windows.net/linuxgiraphconfigactionv01/giraph-installer-v01.sh
 
    * **HEAD**：勾選此項目
 
@@ -160,7 +154,7 @@ ms.lasthandoff: 01/22/2018
     hdfs dfs -text /example/output/shortestpaths/*
     ```
 
-    輸出應該如下列文字所示：
+    此輸出看起來類似下列文字：
 
         0    1.0
         4    5.0

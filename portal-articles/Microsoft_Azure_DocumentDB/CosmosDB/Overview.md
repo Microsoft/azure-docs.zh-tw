@@ -1,6 +1,6 @@
 ---
-title: "Azure Cosmos DB 概觀 | Microsoft Docs"
-description: "Azure 入口網站內 Azure Cosmos DB 概觀的說明內容"
+title: Azure Cosmos DB 概觀 | Microsoft Docs
+description: Azure 入口網站內 Azure Cosmos DB 概觀的說明內容
 services: cosmos-db
 author: sewatson
 manager: lwelicki
@@ -8,11 +8,12 @@ ms.service: cosmos-db
 ms.topic: article
 ms.date: 12/13/2017
 ms.author: sewatson
-ms.openlocfilehash: 9644a587d72973239e34073188ad2cd37eaab5dc
-ms.sourcegitcommit: 0e4491b7fdd9ca4408d5f2d41be42a09164db775
+ms.openlocfilehash: 13fe8d81c656aeb07947fcd8b2c8a9157b810ca6
+ms.sourcegitcommit: e2adef58c03b0a780173df2d988907b5cb809c82
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/14/2017
+ms.lasthandoff: 04/28/2018
+ms.locfileid: "32187806"
 ---
 # <a name="azure-cosmos-db-documentation"></a>Azure Cosmos DB 文件
 
@@ -50,7 +51,7 @@ Azure Cosmos DB 是全域分散式資料庫服務，此設計可讓您透過完�
 
 了解如何使用 Azure Cosmos DB 開發應用程式：
 
-- 透過 Cosmos DB 開發應用程式：[SQL](/azure/cosmos-db/tutorial-develop-sql-api-dotnet) | [MongoDB](/azure/cosmos-db/tutorial-develop-mongodb) | [Table](/azure/cosmos-db/tutorial-develop-table-dotnet) | [Graph](/azure/cosmos-db/tutorial-develop-graph-dotnet)
+- 透過 Cosmos DB 開發應用程式：[SQL](/azure/cosmos-db/tutorial-develop-sql-api-dotnet) | [MongoDB](/azure/cosmos-db/tutorial-develop-mongodb-nodejs) | [Table](/azure/cosmos-db/tutorial-develop-table-dotnet) | [Graph](/azure/cosmos-db/tutorial-develop-graph-dotnet)
 - 將資料匯入 Cosmos DB [SQL](/azure/cosmos-db/sql-api-import-data) | [MongoDB](/azure/cosmos-db/mongodb-migrate) 
 - 透過 Cosmos DB 查詢資料：[SQL](/azure/cosmos-db/tutorial-query-sql-api) | [MongoDB](/azure/cosmos-db/tutorial-query-mongodb) | [Table](/azure/cosmos-db/tutorial-query-table) | [Graph](/azure/cosmos-db/tutorial-query-graph)
 - 透過 Cosmos DB 進行全域資料庫複寫：[SQL](/azure/cosmos-db/tutorial-global-distribution-sql-api) | [MongoDB](/azure/cosmos-db/tutorial-global-distribution-mongodb) | [Table](/azure/cosmos-db/tutorial-global-distribution-table | [Graph](/azure/cosmos-db/tutorial-global-distribution-graph)

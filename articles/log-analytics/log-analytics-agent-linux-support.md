@@ -3,7 +3,7 @@ title: 針對 Azure Log Analytics Linux 代理程式 進行疑難排解 | Micros
 description: 說明 Log Analytics Linux 代理程式最常見問題的徵兆、原因和解決方法。
 services: log-analytics
 documentationcenter: ''
-author: MGoedtel
+author: mgoedtel
 manager: carmonm
 editor: ''
 ms.assetid: ''
@@ -11,14 +11,16 @@ ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 03/14/2018
 ms.author: magoedte
-ms.openlocfilehash: 80d7e39b284554ebfa8cac4488e1663b3e3648e8
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.component: na
+ms.openlocfilehash: 49a53b68fd394772f38b6040b80ec80c93d9c46c
+ms.sourcegitcommit: 5892c4e1fe65282929230abadf617c0be8953fd9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 06/29/2018
+ms.locfileid: "37131764"
 ---
 # <a name="how-to-troubleshoot-issues-with-the-linux-agent-for-log-analytics"></a>如何針對適用於 Log Analytics 之 Linux 代理程式的問題進行疑難排解
 
@@ -28,14 +30,14 @@ ms.lasthandoff: 03/16/2018
 
 ### <a name="probable-causes"></a>可能的原因
 * 上架期間指定的 Proxy 不正確
-* Log Analytics 和 Azure 自動化服務端點未列在資料中心的白名單中 
+* Log Analytics 和 Azure 自動化服務端點未列在資料中心的允許清單中 
 
 ### <a name="resolutions"></a>解決方式
 1. 使用下列命令搭配已啟用的 `-v` 選項，以便透過 OMS Agent for Linux 重新上架至 Log Analytics 服務。 這可讓透過 Proxy 連接到 OMS 服務的代理程式產生詳細資訊輸出。 
 `/opt/microsoft/omsagent/bin/omsadmin.sh -w <OMS Workspace ID> -s <OMS Workspace Key> -p <Proxy Conf> -v`
 
 2. 檢閱[更新 Proxy 設定](log-analytics-agent-manage.md#update-proxy-settings)一節以驗證您是否已正確設定代理程式透過 Proxy 伺服器通訊。    
-* 再次檢查以確認下列 Log Analytics 服務端點已列在白名單中：
+* 再次檢查以確認下列 Log Analytics 服務端點已列在允許清單中：
 
     |代理程式資源| 連接埠 | 方向 |
     |------|---------|----------|  

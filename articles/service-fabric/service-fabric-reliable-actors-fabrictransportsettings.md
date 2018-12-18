@@ -1,24 +1,25 @@
 ---
-title: "變更 Azure 微服務中的 FabricTransport 設定 | Microsoft Docs"
-description: "深入了解設定 Azure Service Fabric 動作項目通訊設定。"
+title: 變更 Azure Service Fabric 動作項目中的 FabricTransport 設定 | Microsoft Docs
+description: 深入了解設定 Azure Service Fabric 動作項目通訊設定。
 services: Service-Fabric
 documentationcenter: .net
 author: suchiagicha
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: dbed72f4-dda5-4287-bd56-da492710cd96
 ms.service: Service-Fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 04/20/2017
 ms.author: suchiagicha
-ms.openlocfilehash: 7a21dfde5544045e4961549fe5728e14647eb886
-ms.sourcegitcommit: e266df9f97d04acfc4a843770fadfd8edf4fa2b7
+ms.openlocfilehash: aa4339fa1fe4b21369004e748492ee71cbe6d616
+ms.sourcegitcommit: ebd06cee3e78674ba9e6764ddc889fc5948060c4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/11/2017
+ms.lasthandoff: 09/07/2018
+ms.locfileid: "44052134"
 ---
 # <a name="configure-fabrictransport-settings-for-reliable-actors"></a>設定 Reliable Actors 的 FabricTransport 設定
 
@@ -50,6 +51,10 @@ https://docs.microsoft.com/java/api/microsoft.servicefabric.services.remoting.fa
 ## <a name="config-package"></a>組態封裝
 
 您可以使用[組態封裝](service-fabric-application-and-service-manifests.md)修改預設組態。
+
+> [!IMPORTANT]
+> 在 Linux 節點上，憑證必須是 PEM 格式。 若要深入了解如何尋找和設定適用於 Linux 的憑證，請參閱[在 Linux 上設定憑證](./service-fabric-configure-certificates-linux.md)。 
+> 
 
 ### <a name="configure-fabrictransport-settings-for-the-actor-service"></a>設定動作項目服務的 FabricTransport 設定
 

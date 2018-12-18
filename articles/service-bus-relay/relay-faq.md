@@ -3,7 +3,7 @@ title: Azure 轉送常見問題集 | Microsoft Docs
 description: 獲得一些有關 Azure 轉送常見問題的答案。
 services: service-bus-relay
 documentationcenter: na
-author: sethmanheim
+author: spelluru
 manager: timlt
 editor: ''
 ms.assetid: 886d2c7f-838f-4938-bd23-466662fb1c8e
@@ -12,17 +12,18 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/27/2018
-ms.author: sethm
-ms.openlocfilehash: d433fb916280e98dd0f2af61728596b8566be71b
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.date: 05/21/2018
+ms.author: spelluru
+ms.openlocfilehash: e30e8c94547ac0f9106a69f1e99cf9a7c03abea5
+ms.sourcegitcommit: cb61439cf0ae2a3f4b07a98da4df258bfb479845
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 09/05/2018
+ms.locfileid: "43695892"
 ---
 # <a name="azure-relay-faqs"></a>Azure 轉送常見問題集
 
-本文提供 [Azure 轉送](https://azure.microsoft.com/services/service-bus/)的一些常見問題集 (FAQ) 答案。 如需一般的 Azure 價格和支援資訊，請參閱 [Azure 支援常見問題集](https://azure.microsoft.com/en-in/support/faq/)。
+本文提供 [Azure 轉送](https://azure.microsoft.com/services/service-bus/)的一些常見問題集 (FAQ) 答案。 如需一般的 Azure 定價和支援資訊，請參閱 [Azure 支援常見問題集](https://azure.microsoft.com/support/faq/)。
 
 ## <a name="general-questions"></a>一般問題
 ### <a name="what-is-azure-relay"></a>什麼是 Azure 轉送？
@@ -35,7 +36,7 @@ ms.lasthandoff: 03/28/2018
 先前稱為「服務匯流排轉送」的服務現在稱為 [WCF 轉送](relay-wcf-dotnet-get-started.md)。 您可以繼續如常使用這項服務。 混合式連線功能是服務的更新版本，從 Azure BizTalk 服務移植。 會繼續支援「WCF 轉送」和「混合式連線」。
 
 ## <a name="pricing"></a>價格
-本節提供轉送價格結構的一些常見問題解答。 如需一般的 Azure 價格資訊，也可以參閱 [Azure 支援常見問題集](http://go.microsoft.com/fwlink/?LinkID=185083)。 如需轉送價格的完整資訊，請參閱[服務匯流排價格詳細資料][Pricing overview]。
+本節提供轉送價格結構的一些常見問題解答。 如需一般的 Azure 定價資訊，也可以參閱 [Azure 支援常見問題集](https://azure.microsoft.com/support/faq/)。 如需轉送價格的完整資訊，請參閱[服務匯流排價格詳細資料][Pricing overview]。
 
 ### <a name="how-do-you-charge-for-hybrid-connections-and-wcf-relay"></a>混合式連接和 WCF 轉送如何收費？
 如需有關轉送價格的完整資訊，請參閱服務匯流排價格詳細資料頁面上的[混合式連線與 WCF 轉送][Pricing overview]資料表。 除了頁面上註明的價格，您還需支付您的應用程式佈建所在資料中心外部的輸出相關資料傳輸費用。
@@ -76,13 +77,13 @@ ms.lasthandoff: 03/28/2018
 使用 **netTCPRelay** WCF 繫結開啟的轉送不會將訊息視為個別的訊息，但是會視為通過系統的資料流。 當您使用此繫結時，只有傳送者和接聽程式能夠看見傳送和接收之個別訊息的框架。 對於使用 **netTCPRelay** 繫結的轉送，所有資料都會被視為資料流，以便計算計費訊息。 在此情況下，服務匯流排會以 5 分鐘為基礎，計算透過每個個別轉送傳送或接收的資料總量。 然後，它會依據 64 KB 來分割資料總量，以判斷該期間該轉送的計費訊息數目。
 
 ## <a name="quotas"></a>配額
-| 配額名稱 | Scope |  注意 | 值 |
+| 配額名稱 | 影響範圍 |  注意 | 值 |
 | --- | --- | --- | --- |
 | 轉送上的並行接聽程式 |實體 |後續對更多連線的要求將會遭到拒絕，而且呼叫端程式碼將會收到例外狀況。 |25 |
 | 服務命名空間中所有轉送端點的並行轉送連線 |命名空間 |- |5,000 |
 | 每個服務命名空間的轉送端點 |命名空間 |- |10,000 |
-| [NetOnewayRelayBinding](https://msdn.microsoft.com/library/microsoft.servicebus.netonewayrelaybinding.aspx) 和 [NetEventRelayBinding](https://msdn.microsoft.com/library/microsoft.servicebus.neteventrelaybinding.aspx) 轉送的訊息大小 |命名空間 |超出這些配額的內送訊息將會遭到拒絕，而且呼叫端程式碼將會收到例外狀況。 |64 KB |
-| [HttpRelayTransportBindingElement](https://msdn.microsoft.com/library/microsoft.servicebus.httprelaytransportbindingelement.aspx) 和 [NetTcpRelayBinding](https://msdn.microsoft.com/library/microsoft.servicebus.nettcprelaybinding.aspx) 轉送的訊息大小 |命名空間 |訊息大小沒有限制。 |無限 |
+| [NetOnewayRelayBinding](/dotnet/api/microsoft.servicebus.netonewayrelaybinding) 和 [NetEventRelayBinding](/dotnet/api/microsoft.servicebus.neteventrelaybinding) 轉送的訊息大小 |命名空間 |超出這些配額的內送訊息將會遭到拒絕，而且呼叫端程式碼將會收到例外狀況。 |64 KB |
+| [HttpRelayTransportBindingElement](/dotnet/api/microsoft.servicebus.httprelaytransportbindingelement) 和 [NetTcpRelayBinding](/dotnet/api/microsoft.servicebus.nettcprelaybinding) 轉送的訊息大小 |命名空間 |訊息大小沒有限制。 |無限 |
 
 ### <a name="does-relay-have-any-usage-quotas"></a>轉送是否有任何使用量配額？
 根據預設，對於所有雲端服務，Microsoft 會設定針對所有客戶的訂用帳戶計算的彙總每月使用量配額。 我們了解有時候您的需求可能會超過這些限制。 您可以隨時連絡客戶服務部門，讓我們知道您的需求並適當地調整這些限制。 服務匯流排的彙總使用量配額如下：
@@ -108,7 +109,7 @@ ms.lasthandoff: 03/28/2018
 
 若要使用 PowerShell 將命名空間從某個 Azure 訂用帳戶移至另一個訂用帳戶，請使用下列的命令順序。 若要執行這項作業，命名空間必須已經是作用中，而且執行 PowerShell 命令的使用者必須是來源與目標訂用帳戶的系統管理員使用者。
 
-```powershell
+```azurepowershell-interactive
 # Create a new resource group in the target subscription.
 Select-AzureRmSubscription -SubscriptionId 'ffffffff-ffff-ffff-ffff-ffffffffffff'
 New-AzureRmResourceGroup -Name 'targetRG' -Location 'East US'
@@ -136,4 +137,4 @@ Move-AzureRmResource -DestinationResourceGroupName 'targetRG' -DestinationSubscr
 
 [Pricing overview]: https://azure.microsoft.com/pricing/details/service-bus/
 [Relay exceptions]: relay-exceptions.md
-[Shared access signatures]: ../service-bus-messaging/service-bus-sas.md
+[Shared Access Signatures]: ../service-bus-messaging/service-bus-sas.md

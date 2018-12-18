@@ -1,6 +1,6 @@
 ---
-title: "Reliable Actors 計時器和提醒 | Microsoft Docs"
-description: "Service Fabric Reliable Actors 計時器和提醒簡介。"
+title: Reliable Actors 計時器和提醒 | Microsoft Docs
+description: Service Fabric Reliable Actors 計時器和提醒簡介。
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -9,16 +9,17 @@ editor: amanbha
 ms.assetid: 00c48716-569e-4a64-bd6c-25234c85ff4f
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 11/02/2017
 ms.author: vturecek
-ms.openlocfilehash: 09a979d05757adab363d9ab0c48cad9ff3b529dd
-ms.sourcegitcommit: 782d5955e1bec50a17d9366a8e2bf583559dca9e
+ms.openlocfilehash: e43aec6630a4a688ffd6c52a5e5bd711243fa662
+ms.sourcegitcommit: eb75f177fc59d90b1b667afcfe64ac51936e2638
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/02/2018
+ms.lasthandoff: 05/16/2018
+ms.locfileid: "34206786"
 ---
 # <a name="actor-timers-and-reminders"></a>動作項目計時器和提醒
 動作項目可藉由註冊計時器或提醒來排程本身的週期性工作。 本文示範如何使用計時器和提醒，以及說明它們之間的差異。

@@ -1,24 +1,19 @@
 ---
-title: "針對 Azure 匯入/匯出匯入作業準備硬碟的範例工作流程 - v1 | Microsoft Docs"
-description: "請參閱在 Azure 匯入/匯出服務中為匯入作業準備硬碟之完整程序的逐步解說。"
+title: 針對 Azure 匯入/匯出匯入作業準備硬碟的範例工作流程 - v1 | Microsoft Docs
+description: 請參閱在 Azure 匯入/匯出服務中為匯入作業準備硬碟之完整程序的逐步解說。
 author: muralikk
-manager: syadav
-editor: tysonn
 services: storage
-documentationcenter: 
-ms.assetid: 6eb1b1b7-c69f-4365-b5ef-3cd5e05eb72a
 ms.service: storage
-ms.workload: storage
-ms.tgt_pltfrm: na
-ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: 66e85bd3e9e43ae360d0507f5bdf3596abbeb7d1
-ms.sourcegitcommit: fa28ca091317eba4e55cef17766e72475bdd4c96
+ms.component: common
+ms.openlocfilehash: ae792df428d897277e15df9db3ff6f99a5b8859e
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/14/2017
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39527282"
 ---
 # <a name="sample-workflow-to-prepare-hard-drives-for-an-import-job"></a>針對匯入作業準備硬碟的範例工作流程
 本主題會引導您完成為匯入作業準備硬碟的完整程序。  
@@ -72,7 +67,7 @@ ms.lasthandoff: 12/14/2017
   
 除此之外，您可以針對所有檔案設定下列中繼資料：  
   
--   **UploadMethod：**Windows Azure Import/Export service  
+-   **UploadMethod：** Windows Azure Import/Export service  
   
 -   **DataSetName:** SampleData  
   

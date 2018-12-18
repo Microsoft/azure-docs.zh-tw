@@ -1,30 +1,25 @@
 ---
-title: "從 Azure 備份伺服器復原資料 | Microsoft Docs"
-description: "從登錄至復原服務保存庫的任何 Azure 備份伺服器，復原該保存庫中保護的資料。"
+title: 從 Azure 備份伺服器復原資料
+description: 從登錄至復原服務保存庫的任何 Azure 備份伺服器，復原該保存庫中保護的資料。
 services: backup
-documentationcenter: 
 author: nkolli1
 manager: shreeshd
-editor: 
-ms.assetid: a55f8c6b-3627-42e1-9d25-ed3e4ab17b1f
 ms.service: backup
-ms.workload: storage-backup-recovery
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 08/18/2017
-ms.author: adigan;giridham;trinadhk;markgal
-ms.openlocfilehash: 688d155b68bc2d76d53f78d251bc2f659582845f
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.author: adigan
+ms.openlocfilehash: 8559532f873e8073e736f881374fec1c080d08c3
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34604398"
 ---
 # <a name="recover-data-from-azure-backup-server"></a>從 Azure 備份伺服器復原資料
 您可以使用 Azure 備份伺服器，將您已備份到復原服務保存庫的資料復原。 要這麼做的程序就是整合到 Azure 備份伺服器管理主控台，且類似於其他 Azure 備份元件的復原工作流程。
 
 > [!NOTE]
-> 本文適用於 [System Center Data Protection Manager 2012 R2 with UR7 或更新版本] (https://support.microsoft.com/en-us/kb/3065246)，結合[最新版的 Azure 備份代理程式](http://aka.ms/azurebackup_agent)。
+> 本文適用於 [System Center Data Protection Manager 2012 R2 with UR7 或更新版本] (https://support.microsoft.com/en-us/kb/3065246))，結合[最新版的 Azure 備份代理程式](http://aka.ms/azurebackup_agent)。
 >
 >
 
@@ -87,10 +82,10 @@ ms.lasthandoff: 10/11/2017
 ## <a name="troubleshooting-error-messages"></a>疑難排解錯誤訊息
 | 編號 | 錯誤訊息 | 疑難排解步驟 |
 |:---:|:--- |:--- |
-| 1. |保存庫認證所指定的保存庫中未登錄此伺服器。 |**原因：**如果選取的保存庫認證檔案不屬於與所嘗試復原之 Azure 備份伺服器關聯的復原服務保存庫，就會出現此錯誤。 <br> **解決方法：**從已登錄 Azure 備份伺服器的復原服務保存庫下載保存庫認證檔。 |
-| 2. |可復原資料無法使用，或選取的伺服器不是 DPM 伺服器。 |**原因：**沒有任何其他 Azure 備份伺服器已向復原服務保存庫登錄，或伺服器尚未上傳中繼資料，或選取的伺服器不是 Azure 備份伺服器 (也稱為 Windows Server 或 Windows 用戶端)。 <br> **解決方法：**如果有其他已向復原服務保存庫登錄的 Azure 備份伺服器，請確定已安裝最新的 Azure 備份代理程式。 <br>如果有其他 Azure 備份伺服器已向復原服務保存庫登錄，請在安裝後等候一天，再開始復原程序。 夜間作業會針對所有受保護的備份，將中繼資料上傳至雲端。 資料將可供復原。 |
-| 3. |此保存庫未登錄其他 DPM 伺服器。 |**原因︰**沒有任何其他 Azure 備份伺服器已向嘗試復原的保存庫登錄。<br>**解決方法：**如果有其他已向復原服務保存庫登錄的 Azure 備份伺服器，請確定已安裝最新的 Azure 備份代理程式。<br>如果有其他 Azure 備份伺服器已向復原服務保存庫登錄，請在安裝後等候一天，再開始復原程序。 夜間作業會針對所有受保護的備份，將中繼資料上傳至雲端。 資料將可供復原。 |
-| 4. |提供的加密複雜密碼與下列伺服器關聯的複雜密碼不相符： **<server name>** |**原因：**在加密來自要復原之 Azure 備份伺服器的資料過程中使用的加密複雜密碼，與所提供的加密複雜密碼不符。 代理程式無法解密資料。 因此復原失敗。<br>**解決方法：**請提供與要復原資料的 Azure 備份伺服器關聯且完全相同的加密複雜密碼。 |
+| 1. |保存庫認證所指定的保存庫中未登錄此伺服器。 |**原因：** 如果選取的保存庫認證檔案不屬於與所嘗試復原之 Azure 備份伺服器關聯的復原服務保存庫，就會出現此錯誤。 <br> **解決方法：** 從已登錄 Azure 備份伺服器的復原服務保存庫下載保存庫認證檔。 |
+| 2. |可復原資料無法使用，或選取的伺服器不是 DPM 伺服器。 |**原因：** 沒有任何其他 Azure 備份伺服器已向復原服務保存庫登錄，或伺服器尚未上傳中繼資料，或選取的伺服器不是 Azure 備份伺服器 (也稱為 Windows Server 或 Windows 用戶端)。 <br> **解決方法：** 如果有其他已向復原服務保存庫登錄的 Azure 備份伺服器，請確定已安裝最新的 Azure 備份代理程式。 <br>如果有其他 Azure 備份伺服器已向復原服務保存庫登錄，請在安裝後等候一天，再開始復原程序。 夜間作業會針對所有受保護的備份，將中繼資料上傳至雲端。 資料將可供復原。 |
+| 3. |此保存庫未登錄其他 DPM 伺服器。 |**原因︰** 沒有任何其他 Azure 備份伺服器已向嘗試復原的保存庫登錄。<br>**解決方法：** 如果有其他已向復原服務保存庫登錄的 Azure 備份伺服器，請確定已安裝最新的 Azure 備份代理程式。<br>如果有其他 Azure 備份伺服器已向復原服務保存庫登錄，請在安裝後等候一天，再開始復原程序。 夜間作業會針對所有受保護的備份，將中繼資料上傳至雲端。 資料將可供復原。 |
+| 4. |提供的加密複雜密碼與下列伺服器關聯的複雜密碼不相符： **<server name>** |**原因：** 在加密來自要復原之 Azure 備份伺服器的資料過程中使用的加密複雜密碼，與所提供的加密複雜密碼不符。 代理程式無法解密資料。 因此復原失敗。<br>**解決方法：** 請提供與要復原資料的 Azure 備份伺服器關聯且完全相同的加密複雜密碼。 |
 
 ## <a name="frequently-asked-questions"></a>常見問題集
 

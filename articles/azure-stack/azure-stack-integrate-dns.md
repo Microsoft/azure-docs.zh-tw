@@ -1,6 +1,6 @@
 ---
-title: "Azure Stack 資料中心整合 - DNS"
-description: "了解如何將 Azure Stack DNS 與您的資料中心 DNS 整合"
+title: Azure Stack 資料中心整合 - DNS
+description: 了解如何將 Azure Stack DNS 與您的資料中心 DNS 整合
 services: azure-stack
 author: jeffgilb
 manager: femila
@@ -9,12 +9,13 @@ ms.topic: article
 ms.date: 02/28/2018
 ms.author: jeffgilb
 ms.reviewer: wfayed
-keywords: 
-ms.openlocfilehash: 5bdac2f3e6082f9449800fe2d4b303e2d59ade46
-ms.sourcegitcommit: 782d5955e1bec50a17d9366a8e2bf583559dca9e
+keywords: ''
+ms.openlocfilehash: b4935dc95ccf525c0a40b10dcc8c59ec8aba710e
+ms.sourcegitcommit: 7b845d3b9a5a4487d5df89906cc5d5bbdb0507c8
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/02/2018
+ms.lasthandoff: 08/14/2018
+ms.locfileid: "41946456"
 ---
 # <a name="azure-stack-datacenter-integration---dns"></a>Azure Stack 資料中心整合 - DNS
 若要能夠從 Azure Stack 外部存取 Azure Stack 端點 (`portal`、`adminportal`、`management`、`adminmanagement` 等)，您必須將 Azure Stack DNS 服務與裝載您想要在 Azure Stack 中使用之 DNS 區域的 DNS 伺服器整合。
@@ -114,7 +115,7 @@ Azure Stack DNS 伺服器的 FQDN 具有下列格式：
 
 在所有 Azure Stack 部署結束時，名為 `AzureStackStampDeploymentInfo.json` 的檔案中也會建立此資訊。 此檔案位於部署虛擬機器的 `C:\CloudDeployment\logs` 資料夾中。 如果您不確定用於 Azure Stack 部署的值是哪些值，便可以從該處取得那些值。
 
-如果部署虛擬機器已不再可供使用或無法存取，則您可以連線到具特殊權限的端點並執行 `Get-AzureStackInfo` PowerShell Cmdlet 來取得那些值。 如需有關具特殊權限端點的詳細資訊，請參閱 (請在這裡插入文章連結)。
+如果部署虛擬機器已不再可供使用或無法存取，則您可以連線到具特殊權限的端點並執行 `Get-AzureStackInfo` PowerShell Cmdlet 來取得那些值。 如需詳細資訊，請參閱 [具特殊權限的端點](azure-stack-privileged-endpoint.md)。
 
 ## <a name="setting-up-conditional-forwarding-to-azure-stack"></a>設定轉送到 Azure Stack 的條件性轉送
 

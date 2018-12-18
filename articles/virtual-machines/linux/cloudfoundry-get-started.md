@@ -1,13 +1,13 @@
 ---
-title: "在 Microsoft Azure 上開始使用 Cloud Foundry | Microsoft Docs"
-description: "在 Microsoft Azure 上執行 OSS 或 Pivotal Cloud Foundry"
+title: 在 Microsoft Azure 上開始使用 Cloud Foundry | Microsoft Docs
+description: 在 Microsoft Azure 上執行 OSS 或 Pivotal Cloud Foundry
 services: virtual-machines-linux
-documentationcenter: 
+documentationcenter: ''
 author: seanmck
-manager: timlt
-editor: 
-tags: 
-keywords: 
+manager: jeconnoc
+editor: ''
+tags: ''
+keywords: ''
 ms.assetid: 2a15ffbf-9f86-41e4-b75b-eb44c1a2a7ab
 ms.service: virtual-machines-linux
 ms.devlang: NA
@@ -16,11 +16,12 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 01/19/2017
 ms.author: seanmck
-ms.openlocfilehash: 94fbde7707ea9a91076780fdefc3f5a827e0e7b2
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 18aa5ab16a1690fdcead46ebc15d72837f62612d
+ms.sourcegitcommit: f3bd5c17a3a189f144008faf1acb9fabc5bc9ab7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 09/10/2018
+ms.locfileid: "44302464"
 ---
 # <a name="cloud-foundry-on-azure"></a>Azure 上的 Cloud Foundry
 
@@ -45,7 +46,7 @@ Microsoft 透過下列社群管道提供 OSS CF 的最佳支援：
 
 ### <a name="pivotal-cloud-foundry"></a>Pivotal Cloud Foundry
 
-Pivotal Cloud Foundry 包含與 OSS 散發版本相同的核心平台，以及一組專屬的管理工具和企業支援。 若要在 Azure 上執行 PCF，您必須取得 Pivotal 的授權。 Azure Marketplace 提供的 PCF 優惠包括 90 天試用版授權。
+Pivotal Cloud Foundry 包含與 OSS 散發版本相同的核心平台，以及一組專屬的管理工具和企業支援。 若要在 Azure 上執行 PCF，您必須取得 Pivotal 的授權。 Azure Marketplace 提供的 PCF 供應項目包括 90 天試用版授權。
 
 這些工具包括 [Pivotal Operations Manager (英文)](http://docs.pivotal.io/pivotalcf/customizing/)、可簡化部署和管理 Cloud Foundry Foundation 的 Web 應用程式，以及 [Pivotal Apps Manager (英文)](https://docs.pivotal.io/pivotalcf/console/)，此為可用來管理使用者和應用程式的 Web 應用程式。
 
@@ -59,11 +60,11 @@ Cloud Foundry 鼓勵使用 ["twelve-factor app" (英文)](https://12factor.net/)
 
 ## <a name="related-resources"></a>相關資源
 
-### <a name="visual-studio-team-services-plugin"></a>Visual Studio Team Services 外掛程式
+### <a name="azure-devops-services-plugin"></a>Azure DevOps Services 外掛程式
 
-Cloud Foundry 非常適合敏捷式軟體開發，包括使用持續整合 (CI) 和持續傳遞 (CD)。 如果您使用 Visual Studio Team Services (VSTS) 來管理專案，並且想要設定目標為 Cloud Foundry 的 CI/CD 管線，則可使用 [VSTS Cloud Foundry 組建擴充功能 (英文)](https://marketplace.visualstudio.com/items?itemName=ms-vsts.cloud-foundry-build-extension)。 此外掛程式讓您能夠簡單地設定和自動化部署至 Cloud Foundry，而不論是在 Azure 或另一個環境中執行。
+Cloud Foundry 非常適合敏捷式軟體開發，包括使用持續整合 (CI) 和持續傳遞 (CD)。 如果您使用 Azure DevOps Services 來管理專案，並且想要設定以 Cloud Foundry 為目標的 CI/CD 管線，您可以使用 [Azure DevOps Services Cloud Foundry 組建擴充功能](https://marketplace.visualstudio.com/items?itemName=ms-vsts.cloud-foundry-build-extension)。 此外掛程式讓您能夠簡單地設定和自動化部署至 Cloud Foundry，而不論是在 Azure 或另一個環境中執行。
 
 ## <a name="next-steps"></a>後續步驟
 
-- [從 Azure Marketplace 部署 Pivotal Cloud Foundry](https://azure.microsoft.com/en-us/marketplace/partners/pivotal/pivotal-cloud-foundryazure-pcf/)
+- [從 Azure Marketplace 部署 Pivotal Cloud Foundry](https://azure.microsoft.com/marketplace/partners/pivotal/pivotal-cloud-foundryazure-pcf/)
 - [在 Azure 將應用程式部署至 Cloud Foundry](./cloudfoundry-deploy-your-first-app.md)

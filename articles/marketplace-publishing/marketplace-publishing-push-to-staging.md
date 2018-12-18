@@ -1,10 +1,10 @@
 ---
-title: 準備和測試優惠以部署至 Azure Marketplace | Microsoft Docs
+title: 準備和測試供應項目以部署至 Azure Marketplace | Microsoft Docs
 description: 將供應項目部署至 Azure Marketplace 之前，關於提供行銷內容、設定價格方案和測試供應項目的詳細指示。
 services: marketplace-publishing
 documentationcenter: ''
-author: msmbaldwin
-manager: mbaldwin
+author: HannibalSII
+manager: hascipio
 editor: ''
 ms.assetid: 3ccd2448-895b-477e-adf6-ab655a21d2fa
 ms.service: marketplace
@@ -13,15 +13,16 @@ ms.topic: article
 ms.tgt_pltfrm: Azure
 ms.workload: na
 ms.date: 08/17/2016
-ms.author: mbaldwin
-ms.openlocfilehash: 5bec9ac89487a824b9de9209547f0b96fa5fe678
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.author: hascipio
+ms.openlocfilehash: 7db86716cdf8f9eb921c3c1813970acae7a3016b
+ms.sourcegitcommit: d16b7d22dddef6da8b6cfdf412b1a668ab436c1f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39714954"
 ---
 # <a name="complete-the-offer-creation-with-marketing-content"></a>使用行銷內容完成供應項目建立程序
-在發佈程序的這個步驟中，您需要在 Azure Marketplace 中提供特定的行銷內容，以及關於您的優惠和 (或) SKU 的詳細資料。 例如，您將提供產品的描述、公司標誌、價目表、方案的詳細資料，以及其他將您的優惠和 (或) SKU 推送至預備環境的必要資訊。 此資訊會做為 Azure 入口網站中的行銷內容。 您將在[發佈入口網站][link-pubportal]中開始進行此程序。
+在發佈程序的這個步驟中，您需要在 Azure Marketplace 中提供特定的行銷內容，以及關於您的供應項目和 (或) SKU 的詳細資料。 例如，您將提供產品的描述、公司標誌、價目表、方案的詳細資料，以及其他將您的供應項目和 (或) SKU 推送至預備環境的必要資訊。 此資訊會做為 Azure 入口網站中的行銷內容。 您將在[發佈入口網站][link-pubportal]中開始進行此程序。
 
 ## <a name="step-1-provide-marketplace-marketing-content"></a>步驟 1：提供 Marketplace 行銷內容
 **英文是預設值，並且是唯一支援的語言。** 請確定欄位中提供的所有資訊都是英文。 在您進入預備環境之前，所有資訊皆可隨時編輯。
@@ -36,7 +37,7 @@ ms.lasthandoff: 03/16/2018
    > 
 
 ### <a name="details-and-plans"></a>詳細資料和方案
-1. 在 [詳細資料]  索引標籤下方，輸入優惠標題 (最多 50 個字元)、優惠摘要 (最多 100 個字元)、優惠完整摘要 (最多 256 個字元)、優惠描述 (最多 1300 個字元)、標誌
+1. 在 [詳細資料]  索引標籤下方，輸入供應項目標題 (最多 50 個字元)、供應項目摘要 (最多 100 個字元)、供應項目完整摘要 (最多 256 個字元)、供應項目描述 (最多 1300 個字元)、標誌
 2. 在 [方案]  索引標籤下方，輸入方案標題 (最多 50 個字元)、方案摘要 (最多 100 個字元)、方案描述 (最多 2000 個字元)。
    
    > [!NOTE]
@@ -139,8 +140,8 @@ ms.lasthandoff: 03/16/2018
 
 |  | 僅基本 | 僅耗用量 | 基本 + 耗用量 |
 | --- | --- | --- | --- |
-| 虛擬機器映像 |否 |yes |否 |
-| 開發人員服務 |yes |yes |yes |
+| 虛擬機器映像 |否 |是 |否 |
+| 開發人員服務 |是 |yes |是 |
 
 ### <a name="21-set-your-vm-prices"></a>2.1. 設定 VM 價格
 目前對於虛擬機器，我們提供下列 **3 種計費模式**
@@ -220,7 +221,7 @@ ms.lasthandoff: 03/16/2018
 ### <a name="22-set-your-developer-service-prices"></a>2.2. 設定開發人員服務價格
 方案可以是基本 + 耗用量的任意組合，其中基本是每月價格，而超額部分是每次使用付費價格 (詳細資訊請見下文)。
 
-**範例：**Contoso 開發人員服務供應項目
+**範例：** Contoso 開發人員服務供應項目
 
 | 規劃 | 價格 | 包括 | 移轉路徑 |
 | --- | --- | --- | --- |
@@ -241,7 +242,7 @@ ms.lasthandoff: 03/16/2018
 4. 輸入支援 URL。
 
 ## <a name="step-4-choose-azure-marketplace-categories"></a>步驟 4：選擇 Azure Marketplace 類別
-[類別]  索引標籤會提供選取項目的陣列。 您的優惠可能會落在這些選取項目中，而且您最多可選取五個類別。
+[類別]  索引標籤會提供選取項目的陣列。 您的供應項目可能會落在這些選取項目中，而且您最多可選取五個類別。
 
 ## <a name="how-your-marketing-will-appear"></a>行銷活動的呈現方式
 以下是如何在 [Azure Marketplace 網站](https://azure.microsoft.com/marketplace/)上和 [Azure 入口網站](https://portal.azure.com)中使用供應項目行銷資訊的詳細檢視。
@@ -251,29 +252,35 @@ ms.lasthandoff: 03/16/2018
 
 ![繪圖](media/marketplace-publishing-push-to-staging/acom-catalog-02.png)
 
-*Azure.com Marketplace 網站上的優惠清單*
+
+  *Azure.com Marketplace 網站上的供應項目清單*
 
 ![繪圖](media/marketplace-publishing-push-to-staging/acom-listing-details-01.png)
 
-*Azure.com Marketplace 網站上的優惠描述詳細資料*
+
+  *Azure.com Marketplace 網站上的供應項目描述詳細資料*
 
 ![繪圖](media/marketplace-publishing-push-to-staging/acom-listing-details-02.png)
 
-*Azure.com Marketplace 網站上的優惠定價詳細資料*
+
+  *Azure.com Marketplace 網站上的供應項目定價詳細資料*
 
 ### <a name="azure-portal"></a>Azure 入口網站
 ![繪圖](media/marketplace-publishing-push-to-staging/azureportal-galleryblade-01.png)
 
-*Azure 入口網站中的優惠清單*
+
+  *Azure 入口網站中的供應項目清單*
 
 ![繪圖](media/marketplace-publishing-push-to-staging/azureportal-galleryblade-02.png)
 
-*Azure 入口網站中的優惠描述詳細資料*
+
+  *Azure 入口網站中的供應項目描述詳細資料*
 
 ## <a name="next-steps"></a>後續步驟
-既然已載入您的 Marketplace 內容，讓我們繼續在預備環境中測試您的優惠。 不過，您必須從下列清單選取適當的優惠類型，因為步驟會隨著優惠類型而有所不同。
+既然已載入您的 Marketplace 內容，讓我們繼續在預備環境中測試您的供應項目。 不過，您必須從下列清單選取適當的供應項目類型，因為步驟會隨著供應項目類型而有所不同。
 
-* [在預備環境中測試您的 VM 優惠](marketplace-publishing-vm-image-test-in-staging.md)
+* 
+  [在預備環境中測試您的 VM 供應項目](marketplace-publishing-vm-image-test-in-staging.md)
 * [在預備環境中測試您的解決方案範本供應項目](marketplace-publishing-solution-template-test-in-staging.md)
 
 ## <a name="see-also"></a>另請參閱

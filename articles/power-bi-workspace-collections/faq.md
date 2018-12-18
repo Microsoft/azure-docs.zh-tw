@@ -1,26 +1,21 @@
 ---
-title: "Power BI 工作區集合常見問題集"
-description: "Power BI 工作區集合相關的常見問題。"
+title: Power BI 工作區集合常見問題集
+description: Power BI 工作區集合相關的常見問題。
 services: power-bi-embedded
-documentationcenter: 
-author: guyinacube
-manager: erikre
-editor: 
-tags: 
+author: markingmyname
 ROBOTS: NOINDEX
 ms.assetid: 1475ed4f-fc84-4865-b243-e8a47d8bda59
 ms.service: power-bi-embedded
-ms.devlang: NA
 ms.topic: article
-ms.tgt_pltfrm: NA
 ms.workload: powerbi
 ms.date: 09/25/2017
-ms.author: asaxton
-ms.openlocfilehash: 6b33f497a5dbc889945e2147586f79edf1bd9aeb
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.author: maghan
+ms.openlocfilehash: e6e2c0b82f306e399454c1672c56e2933e3f1158
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43040860"
 ---
 # <a name="power-bi-workspace-collections-faq"></a>Power BI 工作區集合常見問題集
 
@@ -66,7 +61,7 @@ Azure 入口網站會針對您的訂用帳戶提供已經執行多少轉譯/報�
 是。 您可以使用現有的 Azure 訂用帳戶來佈建及使用 Microsoft Power BI 工作區集合服務。
 
 ## <a name="does-my-application-end-user-need-a-power-bi-license"></a>我的應用程式的使用者是否需要 Power BI 授權？
-編號 您應用程式的使用者不需購買個別的 Power BI 訂用帳戶，就能存取應用程式內資料視覺效果。 在 Power BI 工作區集合模型中，應用程式提供者需透過 Azure 使用計量來為服務付費。 請參閱[定價和授權頁面](http://go.microsoft.com/fwlink/?LinkId=760527)。
+否。 您應用程式的使用者不需購買個別的 Power BI 訂用帳戶，就能存取應用程式內資料視覺效果。 在 Power BI 工作區集合模型中，應用程式提供者需透過 Azure 使用計量來為服務付費。 請參閱[定價和授權頁面](http://go.microsoft.com/fwlink/?LinkId=760527)。
 
 ## <a name="how-does-user-authentication-work-with-power-bi-workspace-collections"></a>如何使用 Power BI 工作區集合來執行使用者驗證工作？
 Power BI 工作區集合服務會使用應用程式權杖進行驗證和授權，而不使用明確的使用者驗證。 在應用程式權杖模型中，您的應用程式會管理使用者的驗證與授權。 然後，必要時，您的應用程式會建立
@@ -82,7 +77,7 @@ Power BI 工作區集合服務會使用應用程式權杖進行驗證和授權�
 建置應用程式的開發人員/員工需要有 AAD 使用者帳戶，才能透過 Azure 入口網站管理您的 Azure 訂用帳戶和工作區集合。 可讓開發人員匯入報告、修改連接字串，以及讓內嵌 URL 改為使用應用程式權杖進行驗證，因此不需要 AAD 的程式設計 API。
 
 ## <a name="where-can-i-learn-more"></a>哪裡可以深入了解？
-您可以造訪 [Power BI 工作區集合文件頁面](get-started.md)。 您可以透過造訪 [Power BI 部落格](https://powerbi.microsoft.com/blog/) \(英文\) 或造訪 Power BI 開發人員中心 (dev.powerbi.com)，來取得此服務的相關最新資訊。您也可以在 [Stackoverflow](http://stackoverflow.com/questions/tagged/powerbi)提出問題。
+您可以造訪 [Power BI 工作區集合文件頁面](get-started.md)。 您可以透過造訪 [Power BI 部落格](https://powerbi.microsoft.com/blog/) \(英文\) 或造訪 Power BI 開發人員中心 (dev.powerbi.com)，來取得此服務的相關最新資訊。 您也可以在 [Stackoverflow](http://stackoverflow.com/questions/tagged/powerbi)提出問題。
 
 ## <a name="how-do-i-get-started"></a>如何開始使用？
 您現在就可以免費開始使用！ 如果您有 Azure 訂用帳戶，現在就可以直接從 Azure 入口網站佈建 Power BI 工作區集合。 您也可以建立[免費的 Azure 帳戶](https://azure.microsoft.com/free/)。 在您佈建 Power BI 工作區集合服務之後，就能輕鬆地直接使用 Power BI REST API，或使用 [GitHub](http://go.microsoft.com/fwlink/?LinkID=746472) \(英文\) 上提供的開發人員 SDK。 也有提供範例說明如何使用開發人員 SDK。

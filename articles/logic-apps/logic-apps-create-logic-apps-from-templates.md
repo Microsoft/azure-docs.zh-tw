@@ -1,25 +1,21 @@
 ---
 title: 從範本建立工作流程 - Azure Logic Apps | Microsoft Docs
-description: 使用邏輯應用程式範本來加快建置工作流程的速度
-author: kevinlam1
-manager: anneta
-editor: ''
+description: 使用 Azure Logic Apps 中的邏輯應用程式範本加快建置工作流程的速度
 services: logic-apps
-documentationcenter: ''
-ms.assetid: 3656acfb-eefd-4e75-b5d2-73da56c424c9
 ms.service: logic-apps
-ms.workload: integration
-ms.tgt_pltfrm: na
-ms.devlang: na
+ms.suite: integration
+author: kevinlam1
+ms.author: klam
+ms.reviewer: estfan, LADocs
 ms.topic: article
+ms.assetid: 3656acfb-eefd-4e75-b5d2-73da56c424c9
 ms.date: 10/15/2017
-ms.author: LADocs; klam
-ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: e9145b9cb85cda9179f7ce46de017a0ab3a38924
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.openlocfilehash: 10191a4fbab325dcd5134b082f050188c6798079
+ms.sourcegitcommit: 2ad510772e28f5eddd15ba265746c368356244ae
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "43122115"
 ---
 # <a name="create-logic-app-workflows-from-prebuilt-templates"></a>從預先建置的範本建立邏輯應用程式工作流程
 
@@ -56,7 +52,7 @@ Logic Apps 提供範本來協助您更快速開始建立工作流程，這些範
    | **訂用帳戶** | 您的 Azure 訂用帳戶名稱 | 選取您要使用的 Azure 訂用帳戶。 | 
    | **資源群組** | 您的 Azure 資源群組名稱 | 為此邏輯應用程式建立或選取一個 [Azure 資源群組](../azure-resource-manager/resource-group-overview.md)，並用以組織與此應用程式關聯的所有資源。 | 
    | **位置** | 您的 Azure 資料中心區域 | 選取用於部署邏輯應用程式的資料中心區域，例如，美國西部。 | 
-   | **Log Analytics** | **Off** (預設值) 或 **On** | 透過 [Azure Log Analytics](../log-analytics/log-analytics-overview.md) 開啟您邏輯應用程式的[診斷記錄](../logic-apps/logic-apps-monitor-your-logic-apps.md#turn-on-diagnostics-logging-for-your-logic-app)。 您必須已經有 [Operations Management Suite](../operations-management-suite/operations-management-suite-overview.md) 工作區。 | 
+   | **Log Analytics** | **Off** (預設值) 或 **On** | 透過 [Azure Log Analytics](../log-analytics/log-analytics-overview.md) 開啟您邏輯應用程式的[診斷記錄](../logic-apps/logic-apps-monitor-your-logic-apps.md#turn-on-diagnostics-logging-for-your-logic-app)。 您必須已經有 Log Analytics 工作區。 | 
    |||| 
 
 4. 當您準備就緒時，請選取 [釘選到儀表板]。 這樣一來，邏輯應用程式就會在部署之後自動出現在 Azure 儀表板上並開啟。 選擇 [建立] 。

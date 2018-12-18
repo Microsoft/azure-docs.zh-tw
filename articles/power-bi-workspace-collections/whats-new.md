@@ -1,26 +1,21 @@
 ---
-title: "Power BI 工作區集合的新功能"
-description: "取得 Power BI 工作區集合新功能的最新資訊"
+title: Power BI 工作區集合的新功能
+description: 取得 Power BI 工作區集合新功能的最新資訊
 services: power-bi-embedded
-documentationcenter: 
-author: guyinacube
-manager: erikre
-editor: 
-tags: 
+author: markingmyname
 ROBOTS: NOINDEX
 ms.assetid: 2794ae98-b9a7-45df-b6e1-962a395b91fa
 ms.service: power-bi-embedded
-ms.devlang: NA
 ms.topic: article
-ms.tgt_pltfrm: NA
 ms.workload: powerbi
 ms.date: 09/20/2017
-ms.author: asaxton
-ms.openlocfilehash: a2faf610ca50acdb54353ade7c7a4ecabd314347
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.author: maghan
+ms.openlocfilehash: 0fe3116934ac4ab9b1e3fd3b5efcd6627df0ed3d
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43046924"
 ---
 # <a name="whats-new-in-power-bi-workspace-collections"></a>Power BI 工作區集合的新功能
 

@@ -14,11 +14,12 @@ ms.tgt_pltfrm: na
 ms.workload: Supportability
 ms.date: 03/27/2018
 ms.author: BernardoAMunoz
-ms.openlocfilehash: 2a0758f5db381f721120cbc1c018a491c018aa8d
-ms.sourcegitcommit: c3d53d8901622f93efcd13a31863161019325216
+ms.openlocfilehash: 1e22c62c291909bb4079ebaf389cfbd15ae9d8d5
+ms.sourcegitcommit: 1af4bceb45a0b4edcdb1079fc279f9f2f448140b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/29/2018
+ms.lasthandoff: 08/09/2018
+ms.locfileid: "42140613"
 ---
 # <a name="azure-resource-health-faq"></a>Azure 資源健康狀態常見問題集
 了解 Azure 資源健康狀態相關常見問題的答案。
@@ -61,7 +62,7 @@ ms.lasthandoff: 03/29/2018
 ## <a name="where-do-i-find-resource-health"></a>哪裡可以找到資源健康狀態？
 登入 Azure 入口網站之後，您可以使用多種方式來存取資源健康狀態：
 - 瀏覽至您的資源。 在左側導覽中，選取 [資源健康狀態]。
-- 移至 [Azure 監視器] 刀鋒視窗。  在左側導覽中，選取 [資源健康狀態]。
+- 移至 [Azure 服務健康狀態] 刀鋒視窗。  在左側導覽中，選取 [資源健康狀態]。
 - 按一下入口網站右上角的問號，然後選取 [說明 + 支援]，即可開啟 [說明 + 支援] 刀鋒視窗。 當刀鋒視窗開啟之後，選取 [資源健康狀態]。
 
 您也可以使用資源健康狀態 API，來取得資源的健康狀態相關資訊。
@@ -75,7 +76,7 @@ ms.lasthandoff: 03/29/2018
 ## <a name="is-resource-health-available-for-all-azure-regions"></a>資源健康狀態是否適用於所有的 Azure 區域？ 
 資源健康狀態可在所有 Azure 地區使用，除了下列區域︰
 - 美國政府維吉尼亞州
-- 美國政府愛荷華州
+- US Gov 愛荷華州
 - 美國 DoD 東部
 - 美國國防部中央
 - 德國中部
@@ -92,7 +93,7 @@ ms.lasthandoff: 03/29/2018
 否，健康情況資訊適用於可透過資源健康狀態提供的所有資源類型。 
 
 ## <a name="do-we-need-to-enable-resource-health-for-my-organization"></a>我們是否需要為我的組織啟用資源健康狀態？
-編號  不需進行任何安裝，即可在 Azure 入口網站內存取 Azure 資源健康狀態。
+否。  不需進行任何安裝，即可在 Azure 入口網站內存取 Azure 資源健康狀態。
 
 ## <a name="is-resource-health-available-free-of-charge"></a>是否可免費使用資源健康狀態？
 是。  Azure 資源健康狀態是免費的。

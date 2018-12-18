@@ -1,23 +1,24 @@
 ---
-title: "選擇 Azure 混合式身分識別解決方案 | Microsoft Docs"
-description: "取得可用身分識別解決方案和建議的基本了解，可讓您為貴組織做出最佳的身分識別控管決策。"
-keywords: 
+title: 選擇 Azure 混合式身分識別解決方案 | Microsoft Docs
+description: 取得可用身分識別解決方案和建議的基本了解，可讓您為貴組織做出最佳的身分識別控管決策。
+keywords: ''
 author: jeffgilb
 manager: mtillman
 ms.reviewer: jsnow
 ms.author: billmath
 ms.date: 03/02/2018
 ms.topic: article
-ms.prod: 
+ms.prod: ''
 ms.service: azure
-ms.technology: 
-ms.assetid: 
+ms.technology: ''
+ms.assetid: ''
 ms.custom: it-pro
-ms.openlocfilehash: 9f9099c0ebd65ba84e171314e6f04d858648a805
-ms.sourcegitcommit: 168426c3545eae6287febecc8804b1035171c048
+ms.openlocfilehash: 905cedd6ee781ca163731a6f71b083acfc11b5eb
+ms.sourcegitcommit: 95d9a6acf29405a533db943b1688612980374272
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/08/2018
+ms.lasthandoff: 06/23/2018
+ms.locfileid: "36332366"
 ---
 # <a name="microsoft-hybrid-identity-solutions"></a>Microsoft 混合式身分識別解決方案
 [Microsoft Azure Active Directory (Azure AD)](https://docs.microsoft.com/azure/active-directory/active-directory-whatis) 混合式身分識別解決方案可讓您同步處理內部部署目錄物件與 Azure AD，仍同時在內部部署環境管理使用者。 在規劃同步處理內部部署 Windows Server Active Directory 與 Azure AD 時，首先要決定您要使用已同步處理的身分識別或同盟身分識別。 已同步處理的身分識別和密碼雜湊 (選擇性)，讓使用者能使用相同的密碼來存取內部部署和雲端式組織資源。 如需更進階的案例需求，例如單一登入 (SSO) 或內部部署 MFA，您必須將 Active Directory Federation Services (AD FS) 部署至同盟身分識別。 
@@ -52,7 +53,7 @@ ms.lasthandoff: 03/08/2018
 - 加入樹系中將透過它驗證使用者的網域
 
 ## <a name="federated-identity-ad-fs"></a>同盟身分識別 (AD FS)
-如需更進一步控制使用者如何存取 Office 365 和其他雲端服務，您可以使用 [Active Directory Federation Services (AD FS)](https://docs.microsoft.com/windows-server/identity/ad-fs/overview/whats-new-active-directory-federation-services-windows-server-2016) 設定與單一登入 (SSO) 的目錄同步作業。 讓使用者的登入與 AD FS 結成同盟，可將驗證委派給會驗證使用者認證的內部部署伺服器。 在此模型中，決不會將內部部署 Active Directory 認證傳送至 Azure AD。
+如需更進一步控制使用者如何存取 Office 365 和其他雲端服務，您可以使用 [Active Directory Federation Services (AD FS)](https://docs.microsoft.com/windows-server/identity/ad-fs/overview/whats-new-active-directory-federation-services-windows-server) 設定與單一登入 (SSO) 的目錄同步作業。 讓使用者的登入與 AD FS 結成同盟，可將驗證委派給會驗證使用者認證的內部部署伺服器。 在此模型中，決不會將內部部署 Active Directory 認證傳送至 Azure AD。
 
 ![同盟身分識別](./media/choose-hybrid-identity-solution/federated-identity.png)
 

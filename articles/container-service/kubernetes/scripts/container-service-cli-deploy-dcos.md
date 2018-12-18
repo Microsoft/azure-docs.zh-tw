@@ -1,14 +1,14 @@
 ---
-title: "Azure CLI 指令碼範例 - 建立 ACS DC/OS 叢集 | Microsoft Docs"
-description: "Azure CLI 指令碼範例 - 建立 ACS DC/OS 叢集"
+title: Azure CLI 指令碼範例 - 建立 ACS DC/OS 叢集 | Microsoft Docs
+description: Azure CLI 指令碼範例 - 建立 ACS DC/OS 叢集
 services: container-service
-documentationcenter: 
+documentationcenter: ''
 author: neilpeterson
-manager: timlt
-editor: 
+manager: jeconnoc
+editor: ''
 tags: acs, azure-container-service
-keywords: "Docker, 容器, 微服務, Kubernetes, DC/OS, Azure"
-ms.assetid: 
+keywords: Docker, 容器, 微服務, Kubernetes, DC/OS, Azure
+ms.assetid: ''
 ms.service: container-service
 ms.devlang: azurecli
 ms.topic: sample
@@ -16,11 +16,12 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/30/2017
 ms.author: nepeters
-ms.openlocfilehash: 1d08dc6b1b39a6908ce5851b5f57756701fc39eb
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+ms.openlocfilehash: db136fb1c68c243086d3e83424ed2c9864638c8f
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39433380"
 ---
 # <a name="create-an-azure-container-service-dcos-cluster"></a>建立 Azure Container Service DC/OS 叢集
 
@@ -56,8 +57,8 @@ az group delete --name myResourceGroup
 
 | 命令 | 注意 |
 |---|---|
-| [az group create](https://docs.microsoft.com/cli/azure/group#az_group_create) | 建立用來存放所有資源的資源群組。 |
-| [az acs create](https://docs.microsoft.com/cli/azure/acs#az_acs_create) | 建立 ACS 叢集。 |
+| [az group create](https://docs.microsoft.com/cli/azure/group#az-group-create) | 建立用來存放所有資源的資源群組。 |
+| [az acs create](https://docs.microsoft.com/cli/azure/acs#az-acs-create) | 建立 ACS 叢集。 |
 
 ## <a name="next-steps"></a>後續步驟
 

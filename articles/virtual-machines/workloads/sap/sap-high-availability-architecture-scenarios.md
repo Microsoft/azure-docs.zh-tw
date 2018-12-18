@@ -1,13 +1,13 @@
 ---
-title: "SAP NetWeaver 的 Azure 虛擬機器高可用性架構和案例 | Microsoft Docs"
-description: "Azure 虛擬機器上 SAP NetWeaver 的高可用性架構和案例"
+title: SAP NetWeaver 的 Azure 虛擬機器高可用性架構和案例 | Microsoft Docs
+description: Azure 虛擬機器上 SAP NetWeaver 的高可用性架構和案例
 services: virtual-machines-windows,virtual-network,storage
 documentationcenter: saponazure
 author: goraco
-manager: timlt
-editor: 
+manager: jeconnoc
+editor: ''
 tags: azure-resource-manager
-keywords: 
+keywords: ''
 ms.assetid: 887caaec-02ba-4711-bd4d-204a7d16b32b
 ms.service: virtual-machines-windows
 ms.devlang: NA
@@ -17,11 +17,12 @@ ms.workload: infrastructure-services
 ms.date: 05/05/2017
 ms.author: rclaus
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 31f3765d807882e65a247819a5999c191f9e7ac5
-ms.sourcegitcommit: 9a61faf3463003375a53279e3adce241b5700879
+ms.openlocfilehash: 6612e3fb5368d8d5a4f59c0e5eefc8ef24c04aec
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/15/2017
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34656919"
 ---
 # <a name="high-availability-architecture-and-scenarios-for-sap-netweaver"></a>SAP NetWeaver 的高可用性架構和案例
 
@@ -146,7 +147,7 @@ ms.lasthandoff: 11/15/2017
 [sap-ha-guide-9.1]:#31c6bd4f-51df-4057-9fdf-3fcbc619c170
 [sap-ha-guide-9.1.1]:#a97ad604-9094-44fe-a364-f89cb39bf097
 
-[sap-ha-multi-sid-guide]:sap-high-availability-multi-sid.md (SAP multi-SID high-availability configuration)
+[sap-ha-multi-sid-guide]:sap-high-availability-multi-sid.md (SAP 多重 SID 高可用性設定)
 
 
 [sap-ha-guide-figure-1000]:./media/virtual-machines-shared-sap-high-availability-guide/1000-wsfc-for-sap-ascs-on-azure.png
@@ -337,7 +338,7 @@ SAP 目前僅支援進階受控磁碟。 如需詳細資訊，請參閱 SAP 附�
 
 ![圖 1：高可用性 SAP 應用程式伺服器][sap-ha-guide-figure-2000]
 
-_**圖 1：**高可用性 SAP 應用程式伺服器_
+_**圖 1：** 高可用性 SAP 應用程式伺服器_
 
 所有裝載 SAP 應用程式伺服器執行個體的虛擬機器都必須放置在同一個 Azure 可用性設定組中。 Azure 可用性設定組可確保：
 
@@ -354,13 +355,13 @@ Azure 縮放單位內的 Azure 可用性設定組可使用的更新和容錯網�
 如果您將一些 SAP 應用程式伺服器執行個體部署在其專用 VM 中，並假設我們有五個更新網域，最後會形成下圖。 可用性設定組內之更新和容錯網域的實際數目上限未來可能會有所變更︰
 
 ![圖 2：Azure 可用性設定組中 SAP 應用程式伺服器的高可用性][planning-guide-figure-3000]
-_**圖 2：**Azure 可用性設定組中 SAP 應用程式伺服器的高可用性_
+_**圖 2：** Azure 可用性設定組中 SAP 應用程式伺服器的高可用性_
 
 如需詳細資訊，請參閱[管理 Azure 中 Windows 虛擬機器的可用性][azure-virtual-machines-manage-availability]。
 
 如需詳細資訊，請參閱 SAP NetWeaver 文件之 Azure 虛擬機器規劃和實作的 [Azure 可用性設定組][planning-guide-3.2.3]一節。
 
-**僅限非受控的磁碟：**由於 Azure 儲存體帳戶是潛在的單一失敗點，因此您務必擁有至少兩個 Azure 儲存體帳戶，且至少要將兩個虛擬機器分散到其中。 在理想的設定中，執行 SAP 對話方塊執行個體的每一個虛擬機器磁碟會部署在不同的儲存體帳戶中。
+**僅限非受控的磁碟：** 由於 Azure 儲存體帳戶是潛在的單一失敗點，因此您務必擁有至少兩個 Azure 儲存體帳戶，且至少要將兩個虛擬機器分散到其中。 在理想的設定中，執行 SAP 對話方塊執行個體的每一個虛擬機器磁碟會部署在不同的儲存體帳戶中。
 
 > [!IMPORTANT]
 > 我們強烈建議您針對 SAP 高可用性安裝使用 Azure 受控磁碟。 因為受控磁碟會針對所連接的虛擬機器，自動配合其可用性設定組，提高了虛擬機器和其上所執行服務的可用性。  
@@ -401,7 +402,7 @@ DBMS 也是 SAP 系統的單一連絡點。 您需要使用高可用性的解決
 
 ![圖 3：高可用性 SAP DBMS，使用 SQL Server Always On 的範例][sap-ha-guide-figure-2003]
 
-_**圖 3：**高可用性 SAP DBMS，使用 SQL Server Always On 的範例_
+_**圖 3：** 高可用性 SAP DBMS，使用 SQL Server Always On 的範例_
 
 如需有關使用 Azure Resource Manager 部署模型在 Azure 中將 SQL Server DBMS 組成叢集的詳細資訊，請參閱下列文章：
 

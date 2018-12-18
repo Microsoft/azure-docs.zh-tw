@@ -1,24 +1,25 @@
 ---
-title: "對 Azure Service Fabric 應用程式進行封裝 | Microsoft Docs"
-description: "如何在將 Service Fabric 應用程式部署至叢集之前對它進行封裝。"
+title: 對 Azure Service Fabric 應用程式進行封裝 | Microsoft Docs
+description: 如何在將 Service Fabric 應用程式部署至叢集之前對它進行封裝。
 services: service-fabric
 documentationcenter: .net
 author: rwike77
 manager: timlt
 editor: mani-ramaswamy
-ms.assetid: 
+ms.assetid: ''
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 2/23/2018
 ms.author: ryanwi
-ms.openlocfilehash: 0db49b9bd50c640175292671f813d23d960b52e1
-ms.sourcegitcommit: fbba5027fa76674b64294f47baef85b669de04b7
+ms.openlocfilehash: 24cb1fd0666b404d92dfb803f55c850226ff59b6
+ms.sourcegitcommit: eb75f177fc59d90b1b667afcfe64ac51936e2638
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/24/2018
+ms.lasthandoff: 05/16/2018
+ms.locfileid: "34205805"
 ---
 # <a name="package-an-application"></a>封裝應用程式
 本文說明如何對 Service Fabric 應用程式進行封裝，並使其準備好進行部署。

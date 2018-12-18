@@ -1,23 +1,20 @@
 ---
-title: "升級至 Azure 搜尋服務 .NET SDK 版本 1.1 | Microsoft Docs"
-description: "升級至 Azure 搜尋服務 .NET SDK 版本 1.1"
-services: search
-documentationcenter: 
+title: 升級至 Azure 搜尋服務 .NET SDK 版本 1.1 | Microsoft Docs
+description: 升級至 Azure 搜尋服務 .NET SDK 版本 1.1
 author: brjohnstmsft
-manager: pablocas
-editor: 
+manager: jlembicz
+services: search
 ms.service: search
 ms.devlang: dotnet
-ms.workload: search
-ms.topic: article
-ms.tgt_pltfrm: na
+ms.topic: conceptual
 ms.date: 01/15/2018
 ms.author: brjohnst
-ms.openlocfilehash: 387a052a116388cc9ad816ec8b339347d5c28322
-ms.sourcegitcommit: f1c1789f2f2502d683afaf5a2f46cc548c0dea50
+ms.openlocfilehash: ccefd21e2aa89a2b46129956b3c4417d548cbf32
+ms.sourcegitcommit: fa493b66552af11260db48d89e3ddfcdcb5e3152
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/18/2018
+ms.lasthandoff: 04/23/2018
+ms.locfileid: "31796739"
 ---
 # <a name="upgrading-to-the-azure-search-net-sdk-version-11"></a>升級至 Azure 搜尋服務 .NET SDK 版本 1.1
 

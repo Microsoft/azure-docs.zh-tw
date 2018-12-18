@@ -1,28 +1,25 @@
 ---
-title: 如何從 Java 使用 Azure 資料表儲存體或 Azure Cosmos DB 資料表 API | Microsoft Docs
-description: 使用 Azure 表格儲存體 (NoSQL 資料存放區) 將結構化的資料儲存在雲端。
+title: 如何從 Java 使用 Azure 表格儲存體或 Azure Cosmos DB 資料表 API | Microsoft Docs
+description: 使用 Azure 表格儲存體或 Azure Cosmos DB 資料表 API 將結構化資料儲存在雲端。
 services: cosmos-db
-documentationcenter: java
-author: mimig1
-manager: jhubbard
-editor: tysonn
-ms.assetid: 45145189-e67f-4ca6-b15d-43af7bfd3f97
+author: SnehaGunda
+manager: kfile
 ms.service: cosmos-db
-ms.workload: data-services
-ms.tgt_pltfrm: na
+ms.component: cosmosdb-table
 ms.devlang: Java
-ms.topic: article
-ms.date: 03/20/2018
-ms.author: mimig
-ms.openlocfilehash: b11faf56ac700399fc411c7feb9910ada355e952
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.topic: sample
+ms.date: 04/05/2018
+ms.author: sngun
+ms.openlocfilehash: f4ebcf51ab6682009190e467ca9dbf67caf1c182
+ms.sourcegitcommit: 6116082991b98c8ee7a3ab0927cf588c3972eeaa
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 06/05/2018
+ms.locfileid: "34797891"
 ---
 # <a name="how-to-use-azure-table-storage-or-azure-cosmos-db-table-api-from-java"></a>如何從 Java 使用 Azure 資料表儲存體或 Azure Cosmos DB 資料表 API
 [!INCLUDE [storage-selector-table-include](../../includes/storage-selector-table-include.md)]
-[!INCLUDE [storage-table-cosmos-db-tip-include](../../includes/storage-table-cosmos-db-tip-include.md)]
+[!INCLUDE [storage-table-applies-to-storagetable-and-cosmos](../../includes/storage-table-applies-to-storagetable-and-cosmos.md)]
 
 ## <a name="overview"></a>概觀
 本文示範如何使用「Azure 資料表」儲存體服務和 Azure Cosmos DB 來執行一般案例。 相關範例是以 Java 撰寫並使用 [Azure Storage SDK for Java][Azure Storage SDK for Java]。 所涵蓋的案例包括「建立」、「列出」和「刪除」資料表，以及在資料表中「插入」、「查詢」、「修改」和「刪除」實體。 如需資料表的詳細資訊，請參閱 [後續步驟](#next-steps) 一節。
@@ -31,14 +28,19 @@ ms.lasthandoff: 03/28/2018
 > 有一套 SDK 可供在 Android 裝置上使用 Azure 儲存體的開發人員使用。 如需詳細資訊，請參閱 [Azure Storage SDK for Android][Azure Storage SDK for Android]。
 >
 
-[!INCLUDE [storage-table-concepts-include](../../includes/storage-table-concepts-include.md)]
+## <a name="create-an-azure-service-account"></a>建立 Azure 服務帳戶
+[!INCLUDE [cosmos-db-create-azure-service-account](../../includes/cosmos-db-create-azure-service-account.md)]
 
-[!INCLUDE [storage-create-account-include](../../includes/storage-create-account-include.md)]
+### <a name="create-an-azure-storage-account"></a>建立 Azure 儲存體帳戶
+[!INCLUDE [cosmos-db-create-storage-account](../../includes/cosmos-db-create-storage-account.md)]
+
+### <a name="create-an-azure-cosmos-db-account"></a>建立 Azure Cosmos DB 帳戶
+[!INCLUDE [cosmos-db-create-tableapi-account](../../includes/cosmos-db-create-tableapi-account.md)]
 
 ## <a name="create-a-java-application"></a>建立 Java 應用程式
 在本指南中，您將使用可在本機 Java 應用程式中執行的儲存體功能，或在 Azure 中以 Web 角色或背景工作角色執行之程式碼中執行的儲存體功能。
 
-若要使用本文中的範例，請安裝「Java 開發套件」(JDK)，然後在 Azure 訂用帳戶中建立 Azure 儲存體帳戶。 完成此動作之後，請確認您的開發系統符合 GitHub 上[適用於 Java 的 Azure 儲存體 SDK][Azure Storage SDK for Java] 存放庫中所列的最低需求和相依性。 如果您的系統符合這些需求，您便可以依照指示，從該存放庫中下載「適用於 Java 的 Azure 儲存體程式庫」並安裝在系統上。 完成這些工作之後，您就可以建立使用本文中範例的 Java 應用程式。
+若要使用本文中的範例，請安裝「Java 開發套件」(JDK)，然後在 Azure 訂用帳戶中建立 Azure 儲存體帳戶或 Azure Cosmos DB 帳戶。 完成此動作之後，請確認您的開發系統符合 GitHub 上[適用於 Java 的 Azure 儲存體 SDK][Azure Storage SDK for Java] 存放庫中所列的最低需求和相依性。 如果您的系統符合這些需求，您便可以依照指示，從該存放庫中下載「適用於 Java 的 Azure 儲存體程式庫」並安裝在系統上。 完成這些工作之後，您就可以建立能使用本文中範例的 Java 應用程式。
 
 ## <a name="configure-your-application-to-access-table-storage"></a>設定您的應用程式來存取資料表儲存體
 在您想要使用 Azure 儲存體 API 或「Azure Cosmos DB 資料表 API」來存取資料表的 Java 檔案頂端，新增下列 import 陳述式：
@@ -63,7 +65,7 @@ public static final String storageConnectionString =
     "AccountKey=your_storage_account_key";
 ```
 
-## <a name="add-an-azure-cosmos-db-connection-string"></a>新增 Azure Cosmos DB 連接字串
+## <a name="add-an-azure-cosmos-db-table-api-connection-string"></a>新增 Azure Cosmos DB 資料表 API 連接字串
 Azure Cosmos DB 帳戶會使用連接字串來儲存資料表端點和您的認證。 在用戶端應用程式中執行時，您必須以下列格式提供 Azure Cosmos DB 連接字串，其中使用您 Azure Cosmos DB 帳戶的名稱及 [Azure 入口網站](https://portal.azure.com)中所列帳戶的主要存取金鑰作為 *AccountName* 和 *AccountKey* 值。 
 
 本範例將示範如何宣告靜態欄位來存放 Azure Cosmos DB 連接字串：
@@ -530,7 +532,7 @@ catch (Exception e)
 ```
 
 ## <a name="delete-an-entity"></a>刪除實體
-擷取實體之後，可以輕鬆地將它刪除。 擷取實體之後，請以要刪除的實體呼叫 **TableOperation.delete** 。 然後在 **CloudTable** 物件上呼叫 **execute**。 下列程式碼會擷取並刪除客戶實體。
+擷取實體之後，可以輕鬆地將它刪除。 擷取實體之後，請以要刪除的實體呼叫 **TableOperation.delete**。 然後在 **CloudTable** 物件上呼叫 **execute**。 下列程式碼會擷取並刪除客戶實體。
 
 ```java
 try
@@ -595,7 +597,7 @@ catch (Exception e)
 * [開始使用 Java 中的 Azure 表格服務](https://github.com/Azure-Samples/storage-table-java-getting-started)
 * [Microsoft Azure 儲存體總管](../vs-azure-tools-storage-manage-with-storage-explorer.md) 是一個免費的獨立應用程式，可讓您在 Windows、MacOS 和 Linux 上以視覺化方式處理 Azure 儲存體資料。
 * [Azure Storage SDK for Java][Azure Storage SDK for Java]
-* [Azure 儲存體用戶端 SDK 參考][Azure 儲存體用戶端 SDK 參考]
+* [Azure 儲存體用戶端 SDK 參考][azure 儲存體用戶端 sdk 參考]
 * [Azure 儲存體 REST API][Azure Storage REST API]
 * [Azure 儲存體團隊部落格][Azure Storage Team Blog]
 

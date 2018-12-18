@@ -3,22 +3,20 @@ title: Azure Cosmos DB 的資料分割與調整規模 | Microsoft Docs
 description: 了解資料分割在 Azure Cosmos DB 中的運作方式、如何設定資料分割和資料分割索引鍵，以及如何為您的應用程式挑選合適的資料分割索引鍵。
 services: cosmos-db
 author: rafats
-manager: jhubbard
-documentationcenter: ''
-ms.assetid: 702c39b4-1798-48dd-9993-4493a2f6df9e
+manager: kfile
 ms.service: cosmos-db
-ms.workload: data-services
-ms.tgt_pltfrm: na
+ms.component: cosmosdb-sql
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 05/24/2017
 ms.author: rafats
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: fe78289938e752731ff2e830fb62ad210e12111e
-ms.sourcegitcommit: 20d103fb8658b29b48115782fe01f76239b240aa
+ms.openlocfilehash: 7e3c15ce201cee88d400b9d5fb9272b584293a2f
+ms.sourcegitcommit: 6116082991b98c8ee7a3ab0927cf588c3972eeaa
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2018
+ms.lasthandoff: 06/05/2018
+ms.locfileid: "34797426"
 ---
 # <a name="partitioning-in-azure-cosmos-db-using-the-sql-api"></a>使用 SQL API 在 Azure Cosmos DB 進行資料分割
 
@@ -81,9 +79,9 @@ ms.lasthandoff: 04/03/2018
 Azure Cosmos DB 已透過 [REST API 版本 2015-12-16](/rest/api/cosmos-db/) 新增對自動資料分割的支援。 若要建立資料分割的容器，必須下載其中一個支援的 SDK 平台 (.NET、Node.js、Java、Python、MongoDB) 中的 SDK 1.6.0 版或更新版本。 
 
 ### <a name="creating-containers"></a>建立容器
-下列範例顯示建立容器的 .NET 程式碼片段，可儲存輸送量每秒 20,000 個要求單位的裝置遙測資料。 SDK 會設定 OfferThroughput 值 (這會接著設定 REST API 中的 `x-ms-offer-throughput` 要求標頭)。 此處我們將 `/deviceId` 設定為資料分割索引鍵。 選擇的資料分割索引鍵會與其餘的容器中繼資料 (例如名稱與編製索引原則) 一併儲存。
+下列範例顯示建立容器的 .NET 程式碼片段，可儲存輸送量每秒 20,000 個要求單位的裝置遙測資料。 SDK 會設定 OfferThroughput 值 (這會接著設定 REST API 中的 `x-ms-offer-throughput` 要求標頭)。 在此您會將 `/deviceId` 設定為分割區索引鍵。 選擇的資料分割索引鍵會與其餘的容器中繼資料 (例如名稱與編製索引原則) 一併儲存。
 
-在此範例中，我們挑選了 `deviceId` ，因為我們知道 (a) 由於有大量的裝置，因此可以將寫入平均分散到所有資料分割，讓我們能夠調整資料庫規模以內嵌大量資料，以及 (b) 許多要求 (例如，提取裝置的最新讀取) 會限定在單一 deviceId，而可以從單一資料分割擷取。
+在此範例中，您挑選了 `deviceId`，因為您知道 (a) 由於有大量的裝置，因此可以將寫入平均分散到所有資料分割，讓您能夠調整資料庫規模以內嵌大量資料，以及 (b) 許多要求 (例如，提取裝置的最新讀取) 會限定在單一 deviceId，而可以從單一資料分割擷取。
 
 ```csharp
 DocumentClient client = new DocumentClient(new Uri(endpoint), authKey);
@@ -102,10 +100,10 @@ await client.CreateDocumentCollectionAsync(
     new RequestOptions { OfferThroughput = 20000 });
 ```
 
-此方法會對 Cosmos DB 進行 REST API 呼叫，且服務會根據要求的輸送量來佈建許多資料分割。 您可以隨著效能需求的發展變更容器的輸送量。 
+此方法會對 Cosmos DB 進行 REST API 呼叫，且服務會根據要求的輸送量來佈建許多資料分割。 您可以隨著效能需求的發展變更容器或一組容器的輸送量。 
 
 ### <a name="reading-and-writing-items"></a>讀取和寫入項目
-現在，我們將資料插入 Cosmos DB 中。 以下是包含裝置讀取的範例類別，以及呼叫 CreateDocumentAsync 將新的裝置讀取插入容器中。 這是運用 SQL API 的範例︰
+現在，我們將資料插入 Cosmos DB 中。 以下是包含裝置讀取的範例類別，以及呼叫 CreateDocumentAsync 將新的裝置讀取插入容器中。 以下是運用 SQL API 的範例程式碼區塊：
 
 ```csharp
 public class DeviceReading
@@ -144,7 +142,7 @@ await client.CreateDocumentAsync(
     });
 ```
 
-請依資料分割索引鍵和識別碼來讀取項目，並加以更新，然後最後一個步驟是依資料分割索引鍵和識別碼刪除項目。請注意，讀取包括 PartitionKey 值 (對應至 REST API 中的 `x-ms-documentdb-partitionkey` 要求標頭)。
+請依資料分割索引鍵和識別碼來讀取項目，並加以更新，然後最後一個步驟是依資料分割索引鍵和識別碼刪除項目。讀取包括 PartitionKey 值 (對應至 REST API 中的 `x-ms-documentdb-partitionkey` 要求標頭)。
 
 ```csharp
 // Read document. Needs the partition key and the ID to be specified
@@ -178,7 +176,7 @@ IQueryable<DeviceReading> query = client.CreateDocumentQuery<DeviceReading>(
     .Where(m => m.MetricType == "Temperature" && m.DeviceId == "XMS-0001");
 ```
     
-下列查詢沒有根據資料分割索引鍵 (DeviceId) 的篩選，且已展開至對資料分割索引執行它的所有資料分割。 請注意，您必須指定 EnableCrossPartitionQuery (REST API 中的`x-ms-documentdb-query-enablecrosspartition` )，才能讓 SDK 跨資料分割執行查詢。
+下列查詢沒有根據資料分割索引鍵 (DeviceId) 的篩選，且已展開至對資料分割索引執行它的所有資料分割。 您必須指定 EnableCrossPartitionQuery (REST API 中的 `x-ms-documentdb-query-enablecrosspartition`)，才能讓 SDK 跨分割區執行查詢。
 
 ```csharp
 // Query across partition keys
@@ -188,7 +186,7 @@ IQueryable<DeviceReading> crossPartitionQuery = client.CreateDocumentQuery<Devic
     .Where(m => m.MetricType == "Temperature" && m.MetricValue > 100);
 ```
 
-Cosmos DB 使用 SQL (包含 SDK 1.12.0 和更新版本) 支援資料分割容器的[彙總函式](sql-api-sql-query.md#Aggregates) `COUNT`、`MIN`、`MAX`、`SUM` 和 `AVG`。 查詢必須包含單一彙總運算子，而且在投射中必須包含單一值。
+Cosmos DB 使用 SQL (包含 SDK 1.12.0 和更新版本) 支援分割容器的[彙總函式](sql-api-sql-query.md#Aggregates) `COUNT`、`MIN`、`MAX` 和 `AVG`。 查詢必須包含單一彙總運算子，而且在投射中必須包含單一值。
 
 ### <a name="parallel-query-execution"></a>平行查詢執行
 Cosmos DB SDK 1.9.0 和更新版本支援平行查詢執行選項，可讓您對資料分割集合執行低延遲查詢 (即使它們需要涉及大量的資料分割也一樣)。 例如，下列查詢設定為跨資料分割平行執行。
@@ -204,8 +202,8 @@ IQueryable<DeviceReading> crossPartitionQuery = client.CreateDocumentQuery<Devic
     
 若要管理平行執行查詢，您可以調整下列參數︰
 
-* 藉由設定 `MaxDegreeOfParallelism`，您可以控制平行處理原則的程度，亦即同時連往容器資料分割的網路連線數上限。 如果您將此設定為 -1，平行處理原則的程度是由 SDK 管理。 如果 `MaxDegreeOfParallelism` 未指定或設為 0 (這是預設值)，將會有連往容器資料分割的單一網路連線。
-* 您可藉由設定 `MaxBufferedItemCount`，來權衡取捨查詢延遲和用戶端記憶體使用量。 如果您省略這個參數或將此設定為 -1，平行查詢執行期間緩衝處理的項目數是由 SDK 管理。
+* 藉由設定 `MaxDegreeOfParallelism`，您可以控制平行處理原則的程度，亦即同時連往容器分割區的網路連線數上限。 如果您將此屬性設定為 -1，平行處理原則的程度會由 SDK 管理。 如果 `MaxDegreeOfParallelism` 未指定或設為 0 (這是預設值)，將會有連往容器資料分割的單一網路連線。
+* 您可藉由設定 `MaxBufferedItemCount`，來權衡取捨查詢延遲和用戶端記憶體使用量。 如果您省略此參數或將此屬性設定為 -1，平行查詢執行期間緩衝處理的項目數會由 SDK 管理。
 
 在相同的集合狀態下，平行查詢會以和序列執行相同的順序傳回結果。 執行包含排序 (ORDER BY 和/或 TOP) 的跨資料分割查詢時，Azure Cosmos DB SDK 會跨資料分割發出平行查詢，並合併用戶端中已部分排序的結果來產生全域排序的結果。
 
@@ -219,10 +217,10 @@ await client.ExecuteStoredProcedureAsync<DeviceReading>(
     "XMS-001-FE24C");
 ```
    
-在下一節中，我們會探討如何從單一資料分割容器改為資料分割的容器。
+在下一節中，我們會探討如何從單一分割區容器改為分割容器。
 
 ## <a name="next-steps"></a>後續步驟
-在本文中，我們提供如何透過 SQL API 使用 Azure Cosmos DB 容器資料分割的概觀。 如需使用任一 Azure Cosmos DB API 進行資料分割之概念和最佳做法的概觀，另請參閱[資料分割與水平調整](../cosmos-db/partition-data.md)。 
+本文提供如何透過 SQL API 使用 Azure Cosmos DB 容器分割的概觀。 如需使用任一 Azure Cosmos DB API 進行資料分割之概念和最佳做法的概觀，另請參閱[資料分割與水平調整](../cosmos-db/partition-data.md)。 
 
 * 使用 Azure Cosmos DB 執行規模和效能測試。 如需範例，請參閱 [Azure Cosmos DB 的效能和規模測試](performance-testing.md)。
 * 使用 [SDK](sql-api-sdk-dotnet.md) 或 [REST API](/rest/api/cosmos-db/) 開始撰寫程式碼

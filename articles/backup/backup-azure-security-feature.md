@@ -1,24 +1,19 @@
 ---
-title: "利用安全性功能協助保護使用 Azure 備份的混合式備份 | Microsoft Docs"
-description: "了解如何使用 Azure 備份的安全性功能，讓備份更安全"
+title: 利用安全性功能協助保護使用 Azure 備份的混合式備份
+description: 了解如何使用 Azure 備份的安全性功能，讓備份更安全
 services: backup
-documentationcenter: 
-author: JPallavi
+author: trinadhk
 manager: vijayts
-editor: 
-ms.assetid: 47bc8423-0a08-4191-826d-3f52de0b4cb8
 ms.service: backup
-ms.workload: storage-backup-recovery
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 06/08/2017
-ms.author: pajosh
-ms.openlocfilehash: f856303d4abf05178eb11a242b87390ff1484e1b
-ms.sourcegitcommit: 0b02e180f02ca3acbfb2f91ca3e36989df0f2d9c
+ms.author: trinadhk
+ms.openlocfilehash: 32eba23202eca1c71c4f3b01dcb364281cb2eb60
+ms.sourcegitcommit: 8ebcecb837bbfb989728e4667d74e42f7a3a9352
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/05/2018
+ms.lasthandoff: 08/21/2018
+ms.locfileid: "40246429"
 ---
 # <a name="security-features-to-help-protect-hybrid-backups-that-use-azure-backup"></a>利用安全性功能協助保護使用 Azure 備份的混合式備份
 現在越來越重視安全性問題，例如惡意程式碼、勒索軟體和入侵。 這些安全性問題在成本和資料方面付出的代價很高。 為了防範這類攻擊，Azure 備份現在提供安全性功能來協助保護混合式備份。 本文說明如何使用 Azure 復原服務代理程式和 Azure 備份伺服器以啟用及使用這些功能。 這些功能包括：
@@ -55,7 +50,7 @@ ms.lasthandoff: 03/05/2018
     ![復原服務保存庫屬性的螢幕擷取畫面](./media/backup-azure-security-feature/security-settings-update.png)
 
     更新連結會開啟 [安全性設定] 刀鋒視窗，其中提供功能的摘要並讓您啟用它們。
-5. 從 [是否已設定 Azure Multi-Factor Authentication?] 下拉式清單中，選取一個值以確認您是否已啟用 [Azure Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md)。 如果已啟用，當您登入 Azure 入口網站時，系統會要求您從另一個裝置 (例如行動電話) 進行驗證。
+5. 從 [是否已設定 Azure Multi-Factor Authentication?] 下拉式清單中，選取一個值以確認您是否已啟用 [Azure Multi-Factor Authentication](../active-directory/authentication/multi-factor-authentication.md)。 如果已啟用，當您登入 Azure 入口網站時，系統會要求您從另一個裝置 (例如行動電話) 進行驗證。
 
    當您在備份中執行重要作業時，您必須輸入安全 PIN 碼 (可在 Azure 入口網站上取得)。 啟用 Multi-Factor Authentication 可多一道安全性。 只有具備有效 Azure 認證且從第二個裝置驗證的授權使用者，才能存取 Azure 入口網站。
 6. 若要儲存安全性設定，請選取 [啟用]，然後按一下 [儲存]。 只有當您在上一個步驟從 [是否已設定 Azure Multi-Factor Authentication?] 清單中選取一個值之後，才能選取 [啟用]。
@@ -85,6 +80,10 @@ ms.lasthandoff: 03/05/2018
 
 ### <a name="authentication-to-perform-critical-operations"></a>用來執行重要作業的驗證
 針對重要作業新增額外一層驗證時，系統會提示您在執行**停止保護並刪除資料**和**變更複雜密碼**作業時輸入安全性 PIN 碼。
+
+> [!NOTE]
+
+> 目前並未針對 DPM 和 MABS 提供安全性 PIN 碼的支援以**停止保護並刪除資料**。 
 
 若要收到這個 PIN：
 

@@ -1,22 +1,23 @@
 ---
-title: "使用 Microsoft Flow 自動化 Azure Application Insights 程序"
-description: "了解如何利用 Application Insights Connector，使用 Microsoft Flow 來快速自動執行可重複的程序。"
+title: 使用 Microsoft Flow 自動化 Azure Application Insights 程序
+description: 了解如何利用 Application Insights Connector，使用 Microsoft Flow 來快速自動執行可重複的程序。
 services: application-insights
-documentationcenter: 
+documentationcenter: ''
 author: mrbullwinkle
 manager: carmonm
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 06/25/2017
 ms.author: mbullwin
-ms.openlocfilehash: a1d2787626ed8fa71e3e4e9921ffb8a4680014cb
-ms.sourcegitcommit: e462e5cca2424ce36423f9eff3a0cf250ac146ad
+ms.openlocfilehash: 449a6274b67f3eb72ea6d8bd19f555fc59158d7e
+ms.sourcegitcommit: f3bd5c17a3a189f144008faf1acb9fabc5bc9ab7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/01/2017
+ms.lasthandoff: 09/10/2018
+ms.locfileid: "44299095"
 ---
 # <a name="automate-azure-application-insights-processes-with-the-connector-for-microsoft-flow"></a>使用適用於 Microsoft Flow 的連接器自動執行 Azure Application Insights 程序
 
@@ -24,7 +25,7 @@ ms.lasthandoff: 11/01/2017
 
 有了此整合，您就能立即自動執行許多流程，而不需撰寫任何一行程式碼。 在您使用 Application Insights 動作建立流程後，此流程會自動執行 Application Insights Analytics 查詢。 
 
-您也可以新增額外的動作。 Microsoft Flow 提供數百個動作。 例如，您可以使用 Microsoft Flow 來自動傳送電子郵件通知，或是在 Visual Studio Team Services 中建立錯誤 (Bug)。 您也可以使用提供給適用於 Microsoft Flow 之連接器的任何一種[範本](https://ms.flow.microsoft.com/en-us/connectors/shared_applicationinsights/?slug=azure-application-insights)。 這些範本可加快建立流程的程序。 
+您也可以新增額外的動作。 Microsoft Flow 提供數百個動作。 例如，您可以使用 Microsoft Flow 自動傳送電子郵件通知，或是在 Azure DevOps 中建立 Bug。 您也可以使用提供給適用於 Microsoft Flow 之連接器的任何一種[範本](https://ms.flow.microsoft.com/en-us/connectors/shared_applicationinsights/?slug=azure-application-insights)。 這些範本可加快建立流程的程序。 
 
 <!--The Application Insights connector also works with [Azure Power Apps](https://powerapps.microsoft.com/en-us/) and [Azure Logic Apps](https://azure.microsoft.com/services/logic-apps/?v=17.23h). --> 
 
@@ -34,19 +35,19 @@ ms.lasthandoff: 11/01/2017
 
 ### <a name="step-1-create-a-flow"></a>步驟 1：建立流程
 1. 登入 [Microsoft Flow](http://flow.microsoft.com)，然後選取 [我的流程]。
-2. 按一下 [從空白建立流程]。
+1. 按一下 [從空白建立流程]。
 
 ### <a name="step-2-create-a-trigger-for-your-flow"></a>步驟 2：建立流程的觸發程序
 1. 依序選取 [排程] 和 [排程 - 重複]。
-2. 在 [頻率] 方塊中選取 [天]，然後在 [間隔] 方塊中輸入 **1**。
+1. 在 [頻率] 方塊中選取 [天]，然後在 [間隔] 方塊中輸入 **1**。
 
     ![Microsoft Flow 觸發程序對話方塊](./media/app-insights-automate-with-flow/flow1.png)
 
 
 ### <a name="step-3-add-an-application-insights-action"></a>步驟 3：新增 Application Insights 動作
 1. 按一下 [新增步驟]，然後按一下 [新增動作]。
-2. 搜尋 **Azure Application Insights**。
-3. 按一下 [Azure Application Insights – 視覺化 Analytics 查詢預覽]。
+1. 搜尋 **Azure Application Insights**。
+1. 按一下 [Azure Application Insights – 視覺化 Analytics 查詢預覽]。
 
     ![執行 Analytics 查詢視窗](./media/app-insights-automate-with-flow/flow2.png)
 
@@ -83,12 +84,12 @@ ms.lasthandoff: 11/01/2017
 ### <a name="step-6-configure-the-flow-to-send-email"></a>步驟 6：設定傳送電子郵件的流程
 
 1. 按一下 [新增步驟]，然後按一下 [新增動作]。
-2. 搜尋 **Office 365 Outlook**。
-3. 按一下 [Office 365 Outlook – 傳送電子郵件]。
+1. 搜尋 **Office 365 Outlook**。
+1. 按一下 [Office 365 Outlook – 傳送電子郵件]。
 
     ![Office 365 Outlook 選取視窗](./media/app-insights-automate-with-flow/flow2b.png)
 
-4. 在 [傳送電子郵件]  視窗中，執行下列動作：
+1. 在 [傳送電子郵件]  視窗中，執行下列動作：
 
    a. 輸入收件者的電子郵件地址。
 
@@ -100,7 +101,7 @@ ms.lasthandoff: 11/01/2017
 
     ![Office 365 Outlook 設定](./media/app-insights-automate-with-flow/flow5.png)
 
-5. 在動態內容功能表上執行下列動作：
+1. 在動態內容功能表上執行下列動作：
 
     a. 選取 [附件名稱]。
 

@@ -1,13 +1,30 @@
+---
+title: 包含檔案
+description: 包含檔案
+services: storage
+author: ramankumarlive
+ms.service: storage
+ms.topic: include
+ms.date: 09/24/2018
+ms.author: ramankum
+ms.custom: include file
+ms.openlocfilehash: ea312002a9a1a39505cd4748864ca9dfc1da43dd
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "47060737"
+---
 # <a name="high-performance-premium-storage-and-managed-disks-for-vms"></a>VM 高效能進階儲存體與受控磁碟
+
 針對輸入/輸出 (I/O) 工作負載大的虛擬機器 (VM)，Azure 進階儲存體可提供高效能、低延遲的磁碟支援。 使用進階儲存體的 VM 磁碟會將資料儲存在固態硬碟 (SSD) 上。 您可以將現有 VM 磁碟移轉到進階儲存體，以利用進階儲存體磁碟的速度和效能。
 
-在 Azure 中，您可以將多部進階儲存體磁碟連結至 VM。 使用多部磁碟可讓您的應用程式在每部 VM 上獲得最多 256 TB 的儲存空間。 透過進階儲存體，您的應用程式可在每部 VM 上達到每秒執行 80,000 I/O 作業 (IOPS)，以及每部 VM 上的磁碟輸送量達每秒 2,000 MB (MB/秒)。 讀取作業的延遲極低。
+在 Azure 中，您可以將多部進階儲存體磁碟連結至 VM。 使用多個磁碟，可讓您的應用程式每 VM 的儲存體達 256 TB；若您使用預覽大小，則應用程式每 VM 可達約 2 PiB 的儲存體。 透過進階儲存體，您的應用程式可在每部 VM 上達到每秒執行 80,000 I/O 作業 (IOPS)，以及每部 VM 上的磁碟輸送量達每秒 2,000 MB (MB/秒)。 讀取作業的延遲極低。
 
 Azure 使用進階儲存體，提供您將要求較高的企業應用程式 (例如 Dynamics AX、Dynamics CRM、Exchange Server、SAP Business Suite 和 SharePoint 伺服器陣列) 隨即轉移至雲端的能力。 您可以在應用程式中執行強調效能、需要持續高效能和低延遲的資料庫工作負載，例如 SQL Server、Oracle、MongoDB、MySQL 和 Redis。
 
 > [!NOTE]
 > 為了發揮應用程式最佳效能，我們建議您將任何需要高 IOPS 的 VM 磁碟移轉到進階儲存體。 如果您的磁碟不需要高 IOPS，您可以將其保存在標準 Azure 儲存體中以控制成本。 在標準儲存體中，VM 磁碟會資料會儲存在硬碟機 (HDD) 而非 SSD 上。
-> 
 
 Azure 提供兩種建立 VM 進階儲存體磁碟的方法：
 
@@ -27,7 +44,6 @@ Azure 提供兩種建立 VM 進階儲存體磁碟的方法：
 
 > [!NOTE]
 > 進階儲存體可在大部分地區使用。 如需可用區域的清單，請參閱[依區域提供的 Azure 產品](https://azure.microsoft.com/regions/#services)中**磁碟儲存體**的資料列。
-> 
 
 ## <a name="features"></a>特性
 
@@ -35,7 +51,7 @@ Azure 提供兩種建立 VM 進階儲存體磁碟的方法：
 
 * **進階儲存體磁碟**
 
-    進階儲存體支援可連結至特定大小系列 VM 的 VM 磁碟。 進階儲存體支援 DS 系列、DSv2 系列、GS 系列、Ls 系列、Fs 系列和 Esv3 系列 VM。 您可以選擇七種磁碟大小：P4 (32GB)、P6 (64GB)、P10 (128GB)、P20 (512GB)、P30 (1024GB)、P40 (2048GB)、P50 (4095GB)。 受控磁碟至今僅支援 P4 和 P6 磁碟大小。 每個磁碟大小都有自己的效能規格。 端視您的應用程式需求而定，您可以將一或多個磁碟連結至您的 VM。 在[進階儲存體延展性和效能目標 ](#scalability-and-performance-targets)中，我們會更詳細地說明規格。
+    進階儲存體支援可連結至特定大小系列 VM 的 VM 磁碟。 進階儲存體支援各種不同的 Azure VM。 您可以選擇八種 GA 磁碟大小，分別是：P4 (32 GiB)、P6 (64 GiB)、P10 (128 GiB)、P15 (256 GiB)、P20 (512 GiB)、P30 (1024 GiB)、P40 (2,048 GiB) 和 P50 (4095 GiB)。 以及三種預覽磁碟大小：P60 8,192 GiB (8 TiB)、P70 16,348 GiB (16 TiB) 和 P80 32,767 GiB (32 TiB)。 目前只有針對「受控磁碟」才支援 P4、P6、P60、P70 和 P80 磁碟大小。 每個磁碟大小都有自己的效能規格。 端視您的應用程式需求而定，您可以將一或多個磁碟連結至您的 VM。 在[進階儲存體延展性和效能目標 ](#scalability-and-performance-targets)中，我們會更詳細地說明規格。
 
 * **進階分頁 Blob**
 
@@ -45,11 +61,11 @@ Azure 提供兩種建立 VM 進階儲存體磁碟的方法：
 
 * **進階儲存體帳戶**
 
-    若要開始使用進階儲存體，請為非受控磁碟建立進階儲存體帳戶。 若要在 [Azure 入口網站](https://portal.azure.com)中建立進階儲存體帳戶，請選擇**進階**效能層級。 選取 [本地備援儲存體 (LRS)] 複寫選項。 您也可以在以下其中一個位置中將類型設為 **Premium_LRS**，以建立進階儲存體帳戶：
-    * [儲存體 REST API](https://docs.microsoft.com/rest/api/storageservices/Azure-Storage-Services-REST-API-Reference) (2014-02-14 版或更新版本)
-    * [服務管理 REST API](http://msdn.microsoft.com/library/azure/ee460799.aspx) (2014-10-01 版或更新版本；適用於傳統部署)
-    * [Azure 儲存體資源提供者 REST API](https://docs.microsoft.com/rest/api/storagerp)(適用於 Azure Resource Manager 部署)
-    * [Azure PowerShell](/powershell/azureps-cmdlets-docs.md) (0.8.10 版或更新版本)
+    若要開始使用進階儲存體，請為非受控磁碟建立進階儲存體帳戶。 若要在 [Azure 入口網站](https://portal.azure.com)中建立進階儲存體帳戶，請選擇**進階**效能層級。 選取 [本地備援儲存體 (LRS)] 複寫選項。 您也可以透過將效能層設定為 **Premium_LRS** 來建立進階儲存體帳戶。 若要變更效能層級，請使用下列其中一個方法：
+     
+    - [適用於 Azure 儲存體的 PowerShell](../articles/storage/common/storage-powershell-guide-full.md#manage-the-storage-account)
+    - [適用於 Azure 儲存體的 Azure CLI](../articles/storage/common/storage-azure-cli.md#manage-storage-accounts)
+    - [Azure 儲存體資源提供者 REST API](https://docs.microsoft.com/rest/api/storagerp) \(英文\) (適用於 Azure Resource Manager 部署) 或其中一個 Azure 儲存體資源提供者用戶端程式庫
 
     若要深入了解進階儲存體帳戶限制，請參閱[進階儲存體延展性和效能目標](#premium-storage-scalability-and-performance-targets)。
 
@@ -61,16 +77,16 @@ Azure 提供兩種建立 VM 進階儲存體磁碟的方法：
 
 ## <a name="supported-vms"></a>支援的 VM
 
-進階儲存體支援 B 系列、DS 系列、DSv2 系列、DSv3 系列、GS 系列、Ls 系列、M 系列、Fs 系列 VM。 這些 VM 類型可搭配標準和進階儲存體磁碟使用。 您不能將進階儲存體磁碟與不能和進階儲存體相容的 VM 系列搭配使用。
+進階儲存體支援各種不同的 Azure VM。 這些 VM 類型可搭配標準和進階儲存體磁碟使用。 您不能將進階儲存體磁碟與不能和進階儲存體相容的 VM 系列搭配使用。
 
 
 如需 Azure 中的 VM 類型和大小資訊 (適用於 Windows)，請參閱 [Windows VM 大小](../articles/virtual-machines/windows/sizes.md)。 如需 Azure 中的 VM 類型和大小資訊 (適用於 Linux)，請參閱 [ VM 大小](../articles/virtual-machines/linux/sizes.md)。
 
-以下是 DS 系列、DSv2 系列、GS 系列、Ls 系列及 Fs 系列 VM 的一些功能：
+以下為啟用進階儲存體之 VM 所支援的部分功能：
 
-* **雲端服務**
+* **可用性設定組**
 
-    您可以將 DS 系列 VM 新增至只有 DS 系列 VM 的雲端服務。 請勿將 DS 系列 VM 新增至包含非 DS 系列類型 VM 的現有雲端服務。 您可以將現有的 VHD 移轉到僅執行 DS 系列 VM 的新雲端服務。 如果您想要為裝載 DS 系列 VM 的新雲端服務使用相同的虛擬 IP 位址，請使用[保留的 IP 位址](../articles/virtual-network/virtual-networks-instance-level-public-ip.md)。 GS 系列 VM 可以新增至僅執行 GS 系列 VM 的現有雲端服務。
+    以 DS 系列 VM 為例，您可以將 DS 系列 VM 新增到只有 DS 系列 VM 的雲端服務。 請勿將 DS 系列 VM 新增至包含非 DS 系列類型 VM 的現有雲端服務。 您可以將現有的 VHD 移轉到僅執行 DS 系列 VM 的新雲端服務。 如果您想要為裝載 DS 系列 VM 的新雲端服務使用相同的虛擬 IP 位址，請使用[保留的 IP 位址](../articles/virtual-network/virtual-networks-instance-level-public-ip.md)。
 
 * **作業系統磁碟**
 
@@ -87,7 +103,13 @@ Azure 提供兩種建立 VM 進階儲存體磁碟的方法：
 
 * **快取**
 
-    支援進階儲存體的大小系列 VM 有獨特的快取功能，在輸送量和延遲上有高層級的表現。 快取功能遠超過基礎進階儲存體磁碟的效能。 您可以在進階儲存體磁碟上將磁碟快取原則設定為 **ReadOnly**、**ReadWrite** 或 **None**。 所有進階資料磁碟的預設磁碟快取原則都是 **ReadOnly**，而作業系統磁碟的磁碟快取原則是 **ReadWrite**。 為獲得最佳的應用程式效能，請使用正確的快取設定。 例如，對於讀取繁重或唯讀資料磁碟 (如 SQL Server 資料檔)，將磁碟快取原則設定為 **ReadOnly**。 例如，對於寫入繁重或唯寫資料磁碟 (如 SQL Server 記錄檔)，將磁碟快取原則設定為 。 請參閱[使用進階儲存體設計高效能](../articles/virtual-machines/windows/premium-storage-performance.md)，以深入了解如何最佳化進階儲存體。
+    支援進階儲存體的虛擬機器 (VM) 有獨特的快取功能，不僅能提高輸送量，也縮短延遲時間。 其快取功能遠超過基礎進階儲存體磁碟的效能。 然而並非所有 VM 都支援快取，因此請檢閱 VM 規格，進一步了解您有意使用的 VM 大小。  支援快取的 VM 會在規格中顯示「最大快取和暫存儲存體輸送量」量值，做為標示。  也會在 VM 標題正下方註明。
+    
+    透過快取功能，您可以在進階儲存體磁碟上將磁碟快取原則設定為 **ReadOnly**、**ReadWrite** 或 **None**。 所有進階資料磁碟的預設磁碟快取原則都是 **ReadOnly**，而作業系統磁碟的磁碟快取原則是 **ReadWrite**。 為獲得最佳的應用程式效能，請務必使用正確的快取設定。 
+    
+    例如，對於讀取繁重或唯讀資料磁碟 (如 SQL Server 資料檔)，將磁碟快取原則設定為 **ReadOnly**。 例如，對於寫入繁重或唯寫資料磁碟 (如 SQL Server 記錄檔)，將磁碟快取原則設定為 。 
+    
+    請參閱[使用進階儲存體設計高效能](../articles/virtual-machines/windows/premium-storage-performance.md)，以深入了解如何最佳化進階儲存體。
 
 * **分析**
 
@@ -103,7 +125,7 @@ Azure 提供兩種建立 VM 進階儲存體磁碟的方法：
 
     DS 系列中目前最大的 VM 是 Standard_DS15_v2。 Standard_DS15_v2 可以在所有磁碟上提供高達 960 MB/秒的速度。 GS 系列中最大的 VM 是 Standard_GS5。 Standard_GS5 可以在所有磁碟上提供高達 2,000 MB/秒的速度。
 
-    請注意，這些限制僅適用於磁碟流量。 這些限制不包含快取點擊和網路流量。 VM 網路流量可使用各別的頻寬。 網路流量的頻寬與進階儲存體磁碟使用的專用頻寬不同。
+    這些限制僅適用於磁碟流量。 這些限制不包含快取點擊和網路流量。 VM 網路流量可使用各別的頻寬。 網路流量的頻寬與進階儲存體磁碟使用的專用頻寬不同。
 
     若想要針對進階儲存體支援的 VM，深入了解最新的 IOPS 和輸送量 (頻寬) 上限資訊，請參閱 [Windows VM 大小](../articles/virtual-machines/windows/sizes.md)或 [Linux VM 大小](../articles/virtual-machines/linux/sizes.md)。
 
@@ -127,18 +149,13 @@ Azure 提供兩種建立 VM 進階儲存體磁碟的方法：
 如果您針對非受控磁碟使用進階儲存體帳戶，而您的應用程式超過單一儲存體帳戶的延展性目標，您可能會想要移轉至受控磁碟。 如果您不想要移轉至受控磁碟，請將應用程式建置為使用多個儲存體帳戶。 然後將資料分散到那些儲存體帳戶。 例如，如果您想要將 51 TB 的磁碟連結至多個 VM，可將其分散到兩個儲存體帳戶。 單一進階儲存體帳戶的限制是 35 TB。 請務必確認單一進階儲存體帳戶的佈建磁碟決不超過 35 TB。
 
 ### <a name="premium-storage-disk-limits"></a>進階儲存體磁碟限制
-當您佈建進階儲存體磁碟時，磁碟的大小決定 IOPS 和輸送量 (頻寬) 上限。 Azure 提供七種類型的進階儲存體磁碟：P4 (僅限受控磁碟)、P6 (僅限受控磁碟)、P10、P20、P30、P40 和 P50。 每個進階儲存體磁碟類型都有特定的 IOPS 和輸送量限制。 磁碟類型的限制如下表說明︰
+當您佈建進階儲存體磁碟時，磁碟的大小決定 IOPS 和輸送量 (頻寬) 上限。 Azure 提供八種類型的進階儲存體磁碟：P4 (僅限受控磁碟)、P6 (僅限受控磁碟)、P10、P15、P20、P30、P40 和 P50。 每個進階儲存體磁碟類型都有特定的 IOPS 和輸送量限制。 磁碟類型的限制如下表說明︰
 
-| 進階磁碟類型  | P4    | P6    | P10   | P20   | P30   | P40   | P50   | 
-|---------------------|-------|-------|-------|-------|-------|-------|-------|
-| 磁碟大小           | 32 GB| 64 GB| 128 GB| 512 GB            | 1024 GB (1 TB)    | 2048 GB (2 TB)    | 4095 GB (4 TB)    | 
-| 每一磁碟的 IOPS       | 120   | 240   | 500   | 2300              | 5000              | 7500              | 7500              | 
-| 每一磁碟的輸送量 | 每秒 25 MB  | 每秒 50 MB  | 每秒 100 MB | 每秒 150 MB | 每秒 200 MB | 每秒 250 MB | 每秒 250 MB | 
+| 進階磁碟類型  | P4    | P6    | P10   | P15   | P20   | P30   | P40   | P50   | P60   | P70   | P80   | |---------------------|-------|-------|-------|-------|-------|-------|-------|-------||-------||-------||-------| | 磁碟大小           | 32 GiB| 64 GiB| 128 GiB| 256 GiB| 512 GiB            | 1024 GiB (1 TiB)    | 2048 GiB (2 TiB)    | 4095 GiB (4 TiB)    | 8192 GiB (8 TiB)    | 16,384 GiB (16 TiB)    | 32,767 GiB (32 TiB)    | | 每磁碟的 IOPS       | 120   | 240   | 500   | 1100   | 2300              | 5000              | 7500              | 7500              | 12,500              | 15,000              | 20,000              | | 每磁碟輸送量 | 每秒 25 MB  | 每秒50 MB  | 每秒 100 MB | 每秒 125 MB | 每秒 150 MB | 每秒 200 MB | 每秒 250 MB | 每秒 250 MB | 每秒 480 MB | 每秒 750 MB | 每秒 750 MB |
 
 > [!NOTE]
 > 請確定 VM 上有足夠的頻寬可用來輸送磁碟流量，如[進階儲存體支援的 VM](#premium-storage-supported-vms) 中所述。 否則，您的磁碟輸送量和 IOPS 會限制在較低的值。 最大輸送量和 IOPS 是根據 VM 的限制，不是在上表中所述的磁碟限制。  
-> 
-> 
+> Azure 已將進階儲存體平台設計為大規模平行。 將您的應用程式設計為可容納多執行緒，可協助您達成較大磁碟大小所提供的高效能目標。
 
 以下是有關進階儲存體延展性和效能目標的一些重要須知︰
 
@@ -148,12 +165,11 @@ Azure 提供兩種建立 VM 進階儲存體磁碟的方法：
 
 * **磁碟大小**
 
-    Azure 會將磁碟大小對應 (無條件進位) 至上節表格中最接近的進階儲存體磁碟選項。 例如，100 GB 的磁碟大小會分類為 P10 選項。 P10 可執行最多 500 IOPS，並包含最多 100 MB/秒的輸送量。 同樣地，400 GB 的磁碟會分類為 P20。 P20 可執行最多 2,300 IOPS，並包含 150 MB/秒的輸送量。
-    
+    Azure 會將磁碟大小對應 (無條件進位) 至上節表格中最接近的進階儲存體磁碟選項。 例如，100 GB 的磁碟大小會分類為 P10 選項。 它最高可執行 500 IOPS，並包含最多 100 MB/秒的輸送量。 同樣地，400 GB 的磁碟會分類為 P20。 它最高可執行 2,300 IOPS，並包含 150 MB/秒的輸送量。
+
     > [!NOTE]
     > 您可以輕易增加現有磁碟的大小。 例如，您可以將 30 GB 磁碟的大小增加到 128 GB，甚至 1 TB。 或者，因為您需要更多容量或更多的 IOPS 和輸送量，您也可以將 P20 磁碟轉換為 P30 磁碟。 
-    > 
- 
+
 * **I/O 大小**
 
     I/O 大小為 256 KB。 如果要傳送的資料少於 256 KB，會視為 1 個 I/O 單位。 較大的 I/O 大小則會視為大小是 256 KB 的多個 I/O。 例如，1,100 KB 的 I/O 會視為 5 個 I/O 單位。
@@ -170,9 +186,10 @@ Azure 提供兩種建立 VM 進階儲存體磁碟的方法：
 
 * **快取點擊**
 
-    快取點擊不會受到磁碟配置 IOPS 或輸送量的限制。 例如，當您在進階儲存體支援的 VM 上使用具有 **ReadOnly**快取設定的資料磁碟時，從快取提供的「讀取數」並不受限於磁碟的 IOPS 和輸送量上限。 如果磁碟的工作負載是以讀取為主，您可以獲得極高的輸送量。 在 VM 層級上，根據 VM 大小，快取會受到不同的 IOPS 和輸送量限制。 DS 系列 VM 大約有 4000 IOPS，而快取與本機 SSD I/O 是每個核心 33 MB/秒的輸送量。 GS 系列 VM 有 5000 IOPS 的限制，而快取與本機 SSD I/O 是每個核心 50 MB/秒的輸送量。 
+    快取點擊不會受到磁碟配置 IOPS 或輸送量的限制。 例如，當您在進階儲存體支援的 VM 上使用具有 **ReadOnly**快取設定的資料磁碟時，從快取提供的「讀取數」並不受限於磁碟的 IOPS 和輸送量上限。 如果磁碟的工作負載是以讀取為主，您可以獲得極高的輸送量。 在 VM 層級上，根據 VM 大小，快取會受到不同的 IOPS 和輸送量限制。 DS 系列 VM 大約有 4,000 IOPS 與 33 MB/秒的輸送量 (針對快取與本機 SSD I/O 的每個核心)。 GS 系列 VM 有 5,000 IOPS 的限制與 50 MB/秒的輸送量 (針對快取與本機 SSD I/O 的每個核心)。
 
 ## <a name="throttling"></a>節流
+
 如果您的應用程式 IOPS 或輸送量超過進階儲存體磁碟的配置限制，可能會發生節流。 也可能是因為 VM 上所有磁碟的總磁碟流量，超過 VM 上可用的磁碟頻寬，因而發生節流。 若要避免節流，我們建議您限制磁碟擱置 I/O 要求的數量限制。 請根據所佈建磁碟的延展性和效能目標，以及 VM 上可用的磁碟頻寬來使用限制。  
 
 當您的應用程式設計為避免節流情況時，可以達到最低延遲。 但是，如果磁碟的擱置 I/O 要求數過小，您的應用程式便無法達到磁碟最大的 IOPS 和輸送量層級。
@@ -180,17 +197,19 @@ Azure 提供兩種建立 VM 進階儲存體磁碟的方法：
 下列範例示範如何計算節流層級。 所有計算都是以 256 KB 的 I/O 單位大小為基礎。
 
 ### <a name="example-1"></a>範例 1
+
 在 P10 磁碟上，您的應用程式一秒內已處理 495 個 16 KB 大小的 I/O 單位。 I/O 單位會視為 495 IOPS。 如果您在該秒內嘗試 2 MB 的 I/O，I/O 單位的總數會等於 495 + 8 IOPS。 這是因為當 I/O 單位大小是 256 KB 時，2 MB I/O = 2,048 KB / 256 KB = 8 個 I/O 單位。 因為 495 + 8 的總和超出磁碟 500 IOPS 的限制，因此會發生節流情況。
 
 ### <a name="example-2"></a>範例 2
+
 在 P10 磁碟上，您的應用程式已處理 400 個 256 KB 大小的 I/O 單位。 耗用的總頻寬是 (400 &#215; 256) / 1,024 KB = 100 MB/秒。 P10 磁碟的輸送量限制為 100 MB/秒。 如果您的應用程式嘗試在該秒內執行更多 I/O 作業，便會發生節流情況，因為會超出配置的限制。
 
 ### <a name="example-3"></a>範例 3
-DS4 VM 連接了兩個 P30 磁碟。 每個 P30 磁碟有 200 MB/秒的輸送量。 不過，DS4 VM 有256 MB/秒的磁碟總頻寬容量。 此 DS4 VM 上連結的磁碟無法同時達到最大的輸送量。 若要解決這個問題，您可以在一個磁碟上維持 200 MB/秒的流量，在另一個磁碟上維持 56 MB/秒的流量。 如果您的磁碟流量總和超過每秒 256 MB/秒，磁碟流量就會發生節流。
+
+DS4 VM 連接了兩個 P30 磁碟。 每個 P30 磁碟都有 200 MB/秒的輸送量。 不過，DS4 VM 有256 MB/秒的磁碟總頻寬容量。 此 DS4 VM 上連結的磁碟無法同時達到最大的輸送量。 若要解決這個問題，您可以在一個磁碟上維持 200 MB/秒的流量，在另一個磁碟上維持 56 MB/秒的流量。 如果您的磁碟流量總和超過每秒 256 MB/秒，磁碟流量就會發生節流。
 
 > [!NOTE]
 > 如果磁碟流量大多包含小型 I/O，您的應用程式在達到輸送量限制前很可能會先達到 IOPS 限制。 但是，如果磁碟流量大多包含大型 I/O，您的應用程式可能會達到輸送量限制，而非 IOPS 限制。 您可以使用最佳 I/O 大小，將應用程式 IOPS 和輸送量的容量最大化。 此外，您可以限制磁碟的擱置 I/O 要求數目。
-> 
 
 若要了解如何使用進階儲存體設計高效能，請參閱[使用進階儲存體設計高效能](../articles/virtual-machines/windows/premium-storage-performance.md)。
 
@@ -269,7 +288,7 @@ sudo yum install microsoft-hyper-v
 
 * **進階儲存體磁碟和 Blob 大小**
 
-    進階儲存體磁碟或 Blob 的計費依據是磁碟或 Blob 得佈建大小。 Azure 會將佈建大小對應 (無條件進位) 至最接近的進階儲存體磁碟選項。 如需詳細資訊，請參閱[進階儲存體延展性和效能目標](#premium-storage-scalability-and-performance-targets)中的表格。 每一個磁碟對應至一個支援的佈建大小，並據此計費。 任何已佈建的磁碟都是使用每月的進階儲存體優惠價格，以每小時的方式計費。 例如，如果您在佈建完 P10 磁碟的 20 小時後刪除它，則會以 20 小時計算 P10 解決方案的費用。 這與寫入磁碟的實際資料量或使用的 IOPS 和輸送量無關。
+    進階儲存體磁碟或 Blob 的計費依據是磁碟或 Blob 得佈建大小。 Azure 會將佈建大小對應 (無條件進位) 至最接近的進階儲存體磁碟選項。 如需詳細資訊，請參閱[進階儲存體延展性和效能目標](#premium-storage-scalability-and-performance-targets)中的表格。 每一個磁碟對應至一個支援的佈建大小，並據此計費。 任何已佈建的磁碟都是使用每月的進階儲存體供應項目價格，以每小時的方式計費。 例如，如果您在佈建完 P10 磁碟的 20 小時後刪除它，則會以 20 小時計算 P10 供應項目的費用。 這與寫入磁碟的實際資料量或使用的 IOPS 和輸送量無關。
 
 * **進階非受控磁碟快照集**
 
@@ -289,22 +308,12 @@ sudo yum install microsoft-hyper-v
 * [虛擬機器價格](https://azure.microsoft.com/pricing/details/virtual-machines/)
 * [受控磁碟價格](https://azure.microsoft.com/pricing/details/managed-disks/)
 
-## <a name="azure-backup-support"></a>Azure 備份支援 
+## <a name="azure-backup-support"></a>Azure 備份支援
 
 針對區域性災害復原，您必須使用 [Azure 備份](../articles/backup/backup-introduction-to-azure-backup.md)來備份位於不同區域的 VM 磁碟，並以 GRS 儲存體帳戶作為備份保存庫。
 
 若要建立具有以時間為基礎的備份、簡易 VM 還原，以及備份保留原則的備份作業，請使用 Azure 備份。 您可以搭配非受控和受控磁碟使用備份。 如需詳細資訊，請參閱 [適用於 VM 的 Azure 備份與非受控磁碟](../articles/backup/backup-azure-vms-first-look-arm.md)和[適用於 VM 的 Azure 備份與受控磁碟](../articles/backup/backup-introduction-to-azure-backup.md#using-managed-disk-vms-with-azure-backup)。 
 
 ## <a name="next-steps"></a>後續步驟
+
 如需進階儲存體的詳細資訊，請參閱下列文章。
-
-### <a name="design-and-implement-with-premium-storage"></a>使用進階儲存體進行設計和實作
-* [使用進階儲存體設計高效能](../articles/virtual-machines/windows/premium-storage-performance.md)
-* [進階儲存體的 Blob 儲存體作業](http://go.microsoft.com/fwlink/?LinkId=521969)
-
-### <a name="operational-guidance"></a>作業指引
-* [移轉到 Azure 進階儲存體](../articles/storage/common/storage-migration-to-premium-storage.md)
-
-### <a name="blog-posts"></a>部落格文章
-* [Azure 進階儲存體正式推出](https://azure.microsoft.com/blog/azure-premium-storage-now-generally-available-2/)
-* [宣佈 GS 系列︰將進階儲存體支援加入至公用雲端中的最大 VM](https://azure.microsoft.com/blog/azure-has-the-most-powerful-vms-in-the-public-cloud/)

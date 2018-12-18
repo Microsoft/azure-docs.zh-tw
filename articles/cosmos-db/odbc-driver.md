@@ -3,29 +3,28 @@ title: 使用 BI 分析工具連線到 Azure Cosmos DB | Microsoft Docs
 description: 了解如何使用 Azure Cosmos DB ODBC 驅動程式建立資料表和檢視，使標準化資料可以在 BI 以及資料分析軟體中檢視。
 keywords: odbc, odbc 驅動程式
 services: cosmos-db
-author: mimig1
-manager: jhubbard
-editor: ''
-documentationcenter: ''
-ms.assetid: 9967f4e5-4b71-4cd7-8324-221a8c789e6b
+author: SnehaGunda
+manager: kfile
 ms.service: cosmos-db
-ms.workload: data-services
-ms.tgt_pltfrm: na
-ms.devlang: rest-api
-ms.topic: article
+ms.devlang: na
+ms.topic: conceptual
 ms.date: 03/22/2018
-ms.author: mimig
-ms.openlocfilehash: 445acafeef67027712826f644afaa1784569b30d
-ms.sourcegitcommit: c3d53d8901622f93efcd13a31863161019325216
+ms.author: sngun
+ms.openlocfilehash: 010556dae1649754df5199fb81c10efcf4c5a226
+ms.sourcegitcommit: ebd06cee3e78674ba9e6764ddc889fc5948060c4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/29/2018
+ms.lasthandoff: 09/07/2018
+ms.locfileid: "44049995"
 ---
 # <a name="connect-to-azure-cosmos-db-using-bi-analytics-tools-with-the-odbc-driver"></a>使用 BI 分析工具搭配 ODBC 驅動程式連線到 Azure Cosmos DB
 
 Azure Cosmos DB ODBC 驅動程式可讓您使用 BI 分析工具 (例如 SQL Server 整合服務、Power BI Desktop 和 Tableau) 連線到 Azure Cosmos DB，讓您可以在那些解決方案中分析和建立您的 Azure Cosmos DB 資料視覺效果。
 
 Azure Cosmos DB ODBC 驅動程式符合 ODBC 3.8 規範，且支援 ANSI SQL-92 語法。 該驅動程式提供豐富的功能，可協助您重新標準化 Azure Cosmos DB 中的資料。 您可以使用驅動程式將 Azure Cosmos DB 中的資料以資料表或檢視來表示。 該驅動程式可讓您針對資料表和檢視執行 SQL 作業，包括依查詢、插入、更新和刪除分組。
+
+> [!NOTE]
+> 目前僅支援 Azure Cosmos DB SQL API 帳戶的 Azure Cosmos DB 與 ODBC 驅動程式連線。
 
 ## <a name="why-do-i-need-to-normalize-my-data"></a>為什麼需要將我的資料標準化？
 Azure Cosmos DB 是一種無結構描述的資料庫，因此它會透過讓應用程式即時逐一查看其資料模型，且不以嚴格的結構描述限制應用程式，來快速開發應用程式。 單一 Azure Cosmos DB 資料庫可以包含各種結構的 JSON 文件。 這非常適合快速應用程式開發，但是當您想要使用資料分析和 BI 工具分析和建立資料報告時，資料通常都需要壓平合併，並遵循特定的結構描述。
@@ -45,8 +44,8 @@ Azure Cosmos DB 是一種無結構描述的資料庫，因此它會透過讓應�
     |適用於 32 位元 Windows 的 [Microsoft Azure Cosmos DB ODBC 32-bit.msi](https://aka.ms/documentdb-odbc-32x32)|32 位元版本的 Windows 8.1 或更新版本、Windows 8、Windows 7、Windows XP 和 Windows Vista。|
 
     在本機執行 msi 檔案，它會啟動 **Microsoft Azure Cosmos DB ODBC 驅動程式安裝精靈**。 
-2. 使用預設的輸入安裝 ODBC 驅動程式，以完成安裝精靈。
-3. 開啟您電腦上的 [ODBC 資料來源管理員] App。您可以在 Windows 搜尋方塊中輸入 [ODBC 資料來源] 來開啟它。 
+1. 使用預設的輸入安裝 ODBC 驅動程式，以完成安裝精靈。
+1. 開啟您電腦上的 [ODBC 資料來源管理員] App。您可以在 Windows 搜尋方塊中輸入 [ODBC 資料來源] 來開啟它。 
     您可以按一下 [驅動程式] 索引標籤來確認驅動程式已安裝，並確定已列出 **Microsoft Azure Cosmos DB ODBC 驅動程式**。
 
     ![Azure Cosmos DB ODBC 資料來源管理員](./media/odbc-driver/odbc-driver.png)
@@ -54,8 +53,8 @@ Azure Cosmos DB 是一種無結構描述的資料庫，因此它會透過讓應�
 ## <a id="connect"></a>步驟 2：連線至 Azure Cosmos DB 資料庫
 
 1. [安裝 Azure Cosmos DB ODBC 驅動程式](#install)之後，在 [ODBC 資料來源管理員] 視窗中，按一下 [新增]。 您可以建立「使用者 DSN」或「系統 DSN」。 在此範例中，您會建立「使用者 DSN」。
-2. 在 [建立新的資料來源] 視窗中，選取 [Microsoft Azure Cosmos DB ODBC 驅動程式]，然後按一下 [完成]。
-3. 在 [Azure Cosmos DB ODBC 驅動程式 SDN 設定] 視窗中，填寫下列項目︰ 
+1. 在 [建立新的資料來源] 視窗中，選取 [Microsoft Azure Cosmos DB ODBC 驅動程式]，然後按一下 [完成]。
+1. 在 [Azure Cosmos DB ODBC 驅動程式 SDN 設定] 視窗中，填寫下列項目︰ 
 
     ![Azure Cosmos DB ODBC 驅動程式 DSN 設定視窗](./media/odbc-driver/odbc-driver-dsn-setup.png)
     - **資料來源名稱**：您的 ODBC DSN 易記名稱。 此名稱專屬於您的 Azure Cosmos DB 帳戶，因此如果您有多個帳戶，請適當命名。
@@ -64,16 +63,16 @@ Azure Cosmos DB 是一種無結構描述的資料庫，因此它會透過讓應�
     - **存取金鑰**︰來自 Azure 入口網站中 [Azure Cosmos DB 金鑰] 頁面的金鑰，分為主要或次要、讀寫或唯讀金鑰，如下列螢幕擷取畫面所示。 如果 DSN 是針對唯讀資料處理和報告使用，建議您使用唯讀金鑰。
     ![Azure Cosmos DB 金鑰頁面](./media/odbc-driver/odbc-driver-keys.png)
     - **加密存取金鑰**：根據此電腦的使用者選取最佳選項。 
-4. 按一下 [測試] 按鈕，確定您可以連線到您的 Azure Cosmos DB 帳戶。 
-5. 按一下 [進階選項] 並設定下列值︰
+1. 按一下 [測試] 按鈕，確定您可以連線到您的 Azure Cosmos DB 帳戶。 
+1. 按一下 [進階選項] 並設定下列值︰
     - **查詢一致性**︰選取適用於您的作業的[一致性層級](consistency-levels.md)。 預設為 [工作階段]。
-    - **重試次數**：輸入初始要求因為服務節流而未完成時，重試作業的次數。
+    - **重試次數**：輸入初始要求因為服務速率限制而未完成時，重試作業的次數。
     - **結構描述檔案**：您在這裡有一些選項。
         - 此項目預設為空白，此時驅動程式會掃描所有集合的第一個頁面資料，以判斷每個集合的結構描述。 這就是所謂的「集合對應」。 如果沒有定義結構描述檔案，驅動程式就必須掃描每一個驅動程式工作階段，而可能導致使用 DSN 的應用程式啟動時間過長。 建議您一律將結構描述檔案與 DSN 產生關連。
         - 如果您已經有結構描述檔案 (可能是您使用 [結構描述編輯器](#schema-editor) 建立的)，您可以按一下 [瀏覽]並瀏覽至您的檔案，按一下 [儲存]，然後按一下 [確定]。
         - 如果您想要建立新的結構描述，請按一下 [確定]，然後按一下主視窗中的 [結構描述編輯器]。 然後移至[結構描述編輯器](#schema-editor)資訊。 建立新的結構描述檔案之後，請記得返回 [進階選項] 視窗來納入新建立的結構描述檔案。
 
-6. 一旦您完成 [Azure Cosmos DB ODBC 驅動程式 DSN 設定] 視窗並關閉，新的使用者 DSN 會加入到 [使用者 DSN] 索引標籤。
+1. 一旦您完成 [Azure Cosmos DB ODBC 驅動程式 DSN 設定] 視窗並關閉，新的使用者 DSN 會加入到 [使用者 DSN] 索引標籤。
 
     ![[使用者 DSN] 索引標籤上的新 Azure Cosmos DB ODBC DSN](./media/odbc-driver/odbc-driver-user-dsn.png)
 
@@ -84,14 +83,14 @@ Azure Cosmos DB 是一種無結構描述的資料庫，因此它會透過讓應�
 1. 在完成[連線到您的 Azure Cosmos DB 資料庫](#connect)中的步驟 1-4 之後，按一下 [Azure Cosmos DB ODBC 驅動程式 DSN 設定] 視窗中的 [結構描述編輯器]。
 
     ![[Azure Cosmos DB ODBC 驅動程式 DSN 設定] 視窗中的 [結構描述編輯器] 按鈕](./media/odbc-driver/odbc-driver-schema-editor.png)
-2. 在 [結構描述編輯器] 視窗中，按一下 [新建]。
+1. 在 [結構描述編輯器] 視窗中，按一下 [新建]。
     [產生結構描述] 視窗會顯示 Azure Cosmos DB 帳戶中的所有集合。 
-3. 選取一或多個集合來採樣，然後按一下 [樣本]。 
-4. 在 [設計檢視] 索引標籤中，會顯示資料庫、結構描述和資料表。 在資料表檢視中，掃描會顯示與資料行名稱 (SQL 名稱、來源名稱等) 相關聯的屬性集。
+1. 選取一或多個集合來採樣，然後按一下 [樣本]。 
+1. 在 [設計檢視] 索引標籤中，會顯示資料庫、結構描述和資料表。 在資料表檢視中，掃描會顯示與資料行名稱 (SQL 名稱、來源名稱等) 相關聯的屬性集。
     針對每個資料行，您可以修改資料行「SQL 名稱」、「SQL 類型」、「SQL 長度」(如果適用的話)、「小數位數」(如果適用的話)、「精確度」(如果適用的話)，以及「可為 Null」。
-    - 如果您想要將該資料行從查詢結果中排除，您可以將 [隱藏資料行] 設為 **true**。 雖然 [隱藏資料行] 標註為 true 的資料行仍屬於結構描述的一部份，它並不會針對選取和投影傳回。 例如，您可以隱藏開頭為 “_” 的所有 Azure Cosmos DB 系統必要屬性。
+    - 如果您想要將該資料行從查詢結果中排除，您可以將 [隱藏資料行] 設為 **true**。 雖然 [隱藏資料行] 標註為 true 的資料行仍屬於結構描述的一部份，它並不會針對選取和投影傳回。 例如，您可以隱藏開頭為 "_" 的所有 Azure Cosmos DB 系統必要屬性。
     - [識別碼] 資料行是唯一無法隱藏的欄位，因為它會在標準化結構描述中作為主索引鍵使用。 
-5. 當您完成定義結構描述時，按一下 [檔案]  |  [儲存]，瀏覽到要儲存結構描述的目錄，然後按一下 [儲存]。
+1. 當您完成定義結構描述時，按一下 [檔案]  |  [儲存]，瀏覽到要儲存結構描述的目錄，然後按一下 [儲存]。
 
     如果未來您想要使用此結構描述搭配 DSN，請開啟 [Azure Cosmos DB ODBC 驅動程式 DSN 設定] 視窗 (透過 ODBC 資料來源管理員)，按一下 [進階選項]，然後在 [結構描述檔案] 方塊中瀏覽至已儲存的結構描述。 將結構描述檔案儲存至現有的 DSN，會修改 DSN 連線，將範圍設定為由結構描述定義的資料和結構。
 
@@ -102,30 +101,30 @@ Azure Cosmos DB 是一種無結構描述的資料庫，因此它會透過讓應�
 下列步驟使用**資料表分隔符號**對應方法，針對一或多個集合中的資料建立結構描述。 當您的集合包含異質資料類型時，建議您使用這個取樣方法。 您可以使用這個方法將取樣範圍設定為一組屬性和其對應值。 比方說，如果文件包含「類型」屬性，您可以將取樣範圍設定為此屬性的值。 取樣的最終結果會是一組針對每一個您所指定之類型值的資料表。 例如，類型 = Car 會產生「汽車」資料表，而類型 = Plane 會產生「飛機」資料表。
 
 1. 在完成[連線到您的 Azure Cosmos DB 資料庫](#connect)中的步驟 1-4 之後，按一下 [Azure Cosmos DB ODBC 驅動程式 DSN 設定] 視窗中的 [結構描述編輯器]。
-2. 在 [結構描述編輯器] 視窗中，按一下 [新建]。
+1. 在 [結構描述編輯器] 視窗中，按一下 [新建]。
     [產生結構描述] 視窗會顯示 Azure Cosmos DB 帳戶中的所有集合。 
-3. 在 [範例檢視] 索引標籤中選取一個集合，在該集合的 [對應定義] 資料行中按一下 [編輯]。 接著在 [對應定義] 視窗中，選取 [資料表分隔符號] 方法。 然後執行以下動作：
+1. 在 [範例檢視] 索引標籤中選取一個集合，在該集合的 [對應定義] 資料行中按一下 [編輯]。 接著在 [對應定義] 視窗中，選取 [資料表分隔符號] 方法。 然後執行以下動作：
 
     a. 在 [屬性] 方塊中，輸入分隔符號屬性的名稱。 這是您在文件中希望設定取樣範圍的屬性 (例如「City」)，然後按一下 Enter 鍵。 
 
     b. 如果您只想將取樣範圍設定為您剛才輸入的特定屬性值，請在選取方塊中選取該屬性，然後在 [值] 方塊中輸入值，例如「Seattle」，然後按一下 Enter 鍵。 您可以繼續加入多個屬性的值。 只要確定您輸入值時，已選取正確的屬性。
 
     例如，如果您包含「City」的**屬性**值，而您想要限制資料表只包含含有「New York」和「Dubai」之城市值的資料列，可在 [屬性] 方塊中輸入「City」，而在 [值] 方塊中輸入「New York」和「Dubai」。
-4. 按一下 [SERVICEPRINCIPAL] 。 
-5. 在完成您想要取樣之集合的對應定義之後，在 [結構描述編輯器] 視窗中按一下 [取樣]。
+1. 按一下 [確定]。 
+1. 在完成您想要取樣之集合的對應定義之後，在 [結構描述編輯器] 視窗中按一下 [取樣]。
      針對每個資料行，您可以修改資料行「SQL 名稱」、「SQL 類型」、「SQL 長度」(如果適用的話)、「小數位數」(如果適用的話)、「精確度」(如果適用的話)，以及「可為 Null」。
     - 如果您想要將該資料行從查詢結果中排除，您可以將 [隱藏資料行] 設為 **true**。 雖然 [隱藏資料行] 標註為 true 的資料行仍屬於結構描述的一部份，它並不會針對選取和投影傳回。 例如，您可以隱藏開頭為 `_` 的所有 Azure Cosmos DB 系統必要屬性。
     - [識別碼] 資料行是唯一無法隱藏的欄位，因為它會在標準化結構描述中作為主索引鍵使用。 
-6. 當您完成定義結構描述時，按一下 [檔案]  |  [儲存]，瀏覽到要儲存結構描述的目錄，然後按一下 [儲存]。
-7. 返回 [Azure Cosmos DB ODBC 驅動程式 DSN 設定] 視窗，按一下 [進階選項]。 然後，在 [結構描述檔案] 方塊中，瀏覽至已儲存的結構描述檔案並按一下 [確定]。 再按一下 [確定] 以儲存 DSN。 這會將您建立的結構描述儲存到 DSN。 
+1. 當您完成定義結構描述時，按一下 [檔案]  |  [儲存]，瀏覽到要儲存結構描述的目錄，然後按一下 [儲存]。
+1. 返回 [Azure Cosmos DB ODBC 驅動程式 DSN 設定] 視窗，按一下 [進階選項]。 然後，在 [結構描述檔案] 方塊中，瀏覽至已儲存的結構描述檔案並按一下 [確定]。 再按一下 [確定] 以儲存 DSN。 這會將您建立的結構描述儲存到 DSN。 
 
 ## <a name="optional-set-up-linked-server-connection"></a>(選擇性) 設定連結的伺服器連線
 
 您可以藉由設定連結的伺服器連線，從 SQL Server Management Studio (SSMS) 查詢 Azure Cosmos DB。
 
 1. 如[步驟 2](#connect) 所述，建立系統資料來源，例如命名為 `SDS Name`。
-2. [安裝 SQL Server Management Studio](https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms).
-3. 在 SSMS 查詢編輯器中，使用下列命令為資料來源建立連結的伺服器物件 `DEMOCOSMOS`。 將 `DEMOCOSMOS` 取代成所連結伺服器的名稱，並將 `SDS Name` 取代成系統資料來源的名稱。
+1. [安裝 SQL Server Management Studio](https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms) 並連線至伺服器。 
+1. 在 SSMS 查詢編輯器中，使用下列命令為資料來源建立連結的伺服器物件 `DEMOCOSMOS`。 將 `DEMOCOSMOS` 取代成所連結伺服器的名稱，並將 `SDS Name` 取代成系統資料來源的名稱。
 
     ```sql
     USE [master]
@@ -174,7 +173,7 @@ Invalid use of schema or catalog for OLE DB provider "MSDASQL" for linked server
 
 若要建立您的資料檢視，在 [結構描述編輯器] 視窗的 [檢視定義] 資料行中，在要取樣之集合的資料列上按一下 [新增]。 接著在 [檢視定義] 視窗中，執行下列動作︰
 1. 按一下 [新增]，輸入檢視的名稱 (例如 EmployeesfromSeattleView)，然後按一下 [確定]。
-2. 在 [編輯檢視] 視窗中，輸入 Azure Cosmos DB 查詢。 這必須是 Azure Cosmos DB SQL 查詢 (例如 `SELECT c.City, c.EmployeeName, c.Level, c.Age, c.Gender, c.Manager FROM c WHERE c.City = “Seattle”`)，然後按一下 [確定]。
+1. 在 [編輯檢視] 視窗中，輸入 Azure Cosmos DB 查詢。 這必須是 Azure Cosmos DB SQL 查詢 (例如 `SELECT c.City, c.EmployeeName, c.Level, c.Age, c.Gender, c.Manager FROM c WHERE c.City = "Seattle"`)，然後按一下 [確定]。
 
 您可以依需求建立多個檢視。 在您完成定義檢視後，您可以接著取樣資料。 
 
@@ -183,14 +182,14 @@ Invalid use of schema or catalog for OLE DB provider "MSDASQL" for linked server
 您可以使用您新的 DSN 將 DocumentADB 與任何符合 ODBC 規範的工具連線 - 此步驟只會顯示如何連線至 Power BI Desktop 並建立 Power BI 視覺效果。
 
 1. 開啟 Power BI Desktop。
-2. 按一下 [取得資料]。
-3. 在 [取得資料] 視窗中，按一下 [其他]  |  [ODBC]  |  [連線]。
-4. 在 [從 ODBC] 視窗中，選取您建立的資料來源名稱，然後按一下 [確定]。 您可以將 [進階選項] 項目保留空白。
-5. 在 [使用 ODBC 驅動程式存取資料來源] 視窗中，選取 [預設或自訂]，然後按一下 [連線]。 您不需要包含「認證連接字串屬性」。
-6. 在 [導覽器] 視窗的左窗格中，展開資料庫，展開結構描述，然後選取資料表。 結果窗格會包含使用您所建立之結構描述的資料。
-7. 若要視覺化 Power BI Desktop 中的資料，請選取資料表名稱前的方塊，然後按一下 [載入]。
-8. 在 Power BI Desktop 中最左側，選取 [資料] 索引標籤 ![Power BI Desktop 中的 [資料] 索引標籤](./media/odbc-driver/odbc-driver-data-tab.png) 以確認已匯入您的資料。
-9. 您現在可以使用 Power BI 建立視覺效果，方法是按一下 [報告] 索引標籤 (![Power BI Desktop 中的 [報告] 索引標籤](./media/odbc-driver/odbc-driver-report-tab.png))，按一下 [新增視覺效果]，然後自訂您的磚。 如需有關在 Power BI Desktop 中建立視覺效果的詳細資訊，請參閱 [Power BI 中的視覺效果類型](https://powerbi.microsoft.com/documentation/powerbi-service-visualization-types-for-reports-and-q-and-a/)。
+1. 按一下 [取得資料]。
+1. 在 [取得資料] 視窗中，按一下 [其他]  |  [ODBC]  |  [連線]。
+1. 在 [從 ODBC] 視窗中，選取您建立的資料來源名稱，然後按一下 [確定]。 您可以將 [進階選項] 項目保留空白。
+1. 在 [使用 ODBC 驅動程式存取資料來源] 視窗中，選取 [預設或自訂]，然後按一下 [連線]。 您不需要包含「認證連接字串屬性」。
+1. 在 [導覽器] 視窗的左窗格中，展開資料庫，展開結構描述，然後選取資料表。 結果窗格會包含使用您所建立之結構描述的資料。
+1. 若要視覺化 Power BI Desktop 中的資料，請選取資料表名稱前的方塊，然後按一下 [載入]。
+1. 在 Power BI Desktop 中最左側，選取 [資料] 索引標籤 ![Power BI Desktop 中的 [資料] 索引標籤](./media/odbc-driver/odbc-driver-data-tab.png) 以確認已匯入您的資料。
+1. 您現在可以使用 Power BI 建立視覺效果，方法是按一下 [報告] 索引標籤 (![Power BI Desktop 中的 [報告] 索引標籤](./media/odbc-driver/odbc-driver-report-tab.png))，按一下 [新增視覺效果]，然後自訂您的磚。 如需有關在 Power BI Desktop 中建立視覺效果的詳細資訊，請參閱 [Power BI 中的視覺效果類型](https://powerbi.microsoft.com/documentation/powerbi-service-visualization-types-for-reports-and-q-and-a/)。
 
 ## <a name="troubleshooting"></a>疑難排解
 

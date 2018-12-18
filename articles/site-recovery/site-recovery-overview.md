@@ -1,18 +1,19 @@
 ---
-title: "關於 Azure Site Recovery | Microsoft Docs"
-description: "提供 Azure Site Recovery 服務的概觀，並摘要說明部署案例。"
+title: 關於 Azure Site Recovery | Microsoft Docs
+description: 提供 Azure Site Recovery 服務的概觀，並摘要說明部署案例。
 services: site-recovery
 author: rayne-wiselman
 ms.service: site-recovery
 ms.topic: overview
-ms.date: 03/08/2018
+ms.date: 10/10/2018
 ms.author: raynew
 ms.custom: MVC
-ms.openlocfilehash: 57b191a5dbdea487a0105c6af2866cdc037864e2
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+ms.openlocfilehash: 442e8d425e60566df5ce919e3463235ef1d6e4f0
+ms.sourcegitcommit: 4b1083fa9c78cd03633f11abb7a69fdbc740afd1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 10/10/2018
+ms.locfileid: "49078091"
 ---
 # <a name="about-site-recovery"></a>關於 Site Recovery
 

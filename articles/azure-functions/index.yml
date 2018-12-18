@@ -1,9 +1,15 @@
 ### YamlMime:YamlDocument
+ms.openlocfilehash: 3d304a0f43632ab0f33e286b4404e1063ecb437e
+ms.sourcegitcommit: 6361a3d20ac1b902d22119b640909c3a002185b3
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49364337"
 documentType: LandingData
-title: "Azure Functions 文件"
+title: Azure Functions 文件
 metadata:
   document_id: 83ceabb5-fb4f-a709-3fd2-37d024409f31
-  title: "Azure Functions 文件 - 教學課程 | Microsoft Docs"
+  title: Azure Functions 文件 - 教學課程 | Microsoft Docs
   meta.description: Learn how to develop and deploy functions in the language of your choice to run tasks in the background or on a schedule without special infrastructure.
   services: functions
   author: czeumault
@@ -12,29 +18,24 @@ metadata:
   ms.tgt_pltfrm: na
   ms.devlang: na
   ms.topic: landing-page
-  ms.date: 01-23-2017
+  ms.date: 08/09/2018
   ms.author: carolz
-  ms.openlocfilehash: 8e7bb72878af9d1e310ac2ffa7e90c14b3909633
-  ms.sourcegitcommit: 48fce90a4ec357d2fb89183141610789003993d2
-  ms.translationtype: HT
-  ms.contentlocale: zh-TW
-  ms.lasthandoff: 01/12/2018
 abstract:
-  description: "Azure Functions 是<a href=\"https://azure.microsoft.com/overview/serverless-computing/\">無伺服器</a>計算服務，可讓您依需求執行程式碼，無需明確佈建或管理基礎結構。 使用 Azure Functions 執行指令碼或一段程式碼來回應各種事件。 了解如何透過我們的快速入門、教學課程和範例使用Azure Functions。"
+  description: Azure Functions 是<a href="https://azure.microsoft.com/solutions/serverless/">無伺服器</a>計算服務，可讓您依需求執行程式碼，無需明確佈建或管理基礎結構。 使用 Azure Functions 執行指令碼或一段程式碼來回應各種事件。 了解如何透過我們的快速入門、教學課程和範例使用Azure Functions。
   aside:
     image:
       alt: 
       height: 110
       src: media/index/video-thumb-get-started.png
       width: 250
-    title: "開始使用 Azure Functions。 (2:39)"
-    href: https://azure.microsoft.com/en-us/resources/videos/get-started-with-azure-functions/
+    title: 開始使用 Azure Functions。 (2:39)
+    href: https://azure.microsoft.com/resources/videos/get-started-with-azure-functions/
     width: 250
 sections:
-- title: "5 分鐘快速入門"
+- title: 5 分鐘快速入門
   items:
   - type: paragraph
-    text: "了解如何透過以下方式，建立以建立事件為基礎來執行的函式："
+    text: 了解如何透過以下方式，建立以建立事件為基礎來執行的函式：
   - type: list
     style: icon48
     items:
@@ -44,12 +45,8 @@ sections:
       href: /azure/azure-functions/functions-create-first-azure-function
     - image:
         src: media/index/stopwatch.svg
-      text: "計時器"
+      text: 計時器
       href: /azure/azure-functions/functions-create-scheduled-function
-    - image:
-        src: media/index/octokitty.svg
-      text: GitHub webhook
-      href: /azure/azure-functions/functions-create-github-webhook-triggered-function
     - image:
         src: media/index/cosmosdb.svg
       text: Azure Cosmos DB
@@ -60,10 +57,10 @@ sections:
       href: /azure/azure-functions/functions-create-storage-blob-triggered-function
     - image:
         src: media/index/storage.svg
-      text: "佇列"
+      text: 佇列
       href: /azure/azure-functions/functions-create-storage-queue-triggered-function
   - type: paragraph
-    text: "了解如何在本機開發及偵錯："
+    text: 了解如何在本機開發及偵錯：
   - type: list
     style: icon48
     items:
@@ -71,33 +68,62 @@ sections:
         src: https://docs.microsoft.com/media/logos/logo_visual-studio.svg
       text: Visual Studio
       href: /azure/azure-functions/functions-create-your-first-function-visual-studio
-- title: "逐步教學課程"
+    - image:
+        src: https://docs.microsoft.com/media/logos/logo_vs-code.svg
+      text: Visual Studio Code
+      href: /azure/azure-functions/functions-create-first-function-vs-code
+- title: 逐步教學課程
   items:
   - type: paragraph
-    text: "了解如何建置和管理 Azure Functions："
+    text: 了解如何建置和管理 Azure Functions：
   - type: list
     style: ordered
     items:
-    - html: "<a href=\"/azure/azure-functions/functions-twitter-email\">建立與 Azure Logic Apps 整合的函式</a>"
-    - html: "<a href=\"/azure/azure-functions/functions-create-serverless-api\">使用 Azure Functions 建立無伺服器 API</a>"
-    - html: "<a href=\"/azure/azure-functions/functions-openapi-definition\">為函式建立 OpenAPI 定義</a>"
-    - html: "<a href=\"/azure/event-grid/resize-images-on-storage-blob-upload-event\">使用 Event Grid 自動調整已上傳映像的大小</a>"
-- title: "範例"
+    - html: <a href="/azure/azure-functions/functions-twitter-email">建立與 Azure Logic Apps 整合的函式</a>
+    - html: <a href="/azure/azure-functions/functions-create-serverless-api">使用 Azure Functions 建立無伺服器 API</a>
+    - html: <a href="/azure/azure-functions/functions-openapi-definition">為函式建立 OpenAPI 定義</a>
+    - html: <a href="/azure/event-grid/resize-images-on-storage-blob-upload-event">使用 Event Grid 自動調整已上傳映像的大小</a>
+    - html: <a href="https://docs.microsoft.com/azure/functions/tutorial-static-website-serverless-api-with-database">建立無伺服器 Web 應用程式以儲存圖片與中繼資料</a>
+- title: 範例
   items:
   - type: list
     style: unordered
     className: spaced noBullet
     items:
     - html: <a href="/azure/azure-functions/functions-cli-samples">Azure CLI</a>
-- title: "參考"
+    - html: <a href="/sandbox/functions-recipes/">Azure Functions 配方</a>
+- title: 透過 Microsoft Learn 增進您的技巧
+  items:
+  - type: list
+    style: cards
+    className: cardsFTitle
+    items:
+    - title: 使用 Azure Functions 建立無伺服器邏輯
+      href: /learn/modules/create-serverless-logic-with-azure-functions/
+      image:
+        src: /learn/achievements/create-serverless-logic-with-azure-functions.svg
+        href: /learn/modules/create-serverless-logic-with-azure-functions/
+    - title: 透過觸發程序執行 Azure Function
+      href: /learn/modules/execute-azure-function-with-triggers/
+      image:
+        src: /learn/achievements/execute-azure-function-with-triggers.svg
+        href: /learn/modules/execute-azure-function-with-triggers/
+    - title: 使用輸入和輸出繫結將 Azure Functions 與資料鏈結在一起
+      href: /learn/modules/chain-azure-functions-data-using-bindings/
+      image:
+        src: /learn/achievements/chain-azure-functions-data-using-bindings.svg
+        href: /learn/modules/chain-azure-functions-data-using-bindings/
+  - type: paragraph
+    text: <a href="/learn/browse/?products=azure-functions">更多互動式學習...</a>
+- title: 參考
   items:
   - type: list
     style: cards
     className: cardsD
     items:
-    - title: "命令列"
+    - title: 命令列
       html: <p><a href="/cli/azure">Azure CLI</a></p>
     - title: REST
       html: <p><a href="/azure/azure-functions/functions-api-definition">OpenAPI</a></p>
-    - title: "繫結"
-      html: "<p><a href=\"/azure/azure-functions/functions-bindings-storage-blob\">Blob 儲存體</a></p><p><a href=\"/azure/azure-functions/functions-bindings-documentdb\">Azure Cosmos DB</a></p><p><a href=\"/azure/azure-functions/functions-bindings-event-hubs\">事件中樞</a></p><p><a href=\"/azure/azure-functions/functions-bindings-external-file\">外部檔案</a></p><p><a href=\"/azure/azure-functions/functions-bindings-http-webhook\">HTTP 和 Webhook</a></p><p><a href=\"/azure/azure-functions/functions-bindings-mobile-apps\">行動應用程式</a></p><p><a href=\"/azure/azure-functions/functions-bindings-notification-hubs\">通知中樞</a></p><p><a href=\"/azure/azure-functions/functions-bindings-storage-queue\">佇列儲存體</a></p><p><a href=\"/azure/azure-functions/functions-bindings-sendgrid\">SendGrid</a></p><p><a href=\"/azure/azure-functions/functions-bindings-service-bus\">服務匯流排</a></p><p><a href=\"/azure/azure-functions/functions-bindings-storage-table\">資料表儲存體</a></p><p><a href=\"/azure/azure-functions/functions-bindings-timer\">計時器</a></p><p><a href=\"/azure/azure-functions/functions-bindings-twilio\">Twilio 輸出繫結</a></p>"
+    - title: 繫結
+      html: <p><a href="/azure/azure-functions/functions-bindings-storage-blob">Blob 儲存體</a></p><p><a href="/azure/azure-functions/functions-bindings-documentdb">Azure Cosmos DB</a></p><p><a href="/azure/azure-functions/functions-bindings-event-hubs">事件中樞</a></p><p><a href="/azure/azure-functions/functions-bindings-external-file">外部檔案</a></p><p><a href="/azure/azure-functions/functions-bindings-http-webhook">HTTP 和 Webhook</a></p><p><a href="/azure/azure-functions/functions-bindings-mobile-apps">行動應用程式</a></p><p><a href="/azure/azure-functions/functions-bindings-notification-hubs">通知中樞</a></p><p><a href="/azure/azure-functions/functions-bindings-storage-queue">佇列儲存體</a></p><p><a href="/azure/azure-functions/functions-bindings-sendgrid">SendGrid</a></p><p><a href="/azure/azure-functions/functions-bindings-service-bus">服務匯流排</a></p><p><a href="/azure/azure-functions/functions-bindings-signalr-service">SignalR 服務</a></p><p><a href="/azure/azure-functions/functions-bindings-storage-table">資料表儲存體</a></p><p><a href="/azure/azure-functions/functions-bindings-timer">計時器</a></p><p><a href="/azure/azure-functions/functions-bindings-twilio">Twilio 輸出繫結</a></p>

@@ -1,6 +1,6 @@
 ---
-title: "混合式連線與兩層式應用程式 | Microsoft Docs"
-description: "了解如何部署虛擬設備和 UDR 以在 Azure 中建立多層式的應用程式環境"
+title: 混合式連線與兩層式應用程式 | Microsoft Docs
+description: 了解如何部署虛擬設備和 UDR 以在 Azure 中建立多層式的應用程式環境
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -19,6 +19,7 @@ ms.sourcegitcommit: e5355615d11d69fc8d3101ca97067b3ebb3a45ef
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/31/2017
+ms.locfileid: "23643862"
 ---
 # <a name="virtual-appliance-scenario"></a>虛擬設備的案例
 在較大的 Azure 客戶中，常見的案例是需要對網際網路公開兩層式的應用程式，同時允許從內部部署資料中心存取後層。 本文件會逐步引導您完成案例，使用使用者定義路由 (UDR)、VPN 閘道和網路虛擬裝置來部署符合下列需求的兩層式環境︰

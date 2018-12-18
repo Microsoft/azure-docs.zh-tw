@@ -1,29 +1,24 @@
 ---
-title: "Microsoft Azure 虛擬機器、雲端服務和 Web Apps 的自動調整概觀 | Microsoft Docs"
-description: "Microsoft Azure 的自動調整概觀。 適用於虛擬機器、雲端服務和 Web Apps。"
+title: 虛擬機器、雲端服務和 Web Apps 的自動調整概觀
+description: Microsoft Azure 的自動調整。 適用於虛擬機器、虛擬機器擴展集、雲端服務和 Web 應用程式。
 author: rboucher
-manager: carmonm
-editor: 
-services: monitoring-and-diagnostics
-documentationcenter: monitoring-and-diagnostics
-ms.assetid: 74bf03be-e658-4239-a214-c12424b53e4c
-ms.service: monitoring-and-diagnostics
-ms.workload: na
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
-ms.date: 03/02/2016
+services: azure-monitor
+ms.service: azure-monitor
+ms.topic: conceptual
+ms.date: 09/24/2018
 ms.author: robb
-ms.openlocfilehash: 0a30f0c3b799f76858424d97218c5a6e4386e78e
-ms.sourcegitcommit: afc78e4fdef08e4ef75e3456fdfe3709d3c3680b
+ms.component: autoscale
+ms.openlocfilehash: fe63ce931da9fbe94b47d00805820affddfb1bc1
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/16/2017
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46946981"
 ---
 # <a name="overview-of-autoscale-in-microsoft-azure-virtual-machines-cloud-services-and-web-apps"></a>Microsoft Azure 虛擬機器、雲端服務和 Web Apps 的自動調整概觀
 本文說明何謂 Microsoft Azure 自動調整、其優點，以及如何開始使用它。  
 
-Azure 監視器自動調整僅適用於[虛擬機器擴展集](https://azure.microsoft.com/services/virtual-machine-scale-sets/)、[雲端服務](https://azure.microsoft.com/services/cloud-services/)和 [App Service - Web Apps](https://azure.microsoft.com/services/app-service/web/)。
+Azure 監視器自動調整僅適用於[虛擬機器擴展集](https://azure.microsoft.com/services/virtual-machine-scale-sets/)、[雲端服務](https://azure.microsoft.com/services/cloud-services/)、[App Service - Web Apps](https://azure.microsoft.com/services/app-service/web/) 與 [API 管理服務](https://docs.microsoft.com/azure/api-management/api-management-key-concepts)。
 
 > [!NOTE]
 > Azure 有兩種自動調整方法。 舊版自動調整適用於虛擬機器 (可用性設定組)。 這項功能的支援能力有限，建議您移轉至虛擬機器擴展集，以獲得更快、更可靠的自動調整支援。 本文包含如何使用舊版技術的連結。  
@@ -46,7 +41,7 @@ Azure 監視器自動調整僅適用於[虛擬機器擴展集](https://azure.mic
 虛擬機器擴展集使用來自 Azure 診斷代理程式的遙測資料，而 Web 應用程式和雲端服務的遙測則直接來自 Azure 基礎結構。 一些常用的統計資料包括 CPU 使用率、記憶體使用量、執行緒計數、佇列長度和磁碟使用量。 如需可使用哪些遙測資料的清單，請參閱 [自動調整的常用度量](insights-autoscale-common-metrics.md)。
 
 ## <a name="custom-metrics"></a>自訂計量
-您也可以運用自己自訂的計量 (由您的應用程式發出)。 如果您已設定應用程式來將計量傳送至 Application Insights，則可以利用那些計量來決定是否要調整規模。 
+您也可以運用自己自訂的計量 (由您的應用程式發出)。 如果您已設定應用程式來將計量傳送至 Application Insights，則可以利用那些計量來決定是否要調整規模。
 
 ## <a name="time"></a>時間
 排程型規則是以 UTC 為基礎。 設定規則時必須正確設定時區。  
@@ -115,12 +110,13 @@ Azure 監視器自動調整僅適用於[虛擬機器擴展集](https://azure.mic
 | 虛擬機器：Windows 擴展集 |[在 Windows 中調整虛擬機器擴展集](../virtual-machine-scale-sets/virtual-machine-scale-sets-windows-autoscale.md) |
 | 虛擬機器：Linux 擴展集 |[在 Linux 中調整虛擬機器擴展集](../virtual-machine-scale-sets/virtual-machine-scale-sets-linux-autoscale.md) |
 | 虛擬機器：Windows 範例 |[針對 VM 擴展集使用 Resource Manager 範本進行進階自動調整設定](insights-advanced-autoscale-virtual-machine-scale-sets.md) |
+| API 管理服務|[自動調整 Azure API 管理執行個體](https://docs.microsoft.com/azure/api-management/api-management-howto-autoscale)
 
 ## <a name="next-steps"></a>後續步驟
 若要深入了解自動調整，請使用先前所列的＜自動調整逐步解說＞或參閱下列資源︰
 
 * [Azure 監視器自動調整的常用度量](insights-autoscale-common-metrics.md)
-* [Azure 監視器自動調整的最佳作法](insights-autoscale-best-practices.md)
+* [Azure 監視器自動調整的最佳做法](insights-autoscale-best-practices.md)
 * [使用自動調整動作傳送電子郵件和 Webhook 警示通知](insights-autoscale-to-webhook-email.md)
 * [自動調整 REST API](https://msdn.microsoft.com/library/dn931953.aspx)
 * [排解虛擬機器擴展集自動調整的問題](../virtual-machine-scale-sets/virtual-machine-scale-sets-troubleshoot.md)

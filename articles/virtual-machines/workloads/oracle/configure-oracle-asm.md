@@ -1,25 +1,26 @@
 ---
-title: "在 Azure Linux 虛擬機器上設定 Oracle ASM | Microsoft Docs"
-description: "快速在您的 Azure 環境中啟動並執行 Oracle ASM。"
+title: 在 Azure Linux 虛擬機器上設定 Oracle ASM | Microsoft Docs
+description: 快速在您的 Azure 環境中啟動並執行 Oracle ASM。
 services: virtual-machines-linux
 documentationcenter: virtual-machines
-author: RicksterCDN
-manager: timlt
-editor: 
+author: romitgirdhar
+manager: jeconnoc
+editor: ''
 tags: azure-resource-manager
-ms.assetid: 
+ms.assetid: ''
 ms.service: virtual-machines-linux
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
-ms.date: 07/19/2017
-ms.author: rclaus
-ms.openlocfilehash: 0e34a188271a5ac2fb6cb34a088ec3f650be6cab
-ms.sourcegitcommit: 059dae3d8a0e716adc95ad2296843a45745a415d
+ms.date: 08/02/2018
+ms.author: rogirdh
+ms.openlocfilehash: 236809336975eec94d7decd9822fc9143ae19bfb
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46981009"
 ---
 # <a name="set-up-oracle-asm-on-an-azure-linux-virtual-machine"></a>在 Azure Linux 虛擬機器上設定 Oracle ASM  
 
@@ -35,7 +36,7 @@ Azure 虛擬機器提供完全可設定且彈性的計算環境。 本教學課�
 
 [!INCLUDE [cloud-shell-try-it.md](../../../../includes/cloud-shell-try-it.md)]
 
-如果您選擇在本機安裝和使用 CLI，本教學課程會要求您執行 Azure CLI 2.0.4 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
+如果您選擇在本機安裝和使用 CLI，本教學課程會要求您執行 Azure CLI 2.0.4 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI]( /cli/azure/install-azure-cli)。 
 
 ## <a name="prepare-the-environment"></a>準備環境
 
@@ -200,7 +201,7 @@ ssh <publicIpAddress>
    ```
 
 3. 透過執行下列命令格式化磁碟 /dev/sdc，並透過下列項目回答提示：
-   - n 為新磁碟分割
+   - *n* 適用於新的磁碟分割
    - *p* 為主要磁碟分割
    - *1* 以選取第一個磁碟分割
    - 按 `enter` 為預設第一個磁柱

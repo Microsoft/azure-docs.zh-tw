@@ -1,29 +1,27 @@
 ---
-title: 在 Flow、Logic Apps、Functions 和 WebJobs 之間做選擇 | Microsoft Docs
-description: 比較和對照 Microsoft 的雲端整合服務，並決定您應該使用哪一項服務。
-services: functions,app-service\logic
+title: 比較 Flow、Logic Apps、Functions 和 WebJob - Azure
+description: 比較已針對整合工作最佳化的 Microsoft 雲端服務：Flow、Logic Apps、Functions 和 WebJob。
+services: functions, logic-apps
 documentationcenter: na
-author: tdykstra
-manager: wpickett
-tags: ''
+author: ggailey777
+manager: jeconnoc
 keywords: microsoft flow, 流程, logic apps, azure functions, 函數, azure webjobs, webjobs, 事件處理, 動態計算, 無伺服器架構
-ms.service: functions
+ms.service: azure-functions
 ms.devlang: multiple
 ms.topic: overview
-ms.tgt_pltfrm: multiple
-ms.workload: na
-ms.date: 03/20/2018
-ms.author: tdykstra
+ms.date: 04/09/2018
+ms.author: glenga
 ms.custom: mvc
-ms.openlocfilehash: 577031c58e95781dc97721acc71fb22114b1c606
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: e449703dd8d012037af9540397ecd3b7bc0c7e7f
+ms.sourcegitcommit: 4eddd89f8f2406f9605d1a46796caf188c458f64
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 10/11/2018
+ms.locfileid: "49114630"
 ---
-# <a name="choose-between-flow-logic-apps-functions-and-webjobs"></a>在 Flow、Logic Apps、Functions 和 WebJobs 之間做選擇
+# <a name="compare-flow-logic-apps-functions-and-webjobs"></a>比較 Flow、Logic Apps、Functions 和 WebJob
 
-本文會比較及比對 Microsoft 雲端中的下列服務：
+本文會比較下列 Microsoft 雲端服務：
 
 * [Microsoft Flow](https://flow.microsoft.com/)
 * [Azure Logic Apps](https://azure.microsoft.com/services/logic-apps/)
@@ -32,9 +30,9 @@ ms.lasthandoff: 03/28/2018
 
 所有這些服務都可以解決整合問題，以及自動化商業流程。 它們全都可以定義輸入、動作、條件和輸出。 您可以在排程或觸發程序上執行上述各項服務。 不過，各服務都有獨特的優點，本文將說明這些差異。
 
-## <a name="flow-vs-logic-apps"></a>Flow 與 Logic Apps
+## <a name="compare-microsoft-flow-and-azure-logic-apps"></a>比較 Microsoft Flow 和 Azure Logic Apps
 
-Microsoft Flow 和 Azure Logic Apps 都是「組態優先」的整合服務。 兩者皆可建立與各種 SaaS 和企業應用程式整合的工作流程。 
+Flow 和 Logic Apps 都是可建立工作流程的「Designer First (設計工具優先)」整合服務。 這兩個服務皆可與各種 SaaS 和企業應用程式整合。 
 
 Flow 是以 Logic Apps 為基礎所建置。 它們共用相同的工作流程設計工具和相同的[連接器](../connectors/apis-list.md)。 
 
@@ -49,15 +47,32 @@ Flow 可讓任何辦公室工作人員有能力執行簡單的整合 (例如，S
 | 設計工具 |瀏覽器內及行動裝置應用程式，僅限 UI |有瀏覽器內和 [Visual Studio](../logic-apps/logic-apps-deploy-from-vs.md)、[程式碼檢視](../logic-apps/logic-apps-author-definitions.md)可用 |
 | 應用程式生命週期管理 (ALM) |在非生產環境中設計及測試，在就緒時升級到生產環境。 |DevOps：在 [Azure 資源管理](../logic-apps/logic-apps-create-deploy-azure-resource-manager-templates.md)中的原始檔控制、測試支援、自動化及管理性 |
 | 管理員體驗 |管理流量環境和資料外洩防護 (DLP) 原則，追蹤授權 [https://admin.flow.microsoft.com](https://admin.flow.microsoft.com) |管理資源群組、連線、存取管理和記錄 [https://portal.azure.com](https://portal.azure.com) |
-| 安全性 |Office 365 安全性與相容性稽核記錄、資料外洩防護 (DLP)、敏感性資料[靜止時加密](https://wikipedia.org/wiki/Data_at_rest#Encryption)等等。 |Azure 的安全性保證︰[Azure 安全性](https://www.microsoft.com/trustcenter/Security/AzureSecurity)、[資訊安全中心](https://azure.microsoft.com/services/security-center/)、[稽核記錄檔](https://azure.microsoft.com/blog/azure-audit-logs-ux-refresh/)等。 |
+| 安全性 |Office 365 安全性與相容性稽核記錄、資料外洩防護 (DLP)、敏感性資料[靜止時加密](https://wikipedia.org/wiki/Data_at_rest#Encryption)等等。 |Azure 的安全性保證︰[Azure 安全性](https://www.microsoft.com/en-us/trustcenter/Security/AzureSecurity)、[資訊安全中心](https://azure.microsoft.com/services/security-center/)、[稽核記錄檔](https://azure.microsoft.com/blog/azure-audit-logs-ux-refresh/)等。 |
+
+## <a name="compare-azure-functions-and-azure-logic-apps"></a>比較 Azure Functions 和 Azure Logic Apps
+
+Functions 和 Logic Apps 都是可啟用無伺服器工作負載的 Azure 服務。 Azure Functions 是無伺服器計算服務，而 Azure Logic Apps 可提供無伺服器工作流程。 兩者皆可建立複雜的「協調流程」。 協調流程是函式或步驟的集合，在 Logic Apps 中稱為「動作」，您可執行其來完成複雜工作。 例如處理命令批次，您可以平行執行許多函式執行個體、等待執行個體完成，然後執行函式來計算彙總結果。
+
+對於 Azure Functions，您可以透過撰寫程式碼和使用 [Durable Functions 擴充功能](durable-functions-overview.md)來開發協調流程。 對於 Logic apps，您可以使用 GUI 或編輯組態檔來建立協調流程。
+
+您可以在建置協調流程時混合搭配服務，從邏輯應用程式呼叫函式和從函式呼叫邏輯應用程式。 選擇如何建置每個協調流程，取決於服務的功能或您的個人喜好。 下表列出這些服務之間的一些主要差異：
+ 
+|  | 長期函式 | Logic Apps |
+| --- | --- | --- |
+| 開發 | Code First (命令式) | Designer First (宣告式) |
+| 連線能力 | [約有十幾個內建繫結類型](functions-triggers-bindings.md#supported-bindings)、撰寫自訂繫結的程式碼 | [連接器的大型集合](../connectors/apis-list.md)、[適用於 B2B 的企業整合套件案例](../logic-apps/logic-apps-enterprise-integration-overview.md)、[建置自訂連接器](../logic-apps/custom-connector-overview.md) |
+| 動作 | 每個活動都是 Azure 函式；撰寫活動函式的程式碼 |[現成動作的大型集合](../logic-apps/logic-apps-workflow-actions-triggers.md)|
+| 監視 | [Azure Application Insights](../application-insights/app-insights-overview.md) | [Azure 入口網站](../logic-apps/quickstart-create-first-logic-app-workflow.md)，[Log Analytics](../logic-apps/logic-apps-monitor-your-logic-apps.md)|
+| 管理性 | [REST API](durable-functions-http-api.md)、[Visual Studio](https://docs.microsoft.com/azure/vs-azure-tools-resources-managing-with-cloud-explorer) | [Azure 入口網站](../logic-apps/quickstart-create-first-logic-app-workflow.md)、[REST API](https://docs.microsoft.com/rest/api/logic/)[PowerShell](https://docs.microsoft.com/powershell/module/azurerm.logicapp/?view=azurermps-5.6.0)[Visual Studio](https://docs.microsoft.com/azure/logic-apps/manage-logic-apps-with-visual-studio) |
+| 執行內容 | 可以在[本機](functions-runtime-overview.md)或雲端中執行。 | 只可在雲端中執行。|
 
 <a name="function"></a>
 
-## <a name="functions-vs-webjobs"></a>Functions 與 WebJobs
+## <a name="compare-functions-and-webjobs"></a>比較 Functions 和 Webjob
 
 如同 Azure Functions，搭配 WebJobs SDK 的 Azure App Service WebJobs 是針對開發人員所設計的 Code First 整合服務。 兩者皆以 [Azure App Service](../app-service/app-service-web-overview.md) 為基礎，並支援[原始檔控制整合](../app-service/app-service-continuous-deployment.md)、[驗證](../app-service/app-service-authentication-overview.md)和[使用 Application Insights 整合進行監視](functions-monitoring.md)等功能。
 
-### <a name="webjobs-vs-the-webjobs-sdk"></a>WebJobs 和 WebJobs SDK
+### <a name="webjobs-and-the-webjobs-sdk"></a>WebJob 和 WebJob SDK
 
 App Service 的 WebJobs 功能可讓您在 App Service Web 應用程式的環境中執行指令碼或程式碼。 WebJobs SDK 是為 WebJobs 設計的架構，可簡化您在回應 Azure 服務中的事件時所撰寫的程式碼。 例如，您可藉由建立縮圖影像來回應 Azure 儲存體中的映像 Blob 建立。 WebJobs SDK 以 .NET 主控台應用程式的形式執行，您可以將其部署至 WebJob。 
 
@@ -69,7 +84,7 @@ Azure Functions 是以 WebJobs SDK 為基礎，因此其共用許多相同的事
 
 |  | Functions | 搭配 WebJobs SDK 的 WebJobs |
 | --- | --- | --- |
-|[無伺服器應用程式模型](https://azure.microsoft.com/overview/serverless-computing/)與[自動調整](functions-scale.md#how-the-consumption-plan-works)|✔||
+|[無伺服器應用程式模型](https://azure.microsoft.com/solutions/serverless/)與[自動調整](functions-scale.md#how-the-consumption-plan-works)|✔||
 |[在瀏覽器中開發與測試](functions-create-first-azure-function.md) |✔||
 |[按使用次數付費的定價方式](functions-scale.md#consumption-plan)|✔||
 |[與 Logic Apps 整合](functions-twitter-email.md)|✔||

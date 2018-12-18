@@ -1,12 +1,12 @@
 ---
-title: "更換 StorSimple 8000 系列裝置上的磁碟機 | Microsoft Docs"
-description: "說明如何更換 StorSimple 主要機箱或 EBOD 機箱上的磁碟機。"
+title: 更換 StorSimple 8000 系列裝置上的磁碟機 | Microsoft Docs
+description: 說明如何更換 StorSimple 主要機箱或 EBOD 機箱上的磁碟機。
 services: storsimple
-documentationcenter: 
+documentationcenter: ''
 author: alkohli
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: NA
 ms.topic: article
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23108316"
 ---
 # <a name="replace-a-disk-drive-on-your-storsimple-8000-series-device"></a>更換 StorSimple 8000 系列裝置上的磁碟機
 

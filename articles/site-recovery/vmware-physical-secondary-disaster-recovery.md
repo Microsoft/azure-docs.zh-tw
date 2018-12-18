@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure Site Recovery 設定 VMware VM 或實體伺服器至次要網站的災害復原 | Microsoft Docs"
-description: "了解如何使用 Azure Site Recovery 設定 VMware VM 或 Windows 和 Linux 實體伺服器至次要網站的災害復原。"
+title: 使用 Azure Site Recovery 設定 VMware VM 或實體伺服器至次要網站的災害復原 | Microsoft Docs
+description: 了解如何使用 Azure Site Recovery 設定 VMware VM 或 Windows 和 Linux 實體伺服器至次要網站的災害復原。
 services: site-recovery
 author: nsoneji
 manager: gauarvd
@@ -8,21 +8,58 @@ ms.service: site-recovery
 ms.workload: backup-recovery
 ms.tgt_pltfrm: na
 ms.topic: article
-ms.date: 03/08/2018
+ms.date: 08/01/2018
 ms.author: raynew
-ms.openlocfilehash: 7d172b89a0846c8ccf19896400e127a3bec0b55e
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+ms.openlocfilehash: 94abdd30dc9cd279ab791541250787a111f80d30
+ms.sourcegitcommit: 35ceadc616f09dd3c88377a7f6f4d068e23cceec
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39618983"
 ---
 # <a name="set-up-disaster-recovery-of-on-premises-vmware-virtual-machines-or-physical-servers-to-a-secondary-site"></a>設定內部部署 VMware 虛擬機器或實體伺服器至次要網站的災害復原
 
-[Azure Site Recovery](site-recovery-overview.md) 中的 InMage Scout 可提供內部部署 VMware 網站之間的即時複寫。 InMage Scout 包含在 Azure Site Recovery 服務訂用帳戶中。 
+[Azure Site Recovery](site-recovery-overview.md) 中的 InMage Scout 可提供內部部署 VMware 網站之間的即時複寫。 InMage Scout 包含在 Azure Site Recovery 服務訂用帳戶中。
+
+## <a name="end-of-support-announcement"></a>終止支援公告
+
+內部部署 VMware 或實體資料中心之間的複寫適用的 Azure Site Recovery 案例已達終止支援日期。
+
+-   自 2018 年 8 月起，即無法在復原服務保存庫中設定此案例，且無法從保存庫下載 InMage Scout 軟體。 現有的部署仍受支援。 
+-   自 2020 年 12 月 31 日起，將不再支援此案例。
+- 現有的合作夥伴可在支援終止前將新客戶登入至案例。
+
+在 2018 年和 2019 年期間，將會發行兩項更新： 
+
+-   更新 7：修正網路組態和合規性問題，並提供 TLS 1.2 支援。
+-   更新 8：新增 Linux 作業系統 RHEL/CentOS 7.3/7.4/7.5 和 SUSE 12 的支援
+
+在更新 8 之後，將不再發行其他更新。 更新 8 將為作業系統新增有限的 Hotfix 支援，以及目前能力所及的最佳 Bug 修正程式。
+
+Azure Site Recovery 將持續創新，以 Azure 作為災害復原站台，為 VMware 和 Hyper-V 客戶提供順暢且頂級的 DRaaS 解決方案。 Microsoft 建議現有的 InMage/ASR Scout 客戶應考慮使用 Azure Site Recovery 的「VMware 至 Azure」案例，以符合其商務持續性需求。 Azure Site Recovery 的「VMware 至 Azure」案例是適用於 VMware 應用程式的企業級 DR 解決方案，提供可在數分鐘內完成 RPO 和 RTO 的功能、多重 VM 應用程式複寫與復原的支援、順暢的登入體驗、全方位的監視，以及顯著的 TCO 優勢。
+
+### <a name="scenario-migration"></a>案例移轉
+在替代方案方面，我們建議將內部部署 VMware VM 和實體機器複寫至 Azure，藉以設定其災害復原功能。 以下列方式來執行此動作：
+
+1.  檢閱下列快速比較。 您必須先確認內部部署機器符合複寫至 Azure 的[需求](./vmware-physical-azure-support-matrix.md#replicated-machines)，才能複寫這些機器。 如果您要複寫 VMware VM，建議您檢閱[容量規劃準則](./site-recovery-plan-capacity-vmware.md)，並執行[部署規劃工具](./site-recovery-deployment-planner.md)以識別容量需求，然後驗證合規性。
+2.  執行部署規劃工具之後，您可以設定複寫：針對 VMware VM，請依照這些教學課程的指示[準備 Azure](./tutorial-prepare-azure.md)、[準備內部部署 VMware 環境](./vmware-azure-tutorial-prepare-on-premises.md)，並[設定災害復原](./vmware-azure-tutorial-prepare-on-premises.md)。
+針對實體機器，請依照本[教學課程](./physical-azure-disaster-recovery.md)操作。
+3.  在機器複寫至 Azure 之後，您可以執行[災害復原演練](./site-recovery-test-failover-to-azure.md)，以確保一切都如預期般運作。
+
+### <a name="quick-comparison"></a>快速比較
+
+**功能** | **複寫至 Azure** |**在 VMware 資料中心之間複寫**
+--|--|--
+**必要的元件** |複寫機器上的行動服務。 內部部署組態伺服器、處理伺服器、主要目標伺服器。Azure 中用於容錯回復的臨時處理伺服器。|行動服務、處理伺服器、組態伺服器和主要目標
+**組態和協調流程** |Azure 入口網站中的復原服務保存庫 | 使用 vContinuum 
+**複寫**|磁碟 (Windows 和 Linux) |磁碟區 - Windows<br> 磁碟 - Linux
+**共用磁碟叢集**|不支援|支援
+**資料變換限制 (平均值)** |每個磁碟 10 MB/s 的資料<br> 每個 VM 25 MB/s 的資料<br> [深入了解](./site-recovery-vmware-deployment-planner-analyze-report.md#azure-site-recovery-limits) | 每個磁碟 > 10 MB/s 的資料  <br> 每個 VM > 25 MB/s 的資料
+**監視** |從 Azure 入口網站|從 CX (組態伺服器)
+**支援矩陣**| [按一下這裡以取得詳細資訊](./vmware-physical-azure-support-matrix.md)|[下載 ASR Scout 相容矩陣](https://aka.ms/asr-scout-cm)
 
 
-## <a name="prerequisites"></a>先決條件
-
+## <a name="prerequisites"></a>必要條件
 若要完成本教學課程：
 
 - [檢閱](vmware-physical-secondary-support-matrix.md)所有元件的支援需求。
@@ -74,7 +111,7 @@ ms.lasthandoff: 03/09/2018
 6. **Linux 主要目標伺服器**：若要更新整合代理程式，請將 **UA_RHEL6-64_8.0.4.0_GA_Update_4_9035261_26Sep16.tar.gz** 複製到主要目標伺服器並將它解壓縮。 在解壓縮的資料夾中執行 **/Install**。
 7. **Windows 來源伺服器**：若要更新整合代理程式，請將 **UA_Windows_8.0.5.0_GA_Update_5_11525802_20Apr17.exe** 複製到來源伺服器。 連按兩下檔案加以執行。 
     如果來源伺服器已經更新為 Update 4，或者來源代理程式已經與最新的基底安裝程式 **InMage_UA_8.0.1.0_Windows_GA_28Sep2017_release.exe** 一起安裝，則您不需要在來源伺服器上安裝 Update 5 代理程式。
-8. **Linux 來源伺服器**：若要更新整合代理程式，請將對應的整合代理程式版本複製到 Linux 伺服器並將它解壓縮。 在解壓縮的資料夾中執行 **/Install**。  範例：針對 RHEL 6.7 64 位元伺服器，請將 **UA_RHEL6-64_8.0.4.0_GA_Update_4_9035261_26Sep16.tar.gz** 複製到伺服器並將它解壓縮。 在解壓縮的資料夾中執行 **/Install**。
+8. **Linux 來源伺服器**：若要更新整合代理程式，請將對應的整合代理程式版本複製到 Linux 伺服器並將它解壓縮。 在解壓縮的資料夾中執行 **/Install**。  範例：針對 RHEL 6.7 64 位元伺服器，請將 **UA_RHEL6-64_8.0.4.0_GA_Update_4_9035261_26Sep16.tar.gz** 複製到伺服器，並將它解壓縮。 在解壓縮的資料夾中執行 **/Install**。
 
 ## <a name="enable-replication"></a>啟用複寫
 
@@ -159,7 +196,7 @@ Scout Update 4 是累積更新。 包含 Update 1 到 Update 3 的所有修正�
 
 #### <a name="bug-fixes-and-enhancements"></a>Bug 修正和增強功能
 
-* 提升下列 Linux OS 和複製項的關機處理，以防止多餘的重新同步處理問題：
+* 提升下列 Linux 作業系統和複製項的關機處理，以防止多餘的重新同步處理問題：
     * Red Hat Enterprise Linux (RHEL) 6.x
     * Oracle Linux (OL) 6.x
 * 針對 Linux，現在僅限本機使用者可以擁有整合代理程式安裝目錄中的所有資料夾存取權限。
@@ -221,7 +258,7 @@ Update 3 修正下列問題：
 
 Update 2 中的修正包括：
 
-* **設定伺服器**：當設定伺服器在 Site Recovery 中註冊時，會阻止 31 天免費計量功能正常運作的問題。
+* **組態伺服器**：當組態伺服器註冊到 Azure Site Recovery 保存庫時，會發生使 31 天免費計量功能無法正常運作的問題。
 * **整合代理程式**：修正 Update 1 中導致 8.0 版升級至 8.0.1 版期間，更新未安裝在主要目標伺服器上的問題。
 
 ### <a name="azure-site-recovery-scout-801-update-1"></a>Azure Site Recovery Scout 8.0.1 Update 1

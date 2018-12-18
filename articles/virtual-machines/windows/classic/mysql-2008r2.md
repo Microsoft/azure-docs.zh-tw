@@ -1,10 +1,10 @@
 ---
-title: "建立執行 MySQL 的傳統 Azure VM | Microsoft Docs"
-description: "使用傳統部署模型，建立執行 Windows Server 2012 R2 和 MySQL 資料庫的 Azure 虛擬機器。"
+title: 建立執行 MySQL 的傳統 Azure VM | Microsoft Docs
+description: 使用傳統部署模型，建立執行 Windows Server 2012 R2 和 MySQL 資料庫的 Azure 虛擬機器。
 services: virtual-machines-windows
-documentationcenter: 
+documentationcenter: ''
 author: cynthn
-manager: timlt
+manager: jeconnoc
 editor: tysonn
 tags: azure-service-management
 ms.assetid: 98fa06d2-9b92-4d05-ac16-3f8e9fd4feaa
@@ -15,11 +15,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: cynthn
-ms.openlocfilehash: e4135f96027cc25e1e0a149857ace1672570fc4b
-ms.sourcegitcommit: adf6a4c89364394931c1d29e4057a50799c90fc0
+ms.openlocfilehash: be2a4232fdb59deb87d6d9340fd22909707294b8
+ms.sourcegitcommit: 5b2ac9e6d8539c11ab0891b686b8afa12441a8f3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/09/2017
+ms.lasthandoff: 04/06/2018
+ms.locfileid: "30918110"
 ---
 # <a name="install-mysql-on-a-virtual-machine-created-with-the-classic-deployment-model-running-windows-server-2016"></a>在以傳統部署模型建立且執行 Windows Server 2016 的虛擬機器上安裝 MySQL
 [MySQL](https://www.mysql.com) 是一種很受歡迎的開放原始碼 SQL 資料庫。 本教學課程示範如何在執行 **Windows Server 2016** 的虛擬機器上安裝並執行 **MySQL 5.7.18 社群版本**作為 MySQL 伺服器。 對於非 MySQL 或 Windows Server 的版本，操作方式可能略有不同。
@@ -51,7 +52,7 @@ ms.lasthandoff: 11/09/2017
 
 1. 使用遠端桌面連線到虛擬機器之後，按一下 [開始] 畫面中的 [Internet Explorer]  。
 2. 選取右上角的 [工具] 按鈕 (齒輪圖示)，然後按一下 [網際網路選項]。 依序按一下 [安全性] 索引標籤和 [信任的網站] 圖示，然後按一下 [網站] 按鈕。 將 http://*.mysql.com 新增至受信任的網站清單。 按一下 [關閉]，然後按一下 [確定]。
-3. 在 Internet Explorer 的網址列中，輸入 https://dev.mysql.com/downloads/mysql/。
+3. 在 Internet Explorer 網址列中，輸入 https://dev.mysql.com/downloads/mysql/。
 4. 使用 MySQL 網站尋找並下載 Windows 版 MySQL 最新版安裝程式。 選擇 [MySQL 安裝程式] 時，請下載具有完整檔案集的版本 (例如檔案大小為 352.8 MB 的 mysql-installer-community-5.7.18.0.msi)，然後儲存該安裝程式。
 5. 安裝程式下載完成之後，請按一下 [執行]  來啟動安裝。
 6. 在 [授權合約] 頁面上接受授權合約，然後按 [下一步]。

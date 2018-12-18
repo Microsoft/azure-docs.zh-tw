@@ -1,26 +1,20 @@
 ---
-title: "搭配 HDInsight 的 Hadoop 上的 MapReduce 使用 C# - Azure | Microsoft Docs"
-description: "了解如何搭配 Azure HDInsight 的 Hadoop 使用 C# 以建立 MapReduce 方案。"
+title: 搭配 HDInsight 的 Hadoop 上的 MapReduce 使用 C# - Azure
+description: 了解如何搭配 Azure HDInsight 的 Hadoop 使用 C# 以建立 MapReduce 方案。
 services: hdinsight
-documentationcenter: 
-author: Blackmist
-manager: jhubbard
-editor: cgronlun
-tags: azure-portal
-ms.assetid: d83def76-12ad-4538-bb8e-3ba3542b7211
+author: jasonwhowell
+ms.reviewer: jasonh
 ms.custom: hdinsightactive
 ms.service: hdinsight
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.date: 02/27/2018
-ms.author: larryfr
-ms.openlocfilehash: 0db3df1666a56ca96af208a4e43f814105de40d5
-ms.sourcegitcommit: c765cbd9c379ed00f1e2394374efa8e1915321b9
+ms.author: jasonh
+ms.openlocfilehash: 91558ae4fd592c7490aef0a0f2fd930e970f498c
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/28/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43049058"
 ---
 # <a name="use-c-with-mapreduce-streaming-on-hadoop-in-hdinsight"></a>搭配 HDInsight 的 Hadoop 上的 MapReduce 串流使用 C#
 
@@ -33,7 +27,7 @@ Hadoop 串流是一個公用程式，可讓您使用指令碼或可執行檔執�
 
 ## <a name="net-on-hdinsight"></a>HDInsight 上的 .NET
 
-__以 Linux 為基礎的 HDInsight__ 叢集使用 [Mono (https://mono-project.com)](https://mono-project.com) 來執行 .NET 應用程式。 4.2.1 版的 Mono 隨附於 3.6 版的 HDInsight。 如需 HDInsight 包含之 Mono 版本的詳細資訊，請參閱 [HDInsight 元件版本](../hdinsight-component-versioning.md)。 若要使用特定版本的 Mono，請參閱[安裝或更新 Mono](../hdinsight-hadoop-install-mono.md) 文件。
+__以 Linux 為基礎的 HDInsight__ 叢集會使用 [Mono (https://mono-project.com)](https://mono-project.com) 來執行 .NET 應用程式。 4.2.1 版的 Mono 隨附於 3.6 版的 HDInsight。 如需 HDInsight 包含之 Mono 版本的詳細資訊，請參閱 [HDInsight 元件版本](../hdinsight-component-versioning.md)。 若要使用特定版本的 Mono，請參閱[安裝或更新 Mono](../hdinsight-hadoop-install-mono.md) 文件。
 
 如需 Mono 與 .NET Framework 版本之相容性的詳細資訊，請參閱 [Mono 相容性](http://www.mono-project.com/docs/about-mono/compatibility/) \(英文\)。
 
@@ -47,9 +41,9 @@ __以 Linux 為基礎的 HDInsight__ 叢集使用 [Mono (https://mono-project.co
 4. 歸納器會讀取以 Tab 分隔的機碼值組、處理資料，然後在 STDOUT 發出以 Tab 分隔的機碼值組格式結果。
 5. Hadoop 會讀取輸出，接著輸出會寫入至輸出目錄。
 
-如需串流的詳細資訊，請參閱 [Hadoop 串流 (英文) (https://hadoop.apache.org/docs/r2.7.1/hadoop-streaming/HadoopStreaming.html)](https://hadoop.apache.org/docs/r2.7.1/hadoop-streaming/HadoopStreaming.html)。
+如需有關串流的詳細資訊，請參閱 [Hadoop 串流](https://hadoop.apache.org/docs/r2.7.1/hadoop-streaming/HadoopStreaming.html) \(英文\)。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 * 熟悉如何撰寫和建置以 .NET Framework 4.5 為目標的 C# 程式碼。 本文件中的步驟使用 Visual Studio 2017。
 

@@ -1,6 +1,6 @@
 ---
 title: 部署 Azure Stack - PowerShell | Microsoft Docs
-description: 在本教學課程中，您要從命令列安裝 ASDK。
+description: 在本文中，您會使用 PowerShell 從命令列安裝 ASDK。
 services: azure-stack
 documentationcenter: ''
 author: jeffgilb
@@ -11,31 +11,22 @@ ms.service: azure-stack
 ms.workload: na
 pms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: tutorial
-ms.custom: mvc
-ms.date: 03/16/2018
+ms.topic: article
+ms.custom: ''
+ms.date: 09/10/2018
 ms.author: jeffgilb
 ms.reviewer: misainat
-ms.openlocfilehash: 48ccccaba6b7f5780f1d42dfbe5d9747c5e30292
-ms.sourcegitcommit: a36a1ae91968de3fd68ff2f0c1697effbb210ba8
+ms.openlocfilehash: c6b2387360973cd4e65b5a1e4ba483abf5ea9070
+ms.sourcegitcommit: c29d7ef9065f960c3079660b139dd6a8348576ce
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/17/2018
+ms.lasthandoff: 09/12/2018
+ms.locfileid: "44716021"
 ---
-# <a name="tutorial-deploy-the-asdk-from-the-command-line"></a>教學課程：從命令列部署 ASDK
-在本教學課程中，您要在非生產環境中，從命令列部署 Azure Stack 開發套件 (ASDK)。 
-
+# <a name="deploy-the-asdk-from-the-command-line"></a>從命令列部署 ASDK
 ASDK 是種測試和部署環境，可供您部署以評估及示範 Azure Stack 的功能和服務。 要讓其正常執行，您將需要準備環境硬體並執行一些指令碼 (這將需要數小時的時間)。 在那之後，您就可以登入系統管理員和使用者入口網站，開始使用 Azure Stack。
 
-在本教學課程中，您了解如何：
-
-> [!div class="checklist"]
-> * 下載部署套件並解壓縮
-> * 準備開發套件主機電腦 
-> * 執行部署後設定
-> * 向 Azure 註冊
-
-## <a name="prerequisites"></a>先決條件 
+## <a name="prerequisites"></a>必要條件 
 準備開發套件主機電腦。 規劃您的硬體、軟體及網路。 裝載開發套件的電腦 (開發套件主機) 必須符合硬體、軟體及網路需求。 此外，您還必須在使用 Azure Active Directory (Azure AD) 或「Active Directory 同盟服務 (AD FS)」之間選擇。 開始部署之前，請務必符合這些先決條件，如此安裝程序才能順暢執行。 
 
 部署 ASDK 之前，請先確定您所規劃的開發套件主機電腦硬體、作業系統和網路設定，都符合安裝 ASDK 的最低需求。
@@ -100,6 +91,8 @@ ASDK 是種測試和部署環境，可供您部署以評估及示範 Azure Stack
   ```
 
 進入 ASDK 安裝幾分鐘，系統會提示您輸入 Azure AD 認證。 您必須提供 Azure AD 租用戶的全域管理員認證。 
+
+部署之後，就不需要 Azure Active Directory 全域管理員權限。 不過，某些作業可能需要全域管理員認證。 例如，需要獲派權限的資源提供者安裝程式指令碼或新功能。 您可以暫時恢復帳戶的全域管理員權限，或使用擁有「預設提供者訂用帳戶」的個別全域管理員帳戶。
 
 ### <a name="deploy-azure-stack-using-ad-fs"></a>使用 AD FS 部署 Azure Stack 
 若要**使用 AD FS 作為識別提供者**來部署開發套件，請執行下列 PowerShell 命令 (您只需要新增 -UseADFS 參數)： 
@@ -176,16 +169,5 @@ $aadcred = Get-Credential "<Azure AD global administrator account name>" #Exampl
 ## <a name="next-steps"></a>後續步驟
 恭喜！ 完成這些步驟之後，您將會擁有一個具備[系統管理員](https://adminportal.local.azurestack.external)和[使用者](https://portal.local.azurestack.external)入口網站的開發套件環境。 
 
-在本教學課程中，您已了解如何：
-
-> [!div class="checklist"]
-> * 下載部署套件並解壓縮
-> * 準備開發套件主機電腦 
-> * 執行部署後設定
-> * 向 Azure 註冊
-
-前進到下一個教學課程，以了解如何新增 Azure 市集項目。
-
-> [!div class="nextstepaction"]
-> [新增 Azure Stack 市集項目](asdk-marketplace-item.md)
+[ASDK 安裝後設定工作](asdk-post-deploy.md)
 

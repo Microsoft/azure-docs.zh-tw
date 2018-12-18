@@ -2,23 +2,22 @@
 title: 開始使用 Azure Blob 儲存體和 Visual Studio 已連線服務 (ASP.NET) | Microsoft Docs
 description: 在使用 Visual Studio 已連線服務連線到儲存體帳戶之後，如何於 Visual Studio 的 ASP.NET 專案中開始使用 Azure Blob 儲存體
 services: storage
-documentationcenter: ''
 author: ghogen
 manager: douge
-editor: ''
 ms.assetid: b3497055-bef8-4c95-8567-181556b50d95
-ms.service: storage
-ms.workload: web
-ms.tgt_pltfrm: vs-getting-started
-ms.devlang: na
-ms.topic: article
+ms.prod: visual-studio-dev15
+ms.technology: vs-azure
+ms.custom: vs-azure
+ms.workload: azure-vs
+ms.topic: conceptual
 ms.date: 12/07/2017
 ms.author: ghogen
-ms.openlocfilehash: 657eff077f9a72bad97e8bea3ad3efc0da1420d5
-ms.sourcegitcommit: 34e0b4a7427f9d2a74164a18c3063c8be967b194
+ms.openlocfilehash: b8c0891d8528e0622682788e5b10d5a76ad92ec8
+ms.sourcegitcommit: 30c7f9994cf6fcdfb580616ea8d6d251364c0cd1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/30/2018
+ms.lasthandoff: 08/18/2018
+ms.locfileid: "42141095"
 ---
 # <a name="get-started-with-azure-blob-storage-and-visual-studio-connected-services-aspnet"></a>開始使用 Azure Blob 儲存體和 Visual Studio 已連線服務 (ASP.NET)
 
@@ -32,7 +31,7 @@ Azure Blob 儲存體是可將非結構化資料儲存在雲端作為物件或 Bl
 
 [!INCLUDE [storage-try-azure-tools-blobs](../../includes/storage-try-azure-tools-blobs.md)]
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 * [Microsoft Visual Studio](https://www.visualstudio.com/downloads/)
 
@@ -137,11 +136,11 @@ Blob 容器是 blob 和資料夾的巢狀階層。 本文件中剩餘的步驟�
 
 1. 在 [方案總管] 中，於 [檢視] 資料夾上按一下滑鼠右鍵。
 
-2. 從快顯功能表中，選取 [新增] > [新增資料夾]。 將新資料夾命名為 Blobs。 
+1. 如果沒有 **Blob** 資料夾，請建立一個。 從快顯功能表中，選取 [新增] > [新增資料夾]。 將新資料夾命名為 Blobs。 
  
 1. 在 [方案總管] 中，展開 [檢視] 資料夾，然後在 [Blobs] 上按一下滑鼠右鍵。
 
-4. 從快顯功能表中，選取 [新增] > [檢視]。
+1. 從快顯功能表中，選取 [新增] > [檢視]。
 
 1. 在 [新增檢視] 對話方塊中，針對檢視名稱輸入 **CreateBlobContainer**，然後選取 [新增]。
 

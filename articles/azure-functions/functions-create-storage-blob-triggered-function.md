@@ -4,23 +4,20 @@ description: 使用 Azure Functions 來建立無伺服器函式，並讓此函�
 services: azure-functions
 documentationcenter: na
 author: ggailey777
-manager: cfowler
-editor: ''
-tags: ''
+manager: jeconnoc
 ms.assetid: d6bff41c-a624-40c1-bbc7-80590df29ded
-ms.service: functions
+ms.service: azure-functions
 ms.devlang: multiple
 ms.topic: quickstart
-ms.tgt_pltfrm: multiple
-ms.workload: na
-ms.date: 03/27/2018
+ms.date: 10/01/2018
 ms.author: glenga
 ms.custom: mvc, cc996988-fb4f-47
-ms.openlocfilehash: 928ea1dbb68206e128f0593ba15cb48935ab1ccf
-ms.sourcegitcommit: 34e0b4a7427f9d2a74164a18c3063c8be967b194
+ms.openlocfilehash: f71db50678ad0f1b37e30a4120b90d47d9090942
+ms.sourcegitcommit: 4eddd89f8f2406f9605d1a46796caf188c458f64
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/30/2018
+ms.lasthandoff: 10/11/2018
+ms.locfileid: "49113847"
 ---
 # <a name="create-a-function-triggered-by-azure-blob-storage"></a>建立 Azure Blob 儲存體所觸發的函式
 
@@ -28,7 +25,7 @@ ms.lasthandoff: 03/30/2018
 
 ![檢視記錄中的訊息。](./media/functions-create-storage-blob-triggered-function/function-app-in-portal-editor.png)
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 + 下載並安裝 [Microsoft Azure 儲存體總管](http://storageexplorer.com/)。
 + Azure 訂用帳戶。 如果您沒有 Azure 訂用帳戶，請在開始前建立[免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F)。
@@ -45,15 +42,21 @@ ms.lasthandoff: 03/30/2018
 
 ## <a name="create-a-blob-storage-triggered-function"></a>建立由 Blob 儲存體所觸發的函式
 
-1. 展開函式應用程式，然後按一下 [Functions] 旁的 [+] 按鈕。 如果這是您函式應用程式中的第一個函式，請選取 [自訂函式]。 這會顯示一組完整的函式範本。
+1. 展開函式應用程式，然後按一下 [Functions] 旁的 [+] 按鈕。 如果這是函式應用程式中的第一個函式，請依序選取 [入口網站內] 和 [繼續]。 否則，請移至步驟三。
 
-    ![Azure 入口網站中的 Functions 快速入門](./media/functions-create-storage-blob-triggered-function/add-first-function.png)
+   ![Azure 入口網站中的 Functions 快速入門](./media/functions-create-storage-blob-triggered-function/function-app-quickstart-choose-portal.png)
 
-2. 在 [搜尋] 欄位中，輸入 `blob`，然後選擇您需要的 blob 儲存體觸發程序範本語言。
+1. 依序選擇 [更多範本] 和 [完成並檢視範本]。
 
-    ![選擇 Blob 儲存體觸發程序範本。](./media/functions-create-storage-blob-triggered-function/functions-create-blob-storage-trigger-portal.png)
- 
-3. 使用影像下方資料表中所指定的設定。
+    ![Functions 快速入門選擇更多範本](./media/functions-create-storage-blob-triggered-function/add-first-function.png)
+
+1. 在搜尋欄位中，輸入 `blob`，然後選擇 [Blob 觸發程序] 範本。
+
+1. 如果出現提示，請選取 [安裝]，以在函式應用程式中安裝 Azure 儲存體延伸模組的任何相依性。 安裝成功之後，請選取 [繼續]。
+
+    ![安裝繫結延伸模組](./media/functions-create-storage-blob-triggered-function/functions-create-blob-storage-trigger-portal.png)
+
+1. 使用影像下方資料表中所指定的設定。
 
     ![建立由 Blob 儲存體所觸發的函式。](./media/functions-create-storage-blob-triggered-function/functions-create-blob-storage-trigger-portal-2.png)
 
@@ -63,7 +66,7 @@ ms.lasthandoff: 03/30/2018
     | **路徑**   | samples-workitems/{name}    | 受監視 Blob 儲存體中的位置。 在繫結中，Blob 的檔案名稱會以「名稱」參數的形式來傳遞。  |
     | **儲存體帳戶連線** | AzureWebJobsStorage | 您可以使用應用程式函式已在使用的儲存體帳戶連線，或建立新的連線。  |
 
-3. 按一下 [建立] 可建立函式。
+1. 按一下 [建立] 可建立函式。
 
 接下來，您要連線到 Azure 儲存體帳戶並建立 **samples-workitems** 容器。
 

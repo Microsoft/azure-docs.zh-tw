@@ -1,24 +1,20 @@
 ---
-title: "使用事件中樞串流最忙碌路徑中的 Azure 診斷資料 | Microsoft Docs"
-description: "使用事件中樞設定 Azure 診斷的完整步驟，包括常見案例的指引。"
-services: event-hubs
-documentationcenter: na
+title: 將 Azure 診斷資料串流至事件中樞
+description: 使用事件中樞設定 Azure 診斷的完整步驟，包括常見案例的指引。
+services: azure-monitor
 author: rboucher
-manager: carmonm
-editor: 
-ms.assetid: edeebaac-1c47-4b43-9687-f28e7e1e446a
-ms.service: monitoring-and-diagnostics
+ms.service: azure-monitor
 ms.devlang: dotnet
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: na
+ms.topic: conceptual
 ms.date: 07/13/2017
 ms.author: robb
-ms.openlocfilehash: ca0dd96389a605ed8bf34af81eb4d75bef581338
-ms.sourcegitcommit: fa28ca091317eba4e55cef17766e72475bdd4c96
+ms.component: diagnostic-extension
+ms.openlocfilehash: c87a4acb8ca333af73643a38ae1338c9c8769d13
+ms.sourcegitcommit: 4597964eba08b7e0584d2b275cc33a370c25e027
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/14/2017
+ms.lasthandoff: 07/02/2018
+ms.locfileid: "37341225"
 ---
 # <a name="streaming-azure-diagnostics-data-in-the-hot-path-by-using-event-hubs"></a>使用事件中樞串流最忙碌路徑中的 Azure 診斷資料
 Azure 診斷會提供彈性的方法，用來收集來自雲端服務虛擬機器 (VM) 的度量和記錄檔，再將結果傳輸至 Azure 儲存體。 從 2016 年 3 月 (SDK 2.9) 的時間範圍開始，您可以使用 [Azure 事件中樞](https://azure.microsoft.com/services/event-hubs/)，將 Azure 診斷傳送至自訂的資料來源，並立即傳輸最忙碌路徑資料。
@@ -393,9 +389,11 @@ namespace EventHubListener
 </ServiceConfiguration>
 ```
 
-虛擬機器上對等的 JSON 型設定如下所示：
+虛擬機器的對等 JSON 設定如下所示：
+
+公用設定：
 ```JSON
-"settings": {
+{
     "WadCfg": {
         "DiagnosticMonitorConfiguration": {
             "overallQuotaInMB": 4096,
@@ -491,8 +489,11 @@ namespace EventHubListener
     "StorageAccount": "{account name}"
 }
 
+```
 
-"protectedSettings": {
+受保護的設定：
+```JSON
+{
     "storageAccountName": "{account name}",
     "storageAccountKey": "{account key}",
     "storageAccountEndPoint": "{storage endpoint}",

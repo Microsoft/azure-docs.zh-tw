@@ -1,24 +1,26 @@
 ---
-title: "在 Azure HDInsight Hive 資料表中進行資料取樣 | Microsoft Docs"
-description: "在 Azure HDInsight (Hadopop) Hive 資料表中進行資料向下取樣"
+title: 在 Azure HDInsight Hive 資料表中進行資料取樣 | Microsoft Docs
+description: 在 Azure HDInsight (Hadopop) Hive 資料表中進行資料向下取樣
 services: machine-learning,hdinsight
-documentationcenter: 
-author: bradsev
+documentationcenter: ''
+author: deguhath
 manager: cgronlun
 editor: cgronlun
 ms.assetid: f31e8d01-0fd4-4a10-b1a7-35de3c327521
 ms.service: machine-learning
+ms.component: team-data-science-process
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 11/13/2017
-ms.author: bradsev
-ms.openlocfilehash: d765c2adc8a3aa77d903490875c7f8ad622ef4d2
-ms.sourcegitcommit: 659cc0ace5d3b996e7e8608cfa4991dcac3ea129
+ms.author: deguhath
+ms.openlocfilehash: 558f7d684453c8b5040f586820bd2a8a9ac0f9c8
+ms.sourcegitcommit: 944d16bc74de29fb2643b0576a20cbd7e437cef2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/13/2017
+ms.lasthandoff: 06/07/2018
+ms.locfileid: "34838427"
 ---
 # <a name="sample-data-in-azure-hdinsight-hive-tables"></a>在 Azure HDInsight Hive 資料表中進行資料取樣
 本文說明如何使用 Hive 查詢，對 Azure HDInsight Hive 資料表中儲存的資料向下取樣，以縮減至更適合操控分析的大小。 文中討論三個普遍使用的取樣方法：

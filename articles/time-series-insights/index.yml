@@ -1,42 +1,52 @@
 ### YamlMime:YamlDocument
+ms.openlocfilehash: b5ef9d9c464ff9968e6a3ad8a9771271aa492abe
+ms.sourcegitcommit: 4de6a8671c445fae31f760385710f17d504228f8
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39629271"
 documentType: LandingData
-title: "Azure Time Series Insights 文件"
+title: Azure Time Series Insights 文件
 metadata:
-  title: "Azure Time Series Insights 文件 - 教學課程和 API 參考 | Microsoft Docs"
-  description: "了解如何透過完全受控事件處理，在雲端執行 IoT 分析。 即時分析來自應用程式、感應器、裝置等的資料。"
+  title: Azure Time Series Insights 文件 - 教學課程和 API 參考 | Microsoft Docs
+  description: 了解如何透過完全受控事件處理，在雲端執行 IoT 分析。 即時分析來自應用程式、感應器、裝置等的資料。
   services: time-series-insights
-  author: kfile
-  manager: jhubbard
+  author: anshan
+  manager: cshankar
   ms.service: time-series-insights
   ms.tgt_pltfrm: na
   ms.devlang: na
   ms.topic: landing-page
-  ms.date: 11/13/2017
-  ms.author: kfile
-  ms.openlocfilehash: 8ccc0fe8ca23fabb6d2cb697836e8f402dbaf672
-  ms.sourcegitcommit: 48fce90a4ec357d2fb89183141610789003993d2
-  ms.translationtype: HT
-  ms.contentlocale: zh-TW
-  ms.lasthandoff: 01/12/2018
+  ms.date: 05/16/2018
+  ms.author: anshan
 abstract:
-  description: "了解如何設立時間序列深入解析環境，探索和分析您 IoT 解決方案或連接物件的時間序列資料。 文件中說明了必要條件、操作說明、API 參考和其他文章，可協助您在數分鐘內開始使用。"
+  description: 了解如何設立時間序列深入解析環境，探索和分析您 IoT 解決方案或連接物件的時間序列資料。 文件中說明了必要條件、操作說明、API 參考和其他文章，可協助您在數分鐘內開始使用。
+  aside:
+    image:
+      alt: Azure 時間序列深入解析功能提供影片介紹。
+      height: 110
+      src: media/index/tsi-intro-shannon-bloch.png
+      width: 250
+    title: 適用於 IoT 應用程式的時間序列深入解析。 (16:09)
+    href: https://channel9.msdn.com/Shows/Internet-of-Things-Show/Time-Series-Insight-for-IoT-apps/player
+    width: 250
 sections:
-- title: "5 分鐘快速入門"
+- title: 5 分鐘快速入門
   items:
   - type: paragraph
-    text: "了解如何部署 Log Analytics，以及設定從 Azure、其他雲端提供者和內部部署資源收集資料。"
+    text: 了解如何部署 Log Analytics，以及設定從 Azure、其他雲端提供者和內部部署資源收集資料。
   - type: list
     style: icon48
     items:
     - image:
         src: https://docs.microsoft.com/azure/time-series-insights/media/index/time-series-insights.svg
-      text: "探索 Azure 時間序列深入解析"
+      text: 探索 Azure 時間序列深入解析
       href: /azure/time-series-insights/time-series-quickstart
-- title: "參考"
+- title: 參考
   items:
   - type: list
     style: cards
     className: cardsD
     items:
     - title: API
-      html: "<p><a href=\"/rest/api/time-series-insights-management\">資源管理 API</a></p>   <p><a href=\"/rest/api/time-series-insights/time-series-insights-reference-queryapi\">查詢 API</a></p><p><a href=\"/rest/api/time-series-insights/time-series-insights-reference-query-syntax\">查詢語法</a></p>"
+      html: <p><a href="/rest/api/time-series-insights-management">資源管理 API</a></p>   <p><a href="/rest/api/time-series-insights/time-series-insights-reference-queryapi">查詢 API</a></p><p><a href="/rest/api/time-series-insights/time-series-insights-reference-query-syntax">查詢語法</a></p>

@@ -1,18 +1,19 @@
 ---
-title: "使用 Active Directory 身分識別進行安全性篩選以調整 Azure 搜尋服務結果 | Microsoft Docs"
-description: "在 Azure 搜尋服務內容上使用安全性篩選和 Active Directory 身分 識別進行存取控制。"
-services: search
+title: 使用 Active Directory 身分識別進行安全性篩選以調整 Azure 搜尋服務結果 | Microsoft Docs
+description: 在 Azure 搜尋服務內容上使用安全性篩選和 Active Directory 身分 識別進行存取控制。
 author: revitalbarletz
 manager: jlembicz
+services: search
 ms.service: search
-ms.topic: article
+ms.topic: conceptual
 ms.date: 11/07/2017
 ms.author: revitalb
-ms.openlocfilehash: 2113b59d6fec15067acbef8b4d4c1fc34c141e62
-ms.sourcegitcommit: 357afe80eae48e14dffdd51224c863c898303449
+ms.openlocfilehash: 75017a1a3a400ca5390210225f26a6c5f3bb7c47
+ms.sourcegitcommit: 0b4da003fc0063c6232f795d6b67fa8101695b61
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/15/2017
+ms.lasthandoff: 07/05/2018
+ms.locfileid: "37856159"
 ---
 # <a name="security-filters-for-trimming-azure-search-results-using-active-directory-identities"></a>使用 Active Directory 身分識別進行安全性篩選以調整 Azure 搜尋服務結果
 
@@ -97,7 +98,7 @@ await graph.Groups[newGroup.Id].Members.References.Request().AddAsync(newUser);
 ```
 
 ### <a name="step-4-cache-the-groups-identifiers"></a>步驟 4：快取群組識別碼
-(選擇性) 若要降低網路延遲，您可以快取使用者群組關聯，以便在發出搜尋要求時從快取傳回群組，從而省下 AAD 的往返。 您可以使用 (AAD Batch API)[https://developer.microsoft.com/graph/docs/concepts/json_batching] 來利用多個使用者傳送單一 Http 要求並建立快取。
+(選擇性) 若要降低網路延遲，您可以快取使用者群組關聯，以便在發出搜尋要求時從快取傳回群組，從而省下 AAD 的往返。 您可以使用 (AAD 批次 API) [https://developer.microsoft.com/graph/docs/concepts/json_batching]，來傳送具有多位使用者的單一 Http 要求，以及建置快取。
 
 Microsoft Graph 依設計可處理大量的要求。 如果發生大量的要求，Microsoft Graph 會無法執行要求，並顯示 HTTP 狀態碼 429。 如需詳細資訊，請參閱 [Microsoft Graph 節流](https://developer.microsoft.com/graph/docs/concepts/throttling)。
 
@@ -137,7 +138,7 @@ _indexClient.Documents.Index(batch);
 
 ### <a name="step-1-retrieve-users-group-identifiers"></a>步驟 1：擷取使用者的群組識別碼
 
-如果使用者的群組尚快取或是快取已過期，請發出[群組](https://developer.microsoft.com/graph/docs/api-reference/v1.0/api/directoryobject_getmembergroups)要求
+如果使用者的群組尚快取或是快取已過期，請發出[群組](https://developer.microsoft.com/en-us/graph/docs/api-reference/v1.0/api/directoryobject_getmembergroups)要求
 ```csharp
 private static void RefreshCacheIfRequired(string user)
 {

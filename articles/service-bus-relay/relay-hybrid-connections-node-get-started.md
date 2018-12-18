@@ -1,30 +1,31 @@
 ---
-title: "在 Node 中開始使用 Azure 轉送混合式連接 | Microsoft Docs"
-description: "為 Azure 轉送混合式連線撰寫 Node.js 主控台應用程式。"
+title: 在 Node 中開始使用 Azure 轉送混合式連線 Websocket | Microsoft Docs
+description: 為 Azure 轉送混合式連線 Websocket 撰寫 Node.js 主控台應用程式
 services: service-bus-relay
 documentationcenter: node
-author: sethmanheim
+author: spelluru
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: e44e4867-3cf3-46be-8f8a-7671e2013bc4
 ms.service: service-bus-relay
 ms.devlang: tbd
 ms.topic: get-started-article
 ms.tgt_pltfrm: node
 ms.workload: na
-ms.date: 12/20/2017
-ms.author: sethm
-ms.openlocfilehash: d79c05253da568d3a9b2f2912d22eab2df586821
-ms.sourcegitcommit: 6f33adc568931edf91bfa96abbccf3719aa32041
+ms.date: 05/02/2018
+ms.author: spelluru
+ms.openlocfilehash: 25e9095561f72583bad86aa96b64a412e0983ab6
+ms.sourcegitcommit: cb61439cf0ae2a3f4b07a98da4df258bfb479845
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/22/2017
+ms.lasthandoff: 09/05/2018
+ms.locfileid: "43702352"
 ---
-# <a name="get-started-with-relay-hybrid-connections"></a>開始使用轉送混合式連線
+# <a name="get-started-with-relay-hybrid-connections-websockets-in-node"></a>在 Node 中開始使用轉送混合式連線 Websocket
 
 [!INCLUDE [relay-selector-hybrid-connections](../../includes/relay-selector-hybrid-connections.md)]
 
-本教學課程提供 [Azure 轉送混合式連線](relay-what-is-it.md#hybrid-connections)的指示，並示範如何使用 Node.js 來建立用戶端應用程式，以將訊息傳送至對應的接聽端應用程式。 
+本教學課程提供 [Azure 轉送混合式連線](relay-what-is-it.md#hybrid-connections) Websocket 功能的簡介，並示範如何使用 Node.js 來建立用戶端應用程式，以將 Websocket 訊息傳送至對應的接聽端應用程式。
 
 ## <a name="what-will-be-accomplished"></a>將會完成的工作
 
@@ -35,7 +36,7 @@ ms.lasthandoff: 12/22/2017
 3. 撰寫伺服器主控台應用程式來接收訊息。
 4. 撰寫用戶端主控台應用程式來傳送訊息。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 1. [Node.js](https://nodejs.org/en/).
 2. Azure 訂用帳戶。

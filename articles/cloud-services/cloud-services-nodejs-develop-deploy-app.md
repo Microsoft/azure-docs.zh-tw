@@ -1,11 +1,11 @@
 ---
-title: "Node.js 入門指南"
-description: "了解如何建立簡單的 Node.js Web 應用程式，並將它部署至 Azure 雲端服務。"
+title: Node.js 入門指南
+description: 了解如何建立簡單的 Node.js Web 應用程式，並將它部署至 Azure 雲端服務。
 services: cloud-services
 documentationcenter: nodejs
-author: craigshoemaker
-manager: routlaw
-editor: 
+author: jpconnock
+manager: timlt
+editor: ''
 ms.assetid: 50951a87-fed4-48e0-bcfa-453b9e50452e
 ms.service: cloud-services
 ms.workload: tbd
@@ -13,12 +13,13 @@ ms.tgt_pltfrm: na
 ms.devlang: nodejs
 ms.topic: hero-article
 ms.date: 08/17/2017
-ms.author: cshoe
-ms.openlocfilehash: d498fc09112c0df7b6ecb81a492b180765fdf883
-ms.sourcegitcommit: 4ac89872f4c86c612a71eb7ec30b755e7df89722
+ms.author: jeconnoc
+ms.openlocfilehash: 7af18272c335c835a2aa406fc635f3e7afda2a3a
+ms.sourcegitcommit: e0a678acb0dc928e5c5edde3ca04e6854eb05ea6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/07/2017
+ms.lasthandoff: 07/13/2018
+ms.locfileid: "39003447"
 ---
 # <a name="build-and-deploy-a-nodejs-application-to-an-azure-cloud-service"></a>建立 Node.js 應用程式並部署到 Azure 雲端服務
 
@@ -35,7 +36,7 @@ ms.lasthandoff: 12/07/2017
 
 ![顯示 Hello World 網頁的網頁瀏覽器][A web browser displaying the Hello World web page]
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 > [!NOTE]
 > 本教學課程使用 Azure PowerShell (需要 Windows)。
 

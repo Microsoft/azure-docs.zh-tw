@@ -1,52 +1,32 @@
 ---
-title: "Azure Service Fabric 程式設計調整 | Microsoft Docs"
-description: "以程式設計方式根據自訂觸發程序相應縮小或放大 Azure Service Fabric 叢集"
+title: Azure Service Fabric 程式設計調整 | Microsoft Docs
+description: 以程式設計方式根據自訂觸發程序相應縮小或放大 Azure Service Fabric 叢集
 services: service-fabric
 documentationcenter: .net
 author: mjrousos
 manager: jonjung
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/23/2018
 ms.author: mikerou
-ms.openlocfilehash: bfa020e29a9bb67f0634d220725bc11279e1565c
-ms.sourcegitcommit: 9d317dabf4a5cca13308c50a10349af0e72e1b7e
+ms.openlocfilehash: ff02f79321823e42c25897e9de30dfbb6fac46b0
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46949605"
 ---
 # <a name="scale-a-service-fabric-cluster-programmatically"></a>以程式設計方式調整 Service Fabric 叢集 
 
-在關於[叢集調整](./service-fabric-cluster-scale-up-down.md)的文件中探討了 Azure Service Fabric 叢集調整的基本概念。 該文章探討如何以虛擬機器擴展集為基礎來建置 Service Fabric 叢集，以及如何以手動方式或自動調整規則來加以調整。 本文件則探討如何以程式設計方法讓 Azure 調整作業能夠配合更進階的案例。 
+在 Azure 中執行的 Service Fabric 叢集是建立在虛擬機器擴展集之上。  [叢集調整](./service-fabric-cluster-scale-up-down.md)描述可如何以手動方式或使用自動調整規則來調整 Service Fabric 叢集。 本文描述如何使用 Fluent Azure 計算 SDK 來管理認證及相應縮小或相應放大叢集，這是更進階的案例。 如需概觀，請閱讀[以程式設計方式協調 Azure 調整作業](service-fabric-cluster-scaling.md#programmatic-scaling)。 
 
-## <a name="reasons-for-programmatic-scaling"></a>以程式設計方式調整的原因
-在許多案例中，以手動方式或透過自動調整規則來調整是不錯的解決方案。 但在其他案例中，可能就不合適。 這些方法的可能缺點包括︰
-
-- 手動調整需要登入系統，並明確地要求調整作業。 如果調整作業需要經常進行或難以預料會在何時進行，這個方法可能就不是合適的解決方案。
-- 自動調整規則在從虛擬機器擴展集內移除執行個體時，並不會自動從相關聯的 Service Fabric 叢集移除對於該節點的認識，除非該節點類型的持久性等級為銀級或金級。 自動調整規則會作用在擴展集層級 (而非 Service Fabric 層級)，所以自動調整規則會直接移除 Service Fabric 節點，而未將其正常關閉。 以這種方式粗糙地移除節點，會在相應縮小作業完成後留下「準刪除」的 Service Fabric 節點狀態。 個人 (或服務) 必須定期清除 Service Fabric 叢集中的已移除節點狀態。
-  - 持久性等級為金級或銀級的節點類型會自動清除已移除的節點，因此不需要額外的清除動作。
-- 雖然自動調整規則支援[許多計量](../monitoring-and-diagnostics/insights-autoscale-common-metrics.md)，但這組計量的數量仍然有限。 如果您的案例所需要的調整是以該組計量所未涵蓋的一些計量為基礎，則自動調整規則可能不是很好的選擇。
-
-根據這些限制，您可能會想要實作自訂能力更大的自動調整模型。 
-
-## <a name="scaling-apis"></a>調整 API
-Azure API 的存在可讓應用程式以程式設計方式使用虛擬機器擴展集和 Service Fabric 叢集。 如果現有自動調整選項不適用於您的案例，這些 API 可讓您實作自訂調整邏輯。 
-
-若要實作此「自製」自動調整功能，有一個方法是將新的無狀態服務新增至 Service Fabric 應用程式以管理調整作業。 在服務的 `RunAsync` 方法內，有一組觸發程序可以判斷是否需要調整 (包括檢查最大叢集大小和調整冷卻等參數)。   
-
-用於虛擬機器擴展集互動 (檢查目前的虛擬機器執行個體數目並加以修改) 的 API 是 [Fluent Azure 管理計算程式庫](https://www.nuget.org/packages/Microsoft.Azure.Management.Compute.Fluent/)。 Fluent 計算程式庫可提供方便使用的 API 來與虛擬機器擴展集互動。
-
-若要與 Service Fabric 叢集本身互動，請使用 [System.Fabric.FabricClient](/dotnet/api/system.fabric.fabricclient)。
-
-當然，調整程式碼不需要以服務的形式在想要調整的叢集中執行。 `IAzure` 和 `FabricClient` 都能遠端連線到其相關聯的 Azure 資源，因此，調整服務可以輕鬆地成為主控台應用程式或從 Service Fabric 應用程式外部執行的 Windows 服務。 
-
-## <a name="credential-management"></a>認證管理
-撰寫服務來處理調整的其中一項挑戰是，服務必須能夠不經互動式登入程序就存取虛擬機器擴展集資源。 如果調整服務是要修改自己的 Service Fabric 應用程式，存取 Service Fabric 叢集是很容易的事，但需要有認證才能存取擴展集。 若要登入，您可以使用以 [Azure CLI 2.0](https://github.com/azure/azure-cli) 建立的[服務主體](https://docs.microsoft.com/cli/azure/create-an-azure-service-principal-azure-cli)。
+## <a name="manage-credentials"></a>管理認證
+撰寫服務來處理調整的其中一項挑戰是，服務必須能夠不經互動式登入程序就存取虛擬機器擴展集資源。 如果調整服務是要修改自己的 Service Fabric 應用程式，存取 Service Fabric 叢集是很容易的事，但需要有認證才能存取擴展集。 若要登入，您可以使用以 [Azure CLI](https://github.com/azure/azure-cli) 建立的[服務主體](https://docs.microsoft.com/cli/azure/create-an-azure-service-principal-azure-cli)。
 
 您可以透過下列步驟來建立服務主體︰
 
@@ -140,12 +120,6 @@ scaleSet.Update().WithCapacity(newCapacity).Apply();
 ```csharp
 await client.ClusterManager.RemoveNodeStateAsync(mostRecentLiveNode.NodeName);
 ```
-
-## <a name="potential-drawbacks"></a>可能的缺點
-
-如前面的程式碼片段所示，建立自己的調整服務就能對應用程式的調整行為握有最高程度的控制力與自訂能力。 這很適合用於需要精確控制應用程式相應縮小或放大之時機或方式的案例。不過，伴隨此控制能力而來的是程式碼會變得複雜。 使用這種方式就表示您必須擁有調整程式碼 (此程式碼很複雜)。
-
-處理 Service Fabric 調整的方式取決於您的案例。 如果是不常見的調整，以手動方式新增或移除節點的能力或許就綽綽有餘。 若是更複雜的案例，能以程式設計方式進行調整的自動調整規則和 SDK 則可提供更強大的替代方案。
 
 ## <a name="next-steps"></a>後續步驟
 

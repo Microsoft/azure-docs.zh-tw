@@ -1,0 +1,1 @@
+適用於：Azure Stack 整合系統。

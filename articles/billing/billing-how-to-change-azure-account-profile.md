@@ -1,26 +1,27 @@
 ---
-title: "變更 Azure 帳戶的設定檔資訊 | Microsoft Docs"
-description: "描述如何變更 Azure 帳戶的設定檔，以及解答常見問題，例如，為什麼您無法變更 Azure 帳戶中心的國家/地區"
-services: 
-documentationcenter: 
+title: 變更 Azure 帳戶的設定檔資訊 | Microsoft Docs
+description: 描述如何變更 Azure 帳戶的設定檔，以及解答常見問題，例如，為什麼您無法變更 Azure 帳戶中心的國家/地區
+services: ''
+documentationcenter: ''
 author: genlin
 manager: jlian
-editor: 
+editor: ''
 tags: billing
 ms.assetid: 9d4ef5d9-11fc-4684-ace6-467f4ce26ba8
 ms.service: billing
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 08/30/2017
+ms.topic: conceptual
+ms.date: 05/11/2018
 ms.author: genli
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 22d64ba9c9bdceda108b1160aef32ff3d38e4b03
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: bce9e7de13ff95024685ccf916541357f5362727
+ms.sourcegitcommit: c52123364e2ba086722bc860f2972642115316ef
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 05/11/2018
+ms.locfileid: "34070646"
 ---
 # <a name="change-your-azure-account-profile-information-such-as-contact-email-address-and-phone-number"></a>變更連絡人電子郵件、地址和電話號碼等 Azure 帳戶的設定檔資訊
 

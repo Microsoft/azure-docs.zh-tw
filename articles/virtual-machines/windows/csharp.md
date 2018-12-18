@@ -1,10 +1,10 @@
 ---
-title: "使用 C# 來建立和管理 Azure 虛擬機器 | Microsoft Docs"
-description: "使用 C# 和 Azure Resource Manager 來部署 Azure 虛擬機器及所有支援它的資源。"
+title: 使用 C# 來建立和管理 Azure 虛擬機器 | Microsoft Docs
+description: 使用 C# 和 Azure Resource Manager 來部署 Azure 虛擬機器及所有支援它的資源。
 services: virtual-machines-windows
-documentationcenter: 
-author: davidmu1
-manager: timlt
+documentationcenter: ''
+author: cynthn
+manager: jeconnoc
 editor: tysonn
 tags: azure-resource-manager
 ms.assetid: 87524373-5f52-4f4b-94af-50bf7b65c277
@@ -14,12 +14,13 @@ ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: article
 ms.date: 07/17/2017
-ms.author: davidmu
-ms.openlocfilehash: 5d9021c2f65b70e36d5ea82992c9fb9d2d6d394a
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.author: cynthn
+ms.openlocfilehash: 99c8e71e0a31f6ef2f4fb2087fb8678c68a052a7
+ms.sourcegitcommit: 1362e3d6961bdeaebed7fb342c7b0b34f6f6417a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 04/18/2018
+ms.locfileid: "31525924"
 ---
 # <a name="create-and-manage-windows-vms-in-azure-using-c"></a>在 Azure 中使用 C# 建立並管理 Windows VM #
 

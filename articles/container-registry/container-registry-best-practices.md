@@ -1,18 +1,19 @@
 ---
-title: "Azure Container Registry 中的最佳做法"
-description: "了解如何依照這些最佳做法來有效地使用 Azure Container Registry。"
+title: Azure Container Registry 中的最佳做法
+description: 了解如何依照這些最佳做法來有效地使用 Azure Container Registry。
 services: container-registry
 author: mmacy
-manager: timlt
+manager: jeconnoc
 ms.service: container-registry
 ms.topic: quickstart
-ms.date: 12/20/2017
+ms.date: 04/10/2018
 ms.author: marsma
-ms.openlocfilehash: 684b778f57da4adb331958c5daef6b9906b6d253
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+ms.openlocfilehash: a3932ff621782b8ab97f27ef052aeee8e1d2a3ac
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39423499"
 ---
 # <a name="best-practices-for-azure-container-registry"></a>Azure Container Registry 的最佳做法
 
@@ -27,7 +28,7 @@ ms.lasthandoff: 03/09/2018
 
 ## <a name="geo-replicate-multi-region-deployments"></a>異地複寫多區域部署
 
-如果您要將容器部署到多個區域，請使用 Azure Container Registry 的[異地複寫](container-registry-geo-replication.md)功能。 不論您是要從區域資料中心為全球客戶提供服務，還是您的開發小組位於不同位置，您都可以藉由異地複寫登錄來簡化登錄管理並將延遲降到最低。 目前在預覽版中，此功能是[進階](container-registry-skus.md)登錄提供的功能。
+如果您要將容器部署到多個區域，請使用 Azure Container Registry 的[異地複寫](container-registry-geo-replication.md)功能。 不論您是要從區域資料中心為全球客戶提供服務，還是您的開發小組位於不同位置，您都可以藉由異地複寫登錄來簡化登錄管理並將延遲降到最低。 只有[進階](container-registry-skus.md)註冊才能使用異地複寫功能。
 
 若要了解如何使用異地複寫，請參閱由三部分組成的教學課程 [Azure Container Registry 中的異地複寫](container-registry-tutorial-prepare-registry.md)。
 
@@ -56,7 +57,7 @@ contoso.azurecr.io/marketing/2017-fall/concertpromotions/campaign:218.42
 
 | 類型 | 範例案例 | 建議的方法 |
 |---|---|---|
-| 個人身分識別 | 將映像提取至其開發電腦或從該電腦提取映像的開發人員。 | [az acr login](/cli/azure/acr?view=azure-cli-latest#az_acr_login) |
+| 個人身分識別 | 將映像提取至其開發電腦或從該電腦提取映像的開發人員。 | [az acr login](/cli/azure/acr?view=azure-cli-latest#az-acr-login) |
 | 遠端控制/服務身分識別 | 未直接涉及使用者的組建和部署管線。 | [服務主體](container-registry-authentication.md#service-principal) |
 
 如需有關 Azure Container Registry 驗證的深入資訊，請參閱[向 Azure Container Registry 進行驗證](container-registry-authentication.md)。
@@ -100,7 +101,7 @@ az acr repository delete --name myregistry --repository myapplication
 [registry-overview-quotas]: ./media/container-registry-best-practices/registry-overview-quotas.png
 
 <!-- LINKS - Internal -->
-[az-acr-repository-delete]: /cli/azure/acr/repository#az_acr_repository_delete
+[az-acr-repository-delete]: /cli/azure/acr/repository#az-acr-repository-delete
 [azure-cli]: /cli/azure
 [azure-portal]: https://portal.azure.com
 [container-registry-geo-replication]: container-registry-geo-replication.md

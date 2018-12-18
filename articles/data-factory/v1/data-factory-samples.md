@@ -10,19 +10,20 @@ ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 01/10/2018
 ms.author: shlo
 robots: noindex
-ms.openlocfilehash: 1e85d5f48ce998ebaf4ccaa231bb75449e2bab16
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 417425a6982ca92e486ccfb578131ebc898a0466
+ms.sourcegitcommit: 0c490934b5596204d175be89af6b45aafc7ff730
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 06/27/2018
+ms.locfileid: "37046083"
 ---
 # <a name="azure-data-factory---samples"></a>Azure Data Factory - 範例
 > [!NOTE]
-> 本文適用於正式推出 (GA) 的第 1 版 Data Factory。 如果您使用處於預覽狀態的第 2 版 Data Factory 服務，請參閱 [Data Factory 第 2 版的 PowerShell 範例](../samples-powershell.md)和 [Azure 程式碼範例資源庫中的程式碼範例](https://azure.microsoft.com/en-us/resources/samples/?service=data-factory)。
+> 本文適用於 Data Factory 的第 1 版。 如果您使用目前版本的 Data Factory 服務，請參閱 [Data Factory 的 PowerShell 範例](../samples-powershell.md)和 [Azure 程式碼範例資源庫中的程式碼範例](https://azure.microsoft.com/resources/samples/?service=data-factory)。
 
 
 ## <a name="samples-on-github"></a>GitHub 上的範例
@@ -92,7 +93,7 @@ ms.lasthandoff: 03/23/2018
    2. 在右窗格中選取 [Data Factory 範本]  。
    3. 輸入專案的 [名稱]  。
    4. 選取專案的 [位置]  。
-   5. 按一下 [SERVICEPRINCIPAL] 。
+   5. 按一下 [確定]。
 
       ![[新增專案] 對話方塊](./media/data-factory-samples/vs-new-project-adf-templates.png)
 3. 在 [Data Factory 範本] 對話方塊中，從 [使用案例範本] 區段選取範例範本，然後按 [下一步]。 以下步驟將引導您完成 [客戶分析]  範本的使用。 其他範例的步驟均相去不遠。

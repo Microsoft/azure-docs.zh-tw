@@ -1,26 +1,22 @@
 ---
-title: 開始使用 U-SQL 目錄 | Microsoft Docs
+title: 開始在 Azure Data Lake Analytics 中使用 U-SQL 目錄
 description: 了解如何使用 U-SQL 目錄來共用程式碼和資料。
 services: data-lake-analytics
-documentationcenter: ''
-author: saveenr
-manager: saveenr
-editor: cgronlun
-ms.assetid: 57143396-ab86-47dd-b6f8-613ba28c28d2
 ms.service: data-lake-analytics
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 05/09/2017
+author: saveenr
 ms.author: saveenr
-ms.openlocfilehash: b39b5250cc042c393216784128ffc4e2f1288f04
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.reviewer: jasonwhowell
+ms.assetid: 57143396-ab86-47dd-b6f8-613ba28c28d2
+ms.topic: conceptual
+ms.date: 05/09/2017
+ms.openlocfilehash: 62f43fc082969bf04b7177725478585ce41aa347
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43045933"
 ---
-# <a name="get-started-with-the-u-sql-catalog"></a>開始使用 U-SQL 目錄
+# <a name="get-started-with-the-u-sql-catalog-in-azure-data-lake-analytics"></a>開始在 Azure Data Lake Analytics 中使用 U-SQL 目錄
 
 ## <a name="create-a-tvf"></a>建立 TVF
 

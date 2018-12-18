@@ -1,27 +1,28 @@
 ---
-title: "使用 RBAC 共用 Azure 入口網站儀表板 | Microsoft Docs"
-description: "本文說明如何在 Azure 入口網站中使用角色型存取控制來共用儀表板。"
+title: 使用 RBAC 共用 Azure 入口網站儀表板 | Microsoft Docs
+description: 本文說明如何在 Azure 入口網站中使用角色型存取控制來共用儀表板。
 services: azure-portal
-documentationcenter: 
+documentationcenter: ''
 author: tfitzmac
 manager: timlt
 editor: tysonn
 ms.assetid: 8908a6ce-ae0c-4f60-a0c9-b3acfe823365
 ms.service: azure-portal
 ms.devlang: NA
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 08/01/2016
 ms.author: tomfitz
-ms.openlocfilehash: 33ddfef1e23a6ff0c2cb8e359d408d2c42cbcf3a
-ms.sourcegitcommit: a5f16c1e2e0573204581c072cf7d237745ff98dc
+ms.openlocfilehash: c07a9d92cac13d6325e66f44426f1a64e8ac53cb
+ms.sourcegitcommit: e8f443ac09eaa6ef1d56a60cd6ac7d351d9271b9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/11/2017
+ms.lasthandoff: 09/12/2018
+ms.locfileid: "35766807"
 ---
 # <a name="share-azure-dashboards-by-using-role-based-access-control"></a>使用角色型存取控制來共用 Azure 儀表板
-設定儀表板之後，您可以將它發佈，並與組織中的其他使用者共用。 使用 Azure [角色型存取控制](../active-directory/role-based-access-control-configure.md)，您可允許其他人檢視您的儀表板。 您可以將一名使用者或一群使用者指派給某個角色，該角色就會定義這些使用者可以檢視或修改已發佈的儀表板。 
+設定儀表板之後，您可以將它發佈，並與組織中的其他使用者共用。 使用 Azure [角色型存取控制](../role-based-access-control/role-assignments-portal.md)，您可允許其他人檢視您的儀表板。 您可以將一名使用者或一群使用者指派給某個角色，該角色就會定義這些使用者可以檢視或修改已發佈的儀表板。 
 
 所有已發佈的儀表板會實作為 Azure 資源，這表示它們是做為您訂用帳戶內可管理的項目而存在，並且會包含在資源群組中。  從存取控制的觀點來看，儀表板與其他資源 (例如虛擬機器或儲存體帳戶) 並無不同。
 
@@ -44,7 +45,7 @@ ms.lasthandoff: 12/11/2017
 不過，您也可以指派權限給包含數個儀表板的資源群組或指派給個別儀表板。 例如，您可能會決定，一群使用者應具有有限的訂用帳戶權限，但對特定儀表板則具有更大範圍的存取權。 您可以將這些使用者指派給該儀表板的角色。 
 
 ## <a name="publish-dashboard"></a>發佈儀表板
-讓我們假設您已完成設定想要與訂用帳戶中的一群使用者共用的儀表板。 下列步驟描述稱為「儲存體管理員」的自訂群組，但您可以將您的群組命名為任何您喜歡的名稱。 如需建立 Active Directory 群組和將使用者新增至該群組的相關資訊，請參閱 [在 Azure Active Directory 中管理群組](../active-directory/active-directory-groups-create-azure-portal.md)。
+讓我們假設您已完成設定想要與訂用帳戶中的一群使用者共用的儀表板。 下列步驟描述稱為「儲存體管理員」的自訂群組，但您可以將您的群組命名為任何您喜歡的名稱。 如需建立 Active Directory 群組和將使用者新增至該群組的相關資訊，請參閱 [在 Azure Active Directory 中管理群組](../active-directory/fundamentals/active-directory-groups-create-azure-portal.md)。
 
 1. 在儀表板中選取 [共用] 。
    
@@ -74,6 +75,6 @@ ms.lasthandoff: 12/11/2017
      ![指派的角色](./media/azure-portal-dashboard-share-access/assigned-roles.png)
 
 ## <a name="next-steps"></a>後續步驟
-* 如需角色清單，請參閱 [RBAC︰內建角色](../active-directory/role-based-access-built-in-roles.md)。
+* 如需角色清單，請參閱 [RBAC︰內建角色](../role-based-access-control/built-in-roles.md)。
 * 若要了解如何管理資源，請參閱 [透過入口網站管理 Azure 資源](resource-group-portal.md)。
 

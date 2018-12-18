@@ -1,18 +1,19 @@
 ---
-title: "從 Azure 事件格線接收 HTTP 端點的事件"
-description: "描述如何驗證 HTTP 端點，然後從 Azure 事件格線接收和還原序列化事件"
+title: 從 Azure 事件格線接收 HTTP 端點的事件
+description: 描述如何驗證 HTTP 端點，然後從 Azure 事件格線接收和還原序列化事件
 services: event-grid
 author: banisadr
 manager: darosa
 ms.service: event-grid
-ms.topic: article
-ms.date: 02/16/2018
+ms.topic: conceptual
+ms.date: 04/26/2018
 ms.author: babanisa
-ms.openlocfilehash: 179f7c46186762eed2f7f8ac90620ac2fec9caf3
-ms.sourcegitcommit: fbba5027fa76674b64294f47baef85b669de04b7
+ms.openlocfilehash: 3f55abf9be382a040d7b5d4111ec689929b36918
+ms.sourcegitcommit: 3017211a7d51efd6cd87e8210ee13d57585c7e3b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/24/2018
+ms.lasthandoff: 06/06/2018
+ms.locfileid: "34823464"
 ---
 # <a name="receive-events-to-an-http-endpoint"></a>接收 HTTP 端點的事件
 
@@ -23,52 +24,42 @@ ms.lasthandoff: 02/24/2018
 
 ## <a name="prerequisites"></a>先決條件
 
-* 您需要具有 [HTTP 觸發函式](../azure-functions/functions-create-generic-webhook-triggered-function.md)的函式應用程式
+* 您將需要 [HTTP 觸發函式](../azure-functions/functions-create-generic-webhook-triggered-function.md)的函式應用程式
 
 ## <a name="add-dependencies"></a>新增相依性
 
-如果您正在 .Net 中開發，[新增相依性](../azure-functions/functions-reference-csharp.md#referencing-custom-assemblies)至 `Microsoft.Azure.EventGrid`[Nuget 套件](https://www.nuget.org/packages/Microsoft.Azure.EventGrid) 的函式。 其他語言的 SDK 可以透過[發行 SDK](./sdk-overview.md#publish-sdks) 參考取得。 這些套件包含原生事件類型的模型，例如 `EventGridEvent`、`StorageBlobCreatedEventData` 和 `EventHubCaptureFileCreatedEventData`。
+如果您正以 .NET 進行開發，請[新增相依性](../azure-functions/functions-reference-csharp.md#referencing-custom-assemblies)至 `Microsoft.Azure.EventGrid`[Nuget 套件](https://www.nuget.org/packages/Microsoft.Azure.EventGrid)的函式。 其他語言的 SDK 可以透過[發行 SDK](./sdk-overview.md#data-plane-sdks) 參考取得。 這些套件包含原生事件類型的模型，例如 `EventGridEvent`、`StorageBlobCreatedEventData` 和 `EventHubCaptureFileCreatedEventData`。
 
-若要這樣做，請按一下 Azure Function 中的 [檢視檔案] 連結 (Azure Functions 入口網站中最右邊的窗格)，然後建立名為 project.json 的檔案。 將下列內容新增至 `project.json` 檔案，並加以儲存：
+按一下 Azure Function 中的 [檢視檔案] 連結 (Azure Functions 入口網站中最右邊的窗格)，然後建立名為 project.json 的檔案。 將下列內容新增至 `project.json` 檔案，並加以儲存：
 
  ```json
 {
   "frameworks": {
     "net46":{
       "dependencies": {
-        "Microsoft.Azure.EventGrid": "1.1.0-preview"
+        "Microsoft.Azure.EventGrid": "1.3.0"
       }
     }
    }
 }
-
 ```
 
 ![已新增 NuGet 套件](./media/receive-events/add-dependencies.png)
 
 ## <a name="endpoint-validation"></a>端點驗證
 
-首先我們想要做的是處理 `Microsoft.EventGrid.SubscriptionValidationEvent` 事件。 每次建立新的事件訂閱時，事件格線會將驗證事件傳送至在資料承載中具有 `validationCode` 的端點。 需要端點才能在回應主體中回應以[證明端點有效且為您所擁有](security-authentication.md#webhook-event-delivery)。 如果您使用[事件格線觸發程序](../azure-functions/functions-bindings-event-grid.md)而非 WebHook 觸發函式，系統會為您處理端點驗證。
+首先您應該做的是處理 `Microsoft.EventGrid.SubscriptionValidationEvent` 事件。 每次有人訂閱事件時，事件方格即會將驗證事件傳送至在資料承載中具有 `validationCode` 的端點。 需要端點才能在回應主體中回應以[證明端點有效且為您所擁有](security-authentication.md#webhook-event-delivery)。 如果您使用[事件格線觸發程序](../azure-functions/functions-bindings-event-grid.md)而非 WebHook 觸發函式，系統會為您處理端點驗證。 如果您使用第三方 API 服務 (例如 [Zapier](https://zapier.com) 或 [IFTTT](https://ifttt.com/))，可能就無法以程式設計方式回應驗證程式碼。 針對那些服務，您可以使用要在訂用帳戶驗證事件中傳送的驗證 URL，以手動方式驗證訂用帳戶。 在 `validationUrl` 屬性中複製該 URL，並透過 REST 用戶端或您的網頁瀏覽器傳送 GET 要求。
 
-使用下列程式碼來處理訂用帳戶驗證：
+手動驗證為預覽狀態。 若要使用它，您必須為 [AZ CLI 2.0](/cli/azure/install-azure-cli) 安裝[事件格線延伸模組](/cli/azure/azure-cli-extensions-list)。 您可以使用 `az extension add --name eventgrid` 進行安裝。 如果您使用的是 REST API，請確定使用的是 `api-version=2018-05-01-preview`。
+
+若要以程式設計方式回應驗證程式碼，請使用下列程式碼 (您也可以在此找到相關的範例：https://github.com/Azure-Samples/event-grid-dotnet-publish-consume-events/tree/master/EventGridConsumer):
 
 ```csharp
-
 using System.Net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using Microsoft.Azure.EventGrid.Models;
-
-class SubscriptionValidationEventData
-{
-    public string ValidationCode { get; set; }
-}
-
-class SubscriptionValidationResponseData
-{
-    public string ValidationResponse { get; set; }
-}
 
 public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceWriter log)
 {
@@ -90,7 +81,7 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
             var eventData = dataObject.ToObject<SubscriptionValidationEventData>();
             log.Info($"Got SubscriptionValidation event data, validation code: {eventData.ValidationCode}, topic: {eventGridEvent.Topic}");
             // Do any additional validation (as required) and then return back the below response
-            var responseData = new SubscriptionValidationResponseData();
+            var responseData = new SubscriptionValidationResponse();
             responseData.ValidationResponse = eventData.ValidationCode;
             return req.CreateResponse(HttpStatusCode.OK, responseData);
         }
@@ -102,7 +93,6 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
 ```
 
 ```javascript
-
 var http = require('http');
 
 module.exports = function (context, req) {
@@ -122,7 +112,6 @@ module.exports = function (context, req) {
     }
     context.done();
 };
-
 ```
 
 ### <a name="test-validation-response"></a>測試驗證回應
@@ -130,7 +119,6 @@ module.exports = function (context, req) {
 藉由將範例事件貼至函式的測試欄位來測試驗證回應函式：
 
 ```json
-
 [{
   "id": "2d1781af-3a4c-4d7c-bd0c-e34b19da4e66",
   "topic": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
@@ -143,7 +131,6 @@ module.exports = function (context, req) {
   "metadataVersion": "1",
   "dataVersion": "1"
 }]
-
 ```
 
 當您按一下 [執行] 時，在主體中輸出應該是「200 OK」和 `{"ValidationResponse":"512d38b6-c7b8-40c8-89fe-f46f9e9622b6"}`：
@@ -152,25 +139,14 @@ module.exports = function (context, req) {
 
 ## <a name="handle-blob-storage-events"></a>處理 Blob 儲存體事件
 
-我們現在可以擴充函式以處理 `Microsoft.Storage.BlobCreated`：
+現在，我們要擴充函式以處理 `Microsoft.Storage.BlobCreated`：
 
 ```cs
-
 using System.Net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using Microsoft.Azure.EventGrid.Models;
-
-class SubscriptionValidationEventData
-{
-    public string ValidationCode { get; set; }
-}
-
-class SubscriptionValidationResponseData
-{
-    public string ValidationResponse { get; set; }
-}
 
 public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceWriter log)
 {
@@ -193,7 +169,7 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
             log.Info($"Got SubscriptionValidation event data, validation code: {eventData.ValidationCode}, topic: {eventGridEvent.Topic}");
 
             // Do any additional validation (as required) and then return back the below response
-            var responseData = new SubscriptionValidationResponseData();
+            var responseData = new SubscriptionValidationResponse();
             responseData.ValidationResponse = eventData.ValidationCode;
             return req.CreateResponse(HttpStatusCode.OK, responseData);
         }
@@ -211,7 +187,6 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
 ```
 
 ```javascript
-
 var http = require('http');
 
 module.exports = function (context, req) {
@@ -245,7 +220,6 @@ module.exports = function (context, req) {
 測試函式的新功能，方法是將 [Blob 儲存體事件](./event-schema-blob-storage.md#example-event)放入測試欄位並執行：
 
 ```json
-
 [{
   "topic": "/subscriptions/{subscription-id}/resourceGroups/Storage/providers/Microsoft.Storage/storageAccounts/xstoretestaccount",
   "subject": "/blobServices/default/containers/testcontainer/blobs/testfile.txt",
@@ -269,38 +243,26 @@ module.exports = function (context, req) {
   "dataVersion": "",
   "metadataVersion": "1"
 }]
-
 ```
 
 您應該會在函式記錄中看到 Blob URL 輸出：
 
 ![輸出記錄](./media/receive-events/blob-event-response.png)
 
-您也可以即時測試，方法是建立 Blob 儲存體帳戶或一般用途 V2 (GPv2) 儲存體帳戶、[新增事件訂閱](../storage/blobs/storage-blob-event-quickstart.md)，以及將端點設為函式 URL：
+您也可以進行測試，方法是建立 Blob 儲存體帳戶或一般用途 V2 (GPv2) 儲存體帳戶、[新增事件訂閱](../storage/blobs/storage-blob-event-quickstart.md)，以及將端點設為函式 URL：
 
 ![函式 URL](./media/receive-events/function-url.png)
 
 ## <a name="handle-custom-events"></a>處理自訂事件
 
-最後，讓我們再次擴充函式，讓它也可以處理自訂事件。 我們為自己的事件 `Contoso.Items.ItemReceived` 新增了檢查。 最終的程式碼看起來應該如下所示：
+最後，讓我們再次擴充函式，讓它也可以處理自訂事件。 為您的事件 `Contoso.Items.ItemReceived` 新增檢查。 最終的程式碼應該會如下所示：
 
 ```cs
-
 using System.Net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using Microsoft.Azure.EventGrid.Models;
-
-class SubscriptionValidationEventData
-{
-    public string ValidationCode { get; set; }
-}
-
-class SubscriptionValidationResponseData
-{
-    public string ValidationResponse { get; set; }
-}
 
 class ContosoItemReceivedEventData
 {
@@ -330,7 +292,7 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
             var eventData = dataObject.ToObject<SubscriptionValidationEventData>();
             log.Info($"Got SubscriptionValidation event data, validation code: {eventData.ValidationCode}, topic: {eventGridEvent.Topic}");
             // Do any additional validation (as required) and then return back the below response
-            var responseData = new SubscriptionValidationResponseData();
+            var responseData = new SubscriptionValidationResponse();
             responseData.ValidationResponse = eventData.ValidationCode;
             return req.CreateResponse(HttpStatusCode.OK, responseData);
         }
@@ -354,7 +316,6 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
 ```
 
 ```javascript
-
 var http = require('http');
 var t = require('tcomb');
 
@@ -401,7 +362,6 @@ module.exports = function (context, req) {
 最後，測試您的擴充函式現在是否可以處理您的自訂事件類型：
 
 ```json
-
 [{
     "subject": "Contoso/foo/bar/items",
     "eventType": "Microsoft.EventGrid.CustomEventType",
@@ -415,7 +375,6 @@ module.exports = function (context, req) {
     "dataVersion": "",
     "metadataVersion": "1"
 }]
-
 ```
 
 您也可以即時測試此功能，方法是 [從入口網站傳送自訂事件與 CURL](./custom-event-quickstart-portal.md)，或使用可以張貼到端點的任何服務或應用程式 (例如 [Postman](https://www.getpostman.com/)) [張貼到自訂主題](./post-to-custom-topic.md)。 在端點設為函式 URL 時建立自訂主題和事件訂閱。

@@ -1,12 +1,12 @@
 ---
-title: "複製 StorSimple 8000 系列的磁碟區 | Microsoft Docs"
-description: "說明不同的複製類型以及使用方式，並說明如何使用備份組來複製 StorSimple 8000 系列裝置上的個別磁碟區。"
+title: 複製 StorSimple 8000 系列的磁碟區 | Microsoft Docs
+description: 說明不同的複製類型以及使用方式，並說明如何使用備份組來複製 StorSimple 8000 系列裝置上的個別磁碟區。
 services: storsimple
 documentationcenter: NA
 author: alkohli
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: NA
 ms.topic: article
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 5d3e99478a5f26e92d1e7f3cec6b0ff5fbd7cedf
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 12/06/2017
+ms.locfileid: "26333197"
 ---
 # <a name="use-the-storsimple-device-manager-service-in-azure-portal-to-clone-a-volume"></a>在 Azure 入口網站中，使用 StorSimple 裝置管理員服務來複製磁碟區
 

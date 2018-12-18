@@ -1,11 +1,11 @@
 ---
-title: "BizTalk 服務中的簽發者名稱和簽發者金鑰 | Microsoft Docs"
-description: "了解如何在 BizTalk 服務中擷取服務匯流排或存取控制 (ACS) 的簽發者名稱和簽發者金鑰。 MABS，WABS"
+title: BizTalk 服務中的簽發者名稱和簽發者金鑰 | Microsoft Docs
+description: 了解如何在 BizTalk 服務中擷取服務匯流排或存取控制 (ACS) 的簽發者名稱和簽發者金鑰。 MABS，WABS
 services: biztalk-services
-documentationcenter: 
+documentationcenter: ''
 author: MandiOhlinger
 manager: anneta
-editor: 
+editor: ''
 ms.assetid: 067fe356-d1aa-420f-b2f2-1a418686470a
 ms.service: biztalk-services
 ms.workload: integration
@@ -14,11 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/07/2016
 ms.author: mandia
-ms.openlocfilehash: 18eac72d75680ab12c4a0bea9dfc5ac8a5fce566
-ms.sourcegitcommit: dcf5f175454a5a6a26965482965ae1f2bf6dca0a
+ms.openlocfilehash: 78796b5dc62cb573f149c24d90205d26fb139cf7
+ms.sourcegitcommit: 4de6a8671c445fae31f760385710f17d504228f8
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/10/2017
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39628642"
 ---
 # <a name="biztalk-services-issuer-name-and-issuer-key"></a>BizTalk 服務：簽發者名稱和簽發者金鑰
 
@@ -70,7 +71,7 @@ Azure BizTalk 服務使用服務匯流排簽發者名稱和簽發者金鑰，以
 簽發者名稱 = SharedSecretIssuer  
 簽發者金鑰 = SharedSecretKey
 
-如需更多資訊，請參閱 [New-AzureSBNamespace](https://msdn.microsoft.com/library/dn495165.aspx) Cmdlet。 
+如需更多資訊，請參閱 [New-AzureSBNamespace](https://docs.microsoft.com/powershell/module/servicemanagement/azure/new-azuresbnamespace) Cmdlet。 
 
 ## <a name="service-bus-issuer-name-and-issuer-key"></a>服務匯流排簽發者名稱和簽發者金鑰
 BizTalk 配接器服務會使用服務匯流排簽發者名稱和簽發者金鑰。 在 Visual Studio 中，您在 BizTalk 服務專案中使用 BizTalk 配接器服務來連線至內部部署企業營運 (LOB) 系統。 若要連線，您需要建立 LOB 轉送並輸入 LOB 系統詳細資料。 如果這樣做，則您也需要輸入服務匯流排簽發者名稱和簽發者金鑰。

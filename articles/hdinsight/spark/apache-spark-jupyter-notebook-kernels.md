@@ -1,27 +1,21 @@
 ---
-title: "Azure HDInsight 中 Spark 叢集上的 Jupyter Notebook 核心 | Microsoft Docs"
-description: "了解可透過 Azure HDInsight 上 Spark 叢集提供 Jupyter Notebook 的 PySpark、PySpark3 和 Spark 核心。"
-keywords: "spark 上的 jupyter notebook, jupyter spark"
+title: Azure HDInsight 中 Spark 叢集上的 Jupyter Notebook 核心
+description: 了解可透過 Azure HDInsight 上 Spark 叢集提供 Jupyter Notebook 的 PySpark、PySpark3 和 Spark 核心。
+keywords: spark 上的 jupyter notebook, jupyter spark
 services: hdinsight
-documentationcenter: 
-author: nitinme
-manager: jhubbard
-editor: cgronlun
-tags: azure-portal
-ms.assetid: 0719e503-ee6d-41ac-b37e-3d77db8b121b
+author: jasonwhowell
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive,hdiseo17may2017
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 02/22/2018
-ms.author: nitinme
-ms.openlocfilehash: 87e60bcc097157c733c1e08356b7cd9ea48bb868
-ms.sourcegitcommit: fbba5027fa76674b64294f47baef85b669de04b7
+ms.author: jasonh
+ms.openlocfilehash: 98c9f260b4be1e335e22b5c68a76e9ffb7316236
+ms.sourcegitcommit: cb61439cf0ae2a3f4b07a98da4df258bfb479845
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/24/2018
+ms.lasthandoff: 09/05/2018
+ms.locfileid: "43697861"
 ---
 # <a name="kernels-for-jupyter-notebook-on-spark-clusters-in-azure-hdinsight"></a>Azure HDInsight 中 Spark 叢集上的 Jupyter Notebook 核心 
 
@@ -33,7 +27,7 @@ HDInsight Spark 叢集提供的核心，可讓您用於 Spark 上的 Jupyter Not
 
 在本文中，您將了解使用這些核心的方式及優點。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 * HDInsight 中的 Apache Spark 叢集。 如需指示，請參閱[在 Azure HDInsight 中建立 Apache Spark 叢集](apache-spark-jupyter-spark-sql.md)。
 
@@ -76,7 +70,7 @@ HDInsight Spark 叢集提供的核心，可讓您用於 Spark 上的 Jupyter Not
    
    您可以直接在您的應用程式中使用現有的內容。
 
-- **Cell magic**。 PySpark 核心提供一些預先定義的 “magic”，這是您可以使用 `%%` 呼叫的特殊命令 (例如 `%%MAGIC` <args>)。 magic 命令必須是程式碼儲存格中的第一個字，而且允許多行的內容。 magic 這個字應該是儲存格中的第一個字。 在 magic 前面加入任何項目，甚至是註解，將會造成錯誤。     如需 magic 的詳細資訊，請參閱 [這裡](http://ipython.readthedocs.org/en/stable/interactive/magics.html)。
+- **Cell magic**。 PySpark 核心提供一些預先定義的 "magic"，這是您可以使用 `%%` 呼叫的特殊命令 (例如 `%%MAGIC` <args>)。 magic 命令必須是程式碼儲存格中的第一個字，而且允許多行的內容。 magic 這個字應該是儲存格中的第一個字。 在 magic 前面加入任何項目，甚至是註解，將會造成錯誤。     如需 magic 的詳細資訊，請參閱 [這裡](http://ipython.readthedocs.org/en/stable/interactive/magics.html)。
    
     下表列出透過核心而提供的不同 magic。
 

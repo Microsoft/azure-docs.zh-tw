@@ -1,6 +1,6 @@
 ---
-title: "建立 Application Insights 資源的 PowerShell 指令碼 | Microsoft Docs"
-description: "自動建立 Application Insights 資源。"
+title: 建立 Application Insights 資源的 PowerShell 指令碼 | Microsoft Docs
+description: 自動建立 Application Insights 資源。
 services: application-insights
 documentationcenter: windows
 author: mrbullwinkle
@@ -10,14 +10,15 @@ ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 11/19/2016
 ms.author: mbullwin
-ms.openlocfilehash: 376bcb542e4e83c2464d9f3f53ea71965ce79c33
-ms.sourcegitcommit: e462e5cca2424ce36423f9eff3a0cf250ac146ad
+ms.openlocfilehash: c6ef869bd211b156ba17d2aa8f384d15269b6d59
+ms.sourcegitcommit: e8f443ac09eaa6ef1d56a60cd6ac7d351d9271b9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/01/2017
+ms.lasthandoff: 09/12/2018
+ms.locfileid: "35632206"
 ---
 # <a name="powershell-script-to-create-an-application-insights-resource"></a>建立 Application Insights 資源的 PowerShell 指令碼
 
@@ -51,7 +52,7 @@ ms.lasthandoff: 11/01/2017
 # If running manually, uncomment before the first 
 # execution to login to the Azure Portal:
 
-# Add-AzureRmAccount / Login-AzureRmAccount
+# Connect-AzureRmAccount / Connect-AzureRmAccount
 
 # Set the name of the Application Insights Resource
 

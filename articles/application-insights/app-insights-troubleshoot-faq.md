@@ -10,14 +10,15 @@ ms.service: application-insights
 ms.workload: mobile
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 04/12/2017
 ms.author: mbullwin
-ms.openlocfilehash: 721799703923339d397113fc278cdeb6c6dbb88f
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 8ef0ea20256807650f19d25aa77276cb8cbcb7d7
+ms.sourcegitcommit: c29d7ef9065f960c3079660b139dd6a8348576ce
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/13/2018
+ms.locfileid: "35632971"
 ---
 # <a name="application-insights-frequently-asked-questions"></a>Application Insights：常見問題集
 
@@ -60,7 +61,7 @@ ms.lasthandoff: 03/23/2018
 
 ## <a name="how-much-is-it-costing"></a>費用是多少？
 
-* 開啟 Application Insights 資源中的 [功能與定價] 頁面。 系統會顯示一張最近使用量的圖表。 您可以視需要設定資料量上限。
+* 在 Application Insights 資源中開啟 [使用量和估計成本] 頁面。 系統會顯示一張最近使用量的圖表。 您可以視需要設定資料量上限。
 * 開啟 [Azure 帳單刀鋒視窗](https://portal.azure.com/#blade/Microsoft_Azure_Billing/BillingBlade/Overview)以查看您所有資源的帳單。
 
 ## <a name="q14"></a>Application Insights 在我的專案中修改什麼？
@@ -254,15 +255,37 @@ Azure 警示僅針對計量。 請建立一個會在每次事件發生時超出�
 
 ### <a name="proxy"></a>Proxy
 
-透過在 ApplicationInsights.config 中進行以下設定，即可將流量從您的伺服器路由到您內部網路上的閘道：
+透過覆寫範例 ApplicationInsights.config 中的這些設定，即可將流量從您的伺服器路由到內部網路上的閘道。如果這些 "Endpoint" 屬性並未出現在您的設定中，則這些類別將會使用下列範例中顯示的預設值。
 
-```XML
-<TelemetryChannel>
-    <EndpointAddress>your gateway endpoint</EndpointAddress>
-</TelemetryChannel>
+#### <a name="example-applicationinsightsconfig"></a>範例 ApplicationInsights.config：
+```xml
+<ApplicationInsights>
+    ...
+    <TelemetryChannel>
+         <EndpointAddress>https://dc.services.visualstudio.com/v2/track</EndpointAddress>
+    </TelemetryChannel>
+    ...
+    <ApplicationIdProvider Type="Microsoft.ApplicationInsights.Extensibility.Implementation.ApplicationId.ApplicationInsightsApplicationIdProvider, Microsoft.ApplicationInsights">
+        <ProfileQueryEndpoint>https://dc.services.visualstudio.com/api/profiles/{0}/appId</ProfileQueryEndpoint>
+    </ApplicationIdProvider>
+    ...
+</ApplicationInsights>
 ```
 
-您的閘道應該將流量路由到 https://dc.services.visualstudio.com:443/v2/track
+請注意，ApplicationIdProvider 從 v2.6.0 才開始提供
+
+您的閘道應該將流量路由到 https://dc.services.visualstudio.com:443
+
+用下列的內容取代上述的值：`http://<your.gateway.address>/<relative path>`
+ 
+範例： 
+```
+http://<your.gateway.endpoint>/v2/track 
+http://<your.gateway.endpoint>/api/profiles/{0}/apiId
+```
+
+
+
 
 ## <a name="can-i-run-availability-web-tests-on-an-intranet-server"></a>我是否可以在內部網路伺服器上執行可用性 Web 測試？
 

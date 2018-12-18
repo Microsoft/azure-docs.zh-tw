@@ -1,23 +1,24 @@
 ---
-title: "Azure 雲端服務定義。NetworkTrafficRules 結構描述 | Microsoft Docs"
-ms.custom: 
+title: Azure 雲端服務定義。NetworkTrafficRules 結構描述 | Microsoft Docs
+ms.custom: ''
 ms.date: 04/14/2015
-ms.prod: azure
-ms.reviewer: 
+services: cloud-services
+ms.reviewer: ''
 ms.service: cloud-services
-ms.suite: 
-ms.tgt_pltfrm: 
+ms.suite: ''
+ms.tgt_pltfrm: ''
 ms.topic: reference
 ms.assetid: 351b369f-365e-46c1-82ce-03fc3655cc88
-caps.latest.revision: 
-author: thraka
-ms.author: adegeo
+caps.latest.revision: 17
+author: jpconnock
+ms.author: jeconnoc
 manager: timlt
-ms.openlocfilehash: 37ec6c771ad83be680d95e9b5597d8da3cace9ce
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 71c791c9ac6f679f0f67b014c8fb5dd915d1a3e3
+ms.sourcegitcommit: e0a678acb0dc928e5c5edde3ca04e6854eb05ea6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 07/13/2018
+ms.locfileid: "39004399"
 ---
 # <a name="azure-cloud-services-definition-networktrafficrules-schema"></a>Azure 雲端服務定義 NetworkTrafficRules 結構描述
 `NetworkTrafficRules` 節點是服務定義檔中的選擇性元素，它指定角色如何彼此通訊。 它會限制哪些角色可以存取特定角色的內部端點。 `NetworkTrafficRules` 不是獨立元素；它會與服務定義檔中的兩個或多個角色結合。

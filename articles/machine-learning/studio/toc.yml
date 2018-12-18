@@ -1,236 +1,246 @@
+items:
 - name: Machine Learning Studio 文件
   href: index.yml
 - name: 概觀
-  expanded: true
   items:
-    - name: Machine Learning Studio
-      href: what-is-ml-studio.md
-    - name: ML Studio 容量
-      href: studio-overview-diagram.md
-    - name: ML Studio 基本概念 (資訊圖)
-      href: basics-infographic-with-algorithm-examples.md
-    - name: 常見問題集
-      href: faq.md
-    - name: 新功能
-      href: whats-new.md
+  - name: Machine Learning Studio
+    href: what-is-ml-studio.md
+  - name: ML Studio 容量
+    href: studio-overview-diagram.md
+  - name: ML Studio 基本概念 (資訊圖)
+    href: basics-infographic-with-algorithm-examples.md
+  - name: 常見問題集
+    href: faq.md
+  - name: 新功能
+    href: whats-new.md
+  expanded: true
 - name: 開始使用
   items:
-    - name: 建立您的第一個實驗
-      href: create-experiment.md
-    - name: 範例逐步解說
-      items:
-        - name: 建立預測解決方案
-          href: walkthrough-develop-predictive-solution.md
-        - name: 1 - 建立工作區
-          href: walkthrough-1-create-ml-workspace.md
-        - name: 2 - 上傳資料
-          href: walkthrough-2-upload-data.md
-        - name: 3 - 建立實驗
-          href: walkthrough-3-create-new-experiment.md
-        - name: 4 - 訓練及評估
-          href: walkthrough-4-train-and-evaluate-models.md
-        - name: 5 - 部署 Web 服務
-          href: walkthrough-5-publish-web-service.md
-        - name: 6 - 存取 Web 服務
-          href: walkthrough-6-access-web-service.md
-    - name: 適用於初學者的資料科學
-      items:
-        - name: 1 - 五個問題
-          href: data-science-for-beginners-the-5-questions-data-science-answers.md
-        - name: 2 - 您的資料已經準備就緒了嗎？
-          href: data-science-for-beginners-is-your-data-ready-for-data-science.md
-        - name: 3 - 詢問正確問題
-          href: data-science-for-beginners-ask-a-question-you-can-answer-with-data.md
-        - name: 4 - 預測解答
-          href: data-science-for-beginners-predict-an-answer-with-a-simple-model.md
-        - name: 5 - 複製其他人的工作
-          href: data-science-for-beginners-copy-other-peoples-work-to-do-data-science.md
-    - name: R 快速入門
-      href: r-quickstart.md
-- name: |
-    作法
+  - name: 建立您的第一個實驗
+    href: create-experiment.md
+  - name: 範例逐步解說
+    items:
+    - name: 建立預測解決方案
+      href: walkthrough-develop-predictive-solution.md
+    - name: 1 - 建立工作區
+      href: walkthrough-1-create-ml-workspace.md
+    - name: 2 - 上傳資料
+      href: walkthrough-2-upload-data.md
+    - name: 3 - 建立實驗
+      href: walkthrough-3-create-new-experiment.md
+    - name: 4 - 訓練及評估
+      href: walkthrough-4-train-and-evaluate-models.md
+    - name: 5 - 部署 Web 服務
+      href: walkthrough-5-publish-web-service.md
+    - name: 6 - 存取 Web 服務
+      href: walkthrough-6-access-web-service.md
+  - name: 適用於初學者的資料科學
+    items:
+    - name: 1 - 五個問題
+      href: data-science-for-beginners-the-5-questions-data-science-answers.md
+    - name: 2 - 您的資料已經準備就緒了嗎？
+      href: data-science-for-beginners-is-your-data-ready-for-data-science.md
+    - name: 3 - 詢問正確問題
+      href: data-science-for-beginners-ask-a-question-you-can-answer-with-data.md
+    - name: 4 - 預測解答
+      href: data-science-for-beginners-predict-an-answer-with-a-simple-model.md
+    - name: 5 - 複製其他人的工作
+      href: data-science-for-beginners-copy-other-peoples-work-to-do-data-science.md
+  - name: R 快速入門
+    href: r-quickstart.md
+- name: 作法
   items:
-    - name: 設定工具和公用程式
+  - name: 設定工具和公用程式
+    items:
+    - name: 管理工作區
       items:
-        - name: 管理工作區
-          items:
-            - name: 建立
-              href: create-workspace.md
-            - name: 管理
-              href: manage-workspace.md
-            - name: 疑難排解
-              href: troubleshooting-creating-ml-workspace.md
-            - name: 使用 ARM 部署
-              href: deploy-with-resource-manager-template.md
-            - name: 在另一個區域中建立
-              href: multi-geo.md
-    - name: 獲得並瞭解資料
+      - name: 建立
+        href: create-workspace.md
+      - name: 管理
+        href: manage-workspace.md
+      - name: 疑難排解
+        href: troubleshooting-creating-ml-workspace.md
+      - name: 使用 ARM 部署
+        href: deploy-with-resource-manager-template.md
+      - name: 檢視和刪除 Studio 帳戶資料
+        href: export-delete-personal-data-dsr.md
+  - name: 獲得並瞭解資料
+    items:
+    - name: 匯入訓練資料
       items:
-        - name: 匯入訓練資料
-          items:
-            - name: 概觀
-              href: import-data.md
-            - name: 從本機檔案
-              href: import-data-from-local-file.md
-            - name: 從線上來源
-              href: import-data-from-online-sources.md
-            - name: 從實驗
-              href: import-data-from-an-experiment.md
-            - name: 使用內部部署 SQL
-              href: use-data-from-an-on-premises-sql-server.md
-    - name: 開發模型
+      - name: 概觀
+        href: import-data.md
+      - name: 從本機檔案
+        href: import-data-from-local-file.md
+      - name: 從線上來源
+        href: import-data-from-online-sources.md
+      - name: 從實驗
+        href: import-data-from-an-experiment.md
+      - name: 使用內部部署 SQL
+        href: use-data-from-an-on-premises-sql-server.md
+  - name: 開發模型
+    items:
+    - name: 建立模型並加以定型
       items:
-        - name: 建立模型並加以定型
-          items:
-            - name: 實驗生命週期管理
-              href: version-control.md
-            - name: 管理實驗反覆項目
-              href: manage-experiment-iterations.md
-            - name: 使用 PowerShell 建立模型
-              href: create-models-and-endpoints-with-powershell.md
-            - name: 選取演算法
-              items:
-                - name: 選擇演算法
-                  href: algorithm-choice.md
-                - name: 演算法功能提要
-                  href: algorithm-cheat-sheet.md
-                - name: 使用線性迴歸
-                  href: linear-regression-in-azure.md
-                - name: 使用文字分析
-                  href: text-analytics-module-tutorial.md
-            - name: 評估及解譯結果
-              items:
-                - name: 評估效能
-                  href: evaluate-model-performance.md
-                - name: 最佳化參數
-                  href: algorithm-parameters-optimize.md
-                - name: 解譯結果
-                  href: interpret-model-results.md
-                - name: 偵錯
-                  href: debug-models.md
-            - name: 使用 R 和 Python
-              items:
-                - name: 執行 R 指令碼
-                  href: extend-your-experiment-with-r.md
-                - name: 撰寫自訂 R 模組
-                  href: custom-r-modules.md
-                - name: 執行 Python 指令碼
-                  href: execute-python-scripts.md
-    - name: 模型運作
+      - name: 實驗生命週期管理
+        href: version-control.md
+      - name: 管理實驗反覆項目
+        href: manage-experiment-iterations.md
+      - name: 使用 PowerShell 建立模型
+        href: create-models-and-endpoints-with-powershell.md
+      - name: 選取演算法
+        items:
+        - name: 選擇演算法
+          href: algorithm-choice.md
+        - name: 演算法功能提要
+          href: algorithm-cheat-sheet.md
+        - name: 使用線性迴歸
+          href: linear-regression-in-azure.md
+        - name: 使用文字分析
+          href: text-analytics-module-tutorial.md
+      - name: 評估及解譯結果
+        items:
+        - name: 評估效能
+          href: evaluate-model-performance.md
+        - name: 最佳化參數
+          href: algorithm-parameters-optimize.md
+        - name: 解譯結果
+          href: interpret-model-results.md
+        - name: 偵錯
+          href: debug-models.md
+      - name: 使用 R 和 Python
+        items:
+        - name: 執行 R 指令碼
+          href: extend-your-experiment-with-r.md
+        - name: 撰寫自訂 R 模組
+          href: custom-r-modules.md
+        - name: 執行 Python 指令碼
+          href: execute-python-scripts.md
+  - name: 模型運作
+    items:
+    - name: 概觀
+      href: deploy-consume-web-service-guide.md
+    - name: 部署模型
       items:
-        - name: 概觀
-          href: deploy-consume-web-service-guide.md
-        - name: 部署模型
-          items:
-            - name: 部署 Web 服務
-              href: publish-a-machine-learning-web-service.md
-            - name: 運作方式
-              href: model-progression-experiment-to-web-service.md
-            - name: 準備部署
-              href: convert-training-experiment-to-scoring-experiment.md
-            - name: 使用外部資料
-              href: web-services-that-use-import-export-modules.md
-            - name: 在多個區域中部署
-              href: how-to-deploy-to-multiple-regions.md
-            - name: 使用 Web 服務參數
-              href: web-service-parameters.md
-            - name: 啟用記錄
-              href: web-services-logging.md
-        - name: 管理 Web 服務
-          items:
-            - name: 使用 Web 服務入口網站
-              href: manage-new-webservice.md
-            - name: 使用 API 管理
-              href: manage-web-service-endpoints-using-api-management.md
-            - name: 建立端點
-              href: create-endpoint.md
-            - name: 調整大小
-              href: scaling-webservice.md
-        - name: 重新定型模型
-          items:
-            - name: 概觀
-              href: retrain-machine-learning-model.md
-            - name: 以程式設計方式定型
-              href: retrain-models-programmatically.md
-            - name: 重新訓練傳統 Web 服務
-              href: retrain-a-classic-web-service.md
-            - name: 使用 PowerShell 重新定型
-              href: retrain-new-web-service-using-powershell.md
-            - name: 重新定型現有的 Web 服務
-              href: retrain-existing-resource-manager-based-web-service.md
-            - name: 疑難排解
-              href: troubleshooting-retraining-models.md
-        - name: 使用模型
-          items:
-            - name: 概觀
-              href: consume-web-services.md
-            - name: 使用 Excel
-              href: consuming-from-excel.md
-            - name: 使用 Excel 增益集
-              href: excel-add-in-for-web-services.md
-            - name: 使用 Web 應用程式範本
-              href: consume-web-service-with-web-app-template.md
-            - name: 使用 Batch 集區
-              href: dedicated-capacity-for-bes-jobs.md
-    - name: 範例
+      - name: 部署 Web 服務
+        href: publish-a-machine-learning-web-service.md
+      - name: 運作方式
+        href: model-progression-experiment-to-web-service.md
+      - name: 準備部署
+        href: convert-training-experiment-to-scoring-experiment.md
+      - name: 使用外部資料
+        href: web-services-that-use-import-export-modules.md
+      - name: 在多個區域中部署
+        href: how-to-deploy-to-multiple-regions.md
+      - name: 使用 Web 服務參數
+        href: web-service-parameters.md
+      - name: 啟用記錄
+        href: web-services-logging.md
+    - name: 管理 Web 服務
       items:
-        - name: 實驗範例
-          href: sample-experiments.md
-        - name: 範例資料集
-          href: use-sample-datasets.md
-        - name: 客戶流失範例
-          href: azure-ml-customer-churn-scenario.md
+      - name: 使用 Web 服務入口網站
+        href: manage-new-webservice.md
+      - name: 使用 API 管理
+        href: manage-web-service-endpoints-using-api-management.md
+      - name: 建立端點
+        href: create-endpoint.md
+      - name: 調整大小
+        href: scaling-webservice.md
+    - name: 重新定型模型
+      items:
+      - name: 概觀
+        href: retrain-machine-learning-model.md
+      - name: 以程式設計方式定型
+        href: retrain-models-programmatically.md
+      - name: 重新訓練傳統 Web 服務
+        href: retrain-a-classic-web-service.md
+      - name: 使用 PowerShell 重新定型
+        href: retrain-new-web-service-using-powershell.md
+      - name: 重新定型現有的 Web 服務
+        href: retrain-existing-resource-manager-based-web-service.md
+      - name: 疑難排解
+        href: troubleshooting-retraining-models.md
+    - name: 使用模型
+      items:
+      - name: 概觀
+        href: consume-web-services.md
+      - name: 使用 Excel
+        href: consuming-from-excel.md
+      - name: 使用 Excel 增益集
+        href: excel-add-in-for-web-services.md
+      - name: 使用 Web 應用程式範本
+        href: consume-web-service-with-web-app-template.md
+      - name: 使用 Batch 集區
+        href: dedicated-capacity-for-bes-jobs.md
+  - name: 範例
+    items:
+    - name: 實驗範例
+      href: sample-experiments.md
+    - name: 範例資料集
+      href: use-sample-datasets.md
+    - name: 客戶流失範例
+      href: azure-ml-customer-churn-scenario.md
 - name: 參考
   items:
-    - name: Azure PowerShell 模組 (新型)
-      href: /powershell/resourcemanager/azurerm.machinelearning/v0.11.1/azurerm.machinelearning
-    - name: Azure PowerShell 模組 (傳統)
-      href: powershell-module.md
-    - name: 演算法和模組參考
-      href: 'https://msdn.microsoft.com/library/azure/dn905974.aspx'
-    - name: REST 管理 API
-      href: /rest/api/machinelearning
-    - name: Web 服務錯誤碼
-      href: web-service-error-codes.md
+  - name: Azure PowerShell 模組 (新型)
+    href: https://docs.microsoft.com/powershell/module/azurerm.machinelearning
+  - name: Azure PowerShell 模組 (傳統)
+    href: powershell-module.md
+  - name: 演算法和模組參考
+    href: https://msdn.microsoft.com/library/azure/dn905974.aspx
+  - name: REST 管理 API
+    href: /rest/api/machinelearning
+  - name: Web 服務錯誤碼
+    href: web-service-error-codes.md
 - name: 相關參考
   items:
-    - name: Azure AI 資源庫
-      items:
-        - name: 概觀
-          href: gallery-how-to-use-contribute-publish.md
-        - name: 產業
-          href: gallery-industries.md
-        - name: 解決方案
-          href: gallery-solutions.md
-        - name: 實驗
-          href: gallery-experiments.md
-        - name: Jupyter Notebook
-          href: gallery-jupyter-notebooks.md
-        - name: 競賽
-          href: gallery-competitions.md
-        - name: 競賽常見問題集
-          href: competition-faq.md
-        - name: 教學課程
-          href: gallery-tutorials.md
-        - name: 集合
-          href: gallery-collections.md
-        - name: 自訂模組
-          href: gallery-custom-modules.md
+  - name: Azure AI 資源庫
+    items:
+    - name: 概觀
+      href: gallery-how-to-use-contribute-publish.md
+    - name: 產業
+      href: gallery-industries.md
+    - name: 解決方案
+      href: gallery-solutions.md
+    - name: 實驗
+      href: gallery-experiments.md
+    - name: Jupyter Notebook
+      href: gallery-jupyter-notebooks.md
+    - name: 競賽
+      href: gallery-competitions.md
+    - name: 競賽常見問題集
+      href: competition-faq.md
+    - name: 教學課程
+      href: gallery-tutorials.md
+    - name: 集合
+      href: gallery-collections.md
+    - name: 自訂模組
+      href: gallery-custom-modules.md
+    - name: 檢視和刪除帳戶資料
+      href: ai-gallery-control-personal-data-dsr.md
 - name: 資源
   items:
-    - name: Azure 藍圖
-      href: 'https://azure.microsoft.com/roadmap/'
-    - name: 'Net# 神經網路語言'
-      href: azure-ml-netsharp-reference-guide.md
-    - name: 價格
-      href: 'https://azure.microsoft.com/pricing/details/machine-learning/'
-    - name: 服務更新
-      href: 'https://azure.microsoft.com/updates/?product=machine-learning'
-    - name: 部落格
-      href: 'http://blogs.technet.com/b/machinelearning/'
-    - name: MSDN 論壇
-      href: 'https://social.msdn.microsoft.com/forums/azure/home?forum=MachineLearning'
-    - name: 堆疊溢位
-      href: 'http://stackoverflow.com/questions/tagged/azure-machine-learning'
-    - name: 影片
-      href: 'https://azure.microsoft.com/resources/videos/index/?services=machine-learning'
+  - name: R 開發人員指南
+    href: ../r-developers-guide.md
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/
+  - name: Net# 神經網路語言
+    href: azure-ml-netsharp-reference-guide.md
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/machine-learning/
+  - name: 服務更新
+    href: https://azure.microsoft.com/updates/?product=machine-learning
+  - name: 部落格
+    href: http://blogs.technet.com/b/machinelearning/
+  - name: MSDN 論壇
+    href: https://social.msdn.microsoft.com/forums/azure/home?forum=MachineLearning
+  - name: 堆疊溢位
+    href: http://stackoverflow.com/questions/tagged/azure-machine-learning
+  - name: 影片
+    href: https://azure.microsoft.com/resources/videos/index/?services=machine-learning
+ms.openlocfilehash: b7c5cea35e8b1441bc8a08e8d8582141cd430868
+ms.sourcegitcommit: 7c4fd6fe267f79e760dc9aa8b432caa03d34615d
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47431520"

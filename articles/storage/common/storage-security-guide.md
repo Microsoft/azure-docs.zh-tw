@@ -3,51 +3,52 @@ title: Azure 儲存體安全性指南 | Microsoft Docs
 description: 詳述許多保護 Azure 儲存體的方法，包括但不限於 RBAC、儲存體服務加密、用戶端加密、SMB 3.0 及 Azure 磁碟加密。
 services: storage
 author: craigshoemaker
-manager: jeconnoc
 ms.service: storage
 ms.topic: article
-ms.date: 03/06/2018
+ms.date: 05/31/2018
 ms.author: cshoe
-ms.openlocfilehash: e0a398075b01b3c3750a33a9dd74b5ad1c0f71fd
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.component: common
+ms.openlocfilehash: 268459fde7a622079656e637d2c51562cea358a4
+ms.sourcegitcommit: 1b561b77aa080416b094b6f41fce5b6a4721e7d5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 09/17/2018
+ms.locfileid: "45730944"
 ---
 # <a name="azure-storage-security-guide"></a>Azure 儲存體安全性指南
-
-## <a name="overview"></a>概觀
 
 「Azure 儲存體」提供一組完整的安全性功能，這些功能一起可讓開發人員建置安全的應用程式：
 
 - 所有寫入至「Azure 儲存體」的資料都會使用[儲存體服務加密 (SSE)](storage-service-encryption.md)來自動加密。 如需詳細資訊，請參閱[宣佈 Azure Blob、檔案、資料表及佇列儲存體的預設加密](https://azure.microsoft.com/blog/announcing-default-encryption-for-azure-blobs-files-table-and-queue-storage/) \(英文\)。
-- 您可以使用角色型存取控制與 Azure Active Directory 來保護儲存體帳戶本身。 
+- Azure Active Directory (Azure AD) 和角色型存取控制 (RBAC) 可支援 Azure 儲存體，以便進行資源管理作業和資料作業，如下所示：   
+    - 您可以將儲存體帳戶範圍內的 RBAC 角色指派給安全性主體，以及使用 Azure AD 來授權資源管理作業，例如金鑰管理。
+    - Blob 和佇列服務的資料作業預覽版支援 Azure AD 整合。 您可以將訂用帳戶、資源群組、儲存體帳戶或個別的容器或佇列範圍內的 RBAC 角色，指派給安全性主體或受控服務識別。 如需詳細資訊，請參閱[使用 Azure Active Directory 來驗證 Azure 儲存體的存取權 (預覽)](storage-auth-aad.md)。   
 - 您可以使用[用戶端加密](../storage-client-side-encryption.md)、HTTPS 或 SMB 3.0，在應用程式和 Azure 之間進行傳輸時保護資料的安全。  
 - 您可以使用 [Azure 磁碟加密](../../security/azure-security-disk-encryption.md)來加密 Azure 虛擬機器所使用的 OS 和資料磁碟。 
 - Azure 儲存體中資料物件的委派存取權可以使用 [共用存取簽章](../storage-dotnet-shared-access-signature-part-1.md)來授與。
 
-本文簡要說明這些安全性功能當中，可與「Azure 儲存體」搭配使用的每個安全性功能。 所提供的文章連結將提供每個功能的詳細資料，讓您能夠輕鬆地進一步調查每個主題。
+此文章簡要說明這些安全性功能當中，可與「Azure 儲存體」搭配使用的每個安全性功能。 所提供的文章連結將提供每個功能的詳細資料，讓您能夠輕鬆地進一步調查每個主題。
 
-以下是本文所涵蓋的主題：
+以下是此文章所涵蓋的主題：
 
 * [管理平面安全性](#management-plane-security) – 保護儲存體帳戶
 
-  管理平面包含用來管理儲存體帳戶的資源。 本節涵蓋 Azure Resource Manager 部署模型，以及如何使用「角色型存取控制」(RBAC) 來控制對儲存體帳戶的存取。 此外，也說明如何管理儲存體帳戶金鑰，以及重新產生這些金鑰。
+  管理平面包含用來管理儲存體帳戶的資源。 此節涵蓋 Azure Resource Manager 部署模型，以及如何使用「角色型存取控制」(RBAC) 來控制對儲存體帳戶的存取。 此外，也說明如何管理儲存體帳戶金鑰，以及重新產生這些金鑰。
 * [資料平面安全性](#data-plane-security) – 保護資料的存取
 
-  本節將探討如何在儲存體帳戶 (例如 Blob、檔案、查詢及表格) 中，允許使用共用存取簽章和預存存取原則來存取實際的資料物件。 我們將涵蓋服務層級的 SAS 和帳戶層級的 SAS。 我們也會看到如何限制存取特定的 IP 位址 (或 IP 位址範圍)、如何限制用於 HTTPS 的通訊協定，以及如何撤銷共用存取簽章，而不需等到它過期。
+  此節將探討如何在儲存體帳戶 (例如 Blob、檔案、查詢及表格) 中，允許使用共用存取簽章和預存存取原則來存取實際的資料物件。 我們將涵蓋服務層級的 SAS 和帳戶層級的 SAS。 我們也會看到如何限制存取特定的 IP 位址 (或 IP 位址範圍)、如何限制用於 HTTPS 的通訊協定，以及如何撤銷共用存取簽章，而不需等到它過期。
 * [傳輸中加密](#encryption-in-transit)
 
-  本節討論如何在將資料傳輸至 Azure 儲存體或從中傳出時提供保護。 我們將討論 HTTPS 的建議用法，以及 SMB 3.0 針對 Azure 檔案共用所使用的加密。 同時也會探討用戶端加密，可讓您在將資料傳輸至用戶端應用程式中的儲存體之前加密資料，以及自儲存體傳出後解密資料。
+  此節討論如何在將資料傳輸至 Azure 儲存體或從中傳出時提供保護。 我們將討論 HTTPS 的建議用法，以及 SMB 3.0 針對 Azure 檔案共用所使用的加密。 同時也會探討用戶端加密，可讓您在將資料傳輸至用戶端應用程式中的儲存體之前加密資料，以及自儲存體傳出後解密資料。
 * [待用加密](#encryption-at-rest)
 
-  我們將探討「儲存體服務加密」(SSE)，現在針對新的和現有的儲存體帳戶都會自動啟用這項功能。 同時也將探討如何使用 Azure 磁碟加密，並探索磁碟加密與 SSE 與用戶端加密之間的基本差異和案例。 我們將簡短探討美國政府電腦適用的 FIPS 相符性。
+  我們將探討「儲存體服務加密」(SSE)，現在針對新的和現有的儲存體帳戶都會自動啟用此功能。 同時也將探討如何使用 Azure 磁碟加密，並探索磁碟加密與 SSE 與用戶端加密之間的基本差異和案例。 我們將簡短探討美國政府電腦適用的 FIPS 相符性。
 * 使用 [儲存體分析](#storage-analytics) 稽核 Azure 儲存體的存取
 
-  本節討論如何在儲存體分析記錄中尋找某個要求的相關資訊。 我們將查看實際的分析記錄資料，並了解如何分辨出要求是否是利用儲存體帳戶金鑰、共用存取簽章或匿名方式所提出，以及該要求是否成功或失敗。
+  此節討論如何在儲存體分析記錄中尋找某個要求的相關資訊。 我們將查看實際的分析記錄資料，並了解如何分辨出要求是否是利用儲存體帳戶金鑰、共用存取簽章或匿名方式所提出，以及該要求是否成功或失敗。
 * [使用 CORS 啟用以瀏覽器為基礎的用戶端](#Cross-Origin-Resource-Sharing-CORS)
 
-  本節討論如何允許跨原始來源資源共用 (CORS)。 我們將討論跨網域存取，以及如何使用 Azure 儲存體內建的 CORS 功能來處理它。
+  此節討論如何允許跨原始來源資源共用 (CORS)。 我們將討論跨網域存取，以及如何使用 Azure 儲存體內建的 CORS 功能來處理它。
 
 ## <a name="management-plane-security"></a>管理平面安全性
 管理平面包含會影響儲存體帳戶本身的作業。 例如，您可以建立或刪除儲存體帳戶、取得訂用帳戶中的儲存體帳戶清單、擷取儲存體帳戶金鑰，或重新產生儲存體帳戶金鑰。
@@ -80,29 +81,29 @@ ms.lasthandoff: 03/28/2018
   * 虛擬機器參與者 – 他們可以管理虛擬機器，但是無法管理他們連接的儲存體帳戶。 這個角色可以列出儲存體帳戶金鑰，這表示您指派此角色的使用者可以更新資料平面。
 
     為了讓使用者能夠建立虛擬機器，他們必須能夠在儲存體帳戶中建立對應的 VHD 檔案。 若要這麼做，他們需要能夠擷取儲存體帳戶金鑰，並將它傳遞給建立 VM 的 API。 因此，他們必須具備此權限，如此就能列出儲存體帳戶金鑰。
-* 定義自訂角色的能力是一項功能，允許您從可在 Azure 資源上執行的可用動作清單中撰寫一系列動作。
+* 定義自訂角色的能力是一個功能，允許您從可在 Azure 資源上執行的可用動作清單中撰寫一系列動作。
 * 您必須先在 Azure Active Directory 中設定使用者，才能為他們指派角色。
-* 您可以建立一份報告，其中包含哪一位人員已使用 PowerShell 或 Azure CLI，在哪個範圍中，為哪些對象授與/撤銷何種類型的存取權。
+* 您可以建立一份報告，其中包含哪一位人員已使用 PowerShell 或 Azure CLI，在哪個範圍中，為哪些對象授與/撤銷哪種類型的存取權。
 
 #### <a name="resources"></a>資源
-* [Azure Active Directory 角色型存取控制](../../active-directory/role-based-access-control-configure.md)
+* [Azure Active Directory 角色型存取控制](../../role-based-access-control/role-assignments-portal.md)
 
-  本文說明 Azure Active Directory 角色型存取控制及其運作方式。
-* [RBAC：內建角色](../../active-directory/role-based-access-built-in-roles.md)
+  此文章說明 Azure Active Directory 角色型存取控制及其運作方式。
+* [RBAC：內建角色](../../role-based-access-control/built-in-roles.md)
 
-  本文將詳細說明 RBAC 中所有可用的內建角色。
+  此文章將詳細說明 RBAC 中所有可用的內建角色。
 * [了解資源管理員部署和傳統部署](../../azure-resource-manager/resource-manager-deployment-model.md)
 
-  本文說明資源管理員部署和傳統部署模型，並說明使用資源管理員和資源群組的優點。 內容中會說明 Azure 計算、網路及儲存體提供者在 Resource Manager 模型下的運作方式。
-* [使用 REST API 管理角色型存取控制](../../active-directory/role-based-access-control-manage-access-rest.md)
+  此文章說明資源管理員部署和傳統部署模型，並說明使用資源管理員和資源群組的優點。 內容中會說明 Azure 計算、網路及儲存體提供者在 Resource Manager 模型下的運作方式。
+* [使用 REST API 管理角色型存取控制](../../role-based-access-control/role-assignments-rest.md)
 
-  本文說明如何使用 REST API 來管理 RBAC。
+  此文章說明如何使用 REST API 來管理 RBAC。
 * [Azure 儲存體資源提供者 REST API 參考](https://msdn.microsoft.com/library/azure/mt163683.aspx)
 
   此 API 參考說明您可用來以程式設計方式管理儲存體帳戶的 API。
-* [Developer’s guide to auth with Azure Resource Manager API (利用 Azure Resource Manager 進行驗證的開發人員指南)](http://www.dushyantgill.com/blog/2015/05/23/developers-guide-to-auth-with-azure-resource-manager-api/)
+* [使用 Resource Manager 驗證 API 來存取訂用帳戶](../../azure-resource-manager/resource-manager-api-authentication.md)
 
-  本文示範如何使用 Resource Manager API 進行驗證。
+  此文章示範如何使用 Resource Manager API 進行驗證。
 * [來自Ignite 且適用於 Microsoft Azure 的角色型存取控制](https://channel9.msdn.com/events/Ignite/2015/BRK2707)
 
   這個連結會連到 2015 MS Ignite 會議的 Channel 9 上的視訊。 在這個研討會中，他們討論 Azure 中的存取管理和報告功能，並探索使用 Azure Active Directory 安全存取 Azure 訂用帳戶的最佳做法。
@@ -141,45 +142,40 @@ ms.lasthandoff: 03/28/2018
 
 使用 Azure 金鑰保存庫的另一個優點是，您也可以使用 Azure Active Directory 來控制金鑰的存取。 這表示您可以將存取權授與少數必須從 Azure 金鑰保存庫擷取金鑰的應用程式，並了解其他應用程式在未特別授與它們權限的情況下無法存取金鑰。
 
-注意︰建議同一時間在您的所有應用程式中只會使用一個金鑰。 如果您在某些地方使用金鑰 1 並在其他地方使用金鑰 2，您就無法在沒有部分應用程式遺失存取的情況下輪換您的金鑰。
+> [!NOTE]
+> Microsoft 建議同一時間在您的所有應用程式中僅使用其中一個金鑰。 如果您在某些地方使用金鑰 1 並在其他地方使用金鑰 2，您就無法在沒有部分應用程式遺失存取的情況下輪換您的金鑰。
 
 #### <a name="resources"></a>資源
-* [關於 Azure 儲存體帳戶](storage-create-storage-account.md#regenerate-storage-access-keys)
 
-  本文提供儲存體帳戶的概觀，並討論如何檢視、複製和重新產生儲存體存取金鑰。
+* [管理 Azure 入口網站中的儲存體帳戶設定](storage-account-manage.md)
 * [Azure 儲存體資源提供者 REST API 參考](https://msdn.microsoft.com/library/mt163683.aspx)
-
-  本文包含有關擷取儲存體帳戶金鑰，以及使用 REST API 為 Azure 帳戶重新產生儲存體帳戶金鑰的特定文章連結。 注意︰這適用於 Resource Manager 儲存體帳戶。
-* [儲存體帳戶的相關作業](https://msdn.microsoft.com/library/ee460790.aspx)
-
-  這篇位於儲存體服務管理員 REST API 參考中的文章，包含有關使用 REST API 來擷取和重新產生儲存體帳戶金鑰的特定文章連結。 注意︰這適用於傳統儲存體帳戶。
-* [Say goodbye to key management – manage access to Azure Storage data using Azure AD (告別金鑰管理 – 使用 Azure AD 管理 Azure 儲存體資料的存取)](http://www.dushyantgill.com/blog/2015/04/26/say-goodbye-to-key-management-manage-access-to-azure-storage-data-using-azure-ad/)
-
-  本文說明如何使用 Active Directory 來控制 Azure 金鑰保存庫中 Azure 儲存體金鑰的存取。 它也會示範如何使用 Azure 自動化工作，每小時重新產生金鑰。
 
 ## <a name="data-plane-security"></a>資料平面安全性
 資料平面安全性是指用來保護儲存在 Azure 儲存體的資料物件 (Blob、佇列、表格和檔案) 的方法。 我們已了解在傳輸資料期間加密資料和安全性的方法，但您該從何處著手來控制對物件的存取？
 
-有兩個方法可授權對資料物件本身的存取。 這些方法包括控制對儲存體帳戶金鑰的存取，以及使用共用存取簽章，來授與一段特定時間對特定資料物件的存取。
+有三個選項可供您授權 Azure 儲存體資料物件的存取權，包括：
 
-此外，針對 Blob 儲存體，您可以藉由設定要據以保存 Blob 之容器的存取層級，來允許對您的 Blob 進行公用存取。 如果您將容器的存取權設定為「Blob」或「容器」，將允許該容器中 Blob 的公用讀取存取權。 這表示 URL 指向該容器中 Blob 的任何人都可以在瀏覽器中開啟它，而不需使用共用存取簽章或擁有儲存體帳戶金鑰。
+- 使用 Azure AD 來授權容器和佇列的存取權 (預覽)。 Azure AD 在授權方面的優勢勝過其他方法，包括不需要在程式碼中儲存祕密。 如需詳細資訊，請參閱[使用 Azure Active Directory 來驗證 Azure 儲存體的存取權 (預覽)](storage-auth-aad.md)。 
+- 使用儲存體帳戶金鑰來透過共用金鑰授權存取權。 透過共用金鑰授權時，需要在應用程式中儲存儲存體帳戶金鑰，因此 Microsoft 建議盡可能改為使用 Azure AD。 對於生產應用程式，或是要授權 Azure 資料表和檔案的存取權，請在 Azure AD 整合處於預覽狀態時，繼續使用共用金鑰。
+- 使用共用存取簽章，來授與一段特定時間對特定資料物件的受控權限。
+
+此外，針對 Blob 儲存體，您可以透過設定要據以保存 Blob 之容器的存取層級，來允許對您的 Blob 進行公用存取。 如果您將容器的存取權設定為「Blob」或「容器」，將允許該容器中 Blob 的公用讀取存取權。 這表示 URL 指向該容器中 Blob 的任何人都可以在瀏覽器中開啟它，而不需使用共用存取簽章或擁有儲存體帳戶金鑰。
 
 除了透過授權限制存取，您也可以使用[防火牆和虛擬網路](storage-network-security.md)，根據網路規則來限制對儲存體帳戶的存取。  此方法可讓您拒絕對公用網際網路流量的存取，只授與對特定 Azure 虛擬網路或公用網際網路 IP 位址範圍的存取。
-
 
 ### <a name="storage-account-keys"></a>儲存體帳戶金鑰
 儲存體帳戶金鑰是由 Azure 所建立的 512 位元字串，搭配儲存體帳戶名稱就能用來存取儲存於儲存體帳戶中的資料物件。
 
 例如，您可以讀取 Blob、寫入佇列、建立表格，以及修改檔案。 這其中許多動作都可透過 Azure 入口網站，或使用許多儲存體總管應用程式之一來執行。 您也可以撰寫程式碼來使用 REST API 或其中一個儲存體用戶端程式庫來執行這些作業。
 
-如同 [管理平面安全性](#management-plane-security)一節中所討論，對傳統儲存體帳戶的儲存體金鑰的存取權，可以藉由為 Azure 訂用帳戶提供完整存取權來授與。 使用 Azure Resource Manager 模型來存取儲存體帳戶的儲存體金鑰，可以透過角色型存取控制 (RBAC) 來控制。
+如同 [管理平面安全性](#management-plane-security)一節中所討論，對傳統儲存體帳戶的儲存體金鑰的存取權，可以透過為 Azure 訂用帳戶提供完整存取權來授與。 使用 Azure Resource Manager 模型來存取儲存體帳戶的儲存體金鑰，可以透過角色型存取控制 (RBAC) 來控制。
 
 ### <a name="how-to-delegate-access-to-objects-in-your-account-using-shared-access-signatures-and-stored-access-policies"></a>如何使用共用存取簽章和預存存取原則委派帳戶中物件的存取權
 共用存取簽章是一個字串，包含可附加至 URI 的安全性權杖，可讓您委派儲存體物件的存取權，以及指定存取的權限和日期/時間範圍之類的限制。
 
 您可以授與對 Blob、容器、佇列、檔案和表格的存取權。 使用表格時，您可以實際授與權限來存取表格中某個範圍的實體，方法是指定您想要讓使用者有權存取的分割區和資料列索引鍵範圍。 例如，如果您已使用具備地理狀態的分割區索引鍵儲存資料，您可以為某人提供只能存取加州相關資料的存取權。
 
-在另一個範例中，您可能會為 Web 應用程式提供 SAS 權杖，讓它能夠將項目寫入佇列，並為背景工作角色應用程式提供 SAS 權杖，從佇列中取得訊息並加以處理。 或者，您可以為某一位客戶提供 SAS 權杖，讓他們可以用來將圖片上傳至 Blob 儲存體中的容器，並為 Web 應用程式提供權限來讀取這些圖片。 在這兩種情況下，產生了關注點分離情況 – 每個應用程式只能取得執行其工作所需的存取權。 這可能是因為使用了共用存取簽章。
+在另一個範例中，您可能會為 Web 應用程式提供 SAS 權杖，讓它能夠將項目寫入佇列，並為背景工作角色應用程式提供 SAS 權杖，從佇列中取得訊息並處理。 或者，您可以為某一位客戶提供 SAS 權杖，讓他們可以用來將圖片上傳至 Blob 儲存體中的容器，並為 Web 應用程式提供權限來讀取這些圖片。 在這兩種情況下，產生了關注點分離情況 – 每個應用程式只能取得執行其工作所需的存取權。 這可能是因為使用了共用存取簽章。
 
 #### <a name="why-you-want-to-use-shared-access-signatures"></a>您想要使用共用存取簽章的原因
 為什麼您想要使用 SAS，而不只是散發您的儲存體帳戶金鑰，哪一個方法更容易使用？ 散發您的儲存體帳戶金鑰，就像是在您的儲存體王國內共用金鑰。 它會授與完整存取權限。 其他人可以使用您的金鑰，並將其整個音樂媒體櫃上傳至您的儲存體帳戶。 他們可能也會使用受病毒感染的版本來取代您的檔案或竊取您的資料。 無限制散發您儲存體帳戶的存取權不應草率行事。
@@ -205,7 +201,7 @@ http://mystorage.blob.core.windows.net/mycontainer/myblob.txt (URL to the blob)
 &sig=Z%2FRHIX5Xcg0Mq2rqI3OlWTjEg2tYkboXr1P9ZUXDtkk%3D (signature used for the authentication of the SAS)
 ```
 
-#### <a name="how-the-shared-access-signature-is-authenticated-by-the-azure-storage-service"></a>Azure 儲存體服務驗證共用存取簽章的方式
+#### <a name="how-the-shared-access-signature-is-authorized-by-the-azure-storage-service"></a>Azure 儲存體服務授權共用存取簽章的方式
 當儲存體服務收到要求時，它會取得輸入查詢參數，並使用與呼叫程式相同的方法來建立簽章。 然後比較這兩個簽章。 如果它們同意，儲存體服務接著可以檢查儲存體服務版本，以確定它是有效的、檢查目前的日期和時間是在指定時段內、確定所要求的存取權會對應至所提出的要求，依此類推。
 
 例如，利用上述的 URL，如果 URL 指向檔案而不是 Blob，此要求便會失敗，因為它指定共用存取簽章適用於 Blob。 如果呼叫的 REST 命令會更新 Blob，則該命令會失敗，因為共用存取簽章指定只准許讀取權限。
@@ -223,11 +219,11 @@ http://mystorage.blob.core.windows.net/mycontainer/myblob.txt (URL to the blob)
    例如，如果您要讓許多人讀取特定容器中的 Blob，您可以建立預存存取原則，表示會「提供讀取權」以及每次都一樣的任何其他設定。 接著您可以使用預存存取原則的設定，並指定到期日期/時間，來建立 SAS URI。 這樣做的優點是您不需每次指定所有查詢參數。
 
 #### <a name="revocation"></a>撤銷
-假設您的 SAS 已遭洩露，或您想要基於公司安全性或法規遵循需求加以變更。 您如何使用該 SAS 撤銷資源的存取權？ 這取決於您建立 SAS URI 的方式。
+假設您的 SAS 已遭洩露，或您想要基於公司安全性或法規遵循需求變更它。 您如何使用該 SAS 撤銷資源的存取權？ 這取決於您建立 SAS URI 的方式。
 
 如果您使用臨機操作的 URI，您就會有三個選項。 您可以發出具有短期到期原則的 SAS 權杖，然後等待 SAS 到期。 您可以重新命名或刪除資源 (假設權杖範圍只限於單一物件)。 您可以變更儲存體帳戶金鑰。 根據使用該儲存體帳戶的服務數目而定，這最後一個選項可能會產生很大的影響，而且可能不是您在沒有任何規劃的情況下會想要執行的動作。
 
-如果您使用衍生自預存存取原則的 SAS，就可以藉由撤銷預存存取原則來移除存取權 – 您只能在它已經完全過期時加以變更，或完全移除它。 這會立即生效，並使每個使用該預存存取原則建立的 SAS 失效。 更新或移除預存存取原則可能會影響透過 SAS 存取該特定容器、檔案共用、表格或佇列的使用者，但如果會寫入用戶端，使得他們可在舊的 SAS 變成無效時要求一個新的 SAS，則這將可正常運作。
+如果您使用衍生自預存存取原則的 SAS，就可以透過撤銷預存存取原則來移除存取權 – 您只能在它已經完全過期時變更 它，或完全移除它。 這會立即生效，並使每個使用該預存存取原則建立的 SAS 失效。 更新或移除預存存取原則可能會影響透過 SAS 存取該特定容器、檔案共用、表格或佇列的使用者，但如果會寫入用戶端，使得他們可在舊的 SAS 變成無效時要求一個新的 SAS，則這將可正常運作。
 
 因為使用衍生自預存存取原則的 SAS 讓您能夠立即撤銷該 SAS，所以建議的最佳做法是一律儲存預存存取原則 (如果可能)。
 
@@ -238,7 +234,7 @@ http://mystorage.blob.core.windows.net/mycontainer/myblob.txt (URL to the blob)
 
   * [服務 SAS](https://msdn.microsoft.com/library/dn140256.aspx)
 
-    本文提供使用服務層級 SAS 搭配 Blob、佇列、表格範圍及檔案的範例。
+    此文章提供使用服務層級 SAS 搭配 Blob、佇列、表格範圍及檔案的範例。
   * [建構服務 SAS](https://msdn.microsoft.com/library/dn140255.aspx)
   * [建構帳戶 SAS](https://msdn.microsoft.com/library/mt584140.aspx)
 * 這些是使用 .NET 用戶端程式庫，來建立共用存取簽章和預存存取原則的教學課程。
@@ -246,7 +242,7 @@ http://mystorage.blob.core.windows.net/mycontainer/myblob.txt (URL to the blob)
   * [使用共用存取簽章 (SAS)](../storage-dotnet-shared-access-signature-part-1.md)
   * [共用存取簽章，第 2 部分：透過 Blob 服務來建立與使用 SAS](../blobs/storage-dotnet-shared-access-signature-part-2.md)
 
-    本文包含 SAS 模型的說明、共用存取簽章的範例，以及使用 SAS 最佳做法的建議。 同時也會討論撤銷授與的權限。
+    此文章包含 SAS 模型的說明、共用存取簽章的範例，以及使用 SAS 最佳做法的建議。 同時也會討論撤銷授與的權限。
 
 * 驗證
 
@@ -264,21 +260,9 @@ http://mystorage.blob.core.windows.net/mycontainer/myblob.txt (URL to the blob)
 透過啟用儲存體帳戶[所需的安全傳輸](../storage-require-secure-transfer.md)，您可於呼叫 REST API 來存取儲存體帳戶中的物件時強制使用 HTTPS。 啟用此選項後，使用 HTTP 的連線將被拒絕。
 
 ### <a name="using-encryption-during-transit-with-azure-file-shares"></a>傳輸期間透過 Azure 檔案共用使用加密
-使用 REST API 時，Azure 檔案服務支援 HTTPS，但較常用來作為附加到 VM 的 SMB 檔案共用。 SMB 2.1 不支援加密，因此只允許在 Azure 中的相同區域內連接。 不過，SMB 3.0 支援加密，而且可在 Windows Server 2012 R2、Windows 8、Windows 8.1 和 Windows 10 中使用，既可允許跨區域存取，也可允許電腦上的存取。
+[Azure 檔案](../files/storage-files-introduction.md)支援透過 SMB 3.0 加密，以及在使用檔案 REST API 時以 HTTPS 加密。 在 Azure 檔案共用所在的 Azure 區域之外 (例如，內部部署或其他 Azure 區域) 掛接時，一律需要 SMB 3.0 (含加密)。 SMB 2.1 不支援加密，因此，預設只允許在 Azure 中的相同區域內連線，但可以透過對儲存體帳戶[要求安全傳輸](../storage-require-secure-transfer.md)來強制採用 SMB 3.0 (含加密)。
 
-雖然 Azure 檔案共用可以與 Unix 搭配使用，但 Linux SMB 用戶端尚未支援加密，因此只允許在 Azure 區域內存取。 適用於 Linux 的加密支援已列入開發藍圖中，負責 SMB 功能的 Linux 開發人員將著手開發。 當他們新增加密功能時，您在 Linux 系統中存取 Azure 檔案共用的能力將與在 Windows 系統中相同。
-
-透過啟用儲存體帳戶[所需的安全傳輸](../storage-require-secure-transfer.md)，您可以強制為 Azure 檔案服務使用加密。 如果使用 REST API，則需要 HTTPs。 針對 SMB，只有支援加密的 SMB 連線可以成功連線。
-
-#### <a name="resources"></a>資源
-* [Azure 檔案服務簡介](../files/storage-files-introduction.md)
-* [在 Windows 上開始使用 Azure 檔案服務](../files/storage-how-to-use-files-windows.md)
-
-  本文概述 Azure 檔案共用，以及如何在 Windows 上掛接和使用它們。
-
-* [如何在 Linux 中使用 Azure 檔案服務](../files/storage-how-to-use-files-linux.md)
-
-  本文說明如何在 Linux 系統上掛接 Azure 檔案共用，以及上傳/下載檔案。
+SMB 3.0 (含加密) 可於[所有支援的 Windows 和 Windows Server 作業系統](../files/storage-how-to-use-files-windows.md)中使用，但 Windows 7 和 Windows Server 2008 R2 除外，這兩種僅支援 SMB 2.1。 SMB 3.0 也支援 [macOS](../files/storage-how-to-use-files-mac.md) 和 [Linux](../files/storage-how-to-use-files-linux.md) 散發套件 (使用 Linux 核心 4.11 和更新版本)。 SMB 3.0 的加密支援也由數個 Linux 散發套件回溯導入到較舊版本的 Linux 核心，請參閱[了解 SMB 用戶端需求](../files/storage-how-to-use-files-linux.md#smb-client-reqs)。
 
 ### <a name="using-client-side-encryption-to-secure-data-that-you-send-to-storage"></a>使用用戶端加密來保護傳送到儲存體的資料
 另一個可協助您確保在用戶端應用程式和儲存體之間傳輸時資料安全性的選項是用戶端加密。 資料會先加密，然後才傳輸到 Azure 儲存體。 從 Azure 儲存體擷取資料時，在用戶端上收到資料之後要將之解密。 即使資料在通過連線時已加密，但還是建議您使用 HTTPS，因為其內建資料完整性檢查，有助於降低影響資料完整性的網路錯誤。
@@ -294,7 +278,7 @@ http://mystorage.blob.core.windows.net/mycontainer/myblob.txt (URL to the blob)
 
 系統會針對所有儲存體帳戶啟用 SSE 且無法停用。 在將資料寫入至「Azure 儲存體」時，SSE 會自動加密資料。 當您從「Azure 儲存體」讀取資料時，「Azure 儲存體」會先將資料解密，然後才傳回資料。 SSE 可讓您無須修改程式碼或在任何應用程式中新增程式碼，即可保護資料。
 
-用於 SSE 的金鑰會由 Microsoft 管理。 Microsoft 一開始會產生金鑰，然後除了依照內部 Microsoft 原則所定義的方式管理金鑰的定期輪換之外，也管理其安全儲存體。 客戶管理的金鑰會隨著一條從 Microsoft 管理的金鑰到客戶管理的金鑰之移轉路徑，最後可供使用。
+您可以使用 Microsoft 管理的金鑰，或自己的自訂金鑰。 Microsoft 會產生受控金鑰，然後除了依照內部 Microsoft 原則定義的方式處理金鑰的安全儲存體之外，也會處理其定期輪換。 如需有關使用自訂金鑰的詳細資訊，請參閱[使用 Azure Key Vault 中客戶管理的金鑰進行儲存體服務加密](storage-service-encryption-customer-managed-keys.md)。
 
 SSE 會自動將所有效能層 (標準和進階)、所有部署模型 (Azure Resource Manager 和傳統) 以及所有「Azure 儲存體」服務 (Blob、佇列、資料表和檔案) 中的資料加密。 
 
@@ -312,10 +296,10 @@ SSE 會自動將所有效能層 (標準和進階)、所有部署模型 (Azure Re
 #### <a name="resources"></a>資源
 * [在 Microsoft Azure 儲存體中使用 Azure 金鑰保存庫加密和解密 blob](../blobs/storage-encrypt-decrypt-blobs-key-vault.md)
 
-  本文說明如何搭配 Azure 金鑰保存庫使用用戶端加密，包括如何使用 PowerShell 來建立 KEK 並將它儲存在保存庫中。
+  此文章說明如何搭配 Azure 金鑰保存庫使用用戶端加密，包括如何使用 PowerShell 來建立 KEK 並將它儲存在保存庫中。
 * [Microsoft Azure 儲存體的用戶端加密和 Azure Key Vault 金鑰保存庫](../storage-client-side-encryption.md)
 
-  本文說明用戶端加密，並提供使用儲存體用戶端程式庫，從四個儲存體服務加密和解密資源的範例。 它也會討論 Azure 金鑰保存庫。
+  此文章說明用戶端加密，並提供使用儲存體用戶端程式庫，從四個儲存體服務加密和解密資源的範例。 它也會討論 Azure 金鑰保存庫。
 
 ### <a name="using-azure-disk-encryption-to-encrypt-disks-used-by-your-virtual-machines"></a>使用 Azure 磁碟加密來加密虛擬機器所使用的磁碟
 「Azure 磁碟加密」是一個新功能。 此功能允許您加密 IaaS 虛擬機器所使用的作業系統磁碟和資料磁碟。 對於 Windows，磁碟機是使用業界標準的 BitLocker 加密技術來加密。 對於 Linux，磁碟是使用 DM-Crypt 技術來加密。 這會與 Azure 金鑰保存庫整合，可讓您控制和管理磁碟加密金鑰。
@@ -357,7 +341,7 @@ SSE 會自動將所有效能層 (標準和進階)、所有部署模型 (Azure Re
 
 #### <a name="iaas-vms-and-their-vhd-files"></a>IaaS VM 及其 VHD 檔案
 
-針對 IaaS VM 所使用的資料磁碟，建議使用「Azure 磁碟加密」。 如果您使用來自 Azure Marketplace 的映像建立 VM，Azure 就會在 Azure 儲存體中對您的儲存體帳戶執行該映像的 [淺層複製](https://en.wikipedia.org/wiki/Object_copying) ，而且即使您已啟用 SSE，也不會將之加密。 當它建立 VM 並開始更新映像之後，SSE 將開始加密資料。 基於這個理由，如果您想要將它們完整加密，最好是在透過 Azure Marketplace 中的映像建立的 VM 上使用 Azure 磁碟加密。
+針對 IaaS VM 所使用的資料磁碟，建議使用「Azure 磁碟加密」。 如果您使用來自 Azure Marketplace 的映像來建立具有非受控磁碟的 VM，Azure 會以[淺層複製 (Shallow Copy)](https://en.wikipedia.org/wiki/Object_copying) 的方式將該映像複製到您在「Azure 儲存體」中的儲存體帳戶，而且即使您已啟用 SSE，也不會將其加密。 當它建立 VM 並開始更新映像之後，SSE 將開始加密資料。 因此，如果您想要將從 Azure Marketplace 中映像建立之具有非受控磁碟的 VM 完整加密，最好是在這些 VM 上使用「Azure 磁碟加密」。 如果您建立的是具有受控磁碟的 VM，則 SSE 預設會使用平台管理的金鑰來加密所有資料。 
 
 如果透過內部部署將預先加密的 VM 帶入 Azure 中，您就能將加密金鑰上傳至 Azure 金鑰保存庫，並繼續針對使用內部部署的 VM 使用加密。 啟用 Azure 磁碟加密即可處理此案例。
 
@@ -386,7 +370,7 @@ SSE 是由 Azure 儲存體所管理。 SSE 並不針對傳輸中資料提供安�
 
 ## <a name="storage-analytics"></a>儲存體分析
 ### <a name="using-storage-analytics-to-monitor-authorization-type"></a>使用儲存體分析來監視授權類型
-對於每個儲存體帳戶，您可以啟用 Azure 儲存體分析，來執行記錄和儲存計量資料。 當您想要檢查儲存體帳戶的效能計量，或是因為發生效能問題而需要疑難排解儲存體帳戶時，這是一個絕佳的工具。
+對於每個儲存體帳戶，您可以啟用 Azure 儲存體分析，來執行記錄和儲存計量資料。 當您想要檢查儲存體帳戶的效能計量，或是因為發生效能問題而需要針對儲存體帳戶進行疑難排解時，這是一個絕佳的工具。
 
 您可以在儲存體分析記錄中看見的另一部分資料是其他人存取儲存體時所使用的驗證方法。 例如，使用 Blob 儲存體，您可以看見他們使用的是否為共用存取簽章或儲存體帳戶金鑰，或者存取的 Blob 是否為公用的。
 
@@ -412,11 +396,11 @@ SSE 是由 Azure 儲存體所管理。 SSE 並不針對傳輸中資料提供安�
 
 ![記錄檔中欄位的快照](./media/storage-security-guide/image3.png)
 
-我們對於 GetBlob 的項目及其驗證方法很感興趣，所以必須尋找 operation-type 為 "Get-Blob" 的項目，然後檢查 request-status (第 4</sup> 欄) 和 authorization-type (第 8</sup> 欄)。
+我們對於 GetBlob 的項目及其授權方法很感興趣，所以必須尋找 operation-type 為 "Get-Blob" 的項目，然後檢查 request-status (第 4</sup> 欄) 和 authorization-type (第 8</sup> 欄)。
 
-例如，在上述清單的前幾個列中，要求狀態為 "Success" 且驗證類型為 "authenticated"。 這表示已使用儲存體帳戶金鑰驗證要求。
+例如，在上述清單的前幾個列中，要求狀態為 "Success" 且驗證類型為 "authenticated"。 這表示已使用儲存體帳戶金鑰授權要求。
 
-#### <a name="how-are-my-blobs-being-authenticated"></a>如何驗證我的 Blob？
+#### <a name="how-is-access-to-my-blobs-being-authorized"></a>如何授權存取我的 Blob？
 以下提供三個我們感興趣的案例。
 
 1. Blob 是公用的且可使用 URL (而不需共用存取簽章) 來存取。 在此案例中，要求狀態為 "AnonymousSuccess" 且驗證類型為 "anonymous"。
@@ -434,19 +418,19 @@ SSE 是由 Azure 儲存體所管理。 SSE 並不針對傳輸中資料提供安�
 #### <a name="resources"></a>資源
 * [Storage Analytics](../storage-analytics.md)
 
-  本文是儲存體分析及如何啟用它們的概觀。
+  此文章是儲存體分析及如何啟用它們的概觀。
 * [儲存體分析記錄檔格式](https://msdn.microsoft.com/library/azure/hh343259.aspx)
 
-  本文說明儲存體分析記錄格式，並詳細說明其中的可用欄位，包括驗證類型，其會指出要求所使用的驗證類型。
+  此文章說明儲存體分析記錄格式，並詳細說明其中的可用欄位，包括驗證類型，其會指出要求所使用的驗證類型。
 * [在 Azure 入口網站中監視儲存體帳戶](../storage-monitor-storage-account.md)
 
-  本文說明如何設定和監視儲存體帳戶的計量與記錄。
+  此文章說明如何設定和監視儲存體帳戶的計量與記錄。
 * [使用 Azure 儲存體度量和記錄、AzCopy 和 Message Analyzer 進行端對端疑難排解](../storage-e2e-troubleshooting.md)
 
-  本文討論如何使用儲存體分析進行疑難排解，並示範如何使用 Microsoft Message Analyzer。
+  此文章討論如何使用儲存體分析進行疑難排解，並示範如何使用 Microsoft Message Analyzer。
 * [Microsoft Message Analyzer 操作指南](https://technet.microsoft.com/library/jj649776.aspx)
 
-  本文是 Microsoft Message Analyzer 的參考，並包含教學課程、快速入門及功能摘要的連結。
+  此文章是 Microsoft Message Analyzer 的參考，並包含教學課程、快速入門及功能摘要的連結。
 
 ## <a name="cross-origin-resource-sharing-cors"></a>跨原始來源資源分享 (CORS)
 ### <a name="cross-domain-access-of-resources"></a>跨網域存取資源
@@ -460,7 +444,7 @@ SSE 是由 Azure 儲存體所管理。 SSE 並不針對傳輸中資料提供安�
 解決此問題的另一個方法是讓 Web 應用程式做為儲存體呼叫所使用的 Proxy。 這表示，如果您要將檔案上傳至 Blob 儲存體，Web 應用程式可以在本機寫入它，然後將它複製到 Blob 儲存體，或者將它全部讀入記憶體，然後將它寫入 Blob 儲存體。 或者，您可以撰寫專屬的 Web 應用程式 (例如 Web API)，本機上傳檔案並將它們寫入 Blob 儲存體。 無論如何，您都必須在判定延展性的需求時負責該功能。
 
 #### <a name="how-can-cors-help"></a>CORS 如何提供協助？
-Azure 儲存體可讓您啟用 CORS – 跨原始來源資源共用。 對於每個儲存體帳戶，您可以指定可存取該儲存體帳戶中之資源的網域。 例如，在上述案例中，我們可以在 fabrikam.blob.core.windows.net 儲存體帳戶上啟用 CORS，然後將它設定為允許存取 contoso.com。然後 Web 應用程式 contoso.com 就能直接存取 fabrikam.blob.core.windows.net 中的資源。
+Azure 儲存體可讓您啟用 CORS – 跨原始來源資源共用。 對於每個儲存體帳戶，您可以指定可存取該儲存體帳戶中之資源的網域。 例如，在上述案例中，我們可以在 fabrikam.blob.core.windows.net 儲存體帳戶上啟用 CORS，然後將它設定為允許存取 contoso.com。 然後 Web 應用程式 contoso.com 就能直接存取 fabrikam.blob.core.windows.net 中的資源。
 
 要注意的一點是，CORS 允許存取，但不提供所有對儲存體資源之非公用存取所需的驗證。 這表示，如果它們是公用的，您就只能存取 Blob，或者您可以包含共用存取簽章來為您提供適當的權限。 表格、佇列和檔案沒有公用存取權且需要 SAS。
 
@@ -491,13 +475,13 @@ Azure 儲存體可讓您啟用 CORS – 跨原始來源資源共用。 對於每
 
 * [在 Azure.com 上 Azure 儲存體服務的跨原始資源共用 (CORS) 支援](../storage-cors-support.md)
 
-  本文概述 CORS，以及如何設定不同儲存體服務的規則。
+  此文章概述 CORS，以及如何設定不同儲存體服務的規則。
 * [在 MSDN 上 Azure 儲存體服務的跨原始資源共用 (CORS) 支援](https://msdn.microsoft.com/library/azure/dn535601.aspx)
 
   這是適用於 Azure 儲存體服務的 CORS 支援的參考文件。 其中提供適用於每個儲存體服務的文章連結，並示範範例且說明 CORS 檔案中的每個元素。
 * [Microsoft Azure 儲存體︰CORS 簡介](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/02/03/windows-azure-storage-introducing-cors.aspx)
 
-  此為最初發表 CORS 並示範如何使用之部落格文章的連結。
+  這是最初發表 CORS 並示範如何使用之部落格文章的連結。
 
 ## <a name="frequently-asked-questions-about-azure-storage-security"></a>關於 Azure 儲存體安全性的常見問題集
 1. **如果我無法使用 HTTPS 通訊協定，該如何驗證我傳輸至 Azure 儲存體或從中傳出之 Blob 的完整性？**
@@ -513,14 +497,13 @@ Azure 儲存體可讓您啟用 CORS – 跨原始來源資源共用。 對於每
 
    Microsoft 可讓每位客戶決定是否要啟用 FIPS 模式。 我們認為沒有充分的理由來對不受政府法規限制的客戶預設啟用 FIPS 模式。
 
-   **資源**
-
+### <a name="resources"></a>資源
 * [Why We’re Not Recommending "FIPS Mode" Anymore (為什麼我們不再建議「FIPS 模式」)](https://blogs.technet.microsoft.com/secguide/2014/04/07/why-were-not-recommending-fips-mode-anymore/)
 
   此部落格文章提供 FIPS 概觀，並說明他們為什麼預設不啟用 FIPS 模式。
 * [FIPS 140 Validation (FIPS 140 驗證)](https://technet.microsoft.com/library/cc750357.aspx)
 
-  本文提供 Microsoft 產品和密碼編譯模組如何符合美國美國聯邦政府的 FIPS 標準的相關資訊。
+  此文章提供 Microsoft 產品和密碼編譯模組如何符合美國美國聯邦政府的 FIPS 標準的相關資訊。
 * [Windows XP 和 Windows 的更新版本中「系統密碼編譯︰使用符合 FIPS 規範的演算法進行加密，雜湊，以及簽章」安全性設定的效果](https://support.microsoft.com/kb/811833)
 
-  本文討論如何在較舊的 Windows 電腦中使用 FIPS 模式。
+  此文章討論如何在較舊的 Windows 電腦中使用 FIPS 模式。

@@ -1,11 +1,11 @@
 ---
-title: "Azure API 管理原則範例 - 實作 X-CSRF 模式 | Microsoft Docs"
-description: "Azure API 管理原則範例 - 示範如何實作許多 API 所使用的 X-CSRF 模式。 這是 SAP 閘道特有的範例。"
+title: Azure API 管理原則範例 - 實作 X-CSRF 模式 | Microsoft Docs
+description: Azure API 管理原則範例 - 示範如何實作許多 API 所使用的 X-CSRF 模式。 這是 SAP 閘道特有的範例。
 services: api-management
-documentationcenter: 
-author: juliako
+documentationcenter: ''
+author: vladvino
 manager: cfowler
-editor: 
+editor: ''
 ms.service: api-management
 ms.workload: mobile
 ms.tgt_pltfrm: na
@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/13/2017
 ms.author: apimpm
-ms.openlocfilehash: a99ff25f7f8a3851936ba8d28e76eff98b1b0458
-ms.sourcegitcommit: b854df4fc66c73ba1dd141740a2b348de3e1e028
+ms.openlocfilehash: 3a2067836a1488d117dced96f3935f2d1f8b1b48
+ms.sourcegitcommit: e34afd967d66aea62e34d912a040c4622a737acb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/04/2017
+ms.lasthandoff: 06/26/2018
+ms.locfileid: "36946018"
 ---
 # <a name="implement-x-csrf-pattern"></a>實作 X-CSRF 模式
 
@@ -27,7 +28,7 @@ ms.lasthandoff: 12/04/2017
 
 將程式碼貼至 [輸入] 區塊。
 
-[!code-xml[Main](../../../api-management-policy-samples/Snippets/Get X-CSRF token from SAP gateway using send request policy.xml)]
+[!code-xml[Main](../../../api-management-policy-samples/examples/Get X-CSRF token from SAP gateway using send request.policy.xml)]
 
 ## <a name="next-steps"></a>後續步驟
 

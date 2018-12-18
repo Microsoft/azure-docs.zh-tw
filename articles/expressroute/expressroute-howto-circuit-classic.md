@@ -1,25 +1,18 @@
 ---
-title: "修改 ExpressRoute 線路︰PowerShell：Azure 傳統| Microsoft Docs"
-description: "本文將逐步引導您檢查狀態、更新或刪除，以及取消佈建 ExpressRoute 傳統部署模型線路。"
-documentationcenter: na
+title: 修改 ExpressRoute 線路︰PowerShell：Azure 傳統| Microsoft Docs
+description: 本文將逐步引導您檢查狀態、更新或刪除，以及取消佈建 ExpressRoute 傳統部署模型線路。
 services: expressroute
 author: ganesr
-manager: timlt
-editor: 
-tags: azure-service-management
-ms.assetid: 0134d242-6459-4dec-a2f1-4657c3bc8b23
 ms.service: expressroute
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: infrastructure-services
-ms.date: 11/08/2017
+ms.topic: conceptual
+ms.date: 07/26/2018
 ms.author: ganesr;cherylmc
-ms.openlocfilehash: 457bb74fa15d31fecbf668038ac880cafb8a897d
-ms.sourcegitcommit: b5c6197f997aa6858f420302d375896360dd7ceb
+ms.openlocfilehash: 407782ff59147f227f5f34bc3318333093b4f57e
+ms.sourcegitcommit: 068fc623c1bb7fb767919c4882280cad8bc33e3a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/21/2017
+ms.lasthandoff: 07/27/2018
+ms.locfileid: "39283566"
 ---
 # <a name="modify-an-expressroute-circuit-using-powershell-classic"></a>使用 PowerShell 修改 ExpressRoute 線路 (傳統)
 
@@ -41,7 +34,38 @@ ms.lasthandoff: 12/21/2017
 
 ## <a name="before-you-begin"></a>開始之前
 
-安裝最新版本的 Azure Service Management (SM) PowerShell 模組。請遵循[開始使用 Azure PowerShell Cmdlet](/powershell/azure/overview) 中的指示，來取得如何設定您的電腦以使用 Azure PowerShell 模組的逐步指引。
+安裝最新版的 Azure 服務管理 (SM) PowerShell 模組和 ExpressRoute 模組。  當您使用下列範例時，請注意版本號碼 (此範例中為 5.1.1) 會因為發行較新的版本而變更。
+
+```powershell
+Import-Module 'C:\Program Files\WindowsPowerShell\Modules\Azure\5.1.1\Azure\Azure.psd1'
+Import-Module 'C:\Program Files\WindowsPowerShell\Modules\Azure\5.1.1\ExpressRoute\ExpressRoute.psd1'
+```
+
+如需 Azure PowerShell 的詳細資訊，請參閱[開始使用 Azure PowerShell Cmdlet](/powershell/azure/overview)，來取得如何設定您的電腦以使用 Azure PowerShell 模組的逐步指引。
+
+若要登入您的 Azure 帳戶，請使用下列範例：
+
+1. 以提高的權限開啟 PowerShell 主控台並連接到您的帳戶。 使用下列範例來協助您連接：
+
+  ```powershel
+  Connect-AzureRmAccount
+  ```
+2. 檢查帳戶的訂用帳戶。
+
+  ```powershell
+  Get-AzureRmSubscription
+  ```
+3. 如果您有多個訂用帳戶，請選取您要使用的訂用帳戶。
+
+  ```powershell
+  Select-AzureRmSubscription -SubscriptionName "Replace_with_your_subscription_name"
+  ```
+
+4. 接下來，使用下列 Cmdlet，將您的 Azure 訂用帳戶新增到 PowerShell，以供傳統部署模型使用。
+
+  ```powershell
+  Add-AzureAccount
+  ```
 
 ## <a name="get-the-status-of-a-circuit"></a>取得線路狀態
 

@@ -1,0 +1,29 @@
+- name: 語言分析 API 文件
+- name: 概觀
+  items:
+    - name: 什麼是語言分析 API？
+      href: Home.md
+- name: 作法
+  items:
+    - name: 分析器名稱
+      href: Analyzer-Names.md
+    - name: 組成單位剖析
+      href: Constituency-Parsing.md
+    - name: 詞性標記
+      href: POS-tagging.md
+    - name: 句子和語彙基元
+      href: Sentences-and-Tokens.md
+    - name: 分析方法
+      href: AnalyzeMethod.md
+    - name: 分析器方法
+      href: AnalyzersMethod.md
+- name: 參考
+  items:
+    - name: 語言分析 API
+      href: 'https://westus.dev.cognitive.microsoft.com/docs/services/56ea598f778daf01942505ff/operations/56ea5a1cca73071fd4b102bb'
+    - name: Windows SDK
+      href: 'https://github.com/Microsoft/Cognitive-linguisticanalysis-windows'
+- name: 資源
+  items:
+    - name: UserVoice
+      href: 'https://cognitive.uservoice.com/forums/555928-linguistic-analysis-api'

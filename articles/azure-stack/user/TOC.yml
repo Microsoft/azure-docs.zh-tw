@@ -1,158 +1,224 @@
+items:
 - name: Azure Stack 使用者文件
   href: index.yml
 - name: 概觀
   items:
-    - name: 主要考量
-      href: azure-stack-considerations.md
+  - name: 主要考量
+    href: azure-stack-considerations.md
 - name: 快速入門
-  expanded: true
   items:
-    - name: 建立 Windows VM - 入口網站
-      href: azure-stack-quick-windows-portal.md
-    - name: 建立 Windows VM - PowerShell
-      href: azure-stack-quick-create-vm-windows-powershell.md
-    - name: 建立 Windows VM - CLI
-      href: azure-stack-quick-create-vm-windows-cli.md
-    - name: 建立 Linux VM - 入口網站
-      href: azure-stack-quick-linux-portal.md
-    - name: 建立 Linux VM - PowerShell
-      href: azure-stack-quick-create-vm-linux-powershell.md
-    - name: 建立 Linux VM - CLI
-      href: azure-stack-quick-create-vm-linux-cli.md
+  - name: 建立 Windows VM - 入口網站
+    href: azure-stack-quick-windows-portal.md
+  - name: 建立 Windows VM - PowerShell
+    href: azure-stack-quick-create-vm-windows-powershell.md
+  - name: 建立 Windows VM - CLI
+    href: azure-stack-quick-create-vm-windows-cli.md
+  - name: 建立 Linux VM - 入口網站
+    href: azure-stack-quick-linux-portal.md
+  - name: 建立 Linux VM - PowerShell
+    href: azure-stack-quick-create-vm-linux-powershell.md
+  - name: 建立 Linux VM - CLI
+    href: azure-stack-quick-create-vm-linux-cli.md
+  expanded: true
 - name: 教學課程
   items:
-    - name: 將應用程式部署到 Azure 和 Azure Stack
+  - name: 常見工作
+    items:
+    - name: 訂閱供應項目
+      href: azure-stack-subscribe-services.md
+    - name: 從範本建立虛擬機器
+      href: azure-stack-create-vm-template.md
+  - name: 混合式雲端模式
+    items:
+    - name: 將應用程式部署至 Azure 和 Azure Stack
       href: azure-stack-solution-pipeline.md
+    - name: 設定混合式雲端身分識別
+      href: azure-stack-solution-hybrid-identity.md
+    - name: 設定混合式雲端連線
+      href: azure-stack-solution-hybrid-connectivity.md
+    - name: 建立邊緣機器學習解決方案
+      href: azure-stack-solution-machine-learning.md
+    - name: 建立暫存資料分析解決方案
+      href: azure-stack-solution-staged-data-analytics.md
+    - name: 使用 Azure 建立跨雲端縮放解決方案
+      href: azure-stack-solution-cloud-burst.md
+    - name: 建立地理位置分散的應用程式解決方案
+      href: azure-stack-solution-geo-distributed.md
+    - name: 部署混合式雲端解決方案
+      href: azure-stack-solution-hybrid-cloud.md
 - name: 使用說明指南
   items:
-    - name: 使用 Azure Stack 入口網站
-      href: azure-stack-use-portal.md
-    - name: 使用 Azure Stack API
-      href: azure-stack-rest-api-use.md
-    - name: 安全性與法規遵循
+  - name: 使用 Azure Stack 入口網站
+    href: azure-stack-use-portal.md
+  - name: 使用 PowerShell 連線
+    href: azure-stack-powershell-configure-user.md
+  - name: 使用 Azure Stack API
+    href: azure-stack-rest-api-use.md
+  - name: 安全性與法規遵循
+    items:
+    - name: 使用角色型存取控制
+      href: azure-stack-manage-permissions.md
+    - name: 使用服務主體
+      href: Azure-stack-create-service-principals.md
+  - name: 使用服務
+    items:
+    - name: 主要考量
+      href: azure-stack-considerations.md
+    - name: 計算
       items:
-        - name: 管理 RBAC
-          href: azure-stack-manage-permissions.md
-        - name: 建立服務主體
-          href: Azure-stack-create-service-principals.md
-    - name: 使用服務
+      - name: 概觀
+        href: azure-stack-compute-overview.md
+      - name: VM 考量
+        href: azure-stack-vm-considerations.md
+      - name: VM 大小
+        href: azure-stack-vm-sizes.md
+      - name: 管理虛擬機器磁碟
+        href: azure-stack-manage-vm-disks.md
+      - name: 受控磁碟考量
+        href: azure-stack-managed-disk-considerations.md
+      - name: 保護 VM
+        href: azure-stack-manage-vm-protect.md
+      - name: VM 更新與管理
+        href: vm-update-management.md
+      - name: SQL Server VM 考量
+        href: azure-stack-sql-server-vm-considerations.md
+    - name: 儲存體
       items:
-        - name: 主要考量
-          href: azure-stack-considerations.md
-        - name: 計算
-          items:
-            - name: 概觀
-              href: azure-stack-compute-overview.md
-            - name: VM 考量
-              href: azure-stack-vm-considerations.md
-            - name: VM 大小
-              href: azure-stack-vm-sizes.md
-            - name: 管理虛擬機器磁碟
-              href: azure-stack-manage-vm-disks.md
-            - name: 保護 VM
-              href: azure-stack-manage-vm-protect.md
-        - name: 儲存體
-          items:
-            - name: 概觀
-              href: azure-stack-storage-overview.md
-            - name: 儲存體考量
-              href: azure-stack-acs-differences.md
-            - name: 儲存體開發工具
-              href: azure-stack-storage-dev.md
-            - name: 資料傳輸工具
-              href: azure-stack-storage-transfer.md
-            - name: 連線儲存體總管
-              href: azure-stack-storage-connect-se.md
-        - name: 網路
-          items:
-            - name: 概觀
-              href: azure-stack-network-overview.md
-            - name: 網路考量
-              href: azure-stack-network-differences.md
-            - name: iDNS for Azure Stack
-              href: azure-stack-understanding-dns.md
-            - name: Azure Stack 中的 DNS
-              href: azure-stack-dns.md
-        - name: Key Vault
-          items:
-            - name: 概觀
-              href: azure-stack-kv-intro.md
-            - name: 使用入口網站進行管理
-              href: azure-stack-kv-manage-portal.md
-            - name: 以 PowerShell 管理
-              href: azure-stack-kv-manage-powershell.md
-            - name: 使用祕密建立 VM
-              href: azure-stack-kv-deploy-vm-with-secret.md
-            - name: 使用憑證建立 VM
-              href: azure-stack-kv-push-secret-into-vm.md
-            - name: KeyVault 範例應用程式
-              href: azure-stack-kv-sample-app.md
-    - name: 建置應用程式
+      - name: 概觀
+        href: azure-stack-storage-overview.md
+      - name: 儲存體考量
+        href: azure-stack-acs-differences.md
+      - name: 儲存體開發工具
+        href: azure-stack-storage-dev.md
+      - name: 資料傳輸工具
+        href: azure-stack-storage-transfer.md
+      - name: 連線儲存體總管
+        href: azure-stack-storage-connect-se.md
+    - name: 網路
       items:
-        - name: 開發 Azure Stack
-          href: azure-stack-developer.md
-        - name: 設定開發環境
-          items:
-            - name: 安裝 Azure Stack PowerShell
-              href: azure-stack-powershell-install.md
-            - name: 下載工具
-              href: azure-stack-powershell-download.md
-            - name: 設定 PowerShell - 使用者
-              href: azure-stack-powershell-configure-user.md
-            - name: 安裝 Visual Studio
-              href: azure-stack-install-visual-studio.md
-            - name: 使用 API 版本設定檔
-              href: azure-stack-version-profiles.md
-              items:
-                - name: PowerShell
-                  href: azure-stack-version-profiles-powershell.md
-                - name: Azure CLI 2.0
-                  href: azure-stack-version-profiles-azurecli2.md
-                - name: GO
-                  href: azure-stack-version-profiles-go.md
-                - name: 設定檔支援的資源提供者 API
-                  href: azure-stack-profiles-azure-resource-manager-versions.md
-        - name: 使用原則模組
-          href: azure-stack-policy-module.md
-        - name: 使用範本
-          items:
-            - name: 範本概觀
-              href: azure-stack-arm-templates.md
-            - name: 開發範本
-              href: azure-stack-develop-templates.md
-            - name: 檢查範本
-              href: azure-stack-validate-templates.md
-            - name: 使用入口網站部署
-              href: azure-stack-deploy-template-portal.md
-            - name: 使用 PowerShell 部署
-              href: azure-stack-deploy-template-powershell.md
-            - name: 透過 Visual Studio 部署
-              href: azure-stack-deploy-template-visual-studio.md
-    - name: 啟用雲端服務提供者
-      href: azure-stack-csp-enable-billing-usage-tracking.md
+      - name: 概觀
+        href: azure-stack-network-overview.md
+      - name: 網路考量
+        href: azure-stack-network-differences.md
+      - name: iDNS for Azure Stack
+        href: azure-stack-understanding-dns.md
+      - name: Azure Stack 中的 DNS
+        href: azure-stack-dns.md
+    - name: Key Vault
+      items:
+      - name: 概觀
+        href: azure-stack-kv-intro.md
+      - name: 使用入口網站進行管理
+        href: azure-stack-kv-manage-portal.md
+      - name: 以 PowerShell 管理
+        href: azure-stack-kv-manage-powershell.md
+      - name: 使用祕密建立 VM
+        href: azure-stack-kv-deploy-vm-with-secret.md
+      - name: 使用憑證建立 VM
+        href: azure-stack-kv-push-secret-into-vm.md
+      - name: KeyVault 範例應用程式
+        href: azure-stack-kv-sample-app.md
+    - name: Azure 監視器
+      href: azure-stack-metrics-azure-data.md
+      items:
+      - name: 支援的計量
+        href: azure-stack-metrics-supported.md
+      - name: 取用 Azure 監視資料
+        href: azure-stack-metrics-monitor.md
+    - name: 解決方案範本
+      items:
+      - name: 部署 Service Fabric 叢集
+        href: azure-stack-solution-template-service-fabric-cluster.md
+      - name: 新增 Kubernetes 叢集
+        items:
+        - name: 部署 Kubernetes 叢集
+          href: azure-stack-solution-template-kubernetes-deploy.md
+        - name: 針對 Kubernetes 叢集進行疑難排解
+          href: azure-stack-solution-template-kubernetes-trouble.md
+  - name: 建置應用程式
+    items:
+    - name: 開發 Azure Stack
+      href: azure-stack-developer.md
+    - name: 設定開發環境
+      items:
+      - name: 安裝 Azure Stack PowerShell
+        href: ../azure-stack-powershell-install.md
+        maintainContext: true
+      - name: 設定 PowerShell
+        href: azure-stack-powershell-configure-user.md
+      - name: 下載 Azure Stack 工具
+        href: ../azure-stack-powershell-download.md
+        maintainContext: true
+      - name: 安裝 Visual Studio
+        href: azure-stack-install-visual-studio.md
+      - name: 使用 API 版本設定檔
+        href: azure-stack-version-profiles.md
+        items:
+        - name: .NET
+          href: azure-stack-version-profiles-net.md
+        - name: Java
+          href: azure-stack-version-profiles-java.md
+        - name: PowerShell
+          href: azure-stack-version-profiles-powershell.md
+        - name: Azure CLI
+          href: azure-stack-version-profiles-azurecli2.md
+        - name: GO
+          href: azure-stack-version-profiles-go.md
+        - name: Ruby
+          href: azure-stack-version-profiles-ruby.md
+        - name: Python
+          href: azure-stack-version-profiles-python.md
+        - name: 設定檔支援的資源提供者 API
+          href: azure-stack-profiles-azure-resource-manager-versions.md
+    - name: 使用 Azure Stack 原則模組
+      href: azure-stack-policy-module.md
+    - name: 使用範本
+      items:
+      - name: 範本概觀
+        href: azure-stack-arm-templates.md
+      - name: 範本考量
+        href: azure-stack-develop-templates.md
+      - name: 檢查範本
+        href: azure-stack-validate-templates.md
+      - name: 使用入口網站部署
+        href: azure-stack-deploy-template-portal.md
+      - name: 使用 PowerShell 部署
+        href: azure-stack-deploy-template-powershell.md
+      - name: 透過 Visual Studio 部署
+        href: azure-stack-deploy-template-visual-studio.md
+  - name: 啟用雲端服務提供者
+    href: azure-stack-csp-enable-billing-usage-tracking.md
 - name: 參考
   items:
-    - name: Azure Stack PowerShell
-      href: /powershell/azure/azure-stack/overview?view=azurestackps-1.2.10
-    - name: Azure Stack CLI
-      href: /cli/azure/reference-index?view=azure-cli-2017-03-09-profile
+  - name: Azure Stack PowerShell
+    href: /powershell/azure/azure-stack/overview?view=azurestackps-1.3.0
+  - name: Azure Stack REST API 瀏覽器
+    href: /rest/api/
+  - name: Azure Stack CLI
+    href: /cli/azure/reference-index?view=azure-cli-2017-03-09-profile
 - name: 相關參考
   items:
-    - name: Azure Stack 操作員文件
-      href: /azure/azure-stack/
-    - name: ASDK 文件
-      href: /azure/azure-stack/asdk/
+  - name: Azure Stack 操作員文件
+    href: /azure/azure-stack/
+  - name: ASDK 文件
+    href: /azure/azure-stack/asdk/
 - name: 資源
   items:
-    - name: Azure Stack 藍圖
-      href: 'https://azure.microsoft.com/roadmap/?tag=azure-stack'
-    - name: Azure Stack MSDN 論壇
-      href: 'https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStack'
-    - name: Azure Stack 文件意見
-      href: 'https://feedback.azure.com/forums/344565-azure-stack?category_id=160275'
-    - name: 定價資訊
-      href: 'https://azure.microsoft.com/overview/azure-stack/how-to-buy/'
-    - name: 堆疊溢位
-      href: 'http://stackoverflow.com/questions/tagged/azure-stack'
-    - name: 訓練與憑證
-      href: 'https://docs.microsoft.com/azure/azure-stack/azure-stack-train-and-cert'
+  - name: Azure Stack 藍圖
+    href: https://azure.microsoft.com/roadmap/?tag=azure-stack
+  - name: Azure Stack MSDN 論壇
+    href: https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStack
+  - name: Azure Stack 文件意見
+    href: https://feedback.azure.com/forums/344565-azure-stack?category_id=160275
+  - name: 定價資訊
+    href: https://azure.microsoft.com/overview/azure-stack/how-to-buy/
+  - name: 堆疊溢位
+    href: http://stackoverflow.com/questions/tagged/azure-stack
+  - name: 訓練與憑證
+    href: https://docs.microsoft.com/azure/azure-stack/azure-stack-train-and-cert
+ms.openlocfilehash: 5f07a82bb284476895838213aebb72097a3869bf
+ms.sourcegitcommit: 07a09da0a6cda6bec823259561c601335041e2b9
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/18/2018
+ms.locfileid: "49407821"

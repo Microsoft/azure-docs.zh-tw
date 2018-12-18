@@ -12,13 +12,14 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: TBD
-ms.date: 03/27/2018
+ms.date: 05/18/2018
 ms.author: alkohli
-ms.openlocfilehash: ee0534ab8bc3400854ddf550df9ca2f395f8d80d
-ms.sourcegitcommit: c3d53d8901622f93efcd13a31863161019325216
+ms.openlocfilehash: 578fb3f8bfe68ccd9bbade0ad04f3a811a249c08
+ms.sourcegitcommit: d551ddf8d6c0fd3a884c9852bc4443c1a1485899
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/29/2018
+ms.lasthandoff: 07/07/2018
+ms.locfileid: "37906384"
 ---
 # <a name="storsimple-security-and-data-protection"></a>StorSimple 安全性和資料保護
 
@@ -42,7 +43,7 @@ Microsoft Azure StorSimple 解決方案包含四個彼此互動的主要元件�
 
 StorSimple 裝置管理員服務是裝載於 Microsoft Azure 的管理服務，可用來管理您組織所採購的所有 StorSimple 裝置。 您可以使用您的組織認證，透過網頁瀏覽器登入 Azure 入口網站來存取 StorSimple 裝置管理員服務。
 
-若要存取 StorSimple 裝置管理員服務，您的組織需有內含 StorSimple 的 Azure 訂用帳戶。 您的訂用帳戶控管您在 Azure 入口網站中可存取的功能。 如果您的組織沒有 Azure 訂用帳戶，但您想要了解更多相關資訊，請參閱 [以組織身分註冊 Azure](../active-directory/sign-up-organization.md)。
+若要存取 StorSimple 裝置管理員服務，您的組織需有內含 StorSimple 的 Azure 訂用帳戶。 您的訂用帳戶控管您在 Azure 入口網站中可存取的功能。 如果您的組織沒有 Azure 訂用帳戶，但您想要了解更多相關資訊，請參閱 [以組織身分註冊 Azure](../active-directory/fundamentals/sign-up-organization.md)。
 
 因為 StorSimple 裝置管理員服務裝載於 Azure 中，所以會受到 Azure 安全性功能的保護。 如需有關 Microsoft Azure 所提供的安全性功能的詳細資訊，請移至 [Microsoft Azure 信任中心](https://azure.microsoft.com/support/trust-center/security/)。
 
@@ -182,7 +183,7 @@ StorSimple 裝置會根據使用頻率，將資料儲存在本機階層和雲端
 
 ## <a name="protect-data-via-storage-accounts"></a>透過儲存體帳戶保護資料安全
 
-每個 Microsoft Azure 訂用帳戶可以建立一或多個儲存體帳戶。 (儲存體帳戶會提供唯一的命名空間，以供儲存在 Azure 雲端中的資料使用)。儲存體帳戶的存取權受到與該儲存體帳戶相關聯的訂用帳戶和存取金鑰控制。
+每個 Microsoft Azure 訂閱可以建立一或多個儲存體帳戶。 (儲存體帳戶會提供唯一的命名空間，以供儲存在 Azure 雲端中的資料使用)。儲存體帳戶的存取權受到與該儲存體帳戶相關聯的訂用帳戶和存取金鑰控制。
 
 建立儲存體帳戶時，Microsoft Azure 會產生兩個 512 位元儲存體存取金鑰，當 StorSimple 裝置存取儲存體帳戶時，可以使用其中一個進行驗證。 請注意，這些金鑰中只有一個會是使用中狀態。 其他金鑰會被保留，讓您可以定期輪替金鑰。 若要輪替金鑰，您必須將次要金鑰的狀態設定為使用中，然後刪除主要金鑰。 然後，您可以建立要在下一個輪替期間使用的新金鑰。 (基於安全性理由，許多資料中心需要金鑰輪替)。
 
@@ -204,6 +205,18 @@ StorSimple 會使用下列加密演算法，來保護儲存在 StorSimple 解決
 
 [!INCLUDE [storsimple Cloud Appliance security](../../includes/storsimple-virtual-device-security.md)]
 
+## <a name="managing-personal-inforamation"></a>管理個人資訊
+
+實體和虛擬系列的 StorSimple 裝置管理員會收集下列主要執行個體中的個人資訊：
+
+- 警示使用者設定，其中會設定使用者的電子郵件地址。 系統管理員可以檢視與清除此資訊。 這同時適用於 StorSimple 8000 系列裝置與 StorSimple 虛擬陣列。
+ * 若要檢視及清除 StorSimple 8000 系列的設定，請遵循[檢視及管理 StorSimple 警示](storsimple-8000-manage-alerts.md#configure-alert-settings)中的步驟
+ * 若要檢視及清除 StorSimple 虛擬陣列的設定，請遵循[檢視及管理 StorSimple 警示](storsimple-virtual-array-manage-alerts.md#configure-alert-settings)中的步驟
+- 可以存取位於共用上之資料的使用者。 顯示可存取共用資料之使用者的清單，並且可檢視。 刪除共用時，也會一併刪除此清單。 這僅適用於 StorSimple 虛擬陣列。
+ * 若要檢視可存取或刪除共用之使用者的清單，請遵循[管理 StorSimple 虛擬陣列上的共用](storsimple-virtual-array-manage-shares.md)中的步驟
+
+如需詳細資訊，請在[信任中心](https://www.microsoft.com/trustcenter)檢閱 Microsoft 隱私權原則。
+
 ## <a name="frequently-asked-questions-faq"></a>常見問題集 (FAQ)
 
 下面是一些有關安全性與 Microsoft Azure StorSimple 的問題和解答。
@@ -217,7 +230,7 @@ StorSimple 會使用下列加密演算法，來保護儲存在 StorSimple 解決
 
 **問：** 新的 StorSimple 裝置要求我提供服務註冊金鑰。 該如何擷取此金鑰？
 
-**答：**當您最初建立 StorSimple 裝置管理員服務時已建立此金鑰。 使用 StorSimple 裝置管理員服務連線至裝置時，您可以透過快速啟動頁面來檢視或重新產生服務註冊金鑰。 產生新的服務註冊金鑰不會影響現有的已註冊裝置。 如需相關指示，請移至：
+**答：** 當您最初建立 StorSimple 裝置管理員服務時已建立此金鑰。 使用 StorSimple 裝置管理員服務連線至裝置時，您可以透過快速啟動頁面來檢視或重新產生服務註冊金鑰。 產生新的服務註冊金鑰不會影響現有的已註冊裝置。 如需相關指示，請移至：
 
 * [檢視或重新產生服務註冊金鑰](storsimple-8000-manage-service.md##regenerate-the-service-registration-key)
 
@@ -227,11 +240,11 @@ StorSimple 會使用下列加密演算法，來保護儲存在 StorSimple 解決
 
 * [變更服務資料加密金鑰](storsimple-8000-manage-service.md#change-the-service-data-encryption-key)
 
-**問：**我已授權裝置進行服務資料加密金鑰變更，但未啟動金鑰變更程序。 我該怎麼辦？
+**問：** 我已授權裝置進行服務資料加密金鑰變更，但未啟動金鑰變更程序。 我該怎麼辦？
 
 **答：** 如果逾時期間已到期，您將需要重新授權裝置進行服務資料加密金鑰變更，然後重新啟動此程序。
 
-**問：**我已變更服務資料加密金鑰，但無法在 4 小時內更新其他裝置。 是否必須重新啟動？
+**問：** 我已變更服務資料加密金鑰，但無法在 4 小時內更新其他裝置。 是否必須重新啟動？
 
 **答：** 這 4 小時的期限僅針對起始變更。 在已經授權的 StorSimple 裝置上啟動更新程序之後，在所有裝置更新之前此授權都是有效的。
 
@@ -252,11 +265,11 @@ StorSimple 會使用下列加密演算法，來保護儲存在 StorSimple 解決
 
 **問：** 裝置上用於遠端存取 Windows PowerShell for StorSimple 的憑證已變更。 如何更新遠端存取用戶端？
 
-**答：**您可以從 StorSimple 裝置管理員服務下載新的憑證，然後將它安裝在遠端存取用戶端的憑證存放區。 如需相關指示，請移至：
+**答：** 您可以從 StorSimple 裝置管理員服務下載新的憑證，然後將它安裝在遠端存取用戶端的憑證存放區。 如需相關指示，請移至：
 
-* [Import-Certificate cmdlet](https://technet.microsoft.com/library/hh848630.aspx)
+* [Import-Certificate cmdlet](https://docs.microsoft.com/powershell/module/pkiclient/import-certificate)
 
-**問：**如果 StorSimple 裝置管理員服務遭到入侵，我的資料是否仍受保護？
+**問：** 如果 StorSimple 裝置管理員服務遭到入侵，我的資料是否仍受保護？
 
 **答：** 在網頁瀏覽器中檢視服務組態資料時，一律會使用您的公開金鑰將它加密。 因為服務無私密金鑰的存取權，所以無法看到任何資料。 StorSimple 裝置管理員服務遭到入侵也不會有任何影響，因為 StorSimple 裝置管理員服務中不會儲存任何金鑰。
 
@@ -268,19 +281,7 @@ StorSimple 會使用下列加密演算法，來保護儲存在 StorSimple 解決
 
 **答：** 由於所有資料在服務上都已加密，而私密金鑰是與裝置存放在一起，因此政府機構必須向客戶索取資料。
 
-## <a name="gdpr-compliance"></a>GDPR 合規性
 
-[一般資料保護規定 (GDPR)](http://ec.europa.eu/justice/data-protection/reform/index_en.htm) 是歐盟 (EU) 所制定的資料保護和隱私權法律。 GDPR 包含許多有關如何收集、儲存和使用個人資訊的需求。 GDPR 規則強制實行於 EU 內營運，並且收集、分析 EU 居民相關之資料的公司、政府機關和其他組織。 
-
-實體和虛擬系列的 StorSimple 裝置管理員皆符合 GDPR 規範。 有兩個主要執行個體，其中會收集個人資訊並在服務中顯示：
-
-- 警示使用者設定，其中會設定使用者的電子郵件地址。 系統管理員可以檢視與清除此資訊。 這同時適用於 StorSimple 8000 系列裝置與 StorSimple 虛擬陣列。
- * 若要檢視及清除 StorSimple 8000 系列的設定，請遵循[檢視及管理 StorSimple 警示](storsimple-8000-manage-alerts.md#configure-alert-settings)中的步驟
- * 若要檢視及清除 StorSimple 虛擬陣列的設定，請遵循[檢視及管理 StorSimple 警示](storsimple-virtual-array-manage-alerts.md#configure-alert-settings)中的步驟
-- 可以存取位於共用上之資料的使用者。 顯示可存取共用資料之使用者的清單，並且可檢視。 刪除共用時，也會一併刪除此清單。 這僅適用於 StorSimple 虛擬陣列。
- * 若要檢視可存取或刪除共用之使用者的清單，請遵循[管理 StorSimple 虛擬陣列上的共用](storsimple-virtual-array-manage-shares.md)中的步驟
-
-如需詳細資訊，請在[信任中心](https://www.microsoft.com/trustcenter)檢閱 Microsoft 隱私權原則。
 
 ## <a name="next-steps"></a>後續步驟
 

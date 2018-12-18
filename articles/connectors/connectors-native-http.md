@@ -1,219 +1,91 @@
 ---
-title: "透過 HTTP - Azure Logic Apps 與任何端點通訊 | Microsoft Docs"
-description: "建立可以透過 HTTP 與任何端點通訊的邏輯應用程式"
+title: 使用 Azure Logic Apps 連線到任何 HTTP 端點 | Microsoft Docs
+description: 藉由使用 Azure Logic Apps，將與任何 HTTP 端點通訊的工作和工作流程自動化
 services: logic-apps
-author: jeffhollan
-manager: anneta
-editor: 
-documentationcenter: 
-tags: connectors
-ms.assetid: e11c6b4d-65a5-4d2d-8e13-38150db09c0b
 ms.service: logic-apps
-ms.devlang: na
+ms.suite: integration
+author: ecfan
+ms.author: estfan
+ms.reviewer: klam, LADocs
+ms.assetid: e11c6b4d-65a5-4d2d-8e13-38150db09c0b
 ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: na
-ms.date: 07/15/2016
-ms.author: jehollan; LADocs
-ms.openlocfilehash: 3eae7a4a47680fc36849fd413b76a80865cf3c9f
-ms.sourcegitcommit: be9a42d7b321304d9a33786ed8e2b9b972a5977e
+tags: connectors
+ms.date: 08/25/2018
+ms.openlocfilehash: e1561e3be95847efccf487c96bd9c9a8104f161b
+ms.sourcegitcommit: f6e2a03076679d53b550a24828141c4fb978dcf9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/19/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43106443"
 ---
-# <a name="get-started-with-the-http-action"></a>開始使用 HTTP 動作
+# <a name="call-http-or-https-endpoints-with-azure-logic-apps"></a>使用 Azure Logic Apps 來呼叫 HTTP 或 HTTPS 端點
 
-您可以利用 HTTP 動作來延伸組織的工作流程，並透過 HTTP 與任何端點通訊。
+您可以使用 Azure Logic Apps 和超文字傳輸通訊協定 (HTTP) 連接器，建立自動化的工作流程，藉由建置邏輯應用程式來與任何 HTTP 或 HTTPS 端點通訊。 例如，您可以監視網站的服務端點。 當該端點上發生事件時，例如您的網站停止運作，事件就會觸發邏輯應用程式的工作流程，並執行指定的動作。 
 
-您可以：
+您可以使用 HTTP 觸發程序作為工作流程中的第一個步驟，以定期檢查或「輪詢」端點。 在每次檢查時，觸發程序會將呼叫或「要求」傳送至端點。 端點的回應會決定是否執行邏輯應用程式的工作流程。 觸發程序會將回應的任何內容，傳遞至邏輯應用程式中的動作。 
 
-* 建立會在您管理的網站故障時啟動 (觸發程序) 的邏輯應用程式工作流程。
-* 透過 HTTP 與任何端點通訊，將工作流程延伸至其他服務。
+您可以使用 HTTP 動作作為工作流程中的任何其他步驟，在您想要的時候檢查端點。 端點的回應會決定工作流程的剩餘動作如何執行。
 
-若要使用邏輯應用程式中的 HTTP 動作來開始作業，請參閱 [建立邏輯應用程式](../logic-apps/quickstart-create-first-logic-app-workflow.md)。
+如果您不熟悉邏輯應用程式，請檢閱[什麼是 Azure Logic Apps？](../logic-apps/logic-apps-overview.md)
 
-## <a name="use-the-http-trigger"></a>使用 HTTP 觸發程序
-觸發程序是一個事件，可用來啟動邏輯應用程式中定義的工作流程。 [深入了解觸發程序](connectors-overview.md)。
+## <a name="prerequisites"></a>必要條件
 
-以下是如何在邏輯應用程式設計工具中設定 HTTP 觸發程序的範例順序。
+* Azure 訂用帳戶。 如果您沒有 Azure 訂用帳戶，請先<a href="https://azure.microsoft.com/free/" target="_blank">註冊免費的 Azure 帳戶</a>。 
 
-1. 在邏輯應用程式中新增 HTTP 觸發程序。
-2. 為想要輪詢的 HTTP 端點填入參數。
-3. 修改其輪詢頻率的循環間隔。
+* 您想要呼叫的目標端點 URL 
 
-   邏輯應用程式現在會在每個檢查期間傳回任何內容時引發。
+* [如何建立邏輯應用程式](../logic-apps/quickstart-create-first-logic-app-workflow.md)的基本知識
 
-   ![HTTP 觸發程序](./media/connectors-native-http/using-trigger.png)
+* 您想要從其中呼叫目標端點的邏輯應用程式。若要開始使用 HTTP 觸發程序，請[建立空白邏輯應用程式](../logic-apps/quickstart-create-first-logic-app-workflow.md)。 若要使用 HTTP 動作，請以觸發程序啟動邏輯應用程式。
 
-### <a name="how-the-http-trigger-works"></a>HTTP 觸發程序的運作方式
+## <a name="add-http-trigger"></a>新增 HTTP 觸發程序
 
-HTTP 觸發程序會以循環間隔呼叫 HTTP 端點。 依預設，任何低於 300 的 HTTP 回應碼都會執行邏輯應用程式。 若要指定是否應該觸發邏輯應用程式，您可以在程式碼檢視中編輯邏輯應用程式，並新增條件以在 HTTP 呼叫之後進行評估。 以下是 HTTP 觸發程序的範例，它會在每次傳回的狀態碼大於或等於 `400` 時觸發。
+1. 登入 [Azure 入口網站](https://portal.azure.com)，如果邏輯應用程式尚未開啟，請在邏輯應用程式設計工具中開啟空白邏輯應用程式。
 
-```javascript
-"Http":
-{
-    "conditions": [
-        {
-            "expression": "@greaterOrEquals(triggerOutputs()['statusCode'], 400)"
-        }
-    ],
-    "inputs": {
-        "method": "GET",
-        "uri": "https://blogs.msdn.microsoft.com/logicapps/",
-        "headers": {
-            "accept-language": "en"
-        }
-    },
-    "recurrence": {
-        "frequency": "Second",
-        "interval": 15
-    },
-    "type": "Http"
-}
-```
+1. 在搜尋方塊中輸入 "http" 作為篩選條件。 在觸發程序清單底下，選取 [HTTP] 觸發程序。 
 
-如需關於 HTTP 觸發程序參數的詳細資料，可在 [MSDN](https://msdn.microsoft.com/library/azure/mt643939.aspx#HTTP-trigger)取得。
+   ![選取 HTTP 觸發程序](./media/connectors-native-http/select-http-trigger.png)
 
-## <a name="use-the-http-action"></a>使用 HTTP 動作
+1. 提供您想要包含在目標端點呼叫中的 [HTTP 觸發程序參數和值](../logic-apps/logic-apps-workflow-actions-triggers.md##http-trigger)。 設定您想要觸發程序檢查目標端點的頻率週期。
 
-動作是由邏輯應用程式中定義的工作流程所執行的作業。 
-[深入了解動作](connectors-overview.md)。
+   ![輸入 HTTP 觸發程序參數](./media/connectors-native-http/http-trigger-parameters.png)
 
-1. 選擇 [新增步驟] > [新增動作]。
-3. 在動作搜尋方塊中，輸入 **http** 以列出 HTTP 動作。
-   
-    ![選取 HTTP 動作](./media/connectors-native-http/using-action-1.png)
+   如需 HTTP 觸發程序、參數和值的詳細資訊，請參閱[觸發程序和動作類型參考](../logic-apps/logic-apps-workflow-actions-triggers.md##http-trigger)。
 
-4. 新增任何必要參數以呼叫 HTTP。
-   
-    ![完成 HTTP 動作](./media/connectors-native-http/using-action-2.png)
+1. 請使用當引發觸發程序時執行的動作，繼續建置邏輯應用程式的工作流程。
 
-5. 在程式設計工具的工具列上，按一下 [儲存]。 系統已儲存您的邏輯應用程式並在同一時間發佈 (啟動)。
+## <a name="add-http-action"></a>新增 HTTP 動作
 
-## <a name="http-trigger"></a>HTTP 觸發程序
-以下是此連接器所支援觸發程序的詳細資料。 HTTP 連接器有一個觸發程序。
+[!INCLUDE [Create connection general intro](../../includes/connectors-create-connection-general-intro.md)]
 
-| 觸發程序 | 說明 |
-| --- | --- |
-| http |進行 HTTP 呼叫並傳回回應內容。 |
+1. 登入 [Azure 入口網站](https://portal.azure.com)，如果邏輯應用程式尚未開啟，請在邏輯應用程式設計工具中開啟邏輯應用程式。
 
-## <a name="http-action"></a>HTTP 動作
-以下是此連接器所支援動作的詳細資料。 HTTP 連接器有一個可能的動作。
+1. 在想要新增 HTTP 動作的最後一個步驟底下，選擇 [新增步驟]。 
 
-| 動作 | 說明 |
-| --- | --- |
-| http |進行 HTTP 呼叫並傳回回應內容。 |
+   在此範例中，邏輯應用程式會啟動 HTTP 觸發程序作為第一個步驟。
 
-## <a name="http-details"></a>HTTP 詳細資料
-下表說明動作的必要與選擇性輸入欄位，以及與使用動作相關聯的對應輸出詳細資料。
+1. 在搜尋方塊中輸入 "http" 作為篩選條件。 在動作清單底下，選取 [HTTP] 動作。
 
-#### <a name="http-request"></a>HTTP 要求
-以下是動作的輸入欄位，可進行 HTTP 輸出要求。
-標示 * 代表必要欄位。
+   ![選取 HTTP 動作](./media/connectors-native-http/select-http-action.png)
 
-| 顯示名稱 | 屬性名稱 | 說明 |
-| --- | --- | --- |
-| 方法 * |method |要使用的 HTTP 指令動詞 |
-| URI* |uri |HTTP 要求的 URI |
-| 標頭 |headers |要包含的 HTTP 標頭的 JSON 物件 |
-| body |內文 |HTTP 要求本文 |
-| 驗證 |驗證 |詳細資料在 [驗證](#authentication) 一節中 |
+   若要在步驟之間新增動作，將指標移至步驟之間的箭號。 
+   選擇顯示的加號 (**+**)，然後選取 [新增動作]。
 
-<br>
+1. 提供您想要包含在目標端點呼叫中的 [HTTP 動作參數和值](../logic-apps/logic-apps-workflow-actions-triggers.md##http-action)。 
 
-#### <a name="output-details"></a>輸出詳細資料
-以下是 HTTP 回應的輸出詳細資料。
+   ![輸入 HTTP 動作參數](./media/connectors-native-http/http-action-parameters.png)
 
-| 屬性名稱 | 資料類型 | 說明 |
-| --- | --- | --- |
-| headers |物件 |回應標頭 |
-| body |物件 |回應物件 |
-| Status Code |整數 |HTTP 狀態碼 |
+1. 完成後，請確保已儲存邏輯應用程式。 在設計工具的工具列上，選擇 [儲存]。 
 
 ## <a name="authentication"></a>驗證
-Logic Apps 功能可讓您針對 HTTP 端點使用不同類型的驗證。 您可以將此驗證搭配 **HTTP**、**[HTTP + Swagger](connectors-native-http-swagger.md)** 及 **[HTTP Webhook](connectors-native-webhook.md)** 連接器使用。 下列是可設定的驗證類型︰
 
-* [基本驗證](#basic-authentication)
-* [用戶端憑證驗證](#client-certificate-authentication)
-* [Azure Active Directory (Azure AD) OAuth 驗證](#azure-active-directory-oauth-authentication)
+若要設定驗證，請在動作或觸發程序內選擇 [顯示進階選項]。 如需 HTTP 觸發程序和動作可用驗證類型的詳細資訊，請參閱[觸發程序和動作類型參考](../logic-apps/logic-apps-workflow-actions-triggers.md#connector-authentication)。
 
-#### <a name="basic-authentication"></a>基本驗證
+## <a name="get-support"></a>取得支援
 
-以下是基本驗證所需的驗證物件。
-標示 * 代表必要欄位。
-
-| 屬性名稱 | 資料類型 | 說明 |
-| --- | --- | --- |
-| 類型* |type |驗證類型 (若為基本驗證必須是 `Basic` ) |
-| 使用者名稱* |username |要驗證的使用者名稱 |
-| 密碼* |password |要驗證的密碼 |
-
-> [!TIP]
-> 如果您要使用無法從定義中擷取的密碼，請使用 `securestring` 參數和 `@parameters()` 
-> [工作流程定義函式](http://aka.ms/logicappdocs)。
-
-例如︰
-
-```javascript
-{
-    "type": "Basic",
-    "username": "user",
-    "password": "test"
-}
-```
-
-#### <a name="client-certificate-authentication"></a>用戶端憑證驗證
-
-以下是用戶端憑證驗證需要的驗證物件。 標示 * 代表必要欄位。
-
-| 屬性名稱 | 資料類型 | 說明 |
-| --- | --- | --- |
-| 類型* |type |驗證類型 (若為 SSL 用戶端憑證，必須是 `ClientCertificate` ) |
-| PFX* |pfx |Base 64 編碼的個人資訊交換 (PFX) 檔案內容 |
-| 密碼* |password |存取 PFX 檔案的密碼 |
-
-> [!TIP]
-> 若要在儲存邏輯應用程式後，使用無法在定義中讀取的參數，您可以使用 `securestring` 參數和 `@parameters()`  
-> [工作流程定義函式](http://aka.ms/logicappdocs)。
-
-例如︰
-
-```javascript
-{
-    "type": "ClientCertificate",
-    "pfx": "aGVsbG8g...d29ybGQ=",
-    "password": "@parameters('myPassword')"
-}
-```
-
-#### <a name="azure-ad-oauth-authentication"></a>Azure AD OAuth 驗證
-以下是 Azure AD OAuth 驗證所需的驗證物件。 標示 * 代表必要欄位。
-
-| 屬性名稱 | 資料類型 | 說明 |
-| --- | --- | --- |
-| 類型* |type |驗證類型 (若為 Azure AD OAuth 必須是 `ActiveDirectoryOAuth` ) |
-| 租用戶* |tenant |Azure AD 租用戶的租用戶識別碼 |
-| 對象* |audience |您要求授權使用的資源。 例如：`https://management.core.windows.net/` |
-| 用戶端識別碼* |clientId |Azure AD 應用程式的用戶端識別碼 |
-| 密碼* |secret |要求權杖之用戶端的密碼 |
-
-> [!TIP]
-> 使用 `securestring` 參數和 `@parameters()` [工作流程定義函式](http://aka.ms/logicappdocs)，您就能在儲存後使用無法在定義中讀取的參數。
-> 
-> 
-
-例如︰
-
-```javascript
-{
-    "type": "ActiveDirectoryOAuth",
-    "tenant": "72f988bf-86f1-41af-91ab-2d7cd011db47",
-    "audience": "https://management.core.windows.net/",
-    "clientId": "34750e0b-72d1-4e4f-bbbe-664f6d04d411",
-    "secret": "hcqgkYc9ebgNLA5c+GDg7xl9ZJMD88TmTJiJBgZ8dFo="
-}
-```
+* 如有問題，請瀏覽 [Azure Logic Apps 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurelogicapps)。
+* 若要提交或票選功能構想，請造訪 [Logic Apps 使用者意見反應網站](http://aka.ms/logicapps-wish)。
 
 ## <a name="next-steps"></a>後續步驟
-立即試用平台和 [建立邏輯應用程式](../logic-apps/quickstart-create-first-logic-app-workflow.md)。 您可以查看我們的 [API 清單](apis-list.md)，以探索 Logic Apps 中其他可用的連接器。
 
+* 了解其他 [Logic Apps 連接器](../connectors/apis-list.md)

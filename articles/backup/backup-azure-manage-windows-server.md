@@ -1,310 +1,293 @@
 ---
-title: 管理 Azure 復原服務保存庫與伺服器 | Microsoft Docs
-description: 使用本文來管理 Azure 復原服務保存庫與伺服器。
+title: 管理 Azure 復原服務保存庫與伺服器
+description: 管理 Azure 復原服務保存庫中的作業和警示。
 services: backup
-documentationcenter: ''
 author: markgalioto
 manager: carmonm
-editor: tysonn
-ms.assetid: 4eea984b-7ed6-4600-ac60-99d2e9cb6d8a
 ms.service: backup
-ms.workload: storage-backup-recovery
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
-ms.date: 02/23/2018
+ms.topic: conceptual
+ms.date: 8/21/2018
 ms.author: markgal
-ms.openlocfilehash: 18ab960c3d86f4154f7cbbaa3dd4909b9b16b697
-ms.sourcegitcommit: a36a1ae91968de3fd68ff2f0c1697effbb210ba8
+ms.openlocfilehash: 9fad5876ce177129d6178052916843b94b33ccf1
+ms.sourcegitcommit: fab878ff9aaf4efb3eaff6b7656184b0bafba13b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/17/2018
+ms.lasthandoff: 08/22/2018
+ms.locfileid: "42445462"
 ---
-# <a name="monitor-and-manage-azure-recovery-services-vaults-and-servers-for-windows-machines"></a>監視和管理 Windows 電腦的 Azure 復原服務保存庫和伺服器
+# <a name="monitor-and-manage-recovery-services-vaults"></a>監視及管理復原服務保存庫
 
-本文內有透過 Azure 入口網站和 Microsoft Azure 備份代理程式提供之備份監視和管理工作的概觀。 本文假設您已經有 Azure 訂用帳戶，並至少建立了一個復原服務保存庫。
+本文說明如何使用復原服務保存庫的 [概觀] 儀表板來監視及管理復原服務保存庫。 當您從清單開啟復原服務保存庫時，所選保存庫的 [概觀] 儀表板隨即開啟。 此儀表板會提供有關保存庫的各種詳細資料。 其中有「圖格」顯示：重大和警告警示的狀態、進行中和失敗備份作業，以及使用的本地備援儲存體 (LRS) 和異地備援儲存體 (GRS) 數量。 如果您將 Azure VM 備份到保存庫，[[備份前置檢查狀態] 圖格會顯示任何重大或警告項目](https://azure.microsoft.com/blog/azure-vm-backup-pre-checks/)。 下圖是 **Contoso-vault** 的 [概觀] 儀表板。 [備份項目] 圖格會顯示有九個註冊到保存庫的項目。
+
+![復原服務保存庫儀表板](./media/backup-azure-manage-windows-server/rs-vault-blade.png)
+
+本文的必要條件如下：Azure 訂用帳戶、復原服務保存庫，以及至少有一個針對保存庫設定的備份項目。
 
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]
 
 
 ## <a name="open-a-recovery-services-vault"></a>開啟復原服務保存庫
 
-復原服務保存庫儀表板會顯示復原服務保存庫的詳細資料或屬性。
+若要監視警示，或檢視關於復原服務保存庫的管理資料，請開啟保存庫。
 
 1. 使用 Azure 訂用帳戶登入 [Azure 入口網站](https://portal.azure.com/) 。
-2. 按一下 [所有服務]。 
 
-3. 您想要開啟復原服務保存庫。 在對話方塊中，開始輸入**復原服務**。 當您開始輸入時，清單會根據您輸入的文字進行篩選。 按一下 [復原服務保存庫]，以顯示您訂用帳戶中的復原服務保存庫清單。
+2. 在入口網站中，按一下 [所有服務]。
 
-     ![開啟復原服務保存庫清單的步驟 1](./media/backup-azure-manage-windows-server/open-rs-vault-list.png) <br/>
+   ![開啟復原服務保存庫清單的步驟 1](./media/backup-azure-manage-windows-server/open-rs-vault-list.png)
 
-    復原服務保存庫清單隨即開啟。
+3. 在 [所有服務] 對話方塊中，輸入**復原服務**。 當您開始輸入時，清單會根據您輸入的文字進行篩選。 當 [復原服務保存庫] 選項出現時，按一下它以開啟您訂用帳戶中的復原服務保存庫清單。
 
     ![建立復原服務保存庫的步驟 1](./media/backup-azure-manage-windows-server/list-of-rs-vaults.png) <br/>
 
-4. 從保存庫清單中，選取您想要開啟的復原服務保存庫名稱。 [復原服務保存庫儀表板] 功能表隨即開啟。
+4. 從保存庫清單中，按一下保存庫以開啟其 [概觀] 儀表板。 
 
     ![復原服務保存庫儀表板](./media/backup-azure-manage-windows-server/rs-vault-blade.png) <br/>
 
-    現在您已開啟復原服務保存庫，請試著使用任何監視或管理工作。
+    [概觀] 儀表板會使用圖格來提供警示和備份作業資料。
 
 ## <a name="monitor-backup-jobs-and-alerts"></a>監視備份作業和警示
 
-您可以從復原服務保存庫儀表板監視作業和警示，您可以看到︰
+復原服務保存庫的 [概觀] 儀表板會提供 [監視] 和 [使用量] 資訊的圖格。 [監視] 區段中的圖格會顯示 [重大] 和 [警告] 警示，以及 [進行中] 和 [失敗] 的作業。 按一下特定警示或作業，可開啟針對該作業或警示篩選的 [備份警示] 或 [備份作業] 功能表。
 
-* 備份警示詳細資料
-* 檔案和資料夾，以及雲端中受保護的 Azure 虛擬機器
-* Azure 中已使用的儲存體總計
-* 備份作業狀態
+![備份儀表板工作](./media/backup-azure-manage-windows-server/monitor-dashboard-tiles-warning.png)
 
-![備份儀表板工作](./media/backup-azure-manage-windows-server/dashboard-tiles.png)
+[監視] 區段會顯示預先定義的 [備份警示] 和 [備份作業] 查詢結果。 [監視] 圖格會提供有關下列各項的最新資訊：
 
-按一下上述每個圖格中的資訊，會開啟相關聯的功能表以便管理相關工作。
+* 備份作業的 [重大] 和 [警告] 警示 (在過去 24 小時內)
+* Azure VM 的前置檢查狀態 - 如果前置檢查狀態的完整資訊，請參閱[有關備份前置檢查狀態的備份部落格](https://azure.microsoft.com/blog/azure-vm-backup-pre-checks/)。
+* 進行中的備份作業，以及失敗的作業 (在過去 24 小時內)。
 
-在儀表板的頂端：
+[使用量] 圖格會提供：
 
-* 設定 - 提供存取可用的備份工作。
-* 備份 - 協助您將新的檔案和資料夾 (或 Azure VM) 備份至復原服務保存庫。
-* 刪除 - 如果不再使用復原服務保存庫，可予以刪除來釋出儲存空間。 只有在從保存庫中刪除了所有受保護的伺服器之後，[刪除] 才會啟用。
+* 針對保存庫設定的備份項目數目。
+* 保存庫所使用的 Azure 儲存體 (以 LRS 和 GRS 分隔)。
 
-![備份儀表板工作](./media/backup-azure-manage-windows-server/dashboard-tasks.png)
+按一下圖格 ([備份儲存體] 除外) 以開啟相關聯的功能表。 上圖中的 [備份警示] 圖格會顯示三個 [重大] 警示。 按一下 [備份警示] 圖格中的 [重大] 警示資料列，開啟針對 [重大] 警示篩選的 [備份警示]。
 
-## <a name="alerts-for-backups-using-azure-backup-agent"></a>針對使用 Azure 備份代理程式之備份的警示：
-| 警示層級 | 傳送的警示 |
-| --- | --- |
-| 重要 | 適用於備份失敗、復原失敗和延後的刪除 (例如有人停止刪除資料的保護) |
-| 警告 | 適用於備份完成，但有警告 (當不到 100 個檔案因為損毀問題而未備份，以及超過 100 萬個檔案成功備份時) |
-| 資訊 | 目前沒有適用於 Azure 備份代理程式的資訊警示 |
+![針對重大警示篩選的備份警示功能表](./media/backup-azure-manage-windows-server/critical-backup-alerts.png)
+
+上圖中的 [備份警示] 功能表的篩選依據：狀態為作用中、嚴重性為重大，且時間為前 24 小時。
 
 ## <a name="manage-backup-alerts"></a>管理備份警示
-按一下 [備份警示] 圖格以開啟 [備份警示] 功能表及管理警示。
 
-![備份警示](./media/backup-azure-manage-windows-server/manage-backup-alerts.png)
+若要存取 [備份警示] 功能表，請在復原服務保存庫功能表中，按一下 [備份警示]。
 
-[備份警示] 圖格會顯示下列各項的數目︰
+![備份警示](./media/backup-azure-manage-windows-server/backup-alerts-menu.png)
 
-* 過去 24 小時內未解決的重大警示
-* 過去 24 小時內未解決的警告警示
+[備份警示] 報告會列出保存庫的警示。 
 
-按一下連結以檢視 [備份警示]功能表，其中包含這些警示 (重大或警告) 的篩選檢視。
+![備份警示](./media/backup-azure-manage-windows-server/backup-alerts.png)
 
-在 [備份警示] 功能表中，您可以︰
+### <a name="alerts"></a>警示
 
-* 選擇要與您的警示一起納入的適當資訊。
+[備份警示] 清單會顯示篩選後警示的所選資訊。 在 [備份警示] 功能表中，您可以針對 [重踏] 或 [警告] 警示篩選。
 
-    ![選擇資料行](./media/backup-azure-manage-windows-server/choose-alerts-colunms.png)
-* 針對嚴重性、狀態和開始/結束時間篩選警示。
+| 警示層級 | 產生警示的事件 |
+| ----------- | ----------- |
+| 重要 | 您會在下列情況中收到重大警示：備份作業失敗、復原作業失敗，以及當您在伺服器停止保護時，但保留資料。|
+| 警告 | 您會在以下情況收到警示：備份作業完成，但有警告 (例如，當不到 100 個檔案因為損毀問題而未備份，或是有超過 1,000,000 個檔案成功備份時)。 |
+| 資訊 | 目前沒有使用中的資訊警示。 |
 
-    ![篩選警示](./media/backup-azure-manage-windows-server/filter-alerts.png)
-* 針對嚴重性、頻率和接收者設定通知，以及開啟或關閉警示。
+### <a name="viewing-alert-details"></a>檢閱警示詳細資料
 
-    ![篩選警示](./media/backup-azure-manage-windows-server/configure-notifications.png)
+「備份警示」報告會追蹤有關每個警示的八項詳細資料。 使用 [選擇資料行] 按鈕來編輯報告中的詳細資料。
 
-如果選取 [每個警示] 做為 [通知] 頻率，則電子郵件不會分組或減少。 每個警示會產生一個通知 (預設設定)，而解析電子郵件會立刻送出。
+![備份警示](./media/backup-azure-manage-windows-server/backup-alerts.png)
 
-如果選取 [每小時摘要] 做為 [通知] 頻率，則會傳送一封電子郵件給使用者，說明過去一小時有未解決的警示產生。 解決方式電子郵件會在每小時結束時送出。
+根據預設，所有詳細資料 ([最新發生時間] 除外) 都會出現在報告中。
 
-可以針對下列嚴重性等級傳送警示︰
+* 警示
+* 備份項目
+* 受保護的伺服器
+* 嚴重性
+* Duration
+* 建立時間
+* 狀態
+* 最新發生時間
 
-* 重要
-* 警告
-* 資訊
+### <a name="change-the-details-in-alerts-report"></a>變更警示報告中的詳細資料
 
-您可使用 [作業詳細資料] 功能表中的 [停用] 按鈕來停用警示。 當您按一下 [停用] 時，您可以提供解決方式資訊。
+1. 若要變更報告資訊，請在 [備份警示] 功能表中按一下 [選擇資料行]。
 
-您可以使用 [選擇資料行]  按鈕，選擇您要顯示在警示中的資料行。
+   ![備份警示](./media/backup-azure-manage-windows-server/alerts-menu-choose-columns.png)
+
+   [選擇資料行]  功能表隨即開啟。
+
+2. 在 [選擇資料行] 功能表中，選擇您想要在報告中顯示的詳細資料。
+
+    ![選擇資料行功能表](./media/backup-azure-manage-windows-server/choose-columns-menu.png)
+
+3. 按一下 [完成] 以儲存您的變更並關閉 [選擇資料行] 功能表。
+
+   如果您進行變更，但不想保留變更，請按一下 [重設] 以傳回所選的最後儲存組態。
+
+### <a name="change-the-filter-in-alerts-report"></a>變更警示報告中的篩選條件
+
+使用 [篩選] 功能表，變更警示的 [嚴重性]、[狀態]、[開始時間] 和 [結束時間]。 
 
 > [!NOTE]
-> 在 [設定] 功能表中，選取 [監視和報告] > [警示和事件] > [備份警示]，然後按一下 [篩選] 或 [設定通知]，以管理備份警示。
->
->
+> 編輯 [備份警示] 篩選條件，並不會變更保存庫 [概觀] 儀表板中的 [重大] 或 [警告] 警示。
+>  
+
+1. 若要變更 [備份警示] 篩選條件，請在 [備份警示] 功能表中按一下 [篩選條件]。
+
+   ![選擇篩選功能表](./media/backup-azure-manage-windows-server/alerts-menu-choose-filter.png)
+
+   [篩選] 功能表隨即出現。
+
+   ![選擇篩選功能表](./media/backup-azure-manage-windows-server/filter-alert-menu.png)
+
+2. 編輯 [嚴重性]、[狀態]、[開始時間] 或 [結束時間]，然後按一下 [完成] 以儲存變更。
+
+## <a name="configuring-notifications-for-alerts"></a>設定警示通知
+
+設定通知，以在發生 [警告] 或 [重大] 警示時產生電子郵件。 您可以每小時或在發生特定警示時傳送電子郵件警示。
+
+   ![篩選警示](./media/backup-azure-manage-windows-server/configure-notification.png)
+
+依預設會 [開啟] 電子郵件通知。 按一下 [關閉] 以停止電子郵件通知。
+
+如果不想要分組，或者沒有很多可能產生警示的項目，請在 [通知] 控制項中，選擇 [每個警示]。 每個警示會產生一個通知 (預設設定)，而解析電子郵件會立刻送出。
+
+如果選取 [每小時摘要]，則會傳送一封電子郵件給使用者，說明過去一小時有未解決的警示產生。 解決方式電子郵件會在每小時結束時送出。
+
+選擇用來產生電子郵件的警示嚴重性 ([重大] 或 [警告])。 目前沒有任何資訊警示。
 
 ## <a name="manage-backup-items"></a>管理備份項目
-管理內部部署備份現在已可在管理入口網站中使用。 在儀表板的 [備份] 區段中，[備份項目]  圖格會顯示保存庫中受保護的備份項目數。
 
-按一下 [備份項目] 圖格中的 [檔案-資料夾]  。
+復原服務保存庫可保存許多類型的備份資料。 如需完整的備份類型清單，請參閱[可以備份哪些應用程式和工作負載](backup-introduction-to-azure-backup.md#which-azure-backup-components-should-i-use)。 若要管理各種伺服器、電腦、資料庫和工作負載，請按一下 [備份項目] 圖格以檢視保存庫的內容。
 
-![備份項目圖格](./media/backup-azure-manage-windows-server/backup-items-tile.png)
+![備份項目圖格](./media/backup-azure-manage-windows-server/backup-items.png)
 
-隨即開啟篩選器設定為 [檔案-資料夾] 的 [備份項目] 功能表，其中列出每個特定備份項目。
+備份項目清單 (依 [備份管理類型] 組織) 隨即開啟。
 
-![備份項目](./media/backup-azure-manage-windows-server/backup-item-list.png)
+![備份項目清單](./media/backup-azure-manage-windows-server/list-backup-items.png)
 
-如果您選取清單中的特定備份項目，您會看到該項目的基本詳細資料。
+若要探索特定類型的受保護執行個體，請按一下 [備份管理類型] 資料行中的項目。 例如，上圖中有兩部 Azure 虛擬機器在此保存庫中保護。 按一下 [Azure 虛擬機器]，隨即開啟此保存庫中的受保護虛擬機器清單。
 
-> [!NOTE]
-> 從 [設定] 功能表中，您可選取 [受保護項目] >[備份項目]，然後從下拉式功能表中選取 [檔案-資料夾]，以管理檔案和資料夾。
->
->
+![備份類型清單](./media/backup-azure-manage-windows-server/list-of-protected-virtual-machines.png)
 
-![從設定備份項目](./media/backup-azure-manage-windows-server/backup-files-and-folders.png)
+虛擬機器清單中有很有用的資料：相關聯的資源群組、先前[備份前置檢查](https://azure.microsoft.com/blog/azure-vm-backup-pre-checks/)、上次備份狀態，以及最近還原點的日期。 最後一欄中的省略符號可開啟用來觸發一般工作的功能表。 各欄中針對每個備份類型提供的有用資料都不同。
+
+![備份類型清單](./media/backup-azure-manage-windows-server/ellipsis-menu.png)
 
 ## <a name="manage-backup-jobs"></a>管理備份作業
-內部部署 (當內部部署伺服器備份至 Azure 時) 和 Azure 備份的備份作業均會顯示在儀表板中。
 
-在儀表板的 [備份] 區段中，[備份作業] 圖格會顯示作業數目：
+保存庫儀表板中的 [備份作業] 圖格會顯示過去 24 小時內 [進行中] 或 [失敗] 的作業數目。 此圖格可讓您一窺 [備份作業] 功能表。
 
+![從設定備份項目](./media/backup-azure-manage-windows-server/backup-jobs-tile.png)
+
+若要查看有關作業的其他詳細資料，請按一下 [進行中] 或 [失敗] 以開啟針對該狀態篩選的 [備份作業] 功能表。
+
+### <a name="backup-jobs-menu"></a>備份作業功能表
+
+[備份作業] 功能表會顯示有關 [項目類型]、[作業]、[狀態]、[開始時間] 及 [持續時間] 的資訊。  
+
+若要開啟 [備份作業] 功能表，請在保存庫的主功能表中，按一下 [備份作業]。 
+
+![從設定備份項目](./media/backup-azure-manage-windows-server/backup-jobs-menu-item.png)
+
+備份作業清單隨即開啟。
+
+![從設定備份項目](./media/backup-azure-manage-windows-server/backup-jobs-list.png)
+
+[備份作業] 功能表會顯示過去 24 小時內所有備份類型的所有作業狀態。 使用 [篩選] 來變更篩選條件。 下列各節將說明篩選條件。
+
+若要變更篩選條件：
+
+1. 在保存庫的 [備份作業] 功能表中，按一下 [篩選]。
+
+   ![從設定備份項目](./media/backup-azure-manage-windows-server/vault-backup-job-menu-filter.png)
+
+    [篩選] 功能表隨即開啟。
+
+   ![從設定備份項目](./media/backup-azure-manage-windows-server/filter-menu-backup-jobs.png)
+
+2. 選擇篩選設定，然後按一下 [完成]。 經過篩選的清單會根據新的設定重新整理。
+
+#### <a name="item-type"></a>項目類型
+
+項目類型是受保護執行個體的備份管理類型。 共有四種類型；請參閱下列清單。 您可以檢視所有項目類型，或只檢視一個項目類型。 您無法選取兩個或三個項目類型。 可用的項目類型如下︰
+
+* 所有項目類型
+* Azure 虛擬機器
+* 檔案和資料夾
+* Azure 儲存體
+* Azure 工作負載
+
+#### <a name="operation"></a>作業
+
+您可以檢視一項作業或所有作業。 您無法選取兩項或三項作業。 可用的作業如下：
+
+* 所有作業
+* 註冊
+* 設定備份
+* Backup 
+* Restore
+* 停用備份
+* 刪除備份資料
+
+#### <a name="status"></a>狀態
+
+您可以檢視 [所有狀態] 或一個狀態。 您無法選取兩個或三個狀態。 可用的狀態如下：
+
+* 所有狀態
+* Completed
 * 進行中
-* 過去 24 小時內失敗。
+* Failed
+* Canceled
+* 已完成，但出現警告
 
-若要管理您的備份作業，請按一下 [備份作業] 圖格，即會開啟 [備份作業] 功能表。
+#### <a name="start-time"></a>開始時間
 
-![從設定備份項目](./media/backup-azure-manage-windows-server/backup-jobs.png)
+查詢開始的日期和時間。 預設值為 24 小時的期間。
 
-您可使用頁面頂端的 [選擇資料行] 按鈕，修改 [備份作業] 功能表中可用的資訊。
+#### <a name="end-time"></a>結束時間
 
-使用 [篩選]  按鈕來選取檔案和資料夾以及 Azure 虛擬機器備份。
+查詢結束的日期和時間。
 
-如果您未看到已備份的檔案和資料夾，按一下頁面頂端的 [篩選] 按鈕，然後從 [項目類型] 功能表中選取 [檔案和資料夾]。
+### <a name="export-jobs"></a>匯出作業
 
-> [!NOTE]
-> 在 [設定] 功能表中，您可選取 [監視和報告] > [作業] > [備份作業]，然後從下拉式功能表中選取 [檔案-資料夾]，以管理備份作業。
->
->
+使用 [匯出工作] 來建立包含所有作業功能表資訊的試算表。 此試算表有一個可保存所有作業摘要的工作表，以及各項作業的個別作表。
+
+若要將作業資訊匯出至試算表，請按一下 [匯出作業]。 此服務會使用保存庫名稱和日期建立試算表，但您可以變更名稱。
 
 ## <a name="monitor-backup-usage"></a>監視備份使用量
-在儀表板的 [備份] 區段中，[備份使用量] 圖格會顯示 Azure 中已取用的儲存體。 提供下列各項的儲存體使用量︰
+
+儀表板中的 [備份儲存體] 圖格會顯示 Azure 中耗用的儲存體。 提供下列各項的儲存體使用量︰
 
 * 與保存庫相關聯的雲端 LRS 儲存體使用量
 * 與保存庫相關聯的雲端 GRS 儲存體使用量
 
-## <a name="manage-your-production-servers"></a>管理您的生產伺服器
-若要管理您的生產伺服器，請按一下 [設定] 。
-
-按一下 [管理] 之下的 [備份基礎結構] > [生產伺服器]。
-
-[生產伺服器] 功能表會列出所有可用的生產伺服器。 按一下清單中的伺服器以開啟伺服器詳細資料。
-
-![受保護項目](./media/backup-azure-manage-windows-server/production-server-list.png)
-
-
-## <a name="open-the-azure-backup-agent"></a>開啟 Azure 備份代理程式
-開啟 **Microsoft Azure 備份**代理程式 (透過在電腦中搜尋「Microsoft Azure 備份」即可找到)。
-
-![Windows Server 備份排程](./media/backup-azure-manage-windows-server/snap-in-search.png)
-
-從備份代理程式主控台右側可用的 [動作]  ，您可執行下列管理工作︰
-
-* 註冊伺服器
-* 排程備份
-* 立即備份
-* 變更屬性
-
-![Microsoft Azure 備份代理程式主控台動作](./media/backup-azure-manage-windows-server/console-actions.png)
-
-> [!NOTE]
-> 若要 **復原資料**，請參閱 [將檔案還原到 Windows Server 或 Windows 用戶端電腦](backup-azure-restore-windows-server.md)。
->
->
-
-[!INCLUDE [backup-upgrade-mars-agent.md](../../includes/backup-upgrade-mars-agent.md)]
-
-## <a name="modify-the-backup-schedule"></a>修改備份排程
-1. 在 Microsoft Azure 備份代理程式中，按一下 [排程備份] 。
-
-    ![Windows Server 備份排程](./media/backup-azure-manage-windows-server/schedule-backup.png)
-2. 在**排程備份精靈**中，讓 [變更備份項目或時間] 選項保留選取狀態，然後按 [下一步]。
-
-    ![Windows Server 備份排程](./media/backup-azure-manage-windows-server/modify-or-stop-a-scheduled-backup.png)
-3. 如果您想要新增或變更項目，在 [選取要備份的項目] 畫面中按一下 [新增項目]。
-
-    您也可以在這個精靈頁面中設定 [排除設定]  。 如果您想要排除檔案或檔案類型，請參閱新增 [排除設定](#manage-exclusion-settings)的程序。
-4. 選取要備份的檔案和資料夾，然後按一下 [確定] 。
-
-    ![Windows Server 備份排程](./media/backup-azure-manage-windows-server/add-items-modify.png)
-5. 指定 [備份排程]，然後按 [下一步]。
-
-    您可以排程每日 (一天最多 3 次) 或每週備份。
-
-    ![Windows Server 備份項目](./media/backup-azure-manage-windows-server/specify-backup-schedule-modify-close.png)
-
-   > [!NOTE]
-   > 這篇 [文章](backup-azure-backup-cloud-as-tape.md)中會詳細說明指定備份排程。
-   >
-
-6. 選取備份複本的 [保留原則]，然後按 [下一步]。
-
-    ![Windows Server 備份項目](./media/backup-azure-manage-windows-server/select-retention-policy-modify.png)
-7. 在 [確認] 畫面上檢閱資訊，然後按一下 [完成]。
-8. 當精靈完成 [備份排程] 的建立之後，按一下 [關閉]。
-
-    修改保護之後，您可以藉由移至 [工作]  索引標籤並確認變更反映於備份工作中，來確定可正確觸發備份。
-
-## <a name="enable-network-throttling"></a>啟用網路節流
-
-Azure 備份代理程式提供 [節流] 索引標籤，可讓您控制在資料傳輸期間使用網路頻寬的方式。 如果您需要在上班時間內備份資料，但不希望備份程序干擾其他網際網路流量，這樣的控制會很有幫助。 資料傳輸的節流適用於備份和還原活動。  
-
-啟用節流︰
-
-1. 在**備份代理程式**中，按一下 [變更屬性]。
-2. 在 [節流] 索引標籤上，選取 [啟用備份作業的網際網路頻寬使用節流功能]。
-
-    ![網路節流](./media/backup-azure-manage-windows-server/throttling-dialog.png)
-
-    一旦啟用節流之後，請指定允許在 [工作時間] 和 [非工作時間] 進行備份資料傳輸的頻寬。
-
-    頻寬值從每秒 512 KB (Kbps) 開始，並可高達每秒 1023 MB (Mbps)。 您也可以指定 [工作時間] 的開始和完成時間，以及一週中有哪幾天視為工作天。 指定工作時間以外的時間會視為非工作時間。
-3. 按一下 [SERVICEPRINCIPAL] 。
-
-## <a name="manage-exclusion-settings"></a>管理排除設定
-1. 開啟 **Microsoft Azure 備份代理程式** (透過在電腦中搜尋「Microsoft Azure 備份」即可找到)。
-
-    ![Windows Server 備份排程](./media/backup-azure-manage-windows-server/snap-in-search.png)
-2. 在 Microsoft Azure 備份代理程式中，按一下 [排程備份] 。
-
-    ![Windows Server 備份排程](./media/backup-azure-manage-windows-server/schedule-backup.png)
-3. 在排程備份精靈中，讓 [變更備份項目或時間] 選項保留選取狀態，然後按 [下一步]。
-
-    ![Windows Server 備份排程](./media/backup-azure-manage-windows-server/modify-or-stop-a-scheduled-backup.png)
-4. 按一下 [排除設定] 。
-
-    ![Windows Server 備份排程](./media/backup-azure-manage-windows-server/exclusion-settings.png)
-5. 按一下 [新增排除] 。
-
-    ![Windows Server 備份排程](./media/backup-azure-manage-windows-server/add-exclusion.png)
-6. 選取位置，然後按一下 [確定] 。
-
-    ![Windows Server 備份排程](./media/backup-azure-manage-windows-server/exclusion-location.png)
-7. 在 [檔案類型]  欄位中新增副檔名。
-
-    ![Windows Server 備份排程](./media/backup-azure-manage-windows-server/exclude-file-type.png)
-
-    新增 .mp3 副檔名
-
-    ![Windows Server 備份排程](./media/backup-azure-manage-windows-server/exclude-mp3.png)
-
-    若要新增其他副檔名，可按一下 [新增排除]  ，然後輸入另一個副檔名 (新增 .jpeg 副檔名)。
-
-    ![Windows Server 備份排程](./media/backup-azure-manage-windows-server/exclude-jpg.png)
-8. 當您已新增所有副檔名之後，按一下 [確定] 。
-9. 按 [下一步] 繼續執行排程備份精靈， 直到出現 [確認] 頁面，然後按一下 [完成]。
-
-    ![Windows Server 備份排程](./media/backup-azure-manage-windows-server/finish-exclusions.png)
 
 ## <a name="frequently-asked-questions"></a>常見問題集
-**Q1.備份作業狀態在 Azure 備份代理程式中顯示為已完成，但為何不會立即反映在入口網站中？**
 
-A1. Azure 備份代理程式與 Azure 入口網站中反映的備份作業狀態之間最多有 15 分鐘的延遲。
+**Q1.Azure 備份代理程式作業狀態需要多久時間才會反映在入口網站中？**
 
-**Q.2 當備份作業失敗時，需要多久的時間才會引發警示？**
+A1. Azure 入口網站最多可能需要 15 分鐘，才會反映 Azure 備份代理程式作業狀態。
 
-A.2 在 Azure 備份失敗的 20 分鐘內就會引發警示。
+**Q2.當備份作業失敗時，需要多久的時間才會引發警示？**
+
+A2. 在 Azure 備份失敗的 20 分鐘內就會引發警示。
 
 **Q3.是否會有已設定通知但不會傳送電子郵件的情況？**
 
-A3. 以下是不傳送通知以便減少警示雜訊的案例︰
+A3. 是。 在下列情況下，不會傳送通知。
 
-* 如果通知設為每小時，而且在一小時內引發警示並加以解決，
-* 作業便會取消。
-* 第二個備份作業會失敗，因為原始的備份作業正在進行中。
+* 如果通知設為每小時，而且在一小時內引發警示並加以解決
+* 作業遭到取消時
+* 如果第二項備份作業失敗，因為原始備份作業正在進行中
 
 ## <a name="troubleshooting-monitoring-issues"></a>疑難排解監視問題
-**問題︰**來自 Azure 備份代理程式的作業與警示未出現在入口網站中。
+
+**問題︰** 來自 Azure 備份代理程式的作業與警示未出現在入口網站中。
 
 **疑難排解步驟︰**```OBRecoveryServicesManagementAgent``` 程序會將作業和警示資料傳送至 Azure 備份服務。 此程序可能偶爾會卡住或關閉。
 
-1. 若要確認此程序不在執行中，請開啟 [工作管理員] 並檢查 ```OBRecoveryServicesManagementAgent``` 程序是否正在執行中。
-2. 假設此程序不在執行中，請開啟 [控制台] 並瀏覽服務清單。 啟動或重新啟動 **Microsoft Azure 復原服務管理代理程式**。
+1. 若要確認此程序不在執行中，請開啟 [工作管理員]，然後檢查 ```OBRecoveryServicesManagementAgent``` 是否正在執行中。
+
+2. 如果此程序不在執行中，請開啟 [控制台]，然後瀏覽服務清單。 啟動或重新啟動 **Microsoft Azure 復原服務管理代理程式**。
 
     如需進一步資訊，請瀏覽以下位置的記錄檔：<br/>
    例如 `<AzureBackup_agent_install_folder>\Microsoft Azure Recovery Services Agent\Temp\GatewayProvider*`：<br/>

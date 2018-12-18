@@ -1,11 +1,11 @@
 ---
-title: "Azure CLI 指令碼範例 - 取得 Azure Redis 快取的詳細資料 | Microsoft Docs"
-description: "Azure CLI 指令碼範例 - 取得 Azure Redis 快取的詳細資料"
+title: Azure CLI 指令碼範例 - 取得 Azure Redis 快取的詳細資料 | Microsoft Docs
+description: Azure CLI 指令碼範例 - 取得 Azure Redis 快取的詳細資料
 services: redis-cache
-documentationcenter: 
+documentationcenter: ''
 author: wesmc7777
 manager: cfowler
-editor: 
+editor: ''
 tags: azure-service-management
 ms.assetid: 155924e6-00d5-4a8c-ba99-5189f300464a
 ms.service: cache-redis
@@ -20,6 +20,7 @@ ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 03/09/2018
+ms.locfileid: "29846242"
 ---
 # <a name="get-details-of-an-azure-redis-cache"></a>取得 Azure Redis 快取的詳細資料
 

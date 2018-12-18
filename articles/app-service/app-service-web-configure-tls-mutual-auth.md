@@ -1,8 +1,8 @@
 ---
-title: "如何設定 Web 應用程式的 TLS 相互驗證"
-description: "了解如何設定 Web 應用程式在 TLS 上使用用戶端憑證驗證。"
+title: 如何設定 Web 應用程式的 TLS 相互驗證
+description: 了解如何設定 Web 應用程式在 TLS 上使用用戶端憑證驗證。
 services: app-service
-documentationcenter: 
+documentationcenter: ''
 author: naziml
 manager: erikre
 editor: jimbe
@@ -14,11 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/08/2016
 ms.author: naziml
-ms.openlocfilehash: db69852cffd1ff331ac4a640b04ea4360d00bf75
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 894a77be05de131ab122f18c62d209e9829357f9
+ms.sourcegitcommit: 7208bfe8878f83d5ec92e54e2f1222ffd41bf931
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 07/14/2018
+ms.locfileid: "39056203"
 ---
 # <a name="how-to-configure-tls-mutual-authentication-for-web-app"></a>如何設定 Web 應用程式的 TLS 相互驗證
 ## <a name="overview"></a>概觀
@@ -31,7 +32,7 @@ ms.lasthandoff: 10/11/2017
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
 ## <a name="configure-web-app-for-client-certificate-authentication"></a>設定 Web 應用程式進行用戶端憑證驗證
-若要設定 Web 應用程式要求用戶端憑證，則您需要為 Web 應用程式加入 clientCertEnabled 網站設定，並將它設為 true。 此設定目前無法透過入口網站中的管理經驗使用，而且需要使用 REST API 才能完成這項作業。
+若要設定 Web 應用程式要求用戶端憑證，則您需要為 Web 應用程式新增 clientCertEnabled 網站設定，並將它設定為 true。 此設定也可以設定於 Azure 入口網站的 [SSL 憑證] 刀鋒視窗中。
 
 您可以使用 [ARMClient 工具](https://github.com/projectkudu/ARMClient) ，輕鬆地製作 REST API 呼叫。 使用此工具登入之後，需要發出下列命令：
 
@@ -46,11 +47,11 @@ ms.lasthandoff: 10/11/2017
         }
     }
 
-請一定要將 "location" 的值變更為您 Web 應用程式所在的位置 (例如 North Central US 或 West US 等)。
+請務必將 "location" 的值變更為您 Web 應用程式所在的位置 (例如美國中北部或美國西部等)。
 
 您也可以使用 https://resources.azure.com，將 `clientCertEnabled` 屬性翻轉為 `true`。
 
-> **附註︰**如果您從 Powershell 執行 ARMClient，您必須使用重音符 ` 為 JSON 檔案逸出 @ 符號。
+> **附註︰** 如果您從 Powershell 執行 ARMClient，您必須使用重音符 ` 為 JSON 檔案逸出 \@ 符號。
 > 
 > 
 

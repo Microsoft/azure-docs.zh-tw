@@ -1,90 +1,105 @@
+items:
 - name: Azure 受控應用程式文件
   href: index.yml
 - name: 概觀
   items:
-    - name: Azure 受控應用程式
-      href: overview.md
+  - name: Azure 受控應用程式
+    href: overview.md
 - name: 快速入門
-  expanded: true
   items:
-    - name: 建立受控應用程式
-      href: managed-apps-quickstart-cli.md
+  - name: 建立受控應用程式
+    href: managed-apps-quickstart-cli.md
+  expanded: true
 - name: 教學課程
   items:
-    - name: 建立受控應用程式檔案
-      href: publish-service-catalog-app.md
-    - name: 建立 Marketplace 應用程式
-      href: publish-marketplace-app.md
+  - name: 建立受控應用程式檔案
+    href: publish-service-catalog-app.md
+  - name: 建立 Marketplace 應用程式
+    href: publish-marketplace-app.md
 - name: 範例
   items:
-    - name: Azure CLI
-      href: cli-samples.md
-    - name: Azure PowerShell
-      href: powershell-samples.md
-    - name: 受控應用程式解決方案
-      href: sample-projects.md
+  - name: Azure CLI
+    href: cli-samples.md
+  - name: Azure PowerShell
+    href: powershell-samples.md
+  - name: 受控應用程式解決方案
+    href: sample-projects.md
 - name: 使用說明指南
   items:
-    - name: 定義使用者介面
-      href: create-uidefinition-overview.md
-    - name: 更新受控資源
-      href: update-managed-resources.md
-    - name: 使用入口網站發佈
-      href: publish-portal.md
+  - name: 建立入口網站介面
+    href: create-uidefinition-overview.md
+  - name: 測試入口網站介面
+    href: test-createuidefinition.md
+  - name: 更新受控資源
+    href: update-managed-resources.md
+  - name: 使用入口網站發佈
+    href: publish-portal.md
+  - name: 使用 Key Vault 中的祕密
+    href: key-vault-access.md
 - name: 參考
   items:
-    - name: Azure CLI
-      href: /cli/azure/managedapp
-    - name: PowerShell
-      href: /powershell/module/azurerm.resources
-    - name: REST
-      href: /rest/api/resources/
-    - name: 使用者介面功能
-      href: create-uidefinition-functions.md
-    - name: 使用者介面元素
-      href: create-uidefinition-elements.md
+  - name: Azure CLI
+    href: /cli/azure/managedapp
+  - name: PowerShell
+    href: /powershell/module/azurerm.resources
+  - name: REST
+    href: /rest/api/resources/
+  - name: 使用者介面功能
+    href: create-uidefinition-functions.md
+  - name: 使用者介面元素
+    href: create-uidefinition-elements.md
+    items:
+    - name: 一般
       items:
-        - name: 一般
-          items:
-            - name: DropDown
-              href: microsoft-common-dropdown.md
-            - name: FileUpload
-              href: microsoft-common-fileupload.md
-            - name: OptionsGroup
-              href: microsoft-common-optionsgroup.md
-            - name: PasswordBox
-              href: microsoft-common-passwordbox.md
-            - name: 區段
-              href: microsoft-common-section.md
-            - name: TextBox
-              href: microsoft-common-textbox.md
-        - name: 計算
-          items:
-            - name: CredentialsCombo
-              href: microsoft-compute-credentialscombo.md
-            - name: SizeSelector
-              href: microsoft-compute-sizeselector.md
-            - name: UserNameTextBox
-              href: microsoft-compute-usernametextbox.md
-        - name: 網路
-          items:
-            - name: PublicIPAddressCombo
-              href: microsoft-network-publicipaddresscombo.md
-            - name: VirtualNetworkCombo
-              href: microsoft-network-virtualnetworkcombo.md
-        - name: 儲存體
-          items:
-            - name: MultiStorageAccountCombo
-              href: microsoft-storage-multistorageaccountcombo.md
-            - name: StorageAccountSelector
-              href: microsoft-storage-storageaccountselector.md
+      - name: DropDown
+        href: microsoft-common-dropdown.md
+      - name: FileUpload
+        href: microsoft-common-fileupload.md
+      - name: InfoBox
+        href: microsoft-common-infobox.md
+      - name: OptionsGroup
+        href: microsoft-common-optionsgroup.md
+      - name: PasswordBox
+        href: microsoft-common-passwordbox.md
+      - name: 區段
+        href: microsoft-common-section.md
+      - name: TextBlock
+        href: microsoft-common-textblock.md
+      - name: TextBox
+        href: microsoft-common-textbox.md
+    - name: 計算
+      items:
+      - name: CredentialsCombo
+        href: microsoft-compute-credentialscombo.md
+      - name: SizeSelector
+        href: microsoft-compute-sizeselector.md
+      - name: UserNameTextBox
+        href: microsoft-compute-usernametextbox.md
+    - name: 網路
+      items:
+      - name: PublicIPAddressCombo
+        href: microsoft-network-publicipaddresscombo.md
+      - name: VirtualNetworkCombo
+        href: microsoft-network-virtualnetworkcombo.md
+    - name: 儲存體
+      items:
+      - name: MultiStorageAccountCombo
+        href: microsoft-storage-multistorageaccountcombo.md
+      - name: StorageAccountSelector
+        href: microsoft-storage-storageaccountselector.md
 - name: 資源
   items:
-    - name: Azure 藍圖
-      href: 'https://azure.microsoft.com/roadmap/'
-    - name: 價格
-      href: 'https://azure.microsoft.com/pricing/details/managed-applications/'
-    - name: 定價計算機
-      href: 'https://azure.microsoft.com/pricing/calculator/'
-    - name: 堆疊溢位
-      href: 'http://stackoverflow.com/questions/tagged/azure-managedapps'
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/managed-applications/
+  - name: 定價計算機
+    href: https://azure.microsoft.com/pricing/calculator/
+  - name: 堆疊溢位
+    href: http://stackoverflow.com/questions/tagged/azure-managedapps
+ms.openlocfilehash: 03a385046c0f30932e6ba99fdce46fbdc9849eb6
+ms.sourcegitcommit: ce526d13cd826b6f3e2d80558ea2e289d034d48f
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/19/2018
+ms.locfileid: "46365293"

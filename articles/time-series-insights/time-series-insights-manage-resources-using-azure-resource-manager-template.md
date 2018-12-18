@@ -1,29 +1,28 @@
 ---
-title: "如何使用 Azure Resource Manager 範本管理 Azure 時間序列深入解析環境 | Microsoft Docs"
-description: "本文說明如何使用 Azure Resource Manager 以程式設計方式管理 Azure 時間序列深入解析環境。"
-services: time-series-insights
+title: 如何使用 Azure Resource Manager 範本管理 Azure 時間序列深入解析環境 | Microsoft Docs
+description: 本文說明如何使用 Azure Resource Manager 以程式設計方式管理 Azure 時間序列深入解析環境。
 ms.service: time-series-insights
-author: sandshadow
-ms.author: edett
-manager: jhubbard
-editor: MicrosoftDocs/tsidocs
-ms.reviewer: anshan
+services: time-series-insights
+author: ashannon7
+ms.author: anshan
+manager: cshankar
 ms.devlang: csharp
 ms.workload: big-data
-ms.topic: article
+ms.topic: conceptual
 ms.date: 12/08/2017
-ms.openlocfilehash: b09d4a1aea56a4e306f80a1b43d519d313fd73ab
-ms.sourcegitcommit: 0e4491b7fdd9ca4408d5f2d41be42a09164db775
+ms.openlocfilehash: 3ca9af8c2c504f75322e00fdaaeac9a3e727a820
+ms.sourcegitcommit: 4de6a8671c445fae31f760385710f17d504228f8
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/14/2017
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39627122"
 ---
 # <a name="create-time-series-insights-resources-using-azure-resource-manager-templates"></a>使用 Azure Resource Manager 範本建立時間序列深入解析資源
 
 本文說明如何使用 Azure Resource Manager 範本、PowerShell 和「時間序列深入解析」資源提供者來建立和部署「時間序列深入解析」資源。
 
 「時間序列深入解析」支援下列資源：
-   | 資源 | 描述 |
+   | 資源 | 說明 |
    | --- | --- |
    | 環境 | 「時間序列深入解析」環境是事件的一個邏輯化群組，那些事件則是從事件訊息代理程式讀取、儲存並用於查詢。 如需詳細資訊，請參閱[規劃 Azure 時間序列深入解析環境](time-series-insights-environment-planning.md) |
    | 事件來源 | 事件來源是與事件訊息代理程式的連線，「時間序列深入解析」會從該訊息代理程式讀取事件，並將事件內嵌到環境中。 目前支援的事件來源為 IoT 中樞和事件中樞。 |
@@ -88,19 +87,19 @@ Resource Manager 範本是一個 JSON 檔案，定義了資源群組中資源的
 
 #### <a name="required-parameters"></a>必要參數
 
-   | 參數 | 描述 |
+   | 參數 | 說明 |
    | --- | --- |
    | eventHubNamespaceName | 來源事件中樞的命名空間。 |
    | eventHubName | 來源事件中樞的名稱。 |
-   | consumerGroupName | 「時間序列深入解析」服務將用來從事件中樞讀取資料的取用者群組名稱。 **注意：**為避免資源爭用，此取用者群組必須專用於「時間序列深入解析」服務，而不和其他讀取者共用。 |
+   | consumerGroupName | 「時間序列深入解析」服務將用來從事件中樞讀取資料的取用者群組名稱。 **注意：** 為避免資源爭用，此取用者群組必須專用於「時間序列深入解析」服務，而不和其他讀取者共用。 |
    | environmentName | 環境的名稱。 名稱不得包含：'<', '>', '%', '&', ':', '\\', '?', '/' 和任何控制字元。 允許所有其他字元。|
    | eventSourceName | 事件來源子系資源的名稱。 名稱不得包含：'<', '>', '%', '&', ':', '\\', '?', '/' 和任何控制字元。 允許所有其他字元。 |
 
 #### <a name="optional-parameters"></a>選擇性參數
 
-   | 參數 | 描述 |
+   | 參數 | 說明 |
    | --- | --- |
-   | existingEventHubResourceId | 現有事件中樞的選擇性資源識別碼，將透過事件來源連線至「時間序列深入解析」環境。 **注意：**部署範本的使用者必須擁有在事件中樞中執行 listkey 作業的權限。 如果沒有傳遞任何值，將會由範本建立新的事件中樞。 |
+   | existingEventHubResourceId | 現有事件中樞的選擇性資源識別碼，將透過事件來源連線至「時間序列深入解析」環境。 **注意：** 部署範本的使用者必須擁有在事件中樞中執行 listkey 作業的權限。 如果沒有傳遞任何值，將會由範本建立新的事件中樞。 |
    | environmentDisplayName | 要在工具或使用者介面中顯示的選擇性易記名稱，而不是環境名稱。 |
    | environmentSkuName | SKU 的名稱。 如需詳細資訊，請參閱[時間序列深入解析定價頁面](https://azure.microsoft.com/pricing/details/time-series-insights/)。  |
    | environmentSkuCapacity | SKU 的單位容量。 如需詳細資訊，請參閱[時間序列深入解析定價頁面](https://azure.microsoft.com/pricing/details/time-series-insights/)。|
@@ -153,7 +152,7 @@ Resource Manager 範本是一個 JSON 檔案，定義了資源群組中資源的
 從 PowerShell 提示字元中執行下列命令：
 
 ```powershell
-Login-AzureRmAccount
+Connect-AzureRmAccount
 ```
 
 系統會提示您登入您的 Azure 帳戶。 登入之後，執行下列命令以檢視可用的訂用帳戶：
@@ -188,7 +187,7 @@ ResourceId        : /subscriptions/<GUID>/resourceGroups/MyDemoRG
 
 ### <a name="test-the-deployment"></a>測試部署
 
-執行 `Test-AzureRmResourceGroupDeployment` Cmdlet 以驗證部署。 測試部署時，請提供與執行部署時完全一致的參數。
+執行 `Test-AzureRmResourceGroupDeployment` Cmdlet 驗證部署。 測試部署時，請提供與執行部署時完全一致的參數。
 
 ```powershell
 Test-AzureRmResourceGroupDeployment -ResourceGroupName MyDemoRG -TemplateFile <path to template file>\azuredeploy.json -TemplateParameterFile <path to parameters file>\azuredeploy.parameters.json
@@ -196,7 +195,7 @@ Test-AzureRmResourceGroupDeployment -ResourceGroupName MyDemoRG -TemplateFile <p
 
 ### <a name="create-the-deployment"></a>建立部署
 
-若要建立新的部署，請執行 `New-AzureRmResourceGroupDeployment` Cmdlet，並於提示出現時提供必要的參數。 參數會包含部署的名稱、資源群組的名稱，以及範本檔案的路徑或 URL。 如未指定 **Mode** 參數，即會使用預設值 **Incremental**。 如需詳細資訊，請參閱[累加部署與完整部署](../azure-resource-manager/resource-group-template-deploy.md#incremental-and-complete-deployments)。
+若要建立新的部署，請執行 `New-AzureRmResourceGroupDeployment` Cmdlet，並於提示出現時提供必要的參數。 參數會包含部署的名稱、資源群組的名稱，以及範本檔案的路徑或 URL。 如未指定 **Mode** 參數，即會使用預設值 **Incremental**。 如需詳細資訊，請參閱[累加部署與完整部署](../azure-resource-manager/deployment-modes.md)。
 
 以下命令會提示您在 PowerShell 視窗中輸入五個必要參數︰
 
@@ -216,7 +215,7 @@ New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -ResourceGroupName MyD
 New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -ResourceGroupName MyDemoRG -TemplateFile <path to template file>\azuredeploy.json -parameterName "parameterValue"
 ```
 
-若要執行[完整](../azure-resource-manager/resource-group-template-deploy.md#incremental-and-complete-deployments)部署，請將 **Mode** 參數設定為 **Complete**：
+若要執行[完整](../azure-resource-manager/deployment-modes.md)部署，請將 **Mode** 參數設為 **Complete**：
 
 ```powershell
 New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -Mode Complete -ResourceGroupName MyDemoRG -TemplateFile <path to template file>\azuredeploy.json
@@ -266,7 +265,8 @@ Outputs                 :
 
 GitHub 上快速入門範本的首頁也包括一個 [部署至 Azure] 按鈕。 按一下它即可在 Azure 入口網站中開啟一個 [自訂部署] 頁面。 您可以從這個頁面的[必要參數](time-series-insights-manage-resources-using-azure-resource-manager-template.md#required-parameters)或[選擇性參數](time-series-insights-manage-resources-using-azure-resource-manager-template.md#optional-parameters)表格輸入或選擇 每個參數的值。 填好設定值之後，按一下 [購買] 按鈕就會起始範本部署。
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-timeseriesinsights-environment-with-eventhub%2Fazuredeploy.json" target="_blank"> <img src="http://azuredeploy.net/deploybutton.png"/>
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-timeseriesinsights-environment-with-eventhub%2Fazuredeploy.json" target="_blank">
+    <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
 ## <a name="next-steps"></a>後續步驟

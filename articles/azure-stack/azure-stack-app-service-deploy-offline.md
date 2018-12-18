@@ -12,20 +12,21 @@ ms.workload: app-service
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/09/2018
+ms.date: 08/15/2018
 ms.author: anwestg
-ms.openlocfilehash: 7a44c5d182aa3c66c07c3dad8c82e171429f2ee4
-ms.sourcegitcommit: a0be2dc237d30b7f79914e8adfb85299571374ec
+ms.openlocfilehash: 9e36e470c3516c55089ce1e44540b6b1eacbb6b2
+ms.sourcegitcommit: 744747d828e1ab937b0d6df358127fcf6965f8c8
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/12/2018
+ms.lasthandoff: 08/16/2018
+ms.locfileid: "41954839"
 ---
 # <a name="add-an-app-service-resource-provider-to-a-disconnected-azure-stack-environment-secured-by-ad-fs"></a>將 App Service 資源提供者新增至中斷連線且受 AD FS 保護的 Azure Stack 環境
 
 *適用於：Azure Stack 整合系統和 Azure Stack 開發套件*
 
 > [!IMPORTANT]
-> 在部署 Azure App Service 之前，請先將 1802 更新套用到您的 Azure Stack 整合式系統，或部署最新的 Azure Stack 開發套件。
+> 在部署 Azure App Service 1.3 之前，請先將 1807 更新套用到您的 Azure Stack 整合式系統，或部署最新的 Azure Stack 開發套件。
 >
 >
 
@@ -73,14 +74,20 @@ ms.lasthandoff: 03/12/2018
 
 5. 檢閱並接受協力廠商授權條款，然後按 [下一步]。
 
-6. 請確定 App Service 雲端組態資訊正確。 如果您在 Azure Stack 開發套件部署期間使用了預設設定，在這裡可以接受預設值。 不過，如果您在部署 Azure Stack 時已自訂選項，或是要部署在整合式系統上，則必須編輯此視窗中的值來反映該情況。 例如，如果您使用網域尾碼 mycloud.com，您的 Azure Stack 租用戶 Azure Resource Manager 端點就必須變更為 management.<region>.mycloud.com。確認您的資訊之後，按 [下一步]。
+6. 請確定 App Service 雲端組態資訊正確。 如果您在 Azure Stack 開發套件部署期間使用了預設設定，在這裡可以接受預設值。 不過，如果您在部署 Azure Stack 時已自訂選項，或是要部署在整合式系統上，則必須編輯此視窗中的值來反映該情況。 例如，如果您使用網域尾碼 mycloud.com，您的 Azure Stack 租用戶 Azure Resource Manager 端點就必須變更為 management.<region>.mycloud.com。 確認您的資訊之後，按 [下一步]。
 
     ![App Service 安裝程式][3]
 
 7. 在下一個頁面上：
     1. 按一下 [Azure Stack 訂用帳戶] 方塊旁邊的 [連線] 按鈕。
         - 提供您的管理帳戶。 例如： cloudadmin@azurestack.local。 輸入您的密碼，然後按一下 [登入]。
-    2. 在 [Azure Stack 訂用帳戶] 方塊中，選取您的訂用帳戶。
+    2. 在 [Azure Stack 訂用帳戶] 方塊中，選取 [預設提供者訂用帳戶]。
+    
+    > [!NOTE]
+    > 目前，App Service 只能部署到**預設提供者訂用帳戶**。  在未來的更新中，App Service 會部署至 Azure Stack 1804 所導入的新計量訂用帳戶，而且現有部署也全都會遷移至這個新的訂用帳戶。
+    >
+    >
+    
     3. 在 [Azure Stack 位置] 方塊中，選取對應到您要部署之區域的位置。 例如，如果要部署至 Azure Stack 開發套件，請選取 [本機]。
     4. 按 [下一步] 。
 
@@ -96,12 +103,12 @@ ms.lasthandoff: 03/12/2018
 
     ![App Service 安裝程式][5]
 
-9. 輸入檔案共用的資訊，然後按 [下一步]。 檔案共用的位址必須使用檔案伺服器的完整網域名稱或 IP 位址。 例如，\\\appservicefileserver.local.cloudapp.azurestack.external\websites 或 \\\10.0.0.1\websites。
+9. 輸入檔案共用的資訊，然後按 [下一步]。 檔案共用的位址必須使用檔案伺服器的完整網域名稱或 IP 位址。 例如，\\\appservicefileserver.local.cloudapp.azurestack.external\websites 或 \\\10.0.0.1\websites
 
-> [!NOTE]
-> 在繼續進行之前，安裝程式會先嘗試測試是否能夠與檔案共用連線。  不過，如果您已選擇在現有的虛擬網路中部署，安裝程式可能會無法連線至檔案共用，而會顯示警告來詢問您是否要繼續進行。  請確認檔案共用資訊，如果正確，便繼續進行。
->
->
+    > [!NOTE]
+    > 在繼續進行之前，安裝程式會先嘗試測試是否能夠與檔案共用連線。  不過，如果您已選擇在現有的虛擬網路中部署，安裝程式可能會無法連線至檔案共用，而會顯示警告來詢問您是否要繼續進行。  請確認檔案共用資訊，如果正確，便繼續進行。
+    >
+    >
 
    ![App Service 安裝程式][8]
 
@@ -126,16 +133,26 @@ ms.lasthandoff: 03/12/2018
 
     ![App Service 安裝程式][11]
 
-12. 針對用來裝載 App Service 資源提供者資料庫的伺服器執行個體，輸入 SQL Server 詳細資料，然後按 [下一步]。 按 [下一步]，安裝程式即會驗證 SQL 連線屬性。
+12. 針對用來裝載 App Service 資源提供者資料庫的伺服器執行個體，輸入 SQL Server 詳細資料，然後按 [下一步]。 按 [下一步]，安裝程式即會驗證 SQL 連線屬性。 您**必須**輸入內部 ip 或 SQL Server 名稱的完整網域名稱。
 
-> [!NOTE]
-> 在繼續進行之前，安裝程式會先嘗試測試是否能夠與 SQL Server 連線。  不過，如果您已選擇在現有的虛擬網路中部署，安裝程式可能會無法連線至 SQL Server，而會顯示警告來詢問您是否要繼續進行。  請確認 SQL Server 資訊，如果正確，便繼續進行。
->
->
+    > [!NOTE]
+    > 在繼續進行之前，安裝程式會先嘗試測試是否能夠與 SQL Server 連線。  不過，如果您已選擇在現有的虛擬網路中部署，安裝程式可能會無法連線至 SQL Server，而會顯示警告來詢問您是否要繼續進行。  請確認 SQL Server 資訊，如果正確，便繼續進行。
+    >
+    > 從 Azure App Service on Azure Stack 1.3 開始，安裝程式將會檢查 SQL Server 是否已在 SQL Server 層級啟用資料庫的內含項目。  如果未啟用，系統將會以下列例外狀況提示您：
+    > ```sql
+    >    Enable contained database authentication for SQL server by running below command on SQL server (Ctrl+C to copy)
+    >    ***********************************************************
+    >    sp_configure 'contained database authentication', 1;  
+    >    GO  
+    >    RECONFIGURE;  
+    >    GO
+    >    ***********************************************************
+    > ```
+    > 如需更多詳細資料，請參閱 [Azure App Service on Azure Stack 1.3 的版本資訊](azure-stack-app-service-release-notes-update-three.md)。
    
    ![App Service 安裝程式][12]
 
-13. 檢閱角色執行個體和 SKU 選項。 填入的預設值為 ASDK 部署中每個角色的最少執行個體數目和最低 SKU。 系統會提供 vCPU 和記憶體的需求摘要，以協助您規劃部署。 進行選擇之後，按一下 [下一步]。
+13. 檢閱角色執行個體和 SKU 選項。 填入的預設值為「ASDK 部署」中每個角色的執行個體數目下限和最低 SKU。 系統會提供 vCPU 和記憶體的需求摘要，以協助您規劃部署。 進行選擇之後，按一下 [下一步]。
 
      > [!NOTE]
      > 針對生產環境部署，請依照 [Azure Stack 中的 Azure App Service 伺服器角色容量規劃](azure-stack-app-service-capacity-planning.md)中的指引進行操作。
@@ -144,8 +161,8 @@ ms.lasthandoff: 03/12/2018
 
     | 角色 | 最少執行個體 | 最低 SKU | 注意 |
     | --- | --- | --- | --- |
-    | Controller | 1 | Standard_A1 - (1 vCPU, 1792 MB) | 管理及維護 App Service 雲端的健全狀況。 |
-    | 管理 | 1 | Standard_A2 - (2 vCPUs, 3584 MB) | 管理 App Service Azure Resource Manager 和 API 端點、入口網站擴充功能 (管理員、租用戶、Functions 入口網站)，以及資料服務。 為了支援容錯移轉，已將建議的執行個體增加為 2 個。 |
+    | Controller | 1 | Standard_A2 - (2 vCPU, 3584 MB) | 管理及維護 App Service 雲端的健全狀況。 |
+    | 管理性 | 1 | Standard_A2 - (2 vCPUs, 3584 MB) | 管理 App Service Azure Resource Manager 和 API 端點、入口網站擴充功能 (管理員、租用戶、Functions 入口網站)，以及資料服務。 為了支援容錯移轉，已將建議的執行個體增加為 2 個。 |
     | 發行者 | 1 | Standard_A1 - (1 vCPU, 1792 MB) | 透過 FTP 和 Web 部署發佈內容。 |
     | FrontEnd | 1 | Standard_A1 - (1 vCPU, 1792 MB) | 將要求傳送至 App Service 應用程式。 |
     | 共用背景工作 | 1 | Standard_A1 - (1 vCPU, 1792 MB) | 裝載 Web 或 API 應用程式和 Azure Functions 應用程式。 建議您新增更多執行個體。 身為操作員，您可以定義您的供應項目，並選擇任何 SKU 層。 各層必須具有至少一個 vCPU。 |
@@ -153,7 +170,7 @@ ms.lasthandoff: 03/12/2018
     ![App Service 安裝程式][14]
 
     > [!NOTE]
-    > **Windows Server 2016 Core 不是支援的平台映像，無法與 Azure Stack 上的 Azure App Service 搭配使用。請勿將評估映像用於生產環境部署。**
+    > **Windows Server 2016 Core 不是支援的平台映像，無法與 Azure Stack 上的 Azure App Service 搭配使用。請勿將評估映像用於生產環境部署。Azure App Service on Azure Stack 要求在用於部署的映像上必須啟用 Microsoft.Net 3.5.1 SP1。 市集摘要整合的 Windows Server 2016 映像並未啟用此功能。**
 
 14. 在 [選取平台映像] 方塊中，從可以在適用於 App Service 雲端的運算資源提供者的可用映像中，選擇您的部署 Windows Server 2016 虛擬機器映像。 按 [下一步] 。
 
@@ -184,6 +201,19 @@ ms.lasthandoff: 03/12/2018
 2. 在狀態下的概觀，查看 [狀態]是否顯示為 [所有角色都已準備完成]。
 
     ![App Service 管理](media/azure-stack-app-service-deploy/image12.png)
+    
+> [!NOTE]
+> 如果您已選擇部署到現有的虛擬網路和內部 IP 位址以連線到您的檔案伺服器，便必須新增輸出安全性規則，以在背景工作角色子網路與檔案伺服器之間啟用 SMB 流量。  若要這樣做，請移至管理入口網站中的 WorkersNsg，然後使用下列屬性新增輸出安全性規則：
+> * 來源：任何
+> * 來源連接埠範圍：*
+> * 目的地：IP 位址
+> * 目的地 IP 位址範圍：檔案伺服器的 IP 範圍
+> * 目的地連接埠範圍：445
+> * 通訊協定：TCP
+> * 動作：允許
+> * 優先順序：700
+> * 名稱：Outbound_Allow_SMB445
+>
 
 ## <a name="test-drive-app-service-on-azure-stack"></a>測試 Azure Stack 上的 App Service
 

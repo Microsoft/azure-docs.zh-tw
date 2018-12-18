@@ -1,0 +1,194 @@
+items:
+- name: 電腦視覺 API 文件
+  href: index.yml
+- name: 概觀
+  items:
+  - name: 什麼是電腦視覺？
+    href: Home.md
+  expanded: true
+- name: 快速入門
+  items:
+  - name: 使用 REST API
+    items:
+    - name: 分析遠端影像
+      items:
+      - name: cURL
+        href: QuickStarts/curl-analyze.md
+      - name: Go
+        href: QuickStarts/go-analyze.md
+      - name: Java
+        href: QuickStarts/java-analyze.md
+      - name: JavaScript
+        href: QuickStarts/javascript-analyze.md
+      - name: Node.js
+        href: QuickStarts/node-analyze.md
+      - name: PHP
+        href: QuickStarts/php-analyze.md
+      - name: Python
+        href: QuickStarts/python-analyze.md
+      - name: Ruby
+        href: QuickStarts/ruby-analyze.md
+    - name: 分析本機影像
+      items:
+      - name: C#
+        href: QuickStarts/CSharp-analyze.md
+      - name: Python
+        href: QuickStarts/python-disk.md
+    - name: 產生縮圖
+      items:
+      - name: C#
+        href: QuickStarts/CSharp-thumb.md
+      - name: cURL
+        href: QuickStarts/curl-thumb.md
+      - name: Go
+        href: QuickStarts/go-thumb.md
+      - name: Java
+        href: QuickStarts/java-thumb.md
+      - name: JavaScript
+        href: QuickStarts/javascript-thumb.md
+      - name: Node.js
+        href: QuickStarts/node-thumb.md
+      - name: PHP
+        href: QuickStarts/php-thumb.md
+      - name: Python
+        href: QuickStarts/python-thumb.md
+      - name: Ruby
+        href: QuickStarts/ruby-thumb.md
+    - name: 擷取列印的文字
+      items:
+      - name: C#
+        href: QuickStarts/CSharp-print-text.md
+      - name: cURL
+        href: QuickStarts/curl-print-text.md
+      - name: Go
+        href: QuickStarts/go-print-text.md
+      - name: Java
+        href: QuickStarts/java-print-text.md
+      - name: JavaScript
+        href: QuickStarts/javascript-print-text.md
+      - name: Node.js
+        href: QuickStarts/node-print-text.md
+      - name: PHP
+        href: QuickStarts/php-print-text.md
+      - name: Python
+        href: QuickStarts/python-print-text.md
+      - name: Ruby
+        href: QuickStarts/ruby-print-text.md
+    - name: 擷取手寫的文字
+      items:
+      - name: C#
+        href: QuickStarts/CSharp-hand-text.md
+      - name: Java
+        href: QuickStarts/java-hand-text.md
+      - name: JavaScript
+        href: QuickStarts/javascript-hand-text.md
+      - name: Python
+        href: QuickStarts/python-hand-text.md
+    - name: 使用領域模型
+      items:
+      - name: PHP
+        href: QuickStarts/php-domain.md
+      - name: Python
+        href: QuickStarts/python-domain.md
+  - name: 使用 .NET SDK
+    items:
+    - name: 分析影像
+      href: quickstarts-sdk/csharp-analyze-sdk.md
+    - name: 產生縮圖
+      href: quickstarts-sdk/csharp-thumb-sdk.md
+    - name: 擷取文字
+      href: quickstarts-sdk/csharp-hand-text-sdk.md
+- name: 教學課程
+  items:
+  - name: 建置映像處理應用程式
+    href: Tutorials/CSharpTutorial.md
+- name: 概念
+  items:
+  - name: 標記影像
+    href: concept-tagging-images.md
+  - name: 將影像分類
+    href: concept-categorizing-images.md
+  - name: 描述映像
+    href: concept-describing-images.md
+  - name: 偵測臉部
+    href: concept-detecting-faces.md
+  - name: 偵測影像類型
+    href: concept-detecting-image-types.md
+  - name: 偵測特定網域內容
+    href: concept-detecting-domain-content.md
+  - name: 偵測色彩配置
+    href: concept-detecting-color-schemes.md
+  - name: 產生縮圖
+    href: concept-generating-thumbnails.md
+  - name: 利用 OCR 擷取文字
+    href: concept-extracting-text-ocr.md
+  - name: 辨識印刷和手寫的文字
+    href: concept-recognizing-text.md
+  - name: 偵測成人和猥褻內容
+    href: concept-detecting-adult-content.md
+- name: 使用說明指南
+  items:
+  - name: 使用電腦視覺
+    items:
+    - name: Java
+      href: Tutorials/java-tutorial.md
+    - name: JavaScript
+      href: Tutorials/javascript-tutorial.md
+    - name: Python
+      href: Tutorials/PythonTutorial.md
+  - name: 取得訂用帳戶金鑰
+    href: Vision-API-How-to-Topics/HowToSubscribe.md
+  - name: 呼叫電腦視覺 API
+    href: Vision-API-How-to-Topics/HowToCallVisionAPI.md
+  - name: 使用電腦視覺連線服務
+    href: vs-computer-vision-connected-service.md
+  - name: 即時分析影片
+    href: Vision-API-How-to-Topics/HowtoAnalyzeVideo_Vision.md
+- name: 參考
+  items:
+  - name: Azure CLI
+    href: https://docs.microsoft.com/cli/azure/cognitiveservices?view=azure-cli-latest#az_cognitiveservices_list
+  - name: Azure PowerShell
+    href: https://aka.ms/azure-powershell-cognitiveservices
+  - name: 電腦視覺 API v2.0
+    href: https://westus.dev.cognitive.microsoft.com/docs/services/5adf991815e1060e6355ad44
+  - name: 電腦視覺 API v1.0
+    href: https://westus.dev.cognitive.microsoft.com/docs/services/56f91f2d778daf23d8ec6739
+  - name: SDK
+    items:
+    - name: Windows
+      href: https://github.com/Microsoft/Cognitive-vision-windows
+    - name: Node.js
+      href: https://docs.microsoft.com/javascript/api/overview/azure/cognitive-services?view=azure-node-latest#vision-modules
+    - name: Python
+      href: https://docs.microsoft.com/python/api/overview/azure/cognitive-services?view=azure-python#vision-modules
+    - name: Go
+      href: https://github.com/Azure/azure-sdk-for-go/tree/master/services/cognitiveservices/v1.0/computervision
+    - name: Android
+      href: https://github.com/Microsoft/Cognitive-vision-android
+    - name: Swift
+      href: https://github.com/DanilaVladi/Microsoft-Cognitive-Services-Swift-SDK
+- name: 資源
+  items:
+  - name: 範例
+    href: https://azure.microsoft.com/resources/samples/?service=cognitive-services&term=vision
+  - name: 常見問題集
+    href: FAQ.md
+  - name: 價格和限制
+    href: https://azure.microsoft.com/pricing/details/cognitive-services/computer-vision
+  - name: UserVoice
+    href: https://cognitive.uservoice.com/forums/430309-computer-vision-api
+  - name: 堆疊溢位
+    href: https://stackoverflow.com/questions/tagged/microsoft-cognitive
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/?category=ai-machine-learning
+  - name: 區域可用性
+    href: https://azure.microsoft.com/global-infrastructure/services/
+  - name: 類別分類法
+    href: Category-Taxonomy.md
+ms.openlocfilehash: 081e3b7d23b08afb7408e884142b1407637c5a7f
+ms.sourcegitcommit: 5c00e98c0d825f7005cb0f07d62052aff0bc0ca8
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49954870"

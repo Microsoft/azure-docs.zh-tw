@@ -1,24 +1,19 @@
 ---
-title: "SQL VM 到 Azure 搜尋服務的連線 | Microsoft Docs"
-description: "啟用加密的連線並設定防火牆，以允許在 Azure 虛擬機器 (VM) 上從 Azure 搜尋服務的索引子連接到 SQL Server。"
-services: search
-documentationcenter: 
+title: SQL VM 到 Azure 搜尋服務的連線 | Microsoft Docs
+description: 啟用加密的連線並設定防火牆，以允許在 Azure 虛擬機器 (VM) 上從 Azure 搜尋服務的索引子連接到 SQL Server。
 author: HeidiSteen
-manager: pablocas
-editor: 
-ms.assetid: 46e42e0e-c8de-4fec-b11a-ed132db7e7bc
+manager: cgronlun
+services: search
 ms.service: search
-ms.devlang: rest-api
-ms.workload: search
-ms.topic: article
-ms.tgt_pltfrm: na
+ms.topic: conceptual
 ms.date: 01/23/2017
 ms.author: heidist
-ms.openlocfilehash: bb61330ba5511955e0da16dcd5b8b19529d0e44b
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 7800e83891cb336bb896299b8fd4d6b3ba590178
+ms.sourcegitcommit: b6319f1a87d9316122f96769aab0d92b46a6879a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 05/20/2018
+ms.locfileid: "34366455"
 ---
 # <a name="configure-a-connection-from-an-azure-search-indexer-to-sql-server-on-an-azure-vm"></a>在 Azure VM 上設定從 Azure 搜尋服務索引子到 SQL Server 的連線
 如[使用索引子將 Azure SQL Database 連接至 Azure 搜尋服務](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md#faq)中所述，Azure 搜尋服務支援針對 **Azure VM 上的 SQL Server** (或簡稱 **SQL Azure VM**) 建立索引子，但必須先處理幾個安全性相關的必要條件。 
@@ -61,11 +56,11 @@ Azure 搜尋服務會針對透過公用網際網路連接的所有索引子要�
 下列連結提供 VM 部署的 NSG 組態相關指示。 使用下列 Azure 搜尋服務端點根據其 IP 位址的 ACL 指示。
 
 > [!NOTE]
-> 若為背景，請參閱 [什麼是網路安全性群組？](../virtual-network/virtual-networks-nsg.md)
+> 若為背景，請參閱 [什麼是網路安全性群組？](../virtual-network/security-overview.md)
 > 
 > 
 
-* 若為 **Resource Manager** VM，請參閱 [如何針對 ARM 部署建立 NSG](../virtual-network/virtual-networks-create-nsg-arm-pportal.md)。 
+* 若為 **Resource Manager** VM，請參閱 [如何針對 ARM 部署建立 NSG](../virtual-network/tutorial-filter-network-traffic.md)。 
 * 若為 **傳統** VM，請參閱 [如何針對傳統部署建立 NSG](../virtual-network/virtual-networks-create-nsg-classic-ps.md)。
 
 IP 位址可能會造成一些挑戰，如果您知道問題和可能的因應措施則可輕易克服。 其餘各節提供與 ACL 中的 IP 位址相關的問題處理建議。

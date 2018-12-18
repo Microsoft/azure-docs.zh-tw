@@ -2,25 +2,21 @@
 title: Azure Cosmos DB：如何使用 MongoDB API 來進行查詢？ | Microsoft Docs
 description: 了解如何使用適用於 Azure Cosmos DB 的 MongoDB API 來進行查詢
 services: cosmos-db
-documentationcenter: ''
-author: mimig1
-manager: jhubbard
-editor: ''
-tags: ''
-ms.assetid: ''
+author: SnehaGunda
+manager: kfile
 ms.service: cosmos-db
+ms.component: cosmosdb-mongo
 ms.devlang: na
 ms.topic: tutorial
-ms.tgt_pltfrm: na
-ms.workload: ''
 ms.date: 03/29/2018
-ms.author: mimig
+ms.author: sngun
 ms.custom: mvc
-ms.openlocfilehash: f47d250bbe6689e19dda5042b335ff1812a790d4
-ms.sourcegitcommit: 20d103fb8658b29b48115782fe01f76239b240aa
+ms.openlocfilehash: e941eb27e9c55f9a4b0e7af8d4cd8efa0220616b
+ms.sourcegitcommit: a5eb246d79a462519775a9705ebf562f0444e4ec
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2018
+ms.lasthandoff: 07/26/2018
+ms.locfileid: "39264455"
 ---
 # <a name="tutorial-query-azure-cosmos-db-by-using-the-mongodb-api"></a>教學課程：使用 MongoDB API 查詢 Azure Cosmos DB
 
@@ -31,9 +27,7 @@ Azure Cosmos DB [適用於 MongoDB 的 API](mongodb-introduction.md) 支援 [Mon
 > [!div class="checklist"]
 > * 使用 MongoDB 來查詢資料
 
-您可以從與 Azure Cosmos DB 程式管理員 Andy Hoh 一起觀賞這段有關查詢 MongoDB 的影片開始：
-
->[!VIDEO https://www.youtube.com/tVk8S7lFWMA]
+您可以開始使用此文件中的範例，並觀看[使用 MongoDB 殼層查詢 Azure Cosmos DB](https://azure.microsoft.com/resources/videos/query-azure-cosmos-db-data-by-using-the-mongodb-shell/)的視訊。
 
 ## <a name="sample-document"></a>範例文件
 

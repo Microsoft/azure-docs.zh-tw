@@ -3,7 +3,7 @@ title: Azure 服務匯流排與 Event Grid 的整合範例 | Microsoft Docs
 description: 本文提供服務匯流排傳訊與 Event Grid 的整合範例。
 services: service-bus-messaging
 documentationcenter: .net
-author: ChristianWolf42
+author: spelluru
 manager: timlt
 editor: ''
 ms.assetid: f99766cb-8f4b-4baf-b061-4b1e2ae570e4
@@ -13,12 +13,13 @@ ms.tgt_pltfrm: na
 ms.devlang: multiple
 ms.topic: get-started-article
 ms.date: 02/15/2018
-ms.author: chwolf
-ms.openlocfilehash: fd30a8eb5149647a24ff04e099bf5c3e187459ef
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.author: spelluru
+ms.openlocfilehash: ca4a6bfcc0f1041e76c07b3b240d7c641ef8f587
+ms.sourcegitcommit: cb61439cf0ae2a3f4b07a98da4df258bfb479845
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/05/2018
+ms.locfileid: "43699859"
 ---
 # <a name="azure-service-bus-to-azure-event-grid-integration-examples"></a>Azure 服務匯流排與 Azure Event Grid 的整合範例
 
@@ -32,7 +33,7 @@ ms.lasthandoff: 03/16/2018
 
 在此範例中，您會將訊息傳送至服務匯流排主題，然後確認已針對此服務匯流排訂用帳戶產生事件。 函式或邏輯應用程式會從服務匯流排訂用帳戶接收訊息，然後完成它。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 開始之前，請確定您已完成下面兩節中的步驟。
 
 ### <a name="create-a-service-bus-namespace"></a>建立服務匯流排命名空間
@@ -45,13 +46,13 @@ ms.lasthandoff: 03/16/2018
 
 1. 複製 [GitHub azure-service-bus 存放庫](https://github.com/Azure/azure-service-bus/)。
 
-2. 在 Visual Studio 中，移至 \samples\DotNet\Microsoft.ServiceBus.Messaging\ServiceBusEventGridIntegration 資料夾，然後開啟 SBEventGridIntegration.sln 檔案。
+1. 在 Visual Studio 中，移至 \samples\DotNet\Microsoft.ServiceBus.Messaging\ServiceBusEventGridIntegration 資料夾，然後開啟 SBEventGridIntegration.sln 檔案。
 
-3. 移至 **MessageSender** 專案，然後選取 **Program.cs**。
+1. 移至 **MessageSender** 專案，然後選取 **Program.cs**。
 
    ![8][]
 
-4. 填入主題名稱和連接字串，然後執行下列主控台應用程式程式碼：
+1. 填入主題名稱和連接字串，然後執行下列主控台應用程式程式碼：
 
     ```CSharp
     const string ServiceBusConnectionString = "YOUR CONNECTION STRING";
@@ -62,9 +63,9 @@ ms.lasthandoff: 03/16/2018
 
 在處理整個案例之前，至少設定一個小型測試函式，以便用來偵錯及觀察哪些事件正在流動。
 
-1. 在 Azure 入口網站中，建立新的 Azure Functions 應用程式。 若要了解 Azure Functions 的基本概念，請參閱 [Azure Functions 文件](https://docs.microsoft.com/en-us/azure/azure-functions/)。
+1. 在 Azure 入口網站中，建立新的 Azure Functions 應用程式。 若要了解 Azure Functions 的基本概念，請參閱 [Azure Functions 文件](https://docs.microsoft.com/azure/azure-functions/)。
 
-2. 在您新建立的函式中，選取加號 (+) 以新增 HTTP 觸發程序函式：
+1. 在您新建立的函式中，選取加號 (+) 以新增 HTTP 觸發程序函式：
 
     ![2][]
     
@@ -72,9 +73,9 @@ ms.lasthandoff: 03/16/2018
 
     ![3][]
 
-3. 選取 [Webhook + API] 按鈕，選取 [CSharp]，然後選取 [建立這個函式]。
+1. 選取 [Webhook + API] 按鈕，選取 [CSharp]，然後選取 [建立這個函式]。
  
-4. 將下列程式碼貼到函式中：
+1. 將下列程式碼貼到函式中：
 
     ```CSharp
     #r "Newtonsoft.Json"
@@ -120,7 +121,7 @@ ms.lasthandoff: 03/16/2018
     }
     ```
 
-5. 選取 [儲存並執行]。
+1. 選取 [儲存並執行]。
 
 ## <a name="connect-the-function-and-namespace-via-event-grid"></a>透過 Event Grid 連線函式和命名空間
 
@@ -132,16 +133,16 @@ ms.lasthandoff: 03/16/2018
 
     ![20][]
 
-2. 選取 [事件訂用帳戶]。  
+1. 選取 [事件訂用帳戶]。  
     [事件訂用帳戶] 視窗隨即開啟。 下圖顯示一個表單，可供訂閱 Azure 函式或 Webhook，而不需套用任何篩選條件。
 
     ![21][]
 
-3. 完成所示的表單，然後記得在 [尾碼篩選條件] 方塊中，輸入相關的篩選條件。
+1. 完成所示的表單，然後記得在 [尾碼篩選條件] 方塊中，輸入相關的篩選條件。
 
-4. 選取 [建立] 。
+1. 選取 [建立] 。
 
-5. 如「必要條件」一節所述，將傳送訊息至服務匯流排主題，並透過 Azure Functions 的 [監視] 功能來確認事件正在流動。
+1. 如「必要條件」一節所述，將傳送訊息至服務匯流排主題，並透過 Azure Functions 的 [監視] 功能來確認事件正在流動。
 
 下一個步驟是將函式與服務匯流排命名空間繫結在一起。 在此範例中，使用 Azure 入口網站。 若要了解如何使用 PowerShell 或 Azure CLI 來執行此步驟，請參閱 [Azure 服務匯流排與 Azure Event Grid 的整合概觀](service-bus-to-event-grid-integration-concept.md)。
 
@@ -159,26 +160,26 @@ ms.lasthandoff: 03/16/2018
 
     ![10][]
 
-2. 在下列程式碼中輸入您的連接字串：
+1. 在下列程式碼中輸入您的連接字串：
 
     ```Csharp
     const string ServiceBusConnectionString = "YOUR CONNECTION STRING";
     ```
 
-3. 在 Azure 入口網站中，針對您在「設定測試函式」一節中建立的 Azure 函式下載發行設定檔。
+1. 在 Azure 入口網站中，針對您在「設定測試函式」一節中建立的 Azure 函式下載發行設定檔。
 
     ![11][]
 
-4. 在 Visual Studio 中，以滑鼠右鍵按一下 [SBEventGridIntegration]，然後選取 [發佈]。 
+1. 在 Visual Studio 中，以滑鼠右鍵按一下 [SBEventGridIntegration]，然後選取 [發佈]。 
 
-5. 在您先前下載之發行設定檔的 [發佈] 窗格中，選取 [匯入設定檔]，然後選取 [發佈]。
+1. 在您先前下載之發行設定檔的 [發佈] 窗格中，選取 [匯入設定檔]，然後選取 [發佈]。
 
     ![12][]
 
-6. 發佈新的 Azure 函式之後，建立新的 Azure Event Grid 訂用帳戶，以指向新的 Azure 函式。  
+1. 發佈新的 Azure 函式之後，建立新的 Azure Event Grid 訂用帳戶，以指向新的 Azure 函式。  
     在 [結尾為] 方塊中，務必套用正確的篩選條件，這應該是您的服務匯流排訂用帳戶名稱。
 
-7. 將訊息傳送到您先前建立的 Azure 服務匯流排主題，然後在 Azure 入口網站中監視 Azure Functions 記錄，確保事件正在流動並已收到訊息。
+1. 將訊息傳送到您先前建立的 Azure 服務匯流排主題，然後在 Azure 入口網站中監視 Azure Functions 記錄，確保事件正在流動並已收到訊息。
 
     ![12-1][]
 
@@ -194,22 +195,22 @@ ms.lasthandoff: 03/16/2018
 
     ![14][]
 
-2. 透過下列方式新增您的資訊︰
+1. 透過下列方式新增您的資訊︰
 
     a. 在 [資源名稱] 方塊中，輸入您自己的命名空間名稱。 
 
     b. 在 [進階選項] 下的 [尾碼篩選條件] 方塊中，輸入您的訂用帳戶。
 
-3. 新增服務匯流排接收動作，以從主題訂用帳戶接收訊息。  
+1. 新增服務匯流排接收動作，以從主題訂用帳戶接收訊息。  
     最後一個動作如下圖所示：
 
     ![15][]
 
-4. 新增完整事件，如下圖所示：
+1. 新增完整事件，如下圖所示：
 
     ![16][]
 
-5. 如「必要條件」一節所述，儲存邏輯應用程式，並將訊息傳送至服務匯流排主題。  
+1. 如「必要條件」一節所述，儲存邏輯應用程式，並將訊息傳送至服務匯流排主題。  
     觀察邏輯應用程式的執行狀況。 若要檢視更多執行資料，請選取 [概觀]，然後檢視 [執行歷程記錄] 下的資料。
 
     ![17][]

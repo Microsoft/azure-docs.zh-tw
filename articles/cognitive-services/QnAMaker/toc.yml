@@ -1,0 +1,147 @@
+items:
+- name: QnA Maker 文件
+  href: index.yml
+- name: 概觀
+  items:
+  - name: 什麼是 QnA Maker？
+    href: Overview/overview.md
+- name: 快速入門
+  items:
+  - name: 使用 REST API
+    items:
+    - name: 建立新的知識庫
+      items:
+      - name: C#
+        href: Quickstarts/create-new-kb-csharp.md
+      - name: Go
+        href: Quickstarts/create-new-kb-go.md
+      - name: Java
+        href: Quickstarts/create-new-kb-java.md
+      - name: Node.js
+        href: Quickstarts/create-new-kb-nodejs.md
+      - name: Python
+        href: Quickstarts/create-new-kb-python.md
+    - name: 更新知識庫
+      items:
+      - name: C#
+        href: Quickstarts/update-kb-csharp.md
+      - name: Go
+        href: Quickstarts/update-kb-go.md
+      - name: Java
+        href: Quickstarts/update-kb-java.md
+      - name: Node.js
+        href: Quickstarts/update-kb-nodejs.md
+      - name: Python
+        href: Quickstarts/update-kb-python.md
+    - name: 發佈知識庫
+      items:
+      - name: C#
+        href: Quickstarts/publish-kb-csharp.md
+      - name: Go
+        href: Quickstarts/publish-kb-go.md
+      - name: Java
+        href: Quickstarts/publish-kb-java.md
+      - name: Node.js
+        href: Quickstarts/publish-kb-nodejs.md
+      - name: Python
+        href: Quickstarts/publish-kb-python.md
+- name: 概念
+  items:
+  - name: 知識庫
+    href: Concepts/knowledge-base.md
+  - name: 知識庫的開發生命週期
+    href: Concepts/development-lifecycle-knowledge-base.md
+  - name: 最佳作法
+    href: Concepts/best-practices.md
+  - name: 信賴分數
+    href: Concepts/confidence-score.md
+  - name: 支援的資料來源
+    href: Concepts/data-sources-supported.md
+- name: 使用說明指南
+  items:
+  - name: 設定 QnA Maker 服務
+    href: How-To/set-up-qnamaker-service-azure.md
+  - name: 建立和發佈知識庫
+    href: Quickstarts/create-publish-knowledge-base.md
+  - name: 建立知識庫
+    href: How-To/create-knowledge-base.md
+  - name: 在知識庫中新增閒聊
+    href: How-to/chit-chat-knowledge-base.md
+  - name: 透過 GenerateAnswer API 使用中繼資料
+    href: How-To/metadata-generateanswer-usage.md
+  - name: 從預覽移轉知識庫
+    href: Tutorials/migrate-knowledge-base.md
+  - name: 編輯知識庫
+    href: How-To/edit-knowledge-base.md
+  - name: 在知識庫上共同作業
+    href: How-To/collaborate-knowledge-base.md
+  - name: 測試知識庫
+    href: How-To/test-knowledge-base.md
+  - name: 發佈知識庫
+    href: How-To/publish-knowledge-base.md
+  - name: 取得知識庫的分析
+    href: How-To/get-analytics-knowledge-base.md
+  - name: 管理金鑰
+    href: How-To/key-management.md
+  - name: 以不同語言建立知識庫
+    href: How-To/language-knowledge-base.md
+  - name: 使用 Azure Bot 服務建立 QnA Bot
+    href: Tutorials/create-qna-bot.md
+  - name: 整合 QnA Maker 和 LUIS
+    href: Tutorials/integrate-qnamaker-luis.md
+  - name: 建立 QnA Maker 的商務持續性方案
+    href: How-To/business-continuity-plan.md
+  - name: 選擇 QnA Maker 部署的容量
+    href: Tutorials/choosing-capacity-qnamaker-deployment.md
+  - name: 升級 QnA Maker 服務
+    href: How-To/upgrade-qnamaker-service.md
+  - name: 疑難排解和更新 QnAMaker 執行階段
+    href: How-To/troubleshooting-runtime.md
+  - name: 使用 REST API
+    items:
+    - name: C#
+      href: Quickstarts/csharp.md
+    - name: Java
+      href: Quickstarts/java.md
+    - name: Node.js
+      href: Quickstarts/nodejs.md
+    - name: Python
+      href: Quickstarts/python.md
+    - name: Go
+      href: Quickstarts/go.md
+- name: 參考
+  items:
+  - name: REST API 參考
+    href: https://westus.dev.cognitive.microsoft.com/docs/services/5a93fcf85b4ccd136866eb37/operations/5ac266295b4ccd1554da75ff
+  - name: 常見問題集
+    href: faqs.md
+  - name: 限制
+    href: limits.md
+  - name: 詞彙
+    href: glossary.md
+  - name: HTTP 回應碼
+    href: http-response-codes.md
+- name: 資源
+  items:
+  - name: 區域可用性
+    href: https://azure.microsoft.com/global-infrastructure/services/
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/
+  - name: 價格和限制
+    href: https://aka.ms/qnamaker-pricing
+  - name: 語言與區域支援
+    href: Overview/language-support.md
+  - name: 堆疊溢位
+    href: https://stackoverflow.com/questions/tagged/QnAMaker
+  - name: UserVoice
+    href: https://aka.ms/qnamaker-uservoice
+  - name: Search
+    href: https://docs.microsoft.com/search/index?search=QnAMaker
+  - name: 部落格
+    href: https://blog.botframework.com/category/QnAMaker/
+ms.openlocfilehash: 3c072165fe8d46f0518c5e777580453214dc86f5
+ms.sourcegitcommit: 668b486f3d07562b614de91451e50296be3c2e1f
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/19/2018
+ms.locfileid: "49456672"

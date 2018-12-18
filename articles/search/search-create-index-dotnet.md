@@ -1,25 +1,21 @@
 ---
-title: "建立索引 (.NET API - Azure 搜尋服務) | Microsoft Docs"
-description: "使用 Azure 搜尋服務 .NET SDK 在程式碼中建立索引。"
-services: search
-documentationcenter: 
+title: 建立索引 (.NET API - Azure 搜尋服務) | Microsoft Docs
+description: 使用 Azure 搜尋服務 .NET SDK 在程式碼中建立索引。
 author: brjohnstmsft
-manager: jhubbard
-editor: 
+manager: jlembicz
 tags: azure-portal
-ms.assetid: 3a851647-fc7b-4fb6-8506-6aaa519e77cd
+services: search
 ms.service: search
 ms.devlang: dotnet
-ms.workload: search
-ms.topic: get-started-article
-ms.tgt_pltfrm: na
+ms.topic: quickstart
 ms.date: 05/22/2017
 ms.author: brjohnst
-ms.openlocfilehash: fac41903c3e5731d17f832ff58145fe74dfa29f1
-ms.sourcegitcommit: 68aec76e471d677fd9a6333dc60ed098d1072cfc
+ms.openlocfilehash: 7e7d1f8110d8470fe7596633563529f397c5551e
+ms.sourcegitcommit: fa493b66552af11260db48d89e3ddfcdcb5e3152
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/18/2017
+ms.lasthandoff: 04/23/2018
+ms.locfileid: "31794747"
 ---
 # <a name="create-an-azure-search-index-using-the-net-sdk"></a>使用 .NET SDK 建立 Azure 搜尋服務索引
 > [!div class="op_single_selector"]

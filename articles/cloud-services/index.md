@@ -1,11 +1,11 @@
 ---
-title: "Azure 雲端服務文件 - 教學課程和 API 參考 | Microsoft Docs"
-description: "教學課程、API 參考和其他文件會示範如何使用雲端服務來裝載及執行高度可用且可調整的雲端應用程式和 API。"
+title: Azure 雲端服務文件 - 教學課程和 API 參考 | Microsoft Docs
+description: 教學課程、API 參考和其他文件會示範如何使用雲端服務來裝載及執行高度可用且可調整的雲端應用程式和 API。
 services: cloud-services
 author: czeumault
 manager: carolz
 layout: LandingPage
-ms.assetid: 
+ms.assetid: ''
 ms.service: cloud-services
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -17,6 +17,7 @@ ms.sourcegitcommit: dcf5f175454a5a6a26965482965ae1f2bf6dca0a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 11/10/2017
+ms.locfileid: "24101877"
 ---
 # <a name="cloud-services-documentation"></a>雲端服務文件
 

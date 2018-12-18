@@ -3,7 +3,7 @@ title: Azure Stack 中支援的虛擬機器大小 | Microsoft Docs
 description: Azure Stack 所支援之虛擬機器大小的參考。
 services: azure-stack
 documentationcenter: ''
-author: brenduns
+author: mattbriggs
 manager: femila
 editor: ''
 ms.assetid: ''
@@ -12,20 +12,24 @@ ms.workload: na
 pms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/15/2018
-ms.author: brenduns
-ms.openlocfilehash: fd352d6d073c5eff0ddf17588df022ffa3caef8c
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.date: 08/15/2018
+ms.author: mabrigg
+ms.openlocfilehash: 74d521f1890f8ff6567802c1a16f4169dbf4a53f
+ms.sourcegitcommit: d2f2356d8fe7845860b6cf6b6545f2a5036a3dd6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 08/16/2018
+ms.locfileid: "41946548"
 ---
 # <a name="virtual-machine-sizes-supported-in-azure-stack"></a>Azure Stack 中支援的虛擬機器大小
 
-本文列出 Azure Stack 所支援的虛擬機器 (VM) 大小。 
+*適用於：Azure Stack 整合系統和 Azure Stack 開發套件*
 
+本文列出 Azure Stack 中可用的虛擬機器 (VM) 大小。
 
 ## <a name="general-purpose"></a>一般用途
+
+一般用途的 VM 大小可讓 CPU 與記憶體的比例平均。 可用於測試和開發、小型至中型資料庫，以及低至中流量網頁伺服器。
 
 ### <a name="basic-a"></a>基本 A
 |大小 - 大小\名稱 |vCPU     |記憶體 | 暫存磁碟大小上限 | 最大 OS 磁碟輸送量︰(IOPS) | 最大暫存儲存體輸送量 (IOPS) | 最大資料磁碟輸送量 (IOPS) | 最大 NIC |    
@@ -34,7 +38,7 @@ ms.lasthandoff: 03/16/2018
 |**A1\Basic_A1**  |1    |1.75 GB  | 40 GB   |300  | 300  |2 / 2x300  |1   |
 |**A2\Basic_A2**  |2    |3.5 GB   | 60 GB   |300  | 300  |4 / 4x300  |1   |
 |**A3\Basic_A3**  |4    |7 GB     | 120 GB  |300  | 300  |8 / 8x300  |1   |
-|**A4\Basic_A4**  |8    |14 GB    | 240 GB  |300  | 300  |6 / 16X300 |1   |
+|**A4\Basic_A4**  |8    |14 GB    | 240 GB  |300  | 300  |16 / 16X300 |1   |
 
 ### <a name="standard-a"></a>標準 A 
 |大小     |vCPU     |記憶體 (GiB) | 暫存儲存體 (GiB)  | 最大 OS 磁碟輸送量 (IOPS) | 最大暫存儲存體輸送量 (IOPS) | 最大資料磁碟/輸送量 (IOPS) | 最大 NIC/預期的網路頻寬 (Mbps) |    
@@ -48,6 +52,18 @@ ms.lasthandoff: 03/16/2018
 |**Standard_A6** |4 |28    |285 |500 |500 |8x500  |2 / 1000 |
 |**Standard_A7** |8 |56    |605 |500 |500 |16x500 |4 / 2000 |
 
+### <a name="av2-series"></a>Av2 系列
+需要 Azure Stack 1804 版或更新版本
+
+|大小     |vCPU     |記憶體 (GiB) | 暫存儲存體 (GiB)  | 最大 OS 磁碟輸送量 (IOPS) | 最大暫存儲存體輸送量 (IOPS) | 最大資料磁碟/輸送量 (IOPS) | 最大 NIC/預期的網路頻寬 (Mbps) |
+|-----------------|----|----|-----|-----|------|--------------|---------|
+|**Standard_A1_v2**  |1   |2   |10   |500 |1000  |2 / 2x500   |2 / 250  |
+|**Standard_A2_v2**  |2   |4   |20   |500 |2000  |4 / 4x500   |2 / 500  |
+|**Standard_A4v2**   |4   |8   |40   |500 |4000  |8 / 8x500   |4 / 1000 |
+|**Standard_A8_v2**  |8   |16  |80   |500 |8000  |16 / 16x500 |8 / 2000 |
+|**Standard_A2m_v2** |2   |16  |20   |500 |2000  |4 / 4x500   |2 / 500  |
+|**Standard_A4m_v2** |4   |32  |40   |500 |4000  |8 / 8x500   |4 / 1000 |
+|**Standard_A8m_v2** |8   |64  |80   |500 |8000  |16 / 16x500 |8 / 2000 |
 
 ### <a name="d-series"></a>D 系列
 |大小     |vCPU     |記憶體 (GiB) | 暫存儲存體 (GiB)  | 最大 OS 磁碟輸送量 (IOPS) | 最大暫存儲存體輸送量 (IOPS) | 最大資料磁碟/輸送量 (IOPS) | 最大 NIC/預期的網路頻寬 (Mbps) |
@@ -85,7 +101,47 @@ ms.lasthandoff: 03/16/2018
 |**Standard_DS5_v2** |16  |56  |112 |1000 |64000 |64 / 64x2300 |8 / 10000 |
 
 
+## <a name="compute-optimized"></a>計算最佳化
+### <a name="f-series"></a>F 系列
+需要 Azure Stack 1804 版或更新版本
+
+|大小     |vCPU     |記憶體 (GiB) | 暫存儲存體 (GiB)  | 最大 OS 磁碟輸送量 (IOPS) | 最大暫存儲存體輸送量 (IOPS) | 最大資料磁碟/輸送量 (IOPS) | 最大 NIC/預期的網路頻寬 (Mbps) |
+|-----------------|----|----|-----|----|------|------------|---------|
+|**Standard_F1**  |1   |2   |16   |500 |3000  |4 / 4x500   |2 / 750  |
+|**Standard_F2**  |2   |4   |32   |500 |6000  |8 / 8x500   |2 / 1500 |
+|**Standard_F4**  |4   |8   |64   |500 |12000 |16 / 16x500 |4 / 3000 |
+|**Standard_F8**  |8   |16  |128  |500 |24000 |32 / 32x500 |8 / 6000 |
+|**Standard_F16** |16  |32  |256  |500 |48000 |64 / 64x500 |8 / 6000 - 12000  |
+
+
+### <a name="fs-series"></a>Fs 系列
+需要 Azure Stack 1804 版或更新版本  
+
+|大小     |vCPU     |記憶體 (GiB) | 暫存儲存體 (GiB)  | 最大 OS 磁碟輸送量 (IOPS) | 最大暫存儲存體輸送量 (IOPS) | 最大資料磁碟/輸送量 (IOPS) | 最大 NIC/預期的網路頻寬 (Mbps) |
+|------------------|----|----|----|-----|------|-------------|---------|
+|**Standard_F1s**  |1   |2   |4   |1000 |4000  |4 / 4x2300   |2 / 750  |
+|**Standard_F2s**  |2   |4   |8   |1000 |8000  |8 / 8x2300   |2 / 1500 |
+|**Standard_F4s**  |4   |8   |16  |1000 |16000 |16 / 16x2300 |4 / 3000 |
+|**Standard_F8s**  |8   |16  |32  |1000 |32000 |32 / 32x2300 |8 / 6000 |
+|**Standard_F16s** |16  |32  |64  |1000 |64000 |64 / 64x2300 |8 / 6000 - 12000  |
+
+
+### <a name="fsv2-series"></a>Fsv2 系列
+需要 Azure Stack 1804 版或更新版本 
+
+|大小     |vCPU     |記憶體 (GiB) | 暫存儲存體 (GiB)  | 最大 OS 磁碟輸送量 (IOPS) | 最大暫存儲存體輸送量 (IOPS) | 最大資料磁碟/輸送量 (IOPS) | 最大 NIC/預期的網路頻寬 (Mbps) |
+|---------------------|----|----|-----|-----|-------|--------------|---------|
+|**Standard_F2s_v2**  |2   |4   |16   |1000 |4000   |4 / 4x2300    |中度 |
+|**Standard_F4s_v2**  |4   |8   |32   |1000 |8000   |8 / 8x2300    |中度 |
+|**Standard_F8s_v2**  |8   |16  |64   |1000 |16000  |16 / 16x2300  |高     |
+|**Standard_F16s_v2** |16  |32  |128  |1000 |32000  |32 / 32x2300  |高     |
+|**Standard_F32s_v2** |32  |64  |256  |1000 |64000  |32 / 32x2300  |高  |
+|**Standard_F64s_v2** |64  |128 |512  |1000 |128000 |32 / 32x2300  |極高  |
+
+
 ## <a name="memory-optimized"></a>記憶體最佳化
+
+記憶體最佳化的 VM 大小的記憶體與 CPU 比例相當高，專為關聯式資料庫伺服器、中型到大型快取，以及記憶體內部分析所設計。
 
 ### <a name="mo-d"></a>D 系列
 |大小     |vCPU     |記憶體 (GiB) | 暫存儲存體 (GiB)  | 最大 OS 磁碟輸送量 (IOPS) | 最大暫存儲存體輸送量 (IOPS) | 最大資料磁碟/輸送量 (IOPS) | 最大 NIC/預期的網路頻寬 (Mbps) |

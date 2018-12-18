@@ -1,18 +1,19 @@
 ---
-title: "從自訂映像佈建 Azure Batch 集區 | Microsoft Docs"
-description: "您可以從自訂映像建立 Batch 集區，以佈建含有您應用程式所需軟體與資料的計算節點。 自訂映像是設定計算節點以執行 Batch 工作負載的有效方式。"
+title: 從自訂映像佈建 Azure Batch 集區 | Microsoft Docs
+description: 您可以從自訂映像建立 Batch 集區，以佈建含有您應用程式所需軟體與資料的計算節點。 自訂映像是設定計算節點以執行 Batch 工作負載的有效方式。
 services: batch
 author: dlepow
 manager: jeconnoc
 ms.service: batch
 ms.topic: article
-ms.date: 10/11/2017
+ms.date: 04/23/2018
 ms.author: danlep
-ms.openlocfilehash: 63a567e9fdfef8dfceb275953cc0ac606355ea30
-ms.sourcegitcommit: 9d317dabf4a5cca13308c50a10349af0e72e1b7e
+ms.openlocfilehash: 78bc50a1189d8f42281f81643a5e907d94480082
+ms.sourcegitcommit: e2adef58c03b0a780173df2d988907b5cb809c82
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 04/28/2018
+ms.locfileid: "32158607"
 ---
 # <a name="use-a-managed-custom-image-to-create-a-pool-of-virtual-machines"></a>使用受控自訂映像來建立虛擬機器的集區 
 
@@ -35,13 +36,12 @@ ms.lasthandoff: 02/01/2018
 
 ## <a name="prerequisites"></a>先決條件
 
-- 
-            **受控映像資源**。 若要使用自訂映像建立虛擬機器的集區，需要在和 Batch 帳戶相同的 Azure 訂用帳戶和區域中建立受控映像資源。 如需準備受控映像的選項，請參閱下一節。
+- **受控映像資源**。 若要使用自訂映像建立虛擬機器的集區，需要在和 Batch 帳戶相同的 Azure 訂用帳戶和區域中建立受控映像資源。 如需準備受控映像的選項，請參閱下一節。
 - **Azure Active Directory (AAD) 驗證**。 Batch 用戶端 API 必須使用 AAD 驗證。 Azure Batch 對於 AAD 的支援記載於[使用 Active Directory 驗證 Batch 服務解決方案](batch-aad-auth.md)中。
 
     
 ## <a name="prepare-a-custom-image"></a>準備自訂映像
-您可以從 VHD、從包含受控磁碟的 Azure VM、或從 VM 快照集，準備受控映像。 
+您可以從 VHD、從包含受控磁碟的 Azure VM、或從 VM 快照集，準備受控映像。 針對批次，建議您從具有受控磁碟的 VM 或 VM 快照來建立受控映像。 受控映像及基礎資源應存在以供集區進行相應增加，並可以在刪除集區之後加以移除。 
 
 準備映像時，請記住下列事項：
 

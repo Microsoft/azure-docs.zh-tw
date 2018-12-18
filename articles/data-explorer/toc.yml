@@ -1,0 +1,94 @@
+items:
+- name: Azure 資料總管文件
+  href: index.yml
+- name: 概觀
+  items:
+  - name: 什麼是資料總管？
+    href: data-explorer-overview.md
+- name: 快速入門
+  items:
+  - name: 建立叢集 - Azure 入口網站
+    href: create-cluster-database-portal.md
+  - name: 擷取資料
+    items:
+    - name: 串流處理資料 - 事件中樞
+      href: ingest-data-event-hub.md
+    - name: 批次處理資料 - Python
+      href: python-ingest-data.md
+    expanded: true
+  - name: 查詢資料
+    items:
+    - name: Web UI
+      href: web-query-data.md
+    - name: Python
+      href: python-query-data.md
+    expanded: true
+  expanded: true
+- name: 教學課程
+  items:
+  - name: 將資料視覺化 - Power BI
+    href: visualize-power-bi.md
+- name: 概念
+  items:
+  - name: 資料擷取概觀
+    href: ingest-data-overview.md
+- name: 使用說明指南
+  items:
+  - name: 撰寫查詢
+    href: write-queries.md
+  - name: 內嵌範例資料
+    href: ingest-sample-data.md
+  - name: 刪除資料
+    href: delete-data.md
+  - name: 管理資料庫權限
+    href: manage-database-permissions.md
+  - name: 檢查叢集健康情況
+    href: check-cluster-health.md
+  - name: 管理叢集縮放比例
+    href: manage-cluster-scaling.md
+  - name: 疑難排解
+    items:
+    - name: 建立叢集
+      href: troubleshoot-create-cluster.md
+    - name: 連線到叢集
+      href: troubleshoot-connect-cluster.md
+    - name: 處理資料庫與資料表
+      href: troubleshoot-database-table.md
+- name: 參考
+  items:
+  - name: 查詢語言
+    href: /azure/kusto/query/
+  - name: 管理命令
+    href: /azure/kusto/management/
+  - name: API
+    href: /azure/kusto/api/
+  - name: 工具
+    href: /azure/kusto/tools/
+  - name: 概念
+    href: /azure/kusto/concepts/
+- name: 資源
+  items:
+  - name: 部落格
+    href: https://azure.microsoft.com/blog/tag/azure-data-explorer/
+  - name: 論壇
+    items:
+    - name: 堆疊溢位
+      href: https://stackoverflow.com/questions/tagged/azure-data-explorer
+    - name: Microsoft 技術社群
+      href: https://techcommunity.microsoft.com/t5/Azure-Data-Explorer/bd-p/Kusto
+    - name: MSDN 論壇
+      href: https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureKusto
+  - name: 產品意見反應
+    href: http://aka.ms/adefeedback
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/data-explorer/
+  - name: 成本預估器
+    href: http://aka.ms/adecostestimator
+  - name: 服務更新
+    href: https://azure.microsoft.com/updates/?product=data-explorer
+ms.openlocfilehash: 49d8f70c130cf9b1fe90b82f49c8f728845a335f
+ms.sourcegitcommit: b4a46897fa52b1e04dd31e30677023a29d9ee0d9
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49393287"

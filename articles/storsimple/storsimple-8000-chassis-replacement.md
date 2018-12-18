@@ -1,12 +1,12 @@
 ---
-title: "更換 StorSimple 8000 系列裝置上的底座 | Microsoft Docs"
-description: "描述如何移除並更換 StorSimple 主要機箱或 EBOD 機箱的底座。"
+title: 更換 StorSimple 8000 系列裝置上的底座 | Microsoft Docs
+description: 描述如何移除並更換 StorSimple 主要機箱或 EBOD 機箱的底座。
 services: storsimple
-documentationcenter: 
+documentationcenter: ''
 author: alkohli
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: NA
 ms.topic: article
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23108156"
 ---
 # <a name="replace-the-chassis-on-your-storsimple-device"></a>更換 StorSimple 裝置上的底座
 ## <a name="overview"></a>概觀

@@ -1,9 +1,9 @@
 ---
-title: "管理 Azure DNS 中的 DNS 區域 - Azure 入口網站 | Microsoft Docs"
-description: "您可以使用 Azure 入口網站管理 DNS 區域。 本文說明如何在 Azure DNS 上更新、刪除及建立 DNS 區域"
+title: 管理 Azure DNS 中的 DNS 區域 - Azure 入口網站 | Microsoft Docs
+description: 您可以使用 Azure 入口網站管理 DNS 區域。 本文說明如何在 Azure DNS 上更新、刪除及建立 DNS 區域
 services: dns
 documentationcenter: na
-author: georgewallace
+author: vhorne
 manager: timlt
 ms.service: dns
 ms.devlang: na
@@ -11,20 +11,21 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/18/2017
-ms.author: gwallace
-ms.openlocfilehash: cfb1debf9447cd66856b73166a133d5d498fcc79
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.author: victorh
+ms.openlocfilehash: a9325dff84635955600bc78687ec0156495ae893
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46954376"
 ---
 # <a name="how-to-manage-dns-zones-in-the-azure-portal"></a>如何在 Azure 入口網站中管理 DNS 區域
 
 > [!div class="op_single_selector"]
 > * [入口網站](dns-operations-dnszones-portal.md)
 > * [PowerShell](dns-operations-dnszones.md)
-> * [Azure CLI 1.0](dns-operations-dnszones-cli-nodejs.md)
-> * [Azure CLI 2.0](dns-operations-dnszones-cli.md)
+> * [Azure 傳統 CLI](dns-operations-dnszones-cli-nodejs.md)
+> * [Azure CLI](dns-operations-dnszones-cli.md)
 
 本文說明如何使用 Azure 入口網站管理 DNS 區域。 您也可以使用跨平台的 [Azure CLI](dns-operations-dnszones-cli.md) 或 Azure [PowerShell](dns-operations-dnszones.md) 來管理 DNS 區域。
 
@@ -42,7 +43,7 @@ ms.lasthandoff: 02/21/2018
    |---|---|---|
    |**名稱**|contoso.com|DNS 區域的名稱|
    |**訂用帳戶**|[您的訂用帳戶]|選取要建立 DNS 區域的訂用帳戶。|
-   |**資源群組**|**建立新的︰**contosoDNSRG|建立資源群組。 資源群組名稱在您選取的訂用帳戶中必須是唯一的。 若要深入了解資源群組，請閱讀 [Resource Manager](../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fdns%2ftoc.json#resource-groups) 概觀。|
+   |**資源群組**|**建立新的︰** contosoDNSRG|建立資源群組。 資源群組名稱在您選取的訂用帳戶中必須是唯一的。 若要深入了解資源群組，請閱讀 [Resource Manager](../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fdns%2ftoc.json#resource-groups) 概觀。|
    |**位置**|美國西部||
 
 > [!NOTE]

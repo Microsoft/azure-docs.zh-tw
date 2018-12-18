@@ -1,22 +1,24 @@
 ---
-title: "Azure Application Insights 遙測資料模型 - 追蹤遙測 | Microsoft Docs"
-description: "追蹤遙測的 Application Insights 資料模型"
+title: Azure Application Insights 遙測資料模型 - 追蹤遙測 | Microsoft Docs
+description: 追蹤遙測的 Application Insights 資料模型
 services: application-insights
 documentationcenter: .net
-author: SergeyKanzhelev
+author: mrbullwinkle
 manager: carmonm
 ms.service: application-insights
 ms.workload: TBD
 ms.tgt_pltfrm: ibiza
 ms.devlang: multiple
-ms.topic: article
+ms.topic: conceptual
 ms.date: 04/25/2017
+ms.reviewer: sergkanz
 ms.author: mbullwin
-ms.openlocfilehash: 0398774e21d89fd084e6929bc5e410697d2aafaa
-ms.sourcegitcommit: e462e5cca2424ce36423f9eff3a0cf250ac146ad
+ms.openlocfilehash: 2487df93baec80c0e4f7741aa7b052ac89459b3b
+ms.sourcegitcommit: e8f443ac09eaa6ef1d56a60cd6ac7d351d9271b9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/01/2017
+ms.lasthandoff: 09/12/2018
+ms.locfileid: "35633117"
 ---
 # <a name="trace-telemetry-application-insights-data-model"></a>追蹤遙測：Application Insights 資料模型
 

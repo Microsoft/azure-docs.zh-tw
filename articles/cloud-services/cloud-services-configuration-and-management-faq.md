@@ -1,11 +1,11 @@
 ---
-title: "Microsoft Azure 雲端服務之設定和管理問題的常見問題集 | Microsoft Docs"
-description: "本文列出 Microsoft Azure 雲端服務之設定和管理的相關常見問題集。"
+title: Microsoft Azure 雲端服務之設定和管理問題的常見問題集 | Microsoft Docs
+description: 本文列出 Microsoft Azure 雲端服務之設定和管理的相關常見問題集。
 services: cloud-services
-documentationcenter: 
+documentationcenter: ''
 author: genlin
 manager: cshepard
-editor: 
+editor: ''
 tags: top-support-issue
 ms.assetid: 84985660-2cfd-483a-8378-50eef6a0151d
 ms.service: cloud-services
@@ -13,13 +13,14 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/11/2017
+ms.date: 07/23/2018
 ms.author: genli
-ms.openlocfilehash: 916fbb436806c64ded9ebf9fdd9c57c42d0809f0
-ms.sourcegitcommit: a0be2dc237d30b7f79914e8adfb85299571374ec
+ms.openlocfilehash: 30a23010f326189ffd5886407d70e357abb9c53e
+ms.sourcegitcommit: 387d7edd387a478db181ca639db8a8e43d0d75f7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/12/2018
+ms.lasthandoff: 08/10/2018
+ms.locfileid: "40038002"
 ---
 # <a name="configuration-and-management-issues-for-azure-cloud-services-frequently-asked-questions-faqs"></a>Azure 雲端服務之設定和管理問題：常見問題集 (FAQ)
 
@@ -34,11 +35,13 @@ ms.lasthandoff: 03/12/2018
 - [如何能夠產生憑證簽署要求 (CSR)，而不 "RDP" 到執行個體中？](#how-can-i-generate-a-certificate-signing-request-csr-without-rdp-ing-in-to-the-instance)
 - [我的雲端服務管理憑證即將到期。要如何續訂？](#my-cloud-service-management-certificate-is-expiring-how-to-renew-it)
 - [如何將主要 SSL 憑證 (.pfx) 和中繼憑證 (.p7b) 的安裝自動化？](#how-to-automate-the-installation-of-main-ssl-certificatepfx-and-intermediate-certificatep7b)
+- [「適用於 MachineKey 的 Microsoft Azure 服務管理」憑證的用途為何？](#what-is-the-purpose-of-the-microsoft-azure-service-management-for-machinekey-certificate)
 
 **監視和記錄**
 
 - [即將在 Azure 入口網站推出的雲端服務功能有哪些可協助管理和監視應用程式？](#what-are-the-upcoming-cloud-service-capabilities-in-the-azure-portal-which-can-help-manage-and-monitor-applications)
 - [為什麼 IIS 會停止寫入記錄目錄？](#why-does-iis-stop-writing-to-the-log-directory)
+- [如何啟用雲端服務的 WAD 記錄？](#how-do-i-enable-wad-logging-for-cloud-services)
 
 **網路組態**
 
@@ -104,6 +107,10 @@ CSR 只是文字檔。 不必從最終會使用憑證的電腦建立它。 雖
 
 您可以使用啟動指令碼 (batch/cmd/PowerShell) 將這項工作自動化，並在服務定義檔中註冊該啟動指令碼。 將啟動指令碼和憑證 (.p7b 檔案) 新增至與啟動指令碼相同目錄的專案資料夾中。
 
+### <a name="what-is-the-purpose-of-the-microsoft-azure-service-management-for-machinekey-certificate"></a>「適用於 MachineKey 的 Microsoft Azure 服務管理」憑證的用途為何？
+
+此憑證用來加密 Azure Web 角色上的電腦金鑰。 若要進一步了解，請參閱此諮詢[https://docs.microsoft.com/security-updates/securityadvisories/2018/4092731]。
+
 如需詳細資訊，請參閱下列文章：
 - [如何設定和執行雲端服務的啟動工作](https://docs.microsoft.com/azure/cloud-services/cloud-services-startup-tasks)
 - [常見的雲端服務啟動工作](https://docs.microsoft.com/azure/cloud-services/cloud-services-startup-tasks-common)
@@ -119,7 +126,7 @@ $cert = New-SelfSignedCertificate -DnsName yourdomain.cloudapp.net -CertStoreLoc
 $password = ConvertTo-SecureString -String "your-password" -Force -AsPlainText
 Export-PfxCertificate -Cert $cert -FilePath ".\my-cert-file.pfx" -Password $password
 ```
-即將推出可針對您的 csdef 和 cscfg 上傳位置選擇 Blob 或本機的功能。 使用 [New-AzureDeployment](/powershell/module/azure/new-azuredeployment?view=azuresmps-4.0.0)，您可以設定每個位置的值。
+即將推出可針對您的 csdef 和 cscfg 上傳位置選擇 Blob 或本機的功能。 使用 [New-AzureDeployment](/powershell/module/servicemanagement/azure/new-azuredeployment?view=azuresmps-4.0.0)，您可以設定每個位置的值。
 
 監視執行個體層級計量的功能。 [如何監視雲端服務](cloud-services-how-to-monitor.md)中還有更多其他監視功能。
 
@@ -132,6 +139,15 @@ Export-PfxCertificate -Cert $cert -FilePath ".\my-cert-file.pfx" -Password $pass
 如需詳細資訊，請參閱下列文件：
 * [在 Azure 儲存體中儲存和檢視診斷資料](cloud-services-dotnet-diagnostics-storage.md)
 * [IIS 記錄會停止在雲端服務中寫入](https://blogs.msdn.microsoft.com/cie/2013/12/21/iis-logs-stops-writing-in-cloud-service/)
+
+### <a name="how-do-i-enable-wad-logging-for-cloud-services"></a>如何為雲端服務啟用 WAD 記錄？
+您可以透過下列選項來啟用 Windows Azure 診斷 (WAD) 記錄：
+1. [從 Visual Studio 啟用](https://docs.microsoft.com/azure/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines#turn-on-diagnostics-in-cloud-service-projects-before-you-deploy-them)
+2. [透過 .Net 程式碼啟用](https://docs.microsoft.com/azure/cloud-services/cloud-services-dotnet-diagnostics)
+3. [透過 PowerShell 啟用](https://docs.microsoft.com/azure/cloud-services/cloud-services-diagnostics-powershell)
+
+若要取得雲端服務的目前 WAD 設定，您可以使用 [Get-AzureServiceDiagnosticsExtensions](https://docs.microsoft.com/azure/cloud-services/cloud-services-diagnostics-powershell#get-current-diagnostics-extension-configuration) ps cmd 或您可以從入口網站的 [雲端服務] --> [延伸模組] 刀鋒視窗中檢視它。
+
 
 ## <a name="network-configuration"></a>網路組態
 
@@ -201,7 +217,7 @@ Windows 10 和 Windows Server 2016 隨附用戶端和伺服器端上的 HTTP/2 �
 ### <a name="how-can-i-implement-role-based-access-for-cloud-services"></a>如何實作雲端服務的角色型存取？
 雲端服務不支援角色型存取控制 (RBAC) 模型，因為它不是以 Azure Resource Manager 為基礎的服務。
 
-請參閱 [Azure RBAC 與傳統訂用帳戶系統管理員](../active-directory/role-based-access-control-what-is.md#azure-rbac-vs-classic-subscription-administrators)。
+請參閱[了解 Azure 中的不同角色](../role-based-access-control/rbac-and-directory-admin-roles.md)。
 
 ## <a name="remote-desktop"></a>遠端桌面
 
@@ -279,7 +295,7 @@ Azure 不會將任何內容寫入 %approot% 磁碟機。 一旦從 .cspkg 建立
 您可以在「啟動工作」中使用 PowerShell 指令碼來啟用反惡意程式碼擴充功能。 請遵循下列這些文章中的步驟加以實作： 
  
 - [建立 PowerShell 啟動工作](cloud-services-startup-tasks-common.md#create-a-powershell-startup-task)
-- [Set-AzureServiceAntimalwareExtension](https://docs.microsoft.com/powershell/module/Azure/Set-AzureServiceAntimalwareExtension?view=azuresmps-4.0.0 )
+- [Set-AzureServiceAntimalwareExtension](https://docs.microsoft.com/powershell/module/servicemanagement/azure/Set-AzureServiceAntimalwareExtension?view=azuresmps-4.0.0 )
 
 如需反惡意程式碼部署情節及如何從入口網站加以啟用的詳細資訊，請參閱[反惡意程式碼部署情節](../security/azure-security-antimalware.md#antimalware-deployment-scenarios)。
 

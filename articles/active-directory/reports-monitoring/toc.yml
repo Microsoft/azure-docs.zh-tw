@@ -1,0 +1,118 @@
+items:
+- name: 報告和監視文件
+  href: index.yml
+- name: 概觀
+  items:
+  - name: 什麼是 Azure AD 報告？
+    href: overview-reports.md
+  - name: 什麼是 Azure AD 監視？
+    href: overview-monitoring.md
+- name: 快速入門
+  items:
+  - name: 報告
+    items:
+    - name: 下載登入報告
+      href: quickstart-download-sign-in-report.md
+    - name: 下載稽核報告
+      href: quickstart-download-audit-report.md
+    - name: 設定具名位置
+      href: quickstart-configure-named-locations.md
+    - name: 安裝 Power BI 內容套件
+      href: quickstart-install-power-bi-content-pack.md
+  - name: 監視
+    items:
+    - name: 將記錄路由傳送至儲存體帳戶
+      href: quickstart-azure-monitor-route-logs-to-storage-account.md
+  expanded: true
+- name: 教學課程
+  items:
+  - name: 報告
+    items:
+    - name: 使用憑證存取報告 API
+      href: tutorial-access-api-with-certificates.md
+  - name: 監視
+    items:
+    - name: 將記錄串流至事件中樞
+      href: tutorial-azure-monitor-stream-logs-to-event-hub.md
+    - name: 整合活動記錄與 Splunk
+      href: tutorial-integrate-activity-logs-with-splunk.md
+- name: 概念
+  items:
+  - name: 報告
+    items:
+    - name: 稽核記錄
+      href: concept-audit-logs.md
+    - name: 登入記錄
+      href: concept-sign-ins.md
+    - name: 有風險的登入
+      href: concept-risky-sign-ins.md
+    - name: 風險事件
+      href: concept-risk-events.md
+    - name: 有風險的使用者
+      href: concept-user-at-risk.md
+    - name: 報告 API
+      href: concept-reporting-api.md
+  - name: 監視
+    items:
+    - name: Azure 監視器中的 Azure AD 記錄
+      href: concept-activity-logs-in-azure-monitor.md
+- name: 使用說明指南
+  items:
+  - name: 報告
+    items:
+    - name: 尋找活動報告
+      href: howto-find-activity-reports.md
+    - name: 修復標幟為有風險的使用者
+      href: howto-remediate-users-flagged-for-risk.md
+    - name: 使用 Azure AD 報告的 Power BI 內容套件
+      href: howto-power-bi-content-pack.md
+    - name: 設定報告 API 的必要條件
+      href: howto-configure-prerequisites-for-reporting-api.md
+  - name: 監視
+    items:
+    - name: 整合活動記錄與 Log Analytics
+      href: howto-integrate-activity-logs-with-log-analytics.md
+    - name: 分析活動記錄與 Log Analytics
+      href: howto-analyze-activity-logs-log-analytics.md
+    - name: 安裝與使用適用於 Azure AD 的 Log Analytics 檢視
+      href: howto-install-use-log-analytics-views.md
+    - name: 整合活動記錄與 SumoLogic
+      href: howto-integrate-activity-logs-with-sumologic.md
+  - name: 疑難排解
+    items:
+    - name: 缺少稽核資料
+      href: troubleshoot-missing-audit-data.md
+    - name: 下載中遺漏的資料
+      href: troubleshoot-missing-data-download.md
+    - name: 無法存取報告的圖形 API
+      href: troubleshoot-graph-api.md
+    - name: Power BI 內容套件中的錯誤
+      href: troubleshoot-content-pack.md
+  expanded: true
+- name: 參考
+  items:
+  - name: 報告
+    items:
+    - name: 稽核活動
+      href: reference-audit-activities.md
+    - name: 資料保留期原則
+      href: reference-reports-data-retention.md
+    - name: 報告延遲
+      href: reference-reports-latencies.md
+    - name: 登入錯誤碼
+      href: reference-sign-ins-error-codes.md
+    - name: 常見問題集
+      href: reports-faq.md
+  - name: 監視
+    items:
+    - name: 稽核記錄的結構描述
+      href: reference-azure-monitor-audit-log-schema.md
+    - name: 登入記錄的結構描述
+      href: reference-azure-monitor-sign-ins-log-schema.md
+  expanded: true
+ms.openlocfilehash: 1ab811294846ae59c0d83efe658b7b9b4f7f8a9a
+ms.sourcegitcommit: b4a46897fa52b1e04dd31e30677023a29d9ee0d9
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49395049"

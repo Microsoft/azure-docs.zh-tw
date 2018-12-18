@@ -1,22 +1,24 @@
 ---
-title: "Azure Application Insights 遙測資料模型 | Microsoft Docs"
-description: "Application Insights 資料模型概觀"
+title: Azure Application Insights 遙測資料模型 | Microsoft Docs
+description: Application Insights 資料模型概觀
 services: application-insights
 documentationcenter: .net
-author: SergeyKanzhelev
+author: mrbullwinkle
 manager: carmonm
 ms.service: application-insights
 ms.workload: TBD
 ms.tgt_pltfrm: ibiza
 ms.devlang: multiple
-ms.topic: article
+ms.topic: conceptual
 ms.date: 04/25/2017
+ms.reviewer: sergkanz
 ms.author: mbullwin
-ms.openlocfilehash: b14eea46e773a4b92ba20cd3121cd258f86307c9
-ms.sourcegitcommit: e462e5cca2424ce36423f9eff3a0cf250ac146ad
+ms.openlocfilehash: aaff60e847e0e9908a4cd9c07cb6cd47630c5e3a
+ms.sourcegitcommit: e8f443ac09eaa6ef1d56a60cd6ac7d351d9271b9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/01/2017
+ms.lasthandoff: 09/12/2018
+ms.locfileid: "35632793"
 ---
 # <a name="application-insights-telemetry-data-model"></a>Application Insights 遙測資料模型
 

@@ -1,31 +1,32 @@
 ---
-title: "在 Azure 資訊安全中心新增 Web 應用程式防火牆 | Microsoft Docs"
-description: "本文件說明如何實作「Azure 資訊安全中心」的「新增 Web 應用程式防火牆」和「完成應用程式保護」建議。"
+title: 在 Azure 資訊安全中心新增 Web 應用程式防火牆 | Microsoft Docs
+description: 本文件說明如何實作「Azure 資訊安全中心」的「新增 Web 應用程式防火牆」和「完成應用程式保護」建議。
 services: security-center
 documentationcenter: na
 author: TerryLanfear
 manager: MBaldwin
-editor: 
+editor: ''
 ms.assetid: 8f56139a-4466-48ac-90fb-86d002cf8242
 ms.service: security-center
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/31/2018
+ms.date: 05/15/2018
 ms.author: terrylan
-ms.openlocfilehash: 4454d18893d698e49f118048eca0bfc94df315a5
-ms.sourcegitcommit: eeb5daebf10564ec110a4e83874db0fb9f9f8061
+ms.openlocfilehash: e28a1f6b865dae3abe2cb9dfac2921c6a2034491
+ms.sourcegitcommit: eb75f177fc59d90b1b667afcfe64ac51936e2638
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/03/2018
+ms.lasthandoff: 05/16/2018
+ms.locfileid: "34203517"
 ---
 # <a name="add-a-web-application-firewall-in-azure-security-center"></a>在 Azure 資訊安全中心新增 Web 應用程式防火牆
 Azure 資訊安全中心可能會建議您從 Microsoft 合作夥伴新增 Web 應用程式防火牆 (WAF)，以保護您 Web 應用程式的安全。 本文件逐步解說如何套用此建議的範例。
 
 系統會針對任何具有相關聯網路安全性群組 (包含開放輸入 Web 連接埠 (80,443)) 的公開 IP (執行個體層級 IP 或負載平衡 IP)，顯示 WAF 建議。
 
-資訊安全中心建議您佈建 WAF，協助對抗以虛擬機器和外部 App Service 環境上的 Web 應用程式為目標的攻擊。 App Service 環境 (ASE) 是Azure App Service 的 [Premium](https://azure.microsoft.com/pricing/details/app-service/) 服務方案選項，可提供完全隔離和專用的環境，以便安全地執行 Azure App Service 應用程式。 若要深入了解 ASE，請參閱 [App Service 環境的文件](../app-service/environment/intro.md)。
+資訊安全中心建議您佈建 WAF，協助對抗以虛擬機器和外部 App Service 環境 (ASE) (部署於[隔離式](https://azure.microsoft.com/pricing/details/app-service/windows/)服務方案下) 上的 Web 應用程式為目標的攻擊。 隔離式方案會在私人專用 Azure 環境中託管您的應用程式，適合需要與內部部署網路安全連線或額外效能和規模的應用程式使用。 應用程式除了會在隔離環境外，還必須有外部 IP 位址負載平衡器。 若要深入了解 ASE，請參閱 [App Service 環境的文件](../app-service/environment/intro.md)。
 
 > [!NOTE]
 > 本文件將使用範例部署來介紹服務。  本文件不是一份逐步解說指南。

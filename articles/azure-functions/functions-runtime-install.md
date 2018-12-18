@@ -1,24 +1,21 @@
 ---
-title: "Azure Functions 執行階段安裝 | Microsoft Docs"
-description: "如何安裝 Azure Functions 執行階段預覽 2"
+title: Azure Functions 執行階段安裝 | Microsoft Docs
+description: 如何安裝 Azure Functions 執行階段預覽 2
 services: functions
-documentationcenter: 
 author: apwestgarth
 manager: stefsch
-editor: 
-ms.assetid: 
-ms.service: functions
-ms.workload: na
-ms.tgt_pltfrm: na
+ms.assetid: ''
+ms.service: azure-functions
 ms.devlang: multiple
-ms.topic: article
+ms.topic: conceptual
 ms.date: 11/28/2017
 ms.author: anwestg
-ms.openlocfilehash: f8ce27bf28f73818932f2ac9056d4fdd573679e8
-ms.sourcegitcommit: a48e503fce6d51c7915dd23b4de14a91dd0337d8
+ms.openlocfilehash: 1ad1d2c74be97afcb62f3f8e8161111f4938f645
+ms.sourcegitcommit: af60bd400e18fd4cf4965f90094e2411a22e1e77
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/05/2017
+ms.lasthandoff: 09/07/2018
+ms.locfileid: "44093663"
 ---
 # <a name="install-the-azure-functions-runtime-preview-2"></a>安裝 Azure Functions 執行階段預覽 2
 
@@ -31,7 +28,7 @@ ms.lasthandoff: 12/05/2017
 1. 完成 Azure Functions 執行階段預覽 2 的設定。
 1. 在 Azure Functions 執行階段預覽中建立您的第一個函式
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 安裝 Azure Functions 執行階段預覽之前，您必須備妥下列資源：
 
@@ -105,7 +102,7 @@ Azure Functions 執行階段預覽安裝程式會引導您完成安裝 Azure Fun
 
 在 Azure Functions 執行階段預覽中建立您的第一個函式
 
-1. 瀏覽至 **Azure Functions 執行階段入口網站**：https://<machinename>.<domain> 例如 https://mycomputer.mydomain.com。
+1. 瀏覽至 **Azure Functions 執行階段入口網站**： https://<machinename>.<domain> 例如 https://mycomputer.mydomain.com
 1. 如果是部署在使用您的網域帳戶使用者名稱與密碼的網域，系統就會提示您**登入**，否則請使用您的本機帳戶使用者名稱與密碼來登入入口網站。
 
 ![Azure Functions 執行階段預覽入口網站登入][14]

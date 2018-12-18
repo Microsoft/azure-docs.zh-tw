@@ -1,25 +1,25 @@
 ---
-title: Azure 快速入門 - 使用 Java 上傳、下載及列出 Azure 儲存體中的 Blob | Microsoft Docs
-description: 在本快速入門中，您會建立儲存體帳戶和容器。 然後，使用 Java 的儲存體用戶端程式庫將 blob 上傳至 Azure 儲存體、下載 blob，以及列出容器中的 blob。
+title: Azure 快速入門 - 使用 Java Storage SDK V7 在物件儲存體中建立 Blob | Microsoft Docs
+description: 在本快速入門中，您會在物件 (Blob) 儲存體中建立儲存體帳戶和容器。 然後，使用 Java 的儲存體用戶端程式庫將 blob 上傳至 Azure 儲存體、下載 blob，以及列出容器中的 blob。
 services: storage
 author: roygara
-manager: jeconnoc
 ms.custom: mvc
 ms.service: storage
 ms.topic: quickstart
-ms.date: 03/15/2018
+ms.date: 04/09/2018
 ms.author: rogarana
-ms.openlocfilehash: 44e5f921ca9303e680c76d439ab7503ea3c39680
-ms.sourcegitcommit: a36a1ae91968de3fd68ff2f0c1697effbb210ba8
+ms.openlocfilehash: 690b527f11fc47260635a09af6f9b4db97b42a7a
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/17/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46964868"
 ---
-# <a name="quickstart-upload-download-and-list-blobs-using-java"></a>快速入門：使用 Java 上傳、下載及列出 Blob
+# <a name="quickstart-upload-download-and-list-blobs-using-java-sdk-v7"></a>快速入門：使用 Java SDK V7 上傳、下載及列出 Blob
 
 在本快速入門中，您會了解如何使用 Java 在 Azure Blob 儲存體容器中上傳、下載及列出區塊 Blob。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 若要完成本快速入門：
 
@@ -31,11 +31,11 @@ ms.lasthandoff: 03/17/2018
 
 如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
 
-[!INCLUDE [storage-quickstart-tutorial-create-account-portal](../../../includes/storage-quickstart-tutorial-create-account-portal.md)]
+[!INCLUDE [storage-create-account-portal-include](../../../includes/storage-create-account-portal-include.md)]
 
 ## <a name="download-the-sample-application"></a>下載範例應用程式
 
-本快速入門使用的[應用程式範例](https://github.com/Azure-Samples/storage-blobs-java-quickstart)是基本的主控台應用程式。 
+本快速入門使用的[應用程式範例](https://github.com/Azure-Samples/storage-blobs-java-quickstart)是基本的主控台應用程式。  
 
 使用 [git](https://git-scm.com/) 將應用程式的複本下載至您的開發環境。 
 
@@ -46,11 +46,12 @@ git clone https://github.com/Azure-Samples/storage-blobs-java-quickstart.git
 此命令會將存放庫複製到本機的 git 資料夾。 若要開啟專案，請啟動 Eclipse 並關閉歡迎畫面。 選取 [File] \(檔案\)，然後選取 [Open Projects from File System...] \(從檔案系統中開啟專案...\)。請確定已核取 [Detect and configure project natures] \(偵測並設定專案性質\)。 選取 [Directory] \(目錄\)，然後瀏覽至您儲存複製存放庫的位置，在其中選取 [javaBlobsQuickstart] 資料夾。 請確定 **javaBlobsQuickstarts** 專案顯示為 Eclipse 專案，然後選取 [Finish] \(完成\)。
 
 當專案完成匯入之後，開啟 **AzureApp.java** (位於 **src/main/java** 內的 **blobQuickstart.blobAzureApp**)，並取代 `storageConnectionString` 字串內的 `accountname` 和 `accountkey`。 然後執行應用程式。
-     
+
+[!INCLUDE [storage-copy-connection-string-portal](../../../includes/storage-copy-connection-string-portal.md)]    
 
 ## <a name="configure-your-storage-connection-string"></a>設定儲存體連接字串
     
-在應用程式，您必須提供儲存體帳戶的連接字串。 開啟 **AzureApp.Java** 檔案。 找出 `storageConnectionString` 變數。 以您從 Azure 入口網站儲存的值取代連接字串中的 `AccountName` 和 `AccountKey` 值。 您的 `storageConnectionString` 看起來應該會像下面這樣：
+在應用程式，您必須提供儲存體帳戶的連接字串。 開啟 **AzureApp.Java** 檔案。 找出 `storageConnectionString` 變數，並貼上您在上一節中複製的連接字串值。 您的 `storageConnectionString` 變數看起來應該會像下面這樣：
 
 ```java
 public static final String storageConnectionString =
@@ -63,9 +64,7 @@ public static final String storageConnectionString =
 
 此範例會在您預設的目錄 (如果是 Windows 使用者，則是 [我的文件]) 中建立測試檔案、將它上傳至 Blob 儲存體、列出容器中的 Blob，然後以新名稱下載該檔案，以便比較新舊檔案。 
 
-在 Eclipse 中按 **Ctrl+F11** 執行範例。
-
-如果您想要在命令列使用 Maven 執行範例，請開啟殼層，然後導覽至複製目錄內的 **blobAzureApp**。 然後輸入 `mvn compile exec:java`。
+在命令列上使用 Maven 執行範例。 開啟殼層，然後瀏覽至複製目錄內的 **blobAzureApp**。 然後輸入 `mvn compile exec:java`。 
 
 如果您是在 Windows 上執行應用程式，以下是輸出的範例。
 
@@ -82,9 +81,9 @@ Deleting the container
 Deleting the source, and downloaded files
 ```
 
- 在繼續之前，請先檢查預設目錄 (如果是 Windows 使用者，則是 [我的文件]) 是否有這兩個檔案。 您可以開啟它們，並查看它們是否相同。 複製主控台視窗的 Blob URL，將它貼至瀏覽器以檢視 Blob 儲存體中的檔案內容。 當您按 Enter 鍵時，它會刪除儲存體容器和檔案。
+在繼續之前，請先檢查預設目錄 (如果是 Windows 使用者，則是 [我的文件]) 是否有這兩個檔案。 您可以開啟它們，並查看它們是否相同。 複製主控台視窗的 Blob URL，將它貼至瀏覽器以檢視 Blob 儲存體中的檔案內容。 當您按 Enter 鍵時，它會刪除儲存體容器和檔案。 
 
-您也可以使用 [Azure 儲存體總管](http://storageexplorer.com/?toc=%2fazure%2fstorage%2fblobs%2ftoc.json) 之類的工具來檢視 Blob 儲存體中的檔案。 Azure 儲存體總管是免費的跨平台工具，可讓您存取儲存體帳戶資訊。 
+您也可以使用 [Azure 儲存體總管](http://storageexplorer.com/?toc=%2fazure%2fstorage%2fblobs%2ftoc.json) 之類的工具來檢視 Blob 儲存體中的檔案。 Azure 儲存體總管是免費的跨平台工具，可讓您存取儲存體帳戶資訊。
 
 確認檔案之後，請按 Enter 鍵以完成示範並刪除測試檔案。 現在您已知道這個範例的功用，請開啟 **AzureApp.java** 檔案查看程式碼。 
 
@@ -111,7 +110,7 @@ Deleting the source, and downloaded files
 > [!IMPORTANT]
 > 容器名稱必須是小寫字母。 如需有關容器和 Blob 名稱的詳細資訊，請參閱[命名和參考容器、Blob 及中繼資料](https://docs.microsoft.com/rest/api/storageservices/naming-and-referencing-containers--blobs--and-metadata)。
 
-### <a name="create-a-container"></a>建立容器 
+### <a name="create-a-container"></a>建立容器
 
 在本節中，您要建立物件的執行個體、建立新的容器，然後設定容器上的權限，以便公開 Blob 並使用 URL 即可存取。 容器名為 **quickstartblobs**。 
 
@@ -203,26 +202,13 @@ if(sourceFile != null)
 sourceFile.deleteOnExit();
 ```
 
-## <a name="resources-for-developing-java-applications-with-blobs"></a>可供使用 Blob 開發 Java 應用程式的資源
-
-請參閱以下可供使用 Blob 儲存體進行 Java 開發的額外資源：
-
-### <a name="binaries-and-source-code"></a>二進位檔和原始程式碼
-
-- 檢視及下載 GitHub 上適用於 Azure 儲存體的 [Java 用戶端程式庫原始程式碼](https://github.com/Azure/azure-storage-java)。
-
-### <a name="client-library-reference-and-samples"></a>用戶端程式庫參考和範例
-
-- 如需 Java 用戶端程式庫的詳細資訊，請參閱 [Java API 參考](https://docs.microsoft.com/en-us/java/api/overview/azure/storage)。
-- 探索使用 Java 用戶端程式庫所撰寫的 [Blob 儲存體範例](https://azure.microsoft.com/resources/samples/?sort=0&service=storage&platform=java&term=blob)。
-
 ## <a name="next-steps"></a>後續步驟
 
-在此快速入門中，您已了解如何使用 Java 在本機磁碟和 Azure Blob 儲存體之間傳送檔案。 若要深入了解 Blob 儲存體的用法，請繼續閱讀 Blob 儲存體操作說明。
+在此快速入門中，您已了解如何使用 Java 在本機磁碟和 Azure Blob 儲存體之間傳送檔案。 若要深入了解 Java 的用法，請繼續使用我們的 GitHub 開放原始碼存放庫。
 
 > [!div class="nextstepaction"]
-> [Blob 儲存體作業的使用說明](storage-java-how-to-use-blob-storage.md)
+> [Azure Storage SDK for Java](https://github.com/azure/azure-storage-java) 
+> [API 參考](https://docs.microsoft.com/java/azure/?view=azure-java-stable)
+> [Java 的程式碼範例](../common/storage-samples-java.md)
 
-如需儲存體總管和 Blob 的詳細資訊，請參閱[使用儲存體總管管理 Azure Blob 儲存體資源](../../vs-azure-tools-storage-explorer-blobs.md)。
-
-如需更多的 Java 範例，請參閱[使用 Java 的 Azure 儲存體範例](../common/storage-samples-java.md)。
+* 如需儲存體總管和 Blob 的詳細資訊，請參閱[使用儲存體總管管理 Azure Blob 儲存體資源](../../vs-azure-tools-storage-explorer-blobs.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json)。

@@ -1,11 +1,11 @@
 ---
-title: "使用 Azure 網路監看員診斷透過 VPN 閘道的內部部署連線 | Microsoft Docs"
-description: "本文說明如何使用 Azure 網路監看員資源疑難排解，來診斷透過 VPN 閘道的內部部署連線。"
+title: 使用 Azure 網路監看員診斷透過 VPN 閘道的內部部署連線 | Microsoft Docs
+description: 本文說明如何使用 Azure 網路監看員資源疑難排解，來診斷透過 VPN 閘道的內部部署連線。
 services: network-watcher
 documentationcenter: na
 author: jimdial
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: aeffbf3d-fd19-4d61-831d-a7114f7534f9
 ms.service: network-watcher
 ms.devlang: na
@@ -19,6 +19,7 @@ ms.sourcegitcommit: b07d06ea51a20e32fdc61980667e801cb5db7333
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 12/08/2017
+ms.locfileid: "26374197"
 ---
 # <a name="diagnose-on-premises-connectivity-via-vpn-gateways"></a>透過 VPN 閘道診斷內部部署連線
 

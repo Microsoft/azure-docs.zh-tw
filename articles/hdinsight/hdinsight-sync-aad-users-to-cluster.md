@@ -1,46 +1,40 @@
 ---
-title: "將 Azure Active Directory 使用者同步至叢集 - Azure HDInsight | Microsoft Docs"
-description: "從 Azure Active Directory 將已驗證的使用者同步至叢集。"
+title: 將 Azure Active Directory 使用者同步至叢集 - Azure HDInsight
+description: 從 Azure Active Directory 將已驗證的使用者同步至叢集。
 services: hdinsight
-documentationcenter: 
-author: ashishthaps
-manager: jhubbard
-editor: cgronlun
-tags: azure-portal
-ms.assetid: 
 ms.service: hdinsight
-ms.custom: hdinsightactive
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 01/19/2018
+author: ashishthaps
 ms.author: ashishth
-ms.openlocfilehash: ad1586a6e358dfb1ca2391474ecdd9bee2f6226d
-ms.sourcegitcommit: 1fbaa2ccda2fb826c74755d42a31835d9d30e05f
+ms.reviewer: mamccrea
+ms.custom: hdinsightactive
+ms.topic: conceptual
+ms.date: 09/24/2018
+ms.openlocfilehash: b63f2566220d556f9695687dc743a7d47e27acf1
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/22/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46984308"
 ---
 # <a name="synchronize-azure-active-directory-users-to-an-hdinsight-cluster"></a>將 Azure Active Directory 使用者同步至 HDInsight 叢集
 
-[已加入網域的 HDInsight 叢集](hdinsight-domain-joined-introduction.md)會搭配 Azure Active Directory (Azure AD) 使用者使用增強式驗證，也會使用*角色型存取控制* (RBAC) 原則。 當您將使用者和群組新增至 Azure AD 時，您可以將需要存取權的使用者同步至您的叢集。
+[有企業安全性套件 (ESP) 的 HDInsight 叢集](hdinsight-domain-joined-introduction.md)會搭配 Azure Active Directory (Azure AD) 使用者使用增強式驗證，也會使用*角色型存取控制* (RBAC) 原則。 當您將使用者和群組新增至 Azure AD 時，您可以將需要存取權的使用者同步至您的叢集。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
-如果您尚未這樣做，[請建立已加入網域的 HDInsight 叢集](hdinsight-domain-joined-configure.md)。
+如果您尚未這樣做，請[建立有企業安全性套件的 HDInsight 叢集](hdinsight-domain-joined-configure.md)。
 
 ## <a name="add-new-azure-ad-users"></a>新增 Azure AD 使用者
 
 若要檢視您的主機，請開啟 Ambari Web UI。 每個節點會以新的自動升級設定進行更新。
 
-1. 在 [Azure 入口網站](https://portal.azure.com)中，瀏覽至與已加入網域之叢集相關聯的 Azure AD 目錄。
+1. 在 [Azure 入口網站](https://portal.azure.com)中，瀏覽至與 ESP 叢集相關聯的 Azure AD 目錄。
 
 2. 從左側功能表中選取 [所有使用者]，然後選取 [新增使用者]。
 
     ![所有使用者窗格](./media/hdinsight-sync-aad-users-to-cluster/aad-users.png)
 
-3. 完成新增使用者表單。 選取您建立用於指派叢集型權限的群組。 在此範例中，建立名為 "HiveUsers" 的群組，您可以對其指派新使用者。 若要建立已加入網域的叢集，其[範例指示](hdinsight-domain-joined-configure.md)中包括新增兩個群組，`HiveUsers` 和 `AAD DC Administrators`。
+3. 完成新增使用者表單。 選取您建立用於指派叢集型權限的群組。 在此範例中，建立名為 "HiveUsers" 的群組，您可以對其指派新使用者。 用於建立 ESP 叢集的[範例指示](hdinsight-domain-joined-configure.md)包含新增兩個群組，分別是 `HiveUsers` 和 `AAD DC Administrators`。
 
     ![新增使用者窗格](./media/hdinsight-sync-aad-users-to-cluster/aad-new-user.png)
 
@@ -81,10 +75,10 @@ ms.lasthandoff: 01/22/2018
     }
     ```
 
-4. 若要查看同步狀態，請執行新的 `curl` 命令，使用從先前命令傳回的 `href` 值：
+4. 若要查看同步狀態，請執行新的 `curl` 命令：
 
     ```bash
-    curl -u admin:<YOUR PASSWORD> http://hn0-hadoop.<YOUR DOMAIN>.com:8080/api/v1/ldap_sync_events/1
+    curl -u admin:<YOUR PASSWORD> https://<YOUR CLUSTER NAME>.azurehdinsight.net/api/v1/ldap_sync_events/1
     ```
     
     回應應該如下所示：
@@ -154,6 +148,6 @@ ms.lasthandoff: 01/22/2018
 
 ## <a name="see-also"></a>另請參閱
 
-* [在已加入網域的 HDInsight 中設定 Hive 原則](hdinsight-domain-joined-run-hive.md)
-* [管理已加入網域的 HDInsight 叢集](hdinsight-domain-joined-manage.md)
+* [在有 ESP 的 HDInsight 中設定 Hive 原則](hdinsight-domain-joined-run-hive.md)
+* [管理有 ESP 的 HDInsight 叢集](hdinsight-domain-joined-manage.md)
 * [授權使用者存取 Ambari](hdinsight-authorize-users-to-ambari.md)

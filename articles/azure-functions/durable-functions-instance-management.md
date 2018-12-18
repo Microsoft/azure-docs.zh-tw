@@ -14,11 +14,12 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 03/19/2018
 ms.author: azfuncdf
-ms.openlocfilehash: 01a6fefc10dfd83997acc290dbd1c85ba86a4799
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 5cb3ccbc949f8250101fab6cb7899b859149fdfd
+ms.sourcegitcommit: 4597964eba08b7e0584d2b275cc33a370c25e027
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 07/02/2018
+ms.locfileid: "37341087"
 ---
 # <a name="manage-instances-in-durable-functions-azure-functions"></a>在 Durable Functions (Azure Functions) 中管理執行個體
 
@@ -50,7 +51,7 @@ public static async Task Run(
 }
 ```
 
-使用非 .NET 語言時，函式輸出繫結也可以用來啟動新的執行個體。 在此情況下，有上述三個參數作為欄位的任何 JSON 可序列化物件都可使用。 例如，假設有下列 Node.js 函式：
+使用非 .NET 語言時，函式輸出繫結也可以用來啟動新的執行個體。 在此情況下，有上述三個參數作為欄位的任何 JSON 可序列化物件都可使用。 例如，假設有下列 JavaScript 函式：
 
 ```js
 module.exports = function (context, input) {
@@ -77,8 +78,10 @@ module.exports = function (context, input) {
 * **CreatedTime**：協調器函式開始執行的時間。
 * **LastUpdatedTime**：協調流程前次執行檢查點檢查的時間。
 * **Input**：函式的 JSON 值輸入。
+* **CustomStatus**：JSON 格式的自訂協調流程狀態。 
 * **Output**：函式的 JSON 值輸出 (如果函式已完成)。 如果協調器函式失敗，此屬性會包含失敗詳細資料。 如果協調器函式終止，此屬性會包含提供的終止原因 (如果有的話)。
 * **RuntimeStatus**：下列其中一個值：
+    * **擱置**：已排程的執行個體尚未開始執行。
     * **Running**：執行個體已開始執行。
     * **Completed**：執行個體已正常完成。
     * **ContinuedAsNew**：執行個體本身以新的記錄重新啟動。 這是暫時性的狀態。
@@ -98,9 +101,24 @@ public static async Task Run(
     // do something based on the current status.
 }
 ```
+## <a name="querying-all-instances"></a>查詢所有執行個體
 
-> [!NOTE]
-> 目前只有 C# 協調器函式才支援查詢執行個體。
+您可以使用 `GetStatusAsync` 方法來查詢所有協調流程執行個體的狀態。 此方法不採用任何參數，或者，您可以在想要加以取消時傳入 `CancellationToken` 物件。 此方法會和使用參數的 `GetStatusAsync`方法一樣傳回具有相同屬性的物件，但不會傳回歷程記錄。 
+
+```csharp
+[FunctionName("GetAllStatus")]
+public static async Task Run(
+    [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")]HttpRequestMessage req,
+    [OrchestrationClient] DurableOrchestrationClient client,
+    TraceWriter log)
+{
+    IList<DurableOrchestrationStatus> instances = await starter.GetStatusAsync(); // You can pass CancellationToken as a parameter.
+    foreach (var instance in instances)
+    {
+        log.Info(JsonConvert.SerializeObject(instance));
+    };
+}
+```
 
 ## <a name="terminating-instances"></a>終止執行個體
 
@@ -116,9 +134,6 @@ public static Task Run(
     return client.TerminateAsync(instanceId, reason);
 }
 ```
-
-> [!NOTE]
-> 目前只有 C# 協調器函式才支援終止執行個體。
 
 > [!NOTE]
 > 執行個體終止目前未傳播。 無論呼叫活動函式和子協調流程的協調流程執行個體是否已終止，這些活動函式和子協調流程皆會執行到完成為止。
@@ -145,9 +160,6 @@ public static Task Run(
     return client.RaiseEventAsync(instanceId, "MyEvent", eventData);
 }
 ```
-
-> [!NOTE]
-> 目前只有 C# 協調器函式才支援引發事件。
 
 > [!WARNING]
 > 如果沒有協調流程執行個體具有指定的「執行個體識別碼」，或執行個體並未等候指定的「事件名稱」，則會捨棄事件訊息。 如需這個行為的詳細資訊，請參閱 [GitHub 問題](https://github.com/Azure/azure-functions-durable-extension/issues/29)。
@@ -205,6 +217,41 @@ public static Task Run(
 
 > [!NOTE]
 > Webhook URL 的格式依據您執行的 Azure Functions 主機版本，可能會有所不同。 上述範例適用於 Azure Functions 2.0 主機。
+
+## <a name="retrieving-http-management-webhook-urls"></a>擷取 HTTP 管理 Webhook URL
+
+外部系統可透過 [HTTP API URL 探索](durable-functions-http-api.md)中說明的預設回應所包含的 Webhook URL 與長期函式通訊。 不過，您也可透過 [DurableOrchestrationClient](https://azure.github.io/azure-functions-durable-extension/api/Microsoft.Azure.WebJobs.DurableOrchestrationClient.html) 類別的 [CreateHttpManagementPayload](https://azure.github.io/azure-functions-durable-extension/api/Microsoft.Azure.WebJobs.DurableOrchestrationClient.html#Microsoft_Azure_WebJobs_DurableOrchestrationClient_CreateHttpManagementPayload_) 方法，以程式設計方式在協調流程用戶端或活動函式中存取 Webhook URL。 
+
+[CreateHttpManagementPayload](https://azure.github.io/azure-functions-durable-extension/api/Microsoft.Azure.WebJobs.DurableOrchestrationClient.html#Microsoft_Azure_WebJobs_DurableOrchestrationClient_CreateHttpManagementPayload_) 有一個參數：
+
+* **instanceId**：執行個體的唯一識別碼。
+
+此方法會傳回具有下列字串屬性的 [HttpManagementPayload](https://azure.github.io/azure-functions-durable-extension/api/Microsoft.Azure.WebJobs.Extensions.DurableTask.HttpManagementPayload.html#Microsoft_Azure_WebJobs_Extensions_DurableTask_HttpManagementPayload_) 執行個體：
+
+* **Id**：協調流程的執行個體識別碼 (應該與 `InstanceId` 輸入相同)。
+* **StatusQueryGetUri**：協調流程執行個體的狀態 URL。
+* **SendEventPostUri**：協調流程執行個體的「引發事件」URL。
+* **TerminatePostUri**：協調流程執行個體的「終止」URL。
+
+活動函式可以將 [HttpManagementPayload](https://azure.github.io/azure-functions-durable-extension/api/Microsoft.Azure.WebJobs.Extensions.DurableTask.HttpManagementPayload.html#Microsoft_Azure_WebJobs_Extensions_DurableTask_HttpManagementPayload_) 的執行個體傳送至外部系統，以監視或引發協調流程的事件：
+
+```csharp
+#r "Microsoft.Azure.WebJobs.Extensions.DurableTask"
+
+public static void SendInstanceInfo(
+    [ActivityTrigger] DurableActivityContext ctx,
+    [OrchestrationClient] DurableOrchestrationClient client,
+    [DocumentDB(
+        databaseName: "MonitorDB",
+        collectionName: "HttpManagementPayloads",
+        ConnectionStringSetting = "CosmosDBConnection")]out dynamic document)
+{
+    HttpManagementPayload payload = client.CreateHttpManagementPayload(ctx.InstanceId);
+
+    // send the payload to Cosmos DB
+    document = new { Payload = payload, id = ctx.InstanceId };
+}
+```
 
 ## <a name="next-steps"></a>後續步驟
 

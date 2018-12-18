@@ -1,25 +1,21 @@
 ---
-title: "將 NoSQL 資料庫的文件資料模型化 | Microsoft Docs"
-description: "了解如何將 NoSQL 資料庫的資料模型化"
-keywords: "模型化資料"
+title: 將 NoSQL 資料庫的文件資料模型化 | Microsoft Docs
+description: 了解如何將 NoSQL 資料庫的資料模型化
+keywords: 模型化資料
 services: cosmos-db
-author: arramac
-manager: jhubbard
-editor: mimig1
-documentationcenter: 
-ms.assetid: 69521eb9-590b-403c-9b36-98253a4c88b5
+author: aliuy
+manager: kfile
 ms.service: cosmos-db
-ms.workload: data-services
-ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 05/29/2016
-ms.author: arramac
-ms.openlocfilehash: 73e546dea2c1c102736a2043e0b67f0f2c622b18
-ms.sourcegitcommit: 0e4491b7fdd9ca4408d5f2d41be42a09164db775
+ms.author: andrl
+ms.openlocfilehash: c577c9734490e3aacc148153f550162371ae482e
+ms.sourcegitcommit: 387d7edd387a478db181ca639db8a8e43d0d75f7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/14/2017
+ms.lasthandoff: 08/10/2018
+ms.locfileid: "40037995"
 ---
 # <a name="modeling-document-data-for-nosql-databases"></a>將 NoSQL 資料庫的文件資料模型化
 雖然無結構描述的資料庫 (像是 Azure Cosmos DB)，讓您極容易運用資料模型變更，但是您仍然應該花一些時間來思考資料。 
@@ -285,7 +281,7 @@ ms.lasthandoff: 12/14/2017
     ...
     {"id": "1000","name": "Deep Dive in to Azure Cosmos DB", "pub-id": "mspress"}
 
-在上述範例中，我們在發行者文件上捨棄無限制的集合。 而我們在每個書籍文件上只有發行者的參考。
+在上述範例中，我們在發行者文件上捨棄無限制的集合。 我們在每個書籍文件上只有發行者的參考。
 
 ### <a name="how-do-i-model-manymany-relationships"></a>如何建立多對多關聯性的模型？
 在關聯式資料庫 *多對多* 關聯性中，通常是與聯結資料表模型化，其只是將記錄從其他資料表聯結在一起。 

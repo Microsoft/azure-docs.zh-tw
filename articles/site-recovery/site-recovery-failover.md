@@ -1,23 +1,24 @@
 ---
-title: "Site Recovery 中的容錯移轉 | Microsoft Docs"
-description: "Azure Site Recovery 可協調虛擬機器和實體伺服器的複寫、容錯移轉及復原作業。 了解如何容錯移轉到 Azure 或次要資料中心。"
+title: Site Recovery 中的容錯移轉 | Microsoft Docs
+description: Azure Site Recovery 可協調虛擬機器和實體伺服器的複寫、容錯移轉及復原作業。 了解如何容錯移轉到 Azure 或次要資料中心。
 services: site-recovery
 author: rayne-wiselman
 manager: carmonm
 ms.service: site-recovery
 ms.topic: article
-ms.date: 03/09/2018
+ms.date: 09/11/2018
 ms.author: ponatara
-ms.openlocfilehash: f7a60cd82508629ad3cf46882564aa68995ba3e6
-ms.sourcegitcommit: a0be2dc237d30b7f79914e8adfb85299571374ec
+ms.openlocfilehash: c9a2f258ca952ca36000e1ca0630fbde31ba7ba0
+ms.sourcegitcommit: 794bfae2ae34263772d1f214a5a62ac29dcec3d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/12/2018
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44391312"
 ---
 # <a name="failover-in-site-recovery"></a>Site Recovery 中的容錯移轉
 本文說明如何容錯移轉 Site Recovery 所保護的虛擬機器和實體伺服器。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 1. 執行容錯移轉之前，請執行[測試容錯移轉](site-recovery-test-failover-to-azure.md)，以確保一切運作正常。
 1. 執行容錯移轉之前，在目標位置[準備網路](site-recovery-network-design.md)。  
 
@@ -30,14 +31,14 @@ ms.lasthandoff: 03/12/2018
 
 
 ## <a name="run-a-failover"></a>執行容錯移轉
-此程序說明如何針對[復原方案](site-recovery-create-recovery-plans.md)執行容錯移轉。 或者，您可以從 [複寫的項目] 頁面，針對單一虛擬機器或實體伺服器執行容錯移轉。
+此程序說明如何針對[復原方案](site-recovery-create-recovery-plans.md)執行容錯移轉。 或者，您可以從 [複寫的項目] 頁面，針對單一虛擬機器或實體伺服器執行容錯移轉，如[這裡](vmware-azure-tutorial-failover-failback.md#run-a-failover-to-azure)所述。
 
 
 ![容錯移轉](./media/site-recovery-failover/Failover.png)
 
 1. 選取 [復原方案]  >  *recoveryplan_name*。 按一下 [容錯移轉]
 2. 在 [容錯移轉]畫面上，選取要容錯移轉到的 [復原點]。 您可以使用下列其中一個選項：
-    1.  **最新** (預設)：此選項會透過先處理所有已傳送至 Site Recovery 服務的資料來啟動作業。 處理資料會針對每個虛擬機器建立復原點。 此復原點會由虛擬機器於容錯移轉期間使用。 此選項提供最低的 RPO (復原點目標)，因為在容錯移轉後建立的虛擬機器會具有觸發容錯移轉時已複寫到 Site Recovery 服務的所有資料。
+    1.  **最新**：此選項會透過先處理所有已傳送至 Site Recovery 服務的資料來啟動作業。 處理資料會針對每個虛擬機器建立復原點。 此復原點會由虛擬機器於容錯移轉期間使用。 此選項提供最低的 RPO (復原點目標)，因為在容錯移轉後建立的虛擬機器會具有觸發容錯移轉時已複寫到 Site Recovery 服務的所有資料。
     1.  **最新處理**︰這個選項會將復原方案的所有虛擬機器容錯移轉至 Site Recovery 服務已處理的最新復原點。 當您進行虛擬機器的測試容錯移轉時，也會顯示最新處理復原點的時間戳記。 如果您正在執行某個復原方案的容錯移轉，您可以移至個別的虛擬機器，並查看 [最新復原點] 圖格以取得此資訊。 因為沒有花時間處理未處理的資料，此選項提供低 RTO (復原時間目標) 容錯移轉選項。
     1.  **最新的應用程式一致**︰這個選項會將復原方案的所有虛擬機器容錯移轉至 Site Recovery 服務已處理的最新應用程式一致復原點。 當您進行虛擬機器的測試容錯移轉時，也會顯示最新應用程式一致復原點的時間戳記。 如果您正在執行某個復原方案的容錯移轉，您可以移至個別的虛擬機器，並查看 [最新復原點] 圖格以取得此資訊。
     1.  **已處理最近的多部虛擬機器**：此選項僅適用於至少一部虛擬機器已啟動多部虛擬機器一致性的復原計劃。 屬於最近一般多部虛擬機器一致復原點的複寫群組容錯移轉一部份的虛擬機器。 對於最近處理的復原點進行的其他虛擬機器容錯移轉。  
@@ -103,18 +104,19 @@ ms.lasthandoff: 03/12/2018
 
 在其他所有情況下則不需要此中繼步驟，且容錯移轉所花費的時間較少。
 
-
-
-
-
 ## <a name="using-scripts-in-failover"></a>在容錯移轉中使用指令碼
 您可能想要在容錯移轉時自動執行特定動作。 若要這樣做，您可以在[復原方案](site-recovery-create-recovery-plans.md)中使用指令碼或 [Azure 自動化 Runbook](site-recovery-runbook-automation.md)。
 
 ## <a name="post-failover-considerations"></a>容錯移轉後的考量
 容錯移轉之後，您可能要考慮下列建議：
 ### <a name="retaining-drive-letter-after-failover"></a>在容錯移轉之後保留磁碟機代號
-若要在容錯移轉後保留虛擬機器上的磁碟機代號，您可以將虛擬機器的 [SAN 原則] 設定為 [OnlineAll]。 [閱讀更多資訊](https://support.microsoft.com/en-us/help/3031135/how-to-preserve-the-drive-letter-for-protected-virtual-machines-that-are-failed-over-or-migrated-to-azure)。
+若要在容錯移轉後保留虛擬機器上的磁碟機代號，您可以將虛擬機器的 [SAN 原則] 設定為 [OnlineAll]。 [閱讀更多資訊](https://support.microsoft.com/help/3031135/how-to-preserve-the-drive-letter-for-protected-virtual-machines-that-are-failed-over-or-migrated-to-azure)。
 
+## <a name="prepare-to-connect-to-azure-vms-after-failover"></a>準備在容錯移轉後連接到 Azure VM
+
+如果您想要在容錯移轉後使用 RDP/SSH 連線到 Azure VM，請遵循資料表 ([這裡](site-recovery-test-failover-to-azure.md#prepare-to-connect-to-azure-vms-after-failover)) 中摘要說明的需求。
+
+請依照[這裡](site-recovery-failover-to-azure-troubleshoot.md)所述的步驟，對容錯移轉後的連線問題進行疑難排解。
 
 
 ## <a name="next-steps"></a>後續步驟

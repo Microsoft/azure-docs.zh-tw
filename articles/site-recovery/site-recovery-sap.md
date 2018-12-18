@@ -1,24 +1,25 @@
 ---
-title: "使用 Azure Site Recovery 保護多層式 SAP NetWeaver 應用程式部署 | Microsoft Docs"
-description: "本文說明如何使用 Azure Site Recovery 保護 SAP NetWeaver 應用程式部署。"
+title: 使用 Azure Site Recovery 保護多層式 SAP NetWeaver 應用程式部署 | Microsoft Docs
+description: 本文說明如何使用 Azure Site Recovery 保護 SAP NetWeaver 應用程式部署。
 services: site-recovery
-documentationcenter: 
-author: mayanknayar
+documentationcenter: ''
+author: asgang
 manager: rochakm
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: site-recovery
 ms.workload: backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/27/2018
-ms.author: manayar
-ms.openlocfilehash: b6ab734186f23d51d60e51bd0946329d5209097b
-ms.sourcegitcommit: c765cbd9c379ed00f1e2394374efa8e1915321b9
+ms.date: 07/06/2018
+ms.author: asgang
+ms.openlocfilehash: a498ac9f973bbcf87bec104f18b542cc7e8b5800
+ms.sourcegitcommit: 74941e0d60dbfd5ab44395e1867b2171c4944dbe
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/28/2018
+ms.lasthandoff: 10/15/2018
+ms.locfileid: "49318685"
 ---
 # <a name="protect-a-multi-tier-sap-netweaver-application-deployment-by-using-site-recovery"></a>使用 Site Recovery 保護多層式 SAP NetWeaver 應用程式部署
 
@@ -32,7 +33,7 @@ ms.lasthandoff: 02/28/2018
 
 本文說明如何使用 [Azure Site Recovery](site-recovery-overview.md) 保護 SAP NetWeaver 應用程式部署。 本文涵蓋在 Azure 上保護三層式 SAP NetWeaver 部署的最佳做法，也就是使用 Site Recovery 來複寫至另一個 Azure 資料中心。 其說明支援的案例和組態，以及如何執行測試容錯移轉 (災害復原演練) 和實際的容錯移轉。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 在開始之前，請確定您了解如何執行下列工作：
 
 * [將虛擬機器複寫至 Azure](azure-to-azure-walkthrough-enable-replication.md)
@@ -48,7 +49,7 @@ ms.lasthandoff: 02/28/2018
 * 在內部部署 VMware (或實體) 伺服器上執行並複寫到 Azure 資料中心內災害復原站台 (VMware 對 Azure 災害復原) 的 SAP 系統。 此案例需要一些額外的元件。 如需詳細資訊，請參閱 [VMware 對 Azure 複寫架構](https://aka.ms/asr-v2a-architecture)。
 * 在內部部署 Hyper-V 上執行並複寫到 Azure 資料中心內災害復原站台 (Hyper-V 對 Azure 災害復原) 的 SAP 系統。 此案例需要一些額外的元件。 如需詳細資訊，請參閱 [Hyper-V 對 Azure 複寫架構](https://aka.ms/asr-h2a-architecture)。
 
-在本文中，我們會使用 Azure 對 Azure 災害復原案例來示範 Site Recovery 的 SAP 災害復原功能。 由於 Site Recovery 複寫不限於特定應用程式，因此所述程序應也可以套用至其他案例。
+在本文中，我們會使用 **Azure 對 Azure** 災害復原案例來說明 Site Recovery 的 SAP 災害復原功能。 由於 Site Recovery 複寫不限於特定應用程式，因此所述程序應也可以套用至其他案例。
 
 ### <a name="required-foundation-services"></a>必要的基礎服務
 我們將在本文討論的案例中，部署下列基礎服務：
@@ -57,43 +58,97 @@ ms.lasthandoff: 02/28/2018
 
 我們建議您先建立此基礎結構，再部署 Site Recovery。
 
-## <a name="typical-sap-application-deployment"></a>典型 SAP 應用程式部署
-大型 SAP 客戶通常部署 6 到 20 個個別的 SAP 應用程式。 這些應用程式大部分是以 SAP NetWeaver ABAP 或 Java 引擎為基礎。 許多特定且較小型的非 NetWeaver SAP 獨立引擎 (通常是一些非 SAP 應用程式) 可支援這些核心 NetWeaver 應用程式。  
+## <a name="reference-sap-application-deployment"></a>參考 SAP 應用程式部署
 
-務必清查所有您環境中執行的 SAP 應用程式。 然後決定部署模式 (兩層或三層式)、版本、修補程式、大小、變換率，以及磁碟持續性需求。
+此參考架構會顯示在 Windows 環境中執行於高可用性 Azure 上的 SAP NetWeaver。  此架構以特定虛擬機器 (VM) 大小進行部署，大小可以變更以符合您的組織需求。
 
-![典型 SAP 部署模式的圖表](./media/site-recovery-sap/sap-typical-deployment.png)
+![典型 SAP 部署模式的圖表](./media/site-recovery-sap/reference_sap.png)
 
-使用原生 DBMS 工具 (例如 SQL Server AlwaysOn、Oracle Data Guard 或 SAP HANA 系統複寫) 來保護 SAP 資料庫的持續層。 如同 SAP 資料庫層級，用戶端層不會受到 Site Recovery 的保護。 請務必考量到會影響此圖層的因素。 這些因素包括 DNS 傳播延遲、安全性及災害復原資料中心的遠端存取。
+## <a name="disaster-recovery-considerations"></a>災害復原考量
 
-Site Recovery 是應用程式層的建議解決方案 (包括 SAP SCS 和 ASCS)。 其他應用程式 (例如非 NetWeaver SAP 應用程式和非 SAP 應用程式) 是形成整體 SAP 部署環境的一部分。 您應使用 Site Recovery 保護這些應用程式。
+針對災害復原 (DR)，您必須能夠容錯移轉到次要區域。 每一層會使用不同的策略來提供災害復原 (DR) 保護。
+
+#### <a name="vms-running-sap-web-dispatcher-pool"></a>執行 SAP Web Dispatcher 集區的 VM 
+Web Dispatcher 元件是用來作為 SAP 應用程式伺服器之間 SAP 流量的負載平衡器。 若要達到 Web Dispatcher 元件的高可用性，系統會使用 Azure Load Balancer，針對平衡器集區中可用 Web Dispatcher 之間的 HTTP(S) 流量分配，在循環配置資源組態中實作平行 Web Dispatcher 設定。 系統會使用 Azure Site Recovery(ASR) 進行其複寫，並使用自動化指令碼在災害復原區域上設定負載平衡器。 
+
+#### <a name="vms-running-application-servers-pool"></a>執行應用程式伺服器集區的 VM
+若要管理 ABAP 應用程式伺服器的登入群組，請使用 SMLG 交易。 它會在中央服務的訊息伺服器內使用負載平衡函式，以針對 SAPGUI 和 RFC 流量，分配 SAP 應用程式伺服器集區之間的工作負載。 系統會使用 Azure Site Recovery 進行其複寫 
+
+#### <a name="vms-running-sap-central-services-cluster"></a>執行 SAP 中央服務叢集的 VM
+此參考架構會在應用程式層中的虛擬機器上執行中央服務。 部署到單一虛擬機器 (不需要高可用性時的典型部署) 時，中央服務是潛在的單一失敗點 (SPOF)。<br>
+
+若要實作高可用性解決方案，可以使用共用磁碟叢集或檔案共用叢集。若要設定共用磁碟叢集的 VM，請使用 Windows Server 容錯移轉叢集。 建議將雲端見證作為仲裁見證。 
+ > [!NOTE]
+ > Azure Site Recovery 並不會複寫雲端見證，因此建議您在災害復原區域中部署雲端見證。
+
+若要支援容錯移轉叢集環境，[SIOS DataKeeper 叢集版本](https://azuremarketplace.microsoft.com/marketplace/apps/sios_datakeeper.sios-datakeeper-8)會執行叢集共用磁碟區函式，方法為複寫叢集節點所擁有的獨立磁碟。 Azure 本身不支援共用磁碟，因此需要 SIOS 所提供的解決方案。 
+
+處理叢集的另一種方式，是實作檔案共用叢集。 [SAP](https://blogs.sap.com/2018/03/19/migration-from-a-shared-disk-cluster-to-a-file-share-cluster) 最近修改了中央服務部署模式，來透過 UNC 路徑存取 /sapmnt 全域目錄。 不過，仍然建議確保 /sapmnt UNC 共用具有高可用性。 您可以藉由使用 Windows Server 容錯移轉叢集與相應放大檔案伺服器 (SOFS) 和 Windows Server 2016 中的儲存空間直接存取 (S2D) 功能，在中央服務執行個體上完成這項操作。 
+ > [!NOTE]
+ > 目前，Azure Site Recovery 僅支援使用「儲存空間直接存取」對虛擬機器進行「當機時保持一致復原點」複寫 
+
+
+## <a name="disaster-recovery-considerations"></a>災害復原考量
+
+您可以使用 Azure Site Recovery 在各個 Azure 區域間協調完整 SAP 部署的容錯移轉。
+以下是設定災害復原的步驟 
+
+1. 複寫虛擬機器 
+2. 設計復原網路
+3.  複寫網域控制站
+4.  將資料複寫到基本層 
+5.  執行測試容錯移轉 
+6.  執行容錯移轉 
+
+以下我們針對此範例中使用的各層提供的災害復原建議。 
+
+ **SAP 層** | **建議**
+ --- | ---
+**SAP Web Dispatcher 集區** |  使用 Site Recovery 進行複寫 
+**SAP 應用程式伺服器集區** |  使用 Site Recovery 進行複寫 
+**SAP 中央服務叢集** |  使用 Site Recovery 進行複寫 
+**Active Directory 虛擬機器** |  Active Directory 複寫 
+**SQL 資料庫伺服器** |  SQL Always On 複寫
 
 ## <a name="replicate-virtual-machines"></a>複寫虛擬機器
+
 若要開始將所有 SAP 應用程式虛擬機器都複寫至 Azure 災害復原資料中心，請遵循[將虛擬機器複寫至 Azure](azure-to-azure-walkthrough-enable-replication.md) 中的指引。
+
+
+* 如需保護 Active Directory 和 DNS 的指引，請參閱[保護 Active Directory 和 DNS](site-recovery-active-directory.md) 文件。
+
+* 如需保護在 SQL Server 上執行之資料庫層的指引，請參閱[保護 SQL Server](site-recovery-active-directory.md) 文件。
+
+## <a name="networking-configuration"></a>網路設定
 
 如果您使用靜態 IP 位址，您可以指定您想要虛擬機器使用的 IP 位址。 若要設定 IP 位址，請移至 [計算和網路設定] > [網路介面卡]。
 
 ![示範如何在 Site Recovery 網路介面卡窗格設定私人 IP 位址的螢幕擷取畫面](./media/site-recovery-sap/sap-static-ip.png)
 
-## <a name="create-a-recovery-plan"></a>建立復原計畫
-復原方案支援在容錯移轉期間對多層式應用程式中的各層進行排序。 排序有助於維持應用程式的一致性。 當您為多層式 Web 應用程式建立復原計畫時，請完成[使用 Site Recovery 建立復原計畫](site-recovery-create-recovery-plans.md)中所述的步驟。
+
+## <a name="creating-a-recovery-plan"></a>建立復原計劃
+復原方案支援在容錯移轉期間對多層式應用程式中的各層進行排序。 排序有助於維持應用程式的一致性。 當您為多層式 Web 應用程式建立復原方案時，請完成[使用 Site Recovery 建立復原方案](site-recovery-create-recovery-plans.md)中所述的步驟。
+
+### <a name="adding-virtual-machines-to-failover-groups"></a>將虛擬機器新增至容錯移轉群組
+
+1.  新增應用程式伺服器、Web Dispatcher 和 SAP 中央服務 VM，以建立復原方案。
+2.  按一下 [自訂] 將 VM 分組。 根據預設，所有 VM 都是「群組 1」的一部分。
+
+
 
 ### <a name="add-scripts-to-the-recovery-plan"></a>將指令碼新增至復原計畫
 為了讓應用程式可正常運作，您可能需要在容錯移轉後或測試容錯移轉期間，於 Azure 虛擬機器上執行某些作業。 您可以自動化某些容錯移轉後的作業。 例如，您可以透過將對應的指令碼新增至復原計畫，以更新 DNS 項目和變更繫結與連線。
 
-### <a name="dns-update"></a>DNS 更新
-如果是已設定動態 DNS 更新的 DNS，則虛擬機器通常會在啟動之後使用新的 IP 位址更新 DNS。 如果您想要新增一個明確的步驟來以虛擬機器的新 IP 位址更新 DNS，則請新增[指令碼來更新 DNS 中的 IP 位址](https://aka.ms/asr-dns-update)，作為復原計畫群組上的容錯移轉後置動作。  
 
-## <a name="example-azure-to-azure-deployment"></a>Azure 對 Azure 部署範例
-下圖顯示 Site Recovery 的 Azure 對 Azure 災害復原案例：
+您可以按一下底下的 [部署至 Azure] 按鈕，將最常用的 Azure Site Recovery 指令碼部署至您的自動化帳戶。 當您使用任何已發佈的指令碼時，請務必遵循指令碼中的指引。
 
-![Azure 對 Azure 複寫案例的圖表](./media/site-recovery-sap/sap-replication-scenario.png)
+[![部署至 Azure](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/c4803408-340e-49e3-9a1f-0ed3f689813d.png)](https://aka.ms/asr-automationrunbooks-deploy)
 
-* 主要資料中心位於新加坡 (Azure 東南亞)。 災害復原資料中心位於香港 (Azure 東亞)。 在此案例中，由兩部在新加坡以同步模式執行 SQL Server AlwaysOn 的 VM，來提供本機高可用性。
-* 檔案共用 SAP ASCS 可針對 SAP 單一失敗點提供高可用性。 檔案共用 ASCS 不需要叢集共用的磁碟。 不需要 SIOS 之類的應用程式。
-* DBMS 層的災害復原保護是利用非同步複寫達成。
-* 此案例會示範「對稱的災害復原」。 此字詞是說明災害復原解決方案就是生產環境中的複本。 災害復原 SQL Server 解決方案具有本機高可用性。 對稱的災害復原對資料庫層級而言不是必要的。 許多客戶會利用雲端部署的彈性，來快速建置災害復原事件之後的本機高可用性端點。
-* 本圖說明 Site Recovery 所複寫的 SAP NetWeaver ASCS 和應用程式伺服器層。
+1. 將動作前指令碼新增至「群組 1」，以容錯移轉 SQL 可用性群組。 使用在範例指令碼中發佈的 'ASR-SQL-FailoverAG' 指令碼。 請務必遵循指令碼中的指引，並在指令碼中適當地進行必要的變更。
+2. 新增動作後指令碼，以連結 Web 層 (群組 1) 已容錯移轉虛擬機器上的負載平衡器。 使用在範例指令碼中發佈的 'ASR-AddSingleLoadBalancer' 指令碼。 請務必遵循指令碼中的指引，並在指令碼中適當地進行必要的變更。
+
+![SAP 復原方案](./media/site-recovery-sap/sap_recovery_plan.png)
+
 
 ## <a name="run-a-test-failover"></a>執行測試容錯移轉
 

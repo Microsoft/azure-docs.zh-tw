@@ -1,25 +1,24 @@
 ---
-title: "使用者驗證︰使用 Java 利用 Azure Active Directory 向 Data Lake Store 進行 | Microsoft Docs"
-description: "了解如何使用 Java，利用 Azure Active Directory 向 Data Lake Store 完成使用者驗證"
+title: 使用者驗證︰使用 Java 利用 Azure Active Directory 向 Azure Data Lake Storage Gen1 進行 | Microsoft Docs
+description: 了解如何使用 Java 透過 Azure Active Directory 向 Azure Data Lake Storage Gen1 完成使用者驗證
 services: data-lake-store
-documentationcenter: 
+documentationcenter: ''
 author: nitinme
 manager: jhubbard
 editor: cgronlun
 ms.service: data-lake-store
 ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 01/09/2018
+ms.topic: conceptual
+ms.date: 05/29/2018
 ms.author: nitinme
-ms.openlocfilehash: b1fbf3c1e0e5715ff7effcdac45ff03f2b55f9ee
-ms.sourcegitcommit: 9292e15fc80cc9df3e62731bafdcb0bb98c256e1
+ms.openlocfilehash: 47b975b3ea0cfa9d2fb2536236b0a8dfaef14503
+ms.sourcegitcommit: f10653b10c2ad745f446b54a31664b7d9f9253fe
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/10/2018
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46126933"
 ---
-# <a name="end-user-authentication-with-data-lake-store-using-java"></a>使用 Java 向 Data Lake Store 進行使用者驗證
+# <a name="end-user-authentication-with-azure-data-lake-storage-gen1-using-java"></a>使用 Java 向 Azure Data Lake Storage Gen1 進行使用者驗證
 > [!div class="op_single_selector"]
 > * [使用 Java](data-lake-store-end-user-authenticate-java-sdk.md)
 > * [使用 .NET SDK](data-lake-store-end-user-authenticate-net-sdk.md)
@@ -28,12 +27,12 @@ ms.lasthandoff: 01/10/2018
 > 
 >   
 
-在本文中，您會了解如何使用 Java SDK 向 Azure Data Lake Store 進行使用者驗證。 如需使用 Java SDK 向 Data Lake Store 進行服務對服務驗證，請參閱[使用 Java SDK 向 Data Lake Store 進行服務對服務驗證](data-lake-store-service-to-service-authenticate-java.md)。
+在本文中，您會了解如何使用 Java SDK 向 Azure Data Lake Storage Gen1 進行使用者驗證。 如需使用 Java SDK 向 Data Lake Storage Gen1 進行服務對服務驗證，請參閱[使用 Java 向 Data Lake Storage Gen1 進行服務對服務驗證](data-lake-store-service-to-service-authenticate-java.md)。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 * **Azure 訂用帳戶**。 請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
-* **建立 Active Directory 「原生」應用程式**。 您必須已經完成[使用 Azure Active Directory 向 Data Lake Store 進行使用者驗證](data-lake-store-end-user-authenticate-using-active-directory.md)中的步驟。
+* **建立 Active Directory 「原生」應用程式**。 您必須先完成[使用 Azure Active Directory 向 Data Lake Storage Gen1 進行使用者驗證](data-lake-store-end-user-authenticate-using-active-directory.md)中的步驟。
 
 * [Maven](https://maven.apache.org/install.html). 本教學課程使用 Maven 來處理組建和專案相依性。 雖有可能不使用 Maven 或 Gradle 等組建系統進行建置，但這些系統讓相依性管理變得輕鬆許多。
 
@@ -57,7 +56,7 @@ ms.lasthandoff: 01/10/2018
           </dependency>
         </dependencies>
    
-    第一個相依性是使用來自 maven 儲存機制的 Data Lake Store SDK (`azure-data-lake-store-sdk`)。 第二個相依性是指定要用於此應用程式的記錄架構 (`slf4j-nop`)。 Data Lake Store SDK 會使用 [slf4j](http://www.slf4j.org/) 記錄外觀，讓您從數個熱門的記錄架構中進行選擇，例如 log4j、Java 記錄、logback 等或不記錄。 在此範例中，我們停用記錄，因此會使用 **slf4j-nop** 繫結。 若要在應用程式中使用其他記錄選項，請參閱[這裡](http://www.slf4j.org/manual.html#projectDep)。
+    第一個相依性是使用來自 maven 儲存機制的 Data Lake Storage Gen1 SDK (`azure-data-lake-store-sdk`)。 第二個相依性是指定要用於此應用程式的記錄架構 (`slf4j-nop`)。 Data Lake Storage Gen1 SDK 會使用 [slf4j](http://www.slf4j.org/) 記錄外觀，讓您從數個熱門的記錄架構中進行選擇，例如 log4j、Java 記錄、logback 等或不記錄。 在此範例中，我們停用記錄，因此會使用 **slf4j-nop** 繫結。 若要在應用程式中使用其他記錄選項，請參閱[這裡](http://www.slf4j.org/manual.html#projectDep)。
 
 3. 在應用程式中新增下列 import 陳述式。
 
@@ -74,11 +73,11 @@ ms.lasthandoff: 01/10/2018
             
         AccessTokenProvider provider = new DeviceCodeTokenProvider(nativeAppId);   
 
-Data Lake Store SDK 提供簡便的方法，讓您管理與 Data Lake Store 帳戶互動所需的安全性權杖。 不過，SDK 不會要求只能使用這些方法。 您也可以使用任何其他方法來取得權杖，像是使用 [Azure Active Directory SDK](https://github.com/AzureAD/azure-activedirectory-library-for-java)，或您自己的自訂程式碼。
+Data Lake Storage Gen1 SDK 提供簡便的方法，讓您管理與 Data Lake Storage Gen1 帳戶互動所需的安全性權杖。 不過，SDK 不會要求只能使用這些方法。 您也可以使用任何其他方法來取得權杖，像是使用 [Azure Active Directory SDK](https://github.com/AzureAD/azure-activedirectory-library-for-java)，或您自己的自訂程式碼。
 
 ## <a name="next-steps"></a>後續步驟
-在本文中，您已了解如何使用 Java SDK，使用使用者驗證向 Azure Data Lake Store 進行驗證。 您現在可以看看下列文章，了解如何使用 Java SDK 與 Azure Data Lake Store 搭配。
+在本文中，您已了解如何使用 Java SDK，使用使用者驗證向 Azure Data Lake Storage Gen1 進行驗證。 您現在可以看看下列文章，了解如何配合使用 Java SDK 與 Azure Data Lake Storage Gen1。
 
-* [使用 Java SDK 對 Data Lake Store 進行資料作業](data-lake-store-get-started-java-sdk.md)
+* [使用 Java SDK 對 Data Lake Storage Gen1 進行資料作業](data-lake-store-get-started-java-sdk.md)
 
 

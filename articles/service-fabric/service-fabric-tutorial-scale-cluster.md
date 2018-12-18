@@ -1,27 +1,28 @@
 ---
-title: "調整 Azure Service Fabric 叢集 | Microsoft Docs"
-description: "在本教學課程中，您會了解如何快速調整 Service Fabric 叢集。"
+title: 在 Azure 中調整 Service Fabric 叢集 | Microsoft Docs
+description: 在本教學課程中，您會了解如何在 Azure 中快速調整 Service Fabric 叢集。
 services: service-fabric
 documentationcenter: .net
-author: Thraka
+author: rwike77
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: service-fabric
 ms.devlang: dotNet
 ms.topic: tutorial
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 02/06/2018
-ms.author: adegeo
+ms.date: 010/01/2018
+ms.author: ryanwi
 ms.custom: mvc
-ms.openlocfilehash: 21ef6d1981464d5943338c20fb06a218fc0e447d
-ms.sourcegitcommit: fbba5027fa76674b64294f47baef85b669de04b7
+ms.openlocfilehash: 1af4cdb361c1db378991201fc42f17dcbf67fe67
+ms.sourcegitcommit: 1981c65544e642958917a5ffa2b09d6b7345475d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/24/2018
+ms.lasthandoff: 10/03/2018
+ms.locfileid: "48238760"
 ---
-# <a name="tutorial-scale-a-service-fabric-cluster"></a>教學課程：調整 Service Fabric 叢集
+# <a name="tutorial-scale-a-service-fabric-cluster-in-azure"></a>教學課程：在 Azure 中調整 Service Fabric 叢集
 
 本教學課程為系列課程的第二個部分，解說如何相應放大和縮小現有叢集。 完成時，您將知道如何調整叢集，以及如何清除任何剩餘的資源。
 
@@ -37,21 +38,24 @@ ms.lasthandoff: 02/24/2018
 > * 在 Azure 上，使用範本建立安全的 [Windows 叢集](service-fabric-tutorial-create-vnet-and-windows-cluster.md)或 [Linux 叢集](service-fabric-tutorial-create-vnet-and-linux-cluster.md)
 > * 將叢集相應縮小或相應放大
 > * [升級叢集的執行階段](service-fabric-tutorial-upgrade-cluster.md)
-> * [使用 Service Fabric 部署 API 管理](service-fabric-tutorial-deploy-api-management.md)
+> * [刪除叢集](service-fabric-tutorial-delete-cluster.md)
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
+
 開始進行本教學課程之前：
-- 如果您沒有 Azure 訂用帳戶，請建立[免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F)
-- 安裝 [Azure PowerShell 模組 4.1 版或更新版本](https://docs.microsoft.com/powershell/azure/install-azurerm-ps)或 [Azure CLI 2.0](/cli/azure/install-azure-cli)。
-- 在 Azure 上，建立安全的 [Windows 叢集](service-fabric-tutorial-create-vnet-and-windows-cluster.md)或 [Linux 叢集](service-fabric-tutorial-create-vnet-and-linux-cluster.md)
-- 如果您部署 Windows 叢集，請設定 Windows 開發環境。 安裝 [Visual Studio 2017](http://www.visualstudio.com) 和 **Azure 開發**、**ASP.NET 和 Web 開發**以及 **.NET Core 跨平台開發**工作負載。  然後設定 [.NET 開發環境](service-fabric-get-started.md)。
-- 如果您部署 Linux 叢集，請在 [Linux](service-fabric-get-started-linux.md) 或 [MacOS](service-fabric-get-started-mac.md) 上設定 Java 開發環境。  安裝 [Service Fabric CLI](service-fabric-cli.md)。 
+
+* 如果您沒有 Azure 訂用帳戶，請建立[免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F)
+* 安裝 [Azure PowerShell 模組 4.1 版或更新版本](https://docs.microsoft.com/powershell/azure/install-azurerm-ps)或 [Azure CLI](/cli/azure/install-azure-cli)。
+* 在 Azure 上，建立安全的 [Windows 叢集](service-fabric-tutorial-create-vnet-and-windows-cluster.md)或 [Linux 叢集](service-fabric-tutorial-create-vnet-and-linux-cluster.md)
+* 如果您部署 Windows 叢集，請設定 Windows 開發環境。 安裝 [Visual Studio 2017](http://www.visualstudio.com) 和 **Azure 開發**、**ASP.NET 和 Web 開發**以及 **.NET Core 跨平台開發**工作負載。  然後設定 [.NET 開發環境](service-fabric-get-started.md)。
+* 如果您部署 Linux 叢集，請在 [Linux](service-fabric-get-started-linux.md) 或 [MacOS](service-fabric-get-started-mac.md) 上設定 Java 開發環境。  安裝 [Service Fabric CLI](service-fabric-cli.md)。
 
 ## <a name="sign-in-to-azure"></a>登入 Azure
+
 請先登入您的 Azure 帳戶並選取您的訂用帳戶，再執行 Azure 命令。
 
 ```powershell
-Login-AzureRmAccount
+Connect-AzureRmAccount
 Get-AzureRmSubscription
 Set-AzureRmContext -SubscriptionId <guid>
 ```
@@ -85,7 +89,7 @@ sfctl cluster select --endpoint https://aztestcluster.southcentralus.cloudapp.az
 --pem ./aztestcluster201709151446.pem --no-verify
 ```
 
-完成連線後，您可以使用命令取得叢集中每個節點的狀態。 對於 PowerShell，使用 `Get-ServiceFabricClusterHealth` 命令，對於 **sfctl** 請使用 `sfctl cluster select` 命令。
+完成連線後，您可以使用命令取得叢集中每個節點的狀態。 對於 **PowerShell**，使用 `Get-ServiceFabricClusterHealth` 命令，對於 **sfctl** 請使用 `sfctl cluster select` 命令。
 
 ## <a name="scale-out"></a>相應放大
 
@@ -117,7 +121,7 @@ az vmss scale -g sfclustertutorialgroup -n nt1vm --new-capacity 6
 > [!NOTE]
 > 此部分僅適用於 *Bronze* 持久性層。 如需持久性的詳細資訊，請參閱 [Service Fabric 叢集容量規劃][durability]。
 
-您相應縮小虛擬機器擴展集時，擴展集 (在大部分情況下) 會移除最後建立的虛擬機器執行個體。 因此，您需要尋找相符的最後建立 Service Fabric 節點。 您可以檢查 Service Fabric 節點上的最大 `NodeInstanceId` 屬性值，找出這個最後節點。 下列程式碼範例依照節點執行個體排序，並傳回最大識別碼值的執行個體有關的詳細資料。 
+為了讓叢集節點在升級和容錯網域之間平均分配，因而讓它們的使用率更加平均，應該先移除最近建立的節點。 換句話說，節點的移除順序應該與建立順序相反。 最近建立的節點具有最大的 `virtual machine scale set InstanceId` 屬性值。 下列程式碼範例會傳回最近建立的節點。
 
 ```powershell
 Get-ServiceFabricNode | Sort-Object { $_.NodeName.Substring($_.NodeName.LastIndexOf('_') + 1) } -Descending | Select-Object -First 1
@@ -131,15 +135,15 @@ Service Fabric 叢集必須知道將移除此節點。 您需要採取三個步�
 
 1. 停用節點，以免節點再成為資料的複本。  
 PowerShell：`Disable-ServiceFabricNode`  
-sfcli：`sfctl node disable`
+sfctl：`sfctl node disable`
 
 2. 停止節點，以便 Service Fabric 執行階段正常關閉，而且應用程式取得終止要求。  
 PowerShell：`Start-ServiceFabricNodeTransition -Stop`  
-sfcli：`sfctl node transition --node-transition-type Stop`
+sfctl：`sfctl node transition --node-transition-type Stop`
 
 2. 從叢集移除該節點。  
 PowerShell：`Remove-ServiceFabricNodeState`  
-sfcli：`sfctl node remove-state`
+sfctl：`sfctl node remove-state`
 
 這三個步驟套用至節點之後，即可從擴展集移除節點。 如果在 [bronze][durability] 之外使用任何持久性層，則移除擴展集執行個體時，將完成這些步驟。
 
@@ -179,7 +183,7 @@ else
     # Stop node
     $stopid = New-Guid
     Start-ServiceFabricNodeTransition -Stop -OperationId $stopid -NodeName $nodename -NodeInstanceId $nodeid -StopDurationInSeconds 300
-    
+
     $state = (Get-ServiceFabricNodeTransitionProgress -OperationId $stopid).State
     $loopTimeout = 10
 
@@ -190,7 +194,7 @@ else
         $state = (Get-ServiceFabricNodeTransitionProgress -OperationId $stopid).State
         Write-Host "Checking state... $state found"
     }
-    
+
     if ($state -ne [System.Fabric.TestCommandProgressState]::Completed)
     {
         Write-Error "Stop transaction failed with $state"
@@ -219,13 +223,12 @@ sfctl node remove-state --node-name _nt1vm_5
 > [!TIP]
 > 使用下列 **sfctl** 查詢，檢查每個步驟的狀態
 >
-> **檢查停用狀態**  
+> **檢查停用狀態**
 > `sfctl node list --query "sort_by(items[*], &name)[-1].nodeDeactivationInfo"`
 >
-> **檢查停止狀態**  
+> **檢查停止狀態**
 > `sfctl node list --query "sort_by(items[*], &name)[-1].isStopped"`
 >
-
 
 ### <a name="scale-in-the-scale-set"></a>相應縮小擴展集
 
@@ -248,7 +251,6 @@ az vmss list-instances -n nt1vm -g sfclustertutorialgroup --query [*].name
 az vmss scale -g sfclustertutorialgroup -n nt1vm --new-capacity 5
 ```
 
-
 ## <a name="next-steps"></a>後續步驟
 
 在本教學課程中，您已了解如何：
@@ -257,7 +259,6 @@ az vmss scale -g sfclustertutorialgroup -n nt1vm --new-capacity 5
 > * 讀取叢集節點計數
 > * 新增叢集節點 (相應放大)
 > * 移除叢集節點 (相應縮小)
-
 
 接下來，請前往下列教學課程，了解如何升級叢集執行階段。
 > [!div class="nextstepaction"]

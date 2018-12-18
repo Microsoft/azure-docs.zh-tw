@@ -1,11 +1,11 @@
 ---
-title: "我使用行動服務，App Service 有何幫助？"
-description: "了解 App Service 為您現有的行動服務專案帶來哪些優勢。"
+title: 我使用行動服務，App Service 有何幫助？
+description: 了解 App Service 為您現有的行動服務專案帶來哪些優勢。
 services: app-service\mobile
 documentationcenter: ios
 author: conceptdev
 manager: crdun
-editor: 
+editor: ''
 ms.assetid: 26b68a11-8352-4f78-acd2-e4e0ec177781
 ms.service: app-service-mobile
 ms.workload: mobile
@@ -19,6 +19,7 @@ ms.sourcegitcommit: d1f35f71e6b1cbeee79b06bfc3a7d0914ac57275
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 02/22/2018
+ms.locfileid: "29460407"
 ---
 # <a name="getting-started"> </a>我使用行動服務，App Service 有何幫助？
 ## <a name="overview"></a>概觀

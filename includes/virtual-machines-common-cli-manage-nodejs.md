@@ -5,11 +5,12 @@
 ## <a name="cli-versions-to-complete-the-task"></a>用以完成工作的 CLI 版本
 您可以使用下列其中一個 CLI 版本來完成工作︰
 
-- Azure CLI 10 – 適用於傳統和資源管理部署模型的 CLI (本文章)
-- [Azure CLI 2.0](../articles/virtual-machines/linux/cli-manage.md) - 適用於資源管理部署模型的新一代 CLI
+- Azure 傳統 CLI：適用於傳統與資源管理部署模型的 CLI (此文章)
+- [Azure CLI](../articles/virtual-machines/linux/cli-manage.md)：適用於資源管理部署模型的新一代 CLI
 
-## <a name="basic-azure-resource-manager-commands-in-azure-cli"></a>Azure CLI 中的基本 Azure Resource Manager 命令
-本文涵蓋搭配 Azure CLI 來管理 Azure 訂用帳戶中之資源 (主要是 VM) 並與其互動的基本命令。  如需特定命令列參數和選項的詳細說明，您可以輸入 `azure <command> <subcommand> --help` 或 `azure help <command> <subcommand>` 來使用線上命令說明和選項。
+## <a name="basic-azure-resource-manager-commands-in-azure-classic-cli"></a>Azure 傳統 CLI 中的基本 Azure Resource Manager 命令
+
+此文章涵蓋搭配 Azure 傳統 CLI 來管理 Azure 訂用帳戶中之資源 (主要是 VM) 並與其互動的基本命令。  如需特定命令列參數和選項的詳細說明，您可以輸入 `azure <command> <subcommand> --help` 或 `azure help <command> <subcommand>` 來使用線上命令說明和選項。
 
 > [!NOTE]
 > 這些範例不包含以範本為基礎的作業，這些作業一般建議在資源管理員中針對 VM 部署使用。 如需資訊，請參閱[搭配 Azure Resource Manager 使用 Azure CLI](../articles/xplat-cli-azure-resource-manager.md) 和[使用 Azure Resource Manager 範本和 Azure CLI 部署與管理虛擬機器](../articles/virtual-machines/linux/create-ssh-secured-vm-from-template.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。

@@ -1,10 +1,10 @@
 ---
 title: 建立和註冊發佈者帳戶 | Microsoft Docs
-description: 關於建立 Microsoft 開發人員帳戶的指示，經過核准後即可在 Azure Marketplace 上銷售各種優惠類型。
+description: 關於建立 Microsoft 開發人員帳戶的指示，經過核准後即可在 Azure Marketplace 上銷售各種供應項目類型。
 services: Azure Marketplace
 documentationcenter: ''
-author: msmbaldwin
-manager: mbaldwin
+author: HannibalSII
+manager: hascipio
 editor: ''
 ms.assetid: 5a2fe68d-2967-463f-8af6-42bed07e3eaa
 ms.service: marketplace
@@ -13,18 +13,19 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/04/2017
-ms.author: mbaldwin
-ms.openlocfilehash: da805bead3f6af4ebd0b4b94b30a51ff2abc62dd
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.author: hascipio
+ms.openlocfilehash: 24dc50a6c78769877bdc07b9521a9d2e33837937
+ms.sourcegitcommit: e2ea404126bdd990570b4417794d63367a417856
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/14/2018
+ms.locfileid: "45579610"
 ---
 # <a name="create-a-microsoft-developer-account"></a>建立 Microsoft 開發人員帳戶
 本文將逐步引導您完成要成為 Azure Marketplace 核准的 Microsoft 開發人員所必須執行的帳戶建立和註冊程序。
 
 ## <a name="1-create-a-microsoft-account"></a>1.建立 Microsoft 帳戶
-若要開始發佈程序，您必須建立一個 Microsoft 帳戶。 此帳戶將用來註冊 **Microsoft 開發人員中心**和 **Azure 發行入口網站**。 您所有的 Azure Marketplace 供應項目應該只會共有一個 Microsoft 帳戶。 其不應該特別屬於服務或優惠。
+若要開始發佈程序，您必須建立一個 Microsoft 帳戶。 此帳戶將用來註冊 **Microsoft 開發人員中心**和 **Azure 發行入口網站**。 您所有的 Azure Marketplace 供應項目應該只會共有一個 Microsoft 帳戶。 其不應該特別屬於服務或供應項目。
 
 構成使用者名稱的電子郵件地址應該位於您的網域中，並由您的 IT 小組所控制。 所有和發佈相關的活動都應透過此帳戶完成。
 
@@ -37,7 +38,7 @@ ms.lasthandoff: 03/16/2018
 建立公司帳戶時，如果有多人需要以開啟該帳戶的 Microsoft 帳戶進行登入來存取該帳戶，請遵循下列指導方針。
 
 > [!Important]
-> 重要事項：若要允許多個使用者存取您的開發人員中心帳戶，建議使用 Azure Active Directory 將角色指派給個別使用者，該使用者可使用其個別 Azure AD 認證進行登入以存取該帳戶。 如需詳細資訊，請參閱[管理帳戶使用者](https://msdn.microsoft.com/en-us/windows/uwp/publish/manage-account-users)。
+> 重要事項：若要允許多個使用者存取您的開發人員中心帳戶，建議使用 Azure Active Directory 將角色指派給個別使用者，該使用者可使用其個別 Azure AD 認證進行登入以存取該帳戶。 如需詳細資訊，請參閱[管理帳戶使用者](https://msdn.microsoft.com/windows/uwp/publish/manage-account-users)。
 
 * 使用屬於貴公司網域，但不屬於單一個人的電子郵件地址，建立您的 Microsoft 帳戶 — 例如，windowsapps@fabrikam.com。
 * 將此 Microsoft 帳戶的存取限制為可能最少的開發人員。
@@ -49,7 +50,7 @@ ms.lasthandoff: 03/16/2018
 
 您的開發人員帳戶主要應從受信任的電腦存取。 這點很重要，因為每個帳戶每週產生的安全碼數目有所限制。 此外，也可提供最順暢的登入體驗。
 
-如需其他開發人員帳戶指導方針和安全性的詳細資訊，請按一下[這裡](https://msdn.microsoft.com/en-us/windows/uwp/publish/opening-a-developer-account#additional-guidelines-for-company-accounts)。
+如需其他開發人員帳戶指導方針和安全性的詳細資訊，請按一下[這裡](https://msdn.microsoft.com/windows/uwp/publish/opening-a-developer-account#additional-guidelines-for-company-accounts)。
 
 ### <a name="instructions"></a>範例的指示
 1. 開啟新的 Chrome Incognito 或 Internet Explorer InPrivate 瀏覽工作階段，確定您未登入現有帳戶。
@@ -64,7 +65,7 @@ ms.lasthandoff: 03/16/2018
 Microsoft 開發人員中心用於註冊一次公司資訊。 註冊者必須是公司的有效代表，而且必須提供個人資訊用來驗證其身分識別。 註冊的人員必須使用公司內共用的 Microsoft 帳戶， **而且 Azure 發佈入口網站中必須使用相同的帳戶。** 當您嘗試建立帳戶之前，應該先檢查公司是否確實未曾擁有 Microsoft 開發人員中心帳戶。 在這個程序期間，我們會收集公司地址資訊、銀行帳戶資訊和稅務資訊。 這些資訊通常可以從金融或商務連絡人處取得。
 
 > [!IMPORTANT]
-> 您必須完成下列開發人員設定檔元件，才能進行優惠建立和部署程序的各個階段。
+> 您必須完成下列開發人員設定檔元件，才能進行供應項目建立和部署程序的各個階段。
 >
 >
 
@@ -126,7 +127,7 @@ Microsoft 開發人員中心用於註冊一次公司資訊。 註冊者必須是
 9. 輸入您的付款資訊以支付您的帳戶。 如果您有涵蓋註冊成本的促銷代碼，您可以在此處輸入。 否則，請提供您的信用卡資訊 (或受支援市場的 PayPal)。 當您完成時，按一下 [下一步] 以移至 [檢閱] 畫面。
 
     ![繪圖](media/marketplace-publishing-accounts-creation-registration/imgRegisterCo_09.png)
-10. 檢閱您的帳戶資訊，並確認所有項目都正確。 然後，閱讀並接受「Microsoft Azure Marketplace 發佈者合約」 [](http://go.microsoft.com/fwlink/?LinkID=699560)的條款和條件。 勾選方塊以表示您已閱讀並接受這些條款。
+10. 檢閱您的帳戶資訊，並確認所有項目都正確。 然後，閱讀並接受[Microsoft Azure Marketplace 發佈者合約](http://go.microsoft.com/fwlink/?LinkID=699560)的條款和條件。 勾選方塊以表示您已閱讀並接受這些條款。
 11. 按一下 [完成]  以確認您的註冊。 我們會傳送一則確認訊息到您的電子郵件地址。
 12. 如果您只打算發佈免費供應項目，按一下 [移至 Azure Marketplace 發佈入口網站]  即可跳到第 3 節， [在發佈入口網站中註冊您的帳戶](#3-register-your-account-in-the-publishing-portal)。
 

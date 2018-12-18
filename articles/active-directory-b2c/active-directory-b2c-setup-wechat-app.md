@@ -1,48 +1,48 @@
 ---
-title: Azure Active Directory B2C：WeChat 設定 | Microsoft Docs
-description: 在受 Azure Active Directory B2C 保護的應用程式中，針對具有 WeChat 帳戶的取用者提供註冊和登入。
+title: 使用 Azure Active Directory B2C 設定註冊，並以 WeChat 帳戶登入 | Microsoft Docs
+description: 使用 Azure Active Directory B2C，讓具有 WeChat 帳戶的客戶得以註冊和登入您的應用程式。
 services: active-directory-b2c
-documentationcenter: ''
 author: davidmu1
 manager: mtillman
-editor: ''
-ms.service: active-directory-b2c
+ms.service: active-directory
 ms.workload: identity
-ms.topic: article
-ms.date: 3/26/2017
+ms.topic: conceptual
+ms.date: 09/11/2018
 ms.author: davidmu
-ms.openlocfilehash: ca12c84042f92dafff67dc10ce6b56b77c0456eb
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: B2C
+ms.openlocfilehash: 45afd0d4c038123a1daf5f57de18e5f2799faa31
+ms.sourcegitcommit: 5b8d9dc7c50a26d8f085a10c7281683ea2da9c10
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/26/2018
+ms.locfileid: "47181255"
 ---
-# <a name="azure-active-directory-b2c-provide-sign-up-and-sign-in-to-consumers-with-wechat-accounts"></a>Azure Active Directory B2C：針對具有 WeChat 帳戶的取用者提供註冊和登入
+# <a name="set-up-sign-up-and-sign-in-with-a-wechat-account-using-azure-active-directory-b2c"></a>使用 Azure Active Directory B2C 設定註冊，並以 WeChat 帳戶登入
 
 > [!NOTE]
-> 這項功能處於預覽狀態。
+> 此功能處於預覽狀態。
 > 
 
 ## <a name="create-a-wechat-application"></a>建立 WeChat 應用程式
 
-若要在 Azure Active Directory (Azure AD) B2C 中使用 WeChat 做為識別提供者，您必須建立 WeChat 應用程式，並對其提供正確參數。 您需要 WeChat 帳戶才能執行此動作。 如果您沒有帳戶，您可以透過它們的其中一個行動裝置應用程式來註冊，或使用您的 QQ 號碼，藉以取得一個帳戶。 之後，請利用 WeChat 開發人員計劃註冊您的帳戶。 您可以在 [這裡](http://kf.qq.com/faq/161220Brem2Q161220uUjERB.html)找到詳細資訊。
+若要在 Azure Active Directory (Azure AD) B2C 中使用 WeChat 帳戶做為識別提供者，您需要在代表該帳戶的租用戶中建立應用程式。 如果您還沒有 WeChat 帳戶，可以至 [http://kf.qq.com/faq/161220Brem2Q161220uUjERB.html](http://kf.qq.com/faq/161220Brem2Q161220uUjERB.html) 取得資訊。
 
 ### <a name="register-a-wechat-application"></a>註冊 WeChat 應用程式
 
-1. 移至 [https://open.weixin.qq.com/](https://open.weixin.qq.com/) 並登入。
-2. 按一下 [管理中心]。
-3. 遵循註冊新應用程式的必要步驟。
-4. 針對 [授权回调域] \(回呼 URL)，輸入 `https://login.microsoftonline.com/te/{tenant_name}/oauth2/authresp`。 例如，如果您的 `tenant_name` 是 contoso.onmicrosoft.com，請將 URL 設為 `https://login.microsoftonline.com/te/contoso.onmicrosoft.com/oauth2/authresp`。
-5. 尋找並複製**應用程式識別碼**和**應用程式金鑰**。 稍後您將需要這些資訊。
+1. 使用您的 WeChat 認證登入 [https://open.weixin.qq.com/](https://open.weixin.qq.com/)。
+2. 選取 [管理中心]\(管理中心\)。
+3. 遵循註冊新應用程式的步驟。
+4. 在 [授权回调域]\(回呼 URL\) 中，輸入 `https://your-tenant_name.b2clogin.com/your-tenant-name.onmicrosoft.com/oauth2/authresp`。 例如，如果您的租用戶名稱是 contoso，請將 URL 設定為 `https://contoso.b2clogin.com/contoso.onmicrosoft.com/oauth2/authresp`。
+5. 複製**應用程式識別碼**和**應用程式金鑰**。 您需要這些值，才能將識別提供者新增至您的租用戶。
 
 ## <a name="configure-wechat-as-an-identity-provider-in-your-tenant"></a>在租用戶中將 WeChat 設為識別提供者
-1. 遵循下列步驟以 [瀏覽至 B2C 功能刀鋒視窗](active-directory-b2c-app-registration.md#navigate-to-b2c-settings) (位於 Azure 入口網站上)。
-2. 在 B2C 功能刀鋒視窗中，按一下 [ **身分識別提供者**]。
-3. 按一下刀鋒視窗頂端的 [新增]  。
-4. 針對身分識別提供者組態，提供容易辨識的 **名稱** 。 例如，輸入 "WeChat"。
-5. 按一下 [識別提供者類型]、選取 [WeChat]，然後按一下 [確定]。
-6. 按一下 [設定此識別提供者]。
-7. 輸入您稍早複製為**用戶端識別碼**的**應用程式金鑰**。
-8. 輸入您稍早複製為**用戶端密碼**的**應用程式密碼**。
-9. 依序按一下 [確定] 和 [建立]，儲存您的 WeChat 設定。
+
+1. 以 Azure AD B2C 租用戶的全域管理員身分登入 [Azure 入口網站](https://portal.azure.com/)。
+2. 按一下頂端功能表中的**目錄和訂用帳戶篩選**，然後選擇包含您租用戶的目錄，以確定您使用的是包含 Azure AD B2C 租用戶的目錄。
+3. 選擇 Azure 入口網站左上角的 [所有服務]，搜尋並選取 [Azure AD B2C]。
+4. 選取 [識別提供者]，然後選取 [新增]。
+5. 提供 [名稱]。 例如，輸入 *WeChat*。
+6. 依序選取 [識別提供者類型]、[WeChat (預覽)]，然後按一下 [確定]。
+7. 選取 [設定此識別提供者]，並輸入 [用戶端識別碼] (您先前記錄的用戶端識別碼)，然後輸入 [用戶端密碼] (您先前建立的 WeChat 應用程式的應用程式金鑰)。
+8. 依序按一下 [確定] 和 [建立]，儲存您的 WeChat 設定。
 

@@ -1,11 +1,11 @@
 ---
-title: "在 Azure Stack 中監視健康情況和警示 | Microsoft Docs"
-description: "了解如何在 Azure Stack 中監視健康情況和警示。"
+title: 在 Azure Stack 中監視健康情況和警示 | Microsoft Docs
+description: 了解如何在 Azure Stack 中監視健康情況和警示。
 services: azure-stack
-documentationcenter: 
+documentationcenter: ''
 author: mattbriggs
 manager: femila
-editor: 
+editor: ''
 ms.assetid: 69901c7b-4673-4bd8-acf2-8c6bdd9d1546
 ms.service: azure-stack
 ms.workload: na
@@ -14,11 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/10/2017
 ms.author: mabrigg
-ms.openlocfilehash: 446df7922422ccfcf3fbb92ecf153c6dec2f6197
-ms.sourcegitcommit: a5f16c1e2e0573204581c072cf7d237745ff98dc
+ms.openlocfilehash: e20670476f4549a06d80d5f85e2ebd8ab1f50b05
+ms.sourcegitcommit: 0c490934b5596204d175be89af6b45aafc7ff730
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/11/2017
+ms.lasthandoff: 06/27/2018
+ms.locfileid: "37047236"
 ---
 # <a name="monitor-health-and-alerts-in-azure-stack"></a>在 Azure Stack 中監視健康情況和警示
 
@@ -31,6 +32,17 @@ Azure Stack 包含基礎結構監視功能，可讓您檢視 Azure Stack 區域�
  ## <a name="understand-health-in-azure-stack"></a>了解 Azure Stack 中的健康情況
 
  健康情況和警示是由「健康情況」資源提供者所管理的。 在 Azure Stack 部署和設定期間，Azure Stack 基礎結構元件會向健康情況資源提供者註冊。 這項註冊讓每個元件的健康情況和警示得以顯示。 在 Azure Stack 中健康情況是個簡單的概念。 如果元件的已註冊執行個體有警示存在，該元件的健康情況狀態會反映出最差的作用中警示嚴重性：警告或重要。
+
+## <a name="alert-severity-definition"></a>警示嚴重性定義
+
+在 Azure Stack 中，引發的警示只有兩種嚴重性：**警告**和**嚴重**。
+
+**警告**  
+操作員可用排程方式來解決警告警示。 警示通常不會影響使用者工作負載。
+
+**Critical**  
+操作員應該緊急解決嚴重警示。 這些是目前影響或即將影響 Azure Stack 使用者的問題。 
+
  
  ## <a name="view-and-manage-component-health-state"></a>檢視和管理元件健康情況狀態
  

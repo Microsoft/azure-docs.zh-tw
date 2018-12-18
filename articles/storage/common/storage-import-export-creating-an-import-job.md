@@ -1,24 +1,19 @@
 ---
-title: "建立 Azure 匯入/匯出的匯入作業 | Microsoft Docs"
-description: "了解如何建立 Microsoft Azure 匯入/匯出服務的匯入。"
+title: 建立 Azure 匯入/匯出的匯入作業 | Microsoft Docs
+description: 了解如何建立 Microsoft Azure 匯入/匯出服務的匯入。
 author: muralikk
-manager: syadav
-editor: syadav
 services: storage
-documentationcenter: 
-ms.assetid: 8b886e83-6148-4149-9d0f-5d48ec822475
 ms.service: storage
-ms.workload: storage
-ms.tgt_pltfrm: na
-ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: d373d2a0e601f2796719fc5efb8761f276ab24d9
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.component: common
+ms.openlocfilehash: e87b791dda03521def32ca7473336d7d37644773
+ms.sourcegitcommit: 31241b7ef35c37749b4261644adf1f5a029b2b8e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 09/04/2018
+ms.locfileid: "43666014"
 ---
 # <a name="creating-an-import-job-for-the-azure-importexport-service"></a>建立 Azure 匯入/匯出服務的匯入作業
 
@@ -62,7 +57,7 @@ ms.lasthandoff: 10/11/2017
 
 ## <a name="obtaining-your-shipping-location"></a>取得寄送位置
 
-在建立匯入作業之前，您需要藉由呼叫 [List Locations](/rest/api/storageimportexport/listlocations) 作業來取得寄送位置名稱和地址。 `List Locations` 會傳回位置及其郵寄地址的清單。 您可以從傳回的清單中選取位置，並將您的硬碟寄送至該地址。 您也可以使用 `Get Location` 作業來直接取得特定位置的寄送地址。
+在建立匯入作業之前，您需要藉由呼叫 [List Locations](https://docs.microsoft.com/rest/api/storageimportexport/locations/list) 作業來取得寄送位置名稱和地址。 `List Locations` 會傳回位置及其郵寄地址的清單。 您可以從傳回的清單中選取位置，並將您的硬碟寄送至該地址。 您也可以使用 `Get Location` 作業來直接取得特定位置的寄送地址。
 
  請遵循下列步驟來取得寄送位置︰
 
@@ -103,6 +98,8 @@ ms.lasthandoff: 10/11/2017
 
 ## <a name="updating-the-import-job-with-your-shipping-information"></a>使用出貨資料更新匯入作業
 在您取得追蹤號碼之後，請呼叫 [Update Job Properties](/api/storageimportexport/jobs#Jobs_Update) 作業以更新貨運公司名稱、作業的追蹤號碼和退貨的貨運公司帳戶號碼。 您可以選擇性指定磁碟機數目及寄送日期。
+
+[!INCLUDE [storage-import-export-delete-personal-info.md](../../../includes/storage-import-export-delete-personal-info.md)]
 
 ## <a name="next-steps"></a>後續步驟
 

@@ -1,24 +1,19 @@
 ---
-title: "使用 Azure 自動化管理 Azure 儲存體"
-description: "了解如何使用 Azure 自動化服務大規模地管理 Azure 儲存體。"
+title: 使用 Azure 自動化管理 Azure 儲存體
+description: 了解如何使用 Azure 自動化服務大規模地管理 Azure 儲存體。
 services: storage, automation
-documentationcenter: 
 author: jodoglevy
-manager: eamono
-editor: 
-ms.assetid: bac41c39-1d95-46aa-a481-ec17bbb21b40
 ms.service: storage
-ms.workload: storage
-ms.tgt_pltfrm: na
-ms.devlang: na
 ms.topic: article
 ms.date: 05/23/2016
 ms.author: eamono
-ms.openlocfilehash: 4649e42a628307e15f8b067503e4e8e13f16f1af
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.component: common
+ms.openlocfilehash: 82ec929c8d3055187a83179432fc601baa191cc4
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39526363"
 ---
 # <a name="managing-azure-storage-using-azure-automation"></a>使用 Azure 自動化管理 Azure 儲存體
 本指南將為您介紹 Azure 自動化服務，以及如何使用它來簡化 Azure 儲存體 Blob、資料表及佇列的管理。

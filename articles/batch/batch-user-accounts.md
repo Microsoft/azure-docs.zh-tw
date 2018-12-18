@@ -14,11 +14,12 @@ ms.tgt_pltfrm: ''
 ms.workload: big-compute
 ms.date: 05/22/2017
 ms.author: danlep
-ms.openlocfilehash: 1b9c0514e93fa89f8776d830ef242fc4963a6f7b
-ms.sourcegitcommit: 20d103fb8658b29b48115782fe01f76239b240aa
+ms.openlocfilehash: d5ec76a62b56769ee3065cac3542f5a94df4a1c6
+ms.sourcegitcommit: 5892c4e1fe65282929230abadf617c0be8953fd9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2018
+ms.lasthandoff: 06/29/2018
+ms.locfileid: "37133257"
 ---
 # <a name="run-tasks-under-user-accounts-in-batch"></a>在 Batch 中的使用者帳戶執行工作
 
@@ -57,8 +58,8 @@ Azure Batch 提供執行工作所需的兩種使用者帳戶類型︰
 
 使用者帳戶的提高權限層級會表示工作是否使用提高權限的存取權來執行。 自動使用者帳戶和具名的使用者帳戶都可以使用提高權限的存取權來執行。 提高權限層級的兩個選項如下︰
 
-- **NonAdmin：**工作是以標準使用者身分執行，沒有提高權限的存取權。 Batch 使用者帳戶的預設提高權限層級一律為 **NonAdmin**。
-- **系統管理員︰**工作是以具有提高權限存取權的使用者身分執行，並以完整系統管理員權限運作。 
+- **NonAdmin：** 工作是以標準使用者身分執行，沒有提高權限的存取權。 Batch 使用者帳戶的預設提高權限層級一律為 **NonAdmin**。
+- **系統管理員︰** 工作是以具有提高權限存取權的使用者身分執行，並以完整系統管理員權限運作。 
 
 ## <a name="auto-user-accounts"></a>自動使用者帳戶
 
@@ -172,8 +173,8 @@ Console.WriteLine("Creating pool [{0}]...", poolId);
 // Create a pool using the cloud service configuration.
 pool = batchClient.PoolOperations.CreatePool(
     poolId: poolId,
-    targetDedicatedComputeNodes: 3,                                                         
-    virtualMachineSize: "small",                                                
+    targetDedicatedComputeNodes: 3,
+    virtualMachineSize: "standard_d1_v2",
     cloudServiceConfiguration: new CloudServiceConfiguration(osFamily: "5"));   
 
 // Add named user accounts.
@@ -333,6 +334,4 @@ Batch 服務版本 2017-01-01.4.0 導入重大變更，將舊版中的 **runElev
 
 ## <a name="next-steps"></a>後續步驟
 
-### <a name="batch-forum"></a>Batch 論壇
-
-MSDN 上的 [Azure Batch 論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=azurebatch)是一個很棒的地方，可以討論 Batch 和詢問有關此服務的問題。 請前去查看很有幫助的釘選文章，在建立 Batch 解決方案時，出現問題就張貼。
+* 如需 Batch 的深入概觀，請參閱[使用 Batch 開發大規模的平行計算解決方案](batch-api-basics.md)。

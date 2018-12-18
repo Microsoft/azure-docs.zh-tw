@@ -1,21 +1,21 @@
 ---
-title: 權杖、工作階段及單一登入設定 - Azure AD B2C | Microsoft Docs
-description: Azure Active Directory B2C 中的權杖、工作階段及單一登入組態
+title: Azure Active Directory B2C 中的權杖、工作階段及單一登入組態 | Microsoft Docs
+description: Azure Active Directory B2C 中的權杖、工作階段及單一登入組態。
 services: active-directory-b2c
-documentationcenter: ''
 author: davidmu1
 manager: mtillman
-editor: ''
-ms.service: active-directory-b2c
+ms.service: active-directory
 ms.workload: identity
-ms.topic: article
+ms.topic: conceptual
 ms.date: 08/16/2017
 ms.author: davidmu
-ms.openlocfilehash: 925313b6f2a00826f2ec8086457315c60f70b007
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: B2C
+ms.openlocfilehash: 061e2257200b6d660a421a86c540f43597112c5e
+ms.sourcegitcommit: 0c64460a345c89a6b579b1d7e273435a5ab4157a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43337880"
 ---
 # <a name="azure-active-directory-b2c-token-session-and-single-sign-on-configuration"></a>Azure Active Directory B2C：權杖、工作階段及單一登入設定
 
@@ -29,12 +29,12 @@ ms.lasthandoff: 03/23/2018
 針對內建原則，您可以在 Azure AD B2C 目錄中使用這項功能，如下所示：
 
 1. 遵循下列步驟以[瀏覽至 B2C 功能功能表](active-directory-b2c-app-registration.md#navigate-to-b2c-settings) (位於 Azure 入口網站上)。
-2. 按一下 [註冊或登入原則] 。 *附註︰這項功能適用於任何原則類型，並不限於 **註冊或登入原則***。
+2. 按一下 [註冊或登入原則] 。 *附註︰這項功能適用於任何原則類型，並不限於 **註冊或登入原則*\*\*。
 3. 按一下原則以予以開啟。 例如，按一下 [B2C_1_SiUpIn]。
 4. 按一下功能表頂端的 [編輯]。
 5. 按一下 [權杖、工作階段及單一登入設定]。
 6. 變更需要的項目。 了解後續章節中的可用屬性。
-7. 按一下 [SERVICEPRINCIPAL] 。
+7. 按一下 [確定]。
 8. 按一下功能表頂端的 [儲存]。
 
 ## <a name="token-lifetimes-configuration"></a>權杖存留期組態
@@ -69,8 +69,8 @@ Azure AD B2C 支援以 [OAuth 2.0 授權通訊協定](active-directory-b2c-refer
 我們對 Azure AD B2C 所發出之安全性權杖中的重要宣告進行了格式變更。 這都是為了改善我們的標準通訊協定支援，以及獲得更佳的協力廠商身分識別程式庫互通性。 不過，為了避免破壞現有的應用程式，我們建立了下列可讓客戶視需要選擇加入的屬性︰
 
 * **簽發者 (iss) 宣告**︰這會識別發出權杖的 Azure AD B2C 租用戶。
-  * `https://login.microsoftonline.com/{B2C tenant GUID}/v2.0/`︰這是預設值。
-  * `https://login.microsoftonline.com/tfp/{B2C tenant GUID}/{Policy ID}/v2.0/`︰此值包括 B2C 租用戶和權杖要求中所用原則的識別碼。 如果您的應用程式或程式庫需要符合 Azure AD B2C 與 [OpenID Connect Discovery 1.0 規格](http://openid.net/specs/openid-connect-discovery-1_0.html)，請使用此值。
+  * `https://<domain>/{B2C tenant GUID}/v2.0/`︰這是預設值。
+  * `https://<domain>/tfp/{B2C tenant GUID}/{Policy ID}/v2.0/`︰此值包括 B2C 租用戶和權杖要求中所用原則的識別碼。 如果您的應用程式或程式庫需要符合 Azure AD B2C 與 [OpenID Connect Discovery 1.0 規格](http://openid.net/specs/openid-connect-discovery-1_0.html)，請使用此值。
 * **主體 (子) 宣告**：這可識別權杖判斷提示其相關資訊的主體，亦即使用者。
   * **ObjectID**：這是預設值。 它會將目錄中使用者的物件識別碼填入權杖中的 `sub` 宣告。
   * **不支援**︰這僅針對回溯相容性提供，我們建議您儘可能切換到 **ObjectID**。

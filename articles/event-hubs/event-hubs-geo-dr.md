@@ -1,23 +1,24 @@
 ---
-title: "Azure 事件中樞地理災害復原 | Microsoft Docs"
-description: "如何使用地理區域，在 Azure 事件中樞中進行容錯移轉並執行災害復原"
+title: Azure 事件中樞地理災害復原 | Microsoft Docs
+description: 如何使用地理區域，在 Azure 事件中樞中進行容錯移轉並執行災害復原
 services: event-hubs
-documentationcenter: 
-author: sethmanheim
+documentationcenter: ''
+author: ShubhaVijayasarathy
 manager: timlt
-editor: 
+editor: ''
 ms.service: event-hubs
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/15/2017
-ms.author: sethm
-ms.openlocfilehash: 237b0639be75e12cff56f40ac76426aba7a8a701
-ms.sourcegitcommit: 821b6306aab244d2feacbd722f60d99881e9d2a4
+ms.date: 08/14/2018
+ms.author: shvija
+ms.openlocfilehash: 89ecfd93c22fe72fee3befd8d4a722eb41d816af
+ms.sourcegitcommit: b5ac31eeb7c4f9be584bb0f7d55c5654b74404ff
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/16/2017
+ms.lasthandoff: 08/23/2018
+ms.locfileid: "42747166"
 ---
 # <a name="azure-event-hubs-geo-disaster-recovery"></a>Azure 事件中樞地理災害復原
 
@@ -76,7 +77,7 @@ Azure 事件中樞的地理災害復原功能就是一個災害復原解決方�
 
 ![2][]
 
-## <a name="management"></a>管理
+## <a name="management"></a>管理性
 
 如果您發生錯誤；例如，您在初始化安裝期間配對錯誤的區域，您可以隨時中斷兩個命名空間的配對。 如果您想要使用配對的命名空間作為一般命名空間，請刪除別名。
 
@@ -100,6 +101,17 @@ Azure 事件中樞的地理災害復原功能就是一個災害復原解決方�
 
 4. 同步處理實體可能需要一些時間，大約每分鐘 50-100 個實體。
 
+## <a name="availability-zones-preview"></a>可用性區域 (預覽)
+
+事件中樞標準 SKU 也支援[可用性區域](../availability-zones/az-overview.md)，在 Azure 區域內提供錯誤隔離位置。 
+
+> [!NOTE]
+> 只有在**美國中部**、**美國東部 2** 和**法國中部**區域才支援可用性區域預覽。
+
+使用 Azure 入口網站時，只能在新的命名空間上啟用可用性區域。 事件中樞不支援移轉現有的命名空間。 在命名空間上啟用區域備援之後，便無法停用。
+
+![3][]
+
 ## <a name="next-steps"></a>後續步驟
 
 * [GitHub 上的範例](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/GeoDRClient)會逐步解說簡單工作流程，以建立地理配對並在災害復原情況下起始容錯移轉。
@@ -113,3 +125,4 @@ Azure 事件中樞的地理災害復原功能就是一個災害復原解決方�
 
 [1]: ./media/event-hubs-geo-dr/geo1.png
 [2]: ./media/event-hubs-geo-dr/geo2.png
+[3]: ./media/event-hubs-geo-dr/eh-az.png

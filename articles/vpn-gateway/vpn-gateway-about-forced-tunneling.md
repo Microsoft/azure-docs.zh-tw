@@ -1,11 +1,11 @@
 ---
-title: "設定 Azure 站對站連線的強制通道：傳統 | Microsoft Docs"
-description: "如何重新導向或「強制」所有網際網路繫結流量回到內部部署位置。"
+title: 設定 Azure 站對站連線的強制通道：傳統 | Microsoft Docs
+description: 如何重新導向或「強制」所有網際網路繫結流量回到內部部署位置。
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
 manager: timlt
-editor: 
+editor: ''
 tags: azure-service-management
 ms.assetid: 5c0177f1-540c-4474-9b80-f541fa44240b
 ms.service: vpn-gateway
@@ -20,6 +20,7 @@ ms.sourcegitcommit: b5c6197f997aa6858f420302d375896360dd7ceb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 12/21/2017
+ms.locfileid: "23123836"
 ---
 # <a name="configure-forced-tunneling-using-the-classic-deployment-model"></a>使用傳統部署模型設定強制通道
 
@@ -40,9 +41,9 @@ Azure 中的強制通道會透過虛擬網路使用者定義路由 (UDR) 進行�
 
 * 每個虛擬網路的子網路皆有內建的系統路由表。 系統路由表具有下列 3 個路由群組：
 
-  * **本機 VNet 路由：**直接連線到相同虛擬網路中的目的地 VM。
-  * **內部部署路由：**連線到 Azure VPN 閘道。
-  * **預設路由：**直接連線到網際網路。 系統將會捨棄尚未由前兩個路由涵蓋之私人 IP 位址目的地的封包。
+  * **本機 VNet 路由：** 直接連線到相同虛擬網路中的目的地 VM。
+  * **內部部署路由：** 連線到 Azure VPN 閘道。
+  * **預設路由：** 直接連線到網際網路。 系統將會捨棄尚未由前兩個路由涵蓋之私人 IP 位址目的地的封包。
 * 隨著使用者定義路由的發行，您可以建立路由表以新增預設路由，然後建立路由表與 VNet 子網路的關聯，以啟用那些子網路上的強制通道處理。
 * 您需要在連接到虛擬網路的內部部署本機網站間設定「預設網站」。
 * 強制通道必須與具有動態路由 VPN 閘道 (非靜態閘道) 的 VNet 相關聯。

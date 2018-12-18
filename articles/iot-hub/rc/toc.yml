@@ -1,0 +1,11 @@
+- name: Azure
+  tocHref: /azure/
+  topicHref: /azure/index
+  items:
+    - name: 物聯網
+      tocHref: /azure/iot-fundamentals/
+      topicHref: /azure/iot-fundamentals/
+      items:
+        - name: IoT 中樞
+          tocHref: /azure/iot-fundamentals/
+          topicHref: /azure/iot-hub/

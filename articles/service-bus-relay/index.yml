@@ -1,0 +1,76 @@
+### YamlMime:YamlDocument
+ms.openlocfilehash: fe78cdfefb8062d3d576937afd133905e1787a8d
+ms.sourcegitcommit: cb61439cf0ae2a3f4b07a98da4df258bfb479845
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/05/2018
+ms.locfileid: "43698796"
+documentType: LandingData
+title: Azure 服務匯流排轉送文件
+metadata:
+  title: Azure 服務匯流排轉送文件
+  meta.description: Learn how the Azure Relay service work in a hybrid cloud and on-premises environment, complete with how to, Tutorials, videos, API references, and more.
+  services: service-bus-relay
+  author: spelluru
+  manager: femila
+  ms.service: service-bus-relay
+  ms.tgt_pltfrm: na
+  ms.devlang: na
+  ms.topic: landing-page
+  ms.date: 08/21/2018
+  ms.author: spelluru
+abstract:
+  description: Azure 轉送服務可以在企業網路及公用雲端中的內部部署和雲端環境間使用混合式應用程式，而無需開啟防火牆連線或要求對企業網路基礎結構的進行侵入式變更。
+sections:
+- title: 5 分鐘快速入門
+  items:
+  - type: paragraph
+    text: 了解如何使用 Azure 轉送來傳送及接收訊息：
+  - type: list
+    style: icon48
+    items:
+    - image:
+        src: /azure/media/index/logo_net.svg
+      text: .NET Web 通訊端
+      href: /azure/service-bus-relay/relay-hybrid-connections-dotnet-get-started
+    - image:
+        src: /azure/media/index/logo_net.svg
+      text: .NET HTTP
+      href: /azure/service-bus-relay/relay-hybrid-connections-http-requests-dotnet-get-started
+    - image:
+        src: /azure/media/index/logo_nodejs.svg
+      text: Node.js Web 通訊端
+      href: /azure/service-bus-relay/relay-hybrid-connections-node-get-started
+    - image:
+        src: /azure/media/index/logo_nodejs.svg
+      text: Node.js HTTP
+      href: /azure/service-bus-relay/relay-hybrid-connections-http-requests-node-get-started
+- title: 逐步教學課程
+  items:
+  - type: paragraph
+    text: 了解如何使用 Azure 轉送建立、管理和傳送及接收訊息
+  - type: list
+    style: ordered
+    items:
+    - html: <a href="/azure/service-bus-relay/service-bus-dotnet-hybrid-app-using-service-bus-relay">將內部部署 WCF 服務公開至雲端中的 Web 應用程式</a>
+    - html: <a href="/azure/service-bus-relay/service-bus-relay-tutorial">將內部部署 WCF 服務公開至網路外 WCF 用戶端</a>
+    - html: <a href="/azure/service-bus-relay/service-bus-relay-rest-tutorial">將內部部署 WCF 服務公開至網路外 WCF 用戶端</a>
+- title: 範例
+  items:
+  - type: paragraph
+    text: 尋找指令碼來管理常見工作。
+  - type: list
+    style: unordered
+    className: spaced noBullet
+    items:
+    - html: <a href="https://github.com/Azure/azure-relay/tree/master/samples">Azure 轉送範例</a>
+- title: 參考
+  items:
+  - type: list
+    style: cards
+    className: cardsD
+    items:
+    - title: 語言
+      html: <p><a href="/dotnet/api/microsoft.azure.relay?view=azure-dotnet">.NET Framework</a></p>
+    - title: REST
+      html: <p><a href="/rest/api/servicebus/">REST API 參考</a></p>

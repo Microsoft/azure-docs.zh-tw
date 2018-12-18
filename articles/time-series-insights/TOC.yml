@@ -1,3 +1,5 @@
+- name: Azure IoT 基礎
+  href: ../iot-fundamentals/index.yml
 - name: Azure Time Series Insights 文件
   href: index.yml
 - name: 概觀
@@ -5,10 +7,17 @@
     - name: 關於時間序列深入解析
       href: time-series-insights-overview.md
 - name: 快速入門
-  expanded: true
   items:
     - name: 探索時間序列深入解析
       href: time-series-quickstart.md
+- name: 教學課程
+  items:
+    - name: 探索 TSI JavaScript 用戶端程式庫
+      href: tutorial-explore-js-client-lib.md
+    - name: 建立 TSI 環境
+      href: tutorial-create-populate-tsi-environment.md
+    - name: 建立 TSI 單頁 Web 應用程式
+      href: tutorial-create-tsi-sample-spa.md
 - name: 概念
   items:
     - name: 規劃您的環境
@@ -51,24 +60,48 @@
       href: time-series-insights-how-to-scale-your-environment.md
     - name: 使用範本管理資源
       href: time-series-insights-manage-resources-using-azure-resource-manager-template.md
+    - name: 適用於查詢的 Shape JSON
+      href: how-to-shape-query-json.md
 - name: 參考
   items:
     - name: 查詢 API
       href: /rest/api/time-series-insights/time-series-insights-reference-queryapi
     - name: 查詢語法
       href: /rest/api/time-series-insights/time-series-insights-reference-query-syntax
+- name: 相關參考
+  items:
+    - name: 解決方案
+      items:
+        - name: IoT 套件預先設定解決方案
+          href: /azure/iot-suite
+        - name: IoT 中心
+          href: 'https://docs.microsoft.com/microsoft-iot-central/'
+    - name: 平台服務
+      items:
+        - name: IoT 中樞
+          href: /azure/iot-hub
+        - name: IoT 中樞裝置佈建服務
+          href: /azure/iot-dps
+        - name: 地圖
+          href: /azure/azure-maps
+        - name: 服務 SDK
+          href: '/azure/iot-hub/iot-hub-devguide-sdks#azure-iot-service-sdks'
+        - name: 時間序列深入解析
+          href: /azure/time-series-insights
+    - name: Edge
+      items:
+        - name: IoT Edge
+          href: /azure/iot-edge
+        - name: IoT 裝置 SDK
+          href: '/azure/iot-hub/iot-hub-devguide-sdks#azure-iot-device-sdks'
+    - name: Azure 串流分析
+      href: /azure/stream-analytics/
 - name: 資源
   items:
-    - name: 相關服務
-      items:
-        - name: Azure IoT 套件
-          href: /azure/iot-suite/
-        - name: Azure 事件中心
-          href: /azure/event-hubs/
-        - name: Azure 串流分析
-          href: /azure/stream-analytics/
+    - name: 客戶資料要求
+      href: time-series-insights-customer-data-requests.md
     - name: Azure 藍圖
-      href: 'https://azure.microsoft.com/roadmap/?category=internet-of-things'
+      href: 'https://azure.microsoft.com/roadmap/?category=iot'
     - name: 價格
       href: 'https://azure.microsoft.com/pricing/details/time-series-insights/'
     - name: 定價計算機

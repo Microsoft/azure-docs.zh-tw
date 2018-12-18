@@ -1,13 +1,13 @@
 ---
-title: "Azure CLI 指令碼範例 - 在負載平衡虛擬機器擴展集中部署 LAMP 堆疊 | Microsoft Docs"
-description: "使用自訂指令碼擴充功能，在 Azure 上的負載平衡虛擬機器擴展集中部署 LAMP 堆疊。"
+title: Azure CLI 指令碼範例 - 在負載平衡虛擬機器擴展集中部署 LAMP 堆疊 | Microsoft Docs
+description: 使用自訂指令碼擴充功能，在 Azure 上的負載平衡虛擬機器擴展集中部署 LAMP 堆疊。
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: allclark
 manager: douge
 editor: tysonn
 tags: azure-service-management
-ms.assetid: 
+ms.assetid: ''
 ms.service: virtual-machines-linux
 ms.devlang: azurecli
 ms.topic: sample
@@ -21,6 +21,7 @@ ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 03/09/2018
+ms.locfileid: "29851661"
 ---
 # <a name="deploy-the-lamp-stack-in-a-load-balanced-virtual-machine-scale-set"></a>在負載平衡虛擬機器擴展集中部署 LAMP 堆疊
 

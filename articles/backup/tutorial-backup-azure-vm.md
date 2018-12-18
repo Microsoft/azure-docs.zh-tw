@@ -1,26 +1,21 @@
 ---
-title: "在 Azure 中大規模備份 Azure VM | Microsoft Docs"
-description: "本教學課程會詳細說明將多部 Azure 虛擬機器備份至復原服務保存庫。"
+title: 在 Azure 中大規模備份 Azure VM
+description: 本教學課程會詳細說明將多部 Azure 虛擬機器備份至復原服務保存庫。
 services: backup
-documentationcenter: 
 author: markgalioto
 manager: carmonm
-editor: 
-keywords: "虛擬機器備份; 備份虛擬機器; 備份與災害復原"
-ms.assetid: 
+keywords: 虛擬機器備份; 備份虛擬機器; 備份與災害復原
 ms.service: backup
-ms.workload: storage-backup-recovery
-ms.tgt_pltfrm: na
-ms.devlang: na
 ms.topic: tutorial
 ms.date: 09/06/2017
-ms.author: trinadhk;jimpark;markgal;
+ms.author: trinadhk
 ms.custom: mvc
-ms.openlocfilehash: 01609c00c6f0585eff4843932b9eb7a090a59c19
-ms.sourcegitcommit: 7136d06474dd20bb8ef6a821c8d7e31edf3a2820
+ms.openlocfilehash: 863960e012a8e345434459ad16526c8971f00b6b
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/05/2017
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34606999"
 ---
 # <a name="back-up-azure-virtual-machines-in-azure-at-scale"></a>在 Azure 中大規模備份 Azure 虛擬機器
 
@@ -46,7 +41,7 @@ Register-AzureRmResourceProvider -ProviderNamespace Microsoft.RecoveryServices
 New-AzureRmRecoveryServicesVault -Name myRSvault -ResourceGroupName "myResourceGroup" -Location "EastUS"
 ```
 
-許多 Azure 備份 Cmdlet 都需要將復原服務保存庫物件當做輸入。 基於這個理由，將備份復原服務保存庫物件儲存在變數中會是方便的做法。 然後使用 **Set-AzureRmRecoveryServicesBackupProperties** 將 **-BackupStorageRedundancy** 選項設定為[異地備援儲存體 (GRS)](../storage/common/storage-redundancy.md#geo-redundant-storage)。 
+許多 Azure 備份 Cmdlet 都需要將復原服務保存庫物件當做輸入。 基於這個理由，將備份復原服務保存庫物件儲存在變數中會是方便的做法。 然後使用 **Set-AzureRmRecoveryServicesBackupProperties** 將 **-BackupStorageRedundancy** 選項設定為[異地備援儲存體 (GRS)](../storage/common/storage-redundancy-grs.md)。 
 
 ```powershell
 $vault1 = Get-AzureRmRecoveryServicesVault –Name myRSVault

@@ -1,23 +1,25 @@
 ---
-title: 權杖參考 - Azure AD B2C | Microsoft Docs
+title: Azure Active Directory B2C 中的權杖參考 | Microsoft Docs
 description: 在 Azure Active Directory B2C 中簽發的權杖類型
 services: active-directory-b2c
-documentationcenter: ''
 author: davidmu1
 manager: mtillman
-editor: ''
-ms.service: active-directory-b2c
+ms.service: active-directory
 ms.workload: identity
-ms.topic: article
+ms.topic: conceptual
 ms.date: 08/16/2017
 ms.author: davidmu
-ms.openlocfilehash: e5cc6a0974f9481491518779209ec5256870921f
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: B2C
+ms.openlocfilehash: 5ff4ddee3d8af15caf082be56a51b1aa0d36f02a
+ms.sourcegitcommit: 0c64460a345c89a6b579b1d7e273435a5ab4157a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43339972"
 ---
 # <a name="azure-ad-b2c-token-reference"></a>Azure AD B2C：權杖參考
+
+[!INCLUDE [active-directory-b2c-advanced-audience-warning](../../includes/active-directory-b2c-advanced-audience-warning.md)]
 
 Azure Active Directory B2C (Azure AD B2C) 會在處理每個[驗證流程](active-directory-b2c-apps.md)時發出數種安全性權杖。 本文件說明每種權杖的格式、安全性特性和內容。
 
@@ -68,10 +70,10 @@ CQhoFA
 
 請注意，ID 權杖中的宣告不依任何特定順序傳回。 此外，隨時都可以在 ID 權杖中加入新的宣告。 加入新的宣告時，您的應用程式不會損壞。 以下是 Azure AD B2C 所簽發的識別碼權杖和存取權杖中應該會有的宣告。 其他任何宣告都由原則決定。 練習時，請試著將範例識別碼權杖中的宣告貼入 [jwt.ms](https://jwt.ms) 中進行檢查。 在 [OpenID Connect 規格](http://openid.net/specs/openid-connect-core-1_0.html)中可找到進一步的詳細資料。
 
-| Name | 宣告 | 範例值 | 說明 |
+| 名稱 | 宣告 | 範例值 | 說明 |
 | --- | --- | --- | --- |
-| 對象 |`aud` |`90c0fe63-bcf2-44d5-8fb7-b8bbc0b29dc6` |對象宣告識別權杖的預定接收者。 在 Azure AD B2C 中，對象是在應用程式註冊入口網站中指派給您應用程式的應用程式識別碼。 您的應用程式應驗證此值並拒絕不相符的權杖。 |
-| 簽發者 |`iss` |`https://login.microsoftonline.com/775527ff-9a37-4307-8b3d-cc311f58d925/v2.0/` |此宣告會識別負責建構並傳回權杖的 Security Token Service (STS)。 它也會識別用於驗證使用者的 Azure AD 目錄。 您的應用程式應該驗證簽發者宣告，以確保權杖來自 Azure Active Directory v2.0 端點。 |
+| 對象 |`aud` |`90c0fe63-bcf2-44d5-8fb7-b8bbc0b29dc6` |對象宣告識別權杖的預定接收者。 在 Azure AD B2C 中，對象是在應用程式註冊入口網站中指派給您應用程式的應用程式識別碼。 您的應用程式應驗證此值並拒絕不相符的權杖。 對象是資源的同義詞。 |
+| 簽發者 |`iss` |`https://{tenantname}.b2clogin.com/775527ff-9a37-4307-8b3d-cc311f58d925/v2.0/` |此宣告會識別負責建構並傳回權杖的 Security Token Service (STS)。 它也會識別用於驗證使用者的 Azure AD 目錄。 您的應用程式應該驗證簽發者宣告，以確保權杖來自 Azure Active Directory v2.0 端點。 |
 | 發出時間 |`iat` |`1438535543` |此宣告是簽發權杖的時間，以新紀元時間表示。 |
 | 到期時間 |`exp` |`1438539443` |此到期時間宣告是權杖失效的時間，以新紀元時間表示。 您的應用程式應使用此宣告來驗證權杖存留期的有效性。 |
 | 生效時間 |`nbf` |`1438535543` |此宣告是權杖生效的時間，以新紀元時間表示。 這通常與權杖的簽發時間相同。 您的應用程式應使用此宣告來驗證權杖存留期的有效性。 |
@@ -118,7 +120,7 @@ Azure AD B2C 權杖是經由業界標準非對稱式加密演算法 (例如 RSA 
 Azure AD B2C 具有 OpenID Connect 中繼資料端點。 這可讓應用程式在執行階段擷取 Azure AD B2C 的相關資訊。 這項資訊包括端點、權杖內容和權杖簽署金鑰。 您的 B2C 目錄包含每個原則的 JSON 中繼資料文件。 例如，`fabrikamb2c.onmicrosoft.com` 中適用於 `b2c_1_sign_in` 原則的中繼資料文件位於：
 
 ```
-https://login.microsoftonline.com/fabrikamb2c.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=b2c_1_sign_in
+https://fabrikamb2c.b2clogin.com/fabrikamb2c.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=b2c_1_sign_in
 ```
 
 `fabrikamb2c.onmicrosoft.com` 是用來驗證使用者的 B2C 目錄，而 `b2c_1_sign_in` 是用來取得權杖的原則。 若要判斷哪個原則用來簽署權杖 (以及何處可擷取中繼資料)，您有兩個選項。 首先，原則名稱包含在權杖的 `acr` 宣告中。 您可以將 JWT 主體進行 base 64 解碼，並將產生的 JSON 字串還原序列化，以剖析 JWT 主體中的宣告。 `acr` 宣告會是用來簽發權杖的原則名稱。  另一個選項是當您發出要求時在 `state` 參數的值中將原則編碼，然後將它解碼以判斷使用了哪個原則。 任一種方法都有效。
@@ -126,7 +128,7 @@ https://login.microsoftonline.com/fabrikamb2c.onmicrosoft.com/v2.0/.well-known/o
 中繼資料文件是包含幾項實用資訊的 JSON 物件。 其中包括執行 OpenID Connect 驗證時所需端點的位置。 它們還包含 `jwks_uri`，指出用來簽署權杖的公用金鑰組的位置。 這裡提供該位置，但最好使用中繼資料文件並剖析 `jwks_uri`來動態擷取該位置：
 
 ```
-https://login.microsoftonline.com/fabrikamb2c.onmicrosoft.com/discovery/v2.0/keys?p=b2c_1_sign_in
+https://fabrikamb2c.b2clogin.com/fabrikamb2c.onmicrosoft.com/discovery/v2.0/keys?p=b2c_1_sign_in
 ```
 
 位於此 URL 的 JSON 文件包含特定時刻使用的所有公開金鑰資訊。 您的應用程式可以使用 JWT 標頭中的 `kid` 宣告，以選取 JSON 文件中用來簽署特定權杖的公開金鑰。 接著可以使用正確的公開金鑰和指定的演算法來執行簽章驗證。

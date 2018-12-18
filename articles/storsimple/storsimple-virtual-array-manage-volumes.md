@@ -1,11 +1,11 @@
 ---
-title: "管理 StorSimple Virtual Array 上的磁碟區 | Microsoft Docs"
-description: "描述 StorSimple 裝置管理員，並說明如何使用它來管理 StorSimple Virtual Array 上的磁碟區。"
+title: 管理 StorSimple Virtual Array 上的磁碟區 | Microsoft Docs
+description: 描述 StorSimple 裝置管理員，並說明如何使用它來管理 StorSimple Virtual Array 上的磁碟區。
 services: storsimple
-documentationcenter: 
+documentationcenter: ''
 author: manuaery
 manager: syadav
-editor: 
+editor: ''
 ms.assetid: caa6a26b-b7ba-4a05-b092-1a79450225cf
 ms.service: storsimple
 ms.devlang: na
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23110206"
 ---
 # <a name="use-storsimple-device-manager-service-to-manage-volumes-on-the-storsimple-virtual-array"></a>使用 StorSimple 裝置管理員服務管理 StorSimple Virtual Array 上的磁碟區
 
@@ -110,7 +111,7 @@ StorSimple 服務摘要刀鋒視窗的 [磁碟區] 功能表會顯示給定 Stor
 3. 在主機上的磁碟區離線之後，請執行下列步驟讓陣列上的磁碟區離線：
    
    * 從 StorSimple 服務摘要刀鋒視窗的 [磁碟區] 設定中，選取您想要設為離線的磁碟區所在的虛擬陣列。
-   * **選取** 磁碟區，從操作功能表中按一下 [...] (或以滑鼠右鍵按一下此資料列)，然後選取 [離線]。
+   * **選取** 磁碟區，從操作功能表中按一下 [...] \(或以滑鼠右鍵按一下此資料列)，然後選取 [離線]。
      
         ![讓磁碟區離線](./media/storsimple-virtual-array-manage-volumes/volume-offline.png)
    * 檢閱 [離線] 刀鋒視窗中的資訊，並確認您接受此作業。 按一下 [離線] 讓磁碟區離線。 您會看到作業進行中的通知。
@@ -130,7 +131,7 @@ StorSimple 服務摘要刀鋒視窗的 [磁碟區] 功能表會顯示給定 Stor
 #### <a name="to-delete-a-volume"></a>若要刪除磁碟區
 
 1. 從 StorSimple 服務摘要刀鋒視窗的 [磁碟區] 設定中，選取您想要刪除的磁碟區所在的虛擬陣列。
-2. **選取** 磁碟區，從操作功能表中按一下 [...] (或以滑鼠右鍵按一下此資料列)，然後選取 [刪除]。
+2. **選取** 磁碟區，從操作功能表中按一下 [...] \(或以滑鼠右鍵按一下此資料列)，然後選取 [刪除]。
    
     ![刪除磁碟區](./media/storsimple-virtual-array-manage-volumes/volume-delete.png)
 3. 檢查您想要刪除之磁碟區的狀態。 如果您想要刪除的磁碟區未離線，請先使其離線，請依照 [使磁碟區離線](#take-a-volume-offline)中的步驟執行。

@@ -3,21 +3,23 @@ title: Application Insights：程式語言、平台和整合 | Microsoft Docs
 description: 適用於 Application Insights 的程式語言、平台和整合
 services: application-insights
 documentationcenter: ''
-author: OlegAnaniev-MSFT
+author: mrbullwinkle
 manager: carmonm
 ms.assetid: 974db106-54ff-4318-9f8b-f7b3a869e536
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
-ms.topic: get-started-article
+ms.topic: conceptual
 ms.date: 09/01/2016
+ms.reviewer: olegan
 ms.author: mbullwin
-ms.openlocfilehash: 7440bb38fc68ce49504188a40ca1aafbb1e07913
-ms.sourcegitcommit: c3d53d8901622f93efcd13a31863161019325216
+ms.openlocfilehash: 4f474ad234c80a0dcb5a9f704a263a97e7df0cc1
+ms.sourcegitcommit: 4e5ac8a7fc5c17af68372f4597573210867d05df
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/29/2018
+ms.lasthandoff: 07/20/2018
+ms.locfileid: "39174229"
 ---
 # <a name="developer-analytics-languages-platforms-and-integrations"></a>開發人員分析：程式語言、平台和整合
 這些項目是我們曾聽過的 [Application Insights](app-insights-overview.md) 實作，包括一些協力廠商提供的實作。
@@ -29,6 +31,7 @@ ms.lasthandoff: 03/29/2018
 * [Node.JS](app-insights-nodejs.md)
 
 ## <a name="languages---community-supported"></a>程式語言 - 社群支援
+* [F#](https://safe-stack.github.io/docs/template-azure-ai/)
 * [PHP](https://github.com/Microsoft/ApplicationInsights-PHP)
 * [Python](https://pypi.python.org/pypi/applicationinsights/0.1.0)
 * [Ruby](https://rubygems.org/gems/application_insights)
@@ -38,28 +41,30 @@ ms.lasthandoff: 03/29/2018
 * [ASP.NET](app-insights-asp-net.md)
 * [ASP.NET - 適用於即時應用程式](app-insights-monitor-performance-live-website-now.md)
 * [ASP.NET Core](app-insights-asp-net-core.md)
-* [Android](https://github.com/Microsoft/ApplicationInsights-Android) (App Center、HockeyApp)
+* [Android](app-insights-mobile-center-quickstart.md) (App Center)
+* [Android](https://github.com/Microsoft/ApplicationInsights-Android) (App Center)
+* [Angular](https://github.com/MarkPieszak/angular-application-insights)
 * [Azure Web Apps](app-insights-azure-web-apps.md)
 * [Azure 雲端服務](app-insights-cloudservices.md)&#151;同時包含 Web 與背景工作角色
 * [Azure Functions](https://github.com/christopheranderson/azure-functions-app-insights-sample)
 * [Docker](app-insights-docker.md)
 * [Glimpse](https://azure.microsoft.com/blog/glimpse-application-insights/)
-* [iOS](https://github.com/Microsoft/ApplicationInsights-iOS) (App Center、HockeyApp)
+* [iOS](app-insights-mobile-center-quickstart.md) (App Center)
+* [Ionic](https://github.com/SoftwarePioniere/ionic-application-insights)
+* [iOS](https://github.com/Microsoft/ApplicationInsights-iOS) (App Center)
 * [J2EE](app-insights-java-get-started.md)
 * [J2EE - 適用於即時應用程式](app-insights-java-live.md)
-* [macOS app](https://support.hockeyapp.net/kb/client-integration-ios-mac-os-x-tvos/hockeyapp-for-mac-os-x) (HockeyApp)
 * [Node.JS](https://www.npmjs.com/package/applicationinsights)
 * [OSX](https://github.com/Microsoft/ApplicationInsights-OSX)
+* [SAFE 堆疊](https://safe-stack.github.io/docs/template-azure-ai/)
 * [Spring](http://joe.blog.freemansoft.com/2015/12/enabling-microsoft-application-insight.html)
-* [通用 Windows app](https://support.hockeyapp.net/kb/client-integration-windows-and-windows-phone/how-to-create-an-app-for-uwp) (App Center、HockeyApp)
+* [通用 Windows app](app-insights-mobile-center-quickstart.md) (App Center)
 * [WCF](https://github.com/Microsoft/ApplicationInsights-SDK-Labs/blob/master/WCF/readme.md)
-* [Windows Phone 8 和 8.1 應用程式](https://support.hockeyapp.net/kb/client-integration-windows-and-windows-phone/hockeyapp-for-windows-phone-silverlight-apps-80-and-81) (HockeyApp)
-* [Windows Presentation Foundation 應用程式](https://support.hockeyapp.net/kb/client-integration-windows-and-windows-phone/hockeyapp-for-windows-wpf-apps) (HockeyApp)
 * [Windows 桌面應用程式、服務和背景工作角色](app-insights-windows-desktop.md)
 * [任何其他項目](#projects)
 
 ## <a name="logging-frameworks"></a>記錄架構
-* [Log4Net、NLog 或 System.Diagnostics.Trace](app-insights-diagnostic-search.md)
+* [Log4Net、NLog 或 System.Diagnostics.Trace](app-insights-asp-net-trace-logs.md)
 * [Java、Log4J 或 Logback](app-insights-java-trace-logs.md)
 * [語意記錄 (SLAB)](https://github.com/fidmor89/SLAB_AppInsights) - 與[語意記錄應用程式區塊](https://msdn.microsoft.com/library/dn440729.aspx)整合
 * [雲端式負載測試](http://blogs.msdn.com/b/visualstudioalm/archive/2015/07/30/getting-application-insights-counters-with-cloud-based-load-testing.aspx)

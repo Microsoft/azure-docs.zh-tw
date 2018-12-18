@@ -1,24 +1,26 @@
 ---
-title: "能源需求預測技術指南 | Microsoft Docs"
-description: "具有能源需求預測之 Microsoft Cortana Intelligence 的解決方案範本技術指南。"
-services: cortana-analytics
-documentationcenter: 
+title: 能源需求預測技術指南 | Microsoft Docs
+description: 具有能源需求預測之 Microsoft Cortana Intelligence 的解決方案範本技術指南。
+services: machine-learning
+documentationcenter: ''
 author: yijichen
-manager: ilanr9
+manager: cgronlun
 editor: yijichen
 ms.assetid: 7f1a866b-79b7-4b97-ae3e-bc6bebe8c756
-ms.service: cortana-analytics
+ms.service: machine-learning
+ms.subservice: team-data-science-process
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 05/16/2016
-ms.author: inqiu;yijichen;ilanr9
-ms.openlocfilehash: bb3520d36e4c34c752fe388f3126da285e2161cd
-ms.sourcegitcommit: 3cdc82a5561abe564c318bd12986df63fc980a5a
+ms.author: yijichen
+ms.openlocfilehash: ebf037a139b3e443238bc2fc5d0ed73e697dddf5
+ms.sourcegitcommit: 3d0295a939c07bf9f0b38ebd37ac8461af8d461f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/05/2018
+ms.lasthandoff: 09/06/2018
+ms.locfileid: "43842544"
 ---
 # <a name="technical-guide-to-the-cortana-intelligence-solution-template-for-demand-forecast-in-energy"></a>能源需求預測之 Cortana Intelligence 解決方案範本的技術指南
 ## <a name="overview"></a>**概觀**
@@ -203,7 +205,7 @@ Azure 串流分析查詢建構的相關資訊可在 MSDN 上的 [串流分析查
 2. 更新冷路徑 Power BI 檔案的資料來源
 
    * 確定您已安裝最新版本的 [Power BI Desktop](https://powerbi.microsoft.com/desktop)。
-   * 在您下載的 **"DemandForecastingDataGeneratorv1.0"** 資料夾中，按兩下 **‘Power BI Template\DemandForecastPowerBI.pbix’** 檔案。 初始的視覺效果是根據虛擬資料所形成。 **注意：**如果您看到錯誤訊息，請確定您已安裝最新版本的 Power BI Desktop。
+   * 在您下載的 **"DemandForecastingDataGeneratorv1.0"** 資料夾中，按兩下 **‘Power BI Template\DemandForecastPowerBI.pbix’** 檔案。 初始的視覺效果是根據虛擬資料所形成。 **注意：** 如果您看到錯誤訊息，請確定您已安裝最新版本的 Power BI Desktop。
 
      一旦開啟，請在檔案的頂端按一下 [編輯查詢] 。 在快顯視窗中，按兩下右面板上的 [來源]。
      ![](media/cortana-analytics-technical-guide-demand-forecast/PowerBIpic1.png)
@@ -221,7 +223,7 @@ Azure 串流分析查詢建構的相關資訊可在 MSDN 上的 [串流分析查
 4. (選擇性) 排程資料來源的重新整理。
 
    * 若要排程資料的重新整理，請將滑鼠移到 **EnergyBPI-Final** 資料集，按一下 ![](media/cortana-analytics-technical-guide-demand-forecast/PowerBIpic3.png)，然後選擇 [排程重新整理]。
-     **附註：**如果您看到警告訊息，請按一下 [編輯認證]，並確定您的資料庫認證與步驟 1 中所述相同。
+     **附註：** 如果您看到警告訊息，請按一下 [編輯認證]，並確定您的資料庫認證與步驟 1 中所述相同。
 
      ![](media/cortana-analytics-technical-guide-demand-forecast/PowerBIpic4.png)
    * 展開 **排程重新整理** 一節。 開啟「將您的資料保持最新」。

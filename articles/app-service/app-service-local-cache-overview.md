@@ -1,13 +1,13 @@
 ---
-title: "Azure App Service 本機快取概觀 | Microsoft Docs"
-description: "本文說明如何啟用、調整大小並查詢 Azure App Service 本機快取功能的狀態"
+title: Azure App Service 本機快取概觀 | Microsoft Docs
+description: 本文說明如何啟用、調整大小並查詢 Azure App Service 本機快取功能的狀態
 services: app-service
 documentationcenter: app-service
-author: SyntaxC4
-manager: yochayk
-editor: 
+author: cephalin
+manager: jpconnock
+editor: ''
 tags: optional
-keywords: 
+keywords: ''
 ms.assetid: e34d405e-c5d4-46ad-9b26-2a1eda86ce80
 ms.service: app-service
 ms.devlang: multiple
@@ -15,14 +15,20 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/04/2016
-ms.author: cfowler
-ms.openlocfilehash: 75f2dcb80514105ed663ba1fe5f7adccc05af1fc
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.author: cephalin
+ms.openlocfilehash: 6729c87dcc9a85e2e3ccb6b4822213d38e2ba6f7
+ms.sourcegitcommit: 31241b7ef35c37749b4261644adf1f5a029b2b8e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 09/04/2018
+ms.locfileid: "43666109"
 ---
 # <a name="azure-app-service-local-cache-overview"></a>Azure App Service 本機快取概觀
+
+> [!NOTE]
+> Function 應用程式或容器化的 App Service 應用程式中不支援本機快取，例如在 [Linux 上的 App Service](containers/app-service-linux-intro.md) 中。
+
+
 Azure Web 應用程式的內容儲存在 Azure 儲存體中，並且會持久顯示為內容共用。 這項設計的目的是為了要與各種應用程式搭配使用，而且其具有下列特性︰  
 
 * 內容會由 Web 應用程式的多個虛擬機器 (VM) 執行個體共用。
@@ -38,13 +44,15 @@ Azure App Service 本機快取功能可讓您以 Web 角色檢視您的內容。
 * 它們不受提供內容共用之伺服器所進行的計劃性升級或非計劃性停機，以及 Azure 儲存體的任何其他中斷所影響。
 * 應用程式比較不會因為儲存體共用變更而重新啟動。
 
-## <a name="how-local-cache-changes-the-behavior-of-app-service"></a>本機快取對 App Service 的行為所造成的影響
-* 本機快取是 Web 應用程式之 /site 和 /siteextensions 資料夾的複本。 當 Web 應用程式啟動時，便會在本機 VM 執行個體上建立本機快取。 每個 Web 應用程式的本機快取大小，預設是限制為 300 MB，但最多可以增加至 2 GB。
-* 本機快取具有讀寫屬性。 不過，當 Web 應用程式移動虛擬機器或重新啟動時，將會捨棄任何修改。 因此，請勿針對會在內容存放區中儲存關鍵任務資料的應用程式使用本機快取。
-* Web 應用程式可以像目前一樣，繼續寫入記錄檔和診斷資料。 不過，記錄檔和資料會儲存在 VM 本機上。 然後再定期將它們複製到共用內容存放區。 複製到共用內容存放區是最好的狀況；回寫可能會因為 VM 執行個體突然當機而遺失。
-* 使用「本機快取」之 Web 應用程式的「記錄檔」和「資料」資料夾的資料夾結構有所變更。 儲存體的「記錄檔」和「資料」資料夾中現在有子資料夾，且這些子資料夾會遵循「唯一識別碼」+ 時間戳記的命名模式。 每個子資料夾都對應到將要用來執行或已用來執行 Web 應用程式的 VM 執行個體。  
-* 透過任何發佈機制將變更發佈至 Web 應用程式時，將會發佈到共用內容存放區。 這是預設行為，因為我們希望發佈的內容具有持久性。 為了重新整理 Web 應用程式的本機快取，就必須重新啟動 Web 應用程式。 這個步驟看起來是多餘的，不是嗎？ 為了讓整個生命週期順暢前進，請參閱本文稍後的資訊。
-* D:\Home 指向本機快取。 D:\local 繼續指向暫存 VM 的特定儲存體。
+## <a name="how-the-local-cache-changes-the-behavior-of-app-service"></a>本機快取對 App Service 的行為所造成的影響
+* _D:\home_ 會指向應用程式啟動時，在 VM 執行個體上建立的本機快取。 _D:\local_ 會繼續指向暫存 VM 的特定儲存體。
+* 本機快取中包含共用內容存放區上 _/site_ 和 _/siteextensions_ 資料夾的一次性副本，分別位在 _D:\home\site_ 和 _D:\home\siteextensions_。 檔案會在應用程式啟動時複製到本機快取。 針對每個應用程式，兩個資料夾的大小限制預設為 300 MB，但最多可以增加至 2 GB。
+* 本機快取具有讀寫屬性。 不過，當應用程式移動虛擬機器或重新啟動時，將會捨棄任何修改。 因此，請勿針對會在內容存放區中儲存關鍵任務資料的應用程式使用本機快取。
+* _D:\home\LogFiles_ 和 _D:\home\Data_ 中包含記錄檔和應用程式資料。 這兩個子資料夾會儲存在本機上的 VM 執行個體中，並定期複製到共用內容存放區。 應用程式可以藉由將記錄檔和資料寫入這些資料夾來加以保存。 不過，複製到共用內容存放區已是最佳方式，記錄檔和資料還是可能會因為 VM 執行個體突然當機而遺失。
+* [記錄串流](web-sites-enable-diagnostic-log.md#streamlogs)會受到此最佳複製方式的影響。 您可能會看到串流處理的記錄中有最多一分鐘的延遲。
+* 在共用內容存放區中，針對使用本機快取的應用程式，其_記錄檔_和_資料_資料夾的資料夾結構有所變更。 這些資料夾現在有子資料夾，且這些子資料夾會遵循「唯一識別碼」+ 時間戳記的命名模式。 每個子資料夾都對應到將要用來執行或已用來執行應用程式的 VM 執行個體。
+* _D:\home_ 中的其他資料夾會保留在本機快取中，而且不會複製到共用內容存放區。
+* 透過任何支援方法執行的應用程式部署會直接發佈到永久的共用內容存放區中。 若要重新整理本機快取中的 _D:\home\site_ 和 _D:\home\siteextensions_ 資料夾，必須重新啟動應用程式。 為了讓整個生命週期順暢前進，請參閱本文稍後的資訊。
 * SCM 網站的預設內容檢視將仍是共用內容存放區。
 
 ## <a name="enable-local-cache-in-app-service"></a>在 App Service 中啟用本機快取

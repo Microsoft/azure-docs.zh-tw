@@ -1,26 +1,20 @@
 ---
-title: "使用 Apache Hive 分析 Twitter 資料 - Azure HDInsight | Microsoft Docs"
-description: "了解如何使用 HDInsight 上的 Hive 與 Hadoop，將原始 Twitter 資料轉換成可搜尋的 Hive 資料表。"
+title: 使用 Apache Hive 分析 Twitter 資料 - Azure HDInsight
+description: 了解如何使用 HDInsight 上的 Hive 與 Hadoop，將原始 Twitter 資料轉換成可搜尋的 Hive 資料表。
 services: hdinsight
-documentationcenter: 
-author: Blackmist
-manager: jhubbard
-editor: cgronlun
-tags: azure-portal
-ms.assetid: e1e249ed-5f57-40d6-b3bc-a1b4d9a871d3
+author: jasonwhowell
+ms.reviewer: jasonh
 ms.service: hdinsight
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
-ms.date: 01/22/2018
-ms.author: larryfr
+ms.topic: conceptual
+ms.date: 06/26/2018
+ms.author: jasonh
 ms.custom: H1Hack27Feb2017,hdinsightactive
-ms.openlocfilehash: b6e540576bc4a5876bc8546262a181bd82ad9727
-ms.sourcegitcommit: 5ac112c0950d406251551d5fd66806dc22a63b01
+ms.openlocfilehash: a20f9ef6e42027cf3f499654ac8a43eee7b41854
+ms.sourcegitcommit: f6e2a03076679d53b550a24828141c4fb978dcf9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43104073"
 ---
 # <a name="analyze-twitter-data-using-hive-and-hadoop-on-hdinsight"></a>在 HDInsight 上使用 Hive 與 Hadoop 分析 Twitter 資料
 
@@ -33,7 +27,7 @@ ms.lasthandoff: 01/23/2018
 
 ## <a name="get-the-data"></a>取得資料
 
-Twitter 可讓您透過 REST API 抓取 [每則推文資料](https://dev.twitter.com/docs/platform-objects/tweets) (英文)，做為 JavaScript 物件標記法 (JSON)。 [OAuth](http://oauth.net) (英文)。
+Twitter 可讓您透過 REST API 抓取每則推文資料，作為 JavaScript 物件標記法 (JSON)。 [OAuth](http://oauth.net) (英文)。
 
 ### <a name="create-a-twitter-application"></a>建立 Twitter 應用程式
 
@@ -45,7 +39,7 @@ Twitter 可讓您透過 REST API 抓取 [每則推文資料](https://dev.twitter
 
    | 欄位 | 值 |
    |:--- |:--- |
-   | Name |MyHDInsightApp |
+   | 名稱 |MyHDInsightApp |
    | 說明 |MyHDInsightApp |
    | 網站 |http://www.myhdinsightapp.com |
 
@@ -179,9 +173,9 @@ Twitter 可讓您透過 REST API 抓取 [每則推文資料](https://dev.twitter
 
 若要將資料下載到 HDInsight 儲存體，請使用下列命令：
 
-   ```bash
-   hdfs dfs -mkdir -p /tutorials/twitter/data
-   hdfs dfs -put tweets.txt /tutorials/twitter/data/tweets.txt
+```bash
+hdfs dfs -mkdir -p /tutorials/twitter/data
+hdfs dfs -put tweets.txt /tutorials/twitter/data/tweets.txt
 ```
 
 這些命令會將資料儲存在叢集中的所有節點都能存取的位置。
@@ -309,7 +303,7 @@ Twitter 可讓您透過 REST API 抓取 [每則推文資料](https://dev.twitter
    beeline -u 'jdbc:hive2://headnodehost:10001/;transportMode=http' -i twitter.hql
    ```
 
-    這個命令會執行 **twitter.hql** 檔案。 當查詢完成時，您會看到 `jdbc:hive2//localhost:10001/>` 提示字元。
+    此命令會執行 **twitter.hql** 檔案。 當查詢完成時，您會看到 `jdbc:hive2//localhost:10001/>` 提示字元。
 
 4. 從 beeline 提示字元中，使用下列查詢來確認資料已匯入︰
 
@@ -338,5 +332,4 @@ Twitter 可讓您透過 REST API 抓取 [每則推文資料](https://dev.twitter
 
 [apache-hive-tutorial]: https://cwiki.apache.org/confluence/display/Hive/Tutorial
 
-[twitter-streaming-api]: https://dev.twitter.com/docs/streaming-apis
 [twitter-statuses-filter]: https://dev.twitter.com/docs/api/1.1/post/statuses/filter

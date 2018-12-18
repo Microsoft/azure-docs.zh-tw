@@ -3,26 +3,26 @@ title: 在 Azure 資料處理站管線中使用自訂活動
 description: 了解如何建立自訂活動，並在 Azure 資料處理站管線中使用這些活動。
 services: data-factory
 documentationcenter: ''
-author: shengcmsft
+author: douglaslMS
 manager: craigg
-ms.reviewer: douglasl
 ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 01/16/2018
-ms.author: shengc
-ms.openlocfilehash: 770187c16ed9d0eacfaf99e571ad048c6723a9cf
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.topic: conceptual
+ms.date: 08/29/2018
+ms.author: douglasl
+ms.openlocfilehash: f4a88c5495fc3297699110d8a12a22ff7d6c2bbb
+ms.sourcegitcommit: a1140e6b839ad79e454186ee95b01376233a1d1f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "43144349"
 ---
 # <a name="use-custom-activities-in-an-azure-data-factory-pipeline"></a>在 Azure 資料處理站管線中使用自訂活動
 > [!div class="op_single_selector" title1="Select the version of Data Factory service you are using:"]
-> * [第 1 版 - 正式推出](v1/data-factory-use-custom-activities.md)
-> * [第 2 版 - 預覽](transform-data-using-dotnet-custom-activity.md)
+> * [第 1 版](v1/data-factory-use-custom-activities.md)
+> * [目前的版本](transform-data-using-dotnet-custom-activity.md)
 
 您可以在 Azure Data Factory 管線中使用兩種活動。
 
@@ -30,10 +30,6 @@ ms.lasthandoff: 03/23/2018
 - 使用 Azure HDInsight、Azure Batch 及 Azure Machine Learning 等計算服務來轉換資料的[資料轉換活動](transform-data.md)。 
 
 若要將資料移入/移出 Data Factory 不支援的資料存放區，或者以 Data Factory 不支援的方式轉換/處理資料，您可以利用自己的資料移動或轉換邏輯建立**自訂活動**，然後在管線中使用活動。 自訂活動會在虛擬機器的 **Azure Batch** 集區上執行自訂程式碼邏輯。
-
-> [!NOTE]
-> 本文適用於第 2 版的 Data Fatory (目前為預覽版)。 如果您使用第 1 版的 Data Factory 服務，也就是正式推出 (GA) 的版本，請參閱 [Data Factory 第 1 版中的 (自訂) DotNet 活動](v1/data-factory-use-custom-activities.md)。
- 
 
 如果您不熟悉 Azure Batch 服務，請參閱下列文章：
 
@@ -61,10 +57,6 @@ ms.lasthandoff: 03/23/2018
                 "referenceName": "StorageLinkedService",
                 "type": "LinkedServiceReference"
             }
-        }
-        "connectVia": {
-            "referenceName": "<name of Integration Runtime>",
-            "type": "IntegrationRuntimeReference"
         }
     }
 }
@@ -107,15 +99,19 @@ ms.lasthandoff: 03/23/2018
 
 | 屬性              | 說明                              | 必要 |
 | :-------------------- | :--------------------------------------- | :------- |
-| name                  | 管線中的活動名稱     | yes      |
+| name                  | 管線中的活動名稱     | 是      |
 | 說明           | 說明活動用途的文字。  | 否       |
-| type                  | 針對自訂活動，活動類型是**自訂**。 | yes      |
-| 預設容器     | Azure Batch 的已連結的服務。 若要深入了解此已連結的服務，請參閱[計算已連結的服務](compute-linked-services.md)一文。  | yes      |
-| 命令               | 要執行的自訂應用程式命令。 如果應用程式已經可以在 Azure Batch 集區節點上使用，則可以略過 resourceLinkedService 和 folderPath。 例如，您可以將命令指定為 `cmd /c dir`，該命令原生受 Windows Batch 集區節點支援。 | yes      |
+| type                  | 針對自訂活動，活動類型是**自訂**。 | 是      |
+| 預設容器     | Azure Batch 的已連結的服務。 若要深入了解此已連結的服務，請參閱[計算已連結的服務](compute-linked-services.md)一文。  | 是      |
+| 命令               | 要執行的自訂應用程式命令。 如果應用程式已經可以在 Azure Batch 集區節點上使用，則可以略過 resourceLinkedService 和 folderPath。 例如，您可以將命令指定為 `cmd /c dir`，該命令原生受 Windows Batch 集區節點支援。 | 是      |
 | resourceLinkedService | 對儲存體帳戶 (自訂應用程式儲存所在) 的 Azure 儲存體已連結的服務 | 否       |
 | folderPath            | 自訂應用程式及其所有相依項目的資料夾路徑 | 否       |
 | referenceObjects      | 現有已連結的服務和資料集的陣列。 參考的已連結的服務和資料集會傳遞至 JSON 格式的自訂應用程式，讓您的自訂程式碼可以參考 Data Factory 的資源 | 否       |
 | extendedProperties    | 使用者定義的屬性，可以傳遞至 JSON 格式的自訂應用程式，讓您的自訂程式碼可以參考其他屬性 | 否       |
+
+## <a name="custom-activity-permissions"></a>自訂活動權限
+
+自訂活動會將 Azure Batch 自動使用者帳戶設定為*具有工作範圍 (預設的自動使用者規格) 的非系統管理員存取權*。 您無法變更自動使用者帳戶的權限等級。 如需詳細資訊，請參閱[在 Batch 中的使用者帳戶執行工作 | 自動使用者帳戶](../batch/batch-user-accounts.md#auto-user-accounts)。
 
 ## <a name="executing-commands"></a>執行命令
 
@@ -219,7 +215,7 @@ namespace SampleApp
 
             // From LinkedServices
             dynamic linkedServices = JsonConvert.DeserializeObject(File.ReadAllText("linkedServices.json"));
-            Console.WriteLine(linkedServices[0].properties.typeProperties.connectionString.value);
+            Console.WriteLine(linkedServices[0].properties.typeProperties.accountName);
         }
     }
 }
@@ -292,10 +288,10 @@ namespace SampleApp
   "failureType": ""
   "target": "MyCustomActivity"
   ```
-如果您想要在下游活動中取用 stdout.txt 的內容，可以在 "@activity('MyCustomActivity').output.outputs[0]" 運算式中取得 stdout.txt 檔案的路徑。 
+如果您想要在下游活動中取用 stdout.txt 的內容，可以在 "\@activity('MyCustomActivity').output.outputs[0]" 運算式中取得 stdout.txt 檔案的路徑。 
 
   > [!IMPORTANT]
-  > - activity.json、linkedServices.json 和 datasets.json 會儲存在 Batch 工作的執行階段資料夾。 例如，activity.json、linkedServices.json 和 datasets.json 會儲存在「https://adfv2storage.blob.core.windows.net/adfjobs/<GUID>/runtime/」路徑。 您必須視需要個別加以清除。 
+  > - activity.json、linkedServices.json 和 datasets.json 會儲存在 Batch 工作的執行階段資料夾。 例如，activity.json、linkedServices.json 和 datasets.json 會儲存在「 https://adfv2storage.blob.core.windows.net/adfjobs/<GUID>/runtime/」路徑。 您必須視需要個別加以清除。 
   > - 針對已連結的服務使用自我裝載整合執行階段，機密資訊 (例如金鑰或密碼) 就會由自我裝載整合執行階段加密，以確保認證保留在客戶定義的私人網路環境中。 某些機密欄位由您的自訂應用程式以這樣的方式參考時，可能會遺失。 視需要在 extendedProperties 中使用 SecureString，而不是使用已連結的服務參考。 
 
 ## <a name="compare-v2-v1"></a> 比較 v2 自訂活動和第 1 版 (自訂) DotNet 活動
@@ -311,7 +307,7 @@ namespace SampleApp
   下表說明 Data Factory V2 自訂活動和 Data Factory 第 1 版 (自訂) DotNet 活動之間的差異： 
 
 
-|差異      |第 2 版自訂活動      | 第 1 版 (自訂) DotNet 活動      |
+|差異      | 自訂活動      | 第 1 版 (自訂) DotNet 活動      |
 | ---- | ---- | ---- |
 |定義自訂邏輯的方式      |提供可執行檔      |實作 .Net DLL      |
 |自訂邏輯的執行環境      |Windows 或 Linux      |Windows (.Net Framework 4.5.2)      |
@@ -322,7 +318,7 @@ namespace SampleApp
 |記錄      |直接寫入 STDOUT      |實作 .Net DLL 中的記錄器      |
 
 
-  如果您的現有 .Net 程式碼是針對第 1 版 (自訂) DotNet 活動所撰寫，您需要為其修改程式碼，才能與第 2 版自訂活動搭配使用。 遵循下列高階指導方針來更新程式碼：  
+  如果您的現有 .Net 程式碼是針對第 1 版 (自訂) DotNet 活動所撰寫，您就必須修改程式碼，才能與目前自訂活動的版本搭配使用。 遵循下列高階指導方針來更新程式碼：  
 
    - 將專案由 .Net 類別庫變更為主控台應用程式。 
    - 使用 `Main` 方法啟動您的應用程式。 已不再需要 `IDotNetActivity` 介面的 `Execute` 方法。 
@@ -331,7 +327,7 @@ namespace SampleApp
    - 不再需要 Microsoft.Azure.Management.DataFactories NuGet 套件。 
    - 編譯您的程式碼，將可執行檔及其相依性上傳至 Azure 儲存體，並在 `folderPath` 屬性中定義路徑。 
 
-如需如何將 Data Factory 第 1 版文章[在 Azure Data Factory 管線中使用自訂活動](https://docs.microsoft.com/azure/data-factory/v1/data-factory-use-custom-activities)中所述的端對端 DLL 和管線範例重新撰寫為 Data Factory V2 自訂活動的完整範例，請參閱 [Data Factory 第 2 版自訂活動範例](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/ADFv2CustomActivitySample) \(英文\)。 
+如需如何將 Data Factory 第 1 版文章[在 Azure Data Factory 管線中使用自訂活動](https://docs.microsoft.com/azure/data-factory/v1/data-factory-use-custom-activities)中所述的端對端 DLL 和管線範例重新撰寫為 Data Factory 自訂活動的完整範例，請參閱 [Data Factory 自訂活動範例](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/ADFv2CustomActivitySample) \(英文\)。 
 
 ## <a name="auto-scaling-of-azure-batch"></a>Azure Batch 的自動調整
 您也可以建立具有 **自動調整** 功能的 Azure Batch 集區。 例如，您可以用 0 專用 VM 和依據暫止工作數目自動調整的公式，建立 Azure Batch 集區。 

@@ -1,21 +1,21 @@
 ---
-title: "建立 Azure Time Series Insights 環境 | Microsoft Docs"
-description: "本文說明如何使用 Azure 入口網站建立新的時間序列深入解析環境。"
-services: time-series-insights
+title: 建立 Azure Time Series Insights 環境 | Microsoft Docs
+description: 本文說明如何使用 Azure 入口網站建立新的時間序列深入解析環境。
 ms.service: time-series-insights
+services: time-series-insights
 author: ashannon7
 ms.author: anshan
-manager: jhubbard
-editor: MicrosoftDocs/tsidocs
+manager: cshankar
 ms.reviewer: v-mamcge, jasonh, kfile, anshan
 ms.workload: big-data
-ms.topic: article
+ms.topic: conceptual
 ms.date: 11/15/2017
-ms.openlocfilehash: 20156432e17d5eca90779271bd18dc49fa988d7c
-ms.sourcegitcommit: 719dd33d18cc25c719572cd67e4e6bce29b1d6e7
+ms.openlocfilehash: 909d8a921e46f0f935bb8a059714b1c0170ddee4
+ms.sourcegitcommit: 4de6a8671c445fae31f760385710f17d504228f8
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2018
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39627656"
 ---
 # <a name="create-a-new-time-series-insights-environment-in-the-azure-portal"></a>在 Azure 入口網站中建立新的 Time Series Insights 環境
 本文說明如何使用 Azure 入口網站建立新的時間序列深入解析環境。

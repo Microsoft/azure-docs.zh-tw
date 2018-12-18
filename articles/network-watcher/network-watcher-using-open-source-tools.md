@@ -1,11 +1,11 @@
 ---
-title: "使用 Azure 網路監看員和開放原始碼工具將網路流量模式視覺化 | Microsoft Docs"
-description: "此頁面描述如何使用網路監看員封包擷取並搭配 Capanalysis，將往返於 VM 的流量模式視覺化。"
+title: 使用 Azure 網路監看員和開放原始碼工具將網路流量模式視覺化 | Microsoft Docs
+description: 此頁面描述如何使用網路監看員封包擷取並搭配 Capanalysis，將往返於 VM 的流量模式視覺化。
 services: network-watcher
 documentationcenter: na
 author: jimdial
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 936d881b-49f9-4798-8e45-d7185ec9fe89
 ms.service: network-watcher
 ms.devlang: na
@@ -14,17 +14,18 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: jdial
-ms.openlocfilehash: 61abda6053fe743e294f309df3a6e1041052ec6e
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 7b1e1383e8e244a7cdb30be1e08514a6a4dd7b14
+ms.sourcegitcommit: ea5193f0729e85e2ddb11bb6d4516958510fd14c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 06/21/2018
+ms.locfileid: "36302228"
 ---
 # <a name="visualize-network-traffic-patterns-to-and-from-your-vms-using-open-source-tools"></a>使用開放原始碼工具將往返於 VM 的網路流量模式視覺化
 
 封包擷取包含的網路資料可讓您執行網路鑑識和深入的封包檢查。 有許多開啟原始碼工具可用來分析封包擷取，以深入探索您的網路。 例如 CapAnalysis，一個開放原始碼封包擷取視覺效果工具。 將封包擷取資料視覺化有助於快速深入探索網路內的模式和異常。 視覺效果也可讓您輕鬆分享這種深入解析。
 
-Azure 的網路監看員可讓您在網路上執行封包擷取，以擷取這項重要資料。 在本文中，我們提供逐步解說，示範如何使用 CapAnalysis 搭配網路監看員，以視覺化和深入探索封包擷取。
+Azure 的網路監看員可讓您在網路上執行封包擷取，以便擷取資料。 本文提供逐步解說，示範如何使用 CapAnalysis 搭配網路監看員，以視覺化和深入探索封包擷取。
 
 ## <a name="scenario"></a>案例
 
@@ -36,19 +37,19 @@ Azure 的網路監看員可讓您在網路上執行封包擷取，以擷取這�
 
 ### <a name="install-capanalysis"></a>安裝 CapAnalysis
 
-若要在虛擬機器上安裝 CapAnalysis，您可以參考此處理的官方指示：https://www.capanalysis.net/ca/how-to-install-capanalysis。
-為了從遠端存取 CapAnalysis，我們需要在 VM 上新增輸入安全性規則，以開啟連接埠 9877。 如需有關在網路安全性群組中建立規則的詳細資訊，請參閱[在現有 NSG 中建立規則](../virtual-network/virtual-networks-create-nsg-arm-pportal.md#create-rules-in-an-existing-nsg)。 成功新增規則之後，您應該能夠從 `http://<PublicIP>:9877` 存取CapAnalysis
+若要在虛擬機器上安裝 CapAnalysis，您可以參考此處的官方指示：https://www.capanalysis.net/ca/how-to-install-capanalysis。
+若要從遠端存取 CapAnalysis，您必須在 VM 上新增輸入安全性規則，以開啟連接埠 9877。 如需有關在網路安全性群組中建立規則的詳細資訊，請參閱[在現有 NSG 中建立規則](../virtual-network/manage-network-security-group.md#create-a-security-rule)。 成功新增規則之後，您應該能夠從 `http://<PublicIP>:9877` 存取CapAnalysis
 
 ### <a name="use-azure-network-watcher-to-start-a-packet-capture-session"></a>使用 Azure 網路監看員啟動封包擷取工作階段
 
-網路監看員可讓您擷取封包，以追蹤進出虛擬機器的流量。 您可以參考[使用網路監看員管理封包擷取](network-watcher-packet-capture-manage-portal.md)中的指示，啟動封包擷取工作階段。 此封包擷取可以儲存在儲存體 blob 中，供 CapAnalysis 存取。
+網路監看員可讓您擷取封包，以追蹤進出虛擬機器的流量。 您可以參考[使用網路監看員管理封包擷取](network-watcher-packet-capture-manage-portal.md)中的指示，啟動封包擷取工作階段。 封包擷取可以儲存在儲存體 blob 中，供 CapAnalysis 存取。
 
 ### <a name="upload-a-packet-capture-to-capanalysis"></a>將封包擷取上傳至 CapAnalysis
 您可以使用 [從 URL 匯入] 索引標籤，並提供儲存封包擷取的儲存體 blob 連結，以直接上傳網路監看員所產生的封包擷取。
 
-提供 CapAnalysis 的連結時，請務必將 SAS 權杖附加至儲存體 blob URL。  若要這樣做，請從儲存體帳戶瀏覽至共用存取簽章，指定允許的權限，然後按下 [產生 SAS] 按鈕以建立權杖。 接著，您可以將此 SAS 權杖附加至封包擷取儲存體 blob URL。
+提供 CapAnalysis 的連結時，請務必將 SAS 權杖附加至儲存體 blob URL。  若要這樣做，請從儲存體帳戶瀏覽至共用存取簽章，指定允許的權限，然後按下 [產生 SAS] 按鈕以建立權杖。 接著，您可以將 SAS 權杖附加至封包擷取儲存體 blob URL。
 
-產生的 URL 如下︰http://storageaccount.blob.core.windows.net/container/location?addSASkeyhere
+產生的 URL 看起來如以下的 URL：http://storageaccount.blob.core.windows.net/container/location?addSASkeyhere
 
 
 ### <a name="analyzing-packet-captures"></a>分析封包擷取

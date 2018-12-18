@@ -1,22 +1,23 @@
 ---
-title: "使用 Azure Application Insights 進行 Web 應用程式的使用者保留期分析 | Microsoft Docs"
-description: "有多少使用者會回來使用您的應用程式？"
+title: 使用 Azure Application Insights 進行 Web 應用程式的使用者保留期分析 | Microsoft Docs
+description: 有多少使用者會回來使用您的應用程式？
 services: application-insights
-documentationcenter: 
-author: botatoes
+documentationcenter: ''
+author: mrbullwinkle
 manager: carmonm
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: multiple
-ms.topic: article
+ms.topic: conceptual
 ms.date: 05/03/2017
 ms.author: mbullwin
-ms.openlocfilehash: 03f8bea65e319f357be4ca05fd4aa40da77a3436
-ms.sourcegitcommit: 9890483687a2b28860ec179f5fd0a292cdf11d22
+ms.openlocfilehash: 6e042034d52551d58e290b54ca3547dedbc89c47
+ms.sourcegitcommit: cc4fdd6f0f12b44c244abc7f6bc4b181a2d05302
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/24/2018
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47096933"
 ---
 # <a name="user-retention-analysis-for-web-applications-with-application-insights"></a>使用 Application Insights 進行 Web 應用程式的使用者保留期分析
 

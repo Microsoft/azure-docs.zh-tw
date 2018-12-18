@@ -1,23 +1,24 @@
 ---
-title: "Azure 服務匯流排訊息到期 | Microsoft Docs"
-description: "Azure 服務匯流排訊息的到期與存留時間"
+title: Azure 服務匯流排訊息到期 | Microsoft Docs
+description: Azure 服務匯流排訊息的到期與存留時間
 services: service-bus-messaging
-documentationcenter: 
+documentationcenter: ''
 author: clemensv
 manager: timlt
-editor: 
+editor: ''
 ms.service: service-bus-messaging
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/26/2018
-ms.author: sethm
-ms.openlocfilehash: 6e1f6177ccacf24955763982189bcdb1ef69c788
-ms.sourcegitcommit: ded74961ef7d1df2ef8ffbcd13eeea0f4aaa3219
+ms.date: 09/26/2018
+ms.author: spelluru
+ms.openlocfilehash: c1c38370ae508dffc6888dd7e94514406b8da327
+ms.sourcegitcommit: b7e5bbbabc21df9fe93b4c18cc825920a0ab6fab
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/29/2018
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47405261"
 ---
 # <a name="message-expiration-time-to-live"></a>訊息到期 (存留時間)
 

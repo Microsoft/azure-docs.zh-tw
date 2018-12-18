@@ -1,11 +1,11 @@
 ---
-title: "後面接續的 42 個字元 | Microsoft Docs"
-description: "在搜尋引擎中顯示於標題下方。 您在這裡有更多空間，請使用比標題更多的關鍵字和更具描述性的說明"
+title: 後面接續的 42 個字元 | Microsoft Docs
+description: 在搜尋引擎中顯示於標題下方。 您在這裡有更多空間，請使用比標題更多的關鍵字和更具描述性的說明
 services: service-name
 documentationcenter: dev-center-name
 author: GitHub-alias-of-only-one-author
 manager: manager-alias
-editor: 
+editor: ''
 tags: top-support-issue
 ms.service: required
 ms.devlang: may be required
@@ -19,6 +19,7 @@ ms.sourcegitcommit: e19f6a1709b0fe0f898386118fbef858d430e19d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 01/16/2018
+ms.locfileid: "26730549"
 ---
 # <a name="title-maximum-120-characters-target-the-primary-keyword"></a>標題 (最多 120 個字元，目標為主要關鍵字)
 *在描述中使用 2-3 個次要關鍵字。*

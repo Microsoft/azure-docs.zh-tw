@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory 驗證和 Resource Manager | Microsoft Docs"
-description: "使用 Azure Resource Manager API 與 Azure Active Directory 進行驗證以整合應用程式與其他 Azure 訂用帳戶的開發人員指南。"
+title: Azure Active Directory 驗證和 Resource Manager | Microsoft Docs
+description: 使用 Azure Resource Manager API 與 Azure Active Directory 進行驗證以整合應用程式與其他 Azure 訂用帳戶的開發人員指南。
 services: azure-resource-manager,active-directory
 documentationcenter: na
 author: dushyantgill
@@ -9,16 +9,17 @@ editor: tysonn
 ms.assetid: 17b2b40d-bf42-4c7d-9a88-9938409c5088
 ms.service: azure-resource-manager
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 11/15/2017
-ms.author: dugill;tomfitz
-ms.openlocfilehash: 0b7ddaa7e8a98cdff0e92c87f8a1f7e24efbd67e
-ms.sourcegitcommit: afc78e4fdef08e4ef75e3456fdfe3709d3c3680b
+ms.date: 07/12/2018
+ms.author: dugill
+ms.openlocfilehash: b841a1104a0cc1e74d9ab1f16ef39d3892ba7d55
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/16/2017
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46996684"
 ---
 # <a name="use-resource-manager-authentication-api-to-access-subscriptions"></a>使用 Resource Manager 驗證 API 來存取訂用帳戶
 ## <a name="introduction"></a>簡介
@@ -29,7 +30,7 @@ ms.lasthandoff: 11/16/2017
 1. **使用者 + 應用程式存取**︰適用於代表登入使用者存取資源的應用程式。 此方式適用於僅處理「互動式管理」Azure 資源的應用程式，例如 Web 應用程式和命令列工具。
 2. **僅限應用程式存取**︰適用於執行協助程式服務和已排程之作業的應用程式。 應用程式的身分識別會獲得資源的直接存取權。 此方式適用於需要長期無周邊 (自動) 存取 Azure 的應用程式。
 
-本文提供建立應用程式來運用這兩種授權方法的逐步指示。 它會說明如何使用 REST API 或 C# 執行每個步驟。 完整的 ASP.NET MVC 應用程式可在 [https://github.com/dushyantgill/VipSwapper/tree/master/CloudSense](https://github.com/dushyantgill/VipSwapper/tree/master/CloudSense)取得。
+本文提供建立應用程式來運用這兩種授權方法的逐步指示。 它會說明如何使用 REST API 或 C# 執行每個步驟。 在 [https://github.com/dushyantgill/VipSwapper/tree/master/CloudSense](https://github.com/dushyantgill/VipSwapper/tree/master/CloudSense) 可取得完整的 ASP.NET MVC 應用程式。
 
 ## <a name="what-the-web-app-does"></a>Web 應用程式的功用
 Web 應用程式：
@@ -72,15 +73,21 @@ Web 應用程式：
 
 下列範例示範如何使用 Azure PowerShell 註冊應用程式。 您必須擁有最新版 (2016 年 8 月) Azure PowerShell 才能讓此命令生效。
 
-    $app = New-AzureRmADApplication -DisplayName "{app name}" -HomePage "https://{your domain}/{app name}" -IdentifierUris "https://{your domain}/{app name}" -Password "{your password}" -AvailableToOtherTenants $true
+```azurepowershell-interactive
+$app = New-AzureRmADApplication -DisplayName "{app name}" -HomePage "https://{your domain}/{app name}" -IdentifierUris "https://{your domain}/{app name}" -Password "{your password}" -AvailableToOtherTenants $true
+```
 
-若要登入為 AD 應用程式，您需要應用程式的識別碼和密碼。 若要查看前一個命令所傳回的應用程式識別碼，請使用︰
+若要以 AD 應用程式的身分登入，您需要應用程式的識別碼和密碼。 若要查看前一個命令所傳回的應用程式識別碼，請使用︰
 
-    $app.ApplicationId
+```azurepowershell-interactive
+$app.ApplicationId
+```
 
 下列範例示範如何使用 Azure CLI 註冊應用程式。
 
-    azure ad app create --name {app name} --home-page https://{your domain}/{app name} --identifier-uris https://{your domain}/{app name} --password {your password} --available true
+```azurecli-interactive
+az ad app create --display-name {app name} --homepage https://{your domain}/{app name} --identifier-uris https://{your domain}/{app name} --password {your password} --available-to-other-tenants true
+```
 
 結果內包含 AppId，以應用程式的形式進行驗證時會需要此資料。
 
@@ -99,14 +106,14 @@ Azure AD 也支援應用程式的憑證認證︰您建立自我簽署憑證、�
 ## <a name="get-user--app-access-token"></a>取得使用者 + 應用程式的存取權杖
 您的應用程式會使用 OAuth 2.0 授權要求，將使用者重新導向到 Azure AD - 以驗證使用者的認證及取回授權碼。 應用程式會使用授權碼來存取 Resource Manager 的權杖。 [ConnectSubscription](https://github.com/dushyantgill/VipSwapper/blob/master/CloudSense/CloudSense/Controllers/HomeController.cs#L42) 方法會建立授權要求。
 
-本文說明用來驗證使用者的 REST API 要求。 您也可以使用協助程式庫以在程式碼中執行驗證。 如需這些程式庫的詳細資訊，請參閱 [Azure Active Directory 驗證程式庫](../active-directory/active-directory-authentication-libraries.md)。 如需在應用程式中整合身分識別管理的指引，請參閱 [Azure Active Directory 開發人員指南](../active-directory/active-directory-developers-guide.md)。
+本文說明用來驗證使用者的 REST API 要求。 您也可以使用協助程式庫以在程式碼中執行驗證。 如需這些程式庫的詳細資訊，請參閱 [Azure Active Directory 驗證程式庫](../active-directory/active-directory-authentication-libraries.md)。 如需在應用程式中整合身分識別管理的指引，請參閱 [Azure Active Directory 開發人員指南](../active-directory/develop/azure-ad-developers-guide.md)。
 
 ### <a name="auth-request-oauth-20"></a>驗證要求 (OAuth 2.0)
 將開啟識別碼連線/OAuth2.0 授權要求發給 Azure AD 授權端點︰
 
     https://login.microsoftonline.com/{tenant-id}/OAuth2/Authorize
 
-[要求授權碼](../active-directory/develop/active-directory-protocols-oauth-code.md#request-an-authorization-code)一文說明適用於此要求的查詢字串參數。
+[要求授權碼](../active-directory/develop/v1-protocols-oauth-code.md#request-an-authorization-code)一文說明適用於此要求的查詢字串參數。
 
 下列範例示範如何要求 OAuth2.0 授權︰
 
@@ -119,7 +126,7 @@ Azure AD 驗證使用者，並在需要時要求使用者將權限授與應用�
 ### <a name="auth-request-open-id-connect"></a>驗證要求 (Open ID Connect)
 如果您不只想要代表使用者存取 Azure Resource Manager，並且允許使用者使用其 Azure AD 帳戶登入您的應用程式，請發出 Open ID Connect 授權要求。 使用 Open ID Connect，您的應用程式也會收到 Azure AD 的 id_token，讓應用程式用來登入使用者。
 
-[傳送登入要求](../active-directory/develop/active-directory-protocols-openid-connect-code.md#send-the-sign-in-request)一文說明適用於此要求的查詢字串參數。
+[傳送登入要求](../active-directory/develop/v1-protocols-openid-connect-code.md#send-the-sign-in-request)一文說明適用於此要求的查詢字串參數。
 
 Open ID Connect 的要求範例是︰
 
@@ -136,7 +143,7 @@ Open ID Connect 回應的範例是︰
 
     https://login.microsoftonline.com/{tenant-id}/OAuth2/Token
 
-[使用授權碼](../active-directory/develop/active-directory-protocols-oauth-code.md#use-the-authorization-code-to-request-an-access-token)一文說明適用於此要求的查詢字串參數。
+[使用授權碼](../active-directory/develop/v1-protocols-oauth-code.md#use-the-authorization-code-to-request-an-access-token)一文說明適用於此要求的查詢字串參數。
 
 下列範例顯示如何使用密碼認證來要求程式碼授與權杖：
 
@@ -147,7 +154,7 @@ Open ID Connect 回應的範例是︰
 
     grant_type=authorization_code&code=AAABAAAAiL9Kn2Z*****L1nVMH3Z5ESiAA&redirect_uri=http%3A%2F%2Flocalhost%3A62080%2FAccount%2FSignIn&client_id=a0448380-c346-4f9f-b897-c18733de9394&client_secret=olna84E8*****goScOg%3D
 
-使用憑證認證時，使用您的應用程式的憑證認證的私密金鑰來建立 JSON Web 權杖 (JWT) 和登入 (RSA SHA256)。 [JWT 權杖宣告](../active-directory/develop/active-directory-protocols-oauth-code.md#jwt-token-claims)會說明權杖的宣告類型。 如需參考，請參閱 [Active Directory 驗證程式庫 (.NET) 程式碼](https://github.com/AzureAD/azure-activedirectory-library-for-dotnet/blob/dev/src/ADAL.PCL.Desktop/CryptographyHelper.cs) 來簽署用戶端判斷提示 JWT 權杖。
+使用憑證認證時，使用您的應用程式的憑證認證的私密金鑰來建立 JSON Web 權杖 (JWT) 和登入 (RSA SHA256)。 [用戶端認證流程](../active-directory/develop/v1-oauth2-client-creds-grant-flow.md#second-case-access-token-request-with a-certificate)中說明如何建置此權杖。  如需參考，請參閱 [Active Directory 驗證程式庫 (.NET) 程式碼](https://github.com/AzureAD/azure-activedirectory-library-for-dotnet/blob/dev/src/ADAL.PCL.Desktop/CryptographyHelper.cs) 來簽署用戶端判斷提示 JWT 權杖。
 
 請參閱 [Open ID Connect 規格](http://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication) 來取得用戶端驗證的詳細資訊。
 
@@ -171,7 +178,7 @@ Open ID Connect 回應的範例是︰
 
     https://login.microsoftonline.com/{tenant-id}/OAuth2/Token
 
-[重新整理存取權杖](../active-directory/develop/active-directory-protocols-oauth-code.md#refreshing-the-access-tokens)中會說明要與重新整理要求搭配使用的參數。
+[重新整理存取權杖](../active-directory/develop/v1-protocols-oauth-code.md#refreshing-the-access-tokens)中會說明要與重新整理要求搭配使用的參數。
 
 下列範例顯示如何使用重新整理權杖：
 
@@ -224,11 +231,11 @@ ASP.NET MVC 範例應用程式的 [UserCanManagerAccessForSubscription](https://
 <a id="app-azure-ad-graph" />
 
 ### <a name="get-app-only-access-token-for-azure-ad-graph-api"></a>取得 Azure AD Graph API 的僅限應用程式存取權杖
-若要驗證您的應用程式，並取得 Azure AD Graph API 的權杖，請向 Azure AD 權杖端點發出用戶端認證授與 OAuth2.0 流程權杖要求 (**http://login.microsoftonline.com/{directory_domain_name}/OAuth2/Token**)。
+若要驗證您的應用程式，並取得 Azure AD Graph API 的權杖，請向 Azure AD 權杖端點發出用戶端認證授與 OAuth2.0 流程權杖要求 (**https://login.microsoftonline.com/{directory_domain_name}/OAuth2/Token**)。
 
 ASP.net MVC 範例應用程式的 [GetObjectIdOfServicePrincipalInOrganization](https://github.com/dushyantgill/VipSwapper/blob/master/CloudSense/CloudSense/AzureADGraphAPIUtil.cs) 方法使用 Active Directory Authentication Library for .NET，以取得 Graph API 的僅限應用程式存取權杖。
 
-[要求存取權杖](../active-directory/develop/active-directory-protocols-oauth-service-to-service.md#request-an-access-token)一文說明適用於此要求的查詢字串參數。
+[要求存取權杖](../active-directory/develop/v1-oauth2-client-creds-grant-flow.md#request-an-access-token)一文說明適用於此要求的查詢字串參數。
 
 用戶端認證授與權杖要求範例︰
 

@@ -1,23 +1,19 @@
 ---
-title: "使用 Azure HDInsight 為 HBase 進行疑難排解 | Microsoft Docs"
-description: "取得有關使用 HBase 和 Azure HDInsight 的常見問題解答。"
+title: 使用 Azure HDInsight 為 HBase 進行疑難排解
+description: 取得有關使用 HBase 和 Azure HDInsight 的常見問題解答。
 services: hdinsight
-documentationcenter: 
-author: nitinver
-manager: ashitg
 ms.service: hdinsight
-ms.custom: hdinsightactive
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 7/7/2017
+author: nitinver
 ms.author: nitinver
-ms.openlocfilehash: cd6315c192ad3c33d43406993b1a3e6bd6ec7e4d
-ms.sourcegitcommit: 3df3fcec9ac9e56a3f5282f6c65e5a9bc1b5ba22
+ms.custom: hdinsightactive
+ms.topic: conceptual
+ms.date: 7/7/2017
+ms.openlocfilehash: e25a2dcaf9b7c820f5d7e0312fb2cb55fc558882
+ms.sourcegitcommit: 1f0587f29dc1e5aef1502f4f15d5a2079d7683e9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/04/2017
+ms.lasthandoff: 08/07/2018
+ms.locfileid: "39593894"
 ---
 # <a name="troubleshoot-hbase-by-using-azure-hdinsight"></a>使用 Azure HDInsight 為 HBase 進行疑難排解
 

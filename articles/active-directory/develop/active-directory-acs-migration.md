@@ -1,29 +1,31 @@
 ---
-title: "從 Azure 存取控制服務移轉 | Microsoft Docs"
-description: "搬移 Azure 存取控制服務中應用程式和服務的選項"
+title: 從 Azure 存取控制服務移轉 | Microsoft Docs
+description: 深入了解搬移 Azure 存取控制服務 (ACS) 中應用程式和服務的選項。
 services: active-directory
 documentationcenter: dev-center-name
-author: dstrockis
+author: CelesteDG
 manager: mtillman
-editor: 
+editor: ''
 ms.assetid: 820acdb7-d316-4c3b-8de9-79df48ba3b06
 ms.service: active-directory
+ms.component: develop
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 11/14/2017
-ms.author: dastrock
-ms.openlocfilehash: f634adbacc8e1fc128ecef15ad38f2f8b28eb25d
-ms.sourcegitcommit: d1f35f71e6b1cbeee79b06bfc3a7d0914ac57275
+ms.date: 09/24/2018
+ms.author: celested
+ms.reviewer: jlu, annaba, hirsin
+ms.openlocfilehash: 59856418adde1ea29a0513a1ca7c0c60531768d8
+ms.sourcegitcommit: 4ecc62198f299fc215c49e38bca81f7eb62cdef3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/22/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "47036536"
 ---
-# <a name="migrate-from-the-azure-access-control-service"></a>從 Azure 存取控制服務移轉
+# <a name="how-to-migrate-from-the-azure-access-control-service"></a>操作說明：從 Azure 存取控制服務遷移
 
-Azure 存取控制為 Azure Active Directory (Azure AD) 的服務，將於 2018 年 11 月淘汰。 目前使用存取控制的應用程式和服務，必須在淘汰前完全移轉到其他驗證機制。 本文說明給目前客戶的建議移轉選項，協助您規劃汰換存取控制的事宜。 如果您目前未使用存取控制，不需要採取任何動作。
-
+Microsoft Azure 存取控制服務 (ACS) 是 Azure Active Directory (Azure AD) 的一項服務，將於 2018 年 11 月 7 日淘汰。 目前使用存取控制的應用程式和服務，必須在淘汰前完全移轉到其他驗證機制。 本文說明給目前客戶的建議移轉選項，協助您規劃汰換存取控制的事宜。 如果您目前未使用存取控制，不需要採取任何動作。
 
 ## <a name="overview"></a>概觀
 
@@ -35,7 +37,7 @@ Azure 存取控制為 Azure Active Directory (Azure AD) 的服務，將於 2018 
 - 新增驗證方式至自訂和預先封裝 (如 SharePoint) 的 Web 應用程式。 透過存取控制的「被動」驗證方式，Web 應用程式支援以 Microsoft 帳戶 (前身為 Live ID)，以及 Google、Facebook、Yahoo、Azure AD 及 Active Directory 同盟服務 (AD FS) 等帳戶進行單一登入。
 - 使用存取控制簽發的權杖保護自訂 Web 服務。 透過「主動」驗證方式，Web 服務可確保惟有通過存取控制之驗證的已知用戶端能存取自身服務。
 
-每個使用案例及其建議的移轉策略會在後續各節中討論。 
+每個使用案例及其建議的移轉策略會在後續各節中討論。
 
 > [!WARNING]
 > 在大部分情況下，將現有應用程式和服務移轉至較新的技術需要大幅變更程式碼。 建議您立即開始規劃及執行移轉作業，以避免任何可能的中斷或停機。
@@ -54,13 +56,56 @@ Azure 存取控制為 Azure Active Directory (Azure AD) 的服務，將於 2018 
 https://<mynamespace>.accesscontrol.windows.net
 ```
 
-與 STS 和管理作業的所有通訊都透過此 URL 完成。 不同的路徑有不同的用途。 若要判斷應用程式和服務是否使用存取控制，請監視所有進入 https://\<namespace\>.accesscontrol.windows.net 的流量。 所有進入該 URL 的流量都由存取控制處理，而且必須停止。 
+與 STS 和管理作業的所有通訊都透過此 URL 完成。 不同的路徑有不同的用途。 若要判斷應用程式和服務是否使用存取控制，請監視所有進入 https://&lt;namespace&gt;.accesscontrol.windows.net 的流量。 所有進入該 URL 的流量都由存取控制處理，而且必須停止。 
 
-進入 https://accounts.accesscontrol.windows.net 的流量則不在此限。 進入該 URL 的流量已由其他服務處理，因此不受到存取控制淘汰的影響。 
-
-請也登入 Azure 傳統入口網站，查看您擁有的所有訂用帳戶中是否有存取控制命名空間。 存取控制命名空間列於 **Active Directory** 服務下方的 [存取控制命名空間] 索引標籤上。
+但所有進入 `https://accounts.accesscontrol.windows.net` 的流量除外。 進入此 URL 的流量已經由其他服務處理，因此**不**受「存取控制」的淘汰影響。 
 
 如需有關存取控制的詳細資訊，請參閱[存取控制服務 2.0 (已封存)](https://msdn.microsoft.com/library/hh147631.aspx)。
+
+## <a name="find-out-which-of-your-apps-will-be-impacted"></a>找出哪些應用程式會受影響
+
+遵循這一節中的步驟，找出哪些應用程式會受到 ACS 淘汰影響。
+
+### <a name="download-and-install-acs-powershell"></a>下載並安裝 ACS PowerShell
+
+1. 移至 PowerShell 資源庫並下載 [Acs.Namespaces](https://www.powershellgallery.com/packages/Acs.Namespaces/1.0.2)。
+1. 藉由執行來安裝模組
+
+    ```powershell
+    Install-Module -Name Acs.Namespaces
+    ```
+
+1. 藉由執行來取得所有可能的命令
+
+    ```powershell
+    Get-Command -Module Acs.Namespaces
+    ```
+
+    若要取得特定命令的說明，請執行：
+
+    ```
+     Get-Help [Command-Name] -Full
+    ```
+    
+    其中 `[Command-Name]` 是 ACS 命令的名稱。
+
+### <a name="list-your-acs-namespaces"></a>列出您的 ACS 命名空間
+
+1. 使用 **Connect-AcsAccount** Cmdlet 連線至 ACS。
+  
+    您可能需要先執行 `Set-ExecutionPolicy -ExecutionPolicy Bypass`，才可以執行命令，而且成為這些訂用帳戶的管理員才能執行命令。
+
+1. 使用 **Get-AcsSubscription** Cmdlet 列出可用的 Azure 訂用帳戶。
+1. 使用 **Get-AcsNamespace** Cmdlet 列出您的 ACS 命名空間。
+
+### <a name="check-which-applications-will-be-impacted"></a>檢查哪些應用程式會受影響
+
+1. 使用上一個步驟中的命名空間並移至 `https://<namespace>.accesscontrol.windows.net`
+
+    例如，如果其中一個命名空間是 contoso-test，請移至 `https://contoso-test.accesscontrol.windows.net`
+
+1. 在 [信任關係] 之下，選取 [信賴憑證者應用程式] 以查看會受 ACS 淘汰影響的應用程式清單。
+1. 針對您擁有的任何其他 ACS 命名空間重複步驟 1-2。
 
 ## <a name="retirement-schedule"></a>淘汰排程
 
@@ -68,10 +113,9 @@ https://<mynamespace>.accesscontrol.windows.net
 
 以下是存取控制元件的淘汰排程：
 
-- **2017 年 11 月**：Azure 傳統入口網站中的 Azure AD 管理員體驗[已淘汰](https://blogs.technet.microsoft.com/enterprisemobility/2017/09/18/marching-into-the-future-of-the-azure-ad-admin-experience-retiring-the-azure-classic-portal/)。 現在若要管理存取控制的命名空間，可以前往新的專用 URL http://manage.windowsazure.com?restoreClassic=true。 該 URL 可以用來檢視現有的命名空間、啟用和停用命名空間，若您有需要，也可以刪除命名空間。
-- **2018 年 4 月**：管理存取控制命名空間的專用 URL http://manage.windowsazure.com?restoreClassic=true 停用。 屆時，您將無法停用或啟用、刪除或列舉存取控制命名空間。 不過，存取控制管理入口網站的所有功能仍正常，網址為 https://\<namespace\>.accesscontrol.windows.net。 存取控制的其他所有元件都將繼續正常運作。
-- **2018 年 11 月**：所有存取控制元件將永久關閉。 這包括存取控制管理入口網站、管理服務、STS 和權杖轉換規則引擎。 屆時，所有傳送給存取控制 (網指 \<namespace\>.accesscontrol.windows.net) 的要求都會失敗。 在那之前，請確實將所有現有的應用程式和服務移轉至其他技術。
-
+- **2017 年 11 月**：Azure 傳統入口網站中的 Azure AD 管理員體驗[已淘汰](https://blogs.technet.microsoft.com/enterprisemobility/2017/09/18/marching-into-the-future-of-the-azure-ad-admin-experience-retiring-the-azure-classic-portal/)。 目前，可在以下新的專用 URL 進行「存取控制」的命名空間管理：`http://manage.windowsazure.com?restoreClassic=true`。 該 URL 可以用來檢視現有的命名空間、啟用和停用命名空間，若您有需要，也可以刪除命名空間。
+- **2018 年 4 月 2 日**：Azure 傳統入口網站已完全淘汰，這意謂著透過任何 URL 都無法進行「存取控制」命名空間管理。 屆時，您將無法停用或啟用、刪除或列舉存取控制命名空間。 不過，「存取控制」管理入口網站將會在 `https://\<namespace\>.accesscontrol.windows.net` 運作並提供完整功能。 存取控制的其他所有元件都將繼續正常運作。
+- **2018 年 11 月 7 日**：所有「存取控制」元件將永久關閉。 這包括存取控制管理入口網站、管理服務、STS 和權杖轉換規則引擎。 屆時，所有傳送給存取控制 (網指 \<namespace\>.accesscontrol.windows.net) 的要求都會失敗。 在那之前，請確實將所有現有的應用程式和服務移轉至其他技術。
 
 ## <a name="migration-strategies"></a>移轉策略
 
@@ -98,6 +142,16 @@ https://<mynamespace>.accesscontrol.windows.net
 <!-- Azure StorSimple: TODO -->
 <!-- Azure SiteRecovery: TODO -->
 
+### <a name="sharepoint-customers"></a>SharePoint 客戶
+
+SharePoint 2013、2016 和 SharePoint Online 客戶已長期使用 ACS 在雲端、內部部署及混合式案例中進行驗證。 有些 SharePoint 功能和使用案例將會受到 ACS 淘汰影響，有些則不會。 下表針對一些利用 ACS 的最常用 SharePoint 功能，摘要說明移轉指導方針：
+
+| 功能 | 指引 |
+| ------- | -------- |
+| 從 Azure AD 驗證使用者 | 先前，Azure AD 並不支援 SharePoint 進行驗證所需的 SAML 1.1 權杖，因此 ACS 被用來作為讓 SharePoint 與 Azure AD 權杖格式相容的媒介。 現在，您可以[在內部部署應用程式上使用 Azure AD 應用程式庫 SharePoint 將 SharePoint 直接連線到 Azure AD](https://docs.microsoft.com/azure/active-directory/saas-apps/sharepoint-on-premises-tutorial)。 |
+| [內部部署 SharePoint 中的應用程式驗證和伺服器對伺服器驗證](https://technet.microsoft.com/library/jj219571(v=office.16).aspx) | 不受 ACS 淘汰影響；無須進行任何變更。 | 
+| [SharePoint 增益集 (提供者裝載和 SharePoint 裝載) 的低信任度授權](https://docs.microsoft.com/sharepoint/dev/sp-add-ins/three-authorization-systems-for-sharepoint-add-ins) | 不受 ACS 淘汰影響；無須進行任何變更。 |
+| [SharePoint 雲端混合式搜尋](https://blogs.msdn.microsoft.com/spses/2015/09/15/cloud-hybrid-search-service-application/) | 不受 ACS 淘汰影響；無須進行任何變更。 |
 
 ### <a name="web-applications-that-use-passive-authentication"></a>使用被動驗證的 Web 應用程式
 
@@ -163,26 +217,14 @@ Azure AD 租用戶也可以透過 AD FS，與內部部署 Active Directory 的�
 - 您有 Azure AD 權杖自訂的完整彈性。 您可以自訂 Azure AD 簽發的宣告，使其符合存取控制簽發的宣告， 尤以使用者識別碼或名稱識別碼宣告最為重要。 若要在變更技術後繼續接收您使用者的一致使用者識別碼，請確認 Azure AD 簽發的使用者識別碼與存取控制簽發的識別碼相符。
 - 您可以為您的應用程式設定專用的權杖簽署憑證與存留期。
 
-<!--
-
-Possible nameIdentifiers from Access Control (via AAD or AD FS):
-- AD FS - Whatever AD FS is configured to send (email, UPN, employeeID, what have you)
-- Default from AAD using App Registrations, or Custom Apps before ClaimsIssuance policy: subject/persistent ID
-- Default from AAD using Custom apps nowadays: UPN
-- Kusto can't tell us distribution, it's redacted
-
--->
-
 > [!NOTE]
 > 此方法需要 Azure AD Premium 授權。 如果您是存取控制客戶，而且需要 Premium 授權來為應用程式設定單一登入，請與我們連絡。 我們很樂意提供開發人員授權予您使用。
 
 另一個方法是參考[此程式碼範例](https://github.com/Azure-Samples/active-directory-dotnet-webapp-wsfederation)，當中的 WS-同盟設定指示稍有不同。 此程式碼範例不使用 WIF，而是使用 ASP.NET 4.5 OWIN 中介軟體。 不過，應用程式註冊指示適用於使用 WIF 的應用程式，而且不需要 Azure AD Premium 授權。 
 
-如果您選擇此方法，請參閱並理解 [Azure AD 中的簽署金鑰變換](https://docs.microsoft.com/azure/active-directory/develop/active-directory-signing-key-rollover)一文。 這個方法會使用 Azure AD 全域簽署金鑰來簽發權杖。 根據預設，WIF 不會自動重新整理簽署金鑰。 當 Azure AD 轉換其全域簽署金鑰時，您的 WIF 實作必須準備好接受變更。
+如果您選擇此方法，請參閱並理解 [Azure AD 中的簽署金鑰變換](https://docs.microsoft.com/azure/active-directory/develop/active-directory-signing-key-rollover)一文。 這個方法會使用 Azure AD 全域簽署金鑰來簽發權杖。 根據預設，WIF 不會自動重新整理簽署金鑰。 當 Azure AD 轉換其全域簽署金鑰時，您的 WIF 實作必須準備好接受變更。 如需詳細資訊，請參閱 [Azure AD 中簽署金鑰變換的相關重要資訊](https://msdn.microsoft.com/en-us/library/azure/dn641920.aspx)。
 
 如果您可以透過 OpenID Connect 或 OAuth 通訊協定與 Azure AD 整合，建議採用該方法。 我們的 [Azure AD 開發人員指南](https://aka.ms/aaddev)有許多關於如何將 Azure AD 整合至 Web 應用程式的文件和指導。
-
-<!-- TODO: If customers ask about authZ, let's put a blurb on role claims here -->
 
 #### <a name="migrate-to-azure-active-directory-b2c"></a>移轉至 Azure Active Directory B2C
 
@@ -225,7 +267,6 @@ Possible nameIdentifiers from Access Control (via AAD or AD FS):
 - [Azure AD B2C 自訂原則](https://docs.microsoft.com/azure/active-directory-b2c/active-directory-b2c-overview-custom)
 - [Azure AD B2C 價格](https://azure.microsoft.com/pricing/details/active-directory-b2c/)
 
-
 #### <a name="migrate-to-ping-identity-or-auth0"></a>移轉至 Ping Identity 或 Auth0
 
 在某些情況下，您可能會發現若不大幅變更程式碼，Azure AD 與 Azure AD B2C 便無法取代 Web 應用程式中的存取控制。 幾個常見的範例可能包括：
@@ -238,12 +279,10 @@ Possible nameIdentifiers from Access Control (via AAD or AD FS):
 
 在這些情況下，您可能會想考慮將 Web 應用程式移轉至另一個雲端驗證服務。 我們建議您探索下列選項。 以下每個選項均提供類似存取控制的功能：
 
-
-
 |     |     | 
 | --- | --- |
 | ![Auth0](./media/active-directory-acs-migration/rsz_auth0.png) | [Auth0](https://auth0.com/acs) 是彈性的雲端識別服務，不僅建立了[適用於存取控制客戶的高階移轉指南](https://auth0.com/acs)，而且幾乎能支援 ACS 支援的所有功能。 |
-| ![Ping](./media/active-directory-acs-migration/rsz_ping.png) | [Ping Identity](https://www.pingidentity.com) 提供兩種類似 ACS 的解決方案。 PingOne 是支援許多與 ACS 相同之功能的雲端識別服務，而 PingFederate 則是類似的內部部署身分識別產品，不過彈性更大。 如需有關使用這些產品的詳細資料，請參閱 [Ping 的 ACS 淘汰指導](https://www.pingidentity.com/company/blog/2017/11/20/migrating_from_microsoft_acs_to_ping_identity.html)。  |
+| ![Ping](./media/active-directory-acs-migration/rsz_ping.png) | [Ping Identity](https://www.pingidentity.com) 提供兩種類似 ACS 的解決方案。 PingOne 是支援許多與 ACS 相同之功能的雲端識別服務，而 PingFederate 則是類似的內部部署身分識別產品，不過彈性更大。 如需有關使用這些產品的詳細資料，請參閱 [Ping 的 ACS 淘汰指導](https://www.pingidentity.com/en/company/blog/2017/11/20/migrating_from_microsoft_acs_to_ping_identity.html)。 |
 
 我們與 Ping Identity 和 Auth0 合作的目的是，確保所有存取控制客戶都能獲得從存取控制中，盡可能簡單地搬移其應用程式和服務的移轉方式。
 
@@ -268,7 +307,7 @@ Other IDPs: use Auth0? https://auth0.com/docs/integrations/sharepoint.
 - 支援下列權杖格式：JWT、SAML 1.1、SAML 2.0 和 SWT。
 - 簡單權杖轉換規則。
 
-存取控制中的服務識別通常用於實作伺服器對伺服器驗證。  
+存取控制中的服務識別通常用於實作伺服器對伺服器驗證。 
 
 #### <a name="migrate-to-azure-active-directory"></a>移轉至 Azure Active Directory
 
@@ -305,7 +344,7 @@ Other IDPs: use Auth0? https://auth0.com/docs/integrations/sharepoint.
 |     |     | 
 | --- | --- |
 | ![Auth0](./media/active-directory-acs-migration/rsz_auth0.png) | [Auth0](https://auth0.com/acs) 是彈性的雲端識別服務，不僅建立了[適用於存取控制客戶的高階移轉指南](https://auth0.com/acs)，而且幾乎能支援 ACS 支援的所有功能。 |
-| ![Ping](./media/active-directory-acs-migration/rsz_ping.png) | [Ping Identity](https://www.pingidentity.com) 提供兩種類似 ACS 的解決方案。 PingOne 是支援許多與 ACS 相同之功能的雲端識別服務，而 PingFederate 則是類似的內部部署身分識別產品，不過彈性更大。 如需有關使用這些產品的詳細資料，請參閱 [Ping 的 ACS 淘汰指導](https://www.pingidentity.com/company/blog/2017/11/20/migrating_from_microsoft_acs_to_ping_identity.html)。  |
+| ![Ping](./media/active-directory-acs-migration/rsz_ping.png) | [Ping Identity](https://www.pingidentity.com) 提供兩種類似 ACS 的解決方案。 PingOne 是支援許多與 ACS 相同之功能的雲端識別服務，而 PingFederate 則是類似的內部部署身分識別產品，不過彈性更大。 如需有關使用這些產品的詳細資料，請參閱 [Ping 的 ACS 淘汰指導](https://www.pingidentity.com/en/company/blog/2017/11/20/migrating_from_microsoft_acs_to_ping_identity.html)。 |
 
 我們與 Ping Identity 和 Auth0 合作的目的是，確保所有存取控制客戶都能獲得從存取控制中，盡可能簡單地搬移其應用程式和服務的移轉方式。
 

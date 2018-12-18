@@ -1,19 +1,20 @@
 ---
-title: "Azure Container Service 快速入門 - 部署 DC/OS 叢集"
-description: "Azure Container Service 快速入門 - 部署 DC/OS 叢集"
+title: Azure Container Service 快速入門 - 部署 DC/OS 叢集
+description: Azure Container Service 快速入門 - 部署 DC/OS 叢集
 services: container-service
-author: neilpeterson
-manager: timlt
+author: iainfoulds
+manager: jeconnoc
 ms.service: container-service
 ms.topic: quickstart
 ms.date: 02/26/2018
-ms.author: nepeters
+ms.author: iainfou
 ms.custom: mvc
-ms.openlocfilehash: 2a0c702f1b1997a35be49c8d94db9ff69e95653f
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+ms.openlocfilehash: 4cd7f2284f3449fe8abdf1a6f8e85b9b0b712d7a
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46998554"
 ---
 # <a name="deploy-a-dcos-cluster"></a>部署 DC/OS 叢集
 
@@ -21,11 +22,11 @@ DC/OS 所提供的分散式平台可執行現代及容器化的應用程式。 �
 
 如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
 
-本教學課程需要 Azure CLI 2.0.4 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
+本教學課程需要 Azure CLI 2.0.4 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要升級，請參閱[安裝 Azure CLI]( /cli/azure/install-azure-cli)。 
 
 ## <a name="log-in-to-azure"></a>登入 Azure 
 
-使用 [az login](/cli/azure/reference-index#az_login) 命令登入 Azure 訂用帳戶並遵循畫面上的指示。
+使用 [az login](/cli/azure/reference-index#az-login) 命令登入 Azure 訂用帳戶並遵循畫面上的指示。
 
 ```azurecli
 az login
@@ -33,7 +34,7 @@ az login
 
 ## <a name="create-a-resource-group"></a>建立資源群組
 
-使用 [az group create](/cli/azure/group#az_group_create) 命令來建立資源群組。 Azure 資源群組是在其中部署與管理 Azure 資源的邏輯容器。 
+使用 [az group create](/cli/azure/group#az-group-create) 命令來建立資源群組。 Azure 資源群組是在其中部署與管理 Azure 資源的邏輯容器。 
 
 下列範例會在 eastus 位置建立名為 myResourceGroup 的資源群組。
 
@@ -43,7 +44,7 @@ az group create --name myResourceGroup --location eastus
 
 ## <a name="create-dcos-cluster"></a>建立 DC/OS 叢集
 
-使用 [az acs create](/cli/azure/acs#az_acs_create) 命令來建立 DC/OS 叢集。
+使用 [az acs create](/cli/azure/acs#az-acs-create) 命令來建立 DC/OS 叢集。
 
 下列範例會建立名為 myDCOSCluster 的 DC/OS 叢集，並建立 SSH 金鑰 (如果它們尚未存在)。 若要使用一組特定金鑰，請使用 `--ssh-key-value` 選項。  
 
@@ -51,7 +52,7 @@ az group create --name myResourceGroup --location eastus
 az acs create --orchestrator-type dcos --resource-group myResourceGroup --name myDCOSCluster --generate-ssh-keys
 ```
 
-在有限試用之類的某些情況下，Azure 訂用帳戶只擁有 Azure 資源的有限存取權。 如果部署因可用核心受限而失敗，請將 `--agent-count 1` 加入 [az acs create](/cli/azure/acs#az_acs_create) 命令來減少預設代理程式的數量。 
+在有限試用之類的某些情況下，Azure 訂用帳戶只擁有 Azure 資源的有限存取權。 如果部署因可用核心受限而失敗，請將 `--agent-count 1` 加入 [az acs create](/cli/azure/acs#az-acs-create) 命令來減少預設代理程式的數量。 
 
 幾分鐘之後，此命令就會完成，且會傳回部署的相關資訊。
 
@@ -77,7 +78,7 @@ sudo ssh -i ~/.ssh/id_rsa -fNL 80:localhost:80 -p 2200 azureuser@$ip
 
 ## <a name="install-dcos-cli"></a>安裝 DC/OS CLI
 
-DC/OS 命令列介面可用來從命令列管理 DC/OS 叢集。 使用 [az acs dcos install-cli](/azure/acs/dcos#install-cli) 命令來安裝 DC/OS CLI。 如果您是使用 Azure CloudShell，就已安裝 DC/OS CLI。 
+DC/OS 命令列介面可用來從命令列管理 DC/OS 叢集。 使用 [az acs dcos install-cli](/cli/azure/acs/dcos#az-acs-dcos-install-cli) 命令來安裝 DC/OS CLI。 如果您是使用 Azure CloudShell，就已安裝 DC/OS CLI。 
 
 如果您是在 Mac OS 或 Lunix 上執行 Azure CLI，可能需要搭配 sudo 來執行命令。
 
@@ -156,7 +157,7 @@ az network public-ip list --resource-group myResourceGroup --query "[?contains(n
 
 ## <a name="delete-dcos-cluster"></a>刪除 DC/OS 叢集
 
-若不再需要，您可以使用 [az group delete](/cli/azure/group#az_group_delete) 命令將資源群組、DC/OS 叢集和所有相關資源移除。
+若不再需要，您可以使用 [az group delete](/cli/azure/group#az-group-delete) 命令將資源群組、DC/OS 叢集和所有相關資源移除。
 
 ```azurecli
 az group delete --name myResourceGroup --no-wait

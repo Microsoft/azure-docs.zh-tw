@@ -1,24 +1,26 @@
 ---
-title: "識別案例和規劃分析處理 - Azure | Microsoft Docs"
-description: "考慮一系列重要問題來規劃進階分析環境。"
+title: 識別案例和規劃分析處理 - Azure | Microsoft Docs
+description: 考慮一系列重要問題來規劃進階分析環境。
 services: machine-learning
-documentationcenter: 
-author: bradsev
+documentationcenter: ''
+author: deguhath
 manager: cgronlun
 editor: cgronlun
 ms.assetid: 421520dd-7728-4d29-889c-ebe6a0a6fb07
 ms.service: machine-learning
+ms.component: team-data-science-process
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 11/13/2017
-ms.author: bradsev
-ms.openlocfilehash: f4cf702b899b285b18c09d7a5951589d2ae71b7d
-ms.sourcegitcommit: 659cc0ace5d3b996e7e8608cfa4991dcac3ea129
+ms.author: deguhath
+ms.openlocfilehash: 7754fccdfe8a2c4fad24f61fc22c722d2640ffa6
+ms.sourcegitcommit: f06925d15cfe1b3872c22497577ea745ca9a4881
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/13/2017
+ms.lasthandoff: 06/27/2018
+ms.locfileid: "37064401"
 ---
 # <a name="how-to-identify-scenarios-and-plan-for-advanced-analytics-data-processing"></a>如何識別案例和規劃進階分析資料處理
 在設定環境以對資料集執行進階分析處理時，您應該規劃包含哪些資源？ 本文提出一系列問題，有助於識別您的案例相關的工作和資源。 [何謂 Team Data Science Process (TDSP)？](overview.md)中概述預測性分析的高階步驟順序。 針對您的案例相關的工作，每個步驟會需要特定的資源。 用以識別案例的主要問題是關於資料邏輯、特性、資料集的品質，以及您想要進行分析的工具和語言。
@@ -95,9 +97,9 @@ ms.lasthandoff: 11/13/2017
    
    * [Microsoft Azure Powershell](/powershell/azure/overview) - 在指令碼語言中用來管理 Azure 資源的指令碼語言。
    * [Azure Machine Learning Studio](../studio/what-is-ml-studio.md)
-   * [Revolution Analytics](http://www.revolutionanalytics.com/revolution-r-open)
+   * [Revolution Analytics](https://www.microsoft.com/sql-server/machinelearningserver)
    * [RStudio](http://www.rstudio.com)
-   * [Python Tools for Visual Studio](http://microsoft.github.io/PTVS/)
+   * [適用於 Visual Studio 的 Python 工具](http://aka.ms/ptvsdocs)
    * [Anaconda](https://www.continuum.io/why-anaconda)
    * [Jupyter 筆記本](http://jupyter.org/)
    * [Microsoft Power BI](http://powerbi.microsoft.com)

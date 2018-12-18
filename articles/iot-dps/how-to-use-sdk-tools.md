@@ -1,25 +1,22 @@
 ---
-title: "使用 Azure IoT 中樞裝置佈建服務 SDK 中提供的工具來簡化開發"
-description: "本文件將檢閱 Azure IoT 中樞裝置佈建服務 SDK 中提供來用於開發的工具"
-services: iot-dps
-keywords: 
+title: 使用 Azure IoT 中樞裝置佈建服務 SDK 中提供的工具來簡化開發
+description: 本文件將檢閱 Azure IoT 中樞裝置佈建服務 SDK 中提供來用於開發的工具
 author: yzhong94
 ms.author: yizhon
-ms.date: 01/18/2018
-ms.topic: article
+ms.date: 04/09/2018
+ms.topic: conceptual
 ms.service: iot-dps
-documentationcenter: 
-manager: timlt
-ms.devlang: na
-ms.custom: mvc
-ms.openlocfilehash: 76c6f64dea202f661691fafaa78a6d77b4a40f14
-ms.sourcegitcommit: 9cc3d9b9c36e4c973dd9c9028361af1ec5d29910
+services: iot-dps
+manager: arjmands
+ms.openlocfilehash: 647f54d8252c594a280f81d661a3de6270bf692b
+ms.sourcegitcommit: e0a678acb0dc928e5c5edde3ca04e6854eb05ea6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2018
+ms.lasthandoff: 07/13/2018
+ms.locfileid: "39001342"
 ---
 # <a name="how-to-use-tools-provided-in-the-sdks-to-simplify-development-for-provisioning"></a>如何使用 SDK 中提供的工具來簡化開發以進行佈建
-IoT 中樞裝置佈建服務會以安全且可擴充的方式，透過零接觸的 Just-In-Time 佈建來簡化佈建程序。  需要有 X.509 憑證或信賴平台模組 (TPM) 形式的安全性證明。  Microsoft 也與[其他安全性硬體合作夥伴](https://azure.microsoft.com/blog/azure-iot-supports-new-security-hardware-to-strengthen-iot-security/) \(英文\) 合作，以提升保護 IoT 部署安全的信心。 對於開發人員而言，了解硬體安全性需求可能會是相當大的挑戰。 我們提供一組 Azure IoT 佈建服務 SDK，讓開發人員能夠輕鬆撰寫要與佈建服務交談之用戶端。 SDK 也提供適用於常見案例的範例以及一組工具，來簡化開發中的安全性證明。
+IoT 中樞裝置佈建服務會以安全且可擴充的方式，透過零接觸的 Just-In-Time [自動佈建](concepts-auto-provisioning.md)來簡化佈建程序。  需要有 X.509 憑證或信賴平台模組 (TPM) 形式的安全性證明。  Microsoft 也與[其他安全性硬體合作夥伴](https://azure.microsoft.com/blog/azure-iot-supports-new-security-hardware-to-strengthen-iot-security/) \(英文\) 合作，以提升保護 IoT 部署安全的信心。 對於開發人員而言，了解硬體安全性需求可能會是相當大的挑戰。 我們提供一組 Azure IoT 佈建服務 SDK，讓開發人員能夠輕鬆撰寫要與佈建服務交談之用戶端。 SDK 也提供適用於常見案例的範例以及一組工具，來簡化開發中的安全性證明。
 
 ## <a name="trusted-platform-module-tpm-simulator"></a>信賴平台模組 (TPM) 模擬器
 [TPM](https://docs.microsoft.com/azure/iot-dps/concepts-security#trusted-platform-module-tpm) 可以參考安全地儲存金鑰以驗證平台的標準，或者參考用來與實作標準之模組互動的 I/O 介面。 TPM 可以是獨立硬體、整合式硬體、韌體或軟體。  在生產環境中，TPM 位於裝置上，作為個別的硬體、整合式硬體，或是以韌體為基礎。 在測試階段，會針對開發人員提供以軟體為基礎的 TPM 模擬器。  這個模擬器目前只適合用來在 Windows 平台上進行開發。
@@ -37,9 +34,9 @@ git clone https://github.com/Azure/azure-iot-sdk-java.git
 [X.509 憑證](https://docs.microsoft.com/azure/iot-dps/concepts-security#x509-certificates)可用來作為證明機制，以調整生產環境並簡化裝置佈建。  有[數種方式](https://docs.microsoft.com/azure/iot-hub/iot-hub-x509ca-overview#how-to-get-an-x509-ca-certificate)可取得 X.509 憑證：
 * 針對生產環境，建議向公用根憑證授權單位購買 X.509 CA 憑證。
 * 針對測試環境，您可以使用下列方式來產生 X.509 根憑證或 X.509 憑證鏈結：
-    * OpenSSL：此[作法指南](https://docs.microsoft.com/azure/iot-hub/iot-hub-security-x509-create-certificates) \(機器翻譯\) 能逐步引導您完成使用 [OpenSSL](https://www.openssl.org/) \(英文\) 來建立和簽署 X.509 憑證的範例 PowerShell 指令碼。  此外，您也可以使用其他語言的指令碼來產生憑證：
+    * OpenSSL：您可以使用指令碼來產生憑證：
         * [Node.js](https://github.com/Azure/azure-iot-sdk-node/tree/master/provisioning/tools)
-        * [PowerShell](https://github.com/Azure/azure-iot-sdk-c/blob/master/tools/CACertificates/CACertificateOverview.md)
+        * [PowerShell 或 Bash](https://github.com/Azure/azure-iot-sdk-c/blob/master/tools/CACertificates/CACertificateOverview.md)
         
     * 裝置識別組合引擎 (DICE) 模擬器：可根據 TLS 通訊協定和 X.509 用戶端憑證，將 DICE 用來進行密碼編譯裝置身分識別和證明。  [深入了解](https://www.microsoft.com/research/publication/device-identity-dice-riot-keys-certificates/) \(英文\) 搭配 DICE 的裝置身分識別。
 

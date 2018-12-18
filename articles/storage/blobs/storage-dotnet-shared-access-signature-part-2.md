@@ -1,24 +1,20 @@
 ---
-title: "透過 Azure Blob 儲存體來建立和使用共用存取簽章 (SAS) | Microsoft Docs"
-description: "本教學課程說明如何建立搭配 Blob 儲存體使用的共用存取簽章，以及如何在用戶端應用程式中使用共用存取簽章。"
+title: 透過 Azure Blob 儲存體來建立和使用共用存取簽章 (SAS) | Microsoft Docs
+description: 本教學課程說明如何建立搭配 Blob 儲存體使用的共用存取簽章，以及如何在用戶端應用程式中使用共用存取簽章。
 services: storage
-documentationcenter: 
 author: tamram
-manager: timlt
-editor: tysonn
-ms.assetid: 491e0b3c-76d4-4149-9a80-bbbd683b1f3e
 ms.service: storage
-ms.workload: storage
-ms.tgt_pltfrm: na
-ms.devlang: dotnet
 ms.topic: article
+ms.devlang: dotnet
 ms.date: 05/15/2017
 ms.author: tamram
-ms.openlocfilehash: 9dde12acde748c48b56f9f96ee772fca49954358
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.component: blobs
+ms.openlocfilehash: 6546553fa3537ac63d956dc5febfd77efe9fd34d
+ms.sourcegitcommit: d4c076beea3a8d9e09c9d2f4a63428dc72dd9806
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/01/2018
+ms.locfileid: "39400121"
 ---
 # <a name="shared-access-signatures-part-2-create-and-use-a-sas-with-blob-storage"></a>共用存取簽章，第 2 部分：透過 Blob 儲存體來建立與使用 SAS
 
@@ -71,7 +67,7 @@ using Microsoft.WindowsAzure.Storage.Blob;
 ### <a name="generate-a-shared-access-signature-uri-for-a-container"></a>為容器產生共用存取簽章 URI
 一開始，我們會新增方法以在新容器上產生共用存取簽章。 在此情況中，簽章不與預存存取原則相關，因此它在 URI 上攜帶了資訊，以指出其到期時間與授與的權限。
 
-首先，將程式碼新增至 **Main()** 方法，以驗證對儲存體帳戶的存取，並建立新的容器：
+首先，將程式碼新增至 **Main()** 方法，以授與對儲存體帳戶的存取權並建立新的容器：
 
 ```csharp
 static void Main(string[] args)

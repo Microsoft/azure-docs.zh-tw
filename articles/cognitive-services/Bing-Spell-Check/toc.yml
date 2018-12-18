@@ -1,0 +1,72 @@
+items:
+- name: Bing 拼字檢查 API 文件
+  href: index.yml
+- name: 概觀
+  items:
+  - name: 什麼是 Bing 拼字檢查 API？
+    href: proof-text.md
+- name: REST API 快速入門
+  items:
+  - name: C#
+    href: quickstarts/csharp.md
+  - name: Java
+    href: quickstarts/java.md
+  - name: Node.js
+    href: quickstarts/nodejs.md
+  - name: PHP
+    href: quickstarts/php.md
+  - name: Python
+    href: quickstarts/python.md
+  - name: Ruby
+    href: quickstarts/ruby.md
+  expanded: true
+- name: SDK 快速入門
+  items:
+  - name: SDK C# 快速入門
+    href: sdk-quickstart-spell-check.md
+  - name: SDK 範例概觀
+    href: sdk.md
+- name: 教學課程
+  items:
+  - name: 建置拼字檢查 Web 應用程式
+    href: tutorials/spellcheck.md
+  - name: 原始程式碼：拼字檢查 Web 應用程式
+    href: tutorials/spellcheck-source.md
+- name: 使用說明指南
+  items:
+  - name: 使用和顯示需求
+    href: UseAndDisplayRequirements.md
+  - name: 從 v5 升級到 v7
+    href: bing-spell-check-upgrade-guide-v5-to-v7.md
+- name: 參考
+  items:
+  - name: Bing 拼字檢查 API v7
+    href: https://docs.microsoft.com/rest/api/cognitiveservices/bing-spell-check-api-v7-reference
+  - name: Bing 拼字檢查 API v5 (舊版本)
+    href: https://docs.microsoft.com/rest/api/cognitiveservices/bing-spell-check-api-v5-reference
+- name: 資源
+  items:
+  - name: Bing 拼字檢查 API 的分析
+    href: bing-spell-check-stats.md
+  - name: 常見問題集
+    href: bing-spell-check-resource-faq.md
+  - name: 語言與區域支援
+    href: language-support.md
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/cognitive-services/spellcheck-api/
+  - name: 區域可用性
+    href: https://azure.microsoft.com/global-infrastructure/services/
+  - name: 堆疊溢位
+    href: https://stackoverflow.com/questions/tagged/bing-api
+  - name: 訂用帳戶金鑰
+    href: https://azure.microsoft.com/try/cognitive-services/?api=spellcheck-api
+  - name: 試試看！
+    href: https://azure.microsoft.com/services/cognitive-services/spell-check/
+  - name: UserVoice
+    href: https://cognitive.uservoice.com/forums/598195-bing-spell-check
+ms.openlocfilehash: 539de32b27a8fdb00479b280c0a0a18fe887f2b4
+ms.sourcegitcommit: 7c4fd6fe267f79e760dc9aa8b432caa03d34615d
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47432676"

@@ -1,6 +1,6 @@
 ---
 title: 重新部署 Azure Stack 開發套件 (ASDK) | Microsoft Docs
-description: 在本教學課程中，您會了解如何安裝 ASDK。
+description: 在本文中，您會了解如何安裝 ASDK。
 services: azure-stack
 documentationcenter: ''
 author: jeffgilb
@@ -11,31 +11,26 @@ ms.service: azure-stack
 ms.workload: na
 pms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: tutorial
-ms.custom: mvc
-ms.date: 03/16/2018
+ms.topic: article
+ms.custom: ''
+ms.date: 08/01/2018
 ms.author: jeffgilb
 ms.reviewer: misainat
-ms.openlocfilehash: 579414f79da29a443ddaf8e167bf3889a647f33d
-ms.sourcegitcommit: a36a1ae91968de3fd68ff2f0c1697effbb210ba8
+ms.openlocfilehash: d166916ca54f3b8c26a418ff83093e53dcdbe515
+ms.sourcegitcommit: 96f498de91984321614f09d796ca88887c4bd2fb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/17/2018
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39413727"
 ---
-# <a name="tutorial-redeploy-the-asdk"></a>教學課程：重新部署 ASDK
-在本教學課程中，您會了解如何在非生產環境中重新部署 Azure Stack 開發套件 (ASDK)。 因為不支援升級 ASDK，您需要將其完全重新部署到較新的版本。 若您想要從頭開始，也可以隨時重新部署 ASDK。
+# <a name="redeploy-the-asdk"></a>重新部署 ASDK
+在本文中，您會了解如何在非生產環境中重新部署 Azure Stack 開發套件 (ASDK)。 因為不支援升級 ASDK，您需要將其完全重新部署到較新的版本。 若您想要從頭開始，也可以隨時重新部署 ASDK。
 
 > [!IMPORTANT]
 > 不支援將 ASDK 升級到新版本。 每當您想要評估新版本的 Azure Stack，都必須在開發套件主機電腦上重新部署 ASDK。
 
-在本教學課程中，您了解如何：
-
-> [!div class="checklist"]
-> * 移除 Azure 註冊 
-> * 重新部署 ASDK
-
 ## <a name="remove-azure-registration"></a>移除 Azure 註冊 
-若您先前已向 Azure 註冊您的 ASDK 安裝，請先移除註冊資源，再重新部署 ASDK。 重新部署 ASDK 時，請重新註冊 ASDK 以啟用市集摘要整合。 若您先前未使用您的 Azure 訂用帳戶註冊過 ASDK，可略過本節。
+若您先前已向 Azure 註冊您的 ASDK 安裝，請先移除註冊資源，再重新部署 ASDK。 重新部署 ASDK 時，請重新註冊 ASDK 以啟用市集中的項目可用性。 若您先前未使用您的 Azure 訂用帳戶註冊過 ASDK，可略過本節。
 
 若要移除註冊資源，請使用 **Remove-AzsRegistration** Cmdlet 來取消註冊 Azure Stack。 然後，使用 **Remove-AzureRMRsourceGroup** Cmdlet，從您的 Azure 訂用帳戶中刪除 Azure Stack 資源群組：
 
@@ -48,14 +43,14 @@ ms.lasthandoff: 03/17/2018
   Import-Module C:\AzureStack-Tools-master\Registration\RegisterWithAzure.psm1
 
   # Provide Azure subscription admin credentials
-  Login-AzureRmAccount
+  Add-AzureRmAccount
 
   # Provide ASDK admin credentials
   $CloudAdminCred = Get-Credential -UserName AZURESTACK\CloudAdmin -Message "Enter the cloud domain credentials to access the privileged endpoint"
 
   # Unregister Azure Stack
   Remove-AzsRegistration `
-      -CloudAdminCredential $YourCloudAdminCredential `
+      -PrivilegedEndpointCredential $CloudAdminCred `
       -PrivilegedEndpoint AzS-ERCS01
 
   # Remove the Azure Stack resource group
@@ -71,7 +66,7 @@ ms.lasthandoff: 03/17/2018
 
 現在系統應該已成功從您的 Azure 訂用帳戶中取消註冊了 Azure Stack。 此外，您向 Azure 註冊 ASDK 時所建立的 azurestack 資源群組，應該也已經刪除。
 
-## <a name="redeploy-the-asdk"></a>重新部署 ASDK
+## <a name="deploy-the-asdk"></a>部署 ASDK
 若要重新部署 Azure Stack，您必須從頭開始進行，如下所述。 您是否使用了 Azure Stack 安裝程式 (asdk-installer.ps1) 指令碼來安裝 ASDK，會讓接下來的步驟有所不同。
 
 ### <a name="redeploy-the-asdk-using-the-installer-script"></a>使用安裝程式指令碼重新部署 ASDK
@@ -85,7 +80,7 @@ ms.lasthandoff: 03/17/2018
 
 3. 開發套件主機重新開機進入基礎作業系統後，以本機系統管理員身分登入。 找出並刪除先前部署過程中所使用的 **C:\CloudBuilder.vhdx** 檔案。 
 
-4. 重複第一次[部署 ASDK](asdk-deploy.md) 時的相同步驟。
+4. 重複第一次[部署 ASDK](asdk-install.md) 時的相同步驟。
 
 ### <a name="redeploy-the-asdk-without-using-the-installer"></a>不使用安裝程式重新部署 ASDK
 若您未使用 asdk-installer.ps1 指令碼來安裝 ASDK，就必須先手動重新設定開發套件主機電腦，再重新部署 ASDK。
@@ -100,16 +95,7 @@ ms.lasthandoff: 03/17/2018
 
 
 ## <a name="next-steps"></a>後續步驟
-在本教學課程中，您已了解如何：
-
-> [!div class="checklist"]
-> * 移除 Azure 註冊 
-> * 重新部署 ASDK
-
-前進到下一個教學課程，以了解如何新增 Azure Stack 市集項目。
-
-> [!div class="nextstepaction"]
-> [新增 Azure Stack 市集項目](asdk-marketplace-item.md)
+[ASDK 安裝後設定工作](asdk-post-deploy.md)
 
 
 

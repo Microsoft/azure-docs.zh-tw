@@ -1,19 +1,20 @@
 ---
-title: "適用於 MySQL 的 Azure 資料庫中的伺服器記錄"
-description: "描述適用於 MySQL 的 Azure 資料庫中的可用記錄，以及啟用不同記錄層級的可用參數。"
+title: 適用於 MySQL 的 Azure 資料庫中的伺服器記錄
+description: 描述適用於 MySQL 的 Azure 資料庫中的可用記錄，以及啟用不同記錄層級的可用參數。
 services: mysql
 author: rachel-msft
 ms.author: raagyema
 manager: kfile
 editor: jasonwhowell
-ms.service: mysql-database
+ms.service: mysql
 ms.topic: article
-ms.date: 02/28/2018
-ms.openlocfilehash: ce6b6208b74063ea5d6e9868ca414f833b1a2045
-ms.sourcegitcommit: c765cbd9c379ed00f1e2394374efa8e1915321b9
+ms.date: 09/17/2018
+ms.openlocfilehash: ac5be20815b552c08e5cd1054bf24d7a10b56498
+ms.sourcegitcommit: f10653b10c2ad745f446b54a31664b7d9f9253fe
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/28/2018
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46124264"
 ---
 # <a name="server-logs-in-azure-database-for-mysql"></a>適用於 MySQL 的 Azure 資料庫中的伺服器記錄
 在適用於 MySQL 的 Azure 資料庫中，使用者可以使用慢速查詢記錄。 不支援存取交易記錄。 慢速查詢記錄檔可以用來找出效能瓶頸，以進行疑難排解。 
@@ -28,9 +29,9 @@ ms.lasthandoff: 02/28/2018
 如需 Azure CLI 的詳細資訊，請參閱[使用 Azure CLI 設定和存取伺服器記錄](howto-configure-server-logs-in-cli.md)。
 
 ## <a name="log-retention"></a>記錄保留
-記錄最多可以從建立開始算起保留七天。 如果可用記錄的大小總計超過 7.5 GB，則除非有空間可用，否則會刪除最舊檔案。 
+記錄最多可以從建立開始算起保留七天。 如果可用記錄的大小總計超過 7 GB，則除非有空間可用，否則會刪除最舊檔案。 
 
-記錄會每隔 24 小時或 7.5 GB 旋轉一次，先到者先用。
+記錄會每隔 24 小時或 7 GB 旋轉一次，先到者先用。
 
 
 ## <a name="configure-logging"></a>設定記錄 

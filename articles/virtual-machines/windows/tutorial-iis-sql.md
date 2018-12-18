@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 中建立執行 SQL&#92;IIS&#92;.NET 堆疊的 VM | Microsoft Docs"
-description: "教學課程 - 在 Windows 虛擬機器上安裝 Azure SQL、IIS、.NET 堆疊。"
+title: 教學課程 - 在 Azure 中建立執行 SQL&#47;IIS&#47;.NET 堆疊的 VM | Microsoft Docs
+description: 在本教學課程中，您將學習如何在 Azure 中的 Windows 虛擬機器上安裝 Azure SQL、IIS、.NET 堆疊。
 services: virtual-machines-windows
 documentationcenter: virtual-machines
 author: cynthn
@@ -15,15 +15,16 @@ ms.workload: infrastructure
 ms.date: 02/27/2018
 ms.author: cynthn
 ms.custom: mvc
-ms.openlocfilehash: ac6038f7600d6eb4c8d021998f9cfc40bd369332
-ms.sourcegitcommit: 168426c3545eae6287febecc8804b1035171c048
+ms.openlocfilehash: cb423fb43e2e7620aef989c0ead99f9bdb5a58e3
+ms.sourcegitcommit: f20e43e436bfeafd333da75754cd32d405903b07
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/08/2018
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49389360"
 ---
-# <a name="install-a-sql92iis92net-stack-in-azure"></a>在 Azure 中安裝 SQL&#92;IIS&#92;.NET 堆疊
+# <a name="tutorial-install-the-sql47iis47net-stack-in-a-windows-vm-with-azure-powershell"></a>教學課程：使用 Azure PowerShell 在 Windows VM 中安裝 SQL&#47;IIS&#47;.NET 堆疊
 
-在本教學課程中，我們會使用 Azure PowerShell 來安裝 SQL&#92;IIS&#92;.NET 堆疊。 此堆疊是由兩個執行 Windows Server 2016 的 VM 所組成，一個包含 IIS 和 .NET 而另一個則是包含 SQL Server。
+在本教學課程中，我們會使用 Azure PowerShell 來安裝 SQL&#47;IIS&#47;.NET 堆疊。 此堆疊是由兩個執行 Windows Server 2016 的 VM 所組成，一個包含 IIS 和 .NET 而另一個則是包含 SQL Server。
 
 > [!div class="checklist"]
 > * 建立 VM 
@@ -33,7 +34,7 @@ ms.lasthandoff: 03/08/2018
 
 [!INCLUDE [cloud-shell-powershell.md](../../../includes/cloud-shell-powershell.md)]
 
-如果您選擇在本機安裝和使用 PowerShell，則在執行本教學課程時，您必須使用 AzureRM.Compute 模組版本 4.3.1 版或更新版本。 執行 `Get-Module -ListAvailable AzureRM.Compute` 以尋找版本。 如果您需要升級，請參閱[安裝 Azure PowerShell 模組](/powershell/azure/install-azurerm-ps)。
+如果您選擇在本機安裝和使用 PowerShell，則在執行本教學課程時，您必須使用 AzureRM.Compute 模組版本 5.7.0 版或更新版本。 執行 `Get-Module -ListAvailable AzureRM.Compute` 以尋找版本。 如果您需要升級，請參閱[安裝 Azure PowerShell 模組](/powershell/azure/install-azurerm-ps)。
 
 ## <a name="create-a-iis-vm"></a>建立 IIS VM 
 
@@ -80,7 +81,7 @@ $vNet = Get-AzureRmVirtualNetwork `
    -ResourceGroupName $resourceGroup
 ```
 
-使用 [Add-AzureRmVirtualNetworkSubnetConfig](/powershell/module/azurerm.network/add-azurermvirtualnetworksubnetconfig) 建立子網路的組態。
+使用 [Add-AzureRmVirtualNetworkSubnetConfig](/powershell/module/azurerm.network/add-azurermvirtualnetworksubnetconfig) 建立子網路的設定。
 
 
 ```azurepowershell-interactive
@@ -115,7 +116,7 @@ New-AzureRmVm `
     -OpenPorts 3389,1401 
 ```
 
-使用 [Set-AzureRmVMSqlServerExtension](/powershell/module/azurerm.compute/set-azurermvmsqlserverextension) 將 [SQL Server 擴充功能](/sql/virtual-machines-windows-sql-server-agent-extension.md)新增至 SQL VM。
+使用 [Set-AzureRmVMSqlServerExtension](/powershell/module/azurerm.compute/set-azurermvmsqlserverextension) 將 [SQL Server 擴充功能](https://docs.microsoft.com/azure/virtual-machines/windows/sql/virtual-machines-windows-sql-server-agent-extension)新增至 SQL VM。
 
 ```azurepowershell-interactive
 Set-AzureRmVMSqlServerExtension `

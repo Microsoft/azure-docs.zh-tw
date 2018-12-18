@@ -15,11 +15,12 @@ ms.workload: infrastructure-services
 ms.date: 10/26/2017
 ms.author: jdial
 ms.custom: ''
-ms.openlocfilehash: 014c9ea34f35e915c6c4eac5a96c55201549e18a
-ms.sourcegitcommit: 20d103fb8658b29b48115782fe01f76239b240aa
+ms.openlocfilehash: 97e192312619455c0055a917df880cc48eb082dd
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46978898"
 ---
 # <a name="virtual-network-traffic-routing"></a>虛擬網路流量路由
 
@@ -104,13 +105,13 @@ Azure 會針對不同的 Azure 功能，新增其他預設系統路由，但只�
 
 下一個躍點類型的顯示和參照名稱在 Azure 入口網站和命令列工具之間是不同的，以及在 Azure Resource Manager 和傳統部署模型之間也不同。 下表列出的名稱可用來參照使用不同工具和[部署模型](../azure-resource-manager/resource-manager-deployment-model.md?toc=%2fazure%2fvirtual-network%2ftoc.json)的每種下一個躍點類型：
 
-|下一個躍點類型                   |Azure CLI 2.0 和 PowerShell (Resource Manager) |Azure CLI 1.0 和 PowerShell (傳統)|
+|下一個躍點類型                   |Azure CLI 和 PowerShell (Resource Manager) |Azure 傳統 CLI 和 PowerShell (傳統)|
 |-------------                   |---------                                       |-----|
 |虛擬網路閘道         |VirtualNetworkGateway                           |VPNGateway|
-|虛擬網路                 |VNetLocal                                       |VNETLocal (不適用於 asm 模式中的 CLI 1.0)|
-|Internet                        |Internet                                        |Internet (不適用於 asm 模式中的 CLI 1.0)|
+|虛擬網路                 |VNetLocal                                       |VNETLocal (不適用於 asm 模式下的傳統 CLI)|
+|Internet                        |Internet                                        |Internet (不適用於 asm 模式下的傳統 CLI)|
 |虛擬設備               |VirtualAppliance                                |VirtualAppliance|
-|None                            |None                                            |Null (不適用於 asm 模式中的 CLI 1.0)|
+|None                            |None                                            |Null (不適用於 asm 模式下的傳統 CLI)|
 |虛擬網路對等互連         |VNet 對等互連                                    |不適用|
 |虛擬網路服務端點|VirtualNetworkServiceEndpoint                   |不適用|
 
@@ -118,11 +119,13 @@ Azure 會針對不同的 Azure 功能，新增其他預設系統路由，但只�
 
 內部部署網路閘道可以使用邊界閘道通訊協定 (BGP) 交換路由與 Azure 虛擬網路閘道。 是否要對 Azure 虛擬網路閘道使用 BGP，取決於您建立閘道時選取的類型。 如果您選取的類型為：
 
-- **ExpressRoute**：您必須使用 BGP 將內部部署路由公佈至 Microsoft 邊緣路由器。 如果您部署的虛擬網路閘道是以 ExpressRoute 類型部署，就無法建立使用者定義路由來強制 ExpressRoute 虛擬網路閘道的流量。 您可以使用使用者定義的路由來強制從 Express Route 到例如網路虛擬裝置的流量。 
+- **ExpressRoute**：您必須使用 BGP 將內部部署路由公佈至 Microsoft 邊緣路由器。 如果您部署的虛擬網路閘道是以 ExpressRoute 類型部署，就無法建立使用者定義路由來強制 ExpressRoute 虛擬網路閘道的流量。 您可以使用使用者定義的路由，強制執行從 Express Route 到例如網路虛擬裝置的流量。
 - **VPN**：您可以選擇性地使用 BGP。 如需詳細資訊，請參閱[BGP 與站台對站 VPN 連線](../vpn-gateway/vpn-gateway-bgp-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json)。
 
 當您使用 BGP 交換 Azure 與路由時，系統會針對每個公佈的首碼，將個別路由新增至虛擬網路中的所有子網路路由表。 新增路由的來源和下一個躍點類型會列為*虛擬網路閘道*。 
- 
+
+在路由表上使用屬性，即可在子網路上停用 BGP 路由傳播。 當您使用 BGP 與 Azure 交換路由時，路由不會新增至已停用 BGP 傳播的所有子網路路由表。 使用下一個躍點類型為*虛擬網路閘道*的[自訂路由](#custom-routes)，即可進行 VPN 連線。 如需詳細資訊，請參閱[如何停用 BGP 路由傳播](manage-route-table.md#create-a-route-table)。
+
 ## <a name="how-azure-selects-a-route"></a>Azure 如何選取路由
 
 當輸出流量從子網路送出時，Azure 會根據目的地 IP 位址選取路由 (使用最長的首碼比對演算法)。 例如，路由表有兩個路由：一個路由指定 10.0.0.0/24 位址首碼，而其他路由指定 10.0.0.0/16 位址首碼。 Azure 會將 10.0.0.5 指定流量路由至位址首碼為 10.0.0.0/24 之路由中指定的下一個躍點類型，因為 10.0.0.5 雖然都在兩個位址首碼中，但比起 10.0.0.0/16，10.0.0.0/24 是較長的首碼。 Azure 會將 10.0.1.5 指定流量路由至位址首碼為 10.0.0.0/16 之路由中指定的下一個躍點類型，因為 10.0.1.5 不包含在 10.0.0.0/24 位址首碼中，因此位址首碼為 10.0.0.0/16 的路由是符合的最長首碼。
@@ -142,7 +145,7 @@ Azure 會針對不同的 Azure 功能，新增其他預設系統路由，但只�
 |來源   |位址首碼  |下一個躍點類型           |
 |---------|---------         |-------                 |
 |預設值  | 0.0.0.0/0        |Internet                |
-|User     | 0.0.0.0/0        |虛擬網路閘道 |
+|使用者     | 0.0.0.0/0        |虛擬網路閘道 |
 
 當流量的目的地 IP 位址不在路由表中任何其他路由的位址首碼內時，Azure 會選取具有**使用者**來源的路由，因為使用者定義路由的優先順序高於系統預設路由。
 
@@ -164,7 +167,9 @@ Azure 會針對不同的 Azure 功能，新增其他預設系統路由，但只�
         - 能夠進行網路位址轉譯和轉送，或對傳送至子網路中目的地資源的流量設定 Proxy，並將流量傳回網際網路。 
     - **虛擬網路閘道**：如果閘道是 ExpressRoute 虛擬網路閘道，則透過 ExpressRoute 的[私人對等互連](../expressroute/expressroute-circuit-peerings.md?toc=%2fazure%2fvirtual-network%2ftoc.json#azure-private-peering)，連線到網際網路的裝置在內部部署上可以進行網路位址轉譯和轉送，或對傳送至子網路中目的地資源的流量設定 Proxy。 
 
-  請參閱 [Azure 與內部部署資料中心之間的 DMZ](/azure/architecture/reference-architectures/dmz/secure-vnet-hybrid?toc=%2fazure%2fvirtual-network%2ftoc.json)和 [Azure 與網際網路之間的 DMZ](/azure/architecture/reference-architectures/dmz/secure-vnet-dmz?toc=%2fazure%2fvirtual-network%2ftoc.json)，以取得在網際網路和 Azure 之間使用虛擬網路閘道和虛擬設備的實作詳細資料。
+如果虛擬網路連線至 Azure VPN 閘道，請勿將路由表關聯至所含路由的目的地為 0.0.0.0/0 的[閘道子網路](../vpn-gateway/vpn-gateway-about-vpn-gateway-settings.md?toc=%2fazure%2fvirtual-network%2ftoc.json#gwsub)。 這麼做會讓閘道無法正常運作。 如需詳細資訊，請參閱 [VPN 閘道常見問題集](../vpn-gateway/vpn-gateway-vpn-faq.md?toc=%2fazure%2fvirtual-network%2ftoc.json#why-are-certain-ports-opened-on-my-vpn-gateway)中的*為什麼 VPN 閘道上的某些連接埠已開啟？* 問題。
+
+請參閱 [Azure 與內部部署資料中心之間的 DMZ](/azure/architecture/reference-architectures/dmz/secure-vnet-hybrid?toc=%2fazure%2fvirtual-network%2ftoc.json)和 [Azure 與網際網路之間的 DMZ](/azure/architecture/reference-architectures/dmz/secure-vnet-dmz?toc=%2fazure%2fvirtual-network%2ftoc.json)，以取得在網際網路和 Azure 之間使用虛擬網路閘道和虛擬設備的實作詳細資料。
 
 ## <a name="routing-example"></a>路由範例
 
@@ -206,23 +211,23 @@ Azure 會針對不同的 Azure 功能，新增其他預設系統路由，但只�
 |ID  |來源 |State  |位址首碼    |下一個躍點類型          |下一個躍點 IP 位址|使用者定義路由名稱| 
 |----|-------|-------|------              |-------                |--------           |--------      |
 |1   |預設值|無效|10.0.0.0/16         |虛擬網路        |                   |              |
-|2   |User   |Active |10.0.0.0/16         |虛擬設備      |10.0.100.4         |Within-VNet1  |
-|3   |User   |Active |10.0.0.0/24         |虛擬網路        |                   |Within-Subnet1|
+|2   |使用者   |Active |10.0.0.0/16         |虛擬設備      |10.0.100.4         |Within-VNet1  |
+|3   |使用者   |Active |10.0.0.0/24         |虛擬網路        |                   |Within-Subnet1|
 |4   |預設值|無效|10.1.0.0/16         |VNet 對等互連           |                   |              |
 |5   |預設值|無效|10.2.0.0/16         |VNet 對等互連           |                   |              |
-|6   |User   |Active |10.1.0.0/16         |None                   |                   |ToVNet2-1-Drop|
-|7   |User   |Active |10.2.0.0/16         |None                   |                   |ToVNet2-2-Drop|
+|6   |使用者   |Active |10.1.0.0/16         |None                   |                   |ToVNet2-1-Drop|
+|7   |使用者   |Active |10.2.0.0/16         |None                   |                   |ToVNet2-2-Drop|
 |8   |預設值|無效|10.10.0.0/16        |虛擬網路閘道|[X.X.X.X]          |              |
-|9   |User   |Active |10.10.0.0/16        |虛擬設備      |10.0.100.4         |To-On-Prem    |
+|9   |使用者   |Active |10.10.0.0/16        |虛擬設備      |10.0.100.4         |To-On-Prem    |
 |10  |預設值|Active |[X.X.X.X]           |VirtualNetworkServiceEndpoint    |         |              |
 |11  |預設值|無效|0.0.0.0/0           |Internet|              |                   |              |
-|12  |User   |Active |0.0.0.0/0           |虛擬設備      |10.0.100.4         |Default-NVA   |
+|12  |使用者   |Active |0.0.0.0/0           |虛擬設備      |10.0.100.4         |Default-NVA   |
 
 每個路由 ID 的說明如下：
 
 1. Azure 已自動為 Virtual-network-1 內的所有子網路新增此路由，因為 10.0.0.0/16 是虛擬網路位址空間中定義的唯一位址範圍。 如果未建立路由 ID2 中的使用者定義路由，傳送到 10.0.0.1 和 10.0.255.254 之間任何位址的流量就會在虛擬網路內進行路由，因為首碼長度大於 0.0.0.0/0，且不在任何其他路由的位址首碼內。 當 ID2 (使用者定義路由) 已新增時，Azure 會自動將狀態從「作用中」變更為「無效」，因為其首碼與預設路由一樣，而使用者定義路由會覆寫預設路由。 Subnet2 的此路由狀態仍然是「作用中」，因為其中有使用者定義路由 (ID2) 的路由表並未與 Subnet2 產生關聯。
 2. 當 10.0.0.0/16 位址首碼的使用者定義路由已與 Virtual-network-1 中 Subnet1 子網路產生關聯時，Azure 就會新增此路由。 使用者定義路由會指定 10.0.100.4 作為虛擬設備的 IP 位址，因為該位址是指派給虛擬設備虛擬機器的私人 IP 位址。 此路由存在的路由表並未與 Subnet2 產生關聯，因此不會出現在 Subnet2 的路由表中。 此路由會覆寫 10.0.0.0/16 首碼 (ID1) 的預設路由，預設路由會透過虛擬網路的下一個躍點類型，自動在虛擬網路內路由位址 10.0.0.1 和 10.0.255.254 的流量。 此路由是為符合[需求](#requirements) 3 而存在，會強制所有輸出流量通過虛擬設備。
-3. 當 10.0.0.0/24 位址首碼的使用者定義路由已與 Subnet1 子網路產生關聯時，Azure 就會新增此路由。 傳送至位址 10.0.0.1 和 10.0.0.0.254 之間的流量仍會在子網路內，而不是路由至上一個規則 (ID2) 中指定的虛擬設備，因為有比 ID2 路由更長的首碼。 此路由並未與Subnet2 產生關聯，因此路由不會出現在 Subnet2 的路由表中。 針對 Subnet1 內的流量，此路由有效地覆寫 ID2 路由。 此路由是為符合[需求](#requirements) 3 而存在。
+3. 當 10.0.0.0/24 位址首碼的使用者定義路由已與 Subnet1 子網路產生關聯時，Azure 就會新增此路由。 傳送至位址 10.0.0.1 和 10.0.0.254 之間的流量仍會在子網路內，而不是路由至上一個規則 (ID2) 中指定的虛擬設備，因為有比 ID2 路由更長的首碼。 此路由並未與Subnet2 產生關聯，因此路由不會出現在 Subnet2 的路由表中。 針對 Subnet1 內的流量，此路由有效地覆寫 ID2 路由。 此路由是為符合[需求](#requirements) 3 而存在。
 4. 當虛擬網路與 Virtual-network-2 對等互連時，Azure 會針對 Virtual-network-1 內的所有子網路，自動在 ID 4 和 ID 5 中新增路由。 Virtual-network-2 在其位址空間中有兩個位址範圍：10.1.0.0/16 和 10.2.0.0/16，因此 Azure 會為每個範圍新增路由。 如果未建立路由 ID 6 和 ID 7 中的使用者定義路由，傳送到 10.1.0.1-10.1.255.254 和 10.2.0.1-10.2.255.254 之間任何位址的流量將會路由至對等虛擬網路，因為首碼長度大於 0.0.0.0/0，且不在任何其他路由的位址首碼內。 當 ID 6 和 ID 7 中的已新增時，Azure 會自動將狀態從「作用中」變更為「無效」，因為他們的首碼與路由 ID 4 和 ID 5 一樣，而使用者定義路由會覆寫預設路由。 Subnet2 中 ID 4 和 ID 5 的路由狀態仍然是「作用中」，因為包含 ID 4 和 ID 5 中使用者定義路由的路由表並未與 Subnet2 產生關聯。 虛擬網路對等互連是為符合[需求](#requirements) 1 而建立。
 5. 與 ID4 的說明相同。
 6. 當 10.1.0.0/16 和 10.2.0.0/16 位址首碼的使用者定義路由已與 Subnet1 子網路產生關聯時，Azure 就會新增此路由和 ID7 中的路由。 傳送至 10.1.0.1-10.1.255.254 和 10.2.0.1-10.2.255.254 之間位址的流量會遭到 Azure 捨棄，而不是路由至對等互連的虛擬網路，因為使用者定義路由會覆寫預設路由。 這些路由並未與 Subnet2 產生關聯，因此路由不會出現在 Subnet2 的路由表中。 針對離開 Subnet1 的流量，這些路由會覆寫 ID4 和 ID5 路由。 ID6 和 ID7 路由是為符合[需求](#requirements) 3 而存在，會捨棄其他虛擬網路指定的流量。
@@ -256,5 +261,5 @@ Subnet2 的路由表包含所有 Azure 建立的預設路由和選擇性 VNet �
 - [使用路由和網路虛擬設備建立使用者定義路由表](tutorial-create-route-table-portal.md)
 - [設定適用於 Azure VPN 閘道的 BGP](../vpn-gateway/vpn-gateway-bgp-resource-manager-ps.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
 - [搭配使用 ExpressRoute 與 BGP](../expressroute/expressroute-routing.md?toc=%2fazure%2fvirtual-network%2ftoc.json#route-aggregation-and-prefix-limits)
-- [檢視子網路的所有路由](virtual-network-routes-troubleshoot-portal.md)。 使用者定義路由表只會顯示使用者定義路由，而不會顯示子網路的預設和 BGP 路由。 檢視所有路由會顯示子網路 (內含網路介面) 的預設、BGP 及使用者定義路由。
-- 在虛擬機器和目的地 IP 位址間[判斷下一個躍點類型](../network-watcher/network-watcher-check-next-hop-portal.md?toc=%2fazure%2fvirtual-network%2ftoc.json)。 Azure 網路監看員的下一個躍點功能，可讓您判斷流量是否離開子網路且正在路由到您覺得正確的地方。
+- [檢視子網路的所有路由](diagnose-network-routing-problem.md)。 使用者定義路由表只會顯示使用者定義路由，而不會顯示子網路的預設和 BGP 路由。 檢視所有路由會顯示子網路 (內含網路介面) 的預設、BGP 及使用者定義路由。
+- 在虛擬機器和目的地 IP 位址間[判斷下一個躍點類型](../network-watcher/diagnose-vm-network-routing-problem.md?toc=%2fazure%2fvirtual-network%2ftoc.json)。 Azure 網路監看員的下一個躍點功能，可讓您判斷流量是否離開子網路且正在路由到您覺得正確的地方。

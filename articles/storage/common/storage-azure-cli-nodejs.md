@@ -1,57 +1,52 @@
 ---
-title: "使用 Azure CLI 1.0 搭配 Azure 儲存體 | Microsoft Docs"
-description: "了解如何使用「Azure 命令列介面」(Azure CLI) 1.0 搭配「Azure 儲存體」來建立和管理儲存體帳戶，以及處理 Azure Blob 和檔案。 Azure CLI 是一種跨平台工具"
+title: 使用 Azure 傳統 CLI 搭配 Azure 儲存體 | Microsoft Docs
+description: 了解如何搭配 Azure 儲存體使用 Azure 傳統命令列介面 (CLI) 來建立及管理儲存體帳戶，以及使用 Azure Blob 與檔案。
 services: storage
-documentationcenter: na
 author: seguler
-manager: jahogg
-editor: tysonn
-ms.assetid: b502232a-e8f6-4d6c-befd-3476592e0e35
 ms.service: storage
-ms.workload: storage
-ms.tgt_pltfrm: na
-ms.devlang: na
 ms.topic: article
 ms.date: 01/30/2017
 ms.author: seguler
-ms.openlocfilehash: 772417012e4c6aa519e83177bd8e93778f6af3b5
-ms.sourcegitcommit: 42ee5ea09d9684ed7a71e7974ceb141d525361c9
+ms.component: common
+ms.openlocfilehash: e563c7000b600bed917f42d8ffb87df883564ef8
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/09/2017
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46979323"
 ---
-# <a name="using-the-azure-cli-10-with-azure-storage"></a>使用 Azure CLI 1.0 搭配 Azure 儲存體
+# <a name="using-the-azure-classic-cli-with-azure-storage"></a>搭配 Azure 儲存體使用 Azure 傳統 CLI
 
 ## <a name="overview"></a>概觀
 
-Azure CLI 提供您一組開放原始碼的跨平台命令集合，供您運用在 Azure 平台上。 它提供許多與 [Azure 入口網站](https://portal.azure.com) 相同的功能，以及豐富的資料存取功能。
+Azure 傳統 CLI 為您提供一組開放式原始碼的跨平台命令集合，供您運用在 Azure 平台上。 它提供許多與 [Azure 入口網站](https://portal.azure.com) 相同的功能，以及豐富的資料存取功能。
 
-在本指南中，我們將探討如何使用 [Azure 命令列介面 (Azure CLI)](../../cli-install-nodejs.md) 搭配「Azure 儲存體」來執行各種開發和管理工作。 建議您在使用本指南之前，先下載並安裝或升級至最新的 Azure CLI。
+在此指南中，我們將探討如何使用 [Azure 傳統 CLI](../../cli-install-nodejs.md) 來搭配 Azure 儲存體執行各種開發與管理工作。 建議您在使用此指南之前，先下載並安裝或升級至最新的傳統 CLI。
 
-本指南假設您已了解 Azure 儲存體的基本概念。 本指南提供許多指令碼示範如何使用 Azure CLI 搭配 Azure 儲存體。 在執行每個指令碼之前，請務必先根據您的組態更新指令碼變數。
+此指南假設您已了解 Azure 儲存體的基本概念。 此指南提供許多指令碼示範如何搭配 Azure 儲存體使用 Azure CLI。 在執行每個指令碼之前，請務必先根據您的設定更新指令碼變數。
 
 > [!NOTE]
-> 本指南提供傳統儲存體帳戶的 Azure CLI 命令和指令碼範例。 如需 Resource Manager 儲存體帳戶適用的 Azure CLI 命令，請參閱 [使用適用於 Mac、Linux 和 Windows 的 Azure CLI 搭配 Azure 資源管理](../../virtual-machines/azure-cli-arm-commands.md#azure-storage-commands-to-manage-your-storage-objects) 。
+> 此指南提供傳統儲存體帳戶的 Azure 傳統 CLI 命令與指令碼範例。 如需適用於 Resource Manager 儲存體帳戶的 Azure 傳統 CLI 命令，請參閱 [使用適用於 Mac、Linux 與 Windows 的 Azure CLI 搭配 Azure 資源管理](../../virtual-machines/azure-cli-arm-commands.md#azure-storage-commands-to-manage-your-storage-objects)。
 >
 >
 
 [!INCLUDE [storage-cli-versions](../../../includes/storage-cli-versions.md)]
 
-## <a name="get-started-with-azure-storage-and-the-azure-cli-in-5-minutes"></a>在 5 分鐘內開始使用 Azure 儲存體和 Azure CLI
-本指南使用 Ubuntu 作為範例，但其他作業系統平台也同樣能夠執行。
+## <a name="get-started-with-azure-storage-and-the-azure-classic-cli-in-5-minutes"></a>在 5 分鐘內開始使用 Azure 儲存體和 Azure 傳統 CLI
+此指南使用 Ubuntu 作為範例，但其他作業系統平台也同樣能夠執行。
 
-**Azure 新手：** 取得 Microsoft Azure 訂用帳戶和與該訂用帳戶相關聯的 Microsoft 帳戶。 如需 Azure 購買選項的資訊，請參閱[免費試用](https://azure.microsoft.com/pricing/free-trial/)、[購買選項](https://azure.microsoft.com/pricing/purchase-options/)和[會員優惠](https://azure.microsoft.com/pricing/member-offers/) (適用於 MSDN、Microsoft 合作夥伴網路、BizSpark 和其他 Microsoft 方案的成員)。
+**Azure 新手：** 取得 Microsoft Azure 訂用帳戶和與該訂用帳戶相關聯的 Microsoft 帳戶。 如需 Azure 購買選項的資訊，請參閱[免費試用](https://azure.microsoft.com/pricing/free-trial/)、[購買選項](https://azure.microsoft.com/pricing/purchase-options/)和[會員供應項目](https://azure.microsoft.com/pricing/member-offers/) (適用於 MSDN、Microsoft 合作夥伴網路、BizSpark 和其他 Microsoft 方案的成員)。
 
-如需 Azure 訂用帳戶的詳細資訊，請參閱 [在 Azure Active Directory (Azure AD) 中指派系統管理員角色](https://msdn.microsoft.com/library/azure/hh531793.aspx) 。
+如需 Azure 訂用帳戶的詳細資訊，請參閱 [在 Azure Active Directory (Azure AD) 中指派系統管理員角色](https://docs.microsoft.com/azure/active-directory/active-directory-assign-admin-roles-azure-portal) 。
 
 **建立 Microsoft Azure 訂用帳戶和帳戶之後：**
 
-1. 依照 [安裝 Azure CLI](../../cli-install-nodejs.md)中的指示下載並安裝 Azure CLI。
-2. 安裝好 Azure CLI 之後，您就能從命令列介面 (Bash、終端機、命令提示字元) 中使用 azure 命令存取 Azure CLI 命令。 輸入 _azure_ 命令，您應該會看見下列輸出。
+1. 依照 [安裝 Azure 傳統 CLI](../../cli-install-nodejs.md)中的指示下載並安裝 Azure 傳統 CLI。
+2. 安裝好傳統 CLI 之後，您就能從命令列介面 (Bash、終端機、命令提示字元) 中使用 azure 命令存取傳統 CLI 命令。 輸入 _azure_ 命令，您應該會看見下列輸出。
 
     ![Azure 命令輸出](./media/storage-azure-cli/azure_command.png)   
-3. 在命令列介面中，輸入 `azure storage` 以列出所有 Azure 儲存體命令，對 Azure CLI 所提供的功能進行初步了解。 您可以輸入命令名稱搭配 **-h** 參數 (例如，`azure storage share create -h`)，查看命令語法的詳細資料。
-4. 現在，我們將提供您一個簡單的指令碼，其中顯示用來存取「Azure 儲存體」的基本 Azure CLI 命令。 指令碼會先要求您為您的儲存體帳戶和金鑰設定兩個變數。 然後，指令碼將在這個新的儲存體帳戶中建立新容器，並將現有的映像檔案 (Blob) 上傳至該容器。 指令碼列出該容器中的所有 Blob 之後，會將映像檔案下載至本機電腦上的目的地目錄。
+3. 在命令列介面中，輸入 `azure storage` 以列出所有 Azure 儲存體命令，對傳統 CLI 所提供的功能進行初步了解。 您可以輸入命令名稱搭配 **-h** 參數 (例如，`azure storage share create -h`)，查看命令語法的詳細資料。
+4. 現在，我們將為您提供一個簡單的指令碼，其中顯示用來存取「Azure 儲存體」的基本傳統 CLI 命令。 指令碼會先要求您為您的儲存體帳戶和金鑰設定兩個變數。 然後，指令碼將在這個新的儲存體帳戶中建立新容器，並將現有的映像檔案 (Blob) 上傳至該容器。 指令碼列出該容器中的所有 Blob 之後，會將映像檔案下載至本機電腦上的目的地目錄。
 
     ```azurecli
     #!/bin/bash
@@ -93,9 +88,9 @@ Azure CLI 提供您一組開放原始碼的跨平台命令集合，供您運用�
 
 在指令碼執行之後，您應該有包含下載的映像檔案的本機目的資料夾。
 
-## <a name="manage-storage-accounts-with-the-azure-cli"></a>使用 Azure CLI 管理儲存體帳戶
+## <a name="manage-storage-accounts-with-the-azure-classic-cli"></a>使用 Azure 傳統 CLI 管理儲存體帳戶
 ### <a name="connect-to-your-azure-subscription"></a>連接到 Azure 訂用帳戶
-雖然大多數儲存體命令在沒有 Azure 訂用帳戶的情況下也能運作，但是仍建議您從 Azure CLI 連接到您的訂用帳戶。 若要設定讓 Azure CLI 與您的訂用帳戶搭配運作，請依照 [從 Azure CLI 連接到 Azure 訂用帳戶](/cli/azure/authenticate-azure-cli)中的步驟操作。
+雖然大多數儲存體命令在沒有 Azure 訂用帳戶的情況下也能運作，但是仍建議您從傳統 CLI 連接到您的訂用帳戶。
 
 ### <a name="create-a-new-storage-account"></a>建立新的儲存體帳戶
 若要使用 Azure 儲存體，您將需要儲存體帳戶。 設定電腦以連接至您的訂用帳戶之後，您可以建立新的 Azure 儲存體帳戶。
@@ -107,7 +102,7 @@ azure storage account create <account_name>
 儲存體帳戶的名稱必須介於 3 到 24 個字元的長度，而且只能使用數字和小寫字母。
 
 ### <a name="set-a-default-azure-storage-account-in-environment-variables"></a>在環境變數中設定預設 Azure 儲存體帳戶
-您可以在訂用帳戶中有多個儲存體帳戶。 您可以選擇其中一個儲存體帳戶並且在環境變數中進行設定，讓同一個工作階段中的所有儲存體命令都能使用。 這可讓您執行 Azure CLI 儲存體命令，而不需明確指定儲存體帳戶和金鑰。
+您可以在訂用帳戶中有多個儲存體帳戶。 您可以選擇其中一個儲存體帳戶並且在環境變數中進行設定，讓同一個工作階段中的所有儲存體命令都能使用。 這可讓您執行傳統 CLI 儲存體命令，而不需明確指定儲存體帳戶和金鑰。
 
 ```azurecli
 export AZURE_STORAGE_ACCOUNT=<account_name>
@@ -182,7 +177,7 @@ azure storage blob delete mycontainer myBlockBlob2
 ```
 
 ## <a name="create-and-manage-file-shares"></a>建立和管理檔案共用
-Azure 檔案服務為使用標準 SMB 通訊協定的應用程式提供共用儲存體。 Microsoft Azure 虛擬機器和雲端服務，以及內部部署應用程式，可以透過掛接共用，共用檔案資料。 您可以透過 Azure CLI 管理檔案共用和檔案資料。 如需 Azure 檔案服務的詳細資訊，請參閱 [Azure 檔案服務簡介](../files/storage-files-introduction.md)。
+Azure 檔案服務為使用標準 SMB 通訊協定的應用程式提供共用儲存體。 Microsoft Azure 虛擬機器和雲端服務，以及內部部署應用程式，可以透過掛接共用，共用檔案資料。 您可以透過傳統 CLI 管理檔案共用與檔案資料。 如需 Azure 檔案服務的詳細資訊，請參閱 [Azure 檔案服務簡介](../files/storage-files-introduction.md)。
 
 ### <a name="create-a-file-share"></a>建立檔案共用
 Azure 檔案共用是 Azure 中的 SMB 檔案共用。 所有目錄和檔案都必須在檔案共用中建立。 帳戶可包含無限制數目的共用，而共用可儲存無限制數目的檔案，最多可達儲存體帳戶的容量限制。 下列範例會建立名為 **myshare** 的檔案共用。
@@ -219,7 +214,7 @@ azure storage file list myshare myDir
 請注意，列出作業不一定會顯示目錄名稱。 如果省略，則命令會列出共用根目錄的內容。
 
 ### <a name="copy-files"></a>複製檔案
-從 Azure CLI 0.9.8 版開始，您可以將檔案複製到另一個檔案、將檔案複製到 Blob 或將 Blob 複製到檔案。 下列示範如何使用 CLI 命令執行這些複製作業。 將檔案複製到新的目錄：
+從傳統 CLI 0.9.8 版開始，您可以將檔案複製到另一個檔案、將檔案複製到 Blob 或將 Blob 複製到檔案。 下列示範如何使用 CLI 命令執行這些複製作業。 將檔案複製到新的目錄：
 
 ```azurecli
 azure storage file copy start --source-share srcshare --source-path srcdir/hello.txt --dest-share destshare
@@ -235,9 +230,9 @@ azure storage file copy start --source-container srcctn --source-blob hello2.txt
 
 ## <a name="next-steps"></a>後續步驟
 
-您可以在下列網頁找到可與「儲存體」資源搭配運作的 Azure CLI 1.0 命令參考資料：
+您可以在下列網頁找到可與「儲存體」資源搭配運作的傳統 CLI 命令參考資料：
 
-* [Resource Manager 模式中的 Azure CLI 命令](../../virtual-machines/azure-cli-arm-commands.md#azure-storage-commands-to-manage-your-storage-objects)
-* [Azure 服務管理模式中的 Azure CLI 命令](../../cli-install-nodejs.md)
+* [Resource Manager 模式中的 Azure 傳統 CLI 命令](../../virtual-machines/azure-cli-arm-commands.md#azure-storage-commands-to-manage-your-storage-objects)
+* [Azure 服務管理模式中的 Azure 傳統 CLI 命令](../../cli-install-nodejs.md)
 
-您或許也會想要試試以 Python 撰寫的新一代 CLI [Azure CLI 2.0](../storage-azure-cli.md)，此 CLI 可與 Resource Manager 部署模型搭配使用。
+您或許也會想要試試使用最新版的 [Azure CLI](../storage-azure-cli.md) 來搭配 Resource Manager 部署模型。

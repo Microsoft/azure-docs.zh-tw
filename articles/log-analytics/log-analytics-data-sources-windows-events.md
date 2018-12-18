@@ -1,24 +1,26 @@
 ---
-title: "收集與分析 Azure Log Analytics 中的 Windows 事件記錄檔 | Microsoft Docs"
-description: "Windows 事件記錄檔是 Log Analytics 所使用的最常見資料來源之一。  本文說明如何設定收集 Windows 事件記錄，以及它們在 Log Analytics 工作區中建立的記錄詳細資料。"
+title: 收集與分析 Azure Log Analytics 中的 Windows 事件記錄檔 | Microsoft Docs
+description: Windows 事件記錄檔是 Log Analytics 所使用的最常見資料來源之一。  本文說明如何設定收集 Windows 事件記錄，以及它們在 Log Analytics 工作區中建立的記錄詳細資料。
 services: log-analytics
-documentationcenter: 
+documentationcenter: ''
 author: bwren
 manager: carmonm
 editor: tysonn
 ms.assetid: ee52f564-995b-450f-a6ba-0d7b1dac3f32
 ms.service: log-analytics
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 12/11/2017
 ms.author: bwren
-ms.openlocfilehash: 7a7deb4d7a287b2e9613e6035a7ffd7bb6f14f9c
-ms.sourcegitcommit: f46cbcff710f590aebe437c6dd459452ddf0af09
+ms.component: na
+ms.openlocfilehash: 8183258ddde335b09293c72368ad3bf58a69334a
+ms.sourcegitcommit: 5892c4e1fe65282929230abadf617c0be8953fd9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/20/2017
+ms.lasthandoff: 06/29/2018
+ms.locfileid: "37129348"
 ---
 # <a name="windows-event-log-data-sources-in-log-analytics"></a>Log Analytics 中的 Windows 事件記錄檔資料來源
 Windows 事件記錄檔是使用 Windows 代理程式收集資料的常見[資料來源](log-analytics-data-sources.md)之一，因為許多應用程式會寫入 Windows 事件記錄檔。  除了指定您要監視之應用程式所建立的任何自訂記錄檔之外，您也可以透過標準記錄檔 (例如系統和應用程式) 來收集事件。

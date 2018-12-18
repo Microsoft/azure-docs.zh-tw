@@ -1,9 +1,15 @@
 ### YamlMime:YamlDocument
+ms.openlocfilehash: 2d293c92bfdb00f5d470d953aad95266137457dd
+ms.sourcegitcommit: 4de6a8671c445fae31f760385710f17d504228f8
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39629604"
 documentType: LandingData
-title: "Web Apps 文件"
+title: Web Apps 文件
 metadata:
   document_id: 6c8db72a-cdb7-8fb7-ed57-ed75afcca4d0
-  title: "Azure Web Apps 文件 - 教學課程和 API 參考"
+  title: Azure Web Apps 文件 - 教學課程和 API 參考
   meta.description: Learn how to use App Service Web Apps to build and host websites and web applications.
   services: app-service
   author: czeumault
@@ -14,27 +20,22 @@ metadata:
   ms.topic: landing-page
   ms.date: 01/23/2017
   ms.author: carolz
-  ms.openlocfilehash: e79c80d894ec798df28f9d447097b2d8070baf61
-  ms.sourcegitcommit: 48fce90a4ec357d2fb89183141610789003993d2
-  ms.translationtype: HT
-  ms.contentlocale: zh-TW
-  ms.lasthandoff: 01/12/2018
 abstract:
-  description: "Azure Web Apps 可讓您以選定的程式設計語言來建置並託管 Web 應用程式，無需管理基礎結構。 它提供自動調整及高度可用性，支援 Windows 和 Linux，並可從 GitHub、Visual Studio Team Services 或任何 Git 存放庫啟用自動部署。 了解如何透過我們的快速入門、教學課程和範例使用 Azure Web Apps。"
+  description: Azure Web Apps 可讓您以選定的程式設計語言來建置並託管 Web 應用程式，無需管理基礎結構。 它提供自動調整及高度可用性，支援 Windows 和 Linux，並可從 GitHub、Visual Studio Team Services 或任何 Git 存放庫啟用自動部署。 了解如何透過我們的快速入門、教學課程和範例使用 Azure Web Apps。
   aside:
     image:
       alt: 
       height: 110
       src: https://docs.microsoft.com/azure/app-service/media/index/create-a-web-app-with-nodejs-and-azure-app-service.png
       width: 250
-    title: "使用 Node.js 和 Azure App Service 建立 Web 應用程式。 (2:41)"
+    title: 使用 Node.js 和 Azure App Service 建立 Web 應用程式。 (2:41)
     href: https://azure.microsoft.com/resources/videos/create-a-web-app-with-nodejs-and-azure-app-service/
     width: 250
 sections:
-- title: "5 分鐘快速入門"
+- title: 5 分鐘快速入門
   items:
   - type: paragraph
-    text: "了解如何使用 Web Apps 將第一個應用程式部署至雲端："
+    text: 了解如何使用 Web Apps 將第一個應用程式部署至雲端：
   - type: list
     style: icon48
     items:
@@ -56,67 +57,99 @@ sections:
       href: https://docs.microsoft.com/azure/app-service/app-service-web-get-started-java
     - image:
         src: https://docs.microsoft.com/azure/app-service/media/index/logo_python.svg
-      text: Python
-      href: https://docs.microsoft.com/azure/app-service/app-service-web-get-started-python
+      text: Python (位於 Linux 上)
+      href: https://docs.microsoft.com/azure/app-service/containers/quickstart-python
     - image:
         src: https://docs.microsoft.com/azure/app-service/media/index/logo_html5.svg
       text: HTML
       href: https://docs.microsoft.com/azure/app-service/app-service-web-get-started-html
+    - image:
+        src: https://docs.microsoft.com/media/logos/logo_docker.svg
+      text: 執行 Windows 容器 (預覽)
+      href: https://docs.microsoft.com/azure/app-service/app-service-web-get-started-windows-container
   - type: paragraph
-    text: "了解如何持續部署："
+    text: 了解如何部署程式碼：
   - type: list
     style: icon48
     items:
     - image:
+        src: media/index/zip.svg
+      text: ZIP/WAR
+      href: app-service-deploy-zip.md
+    - image:
+        src: media/index/ftp.svg
+      text: FTP
+      href: app-service-deploy-ftp.md
+    - image:
+        src: media/index/git-icon.svg
+      text: 本機 Git
+      href: app-service-deploy-local-git.md
+    - image:
         src: https://docs.microsoft.com/azure/media/index/logo_vs-team-services.svg
       text: VSTS
       href: https://docs.microsoft.com/vsts/build-release/apps/cd/azure/aspnet-core-to-azure-webapp?toc=/vsts/deploy-azure/toc.json&bc=/vsts/deploy-azure/breadcrumb/toc.json
-- title: "逐步教學課程"
+    - image:
+        src: media/index/github-octicons.svg
+      text: GitHub
+      href: app-service-continuous-deployment.md
+    - image:
+        src: media/index/bitbucket.svg
+      text: Bitbucket
+      href: app-service-continuous-deployment.md
+    - image:
+        src: media/index/dropbox.svg
+      text: DropBox 同步
+      href: app-service-deploy-content-sync.md
+    - image:
+        src: media/index/onedrive.svg
+      text: OneDrive 同步
+      href: app-service-deploy-content-sync.md
+- title: 逐步教學課程
   items:
   - type: paragraph
-    text: "了解如何在 Azure 中部署、管理和監視安全的 Web 應用程式"
+    text: 了解如何在 Azure 中部署、管理和監視安全的 Web 應用程式
   - type: list
     style: ordered
     items:
-    - html: "使用 <a href=\"/azure/app-service/app-service-web-tutorial-dotnet-sqldatabase\">.NET with Azure SQL DB</a> 或 <a href=\"/azure/app-service/app-service-web-tutorial-nodejs-mongodb-app\">Node.js with MongoDB</a>"
-    - html: "<a href=\"/azure/app-service/app-service-web-tutorial-custom-domain\">將現有的自訂網域對應至您的應用程式</a>"
-    - html: "<a href=\"/azure/app-service/app-service-web-tutorial-custom-SSL\">將現有的 SSL 憑證與您的應用程式繫結</a>"
-    - html: "<a href=\"/azure/app-service/app-service-web-tutorial-content-delivery-network\">將 CDN 加入至您的應用程式</a>"
-- title: "免費 Pluralsight 影片訓練"
+    - html: 使用 <a href="/azure/app-service/app-service-web-tutorial-dotnet-sqldatabase">.NET with Azure SQL DB</a> 或 <a href="/azure/app-service/app-service-web-tutorial-nodejs-mongodb-app">Node.js with MongoDB</a>
+    - html: <a href="/azure/app-service/app-service-web-tutorial-custom-domain">將現有的自訂網域對應至您的應用程式</a>
+    - html: <a href="/azure/app-service/app-service-web-tutorial-custom-SSL">將現有的 SSL 憑證與您的應用程式繫結</a>
+    - html: <a href="/azure/app-service/app-service-web-tutorial-content-delivery-network">將 CDN 加入至您的應用程式</a>
+- title: 免費 Pluralsight 影片訓練
   items:
   - type: list
     style: cards
     className: cardsFTitle
     items:
-    - title: "使用 .NET 進行開發"
+    - title: 使用 .NET 進行開發
       href: https://www.pluralsight.com/courses/developing-dotnet-microsoft-azure-getting-started?twoid=d6abac77-7dcc-4d33-9e03-f85e78989f02
       image:
         src: https://docs.microsoft.com/media/logos/logo_pluralsight.svg
         href: https://www.pluralsight.com/courses/developing-dotnet-microsoft-azure-getting-started?twoid=d6abac77-7dcc-4d33-9e03-f85e78989f02
-    - title: "使用 Node.js 進行開發"
+    - title: 使用 Node.js 進行開發
       href: https://www.pluralsight.com/courses/developing-nodejs-microsoft-azure-getting-started?twoid=d6abac77-7dcc-4d33-9e03-f85e78989f02
       image:
         src: https://docs.microsoft.com/media/logos/logo_pluralsight.svg
         href: https://www.pluralsight.com/courses/developing-nodejs-microsoft-azure-getting-started?twoid=d6abac77-7dcc-4d33-9e03-f85e78989f02
-- title: "範例"
+- title: 範例
   items:
   - type: paragraph
-    text: "尋找指令碼來管理常見工作。"
+    text: 尋找指令碼來管理常見工作。
   - type: list
     style: unordered
     className: spaced noBullet
     items:
     - html: <a href="/powershell/azureps-cmdlets-docs">Azure PowerShell</a>
     - html: <a href="/cli/azure/appservice">Azure CLI</a>
-- title: "參考"
+- title: 參考
   items:
   - type: list
     style: cards
     className: cardsD
     items:
-    - title: "命令列"
+    - title: 命令列
       html: <p><a href="/powershell/azureps-cmdlets-docs">Azure PowerShell</a></p><p><a href="/cli/azure/appservice">Azure CLI</a></p>
-    - title: "語言"
+    - title: 語言
       html: <p><a href="/dotnet/api">.NET</a></p><p><a href="/java/api/">Java</a></p>
     - title: REST
-      html: "<p><a href=\"/rest/api/appservice\">REST API 參考</a></p>"
+      html: <p><a href="/rest/api/appservice">REST API 參考</a></p>

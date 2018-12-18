@@ -1,23 +1,20 @@
 ---
-title: "查詢索引 (.NET API - Azure 搜尋服務) | Microsoft Docs"
-description: "在 Azure 搜尋服務中建立搜尋查詢，並使用搜尋參數來篩選及排序搜尋結果。"
-services: search
-manager: jhubbard
-documentationcenter: 
+title: 查詢索引 (.NET API - Azure 搜尋服務) | Microsoft Docs
+description: 在 Azure 搜尋服務中建立搜尋查詢，並使用搜尋參數來篩選及排序搜尋結果。
 author: brjohnstmsft
-ms.assetid: 12c3efba-ea99-4187-9d2d-f63b5ec7040d
+manager: jlembicz
+ms.author: brjohnst
+services: search
 ms.service: search
 ms.devlang: dotnet
-ms.workload: search
-ms.topic: get-started-article
-ms.tgt_pltfrm: na
+ms.topic: quickstart
 ms.date: 05/19/2017
-ms.author: brjohnst
-ms.openlocfilehash: c3c22b83346269cf3c0327fe3fb98510a6266733
-ms.sourcegitcommit: 9890483687a2b28860ec179f5fd0a292cdf11d22
+ms.openlocfilehash: 83f7f29471d49c4dbbf1630b4e8e9006144638cc
+ms.sourcegitcommit: fa493b66552af11260db48d89e3ddfcdcb5e3152
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/24/2018
+ms.lasthandoff: 04/23/2018
+ms.locfileid: "31797781"
 ---
 # <a name="query-your-azure-search-index-using-the-net-sdk"></a>使用 .NET SDK 查詢 Azure 搜尋服務索引
 > [!div class="op_single_selector"]

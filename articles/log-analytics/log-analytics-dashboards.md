@@ -1,32 +1,33 @@
 ---
-title: "在 Azure Log Analytics 中建立自訂的儀表板 | Microsoft Docs"
-description: "本指南可幫助您了解 Log Analytics 儀表板如何以視覺效果顯示所有儲存的記錄搜尋，讓您以單一方式檢視您的環境。"
+title: 在 Azure Log Analytics 中建立自訂的儀表板 | Microsoft Docs
+description: 本指南可幫助您了解 Log Analytics 儀表板如何以視覺效果顯示所有儲存的記錄搜尋，讓您以單一方式檢視您的環境。
 services: log-analytics
-documentationcenter: 
-author: MGoedtel
+documentationcenter: ''
+author: mgoedtel
 manager: carmonm
-editor: 
+editor: ''
 ms.assetid: abb07f6c-b356-4f15-85f5-60e4415d0ba2
 ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 08/08/2017
 ms.author: magoedte
-ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 22cc516c15353e39c73e762d2b8fa0d787a05ef4
-ms.sourcegitcommit: f8437edf5de144b40aed00af5c52a20e35d10ba1
+ms.component: na
+ms.openlocfilehash: 7b17b23d30b15fe71dcf031ac67f0c54fc3cfe3e
+ms.sourcegitcommit: 5892c4e1fe65282929230abadf617c0be8953fd9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/03/2017
+ms.lasthandoff: 06/29/2018
+ms.locfileid: "37129307"
 ---
 # <a name="create-a-custom-dashboard-for-use-in-log-analytics"></a>建立用於 Log Analytics 中的自訂儀表板
 
 本指南可幫助您了解 Log Analytics 儀表板如何以視覺效果顯示所有儲存的記錄搜尋，讓您以單一方式檢視您的環境。
 
 >[!NOTE]
-> 如果您的工作區已升級成[新的 Log Analytics 查詢語言](log-analytics-log-search-upgrade.md)，則您無法編輯現有的「我的儀表板」。 如果您的工作區還未新增任何「我的儀表板」磚，將不會在升級的工作區中看到「我的儀表板」。 
+> 您無法再編輯現有的 [我的儀表板]。 這項功能正逐漸被取代。
 
 ![範例儀表板](./media/log-analytics-dashboards/oms-dashboards-example-dash.png)
 

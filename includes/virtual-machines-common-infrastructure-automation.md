@@ -10,8 +10,7 @@
     - [Azure 自動化](#azure-automation)可在整個 Azure 和內部部署基礎結構內執行動作。
 
 - 將應用程式部署和傳遞自動化
-    - 範例包括 [Visual Studio Team Services](#visual-studio-team-services) 和 [Jenkins](#jenkins)。
-
+    - 範例包括 [Azure DevOps Services](#visual-studio-team-services) 和 [Jenkins](#jenkins)。
 
 ## <a name="ansible"></a>Ansible
 [Ansible](https://www.ansible.com/) 是設定管理、建立 VM 或應用程式部署的自動化引擎。 Ansible 會使用無代理程式的模型，通常是使用 SSH 金鑰來驗證及管理目標電腦。 設定工作會定義在劇本中，並有幾個可用來執行特定工作的 Ansible 模組。 如需詳細資訊，請參閱 [Ansible 的運作方式](https://www.ansible.com/how-ansible-works)。
@@ -19,8 +18,8 @@
 了解如何：
 
 - [在 Linux 上安裝及設定 Ansible 來與 Azure 搭配使用](../articles/virtual-machines/linux/ansible-install-configure.md)。
-- [建立基本 VM](../articles/virtual-machines/linux/ansible-create-vm.md)。
-- [建立完整的 VM 環境，包括支援資源](../articles/virtual-machines/linux/ansible-create-complete-vm.md)。
+- [建立 Linux 虛擬機器](../articles/virtual-machines/linux/ansible-create-vm.md)。
+- [管理 Linux 虛擬機器](../articles/virtual-machines/linux/ansible-manage-linux-vm.md)。
 
 
 ## <a name="chef"></a>Chef
@@ -37,7 +36,7 @@
 
 了解如何：
 
-- [從 Azure Marketplace 部署 Puppet ](https://azuremarketplace.microsoft.com/marketplace/apps/puppet.puppet-enterprise-2016-1?tab=Overview)。
+- [從 Azure Marketplace 部署 Puppet ](https://azuremarketplace.microsoft.com/marketplace/apps/puppet.puppet-enterprise-2017-2?tab=Overview)。
 
 
 ## <a name="cloud-init"></a>Cloud-init
@@ -47,7 +46,7 @@ Cloud-init 也適用於散發套件。 例如，您不使用 **apt-get install**
 
  我們一直積極地與背書的 Linux 發行版本合作夥伴合作，以便在 Azure Marketplace 中提供支援 Cloud-init 的映像。 這些映像會讓您的 Cloud-init 部署和設定順暢地與 VM 和虛擬機器擴展集運作。 下表概述目前支援 cloud-init 的映像在 Azure 平台上的可用性：
 
-| 發行者 | 提供項目 | SKU | 版本 | cloud-init 就緒
+| 發行者 | 供應項目 | SKU | 版本 | cloud-init 就緒
 |:--- |:--- |:--- |:--- |:--- |:--- |
 |Canonical |UbuntuServer |16.04-LTS |最新 |是 | 
 |Canonical |UbuntuServer |14.04.5-LTS |最新 |是 |
@@ -62,7 +61,7 @@ Cloud-init 也適用於散發套件。 例如，您不使用 **apt-get install**
 
 
 ## <a name="powershell-dsc"></a>PowerShell DSC
-[PowerShell 預期狀態設定 (DSC)](https://msdn.microsoft.com/en-us/powershell/dsc/overview) 是一個管理平台，可定義目標電腦的設定。 也可透過 [Open Management Infrastructure (OMI) 伺服器](https://collaboration.opengroup.org/omi/)在 Linux 上使用 DSC。
+[PowerShell 預期狀態設定 (DSC)](https://msdn.microsoft.com/powershell/dsc/overview) 是一個管理平台，可定義目標電腦的設定。 也可透過 [Open Management Infrastructure (OMI) 伺服器](https://collaboration.opengroup.org/omi/)在 Linux 上使用 DSC。
 
 DSC 設定會定義要在電腦上安裝的項目，以及設定主機的方式。 本機設定管理員 (LCM) 引擎會在每個目標節點上執行，這些節點會以推送組態作為基礎來處理要求的動作。 提取伺服器是一項在中央主機上執行的 web 服務，可儲存 DSC 設定和相關聯的資源。 提取伺服器會與每個目標主機上的 LCM 引擎通訊，以提供必要的合規性相關設定和報告。
 
@@ -114,12 +113,12 @@ Azure 自動化也會提供預期狀態設定 (DSC) 服務，可讓您建立一�
 - [使用 Azure Automation DSC](../articles/automation/automation-dsc-getting-started.md)。
 
 
-## <a name="visual-studio-team-services"></a>Visual Studio Team Services
-[Team Services](https://www.visualstudio.com/team-services/) 是一套工具，能協助您共用和追蹤程式碼、使用自動化的組建，並建立完整的持續整合及開發 (CI/CD) 管線。 Team Services 會與 Visual Studio 和其他編輯器整合，以簡化使用方式。 Team Services 還可以建立及設定 Azure VM，然後再將程式碼部署到這些 VM。
+## <a name="azure-devops-services"></a>Azure DevOps Services
+[Azure DevOps Services](https://www.visualstudio.com/team-services/) 是一套工具，能協助您共用和追蹤程式碼、使用自動化的組建，並建立完整的持續整合及開發 (CI/CD) 管線。 Azure DevOps Services 會與 Visual Studio 和其他編輯器整合，以簡化使用方式。 Azure DevOps Services 還可以建立及設定 Azure VM，然後再將程式碼部署到這些 VM。
 
 了解如何：
 
-- [使用 Team Services 建立持續整合管線](../articles/virtual-machines/windows/tutorial-vsts-iis-cicd.md)。
+- [使用 Azure DevOps Services 建立持續整合管線](../articles/virtual-machines/windows/tutorial-vsts-iis-cicd.md)。
 
 
 ## <a name="jenkins"></a>Jenkins

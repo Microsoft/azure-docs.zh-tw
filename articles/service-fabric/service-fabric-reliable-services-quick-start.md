@@ -9,16 +9,17 @@ editor: ''
 ms.assetid: d9b44d75-e905-468e-b867-2190ce97379a
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/16/2018
 ms.author: vturecek
-ms.openlocfilehash: dbd8508a7f55b8b5fdf53912d2189a18ef504193
-ms.sourcegitcommit: a36a1ae91968de3fd68ff2f0c1697effbb210ba8
+ms.openlocfilehash: 6977fa0a62767cebbd1000335c6c3a33a5991c2c
+ms.sourcegitcommit: eb75f177fc59d90b1b667afcfe64ac51936e2638
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/17/2018
+ms.lasthandoff: 05/16/2018
+ms.locfileid: "34208160"
 ---
 # <a name="get-started-with-reliable-services"></a>開始使用 Reliable Service
 > [!div class="op_single_selector"]
@@ -128,7 +129,7 @@ Service Fabric 導入了一種可設定狀態的新服務。 具狀態服務能�
 
 ![將服務加入 Service Fabric 應用程式](media/service-fabric-reliable-services-quick-start/hello-stateful-NewService.png)
 
-選取 [.Net Core 2.0] -> [具狀態服務] 並將它命名為 HelloWorldStateful。 按一下 [SERVICEPRINCIPAL] 。
+選取 [.Net Core 2.0] -> [具狀態服務] 並將它命名為 HelloWorldStateful。 按一下 [確定]。
 
 ![使用新增專案對話方塊來建立新的 Service Fabric 具狀態服務](media/service-fabric-reliable-services-quick-start/hello-stateful-NewProject.png)
 

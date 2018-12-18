@@ -4,7 +4,7 @@ description: 在 Azure 中建立一般化 VM 或 VHD 的受控映像。 映像�
 services: virtual-machines-windows
 documentationcenter: ''
 author: cynthn
-manager: timlt
+manager: jeconnoc
 editor: ''
 tags: azure-resource-manager
 ms.assetid: ''
@@ -13,13 +13,14 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: article
-ms.date: 03/06/2018
+ms.date: 04/10/2018
 ms.author: cynthn
-ms.openlocfilehash: f18defbec79638cf2c3363e6429ddcac01b1502e
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+ms.openlocfilehash: 4445787fd559c6d0a6dfc891910cb9a139a6907e
+ms.sourcegitcommit: 59914a06e1f337399e4db3c6f3bc15c573079832
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 04/19/2018
+ms.locfileid: "31602564"
 ---
 # <a name="create-a-managed-image-of-a-generalized-vm-in-azure"></a>在 Azure 中建立一般化 VM 的受控映像
 
@@ -66,12 +67,11 @@ Sysprep 會移除您的所有個人帳戶資訊以及其他項目，並準備電
 直接從 VM 建立映像，可確保映像包含 VM 的所有相關磁碟，包括 OS 磁碟和任何資料磁碟。 此範例示範如何從使用受控磁碟的 VM 建立受控映像。
 
 
-開始之前，請確定您擁有最新版的 AzureRM.Compute PowerShell 模組。 執行下列命令來安裝它。 (使用 `Get-Module` 來檢查您擁有的版本。)
+開始之前，請確定您擁有最新版的 AzureRM.Compute PowerShell 模組。 本文需要 AzureRM 模組 5.7.0 版或更新版本。 執行 `Get-Module -ListAvailable AzureRM` 以尋找版本。 如果您需要升級，請參閱[安裝 Azure PowerShell 模組](/powershell/azure/install-azurerm-ps)。 如果您在本機執行 PowerShell，則也需要執行 `Connect-AzureRmAccount` 以建立與 Azure 的連線。
 
-```azurepowershell-interactive
-Install-Module AzureRM.Compute -RequiredVersion 2.6.0
-```
-如需詳細資訊，請參閱 [Azure PowerShell 版本控制](/powershell/azure/overview)。
+
+> [!NOTE]
+> 如果您想要將映像儲存於區域復原的儲存體中，則需要在支援[可用性區域](../../availability-zones/az-overview.md)且在映像設定中包含 `-ZoneResilient` 參數的區域中建立它。
 
 
 1. 建立一些變數。

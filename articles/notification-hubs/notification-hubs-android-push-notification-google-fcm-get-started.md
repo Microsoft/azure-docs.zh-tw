@@ -1,46 +1,49 @@
 ---
-title: 開始使用適用於 Android 應用程式的 Azure 通知中樞和 Firebase 雲端通訊 | Microsoft Docs
-description: 在本教學課程中，您會了解如何使用 Azure 通知中樞和 Firebase 雲端通訊，將通知推播到 Android 裝置。
+title: 使用 Azure 通知中樞和 Firebase 雲端通訊將通知推送至 Android 應用程式 | Microsoft Docs
+description: 在本教學課程中，您將了解如何使用 Azure 通知中樞和 Google Firebase 雲端通訊，將通知推送至 Android 裝置。
 services: notification-hubs
 documentationcenter: android
 keywords: 推播通知,推播通知,android 推播通知,fcm,firebase 雲端通訊
-author: jwhitedev
+author: dimazaid
 manager: kpiteira
-editor: ''
+editor: spelluru
 ms.assetid: 02298560-da61-4bbb-b07c-e79bd520e420
 ms.service: notification-hubs
 ms.workload: mobile
 ms.tgt_pltfrm: mobile-android
 ms.devlang: java
-ms.topic: hero-article
-ms.date: 12/22/2017
-ms.author: jawh
-ms.openlocfilehash: 0f4c766bd68227a85e2438bc68b2d61c69ce706c
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.topic: tutorial
+ms.custom: mvc
+ms.date: 04/14/2018
+ms.author: dimazaid
+ms.openlocfilehash: 2bc085989ff3bbbc50042c46b338f748a10aa87e
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38232788"
 ---
-# <a name="get-started-with-azure-notification-hubs-for-android-apps-and-firebase-cloud-messaging"></a>開始使用適用於 Android 應用程式的 Azure 通知中樞和 Firebase 雲端通訊
+# <a name="tutorial-push-notifications-to-android-devices-by-using-azure-notification-hubs-and-google-firebase-cloud-messaging"></a>教學課程：使用 Azure 通知中樞和 Google Firebase 雲端通訊將通知推送至 Android 裝置
 [!INCLUDE [notification-hubs-selector-get-started](../../includes/notification-hubs-selector-get-started.md)]
 
-## <a name="overview"></a>概觀
 > [!IMPORTANT]
-> 本文示範使用 Google Firebase 雲端通訊 (FCM) 的推播通知。 如果您仍然使用 Google 雲端通訊 (GCM)，請參閱 [使用 Azure 通知中樞和 GCM 將推播通知傳送至 Android](notification-hubs-android-push-notification-google-gcm-get-started.md)。
-> 
-> 
+> 本文示範使用 Google Firebase 雲端通訊 (FCM) 的推播通知。 如果您仍然使用 Google 雲端通訊 (GCM)，請參閱[使用 Azure 通知中樞和 GCM 將通知推送至 Android 裝置](notification-hubs-android-push-notification-google-gcm-get-started.md)。
 
-本教學課程說明如何使用 Azure 通知中樞和 Firebase 雲端通訊，將推播通知傳送到 Android 應用程式。 在本教學課程中，您會建立空白的 Android 應用程式，其可使用 Firebase 雲端通訊 (FCM) 接收推播通知。
-
-[!INCLUDE [notification-hubs-hero-slug](../../includes/notification-hubs-hero-slug.md)]
+本教學課程說明如何使用 Azure 通知中樞和 Firebase 雲端通訊，將通知推送至 Android 應用程式。 在本教學課程中，您會建立空白的 Android 應用程式，其可使用 Firebase 雲端通訊 (FCM) 接收推播通知。
 
 您可以從 [此處](https://github.com/Azure/azure-notificationhubs-samples/tree/master/Android/GetStartedFirebase)的 GitHub 下載本教學課程的完整程式碼。
 
+在本教學課程中，您會執行下列步驟：
+
+> [!div class="checklist"]
+> * 建立 Android Studio 專案。
+> * 建立支援 Firebase 雲端通訊的 Firebase 專案。
+> * 建立通知中樞。
+> * 將您的應用程式連線至通知中樞。
+> * 測試應用程式。 
+
 ## <a name="prerequisites"></a>先決條件
-> [!IMPORTANT]
-> 若要完成此教學課程，您必須具備有效的 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資料，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A643EE910&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fnotification-hubs-android-get-started)。
-> 
-> 
+若要完成此教學課程，您必須具備有效的 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資料，請參閱 [Azure 免費試用](https://azure.microsoft.com/free/)。
 
 * 除了上述的作用中 Azure 帳戶，本教學課程需要最新版的 [Android Studio](http://go.microsoft.com/fwlink/?LinkId=389797)。
 * 適用於 Firebase 雲端通訊的 Android 2.3 或更新版本。
@@ -48,7 +51,7 @@ ms.lasthandoff: 03/23/2018
 * 適用於 Firebase 雲端通訊的 Google Play Services 9.0.2 或更新版本。
 * 完成本教學課程是 Android app 所有其他通知中樞教學課程的先決條件。
 
-## <a name="create-a-new-android-studio-project"></a>建立新的 Android Studio 專案
+## <a name="create-an-android-studio-project"></a>建立 Android Studio 專案
 1. 在 Android Studio 中，啟動新的 Android Studio 專案。
    
     ![Android Studio - 新增專案](./media/notification-hubs-android-push-notification-google-fcm-get-started/notification-hubs-android-studio-new-project.png)
@@ -57,15 +60,18 @@ ms.lasthandoff: 03/23/2018
     ![Android Studio - 專案建立工作流程](./media/notification-hubs-android-push-notification-google-fcm-get-started/notification-hubs-android-studio-choose-form-factor.png)
 3. 為主要活動選擇 [空白活動]，並按 [下一步]，然後按一下 [完成]。
 
-## <a name="create-a-project-that-supports-firebase-cloud-messaging"></a>建立支援 Firebase 雲端通訊的專案
+## <a name="create-a-firebase-project-that-supports-fcm"></a>建立支援 FCM 的 Firebase 專案
 [!INCLUDE [notification-hubs-enable-firebase-cloud-messaging](../../includes/notification-hubs-enable-firebase-cloud-messaging.md)]
 
-## <a name="configure-a-new-notification-hub"></a>設定新的通知中樞
+## <a name="configure-a-notification-hub"></a>設定通知中樞
 [!INCLUDE [notification-hubs-portal-create-new-hub](../../includes/notification-hubs-portal-create-new-hub.md)]
 
-&emsp;&emsp;6. 在 [Notification Services] 下，選取 [Google (GCM)]。 輸入您先前從 [Firebase 主控台](https://firebase.google.com/console/)複製的 FCM 伺服器金鑰，然後按一下 [儲存]。
+### <a name="configure-firebase-cloud-messaging-settings-for-the-hub"></a>設定中樞的 Firebase 雲端通訊設定
+1. 在 [通知設定] 類別中選取 [Google] \(GCM\)。 
+2. 輸入您先前從 [Firebase 主控台](https://firebase.google.com/console/)複製的 API 金鑰 (FCM 伺服器金鑰)。
+3. 在工具列上選取 [儲存]。
 
-&emsp;&emsp;![Azure 通知中樞 - Google (GCM)](./media/notification-hubs-android-push-notification-google-fcm-get-started/notification-hubs-gcm-api.png)
+    ![Azure 通知中樞 - Google (GCM)](./media/notification-hubs-android-push-notification-google-fcm-get-started/notification-hubs-gcm-api.png)
 
 現在已將您的通知中樞設定成使用 Firebase 雲端通訊，而且您已擁有可用來註冊應用程式以接收和傳送推播通知的連接字串。
 
@@ -89,6 +95,20 @@ ms.lasthandoff: 03/23/2018
                 url "http://dl.bintray.com/microsoftazuremobile/SDK"
             }
         }
+    ```
+
+### <a name="add-google-firebase-support"></a>新增 Google Firebase 支援
+
+1. 在 **app** 的 `Build.Gradle` 檔案中，於 **dependencies** 區段中新增下列數行。
+   
+    ```java
+        compile 'com.google.firebase:firebase-core:12.0.0'
+    ```
+
+2. 在檔案結尾處新增下列外掛程式。 
+   
+    ```java
+    apply plugin: 'com.google.gms.google-services'
     ```
 
 ### <a name="updating-the-androidmanifestxml"></a>更新 AndroidManifest.xml。
@@ -127,7 +147,7 @@ ms.lasthandoff: 03/23/2018
         </receiver>
     ```
 
-4. 在 `</application>` 標籤下面新增下列必要的 FCM 相關權限。 請務必以 `AndroidManifest.xml` 檔案頂端顯示的封裝名稱取代 `<your package>`。
+4. 在 `</application>` 標籤下面新增下列必要的 FCM 相關權限。 
    
     如需這些權限的詳細資訊，請參閱[設定適用於 Android 的 GCM 用戶端應用程式](https://developers.google.com/cloud-messaging/android/client#manifest)和[將適用於 Android 的 GCM 用戶端應用程式移轉至 Firebase 雲端通訊](https://developers.google.com/cloud-messaging/android/android-migrate-fcm#remove_the_permissions_required_by_gcm)。
    
@@ -146,7 +166,7 @@ ms.lasthandoff: 03/23/2018
    
    * **SenderId**︰您稍早在 [Firebase 主控台](https://firebase.google.com/console/)專案設定的 [雲端通訊] 索引標籤中取得的寄件者識別碼。
    * **HubListenConnectionString**：中樞的 **DefaultListenAccessSignature** 連接字串。 在 [Azure 入口網站]上的中樞內按一下 [存取原則]，即可複製該連接字串。
-   * **HubName**︰使用出現在 [Azure 入口網站]中樞刀鋒視窗中的通知中樞名稱。
+   * **HubName**︰使用出現在 [Azure 入口網站]中樞頁面中的通知中樞名稱。
      
      `NotificationSettings` 程式碼︰
      
@@ -159,7 +179,7 @@ ms.lasthandoff: 03/23/2018
        }
     ```
 
-2. 使用上述步驟，加入另一個名為 `MyInstanceIDService` 的新類別。 這是您的執行個體識別碼接聽程式服務實作。
+2. 使用上述步驟，加入另一個名為 `MyInstanceIDService` 的新類別。 此類別是您的執行個體識別碼接聽程式服務實作。
    
     此類別的程式碼會呼叫 `IntentService` 以在背景[重新整理 FCM 權杖](https://developers.google.com/instance-id/guides/android-implementation#refresh_tokens)。
    
@@ -183,7 +203,7 @@ ms.lasthandoff: 03/23/2018
         };
     ```
 
-1. 將另一個新類別新增至名為 `RegistrationIntentService`的專案。 這是您的 `IntentService` 實作，可處理[重新整理 FCM 權杖](https://developers.google.com/instance-id/guides/android-implementation#refresh_tokens)和[向通知中樞註冊](notification-hubs-push-notification-registration-management.md)。
+1. 將另一個新類別新增至名為 `RegistrationIntentService`的專案。 此類別會實作 `IntentService` 介面，並處理[重新整理 FCM 權杖](https://developers.google.com/instance-id/guides/android-implementation#refresh_tokens)和[向通知中樞註冊](notification-hubs-push-notification-registration-management.md)。
    
     針對此類別使用下列程式碼。
    
@@ -229,7 +249,7 @@ ms.lasthandoff: 03/23/2018
                         regID = hub.register(FCM_token).getRegistrationId();
    
                         // If you want to use tags...
-                        // Refer to : https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-routing-tag-expressions/
+                        // Refer to : https://azure.microsoft.com/documentation/articles/notification-hubs-routing-tag-expressions/
                         // regID = hub.register(token, "tag1,tag2").getRegistrationId();
    
                         resultString = "New NH Registration Successfully - RegId : " + regID;
@@ -248,7 +268,7 @@ ms.lasthandoff: 03/23/2018
                         regID = hub.register(FCM_token).getRegistrationId();
    
                         // If you want to use tags...
-                        // Refer to : https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-routing-tag-expressions/
+                        // Refer to : https://azure.microsoft.com/documentation/articles/notification-hubs-routing-tag-expressions/
                         // regID = hub.register(token, "tag1,tag2").getRegistrationId();
    
                         resultString = "New NH Registration Successfully - RegId : " + regID;
@@ -285,8 +305,8 @@ ms.lasthandoff: 03/23/2018
         import android.util.Log;
         import android.widget.TextView;
         import android.widget.Toast;
-
-3. Add the following private members at the top of the class. You use these to [check the availability of Google Play Services as recommended by Google](https://developers.google.com/android/guides/setup#ensure_devices_have_the_google_play_services_apk).
+    ```
+3. 在類別頂端新增下列 Private 成員。 您會使用這些欄位來[檢查 Google 所建議的 Google Play 服務可用性](https://developers.google.com/android/guides/setup#ensure_devices_have_the_google_play_services_apk)。
    
     ```java
         public static MainActivity mainActivity;
@@ -465,21 +485,26 @@ ms.lasthandoff: 03/23/2018
     > 
     > 
 
-## <a name="sending-push-notifications"></a>傳送推播通知
-透過 [Azure 入口網站]傳送推播通知，即可在您的應用程式中測試接收推播通知 - 尋找中樞中的 [疑難排解] 區段，如下所示。
+## <a name="test-the-app"></a>測試應用程式
+### <a name="test-send-notification-from-the-notification-hub"></a>進行從通知中樞傳送通知的測試
+您可以執行下列動作，從 [Azure 入口網站]傳送推播通知： 
 
-![Azure 通知中樞 - 測試傳送](./media/notification-hubs-android-push-notification-google-fcm-get-started/notification-hubs-test-send.png)
+1. 在 [疑難排解] 區段中，選取 [測試傳送]。
+2. 針對 [平台]，選取 [Android]。 
+3. 選取 [傳送]。  您在 Android 裝置上還看不到通知，因為您未在其上執行行動應用程式。 在您執行行動應用程式後，請再次選取 [傳送] 按鈕，以查看通知訊息。 
+4. 在底部的清單中查看作業的 [結果]。 
+
+    ![Azure 通知中樞 - 測試傳送](./media/notification-hubs-android-push-notification-google-fcm-get-started/notification-hubs-test-send.png)
+
 
 [!INCLUDE [notification-hubs-sending-notifications-from-the-portal](../../includes/notification-hubs-sending-notifications-from-the-portal.md)]
 
 
-## <a name="testing-your-app"></a>測試應用程式
-#### <a name="push-notifications-in-the-emulator"></a>在模擬器中測試推播通知
+### <a name="run-the-mobile-app"></a>執行行動應用程式
 如果您要在模擬器中測試推播通知，請確定您的模擬器映像支援您為應用程式選擇的 Google API 層級。 如果您的映像不支援原生 Google API，最後會發生 **SERVICE\_NOT\_AVAILABLE** 例外狀況。
 
 除此之外，請確定已將 Google 帳戶新增至執行中模擬器的 [設定] > [帳戶] 之下。 否則，嘗試向 GCM 註冊可能會導致 **AUTHENTICATION\_FAILED** 例外狀況。
 
-#### <a name="running-the-application"></a>執行應用程式
 1. 執行 app，並注意已回報註冊成功的註冊識別碼。
    
     ![在 Android 上測試 - 通道註冊](./media/notification-hubs-android-push-notification-google-fcm-get-started/notification-hubs-android-studio-registered.png)
@@ -491,22 +516,20 @@ ms.lasthandoff: 03/23/2018
     ![在 Android 上測試 - 通知](./media/notification-hubs-android-push-notification-google-fcm-get-started/notification-hubs-android-studio-received-message.png)
 
 ## <a name="next-steps"></a>後續步驟
-我們建議以 [使用通知中樞將通知推播給使用者] 教學課程做為下一個步驟。 它會示範如何使用標籤來鎖定特定使用者，以從 ASP.NET 後端傳送通知。
+在本教學課程中，您已使用 Firebase 雲端通訊將通知推送至 Android 裝置。 若想了解如何使用 Google 雲端通訊推送通知，請繼續進行下列教學課程： 
 
+> [!div class="nextstepaction"]
+>[使用 Google 雲端通訊將通知推送至 Android 裝置](notification-hubs-android-push-notification-google-gcm-get-started.md)
 
-如果您想要依興趣群組分隔使用者，請查看 [使用通知中樞傳送即時新聞] 教學課程。
-
-若要深入了解通知中樞的一般資訊，請參閱 [通知中樞指引]。
 
 <!-- Images. -->
-
 
 
 <!-- URLs. -->
 [Get started with push notifications in Mobile Services]: ../mobile-services-javascript-backend-android-get-started-push.md  
 [Mobile Services Android SDK]: https://go.microsoft.com/fwLink/?LinkID=280126&clcid=0x409
 [Referencing a library project]: http://go.microsoft.com/fwlink/?LinkId=389800
-[通知中樞指引]: notification-hubs-push-notification-overview.md
-[使用通知中樞將通知推播給使用者]: notification-hubs-aspnet-backend-gcm-android-push-to-user-google-notification.md
-[使用通知中樞傳送即時新聞]: notification-hubs-aspnet-backend-android-xplat-segmented-gcm-push-notification.md
+[Notification Hubs Guidance]: notification-hubs-push-notification-overview.md
+[Use Notification Hubs to push notifications to users]: notification-hubs-aspnet-backend-gcm-android-push-to-user-google-notification.md
+[Use Notification Hubs to send breaking news]: notification-hubs-aspnet-backend-android-xplat-segmented-gcm-push-notification.md
 [Azure 入口網站]: https://portal.azure.com

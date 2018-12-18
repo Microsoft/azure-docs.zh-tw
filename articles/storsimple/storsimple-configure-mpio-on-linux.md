@@ -1,6 +1,6 @@
 ---
-title: "在 StorSimple Linux 主機上設定 MPIO | Microsoft Docs"
-description: "在連線到執行 CentOS 6.6 之 Linux 主機的 StorSimple 上設定 MPIO"
+title: 在 StorSimple Linux 主機上設定 MPIO | Microsoft Docs
+description: 在連線到執行 CentOS 6.6 之 Linux 主機的 StorSimple 上設定 MPIO
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,11 +14,12 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/09/2018
 ms.author: alkohli
-ms.openlocfilehash: 2fbae15c1c6a9ec886f57f9df903612ae10d8e12
-ms.sourcegitcommit: 562a537ed9b96c9116c504738414e5d8c0fd53b1
+ms.openlocfilehash: d1188b40021fbb221bc19af6d4a5397f7ba8f800
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/12/2018
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39439867"
 ---
 # <a name="configure-mpio-on-a-storsimple-host-running-centos"></a>在執行 CentOS 的 StorSimple 主機上設定 MPIO
 本文說明在 Centos 6.6 主機伺服器上設定多重路徑 IO (MPIO) 所需的步驟。 主機伺服器會連線到您的 Microsoft Azure StorSimple 裝置，以透過 iSCSI 啟動器取得高可用性。 文中詳細描述多重路徑裝置的自動探索，以及 StorSimple 磁碟區特有的設定。
@@ -105,21 +106,21 @@ multipath.conf 有五個區段：
           TX packets:12 errors:0 dropped:0 overruns:0 carrier:0
           collisions:0 txqueuelen:0
           RX bytes:720 (720.0 b)  TX bytes:720 (720.0 b)
-2. 在 CentOS 伺服器上安裝 *iSCSI-initiator-utils* 。 執行下列步驟以安裝 *iSCSI-initiator-utils*。
+1. 在 CentOS 伺服器上安裝 *iSCSI-initiator-utils* 。 執行下列步驟以安裝 *iSCSI-initiator-utils*。
    
    1. 以 `root` 身分登入到 CentOS 主機。
-   2. 安裝 *iSCSI-initiator-utils*。 輸入：
+   1. 安裝 *iSCSI-initiator-utils*。 輸入：
       
        `yum install iscsi-initiator-utils`
-   3. 在成功安裝 *iSCSI-Initiator-utils* 之後，啟動 iSCSI 服務。 輸入：
+   1. 在成功安裝 *iSCSI-Initiator-utils* 之後，啟動 iSCSI 服務。 輸入：
       
        `service iscsid start`
       
        有時候，`iscsid` 可能無法實際啟動，而可能需要 `--force` 選項
-   4. 若要確保 iSCSI 啟動器會在開機時啟用，請使用 `chkconfig` 命令來啟用此服務。
+   1. 若要確保 iSCSI 啟動器會在開機時啟用，請使用 `chkconfig` 命令來啟用此服務。
       
        `chkconfig iscsi on`
-   5. 若要驗證該服務是否正確設定，請執行以下命令：
+   1. 若要驗證該服務是否正確設定，請執行以下命令：
       
        `chkconfig --list | grep iscsi`
       
@@ -129,7 +130,7 @@ multipath.conf 有五個區段：
            iscsid  0:off   1:off   2:on3:on4:on5:on6:off
       
        在上述範例中，您可以看到 iSCSI 環境將在開機時於執行層級 2、 3、 4 和 5 執行。
-3. 安裝 *device-mapper-multipath*。 輸入：
+1. 安裝 *device-mapper-multipath*。 輸入：
    
     `yum install device-mapper-multipath`
    
@@ -141,7 +142,7 @@ multipath.conf 有五個區段：
 * 至少有兩個介面已啟用 iSCSI。 若要確認這兩個介面已在 StorSimple 裝置上啟用 iSCSI，請在 StorSimple 裝置的 Azure 傳統入口網站中執行下列步驟︰
   
   1. 登入 StorSimple 裝置的傳統入口網站。
-  2. 選取 StorSimple Manager 服務，按一下 [裝置]  ，然後選擇該特定 StorSimple 裝置。 按一下 [設定]  並驗證網路介面設定。 下面顯示的螢幕擷取畫面包含已啟用 iSCSI 的兩個網路介面。 以下 DATA 2 和 DATA 3 兩個 10 GbE 介面都已啟用 iSCSI。
+  1. 選取 StorSimple Manager 服務，按一下 [裝置]  ，然後選擇該特定 StorSimple 裝置。 按一下 [設定]  並驗證網路介面設定。 下面顯示的螢幕擷取畫面包含已啟用 iSCSI 的兩個網路介面。 以下 DATA 2 和 DATA 3 兩個 10 GbE 介面都已啟用 iSCSI。
      
       ![MPIO StorSimple DATA 2 設定](./media/storsimple-configure-mpio-on-linux/IC761347.png)
      
@@ -150,8 +151,8 @@ multipath.conf 有五個區段：
       在 [設定]  頁面中
      
      1. 確定這兩個網路介面都已啟用 iSCSI。 [啟用 iSCSI] 欄位應設定為 [是]。
-     2. 確定網路介面的速度相同，兩者都應該是 1 GbE 或 10 GbE。
-     3. 請記下已啟用 iSCSI 的介面的 IPv4 位址，並加以儲存供稍後用於主機上。
+     1. 確定網路介面的速度相同，兩者都應該是 1 GbE 或 10 GbE。
+     1. 請記下已啟用 iSCSI 的介面的 IPv4 位址，並加以儲存供稍後用於主機上。
 * 應可從 CentOS 伺服器存取 StorSimple 裝置上的 iSCSI 介面。
       若要確認這點，您需要在主機伺服器上提供 StorSimple 已啟用 iSCSI 的網路介面的 IP 位址。 使用的命令以及 DATA2 (10.126.162.25) 和 DATA3 (10.126.162.26) 的對應輸出如下所示：
   
@@ -190,14 +191,14 @@ multipath.conf 有五個區段：
      `mpathconf --enable`
    
     上述命令會建立 `sample/etc/multipath.conf` 檔案。
-2. 啟動多重路徑服務。 輸入：
+1. 啟動多重路徑服務。 輸入：
    
     `service multipathd start`
    
     您會看到下列輸出︰
    
     `Starting multipathd daemon:`
-3. 啟用多重路徑的自動探索。 輸入：
+1. 啟用多重路徑的自動探索。 輸入：
    
     `mpathconf --find_multipaths y`
    
@@ -215,7 +216,7 @@ multipath.conf 有五個區段：
 1. 編輯 `/etc/mulitpath.conf` 檔案。 輸入：
    
     `vi /etc/multipath.conf`
-2. 找出 multipath.conf 檔案中的 blacklist_exceptions 區段。 您的 StorSimple 裝置必須列為本節中的封鎖清單例外狀況。 您可以在此檔案中取消註解相關行，如下所示修改該檔案 (僅使用您所用裝置的特定模型)︰
+1. 找出 multipath.conf 檔案中的 blacklist_exceptions 區段。 您的 StorSimple 裝置必須列為本節中的封鎖清單例外狀況。 您可以在此檔案中取消註解相關行，如下所示修改該檔案 (僅使用您所用裝置的特定模型)︰
    
         blacklist_exceptions {
             device {
@@ -234,7 +235,7 @@ multipath.conf 有五個區段：
 1. 編輯 `/etc/multipath.conf` 檔案。 輸入：
    
     `vi /etc/multipath.conf`
-2. 在 `defaults` 區段之下，將 `path_grouping_policy` 設定為 `multibus`。 `path_grouping_policy` 指定預設路徑群組原則，以要套用到未指定的多重路徑。 defaults 區段會如下所示。
+1. 在 `defaults` 區段之下，將 `path_grouping_policy` 設定為 `multibus`。 `path_grouping_policy` 指定預設路徑群組原則，以要套用到未指定的多重路徑。 defaults 區段會如下所示。
    
         defaults {
                 user_friendly_names yes
@@ -253,7 +254,7 @@ multipath.conf 有五個區段：
 1. 重新啟動 `multipathd` 精靈。 輸入：
    
     `service multipathd restart`
-2. 輸出應如下所示：
+1. 輸出應如下所示：
    
         [root@centosSS ~]# service multipathd start
         Starting multipathd daemon:  [OK]
@@ -297,9 +298,9 @@ multipath.conf 有五個區段：
 
     如果您在此只看到一個主機介面和兩個路徑，您必須在主機上針對 iSCSI 啟用這兩個介面。 您可以遵循 [Linux 文件中的詳細指示](https://access.redhat.com/documentation/Red_Hat_Enterprise_Linux/5/html/Online_Storage_Reconfiguration_Guide/iscsioffloadmain.html)。
 
-2. 磁碟區會從 StorSimple 裝置公開至 CentOS 伺服器。 如需詳細資訊，請參閱[步驟 6：建立磁碟區](storsimple-8000-deployment-walkthrough-u2.md#step-6-create-a-volume) (透過 StorSimple 裝置上的 Azure 入口網站)。
+1. 磁碟區會從 StorSimple 裝置公開至 CentOS 伺服器。 如需詳細資訊，請參閱[步驟 6：建立磁碟區](storsimple-8000-deployment-walkthrough-u2.md#step-6-create-a-volume) (透過 StorSimple 裝置上的 Azure 入口網站)。
 
-3. 驗證可用的路徑。 輸入：
+1. 驗證可用的路徑。 輸入：
 
       ```
       multipath –l
@@ -419,7 +420,7 @@ A. 若要驗證您的裝置是否已列入允許清單，請使用下列疑難�
 如需詳細資訊，移至 [對多重路徑使用疑難排解互動式命令](http://www.centos.org/docs/5/html/5.1/DM_Multipath/multipath_config_confirm.html)。
 
 ## <a name="list-of-useful-commands"></a>有用的命令清單
-| 在系統提示您進行確認時，輸入  | 命令 | 描述 |
+| 在系統提示您進行確認時，輸入  | 命令 | 說明 |
 | --- | --- | --- |
 | **iSCSI** |`service iscsid start` |啟動 iSCSI 服務 |
 | &nbsp; |`service iscsid stop` |停止 iSCSI 服務 |
@@ -444,5 +445,5 @@ A. 若要驗證您的裝置是否已列入允許清單，請使用下列疑難�
 當您在 Linux 主機上設定 MPIO 時，您可能也需要參考下列 CentoS 6.6 文件︰
 
 * [在 CentOS 上設定 MPIO](http://www.centos.org/docs/5/html/5.1/DM_Multipath/setup_procedure.html)
-* [Linux 訓練指南](http://linux-training.be/files/books/LinuxAdm.pdf)
+* [Linux 訓練指南](http://linux-training.be/linuxsys.pdf)
 

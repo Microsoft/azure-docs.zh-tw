@@ -3,23 +3,21 @@ title: Azure Cosmos DB 資源模型和概念 | Microsoft Docs
 description: 深入了解 Azure Cosmos DB 資料庫的階層式模型、集合、使用者定義函數 (UDF)、文件、權限，以便管理資源等。
 keywords: 階層式模型, Hierarchical model, cosmosdb, azure, Microsoft azure
 services: cosmos-db
-documentationcenter: ''
 author: rafats
-manager: jhubbard
-ms.assetid: ef9d5c0c-0867-4317-bb1b-98e219799fd5
+manager: kfile
 ms.service: cosmos-db
-ms.workload: data-services
-ms.tgt_pltfrm: na
+ms.component: cosmosdb-sql
 ms.devlang: na
-ms.topic: article
-ms.date: 03/26/2018
+ms.topic: conceptual
+ms.date: 05/07/2018
 ms.author: rafats
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 948fc84db2fd2d6f2059f9807b84194ebac59472
-ms.sourcegitcommit: 20d103fb8658b29b48115782fe01f76239b240aa
+ms.openlocfilehash: 0869881ace689d12272affb38d3689965e107e8f
+ms.sourcegitcommit: ebd06cee3e78674ba9e6764ddc889fc5948060c4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2018
+ms.lasthandoff: 09/07/2018
+ms.locfileid: "44050927"
 ---
 # <a name="azure-cosmos-db-hierarchical-resource-model-and-core-concepts"></a>Azure Cosmos DB 階層式資源模型和核心概念
 
@@ -31,13 +29,7 @@ Azure Cosmos DB 管理的資料庫實體稱為「資源」。 每個資源可透
 * 什麼是系統定義的資源？與使用者定義的資源有何差異？
 * 如何處理資源？
 * 如何使用集合？
-* 如何使用預存程序、觸發程序和使用者定義函數 (UDF)？
-
-在下列影片中，Azure Cosmos DB 程式管理員 Andrew Liu 會向您介紹 Azure Cosmos DB 資源模型。 
-
-> [!VIDEO https://www.youtube.com/embed/luWFgTP0IL4]
->
->
+* 如何使用預存程序、觸發程序和使用者定義函式 (UDF)？
 
 ## <a name="hierarchical-resource-model"></a>階層式資源模型
 如下圖所示，Azure Cosmos DB 的階層式「資源模型」包含某個資料庫帳戶下的多組資源，而每組資源都可透過邏輯和穩定 URI 加以定址。 本文中有一組資源稱為**摘要**。 
@@ -50,15 +42,15 @@ Azure Cosmos DB 管理的資料庫實體稱為「資源」。 每個資源可透
 ![Azure Cosmos DB 階層式資源模型][1]  
 **階層式資源模型**   
 
-若要開始使用資源，您必須使用 Azure 訂用帳戶[建立資料庫帳戶](create-sql-api-dotnet.md)。 資料庫帳戶包含一組**資料庫**，而每個資料庫都包含多個**集合**，且各集合因此包含預存程序、觸發程序、UDF、文件和相關**附件**。 資料庫也有相關聯的**使用者**，其中每位使用者都有一組可存取集合、預存程序、觸發程序、UDF、文件或附件的**權限**。 雖然資料庫、使用者、權限和集合都是具有已知結構描述的系統定義資源，但是文件和附件包含任意使用者定義 JSON 內容。  
+若要開始使用資源，您必須使用 Azure 訂用帳戶[建立資料庫帳戶](create-sql-api-dotnet.md)。 資料庫帳戶包含一組**資料庫**，而每個資料庫都包含多個**集合**，且各集合因此包含**預存程序、觸發程序、UDF、文件和相關附件**。 資料庫也有相關聯的**使用者**，其中每位使用者都有一組可存取集合、預存程序、觸發程序、UDF、文件或附件的**權限**。 雖然資料庫、使用者、權限和集合都是具有已知結構描述的系統定義資源，但是文件和附件包含任意使用者定義 JSON 內容。  
 
 | 資源 | 說明 |
 | --- | --- |
 | 資料庫帳戶 |資料庫帳戶會與一組資料庫及附件之固定數目的 Blob 儲存體相關聯。 您可以使用 Azure 訂用帳戶建立一或多個資料庫帳戶。 如需詳細資訊，請瀏覽[定價頁面](https://azure.microsoft.com/pricing/details/cosmos-db/)。 |
 | 資料庫 |資料庫是分割給多個集合之文件儲存體的邏輯容器。 同時也是使用者容器。 |
-| User |範圍權限的邏輯命名空間。 |
+| 使用者 |範圍權限的邏輯命名空間。 |
 | 權限 |與使用者相關聯的授權權杖，可讓使用者用於存取特定資源。 |
-| 集合 |集合是 JSON 文件和相關聯 JavaScript 應用程式邏輯的容器。 集合是計費實體，其中的 [成本](performance-levels.md) 是由與集合相關聯的效能層級所決定。 集合可以跨越一或多個資料分割/伺服器，也可以進行調整以處理幾乎無限量的儲存體或輸送量。 |
+| 集合 |集合是 JSON 文件和相關聯 JavaScript 應用程式邏輯的容器。 集合可以跨越一或多個資料分割/伺服器，也可以進行調整以處理幾乎無限量的儲存體或輸送量。 |
 | 預存程序 |以 JavaScript 撰寫的應用程式邏輯，會向集合註冊並透過交易方式在資料庫引擎內執行。 |
 | 觸發程序 |以 JavaScript 撰寫的應用程式邏輯，會在插入、取代或刪除作業之前或之後執行。 |
 | UDF |以 JavaScript 撰寫的應用程式邏輯。 UDF 可讓您建立自訂查詢運算子的模型，進而擴充核心 SQL API 查詢語言。 |
@@ -166,14 +158,14 @@ Cosmos DB 資料庫是一個或多個集合和使用者的邏輯容器，如下�
 ![資料庫帳戶和集合階層式模型][2]  
 **資料庫是使用者和集合的邏輯容器**
 
-資料庫可包含集合內分割的文件儲存體數量幾乎不受限制。
+資料庫可包含集合內分割的文件儲存體，且數量不限。
 
 ### <a name="elastic-scale-of-an-azure-cosmos-db-database"></a>Azure Cosmos DB 資料庫靈活的擴充能力
 Cosmos DB 資料庫預設相當靈活，範圍從幾 GB 到數 PB 的 SSD 型式文件儲存體和佈建輸送量。 
 
 不同於傳統 RDBMS 中的資料庫，Cosmos DB 中的資料庫不會侷限在單一電腦中。 有了 Cosmos DB 之後，您就能隨著應用程式的規模而相應放大，並能建立更多的集合及 (或) 資料庫。 的確，Microsoft 中的各種第一方應用程式都是依消費者規模來使用 Azure Cosmos DB，建立極大的 Azure Cosmos DB 資料庫，每個資料庫各包含數千個具有好幾 TB 文件儲存體的集合。 您可以新增或移除集合來擴充或縮減資料庫，以配合您的應用程式規模需求。 
 
-您可以依據供應項目，在資料庫中建立任意數目的集合。 視選取的效能層而定，每個集合都有為您佈建的 SSD-backed 儲存體和輸出量。
+您可以依據供應項目，在資料庫中建立任意數目的集合。 視選取的供應項目而定，每個集合 (或資料庫中的一組集合) 都有為您佈建的 SSD 型儲存體和輸送量。
 
 Azure Cosmos DB 資料庫同時也是使用者的容器。 使用者因此是一組權限的邏輯命名空間，可針對集合、文件和附件提供微調的授權和存取權。  
 
@@ -183,7 +175,7 @@ Azure Cosmos DB 資料庫同時也是使用者的容器。 使用者因此是一
 Cosmos DB 集合是 JSON 文件的容器。 
 
 ### <a name="elastic-ssd-backed-document-storage"></a>彈性 SSD 支持文件儲存體
-集合本質上是彈性的 - 它會隨著您新增或移除文件自動成長和縮減。 集合是邏輯資源，可以跨一或多個實體分割或伺服器。 集合中的分割數目是 Cosmos DB 根據集合的儲存體大小和佈建輸送量所決定。 Cosmos DB 中的每個分割都有其相關聯的固定 SSD 型式儲存體數量，並且複寫以提供高可用性。 分割管理完全由 Azure Cosmos DB 管理，您不需要撰寫複雜程式碼或管理分割。 從儲存體和輸送量的角度來看，Cosmos DB 集合「實際上並無限制」。 
+集合本質上是彈性的 - 它會隨著您新增或移除文件自動成長和縮減。 集合是邏輯資源，可以跨一或多個實體分割或伺服器。 指派給集合的分割區數目，由 Cosmos DB 根據為集合或一組集合佈建的儲存體大小和輸送量所決定。 Cosmos DB 中的每個分割都有其相關聯的固定 SSD 支援儲存體數量，並且複寫以提供高可用性。 分割管理完全由 Azure Cosmos DB 管理，您不需要撰寫複雜程式碼或管理分割。 Cosmos DB 集合在儲存體和輸送量方面**並無限制**。 
 
 ### <a name="automatic-indexing-of-collections"></a>集合的自動編製索引
 Azure Cosmos DB 是真正不具結構描述的資料庫系統。 它不會假設或不需要 JSON 文件的任何結構描述。 將文件新增至集合時，Azure Cosmos DB 會自動編製它們的索引，並且可供您進行查詢。 在不需要結構描述或次要索引的情況下自動編製文件索引是 Azure Cosmos DB 的重要功能，並且會啟用以獲得寫入最佳化、無鎖定和記錄結構化索引維護技術。 Azure Cosmos DB 支援極快速持續寫入量，同時仍然提供一致的查詢。 文件和索引儲存體都是用來計算每個集合所使用的儲存體。 您可以設定集合的索引原則，以控制與索引相關聯的儲存體和效能取捨。 
@@ -222,7 +214,7 @@ Azure Cosmos DB 查詢模型嘗試打破功能、效率和簡易性之間的平�
 * 直接在資料庫引擎中，有效率地實作 JSON 物件圖形的並行存取控制、復原、自動編製索引
 * 在 JavaScript 程式設計語言方面，直接自然表達資料庫交易的控制流程、變數範圍、指派和整合例外狀況處理基本項目
 
-在集合層級註冊的 JavaScript 邏輯接著可以對給定集合的文件發出資料庫作業。 Azure Cosmos DB 可以跨集合內的文件，隱含地在具有快照隔離的環境 ACID 交易內包裝 JavaScript 型預存程序和觸發程序。 在執行期間，如果 JavaScript 擲回例外狀況，則會中止整個交易。 產生的程式設計模型極為簡單，但功能強大。 JavaScript 開發人員會取得「持續性」程式設計模型，同時仍然使用其熟悉的語言建構和程式庫基本。   
+在集合層級註冊的 JavaScript 邏輯接著可以對給定集合的文件發出資料庫作業。 Azure Cosmos DB 可以跨集合內的文件，隱含地在具有快照隔離的環境 ACID 交易內包裝 JavaScript 型預存程序和觸發程序。 在執行期間，如果 JavaScript 擲回例外狀況，則會中止整個交易。 產生的程式設計模型非常簡單，但功能強大。 JavaScript 開發人員會取得「持續性」程式設計模型，同時仍然使用其熟悉的語言建構和程式庫基本。   
 
 直接在資料庫引擎 (與緩衝集區位於相同的位址空間) 內執行 JavaScript 的能力，可對集合的文件啟用資料庫作業的具效能和交易式執行。 此外，Cosmos DB 資料庫引擎會進一步對 JSON 和 JavaScript 執行認可，以去除應用程式與資料庫之的類型系統間的阻抗不相符。   
 
@@ -322,7 +314,7 @@ Azure Cosmos DB 查詢模型嘗試打破功能、效率和簡易性之間的平�
         });
 
 ### <a name="unregistering-a-stored-procedure"></a>取消註冊預存程序
-只要對現有預存程序資源發出 HTTP DELETE，即可取消註冊預存程序。   
+對現有預存程序資源發出 HTTP DELETE，即可取消註冊預存程序。   
 
     client.deleteStoredProcedureAsync(createdStoredProcedure.resource._self)
         .then(function (response) {
@@ -364,7 +356,7 @@ Azure Cosmos DB 查詢模型嘗試打破功能、效率和簡易性之間的平�
         });
 
 ### <a name="unregistering-a-pre-trigger"></a>取消註冊預先觸發程序
-只要對現有觸發程序資源發出 HTTP DELETE，即可取消註冊觸發程序。  
+對現有觸發程序資源發出 HTTP DELETE，即可取消註冊觸發程序。  
 
     client.deleteTriggerAsync(createdPreTrigger._self);
         .then(function(response) {
@@ -415,7 +407,7 @@ UDF 可以指定為部分 SQL 查詢，也可作為一種擴充核心 [SQL 查�
 ## <a name="documents"></a>文件
 您可以在集合中插入、取代、刪除、讀取、列舉和查詢任意 JSON 文件。 Azure Cosmos DB 不會託管任何結構描述，而且不需要次要索引，就支援逐一查詢集合中的文件。 文件的大小上限為 2 MB。   
 
-Azure Cosmos DB 是真正開放的資料庫服務，不會發明 JSON 文件的任何特殊資料類型 (例如日期時間) 或特定編碼。 Azure Cosmos DB 無須遵循任何特殊 JSON 慣例，即可編寫各種文件之間的關聯性。Azure Cosmos DB 的 SQL 語法提供有效率的階層式和關係查詢運算子，讓您可以用於查詢及保護文件，不僅無須任何特殊註釋，也無須使用不同的屬性來編寫文件之間的關聯性。  
+Azure Cosmos DB 是真正開放的資料庫服務，不會發明 JSON 文件的任何特殊資料類型 (例如日期時間) 或特定編碼。 Azure Cosmos DB 無須遵循任何特殊 JSON 慣例，即可編寫各種文件之間的關聯性。Azure Cosmos DB 的 SQL 語法提供極有效率的階層式和關係查詢運算子，讓您可以用於查詢及保護文件，不僅無須任何特殊註釋，也無須使用不同的屬性來編寫文件之間的關聯性。  
 
 與所有其他資源相同，使用 REST API 或任何[用戶端 SDK](sql-api-sdk-dotnet.md)，即可輕鬆地建立、取代、刪除、讀取、列舉或查詢文件。 刪除文件時會立即清出對應至所有巢狀附件的配額。 文件的讀取一致性層級會遵循資料庫帳戶的一致性原則。 根據您應用程式的資料一致性需求，可以覆寫每個要求的這個原則。 查詢文件時，讀取一致性會遵循集合上所設定的索引模式。 為求「一致」，這會遵循帳戶的一致性原則。 
 
@@ -457,7 +449,7 @@ Azure Cosmos DB 使用者代表用於分組權限的邏輯命名空間。 Azure 
 ## <a name="permissions"></a>權限
 從存取控制觀點來看，系統會將資源 (例如資料庫帳戶、資料庫、使用者和權限) 視為「管理」  資源，因為這些都需要管理權限。 另一方面，會將資源 (包括集合、文件、附件、預存程序、觸發程序和 UDF) 限制至給定資料庫，並將其視為「應用程式資源」 。 授權模型定義兩種「存取金鑰」來對應兩種資源及可存取這些資源的角色 (即系統管理員和使用者)：「主要金鑰」和「資源金鑰」。 主要金鑰是資料庫帳戶的一部分，並且提供給將佈建資料庫帳戶的開發人員 (或系統管理員)。 此主要金鑰具有系統管理員語意，即它可以用來授權對管理和應用程式資源的存取權。 相較之下，資源金鑰是精細的存取金鑰，可允許存取「特定」  應用程式資源。 因此，它會擷取資料庫使用者與使用者具有特定資源 (例如，集合、文件、附件、預存程序、觸發程序或 UDF) 的權限之間的關聯性。   
 
-取得資源金鑰的唯一方式是透過建立給定使用者的權限資源。 請注意，若要建立或擷取權限，授權標頭中必須要有主要金鑰。 權限資源會繫結資源、其存取權和使用者。 建立權限資源之後，使用者只需要具有相關聯的資源金鑰，就能存取相關資源。 因此，可能會以權限資源的邏輯和壓縮呈現來檢視資源金鑰。  
+取得資源金鑰的唯一方式是透過建立給定使用者的權限資源。 若要建立或擷取權限，授權標頭中必須要有主要金鑰。 權限資源會繫結資源、其存取權和使用者。 建立權限資源之後，使用者只需要具有相關聯的資源金鑰，就能存取相關資源。 因此，可能會以權限資源的邏輯和壓縮呈現來檢視資源金鑰。  
 
 與所有其他資源相同，使用 REST API 或任何用戶端 SDK，即可輕鬆地在 Azure Cosmos DB 中建立、取代、刪除、讀取或列舉權限。 Azure Cosmos DB 一律提供讀取或查詢權限之中繼資料的強式一致性。 
 

@@ -1,21 +1,21 @@
 ---
-title: "搜尋 Azure 雲端儲存體中的非結構化資料"
-description: "使用 Azure 搜尋服務來搜尋非結構化資料。"
+title: 搜尋 Azure 雲端儲存體中的非結構化資料
+description: 使用 Azure 搜尋服務來搜尋非結構化資料。
 author: roygara
-manager: timlt
 services: storage
 ms.service: storage
 ms.topic: tutorial
 ms.date: 10/12/2017
-ms.author: rogara
+ms.author: rogarana
 ms.custom: mvc
-ms.openlocfilehash: 930b735eb03aea6ce701b694ca527049b4c3f24d
-ms.sourcegitcommit: 9ae92168678610f97ed466206063ec658261b195
+ms.openlocfilehash: 902009d7807b1ce340000c271350af1c37231d77
+ms.sourcegitcommit: 5b8d9dc7c50a26d8f085a10c7281683ea2da9c10
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/17/2017
+ms.lasthandoff: 09/26/2018
+ms.locfileid: "47181187"
 ---
-# <a name="search-unstructured-data-in-cloud-storage"></a>搜尋雲端儲存體中的非結構化資料
+# <a name="tutorial-search-unstructured-data-in-cloud-storage"></a>教學課程：搜尋雲端儲存體中的非結構化資料
 
 在本教學課程中，您會了解如何使用利用 Azure Blob 中所儲存資料的 [Azure 搜尋服務](../../search/search-what-is-azure-search.md)來搜尋非結構化資料。 非結構化資料是未依預先定義方式組織或沒有資料模型的資料。 範例是 .txt 檔案。
 

@@ -1,26 +1,23 @@
 ---
-title: 自訂原則中的密碼複雜度 - Azure AD B2C | Microsoft Docs
-description: 如何在自訂原則中設定密碼複雜度需求
+title: 在 Azure Active Directory B2C 自訂原則中的密碼複雜度 | Microsoft Docs
+description: 如何在自訂原則中設定密碼複雜度需求。
 services: active-directory-b2c
-documentationcenter: ''
 author: davidmu1
 manager: mtillman
-editor: ''
-ms.service: active-directory-b2c
+ms.service: active-directory
 ms.workload: identity
-ms.topic: article
+ms.topic: conceptual
 ms.date: 08/16/2017
 ms.author: davidmu
-ms.openlocfilehash: 4dabcdef32d337c5063d2b0503f32b06d5d0fdeb
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: B2C
+ms.openlocfilehash: ed0001d8d88a2604e3128a4d5f7a365aeb7b00b1
+ms.sourcegitcommit: 86cb3855e1368e5a74f21fdd71684c78a1f907ac
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37440786"
 ---
 # <a name="configure-password-complexity-in-custom-policies"></a>在自訂原則中設定密碼複雜度
-
-> [!NOTE]
-> **這項功能處於預覽狀態。**  請連絡 [AADB2CPreview@microsoft.com](mailto:AADB2CPreview@microsoft.com)，讓您的測試租用戶可以使用此功能。  請勿在實際執行的租用戶上進行此測試。
 
 [!INCLUDE [active-directory-b2c-advanced-audience-warning](../../includes/active-directory-b2c-advanced-audience-warning.md)]
 
@@ -102,15 +99,9 @@ Azure Active Directory B2C (Azure AD B2C) 支援的變更密碼複雜度需求�
 ```XML
     <ClaimsSchema>
       <ClaimType Id="newPassword">
-        <Restriction>
-          <Pattern RegularExpression="^.*$" HelpText="" />
-        </Restriction>
         <InputValidationReference Id="PasswordValidation" />
       </ClaimType>
       <ClaimType Id="reenterPassword">
-        <Restriction>
-          <Pattern RegularExpression="^.*$" HelpText="" />
-        </Restriction>
         <InputValidationReference Id="PasswordValidation" />
       </ClaimType>
     </ClaimsSchema>
@@ -147,37 +138,31 @@ Azure Active Directory B2C (Azure AD B2C) 支援的變更密碼複雜度需求�
   <BuildingBlocks>
     <ClaimsSchema>
       <ClaimType Id="newPassword">
-        <Restriction>
-          <Pattern RegularExpression="^.*$" HelpText="" />
-        </Restriction>
         <InputValidationReference Id="PasswordValidation" />
       </ClaimType>
       <ClaimType Id="reenterPassword">
-        <Restriction>
-          <Pattern RegularExpression="^.*$" HelpText="" />
-        </Restriction>
         <InputValidationReference Id="PasswordValidation" />
       </ClaimType>
     </ClaimsSchema>
     <Predicates>
       <Predicate Id="Lowercase" Method="MatchesRegex" HelpText="a lowercase">
         <Parameters>
-          <Parameter Id="RegularExpression">^[a-z]+$</Parameter>
+          <Parameter Id="RegularExpression">[a-z]+</Parameter>
         </Parameters>
       </Predicate>
       <Predicate Id="Uppercase" Method="MatchesRegex" HelpText="an uppercase">
         <Parameters>
-          <Parameter Id="RegularExpression">^[A-Z]+$</Parameter>
+          <Parameter Id="RegularExpression">[A-Z]+</Parameter>
         </Parameters>
       </Predicate>
       <Predicate Id="Number" Method="MatchesRegex" HelpText="a number">
         <Parameters>
-          <Parameter Id="RegularExpression">^[0-9]+$</Parameter>
+          <Parameter Id="RegularExpression">[0-9]+</Parameter>
         </Parameters>
       </Predicate>
       <Predicate Id="Symbol" Method="MatchesRegex" HelpText="a symbol">
         <Parameters>
-          <Parameter Id="RegularExpression">^[!@#$%^*()]+$</Parameter>
+          <Parameter Id="RegularExpression">[!@#$%^*()]+</Parameter>
         </Parameters>
       </Predicate>
       <Predicate Id="Length" Method="IsLengthRange" HelpText="The password must be between 8 and 16 characters.">

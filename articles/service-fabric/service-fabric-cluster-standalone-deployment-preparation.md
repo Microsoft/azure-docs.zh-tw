@@ -1,23 +1,24 @@
 ---
-title: "Azure Service Fabric 獨立叢集部署準備 | Microsoft Docs"
-description: "文件說明關於在部署用來處理生產工作負載的叢集之前，需要考慮準備的環境和建立的叢集組態。"
+title: Azure Service Fabric 獨立叢集部署準備 | Microsoft Docs
+description: 文件說明關於在部署用來處理生產工作負載的叢集之前，需要考慮準備的環境和建立的叢集組態。
 services: service-fabric
 documentationcenter: .net
 author: dkkapur
 manager: timlt
-editor: 
+editor: ''
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 9/12/2017
-ms.author: dekapur;maburlik;chackdan
-ms.openlocfilehash: b1190ec5a3ff70a368b29465699f9082d2b989bf
-ms.sourcegitcommit: b07d06ea51a20e32fdc61980667e801cb5db7333
+ms.date: 9/11/2018
+ms.author: dekapur
+ms.openlocfilehash: 7357577ea7aff467288578673110b1a6dda7ccef
+ms.sourcegitcommit: 794bfae2ae34263772d1f214a5a62ac29dcec3d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2017
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44391042"
 ---
 <a id="preparemachines"></a>
 
@@ -49,11 +50,11 @@ ms.lasthandoff: 12/08/2017
 
 如需詳細 FD 和 UD 的詳細資訊，請參閱[描述 Service Fabric 叢集](service-fabric-cluster-resource-manager-cluster-description.md)。
 
-如果您對節點的維修和管理有完整控制權，也就是您負責更新和更換機器，生產環境中的叢集應該跨越至少 3 個 FD，以便在生產環境中獲得支援。 對於在您不需對機器具有完整控制權的環境中執行的叢集 (例如 Amazon Web Services VM 執行個體)，在您的叢集中應該至少有 5 個 FD。 每個 FD 可以有一或多個節點。 這是為了防止機器升級和更新所造成的問題，因為根據執行的時機，可能會干擾叢集中執行的應用程式和服務。
+如果您對節點的維修和管理有完整控制權，也就是您負責更新和更換機器，生產環境中的叢集應該跨越至少 3 個 FD，以便在生產環境中獲得支援。 對於在您不需對機器具有完整控制權的環境中執行的叢集 (也就是 Amazon Web Services VM 執行個體)，在您的叢集中應該至少有 5 個 FD。 每個 FD 可以有一或多個節點。 這是為了防止機器升級和更新所造成的問題，因為根據執行的時機，可能會干擾叢集中執行的應用程式和服務。
 
 ## <a name="determine-the-initial-cluster-size"></a>決定初始叢集大小
 
-一般而言，叢集中的節點數目是根據您的業務需求 (也就是說，叢集上將執行的服務和容器的數目)，以及要維持您的工作負載所需的資源數目而決定。 針對生產環境叢集，我們建議在您的叢集中至少有 5 個節點，跨越 5 個 FD。 不過，如上所述，如果您可以完整控制您的節點，並且可以跨越 3 個 FD，那個，3 個節點應該也可行。
+一般而言，叢集中的節點數目是根據您的業務需求 (也就是說，叢集上將執行的服務和容器的數目)，以及要維持您的工作負載所需的資源數目而決定。 針對生產環境叢集，我們建議在您的叢集中至少有五個節點，跨越 5 個 FD。 不過，如上所述，如果您可以完整控制您的節點，並且可以跨越 3 個 FD，那個，3 個節點應該也可行。
 
 執行可設定狀態工作負載的測試叢集應該有三個節點，而在執行無狀態工作負載的測試叢集則只需要一個節點。 您應該注意，基於開發目的，在一部指定的電腦上可以有多個節點。 不過，在生產環境中，對於每個實體或虛擬機器，Service Fabric 只支援一個節點。
 
@@ -65,7 +66,7 @@ ms.lasthandoff: 12/08/2017
 * 至少 40 GB 的可用磁碟空間
 * 4 核心或更高的 CPU
 * 所有電腦的安全網路連線
-* Windows Server 2012 R2 或 Windows Server 2016
+* 已安裝 Windows Server 作業系統 (有效版本：2012 R2、2016、1709 或 1803)
 * [.NET Framework 4.5.1 或更高版本](https://www.microsoft.com/download/details.aspx?id=40773)，完整安裝
 * [Windows PowerShell 3.0](https://msdn.microsoft.com/powershell/scripting/setup/installing-windows-powershell)
 * [RemoteRegistry 服務](https://technet.microsoft.com/library/cc754820) 應該在所有電腦上執行
@@ -99,7 +100,7 @@ ms.lasthandoff: 12/08/2017
 * 已將 Service Fabric SDK 解除安裝
 * 已將 Service Fabric 執行階段解除安裝 
 * 已啟用 Windows 防火牆服務 (mpssvc)
-* 已啟用遠端登錄服務 (remoteregistry)
+* 已啟用遠端登錄服務 (遠端登錄)
 * 已啟用檔案共用 (SMB)
 * 已根據叢集組態的連接埠，開啟必要的連接埠
 * 已經開啟 Windows SMB 和遠端登錄服務的必要通訊埠︰135、137、138、139 和 445

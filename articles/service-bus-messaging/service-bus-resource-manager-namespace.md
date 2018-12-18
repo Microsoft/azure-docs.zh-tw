@@ -1,24 +1,25 @@
 ---
-title: "使用 Azure Resource Manager 範本建立服務匯流排傳訊命名空間 | Microsoft Docs"
-description: "使用 Azure Resource Manager 範本來建立服務匯流排傳訊命名空間"
+title: 使用 Azure Resource Manager 範本建立服務匯流排傳訊命名空間 | Microsoft Docs
+description: 使用 Azure Resource Manager 範本來建立服務匯流排傳訊命名空間
 services: service-bus-messaging
 documentationcenter: .net
-author: sethmanheim
+author: spelluru
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: dc0d6482-6344-4cef-8644-d4573639f5e4
 ms.service: service-bus-messaging
 ms.devlang: tbd
 ms.topic: article
 ms.tgt_pltfrm: dotnet
 ms.workload: na
-ms.date: 12/21/2017
-ms.author: sethm;shvija
-ms.openlocfilehash: f184cc9418e4af95423c0ede65bca312dfca7393
-ms.sourcegitcommit: 6f33adc568931edf91bfa96abbccf3719aa32041
+ms.date: 09/11/2018
+ms.author: spelluru
+ms.openlocfilehash: 6f3f44394ab11c1b66be3af976dbd1f7d23de96e
+ms.sourcegitcommit: b7e5bbbabc21df9fe93b4c18cc825920a0ab6fab
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/22/2017
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47405779"
 ---
 # <a name="create-a-service-bus-namespace-using-an-azure-resource-manager-template"></a>使用 Azure Resource Manager 範本來建立服務匯流排命名空間
 
@@ -117,8 +118,7 @@ ms.lasthandoff: 12/22/2017
         "location": "[variables('location')]",
         "kind": "Messaging",
         "sku": {
-            "name": "StandardSku",
-            "tier": "Standard"
+            "name": "Standard",
         },
         "properties": {
         }

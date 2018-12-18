@@ -12,6 +12,7 @@
 ### [以 ServiceNow 設定](service-health-alert-webhook-servicenow.md)
 ### [以 PagerDuty 設定](service-health-alert-webhook-pagerduty.md)
 ### [以 OpsGenie 設定](service-health-alert-webhook-opsgenie.md)
+### [使用 REST 擷取健康情況事件](service-health-rest.md)
 # 資源
 ## [常見問題集](resource-health-faq.md)
 ## [定價計算機](https://azure.microsoft.com/pricing/calculator/)

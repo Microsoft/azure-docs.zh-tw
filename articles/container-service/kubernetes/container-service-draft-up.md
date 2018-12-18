@@ -1,19 +1,20 @@
 ---
-title: "使用 Draft 搭配 Azure Container Service 與 Azure Container Registry"
-description: "建立 ACS Kubernetes 叢集和 Azure Container Registry，可使用 Draft 在 Azure 中建立第一個應用程式。"
+title: 使用 Draft 搭配 Azure Container Service 與 Azure Container Registry
+description: 建立 ACS Kubernetes 叢集和 Azure Container Registry，可使用 Draft 在 Azure 中建立第一個應用程式。
 services: container-service
 author: squillace
-manager: timlt
+manager: jeconnoc
 ms.service: container-service
 ms.topic: article
 ms.date: 09/14/2017
 ms.author: rasquill
 ms.custom: mvc
-ms.openlocfilehash: de1e8ec1b712aeb5572c7972b22412f2ae90b7b9
-ms.sourcegitcommit: 9d317dabf4a5cca13308c50a10349af0e72e1b7e
+ms.openlocfilehash: c635a869506918ab7ee032df349eb307987c1284
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39432274"
 ---
 # <a name="use-draft-with-azure-container-service-and-azure-container-registry-to-build-and-deploy-an-application-to-kubernetes"></a>使用 Draft 搭配 Azure Container Service 與 Azure Container Registry，可將應用程式建置及部署至 Kubernetes
 
@@ -32,7 +33,7 @@ ms.lasthandoff: 02/01/2018
       az group create --name draft --location eastus
       ```
 
-2. 使用 [az acr create](/cli/azure/acr#az_acr_create) 建立 ACR 映像登錄，並確定 `--admin-enabled` 選項已設定為 `true`。
+2. 使用 [az acr create](/cli/azure/acr#az-acr-create) 建立 ACR 映像登錄，並確定 `--admin-enabled` 選項已設定為 `true`。
       ```azurecli
       az acr create --resource-group draft --name draftacs --sku Basic
       ```
@@ -40,7 +41,7 @@ ms.lasthandoff: 02/01/2018
 
 ## <a name="create-an-azure-container-service-with-kubernetes"></a>使用 Kubernetes 建立 Azure Container Service
 
-現在您準備好使用 [az acs create](/cli/azure/acs#az_acs_create)，利用 Kubernetes 作為 `--orchestrator-type` 值來建立 ACS 叢集。
+現在您準備好使用 [az acs create](/cli/azure/acs#az-acs-create)，利用 Kubernetes 作為 `--orchestrator-type` 值來建立 ACS 叢集。
 ```azurecli
 az acs create --resource-group draft --name draft-kube-acs --dns-prefix draft-cluster --orchestrator-type kubernetes --generate-ssh-keys
 ```
@@ -99,8 +100,8 @@ waiting for AAD role to propagate.done
 ## <a name="install-and-configure-draft"></a>安裝及設定草稿
 
 
-1. 在 https://github.com/Azure/draft/releases \(英文\) 下載適用於您環境的 Draft ，並將它安裝到您的 PATH 中以使用該命令。
-2. 在 https://github.com/kubernetes/helm/releases \(英文\) 下載適用於您環境的 Helm，並[將它安裝到您的 PATH 中以使用該命令](https://github.com/kubernetes/helm/blob/master/docs/install.md#installing-the-helm-client) \(英文\)。
+1. 在 https://github.com/Azure/draft/releases \(英文\) 下載適用於您環境的 Draft ，並將它安裝到 PATH 中以使用該命令。
+2. 在 https://github.com/kubernetes/helm/releases \(英文\) 下載適用於您環境的 Helm，並將它[安裝到 PATH 中以使用該命令](https://github.com/kubernetes/helm/blob/master/docs/install.md#installing-the-helm-client) \(英文\)。
 3. 設定 Draft 以使用您的登錄，並針對它所建立的每個 Helm 圖表建立子網域。 若要設定 Draft，您需要：
   - 您的 Azure Container Registry 名稱 (在此範例中為 `draftacsdemo`)
   - 您的登錄機碼或密碼，從 `az acr credential show -n <registry name> --output tsv --query "passwords[0].value"`。
@@ -220,7 +221,7 @@ Draft 會針對其所建立的每個 Helm 圖表，以及您在使用每個應�
     ```
 
 2. 建立您網域的 DNS 區域。
-使用 [az network dns zone create](/cli/azure/network/dns/zone#az_network_dns_zone_create) 命令來取得 nameservers，將 DNS 控制項委派給網域的 Azure DNS。
+使用 [az network dns zone create](/cli/azure/network/dns/zone#az-network-dns-zone-create) 命令來取得 nameservers，將 DNS 控制項委派給網域的 Azure DNS。
     ```azurecli
     az network dns zone create --resource-group squillace.io --name squillace.io
     {

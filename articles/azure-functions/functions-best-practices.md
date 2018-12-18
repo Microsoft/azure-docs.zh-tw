@@ -4,28 +4,25 @@ description: 了解 Azure Functions 的最佳作法與模式。
 services: functions
 documentationcenter: na
 author: wesmc7777
-manager: cfowler
-editor: ''
-tags: ''
+manager: jeconnoc
 keywords: azure functions, 模式, 最佳作法, 函數, 事件處理, webhook, 動態計算, 無伺服器架構
 ms.assetid: 9058fb2f-8a93-4036-a921-97a0772f503c
-ms.service: functions
+ms.service: azure-functions
 ms.devlang: multiple
-ms.topic: article
-ms.tgt_pltfrm: multiple
-ms.workload: na
+ms.topic: conceptual
 ms.date: 10/16/2017
 ms.author: glenga
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 19ca9d70f769a19556d131d1d131f1bc9d107ef0
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: aecd68734999c30f3dc8e7a2ea8c7d5e9cdfacb0
+ms.sourcegitcommit: c282021dbc3815aac9f46b6b89c7131659461e49
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 10/12/2018
+ms.locfileid: "49166333"
 ---
 # <a name="optimize-the-performance-and-reliability-of-azure-functions"></a>將 Azure Functions 效能和可靠性最佳化
 
-本文提供指引來改善[無伺服器](https://azure.microsoft.com/overview/serverless-computing/)函式應用程式的效能和可靠性。 
+本文提供指引來改善[無伺服器](https://azure.microsoft.com/solutions/serverless/)函式應用程式的效能和可靠性。 
 
 ## <a name="general-best-practices"></a>一般最佳作法
 
@@ -77,6 +74,10 @@ ms.lasthandoff: 03/23/2018
 
 有數個因素會影響應用程式函式執行個體的調整方式。 [函式調整](functions-scale.md)文件中會提供詳細資料。  以下是一些最佳做法，可確保函式應用程式的最佳延展性。
 
+### <a name="share-and-manage-connections"></a>共用及管理連線
+
+儘可能重複使用與外部資源的連線。  請參閱[如何管理 Azure Functions 中的連線](./manage-connections.md)。
+
 ### <a name="dont-mix-test-and-production-code-in-the-same-function-app"></a>不要在相同函式應用程式中混用測試和實際執行程式碼
 
 函式應用程式內的 Functions 會共用資源。 例如，共用記憶體。 如果您在生產環境中使用函式應用程式，請勿對它新增與測試相關的函式和資源。 在實際執行程式碼執行期間可能導致發生未預期的額外負荷。
@@ -116,7 +117,8 @@ ms.lasthandoff: 03/23/2018
 在[主機設定文件](functions-host-json.md)中可以找到其他主機設定選項。
 
 ## <a name="next-steps"></a>後續步驟
+
 如需詳細資訊，請參閱下列資源：
 
-因為 Azure Functions 使用 Azure App Service，所以您也應該充分了解 Azure App Service 指導方針。
-* [HTTP 效能最佳化的模式與做法](https://docs.microsoft.com/azure/architecture/antipatterns/improper-instantiation/)
+* [如何管理 Azure Functions 中的連線](manage-connections.md)
+* [Azure App Service 最佳做法](../app-service/app-service-best-practices.md)

@@ -2,22 +2,18 @@
 title: 使用 Azure PowerShell 在 Azure 獨立雲端中管理儲存體 | Microsoft Docs
 description: 使用 Azure PowerShell 在中國雲端、政府雲端和德國雲端中管理儲存體
 services: storage
-documentationcenter: na
 author: roygara
-manager: jeconnoc
-ms.assetid: ''
 ms.service: storage
-ms.workload: storage
-ms.tgt_pltfrm: na
-ms.devlang: na
 ms.topic: article
 ms.date: 10/24/2017
 ms.author: rogarana
-ms.openlocfilehash: 31b36e6fb6a1ebf09c559b2777ffa5f554c3cfa0
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.component: common
+ms.openlocfilehash: 75a3dcb5aeb3e30da570eb57d0d1495710624e54
+ms.sourcegitcommit: d2f2356d8fe7845860b6cf6b6545f2a5036a3dd6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 08/16/2018
+ms.locfileid: "42144019"
 ---
 # <a name="managing-storage-in-the-azure-independent-clouds-using-powershell"></a>使用 PowerShell 在 Azure 獨立雲端中管理儲存體
 
@@ -39,7 +35,7 @@ ms.lasthandoff: 03/28/2018
 
 ## <a name="log-in-to-azure"></a>登入 Azure
 
-執行 [Get-AzureEnvironment](/powershell/module/azure/Get-AzureRmEnvironment) Cmdlet，查看可用的 Azure 環境：
+執行 [Get-AzureRmEnvironment](/powershell/module/servicemanagement/azurerm.profile/get-azurermenvironment) Cmdlet，查看可用的 Azure 環境：
    
 ```powershell
 Get-AzureRmEnvironment
@@ -48,7 +44,7 @@ Get-AzureRmEnvironment
 登入您的帳戶，該帳戶可存取您想要連線並且設定環境的雲端。 這個範例示範如何登入使用 Azure Government 雲端的帳戶。   
 
 ```powershell
-Login-AzureRmAccount –Environment AzureUSGovernment
+Connect-AzureRmAccount –Environment AzureUSGovernment
 ```
 
 若要存取中國雲端，請使用環境 **AzureChinaCloud**。 若要存取德國雲端，請使用 **AzureGermanCloud**。
@@ -83,13 +79,12 @@ Get-AzureRmEnvironment | select Name, StorageEndpointSuffix
 
 此命令會傳回下列結果。
 
-| Name| StorageEndpointSuffix|
+| 名稱| StorageEndpointSuffix|
 |----|----|
-|AzureChinaCloud | core.chinacloudapi.cn|
+| AzureChinaCloud | core.chinacloudapi.cn|
 | AzureCloud | core.windows.net |
 | AzureGermanCloud | core.cloudapi.de|
-| AzureUSGovernment | core.usgov.cloudapi.net |
-
+| AzureUSGovernment | core.usgovcloudapi.net |
 
 若要擷取指定環境的所有屬性，請呼叫 **Get-AzureRmEnvironment** 並且指定雲端名稱。 此程式碼片段會傳回屬性清單。在清單中尋找 **StorageEndpointSuffix**。 下列範例適用於德國雲端。
 
@@ -101,7 +96,7 @@ Get-AzureRmEnvironment -Name AzureGermanCloud
 
 |屬性名稱|值|
 |----|----|
-| Name | AzureGermanCloud |
+| 名稱 | AzureGermanCloud |
 | EnableAdfsAuthentication | False |
 | ActiveDirectoryServiceEndpointResourceI | http://management.core.cloudapi.de/ |
 | GalleryURL | https://gallery.cloudapi.de/ |

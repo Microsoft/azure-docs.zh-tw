@@ -1,28 +1,30 @@
 ---
-title: "針對 Azure Application Insights 中的使用情況分析進行疑難排解"
-description: "疑難排解指南 - 使用 Application Insights 分析網站和應用程式使用情況。"
+title: 針對 Azure Application Insights 中的使用者行為分析工具進行疑難排解
+description: 疑難排解指南 - 使用 Application Insights 分析網站和應用程式使用情況。
 services: application-insights
-documentationcenter: 
-author: numberbycolors
+documentationcenter: ''
+author: mrbullwinkle
 manager: carmonm
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: multiple
-ms.topic: article
-ms.date: 01/16/2018
+ms.topic: conceptual
+ms.date: 07/11/2018
+ms.reviewer: daviste
 ms.author: mbullwin
-ms.openlocfilehash: cb5f3052301b23eb10cd6b84ab6fae98bcc7ea18
-ms.sourcegitcommit: f1c1789f2f2502d683afaf5a2f46cc548c0dea50
+ms.openlocfilehash: 725f67af8178c6c851999d18c771ebdd360d6d01
+ms.sourcegitcommit: df50934d52b0b227d7d796e2522f1fd7c6393478
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/18/2018
+ms.lasthandoff: 07/12/2018
+ms.locfileid: "38992192"
 ---
-# <a name="troubleshoot-usage-analytics-in-application-insights"></a>針對 Application Insights 中的使用情況分析進行疑難排解
-您有關於 [Application Insights 中的使用情況分析工具](app-insights-usage-overview.md)：[使用者、工作階段、事件](app-insights-usage-segmentation.md)、[漏斗圖](usage-funnels.md)、[使用者流程](app-insights-usage-flows.md)[保留期](app-insights-usage-retention.md)或同群使用者的問題嗎？ 以下是一些解答。
+# <a name="troubleshoot-user-behavior-analytics-tools-in-application-insights"></a>針對 Application Insights 中的使用者行為分析工具進行疑難排解
+您有關於 [Application Insights 中的使用者行為分析工具](app-insights-usage-overview.md)：[使用者、工作階段、事件](app-insights-usage-segmentation.md)、[漏斗圖](usage-funnels.md)、[使用者流程](app-insights-usage-flows.md)[保留期](app-insights-usage-retention.md)或同群使用者的問題嗎？ 以下是一些解答。
 
 ## <a name="counting-users"></a>計算使用者
-**使用情況分析工具顯示我的應用程式有一個使用者/工作階段，但我知道我的應用程式有許多使用者/工作階段。如何修正這些錯誤的計數？**
+**使用者行為分析工具顯示我的應用程式有一個使用者/工作階段，但我知道我的應用程式有許多使用者/工作階段。如何修正這些錯誤的計數？**
 
 Application Insights 中的所有遙測事件都有[匿名使用者識別碼](application-insights-data-model-context.md)和[工作階段識別碼](application-insights-data-model-context.md)，這兩者是其標準屬性的一部分。 根據預設，所有使用情況分析工具都是以這些識別碼為基礎來計算使用者和工作階段。 如果這些標準屬性中未填入應用程式之各個使用者和工作階段的唯一識別碼，您就會在使用情況分析工具中看到不正確的使用者及工作階段計數。
 
@@ -32,12 +34,12 @@ Application Insights 中的所有遙測事件都有[匿名使用者識別碼](ap
 
 如果您的應用程式傳送[已驗證的使用者識別碼](app-insights-api-custom-events-metrics.md#authenticated-users)，您可以根據使用者工具中的已驗證使用者識別碼來進行計算。 在 [顯示] 下拉式清單中，選擇 [已驗證的使用者]。
 
-使用情況分析工具目前不支援以匿名使用者識別碼、已驗證的使用者識別碼或工作階段識別碼之外的屬性作為基礎，來計算使用者或工作階段。
+使用者行為分析工具目前不支援以匿名使用者識別碼、已驗證的使用者識別碼或工作階段識別碼之外的屬性作為基礎，來計算使用者或工作階段。
 
 ## <a name="naming-events"></a>命名事件
-**我的應用程式有數千種不同的網頁檢視和自訂事件名稱。我很難辨別這些項目，且使用情況分析工具經常沒有回應。如何修正這些命名問題？**
+**我的應用程式有數千種不同的網頁檢視和自訂事件名稱。我很難辨別這些項目，且使用者行為分析工具經常沒有回應。如何修正這些命名問題？**
 
-整個使用情況分析工具都會使用網頁檢視和自訂事件名稱。 若要獲得這些工具的價值，就必須適當地為這些事件命名。 命名目標是既不要讓名稱太少、太過於普遍 (例如「已按下的按鈕」)，也不要讓名稱太多、太過於獨特 (例如「在 http://www.contoso.com/index 上按下的編輯按鈕」)。
+整個使用者行為分析工具都會使用網頁檢視和自訂事件名稱。 若要獲得這些工具的價值，就必須適當地為這些事件命名。 命名目標是既不要讓名稱太少、太過於普遍 (例如「已按下的按鈕」)，也不要讓名稱太多、太過於獨特 (例如「在 http://www.contoso.com/index 上按下的編輯按鈕」)。
 
 若要對應用程式所傳送的網頁檢視和自訂事件名稱進行任何變更，您必須變更應用程式的原始程式碼，然後重新部署。 **Application Insights 中的所有遙測資料都會儲存 90 天，且無法加以刪除**，因此您對事件名稱所進行的變更需要 90 天才會完整顯示。 進行名稱變更之後的 90 天內，遙測中的事件名稱會新舊並陳，因此請據以調整查詢，並告知您的小組。
 
@@ -51,7 +53,7 @@ Application Insights 中的所有遙測事件都有[匿名使用者識別碼](ap
 
 ## <a name="next-steps"></a>後續步驟
 
-* [使用情況分析概觀](app-insights-usage-overview.md)
+* [使用者行為分析工具概觀](app-insights-usage-overview.md)
 
 ## <a name="get-help"></a>取得說明
 * [堆疊溢位](http://stackoverflow.com/questions/tagged/ms-application-insights)

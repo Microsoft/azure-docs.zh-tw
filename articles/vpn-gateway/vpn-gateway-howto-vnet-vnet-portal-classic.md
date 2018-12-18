@@ -1,13 +1,13 @@
 ---
-title: "建立 VNet 之間的連線：傳統：Azure 入口網站 | Microsoft Docs"
-description: "使用 PowerShell 和 Azure 入口網站將 Azure 虛擬網路連接在一起。"
+title: 建立 VNet 之間的連線：傳統：Azure 入口網站 | Microsoft Docs
+description: 使用 PowerShell 和 Azure 入口網站將 Azure 虛擬網路連接在一起。
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
 manager: jpconnock
-editor: 
+editor: ''
 tags: azure-service-management
-ms.assetid: 
+ms.assetid: ''
 ms.service: vpn-gateway
 ms.devlang: na
 ms.topic: article
@@ -15,11 +15,12 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/14/2018
 ms.author: cherylmc
-ms.openlocfilehash: 9e0c96d0d2c321869f7dc90e18f8dd25d58edc8f
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.openlocfilehash: d9766afefa793baf66ea5218843f06031b1b364c
+ms.sourcegitcommit: 59914a06e1f337399e4db3c6f3bc15c573079832
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 04/19/2018
+ms.locfileid: "31601051"
 ---
 # <a name="configure-a-vnet-to-vnet-connection-classic"></a>設定 VNet 對 VNet 連線 (傳統)
 
@@ -218,7 +219,7 @@ Azure 會使用每個區域網路站台中指定的設定，來決定如何路�
 2. 以提高的權限開啟 PowerShell 主控台並連接到您的帳戶。 使用下列範例來協助您連接：
 
   ```powershell
-  Login-AzureRmAccount
+  Connect-AzureRmAccount
   ```
 
   檢查帳戶的訂用帳戶。

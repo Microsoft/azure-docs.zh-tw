@@ -8,16 +8,17 @@ manager: timlt
 editor: ''
 ms.service: azure-resource-manager
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/13/2018
+ms.date: 06/02/2018
 ms.author: tomfitz
-ms.openlocfilehash: 90cb87b3fe94b7b3b0eba1b261d29a1c8f4348d6
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: fec075a744b5f47a4be7f1b960cceedfea7b9a2c
+ms.sourcegitcommit: e8f443ac09eaa6ef1d56a60cd6ac7d351d9271b9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/12/2018
+ms.locfileid: "35632984"
 ---
 # <a name="deploy-azure-resources-to-more-than-one-subscription-or-resource-group"></a>將 Azure 資源部署至多個訂用帳戶和資源群組
 
@@ -126,13 +127,11 @@ ms.lasthandoff: 03/16/2018
 
 如果您將 `resourceGroup` 設定為不存在的資源群組名稱，部署就會失敗。
 
-若要部署範例範本，請使用 Azure PowerShell 4.0.0 或更新版本或是 Azure CLI 2.0.0 或更新版本。
+## <a name="use-the-resourcegroup-and-subscription-functions"></a>使用 resourceGroup() 和 subscription() 函式
 
-## <a name="use-the-resourcegroup-function"></a>使用 resourceGroup() 函式
+對於跨資源群組部署，[resourceGroup()](resource-group-template-functions-resource.md#resourcegroup) 和 [subscription()](resource-group-template-functions-resource.md#subscription) 函式會根據您指定巢狀範本的方式，以不同的方式進行解析。 
 
-對於跨資源群組部署，[resouceGroup() 函式](resource-group-template-functions-resource.md#resourcegroup)會根據您指定巢狀範本的方式，以不同的方式進行解析。 
-
-如果您將某個範本內嵌於另一個範本內，巢狀範本中的 resouceGroup() 會解析至父資源群組。 內嵌範本會使用下列格式：
+如果您將某個範本內嵌於另一個範本內，巢狀範本中的函式將會解析至父資源群組和訂用帳戶。 內嵌範本會使用下列格式：
 
 ```json
 "apiVersion": "2017-05-10",
@@ -143,12 +142,12 @@ ms.lasthandoff: 03/16/2018
     "mode": "Incremental",
     "template": {
         ...
-        resourceGroup() refers to parent resource group
+        resourceGroup() and subscription() refer to parent resource group/subscription
     }
 }
 ```
 
-如果您連結至個別範本，連結範本中的 resourceGroup() 會解析至巢狀資源群組。 連結範本會使用下列格式：
+如果您連結至個別範本，連結範本中的函式將會解析至巢狀資源群組和訂用帳戶。 連結範本會使用下列格式：
 
 ```json
 "apiVersion": "2017-05-10",
@@ -159,7 +158,7 @@ ms.lasthandoff: 03/16/2018
     "mode": "Incremental",
     "templateLink": {
         ...
-        resourceGroup() in linked template refers to linked resource group
+        resourceGroup() and subscription() in linked template refer to linked resource group/subscription
     }
 }
 ```

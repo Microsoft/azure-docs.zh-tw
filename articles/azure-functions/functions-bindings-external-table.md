@@ -1,12 +1,12 @@
 ---
-title: "Azure Functions 的外部資料表繫結 (實驗性)"
-description: "使用 Azure Functions 中的外部資料表繫結"
+title: Azure Functions 的外部資料表繫結 (實驗性)
+description: 使用 Azure Functions 中的外部資料表繫結
 services: functions
-documentationcenter: 
+documentationcenter: ''
 author: alexkarcher-msft
 manager: cfowler
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: functions
 ms.workload: na
 ms.tgt_pltfrm: na
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 1d423a8954731b0f318240f2fa0262934ff04bd9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 01/05/2018
+ms.locfileid: "27613276"
 ---
 # <a name="external-table-binding-for-azure-functions-experimental"></a>Azure Functions 的外部資料表繫結 (實驗性)
 

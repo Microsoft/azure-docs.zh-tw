@@ -1,0 +1,41 @@
+items:
+- name: Azure AD Identity Governance 文件
+  href: index.yml
+- name: 概觀
+  items:
+  - name: 什麼是身分識別治理？
+    href: identity-governance-overview.md
+  expanded: true
+- name: 使用說明指南
+  items:
+  - name: 存取權檢閱
+    items:
+    - name: 什麼是存取權檢閱？
+      href: access-reviews-overview.md
+    - name: 建立存取權檢閱
+      href: create-access-review.md
+    - name: 完成存取權檢閱
+      href: complete-access-review.md
+    - name: 執行存取權檢閱
+      href: perform-access-review.md
+    - name: 檢閱您的存取權
+      href: review-your-access.md
+    - name: 透過存取權檢閱進行來賓存取
+      href: manage-guest-access-with-access-reviews.md
+    - name: 透過檢閱管理使用者存取
+      href: manage-user-access-with-access-reviews.md
+    - name: 管理程式及其控制項
+      href: manage-programs-controls.md
+    - name: 擷取存取權檢閱結果
+      href: retrieve-access-review.md
+    - name: 管理排除的使用者
+      href: conditional-access-exclusion.md
+  - name: 使用規定
+    href: active-directory-tou.md
+  expanded: true
+ms.openlocfilehash: b6280e42839344169ab651cd5d882bb6abfbf388
+ms.sourcegitcommit: 51a1476c85ca518a6d8b4cc35aed7a76b33e130f
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47163132"

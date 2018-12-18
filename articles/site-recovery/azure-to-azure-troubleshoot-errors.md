@@ -1,19 +1,20 @@
 ---
-title: "Azure 至 Azure 複寫問題和錯誤的 Azure Site Recovery 疑難排解 | Microsoft Docs"
-description: "對於複寫 Azure 虛擬機器進行嚴重損壞修復時發生的錯誤和問題進行疑難排解"
+title: Azure 至 Azure 複寫問題和錯誤的 Azure Site Recovery 疑難排解 | Microsoft Docs
+description: 對於複寫 Azure 虛擬機器進行嚴重損壞修復時發生的錯誤和問題進行疑難排解
 services: site-recovery
 author: sujayt
 manager: rochakm
 ms.service: site-recovery
 ms.devlang: na
 ms.topic: article
-ms.date: 02/12/2018
+ms.date: 08/09/2018
 ms.author: sujayt
-ms.openlocfilehash: be43e34976682847c4756e062ec5b638ebc26063
-ms.sourcegitcommit: b32d6948033e7f85e3362e13347a664c0aaa04c1
+ms.openlocfilehash: 86d6c77dab817cf755c34bdd699ee1158e852f37
+ms.sourcegitcommit: 1af4bceb45a0b4edcdb1079fc279f9f2f448140b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/13/2018
+ms.lasthandoff: 08/09/2018
+ms.locfileid: "42141023"
 ---
 # <a name="troubleshoot-azure-to-azure-vm-replication-issues"></a>Azure 至 Azure VM 複寫問題的疑難排解
 
@@ -147,12 +148,44 @@ ms.lasthandoff: 02/13/2018
 
 ## <a name="outbound-connectivity-for-site-recovery-urls-or-ip-ranges-error-code-151037-or-151072"></a>Site Recovery URL 或 IP 範圍的輸出連線能力 (錯誤碼 151037 或 151072)
 
-若要使 Site Recovery 複寫正常運作，VM 需要特定 URL 或 IP 範圍的輸出連線能力。 如果您的 VM 位於防火牆後方，或使用網路安全性群組 (NSG) 規則控制輸出連線能力，您可能會看到下列其中一個錯誤訊息：
+若要使 Site Recovery 複寫正常運作，VM 需要特定 URL 或 IP 範圍的輸出連線能力。 如果您的 VM 位於防火牆後方，或使用網路安全性群組 (NSG) 規則控制輸出連線能力，您可能會遇到下列其中一個問題。
 
-**錯誤碼** | **可能的原因** | **建議**
---- | --- | ---
-151037<br></br>**訊息**：無法向 Site Recovery 註冊 Azure 虛擬機器。 | - 您使用 NSG 控制傳出 VM 的存取，而且所需的 IP 範圍並未列在傳出存取的白名單中。</br></br>- 您使用第三方防火牆工具，而且所需的 IP 範圍/URL 並未列在白名單中。</br>| - 如果您使用防火牆 Proxy 控制 VM 上的傳出網路連線能力，請確定必要條件 URL 或資料中心 IP 範圍列在白名單中。 如需資訊，請參閱[防火牆 Proxy 指引](https://aka.ms/a2a-firewall-proxy-guidance)。</br></br>- 如果您使用 NSG 規則控制 VM 上的傳出網路連線能力，請確定必要條件資料中心 IP 範圍列在白名單中。 如需資訊，請參閱[網路安全性群組指引](https://aka.ms/a2a-nsg-guidance)。
-151072<br></br>**訊息**：Site Recovery 組態失敗。 | 無法在連線至 Site Recovery 服務端點。 | - 如果您使用防火牆 Proxy 控制 VM 上的傳出網路連線能力，請確定必要條件 URL 或資料中心 IP 範圍列在白名單中。 如需資訊，請參閱[防火牆 Proxy 指引](https://aka.ms/a2a-firewall-proxy-guidance)。</br></br>- 如果您使用 NSG 規則控制 VM 上的傳出網路連線能力，請確定必要條件資料中心 IP 範圍列在白名單中。 如需資訊，請參閱[網路安全性群組指引](https://aka.ms/a2a-nsg-guidance)。
+### <a name="issue-1-failed-to-register-azure-virtual-machine-with-site-recovery-151037-br"></a>問題 1：無法向 Site Recovery 註冊 Azure 虛擬機器 (151037) </br>
+- **可能的原因** </br>
+  - 您使用 NSG 控制傳出 VM 的存取，而且所需的 IP 範圍並未列在傳出存取的允許清單中。
+  - 您使用第三方防火牆工具，而且所需的 IP 範圍/URL 並未列在允許清單中。
+
+
+- **解決方案**
+   - 如果您使用防火牆 Proxy 控制 VM 上的傳出網路連線能力，請確定必要條件 URL 或資料中心 IP 範圍列在允許清單中。 如需資訊，請參閱[防火牆 Proxy 指引](https://aka.ms/a2a-firewall-proxy-guidance)。
+   - 如果您使用 NSG 規則控制 VM 上的傳出網路連線能力，請確定必要條件資料中心 IP 範圍列在允許清單中。 如需資訊，請參閱[網路安全性群組指引](https://aka.ms/a2a-nsg-guidance)。
+   - 若要將[所需的 URL](azure-to-azure-about-networking.md#outbound-connectivity-for-urls) 或[所需的 IP 範圍](azure-to-azure-about-networking.md#outbound-connectivity-for-ip-address-ranges)列入允許清單中，請依照[網路指引文件](site-recovery-azure-to-azure-networking-guidance.md)中的步驟進行。
+
+### <a name="issue-2-site-recovery-configuration-failed-151072"></a>問題 2：Site Recovery 組態失敗 (151072)
+- **可能的原因** </br>
+  - 無法在連線至 Site Recovery 服務端點
+
+
+- **解決方案**
+   - 如果您使用防火牆 Proxy 控制 VM 上的傳出網路連線能力，請確定必要條件 URL 或資料中心 IP 範圍列在允許清單中。 如需資訊，請參閱[防火牆 Proxy 指引](https://aka.ms/a2a-firewall-proxy-guidance)。
+   - 如果您使用 NSG 規則控制 VM 上的傳出網路連線能力，請確定必要條件資料中心 IP 範圍列在允許清單中。 如需資訊，請參閱[網路安全性群組指引](https://aka.ms/a2a-nsg-guidance)。
+   - 若要將[所需的 URL](azure-to-azure-about-networking.md#outbound-connectivity-for-urls) 或[所需的 IP 範圍](azure-to-azure-about-networking.md#outbound-connectivity-for-ip-address-ranges)列入允許清單中，請依照[網路指引文件](site-recovery-azure-to-azure-networking-guidance.md)中的步驟進行。
+
+### <a name="issue-3-a2a-replication-failed-when-the-network-traffic-goes-through-on-premise-proxy-server-151072"></a>問題 3：當網路流量通過內部部署 Proxy 伺服器時，A2A 複寫失敗 (151072)
+ - **可能的原因** </br>
+   - 自訂 Proxy 設定無效，且 ASR 行動服務代理程式未自動偵測到 IE 的 Proxy 設定
+
+
+ - **解決方案**
+  1.    行動服務代理程式偵測到 IE 的 Proxy 設定 (在 Windows 上) 和 /etc/environment (在 Linux 上)。
+  2.  如果您只想要為 ASR 行動服務設定 Proxy，則可在 ProxyInfo.conf 中提供 Proxy 詳細資料，該檔案位於：</br>
+      - ``/usr/local/InMage/config/`` (在 ***Linux*** 上)
+      - ``C:\ProgramData\Microsoft Azure Site Recovery\Config`` (在 ***Windows*** 上)
+  3.    ProxyInfo.conf 應該要有下列 INI 格式的 Proxy 設定。 </br>
+                   [proxy]</br>
+                   Address=http://1.2.3.4</br>
+                   Port=567</br>
+  4. ASR 行動服務代理程式僅支援***未驗證的 Proxy***。
 
 ### <a name="fix-the-problem"></a>修正問題
 若要將[所需的 URL](azure-to-azure-about-networking.md#outbound-connectivity-for-urls) 或[所需的 IP 範圍](azure-to-azure-about-networking.md#outbound-connectivity-for-ip-address-ranges)列入白名單中，請依照[網路指引文件](site-recovery-azure-to-azure-networking-guidance.md)中的步驟進行。
@@ -176,6 +209,13 @@ ms.lasthandoff: 02/13/2018
 
 ## <a name="unable-to-see-the-azure-vm-for-selection-in-enable-replication"></a>看不見 Azure VM，無法在「啟用複寫」中選取
 
+ **原因 1：資源群組和來源虛擬機器位於不同的位置** <br>
+Azure Site Recovery 目前要求來源區域資源群組和虛擬機器應該位在相同的位置。 如果情況不是這樣，那麼在保護期間您就無法尋找虛擬機器。
+
+**原因 2：資源群組不在選取的訂用帳戶中** <br>
+如果資源群組不是指定的訂用帳戶的一部分，則可能無法在保護時尋找該資源組。 請確定資源群組屬於正在使用的訂用帳戶。
+
+ **原因 3：過時的設定** <br>
 如果您未看見想要啟用來進行複寫的 VM，可能是因為 Azure VM 上保留了過時的 Site Recovery 設定。 在下列情況中，Azure VM 可能保留過時的組態：
 
 - 您使用 Site Recovery 啟用 Azure VM 的複寫，然後刪除 Site Recovery 保存庫，但是並未明確停用 VM 上的複寫。
@@ -184,6 +224,11 @@ ms.lasthandoff: 02/13/2018
 ### <a name="fix-the-problem"></a>修正問題
 
 您可以使用[移除過時 ASR 組態指令碼](https://gallery.technet.microsoft.com/Azure-Recovery-ASR-script-3a93f412)，並移除 Azure VM 上的過時 Site Recovery 組態。 在移除過時的設定之後，您應該就能看到該 VM。
+
+## <a name="unable-to-select-virtual-machine-for-protection"></a>無法選取虛擬機器進行保護 
+ **原因 1：虛擬機器在失敗或沒有回應的狀態下安裝了某些延伸模組** <br>
+ 移至 [虛擬機器] > [設定] > [延伸模組]，並檢查是否有任何延伸模組處於失敗狀態。 解除安裝失敗的延伸模組，並重試保護虛擬機器。<br>
+ **原因 2：[VM 的佈建狀態無效](#vms-provisioning-state-is-not-valid-error-code-150019)**
 
 ## <a name="vms-provisioning-state-is-not-valid-error-code-150019"></a>VM 的佈建狀態無效 (錯誤碼 150019)
 
@@ -199,6 +244,32 @@ ms.lasthandoff: 02/13/2018
 
 - 如果 [provisioningState] 是「失敗」，請連絡支援人員以取得疑難排解的詳細資訊。
 - 如果 [provisioningState] 是「正在更新」，則可能有其他擴充功能正在部署。 檢查 VM 上是否有任何進行中的作業，等候它們完成然後重試失敗的 Site Recovery **啟用複寫**作業。
+
+## <a name="unable-to-select-target-virtual-network---network-selection-tab-is-grayed-out"></a>無法選取目標虛擬網路 - 網路選取索引標籤呈現灰色。
+
+**原因 1：如果 VM 所連結的網路已對應至「目標網路」。**
+- 如果來源 VM 屬於虛擬網路，且來自相同虛擬網路的另一個 VM 已對應至目標資源群組中的網路，則根據預設，系統會停用網路選取下拉式清單。
+
+![Network_Selection_greyed_out](./media/site-recovery-azure-to-azure-troubleshoot/unabletoselectnw.png)
+
+**原因 2︰如果您先前使用 Azure Site Recovery 保護 VM 並停用複寫。**
+ - 停用 VM 的複寫不會刪除網路對應。 您必須從受保護 VM 所在的復原服務保存庫中將其刪除。 </br>
+ 瀏覽至 [復原服務保存庫] > [Site Recovery 基礎結構] > [網路對應]。 </br>
+ ![Delete_NW_Mapping](./media/site-recovery-azure-to-azure-troubleshoot/delete_nw_mapping.png)
+ - 完成初始設定後，您可在 VM 受到保護後，對災害復原設定期間所設定的目標網路進行變更。 </br>
+ ![Modify_NW_mapping](./media/site-recovery-azure-to-azure-troubleshoot/modify_nw_mapping.png)
+ - 請注意，變更網路對應會影響所有使用該特定網路對應的受保護 VM。
+
+
+## <a name="comvolume-shadow-copy-service-error-error-code-151025"></a>COM+/磁碟區陰影複製服務錯誤 (錯誤碼 151025)
+**錯誤碼** | **可能的原因** | **建議**
+--- | --- | ---
+151025<br></br>**訊息**：無法安裝站台復原擴充功能 | - 停用「COM+ 系統應用程式」服務。</br></br>- 停用「磁碟區陰影複製」服務。| 將「COM+ 系統應用程式」和「磁碟區陰影複製」服務設為自動或手動啟動模式。
+
+### <a name="fix-the-problem"></a>修正問題
+
+您可以開啟 [服務] 主控台，確定「COM+ 系統應用程式」和「磁碟區陰影複製」的 [啟動類型] 未設定為 [停用]。
+  ![com-error](./media/azure-to-azure-troubleshoot-errors/com-error.png)
 
 ## <a name="next-steps"></a>後續步驟
 [複寫 Azure 虛擬機器](site-recovery-replicate-azure-to-azure.md)

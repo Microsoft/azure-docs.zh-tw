@@ -12,14 +12,15 @@ ms.workload: na
 pms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/21/2018
+ms.date: 09/10/2018
 ms.author: jeffgilb
 ms.reviewer: misainat
-ms.openlocfilehash: f4b55bb3287f67792b3257c3f62256437f5625ca
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 41d27b9a173cc019549f1dea0c66ffcaa51fbb10
+ms.sourcegitcommit: c29d7ef9065f960c3079660b139dd6a8348576ce
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/12/2018
+ms.locfileid: "44719438"
 ---
 # <a name="azure-stack-deployment-planning-considerations"></a>Azure Stack 部署規劃考量
 在部署 Azure Stack 開發套件 (ASDK) 前，請確定您的開發套件主機電腦符合本文中所述的需求。
@@ -38,7 +39,7 @@ ms.lasthandoff: 03/23/2018
 
 <sup>*</sup>如果您打算從 Azure 新增許多[市集項目](asdk-marketplace-item.md)，則您所需的容量會比這個建議的容量多。
 
-**資料磁碟機組態：**所有資料磁碟機都必須具有相同的類型 (全部都是 SAS、SATA 或 NVMe) 和容量。 如果使用 SAS 磁碟機，則該磁碟機必須透過單一路徑連結 (不支援 MPIO 多重路徑)。
+**資料磁碟機組態：** 所有資料磁碟機都必須具有相同的類型 (全部都是 SAS、SATA 或 NVMe) 和容量。 如果使用 SAS 磁碟機，則該磁碟機必須透過單一路徑連結 (不支援 MPIO 多重路徑)。
 
 **HBA 組態選項**
 
@@ -65,7 +66,7 @@ ms.lasthandoff: 03/23/2018
 ## <a name="operating-system"></a>作業系統
 |  | **需求** |
 | --- | --- |
-| **作業系統版本** |Windows Server 2012 R2 或更新版本。 作業系統版本在部署開始前並不重要，因為您將會讓主機電腦開機進入 Azure Stack 安裝所包含的 VHD。 OS 和所有必要的修補程式都已經整合到該映像中。 請勿使用任何金鑰來啟用開發套件中使用的任何 Windows Server 執行個體。 |
+| **作業系統版本** |Windows Server 2016 或更新版本。 作業系統版本在部署開始前並不重要，因為您將會讓主機電腦開機進入 Azure Stack 安裝所包含的 VHD。 作業系統和所有必要的修補程式都已經整合到該映像中。 請勿使用任何金鑰來啟用開發套件中使用的任何 Windows Server 執行個體。 |
 
 > [!TIP]
 > 安裝作業系統之後，您可以使用[適用於 Azure Stack 的部署檢查程式](https://gallery.technet.microsoft.com/Deployment-Checker-for-50e0f51b)來確認您的硬體符合所有需求。
@@ -88,10 +89,12 @@ ms.lasthandoff: 03/23/2018
    
    | **Azure Active Directory 帳戶** | **是否支援？** |
    | --- | --- |
-   | 具備有效公用 Azure 訂用帳戶的公司或學校帳戶 |yes |
-   | 具備有效的公用 Azure 訂用帳戶之 Microsoft 帳戶 |yes |
-   | 具備有效中國 Azure 訂用帳戶的公司或學校帳戶 |yes |
-   | 具備有效美國政府 Azure 訂用帳戶的公司或學校帳戶 |yes |
+   | 具備有效公用 Azure 訂用帳戶的公司或學校帳戶 |是 |
+   | 具備有效的公用 Azure 訂用帳戶之 Microsoft 帳戶 |是 |
+   | 具備有效中國 Azure 訂用帳戶的公司或學校帳戶 |是 |
+   | 具備有效美國政府 Azure 訂用帳戶的公司或學校帳戶 |是 |
+
+部署之後，就不需要 Azure Active Directory 全域管理員權限。 不過，某些作業可能需要全域管理員認證。 例如，需要獲派權限的資源提供者安裝程式指令碼或新功能。 您可以暫時恢復帳戶的全域管理員權限，或使用擁有「預設提供者訂用帳戶」的個別全域管理員帳戶。
 
 ## <a name="network"></a>網路
 ### <a name="switch"></a>Switch

@@ -1,24 +1,20 @@
 ---
-title: "Azure 佇列儲存體簡介 | Microsoft Docs"
-description: "Azure 佇列儲存體簡介"
+title: Azure 佇列儲存體簡介 | Microsoft Docs
+description: Azure 佇列儲存體簡介
 services: storage
-documentationcenter: 
 author: tamram
-manager: timlt
-editor: tysonn
-ms.assetid: 
 ms.service: storage
-ms.workload: storage
 ms.tgt_pltfrm: na
-ms.devlang: na
 ms.topic: article
 ms.date: 08/07/2017
 ms.author: tamram
-ms.openlocfilehash: 792e8c7efb2a627fbc1abde1389015949d5931e7
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.component: queues
+ms.openlocfilehash: d2d4a31097c4050ba9193fc9d6fa076fe9c6e27f
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39524826"
 ---
 # <a name="introduction-to-queues"></a>佇列簡介
 
@@ -37,14 +33,14 @@ Azure 佇列儲存體是一項儲存大量訊息的服務，全球任何地方�
 
 ![佇列概念](./media/storage-queues-introduction/queue1.png)
 
-* **URL 格式：**可利用下列 URL 格式來定址佇列：   
-    http://`<storage account>`.queue.core.windows.net/`<queue>` 
+* **URL 格式：** 可利用下列 URL 格式來定址佇列：   
+    https://`<storage account>`.queue.core.windows.net/`<queue>` 
   
     下列 URL 可定址圖中的佇列：  
   
-    `http://myaccount.queue.core.windows.net/images-to-download`
+    `https://myaccount.queue.core.windows.net/images-to-download`
 
-* **儲存體帳戶：**一律透過儲存體帳戶來存取 Azure 儲存體。 如需關於儲存體帳戶容量的詳細資訊，請參閱＜ [Azure 儲存體延展性和效能目標](../common/storage-scalability-targets.md?toc=%2fazure%2fstorage%2fqueues%2ftoc.json) ＞(英文)。
+* **儲存體帳戶：** 一律透過儲存體帳戶來存取 Azure 儲存體。 如需關於儲存體帳戶容量的詳細資訊，請參閱＜ [Azure 儲存體延展性和效能目標](../common/storage-scalability-targets.md?toc=%2fazure%2fstorage%2fqueues%2ftoc.json) ＞(英文)。
 
 * **佇列：** 佇列包含一組訊息。 所有訊息都必須放在佇列中。 請注意，佇列名稱必須是小寫。 如需為佇列命名的詳細資訊，請參閱 [為佇列和中繼資料命名](https://msdn.microsoft.com/library/azure/dd179349.aspx)。
 

@@ -1,26 +1,27 @@
 ---
-title: 應用程式註冊 - Azure Active Directory B2C
+title: Azure Active Directory B2C 中的應用程式註冊 | Microsoft Docs
 description: 如何向 Azure Active Directory B2C 註冊您的應用程式
 services: active-directory-b2c
 author: davidmu1
 manager: mtillman
-editor: ''
-ms.service: active-directory-b2c
+ms.service: active-directory
 ms.workload: identity
-ms.topic: get-started-article
+ms.topic: conceptual
 ms.date: 6/13/2017
 ms.author: davidmu
-ms.openlocfilehash: 0d3c351ebe70a963db0453538108ae9b2fefef86
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: B2C
+ms.openlocfilehash: 4f8a5b1ceda77ef254ad0c2afb7d2316581d778e
+ms.sourcegitcommit: 3a7c1688d1f64ff7f1e68ec4bb799ba8a29a04a8
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49376391"
 ---
 # <a name="azure-active-directory-b2c-register-your-application"></a>Azure Active Directory B2C：註冊您的應用程式
 
 本快速入門協助您在幾分鐘內於 Microsoft Azure Active Directory (Azure AD) B2C 租用戶中註冊應用程式。 當您完成時，應用程式就已註冊完成，以便在 Azure AD B2C 租用戶中使用。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 若要建置可接受取用者註冊與登入的應用程式，您必須先使用 Azure Active Directory B2C 租用戶註冊該應用程式。 使用 [建立 Azure AD B2C 租用戶](active-directory-b2c-get-started.md)中概述的步驟來建立您自己的租用戶。
 
@@ -99,7 +100,7 @@ ms.lasthandoff: 03/23/2018
 
 `https://new.login.contoso.com`
 
-在此情況下，您參照的是 login.contoso.com 的 DNS 子網域。如果您想要有一個以 login-east.contoso.com 和 login-west.contoso.com 做為回覆 URL 的應用程式，就必須依下列順序新增這些回覆 URL︰
+在此情況下，您參照的是 login.contoso.com 的 DNS 子網域。 如果您想要有一個以 login-east.contoso.com 和 login-west.contoso.com 做為回覆 URL 的應用程式，就必須依下列順序新增這些回覆 URL︰
 
 `https://contoso.com`
 
@@ -131,7 +132,7 @@ ms.lasthandoff: 03/23/2018
 
 ## <a name="next-steps"></a>後續步驟
 
-您現已在 Azure AD B2C 註冊應用程式，只需完成其中一個[快速啟動教學課程](active-directory-b2c-overview.md#get-started)，即可開始操作和執行。
+您現已在 Azure AD B2C 註冊應用程式，只需完成其中一個[快速啟動教學課程](active-directory-b2c-overview.md)，即可開始操作和執行。
 
 > [!div class="nextstepaction"]
 > [透過註冊、登入和密碼重設來建立 ASP.NET Web 應用程式](active-directory-b2c-devquickstarts-web-dotnet-susi.md)

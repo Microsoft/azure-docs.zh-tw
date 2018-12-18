@@ -1,36 +1,37 @@
 ### YamlMime:YamlDocument
+ms.openlocfilehash: c781f99d47da9705e1439af660e9801ecac91665
+ms.sourcegitcommit: 7ad9db3d5f5fd35cfaa9f0735e8c0187b9c32ab1
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 07/27/2018
+ms.locfileid: "39324267"
 documentType: LandingData
-title: "Azure 儲存體文件"
+title: Azure 儲存體文件
 metadata:
-  title: "Azure 儲存體文件 - 教學課程和 API 參考 | Microsoft Docs"
-  description: "Azure 儲存體是受 Microsoft 管理的雲端服務，可提供高度可用、安全、耐用、可擴充和備援的儲存體。 Azure 儲存體包含 Blob 儲存體、檔案儲存體和佇列儲存體。"
+  title: Azure 儲存體文件 - 教學課程和 API 參考 | Microsoft Docs
+  description: Azure 儲存體是受 Microsoft 管理的雲端服務，可提供高度可用、安全、耐用、可擴充和備援的儲存體。 Azure 儲存體包含 Azure Blob、Azure Data Lake Storage Gen2、Azure 檔案服務、Azure 佇列和 Azure 資料表。
   services: storage
   author: tamram
-  manager: jeconnoc
+  manager: twooley
   ms.service: storage
   ms.tgt_pltfrm: na
   ms.devlang: na
   ms.topic: landing-page
-  ms.date: 12/08/2017
+  ms.date: 06/27/2018
   ms.author: tamram
-  ms.openlocfilehash: f19fc44c2d8f4a8af7f757983020eaee6f94b241
-  ms.sourcegitcommit: 562a537ed9b96c9116c504738414e5d8c0fd53b1
-  ms.translationtype: HT
-  ms.contentlocale: zh-TW
-  ms.lasthandoff: 01/12/2018
 abstract:
-  description: "Microsoft Azure 儲存體是 Microsoft 管理的雲端服務，可提供高度可用、安全、持久、可擴充和備援的儲存體。 Azure 儲存體包含 Blob 儲存體、檔案儲存體和佇列儲存體。  了解如何透過我們的快速入門及教學課程，在應用程式中運用 Azure 儲存體。"
+  description: Azure 儲存體是受 Microsoft 管理的服務，可提供高度可用、安全、耐用、可擴充和備援的雲端儲存體。 Azure 儲存體包含 Azure Blob (物件)、Azure Data Lake Storage Gen2、Azure 檔案服務、Azure 佇列和 Azure 資料表。 了解如何透過我們的快速入門及教學課程，在應用程式中運用 Azure 儲存體。
 sections:
-- title: "5 分鐘快速入門"
+- title: 5 分鐘快速入門
   items:
   - type: paragraph
-    text: "探索這些快速入門，了解如何使用 Azure 儲存體。"
+    text: 探索這些快速入門，了解如何使用 Azure 儲存體。
   - type: table
     style: dataMatrix
     columns:
     - image:
         src: media/index/portal.svg
-        text: "入口網站"
+        text: 入口網站
     - image:
         src: media/index/logo_powershell.svg
         text: Powershell
@@ -46,7 +47,7 @@ sections:
     - image:
         src: media/index/logo_nodejs.svg
     rows:
-    - title: "建立儲存體帳戶"
+    - title: 建立儲存體帳戶
       values:
       - href: /azure/storage/common/storage-quickstart-create-account?tabs=portal
       - href: /azure/storage/common/storage-quickstart-create-account?tabs=powershell
@@ -55,7 +56,7 @@ sections:
       - href: 
       - href: 
       - href: 
-    - title: "Blob 快速入門"
+    - title: Blob 快速入門
       values:
       - href: /azure/storage/blobs/storage-quickstart-blobs-portal
       - href: /azure/storage/blobs/storage-quickstart-blobs-powershell
@@ -64,67 +65,62 @@ sections:
       - href: /azure/storage/blobs/storage-quickstart-blobs-java
       - href: /azure/storage/blobs/storage-quickstart-blobs-python
       - href: /azure/storage/blobs/storage-quickstart-blobs-nodejs
-- title: "逐步教學課程"
-  items:
-  - type: paragraph
-    text: "了解如何在雲端上傳和處理映像資料。"
-  - type: list
-    style: unordered
-    items:
-    - html: "<a href=\"/azure/storage/blobs/storage-upload-process-images\">在雲端上傳和擷取映像資料</a>"
-    - html: "<a href=\"/azure/event-grid/resize-images-on-storage-blob-upload-event?toc=%2fazure%2fstorage%2fblobs%2ftoc.json\">觸發 Azure Functions 來處理 Blob</a>"
-    - html: "<a href=\"/azure/storage/blobs/storage-secure-access-application\">保護應用程式資料</a>"
-    - html: "<a href=\"/azure/storage/blobs/storage-monitor-troubleshoot-storage-application\">進行儲存體的監視和疑難排解</a>"
-  - type: paragraph
-    text: "了解如何針對 Azure 儲存體的高可用性設計應用程式。"
-  - type: list
-    style: unordered
-    items:
-    - html: "<a href=\"/azure/storage/blobs/storage-create-geo-redundant-storage\">讓您的應用程式資料保持高可用性</a>"
-    - html: "<a href=\"/azure/storage/blobs/storage-simulate-failure-ragrs-account-app\">模擬存取讀取權限備援儲存體時失敗</a>"
-  - type: paragraph
-    text: "了解如何搜尋 Azure 儲存體中的非結構化資料。"
-  - type: list
-    style: unordered
-    items:
-    - html: "<a href=\"/azure/storage/blobs/storage-unstructured-search\">搜尋雲端儲存體中的非結構化資料</a>"
-- title: "範例"
-  items:
-  - type: paragraph
-    text: "尋找適合一般管理工作的指令碼。"
-  - type: list
-    style: unordered
-    className: spaced noBullet
-    items:
-    - html: ".NET &#58; <a href=\"https://azure.microsoft.com/resources/samples/?service=storage&term=blob&sort=0&platform=dotnet\">Blob</a> | <a     href=\"https://azure.microsoft.com/resources/samples/?service=storage&term=file&sort=0&platform=dotnet\">檔案</a> | <a href=\"https://azure.microsoft.com/resources/samples/?service=storage&term=queue&sort=0&platform=dotnet\">佇列</a>"
-    - html: "Java &#58; <a href=\"https://azure.microsoft.com/resources/samples/?service=storage&term=blob&sort=0&platform=java\">Blob</a> | <a href=\"https://azure.microsoft.com/resources/samples/?service=storage&term=file&sort=0&platform=java\">檔案</a> | <a href=\"https://azure.microsoft.com/resources/samples/?service=storage&term=queue&sort=0&platform=java\">佇列</a>"
-    - html: <a href="/azure/storage/blobs/storage-samples-blobs-powershell">Azure PowerShell</a>
-    - html: <a href="/azure/storage/blobs/storage-samples-blobs-cli">Azure CLI</a>
-- title: "免費 Pluralsight 影片訓練"
-  items:
-  - type: list
-    style: cards
-    className: cardsFTitle
-    items:
-    - title: "在 Azure 上利用 .NET 進行開發"
-      href: https://app.pluralsight.com/library/courses/developing-dotnet-microsoft-azure-getting-started/table-of-contents
-      image:
-        src: https://docs.microsoft.com/media/logos/logo_pluralsight.svg
-        href: https://app.pluralsight.com/library/courses/developing-dotnet-microsoft-azure-getting-started/table-of-contents
-    - title: "在 Azure 上利用 Node.js 進行開發"
-      href: https://app.pluralsight.com/library/courses/developing-nodejs-microsoft-azure-getting-started/table-of-contents
-      image:
-        src: https://docs.microsoft.com/media/logos/logo_pluralsight.svg
-        href: https://app.pluralsight.com/library/courses/developing-nodejs-microsoft-azure-getting-started/table-of-contents
-- title: "參考"
+    - title: Data Lake Storage Gen2
+      values:
+      - href: /azure/storage/data-lake-storage/quickstart-create-account#create-an-account-using-the-azure-portal
+      - href: /azure/storage/data-lake-storage/quickstart-create-account#create-an-account-using-powershell
+      - href: /azure/storage/data-lake-storage/quickstart-create-account#create-an-account-using-azure-cli
+      - href: 
+      - href: 
+      - href: 
+      - href: 
+- title: 逐步教學課程
   items:
   - type: list
     style: cards
     className: cardsD
     items:
-    - title: "命令列"
+    - title: Blob
+      html: <p>在雲端上傳和處理映像資料</p><ul><li><a href="/azure/storage/blobs/storage-upload-process-images">在雲端上傳和擷取映像資料</a></li><li><a href="/azure/event-grid/resize-images-on-storage-blob-upload-event?toc=%2fazure%2fstorage%2fblobs%2ftoc.json">觸發 Azure Functions 來處理 Blob</a></li><li><a href="/azure/storage/blobs/storage-secure-access-application">保護應用程式資料</a></li><li><a href="/azure/storage/blobs/storage-monitor-troubleshoot-storage-application">進行儲存體的監視和疑難排解</a></li></ul><p>針對高可用性設計應用程式</p><ul><li><a href="/azure/storage/blobs/storage-create-geo-redundant-storage">讓您的應用程式資料保持高可用性</a></li><li><a href="/azure/storage/blobs/storage-simulate-failure-ragrs-account-app">模擬存取讀取權限備援儲存體時失敗</a></li></ul><p><a href="/azure/storage/blobs/storage-unstructured-search">搜尋 Azure 儲存體中的非結構化資料</a></p>
+    - title: Data Lake Storage Gen2
+      html: <p><a href="/azure/storage/data-lake-storage/handle-data-using-databricks">使用 Azure Databrick 擷取、轉換和載入資料</a></p><p><a href="/azure/storage/data-lake-storage/using-databricks-spark">使用 Spark 以 DataBricks 存取 Azure Data Lake Storage Gen2 資料</a></p><p><a href="/azure/storage/data-lake-storage/tutorial-extract-transform-load-hive">使用 Azure HDInsight 上的 Apache Hive 來擷取、轉換和載入資料</a></p>
+- title: 範例
+  items:
+  - type: paragraph
+    text: 尋找適合一般管理工作的指令碼。
+  - type: list
+    style: unordered
+    className: spaced noBullet
+    items:
+    - html: .NET &#58; <a href="https://azure.microsoft.com/resources/samples/?service=storage&term=blob&sort=0&platform=dotnet">Blob</a> | <a     href="https://azure.microsoft.com/resources/samples/?service=storage&term=file&sort=0&platform=dotnet">檔案</a> | <a href="https://azure.microsoft.com/resources/samples/?service=storage&term=queue&sort=0&platform=dotnet">佇列</a>
+    - html: Java &#58; <a href="https://azure.microsoft.com/resources/samples/?service=storage&term=blob&sort=0&platform=java">Blob</a> | <a href="https://azure.microsoft.com/resources/samples/?service=storage&term=file&sort=0&platform=java">檔案</a> | <a href="https://azure.microsoft.com/resources/samples/?service=storage&term=queue&sort=0&platform=java">佇列</a>
+    - html: <a href="/azure/storage/blobs/storage-samples-blobs-powershell">Azure PowerShell</a>
+    - html: <a href="/azure/storage/blobs/storage-samples-blobs-cli">Azure CLI</a>
+- title: 免費 Pluralsight 影片訓練
+  items:
+  - type: list
+    style: cards
+    className: cardsFTitle
+    items:
+    - title: 在 Azure 上利用 .NET 進行開發
+      href: https://app.pluralsight.com/library/courses/developing-dotnet-microsoft-azure-getting-started/table-of-contents
+      image:
+        src: https://docs.microsoft.com/media/logos/logo_pluralsight.svg
+        href: https://app.pluralsight.com/library/courses/developing-dotnet-microsoft-azure-getting-started/table-of-contents
+    - title: 在 Azure 上利用 Node.js 進行開發
+      href: https://app.pluralsight.com/library/courses/developing-nodejs-microsoft-azure-getting-started/table-of-contents
+      image:
+        src: https://docs.microsoft.com/media/logos/logo_pluralsight.svg
+        href: https://app.pluralsight.com/library/courses/developing-nodejs-microsoft-azure-getting-started/table-of-contents
+- title: 參考
+  items:
+  - type: list
+    style: cards
+    className: cardsD
+    items:
+    - title: 命令列
       html: <p><a href="/powershell/storage">PowerShell</a></p><p><a href="/cli/azure/storage">Azure CLI</a></p>
-    - title: "語言"
-      html: <p><a href="/java/api/">Java</a></p><p><a href="http://azure.github.io/azure-storage-node">Node.js</a></p><p><a href="http://azure.github.io/azure-storage-php/">PHP</a></p><p><a href="http://azure.github.io/azure-storage-ruby">Ruby</a></p><p><a href="https://azure-storage.readthedocs.io/en/latest/index.html">Python</a></p><p><a href="http://azure.github.io/azure-storage-cpp">C++</a></p><p><a href="https://github.com/Azure/azure-storage-ios">iOS</a></p><p><a href="http://azure.github.io/azure-storage-android">Android</a></p>
+    - title: 語言
+      html: <p><a href="/dotnet/api/overview/azure/storage/client?view=azure-dotnet">.NET</a></p><p><a href="/java/api/overview/azure/storage/client?view=azure-java-stable">Java</a></p><p><a href="/javascript/api/overview/azure/storage?view=azure-node-latest">Node.js</a></p><p><a href="/python/api/overview/azure/storage">Python</a></p><p><a href="http://azure.github.io/azure-storage-php/">PHP</a></p><p><a href="http://azure.github.io/azure-storage-ruby">Ruby</a></p><p><a href="http://azure.github.io/azure-storage-cpp">C++</a></p><p><a href="https://github.com/Azure/azure-storage-ios">iOS</a></p><p><a href="http://azure.github.io/azure-storage-android">Android</a></p>
     - title: REST
-      html: "<p><a href=\"/rest/api/storageservices\">Blob、佇列、資料表和檔案</a></p><p><a href=\"/rest/api/storagerp\">資源提供者</a></p><p><a href=\"/rest/api/storageimportexport\">匯入/匯出</a></p>"
+      html: <p><a href="/rest/api/storageservices">Blob、佇列、資料表和檔案 API</a></p><p><a href="/rest/api/storagerp">儲存體資源提供者 API</a></p><p><a href="/rest/api/storageimportexport">匯入/匯出服務 API</a></p>

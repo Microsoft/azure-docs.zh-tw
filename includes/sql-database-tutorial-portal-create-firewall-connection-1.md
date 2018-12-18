@@ -1,10 +1,10 @@
-## <a name="log-in-to-the-azure-portal"></a>登入 Azure 入口網站
+## <a name="sign-in-to-the-azure-portal"></a>登入 Azure 入口網站
 
 登入 [Azure 入口網站](https://portal.azure.com/)。
 
 ## <a name="create-a-blank-sql-database"></a>建立空白 SQL Database
 
-Azure SQL Database 會使用一組定義的[計算和儲存體資源](../articles/sql-database/sql-database-service-tiers.md)建立。 此資料庫建立於 [Azure 資源群組](../articles/azure-resource-manager/resource-group-overview.md)和 [Azure SQL Database 邏輯伺服器](../articles/sql-database/sql-database-features.md)內。 
+Azure SQL Database 會使用一組定義的[計算和儲存體資源](../articles/sql-database/sql-database-service-tiers-dtu.md)建立。 此資料庫建立於 [Azure 資源群組](../articles/azure-resource-manager/resource-group-overview.md)和 [Azure SQL Database 邏輯伺服器](../articles/sql-database/sql-database-features.md)內。 
 
 遵循以下步驟來建立空白 SQL 資料庫。 
 
@@ -47,7 +47,7 @@ Azure SQL Database 會使用一組定義的[計算和儲存體資源](../article
    > [!IMPORTANT]
    > \* 大於內含儲存體數量的儲存體大小尚在預覽中，而且會產生額外成本。 如需詳細資訊，請參閱 [SQL Database 定價](https://azure.microsoft.com/pricing/details/sql-database/)。 
    >
-   >\* 在進階層中，超過 1 TB 的儲存體目前在下列區域為可用狀態：加拿大中部、加拿大東部、法國中部、德國中部、日本東部、韓國中部、美國中南部、東南亞、美國東部 2、美國西部、美國維吉尼亞州政府及西歐。 請參閱 [P11-P15 目前限制](../articles/sql-database/sql-database-resource-limits.md#single-database-limitations-of-p11-and-p15-when-the-maximum-size-greater-than-1-tb)。  
+   >\* 在進階層中，超過 1 TB 的儲存體目前在下列區域為可用狀態：加拿大中部、加拿大東部、法國中部、德國中部、日本東部、南韓中部、美國中南部、東南亞、美國東部 2、美國西部、美國維吉尼亞州政府及西歐。 請參閱 [P11-P15 目前限制](../articles/sql-database/sql-database-dtu-resource-limits-single-databases.md#single-database-limitations-of-p11-and-p15-when-the-maximum-size-greater-than-1-tb)。  
    > 
 
 9. 在選取伺服器層、DTU 數目和儲存體數量之後，按一下 [套用]。  

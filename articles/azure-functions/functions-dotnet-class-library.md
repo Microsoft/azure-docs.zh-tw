@@ -4,22 +4,19 @@ description: 了解如何使用 C# 開發 Azure Functions。
 services: functions
 documentationcenter: na
 author: ggailey777
-manager: cfowler
-editor: ''
-tags: ''
+manager: jeconnoc
 keywords: azure functions, 函式, 事件處理, webhook, 動態計算, 無伺服器架構
-ms.service: functions
+ms.service: azure-functions
 ms.devlang: dotnet
 ms.topic: reference
-ms.tgt_pltfrm: multiple
-ms.workload: na
-ms.date: 12/12/2017
+ms.date: 09/12/2018
 ms.author: glenga
-ms.openlocfilehash: 70c4d6276970a781517fe49ec47e9b2ddb884c78
-ms.sourcegitcommit: 168426c3545eae6287febecc8804b1035171c048
+ms.openlocfilehash: 54ac616f97ba034893721ff62fc6157dd045b5f8
+ms.sourcegitcommit: f10653b10c2ad745f446b54a31664b7d9f9253fe
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/08/2018
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46126815"
 ---
 # <a name="azure-functions-c-developer-reference"></a>Azure Functions C# 開發人員參考
 
@@ -39,12 +36,26 @@ Azure Functions 支援 C# 和 C# 指令碼程式設計語言。 如果您需要[
 在 Visual Studio 中，**Azure Functions** 專案範本可建立 C# 類別庫專案，其中包含下列檔案：
 
 * [host.json](functions-host-json.md) - 儲存會影響在本機或 Azure 中執行之專案中所有函式的組態設定。
-* [local.settings.json](functions-run-local.md#local-settings-file) - 儲存在本機執行時所使用的應用程式設定和連接字串。
+* [local.settings.json](functions-run-local.md#local-settings-file) - 儲存在本機執行時所使用的應用程式設定和連接字串。 此檔案包含密碼，不會發佈至 Azure 中的函數應用程式。 您必須改為[將應用程式設定新增至函數應用程式](functions-develop-vs.md#function-app-settings)。
+
+當您建置專案時，組建輸出目錄中會產生類似下列的資料夾結構：
+
+```
+<framework.version>
+ | - bin
+ | - MyFirstFunction
+ | | - function.json
+ | - MySecondFunction
+ | | - function.json
+ | - host.json
+```
+
+此目錄會部署至 Azure 中的函數應用程式。 Functions 執行階段[版本 2.x](functions-versions.md) 中所需之繫結延伸模組會[以 NuGet 封裝形式新增至專案](functions-triggers-bindings.md#c-class-library-with-visual-studio-2017)。
 
 > [!IMPORTANT]
-> 建置流程會為每個函式都建立 function.json 檔案。 這個 function.json 檔案不適合直接編輯。 您無法編輯此檔案來變更繫結設定或停用函式。 若要停用函式，請使用[停用](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/DisableAttribute.cs)屬性。 例如，新增布林值應用程式設定 MY_TIMER_DISABLED，然後將 `[Disable("MY_TIMER_DISABLED")]` 套用至函式。 然後，您可以變更應用程式設定來啟用和停用。
+> 建置流程會為每個函式都建立 function.json 檔案。 這個 function.json 檔案不適合直接編輯。 您無法編輯此檔案來變更繫結設定或停用函式。 若要了解如何停用函式，請參閱[如何停用函式](disable-function.md#functions-2x---c-class-libraries)。
 
-### <a name="functionname-and-trigger-attributes"></a>FunctionName 和觸發程序屬性
+## <a name="methods-recognized-as-functions"></a>辨識為函式的方法
 
 在類別庫中，函式是具有 `FunctionName` 和觸發程序屬性的靜態方法，如下列範例所示：
 
@@ -61,13 +72,24 @@ public static class SimpleExample
 } 
 ```
 
-`FunctionName` 屬性會將方法標記為函式進入點。 此名稱必須是專案中的唯一名稱。
+`FunctionName` 屬性會將方法標記為函式進入點。 名稱在專案中不可重複，需以字母開頭，而且只能包含字母、數字、`_` 和 `-`，長度不可超過 127 個字元。 專案範本通常會建立名為 `Run` 的方法，不過任何有效的 C# 方法名稱都能成為方法名稱。
 
 觸發程序屬性可指定觸發程序類型，並將輸入資料繫結至方法參數。 範例函式是由佇列訊息所觸發，該佇列訊息會接著傳遞給 `myQueueItem` 參數中的方法。
 
-### <a name="additional-binding-attributes"></a>其他繫結屬性
+## <a name="method-signature-parameters"></a>方法簽章參數
 
-您可以使用其他輸入和輸出繫結屬性。 下列範例修改上一個範例並新增輸出佇列繫結。 此函式會將輸入佇列訊息寫入不同佇列中的新佇列訊息。
+方法簽章可包含非用於觸發程序屬性的參數。 以下是幾個可以包含在其中的額外參數：
+
+* 以屬性修飾來加以標示的[輸入與輸出繫結](functions-triggers-bindings.md)。  
+* 用於[記錄](#logging)的 `ILogger` 或 `TraceWriter` 參數。
+* 用於[正常關機](#cancellation-tokens)的 `CancellationToken` 參數。
+* 取得觸發程序中繼資料的[繫結運算式](functions-triggers-bindings.md#binding-expressions-and-patterns)參數。
+
+函式簽章中的參數順序不重要。 例如，您可以將觸發程序參數放在其他繫結之前或之後，且可以將記錄器參數放在觸發程序或繫結參數之前或之後。
+
+### <a name="output-binding-example"></a>輸出繫結範例
+
+下列範例修改上一個範例並新增輸出佇列繫結。 此函式會將觸發函式的佇列訊息寫入不同佇列中的新佇列訊息。
 
 ```csharp
 public static class SimpleExampleWithOutput
@@ -84,13 +106,11 @@ public static class SimpleExampleWithOutput
 }
 ```
 
-### <a name="order-of-parameters"></a>參數的順序
+繫結參考文章 (如[儲存體佇列](functions-bindings-storage-queue.md)) 說明您可以使用哪些類型的參數來搭配觸發程序、輸入或輸出繫結屬性。
 
-函式簽章中的參數順序不重要。 例如，您可以將觸發程序參數放在其他繫結之前或之後，且可以將記錄器參數放在觸發程序或繫結參數之前或之後。
+### <a name="binding-expressions-example"></a>繫結運算式範例
 
-### <a name="binding-expressions"></a>繫結運算式
-
-您可以在屬性建構函式參數和函式參數中使用繫結運算式。 例如，下列程式碼會從應用程式設定取得要監視的佇列名稱，而它會在 `insertionTime` 參數中取得佇列訊息建立時間。
+下列程式碼會從應用程式設定取得要監視的佇列名稱，而它會在 `insertionTime` 參數中取得佇列訊息建立時間。
 
 ```csharp
 public static class BindingExpressionsExample
@@ -107,9 +127,7 @@ public static class BindingExpressionsExample
 }
 ```
 
-如需詳細資訊，請參閱[觸發程序和繫結](functions-triggers-bindings.md#binding-expressions-and-patterns)中的**繫結運算式和模式**。
-
-### <a name="conversion-to-functionjson"></a>轉換成 function.json
+## <a name="autogenerated-functionjson"></a>自動產生的 function.json
 
 建置流程在組建資料夾的函式資料夾中建立 *function.json* 檔案。 如稍早所述，此檔案不適合直接編輯。 您無法編輯此檔案來變更繫結設定或停用函式。 
 
@@ -134,7 +152,7 @@ public static class BindingExpressionsExample
 }
 ```
 
-### <a name="microsoftnetsdkfunctions-nuget-package"></a>Microsoft.NET.Sdk.Functions NuGet 套件
+## <a name="microsoftnetsdkfunctions"></a>Microsoft.NET.Sdk.Functions
 
 *function.json* 檔案產生是由 NuGet 套件 [Microsoft\.NET\.Sdk\.Functions](http://www.nuget.org/packages/Microsoft.NET.Sdk.Functions) 執行。 
 
@@ -169,7 +187,7 @@ Functions 執行階段的 1.x 版和 2.x 版都是使用同一個套件。 1.x �
 
 適用於 `Microsoft.NET.Sdk.Functions` 的原始程式碼位於 GitHub 存放庫 [azure\-functions\-vs\-build\-sdk](https://github.com/Azure/azure-functions-vs-build-sdk) \(英文\)。
 
-### <a name="runtime-version"></a>執行階段版本
+## <a name="runtime-version"></a>執行階段版本
 
 Visual Studio 會使用 [Azure Functions Core Tools](functions-run-local.md#install-the-azure-functions-core-tools) 來執行 Functions 專案。 Core Tools 是適用於 Functions 執行階段的命令列介面。
 
@@ -187,11 +205,13 @@ Visual Studio 會使用 [Azure Functions Core Tools](functions-run-local.md#inst
 
 ## <a name="binding-to-method-return-value"></a>繫結至方法傳回值
 
-您可以將方法傳回值用於輸出繫結，方法是將屬性套用至方法傳回值。 如需範例，請參閱[觸發程序和繫結](functions-triggers-bindings.md#using-the-function-return-value)。
+您可以將方法傳回值用於輸出繫結，方法是將屬性套用至方法傳回值。 如需範例，請參閱[觸發程序和繫結](functions-triggers-bindings.md#using-the-function-return-value)。 
+
+唯有成功的函式執行一律導致傳回值傳遞至輸出繫結時，才使用此傳回值。 否則，使用 `ICollector` 或 `IAsyncCollector`，如下一節所示。
 
 ## <a name="writing-multiple-output-values"></a>撰寫多個輸出值
 
-若要多個值寫入至輸出繫結，請使用 [`ICollector`](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/ICollector.cs) 或 [`IAsyncCollector`](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/IAsyncCollector.cs) 類型。 這些類型是在方法完成時，寫入至輸出繫結的唯寫集合。
+若要將多個值寫入至輸出繫結，或者如果成功的函式引動過程可能未導致任何項目傳遞至輸出繫結，請使用 [`ICollector`](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/ICollector.cs) 或 [`IAsyncCollector`](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/IAsyncCollector.cs) 類型。 這些類型是在方法完成時，寫入至輸出繫結的唯寫集合。
 
 這個範例會使用 `ICollector` 將多個佇列訊息寫入相同佇列：
 
@@ -201,12 +221,12 @@ public static class ICollectorExample
     [FunctionName("CopyQueueMessageICollector")]
     public static void Run(
         [QueueTrigger("myqueue-items-source-3")] string myQueueItem,
-        [Queue("myqueue-items-destination")] ICollector<string> myQueueItemCopy,
+        [Queue("myqueue-items-destination")] ICollector<string> myDestinationQueue,
         TraceWriter log)
     {
         log.Info($"C# function processed: {myQueueItem}");
-        myQueueItemCopy.Add($"Copy 1: {myQueueItem}");
-        myQueueItemCopy.Add($"Copy 2: {myQueueItem}");
+        myDestinationQueue.Add($"Copy 1: {myQueueItem}");
+        myDestinationQueue.Add($"Copy 2: {myQueueItem}");
     }
 }
 ```
@@ -235,7 +255,7 @@ public static class SimpleExample
 
 ## <a name="async"></a>非同步處理
 
-若要讓函式變成非同步，請使用 `async` 關鍵字並傳回 `Task` 物件。
+若要讓函式變成[非同步](https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/async/)，請使用 `async` 關鍵字並傳回 `Task` 物件。
 
 ```csharp
 public static class AsyncExample
@@ -252,6 +272,8 @@ public static class AsyncExample
     }
 }
 ```
+
+您無法在非同步函式中使用 `out` 參數。 針對輸出繫結，請改為使用[函式傳回值](#binding-to-method-return-value)或[收集器物件](#writing-multiple-output-values)。
 
 ## <a name="cancellation-tokens"></a>取消權杖
 
@@ -303,6 +325,10 @@ public static class EnvironmentVariablesExample
     }
 }
 ```
+
+本機開發以及於 Azure 執行時，均可從環境變數讀取應用程式設定。 在本機開發時，應用程式設定來自 *local.settings.json* 檔案中的 `Values` 集合。 在本機和 Azure 這兩個環境中，`GetEnvironmentVariable("<app setting name>")` 會擷取具名應用程式設定的值。 例如在本機執行時，如果您的 *local.settings.json* 檔案包含 `{ "Values": { "WEBSITE_SITE_NAME": "My Site Name" } }`，則會傳回 "My Site Name"。
+
+[System.Configuration.ConfigurationManager.AppSettings](https://docs.microsoft.com/dotnet/api/system.configuration.configurationmanager.appsettings) 屬性是用於取得應用程式設定值的替代 API，但建議您使用 `GetEnvironmentVariable`，如下所示。
 
 ## <a name="binding-at-runtime"></a>執行階段的繫結
 
@@ -377,23 +403,7 @@ public static class IBinderExampleMultipleAttributes
 
 ## <a name="triggers-and-bindings"></a>觸發和繫結 
 
-下表列出的觸發程序和繫結屬性可在 Azure Functions 類別庫專案中使用。 所有屬性都在 `Microsoft.Azure.WebJobs` 命名空間中。
-
-| 觸發程序 | 輸入 | 輸出|
-|------   | ------    | ------  |
-| [BlobTrigger](functions-bindings-storage-blob.md#trigger---attributes)| [Blob](functions-bindings-storage-blob.md#input---attributes)| [Blob](functions-bindings-storage-blob.md#output---attributes)|
-| [CosmosDBTrigger](functions-bindings-cosmosdb.md#trigger---attributes)| [DocumentDB](functions-bindings-cosmosdb.md#input---attributes)| [DocumentDB](functions-bindings-cosmosdb.md#output---attributes) |
-| [EventHubTrigger](functions-bindings-event-hubs.md#trigger---attributes)|| [EventHub](functions-bindings-event-hubs.md#output---attributes) |
-| [HTTPTrigger](functions-bindings-http-webhook.md#trigger---attributes)|||
-| [QueueTrigger](functions-bindings-storage-queue.md#trigger---attributes)|| [佇列](functions-bindings-storage-queue.md#output---attributes) |
-| [ServiceBusTrigger](functions-bindings-service-bus.md#trigger---attributes)|| [ServiceBus](functions-bindings-service-bus.md#output---attributes) |
-| [TimerTrigger](functions-bindings-timer.md#attributes) | ||
-| |[ApiHubFile](functions-bindings-external-file.md)| [ApiHubFile](functions-bindings-external-file.md)|
-| |[MobileTable](functions-bindings-mobile-apps.md#input---attributes)| [MobileTable](functions-bindings-mobile-apps.md#output---attributes) | 
-| |[資料表](functions-bindings-storage-table.md#input---attributes)| [資料表](functions-bindings-storage-table.md#output---attributes)  | 
-| ||[NotificationHub](functions-bindings-notification-hubs.md#attributes) |
-| ||[SendGrid](functions-bindings-sendgrid.md#attributes) |
-| ||[Twilio](functions-bindings-twilio.md#attributes)| 
+[!INCLUDE [Supported triggers and bindings](../../includes/functions-bindings.md)]
 
 ## <a name="next-steps"></a>後續步驟
 

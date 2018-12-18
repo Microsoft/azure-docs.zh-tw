@@ -3,17 +3,18 @@ title: Azure Container Service 教學課程 - 調整應用程式
 description: Azure Container Service 教學課程 - 調整應用程式
 services: container-service
 author: dlepow
-manager: timlt
+manager: jeconnoc
 ms.service: container-service
 ms.topic: tutorial
 ms.date: 09/14/2017
 ms.author: danlep
 ms.custom: mvc
-ms.openlocfilehash: ea64f9c52dc89dc8eb75a39afbb087a5127505f1
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: 792d9b1409b9571474f47da4940724df7a764d82
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39429877"
 ---
 # <a name="scale-kubernetes-pods-and-kubernetes-infrastructure"></a>調整 Kubernetes Pod 和 Kubernetes 基礎結構
 
@@ -38,7 +39,7 @@ ms.lasthandoff: 03/28/2018
 
 ## <a name="manually-scale-pods"></a>手動調整 Pod
 
-目前為止，已部署 Azure Vote 前端與 Redis 執行個體，每個都有單一複本。 若要確認，請執行 [kubectl get](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#get) 命令。
+目前為止，已部署 Azure Vote 前端與 Redis 執行個體，每個都有單一複本。 若要確認，請執行 [kubectl get](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#get) 命令。
 
 ```azurecli-interactive
 kubectl get pods
@@ -52,13 +53,13 @@ azure-vote-back-2549686872-4d2r5   1/1       Running   0          31m
 azure-vote-front-848767080-tf34m   1/1       Running   0          31m
 ```
 
-使用 [kubectl scale](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#scale) 命令來手動變更 `azure-vote-front` 部署中的 Pod 數目。 以下範例會將數目增加到 5 個。
+使用 [kubectl scale](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#scale) 命令來手動變更 `azure-vote-front` 部署中的 Pod 數目。 以下範例會將數目增加到 5 個。
 
 ```azurecli-interactive
 kubectl scale --replicas=5 deployment/azure-vote-front
 ```
 
-執行 [kubectl get pods](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#get) 以確認 Kubernetes 是否正在建立 Pod。 在大約一分鐘後，其他 Pod 便已在執行：
+執行 [kubectl get pods](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#get) 以確認 Kubernetes 是否正在建立 Pod。 在大約一分鐘後，其他 Pod 便已在執行：
 
 ```azurecli-interactive
 kubectl get pods
@@ -90,7 +91,7 @@ resources:
      cpu: 500m
 ```
 
-下列範例使用 [kubectl autoscale](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#autoscale) 命令來自動調整 `azure-vote-front` 部署中的 Pod 數目。 在這裡，如果 CPU 使用率超過 50%，自動調整程式就會增加 Pod，最多可達 10 個。
+下列範例使用 [kubectl autoscale](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#autoscale) 命令來自動調整 `azure-vote-front` 部署中的 Pod 數目。 在這裡，如果 CPU 使用率超過 50%，自動調整程式就會增加 Pod，最多可達 10 個。
 
 
 ```azurecli-interactive
@@ -114,7 +115,7 @@ azure-vote-front   Deployment/azure-vote-front   0% / 50%   3         10        
 
 ## <a name="scale-the-agents"></a>調整代理程式
 
-如果您在上一個教學課程中使用預設命令來建立 Kubernetes 叢集，它就會有 3 個代理程式節點。 如果您打算在叢集上增加或減少容器工作負載，可以手動調整代理程式的數目。 請使用 [az acs scale](/cli/azure/acs#az_acs_scale) 命令，並使用 `--new-agent-count` 參數來指定代理程式的數目。
+如果您在上一個教學課程中使用預設命令來建立 Kubernetes 叢集，它就會有 3 個代理程式節點。 如果您打算在叢集上增加或減少容器工作負載，可以手動調整代理程式的數目。 請使用 [az acs scale](/cli/azure/acs#az-acs-scale) 命令，並使用 `--new-agent-count` 參數來指定代理程式的數目。
 
 下列範例會在名為 *myK8sCluster* 的 Kubernetes 叢集中，將代理程式節點的數目增加到 4 個。 此命令需要幾分鐘的時間來完成。
 

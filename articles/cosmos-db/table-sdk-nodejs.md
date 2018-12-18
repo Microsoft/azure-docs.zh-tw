@@ -1,25 +1,23 @@
 ---
-title: "適用於 Node.js 的 Azure Cosmos DB 資料表 API | Microsoft Docs"
-description: "全面了解 Azure Cosmos DB 資料表 API，包括發行日期、停用日期，以及每個版本之間的變更。"
+title: 適用於 Node.js 的 Azure Cosmos DB 資料表 API | Microsoft Docs
+description: 全面了解 Azure Cosmos DB 資料表 API，包括發行日期、停用日期，以及每個版本之間的變更。
 services: cosmos-db
-documentationcenter: nodejs
 author: yarong
-manager: jhubbard
-editor: 
-ms.assetid: 
+manager: kfile
+editor: ''
 ms.service: cosmos-db
-ms.workload: data-services
-ms.tgt_pltfrm: na
+ms.component: cosmosdb-table
 ms.devlang: nodejs
-ms.topic: article
+ms.topic: reference
 ms.date: 11/20/2017
 ms.author: yaronyg
-ms.custom: 
-ms.openlocfilehash: 1097b853ca0f461300f294e9f5baabf2ae4e15a1
-ms.sourcegitcommit: b5c6197f997aa6858f420302d375896360dd7ceb
+ms.custom: ''
+ms.openlocfilehash: 6cb784ea774127f3dab0240a52e551b2c8b6e34e
+ms.sourcegitcommit: 6116082991b98c8ee7a3ab0927cf588c3972eeaa
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/21/2017
+ms.lasthandoff: 06/05/2018
+ms.locfileid: "34797952"
 ---
 # <a name="azure-cosmos-db-table-api-for-nodejs-release-notes-and-resources"></a>適用於 Node.js 的 Azure Cosmos DB 資料表 API︰版本資訊與資源
 > [!div class="op_single_selector"]

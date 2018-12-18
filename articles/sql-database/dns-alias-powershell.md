@@ -7,15 +7,16 @@ author: MightyPen
 manager: craigg
 ms.service: sql-database
 ms.devlang: PowerShell
-ms.topic: article
+ms.topic: conceptual
 ms.date: 02/05/2018
 ms.reviewer: genemi;amagarwa;maboja
 ms.author: dmalik
-ms.openlocfilehash: 2aae669364c3de2e9b00ffe8e28b1521d3a781e8
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: 0353f503ea099b1355b6879efe0748a377115474
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34644309"
 ---
 # <a name="powershell-for-dns-alias-to-azure-sql-database"></a>適用於 Azure SQL Database 之 DNS 別名的 PowerShell
 
@@ -82,7 +83,7 @@ Write-Host " ";
 $yesno = Read-Host '[yes/no]  Do you need to log into Azure now?';
 if ('yes' -eq $yesno)
 {
-    Login-AzureRmAccount -SubscriptionName $SubscriptionName;
+    Connect-AzureRmAccount -SubscriptionName $SubscriptionName;
 }
 
 $SubscriptionGuid_Get = Get-AzureRmSubscription `

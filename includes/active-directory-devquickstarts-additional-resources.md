@@ -1,5 +1,5 @@
 ## <a name="additional-resources"></a>其他資源
-* [Azure AD 開發人員指南](../articles/active-directory/develop/active-directory-developers-guide.md)
+* [Azure AD 開發人員指南](../articles/active-directory/develop/azure-ad-developers-guide.md)
 * [GitHub 上的 Azure AD 範例](https://github.com/Azure-Samples/?utf8=%E2%9C%93&query=active-directory)
 * [CloudIdentity.com](http://cloudidentity.com)
 

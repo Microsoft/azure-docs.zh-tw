@@ -1,24 +1,21 @@
 ---
-title: "使用 Azure 服務匯流排的 .NET 多層應用程式 | Microsoft Docs"
-description: "協助您在 Azure 中開發多層式應用程式，以使用服務匯流排佇列在各層之間進行通訊的 .NET 教學課程。"
+title: 使用 Azure 服務匯流排的 .NET 多層應用程式 | Microsoft Docs
+description: 協助您在 Azure 中開發多層式應用程式，以使用服務匯流排佇列在各層之間進行通訊的 .NET 教學課程。
 services: service-bus-messaging
 documentationcenter: .net
-author: sethmanheim
+author: spelluru
 manager: timlt
-editor: 
-ms.assetid: 1b8608ca-aa5a-4700-b400-54d65b02615c
 ms.service: service-bus-messaging
-ms.workload: tbd
-ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 10/16/2017
-ms.author: sethm
-ms.openlocfilehash: 667efced715b904234bd2b941453ed27e9ef1c42
-ms.sourcegitcommit: 2a70752d0987585d480f374c3e2dba0cd5097880
+ms.date: 09/05/2018
+ms.author: spelluru
+ms.openlocfilehash: b905feef4d3a5445ba27b92637448443c3bbb4a3
+ms.sourcegitcommit: 67abaa44871ab98770b22b29d899ff2f396bdae3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/19/2018
+ms.lasthandoff: 10/08/2018
+ms.locfileid: "48855607"
 ---
 # <a name="net-multi-tier-application-using-azure-service-bus-queues"></a>使用 Azure 服務匯流排佇列的 .NET 多層應用程式
 
@@ -58,25 +55,19 @@ ms.lasthandoff: 01/19/2018
 
 下列幾節討論實作此架構的程式碼。
 
-## <a name="set-up-the-development-environment"></a>設定開發環境
-在開始開發 Azure 應用程式之前，請取得工具，並設定開發環境：
-
-1. 從 SDK [下載頁面](https://azure.microsoft.com/downloads/)安裝 Azure SDK for .NET。
-2. 在 **.NET** 資料行中，按一下您所使用的 [Visual Studio](http://www.visualstudio.com) 版本。 本教學課程中的步驟使用 Visual Studio 2015，但也可使用 Visual Studio 2017。
-3. 當系統提示您執行或儲存安裝程式時，按一下 [執行]。
-4. 在 **Web Platform Installer** 中，按一下 [安裝] 並繼續進行安裝。
-5. 完成安裝後，您將具有開始進行開發所需的一切。 SDK 包含可讓您在 Visual Studio 輕易開發 Azure 應用程式的工具。
-
 ## <a name="create-a-namespace"></a>建立命名空間
-下一步是建立*命名空間*，並取得該命名空間的[共用存取簽章 (SAS) 金鑰](service-bus-sas.md)。 命名空間會為每個透過服務匯流排公開的應用程式提供應用程式界限。 建立命名空間時，系統會產生 SAS 金鑰。 命名空間名稱與 SAS 金鑰的結合提供一個認證，供服務匯流排驗證對應用程式的存取權。
+
+第一個步驟是建立「命名空間」，並取得該命名空間的[共用存取簽章 (SAS) 金鑰](service-bus-sas.md)。 命名空間會為每個透過服務匯流排公開的應用程式提供應用程式界限。 建立命名空間時，系統會產生 SAS 金鑰。 命名空間名稱與 SAS 金鑰的結合提供一個認證，供服務匯流排驗證對應用程式的存取權。
 
 [!INCLUDE [service-bus-create-namespace-portal](../../includes/service-bus-create-namespace-portal.md)]
 
 ## <a name="create-a-web-role"></a>建立 Web 角色
+
 在本節中，您會建置應用程式的前端。 首先，您會建立應用程式顯示的頁面。
 之後，新增程式碼以提交項目給服務匯流排佇列，並顯示佇列的狀態資訊。
 
 ### <a name="create-the-project"></a>建立專案
+
 1. 使用系統管理員權限啟動 Visual Studio：在 **Visual Studio** 程式圖示上按一下滑鼠右鍵，然後按一下 [以系統管理員身分執行]。 這篇文章稍後討論的 Azure 計算模擬器需要 Visual Studio 以系統管理員權限啟動。
    
    在 Visual Studio 的 [檔案] 功能表，按一下 [新增]，然後按一下 [專案]。
@@ -361,7 +352,6 @@ ms.lasthandoff: 01/19/2018
 ## <a name="next-steps"></a>後續步驟
 若要深入了解服務匯流排，請參閱下列資源：  
 
-* [服務匯流排基本概念](service-bus-fundamentals-hybrid-solutions.md)
 * [開始使用服務匯流排佇列][sbacomqhowto]
 * [服務匯流排服務頁面][sbacom]  
 

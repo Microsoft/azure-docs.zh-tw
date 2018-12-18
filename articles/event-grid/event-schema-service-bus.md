@@ -1,22 +1,25 @@
 ---
-title: "Azure Event Grid 服務匯流排事件結構描述"
-description: "描述 Azure Event Grid 中服務匯流排事件的屬性"
+title: Azure Event Grid 服務匯流排事件結構描述
+description: 描述 Azure Event Grid 中服務匯流排事件的屬性
 services: event-grid
 author: banisadr
 manager: darosa
 ms.service: event-grid
-ms.topic: article
-ms.date: 02/21/2018
+ms.topic: reference
+ms.date: 08/17/2018
 ms.author: babanisa
-ms.openlocfilehash: 72780bff3807534efb456a9a7998f7d4de3c6f12
-ms.sourcegitcommit: fbba5027fa76674b64294f47baef85b669de04b7
+ms.openlocfilehash: afb85f20c49821ca98e078791730a3376198e9e5
+ms.sourcegitcommit: f057c10ae4f26a768e97f2cb3f3faca9ed23ff1b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/24/2018
+ms.lasthandoff: 08/17/2018
+ms.locfileid: "42140481"
 ---
 # <a name="azure-event-grid-event-schema-for-service-bus"></a>服務匯流排的 Azure Event Grid 事件結構描述
 
 本文提供服務匯流排事件的屬性與結構描述。 如需事件結構描述的簡介，請參閱 [Azure Event Grid 事件結構描述](event-schema.md)。
+
+如需範例指令碼和教學課程的清單，請參閱[服務匯流排事件來源](event-sources.md#service-bus)。
 
 ## <a name="available-event-types"></a>可用的事件類型
 
@@ -92,7 +95,7 @@ ms.lasthandoff: 02/24/2018
 
 | 屬性 | 類型 | 說明 |
 | -------- | ---- | ----------- |
-| nameSpaceName | 字串 | 資源所在的服務匯流排命名空間。 |
+| namespaceName | 字串 | 資源所在的服務匯流排命名空間。 |
 | requestUri | 字串 | 要發出此事件的特定佇列或訂用帳戶 URI。 |
 | entityType | 字串 | 發出事件 (佇列或訂閱) 的服務匯流排實體類型。 |
 | queueName | 字串 | 如果訂閱佇列則為作用中訊息佇列。 如果使用主題 / 訂用帳戶則為 null 值。 |

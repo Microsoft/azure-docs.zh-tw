@@ -1,11 +1,11 @@
 ---
-title: "將驗證新增至您的通用 Windows 平台 (UWP) 應用程式 | Microsoft Docs"
-description: "了解如何使用 Azure App Service Mobile Apps，透過眾多識別提供者驗證通用 Windows 平台 (UWP) 應用程式使用者，包括 AAD、Google、Facebook、Twitter 和 Microsoft。"
+title: 將驗證新增至您的通用 Windows 平台 (UWP) 應用程式 | Microsoft Docs
+description: 了解如何使用 Azure App Service Mobile Apps，透過眾多識別提供者驗證通用 Windows 平台 (UWP) 應用程式使用者，包括 AAD、Google、Facebook、Twitter 和 Microsoft。
 services: app-service\mobile
 documentationcenter: windows
 author: conceptdev
 manager: panarasi
-editor: 
+editor: ''
 ms.assetid: 6cffd951-893e-4ce5-97ac-86e3f5ad9466
 ms.service: app-service-mobile
 ms.workload: mobile
@@ -15,10 +15,11 @@ ms.topic: article
 ms.date: 07/05/2017
 ms.author: panarasi
 ms.openlocfilehash: 4cc597f8aca13445034c8a1691b41018d4d9bc4b
-ms.sourcegitcommit: df4ddc55b42b593f165d56531f591fdb1e689686
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/04/2018
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38306569"
 ---
 # <a name="add-authentication-to-your-windows-app"></a>將驗證新增至您的 Windows 應用程式
 [!INCLUDE [app-service-mobile-selector-get-started-users](../../includes/app-service-mobile-selector-get-started-users.md)]
@@ -40,7 +41,7 @@ ms.lasthandoff: 01/04/2018
 
 3. 在 [允許的外部重新導向 URL] 中，輸入 `url_scheme_of_your_app://easyauth.callback`。  此字串中的 **url_scheme_of_your_app** 是您行動應用程式的 URL 配置。  它必須遵循通訊協定的標準 URL 規格 (只使用字母和數字，並以字母為開頭)。  請記下您選擇的字串，因為您將需要在數個位置中使用該 URL 配置來調整您的行動應用程式程式碼。
 
-4. 按一下 [SERVICEPRINCIPAL] 。
+4. 按一下 [確定]。
 
 5. 按一下 [檔案] 。
 

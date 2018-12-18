@@ -1,22 +1,24 @@
 ---
-title: "使用 Microsoft Flow 自動化 Azure Log Analytics 流程"
-description: "了解如何利用 Azure Log Analytics Connector，使用 Microsoft Flow 來快速自動化可重複的程序。"
+title: 使用 Microsoft Flow 自動化 Azure Log Analytics 流程
+description: 了解如何利用 Azure Log Analytics Connector，使用 Microsoft Flow 來快速自動化可重複的程序。
 services: log-analytics
-documentationcenter: 
-author: CFreemanwa
+documentationcenter: ''
+author: mgoedtel
 manager: carmonm
 ms.service: log-analytics
-ms.workload: tbd
-ms.tgt_pltfrm: ibiza
+ms.workload: infrastructure-services
+ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 09/29/2017
 ms.author: bwren
-ms.openlocfilehash: 9884b97aad8f022e6bc20b2a630ccdd07ebc64db
-ms.sourcegitcommit: 5735491874429ba19607f5f81cd4823e4d8c8206
+ms.component: na
+ms.openlocfilehash: 21cf7cf3d12902b02fcbf650a1623e78004d28b4
+ms.sourcegitcommit: 5892c4e1fe65282929230abadf617c0be8953fd9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/16/2017
+ms.lasthandoff: 06/29/2018
+ms.locfileid: "37131695"
 ---
 # <a name="automate-log-analytics-processes-with-the-connector-for-microsoft-flow"></a>使用適用於 Microsoft Flow 的連接器自動化 Log Analytics 程序
 [Microsoft Flow](https://ms.flow.microsoft.com) 可讓您使用數百個動作建立各種不同服務的自動化工作流程。 從一個動作的輸出可用來作為另一個動作的輸入，讓您建立不同服務之間的整合。  適用於 Microsoft Flow 的 Azure Log Analytics 連接器可讓您建立工作流程，包含 Log Analytics 記錄搜尋所擷取的資料。
@@ -31,7 +33,7 @@ ms.lasthandoff: 10/16/2017
 2. 按一下 [+ 從空白建立]。
 
 ## <a name="step-2-create-a-trigger-for-your-flow"></a>步驟 2：建立流程的觸發程序
-1. 按一下 [Search hundreds of connectors and triggers] (搜尋數以百計的連接器和觸發程序)。
+1. 按一下 [Search hundreds of connectors and triggers] \(搜尋數以百計的連接器和觸發程序)。
 2. 在搜尋方塊中鍵入**排程**。
 3. 依序選取 [排程] 和 [排程 - 重複]。
 4. 在 [頻率] 方塊中選取 [天]，然後在 [間隔] 方塊中輸入 **1**。<br><br>![Microsoft Flow 觸發程序對話方塊](media/log-analytics-flow-tutorial/flow01.png)

@@ -1,25 +1,18 @@
 ---
-title: "使用 Azure HDInsight 為 Spark 進行疑難排解 | Microsoft Docs"
-description: "取得有關使用 Apache Spark 和 Azure HDInsight 的常見問題解答。"
-keywords: "Azure HDInsight, Spark, 常見問題集, 疑難排解指南, 常見問題, 應用程式設定, Ambari"
-services: Azure HDInsight
-documentationcenter: na
-author: arijitt
-manager: 
-editor: 
-ms.assetid: 25D89586-DE5B-4268-B5D5-CC2CE12207ED
-ms.service: multiple
-ms.workload: na
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+title: 在 Azure HDInsight 中對 Spark 進行疑難排解
+description: 取得有關使用 Apache Spark 和 Azure HDInsight 的常見問題解答。
+services: hdinsight
+ms.service: hdinsight
+author: jasonwhowell
+ms.author: jasonh
+ms.topic: conceptual
 ms.date: 11/2/2017
-ms.author: arijitt
-ms.openlocfilehash: b75aca7d9f78cb425099cc33034b44a80d7b6b81
-ms.sourcegitcommit: 3df3fcec9ac9e56a3f5282f6c65e5a9bc1b5ba22
+ms.openlocfilehash: 7c7f89864d9394ff4527f9a0354b9276f7c01c49
+ms.sourcegitcommit: 1f0587f29dc1e5aef1502f4f15d5a2079d7683e9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/04/2017
+ms.lasthandoff: 08/07/2018
+ms.locfileid: "39591732"
 ---
 # <a name="troubleshoot-spark-by-using-azure-hdinsight"></a>使用 Azure HDInsight 為 Spark 進行疑難排解
 

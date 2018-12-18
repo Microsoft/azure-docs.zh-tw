@@ -1,25 +1,19 @@
 ---
-title: "Azure Analysis Services 中支援的資料來源 | Microsoft Docs"
-description: "說明 Azure Analysis Services 中資料模型支援的資料來源。"
-services: analysis-services
-documentationcenter: 
+title: Azure Analysis Services 中支援的資料來源 | Microsoft Docs
+description: 說明 Azure Analysis Services 中資料模型支援的資料來源。
 author: minewiskan
 manager: kfile
-editor: 
-tags: 
-ms.assetid: 6ec63319-ff9b-4b01-a1cd-274481dc8995
-ms.service: analysis-services
-ms.devlang: NA
-ms.topic: article
-ms.tgt_pltfrm: NA
-ms.workload: na
-ms.date: 02/27/2018
+ms.service: azure-analysis-services
+ms.topic: conceptual
+ms.date: 07/03/2018
 ms.author: owend
-ms.openlocfilehash: 9f2a4acdd0a2b29bc1485f62c0049f0065cbf711
-ms.sourcegitcommit: 782d5955e1bec50a17d9366a8e2bf583559dca9e
+ms.reviewer: minewiskan
+ms.openlocfilehash: f6ad95eb45cc208fe2289cb2095214f98a0b250b
+ms.sourcegitcommit: 86cb3855e1368e5a74f21fdd71684c78a1f907ac
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/02/2018
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37442384"
 ---
 # <a name="data-sources-supported-in-azure-analysis-services"></a>Azure Analysis Services 中支援的資料來源
 
@@ -33,12 +27,10 @@ ms.lasthandoff: 03/02/2018
 |Azure SQL 資料倉儲     |   yes      |   yes       |
 |Azure Blob 儲存體*     |   yes       |    否      |
 |Azure 表格儲存體*    |   yes       |    否      |
-|Azure Cosmos DB (搶鮮版 (Beta))*     |  yes        |  否        |
+|Azure Cosmos DB*     |  yes        |  否        |
 |Azure Data Lake Store*     |   yes       |    否      |
 |Azure HDInsight HDFS*     |     yes     |   否       |
-|Azure HDInsight Spark (搶鮮版 (Beta))*     |   yes       |   否       |
-|適用於 MySQL 的 Azure 資料庫 (預覽)*     |   yes       |   否      |
-|適用於 PostgreSQL 的 Azure 資料庫 (預覽)*     | yes         |  否       |
+|Azure HDInsight Spark*     |   yes       |   否       |
 ||||
 
 \* 僅限表格式 1400 模型。
@@ -71,7 +63,8 @@ ms.lasthandoff: 03/02/2018
 |Dynamics CRM*     |  
 |Excel 活頁簿     |  
 |Exchange*     |  
-|資料夾*     | 
+|資料夾*     |
+|IBM Informix* (搶鮮版 (Beta)) |
 |JSON 文件*     |  
 |Lines from binary*     | 
 |MySQL Database     | 
@@ -79,6 +72,8 @@ ms.lasthandoff: 03/02/2018
 |ODBC 查詢     | 
 |OLE DB     |   
 |Postgre SQL 資料庫*    | 
+|Salesforce 物件* |  
+|Salesforce 報表* |
 |SAP HANA*    |  
 |SAP Business Warehouse*    |  
 |SharePoint*     |   

@@ -12,13 +12,14 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/06/2018
+ms.date: 07/12/2018
 ms.author: mabrigg
-ms.openlocfilehash: c1d92f8f2ed9e8ab504afc65bab861e1f7bb3689
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+ms.openlocfilehash: a3bd314a1df3c45c76b2e3a5acb31c1474d0fdf5
+ms.sourcegitcommit: e0a678acb0dc928e5c5edde3ca04e6854eb05ea6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 07/13/2018
+ms.locfileid: "39011250"
 ---
 # <a name="azure-stack-infrastructure-security-posture"></a>Azure Stack 基礎結構安全性狀態
 
@@ -26,17 +27,16 @@ ms.lasthandoff: 03/09/2018
 
 安全性考量和符合法規規範是使用混合式雲端的主要因素。 Azure Stack 就是針對這些案例而設計的，而且請務必了解，在採用 Azure Stack 時，這些控制措施便已包含在內。
 
-在 Azure Stack 中，有兩個並存的安全性狀態層。 第一層是由 Azure Stack 基礎結構所組成，範圍從硬體元件一直到 Azure Resource Manager 為止，而且包括「系統管理員」和「租用戶」入口網站。 第二層是由租用戶所建立、部署及管理的工作負載所組成，而且包括虛擬機器或「應用程式服務」網站等項目。  
+Azure Stack 中有兩個並存的安全性狀態層。 第一層是 Azure Stack 基礎結構，所含項目從硬體元件一直到 Azure Resource Manager。 第一層包含「系統管理員」和「租用戶」入口網站。 第二層則由租用戶所建立、部署和管理的工作負載所組成。 第二層包含虛擬機器和 App Service 網站等項目。
 
 ## <a name="security-approach"></a>安全性方法
+
 Azure Stack 的安全性狀態是針對防禦新式威脅而設計的，且建置方式符合主要規範標準的需求。 因此，Azure Stack 基礎結構的安全性狀態是建立在兩個主要前提上：
 
- - **假想缺口。**  
+ - **假想缺口**  
 從假設系統已經被入侵的情況出發，將焦點放在「偵測及限制缺口影響」與僅嘗試防止攻擊之比較。 
- - **預設強化。**  
-因為基礎結構會在定義完善的硬體和軟體上執行，所以我們預設會「啟用、設定及驗證所有安全性功能」。
-
-
+ - **預設強化**  
+因為基礎結構會在定義完善的硬體和軟體上執行，所以 Azure Stack 預設會「啟用、設定及驗證所有安全性功能」。
 
 由於 Microsoft 是以整合系統的形式提供 Azure Stack，因此會由 Microsoft 定義 Azure Stack 基礎結構的安全性狀態。 就像在 Azure 中一樣，租用戶需負責定義其租用戶工作負載的安全性狀態。 本文件提供有關 Azure Stack 基礎結構之安全性狀態的基礎知識。
 
@@ -68,6 +68,8 @@ Azure Stack 中的另一個 Windows Server 2016 安全性功能就是 Windows De
 ## <a name="antimalware"></a>反惡意程式碼
 Azure Stack 中的每個元件 (Hyper-V 主機和虛擬機器兩者) 都受到「Windows Defender 防毒軟體」保護。
 
+在已連線的情況下，一天當中會套用防毒定義及引擎更新多次。 在連線中斷的情況下，則會隨每月 Azure Stack 更新套用反惡意程式碼軟體更新。 如需詳細資訊，請參閱[更新 Azure Stack 上的 Windows Defender 防毒軟體](azure-stack-security-av.md)。
+
 ## <a name="constrained-administration-model"></a>限制型管理模型
 Azure Stack 中的管理是透過使用三個進入點來控制的，每個進入點都有特定的目的： 
 1. [系統管理員入口網站](azure-stack-manage-portals.md)針對日常管理作業提供點選體驗。
@@ -80,6 +82,8 @@ Azure Stack 基礎結構隨附多層的網路「存取控制清單」(ACL)。 AC
 網路 ACL 會在三個層級強制執行：
 1.  機架頂端 (Top of Rack) 交換器
 2.  軟體定義網路
-3.  操作系統防火牆的主機和虛擬機器 
+3.  操作系統防火牆的主機和虛擬機器
 
+## <a name="next-steps"></a>後續步驟
 
+- [了解如何在 Azure Stack 中輪替使用祕密](azure-stack-rotate-secrets.md)

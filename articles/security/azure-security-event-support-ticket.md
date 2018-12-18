@@ -1,6 +1,6 @@
 ---
-title: "如何記錄安全性事件支援票證 - Azure | Microsoft Docs"
-description: "作為 Azure Marketplace 的賣方，在識別出潛在的安全性事件之後，我需要知道如何記錄適當的票證。"
+title: 如何記錄安全性事件支援票證 - Azure | Microsoft Docs
+description: 作為 Azure Marketplace 的賣方，在識別出潛在的安全性事件之後，我需要知道如何記錄適當的票證。
 services: security
 documentationcenter: na
 author: DavidBosland
@@ -19,6 +19,7 @@ ms.sourcegitcommit: b854df4fc66c73ba1dd141740a2b348de3e1e028
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 12/04/2017
+ms.locfileid: "26129935"
 ---
 # <a name="how-to-log-a-security-event-support-ticket"></a>如何記錄安全性事件支援票證
 

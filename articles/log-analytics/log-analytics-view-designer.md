@@ -4,21 +4,23 @@ description: 藉由使用 Log Analytics 中的檢視設計工具，您可以建�
 services: log-analytics
 documentationcenter: ''
 author: bwren
-manager: jwhit
+manager: carmonm
 editor: ''
 ms.assetid: ce41dc30-e568-43c1-97fa-81e5997c946a
 ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 01/18/2018
+ms.topic: conceptual
+ms.date: 06/22/2018
 ms.author: bwren
-ms.openlocfilehash: d63d47c39054230307416e24ed1c8295fbf68d93
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.component: na
+ms.openlocfilehash: 362d19c489dfa0eda33036052ac9626414ef0933
+ms.sourcegitcommit: 0c64460a345c89a6b579b1d7e273435a5ab4157a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43340731"
 ---
 # <a name="create-custom-views-by-using-view-designer-in-log-analytics"></a>在 Log Analytics 中使用檢視設計工具來建立自訂檢視
 藉由使用 [Azure Log Analytics](log-analytics-overview.md) 中的檢視設計工具，您可以在 Azure 入口網站中建立能協助您將 Log Analytics 工作區中的資料視覺化的各種自訂檢視。 本文提供檢視設計工具的概觀以及建立和編輯自訂檢視的程序。
@@ -53,14 +55,15 @@ ms.lasthandoff: 03/16/2018
 | 選項 | 說明 |
 |:--|:--|
 | 重新整理   | 使用最新資料重新整理檢視。 | 
-| 分析 | 開啟 [進階分析入口網站](log-analytics-log-search-portals.md#advanced-analytics-portal) 來分析記錄搜尋的資料。 |
-| Filter    | 為檢視中包含的資料設定時間篩選條件。 |
-| Edit      | 在檢視表設計工具中開啟檢視以編輯其內容和設定。  |
-| 複製     | 建立新的檢視並且在檢視表設計工具中開啟。 新檢視的名稱與原始檢視的名稱相同，只是再附加*複製*字樣。 |
+| 分析 | 開啟[進階分析入口網站](log-analytics-log-search-portals.md)來分析記錄查詢的資料。 |
+| Edit       | 在檢視表設計工具中開啟檢視以編輯其內容和設定。  |
+| 複製      | 建立新的檢視並且在檢視表設計工具中開啟。 新檢視的名稱與原始檢視的名稱相同，只是再附加*複製*字樣。 |
+| 日期範圍 | 為檢視中包含的資料設定日期和時間範圍篩選條件。 在檢視中設定查詢的任何日期範圍之前，會套用此日期範圍。  |
+| +          | 定義針對檢視所定義的自訂篩選條件。 |
 
 
 ## <a name="create-a-new-view"></a>建立新的檢視
-您可以在檢視表設計工具中建立新的檢視，方法是按一下 Log Analytics 工作區 [概觀] 頁面上的 [檢視表設計工具] 圖格。
+您可以在檢視設計工具中建立新的檢視，方法是選取 Log Analytics 工作區功能表中的 [檢視設計工具]。
 
 ![檢視設計工具圖格](media/log-analytics-view-designer/view-designer-tile.png)
 
@@ -103,7 +106,6 @@ ms.lasthandoff: 03/16/2018
 | 匯出      | 將檢視匯出至 [Azure Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md)，您可以將該範本匯入至其他工作區。 檔案的名稱是檢視的名稱，副檔名為 *omsview*。 |
 | Import      | 將您從其他工作區匯出的 *omsview* 檔案匯入。 此動作會覆寫現有檢視的設定。 |
 | 複製       | 建立新的檢視並且在檢視表設計工具中開啟。 新檢視的名稱與原始檢視的名稱相同，只是再附加*複製*字樣。 |
-| 發佈     | 將檢視匯出至您可以插入至[管理解決方案](../operations-management-suite/operations-management-suite-solutions-resources-views.md)的 JSON 檔案。 檔案名稱與檢視名稱相同，但副檔名為 *json*。 使用 *resjson* 副檔名建立的第二個檔案，包含在 JSON 檔案中定義之資源的值。
 
 ## <a name="next-steps"></a>後續步驟
 * 將[圖格](log-analytics-view-designer-tiles.md)新增至您的自訂檢視。

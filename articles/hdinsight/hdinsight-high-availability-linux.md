@@ -1,27 +1,21 @@
 ---
-title: Hadoop 高可用性 - Azure HDInsight | Microsoft Docs
+title: Hadoop 高可用性 - Azure HDInsight
 description: 了解如何使用額外的前端節點，讓 HDInsight 叢集可以提高可靠性和可用性。 了解這會如何影響例如 Ambari 和 Hive 等 Hadoop 服務，以及如何使用 SSH 分別連線到每個前端節點。
 services: hdinsight
-editor: cgronlun
-manager: cgronlun
-author: Blackmist
-documentationcenter: ''
-tags: azure-portal
+ms.reviewer: jasonh
+author: jasonwhowell
 keywords: hadoop 高可用性
-ms.assetid: 99c9f59c-cf6b-4529-99d1-bf060435e8d4
 ms.service: hdinsight
 ms.custom: hdinsightactive,hdiseo17may2017
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: multiple
-ms.topic: article
+ms.topic: conceptual
 ms.date: 03/22/2018
-ms.author: larryfr
-ms.openlocfilehash: 556aedf5ce822d681caf1373ed7d51999bd439b6
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.author: jasonh
+ms.openlocfilehash: 33458794ad74b367f1278364d7b4ace30f7d13a8
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46953578"
 ---
 # <a name="availability-and-reliability-of-hadoop-clusters-in-hdinsight"></a>HDInsight 上 Hadoop 叢集的可用性和可靠性
 
@@ -64,9 +58,9 @@ Nimbus 節點可用於 Storm 叢集。 Nimbus 節點會透過在背景工作節�
 
 邊緣節點並不積極地參與叢集內的資料分析， 而是由開發人員或資料科學家在使用 Hadoop 時搭配使用。 邊緣節點和叢集中的其他節點一樣，存在於相同的 Azure 虛擬網路中，也可直接存取其他所有節點。 使用邊緣節點時，不需從關鍵 Hadoop 服務或分析作業取走資源。
 
-目前，HDInsight 上的 R 伺服器是唯一可依預設提供邊緣節點的叢集類型。 對於 HDInsight 上的 R 伺服器來說，邊緣節點是用來在提交至叢集進行分散式處理之前，在本機節點上測試 R 程式碼之用。
+目前，HDInsight 上的 ML 服務是唯一可依預設提供邊緣節點的叢集類型。 對於 HDInsight 上的 ML 服務來說，邊緣節點是用來在提交至叢集進行分散式處理之前，在本機節點上測試 R 程式碼使用。
 
-如需使用邊緣節點搭配 R 伺服器以外的叢集類型的相關資訊，請參閱[在 HDInsight 上使用邊緣節點](hdinsight-apps-use-edge-node.md)文件。
+如需有關將邊緣節點搭配其他叢集類型使用的相關資訊，請參閱[在 HDInsight 中使用邊緣節點](hdinsight-apps-use-edge-node.md)文件。
 
 ## <a name="accessing-the-nodes"></a>存取節點
 
@@ -214,13 +208,13 @@ Ambari REST API 可透過網際網路提供。 HDInsight 公用閘道器會處�
 
 只能在叢集建立期間選取節點的大小。 您可以在 [HDInsight 價格頁面](https://azure.microsoft.com/pricing/details/hdinsight/)找到 HDInsight 可用之不同 VM 大小的清單。
 
-建立叢集時，您可以指定節點的大小。 以下資訊提供如何使用 [Azure 入口網站][preview-portal]、[Azure PowerShell][azure-powershell] 和 [Azure CLI][azure-cli] 指定大小的指引：
+建立叢集時，您可以指定節點的大小。 以下資訊提供如何使用 [Azure 入口網站][preview-portal]、[Azure PowerShell][azure-powershell] 和 [Azure Classic CLI][azure-cli] 指定大小的指引：
 
 * **Azure 入口網站**：建立叢集時，您可以設定叢集所使用的節點大小：
 
     ![可選取節點大小的 [叢集映像建立精靈]](./media/hdinsight-high-availability-linux/headnodesize.png)
 
-* **Azure CLI**︰當使用 `azure hdinsight cluster create` 命令時，您可以使用 `--headNodeSize`、`--workerNodeSize` 和 `--zookeeperNodeSize` 參數設定前端、 背景工作與 ZooKeeper 節點的大小。
+* **Azure Classic CLI**︰當使用 `azure hdinsight cluster create` 命令時，您可以使用 `--headNodeSize`、`--workerNodeSize` 和 `--zookeeperNodeSize` 參數設定前端、 背景工作與 ZooKeeper 節點的大小。
 
 * **Azure PowerShell**︰當使用 `New-AzureRmHDInsightCluster` Cmdlet 時，您可以使用 `-HeadNodeVMSize`、`-WorkerNodeSize` 和 `-ZookeeperNodeSize` 參數設定前端、背景工作與 ZooKeeper 節點的大小。
 

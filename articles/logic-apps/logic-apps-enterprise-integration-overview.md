@@ -1,26 +1,23 @@
 ---
-title: "適用於 B2B 的企業整合 - Azure Logic Apps | Microsoft Docs"
-description: "使用企業整合套件針對邏輯應用程式建置 B2B 工作流程並支援企業整合案例"
+title: B2B 企業整合概觀 - Azure Logic Apps | Microsoft Docs
+description: 使用 Azure Logic Apps 與 Enterprise Integration Pack 來建置適用於企業整合解決方案的自動化 B2B 工作流程
 services: logic-apps
-documentationcenter: .net,nodejs,java
-author: msftman
-manager: anneta
-editor: cgronlun
-ms.assetid: dd517c4d-1701-4247-b83c-183c4d8d8aae
 ms.service: logic-apps
-ms.workload: integration
-ms.tgt_pltfrm: na
-ms.devlang: na
+ms.suite: integration
+author: divyaswarnkar
+ms.author: divswa
+ms.reviewer: jonfan, estfan, LADocs
 ms.topic: article
+ms.assetid: dd517c4d-1701-4247-b83c-183c4d8d8aae
 ms.date: 09/08/2016
-ms.author: LADocs; padmavc
-ms.openlocfilehash: 9462707db03ecfcc3d5186ce7ded8655ad3bdcc9
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: b2e2c81914e8c0440b358d59c7f0248db46b6c50
+ms.sourcegitcommit: 2ad510772e28f5eddd15ba265746c368356244ae
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "43124287"
 ---
-# <a name="overview-b2b-scenarios-and-communication-with-the-enterprise-integration-pack"></a>概觀：使用企業整合套件的 B2B 案例與通訊
+# <a name="overview-b2b-enterprise-integration-scenarios-in-azure-logic-apps-with-enterprise-integration-pack"></a>概觀：採用 Enterprise Integration Pack 的 Azure Logic Apps 中的 B2B 企業整合案例
 
 對於企業對企業 (B2B) 工作流程以及使用 Azure Logic Apps 進行無接縫通訊，您可以搭配 Microsoft 的雲端解決方案「企業整合套件」啟用企業整合案例。 組織能以電子方式來交換訊息，即使他們使用不同的通訊協定與格式。 該套件會將不同的格式轉換為組織系統的可以解譯並處理的格式。 組織可以透過業界標準通訊協定 (包括 [AS2](../logic-apps/logic-apps-enterprise-integration-as2.md)、[X12](logic-apps-enterprise-integration-x12.md) 與 [EDIFACT](../logic-apps/logic-apps-enterprise-integration-edifact.md)) 來交換訊息。 您也可以使用加密與數位簽章來保護訊息的安全。
 
@@ -36,7 +33,7 @@ ms.lasthandoff: 10/11/2017
 
 ## <a name="how-to-get-started-with-enterprise-integration"></a>如何開始使用企業整合？
 
-您可以透過 **Azure 入口網站**中的邏輯應用程式設計工具，使用企業整合套件來建置及管理 B2B 應用程式。 您也可以使用 [PowerShell](https://msdn.microsoft.com/library/azure/mt652195.aspx "Logic apps PowerShell 主題") 來管理您的邏輯應用程式。
+您可以透過 **Azure 入口網站**中的邏輯應用程式設計工具，使用企業整合套件來建置及管理 B2B 應用程式。 您也可以使用 [PowerShell](https://docs.microsoft.com/powershell/module/azurerm.logicapp "Logic apps PowerShell") 來管理邏輯應用程式。
 
 以下是在 Azure 入口網站中建立應用程式之前必須執行的高階步驟︰
 

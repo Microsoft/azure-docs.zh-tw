@@ -1,12 +1,12 @@
 ---
-title: "長期函式中的檢查點和重新執行 - Azure"
-description: "了解如何在 Azure Functions 的「長期函式」延伸模組中進行檢查點檢查和重新執行工作。"
+title: 長期函式中的檢查點和重新執行 - Azure
+description: 了解如何在 Azure Functions 的「長期函式」延伸模組中進行檢查點檢查和重新執行工作。
 services: functions
 author: cgillum
 manager: cfowler
-editor: 
-tags: 
-keywords: 
+editor: ''
+tags: ''
+keywords: ''
 ms.service: functions
 ms.devlang: multiple
 ms.topic: article
@@ -14,11 +14,12 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 09/29/2017
 ms.author: azfuncdf
-ms.openlocfilehash: b1bca62e256c1ede5df6888dd7c47ce2aa816bb9
-ms.sourcegitcommit: 357afe80eae48e14dffdd51224c863c898303449
+ms.openlocfilehash: 39cdb9b2c6eae9a3176aedc64b8d187e298fdfdd
+ms.sourcegitcommit: e221d1a2e0fb245610a6dd886e7e74c362f06467
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/15/2017
+ms.lasthandoff: 05/07/2018
+ms.locfileid: "33764565"
 ---
 # <a name="checkpoints-and-replay-in-durable-functions-azure-functions"></a>長期函式中的檢查點和重新執行 (Azure Functions)
 
@@ -26,9 +27,11 @@ ms.lasthandoff: 12/15/2017
 
 儘管如此，長期函式可確保協調流程可靠地執行。 它是藉由使用儲存體佇列來驅動函式引動，以及將定期檢查點檢查執行歷程記錄記入儲存體資料表 (使用雲端設計模式，稱為[事件來源](https://docs.microsoft.com/azure/architecture/patterns/event-sourcing))，來完成這項作業。 然後該歷程記錄會重新執行以自動重建協調器函式的記憶體內部狀態。
 
-## <a name="orchestration-history"></a>協調流程歷程記錄
+## <a name="orchestration-history"></a>協調流程記錄
 
-假設您有下列協調器函式。
+假設您有下列協調器函式：
+
+#### <a name="c"></a>C#
 
 ```csharp
 [FunctionName("E1_HelloSequence")]
@@ -46,7 +49,22 @@ public static async Task<List<string>> Run(
 }
 ```
 
-在每個 `await` 陳述式中，長期工作架構會將函式的執行狀態檢查點記入資料表儲存體。 此狀態就是「協調流程歷程記錄」。
+#### <a name="javascript-functions-v2-only"></a>JavaScript (僅限 Functions v2)
+
+```javascript
+const df = require("durable-functions");
+
+module.exports = df(function*(context) {
+    const output = [];
+    output.push(yield context.df.callActivityAsync("E1_SayHello", "Tokyo"));
+    output.push(yield context.df.callActivityAsync("E1_SayHello", "Seattle"));
+    output.push(yield context.df.callActivityAsync("E1_SayHello", "London"));
+
+    return output;
+});
+```
+
+在每個 `await` (C#) 或 `yield` 陳述式中，長期工作架構會將函式的執行狀態檢查點記入資料表儲存體。 此狀態就是「協調流程歷程記錄」。
 
 ## <a name="history-table"></a>歷程記錄資料表
 

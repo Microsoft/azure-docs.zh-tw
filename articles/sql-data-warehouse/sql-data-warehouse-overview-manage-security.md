@@ -1,25 +1,21 @@
 ---
-title: "保護 SQL 資料倉儲中的資料庫 | Microsoft Docs"
-description: "保護 Azure SQL 資料倉儲中的資料庫以便開發解決方案的秘訣。"
+title: 保護 SQL 資料倉儲中的資料庫 | Microsoft Docs
+description: 保護 Azure SQL 資料倉儲中的資料庫以便開發解決方案的秘訣。
 services: sql-data-warehouse
-documentationcenter: NA
-author: ronortloff
-manager: jhubbard
-editor: 
-ms.assetid: 8fa2f5ca-4cf5-4418-99a2-4dc745799850
+author: kavithaj
+manager: craigg
 ms.service: sql-data-warehouse
-ms.devlang: NA
-ms.topic: article
-ms.tgt_pltfrm: NA
-ms.workload: data-services
-ms.custom: security
-ms.date: 12/14/2017
-ms.author: rortloff;barbkess
-ms.openlocfilehash: efc0ca9b156bd69a39197d40083830c6c7e77647
-ms.sourcegitcommit: 9d317dabf4a5cca13308c50a10349af0e72e1b7e
+ms.topic: conceptual
+ms.component: implement
+ms.date: 04/17/2018
+ms.author: kavithaj
+ms.reviewer: igorstan
+ms.openlocfilehash: 8abb40b0c1a5b9cd3f8d1e23124090c00e8cfadb
+ms.sourcegitcommit: 1fb353cfca800e741678b200f23af6f31bd03e87
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 08/30/2018
+ms.locfileid: "43302534"
 ---
 # <a name="secure-a-database-in-sql-data-warehouse"></a>保護 SQL 資料倉儲中的資料庫
 > [!div class="op_single_selector"]

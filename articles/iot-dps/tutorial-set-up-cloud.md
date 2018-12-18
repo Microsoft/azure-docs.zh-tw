@@ -1,22 +1,20 @@
 ---
-title: "在入口網站中為雲端設定 Azure IoT 中樞裝置佈建服務 | Microsoft Docs"
-description: "在 Azure 入口網站中自動進行 IoT 中樞裝置佈建"
-services: iot-dps
-keywords: 
+title: 在入口網站中為雲端設定 Azure IoT 中樞裝置佈建服務 | Microsoft Docs
+description: 在 Azure 入口網站中自動進行 IoT 中樞裝置佈建
 author: sethmanheim
 ms.author: sethm
 ms.date: 09/05/2017
 ms.topic: tutorial
 ms.service: iot-dps
-documentationcenter: 
+services: iot-dps
 manager: timlt
-ms.devlang: na
 ms.custom: mvc
-ms.openlocfilehash: 247c2155943d651c3be7791571522b652cf63483
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.openlocfilehash: ccc699a500cbaf20c9b90d71e7c730e617bc572c
+ms.sourcegitcommit: 727a0d5b3301fe20f20b7de698e5225633191b06
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 07/19/2018
+ms.locfileid: "39145531"
 ---
 # <a name="configure-cloud-resources-for-device-provisioning-with-the-iot-hub-device-provisioning-service"></a>設定雲端資源以使用 IoT 中樞裝置佈建服務來佈建裝置
 
@@ -28,9 +26,9 @@ ms.lasthandoff: 02/21/2018
 > * 將 IoT 中樞連結至裝置佈建服務
 > * 對裝置佈建服務設定配置原則
 
-如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/) 。
+如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/)。
 
-## <a name="log-in-to-the-azure-portal"></a>登入 Azure 入口網站
+## <a name="sign-in-to-the-azure-portal"></a>登入 Azure 入口網站
 
 登入 [Azure 入口網站](https://portal.azure.com/)。
 
@@ -52,9 +50,9 @@ ms.lasthandoff: 02/21/2018
 
    ![在入口網站中輸入 DPS 的基本資訊](./media/tutorial-set-up-cloud/create-iot-dps-portal.png)
 
-5. 按一下頁面底部的 [新增] 。
-6. [識別碼範圍] 可用來識別註冊識別碼，並保證註冊識別碼是唯一的。 若要取得此值，請按一下 [概觀] 來開啟裝置佈建服務的 [基本資訊] 頁面。 將 [識別碼範圍] 值複製到暫存位置以供稍後使用。
-7. 也請記下 [服務端點] 值，或將此值複製到暫存位置以供稍後使用。 
+5. 按一下頁面底部的 [新增] 。 幾分鐘後即會建立裝置佈建服務執行個體，並顯示 [概觀] 頁面。
+6. 在新的服務執行個體的 [概觀] 頁面上，複製 [識別碼範圍] 的值以供後續使用。 該值可用來識別註冊識別碼，並確保註冊識別碼是唯一的。
+7. 此外，請複製 [服務端點] 值以供後續使用。 
 
 [!INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
 
@@ -67,8 +65,11 @@ ms.lasthandoff: 02/21/2018
 1. 在 [所有資源] 頁面上，按一下您先前建立的裝置佈建服務執行個體。
 2. 在 [裝置佈建服務] 頁面中，按一下 [連結的 IoT 中樞]。
 3. 按一下 [新增] 。
-4. 在 [將連結新增至 IoT 中樞] 頁面中，使用選項按鈕來指定連結的 IoT 中樞是位於目前的訂用帳戶中，還是位於不同的訂用帳戶中。 然後，從 [IoT 中樞] 方塊選擇 IoT 中樞的名稱。
-5. 按一下 [檔案] 。
+4. 在 [新增 IoT 中樞的連結] 頁面中提供下列資訊，然後按一下 [儲存]：
+
+    * **訂用帳戶：** 確定已選取包含 IoT 中樞的訂用帳戶。 您可以連結至位於不同訂用帳戶的 IoT 中樞。
+    * **IoT 中樞：** 選擇要與此裝置佈建服務執行個體連結的 IoT 中樞名稱。
+    * **存取原則：** 選取 [iothubowner] 作為認證，用以建立 IoT 中樞的連結。
 
    ![在入口網站中將中樞名稱連結到 DPS](./media/tutorial-set-up-cloud/link-iot-hub-to-dps-portal.png)
 
@@ -77,7 +78,7 @@ ms.lasthandoff: 02/21/2018
 配置原則是 IoT 中樞裝置佈建服務的一項設定，可決定要如何將裝置指派到 IoT 中樞。 共有三個支援的配置原則： 
 
 1. **最低延遲**：將裝置佈建到裝置延遲最低的 IoT 中樞。
-2. **平均加權分佈** (預設值)：連結的 IoT 中樞有同樣的機率會讓系統在其中佈建裝置。 這是預設設定。 如果您只要將裝置佈建到一個 IoT 中樞，可以保留此設定。 
+2. **平均加權分佈** (預設值)：連結的 IoT 中樞有同樣的機率會讓系統在其中佈建裝置。 這項設定是預設值。 如果您只要將裝置佈建到一個 IoT 中樞，可以保留此設定。 
 3. **透過註冊清單進行靜態設定**：您在註冊清單中指定使用的 IoT 中樞，其優先順序高於裝置佈建服務層級的配置原則。
 
 若要設定配置原則，請在 [裝置佈建服務] 頁面中按一下 [管理配置原則]。 請確實地將配置原則設為 [平均加權分佈] \(預設值)。 如果有進行任何變更，請於變更完成後按一下 [儲存]。

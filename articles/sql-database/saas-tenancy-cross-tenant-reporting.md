@@ -1,21 +1,23 @@
 ---
 title: 跨多個 Azure SQL Database 執行報表查詢 | Microsoft Docs
 description: 使用分散式查詢跨租用戶報告。
-keywords: SQL Database Azure
 services: sql-database
-author: stevestein
-manager: craigg
 ms.service: sql-database
-ms.custom: scale out apps
-ms.topic: articles
-ms.date: 11/13/2017
-ms.author: billgib
-ms.reviewer: sstein; AyoOlubeko
-ms.openlocfilehash: b470a9cf4e3c08e582bda3f0b02378e68de7c8cf
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.subservice: scenario
+ms.custom: ''
+ms.devlang: ''
+ms.topic: conceptual
+author: stevestein
+ms.author: sstein
+ms.reviewers: billgib,AyoOlubeko
+manager: craigg
+ms.date: 04/01/2018
+ms.openlocfilehash: 3bba0eb552338f1b436ea25306a84029d352f1f3
+ms.sourcegitcommit: 715813af8cde40407bd3332dd922a918de46a91a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "47055283"
 ---
 # <a name="cross-tenant-reporting-using-distributed-queries"></a>使用分散式查詢跨租用戶報告
 

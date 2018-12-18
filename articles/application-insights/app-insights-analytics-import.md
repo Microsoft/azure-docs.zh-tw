@@ -1,31 +1,34 @@
 ---
-title: "將資料匯入 Azure Application Insights 中的分析 | Microsoft Docs"
-description: "匯入靜態資料以加入應用程式遙測，或匯入個別的資料流以分析查詢。"
+title: 將資料匯入 Azure Application Insights 中的分析 | Microsoft Docs
+description: 匯入靜態資料以加入應用程式遙測，或匯入個別的資料流以分析查詢。
 services: application-insights
-keywords: "開啟結構描述、匯入資料"
-documentationcenter: 
+keywords: 開啟結構描述、匯入資料
+documentationcenter: ''
 author: mrbullwinkle
 manager: carmonm
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
-ms.topic: article
-ms.date: 10/04/2017
+ms.topic: conceptual
+ms.date: 08/14/2018
 ms.author: mbullwin
-ms.openlocfilehash: 963e5cfd929f57b34dcb045df82b64f870e897e2
-ms.sourcegitcommit: 9890483687a2b28860ec179f5fd0a292cdf11d22
+ms.openlocfilehash: cfcdf13f8aa4dfab9b361ccbb82ea4b2c3e2ca0d
+ms.sourcegitcommit: 744747d828e1ab937b0d6df358127fcf6965f8c8
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/24/2018
+ms.lasthandoff: 08/16/2018
+ms.locfileid: "42140669"
 ---
 # <a name="import-data-into-analytics"></a>將資料匯入分析
 
 將任何表格式資料匯入[分析](app-insights-analytics.md)，將它從應用程式加入 [Application Insights](app-insights-overview.md) 遙測，或是讓您可以為個別的資料流進行分析。 分析是適用於分析大量遙測時間戳記資料流的強大查詢語言。
-
 您可以使用自己的結構描述將資料匯入分析。 它不需要使用標準 Application Insights 結構描述，例如要求或追蹤。
 
 您可以匯入 JSON 或 DSV (以分隔符號分隔值 - 逗號、分號或定位字元) 檔案。
+
+> [!IMPORTANT]
+> 此文章已**淘汰**。 若要將資料放到 Log Analytics 中，建議的方法是透過 [Log Analytics 資料收集器 API。](https://docs.microsoft.com/azure/log-analytics/log-analytics-data-collector-api)
 
 有三種情況下，匯入至分析會很實用︰
 
@@ -115,15 +118,16 @@ JSON 格式
 ]
 ```
  
-以每個資料行的位置、名稱、類型識別它。 
+以每個資料行的位置、名稱、類型識別它。
 
 * 位置 - 若為以符號分隔的檔案格式，則是對應值的位置。 若為 JSON 格式，則是對應索引鍵的 jpath。
 * 名稱 - 資料行的顯示名稱。
 * 類型 - 資料行的類型。
  
-在使用範例資料、而且檔案格式是符號分隔的情況下，結構描述定義必須對應所有資料行，並在結尾加入新的資料行。 
-
-JSON 允許資料部分對應，因此 JSON 格式的結構描述定義不需要對應範例資料中找到的每個索引鍵。 它也可以對應不屬於範例資料的資料行。 
+> [!NOTE]
+> 在使用範例資料、而且檔案格式是符號分隔的情況下，結構描述定義必須對應所有資料行，並在結尾加入新的資料行。
+> 
+> JSON 允許資料部分對應，因此 JSON 格式的結構描述定義不需要對應範例資料中找到的每個索引鍵。 它也可以對應不屬於範例資料的資料行。 
 
 ## <a name="import-data"></a>匯入資料
 

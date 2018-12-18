@@ -1,0 +1,71 @@
+### YamlMime:YamlDocument
+ms.openlocfilehash: a5152f9d9652a32c63c028a363187428d3014c54
+ms.sourcegitcommit: 0bb8db9fe3369ee90f4a5973a69c26bff43eae00
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/08/2018
+ms.locfileid: "48867590"
+documentType: LandingData
+title: Azure 管理 - Governance
+metadata:
+  title: Azure 管理 - Governance
+  description: 深入了解相關概念，以及可透過明確的設計和規則以一致的方式用於管理環境的 Azure 服務，以及如何稽核合規性。
+  services: governance
+  author: DCtheGeek
+  manager: carmonm
+  ms.service: governance
+  ms.topic: landing-page
+  ms.date: 09/18/2018
+  ms.author: dacoulte
+abstract:
+  description: Azure Governance 是多個概念和服務的集合，其設計訴求是要能夠大規模管理各種 Azure 資源。 這些服務能夠以邏輯方式組織及建構您的訂用帳戶、建立及部署可重複使用的 Azure 資源原生套件，以及定義、稽核及補救您的資源等。 使用此頁面來深入了解這些概念與服務，以及如何在您的環境中啟用及使用每項服務。
+  aside:
+    image:
+      alt: 
+      height: 225
+      src: ./media/video.png
+      width: 250
+    title: 透過 Azure Governance 快速掌控資源 (1:47)
+    href: https://www.youtube.com/watch?v=MhGbKjlmuRs
+    width: 250
+sections:
+- title: 元件和服務
+- items:
+  - type: list
+    style: cards
+    className: cardsD
+    columns: 2
+    items:
+    - href: ./management-groups/overview
+      html: <p>深入了解如何在邏輯階層中分組及組織您的訂用帳戶，進而支援以結構化方式部署其他治理服務。<br /></p>
+      image:
+        src: ./media/management-groups-illustration.svg
+      title: 管理群組
+    - href: ./resource-graph/
+      html: <p>使用功能強大的命令列工具 (支援 Azure CLI 和 Azure PowerShell)，快速查詢有關 Azure 資源的複雜詳細資料。 尋找並公開資訊，而先前需要複雜和反覆式指令碼，才能大規模探索這些資源。</p>
+      image:
+        src: ./media/resource-graph-illustration.svg
+      title: Resource Graph
+    - href: ./policy/
+      html: <p>定義標準並將其套用至您環境中的資源。 避免建立不想要的資源、以額外的元素增強新資源，以及稽核和補救您環境中現有的資源。</p>
+      image:
+        src: ./media/policy-illustration.svg
+      title: 原則
+    - href: ./blueprints/
+      html: <p>建立<i>成品</i> (資源群組、原則、角色指派、Resoure Manager 範本等等) 的 Azure 原生套件，以便動態部署至訂用帳戶，進而建立一致、可重複的環境。</p>
+      image:
+        src: ./media/blueprints-illustration.svg
+      title: 藍圖
+- title: 實作
+- items:
+  - type: list
+    style: cards
+    className: cardsZ
+    columns: 3
+    items:
+    - href: /azure/architecture/cloud-adoption/getting-started/what-is-governance?toc=/azure/governance/toc.json
+      html: <p>在過去，企業要承擔從基礎結構到軟體等所有技術層級的擁有權和責任。 現在，雲端可以視需要佈建及耗用資源，因而具有轉換企業利用技術方式的潛能。</p>
+      title: 企業雲端採用
+    - href: /azure/architecture/cloud-adoption/appendix/azure-scaffold?toc=/azure/governance/toc.json
+      html: <p>可讓系統管理員確保工作負載符合組織的最低治理需求，而不會阻礙事業群和開發人員快速達成他們自己的目標。<br /><br /></p>
+      title: 企業 Scaffold

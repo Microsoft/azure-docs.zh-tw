@@ -1,0 +1,98 @@
+items:
+- name: Privileged Identity Management 文件
+  href: index.yml
+- name: 概觀
+  items:
+  - name: 什麼是 Azure AD PIM？
+    href: pim-configure.md
+- name: 概念
+  items:
+  - name: 訂用帳戶需求
+    href: subscription-requirements.md
+  - name: 可以管理的目錄角色
+    href: pim-roles.md
+  - name: 特殊權限的安全存取
+    href: ../users-groups-roles/directory-admin-roles-secure.md?toc=%2fazure%2factive-directory%2fprivileged-identity-management%2ftoc.json
+  - name: MFA 和 PIM
+    href: pim-how-to-require-mfa.md
+  - name: 儀表板概觀
+    href: pim-resource-roles-overview-dashboards.md
+  - name: 電子郵件通知
+    href: pim-email-notifications.md
+  - name: 指派類型
+    href: pim-resource-roles-eligible-visibility.md
+  - name: 安全性精靈
+    href: pim-security-wizard.md
+- name: 使用說明指南
+  items:
+  - name: 開始使用 PIM
+    href: pim-getting-started.md
+  - name: 啟動我的角色
+    items:
+    - name: 啟動我的目錄角色
+      href: pim-how-to-activate-role.md
+    - name: 啟動我的資源角色
+      href: pim-resource-roles-activate-your-roles.md
+  - name: 設定 PIM
+    items:
+    - name: 探索 Azure 資源
+      href: pim-resource-roles-discover-resources.md
+    - name: 授與其他人存取權以管理 PIM
+      href: pim-how-to-give-access-to-pim.md
+    - name: 啟用訂用帳戶管理
+      href: pim-resource-roles-enable-subscription-management.md
+  - name: 管理目錄角色
+    items:
+    - name: 指派角色
+      href: pim-how-to-add-role-to-user.md
+    - name: 核准要求
+      href: azure-ad-pim-approval-workflow.md
+    - name: 配置角色設定
+      href: pim-how-to-change-default-settings.md
+    - name: 設定警示
+      href: pim-how-to-configure-security-alerts.md
+    - name: 檢視稽核記錄
+      href: pim-how-to-use-audit-log.md
+  - name: 管理資源角色
+    items:
+    - name: 指派角色
+      href: pim-resource-roles-assign-roles.md
+    - name: 核准要求
+      href: pim-resource-roles-approval-workflow.md
+    - name: 擴充或更新角色
+      href: pim-resource-roles-renew-extend.md
+    - name: 配置角色設定
+      href: pim-resource-roles-configure-role-settings.md
+    - name: 設定警示
+      href: pim-resource-roles-configure-alerts.md
+    - name: 檢視具有存取權的人員
+      href: azure-pim-resource-rbac.md
+    - name: 檢視稽核記錄
+      href: pim-resource-roles-use-the-audit-log.md
+    - name: 使用自訂角色
+      href: pim-resource-roles-custom-role-policy.md
+  - name: 檢閱存取
+    items:
+    - name: 目錄角色
+      items:
+      - name: 檢閱我的目錄角色
+        href: pim-how-to-perform-security-review.md
+      - name: 開始存取權檢閱
+        href: pim-how-to-start-security-review.md
+      - name: 完成存取權檢閱
+        href: pim-how-to-complete-review.md
+    - name: 資源角色
+      items:
+      - name: 檢閱我的資源角色
+        href: pim-resource-roles-perform-access-review.md
+      - name: 開始存取權檢閱
+        href: pim-resource-roles-start-access-review.md
+      - name: 完成存取權檢閱
+        href: pim-resource-roles-complete-access-review.md
+  expanded: true
+ms.openlocfilehash: 10399013e2687f9888fc49df23d56cba061bca6b
+ms.sourcegitcommit: e2348a7a40dc352677ae0d7e4096540b47704374
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/05/2018
+ms.locfileid: "43781128"

@@ -1,25 +1,20 @@
 ---
-title: "在 HDInsight 上安裝或更新 Mono - Azure | Microsoft Docs"
-description: "了解如何搭配 HDInsight 叢集使用特定版本的 Mono。 Mono 是用於在以 Linux 為基礎的 HDInsight 叢集上執行 .NET 應用程式。"
+title: 在 HDInsight 上安裝或更新 Mono - Azure
+description: 了解如何搭配 HDInsight 叢集使用特定版本的 Mono。 Mono 是用於在以 Linux 為基礎的 HDInsight 叢集上執行 .NET 應用程式。
 services: hdinsight
-documentationCenter: 
-author: Blackmist
-manager: jhubbard
-editor: cgronlun
-tags: azure-portal
+author: jasonwhowell
+ms.reviewer: jasonh
 ms.service: hdinsight
-ms.devlang: 
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 01/17/2018
-ms.author: larryfr
+ms.topic: conceptual
+ms.date: 04/10/2018
+ms.author: jasonh
 ms.custom: hdinsightactive
-ms.openlocfilehash: 555f82ec9351c8c3610ad99a95159cc47d2ee539
-ms.sourcegitcommit: f1c1789f2f2502d683afaf5a2f46cc548c0dea50
+ms.openlocfilehash: 54e5a5b72627dc9cd2d842ccb24d10e2f9ab9dce
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/18/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46957171"
 ---
 # <a name="install-or-update-mono-on-hdinsight"></a>在 HDInsight 上安裝或更新 Mono
 
@@ -49,7 +44,7 @@ __需求__：
 
 ## <a name="to-use-the-script"></a>使用指令碼
 
-如需如何搭配 HDInsight 使用此指令碼的資訊，請參閱[使用指令碼動作來自訂以 Linux 為基礎的 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md#apply-a-script-action-to-a-running-cluster)文件。 您可以透過 Azure 入口網站、Azure PowerShell 或 Azure CLI 來使用指令碼。
+如需如何搭配 HDInsight 使用此指令碼的資訊，請參閱[使用指令碼動作來自訂以 Linux 為基礎的 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md#apply-a-script-action-to-a-running-cluster)文件。 您可以透過 Azure 入口網站、Azure PowerShell 或 Azure 傳統 CLI 來使用指令碼。
 
 遵循指令碼動作文件時，請使用下列 URI：
 

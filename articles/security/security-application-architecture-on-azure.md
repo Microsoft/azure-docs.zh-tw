@@ -1,5 +1,5 @@
 ---
-title: "將安全性整合至 Azure 架構設計 | Microsoft Docs"
+title: 將安全性整合至 Azure 架構設計 | Microsoft Docs
 description: " 本文將協助您了解 Azure 上的應用程式及服務架構，可以更輕易地將安全性整合至設計及實作。 "
 services: security
 documentationcenter: na
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 8aa014454fc7947f1ed54d380c63423500123b4a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 11/23/2017
+ms.locfileid: "25549413"
 ---
 # <a name="application-architecture-on-azure"></a>Azure 的應用程式架構
 為了協助保護您在 Microsoft Azure 上以雲端為基礎的解決方案，堅強的架構基礎相當重要。 架構設計人員、設計人員和實作者都受益於對於應用程式及服務架構的強大知識。 此基本知識將幫助您了解所有以雲端為基礎的解決方案的元件，並輕鬆地將安全性整合至您的設計和實作的所有層面。

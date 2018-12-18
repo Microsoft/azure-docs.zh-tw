@@ -3,21 +3,22 @@ title: 使用 Azure Data Factory 以累加方式複製多個資料表 | Microsof
 description: 在本教學課程中，您會建立 Azure Data Factory 管線，透過累加方式將差異資料從內部部署 SQL Server 資料庫中的多個資料表，複製到 Azure SQL Database。
 services: data-factory
 documentationcenter: ''
-author: linda33wj
+author: dearandyxu
 manager: craigg
 ms.reviewer: douglasl
 ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: get-started-article
+ms.topic: tutorial
 ms.date: 01/22/2018
-ms.author: jingwang
-ms.openlocfilehash: 8f59ffb2011ad43173881d4ced231e4820fcf5f8
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.author: yexu
+ms.openlocfilehash: 0cec1fb09503d3cc685b718c2497a363dfd15824
+ms.sourcegitcommit: 0bb8db9fe3369ee90f4a5973a69c26bff43eae00
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 10/08/2018
+ms.locfileid: "48868389"
 ---
 # <a name="incrementally-load-data-from-multiple-tables-in-sql-server-to-an-azure-sql-database"></a>以累加方式將 SQL Server 中多個資料表的資料載入到 Azure SQL Database
 在本教學課程中，您會建立 Azure Data Factory 與管線，以將差異資料從內部部署 SQL Server 中的多個資料表，載入到 Azure SQL Database。    
@@ -37,19 +38,16 @@ ms.lasthandoff: 03/23/2018
 > * 重新執行，並監視管線。
 > * 檢閱最終結果。
 
-> [!NOTE]
-> 本文適用於第 2 版的 Azure Data Fatory (目前為預覽版)。 如果您使用第 1 版的 Data Factory 服務 (正式推出版本)，請參閱 [Data Factory 第 1 版文件](v1/data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
-
 ## <a name="overview"></a>概觀
 以下是建立此解決方案的重要步驟： 
 
 1. **選取水位線資料行**。
     針對來源資料存放區中的每個資料表各選取一個資料行，以便用於識別每次執行時新增或更新的記錄。 一般來說，當建立或更新資料列時，這個選取的資料行 (例如，last_modify_time 或 ID) 中的資料會持續增加。 此資料行中的最大值就作為水位線。
 
-2. **準備資料存放區來儲存水位線值**。   
+1. **準備資料存放區來儲存水位線值**。   
     在本教學課程中，您會將水位線值儲存在 SQL 資料庫中。
 
-3. **使用下列活動建立管線**： 
+1. **使用下列活動建立管線**： 
     
     a. 建立 ForEach 活動，逐一查看以參數形式傳遞到管線的來源資料表名稱清單。 此活動會針對每個來源資料表叫用下列活動，以對該資料表執行差異載入。
 
@@ -57,14 +55,14 @@ ms.lasthandoff: 03/23/2018
 
     c. 建立複製活動，以複製來源資料存放區的資料列，而這些資料列的水位線資料行值大於舊水位線值，且小於新水位線值。 然後，它會將來源資料存放區的差異資料複製到 Azure Blob 儲存體作為新檔案。
 
-    d. 建立 StoredProcedure 活動，以更新下次執行之管線的水位線值。 
+    d. 建立 StoredProcedure 活動，以更新下次執行的管線水位線值。 
 
     高階解決方案圖表如下： 
 
     ![以累加方式載入資料](media\tutorial-incremental-copy-multiple-tables-powershell\high-level-solution-diagram.png)
 
 
-如果您沒有 Azure 訂用帳戶，請在開始前建立[免費帳戶](https://azure.microsoft.com/free/) 。
+如果您沒有 Azure 訂用帳戶，請在開始前建立[免費帳戶](https://azure.microsoft.com/free/)。
 
 ## <a name="prerequisites"></a>先決條件
 * **SQL Server**。 在本教學課程中，您會使用內部部署 SQL 資料庫作為來源資料存放區。 
@@ -74,9 +72,9 @@ ms.lasthandoff: 03/23/2018
 
 1. 開啟 SQL Server Management Studio，然後連線到內部部署 SQL Server 資料庫。
 
-2. 在**伺服器總管**中，以滑鼠右鍵按一下資料庫，然後選擇 [新增查詢]。
+1. 在**伺服器總管**中，以滑鼠右鍵按一下資料庫，然後選擇 [新增查詢]。
 
-3. 對您的資料庫執行下列 SQL 命令，以建立名為 `customer_table` 和 `project_table` 的資料表：
+1. 對您的資料庫執行下列 SQL 命令，以建立名為 `customer_table` 和 `project_table` 的資料表：
 
     ```sql
     create table customer_table
@@ -113,9 +111,9 @@ ms.lasthandoff: 03/23/2018
 ### <a name="create-destination-tables-in-your-azure-sql-database"></a>在 Azure SQL 資料庫中建立目的地資料表
 1. 開啟 SQL Server Management Studio，然後連線到 SQL Server 資料庫。
 
-2. 在**伺服器總管**中，以滑鼠右鍵按一下資料庫，然後選擇 [新增查詢]。
+1. 在**伺服器總管**中，以滑鼠右鍵按一下資料庫，然後選擇 [新增查詢]。
 
-3. 對您的資料庫執行下列 SQL 命令，以建立名為 `customer_table` 和 `project_table` 的 SQL 資料表：  
+1. 對您的資料庫執行下列 SQL 命令，以建立名為 `customer_table` 和 `project_table` 的 SQL 資料表：  
     
     ```sql
     create table customer_table
@@ -144,7 +142,7 @@ ms.lasthandoff: 03/23/2018
         WatermarkValue datetime,
     );
     ```
-2. 在水位線資料表中插入這兩個來源資料表的初始水位線值。
+1. 在水位線資料表中插入這兩個來源資料表的初始水位線值。
 
     ```sql
 
@@ -234,29 +232,29 @@ END
     $resourceGroupName = "ADFTutorialResourceGroup";
     ```
 
-    如果資源群組已經存在，您可能不想覆寫它。 將不同的值指派給 `$resourceGroupName` 變數，然後執行一次命令。
+    不建議您覆寫已經存在的資源群組。 將不同的值指派給 `$resourceGroupName` 變數，然後再執行一次命令。
 
-2. 定義資料處理站位置的變數。 
+1. 定義資料處理站位置的變數。 
 
     ```powershell
     $location = "East US"
     ```
-3. 若要建立 Azure 資源群組，請執行下列命令： 
+1. 若要建立 Azure 資源群組，請執行下列命令： 
 
     ```powershell
     New-AzureRmResourceGroup $resourceGroupName $location
     ``` 
-    如果資源群組已經存在，您可能不想覆寫它。 將不同的值指派給 `$resourceGroupName` 變數，然後執行一次命令。
+    不建議您覆寫已經存在的資源群組。 將不同的值指派給 `$resourceGroupName` 變數，然後再執行一次命令。
 
-4. 定義 Data Factory 名稱的變數。 
+1. 定義 Data Factory 名稱的變數。 
 
     > [!IMPORTANT]
-    >  更新資料處理站名稱，使其成為全域唯一的。 例如，ADFIncMultiCopyTutorialFactorySP1127。 
+    >  更新資料處理站名稱，使其成為全域唯一的資料處理站。 例如，ADFIncMultiCopyTutorialFactorySP1127。 
 
     ```powershell
     $dataFactoryName = "ADFIncMultiCopyTutorialFactory";
     ```
-5. 若要建立 Data Factory，請執行下列 **Set-AzureRmDataFactoryV2** Cmdlet： 
+1. 若要建立 Data Factory，請執行下列 **Set-AzureRmDataFactoryV2** Cmdlet： 
     
     ```powershell       
     Set-AzureRmDataFactoryV2 -ResourceGroupName $resourceGroupName -Location $location -Name $dataFactoryName 
@@ -270,7 +268,7 @@ END
     The specified Data Factory name 'ADFIncMultiCopyTutorialFactory' is already in use. Data Factory names must be globally unique.
     ```
 * 若要建立 Data Factory 執行個體，您用來登入 Azure 的使用者帳戶必須為參與者或擁有者角色，或是 Azure 訂用帳戶的管理員。
-* 目前，Data Factory 第 2 版只允許您在美國東部、美國東部 2 和西歐區域中建立資料處理站。 資料處理站所使用的資料存放區 (Azure 儲存體、SQL Database 等) 和計算 (Azure HDInsight 等) 可位於其他區域。
+* 如需目前可使用 Data Factory 的 Azure 區域清單，請在下列頁面上選取您感興趣的區域，然後展開 [分析] 以找出 [Data Factory]：[依區域提供的產品](https://azure.microsoft.com/global-infrastructure/services/)。 資料處理站所使用的資料存放區 (Azure 儲存體、SQL Database 等) 和計算 (Azure HDInsight 等) 可位於其他區域。
 
 [!INCLUDE [data-factory-create-install-integration-runtime](../../includes/data-factory-create-install-integration-runtime.md)]
 
@@ -338,9 +336,9 @@ END
     > - 儲存檔案之前，以您的 SQL Server 資料庫值取代 &lt;servername>、&lt;databasename>、&lt;username> 和 &lt;password>。
     > - 如果您需要在使用者帳戶或伺服器名稱中使用斜線字元 (`\`)，請使用逸出字元 (`\`)。 例如 `mydomain\\myuser`。
 
-2. 在 PowerShell 中，切換至 C:\ADFTutorials\IncCopyMultiTableTutorial 資料夾。
+1. 在 PowerShell 中，切換至 C:\ADFTutorials\IncCopyMultiTableTutorial 資料夾。
 
-3. 執行 **Set-AzureRmDataFactoryV2LinkedService** Cmdlet 來建立連結服務 AzureStorageLinkedService。 在下列範例中，您會傳遞 ResourceGroupName 和 DataFactoryName 參數的值： 
+1. 執行 **Set-AzureRmDataFactoryV2LinkedService** Cmdlet 來建立連結服務 AzureStorageLinkedService。 在下列範例中，您會傳遞 ResourceGroupName 和 DataFactoryName 參數的值： 
 
     ```powershell
     Set-AzureRmDataFactoryV2LinkedService -DataFactoryName $dataFactoryName -ResourceGroupName $resourceGroupName -Name "SqlServerLinkedService" -File ".\SqlServerLinkedService.json"
@@ -372,7 +370,7 @@ END
         }
     }
     ```
-2. 在 PowerShell 中，執行 **Set-AzureRmDataFactoryV2LinkedService** Cmdlet 來建立連結服務 AzureSQLDatabaseLinkedService。 
+1. 在 PowerShell 中，執行 **Set-AzureRmDataFactoryV2LinkedService** Cmdlet 來建立連結服務 AzureSQLDatabaseLinkedService。 
 
     ```powershell
     Set-AzureRmDataFactoryV2LinkedService -DataFactoryName $dataFactoryName -ResourceGroupName $resourceGroupName -Name "AzureSQLDatabaseLinkedService" -File ".\AzureSQLDatabaseLinkedService.json"
@@ -413,7 +411,7 @@ END
 
     資料表名稱是虛擬名稱。 管線中的複製活動會使用 SQL 查詢來載入資料，而不會載入整個資料表。
 
-2. 執行 **Set-AzureRmDataFactoryV2Dataset** Cmdlet 來建立資料集 SourceDataset。
+1. 執行 **Set-AzureRmDataFactoryV2Dataset** Cmdlet 來建立資料集 SourceDataset。
     
     ```powershell
     Set-AzureRmDataFactoryV2Dataset -DataFactoryName $dataFactoryName -ResourceGroupName $resourceGroupName -Name "SourceDataset" -File ".\SourceDataset.json"
@@ -457,7 +455,7 @@ END
     }
     ```
 
-2. 執行 **Set-AzureRmDataFactoryV2Dataset** Cmdlet 來建立資料集 SinkDataset。
+1. 執行 **Set-AzureRmDataFactoryV2Dataset** Cmdlet 來建立資料集 SinkDataset。
     
     ```powershell
     Set-AzureRmDataFactoryV2Dataset -DataFactoryName $dataFactoryName -ResourceGroupName $resourceGroupName -Name "SinkDataset" -File ".\SinkDataset.json"
@@ -493,7 +491,7 @@ END
         }
     }    
     ```
-2. 執行 **Set-AzureRmDataFactoryV2Dataset** Cmdlet 來建立資料集 WatermarkDataset。
+1. 執行 **Set-AzureRmDataFactoryV2Dataset** Cmdlet 來建立資料集 WatermarkDataset。
     
     ```powershell
     Set-AzureRmDataFactoryV2Dataset -DataFactoryName $dataFactoryName -ResourceGroupName $resourceGroupName -Name "WatermarkDataset" -File ".\WatermarkDataset.json"
@@ -514,11 +512,11 @@ END
 
 1. 使用查閱活動擷取舊的水位線值 (初始值，或最後一次反覆運算中使用的值)。
 
-2. 使用查閱活動擷取新的水位線值 (來源資料表中水位線資料行的最大值)。
+1. 使用查閱活動擷取新的水位線值 (來源資料表中水位線資料行的最大值)。
 
-3. 使用複製活動，在來源資料庫到目的地資料庫的這兩個水位線值之間複製資料。
+1. 使用複製活動，在來源資料庫到目的地資料庫的這兩個水位線值之間複製資料。
 
-4. 使用 StoredProcedure 活動，更新要在下一個反覆項目的第一個步驟中使用的舊水位線值。 
+1. 使用 StoredProcedure 活動，更新要在下一個反覆項目的第一個步驟中使用的舊水位線值。 
 
 ### <a name="create-the-pipeline"></a>建立管線
 1. 在相同的資料夾中，使用下列內容建立名為 IncrementalCopyPipeline.json 的 JSON 檔案： 
@@ -606,7 +604,7 @@ END
                                 "referenceName": "SinkDataset",
                                 "type": "DatasetReference",
                                 "parameters": {
-                                    "SinkTableName": "@{item().TABLE_NAME}"
+                                    "SinkTableName": "@{item().TableType}"
                                 }
                             }]
                         },
@@ -655,7 +653,7 @@ END
         }
     }
     ```
-2. 執行 **Set-AzureRmDataFactoryV2Pipeline** Cmdlet 以建立管線 IncrementalCopyPipeline。
+1. 執行 **Set-AzureRmDataFactoryV2Pipeline** Cmdlet 以建立管線 IncrementalCopyPipeline。
     
    ```powershell
    Set-AzureRmDataFactoryV2Pipeline -DataFactoryName $dataFactoryName -ResourceGroupName $resourceGroupName -Name "IncrementalCopyPipeline" -File ".\IncrementalCopyPipeline.json"
@@ -694,7 +692,7 @@ END
         ]
     }
     ```
-2. 使用 **Invoke-AzureRmDataFactoryV2Pipeline** Cmdlet 執行管線 IncrementalCopyPipeline。 以您自己的資源群組和資料處理站名稱取代預留位置。
+1. 使用 **Invoke-AzureRmDataFactoryV2Pipeline** Cmdlet 執行管線 IncrementalCopyPipeline。 以您自己的資源群組和資料處理站名稱取代預留位置。
 
     ```powershell
     $RunId = Invoke-AzureRmDataFactoryV2Pipeline -PipelineName "IncrementalCopyPipeline" -ResourceGroup $resourceGroupName -dataFactoryName $dataFactoryName -ParameterFile ".\Parameters.json"        
@@ -704,26 +702,26 @@ END
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
 
-2. 選取 [所有服務]，以關鍵字「資料處理站」進行搜尋，然後選取 [資料處理站]。 
+1. 選取 [所有服務]，以關鍵字「資料處理站」進行搜尋，然後選取 [資料處理站]。 
 
     ![Data Factory 功能表](media\tutorial-incremental-copy-multiple-tables-powershell\monitor-data-factories-menu-1.png)
 
-3. 在 Data Factory 清單中搜尋您的 Data Factory，然後加以選取以開啟 [Data Factory] 頁面。 
+1. 在 Data Factory 清單中搜尋您的 Data Factory，然後加以選取以開啟 [Data Factory] 頁面。 
 
     ![搜尋您的 Data Factory](media\tutorial-incremental-copy-multiple-tables-powershell\monitor-search-data-factory-2.png)
 
-4. 在 [Data Factory] 頁面上，選取 [監視及管理]。 
+1. 在 [Data Factory] 頁面上，選取 [監視及管理]。 
 
     ![監視及管理圖格](media\tutorial-incremental-copy-multiple-tables-powershell\monitor-monitor-manage-tile-3.png)
 
-5. [資料整合應用程式] 會在不同的索引標籤中開啟。您可以看到所有管線執行及其狀態。 請注意，在下列範例中，管線執行狀態是 [成功]。 若要檢查傳遞到管線的參數，請選取 [參數] 資料行中的連結。 如果發生錯誤，您就會在 [錯誤] 資料行中看到連結。 選取 [動作] 資料行中的連結。 
+1. [資料整合應用程式] 會在不同的索引標籤中開啟。您可以看到所有管線執行及其狀態。 請注意，在下列範例中，管線執行狀態是 [成功]。 若要檢查傳遞到管線的參數，請選取 [參數] 資料行中的連結。 如果發生錯誤，您就會在 [錯誤] 資料行中看到連結。 選取 [動作] 資料行中的連結。 
 
     ![管線執行回合](media\tutorial-incremental-copy-multiple-tables-powershell\monitor-pipeline-runs-4.png)    
-6. 當您選取 [動作] 資料行中的連結時，您會看到下列頁面，其中顯示管線的所有活動執行： 
+1. 當您選取 [動作] 資料行中的連結時，您會看到下列頁面，其中顯示管線的所有活動執行： 
 
     ![活動執行](media\tutorial-incremental-copy-multiple-tables-powershell\monitor-activity-runs-5.png)
 
-7. 若要回到 [管線執行] 檢視，請選取 [管線]，如下圖所示。 
+1. 若要回到 [管線執行] 檢視，請選取 [管線]，如下圖所示。 
 
 ## <a name="review-the-results"></a>檢閱結果
 在 SQL Server Management Studio 中，對目標 SQL 資料庫執行下列查詢，以確認資料已從來源資料表複製到目的地資料表： 
@@ -801,15 +799,15 @@ VALUES
     ```powershell
     $RunId = Invoke-AzureRmDataFactoryV2Pipeline -PipelineName "IncrementalCopyPipeline" -ResourceGroup $resourceGroupname -dataFactoryName $dataFactoryName -ParameterFile ".\Parameters.json"
     ```
-2. 遵循[監視管線](#monitor-the-pipeline)一節中的指示，以監視管線執行。 因為管線狀態為 [進行中]，所以您會在 [動作] 底下看到另一個動作連結，其可供取消管線執行。 
+1. 遵循[監視管線](#monitor-the-pipeline)一節中的指示，以監視管線執行。 因為管線狀態為 [進行中]，所以您會在 [動作] 底下看到另一個動作連結，其可供取消管線執行。 
 
     ![進行中監視管線執行](media\tutorial-incremental-copy-multiple-tables-powershell\monitor-pipeline-runs-6.png)
 
-3. 選取 [重新整理] 可重新整理清單，直到管線執行成功。 
+1. 選取 [重新整理] 可重新整理清單，直到管線執行成功。 
 
     ![重新整理管線執行](media\tutorial-incremental-copy-multiple-tables-powershell\monitor-pipeline-runs-succeded-7.png)
 
-4. 選擇性地，選取 [動作] 底下的 [檢視活動執行] 連結，可查看與此管線執行相關聯的所有活動執行。 
+1. 選擇性地，選取 [動作] 底下的 [檢視活動執行] 連結，可查看與此管線執行相關聯的所有活動執行。 
 
 ## <a name="review-the-final-results"></a>檢閱最終結果
 在 SQL Server Management Studio 中，對目標資料庫執行下列查詢，以確認經過更新/全新的資料已從來源資料表複製到目的地資料表。 
@@ -831,7 +829,7 @@ PersonID    Name    LastModifytime
 5           Anny    2017-09-05 08:06:00.000
 ```
 
-請注意，**PersonID** 為 3 之 **Name** 和 **LastModifytime** 的新值。 
+請注意，**PersonID** 為 3 的 **Name** 和 **LastModifytime** 的新值。 
 
 **查詢**
 

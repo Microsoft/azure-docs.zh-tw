@@ -1,6 +1,6 @@
 ---
-title: "Azure App Service Environment 的網路考量"
-description: "說明 ASE 網路流量與如何使用 ASE 設定 NSG 和 UDR"
+title: Azure App Service Environment 的網路考量
+description: 說明 ASE 網路流量與如何使用 ASE 設定 NSG 和 UDR
 services: app-service
 documentationcenter: na
 author: ccompy
@@ -11,13 +11,14 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/08/2017
+ms.date: 08/29/2018
 ms.author: ccompy
-ms.openlocfilehash: c4779ada60fab2db5249a107abfc7ca6f80cb16f
-ms.sourcegitcommit: 059dae3d8a0e716adc95ad2296843a45745a415d
+ms.openlocfilehash: 6d4f7fab0c36095d96cec0038a39744102e8972b
+ms.sourcegitcommit: 7c4fd6fe267f79e760dc9aa8b432caa03d34615d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47433747"
 ---
 # <a name="networking-considerations-for-an-app-service-environment"></a>App Service Environment 的網路考量 #
 
@@ -28,9 +29,9 @@ ms.lasthandoff: 02/09/2018
 - **外部 ASE**：會在可存取網際網路的 IP 位址上公開 ASE 裝載的應用程式。 如需詳細資訊，請參閱[建立外部 ASE][MakeExternalASE]。
 - **ILB ASE**：會在您 VNet 內部的 IP 位址上公開 ASE 裝載的應用程式。 內部端點是一個內部負載平衡器 (ILB)，這就是它稱為 ILB ASE 的原因。 如需詳細資訊，請參閱[建立和使用 ILB ASE][MakeILBASE]。
 
-App Service Environment 現在有兩個版本：ASEv1 和 ASEv2。 如需 ASEv1 的資訊，請參閱 [App Service Environment v1 簡介][ASEv1Intro]。 ASEv1 可以部署至傳統或 Resource Manager VNet 中。 ASEv2 只能部署至 Resource Manager VNet 中。
+App Service Environment 有兩個版本：ASEv1 和 ASEv2。 如需 ASEv1 的資訊，請參閱 [App Service Environment v1 簡介][ASEv1Intro]。 ASEv1 可以部署至傳統或 Resource Manager VNet 中。 ASEv2 只能部署至 Resource Manager VNet 中。
 
-來自 ASE 並傳送至網際網路的所有呼叫，都會透過為 ASE 指派的 VIP 離開 VNet。 然後，此 VIP 的公用 IP 就會成為來自 ASE 並傳送至網際網路之所有呼叫的來源 IP。 如果 ASE 中的應用程式會呼叫位於 VNet 中或跨 VPN 的資源，則來源 IP 就會是 ASE 所用子網路中的其中一個 IP。 因為 ASE 是位於 VNet 之內，所以它也可以存取 VNet 內的資源，而不需要任何額外設定。 如果 VNet 是連線至您的內部部署網路，您 ASE 中的應用程式也會擁有該處資源的存取權。 您不再需要設定 ASE 或您的應用程式。
+來自 ASE 並傳送至網際網路的所有呼叫，都會透過為 ASE 指派的 VIP 離開 VNet。 此 VIP 的公用 IP 是來自 ASE 並傳送至網際網路之所有呼叫的來源 IP。 如果 ASE 中的應用程式會呼叫位於 VNet 中或跨 VPN 的資源，則來源 IP 就會是 ASE 所用子網路中的其中一個 IP。 因為 ASE 是位於 VNet 之內，所以它也可以存取 VNet 內的資源，而不需要任何額外設定。 如果 VNet 連線至您的內部部署網路，您 ASE 中的應用程式也擁有該處資源的存取權，而不需其他設定。
 
 ![外部 ASE][1] 
 
@@ -43,7 +44,7 @@ App Service Environment 現在有兩個版本：ASEv1 和 ASEv2。 如需 ASEv1 
 
 ![ILB ASE][2]
 
-如果您有 ILB ASE，則 ILB 的 IP 位址就會是 HTTP/S、FTP/S、Web 部署和遠端偵錯的端點。
+如果您有 ILB ASE，則 ILB 的位址是 HTTP/S、FTP/S、Web 部署和遠端偵錯的端點。
 
 一般的應用程式存取連接埠為：
 
@@ -57,14 +58,18 @@ App Service Environment 現在有兩個版本：ASEv1 和 ASEv2。 如需 ASEv1 
 
 ## <a name="ase-subnet-size"></a>ASE 子網路大小 ##
 
-ASE 部署之後，就無法變更用來裝載 ASE 的子網路大小。  每個基礎結構角色以及每個隔離的 App Service 方案執行個體，ASE 都會使用一個位址。  此外，每建立一個子網路，Azure 網路就會使用 5 個位址。  在您建立應用程式之前，完全沒有 App Service 方案的 ASE 會使用 12 個位址。  如果是 ILB ASE，在您於其中建立應用程式之前，該 ASE 會使用 13 個位址。 隨著您相應放大 App Serivce 方案，新增的每個前端都需要額外的位址。  根據預設，每 15 個 App Service 方案執行個體就會新增前端伺服器。 
+ASE 部署之後，就無法變更用來裝載 ASE 的子網路大小。  每個基礎結構角色以及每個隔離的 App Service 方案執行個體，ASE 都會使用一個位址。  此外，每建立一個子網路，Azure 網路就會使用 5 個位址。  在您建立應用程式之前，完全沒有 App Service 方案的 ASE 會使用 12 個位址。  如果是 ILB ASE，在您於其中建立應用程式之前，該 ASE 會使用 13 個位址。 當您相應放大 ASE 時，您的 App Service 方案執行個體每 15 和 20 的倍數便會新增基礎結構角色。
 
    > [!NOTE]
-   > 除了 ASE 以外，子網路中可能沒有其他項目。 請務必選擇預留未來成長空間的位址空間。 您之後無法變更此設定。 我們建議使用包含 128 個位址的 `/25` 大小。
+   > 除了 ASE 以外，子網路中可能沒有其他項目。 請務必選擇預留未來成長空間的位址空間。 您之後無法變更此設定。 我們建議使用包含 256 個位址的 `/24` 大小。
+
+當您相應增加或減少時，即會新增適當大小的新角色，然後將您的工作負載從目前大小移轉為目標大小。 只有在移轉應用程式之後，才會移除原始的 VM。 這表示如果您擁有的 ASE 有 100 個 ASP 執行個體，則當您需要將 VM 數量加倍時會需要一段時間。  基於這個原因，我們建議使用 '/24' 來配合您可能需要的任何變更。  
 
 ## <a name="ase-dependencies"></a>ASE 相依性 ##
 
-ASE 輸入存取相依性為：
+### <a name="ase-inbound-dependencies"></a>ASE 連入相依性 ###
+
+ASE 連入存取相依性如下：
 
 | 使用 | 從 | 至 |
 |-----|------|----|
@@ -73,7 +78,7 @@ ASE 輸入存取相依性為：
 |  允許 Azure Load Balancer 輸入 | Azure Load Balancer | ASE 子網路：所有連接埠
 |  應用程式指派的 IP 位址 | 應用程式指派的位址 | ASE 子網路：所有連接埠
 
-除了系統監控以外，輸入流量也提供了 ASE 的命令與控制。 此流量的來源 IP 列於 [ASE 管理位址][ASEManagement]文件中。 網路安全性設定需在連接埠 454 和 455 上允許來自所有 IP 的存取。
+除了系統監視之外，連入管理流量也提供 ASE 的命令與控制。 此流量的來源位址列於 [ASE 管理位址][ASEManagement]文件中。 網路安全性設定需在連接埠 454 和 455 上允許來自所有 IP 的存取。 如果您封鎖來自那些位址的存取，則您的 ASE 將變成狀況不良，接著會變成暫時停權。
 
 ASE 子網路中有許多用於內部元件通訊的連接埠，您可以變更這些連接埠。  ASE 子網路的所有連接埠都必須能夠從 ASE 子網路存取。 
 
@@ -81,26 +86,23 @@ ASE 子網路中有許多用於內部元件通訊的連接埠，您可以變更�
 
 如果您使用應用程式指派的 IP 位址，則需要允許將來自應用程式指派之 IP 的流量傳送至 ASE 子網路。
 
-對於輸出存取，ASE 取決於多個外部系統。 那些系統相依性會以 DNS 名稱定義，且不會對應至一組固定的 IP 位址。 因此，ASE 需要透過不同的連接埠進行從 ASE 子網路至所有外部 IP 的輸出存取。 ASE 具有下列輸出相依性：
+在連接埠 454 與 455 傳入的 TCP 流量必須回到相同的 VIP，否則您將會有非對稱式路由問題。 
 
-| 使用 | 從 | 至 |
-|-----|------|----|
-| Azure 儲存體 | ASE 子網路 | table.core.windows.net、blob.core.windows.net、queue.core.windows.net、file.core.windows.net：80、443、445 (只有 ASEv1 才需要 445) |
-| 連接字串 | ASE 子網路 | database.windows.net：1433、11000-11999、14000-14999 (如需詳細資訊，請參閱 [SQL Database V12 連接埠用法](../../sql-database/sql-database-develop-direct-route-ports-adonet-v12.md))|
-| Azure 管理 | ASE 子網路 | management.core.windows.net、management.azure.com：443 
-| SSL 憑證驗證 |  ASE 子網路            |  ocsp.msocsp.com、mscrl.microsoft.com、crl.microsoft.com：443
-| Azure Active Directory        | ASE 子網路            |  網際網路：443
-| App Service 管理        | ASE 子網路            |  網際網路：443
-| Azure DNS                     | ASE 子網路            |  網際網路：53
-| ASE 內部通訊    | ASE 子網路：所有連接埠 |  ASE 子網路：所有連接埠
+### <a name="ase-outbound-dependencies"></a>ASE 連出相依性 ###
 
-如果 ASE 失去對這些相依性的存取，它會停止運作。 當停止運作時間達到一定的長度之後，ASE 就會暫停。
+針對連出存取，ASE 取決於多個外部系統。 那些系統相依性中有許多都會以 DNS 名稱定義，且不會對應至一組固定的 IP 位址。 因此，ASE 需要透過不同的連接埠進行從 ASE 子網路至所有外部 IP 的連出存取。 
+
+連出相依性的完整清單列於說明[鎖定 App Service Environment 連出流量](./firewall-integration.md)的文件中。 如果 ASE 失去對其相依性的存取，就會停止運作。 當停止運作時間達到一定的長度之後，ASE 就會暫停。 
 
 ### <a name="customer-dns"></a>客戶 DNS ###
 
 如果已經使用客戶定義的 DNS 伺服器設定 VNet，租用戶工作負載就會使用該伺服器。 基於管理目的，ASE 仍需要和 Azure DNS 通訊。 
 
 如果 VNet 在 VPN 的另一端使用客戶 DNS 進行設定，DNS 伺服器必須能夠從包含 ASE 的子網路中進行連線。
+
+若要從 Web 應用程式測試解決方法，您可以使用主控台命令 *nameresolver*。 移至應用程式 scm 網站中的偵錯視窗，或移至入口網站中的應用程式，然後選取主控台。 從殼層提示字元中，您可以發出命令 *nameresolver* 以及您想要查閱的位址。 您取得的結果會與您應用程式在進行相同查閱時所取得的結果一樣。 如果您使用 nslookup，就要改為使用 Azure DNS 進行查閱。
+
+如果您變更 ASE 所在之 VNet 的 DNS 設定，就必須重新啟動 ASE。 若要避免重新啟動 ASE，強烈建議您在建立 ASE 之前設定 VNet 的 DNS 設定。  
 
 <a name="portaldep"></a>
 
@@ -141,6 +143,9 @@ ASE 有一些 IP 位址需要注意。 如下：
 
 在 Azure 入口網站中，所有這些 IP 位址都可以很容易地在 ASEv2 的 ASE UI 中看出來。 如果您有 ILB ASE，系統便會列出 ILB 的 IP。
 
+   > [!NOTE]
+   > 只要您的 ASE 保持啟動且執行中，這些 IP 位址就不會變更。  如果您的 ASE 變成暫時停權且稍後還原，則 ASE 所使用的位址就會變更。 使 ASE 變成暫時停權的一般原因是您封鎖連入管理存取，或封鎖對 ASE 相依性的存取。 
+
 ![IP 位址][3]
 
 ### <a name="app-assigned-ip-addresses"></a>應用程式指派的 IP 位址 ###
@@ -175,31 +180,10 @@ NSG 可以透過 Azure 入口網站或 PowerShell 來設定。 這裡的資訊�
 
 ## <a name="routes"></a>路由 ##
 
-路由是強制通道處理以及其處理方式的重要關鍵。 在 Azure 虛擬網路中，路由是根據 最長首碼比對 (LPM) 而進行。 如果有多個符合相同 LPM 的路由，則會根據其來源，以下列順序選取路由：
+強制通道就是您在 VNet 中設定路由，讓輸出流量不會直接流向網際網路，而是流向其他地方，像是 ExpressRoute 閘道、虛擬應用裝置。  如果需要以此方式設定 ASE，請閱讀[為 App Service Environment 設定強制通道][forcedtunnel]文件。  這份文件會告訴您可與 ExpressRoute 和強制通道搭配使用的選項。
 
-- 使用者定義的路由 (UDR)
-- BGP 路由 (使用 ExpressRoute 時)
-- 系統路由
-
-若要深入了解虛擬網路中的路由，請閱讀[使用者定義的路由和 IP 轉送][UDRs]。
-
-ASE 用來管理系統的 Azure SQL 資料庫具備防火牆。 它需要透過通訊由 ASE 公用 VIP 產生。 從 ASE 連線到 SQL 資料庫的連線如果是透過 ExpressRoute 連線傳送及送出到其他 IP 位址，該連線將會遭到拒絕。
-
-如果針對內送管理要求的回覆是透過 ExpressRoute 傳送，回覆位址將會和原始目的地不同。 這會中斷 TCP 通訊。
-
-若要在搭配 ExpressRoute 設定 VNet 時讓 ASE 能夠運作，最簡單的方式為：
-
--   設定 ExpressRoute 來通告 _0.0.0.0/0_。 根據預設，它會使用強制通道將所有輸出流量傳送至內部部署網路。
--   建立 UDR。 並以「0.0.0.0/0」的位址首碼及「網際網路」的下一個躍點類型，將它套用至包含 ASE 的子網路。
-
-如果您做了這兩項變更，則 (來自 ASE 子網路) 將出發到網際網路的流量，將不會被強制經由 ExpressRoute 傳輸，並使 ASE 能夠運作。 
-
-> [!IMPORTANT]
-> UDR 中定義的路由必須足夠明確，以優先於 ExpressRoute 組態所通告的任何路由。 前面的範例使用廣泛的 0.0.0.0/0 位址範圍。 因此有可能會不小心由使用更明確位址範圍的路由通告所覆寫。
->
-> 針對從公用對等互連路徑至私人對等互連路徑的路由進行交叉通告的 ExpressRoute 設定，不支援 ASE。 已設定公用對等互連的 ExpressRoute 設定，會收到來自 Microsoft 的路由通告。 通告中會包含一大組 Microsoft Azure IP 位址範圍。 如果位址範圍在私人對等互連路徑上交叉通告，來自 ASE 子網路的所有輸出網路封包都會使用強制通道傳送至客戶的內部部署網路基礎結構。 ASE 目前不支援這個網路流量。 此問題的一個解決方案是停止從公用對等互連路徑至私人對等互連路徑的交叉通告路由。
-
-若要建立 UDR，請遵循下列步驟：
+當您在入口網站中建立 ASE 時，我們也會在隨著 ASE 建立的子網路上建立一組路由資料表。  這些路由只單純指示直接將輸出流量傳送至網際網路。  
+若要手動建立路由，請依照下列步驟執行︰
 
 1. 移至 Azure 入口網站。 選取 [網路] > [路由表]。
 
@@ -217,17 +201,15 @@ ASE 用來管理系統的 Azure SQL 資料庫具備防火牆。 它需要透過�
 
     ![NSG 和路由][7]
 
-### <a name="deploy-into-existing-azure-virtual-networks-that-are-integrated-with-expressroute"></a>部署到與 ExpressRoute 整合的現有 Azure 虛擬網路 ###
+## <a name="service-endpoints"></a>服務端點 ##
 
-若要將 ASE 部署到與 ExpressRoute 整合的 VNet，請預先設定您想要部署 ASE 的子網路。 然後使用 Resource Manager 範本來部署。 在已設定 ExpressRoute 的 VNet 中建立 ASE：
+服務端點可讓您將多租用戶服務的存取權限制於一組 Azure 虛擬網路和子網路。 您可以在[虛擬網路服務端點][serviceendpoints]文件中深入了解服務端點。 
 
-- 建立子網路以裝載 ASE。
+當您在資源上啟用服務端點時，所建立的路由具有高於所有其他路由的優先順序。 如果您使用服務端點搭配強制通道 ASE，Azure SQL 和 Azure 儲存體管理流量不會使用強制通道。 
 
-    > [!NOTE]
-    > 除了 ASE 以外，子網路中可能沒有其他項目。 請務必選擇預留未來成長空間的位址空間。 您之後無法變更此設定。 我們建議使用包含 128 個位址的 `/25` 大小。
+透過 Azure SQL 執行個體在子網路上啟用服務端點時，從該子網路連線的所有 Azure SQL 執行個體都必須啟用服務端點。 如果您想要從相同的子網路存取多個 Azure SQL 執行個體，您就無法在一個 Azure SQL 執行個體啟用服務端點，而不要在另一個執行個體上啟用。 Azure 儲存體與 Azure SQL 的運作方式不同。 當您使用 Azure 儲存體啟用服務端點時，您會封鎖您的子網路存取該資源，，但仍可存取其他 Azure 儲存體帳戶 (即使它們未啟用服務端點)。  
 
-- 依照之前的描述建立 UDR (例如，路由表)，並在子網路上加以設定。
-- 依照[使用 Resource Manager 範本建立 ASE][MakeASEfromTemplate] 中的描述，使用 Resource Manager 範本建立 ASE。
+![服務端點][8]
 
 <!--Image references-->
 [1]: ./media/network_considerations_with_an_app_service_environment/networkase-overflow.png
@@ -237,6 +219,7 @@ ASE 用來管理系統的 Azure SQL 資料庫具備防火牆。 它需要透過�
 [5]: ./media/network_considerations_with_an_app_service_environment/networkase-outboundnsg.png
 [6]: ./media/network_considerations_with_an_app_service_environment/networkase-udr.png
 [7]: ./media/network_considerations_with_an_app_service_environment/networkase-subnet.png
+[8]: ./media/network_considerations_with_an_app_service_environment/serviceendpoint.png
 
 <!--Links-->
 [Intro]: ./intro.md
@@ -246,7 +229,7 @@ ASE 用來管理系統的 Azure SQL 資料庫具備防火牆。 它需要透過�
 [ASENetwork]: ./network-info.md
 [UsingASE]: ./using-an-ase.md
 [UDRs]: ../../virtual-network/virtual-networks-udr-overview.md
-[NSGs]: ../../virtual-network/virtual-networks-nsg.md
+[NSGs]: ../../virtual-network/security-overview.md
 [ConfigureASEv1]: app-service-web-configure-an-app-service-environment.md
 [ASEv1Intro]: app-service-app-service-environment-intro.md
 [mobileapps]: ../../app-service-mobile/app-service-mobile-value-prop.md
@@ -258,3 +241,6 @@ ASE 用來管理系統的 Azure SQL 資料庫具備防火牆。 它需要透過�
 [ASEWAF]: app-service-app-service-environment-web-application-firewall.md
 [AppGW]: ../../application-gateway/application-gateway-web-application-firewall-overview.md
 [ASEManagement]: ./management-addresses.md
+[serviceendpoints]: ../../virtual-network/virtual-network-service-endpoints-overview.md
+[forcedtunnel]: ./forced-tunnel-support.md
+[serviceendpoints]: ../../virtual-network/virtual-network-service-endpoints-overview.md

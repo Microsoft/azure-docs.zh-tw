@@ -1,0 +1,61 @@
+### YamlMime:YamlDocument
+ms.openlocfilehash: 1f6448dc4cf31b3bb7597979587e1854a4878d50
+ms.sourcegitcommit: 63613e4c7edf1b1875a2974a29ab2a8ce5d90e3b
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/29/2018
+ms.locfileid: "43190007"
+documentType: LandingData
+title: ExpressRoute 文件
+metadata:
+  document_id: 
+  title: ExpressRoute
+  meta.description: Learn how to use ExpressRoute. Tutorials, REST APIs and other documentation show you how to configure and manage an ExpressRoute circuit.
+  author: cherylmc
+  manager: jeconnoc
+  ms.service: ExpressRoute
+  ms.tgt_pltfrm: na
+  ms.devlang: na
+  ms.topic: landing-page
+  ms.date: 05/18/2018
+  ms.author: cherylmc
+abstract:
+  description: 了解如何使用 ExpressRoute 來設定從內部部署基礎結構或共置設備到 Microsoft 雲端服務的快速私人連線。 教學課程、REST API 和其他文件可協助您設定和管理 ExpressRoute 線路。
+sections:
+- title: 逐步教學課程
+  items:
+  - type: paragraph
+    text: 了解如何設定和管理 ExpressRoute 線路。
+  - type: list
+    style: unordered
+    items:
+    - html: <a href="/azure/expressroute/expressroute-howto-circuit-portal-resource-manager">建立和修改 ExpressRoute 線路</a>
+    - html: <a href="/azure/expressroute/expressroute-howto-routing-portal-resource-manager">建立和修改對等互連組態</a>
+    - html: <a href="/azure/expressroute/expressroute-howto-linkvnet-portal-resource-manager">將虛擬網路連結到 ExpressRoute 線路</a>
+    - html: <a href="/azure/expressroute/how-to-routefilter-portal">針對 Microsoft 對等互連設定路由篩選</a>
+- title: 免費 Pluralsight 影片訓練
+  items:
+  - type: list
+    style: cards
+    className: cardsFTitle
+    items:
+    - title: Azure 系統管理員
+      href: https://go.microsoft.com/fwlink/?linkid=2012827
+      image:
+        src: https://docs.microsoft.com/media/logos/logo_pluralsight.svg
+        href: https://go.microsoft.com/fwlink/?linkid=2012827
+    - title: Azure 解決方案架構師
+      href: https://go.microsoft.com/fwlink/?linkid=2012824
+      image:
+        src: https://docs.microsoft.com/media/logos/logo_pluralsight.svg
+        href: https://go.microsoft.com/fwlink/?linkid=2012824
+- title: 參考
+  items:
+  - type: list
+    style: cards
+    className: cardsD
+    items:
+    - title: 命令列
+      html: <p><a href="/powershell/module/azurerm.network/#expressroute">PowerShell</a></p><p><a href="/cli/azure/network/express-route">Azure CLI</a></p>
+    - title: REST
+      html: <p><a href="https://msdn.microsoft.com/library/azure/mt586720">REST API 參考</a></p><p><a href="https://msdn.microsoft.com/library/azure/dn606310">傳統 REST API 參考</a></p>

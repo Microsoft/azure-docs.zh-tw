@@ -1,36 +1,32 @@
 ---
-title: Azure 診斷延伸模組的設定結構描述版本和歷程記錄 | Microsoft Docs
+title: Azure 診斷延伸模組的設定結構描述版本歷程記錄
 description: 與收集 Azure 虛擬機器、VM 擴展集、Service Fabric 和雲端服務中的效能計數器有關。
-services: monitoring-and-diagnostics
-documentationcenter: .net
+services: azure-monitor
 author: rboucher
-manager: carmonm
-editor: ''
-ms.assetid: ''
-ms.service: monitoring-and-diagnostics
-ms.workload: na
-ms.tgt_pltfrm: na
+ms.service: azure-monitor
 ms.devlang: dotnet
-ms.topic: article
-ms.date: 05/16/2017
+ms.topic: reference
+ms.date: 09/20/2018
 ms.author: robb
-ms.openlocfilehash: 45a092452bc702a6a593cd6c21a8d2eaf4ff44bd
-ms.sourcegitcommit: 168426c3545eae6287febecc8804b1035171c048
+ms.component: diagnostic-extension
+ms.openlocfilehash: 2c3b2ecc1467a09ae490d23c45e7a000f4afe49a
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/08/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46976882"
 ---
 # <a name="azure-diagnostics-extension-configuration-schema-versions-and-history"></a>Azure 診斷延伸模組的設定結構描述版本和歷程記錄
 針對隨附於 Microsoft Azure SDK 的 Azure 診斷擴充功能組態結構描述版本，此頁面會建立其索引。  
 
 > [!NOTE]
 > Azure 診斷擴充功能這個元件可用來收集下列項目的效能計數器和其他統計資料︰
-> - Azure 虛擬機器 
+> - Azure 虛擬機器
 > - 虛擬機器擴展集
-> - Service Fabric 
-> - 雲端服務 
+> - Service Fabric
+> - 雲端服務
 > - 網路安全性群組
-> 
+>
 > 此頁面只在您使用其中一個服務時才相關。
 
 Azure 診斷擴充功能要與 Azure 監視器、Application Insights 和 Log Analytics 等其他 Microsoft 診斷產品搭配使用。 如需詳細資訊，請參閱 [Microsoft 監視工具概觀](monitoring-overview.md)。
@@ -50,7 +46,7 @@ Azure 診斷擴充功能要與 Azure 監視器、Application Insights 和 Log An
 |2.96              |1.8                            |"|
 |2.96              |1.8.1                          |"|
 |2.96              |1.9                            |"|
-
+|2.96              |1.11                           |"|
 
 
  Azure 診斷 1.0 版最早是隨附於外掛程式模型中，這表示當您安裝 Azure SDK 時，即會取得隨附於其中的 Azure 診斷版本。  
@@ -58,7 +54,7 @@ Azure 診斷擴充功能要與 Azure 監視器、Application Insights 和 Log An
  從 SDK 2.5 (診斷版本 1.2) 開始，Azure 診斷變成延伸模型。 運用新功能的工具只能在較新的 Azure SDK 中取得，但是，任何使用 Azure 診斷的服務都能直接從 Azure 挑選最新的上市版本。 例如，仍在使用 SDK 2.5 的任何使用者都可以載入上表所示的最新版本，而不論使用者是否正在使用較新的功能。  
 
 ## <a name="schemas-index"></a>結構描述索引  
-不同版本的 Azure 診斷會使用不同的組態結構描述。 
+不同版本的 Azure 診斷會使用不同的組態結構描述。
 
 [Azure 診斷 1.0 組態結構描述](azure-diagnostics-schema-1dot0.md)  
 
@@ -68,12 +64,61 @@ Azure 診斷擴充功能要與 Azure 監視器、Application Insights 和 Log An
 
 ## <a name="version-history"></a>版本歷程記錄
 
+### <a name="diagnostics-extension-111"></a>診斷擴充功能 1.11 版
+已新增 Azure 監視器接收的支援。 這個接收只適用於效能計數器。 能夠將在 VM、VMSS 或雲端服務上收集的效能計數器，傳送到 Azure 監視器作為自訂計量。 Azure 監視器接收支援：
+* 擷取透過 [Azure 監視器計量 API](https://docs.microsoft.com/rest/api/monitor/metrics/list) 傳送到 Azure 監視器的所有效能計數器。
+* 透過 Azure 監視器中新的[統一的警示體驗](monitoring-overview-unified-alerts.md)，對傳送到 Azure 監視器的所有效能計數器設定警示
+* 將效能計數器中的萬用字元運算子視為計量上的「執行個體」維度。 例如，如果您收集了 "LogicalDisk(\*)/DiskWrites/sec" 計數器，就能夠為每個邏輯磁碟 (C:、D: 等等)，針對 Disk Writes/sec 在「執行個體」維度上進行繪製或建立警示。
 
-### <a name="diagnostics-extension-19"></a>診斷擴充功能 1.9 版 
+定義 Azure 監視器作為診斷擴充功能組態中的新接收
+```json
+"SinksConfig": {
+    "Sink": [
+        {
+            "name": "AzureMonitorSink",
+            "AzureMonitor": {}
+        },
+    ]
+}
+```
+
+```XML
+<SinksConfig>  
+  <Sink name="AzureMonitorSink">
+      <AzureMonitor/>
+  </Sink>
+</SinksConfig>
+```
+> [!NOTE]
+> 設定傳統 VM 和傳統雲端服務中的 Azure 監視器接收，需要在診斷擴充功能的私用組態中定義更多參數。
+>
+> 如需詳細資訊，請參考[詳細的診斷擴充功能結構描述文件](azure-diagnostics-schema-1dot3-and-later.md)。
+
+接下來，您可以設定您的效能計數器，以路由至 Azure 監視器接收。
+```json
+"PerformanceCounters": {
+    "scheduledTransferPeriod": "PT1M",
+    "sinks": "AzureMonitorSink",
+    "PerformanceCounterConfiguration": [
+        {
+            "counterSpecifier": "\\Processor(_Total)\\% Processor Time",
+            "sampleRate": "PT1M",
+            "unit": "percent"
+        }
+    ]
+},
+```
+```XML
+<PerformanceCounters scheduledTransferPeriod="PT1M", sinks="AzureMonitorSink">  
+  <PerformanceCounterConfiguration counterSpecifier="\Processor(_Total)\% Processor Time" sampleRate="PT1M" unit="percent" />  
+</PerformanceCounters>
+```
+
+### <a name="diagnostics-extension-19"></a>診斷擴充功能 1.9 版
 已新增 Docker 支援。
 
 
-### <a name="diagnostics-extension-181"></a>診斷擴充功能 1.8.1 版 
+### <a name="diagnostics-extension-181"></a>診斷擴充功能 1.8.1 版
 可以在私用組態中指定 SAS 權杖 (而不是儲存體帳戶金鑰)。如果提供 SAS 權杖，系統會忽略儲存體帳戶金鑰。
 
 
@@ -104,7 +149,7 @@ Azure 診斷擴充功能要與 Azure 監視器、Application Insights 和 Log An
 ```
 
 
-### <a name="diagnostics-extension-18"></a>診斷擴充功能 1.8 版 
+### <a name="diagnostics-extension-18"></a>診斷擴充功能 1.8 版
 已在 PublicConfig 中新增儲存體類型。 StorageType 可以是 Table、Blob、TableAndBlob。 Table 是預設值。
 
 
@@ -126,13 +171,13 @@ Azure 診斷擴充功能要與 Azure 監視器、Application Insights 和 Log An
 ```
 
 
-### <a name="diagnostics-extension-17"></a>診斷擴充功能 1.7 版 
+### <a name="diagnostics-extension-17"></a>診斷擴充功能 1.7 版
 已新增路由至 EventHub 的能力。
 
 ### <a name="diagnostics-extension-15"></a>診斷延伸模組 1.5 版
 已增加接收器元素以及將診斷資料傳送至 [Application Insights](../application-insights/app-insights-cloudservices.md) 的能力，因此可更容易在應用程式以及系統和基礎結構層級中診斷問題。
 
-### <a name="azure-sdk-26-and-diagnostics-extension-13"></a>Azure SDK 2.6 和診斷擴充功能 1.3 版 
+### <a name="azure-sdk-26-and-diagnostics-extension-13"></a>Azure SDK 2.6 和診斷擴充功能 1.3 版
 我們已對 Visual Studio 中的雲端服務專案進行下列變更。 (這些變更也套用至更新版的 Azure SDK)。
 
 * 本機模擬器現在支援診斷。 這項變更意謂著您可以在於 Visual Studio 中進行開發及測試時，收集診斷資料並確保應用程式所建立的追蹤正確。 當您在 Visual Studio 中使用 Azure 儲存體模擬器來執行您的雲端服務專案時，連接字串 `UseDevelopmentStorage=true` 會啟用診斷資料收集。 所有的診斷資料都會收集到 (開發儲存體) 儲存體帳戶中。
@@ -153,7 +198,7 @@ Azure 診斷擴充功能要與 Azure 監視器、Application Insights 和 Log An
 * 如果未在 .cscfg 檔案中指定診斷連接字串，Visual Studio 會回復到在發佈時，以及在封裝期間產生公用組態 xml 檔案時使用在 .wadcfgx 檔案中指定的儲存體帳戶來設定診斷延伸模組。
 * 在 .cscfg 檔案中的診斷連接字串的優先順序高於 .wadcfgx 檔案中的儲存體帳戶。 如果在 .cscfg 檔案中指定診斷連接字串，Visual Studio 會使用它並忽略 .wadcfgx 中的儲存體帳戶。
 
-#### <a name="what-does-the-update-development-storage-connection-strings-checkbox-do"></a>「更新開發儲存體連接字串...」核取方塊的 作用為何？
+#### <a name="what-does-the-update-development-storage-connection-strings-checkbox-do"></a>「更新開發儲存體連接字串...」核取方塊的功用？
 [在發佈至 Microsoft Azure 時使用 Microsoft Azure 儲存體帳戶認證更新診斷和快取的開發儲存體連接字串]  核取方塊提供便利的方式，使用發佈期間指定的 Azure 儲存體帳戶更新任何開發儲存體帳戶連接字串。
 
 例如，假設您選取此核取方塊，診斷連接字串就會指定 `UseDevelopmentStorage=true`。 當您將專案發佈至 Azure 時，Visual Studio 會自動使用您在 [發佈] 精靈中指定的儲存體帳戶更新診斷連接字串。 不過，如果將實際的儲存體帳戶指定為診斷連接字串，則會改用該帳戶。
@@ -165,4 +210,3 @@ Azure 診斷擴充功能要與 Azure 監視器、Application Insights 和 Log An
 * **雲端服務應用程式的診斷只能在角色層級設定，而不是在執行個體層級。**
 * **每次部署您的應用程式時，都會更新診斷組態** – 如果您從 [伺服器總管] 變更診斷組態並重新部署您的應用程式，會導致同位檢查的問題。
 * **在 Azure SDK 2.5 及更新版本中，損毀傾印不會以診斷組態檔設定** – 如果您以程式碼設定損毀傾印，您必須手動將組態從程式碼傳輸至組態檔中，因為損毀傾印不會在移轉至 Azure SDK 2.6 期間傳輸。
-

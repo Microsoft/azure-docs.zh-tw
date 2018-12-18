@@ -1,25 +1,27 @@
 ---
-title: "Windows 10 漫遊設定參考 | Microsoft Docs"
-description: "在 Windows 10 中進行漫遊或備份的所有設定的完整清單。"
+title: Windows 10 漫遊設定參考 | Microsoft Docs
+description: 在 Windows 10 中進行漫遊或備份的所有設定的完整清單。
 services: active-directory
-keywords: "企業狀態漫遊, windows 雲端"
-documentationcenter: 
-author: tanning
+keywords: 企業狀態漫遊, windows 雲端
+documentationcenter: ''
+author: MarkusVi
 manager: mtillman
 editor: curtand
+ms.component: devices
 ms.assetid: 17cffc3e-2928-4235-91f7-a685bd6bdcbf
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/08/2017
+ms.date: 07/23/2018
 ms.author: markvi
-ms.openlocfilehash: 21d21c945b622c1695d8856c4baff02c098218cf
-ms.sourcegitcommit: e266df9f97d04acfc4a843770fadfd8edf4fa2b7
+ms.openlocfilehash: 40e67dfd4ffa427ac47198e88994762a4a45cc94
+ms.sourcegitcommit: d211f1d24c669b459a3910761b5cacb4b4f46ac9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/11/2017
+ms.lasthandoff: 09/06/2018
+ms.locfileid: "44023346"
 ---
 # <a name="windows-10-roaming-settings-reference"></a>Windows 10 漫遊設定參考
 以下是在 Windows 10 中進行漫遊或備份的所有設定的完整清單。 
@@ -29,10 +31,10 @@ ms.lasthandoff: 12/11/2017
 
 | 帳戶類型和作業 | 桌上型 | 行動 |
 | --- | --- | --- |
-| Azure Active Directory：同步處理 |yes |否 |
+| Azure Active Directory：同步處理 |是 |否 |
 | Azure Active Directory：備份/還原 |否 |否 |
-| Microsoft 帳戶：同步處理 |yes |yes |
-| Microsoft 帳戶：備份/還原 |否 |yes |
+| Microsoft 帳戶：同步處理 |是 |是 |
+| Microsoft 帳戶：備份/還原 |否 |是 |
 
 ## <a name="what-is-backup"></a>什麼是備份？
 根據預設，Windows 設定一般會同步處理，但是某些設定只能備份，例如裝置上已安裝應用程式的清單。 備份僅適用於行動裝置，目前不適用企業狀態漫遊使用者。 備份會使用 Microsoft 帳戶，並將設定和應用程式資料儲存到 OneDrive。 如果使用者使用 [設定] 應用程式在裝置上停用同步處理，通常可以同步處理的應用程式資料會變成只能備份。 備份資料在新裝置第一次執行期間，只能透過還原作業存取。 備份可以透過裝置設定停用，並且能透過使用者的 OneDrive 帳戶管理及刪除。
@@ -42,16 +44,21 @@ ms.lasthandoff: 12/11/2017
 
 * 佈景主題：桌面背景、使用者圖格、工作列位置等 
 * Internet Explorer 設定：瀏覽歷程記錄、輸入的 URL、我的最愛等 
-* 密碼： [Windows 認證保險箱](https://technet.microsoft.com/library/jj554668.aspx)，包括 Wi-Fi 設定檔 
+* 密碼：Windows 認證管理員，包括 Wi-Fi 設定檔 
 * 語言喜好設定：拼字檢查字典、系統語言設定 
 * 輕鬆存取：朗讀程式、螢幕小鍵盤、放大鏡 
 * 其他 Windows 設定：請參閱 Windows 設定詳細資料
+* Edge 瀏覽器設定：Microsoft Edge 我的最愛、閱讀清單和其他設定
 
-![](./media/active-directory-enterprise-state-roaming/active-directory-enterprise-state-roaming-individual-sync-settings.png)
+![](./media/active-directory-enterprise-state-roaming/active-directory-enterprise-state-roaming-syncyoursettings.png)
 
 使用者可以透過 Edge 瀏覽器 [設定] 功能表選項，啟用或停用 Edge 瀏覽器設定群組同步處理 (我的最愛，讀取清單)。
 
-![](./media/active-directory-enterprise-state-roaming/active-directory-enterprise-state-roaming-sync-content.png)
+![](./media/active-directory-enterprise-state-roaming/active-directory-enterprise-state-roaming-edge.png)
+
+針對 Windows 10 版本 1803 或更新版本，使用者可以透過 Internet Explorer [設定] 功能表選項，啟用或停用 Internet Explorer 設定群組 (我的最愛、已輸入的 URL) 同步處理。 
+
+![](./media/active-directory-enterprise-state-roaming/active-directory-enterprise-state-roaming-ie.png)
 
 ## <a name="windows-settings-details"></a>Windows 設定詳細資料
 在下表中，[設定群組] 資料行中的 [其他] 項目是指您可以移至 [設定] > [帳戶] > [同步處理您的設定] > [其他 Windows 設定] 停用的設定。 
@@ -67,7 +74,7 @@ ms.lasthandoff: 12/11/2017
 | **應用程式資料**：個別應用程式可以同步處理資料 |同步處理備份 |同步處理備份 |內部 |
 | **應用程式清單**：已安裝應用程式的清單 |X |backup |其他 |
 | **藍牙**：所有藍牙設定 |X |X | |
-| **命令提示字元**：命令提示字元「預設值」設定 |sync |X | |
+| **命令提示字元**：命令提示字元「預設值」設定 |sync |X |內部 |
 | **認證**：認證保險箱 |sync |sync |password |
 | **日期、時間和區域**：自動時間 (網際網路時間同步處理) |sync |sync |語言 |
 | **日期、時間和區域**：24 小時制時鐘 |sync |X |語言 |

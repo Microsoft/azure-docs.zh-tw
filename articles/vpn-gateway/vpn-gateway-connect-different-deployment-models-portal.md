@@ -15,11 +15,12 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/13/2018
 ms.author: cherylmc
-ms.openlocfilehash: 65cfbafbd5fbdd576f01b5cba638c1b5869f377b
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 6a585155e1d1050498754f5b9a7ec3dfc82d7a2c
+ms.sourcegitcommit: 74941e0d60dbfd5ab44395e1867b2171c4944dbe
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 10/15/2018
+ms.locfileid: "49319926"
 ---
 # <a name="connect-virtual-networks-from-different-deployment-models-using-the-portal"></a>使用入口網站從不同的部署模型連接虛擬網路
 
@@ -153,7 +154,7 @@ SKU = VpnGw1 <br>
 
 ### <a name="2-create-a-gateway-subnet"></a>2.建立閘道子網路
 
-**範例值：**GatewaySubnet = 192.168.0.0/26
+**範例值：** GatewaySubnet = 192.168.0.0/26
 
 建立虛擬網路閘道之前，您必須先建立閘道子網路。 以 /28 或更高的 CIDR 計數建立閘道子網路 (/27、/26 等)。 如果您要建立此項作為練習的一部分，可以使用範例值。
 
@@ -232,7 +233,7 @@ SKU = VpnGw1 <br>
 以提高的權限開啟 PowerShell 主控台並登入您的 Azure 帳戶。 登入之後，便會下載您的帳戶設定，以供 Azure PowerShell 使用。 下列 Cmdlet 會提示您輸入 Azure 帳戶的登入認證，以使用 Resource Manager 部署模型：
 
 ```powershell
-Login-AzureRmAccount
+Connect-AzureRmAccount
 ```
 
 取得您的 Azure 訂用帳戶清單。
@@ -293,7 +294,7 @@ Set-AzureVNetGatewayKey -VNetName "Group ClassicRG ClassicVNet" `
 -LocalNetworkSiteName "172B9E16_RMVNetLocal" -SharedKey abc123
 ```
 
-##<a name="verify"></a>第 6 節 - 驗證您的連線
+## <a name="verify"></a>第 6 節 - 驗證您的連線
 
 您可以使用 Azure 入口網站或 PowerShell 來驗證您的連線。 進行驗證時，您可能需要等候一或兩分鐘來建立連線。 連線成功時，連線狀態就會從「連線中」變更為「已連線」。
 

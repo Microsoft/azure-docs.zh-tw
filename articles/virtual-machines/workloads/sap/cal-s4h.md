@@ -1,13 +1,13 @@
 ---
-title: "在 Azure VM 上部署 SAP S/4HANA 或 BW/4HANA | Microsoft Docs"
-description: "在 Azure VM 上部署 SAP S/4HANA 或 BW/4HANA"
+title: 在 Azure VM 上部署 SAP S/4HANA 或 BW/4HANA | Microsoft Docs
+description: 在 Azure VM 上部署 SAP S/4HANA 或 BW/4HANA
 services: virtual-machines-linux
-documentationcenter: 
+documentationcenter: ''
 author: hermanndms
-manager: timlt
-editor: 
+manager: jeconnoc
+editor: ''
 tags: azure-resource-manager
-keywords: 
+keywords: ''
 ms.assetid: 44bbd2b6-a376-4b5c-b824-e76917117fa9
 ms.service: virtual-machines-linux
 ms.devlang: na
@@ -16,11 +16,12 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 09/15/2016
 ms.author: hermannd
-ms.openlocfilehash: 342bd20466cdeb0b9df1cdacd4664fa4e3e0c604
-ms.sourcegitcommit: c7215d71e1cdeab731dd923a9b6b6643cee6eb04
+ms.openlocfilehash: a99fb959ae1ac1434bedffd782a7c4e0a302d361
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/17/2017
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39431400"
 ---
 # <a name="deploy-sap-s4hana-or-bw4hana-on-azure"></a>在 Azure 上部署 SAP S/4HANA 或 BW/4HANA
 本文說明如何使用 SAP Cloud Appliance Library (SAP CAL) 3.0 在 Azure 上部署 S/4HANA。 若要部署其他 SAP HANA 型解決方案 (例如 BW/4HANA)，請遵循相同的步驟。
@@ -51,7 +52,7 @@ ms.lasthandoff: 11/17/2017
     > [!NOTE]
     接下來的步驟會示範如何針對 Resource Manager 部署建立 SAP CAL 帳戶。 如果您已有連結至傳統部署模型的 SAP CAL 帳戶，則您「必須」遵循下列步驟來建立新的 SAP CAL 帳戶。 新的 SAP CAL 帳戶必須以 Resource Manager 模式部署。
 
-2. 建立新的 SAP CAL 帳戶。 [帳戶] 頁面會顯示三個適用於 Azure 的選項： 
+1. 建立新的 SAP CAL 帳戶。 [帳戶] 頁面會顯示三個適用於 Azure 的選項： 
 
     a. **Microsoft Azure (傳統)** 是傳統部署模型，目前不再建議使用。
 
@@ -63,27 +64,27 @@ ms.lasthandoff: 11/17/2017
 
     ![SAP CAL 帳戶詳細資料](./media/cal-s4h/s4h-pic-2a.png)
 
-3. 輸入可在 Azure 入口網站上找到的 Azure **訂用帳戶識別碼**。
+1. 輸入可在 Azure 入口網站上找到的 Azure **訂用帳戶識別碼**。
 
    ![SAP CAL 帳戶](./media/cal-s4h/s4h-pic3c.png)
 
-4. 若要授權 SAP CAL 部署到您所定義的 Azure 訂用帳戶，請按一下 [授權]。 瀏覽器索引標籤中會出現下列頁面：
+1. 若要授權 SAP CAL 部署到您所定義的 Azure 訂用帳戶，請按一下 [授權]。 瀏覽器索引標籤中會出現下列頁面：
 
    ![Internet Explorer 雲端服務登入](./media/cal-s4h/s4h-pic4c.png)
 
-5. 如果頁面中列出多個使用者，請選擇連結至成為您所選 Azure 訂用帳戶共同管理員的 Microsoft 帳戶。 瀏覽器索引標籤中會出現下列頁面：
+1. 如果頁面中列出多個使用者，請選擇連結至成為您所選 Azure 訂用帳戶共同管理員的 Microsoft 帳戶。 瀏覽器索引標籤中會出現下列頁面：
 
    ![Internet Explorer 雲端服務確認](./media/cal-s4h/s4h-pic5a.png)
 
-6. 按一下 [接受]。 如果授權成功，SAP CAL 帳戶定義便會再次顯示。 片刻之後便會出現訊息來確認授權程序已成功。
+1. 按一下 [接受]。 如果授權成功，SAP CAL 帳戶定義便會再次顯示。 片刻之後便會出現訊息來確認授權程序已成功。
 
-7. 若要將新建立的 SAP CAL 帳戶指派給您的使用者，請在右邊的文字方塊中輸入您的 [使用者識別碼]，然後按一下 [新增]。
+1. 若要將新建立的 SAP CAL 帳戶指派給您的使用者，請在右邊的文字方塊中輸入您的 [使用者識別碼]，然後按一下 [新增]。
 
    ![帳戶與使用者的關聯](./media/cal-s4h/s4h-pic8a.png)
 
-8. 若要讓您的帳戶與您用來登入 SAP CAL 的使用者產生關聯，請按一下 [檢閱]。 
+1. 若要讓您的帳戶與您用來登入 SAP CAL 的使用者產生關聯，請按一下 [檢閱]。 
  
-9. 若要在使用者與新建立的 SAP CAL 帳戶之間建立關聯，請按一下 [建立]。
+1. 若要在使用者與新建立的 SAP CAL 帳戶之間建立關聯，請按一下 [建立]。
 
    ![使用者與 SAP CAL 帳戶的關聯](./media/cal-s4h/s4h-pic9b.png)
 
@@ -121,29 +122,29 @@ ms.lasthandoff: 11/17/2017
 
    ![SAP CAL 基本模式：建立執行個體](./media/cal-s4h/s4h-pic10a.png)
 
-2. 按一下 [建立]，並在出現的訊息方塊中，按一下 [確定]。
+1. 按一下 [建立]，並在出現的訊息方塊中，按一下 [確定]。
 
    ![SAP CAL 支援的 VM 大小](./media/cal-s4h/s4h-pic10b.png)
 
-3. 在 [私密金鑰] 對話方塊中，按一下 [儲存] 以將私密金鑰儲存在 SAP CAL 中。 若要對私密金鑰使用密碼保護，請按一下 [下載]。 
+1. 在 [私密金鑰] 對話方塊中，按一下 [儲存] 以將私密金鑰儲存在 SAP CAL 中。 若要對私密金鑰使用密碼保護，請按一下 [下載]。 
 
    ![SAP CAL 私密金鑰](./media/cal-s4h/s4h-pic10c.png)
 
-4. 閱讀 SAP CAL 的**警告**訊息，然後按一下 [確定]。
+1. 閱讀 SAP CAL 的**警告**訊息，然後按一下 [確定]。
 
    ![SAP CAL 警告](./media/cal-s4h/s4h-pic10d.png)
 
     現在會開始部署。 在一段時間之後，視解決方案的大小和複雜性 (SAP CAL 會提供預估) 而定，狀態將會顯示為作用中並可供使用。
 
-5. 若要尋找隨著某個資源群組中的其他相關聯資源一起收集的虛擬機器，請移至 Azure 入口網站： 
+1. 若要尋找隨著某個資源群組中的其他相關聯資源一起收集的虛擬機器，請移至 Azure 入口網站： 
 
    ![部署在新入口網站中的 SAP CAL 物件](./media/cal-s4h/sapcaldeplyment_portalview.png)
 
-6. 在 SAP CAL 入口網站上，狀態會顯示為 [作用中]。 若要連線到此解決方案，請按一下 [連線]。 此解決方案中會部署連線到不同元件的不同選項。
+1. 在 SAP CAL 入口網站上，狀態會顯示為 [作用中]。 若要連線到此解決方案，請按一下 [連線]。 此解決方案中會部署連線到不同元件的不同選項。
 
    ![SAP CAL 執行個體](./media/cal-s4h/active_solution.png)
 
-7. 請先按一下 [開始使用指南]，之後您才能使用其中一個選項來連線至已部署的系統。 
+1. 請先按一下 [開始使用指南]，之後您才能使用其中一個選項來連線至已部署的系統。 
 
    ![連線到執行個體](./media/cal-s4h/connect_to_solution.png)
 

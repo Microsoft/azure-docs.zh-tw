@@ -1,26 +1,24 @@
 ---
 title: 使用 Azure Site Recovery 排除磁碟不要保護 | Microsoft Docs
 description: 說明為何及如何排除 VM 磁碟不要從 VMware 複寫到 Azure。
-services: site-recovery
 author: nsoneji
-manager: garavd
 ms.service: site-recovery
 ms.workload: storage-backup-recovery
-ms.topic: article
-ms.date: 03/05/2018
+ms.date: 10/11/2018
 ms.author: nisoneji
-ms.openlocfilehash: 71d49ee07c0ccc7641941aea4f688b9700c39a57
-ms.sourcegitcommit: 168426c3545eae6287febecc8804b1035171c048
+ms.openlocfilehash: ea0e9f3572287139612256863ee28b72c83cd4ef
+ms.sourcegitcommit: 4047b262cf2a1441a7ae82f8ac7a80ec148c40c4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/08/2018
+ms.lasthandoff: 10/11/2018
+ms.locfileid: "49092418"
 ---
 # <a name="exclude-disks-from-replication-for-vmware-to-azure-scenario"></a>排除磁碟不要從 VMware 複寫到 Azure 案例
 
 本文說明如何在將 VMware VM 複寫至 Azure 時排除磁碟。 這種排除可以最佳化已使用的複寫頻寬，或最佳化此類磁碟使用的目標端資源。 如果您需要針對 Hyper-V 排除磁碟的詳細資訊，請參閱[這篇文章](hyper-v-exclude-disk.md)
 
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 依預設會複寫機器上的所有磁碟。 若要排除磁碟不要複寫，如果您是從 VMware 複寫至 Azure，您必須先在機器上手動安裝行動服務，然後才啟用複寫。
 
@@ -52,7 +50,7 @@ ms.lasthandoff: 03/08/2018
 
 >[!NOTE]
 >
-> * 您只能排除已經安裝行動服務的磁碟。 您需要手動安裝行動服務，因為在啟用複寫後，只會透過推送機制來安裝行動服務。
+> * 您只能排除 VM 上已經安裝行動服務的磁碟。 您需要手動安裝行動服務，因為在啟用複寫後，只會透過推送機制來安裝行動服務。
 > * 只有基本磁碟可以從複寫排除。 您無法排除作業系統或動態磁碟。
 > * 啟用複寫之後，您無法新增或移除磁碟以進行複寫。 如果您想要新增或排除磁碟，必須停用機器的保護，然後再次啟用它。
 > * 如果您排除應用程式運作所需的磁碟，在容錯移轉至 Azure 之後，您將必須在 Azure 中手動建立磁碟，複寫的應用程式才能執行。 或者，您可以將 Azure 自動化整合至復原計劃，在機器容錯移轉期間建立磁碟。

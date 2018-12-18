@@ -1,31 +1,38 @@
 ### YamlMime:YamlDocument
+ms.openlocfilehash: 156dc9a825185194c54b58c52bc5ebae47afb918
+ms.sourcegitcommit: 96f498de91984321614f09d796ca88887c4bd2fb
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39414652"
 documentType: LandingData
 title: Azure IoT Edge
 metadata:
-  document_id: 
-  title: "Azure IoT Edge - 教學課程、API 參考"
-  meta.description: Use Azure IoT Edge to deploy Azure services and custom business logic to devices at the edge.
-  services: iot-edge
+  title: Azure IoT Edge - 教學課程、API 參考
+  description: 使用 Azure IoT Edge，將各項 Azure 服務和自訂商務邏輯部署到 Edge 上的裝置。
   author: kgremban
   manager: timlt
   ms.service: iot-edge
-  ms.tgt_pltfrm: na
-  ms.devlang: na
+  services: iot-edge
   ms.topic: landing-page
-  ms.date: 01/08/2018
+  ms.date: 06/21/2018
   ms.author: kgremban
-  ms.openlocfilehash: e95adf14c91ff61c79eb038f921da7112165e282
-  ms.sourcegitcommit: 48fce90a4ec357d2fb89183141610789003993d2
-  ms.translationtype: HT
-  ms.contentlocale: zh-TW
-  ms.lasthandoff: 01/12/2018
 abstract:
-  description: "Azure IoT Edge 是一個物聯網 (IoT) 服務，建置在 IoT 中樞之外。 這項服務提供客戶在裝置上分析資料的服務，也稱為 「在 Edge 上分析」，而不是在雲端進行分析。 將部份工作負載移至 Edge，您的裝置就能以較少的時間將訊息傳送至雲端，並更快速地變更狀態。"
+  description: Azure IoT Edge 是一個物聯網 (IoT) 服務，建置在 IoT 中樞之外。 這項服務提供客戶在裝置上分析資料的服務，也稱為 「在 Edge 上分析」，而不是在雲端進行分析。 將部份工作負載移至 Edge，您的裝置就能以較少的時間將訊息傳送至雲端，並更快速地變更狀態。
+  aside:
+    image:
+      alt: 
+      height: 110
+      src: ./media/index/iot-edge-thumbnail.png
+      width: 250
+    title: 使用 Azure IoT Edge 來解鎖智慧型 Edge (6:59)
+    href: https://channel9.msdn.com/Shows/Internet-of-Things-Show/Creating-the-intelligent-edge-with-Azure-IoT-Edge
+    width: 250
 sections:
-- title: "5 分鐘快速入門"
+- title: 5 分鐘快速入門
   items:
   - type: paragraph
-    text: "在模擬裝置上部署第一個 IoT Edge 模組並處理資料："
+    text: 在模擬裝置上部署第一個 IoT Edge 模組並處理資料：
   - type: list
     style: icon48
     items:
@@ -37,20 +44,18 @@ sections:
         src: https://docs.microsoft.com/media/logos/logo_linux-color.svg
       text: Linux
       href: /azure/iot-edge/quickstart-linux
-    - image:
-        src: https://docs.microsoft.com/media/logos/logo_macos.svg
-      text: Mac
-      href: /azure/iot-edge/quickstart-linux
-- title: "逐步教學課程"
+- title: 逐步教學課程
   items:
   - type: paragraph
-    text: "了解如何安裝和設定 IoT Edge、部署模組，以及在 Edge 中利用類似串流分析的 Azure 服務。"
+    text: 了解如何安裝和設定 IoT Edge、部署模組，以及在 Edge 中利用類似串流分析的 Azure 服務。
   - type: list
     style: ordered
     items:
-    - html: "<a href=\"/azure/iot-edge/tutorial-simulate-device-windows\">在 Windows 中模擬 IoT Edge 裝置</a>"
-    - html: "<a href=\"/azure/iot-edge/tutorial-simulate-device-Linux\">在 Linux 或 MacOS 中模擬 IoT Edge 裝置</a>"
-    - html: "<a href=\"/azure/iot-edge/tutorial-csharp-module\">開發和部署 C# 模組</a>"
-    - html: "<a href=\"/azure/iot-edge/tutorial-deploy-stream-analytics\">將 Azure 串流分析部署為模組</a>"
-    - html: "<a href=\"/azure/iot-edge/tutorial-deploy-machine-learning\">將 Azure Machine Learning 部署為模組</a>"
-    - html: "<a href=\"/azure/iot-edge/tutorial-deploy-function\">將 Azure Functions 部署為模組</a>"
+    - html: <a href="/azure/iot-edge/tutorial-deploy-function">使用 Azure Functions 篩選訊息</a>
+    - html: <a href="/azure/iot-edge/tutorial-deploy-stream-analytics">使用 Azure 串流分析作為模組來尋找平均值</a>
+    - html: <a href="/azure/iot-edge/tutorial-deploy-machine-learning">使用 Azure Machine Learning 作為模組來為資料評分</a>
+    - html: <a href="/azure/iot-edge/tutorial-csharp-module">使用 C# 模組來篩選資料</a>
+    - html: <a href="/azure/iot-edge/tutorial-python-module">使用 Python 模組來篩選資料</a>
+    - html: <a href="/azure/iot-edge/tutorial-node-module">使用 Node.js 模組來篩選資料</a>
+    - html: <a href="/azure/iot-edge/tutorial-c-module">使用 C# 模組來篩選資料</a>
+    - html: <a href="/azure/iot-edge/tutorial-store-data-sql-server">使用 SQL Server 在邊緣儲存資料</a>

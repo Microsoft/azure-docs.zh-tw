@@ -1,26 +1,25 @@
 ---
-title: "Java SDK：Azure Data Lake Store 的檔案系統作業 | Microsoft Docs"
-description: "使用 Azure Data Lake Store 的 Java SDK 在 Data Lake Store 上執行檔案系統作業，例如建立資料夾等。"
+title: Java SDK：Azure Data Lake Storage Gen1 的檔案系統作業 | Microsoft Docs
+description: 使用 Azure Data Lake Storage Gen1 的 Java SDK 在 Data Lake Storage Gen1 上執行檔案系統作業，例如建立資料夾等。
 services: data-lake-store
-documentationcenter: 
+documentationcenter: ''
 author: nitinme
 manager: jhubbard
 editor: cgronlun
 ms.assetid: d10e09db-5232-4e84-bb50-52efc2c21887
 ms.service: data-lake-store
 ms.devlang: na
-ms.topic: get-started-article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 01/09/2018
+ms.topic: conceptual
+ms.date: 05/29/2018
 ms.author: nitinme
-ms.openlocfilehash: fdae36c3cbdda16f9392a113502c7c6c62b25534
-ms.sourcegitcommit: 9292e15fc80cc9df3e62731bafdcb0bb98c256e1
+ms.openlocfilehash: a91593c1bae3002be8b7e423b627f1baf19e86e2
+ms.sourcegitcommit: f10653b10c2ad745f446b54a31664b7d9f9253fe
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/10/2018
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46129178"
 ---
-# <a name="filesystem-operations-on-data-lake-store-using-java-sdk"></a>使用 Java SDK 在 Data Lake Store 上進行檔案系統作業
+# <a name="filesystem-operations-on-azure-data-lake-storage-gen1-using-java-sdk"></a>使用 Java SDK 在 Azure Data Lake Storage Gen1 上進行檔案系統作業
 > [!div class="op_single_selector"]
 > * [.NET SDK](data-lake-store-data-operations-net-sdk.md)
 > * [Java SDK](data-lake-store-get-started-java-sdk.md)
@@ -29,13 +28,13 @@ ms.lasthandoff: 01/10/2018
 >
 > 
 
-了解如何使用 Azure Data Lake Store Java SDK 來執行基本作業，例如建立資料夾、上傳和下載資料檔案等等。如需有關 Data Lake 的詳細資訊，請參閱 [Azure Data Lake Store](data-lake-store-overview.md)。
+了解如何使用 Azure Data Lake Storage Gen1 Java SDK 來執行基本作業，例如建立資料夾、上傳和下載資料檔案等等。如需 Data Lake Storage Gen1 的詳細資訊，請參閱 [Azure Data Lake Storage Gen1](data-lake-store-overview.md)。
 
-您可以在 [Azure Data Lake Store Java API 文件](https://azure.github.io/azure-data-lake-store-java/javadoc/)存取適用於 Azure Data Lake Store 的 Java SDK API 文件。
+您可以在 [Azure Data Lake Storage Gen1 Java API 文件](https://azure.github.io/azure-data-lake-store-java/javadoc/)取用適用於 Data Lake Storage Gen1 的 Java SDK API 文件。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 * Java Development Kit (JDK 7 或更新版本，使用 Java 1.7 版或更新版本)
-* Azure Data Lake Store 帳戶。 遵循[使用 Azure 入口網站開始使用 Azure Data Lake Store](data-lake-store-get-started-portal.md) 的指示。
+* Data Lake Storage Gen1 帳戶。 請遵循[利用 Azure 入口網站開始使用 Azure Data Lake Storage Gen1](data-lake-store-get-started-portal.md) 的指示。
 * [Maven](https://maven.apache.org/install.html). 本教學課程使用 Maven 來處理組建和專案相依性。 雖有可能不使用 Maven 或 Gradle 等組建系統進行建置，但這些系統讓相依性管理變得輕鬆許多。
 * (選擇性) [IntelliJ IDEA](https://www.jetbrains.com/idea/download/) 或 [Eclipse](https://www.eclipse.org/downloads/) 之類的 IDE。
 
@@ -59,7 +58,7 @@ ms.lasthandoff: 01/10/2018
           </dependency>
         </dependencies>
    
-    第一個相依性是使用來自 maven 儲存機制的 Data Lake Store SDK (`azure-data-lake-store-sdk`)。 第二個相依性是指定要用於此應用程式的記錄架構 (`slf4j-nop`)。 Data Lake Store SDK 會使用 [slf4j](http://www.slf4j.org/) 記錄外觀，讓您從數個熱門的記錄架構中進行選擇，例如 log4j、Java 記錄、logback 等或不記錄。 在此範例中，我們停用記錄，因此會使用 **slf4j-nop** 繫結。 若要在應用程式中使用其他記錄選項，請參閱[這裡](http://www.slf4j.org/manual.html#projectDep)。
+    第一個相依性是使用來自 maven 存放庫的 Data Lake Storage Gen1 SDK (`azure-data-lake-store-sdk`)。 第二個相依性是指定要用於此應用程式的記錄架構 (`slf4j-nop`)。 Data Lake Storage Gen1 SDK 會使用 [slf4j](http://www.slf4j.org/) 記錄外觀，讓您從數個常用的記錄架構中進行選擇，例如 log4j、Java 記錄、logback 等，或是不予記錄。 在此範例中，我們停用記錄，因此會使用 **slf4j-nop** 繫結。 若要在應用程式中使用其他記錄選項，請參閱[這裡](http://www.slf4j.org/manual.html#projectDep)。
 
 3. 在應用程式中新增下列 import 陳述式。
 
@@ -76,20 +75,20 @@ ms.lasthandoff: 01/10/2018
 
 ## <a name="authentication"></a>驗證
 
-* 如需讓應用程式進行使用者驗證，請參閱[使用 Java 向 Data Lake Store 進行使用者驗證](data-lake-store-end-user-authenticate-java-sdk.md)。
-* 如需讓應用程式進行服務對服務驗證，請參閱[使用 Java 向 Data Lake Store 進行服務對服務驗證](data-lake-store-service-to-service-authenticate-java.md)。
+* 如需了解應用程式的終端使用者驗證，請參閱[使用 Python 向 Data Lake Storage Gen1 進行終端使用者驗證](data-lake-store-end-user-authenticate-java-sdk.md)。
+* 如需讓應用程式進行服務對服務驗證，請參閱[使用 Java 向 Data Lake Storage Gen1 進行服務對服務驗證](data-lake-store-service-to-service-authenticate-java.md)。
 
-## <a name="create-an-azure-data-lake-store-client"></a>建立 Azure Data Lake Store 用戶端
-建立 [ADLStoreClient](https://azure.github.io/azure-data-lake-store-java/javadoc/) 物件時，您需要指定 Data Lake Store 帳戶名稱以及您向 Data Lake Store 驗證時 (請看[驗證](#authentication)一節) 產生的權杖提供者。 Data Lake Store 帳戶名稱必須是完整的網域名稱。 例如，以 **mydatalakestore.azuredatalakestore.net** 之類的資料取代 **FILL-IN-HERE**。
+## <a name="create-a-data-lake-storage-gen1-client"></a>建立 Data Lake Storage Gen1 用戶端
+建立 [ADLStoreClient](https://azure.github.io/azure-data-lake-store-java/javadoc/) 物件時，您需要指定 Data Lake Storage Gen1 帳戶名稱以及您向 Data Lake Storage Gen1 驗證時 (請參閱[驗證](#authentication)一節) 產生的權杖提供者。 Data Lake Storage Gen1 帳戶名稱必須是完整的網域名稱。 例如，以 **mydatalakestoragegen1.azuredatalakestore.net** 這類內容取代 **FILL-IN-HERE**。
 
     private static String accountFQDN = "FILL-IN-HERE";  // full account FQDN, not just the account name
     ADLStoreClient client = ADLStoreClient.createClient(accountFQDN, provider);
 
-下列各節的程式碼片段是一些常見的檔案系統作業範例。 您可以查看 **ADLStoreClient** 物件的完整 [Data Lake Store Java SDK API 文件](https://azure.github.io/azure-data-lake-store-java/javadoc/)，以了解其他作業。
+下列各節的程式碼片段是一些常見的檔案系統作業範例。 如需了解其他作業，您可以參閱 **ADLStoreClient** 物件的完整 [Data Lake Storage Gen1 Java SDK API 文件](https://azure.github.io/azure-data-lake-store-java/javadoc/)。
 
 ## <a name="create-a-directory"></a>建立目錄
 
-下列程式碼片段會在您指定的 Data Lake Store 帳戶的根目錄中建立目錄結構。
+下列程式碼片段會在您指定的 Data Lake Storage Gen1 帳戶的根目錄中建立目錄結構。
 
     // create directory
     client.createDirectory("/a/b/w");
@@ -135,7 +134,7 @@ ms.lasthandoff: 01/10/2018
 
 ## <a name="read-a-file"></a>讀取檔案
 
-下列程式碼片段會讀取 Data Lake Store 帳戶中檔案的內容。
+下列程式碼片段會讀取 Data Lake Storage Gen1 帳戶中檔案的內容。
 
     // Read File
     InputStream in = client.getReadStream(filename);
@@ -150,7 +149,7 @@ ms.lasthandoff: 01/10/2018
 
 ## <a name="concatenate-files"></a>串連檔案
 
-下列程式碼片段會串連 Data Lake Store 帳戶中的兩個檔案。 如果成功，串連後的檔案會取代兩個原有的檔案。
+下列程式碼片段會串連 Data Lake Storage Gen1 帳戶中的兩個檔案。 如果成功，串連後的檔案會取代兩個原有的檔案。
 
     // concatenate the two files into one
     List<String> fileList = Arrays.asList("/a/b/c.txt", "/a/b/d.txt");
@@ -159,7 +158,7 @@ ms.lasthandoff: 01/10/2018
 
 ## <a name="rename-a-file"></a>重新命名檔案
 
-下列程式碼片段會將 Data Lake Store 帳戶中的檔案重新命名。
+下列程式碼片段會重新命名 Data Lake Storage Gen1 帳戶中的檔案。
 
     //rename the file
     client.rename("/a/b/f.txt", "/a/b/g.txt");
@@ -167,7 +166,7 @@ ms.lasthandoff: 01/10/2018
 
 ## <a name="get-metadata-for-a-file"></a>取得檔案的中繼資料
 
-下列程式碼片段會擷取 Data Lake Store 帳戶中檔案的中繼資料。
+下列程式碼片段會擷取 Data Lake Storage Gen1 帳戶中檔案的中繼資料。
 
     // get file metadata
     DirectoryEntry ent = client.getDirectoryEntry(filename);
@@ -198,7 +197,7 @@ ms.lasthandoff: 01/10/2018
 
 ## <a name="delete-files-and-folders"></a>刪除檔案和資料夾
 
-下列程式碼片段會以遞迴方式刪除 Data Lake Store 帳戶中的指定檔案和資料夾。
+下列程式碼片段會以遞迴方式刪除 Data Lake Storage Gen1 帳戶中的指定檔案和資料夾。
 
     // delete directory along with all the subdirectories and files in it
     client.deleteRecursive("/a");
@@ -211,6 +210,6 @@ ms.lasthandoff: 01/10/2018
 
 ## <a name="next-steps"></a>後續步驟
 * [瀏覽 Java SDK 的 JavaDoc](https://azure.github.io/azure-data-lake-store-java/javadoc/)
-* [保護 Data Lake Store 中的資料](data-lake-store-secure-data.md)
+* [保護 Data Lake Storage Gen1 中的資料](data-lake-store-secure-data.md)
 
 

@@ -2,23 +2,19 @@
 title: 資料庫待用加密：Azure Cosmos DB | Microsoft Docs
 description: 了解 Azure Cosmos DB 如何提供所有資料的預設加密。
 services: cosmos-db
-author: voellm
-manager: jhubbard
-editor: mimig
-documentationcenter: ''
-ms.assetid: 99725c52-d7ca-4bfa-888b-19b1569754d3
+author: rafats
+manager: kfile
 ms.service: cosmos-db
-ms.workload: data-services
-ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 05/23/2017
-ms.author: voellm
-ms.openlocfilehash: df793fb0511d1289b927caad200eb8252f2b64e6
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.author: rafats
+ms.openlocfilehash: 2b54f8c7d9f6427f3104d3c64c65cc555f68738a
+ms.sourcegitcommit: 387d7edd387a478db181ca639db8a8e43d0d75f7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 08/10/2018
+ms.locfileid: "40037982"
 ---
 # <a name="azure-cosmos-db-database-encryption-at-rest"></a>Azure Cosmos DB 資料庫待用加密
 
@@ -66,4 +62,4 @@ Cosmos DB 是一種 PaaS 服務，使用起來非常容易。 由於儲存在 Co
 ## <a name="next-steps"></a>後續步驟
 
 如需 Cosmos DB 安全性及最新改進的概觀，請參閱 [Azure Cosmos DB 資料庫安全性](database-security.md)。
-如需 Microsoft 認證的詳細資訊，請參閱 [Azure 信任中心](https://azure.microsoft.com/en-us/support/trust-center/)。
+如需 Microsoft 認證的詳細資訊，請參閱 [Azure 信任中心](https://azure.microsoft.com/support/trust-center/)。

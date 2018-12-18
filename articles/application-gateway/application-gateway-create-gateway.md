@@ -1,10 +1,10 @@
 ---
-title: "建立、啟動或刪除應用程式閘道 | Microsoft Docs"
-description: "本頁面提供建立、設定、啟動和刪除 Azure 應用程式閘道的指示。"
+title: 建立、啟動或刪除應用程式閘道 | Microsoft Docs
+description: 本頁面提供建立、設定、啟動和刪除 Azure 應用程式閘道的指示。
 documentationcenter: na
 services: application-gateway
-author: davidmu1
-manager: timlt
+author: vhorne
+manager: jpconnock
 editor: tysonn
 ms.assetid: 577054ca-8368-4fbf-8d53-a813f29dc3bc
 ms.service: application-gateway
@@ -14,12 +14,13 @@ ms.tgt_pltfrm: na
 ms.custom: H1Hack27Feb2017
 ms.workload: infrastructure-services
 ms.date: 07/31/2017
-ms.author: davidmu
-ms.openlocfilehash: 7fb54e96d20d34f453b7b016094b84504348335b
-ms.sourcegitcommit: 68aec76e471d677fd9a6333dc60ed098d1072cfc
+ms.author: victorh
+ms.openlocfilehash: a1cfd42f5b1c31b911005b2539047630c6d320dd
+ms.sourcegitcommit: ca05dd10784c0651da12c4d58fb9ad40fdcd9b10
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/18/2017
+ms.lasthandoff: 05/03/2018
+ms.locfileid: "32771184"
 ---
 # <a name="create-start-or-delete-an-application-gateway-with-powershell"></a>使用 PowerShell 建立、啟動或刪除應用程式閘道 
 

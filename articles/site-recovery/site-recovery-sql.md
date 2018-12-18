@@ -1,24 +1,18 @@
 ---
-title: "使用 SQL Server 和 Azure Site Recovery 複寫應用程式 | Microsoft Docs"
-description: "本文說明如何使用適用於 SQL Server 災害復原功能的 Azure Site Recovery 來複寫 SQL Server。"
+title: 使用 SQL Server 和 Azure Site Recovery 複寫應用程式 | Microsoft Docs
+description: 本文說明如何使用適用於 SQL Server 災害復原功能的 Azure Site Recovery 來複寫 SQL Server。
 services: site-recovery
-documentationcenter: 
-author: prateek9us
-manager: gauravd
-editor: 
-ms.assetid: 9126f5e8-e9ed-4c31-b6b4-bf969c12c184
+author: rayne-wiselman
 ms.service: site-recovery
-ms.workload: storage-backup-recovery
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
-ms.date: 12/13/2017
-ms.author: pratshar
-ms.openlocfilehash: 7981173b419632683a40a54bc07f51f0fccab531
-ms.sourcegitcommit: 901a3ad293669093e3964ed3e717227946f0af96
+ms.topic: conceptual
+ms.date: 07/22/2018
+ms.author: raynew
+ms.openlocfilehash: a734999f0fa473b5f1ee8ed55c4b73950566490d
+ms.sourcegitcommit: 63613e4c7edf1b1875a2974a29ab2a8ce5d90e3b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/21/2017
+ms.lasthandoff: 08/29/2018
+ms.locfileid: "43188768"
 ---
 # <a name="protect-sql-server-using-sql-server-disaster-recovery-and-azure-site-recovery"></a>使用 SQL Server 災害復原和 Azure Site Recovery 保護 SQL Server
 
@@ -47,10 +41,10 @@ ms.lasthandoff: 12/21/2017
 
 **案例** | **至次要網站** | **至 Azure**
 --- | --- | ---
-**Hyper-V** | yes | yes
-**VMware** | yes | yes
-**實體伺服器** | yes | yes
-**Azure**|NA| yes
+**Hyper-V** | 是 | 是
+**VMware** | 是 | 是
+**實體伺服器** | 是 | 是
+**Azure**|NA| 是
 
 ### <a name="supported-sql-server-versions"></a>支援的 SQL Server 版本
 在支援的案例中，支援這些 SQL Server 版本：
@@ -77,7 +71,7 @@ Site Recovery 可以與資料表中摘要說明的原生 SQL Server BCDR 技術�
 
 | **版本** | **版本** | **部署** | **內部部署到內部部置** | **內部部署到 Azure** |
 | --- | --- | --- | --- | --- |
-| SQL Server 2014 或 2012 |Enterprise |容錯移轉叢集執行個體 |Always On 可用性群組 |Always On 可用性群組 |
+| SQL Server 2016、2014 或 2012 |Enterprise |容錯移轉叢集執行個體 |Always On 可用性群組 |Always On 可用性群組 |
 || Enterprise |高可用性的 Always On 可用性群組 |Always On 可用性群組 |Always On 可用性群組 | |
 || 標準 |容錯移轉叢集執行個體 (FCI) |包含本機鏡像的 Site Recovery 複寫 |包含本機鏡像的 Site Recovery 複寫 | |
 || Enterprise 或 Standard |獨立 |Site Recovery 複寫 |Site Recovery 複寫 | |
@@ -89,7 +83,6 @@ Site Recovery 可以與資料表中摘要說明的原生 SQL Server BCDR 技術�
 
 * 執行支援的 SQL Server 版本的內部部署 SQL Server 部署。 通常，您的 SQL Server 也需要 Active Directory。
 * 您要部署之案例的需求。 深入了解[複寫至 Azure](site-recovery-support-matrix-to-azure.md) 和[內部部署](site-recovery-support-matrix.md)的支援需求，以及[部署必要條件](site-recovery-prereq.md)。
-* 如果要在 Azure 中設定復原，請在您的 SQL Server 虛擬機器上執行 [Azure 虛擬機器整備評估](http://www.microsoft.com/download/details.aspx?id=40898)工具，以確定它們與 Azure 和 Site Recovery 相容。
 
 ## <a name="set-up-active-directory"></a>設定 Active Directory
 

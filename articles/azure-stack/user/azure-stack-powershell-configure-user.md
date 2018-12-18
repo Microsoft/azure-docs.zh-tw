@@ -1,129 +1,114 @@
 ---
-title: "設定 Azure Stack 使用者的 PowerShell 環境 | Microsoft Docs"
-description: "設定 Azure Stack 使用者的 PowerShell 環境"
+title: 以使用者的身分使用 PowerShell 連線到 Azure Stack | Microsoft Docs
+description: 連線到使用者 Azure Stack 執行個體的步驟。
 services: azure-stack
-documentationcenter: 
-author: mattbriggs
+documentationcenter: ''
+author: sethmanheim
 manager: femila
-editor: 
+editor: ''
 ms.assetid: F4ED2238-AAF2-4930-AA7F-7C140311E10F
 ms.service: azure-stack
 ms.workload: na
 pms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/16/2017
-ms.author: mabrigg
-ms.openlocfilehash: 0bd5b4a98fee7a5d914e53e49a9517f5d3682a88
-ms.sourcegitcommit: a5f16c1e2e0573204581c072cf7d237745ff98dc
+ms.date: 09/07/2018
+ms.author: sethm
+ms.reviewer: Balsu.G
+ms.openlocfilehash: acdad9788737f4f552cedc1b5f42e03e2288dba8
+ms.sourcegitcommit: 2d961702f23e63ee63eddf52086e0c8573aec8dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/11/2017
+ms.lasthandoff: 09/07/2018
+ms.locfileid: "44159074"
 ---
-# <a name="configure-the-azure-stack-users-powershell-environment"></a>設定 Azure Stack 使用者的 PowerShell 環境
+# <a name="connect-to-azure-stack-with-powershell-as-a-user"></a>以使用者的身分使用 PowerShell 連線到 Azure Stack
 
-作為 Azure Stack 使用者，您可以設定您 Azure Stack 開發套件的 PowerShell 環境。 設定之後，可以使用 PowerShell 管理 Azure Stack 資源，例如訂閱產品、建立虛擬機器、部署 Azure Resource Manager 範本等。本主題僅說明使用者環境的使用，若要為雲端操作員環境設定 PowerShell，請參閱[設定 Azure Stack 操作員的 PowerShell 環境](../azure-stack-powershell-configure-admin.md)文章。 
+*適用於：Azure Stack 整合系統和 Azure Stack 開發套件*
 
-## <a name="prerequisites"></a>先決條件 
+本文提供連線到您 Azure Stack 執行個體的步驟。 您必須連線，才能使用 PowerShell 來管理 Azure Stack 資源。 例如，您可以使用 PowerShell 來訂閱供應項目、建立虛擬機器及部署 Azure Resource Manager 範本。 以執行 PowerShell Cmdlet。
 
-從[開發套件](azure-stack-connect-azure-stack.md#connect-to-azure-stack-with-remote-desktop)，或從 Windows 型外部用戶端 (如果您是[透過 VPN 連線](azure-stack-connect-azure-stack.md#connect-to-azure-stack-with-vpn))，執行下列先決條件：
+進行設定：
+  - 確定您具有必要項目。
+  - 與 Azure Active Directory (Azure AD) 或「Active Directory 同盟服務」(AD FS) 連線。 
+  - 註冊資源提供者。
+  - 測試連線能力。
 
-* 安裝 [Azure Stack 相容的 Azure PowerShell 模組](azure-stack-powershell-install.md)。  
-* 下載[處理 Azure Stack 所需的工具](azure-stack-powershell-download.md)。 
+## <a name="prerequisites"></a>必要條件
 
-## <a name="configure-the-user-environment-and-sign-in-to-azure-stack"></a>設定使用者環境並登入 Azure Stack
+從[開發套件](azure-stack-connect-azure-stack.md#connect-to-azure-stack-with-remote-desktop)，或從 Windows 型外部用戶端 (如果您[透過 VPN 連線](azure-stack-connect-azure-stack.md#connect-to-azure-stack-with-vpn))，設定下列先決條件：
 
-請根據部署類型 (Azure AD 或 AD FS)，執行下列其中一個指令碼來設定 Azure Stack 的 PowerShell (請務必依據您的環境組態來取代 AAD tenantName、GraphAudience 端點及 ArmEndpoint 值)：
+* 安裝 [Azure Stack 相容的 Azure PowerShell 模組](azure-stack-powershell-install.md)。
+* 下載[處理 Azure Stack 所需的工具](azure-stack-powershell-download.md)。
 
-### <a name="azure-active-directory-aad-based-deployments"></a>以 Azure Active Directory (AAD) 為基礎的驗證
-       
-  ```powershell
-  # Navigate to the downloaded folder and import the **Connect** PowerShell module
-  Set-ExecutionPolicy RemoteSigned
-  Import-Module .\Connect\AzureStack.Connect.psm1
+務必使用 Azure Stack 組態中的值取代下列指令碼變數：
 
-  # For Azure Stack development kit, this value is set to https://management.local.azurestack.external. To get this value for Azure Stack integrated systems, contact your service provider.
-  $ArmEndpoint = "<Resource Manager endpoint for your environment>"
+- **Azure AD 租用戶名稱**  
+  用來管理 Azure Stack 的 Azure AD 租用戶名稱，例如 yourdirectory.onmicrosoft.com。
+- **Azure Resource Manager 端點**  
+  針對 Azure Stack 開發套件，此值會設定為 https://management.local.azurestack.external。 若要取得 Azure Stack 整合式系統的這個值，請與您的服務提供者連絡。
 
-  # For Azure Stack development kit, this value is set to https://graph.windows.net/. To get this value for Azure Stack integrated systems, contact your service provider.
-  $GraphAudience = "<GraphAudience endpoint for your environment>"
+## <a name="connect-with-azure-ad"></a>與 Azure AD 連線
 
-  # Register an AzureRM environment that targets your Azure Stack instance
+  ```PowerShell
+  $AADTenantName = "yourdirectory.onmicrosoft.com"
+  $ArmEndpoint = "https://management.local.azurestack.external"
+
+  # Register an Azure Resource Manager environment that targets your Azure Stack instance
   Add-AzureRMEnvironment `
     -Name "AzureStackUser" `
     -ArmEndpoint $ArmEndpoint
 
-  # Set the GraphEndpointResourceId value
-  Set-AzureRmEnvironment `
-    -Name "AzureStackUser" `
-    -GraphAudience $GraphAudience
-
-  # Get the Active Directory tenantId that is used to deploy Azure Stack
-  $TenantID = Get-AzsDirectoryTenantId `
-    -AADTenantName "<myDirectoryTenantName>.onmicrosoft.com" `
-    -EnvironmentName "AzureStackUser"
+  $AuthEndpoint = (Get-AzureRmEnvironment -Name "AzureStackUser").ActiveDirectoryAuthority.TrimEnd('/')
+  $TenantId = (invoke-restmethod "$($AuthEndpoint)/$($AADTenantName)/.well-known/openid-configuration").issuer.TrimEnd('/').Split('/')[-1]
 
   # Sign in to your environment
   Login-AzureRmAccount `
     -EnvironmentName "AzureStackUser" `
-    -TenantId $TenantID 
+    -TenantId $TenantId
    ```
 
-### <a name="active-directory-federation-services-ad-fs-based-deployments"></a>以 Active Directory Federation Services (AD FS) 為基礎的部署 
-          
-  ```powershell
-  # Navigate to the downloaded folder and import the **Connect** PowerShell module
-  Set-ExecutionPolicy RemoteSigned
-  Import-Module .\Connect\AzureStack.Connect.psm1
+## <a name="connect-with-ad-fs"></a>與 AD FS 連線
 
-  # For Azure Stack development kit, this value is set to https://management.local.azurestack.external. To get this value for Azure Stack integrated systems, contact your service provider.
-  $ArmEndpoint = "<Resource Manager endpoint for your environment>"
+  ```PowerShell  
+  $ArmEndpoint = "https://management.local.azurestack.external"
 
-  # For Azure Stack development kit, this value is set to https://graph.local.azurestack.external/. To get this value for Azure Stack integrated systems, contact your service provider.
-  $GraphAudience = "<GraphAudience endpoint for your environment>"
-
-  # Register an AzureRM environment that targets your Azure Stack instance
+  # Register an Azure Resource Manager environment that targets your Azure Stack instance
   Add-AzureRMEnvironment `
     -Name "AzureStackUser" `
     -ArmEndpoint $ArmEndpoint
 
-  # Set the GraphEndpointResourceId value
-  Set-AzureRmEnvironment `
-    -Name "AzureStackUser" `
-    -GraphAudience $GraphAudience `
-    -EnableAdfsAuthentication:$true
-
-  # Get the Active Directory tenantId that is used to deploy Azure Stack     
-  $TenantID = Get-AzsDirectoryTenantId `
-    -ADFS `
-    -EnvironmentName "AzureStackUser"
+  $AuthEndpoint = (Get-AzureRmEnvironment -Name "AzureStackUser").ActiveDirectoryAuthority.TrimEnd('/')
+  $tenantId = (invoke-restmethod "$($AuthEndpoint)/.well-known/openid-configuration").issuer.TrimEnd('/').Split('/')[-1]
 
   # Sign in to your environment
   Login-AzureRmAccount `
     -EnvironmentName "AzureStackUser" `
-    -TenantId $TenantID 
+    -TenantId $tenantId
   ```
 
 ## <a name="register-resource-providers"></a>註冊資源提供者
 
-在新建的使用者訂用帳戶 (沒有透過入口網站部署任何資源) 上操作時，不會自動註冊資源提供者。 您應使用下列指令碼明確地進行註冊：
+沒有透過入口網站部署任何資源的新使用者訂用帳戶，並不會自動註冊資源提供者。 執行下列指令碼，即可明確註冊資源提供者：
 
-```powershell
+```PowerShell  
 foreach($s in (Get-AzureRmSubscription)) {
         Select-AzureRmSubscription -SubscriptionId $s.SubscriptionId | Out-Null
         Write-Progress $($s.SubscriptionId + " : " + $s.SubscriptionName)
 Get-AzureRmResourceProvider -ListAvailable | Register-AzureRmResourceProvider -Force
-    } 
+    }
 ```
 
 ## <a name="test-the-connectivity"></a>測試連線
 
-一切都已準備就緒，接下來我們要使用 PowerShell 在 Azure Stack 中建立資源。 例如，您可以建立應用程式的資源群組，並新增虛擬機器。 若要建立名為 "MyResourceGroup" 的資源群組，請使用下列命令：
+當您將一切設定妥當時，使用 PowerShell 在 Azure Stack 中建立資源，以測試連線能力。 在測試時，建立應用程式的資源群組並新增虛擬機器。 若要建立名為 "MyResourceGroup" 的資源群組，請執行下列命令：
 
-```powershell
+```PowerShell  
 New-AzureRmResourceGroup -Name "MyResourceGroup" -Location "Local"
 ```
 
 ## <a name="next-steps"></a>後續步驟
-* [開發適用於 Azure Stack 的範本](azure-stack-develop-templates.md)
-* [使用 PowerShell 部署範本](azure-stack-deploy-template-powershell.md)
+
+- [開發適用於 Azure Stack 的範本](azure-stack-develop-templates.md)
+- [使用 PowerShell 部署範本](azure-stack-deploy-template-powershell.md)
+- 如果想要針對雲端操作員環境設定 PowerShell，請參閱[設定 Azure Stack 操作員的 PowerShell 環境](../azure-stack-powershell-configure-admin.md)一文。

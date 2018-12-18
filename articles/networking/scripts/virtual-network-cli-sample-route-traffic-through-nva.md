@@ -1,25 +1,26 @@
 ---
-title: "Azure CLI 指令碼範例 - 透過網路虛擬設備來路由傳送流量 | Microsoft Docs"
-description: "Azure CLI 指令碼範例 - 透過防火牆網路虛擬設備來路由傳送流量。"
+title: Azure CLI 指令碼範例 - 透過網路虛擬設備來路由傳送流量 | Microsoft Docs
+description: Azure CLI 指令碼範例 - 透過防火牆網路虛擬設備來路由傳送流量。
 services: virtual-network
 documentationcenter: virtual-network
 author: jimdial
 manager: timlt
 editor: tysonn
-tags: 
-ms.assetid: 
+tags: ''
+ms.assetid: ''
 ms.service: virtual-network
 ms.devlang: azurecli
 ms.topic: article
-ms.tgt_pltfrm: 
+ms.tgt_pltfrm: ''
 ms.workload: infrastructure
 ms.date: 07/07/2017
 ms.author: jdial
-ms.openlocfilehash: 24b0c6873721ef196b1c0dc6d6a357f87a4a5e39
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+ms.openlocfilehash: 62077f45d96e96a7fef35cf025740849d2b99445
+ms.sourcegitcommit: a2ae233e20e670e2f9e6b75e83253bd301f5067c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 08/13/2018
+ms.locfileid: "42141269"
 ---
 # <a name="route-traffic-through-a-network-virtual-appliance"></a>透過網路虛擬設備來路由傳送流量
 
@@ -57,8 +58,8 @@ az group delete --name MyResourceGroup --yes
 | [az network nsg create](/cli/azure/network/nsg#az_network_nsg_create) | 建立網路安全性群組 (NSG)。 |
 | [az network nsg rule create](/cli/azure/network/nsg/rule#az_network_nsg_rule_create) | 建立允許對 VM 進行 HTTP 和 HTTPS 連接埠輸入的 NSG 規則。 |
 | [az network vnet subnet update](/cli/azure/network/vnet/subnet#az_network_vnet_subnet_update)| 將 NSG 和路由表與子網路建立關聯。 |
-| [az network route-table create](/cli/azure/network/route-table#az_network_route_table_create)| 為所有路由建立一個路由表。 |
-| [az network route-table route create](/cli/azure/network/route-table/route#az_network_route_table_route_create)| 建立路由，以透過 VM 在子網路與網際網路之間路由傳送流量。 |
+| [az network route-table create](/cli/azure/network/route-table#az-network-route-table-create)| 為所有路由建立一個路由表。 |
+| [az network route-table route create](/cli/azure/network/route-table/route#az-network-route-table-route-create)| 建立路由，以透過 VM 在子網路與網際網路之間路由傳送流量。 |
 | [az vm create](/cli/azure/vm#az_vm_create) | 建立虛擬機器，並將 NIC 連結到此虛擬機器。 此命令也會指定要使用的虛擬機器映像和系統管理認證。 |
 | [az group delete](/cli/azure/group#az_group_delete) | 刪除資源群組及其包含的所有資源。 |
 

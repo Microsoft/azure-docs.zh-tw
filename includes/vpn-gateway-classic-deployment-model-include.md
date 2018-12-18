@@ -13,6 +13,7 @@ ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 03/23/2018
+ms.locfileid: "30197902"
 ---
 > [!NOTE]
 > 本文針對傳統部署模型而撰寫。 如果您不熟悉 Azure，建議改用 Resource Manager 部署模型。 Resource Manager 部署模型是最新的部署模型，可提供比傳統部署模型更多的選項和功能相容性。 如需部署模型的詳細資訊，請參閱[了解部署模型](../articles/resource-manager-deployment-model.md)。

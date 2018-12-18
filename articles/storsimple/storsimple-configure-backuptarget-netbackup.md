@@ -1,12 +1,12 @@
 ---
-title: "StorSimple 8000 系列做為 NetBackup 的備份目標 | Microsoft Docs"
-description: "描述搭配 Veritas NetBackup 的 StorSimple 備份目標組態。"
+title: StorSimple 8000 系列做為 NetBackup 的備份目標 | Microsoft Docs
+description: 描述搭配 Veritas NetBackup 的 StorSimple 備份目標組態。
 services: storsimple
-documentationcenter: 
+documentationcenter: ''
 author: harshakirank
 manager: matd
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: na
 ms.topic: article
@@ -15,10 +15,11 @@ ms.workload: na
 ms.date: 06/15/2017
 ms.author: hkanna
 ms.openlocfilehash: b1878c181a77ac6d54654fc55228907743243c45
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.sourcegitcommit: 6fcd9e220b9cd4cb2d4365de0299bf48fbb18c17
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 04/05/2018
+ms.locfileid: "23112836"
 ---
 # <a name="storsimple-as-a-backup-target-with-netbackup"></a>使用 StorSimple 做為 NetBackup 的備份目標
 

@@ -5,23 +5,21 @@ services: site-recovery
 author: rayne-wiselman
 manager: carmonm
 ms.service: site-recovery
-ms.topic: article
-ms.date: 02/07/2018
+ms.topic: conceptual
+ms.date: 10/10/2018
 ms.author: raynew
-ms.custom: mvc
-ms.openlocfilehash: 111217e9335b16659c93da88731e0b7ce6d5fecd
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: 20387c325497934ccb2e02188b24a0125f937e00
+ms.sourcegitcommit: 4b1083fa9c78cd03633f11abb7a69fdbc740afd1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 10/10/2018
+ms.locfileid: "49078252"
 ---
 # <a name="azure-to-azure-replication-architecture"></a>Azure 至 Azure 複寫架構
 
 
 本文說明使用 [Azure Site Recovery](site-recovery-overview.md) 服務，在 Azure 區域之間對 Azure 虛擬機器 (VM) 進行複寫、容錯移轉和復原時所使用的架構。
 
->[!NOTE]
->Site Recovery 服務的 Azure VM 複寫目前為預覽狀態。
 
 
 
@@ -46,7 +44,7 @@ ms.lasthandoff: 03/28/2018
 
 **Resource** | **詳細資料**
 --- | ---
-**目標資源群組** | 在容錯移轉之後複寫的 VM 所屬的資源群組。
+**目標資源群組** | 在容錯移轉之後複寫的 VM 所屬的資源群組。 此資源群組的位置可以是任何 Azure 區域，但是裝載您來源虛擬機器所在的 Azure 區域除外。
 **目標虛擬網路** | 在容錯移轉之後複寫的 VM 所在的虛擬網路。 在來源和目標的虛擬網路之間會建立網路對應，反之亦然。
 **快取儲存體帳戶** | 將來源 VM 變更複寫到目標儲存體帳戶之前，系統會追蹤這些變更並傳送到來源位置中的快取儲存體帳戶。 此步驟確保對於 VM 上執行的生產應用程式所造成的影響會降到最低。
 **目標儲存體帳戶 (如果來源 VM 不使用受控磁碟)**  | 將資料複寫至其中的目標位置儲存體帳戶。

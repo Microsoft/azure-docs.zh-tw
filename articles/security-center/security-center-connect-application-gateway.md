@@ -3,22 +3,23 @@ title: 將 Microsoft Azure 應用程式閘道連線至 Azure 資訊安全中心 
 description: 了解如何整合應用程式閘道與 Azure 資訊安全中心以加強您資源的整體安全性。
 services: security-center
 documentationcenter: na
-author: TerryLanfear
+author: rkarlin
 manager: mbaldwin
 editor: ''
 ms.assetid: 6af354da-f27a-467a-8b7e-6cbcf70fdbcb
 ms.service: security-center
-ms.topic: article
+ms.topic: conceptual
 ms.devlang: na
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/07/2018
-ms.author: terrylan
-ms.openlocfilehash: 7c15e5a86df7ff2a374aa9b62d2775b1eb035fc6
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+ms.date: 08/30/2018
+ms.author: rkarlin
+ms.openlocfilehash: 5638b71147592ae71c741ca86da68ddfec668af5
+ms.sourcegitcommit: f3bd5c17a3a189f144008faf1acb9fabc5bc9ab7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 09/10/2018
+ms.locfileid: "44299061"
 ---
 # <a name="connecting-microsoft-azure-application-gateway-to-azure-security-center"></a>將 Microsoft Azure 應用程式閘道連線至 Azure 資訊安全中心
 本文件可協助您設定以應用程式閘道 Web 應用程式防火牆 (WAF) 和資訊安全中心進行的整合。
@@ -36,9 +37,9 @@ ms.lasthandoff: 03/09/2018
 
 1. 登入 [Azure 入口網站](https://azure.microsoft.com/features/azure-portal/)。
 
-2. 在 [Microsoft Azure] 功能表中，選取 [資訊安全中心]。 [資訊安全中心 - 概觀] 隨即開啟。
+2. 在 [Microsoft Azure] 功能表中，選取 [資訊安全中心]。
 
-3. 在 [概觀] 底下，選取 [安全性解決方案]。
+3. 在 [資源安全性檢查] 下方，選取 [安全性解決方案]。
 
   ![資訊安全中心概觀](./media/security-center-connect-application-gateway/overview.png)
 

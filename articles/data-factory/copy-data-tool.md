@@ -3,19 +3,20 @@ title: 複製資料工具 - Azure Data Factory | Microsoft Docs
 description: 提供有關 Azure Data Factory UI 中複製資料工具的資訊
 services: data-factory
 documentationcenter: ''
-author: linda33wj
+author: dearandyxu
 manager: craigg
 ms.reviewer: douglasl
 ms.service: data-factory
 ms.workload: data-services
-ms.topic: article
-ms.date: 01/10/2018
-ms.author: jingwang
-ms.openlocfilehash: b82ee060ff3f25e7a92c85114d457ecb349159b3
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.topic: conceptual
+ms.date: 06/18/2018
+ms.author: yexu
+ms.openlocfilehash: 8941ec26cef5e3dc2f17faf0d7eb843b76f8926f
+ms.sourcegitcommit: 95d9a6acf29405a533db943b1688612980374272
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 06/23/2018
+ms.locfileid: "36331832"
 ---
 # <a name="copy-data-tool-in-azure-data-factory"></a>Azure Data Factory 中的複製資料工具
 Azure Data Factory「複製資料」工具把將資料內嵌到 Data Lake 的程序 (通常是端對端資料整合案例中的第一步) 簡化並最佳化。  它可節省時間，尤其是當您第一次使用 Azure Data Factory 從資料來源內嵌資料的時候。 使用此工具的一些優點包括：
@@ -77,7 +78,7 @@ Azure Data Factory「複製資料」工具把將資料內嵌到 Data Lake 的程
 ![篩選資料庫中的資料](./media/copy-data-tool/filter-data-in-database.png)
 
 ### <a name="filter-data-in-an-azure-blob-folder"></a>篩選 Azure Blob 資料夾中的資料
-您可以在資料夾路徑中使用變數，以從資料夾中複製資料。 支援的變數包括︰**{year}****{month}****{day}****{hour}**及 **{minute}**。 例如︰inputfolder/{year}/{month}/{day}。 
+您可以在資料夾路徑中使用變數，以從資料夾中複製資料。 支援的變數包括︰**{year}****{month}****{day}****{hour}** 及 **{minute}**。 例如︰inputfolder/{year}/{month}/{day}。 
 
 假設您的輸入資料夾格式如下︰ 
 

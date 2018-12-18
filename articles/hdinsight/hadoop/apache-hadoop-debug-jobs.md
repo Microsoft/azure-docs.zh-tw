@@ -1,26 +1,20 @@
 ---
-title: "針對 HDInsight 上的 Hadoop 進行偵錯：檢視記錄與解譯錯誤訊息 - Azure | Microsoft Docs"
-description: "了解您使用 PowerShell 來管理 HDInsight 時可能收到的錯誤訊息，以及可採取來回復的步驟。"
+title: '在 HDInsight 上對 Hadoop 進行偵錯：檢視記錄與解譯錯誤訊息 - Azure '
+description: 了解您使用 PowerShell 來管理 HDInsight 時可能收到的錯誤訊息，以及可採取來回復的步驟。
 services: hdinsight
-tags: azure-portal
-editor: cgronlun
-manager: jhubbard
+ms.reviewer: jasonh
 author: ashishthaps
-documentationcenter: 
-ms.assetid: 7e6ceb0e-8be8-4911-bc80-20714030a3ad
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 11/14/2017
-ms.author: ashish
-ms.openlocfilehash: a5db3848eda2dbb6f117562e059b909575966993
-ms.sourcegitcommit: e19742f674fcce0fd1b732e70679e444c7dfa729
+ms.author: ashishth
+ms.openlocfilehash: cd688ec1f5b7b46138a3b601f52b54dd6f3615e3
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43046485"
 ---
 # <a name="analyze-hadoop-logs"></a>分析 Hadoop 記錄
 
@@ -295,11 +289,11 @@ Azure HDInsight 中的每個 Hadoop 叢集都有一個 Azure 儲存體帳戶作�
 
 ### <a id="UnableToResolveDNS"></a>UnableToResolveDNS
 * **描述**：無法解析 DNS *yourDnsUrl*。 請確定您提供 Blob 端點的完整 URL。  
-* **緩和**：提供有效的 Blob URL。 URL「必須」完全有效，包括以*http://*開頭，以*.com*結尾。
+* **緩和**：提供有效的 Blob URL。 URL「必須」完全有效，包括以*http://* 開頭，以 *.com*結尾。
 
 ### <a id="UnableToVerifyLocationOfResource"></a>UnableToVerifyLocationOfResource
 * **描述**：無法驗證資源的 *yourDnsUrl*的位置。 請確定您提供 Blob 端點的完整 URL。  
-* **緩和**：提供有效的 Blob URL。 URL「必須」完全有效，包括以*http://*開頭，以*.com*結尾。
+* **緩和**：提供有效的 Blob URL。 URL「必須」完全有效，包括以*http://* 開頭，以 *.com*結尾。
 
 ### <a id="VersionCapabilityNotAvailable"></a>VersionCapabilityNotAvailable
 * **描述**：版本「specifiedVersion」和訂用帳戶識別碼「yourSubscriptionId」無法使用版本功能。  

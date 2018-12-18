@@ -1,11 +1,11 @@
 ---
-title: "SQL Server 虛擬機器的自動備份 (傳統) | Microsoft Docs"
-description: "說明在使用 Resource Manager 的 Azure 虛擬機器中執行的 SQL Server 自動備份功能。 "
+title: SQL Server 虛擬機器的自動備份 (傳統) | Microsoft Docs
+description: '說明在使用 Resource Manager 的 Azure 虛擬機器中執行的 SQL Server 自動備份功能。 '
 services: virtual-machines-windows
 documentationcenter: na
 author: rothja
 manager: craigg
-editor: 
+editor: ''
 tags: azure-service-management
 ms.assetid: 3333e830-8a60-42f5-9f44-8e02e9868d7b
 ms.service: virtual-machines-sql
@@ -15,11 +15,12 @@ ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
 ms.date: 01/23/2018
 ms.author: jroth
-ms.openlocfilehash: 05f5ec690fbf1ea2f4f6a6d927685d7a34ac9273
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.openlocfilehash: 3bca1c6c357527a32de499ac9207b1bb734dad7b
+ms.sourcegitcommit: e2adef58c03b0a780173df2d988907b5cb809c82
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 04/28/2018
+ms.locfileid: "32187118"
 ---
 # <a name="automated-backup-for-sql-server-in-azure-virtual-machines-classic"></a>Azure 虛擬機器中的 SQL Server 自動備份 (傳統)
 > [!div class="op_single_selector"]
@@ -48,7 +49,7 @@ ms.lasthandoff: 02/21/2018
 * SQL Server 2014 Enterprise
 
 > [!NOTE]
-> Resource Manager 虛擬機器支援 SQL Server 2016 的自動備份。 如需詳細資訊，請參閱 [Azure 虛擬機器 (Resource Manager) 的 SQL Server 2016 自動備份 v2](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sql/virtual-machines-windows-sql-automated-backup-v2)。
+> Resource Manager 虛擬機器支援 SQL Server 2016 的自動備份。 如需詳細資訊，請參閱 [Azure 虛擬機器 (Resource Manager) 的 SQL Server 2016 自動備份 v2](https://docs.microsoft.com/azure/virtual-machines/windows/sql/virtual-machines-windows-sql-automated-backup-v2)。
 
 **資料庫組態**：
 

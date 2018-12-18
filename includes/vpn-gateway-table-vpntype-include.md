@@ -13,6 +13,7 @@ ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 03/23/2018
+ms.locfileid: "30198004"
 ---
 #### <a name="vpn-type---resource-manager-deployment-model"></a>VPN 類型 - Resource Manager 部署模型
 |  | **RouteBased** | **PolicyBased** |

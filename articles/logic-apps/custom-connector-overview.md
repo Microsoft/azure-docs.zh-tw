@@ -1,24 +1,20 @@
 ---
-title: "自動連接器主題連結 - Azure Logic Apps | Microsoft Docs"
-description: "有關如何建立、使用、分享及認證自訂連接器之主題的連結"
-author: ecfan
-manager: anneta
-editor: 
+title: 自動連接器主題連結 - Azure Logic Apps | Microsoft Docs
+description: 有關如何建立、使用、分享及認證自訂連接器之主題的連結
 services: logic-apps
-documentationcenter: 
-ms.assetid: 
 ms.service: logic-apps
-ms.workload: logic-apps
-ms.tgt_pltfrm: na
-ms.devlang: na
+ms.suite: integration
+author: ecfan
+ms.author: estfan
+ms.reviewer: divswa, LADocs
 ms.topic: article
 ms.date: 1/30/2018
-ms.author: LADocs; estfan
-ms.openlocfilehash: 301a6547590acbb689c190dc713535f53b61cbf5
-ms.sourcegitcommit: 9d317dabf4a5cca13308c50a10349af0e72e1b7e
+ms.openlocfilehash: 89bbc0be27453ba6a6c61c844b8fd8901eea0e80
+ms.sourcegitcommit: 2ad510772e28f5eddd15ba265746c368356244ae
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "43125614"
 ---
 # <a name="custom-connectors-in-logic-apps"></a>Logic Apps 中的自訂連接器
 

@@ -1,11 +1,11 @@
 ---
-title: "如何建立 Azure 支援要求 | Microsoft Docs"
-description: "如何建立 Azure 支援要求。"
+title: 如何建立 Azure 支援要求 | Microsoft Docs
+description: 如何建立 Azure 支援要求。
 services: Azure Supportability
-documentationcenter: 
+documentationcenter: ''
 author: ganganarayanan
 manager: scotthit
-editor: 
+editor: ''
 ms.assetid: fd6841ea-c1d5-4bb7-86bd-0c708d193b89
 ms.service: azure-supportability
 ms.workload: na
@@ -14,20 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/25/2016
 ms.author: gangan
-ms.openlocfilehash: 70a4762383d64dc8d568c628cf260ebd8f2d179d
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 0b45bd2a1a2599908d2077198dce0062071b79af
+ms.sourcegitcommit: 1362e3d6961bdeaebed7fb342c7b0b34f6f6417a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 04/18/2018
+ms.locfileid: "31512505"
 ---
 # <a name="how-to-create-an-azure-support-request"></a>如何建立 Azure 支援要求
 ## <a name="summary"></a>總結
-Azure 客戶可以在 Azure 入口網站 ( [https://portal.azure.com](https://portal.azure.com)) 中建立和管理支援要求。
+Azure 客戶可以在 Azure 入口網站 ([https://portal.azure.com](https://portal.azure.com)) 中建立和管理支援要求。
 
 > [!NOTE]
-> 德國的 Azure 入口網站是 [https://portal.microsoftazure.de](https://portal.microsoftazure.de)，美國政府的則是 [https://portal.azure.us](https://portal.azure.us)。
-> 
-> 
+> 德國的 Azure 入口網站是 [https://portal.microsoftazure.de](https://portal.microsoftazure.de)   
+> 美國政府的 Azure 入口網站為是 [https://portal.azure.us](https://portal.azure.us)。
+
 
 根據客戶的意見反應，我們已更新支援要求體驗，著重在三個主要目標︰
 
@@ -39,6 +40,10 @@ Azure 客戶可以在 Azure 入口網站 ( [https://portal.azure.com](https://po
 您可以從頂端導覽功能表或直接從資源刀鋒視窗中建立支援要求。
 
 **從頂端導覽列**
+
+![說明與支援](./media/how-to-create-azure-support-request/HelpandSupport.png)
+
+在 [說明 + 支援] 頁面中選取 [新增支援要求]。
 
 ![新的支援要求](./media/how-to-create-azure-support-request/NewSupportRequest.png)
 
@@ -56,36 +61,57 @@ Azure 客戶可以在 Azure 入口網站 ( [https://portal.azure.com](https://po
 
 > [!NOTE]
 > Azure 提供無限制的訂用帳戶管理支援 (例如帳單、配額調整和帳戶轉換)。 如需技術支援，您必須加入支援計劃。 [深入了解支援計劃](https://azure.microsoft.com/support/plans)。
-> 
-> 
+>
+>
 
 ## <a name="problem"></a>問題
 精靈的第二個步驟會收集問題的相關額外詳細資料。 在此步驟中提供精確的詳細資料，可讓我們將您的案例路由傳送至最佳的問題支援工程師，並且儘速開始診斷問題。
 
-![問題刀鋒視窗](./media/how-to-create-azure-support-request/Problem.png)
+![問題刀鋒視窗](./media/how-to-create-azure-support-request/Problem01.png)
 
 繼續上述的虛擬機器連接範例，您需要填寫此表單以指出是網路連接問題，提供問題的進一步詳細資料，包括當您遇到問題時的大約時間。
 
+![問題刀鋒視窗 2](./media/how-to-create-azure-support-request/Problem02.png)
+
 ## <a name="related-help"></a>相關說明
-針對某些問題，我們會提供相關說明連結以對問題進行疑難排解。 如果建議的文件並沒有幫助，您可以繼續程序以建立支援要求。
+我們會根據問題類型和您選取的類別，提供可協助您解決問題的解決方案。
+
 ![相關說明](./media/how-to-create-azure-support-request/RelatedHelp.png)
 
+我們也會根據您問題的文字描述，提供內容相關的自助解決方案。
+
+![相關說明 2](./media/how-to-create-azure-support-request/RelatedHelp02.png)
+
+如果建議的解決方案沒有幫助，您可以繼續進行建立支援要求的程序。
+
+![問題刀鋒視窗 3](./media/how-to-create-azure-support-request/Problem03.png)
+
 ## <a name="contact-information"></a>連絡人資訊
-精靈的最後一個步驟是確認您的連絡人資訊，讓我們知道要如何與您連絡。
+精靈的最後一個步驟是確認您的連絡人選項和連絡人資訊，讓我們知道要如何與您連絡。
+
 ![連絡人資訊](./media/how-to-create-azure-support-request/ContactInformation.png)
 
 根據您的問題的嚴重性，可能會要求您指出要在營業時間與您連絡，或者您希望全天候回應，這表示我們可能會隨時與您連絡。
+
 ![全天候連絡人資訊](./media/how-to-create-azure-support-request/ContactInformation-2.png)
 
-## <a name="manage-support-requests"></a>管理支援要求
-建立支援要求之後，您可以從 [管理支援要求]  頁面檢視詳細資料。
+## <a name="all-support-requests"></a>所有支援要求
+建立支援要求之後，您可以從 [所有支援要求]  頁面檢視詳細資料。
 
 **從頂端導覽列**
 
-![管理支援要求連結](./media/how-to-create-azure-support-request/ManageSupportRequest-link.png)
+![說明與支援](./media/how-to-create-azure-support-request/HelpandSupport.png)
 
-在 [管理支援要求]  頁面上，您可以檢視所有的支援要求及其狀態。
-![管理支援要求](./media/how-to-create-azure-support-request/ManageSupportRequest.png)
+從 [說明與支援] 頁面，選取左功能表中的 [所有支援要求]。
+
+![所有支援要求連結](./media/how-to-create-azure-support-request/AllSupportRequest-link.png)
+
+在 [所有支援要求]  頁面上，您可以檢視所有的支援要求及其狀態。
+
+![所有支援要求](./media/how-to-create-azure-support-request/AllSupportRequest.png)
+
+支援要求頁面，可供客戶依照訂用帳戶、建立日期 (UTC) 和狀態來篩選案例。
+此外，您可以在此頁面上排序和搜尋支援要求。
 
 選取支援要求以檢視詳細資料，包括嚴重性和支援工程師回應的預期時間。
 ![VID](./media/how-to-create-azure-support-request/VID.png)
@@ -96,8 +122,8 @@ Azure 客戶可以在 Azure 入口網站 ( [https://portal.azure.com](https://po
 
 > [!NOTE]
 > 最高嚴重性層級取決於您的支援計劃。 [深入了解支援計劃](https://azure.microsoft.com/support/plans)。
-> 
-> 
+>
+>
 
 ![VID-2](./media/how-to-create-azure-support-request/VID-2.png)
 
@@ -106,4 +132,3 @@ Azure 客戶可以在 Azure 入口網站 ( [https://portal.azure.com](https://po
 
 ## <a name="learn-more"></a>深入了解
 [Azure 支援常見問題集](https://azure.microsoft.com/support/faq)
-

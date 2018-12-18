@@ -1,63 +1,60 @@
 ---
-title: Azure Active Directory B2C：Weibo 設定 | Microsoft Docs
-description: 在受 Azure Active Directory B2C 保護的應用程式中，針對具有 Weibo 帳戶的取用者提供註冊和登入。
+title: 使用 Azure Active Directory B2C 設定註冊，並以微博帳戶登入 | Microsoft Docs
+description: 使用 Azure Active Directory B2C，讓具有微博帳戶的客戶得以註冊和登入您的應用程式。
 services: active-directory-b2c
-documentationcenter: ''
 author: davidmu1
 manager: mtillman
-editor: ''
-ms.service: active-directory-b2c
+ms.service: active-directory
 ms.workload: identity
-ms.topic: article
-ms.date: 3/26/2017
+ms.topic: conceptual
+ms.date: 09/11/2018
 ms.author: davidmu
-ms.openlocfilehash: f2a7b6992e54f9804057f21e10ba68a9a723c6a0
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: B2C
+ms.openlocfilehash: 4600ec9d76f682f0dedf8c802d23b32fd6126481
+ms.sourcegitcommit: 5b8d9dc7c50a26d8f085a10c7281683ea2da9c10
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/26/2018
+ms.locfileid: "47181493"
 ---
-# <a name="azure-active-directory-b2c-provide-sign-up-and-sign-in-to-consumers-with-weibo-accounts"></a>Azure Active Directory B2C：針對具有 Weibo 帳戶的取用者提供註冊和登入
+# <a name="set-up-sign-up-and-sign-in-with-a-weibo-account-using-azure-active-directory-b2c"></a>使用 Azure Active Directory B2C 設定註冊，並以微博帳戶登入
 
 > [!NOTE]
-> 這項功能處於預覽狀態。 請勿在生產環境中使用此識別提供者。
+> 此功能處於預覽狀態。
 > 
 
 ## <a name="create-a-weibo-application"></a>建立 Weibo 應用程式
 
-若要在 Azure Active Directory (Azure AD) B2C 中使用 Weibo 做為識別提供者，您必須建立 Weibo 應用程式，並對其提供正確參數。 您需要 Weibo 帳戶才能執行此動作。 如果您沒有帳戶，您可以在 [http://weibo.com/signup/signup.php?lang=en-us](http://weibo.com/signup/signup.php?lang=en-us) 上取得。
+若要在 Azure Active Directory (Azure AD) B2C 中使用微博帳戶做為識別提供者，您需要在代表該帳戶的租用戶中建立應用程式。 如果您還沒有微博帳戶，可以在 [http://weibo.com/signup/signup.php?lang=en-us](http://weibo.com/signup/signup.php?lang=en-us) 中取得。
 
-### <a name="register-for-the-weibo-developer-program"></a>註冊 Weibo 開發人員計劃
-
-1. 移至 [Weibo 開發人員入口網站](http://open.weibo.com/)並以您的 Weibo 帳戶認證登入。
-2. 登入之後，按一下您在右上角的顯示名稱。
+1. 使用您的微博帳戶認證登入[微博開發人員入口網站](http://open.weibo.com/)。
+2. 登入之後，在右上角選取您的顯示名稱。
 3. 在下拉式清單中，選取 [编辑开发者信息] \(編輯開發人員資訊)。
-4. 在表單中輸入所需的資訊，然後按一下 [提交]。
+4. 輸入必要資訊，並選取 [提交]。
 5. 完成電子郵件驗證程序。
 6. 移至[識別驗證頁面](http://open.weibo.com/developers/identity/edit)。
-7. 在表單中輸入所需的資訊，然後按一下 [提交]。
+7. 輸入必要資訊，並選取 [提交]。
 
 ### <a name="register-a-weibo-application"></a>註冊 Weibo 應用程式
 
 1. 移至[新的 Weibo 應用程式註冊頁面](http://open.weibo.com/apps/new)。
 2. 輸入必要的應用程式資訊。
-3. 按一下 [创建] \(建立)。
-4. 複製**應用程式金鑰**和**應用程式密碼**的值。 稍後您將會需要此資訊。
+3. 選取 [创建]\(建立\)。
+4. 複製**應用程式金鑰**和**應用程式密碼**的值。 您需要這兩個值，才能將識別提供者新增至您的租用戶。
 5. 上傳所需的相片，並輸入所需的資訊。
-6. 按一下 [保存以上信息] \(儲存)。
-7. 按一下 [高级信息] \(進階資訊)。
-8. 按一下 OAuth2.0 [授权设置] \(重新導向 URL) 旁的 [编辑] \(編輯) 欄位。
-9. 針對 OAuth2.0 [授权设置] \(重新導向 URL) 輸入 `https://login.microsoftonline.com/te/{tenant_name}/oauth2/authresp`。 例如，如果您的 `tenant_name` 是 contoso.onmicrosoft.com，請將 URL 設為 `https://login.microsoftonline.com/te/contoso.onmicrosoft.com/oauth2/authresp`。
-10. 按一下 [提交]。  
+6. 選取 [保存以上信息]\(儲存\)。
+7. 選取 [高级信息]\(進階資訊\)。
+8. 選取 OAuth2.0 [授权设置] (\重新導向 URL\) 旁的 [编辑] \(編輯\)。
+9. 針對 OAuth2.0 [授权设置] \(重新導向 URL) 輸入 `https://your-tenant-name.b2clogin.com/your-tenant-name.onmicrosoft.com/oauth2/authresp`。 例如，如果您的租用戶名稱是 contoso，請將 URL 設定為 `https://contoso.b2clogin.com/contoso.onmicrosoft.com/oauth2/authresp`。
+10. 選取 [提交]。  
 
-## <a name="configure-weibo-as-an-identity-provider-in-your-tenant"></a>在租用戶中將 Weibo 設為識別提供者
-1. 遵循下列步驟以 [瀏覽至 B2C 功能刀鋒視窗](active-directory-b2c-app-registration.md#navigate-to-b2c-settings) (位於 Azure 入口網站上)。
-2. 在 B2C 功能刀鋒視窗中，按一下 [ **身分識別提供者**]。
-3. 按一下刀鋒視窗頂端的 [新增]  。
-4. 針對身分識別提供者組態，提供容易辨識的 **名稱** 。 例如，輸入 "Weibo"。
-5. 按一下 [識別提供者類型]、選取 [Weibo]，然後按一下 [確定]。
-6. 按一下 [設定此識別提供者]。
-7. 輸入您稍早複製為**用戶端識別碼**的**應用程式金鑰**。
-8. 輸入您稍早複製為**用戶端密碼**的**應用程式密碼**。
-9. 依序按一下 [確定] 和 [建立]，儲存您的 Weibo 設定。
+## <a name="configure-a-weibo-account-as-an-identity-provider"></a>將微博帳戶設為識別提供者
 
+1. 以 Azure AD B2C 租用戶的全域管理員身分登入 [Azure 入口網站](https://portal.azure.com/)。
+2. 按一下頂端功能表中的**目錄和訂用帳戶篩選**，然後選擇包含您租用戶的目錄，以確定您使用的是包含 Azure AD B2C 租用戶的目錄。
+3. 選擇 Azure 入口網站左上角的 [所有服務]，搜尋並選取 [Azure AD B2C]。
+4. 選取 [識別提供者]，然後選取 [新增]。
+5. 提供 [名稱]。 例如，輸入*微博*。
+6. 依序選取 [識別提供者類型]、[微博 (預覽)]，然後按一下 [確定]。
+7. 選取 [設定此識別提供者]，並輸入 [用戶端識別碼] (您先前記錄的應用程式金鑰)，然後輸入 [用戶端密碼] (您先前建立的微博應用程式的應用程式密碼)。
+8. 依序按一下 [確定] 和 [建立]，儲存您的 Weibo 設定。

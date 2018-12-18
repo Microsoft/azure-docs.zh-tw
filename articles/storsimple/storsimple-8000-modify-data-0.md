@@ -1,12 +1,12 @@
 ---
-title: "修改 StorSimple 8000 系列裝置上的 DATA 0 設定 | Microsoft Docs"
-description: "了解如何使用 Windows PowerShell for StorSimple 重新設定 StorSimple 裝置上的 DATA 0 網路介面。"
+title: 修改 StorSimple 8000 系列裝置上的 DATA 0 設定 | Microsoft Docs
+description: 了解如何使用 Windows PowerShell for StorSimple 重新設定 StorSimple 裝置上的 DATA 0 網路介面。
 services: storsimple
-documentationcenter: 
+documentationcenter: ''
 author: alkohli
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: na
 ms.topic: article
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23108296"
 ---
 # <a name="modify-the-data-0-network-interface-settings-on-your-storsimple-8000-series-device"></a>修改 StorSimple 8000 系列裝置上的 DATA 0 網路介面設定
 

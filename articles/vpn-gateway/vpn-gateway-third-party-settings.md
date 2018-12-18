@@ -1,25 +1,26 @@
 ---
-title: "適用於 Azure VPN 閘道的社群建議協力廠商 VPN 或防火牆裝置設定 | Microsoft Docs"
-description: "了解適用於 Azure VPN 閘道的社群建議協力廠商 VPN 或防火牆裝置設定。"
+title: 適用於 Azure VPN 閘道的社群建議協力廠商 VPN 或防火牆裝置設定 | Microsoft Docs
+description: 了解適用於 Azure VPN 閘道的社群建議協力廠商 VPN 或防火牆裝置設定。
 services: vpn-gateway
-documentationcenter: 
+documentationcenter: ''
 author: chadmath
 manager: cshepard
-editor: 
+editor: ''
 tags: azure-vpn-gateway
-ms.assetid: 
+ms.assetid: ''
 ms.service: vpn-gateway
 ms.devlang: na
 ms.topic: troubleshooting
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/03/2017
+ms.date: 06/15/2018
 ms.author: delhan
-ms.openlocfilehash: cc45d84ea9a5eb4c2eaefb5a3ac321feb2d896d2
-ms.sourcegitcommit: b07d06ea51a20e32fdc61980667e801cb5db7333
+ms.openlocfilehash: 77b1de3a9def525fbffb2a0ae49bbcbaea835c58
+ms.sourcegitcommit: cc4fdd6f0f12b44c244abc7f6bc4b181a2d05302
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2017
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47093871"
 ---
 # <a name="community-suggested-third-party-vpn-or-firewall-device-settings-for-azure-vpn-gateway"></a>適用於 Azure VPN 閘道的社群建議協力廠商 VPN 或防火牆裝置設定
 
@@ -37,7 +38,7 @@ ms.lasthandoff: 12/08/2017
 |Cisco ASA  |[適用於 Azure VPN 上 Cisco ASA 的社群建議解決方案](https://search.cisco.com/search?query=%22Azure%20VPN%22%20ASA&locale=enUS&tab=Cisco) \(英文\)   |
 |Cisco ISR  |[適用於 Azure VPN 上 Cisco ISR 的社群建議解決方案](https://search.cisco.com/search?query=%22Azure%20VPN%22%20ISR&locale=enUS&tab=Cisco) \(英文\)   |
 |Cisco ASR  |[適用於 Azure VPN 上 Cisco ASR 的社群建議解決方案](https://search.cisco.com/search?query=%22Azure%20VPN%22%20ASR&locale=enUS&tab=Cisco) \(英文\)   |
-|Sonicwall |在 [Sonicwall 網站](https://support.sonicwall.com/search) \(英文\) 上搜尋 **Azure VPN** |
+|Sonicwall |在 [Sonicwall 網站](https://www.sonicwall.com/en-us/support) \(英文\) 上搜尋 **Azure VPN** |
 | Checkpoint    |在 [Checkpoint 網站](https://supportcenter.checkpoint.com/supportcenter/portal)上 \(英文\) 搜尋 **Azure VPN** |
 |Juniper |在 [Juniper 網站]( http://www.juniper.net/search/public/)上 \(英文\) 搜尋 **Azure VPN**|
 |Barracuda  |[適用於 Azure VPN 上 Barracuda 的社群建議解決方案](https://campus.barracuda.com/search/?q=%22Azure+VPN%22&x=0&y=0) \(英文\)   |

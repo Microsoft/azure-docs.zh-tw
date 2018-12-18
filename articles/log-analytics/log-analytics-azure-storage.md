@@ -1,25 +1,26 @@
 ---
-title: "為 Log Analytics 收集 Azure 服務的記錄和計量 | Microsoft Docs"
-description: "在 Azure 資源上設定診斷以便將記錄和度量寫入 Log Analytics。"
+title: 為 Log Analytics 收集 Azure 服務的記錄和計量 | Microsoft Docs
+description: 在 Azure 資源上設定診斷以便將記錄和度量寫入 Log Analytics。
 services: log-analytics
-documentationcenter: 
-author: MGoedtel
+documentationcenter: ''
+author: mgoedtel
 manager: carmonm
-editor: 
+editor: ''
 ms.assetid: 84105740-3697-4109-bc59-2452c1131bfe
 ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 04/12/2017
 ms.author: magoedte
-ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 7a3785e39f0d1cf849dbbf0d83d89eaed58c5b0b
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.component: na
+ms.openlocfilehash: 7633d00c24a18763d414b1a2595073753d651a50
+ms.sourcegitcommit: e2ea404126bdd990570b4417794d63367a417856
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 09/14/2018
+ms.locfileid: "45579015"
 ---
 # <a name="collect-azure-service-logs-and-metrics-for-use-in-log-analytics"></a>收集 Azure 服務的記錄和計量以便使用於 Log Analytics
 
@@ -56,7 +57,7 @@ ms.lasthandoff: 10/11/2017
 | 虛擬機器        | Microsoft.Compute/virtualMachines       | 分機   | 分機 <br> 診斷  | |
 | 虛擬機器擴展集 | Microsoft.Compute/virtualMachines <br> Microsoft.Compute/virtualMachineScaleSets/virtualMachines |             | 診斷 | |
 | Web 伺服器陣列        | Microsoft.Web/serverfarms               |             | 診斷 | |
-| 網站               | Microsoft.Web/sites <br> Microsoft.Web/sites/slots |             | 診斷 | [Azure Web Apps 分析 (預覽)](https://azuremarketplace.microsoft.com/marketplace/apps/Microsoft.AzureWebAppsAnalyticsOMS?tab=Overview) |
+| 網站               | Microsoft.Web/sites <br> Microsoft.Web/sites/slots |             | 診斷 | [Azure Web Apps 分析 (預覽)](https://docs.microsoft.com/azure/log-analytics/log-analytics-azure-web-apps-analytics) |
 
 
 > [!NOTE]
@@ -68,6 +69,13 @@ ms.lasthandoff: 10/11/2017
 許多 Azure 資源能夠直接將診斷記錄和度量寫入 Log Analytics，這是收集資料來分析的較佳做法。 使用 Azure 診斷時，資料會立即寫入 Log Analytics，不需要先將資料寫入儲存體。
 
 支援 [Azure 監視器](../monitoring-and-diagnostics/monitoring-overview.md)的 Azure 資源可以直接將記錄和度量傳送至 Log Analytics。
+
+> [!NOTE]
+> 目前不支援透過診斷設定將多維度計量傳送至 Log Analytics。 跨維度值所彙總的維度計量會匯出為扁平化單一維度計量。
+>
+> 「例如」：可以在每個佇列層級瀏覽並繪製事件中樞上的「內送郵件」計量。 不過，當您透過診斷設定匯出時，計量會呈現為事件中樞內所有佇列的所有內送郵件。
+>
+>
 
 * 如需可用度量的詳細資訊，請參閱[支援 Azure 監視器的度量](../monitoring-and-diagnostics/monitoring-supported-metrics.md)。
 * 如需可用記錄檔的詳細資訊，請參閱[支援的服務以及診斷記錄檔的結構描述](../monitoring-and-diagnostics/monitoring-diagnostic-logs-schema.md)。
@@ -145,7 +153,7 @@ Application Insights 有一個連接器，可以將 Application Insights 收集�
 
 對於無法直接將記錄和度量傳送至 Log Analytics 的 Azure 服務，您可以使用 Azure 自動化指令碼來收集記錄和度量。 然後，指令碼可以使用[資料收集器 API](log-analytics-data-collector-api.md)，將資料傳送至 Log Analytics
 
-Azure 範本庫包含[使用 Azure 自動化的範例](https://azure.microsoft.com/en-us/resources/templates/?term=OMS)，可從服務收集資料，再傳送至 Log Analytics。
+Azure 範本庫包含[使用 Azure 自動化的範例](https://azure.microsoft.com/resources/templates/?term=OMS)，可從服務收集資料，再傳送至 Log Analytics。
 
 ## <a name="next-steps"></a>後續步驟
 

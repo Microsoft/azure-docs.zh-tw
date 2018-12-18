@@ -2,31 +2,27 @@
 title: 利用存留時間讓 Azure Cosmos DB 中的資料過期 | Microsoft Docs
 description: Microsoft Azure Cosmos DB 可讓您利用 TTL 在一段時間後自動從系統清除文件。
 services: cosmos-db
-documentationcenter: ''
 keywords: 存留時間
-author: arramac
-manager: jhubbard
-editor: ''
-ms.assetid: 25fcbbda-71f7-414a-bf57-d8671358ca3f
+author: SnehaGunda
+manager: kfile
 ms.service: cosmos-db
-ms.devlang: multiple
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: na
+ms.devlang: na
+ms.topic: conceptual
 ms.date: 08/29/2017
-ms.author: arramac
-ms.openlocfilehash: 6f8ce4e270b94bf1043c27ba879878e20372ffe7
-ms.sourcegitcommit: 20d103fb8658b29b48115782fe01f76239b240aa
+ms.author: sngun
+ms.openlocfilehash: 2cae74224a9d59939175ac7e43d4d6b183ca3933
+ms.sourcegitcommit: ebd06cee3e78674ba9e6764ddc889fc5948060c4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2018
+ms.lasthandoff: 09/07/2018
+ms.locfileid: "44050731"
 ---
 # <a name="expire-data-in-azure-cosmos-db-collections-automatically-with-time-to-live"></a>利用存留時間讓 Azure Cosmos DB 集合中的資料自動過期
 應用程式可以產生並儲存大量資料。 其中有些資料，例如電腦產生的事件資料、記錄檔和使用者工作階段資訊只能在有限的期間內使用。 一旦資料超過應用程式的需求，即可放心清除此資料並減少應用程式的儲存體需求。
 
 Microsoft Azure Cosmos DB 可讓您利用「存留時間」(或稱 TTL) 在一段時間後自動從資料庫清除文件。 預設存留時間可以在集合層級設定，並且在每份文件上覆寫。 設定 TTL (不論是作為集合預設值或是在文件層級設定) 之後，Cosmos DB 就會自動移除自上次修改後存在時間達該指定時間 (以秒為單位) 的文件。
 
-Cosmos DB 中的存留時間會使用上次修改文件時的對照時間位移。 為了這麼做，它會使用每份文件上都有的 `_ts` 欄位。 _ts 欄位是 unix 樣式的 Epoch 時間戳記，表示日期和時間。 每次修改文件時都會更新 `_ts` 欄位。 
+Azure Cosmos DB 中的存留時間會使用上次修改文件時的對照時間位移。 為了這麼做，它會使用每份文件上都有的 `_ts` 欄位。 _ts 欄位是 unix 樣式的 Epoch 時間戳記，表示日期和時間。 每次修改文件時都會更新 `_ts` 欄位。 
 
 ## <a name="ttl-behavior"></a>TTL 行為
 TTL 功能是由兩個層級 (集合層級和文件層級) 的 TTL 屬性所控制。 這些值會以秒為單位來設定，而且會視為與上次修改文件時的 `_ts` 的差異。
@@ -34,8 +30,8 @@ TTL 功能是由兩個層級 (集合層級和文件層級) 的 TTL 屬性所控�
 1. 集合的 DefaultTTL
    
    * 如果遺失 (或設為 null)，便不會自動刪除文件。
-   * 如果存在且值為 "-1" = 無限 – 文件預設不會過期
-   * 如果存在且值是某個數字 ("n") – 文件會在上次修改後的 "n" 秒到期
+   * 如果存在且值設為 "-1" = 無限 – 文件預設不會過期
+   * 如果存在且值設為某個數字 ("n") – 文件會在上次修改後的 "n" 秒到期
 2. 文件的 TTL︰ 
    
    * 僅在父集合有 DefaultTTL 時，才適用屬性。
@@ -45,14 +41,24 @@ TTL 功能是由兩個層級 (集合層級和文件層級) 的 TTL 屬性所控�
 
 上述邏輯可以顯示在下列矩陣中︰
 
-|  | 集合上遺漏/未設定 DefaultTTL | 集合上的 DefaultTTL = -1 | 集合上的 DefaultTTL = "n" |
+|  | 集合上遺漏/未設定 DefaultTTL | 集合上的 DefaultTTL = -1 | 集合上的 DefaultTTL = n' |
 | --- |:--- |:--- |:--- |
-| 集合上遺漏 TTL |文件層級沒有可覆寫的項目，因為文件和集合沒有 TTL 的概念。 |此集合中的所有文件都不會過期。 |此集合中的文件將會在間隔 n 過去時到期。 |
-| 文件上的 TTL = -1 |文件層級沒有可覆寫的項目，因為集合未定義文件可以覆寫的 DefaultTTL 屬性。 系統無法解譯文件上的 TTL。 |此集合中的所有文件都不會過期。 |此集合中 TTL=-1 的文件永遠不會過期。 所有其他文件將在 "n" 間隔之後過期。 |
-| 文件上的 TTL = n |文件層級沒有可覆寫的項目。 系統無法解譯文件上的 TTL。 |TTL = n 的文件將在間隔 n (以秒為單位) 之後到期。 其他文件會繼承間隔 -1 且永遠不會過期。 |TTL = n 的文件將在間隔 n (以秒為單位) 之後到期。 其他文件會繼承集合的間隔 "n"。 |
+| 集合上遺漏 TTL |文件層級沒有可覆寫的項目，因為文件和集合沒有 TTL 的概念。 |此集合中的所有文件都不會過期。 |此集合中的文件將會在間隔 n' 過去時到期。 |
+| 文件上的 TTL = -1 |文件層級沒有可覆寫的項目，因為集合未定義文件可以覆寫的 DefaultTTL 屬性。 系統無法解譯文件上的 TTL。 |此集合中的所有文件都不會過期。 |此集合中 TTL=-1 的文件永遠不會過期。 所有其他文件將在 n' 間隔之後過期。 |
+| 文件上的 TTL = n |文件層級沒有可覆寫的項目。 系統無法解譯文件上的 TTL。 |TTL = n 的文件將在間隔 n (以秒為單位) 之後到期。 其他文件會繼承間隔 -1 且永遠不會過期。 |TTL = n 的文件將在間隔 n (以秒為單位) 之後到期。 其他文件會繼承集合的間隔 n'。 |
 
 ## <a name="configuring-ttl"></a>設定 TTL
-根據預設，在所有 Cosmos DB 集合中及所有文件上都會停用存留時間。 可以透過程式設計的方式設定 TTL，或至 Azure 入口網站中針對集合的 [設定] 區段進行設定。 
+根據預設，在所有 Cosmos DB 集合中及所有文件上都會停用存留時間。 您可以程式設計方式或使用 Azure 入口網站來設定 TTL。 請使用下列步驟從 Azure 入口網站設定 TTL：
+
+1. 登入 [Azure 入口網站](https://portal.azure.com/)並瀏覽至 Azure Cosmos DB 帳戶。  
+
+2. 瀏覽至您想要設定 TTL 值的集合，開啟 [級別與設定] 窗格。 您可以看見 [存留時間] 預設會設為 [關閉]。 您可以將它變更為 [開啟 (無預設)] 或 [開啟]。
+
+   **關閉** - 不會自動刪除文件。  
+   **開啟 (無預設)** - 此選項會將 TTL 值設定為 "-1" (無限)，這表示文件預設不會過期。  
+   **開啟** - 文件會在上次修改後的 "n" 秒到期。  
+
+   ![設定存留時間](./media/time-to-live/set-ttl-in-portal.png)
 
 ## <a name="enabling-ttl"></a>啟用 TTL
 若要在集合上或集合內的文件上啟用 TTL，您需要將集合的 DefaultTTL 屬性設定為 -1 或非零的正數。 將 DefaultTTL 設定為 -1，表示集合中的所有文件都預設為永遠存留，但 Cosmos DB 服務應監視此集合中已覆寫這個預設值的文件。
@@ -125,7 +131,7 @@ TTL 功能是由兩個層級 (集合層級和文件層級) 的 TTL 屬性所控�
     Document readDocument = response.Resource;
     readDocument.TimeToLive = 60 * 30 * 30; // update time to live
     
-    response = await client.ReplaceDocumentAsync(salesOrder);
+    response = await client.ReplaceDocumentAsync(readDocument);
 
 ## <a name="removing-ttl-from-a-document"></a>從文件移除 TTL
 如果文件上已設定 TTL，而您不再希望文件會到期，您可以擷取此文件、移除 TTL 欄位，然後取代伺服器上的文件。 移除文件的 TTL 欄位後，將會套用集合的預設值。 若要阻止文件到期且不要繼承集合的值，您必須將 TTL 值設定為 -1。
@@ -137,7 +143,7 @@ TTL 功能是由兩個層級 (集合層級和文件層級) 的 TTL 屬性所控�
     Document readDocument = response.Resource;
     readDocument.TimeToLive = null; // inherit the default TTL of the collection
     
-    response = await client.ReplaceDocumentAsync(salesOrder);
+    response = await client.ReplaceDocumentAsync(readDocument);
 
 ## <a name="disabling-ttl"></a>停用 TTL
 若要在集合上完全停用 TTL 並阻止背景處理程序尋找過期的文件，則應刪除集合上的 DefaultTTL 屬性。 刪除此屬性與將它設定為 -1 不同。 設定為 -1，表示加入至集合的新文件會永遠存留，但是您可以在集合中的特定文件上覆寫此值。 從集合中完全移除此屬性，表示即使有已明確覆寫先前預設值的文件，所有文件也都不會過期。

@@ -1,24 +1,25 @@
 ---
 title: Red Hat Update Infrastructure | Microsoft Docs
-description: "了解適用於 Microsoft Azure 中隨選 Red Hat Enterprise Linux 執行個體的 Red Hat Update Infrastructure"
+description: 了解適用於 Microsoft Azure 中隨選 Red Hat Enterprise Linux 執行個體的 Red Hat Update Infrastructure
 services: virtual-machines-linux
-documentationcenter: 
+documentationcenter: ''
 author: BorisB2015
-manager: timlt
-editor: 
+manager: jeconnoc
+editor: ''
 ms.assetid: f495f1b4-ae24-46b9-8d26-c617ce3daf3a
 ms.service: virtual-machines-linux
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
-ms.date: 09/10/2017
+ms.date: 04/02/2018
 ms.author: borisb
-ms.openlocfilehash: ea9a5cbd9b9b7b67ceb131cb8ba1d2476dbd5f72
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 4a8bc45b253def1130e5a02dfcd6d359f0e74506
+ms.sourcegitcommit: 76797c962fa04d8af9a7b9153eaa042cf74b2699
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/21/2018
+ms.locfileid: "42141932"
 ---
 # <a name="red-hat-update-infrastructure-for-on-demand-red-hat-enterprise-linux-vms-in-azure"></a>適用於 Azure 中隨選 Red Hat Enterprise Linux VM 的 Red Hat Update Infrastructure
  [Red Hat Update Infrastructure](https://access.redhat.com/products/red-hat-update-infrastructure) (RHUI) 允許雲端提供者 (例如 Azure) 鏡像 Red Hat 代管的存放庫內容、建立具有 Azure 特定內容的自訂存放庫，以及讓它可供使用者 VM 使用。
@@ -28,7 +29,7 @@ Red Hat Enterprise Linux (RHEL) 預付型方案 (PAYG) 映像預先設定為存�
 ## <a name="important-information-about-azure-rhui"></a>Azure RHUI 的重要資訊
 * Azure RHUI 目前僅支援每個 RHEL 系列 (RHEL6 或 RHEL7) 中的最新次要版本。 若要將連線至 RHUI 的 RHEL VM 執行個體會升級為最新的次要版本，請執行 `sudo yum update`。
 
-    例如，如果您從 RHEL 7.2 PAYG 映像佈建 VM 並執行 `sudo yum update`，最終會得到 RHEL 7.4 VM (RHEL7 系列中的最新次要版本)。
+    例如，如果您從 RHEL 7.2 PAYG 映像佈建 VM 並執行 `sudo yum update`，最終將會得到 RHEL 7.5 VM (RHEL7 系列中的最新次要版本)。
 
     若要避免此行為，您必須如[建立與上傳適用於 Azure 的 Red Hat 型虛擬機器](redhat-create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)一文中所述，建置自己的映像。 之後，您需要將它連線至不同的更新基礎結構，像是[直接連線至 Red Hat 內容傳遞伺服器](https://access.redhat.com/solutions/253273) \(英文\) 或 [Red Hat 附屬伺服器](https://access.redhat.com/products/red-hat-satellite) \(英文\) 。
 
@@ -50,6 +51,7 @@ Red Hat Enterprise Linux (RHEL) 預付型方案 (PAYG) 映像預先設定為存�
 40.85.190.91
 52.187.75.218
 52.174.163.213
+52.237.203.198
 
 # Azure US Government
 13.72.186.193
@@ -74,9 +76,9 @@ Red Hat Enterprise Linux (RHEL) 預付型方案 (PAYG) 映像預先設定為存�
 
     b. 如果它指向具有 `mirrorlist.*cds[1-4].cloudapp.net` 模式的位置，則需要進行組態更新。 您正在使用舊版 VM 快照集，請更新它以指向新版 Azure RHUI。
 
-2. 只有 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/details.aspx?id=41653) \(英文\) 中的 VM 能夠存取 Azure 代管的 RHUI。
+1. 只有 [Azure 資料中心 IP 範圍] (https://www.microsoft.com/download/details.aspx?id=41653) \(英文\) 中的 VM 能夠存取 Azure 代管的 RHUI。
  
-3. 如果您使用的是新設定，且已驗證 VM 是從 Azure IP 範圍連線，但仍無法連接至 Azure RHUI，請向 Microsoft 或 Red Hat 提出支援案例。
+1. 如果您使用的是新設定，且已驗證 VM 是從 Azure IP 範圍連線，但仍無法連接至 Azure RHUI，請向 Microsoft 或 Red Hat 提出支援案例。
 
 ### <a name="manual-update-procedure-to-use-the-azure-rhui-servers"></a>使用 Azure RHUI 伺服器的手動更新程序
 此程序僅供參考。 RHEL PAYG 映像已設定成能夠連線至 Azure RHUI。 若要手動更新設定以使用 Azure RHUI 伺服器，請完成下列步驟：
@@ -87,13 +89,13 @@ Red Hat Enterprise Linux (RHEL) 預付型方案 (PAYG) 映像預先設定為存�
    curl -o RPM-GPG-KEY-microsoft-azure-release https://download.microsoft.com/download/9/D/9/9d945f05-541d-494f-9977-289b3ce8e774/microsoft-sign-public.asc 
    ```
 
-2. 驗證已下載金鑰的有效性。
+1. 驗證已下載金鑰的有效性。
 
    ```bash
    gpg --list-packets --verbose < RPM-GPG-KEY-microsoft-azure-release
    ```
 
-3. 檢查輸出，然後驗證 `keyid` 和 `user ID packet`。
+1. 檢查輸出，然後驗證 `keyid` 和 `user ID packet`。
 
    ```bash
    Version: GnuPG v1.4.7 (GNU/Linux)
@@ -117,14 +119,14 @@ Red Hat Enterprise Linux (RHEL) 預付型方案 (PAYG) 映像預先設定為存�
            data: [2047 bits]
    ```
 
-4. 安裝公開金鑰。
+1. 安裝公開金鑰。
 
    ```bash
    sudo install -o root -g root -m 644 RPM-GPG-KEY-microsoft-azure-release /etc/pki/rpm-gpg
    sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-microsoft-azure-release
    ```
 
-5. 下載、驗證並安裝用戶端 RPM 套件管理員 (RPM)。
+1. 下載、驗證並安裝用戶端 RPM 套件管理員 (RPM)。
     
     >[!NOTE]
     >套件版本變更。 如果是手動連線至 Azure RHUI，藉由佈建資源庫最新映像，便可找到每個 RHEL 系列的最新版本用戶端套件。
@@ -163,7 +165,7 @@ Red Hat Enterprise Linux (RHEL) 預付型方案 (PAYG) 映像預先設定為存�
     sudo rpm -U azureclient.rpm
     ```
 
-6. 完成之後，請確認您可以從 VM 存取 Azure RHUI。
+1. 完成之後，請確認您可以從 VM 存取 Azure RHUI。
 
 ## <a name="next-steps"></a>後續步驟
 若要從 Azure Marketplace PAYG 映像建立 Red Hat Enterprise Linux VM 並使用 Azure 代管的 RHUI，請移至 [Azure Marketplace](https://azure.microsoft.com/marketplace/partners/redhat/)。 

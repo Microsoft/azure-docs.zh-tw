@@ -1,0 +1,52 @@
+items:
+- name: Azure 藍圖文件
+  href: index.yml
+- name: 概觀
+  items:
+  - name: Azure 藍圖概觀
+    href: overview.md
+  expanded: true
+- name: 快速入門
+  items:
+  - name: 建立藍圖 - 入口網站
+    href: create-blueprint-portal.md
+  - name: 建立藍圖 - REST API
+    href: create-blueprint-rest-api.md
+  expanded: true
+- name: 概念
+  items:
+  - name: 藍圖生命週期
+    href: ./concepts/lifecycle.md
+  - name: 藍圖中的動態參數
+    href: ./concepts/parameters.md
+  - name: 排列藍圖部署順序
+    href: ./concepts/sequencing-order.md
+  - name: 在藍圖中鎖定資源
+    href: ./concepts/resource-locking.md
+  expanded: true
+- name: 使用說明指南
+  items:
+  - name: 更新現有的指派
+    href: ./how-to/update-existing-assignments.md
+  expanded: true
+- name: 疑難排解
+  href: ./troubleshoot/general.md
+- name: 參考
+  items:
+  - name: PowerShell (社群)
+    href: https://www.powershellgallery.com/packages/Manage-AzureRMBlueprint
+  expanded: true
+- name: 資源
+  items:
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/
+  - name: 定價計算機
+    href: https://azure.microsoft.com/pricing/calculator/
+  - name: UserVoice
+    href: https://feedback.azure.com/forums/915958-azure-governance
+ms.openlocfilehash: bd28123bbf7c26fc8bc510936d8c3a71afc16d80
+ms.sourcegitcommit: 3a7c1688d1f64ff7f1e68ec4bb799ba8a29a04a8
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49378820"

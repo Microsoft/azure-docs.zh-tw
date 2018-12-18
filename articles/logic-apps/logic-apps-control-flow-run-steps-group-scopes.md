@@ -1,29 +1,25 @@
 ---
-title: "根據群組動作的狀態執行步驟 - Azure Logic Apps | Microsoft Docs"
-description: "將動作群組至多個範圍中，並根據群組狀態執行步驟"
+title: 根據群組狀態新增執行動作的範圍 - Azure Logic Apps | Microsoft Docs
+description: 如何在 Azure Logic Apps 中根據群組動作狀態，建立執行工作流程動作的範圍
 services: logic-apps
-keywords: "分支、平行處理"
-documentationcenter: 
-author: ecfan
-manager: anneta
-editor: 
-ms.assetid: 
 ms.service: logic-apps
-ms.workload: logic-apps
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+author: ecfan
+ms.author: estfan
+manager: jeconnoc
 ms.date: 03/05/2018
-ms.author: estfan; LADocs
-ms.openlocfilehash: 052af45962f442e96ca28f05ffaa1b9814b2588b
-ms.sourcegitcommit: 0b02e180f02ca3acbfb2f91ca3e36989df0f2d9c
+ms.topic: article
+ms.reviewer: klam, LADocs
+ms.suite: integration
+ms.openlocfilehash: 1258175eb3d28d39be8be08498ba8d2e0998aa43
+ms.sourcegitcommit: 6f6d073930203ec977f5c283358a19a2f39872af
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/05/2018
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35298809"
 ---
-# <a name="scopes-run-steps-based-on-group-status-in-logic-apps"></a>範圍：根據邏輯應用程式中的群組狀態來執行步驟
+# <a name="create-scopes-that-run-workflow-actions-based-on-group-status-in-azure-logic-apps"></a>在 Azure Logic Apps 中根據群組狀態，建立執行工作流程動作的範圍
 
-若要在另一個動作群組成功或失敗之後才執行步驟，請將該群組放在「範圍」中。 如果您想要將動作組織為邏輯群組、評估該群組的狀態，以及執行以範圍狀態為基礎的動作，此結構將會十分實用。 當範圍中的所有動作都執行完成之後，範圍也會取得自己的狀態。 例如，您可以在想要實作[例外狀況和錯誤處理](../logic-apps/logic-apps-exception-handling.md#scopes)時使用範圍。 
+若要在另一個群組成功或失敗之後才執行步驟，請將那些步驟群組在「範圍」中。 如果您想要將動作組織為邏輯群組、評估該群組的狀態，以及執行以範圍狀態為基礎的動作，此結構將會十分實用。 當範圍中的所有動作都執行完成之後，範圍也會取得自己的狀態。 例如，您可以在想要實作[例外狀況和錯誤處理](../logic-apps/logic-apps-exception-handling.md#scopes)時使用範圍。 
 
 若要檢查範圍的狀態，您可以使用判斷邏輯應用程式執行狀態時所用的相同準則，例如「Succeeded (成功)」、「Failed (失敗)」、「Cancelled (取消)」等。 根據預設，當範圍的所有動作都成功時，範圍的狀態會標示為「Succeeded (成功)」。 但如果範圍中有任何動作失敗或取消，範圍的狀態會標示為「Failed (失敗)」。 如需範圍的限制，請參閱[限制和設定](../logic-apps/logic-apps-limits-and-config.md)。 
 
@@ -37,7 +33,7 @@ ms.lasthandoff: 03/05/2018
 
 * Azure 訂用帳戶。 如果您沒有訂用帳戶，請[註冊一個免費的 Azure 帳戶](https://azure.microsoft.com/free/)。 
 
-* 電子郵件帳戶 (來自任何 Logic Apps 所支援的電子郵件提供者)。 此範例使用 Outlook.com。如果您使用不同的提供者，一般流程維持不變，但您的 UI 會有所不同。
+* 電子郵件帳戶 (來自任何 Logic Apps 所支援的電子郵件提供者)。 此範例使用 Outlook.com。 如果您使用不同的提供者，一般流程維持不變，但您的 UI 會有所不同。
 
 * Bing 地圖金鑰。 若要取得此金鑰，請參閱<a href="https://msdn.microsoft.com/library/ff428642.aspx" target="_blank">取得 Bing 地圖金鑰</a>。
 
@@ -338,6 +334,6 @@ ms.lasthandoff: 03/05/2018
 ## <a name="next-steps"></a>後續步驟
 
 * [根據條件 (條件陳述式) 執行步驟](../logic-apps/logic-apps-control-flow-conditional-statement.md)
-* [根據不同值 (Switch 陳述式) 執行步驟](../logic-apps/logic-apps-control-flow-switch-statement.md)
+* [根據不同的值 (Switch 陳述式) 執行步驟](../logic-apps/logic-apps-control-flow-switch-statement.md)
 * [執行並重複步驟 (迴圈)](../logic-apps/logic-apps-control-flow-loops.md)
 * [執行或合併平行步驟 (分支)](../logic-apps/logic-apps-control-flow-branches.md)

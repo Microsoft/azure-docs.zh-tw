@@ -1,0 +1,39 @@
+### YamlMime:YamlDocument
+documentType: LandingData
+title: SDK
+metadata:
+  title: SDK
+  meta.description: from-team
+  services: from-team
+  author: 
+  manager: from-team
+  layout: LandingPage
+  ms.assetid: 
+  ms.service: from-team
+  ms.tgt_pltfrm: from-team
+  ms.devlang: from-team
+  ms.topic: landing-page
+  ms.date: 09/15/2017
+  ms.author: from-team
+  ms.openlocfilehash: b7c5581e6310f21623feab53069df6a10da72f17
+  ms.sourcegitcommit: c47ef7899572bf6441627f76eb4c4ac15e487aec
+  ms.translationtype: HT
+  ms.contentlocale: zh-TW
+  ms.lasthandoff: 05/04/2018
+  ms.locfileid: "33207488"
+abstract:
+  description: 
+sections:
+- title: 
+  items:
+  - type: list
+    style: cards
+    className: cardsA
+    items:
+    - html: <a href="/dotnet/azure/?view=azure-dotnet"> <img height="48" width="48" src="https://docs.microsoft.com/media/logos/logo_net.svg" alt=""> <br><b>.NET SDK</b></a> <p>取得適用於 .NET 的 Azure 程式庫</p>
+    - html: <a href="/java/azure/"> <img height="48" width="48" src="https://docs.microsoft.com/media/logos/logo_java.svg" alt=""> <br><b>Java SDK</b></a> <p>取得適用於 Java 的 Azure 程式庫</p>
+    - html: <a href="/javascript/azure/"> <img height="48" width="48" src="https://docs.microsoft.com/media/logos/logo_nodejs.svg" alt=""> <br><b>Node SDK</b></a> <p>取得適用於 Node 的 Azure 程式庫</p>
+    - html: <a href="/python/azure/"> <img height="48" width="48" src="https://docs.microsoft.com/media/logos/logo_python.svg" alt=""> <br><b>Python SDK</b></a> <p>取得適用於 Python 的 Azure 程式庫</p>
+    - html: <a href="https://rubygems.org/gems/azure"> <img height="48" width="48" src="https://docs.microsoft.com/media/logos/logo_ruby.svg" alt=""> <br><b>Ruby SDK</b></a> <p>取得適用於 Ruby 的 Azure 程式庫</p>
+    - html: <a href="/azure/app-service-web/app-service-web-get-started-php"> <img height="48" width="48" src="https://docs.microsoft.com/media/logos/logo_php.svg" alt=""> <br><b>PHP SDK</b></a> <p>取得適用於 PHP 的 Azure 程式庫</p>
+    - html: <a href="https://azure.microsoft.com/features/xamarin"> <img height="48" width="48" src="https://docs.microsoft.com/media/logos/logo_xamarin.svg" alt=""> <br><b>Xamarin</b></a> <p>了解這些服務能如何強化資料科學家的能力，以使用 Python 工具和程式庫搭配各種 Azure 資料和計算服務，開發 AI 解決方案。</p>

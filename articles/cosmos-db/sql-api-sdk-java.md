@@ -2,24 +2,22 @@
 title: Azure Cosmos DB：SQL Java API、SDK 和資源 | Microsoft Docs
 description: 了解所有 SQL Java API 和 SDK 相關資訊，包括發行日期、停用日期及 Azure Cosmos DB SQL Java SDK 每個版本之間所做的變更。
 services: cosmos-db
-documentationcenter: java
 author: rnagpal
-manager: jhubbard
+manager: kfile
 editor: cgronlun
-ms.assetid: 7861cadf-2a05-471a-9925-0fec0599351b
 ms.service: cosmos-db
-ms.workload: data-services
-ms.tgt_pltfrm: na
+ms.component: cosmosdb-sql
 ms.devlang: java
-ms.topic: article
-ms.date: 11/14/2017
-ms.author: khdang
+ms.topic: reference
+ms.date: 06/29/2018
+ms.author: rnagpal
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 547bc8933d8afc593db7620b2e610d50d6e22cdf
-ms.sourcegitcommit: 34e0b4a7427f9d2a74164a18c3063c8be967b194
+ms.openlocfilehash: d7d00d6236b601d145be03e6086bec2d72faafcd
+ms.sourcegitcommit: 756f866be058a8223332d91c86139eb7edea80cc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/30/2018
+ms.lasthandoff: 07/02/2018
+ms.locfileid: "37344932"
 ---
 # <a name="azure-cosmos-db-java-sdk-for-sql-api-release-notes-and-resources"></a>Azure Cosmos DB Java SDK for SQL API：版本資訊與資源
 > [!div class="op_single_selector"]
@@ -33,8 +31,8 @@ ms.lasthandoff: 03/30/2018
 > * [REST](https://docs.microsoft.com/rest/api/cosmos-db/)
 > * [REST 資源提供者](https://docs.microsoft.com/rest/api/cosmos-db-resource-provider/)
 > * [SQL](https://msdn.microsoft.com/library/azure/dn782250.aspx)
-> 
-> 
+> * [BulkExecutor - .NET](sql-api-sdk-bulk-executor-dot-net.md)
+> * [BulkExecutor - Java](sql-api-sdk-bulk-executor-java.md)
 
 SQL API Java SDK 支援同步作業。 如需非同步支援，請使用 [SQL API Async Java SDK](sql-api-sdk-async-java.md)。 
 
@@ -54,6 +52,29 @@ SQL API Java SDK 支援同步作業。 如需非同步支援，請使用 [SQL AP
 </table></br>
 
 ## <a name="release-notes"></a>版本資訊
+
+### <a name="a-name11621162"></a><a name="1.16.2"/>1.16.2
+* 已新增串流容錯移轉支援。
+* 已新增自訂中繼資料的支援。
+* 已改善工作階段處理邏輯。
+* 已修正分割區索引鍵範圍快取中的 Bug。
+* 已修正直接模式中的 NPE Bug。
+
+### <a name="a-name11611161"></a><a name="1.16.1"/>1.16.1
+* 新增唯一索引的支援。
+* 新增摘要選項中的接續權杖大小限制支援。
+* 修正 Json 序列化的錯誤 (bug) (時間戳記)。
+* 修正 Json 序列化的錯誤 (bug) (列舉)。
+* 將 com.fasterxml.jackson.core:jackson-databind 的相依性升級至 2.9.5。
+
+### <a name="a-name11601160"></a><a name="1.16.0"/>1.16.0
+* 改善直接模式的連線共用。
+* 增強跨資料分割查詢的非 orderby 預先擷取改良。
+* 改善 UUID 產生作業。
+* 改善工作階段一致性邏輯。
+* 新增對 Multipolygon 的支援。
+* 新增集合的分割區索引鍵範圍統計支援。
+* 修正多重區域中的錯誤 (bug)。
 
 ### <a name="a-name11501150"></a><a name="1.15.0"/>1.15.0
 * 以改善的 Json 序列化效能。
@@ -136,7 +157,7 @@ SQL API Java SDK 支援同步作業。 如需非同步支援，請使用 [SQL AP
 * 已淘汰以 IPartitionResolver 為基礎的自訂分割程式碼。 請針對更高的儲存體和輸送量使用分割集合。
 
 ### <a name="a-name171171"></a><a name="1.7.1"/>1.7.1
-* 新加入節流的重試原則支援。  
+* 已新增速率限制的重試原則支援。  
 
 ### <a name="a-name170170"></a><a name="1.7.0"/>1.7.0
 * 新加入文件的存留時間 (TTL) 支援。
@@ -184,6 +205,9 @@ Microsoft 至少會在停用 SDK 的 **12 個月** 之前提供通知，以供�
 
 | 版本 | 發行日期 | 停用日期 |
 | --- | --- | --- |
+| [1.16.2](#1.16.2) |2018 年 6 月 29 日 |--- |
+| [1.16.1](#1.16.1) |2018 年 5 月 16 日 |--- |
+| [1.16.0](#1.16.0) |2018 年 3 月 15 日 |--- |
 | [1.15.0](#1.15.0) |2017 年 11 月 14 日 |--- |
 | [1.14.0](#1.14.0) |2017 年 10 月 28 日 |--- |
 | [1.13.0](#1.13.0) |2017 年 8 月 25 日 |--- |

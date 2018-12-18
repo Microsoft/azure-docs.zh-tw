@@ -3,23 +3,20 @@ title: 透過 Azure 入口網站管理 Azure Cosmos DB 帳戶 | Microsoft Docs
 description: 了解如何透過 Azure 入口網站管理 Azure Cosmos DB 帳戶。 尋找使用 Azure 入口網站來檢視、複製、刪除和存取帳戶的指南。
 keywords: Azure 入口網站, azure, Microsoft azure
 services: cosmos-db
-documentationcenter: ''
 author: kirillg
-manager: jhubbard
+manager: kfile
 editor: cgronlun
-ms.assetid: 00fc172f-f86c-44ca-8336-11998dcab45c
 ms.service: cosmos-db
-ms.workload: data-services
-ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 11/28/2017
 ms.author: kirillg
-ms.openlocfilehash: e5820cb17cfbaa15f10f24881f02a37aec617267
-ms.sourcegitcommit: a5f16c1e2e0573204581c072cf7d237745ff98dc
+ms.openlocfilehash: 8b28143dc92fa526b631baf6d47e4a9f2367ee0e
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/11/2017
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34612151"
 ---
 # <a name="how-to-manage-an-azure-cosmos-db-account"></a>如何管理 Azure Cosmos DB 帳戶
 了解如何在 Azure 入口網站中設定全域一致性、使用金鑰，以及刪除 Azure Cosmos DB 帳戶。
@@ -64,7 +61,7 @@ ms.lasthandoff: 12/11/2017
 
 1. 更新應用程式程式碼中的存取金鑰，以參考 Azure Cosmos DB 帳戶的次要存取金鑰。
 2. 重新產生 Azure Cosmos DB 帳戶的主要存取金鑰。 在 [Azure 入口網站](https://portal.azure.com/)中，存取您的 Azure Cosmos DB 帳戶。
-3. 在 [Azure Cosmos DB 帳戶] 頁面中，按一下 [金鑰] \(若為 MongoDB 帳戶，則按一下 [連接字串])。
+3. 在 [Azure Cosmos DB 帳戶] 頁面中，按一下 [金鑰] \(若為 MongoDB 帳戶\*\*，則按一下 [連接字串])。
 4. 在 [金鑰]/[連接字串] 頁面中，按一下 [重新產生] 按鈕，然後按一下 [確定] 以確認要產生新的金鑰。
     ![重新產生存取金鑰](./media/manage-account/regenerate-keys.png)
 5. 一旦確認新的金鑰可供使用後 (重新產生後約五分鐘)，更新應用程式程式碼中的存取金鑰，以參考新的主要存取金鑰。

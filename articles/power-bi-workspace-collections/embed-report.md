@@ -1,26 +1,21 @@
 ---
-title: "在 Azure Power BI 工作區集合中內嵌報表 | Microsoft Docs"
-description: "了解如何將 Power BI 工作區集合中的報表內嵌到您的應用程式。"
+title: 在 Azure Power BI 工作區集合中內嵌報表 | Microsoft Docs
+description: 了解如何將 Power BI 工作區集合中的報表內嵌到您的應用程式。
 services: power-bi-embedded
-documentationcenter: 
-author: guyinacube
-manager: erikre
-editor: 
-tags: 
+author: markingmyname
 ROBOTS: NOINDEX
-ms.assetid: 
+ms.assetid: ''
 ms.service: power-bi-embedded
-ms.devlang: NA
 ms.topic: article
-ms.tgt_pltfrm: NA
 ms.workload: powerbi
 ms.date: 09/20/2017
-ms.author: asaxton
-ms.openlocfilehash: 56e7ca90132527c0ef9d4bd478e99b75ca055272
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.author: maghan
+ms.openlocfilehash: 94476486ed87662f3d6b989b8d5360dd792f8824
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43041175"
 ---
 # <a name="embed-a-report-in-power-bi-workspace-collections"></a>在 Power BI 工作區集合中內嵌報表
 
@@ -116,7 +111,7 @@ var token = embedToken.Generate("{access key}");
 
 ## <a name="embed-using-javascript"></a>使用 JavaScript 進行內嵌
 
-當您擁有存取權杖和報表識別碼之後，我們就能使用 JavaScript 來內嵌報表。 這需要您安裝 NuGet [Power BI JavaScript 封裝](https://www.nuget.org/packages/Microsoft.PowerBI.JavaScript/) \(英文\)。 embedUrl 會是 https://embedded.powerbi.com/appTokenReportEmbed。
+當您擁有存取權杖和報表識別碼之後，我們就能使用 JavaScript 來內嵌報表。 這需要您安裝 NuGet [Power BI JavaScript 封裝](https://www.nuget.org/packages/Microsoft.PowerBI.JavaScript/) \(英文\)。 embedUrl 將只是 https://embedded.powerbi.com/appTokenReportEmbed。
 
 > [!NOTE]
 > 您可以使用 [JavaScript 報告內嵌範例](https://microsoft.github.io/PowerBI-JavaScript/demo/)來測試功能。 它也會提供可用之不同作業的程式碼範例。

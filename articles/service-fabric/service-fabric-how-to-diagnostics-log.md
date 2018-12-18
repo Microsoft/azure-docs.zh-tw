@@ -3,22 +3,23 @@ title: 從 Azure 或獨立叢集中的 .NET Service Fabric 應用程式產生記
 description: 了解如何為裝載在 Azure 叢集或獨立叢集上的 .NET Service Fabric 應用程式新增記錄功能。
 services: service-fabric
 documentationcenter: .net
-author: thraka
+author: rwike77
 manager: timlt
 editor: ''
 ms.assetid: ''
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 03/27/2018
-ms.author: adegeo
-ms.openlocfilehash: 7c1a2330b9eb595d05df31aa8511720911dfee97
-ms.sourcegitcommit: c3d53d8901622f93efcd13a31863161019325216
+ms.author: ryanwi
+ms.openlocfilehash: 42a6430162f3bafd3ec3ce2a3c523f6f5755914a
+ms.sourcegitcommit: e0a678acb0dc928e5c5edde3ca04e6854eb05ea6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/29/2018
+ms.lasthandoff: 07/13/2018
+ms.locfileid: "39001373"
 ---
 # <a name="add-logging-to-your-service-fabric-application"></a>為 Service Fabric 應用程式新增記錄功能
 

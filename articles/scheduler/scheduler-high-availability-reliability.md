@@ -1,81 +1,78 @@
 ---
-title: "排程器高可用性和可靠性"
-description: "排程器高可用性和可靠性"
+title: 高可用性和可靠性 - Azure 排程器
+description: 了解 Azure 排程器中的高可用性和可靠性
 services: scheduler
-documentationcenter: .NET
-author: derek1ee
-manager: kevinlam1
-editor: 
-ms.assetid: 5ec78e60-a9b9-405a-91a8-f010f3872d50
 ms.service: scheduler
-ms.workload: infrastructure-services
-ms.tgt_pltfrm: na
-ms.devlang: dotnet
+author: derek1ee
+ms.author: deli
+ms.reviewer: klam
+ms.assetid: 5ec78e60-a9b9-405a-91a8-f010f3872d50
 ms.topic: article
 ms.date: 08/16/2016
-ms.author: deli
-ms.openlocfilehash: 7e7fe49de7814b6058468d630f8638720e5864f3
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: d647de379972bac317a213e2f8925c0ff8c3372c
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46947919"
 ---
-# <a name="scheduler-high-availability-and-reliability"></a>排程器高可用性和可靠性
-## <a name="azure-scheduler-high-availability"></a>Azure 排程器高可用性
-做為 Azure 平台服務的核心，Azure 排程器高度可用，並以地理區域備援服務部署和地理區域複寫為其特色。
+# <a name="high-availability-and-reliability-for-azure-scheduler"></a>Azure 排程器的高可用性和可靠性
+
+> [!IMPORTANT]
+> [Azure Logic Apps](../logic-apps/logic-apps-overview.md) 會取代 Azure 排程器，Azure 排程器之後將無法使用。 若要排定作業，請[改為試用 Azure Logic Apps](../scheduler/migrate-from-scheduler-to-logic-apps.md)。 
+
+Azure 排程器可為作業同時提供[高可用性](https://docs.microsoft.com/azure/architecture/guide/pillars#availability)和可靠性。 如需詳細資訊，請參閱[排程器 SLA](https://azure.microsoft.com/support/legal/sla/scheduler)。
+
+## <a name="high-availability"></a>高可用性
+
+Azure 排程器高度可用，並且會使用異地備援服務部署和地理區域作業複寫。
 
 ### <a name="geo-redundant-service-deployment"></a>地理區域備援服務部署
-今日可在 Azure 的幾乎每個地理區域中透過 UI 使用 Azure 排程器。 可以使用 Azure 排程器的區域清單 [列於這裡](https://azure.microsoft.com/regions/#services)。 如果裝載區域中的資料中心表現出無法使用，則 Azure 排程器的容錯移轉功能可從另一個資料中心使用服務。
+
+[Azure 目前所支援的每個地理區域](https://azure.microsoft.com/global-infrastructure/regions/#services)幾乎都可在 Azure 入口網站中提供 Azure 排程器。 因此，如果所裝載區域中的 Azure 資料中心變得無法使用，您仍可使用 Azure 排程器，因為服務的容錯移轉功能可讓您從另一個資料中心使用排程器。
 
 ### <a name="geo-regional-job-replication"></a>地理區域工作複寫
-Azure 排程器前端不僅可供管理要求使用，您自己的工作也是可以進行地理區域複寫。 在某個區域中斷執行時，Azure 排程器會容錯移轉，並確保從配對的地理區域中的另一個資料中心執行工作。
 
-比方說，如果您在美國中南部建立工作，Azure 排程器就會在中北部自動複寫該工作。 在美國中南部失敗時，Azure 排程器會確保工作從美國中北部執行。 
+您在 Azure 排程器中擁有的作業會複寫到各個 Azure 區域。 因此，如果某個區域發生中斷，Azure 排程器就會容錯移轉，並確保從配對地理區域中的另一個資料中心執行作業。
 
-![][1]
+比方說，如果您在美國中南部建立作業，Azure 排程器就會在中北部自動複寫該作業。 如果美國中南部發生失敗，Azure 排程器就會在美國中北部執行該作業。 
 
-如此一來，Azure 排程器確保如果 Azure 失敗，您的資料會保留在相同的更廣泛地理區域中。 如此一來，您不需要只為了新增高可用性而重複您的工作 – Azure 排程器會為您的工作自動提供高可用性功能。
+![地理區域工作複寫](./media/scheduler-high-availability-reliability/scheduler-high-availability-reliability-image1.png)
 
-## <a name="azure-scheduler-reliability"></a>Azure 排程器可靠性
-Azure 排程器保證它自己的高可用性，並使用者建立的工作採用不同的方法。 例如，您的工作可能會叫用無法使用的 HTTP 端點。 Azure 排程器仍會嘗試成功執行您的工作，方法為提供您處理失敗的替代選項。 Azure 排程器會以兩種方式執行此項動作：
+Azure 排程器也會確保如果 Azure 發生失敗，資料會保留在相同但更廣泛的地理區域中。 因此，如果您只想要高可用性，就不需要複製作業了。 Azure 排程器可自動為作業提供高可用性。
 
-### <a name="configurable-retry-policy-via-retrypolicy"></a>可透過 "retryPolicy" 設定重試原則
-Azure 排程器可讓您設定重試原則。 根據預設，如果工作失敗，排程器會在 30 秒間隔內重新嘗試工作四次。 您可能會將此重試原則重新設定為更積極 (例如，在 30 秒間隔內重試十次) 或鬆散 (例如，每日間隔重複兩次。)
+## <a name="reliability"></a>可靠性
 
-舉例來說，當這樣做有幫助時，您可能會建立一週執行一次，並叫用 HTTP 端點的工作。 當您的工作執行時，如果 HTTP 端點已關閉幾個小時，則您可能不想多等待一週，讓工作重新執行，即使預設重試原則失敗也一樣。 在這種情況下，您可能會每隔三個小時 (舉例來說) 重新設定要重試的標準重試原則，而不是每隔 30 秒。
+Azure 排程器可保證其自身的高可用性，但對於使用者建立的作業則會採用不同的方法。 例如，假設作業叫用無法使用的 HTTP 端點。 Azure 排程器仍會藉由為您提供替代的失敗處理方式，來嘗試成功地執行作業： 
+
+* 設定重試原則。
+* 設定替代端點。
+
+<a name="retry-policies"></a>
+
+### <a name="retry-policies"></a>重試原則
+
+Azure 排程器可讓您設定重試原則。 如果作業失敗，則根據預設，排程器會以 30 秒的間隔重新嘗試執行四次。 您可以讓此重試原則變得更積極 (例如，在 30 秒間隔內重試 10 次) 或更鬆散 (例如，每日間隔內重試兩次)。
+
+例如，假設您建立每週作業來呼叫 HTTP 端點。 如果在作業執行時 HTTP 端點有幾個小時變得無法使用，您可能不會想要再等待一週才讓作業重新執行，之所以會如此，是因為預設的重試原則在此案例中不會有作用。 因此舉例來說，您可以變更標準重試原則，讓重試的發生頻率變成每三小時，而不是每 30 秒。 
 
 若要了解如何設定重試原則，請參閱 [retryPolicy](scheduler-concepts-terms.md#retrypolicy)。
 
-### <a name="alternate-endpoint-configurability-via-erroraction"></a>可透過 "ErrorAction" 設定替代端點的功能
-如果您的 Azure 排程器工作的目標端點仍然無法連線，Azure 排程器會在遵循其重試原則之後回復到替代錯誤處理端點。 如果已設定替代錯誤處理端點，Azure 排程器會叫用它。 有了替代端點，可在面臨失敗時，高度使用您自己的工作。
+### <a name="alternate-endpoints"></a>替代端點
 
-舉例來說，在下圖中，Azure 排程器會遵循其重試原則，點閱紐約 Web 服務。 重試失敗之後，它會檢查是否有替代項。 接著會繼續進行，並開始對使用相同重試原則的替代項提出要求。
+如果 Azure 排程器作業呼叫無法連線的端點，即使在遵循重試原則後，排程器仍會回復到可處理這類錯誤的替代端點。 因此，如果您設定此端點，而排程器呼叫該端點，則在發生失敗時您自己的作業將會有高可用性。
 
-![][2]
+例如，下圖顯示排程器在呼叫紐約的 Web 服務時如何遵循重試原則。 如果重試失敗，排程器會檢查是否有替代端點。 如果有替代端點，排程器就會開始將要求傳送至替代端點。 相同的重試原則同時適用於原始動作和替代動作。
 
-請注意，相同的重試原則同時適用於原始動作和替代錯誤動作。 此外，替代錯誤動作的動作類型也可能與主要動作的動作類型不同。 例如，當主要動作可能叫用 HTTP 端點時，而錯誤動作則可能改為進行錯誤記錄的儲存體佇列、服務匯流排佇列或服務匯流排主題動作。
+![重試原則和替代端點的排程器行為](./media/scheduler-high-availability-reliability/scheduler-high-availability-reliability-image2.png)
 
-若要了解如何設定替代端點，請參閱 [errorAction](scheduler-concepts-terms.md#action-and-erroraction)。
+替代動作的動作類型會隨著原始動作而有所不同。 例如，雖然原始動作呼叫 HTTP 端點，但替代動作可能會使用儲存體佇列、服務匯流排佇列或服務匯流排主題動作來記錄錯誤。
+
+若要了解如何設定替代端點，請參閱 [errorAction](scheduler-concepts-terms.md#error-action)。
 
 ## <a name="see-also"></a>另請參閱
- [排程器是什麼？](scheduler-intro.md)
 
- [Azure 排程器概念、術語及實體階層](scheduler-concepts-terms.md)
-
- [在 Azure 入口網站中開始使用排程器](scheduler-get-started-portal.md)
-
- [Azure 排程器的計劃和計費](scheduler-plans-billing.md)
-
- [如何使用 Azure 排程器建立複雜的排程和進階週期](scheduler-advanced-complexity.md)
-
- [Azure 排程器 REST API 參考](https://msdn.microsoft.com/library/mt629143)
-
- [Azure 排程器 PowerShell Cmdlet 參考](scheduler-powershell-reference.md)
-
- [Azure 排程器限制、預設值和錯誤碼](scheduler-limits-defaults-errors.md)
-
- [Azure 排程器輸出驗證](scheduler-outbound-authentication.md)
-
-[1]: ./media/scheduler-high-availability-reliability/scheduler-high-availability-reliability-image1.png
-
-[2]: ./media/scheduler-high-availability-reliability/scheduler-high-availability-reliability-image2.png
+* [什麼是 Azure 排程器？](scheduler-intro.md)
+* [概念、術語及實體階層](scheduler-concepts-terms.md)
+* [建置複雜的排程和進階週期](scheduler-advanced-complexity.md)
+* [限制、配額、預設值及錯誤碼](scheduler-limits-defaults-errors.md)

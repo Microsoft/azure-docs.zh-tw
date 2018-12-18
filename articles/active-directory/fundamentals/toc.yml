@@ -1,0 +1,95 @@
+items:
+- name: 基本概念文件
+  href: index.yml
+- name: 概觀
+  items:
+  - name: 什麼是 Azure Active Directory？
+    href: active-directory-whatis.md
+  - name: Azure Active Directory 的新增功能
+    href: whats-new.md
+  expanded: true
+- name: 快速入門
+  items:
+  - name: 存取入口網站並建立租用戶
+    href: active-directory-access-create-new-tenant.md
+  - name: 檢視已指派成員的群組
+    href: active-directory-groups-view-azure-portal.md
+- name: 概念
+  items:
+  - name: Azure 身分識別管理
+    href: identity-fundamentals.md
+  - name: 身分識別安全分數
+    href: identity-secure-score.md
+  - name: 群組和存取管理
+    href: active-directory-manage-groups.md
+  - name: 群組型授權
+    href: active-directory-licensing-whatis-azure-portal.md
+  - name: Azure AD 架構
+    href: active-directory-architecture.md
+  - name: 預設使用者權限
+    href: users-default-permissions.md
+  - name: 部署 30、90 及更多
+    href: active-directory-deployment-checklist-p2.md
+  - name: 適用於歐盟的身分識別資料儲存體
+    href: active-directory-data-storage-eu.md
+- name: 使用說明指南
+  items:
+  - name: 組織
+    items:
+    - name: 以組織註冊 Azure AD
+      href: sign-up-organization.md
+    - name: 註冊 Azure AD Premium
+      href: active-directory-get-started-premium.md
+    - name: 新增自訂網域名稱
+      href: add-custom-domain.md
+    - name: 新增公司商標
+      href: customize-branding.md
+    - name: 與 Azure 訂用帳戶建立關聯
+      href: active-directory-how-subscriptions-associated-directory.md
+  - name: 群組
+    items:
+    - name: 建立群組和新增成員
+      href: active-directory-groups-create-azure-portal.md
+    - name: 新增或移除群組成員
+      href: active-directory-groups-members-azure-portal.md
+    - name: 刪除群組和其成員
+      href: active-directory-groups-delete-group.md
+    - name: 從另一個群組中新增或移除群組
+      href: active-directory-groups-membership-azure-portal.md
+    - name: 編輯群組資訊
+      href: active-directory-groups-settings-azure-portal.md
+    - name: 新增或移除群組擁有者
+      href: active-directory-accessmanagement-managing-group-owners.md
+  - name: 使用者
+    items:
+    - name: 新增或刪除新的使用者
+      href: add-users-azure-active-directory.md
+    - name: 新增或變更使用者設定檔資訊
+      href: active-directory-users-profile-azure-portal.md
+    - name: 重設使用者的密碼
+      href: active-directory-users-reset-password-azure-portal.md
+    - name: 將角色指派給使用者
+      href: active-directory-users-assign-role-azure-portal.md
+    - name: 指派或移除使用者的授權
+      href: license-users-groups.md
+    - name: 還原已刪除的使用者
+      href: active-directory-users-restore.md
+  expanded: true
+- name: 資源
+  items:
+  - name: 取得 Azure Active Directory 支援
+    href: active-directory-troubleshooting-support-howto.md
+  - name: Azure Active Directory 常見問題集
+    href: active-directory-faq.md
+  - name: Azure Active Directory 部署方案
+    href: active-directory-deployment-plans.md
+  - name: 管理 Azure AD Directory
+    href: active-directory-administer.md
+  - name: Azure 身分識別解決方案
+    href: understand-azure-identity-solutions.md
+ms.openlocfilehash: b31baf4a0472afd09343673e2cdf94dc29b4cb12
+ms.sourcegitcommit: 06724c499837ba342c81f4d349ec0ce4f2dfd6d6
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/19/2018
+ms.locfileid: "46465549"

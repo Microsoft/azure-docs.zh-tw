@@ -2,23 +2,18 @@
 title: VMware 到 Azure 的 Azure Site Recovery Deployment Planner | Microsoft Docs
 description: 這是 Azure Site Recovery Deployment Planner 使用者指南。
 services: site-recovery
-documentationcenter: ''
 author: nsoneji
 manager: garavd
-editor: ''
-ms.assetid: ''
 ms.service: site-recovery
-ms.workload: storage-backup-recovery
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: hero-article
-ms.date: 03/09/2018
+ms.topic: conceptual
+ms.date: 10/11/2018
 ms.author: nisoneji
-ms.openlocfilehash: 337217e66fe4d3780af197911a0e72c6f936e411
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: 7470dab537a8ab248228b9c445e1124e7ec9c444
+ms.sourcegitcommit: f20e43e436bfeafd333da75754cd32d405903b07
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49387798"
 ---
 # <a name="cost-estimation-report-of-azure-site-recovery-deployment-planner"></a>Azure Site Recovery 部署規劃工具的成本估計報告  
 
@@ -45,8 +40,8 @@ ms.lasthandoff: 03/28/2018
 **每月/年的 Azure 儲存成本** 它會顯示將會針對複寫及 DR 演練的進階和標準儲存體產生的總儲存成本。
 
 ## <a name="detailed-cost-analysis"></a>詳細成本分析
-計算、儲存體、網路等的 Azure 價格因 Azure 地區而有所不同。 您可以產生成本估計報告，其中包含以您的訂用帳戶為基礎的最新 Azure 價格 (以指定的貨幣計價)，與您的訂用帳戶相關聯的優惠，以及適用於指定之目標 Azure 區域的優惠。 根據預設，此工具會使用美國西部 2 Azure 區域和美元 (USD) 貨幣。 如果您已使用其他區域和貨幣，當您下次產生不具訂用帳戶 ID、優惠識別碼、目標區域和貨幣的報告時，，它會使用上次使用之目標區域和上次使用之貨幣的價格進行成本估計。
-此區段會顯示您用於報告產生的訂用帳戶識別碼和優惠識別碼。  如果未使用，則為空白。
+計算、儲存體、網路等的 Azure 價格因 Azure 地區而有所不同。 您可以產生成本估計報告，其中包含以您的訂用帳戶為基礎的最新 Azure 價格 (以指定的貨幣計價)，與您的訂用帳戶相關聯的供應項目，以及適用於指定之目標 Azure 區域的供應項目。 根據預設，此工具會使用美國西部 2 Azure 區域和美元 (USD) 貨幣。 如果您已使用其他區域和貨幣，當您下次產生不具訂用帳戶 ID、供應項目識別碼、目標區域和貨幣的報告時，，它會使用上次使用之目標區域和上次使用之貨幣的價格進行成本估計。
+此區段會顯示您用於報告產生的訂用帳戶識別碼和供應項目識別碼。  如果未使用，則為空白。
 
 在整份報告中，以灰色標示的資料格為唯讀。 您可以根據自己的需求修改白色資料格。
 
@@ -130,7 +125,7 @@ DR 總成本是根據兩個不同的狀態來分類 - 複寫和 DR 演練。
 
 **一年中的 DR 演練次數**：您在一年中執行 DR 演練的次數。 根據預設，一年中有 4 次。 在頂端列輸入新值，然後按一下 [套用到全部] 按鈕，即可修改特定 VM 的期間，或將新值套用至所有 VM。 根據一年中的 DR 演練次數和每次 DR 演練持續期間，計算 DR 演練總成本。  
 
-**每次 DR 演練持續時間 (天)**：每次 DR 演練的持續時間。 根據預設，依照[災害復原軟體保證權益](https://azure.microsoft.com/en-in/pricing/details/site-recovery)，這是每隔 90 天持續 7 天。 在頂端列輸入新值，然後按一下 [套用到全部] 按鈕，即可修改特定 VM 的期間，或將新值套用至所有 VM。 根據一年中的 DR 演練次數和每次 DR 演練持續期間，計算 DR 演練總成本。
+**每次 DR 演練持續時間 (天)**：每次 DR 演練的持續時間。 根據預設，依照[災害復原軟體保證權益](https://azure.microsoft.com/pricing/details/site-recovery)，這是每隔 90 天持續 7 天。 在頂端列輸入新值，然後按一下 [套用到全部] 按鈕，即可修改特定 VM 的期間，或將新值套用至所有 VM。 根據一年中的 DR 演練次數和每次 DR 演練持續期間，計算 DR 演練總成本。
   
 **OS 類型**：VM 的 OS 類型。 這是 Windows 或 Linux。 如果 OS 類型是 Windows，則 Azure Hybrid Use Benefit 可以套用到該 VM。 
 
@@ -154,7 +149,7 @@ eastus、eastus2、uswest、centralus、northcentralus、southcentralus、northe
 ## <a name="supported-currencies"></a>支援的貨幣
 Azure Site Recovery 部署規劃工具可以使用下列任何貨幣來產生成本報告。
 
-|貨幣|Name||貨幣|Name||貨幣|Name|
+|貨幣|名稱||貨幣|名稱||貨幣|名稱|
 |---|---|---|---|---|---|---|---|
 |ARS 披索|阿根廷披索 ($)||澳幣|澳洲元 ($)||巴西里耳|巴西里耳 (R$)|
 |加拿大幣|加幣 ($)||瑞士法郎|瑞士法郎 (chf)||丹麥幣|丹麥克朗 (kr)|

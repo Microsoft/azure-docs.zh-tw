@@ -1,24 +1,25 @@
 ---
-title: "在 Windows Server 上升級獨立的 Azure Service Fabric 叢集 | Microsoft Docs"
-description: "升級執行獨立 Azure Service Fabric 叢集的 Service Fabric 程式碼和/或組態，包括設定叢集更新模式。"
+title: 在 Windows Server 上升級獨立的 Azure Service Fabric 叢集 | Microsoft Docs
+description: 升級執行獨立 Azure Service Fabric 叢集的 Service Fabric 程式碼和/或組態，包括設定叢集更新模式。
 services: service-fabric
 documentationcenter: .net
 author: dkkapur
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 66296cc6-9524-4c6a-b0a6-57c253bdf67e
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 10/15/2017
 ms.author: dekapur
-ms.openlocfilehash: c95c1827d0433dcb61eace34e7a905a5610c7781
-ms.sourcegitcommit: b5c6197f997aa6858f420302d375896360dd7ceb
+ms.openlocfilehash: 93b79b7adacdec18912d28bb9725e2dc77737d59
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/21/2017
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43050758"
 ---
 # <a name="upgrade-your-standalone-azure-service-fabric-cluster-on-windows-server"></a>在 Windows Server 上升級獨立的 Azure Service Fabric 叢集 
 > [!div class="op_single_selector"]
@@ -82,7 +83,7 @@ ms.lasthandoff: 12/21/2017
     您應該會看到如下的輸出：
 
     ![取得 Service Fabric 版本][getfabversions]
-3. 使用 [Start-ServiceFabricClusterUpgrade](https://msdn.microsoft.com/library/mt125872.aspx) Windows PowerShell 命令開始將叢集升級為可用版本。
+3. 使用 [Start-ServiceFabricClusterUpgrade](https://docs.microsoft.com/powershell/module/servicefabric/start-servicefabricclusterupgrade) Windows PowerShell 命令開始將叢集升級為可用版本。
 
     ```Powershell
 
@@ -100,9 +101,9 @@ ms.lasthandoff: 12/21/2017
     Get-ServiceFabricClusterUpgrade
     ```
 
-    如果不符合叢集健康狀態原則，則會回復升級。 若要為 Start-ServiceFabricClusterUpgrade 命令指定自訂的健康狀態原則，請參閱 [Start-ServiceFabricClusterUpgrade](https://msdn.microsoft.com/library/mt125872.aspx) 的文件。
+    如果不符合叢集健康狀態原則，則會回復升級。 若要為 Start-ServiceFabricClusterUpgrade 命令指定自訂的健康狀態原則，請參閱 [Start-ServiceFabricClusterUpgrade](https://docs.microsoft.com/powershell/module/servicefabric/start-servicefabricclusterupgrade) 的文件。
 
-在解決導致復原的問題後，請依照先前所述的相同步驟再次起始升級。
+    在解決導致復原的問題後，請依照先前所述的相同步驟再次起始升級。
 
 ### <a name="upgrade-clusters-that-have-no-connectivity-to-download-the-latest-code-and-configuration"></a>升級*沒有連線能力*因而無法下載最新程式碼和組態的叢集
 如果您的叢集節點未與 [Microsoft 下載中心](http://download.microsoft.com)的網際網路連線，則可以使用這些步驟將您的叢集升級至支援的版本。
@@ -120,7 +121,7 @@ ms.lasthandoff: 12/21/2017
 
         "fabricClusterAutoupgradeEnabled": false,
 
-如需使用方式的詳細資料，請參閱 [Start-ServiceFabricClusterConfigurationUpgrade PowerShell command](https://msdn.microsoft.com/en-us/library/mt788302.aspx)。 在您開始組態升級之前，請確實更新 JSON 中的 'clusterConfigurationVersion'。
+如需使用方式的詳細資料，請參閱 [Start-ServiceFabricClusterConfigurationUpgrade PowerShell command](https://docs.microsoft.com/powershell/module/servicefabric/start-servicefabricclusterconfigurationupgrade)。 在您開始組態升級之前，請確實更新 JSON 中的 'clusterConfigurationVersion'。
 
 ```powershell
 
@@ -130,7 +131,7 @@ ms.lasthandoff: 12/21/2017
 
 #### <a name="cluster-upgrade-workflow"></a>叢集升級工作流程
 
-1. 從叢集中的其中一個節點執行 Get-ServiceFabricClusterUpgrade，並記下 TargetCodeVersion。
+1. 從叢集中的其中一個節點執行 [Get-ServiceFabricClusterUpgrade](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricclusterupgrade)，並記下 *TargetCodeVersion*。
 
 2. 從與網際網路連線的電腦執行下列程式碼，以根據目前版本列出所有升級相容版本 ，並從相關聯的下載連結下載對應封裝：
 
@@ -161,7 +162,7 @@ ms.lasthandoff: 12/21/2017
     Register-ServiceFabricClusterPackage -Code -CodePackagePath <name of the .cab file>
 
     ###### Here is a filled-out example
-    Register-ServiceFabricClusterPackage -Code -CodePackagePath MicrosoftAzureServiceFabric.5.3.301.9590.cab
+    Register-ServiceFabricClusterPackage -Code -CodePackagePath .\MicrosoftAzureServiceFabric.5.3.301.9590.cab
 
      ```
 6. 開始將叢集升級為可用版本。
@@ -181,9 +182,9 @@ ms.lasthandoff: 12/21/2017
     Get-ServiceFabricClusterUpgrade
     ```
 
-    如果不符合叢集健康狀態原則，則會回復升級。 若要為 Start-ServiceFabricClusterUpgrade 命令指定自訂的健康狀態原則，請參閱 [Start-ServiceFabricClusterUpgrade](https://msdn.microsoft.com/library/mt125872.aspx) 的文件。
+    如果不符合叢集健康狀態原則，則會回復升級。 若要為 Start-ServiceFabricClusterUpgrade 命令指定自訂的健康狀態原則，請參閱 [Start-ServiceFabricClusterUpgrade](https://docs.microsoft.com/powershell/module/servicefabric/start-servicefabricclusterupgrade) 的文件。
 
-在解決導致復原的問題後，請依照先前所述的相同步驟再次起始升級。
+    在解決導致復原的問題後，請依照先前所述的相同步驟再次起始升級。
 
 
 ## <a name="upgrade-the-cluster-configuration"></a>升級叢集組態
@@ -204,7 +205,7 @@ ms.lasthandoff: 12/21/2017
 
 某些組態無法升級，例如端點、叢集名稱、節點 IP 等。新的叢集組態 JSON 會對照舊的叢集組態 JSON 來進行測試，如有任何問題，就會在 PowerShell 視窗中擲回錯誤。
 
-若要升級叢集組態升級，請執行 Start-ServiceFabricClusterConfigurationUpgrade。 組態升級是按升級網域逐一處理。
+若要升級叢集組態升級，請執行 [Start-ServiceFabricClusterConfigurationUpgrade](https://docs.microsoft.com/powershell/module/servicefabric/start-servicefabricclusterconfigurationupgrade)。 組態升級是按升級網域逐一處理。
 
 ```powershell
 

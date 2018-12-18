@@ -1,28 +1,29 @@
 ---
-title: "使用 Azure Service Fabric Explorer 視覺化叢集 | Microsoft Docs"
-description: "Service Fabric Explorer 是一種應用程式，可檢查和管理 Microsoft Azure Service Fabric 叢集中的雲端應用程式和節點。"
+title: 使用 Azure Service Fabric Explorer 視覺化叢集 | Microsoft Docs
+description: Service Fabric Explorer 是一種應用程式，可檢查和管理 Microsoft Azure Service Fabric 叢集中的雲端應用程式和節點。
 services: service-fabric
 documentationcenter: .net
 author: mikkelhegn
 manager: msfussell
-editor: 
+editor: ''
 ms.assetid: c875b993-b4eb-494b-94b5-e02f5eddbd6a
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 02/02/2018
 ms.author: mikhegn
-ms.openlocfilehash: dc71bf8045abf72953f678dc9295346dc9204e59
-ms.sourcegitcommit: eeb5daebf10564ec110a4e83874db0fb9f9f8061
+ms.openlocfilehash: 459dd86fd614cb185801b074cea70c36dc7f6ccb
+ms.sourcegitcommit: f606248b31182cc559b21e79778c9397127e54df
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/03/2018
+ms.lasthandoff: 07/12/2018
+ms.locfileid: "38972327"
 ---
 # <a name="visualize-your-cluster-with-service-fabric-explorer"></a>使用 Service Fabric 總管視覺化叢集
 
-Service Fabric Explorer (SFX) 是開放原始碼工具，可檢查及管理 Azure Service Fabric 叢集。 Service Fabric Explorer 是適用於 Windows 和 Linux 的桌面應用程式。 即將推出對 MacOS 的支援。
+Service Fabric Explorer (SFX) 是開放原始碼工具，可檢查及管理 Azure Service Fabric 叢集。 Service Fabric Explorer 是適用於 Windows、macOS 和 Linux 的桌面應用程式。
 
 ## <a name="service-fabric-explorer-download"></a>Service Fabric Explorer 下載
 
@@ -45,12 +46,12 @@ Service Fabric Explorer (SFX) 是開放原始碼工具，可檢查及管理 Azur
 
 ### <a name="running-service-fabric-explorer-from-the-cluster"></a>從叢集執行 Service Fabric Explorer
 
-Service Fabric Explorer 也裝載於 Service Fabric 叢集的 HTTP 管理端點。 若要在 Web 瀏覽器中啟動 SFX，您可以在任何瀏覽器中瀏覽至叢集的 HTTP 管理端點，例如 https://clusterFQDN:19080。
+Service Fabric Explorer 也裝載於 Service Fabric 叢集的 HTTP 管理端點。 若要在 Web 瀏覽器中啟動 SFX，您可以在任何瀏覽器中瀏覽至叢集的 HTTP 管理端點，例如 https://clusterFQDN:19080 。
 
 針對開發人員工作站設定，您可以瀏覽至 https://localhost:19080/Explorer，在本機叢集上啟動 Service Fabric Explorer。 請參閱此文章以[準備您的開發環境](service-fabric-get-started.md)。
 
 ## <a name="connect-to-a-service-fabric-cluster"></a>連線至 Service Fabric 叢集
-若要連線至 Service Fabric 叢集，您需要叢集管理端點 (FQDN/IP) 和 HTTP 管理端點連接埠 (預設為 19080)。 例如 https://mysfcluster.westus.cloudapp.azure.com:19080。 使用 [連線至 localhost] 核取方塊，連線至工作站上的本機叢集。
+若要連線至 Service Fabric 叢集，您需要叢集管理端點 (FQDN/IP) 和 HTTP 管理端點連接埠 (預設為 19080)。 例如 https://mysfcluster.westus.cloudapp.azure.com:19080 。 使用 [連線至 localhost] 核取方塊，連線至工作站上的本機叢集。
 
 ### <a name="connect-to-a-secure-cluster"></a>連線到安全的叢集
 您可以為使用憑證或使用 Azure Active Directory (AAD) 來控制用戶端對您 Service Fabric 叢集的存取。

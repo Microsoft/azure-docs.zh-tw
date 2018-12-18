@@ -1,20 +1,21 @@
 ---
-title: "建立有多站台裝載的應用程式閘道 - Azure 入口網站 | Microsoft Docs"
-description: "了解如何使用 Azure 入口網站來建立應用程式閘道，裝載多個站台。"
+title: 建立有多站台裝載的應用程式閘道 - Azure 入口網站 | Microsoft Docs
+description: 了解如何使用 Azure 入口網站來建立應用程式閘道，裝載多個站台。
 services: application-gateway
-author: davidmu1
-manager: timlt
+author: vhorne
+manager: jpconnock
 editor: tysonn
 ms.service: application-gateway
 ms.topic: article
 ms.workload: infrastructure-services
 ms.date: 01/26/2018
-ms.author: davidmu
-ms.openlocfilehash: 403c6c254d8547b09e42f0b1561e5eff350a1f9b
-ms.sourcegitcommit: 059dae3d8a0e716adc95ad2296843a45745a415d
+ms.author: victorh
+ms.openlocfilehash: 84f88c40d8fe1d88e9d85da5ef6c9e7992b33cc4
+ms.sourcegitcommit: 7208bfe8878f83d5ec92e54e2f1222ffd41bf931
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 07/14/2018
+ms.locfileid: "39049893"
 ---
 # <a name="create-an-application-gateway-with-multiple-site-hosting-using-the-azure-portal"></a>使用 Azure 入口網站，建立有多站台裝載的應用程式閘道
 
@@ -35,7 +36,7 @@ ms.lasthandoff: 02/09/2018
 
 ## <a name="log-in-to-azure"></a>登入 Azure
 
-登入 Azure 入口網站，網址是 [http://portal.azure.com](http://portal.azure.com)
+在 [http://portal.azure.com](http://portal.azure.com) 上登入 Azure 入口網站
 
 ## <a name="create-an-application-gateway"></a>建立應用程式閘道
 
@@ -87,7 +88,7 @@ ms.lasthandoff: 02/09/2018
     - *Azure123456!* 作為密碼。
     - 選取 [使用現有的]，然後選取 [myResourceGroupAG]。
 
-4. 按一下 [SERVICEPRINCIPAL] 。
+4. 按一下 [確定]。
 5. 選取 [DS1_V2] 作為虛擬機器的大小，然後按一下 [選取]。
 6. 確定您已選取 [myVNet] 作為虛擬網路，而且子網路是 [myBackendSubnet]。 
 7. 按一下 [停用] 來停用開機診斷。
@@ -102,7 +103,7 @@ ms.lasthandoff: 02/09/2018
 2. 執行下列命令以在虛擬機器上安裝 IIS： 
 
     ```azurepowershell-interactive
-    $publicSettings = @{ "fileUris" = (,"https://raw.githubusercontent.com/davidmu1/samplescripts/master/appgatewayurl.ps1");  "commandToExecute" = "powershell -ExecutionPolicy Unrestricted -File appgatewayurl.ps1" }
+    $publicSettings = @{ "fileUris" = (,"https://raw.githubusercontent.com/Azure/azure-docs-powershell-samples/master/application-gateway/iis/appgatewayurl.ps1");  "commandToExecute" = "powershell -ExecutionPolicy Unrestricted -File appgatewayurl.ps1" }
     Set-AzureRmVMExtension `
       -ResourceGroupName myResourceGroupAG `
       -Location eastus `
@@ -124,7 +125,7 @@ ms.lasthandoff: 02/09/2018
 
     ![新增後端伺服器](./media/application-gateway-create-multisite-portal/application-gateway-multisite-backendpool.png)
 
-4. 按一下 [SERVICEPRINCIPAL] 。
+4. 按一下 [確定]。
 5. 依序按一下 [後端集區] 和 [新增]。
 6. 使用您剛才完成的步驟，建立含有 fabrikamVM 的 fabrikamPool。
 
@@ -136,7 +137,7 @@ ms.lasthandoff: 02/09/2018
     - contosoListener - 作為接聽程式的名稱。
     - www.contoso.com - 以您的網域名稱取代此主機名稱範例。
 
-3. 按一下 [SERVICEPRINCIPAL] 。
+3. 按一下 [確定]。
 4. 使用 fabrikamListener 的名稱建立第二個接聽程式，然後使用您的第二個網域名稱。 此範例中使用 www.fabrikam.com。
 
 會以規則列出的順序進行處理，而且不論精確性為何，都會使用相符的第一個規則將流量進行導向。 例如，如果您在相同的連接埠上同時使用基本接聽程式的規則和多站台接聽程式的規則，則必須將多站台接聽程式的規則列於基本接聽程式的規則之前，多站台規則才能如預期般運作。 
@@ -150,7 +151,7 @@ ms.lasthandoff: 02/09/2018
 
     ![建立路徑型規則](./media/application-gateway-create-multisite-portal/application-gateway-multisite-rule.png)
 
-5. 按一下 [SERVICEPRINCIPAL] 。
+5. 按一下 [確定]。
 6. 使用 fabrikamRule、fabrikamListener 及 *fabrikamPool* 的名稱，建立第二個規則。
 7. 按一下名為 rule1 的預設規則，然後按一下 [刪除]，即可刪除。
 
@@ -166,9 +167,9 @@ ms.lasthandoff: 02/09/2018
 
 ## <a name="test-the-application-gateway"></a>測試應用程式閘道
 
-1. 在瀏覽器的網址列中輸入您的網域名稱。 例如 http://www.contoso.com。
+1. 在瀏覽器的網址列中輸入您的網域名稱。 例如，http://www.contoso.com。
 
-    ![測試應用程式閘道中的 contoso 網站](./media/application-gateway-create-multisite-portal/application-gateway-iistest.png)
+    ![在應用程式閘道中測試 contoso 網站](./media/application-gateway-create-multisite-portal/application-gateway-iistest.png)
 
 2. 將位址變更為您的另一個網域，您應該會看到類似下列的範例：
 

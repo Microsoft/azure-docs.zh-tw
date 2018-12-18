@@ -1,0 +1,186 @@
+items:
+- name: Azure 計費 + 成本管理文件
+  href: index.md
+- name: 了解 Azure 計費
+  items:
+  - name: 了解您的帳單
+    href: billing-understand-your-bill.md
+  - name: 取得發票和使用量資料
+    href: billing-download-azure-invoice-daily-usage-date.md
+  - name: 第三方服務費用
+    href: billing-understand-your-azure-marketplace-charges.md
+  - name: 使用量條款說明
+    href: billing-understand-your-usage.md
+  - name: 發票條款說明
+    href: billing-understand-your-invoice.md
+  expanded: true
+- name: 管理成本
+  items:
+  - name: 避免非預期成本
+    href: billing-getting-started.md
+  - name: 使用資源標籤
+    href: ../azure-resource-manager/resource-group-using-tags.md?toc=/azure/billing/TOC.json
+  - name: 開始分析成本 - 僅限 EA
+    href: ../cost-management/quick-acm-cost-analysis.md?toc=/azure/billing/TOC.json
+  - name: 建立及管理預算 - 僅限 EA
+    href: ../cost-management/tutorial-acm-create-budgets.md?toc=/azure/billing/TOC.json
+  - name: 最佳化建議 - 僅限 EA
+    href: ../cost-management/tutorial-acm-opt-recommendations.md?toc=/azure/billing/TOC.json
+  - name: 計算價格
+    href: https://azure.microsoft.com/pricing/calculator/
+  - name: 了解消費限制
+    href: billing-spending-limit.md
+  - name: Azure 保留項目為您節省成本
+    items:
+    - name: 什麼是 Azure 保留項目？
+      href: billing-save-compute-costs-reservations.md
+    - name: 購買保留項目
+      items:
+      - name: Cosmos DB
+        href: ../cosmos-db/cosmos-db-reserved-capacity.md?toc=/azure/billing/TOC.json
+      - name: SQL Database
+        href: ../sql-database/sql-database-reserved-capacity.md?toc=/azure/billing/TOC.json
+      - name: SUSE Linux 軟體
+        href: ../virtual-machines/linux/prepay-suse-software-charges.md?toc=/azure/billing/TOC.json
+      - name: 虛擬機器
+        href: ../virtual-machines/windows/prepay-reserved-vm-instances.md?toc=/azure/billing/TOC.json
+    - name: 如何套用折扣
+      items:
+      - name: 保留的 VM 執行個體
+        href: billing-understand-vm-reservation-charges.md
+      - name: SQL Database 保留容量
+        href: billing-understand-reservation-charges.md
+      - name: Cosmos DB 保留容量
+        href: billing-understand-cosmosdb-reservation-charges.md
+      - name: SUSE Linux 軟體方案
+        href: billing-understand-suse-reservation-charges.md
+    - name: 並未包含軟體成本
+      href: billing-reserved-instance-windows-software-costs.md
+    - name: 預付型方案使用量
+      href: billing-understand-reserved-instance-usage.md
+    - name: Enterprise 使用量
+      href: billing-understand-reserved-instance-usage-ea.md
+    - name: 管理保留項目
+      href: billing-manage-reserved-vm-instance.md
+- name: 管理帳戶
+  items:
+  - name: 免費帳戶
+    items:
+    - name: 建立免費服務
+      href: billing-create-free-services-included-free-account.md
+    - name: 避免產生費用
+      href: billing-avoid-charges-free-account.md
+    - name: 檢查使用量
+      href: billing-check-free-service-usage.md
+    - name: 升級訂用帳戶
+      href: billing-upgrade-azure-subscription.md
+    - name: 了解計量對應
+      href: billing-understand-free-service-meter-mapping.md
+  - name: 編輯設定檔
+    href: billing-how-to-change-azure-account-profile.md
+  - name: 授與帳單存取權
+    href: billing-manage-access.md
+  - name: 連結合作夥伴識別碼
+    href: billing-partner-admin-link-started.md
+  - name: 檢視計費帳戶
+    href: billing-view-all-accounts.md
+  - name: 解析逾期資產負債
+    href: billing-azure-subscription-past-due-balance.md
+  - name: 使用 Office 365 帳戶註冊
+    href: billing-use-existing-office-365-account-azure-subscription.md
+  - name: 以 Azure 帳戶註冊 Office 365
+    href: billing-use-existing-azure-account-for-office-365-subscription.md
+- name: 管理訂用帳戶
+  items:
+  - name: 重新啟動訂用帳戶
+    href: billing-subscription-become-disable.md
+  - name: 轉送擁有權
+    href: billing-subscription-transfer.md
+  - name: 取消訂用帳戶
+    href: billing-how-to-cancel-azure-subscription.md
+  - name: 變更信用卡
+    href: billing-how-to-change-credit-card.md
+  - name: 變更管理員
+    href: billing-add-change-azure-subscription-administrator.md
+  - name: 切換訂用帳戶供應項目
+    href: billing-how-to-switch-azure-offer.md
+  - name: 按發票付款
+    href: billing-how-to-pay-by-invoice.md
+  - name: 建立管理群組
+    href: ../azure-resource-manager/management-groups-create.md?toc=/azure/billing/TOC.json
+  - name: 移動 Azure 資源
+    href: ../azure-resource-manager/resource-group-move-resources.md?toc=/azure/billing/TOC.json
+  - name: 建立 Enterprise 訂用帳戶
+    href: ../azure-resource-manager/programmatically-create-subscription.md?toc=/azure/billing/TOC.json
+  - name: 匯出訂用帳戶資訊
+    href: billing-export-subscriptions.md
+  - name: 連結 Azure AD 租用戶
+    href: ../active-directory/active-directory-how-subscriptions-associated-directory.md?toc=/azure/billing/TOC.json
+  - name: 限制和配額
+    href: ../azure-subscription-service-limits.md?toc=/azure/billing/TOC.json
+- name: 疑難排解
+  items:
+  - name: 找不到訂用帳戶
+    href: billing-no-subscriptions-found.md
+  - name: 卡片遭拒
+    href: https://support.microsoft.com/en-us/help/4042960
+  - name: 註冊問題
+    href: https://support.microsoft.com/en-us/help/4042959
+  - name: 登入問題
+    href: https://support.microsoft.com/en-us/help/4042961
+  - name: 已停用企業成本檢視
+    href: billing-enterprise-mgmt-grp-troubleshoot-cost-view.md
+  - name: 請連絡支援人員
+    href: ../azure-supportability/how-to-create-azure-support-request.md
+- name: 範例
+  items:
+  - name: REST API
+    items:
+    - name: 檢閱企業成本
+      href: billing-review-enterprise-billing.md
+    - name: 檢閱訂用帳戶用途
+      href: billing-review-subscription-billing.md
+    - name: 檢閱資源使用量
+      href: billing-review-service-usage-api.md
+  - name: .NET 範例
+    items:
+    - name: 發票 API 程式碼範例
+      href: https://github.com/Azure-Samples/billing-dotnet-core-invoice-download
+    - name: 使用情況 API 程式碼範例
+      href: https://github.com/Azure-Samples/billing-dotnet-usage-api
+    - name: RateCard API 程式碼範例
+      href: https://github.com/Azure-Samples/billing-dotnet-ratecard-api
+- name: 參考
+  items:
+  - name: 計費自動化案例
+    href: billing-cost-management-automation-scenarios.md
+    items:
+    - name: 使用 Azure 預算來管理成本
+      href: billing-cost-management-budget-scenario.md
+  - name: Azure 計費 API 概觀
+    href: billing-usage-rate-card-overview.md
+    items:
+    - name: Azure 計費 REST API
+      href: https://docs.microsoft.com/rest/api/billing
+    - name: 合作夥伴解決方案 - Cloud Cruiser
+      href: billing-usage-rate-card-partner-solution-cloudcruiser.md
+  - name: Azure 使用量 API 概觀
+    href: billing-consumption-api-overview.md
+    items:
+    - name: Azure 使用量 REST API
+      href: https://docs.microsoft.com/rest/api/consumption
+    - name: RateCard REST API
+      href: https://msdn.microsoft.com/library/azure/mt219005.aspx
+    - name: 使用方式 REST API
+      href: https://msdn.microsoft.com/library/azure/mt219003.aspx
+  - name: Enterprise 報表概觀
+    href: billing-enterprise-api.md
+    items:
+    - name: Enterprise 報表 REST API
+      href: https://docs.microsoft.com/rest/api/billing/enterprise/billing-enterprise-api-balance-summary
+ms.openlocfilehash: ee136fceb3febfbda2d0f18982544fd90d32832b
+ms.sourcegitcommit: 42405ab963df3101ee2a9b26e54240ffa689f140
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47422689"

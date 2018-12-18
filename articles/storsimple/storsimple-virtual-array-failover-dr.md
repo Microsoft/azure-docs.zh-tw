@@ -1,11 +1,11 @@
 ---
-title: "StorSimple Virtual Array 的災害復原和裝置容錯移轉 | Microsoft Docs"
-description: "深入了解如何容錯移轉 StorSimple Virtual Array。"
+title: StorSimple Virtual Array 的災害復原和裝置容錯移轉 | Microsoft Docs
+description: 深入了解如何容錯移轉 StorSimple Virtual Array。
 services: storsimple
 documentationcenter: NA
 author: alkohli
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 3c1f9c62-af57-4634-a0d8-435522d969aa
 ms.service: storsimple
 ms.devlang: NA
@@ -20,6 +20,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23110746"
 ---
 # <a name="disaster-recovery-and-device-failover-for-your-storsimple-virtual-array-via-azure-portal"></a>透過 Azure 入口網站進行 StorSimple Virtual Array 的災害復原和裝置容錯移轉
 

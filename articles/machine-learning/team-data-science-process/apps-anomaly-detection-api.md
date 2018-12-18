@@ -8,17 +8,19 @@ manager: jhubbard
 editor: cgronlun
 ms.assetid: 52fafe1f-e93d-47df-a8ac-9a9a53b60824
 ms.service: machine-learning
+ms.component: team-data-science-process
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: multiple
 ms.date: 06/05/2017
 ms.author: alok
-ms.openlocfilehash: e3f6f0de16fcb84872fe7b420eb0d54e86682f23
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: 9f1f3c2c808558124548008927219191469a412b
+ms.sourcegitcommit: 944d16bc74de29fb2643b0576a20cbd7e437cef2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 06/07/2018
+ms.locfileid: "34836461"
 ---
 # <a name="machine-learning-anomaly-detection-api"></a>Machine Learning 異常偵測 API
 ## <a name="overview"></a>概觀
@@ -32,7 +34,7 @@ ms.lasthandoff: 03/28/2018
 
 這些 Machine Learning 偵測器會追蹤數值在不同時間所發生的這一類變化，並以異常分數的形式報告數值正在進行的變化。 它們不需要臨機操作調整臨界值，而且其分數可用來控制偽陽性率。 異常偵測 API 可用在許多案例，例如追蹤不同時間的 KPI 以監視服務、透過搜尋次數、點擊次數等度量來監視使用量、透過不同時間的記憶體、CPU、檔案讀取數等計數器來監視效能。
 
-異常偵測在供應時會隨附有用的工具以讓您快速入門。
+異常偵測供應項目在供應時會隨附有用的工具以讓您快速入門。
 
 * [Web 應用程式](http://anomalydetection-aml.azurewebsites.net/) 可協助您評估和視覺化將異常偵測 API 套用在您的資料後所產生的結果。
 
@@ -47,7 +49,7 @@ ms.lasthandoff: 03/28/2018
 若要使用 API，您必須將它部署到 Azure 訂用帳戶，以在其中裝載成 Azure Machine Learning Web 服務。  您可以從 [Azure AI 資源庫](https://gallery.cortanaintelligence.com/MachineLearningAPI/Anomaly-Detection-2).\(英文\) 執行此動作。  這會將兩個 AzureML Web 服務 (與其相關的資源) 部署到您的 Azure 訂用帳戶 - 一個用於異常偵測 (含季節性偵測)，另一個則不含季節性偵測。  部署完成後，您就能夠從 [AzureML Web 服務](https://services.azureml.net/webservices/)頁面管理您的 API。  從這個頁面，您可以找到您的端點位置、API 金鑰，以及用於呼叫 API 的範例程式碼。  在[這裡](https://docs.microsoft.com/azure/machine-learning/machine-learning-manage-new-webservice)可取得更詳細的指示。
 
 ## <a name="scaling-the-api"></a>調整 API
-根據預設，部署將有免費的開發/測試計費方案，其中包括 1,000 筆交易/月和 2 個計算時數/月。  根據您的需求，您可以升級到另一個方案。  在[這裡](https://azure.microsoft.com/en-us/pricing/details/machine-learning/) (「生產 Web API 價格」之下) 可取得不同方案的價格詳細資料。
+根據預設，部署將有免費的開發/測試計費方案，其中包括 1,000 筆交易/月和 2 個計算時數/月。  根據您的需求，您可以升級到另一個方案。  在[這裡](https://azure.microsoft.com/pricing/details/machine-learning/) (「生產 Web API 價格」之下) 可取得不同方案的價格詳細資料。
 
 ## <a name="managing-aml-plans"></a>管理 AML 方案 
 您可以在[這裡](https://services.azureml.net/plans/)管理您的計費方案。  方案名稱會以您在部署 API 時選擇的資源群組名稱為主，加上您的訂用帳戶中的唯一字串。  在[這裡](https://docs.microsoft.com/azure/machine-learning/machine-learning-manage-new-webservice) (「管理計費方案」一節之下) 可取得有關如何升級方案的指示。

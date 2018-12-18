@@ -1,24 +1,25 @@
 ---
-title: "使用 Azure Site Recovery 複寫多層式 Citrix XenDesktop 和 XenApp 部署 | Microsoft Docs"
-description: "本文說明如何使用 Azure Site Recovery 保護和復原 Citrix XenDesktop 和 XenApp 部署。"
+title: 使用 Azure Site Recovery 複寫多層式 Citrix XenDesktop 和 XenApp 部署 | Microsoft Docs
+description: 本文說明如何使用 Azure Site Recovery 保護和復原 Citrix XenDesktop 和 XenApp 部署。
 services: site-recovery
-documentationcenter: 
+documentationcenter: ''
 author: ponatara
 manager: abhemraj
-editor: 
+editor: ''
 ms.assetid: 9126f5e8-e9ed-4c31-b6b4-bf969c12c184
 ms.service: site-recovery
 ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/22/2018
+ms.date: 07/06/2018
 ms.author: ponatara
-ms.openlocfilehash: b117525a4851dee5366aeda77c8aaefd1fdde375
-ms.sourcegitcommit: fbba5027fa76674b64294f47baef85b669de04b7
+ms.openlocfilehash: 45d366842416ddfa7b0153a1d075ee6de58e45a1
+ms.sourcegitcommit: 248c2a76b0ab8c3b883326422e33c61bd2735c6c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/24/2018
+ms.lasthandoff: 07/23/2018
+ms.locfileid: "39213628"
 ---
 # <a name="replicate-a-multi-tier-citrix-xenapp-and-xendesktop-deployment-using-azure-site-recovery"></a>使用 Azure Site Recovery 複寫多層式 Citrix XenApp 和 XenDesktop 部署
 
@@ -32,7 +33,7 @@ Citrix XenDesktop 是桌面虛擬化解決方案，能夠為任何地方的任�
 對於為 Hyper-V 和 VMware vSphere 平台上的內部部署 Citrix XenApp 部署建置災害復原方案，本文提供逐步指引。 本文同時也會說明如何使用復原計劃、支援的組態和必要條件，執行測試容錯移轉 (災害復原訓練) 和未計劃的 Azure 容錯移轉。
 
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 開始之前，請確定您瞭解下列項目︰
 
@@ -62,9 +63,9 @@ AD DNS 伺服器、SQL 資料庫伺服器、Citrix 傳遞控制站、StoreFront 
 
 **案例** | **至次要網站** | **至 Azure**
 --- | --- | ---
-**Hyper-V** | 不在範圍中 | yes
-**VMware** | 不在範圍中 | yes
-**實體伺服器** | 不在範圍中 | yes
+**Hyper-V** | 不在範圍中 | 是
+**VMware** | 不在範圍中 | 是
+**實體伺服器** | 不在範圍中 | 是
 
 ### <a name="versions"></a>版本
 客戶可以部署 XenApp 元件成為 Hyper-V 或 VMware 上執行的虛擬機器，或成為實體伺服器。 Azure Site Recovery 可以保護 Azure 的實體與虛擬部署。
@@ -181,7 +182,7 @@ AD DNS 伺服器、SQL 資料庫伺服器、Citrix 傳遞控制站、StoreFront 
 
 
    >[!NOTE]
-   >您可以在[位置](https://github.com/Azure/azure-quickstart-templates/blob/>master/asr-automation-recovery/scripts)使用指令碼，以容錯移轉虛擬機器的新 IP 更新 DNS，或在有需要時連接容錯移轉機器上的負載平衡器。
+   >您可以在[位置](https://github.com/Azure/azure-quickstart-templates/tree/master/asr-automation-recovery/scripts)使用指令碼，以容錯移轉虛擬機器的新 IP 更新 DNS，或在有需要時連接容錯移轉機器上的負載平衡器。
 
 
 ## <a name="doing-a-test-failover"></a>執行測試容錯移轉

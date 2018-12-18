@@ -1,6 +1,6 @@
 ---
-title: "使用者入門 - Microsoft 威脅模型化工具 - Azure | Microsoft Docs"
-description: "這是更深入的概觀，反白顯示動作中的威脅模型化工具。"
+title: 使用者入門 - Microsoft 威脅模型化工具 - Azure | Microsoft Docs
+description: 這是更深入的概觀，反白顯示動作中的威脅模型化工具。
 services: security
 documentationcenter: na
 author: RodSan
@@ -14,18 +14,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/17/2017
 ms.author: rodsan
-ms.openlocfilehash: 73d6b42e7a97d6041f6213a1f7d060806734d763
-ms.sourcegitcommit: 68aec76e471d677fd9a6333dc60ed098d1072cfc
+ms.openlocfilehash: 340c92d2830069a9d957f4ece79416a707062629
+ms.sourcegitcommit: cc4fdd6f0f12b44c244abc7f6bc4b181a2d05302
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/18/2017
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47096769"
 ---
 # <a name="getting-started-with-the-threat-modeling-tool"></a>威脅模型化工具使用者入門
 
 雲端和企業安全性工具小組今年稍早將威脅模型化工具預覽發行為免費的**[按一下即可下載](https://aka.ms/tmtpreview)**。 傳遞機制中的變更可讓我們在客戶每次開啟它時，將最新的增強功能和錯誤修正傳送給客戶，讓它更容易維護及使用。
-本文章會引導您開始使用 Microsoft SDL 威脅模型化方法的程序，並且示範如何使用工具來開發很棒的威脅模型，作為安全性程序的骨幹。
+此文章會引導您開始使用 Microsoft SDL 威脅模型化方法的程序，並且示範如何使用工具來開發很棒的威脅模型，作為安全性程序的骨幹。
 
-這篇文章是根據 SDL 威脅模型化方法的現有知識所建置的。 如需快速檢閱，請參閱**[威脅模型化 Web 應用程式](https://msdn.microsoft.com/library/ms978516.aspx)**和 2006 年發佈的**[使用 STRIDE 方法發現安全性缺陷](https://docs.google.com/viewer?a=v&pid=sites&srcid=ZGVmYXVsdGRvbWFpbnxzZWN1cmVwcm9ncmFtbWluZ3xneDo0MTY1MmM0ZDI0ZjQ4ZDMy)** MSDN 文件的封存版本。
+這篇文章是根據 SDL 威脅模型化方法的現有知識所建置的。 如需快速檢閱，請參閱**[威脅模型化 Web 應用程式](https://msdn.microsoft.com/library/ms978516.aspx)** 和 2006 年發佈的**[使用 STRIDE 方法發現安全性缺陷](https://docs.google.com/viewer?a=v&pid=sites&srcid=ZGVmYXVsdGRvbWFpbnxzZWN1cmVwcm9ncmFtbWluZ3xneDo0MTY1MmM0ZDI0ZjQ4ZDMy)** MSDN 文件的封存版本。
 
 若要快速摘要，方法牽涉到建立圖表、識別威脅、緩和它們及驗證每個風險降低。 以下反白顯示此程序的圖表：
 
@@ -45,7 +46,7 @@ ms.lasthandoff: 12/18/2017
 | **建立模型**                          | 開啟空白的畫布，讓您繪製圖表。 請務必選取您想要用於模型的範本                                                                                                                                                                                                                                                                                                                                                                       |
 | **新模型的範本**                 | 您必須在建立模型之前選取要使用哪個範本。 我們的主要範本是 Azure 威脅模型範本範本，其中包含 Azure 特定樣板、威脅和風險降低。 對於一般模型，請從下拉式功能表選取 SDL TM 知識庫。 想要建立您自己的範本或為所有使用者提交新範本嗎？ 請參閱我們的**[範本存放庫](https://github.com/Microsoft/threat-modeling-templates)** GitHub 分頁，以進一步了解                              |
 | **開啟模型**                            | <p>會開啟先前儲存的威脅模型。 如果您需要開啟最新的檔案，「最近開啟的模型」功能是很好的選項。 當您將滑鼠停留在選取項目時，您會發現有 2 種方法可以開啟模型：</p><p><ul><li>從這部電腦開啓 – 使用本機儲存體開啟檔案的傳統方法</li><li>從 OneDrive 開啟 – 小組可以使用 OneDrive 中的資料夾，在單一位置中儲存及共用他們的所有威脅模型，以協助增進生產力和共同作業</li></ul></p> |
-| **使用者入門指南**                   | 開啟 **[Microsoft 威脅模型化工具](./azure-security-threat-modeling-tool.md)**主要分頁                                                                                                                                                                                                                                                                                                                                                                                            |
+| **使用者入門指南**                   | 開啟 **[Microsoft 威脅模型化工具](./azure-security-threat-modeling-tool.md)** 主要分頁                                                                                                                                                                                                                                                                                                                                                                                            |
 
 ### <a name="template-section"></a>範本區段
 
@@ -78,14 +79,14 @@ ms.lasthandoff: 12/18/2017
 > - 他們將命令傳送給我們的 Web 伺服器 — 圓形
 > - Web 伺服器已諮詢資料庫 (兩條平行線)
 
-Ricardo 剛剛為 Cristina 顯示的是 DFD，**[資料流程圖表](https://en.wikipedia.org/wiki/Data_flow_diagram)**的簡稱。 威脅模型化工具可讓使用者指定信任界限，以紅色虛線表示，來顯示控制不同實體的位置。 例如，IT 系統管理員需要 Active Directory 系統用於驗證目的，因此 Active Directory 會在其控制之外。
+Ricardo 剛剛為 Cristina 顯示的是 DFD，**[資料流程圖表](https://en.wikipedia.org/wiki/Data_flow_diagram)** 的簡稱。 威脅模型化工具可讓使用者指定信任界限，以紅色虛線表示，來顯示控制不同實體的位置。 例如，IT 系統管理員需要 Active Directory 系統用於驗證目的，因此 Active Directory 會在其控制之外。
 
 > Cristina：就我看來是正確的。 威脅呢？
 > Ricardo：我來示範給您看。
 
 ## <a name="analyzing-threats"></a>分析威脅
 
-當他從圖示功能表選取項目按一下分析檢視 (具有放大鏡的檔案) 時，系統將他導向產生之威脅的清單，這些威脅是威脅模型化工具根據預設範本找到的，使用稱為**[STRIDE (詐騙、竄改、資訊洩漏、阻斷服務以及權限提高)](https://en.wikipedia.org/wiki/STRIDE_(security))** 的 SDL 方法。 這個概念是軟體來自可預測的一組威脅底下，可以使用這 6 個類別找到。
+當他從圖示功能表選取項目按一下分析檢視 (具有放大鏡的檔案) 時，系統將他導向產生之威脅的清單，這些威脅是威脅模型化工具根據預設範本找到的，使用稱為 **[STRIDE (詐騙、竄改、資訊洩漏、否認、阻斷服務以及權限提高)](https://en.wikipedia.org/wiki/STRIDE_(security))** 的 SDL 方法。 這個概念是軟體來自可預測的一組威脅底下，可以使用這 6 個類別找到。
 
 這個方法就像在新增警報系統或追趕竊賊之前，確定每個門窗都有就地鎖定機制，籍以保護您的家園。
 
@@ -118,7 +119,7 @@ Ricardo 進入 [資訊洩漏] 底下的威脅時，他理解到存取控制計�
 
 ![互動資訊](./media/azure-security-threat-modeling-tool-feature-overview/report.png)
 
-如果 Ricardo 想要改為共用檔案，他可以籍由在組織的 OneDrive 帳戶中儲存，來完成這項操作。 一旦他那樣做，就可以複製文件連結，並且與同事共用。 
+如果 Ricardo 想要改為共用檔案，他可以籍由在組織的 OneDrive 帳戶中儲存，來完成此操作。 一旦他那樣做，就可以複製文件連結，並且與同事共用。 
 
 ## <a name="threat-modeling-meetings"></a>威脅模型化會議
 
@@ -142,4 +143,4 @@ Ricardo 進入 [資訊洩漏] 底下的威脅時，他理解到存取控制計�
 
 ## <a name="next-steps"></a>後續步驟
 
-將您的問題、註解和考量傳送到 tmtextsupport@microsoft.com。**[下載](https://aka.ms/tmtpreview)**威脅模型化工具來開始。
+將您的問題、註解和考量傳送到 tmtextsupport@microsoft.com。 **[下載](https://aka.ms/tmtpreview)** 威脅模型化工具來開始。

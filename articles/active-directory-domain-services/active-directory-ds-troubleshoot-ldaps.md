@@ -7,18 +7,20 @@ author: eringreenlee
 manager: ''
 editor: ''
 ms.assetid: 81208c0b-8d41-4f65-be15-42119b1b5957
-ms.service: active-directory-ds
+ms.service: active-directory
+ms.component: domain-services
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 02/21/2018
 ms.author: ergreenl
-ms.openlocfilehash: 38885caacfb98f76627854a782aa56d8a609aad9
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: e3a31749407f9ec0494e8452b602ed9966c5ab83
+ms.sourcegitcommit: 9222063a6a44d4414720560a1265ee935c73f49e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 08/03/2018
+ms.locfileid: "39504204"
 ---
 # <a name="azure-ad-domain-services---troubleshooting-secure-ldap-configuration"></a>Azure AD Domain Services - 針對安全 LDAP 設定進行疑難排解
 
@@ -44,7 +46,7 @@ ms.lasthandoff: 03/16/2018
    4. 輸入 "636" 作為目的地連接埠範圍。
    5. 通訊協定為 **TCP**。
    6. 為規則提供適當的名稱、描述和優先順序。 此規則的優先順序應高於「全部拒絕」規則的優先順序 (如果有的話)。
-   7. 按一下 [SERVICEPRINCIPAL] 。
+   7. 按一下 [確定]。
 5. 確認規則已建立。
 6. 請在兩個小時後檢查網域的健康情況，以確保您已正確完成所有步驟。
 
@@ -56,7 +58,7 @@ ms.lasthandoff: 03/16/2018
 
 **警示訊息：**
 
-受控網域的安全 LDAP 憑證將於 XX 到期。
+*受控網域的安全 LDAP 憑證將於 [date] 到期。*
 
 **解決方案：**
 

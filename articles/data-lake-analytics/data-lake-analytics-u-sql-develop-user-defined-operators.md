@@ -1,35 +1,29 @@
 ---
-title: 開發 U-SQL 使用者定義的運算子 (UDO) | Microsoft Docs
-description: '了解如何開發使用者定義的運算子，以用於和重複用於 Data Lake Analytics 作業中。 '
+title: 在 Azure Data Lake Analytics 中開發 U-SQL 使用者定義運算子 (UDO)
+description: 了解如何開發使用者定義的運算子，以用於和重複用於 Azure Data Lake Analytics 作業中。
 services: data-lake-analytics
-documentationcenter: ''
-author: saveenr
-manager: kfile
-editor: cgronlun
-ms.assetid: e5189e4e-9438-46d1-8686-ed4836bf3356
 ms.service: data-lake-analytics
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 12/05/2016
+author: saveenr
 ms.author: saveenr
-ms.openlocfilehash: 7c0b9c193f8f1c3a3043824186e337f942ebfd56
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.reviewer: jasonwhowell
+ms.assetid: e5189e4e-9438-46d1-8686-ed4836bf3356
+ms.topic: conceptual
+ms.date: 12/05/2016
+ms.openlocfilehash: 9751801449eebc5d07ca4bbb9b408d9679fef24e
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43040985"
 ---
 # <a name="develop-u-sql-user-defined-operators-udos"></a>開發 U-SQL 使用者定義的運算子 (UDO)
-了解如何開發使用者定義的運算子來處理 U-SQL 作業中的資料。
-
-如需有關開發 U-SQL 一般用途組件的指示，請參閱[針對 Azure Data Lake Analytics 作業開發 U-SQL 組件](data-lake-analytics-u-sql-develop-assemblies.md)
+本文說明如何開發使用者定義的運算子，來處理 U-SQL 作業中的資料。
 
 ## <a name="define-and-use-a-user-defined-operator-in-u-sql"></a>在 U-SQL 中定義和使用使用者定義的運算子
 **建立和提交 U-SQL 工作**
 
 1. 從 Visual Studio 中，選取 [檔案] > [新增] > [專案] > [U-SQL 專案]。
-2. 按一下 [SERVICEPRINCIPAL] 。 Visual Studio 會建立具有 Script.usql 檔案的解決方案。
+2. 按一下 [確定]。 Visual Studio 會建立具有 Script.usql 檔案的解決方案。
 3. 在 [方案總管] 中展開 Script.usql，然後按兩下 **Script.usql.cs**。
 4. 將下列程式碼貼到檔案中：
 
@@ -130,5 +124,5 @@ ms.lasthandoff: 03/16/2018
 2. 展開範例、展開輸出，然後按兩下 [Drivers.csv] 。
 
 ## <a name="see-also"></a>另請參閱
-* [使用使用者程式碼延伸 U-SQL 運算式](https://msdn.microsoft.com/en-us/library/azure/mt621316.aspx)
+* [使用使用者程式碼延伸 U-SQL 運算式](https://msdn.microsoft.com/library/azure/mt621316.aspx)
 * [使用適用於 Visual Studio 的 Data Lake 工具來開發 U-SQL 應用程式](data-lake-analytics-data-lake-tools-get-started.md)

@@ -1,24 +1,22 @@
 ---
-title: 使用 Azure Site Recovery 設定 Azure VM 到次要 Azure 區域的災害復原 (預覽)
+title: 使用 Azure Site Recovery 設定 Azure VM 到次要 Azure 區域的災害復原
 description: 了解如何使用 Azure Site Recovery 服務，設定 Azure VM 到不同 Azure 區域的災害復原。
 services: site-recovery
 author: rayne-wiselman
 manager: carmonm
 ms.service: site-recovery
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: storage-backup-recovery
-ms.date: 03/16/2018
+ms.topic: tutorial
+ms.date: 10/10/2018
 ms.author: raynew
 ms.custom: mvc
-ms.openlocfilehash: 7dd0bfbd96e6ba7b5d2174334419797c4fd60a51
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: 0404774f1cb347ceead8b78d1a9a6506712dea5c
+ms.sourcegitcommit: 7b0778a1488e8fd70ee57e55bde783a69521c912
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 10/10/2018
+ms.locfileid: "49069092"
 ---
-# <a name="set-up-disaster-recovery-for-azure-vms-to-a-secondary-azure-region-preview"></a>設定 Azure VM 到次要 Azure 區域的災害復原 (預覽)
+# <a name="set-up-disaster-recovery-for-azure-vms-to-a-secondary-azure-region"></a>設定 Azure VM 到次要 Azure 區域的災害復原
 
 [Azure Site Recovery](site-recovery-overview.md) 服務可藉由管理及協調內部部署電腦與 Azure 虛擬機器 (VM) 的複寫、容錯移轉及容錯回復，為您的災害復原策略做出貢獻。
 
@@ -30,7 +28,8 @@ ms.lasthandoff: 03/28/2018
 > * 設定 VM 的輸出存取
 > * 啟用 VM 複寫
 
-## <a name="prerequisites"></a>先決條件
+
+## <a name="prerequisites"></a>必要條件
 
 若要完成本教學課程：
 
@@ -77,7 +76,7 @@ ms.lasthandoff: 03/28/2018
 
 ### <a name="outbound-connectivity-for-ip-address-ranges"></a>IP 位址範圍的輸出連線能力
 
-使用任何以 IP 為基礎的防火牆、Proxy 或 NSG 規則來控制輸出連線能力時，必須將下列 IP 位址範圍列入允許清單。 從下列連結下載範圍清單：
+如果您想要使用 IP 位址而非 URL 來控制輸出連線，則須將適當的資料中心範圍列為白名單；針對以 IP 為基礎的防火牆、Proxy 或 NSG 規則使用 Office 365 位址和服務端點位址。
 
   - [Microsoft Azure 資料中心 IP 範圍](http://www.microsoft.com/en-us/download/details.aspx?id=41653)
   - [德國 Windows Azure 資料中心 IP 範圍](http://www.microsoft.com/en-us/download/details.aspx?id=54770)
@@ -85,7 +84,7 @@ ms.lasthandoff: 03/28/2018
   - [Office 365 URL 與 IP 位址範圍](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2#bkmk_identity)
   - [Site Recovery 服務端點 IP 位址](https://aka.ms/site-recovery-public-ips)
 
-使用這些清單，在您的網路中設定網路存取控制。 您可以使用此[指令碼](https://gallery.technet.microsoft.com/Azure-Recovery-script-to-0c950702)來建立所需的 NSG 規則。
+您可以使用此[指令碼](https://gallery.technet.microsoft.com/Azure-Recovery-script-to-0c950702)來建立所需的 NSG 規則。
 
 ## <a name="verify-azure-vm-certificates"></a>驗證 Azure VM 憑證
 
@@ -101,29 +100,30 @@ Azure Site Recovery 提供 3 種內建角色，以控制 Site Recovery 管理作
 
 - **Site Recovery 參與者**：此角色具有在復原服務保存庫中管理 Azure Site Recovery 作業所需的所有權限。 不過，具有此角色的使用者無法建立或刪除復原服務保存庫，也無法為其他使用者指派存取權限。 此角色最適合災害復原系統管理員，他們可以為應用程式或整個組織啟用和管理災害復原。
 
-- **Site Recovery 操作員**：此角色具有執行和管理容錯移轉和容錯回復作業的權限。 具有此角色的使用者無法啟用或停用複寫、建立或刪除保存庫、註冊新的基礎結構，也無法為其他使用者指派存取權限。 此角色最適合災害復原操作員，在應用程式擁有者和 IT 系統管理員的指示下，操作員可以對虛擬機器或應用程式進行容錯移轉。 災害解決後，災害復原操作員可以重新保護和容錯回復虛擬機器。
+- **Site Recovery 操作員** - 此角色具有執行和管理容錯移轉和容錯回復作業的權限。 具有此角色的使用者無法啟用或停用複寫、建立或刪除保存庫、註冊新的基礎結構，也無法為其他使用者指派存取權限。 此角色最適合災害復原操作員，在應用程式擁有者和 IT 系統管理員的指示下，操作員可以對虛擬機器或應用程式進行容錯移轉。 災害解決後，災害復原操作員可以重新保護和容錯回復虛擬機器。
 
 - **Site Recovery 讀者**：此角色擁有可檢視所有 Site Recovery 管理作業的權限。 此角色最適合 IT 監督主管，以便監控目前的保護狀態並提出支援票證。
 
-深入了解 [Azure RBAC 內建角色](../active-directory/role-based-access-built-in-roles.md)
+深入了解 [Azure RBAC 內建角色](../role-based-access-control/built-in-roles.md)
 
 ## <a name="enable-replication"></a>啟用複寫
 
 ### <a name="select-the-source"></a>選取來源
 
 1. 在復原服務保存庫中，按一下 [+複寫]。
-2. 在 [來源] 中，選取 [Azure-PREVIEW]。
+2. 在 [來源] 中，選取 [Azure]。
 3. 在 [來源位置] 中，選取 VM 目前執行所在的來源 Azure 區域。
 4. 選取 VM 的 **Azure 虛擬機器部署模型**：[Resource Manager] 或 [傳統]。
-5. 對於 Resource Manager VM 選取**來源資源群組**，或對於傳統 VM 選取**雲端服務**。
-6. 按一下 [確定]  來儲存設定。
+5. 選取虛擬機器執行所在的**來源訂用帳戶**。 這可以是您的復原服務保存庫所在的相同 Azure Active Directory 租用戶內的任何訂用帳戶。
+6. 針對 Resource Manager VM 選取**來源資源群組**，或針對傳統 VM 選取**雲端服務**。
+7. 按一下 [確定]  來儲存設定。
 
 ### <a name="select-the-vms"></a>選取 VM
 
 Site Recovery 會擷取與訂用帳戶和資源群組/雲端服務相關聯的 VM 清單。
 
 1. 在 [虛擬機器] 中，選取您要複寫的 VM。
-2. 按一下 [SERVICEPRINCIPAL] 。
+2. 按一下 [確定]。
 
 ### <a name="configure-replication-settings"></a>設定複寫設定
 
@@ -135,9 +135,11 @@ Site Recovery 會設定目標區域的預設設定和複寫原則。 您可以�
   ![配置設定](./media/azure-to-azure-tutorial-enable-replication/settings.png)
 
 
+- **目標訂用帳戶**：用於災害復原的目標訂用帳戶。 根據預設，目標訂用帳戶會與來源訂用帳戶相同。 按一下 [自訂]，選取相同 Azure Active Directory 租用戶內的不同目標訂用帳戶。
+
 - **目標位置**：用於災害復原的目標區域。 我們建議目標位置符合 Site Recovery 保存庫的位置。
 
-- **目標資源群組**：目標區域中在容錯移轉後保留 Azure VM 的資源群組。 根據預設，Site Recovery 會在目標區域中建立具有 "asr" 尾碼的新資源群組。
+- **目標資源群組**：目標區域中在容錯移轉後保留 Azure VM 的資源群組。 根據預設，Site Recovery 會在目標區域中建立具有 "asr" 尾碼的新資源群組。 目標資源群組的資源群組位置可以是任何區域，但是裝載您來源虛擬機器所在的區域除外。
 
 - **目標虛擬網路**：目標區域中 VM 在容錯移轉後所在的網路。
   根據預設，Site Recovery 會在目標區域中建立具有 "asr" 尾碼的新虛擬網路 (和子網路)。
@@ -167,6 +169,19 @@ Site Recovery 會設定目標區域的預設設定和複寫原則。 您可以�
 
 > [!IMPORTANT]
   如果您啟用多部 VM 一致性，則複寫群組中的機器會透過連接埠 20004 彼此通訊。 請確定並沒有防火牆應用裝置封鎖了 VM 之間透過連接埠 20004 進行的內部通訊。 如果您想要讓 Linux VM 成為複寫群組的一部分，請確定已根據特定 Linux 版本的指引手動開啟連接埠 20004上 的輸出流量。
+
+### <a name="configure-encryption-settings"></a>加密設定
+
+如果來源虛擬機器已啟用 Azure 磁碟加密 (ADE)，則會出現下方的加密設定區段。
+
+- **磁碟加密金鑰保存庫**：依預設，Azure Site Recovery 會根據來源 VM 磁碟加密金鑰，在目標區域中建立名稱尾端有 "asr" 的新金鑰保存庫。 如果 Azure Site Recovery 建立的金鑰保存庫已經存在，則會重複使用。
+- **金鑰加密金鑰保存庫**：依預設，Azure Site Recovery 會根據來源 VM 金鑰加密金鑰，在目標區域中建立名稱尾端有 "asr" 的新金鑰保存庫。 如果 Azure Site Recovery 建立的金鑰保存庫已經存在，則會重複使用。
+
+您可以按一下加密設定旁的 [自訂] 來覆寫預設值，以及選取自訂金鑰保存庫。
+
+>[!NOTE]
+>Azure Site Recovery 目前僅支援執行 Windows OS 及[可以使用 Azure AD 應用程式進行加密](https://aka.ms/ade-aad-app)的 Azure VM。
+>
 
 ### <a name="track-replication-status"></a>追蹤複寫狀態
 

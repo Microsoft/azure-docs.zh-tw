@@ -1,26 +1,23 @@
 ---
 title: 適用於 B2B 企業整合的 AS2 訊息 - Azure Logic Apps | Microsoft Docs
-description: 利用 Azure Logic Apps 交換適用於 B2B 企業整合的 AS2 訊息
+description: 在採用 Enterprise Integration Pack 的 Azure Logic Apps 中交換適用於 B2B 企業整合的 AS2 訊息
 services: logic-apps
-documentationcenter: .net,nodejs,java
-author: divyaswarnkar
-manager: anneta
-editor: ''
-ms.assetid: c9b7e1a9-4791-474c-855f-988bd7bf4b7f
 ms.service: logic-apps
-ms.workload: integration
-ms.tgt_pltfrm: na
-ms.devlang: na
+ms.suite: integration
+author: divyaswarnkar
+ms.author: divswa
+ms.reviewer: jonfan, estfan, LADocs
 ms.topic: article
+ms.assetid: c9b7e1a9-4791-474c-855f-988bd7bf4b7f
 ms.date: 06/08/2017
-ms.author: LADocs; divswa
-ms.openlocfilehash: acc66f2cc88734b5c15fb9f4ace8339908418463
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: 2604cdd6bf758858328c2d30fc4cde535f0a7148
+ms.sourcegitcommit: 2ad510772e28f5eddd15ba265746c368356244ae
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "43124657"
 ---
-# <a name="exchange-as2-messages-for-enterprise-integration-with-logic-apps"></a>利用邏輯應用程式交換適用於企業整合的 AS2 訊息
+# <a name="exchange-as2-messages-for-b2b-enterprise-integration-in-azure-logic-apps-with-enterprise-integration-pack"></a>在採用 Enterprise Integration Pack 的 Azure Logic Apps 中交換適用於 B2B 企業整合的 AS2 訊息
 
 您必須先建立 AS2 合約並將該合約儲存在您的整合帳戶中，才可以交換 AS2 訊息。 以下是如何建立 AS2 合約的步驟。
 
@@ -65,7 +62,7 @@ ms.lasthandoff: 03/16/2018
 
     | 屬性 | 說明 |
     | --- | --- |
-    | Name |合約的名稱 |
+    | 名稱 |合約的名稱 |
     | 合約類型 | 應該是 AS2 |
     | 主控夥伴 |合約需要主控夥伴和來賓夥伴。 主機夥伴代表設定合約的組織。 |
     | 主控身分識別 |主控夥伴的識別碼 |

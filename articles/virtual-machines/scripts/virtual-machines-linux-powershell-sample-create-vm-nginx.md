@@ -1,26 +1,27 @@
 ---
-title: "Azure PowerShell 指令碼範例 - NGINX | Microsoft Docs"
-description: "Azure PowerShell 指令碼範例 - NGINX"
+title: Azure PowerShell 指令碼範例 - NGINX | Microsoft Docs
+description: Azure PowerShell 指令碼範例 - NGINX
 services: virtual-machines-linux
 documentationcenter: virtual-machines
-author: neilpeterson
-manager: timlt
+author: cynthn
+manager: jeconnoc
 editor: tysonn
 tags: azure-service-management
-ms.assetid: 
+ms.assetid: ''
 ms.service: virtual-machines-linux
 ms.devlang: na
 ms.topic: sample
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 03/01/2017
-ms.author: nepeters
+ms.author: cynthn
 ms.custom: mvc
-ms.openlocfilehash: e4b2a02d6019d7610fc1dce95d94efa764c6f04c
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: ae3e9a8a32a47aa9d7cb68616a7d3c850bda48fe
+ms.sourcegitcommit: 2b2129fa6413230cf35ac18ff386d40d1e8d0677
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/30/2018
+ms.locfileid: "43247109"
 ---
 # <a name="create-an-nginx-vm-with-powershell"></a>使用 PowerShell 建立 NGINX VM
 
@@ -34,7 +35,7 @@ ms.lasthandoff: 10/11/2017
 
 [!code-powershell[main](../../../powershell_scripts/virtual-machine/create-vm-nginx/create-vm-nginx.ps1 "Create VM NGINX")]
 
-## <a name="clean-up-deployment"></a>清除部署 
+## <a name="clean-up-deployment"></a>清除部署
 
 執行下列命令來移除資源群組、VM 和所有相關資源。
 

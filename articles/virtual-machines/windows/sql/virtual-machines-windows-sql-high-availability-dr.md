@@ -1,11 +1,11 @@
 ---
-title: "SQL Server 高可用性和災害復原 | Microsoft Docs"
-description: "討論適用於在「Azure 虛擬機器」中執行之 SQL Server 的各種 HADR 策略。"
+title: SQL Server 高可用性和災害復原 | Microsoft Docs
+description: 討論適用於在「Azure 虛擬機器」中執行之 SQL Server 的各種 HADR 策略。
 services: virtual-machines-windows
 documentationcenter: na
 author: MikeRayMSFT
 manager: craigg
-editor: 
+editor: ''
 tags: azure-service-management
 ms.assetid: 53981f7e-8370-4979-b26a-93a5988d905f
 ms.service: virtual-machines-sql
@@ -20,6 +20,7 @@ ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 02/21/2018
+ms.locfileid: "29401254"
 ---
 # <a name="high-availability-and-disaster-recovery-for-sql-server-in-azure-virtual-machines"></a>Azure 虛擬機器中的 SQL Server 高可用性和災害復原
 

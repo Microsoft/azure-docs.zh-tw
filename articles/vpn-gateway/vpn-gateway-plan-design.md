@@ -1,11 +1,11 @@
 ---
-title: "跨單位連線的規劃和設計：Azure VPN 閘道| Microsoft Docs"
-description: "深入了解跨單位、混合式和 VNet 對 VNet 連線的 VPN 閘道規劃與設計"
+title: 跨單位連線的規劃和設計：Azure VPN 閘道| Microsoft Docs
+description: 深入了解跨單位、混合式和 VNet 對 VNet 連線的 VPN 閘道規劃與設計
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
 manager: timlt
-editor: 
+editor: ''
 tags: azure-service-management,azure-resource-manager
 ms.assetid: d5aaab83-4e74-4484-8bf0-cc465811e757
 ms.service: vpn-gateway
@@ -20,6 +20,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23125476"
 ---
 # <a name="planning-and-design-for-vpn-gateway"></a>規劃與設計 VPN 閘道
 

@@ -1,12 +1,12 @@
 ---
-title: "使用 Chef 的 Azure 虛擬機器部署 | Microsoft Docs"
-description: "了解如何使用 Chef 執行自動化的虛擬機器部署和設定 Microsoft Azure"
+title: 使用 Chef 的 Azure 虛擬機器部署 | Microsoft Docs
+description: 了解如何使用 Chef 執行自動化的虛擬機器部署和設定 Microsoft Azure
 services: virtual-machines-windows
-documentationcenter: 
+documentationcenter: ''
 author: diegoviso
-manager: timlt
+manager: jeconnoc
 tags: azure-service-management,azure-resource-manager
-editor: 
+editor: ''
 ms.assetid: 0b82ca70-89ed-496d-bb49-c04ae59b4523
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
@@ -15,11 +15,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/30/2017
 ms.author: diviso
-ms.openlocfilehash: 9dabf666c633b59c7d1f9478b0e9cfe9d313e129
-ms.sourcegitcommit: a5f16c1e2e0573204581c072cf7d237745ff98dc
+ms.openlocfilehash: 3a6fbc8410dbc5aec4522f0972a29c67527edb23
+ms.sourcegitcommit: 387d7edd387a478db181ca639db8a8e43d0d75f7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/11/2017
+ms.lasthandoff: 08/10/2018
+ms.locfileid: "40037978"
 ---
 # <a name="automating-azure-virtual-machine-deployment-with-chef"></a>使用 Chef 自動化 Azure 虛擬機器部署
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
@@ -58,7 +59,7 @@ Chef 工作站是系統管理工作站，我們可以在這裡建立原則並執
 
 我們現在必須下載 Azure 設定檔，Chef 才能與 Azure 訂用帳戶進行通訊。
 
-使用 PowerShell Azure [Get-AzurePublishSettingsFile](https://docs.microsoft.com/powershell/module/azure/get-azurepublishsettingsfile?view=azuresmps-4.0.0) 命令來下載您的發佈設定。 
+使用 PowerShell Azure [Get-AzurePublishSettingsFile](https://docs.microsoft.com/powershell/module/servicemanagement/azure/get-azurepublishsettingsfile?view=azuresmps-4.0.0) 命令來下載您的發佈設定。 
 
 將發行設定檔儲存在 C:\chef 中。
 
@@ -202,7 +203,7 @@ Chef 會使用 Cookbook 來定義一組您想在受控用戶端上執行的命�
 這些參數一看就懂。 替換特定變數並執行。
 
 > [!NOTE]
-> 透過命令列，我還打算使用 -tcp-endpoints 參數將端點網路篩選器規則自動化。 我已經開放連接埠 80 和 3389 以供網頁和 RDP 工作階段存取。
+> 透過命令列，我還打算使用 -tcp-endpoints 參數將端點網路篩選規則自動化。 我已經開放連接埠 80 和 3389 以供網頁和 RDP 工作階段存取。
 > 
 > 
 

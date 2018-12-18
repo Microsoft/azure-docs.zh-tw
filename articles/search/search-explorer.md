@@ -1,34 +1,23 @@
 ---
-title: "查詢索引 (入口網站 - Azure 搜尋服務) | Microsoft Docs"
-description: "在 Azure 入口網站的搜尋總管中發出搜尋查詢。"
+title: 在 Azure 搜尋服務中使用搜尋總管查詢索引 | Microsoft Docs
+description: 了解如何在 Azure 搜尋服務中使用搜尋總管來查詢索引。
+manager: cgronlun
+author: HeidiSteen
 services: search
-manager: jhubbard
-documentationcenter: 
-author: ashmaka
-ms.assetid: 8e524188-73a7-44db-9e64-ae8bf66b05d3
 ms.service: search
-ms.devlang: NA
-ms.workload: search
-ms.topic: get-started-article
-ms.tgt_pltfrm: na
-ms.date: 07/10/2017
-ms.author: ashmaka
-ms.openlocfilehash: dd68d8ed073bf7b8666ddef35a2f1f84df690b4b
-ms.sourcegitcommit: 68aec76e471d677fd9a6333dc60ed098d1072cfc
+ms.topic: conceptual
+ms.date: 07/10/2018
+ms.author: heidist
+ms.openlocfilehash: 520d9e7b1899c54d922ff6fb77e0901f9609b029
+ms.sourcegitcommit: e0a678acb0dc928e5c5edde3ca04e6854eb05ea6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/18/2017
+ms.lasthandoff: 07/13/2018
+ms.locfileid: "39004128"
 ---
-# <a name="query-an-azure-search-index-using-search-explorer-in-the-azure-portal"></a>在 Azure 入口網站中使用搜尋總管查詢 Azure 搜尋服務索引
-> [!div class="op_single_selector"]
-> * [概觀](search-query-overview.md)
-> * [入口網站](search-explorer.md)
-> * [.NET](search-query-dotnet.md)
-> * [REST](search-query-rest-api.md)
-> 
-> 
+# <a name="how-to-use-search-explorer-to-query-indexes-in-azure-search"></a>如何在 Azure 搜尋服務中使用搜尋總管來查詢索引 
 
-本文說明如何在 Azure 入口網站中使用**搜尋總管**查詢 Azure 搜尋服務索引。 您可以使用搜尋總管，在您的服務中對於任何現有的索引送出簡單或完整的 Lucene 查詢字串。
+本文說明如何在 Azure 入口網站中使用**搜尋總管**查詢現有的 Azure 搜尋服務索引。 您可以使用搜尋總管，在您的服務中對於任何現有的索引送出簡單或完整的 Lucene 查詢字串。
 
 ## <a name="open-the-service-dashboard"></a>開啟服務儀表板
 1. 按一下 [Azure 入口網站](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices)左側導向列中的 [所有資源]。
@@ -48,7 +37,7 @@ ms.lasthandoff: 12/18/2017
 
 ## <a name="start-searching"></a>開始搜尋
 
-使用 [搜尋總管] 時可以指定任何 [查詢參數](https://docs.microsoft.com/rest/api/searchservice/Search-Documents)以編寫查詢。
+使用 [搜尋總管] 時可以指定任何[查詢參數](https://docs.microsoft.com/rest/api/searchservice/Search-Documents)以編寫查詢。
 
 1. 在 [查詢字串] 中輸入查詢，然後按 [搜尋]。 
 

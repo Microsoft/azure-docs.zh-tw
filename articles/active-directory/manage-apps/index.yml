@@ -1,0 +1,48 @@
+### YamlMime:YamlDocument
+ms.openlocfilehash: ee1e311644052bb7c09b44fb55973bfa7c0a0c11
+ms.sourcegitcommit: 3150596c9d4a53d3650cc9254c107871ae0aab88
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47419129"
+documentType: LandingData
+title: 應用程式管理文件
+metadata:
+  title: Azure Active Directory 應用程式管理文件
+  meta.description: Learn how to manage and deploy applications with Azure Active Directory.
+  services: active-directory
+  author: barbkess
+  manager: mtillman
+  layout: LandingPage
+  ms.assetid: 
+  ms.service: active-directory
+  ms.topic: landing-page
+  ms.date: 09/14/2018
+  ms.author: barbkess
+abstract:
+  description: 了解如何使用 Azure Active Directory 管理和部署 應用程式。
+sections:
+- title: 5 分鐘快速入門
+  items:
+  - type: paragraph
+    text: 了解如何為透過 Azure Active Directory 存取的使用者新增應用程式。
+  - type: list
+    style: icon48
+    items:
+    - image:
+        src: https://docs.microsoft.com/media/common/i_protect.svg
+      text: 新增應用程式
+      href: https://docs.microsoft.com/azure/active-directory/manage-apps/add-application-portal
+    - image:
+        src: https://docs.microsoft.com/media/common/i_protect.svg
+      text: 檢視您的應用程式
+      href: https://docs.microsoft.com/azure/active-directory/manage-apps/view-applications-portal
+- title: 逐步教學課程
+  items:
+  - type: paragraph
+    text: 了解如何為應用程式啟用簡單且安全的登入程序。
+  - type: list
+    style: unordered
+    items:
+    - html: <a href="https://docs.microsoft.com/azure/active-directory/manage-apps/saas-apps/">Saas 應用程式教學課程</a>
+    - html: <a href="/azure/active-directory/manage-apps/configure-single-sign-on-portal">設定單一登入</a>

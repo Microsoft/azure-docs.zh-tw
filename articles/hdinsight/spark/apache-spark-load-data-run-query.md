@@ -1,90 +1,70 @@
 ---
-title: "在 Azure HDInsight Spark 叢集上執行互動式查詢 | Microsoft Docs"
-description: "HDInsight Spark 快速入門會說明如何在 HDInsight 中建立 Apache Spark 叢集。"
-keywords: "spark 快速入門, 互動式 spark, 互動式查詢, hdinsight spark, azure spark"
-services: hdinsight
-documentationcenter: 
-author: mumian
-manager: cgronlun
-editor: cgronlun
-tags: azure-portal
+title: '教學課程：在 Azure HDInsight 中的 Apache Spark 叢集上載入資料和執行查詢 '
+description: 了解如何在 Azure HDInsight 中的 Spark 叢集上載入資料和執行互動式查詢。
+services: azure-hdinsight
+author: jasonwhowell
+ms.reviewer: jasonh
 ms.service: hdinsight
-ms.custom: hdinsightactive,hdiseo17may2017
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
-ms.date: 11/29/2017
-ms.author: jgao
-ms.openlocfilehash: 78ab44a7afa6523e1e9e4082b3f45b1a28affe77
-ms.sourcegitcommit: a48e503fce6d51c7915dd23b4de14a91dd0337d8
+ms.custom: hdinsightactive,mvc
+ms.topic: tutorial
+ms.author: jasonh
+ms.date: 05/17/2018
+ms.openlocfilehash: d59f04c5dde522f3d193f345ac59147ece9d86f0
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/05/2017
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43047552"
 ---
-# <a name="run-interactive-queries-on-spark-clusters-in-hdinsight"></a>在 HDInsight 中的 Spark 叢集上執行互動式查詢
+# <a name="tutorial-load-data-and-run-queries-on-an-apache-spark-cluster-in-azure-hdinsight"></a>教學課程：在 Azure HDInsight 中的 Apache Spark 叢集上載入資料和執行查詢
 
-了解如何使用 Jupyter Notebook，針對 Spark 叢集執行互動式 Spark SQL 查詢。 
+在本教學課程中，您將了解如何從 csv 檔案建立資料框架，以及如何在 Azure HDInsight 中對 Apache Spark 叢集執行互動式 Spark SQL 查詢。 在 Spark 中，資料框架是組織成具名資料行的分散式資料集合。 資料框架在概念上等同於關聯式資料庫中的資料表或 R/Python 中的資料框架。
+ 
+在本教學課程中，您了解如何：
+> [!div class="checklist"]
+> * 從 csv 檔案建立資料框架
+> * 在資料框架上執行查詢
 
-[Jupyter Notebook](http://jupyter-notebook.readthedocs.io/en/latest/notebook.html) \(英文\) 為瀏覽器型應用程式，能將以主控台為基礎的互動式體驗延伸至網路上。 HDInsight 上的 Spark 也包含 [Zeppelin Notebook](apache-spark-zeppelin-notebook.md)。 本教學課程會使用 Jupyter Notebook。
+如果您沒有 Azure 訂用帳戶，請在開始之前先[建立免費帳戶](https://azure.microsoft.com/free/)。
 
-HDInsight 叢集上的 Jupyter Notebook 支援三種核心：**PySpark**、**PySpark3** 和 **Spark**。 本教學課程會使用 **PySpark** 核心。 如需核心的詳細資訊，以及使用 **PySpark**，請參閱[在 HDInsight 中搭配使用 Jupyter Notebook 核心與 Apache Spark 叢集](apache-spark-jupyter-notebook-kernels.md)。 若要使用 Zeppelin Notebook，請參閱[在 Azure HDInsight 上搭配使用 Zeppelin Notebook 和 Apache Spark 叢集](./apache-spark-zeppelin-notebook.md)。
+## <a name="prerequisites"></a>必要條件
 
-在本教學課程中，您會以 csv 檔案查詢資料。 您必須先將該資料載入到 Spark 作為資料框架。 然後您可以使用 Jupyter Notebook 在資料框架上執行查詢。 
-
-## <a name="prerequisites"></a>先決條件
-
-* **Azure HDInsight Spark 叢集**。 如需指示，請參閱[在 Azure HDInsight 中建立 Apache Spark 叢集](apache-spark-jupyter-spark-sql.md)。
-* **使用 PySpark 的 Jupyter Notebook**。 如需指示，請參閱[建立 Jupyter Notebook](./apache-spark-jupyter-spark-sql.md#create-a-jupyter-notebook)。
+* 完成[在 Azure HDInsight 中建立 Apache Spark 叢集](apache-spark-jupyter-spark-sql.md)。
 
 ## <a name="create-a-dataframe-from-a-csv-file"></a>從 csv 檔案建立資料框架
 
-透過 SQLContext，應用程式可從現有的 RDD、Hive 資料表，或是資料來源來建立資料框架。 
+應用程式可使用 SQLContext 物件，從現有的彈性分散式資料集 (RDD)、Hive 資料表或資料來源建立資料框架。 下列螢幕擷取畫面顯示本教學課程中使用之 HVAC.csv 檔案的快照集。 該 csv 檔案會隨附於所有 HDInsight Spark 叢集。 資料會擷取相同建築物的溫度變化。
+    
+![互動式 Spark SQL 查詢的資料快照集](./media/apache-spark-load-data-run-query/hdinsight-spark-sample-data-interactive-spark-sql-query.png "互動式 Spark SQL 查詢的資料快照集")
 
-**從 csv 檔案建立資料框架**
 
-1. 如果您沒有 Jupyter Notebook，請使用 PySpark 建立一個。 如需指示，請參閱[建立 Jupyter Notebook](./apache-spark-jupyter-spark-sql.md#create-a-jupyter-notebook)。
-
+1. 開啟您在必要條件一節中建立的 Jupyter Notebook。
 2. 將以下程式碼貼入 Notebook 的空白儲存格，然後按 **SHIFT + ENTER** 以執行此程式碼。 此程式碼會匯入此案例所需的類型：
 
     ```PySpark
     from pyspark.sql import *
     from pyspark.sql.types import *
     ```
-    透過使用 PySpark 核心來建立 Notebook，當您執行第一個程式碼儲存格時，系統便會自動為您建立 Spark 和 Hive 內容。 您不需要明確建立任何內容。
 
     在 Jupyter 中執行互動式查詢時，網頁瀏覽器視窗或索引標籤標題都會顯示 [(忙碌)] 狀態，以及 Notebook 的標題。 您也會在右上角的 **PySpark** 文字旁看到一個實心圓。 作業完成後，實心圓將變成空心圓。
 
     ![互動式 Spark SQL 查詢的狀態](./media/apache-spark-load-data-run-query/hdinsight-spark-interactive-spark-query-status.png "互動式 Spark SQL 查詢的狀態")
 
-3. 執行下列程式碼來建立資料框架與暫存資料表 (**hvac**)，該程式碼不會擷取 CSV 檔案中的所有可用資料行： 
+3. 執行下列程式碼，以建立資料框架和暫存資料表 (**hvac**)。 
 
     ```PySpark
     # Create an RDD from sample data
-    hvacText = sc.textFile("wasbs:///HdiSamples/HdiSamples/SensorSampleData/hvac/HVAC.csv")
-    
-    # Create a schema for our data
-    Entry = Row('Date', 'Time', 'TargetTemp', 'ActualTemp', 'BuildingID')
-    
-    # Parse the data and create a schema
-    hvacParts = hvacText.map(lambda s: s.split(',')).filter(lambda s: s[0] != 'Date')
-    hvac = hvacParts.map(lambda p: Entry(str(p[0]), str(p[1]), int(p[2]), int(p[3]), int(p[6])))
-    
-    # Infer the schema and create a table       
-    hvacTable = sqlContext.createDataFrame(hvac)
-    hvacTable.registerTempTable('hvactemptable')
-    dfw = DataFrameWriter(hvacTable)
-    dfw.saveAsTable('hvac')
+    csvFile = spark.read.csv('wasb:///HdiSamples/HdiSamples/SensorSampleData/hvac/HVAC.csv', header=True, inferSchema=True)
+    csvFile.write.saveAsTable("hvac")
     ```
-    下列螢幕擷取畫面顯示 HVAC.csv 檔案的快照集。 該 csv 檔案會隨附於所有 HDInsight Spark 叢集。 資料會擷取一棟建築物的溫度變化。
 
-    ![互動式 Spark SQL 查詢的資料快照集](./media/apache-spark-load-data-run-query/hdinsight-spark-sample-data-interactive-spark-sql-query.png "互動式 Spark SQL 查詢的資料快照集")
+    > [!NOTE]
+    > 透過使用 PySpark 核心來建立 Notebook，當您執行第一個程式碼儲存格時，系統便會自動為您建立 SQL 內容。 您不需要明確建立任何內容。
+
 
 ## <a name="run-queries-on-the-dataframe"></a>在資料框架上執行查詢
 
 建立資料表之後，您可以對資料執行互動式查詢。
-
-**執行查詢**
 
 1. 在 Notebook 的空白儲存格中，執行下列程式碼：
 
@@ -93,9 +73,9 @@ HDInsight 叢集上的 Jupyter Notebook 支援三種核心：**PySpark**、**PyS
     SELECT buildingID, (targettemp - actualtemp) AS temp_diff, date FROM hvac WHERE date = \"6/1/13\"
     ```
 
-   由於 PySpark 核心用於 Notebook 中，因此您現在可直接在剛才使用 `%%sql` magic 建立的暫存資料表 **hvac** 上執行互動式 SQL 查詢。 如需 `%%sql` magic 及 PySpark 核心提供的其他 magic 的詳細資訊，請參閱 [使用 Spark HDInsight 叢集之 Jupyter Notebook 上可用的核心](apache-spark-jupyter-notebook-kernels.md#parameters-supported-with-the-sql-magic)。
+   由於 PySpark 核心用於 Notebook 中，因此您現在可直接在暫存資料表 **hvac** 上執行互動式 SQL 查詢。
 
-   預設會顯示下列表格式輸出。
+   此時會顯示下列表格式輸出。
 
      ![互動式 Spark 查詢結果的資料表輸出](./media/apache-spark-load-data-run-query/hdinsight-interactive-spark-query-result.png "互動式 Spark 查詢結果的資料表輸出")
 
@@ -103,17 +83,28 @@ HDInsight 叢集上的 Jupyter Notebook 支援三種核心：**PySpark**、**PyS
 
     ![互動式 Spark 查詢結果的區域圖表](./media/apache-spark-load-data-run-query/hdinsight-interactive-spark-query-result-area-chart.png "互動式 Spark 查詢結果的區域圖表")
 
-10. 從 Notebook 的 [檔案] 功能表中，按一下 [儲存與檢查點]。 
+10. 從 Notebook 的 [檔案] 功能表中，選取 [儲存與檢查點]。 
 
-11. 如果您現在要開始進行[下一個教學課程](apache-spark-use-bi-tools.md)，請讓 Notebook 保持開啟。 如果尚不進行，請關閉 Notebook 以釋出叢集資源：從 Notebook 上的 [檔案] 功能表，按一下 [關閉並停止]。
+11. 如果您現在要開始進行[下一個教學課程](apache-spark-use-bi-tools.md)，請讓 Notebook 保持開啟。 如果尚不進行，請關閉 Notebook 以釋出叢集資源：從 Notebook 上的 [檔案] 功能表，選取 [關閉並終止]。
 
-## <a name="next-step"></a>後續步驟
+## <a name="clean-up-resources"></a>清除資源
 
-在本文中，您已學會如何使用 Jupyter Notebook 在 Spark 中執行互動式查詢。 前往下一篇文章，以查看如何將您在 Spark 中註冊的資料提取至 BI分析工具，例如 Power BI 和 Tableau BI。 
+利用 HDInsight，會將您的資料儲存於 Azure 儲存體或 Azure Data Lake Store 中，以便您在未使用叢集時安全地進行刪除。 您也需支付 HDInsight 叢集的費用 (即使未使用)。 由於叢集費用是儲存體費用的許多倍，所以刪除未使用的叢集符合經濟效益。 如果您打算立即進行下一個教學課程，則可能想要保留叢集。
 
+在 Azure 入口網站中開啟叢集，然後選取 [刪除]。
+
+![刪除 HDInsight 叢集](./media/apache-spark-load-data-run-query/hdinsight-azure-portal-delete-cluster.png "刪除 HDInsight 叢集")
+
+您也可以選取資源群組名稱來開啟資源群組頁面，然後選取 [刪除資源群組]。 刪除資源群組時，會同時刪除 HDInsight Spark 叢集及預設儲存體帳戶。
+
+## <a name="next-steps"></a>後續步驟
+
+在本教學課程中，您已了解如何：
+
+* 建立 Spark 資料框架。
+* 對資料框架執行 Spark SQL。
+
+前往下一篇文章，以查看如何將您在 Spark 中註冊的資料提取至 BI 分析工具，例如 Power BI。 
 > [!div class="nextstepaction"]
->[使用資料視覺效果工具搭配 Azure HDInsight 的 Spark BI](apache-spark-use-bi-tools.md)
-
-
-
+> [使用 BI 工具分析資料](apache-spark-use-bi-tools.md)
 

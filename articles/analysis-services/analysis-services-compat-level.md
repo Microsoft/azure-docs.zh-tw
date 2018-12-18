@@ -1,35 +1,29 @@
 ---
-title: "Azure Analysis Services 中的資料模型相容性層級 | Microsoft Docs"
-description: "了解表格式資料模型的相容性層級。"
-services: analysis-services
-documentationcenter: 
+title: Azure Analysis Services 中的資料模型相容性層級 | Microsoft Docs
+description: 了解表格式資料模型的相容性層級。
 author: minewiskan
 manager: kfile
-editor: 
-tags: 
-ms.assetid: 
-ms.service: analysis-services
-ms.devlang: NA
-ms.topic: article
-ms.tgt_pltfrm: NA
-ms.workload: na
-ms.date: 02/14/2018
+ms.service: azure-analysis-services
+ms.topic: conceptual
+ms.date: 07/03/2018
 ms.author: owend
-ms.openlocfilehash: a07514c7734f3cd4be1e11a984151abb8ee3f23d
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.reviewer: minewiskan
+ms.openlocfilehash: 17a75e86d5539427c8837b3077aacf85b4681ad6
+ms.sourcegitcommit: 86cb3855e1368e5a74f21fdd71684c78a1f907ac
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37447518"
 ---
 # <a name="compatibility-level-for-analysis-services-tabular-models"></a>Analysis Services 表格式模型的相容性層級
 
-*相容性層級*是指 Analysis Services 引擎中特定版本的表現方式。 相容性層級的變更通常與 SQL Server 的主要版本相符。 這些變更也會在 Azure Analysis Services 中實作，以維護兩個平台之間的同位。 相容性層級變更也會影響您的表格式模型中的可用功能。 例如，DirectQuery 和表格式物件中繼資料根據相容性層級而有不同的實作方式。 
+*相容性層級*是指 Analysis Services 引擎中特定版本的表現方式。 相容性層級的變更通常與 SQL Server 的主要版本相符。 這些變更也會在 Azure Analysis Services 中實作，以維護兩個平台之間的同位。 相容性層級變更也會影響您表格式模型中的可用功能。 例如，DirectQuery 和表格式物件中繼資料根據相容性層級而有不同的實作方式。 相容性層級會在 Visual Studio (SSDT) 中的表格式模型專案指定。 從 Power BI Desktop 建立及匯入的表格式模型只會在 1400 相容性層級。
 
-Azure Analysis Services 支援 1200 和 1400 相容性層級的表格式模型。
+Azure Analysis Services 支援 1200 和 1400 相容性層級的表格式模型。 
 
 最新的相容性層級是 1400。 此層級與 SQL Server 2017 Analysis Services 一致。 1400 相容性層級中的主要功能包括：
 
-*  資料連線的新基礎結構，以及匯入表格式模型，且支援 TOM API 和 TMSL 指令碼。 這項新功能可支援其他資料來源，例如 Azure Blob 儲存體。
+*  資料連線和匯入的新功能，並支援 TOM API 和 TMSL 指令碼。 
 *  使用 Get Data 與 M 運算式的資料轉換和資料混搭功能。
 *  量值支援使用 DAX 運算式的詳細資料列屬性。 此屬性可讓用戶端工具 (例如 Microsoft Excel) 從彙總的報表向下鑽研到詳細資料。 例如，當使用者依區域和月份檢視總銷售額，他們可以檢視相關的訂單詳細資料。 
 *  除了資料表和資料行名稱中的資料以外，還有其物件層級安全性。

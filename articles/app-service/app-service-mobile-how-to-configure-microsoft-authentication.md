@@ -1,24 +1,25 @@
 ---
-title: "如何為您的應用程式服務應用程式設定 Microsoft 帳戶驗證"
-description: "了解如何為您的應用程式服務應用程式設定 Microsoft 帳戶驗證。"
+title: 如何為您的應用程式服務應用程式設定 Microsoft 帳戶驗證
+description: 了解如何為您的應用程式服務應用程式設定 Microsoft 帳戶驗證。
 author: mattchenderson
 services: app-service
-documentationcenter: 
+documentationcenter: ''
 manager: syntaxc4
-editor: 
+editor: ''
 ms.assetid: ffbc6064-edf6-474d-971c-695598fd08bf
 ms.service: app-service
 ms.workload: mobile
 ms.tgt_pltfrm: na
 ms.devlang: multiple
 ms.topic: article
-ms.date: 10/01/2016
+ms.date: 04/19/2018
 ms.author: mahender
-ms.openlocfilehash: 67386b03ae4cc683fe00e11e8dad19d1442eff09
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: abf09444e92c6faded42a9143b4b5c849a4cf41d
+ms.sourcegitcommit: 67abaa44871ab98770b22b29d899ff2f396bdae3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 10/08/2018
+ms.locfileid: "48853261"
 ---
 # <a name="how-to-configure-your-app-service-application-to-use-microsoft-account-login"></a>如何設定 App Service 應用程式以使用 Microsoft 帳戶登入
 [!INCLUDE [app-service-mobile-selector-authentication](../../includes/app-service-mobile-selector-authentication.md)]
@@ -28,7 +29,7 @@ ms.lasthandoff: 10/11/2017
 ## <a name="register-microsoft-account"> </a>使用 Microsoft 帳戶註冊應用程式
 1. 登入 [Azure 入口網站]，然後瀏覽到您的應用程式。 複製 **URL**，以供稍後使用 Microsoft 帳戶來設定應用程式。
 2. 瀏覽到 Microsoft 帳戶開發人員中心的 [我的應用程式] 頁面，並視需要使用您的 Microsoft 帳戶登入。
-3. 按一下 [新增應用程式]，然後輸入應用程式名稱，再按一下 [建立應用程式]。
+3. 按一下 [新增應用程式]，然後輸入應用程式名稱，再按一下 [建立]。
 4. 請記下 [應用程式識別碼] ，因為稍後您將會用到此資訊。 
 5. 在 [平台] 下，按一下 [新增平台]  ，然後選取 [網站]。
 6. 在 [重新導向 URI] 下，提供應用程式的端點，然後按一下 [儲存] 。 
@@ -41,6 +42,8 @@ ms.lasthandoff: 10/11/2017
 
     > [!IMPORTANT]
     > 密碼是重要的安全性認證。 請勿與任何人共用密碼，或在用戶端應用程式內散佈密碼。
+    
+8. 按一下 [儲存] 
 
 ## <a name="secrets"> </a>將 Microsoft 帳戶資訊新增至 App Service 應用程式
 1. 回到 [Azure 入口網站]，瀏覽至您的應用程式，按一下 [設定] > [驗證/授權]。

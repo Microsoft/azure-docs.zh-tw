@@ -1,24 +1,25 @@
 ---
-title: "在 Azure API 管理開發人員入口網站上自訂網頁樣式 | Microsoft Docs"
-description: "若要在 Azure API 管理開發人員入口網站上自訂元素樣式，請遵循此快速入門中的步驟。"
+title: 在 Azure API 管理開發人員入口網站上自訂網頁樣式 | Microsoft Docs
+description: 若要在 Azure API 管理開發人員入口網站上自訂元素樣式，請遵循此快速入門中的步驟。
 services: api-management
-documentationcenter: 
-author: juliako
+documentationcenter: ''
+author: vladvino
 manager: cfowler
-editor: 
+editor: ''
 ms.service: api-management
 ms.workload: mobile
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.custom: mvc
 ms.topic: tutorial
-ms.date: 11/19/2017
+ms.date: 06/15/2018
 ms.author: apimpm
-ms.openlocfilehash: f427663ba1c437785c8c521925d9f733c45cb40d
-ms.sourcegitcommit: b854df4fc66c73ba1dd141740a2b348de3e1e028
+ms.openlocfilehash: 00e6f2ed866afd13343df37de625e2913f613dfa
+ms.sourcegitcommit: cc4fdd6f0f12b44c244abc7f6bc4b181a2d05302
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/04/2017
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47092398"
 ---
 # <a name="customize-the-style-of-the-developer-portal-pages"></a>自訂開發人員入口網站頁面的風格
 
@@ -28,7 +29,7 @@ ms.lasthandoff: 12/04/2017
 * 更新用於開發人員入口網站上頁面元素的樣式 (如本指南所述)
 * [修改入口網站所產生的網頁用範本](api-management-developer-portal-templates.md) (例如 API 文件、產品、使用者驗證)
 
-在本教學課程中，您了解如何：
+在此教學課程中，您了解如何：
 
 > [!div class="checklist"]
 > * 自訂**開發人員**入口網站頁面的元素樣式
@@ -40,8 +41,6 @@ ms.lasthandoff: 12/04/2017
 
 + 完成下列快速入門：[建立 Azure API 管理執行個體](get-started-create-service-instance.md)。
 + 同時也請完成下列教學課程：[匯入和發佈您的第一個 API](import-and-publish.md)。
-
-[!INCLUDE [api-management-navigate-to-instance.md](../../includes/api-management-navigate-to-instance.md)]
 
 ## <a name="customize-the-developer-portal"></a>自訂開發人員入口網站
 
@@ -77,11 +76,10 @@ ms.lasthandoff: 12/04/2017
 
 ## <a name="next-steps"></a>後續步驟
 
-在本教學課程中，您已了解如何：
+在此教學課程中，您已了解如何：
 
 > [!div class="checklist"]
 > * 自訂**開發人員**入口網站頁面的元素樣式
 > * 檢視變更
 
-> [!div class="nextstepaction"]
-> [使用範本自訂 Azure API 管理開發人員入口網站](api-management-developer-portal-templates.md)
+您可能想要了解[如何使用範本自訂 Azure API 管理開發人員入口網站](api-management-developer-portal-templates.md)。

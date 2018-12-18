@@ -1,27 +1,21 @@
 ---
-title: "Apache Storm 範例 Java 拓撲 - Azure HDInsight | Microsoft Docs"
-description: "了解如何藉由建立範例字數統計拓撲，以使用 Java 建立 Apache Storm 拓撲。"
+title: Apache Storm 範例 Java 拓撲 - Azure HDInsight
+description: 了解如何藉由建立範例字數統計拓撲，以使用 Java 建立 Apache Storm 拓撲。
 services: hdinsight
-documentationcenter: 
-author: Blackmist
-manager: jhubbard
-editor: cgronlun
-tags: azure-portal
-keywords: "apache storm,apache storm 範例,storm java,storm 拓撲範例"
-ms.assetid: a8838f29-9c08-4fd9-99ef-26655d1bf6d7
+author: jasonwhowell
+ms.reviewer: jasonh
+keywords: apache storm,apache storm 範例,storm java,storm 拓撲範例
 ms.service: hdinsight
-ms.devlang: java
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
+ms.topic: conceptual
 ms.date: 02/20/2018
-ms.author: larryfr
+ms.author: jasonh
 ms.custom: H1Hack27Feb2017,hdinsightactive,hdiseo17may2017
-ms.openlocfilehash: 2403261f05d9e5aab2e50939720b3eb007aecd6e
-ms.sourcegitcommit: d1f35f71e6b1cbeee79b06bfc3a7d0914ac57275
+ms.openlocfilehash: 10ea0eb3907abc0a90e589e57970c0e4622a4d56
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/22/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43043924"
 ---
 # <a name="create-an-apache-storm-topology-in-java"></a>在 Java 中建立 Apache Storm 拓撲
 
@@ -30,13 +24,13 @@ ms.lasthandoff: 02/22/2018
 完成這份文件中的步驟之後，您就可以將拓撲部署到 Apache Storm on HDInsight。
 
 > [!NOTE]
-> [https://github.com/Azure-Samples/hdinsight-java-storm-wordcount](https://github.com/Azure-Samples/hdinsight-java-storm-wordcount)有提供本文件中建立之 Storm 拓撲範例的完整版本。
+> 在此文件中建立的 Storm 拓樸範例完整版位於 [https://github.com/Azure-Samples/hdinsight-java-storm-wordcount](https://github.com/Azure-Samples/hdinsight-java-storm-wordcount)。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 * [Java Developer Kit (JDK) 第 8 版](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
-* [Maven (https://maven.apache.org/download.cgi)](https://maven.apache.org/download.cgi)：Maven 是適用於 Java 專案的專案建置系統。
+* [Maven (https://maven.apache.org/download.cgi)](https://maven.apache.org/download.cgi)：Maven 是 Java 專案的專案建置系統。
 
 * 文字編輯器或整合式開發環境 (IDE)。
 
@@ -82,7 +76,7 @@ mvn archetype:generate -DarchetypeArtifactId=maven-archetype-quickstart -DgroupI
 
 ## <a name="add-maven-repositories"></a>新增 Maven 存放庫
 
-HDInsight 是以 Hortonworks Data Platform (HDP) 為基礎，所以我們建議使用 Hortonworks 存放庫來為您的 Apache Storm 專案下載相依性。 在 __pom.xml__ 檔案中，在 `<url>http://maven.apache.org</url>` 行之後新增下列 XML 文字：
+HDInsight 是以 Hortonworks Data Platform (HDP) 為基礎，所以我們建議使用 Hortonworks 存放庫來為您的 Apache Storm 專案下載相依性。 在 __pom.xml__ 檔案中，在 `<url> http://maven.apache.org</url>` 行之後新增下列 XML 文字：
 
 ```xml
 <repositories>
@@ -169,7 +163,7 @@ Maven 外掛程式可讓您自訂專案的建置階段。 例如，如何編譯�
 </build>
 ```
 
-此區段會用來新增外掛程式、資源，和其他組建組態選項。 如需 **pom.xml** 檔案的完整參考，請參閱 [http://maven.apache.org/pom.html](http://maven.apache.org/pom.html)(英文)。
+此區段會用來新增外掛程式、資源，和其他組建組態選項。 如需 **pom.xml** 檔案的完整參考，請參閱 [http://maven.apache.org/pom.html](http://maven.apache.org/pom.html)。
 
 ### <a name="add-plug-ins"></a>新增外掛程式
 
@@ -565,10 +559,10 @@ Storm 使用 Apache Log4j 來記錄資訊。 如果您未設定記錄，拓撲�
 
 `<Root level="error">` 區段會設定記錄的根層級 (不在 `com.microsoft.example` 中的所有項目)，只記錄錯誤資訊。
 
-如需針對 Log4j 設定記錄的詳細資訊，請參閱 [http://logging.apache.org/log4j/2.x/manual/configuration.html](http://logging.apache.org/log4j/2.x/manual/configuration.html)(英文)。
+如需有關設定 Log4j 記錄的詳細資訊，請參閱 [http://logging.apache.org/log4j/2.x/manual/configuration.html](http://logging.apache.org/log4j/2.x/manual/configuration.html)。
 
 > [!NOTE]
-> Storm 0.10.0 和更新版本是使用 Log4j 2.x。 舊版的 Storm 使用 Log4j 1.x，它們使用不同格式的記錄設定。 如需舊版組態的詳細資訊，請參閱 [http://wiki.apache.org/logging-log4j/Log4jXmlFormat](http://wiki.apache.org/logging-log4j/Log4jXmlFormat)(英文)。
+> Storm 0.10.0 和更新版本是使用 Log4j 2.x。 舊版的 Storm 使用 Log4j 1.x，它們使用不同格式的記錄設定。 如需有關舊版組態資訊，請參閱 [http://wiki.apache.org/logging-log4j/Log4jXmlFormat](http://wiki.apache.org/logging-log4j/Log4jXmlFormat)。
 
 ## <a name="test-the-topology-locally"></a>在本機測試拓撲
 
@@ -598,10 +592,10 @@ Flux 是可在 Storm 0.10.0 和更新版本中使用的新架構，可讓您區�
 
 YAML 檔案會定義要用於拓撲的元件以及其間的資料流程。 您可以包含 YAML 檔案作為 jar 檔案的一部分，或者您可以使用外部 YAML 檔案。
 
-如需 Flux 的詳細資訊，請參閱 [Flux 架構 (https://storm.apache.org/releases/0.10.0/flux.html)](https://storm.apache.org/releases/0.10.0/flux.html)。
+如需有關 Flux 的詳細資訊，請參閱 [Flux 架構 (https://storm.apache.org/releases/1.0.6/flux.html)](https://storm.apache.org/releases/1.0.6/flux.html)。
 
 > [!WARNING]
-> 由於發生與 Storm 1.0.1 有關的 [Bug (https://issues.apache.org/jira/browse/STORM-2055) (英文)](https://issues.apache.org/jira/browse/STORM-2055)，因此，您可能需要安裝 [Storm 開發環境 (英文)](https://storm.apache.org/releases/1.0.1/Setting-up-development-environment.html)，以便在本機執行 Flux 拓撲。
+> 由於發生與 Storm 1.0.1 有關的 [Bug (https://issues.apache.org/jira/browse/STORM-2055)](https://issues.apache.org/jira/browse/STORM-2055)，因此，您可能需要安裝 [Storm 開發環境](http://storm.apache.org/releases/current/Setting-up-development-environment.html)，以便在本機執行 Flux 拓撲。
 
 1. 將 `WordCountTopology.java` 檔案移出專案。 以前，此檔案會定義拓撲，但在 Flux 中則不需要此檔案。
 
@@ -720,9 +714,9 @@ YAML 檔案會定義要用於拓撲的元件以及其間的資料流程。 您�
     ```
 
     > [!WARNING]
-    > 如果您的拓撲使用 Storm 1.0.1 位元，此命令就會失敗。 此失敗是由 [https://issues.apache.org/jira/browse/STORM-2055](https://issues.apache.org/jira/browse/STORM-2055) 所造成。 請改為[在開發環境中安裝 Storm](http://storm.apache.org/releases/0.10.0/Setting-up-development-environment.html)，並使用下列步驟：
+    > 如果您的拓撲使用 Storm 1.0.1 位元，此命令就會失敗。 此失敗是由 [https://issues.apache.org/jira/browse/STORM-2055](https://issues.apache.org/jira/browse/STORM-2055) 所造成。 請改為[在開發環境中安裝 Storm](http://storm.apache.org/releases/current/Setting-up-development-environment.html)，並使用下列步驟：
     >
-    > 如果您已[在開發環境中安裝 Storm](http://storm.apache.org/releases/0.10.0/Setting-up-development-environment.html)，您可以改用下列命令：
+    > 如果您已[在開發環境中安裝 Storm](http://storm.apache.org/releases/current/Setting-up-development-environment.html)，您可以改用下列命令：
     >
     > ```bash
     > mvn compile package
@@ -768,7 +762,7 @@ YAML 檔案會定義要用於拓撲的元件以及其間的資料流程。 您�
 
     拓撲啟動後，您應該會注意到批次發出間隔時間已變更，反映了 newtopology.yaml 中的值。 因此您可以看到，您可以透過 YAML 檔案變更組態，而不需要重新編譯拓撲。
 
-如需Flux 架構的這些功能和其他功能的詳細資訊，請參閱 [Flux (https://storm.apache.org/releases/0.10.0/flux.html)](https://storm.apache.org/releases/0.10.0/flux.html)。
+如需Flux 架構的這些功能和其他功能的詳細資訊，請參閱 [Flux (https://storm.apache.org/releases/1.0.6/flux.html)](https://storm.apache.org/releases/1.0.6/flux.html)。
 
 ## <a name="trident"></a>Trident
 

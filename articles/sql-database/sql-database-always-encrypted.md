@@ -3,18 +3,19 @@ title: 一律加密：Azure SQL Database - Windows 憑證存放區 | Microsoft D
 description: 本文說明如何使用 SQL Server Management Studio (SSMS) 中的 [一律加密精靈]，藉由資料庫加密來保護 SQL Database 中的機密資料。 它也會說明如何將您的加密金鑰儲存在 Windows 憑證存放區中。
 keywords: 加密資料, SQL 加密, 資料庫加密, 機密資料, 一律加密
 services: sql-database
-author: stevestein
-manager: jhubbard
+author: VanMSFT
+manager: craigg
 ms.service: sql-database
 ms.custom: security
-ms.topic: article
-ms.date: 03/02/2017
-ms.author: sstein
-ms.openlocfilehash: 1bb3f6bd3b4bfc1546e992734a85921248eff8fd
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.topic: conceptual
+ms.date: 04/01/2018
+ms.author: vanto
+ms.openlocfilehash: c6656a1ef5e52782461d9b9e7106ff81eb3983ee
+ms.sourcegitcommit: f983187566d165bc8540fdec5650edcc51a6350a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/13/2018
+ms.locfileid: "45544042"
 ---
 # <a name="always-encrypted-protect-sensitive-data-in-sql-database-and-store-your-encryption-keys-in-the-windows-certificate-store"></a>一律加密：保護 SQL Database 中的機密資料，並將加密金鑰儲存在 Windows 憑證存放區中
 
@@ -32,7 +33,7 @@ ms.lasthandoff: 03/16/2018
 * 建立資料庫資料表並將資料行加密。
 * 建立可插入、選取及顯示加密資料行資料的應用程式。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 針對本教學課程，您將需要：
 
 * Azure 帳戶和訂用帳戶。 如果您沒有帳戶，請註冊 [免費試用](https://azure.microsoft.com/pricing/free-trial/)。

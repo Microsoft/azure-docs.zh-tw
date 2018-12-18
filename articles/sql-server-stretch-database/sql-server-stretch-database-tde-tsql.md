@@ -1,11 +1,11 @@
 ---
-title: "為 Stretch Database 啟用透明資料加密 TSQL - Azure | Microsoft Docs"
-description: "為 Azure TSQL 上的 SQL Server Stretch Database 啟用透明資料加密 (TDE)"
+title: 為 Stretch Database 啟用透明資料加密 TSQL - Azure | Microsoft Docs
+description: 為 Azure TSQL 上的 SQL Server Stretch Database 啟用透明資料加密 (TDE)
 services: sql-server-stretch-database
-documentationcenter: 
+documentationcenter: ''
 author: douglaslMS
 manager: jhubbard
-editor: 
+editor: ''
 ms.assetid: 27753d91-9ca2-4d47-b34d-b5e2c2f029bb
 ms.service: sql-server-stretch-database
 ms.workload: data-management
@@ -19,6 +19,7 @@ ms.sourcegitcommit: b5c6197f997aa6858f420302d375896360dd7ceb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 12/21/2017
+ms.locfileid: "23055453"
 ---
 # <a name="enable-transparent-data-encryption-tde-for-stretch-database-on-azure-transact-sql"></a>為 Azure 上的 Stretch Database 啟用透明資料加密 (TDE) (Transact-SQL)
 > [!div class="op_single_selector"]

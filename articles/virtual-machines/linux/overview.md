@@ -1,11 +1,11 @@
 ---
-title: "Azure 中 Linux VM 的概觀 | Microsoft Docs"
-description: "描述 Azure 計算、儲存體和網路服務與 Linux 虛擬機器。"
+title: Azure 中 Linux VM 的概觀 | Microsoft Docs
+description: 描述 Azure 計算、儲存體和網路服務與 Linux 虛擬機器。
 services: virtual-machines-linux
 documentationcenter: virtual-machines-linux
 author: rickstercdn
-manager: timlt
-editor: 
+manager: jeconnoc
+editor: ''
 ms.assetid: 7965a80f-ea24-4cc2-bc43-60b574101902
 ms.service: virtual-machines-linux
 ms.devlang: NA
@@ -15,28 +15,29 @@ ms.workload: infrastructure
 ms.date: 11/29/2017
 ms.author: rclaus
 ms.custom: H1Hack27Feb2017, mvc
-ms.openlocfilehash: cdb2bda0c3f7e73b115c2609c3f229c633093bdc
-ms.sourcegitcommit: c765cbd9c379ed00f1e2394374efa8e1915321b9
+ms.openlocfilehash: 6ed1ef6019e339768c4ba6a62d8b4d99d844f254
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/28/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46949516"
 ---
 # <a name="azure-and-linux"></a>Azure 和 Linux
-Microsoft Azure 集結了各種整合式公用雲端服務且數量不斷增加，包括分析、虛擬機器、資料庫、行動、網路、儲存體和 Web&mdash;因此很適合用來裝載您的方案。  Microsoft Azure 提供可調整的運算平台，可讓您在需要時用多少就付多少，而不需投資內部部署的硬體。  Azure 可供您將您的方案相應增加和放大至任何您需要的規模，以滿足您所服務之客戶的需求。
+Microsoft Azure 集結了各種整合式公用雲端服務且數量不斷增加，包括分析、虛擬機器、資料庫、行動、網路、儲存體和 Web&mdash;因此很適合用來裝載您的解決方案。  Microsoft Azure 提供可調整的運算平台，可讓您在需要時用多少就付多少，而不需投資內部部署的硬體。  Azure 可供您將您的方案相應增加和放大至任何您需要的規模，以滿足您所服務之客戶的需求。
 
 如果您熟悉 Amazon AWS 的各項功能，您可以查看 Azure 與 AWS 的對照 [定義對應文件](https://azure.microsoft.com/campaigns/azure-vs-aws/mapping/)。
 
 ## <a name="regions"></a>區域
-Microsoft Azure 資源分散在世界各地的多個地理區域。  「區域」代表單一地理區域中的多個資料中心。 Azure 目前 (截至 2017 年 11 月為止) 已在全球 36 個區域正式推出 ，並即將在另外 6 個區域推出。 在下列頁面可以找到最新的現有和全新推出的區域清單：
+Microsoft Azure 資源分散在世界各地的多個地理區域。  「區域」代表單一地理區域中的多個資料中心。 Azure 目前 (截至 2018 年 8 月為止) 已在全球 42 個區域正式推出，並即將在另外 12 個區域推出 - 全球適用的區域比任何其他雲端提供者都還要多。 在下列頁面可以找到最新的現有和全新推出的區域清單：
 
 * [Azure 區域](https://azure.microsoft.com/regions/)
 
-## <a name="availability"></a>Availability
+## <a name="availability"></a>可用性
 Azure 已宣布推出業界領先的單一執行個體虛擬機器 99.9% 服務等級協定 (前提是您部署的所有磁碟都是進階儲存體的 VM)。  為了讓您的部署符合標準的 99.95% VM 服務等級協定資格，您還必須在可用性設定組內部署兩個或更多執行工作負載的 VM。 可用性設定組可確保您的 VM 會分散在 Azure 資料中心內的多個容錯網域，以及部署至具有不同維護期間的主機。 完整 [Azure SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines/) 說明保證的 Azure 整體可用性。
 
 ## <a name="managed-disks"></a>受控磁碟
 
-受控磁碟可在背景中為您處理 Azure 儲存體帳戶的建立和管理作業，確保您不需要擔心儲存體帳戶的延展性限制。 您可指定磁碟大小和效能層級 (標準或進階)，而 Azure 會建立和管理磁碟。 當您新增磁碟或相應增加和減少 VM 時，都不必擔心所使用的儲存體。 如果您要建立新的 VM，請[使用 Azure CLI 2.0](quick-create-cli.md) 或 Azure 入口網站來建立具有受控 OS 和資料磁碟的 VM。 如果您有具備非受控磁碟的 VM，您可以[將 VM 轉換成由受控磁碟提供支援](convert-unmanaged-to-managed-disks.md)。
+受控磁碟可在背景中為您處理 Azure 儲存體帳戶的建立和管理作業，確保您不需要擔心儲存體帳戶的延展性限制。 您可指定磁碟大小和效能層級 (標準或進階)，而 Azure 會建立和管理磁碟。 當您新增磁碟或相應增加和減少 VM 時，都不必擔心所使用的儲存體。 如果您要建立新的 VM，請[使用 Azure CLI](quick-create-cli.md) 或 Azure 入口網站來建立具有受控 OS 和資料磁碟的 VM。 如果您有具備非受控磁碟的 VM，您可以[將 VM 轉換成由受控磁碟提供支援](convert-unmanaged-to-managed-disks.md)。
 
 您也可以在每個 Azure 區域中使用單一儲存體帳戶管理自訂映像，並使用映像在相同訂用帳戶中建立數百個 VM。 如需受控磁碟的詳細資訊，請參閱 [Azure 受控磁碟概觀](../linux/managed-disks-overview.md)。
 
@@ -58,7 +59,7 @@ Azure 可依據 VM 的大小和作業系統，以[每小時](https://azure.micro
 * [Azure 範本](create-ssh-secured-vm-from-template.md)
 * [Azure VMAccess](using-vmaccess-extension.md)
 
-Azure 將針對支援 [cloud-init](http://cloud-init.io/) 的大多數 Linux 散發套件推出 cloud-init 支援。  目前 Canonical 的 Ubuntu VM 部署預設即已啟用 cloud-init。  Red Hats RHEL、CentOS 及 Fedora 支援 cloud-init，不過由 RedHat 維護的 Azure 映像目前並未安裝 cloud-init。  若要在 RedHat 系列 OS 上使用 cloud-init，您必須建立已安裝 cloud-init 的自訂映像。
+Azure 將針對支援 [cloud-init](http://cloud-init.io/) 的大多數 Linux 散發套件推出 cloud-init 支援。  目前 Canonical 的 Ubuntu VM 部署預設即已啟用 cloud-init。  Red Hats RHEL、CentOS 及 Fedora 支援 cloud-init，不過由 Red Hat 維護的 Azure 映像目前並未安裝 cloud-init。  若要在 Red Hat 系列 OS 上使用 cloud-init，您必須建立已安裝 cloud-init 的自訂映像。
 
 * [在 Azure Linux VM 上使用 cloud-init](using-cloud-init.md)
 
@@ -72,7 +73,7 @@ Microsoft 與合作夥伴密切合作，以確保更新可用的映像並針對 
 
 * [Azure 背書散發套件上的 Linux](endorsed-distros.md)
 * SUSE - [Azure Marketplace - SUSE Linux Enterprise Server](https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=%27SUSE%27)
-* Redhat - [Azure Marketplace - RedHat Enterprise Linux 7.2](https://azure.microsoft.com/marketplace/partners/redhat/redhatenterpriselinux72/)
+* Red Hat - [Azure Marketplace - Red Hat Enterprise Linux 7.2](https://azure.microsoft.com/marketplace/partners/redhat/redhatenterpriselinux72/)
 * Canonical - [Azure Marketplace - Ubuntu Server 16.04 LTS](https://azure.microsoft.com/marketplace/partners/canonical/ubuntuserver1604lts/)
 * Debian - [Azure Marketplace - Debian 8 "Jessie"](https://azure.microsoft.com/marketplace/partners/credativ/debian8/)
 * FreeBSD - [Azure Marketplace - FreeBSD 10.3](https://azure.microsoft.com/marketplace/partners/microsoft/freebsd103/)
@@ -90,7 +91,7 @@ Microsoft 與合作夥伴密切合作，以確保更新可用的映像並針對 
 使用「Azure 雲端」的第一個步驟就是註冊 Azure 帳戶。  請前往 [Azure 帳戶註冊](https://azure.microsoft.com/pricing/free-trial/) 頁面來開始註冊。
 
 ### <a name="install-the-cli"></a>安裝 CLI
-有了您的新 Azure 帳戶之後，您便可以立即開始使用 Azure 入口網站，這是一個 Web 型系統管理面板。  若要透過命令列管理 Azure 雲端，您需安裝 `azure-cli`。  請在您的 Mac 或 Linux 工作站上安裝 [Azure CLI 2.0](/cli/azure/install-azure-cli)。
+有了您的新 Azure 帳戶之後，您便可以立即開始使用 Azure 入口網站，這是一個 Web 型系統管理面板。  若要透過命令列管理 Azure 雲端，您需安裝 `azure-cli`。  請在您的 Mac 或 Linux 工作站上安裝 [Azure CLI ](/cli/azure/install-azure-cli)。
 
 ### <a name="create-an-ssh-key-pair"></a>建立 SSH 金鑰組
 現在您已擁有 Azure 帳戶、Azure Web 入口網站及 Azure CLI。  下一個步驟是建立 SSH 金鑰組，使用此金鑰組即可透過 SSH 連線到 Linux，而不需使用密碼。  [在 Linux 和 Mac 上建立 SSH 金鑰](mac-create-ssh-keys.md)，以便啟用無密碼登入功能並提升安全性。
@@ -114,7 +115,7 @@ VM 現在已在 Azure 上執行，而您已經可以登入。  使用密碼透�
 * [使用 azure-cli 將磁碟新增到 Linux VM](add-disk.md)
 * [如何在 Azure 入口網站中將資料磁碟連結到 Linux VM](attach-disk-portal.md)
 
-## <a name="networking"></a>網路
+## <a name="networking"></a>網路功能
 * [虛擬網路概觀](../../virtual-network/virtual-networks-overview.md)
 * [Azure 中的 IP 位址](../../virtual-network/virtual-network-ip-addresses-overview-arm.md)
 * [對 Azure 中的 Linux VM 開啟連接埠](nsg-quickstart.md)

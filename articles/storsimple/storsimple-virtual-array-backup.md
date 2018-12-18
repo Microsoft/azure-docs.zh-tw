@@ -1,11 +1,11 @@
 ---
-title: "Microsoft Azure StorSimple Virtual Array 備份教學課程 | Microsoft Docs"
-description: "說明如何備份 StorSimple Virtual Array 共用與磁碟區。"
+title: Microsoft Azure StorSimple Virtual Array 備份教學課程 | Microsoft Docs
+description: 說明如何備份 StorSimple Virtual Array 共用與磁碟區。
 services: storsimple
 documentationcenter: NA
 author: alkohli
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: e3cdcd9e-33b1-424d-82aa-b369d934067e
 ms.service: storsimple
 ms.devlang: NA
@@ -20,6 +20,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23109566"
 ---
 # <a name="back-up-shares-or-volumes-on-your-storsimple-virtual-array"></a>備份 StorSimple Virtual Array 上的共用或磁碟區
 

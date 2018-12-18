@@ -11,7 +11,7 @@ Azure 佇列儲存體是一項儲存大量訊息的服務，全球任何地方�
 
 ![Queue1](./media/storage-queue-concepts-include/queue1.png)
 
-* **URL 格式：**可利用下列 URL 格式來定址佇列：   
+* **URL 格式：** 可利用下列 URL 格式來定址佇列：   
     http://`<storage account>`.queue.core.windows.net/`<queue>` 
   
     下列 URL 可定址圖中的佇列：  

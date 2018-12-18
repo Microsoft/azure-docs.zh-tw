@@ -1,25 +1,19 @@
 ---
-title: "Azure Analysis Services 教學課程第 6 課：建立量值 | Microsoft Docs"
-description: "說明如何在 Azure Analysis Services 教學課程專案中建立量值。"
-services: analysis-services
-documentationcenter: 
-author: Minewiskan
+title: Azure Analysis Services 教學課程第 6 課：建立量值 | Microsoft Docs
+description: 說明如何在 Azure Analysis Services 教學課程專案中建立量值。
+author: minewiskan
 manager: kfile
-editor: 
-tags: 
-ms.assetid: 
-ms.service: analysis-services
-ms.devlang: NA
-ms.topic: get-started-article
-ms.tgt_pltfrm: NA
-ms.workload: na
-ms.date: 01/08/2018
+ms.service: azure-analysis-services
+ms.topic: conceptual
+ms.date: 07/03/2018
 ms.author: owend
-ms.openlocfilehash: fa47d4ea9aa019464e465c051b016dac7c224dc9
-ms.sourcegitcommit: 176c575aea7602682afd6214880aad0be6167c52
+ms.reviewer: minewiskan
+ms.openlocfilehash: 6cf880cf132168d60ff49c2e7ea571cd8e89d36f
+ms.sourcegitcommit: 86cb3855e1368e5a74f21fdd71684c78a1f907ac
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/09/2018
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37446651"
 ---
 # <a name="create-measures"></a>建立量值
 

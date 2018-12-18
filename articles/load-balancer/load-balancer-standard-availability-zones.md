@@ -12,20 +12,21 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 03/26/2018
+ms.date: 03/29/2018
 ms.author: kumud
-ms.openlocfilehash: 9f5a68972015f54e2333199652075cda2535a3c8
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: f5d46fda6bdb32c1a5000883c6aedb2da15e796a
+ms.sourcegitcommit: 20d103fb8658b29b48115782fe01f76239b240aa
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 04/03/2018
+ms.locfileid: "30322789"
 ---
 # <a name="standard-load-balancer-and-availability-zones"></a>標準 Load Balancer 和可用性區域
 
 Azure Load Balancer 的標準 SKU 支援[可用性區域](../availability-zones/az-overview.md)案例。 標準 Load Balancer 有數個新的概念，可讓您藉由對應資源與區域並將其分散到區域，將您端對端案例中的可用性最佳化。  請檢閱[可用性區域](../availability-zones/az-overview.md)的指引，以了解可用性區域是什麼，目前有哪些區域支援可用性區域，以及其他相關概念與產品。 可用性區域與標準 Load Balancer 可組合成可擴充且具有彈性的功能集，用以建立許多不同的案例。  請檢閱本文以了解這些[概念](#concepts)，以及基本案例的[設計指引](#design)。
 
 >[!NOTE]
->如需其他相關主題，請檢閱[可用性區域預覽](https://aka.ms/availabilityzones)。 
+>如需其他相關主題，請檢閱[可用性區域](https://aka.ms/availabilityzones)。 
 
 ## <a name="concepts"></a>適用於 Load Balancer 的可用性區域概念
 
@@ -43,7 +44,7 @@ Load Balancer 資源本身是區域的，且絕不具區域性。  VNet 和子�
 
 Load Balancer 前端是對虛擬網路資源之子網路內的公用 IP 位址資源或私人 IP 位址進行參考的前端 IP 組態。  它會構成服務公開所在的負載平衡端點。
 
-Load Balancer 資源可以同時包含區域性和區域備援前端。
+Load Balancer 資源可以同時包含區域性和區域備援前端。 
 
 保證公用 IP 資源屬於某區域時，區域性 (或無區域性) 是不可變動的。  如果您想要變更或省略公用 IP 前端的區域性，您必須在適當的區域中重新建立公用 IP。  
 
@@ -219,3 +220,5 @@ Load Balancer 可簡化以單一 IP 作為區域備援前端的作業。 區域�
 ## <a name="next-steps"></a>後續步驟
 - 深入了解[可用性區域](../availability-zones/az-overview.md)
 - 深入了解[標準 Load Balancer](load-balancer-standard-overview.md)
+- 了解如何[使用具有區域前端的標準 Load Balancer 來進行區域內的 VM 負載平衡](load-balancer-standard-public-zonal-cli.md)
+- 了解如何[使用具有區域備援前端的標準 Load Balancer 來進行跨區域的 VM 負載平衡](load-balancer-standard-public-zone-redundant-cli.md)

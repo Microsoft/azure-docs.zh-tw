@@ -1,12 +1,12 @@
 ---
-title: "建立 StorSimple 8000 系列支援封裝 | Microsoft Docs"
-description: "了解如何建立、解密和編輯 StorSimple 8000 系列裝置的支援封裝。"
+title: 建立 StorSimple 8000 系列支援封裝 | Microsoft Docs
+description: 了解如何建立、解密和編輯 StorSimple 8000 系列裝置的支援封裝。
 services: storsimple
-documentationcenter: 
+documentationcenter: ''
 author: alkohli
 manager: jeconnoc
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: na
 ms.topic: article
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 9292e15fc80cc9df3e62731bafdcb0bb98c256e1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 01/10/2018
+ms.locfileid: "27743573"
 ---
 # <a name="create-and-manage-a-support-package-for-storsimple-8000-series"></a>建立及管理 StorSimple 8000 系列的支援封裝
 

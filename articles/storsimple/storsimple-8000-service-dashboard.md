@@ -1,12 +1,12 @@
 ---
-title: "StorSimple 8000 系列裝置使用摘要 | Microsoft Docs"
-description: "描述 StorSimple 的 [服務摘要] 刀鋒視窗，並說明如何使用它來監視 StorSimple 解決方案的健全狀況。"
+title: StorSimple 8000 系列裝置使用摘要 | Microsoft Docs
+description: 描述 StorSimple 的 [服務摘要] 刀鋒視窗，並說明如何使用它來監視 StorSimple 解決方案的健全狀況。
 services: storsimple
-documentationcenter: 
+documentationcenter: ''
 author: alkohli
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: na
 ms.topic: article
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23108206"
 ---
 # <a name="use-the-service-summary-blade-for-storsimple-8000-series-device"></a>使用 StorSimple 8000 系列裝置的 [服務摘要] 刀鋒視窗
 

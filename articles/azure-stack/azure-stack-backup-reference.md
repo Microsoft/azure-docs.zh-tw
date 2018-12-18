@@ -1,24 +1,26 @@
 ---
-title: "Azure Stack 基礎結構備份服務的參考 | Microsoft Docs"
-description: "本文包含 Azure Stack 基礎結構備份服務的參考資料。"
+title: Azure Stack 基礎結構備份服務的參考 | Microsoft Docs
+description: 本文包含 Azure Stack 基礎結構備份服務的參考資料。
 services: azure-stack
-documentationcenter: 
-author: mattbriggs
+documentationcenter: ''
+author: jeffgilb
 manager: femila
-editor: 
+editor: ''
 ms.assetid: D6EC0224-97EA-446C-BC95-A3D32F668E2C
 ms.service: azure-stack
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/15/2017
-ms.author: mabrigg
-ms.openlocfilehash: 4e6e0a52b2c55239e38757223f54e5e94dc98c42
-ms.sourcegitcommit: 85012dbead7879f1f6c2965daa61302eb78bd366
+ms.date: 07/17/2018
+ms.author: jeffgilb
+ms.reviewer: hectorl
+ms.openlocfilehash: 5347fd5ce0f2d2951c34df89bcffafffed6db5c5
+ms.sourcegitcommit: 387d7edd387a478db181ca639db8a8e43d0d75f7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/02/2018
+ms.lasthandoff: 08/10/2018
+ms.locfileid: "41948124"
 ---
 # <a name="infrastructure-backup-service-reference"></a>基礎結構備份服務的參考
 

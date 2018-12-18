@@ -1,35 +1,31 @@
 ---
-title: "Azure SQL 資料倉儲 - 使用 Azure Functions 來自動化 SQL 資料倉儲計算層級 | Microsoft Docs"
-description: "如何使用 Azure Functions 來管理資料倉儲的計算。"
+title: 教學課程：使用 Azure SQL 資料倉儲中的 Azure Functions 管理計算 | Microsoft Docs
+description: 如何使用 Azure Functions 來管理資料倉儲的計算。
 services: sql-data-warehouse
-documentationcenter: NA
-author: hirokib
-manager: johnmac
-editor: barbkess
-ms.assetid: 52DFC191-E094-4B04-893F-B64D5828A901
+author: kavithaj
+manager: craigg
 ms.service: sql-data-warehouse
-ms.devlang: NA
-ms.topic: hero-article
-ms.tgt_pltfrm: NA
-ms.workload: data-services
-ms.custom: quickstart
-ms.date: 11/06/2017
-ms.author: elbutter
-ms.openlocfilehash: 8947da9d34261be46ad9aea961b6020141484172
-ms.sourcegitcommit: b07d06ea51a20e32fdc61980667e801cb5db7333
+ms.topic: conceptual
+ms.component: consume
+ms.date: 04/27/2018
+ms.author: kavithaj
+ms.reviewer: igorstan
+ms.openlocfilehash: 2f366718a11f715b0c91a556eb3b0f216424b82c
+ms.sourcegitcommit: f94f84b870035140722e70cab29562e7990d35a3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2017
+ms.lasthandoff: 08/30/2018
+ms.locfileid: "43287896"
 ---
-# <a name="use-azure-functions-to-automate-sql-dw-compute-levels"></a>使用 Azure Functions 來自動化 SQL DW 計算層級
+# <a name="use-azure-functions-to-manage-compute-resources-in-azure-sql-data-warehouse"></a>使用 Azure Functions 來管理 Azure SQL 資料倉儲中的計算資源
 
-本教學課程將示範如何使用 Azure Functions 來管理 Azure SQL 資料倉儲的計算層級。 建議將這些架構搭配 SQL 資料倉儲 [Optimized for Elasticity][Performance Tiers] 使用。
+本教學課程使用 Azure Functions 來管理 Azure SQL 資料倉儲中的資料倉儲計算資源。
 
 若要搭配使用 Azure 函式應用程式與 SQL 資料倉儲，您必須建立[服務主體帳戶](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-create-service-principal-portal)，其在與您的資料倉儲執行個體相同的訂用帳戶之下，具有參與者存取權。 
 
-## <a name="deploy-timer-based-scaler-with-an-azure-resource-manager-template"></a>使用 Azure Resource Manager 範本部署以計時器為基礎的 Scaler
+## <a name="deploy-timer-based-scaling-with-an-azure-resource-manager-template"></a>使用 Azure Resource Manager 範本部署以計時器為基礎的 Scaler
 
-若要部署此範本，您需要下列資訊：
+部署此範本，您需要下列資訊：
 
 - 您的 SQL DW 執行個體所在的資源群組名稱
 - 您的 SQL DW 執行個體所在的邏輯伺服器名稱
@@ -39,25 +35,25 @@ ms.lasthandoff: 12/08/2017
 - 服務主體的應用程式識別碼
 - 服務主體祕密金鑰
 
-一旦取得上述資訊，即可部署此範本：
+一旦取得前述資訊，即可部署此範本：
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2Fsql-data-warehouse-samples%2Fmaster%2Farm-templates%2FsqlDwTimerScaler%2Fazuredeploy.json" target="_blank">
 <img src="https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.png"/>
 </a>
 
-部署此範本後，您應會發現三項新資源：免費的 Azure App Service 方案、以耗用量為基礎的函式應用程式方案，以及將處理記錄和作業佇列的儲存體帳戶。 繼續閱讀其他各節，以了解如何修改已部署的函式來符合您的需求。
+部署此範本後，您應會發現三項新資源：免費的 Azure App Service 方案、以耗用量為基礎的函式應用程式方案，以及處理記錄和作業佇列的儲存體帳戶。 繼續閱讀其他各節，以了解如何修改已部署的函式來符合您的需求。
 
-### <a name="change-the-scale-up-or-scale-down-compute-level"></a>變更相應增加或相應減少計算層級
+## <a name="change-the-compute-level"></a>變更計算層級
 
 1. 瀏覽到函式應用程式服務。 如果您部署的範本採用預設值，此服務應該命名為 DWOperations。 您的函式應用程式開啟後，您應會注意到有五個函式部署到您的函式應用程式服務。 
 
    ![使用範本部署的函式](media/manage-compute-with-azure-functions/five-functions.png)
 
-2. 根據您是否要變更相應增加或相應減少時間，選取 [DWScaleDownTrigger] 或 [DWScaleUpTrigger]。 在下拉式清單中，選取 [整合]。
+2. 根據您是否要變更相應增加或相應減少時間，選取 [DWScaleDownTrigger] 或 [DWScaleUpTrigger]。 在下拉式功能表中，選取 [整合]。
 
    ![對函式選取整合](media/manage-compute-with-azure-functions/select-integrate.png)
 
-3. 目前顯示的值應該為 %ScaleDownTime% 或 %ScaleUpTime%。 這些值表示排程是以[應用程式設定][Application Settings] 中定義的值為基礎。 您現在可以忽略這點，並將排程變更為以後續步驟為基礎的慣用時間。
+3. 目前顯示的值應該為 %ScaleDownTime% 或 %ScaleUpTime%。 這些值表示排程是以[應用程式設定][Application Settings] 中定義的值為基礎。 您現在可以忽略此值，並將排程變更為以後續步驟為基礎的慣用時間。
 
 4. 在 [排程] 區域中，新增時間、您想要的 CRON 運算式，以反映 SQL 資料倉儲相應增加的頻率。 
 
@@ -68,10 +64,10 @@ ms.lasthandoff: 12/08/2017
   {second} {minute} {hour} {day} {month} {day-of-week}
   ```
 
-  例如 "0 30 9 * * 1-5" 會反映在每個工作日上午 9:30 執行的觸發程序。 如需詳細資訊，請瀏覽 Azure Functions [排程範例][schedule examples]。
+  例如，*"0 30 9 * * 1-5"* 會反映在每個工作日上午 9:30 執行的觸發程序。 如需詳細資訊，請瀏覽 Azure Functions [排程範例][schedule examples]。
 
 
-### <a name="change-the-scale-up-or-scale-down-time"></a>變更相應增加或相應減少時間
+## <a name="change-the-time-of-the-scale-operation"></a>變更調整規模作業的時間
 
 1. 瀏覽到函式應用程式服務。 如果您部署的範本採用預設值，此服務應該命名為 DWOperations。 您的函式應用程式開啟後，您應會注意到有五個函式部署到您的函式應用程式服務。 
 
@@ -79,9 +75,9 @@ ms.lasthandoff: 12/08/2017
 
    ![變更函式觸發程序計算層級](media/manage-compute-with-azure-functions/index-js.png)
 
-3. 將 ServiceLevelObjective 的值變更為您想要的層級，然後按 [儲存]。 這是您的資料倉儲執行個體將根據 [整合] 區段中定義的排程而調整至的計算層級。
+3. 將 ServiceLevelObjective 的值變更為您想要的層級，然後按 [儲存]。 這個值是您的資料倉儲執行個體將根據 [整合] 區段中定義的排程而調整至的計算層級。
 
-### <a name="use-pause-or-resume-instead-of-scale"></a>使用暫停或繼續，而不是調整 
+## <a name="use-pause-or-resume-instead-of-scale"></a>使用暫停或繼續，而不是調整 
 
 目前的函式預設為 DWScaleDownTrigger 和 DWScaleUpTrigger。 如果您想要改用暫停和繼續功能，您可以啟用 DWPauseTrigger 或 DWResumeTrigger。
 
@@ -95,15 +91,15 @@ ms.lasthandoff: 12/08/2017
 
 3. 瀏覽至個別觸發程序的 [整合] 索引標籤，以變更其排程。
 
-   [!NOTE]: The functional difference between the scaling triggers and the pause/resume triggers is the message that is sent to the queue. See [Add a new trigger function][Add a new trigger function] for more information.
+   > [!NOTE]
+   > 自動調整觸發程序和暫停/繼續觸發程序之間的功能差異是傳送給佇列的訊息。 如需詳細資訊，請參閱[新增觸發程序函式][Add a new trigger function]。
 
 
+## <a name="add-a-new-trigger-function"></a>新增觸發程序函式
 
-### <a name="add-a-new-trigger-function"></a>新增觸發程序函式
+目前範本中只包含兩個調整函式。 使用這些函式，在一天當中，您只能相應減少一次和相應增加一次。 您必須新增另一個觸發程序，才能取得更細微的控制，例如每日相應減少多次或在週末有不同的調整行為。
 
-目前範本中只包含兩個調整函式。 這表示，在一天當中，您只能相應減少一次和相應增加一次。 您必須新增另一個觸發程序，才能取得更細微的控制，例如每日相應減少多次或在週末有不同的調整行為。
-
-1. 建立新的空白函式。 選取您的函式附近的 + 按鈕，以顯示 [函式範本] 窗格。
+1. 建立新的空白函式。 選取您的函式附近的 *+* 按鈕，以顯示 [函式範本] 窗格。
 
    ![建立新的函式](media/manage-compute-with-azure-functions/create-new-function.png)
 
@@ -140,11 +136,11 @@ ms.lasthandoff: 12/08/2017
    ```
 
 
-### <a name="complex-scheduling"></a>複雜排程
+## <a name="complex-scheduling"></a>複雜排程
 
-這一節將簡短示範取得更複雜的暫停、繼續和調整功能排程所需的項目。
+這一節簡短示範取得更複雜的暫停、繼續和調整功能排程所需的項目。
 
-#### <a name="example-1"></a>範例 1：
+### <a name="example-1"></a>範例 1：
 
 每天上午 8 點相應增加至 DW600，在下午 8 點相應減少至 DW200。
 
@@ -153,7 +149,7 @@ ms.lasthandoff: 12/08/2017
 | Function1 | 0 0 8 * * *  | `var operation = {"operationType": "ScaleDw",  "ServiceLevelObjective": "DW600"}` |
 | Function2 | 0 0 20 * * * | `var operation = {"operationType": "ScaleDw", "ServiceLevelObjective": "DW200"}` |
 
-#### <a name="example-2"></a>範例 2： 
+### <a name="example-2"></a>範例 2： 
 
 每天上午 8 點相應增加至 DW1000、在下午 4 點一度相應減少至 DW600，並在下午 10 點相應減少至 DW200。
 
@@ -163,7 +159,7 @@ ms.lasthandoff: 12/08/2017
 | Function2 | 0 0 16 * * * | `var operation = {"operationType": "ScaleDw", "ServiceLevelObjective": "DW600"}` |
 | Function3 | 0 0 22 * * * | `var operation = {"operationType": "ScaleDw", "ServiceLevelObjective": "DW200"}` |
 
-#### <a name="example-3"></a>範例 3： 
+### <a name="example-3"></a>範例 3： 
 
 在工作日的上午 8 點相應增加至 DW1000，在下午 4 點一度相應減少至 DW600。 在星期五晚上 11 點暫停，在星期一上午 7 點繼續。
 
@@ -188,5 +184,3 @@ ms.lasthandoff: 12/08/2017
 
 [Application Settings]: ../azure-functions/functions-how-to-use-azure-function-app-settings.md
 [Add a new trigger function]: manage-compute-with-azure-functions.md#add-a-new-trigger-function
-
-[Performance Tiers]: performance-tiers.md

@@ -1,0 +1,88 @@
+### YamlMime:YamlDocument
+ms.openlocfilehash: 7cbbc8d1d5142c4ddb400bb0698c703b82f5a82d
+ms.sourcegitcommit: 63613e4c7edf1b1875a2974a29ab2a8ce5d90e3b
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/29/2018
+ms.locfileid: "43185582"
+documentType: LandingData
+title: 網路監看員文件
+metadata:
+  document_id: 
+  title: 網路監看員文件 - 教學課程、快速入門和 API 參考 | Microsoft Docs
+  meta.description: Learn how to use Azure Network Watcher. Quickstarts, tutorials, and more, show you how to gain insight into your Azure Virtual Network with tools like packet capture and NSG flows logs, to diagnose problems with traffic filtering and routing, and to monitor connections.
+  services: network-watcher
+  author: jdial
+  manager: jeconnoc
+  ms.service: network-watcher
+  ms.tgt_pltfrm: na
+  ms.devlang: na
+  ms.topic: landing-page
+  ms.date: 04/24/2018
+  ms.author: jdial
+abstract:
+  description: 了解如何使用 Azure 網路監看員。 快速入門、教學課程等等資源會示範如何使用像是封包擷取和 NSG 流程記錄的工具，取得 Azure 虛擬網路的見解，以診斷流量篩選和路由傳送的問題，以及監視連線。
+sections:
+- title: 5 分鐘快速入門
+  items:
+  - type: paragraph
+    text: 了解如何診斷虛擬機器之間的流量篩選問題。
+  - type: list
+    style: icon48
+    items:
+    - image:
+        src: ./media/index/portal.svg
+      text: Azure 入口網站
+      href: /azure/network-watcher/diagnose-vm-network-traffic-filtering-problem
+    - image:
+        src: ./media/index/powershell.svg
+      text: Azure PowerShell
+      href: /azure/network-watcher/diagnose-vm-network-traffic-filtering-problem-powershell
+    - image:
+        src: ./media/index/cli.svg
+      text: Azure CLI
+      href: /azure/network-watcher/diagnose-vm-network-traffic-filtering-problem-cli
+- title: 逐步教學課程
+  items:
+  - type: paragraph
+    text: 了解如何診斷您的虛擬網路中的問題。
+  - type: list
+    style: ordered
+    items:
+    - html: <a href="/azure/network-watcher/diagnose-vm-network-routing-problem">診斷虛擬機器 (VM) 網路路由問題</a>
+    - html: <a href="/azure/network-watcher/connection-monitor">監視 VM 間的網路通訊</a>
+    - html: <a href="/azure/network-watcher/diagnose-communication-problem-between-networks">診斷網路間的通訊問題</a>
+    - html: <a href="/azure/network-watcher/network-watcher-nsg-flow-logging-portal">記錄往返 VM 的網路流量</a>
+- title: 免費 Pluralsight 影片訓練
+  items:
+  - type: list
+    style: cards
+    className: cardsFTitle
+    items:
+    - title: Azure 系統管理員
+      href: https://go.microsoft.com/fwlink/?linkid=2012827
+      image:
+        src: https://docs.microsoft.com/media/logos/logo_pluralsight.svg
+        href: https://go.microsoft.com/fwlink/?linkid=2012827
+    - title: Azure 解決方案架構師
+      href: https://go.microsoft.com/fwlink/?linkid=2012824
+      image:
+        src: https://docs.microsoft.com/media/logos/logo_pluralsight.svg
+        href: https://go.microsoft.com/fwlink/?linkid=2012824
+    - title: 適用於 AWS 系統管理員的 Azure 管理
+      href: https://app.pluralsight.com/library/courses/azure-administration-aws-administrators/table-of-contents
+      image:
+        src: https://docs.microsoft.com/media/logos/logo_pluralsight.svg
+        href: https://app.pluralsight.com/library/courses/azure-administration-aws-administrators/table-of-contents
+- title: 參考
+  items:
+  - type: list
+    style: cards
+    className: cardsD
+    items:
+    - title: 命令列
+      html: <p><a href="/powershell/module/azurerm.network/#network_watcher">PowerShell</a></p><p><a href="/cli/azure/network/watcher">Azure CLI</a></p>
+    - title: 語言
+      html: <p><a href="/dotnet/api/overview/azure/virtual-network">.NET</a></p><p><a href="/java/api/com.microsoft.azure.management.network">Java</a></p><p><a href="/javascript/api/azure-arm-network">Node.js</a></p><p><a href="/python/api/overview/azure/network">Python</a></p>
+    - title: REST
+      html: <p><a href="/rest/api/network-watcher/">REST API 參考</a></p>

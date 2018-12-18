@@ -1,31 +1,33 @@
 ---
-title: 使用 Azure PowerShell 控管 Azure 虛擬機器 | Microsoft Docs
-description: 教學課程 - 藉由使用 Azure PowerShell 來套用 RBAC、原則、鎖定和標籤以管理 Azure 虛擬機器
+title: 教學課程 - 使用 Azure PowerShell 控管 Azure 虛擬機器 | Microsoft Docs
+description: 在本教學課程中，您會了解如何使用 Azure PowerShell 來套用 RBAC、原則、鎖定和標籤以管理 Azure 虛擬機器
 services: virtual-machines-windows
 documentationcenter: virtual-machines
 author: tfitzmac
-manager: timlt
+manager: jeconnoc
 editor: tysonn
 ms.service: virtual-machines-windows
 ms.workload: infrastructure
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
-ms.topic: article
-ms.date: 02/21/2018
+ms.topic: tutorial
+ms.date: 10/12/2018
 ms.author: tomfitz
-ms.openlocfilehash: 9fbe9318e52f8299c3ef46f73c3be177de6d4a0c
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.custom: mvc
+ms.openlocfilehash: 6377a54cc862bb5f62726c3ce91a41cc6eb0763d
+ms.sourcegitcommit: 3a02e0e8759ab3835d7c58479a05d7907a719d9c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 10/13/2018
+ms.locfileid: "49311383"
 ---
-# <a name="virtual-machine-governance-with-azure-powershell"></a>使用 Azure PowerShell 控管虛擬機器
+# <a name="tutorial-learn-about-windows-virtual-machine-governance-with-azure-powershell"></a>教學課程：了解如何使用 Azure PowerShell 來控管 Windows 虛擬機器
 
 [!INCLUDE [Resource Manager governance introduction](../../../includes/resource-manager-governance-intro.md)]
 
 [!INCLUDE [cloud-shell-powershell.md](../../../includes/cloud-shell-powershell.md)]
 
-如果您選擇在本機安裝和使用 PowerShell，請參閱[安裝 Azure PowerShell 模組](/powershell/azure/install-azurerm-ps)。 如果您在本機執行 PowerShell，則也需要執行 `Login-AzureRmAccount` 以建立與 Azure 的連線。 針對本機安裝，您還必須[下載 Azure AD PowerShell 模組](https://www.powershellgallery.com/packages/AzureAD/)以建立新的 Azure Active Directory 群組。
+本文的範例需要 Azure PowerShell 6.0 版或更新版本。 如果您要在本機執行 PowerShell，但沒有 6.0 版或更新版本，請[更新您的版本](/powershell/azure/install-azurerm-ps)。 您也需要執行 `Connect-AzureRmAccount` 來建立與 Azure 的連線。 針對本機安裝，您還必須[下載 Azure AD PowerShell 模組](https://www.powershellgallery.com/packages/AzureAD/)以建立新的 Azure Active Directory 群組。
 
 ## <a name="understand-scope"></a>了解範圍
 
@@ -43,44 +45,35 @@ New-AzureRmResourceGroup -Name myResourceGroup -Location EastUS
 
 ## <a name="role-based-access-control"></a>角色型存取控制
 
-您想要確定組織中的使用者具有這些資源的正確存取權等級。 您不想要授與不受限制的存取權給使用者，但是您又必須確定他們可以執行其工作。 [角色型存取控制](../../active-directory/role-based-access-control-what-is.md)可讓您管理哪些使用者具有權限可以在一個範圍內完成特定動作。
+您想要確定組織中的使用者具有這些資源的正確存取權等級。 您不想要授與不受限制的存取權給使用者，但是您又必須確定他們可以執行其工作。 [角色型存取控制](../../role-based-access-control/overview.md)可讓您管理哪些使用者具有權限可以在一個範圍內完成特定動作。
 
 若要建立和移除角色指派，使用者必須具有 `Microsoft.Authorization/roleAssignments/*` 存取權。 此存取權是透過擁有者或使用者存取系統管理員角色來授與。
 
 為了管理虛擬機器解決方案，有三個資源專屬角色可提供您經常需要的存取權：
 
-* [虛擬機器參與者](../../active-directory/role-based-access-built-in-roles.md#virtual-machine-contributor)
-* [網路參與者](../../active-directory/role-based-access-built-in-roles.md#network-contributor)
-* [儲存體帳戶參與者](../../active-directory/role-based-access-built-in-roles.md#storage-account-contributor)
+* [虛擬機器參與者](../../role-based-access-control/built-in-roles.md#virtual-machine-contributor)
+* [網路參與者](../../role-based-access-control/built-in-roles.md#network-contributor)
+* [儲存體帳戶參與者](../../role-based-access-control/built-in-roles.md#storage-account-contributor)
 
-相較於將角色指派給個別使用者，為需要執行類似動作的使用者[建立 Azure Active Directory 群組](../../active-directory/active-directory-groups-create-azure-portal.md)通常會更加容易。 然後，將該群組指派給適當的角色。 一言以蔽之，您要建立沒有成員的 Azure Active Directory 群組。 您仍然可以指派此群組給某個範圍內的角色。 
+相較於將角色指派給個別使用者，使用 Azure Active Directory 群組來含括需要執行類似動作的使用者，通常會較為容易。 然後，將該群組指派給適當的角色。 在本文中，請使用現有的群組來管理虛擬機器，或使用入口網站來[建立 Azure Active Directory 群組](../../active-directory/fundamentals/active-directory-groups-create-azure-portal.md)。
 
-下列範例會建立名為 VMDemoContributors、郵件暱稱為 vmDemoGroup 的 Azure Active Directory 群組。 郵件暱稱可作為群組的別名。
-
-```azurepowershell-interactive
-$adgroup = New-AzureADGroup -DisplayName VMDemoContributors `
-  -MailNickName vmDemoGroup `
-  -MailEnabled $false `
-  -SecurityEnabled $true
-```
-
-在命令提示字元傳回後，群組需要一些時間才會傳播到整個 Azure Active Directory。 等候 20 或 30 秒之後，使用 [New-AzureRmRoleAssignment](/powershell/module/azurerm.resources/new-azurermroleassignment) 命令將新的 Azure Active Directory 群組指派給資源群組的虛擬機器參與者角色。  如果您在群組傳播完成之前執行下列命令，您會收到錯誤，指出：**原則 <guid> 不存在於目錄中**。 請嘗試再次執行命令。
+建立新群組或找到現有群組後，請使用 [New-AzureRmRoleAssignment](/powershell/module/azurerm.resources/new-azurermroleassignment) 命令，將 Azure Active Directory 群組指派給資源群組的虛擬機器參與者角色。  
 
 ```azurepowershell-interactive
-New-AzureRmRoleAssignment -ObjectId $adgroup.ObjectId `
+$adgroup = Get-AzureRmADGroup -DisplayName <your-group-name>
+
+New-AzureRmRoleAssignment -ObjectId $adgroup.id `
   -ResourceGroupName myResourceGroup `
   -RoleDefinitionName "Virtual Machine Contributor"
 ```
 
+如果出現錯誤，指出**原則 <guid> 不存在於目錄中**，表示新群組未傳播至整個 Azure Active Directory。 請嘗試再次執行命令。
+
 通常您需要針對網路參與者和儲存體帳戶參與者重複進行此程序，以確保已指派使用者來管理已部署的資源。 在本文中，您可以略過這些步驟。
 
-## <a name="azure-policies"></a>Azure 原則
+## <a name="azure-policy"></a>Azure 原則
 
-[!INCLUDE [Resource Manager governance policy](../../../includes/resource-manager-governance-policy.md)]
-
-### <a name="apply-policies"></a>套用原則
-
-您的訂用帳戶已經有數個原則定義。 若要查看可用的原則定義，請使用 [Get-AzureRmPolicyDefinition](/powershell/module/AzureRM.Resources/Get-AzureRmPolicyDefinition) 命令：
+[Azure 原則](../../azure-policy/azure-policy-introduction.md)可協助您確認訂用帳戶中的所有資源均符合公司標準。 您的訂用帳戶已經有數個原則定義。 若要查看可用的原則定義，請使用 [Get-AzureRmPolicyDefinition](/powershell/module/AzureRM.Resources/Get-AzureRmPolicyDefinition) 命令：
 
 ```azurepowershell-interactive
 (Get-AzureRmPolicyDefinition).Properties | Format-Table displayName, policyType
@@ -170,7 +163,7 @@ New-AzureRmResourceLock -LockLevel CanNotDelete `
 Remove-AzureRmResourceGroup -Name myResourceGroup
 ```
 
-您會看到錯誤指出因為鎖定所以無法執行刪除作業。 只有當您明確移除鎖定後，才能刪除資源群組。 [清除資源](#clean-up-resources)中會說明該步驟。
+您會看到一則錯誤，指出刪除作業因鎖定而無法完成。 只有當您明確移除鎖定後，才能刪除資源群組。 [清除資源](#clean-up-resources)中會說明該步驟。
 
 ## <a name="tag-resources"></a>標記資源
 
@@ -192,16 +185,16 @@ Set-AzureRmResource -Tag @{ Dept="IT"; Environment="Test"; Project="Documentatio
 
 ### <a name="find-resources-by-tag"></a>依標籤尋找資源
 
-若要尋找具有某標籤名稱和值的資源，請使用 [Find-AzureRmResource](/powershell/module/azurerm.resources/find-azurermresource) 命令：
+若要尋找具有某標籤名稱和值的資源，請使用 [Get-AzureRmResource](/powershell/module/azurerm.resources/get-azurermresource) 命令：
 
 ```azurepowershell-interactive
-(Find-AzureRmResource -TagName Environment -TagValue Test).Name
+(Get-AzureRmResource -Tag @{ Environment="Test"}).Name
 ```
 
 傳回的值可用於管理工作，例如停止具有某標籤值的所有虛擬機器。
 
 ```azurepowershell-interactive
-Find-AzureRmResource -TagName Environment -TagValue Test | Where-Object {$_.ResourceType -eq "Microsoft.Compute/virtualMachines"} | Stop-AzureRmVM
+Get-AzureRmResource -Tag @{ Environment="Test"} | Where-Object {$_.ResourceType -eq "Microsoft.Compute/virtualMachines"} | Stop-AzureRmVM
 ```
 
 ### <a name="view-costs-by-tag-values"></a>依標籤值檢視成本

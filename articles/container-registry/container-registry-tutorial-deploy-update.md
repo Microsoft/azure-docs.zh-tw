@@ -3,17 +3,18 @@ title: Azure Container Registry 教學課程 - 將更新的映像推送至區域
 description: 將修改的 Docker 映像推送至您進行地理複寫的 Azure Container Registry，然後查看變更自動部署至多個區域中執行的 Web 應用程式。 這是三段式教學課程的第三段。
 services: container-registry
 author: mmacy
-manager: timlt
+manager: jeconnoc
 ms.service: container-registry
 ms.topic: tutorial
-ms.date: 10/24/2017
+ms.date: 04/30/2018
 ms.author: marsma
 ms.custom: mvc
-ms.openlocfilehash: f8eab93d1e6633ae4f17c5bb4836d96629d55cd4
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: 8edb35b91327bde1fa824ec456b8a98962adb7ce
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38634082"
 ---
 # <a name="tutorial-push-an-updated-image-to-regional-deployments"></a>教學課程：將更新的映像推送至區域部署
 
@@ -70,7 +71,7 @@ ms.lasthandoff: 03/28/2018
 
 ## <a name="rebuild-the-image"></a>重建映像
 
-因為您更新了 Web 應用程式，所以請重建其容器映像。 像之前一樣，為標記使用完整的映像名稱，包括登入伺服器 URL：
+因為您更新了 Web 應用程式，所以請重建其容器映像。 像之前一樣，為標記使用完整的映像名稱，包括登入伺服器的完整網域名稱 (FQDN)：
 
 ```bash
 docker build . -f ./AcrHelloworld/Dockerfile -t <acrName>.azurecr.io/acr-helloworld:v1
@@ -78,15 +79,16 @@ docker build . -f ./AcrHelloworld/Dockerfile -t <acrName>.azurecr.io/acr-hellowo
 
 ## <a name="push-image-to-azure-container-registry"></a>將映像推送至 Azure Container Registry
 
-現在，將更新的 *acr-helloworld* 容器映像推送至您進行地理複寫的登錄。 此時，您要執行一個 `docker push` 命令，將更新的映像同時部署至「美國西部」和「美國東部」兩個區域中的登錄複本。
+接下來，將更新的 *acr-helloworld* 容器映像推送至您進行異地複寫的登錄。 此時，您要執行一個 `docker push` 命令，將更新的映像同時部署至「美國西部」和「美國東部」兩個區域中的登錄複本。
 
 ```bash
 docker push <acrName>.azurecr.io/acr-helloworld:v1
 ```
 
-輸出應該如下所示：
+您的 `docker push`輸出應該類似如下範例：
 
-```bash
+```console
+$ docker push uniqueregistryname.azurecr.io/acr-helloworld:v1
 The push refers to a repository [uniqueregistryname.azurecr.io/acr-helloworld]
 5b9454e91555: Pushed
 d6803756744a: Layer already exists
@@ -126,19 +128,17 @@ Webhook 會通知 Web 應用程式新的映像已推送至登錄，此作業會�
 
 ![在美國東部區域中執行之已修改 Web 應用程式的瀏覽器檢視][deployed-app-eastus-modified]
 
-使用一個 `docker push`，您就更新了兩個區域的 Web 應用程式部署，Azure Container Registry 也從網路位置接近的存放庫提供容器映像。
+只要執行一次 `docker push`，您就能自動更新在兩個區域 Web 應用程式部署中執行的 Web 應用程式。 此外，Azure Container Registry 也從最靠近每個部署的存放庫提供容器映像。
 
 ## <a name="next-steps"></a>後續步驟
 
-在本教學課程中，您更新了 Web 應用程式容器，並將新版推送到您進行地理複寫的登錄。 Azure Container Registry 中的 Webhook 將該項更新通知了「用於容器的 Web 應用程式」執行個體，因而觸發從登錄複本進行本機提取。
+在本教學課程中，您更新了 Web 應用程式容器，並將新版推送到您進行地理複寫的登錄。 Azure Container Registry 中的 Webhook 將該項更新通知了「用於容器的 Web 應用程式」執行個體，因而觸發從最靠近的登錄複本進行本機提取。
 
-在系列的最後一段教學課程中，您：
+### <a name="acr-build-automated-image-build-and-patch"></a>ACR Build：自動映像建置和修補
 
-> [!div class="checklist"]
-> * 更新了 Web 應用程式 HTML
-> * 建置並標記了 Docker 映像
-> * 將變更推送至 Azure Container Registry
-> * 檢視兩個不同區域中更新後的應用程式
+除了異地複寫之外，ACR Build 是 Azure Container Registry 另一項有助於最佳化容器部署管線的功能。 若要了解 ACR Build 的功能，請從 ACR Build 概觀開始：
+
+[使用 ACR Build 自動進行作業系統和架構修補](container-registry-build-overview.md)
 
 <!-- IMAGES -->
 [deployed-app-eastus-modified]: ./media/container-registry-tutorial-deploy-update/deployed-app-eastus-modified.png

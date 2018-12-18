@@ -1,24 +1,25 @@
 ---
-title: "更換 Azure Stack 整合系統上的縮放單位節點 | Microsoft Docs"
-description: "了解如何更換 Azure Stack 整合系統上的實體縮放單位節點。"
+title: 更換 Azure Stack 整合系統上的縮放單位節點 | Microsoft Docs
+description: 了解如何更換 Azure Stack 整合系統上的實體縮放單位節點。
 services: azure-stack
-documentationcenter: 
+documentationcenter: ''
 author: mattbriggs
 manager: femila
-editor: 
+editor: ''
 ms.assetid: f9434689-ee66-493c-a237-5c81e528e5de
 ms.service: azure-stack
 ms.workload: na
 pms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/20/2017
+ms.date: 09/10/2018
 ms.author: mabrigg
-ms.openlocfilehash: 468af385833395963ef8acad905b99a9b7e6b8fa
-ms.sourcegitcommit: 3cdc82a5561abe564c318bd12986df63fc980a5a
+ms.openlocfilehash: 1b37b150dad4951a4ade81f226b515ce9cae9053
+ms.sourcegitcommit: 5a9be113868c29ec9e81fd3549c54a71db3cec31
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/05/2018
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44377049"
 ---
 # <a name="replace-a-scale-unit-node-on-an-azure-stack-integrated-system"></a>更換 Azure Stack 整合系統上的縮放單位節點
 

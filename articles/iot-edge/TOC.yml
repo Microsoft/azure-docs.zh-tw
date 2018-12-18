@@ -1,112 +1,226 @@
+items:
+- name: Azure IoT 基礎
+  href: ../iot-fundamentals/index.yml
 - name: Azure IoT Edge 文件
   href: index.yml
 - name: 概觀
   items:
-    - name: 關於 Azure IoT Edge
-      href: how-iot-edge-works.md
+  - name: 關於 Azure IoT Edge
+    href: about-iot-edge.md
 - name: 快速入門
-  expanded: true
   items:
-    - name: 部署到 Edge - Linux/Mac
-      href: quickstart-linux.md
-    - name: 部署到 Edge - Windows
-      href: quickstart.md
+  - name: 將程式碼部署到 Linux 裝置
+    href: quickstart-linux.md
+  - name: 將程式碼部署到 Windows 裝置
+    href: quickstart.md
+  expanded: true
 - name: 教學課程
   items:
-    - name: 模擬 Edge 裝置 - Linux/Mac
-      href: tutorial-simulate-device-linux.md
-    - name: 模擬 Edge 裝置 - Windows
-      href: tutorial-simulate-device-windows.md
-    - name: 在模組中部署程式碼
-      items:
-        - name: 'C#'
-          href: tutorial-csharp-module.md
-        - name: Python
-          href: tutorial-python-module.md
-    - name: 部署 Azure 串流分析
-      href: tutorial-deploy-stream-analytics.md
-    - name: 部署 Azure Machine Learning
-      href: tutorial-deploy-machine-learning.md
-    - name: 部署 Azure Functions
+  - name: 在邊緣尋找見解
+    items:
+    - name: 使用 Azure Functions 篩選資料
       href: tutorial-deploy-function.md
-- name: 使用說明指南
-  items:
-    - name: 建立閘道
+    - name: 使用 ASA 尋找平均值
+      href: tutorial-deploy-stream-analytics.md
+    - name: 使用 Azure ML 為資料評分
+      href: tutorial-deploy-machine-learning.md
+    - name: 使用自訂程式碼篩選資料
       items:
-        - name: 建立透明閘道
-          href: how-to-create-transparent-gateway.md
-        - name: Modbus 閘道
-          href: deploy-modbus-gateway.md
-    - name: 使用適用於 Azure CLI 2.0 的 IoT 延伸模組
-      href: tutorial-create-deployment-with-cli-iot-extension.md
-    - name: 大範圍部署及監視
-      href: how-to-deploy-monitor.md
-    - name: 佈建 IoT Core 裝置
-      href: how-to-install-iot-core.md
-    - name: 使用 VS Code 開發 IoT Edge 解決方案
-      items:
-        - name: '開發和部署 C# 模組'
-          href: how-to-vscode-develop-csharp-module.md
-        - name: '偵錯 C# 模組'
-          href: how-to-vscode-debug-csharp-module.md
-        - name: 開發和部署 Azure Functions
-          href: how-to-vscode-develop-azure-function.md
-        - name: 偵錯 Azure Functions
-          href: how-to-vscode-debug-azure-function.md
-        - name: 使用多個模組
-          href: tutorial-multiple-modules-in-vscode.md
-    - name: 在 Edge 中儲存資料
-      href: sql-storage.md
-    - name: 疑難排解
-      href: troubleshoot.md
+      - name: C#
+        href: tutorial-csharp-module.md
+      - name: Python
+        href: tutorial-python-module.md
+      - name: Node.js
+        href: tutorial-node-module.md
+      - name: Java
+        href: tutorial-java-module.md
+      - name: C
+        href: tutorial-c-module.md
+  - name: 使用 SQL 在本機儲存資料
+    href: tutorial-store-data-sql-server.md
 - name: 概念
   items:
-    - name: IoT Edge 模組
+  - name: IoT Edge 執行階段
+    href: iot-edge-runtime.md
+  - name: IoT Edge 憑證
+    href: iot-edge-certs.md
+  - name: IoT Edge 模組
+    items:
+    - name: 了解 Azure IoT Edge 模組
       href: iot-edge-modules.md
-      items:
-        - name: 開發
-          href: module-development.md
-        - name: 撰寫
-          href: module-composition.md
-        - name: Edge 代理程式和中樞屬性
-          href: module-edgeagent-edgehub.md
-    - name: IoT Edge 執行階段
-      href: iot-edge-runtime.md
-    - name: 部署
-      href: module-deployment-monitoring.md
-    - name: 將 IoT Edge 裝置設定為閘道
-      href: iot-edge-as-gateway.md
-    - name: 安全性
+    - name: 開發
+      href: module-development.md
+    - name: 撰寫
+      href: module-composition.md
+    - name: Edge 代理程式和中樞屬性
+      href: module-edgeagent-edgehub.md
+  - name: 部署
+    href: module-deployment-monitoring.md
+  - name: 離線功能
+    href: offline-capabilities.md
+  - name: 將 IoT Edge 裝置設定為閘道
+    href: iot-edge-as-gateway.md
+  - name: 安全性
+    items:
+    - name: 保護 Azure IoT Edge
       href: security.md
-    - name: IoT Edge 詞彙
-      href: iot-edge-glossary.md
+    - name: IoT Edge 安全性管理員
+      href: iot-edge-security-manager.md
+  - name: 平台支援
+    href: support.md
+  - name: IoT Edge 詞彙
+    href: iot-edge-glossary.md
+- name: 使用說明指南
+  items:
+  - name: 註冊 Edge 裝置
+    items:
+    - name: Azure 入口網站
+      href: how-to-register-device-portal.md
+    - name: Azure CLI
+      href: how-to-register-device-cli.md
+    - name: Visual Studio Code
+      href: how-to-register-device-vscode.md
+  - name: 安裝 IoT Edge 執行階段
+    items:
+    - name: Linux X64
+      href: how-to-install-iot-edge-linux.md
+    - name: Linux ARM32
+      href: how-to-install-iot-edge-linux-arm.md
+    - name: 搭配 Windows 容器的 Windows
+      href: how-to-install-iot-edge-windows-with-windows.md
+    - name: 搭配 Linux 容器的 Windows
+      href: how-to-install-iot-edge-windows-with-linux.md
+    - name: IoT Core
+      href: how-to-install-iot-core.md
+  - name: 使用 DPS 自動佈建
+    items:
+    - name: Linux
+      href: how-to-auto-provision-simulated-device-linux.md
+    - name: Windows
+      href: how-to-auto-provision-simulated-device-windows.md
+  - name: 在 VS 2017 中開發模組及針對模組進行偵錯
+    href: how-to-visual-studio-develop-csharp-module.md
+  - name: 在 VS Code 中開發模組及針對模組進行偵錯
+    items:
+    - name: Azure Functions
+      href: how-to-develop-csharp-function.md
+    - name: C#
+      href: how-to-develop-csharp-module.md
+    - name: Python
+      href: how-to-develop-python-module.md
+    - name: Node.js
+      href: how-to-develop-node-module.md
+    - name: Java
+      href: how-to-develop-java-module.md
+    - name: C
+      href: how-to-develop-c-module.md
+    - name: 開發多重模組
+      href: how-to-develop-multiple-modules-vscode.md
+    - name: 對多重模組進行偵錯
+      href: how-to-debug-multiple-modules-vscode.md
+  - name: 部署模組
+    items:
+    - name: Azure 入口網站
+      href: how-to-deploy-modules-portal.md
+    - name: Azure CLI
+      href: how-to-deploy-modules-cli.md
+    - name: Visual Studio Code
+      href: how-to-deploy-modules-vscode.md
+  - name: 大範圍部署及監視
+    items:
+    - name: Azure 入口網站
+      href: how-to-deploy-monitor.md
+    - name: Azure CLI
+      href: how-to-deploy-monitor-cli.md
+  - name: 使用 Edge 裝置作為閘道
+    items:
+    - name: 透明閘道 (Linux)
+      href: how-to-create-transparent-gateway-linux.md
+    - name: 透明閘道 (Windows)
+      href: how-to-create-transparent-gateway-windows.md
+    - name: Modbus 通訊協定閘道
+      href: deploy-modbus-gateway.md
+  - name: 設定 Proxy 支援
+    href: how-to-configure-proxy-support.md
+  - name: 在 Edge 中儲存資料
+    items:
+    - name: IoT Edge 上的 Azure Blob 儲存體
+      href: how-to-store-data-blob.md
+  - name: Azure DevOps 中的 CI/CD
+    href: how-to-ci-cd.md
+  - name: 疑難排解
+    href: troubleshoot.md
+- name: 相關參考
+  items:
+  - name: 解決方案
+    items:
+    - name: IoT 解決方案加速器
+      href: /azure/iot-suite
+    - name: IoT 中心
+      href: https://docs.microsoft.com/microsoft-iot-central/
+  - name: 平台服務
+    items:
+    - name: IoT 中樞
+      href: /azure/iot-hub
+    - name: IoT 中樞裝置佈建服務
+      href: /azure/iot-dps
+    - name: 地圖
+      href: /azure/azure-maps
+    - name: 服務 SDK
+      href: /azure/iot-hub/iot-hub-devguide-sdks#azure-iot-service-sdks
+    - name: 時間序列深入解析
+      href: /azure/time-series-insights
+  - name: Edge
+    items:
+    - name: IoT Edge
+      href: /azure/iot-edge
+    - name: IoT 裝置 SDK
+      href: /azure/iot-hub/iot-hub-devguide-sdks#azure-iot-device-sdks
 - name: 資源
   items:
-    - name: Azure IoT 認證裝置目錄
-      href: 'https://catalog.azureiotsuite.com/'
-    - name: Azure IoT 開發人員中心
-      href: 'https://azure.microsoft.com/develop/iot/'
-    - name: Azure 藍圖
-      href: 'https://azure.microsoft.com/roadmap/?category=internet-of-things'
-    - name: DeviceExplorer 工具
-      href: 'https://github.com/Azure/azure-iot-sdk-csharp/tree/master/tools/DeviceExplorer'
-    - name: iothub-diagnostics 工具
-      href: 'https://github.com/Azure/iothub-diagnostics'
-    - name: iothub-explorer 工具
-      href: 'https://github.com/Azure/iothub-explorer'
-    - name: 學習路徑
-      href: 'https://azure.microsoft.com/documentation/learning-paths/iot-hub/'
-    - name: MSDN 論壇
-      href: 'https://social.msdn.microsoft.com/Forums/azure/home?forum=iotedge'
-    - name: 價格
-      href: 'https://azure.microsoft.com/pricing/details/iot-hub/'
-    - name: 定價計算機
-      href: 'https://azure.microsoft.com/pricing/calculator/'
-    - name: 服務更新
-      href: 'https://azure.microsoft.com/updates/?product=iot-hub'
-    - name: 堆疊溢位
-      href: 'http://stackoverflow.com/questions/tagged/azure-iot-hub'
-    - name: 技術案例研究
-      href: 'https://microsoft.github.io/techcasestudies/#technology=IoT&sortBy=featured'
-    - name: 影片
-      href: 'https://azure.microsoft.com/documentation/videos/index/?services=iot-hub'
+  - name: 適用於 C# 的 Azure IoT 範例 (.NET)
+    href: https://azure.microsoft.com/resources/samples/azure-iot-samples-csharp/
+  - name: 適用於 Node.js 的 Azure IoT 範例
+    href: https://azure.microsoft.com/resources/samples/azure-iot-samples-node/
+  - name: 適用於 Java 的 Azure IoT 範例
+    href: https://azure.microsoft.com/resources/samples/azure-iot-samples-java/
+  - name: 適用於 Python 的 Azure IoT 範例
+    href: https://azure.microsoft.com/resources/samples/azure-iot-samples-python/
+  - name: 適用於 iOS 平台的 Azure IoT 範例
+    href: https://azure.microsoft.com/resources/samples/azure-iot-samples-ios/
+  - name: Azure IoT 認證裝置目錄
+    href: https://catalog.azureiotsuite.com/
+  - name: Azure IoT 開發人員中心
+    href: https://azure.microsoft.com/develop/iot/
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/?category=iot
+  - name: 適用於 VS Code 的 Azure IoT Edge
+    href: https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.azure-iot-edge
+  - name: 適用於 VS Code 的 Azure IoT 工具組
+    href: https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.azure-iot-toolkit
+  - name: DeviceExplorer 工具
+    href: https://github.com/Azure/azure-iot-sdk-csharp/tree/master/tools/DeviceExplorer
+  - name: iothub-diagnostics 工具
+    href: https://github.com/Azure/iothub-diagnostics
+  - name: 學習路徑
+    href: https://azure.microsoft.com/documentation/learning-paths/iot-hub/
+  - name: MSDN 論壇
+    href: https://social.msdn.microsoft.com/Forums/azure/home?forum=iotedge
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/iot-hub/
+  - name: 定價計算機
+    href: https://azure.microsoft.com/pricing/calculator/
+  - name: 服務更新
+    href: https://azure.microsoft.com/updates/?product=iot-hub
+  - name: 堆疊溢位
+    href: http://stackoverflow.com/questions/tagged/azure-iot-hub
+  - name: 技術案例研究
+    href: https://microsoft.github.io/techcasestudies/#technology=IoT&sortBy=featured
+  - name: 影片
+    href: https://azure.microsoft.com/documentation/videos/index/?services=iot-hub
+ms.openlocfilehash: e862a2a04a1b00460651feb27e3ab155dc21ee97
+ms.sourcegitcommit: 42405ab963df3101ee2a9b26e54240ffa689f140
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47423403"

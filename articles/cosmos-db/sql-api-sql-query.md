@@ -3,53 +3,36 @@ title: 適用於 Azure Cosmos DB 的 SQL 查詢 | Microsoft Docs
 description: 了解 Azure Cosmos DB 的 SQL 語法、資料庫概念及 SQL 查詢。 SQL 可作為 Azure Cosmos DB 中的 JSON 查詢語言。
 keywords: sql 語法, sql 查詢, sql 查詢, json 查詢語言, 資料庫概念和 sql 查詢, 彙總函式
 services: cosmos-db
-documentationcenter: ''
 author: LalithaMV
-manager: jhubbard
+manager: kfile
 editor: monicar
-ms.assetid: a73b4ab3-0786-42fd-b59b-555fce09db6e
 ms.service: cosmos-db
-ms.workload: data-services
-ms.tgt_pltfrm: na
+ms.component: cosmosdb-sql
 ms.devlang: na
-ms.topic: article
-ms.date: 03/26/2018
+ms.topic: conceptual
+ms.date: 08/10/2018
 ms.author: laviswa
-ms.openlocfilehash: a79b1a97909a38b4bfba06186db875d0c0c25f03
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: 766a2a9a2b71d9cd013f26b843d413d7603ab1fd
+ms.sourcegitcommit: ebd06cee3e78674ba9e6764ddc889fc5948060c4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 09/07/2018
+ms.locfileid: "44051352"
 ---
-# <a name="sql-queries-for-azure-cosmos-db"></a>適用於 Azure Cosmos DB 的 SQL 查詢
+# <a name="query-azure-cosmos-db-data-with-sql-queries"></a>使用 SQL 查詢來查詢 Azure Cosmos DB 資料
 
-Microsoft Azure Cosmos DB 支援在 SQL API 帳戶上使用 SQL (結構化查詢語言) 作為 JSON 查詢語言來查詢文件。 Azure Cosmos DB 確實無結構描述。 由於它是直接在資料庫引擎內使用 JSON 資料模型，因此它提供不需明確的結構描述或建立次要索引，即可自動編製 JSON 文件索引的功能。
+Microsoft Azure Cosmos DB 支援在 SQL API 帳戶上使用 SQL (結構化查詢語言) 作為 JSON 查詢語言來查詢文件。 為 Azure Cosmos DB 設計查詢語言時，下列兩項是我們的考量目標：
 
-為 Cosmos DB 設計查詢語言時，我們心中懷有兩個目標：
+* 我們不是發明新的查詢語言，而是讓 Azure Cosmos DB 支援 SQL，也就是最熟悉且熱門的查詢語言之一。 Azure Cosmos DB SQL 提供一個正式的程式設計模型，可在 JSON 文件上進行豐富的查詢。  
 
-* 我們想要支援 SQL，而不是發明新的 JSON 查詢語言。 SQL 是一種最熟悉且熱門的查詢語言。 Cosmos DB SQL 提供一個正式的程式設計模型，可在 JSON 文件上進行豐富的查詢。
-* 由於 JSON 文件資料庫可以直接在資料庫引擎中執行 JavaScript，因此，我們想要使用 JavaScript 的程式設計模型做為查詢語言的基礎。 SQL API 是以 JavaScript 的類型系統、運算式評估和函式叫用為基礎。 這除了其他功能之外，還進而提供自然程式設計模型來進行關聯式投射、跨 JSON 文件的階層式導覽、自我聯結、空間查詢，以及叫用完全以 JavaScript 撰寫的使用者定義函式 (UDF)。 
+* Azure Cosmos DB 會使用 JavaScript 的程式設計模型作為查詢語言的基礎。 SQL API 是以 JavaScript 的類型系統、運算式評估和函式叫用為基礎。 這除了其他功能之外，還進而提供自然程式設計模型來進行關聯式投射、跨 JSON 文件的階層式導覽、自我聯結、空間查詢，以及叫用完全以 JavaScript 撰寫的使用者定義函式 (UDF)。 
 
-我們相信這些功能的重點是減少應用程式與資料庫之間的摩擦，而且對開發人員的生產力而言十分重要。
+本文會透過簡單的 JSON 文件引導您執行一些 SQL 查詢範例。 若要深入了解 Azure Cosmos DB SQL 語言語法，請參閱 [SQL 語法參考](sql-api-sql-query-reference.md)文章。 
 
-建議您透過觀看下列影片，讓 Azure Cosmos DB 程式管理員 Andrew Liu 為您示範 Azure Cosmos DB 的查詢功能，以及展示線上 [Query Playground (查詢遊樂場)](http://www.documentdb.com/sql/demo) (您可以試試 Azure Cosmos DB，並依照影片示範針對我們的資料集執行 SQL 查詢)，協助您開始著手。
+## <a id="GettingStarted"></a>開始使用 SQL 命令
+讓我們建立兩個簡單的 JSON 文件，並對該資料進行查詢。 我們考慮使用兩個關於家庭的 JSON 文件，並將這些 JSON 文件插入集合中，然後查詢此資料。 這裡有 Andersen 一家和 Wakefield 一家的簡單 JSON 文件，其中包括父母、孩子 (以及寵物)、地址及登記資訊。 這份文件包含字串、數字、布林值、陣列和巢狀屬性。 
 
-> [!VIDEO https://www.youtube.com/embed/1LqUQRpHfFI]
->
->
-
-以下後續影片示範較進階的查詢技術：
-
-> [!VIDEO https://www.youtube.com/embed/kASU9NOIR90]
->
->
-
-接著再回到本文，我們會從 SQL 查詢教學課程開始，帶領您演練一些簡易的 JSON 文件和 SQL 命令。
-
-## <a id="GettingStarted"></a>開始在 Cosmos DB 中使用 SQL 命令
-為了查看 Cosmos DB SQL 如何運作，讓我們從一些簡單的 JSON 文件開始著手，然後對其逐步執行一些簡單的查詢。 請考慮有關兩個家族的這兩份 JSON 文件。 使用 Cosmos DB 時，我們不需要明確地建立任何結構描述或次要索引。 我們只需要將 JSON 文件插入到 Cosmos DB 集合中，再接著進行查詢即可。 這裡有 Andersen 一家的簡單 JSON 文件，包括這一家的父母、孩子 (以及寵物)、地址及註冊資訊。 這份文件包含字串、數字、布林值、陣列和巢狀屬性。 
-
-**文件**  
+**文件 1**  
 
 ```JSON
 {
@@ -75,7 +58,7 @@ Microsoft Azure Cosmos DB 支援在 SQL API 帳戶上使用 SQL (結構化查詢
 
 以下是第二份具有些微差異的文件：使用 `givenName` 和 `familyName` 來取代 `firstName` 和 `lastName`。
 
-**文件**  
+**文件 2**  
 
 ```json
 {
@@ -106,16 +89,19 @@ Microsoft Azure Cosmos DB 支援在 SQL API 帳戶上使用 SQL (結構化查詢
 }
 ```
 
-現在，讓我們嘗試對此資料執行一些查詢，以了解 Azure Cosmos DB SQL 查詢語言的一些重要部分。 例如，下列查詢會傳回 id 欄位符合 `AndersenFamily` 的文件。 因為它是 `SELECT *`，所以查詢的輸出是完整 JSON 文件：
+現在，讓我們嘗試對此資料執行一些查詢，以了解 Azure Cosmos DB SQL 查詢語言的一些重要部分。 
 
-**查詢**
+**查詢 1**：例如，下列查詢會傳回 id 欄位符合 `AndersenFamily` 的文件。 由於它是一個 `SELECT *`，所以查詢的輸出是完整的 JSON 文件，若要了解此語法，請參閱 [SELECT 陳述式](sql-api-sql-query-reference.md#select-query)：
 
+```sql
     SELECT * 
     FROM Families f 
     WHERE f.id = "AndersenFamily"
+```
 
 **結果**
 
+```json
     [{
         "id": "AndersenFamily",
         "lastName": "Andersen",
@@ -133,94 +119,173 @@ Microsoft Azure Cosmos DB 支援在 SQL API 帳戶上使用 SQL (結構化查詢
         "creationDate": 1431620472,
         "isRegistered": true
     }]
+```
 
+**查詢 2**：現在，請考慮我們需要以不同形式來重新格式化 JSON 輸出的情況。 當地址所在城市的名稱與省/市的名稱相同時，此查詢會投射具有兩個所選欄位 (Name 和 City) 的新 JSON 物件。 在此情況下，"NY, NY" 相符。   
 
-現在，請考慮我們需要以不同形式來重新格式化 JSON 輸出的情況。 當地址所在城市的名稱與省/市的名稱相同時，此查詢會投射具有兩個所選欄位 (Name 和 City) 的新 JSON 物件。 在此情況下，"NY, NY" 相符。
-
-**查詢**    
-
+```sql
     SELECT {"Name":f.id, "City":f.address.city} AS Family 
     FROM Families f 
     WHERE f.address.city = f.address.state
+```
 
 **結果**
 
+```json
     [{
         "Family": {
             "Name": "WakefieldFamily", 
             "City": "NY"
         }
     }]
+```
 
+**查詢 3**：此查詢會傳回家庭中所有小孩的名字，而該家庭的 id 符合依據居住城市所排序的 `WakefieldFamily`。
 
-下一個查詢會傳回家族中所有指定小孩的名稱，該家族的 id 符合依據居住城市所排序的 `WakefieldFamily` 。
-
-**查詢**
-
+```sql
     SELECT c.givenName 
     FROM Families f 
     JOIN c IN f.children 
     WHERE f.id = 'WakefieldFamily'
     ORDER BY f.address.city ASC
+```
 
 **結果**
 
+```json
     [
       { "givenName": "Jesse" }, 
       { "givenName": "Lisa"}
     ]
+```
 
-
-我們想要透過目前所看到的範例來指出 Cosmos DB 查詢語言的一些重要部分：  
+以下是從目前所見範例中得到的幾個 Cosmos DB 查詢語言觀點：  
 
 * 因為 SQL API 的處理對象是 JSON 值，所以它處理的是樹狀形式的實體，而不是資料列和資料行。 因此，此語言可讓您參考樹狀目錄中任意深度的節點 (例如 `Node1.Node2.Node3…..Nodem`)，該節點與參考 `<table>.<column>` 之兩個部分參考的關聯式 SQL 類似。   
+
 * 結構化查詢語言可處理無結構描述資料。 因此，需要動態繫結類型系統。 相同的運算式可能會對不同的文件產生不同的類型。 查詢的結果會是有效的 JSON 值，但不保證會是固定的結構描述。  
-* Cosmos DB 只支援嚴謹的 JSON 文件。 這表示類型系統和運算式只能處理 JSON 類型。 如需詳細資料，請參閱 [JSON 規格](http://www.json.org/) \(英文\)。  
+
+* Azure Cosmos DB 只支援嚴謹的 JSON 文件。 這表示類型系統和運算式只能處理 JSON 類型。 如需詳細資料，請參閱 [JSON 規格](http://www.json.org/) \(英文\)。  
+
 * Cosmos DB 集合是 JSON 文件的無結構描述容器。 集合中文件內及跨文件之資料實體中的關係，會由內含項目以隱含方式擷取，而不是由主索引鍵和外部索引鍵關係擷取。 這是本文稍後討論之文件內聯結中值得指出的重要部分。
 
-## <a id="Indexing"></a> Cosmos DB 索引編製
-進入 SQL 語法之前，有必要先探索 Azure Cosmos DB 中的索引設計。 
+## <a id="SelectClause"></a> 子句
 
-資料庫索引的目的是要在使用最少資源 (例如 CPU、輸入/輸出) 的情況下，以各種方式提供查詢，同時兼顧良好的輸送量和低延遲。 通常，選擇適用於資料庫查詢的正確索引需要經過相當的規劃和實驗。 此方式對資料不符合嚴謹結構描述的無結構描述資料庫而言是種挑戰，而且發展十分迅速。 
+根據 ANSI-SQL 標準，每個查詢都會包含 SELECT 子句以及選擇性的 FROM 和 WHERE 子句。 針對每個查詢，通常都會列舉 FROM 子句中的來源。 接著，會對來源套用 WHERE 子句中的篩選，以擷取 JSON 文件的子集。 最後，使用 SELECT 子句來投射選取清單中所要求的 JSON 值。 若要深入了解語法，請參閱 [SELECT 語法](sql-api-sql-query-reference.md#bk_select_query)。
 
-因此，我們在設計 Cosmos DB 索引子系統時，設定了下列目標：
+下列範例示範一般的 SELECT 查詢。 
 
-* 在不需要結構描述的情況下，對文件編製索引：索引子系統不需要任何結構描述資訊，或提出任何文件結構描述的相關假設。 
-* 支援有效率、豐富階層式及關聯式查詢：索引可有效率地支援 Cosmos DB 查詢語言，包括支援階層式和關聯式投射。
-* 支援在面對持續大量寫入時進行一致查詢：在面對持續大量寫入時，針對具有一致查詢的高寫入輸送量工作負載，會以累加、有效率及線上方式更新索引。 一致的索引更新對於提供一致性層級的查詢十分重要，在此層級中是由使用者設定文件服務。
-* 支援多重租用：由於是使用保留型模型進行跨租用戶的資源控管，因此會在為每一複本配置的系統資源 (CPU、記憶體，以及每秒的輸入/輸出作業) 預算內執行索引更新。 
-* 儲存體效率：基於成本效益，索引的磁碟儲存體額外負荷有所限制且可預測。 這十分重要，因為 Cosmos DB 允許開發人員在索引額外負荷與查詢效能之間做出成本取捨。  
+**查詢**
 
-如需示範如何為集合設定索引編製原則的範例，請參閱 MSDN 上的 [Azure Cosmos DB 範例 (英文)](https://github.com/Azure/azure-documentdb-net)。 現在，讓我們深入討論 Azure Cosmos DB SQL 語法。
+```sql
+    SELECT f.address
+    FROM Families f 
+    WHERE f.id = "AndersenFamily"
+```
 
-## <a id="Basics"></a>Azure Cosmos DB SQL 查詢的基本概念
-根據 ANSI-SQL 標準，每個查詢都會包含 SELECT 子句以及選擇性的 FROM 和 WHERE 子句。 針對每個查詢，通常都會列舉 FROM 子句中的來源。 接著，會對來源套用 WHERE 子句中的篩選，以擷取 JSON 文件的子集。 最後，使用 SELECT 子句來投射選取清單中所要求的 JSON 值。
+**結果**
 
-    SELECT <select_list> 
-    [FROM <from_specification>] 
-    [WHERE <filter_condition>]
-    [ORDER BY <sort_specification]    
+```json
+    [{
+      "address": {
+        "state": "WA", 
+        "county": "King", 
+        "city": "seattle"
+      }
+    }]
+```
 
+### <a name="nested-properties"></a>巢狀屬性
+在下列範例中，我們將投射兩個巢狀屬性 `f.address.state` and `f.address.city`。
+
+**查詢**
+
+```sql
+    SELECT f.address.state, f.address.city
+    FROM Families f 
+    WHERE f.id = "AndersenFamily"
+```
+
+**結果**
+
+```json
+    [{
+      "state": "WA", 
+      "city": "seattle"
+    }]
+```
+
+投射也支援 JSON 運算式 (如下列範例所示)：
+
+**查詢**
+
+```sql
+    SELECT { "state": f.address.state, "city": f.address.city, "name": f.id }
+    FROM Families f 
+    WHERE f.id = "AndersenFamily"
+```
+
+**結果**
+
+```json
+    [{
+      "$1": {
+        "state": "WA", 
+        "city": "seattle", 
+        "name": "AndersenFamily"
+      }
+    }]
+```
+
+讓我們在這裡查看 `$1` 角色。 `SELECT` 子句需要建立 JSON 物件，且因為未提供任何索引鍵，所以我們將使用以 `$1` 開頭的隱含引數變數名稱。 例如，此查詢會傳回兩個隱含引數變數，名稱為 `$1` 和 `$2`。
+
+**查詢**
+
+```sql
+    SELECT { "state": f.address.state, "city": f.address.city }, 
+           { "name": f.id }
+    FROM Families f 
+    WHERE f.id = "AndersenFamily"
+```
+
+**結果**
+
+```json
+    [{
+      "$1": {
+        "state": "WA", 
+        "city": "seattle"
+      }, 
+      "$2": {
+        "name": "AndersenFamily"
+      }
+    }]
+```
 
 ## <a id="FromClause"></a>FROM 子句
-除非稍後會在查詢中篩選或投射來源，否則 `FROM <from_specification>` 子句為選用子句。 此子句的目的是指定查詢必須操作的資料來源。 整個集合通常是來源，但是您可以改為指定集合的子集。 
 
-類似 `SELECT * FROM Families` 的查詢指出整個 Families 集合是要列舉的來源。 可使用特殊識別碼 ROOT 來代表此集合，而不使用集合名稱。 下列清單包含會針對每個查詢強制執行的規則：
+除非稍後會在查詢中篩選或投射來源，否則 FROM <from_specification> 子句為選用子句。 若要深入了解語法，請參閱 [FROM 語法](sql-api-sql-query-reference.md#bk_from_clause)。 類似 `SELECT * FROM Families` 的查詢指出整個 Families 集合是要列舉的來源。 可使用特殊識別碼 ROOT 來代表此集合，而不使用集合名稱。 下列清單包含會針對每個查詢強制執行的規則：
 
-* 集合可以進行別名處理，例如 `SELECT f.id FROM Families AS f` 或只是 `SELECT f.id FROM Families f`。 此處的 `f` 即等於 `Families`。 `AS` 是對識別碼進行別名處理的選用關鍵字。
-* 進行別名處理之後，就無法繫結原始來源。 例如， `SELECT Families.id FROM Families f` 在語句構造上無效，因為無法再解析識別碼 "Families"。
+* 集合可以進行別名處理，例如 `SELECT f.id FROM Families AS f` 或只是 `SELECT f.id FROM Families f`。 此處的 `f` 即等於 `Families`。 `AS` 是對識別碼進行別名處理的選用關鍵字。  
+
+* 進行別名處理之後，就無法繫結原始來源。 例如， `SELECT Families.id FROM Families f` 在語句構造上無效，因為無法再解析識別碼 "Families"。  
+
 * 所有需要參照的屬性都必須是完整的。 如果未遵循嚴謹的結構描述，則會強制執行以避免任何模糊的繫結。 因此，`SELECT id FROM Families f` 在語句構造上無效，因為不會繫結屬性 `id`。
 
-### <a name="subdocuments"></a>子文件
+### <a name="get-subdocuments-using-from-clause"></a>使用 FROM 子句取得子文件
+
 來源也可以減少為更小的子集。 例如，若只要列舉每份文件中的樹狀子目錄，則子根目錄可能會變成來源 (如下列範例所示)：
 
 **查詢**
 
+```sql
     SELECT * 
     FROM Families.children
+```
 
 **結果**  
 
+```json
     [
       [
         {
@@ -249,35 +314,42 @@ Microsoft Azure Cosmos DB 支援在 SQL API 帳戶上使用 SQL (結構化查詢
         }
       ]
     ]
+```
 
 雖然上述範例使用陣列作為來源，但物件也可用來作為來源，即下列範例中顯示的內容：可在來源中找到的任何有效的 JSON 值 (已定義的)，均會被視為查詢結果中的包含項目。 如果有些家族沒有 `address.state` 值，則會在查詢結果中予以排除。
 
 **查詢**
 
+```sql
     SELECT * 
     FROM Families.address.state
+```
 
 **結果**
 
+```json
     [
       "WA", 
       "NY"
     ]
-
+```
 
 ## <a id="WhereClause"></a>WHERE 子句
-WHERE 子句 (**`WHERE <filter_condition>`**) 是選用的。 它會指定條件，而且來源所提供的 JSON 文件必須滿足這些條件才能併入為結果的一部分。 任何 JSON 文件都必須將指定的條件評估為 "true"，才能視為結果。 索引層使用 WHERE 子句，來判斷可為結果一部分的來源文件的絕對最小子集。 
+WHERE 子句 (**`WHERE <filter_condition>`**) 是選用的。 它會指定條件，而且來源所提供的 JSON 文件必須滿足這些條件才能併入為結果的一部分。 任何 JSON 文件都必須將指定的條件評估為 "true"，才能視為結果。 索引層使用 WHERE 子句，來判斷可為結果一部分的來源文件的絕對最小子集。 若要深入了解語法，請參閱 [WHERE 語法](sql-api-sql-query-reference.md#bk_where_clause)。
 
 下列查詢會要求包含名稱屬性且其值為 `AndersenFamily`的文件。 沒有名稱屬性或值不符合 `AndersenFamily` 的任何其他文件都會予以排除。 
 
 **查詢**
 
+```sql
     SELECT f.address
     FROM Families f 
     WHERE f.id = "AndersenFamily"
+```
 
 **結果**
 
+```json
     [{
       "address": {
         "state": "WA", 
@@ -285,38 +357,23 @@ WHERE 子句 (**`WHERE <filter_condition>`**) 是選用的。 它會指定條件
         "city": "seattle"
       }
     }]
-
+```
 
 前一個範例已顯示簡單的相等查詢。 SQL API 也支援各種純量運算式。 最常用的是二元和一元運算式。 來源 JSON 物件中的屬性參考也是有效的運算式。 
 
 下列是目前支援的二元運算式，而且可以用於查詢中 (如下列範例所示)：  
 
-<table>
-<tr>
-<td>算術</td>    
-<td>+、-、*、/、%</td>
-</tr>
-<tr>
-<td>位元</td>    
-<td>|、&、^、<<、>>、>>> (右移位並填滿零)</td>
-</tr>
-<tr>
-<td>邏輯</td>
-<td>AND、OR、NOT</td>
-</tr>
-<tr>
-<td>比較</td>    
-<td>=, !=, &lt;, &gt;, &lt;=, &gt;=, <></td>
-</tr>
-<tr>
-<td>字串</td>    
-<td>|| (串連)</td>
-</tr>
-</table>  
-
+|**運算子類型**  |**值**  |
+|---------|---------|
+|算術    |   +、-、*、/、%   |
+|位元  |   |&、^、<<、>>、>>> (向右移位並填滿零)      |
+|邏輯   |   AND、OR、NOT      |
+|比較   |    =, !=, &lt;, &gt;, &lt;=, &gt;=, <>     |
+|字串  |  || (串連)       |
 
 讓我們了解一些使用二元運算子的查詢。
 
+```sql
     SELECT * 
     FROM Families.children[0] c
     WHERE c.grade % 2 = 1     -- matching grades == 5, 1
@@ -328,10 +385,11 @@ WHERE 子句 (**`WHERE <filter_condition>`**) 是選用的。 它會指定條件
     SELECT *
     FROM Families.children[0] c
     WHERE c.grade >= 5     -- matching grades == 5
-
+```
 
 一元運算子 +、-、~ 及 NOT 也是支援的運算子，可在查詢內使用 (如下列範例所示)：
 
+```sql
     SELECT *
     FROM Families.children[0] c
     WHERE NOT(c.grade = 5)  -- matching grades == 1
@@ -339,8 +397,7 @@ WHERE 子句 (**`WHERE <filter_condition>`**) 是選用的。 它會指定條件
     SELECT *
     FROM Families.children[0] c
     WHERE (-c.grade = -5)  -- matching grades == 5
-
-
+```
 
 除了二元和一元運算子之外，還允許屬性參照。 例如，`SELECT * FROM Families f WHERE f.isRegistered` 所傳回的 JSON 文件包含屬性 `isRegistered` 且屬性值等於 JSON `true` 值。 任何其他值 (false、null、Undefined、`<number>`、`<string>`、`<object>`、`<array>` 等) 則會導致從結果中排除來源文件。 
 
@@ -519,31 +576,38 @@ Undefined </td>
 
 其他比較運算子 (例如 >、>=、!=、< 及 <=) 則適用下列規則：   
 
-* 不同類型的比較會導致 Undefined。
+* 不同類型的比較會導致 Undefined。  
 * 兩個物件或兩個陣列之間的比較會導致 Undefined。   
 
 如果篩選中純量運算式的結果是 Undefined，則不會將對應的文件併入結果中，因為 Undefined 邏輯上不會等於 "true"。
 
-### <a name="between-keyword"></a>BETWEEN 關鍵字
+## <a name="between-keyword"></a>BETWEEN 關鍵字
 您也可以使用 BETWEEN 關鍵字來表示像對 ANSI SQL 中的值範圍執行查詢。 BETWEEN 可用於字串或數字。
 
 例如，此查詢會傳回其長子的成績介於 1-5 (兩者皆含) 之間的所有家族文件。 
 
+```sql
     SELECT *
     FROM Families.children[0] c
     WHERE c.grade BETWEEN 1 AND 5
+```
 
 不同於 ANSI SQL，您也可以在 FROM 子句中使用 BETWEEN 子句，如下列範例所示 。
 
+```sql
     SELECT (c.grade BETWEEN 0 AND 10)
     FROM Families.children[0] c
-
-如需更快速的查詢執行時間，請記得針對經過 BETWEEN 子句篩選的任何數值屬性/路徑，建立使用範圍索引類型的檢索原則。 
+```
 
 在 SQL API 和 ANSI SQL 中使用 BETWEEN 的主要差異在於，您可以針對混合類型的屬性表示範圍查詢，例如，在某些文件中 "grade" 可能是數字 (5)，而在其他文件中可能會是字串 ("grade4")。 在這些情況下 (像在 JavaScript 中)，這兩種不同類型之間的比較會產生 「 未定義 」，並略過文件。
 
+> [!NOTE]
+> 如需更快速的查詢執行時間，請記得針對經過 BETWEEN 子句篩選的任何數值屬性/路徑，建立使用範圍索引類型的檢索原則。 
+
 ### <a name="logical-and-or-and-not-operators"></a>邏輯 (AND、OR 和 NOT) 運算子
 邏輯運算子的運算對象是布林值。 下表顯示這些運算子的邏輯真值表。
+
+**OR 運算子**
 
 | 或 | True | False | Undefined |
 | --- | --- | --- | --- |
@@ -551,11 +615,15 @@ Undefined </td>
 | False |True |False |Undefined |
 | Undefined |True |Undefined |Undefined |
 
+**AND 運算子**
+
 | AND | True | False | Undefined |
 | --- | --- | --- | --- |
 | True |True |False |Undefined |
 | False |False |False |False |
 | Undefined |Undefined |False |Undefined |
+
+**NOT 運算子**
 
 | NOT |  |
 | --- | --- |
@@ -563,142 +631,76 @@ Undefined </td>
 | False |True |
 | Undefined |Undefined |
 
-### <a name="in-keyword"></a>IN 關鍵字
+## <a name="in-keyword"></a>IN 關鍵字
+
 IN 關鍵字可用來檢查指定的值是否符合清單中的任何值。 例如，此查詢會傳回所有的家族文件，其中 id 是 "WakefieldFamily" 或 "AndersenFamily" 其中一個。 
 
+```sql
     SELECT *
     FROM Families 
     WHERE Families.id IN ('AndersenFamily', 'WakefieldFamily')
+```
 
 這個範例會傳回其狀態是任何一個指定值的所有文件。
 
+```sql
     SELECT *
     FROM Families 
     WHERE Families.address.state IN ("NY", "WA", "CA", "PA", "OH", "OR", "MI", "WI", "MN", "FL")
+```
 
-### <a name="ternary--and-coalesce--operators"></a>三元 (?) 和聯合 (??) 運算子
-三元和聯合運算子可用來建立條件運算式，與熱門程式設計語言 (如 C# 和 JavaScript) 類似。 
+## <a name="ternary--and-coalesce--operators"></a>三元 (?) 和聯合 (??) 運算子
 
-快速建構新的 JSON 屬性時，三元 (?) 運算子可以說非常好用。 比方說，您現在可以撰寫查詢將類別層級分類為一般人可判讀的格式 (例如初級/中級/進階)，如下所示。
+三元和聯合運算子可用來建立條件運算式，與熱門程式設計語言 (如 C# 和 JavaScript) 類似。 快速建構新的 JSON 屬性時，三元 (?) 運算子可以說非常好用。 比方說，您現在可以撰寫查詢將類別層級分類為一般人可判讀的格式 (例如初級/中級/進階)，如下所示。
 
+```sql
      SELECT (c.grade < 5)? "elementary": "other" AS gradeLevel 
      FROM Families.children[0] c
+```
 
 您也可以巢狀運算子的呼叫，如下方查詢所示。
 
+```sql
     SELECT (c.grade < 5)? "elementary": ((c.grade < 9)? "junior": "high")  AS gradeLevel 
     FROM Families.children[0] c
+```
 
 和其他查詢運算子一樣，如果任何文件中的條件運算式遺漏了參考屬性，或者要比較的類型不同，則查詢結果會將那些文件排除在外。
 
 聯合 (??) 運算子可用來有效率地檢查屬性是否存在 (也稱為 已定義) 於文件中。 針對半結構化或混合類型的資料執行查詢時，這非常有用。 例如，此查詢會傳回 "lastName" (如果存在) 或 "surname" (如果不存在)。
 
+```sql
     SELECT f.lastName ?? f.surname AS familyName
     FROM Families f
+```
 
-### <a id="EscapingReservedKeywords"></a>加上引號的屬性存取子
+## <a id="EscapingReservedKeywords"></a>加上引號的屬性存取子
 您也可以使用加上引號的屬性運算子 `[]`存取屬性。 例如， `SELECT c.grade` and `SELECT c["grade"]` 是相等的。 當您需要逸出包含空格、特殊字元的屬性，或剛好要共用和 SQL 關鍵字或保留字相同的名稱時，此語法很有用。
 
+```sql
     SELECT f["lastName"]
     FROM Families f
     WHERE f["id"] = "AndersenFamily"
+```
 
+## <a name="aliasing"></a>別名
 
-## <a id="SelectClause"></a>SELECT 子句
-SELECT 子句 (**`SELECT <select_list>`**) 是必要項目，並指定要從查詢中擷取的值 (就像在 ANSI-SQL 中)。 在來源文件上篩選出來的子集會傳遞給投射階段，而在此階段中，會擷取指定的 JSON 值並建構新的 JSON 物件 (針對每個傳遞給它的輸入)。 
-
-下列範例示範一般的 SELECT 查詢。 
-
-**查詢**
-
-    SELECT f.address
-    FROM Families f 
-    WHERE f.id = "AndersenFamily"
-
-**結果**
-
-    [{
-      "address": {
-        "state": "WA", 
-        "county": "King", 
-        "city": "seattle"
-      }
-    }]
-
-
-### <a name="nested-properties"></a>巢狀屬性
-在下列範例中，我們將投射兩個巢狀屬性 `f.address.state` and `f.address.city`。
-
-**查詢**
-
-    SELECT f.address.state, f.address.city
-    FROM Families f 
-    WHERE f.id = "AndersenFamily"
-
-**結果**
-
-    [{
-      "state": "WA", 
-      "city": "seattle"
-    }]
-
-
-投射也支援 JSON 運算式 (如下列範例所示)：
-
-**查詢**
-
-    SELECT { "state": f.address.state, "city": f.address.city, "name": f.id }
-    FROM Families f 
-    WHERE f.id = "AndersenFamily"
-
-**結果**
-
-    [{
-      "$1": {
-        "state": "WA", 
-        "city": "seattle", 
-        "name": "AndersenFamily"
-      }
-    }]
-
-
-讓我們在這裡查看 `$1` 角色。 `SELECT` 子句需要建立 JSON 物件，且因為未提供任何索引鍵，所以我們將使用以 `$1` 開頭的隱含引數變數名稱。 例如，此查詢會傳回兩個隱含引數變數，名稱為 `$1` 和 `$2`。
-
-**查詢**
-
-    SELECT { "state": f.address.state, "city": f.address.city }, 
-           { "name": f.id }
-    FROM Families f 
-    WHERE f.id = "AndersenFamily"
-
-**結果**
-
-    [{
-      "$1": {
-        "state": "WA", 
-        "city": "seattle"
-      }, 
-      "$2": {
-        "name": "AndersenFamily"
-      }
-    }]
-
-
-### <a name="aliasing"></a>別名
 現在，讓我們使用值的明確別名處理來擴充上面的範例。 AS 是用來加上別名的關鍵字。 它在將第二個值投射為 `NameInfo` 時是選用項目 (如下所示)。 
 
 如果查詢具有兩個同名的屬性，則必須使用別名處理來重新命名一或兩個屬性，使其在投射的結果中變得更為明確。
 
 **查詢**
-
+```sql
     SELECT 
            { "state": f.address.state, "city": f.address.city } AS AddressInfo, 
            { "name": f.id } NameInfo
     FROM Families f 
     WHERE f.id = "AndersenFamily"
+```
 
 **結果**
 
+```json
     [{
       "AddressInfo": {
         "state": "WA", 
@@ -708,44 +710,53 @@ SELECT 子句 (**`SELECT <select_list>`**) 是必要項目，並指定要從查�
         "name": "AndersenFamily"
       }
     }]
+```
 
-
-### <a name="scalar-expressions"></a>純量運算式
+## <a name="scalar-expressions"></a>純量運算式
 除了屬性參考之外，SELECT 子句也支援純量運算式 (例如常數、算術運算式、邏輯運算式等)。例如，以下是簡單 "Hello World" 查詢。
 
 **查詢**
 
+```sql
     SELECT "Hello World"
+```
 
 **結果**
 
+```json
     [{
       "$1": "Hello World"
     }]
-
+```
 
 以下是使用純量運算式的較複雜範例。
 
 **查詢**
 
+```sql
     SELECT ((2 + 11 % 7)-2)/3    
+```
 
 **結果**
 
+```json
     [{
       "$1": 1.33333
     }]
-
+```
 
 在下列範例中，純量運算式結果是布林值。
 
 **查詢**
 
+```sql
     SELECT f.address.city = f.address.state AS AreFromSameCityState
     FROM Families f    
+```
 
 **結果**
 
+```json
     [
       {
         "AreFromSameCityState": false
@@ -754,18 +765,21 @@ SELECT 子句 (**`SELECT <select_list>`**) 是必要項目，並指定要從查�
         "AreFromSameCityState": true
       }
     ]
+```
 
-
-### <a name="object-and-array-creation"></a>物件和陣列建立
+## <a name="object-and-array-creation"></a>物件和陣列建立
 SQL API 的另一個重要功能是建立陣列/物件。 在前一個範例中，請注意，我們已建立新的 JSON 物件。 同樣地，您也可以建構陣列 (如下列範例所示)：
 
 **查詢**
 
+```sql
     SELECT [f.address.city, f.address.state] AS CityState 
     FROM Families f    
+```
 
 **結果**  
 
+```json
     [
       {
         "CityState": [
@@ -780,30 +794,37 @@ SQL API 的另一個重要功能是建立陣列/物件。 在前一個範例中�
         ]
       }
     ]
+```
 
-### <a id="ValueKeyword"></a>VALUE 關鍵字
+## <a id="ValueKeyword"></a>VALUE 關鍵字
 **VALUE** 關鍵字提供可傳回 JSON 值的方法。 例如，下面顯示的查詢會傳回純量 `"Hello World"` 而非 `{$1: "Hello World"}`。
 
 **查詢**
 
+```sql
     SELECT VALUE "Hello World"
+```
 
 **結果**
 
+```json
     [
       "Hello World"
     ]
-
+```
 
 下列查詢會在結果中傳回不含 `"address"` 標籤的 JSON 值。
 
 **查詢**
 
+```sql
     SELECT VALUE f.address
     FROM Families f    
+```
 
 **結果**  
 
+```json
     [
       {
         "state": "WA", 
@@ -816,33 +837,40 @@ SQL API 的另一個重要功能是建立陣列/物件。 在前一個範例中�
         "city": "NY"
       }
     ]
+```
 
 下列範例會延伸此程式碼，以示範如何傳回 JSON 基本值 (JSON 樹狀目錄的分葉層級)。 
 
 **查詢**
 
+```sql
     SELECT VALUE f.address.state
     FROM Families f    
+```
 
 **結果**
 
+```json
     [
       "WA",
       "NY"
     ]
+```
 
-
-### <a name="-operator"></a>* 運算子
+## <a name="-operator"></a>* 運算子
 支援使用特殊運算子 (*) 來依原樣投射文件。 使用時，它必須是唯一投射的欄位。 `SELECT * FROM Families f` 之類的查詢有效，`SELECT VALUE * FROM Families f ` 和 `SELECT *, f.id FROM Families f ` 則無效。
 
 **查詢**
 
+```sql
     SELECT * 
     FROM Families f 
     WHERE f.id = "AndersenFamily"
+```
 
 **結果**
 
+```json
     [{
         "id": "AndersenFamily",
         "lastName": "Andersen",
@@ -860,17 +888,21 @@ SQL API 的另一個重要功能是建立陣列/物件。 在前一個範例中�
         "creationDate": 1431620472,
         "isRegistered": true
     }]
+```
 
-### <a id="TopKeyword"></a>TOP 運算子
+## <a id="TopKeyword"></a>TOP 運算子
 TOP 關鍵字可以用來限制來自查詢的值數目。 當 TOP 與 ORDER BY 子句一起使用時，結果集會限制於前 N 個已排序的值。否則，它會以未定義的順序傳回前 N 個結果。 最佳做法是在 SELECT 陳述式中，一律搭配 TOP 子句來使用 ORDER BY 子句。 這是唯一能如預期般指出哪些資料列會受到 TOP 影響的方式。 
 
 **查詢**
 
+```sql
     SELECT TOP 1 * 
     FROM Families f 
+```
 
 **結果**
 
+```json
     [{
         "id": "AndersenFamily",
         "lastName": "Andersen",
@@ -888,45 +920,58 @@ TOP 關鍵字可以用來限制來自查詢的值數目。 當 TOP 與 ORDER BY 
         "creationDate": 1431620472,
         "isRegistered": true
     }]
+```
 
 TOP 可以與常數值 (如上所示) 或使用參數化查詢的變數值搭配使用 。 如需詳細資訊，請參閱下方的參數化查詢。
 
-### <a id="Aggregates"></a>彙總函式
+## <a id="Aggregates"></a>彙總函式
 您也可以在 `SELECT` 子句中執行彙總。 彙總函式會執行一組值的計算，然後傳回單一值。 例如，下列查詢會傳回集合內的系列文件計數。
 
 **查詢**
 
+```sql
     SELECT COUNT(1) 
     FROM Families f 
+```
 
 **結果**
 
+```json
     [{
         "$1": 2
     }]
+```
 
 您也可以使用 `VALUE` 關鍵字來傳回彙總的純量值。 例如，下列查詢會以單一數字傳回值的計數：
 
 **查詢**
 
+```sql
     SELECT VALUE COUNT(1) 
     FROM Families f 
+```
 
 **結果**
 
+```json
     [ 2 ]
+```
 
 您也可以搭配篩選器執行彙總。 例如，下列查詢會傳回位址在華盛頓州的文件計數。
 
 **查詢**
 
+```sql
     SELECT VALUE COUNT(1) 
     FROM Families f
     WHERE f.address.state = "WA" 
+```
 
 **結果**
 
+```json
     [ 1 ]
+```
 
 下表顯示 SQL API 中支援的彙總函式清單。 `SUM` 和 `AVG` 是對數值執行，而 `COUNT`、`MIN`和 `MAX` 則可對數字、字串、布林值和 null 執行。 
 
@@ -953,12 +998,15 @@ TOP 可以與常數值 (如上所示) 或使用參數化查詢的變數值搭配
 
 **查詢**
 
+```sql
     SELECT f.id, f.address.city
     FROM Families f 
     ORDER BY f.address.city
+```
 
 **結果**
 
+```json
     [
       {
         "id": "WakefieldFamily",
@@ -969,17 +1017,21 @@ TOP 可以與常數值 (如上所示) 或使用參數化查詢的變數值搭配
         "city": "Seattle"    
       }
     ]
+```
 
 以下是依據建立日期擷取家族的查詢，儲存為代表 epoch 時間的數字，也就是，自 1970 年 1 月 1 日之後經過的時間 (以秒為單位)。
 
 **查詢**
 
+```sql
     SELECT f.id, f.creationDate
     FROM Families f 
     ORDER BY f.creationDate DESC
+```
 
 **結果**
 
+```json
     [
       {
         "id": "WakefieldFamily",
@@ -990,6 +1042,7 @@ TOP 可以與常數值 (如上所示) 或使用參數化查詢的變數值搭配
         "creationDate": 1431620472    
       }
     ]
+```
 
 ## <a id="Advanced"></a>進階資料庫概念和 SQL 查詢
 
@@ -998,11 +1051,14 @@ TOP 可以與常數值 (如上所示) 或使用參數化查詢的變數值搭配
 
 **查詢**
 
+```sql
     SELECT * 
     FROM Families.children
+```
 
 **結果**  
 
+```json
     [
       [
         {
@@ -1027,16 +1083,20 @@ TOP 可以與常數值 (如上所示) 或使用參數化查詢的變數值搭配
         }
       ]
     ]
+```
 
 現在，讓我們查看另一個查詢，以執行反覆運算集合中的子系。 請注意輸出陣列中的差異。 此範例會分割 `children` ，並將結果簡維成單一陣列。  
 
 **查詢**
 
+```sql
     SELECT * 
     FROM c IN Families.children
+```
 
 **結果**  
 
+```json
     [
       {
           "firstName": "Henriette Thaulow",
@@ -1057,35 +1117,44 @@ TOP 可以與常數值 (如上所示) 或使用參數化查詢的變數值搭配
           "grade": 8
       }
     ]
+```
 
 這可以進一步用來篩選陣列的每個個別項目 (如下列範例所示)：
 
 **查詢**
 
+```sql
     SELECT c.givenName
     FROM c IN Families.children
     WHERE c.grade = 8
+```
 
 **結果**  
 
+```json
     [{
       "givenName": "Lisa"
     }]
+```
 
 您也可以對陣列反覆運算的結果執行彙總。 例如，下列查詢會計算所有系列的子系數目。
 
 **查詢**
 
+```sql
     SELECT COUNT(child) 
     FROM child IN Families.children
+```
 
 **結果**  
 
+```json
     [
       { 
         "$1": 3
       }
     ]
+```
 
 ### <a id="Joins"></a>聯結
 在關聯式資料庫中，跨資料表的聯結需求很重要。 就設計正規化結構描述而言，邏輯上需要它。 與此相反的是，SQL API 會處理無結構描述文件的反正規化資料模型。 這在邏輯上等同於「自我聯結」。
@@ -1096,26 +1165,32 @@ TOP 可以與常數值 (如上所示) 或使用參數化查詢的變數值搭配
 
 **查詢**
 
+```sql
     SELECT f.id
     FROM Families f
     JOIN f.NonExistent
+```
 
 **結果**  
 
+```json
     [{
     }]
-
+```
 
 在下列範例中，聯結會介於文件根目錄與 `children` 子根目錄之間。 它是兩個 JSON 物件之間的交叉乘積。 子系是陣列的事實不會影響 JOIN，因為我們是處理為子陣列的單一根目錄。 因此，結果只會包含兩個結果，因為每個含有陣列之文件的交叉乘積都只會產生一個文件。
 
 **查詢**
 
+```sql
     SELECT f.id
     FROM Families f
     JOIN f.children
+```
 
 **結果**
 
+```json
     [
       {
         "id": "AndersenFamily"
@@ -1124,18 +1199,21 @@ TOP 可以與常數值 (如上所示) 或使用參數化查詢的變數值搭配
         "id": "WakefieldFamily"
       }
     ]
-
+```
 
 下列範例示範較傳統的聯結：
 
 **查詢**
 
+```sql
     SELECT f.id
     FROM Families f
     JOIN c IN f.children 
+```
 
 **結果**
 
+```json
     [
       {
         "id": "AndersenFamily"
@@ -1147,8 +1225,7 @@ TOP 可以與常數值 (如上所示) 或使用參數化查詢的變數值搭配
         "id": "WakefieldFamily"
       }
     ]
-
-
+```
 
 第一件要注意的事是 **JOIN** 子句的 `from_source` 是迭代器。 因此，此案例中的流程如下：  
 
@@ -1162,6 +1239,7 @@ JOIN 的實際作用是透過圖形中很難投射的交叉乘積來形成 Tuple
 
 **查詢**
 
+```sql
     SELECT 
         f.id AS familyName,
         c.givenName AS childGivenName,
@@ -1170,9 +1248,11 @@ JOIN 的實際作用是透過圖形中很難投射的交叉乘積來形成 Tuple
     FROM Families f 
     JOIN c IN f.children 
     JOIN p IN c.pets
+```
 
 **結果**
 
+```json
     [
       {
         "familyName": "AndersenFamily", 
@@ -1190,11 +1270,11 @@ JOIN 的實際作用是透過圖形中很難投射的交叉乘積來形成 Tuple
        "petName": "Shadow"
       }
     ]
-
-
+```
 
 此範例是上述範例的自然延伸，用來執行雙重聯結。 因此，交叉乘積可被視為下列虛擬程式碼：
 
+```
     for-each(Family f in Families)
     {    
         for-each(Child c in f.children)
@@ -1208,6 +1288,7 @@ JOIN 的實際作用是透過圖形中很難投射的交叉乘積來形成 Tuple
             }
         }
     }
+```
 
 `AndersenFamily` 有一個小孩養了一隻寵物。 因此，交叉乘積會從此家族產生 1 個資料列 (1\*1\*1)。 不過，WakefieldFamily 有兩個小孩，但只有一個小孩 "Jesse" 養了多隻寵物。 Jesse 有兩隻寵物。 因此，交叉乘積會從此家族產生 1\*1\*2 = 2 個資料列。
 
@@ -1215,6 +1296,7 @@ JOIN 的實際作用是透過圖形中很難投射的交叉乘積來形成 Tuple
 
 **查詢**
 
+```sql
     SELECT 
         f.id AS familyName,
         c.givenName AS childGivenName,
@@ -1224,9 +1306,11 @@ JOIN 的實際作用是透過圖形中很難投射的交叉乘積來形成 Tuple
     JOIN c IN f.children 
     JOIN p IN c.pets
     WHERE p.givenName = "Shadow"
+```
 
 **結果**
 
+```json
     [
       {
        "familyName": "WakefieldFamily", 
@@ -1234,7 +1318,7 @@ JOIN 的實際作用是透過圖形中很難投射的交叉乘積來形成 Tuple
        "petName": "Shadow"
       }
     ]
-
+```
 
 ## <a id="JavaScriptIntegration"></a>JavaScript 整合
 Azure Cosmos DB 提供一個程式設計模型，可藉由預存程序和觸發程序，直接對集合執行 JavaScript 型應用程式邏輯。 這允許：
@@ -1249,6 +1333,7 @@ SQL 語法已延伸，可支援使用這些使用者定義函式的自訂應用�
 
 以下是如何在 Cosmos DB 資料庫 (更明確地說是在文件集合下) 註冊 UDF 的範例。
 
+```javascript
        UserDefinedFunction regexMatchUdf = new UserDefinedFunction
        {
            Id = "REGEX_MATCH",
@@ -1260,6 +1345,7 @@ SQL 語法已延伸，可支援使用這些使用者定義函式的自訂應用�
        UserDefinedFunction createdUdf = client.CreateUserDefinedFunctionAsync(
            UriFactory.CreateDocumentCollectionUri("testdb", "families"), 
            regexMatchUdf).Result;  
+```
 
 上述範例會建立名為 `REGEX_MATCH`的 UDF。 它接受兩個 JSON 字串值 `input` and `pattern` ，並使用 JavaScript 的 string.match() 函式來檢查第一個項目是否符合第二個項目中指定的模式。
 
@@ -1272,11 +1358,14 @@ SQL 語法已延伸，可支援使用這些使用者定義函式的自訂應用�
 
 **查詢**
 
+```sql
     SELECT udf.REGEX_MATCH(Families.address.city, ".*eattle")
     FROM Families
+```
 
 **結果**
 
+```json
     [
       {
         "$1": true
@@ -1285,27 +1374,32 @@ SQL 語法已延伸，可支援使用這些使用者定義函式的自訂應用�
         "$1": false
       }
     ]
+```
 
 UDF 也可以用於篩選內 (如下面範例所示)，同樣是以 "udf." 前置詞來限定：
 
 **查詢**
 
+```sql
     SELECT Families.id, Families.address.city
     FROM Families
     WHERE udf.REGEX_MATCH(Families.address.city, ".*eattle")
+```
 
 **結果**
 
+```json
     [{
         "id": "AndersenFamily",
         "city": "Seattle"
     }]
-
+```
 
 在本質上，UDF 是有效的純量運算式，而且可以用於投射和篩選。 
 
 為了擴展 UDF 的能力，請查看另一個含有條件式邏輯的範例：
 
+```javascript
        UserDefinedFunction seaLevelUdf = new UserDefinedFunction()
        {
            Id = "SEALEVEL",
@@ -1325,17 +1419,20 @@ UDF 也可以用於篩選內 (如下面範例所示)，同樣是以 "udf." 前�
             UserDefinedFunction createdUdf = await client.CreateUserDefinedFunctionAsync(
                 UriFactory.CreateDocumentCollectionUri("testdb", "families"), 
                 seaLevelUdf);
-
+```
 
 以下是執行 UDF 的範例。
 
 **查詢**
 
+```sql
     SELECT f.address.city, udf.SEALEVEL(f.address.city) AS seaLevel
     FROM Families f    
+```
 
 **結果**
 
+```json
      [
       {
         "city": "seattle", 
@@ -1346,7 +1443,7 @@ UDF 也可以用於篩選內 (如下面範例所示)，同樣是以 "udf." 前�
         "seaLevel": 410
       }
     ]
-
+```
 
 如上述範例所示，UDF 可將 JavaScript 語言的強大功能與 SQL API 整合，提供可程式化的豐富介面，從而在內建 JavaScript 執行階段功能的協助下，執行複雜的程序性、條件式邏輯。
 
@@ -1362,16 +1459,19 @@ Cosmos DB 藉由作為 JSON 資料庫，可將 JavaScript 運算子與其評估�
 不同於 JavaScript，SQL API 不會執行隱含轉換。 例如，類似 `SELECT * FROM Person p WHERE p.Age = 21` 的查詢會針對包含 Age 屬性且值為 21 的文件進行比對。 任何其他 Age 屬性符合字串 "21" 或其他可能之無限制變化 (例如 "021"、"21.0"、"0021"、"00021" 等等) 的文件，則不會成為比對的結果。 這與 JavaScript 形成對比，在 JavaScript 中，會將字串值隱含地轉換成數字 (根據運算子，例如：==)。 這項選擇對 SQL API 中有效率的索引比對十分重要。 
 
 ## <a name="parameterized-sql-queries"></a>參數化 SQL 查詢
-Cosmos DB 支援含有以常見的 @ 標記法表示之參數的查詢。 參數化 SQL 提供使用者輸入的健全處理和逸出，防止透過 SQL 插入式意外洩露資料。 
+Cosmos DB 支援以含有常見 \@ 標記法表示的參數進行查詢。 參數化 SQL 提供使用者輸入的健全處理和逸出，防止透過 SQL 插入式意外洩露資料。 
 
 比方說，您可以撰寫查詢，將姓氏和地址 (州) 做為參數，然後根據使用者輸入，使用各種不同姓氏和地址 (州) 的值執行查詢。
 
+```sql
     SELECT * 
     FROM Families f
     WHERE f.lastName = @lastName AND f.address.state = @addressState
+```
 
 您可以接著將此要求傳送給 Cosmos DB 作為參數化 JSON 查詢，如下所示。
 
+```sql
     {      
         "query": "SELECT * FROM Families f WHERE f.lastName = @lastName AND f.address.state = @addressState",     
         "parameters": [          
@@ -1379,15 +1479,18 @@ Cosmos DB 支援含有以常見的 @ 標記法表示之參數的查詢。 參數
             {"name": "@addressState", "value": "NY"},           
         ] 
     }
+```
 
 您可以使用參數化查詢來設定 TOP 的引數，如下所示。
 
+```sql
     {      
         "query": "SELECT TOP @n * FROM Families",     
         "parameters": [          
             {"name": "@n", "value": 10},         
         ] 
     }
+```
 
 參數值可以是任何有效的 JSON (字串、數字、布林值、null，甚至是陣列或巢狀 JSON)。 此外，由於 Cosmos DB 並無結構描述，因此系統不會對照任何類型來驗證參數。
 
@@ -1438,12 +1541,15 @@ Cosmos DB 也支援一些適用於一般作業的內建函式，這些函式可�
 
 **查詢**
 
+```sql
     SELECT VALUE ABS(-4)
+```
 
 **結果**
 
+```json
     [4]
-
+```
 相較於 ANSI SQL，Cosmos DB 函數的主要差異在於，其設計目的是要與無結構描述資料及混合的結構描述資料有效搭配運作。 例如，如果您有一個文件的 [大小] 屬性已遺失，或具有非數值的值 (例如 "unknown")，該文件就會被略過而不會傳回錯誤。
 
 ### <a name="type-checking-functions"></a>類型檢查函數
@@ -1493,11 +1599,15 @@ Cosmos DB 也支援一些適用於一般作業的內建函式，這些函式可�
 
 **查詢**
 
+```sql
     SELECT VALUE IS_NUMBER(-4)
+```
 
 **結果**
 
+```json
     [true]
+```
 
 ### <a name="string-functions"></a>字串函數
 下列純量函數會對字串輸入值執行作業，並傳回字串、數值或布林值。 以下是內建字串函數的資料表：
@@ -1525,25 +1635,32 @@ Cosmos DB 也支援一些適用於一般作業的內建函式，這些函式可�
 
 **查詢**
 
+```sql
     SELECT VALUE UPPER(Families.id)
     FROM Families
+```
 
 **結果**
 
+```json
     [
         "WAKEFIELDFAMILY", 
         "ANDERSENFAMILY"
     ]
+```
 
 或串連字串，如下列範例所示：
 
 **查詢**
 
+```sql
     SELECT Families.id, CONCAT(Families.address.city, ",", Families.address.state) AS location
     FROM Families
+```
 
 **結果**
 
+```json
     [{
       "id": "WakefieldFamily",
       "location": "NY,NY"
@@ -1552,22 +1669,26 @@ Cosmos DB 也支援一些適用於一般作業的內建函式，這些函式可�
       "id": "AndersenFamily",
       "location": "seattle,WA"
     }]
-
+```
 
 字串函數也可用於 WHERE 子句中以篩選結果，例如下列範例：
 
 **查詢**
 
+```sql
     SELECT Families.id, Families.address.city
     FROM Families
     WHERE STARTSWITH(Families.id, "Wakefield")
+```
 
 **結果**
 
+```json
     [{
       "id": "WakefieldFamily",
       "city": "NY"
     }]
+```
 
 ### <a name="array-functions"></a>陣列函數
 下列純量函數會對陣列輸入值執行作業，並傳回數值、布林值或陣列值。 以下是內建陣列函數的資料表：
@@ -1583,40 +1704,50 @@ Cosmos DB 也支援一些適用於一般作業的內建函式，這些函式可�
 
 **查詢**
 
+```sql
     SELECT Families.id 
     FROM Families 
     WHERE ARRAY_CONTAINS(Families.parents, { givenName: "Robin", familyName: "Wakefield" })
+```
 
 **結果**
 
+```json
     [{
       "id": "WakefieldFamily"
     }]
+```
 
 您可以指定部分片段來比對陣列內的元素。 下列查詢會尋找 `givenName` 為 `Robin` 的所有父母。
 
 **查詢**
 
+```sql
     SELECT Families.id 
     FROM Families 
     WHERE ARRAY_CONTAINS(Families.parents, { givenName: "Robin" }, true)
+```
 
 **結果**
 
+```json
     [{
       "id": "WakefieldFamily"
     }]
-
+```
 
 以下是另一個例子，會使用 ARRAY_LENGTH 取得每個家族的子女數目。
 
 **查詢**
 
+```sql
     SELECT Families.id, ARRAY_LENGTH(Families.children) AS numberOfChildren
     FROM Families 
+```
 
 **結果**
 
+```json
     [{
       "id": "WakefieldFamily",
       "numberOfChildren": 2
@@ -1625,6 +1756,7 @@ Cosmos DB 也支援一些適用於一般作業的內建函式，這些函式可�
       "id": "AndersenFamily",
       "numberOfChildren": 1
     }]
+```
 
 ### <a name="spatial-functions"></a>空間函數
 Cosmos DB 支援下列「開放地理空間協會」(OGC) 內建地理空間查詢函數。 
@@ -1660,15 +1792,19 @@ Cosmos DB 支援下列「開放地理空間協會」(OGC) 內建地理空間查�
 
 **查詢**
 
+```sql
     SELECT f.id 
     FROM Families f 
     WHERE ST_DISTANCE(f.location, {'type': 'Point', 'coordinates':[31.9, -4.8]}) < 30000
+```
 
 **結果**
 
+```json
     [{
       "id": "WakefieldFamily"
     }]
+```
 
 如需有關 Cosmos DB 中的地理空間支援詳細資料，請參閱[使用 Azure Cosmos DB 中的地理空間資料](geospatial.md)。 其中提供 Cosmos DB 之空間函數及 SQL 語法的概要。 現在讓我們看看 LINQ 查詢如何運作，以及它如何與我們到目前為止所見到的語法互動。
 
@@ -1684,6 +1820,7 @@ LINQ 是一種 .NET 程式設計模型，此模型會將運算表示為對物件
 
 **C# 類別**
 
+```csharp
     public class Family
     {
         [JsonProperty(PropertyName="id")]
@@ -1727,10 +1864,11 @@ LINQ 是一種 .NET 程式設計模型，此模型會將運算表示為對物件
     Pet pet = new Pet { givenName = "Fluffy" };
     Address address = new Address { state = "NY", county = "Manhattan", city = "NY" };
     Family family = new Family { Id = "WakefieldFamily", parents = new Parent [] { mother, father}, children = new Child[] { child }, isRegistered = false };
-
+```
 
 **JSON**  
 
+```json
     {
         "id": "WakefieldFamily",
         "parents": [
@@ -1758,7 +1896,7 @@ LINQ 是一種 .NET 程式設計模型，此模型會將運算表示為對物件
         "address": { "state": "NY", "county": "Manhattan", "city": "NY" },
         "isRegistered": false
     };
-
+```
 
 
 ### <a name="linq-to-sql-translation"></a>LINQ 至 SQL 轉譯
@@ -1810,10 +1948,10 @@ Cosmos DB 查詢提供者會盡力將 LINQ 查詢對應至 Cosmos DB SQL 查詢�
 
 **SQL** 
 
+```sql
     SELECT VALUE f.parents[0].familyName
     FROM Families f
-
-
+```
 
 **LINQ Lambda 運算式**
 
@@ -1822,9 +1960,10 @@ Cosmos DB 查詢提供者會盡力將 LINQ 查詢對應至 Cosmos DB SQL 查詢�
 
 **SQL** 
 
+```sql
     SELECT VALUE f.children[0].grade + c
     FROM Families f 
-
+```
 
 
 **LINQ Lambda 運算式**
@@ -1838,10 +1977,11 @@ Cosmos DB 查詢提供者會盡力將 LINQ 查詢對應至 Cosmos DB SQL 查詢�
 
 **SQL** 
 
+```sql
     SELECT VALUE {"name":f.children[0].familyName, 
                   "grade": f.children[0].grade + 3 }
     FROM Families f
-
+```
 
 
 #### <a name="selectmany-operator"></a>SelectMany 運算子
@@ -1853,10 +1993,10 @@ Cosmos DB 查詢提供者會盡力將 LINQ 查詢對應至 Cosmos DB SQL 查詢�
 
 **SQL** 
 
+```sql
     SELECT VALUE child
     FROM child IN Families.children
-
-
+```
 
 #### <a name="where-operator"></a>Where 運算子
 語法為 `input.Where(x => f(x))`，其中 `f` 是傳回布林值的純量運算式。
@@ -1867,11 +2007,11 @@ Cosmos DB 查詢提供者會盡力將 LINQ 查詢對應至 Cosmos DB SQL 查詢�
 
 **SQL** 
 
+```sql
     SELECT *
     FROM Families f
     WHERE f.parents[0].familyName = "Smith" 
-
-
+```
 
 **LINQ Lambda 運算式**
 
@@ -1881,11 +2021,12 @@ Cosmos DB 查詢提供者會盡力將 LINQ 查詢對應至 Cosmos DB SQL 查詢�
 
 **SQL** 
 
+```sql
     SELECT *
     FROM Families f
     WHERE f.parents[0].familyName = "Smith"
     AND f.children[0].grade < 3
-
+```
 
 ### <a name="composite-sql-queries"></a>複合 SQL 查詢
 您可以包含上述的運算子，以形成功能更強大的查詢。 由於 Cosmos DB 支援巢狀集合，因此這個組合可以採用串連或巢狀的形式。
@@ -1900,11 +2041,11 @@ Cosmos DB 查詢提供者會盡力將 LINQ 查詢對應至 Cosmos DB SQL 查詢�
 
 **SQL**
 
+```sql
     SELECT *
     FROM Families f
     WHERE f.parents[0].familyName = "Smith"
-
-
+```
 
 **LINQ Lambda 運算式**
 
@@ -1913,10 +2054,11 @@ Cosmos DB 查詢提供者會盡力將 LINQ 查詢對應至 Cosmos DB SQL 查詢�
 
 **SQL** 
 
+```sql
     SELECT VALUE f.parents[0].familyName
     FROM Families f
     WHERE f.children[0].grade > 3
-
+```
 
 
 **LINQ Lambda 運算式**
@@ -1926,11 +2068,11 @@ Cosmos DB 查詢提供者會盡力將 LINQ 查詢對應至 Cosmos DB SQL 查詢�
 
 **SQL** 
 
+```sql
     SELECT *
     FROM Families f
     WHERE ({grade: f.children[0].grade}.grade > 3)
-
-
+```
 
 **LINQ Lambda 運算式**
 
@@ -1939,10 +2081,11 @@ Cosmos DB 查詢提供者會盡力將 LINQ 查詢對應至 Cosmos DB SQL 查詢�
 
 **SQL** 
 
+```sql
     SELECT *
     FROM p IN Families.parents
     WHERE p.familyName = "Smith"
-
+```
 
 
 #### <a name="nesting"></a>巢狀
@@ -1957,10 +2100,11 @@ Cosmos DB 查詢提供者會盡力將 LINQ 查詢對應至 Cosmos DB SQL 查詢�
 
 **SQL** 
 
+```sql
     SELECT VALUE p.familyName
     FROM Families f
     JOIN p IN f.parents
-
+```
 
 **LINQ Lambda 運算式**
 
@@ -1969,11 +2113,12 @@ Cosmos DB 查詢提供者會盡力將 LINQ 查詢對應至 Cosmos DB SQL 查詢�
 
 **SQL** 
 
+```sql
     SELECT *
     FROM Families f
     JOIN c IN f.children
     WHERE c.familyName = "Jeff"
-
+```
 
 
 **LINQ Lambda 運算式**
@@ -1983,11 +2128,12 @@ Cosmos DB 查詢提供者會盡力將 LINQ 查詢對應至 Cosmos DB SQL 查詢�
 
 **SQL** 
 
+```sql
     SELECT *
     FROM Families f
     JOIN c IN f.children
     WHERE c.familyName = f.parents[0].familyName
-
+```
 
 ## <a id="ExecutingSqlQueries"></a>執行 SQL 查詢
 Cosmos DB 公開資源的方式是透過 REST API，任何能夠發出 HTTP/HTTPS 要求的語言都可呼叫此 API。 此外，Cosmos DB 還為數種熱門語言 (例如 .NET、Node.js、JavaScript 和 Python) 提供程式設計程式庫。 REST API 和各種程式庫都支援透過 SQL 進行查詢。 .NET SDK 除了 SQL 之外，也支援 LINQ 查詢。
@@ -2018,6 +2164,7 @@ Cosmos DB 提供透過 HTTP 的開放 RESTful 程式設計模型。 可以使用
 
 **結果**
 
+```
     HTTP/1.1 200 Ok
     x-ms-activity-id: 8b4678fa-a947-47d3-8dd3-549a40da6eed
     x-ms-item-count: 1
@@ -2065,7 +2212,7 @@ Cosmos DB 提供透過 HTTP 的開放 RESTful 程式設計模型。 可以使用
        ],
        "count":1
     }
-
+```
 
 第二個範例顯示透過聯結傳回多個結果的較複雜查詢。
 
@@ -2091,6 +2238,7 @@ Cosmos DB 提供透過 HTTP 的開放 RESTful 程式設計模型。 可以使用
 
 **結果**
 
+```
     HTTP/1.1 200 Ok
     x-ms-activity-id: 568f34e3-5695-44d3-9b7d-62f8b83e509d
     x-ms-item-count: 1
@@ -2119,7 +2267,7 @@ Cosmos DB 提供透過 HTTP 的開放 RESTful 程式設計模型。 可以使用
        ],
        "count":3
     }
-
+```
 
 如果查詢的結果無法放入結果的單一頁面內，則 REST API 會透過 `x-ms-continuation-token` 傳回接續 Token。 用戶端可以透過在後續結果中包括標頭，以將結果分頁。 每頁的結果數目也可以透過 `x-ms-max-item-count` 數字標頭來控制。 如果指定的查詢有一個彙總函數 (如 `COUNT`)，則查詢頁面可對結果頁面傳回部分彙總的值。 用戶端必須對這些結果執行第二層彙總以產生最終結果，例如，對個別頁面中傳回的計數執行加總以傳回總計數。
 

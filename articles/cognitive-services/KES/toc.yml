@@ -1,0 +1,35 @@
+- name: 知識探索服務文件
+- name: 概觀
+  expanded: true
+  items:
+    - name: 深入了解知識探索服務
+      href: Overview.md
+- name: 開始使用
+  items:
+    - name: 建立後端引擎
+      href: GettingStarted.md
+    - name: 命令列
+      href: CommandLine.md
+    - name: 結構描述格式
+      href: SchemaFormat.md
+    - name: 資料格式
+      href: DataFormat.md
+    - name: 文法格式
+      href: GrammarFormat.md
+    - name: 語意解譯
+      href: SemanticInterpretation.md
+    - name: Web API 介面
+      href: WebAPI.md
+      items:
+        - name: calchistogram
+          href: calchistogramMethod.md
+        - name: 評估
+          href: evaluateMethod.md
+        - name: 解譯
+          href: interpretMethod.md
+    - name: 結構化的查詢運算式
+      href: Expressions.md
+- name: 資源
+  items:
+    - name: Azure 藍圖
+      href: 'https://azure.microsoft.com/roadmap/'

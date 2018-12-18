@@ -4,7 +4,7 @@ description: 了解如何建立及上傳包含 Linux 作業系統的 Azure 虛�
 services: virtual-machines-linux
 documentationcenter: ''
 author: szarkos
-manager: timlt
+manager: jeconnoc
 editor: tysonn
 tags: azure-resource-manager,azure-service-management
 ms.assetid: d351396c-95a0-4092-b7bf-c6aae0bbd112
@@ -15,11 +15,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/12/2018
 ms.author: szark
-ms.openlocfilehash: b06144e6ad3df1626022edd856e14d6c47494336
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: 17b4df83b141d5365a8d6244c4ab73b0eba5ed73
+ms.sourcegitcommit: f606248b31182cc559b21e79778c9397127e54df
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 07/12/2018
+ms.locfileid: "38972344"
 ---
 # <a name="information-for-non-endorsed-distributions"></a>非背書散發套件的資訊
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
@@ -29,9 +30,9 @@ ms.lasthandoff: 03/16/2018
 * [Azure 背書散發套件上的 Linux](endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 * [支援 Microsoft Azure 中的 Linux 映像](https://support.microsoft.com/kb/2941892)
 
-所有執行於 Azure 的散發套件都必須符合許多必要條件，才能在平台上正確執行。  本文並未列出所有的必要條件，因為每個散發套件都不同；而且即使您符合下列所有條件，仍很可能需要詳加審視您的 Linux 系統，以確保它可在平台上正常運作。
+在 Azure 上執行的所有散發套件都必須符合一些先決條件，才能在平台上正常運作。  本文並未列出所有先決條件，因為每個散發套件都不同；而且即使您符合下列所有條件，還是可能需要詳加調整您的 Linux 系統，以確保它可以在平台上正常運作。
 
-基於這個原因，我們建議您盡可能從其中一個 [Azure 背書散發套件上的 Linux](endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 開始著手。 下列文章會逐步引導您如何準備 Azure 支援的各種 Linux 背書散發套件：
+基於這個原因，我們建議您盡可能從 [Azure 背書散發套件上的 Linux](endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 開始著手。 下列文章會逐步引導您如何準備 Azure 支援的各種 Linux 背書散發套件：
 
 * **[CentOS 型散發套件](create-upload-centos.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)**
 * **[Debian Linux](debian-create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)**
@@ -40,11 +41,11 @@ ms.lasthandoff: 03/16/2018
 * **[SLES 和 openSUSE](suse-create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)**
 * **[Ubuntu](create-upload-ubuntu.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)**
 
-本文接下來會將重點放在於 Azure 上執行 Linux 散發套件時的一般指引。
+本文接下來會將重點放在於 Azure 上執行 Linux 散發套件時的一般指導方針。
 
 ## <a name="general-linux-installation-notes"></a>一般 Linux 安裝注意事項
 * Azure 不支援 VHDX 格式，只支援 **固定 VHD**。  您可以使用 Hyper-V 管理員或 convert-vhd Cmdlet，將磁碟轉換為 VHD 格式。 如果您是使用 VirtualBox，即會在建立磁碟時選取 [固定大小]  而不是預設的動態配置。
-* Azure 僅支援第 1 代虛擬機器。 您可以將第 1 代虛擬機器從 VHDX 轉換為 VHD 檔案格式，並從動態擴充轉換為固定大小的磁碟。 但您無法變更虛擬機器的世代。 如需詳細資訊，請參閱[應該在 Hyper-V 中建立第 1 代還是第 2 代的虛擬機器？](https://technet.microsoft.com/en-us/windows-server-docs/compute/hyper-v/plan/should-i-create-a-generation-1-or-2-virtual-machine-in-hyper-v)
+* Azure 僅支援第 1 代虛擬機器。 您可以將第 1 代虛擬機器從 VHDX 轉換為 VHD 檔案格式，並從動態擴充轉換為固定大小的磁碟。 但您無法變更虛擬機器的世代。 如需詳細資訊，請參閱[應該在 Hyper-V 中建立第 1 代還是第 2 代的虛擬機器？](https://technet.microsoft.com/windows-server-docs/compute/hyper-v/plan/should-i-create-a-generation-1-or-2-virtual-machine-in-hyper-v)
 * 允許的 VHD 大小上限為 1023 GB。
 * 安裝 Linux 系統時，*建議*您使用標準磁碟分割而不是 LVM (常是許多安裝的預設設定)。 這可避免 LVM 與複製之 VM 的名稱衝突，特別是為了疑難排解而需要將作業系統磁碟連接至另一個相同的 VM 時。 如果願意，您可以在資料磁碟上使用 [LVM](configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 或 [RAID](configure-lvm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 * 需要掛接 UDF 檔案系統的核心支援。 在 Azure 上第一次開機時，佈建組態會透過連接客體的 UDF 格式媒體傳遞至 Linux VM。 Azure Linux 代理程式必須能夠掛接 UDF 檔案系統讀取其組態並佈建 VM。
@@ -53,9 +54,9 @@ ms.lasthandoff: 03/16/2018
 * Azure 上的所有 VHD 必須具有與 1 MB 對應的虛擬大小。 從未經處理的磁碟轉換成 VHD 時，您必須確定未經處理的磁碟大小在轉換前是 1 MB 的倍數。 如需更多詳細資料，請參閱以下步驟。
 
 ### <a name="installing-kernel-modules-without-hyper-v"></a>安裝不含 Hyper-V 的核心模組
-Azure 在 Hyper-V Hypervisor 上執行，因此 Linux 會要求必須安裝某些核心模組，才能在 Azure 中執行。 如果您的 VM 建立在 Hyper-V 外部，Linux 安裝程式在初始 Ramdisk (initrd 或 initramfs) 中可能不包含 Hyper-V 的驅動程式，除非它偵測到所執行的環境是 Hyper-V 環境。 使用不同的虛擬化系統 (例如 Virtualbox、KVM 等) 來準備您的 Linux 映像時，您可能需要重新建置 initrd，以確保在初始 ramdisk 上至少有 `hv_vmbus` 和 `hv_storvsc` 核心模組可以使用。  目前至少已知在以上游 Red Hat 散發套件為基礎的系統上有此問題。
+Azure 在 Hyper-V Hypervisor 上執行，因此 Linux 會要求必須安裝某些核心模組，才能在 Azure 中執行。 如果您的 VM 是在 Hyper-V 外部建立的，除非 Linux 安裝程式偵測到執行所在環境是 Hyper-V 環境，否則 Linux 安裝程式在初始 Ramdisk (initrd 或 initramfs) 中可能不包含 Hyper-V 的驅動程式。 使用不同的虛擬化系統 (亦即 Virtualbox、KVM 等) 來準備您的 Linux 映像時，可能需要重新建置 initrd，以確保在初始 ramdisk 上至少有 `hv_vmbus` 和 `hv_storvsc` 核心模組可以使用。  目前至少已知在以上游 Red Hat 散發套件為基礎的系統上有此問題。
 
-重新建置 initrd 或 initramfs 映像的機制會根據散發套件而有所不同。 請參閱散發套件的文件或支援人員，以了解適當程序。  以下是如何使用 `mkinitrd` 公用程式重新建置 initrd 的範例：
+重新建置 initrd 或 initramfs 映像的機制會根據散發套件而有所不同。 請參閱散發套件的文件或洽支援人員，以了解適當程序。  以下是如何使用 `mkinitrd` 公用程式重新建置 initrd 的範例：
 
 首先，備份現有的 initrd 映像：
 
@@ -68,11 +69,11 @@ Azure 在 Hyper-V Hypervisor 上執行，因此 Linux 會要求必須安裝某�
 
 
 ### <a name="resizing-vhds"></a>調整 VHD 的大小
-Azure 上的 VHD 映像必須具有與 1 MB 對應的虛擬大小。  一般而言，使用 Hyper-V 建立的 VHD 應已正確對應。  如果 VHD 未正確對應，當您嘗試從 VHD 建立「映像」  時，可能會收到類似下面的錯誤訊息：
+Azure 上的 VHD 映像必須具有與 1 MB 對齊的虛擬大小。  一般而言，使用 Hyper-V 建立的 VHD 應已正確對應。  如果未正確對齊 VHD，當您嘗試從 VHD 建立「映像」時，可能會收到類似下面的錯誤訊息：
 
     "The VHD http://<mystorageaccount>.blob.core.windows.net/vhds/MyLinuxVM.vhd has an unsupported virtual size of 21475270656 bytes. The size must be a whole number (in MBs).”
 
-若要解決這個問題，您可以使用 Hyper-V 管理員主控台或 [Resize-VHD](http://technet.microsoft.com/library/hh848535.aspx) Powershell Cmdlet 調整 VM 的大小。  如果您不在 Windows 環境中執行，建議使用 qemu-img 來轉換 VHD (如果需要) 及調整其大小。
+若要補救這種行為，您可以使用 Hyper-V 管理員主控台或 [Resize-VHD](http://technet.microsoft.com/library/hh848535.aspx) Powershell Cmdlet 調整 VM 的大小。  如果您不是在 Windows 環境中執行，建議使用 qemu-img 來轉換 VHD (如果需要) 並調整其大小。
 
 > [!NOTE]
 > qemu-img >=2.2.1 的版本中已知有 Bug 會導致 VHD 的格式不正確。 此問題已在 QEMU 2.6 中修正。 建議使用 qemu-img 2.2.0 或更舊版本，或更新至 2.6 或更新版本。 參考：https://bugs.launchpad.net/qemu/+bug/1490611。
@@ -83,7 +84,7 @@ Azure 上的 VHD 映像必須具有與 1 MB 對應的虛擬大小。  一般而�
    
        # qemu-img convert -f vpc -O raw MyLinuxVM.vhd MyLinuxVM.raw
 
-2. 計算所需的磁碟映像大小，以確保虛擬大小對應於 1 MB。  下列 bash 殼層指令碼有助於此作業。  此指令碼會使用 "`qemu-img info`" 來判斷磁碟映像的虛擬大小，然後計算下一個 1 MB 的大小：
+2. 計算所需的磁碟映像大小，以確保虛擬大小對齊 1 MB。  下列 bash 殼層指令碼有助於此作業。  此指令碼會使用 "`qemu-img info`" 來判斷磁碟映像的虛擬大小，然後計算到下一個 1 MB 的大小：
    
        rawdisk="MyLinuxVM.raw"
        vhddisk="MyLinuxVM.vhd"
@@ -108,11 +109,11 @@ Azure 上的 VHD 映像必須具有與 1 MB 對應的虛擬大小。  一般而�
        # qemu-img convert -f raw -o subformat=fixed,force_size -O vpc MyLinuxVM.raw MyLinuxVM.vhd
 
 ## <a name="linux-kernel-requirements"></a>Linux Kernel 需求
-適用於 Hyper-V 和 Azure 的 Linux Integration Services (LIS) 驅動程式會直接提供給上游 Linux Kernel。 許多包括最新 Linux kernel 版本 (例如 3.x) 的散發套件已經有這些驅動程式，或提供這些驅動程式及其核心的 Backport 版本。  上游核心會透過新的修正和功能來不斷更新這些驅動程式，因此若有可能的話，建議您執行將包含這些修正與更新的 [背書散發套件](endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 。
+適用於 Hyper-V 和 Azure 的 Linux Integration Services (LIS) 驅動程式會直接提供給上游 Linux Kernel。 許多包括最新 Linux 核心版本 (亦即 3.x) 的散發套件已經有這些驅動程式，或以其核心 提供這些驅動程式的向後移植 (Backport) 版本。  上游核心會透過新的修正和功能來不斷更新這些驅動程式，因此如果可能的話，建議您執行包含這些修正與更新的[背書散發套件](endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
-如果您打算執行 Red Hat Enterprise Linux 版本 **6.0-6.3**的變體，則您必須安裝 Hyper-V 的最新 LIS 驅動程式。 您可以在 [這裡](http://go.microsoft.com/fwlink/p/?LinkID=254263&clcid=0x409)找到驅動程式。 從 RHEL **6.4+** (及衍生物件) 開始，核心已隨附 LIS 驅動程式，因此無需額外的安裝套件，即可在 Azure 上執行這些系統。
+如果您要執行 Red Hat Enterprise Linux 版本 **6.0-6.3** 的變體，便必須安裝 Hyper-V 的最新 LIS 驅動程式。 您可以在 [這裡](http://go.microsoft.com/fwlink/p/?LinkID=254263&clcid=0x409)找到驅動程式。 從 RHEL **6.4+** (及衍生物件) 開始，核心已隨附 LIS 驅動程式，因此無需額外的安裝套件，即可在 Azure 上執行這些系統。
 
-如果需要自訂核心，建議您使用最新的核心版本 (例如 **3.8+**)。 針對這些散發套件或自行維護核心的廠商，需要花費一點心力，定期將 LIS 驅動程式從上游核心 Backport 到您的自訂核心。  即使您已經在執行相對較新的核心版本，還是強烈建議您持續追蹤任何 LIS 驅動程式的上游修正，並視需要 Backport 這些修正。 您可以在 Linux Kernel 來源樹狀目錄中的 [MAINTAINERS](https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/MAINTAINERS) 檔案找到 LIS 驅動程式原始程式檔的位置。
+如果需要自訂核心，建議您使用最新的核心版本 (例如 **3.8+**)。 針對那些散發套件或自行維護核心的廠商，需要花費一點心力，定期將 LIS 驅動程式從上游核心向後移植 (Backport) 到您的自訂核心。  即使您已經在執行相對較新的核心版本，還是強烈建議您持續追蹤任何 LIS 驅動程式的上游修正，並視需要 Backport 這些修正。 您可以在 Linux Kernel 來源樹狀目錄中的 [MAINTAINERS](https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/MAINTAINERS) 檔案找到 LIS 驅動程式原始程式檔的位置。
 
     F:    arch/x86/include/asm/mshyperv.h
     F:    arch/x86/include/uapi/asm/hyperv.h
@@ -137,9 +138,9 @@ Azure 上的 VHD 映像必須具有與 1 MB 對應的虛擬大小。  一般而�
 * [scsi_sysfs︰防範 __scsi_remove_device 雙重執行](https://git.kernel.org/cgit/linux/kernel/git/next/linux-next.git/commit/drivers/scsi/scsi_sysfs.c?id=be821fd8e62765de43cc4f0e2db363d0e30a7e9b)
 
 ## <a name="the-azure-linux-agent"></a>Azure Linux 代理程式
-若要在 Azure 中正確佈建 Linux 虛擬機器， [Azure Linux 代理程式](../windows/agent-user-guide.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) (waagent) 是必要選項。 您可以在 [Linux 代理程式 GitHub 儲存機制](https://github.com/Azure/WALinuxAgent)中取得最新的版本、檔案問題或提交提取要求。
+若要在 Azure 中正確佈建 Linux 虛擬機器， [Azure Linux 代理程式](../extensions/agent-linux.md) (waagent) 是必要選項。 您可以在 [Linux 代理程式 GitHub 儲存機制](https://github.com/Azure/WALinuxAgent)中取得最新的版本、檔案問題或提交提取要求。
 
-* Linux 代理程式已在 Apache 2.0 授權下發行。 許多散發套件已提供代理程式的 RPM 或 Deb 套件，因此在某些情況下，您可以不費吹灰之力就能安裝及更新此代理程式。
+* Linux 代理程式已在 Apache 2.0 授權下發行。 許多散發套件已提供代理程式的 RPM 或 Deb 套件，因此在某些情況下，您不費吹灰之力就可以安裝及更新此代理程式。
 * Azure Linux 代理程式需要 Python v2.6+。
 * 代理程式還需要 python-pyasn1 模組。 大多數的散發套件會以可個別安裝的套件形式提供此項目。
 * 在某些情況下，Azure Linux 代理程式可能與 NetworkManager 不相容。 散發套件提供的許多 RPM/Deb 套件會將 NetworkManager 設定為 waagent 套件的衝突，因此會在您安裝 Linux 代理程式套件時解除安裝 NetworkManager。
@@ -147,25 +148,27 @@ Azure 上的 VHD 映像必須具有與 1 MB 對應的虛擬大小。  一般而�
 
 ## <a name="general-linux-system-requirements"></a>一般的 Linux 系統需求
 
-* 在 GRUB 或 GRUB2 中修改核心開機行，以加入下列參數。 這樣也可確保主控台訊息能傳送至第一個序列埠，以協助 Azure 支援偵錯問題：
+* 在 GRUB 或 GRUB2 中修改核心開機行，以加入下列參數。 這也會確保所有主控台訊息都會傳送到第一個序列埠，以協助 Azure 支援團隊進行問題偵錯程序：
   
         console=ttyS0,115200n8 earlyprintk=ttyS0,115200 rootdelay=300
+  
+    這也會確保所有主控台訊息都會傳送到第一個序列埠，以協助 Azure 支援團隊進行問題偵錯程序。
   
     除了上述以外，我們還建議您 *移除* 下列參數 (如果存在的話)：
   
         rhgb quiet crashkernel=auto
   
-    在雲端環境中，我們會將所有記錄傳送到序列埠，因此不適合使用圖形化和無訊息啟動。 如有需要，您可以保留 `crashkernel` 選項的設定，但請注意，此參數將會減少 VM 中約 128MB 或以上的可用記憶體數量，這在較小的 VM 中可能會是個問題。
+    在雲端環境中，我們會將所有記錄傳送到序列埠，因此不適合使用圖形化和無訊息啟動。 如有需要，您可以保留 `crashkernel` 選項的設定，但請注意，此參數會減少 VM 中約 128MB 或以上的可用記憶體數量，這在較小的 VM 中可能會是個問題。
 
 * 安裝 Azure Linux 代理程式
   
-    如需在 Azure 上佈建 Linux 映像，您需要 Azure Linux 代理程式。  許多散發套件以 RPM 或 Deb 套件 (此套件通常稱為 'WALinuxAgent' 或 'walinuxagent') 的形式提供代理程式。  您也可以遵循 [Linux 代理程式指南](../windows/agent-user-guide.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)中的步驟來手動安裝代理程式。
+    如需在 Azure 上佈建 Linux 映像，您需要 Azure Linux 代理程式。  許多散發套件以 RPM 或 Deb 套件 (此套件通常稱為 'WALinuxAgent' 或 'walinuxagent') 的形式提供代理程式。  您也可以遵循 [Linux 代理程式指南](../extensions/agent-linux.md)中的步驟來手動安裝代理程式。
 
 * 確定您已安裝 SSH 伺服器，並已設定為在開機時啟動。  這通常是預設值。
 
 * 請不要在 OS 磁碟上建立交換空間
   
-    Azure Linux 代理程式可在 VM 佈建於 Azure 後，使用附加至 VM 的本機資源磁碟自動設定交換空間。 請注意，資源磁碟是 *暫存* 磁碟，可能會在 VM 取消佈建時清空。 安裝 Azure Linux 代理程式 (請參閱上一個步驟) 後，請在 /etc/waagent.conf 中適當修改下列參數：
+    Azure Linux 代理程式可在 VM 佈建於 Azure 後，使用附加至 VM 的本機資源磁碟自動設定交換空間。 本機資源磁碟是「暫存」磁碟，可能會在 VM 取消佈建時清空。 安裝 Azure Linux 代理程式 (請參閱上一個步驟) 後，請在 /etc/waagent.conf 中適當修改下列參數：
   
         ResourceDisk.Format=y
         ResourceDisk.Filesystem=ext4
@@ -184,5 +187,5 @@ Azure 上的 VHD 映像必須具有與 1 MB 對應的虛擬大小。  一般而�
   > 
   > 
 
-* 接著，您必須關閉虛擬機器，並將 VHD 上傳至 Azure。
+* 關閉虛擬機器，並將 VHD 上傳至 Azure。
 

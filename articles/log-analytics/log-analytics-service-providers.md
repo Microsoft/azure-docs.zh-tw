@@ -1,85 +1,87 @@
 ---
-title: "服務提供者的 Log Analytics 功能 | Microsoft Docs"
-description: "Log Analytics 可協助管理服務提供者 (MSP)、大型企業、獨立軟體廠商 (ISV) 和主機服務提供者管理和監視客戶的內部部署或雲端基礎結構中的伺服器。"
+title: 服務提供者的 Log Analytics | Microsoft Docs
+description: Log Analytics 可協助管理服務提供者 (MSP)、大型企業、獨立軟體廠商 (ISV) 和主機服務提供者管理和監視客戶的內部部署或雲端基礎結構中的伺服器。
 services: log-analytics
-documentationcenter: 
-author: richrundmsft
+documentationcenter: ''
+author: MeirMen
 manager: jochan
-editor: 
+editor: ''
 ms.assetid: c07f0b9f-ec37-480d-91ec-d9bcf6786464
 ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 11/22/2016
-ms.author: richrund
-ms.openlocfilehash: 3910038e788352df45ab00c0f697d9a5426b3498
-ms.sourcegitcommit: b07d06ea51a20e32fdc61980667e801cb5db7333
+ms.topic: conceptual
+ms.date: 07/05/2018
+ms.author: meirm
+ms.component: na
+ms.openlocfilehash: ad0a3b8e0ee5f1114ea1db95cfe2f4176b8e2ddb
+ms.sourcegitcommit: aa988666476c05787afc84db94cfa50bc6852520
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2017
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37931985"
 ---
-# <a name="log-analytics-features-for-service-providers"></a>服務提供者的 Log Analytics 功能
+# <a name="log-analytics-for-service-providers"></a>服務提供者的 Log Analytics
 Log Analytics 可協助管理服務提供者 (MSP)、大型企業、獨立軟體廠商 (ISV) 和主機服務提供者管理和監視客戶的內部部署或雲端基礎結構中的伺服器。 
 
 大型企業與服務提供者有許多相似之處，特別是當有集中式的 IT 團隊負責管理許多不同業務單位的 IT 時。 為了簡單起見，本文件會使用「服務提供者」這個詞彙，但是相同的功能也適用於企業或其他客戶。
 
-## <a name="cloud-solution-provider"></a>雲端解決方案提供者
 對於身為[雲端解決方案提供者 (CSP)](https://partner.microsoft.com/Solutions/cloud-reseller-overview) 計畫成員的合作夥伴和服務提供者來說，Log Analytics 是 [Azure CSP 訂用帳戶](https://docs.microsoft.com/azure/cloud-solution-provider/overview/azure-csp-overview)中提供的其中一項 Azure 服務。 
 
-對於 Log Analytics，下列功能在「雲端解決方案提供者」訂用帳戶中啟用。
+## <a name="architectures-for-service-providers"></a>服務提供者的架構
 
-身為「雲端解決方案提供者」，您可以：
+Log Analytics 工作區可讓系統管理員控制記錄檔的流程與隔離，以及建立因應其特定商務需求的記錄檔架構。 [本文](https://docs.microsoft.com/en-us/azure/log-analytics/log-analytics-manage-access)說明工作區管理的一般考量。 服務提供者會有其他考量。
 
-* 在租用戶 (客戶) 訂用帳戶中建立 Log Analytics 工作區。
-* 存取租用戶建立的工作區。 
-* 使用 Azure 使用者管理，新增和移除使用者對工作區的存取權。 在 OMS 入口網站中租用戶的工作區時，[設定] 底下的使用者管理頁面無法使用
-  * Log Analytics 尚未支援以角色為基礎的存取 - 在 Azure 入口網站中授與使用者 `reader` 權限可讓他們在 OMS 入口網站中進行組態變更
+服務提供者對於 Log Analytics 工作區有三個可能的架構：
 
-若要登入租用戶的訂用帳戶，您需要指定租用戶識別碼。 租用戶識別碼通常是您用來登入的電子郵件地址的最後一部分。
+### <a name="1-distributed---logs-are-stored-in-workspaces-located-in-the-customers-tenant"></a>1.分散式：記錄檔會儲存在客戶租用戶的工作區 
 
-* 在 OMS 入口網站中，針對入口網站在 URL 新增 `?tenant=contoso.com`。 例如，`mms.microsoft.com/?tenant=contoso.com`
-* 在 PowerShell 中，使用 `Add-AzureRmAccount` Cmdlet 時使用 `-Tenant contoso.com` 參數
-* 當您從 Azure 入口網站使用 `OMS portal` 連結，來開啟並登入所選取工作區的 OMS 入口網站時，會自動新增租用戶識別碼
+在此架構中，會在用於客戶所有記錄檔的客戶租用戶中部署工作區。 藉由使用 [Azure Active Directory 來賓使用者 (B2B)](https://docs.microsoft.com/en-us/azure/active-directory/b2b/what-is-b2b)，可以授與服務提供者系統管理員對於此工作區的存取權。 服務提供者系統管理員必須在 Azure 入口網站中切換至其客戶的目錄，才能存取這些工作區。
 
-身為「雲端解決方案提供者」的「客戶」，您可以：
+此架構的優點包括：
+* 客戶可以使用自己的[角色型存取](https://docs.microsoft.com/en-us/azure/role-based-access-control/overview)，以管理記錄檔的存取。
+* 每個客戶對於其工作區都可以有不同的設定，例如保留和資料限定。
+* 基於法規和合規性而隔離客戶。
+* 每個工作區的費用都將會累計到客戶的訂用帳戶中。
+* 可以從所有類型的資源來收集記錄檔，而不只是代理程式型資源。 例如，Azure 稽核。
 
-* 在 CSP 訂用帳戶中建立 Log Analytics 工作區
-* 存取 CSP 建立的工作區
-  * 從 Azure 入口網站使用 `OMS portal` 連結，來開啟並登入所選取工作區的 OMS 入口網站
-* 檢視及使用 OMS 入口網站中 [設定] 底下的使用者管理頁面
+此架構的缺點包括：
+* 服務提供者比較難以同時管理大量的客戶租用戶。
+* 服務提供者系統管理員必須佈建在客戶目錄上。
+* 服務提供者無法跨其客戶分析資料。
 
-> [!NOTE]
-> Log Analytics 內含的備份和 Site Recovery 解決方案無法連接至復原服務保存庫，且無法在 CSP 訂用帳戶中設定。 
-> 
-> 
+### <a name="2-central---logs-are-stored-in-workspace-located-in-the-service-provider-tenant"></a>2.集中式：記錄檔會儲存在服務提供者租用戶的工作區
 
-## <a name="managing-multiple-customers-using-log-analytics"></a>使用 Log Analytics 管理多個客戶
-建議您為每個您管理的客戶建立 Log Analytics 工作區。 Log Analytics 工作區提供：
+在此架構中，記錄檔不會儲存在客戶的租用戶中，但只會儲存在其中一個服務提供者訂用帳戶內的集中位置。 客戶 VM 上安裝的代理程式會設定為使用工作區識別碼和祕密金鑰以傳送記錄檔至此工作區。
 
-* 儲存資料的地理位置。 
-* 計費的細微度 
-* 資料隔離 
-* 唯一的組態
+此架構的優點包括：
+* 容易管理大量客戶，並將其整合至各種後端系統。
+* 服務提供者對於記錄檔和各種成品 (例如函式和儲存的查詢) 都具備完整的擁有權。
+* 服務提供者可以跨所有客戶執行分析。
 
-藉由建立每個客戶的工作區，就能夠區隔每個客戶的資料，也可以追蹤每個客戶的使用方式。
+此架構的缺點包括：
+* 此架構僅適用於代理程式型 VM 資料，不涵蓋 PaaS、SaaS 與 Azure 網狀架構資料來源。
+* 當客戶的資料合併到單一工作區時，區隔彼此的資料可能會很困難。 唯一的好方法是使用電腦的完整網域名稱 (FQDN) 或透過 Azure 訂用帳戶識別碼。 
+* 來自所有客戶的所有資料都會儲存在相同的區域中，帳單只有一份，而且有相同的保留和組態設定。
+* Azure 網狀架構和 PaaS 服務 (例如 Azure 診斷和 Azure 稽核) 會要求工作區位於與資源相同的租用戶中，因此無法將記錄檔傳送至集中式工作區。
+* 來自所有客戶的所有 VM 代理程式都會使用相同的工作區識別碼和金鑰，向集中式工作區進行驗證。 在不中斷其他客戶的情況下，沒有任何方法可以封鎖來自特定客戶的記錄檔。
 
-[管理對 Log Analytics 的存取](log-analytics-manage-access.md#determine-the-number-of-workspaces-you-need)中會說明建立多個工作區之時機和原因的其他詳細資料。
 
-建立及設定客戶的工作區可以使用 [PowerShell](log-analytics-powershell-workspace-configuration.md)、[Resource Manager 範本](log-analytics-template-workspace-configuration.md)，或使用 [REST API](https://www.nuget.org/packages/Microsoft.Azure.Management.OperationalInsights/) 進行自動化。
+### <a name="3-hybrid---logs-are-stored-in-workspace-located-in-the-customers-tenant-and-some-of-them-are-pulled-to-a-central-location"></a>3.混合式：記錄檔會儲存在客戶租用戶的工作區，而且其中部分記錄檔會提取到集中位置。
 
-使用工作區組態的 Resource Manager 範本，可讓您具有主要組態，用來建立和設定工作區。 您可以確信為客戶建立工作區時，會自動針對您的需求進行設定。 當您更新您的需求時，範本會更新，然後重新套用現有的工作區。 此程序可確保現有的工作區符合新的標準。    
+第三個架構是兩個選項的混合。 這個架構是以第一個分散式架構為基礎，其中記錄檔儲存在每個客戶的本機，但使用特定機制來建立記錄檔的集中存放區。 一部分的記錄檔會提取到用於報告和分析的集中位置。 這個部分可能是少量的資料類型或活動摘要 (例如每日統計資料)。
 
-在管理多個 Log Analytics 工作區時，我們建議使用[警示](log-analytics-alerts.md)功能，整合每個工作區與現有的票證系統/Operations 主控台。 藉由與您現有的系統整合，支援人員可以繼續依照其熟悉的程序。 Log Analytics 會定期針對您指定的警示準則檢查每個工作區，並且在需要採取動作時產生警示。
+在 Log Analytics 中實作集中位置有兩個選項：
 
-若要建立個人化的資料檢視，請使用 Azure 入口網站中的[儀表板](../azure-portal/azure-portal-dashboards.md)功能。  
+1. 集中式工作區：服務提供者可以在其租用戶中建立工作區，並使用可搭配[資料收集 API](log-analytics-data-collector-api.md) 使用[查詢 API](https://dev.loganalytics.io/) 的指令碼，將不同工作區的資料帶到這個集中位置。 指令碼以外的另一個選項是使用 [Azure 邏輯應用程式](https://docs.microsoft.com/en-us/azure/logic-apps/logic-apps-overview)。
 
-對於摘要跨工作區資料的執行層級報告，您可以使用 Log Analytics 與 [PowerBI](log-analytics-powerbi.md) 之間的整合。 如果您需要與其他報告系統整合，您可以使用搜尋 API (透過 PowerShell 或 [REST](log-analytics-log-search-api.md)) 來執行查詢，並且匯出搜尋結果。
+2. Power BI 當作集中位置：當各種工作區使用 Log Analytics 和 [Power BI](log-analytics-powerbi.md) 之間的整合，將資料匯出至 Power BI 時，Power BI 便可以當作集中位置。 
+
 
 ## <a name="next-steps"></a>後續步驟
 * 使用 [Resource Manager 範本](log-analytics-template-workspace-configuration.md)建立和設定工作區
 * 使用 [PowerShell](log-analytics-powershell-workspace-configuration.md)自動建立工作區 
 * 使用[警示](log-analytics-alerts.md)與現有的系統整合
-* 使用 [PowerBI](log-analytics-powerbi.md)產生摘要報告
+* 使用 [Power BI](log-analytics-powerbi.md) 來產生摘要報告
 

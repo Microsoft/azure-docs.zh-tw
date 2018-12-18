@@ -1,26 +1,20 @@
 ---
-title: Azure HDInsight 中的 Spark 結構化串流 | Microsoft Docs
+title: Azure HDInsight 中的 Spark 結構化串流
 description: 如何在 HDInsight Spark 叢集上使用 Spark 結構化串流應用程式。
 services: hdinsight
-documentationcenter: ''
-tags: azure-portal
 author: maxluk
-manager: jhubbard
-editor: cgronlun
-ms.assetid: ''
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 02/05/2018
 ms.author: maxluk
-ms.openlocfilehash: aa56c1e2f1f506be51f449a1cf10b4f0bc57a152
-ms.sourcegitcommit: a0be2dc237d30b7f79914e8adfb85299571374ec
+ms.openlocfilehash: 7470783ba3ebac652c83c397ba2bbe683023c657
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/12/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43041580"
 ---
 # <a name="overview-of-spark-structured-streaming"></a>Spark 結構化串流的概觀
 

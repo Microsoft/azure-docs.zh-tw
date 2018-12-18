@@ -1,13 +1,13 @@
 ---
-title: "Azure PowerShell 指令碼範例 - 新增網路安全性群組規則 | Microsoft Docs"
-description: "Azure PowerShell 指令碼範例 - 新增網路安全性群組，以便允許特定連接埠上的輸入流量。"
+title: Azure PowerShell 指令碼範例 - 新增網路安全性群組規則 | Microsoft Docs
+description: Azure PowerShell 指令碼範例 - 新增網路安全性群組，以便允許特定連接埠上的輸入流量。
 services: service-fabric
-documentationcenter: 
+documentationcenter: ''
 author: rwike77
 manager: timlt
-editor: 
+editor: ''
 tags: azure-service-management
-ms.assetid: 
+ms.assetid: ''
 ms.service: service-fabric
 ms.workload: multiple
 ms.devlang: na
@@ -20,6 +20,7 @@ ms.sourcegitcommit: 29bac59f1d62f38740b60274cb4912816ee775ea
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 11/29/2017
+ms.locfileid: "25987189"
 ---
 # <a name="add-an-inbound-network-security-group-rule"></a>新增輸入網路安全性群組規則
 

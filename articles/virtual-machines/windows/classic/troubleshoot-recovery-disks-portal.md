@@ -1,23 +1,24 @@
 ---
-title: "將 OS 磁碟連結至復原 VM，以針對 Azure Windows 傳統 VM 進行疑難排解 | Microsoft Docs"
-description: "了解如何將 OS 磁碟連結至復原 VM，以針對 Azure Windows 傳統 VM 進行疑難排解"
+title: 將 OS 磁碟連結至復原 VM，以針對 Azure Windows 傳統 VM 進行疑難排解 | Microsoft Docs
+description: 了解如何將 OS 磁碟連結至復原 VM，以針對 Azure Windows 傳統 VM 進行疑難排解
 services: virtual-machines-windows
-documentationCenter: 
+documentationCenter: ''
 authors: genlin
-manager: timlt
-editor: 
+manager: jeconnoc
+editor: ''
 ms.service: virtual-machines-windows
 ms.devlang: na
 ms.topic: troubleshooting
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
-ms.date: 07/21/2017
+ms.date: 05/11/2018
 ms.author: genli
-ms.openlocfilehash: 740512083caa880753c8d18556af980b9c478ba2
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 654ff5a80f13941686e0a11c197e9cd9c99f5ee2
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38618578"
 ---
 # <a name="troubleshoot-a-windows-classic-vm-by-attaching-the-os-disk-to-a-recovery-vm"></a>將 OS 磁碟連結至復原 VM，以針對 Windows 傳統 VM 進行疑難排解
 

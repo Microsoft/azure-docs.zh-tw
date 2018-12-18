@@ -1,26 +1,28 @@
 ---
-title: "Azure Data Lake Store 文件 - 教學課程和 API 參考 | Microsoft Docs"
-description: "了解如何設定、管理及存取大規模、Hadoop 相容的 Data Lake 儲存機制，以便分析任何大小、類型和擷取速度的資料。"
+title: Azure Data Lake Storage Gen1 文件 - 教學課程和 API 參考 | Microsoft Docs
+description: 了解如何設定、管理及存取大規模、Hadoop 相容的 Data Lake 儲存機制，以便分析任何大小、類型和擷取速度的資料。
 services: data-lake-store
-author: czeumault
-manager: carolz
+author: twooley
+manager: twooley
 layout: LandingPage
-ms.assetid: 
+ms.assetid: ''
 ms.service: data-lake-store
-ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: landing-page
-ms.date: 01/23/2017
-ms.author: carolz
-ms.openlocfilehash: 3c0327ebb4cb8d6ee66d019326ade4f4bcb258ae
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.topic: conceptual
+ms.date: 06/27/2018
+ms.author: twooley
+ms.openlocfilehash: 442c232734cb6116b60236cdb885b403ec0eed90
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46979381"
 ---
-# <a name="data-lake-store-documentation"></a>Data Lake Store 文件
+# <a name="azure-data-lake-storage-gen1-documentation"></a>Azure Data Lake Storage Gen1 文件
 
-了解如何使用 Data Lake Store 來建立大規模、Hadoop 相容的儲存機制，以便分析任何大小、類型和擷取速度的資料。 教學課程、API 參考和其他文件會示範如何設定、管理及存取 Data Lake 儲存機制，以便進行操作和探勘分析。
+了解如何使用 Azure Data Lake Storage Gen1 (先前稱為 Azure Data Lake Store) 來建立大規模、Hadoop 相容的存放庫，以便分析任何大小、類型和擷取速度的資料。 教學課程、API 參考和其他文件會示範如何設定、管理及存取 Data Lake 儲存機制，以便進行操作和探勘分析。
+
+如果您有興趣了解 Data Lake Storage Gen2 預覽，請參閱[產品頁面](https://aka.ms/adlsgen2-product)。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -34,7 +36,7 @@ ms.lasthandoff: 10/11/2017
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>深入了解 Azure Data Lake Store</h3>
+                        <h3>了解 Data Lake Storage Gen1</h3>
                     </div>
                 </div>
             </div>
@@ -52,7 +54,7 @@ ms.lasthandoff: 10/11/2017
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure Data Lake Store 影片庫</h3>
+                        <h3>Data Lake Storage Gen1 影片庫</h3>
                     </div>
                 </div>
             </div>
@@ -70,7 +72,7 @@ ms.lasthandoff: 10/11/2017
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>使用 Azure 入口網站開始使用 Azure Data Lake Store</h3>
+                        <h3>使用 Azure 入口網站開始使用 Data Lake Storage Gen1</h3>
                     </div>
                 </div>
             </div>
@@ -88,7 +90,7 @@ ms.lasthandoff: 10/11/2017
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>使用 PowerShell 開始使用 Azure Data Lake Store</h3>
+                        <h3>使用 PowerShell 開始使用 Data Lake Storage Gen1</h3>
                     </div>
                 </div>
             </div>
@@ -106,7 +108,7 @@ ms.lasthandoff: 10/11/2017
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>使用 Azure CLI 開始使用 Azure Data Lake Store</h3>
+                        <h3>使用 Azure CLI 開始使用 Data Lake Storage Gen1</h3>
                     </div>
                 </div>
             </div>
@@ -124,7 +126,7 @@ ms.lasthandoff: 10/11/2017
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>使用 .NET 開始使用 Azure Data Lake Store</h3>
+                        <h3>使用 .NET 開始使用 Data Lake Storage Gen1</h3>
                     </div>
                 </div>
             </div>
@@ -142,7 +144,7 @@ ms.lasthandoff: 10/11/2017
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>使用 Java 開始使用 Azure Data Lake Store</h3>
+                        <h3>使用 Java 開始使用 Data Lake Storage Gen1</h3>
                     </div>
                 </div>
             </div>
@@ -160,7 +162,7 @@ ms.lasthandoff: 10/11/2017
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>使用 Node.js 開始使用 Azure Data Lake Store</h3>
+                        <h3>使用 Node.js 開始使用 Data Lake Storage Gen1</h3>
                     </div>
                 </div>
             </div>
@@ -180,7 +182,7 @@ ms.lasthandoff: 10/11/2017
                     <div class="cardText">
                         <h3>命令列</h3>
                         <p><a href="/powershell/resourcemanager/azurerm.datalakestore/v3.1.0/azurerm.datalakestore">PowerShell</a></p>
-                        <p><a href="/cli/azure/dls">Azure CLI 2.0</a></p>
+                        <p><a href="/cli/azure/dls">Azure CLI</a></p>
                     </div>
                 </div>
             </div>
@@ -195,7 +197,7 @@ ms.lasthandoff: 10/11/2017
                         <p><a href="/dotnet/api/overview/azure/data-lake-store">.NET</a></p>
                         <p><a href="/java/api/com.microsoft.azure.datalake.store">Java</a></p>
                         <p><a href="https://www.npmjs.com/package/azure-arm-datalake-store">Node.js</a></p>
-                        <p><a href="http://azure-sdk-for-python.readthedocs.io/en/latest/sample_azure-mgmt-datalake-store.html">Python (帳戶管理)</a></p>
+                        <p><a href="https://docs.microsoft.com/python/api/azure.mgmt.datalake.store?view=azure-python">Python (帳戶管理)</a></p>
                         <p><a href="http://azure-datalake-store.readthedocs.io/en/latest">Python (檔案系統管理)</a></p>
                     </div>
                 </div>

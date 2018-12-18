@@ -1,24 +1,23 @@
 ---
-title: 啟用 Azure 雲端服務中角色的遠端桌面連線 | Microsoft Docs
+title: 啟用 Azure 雲端服務中角色的遠端桌面連線
 description: 如何設定 Azure 雲端服務應用程式以允許遠端桌面連線
 services: cloud-services
-documentationcenter: na
 author: ghogen
 manager: douge
-editor: ''
 ms.assetid: f5727ebe-9f57-4d7d-aff1-58761e8de8c1
-ms.service: multiple
-ms.devlang: multiple
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: na
+ms.prod: visual-studio-dev15
+ms.technology: vs-azure
+ms.custom: vs-azure
+ms.topic: conceptual
+ms.workload: azure-vs
 ms.date: 03/06/2018
 ms.author: ghogen
-ms.openlocfilehash: ebe536cc5838e3e6f0a2c15950ec766c1fd44bfe
-ms.sourcegitcommit: 34e0b4a7427f9d2a74164a18c3063c8be967b194
+ms.openlocfilehash: 703e969fe31def329be60037cceba27864063b4e
+ms.sourcegitcommit: f3bd5c17a3a189f144008faf1acb9fabc5bc9ab7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/30/2018
+ms.lasthandoff: 09/10/2018
+ms.locfileid: "44304045"
 ---
 # <a name="enable-remote-desktop-connection-for-a-role-in-azure-cloud-services-using-visual-studio"></a>使用 Visual Studio 啟用 Azure 雲端服務中角色的遠端桌面連線
 
@@ -31,7 +30,7 @@ ms.lasthandoff: 03/30/2018
 
 Visual Studio 針對雲端服務所提供的發佈精靈包含一個選項，可在發佈流程期間使用您提供的認證來啟用遠端桌面。 使用 Visual Studio 2017 15.4 版和更早版本時，適合使用此選項。
 
-不過，使用 Visual Studio 2017 15.5 版和更新版本時，建議您避免透過發佈精靈來啟用遠端桌面，除非您僅以單一開發人員的身分來工作。 只要是可能會有其他開發人員開啟專案的情況，您就應該改為透過 Azure 入口網站、 PowerShell 或從連續部署工作流程中的發行定義來啟用遠端桌面。 之所以會如此建議，是因為 Visual Studio 與雲端服務 VM 上之遠端桌面的通訊方式有所變更，如本文中所述。
+不過，使用 Visual Studio 2017 15.5 版和更新版本時，建議您避免透過發佈精靈來啟用遠端桌面，除非您僅以單一開發人員的身分來工作。 只要是可能會有其他開發人員開啟專案的情況，您就應該改為透過 Azure 入口網站、PowerShell 或從持續部署工作流程中的發行管線來啟用遠端桌面。 之所以會如此建議，是因為 Visual Studio 與雲端服務 VM 上之遠端桌面的通訊方式有所變更，如本文中所述。
 
 ## <a name="configure-remote-desktop-through-visual-studio-2017-version-154-and-earlier"></a>透過 Visual Studio 2017 15.4 版和更早版本設定遠端桌面
 
@@ -83,9 +82,9 @@ Certificate with thumbprint [thumbprint] doesn't exist.
 
 ### <a name="deploying-from-a-build-server-with-visual-studio-2017-version-155-and-later"></a>使用 Visual Studio 2017 15.5 版和更新版本從組建伺服器進行部署
 
-您可以從組建伺服器部署雲端服務專案 (例如，透過 Visual Studio Team Services)，該組建伺服器的 Visual Studio 2017 15.5 版或更新版本是安裝在組建代理程式中。 透過這種安排，部署會在可使用加密憑證的同一台電腦中進行。
+您可以從在組建代理程式中安裝了 Visual Studio 2017 15.5 版或更新版本的組建伺服器來部署雲端服務專案 (例如，透過 Azure DevOps Services)。 透過這種安排，部署會在可使用加密憑證的同一台電腦中進行。
 
-若要使用 Visual Studio Team Services 中的 RDP 擴充功能，請在您的組建定義中包括下列詳細資料：
+若要使用 Azure DevOps Services 中的 RDP 擴充功能，請在您的組建管線中包含下列詳細資料：
 
 1. 在您的 MSBuild 引數中包含 `/p:ForceRDPExtensionOverPlugin=true`，以確定部署可與 RDP 擴充功能 (而不是 RDP 外掛程式) 搭配運作。 例如︰
 

@@ -1,23 +1,22 @@
 ---
-title: "具有 Azure Cosmos DB 和 HDInsight (Apache Spark) 的 Lambda 架構 | Microsoft Docs"
-description: "本文描述如何使用 Azure Cosmos DB、HDInsight 及 Spark 實作 Lambda 架構"
+title: 具有 Azure Cosmos DB 和 HDInsight (Apache Spark) 的 Lambda 架構 | Microsoft Docs
+description: 本文描述如何使用 Azure Cosmos DB、HDInsight 及 Spark 實作 Lambda 架構
 keywords: lambda-architecture
 services: cosmos-db
-documentationcenter: 
-author: dennyglee
-manager: jhubbard
-editor: 
-ms.assetid: 273aeae9-e31c-4a43-b216-5751c46f212e
+author: tknandu
+manager: kfile
+editor: ''
 ms.service: cosmos-db
-ms.workload: data-services
-ms.topic: article
+ms.devlang: na
+ms.topic: conceptual
 ms.date: 01/19/2018
-ms.author: denlee
-ms.openlocfilehash: f88f3fb05495b0f3330d5a4cde7718fe89b2f694
-ms.sourcegitcommit: 1fbaa2ccda2fb826c74755d42a31835d9d30e05f
+ms.author: ramkris
+ms.openlocfilehash: c926c67a330648e09c1fd8133164f64582ad9a34
+ms.sourcegitcommit: cb61439cf0ae2a3f4b07a98da4df258bfb479845
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/22/2018
+ms.lasthandoff: 09/05/2018
+ms.locfileid: "43701070"
 ---
 # <a name="azure-cosmos-db-implement-a-lambda-architecture-on-the-azure-platform"></a>Azure Cosmos DB：在 Azure 平台上實作 Lambda 架構 
 
@@ -31,17 +30,12 @@ Lambda 架構能夠對於大量資料集進行高效率的資料處理。 Lambda
 
 本文描述根據原始多層設計的 Lambda 架構本身的基本概念，以及簡化作業的「重新架構」Lambda 架構所具有的優點。  
 
-如需 Lambda 架構的概觀以及 Lambda 架構提供的資源範例，請觀看下列影片：
-
-> [!VIDEO https:///channel9.msdn.com/Events/Connect/2017/T135/player]
->
-
 ## <a name="what-is-a-lambda-architecture"></a>什麼是 Lambda 架構？
 Lambda 架構為泛型、可擴充且容錯的資料處理架構，可因應 [Nathan Marz](https://twitter.com/nathanmarz) 所述的批次和速度延遲情況。
 
 ![顯示 Lambda 架構的圖表](./media/lambda-architecture/lambda-architecture-intro.png)
 
-來源：http://lambda-architecture.net/
+來源： http://lambda-architecture.net/
 
 上圖根據 [https://lambda-architecture.net](http://lambda-architecture.net/) 描述 Lambda 架構的基本原則。
 
@@ -207,7 +201,7 @@ tweets_bytags.write.mode(SaveMode.Overwrite).cosmosDB(writeConfig)
  
 #### <a name="resources"></a>資源
 
-如需完整的程式碼範例，請參閱 [azure-cosmosdb-spark/lambda/samples](vhttps://github.com/Azure/azure-cosmosdb-spark/tree/master/samples/lambda)，其中包括：
+如需完整的程式碼範例，請參閱 [azure-cosmosdb-spark/lambda/samples](https://github.com/Azure/azure-cosmosdb-spark/tree/master/samples/lambda)，其中包括：
 * Lambda 架構重新架構 - 批次層 [HTML](https://github.com/Azure/azure-cosmosdb-spark/blob/master/samples/lambda/Lambda%20Architecture%20Re-architected%20-%20Batch%20Layer.html) | [ipynb](https://github.com/Azure/azure-cosmosdb-spark/blob/master/samples/lambda/Lambda%20Architecture%20Re-architected%20-%20Batch%20Layer.ipynb)
 * Lambda 架構重新架構 - 服務層的批次 [HTML](https://github.com/Azure/azure-cosmosdb-spark/blob/master/samples/lambda/Lambda%20Architecture%20Re-architected%20-%20Batch%20to%20Serving%20Layer.html) | [ipynb](https://github.com/Azure/azure-cosmosdb-spark/blob/master/samples/lambda/Lambda%20Architecture%20Re-architected%20-%20Batch%20to%20Serving%20Layer.ipynb)
 
@@ -270,7 +264,7 @@ var streamingQuery = streamingQueryWriter.start()
 ### <a name="resources"></a>資源
 
  * **新資料**：[從 Twitter 到 CosmosDB 的資料流摘要](https://github.com/tknandu/TwitterCosmosDBFeed)，這是將新資料推送至 Azure Cosmos DB 的機制。
- * **批次層：**批次層包括「主要資料集」 (固定、僅附加的原始資料集)，而且能夠對於推入至**服務層**的資料預先計算批次檢視。
+ * **批次層：** 批次層包括「主要資料集」 (固定、僅附加的原始資料集)，而且能夠對於推入至**服務層**的資料預先計算批次檢視。
     * **Lambda 架構重新架構 - 批次層**筆記本 [ipynb](https://github.com/Azure/azure-cosmosdb-spark/blob/master/samples/lambda/Lambda%20Architecture%20Re-architected%20-%20Batch%20Layer.ipynb) | [html](https://github.com/Azure/azure-cosmosdb-spark/blob/master/samples/lambda/Lambda%20Architecture%20Re-architected%20-%20Batch%20Layer.html) 會查詢批次檢視的「主要資料集」。
  * **服務層：****服務層**包括預先計算的資料，產生的批次檢視 (例如彙總、特定的交叉分析篩選器等) 有利於快速查詢。
     * **Lambda 架構重新架構 - 服務層的批次**筆記本 [ipynb](https://github.com/Azure/azure-cosmosdb-spark/blob/master/samples/lambda/Lambda%20Architecture%20Re-architected%20-%20Batch%20to%20Serving%20Layer.ipynb) | [html](https://github.com/Azure/azure-cosmosdb-spark/blob/master/samples/lambda/Lambda%20Architecture%20Re-architected%20-%20Batch%20to%20Serving%20Layer.html) 會將批次資料推送至服務層；也就是說，Spark 會查詢並處理推文的批次集合，然後將它儲存到另一個集合 (計算的批次)。

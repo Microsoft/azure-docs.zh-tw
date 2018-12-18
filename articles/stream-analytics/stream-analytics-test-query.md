@@ -1,55 +1,52 @@
 ---
-title: Azure 串流分析查詢測試 |M icrosoft Docs
+title: 使用樣本資料測試 Azure 串流分析作業
 description: 如何在串流分析作業中測試查詢。
-keywords: 測試查詢、對查詢進行移難排解
-documentation center: ''
+keywords: 本文說明如何使用 Azure 入口網站測試 Azure 串流分析作業、輸入取樣，以及上傳樣本資料。
 services: stream-analytics
-author: jseb225
-manager: ryanw
-ms.assetid: ''
+author: jasonwhowell
+ms.author: jasonh
+ms.reviewer: jasonh
+manager: kfile
 ms.service: stream-analytics
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: data-services
-ms.date: 04/20/2017
-ms.author: jeanb
-ms.openlocfilehash: 50bfce426bf48ba986887f8a2e2873fe04ea2507
-ms.sourcegitcommit: 34e0b4a7427f9d2a74164a18c3063c8be967b194
+ms.topic: conceptual
+ms.date: 04/27/2018
+ms.openlocfilehash: 63f9b98bcd70378ae02769298f0ffcd796378612
+ms.sourcegitcommit: d211f1d24c669b459a3910761b5cacb4b4f46ac9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/30/2018
+ms.lasthandoff: 09/06/2018
+ms.locfileid: "44027260"
 ---
-# <a name="test-azure-stream-analytics-queries-in-the-azure-portal"></a>在 Azure 入口網站測試串流分析查詢
+# <a name="test-a-stream-analytics-query-with-sample-data"></a>使用樣本資料測試串流分析查詢
 
-透過 Azure 串流分析，您可以在 Azure 入口網站中測試查詢，且無須啟動或停止作業。
+您可以使用 Azure 串流分析，在 Azure 入口網站中上傳樣本資料並測試查詢，而無須啟動或停止作業。
 
-## <a name="test-the-input"></a>測試輸入
+## <a name="upload-sample-data-and-test-the-query"></a>上傳範例資料和測試查詢
 
-1. 若要測試樣本輸入資料，以滑鼠右鍵按一下任何輸入，然後選取 [從檔案上傳樣本資料]。 目前您只能上傳 JSON 格式的資料。 如果您的資料採用不同格式 (例如 CSV)，請於上傳前先將其轉換為 JSON。 您可以使用任何開放原始碼轉換工具 (例如 [CSV 至 JSON 轉換器](http://www.convertcsv.com/csv-to-json.htm))，將資料轉換為 JSON。
+1. 登入 Azure 入口網站。 
+
+2. 找到現有的串流分析作業並加以選取。
+
+3. 在 [串流分析作業] 頁面上，[工作拓撲] 標題下方，選取 [查詢] 開啟 [查詢] 編輯器視窗。 
+
+4. 若要使用樣本輸入資料測試查詢，請以滑鼠右鍵按一下任何輸入資料。  然後選取 [從檔案上傳樣本資料]。 必須以 JSON、CSV 或 AVRO 將資料序列化。 範例輸入必須以 UTF-8 編碼而且不壓縮。 在入口網站上測試 CSV 輸入時僅支援逗號 (,) 分隔符號。
 
     ![串流分析查詢編輯器的測試查詢](media/stream-analytics-test-query/stream-analytics-test-query-editor-upload.png)
 
-2. 上傳完成後，按一下 [測試] 以根據您提供的樣本資料測試此查詢。
+5. 上傳完成後，選取 [測試] 以根據您提供的樣本資料測試此查詢。
 
     ![串流分析查詢編輯器的樣本資料](media/stream-analytics-test-query/stream-analytics-test-query-editor-test.png)
 
-查詢的輸出會顯示在瀏覽器中，還有 [下載結果] 連結可讓您儲存測試輸出以供稍後使用。 您現在可以輕鬆地反覆修改查詢並反覆測試查詢來查看輸出的變更狀況。
+6. 如果您需要該測試輸出供稍後使用，您的查詢輸出會顯示在瀏覽器中，並提供連結，以便下載結果。 
 
-![串流分析查詢編輯器樣本輸出](media/stream-analytics-test-query/stream-analytics-test-query-editor-samples-output.png)
+7. 反覆修改查詢，然後再次測試，以查看輸出的變更狀況。
 
-透過在查詢中使用多個輸出，您可以分別查看兩個輸出的結果，並輕鬆地在兩者之間切換。
+   ![串流分析查詢編輯器樣本輸出](media/stream-analytics-test-query/stream-analytics-test-query-editor-samples-output.png)
 
-當您滿意顯示在瀏覽器中的結果後，您可以儲存查詢、啟動作業，以及讓其在沒有錯誤的情況下處理事件。
+   當您在查詢中使用多個輸出時，結果會分別顯示在不同的索引標籤中，您可以輕鬆地切換索引標籤。
 
-## <a name="get-help"></a>取得說明
-
-如需進一步的協助，請參閱我們的 [Azure Stream Analytics 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)。
+8. 驗證顯示在瀏覽器中的結果後，請按一下 [儲存] 以儲存查詢。 然後按一下 [啟動] 以啟動作業，並讓其處理連入事件。
 
 ## <a name="next-steps"></a>後續步驟
-
-* [Azure Stream Analytics 介紹](stream-analytics-introduction.md)
-* [開始使用 Azure Stream Analytics](stream-analytics-real-time-fraud-detection.md)
-* [調整 Azure Stream Analytics 工作](stream-analytics-scale-jobs.md)
-* [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)
-* [Azure 串流分析管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)
+> [!div class="nextstepaction"]
+> [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)

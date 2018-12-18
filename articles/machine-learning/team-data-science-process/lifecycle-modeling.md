@@ -3,22 +3,24 @@ title: Team Data Science Process 生命週期的模型化階段 - Azure | Micros
 description: 資料科學專案模型化階段的目標、工作和交付項目
 services: machine-learning
 documentationcenter: ''
-author: bradsev
+author: deguhath
 manager: cgronlun
 editor: cgronlun
 ms.assetid: ''
 ms.service: machine-learning
+ms.component: team-data-science-process
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 11/04/2017
-ms.author: bradsev
-ms.openlocfilehash: 8ef76e32e0a78f4ca492e6ac6d5755fdf19e734c
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.author: deguhath
+ms.openlocfilehash: ff7434e84473fd68153be8116899ecdfb6a6a831
+ms.sourcegitcommit: 944d16bc74de29fb2643b0576a20cbd7e437cef2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 06/07/2018
+ms.locfileid: "34837475"
 ---
 # <a name="modeling"></a>模型化
 

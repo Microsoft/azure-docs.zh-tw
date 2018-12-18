@@ -1,22 +1,20 @@
 ---
-title: "Azure 搜尋服務中的完整文字搜尋引擎 (Lucene) 架構 | Microsoft Docs"
-description: "與 Azure 搜尋服務相關之全文檢索搜尋的 Lucene 查詢處理和文件擷取概念說明。"
-services: search
-manager: jhubbard
+title: Azure 搜尋服務中的完整文字搜尋引擎 (Lucene) 架構 | Microsoft Docs
+description: 與 Azure 搜尋服務相關之全文檢索搜尋的 Lucene 查詢處理和文件擷取概念說明。
+manager: jlembicz
 author: yahnoosh
-documentationcenter: 
+services: search
 ms.service: search
 ms.devlang: NA
-ms.workload: search
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.date: 04/06/2017
+ms.topic: conceptual
+ms.date: 04/20/2018
 ms.author: jlembicz
-ms.openlocfilehash: 0b2e66cd40c1b49832b865e5bf59edcf78996eb8
-ms.sourcegitcommit: b979d446ccbe0224109f71b3948d6235eb04a967
+ms.openlocfilehash: 55d361e90dbc5fe48bc118088a6f859d096048ff
+ms.sourcegitcommit: 04fc1781fe897ed1c21765865b73f941287e222f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/25/2017
+ms.lasthandoff: 07/13/2018
+ms.locfileid: "39036865"
 ---
 # <a name="how-full-text-search-works-in-azure-search"></a>全文檢索搜尋如何在 Azure 搜尋服務中運作
 
@@ -55,7 +53,7 @@ ms.lasthandoff: 10/25/2017
 下列範例是您可能會使用 [REST API](https://docs.microsoft.com/rest/api/searchservice/search-documents) 傳送至 Azure 搜尋服務的搜尋要求。  
 
 ~~~~
-POST /indexes/hotels/docs/search?api-version=2016-09-01 
+POST /indexes/hotels/docs/search?api-version=2017-11-11 
 {  
     "search": "Spacious, air-condition* +\"Ocean view\"",  
     "searchFields": "description, title",  
@@ -187,7 +185,7 @@ Spacious,||air-condition*+"Ocean view"
 
 ### <a name="exceptions-to-lexical-analysis"></a>語彙分析的例外狀況 
 
-語彙分析只適用於需要完整詞彙 (詞彙查詢或片語查詢) 的查詢類型。 它不會套用至詞彙不完整的查詢類型 – 前置詞查詢、萬用字元查詢、Regex 查詢 – 或不會套用至模糊查詢。 這些查詢類型 (包括範例中具有 air-condition*\** 詞彙的前置詞查詢) 會直接新增至查詢樹狀結構，並略過分析階段。 針對這些類型之查詢詞彙所執行的唯一轉換就是小寫。
+語彙分析只適用於需要完整詞彙 (詞彙查詢或片語查詢) 的查詢類型。 它不會套用至詞彙不完整的查詢類型 – 前置詞查詢、萬用字元查詢、Regex 查詢 – 或不會套用至模糊查詢。 這些查詢類型 (包括範例中具有 `air-condition*` 詞彙的前置詞查詢) 會直接新增至查詢樹狀結構，並略過分析階段。 針對這些類型之查詢詞彙所執行的唯一轉換就是小寫。
 
 <a name="stage3"></a>
 
@@ -363,7 +361,7 @@ search=Spacious, air-condition* +"Ocean view"
 有兩種方式可以調整 Azure 搜尋服務中的相關性分數︰
 
 1. **評分設定檔**會根據一組規則，依結果的排名清單來升級文件。 在範例中，我們可以認為 [標題] 欄位中相符的文件比 [描述] 欄位中相符的文件更為相關。 此外，如果索引有每家旅館的價格欄位，我們便可以提升包含較低價格的文件。 深入了解如何[將評分設定檔新增至搜尋索引。](https://docs.microsoft.com/rest/api/searchservice/add-scoring-profiles-to-a-search-index)
-2. **詞彙提升**(僅適用於完整的 Lucene 查詢語法) 提供 `^` 這個提升運算子，可以套用到查詢樹狀結構的任何部分。 在範例中，使用者並非搜尋 air-condition\* 這個前置詞，而是可以搜尋精確詞彙 air-condition 或前置詞，但是符合精確詞彙的文件可藉由將提升套用至詞彙查詢︰*air-condition^2||air-condition** 來提高排名。 深入了解[詞彙提升](https://docs.microsoft.com/rest/api/searchservice/lucene-query-syntax-in-azure-search#bkmk_termboost)。
+2. **詞彙提升**(僅適用於完整的 Lucene 查詢語法) 提供 `^` 這個提升運算子，可以套用到查詢樹狀結構的任何部分。 在範例中，使用者並非搜尋 air-condition\* 這個前置詞，而是可以搜尋精確詞彙 air-condition 或前置詞，但是符合精確詞彙的文件可藉由將提升套用至詞彙查詢 *air-condition^2||air-condition** 來提高排名。 深入了解[詞彙提升](https://docs.microsoft.com/rest/api/searchservice/lucene-query-syntax-in-azure-search#bkmk_termboost)。
 
 
 ### <a name="scoring-in-a-distributed-index"></a>分散式索引中的評分

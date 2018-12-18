@@ -3,8 +3,8 @@ title: 使用 Azure DNS 管理 DNS 記錄集和記錄 |Microsoft Docs
 description: Azure DNS 可在裝載您的網域時，提供管理 DNS 記錄集和記錄的功能。
 services: dns
 documentationcenter: na
-author: georgewallace
-manager: timlt
+author: vhorne
+manager: jeconnoc
 editor: ''
 tags: azure-resource-manager
 ms.assetid: 18ed44a1-7bfe-454f-964e-922ad978264a
@@ -14,20 +14,15 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/16/2016
-ms.author: gwallace
-ms.openlocfilehash: 001b80ccba43beab44f6a598f820df65a85a345f
-ms.sourcegitcommit: b5c6197f997aa6858f420302d375896360dd7ceb
+ms.author: victorh
+ms.openlocfilehash: e24aa8d0fb72147b0ac30e7c495b598d6e9ea96f
+ms.sourcegitcommit: f31bfb398430ed7d66a85c7ca1f1cc9943656678
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/21/2017
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47451387"
 ---
 # <a name="manage-dns-records-and-record-sets-by-using-the-azure-portal"></a>使用 Azure 入口網站管理 DNS 記錄和記錄集
-
-> [!div class="op_single_selector"]
-> * [HttpTrigger Nodejs 函數](dns-operations-recordsets-portal.md)
-> * [Azure CLI 1.0](dns-operations-recordsets-cli-nodejs.md)
-> * [Azure CLI 2.0](dns-operations-recordsets-cli.md)
-> * [PowerShell](dns-operations-recordsets.md)
 
 本文說明如何使用 Azure 入口網站管理 DNS 區域的記錄集和記錄。
 
@@ -94,7 +89,7 @@ ms.lasthandoff: 12/21/2017
 
 1. 在記錄集的 [記錄集屬性] 刀鋒視窗中，按一下 [刪除]。
 
-    ![刪除記錄集](./media/dns-operations-recordsets-portal/deleterecordset500.png)
+    ![刪除記錄集](./media/dns-operations-recordsets-portal/deleterecordset500.PNG)
 
 2. 隨即會出現訊息，詢問您是否要刪除記錄集。
 3. 確認該名稱符合您想要刪除的記錄集，然後按一下 [是] 。
@@ -106,7 +101,7 @@ ms.lasthandoff: 12/21/2017
 
 ### <a name="modify-soa-records"></a>修改 SOA 記錄
 
-您無法在區域頂點 (名稱 = \"\@\") 自動建立的 SOA 記錄集中新增或移除記錄。 不過，您可以修改 SOA 記錄 (「主機」除外) 和記錄集 TTL 內的任何參數。
+您無法在區域頂點 (名稱 = "\@") 自動建立的 SOA 記錄集中新增或移除記錄。 不過，您可以修改 SOA 記錄 (「主機」除外) 和記錄集 TTL 內的任何參數。
 
 ### <a name="modify-ns-records-at-the-zone-apex"></a>在區域頂點修改 NS 記錄
 
@@ -118,7 +113,7 @@ ms.lasthandoff: 12/21/2017
 
 ### <a name="delete-soa-or-ns-record-sets"></a>刪除 SOA 或 NS 記錄集
 
-您無法在建立區域時所自動建立的區域頂點 (名稱 = \"\@\") 刪除 SOA 和 NS 記錄集。 當您刪除該區域時，就會自動刪除它們。
+您無法在建立區域時所自動建立的區域頂點 (名稱 = "\@") 刪除 SOA 和 NS 記錄集。 當您刪除該區域時，就會自動刪除它們。
 
 ## <a name="next-steps"></a>後續步驟
 

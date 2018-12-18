@@ -1,6 +1,6 @@
 ---
-title: "包含檔案"
-description: "包含檔案"
+title: 包含檔案
+description: 包含檔案
 services: biztalk-services
 author: MandiOhlinger
 ms.service: biztalk-services
@@ -9,10 +9,11 @@ ms.date: 11/09/2017
 ms.author: mandia
 ms.custom: include file
 ms.openlocfilehash: 7fa6930acf4d19b3939bb8a5b0306d216346c2b3
-ms.sourcegitcommit: 0b02e180f02ca3acbfb2f91ca3e36989df0f2d9c
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/05/2018
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38755501"
 ---
 | 資源 | 免費 (預覽) | 開發人員 | 基本 | 標準 | 高級 |
 | --- | --- | --- | --- | --- | --- |

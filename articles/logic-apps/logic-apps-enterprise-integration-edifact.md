@@ -1,27 +1,23 @@
 ---
-title: "適用於 B2B 企業整合的 EDIFACT 訊息 - Azure Logic Apps | Microsoft Docs"
-description: "利用 Azure Logic Apps 交換 EDI 格式的 EDIFACT 訊息以進行 B2B 企業整合"
+title: 適用於 B2B 企業整合的 EDIFACT 訊息 - Azure Logic Apps | Microsoft Docs
+description: 在具有 Enterprise Integration Pack 的 Azure Logic Apps 中交換適用於 B2B 企業整合的 EDIFACT 訊息 (採用 EDI 格式)
 services: logic-apps
-documentationcenter: .net,nodejs,java
-author: jeffhollan
-manager: anneta
-editor: 
-ms.assetid: 2257d2c8-1929-4390-b22c-f96ca8b291bc
 ms.service: logic-apps
-ms.workload: integration
-ms.tgt_pltfrm: na
-ms.devlang: na
+ms.suite: integration
+author: divyaswarnkar
+ms.author: divswa
+ms.reviewer: jonfan, estfan, LADocs
 ms.topic: article
-ms.custom: H1Hack27Feb2017
+ms.assetid: 2257d2c8-1929-4390-b22c-f96ca8b291bc
 ms.date: 07/26/2016
-ms.author: LADocs; jonfan
-ms.openlocfilehash: 4b1ea9966add3cf0d5f75988f11cda57fa4e4cf6
-ms.sourcegitcommit: 088a8788d69a63a8e1333ad272d4a299cb19316e
+ms.openlocfilehash: 2da672e1f55af1e38ae0a3fa90b7ecb10d2f17c7
+ms.sourcegitcommit: 2ad510772e28f5eddd15ba265746c368356244ae
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/27/2018
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "43128372"
 ---
-# <a name="exchange-edifact-messages-for-enterprise-integration-with-logic-apps"></a>利用邏輯應用程式交換 EDIFACT 訊息以進行企業整合
+# <a name="exchange-edifact-messages-for-b2b-enterprise-integration-in-azure-logic-apps-with-enterprise-integration-pack"></a>在具有 Enterprise Integration Pack 的 Azure Logic Apps 中交換適用於 B2B 企業整合的 EDIFACT 訊息
 
 您必須先建立 EDIFACT 合約並將該合約儲存在您的整合帳戶中，才可以交換 EDIFACT 訊息。 以下是如何建立 EDIFACT 合約的步驟。
 
@@ -69,7 +65,7 @@ ms.lasthandoff: 02/27/2018
 
    | 屬性 | 說明 |
    | --- | --- |
-   | Name |合約的名稱 |
+   | 名稱 |合約的名稱 |
    | 合約類型 | 應該是 EDIFACT |
    | 主控夥伴 |合約需要主控夥伴和來賓夥伴。 主機夥伴代表設定合約的組織。 |
    | 主控身分識別 |主控夥伴的識別碼 |

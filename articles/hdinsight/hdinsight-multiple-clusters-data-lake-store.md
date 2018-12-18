@@ -1,31 +1,26 @@
 ---
-title: "利用一個 Azure Data Lake Store 帳戶使用多個 HDInsight 叢集 - Azure | Microsoft Docs"
-description: "了解如何利用單一 Data Lake Store 帳戶來使用多個 HDInsight 叢集"
-keywords: "hdinsight 儲存體,hdfs,結構化資料,非結構化資料, data lake store"
+title: 利用一個 Azure Data Lake Store 帳戶使用多個 HDInsight 叢集 - Azure
+description: 了解如何利用單一 Data Lake Store 帳戶來使用多個 HDInsight 叢集
+keywords: hdinsight 儲存體,hdfs,結構化資料,非結構化資料, data lake store
 services: hdinsight,storage
-documentationcenter: 
-tags: azure-portal
-author: nitinme
-manager: jhubbard
-editor: cgronlun
+author: jasonwhowell
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 02/21/2018
-ms.author: nitinme
-ms.openlocfilehash: c306c66354f34fc945a5fe0ffa11d63bce4d7005
-ms.sourcegitcommit: fbba5027fa76674b64294f47baef85b669de04b7
+ms.author: jasonh
+ms.openlocfilehash: 0e74406d79484483053ca7d4b89b096c3f70e298
+ms.sourcegitcommit: f6e2a03076679d53b550a24828141c4fb978dcf9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/24/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43095119"
 ---
 # <a name="use-multiple-hdinsight-clusters-with-an-azure-data-lake-store-account"></a>利用一個 Azure Data Lake Store 帳戶使用多個 HDInsight 叢集
 
 從 HDInsight 3.5 版開始，您可以使用 Azure Data Lake Store 帳戶建立 HDInsight 叢集，作為預設檔案系統。
-Data Lake Store 支援無限制的儲存空間，不僅適合裝載大量資料，也適合裝載多個共用單一 Data Lake Store 帳戶的 HDInsight 叢集。 如需有關如何以 Data Lake Store 作為儲存體來建立 HDInsight 叢集的指示，請參閱[使用 Data Lake Store 建立 HDInsight 叢集](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)。
+Data Lake Store 支援無限制的儲存空間，不僅適合裝載大量資料，也適合裝載多個共用單一 Data Lake Store 帳戶的 HDInsight 叢集。 如需有關如何使用 Data Lake Storage 建立 HDInsight 叢集作為儲存體的指示，請參閱[快速入門：在 HDInsight 中設定叢集](../storage/data-lake-storage/quickstart-create-connect-hdi-cluster.md)。
 
 本文提供建議給 Data Lake Store 管理員來設定單一共用的 Data Lake Store 帳戶，此帳戶可以跨多個**作用中的** HDInsight 叢集使用。 這些建議適用於將多個安全和不安全的 Hadoop 叢集裝載於共用的 Data Lake Store 帳戶上。
 
@@ -52,7 +47,7 @@ Data Lake Store 支援無限制的儲存空間，不僅適合裝載大量資料�
 - **服務主體**是與帳戶相關聯的 Azure Active Directory (AAD) 服務主體。
 - **FINGRP** 是 AAD 中建立的使用者群組，內含來自財務組織的使用者。
 
-如需有關如何建立 AAD 應用程式 (這也會建立服務主體) 的指示，請參閱[建立 AAD 應用程式](../azure-resource-manager/resource-group-create-service-principal-portal.md#create-an-azure-active-directory-application)。 如需有關如何在 AAD 中建立使用者群組的指示，請參閱[在 Azure Active Directory 中管理群組](../active-directory/active-directory-groups-create-azure-portal.md)。
+如需有關如何建立 AAD 應用程式 (這也會建立服務主體) 的指示，請參閱[建立 AAD 應用程式](../azure-resource-manager/resource-group-create-service-principal-portal.md#create-an-azure-active-directory-application)。 如需有關如何在 AAD 中建立使用者群組的指示，請參閱[在 Azure Active Directory 中管理群組](../active-directory/fundamentals/active-directory-groups-create-azure-portal.md)。
 
 需要考慮的一些重要事項。
 
@@ -98,6 +93,6 @@ Data Lake Store 支援無限制的儲存空間，不僅適合裝載大量資料�
 
 ## <a name="see-also"></a>另請參閱
 
-* [建立以 Data Lake 存放區當做儲存體的 HDInsight 叢集](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)
+* [快速入門：在 HDInsight 中設定叢集](../storage/data-lake-storage/quickstart-create-connect-hdi-cluster.md)
 
 

@@ -2,23 +2,17 @@
 title: Azure Site Recovery 可以保護哪些工作負載？ | Microsoft Docs
 description: 描述可以透過 Azure Site Recovery 服務使用災害復原來保護的工作負載。
 services: site-recovery
-documentationcenter: ''
 author: rayne-wiselman
-manager: cfreeman
-editor: ''
-ms.assetid: 4953948f-26c0-4699-8fe7-59d3bfc1d3da
 ms.service: site-recovery
-ms.devlang: na
-ms.topic: get-started-article
-ms.tgt_pltfrm: na
-ms.workload: storage-backup-recovery
-ms.date: 3/16/2018
+ms.topic: conceptual
+ms.date: 07/22/2018
 ms.author: raynew
-ms.openlocfilehash: 3b138546ffb1cb6d5bec0aaf2bb11510ab399933
-ms.sourcegitcommit: a36a1ae91968de3fd68ff2f0c1697effbb210ba8
+ms.openlocfilehash: 5295002e823dc864f0f0dcc67594f49b5431bce7
+ms.sourcegitcommit: 30221e77dd199ffe0f2e86f6e762df5a32cdbe5f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/17/2018
+ms.lasthandoff: 07/23/2018
+ms.locfileid: "39205947"
 ---
 # <a name="what-workloads-can-you-protect-with-azure-site-recovery"></a>Azure Site Recovery 可以保護哪些工作負載？
 
@@ -60,7 +54,6 @@ Site Recovery 可複寫在支援的機器上執行的任何應用程式。 此�
 | 遠端桌面/VDI |Y |Y |Y |Y |Y|
 | Linux (作業系統和應用程式) |Y (由 Microsoft 測試) |Y (由 Microsoft 測試) |Y (由 Microsoft 測試) |Y (由 Microsoft 測試) |Y (由 Microsoft 測試)|
 | Dynamics AX |Y |Y |Y |Y |Y|
-| Oracle |Y (由 Microsoft 測試) |Y (由 Microsoft 測試) |Y (由 Microsoft 測試) |Y (由 Microsoft 測試) |Y (由 Microsoft 測試)|
 | Windows 檔案伺服器 |Y |Y |Y |Y |Y|
 | Citrix XenApp 和 XenDesktop |Y|N/A |Y |N/A |Y |
 
@@ -110,9 +103,9 @@ Azure Site Recovery 可協助保護您的 Dynamics AX ERP 解決方案，方法�
 
 | **RDS** |**將 Azure VM 複寫至 Azure** | **將 Hyper-V VM 複寫至次要網站** | **將 Hyper-V VM 複寫至 Azure** | **將 VMware VM 複寫到次要網站** | **將 VMware VM 複寫到 Azure** | **將實體伺服器複寫到次要網站** | **將實體伺服器複寫到 Azure** |
 |---| --- | --- | --- | --- | --- | --- | --- |
-| **集區化虛擬桌面 (非受控)** |否|yes |否 |yes |否 |yes |否 |
-| **集區化虛擬桌面 (受控但不含 UPD)** |否|yes |否 |yes |否 |yes |否 |
-| **遠端應用程式和桌面工作階段 (不含 UPD)** |yes|yes |yes |yes |yes |yes |yes |
+| **集區化虛擬桌面 (非受控)** |否|是 |否 |是 |否 |是 |否 |
+| **集區化虛擬桌面 (受控但不含 UPD)** |否|是 |否 |是 |否 |是 |否 |
+| **遠端應用程式和桌面工作階段 (不含 UPD)** |是|yes |yes |yes |yes |yes |是 |
 
 [使用 Azure Site Recovery 設定適用於 RDS 的災害復原](https://docs.microsoft.com/windows-server/remote/remote-desktop-services/rds-disaster-recovery-with-azure)。
 

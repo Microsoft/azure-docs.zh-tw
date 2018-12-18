@@ -1,11 +1,11 @@
 ---
-title: "StorSimple Snapshot Manager 管理 | Microsoft Docs"
-description: "提供有關 StorSimple Snapshot Manager 解決方案系統管理工作和工作流程的概觀與詳細資訊連結。"
+title: StorSimple Snapshot Manager 管理 | Microsoft Docs
+description: 提供有關 StorSimple Snapshot Manager 解決方案系統管理工作和工作流程的概觀與詳細資訊連結。
 services: storsimple
 documentationcenter: NA
 author: SharS
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 1cdbb61d-bd16-4be4-ade2-ceab11508acb
 ms.service: storsimple
 ms.devlang: NA
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23109216"
 ---
 # <a name="use-storsimple-snapshot-manager-to-administer-your-storsimple-solution"></a>使用 StorSimple Snapshot Manager 來管理您的 StorSimple 解決方案
 

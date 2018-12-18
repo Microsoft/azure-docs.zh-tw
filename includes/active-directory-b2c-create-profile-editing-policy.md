@@ -1,4 +1,4 @@
-若要在您的應用程式中啟用設定檔編輯功能，您必須建立設定檔編輯原則。 此原則描述取用者在設定檔編輯期間將會經歷的體驗，以及成功完成時，應用程式將收到的權杖內容。
+如果您要在您的應用程式中啟用設定檔編輯功能，您可使用**設定檔編輯**原則。 此原則描述客戶在設定檔編輯期間將會經歷的體驗，以及成功完成時，應用程式將收到的權杖內容。
 
 [!INCLUDE [active-directory-b2c-portal-navigate-b2c-service](active-directory-b2c-portal-navigate-b2c-service.md)]
 
@@ -8,11 +8,11 @@
 
 輸入原則 [名稱]，以供您的應用程式參考。 例如，輸入 `SiPe`。
 
-選取 [識別提供者]，然後勾選 [本機帳戶登入]。 (選擇性) 您也可以選取社交身分識別提供者 (如果已經設定)。 按一下 [SERVICEPRINCIPAL] 。
+選取 [識別提供者]，然後勾選 [本機帳戶登入]。 (選擇性) 您也可以選取社交身分識別提供者 (如果已經設定)。 按一下 [確定]。
 
 ![以識別提供者身分來選取 [本機帳戶登入]，然後按一下 [確定] 按鈕](media/active-directory-b2c-create-profile-editing-policy/add-b2c-editing-identity-providers.png)
 
-選取 [設定檔屬性]。 選擇取用者可以在其設定檔中檢視及編輯的屬性。 例如，勾選 [國家/區域]、[顯示名稱] 和 [郵遞區號]。 按一下 [SERVICEPRINCIPAL] 。
+選取 [設定檔屬性]。 選擇取用者可以在其設定檔中檢視及編輯的屬性。 例如，勾選 [國家/區域]、[顯示名稱] 和 [郵遞區號]。 按一下 [確定]。
 
 ![選取某些屬性，然後按一下 [確定] 按鈕](media/active-directory-b2c-create-profile-editing-policy/add-b2c-editing-attributes.png)
 

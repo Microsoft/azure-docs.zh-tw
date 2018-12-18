@@ -1,19 +1,20 @@
 ---
-title: "Azure Container Service 教學課程 - 準備 ACR"
-description: "Azure Container Service 教學課程 - 準備 ACR"
+title: Azure Container Service 教學課程 - 準備 ACR
+description: Azure Container Service 教學課程 - 準備 ACR
 services: container-service
 author: neilpeterson
-manager: timlt
+manager: jeconnoc
 ms.service: container-service
 ms.topic: tutorial
 ms.date: 02/26/2018
 ms.author: nepeters
 ms.custom: mvc
-ms.openlocfilehash: f2520c79d5d5b1dcf13147b64bd98df78e6e2f37
-ms.sourcegitcommit: 088a8788d69a63a8e1333ad272d4a299cb19316e
+ms.openlocfilehash: d22661c0d07ce446ea0ad345a1e9629f6e2f0d6c
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/27/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46995885"
 ---
 # <a name="deploy-and-use-azure-container-registry"></a>部署和使用 Azure Container Registry
 
@@ -32,19 +33,19 @@ Azure Container Registry (ACR) 是以 Azure 為基礎的私人登錄，用於裝
 
 在[上一個教學課程](./container-service-tutorial-kubernetes-prepare-app.md)中，已針對簡單的 Azure Voting 應用程式建立容器映像。 如果您尚未建立 Azure Voting 應用程式映像，請回到[教學課程 1 – 建立容器映像](./container-service-tutorial-kubernetes-prepare-app.md)。
 
-本教學課程需要您執行 Azure CLI 2.0.4 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
+本教學課程需要您執行 Azure CLI 2.0.4 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI]( /cli/azure/install-azure-cli)。 
 
 ## <a name="deploy-azure-container-registry"></a>部署 Azure Container Registry
 
 部署 Azure Container Registry 時，您必須先有資源群組。 Azure 資源群組是在其中部署與管理 Azure 資源的邏輯容器。
 
-使用 [az group create](/cli/azure/group#az_group_create) 命令來建立資源群組。 在此範例中，`westeurope` 區域中會建立名為 `myResourceGroup` 的資源群組。
+使用 [az group create](/cli/azure/group#az-group-create) 命令來建立資源群組。 在此範例中，`westeurope` 區域中會建立名為 `myResourceGroup` 的資源群組。
 
 ```azurecli
 az group create --name myResourceGroup --location westeurope
 ```
 
-使用 [az acr create](/cli/azure/acr#az_acr_create) 命令來建立 Azure Container Registry。 Container Registry 的名稱**必須是唯一的**。
+使用 [az acr create](/cli/azure/acr#az-acr-create) 命令來建立 Azure Container Registry。 Container Registry 的名稱**必須是唯一的**。
 
 ```azurecli
 az acr create --resource-group myResourceGroup --name <acrName> --sku Basic
@@ -54,7 +55,7 @@ az acr create --resource-group myResourceGroup --name <acrName> --sku Basic
 
 ## <a name="container-registry-login"></a>Container Registry 登入
 
-使用 [az acr login](https://docs.microsoft.com/cli/azure/acr#az_acr_login) 命令登入 ACR 執行個體。 您必須在建立容器登錄時，為容器登錄提供唯一名稱。
+使用 [az acr login](https://docs.microsoft.com/cli/azure/acr#az-acr-login) 命令登入 ACR 執行個體。 您必須在建立容器登錄時，為容器登錄提供唯一名稱。
 
 ```azurecli
 az acr login --name <acrName>
@@ -93,7 +94,7 @@ az acr list --resource-group myResourceGroup --query "[].{acrLoginServer:loginSe
 docker tag azure-vote-front <acrLoginServer>/azure-vote-front:v1
 ```
 
-一旦標記，請執行 [docker images] (https://docs.docker.com/engine/reference/commandline/images/) 來驗證作業。
+標記之後，請執行 [docker images] (https://docs.docker.com/engine/reference/commandline/images/) 以驗證作業。
 
 ```bash
 docker images
@@ -123,7 +124,7 @@ docker push <acrLoginServer>/azure-vote-front:v1
 
 ## <a name="list-images-in-registry"></a>列出登錄中的映像
 
-若要傳回已推送至 Azure Container Registry 的映像清單，請使用 [az acr repository list](/cli/azure/acr/repository#az_acr_repository_list) 命令。 以 ACR 執行個體名稱更新命令。
+若要傳回已推送至 Azure Container Registry 的映像清單，請使用 [az acr repository list](/cli/azure/acr/repository#az-acr-repository-list) 命令。 以 ACR 執行個體名稱更新命令。
 
 ```azurecli
 az acr repository list --name <acrName> --output table

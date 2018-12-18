@@ -1,10 +1,10 @@
 ---
-title: "用 VM 擴充功能監視 Linux VM | Microsoft Docs"
-description: "了解如何使用 Linux 診斷延伸模組監視 Azure 中 Linux VM 的效能和診斷資料。"
+title: 用 VM 擴充功能監視 Linux VM | Microsoft Docs
+description: 了解如何使用 Linux 診斷延伸模組監視 Azure 中 Linux VM 的效能和診斷資料。
 services: virtual-machines-linux
 author: NingKuang
-manager: timlt
-editor: 
+manager: jeconnoc
+editor: ''
 tags: azure-service-management
 ms.assetid: f54a11c5-5a0e-40ff-af6c-e60bd464058b
 ms.service: virtual-machines-linux
@@ -14,11 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/15/2015
 ms.author: Ning
-ms.openlocfilehash: b8c6e2e22d8478b6e92e7b7942f15d37a840fed3
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 13d7594c15959661f3f9c3ab2165739719beac07
+ms.sourcegitcommit: cfff72e240193b5a802532de12651162c31778b6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 07/27/2018
+ms.locfileid: "39308216"
 ---
 # <a name="use-the-linux-diagnostic-extension-to-monitor-the-performance-and-diagnostic-data-of-a-linux-vm"></a>使用 Linux 診斷擴充功能監視 Linux VM 的效能和診斷資料
 
@@ -53,13 +54,13 @@ Linux 診斷延伸模組可協助使用者監視在 Microsoft Azure 上執行的
 
 使用 [Azure 入口網站](https://portal.azure.com/#)、Azure PowerShell 或 Azure CLI 指令碼，可以啟用此擴充功能。
 
-若要直接從 Azure 入口網站檢視和設定系統和效能資料，請遵循 [Azure 部落格上的這些步驟](https://azure.microsoft.com/en-us/blog/windows-azure-virtual-machine-monitoring-with-wad-extension/)進行。
+若要直接從 Azure 入口網站檢視和設定系統和效能資料，請遵循 [Azure 部落格上的這些步驟](https://azure.microsoft.com/blog/windows-azure-virtual-machine-monitoring-with-wad-extension/)進行。
 
 本文著重於如何使用 Azure CLI 命令來啟用及設定延伸模組。 這可讓您直接從儲存體資料表讀取和檢視資料。
 
 請注意，此處描述的設定方法無法用於 Azure 入口網站。 若要直接從 Azure 入口網站檢視和設定系統及效能資料，就必須透過 Azure 入口網站啟用此延伸模組。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 * **Azure Linux Agent 2.0.6 版或更新版本**。
 
@@ -88,7 +89,7 @@ Linux 診斷延伸模組可協助使用者監視在 Microsoft Azure 上執行的
         "storageAccountKey" : "the key of the account"
     }
 
-步驟 2. 執行 **azure vm extension set vm_name LinuxDiagnostic Microsoft.OSTCExtensions 2.* --private-config-path PrivateConfig.json**。
+步驟 2. 執行 **azure vm extension set vm_name LinuxDiagnostic Microsoft.OSTCExtensions 2.\* --private-config-path PrivateConfig.json**。
 
 ### <a name="scenario-2-customize-the-performance-monitor-metrics"></a>案例 2. 自訂效能監視器計量
 

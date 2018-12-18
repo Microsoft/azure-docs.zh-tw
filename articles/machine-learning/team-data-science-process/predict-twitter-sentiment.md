@@ -3,28 +3,30 @@ title: 使用 Azure 中的 Team Data Science Process 以文字內嵌預測 Twitt
 description: 執行資料科學專案所需的步驟。
 services: machine-learning
 documentationcenter: ''
-author: bradsev
+author: deguhath
 manager: cgronlun
 editor: cgronlun
 ms.assetid: ''
 ms.service: machine-learning
+ms.component: team-data-science-process
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 12/15/2017
-ms.author: bradsev
-ms.openlocfilehash: f22da892868a10ac18fdcd703249eaa172f8bf65
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.author: deguhath
+ms.openlocfilehash: f47668cd706b78977418925d64eca583d7878cd3
+ms.sourcegitcommit: 944d16bc74de29fb2643b0576a20cbd7e437cef2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 06/07/2018
+ms.locfileid: "34838304"
 ---
 # <a name="predict-twitter-sentiment-with-word-embeddings-by-using-the-team-data-science-process"></a>使用 Team Data Science Process 以文字內嵌預測 Twitter 人氣
 
-本文章示範如何使用 _Word2Vec_ 文字內嵌演算法和_人氣特定文字內嵌 (SSWE)_ 演算法有效率地共同作業，使用 [Azure Machine Learning](../preview/index.yml) 來預測 Twitter 人氣。 如需有關預測 Twitter 人氣極性的詳細資訊，請參閱 GitHub 上的 [MachineLearningSamples-TwitterSentimentPrediction 存放庫](https://github.com/Azure/MachineLearningSamples-TwitterSentimentPrediction)。 促進對於資料科學專案之有效小組共同作業的關鍵，是使用已建立的資料科學生命週期將專案的結構和文件標準化。 [Team Data Science Process (TDSP)](overview.md) 可提供這個類型的結構化[生命週期](lifecycle.md)。 
+本文章示範如何使用 _Word2Vec_ 文字內嵌演算法和_人氣特定文字內嵌 (SSWE)_ 演算法有效率地共同作業，使用 [Azure Machine Learning](../service/index.yml) 來預測 Twitter 人氣。 如需有關預測 Twitter 人氣極性的詳細資訊，請參閱 GitHub 上的 [MachineLearningSamples-TwitterSentimentPrediction 存放庫](https://github.com/Azure/MachineLearningSamples-TwitterSentimentPrediction)。 促進對於資料科學專案之有效小組共同作業的關鍵，是使用已建立的資料科學生命週期將專案的結構和文件標準化。 [Team Data Science Process (TDSP)](overview.md) 可提供這個類型的結構化[生命週期](lifecycle.md)。 
 
-使用 _TDSP 範本_建立資料科學專案，會為 Azure Machine Learning 專案提供標準化架構。 TDSP 小組先前發行了[適用於 TDSP 專案結構和範本的 GitHub 存放庫](https://github.com/Azure/Azure-TDSP-ProjectTemplate)。 現在使用 [Azure Machine Learning 的 TDSP 範本](https://github.com/amlsamples/tdsp)所具現化的 Machine Learning 專案已啟用。 如需指示，請參閱如何在 Azure Machine Learning 中使用[具有 TDSP 範本的 TDSP 結構專案](../preview/how-to-use-tdsp-in-azure-ml.md)。 
+使用 _TDSP 範本_建立資料科學專案，會為 Azure Machine Learning 專案提供標準化架構。 TDSP 小組先前發行了[適用於 TDSP 專案結構和範本的 GitHub 存放庫](https://github.com/Azure/Azure-TDSP-ProjectTemplate)。 現在使用 [Azure Machine Learning 的 TDSP 範本](https://github.com/amlsamples/tdsp)所具現化的 Machine Learning 專案已啟用。 如需指示，請參閱如何在 Azure Machine Learning 中使用[具有 TDSP 範本的 TDSP 結構專案](../desktop-workbench/how-to-use-tdsp-in-azure-ml.md)。 
 
 
 ## <a name="twitter-sentiment-polarity-sample"></a>Twitter 人氣極性範例
@@ -131,7 +133,7 @@ SSWE 演算法會嘗試解決 Word2Vec 演算法的弱點，這個弱點是具�
 
 ![Kubernetes 儀表板](./media/predict-twitter-sentiment/kubernetes-dashboard.PNG)
 
-如需有關運作程序的詳細資訊，請參閱[將 Azure Machine Learning 模型部署為 Web 服務](../preview/model-management-service-deploy.md)。
+如需有關運作程序的詳細資訊，請參閱[將 Azure Machine Learning 模型部署為 Web 服務](../desktop-workbench/model-management-service-deploy.md)。
 
 ## <a name="conclusion"></a>結論
 
@@ -143,8 +145,8 @@ SSWE 演算法會嘗試解決 Word2Vec 演算法的弱點，這個弱點是具�
 * [Team Data Science Process](https://docs.microsoft.com/azure/machine-learning/team-data-science-process/overview) 
 * [如何在 Azure Machine Learning 中使用 Team Data Science Process (TDSP)](https://aka.ms/how-to-use-tdsp-in-aml)
 * [Azure Machine Learning 的 TDSP 專案範本](https://aka.ms/tdspamlgithubrepo)
-* [Azure Machine Learning Workbench](../preview/index.yml)
+* [Azure Machine Learning Workbench](../service/index.yml)
 * [UCI ML 存放庫中的美國所得資料集](https://archive.ics.uci.edu/ml/datasets/adult)
-* [使用 TDSP 範本的生物醫學實體辨識](../preview/scenario-tdsp-biomedical-recognition.md)
+* [使用 TDSP 範本的生物醫學實體辨識](../desktop-workbench/scenario-tdsp-biomedical-recognition.md)
 * [Mikolov, Tomas 等人"Distributed Representations of Words and Phrases and their Compositionality.Advances in neural information processing systems."2013.](https://arxiv.org/abs/1310.4546)
 * [Tang, Duyu 等人"Learning Sentiment-Specific Word Embedding for Twitter Sentiment Classification."ACL (1).2014.](http://www.aclweb.org/anthology/P14-1146)

@@ -1,21 +1,21 @@
 ---
-title: 擴充功能應用程式 - Azure AD B2C | Microsoft Docs
-description: 還原 b2c-extensions-app
+title: Azure Active Directory B2C 中的擴充功能應用程式 | Microsoft Docs
+description: 還原 b2c-extensions-app。
 services: active-directory-b2c
-documentationcenter: ''
 author: davidmu1
 manager: mtillman
-editor: ''
-ms.service: active-directory-b2c
+ms.service: active-directory
 ms.workload: identity
-ms.topic: article
+ms.topic: conceptual
 ms.date: 9/06/2017
 ms.author: davidmu
-ms.openlocfilehash: c07aba797118af2cc8283509944eda8b41d499b3
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: B2C
+ms.openlocfilehash: ad3d459b1211d2777f57169f3ee896d2ab5618bc
+ms.sourcegitcommit: 86cb3855e1368e5a74f21fdd71684c78a1f907ac
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37442819"
 ---
 # <a name="azure-ad-b2c-extensions-app"></a>Azure AD B2C：擴充功能應用程式
 

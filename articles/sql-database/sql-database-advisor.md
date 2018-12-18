@@ -2,18 +2,20 @@
 title: 效能建議 - Azure SQL Database |Microsoft Docs
 description: Azure SQL Database 會提供可改善 SQL 資料庫查詢效能的建議。
 services: sql-database
-author: stevestein
+author: danimir
 manager: craigg
 ms.service: sql-database
 ms.custom: monitor & tune
-ms.topic: article
-ms.date: 09/20/2017
-ms.author: sstein
-ms.openlocfilehash: 47e93d270aa3596430ab5892b2bd9323fba1d12e
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.topic: conceptual
+ms.date: 04/01/2018
+ms.author: v-daljep
+ms.reviewer: carlrab
+ms.openlocfilehash: 2f29326f54a90d79532529175a94b1afc1920bea
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39520991"
 ---
 # <a name="performance-recommendations-for-sql-database"></a>SQL Database 的效能建議
 

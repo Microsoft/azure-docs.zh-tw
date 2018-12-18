@@ -4,7 +4,6 @@ description: Azure 雲端服務客體作業系統的發行最新消息和 SDK �
 services: cloud-services
 documentationcenter: na
 author: raiye
-manager: timlt
 editor: ''
 ms.assetid: 6306cafe-1153-44c7-8554-623b03d59a34
 ms.service: cloud-services
@@ -12,13 +11,14 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: tbd
-ms.date: 3/19/2018
+ms.date: 9/13/2018
 ms.author: raiye
-ms.openlocfilehash: 0456bf8d8cdd84078d12c3fc0f48d16b0370cddd
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 239482151384ff555d86e3d639bfe1d75b0d0ceb
+ms.sourcegitcommit: 616e63d6258f036a2863acd96b73770e35ff54f8
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/14/2018
+ms.locfileid: "45604887"
 ---
 # <a name="azure-guest-os-releases-and-sdk-compatibility-matrix"></a>Azure 客體 OS 版次與 SDK 相容性矩陣
 提供適用於雲端服務的最新 Azure 客體作業系統版次的最新資訊。 此資訊協助您在客體 OS停用之前規劃升級路徑。 如果您將角色設定成使用「自動」客體 OS 更新 (如 [Azure 客體 OS 更新設定][Azure Guest OS Update Settings]所述)，就不一定要閱讀此頁面。
@@ -35,13 +35,32 @@ ms.lasthandoff: 03/23/2018
 >
 
 > [!IMPORTANT]
-> 從 11 月首度發行開始，僅支援最新 2 版的客體 OS，並可在 Azure 入口網站取得。
+> 僅支援最新 2 版的客體 OS，並可在 Azure 入口網站取得。
 >
 >
 
-不確定客體 OS 為何或客體 OS 版次如何工作？ 請閱讀 [本節內容](#how-it-works) 。
+不確定如何更新客體作業系統嗎？ 請查看[這裡][cloud updates]。
 
 ## <a name="news-updates"></a>新聞更新
+
+###### <a name="september-12-2018"></a>**2018 年 9 月 12 日**
+8 月客體 OS 已發行。
+
+###### <a name="august-3-2018"></a>**2018 年 8 月 3 日**
+7 月客體 OS 已發行。
+
+###### <a name="july-3-2018"></a>**2018 年 7 月 3 日**
+6 月客體 OS 已發行。
+
+###### <a name="june-1-2018"></a>**2018 年 6 月 1 日**
+5 月份客體作業系統已發行。
+
+###### <a name="may-4-2018"></a>**2018 年 5 月 4 日**
+4 月客體 OS 已發行。
+
+###### <a name="april-6-2018"></a>**2018 年 4 月 6 日**
+3 月客體 OS 已發行。
+
 ###### <a name="march-19-2018"></a>**2018 年 3 月 19 日**
 2 月客體 OS 已發行。
 
@@ -60,20 +79,6 @@ ms.lasthandoff: 03/23/2018
 ###### <a name="november-8-2017"></a>**2017 年 11 月 8 日**
 10 月客體 OS 已發行。
 
-###### <a name="october-6-2017"></a>**2017 年 10 月 6 日**
-9 月客體 OS 已發行。 在 Windows Server 2016 年 9 月版本中，預設會啟用 netfx3。 如果客戶的工作流程要求他們使用 4.x 執行階段來執行 .NET 2.x 應用程式，或如果他們執行了 .NET 2.x 應用程式、處理了錯誤，然後執行了.NET 4.x 應用程式，就應該在客戶的 OnStart 中新增 ‘dism /online /disable-feature /featurename:netfx3’。
-
-###### <a name="september-14-2017"></a>**2017 年 9 月 14 日**
-9 月客體 OS 的首度發行期間從 9 月 14 日開始，預訂的正式發行日為 10 月 9 日。
-
-###### <a name="august-24-2017"></a>**2017 年 8 月 24 日**
-8 月客體 OS 已發行。
-
-###### <a name="august-3-2017"></a>**2017 年 8 月 3 日**
-7 月客體 OS 已發行。
-
-###### <a name="july-19-2017"></a>**2017 年 7 月 19 日**
-7 月客體 OS 的首度發行期間從 7 月 19 日開始，預訂的正式發行日為 8 月 8 日。
 
 
 ## <a name="releases"></a>版次
@@ -83,105 +88,84 @@ ms.lasthandoff: 03/23/2018
 安裝的 .NET Framework：4.0、4.5、4.5.1、4.5.2、4.6、4.6.1、4.6.2
 
 > [!NOTE]
-> 具有 * 的日期可能會變更。
->
 > 作業系統系列 5 的 RDP 密碼至少需要 10 個字元。
 >
 
-| 組態字串 | 發行日期 | 停用日期 | 到期日期 |
-| --- | --- | --- | --- |
-| WA-GUEST-OS-5.16_201802-01 |2018 年 3 月 12 日 |Post 5.18 |TBD |
-| WA-GUEST-OS-5.15_201801-01 |2018 年 1 月 4 日 |Post 5.17 |TBD |
-|~~WA-GUEST-OS-5.14_201712-01~~ |2018 年 1 月 4 日 |2018 年 3 月 12 日 |TBD |
-|~~WA-GUEST-OS-5.13_201711-01~~ |2017 年 12 月 14 日 |2018 年 1 月 4 日|TBD |
-|~~WA-GUEST-OS-5.12_201710-02~~ |2017 年 11 月 8 日 |2018 年 1 月 4 日 |TBD |
-|~~WA-GUEST-OS-5.11_201709-01~~ |2017 年 10 月 6 日 |2017 年 12 月 14 日 |TBD |
-|~~WA-GUEST-OS-5.10_201708-01~~ |2017 年 8 月 24 日 |2017 年 12 月 14 日 |TBD |
-|~~WA-GUEST-OS-5.9_201707-01~~ |2017 年 8 月 3 日 |2017 年 11 月 8 日 |TBD |
-|~~WA-GUEST-OS-5.8_201706-01~~ |2017 年 7 月 7 日 |2017 年 10 月 6 日 |TBD |
-|~~WA-GUEST-OS-5.7_201705-01~~ |2017 年 6 月 5 日 |2017 年 8 月 24 日 |TBD |
-|~~WA-GUEST-OS-5.6_201704-01~~ |2017 年 5 月 9 日 |2017 年 8 月 3 日 |TBD |
-|~~WA-GUEST-OS-5.5_201703-01~~ |2017 年 4 月 10 日 |2017 年 7 月 7 日 |TBD |
-|~~WA-GUEST-OS-5.4_201612-01~~ |2017 年 1 月 10 日 |2017 年 6 月 5 日|TBD |
+| 組態字串 | 發行日期 | 停用日期 |
+| --- | --- | --- |
+| WA-GUEST-OS-5.22_201808-01 |2018 年 9 月 12 日 |Post 5.24 |
+| WA-GUEST-OS-5.21_201807-02 |2018 年 8 月 3 日 |Post 5.23 |
+|~~WA-GUEST-OS-5.20_201806-01~~ |2018 年 7 月 3 日 |2018 年 9 月 12 日 |
+|~~WA-GUEST-OS-5.19_201805-01~~ |2018 年 6 月 1 日 |2018 年 8 月 3 日 |
+|~~WA-GUEST-OS-5.18_201804-01~~ |2018 年 5 月 4 日 |2018 年 7 月 3 日 |
+|~~WA-GUEST-OS-5.17_201803-01~~ |2018 年 4 月 6 日 |2018 年 6 月 1 日|
+|~~WA-GUEST-OS-5.16_201802-01~~ |2018 年 3 月 12 日 |2018 年 5 月 4 日 |
+|~~WA-GUEST-OS-5.15_201801-01~~ |2018 年 1 月 4 日 |2018 年 4 月 6 日 |
+|~~WA-GUEST-OS-5.14_201712-01~~ |2018 年 1 月 4 日 |2018 年 3 月 12 日 |
+|~~WA-GUEST-OS-5.13_201711-01~~ |2017 年 12 月 14 日 |2018 年 1 月 4 日|
+|~~WA-GUEST-OS-5.12_201710-02~~ |2017 年 11 月 8 日 |2018 年 1 月 4 日 |
+
 
 ## <a name="family-4-releases"></a>系列 4 版次
 **Windows Server 2012 R2**
 
 安裝的 .NET Framework：4.0、4.5、4.5.1、4.5.2
 
-> [!NOTE]
-> 具有 * 的日期可能會變更
->
->
+| 組態字串 | 發行日期 | 停用日期 |
+| --- | --- | --- |
+| WA-GUEST-OS-4.57_201808-01 |2018 年 9 月 12 日 |Post 4.59 |
+| WA-GUEST-OS-4.56_201807-02 |2018 年 8 月 3 日 |Post 4.58 |
+|~~WA-GUEST-OS-4.55_201806-01~~ |2018 年 7 月 3 日 |2018 年 9 月 12 日 |
+|~~WA-GUEST-OS-4.54_201805-01~~ |2018 年 6 月 1 日 |2018 年 8 月 3 日 |
+|~~WA-GUEST-OS-4.53_201804-01~~ |2018 年 5 月 4 日 |2018 年 7 月 3 日 |
+|~~WA-GUEST-OS-4.52_201803-01~~ |2018 年 4 月 6 日 |2018 年 6 月 1 日 |
+|~~WA-GUEST-OS-4.51_201802-01~~ |2018 年 3 月 12 日 |2018 年 5 月 4 日 |
+|~~WA-GUEST-OS-4.50_201801-01~~ |2018 年 1 月 4 日 |2018 年 4 月 6 日 |
+|~~WA-GUEST-OS-4.49_201712-01~~ |2018 年 1 月 4 日 |2018 年 3 月 12 日 |
+|~~WA-GUEST-OS-4.48_201711-01~~ |2017 年 12 月 14 日 |2018 年 1 月 4 日 |
+|~~WA-GUEST-OS-4.47_201710-02~~ |2017 年 11 月 8 日 |2018 年 1 月 4 日 |
 
-| 組態字串 | 發行日期 | 停用日期 | 到期日期 |
-| --- | --- | --- | --- |
-| WA-GUEST-OS-4.51_201802-01 |2018 年 3 月 12 日 |Post 4.53 |TBD |
-| WA-GUEST-OS-4.50_201801-01 |2018 年 1 月 4 日 |Post 4.52 |TBD |
-|~~WA-GUEST-OS-4.49_201712-01~~ |2018 年 1 月 4 日 |2018 年 3 月 12 日 |TBD |
-|~~WA-GUEST-OS-4.48_201711-01~~ |2017 年 12 月 14 日 |2018 年 1 月 4 日 |TBD |
-|~~WA-GUEST-OS-4.47_201710-02~~ |2017 年 11 月 8 日 |2018 年 1 月 4 日 |TBD |
-|~~WA-GUEST-OS-4.46_201709-01~~ |2017 年 10 月 6 日 |2017 年 12 月 14 日 |TBD |
-|~~WA-GUEST-OS-4.45_201708-01~~ |2017 年 8 月 24 日 |2017 年 12 月 14 日 |TBD |
-|~~WA-GUEST-OS-4.44_201707-01~~ |2017 年 8 月 3 日 |2017 年 11 月 8 日 |TBD |
-|~~WA-GUEST-OS-4.43_201706-01~~ |2017 年 7 月 7 日 |2017 年 10 月 6 日 |TBD |
-|~~WA-GUEST-OS-4.42_201705-01~~ |2017 年 6 月 5 日 |2017 年 8 月 24 日 |TBD |
-|~~WA-GUEST-OS-4.41_201704-01~~ |2017 年 5 月 9 日 |2017 年 8 月 3 日 |TBD |
-|~~WA-GUEST-OS-4.40_201703-01~~ |2017 年 4 月 10 日 |2017 年 7 月 7 日 |TBD |
-|~~WA-GUEST-OS-4.39_201612-01~~ |2017 年 1 月 10 日 |2017 年 6 月 5 日 |TBD |
 
 ## <a name="family-3-releases"></a>系列 3 版次
 **Windows Server 2012**
 
 安裝的 .NET Framework：4.0、4.5、4.5.1、4.5.2
 
-> [!NOTE]
-> 具有 * 的日期可能會變更
->
->
+| 組態字串 | 發行日期 | 停用日期 |
+| --- | --- | --- |
+| WA-GUEST-OS-3.64_201808-01 |2018 年 9 月 12 日 |Post 3.66 |
+| WA-GUEST-OS-3.63_201807-02 |2018 年 8 月 3 日 |Post 3.65 |
+|~~WA-GUEST-OS-3.62_201806-01~~ |2018 年 7 月 3 日 |2018 年 9 月 12 日 |
+|~~WA-GUEST-OS-3.61_201805-01~~ |2018 年 6 月 1 日 |2018 年 8 月 3 日 |
+|~~WA-GUEST-OS-3.60_201804-01~~ |2018 年 5 月 4 日 |2018 年 7 月 3 日 |
+|~~WA-GUEST-OS-3.59_201803-01~~ |2018 年 4 月 6 日 |2018 年 6 月 1 日 |
+|~~WA-GUEST-OS-3.58_201802-01~~ |2018 年 3 月 19 日 |2018 年 5 月 4 日 |
+|~~WA-GUEST-OS-3.57_201801-01~~ |2018 年 1 月 29 日 |2018 年 4 月 6 日 |
+|~~WA-GUEST-OS-3.56_201712-01~~ |2018 年 1 月 4 日 |2018 年 3 月 19 日 |
+|~~WA-GUEST-OS-3.55_201711-01~~ |2017 年 12 月 14 日 |2018 年 1 月 29 日 |
+|~~WA-GUEST-OS-3.54_201710-02~~ |2017 年 11 月 8 日 |2018 年 1 月 4 日 |
 
-| 組態字串 | 發行日期 | 停用日期 | 到期日期 |
-| --- | --- | --- | --- |
-| WA-GUEST-OS-3.58_201802-01 |2018 年 3 月 19 日 |Post 3.60 |TBD |
-| WA-GUEST-OS-3.57_201801-01 |2018 年 1 月 29 日 |Post 3.59 |TBD |
-|~~WA-GUEST-OS-3.56_201712-01~~ |2018 年 1 月 4 日 |2018 年 3 月 19 日 |TBD |
-|~~WA-GUEST-OS-3.55_201711-01~~ |2017 年 12 月 14 日 |2018 年 1 月 29 日 |TBD |
-|~~WA-GUEST-OS-3.54_201710-02~~ |2017 年 11 月 8 日 |2018 年 1 月 4 日 |TBD |
-|~~WA-GUEST-OS-3.53_201709-01~~ |2017 年 10 月 6 日 |2017 年 12 月 14 日 |TBD |
-|~~WA-GUEST-OS-3.52_201708-01~~ |2017 年 8 月 24 日 |2017 年 12 月 14 日 |TBD |
-|~~WA-GUEST-OS-3.51_201707-01~~ |2017 年 8 月 3 日 |2017 年 11 月 8 日 |TBD |
-|~~WA-GUEST-OS-3.50_201706-01~~ |2017 年 7 月 7 日 |2017 年 10 月 6 日 |TBD |
-|~~WA-GUEST-OS-3.49_201705-01~~ |2017 年 6 月 5 日 |2017 年 8 月 24 日 |TBD |
-|~~WA-GUEST-OS-3.48_201704-01~~ |2017 年 5 月 9 日 |2017 年 8 月 3 日 |TBD |
-|~~WA-GUEST-OS-3.47_201703-01~~ |2017 年 4 月 10 日 |2017 年 7 月 7 日 |TBD |
-|~~WA-GUEST-OS-3.46_201612-01~~ |2017 年 1 月 10 日 |2017 年 6 月 5 日 |TBD |
 
 ## <a name="family-2-releases"></a>系列 2 版次
 **Windows Server 2008 R2 SP1**
 
 安裝的 .NET Framework：3.5、4.0、4.5、4.5.1、4.5.2
 
-> [!NOTE]
-> 具有 * 的日期可能會變更
->
->
-
-| 組態字串 | 發行日期 | 停用日期 | 到期日期 |
-| --- | --- | --- | --- |
-| WA-GUEST-OS-2.71_201802-01 |2018 年 3 月 12 日 |Post 2.73 |TBD |
-| WA-GUEST-OS-2.70_201801-01 |2018 年 1 月 29 日 |Post 2.72 |TBD |
-|~~WA-GUEST-OS-2.69_201712-01~~ |2018 年 1 月 4 日 |2018 年 3 月 12 日 |TBD |
-|~~WA-GUEST-OS-2.68_201711-01~~ |2017 年 12 月 14 日 |2018 年 1 月 29 日 |TBD |
-|~~WA-GUEST-OS-2.67_201710-02~~ |2017 年 11 月 8 日 |2018 年 1 月 4 日 |TBD |
-|~~WA-GUEST-OS-2.66_201709-01~~ |2017 年 10 月 6 日 |2017 年 12 月 14 日 |TBD |
-|~~WA-GUEST-OS-2.65_201708-01~~ |2017 年 8 月 24 日 |2017 年 12 月 14 日 |TBD |
-|~~WA-GUEST-OS-2.64_201707-01~~ |2017 年 8 月 3 日 |2017 年 11 月 8 日 |TBD |
-|~~WA-GUEST-OS-2.63_201706-01~~ |2017 年 7 月 7 日 |2017 年 10 月 6 日 |TBD |
-|~~WA-GUEST-OS-2.62_201705-01~~ |2017 年 6 月 5 日 |2017 年 8 月 24 日 |TBD |
-|~~WA-GUEST-OS-2.61_201704-01~~ |2017 年 5 月 9 日 |2017 年 8 月 3 日 |TBD |
-|~~WA-GUEST-OS-2.60_201703-01~~ |2017 年 4 月 10 日 |2017 年 7 月 7 日 |TBD |
-|~~WA-GUEST-OS-2.59_201701-01~~ |2017 年 1 月 10 日 |2017 年 6 月 5 日 |TBD |
-|~~WA-GUEST-OS-2.58_201612-01~~ |2017 年 1 月 10 日 |2017 年 5 月 9 日|TBD |
+| 組態字串 | 發行日期 | 停用日期 |
+| --- | --- | --- |
+| WA-GUEST-OS-2.77_201808-01 |2018 年 9 月 12 日 |Post 2.79 |
+| WA-GUEST-OS-2.76_201807-02 |2018 年 8 月 3 日 |Post 2.78 |
+|~~WA-GUEST-OS-2.75_201806-01~~ |2018 年 7 月 3 日 |2018 年 9 月 12 日 |
+|~~WA-GUEST-OS-2.74_201805-01~~ |2018 年 6 月 1 日 |2018 年 8 月 3 日|
+|~~WA-GUEST-OS-2.73_201804-01~~ |2018 年 5 月 4 日 |2018 年 7 月 3 日 |
+|~~WA-GUEST-OS-2.72_201803-01~~ |2018 年 4 月 6 日 |2018 年 6 月 1 日 |
+|~~WA-GUEST-OS-2.71_201802-01~~ |2018 年 3 月 12 日 |2018 年 5 月 4 日 |
+|~~WA-GUEST-OS-2.70_201801-01~~ |2018 年 1 月 29 日 |2018 年 4 月 6 日 |
+|~~WA-GUEST-OS-2.69_201712-01~~ |2018 年 1 月 4 日 |2018 年 3 月 12 日 |
+|~~WA-GUEST-OS-2.68_201711-01~~ |2017 年 12 月 14 日 |2018 年 1 月 29 日 |
+|~~WA-GUEST-OS-2.67_201710-02~~ |2017 年 11 月 8 日 |2018 年 1 月 4 日 |
+|~~WA-GUEST-OS-2.66_201709-01~~ |2017 年 10 月 6 日 |2017 年 12 月 14 日 |
+|~~WA-GUEST-OS-2.65_201708-01~~ |2017 年 8 月 24 日 |2017 年 12 月 14 日 |
 
 
 ## <a name="msrc-patch-updates"></a>MSRC 修補程式更新
@@ -223,12 +207,12 @@ ms.lasthandoff: 03/23/2018
 
 **此版次的組態字串** - WA-GUEST-OS-2.12_201208-02
 
-客體作業系統的組態字串內嵌這項相同的資訊，還附上指出該版次考量哪些 MSRC 修補程式的日期。 在此範例中，針對 Widows Server 2008 R2 推出的 MSRC 修補程式 (達到且包含 2012 年 8 月) 已考量納入。 只會包含明確適用於該 Windows Server 版本的修補程式。 例如，如果某個 MSRC 修補程式適用於 Microsoft Office，則不會納入，因為該產品不是 Windows Server 基本映像的一部分。
+客體作業系統的組態字串內嵌這個相同的資訊，還附上指出該版次考量哪些 MSRC 修補程式的日期。 在此範例中，針對 Widows Server 2008 R2 推出的 MSRC 修補程式 (達到且包含 2012 年 8 月) 已考量納入。 只會包含明確適用於該 Windows Server 版本的修補程式。 例如，如果某個 MSRC 修補程式適用於 Microsoft Office，則不會納入，因為該產品不是 Windows Server 基本映像的一部分。
 
 ## <a name="guest-os-system-update-process"></a>客體作業系統的系統更新程序
-此頁面包含即將推出的客體作業系統版次的相關資訊。 客戶表示想要知道何時推出版次，因為他們的雲端服務角色如果設為「自動」更新，將重新啟動。 在每月第二個星期二發行 MSRC 更新後，通常至少五 (5) 天才會推出客體作業系統版次。 新版次包含每個客體作業系統系列的相關 MSRC 修補程式。
+此頁面包含即將推出的客體作業系統版次的相關資訊。 客戶表示想要知道何時推出版次，因為他們的雲端服務角色如果設為「自動」更新，將重新啟動。 在每月第二個星期二發行 MSRC 更新後，通常每 2-3 週才會推出客體 OS 版次。 新版次包含每個客體作業系統系列的相關 MSRC 修補程式。
 
-Microsoft Azure 正持續發行更新。 客體作業系統只是這過程中的一項更新。 影響版次的因素太多，無法在這裡完整列出。 此外，Azure 實際上是在成千上萬個電腦上執行。 這表示不可能指出您的角色重新啟動的確切日期和時間。 我們正進行規劃來限制或控制重新開機時間。
+Microsoft Azure 正持續發行更新。 客體作業系統只是這過程中的一個更新。 影響版次的因素太多，無法在這裡完整列出。 此外，Azure 實際上是在成千上萬個電腦上執行。 這表示不可能指出您的角色重新啟動的確切日期和時間。 我們正進行規劃來限制或控制重新開機時間。
 
 新版次的客體作業系統發行時，需要一段時間才會完全傳播到整個 Azure。 當服務更新到新的客體作業系統時，它們會重新啟動，讓更新網域生效。 設為「自動」更新的服務會最先取得一個版次。 更新之後，您在 Azure 入口網站中會看到您的服務列出新的客體作業系統版本。 此期間可能再度發行版次。 某些版本的部署期間可能很長，而且在官方發行日期之後，可能經過許多個星期都還不會進行自動升級重新啟動。 當客體作業系統推出時，您可以從入口網站或組態檔中明確地選擇該版本。
 
@@ -239,8 +223,9 @@ Microsoft Azure 正持續發行更新。 客體作業系統只是這過程中的
 ## <a name="guest-os-supportability-and-retirement-policy"></a>客體作業系統可支援性和淘汰原則
 如需客體 OS 可支援性和淘汰原則的說明，請參閱[這裡][retirepolicy]。
 
+[cloud updates]: https://docs.microsoft.com/azure/cloud-services/cloud-services-update-azure-service
 [客體 OS 更新 RSS 摘要]: https://raw.githubusercontent.com/MicrosoftDocs/azure-cloud-services-files/master/GuestOS/GuestOSFeed.xml
-[Install .NET on a Cloud Service Role]: https://azure.microsoft.com/en-us/documentation/articles/cloud-services-dotnet-install-dotnet/?WT.mc_id=azurebg_email_Trans_963_RevisedNET_Update
+[Install .NET on a Cloud Service Role]: https://azure.microsoft.com/documentation/articles/cloud-services-dotnet-install-dotnet/?WT.mc_id=azurebg_email_Trans_963_RevisedNET_Update
 [Azure Guest OS Update Settings]: cloud-services-how-to-configure-portal.md
 [ssl3 announcement]: http://azure.microsoft.com/blog/2014/12/09/azure-security-ssl-3-0-update/
 [Microsoft Security Advisory 3009008]: https://technet.microsoft.com/library/security/3009008.aspx
@@ -251,11 +236,11 @@ Microsoft Azure 正持續發行更新。 客體作業系統只是這過程中的
 [server and gos]: https://msdn.microsoft.com/library/dn775043.aspx
 [azuresupport]: http://azure.microsoft.com/support/options/
 [net install pkg]: http://www.microsoft.com/download/details.aspx?id=42643
-[msrc]: http://www.microsoft.com/security/msrc/default.aspx
+[msrc]: https://technet.microsoft.com/security/dn440717.aspx
 [update guest os portal]: https://msdn.microsoft.com/library/gg433101.aspx
 [update guest os svc]: https://msdn.microsoft.com/library/gg456324.aspx
 [restarts]: http://blogs.msdn.com/b/kwill/archive/2012/09/19/role-instance-restarts-due-to-os-upgrades.aspx
 [patches]: cloud-services-guestos-msrc-releases.md
 [retirepolicy]: cloud-services-guestos-retirement-policy.md
 [fam1retire]: cloud-services-guestos-family1-retirement.md
-[fix]: https://technet.microsoft.com/en-us/library/security/ms17-010.aspx
+[fix]: https://technet.microsoft.com/library/security/ms17-010.aspx

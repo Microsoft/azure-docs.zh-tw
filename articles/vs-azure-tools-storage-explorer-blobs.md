@@ -1,6 +1,6 @@
 ---
-title: 使用儲存體 Explorer 管理 Azure Blob 儲存體資源 (預覽) | Microsoft Docs
-description: 使用儲存體 Explorer 來管理 Azure Blob 容器和 Blob (預覽)
+title: 使用儲存體總管來管理 Azure Blob 儲存體資源 | Microsoft Docs
+description: 使用儲存體總管來管理 Azure Blob 容器和 Blob
 services: storage
 documentationcenter: na
 author: cawa
@@ -14,29 +14,30 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/18/2016
 ms.author: cawa
-ms.openlocfilehash: 98a1016f78587b4139041f140634b98fa47edfd1
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: 2207bac1ef7cb6393d7dc173f96ddda719bcdfdf
+ms.sourcegitcommit: 1362e3d6961bdeaebed7fb342c7b0b34f6f6417a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 04/18/2018
+ms.locfileid: "31528523"
 ---
-# <a name="manage-azure-blob-storage-resources-with-storage-explorer-preview"></a>使用儲存體 Explorer 來管理 Azure Blob 儲存體資源 (預覽)
+# <a name="manage-azure-blob-storage-resources-with-storage-explorer"></a>使用儲存體總管來管理 Azure Blob 儲存體資源
 ## <a name="overview"></a>概觀
 [Azure Blob 儲存體](storage/blobs/storage-dotnet-how-to-use-blobs.md)是一項儲存大量非結構化資料的服務 (例如文字或二進位資料)，全球任何地方都可透過 HTTP 或 HTTPS 來存取這些資料。
-您可以使用 Blob 儲存體向全球公開資料，或私下儲存應用程式資料。 在本文中，您將學習如何使用儲存體 Explorer (預覽) 來使用 blob 容器和 blob。
+您可以使用 Blob 儲存體向全球公開資料，或私下儲存應用程式資料。 在本文中，您將學習如何使用儲存體總管 來處理 Blob 容器和 Blob。
 
 ## <a name="prerequisites"></a>先決條件
 若要完成這篇文章中的步驟，您需要下列項目︰
 
-* [下載並安裝儲存體 Explorer (預覽)](http://www.storageexplorer.com)
+* [下載並安裝儲存體總管](http://www.storageexplorer.com)
 * [連接到 Azure 儲存體帳戶或服務](vs-azure-tools-storage-manage-with-storage-explorer.md#connect-to-a-storage-account-or-service)
 
 ## <a name="create-a-blob-container"></a>建立 Blob 容器
 所有 blob 必須都位於 blob 容器，這是 blob 的邏輯群組。 帳戶可以包含無限數量的容器，每個容器可以儲存無限數量的 blob。
 
-下列步驟說明如何在儲存體 Explorer (預覽) 中建立 blob 容器。
+下列步驟說明如何在儲存體總管中建立 blob 容器。
 
-1. 開啟儲存體 Explorer (預覽)。
+1. 開啟儲存體總管。
 2. 在左窗格中，展開您要在其中建立 blob 容器的儲存體帳戶。
 3. 以滑鼠右鍵按一下 [Blob 容器]，從內容功能表中，選取 [建立 Blob 容器]。
 
@@ -51,9 +52,9 @@ ms.lasthandoff: 03/28/2018
 ## <a name="view-a-blob-containers-contents"></a>檢視 blob 容器的內容
 Blob 容器包含 blob 和資料夾 (也包含 blob)。
 
-下列步驟說明如何在儲存體 Explorer (預覽) 中檢視 blob 容器的內容：
+下列步驟說明如何在儲存體總管中檢視 blob 容器的內容：
 
-1. 開啟儲存體 Explorer (預覽)。
+1. 開啟儲存體總管。
 2. 在左窗格中，展開儲存體帳戶，其中包含您要檢視的 blob 容器。
 3. 展開儲存體帳戶的 [Blob 容器] 。
 4. 以滑鼠右鍵按一下您想要檢視的 blob 容器，從內容功能表中，選取 [開啟 Blob 容器編輯器] 。
@@ -67,9 +68,9 @@ Blob 容器包含 blob 和資料夾 (也包含 blob)。
 ## <a name="delete-a-blob-container"></a>刪除 Blob 容器
 Blob 容器可以輕鬆地建立並視需要刪除。 (若要查看如何刪除個別的 blob，請參閱[管理 blob 容器中的 blob 區段](#managing-blobs-in-a-blob-container)。)
 
-下列步驟說明如何在儲存體 Explorer (預覽) 中刪除 blob 容器：
+下列步驟說明如何在儲存體總管中刪除 blob 容器：
 
-1. 開啟儲存體 Explorer (預覽)。
+1. 開啟儲存體總管。
 2. 在左窗格中，展開儲存體帳戶，其中包含您要檢視的 blob 容器。
 3. 展開儲存體帳戶的 [Blob 容器] 。
 4. 以滑鼠右鍵按一下您想要刪除的 blob 容器，從內容功能表中，選取 [刪除] 。
@@ -81,11 +82,11 @@ Blob 容器可以輕鬆地建立並視需要刪除。 (若要查看如何刪除�
    ![刪除 Blob 容器確認][5]
 
 ## <a name="copy-a-blob-container"></a>複製 Blob 容器
-儲存體 Explorer (預覽) 可讓您將 blob 容器複製到剪貼簿，然後將該 blob 容器貼到另一個儲存體帳戶。 (若要查看如何複製個別的 blob，請參閱[管理 blob 容器中的 blob 區段](#managing-blobs-in-a-blob-container)。)
+儲存體總管可讓您將 blob 容器複製到剪貼簿，然後將該 blob 容器貼到另一個儲存體帳戶。 (若要查看如何複製個別的 blob，請參閱[管理 blob 容器中的 blob 區段](#managing-blobs-in-a-blob-container)。)
 
 下列步驟說明如何將 blob 容器從某個儲存體帳戶複製到另一個儲存體帳戶。
 
-1. 開啟儲存體 Explorer (預覽)。
+1. 開啟儲存體總管。
 2. 在左窗格中，展開儲存體帳戶，其中包含您要複製的 blob 容器。
 3. 展開儲存體帳戶的 [Blob 容器] 。
 4. 以滑鼠右鍵按一下您想要複製的 blob 容器，從內容功能表中，選取 [複製 Blob 容器編輯器] 。
@@ -101,7 +102,7 @@ Blob 容器可以輕鬆地建立並視需要刪除。 (若要查看如何刪除�
 
 下列步驟說明如何建立 blob 容器的 SAS：
 
-1. 開啟儲存體 Explorer (預覽)。
+1. 開啟儲存體總管。
 2. 在左窗格中，展開儲存體帳戶，其中包含您要取得 SAS 的 blob 容器。
 3. 展開儲存體帳戶的 [Blob 容器] 。
 4. 以滑鼠右鍵按一下想要的 blob 容器，從內容功能表中，選取 [取得共用存取簽章] 。
@@ -120,7 +121,7 @@ Blob 容器可以輕鬆地建立並視需要刪除。 (若要查看如何刪除�
 ## <a name="manage-access-policies-for-a-blob-container"></a>管理 blob 容器的存取原則
 下列步驟說明如何管理 (新增和移除) blob 容器的存取原則︰
 
-1. 開啟儲存體 Explorer (預覽)。
+1. 開啟儲存體總管。
 2. 在左窗格中，展開儲存體帳戶，其中包含您要管理其存取原則的 blob 容器。
 3. 展開儲存體帳戶的 [Blob 容器] 。
 4. 選取想要的 blob 容器，從內容功能表中，選取 [管理存取原則] 。
@@ -140,7 +141,7 @@ Blob 容器可以輕鬆地建立並視需要刪除。 (若要查看如何刪除�
 
 下列步驟說明如何指定 blob 容器的公用存取層級。
 
-1. 開啟儲存體 Explorer (預覽)。
+1. 開啟儲存體總管。
 2. 在左窗格中，展開儲存體帳戶，其中包含您要管理其存取原則的 blob 容器。
 3. 展開儲存體帳戶的 [Blob 容器] 。
 4. 選取想要的 blob 容器，從內容功能表中，選取 [設定公用存取層級] 。
@@ -156,7 +157,7 @@ Blob 容器可以輕鬆地建立並視需要刪除。 (若要查看如何刪除�
 
 下列步驟說明如何管理 blob 容器中的 blob (及資料夾)。
 
-1. 開啟儲存體 Explorer (預覽)。
+1. 開啟儲存體總管。
 2. 在左窗格中，展開儲存體帳戶，其中包含您要管理的 blob 容器。
 3. 展開儲存體帳戶的 [Blob 容器] 。
 4. 按兩下您想要檢視的 blob 容器。
@@ -212,7 +213,7 @@ Blob 容器可以輕鬆地建立並視需要刪除。 (若要查看如何刪除�
      3. 選取確認對話方塊上的 [是]  。
 
 ## <a name="next-steps"></a>後續步驟
-* 檢視 [最新的儲存體 Explorer (預覽) 版本資訊與影片](http://www.storageexplorer.com)。
+* 檢視 [最新的儲存體 Explorer 版本資訊與影片](http://www.storageexplorer.com)。
 * 了解如何 [利用 Azure Blob、資料表、佇列和檔案建立應用程式](https://azure.microsoft.com/documentation/services/storage/)。
 
 [0]: ./media/vs-azure-tools-storage-explorer-blobs/blob-containers-create-context-menu.png

@@ -6,14 +6,15 @@ author: CarlRabeler
 manager: craigg
 ms.service: sql-database
 ms.custom: load & move data
-ms.topic: article
-ms.date: 01/10/2017
+ms.topic: conceptual
+ms.date: 04/01/2018
 ms.author: carlrab
-ms.openlocfilehash: c9bc6d2de6647d0ec047a600a52d14ad24ccbae9
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: de25b3318a91a5dbf99a5a9c26af209224177f0f
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34649844"
 ---
 # <a name="load-data-from-csv-into-azure-sql-database-flat-files"></a>將資料從 CSV 載入 Azure SQL Database (一般檔案)
 您可以使用 bcp 命令列公用程式，將資料從 CSV 檔案匯入 Azure SQL Database。

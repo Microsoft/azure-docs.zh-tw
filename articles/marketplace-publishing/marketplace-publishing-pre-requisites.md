@@ -3,8 +3,8 @@ title: 建立 Azure Marketplace 供應項目的非技術性必要條件 | Micros
 description: 了解建立和部署供應項目到 Azure Marketplace 供他人購買的要求。
 services: marketplace-publishing
 documentationcenter: ''
-author: msmbaldwin
-manager: mbaldwin
+author: HannibalSII
+manager: hascipio
 editor: ''
 ms.assetid: 3dae463b-8f48-4f52-8fa8-4e3975f09f43
 ms.service: marketplace
@@ -13,12 +13,13 @@ ms.topic: article
 ms.tgt_pltfrm: Azure
 ms.workload: na
 ms.date: 08/18/2016
-ms.author: mbaldwin
-ms.openlocfilehash: 5c30e62bf345843fe83b3f17b728e1a937d19ce3
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.author: hascipio
+ms.openlocfilehash: 4f86d444a2f2b97fd8605d480db358813bc39fd3
+ms.sourcegitcommit: d16b7d22dddef6da8b6cfdf412b1a668ab436c1f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39714184"
 ---
 # <a name="general-prerequisites-for-creating-an-offer-for-the-azure-marketplace"></a>建立 Azure Marketplace 供應項目的一般必要條件
 了解推動供應項目建立程序所需的一般商務程序必要條件。
@@ -58,7 +59,7 @@ ms.lasthandoff: 03/16/2018
     ![繪圖](media/marketplace-publishing-pre-requisites/imgDeleteAdmin_03.png)
 
 > [!IMPORTANT]
-> 如果您只要發佈免費項目 (或自備授權)，就不必填寫公司稅務和銀行資訊。
+> 如果您只要發佈免費供應項目 (或自備授權)，就不必填寫公司稅務和銀行資訊。
 > 
 > 您必須先完成公司註冊才能開始使用。 不過，您的公司在 Microsoft 開發人員中心帳戶中處理稅務和銀行資訊時，開發人員就可以開始著手在 [發佈入口網站](https://publish.windowsazure.com)中建立虛擬機器映像、取得認證以及在 Azure 預備環境中加以測試。 只有在將供應項目發佈到 Azure Marketplace 的最後一個步驟時，才必須完成賣方帳戶的核准程序。
 > 

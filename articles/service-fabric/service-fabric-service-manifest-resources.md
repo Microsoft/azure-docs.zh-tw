@@ -9,16 +9,17 @@ editor: ''
 ms.assetid: da36cbdb-6531-4dae-88e8-a311ab71520d
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 2/23/2018
 ms.author: subramar
-ms.openlocfilehash: a028471871754c2b9c3981ec13f5788643675a77
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: f486ce5c058286289873d87767f02bf92f91459e
+ms.sourcegitcommit: 59fffec8043c3da2fcf31ca5036a55bbd62e519c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 06/04/2018
+ms.locfileid: "34701437"
 ---
 # <a name="specify-resources-in-a-service-manifest"></a>在服務資訊清單中指定資源
 ## <a name="overview"></a>概觀
@@ -105,7 +106,10 @@ HTTPS 通訊協定提供伺服器驗證，也能用於加密用戶端-伺服器�
 > [!NOTE]
 > 服務的通訊協定不能在應用程式升級期間變更。 如果它在升級期間變更，將會發生中斷變更。
 > 
-> 
+
+> [!WARNING] 
+> 使用 HTTPS 時，請勿對部署至相同節點的不同服務執行個體 (獨立於應用程式) 使用相同連接埠和憑證。 在不同的應用程式執行個體中，使用相同連接埠來升級兩個不同的服務，將會導致升級失敗。 如需詳細資訊，請參閱[使用 HTTPS 端點來升級多個應用程式](service-fabric-application-upgrade.md#upgrading-multiple-applications-with-https-endpoints)。
+>
 
 以下是您必須為 HTTPS 設定的範例 ApplicationManifest。 您必須提供憑證的指紋。 EndpointRef 是在您設定 HTTPS 通訊協定的 ServiceManifest 中 EndpointResource 的參考。 您可以加入一個以上的 EndpointCertificate。  
 
@@ -154,11 +158,11 @@ HTTPS 通訊協定提供伺服器驗證，也能用於加密用戶端-伺服器�
 
 ## <a name="overriding-endpoints-in-servicemanifestxml"></a>在 ServiceManifest.xml 中覆寫端點
 
-在 ApplicationManifest 中，新增 ResourceOverrides 區段，可成為 ConfigOverrides 區段的同層級。 在本節中，您可以在服務資訊清單中指定的資源區段中指定 [端點] 區段的覆寫。 執行階段 5.7.217/SDK 2.7.217 支援覆寫端點。
+在 ApplicationManifest 中新增 ResourceOverrides 區段，可成為 ConfigOverrides 區段的同層級。 在本節中，您可以在服務資訊清單指定的資源區段中，指定 [端點] 區段的覆寫。 執行階段 5.7.217/SDK 2.7.217 支援覆寫端點。
 
 若要使用 ApplicationParameters 覆寫 ServiceManifest 中的端點，請變更 Secretscertificate，如下所示：
 
-在 ServiceManifestImport 區段中，新增新的區段 "ResourceOverrides"
+在 ServiceManifestImport 區段中，新增新的區段 "ResourceOverrides"。
 
 ```xml
 <ServiceManifestImport>
@@ -188,7 +192,7 @@ HTTPS 通訊協定提供伺服器驗證，也能用於加密用戶端-伺服器�
   </Parameters>
 ```
 
-部署應用程式時，現在您可以傳入這些值作為 ApplicationParameters，例如：
+部署應用程式時，您可以傳入這些值作為 ApplicationParameters。  例如︰
 
 ```powershell
 PS C:\> New-ServiceFabricApplication -ApplicationName fabric:/myapp -ApplicationTypeName "AppType" -ApplicationTypeVersion "1.0.0" -ApplicationParameter @{Port='1001'; Protocol='https'; Type='Input'; Port1='2001'; Protocol='http'}

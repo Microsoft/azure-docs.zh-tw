@@ -1,25 +1,19 @@
 ---
-title: "在 Azure 搜尋服務中匯入資料 | Microsoft Docs"
-description: "了解如何將資料上傳至 Azure 搜尋服務中的索引"
+title: 在 Azure 搜尋服務中匯入資料 | Microsoft Docs
+description: 了解如何將資料上傳至 Azure 搜尋服務中的索引
+author: HeidiSteen
+manager: cgronlun
 services: search
-documentationcenter: 
-author: ashmaka
-manager: jhubbard
-editor: 
-tags: 
-ms.assetid: aa8d47c1-4ae6-4209-a8ce-48d5a9474707
 ms.service: search
-ms.devlang: NA
-ms.workload: search
-ms.topic: get-started-article
-ms.tgt_pltfrm: na
+ms.topic: conceptual
 ms.date: 01/05/2018
-ms.author: ashmaka
-ms.openlocfilehash: 8394475572502df9d57256dc5123fcdfa72765a6
-ms.sourcegitcommit: e19f6a1709b0fe0f898386118fbef858d430e19d
+ms.author: heidist
+ms.openlocfilehash: b518d86d5cb08f85beecd4afe30efc9e4f70e1f7
+ms.sourcegitcommit: e45b2aa85063d33853560ec4bc867f230c1c18ce
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/13/2018
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43371463"
 ---
 # <a name="indexing-in-azure-search"></a>在 Azure 搜尋服務中編製索引
 > [!div class="op_single_selector"]
@@ -61,7 +55,7 @@ ms.lasthandoff: 01/13/2018
 
 ### <a name="how-to-pull-data-into-an-azure-search-index"></a>如何將資料提取到 Azure 搜尋服務索引
 
-索引子功能會在 [Azure 入口網站](search-import-data-portal.md)、[REST API](/rest/api/searchservice/Indexer-operations) 以及 [.NET SDK](/dotnet/api/microsoft.azure.search.indexersoperations)中出現。 
+索引子功能會在 [Azure 入口網站](search-import-data-portal.md)、[REST API](/rest/api/searchservice/Indexer-operations) 以及 [.NET SDK](/dotnet/api/microsoft.azure.search.indexersoperationsextensions)中出現。 
 
 使用入口網站的優點是 Azure 搜尋服務通常可藉由讀取來源資料集的中繼資料，為您產生預設的索引結構描述。 直到處理索引後，您才可以修改產生的索引，而後只允許不需要重新編製索引的結構描述編輯。 如果您想要進行的變更會直接影響結構描述，您必須重建索引。 
 

@@ -1,26 +1,24 @@
 ---
-title: "Logic Apps B2B EDIFACT 解碼解析 UNH2.5 - Azure Logic Apps | Microsoft Docs"
-description: "Azure Logic Apps B2B EDIFACT 解碼解析 UNH2.5"
+title: 使用 UNH 2.5 區段處理 EDIFACT 訊息 - Azure Logic Apps | Microsoft Docs
+description: 在採用 Enterprise Integration Pack 的 Azure Logic Apps 中使用 UNH 2.5 區段解析 EDIFACT 文件
 services: logic-apps
-documentationcenter: .net,nodejs,java
-author: padmavc
-manager: anneta
-editor: 
-ms.assetid: cf44af18-1fe5-41d5-9e06-cc57a968207c
 ms.service: logic-apps
-ms.workload: integration
-ms.tgt_pltfrm: na
-ms.devlang: na
+ms.suite: integration
+author: divyaswarnkar
+ms.author: divswa
+ms.reviewer: jonfan, estfan, LADocs
 ms.topic: article
+ms.assetid: cf44af18-1fe5-41d5-9e06-cc57a968207c
 ms.date: 04/27/2017
-ms.author: LADocs; padmavc
-ms.openlocfilehash: 62ad8183cc6e9f56255b2729a04ee7710d00a21a
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 9c8b8611347840dcf49759dac51fb506815cd782
+ms.sourcegitcommit: 2ad510772e28f5eddd15ba265746c368356244ae
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "43122003"
 ---
-# <a name="how-to-handle-edifact-documents-having-unh25-segment"></a>如何處理具有 UNH2.5 區段的 EDIFACT 文件
+# <a name="handle-edifact-documents-with-unh25-segments-in-azure-logic-apps"></a>在 Azure Logic Apps 使用 UNH 2.5 區段處理 EDIFACT 文件
+
 EDIFACT 文件中有 UNH2.5 時，它會用於結構描述查詢。 
 
 範例︰UNH 欄位在 EDIFACT 訊息中是 **EAN008**  

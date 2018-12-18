@@ -1,113 +1,190 @@
 ---
-title: "處理內容類型 - Azure Logic Apps | Microsoft Docs"
-description: "Azure Logic Apps 在設計階段與執行階段處理內容類型的方式"
+title: 處理內容類型 - Azure Logic Apps | Microsoft Docs
+description: 了解 Logic Apps 如何在設計階段與執行階段處理內容類型
 services: logic-apps
-documentationcenter: .net,nodejs,java
-author: jeffhollan
-manager: anneta
-editor: 
-ms.assetid: cd1f08fd-8cde-4afc-86ff-2e5738cc8288
 ms.service: logic-apps
-ms.devlang: multiple
+author: ecfan
+ms.author: estfan
+manager: jeconnoc
 ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: integration
-ms.date: 10/18/2016
-ms.author: LADocs; jehollan
-ms.openlocfilehash: ac67838344bbd10384299c086ff096fbe5dec6a9
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.date: 07/20/2018
+ms.reviewer: klam, LADocs
+ms.suite: integration
+ms.openlocfilehash: 82eb9c895f016efe569651dc89885d2e4850fd59
+ms.sourcegitcommit: 1478591671a0d5f73e75aa3fb1143e59f4b04e6a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 07/19/2018
+ms.locfileid: "39159086"
 ---
-# <a name="handle-content-types-in-logic-apps"></a>在邏輯應用程式中處理內容類型
+# <a name="handle-content-types-in-azure-logic-apps"></a>在 Azure 邏輯應用程式中處理內容類型
 
-許多不同類型的內容可以在整個邏輯應用程式中流動，包括 JSON、XML、一般檔案及二進位資料。 儘管 Logic Apps 引擎支援所有的內容類型，但有些是透過 Logic Apps 引擎進行原生了解。 有些則可能要視需要進行轉型或轉換。 本文說明引擎如何處理不同的內容類型，以及如何視需要正確處理這些類型。
+不同的內容類型可以在整個邏輯應用程式中流動，例如 JSON、XML、一般檔案及二進位資料。 雖然 Logic Apps 支援所有的內容類型，但有些內容類型有原生支援，而不需要在邏輯應用程式中轉換。 有些內容類型則可能視需要進行轉換。 本文說明 Logic Apps 如何處理內容類型，以及您要如何視需要正確地轉換這些類型。
 
-## <a name="content-type-header"></a>Content-Type 標頭
+為了決定處理內容類型的適當方式，Logic Apps 會依賴 HTTP 呼叫中的 `Content-Type` 標頭值，例如：
 
-若要從基本開始，讓我們看看下列這兩個 `Content-Types`，它們不需要轉換或轉型，就能在邏輯應用程式中使用：`application/json` 和 `text/plain`。
+* [application/json](#application-json) (原生類型)
+* [text/plain](#text-plain) (原生類型)
+* [application/xml 和 application/octet-stream](#application-xml-octet-stream)
+* [其他內容類型](#other-content-types)
 
-## <a name="applicationjson"></a>Application/JSON
+<a name="application-json"></a>
 
-工作流程引擎依賴來自 HTTP 呼叫的 `Content-Type` 標頭來決定適當的處理。 內容類型為 `application/json` 的所有要求都會以 JSON 物件的形式儲存並加以處理。 此外，JSON 內容預設就能剖析，不需要任何轉換。 
+## <a name="applicationjson"></a>application/json
 
-例如，在此例中使用 `@body('myAction')['foo'][0]` 之類的運算式來取得 `bar` 值，可以剖析工作流程中具有 `application/json ` 內容類型標頭的要求︰
+Logic Apps 會儲存和處理任何以 application/json 類型內容作為 JavaScript 標記法 (JSON) 物件的要求。 根據預設，您可以剖析 JSON 內容，而不需要任何轉換。 若要剖析具有 "application/json" 內容類型標頭的要求，您可以使用運算式。 此範例會從 `animal-type` 陣列傳回值 `dog`，而不需轉換： 
+ 
+`@body('myAction')['animal-type'][0]` 
+  
+  ```json
+  {
+    "client": {
+       "name": "Fido",
+       "animal-type": [ "dog", "cat", "rabbit", "snake" ]
+    }
+  }
+  ```
 
-```
-{
-    "data": "a",
-    "foo": [
-        "bar"
-    ]
-}
-```
+如果正在處理未指定標頭的 JSON 資料，您可以使用 [json() 函式](../logic-apps/workflow-definition-language-functions-reference.md#json)將該資料手動轉換為 JSON，例如： 
+  
+`@json(triggerBody())['animal-type']`
 
-不需要任何額外的轉換。 如果您正在使用格式為 JSON 的資料，但並未指定標頭，則可使用 `@json()` 函式手動將它轉換為 JSON，例如 `@json(triggerBody())['foo']`。
+### <a name="create-tokens-for-json-properties"></a>建立 JSON 屬性的權杖
 
-### <a name="schema-and-schema-generator"></a>結構描述和結構描述產生器
+Logic Apps 可讓您產生方便使用的權杖來表示 JSON 內容中的屬性，因此您可以在邏輯應用程式的工作流程中更輕鬆地參考和使用這些屬性。
 
-要求觸發程序可讓您輸入您希望接收之承載的 JSON 結構描述。 此結構描述可讓設計工具產生權杖，以便您取用要求的內容。 如果您尚未準備好結構描述，選取 [請使用範例承載產生結構描述]，如此便能從範例承載中產生 JSON 結構描述。
+* **要求觸發程序**
 
-![結構描述](./media/logic-apps-http-endpoint/manualtrigger.png)
+  當您在邏輯應用程式設計工具中使用此觸發程序時，您可以提供 JSON 結構描述來描述您預期收到的承載。 
+  此設計工具會使用此結構描述來剖析 JSON 內容，並產生方便使用的權杖來表示 JSON 內容中的屬性。 
+  您可以在邏輯應用程式的整個工作流程中輕鬆地參考和使用這些屬性。 
+  
+  如果您沒有結構描述，您可以產生結構描述。 
+  
+  1. 在要求觸發程序中，選取 [使用範例承載來產生結構描述]。  
+  
+  2. 在 [輸入或貼上範例 JSON 承載] 之下，提供範例承載，然後選擇 [完成]。 例如︰ 
 
-### <a name="parse-json-action"></a>「剖析 JSON」動作
+     ![提供範例 JSON 承載](./media/logic-apps-content-type/request-trigger.png)
 
-`Parse JSON` 動作可讓您將 JSON 內容剖析為易記權杖，以便在邏輯應用程式中使用。 此動作類似於要求觸發程序，可讓您輸入或產生所要剖析內容的 JSON 結構描述。 此工具可讓您更容易地從服務匯流排、Azure Cosmos DB 等取用資料。
+     產生的結構描述現在會出現在觸發程序中。
 
-![剖析 JSON](./media/logic-apps-content-type/ParseJSON.png)
+     ![提供範例 JSON 承載](./media/logic-apps-content-type/generated-schema.png)
 
-## <a name="textplain"></a>Text/plain
+     以下是在程式碼檢視編輯器中要求觸發程序的基礎定義：
 
-類似於 `application/json`，若所收到的 HTTP 訊息中 `Content-Type` 標頭為 `text/plain`，就會以原始格式來儲存。 此外，如果這些訊息包含於後續動作中而不需轉換，這些要求就會與 `Content-Type`: `text/plain` 標頭一同送出。 例如，使用一般檔案時，您可能會收到以下 HTTP 內容做為 `text/plain`︰
+     ```json
+     "triggers": { 
+        "manual": {
+           "type": "Request",
+           "kind": "Http",
+           "inputs": { 
+              "schema": {
+                 "type": "object",
+                 "properties": {
+                    "client": {
+                       "type": "object",
+                       "properties": {
+                          "animal-type": {
+                             "type": "array",
+                             "items": {
+                                "type": "string"
+                             },
+                          },
+                          "name": {
+                             "type": "string"
+                          }
+                       }
+                    }
+                 }
+              }
+           }
+        }
+     }
+     ```
 
-```
-Date,Name,Address
-Oct-1,Frank,123 Ave.
-```
+  3. 在您的要求中，確定包含 `Content-Type` 標頭並將標頭的值設定為 `application/json`。
 
-如果在下一個動作中，您將要求做為另一個要求的內文 (`@body('flatfile')`) 來傳送，則要求必須含有 `text/plain` Content-Type 標頭。 如果您正在使用格式為純文字的資料，但並未指定標頭，則可使用 `@string()` 函式 (例如：`@string(triggerBody())`) 手動將資料轉換為文字。
+* **剖析 JSON 動作**
 
-## <a name="applicationxml-and-applicationoctet-stream-and-converter-functions"></a>Application/xml 和 Application/octet-stream 以及轉換器函數
+  當您在邏輯應用程式設計工具中使用此動作時，您可以剖析 JSON 輸出並產生方便使用的權杖來表示 JSON 內容中的屬性。 
+  您可以在邏輯應用程式的整個工作流程中輕鬆地參考和使用這些屬性。 這類似於要求觸發程序，您可以提供或產生 JSON 結構描述來描述所要剖析的 JSON 內容。 
+  這麼一來，您可以更輕鬆地從 Azure 服務匯流排、Azure Cosmos DB 等取用資料。
 
-邏輯應用程式引擎一律會保留在 HTTP 要求或回應上接收到的 `Content-Type`。 因此，如果引擎收到 `Content-Type` 為 `application/octet-stream` 的內容，而且您在後續動作中納入未經轉型的內容，則外送要求具有 `Content-Type`: `application/octet-stream`。 如此一來，引擎就可以保證資料在整個工作流程中移動時不會遺失。 不過，當動作狀態 (輸入和輸出) 通過工作流程時，該狀態會儲存於 JSON 物件中。 所以，為了保留某些資料類型，引擎會將內容轉換為二進位 Base64 編碼的字串，其中包含可保留 `$content` 和 `$content-type` (都會自動轉換) 的適當中繼資料。 
+  ![剖析 JSON](./media/logic-apps-content-type/parse-json.png)
 
-* `@json()` - 將資料轉換為 `application/json`
-* `@xml()` - 將資料轉換為 `application/xml`
-* `@binary()` - 將資料轉換為 `application/octet-stream`
-* `@string()` - 將資料轉換為 `text/plain`
-* `@base64()` - 將內容轉換為 Base64 字串
-* `@base64toString()` - 將 Base64 編碼的字串轉換為 `text/plain`
-* `@base64toBinary()` - 將 Base64 編碼的字串轉換為 `application/octet-stream`
-* `@encodeDataUri()` - 將字串編碼為 dataUri 位元組陣列
-* `@decodeDataUri()` - 將 dataUri 解碼為位元組陣列
+<a name="text-plain"></a>
 
-例如，如果您收到的 HTTP 要求具有 `Content-Type`: `application/xml`：
+## <a name="textplain"></a>text/plain
 
-```
+當邏輯應用程式接收 `Content-Type` 標頭設定為`text/plain`的 HTTP 訊息時，邏輯應用程式會以原始格式來儲存這些訊息。 如果您在後續動作中納入這些訊息 (但未轉換)，要求就會與設定為 `text/plain` 的 `Content-Type` 標頭一同送出。 
+
+例如，當您處理一般檔案時，您可能會收到 `Content-Type` 標頭設定為 `text/plain` 內容類型的 HTTP 要求：
+
+`Date,Name,Address`</br>
+`Oct-1,Frank,123 Ave`
+
+如果您接著在後續動作中傳送此要求以作為另一個要求的本文 (例如 `@body('flatfile')`)，該第二個要求也會有設定為 `text/plain` 的 `Content-Type` 標頭。 如果正在處理格式為純文字但並未指定標頭的資料，您可以使用 [string() 函式](../logic-apps/workflow-definition-language-functions-reference.md#string) (如以下運算式)，將該資料手動轉換為文字： 
+
+`@string(triggerBody())`
+
+<a name="application-xml-octet-stream"></a>
+
+## <a name="applicationxml-and-applicationoctet-stream"></a>application/xml 和 application/octet-stream
+
+Logic Apps 一律會在收到的 HTTP 要求或回應中保留 `Content-Type`。 因此，如果邏輯應用程式收到 `Content-Type` 設定為 `application/octet-stream` 的內容，而且您在後續動作中納入該內容，則外送要求的 `Content-Type` 也會設定為 `application/octet-stream`。 這麼一來，Logic Apps 就可以保證資料在整個工作流程中移動時不會遺失。 不過，當動作狀態 (或輸入和輸出) 通過工作流程時，該狀態會儲存於 JSON 物件中。 
+
+## <a name="converter-functions"></a>轉換器函式
+
+為了保留某些資料類型，Logic Apps 會將內容轉換為二進位 Base64 編碼的字串，其中包含可保留 `$content` 承載和 `$content-type` (都會自動轉換) 的適當中繼資料。 
+
+以下清單說明當您使用這些[函式](../logic-apps/workflow-definition-language-functions-reference.md)時，Logic Apps 如何轉換內容：
+
+* `json()`：將資料轉換為 `application/json`
+* `xml()`：將資料轉換為 `application/xml`
+* `binary()`：將資料轉換為 `application/octet-stream`
+* `string()`：將資料轉換為 `text/plain`
+* `base64()`：將內容轉換為 Base64 字串
+* `base64toString()`：將 Base64 編碼的字串轉換為 `text/plain`
+* `base64toBinary()`：將 Base64 編碼的字串轉換為 `application/octet-stream`
+* `encodeDataUri()`：將字串編碼為 dataUri 位元組陣列
+* `decodeDataUri()`：將 `dataUri` 解碼為位元組陣列
+
+例如，如果您收到 `Content-Type` 設定為 `application/xml` 的 HTTP 要求，例如以下內容：
+
+```html
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomerName>Frank</CustomerName>
 ```
 
-您可以轉換，並在稍後搭配像是 `@xml(triggerBody())` 的項目使用，或者在像是 `@xpath(xml(triggerBody()), '/CustomerName')` 的函式內使用。
+您可以使用 `@xml(triggerBody())` 運算式搭配 `xml()` 和 `triggerBody()` 函式來轉換此內容，稍後再使用此內容。 或者，您可以使用 `@xpath(xml(triggerBody()), '/CustomerName')` 運算式搭配 `xpath()` 和 `xml()` 函式。 
 
 ## <a name="other-content-types"></a>其他內容類型
 
-有其他內容類型也受到支援，而且可與邏輯應用程式一起運作，但是可能需要藉由將 `$content` 解碼來手動擷取訊息內文。 例如，假設您觸發 `application/x-www-url-formencoded` 要求，其 `$content` 是編碼為 Base64 字串的承載，可保留所有資料：
+Logic Apps 可處理和支援其他內容類型，但可能會要求您將 `$content` 變數解碼來手動取得訊息內文。
 
-```
-CustomerName=Frank&Address=123+Avenue
-```
+例如，假設邏輯應用程式是由具有 `application/x-www-url-formencoded` 內容類型的要求觸發。 若要保留所有資料，則要求本文中的`$content` 變數具有編碼為 base64 字串的承載：
+
+`CustomerName=Frank&Address=123+Avenue`
 
 因為要求不是純文字或 JSON，所以要求會儲存在動作中，如下所示︰
 
-```
-...
+```json
 "body": {
-    "$content-type": "application/x-www-url-formencoded",
-    "$content": "AAB1241BACDFA=="
+   "$content-type": "application/x-www-url-formencoded",
+   "$content": "AAB1241BACDFA=="
 }
 ```
 
-目前沒有任何適用於 form-data 的原生函式，所以您仍可藉由使用 `@string(body('formdataAction'))` 之類的函式手動存取資料，進而在工作流程中使用此資料。 如果您希望外送要求也具有 `application/x-www-url-formencoded` 內容類型標頭，您可以直接將要求新增到動作內文，而不需使用任何像是 `@body('formdataAction')` 的轉換。 不過，唯有當內文是 `body` 輸入中的唯一參數時，才適用這種方法。 如果您嘗試在 `application/json` 要求中使用 `@body('formdataAction')`，您會因為傳送已編碼的內文而發生執行階段錯誤。
+Logic Apps 會提供可供處理表單資料的原生函式，例如： 
 
+* [triggerFormDataValue()](../logic-apps/workflow-definition-language-functions-reference.md#triggerFormDataValue)
+* [triggerFormDataMultiValues()](../logic-apps/workflow-definition-language-functions-reference.md#triggerFormDataMultiValues)
+* [formDataValue()](../logic-apps/workflow-definition-language-functions-reference.md#formDataValue) 
+* [formDataMultiValues()](../logic-apps/workflow-definition-language-functions-reference.md#formDataMultiValues)
+
+或者，您可以使用如以下範例所示的運算式，手動存取資料：
+
+`@string(body('formdataAction'))` 
+
+如果您希望外送要求具有相同的 `application/x-www-url-formencoded` 內容類型標頭，您可以使用 `@body('formdataAction')` 之類的運算式，將要求新增到動作內文，而不需使用任何轉換。 不過，唯有當內文是 `body` 輸入中的唯一參數時，才適用這種方法。 如果您嘗試在 `application/json` 要求中使用 `@body('formdataAction')` 運算式，您會因為傳送已編碼的內文而發生執行階段錯誤。

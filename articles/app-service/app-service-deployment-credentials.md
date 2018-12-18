@@ -1,8 +1,8 @@
 ---
-title: "Azure App Service 部署認證 | Microsoft Docs"
-description: "了解如何使用 Azure App Service 部署認證。"
+title: Azure App Service 部署認證 | Microsoft Docs
+description: 了解如何使用 Azure App Service 部署認證。
 services: app-service
-documentationcenter: 
+documentationcenter: ''
 author: dariagrigoriu
 manager: erikre
 editor: mollybos
@@ -13,11 +13,12 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 01/05/2016
 ms.author: dariagrigoriu
-ms.openlocfilehash: d66b5aa4eb2ad90596dfe9e26bbc18996c967295
-ms.sourcegitcommit: 9d317dabf4a5cca13308c50a10349af0e72e1b7e
+ms.openlocfilehash: a17260770f0b2e0a73585ce4108bd5625ac22229
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39436143"
 ---
 # <a name="configure-deployment-credentials-for-azure-app-service"></a>設定 Azure App Service 的部署認證
 [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) 支援兩種認證類，用於[本機 Git 部署](app-service-deploy-local-git.md)和 [FTP/S 部署](app-service-deploy-ftp.md)。 這些與您的 Azure Active Directory 認證不相同。
@@ -45,7 +46,7 @@ ms.lasthandoff: 02/01/2018
 1. 在 [Azure 入口網站](https://portal.azure.com)中，按一下 [App Service] > &lt;any_app>  >  [部署認證]。
 
     > [!NOTE]
-    > 在入口網站中，您必須至少有一個應用程式，才能存取 [部署認證] 頁面。 不過，若使用 [Azure CLI](/cli/azure/webapp/deployment/user?view=azure-cli-latest#az_webapp_deployment_user_set)，沒有現有應用程式也可以設定使用者層級認證。
+    > 在入口網站中，您必須至少有一個應用程式，才能存取 [部署認證] 頁面。 不過，若使用 [Azure CLI](/cli/azure/webapp/deployment/user?view=azure-cli-latest#az-webapp-deployment-user-set)，沒有現有應用程式也可以設定使用者層級認證。
 
 2. 設定使用者名稱和密碼，然後按一下 [儲存]。
 
@@ -69,7 +70,7 @@ App Service 中每個應用程式的認證會儲存在 XML 發佈設定檔中。
 
 若要取得應用程式層級的認證：
 
-1. 在 [Azure 入口網站](https://portal.azure.com)中，按一下 [App Service] >**&lt;any_app>** >  [概觀]。
+1. 在 [Azure 入口網站](https://portal.azure.com)中，按一下 [App Service] >&lt;any_app>  >  [概觀]。
 
 2. 按一下 [...更多]  >  [取得發行設定檔]，便會開始下載 .PublishSettings 檔案。
 
@@ -84,7 +85,7 @@ App Service 中每個應用程式的認證會儲存在 XML 發佈設定檔中。
 
 若要重設應用程式層級的認證：
 
-1. 在 [Azure 入口網站](https://portal.azure.com)中，按一下 [App Service] >&lt;any_app>  >  [概觀]。
+1. 在 [Azure 入口網站](https://portal.azure.com)中，按一下 [App Service] >**&lt;any_app>** > **概觀**。
 
 2. 按一下 [...更多]  >  [重設發行設定檔]。 按一下 [是] 確認重設。
 

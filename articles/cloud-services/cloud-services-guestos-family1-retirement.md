@@ -1,11 +1,11 @@
 ---
-title: "客體 OS 系列 1 淘汰通知 | Microsoft Docs"
-description: "提供客體作業系統系列 1 淘汰時間及如何自行判斷是否受影響等相關資訊"
+title: 客體 OS 系列 1 淘汰通知 | Microsoft Docs
+description: 提供客體作業系統系列 1 淘汰時間及如何自行判斷是否受影響等相關資訊
 services: cloud-services
 documentationcenter: na
 author: raiye
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 37b422e9-0713-4a81-a942-f553ef478064
 ms.service: cloud-services
 ms.devlang: na
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "22998293"
 ---
 # <a name="guest-os-family-1-retirement-notice"></a>客體作業系統系列 1 淘汰通知
 我們早在 2013 年 6 月 1 日宣佈客體作業系統系列 1 的淘汰資訊。

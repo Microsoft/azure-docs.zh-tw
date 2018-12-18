@@ -6,20 +6,20 @@ author: sujayt
 manager: rochakm
 ms.service: site-recovery
 ms.topic: article
-ms.date: 03/26/2018
+ms.date: 07/06/2018
 ms.author: sujayt
-ms.openlocfilehash: 48be55632d9c1bece3f1a6e4f9ac12a68f9cb7ab
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: 77c445920041653ffb72d31e1dcfe4c368fb6642
+ms.sourcegitcommit: a06c4177068aafc8387ddcd54e3071099faf659d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 07/09/2018
+ms.locfileid: "37915920"
 ---
 # <a name="about-networking-in-azure-to-azure-replication"></a>關於 Azure 中進行 Azure 複寫的網路功能
 
->[!NOTE]
-> Azure 虛擬機器的 Site Recovery 複寫目前為預覽狀態。
 
-本文提供您使用 [Azure Site Recovery](site-recovery-overview.md)，將 Azure VM 從一個區域複寫和復原到另一個區域時的網路功能指引。 
+
+本文提供您使用 [Azure Site Recovery](site-recovery-overview.md)，將 Azure VM 從一個區域複寫和復原到另一個區域時的網路功能指引。
 
 ## <a name="before-you-start"></a>開始之前
 
@@ -57,19 +57,18 @@ login.microsoftonline.com | 需要此項目方可進行 Site Recovery 服務 URL
 
 如果您使用以 IP 為基礎的防火牆 Proxy 或 NSG 規則來控制輸出連線能力，就必須允許這些 IP 範圍。
 
-- 對應於來源位置的所有 IP 位址範圍。
-    - 您可以下載 [IP 位址範圍](https://www.microsoft.com/download/confirmation.aspx?id=41653) \(英文\)。
-    - 您需要允許這些位址，方可從 VM 將該資料寫入到快取儲存體帳戶。
+- 對應至來源區域儲存體帳戶的所有 IP 位址範圍
+    - 為這個來源地區建立[儲存體服務標記](../virtual-network/security-overview.md#service-tags)型 NSG 規則。
+    - 允許這些位址，方可從 VM 將該資料寫入到快取儲存體帳戶。
 - 對應至 Office 365 [驗證與身分識別 IP V4 端點](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2#bkmk_identity)的所有 IP 位址範圍。
     - 如果未來將新的位址新增至 Office 365 範圍，您必須建立新的 NSG 規則。
-- Site Recovery 服務端點 IP 位址。 您可以在 [XML 檔案](https://aka.ms/site-recovery-public-ips)中找到這些位址，而其相依於您的目標位置。
--  您可以[下載並使用此指令碼](https://gallery.technet.microsoft.com/Azure-Recovery-script-to-0c950702) \(英文\)，在 NSG 上自動建立所需的規則。 
+- Site Recovery 服務端點 IP 位址 - 在 [XML 檔案](https://aka.ms/site-recovery-public-ips)中提供，並依據您的目標位置。
+-  您可以[下載並使用此指令碼](https://aka.ms/nsg-rule-script) \(英文\)，在 NSG 上自動建立所需的規則。
 - 建議您在測試 NSG 上建立必要的 NSG 規則，並確認沒有問題後，再於生產 NSG 上建立規則。
-- 若要建立所需的 NSG 規則數目，請確定您的訂用帳戶位於允許清單中。 請連絡 Azure 支援人員，以提高您訂用帳戶中的 NSG 規則限制。
 
-IP 位址範圍如下：
 
->
+站台復原 IP 位址範圍如下：
+
    **目標** | **Site Recovery IP** |  **Site Recovery 監視 IP**
    --- | --- | ---
    東亞 | 52.175.17.132 | 13.94.47.61
@@ -97,76 +96,68 @@ IP 位址範圍如下：
    英國南部 | 51.140.43.158 | 51.140.189.52
    英國南部 2 | 13.87.37.4| 13.87.34.139
    英國北部 | 51.142.209.167 | 13.87.102.68
-   韓國中部 | 52.231.28.253 | 52.231.32.85
-   韓國南部 | 52.231.298.185 | 52.231.200.144
-   
-   
-  
+   南韓中部 | 52.231.28.253 | 52.231.32.85
+   南韓南部 | 52.231.298.185 | 52.231.200.144
+   法國中部 | 52.143.138.106 | 52.143.136.55
+   法國南部 | 52.136.139.227 |52.136.136.62
+
 
 ## <a name="example-nsg-configuration"></a>範例 NSG 設定
 
-這個範例示範如何針對要複寫的 VM 設定 NSG 規則。 
+這個範例示範如何針對要複寫的 VM 設定 NSG 規則。
 
-- 如果您使用 NSG 規則來控制輸出連線能力，請針對所有必要的 IP 位址範圍使用「允許 HTTPS 輸出」規則。
+- 如果您使用 NSG 規則來控制輸出連線，請針對所有必要的 IP 位址範圍，將「允許 HTTPS 輸出」規則應用至連接埠：443。
 - 此範例假設 VM 來源位置為「美國東部」，而目標位置為「美國中部」。
 
 ### <a name="nsg-rules---east-us"></a>NSG 規則：美國東部
 
-1. 建立對應至[美國東部 IP 位址範圍](https://www.microsoft.com/download/confirmation.aspx?id=41653) \(英文\) 的規則。 需要此項目方可從 VM 將資料寫入快取儲存體帳戶中。
-2. 對於對應至 Office 365 [驗證和身分識別 IP V4 端點](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2#bkmk_identity)的所有 IP 位址範圍建立規則。
-3. 建立對應於目標位置的規則：
+1. 在 NSG 上針對 "Storage.EastUS" 建立輸出 HTTPS (443) 安全性規則，如以下螢幕擷取畫面所示。
+
+      ![storage-tag](./media/azure-to-azure-about-networking/storage-tag.png)
+
+2. 針對那些對應至 Office 365 [驗證和識別 IP V4 端點](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2#bkmk_identity)的所有 IP 位址範圍，建立輸出 HTTPS (443) 規則。
+3. 針對那些對應至目標位置的站台復原 IP，建立輸出 HTTPS (443) 規則：
 
    **位置** | **Site Recovery 位址** |  **Site Recovery 監視 IP 位址**
     --- | --- | ---
    美國中部 | 40.69.144.231 | 52.165.34.144
 
-### <a name="nsg-rules---central-us"></a>NSG 規則：美國中部 
+### <a name="nsg-rules---central-us"></a>NSG 規則：美國中部
 
 需要這些規則，才能啟用從目標區域到來源地區容錯移轉後的複寫：
 
-* 對應於[美國中部 IP 範圍](https://www.microsoft.com/download/confirmation.aspx?id=41653)的規則。 需要此項目方可從 VM 將資料寫入快取儲存體帳戶中。
+1. 在 NSG 上針對 "Storage.CentralUS" 建立輸出 HTTPS (443) 安全性規則。
 
-* 針對對應於 Office 365 [驗證和身分識別 IP V4 端點](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2#bkmk_identity)的所有 IP 範圍規則。
+2. 針對那些對應至 Office 365 [驗證和識別 IP V4 端點](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2#bkmk_identity)的所有 IP 位址範圍，建立輸出 HTTPS (443) 規則。
 
-* 對應於來源位置的規則：
-    - 美國東部
-    - Site Recovery IP 位址：13.82.88.226
-    - Site Recovery 監視 IP 位址：104.45.147.24
+3. 針對那些對應至來源位置的站台復原 IP 建立輸出 HTTPS (443) 規則：
 
+   **位置** | **Site Recovery 位址** |  **Site Recovery 監視 IP 位址**
+    --- | --- | ---
+   美國中部 | 13.82.88.226 | 104.45.147.24
 
-## <a name="expressroutevpn"></a>ExpressRoute/VPN 
+## <a name="network-virtual-appliance-configuration"></a>網路虛擬設備設定
 
-如果您在內部部署與 Azure 位置之間具有 ExpressRoute 或 VPN 連線，請遵循本節中的指引。
+如果您使用網路虛擬設備 (NVA) 來控制 VM 的輸出網路流量，那麼只要所有的複寫流量都通過 NVA，該設備便有可能進行節流。 建議您在虛擬網路中為「儲存體」建立一個網路服務端點，這樣複寫流量就不會流向 NVA。
+
+### <a name="create-network-service-endpoint-for-storage"></a>為儲存體建立網路服務端點
+您可以在虛擬網路中為「儲存體」建立一個網路服務端點，這樣複寫流量就不會離開 Azure 範圍。
+
+- 選取您的 Azure 虛擬網路，然後按一下 [服務端點]。
+
+    ![storage-endpoint](./media/azure-to-azure-about-networking/storage-service-endpoint.png)
+
+- 按一下 [新增]，[新增服務端點] 索引標籤隨即開啟。
+- 選取 [服務] 底下的 [Microsoft.Storage]，接下來選取 [子網路] 底下的必要子網路，然後按一下 [新增]。
+
+>[!NOTE]
+>不要限制虛擬網路存取您用於 ASR 的儲存體帳戶。 您應該允許從 [所有網路] 存取。
 
 ### <a name="forced-tunneling"></a>強制通道
 
-通常，您會定義預設路由 (0.0.0.0/0)，強制輸出網際網路流量流經內部部署位置。 我們不建議這麼做。 複寫流量及 Site Recovery 服務通訊不應該留下 Azure 界限。 解決方案是針對[這些 IP 範圍](#outbound-connectivity-for-azure-site-recovery-ip-ranges)新增使用者定義的路由 (UDR)，以讓複寫流量不會在內部部署傳送。
-
-### <a name="connectivity"></a>連線能力 
-
-對於目標位置與內部部署位置之間的連線，請遵循下列指導方針：
-- 如果您的應用程式需要連線到內部部署機器，或者，如果有用戶端透過 VPN/ExpressRoute 連線到應用程式，請確定目標 Azure 區域與內部部署資料中心之間至少有[網站間連線](../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md)。
-
-- 如果您預期目標 Azure 區域與內部部署資料中心之間有許多流量，應該在目標 Azure 區域與內部部署資料中心之間建立另一個 [ExpressRoute 連線](../expressroute/expressroute-introduction.md)。
-
-- 如果您想要對於容錯移轉後的虛擬機器保留 IP，請將目標區域的網站間/ExpressRoute 連線維持在中斷連線的狀態。 這是為了確定來源區域的 IP 範圍和目標區域的 IP 範圍之間沒有範圍衝突。
-
-### <a name="expressroute-configuration"></a>ExpressRoute 設定
-請遵循 ExpressRoute 組態的下列最佳做法：
-
-- 在來源和目標區域兩地建立 ExpressRoute 線路。 然後，您需要在下列兩者之間建立連線：
-    - 來源虛擬網路與內部部署網路；透過來源區域中的 ExpressRoute 線路。
-    - 目標虛擬網路與內部部署網路；透過目標區域中的 ExpressRoute 線路。
-
-
-- 按照 ExpressRoute 標準，您可以在同一個地理政治區域中建立線路。 若要在不同的地理政治區域建立 ExpressRoute 線路，需要 Azure ExpressRoute Premium，這需要增加成本。 (如果您已經使用 ExpressRoute Premium，則不需要額外的成本。)如需詳細資訊，請參閱 [ExpressRoute 位置文件](../expressroute/expressroute-locations.md#azure-regions-to-expressroute-locations-within-a-geopolitical-region)和 [ExpressRoute 定價](https://azure.microsoft.com/pricing/details/expressroute/)。
-
-- 建議您在來源和目標區域中使用不同的 IP 範圍。 ExpressRoute 線路無法同時連線相同 IP 範圍的兩個 Azure 虛擬網路。
-
-- 您可以在兩個地區建立相同 IP 範圍的虛擬網路，並在兩個區域中建立 ExpressRoute 線路。 發生容錯移轉事件時，中斷來源虛擬網路的線路，然後連線目標的虛擬網路中的線路。
-
- >[!IMPORTANT]
- > 如果主要區域已完全關閉，中斷連線作業可能會失敗。 這可讓目標虛擬網路無法取得 ExpressRoute 連線能力。
+您可以使用[自訂路由](../virtual-network/virtual-networks-udr-overview.md#custom-routes)覆寫 0.0.0.0/0 位址前置詞的 Azure 預設系統路由，並將 VM 流量導向內部部署網路虛擬設備 (NVA)，但不建議將此設定用於 Site Recovery 複寫。 如果您使用自訂路由，則應該在虛擬網路中為「儲存體」[建立虛擬網路服務端點](azure-to-azure-about-networking.md#create-network-service-endpoint-for-storage)，這樣一來，複寫流量就不會離開 Azure 界限。
 
 ## <a name="next-steps"></a>後續步驟
-[複寫 Azure 虛擬機器](site-recovery-azure-to-azure.md)來開始保護您的工作負載。
+- [複寫 Azure 虛擬機器](site-recovery-azure-to-azure.md)來開始保護您的工作負載。
+- 深入了解如何針對 Azure 虛擬機器容錯移轉[保留 IP 位址](site-recovery-retain-ip-azure-vm-failover.md)。
+- 深入了解 [Azure 虛擬機器與 ExpressRoute](azure-vm-disaster-recovery-with-expressroute.md) 的災害復原。

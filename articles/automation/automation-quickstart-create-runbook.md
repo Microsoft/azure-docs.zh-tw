@@ -1,18 +1,20 @@
 ---
-title: "Azure 快速入門 - 建立 Azure 自動化 Runbook | Microsoft Docs"
-description: "了解如何建立 Azure 自動化 Runbook"
+title: Azure 快速入門 - 建立 Azure 自動化 Runbook | Microsoft Docs
+description: 了解如何建立 Azure 自動化 Runbook
 services: automation
 author: csand-msft
 ms.author: csand
 ms.date: 12/14/2017
 ms.topic: quickstart
 ms.service: automation
+ms.component: process-automation
 ms.custom: mvc
-ms.openlocfilehash: 34ae160c5e19e161f4412838e377a844c737728d
-ms.sourcegitcommit: 9292e15fc80cc9df3e62731bafdcb0bb98c256e1
+ms.openlocfilehash: 4aafff81957943fc19f0f6d2fce8a41f7be58d16
+ms.sourcegitcommit: d28bba5fd49049ec7492e88f2519d7f42184e3a8
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/10/2018
+ms.lasthandoff: 05/11/2018
+ms.locfileid: "34056256"
 ---
 # <a name="create-an-azure-automation-runbook"></a>建立 Azure 自動化 Runbook
 
@@ -22,7 +24,7 @@ ms.lasthandoff: 01/10/2018
 
 ## <a name="log-in-to-azure"></a>登入 Azure
 
-登入 Azure，網址是 https://portal.azure.com
+在 https://portal.azure.com 登入 Azure
 
 ## <a name="create-runbook"></a>建立 Runbook
 

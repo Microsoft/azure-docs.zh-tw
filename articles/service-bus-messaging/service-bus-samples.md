@@ -1,24 +1,25 @@
 ---
-title: "Azure 服務匯流排傳訊範例概觀 | Microsoft Docs"
-description: "描述服務匯流排傳訊範例與每個範例的連結"
+title: Azure 服務匯流排傳訊範例概觀 | Microsoft Docs
+description: 描述服務匯流排傳訊範例與每個範例的連結
 services: service-bus-messaging
 documentationcenter: na
-author: sethmanheim
+author: spelluru
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 0b420343-2d2a-4c65-98f1-ee0e39ef55c8
 ms.service: service-bus-messaging
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 12/21/2017
-ms.author: sethm
-ms.openlocfilehash: 7bdb336b8aad0031412a31b58a10296242e7da18
-ms.sourcegitcommit: 6f33adc568931edf91bfa96abbccf3719aa32041
+ms.date: 09/21/2018
+ms.author: spelluru
+ms.openlocfilehash: d4b7babe9d8243c5240ab6d7f990bbaa2a6969a2
+ms.sourcegitcommit: 67abaa44871ab98770b22b29d899ff2f396bdae3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/22/2017
+ms.lasthandoff: 10/08/2018
+ms.locfileid: "48854434"
 ---
 # <a name="service-bus-messaging-samples"></a>服務匯流排傳訊範例
 
@@ -42,5 +43,4 @@ ms.lasthandoff: 12/22/2017
 
 * [服務匯流排訊息概觀](service-bus-messaging-overview.md)
 * [服務匯流排架構](service-bus-architecture.md)
-* [服務匯流排基本概念](service-bus-fundamentals-hybrid-solutions.md)
 

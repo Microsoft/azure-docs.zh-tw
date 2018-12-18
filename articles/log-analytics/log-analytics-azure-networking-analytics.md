@@ -11,14 +11,16 @@ ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 03/20/2018
+ms.topic: conceptual
+ms.date: 06/21/2018
 ms.author: richrund
-ms.openlocfilehash: 12172e81ed6b4d79ee200ee1ca79803ad58d6d19
-ms.sourcegitcommit: c3d53d8901622f93efcd13a31863161019325216
+ms.component: na
+ms.openlocfilehash: 8a92bf7b031899ee75fbf2bb2fdfd7dced3bc1ad
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/29/2018
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38481985"
 ---
 # <a name="azure-networking-monitoring-solutions-in-log-analytics"></a>Log Analytics 中的 Azure 網路監視解決方案
 
@@ -76,7 +78,8 @@ Azure 應用程式閘道分析和網路安全性群組分析管理解決方案�
 * ApplicationGatewayPerformanceLog
 * ApplicationGatewayFirewallLog
 
-應用程式閘道支援下列度量︰
+應用程式閘道支援下列計量︰again
+
 
 * 5 分鐘輸送量
 
@@ -139,6 +142,12 @@ Set-AzureRmDiagnosticSetting -ResourceId $gateway.ResourceId  -WorkspaceId $work
 ## <a name="azure-network-security-group-analytics-solution-in-log-analytics"></a>Log Analytics 中的 Azure 網路安全性群組分析解決方案
 
 ![Azure 網路安全性群組分析符號](./media/log-analytics-azure-networking/azure-analytics-symbol.png)
+
+> [!NOTE]
+> 網路安全性群組分析解決方案將會移至社群支援，因為其功能已由[流量分析](../network-watcher/traffic-analytics.md)取代。
+> - 解決方案現已在 [Azure 快速入門範本](https://azure.microsoft.com/resources/templates/oms-azurensg-solution/)中提供，而且將很快不再於 Azure Marketplace 中提供。
+> - 對於已將此解決方案新增至其工作區的現有客戶，它會繼續運作而不需要變更。
+> - Microsoft 將繼續支援使用診斷設定，將 NSG 診斷記錄傳送至您的工作區。
 
 網路安全性群組支援下列記錄檔︰
 

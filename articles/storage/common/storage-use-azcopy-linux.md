@@ -1,59 +1,87 @@
 ---
-title: "使用 AzCopy on Linux 複製或移動資料到 Azure 儲存體 | Microsoft Docs"
-description: "使用 AzCopy on Linux 公用程式來從 Blob 和檔案內容移動或來回複製資料。 從本機檔案複製資料到 Azure 儲存體，或在儲存體帳戶內或之間複製資料。 輕鬆地將資料移轉至 Azure 儲存體。"
+title: 使用 AzCopy on Linux 複製或移動資料到 Azure 儲存體 | Microsoft Docs
+description: 使用 AzCopy on Linux 公用程式來從 Blob 和檔案內容移動或來回複製資料。 從本機檔案複製資料到 Azure 儲存體，或在儲存體帳戶內或之間複製資料。 輕鬆地將資料移轉至 Azure 儲存體。
 services: storage
-documentationcenter: 
 author: seguler
-manager: jahogg
-editor: tysonn
-ms.assetid: aa155738-7c69-4a83-94f8-b97af4461274
 ms.service: storage
-ms.workload: storage
-ms.tgt_pltfrm: na
-ms.devlang: na
 ms.topic: article
-ms.date: 12/11/2017
+ms.date: 04/26/2018
 ms.author: seguler
-ms.openlocfilehash: 2fd89684176cd832b656dae8c8f94a6f1ccbbbe8
-ms.sourcegitcommit: 85012dbead7879f1f6c2965daa61302eb78bd366
+ms.component: common
+ms.openlocfilehash: 1aff2ecdec83886d40d12b76e64a14a81451e89e
+ms.sourcegitcommit: f20e43e436bfeafd333da75754cd32d405903b07
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/02/2018
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49386683"
 ---
 # <a name="transfer-data-with-azcopy-on-linux"></a>使用 AzCopy on Linux 傳送資料
 
-AzCopy 是個命令列公用程式，專為使用針對最佳效能而設計的簡單命令來將資料複製到/複製出 Microsoft Azure Blob、檔案和表格儲存體所設計。 您可以在檔案系統和儲存體帳戶之間，或者儲存體帳戶之間複製資料。  
+AzCopy 是個命令列公用程式，專為使用針對最佳效能而設計的簡單命令來將資料複製到/複製出 Microsoft Azure Blob 和檔案儲存體所設計。 您可以在檔案系統和儲存體帳戶之間，或者儲存體帳戶之間複製資料。  
 
-有兩個 AzCopy 版本可供您下載。 AzCopy on Linux 內建有 .NET Core Framework，其以提供 POSIX 樣式命令列選項的 Linux 平台為目標。 [AzCopy on Windows](../storage-use-azcopy.md) 內建有 .NET Framework，並且提供 Windows 樣式的命令列選項。 本文涵蓋之內容包括 AzCopy on Linux。
+有兩個 AzCopy 版本可供您下載。 Linux 上的 AzCopy 以 Linux 平台為目標，提供 POSIX 樣式的命令列選項。 [Windows 上的 AzCopy](../storage-use-azcopy.md) 提供了 Windows 樣式的命令列選項。 本文涵蓋之內容包括 AzCopy on Linux。 
+
+> [!NOTE]  
+> 從 AzCopy 7.2 版開始，.NET Core 相依項目會與 AzCopy 套件一起封裝。 如果您使用 7.2 版本或更新版本，您不再需要安裝作為先決條件的 .NET Core。
 
 ## <a name="download-and-install-azcopy"></a>下載並安裝 AzCopy
+
 ### <a name="installation-on-linux"></a>在 Linux 上安裝
 
-文章包含用於多種不同版本 Ubuntu 的命令。  使用 `lsb_release -a` 命令來確認您的發行版本和 codename。 
+> [!NOTE]
+> 您可能需要安裝在此 [.NET Core 先決條件文章](https://docs.microsoft.com/dotnet/core/linux-prerequisites?tabs=netcore2x)中醒目提示的 .NET Core 2.1 相依項目 (視您的散發套件而定)。 
+>
+> 針對 RHEL 7 發行版，請安裝 ICU 和 libunwind 相依性：```yum install -y libunwind icu```
 
-AzCopy on Linux 要求平台具有 .NET Core Framework (2.0 版)。 請參閱 [.NET Core](https://www.microsoft.com/net/download/linux) \(英文\) 頁面上的安裝指示。
+安裝 Linux 上的 AzCopy (v7.2 或更新版本) 相當容易，只要將 tar 套件解壓縮，然後執行安裝指令碼。 
 
-作為範例，讓我們在 Ubuntu 16.04 上安裝 .NET Core。 如需最新安裝指南，請造訪 [.NET Core on Linux](https://www.microsoft.com/net/download/linux) \(英文\) 安裝頁面。
-
-
+**RHEL 6 架構的散發套件**：[下載連結](https://aka.ms/downloadazcopylinuxrhel6)
 ```bash
-curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
-sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-xenial-prod xenial main" > /etc/apt/sources.list.d/dotnetdev.list'
-sudo apt-get update
-sudo apt-get install dotnet-sdk-2.0.2
-```
-
-安裝 .NET Core 之後，下載並安裝 AzCopy。
-
-```bash
-wget -O azcopy.tar.gz https://aka.ms/downloadazcopyprlinux
+wget -O azcopy.tar.gz https://aka.ms/downloadazcopylinuxrhel6
 tar -xf azcopy.tar.gz
 sudo ./install.sh
 ```
 
-安裝 AzCopy on Linux 之後，您便可移除解壓縮後的檔案。 或者，如果您沒有 superuser 權限，也可以使用解壓縮資料夾中的 shell 指令碼「azcopy」執行 AzCopy。 
+**其他所有 Linux 散發套件**：[下載連結](https://aka.ms/downloadazcopylinux64)
+```bash
+wget -O azcopy.tar.gz https://aka.ms/downloadazcopylinux64
+tar -xf azcopy.tar.gz
+sudo ./install.sh
+```
 
+安裝 AzCopy on Linux 之後，您便可移除解壓縮後的檔案。 或者，如果您沒有 superuser 權限，也可以使用解壓縮資料夾中的 shell 指令碼 azcopy 執行 `azcopy`。
+
+### <a name="alternative-installation-on-ubuntu"></a>Ubuntu 上的替代安裝
+
+**Ubuntu 14.04**
+
+新增適用於 Microsoft Linux 產品存放庫的 apt 來源並安裝 AzCopy：
+
+```bash
+sudo echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-trusty-prod/ trusty main" > azure.list
+sudo cp ./azure.list /etc/apt/sources.list.d/
+sudo apt-key adv --keyserver packages.microsoft.com --recv-keys EB3E94ADBE1229CF
+```
+
+```bash
+sudo apt-get update
+sudo apt-get install azcopy
+```
+
+**Ubuntu 16.04**
+
+新增適用於 Microsoft Linux 產品存放庫的 apt 來源並安裝 AzCopy：
+
+```bash
+echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-xenial-prod/ xenial main" > azure.list
+sudo cp ./azure.list /etc/apt/sources.list.d/
+sudo apt-key adv --keyserver packages.microsoft.com --recv-keys EB3E94ADBE1229CF
+```
+
+```bash
+sudo apt-get update
+sudo apt-get install azcopy
+```
 
 ## <a name="writing-your-first-azcopy-command"></a>撰寫第一個 AzCopy 命令
 AzCopy 命令的基本語法是：
@@ -206,6 +234,14 @@ azcopy \
 
 如果指定的虛擬目錄不存在，則 AzCopy 會上傳檔案並在 Blob 名稱中加上此虛擬目錄 (例如，上述範例中的 `vd/abc.txt`)。
 
+### <a name="redirect-from-stdin"></a>從 stdin 重新導向
+
+```azcopy
+gzip myarchive.tar -c | azcopy \
+    --destination https://myaccount.blob.core.windows.net/mycontainer/mydir/myarchive.tar.gz \
+    --dest-key <key>
+```
+
 ### <a name="upload-all-files"></a>上傳所有檔案
 
 ```azcopy
@@ -306,6 +342,9 @@ azcopy \
     --include "ab" \
     --set-content-type
 ```
+
+### <a name="customizing-the-mime-content-type-mapping"></a>自訂 MIME 內容類型對應
+AzCopy 所使用的設定檔中會包含副檔名與內容類型的對應。 您可以視需要自訂這個對應並新增配對。 此對應位於 ```/usr/lib/azcopy/AzCopyConfig.json```
 
 ## <a name="blob-copy"></a>Blob：複製
 ### <a name="copy-single-blob-within-storage-account"></a>複製儲存體帳戶內的單一 Blob
@@ -601,10 +640,31 @@ azcopy \
 >[!TIP]
 >若要檢視 AzCopy 參數的完整清單，請參閱 [azcopy --說明] 功能表。
 
-## <a name="known-issues-and-best-practices"></a>已知問題和最佳作法
-### <a name="error-net-sdk-20-is-not-found-in-the-system"></a>錯誤：在系統中找不到 .NET SDK 2.0。
-AzCopy 相依於在 AzCopy 7.0 版中開始使用的 .NET SDK 2.0。 早於此版本的 AzCopy 使用 .NET Core 1.1。 如果您遇到指出系統中未安裝 .NET Core 2.0 的錯誤，可使用 [.NET Core 安裝指示](https://www.microsoft.com/net/learn/get-started/linuxredhat) \(英文\) 加以安裝或升級。
+## <a name="installation-steps-for-azcopy-71-and-earlier-versions"></a>AzCopy 7.1 和更早版本的安裝步驟
 
+Linux 上的 AzCopy (僅限 v7.1 和更早版本) 需要 .NET Core 架構。 您可以在 [.NET Core 安裝](https://www.microsoft.com/net/core#linuxubuntu)頁面上取得安裝指示。
+
+例如，從安裝 Ubuntu 16.10 上的 .NET Core 開始。 如需最新安裝指南，請造訪 [.NET Core on Linux](https://www.microsoft.com/net/core#linuxubuntu) \(英文\) 安裝頁面。
+
+
+```bash
+sudo sh -c 'echo "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ yakkety main" > /etc/apt/sources.list.d/dotnetdev.list' 
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 417A0893
+sudo apt-get update
+sudo apt-get install dotnet-sdk-2.0.0
+```
+
+安裝 .NET Core 之後，下載並安裝 AzCopy。
+
+```bash
+wget -O azcopy.tar.gz https://aka.ms/downloadazcopyprlinux
+tar -xf azcopy.tar.gz
+sudo ./install.sh
+```
+
+安裝 AzCopy on Linux 之後，您便可移除解壓縮後的檔案。 或者，如果您沒有 superuser 權限，也可以使用解壓縮資料夾中的 shell 指令碼 azcopy 執行 `azcopy`。
+
+## <a name="known-issues-and-best-practices"></a>已知問題和最佳作法
 ### <a name="error-installing-azcopy"></a>安裝 AzCopy 時發生錯誤
 如果您遇到 AzCopy 安裝的問題，可以嘗試使用解壓縮 `azcopy` 資料夾中的 bash 指令碼執行 AzCopy。
 
@@ -618,8 +678,26 @@ cd azcopy
 
 如果您無法在複製時防止其他應用程式寫入 Blob 或檔案，請記住，工作完成時，複製的資源可能不再與來源資源完全相同。
 
-### <a name="run-one-azcopy-instance-on-one-machine"></a>在一部電腦上執行一個 AzCopy 執行個體。
-AzCopy 設計為充分利用電腦資源來加速資料傳輸，建議您在一部電腦上只執行一個 AzCopy 執行個體，如果需要更多並行作業，您可以指定 `--parallel-level` 選項。 如需詳細資訊，請在命令列上輸入 `AzCopy --help parallel-level` 。
+### <a name="running-multiple-azcopy-processes"></a>執行多個 AzCopy 處理程序
+如果您使用不同日誌資料夾，您可以在單一用戶端上執行多個 AzCopy 處理程序。 不支援對多個 AzCopy 處理程序使用單一日誌資料夾。
+
+第一個處理程序：
+```azcopy
+azcopy \
+    --source /mnt/myfiles1 \
+    --destination https://myaccount.blob.core.windows.net/mycontainer/myfiles1 \
+    --dest-key <key> \
+    --resume "/mnt/myazcopyjournal1"
+```
+
+第二個處理程序：
+```azcopy
+azcopy \
+    --source /mnt/myfiles2 \
+    --destination https://myaccount.blob.core.windows.net/mycontainer/myfiles2 \
+    --dest-key <key> \
+    --resume "/mnt/myazcopyjournal2"
+```
 
 ## <a name="next-steps"></a>後續步驟
 如需關於 Azure 儲存體和 AzCopy 的詳細資訊，請參閱下列資源：
@@ -628,14 +706,14 @@ AzCopy 設計為充分利用電腦資源來加速資料傳輸，建議您在一�
 * [Azure 儲存體簡介](../storage-introduction.md)
 * [建立儲存體帳戶](../storage-create-storage-account.md)
 * [使用儲存體總管來管理 Blob](https://docs.microsoft.com/azure/vs-azure-tools-storage-explorer-blobs) \(英文\)
-* [使用 Azure CLI 2.0 搭配 Azure 儲存體](../storage-azure-cli.md)
+* [使用 Azure CLI 搭配 Azure 儲存體](../storage-azure-cli.md)
 * [如何使用 C++ 的 Blob 儲存體](../blobs/storage-c-plus-plus-how-to-use-blobs.md)
 * [如何使用 Java 的 Blob 儲存體](../blobs/storage-java-how-to-use-blob-storage.md)
 * [如何使用 Node.js 的 Blob 儲存體](../blobs/storage-nodejs-how-to-use-blob-storage.md)
 * [如何使用 Python 的 Blob 儲存體](../blobs/storage-python-how-to-use-blob-storage.md)
 
 ### <a name="azure-storage-blog-posts"></a>Azure 儲存體部落格文章：
-* [宣告 AzCopy on Linux 預覽](https://azure.microsoft.com/en-in/blog/announcing-azcopy-on-linux-preview/) \(英文\)
+* [宣告 AzCopy on Linux 預覽](https://azure.microsoft.com/blog/announcing-azcopy-on-linux-preview/) \(英文\)
 * [Azure 儲存體資料移動文件庫預覽簡介](https://azure.microsoft.com/blog/introducing-azure-storage-data-movement-library-preview-2/)
 * [AzCopy：簡介同步複製和自訂內容類型](http://blogs.msdn.com/b/windowsazurestorage/archive/2015/01/13/azcopy-introducing-synchronous-copy-and-customized-content-type.aspx)
 * [AzCopy: 宣布正式發行 AzCopy 3.0 和具有資料表和檔案支援的 AzCopy 4.0 預覽版本](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/10/29/azcopy-announcing-general-availability-of-azcopy-3-0-plus-preview-release-of-azcopy-4-0-with-table-and-file-support.aspx)
@@ -644,4 +722,3 @@ AzCopy 設計為充分利用電腦資源來加速資料傳輸，建議您在一�
 * [AzCopy：使用可重新啟動模式和 SAS 權杖傳輸資料](http://blogs.msdn.com/b/windowsazurestorage/archive/2013/09/07/azcopy-transfer-data-with-re-startable-mode-and-sas-token.aspx) \(英文\)
 * [AzCopy: 使用跨帳戶複製 Blob](http://blogs.msdn.com/b/windowsazurestorage/archive/2013/04/01/azcopy-using-cross-account-copy-blob.aspx)
 * [AzCopy: 上傳/下載 Azure Blob 的檔案](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/12/03/azcopy-uploading-downloading-files-for-windows-azure-blobs.aspx)
-

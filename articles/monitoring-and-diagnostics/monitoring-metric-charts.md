@@ -1,24 +1,19 @@
 ---
-title: "Azure 監視器計量瀏覽器 | Microsoft Docs"
-description: "了解 Azure 監視器計量瀏覽器中的新功能"
+title: Azure 監視器計量瀏覽器
+description: 了解 Azure 監視器計量瀏覽器中的新功能
 author: vgorbenko
-manager: Victor.Mushkatin
-editor: mrbullwinkle
-services: monitoring-and-diagnostics
-documentationcenter: monitoring-and-diagnostics
-ms.assetid: 2397596a-071f-4d49-8893-bec5f735bd7b
-ms.service: monitoring-and-diagnostics
-ms.workload: na
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+services: azure-monitor
+ms.service: azure-monitor
+ms.topic: conceptual
 ms.date: 09/17/2017
 ms.author: vitaly.gorbenko
-ms.openlocfilehash: 537dd6d64fe49093dd73d8040cde5a9153a7bd5c
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.component: metrics
+ms.openlocfilehash: 21b0029ff12915c8416ad2366fbf6c45ddfaa288
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46978410"
 ---
 # <a name="azure-monitor-metrics-explorer"></a>Azure 監視器計量瀏覽器
 
@@ -34,37 +29,7 @@ Azure 監視器計量瀏覽器是 Microsoft Azure 入口網站的一個元件，
 
 Microsoft Azure 中的計量是隨時間收集並儲存的一系列度量與計數值。 計量包括標準 (或稱為「平台」) 計量與自訂計量。 標準計量是由 Azure 平台本身提供給您使用。 標準計量反映您 Azure 資源的健康情況與使用情形統計資料。 而自訂計量則是由您的應用程式使用[適用於自訂事件的 Application Insights API ](https://docs.microsoft.com/azure/application-insights/app-insights-api-custom-events-metrics) 傳送給 Azure。 自訂計量是隨著其他應用程式特定計量儲存在 Application Insights 資源中。
 
-## <a name="what-are-multi-dimensional-metrics"></a>多維度計量是什麼？
 
-Azure 的許多資源現在都公開多維度計量。 這些計量會追蹤一或多個具名維度的多個系列值。 例如，「可用磁碟空間」計量可以有名為「磁碟機」的計量且其值為 "C:""D:"，這可讓您檢視所有磁碟機或每個磁碟機的可用磁碟空間。 
-
-下面的範例說明名為「網路輸送量」之假設性計量的兩個資料集。 第一個資料集沒有維度。 第二個資料集會顯示具有兩個維度 (「IP 位址」與「方向」) 的值：
-
-### <a name="network-throughput"></a>網路輸送量
-(此計量沒有維度)
-
- |Timestamp        | 計量值 | 
-   | ------------- |:-------------| 
-   | 8/9/2017 8:14 | 1,331.8 Kbps | 
-   | 8/9/2017 8:15 | 1,141.4 Kbps |
-   | 8/9/2017 8:16 | 1,110.2 Kbps |
-
-這個無維度計量只能回答像是「我的網路輸送量在指定時間為何」這種基本問題。
-
-### <a name="network-throughput--two-dimensions-ip-and-direction"></a>網路輸送量 + 兩個維度 (「IP」與「方向」)
-
-| Timestamp          | 維度「IP」 | 維度「方向」 | 計量值| 
-   | ------------- |:-----------------|:------------------- |:-----------|  
-   | 8/9/2017 8:14 | IP="192.168.5.2" | 方向="傳送"    | 646.5 Kbps |
-   | 8/9/2017 8:14 | IP="192.168.5.2" | 方向="接收" | 420.1 Kbps |
-   | 8/9/2017 8:14 | IP="10.24.2.15"  | 方向="傳送"    | 150.0 Kbps | 
-   | 8/9/2017 8:14 | IP="10.24.2.15"  | 方向="接收" | 115.2 Kbps |
-   | 8/9/2017 8:15 | IP="192.168.5.2" | 方向="傳送"    | 515.2 Kbps |
-   | 8/9/2017 8:15 | IP="192.168.5.2" | 方向="接收" | 371.1 Kbps |
-   | 8/9/2017 8:15 | IP="10.24.2.15"  | 方向="傳送"    | 155.0 Kbps |
-   | 8/9/2017 8:15 | IP="10.24.2.15"  | 方向="接收" | 100.1 Kbps |
-
-此計量可以回答像是「每個 IP 位址的網路輸送量為何」與「資料的傳送與接收比為何」這種問題。 相較於無維度計量，多維度計量具有分析與診斷值。 
 
 ## <a name="how-do-i-create-a-new-chart"></a>如何建立新圖表？
 
@@ -74,24 +39,24 @@ Azure 的許多資源現在都公開多維度計量。 這些計量會追蹤一�
 1. 開啟 Azure 入口網站
 2. 瀏覽到新的 [監視器] 索引標籤，然後選取 [計量 (預覽)]。
 
-   ![計量預覽影像](./media/monitoring-metric-charts/001.png)
+   ![計量預覽影像](./media/monitoring-metric-charts/0001.png)
 
 3. 系統將會自動為您開啟計量選取器。 從清單選擇資源以檢視其關聯計量。 清單中只會顯示具有計量的資源。
 
-   ![計量預覽影像](./media/monitoring-metric-charts/002.png)
+   ![計量預覽影像](./media/monitoring-metric-charts/0002.png)
 
    > [!NOTE]
    >若您有多個 Azure 訂用帳戶，計量瀏覽器會提取 [入口網站設定] > [依訂用帳戶篩選] 清單中選取之所有訂用帳戶的資源。 若要變更它，請按一下畫面頂端的入口網站設定齒輪圖示，然後選取您要使用的訂用帳戶。
 
-4. 針對某些資源類型 (例如儲存體帳戶與虛擬機器)，您必須先選擇 [子服務] 再選取計量。 每個子服務都具有自己的計量組 (只與此子服務相關，未與其他子服務相關 )。
+4. 針對某些資源類型 (例如儲存體帳戶與虛擬機器)，您必須先選擇 [命名空間] 再選取計量。 每個命名空間都具有自己的計量組 (只與此命名空間相關，未與其他命名空間相關)。
 
    例如，每個 Azure 儲存體都有子服務「Blob」、「檔案」、「佇列」與「資料表」(這些都是儲存體帳戶的一部分) 的計量。 不過，「佇列訊息計數」計量本質上即適用於「佇列」子服務，而非任何其他儲存體帳戶子服務。
 
-   ![計量預覽影像](./media/monitoring-metric-charts/003.png)
+   ![計量預覽影像](./media/monitoring-metric-charts/0003.png)
 
 5. 從清單選取計量。 若您知道您要尋找之計量的部分名稱，您可以開始輸入以查看已篩選的可用計量清單：
 
-   ![計量預覽影像](./media/monitoring-metric-charts/004.png)
+   ![計量預覽影像](./media/monitoring-metric-charts/0004.png)
 
 6. 選取計量之後，圖表將會以所選計量的預設彙總來呈現。 此時，您只能按一下計量選取器以外的位置以將它關閉。 您也可以將圖表切換為不同的彙總。 針對某些計量，切換彙總可讓您選擇要在圖表上看到的值。 例如，您可以在平均、最小值與最大值之間切換。 
 
@@ -110,15 +75,15 @@ Azure 的許多資源現在都公開多維度計量。 這些計量會追蹤一�
 
 2. 選取您要篩選的維度 (屬性)
 
-   ![計量影像](./media/monitoring-metric-charts/006.png)
+   ![計量影像](./media/monitoring-metric-charts/0006.png)
 
 3. 選取當繪製圖表時要包括的維度值 (此範例會顯示篩選出成功的交易)：
 
-   ![計量影像](./media/monitoring-metric-charts/007.png)
+   ![計量影像](./media/monitoring-metric-charts/0007.png)
 
 4. 選取篩選器值之後，請按一下 [篩選器選取器] 以外的位置以將它關閉。 現在圖表會顯示失敗的儲存體交易數目：
 
-   ![計量影像](./media/monitoring-metric-charts/008.png)
+   ![計量影像](./media/monitoring-metric-charts/0008.png)
 
 5. 您可以重複步驟 1-4 以將多個篩選器套用到相同的圖表。
 
@@ -135,11 +100,11 @@ Azure 的許多資源現在都公開多維度計量。 這些計量會追蹤一�
 
 2. 選擇要據以將圖表分割為不同區段的維度： 
 
-   ![計量影像](./media/monitoring-metric-charts/010.png)
+   ![計量影像](./media/monitoring-metric-charts/0010.png)
 
    現在圖表會顯示多行，每個維度區段一行：
 
-   ![計量影像](./media/monitoring-metric-charts/012.png)
+   ![計量影像](./media/monitoring-metric-charts/0012.png)
 
 3. 按一下 [分組選取器] 以外的位置以將它關閉。
 
@@ -154,7 +119,7 @@ Azure 的許多資源現在都公開多維度計量。 這些計量會追蹤一�
 
 設定您的圖表之後，按一下圖表右上角的 [圖表動作] 功能表，然後按一下 [釘選到儀表板]。
 
-   ![計量影像](./media/monitoring-metric-charts/013.png)
+   ![計量影像](./media/monitoring-metric-charts/0013.png)
 
 ## <a name="next-steps"></a>後續步驟
 

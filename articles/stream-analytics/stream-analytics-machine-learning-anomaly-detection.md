@@ -1,22 +1,20 @@
 ---
-title: Azure 使用量異常偵測指南 (預覽) | Microsoft Docs
-description: 使用串流分析和機器學習方法來偵測異常。
+title: Azure 串流分析中的異常偵測 (預覽)
+description: 本文說明如何一起使用 Azure 串流分析和 Azure Machine Learning 來偵測異常行為。
 services: stream-analytics
-documentationcenter: ''
 author: dubansal
-manager: katicad
-ms.service: stream-analytics
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: data-services
-ms.date: 02/12/2018
 ms.author: dubansal
-ms.openlocfilehash: 9d301f8586038f635ee97a3acdc9c4dc8a2bbcc6
-ms.sourcegitcommit: 34e0b4a7427f9d2a74164a18c3063c8be967b194
+manager: kfile
+ms.reviewer: jasonh
+ms.service: stream-analytics
+ms.topic: conceptual
+ms.date: 04/09/2018
+ms.openlocfilehash: e7274e4507d901a209ed5832e98ca630feefda4f
+ms.sourcegitcommit: 9cdd83256b82e664bd36991d78f87ea1e56827cd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/30/2018
+ms.lasthandoff: 04/16/2018
+ms.locfileid: "31420090"
 ---
 # <a name="anomaly-detection-in-azure-stream-analytics"></a>Azure 串流分析中的異常偵測
 
@@ -69,6 +67,8 @@ AnomalyDetection 運算子會傳回包含所有三個分數做為輸出的記錄
 
 當其中一個異常分數超過閾值時，就會檢測到某種類型的異常。 閾值可以是任何大於或等於 0 的浮點數。 閾值是敏感度與信賴之間的取捨。 例如，較低的閾值會讓偵測對於變化更加敏感並產生更多警示，而較高的閾值讓偵測較不敏感而更有信心，但會遮罩某些異常。 要使用的確切閾值視情況而定。 沒有上限，但建議的範圍是 3.25-5。 
 
+範例中顯示的值 3.25 只是建議的起始點。 對您自己的資料集執行作業，並觀察輸出值，直到您觸達可容忍的臨界值，將值進行微調。
+
 ## <a name="anomaly-detection-algorithm"></a>異常偵測演算法
 
 * AnomalyDetection 運算子會使用**非監督式學習**方法，該方法不會假設任何類型的事件分佈。 一般而言，在任何時候都會平行維護兩個模型，其中一個模型用於評分，而另一個模型則會在背景中進行訓練。 異常偵測模型會使用目前串流中的資料進行訓練，而不是使用頻外機制進行訓練。 用於訓練的資料數量取決於使用者在 Limit Duration 參數內指定的時間範圍大小 d。 每個模型最終會根據 d 到 2d 的事件進行訓練。 建議每個時間範圍內至少有 50 個事件，以獲得最佳結果。 
@@ -115,25 +115,25 @@ AnomalyDetection 運算子會傳回包含所有三個分數做為輸出的記錄
 
 讓我們來詳細檢閱奇異計算 (假設有一組包含事件的過去時間範圍)： 
 
-1. **雙向層級變更：**根據歷程記錄時間範圍，正常的作業範圍計算為 [第 10 個百分位數、第 90 個百分位數]，也就是以第 10 個百分位數值作為下限，以第 90 個百分位數值作為上限。 目前事件的奇異值會計算為：  
+1. **雙向層級變更：** 根據歷程記錄時間範圍，正常的作業範圍計算為 [第 10 個百分位數、第 90 個百分位數]，也就是以第 10 個百分位數值作為下限，以第 90 個百分位數值作為上限。 目前事件的奇異值會計算為：  
 
    - 0，如果 event_value 處於正常作業範圍內  
    - event_value/90th_percentile，如果 event_value 大於 90th_percentile  
    - 10th_percentile/event_value，如果 event_value 小於 10th_percentile  
 
-2. **緩慢正向趨勢：**系統會計算歷程記錄時間範圍內事件值的趨勢線，而我們可尋找趨勢線的正向趨勢。 奇異值會計算為：  
+2. **緩慢正向趨勢：** 系統會計算歷程記錄時間範圍內事件值的趨勢線，而作業可尋找趨勢線的正向趨勢。 奇異值會計算為：  
 
    - Slope，如果斜率為正數  
    - 不然為 0 
 
-1. **緩慢負向趨勢：**系統會計算歷程記錄時間範圍內事件值的趨勢線，而我們可尋找趨勢線的負向趨勢。 奇異值會計算為： 
+3. **緩慢負向趨勢：** 系統會計算歷程記錄時間範圍內事件值的趨勢線，而作業可尋找趨勢線的負向趨勢。 奇異值會計算為： 
 
    - Slope，如果斜率為負數  
    - 不然為 0  
 
 計算內送事件的奇異值後，系統會根據奇異值計算鞅 (Martingale) 值 (如需如何計算鞅值的詳細資訊，請參閱[機器學習服務部落格](https://blogs.technet.microsoft.com/machinelearning/2014/11/05/anomaly-detection-using-machine-learning-to-detect-abnormalities-in-time-series-data/))。 系統會將此鞅值傳回為異常分數。 鞅值會緩慢增加以回應奇怪的值，這可讓偵測器對偶發變更維持強固並減少錯誤警示。 它也有一個實用的屬性： 
 
-可能性 [有 t 存在，以致 M<sub>t</sub> > λ ] < 1/λ，其中 M<sub>t</sub> 是即時 t 的鞅值，而 λ 是實際值。 例如，如果我們在 M<sub>t</sub>>100 時警示，則誤判的可能性會小於 1/100。  
+可能性 [有 t 存在，以致 M<sub>t</sub> > λ ] < 1/λ，其中 M<sub>t</sub> 是即時 t 的鞅值，而 λ 是實際值。 例如，如果在 M<sub>t</sub>>100 時出現警示，則誤判的可能性會小於 1/100。  
 
 ## <a name="guidance-for-using-the-bi-directional-level-change-detector"></a>使用雙向層級變更偵測器的指引 
 
@@ -143,7 +143,7 @@ AnomalyDetection 運算子會傳回包含所有三個分數做為輸出的記錄
 
 1. 當時間序列突然看到數值增加或下滑時，AnomalyDetection 運算子就會偵測到它。 但是偵測恢復正常狀態則需要更詳細的規劃。 如果時間序列在異常前處於穩定狀態，將 AnomalyDetection 運算子的偵測時間範圍設定為異常時間長度的最多一半即可達成。 此案例假設可以事先估計異常的最小持續時間，而且該時間範圍內有足夠的事件可充分訓練模型 (至少 50 個事件)。 
 
-   這顯示於下面使用上限變更的圖 1 和 2 中 (相同的邏輯適用於下限變更)。 在這兩個圖中，波形都屬於異常層級變更。 橙色垂直線表示躍點界限，而且躍點大小與 AnomalyDetection 運算子中指定的偵測時間範圍相同。 綠色線條表示訓練時間範圍的大小。 在圖 1 中，躍點大小與異常持續時間相同。 在圖 2 中，躍點大小是異常持續時間的一半。 在所有情況下，系統都會偵測到向上變更，因為用於評分的模型是使用正常資料進行訓練。 但是，根據雙向層級變更偵測器的運作方式，我們必須從進行恢復正常狀態評分之模型所用的訓練時間範圍中排除正常值。 在圖 1 中，評分模型的訓練包含一些正常事件，所以無法偵測到恢復正常狀態。 但在圖 2 中，訓練只包含異常部分，以確保偵測到恢復正常狀態。 基於相同的理由，任何小於一半的項目也適用，然而任何較大的項目終將包含少數正常事件。 
+   這顯示於下面使用上限變更的圖 1 和 2 中 (相同的邏輯適用於下限變更)。 在這兩個圖中，波形都屬於異常層級變更。 橙色垂直線表示躍點界限，而且躍點大小與 AnomalyDetection 運算子中指定的偵測時間範圍相同。 綠色線條表示訓練時間範圍的大小。 在圖 1 中，躍點大小與異常持續時間相同。 在圖 2 中，躍點大小是異常持續時間的一半。 在所有情況下，系統都會偵測到向上變更，因為用於評分的模型是使用正常資料進行訓練。 但是，根據雙向層級變更偵測器的運作方式，必須從進行恢復正常狀態評分之模型所用的訓練時間範圍中排除正常值。 在圖 1 中，評分模型的訓練包含一些正常事件，所以無法偵測到恢復正常狀態。 但在圖 2 中，訓練只包含異常部分，以確保偵測到恢復正常狀態。 基於相同的理由，任何小於一半的項目也適用，然而任何較大的項目終將包含少數正常事件。 
 
    ![時間範圍大小等於異常時間長度的 AD](media/stream-analytics-machine-learning-anomaly-detection/windowsize_equal_anomaly_length.png)
 

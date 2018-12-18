@@ -1,12 +1,12 @@
 ---
-title: "管理 StorSimple 8000 系列備份原則 | Microsoft Docs"
-description: "說明如何使用 StorSimple 裝置管理員服務在 StorSimple 8000 裝置上建立並管理手動備份、備份排程與備份保留。"
+title: 管理 StorSimple 8000 系列備份原則 | Microsoft Docs
+description: 說明如何使用 StorSimple 裝置管理員服務在 StorSimple 8000 裝置上建立並管理手動備份、備份排程與備份保留。
 services: storsimple
 documentationcenter: NA
 author: alkohli
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: NA
 ms.topic: article
@@ -15,10 +15,11 @@ ms.workload: TBD
 ms.date: 07/05/2017
 ms.author: alkohli
 ms.openlocfilehash: 569dbfdeb7dcd526cb5a54b487ea1bfb59b13cc6
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38681575"
 ---
 # <a name="use-the-storsimple-device-manager-service-in-azure-portal-to-manage-backup-policies"></a>在 Azure 入口網站中，使用 StorSimple 裝置管理員服務來管理備份原則
 

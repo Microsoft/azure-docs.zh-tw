@@ -1,24 +1,20 @@
 ---
-title: "使用 Java 開發 Azure 檔案服務 | Microsoft Docs"
-description: "了解如何開發使用 Azure 檔案服務來儲存檔案資料的 Java 應用程式和服務。"
+title: 使用 Java 開發 Azure 檔案服務 | Microsoft Docs
+description: 了解如何開發使用 Azure 檔案服務來儲存檔案資料的 Java 應用程式和服務。
 services: storage
-documentationcenter: java
-author: tamram
-manager: timlt
-editor: tysonn
-ms.assetid: 3bfbfa7f-d378-4fb4-8df3-e0b6fcea5b27
+author: wmgries
 ms.service: storage
-ms.workload: storage
-ms.tgt_pltfrm: na
 ms.devlang: Java
 ms.topic: article
 ms.date: 09/19/2017
 ms.author: renash
-ms.openlocfilehash: 8cd3698d4281b933881c45dfa5e7868bd7b0bdaf
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.component: files
+ms.openlocfilehash: aa63a31f7f84502a29aad6b38f454ea1080127e0
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39529089"
 ---
 # <a name="develop-for-azure-files-with-java"></a>使用 Java 開發 Azure 檔案服務
 [!INCLUDE [storage-selector-file-include](../../../includes/storage-selector-file-include.md)]
@@ -26,7 +22,7 @@ ms.lasthandoff: 10/11/2017
 [!INCLUDE [storage-check-out-samples-java](../../../includes/storage-check-out-samples-java.md)]
 
 ## <a name="about-this-tutorial"></a>關於本教學課程
-本教學課程將示範基本概念，說明如何利用 Java來開發使用 Azure 檔案服務以儲存檔案資料的應用程式或服務。 在本教學課程中，我們將建立簡單的主控台應用程式，並說明如何執行 Java 和 Azure 檔案服務的基本動作：
+本教學課程將示範基本概念，說明如何利用 Java來開發使用 Azure 檔案服務以儲存檔案資料的應用程式或服務。 在本教學課程中，我們將建立主控台應用程式，並說明如何執行 Java 和 Azure 檔案服務的基本動作：
 
 * 建立及刪除 Azure 檔案共用
 * 建立及刪除目錄
@@ -34,10 +30,10 @@ ms.lasthandoff: 10/11/2017
 * 上傳、下載及刪除檔案
 
 > [!Note]  
-> 由於 Azure 檔案服務可透過 SMB 存取，因此便可使用標準 Java I/O 類別撰寫簡單的應用程式以存取 Azure 檔案共用。 本文將說明如何撰寫使用 Azure 儲存體 Java SDK 的應用程式，它會使用 [Azure 檔案服務 REST API](https://docs.microsoft.com/rest/api/storageservices/fileservices/file-service-rest-api) 與 Azure 檔案服務通訊。
+> 由於 Azure 檔案服務可透過 SMB 存取，因此便可使用標準 Java I/O 類別撰寫應用程式以存取 Azure 檔案共用。 本文將說明如何撰寫使用 Azure 儲存體 Java SDK 的應用程式，它會使用 [Azure 檔案服務 REST API](https://docs.microsoft.com/rest/api/storageservices/file-service-rest-api) 與 Azure 檔案服務通訊。
 
 ## <a name="create-a-java-application"></a>建立 Java 應用程式
-如要建置範例，您將需要 Java Development Kit (JDK) 和 適用於 Java 的 Azure 儲存體 SDK。 您也應該建立 Azure 儲存體帳戶。
+若要建置範例，您將需要 Java Development Kit (JDK) 和 [Azure Storage SDK for Java](https://github.com/Azure/azure-storage-java)。 您也應該建立 Azure 儲存體帳戶。
 
 ## <a name="set-up-your-application-to-use-azure-files"></a>設定您的應用程式以使用 Azure 檔案服務
 若要使用 Azure 儲存體 API，請將下列陳述式加入至您要從其存取儲存體服務的 Java 檔案頂端。
@@ -144,7 +140,7 @@ if (sampleDir.createIfNotExists()) {
 ```
 
 ## <a name="delete-a-directory"></a>刪除目錄
-刪除目錄是相當簡單的工作，不過請注意您無法刪除仍然包含檔案或其他目錄的目錄。
+刪除目錄是一項直接的工作，不過請注意您無法刪除仍然包含檔案或其他目錄的目錄。
 
 ```java
 // Get a reference to the root directory for the share.
@@ -172,7 +168,7 @@ for ( ListFileItem fileItem : rootDir.listFilesAndDirectories() ) {
 ```
 
 ## <a name="upload-a-file"></a>上傳檔案
-Azure 檔案共用至少包含根目錄，檔案可以放置其中。 在本節中，您將學習如何從本機儲存體將檔案上傳至共用的根目錄。
+在本節中，您將學習如何從本機儲存體將檔案上傳至共用的根目錄。
 
 上傳檔案的第一個步驟是取得檔案所在之目錄的參考。 您可以藉由呼叫共用物件的 **getRootDirectoryReference** 方法來完成。
 

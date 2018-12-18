@@ -1,25 +1,19 @@
 ---
-title: "Azure Analysis Services 教學課程第 8 課：建立檢視方塊 | Microsoft Docs"
-description: "說明如何在 Azure Analysis Services 教學課程專案中建立檢視方塊。"
-services: analysis-services
-documentationcenter: 
-author: Minewiskan
+title: Azure Analysis Services 教學課程第 8 課：建立檢視方塊 | Microsoft Docs
+description: 說明如何在 Azure Analysis Services 教學課程專案中建立檢視方塊。
+author: minewiskan
 manager: kfile
-editor: 
-tags: 
-ms.assetid: 
-ms.service: analysis-services
-ms.devlang: NA
-ms.topic: get-started-article
-ms.tgt_pltfrm: NA
-ms.workload: na
-ms.date: 01/08/2018
+ms.service: azure-analysis-services
+ms.topic: conceptual
+ms.date: 07/03/2018
 ms.author: owend
-ms.openlocfilehash: 190a9c998bceb97f8446265809b8d2c3bdc76abc
-ms.sourcegitcommit: 176c575aea7602682afd6214880aad0be6167c52
+ms.reviewer: minewiskan
+ms.openlocfilehash: f72c1048a4bf2cb0a2f42db99bb35cf66563ae0f
+ms.sourcegitcommit: 86cb3855e1368e5a74f21fdd71684c78a1f907ac
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/09/2018
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37442095"
 ---
 # <a name="create-perspectives"></a>建立檢視方塊
 

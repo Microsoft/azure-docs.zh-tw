@@ -1,23 +1,19 @@
 ---
-title: "Azure 儲存體移轉常見問題集 | Microsoft Docs"
-description: "移轉 Azure 儲存體常見問題的解答"
+title: Azure 儲存體移轉常見問題集 | Microsoft Docs
+description: 移轉 Azure 儲存體常見問題的解答
 services: storage
-documentationcenter: na
 author: genlin
-manager: timlt
-editor: tysonn
 ms.service: storage
-ms.devlang: na
 ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: storage
-ms.date: 11/16/2017
+ms.date: 05/11/2018
 ms.author: genli
-ms.openlocfilehash: 362614d28cf62bd288d8aff10539c81381474955
-ms.sourcegitcommit: eeb5daebf10564ec110a4e83874db0fb9f9f8061
+ms.component: common
+ms.openlocfilehash: 3c671fe6dcb1af25bfb0aa09fecf8ad5e5ceb97b
+ms.sourcegitcommit: 1b561b77aa080416b094b6f41fce5b6a4721e7d5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/03/2018
+ms.lasthandoff: 09/17/2018
+ms.locfileid: "45732255"
 ---
 # <a name="frequently-asked-questions-about-azure-storage-migration"></a>關於 Azure 儲存體移轉的常見問題集
 
@@ -41,7 +37,7 @@ AzCopy 使用[複製 Blob API](https://docs.microsoft.com/rest/api/storageservic
 
 **有兩個檔案共用，位在相同區域的相同儲存體帳戶上，在這兩者間複製資料是否收取費用？**
 
-編號 此流程不會收取費用。
+否。 此流程不會收取費用。
 
 **如何將我的整個儲存體帳戶備份到其他儲存體帳戶？**
 
@@ -76,7 +72,7 @@ AzCopy 使用[複製 Blob API](https://docs.microsoft.com/rest/api/storageservic
 
 1.  在目的地 Blob 中建立容器 (資料夾)。
 
-2.  請使用 [AzCopy](https://azure.microsoft.com/en-us/blog/azcopy-5-1-release/) 將原始 Blob 容器的內容複製到其他 Blob 容器。
+2.  請使用 [AzCopy](https://azure.microsoft.com/blog/azcopy-5-1-release/) 將原始 Blob 容器的內容複製到其他 Blob 容器。
 
 **如何建立 PowerShell 指令碼，以將 Azure 檔案共用的資料移至 Azure 儲存體中的其他檔案共用？**
 
@@ -129,7 +125,7 @@ AzCopy 使用[複製 Blob API](https://docs.microsoft.com/rest/api/storageservic
 2.  執行下列 Azure PowerShell 指令碼，將受控磁碟 VHD 從一個區域複製到另一個區域：
 
     ```
-    Login-AzureRmAccount
+    Connect-AzureRmAccount
 
     Select-AzureRmSubscription -SubscriptionId <ID>
 
@@ -168,7 +164,7 @@ AzCopy 使用[複製 Blob API](https://docs.microsoft.com/rest/api/storageservic
 
 **如何將儲存體帳戶的次要位置變更為歐洲地區？**
 
-建立儲存體帳戶時，您可以為帳戶選取主要區域。 次要地區的選擇是以主要地區為準，無法變更。 如需詳細資訊，請參閱 [Azure 儲存體複寫](storage-redundancy.md)。
+建立儲存體帳戶時，您可以為帳戶選取主要區域。 次要地區的選擇是以主要地區為準，無法變更。 如需詳細資訊，請參閱[異地備援儲存體 (GRS)：適用於 Azure 儲存體的跨區域複寫](storage-redundancy.md)。
 
 **我可以從哪裡取得更多關於 Azure 儲存體服務加密 (SSE) 的資訊？**  
   
@@ -195,7 +191,7 @@ AzCopy 使用[複製 Blob API](https://docs.microsoft.com/rest/api/storageservic
 
 **將儲存體帳戶的複寫從異地備援儲存體變更為本地備援儲存體是否有任何必要條件？**
 
-編號 
+否。 
 
 **如何存取 Azure 檔案備援儲存體？**
 
@@ -260,7 +256,7 @@ Azure 檔案共用不允許使用進階儲存體。
 
 -   請使用共用存取簽章 (SAS) 權杖來提供資源的存取權。 
 
--   將儲存體帳戶的主要或次要金鑰提供給使用者。 如需詳細資訊，請參閱[管理您的儲存體帳戶](storage-create-storage-account.md#manage-your-storage-account)。
+-   將儲存體帳戶的主要或次要金鑰提供給使用者。 如需詳細資訊，請參閱[管理您的儲存體帳戶](storage-account-manage.md#access-keys)。
 
 -   變更存取原則，以允許匿名存取。 如需詳細資訊，請參閱[授與容器和 Blob 的匿名使用者權限](../blobs/storage-manage-access-to-resources.md#grant-anonymous-users-permissions-to-containers-and-blobs)。
 
@@ -284,7 +280,7 @@ Azure 檔案共用不允許使用進階儲存體。
 
     - **SAS 權杖**︰使用 SAS 權杖以存取來自端點的資料。 如需詳細資訊，請參閱[使用共用存取簽章](storage-dotnet-shared-access-signature-part-1.md)。
 
-**如何將 HTTPS 自訂網域與我的儲存體帳戶搭配使用？例如，如何讓「https://mystorageaccountname.blob.core.windows.net/images/image.gif」顯示為「https://www.contoso.com/images/image.gif」？**
+**如何將 HTTPS 自訂網域與我的儲存體帳戶搭配使用？例如，如何讓 "https://mystorageaccountname.blob.core.windows.net/images/image.gif" 顯示為 "https://www.contoso.com/images/image.gif"？**
 
 具有自訂網域的儲存體帳戶目前不支援 SSL。
 但可以使用非 HTTPS 的自訂網域。 如需詳細資訊，請參閱[針對 Blob 儲存體端點設定自訂網域名稱](../blobs/storage-custom-domain-name.md)。

@@ -2,34 +2,31 @@
 title: Azure Cosmos DB：開始使用 SQL API .NET Core 教學課程 | Microsoft Docs
 description: 本教學課程將使用 Azure Cosmos DB SQL API .NET Core SDK，建立線上資料庫以及 C# 主控台應用程式。
 services: cosmos-db
-documentationcenter: .net
-author: arramac
-manager: jhubbard
+author: SnehaGunda
+manager: kfile
 editor: ''
-ms.assetid: 9f93e276-9936-4efb-a534-a9889fa7c7d2
 ms.service: cosmos-db
-ms.workload: data-services
-ms.tgt_pltfrm: na
+ms.component: cosmosdb-sql
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: tutorial
 ms.date: 03/12/2018
-ms.author: arramac
+ms.author: sngun
 ms.custom: devcenter
-ms.openlocfilehash: 3fb14a2ae6e820c289e7000a4876efe4b4a3b89c
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: 421be020ae0fb7cf9f3dc4ee02be9dd65dea8b16
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46982506"
 ---
 # <a name="azure-cosmos-db-getting-started-with-the-sql-api-and-net-core"></a>Azure Cosmos DB︰開始使用 SQL API 與 .NET Core
+
 > [!div class="op_single_selector"]
 > * [.NET](sql-api-get-started.md)
 > * [.NET Core](sql-api-dotnetcore-get-started.md)
-> * [Node.js for MongoDB](mongodb-samples.md)
-> * [Node.js](sql-api-nodejs-get-started.md)
 > * [Java](sql-api-java-get-started.md)
-> * [C++](sql-api-cpp-get-started.md)
->  
+> * [非同步 Java](sql-api-async-java-get-started.md)
+> * [Node.js](sql-api-nodejs-get-started.md)
 > 
 
 歡迎使用 .NET Core 入門之適用於 Azure Cosmos DB 的 SQL API 教學課程！ 完成本教學課程之後，您將會有一個主控台應用程式，可用來建立和查詢 Azure Cosmos DB 資源。
@@ -52,7 +49,7 @@ ms.lasthandoff: 03/28/2018
 
 讓我們開始吧！
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 * 使用中的 Azure 帳戶。 如果您沒有帳戶，您可以註冊 [免費帳戶](https://azure.microsoft.com/free/)。 
 

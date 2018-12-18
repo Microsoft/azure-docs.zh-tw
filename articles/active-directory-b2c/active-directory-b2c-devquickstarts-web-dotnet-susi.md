@@ -1,21 +1,21 @@
 ---
-title: 驗證、註冊、密碼重設 ASP.NET Azure Active Directory B2C
+title: Azure Active Directory B2C 中的驗證、註冊、密碼重設 | Microsoft Docs
 description: 如何使用 Azure Active Directory B2C 建置支援註冊/登入、設定檔編輯及密碼重設的 Web 應用程式。
 services: active-directory-b2c
-documentationcenter: .net
 author: davidmu1
 manager: mtillman
-editor: ''
-ms.service: active-directory-b2c
+ms.service: active-directory
 ms.workload: identity
-ms.topic: article
+ms.topic: conceptual
 ms.date: 03/17/2017
 ms.author: davidmu
-ms.openlocfilehash: f7b7cce84f8ff7be14120568e710432be639ce8e
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: B2C
+ms.openlocfilehash: 838717aa8f426ea54f4736453aac8c6fcf9a0099
+ms.sourcegitcommit: 0c64460a345c89a6b579b1d7e273435a5ab4157a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43344492"
 ---
 # <a name="create-an-aspnet-web-app-with-azure-active-directory-b2c-sign-up-sign-in-profile-edit-and-password-reset"></a>建立支援 Azure Active Directory B2C 註冊、登入、設定檔編輯及密碼重設的 ASP.NET Web 應用程式
 
@@ -26,24 +26,26 @@ ms.lasthandoff: 03/23/2018
 > * 在您的 Azure AD B2C 目錄中註冊 Web 應用程式
 > * 為您的 Web 應用程式建立使用者註冊/登入、編輯設定檔和密碼重設原則
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
-- 您必須將 B2C 租用戶與 Azure 帳戶連接。 您可以在[這裡](https://azure.microsoft.com/en-us/)建立免費的 Azure 帳戶。
+- 您必須將 B2C 租用戶與 Azure 帳戶連接。 您可以在[這裡](https://azure.microsoft.com/)建立免費的 Azure 帳戶。
 - 您需要 [Microsoft Visual Studio](https://www.visualstudio.com/) 或類似的程式來檢視與修改範例程式碼。
 
-## <a name="create-an-azure-ad-b2c-directory"></a>建立 Azure AD B2C 目錄
+## <a name="create-an-azure-ad-b2c-tenant"></a>建立 Azure AD B2C 租用戶
 
-您必須先建立目錄或租用戶，才可使用 Azure AD B2C。 目錄就是您所有使用者、應用程式、群組等項目的容器。 如果您還沒有此資源，請先建立 B2C 目錄，再繼續進行本指南。
+您必須先建立租用戶，才可使用 Azure AD B2C。 租用戶就是您所有使用者、應用程式、群組等項目的容器。 如果您還沒有此資源，請先建立 B2C 租用戶，再繼續進行本指南。
 
 [!INCLUDE [active-directory-b2c-create-tenant](../../includes/active-directory-b2c-create-tenant.md)]
 
 > [!NOTE]
 > 
-> 您必須將 B2C 租用戶與您的 Azure 訂用帳戶連接。 選取 [建立] 後，請選取 [連結現有 Azure AD B2C 租用戶至我的 Azure 訂用帳戶] 選項，然後在 [Azure AD B2C 租用戶] 下拉式清單中選取想要連接的租用戶。
+> 您必須將 Azure AD B2C 租用戶與您的 Azure 訂用帳戶連接。 選取 [建立] 後，請選取 [連結現有 Azure AD B2C 租用戶至我的 Azure 訂用帳戶] 選項，然後在 [Azure AD B2C 租用戶] 下拉式清單中選取想要連接的租用戶。
 
 ## <a name="create-and-register-an-application"></a>建立並註冊應用程式
 
-接下來需在 B2C 目錄中建立並註冊應用程式。 這會提供必要資訊給 Azure AD B2C，讓它與應用程式安全地通訊。 
+接下來需在 Azure AD B2C 租用戶中建立並註冊應用程式。 這會提供必要資訊給 Azure AD B2C，讓它與應用程式安全地通訊。 
+
+選擇 Azure 入口網站左上角的 [所有服務]，搜尋並選取 [Azure AD B2C]。 您現在應使用先前建立的租用戶。
 
 [!INCLUDE [active-directory-b2c-register-web-api](../../includes/active-directory-b2c-register-web-api.md)]
 
@@ -93,7 +95,7 @@ git clone https://github.com/Azure-Samples/active-directory-b2c-dotnet-webapp-an
 * `ida:ResetPasswordPolicyId`：使用您的「重設密碼」原則名稱
 
 ## <a name="launch-the-app"></a>啟動應用程式
-在 Visual Studio 內啟動應用程式。 瀏覽至 [待辦事項清單] 索引標籤，並記下 URl 為：https://login.microsoftonline.com/*YourTenantName*/oauth2/v2.0/authorize?p=*YourSignUpPolicyName*&client_id=*YourclientID*.....
+在 Visual Studio 內啟動應用程式。 瀏覽至 [待辦事項清單] 索引標籤，並記下 URl 為： https://*YourTenantName*.b2clogin.com/*YourTenantName*/oauth2/v2.0/authorize?p=*YourSignUpPolicyName*&client_id=*YourclientID*.....
 
 使用電子郵件地址或使用者名稱來註冊應用程式。 登出後再次登入，然後編輯設定檔或重設密碼。 請登出應用程式，再以不同的使用者身分登入， 
 
@@ -194,7 +196,7 @@ public partial class Startup
                 },
 
                 // Specify the scope by appending all of the scopes requested into one string (seperated by a blank space)
-                Scope = $"{OpenIdConnectScopes.OpenId} {ReadTasksScope} {WriteTasksScope}"
+                Scope = $"openid profile offline_access {ReadTasksScope} {WriteTasksScope}"
             }
         );
     }

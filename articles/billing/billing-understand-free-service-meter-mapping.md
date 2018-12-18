@@ -1,24 +1,25 @@
 ---
-title: "免費帳戶服務與計量的對應 - Azure | Microsoft Docs"
-description: "對於免費帳戶隨附的服務了解服務與計量的對應。"
-services: 
-documentationcenter: 
+title: Azure 免費帳戶之服務與計量的對應 | Microsoft Docs
+description: 對於免費帳戶隨附的服務了解服務與計量的對應。
+services: ''
+documentationcenter: ''
 author: amberbhargava
 manager: amberb
-editor: 
+editor: ''
 tags: billing
 ms.service: billing
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 09/25/2017
 ms.author: amberb
-ms.openlocfilehash: 9d7e355e755f2bac8929ab16f7f71aa3b0702658
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 3019fe5f8b44eaa32d4ab309f296d6b4574df1d3
+ms.sourcegitcommit: f06925d15cfe1b3872c22497577ea745ca9a4881
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 06/27/2018
+ms.locfileid: "37061365"
 ---
 # <a name="understand-free-service-to-meter-mapping"></a>了解免費帳戶與計量的對應
 

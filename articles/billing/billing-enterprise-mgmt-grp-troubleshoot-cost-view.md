@@ -1,26 +1,27 @@
 ---
-title: "為企業成本檢視疑難排解 - Azure | Microsoft Docs"
-description: "了解如何解決 Azure 入口網站中與組織成本檢視有關的任何問題。"
+title: 為 Azure 企業成本檢視進行疑難排解 | Microsoft Docs
+description: 了解如何解決 Azure 入口網站中與組織成本檢視有關的任何問題。
 author: rthorn17
 manager: rithorn
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: billing
 ms.devlang: na
-ms.topic: article
+ms.topic: troubleshooting
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 2/22/2017
 ms.author: rithorn
-ms.openlocfilehash: 54c7610f1a0d3de2503ef471ca9adc0db423f530
-ms.sourcegitcommit: 12fa5f8018d4f34077d5bab323ce7c919e51ce47
+ms.openlocfilehash: 2a9639103b494e3af54a6a21ed769cf4f7bd6259
+ms.sourcegitcommit: f06925d15cfe1b3872c22497577ea745ca9a4881
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/23/2018
+ms.lasthandoff: 06/27/2018
+ms.locfileid: "37063187"
 ---
 # <a name="troubleshoot-enterprise-cost-views"></a>為企業成本檢視疑難排解 
 
-在企業註冊內，有多個設定可能導致註冊內的使用者無法檢視成本。  如果並未直接向 Microsoft 購買註冊，註冊系統管理員或夥伴會管理這些設定。  本文可協助您了解設定，以及這些設定如何影響註冊。 這些設定與 [Azure RBAC 角色](https://docs.microsoft.com/azure/active-directory/role-based-access-control-configure)無關。 
+在企業註冊內，有多個設定可能導致註冊內的使用者無法檢視成本。  如果並未直接向 Microsoft 購買註冊，註冊系統管理員或夥伴會管理這些設定。  本文可協助您了解設定，以及這些設定如何影響註冊。 這些設定與 [Azure RBAC 角色](https://docs.microsoft.com/azure/role-based-access-control/role-assignments-portal)無關。 
 
 
 ## <a name="enabling-access-to-costs"></a>啟用成本存取權
@@ -44,4 +45,4 @@ ms.lasthandoff: 02/23/2018
 ![找不到資產](media/billing-enterprise-mgmt-groups/asset-not-found.png)
 
 請連絡訂用帳戶或管理群組的系統管理員，以取得存取權。  
-* 針對訂用帳戶，請參考 [Azure 角色型存取控制 (RBAC)](https://docs.microsoft.com/azure/active-directory/role-based-access-control-configure) 文件，以取得有關所需角色的說明。
+* 針對訂用帳戶，請參考 [Azure 角色型存取控制 (RBAC)](https://docs.microsoft.com/azure/role-based-access-control/role-assignments-portal) 文件，以取得有關所需角色的說明。

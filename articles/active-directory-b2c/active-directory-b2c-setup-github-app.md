@@ -1,55 +1,46 @@
 ---
-title: GitHub 身分識別提供者設定 - Azure AD B2C | Microsoft Docs
-description: 在受 Azure Active Directory B2C 保護的應用程式中，針對具有 GitHub 帳戶的客戶提供註冊和登入。
+title: 使用 Azure Active Directory B2C 設定註冊，並以 GitHub 帳戶登入 | Microsoft Docs
+description: 使用 Azure Active Directory B2C，讓具有 GitHub 帳戶的客戶得以註冊和登入您的應用程式。
 services: active-directory-b2c
-documentationcenter: ''
-author: davidmu
+author: davidmu1
 manager: mtillman
-editor: ''
-ms.service: active-directory-b2c
+ms.service: active-directory
 ms.workload: identity
-ms.topic: article
-ms.date: 02/06/2017
+ms.topic: conceptual
+ms.date: 09/11/2018
 ms.author: davidmu
-ms.openlocfilehash: 17ec4ebd8406f56c431666340ca8834c5ccf9670
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: B2C
+ms.openlocfilehash: 7f8b2c6dc570f7a610c0d661da0c6df7491647bd
+ms.sourcegitcommit: 5b8d9dc7c50a26d8f085a10c7281683ea2da9c10
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/26/2018
+ms.locfileid: "47182173"
 ---
-# <a name="azure-active-directory-b2c-provide-sign-up-and-sign-in-to-consumers-with-github-accounts"></a>Azure Active Directory B2C：針對具有 GitHub 帳戶的取用者提供註冊和登入
+# <a name="set-up-sign-up-and-sign-in-with-a-github-account-using-azure-active-directory-b2c"></a>使用 Azure Active Directory B2C 設定註冊，並以 GitHub 帳戶登入
 
 > [!NOTE]
-> 這項功能處於預覽狀態。
+> 此功能處於預覽狀態。
 > 
 
-本文將說明如何針對具有 GitHub 帳戶的使用者啟用登入。
+若要在 Azure Active Directory (Azure AD) B2C 中使用 GitHub 帳戶做為識別提供者，您需要在代表該帳戶的租用戶中建立應用程式。 如果您還沒有 GitHub 帳戶，可以至 [https://www.github.com/](https://www.github.com/) 取得。
 
 ## <a name="create-a-github-oauth-application"></a>建立 GitHub OAuth 應用程式
 
-若要在 Azure AD B2C 中使用 GitHub 作為身分識別提供者，您必須建立 GitHub OAuth 應用程式，並為其提供正確參數。
+1. 使用您的 GitHub 認證登入 [GitHub 開發人員](https://github.com/settings/developers)網站。
+2. 選取 [OAuth 應用程式]，然後選取 [新增 OAuth 應用程式]。
+3. 輸入 [應用程式名稱] 和您的 [首頁 URL]。
+4. 在 [授權回呼 URL] 中輸入 `https://your-tenant-name.b2clogin.com/your-tenant-name.onmicrosoft.com/oauth2/authresp`。 將 `your-tenant-name` 取代為您的 Azure AD B2C 租用戶名稱。
+5. 按一下 [註冊應用程式]。
+6. 複製 [用戶端識別碼] 和 [用戶端密碼] 的值。 您必須同時將識別提供者新增至您的租用戶。
 
-1. 在登入 GitHub 之後，移至 [GitHub 開發人員設定](https://github.com/settings/developers)。
-1. 按一下 [New OAuth App] \(新增 OAuth 應用程式\)
-1. 輸入 [Application name] \(應用程式名稱\) 和您的 [Homepage URL] \(首頁 URL\)。
-1. 針對 [Authorization callback URL] \(授權回呼 URL\)，輸入 `https://login.microsoftonline.com/te/{tenant}/oauth2/authresp`。 使用您的 Azure AD B2C 租用戶名稱 (例如 contosob2c.onmicrosoft.com) 來取代 **{tenant}**。
+## <a name="configure-a-github-account-as-an-identity-provider"></a>將 GitHub 帳戶設為識別提供者
 
-    >[!NOTE]
-    >[Sign-on URL] \(登入 URL\) 中 "tenant" 的值必須全部小寫。
-
-1. 按一下 [註冊應用程式]。
-1. 儲存 [Client ID] \(用戶端識別碼\) 和 [Client Secret] \(用戶端密碼\) 的值。 在下一節中將會需要這兩項資料。
-
-## <a name="configure-github-as-an-identity-provider-in-your-azure-ad-b2c-tenant"></a>將 GitHub 帳戶設定為 Azure AD B2C 租用戶中的身分識別提供者
-
-1. 遵循下列步驟以 [瀏覽至 B2C 功能刀鋒視窗](active-directory-b2c-app-registration.md#navigate-to-b2c-settings) (位於 Azure 入口網站上)。
-1. 在 B2C 功能刀鋒視窗中，按一下 [ **身分識別提供者**]。
-1. 按一下刀鋒視窗頂端的 [新增]  。
-1. 針對身分識別提供者組態，提供容易辨識的 **名稱** 。 例如，輸入 "GitHub"。
-1. 按一下 [身分識別提供者類型]、選取 [GitHub]，然後按一下 [確定]。
-1. 按一下 [設定此身分識別提供者] ，然後輸入您先前複製的 GitHub OAuth 應用程式用戶端識別碼和用戶端密碼。
-1. 依序按一下 [確定] 和 [建立]來儲存您的 GitHub 設定。
-
-## <a name="next-steps"></a>後續步驟
-
-建立或編輯[內建原則](active-directory-b2c-reference-policies.md)，然後將 GitHub 新增為身分識別提供者。
+1. 以 Azure AD B2C 租用戶的全域管理員身分登入 [Azure 入口網站](https://portal.azure.com/)。
+2. 按一下頂端功能表中的 [目錄和訂用帳戶] 篩選，然後選擇包含您租用戶的目錄，以確定您使用的是包含 Azure AD B2C 租用戶的目錄。
+3. 選擇 Azure 入口網站左上角的 [所有服務]，搜尋並選取 [Azure AD B2C]。
+4. 選取 [識別提供者]，然後選取 [新增]。
+5. 提供 [名稱]。 例如，輸入 *Github*。
+6. 依序選取 [識別提供者類型]、[Github (預覽)]，然後按一下 [確定]。
+7. 選取 [設定此識別提供者]，並輸入 [用戶端識別碼] (您先前記錄的**用戶端識別碼**) ，然後輸入 [用戶端密碼] (您記錄之先前建立的 Github 帳戶應用程式的**用戶端密碼**)。
+8. 依序按一下 [確定] 和 [建立]，以儲存您的 Github 帳戶設定。

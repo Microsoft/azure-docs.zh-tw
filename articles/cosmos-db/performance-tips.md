@@ -3,60 +3,61 @@ title: Azure Cosmos DB 的 .NET 效能祕訣 | Microsoft Docs
 description: 了解用以改善 Azure Cosmos DB 資料庫效能的用戶端設定選項
 keywords: 如何改善資料庫效能
 services: cosmos-db
-author: mimig1
-manager: jhubbard
-editor: ''
-documentationcenter: ''
-ms.assetid: 94ff155e-f9bc-488f-8c7a-5e7037091bb9
+author: SnehaGunda
+manager: kfile
 ms.service: cosmos-db
-ms.workload: data-services
-ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 01/24/2018
-ms.author: mimig
-ms.openlocfilehash: 374d333517301db6cf44f6c00da52202ef5150e1
-ms.sourcegitcommit: 34e0b4a7427f9d2a74164a18c3063c8be967b194
+ms.author: sngun
+ms.openlocfilehash: a805294ecb416d18f3ce13981d26a7d25cd5a204
+ms.sourcegitcommit: 7c4fd6fe267f79e760dc9aa8b432caa03d34615d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/30/2018
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47432846"
 ---
+# <a name="performance-tips-for-azure-cosmos-db-and-net"></a>Azure Cosmos DB 和 .NET 的效能祕訣
+
 > [!div class="op_single_selector"]
+> * [非同步 Java](performance-tips-async-java.md)
 > * [Java](performance-tips-java.md)
 > * [.NET](performance-tips.md)
 > 
-> 
-
-# <a name="performance-tips-for-azure-cosmos-db-and-net"></a>Azure Cosmos DB 和 .NET 的效能祕訣
 
 Azure Cosmos DB 是一個既快速又彈性的分散式資料庫，可在獲得延遲與輸送量保證的情況下順暢地調整。 使用 Azure Cosmos DB 時，您不須進行主要的架構變更，或是撰寫複雜的程式碼來調整您的資料庫。 相應增加和減少就像進行單一 API 呼叫或 [SDK 方法呼叫](set-throughput.md#set-throughput-sdk)一樣簡單。 不過，由於 Azure Cosmos DB 是透過網路呼叫存取，所以您可以在使用 [SQL .NET SDK](documentdb-sdk-dotnet.md) 時進行用戶端最佳化以達到最高效能。
 
 如果您詢問「如何改善我的資料庫效能？ 」，請考慮下列選項：
 
-## <a name="networking"></a>網路
+## <a name="networking"></a>網路功能
 <a id="direct-connection"></a>
 
 1. **原則︰使用直接連接模式**
 
     用戶端連線到 Azure Cosmos DB 的方式，對於效能有重大影響 (尤其對觀察到的用戶端延遲而言)。 有兩個重要組態設定可用來設定用戶端連接原則 - 連接模式和連接[*通訊協定*](#connection-protocol)。  兩個可用的模式︰
 
-   1. 閘道模式 (預設值)
-   2. 直接模式
+   * 閘道模式 (預設值)
+      
+     所有 SDK 平台都支援閘道模式並設為預設值。 如果您的應用程式在有嚴格防火牆限制的公司網路中執行，則閘道模式會是最佳的選擇，因為它會使用標準 HTTPS 連接埠與單一端點。 不過，對於效能的影響是每次讀取或寫入 Azure Cosmos DB 資料時，閘道模式都會涉及額外的網路躍點。 因此，直接模式因為網路躍點較少，所以可提供較佳的效能。 此外，當您在通訊端連線數目有限的環境中執行應用程式時，也建議使用閘道連線模式，例如，使用 Azure Functions 時，或當您處於使用情況方案時。 
 
-      所有 SDK 平台都支援閘道模式並設為預設值。  如果您的應用程式在有嚴格防火牆限制的公司網路中執行，則閘道模式會是最佳的選擇，因為它會使用標準 HTTPS 連接埠與單一端點。 不過，對於效能的影響是每次讀取或寫入 Azure Cosmos DB 資料時，閘道模式都會涉及額外的網路躍點。 因此，直接模式因為網路躍點較少，所以可提供較佳的效能。
-<a id="use-tcp"></a>
-2. **連接原則︰使用 TCP 通訊協定**
+   * 直接模式
 
-    使用直接模式時，有兩個可用的通訊協定選項：
+     直接模式支援透過 TCP 和 HTTPS 通訊協定連線。 目前，只有 .NET Standard 2.0 支援直接模式。 使用直接模式時，有兩個可用的通訊協定選項：
 
-   * TCP
-   * HTTPS
+    * TCP
+    * HTTPS
 
-     Azure Cosmos DB 提供透過 HTTPS 的簡單且開放 RESTful 程式設計模型。 此外，它可提供有效率的 TCP 通訊協定，此 TCP 通訊協定在通訊模型中也符合 REST 限制，並且可以透過 .NET 用戶端 SDK 取得。 直接 TCP 和 HTTPS 皆使用 SSL 來進行初始驗證和加密流量。 為了達到最佳效能，儘可能使用 TCP 通訊協定。
+    使用閘道模式時，Azure Cosmos DB 會使用連接埠 443，而 MongoDB API 則會使用 10250、10255 和 10256 連接埠。 10250 連接埠會直接對應至預設 Mongodb 執行個體而不使用異地複寫，10255/10256 連接埠則會使用異地複寫功能對應至 Mongodb 執行個體。 在直接模式下使用 TCP 時，除了「閘道」連接埠之外，您還務必要開啟 10000 到 20000 之間的連接埠範圍，因為 Azure Cosmos DB 使用動態 TCP 連接埠。 如果未開啟這些連接埠而您嘗試使用 TCP，您就會收到「503 服務無法使用」錯誤。 下表顯示不同 API 的可用連線模式，以及每個 API 的服務連接埠使用者：
 
-     在閘道模式下使用 TCP 時，TCP 連接埠 443 是 Azure Cosmos DB 連接埠，而 10255 則是 MongoDB API 連接埠。 在直接模式下使用 TCP 時，除了「閘道」連接埠之外，您還務必要開啟 10000 到 20000 之間的連接埠範圍，因為 Azure Cosmos DB 使用動態 TCP 連接埠。 如果未開啟這些連接埠而您嘗試使用 TCP，您就會收到「503 服務無法使用」錯誤。
+    |連線模式  |支援的通訊協定  |支援的 SDK  |API/服務連接埠  |
+    |---------|---------|---------|---------|
+    |閘道器  |   HTTPS    |  所有 SDK    |   SQL(443)、Mongo(10250, 10255, 10256)、Table(443)、Cassandra(443)、Graph(443)    |
+    |直接    |    HTTPS     |  .Net 和 Java SDK    |    SQL(443)   |
+    |直接    |     TCP    |  .Net SDK    | 10,000-20,000 範圍內的連接埠 |
 
-     連接模式設定於使用 ConnectionPolicy 參數建構 DocumentClient 執行個體期間。 如果使用直接模式，也可以在 ConnectionPolicy 參數內設定 Protocol。
+    Azure Cosmos DB 提供透過 HTTPS 的簡單且開放 RESTful 程式設計模型。 此外，它可提供有效率的 TCP 通訊協定，此 TCP 通訊協定在通訊模型中也符合 REST 限制，並且可以透過 .NET 用戶端 SDK 取得。 直接 TCP 和 HTTPS 皆使用 SSL 來進行初始驗證和加密流量。 為了達到最佳效能，儘可能使用 TCP 通訊協定。
+
+    連接模式設定於使用 ConnectionPolicy 參數建構 DocumentClient 執行個體期間。 如果使用直接模式，也可以在 ConnectionPolicy 參數內設定 Protocol。
 
     ```csharp
     var serviceEndpoint = new Uri("https://contoso.documents.net");
@@ -73,19 +74,19 @@ Azure Cosmos DB 是一個既快速又彈性的分散式資料庫，可在獲得�
 
     ![Azure Cosmos DB 連接原則的圖例](./media/performance-tips/connection-policy.png)
 
-3. **呼叫 OpenAsync 以避免第一次要求的啟動延遲**
+2. **呼叫 OpenAsync 以避免第一次要求的啟動延遲**
 
     根據預設，第一個要求會因為必須擷取位址路由表而有較高的延遲。 若要避免此第一次要求的啟動延遲，您應該在初始化期間呼叫 OpenAsync() 一次，如下所示。
 
         await client.OpenAsync();
    <a id="same-region"></a>
-4. **為了效能在相同 Azure 區域中共置用戶端**
+3. **為了效能在相同 Azure 區域中共置用戶端**
 
     可能的話，請將任何呼叫 Azure Cosmos DB 的應用程式放在與 Azure Cosmos DB 資料庫相同的區域中。 以約略的比較來說，在相同區域內對 Azure Cosmos DB 進行的呼叫會在 1-2 毫秒內完成，但美國西岸和美國東岸之間的延遲則會大於 50 毫秒。 視要求所採用的路由而定，各項要求從用戶端傳遞至 Azure 資料中心界限時的這類延遲可能有所不同。 確保呼叫端應用程式與佈建的 Azure Cosmos DB 端點位於相同的 Azure 區域中，將可能達到最低的延遲。 如需可用區域的清單，請參閱 [Azure 區域](https://azure.microsoft.com/regions/#services)。
 
     ![Azure Cosmos DB 連接原則的圖例](./media/performance-tips/same-region.png)
    <a id="increase-threads"></a>
-5. **增加執行緒/工作數目**
+4. **增加執行緒/工作數目**
 
     由於對 Azure Cosmos DB 的呼叫要透過網路進行，因此您可能需要改變要求的平行處理原則程度，以便讓用戶端應用程式在不同要求之間只需等待很短的時間。 例如，如果您使用 .NET 的[工作平行程式庫](https://msdn.microsoft.com//library/dd460717.aspx)，請建立大約數百個讀取或寫入 Azure Cosmos DB 的工作。
 
@@ -130,9 +131,10 @@ Azure Cosmos DB 是一個既快速又彈性的分散式資料庫，可在獲得�
     如果您是以高輸送量層級 (> 50,000 RU/秒) 進行測試，用戶端應用程式可能會成為瓶頸，因為電腦對 CPU 或網路的使用率將達到上限。 如果到了這一刻，您可以將用戶端應用程式向外延展至多部伺服器，以繼續將 Azure Cosmos DB 帳戶再往前推進一步。
 8. **快取較低讀取延遲的文件 URI**
 
-    盡可能快取文件 URI 以達到最佳讀取效能。
+    盡可能快取文件 URI 以達到最佳讀取效能。 您必須在建立資源時，定義快取 resourceid 的邏輯。 以 Resourceid 為基礎的查閱比以名稱為基礎的查閱更快，因此快取這些值可改善效能。 
+
    <a id="tune-page-size"></a>
-9. **調整查詢/讀取摘要的頁面大小以獲得更好的效能**
+1. **調整查詢/讀取摘要的頁面大小以獲得更好的效能**
 
     使用讀取摘要功能 (例如 ReadDocumentFeedAsync) 執行大量文件讀取時，或發出 SQL 查詢時，如果結果集太大，則會以分段方式傳回結果。 根據預設，會以 100 個項目或 1 MB 的區塊傳回結果 (以先達到的限制為準)。
 
@@ -198,7 +200,7 @@ Azure Cosmos DB 是一個既快速又彈性的分散式資料庫，可在獲得�
          }
     ```             
 
-    在此標頭中傳回的要求費用是佈建輸送量的一小部分 (也就是 2000 RU / 秒)。 例如，如果前述查詢傳回 1000 份 1KB 文件，則作業成本會是 1000。 因此在一秒內，伺服器在節流後續要求前，只會接受兩個這類要求。 如需詳細資訊，請參閱[要求單位](request-units.md)和[要求單位計算機](https://www.documentdb.com/capacityplanner)。
+    在此標頭中傳回的要求費用是佈建輸送量的一小部分 (也就是 2000 RU / 秒)。 例如，如果前述查詢傳回 1000 份 1KB 文件，則作業成本會是 1000。 因此在一秒內，伺服器在對後續要求進行速率限制前，只會接受兩個這類要求。 如需詳細資訊，請參閱[要求單位](request-units.md)和[要求單位計算機](https://www.documentdb.com/capacityplanner)。
 <a id="429"></a>
 2. **處理速率限制/要求速率太大**
 

@@ -1,25 +1,21 @@
 ---
-title: "如何為 SQL 資料倉儲建立支援票證 | Microsoft Docs"
-description: "如何在 Azure SQL 資料倉儲中建立支援票證。"
+title: 如何為 Azure SQL 資料倉儲建立支援票證 | Microsoft Docs
+description: 如何在 Azure SQL 資料倉儲中建立支援票證。
 services: sql-data-warehouse
-documentationcenter: NA
 author: kevinvngo
-manager: jhubbard
-editor: 
-ms.assetid: a91d1f53-03cb-464b-9d5b-4a9c1a194ed3
+manager: craigg
 ms.service: sql-data-warehouse
-ms.devlang: NA
-ms.topic: get-started-article
-ms.tgt_pltfrm: NA
-ms.workload: data-services
-ms.custom: manage
-ms.date: 10/31/2016
-ms.author: kevin;barbkess
-ms.openlocfilehash: 66aa12431e39ce295ce76411693bd20535a5c70c
-ms.sourcegitcommit: 821b6306aab244d2feacbd722f60d99881e9d2a4
+ms.topic: conceptual
+ms.component: manage
+ms.date: 04/17/2018
+ms.author: kevin
+ms.reviewer: igorstan
+ms.openlocfilehash: 12b12ff6a6dc616ec3bb592f54862535b1318e49
+ms.sourcegitcommit: 2b2129fa6413230cf35ac18ff386d40d1e8d0677
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/16/2017
+ms.lasthandoff: 08/30/2018
+ms.locfileid: "43247312"
 ---
 # <a name="how-to-create-a-support-ticket-for-sql-data-warehouse"></a>如何為 SQL 資料倉儲建立支援票證
 如果您的 SQL 資料倉儲有任何問題，請建立支援票證，以便工程支援小組協助您。

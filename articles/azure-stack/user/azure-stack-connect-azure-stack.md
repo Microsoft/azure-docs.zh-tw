@@ -1,11 +1,11 @@
 ---
-title: "連線到 Azure Stack | Microsoft Docs"
-description: "了解如何連線到 Azure Stack"
+title: 連線到 Azure Stack | Microsoft Docs
+description: 了解如何連線到 Azure Stack
 services: azure-stack
-documentationcenter: 
+documentationcenter: ''
 author: mattbriggs
 manager: femila
-editor: 
+editor: ''
 ms.assetid: 3cebbfa6-819a-41e3-9f1b-14ca0a2aaba3
 ms.service: azure-stack
 ms.workload: na
@@ -14,11 +14,12 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/22/2017
 ms.author: mabrigg
-ms.openlocfilehash: 7479202a8afabf5a84560691a2bccf849206c077
-ms.sourcegitcommit: a5f16c1e2e0573204581c072cf7d237745ff98dc
+ms.openlocfilehash: 21015d31a738d3ad57048fe4a703bf78dda7e40c
+ms.sourcegitcommit: ab3b2482704758ed13cccafcf24345e833ceaff3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/11/2017
+ms.lasthandoff: 07/06/2018
+ms.locfileid: "37865765"
 ---
 # <a name="connect-to-azure-stack"></a>連線至 Azure Stack
 
@@ -34,7 +35,7 @@ ms.lasthandoff: 12/11/2017
 
 2. 從開發套件電腦開啟 [伺服器管理員]，按一下 [本機伺服器]、關閉 [Internet Explorer 增強式安全性]，然後關閉 [伺服器管理員]。
 
-3. 若要開啟入口網站，請瀏覽至 https://portal.local.azurestack.external/，然後以使用者認證登入。
+3. 若要開啟入口網站，請巡覽至 (https://portal.local.azurestack.external/)，並使用使用者認證來登入。
 
 
 ## <a name="connect-to-azure-stack-with-vpn"></a>使用 VPN 來連線到 Azure Stack
@@ -62,7 +63,7 @@ Set-ExecutionPolicy RemoteSigned
 # Import the Connect module
 Import-Module .\Connect\AzureStack.Connect.psm1 
 
-# Add the development kit computer’s host IP address & certificate authority (CA) to the list of trusted hosts. Make sure to update the the IP address and password values for your environment. 
+# Add the development kit computer’s host IP address & certificate authority (CA) to the list of trusted hosts. Make sure to update the IP address and password values for your environment. 
 
 $hostIP = "<Azure Stack host IP address>"
 
@@ -103,7 +104,7 @@ Add-AzsVpnConnection `
 
 ### <a name="test-the-vpn-connectivity"></a>測試 VPN 連線
 
-若要測試入口網站連線，請開啟網際網路瀏覽器，瀏覽至使用者入口網站 (https://portal.local.azurestack.external/)，然後登入並建立資源。  
+若要測試入口網站連線，請開啟網際網路瀏覽器，巡覽至使用者入口網站 (https://portal.local.azurestack.external/)，然後登入並建立資源。  
 
 ## <a name="next-steps"></a>後續步驟
 

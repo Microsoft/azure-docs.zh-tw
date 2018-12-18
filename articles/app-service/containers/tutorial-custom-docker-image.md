@@ -16,11 +16,12 @@ ms.topic: tutorial
 ms.date: 10/24/2017
 ms.author: cfowler
 ms.custom: mvc
-ms.openlocfilehash: acfe066d9ad4882bcff85b7fd51dc7d3b2278235
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: 517926a3c78e9c95a9ecef9ae058c33e47566adb
+ms.sourcegitcommit: 7c4fd6fe267f79e760dc9aa8b432caa03d34615d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47432602"
 ---
 # <a name="use-a-custom-docker-image-for-web-app-for-containers"></a>針對用於容器的 Web 應用程式使用自訂 Docker 映像
 
@@ -37,12 +38,11 @@ ms.lasthandoff: 03/16/2018
 
 [!INCLUDE [Free trial note](../../../includes/quickstarts-free-trial-note.md)]
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 若要完成本教學課程，您需要：
 
 * [Git](https://git-scm.com/downloads)
-* 有效的 [Azure 訂用帳戶](https://azure.microsoft.com/pricing/free-trial/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio)
 * [Docker](https://docs.docker.com/get-started/#setup)
 * [Docker Hub 帳戶](https://docs.docker.com/docker-id/)
 
@@ -126,6 +126,10 @@ docker run -p 2222:8000 <docker-ID>/mydockerimage:v1.0.0
 
 ![在本機測試 Web 應用程式](./media/app-service-linux-using-custom-docker-image/app-service-linux-browse-local.png)
 
+> [!NOTE] 
+> 您也可以使用 SSH、SFTP 或 Visual Studio Code (適用於 Node.js 應用程式即時偵錯)，直接從本機開發電腦連線到應用程式容器。 如需詳細資訊，請參閱 [Linux 上 App Service 中的遠端偵錯和 SSH](https://aka.ms/linux-debug)。
+>
+
 ## <a name="push-the-docker-image-to-docker-hub"></a>將 Docker 映像推送至 Docker Hub
 
 登錄是裝載映像並提供服務映像和容器服務的應用程式。 您必須將映像推送到登錄，才能共用您的映像。 
@@ -201,7 +205,7 @@ v1.0.0: digest: sha256:21f2798b20555f4143f2ca0591a43b4f6c8138406041f2d32ec908974
 
 ### <a name="create-a-web-app"></a>建立 Web 應用程式
 
-在 Cloud Shell 中，使用 [`az webapp create`](/cli/azure/webapp?view=azure-cli-latest#az_webapp_create) 命令，在 `myAppServicePlan` App Service 方案中建立 [Web 應用程式](app-service-linux-intro.md)。 別忘了將 _<appname>_ 取代成唯一的應用程式名稱，並將 _\<docker-ID>_ 取代成您的 Docker 識別碼。
+在 Cloud Shell 中，使用 [`az webapp create`](/cli/azure/webapp?view=azure-cli-latest#az-webapp-create) 命令，在 `myAppServicePlan` App Service 方案中建立 [Web 應用程式](app-service-linux-intro.md)。 別忘了將 _<appname>_ 取代成唯一的應用程式名稱，並將 _\<docker-ID>_ 取代成您的 Docker 識別碼。
 
 ```azurecli-interactive
 az webapp create --resource-group myResourceGroup --plan myAppServicePlan --name <app_name> --deployment-container-image-name <docker-ID>/mydockerimage:v1.0.0
@@ -228,7 +232,7 @@ az webapp create --resource-group myResourceGroup --plan myAppServicePlan --name
 
 大部分的 Docker 映像都具有必須設定的環境變數。 如果您使用的是其他人所建置的現有 Docker 映像，映像可能會使用 80 以外的連接埠。 可告訴 Azure 您映像所使用的連接埠，方法是使用 `WEBSITES_PORT` 應用程式設定。 [本教學課程中的 Python 範例](https://github.com/Azure-Samples/docker-django-webapp-linux) GitHub 頁面說明您必須將 `WEBSITES_PORT` 設定為 _8000_。
 
-若要設定應用程式的設定，請在 Cloud Shell 中使用 [`az webapp config appsettings set`](/cli/azure/webapp/config/appsettings?view=azure-cli-latest#az_webapp_config_appsettings_set) 命令。 應用程式設定為區分大小寫和空格分隔。
+若要設定應用程式的設定，請在 Cloud Shell 中使用 [`az webapp config appsettings set`](/cli/azure/webapp/config/appsettings?view=azure-cli-latest#az-webapp-config-appsettings-set) 命令。 應用程式設定為區分大小寫和空格分隔。
 
 ```azurecli-interactive
 az webapp config appsettings set --resource-group myResourceGroup --name <app_name> --settings WEBSITES_PORT=8000
@@ -349,7 +353,7 @@ PID USER      PR  NI    VIRT    RES    SHR S %CPU %MEM     TIME+ COMMAND
 
 在[建立 Web 應用程式](#create-a-web-app)中，您可以在 `az webapp create` 命令中指定 Docker Hub 上的映像。 這很適用於公用映像。 若要使用私人映像，您必須在 Azure Web 應用程式中設定您的 Docker 帳戶識別碼和密碼。
 
-在 Cloud Shell 中，`az webapp create` 命令後面緊接著 [`az webapp config container set`](/cli/azure/webapp/config/container?view=azure-cli-latest#az_webapp_config_container_set)。 將 \<app_name>，以及 _\<docker-id>_ 和 _\<password>_ 替換為您的 Docker 識別碼與密碼。
+在 Cloud Shell 中，`az webapp create` 命令後面緊接著 [`az webapp config container set`](/cli/azure/webapp/config/container?view=azure-cli-latest#az-webapp-config-container-set)。 將 \<app_name>，以及 _\<docker-id>_ 和 _\<password>_ 替換為您的 Docker 識別碼與密碼。
 
 ```azurecli-interactive
 az webapp config container set --name <app_name> --resource-group myResourceGroup --docker-registry-server-user <docker-id> --docker-registry-server-password <password>
@@ -389,7 +393,7 @@ Azure Container Registry 是 Azure 中用來裝載私人映像的受控 Docker �
 
 ### <a name="create-an-azure-container-registry"></a>建立 Azure Container Registry
 
-在 Cloud Shell 中，使用 [`az acr create`](/cli/azure/acr?view=azure-cli-latest#az_acr_create) 命令來建立 Azure Container Registry。 將 SKU 的名稱、資源群組和 `Basic` 傳入。 可用的 SKU 為 `Classic`、`Basic`、`Standard` 和 `Premium`。
+在 Cloud Shell 中，使用 [`az acr create`](/cli/azure/acr?view=azure-cli-latest#az-acr-create) 命令來建立 Azure Container Registry。 將 SKU 的名稱、資源群組和 `Basic` 傳入。 可用的 SKU 為 `Classic`、`Basic`、`Standard` 和 `Premium`。
 
 ```azurecli-interactive
 az acr create --name <azure-container-registry-name> --resource-group myResourceGroup --sku Basic --admin-enabled true
@@ -427,7 +431,7 @@ Use an existing service principal and assign access:
 
 ### <a name="log-in-to-azure-container-registry"></a>登入 Azure Container Registry
 
-您必須提供認證讓登錄接受推送，才能將映像推送至登錄。 您可以在 Cloud Shell 中使用 [`az acr show`](/cli/azure/acr?view=azure-cli-latest#az_acr_show) 命令來擷取這些認證。 
+您必須提供認證讓登錄接受推送，才能將映像推送至登錄。 您可以在 Cloud Shell 中使用 [`az acr show`](/cli/azure/acr?view=azure-cli-latest#az-acr-show) 命令來擷取這些認證。 
 
 ```azurecli-interactive
 az acr credential show --name <azure-container-registry-name>
@@ -491,7 +495,7 @@ az acr repository list -n <azure-container-registry-name>
 
 您可以設定適用於容器的 Web 應用程式，讓它們執行儲存在 Azure Container Registry 中的容器。 使用 Azure Container Registry 就如同使用任何私人登錄，因此如果您需要使用自己的私人登錄，完成這項工作的步驟就會很類似。
 
-在 Cloud Shell 中，執行 [`az acr credential show`](/cli/azure/acr/credential?view=azure-cli-latest#az_acr_credential_show) 可顯示 Azure Container Registry 的使用者名稱和密碼。 複製使用者名稱和其中一個密碼，因此您可以使用它來設定下一個步驟中的 web 應用程式。
+在 Cloud Shell 中，執行 [`az acr credential show`](/cli/azure/acr/credential?view=azure-cli-latest#az-acr-credential-show) 可顯示 Azure Container Registry 的使用者名稱和密碼。 複製使用者名稱和其中一個密碼，因此您可以使用它來設定下一個步驟中的 web 應用程式。
 
 ```bash
 az acr credential show --name <azure-container-registry-name>
@@ -513,7 +517,7 @@ az acr credential show --name <azure-container-registry-name>
 }
 ```
 
-在 Cloud Shell 中，執行 [`az webapp config container set`](/cli/azure/webapp/config/container?view=azure-cli-latest#az_webapp_config_container_set) 命令，將自訂 Docker 映像指派給 Web 應用程式。 取代 *\<app_name>*、*\<docker-registry-server-url>*、_\<registry-username>_ 及 _\<password>_。 針對 Azure Container Registry，\<docker-registry-server-url> 的格式為 `https://<azure-container-registry-name>.azurecr.io`。 如果您使用任何 Docker Hub 以外的登錄，映像名稱必須以登錄的完整網域名稱 (FQDN) 開頭。 若為 Azure Container Registry，這會看起來像 `<azure-container-registry>.azurecr.io/mydockerimage`。 
+在 Cloud Shell 中，執行 [`az webapp config container set`](/cli/azure/webapp/config/container?view=azure-cli-latest#az-webapp-config-container-set) 命令，將自訂 Docker 映像指派給 Web 應用程式。 取代 *\<app_name>*、*\<docker-registry-server-url>*、_\<registry-username>_ 及 _\<password>_。 針對 Azure Container Registry，\<docker-registry-server-url> 的格式為 `https://<azure-container-registry-name>.azurecr.io`。 如果您使用任何 Docker Hub 以外的登錄，映像名稱必須以登錄的完整網域名稱 (FQDN) 開頭。 若為 Azure Container Registry，這會看起來像 `<azure-container-registry>.azurecr.io/mydockerimage`。 
 
 ```azurecli-interactive
 az webapp config container set --name <app_name> --resource-group myResourceGroup --docker-custom-image-name <azure-container-registry-name>.azurecr.io/mydockerimage --docker-registry-server-url https://<azure-container-registry-name>.azurecr.io --docker-registry-server-user <registry-username> --docker-registry-server-password <password>
@@ -555,4 +559,4 @@ az webapp config container set --name <app_name> --resource-group myResourceGrou
 ## <a name="next-steps"></a>後續步驟
 
 > [!div class="nextstepaction"]
-> [在 Azure 中建置 Docker Python 和 PostgreSQL Web 應用程式](tutorial-docker-python-postgresql-app.md)
+> [在 Azure 中建置 Docker Python 和 PostgreSQL Web 應用程式](tutorial-python-postgresql-app.md)

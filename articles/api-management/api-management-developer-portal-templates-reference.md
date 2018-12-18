@@ -1,11 +1,11 @@
 ---
-title: "Azure API 管理開發人員入口網站範本 | Microsoft Docs"
-description: "了解如何使用「Azure API 管理」中的一組範本來自訂開發人員入口網站頁面的內容。"
+title: Azure API 管理開發人員入口網站範本 | Microsoft Docs
+description: 了解如何使用「Azure API 管理」中的一組範本來自訂開發人員入口網站頁面的內容。
 services: api-management
-documentationcenter: 
+documentationcenter: ''
 author: vladvino
 manager: erikre
-editor: 
+editor: ''
 ms.assetid: 5189f3d8-2a4c-4dc8-ab19-11c7df0114d4
 ms.service: api-management
 ms.workload: mobile
@@ -19,6 +19,7 @@ ms.sourcegitcommit: b854df4fc66c73ba1dd141740a2b348de3e1e028
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 12/04/2017
+ms.locfileid: "26128744"
 ---
 # <a name="developer-portal-templates"></a>開發人員入口網站範本
 

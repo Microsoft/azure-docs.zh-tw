@@ -1,11 +1,11 @@
 ---
-title: "管理 HPC Pack 叢集計算節點 |Microsoft Docs"
-description: "了解可在 Azure 中新增、移除、啟動和停止 HPC Pack 2012 R2 叢集計算節點的 PowerShell 指令碼工具"
+title: 管理 HPC Pack 叢集計算節點 |Microsoft Docs
+description: 了解可在 Azure 中新增、移除、啟動和停止 HPC Pack 2012 R2 叢集計算節點的 PowerShell 指令碼工具
 services: virtual-machines-windows
-documentationcenter: 
+documentationcenter: ''
 author: dlepow
-manager: timlt
-editor: 
+manager: jeconnoc
+editor: ''
 tags: azure-service-management,hpc-pack
 ms.assetid: 4193f03b-94e9-4704-a7ad-379abde063a9
 ms.service: virtual-machines-windows
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: vm-multiple
 ms.workload: big-compute
 ms.date: 12/29/2016
 ms.author: danlep
-ms.openlocfilehash: 2ad67efecf9a688ac3e7ccd7cc32576e9a46d1f5
-ms.sourcegitcommit: a5f16c1e2e0573204581c072cf7d237745ff98dc
+ms.openlocfilehash: 453f53be15b24b96f183b4935cc45fc97ad058bd
+ms.sourcegitcommit: 5b2ac9e6d8539c11ab0891b686b8afa12441a8f3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/11/2017
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="manage-the-number-and-availability-of-compute-nodes-in-an-hpc-pack-cluster-in-azure"></a>在 Azure 的 HPC Pack 叢集中管理計算節點的數目和可用性
 如果您已在 Azure VM 中建立 HPC Pack 2012 R2 叢集，您可能會需要可輕易地在叢集中新增、移除、啟動 (佈建) 或停止 (解除佈建) 一些計算節點 VM 的方法。 若要執行這些工作，請執行安裝在前端節點 VM 上的 Azure PowerShell 指令碼。 這些指令碼可協助您控制 HPC Pack 叢集資源的數目和可用性，讓您得以控制成本。

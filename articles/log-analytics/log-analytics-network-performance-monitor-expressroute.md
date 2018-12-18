@@ -1,6 +1,6 @@
 ---
 title: Azure Log Analytics 中的網路效能監視器方案 | Microsoft Docs
-description: 使用網路效能監控中的 ExpressRoute 管理員功能，透過 Azure ExpressRoute 監視您分公司與 Azure 之間的端對端連線能力和效能。
+description: 使用網路效能監控中的 ExpressRoute 監視功能，透過 Azure ExpressRoute 監視您分公司與 Azure 之間的端對端連線能力和效能。
 services: log-analytics
 documentationcenter: ''
 author: abshamsft
@@ -11,18 +11,20 @@ ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 02/20/2018
 ms.author: abshamsft
-ms.openlocfilehash: 9610a8b37ead976cfdfa2fed81d4d3932055ddcc
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.component: na
+ms.openlocfilehash: 27169193a468d98be879164b80e63fffde419002
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38633344"
 ---
-# <a name="expressroute-manager"></a>ExpressRoute 管理員
+# <a name="expressroute-monitor"></a>ExpressRoute 監視
 
-您可以使用使用[網路效能監控](log-analytics-network-performance-monitor.md)中的 Azure ExpressRoute 管理員功能，透過 Azure ExpressRoute 監視您分公司與 Azure 之間的端對端連線能力和效能。 主要優點如下： 
+您可以使用[網路效能監控](log-analytics-network-performance-monitor.md)中的 Azure ExpressRoute 監視功能，透過 Azure ExpressRoute 來監視分公司與 Azure 之間的端對端連線能力和效能。 主要優點如下： 
 
 - 自動偵測與您訂用帳戶相關聯的 ExpressRoute 線路。
 - 追蹤 ExpressRoute 的頻寬使用率、線路遺失和延遲、對等互連和 Azure 虛擬網路層級。
@@ -36,7 +38,7 @@ ms.lasthandoff: 03/28/2018
 ### <a name="configure-network-security-group-rules"></a>設定網路安全性群組規則 
 針對 Azure 中用來透過網路效能監控進行監視的伺服器，設定網路安全性群組 (NSG) 規則，以在網路效能監控用來進行綜合交易的連接埠上允許 TCP 流量。 預設連接部是 8084。 此組態允許安裝在 Azure 虛擬機器上的 Operations Management Suite 代理程式與內部部署監視代理程式通訊。 
 
-如需有關 NSG 的詳細資訊，請參閱 [網路安全性群組](../virtual-network/virtual-networks-create-nsg-arm-pportal.md)。 
+如需有關 NSG 的詳細資訊，請參閱 [網路安全性群組](../virtual-network/manage-network-security-group.md)。 
 
 >[!NOTE]
 > 在您繼續此步驟之前，請安裝內部部署伺服器代理程式和 Azure 伺服器代理程式，並且執行 EnableRules.ps1 PowerShell 指令碼。 

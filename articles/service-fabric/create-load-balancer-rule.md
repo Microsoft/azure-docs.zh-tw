@@ -1,24 +1,25 @@
 ---
-title: "建立叢集的 Azure Load Balancer 規則"
-description: "設定 Azure Load Balancer 來開啟 Azure Service Fabric 叢集的連接埠。"
+title: 建立叢集的 Azure Load Balancer 規則
+description: 設定 Azure Load Balancer 來開啟 Azure Service Fabric 叢集的連接埠。
 services: service-fabric
 documentationcenter: na
-author: thraka
+author: rwike77
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: service-fabric
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 12/06/2017
-ms.author: adegeo
-ms.openlocfilehash: 71dbc2b5f6c3c37e432f5318169a088c5607f083
-ms.sourcegitcommit: cc03e42cffdec775515f489fa8e02edd35fd83dc
+ms.author: ryanwi
+ms.openlocfilehash: e4c3bf627c4a5e01c4d9001fcbb0feed0b92209f
+ms.sourcegitcommit: e0a678acb0dc928e5c5edde3ca04e6854eb05ea6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/07/2017
+ms.lasthandoff: 07/13/2018
+ms.locfileid: "39008037"
 ---
 # <a name="open-ports-for-a-service-fabric-cluster"></a>開啟 Service Fabric 叢集的連接埠
 

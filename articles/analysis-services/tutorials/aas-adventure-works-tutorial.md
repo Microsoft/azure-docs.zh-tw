@@ -1,35 +1,28 @@
 ---
-title: "Azure Analysis Services Adventure Works 教學課程 | Microsoft Docs"
-description: "Azure Analysis Services 的 Adventure Works 教學課程簡介"
-services: analysis-services
-documentationcenter: 
-author: Minewiskan
+title: Azure Analysis Services Adventure Works 教學課程 | Microsoft Docs
+description: Azure Analysis Services 的 Adventure Works 教學課程簡介
+author: minewiskan
 manager: kfile
-editor: 
-tags: 
-ms.assetid: 
-ms.service: analysis-services
-ms.devlang: NA
-ms.topic: get-started-article
-ms.tgt_pltfrm: NA
-ms.workload: na
-ms.date: 02/10/2018
+ms.service: azure-analysis-services
+ms.topic: conceptual
+ms.date: 07/03/2018
 ms.author: owend
-ms.openlocfilehash: 3bc0ed965aea043fd5c105752ec39d07c4af818f
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.reviewer: minewiskan
+ms.openlocfilehash: a53bcbe90f39999a838c84807ca834a1e6cd1813
+ms.sourcegitcommit: f057c10ae4f26a768e97f2cb3f3faca9ed23ff1b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 08/17/2018
+ms.locfileid: "42139862"
 ---
 # <a name="azure-analysis-services---adventure-works-tutorial"></a>Azure Analysis Services - Adventure Works 教學課程
 
-本教學課程示範如何使用 Visual Studio 搭配 [SQL Server Data Tools (SSDT)](https://docs.microsoft.com/sql/ssdt/download-sql-server-data-tools-ssdt) 來建立及部署 1400 相容性等級的表格式模型。  
-
+本教學課程示範如何使用 Visual Studio [Analysis Services 專案](https://marketplace.visualstudio.com/items?itemName=ProBITools.MicrosoftAnalysisServicesModelingProjects)或 [SQL Server Data Tools (SSDT)](https://docs.microsoft.com/sql/ssdt/download-sql-server-data-tools-ssdt) 來建立及部署 1400 相容性等級的表格式模型。  
 如果您熟悉 Analysis Services 和表格式模型化，則本教學課程可讓您以最快的方式，了解如何使用 Visual Studio 來建立及部署基本表格式模型。 備齊必要條件後，完成本教學課程需要二至三小時的時間。  
   
 ## <a name="what-you-learn"></a>您學到什麼   
   
--   如何在 Visual Studio 中使用 SSDT 建立 **1400 相容性等級**的新表格式模型專案。
+-   如何在 Visual Studio 中建立 **1400 相容性等級**的新表格式模型專案。
   
 -   如何將關聯式資料庫的資料匯入表格式模型專案工作區資料庫中。  
   
@@ -43,16 +36,16 @@ ms.lasthandoff: 02/21/2018
   
 -   如何建立具有使用者成員的角色以保護模型物件和資料。  
   
--   如何使用 SSDT 將表格式模型部署到 **Azure Analysis Services** 伺服器或 **SQL Server 2017 Analysis Services** 伺服器。  
+-   如何使用 Visual Studio 將表格式模型部署到 **Azure Analysis Services** 伺服器或 **SQL Server 2017 Analysis Services** 伺服器。  
   
-## <a name="prerequisites"></a>先決條件  
+## <a name="prerequisites"></a>必要條件  
 若要完成本教學課程，您需要：  
   
 -   Azure Analysis Services 伺服器。 註冊免費的 [Azure Analysis Services 試用版](https://azure.microsoft.com/services/analysis-services/)和[建立伺服器](../analysis-services-create-server.md)。 
 
 -   隨附**範例 AdventureWorksDW 資料庫**的 [Azure SQL 資料倉儲](../../sql-data-warehouse/create-data-warehouse-portal.md)，或隨附 [Adventure Works 範例資料庫](https://github.com/Microsoft/sql-server-samples/releases/tag/adventureworks)的 SQL Server 資料倉儲。
 
-    **重要事項︰**如果您將範例資料庫安裝到內部部署 SQL Server 資料倉儲，且將模型部署到 Azure Analysis Services 伺服器，就需要[內部部署資料閘道](../analysis-services-gateway.md)。
+    **重要事項︰** 如果您將範例資料庫安裝到內部部署 SQL Server 資料倉儲，且將模型部署到 Azure Analysis Services 伺服器，就需要[內部部署資料閘道](../analysis-services-gateway.md)。
 
 -   適用於 Visual Studio 的最新版本 [SQL Server Data Tools (SSDT)](https://msdn.microsoft.com/library/mt204009.aspx)。
 

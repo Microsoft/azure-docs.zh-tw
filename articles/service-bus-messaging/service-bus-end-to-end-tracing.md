@@ -1,11 +1,11 @@
 ---
-title: "Azure 服務匯流排端對端追蹤與診斷 | Microsoft Docs"
-description: "服務匯流排用戶端診斷與端對端追蹤的概觀"
+title: Azure 服務匯流排端對端追蹤與診斷 | Microsoft Docs
+description: 服務匯流排用戶端診斷與端對端追蹤的概觀
 services: service-bus-messaging
-documentationcenter: 
+documentationcenter: ''
 author: lmolkova
 manager: timlt
-editor: 
+editor: ''
 ms.service: service-bus-messaging
 ms.workload: na
 ms.tgt_pltfrm: na
@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/18/2017
 ms.author: lmolkova
-ms.openlocfilehash: 847056acd2d97391782dcac1874a2739b7f5825c
-ms.sourcegitcommit: 6fb44d6fbce161b26328f863479ef09c5303090f
+ms.openlocfilehash: 5489fa999f3427345c3ee9f07f904296de224e31
+ms.sourcegitcommit: f057c10ae4f26a768e97f2cb3f3faca9ed23ff1b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/10/2018
+ms.lasthandoff: 08/17/2018
+ms.locfileid: "42141291"
 ---
 # <a name="distributed-tracing-and-correlation-through-service-bus-messaging"></a>透過服務匯流排傳訊進行分散式追蹤與相互關聯
 
@@ -44,8 +45,8 @@ Microsoft Azure 服務匯流排傳訊已定義產生者與取用者應用來傳�
 [Microsoft Application Insights](https://azure.microsoft.com/services/application-insights/) 能提供豐富的效能監視功能，包括自動要求和相依性追蹤。
 
 請根據您的專案類型安裝 Application Insights SDK：
-- [ASP.NET](../application-insights/app-insights-asp-net.md) 2.5-beta2 版或更新版本
-- [ASP.NET Core](../application-insights/app-insights-asp-net-core.md) 2.2.0-beta2 版或更新版本。
+- [ASP.NET](../application-insights/app-insights-asp-net.md) - 安裝 2.5-beta2 版或更新版本
+- [ASP.NET Core](../application-insights/app-insights-asp-net-core.md) - 安裝 2.2.0-beta2 版或更新版本。
 這些連結提供安裝 SDK、建立資源及設定 SDK (若有需要) 的詳細資料。 針對非 ASP.NET 應用程式，請參閱[適用於主控台應用程式的 Azure Application Insights](../application-insights/application-insights-console.md) 一文。
 
 如果您使用[訊息處理常式模式](/dotnet/api/microsoft.azure.servicebus.queueclient.registermessagehandler)來處理訊息，便無需採取任何動作，系統會自動追蹤由您的服務所完成的所有服務匯流排呼叫，並將它們與其他遙測項目相互關聯。 否則，請參考下列範例以進行手動的訊息處理追蹤。

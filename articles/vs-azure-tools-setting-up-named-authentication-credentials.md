@@ -2,23 +2,21 @@
 title: 設定具名的驗證認證 | Microsoft Docs
 description: 了解如何提供 Visual Studio 可用來向 Azure 驗證要求的認證，以便您可以將應用程式從 Visual Studio 發佈至 Azure，或用來監視現有的雲端服務。
 services: visual-studio-online
-documentationcenter: na
 author: ghogen
 manager: douge
-editor: ''
-ms.assetid: 61570907-42a1-40e8-bcd6-952b21a55786
-ms.service: multiple
-ms.devlang: dotnet
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: multiple
+assetId: 61570907-42a1-40e8-bcd6-952b21a55786
+ms.prod: visual-studio-dev15
+ms.technology: vs-azure
+ms.workload: azure
+ms.topic: conceptual
 ms.date: 11/11/2017
 ms.author: ghogen
-ms.openlocfilehash: d63da89d3842b7fd6bc320ff4eedd2a0132cee71
-ms.sourcegitcommit: 34e0b4a7427f9d2a74164a18c3063c8be967b194
+ms.openlocfilehash: 3dce80f5c6611cb2a22293d1a574980db5ea8378
+ms.sourcegitcommit: fa493b66552af11260db48d89e3ddfcdcb5e3152
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/30/2018
+ms.lasthandoff: 04/23/2018
+ms.locfileid: "31791574"
 ---
 # <a name="set-up-named-authentication-credentials"></a>設定具名的驗證認證
 

@@ -1,11 +1,11 @@
 ---
-title: "在 Azure Redis 快取中匯入與匯出資料 | Microsoft Docs"
-description: "了解如何使用進階 Azure Redis 快取執行個體將資料匯入至 blob 儲存體並從其中匯出資料"
+title: 在 Azure Redis 快取中匯入與匯出資料 | Microsoft Docs
+description: 了解如何使用進階 Azure Redis 快取執行個體將資料匯入至 blob 儲存體並從其中匯出資料
 services: redis-cache
-documentationcenter: 
+documentationcenter: ''
 author: wesmc7777
 manager: cfowler
-editor: 
+editor: ''
 ms.assetid: 4a68ac38-87af-4075-adab-569d37d7cc9e
 ms.service: cache
 ms.workload: tbd
@@ -14,11 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/31/2017
 ms.author: wesmc
-ms.openlocfilehash: db488f759752880a47a78dfeec13b14f65bd503c
-ms.sourcegitcommit: 2a70752d0987585d480f374c3e2dba0cd5097880
+ms.openlocfilehash: 6733891213f15e9ceaf08ef7fb50380db47a695f
+ms.sourcegitcommit: c2c64fc9c24a1f7bd7c6c91be4ba9d64b1543231
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/19/2018
+ms.lasthandoff: 07/26/2018
+ms.locfileid: "39259189"
 ---
 # <a name="import-and-export-data-in-azure-redis-cache"></a>在 Azure Redis 快取中匯入與匯出資料
 匯入/匯出是 Azure Redis 快取資料管理作業，可讓您將資料匯入 Azure Redis 快取或將資料從 Azure Redis 快取匯出，方法是從進階快取將 Redis 快取資料庫 (RDB) 快照匯入和匯出至 Azure 儲存體帳戶中的 blob。 
@@ -116,7 +117,7 @@ ms.lasthandoff: 01/19/2018
 是，除了匯入從 Azure Redis 快取執行個體匯出的資料之外，您還可以從執行於雲端或環境 (例如 Linux、Windows 或雲端提供者，例如 Amazon Web Services) 中的任何 Redis 伺服器匯入 RDB 檔案。 若要這樣做，請將 RDB 檔案從所需的 Redis 伺服器上傳至 Azure 儲存體帳戶中的分頁或區塊 blob，然後將它匯入到您的進階 Azure Redis 快取執行個體。 例如，建議您從生產快取匯出資料，並將其匯入至快取，用於測試活移轉做為預備環境的一部分。
 
 > [!IMPORTANT]
-> 若要在使用分頁 blob 時成功匯入從非 Azure Redis 快取的 Redis 伺服器匯出的資料，分頁 blob 大小必須在 512 個位元組的界限上對齊。 如需執行任何所需的位元組填補的範例程式碼，請參閱[範例分頁 blob 上傳 (英文)](https://github.com/JimRoberts-MS/SamplePageBlobUpload)。
+> 若要在使用分頁 blob 時成功匯入從非 Azure Redis 快取的 Redis 伺服器匯出的資料，分頁 blob 大小必須在 512 個位元組的界限上對齊。 如需執行任何所需的位元組填補的範例程式碼，請參閱[範例分頁 Blob 上傳 ](https://github.com/JimRoberts-MS/SamplePageBlobUpload) \(英文\)。
 > 
 > 
 

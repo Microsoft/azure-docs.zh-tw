@@ -1,12 +1,12 @@
 ---
-title: "Azure Active Directory PoC 腳本實作 | Microsoft Docs"
-description: "探索並快速實作身分識別和存取管理案例"
+title: Azure Active Directory PoC 腳本實作 | Microsoft Docs
+description: 探索並快速實作身分識別和存取管理案例
 services: active-directory
-keywords: "azure active directory, 腳本, 概念證明, PoC"
-documentationcenter: 
+keywords: azure active directory, 腳本, 概念證明, PoC
+documentationcenter: ''
 author: dstefanMSFT
 manager: mtillman
-ms.assetid: 
+ms.assetid: ''
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,11 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/12/2017
 ms.author: dstefan
-ms.openlocfilehash: e26dfe4aaa374f5587038a0de66c0bd8703c9a41
-ms.sourcegitcommit: e266df9f97d04acfc4a843770fadfd8edf4fa2b7
+ms.openlocfilehash: 2f01bdee5ffcc9e2f48278c7209da40ef64cc030
+ms.sourcegitcommit: c52123364e2ba086722bc860f2972642115316ef
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/11/2017
+ms.lasthandoff: 05/11/2018
+ms.locfileid: "34068849"
 ---
 # <a name="azure-active-directory-proof-of-concept-playbook-implementation"></a>Azure Active Directory 概念證明腳本：實作
 
@@ -87,7 +88,7 @@ ms.lasthandoff: 12/11/2017
 
 ### <a name="secure-remote-access-to-on-premises-applications"></a>安全的內部部署應用程式遠端存取
 
-1. Bob 是 Azure AD 全域管理員，許多人向他提出要求，希望讓遠端工作的員工可以存取數個實用的內部部署資源，例如費用報銷應用程式。 他照著[應用程式 Proxy 文件](active-directory-application-proxy-enable.md)的指示，安裝了連接器並將費用報銷發佈為應用程式 Proxy 的應用程式。 
+1. Bob 是 Azure AD 全域管理員，許多人向他提出要求，希望讓遠端工作的員工可以存取數個實用的內部部署資源，例如費用報銷應用程式。 他照著[應用程式 Proxy 文件](manage-apps/application-proxy-enable.md)的指示，安裝了連接器並將費用報銷發佈為應用程式 Proxy 的應用程式。 
 2. Bob 向 Susie 分享了費用報銷應用程式的外部 URL，因為 Susie 也是其中一位需要遠端存取的員工。 她存取該連結，在對 AAD 進行驗證之後，她終於能夠存取費用報銷應用程式，可在遠端工作時繼續保持生產力。 
 3. 接下來，Bob 使用相同的程序繼續發佈其他的內部部署應用程式，並視需要對使用者提供存取權。 他為比較敏感的已發佈應用程式新增了條件式存取和 Multi-Factor Authentication，以提升其安全性。
 

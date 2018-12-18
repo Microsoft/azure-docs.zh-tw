@@ -1,0 +1,54 @@
+### YamlMime:YamlDocument
+documentType: LandingData
+title: Azure 地圖服務文件
+metadata:
+  document_id: 
+  title: Azure 地圖服務文件 | Microsoft Docs
+  meta.description: Use Azure Maps to provide geospatial services to your web or mobile application.
+  author: philmea
+  manager: 
+  ms.service: azure-maps
+  services: azure-maps
+  ms.topic: landing-page
+  ms.date: 05/07/2018
+  ms.author: philmea
+  ms.openlocfilehash: 9e9f0020ce52a5bd75e15ab333ed367244016e11
+  ms.sourcegitcommit: 65b399eb756acde21e4da85862d92d98bf9eba86
+  ms.translationtype: HT
+  ms.contentlocale: zh-TW
+  ms.lasthandoff: 06/22/2018
+  ms.locfileid: "36317515"
+abstract:
+  description: Azure 地圖服務為來自各個產業的開發人員提供功能強大的地理空間功能，另納入最新的地圖資料，可提供網路和行動應用程式地理空間內容。 此服務屬於 Azure One API，符合 REST API 規範集，可進行網頁型 JavaScript 控管並讓開發作業更加輕鬆、有彈性且可在多個媒介中轉移。
+sections:
+- title: 5 分鐘快速入門
+  items:
+  - type: paragraph
+    text: 使用 Azure 地圖服務啟動地圖搜尋應用程式。
+  - type: list
+    style: icon48
+    items:
+    - image:
+        src: /azure/sql-database/media/index/portal.svg
+      text: 啟動示範地圖應用程式
+      href: /azure/azure-maps/quick-demo-map-app
+- title: 逐步教學課程
+  items:
+  - type: paragraph
+    text: 建置地理空間 Web 應用程式，使用 Azure 地圖服務搜尋景點及位置路線。
+  - type: list
+    style: ordered
+    items:
+    - html: <a href="/azure/azure-maps/tutorial-search-location">搜尋興趣點</a>
+    - html: <a href="/azure/azure-maps/tutorial-route-location">興趣點路線</a>
+    - html: <a href="/azure/azure-maps/tutorial-prioritized-routes">依旅遊方式區分的路線</a>
+- title: 參考
+  items:
+  - type: list
+    style: cards
+    className: cardsW
+    items:
+    - title: JavaScript
+      html: <p><a href="https://docs.microsoft.com/javascript/api/azure-maps-javascript/">地圖控制項</a></p>
+    - title: REST
+      html: <p><a href="https://docs.microsoft.com/rest/api/maps/render">轉譯服務</a></p><p><a href="https://docs.microsoft.com/rest/api/maps/route">路線規劃服務</a></p><p><a href="https://docs.microsoft.com/rest/api/maps/search">搜尋服務</a></p><p><a href="https://docs.microsoft.com/rest/api/maps/timezone">時區服務</a></p><p><a href="https://docs.microsoft.com/rest/api/maps/traffic">交通服務</a></p><p><a href="https://docs.microsoft.com/rest/api/maps-management/">地圖服務帳戶管理</a></p>

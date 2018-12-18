@@ -2,19 +2,22 @@
 title: 彈性資料庫工具字彙 | Microsoft Docs
 description: 彈性資料庫工具所用詞彙的解釋
 services: sql-database
-documentationcenter: ''
-manager: craigg
-author: stevestein
 ms.service: sql-database
-ms.custom: scale out apps
-ms.topic: article
-ms.date: 10/24/2016
+subservice: elastic-scale
+ms.custom: ''
+ms.devlang: ''
+ms.topic: conceptual
+author: stevestein
 ms.author: sstein
-ms.openlocfilehash: 75abd818b29c78a4ae7499741904637e8ed6798c
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.reviewer: ''
+manager: craigg
+ms.date: 09/14/2018
+ms.openlocfilehash: 354d972e78a7fb7270b1b09f4af5aa95709fcd06
+ms.sourcegitcommit: 51a1476c85ca518a6d8b4cc35aed7a76b33e130f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47162571"
 ---
 # <a name="elastic-database-tools-glossary"></a>彈性資料庫工具字彙
 下列詞彙是針對 [彈性資料庫工具](sql-database-elastic-scale-introduction.md)(Azure SQL Database的一項功能) 所定義的。 這些工具是用來管理[分區對應](sql-database-elastic-scale-shard-map-management.md)，並且包含[用戶端程式庫](sql-database-elastic-database-client-library.md)、[分割合併工具](sql-database-elastic-scale-overview-split-and-merge.md)、[彈性集區](sql-database-elastic-pool.md)及[查詢](sql-database-elastic-query-overview.md)。 
@@ -78,7 +81,7 @@ ms.lasthandoff: 03/16/2018
 
 **分割**：將一個分區的數個 Shardlet 移至另一個 (通常是新的) 分區的動作。 使用者提供分區化金鑰做為分割點。
 
-**垂直縮放**：相應增加 (或減少) 個別分區之效能層級的動作。 例如，將分區從 Standard 變更為 Premium (獲得更多計算資源)。 
+**垂直縮放**：相應增加 (或減少) 個別分區之計算大小的動作。 例如，將分區從 Standard 變更為 Premium (獲得更多計算資源)。 
 
 [!INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
 

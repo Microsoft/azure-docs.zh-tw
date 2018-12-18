@@ -1,0 +1,416 @@
+items:
+- name: Microsoft 身分識別平台 (適用於開發人員的 Azure Active Directory)
+  href: index.yml
+- name: 關於 Microsoft 身分識別平台
+  href: about-microsoft-identity-platform.md
+- name: v1.0
+  items:
+  - name: 概觀
+    href: v1-overview.md
+  - name: 快速入門
+    items:
+    - name: 設定開發環境
+      href: quickstart-create-new-tenant.md
+    - name: 設定應用程式
+      items:
+      - name: 註冊應用程式
+        href: quickstart-v1-add-azure-ad-app.md
+      - name: 更新應用程式
+        href: quickstart-v1-update-azure-ad-app.md
+      - name: 移除應用程式
+        href: quickstart-v1-remove-azure-ad-app.md
+    - name: 單一頁面應用程式
+      items:
+      - name: AngularJS
+        href: quickstart-v1-angularjs-spa.md
+      - name: JavaScript
+        href: https://github.com/Azure-Samples/active-directory-javascript-singlepageapp-dotnet-webapi
+    - name: Web 應用程式
+      items:
+      - name: ASP .NET
+        href: quickstart-v1-aspnet-webapp.md
+      - name: Java
+        href: https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect
+      - name: NodeJS
+        href: https://github.com/AzureADQuickStarts/WebApp-OpenIDConnect-NodeJS
+      - name: Python
+        href: https://github.com/Azure-Samples/active-directory-python-webapp-graphapi
+    - name: Web API
+      items:
+      - name: ASP .NET
+        href: quickstart-v1-dotnet-webapi.md
+      - name: NodeJS
+        href: quickstart-v1-nodejs-webapi.md
+    - name: 行動和傳統型應用程式
+      items:
+      - name: Android
+        href: quickstart-v1-android.md
+      - name: iOS
+        href: quickstart-v1-ios.md
+      - name: Windows 桌面型 .NET
+        href: quickstart-v1-dotnet.md
+      - name: Xamarin
+        href: quickstart-v1-xamarin.md
+    - name: 服務對服務
+      href: sample-v1-code.md#daemon-applications-accessing-web-apis-with-the-applications-identity
+  - name: 範例
+    href: sample-v1-code.md
+  - name: 概念
+    items:
+    - name: 應用程式類型
+      items:
+      - name: 應用程式類型
+        href: app-types.md
+      - name: 單一頁面應用程式
+        href: single-page-application.md
+      - name: Web 應用程式
+        href: web-app.md
+      - name: Web API
+        href: web-api.md
+      - name: 行動和傳統型應用程式
+        href: native-app.md
+      - name: 精靈或伺服器應用程式
+        href: service-to-service.md
+    - name: 驗證
+      items:
+      - name: 驗證基本概念
+        href: authentication-scenarios.md
+      - name: OAuth 2.0 和 OpenID Connect 通訊協定
+        items:
+        - name: OpenID Connect
+          href: v1-protocols-openid-connect-code.md
+        - name: OAuth 2.0 隱含授與流程
+          href: v1-oauth2-implicit-grant-flow.md
+        - name: OAuth 2.0 驗證碼授與
+          href: v1-protocols-oauth-code.md
+        - name: OAuth 2.0 代理者流程
+          href: v1-oauth2-on-behalf-of-flow.md
+        - name: OAuth 2.0 用戶端認證授與
+          href: v1-oauth2-client-creds-grant-flow.md
+      - name: SAML 2.0 通訊協定
+        items:
+        - name: 單一登入
+          href: single-sign-on-saml-protocol.md
+        - name: 登出
+          href: single-sign-out-saml-protocol.md
+        - name: Azure AD 如何使用 SAML 通訊協定
+          href: active-directory-saml-protocol-reference.md
+      - name: WS-同盟
+        items:
+        - name: 同盟中繼資料
+          href: azure-ad-federation-metadata.md
+      - name: 簽署金鑰變換
+        href: active-directory-signing-key-rollover.md
+      - name: ID 權杖
+        href: id-tokens.md
+      - name: 存取權杖
+        href: access-tokens.md
+      - name: 憑證認證
+        href: active-directory-certificate-credentials.md
+      - name: SAML 權杖
+        href: reference-saml-tokens.md
+    - name: 應用程式設定
+      items:
+      - name: 應用程式與服務主體
+        href: app-objects-and-service-principals.md
+      - name: 如何以及為何將應用程式新增到 Azure AD
+        href: active-directory-how-applications-are-added.md
+      - name: 單一租用戶與多租用戶應用程式
+        href: single-and-multi-tenant-apps.md
+    - name: 權限及同意
+      displayName: Scopes
+      items:
+      - name: 權限及同意類型
+        href: v1-permissions-and-consent.md
+      - name: 同意架構
+        href: consent-framework.md
+      - name: 應用程式同意體驗
+        href: application-consent-experience.md
+    - name: 條件式存取
+      href: conditional-access-dev-guide.md
+    - name: 國家雲端
+      href: authentication-national-cloud.md
+  - name: 使用說明指南
+    items:
+    - name: 驗證
+      items:
+      - name: 設定單一登入
+        displayName: SSO
+        items:
+        - name: 在 Android 上啟用 SSO
+          href: howto-v1-enable-sso-android.md
+        - name: 在 iOS 上啟用 SSO
+          href: howto-v1-enable-sso-ios.md
+        - name: 偵錯 SAML 型 SSO
+          href: howto-v1-debug-saml-sso-issues.md
+      - name: 設定宣告
+        items:
+        - name: 設定角色宣告
+          href: active-directory-enterprise-app-role-management.md
+        - name: 自訂宣告
+          href: active-directory-saml-claims-customization.md
+        - name: 自訂宣告 (預覽)
+          href: active-directory-claims-mapping.md
+        - name: 設定選擇性宣告 (預覽)
+          href: active-directory-optional-claims.md
+        - name: 設定權杖存留期 (預覽)
+          href: active-directory-configurable-token-lifetimes.md
+      - name: 處理 ADAL 錯誤的最佳做法
+        href: active-directory-devhowto-adal-error-handling.md
+    - name: 應用程式設定
+      items:
+      - name: 將單一租用戶應用程式轉換為多租用戶應用程式
+        href: howto-convert-app-to-be-multi-tenant.md
+      - name: 建立服務主體
+        items:
+        - name: 使用 Azure PowerShell
+          href: howto-authenticate-service-principal-powershell.md
+        - name: 使用 Azure 入口網站
+          href: howto-create-service-principal-portal.md
+      - name: 將您的應用程式限制為僅供一組使用者存取
+        href: howto-restrict-your-app-to-a-set-of-users.md
+      - name: 在您的應用程式中新增應用程式角色
+        href: howto-add-app-roles-in-azure-ad-apps.md
+      - name: 商標方針
+        href: howto-add-branding-in-azure-ad-apps.md
+      - name: 服務條款和隱私權聲明
+        href: howto-add-terms-of-service-privacy-statement.md
+    - name: 使用 Visual Studio
+      items:
+      - name: 使用 Active Directory 連線服務
+        href: vs-active-directory-add-connected-service.md
+      - name: 開始進行 .NET MVC 專案
+        href: vs-active-directory-dotnet-getting-started.md
+      - name: 我的 .NET MVC 專案發生什麼情形？
+        href: vs-active-directory-dotnet-what-happened.md
+      - name: 開始進行 WebApI 專案
+        href: vs-active-directory-webapi-getting-started.md
+      - name: 我的 WebApI 專案發生什麼情形？
+        href: vs-active-directory-webapi-what-happened.md
+      - name: 驗證偵測期間發生錯誤
+        href: vs-active-directory-error.md
+    - name: 將應用程式帶到市場
+      items:
+      - name: 發行到 App Source
+        href: howto-get-appsource-certified.md
+      - name: 發行到 Azure AD App 資源庫
+        href: howto-app-gallery-listing.md
+      - name: 發行到 Office 365 賣方儀表板
+        href: https://docs.microsoft.com/office/dev/store/use-the-seller-dashboard-to-submit-to-the-office-store
+    - name: 從 Azure 存取控制服務移轉
+      href: active-directory-acs-migration.md
+    - name: 使用 Azure AD Graph API
+      href: active-directory-graph-api-quickstart.md
+    - name: 適用於開發人員的 AD FS
+      href: https://docs.microsoft.com/windows-server/identity/ad-fs/overview/ad-fs-scenarios-for-developers
+  - name: 參考
+    items:
+    - name: 驗證程式庫
+      displayName: ADAL
+      href: active-directory-authentication-libraries.md
+    - name: Azure AD Graph API
+      href: active-directory-graph-api.md
+    - name: 應用程式資訊清單
+      href: reference-app-manifest.md
+    - name: 驗證與授權錯誤碼
+      href: reference-aadsts-error-codes.md
+    - name: 重大變更
+      href: reference-breaking-changes.md
+  expanded: true
+- name: v2.0
+  items:
+  - name: 概觀
+    href: v2-overview.md
+  - name: 快速入門
+    items:
+    - name: 設定開發環境
+      href: quickstart-create-new-tenant.md
+    - name: 設定應用程式
+      items:
+      - name: 註冊應用程式
+        href: quickstart-v2-register-an-app.md
+      - name: 更新應用程式
+        href: quickstart-v1-update-azure-ad-app.md
+      - name: 移除應用程式
+        href: quickstart-v1-remove-azure-ad-app.md
+    - name: 單一頁面應用程式
+      items:
+      - name: JavaScript
+        href: quickstart-v2-javascript.md
+    - name: Web 應用程式
+      items:
+      - name: ASP .NET
+        href: quickstart-v2-aspnet-webapp.md
+      - name: ASP .NET Core
+        href: quickstart-v2-aspnet-core-webapp.md
+      - name: NodeJS
+        href: https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIDConnect-nodejs
+    - name: Web API
+      items:
+      - name: ASP .NET
+        href: https://github.com/azureadquickstarts/appmodelv2-nativeclient-dotnet
+      - name: ASP .NET Core
+        href: https://azure.microsoft.com/resources/samples/active-directory-dotnet-native-aspnetcore-v2
+    - name: 行動和傳統型應用程式
+      items:
+      - name: Android
+        href: quickstart-v2-android.md
+      - name: iOS
+        href: quickstart-v2-ios.md
+      - name: 通用 Windows 平台
+        href: quickstart-v2-uwp.md
+      - name: Windows 桌面型 .NET
+        href: quickstart-v2-windows-desktop.md
+    - name: 服務對服務
+      items:
+      - name: ASP .NET
+        href: https://github.com/Azure-Samples/active-directory-dotnet-daemon-v2
+  - name: 教學課程
+    items:
+    - name: 單一頁面應用程式
+      items:
+      - name: JavaScript
+        href: tutorial-v2-javascript-spa.md
+    - name: Web 應用程式
+      items:
+      - name: ASP .NET
+        href: tutorial-v2-asp-webapp.md
+    - name: 行動和傳統型應用程式
+      items:
+      - name: Android
+        href: tutorial-v2-android.md
+      - name: iOS
+        href: tutorial-v2-ios.md
+      - name: 通用 Windows 平台
+        href: tutorial-v2-windows-uwp.md
+      - name: Windows 桌面型 .NET
+        href: tutorial-v2-windows-desktop.md
+  - name: 範例
+    href: sample-v2-code.md
+  - name: 概念
+    items:
+    - name: 決定使用 v1.0 或 v2.0
+      href: azure-ad-endpoint-comparison.md
+    - name: 應用程式類型
+      href: v2-app-types.md
+    - name: 驗證
+      items:
+      - name: 驗證基本概念
+        href: authentication-scenarios.md
+      - name: OAuth 2.0 和 OpenID Connect 通訊協定
+        items:
+        - name: OpenID Connect
+          href: v2-protocols-oidc.md
+        - name: OAuth 2.0 隱含授與流程
+          href: v2-oauth2-implicit-grant-flow.md
+        - name: OAuth 2.0 驗證碼授與
+          href: v2-oauth2-auth-code-flow.md
+        - name: OAuth 2.0 代理者流程
+          href: v2-oauth2-on-behalf-of-flow.md
+        - name: OAuth 2.0 用戶端認證授與
+          href: v2-oauth2-client-creds-grant-flow.md
+      - name: 簽署金鑰變換
+        href: active-directory-signing-key-rollover.md
+      - name: ID 權杖
+        href: id-tokens.md
+      - name: 存取權杖
+        href: access-tokens.md
+      - name: 憑證認證
+        href: active-directory-certificate-credentials.md
+    - name: 應用程式設定
+      items:
+      - name: 應用程式與服務主體
+        href: app-objects-and-service-principals.md
+      - name: 單一租用戶與多租用戶應用程式
+        href: single-and-multi-tenant-apps.md
+    - name: 權限及同意
+      displayName: Scopes
+      items:
+      - name: 權限及同意類型
+        href: v2-permissions-and-consent.md
+      - name: 同意架構
+        href: consent-framework.md
+      - name: 應用程式同意體驗
+        href: application-consent-experience.md
+    - name: 國家雲端
+      href: authentication-national-cloud.md
+  - name: 使用說明指南
+    items:
+    - name: 驗證
+      items:
+      - name: 設定角色宣告
+        href: active-directory-enterprise-app-role-management.md
+      - name: 自訂宣告
+        href: active-directory-saml-claims-customization.md
+      - name: 自訂宣告 (預覽)
+        href: active-directory-claims-mapping.md
+      - name: 設定選擇性宣告 (預覽)
+        href: active-directory-optional-claims.md
+      - name: 設定權杖存留期 (預覽)
+        href: active-directory-configurable-token-lifetimes.md
+    - name: 應用程式設定
+      items:
+      - name: 將單一租用戶應用程式轉換為多租用戶應用程式
+        href: howto-convert-app-to-be-multi-tenant.md
+      - name: 建立服務主體
+        items:
+        - name: 使用 Azure PowerShell
+          href: howto-authenticate-service-principal-powershell.md
+        - name: 使用 Azure 入口網站
+          href: howto-create-service-principal-portal.md
+      - name: 將您的應用程式限制為僅供一組使用者存取
+        href: howto-restrict-your-app-to-a-set-of-users.md
+      - name: 在您的應用程式中新增應用程式角色
+        href: howto-add-app-roles-in-azure-ad-apps.md
+      - name: 商標方針
+        href: howto-add-branding-in-azure-ad-apps.md
+      - name: 服務條款和隱私權聲明
+        href: howto-add-terms-of-service-privacy-statement.md
+    - name: 使用 Visual Studio
+      items:
+      - name: 使用 Active Directory 連線服務
+        href: vs-active-directory-add-connected-service.md
+      - name: 開始進行 .NET MVC 專案
+        href: vs-active-directory-dotnet-getting-started.md
+      - name: 我的 .NET MVC 專案發生什麼情形？
+        href: vs-active-directory-dotnet-what-happened.md
+      - name: 開始進行 WebApI 專案
+        href: vs-active-directory-webapi-getting-started.md
+      - name: 我的 WebApI 專案發生什麼情形？
+        href: vs-active-directory-webapi-what-happened.md
+      - name: 驗證偵測期間發生錯誤
+        href: vs-active-directory-error.md
+  - name: 參考
+    items:
+    - name: 驗證程式庫
+      displayName: MSAL
+      href: reference-v2-libraries.md
+    - name: Microsoft Graph 中的 Azure AD API
+      href: https://developer.microsoft.com/graph/docs/concepts/azuread-identity-access-management-concept-overview
+    - name: 應用程式資訊清單
+      href: reference-app-manifest.md
+    - name: 驗證與授權錯誤碼
+      href: reference-aadsts-error-codes.md
+    - name: 重大變更
+      href: reference-breaking-changes.md
+  expanded: true
+- name: 資源
+  items:
+  - name: 詞彙
+    href: developer-glossary.md
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/?category=security-identity
+  - name: Azure AD 部落格
+    href: https://cloudblogs.microsoft.com/enterprisemobility/?product=azure-active-directory
+  - name: 嘗試使用 Microsoft 登入
+    href: https://azure.microsoft.com/develop/identity/signin/
+  - name: 取得說明
+    href: developer-support-help-options.md
+  - name: 適用於 Azure 資源的受控識別
+    href: https://docs.microsoft.com/azure/active-directory/managed-service-identity/overview
+ms.openlocfilehash: 01775498610b76b9110f26e3f45e41d0baadd486
+ms.sourcegitcommit: 5c00e98c0d825f7005cb0f07d62052aff0bc0ca8
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49957394"

@@ -1,0 +1,61 @@
+### YamlMime:YamlDocument
+ms.openlocfilehash: 6972ad521ac5622086b5294dc6b49e35f10ba178
+ms.sourcegitcommit: 7c4fd6fe267f79e760dc9aa8b432caa03d34615d
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47431476"
+documentType: LandingData
+title: 角色型存取控制文件
+metadata:
+  document_id: 
+  title: Azure 中的角色型存取控制 (RBAC) 文件 | Microsoft Docs
+  description: 了解角色型存取控制 (RBAC) 以管理可存取 Azure 資源的人員、這些人員如何使用資源，以及他們存取的區域。
+  services: active-directory
+  author: rolyon
+  manager: mtillman
+  ms.service: role-based-access-control
+  ms.tgt_pltfrm: na
+  ms.devlang: na
+  ms.topic: landing-page
+  ms.date: 06/15/2018
+  ms.author: rolyon
+abstract:
+  description: 角色型存取控制 (RBAC) 是提供 Azure 資源更細緻存取權管理的系統。 RBAC 可讓您區隔小組內的職責，而僅授與使用者執行作業所需的存取權。
+  aside:
+    image:
+      alt: 
+      height: 112
+      src: media/index/video-thumb-get-started.png
+      width: 200
+    title: 鎖定 Azure 的存取 (1:16)
+    href: https://www.youtube.com/embed/FKBoWWKRnvI
+    width: 200
+sections:
+- title: 5 分鐘快速入門
+  items:
+  - type: list
+    style: unordered
+    items:
+    - html: <a href="/azure/role-based-access-control/quickstart-assign-role-user-portal">授與使用者存取權</a>
+- title: 逐步教學課程
+  items:
+  - type: list
+    style: unordered
+    items:
+    - html: <a href="/azure/role-based-access-control/tutorial-role-assignments-group-powershell">授與群組存取權 - PowerShell</a>
+    - html: <a href="/azure/role-based-access-control/tutorial-custom-role-powershell">建立自訂角色 - PowerShell</a>
+    - html: <a href="/azure/role-based-access-control/tutorial-custom-role-cli">建立自訂角色 - CLI</a>
+- title: 透過 Microsoft Learn 增進您的技巧
+  items:
+  - type: list
+    style: cards
+    className: cardsFTitle
+    items:
+    - title: 使用角色型存取控制 (RBAC) 保護 Azure 資源
+      href: /learn/modules/secure-azure-resources-with-rbac/
+      image:
+        src: /learn/achievements/secure-azure-resources-with-rbac.svg
+        href: /learn/modules/secure-azure-resources-with-rbac/
+  - type: paragraph
+    text: <a href="/learn/browse/?products=azure-active-directory">更多互動式學習...</a>

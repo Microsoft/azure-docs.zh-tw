@@ -11,25 +11,31 @@ ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 10/31/2017
+ms.topic: conceptual
+ms.date: 06/22/2018
 ms.author: bwren
-ms.openlocfilehash: 5c2201292eb085dcc043e4257580c7971dbaffbd
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: na
+ms.openlocfilehash: dcdc84f100ce534ea517f0201b0c090c3059a318
+ms.sourcegitcommit: 51a1476c85ca518a6d8b4cc35aed7a76b33e130f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47160923"
 ---
 # <a name="filters-in-log-analytics-views"></a>Log Analytics 檢視中的篩選
 [Log Analytics 檢視](log-analytics-view-designer.md)中的**篩選**可讓使用者依特定屬性的值篩選檢視中的資料，而不需修改檢視本身。  例如，您可以允許檢視的使用者篩選檢視，只顯示來自某個特定電腦或一組電腦的資料。  您可以在單一檢視上建立多個篩選，以允許使用者依多個屬性進行篩選。  本文說明如何使用篩選，以及如何在自訂檢視中新增篩選。
 
 ## <a name="using-a-filter"></a>使用篩選
-按一下 [篩選] 以開啟檢視的篩選窗格。  這可讓您針對該檢視可用的任何篩選，選取時間範圍和值。  當您選取篩選時，它會顯示可用值的清單。  您可以選取一或多個值，或是輸入值。 檢視會自動更新來依據您指定的值進行篩選。 
+按一下檢視頂端的資料時間範圍，以開啟下拉式清單，您可以在其中變更檢視的資料時間範圍。
 
-如果未針對篩選選取任何值，該篩選就不會套用至檢視。  如果您移除篩選的所有值，系統就不會再套用該篩選。
+![篩選範例](media/log-analytics-view-designer/filters-example-time.png)
+
+按一下 **+** 以使用為檢視定義的自訂篩選器來新增篩選條件。 從下拉式清單中選取篩選條件的值或輸入一個值。 按一下 **+**，繼續新增篩選條件。 
 
 
-![篩選範例](media/log-analytics-view-designer/filters-example.png)
+![篩選範例](media/log-analytics-view-designer/filters-example-custom.png)
+
+如果您移除篩選的所有值，系統就不會再套用該篩選。
 
 
 ## <a name="creating-a-filter"></a>建立篩選
@@ -43,7 +49,7 @@ ms.lasthandoff: 03/23/2018
 | 設定 | 說明 |
 |:---|:---|
 | 欄位名稱 | 用於篩選的欄位名稱。  這必須與 [查詢值] 中的 summarize 欄位相符。 |
-| 查詢值 | 所要執行以填入使用者篩選下拉式清單的查詢。  這必須使用 [summarize](https://docs.loganalytics.io/docs/Language-Reference/Tabular-operators/summarize-operator) 或 [distinct](https://docs.loganalytics.io/docs/Language-Reference/Tabular-operators/distinct-operator) 來為特定欄位提供獨特的值，並且必須與 [欄位名稱]相符。  您可以使用 [sort](https://docs.loganalytics.io/docs/Language-Reference/Tabular-operators/sort-operator) 來排序對使用者顯示的值。 |
+| 查詢值 | 所要執行以填入使用者篩選下拉式清單的查詢。  這必須使用 [summarize](/azure/kusto/query/summarizeoperator) 或 [distinct](/azure/kusto/query/distinctoperator) 來為特定欄位提供獨特的值，並且必須與 [欄位名稱]相符。  您可以使用 [sort](/azure/kusto/query/sortoperator) 來排序對使用者顯示的值。 |
 | Tag | 支援篩選之查詢中使用的欄位名稱，此名稱也會對使用者顯示。 |
 
 ### <a name="examples"></a>範例

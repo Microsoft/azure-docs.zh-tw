@@ -1,31 +1,34 @@
 ---
-title: "如何在 Azure 虛擬機器中啟用巢狀虛擬化 | Microsoft Docs"
-description: "如何在 Azure 虛擬機器中啟用巢狀虛擬化"
+title: 如何在 Azure 虛擬機器中啟用巢狀虛擬化 | Microsoft Docs
+description: 如何在 Azure 虛擬機器中啟用巢狀虛擬化
 services: virtual-machines-windows
 documentationcenter: virtual-machines
-author: philmea
-manager: timlt
-ms.author: philmea
+author: cynthn
+manager: jeconnoc
+ms.author: cynthn
 ms.date: 10/09/2017
 ms.topic: howto
 ms.service: virtual-machines-windows
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
-ms.openlocfilehash: 180b87e18d98bb1e7ddefdcce09fc45d2fc26d0f
-ms.sourcegitcommit: 79683e67911c3ab14bcae668f7551e57f3095425
+ms.openlocfilehash: 0d47b89a468aade8cec51ec04709ed99bfd4684c
+ms.sourcegitcommit: 1aedb52f221fb2a6e7ad0b0930b4c74db354a569
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/25/2018
+ms.lasthandoff: 08/17/2018
+ms.locfileid: "42144020"
 ---
 # <a name="how-to-enable-nested-virtualization-in-an-azure-vm"></a>如何在 Azure VM 中啟用巢狀虛擬化
 
-在 Azure 虛擬機器的 Dv3 和 Ev3 系列中支援巢狀虛擬化。 此功能在如開發、測試、訓練和示範環境的支援案例中，可提供更多的彈性。 
+多個 Azure 虛擬機器系列皆支援巢狀虛擬化。 此功能在如開發、測試、訓練和示範環境的支援案例中，可提供更多的彈性。   
 
-本文會在 Azure VM 上逐步啟用巢狀虛擬化，並設定該客體虛擬機器的網際網路連線。
+本文會在 Azure VM 上逐步啟用 Hyper-V，並設定該客體虛擬機器的網際網路連線。
 
-## <a name="create-a-dv3-or-ev3-series-azure-vm"></a>建立 Dv3 或 Ev3 系列 Azure VM
+## <a name="create-a-nesting-capable-azure-vm"></a>建立可使用巢狀結構的 Azure VM
 
-建立新的 Windows Server 2016 Azure VM，然後從 Dv3 或 Ev3 系列中選擇大小。 請確定您選擇的大小足以支援客體虛擬機器的需求。 在此範例中，我們使用的是 D3_v3 大小的 Azure VM。 
+建立新的 Windows Server 2016 Azure VM。  為了方便參考，所有 v3 虛擬機器都支援巢狀虛擬化。 如需支援巢狀結構的虛擬機器完整清單，請參閱 [Azure 計算單位](acu.md)一文。
+
+請務必選擇大小足以支援客體虛擬機器需求的 VM。 在此範例中，我們使用的是 D3_v3 大小的 Azure VM。 
 
 您可以在[這裡](https://azure.microsoft.com/regions/services/)檢視 Dv3 或 Ev3 系列虛擬機器的區域可用性。
 

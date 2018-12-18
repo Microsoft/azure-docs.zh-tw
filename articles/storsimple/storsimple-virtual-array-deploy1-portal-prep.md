@@ -1,11 +1,11 @@
 ---
-title: "為 StorSimple Virtual Array 準備入口網站 | Microsoft Docs"
-description: "部署 StorSimple Virtual Array 的第一個教學課程，內容為如何準備 Azure 入口網站"
+title: 為 StorSimple Virtual Array 準備入口網站 | Microsoft Docs
+description: 部署 StorSimple Virtual Array 的第一個教學課程，內容為如何準備 Azure 入口網站
 services: storsimple
 documentationcenter: NA
 author: alkohli
 manager: jeconnoc
-editor: 
+editor: ''
 ms.assetid: 68a4cfd3-94c9-46cb-805c-46217290ce02
 ms.service: storsimple
 ms.devlang: NA
@@ -15,11 +15,12 @@ ms.workload: NA
 ms.date: 11/14/2017
 ms.author: alkohli
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 6685c5ab7768176a0c8e7084c8512d5345732d9a
-ms.sourcegitcommit: 732e5df390dea94c363fc99b9d781e64cb75e220
+ms.openlocfilehash: 2126ff7ffd503e1d7b30997f3f32f30429cffefb
+ms.sourcegitcommit: 8ebcecb837bbfb989728e4667d74e42f7a3a9352
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 08/21/2018
+ms.locfileid: "42145565"
 ---
 # <a name="deploy-storsimple-virtual-array---prepare-the-azure-portal"></a>部署 StorSimple Virtual Array - 準備 Azure 入口網站
 
@@ -54,7 +55,7 @@ ms.lasthandoff: 11/14/2017
 * 下載 [StorSimple Virtual Array 檔案伺服器的設定檢查清單](http://download.microsoft.com/download/E/E/6/EE690BB0-B442-4B84-8165-4731EE727ACF/MicrosoftAzureStorSimpleVirtualArrayFileServerConfigurationChecklist.pdf)。
 * 下載 [StorSimple Virtual Array iSCSI 伺服器的設定檢查清單](http://download.microsoft.com/download/E/E/6/EE690BB0-B442-4B84-8165-4731EE727ACF/MicrosoftAzureStorSimpleVirtualArrayiSCSIServerConfigurationChecklist.pdf)。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 我們在此提供 StorSimple 裝置管理員服務、StorSimple Virtual Array 及資料中心網路的設定必要條件。
 
@@ -143,7 +144,7 @@ ms.lasthandoff: 11/14/2017
 
 這是選擇性步驟，只有在您未啟用隨著服務自動建立儲存體帳戶時才需要執行。
 
-如果您需要在不同區域建立 Azure 儲存體帳戶，請參閱[如何建立儲存體帳戶](../storage/common/storage-create-storage-account.md#create-a-storage-account)來取得逐步指示。
+如果您需要在不同區域建立 Azure 儲存體帳戶，請參閱[如何建立儲存體帳戶](../storage/common/storage-quickstart-create-account.md)來取得逐步指示。
 
 請在 [Azure 入口網站](https://ms.portal.azure.com/)的 [StorSimple 裝置管理員服務] 頁面上執行下列步驟，以新增現有的 Microsoft Azure 儲存體帳戶。
 

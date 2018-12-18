@@ -1,71 +1,69 @@
 ### YamlMime:YamlDocument
+ms.openlocfilehash: cd539e1ba1b740155a22960645c3947d7c4d8176
+ms.sourcegitcommit: 31241b7ef35c37749b4261644adf1f5a029b2b8e
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/04/2018
+ms.locfileid: "43666520"
 documentType: LandingData
-title: "Azure 上的 Jenkins"
+title: Azure 上的 Jenkins
 metadata:
-  description: "使用 Azure 部署與整合 Jenkins"
-  services: multiple
-  author: rloutlaw
-  manager: justhe
-  layout: LandingPage
-  ms.service: multiple
-  ms.tgt_pltfrm: na
-  ms.devlang: devops
+  title: Jenkins on Azure 文件 - 教學課程、範例、參考和資源
+  description: 使用 Azure 部署與整合 Jenkins
+  ms.service: jenkins
+  keywords: jenkins, azure, devops, 教學課程, 範例, 參考
+  author: tomarcher
+  manager: jeconnoc
+  ms.author: tarcher
   ms.topic: landing-page
-  ms.date: 11/01/2017
-  ms.author: routlaw
-  ms.custom: Jenkins
-  ms.openlocfilehash: 0925fb5cda7bdfde1a97d0725bd23a8f79882366
-  ms.sourcegitcommit: ce934aca02072bdd2ec8d01dcbdca39134436359
-  ms.translationtype: HT
-  ms.contentlocale: zh-TW
-  ms.lasthandoff: 11/08/2017
+  ms.date: 08/27/2018
 abstract:
-  description: "使用開放原始碼 Jenkins 伺服器，在雲端建置您的應用程式，並將其部署至 Azure。 了解如何透過我們的快速入門、教學課程及範例，安裝、 設定和在 Azure 上調整 Jenkins，並 設定應用程式進行持續整合 (CI)。"
+  description: 使用開放原始碼 Jenkins 伺服器，在雲端建置您的應用程式，並將其部署至 Azure。 了解如何透過我們的快速入門、教學課程及範例，安裝、 設定和在 Azure 上調整 Jenkins，並 設定應用程式進行持續整合 (CI)。
   aside:
     image:
-      alt: Jenkins logo
+      alt: Jenkins 標誌
       height: 133
       width: 110
       src: media/Jenkins.png
     title: 
 sections:
-- title: "5 分鐘快速入門"
+- title: 5 分鐘快速入門
   items:
   - type: paragraph
-    text: "在 Azure 中建立 Jenkins 系統並建置應用程式。"
+    text: 在 Azure 中建立 Jenkins 系統並建置應用程式。
   - type: list
     style: icon48
     items:
     - image:
         src: https://docs.microsoft.com/azure/virtual-machines/linux/media/index/portal.svg
-      text: "Azure 入口網站"
+      text: Azure 入口網站
       href: https://docs.microsoft.com/azure/jenkins/install-jenkins-solution-template
-- title: "逐步教學課程"
+- title: 逐步教學課程
   items:
   - type: paragraph
-    text: "設定應用程式進行連續整合、在雲端中執行代理程式並在作業中使用 Azure 服務。"
+    text: 設定應用程式進行連續整合、在雲端中執行代理程式並在作業中使用 Azure 服務。
   - type: list
     style: ordered
     items:
-    - html: "設定 CI 為 <a href=\"/azure/jenkins/java-deploy-webapp-tutorial\">Azure App Service</a>、<a href=\"/azure/container-service/kubernetes/container-service-kubernetes-jenkins\">Kubernetes</a> 或 <a href=\"/azure/virtual-machines/linux/tutorial-jenkins-github-docker-cicd\">Linux VM</a>。"
-    - html: "<a href=\"/azure/jenkins/execute-cli-jenkins-pipeline\">在管線作業中佈建資源。</a>"
-    - html: "<a href=\"/azure/jenkins/jenkins-azure-vm-agents\">用 Azure VM 代理程式進行調整</a>。"
-- title: "範例"
+    - html: 設定 CI 為 <a href="/azure/jenkins/java-deploy-webapp-tutorial">Azure App Service</a>、<a href="/azure/container-service/kubernetes/container-service-kubernetes-jenkins">Kubernetes</a> 或 <a href="/azure/virtual-machines/linux/tutorial-jenkins-github-docker-cicd">Linux VM</a>。
+    - html: <a href="/azure/jenkins/execute-cli-jenkins-pipeline">在管線作業中佈建資源。</a>
+    - html: <a href="/azure/jenkins/jenkins-azure-vm-agents">用 Azure VM 代理程式進行調整</a>。
+- title: 範例
   items:
   - type: paragraph
-    text: "您管線適用的範例指令碼和階段。"
+    text: 您管線適用的範例指令碼和階段。
   - type: list
     style: unordered
     className: spaced noBullet
     items:
-    - html: "<a href=\"https://github.com/Azure/azure-devops-utils/tree/master/jenkins\">Jenkinsfile 階段和程式碼片段</a>"
-- title: "參考"
+    - html: <a href="https://github.com/Azure/azure-devops-utils/tree/master/jenkins">Jenkinsfile 階段和程式碼片段</a>
+- title: 參考
   items:
   - type: list
     style: cards
     className: cardsD
     items:
-    - title: "外掛程式"
-      html: "<p><a href=\"https://plugins.jenkins.io/azure-vm-agents\">Azure VM 代理程式</a><p><a href=\"https://plugins.jenkins.io/azure-app-service\">Azure App Service</a></p><p><a href=\"https://plugins.jenkins.io/windows-azure-storage\">Azure 儲存體</a></p><p><a href=\"https://plugins.jenkins.io/azure-container-agents\">Azure Container 代理程式</a><p><a href=\"https://plugins.jenkins.io/azure-function\">Azure Function 外掛程式</a><p><a href=\"https://plugins.jenkins.io/azure-acs\">Azure Container Service 外掛程式</a>"
+    - title: 外掛程式
+      html: <p><a href="https://plugins.jenkins.io/azure-vm-agents">Azure VM 代理程式</a><p><a href="https://plugins.jenkins.io/azure-app-service">Azure App Service</a></p><p><a href="https://plugins.jenkins.io/windows-azure-storage">Azure 儲存體</a></p><p><a href="https://plugins.jenkins.io/azure-container-agents">Azure Container 代理程式</a><p><a href="https://plugins.jenkins.io/azure-function">Azure Function 外掛程式</a><p><a href="https://plugins.jenkins.io/azure-acs">Azure Container Service 外掛程式</a>
 - type: paragraph
-  text: "<h4>Jenkins® 是 Public Interest, Inc. 的軟體註冊商標。[Jenkins® 標誌](https://wiki.jenkins.io/display/JENKINS/Logo) 係由 [Jenkins 專案](https://jenkins.io)的 [CC BY SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) 授權。</h4>"
+  text: <h4>Jenkins® 是 Public Interest, Inc. 的軟體註冊商標。[Jenkins® 標誌](https://wiki.jenkins.io/display/JENKINS/Logo) 係由 [Jenkins 專案](https://jenkins.io)的 [CC BY SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) 授權。</h4>

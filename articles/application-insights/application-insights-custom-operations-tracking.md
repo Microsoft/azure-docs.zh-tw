@@ -1,9 +1,9 @@
 ---
-title: "使用 Azure Application Insights .NET SDK 追蹤自訂作業 | Microsoft Docs"
-description: "使用 Azure Application Insights .NET SDK 追蹤自訂作業"
+title: 使用 Azure Application Insights .NET SDK 追蹤自訂作業 | Microsoft Docs
+description: 使用 Azure Application Insights .NET SDK 追蹤自訂作業
 services: application-insights
 documentationcenter: .net
-author: SergeyKanzhelev
+author: mrbullwinkle
 manager: carmonm
 ms.service: application-insights
 ms.workload: TBD
@@ -11,12 +11,12 @@ ms.tgt_pltfrm: ibiza
 ms.devlang: multiple
 ms.topic: article
 ms.date: 06/30/2017
-ms.author: sergkanz
-ms.openlocfilehash: 5c6f7521614d7c8337ef31fb8102c5715f83a58d
-ms.sourcegitcommit: 562a537ed9b96c9116c504738414e5d8c0fd53b1
+ms.author: sergkanz;mbullwin
+ms.openlocfilehash: e66d5e8674d6564d3910daddb1119c22a8b8bd9f
+ms.sourcegitcommit: 870d372785ffa8ca46346f4dfe215f245931dae1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/12/2018
+ms.lasthandoff: 05/08/2018
 ---
 # <a name="track-custom-operations-with-application-insights-net-sdk"></a>使用 Application Insights .NET SDK 追蹤自訂作業
 
@@ -169,7 +169,7 @@ public async Task Enqueue(string payload)
 }
 ```
 
-#### <a name="process"></a>程序
+#### <a name="process"></a>Process
 ```csharp
 public async Task Process(BrokeredMessage message)
 {
@@ -450,7 +450,7 @@ public async Task RunMyTaskAsync()
 
 處置作業會導致作業停止，因此您可以執行而不是呼叫 `StopOperation`。
 
-*警告*：在某些情況下，未處理的例外狀況可能導致[無法](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/try-finally)呼叫 `finally`，因此可能無法追蹤作業。
+*警告*：在某些情況下，未處理的例外狀況可能導致[無法](https://docs.microsoft.com/dotnet/csharp/language-reference/keywords/try-finally)呼叫 `finally`，因此可能無法追蹤作業。
 
 ### <a name="parallel-operations-processing-and-tracking"></a>平行的作業處理和追蹤
 

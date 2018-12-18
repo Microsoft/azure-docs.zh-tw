@@ -1,11 +1,11 @@
 ---
-title: "在 Azure 中選取 Linux VM 映像 | Microsoft Docs"
-description: "了解如何使用 Azure PowerShell 來判斷發行者、供應項目、SKU 和 Marketplace VM 映像的版本。"
+title: 在 Azure 中選取 Linux VM 映像 | Microsoft Docs
+description: 了解如何使用 Azure PowerShell 來判斷發行者、供應項目、SKU 和 Marketplace VM 映像的版本。
 services: virtual-machines-windows
-documentationcenter: 
+documentationcenter: ''
 author: dlepow
 manager: jeconnoc
-editor: 
+editor: ''
 tags: azure-resource-manager
 ms.assetid: 188b8974-fabd-4cd3-b7dc-559cbb86b98a
 ms.service: virtual-machines-windows
@@ -15,22 +15,25 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 ms.date: 02/28/2018
 ms.author: danlep
-ms.openlocfilehash: 6d88eea96d95ac998575b9b034ac970eabc38913
-ms.sourcegitcommit: 782d5955e1bec50a17d9366a8e2bf583559dca9e
+ms.openlocfilehash: 269d1392e00d02a79a360e3528fdde174563f2cf
+ms.sourcegitcommit: 1438b7549c2d9bc2ace6a0a3e460ad4206bad423
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/02/2018
+ms.lasthandoff: 06/20/2018
+ms.locfileid: "36295205"
 ---
 # <a name="how-to-find-windows-vm-images-in-the-azure-marketplace-with-azure-powershell"></a>如何使用 Azure PowerShell 在 Azure Marketplace 中尋找 Windows VM 映像
 
 本文描述如何使用 Azure PowerShell 在 Azure Marketplace 中尋找 Windows VM 映像。 當您使用 PowerShell、Resource Manager 範本或其他工具以程式設計方式建立 VM 時，使用此資訊來指定 Marketplace 映像。
+
+也請透過 [Azure Marketplace](https://azuremarketplace.microsoft.com/) 店面、[Azure 入口網站](https://portal.azure.com)或 [Azure CLI](../linux/cli-ps-findimage.md) 瀏覽可用的映像和供應項目。 
 
 確定您已安裝並設定最新的 [Azure PowerShell 模組](/powershell/azure/install-azurerm-ps)。
 
 [!INCLUDE [virtual-machines-common-image-terms](../../../includes/virtual-machines-common-image-terms.md)]
 
 ## <a name="table-of-commonly-used-windows-images"></a>常用 Windows 映像表
-| 發行者 | 提供項目 | SKU |
+| 發行者 | 供應項目 | SKU |
 |:--- |:--- |:--- |:--- |
 | MicrosoftWindowsServer |WindowsServer |2016-Datacenter |
 | MicrosoftWindowsServer |WindowsServer |2016-Datacenter-Server-Core |
@@ -40,7 +43,6 @@ ms.lasthandoff: 03/02/2018
 | MicrosoftWindowsServer |WindowsServer |2008-R2-SP1 |
 | MicrosoftDynamicsNAV |DynamicsNAV |2017 |
 | MicrosoftSharePoint |MicrosoftSharePointServer |2016 |
-| MicrosoftSQLServer |SQL2016-WS2016 |Enterprise |
 | MicrosoftSQLServer |SQL2014SP2-WS2012R2 |Enterprise |
 | MicrosoftWindowsServerHPCPack |WindowsServerHPCPack |2012R2 |
 | MicrosoftWindowsServerEssentials |WindowsServerEssentials |WindowsServerEssentials |
@@ -50,8 +52,8 @@ ms.lasthandoff: 03/02/2018
 在位置中找到映像的另一個方法是依序執行 [Get-AzureRMVMImagePublisher](/powershell/module/azurerm.compute/get-azurermvmimagepublisher)、[Get-AzureRMVMImageOffer](/powershell/module/azurerm.compute/get-azurermvmimageoffer) 和 [Get-AzureRMVMImageSku](/powershell/module/azurerm.compute/get-azurermvmimagesku) Cmdlet。 您可以使用這些命令來判斷下列的值：
 
 1. 列出映像發行者。
-2. 針對指定的發行者，列出其提供項目。
-3. 針對指定的提供項目，列出其 SKU。
+2. 針對指定的發行者，列出其供應項目。
+3. 針對指定的供應項目，列出其 SKU。
 
 然後，針對選取的 SKU 執行 [Get-AzureRMVMImage](/powershell/module/azurerm.compute/get-azurermvmimage) 以列出要部署的版本。
 
@@ -69,7 +71,7 @@ $pubName="<publisher>"
 Get-AzureRMVMImageOffer -Location $locName -Publisher $pubName | Select Offer
 ```
 
-填入您選擇的提供項目名稱，然後執行以下命令：
+填入您選擇的供應項目名稱，然後執行以下命令：
 
 ```powershell
 $offerName="<offer>"
@@ -80,7 +82,7 @@ Get-AzureRMVMImageSku -Location $locName -Publisher $pubName -Offer $offerName |
 
 ```powershell
 $skuName="<SKU>"
-Get-AzureRMVMImage -Location $locName -Publisher $pubName -Offer $offerName -Sku skuName | Select Version
+Get-AzureRMVMImage -Location $locName -Publisher $pubName -Offer $offerName -Sku $skuName | Select Version
 ```
 
 從 `Get-AzureRMVMImage` 命令的輸出中，您可以選取要部署新虛擬機器的版本映像。

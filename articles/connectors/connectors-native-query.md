@@ -1,11 +1,11 @@
 ---
-title: "在邏輯應用程式中新增查詢動作 | Microsoft Docs"
-description: "執行如篩選陣列等動作的查詢動作概觀。"
-services: 
-documentationcenter: 
+title: 在邏輯應用程式中新增查詢動作 | Microsoft Docs
+description: 執行如篩選陣列等動作的查詢動作概觀。
+services: ''
+documentationcenter: ''
 author: jeffhollan
 manager: erikre
-editor: 
+editor: ''
 tags: connectors
 ms.assetid: 34e702c7-f9e5-4885-9266-fc7404adecfe
 ms.service: logic-apps
@@ -20,6 +20,7 @@ ms.sourcegitcommit: be9a42d7b321304d9a33786ed8e2b9b972a5977e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 01/19/2018
+ms.locfileid: "27962640"
 ---
 # <a name="get-started-with-the-query-action"></a>開始使用查詢動作
 您可以使用查詢動作來處理完成以下工作流程的批次和陣列︰

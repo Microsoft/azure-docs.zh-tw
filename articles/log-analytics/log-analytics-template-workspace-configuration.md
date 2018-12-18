@@ -1,29 +1,31 @@
 ---
-title: "使用 Azure Resource Manager 範本建立和設定 Log Analytics 工作區 | Microsoft Docs"
-description: "您可以使用 Azure Resource Manager 範本來建立和設定 Log Analytics 工作區。"
+title: 使用 Azure Resource Manager 範本建立和設定 Log Analytics 工作區 | Microsoft Docs
+description: 您可以使用 Azure Resource Manager 範本來建立和設定 Log Analytics 工作區。
 services: log-analytics
-documentationcenter: 
-author: richrundmsft
-manager: jochan
-editor: 
+documentationcenter: ''
+author: mgoedtel
+manager: carmonm
+editor: ''
 ms.assetid: d21ca1b0-847d-4716-bb30-2a8c02a606aa
 ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: json
-ms.topic: article
-ms.date: 03/05/2018
-ms.author: richrund
-ms.openlocfilehash: db9b941e84c018a3a56dd683c118e47ee808259d
-ms.sourcegitcommit: 168426c3545eae6287febecc8804b1035171c048
+ms.topic: conceptual
+ms.date: 06/11/2018
+ms.author: magoedte
+ms.component: na
+ms.openlocfilehash: 314b3b5ae331d562b13ba593d5f9b35b87786003
+ms.sourcegitcommit: ad08b2db50d63c8f550575d2e7bb9a0852efb12f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/08/2018
+ms.lasthandoff: 09/26/2018
+ms.locfileid: "47225543"
 ---
 # <a name="manage-log-analytics-using-azure-resource-manager-templates"></a>使用 Azure Resource Manager 範本管理 Log Analytics
 您可以使用 [Azure Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md)來建立和設定 Log Analytics 工作區。 您可以使用範本執行的工作範例包括︰
 
-* 建立工作區
+* 建立工作區，包括設定定價層 
 * 新增解決方案
 * 建立已儲存的搜尋
 * 建立電腦群組
@@ -34,32 +36,118 @@ ms.lasthandoff: 03/08/2018
 * 將 Log Analytics 代理程式加入至 Azure 虛擬機器
 * 設定 Log Analytics 將 Azure 診斷所收集的資料編製索引
 
-本文提供範例範本，示範您可以從範本執行的一些設定。
+本文提供範例範本，示範您可以透過範本執行的一些設定。
 
 ## <a name="api-versions"></a>API 版本
-這篇文章中的範例適用於[已升級的 Log Analytics 工作區](log-analytics-log-search-upgrade.md)。  若要使用舊版的工作區，您必須將查詢的語法變更為舊版語言，並變更每個資源的 API 版本。  下表列出此範例中使用的資源 API 版本。
+下表列出此範例中使用的資源 API 版本。
 
-| 資源 | 資源類型 | 舊版 API 版本 | 升級的 API 版本 |
+| 資源 | 資源類型 | API 版本 |
 |:---|:---|:---|:---|
-| 工作區   | workspaces    | 2015-11-01-preview | 2017-03-15-preview |
-| Search      | savedSearches | 2015-11-01-preview | 2017-03-15-preview |
-| 資料來源 | datasources   | 2015-11-01-preview | 2015-11-01-preview |
-| 解決方法    | solutions     | 2015-11-01-preview | 2015-11-01-preview |
+| 工作區   | workspaces    | 2017-03-15-preview |
+| Search      | savedSearches | 2017-03-15-preview |
+| 資料來源 | datasources   | 2015-11-01-preview |
+| 解決方法    | solutions     | 2015-11-01-preview |
 
+## <a name="create-a-log-analytics-workspace"></a>建立 Log Analytics 工作區
+下列範例會從您的本機電腦使用範本建立工作區。 JSON 範本會設定為只提示您輸入工作區的名稱，並針對您環境中可能作為標準組態使用的其他參數，指定預設值。  
 
-## <a name="create-and-configure-a-log-analytics-workspace"></a>建立及設定 Log Analytics 工作區
+下列參數會設定預設值：
+
+* 位置 - 預設為美國東部
+* SKU - 預設為在 2018 年 4 月定價模型中發行的全新每 GB 定價層
+
+>[!WARNING]
+>如果在已選擇加入 2018 年 4 月全新定價模型的訂用帳戶中建立或設定 Log Analytics 工作區，則唯一有效的 Log Analytics 定價層是 **PerGB2018**。 
+>
+
+### <a name="create-and-deploy-template"></a>建立和部署範本
+
+1. 複製以下 JSON 語法並貼到您的檔案中：
+
+    ```json
+    {
+    "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workspaceName": {
+            "type": "String",
+            "metadata": {
+              "description": "Specifies the name of the workspace."
+            }
+        },
+        "location": {
+            "type": "String",
+            "allowedValues": [
+              "eastus",
+              "westus"
+            ],
+            "defaultValue": "eastus",
+            "metadata": {
+              "description": "Specifies the location in which to create the workspace."
+            }
+        },
+        "sku": {
+            "type": "String",
+            "allowedValues": [
+              "Standalone",
+              "PerNode",
+              "PerGB2018"
+            ],
+            "defaultValue": "PerGB2018",
+            "metadata": {
+            "description": "Specifies the service tier of the workspace: Standalone, PerNode, Per-GB"
+        }
+          }
+    },
+    "resources": [
+        {
+            "type": "Microsoft.OperationalInsights/workspaces",
+            "name": "[parameters('workspaceName')]",
+            "apiVersion": "2017-03-15-preview",
+            "location": "[parameters('location')]",
+            "properties": {
+                "sku": {
+                    "Name": "[parameters('sku')]"
+                },
+                "features": {
+                    "searchVersion": 1
+                }
+            }
+          }
+       ]
+    }
+    ```
+2. 編輯範本以符合您的需求。  檢閱 [Microsoft.OperationalInsights/workspaces 範本](https://docs.microsoft.com/azure/templates/microsoft.operationalinsights/workspaces)參考，以了解支援哪些屬性和值。 
+3. 將此檔案儲存為本機資料夾的 deploylaworkspacetemplate.json。
+4. 您已準備好部署此範本。 您可使用 PowerShell或命令列來建立工作區。
+
+   * 對於 PowerShell，從包含範本的資料夾使用下列命令：
+   
+        ```powershell
+        New-AzureRmResourceGroupDeployment -Name <deployment-name> -ResourceGroupName <resource-group-name> -TemplateFile deploylaworkspacetemplate.json
+        ```
+
+   * 對於命令列，從包含範本的資料夾使用下列命令：
+
+        ```cmd
+        azure config mode arm
+        azure group deployment create <my-resource-group> <my-deployment-name> --TemplateFile deploylaworkspacetemplate.json
+        ```
+
+部署需要幾分鐘的時間才能完成。 完成後，您會看到類似下列包含結果的訊息：<br><br> ![部署完成時的範例結果](./media/log-analytics-template-workspace-configuration/template-output-01.png)
+
+## <a name="configure-a-log-analytics-workspace"></a>設定 Log Analytics 工作區
 下列範例範本說明如何：
 
-1. 建立工作區，包括設定資料保留
-2. 將方案加入至工作區
-3. 建立已儲存的搜尋
-4. 建立電腦群組
-5. 從已安裝 Windows 代理程式的電腦啟用 IIS 記錄檔收集功能
-6. 從 Linux 電腦收集邏輯磁碟效能計數器 (% Used Inodes; Free Megabytes; % Used Space; Disk Transfers/sec; Disk Reads/sec; Disk Writes/sec)
-7. 從 Linux 電腦收集 syslog 事件
-8. 從 Windows 電腦的應用程式事件記錄檔收集錯誤和警告事件
-9. 從 Windows 電腦收集記憶體可用 Mb 效能計數器
-11. 收集 Azure 診斷寫入儲存體帳戶的 IIS 記錄檔和 Windows 事件記錄檔
+1. 將方案加入至工作區
+2. 建立已儲存的搜尋
+3. 建立電腦群組
+4. 從已安裝 Windows 代理程式的電腦啟用 IIS 記錄檔收集功能
+5. 從 Linux 電腦收集邏輯磁碟效能計數器 (% Used Inodes; Free Megabytes; % Used Space; Disk Transfers/sec; Disk Reads/sec; Disk Writes/sec)
+6. 從 Linux 電腦收集 syslog 事件
+7. 從 Windows 電腦的應用程式事件記錄檔收集錯誤和警告事件
+8. 從 Windows 電腦收集記憶體可用 Mb 效能計數器
+9. 收集 Azure 診斷寫入儲存體帳戶的 IIS 記錄檔和 Windows 事件記錄檔
 
 ```json
 {
@@ -77,10 +165,11 @@ ms.lasthandoff: 03/08/2018
       "allowedValues": [
         "Free",
         "Standalone",
-        "PerNode"
+        "PerNode",
+        "PerGB2018"
       ],
       "metadata": {
-        "description": "Service Tier: Free, Standalone, or PerNode"
+        "description": "Service Tier: Free, Standalone, PerNode, or PerGB2018"
     }
       },
     "dataRetention": {
@@ -153,7 +242,7 @@ ms.lasthandoff: 03/08/2018
             "Category": "VMSS",
             "ETag": "*",
             "DisplayName": "VMSS Instance Count",
-            "Query": "Event | where Source == "ServiceFabricNodeBootstrapAgent" | summarize AggregatedValue = count() by Computer",
+            "Query": "Event | where Source == \"ServiceFabricNodeBootstrapAgent\" | summarize AggregatedValue = count() by Computer",
             "Version": 1
           }
         },
@@ -422,7 +511,6 @@ azure config mode arm
 azure group deployment create <my-resource-group> <my-deployment-name> --TemplateFile azuredeploy.json
 ```
 
-
 ## <a name="example-resource-manager-templates"></a>範例 Azure Resource Manager 範本
 Azure 快速入門範本庫中有數個 Log Analytics 的範本，包括︰
 
@@ -430,10 +518,9 @@ Azure 快速入門範本庫中有數個 Log Analytics 的範本，包括︰
 * [部署執行 Linux 和 Log Analytics VM 擴充功能的虛擬機器](https://azure.microsoft.com/documentation/templates/201-oms-extension-ubuntu-vm/)
 * [使用現有 Log Analytics 工作區監視 Azure Site Recovery](https://azure.microsoft.com/documentation/templates/asr-oms-monitoring/)
 * [使用現有 Log Analytics 工作區監視 Azure Web Apps](https://azure.microsoft.com/documentation/templates/101-webappazure-oms-monitoring/)
-* [使用現有 Log Analytics 工作區監視 SQL Azure](https://azure.microsoft.com/documentation/templates/101-sqlazure-oms-monitoring/)
-* [部署 Service Fabric 叢集，並以現有 Log Analytics 工作區監視它](https://azure.microsoft.com/documentation/templates/service-fabric-oms/)
-* [部署 Service Fabric 叢集，並建立 Log Analytics 工作區來監視它](https://azure.microsoft.com/documentation/templates/service-fabric-vmss-oms/)
+* [將現有的儲存體帳戶新增到 OMS](https://azure.microsoft.com/resources/templates/oms-existing-storage-account/)
 
 ## <a name="next-steps"></a>後續步驟
-* [使用 Resource Manager 範本將代理程式部署到 Azure VM](log-analytics-azure-vm-extension.md)
+* [使用 Resource Manager 範本將 Windows 代理程式部署到 Azure VM](../virtual-machines/windows/extensions-oms.md)。
+* [使用 Resource Manager 範本將 Linux 代理程式部署到 Azure VM](../virtual-machines/linux/extensions-oms.md)。
 

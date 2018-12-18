@@ -1,149 +1,218 @@
+items:
+- name: Azure IoT 基礎
+  href: ../iot-fundamentals/index.yml
 - name: Azure IoT 中樞裝置佈建服務文件
   href: index.yml
 - name: 概觀
   items:
-    - name: 關於裝置佈建
-      href: about-iot-dps.md
+  - name: 關於 IoT 裝置佈建服務
+    href: about-iot-dps.md
 - name: 快速入門
-  expanded: true
   items:
-    - name: 設定自動佈建 - Azure CLI
-      href: quick-setup-auto-provision-cli.md
-    - name: 設定自動佈建 - 入口網站
-      href: quick-setup-auto-provision.md
-    - name: 設定自動佈建 - 範本
-      href: quick-setup-auto-provision-rm.md
-    - name: 自動佈建模擬裝置
+  - name: 設定自動佈建 - Azure CLI
+    href: quick-setup-auto-provision-cli.md
+  - name: 設定自動佈建 - 入口網站
+    href: quick-setup-auto-provision.md
+  - name: 設定自動佈建 - 範本
+    href: quick-setup-auto-provision-rm.md
+  - name: 自動佈建模擬裝置
+    items:
+    - name: TPM 證明
       items:
-        - name: TPM 證明
-          items:
-            - name: C
-              href: quick-create-simulated-device.md
-            - name: Java
-              href: quick-create-simulated-device-tpm-java.md
-            - name: 'C#'
-              href: quick-create-simulated-device-tpm-csharp.md
-            - name: Node.js
-              href: quick-create-simulated-device-tpm-node.md
-            - name: Python
-              href: quick-create-simulated-device-tpm-python.md
-        - name: X.509 證明
-          items:
-            - name: C
-              href: quick-create-simulated-device-x509.md
-            - name: Java
-              href: quick-create-simulated-device-x509-java.md
-            - name: 'C#'
-              href: quick-create-simulated-device-x509-csharp.md
-            - name: Node.js
-              href: quick-create-simulated-device-x509-node.md
-            - name: Python
-              href: quick-create-simulated-device-x509-python.md
-    - name: 使用佈建服務 API 註冊裝置
+      - name: C
+        href: quick-create-simulated-device.md
+      - name: Java
+        href: quick-create-simulated-device-tpm-java.md
+      - name: C#
+        href: quick-create-simulated-device-tpm-csharp.md
+      - name: Node.js
+        href: quick-create-simulated-device-tpm-node.md
+      - name: Python
+        href: quick-create-simulated-device-tpm-python.md
+    - name: X.509 證明
       items:
-        - name: TPM 證明
-          items:
-            - name: Java
-              href: quick-enroll-device-tpm-java.md
-            - name: 'C#'
-              href: quick-enroll-device-tpm-csharp.md
-            - name: Node.js
-              href: quick-enroll-device-tpm-node.md
-            - name: Python
-              href: quick-enroll-device-tpm-python.md
-        - name: X.509 證明
-          items:
-            - name: Java
-              href: quick-enroll-device-x509-java.md
-            - name: 'C#'
-              href: quick-enroll-device-x509-csharp.md
-            - name: Node.js
-              href: quick-enroll-device-x509-node.md
-            - name: Python
-              href: quick-enroll-device-x509-python.md
+      - name: C
+        href: quick-create-simulated-device-x509.md
+      - name: Java
+        href: quick-create-simulated-device-x509-java.md
+      - name: C#
+        href: quick-create-simulated-device-x509-csharp.md
+      - name: Node.js
+        href: quick-create-simulated-device-x509-node.md
+      - name: Python
+        href: quick-create-simulated-device-x509-python.md
+  - name: 使用佈建服務 API 註冊裝置
+    items:
+    - name: TPM 證明
+      items:
+      - name: Java
+        href: quick-enroll-device-tpm-java.md
+      - name: C#
+        href: quick-enroll-device-tpm-csharp.md
+      - name: Node.js
+        href: quick-enroll-device-tpm-node.md
+      - name: Python
+        href: quick-enroll-device-tpm-python.md
+    - name: X.509 證明
+      items:
+      - name: Java
+        href: quick-enroll-device-x509-java.md
+      - name: C#
+        href: quick-enroll-device-x509-csharp.md
+      - name: Node.js
+        href: quick-enroll-device-x509-node.md
+      - name: Python
+        href: quick-enroll-device-x509-python.md
+  expanded: true
 - name: 教學課程
   items:
-    - name: 1 - 設定雲端資源
-      href: tutorial-set-up-cloud.md
-    - name: 2 - 設定裝置
-      href: tutorial-set-up-device.md
-    - name: 3 - 將裝置佈建至 IoT 中樞
-      items:
-        - name: C
-          href: tutorial-provision-device-to-hub.md
-        - name: 'C#'
-          href: tutorial-net-provision-device-to-hub.md
-    - name: 4 - 將裝置佈建至多個中樞
-      href: tutorial-provision-multiple-hubs.md
-    - name: 5 - 佈建群組註冊項目
-      href: tutorial-group-enrollments.md
+  - name: 1 - 設定雲端資源
+    href: tutorial-set-up-cloud.md
+  - name: 2 - 設定裝置
+    href: tutorial-set-up-device.md
+  - name: 3 - 將裝置佈建至 IoT 中樞
+    items:
+    - name: C
+      href: tutorial-provision-device-to-hub.md
+    - name: C#
+      href: tutorial-net-provision-device-to-hub.md
+  - name: 4 - 將裝置佈建至多個中樞
+    href: tutorial-provision-multiple-hubs.md
+  - name: 5 - 佈建群組註冊項目
+    href: tutorial-group-enrollments.md
 - name: 概念
   items:
-    - name: 自動佈建
-      href: concepts-auto-provisioning.md
-    - name: 裝置
-      href: concepts-device.md
-    - name: 安全性
-      href: concepts-security.md
-    - name: 服務
-      href: concepts-service.md
+  - name: 自動佈建
+    href: concepts-auto-provisioning.md
+  - name: 裝置
+    href: concepts-device.md
+  - name: 安全性
+    href: concepts-security.md
+  - name: 服務
+    href: concepts-service.md
+  - name: TPM 證明
+    href: concepts-tpm-attestation.md
 - name: 使用說明指南
   items:
-    - name: 管理裝置註冊
-      items:
-        - name: 透過 Azure 入口網站管理裝置註冊
-          href: how-to-manage-enrollments.md
-        - name: 透過服務 SDK 管理裝置註冊
-          href: how-to-manage-enrollments-sdks.md
-    - name: 撤銷裝置存取
-      href: how-to-revoke-device-access-portal.md
-    - name: 解除佈建裝置
-      href: how-to-unprovision-devices.md
-    - name: 執行證明持有 X.509 CA 憑證
+  - name: 將 MXChip IoT DevKit 連線到 IoT 中樞
+    href: how-to-connect-mxchip-iot-devkit.md
+  - name: 管理裝置佈建服務設定
+    items:
+    - name: 管理註冊 - 入口網站
+      href: how-to-manage-enrollments.md
+    - name: 管理註冊 - 服務 SDK
+      href: how-to-manage-enrollments-sdks.md
+    - name: 設定已驗證的 CA 憑證
       href: how-to-verify-certificates.md
-    - name: 使用 HSM 與 SDK
-      href: use-hsm-with-sdk.md
-    - name: 控制佈建服務的存取
-      href: how-to-control-access.md
-    - name: 使用 Azure CLI 來管理裝置佈建服務
+    - name: 復原裝置憑證
+      href: how-to-roll-certificates.md
+    - name: 管理取消註冊
+      href: how-to-revoke-device-access-portal.md
+    - name: 管理取消佈建
+      href: how-to-unprovision-devices.md
+  - name: 管理裝置佈建服務
+    items:
+    - name: 使用 Azure CLI 來設定裝置佈建服務
       href: how-to-manage-dps-with-cli.md
-    - name: 使用 SDK 工具進行開發
-      href: how-to-use-sdk-tools.md
-    - name: 連線至 MXChip IoT DevKit
-      href: how-to-connect-mxchip-iot-devkit.md
+    - name: 控制佈建服務 API 的存取
+      href: how-to-control-access.md
+  - name: 佈建 IoT Edge 裝置
+    items:
+    - name: Linux
+      href: ../iot-edge/how-to-auto-provision-simulated-device-linux.md
+      maintainContext: true
+    - name: Windows
+      href: ../iot-edge/how-to-auto-provision-simulated-device-windows.md
+      maintainContext: true
+  - name: 透過 SDK 使用證明機制
+    href: use-hsm-with-sdk.md
+  - name: 使用 SDK 工具進行開發
+    href: how-to-use-sdk-tools.md
 - name: 參考
   items:
-    - name: REST
-      href: /rest/api/iot-dps
+  - name: REST API
+    href: /rest/api/iot-dps
+  - name: Azure IoT SDK for C
+    href: https://github.com/Azure/azure-iot-sdk-c
+  - name: Azure IoT SDK for Python
+    href: https://github.com/Azure/azure-iot-sdk-python
+  - name: Azure IoT SDK for Node.js
+    href: https://github.com/Azure/azure-iot-sdk-node
+  - name: Azure IoT SDK for Java
+    href: https://github.com/Azure/azure-iot-sdk-java
+  - name: Azure IoT SDK for .NET
+    href: https://github.com/Azure/azure-iot-sdk-csharp
+- name: 相關參考
+  items:
+  - name: 解決方案
+    items:
+    - name: IoT 解決方案加速器
+      href: /azure/iot-suite
+    - name: IoT 中心
+      href: https://docs.microsoft.com/microsoft-iot-central/
+  - name: 平台服務
+    items:
+    - name: IoT 中樞
+      href: /azure/iot-hub
+    - name: IoT 中樞裝置佈建服務
+      href: /azure/iot-dps
+    - name: 地圖
+      href: /azure/azure-maps
+    - name: 服務 SDK
+      href: /azure/iot-hub/iot-hub-devguide-sdks#azure-iot-service-sdks
+    - name: 時間序列深入解析
+      href: /azure/time-series-insights
+  - name: Edge
+    items:
+    - name: IoT Edge
+      href: /azure/iot-edge
+    - name: IoT 裝置 SDK
+      href: /azure/iot-hub/iot-hub-devguide-sdks#azure-iot-device-sdks
 - name: 資源
   items:
-    - name: Azure IoT 中樞
-      href: 'https://azure.microsoft.com/services/iot-hub/'
-    - name: Azure IoT 認證裝置目錄
-      href: 'https://catalog.azureiotsuite.com/'
-    - name: Azure IoT 開發人員中心
-      href: 'https://azure.microsoft.com/develop/iot/'
-    - name: Azure 藍圖
-      href: 'https://azure.microsoft.com/roadmap/?category=internet-of-things'
-    - name: Device Explorer 工具
-      href: 'https://github.com/Azure/azure-iot-sdk-csharp/tree/master/tools/DeviceExplorer'
-    - name: iothub-diagnostics 工具
-      href: 'https://github.com/Azure/iothub-diagnostics'
-    - name: iothub-explorer 工具
-      href: 'https://github.com/Azure/iothub-explorer'
-    - name: 學習路徑
-      href: 'https://azure.microsoft.com/documentation/learning-paths/iot-hub/'
-    - name: MSDN 論壇
-      href: 'https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=azureiothub'
-    - name: 價格
-      href: 'https://azure.microsoft.com/pricing/details/iot-hub/'
-    - name: 定價計算機
-      href: 'https://azure.microsoft.com/pricing/calculator/'
-    - name: 服務更新
-      href: 'https://azure.microsoft.com/updates/?product=iot-hub'
-    - name: 堆疊溢位
-      href: 'http://stackoverflow.com/questions/tagged/azure-iot-hub'
-    - name: 技術案例研究
-      href: 'https://microsoft.github.io/techcasestudies/#technology=IoT&sortBy=featured'
-    - name: 影片
-      href: 'https://azure.microsoft.com/documentation/videos/index/?services=iot-hub'
+  - name: 適用於 C# 的 Azure IoT 範例 (.NET)
+    href: https://azure.microsoft.com/resources/samples/azure-iot-samples-csharp/
+  - name: 適用於 Node.js 的 Azure IoT 範例
+    href: https://azure.microsoft.com/resources/samples/azure-iot-samples-node/
+  - name: 適用於 Java 的 Azure IoT 範例
+    href: https://azure.microsoft.com/resources/samples/azure-iot-samples-java/
+  - name: 適用於 Python 的 Azure IoT 範例
+    href: https://azure.microsoft.com/resources/samples/azure-iot-samples-python/
+  - name: 適用於 iOS 平台的 Azure IoT 範例
+    href: https://azure.microsoft.com/resources/samples/azure-iot-samples-ios/
+  - name: Azure IoT 中樞
+    href: https://azure.microsoft.com/services/iot-hub/
+  - name: Azure IoT 認證裝置目錄
+    href: https://catalog.azureiotsuite.com/
+  - name: Azure IoT 開發人員中心
+    href: https://azure.microsoft.com/develop/iot/
+  - name: 客戶資料要求
+    href: iot-dps-customer-data-requests.md
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/?category=iot
+  - name: Device Explorer 工具
+    href: https://github.com/Azure/azure-iot-sdk-csharp/tree/master/tools/DeviceExplorer
+  - name: iothub-diagnostics 工具
+    href: https://github.com/Azure/iothub-diagnostics
+  - name: 學習路徑
+    href: https://azure.microsoft.com/documentation/learning-paths/iot-hub/
+  - name: MSDN 論壇
+    href: https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=azureiothub
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/iot-hub/
+  - name: 定價計算機
+    href: https://azure.microsoft.com/pricing/calculator/
+  - name: 服務更新
+    href: https://azure.microsoft.com/updates/?product=iot-hub
+  - name: 堆疊溢位
+    href: http://stackoverflow.com/questions/tagged/azure-iot-hub
+  - name: 技術案例研究
+    href: https://microsoft.github.io/techcasestudies/#technology=IoT&sortBy=featured
+  - name: 影片
+    href: https://azure.microsoft.com/documentation/videos/index/?services=iot-hub
+ms.openlocfilehash: 0a4369214f26622c2a30136a814b8e788e187144
+ms.sourcegitcommit: f057c10ae4f26a768e97f2cb3f3faca9ed23ff1b
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/17/2018
+ms.locfileid: "41927919"

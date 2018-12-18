@@ -2,23 +2,21 @@
 title: 使用 Azure Tools 發佈雲端服務 | Microsoft Docs
 description: 了解如何使用 Visual Studio 發佈 Azure 雲端服務專案。
 services: visual-studio-online
-documentationcenter: na
 author: ghogen
 manager: douge
-editor: ''
-ms.assetid: 1a07b6e4-3678-4cbf-b37e-4520b402a3d9
-ms.service: multiple
-ms.devlang: dotnet
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: multiple
+assetId: 1a07b6e4-3678-4cbf-b37e-4520b402a3d9
+ms.prod: visual-studio-dev15
+ms.technology: vs-azure
+ms.workload: azure
+ms.topic: conceptual
 ms.date: 11/11/2017
 ms.author: ghogen
-ms.openlocfilehash: 59a34f92937136079d8c693a1747b2d54f37e6d8
-ms.sourcegitcommit: 34e0b4a7427f9d2a74164a18c3063c8be967b194
+ms.openlocfilehash: bde00dfbf4a7ffde90d1a9a3d57d3a2decf74cad
+ms.sourcegitcommit: fa493b66552af11260db48d89e3ddfcdcb5e3152
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/30/2018
+ms.lasthandoff: 04/23/2018
+ms.locfileid: "31799459"
 ---
 # <a name="publishing-a-cloud-service-using-visual-studio"></a>使用 Visual Studio 發佈雲端服務
 
@@ -71,13 +69,13 @@ Visual Studio 可直接將應用程式發佈至 Azure，並支援雲端服務的
 
 ### <a name="requirements-for-using-web-deploy"></a>使用 Web Deploy 的需求
 
-- **只能用於開發和測試目的：**系統會直接對執行 Web 角色的虛擬機器進行變更。 如果此虛擬機器必須回收，您就會遺失變更，因為您發佈的原始封裝會用來重新建立角色的虛擬機器。 重新發佈應用程式以取得 Web 角色的最新變更。
+- **只能用於開發和測試目的：** 系統會直接對執行 Web 角色的虛擬機器進行變更。 如果此虛擬機器必須回收，您就會遺失變更，因為您發佈的原始封裝會用來重新建立角色的虛擬機器。 重新發佈應用程式以取得 Web 角色的最新變更。
 
-- **只能更新 Web 角色：**無法更新背景工作角色。 此外，您不能更新 `web role.cs` 中的 `RoleEntryPoint`。
+- **只能更新 Web 角色：** 無法更新背景工作角色。 此外，您不能更新 `web role.cs` 中的 `RoleEntryPoint`。
 
-- **只能支援 Web 角色的單一執行個體：**所有 Web 角色在部署環境中都不能有多個執行個體。 不過，可支援多個各只有一個執行個體的 Web 角色。
+- **只能支援 Web 角色的單一執行個體：** 所有 Web 角色在部署環境中都不能有多個執行個體。 不過，可支援多個各只有一個執行個體的 Web 角色。
 
-- **啟用遠端桌面連線：**此需求讓 Web Deploy 能夠使用使用者名稱和密碼來連線到虛擬機器，以將變更部署到執行網際網路資訊服務 (IIS) 的伺服器。 此外，您可能需要連線到虛擬機器，以將信任的憑證新增到此虛擬機器上的 IIS。 (此憑證可確保 Web Deploy 所使用的 IIS 的遠端連線安全無虞。)
+- **啟用遠端桌面連線：** 此需求讓 Web Deploy 能夠使用使用者名稱和密碼來連線到虛擬機器，以將變更部署到執行網際網路資訊服務 (IIS) 的伺服器。 此外，您可能需要連線到虛擬機器，以將信任的憑證新增到此虛擬機器上的 IIS。 (此憑證可確保 Web Deploy 所使用的 IIS 的遠端連線安全無虞。)
 
 下列程序假設您是使用 [發佈 Azure 應用程式]  精靈。
 

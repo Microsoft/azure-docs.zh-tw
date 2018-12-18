@@ -2,17 +2,18 @@
 title: 使用 Azure Site Recovery 在 Azure 中設定處理序伺服器用於 VMware VM 和實體伺服器的容錯回復 | Microsoft Docs
 description: 本文說明如何在 Azure 中設定處理序伺服器，用於 Azure VMs 到 VMware 的容錯回復。
 services: site-recovery
-author: AnoopVasudavan
-manager: gauravd
+author: rayne-wiselman
+manager: carmonm
 ms.service: site-recovery
 ms.topic: article
-ms.date: 03/05/2018
-ms.author: anoopkv
-ms.openlocfilehash: c6ef0ae663727c519f9b6a8a56027a3dd8a9503d
-ms.sourcegitcommit: 168426c3545eae6287febecc8804b1035171c048
+ms.date: 10/10/2018
+ms.author: raynew
+ms.openlocfilehash: a54fe3099854e6e5200a50ec6ef5db1401a223bf
+ms.sourcegitcommit: 4b1083fa9c78cd03633f11abb7a69fdbc740afd1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/08/2018
+ms.lasthandoff: 10/10/2018
+ms.locfileid: "49077607"
 ---
 # <a name="set-up-a-process-server-in-azure-for-failback"></a>在 Azure 中設定容錯回復的處理序伺服器
 
@@ -26,7 +27,7 @@ ms.lasthandoff: 03/08/2018
 
 ## <a name="deploy-a-process-server-in-azure"></a>在 Azure 中部署處理序伺服器
 
-1. 在保存庫中，依序選取 [Site Recovery 基礎結構] >  [管理]  >  [組態伺服器]，然後按一下設定伺服器。
+1. 在保存庫中，依序選取 [Site Recovery 基礎結構]> [管理] > [組態伺服器]，然後按一下組態伺服器。
 2. 在伺服器頁面中，按一下 [+ 處理序伺服器]。
 3. 在 [新增處理序伺服器] 頁面中，選取在 Azure 中部署處理序伺服器。
 4. 指定 Azure 的設定，包括用於容錯移轉的訂用帳戶、資源群組、用於容錯移轉的 Azure 區域、Azure VM 所在的虛擬網路。 如果您使用多個 Azure 網路，每個網路中都要有一個處理序伺服器。

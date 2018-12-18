@@ -1,24 +1,22 @@
 ---
-title: 快速入門：使用 Azure 入口網站在 Azure Databricks 上執行 Spark 作業 | Microsoft Docs
+title: 快速入門：使用 Azure 入口網站在 Azure Databricks 上執行 Spark 作業
 description: 此快速入門會說明如何使用 Azure 入口網站來建立 Azure Databricks 工作區、Apache Spark 叢集和執行 Spark 作業。
 services: azure-databricks
-documentationcenter: ''
-author: nitinme
+ms.service: azure-databricks
+author: jasonwhowell
+ms.author: jasonh
 manager: cgronlun
 editor: cgronlun
-ms.service: azure-databricks
 ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
 ms.topic: quickstart
-ms.date: 03/23/2018
-ms.author: nitinme
+ms.date: 07/23/2018
 ms.custom: mvc
-ms.openlocfilehash: 19dcdeefe4a65f5c0fab06766a0fa40838df8b08
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: becf592d07f650c00263e26ccff2ad8525310dac
+ms.sourcegitcommit: 6361a3d20ac1b902d22119b640909c3a002185b3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49363466"
 ---
 # <a name="quickstart-run-a-spark-job-on-azure-databricks-using-the-azure-portal"></a>快速入門：使用 Azure 入口網站在 Azure Databricks 上執行 Spark 作業
 
@@ -40,7 +38,7 @@ ms.lasthandoff: 03/28/2018
 
     ![Azure 入口網站上的 Databricks](./media/quickstart-create-databricks-workspace-portal/azure-databricks-on-portal.png "Azure 入口網站上的 Databricks")
 
-3. 在 [Azure Databricks 服務] 底下，提供值以建立 Databricks 工作區。
+2. 在 [Azure Databricks 服務] 底下，提供值以建立 Databricks 工作區。
 
     ![建立 Azure Databricks 工作區](./media/quickstart-create-databricks-workspace-portal/create-databricks-workspace.png "建立 Azure Databricks 工作區")
 
@@ -62,6 +60,9 @@ ms.lasthandoff: 03/28/2018
 
 ## <a name="create-a-spark-cluster-in-databricks"></a>在 Databricks 中建立 Spark 叢集
 
+> [!NOTE] 
+> 若要使用免費帳戶建立 Azure Databricks 叢集，在建立叢集之前，請先移至您的設定檔，並將訂用帳戶變更為**隨用隨付**。 如需詳細資訊，請參閱 [Azure 免費帳戶](https://azure.microsoft.com/free/)。  
+
 1. 在 Azure 入口網站中，移至您所建立的 Databricks 工作區，然後按一下 [啟動工作區]。
 
 2. 系統會將您重新導向至 Azure Databricks 入口網站。 在入口網站中按一下 [叢集]。
@@ -76,20 +77,40 @@ ms.lasthandoff: 03/28/2018
 
     * 輸入叢集的名稱。
     * 針對本文，使用 **4.0** 執行階段建立叢集。 
-    * 請確定您選取 [在活動 ___ 分鐘後終止] 核取方塊。 請提供用來終止叢集的叢集未使用持續時間 (以分鐘為單位)。
+    * 請確定您選取 **在活動 ___ 分鐘後終止** 核取方塊。 請提供用來終止叢集的叢集未使用持續時間 (以分鐘為單位)。
     
     選取 [建立叢集]。 叢集在執行後，您就可以將 Notebook 連結至叢集，並執行 Spark 作業。 
 
 如需如何建立叢集的詳細資訊，請參閱[在 Azure Databricks 建立 Spark 叢集](https://docs.azuredatabricks.net/user-guide/clusters/create.html)。
 
+
+## <a name="download-a-sample-data-file"></a>下載範例資料檔案
+下載範例 JSON 資料檔案，並將其儲存到 Azure Blob 儲存體中。
+
+1. 將此範例 JSON 資料檔案[從 Github](https://raw.githubusercontent.com/Azure/usql/master/Examples/Samples/Data/json/radiowebsite/small_radio_json.json) 下載到本機電腦上。 按一下滑鼠右鍵，再按一下 [另存新檔]，將原始檔案儲存在本機上。 
+
+2. 如果您還沒有儲存體帳戶，請建立一個。 
+   - 在 Azure 入口網站中，選取 [建立資源]。  選取 [儲存體] 類別，然後選取 [儲存體帳戶]  
+   - 提供儲存體帳戶的唯一名稱。
+   - 選取 [帳戶類型]：[Blob 儲存體]
+   - 選取 [資源群組] 名稱。 請使用您在 Databricks 工作區中建立的相同資源群組。
+   
+   如需詳細資訊，請參閱[建立 Azure Blob 儲存體帳戶](../storage/common/storage-quickstart-create-account.md)。 
+
+3. 在 Blob 儲存體帳戶中建立儲存體容器，並將範例 JSON 檔案上傳至容器中。 您可以使用 Azure 入口網站或 [Microsoft Azure 儲存體總管](../vs-azure-tools-storage-manage-with-storage-explorer.md)來上傳檔案。
+
+   - 在 Azure 入口網站中開啟儲存體帳戶。
+   - 選取 [Blob] 。
+   - 選取 [+ 容器] 以建立新的空容器。
+   - 提供容器的 [名稱]，例如 `databricks`。 
+   - 選取 [私人 (非匿名存取)] 存取層級。
+   - 在容器建立後，選取容器名稱。
+   - 選取 [上傳] 按鈕。
+   - 在 [檔案] 頁面上，選取 [資料夾] 圖示以進行瀏覽，並選取範例檔案 `small_radio_json.json` 加以上傳。 
+   - 選取 [上傳] 以上傳檔案。
+   
+   
 ## <a name="run-a-spark-sql-job"></a>執行 Spark SQL 作業
-
-開始本節之前，您必須先完成下列必要條件：
-
-* [建立 Azure Blob 儲存體帳戶](../storage/common/storage-create-storage-account.md#create-a-storage-account)。 
-* [從 GitHub](https://github.com/Azure/usql/blob/master/Examples/Samples/Data/json/radiowebsite/small_radio_json.json) 下載 JSON 檔案範例。 
-* 將 JSON 檔案範例上傳至您建立的 Azure Blob 儲存體帳戶。 您可以使用 [Microsoft Azure 儲存體總管](../vs-azure-tools-storage-manage-with-storage-explorer.md)來上傳檔案。
-
 請執行下列工作，在 Databricks 中建立 Notebook，將 Notebook 設定為從 Azure Blob 儲存體帳戶讀取資料，然後對資料執行 Spark SQL 作業。
 
 1. 在左窗格中，按一下 [工作區]。 從 [工作區] 下拉式清單按一下 [建立]，然後按一下 [Notebook]。
@@ -122,7 +143,7 @@ ms.lasthandoff: 03/28/2018
 
           spark.conf.set("fs.azure.account.key.{YOUR STORAGE ACCOUNT NAME}.blob.core.windows.net", "{YOUR STORAGE ACCOUNT ACCESS KEY}")
 
-    如需如何擷取儲存體帳戶金鑰的指示，請參閱[管理儲存體存取金鑰](../storage/common/storage-create-storage-account.md#manage-your-storage-account)。
+    如需如何擷取儲存體帳戶金鑰的指示，請參閱[管理儲存體存取金鑰](../storage/common/storage-account-manage.md#access-keys)。
 
     > [!NOTE]
     > 您也可以在 Azure Databricks 上搭配使用 Azure Data Lake Store 與 Spark 叢集。 如需指示，請參閱[搭配使用 Data Lake Store 與 Azure Databricks](https://go.microsoft.com/fwlink/?linkid=864084)。

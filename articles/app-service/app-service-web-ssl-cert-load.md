@@ -1,11 +1,11 @@
 ---
-title: "在 Azure App Service 中的應用程式程式碼中使用上傳的 SSL 憑證 | Microsoft Docs"
-description: 
+title: 在 Azure App Service 中的應用程式程式碼中使用上傳的 SSL 憑證 | Microsoft Docs
+description: ''
 services: app-service\web
-documentationcenter: 
+documentationcenter: ''
 author: cephalin
 manager: cfowler
-editor: 
+editor: ''
 ms.service: app-service-web
 ms.workload: web
 ms.tgt_pltfrm: na
@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/01/2017
 ms.author: cephalin
-ms.openlocfilehash: 6800bf766deb2044d400f92dbe370fa15bdd5f00
-ms.sourcegitcommit: be0d1aaed5c0bbd9224e2011165c5515bfa8306c
+ms.openlocfilehash: 87c9cd5955dda1a379733e5ad48d58f8361f0e6b
+ms.sourcegitcommit: ebd06cee3e78674ba9e6764ddc889fc5948060c4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/01/2017
+ms.lasthandoff: 09/07/2018
+ms.locfileid: "44051471"
 ---
 # <a name="use-an-ssl-certificate-in-your-application-code-in-azure-app-service"></a>在 Azure App Service 中的應用程式程式碼中使用 SSL 憑證
 
@@ -27,7 +28,7 @@ ms.lasthandoff: 12/01/2017
 
 當您讓 App Service 管理您的 SSL 憑證時，您可以分開維護憑證以及應用程式程式碼，並保護您的敏感性資料。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 若要完成本作法指南：
 
@@ -50,7 +51,7 @@ ms.lasthandoff: 12/01/2017
 
 在左側導覽中，按一下 [應用程式設定]。
 
-新增名為 `WEBSITE_LOAD_CERTIFICATES` 的應用程式，並將其值設定為憑證的指紋。 若要讓多個憑證可供存取，請使用逗號來分隔指紋值。 若要讓所有憑證都可供存取，請將值設定為 `*`。 
+新增名為 `WEBSITE_LOAD_CERTIFICATES` 的應用程式，並將其值設定為憑證的指紋。 若要讓多個憑證可供存取，請使用逗號來分隔指紋值。 若要讓所有憑證都可供存取，請將值設定為 `*`。 請記住，這會將憑證放入 `CurrentUser\My` 存放區。
 
 ![設定應用程式設定](./media/app-service-web-ssl-cert-load/configure-app-setting.png)
 

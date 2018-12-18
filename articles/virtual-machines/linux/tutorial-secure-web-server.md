@@ -1,28 +1,29 @@
 ---
-title: "在 Azure 中使用 SSL 憑證來保護網頁伺服器 | Microsoft Docs"
-description: "了解如何在 Azure 中的 Linux VM 上使用 SSL 憑證來保護 NGINX 網頁伺服器"
+title: 教學課程：在 Azure 中使用 SSL 憑證來保護 Linux 網頁伺服器 | Microsoft Docs
+description: 在本教學課程中，您將了解如何搭配使用 Azure CLI 與 Azure Key Vault 中儲存的 SSL 憑證，來保護執行 NGINX 網頁伺服器的 Linux 虛擬機器。
 services: virtual-machines-linux
 documentationcenter: virtual-machines
-author: iainfoulds
+author: cynthn
 manager: jeconnoc
 editor: tysonn
 tags: azure-resource-manager
-ms.assetid: 
+ms.assetid: ''
 ms.service: virtual-machines-linux
 ms.devlang: na
 ms.topic: tutorial
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
-ms.date: 12/14/2017
-ms.author: iainfou
+ms.date: 04/30/2018
+ms.author: cynthn
 ms.custom: mvc
-ms.openlocfilehash: 02118533c4ab552f81157f644bb794e68fbc4ce3
-ms.sourcegitcommit: 059dae3d8a0e716adc95ad2296843a45745a415d
+ms.openlocfilehash: a0156167142e87ffb7935828de1000a302f12e31
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46981681"
 ---
-# <a name="secure-a-web-server-with-ssl-certificates-on-a-linux-virtual-machine-in-azure"></a>在 Azure 中的 Linux 虛擬機器上使用 SSL 憑證來保護網頁伺服器
+# <a name="tutorial-secure-a-web-server-on-a-linux-virtual-machine-in-azure-with-ssl-certificates-stored-in-key-vault"></a>教學課程：在 Azure 中使用 Key Vault 內儲存的 SSL 憑證，來保護 Linux 虛擬機器上的網頁伺服器
 若要保護網頁伺服器，您可以使用安全通訊端層 (SSL) 憑證將 Web 流量加密。 這些 SSL 憑證可儲存在 Azure Key Vault，並且能夠讓您將憑證安全地部署到 Azure 中的 Linux 虛擬機器 (VM)。 在本教學課程中，您將了解如何：
 
 > [!div class="checklist"]
@@ -33,11 +34,11 @@ ms.lasthandoff: 02/09/2018
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-如果您選擇在本機安裝和使用 CLI，本教學課程會要求您執行 Azure CLI 2.0.22 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。  
+如果您選擇在本機安裝和使用 CLI，本教學課程會要求您執行 Azure CLI 2.0.30 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI]( /cli/azure/install-azure-cli)。
 
 
 ## <a name="overview"></a>概觀
-Azure Key Vault 會保護密碼編譯金鑰和祕密，這類憑證或密碼。 Key Vault 有助於簡化憑證管理程序，並可讓您掌控用來存取這些憑證的金鑰。 您可以在 Key Vault 內建立自我簽署憑證，或上傳您目前已經擁有的受信任憑證。
+Azure Key Vault 會保護密碼編譯金鑰和祕密，像是憑證或密碼。 Key Vault 有助於簡化憑證管理程序，並可讓您掌控用來存取這些憑證的金鑰。 您可以在 Key Vault 內建立自我簽署憑證，或上傳您目前已經擁有的受信任憑證。
 
 您不必使用包含了內建憑證的自訂 VM 映像，而是要將憑證插入執行中的 VM。 此程序可確保您在部署期間安裝在網頁伺服器上的憑證會是最新的。 如果您更新或取代憑證，您就不必另外再建立新的自訂 VM 映像。 當您建立其他 VM 時，系統會自動插入最新的憑證。 在整個過程中，憑證絕對不會離開 Azure 平台，或在指令碼、命令列記錄或範本中公開。
 
@@ -49,7 +50,7 @@ Azure Key Vault 會保護密碼編譯金鑰和祕密，這類憑證或密碼。 
 az group create --name myResourceGroupSecureWeb --location eastus
 ```
 
-接著，使用 [az keyvault create](/cli/azure/keyvault#az_keyvault_create) 建立 Key Vault，並加以啟用以供您在部署 VM 時使用。 每個 Key Vault 需要唯一的名稱，而且應該全部小寫。 使用您自己唯一的 Key Vault 名稱來取代下列範例中的 *<mykeyvault>*：
+接著，使用 [az keyvault create](/cli/azure/keyvault#az_keyvault_create) 建立 Key Vault，並加以啟用以供您在部署 VM 時使用。 每個 Key Vault 都需要唯一的名稱，且應全部使用小寫。 使用您自己唯一的 Key Vault 名稱來取代下列範例中的 *<mykeyvault>*：
 
 ```azurecli-interactive 
 keyvault_name=<mykeyvault>
@@ -70,14 +71,14 @@ az keyvault certificate create \
 ```
 
 ### <a name="prepare-a-certificate-for-use-with-a-vm"></a>準備要與 VM 搭配使用的憑證
-若要在 VM 建立程序期間使用憑證，使用 [az keyvault secret list-versions](/cli/azure/keyvault/secret#az_keyvault_secret_list_versions) 來取得憑證的識別碼。 使用 [az vm format-secret](/cli/azure/vm#az_vm_format_secret) 轉換憑證。 下列範例會將這些命令的輸出指派給變數，以方便在後續步驟中使用：
+若要在 VM 建立程序期間使用憑證，使用 [az keyvault secret list-versions](/cli/azure/keyvault/secret#az_keyvault_secret_list_versions) 來取得憑證的識別碼。 使用 [az vm secret format](/cli/azure/vm/secret#az-vm-secret-format) 轉換憑證。 下列範例會將這些命令的輸出指派給變數，以方便在後續步驟中使用：
 
 ```azurecli-interactive 
 secret=$(az keyvault secret list-versions \
           --vault-name $keyvault_name \
           --name mycert \
           --query "[?attributes.enabled].id" --output tsv)
-vm_secret=$(az vm format-secret --secret "$secret")
+vm_secret=$(az vm secret format --secrets "$secret")
 ```
 
 ### <a name="create-a-cloud-init-config-to-secure-nginx"></a>建立 Cloud-init 組態來保護 NGINX
@@ -159,4 +160,3 @@ az vm open-port \
 
 > [!div class="nextstepaction"]
 > [Linux 虛擬機器指令碼範例](./cli-samples.md)
-

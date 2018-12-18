@@ -1,25 +1,20 @@
 ---
-title: "在 HDInsight 中使用 Hadoop 分析航班延誤資料 - Azure | Microsoft Docs"
-description: "了解如何使用一個 Windows PowerShell 指令碼建立 HDInsight 叢集、執行 Hive 工作、執行 Sqool 工作和刪除叢集。"
+title: 在 HDInsight 上使用 Hadoop 分析航班延誤資料 - Azure
+description: 了解如何使用一個 Windows PowerShell 指令碼建立 HDInsight 叢集、執行 Hive 工作、執行 Sqool 工作和刪除叢集。
 services: hdinsight
-documentationcenter: 
-author: mumian
-manager: jhubbard
-editor: cgronlun
-ms.assetid: 00e26aa9-82fb-4dbe-b87d-ffe8e39a5412
+author: jasonwhowell
+ms.reviewer: jasonh
 ms.service: hdinsight
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 05/25/2017
-ms.author: jgao
+ms.author: jasonh
 ROBOTS: NOINDEX
-ms.openlocfilehash: 5da745901ec2fe57530e4d7fe38a055e0b8691ac
-ms.sourcegitcommit: f8437edf5de144b40aed00af5c52a20e35d10ba1
+ms.openlocfilehash: 1d39fd1cf40834781375b2c7bd6cb801ccd3cb97
+ms.sourcegitcommit: f6e2a03076679d53b550a24828141c4fb978dcf9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/03/2017
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43091893"
 ---
 # <a name="analyze-flight-delay-data-by-using-hive-in-hdinsight"></a>在 HDInsight 上使用 Hadoop 分析航班延誤資料
 Hive 可透過一種類似 SQL 的指令碼語言 (稱為 *[HiveQL][hadoop-hiveql]*) 來執行 Hadoop MapReduce 作業，可用來彙總、查詢和分析大量資料。
@@ -51,7 +46,7 @@ Azure HDInsight 的其中一個主要優點就是區隔資料儲存和運算。 
 > [!NOTE]
 > 此文件中的步驟是針對以 Windows 為基礎的 HDInsight 叢集。 如需與 Linux 叢集搭配使用的步驟，請參閱[在 HDInsight (Linux) 中使用 Hive 分析航班延誤資料](hdinsight-analyze-flight-delay-data-linux.md)
 
-### <a name="prerequisites"></a>先決條件
+### <a name="prerequisites"></a>必要條件
 開始進行本教學課程之前，您必須具備下列項目：
 
 * **Azure 訂用帳戶**。 請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
@@ -134,7 +129,7 @@ Hadoop MapReduce 是批次處理。 執行 Hive 工作時，最具成本效益�
         $acct = Get-AzureRmSubscription
     }
     catch{
-        Login-AzureRmAccount
+        Connect-AzureRmAccount
     }
     Select-AzureRmSubscription -SubscriptionID $subscriptionID
 
@@ -256,12 +251,13 @@ Hadoop MapReduce 是批次處理。 執行 Hive 工作時，最具成本效益�
 2. 在此頁面上選取下列值：
 
     <table border="1">
-    <tr><th>Name</th><th>值</th></tr>
+    <tr><th>名稱</th><th>值</th></tr>
     <tr><td>篩選年份</td><td>2013 </td></tr>
     <tr><td>篩選期間</td><td>一月</td></tr>
     <tr><td>欄位</td><td>*Year*、*FlightDate*、*UniqueCarrier*、*Carrier*、*FlightNum*、*OriginAirportID*、*Origin*、*OriginCityName*、*OriginState*、*DestAirportID*、*Dest*、*DestCityName*、*DestState*、*DepDelayMinutes*、*ArrDelay*、*ArrDelayMinutes*、*CarrierDelay*、*WeatherDelay*、*NASDelay*、*SecurityDelay*、*LateAircraftDelay* (請清除其餘所有欄位)</td></tr>
     </table>
-3. 按一下 **下載**。
+
+3. 按一下 [下載] 。
 4. 將檔案解壓縮至 **C:\Tutorials\FlightDelay\2013Data** 資料夾。 每個檔案皆為 CSV 檔案，大小約為 60 GB。
 5. 將檔案重新命名為檔案資料所屬月份的名稱。 例如，包含一月份資料的檔案，應命名為 *January.csv*。
 6. 重複步驟 2 到 5，以下載 2013 年 12 個月份的檔案。 至少要有一個檔案，才能執行此教學課程。
@@ -275,6 +271,7 @@ Hadoop MapReduce 是批次處理。 執行 Hive 工作時，最具成本效益�
     <tr><td>$storageAccountName</td><td>您要上傳資料的 Azure 儲存體帳戶。</td></tr>
     <tr><td>$blobContainerName</td><td>您要上傳資料的 Blob 容器。</td></tr>
     </table>
+    
 2. 開啟 Azure PowerShell ISE。
 3. 將下列指令碼貼到指令碼窗格中：
 
@@ -299,7 +296,7 @@ Hadoop MapReduce 是批次處理。 執行 Hive 工作時，最具成本效益�
     #Region - Connect to Azure subscription
     Write-Host "`nConnecting to your Azure subscription ..." -ForegroundColor Green
     try{Get-AzureRmContext}
-    catch{Login-AzureRmAccount}
+    catch{Connect-AzureRmAccount}
     #EndRegion
 
     #Region - Validate user input
@@ -383,8 +380,10 @@ HiveQL 指令碼將執行下列作業：
     <tr><td>$storageAccountName</td><td>您要上傳 HiveQL 指令碼的 Azure 儲存體帳戶。</td></tr>
     <tr><td>$blobContainerName</td><td>您要上傳 HiveQL 指令碼的 Blob 容器。</td></tr>
     </table>
-2. 開啟 Azure PowerShell ISE。
-3. 將下列指令碼複製並貼到指令碼窗格中：
+    
+2. 開啟 Azure PowerShell ISE。  
+
+3. 將下列指令碼複製並貼到指令碼窗格中：  
 
     ```powershell
     [CmdletBinding()]
@@ -418,7 +417,7 @@ HiveQL 指令碼將執行下列作業：
     #Region - Connect to Azure subscription
     Write-Host "`nConnecting to your Azure subscription ..." -ForegroundColor Green
     try{Get-AzureRmContext}
-    catch{Login-AzureRmAccount}
+    catch{Connect-AzureRmAccount}
     #EndRegion
 
     #Region - Validate user input
@@ -573,8 +572,10 @@ HiveQL 指令碼將執行下列作業：
     <tr><td>$sqlDatabaseLocation</td><td>只有在建立新的 Azure 資料庫伺服器時才會使用此值。</td></tr>
     <tr><td>$sqlDatabaseName</td><td>用來建立 Sqoop 工作的 AvgDelays 資料表的 SQL Database。 保留空白會建立名為 HDISqoop 的資料庫。 Sqooop 工作輸出的資料表名稱為 AvgDelays。 </td></tr>
     </table>
+    
 2. 開啟 Azure PowerShell ISE。
-3. 將下列指令碼複製並貼到指令碼窗格中：
+
+3. 將下列指令碼複製並貼到指令碼窗格中：  
 
     ```powershell
     [CmdletBinding()]
@@ -635,7 +636,7 @@ HiveQL 指令碼將執行下列作業：
     #Region - Connect to Azure subscription
     Write-Host "`nConnecting to your Azure subscription ..." -ForegroundColor Green
     try{Get-AzureRmContext}
-    catch{Login-AzureRmAccount}
+    catch{Connect-AzureRmAccount}
     #EndRegion
 
     #region - Create and validate Azure resouce group
@@ -699,11 +700,11 @@ HiveQL 指令碼將執行下列作業：
     ```
 
    > [!NOTE]
-   > 指令碼使用具象狀態傳輸 (REST) 服務 http://bot.whatismyipaddress.com 來擷取外部 IP 位址。 IP 位址用來建立 SQL Database 伺服器的防火牆規則。
+   > 指令碼使用具象狀態傳輸 (REST) 服務 (http://bot.whatismyipaddress.com) 來擷取外部 IP 位址。 IP 位址用來建立 SQL Database 伺服器的防火牆規則。
 
     以下是指令碼中使用的一些常數：
 
-   * **$ipAddressRestService** - 預設值為 http://bot.whatismyipaddress.com。這是用來取得外部 IP 位址的公用 IP 位址 REST 服務。 想要的話，您可以使用其他服務。 透過此服務所擷取的外部 IP 位址將用來建立 Azure SQL Database 伺服器的防火牆規則，讓您能夠從工作站存取資料庫 (使用 Windows PowerShell 指令碼)。
+   * **$ipAddressRestService** - 預設值是 http://bot.whatismyipaddress.com。 這是用來取得外部 IP 位址的公用 IP 位址 REST 服務。 想要的話，您可以使用其他服務。 透過此服務所擷取的外部 IP 位址將用來建立 Azure SQL Database 伺服器的防火牆規則，讓您能夠從工作站存取資料庫 (使用 Windows PowerShell 指令碼)。
    * **$fireWallRuleName** - 這是 Azure SQL Database 伺服器的防火牆規則名稱。 預設名稱為 <u>FlightDelay</u>。 想要的話，您可以將它重新命名。
    * **$sqlDatabaseMaxSizeGB** - 只有在建立新的 Azure SQL Database 伺服器時才會使用此值。 預設值為 10GB。 10GB 足夠供本教學課程使用。
    * **$sqlDatabaseName** - 只有在建立新的 Azure SQL Database 時才會使用此值。 預設值為 HDISqoop。 如果將它重新命名，則必須相應地更新 Sqoop Windows PowerShell 指令碼。

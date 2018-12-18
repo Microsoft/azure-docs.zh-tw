@@ -1,11 +1,10 @@
 ---
-title: "在傳統 Azure VM 上執行 Java 應用程式伺服器 | Microsoft Docs"
-description: "本教學課程使用以傳統部署模型建立的資源，示範如何建立 Windows 虛擬機器，並將其設定為執行 Apache Tomcat 應用程式伺服器。"
+title: 在傳統 Azure VM 上執行 Java 應用程式伺服器
+description: 本教學課程使用以傳統部署模型建立的資源，示範如何建立 Windows 虛擬機器，並將其設定為執行 Apache Tomcat 應用程式伺服器。
 services: virtual-machines-windows
 documentationcenter: java
 author: rmcmurray
-manager: erikre
-editor: 
+manager: mbaldwin
 tags: azure-service-management
 ms.assetid: d627aa09-f7d6-4239-8110-f8fc5111b939
 ms.service: virtual-machines-windows
@@ -13,13 +12,14 @@ ms.workload: web
 ms.tgt_pltfrm: vm-windows
 ms.devlang: Java
 ms.topic: article
-ms.date: 03/16/2017
+ms.date: 04/11/2018
 ms.author: robmcm
-ms.openlocfilehash: b166d2af56051b7d90eba0d50e1ea41f96c1109e
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.openlocfilehash: e13228a707e7dae4a4c2505154d01215c40b4716
+ms.sourcegitcommit: 1362e3d6961bdeaebed7fb342c7b0b34f6f6417a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 04/18/2018
+ms.locfileid: "31528023"
 ---
 # <a name="how-to-run-a-java-application-server-on-a-virtual-machine-created-with-the-classic-deployment-model"></a>如何在以傳統部署模型建立的虛擬機器上執行 Java 應用程式伺服器
 > [!IMPORTANT]
@@ -84,7 +84,7 @@ Azure 可讓您利用虛擬機器來提供伺服器功能。 例如，於 Azure 
 
 您可以在虛擬機器上開啟命令提示字元，然後執行命令 **net&nbsp;start&nbsp;Tomcat8**，以手動方式啟動 Tomcat。
 
-當 Tomcat 正在執行時，您可以在虛擬機器的瀏覽器中輸入 URL <http://localhost:8080> 來存取 Tomcat。
+當 Tomcat 正在執行時，您可以在虛擬機器的瀏覽器中輸入 URL <http://localhost:8080>。
 
 若要從外部機器看見執行中的 Tomcat，您需要建立端點並開啟連接埠。
 

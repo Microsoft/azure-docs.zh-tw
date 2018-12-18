@@ -1,18 +1,17 @@
 ---
 title: 使用 System Center Configuration Manager 自動進行適用於 Azure Site Recovery 的行動服務安裝 | Microsoft Docs
 description: 本文協助您使用 System Center Configuration Manager 自動進行行動服務安裝。
-services: site-recovery
-author: AnoopVasudavan
-manager: gauravd
+author: Rajeswari-Mamilla
 ms.service: site-recovery
 ms.topic: article
-ms.date: 03/05/2018
-ms.author: anoopkv
-ms.openlocfilehash: 8382fadc02a7e80b6f28bd777f423013aed9add3
-ms.sourcegitcommit: 168426c3545eae6287febecc8804b1035171c048
+ms.date: 07/06/2018
+ms.author: ramamill
+ms.openlocfilehash: 6aff17908d220557720776a2d7884adc28b5deee
+ms.sourcegitcommit: baed5a8884cb998138787a6ecfff46de07b8473d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/08/2018
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "37917164"
 ---
 # <a name="automate-mobility-service-installation-with-system-center-configuration-manager"></a>使用 System Center Configuration Manager 自動進行行動服務安裝
 
@@ -27,7 +26,7 @@ ms.lasthandoff: 03/08/2018
 
 或者，您可以使用 [Azure Automation DSC](vmware-azure-mobility-deploy-automation-dsc.md) 自動進行行動服務安裝。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 1. 環境中已部署的軟體部署工具，例如 Configuration Manager。
 2. 您應該建立兩個[裝置集合](https://technet.microsoft.com/library/gg682169.aspx)，一個用於所有 **Windows 伺服器**，另一個用於所有 **Linux 伺服器** (都是您想要使用 Site Recovery 保護的伺服器)。
@@ -49,7 +48,7 @@ ms.lasthandoff: 03/08/2018
 4. 將 **MobSvc.passphrase** 檔案複製到網路共用上的 **MobSvcWindows** 資料夾。
 5. 執行下列命令，以瀏覽至設定伺服器上的安裝程式存放庫：
 
-   `cd %ProgramData%\ASR\home\svsystems\puhsinstallsvc\repository`
+   `cd %ProgramData%\ASR\home\svsystems\pushinstallsvc\repository`
 
 6. 將 **Microsoft-ASR\_UA\_*version*\_Windows\_GA\_*date*\_Release.exe** 複製到網路共用上的 **MobSvcWindows** 資料夾。
 7. 複製下列程式碼，儲存為 **install.bat** 放在 **MobSvcWindows** 資料夾中。
@@ -173,7 +172,7 @@ IF NOT %ERRORLEVEL% EQU 0 (
 
   | **參數名稱** | **值** |
   |--|--|
-  | Name | 安裝 Microsoft Azure 行動服務 (Windows) |
+  | 名稱 | 安裝 Microsoft Azure 行動服務 (Windows) |
   | 命令列 | install.bat |
   | 程式可以執行 | 使用者是否登入 |
 
@@ -230,7 +229,7 @@ IF NOT %ERRORLEVEL% EQU 0 (
 4. 將 **MobSvc.passphrase** 檔案複製到網路共用上的 **MobSvcLinux** 資料夾。
 5. 執行命令以瀏覽至設定伺服器上的安裝程式存放庫：
 
-   `cd %ProgramData%\ASR\home\svsystems\puhsinstallsvc\repository`
+   `cd %ProgramData%\ASR\home\svsystems\pushinstallsvc\repository`
 
 6. 將下列檔案複製到網路共用上的 **MobSvcLinux** 資料夾：
    * Microsoft-ASR\_UA\*RHEL6-64*release.tar.gz
@@ -398,7 +397,7 @@ cd /tmp
 
     | **參數名稱** | **值** |
   |--|--|
-  | Name | 安裝 Microsoft Azure 行動服務 (Linux) |
+  | 名稱 | 安裝 Microsoft Azure 行動服務 (Linux) |
   | 命令列 | ./install_linux.sh |
   | 程式可以執行 | 使用者是否登入 |
 

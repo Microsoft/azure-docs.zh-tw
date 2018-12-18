@@ -1,25 +1,19 @@
 ---
-title: "Azure Analysis Services 教學課程第 11 課：建立角色 | Microsoft Docs"
-description: "說明如何在 Azure Analysis Services 教學課程專案中建立角色。"
-services: analysis-services
-documentationcenter: 
-author: Minewiskan
+title: Azure Analysis Services 教學課程第 11 課：建立角色 | Microsoft Docs
+description: 說明如何在 Azure Analysis Services 教學課程專案中建立角色。
+author: minewiskan
 manager: kfile
-editor: 
-tags: 
-ms.assetid: 
-ms.service: analysis-services
-ms.devlang: NA
-ms.topic: get-started-article
-ms.tgt_pltfrm: NA
-ms.workload: na
-ms.date: 01/08/2018
+ms.service: azure-analysis-services
+ms.topic: conceptual
+ms.date: 07/03/2018
 ms.author: owend
-ms.openlocfilehash: 5fb0e2dd56e373ecf723a3672d9538bcc6dc68e3
-ms.sourcegitcommit: 176c575aea7602682afd6214880aad0be6167c52
+ms.reviewer: minewiskan
+ms.openlocfilehash: 38c69b65d33a915d0b7cf43dc8ef5d43413163eb
+ms.sourcegitcommit: 86cb3855e1368e5a74f21fdd71684c78a1f907ac
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/09/2018
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37441238"
 ---
 # <a name="create-roles"></a>建立角色
 

@@ -1,30 +1,27 @@
 ---
-title: "快速入門：相應放大 Azure SQL 資料倉儲中的計算 - Azure 入口網站 | Microsoft Docs"
-description: "管理計算能力的 Azure 入口網站工作。 透過調整 DWU 以調整計算資源。 或者，暫停和繼續計算資源以節省成本。"
+title: 快速入門：相應放大 Azure SQL 資料倉儲中的計算 - Azure 入口網站 | Microsoft Docs
+description: 在 Azure 入口網站中調整 Azure SQL 資料倉儲中的計算。 相應放大計算以提升效能，或將計算調整回來以節省成本。
 services: sql-data-warehouse
-documentationcenter: NA
-author: hirokib
-manager: jhubbard
-editor: 
+author: kevinvngo
+manager: craigg
 ms.service: sql-data-warehouse
-ms.devlang: NA
-ms.topic: article
-ms.tgt_pltfrm: NA
-ms.workload: data-services
-ms.custom: manage
-ms.date: 01/31/2018
-ms.author: elbutter;barbkess
-ms.openlocfilehash: 6b86042ed6b95ba49fa2089ba36b1dbe9a61cc40
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.topic: quickstart
+ms.component: implement
+ms.date: 04/17/2018
+ms.author: kevin
+ms.reviewer: igorstan
+ms.openlocfilehash: 1abafb011a445847757af3efb9e0ea4e6170408d
+ms.sourcegitcommit: f94f84b870035140722e70cab29562e7990d35a3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 08/30/2018
+ms.locfileid: "43285528"
 ---
 # <a name="quickstart-scale-compute-in-azure-sql-data-warehouse-in-the-azure-portal"></a>快速入門：在 Azure 入口網站中調整 Azure SQL 資料倉儲中的計算
 
 在 Azure 入口網站中調整 Azure SQL 資料倉儲中的計算。 [相應放大計算](sql-data-warehouse-manage-compute-overview.md)以提升效能，或將計算調整回來以節省成本。 
 
-如果您沒有 Azure 訂用帳戶，請在開始前建立[免費帳戶](https://azure.microsoft.com/free/) 。
+如果您沒有 Azure 訂用帳戶，請在開始前建立[免費帳戶](https://azure.microsoft.com/free/)。
 
 ## <a name="sign-in-to-the-azure-portal"></a>登入 Azure 入口網站
 
@@ -40,8 +37,8 @@ ms.lasthandoff: 02/21/2018
 
 若要變更資料倉儲單位：
 
-1. 在 Azure 入口網站的左側頁面中，按一下 [SQL 資料庫]。
-2. 從 [SQL 資料庫] 頁面中，選取 [mySampleDataWarehouse]。 資料倉儲隨即開啟。
+1. 在 Azure 入口網站的左側頁面中，按一下 [SQL 資料倉儲]。
+2. 從 [SQL 資料倉儲] 頁面中，選取 [mySampleDataWarehouse]。 資料倉儲隨即開啟。
 3. 按一下 [調整] 。
 
     ![按一下 [調整]](media/quickstart-scale-compute-portal/click-scale.png)

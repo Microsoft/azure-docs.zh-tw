@@ -1,29 +1,24 @@
 ---
-title: Apache Storm 寫入儲存體/Data Lake Store - Azure HDInsight | Microsoft Docs
-description: 了解如何使用 Apache Storm 寫入 HDInsight 的 HDFS 相容儲存體。 Azure 儲存體或 Azure Data Lake Store 提供了 HDInsight 的 HDFS 相容儲存體。 本文件與相關聯的範例示範如何使用 HdfsBolt 元件寫入 Storm on HDInsight 叢集的預設儲存體。
+title: Apache Storm 寫入儲存體/Data Lake Store - Azure HDInsight
+description: 了解如何使用 Apache Storm 寫入 HDInsight 的 HDFS 相容儲存體。
 services: hdinsight
-documentationcenter: na
-author: Blackmist
-manager: jhubbard
-editor: cgronlun
-ms.assetid: 1df98653-a6c8-4662-a8c6-5d288fc4f3a6
 ms.service: hdinsight
+author: jasonwhowell
+ms.author: jasonh
+ms.reviewer: jasonh
 ms.custom: hdinsightactive
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
+ms.topic: conceptual
 ms.date: 02/27/2018
-ms.author: larryfr
-ms.openlocfilehash: 2310894e7257d0ddb919406a8f297089189a9484
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 670d465f1481592862f5e653a508460c19be07d8
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43049686"
 ---
 # <a name="write-to-hdfs-from-apache-storm-on-hdinsight"></a>從 Apache Storm on HDInsight 寫入 HDFS
 
-了解如何使用 Storm 將資料寫入 Apache Storm on HDInsight 所使用的 HDFS 相容儲存體。 HDInsight 可以同時使用 Azure 儲存體以及 Azure Data Lake Store 作為 HDFS 相容儲存體。 Storm 提供了將資料寫入 HDFS 的 [HdfsBolt](http://storm.apache.org/releases/1.1.0/javadocs/org/apache/storm/hdfs/bolt/HdfsBolt.html) 元件。 本文件提供從 HdfsBolt 寫入任一類型儲存體的資訊。 
+了解如何使用 Storm 將資料寫入 Apache Storm on HDInsight 所使用的 HDFS 相容儲存體。 HDInsight 可以同時使用 Azure 儲存體以及 Azure Data Lake Store 作為 HDFS 相容儲存體。 Storm 提供了將資料寫入 HDFS 的 [HdfsBolt](http://storm.apache.org/releases/current/javadocs/org/apache/storm/hdfs/bolt/HdfsBolt.html) 元件。 本文件提供從 HdfsBolt 寫入任一類型儲存體的資訊。 
 
 > [!IMPORTANT]
 > 本文件使用的範例拓撲依賴 Storm on HDInsight 隨附的元件。 它可能需要進行修改，才能在與其他 Apache Storm 叢集搭配使用時使用 Azure Data Lake Store。
@@ -66,11 +61,11 @@ HdfsBolt 會使用您提供的檔案配置來了解如何寫入 HDFS。 利用 H
 | `wasb://CONTAINER@ACCOUNT.blob.core.windows.net/` | 與叢集建立關聯的非預設 (其他) Azure 儲存體帳戶。 |
 | `adl://STORENAME/` | 叢集所使用的 Data Lake Store 根目錄。 此配置可讓您存取位於叢集檔案系統所在目錄外部的資料。 |
 
-如需詳細資訊，請參閱 Apache.org 上的 [HdfsBolt](http://storm.apache.org/releases/1.1.0/javadocs/org/apache/storm/hdfs/bolt/HdfsBolt.html) 參考。
+如需詳細資訊，請參閱 Apache.org 上的 [HdfsBolt](http://storm.apache.org/releases/current/javadocs/org/apache/storm/hdfs/bolt/HdfsBolt.html) 參考。
 
 ### <a name="example-configuration"></a>設定範例
 
-下列 YAML 是摘錄自範例中隨附的 `resources/writetohdfs.yaml` 檔案。 此檔案會使用 Apache Storm 的 [Flux](https://storm.apache.org/releases/1.1.0/flux.html) 架構定義 Storm 拓撲。
+下列 YAML 是摘錄自範例中隨附的 `resources/writetohdfs.yaml` 檔案。 此檔案會使用 Apache Storm 的 [Flux](https://storm.apache.org/releases/1.1.2/flux.html) 架構定義 Storm 拓撲。
 
 ```yaml
 components:
@@ -134,7 +129,7 @@ bolts:
 * `rotationPolicy`：定義何時輪替檔案。 在此範例中，不會執行輪替。
 * `hdfs-bolt`：使用舊版元件作為 `HdfsBolt` 類別的設定參數。
 
-如需有關 Flux 架構的詳細資訊，請參閱 [https://storm.apache.org/releases/1.1.0/flux.html](https://storm.apache.org/releases/1.1.0/flux.html)。
+如需有關 Flux 架構的詳細資訊，請參閱 [https://storm.apache.org/releases/1.1.2/flux.html](https://storm.apache.org/releases/1.1.2/flux.html)。
 
 ## <a name="configure-the-cluster"></a>設定叢集
 

@@ -1,11 +1,11 @@
 ---
-title: "在 Azure 入口網站中建立 Azure BizTalk 服務 | Microsoft Docs"
-description: "了解如何在 Azure 入口網站中佈建或建立 BizTalk 服務；MABS，WABS"
+title: 在 Azure 入口網站中建立 Azure BizTalk 服務 | Microsoft Docs
+description: 了解如何在 Azure 入口網站中佈建或建立 BizTalk 服務；MABS，WABS
 services: biztalk-services
-documentationcenter: 
+documentationcenter: ''
 author: MandiOhlinger
 manager: anneta
-editor: 
+editor: ''
 ms.assetid: 3ad18876-a649-40d6-9aa0-1509c1d62c43
 ms.service: biztalk-services
 ms.workload: integration
@@ -19,6 +19,7 @@ ms.sourcegitcommit: e266df9f97d04acfc4a843770fadfd8edf4fa2b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 12/11/2017
+ms.locfileid: "26632715"
 ---
 # <a name="create-biztalk-services-using-the-azure-portal"></a>使用 Azure 入口網站建立 BizTalk 服務
 
@@ -174,7 +175,7 @@ Azure 帳戶可擁有多個訂用帳戶，只要使用者取得允許皆可管�
 * [BizTalk 服務：節流](biztalk-throttling-thresholds.md)<br/>
 * [BizTalk 服務：簽發者名稱和簽發者金鑰](biztalk-issuer-name-issuer-key.md)<br/>
 * [如何開始使用 Azure BizTalk 服務 SDK](http://go.microsoft.com/fwlink/p/?LinkID=302335)<br/>
-* [VNet](integration-hybrid-connection-overview.md)
+* [混合式連線](integration-hybrid-connection-overview.md)
 
 [NewBizTalkService]: ./media/biztalk-provision-services/WABS_NewBizTalkService.png
 [NEWButton]: ./media/biztalk-provision-services/WABS_New.png

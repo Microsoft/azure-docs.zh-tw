@@ -1,21 +1,21 @@
 ---
-title: Azure Active Directory B2C︰修改自訂原則中的註冊並設定自我判斷提示提供者
+title: 修改自訂原則中的註冊並設定自我判斷提示提供者 | Microsoft Docs
 description: 逐步解說如何在註冊中新增宣告並設定使用者輸入
 services: active-directory-b2c
-documentationcenter: ''
 author: davidmu1
 manager: mtillman
-editor: ''
-ms.service: active-directory-b2c
+ms.service: active-directory
 ms.workload: identity
-ms.topic: article
+ms.topic: conceptual
 ms.date: 04/29/2017
 ms.author: davidmu
-ms.openlocfilehash: b9ea48f0700509194602dd15ff42c7c689685a53
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: B2C
+ms.openlocfilehash: 37492e22b5615ae0b266bc8b2bb6d8f039fdaabe
+ms.sourcegitcommit: 0c64460a345c89a6b579b1d7e273435a5ab4157a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43336850"
 ---
 # <a name="azure-active-directory-b2c-modify-sign-up-to-add-new-claims-and-configure-user-input"></a>Azure Active Directory B2C︰修改註冊以新增宣告並設定使用者輸入。
 
@@ -23,7 +23,7 @@ ms.lasthandoff: 03/23/2018
 
 在本文中，您會在您的註冊使用者旅程中新增使用者所提供的輸入 (宣告)。  您會將輸入設定為下拉式清單，並定義它是否為必要項目。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 * 完成[開始使用自訂原則](active-directory-b2c-get-started-custom.md)一文中的步驟。  測試註冊/登入使用者旅程以註冊新的本機帳戶，再繼續進行。
 
@@ -251,7 +251,7 @@ ms.lasthandoff: 03/23/2018
   "exp": 1493596822,
   "nbf": 1493593222,
   "ver": "1.0",
-  "iss": "https://login.microsoftonline.com/f06c2fe8-709f-4030-85dc-38a4bfd9e82d/v2.0/",
+  "iss": "https://contoso.b2clogin.com/f06c2fe8-709f-4030-85dc-38a4bfd9e82d/v2.0/",
   "sub": "9c2a3a9e-ac65-4e46-a12d-9557b63033a9",
   "aud": "4e87c1dd-e5f5-4ac8-8368-bc6a98751b8b",
   "acr": "b2c_1a_trustf_signup_signin",

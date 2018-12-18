@@ -1,9 +1,9 @@
 ---
 title: Azure Stack 雲端服務提供者的使用量報告基礎結構 | Microsoft Docs
-description: Azure Stack 包含使用量發生時可加以追蹤並轉送至 Azure 所需的基礎結構。
+description: 當雲端服務提供者 (CSP) 服務的租用戶產生使用量時，Azure Stack 中的基礎結構可用來追蹤此用量並轉送至 Azure。
 services: azure-stack
 documentationcenter: ''
-author: mattbriggs
+author: sethmanheim
 manager: femila
 editor: ''
 ms.service: azure-stack
@@ -11,18 +11,19 @@ ms.workload: na
 pms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/08/2018
-ms.author: mabrigg
+ms.date: 07/12/2018
+ms.author: sethm
 ms.reviewer: alfredo
-ms.openlocfilehash: 4ac808e0e85b1daeb54a3f2fd7bec0a7c10aa13e
-ms.sourcegitcommit: a0be2dc237d30b7f79914e8adfb85299571374ec
+ms.openlocfilehash: 9526385eaea8a88f0c22e6420ba39a33f7166f96
+ms.sourcegitcommit: ab9514485569ce511f2a93260ef71c56d7633343
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/12/2018
+ms.lasthandoff: 09/15/2018
+ms.locfileid: "45633719"
 ---
 ## <a name="usage-reporting-infrastructure-for-cloud-service-providers"></a>適月於雲端服務提供者的使用方式報告基礎結構
 
-Azure Stack 包含使用量發生時可加以追蹤並轉送至 Azure 所需的基礎結構。 在 Azure 中，Azure Commerce 會使用與全域 Azure 雲端中產生之使用量相同的方式，來處理使用量資料，並向適當的 Azure 訂用帳戶收取使用量費用。
+Azure Stack 包含使用量發生時可加以追蹤並轉送至 Azure 所需的基礎結構。 在 Azure 中，Azure Commerce 會處理使用量資料，並向適當的 Azure 訂用帳戶收取使用量費用。 此作業的運作方式與在全域 Azure 雲端中監視使用量追蹤一樣。
 
 您應該注意到全域 Azure 和 Azure Stack 兩者之間有某些概念是一致的。 Azure Stack 具有本機訂用帳戶，可履行與 Azure 訂用帳戶類似的角色。 本機訂用帳戶僅在本機上有效。 當使用量轉送到 Azure 時，本機訂用帳戶會對應至 Azure 訂用帳戶。
 
@@ -64,5 +65,5 @@ Azure Stack 和 Azure 的服務計價方式有一些差異。 例如，不同於
 
 ## <a name="next-steps"></a>後續步驟
 
- - 若要深入了解 CSP 方案，請參閱[雲端解決方案提供者方案](https://partnercenter.microsoft.com/en-us/partner/programs)。
- - 若要深入了解如何取出 Azure Stack 的資源使用量資訊，請參閱 [Azure Stack 中的使用量與帳單](/azure-stack-billing-and-chargeback.md)。
+ - 若要深入了解 CSP 方案，請參閱[雲端解決方案提供者方案](https://partner.microsoft.com/solutions/microsoft-cloud-solutions)。
+ - 若要深入了解如何取出 Azure Stack 的資源使用量資訊，請參閱 [Azure Stack 中的使用量與帳單](azure-stack-billing-and-chargeback.md)。

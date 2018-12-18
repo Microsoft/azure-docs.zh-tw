@@ -1,101 +1,108 @@
 ---
-title: "在 Azure 中建立靜態 HTML Web 應用程式 | Microsoft Docs"
-description: "藉由部署靜態 HTML 範例應用程式，了解如何在 Azure App Service 中執行 Web 應用程式。"
+title: 在 Azure 中建立靜態 HTML Web 應用程式 | Microsoft Docs
+description: 藉由部署靜態 HTML 範例應用程式，了解如何在 Azure App Service 中執行 Web 應用程式。
 services: app-service\web
-documentationcenter: 
-author: cephalin
-manager: cfowler
-editor: 
+documentationcenter: ''
+author: msangapu
+manager: jeconnoc
+editor: ''
 ms.assetid: 60495cc5-6963-4bf0-8174-52786d226c26
 ms.service: app-service-web
 ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: quickstart
-ms.date: 10/26/2017
-ms.author: cephalin
+ms.date: 08/28/2018
+ms.author: msangapu
 ms.custom: mvc
-ms.openlocfilehash: bca5757c971f15279ed6ee9b41f415cd347d91b3
-ms.sourcegitcommit: 9d317dabf4a5cca13308c50a10349af0e72e1b7e
+ms.openlocfilehash: cee0bdffb99076903df988d30fcaa4f6cb2234c6
+ms.sourcegitcommit: 2ad510772e28f5eddd15ba265746c368356244ae
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "43123185"
 ---
 # <a name="create-a-static-html-web-app-in-azure"></a>在 Azure 中建立靜態 HTML Web 應用程式
 
-[Azure Web Apps](app-service-web-overview.md) 提供可高度擴充、自我修復的 Web 主機服務。  本快速入門顯示如何將基本 HTML+CSS 網站部署至 Azure Web Apps。 您可使用 [Azure CLI](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli)建立 Web 應用程式，而且使用 Git 將範例 HTML 內容部署至 Web 應用程式。
+[Azure Web Apps](app-service-web-overview.md) 提供可高度擴充、自我修復的 Web 主機服務。 本快速入門顯示如何將基本 HTML+CSS 網站部署至 Azure Web Apps。 您將會在 [Cloud Shell](https://docs.microsoft.com/azure/cloud-shell/overview) 中完成本快速入門，但您也可以在本機使用 [Azure CLI](/cli/azure/install-azure-cli) 來執行這些命令。
 
 ![範例應用程式首頁](media/app-service-web-get-started-html/hello-world-in-browser-az.png)
 
-您可以使用 Mac、Windows 或 Linux 電腦，依照下面步驟操作。 安裝先決條件後，大約需要 5 分鐘才能完成這些步驟。
-
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
-## <a name="prerequisites"></a>先決條件
+[!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
-若要完成本快速入門：
+## <a name="install-web-app-extension-for-cloud-shell"></a>為 Cloud Shell 安裝 Web 應用程式擴充功能
 
-- <a href="https://git-scm.com/" target="_blank">安裝 Git</a>
+若要完成本快速入門，您必須新增 [az web app extension](https://docs.microsoft.com/cli/azure/extension?view=azure-cli-latest#az-extension-add)。 如果已安裝擴充功能，您應該將其更新至最新版本。 若要更新 Web 應用程式擴充功能，請輸入 `az extension update -n webapp`。
+
+若要安裝 Web 應用程式擴充功能，請執行下列命令：
+
+```bash
+az extension add --name webapp
+```
+
+安裝好擴充功能後，Cloud Shell 會顯示下列範例中的資訊：
+
+```bash
+The installed extension 'webapp' is in preview.
+```
 
 ## <a name="download-the-sample"></a>下載範例
 
-在終端機視窗中執行下列命令，將範例應用程式存放庫複製到本機電腦。
+在 Cloud Shell 中，建立快速入門目錄並變更為此目錄。
+
+```bash
+mkdir quickstart
+
+cd quickstart
+```
+
+下一步，執行下列命令，將範例應用程式存放庫複製到您的快速入門目錄。
 
 ```bash
 git clone https://github.com/Azure-Samples/html-docs-hello-world.git
 ```
 
-變更為包含範例程式碼的目錄。
+## <a name="create-a-web-app"></a>建立 Web 應用程式
+
+變更為包含範例程式碼的目錄，並執行 `az webapp up` 命令。
+
+在下列範例中，使用唯一的應用程式名稱取代 <app_name>。
 
 ```bash
 cd html-docs-hello-world
+
+az webapp up --location westeurope --name <app_name>
 ```
 
-## <a name="view-the-html"></a>HTML 檢視
+`az webapp up` 命令會執行下列動作：
 
-瀏覽至包含範例 HTML 的目錄。 在瀏覽器中開啟 *index.html* 檔案。
+- 建立預設的資源群組。
 
-![範例應用程式首頁](media/app-service-web-get-started-html/hello-world-in-browser.png)
+- 建立預設的 App Service 方案。
 
-[!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
+- 建立具有所指定名稱的應用程式。
 
-[!INCLUDE [Configure deployment user](../../includes/configure-deployment-user.md)] 
+- [以 Zip 檔進行部署](https://docs.microsoft.com/azure/app-service/app-service-deploy-zip)，將目前工作目錄中的檔案部署到 Web 應用程式。
 
-[!INCLUDE [Create resource group](../../includes/app-service-web-create-resource-group.md)] 
+此命令可能會花數分鐘執行。 執行上述命令時，會顯示類似下列範例的資訊：
 
-[!INCLUDE [Create app service plan](../../includes/app-service-web-create-app-service-plan.md)] 
-
-[!INCLUDE [Create web app](../../includes/app-service-web-create-web-app.md)] 
-
-![空的 Web 應用程式頁面](media/app-service-web-get-started-html/app-service-web-service-created.png)
-
-[!INCLUDE [Push to Azure](../../includes/app-service-web-git-push-to-azure.md)] 
-
-```bash
-Counting objects: 13, done.
-Delta compression using up to 4 threads.
-Compressing objects: 100% (11/11), done.
-Writing objects: 100% (13/13), 2.07 KiB | 0 bytes/s, done.
-Total 13 (delta 2), reused 0 (delta 0)
-remote: Updating branch 'master'.
-remote: Updating submodules.
-remote: Preparing deployment for commit id 'cc39b1e4cb'.
-remote: Generating deployment script.
-remote: Generating deployment script for Web Site
-remote: Generated deployment script files
-remote: Running deployment command...
-remote: Handling Basic Web Site deployment.
-remote: KuduSync.NET from: 'D:\home\site\repository' to: 'D:\home\site\wwwroot'
-remote: Deleting file: 'hostingstart.html'
-remote: Copying file: '.gitignore'
-remote: Copying file: 'LICENSE'
-remote: Copying file: 'README.md'
-remote: Finished successfully.
-remote: Running post deployment command(s)...
-remote: Deployment successful.
-To https://<app_name>.scm.azurewebsites.net/<app_name>.git
- * [new branch]      master -> master
+```json
+{
+  "app_url": "https://<app_name>.azurewebsites.net",
+  "location": "westeurope",
+  "name": "<app_name>",
+  "os": "Windows",
+  "resourcegroup": "appsvc_rg_Windows_westeurope",
+  "serverfarm": "appsvc_asp_Windows_westeurope",
+  "sku": "FREE",
+  "src_path": "/home/<username>/quickstart/html-docs-hello-world ",
+  < JSON data removed for brevity. >
+}
 ```
+
+記下 `resourceGroup` 的值。 您在[清除資源](#clean-up-resources)一節將會用到此值。
 
 ## <a name="browse-to-the-app"></a>瀏覽至應用程式
 
@@ -109,16 +116,19 @@ To https://<app_name>.scm.azurewebsites.net/<app_name>.git
 
 ## <a name="update-and-redeploy-the-app"></a>更新和重新部署應用程式
 
-在文字編輯器中開啟 *index.html* 檔案，並對標記進行變更。 例如，將 H1 標題從「Azure App Service - 範例靜態 HTML 網站」變更為只剩下「Azure App Service」。
+在 Cloud Shell 中，輸入 `nano index.html`，以開啟 nano 文字編輯器。 在 `<h1>` 標題標記中，將「Azure App Service - 範例靜態 HTML 網站」變更為「Azure App Service」，如下所示。
 
-在本機終端機視窗中，在 Git 中認可您的變更，然後將程式碼變更推送至 Azure。
+![Nano index.html](media/app-service-web-get-started-html/nano-index-html.png)
+
+儲存您的變更並結束 nano。 使用 `^O` 命令進行儲存，以及使用 `^X` 來結束作業。
+
+您現在將使用相同的 `az webapp up` 命令重新部署應用程式。
 
 ```bash
-git commit -am "updated HTML"
-git push azure master
+az webapp up --location westeurope --name <app_name>
 ```
 
-完成部署後，重新整理瀏覽器以查看變更。
+部署完成後，切換回在**瀏覽至應用程式**步驟中開啟的瀏覽器視窗，然後重新整理頁面。
 
 ![已更新的範例應用程式首頁](media/app-service-web-get-started-html/hello-azure-in-browser-az.png)
 
@@ -130,13 +140,21 @@ git push azure master
 
 ![入口網站瀏覽至 Azure Web 應用程式](./media/app-service-web-get-started-html/portal1.png)
 
-您會看到 Web 應用程式的 [概觀] 頁面。 您可以在這裡執行基本管理工作，像是瀏覽、停止、啟動、重新啟動及刪除。 
+您會看到 Web 應用程式的 [概觀] 頁面。 您可以在這裡執行基本管理工作，像是瀏覽、停止、啟動、重新啟動及刪除。
 
 ![Azure 入口網站中的 App Service 刀鋒視窗](./media/app-service-web-get-started-html/portal2.png)
 
-左側功能表提供不同的頁面來設定您的應用程式。 
+左側功能表提供不同的頁面來設定您的應用程式。
 
-[!INCLUDE [cli-samples-clean-up](../../includes/cli-samples-clean-up.md)]
+## <a name="clean-up-resources"></a>清除資源
+
+在前述步驟中，您在資源群組中建立了 Azure 資源。 如果您在未來不需要這些資源，請在 Cloud Shell 中執行下列命令，以刪除資源群組。 切記，資源群組名稱已在[建立 Web 應用程式](#create-a-web-app)步驟中自動產生。
+
+```bash
+az group delete --name appsvc_rg_Windows_westeurope
+```
+
+此命令可能會花一分鐘執行。
 
 ## <a name="next-steps"></a>後續步驟
 

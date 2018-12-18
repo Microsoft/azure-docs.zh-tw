@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure CLI 來匯出 Resource Manager 範本 | Microsoft Docs"
-description: "使用 Azure Resource Manager 和 Azure CLI 從資源群組匯出範本。"
+title: 使用 Azure CLI 來匯出 Resource Manager 範本 | Microsoft Docs
+description: 使用 Azure Resource Manager 和 Azure CLI 從資源群組匯出範本。
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -8,16 +8,17 @@ manager: timlt
 editor: tysonn
 ms.service: azure-resource-manager
 ms.devlang: azurecli
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 02/23/2018
 ms.author: tomfitz
-ms.openlocfilehash: 15e7e811c7cb1777e34f1bfb629fa24a60f9e5cb
-ms.sourcegitcommit: 088a8788d69a63a8e1333ad272d4a299cb19316e
+ms.openlocfilehash: d4a1a687700badc550d37bf74f6a7e1680388897
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/27/2018
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39440310"
 ---
 # <a name="export-azure-resource-manager-templates-with-azure-cli"></a>使用 Azure CLI 來匯出 Azure Resource Manager 範本
 
@@ -44,7 +45,7 @@ az group deployment create \
 
 ## <a name="save-template-from-deployment-history"></a>從部署歷程記錄儲存範本
 
-您可以使用 [az group deployment export](/cli/azure/group/deployment#az_group_deployment_export) 命令，從部署歷程記錄中擷取範本。 下列範例會儲存您先前部署的範本︰
+您可以使用 [az group deployment export](/cli/azure/group/deployment#az-group-deployment-export) 命令，從部署歷程記錄中擷取範本。 下列範例會儲存您先前部署的範本︰
 
 ```azurecli
 az group deployment export --name NewStorage --resource-group ExampleGroup
@@ -55,7 +56,7 @@ az group deployment export --name NewStorage --resource-group ExampleGroup
 
 ## <a name="export-resource-group-as-template"></a>匯出資源群組以作為範本
 
-您不必從部署歷程記錄擷取範本，而可以使用 [az group export](/cli/azure/group#az_group_export) 命令來擷取範本，以代表資源群組的目前狀態。 當您對資源群組做了許多變更，且現有的範本均無法完全呈現這些變更時，就可以使用這個命令。 其目的在作為資源群組的快照集，以供您用來重新部署至相同的資源群組。 若要對其他解決方案使用所匯出的範本，您必須大幅修改它。
+您不必從部署歷程記錄擷取範本，而可以使用 [az group export](/cli/azure/group#az-group-export) 命令來擷取範本，以代表資源群組的目前狀態。 當您對資源群組做了許多變更，且現有的範本均無法完全呈現這些變更時，就可以使用這個命令。 其目的在作為資源群組的快照集，以供您用來重新部署至相同的資源群組。 若要對其他解決方案使用所匯出的範本，您必須大幅修改它。
 
 ```azurecli
 az group export --name ExampleGroup

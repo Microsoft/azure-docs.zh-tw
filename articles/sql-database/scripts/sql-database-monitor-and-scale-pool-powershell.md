@@ -1,36 +1,36 @@
 ---
-title: "PowerShell 範例 - 監視 - 調整 SQL 彈性集區 - Azure SQL Database | Microsoft Docs"
-description: "在 Azure SQL Database 中監視和調整 SQL 彈性集區的 Azure PowerShell 範例指令碼"
+title: PowerShell 範例 - 監視 - 調整 SQL 彈性集區 - Azure SQL Database | Microsoft Docs
+description: 在 Azure SQL Database 中監視和調整 SQL 彈性集區的 Azure PowerShell 範例指令碼
 services: sql-database
-documentationcenter: sql-database
-author: janeng
-manager: jstrauss
-editor: carlrab
-tags: azure-service-management
-ms.assetid: 
 ms.service: sql-database
-ms.custom: monitor & tune, mvc
+ms.subservice: performance
+ms.custom: ''
 ms.devlang: PowerShell
 ms.topic: sample
-ms.tgt_pltfrm: sql-database
-ms.workload: database
-ms.date: 06/23/2017
-ms.author: janeng
-ms.openlocfilehash: 3c7d655ba8893cdd427b2b77cd57608fcb275b59
-ms.sourcegitcommit: 4ac89872f4c86c612a71eb7ec30b755e7df89722
+author: CarlRabeler
+ms.author: carlrab
+ms.reviewer: ''
+manager: craigg
+ms.date: 09/14/2018
+ms.openlocfilehash: 3e4bbef18da224e41646e583e3cec0197dd00eba
+ms.sourcegitcommit: 715813af8cde40407bd3332dd922a918de46a91a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/07/2017
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "47056415"
 ---
 # <a name="use-powershell-to-monitor-and-scale-a-sql-elastic-pool-in-azure-sql-database"></a>使用 PowerShell 在 Azure SQL Database 中監視和調整 SQL 彈性集區
 
-此 PowerShell 指令碼範例會監視彈性集區的效能計量、將其調整為較高的效能等級，並對其中一個效能計量建立警示規則。 
+此 PowerShell 指令碼範例會監視彈性集區的效能計量、將其調整為較高計算大小，並對其中一個效能計量建立警示規則。 
 
-[!INCLUDE [sample-powershell-install](../../../includes/sample-powershell-install-no-ssh.md)]
+[!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
+[!INCLUDE [cloud-shell-powershell.md](../../../includes/cloud-shell-powershell.md)]
+
+如果您選擇在本機安裝和使用 PowerShell，則在執行本教學課程時，必須使用 Azure PowerShell 模組 5.7.0 版或更新版本。 執行 `Get-Module -ListAvailable AzureRM` 以尋找版本。 如果您需要升級，請參閱[安裝 Azure PowerShell 模組](/powershell/azure/install-azurerm-ps)。 如果您在本機執行 PowerShell，則也需要執行 `Connect-AzureRmAccount` 以建立與 Azure 的連線。
 
 ## <a name="sample-script"></a>範例指令碼
 
-[!code-powershell[main](../../../powershell_scripts/sql-database/monitor-and-scale-pool/monitor-and-scale-pool.ps1?highlight=16-17 "Monitor and scale single SQL Database")]
+[!code-powershell-interactive[main](../../../powershell_scripts/sql-database/monitor-and-scale-pool/monitor-and-scale-pool.ps1?highlight=16-17 "Monitor and scale single SQL Database")]
 
 ## <a name="clean-up-deployment"></a>清除部署
 

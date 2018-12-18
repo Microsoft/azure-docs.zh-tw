@@ -6,14 +6,15 @@ author: anosov1960
 manager: craigg
 ms.service: sql-database
 ms.custom: business continuity
-ms.topic: article
-ms.date: 07/16/2016
+ms.topic: conceptual
+ms.date: 08/23/2018
 ms.author: sashan
-ms.openlocfilehash: 6efc14e5f8fab5baafff50e8eb6844f8decca1c9
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: 37960995c89c2b30d90ac45dcd8cc44d80088398
+ms.sourcegitcommit: 58c5cd866ade5aac4354ea1fe8705cee2b50ba9f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42818611"
 ---
 # <a name="managing-rolling-upgrades-of-cloud-applications-using-sql-database-active-geo-replication"></a>使用 SQL Database 主動式異地複寫管理雲端應用程式的輪流升級
 > [!NOTE]
@@ -30,10 +31,10 @@ ms.lasthandoff: 03/16/2018
 * 總金額成本。  這包括額外備援以及升級程序所使用之暫時性元件的累加成本。 
 
 ## <a name="upgrading-applications-that-rely-on-database-backups-for-disaster-recovery"></a>升級依賴資料庫備份以進行災害復原的應用程式
-如果您的應用程式依賴自動資料庫備份，並針對災害復原使用異地復原，則它通常是部署到單一 Azure 區域。 在此案例中，升級程序涉及建立升級中相關的所有應用程式元件的備份部署。 若要對使用者的干擾降到最低，您要利用 Azure 流量管理員 (WATM) 與容錯移轉設定檔。  下圖說明升級程序之前的作業環境。 端點 <i>contoso-1.azurewebsites.net</i> 代表需要升級之應用程式的生產位置。 若要啟用復原升級的功能，您必須建立含有應用程式完整同步之複本的預備位置。 準備升級應用程式需要執行下列步驟：
+如果您的應用程式依賴自動資料庫備份，並針對災害復原使用異地復原，則它通常是部署到單一 Azure 區域。 在此案例中，升級程序涉及建立升級中相關的所有應用程式元件的備份部署。 若要對使用者的干擾降到最低，您要利用 Azure 流量管理員 (ATM) 與容錯移轉設定檔。  下圖說明升級程序之前的作業環境。 端點 <i>contoso-1.azurewebsites.net</i> 代表需要升級之應用程式的生產位置。 若要啟用復原升級的功能，您必須建立含有應用程式完整同步之複本的預備位置。 準備升級應用程式需要執行下列步驟：
 
 1. 為升級建立預備位置。 若要這樣做，請建立次要資料庫 (1) 並在相同的 Azure 區域中部署相同的網站。 監視次要資料庫，查看植入程序是否完成。
-2. 在 WATM 中建立容錯移轉設定檔，<i>contoso-1.azurewebsites.net</i> 作為線上端點，<i>contoso-2.azurewebsites.net</i> 作為離線端點。 
+2. 在 ATM 中建立容錯移轉設定檔，<i>contoso-1.azurewebsites.net</i> 作為線上端點，<i>contoso-2.azurewebsites.net</i> 作為離線端點。 
 
 > [!NOTE]
 > 請注意，準備步驟不會影響生產位置中的應用程式，且它可以在完整存取模式下運作。
@@ -51,7 +52,7 @@ ms.lasthandoff: 03/16/2018
 
 如果升級順利完成，您現在已準備好將使用者切換至應用程式的預備複本。 它現在將會成為應用程式的生產位置。  這涉及一些步驟，如下圖所示。
 
-1. 將 WATM 設定檔中的線上端點切換為 <i>contoso-2.azurewebsites.net</i>，它會指向 V2 版本的網站 (6)。 它現在已成為含有 V2 應用程式的生產位置，而且使用者流量會導向至它。  
+1. 將 ATM 設定檔中的線上端點切換為 <i>contoso-2.azurewebsites.net</i>，它會指向 V2 版本的網站 (6)。 它現在已成為含有 V2 應用程式的生產位置，而且使用者流量會導向至它。  
 2. 如果您不再需要 V1 應用程式元件，您可以安全地移除它們 (7)。   
 
 ![SQL Database 異地複寫組態。 雲端災害復原。](media/sql-database-manage-application-rolling-upgrade/Option1-3.png)
@@ -64,7 +65,7 @@ ms.lasthandoff: 03/16/2018
 此時應用程式已經可以完全運作，並且可以重複升級步驟。
 
 > [!NOTE]
-> 復原不需要變更 WATM 設定檔，因為它已經指向 <i>contoso-1.azurewebsites.net</i> 作為作用中端點。
+> 復原不需要變更 ATM 設定檔，因為它已經指向 <i>contoso-1.azurewebsites.net</i> 作為作用中端點。
 > 
 > 
 
@@ -78,12 +79,12 @@ ms.lasthandoff: 03/16/2018
 * 升級程序期間，應用程式隨時受到保護以防嚴重失敗。
 * 應用程式的異地備援元件會與作用中元件以平行方式升級
 
-若要達成這些目標，您要利用 Azure 流量管理員 (WATM)，使用含有一個作用中端點以及三個備份端點的容錯移轉設定檔。  下圖說明升級程序之前的作業環境。 網站 <i>contoso-1.azurewebsites.net</i> 和 <i>contoso-dr.azurewebsites.net</i> 代表具有完整異地備援之應用程式的生產位置。 若要啟用復原升級的功能，您必須建立含有應用程式完整同步之複本的預備位置。 因為您必須確保應用程式可以快速復原，以防在升級程序期間發生嚴重失敗，因此預備位置也需要異地備援。 準備升級應用程式需要執行下列步驟：
+若要達成這些目標，您要利用 Azure 流量管理員 (ATM)，使用含有一個作用中端點以及三個備份端點的容錯移轉設定檔。  下圖說明升級程序之前的作業環境。 網站 <i>contoso-1.azurewebsites.net</i> 和 <i>contoso-dr.azurewebsites.net</i> 代表具有完整異地備援之應用程式的生產位置。 若要啟用復原升級的功能，您必須建立含有應用程式完整同步之複本的預備位置。 因為您必須確保應用程式可以快速復原，以防在升級程序期間發生嚴重失敗，因此預備位置也需要異地備援。 準備升級應用程式需要執行下列步驟：
 
 1. 為升級建立預備位置。 若要這樣做，請建立次要資料庫 (1) 並在相同的 Azure 區域中部署相同的網站複本。 監視次要資料庫，查看植入程序是否完成。
 2. 將次要資料庫異地複寫至備份區域 (這裡稱為「鏈結異地複寫」)，在預備位置建立異地備援次要資料庫。 監視備份次要資料庫，查看植入程序是否完成 (3)。
 3. 在備份區域中建立網站待命複本，然後將它連結至異地備援次要資料庫 (4)。  
-4. 將額外的端點 <i>contoso-2.azurewebsites.net</i> 和 <i>contoso-3.azurewebsites.net</i> 新增到 WATM 中的容錯移轉設定檔作為離線端點 (5)。 
+4. 將額外的端點 <i>contoso-2.azurewebsites.net</i> 和 <i>contoso-3.azurewebsites.net</i> 新增到 ATM 中的容錯移轉設定檔作為離線端點 (5)。 
 
 > [!NOTE]
 > 請注意，準備步驟不會影響生產位置中的應用程式，且它可以在完整存取模式下運作。
@@ -102,7 +103,7 @@ ms.lasthandoff: 03/16/2018
 
 如果升級順利完成，您現在已準備好將使用者切換至應用程式的 V2 版本。 下圖說明相關步驟。
 
-1. 將 WATM 設定檔中的作用中端點切換為 <i>contoso-2.azurewebsites.net</i>，它現在會指向 V2 版本的網站 (9)。 它現在已成為 V2 應用程式的生產位置，而且使用者流量會導向至它。 
+1. 將 ATM 設定檔中的作用中端點切換為 <i>contoso-2.azurewebsites.net</i>，它現在會指向 V2 版本的網站 (9)。 它現在已成為 V2 應用程式的生產位置，而且使用者流量會導向至它。 
 2. 如果您不再需要 V1 應用程式，您可以安全地移除它 (10 和 11)。  
 
 ![SQL Database 異地複寫組態。 雲端災害復原。](media/sql-database-manage-application-rolling-upgrade/Option2-3.png)
@@ -115,7 +116,7 @@ ms.lasthandoff: 03/16/2018
 此時應用程式已經可以完全運作，並且可以重複升級步驟。
 
 > [!NOTE]
-> 復原不需要變更 WATM 設定檔，因為它已經指向 <i>contoso-1.azurewebsites.net</i> 作為作用中端點。
+> 復原不需要變更 ATM 設定檔，因為它已經指向 <i>contoso-1.azurewebsites.net</i> 作為作用中端點。
 > 
 > 
 

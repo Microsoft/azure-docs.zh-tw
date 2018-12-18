@@ -1,29 +1,25 @@
 ---
-title: "Azure SQL 資料倉儲的彈性查詢教學課程 | Microsoft Docs"
-description: "了解如何使用彈性查詢於 Azure SQL 資料倉儲"
+title: 教學課程：Azure SQL 資料倉儲的彈性查詢 | Microsoft Docs
+description: 本教學課程使用彈性查詢功能，從 Azure SQL Database 查詢 Azure SQL 資料倉儲。
 services: sql-data-warehouse
-documentationcenter: NA
 author: hirokib
-manager: johnmac
-editor: 
-ms.assetid: e2dc8f3f-10e3-4589-a4e2-50c67dfcf67g
+manager: craigg
 ms.service: sql-data-warehouse
-ms.devlang: NA
-ms.topic: article
-ms.tgt_pltfrm: NA
-ms.workload: data-services
-ms.custom: integrate
-ms.date: 11/03/2017
+ms.topic: conceptual
+ms.component: implement
+ms.date: 04/14/2018
 ms.author: elbutter
-ms.openlocfilehash: 20bbdbbde7edc4351563685761785874870a3c82
-ms.sourcegitcommit: e266df9f97d04acfc4a843770fadfd8edf4fa2b7
+ms.reviewer: igorstan
+ms.openlocfilehash: 355ae1c27d0af8f77c2c9bda61c3581562050fc4
+ms.sourcegitcommit: 1fb353cfca800e741678b200f23af6f31bd03e87
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/11/2017
+ms.lasthandoff: 08/30/2018
+ms.locfileid: "43307087"
 ---
-# <a name="configure-elastic-query-with-sql-data-warehouse"></a>設定 SQL 資料倉儲的彈性查詢
+# <a name="tutorial-use-elastic-query-to-access-data-in-azure-sql-data-warehouse-from-azure-sql-database"></a>教學課程：使用彈性查詢，從 Azure SQL Database 存取 Azure SQL 資料倉儲中的資料
 
-在本教學課程中，您將了解如何使用彈性查詢將 SQL Database 的查詢提交到 SQL 資料倉儲。 彈性查詢是存在 Azure SQL 產品之間的功能。 如需與彈性查詢相關概念的詳細資訊，請參閱[**如何使用彈性查詢於 Azure SQL 資料倉儲**][How to use Elastic Query with SQL Data Warehouse]。
+本教學課程使用彈性查詢功能，從 Azure SQL Database 查詢 Azure SQL 資料倉儲。 
 
 ## <a name="prerequisites-for-the-tutorial"></a>教學課程的必要條件
 
@@ -128,7 +124,7 @@ ms.lasthandoff: 12/11/2017
 
 5. 請注意 **SQL 資料庫執行個體**中現在有外部資料表定義。
 
-   ![彈性查詢外部資料表定義](./media/sql-data-warehouse-elastic-query-with-sql-database/elastic-query-external-table.png)
+   ![彈性查詢外部資料表定義](media/sql-data-warehouse-elastic-query-with-sql-database/elastic-query-external-table.png)
 
 
 6. 提交下列會查詢資料倉儲執行個體的查詢。 您應該會收到在步驟 2 中插入的五個值。 
@@ -143,15 +139,5 @@ SELECT * FROM [dbo].[OrderInformation];
 
 恭喜，您已設定最基本的彈性查詢。 
 
-
-
-
-<!--Image references-->
-
-<!--Article references-->
-
-[How to use Elastic Query with SQL Data Warehouse]: ./how-to-use-elastic-query-with-sql-data-warehouse.md
-
-<!--MSDN references-->
-
-<!--Other Web references-->
+## <a name="next-steps"></a>後續步驟
+如需建議，請參閱[於 Azure SQL 資料倉儲使用彈性查詢的最佳做法](how-to-use-elastic-query-with-sql-data-warehouse.md)。

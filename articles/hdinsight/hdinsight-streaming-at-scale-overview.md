@@ -1,26 +1,19 @@
 ---
-title: "HDInsight 中的大規模串流 | Microsoft Docs"
-description: "如何搭配可調整規模的 HDInsight 叢集使用資料串流。"
+title: Azure HDInsight 中的大規模串流
+description: 如何搭配可調整規模的 HDInsight 叢集使用資料串流。
 services: hdinsight
-documentationcenter: 
-tags: azure-portal
-author: raghavmohan
-manager: jhubbard
-editor: cgronlun
-ms.assetid: 
+author: jasonwhowell
+ms.author: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 01/19/2018
-ms.author: ramoha
-ms.openlocfilehash: 46b5723805ab5d8bc1cf5b5183d9501cd3e4e3a2
-ms.sourcegitcommit: 1fbaa2ccda2fb826c74755d42a31835d9d30e05f
+ms.openlocfilehash: 35304a51ff7fda8bbf7ef6ebb0366ebe740abfa6
+ms.sourcegitcommit: 1f0587f29dc1e5aef1502f4f15d5a2079d7683e9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/22/2018
+ms.lasthandoff: 08/07/2018
+ms.locfileid: "39591250"
 ---
 # <a name="streaming-at-scale-in-hdinsight"></a>HDInsight 中的大規模串流
 

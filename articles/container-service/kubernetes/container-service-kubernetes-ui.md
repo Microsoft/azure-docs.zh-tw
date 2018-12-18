@@ -1,29 +1,30 @@
 ---
-title: "使用 Web UI 管理 Azure Kubernetes 叢集"
-description: "在 Azure Container Service 中使用 Kubernetes Web UI"
+title: 使用 Web UI 管理 Azure Kubernetes 叢集
+description: 在 Azure Container Service 中使用 Kubernetes Web UI
 services: container-service
 author: bburns
-manager: timlt
+manager: jeconnoc
 ms.service: container-service
 ms.topic: article
 ms.date: 02/21/2017
 ms.author: bburns
 ms.custom: mvc
-ms.openlocfilehash: d5a3906e5e26c9ed0a6cf356000c3d81f00de72c
-ms.sourcegitcommit: 5d3e99478a5f26e92d1e7f3cec6b0ff5fbd7cedf
+ms.openlocfilehash: b5079ddb63f468f924577f61adda6a3056ec8c6c
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/06/2017
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46998520"
 ---
 # <a name="using-the-kubernetes-web-ui-with-azure-container-service"></a>搭配 Azure Container Service 使用 Kubernetes Web UI
 
 [!INCLUDE [aks-preview-redirect.md](../../../includes/aks-preview-redirect.md)]
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 本逐步解說假設您已[使用 Azure Container Service 建立 Kubernetes 叢集](container-service-kubernetes-walkthrough.md)。
 
 
-同時也假設您已經安裝 Azure CLI 2.0 和 `kubectl` 工具。
+同時也假設您已經安裝 Azure CLI 和 `kubectl` 工具。
 
 您可以藉由執行下列操作來測試是否已安裝 `az` 工具：
 

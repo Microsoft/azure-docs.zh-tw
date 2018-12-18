@@ -1,11 +1,11 @@
 ---
-title: "使用 PowerShell 複製 Web 應用程式"
-description: "了解如何使用 PowerShell，將您的 Web Apps 複製到新的 Web Apps。"
+title: 使用 PowerShell 複製 Web 應用程式
+description: 了解如何使用 PowerShell，將您的 Web Apps 複製到新的 Web Apps。
 services: app-service\web
-documentationcenter: 
+documentationcenter: ''
 author: ahmedelnably
 manager: stefsch
-editor: 
+editor: ''
 ms.assetid: f9a5cfa1-fbb0-41e6-95d1-75d457347a35
 ms.service: app-service-web
 ms.workload: web
@@ -19,6 +19,7 @@ ms.sourcegitcommit: f1c1789f2f2502d683afaf5a2f46cc548c0dea50
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 01/18/2018
+ms.locfileid: "27867465"
 ---
 # <a name="azure-app-service-app-cloning-using-powershell"></a>使用 PowerShell 複製 Azure App Service App
 隨著 Microsoft Azure PowerShell 1.1.0 版的發行，`New-AzureRMWebApp` 中新增了一個選項，可讓您將現有的 Web 應用程式複製到在不同區域或在相同區域中新建立的應用程式。 此選項可讓客戶輕鬆且快速地跨不同區域部署許多應用程式。

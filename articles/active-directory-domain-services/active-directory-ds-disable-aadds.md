@@ -1,24 +1,26 @@
 ---
-title: "停用 Azure Active Directory Domain Services | Microsoft Docs"
-description: "使用 Azure 入口網站停用 Azure Active Directory Domain Services"
+title: 停用 Azure Active Directory Domain Services | Microsoft Docs
+description: 使用 Azure 入口網站停用 Azure Active Directory Domain Services
 services: active-directory-ds
-documentationcenter: 
+documentationcenter: ''
 author: mahesh-unnikrishnan
 manager: mtillman
 editor: curtand
 ms.assetid: 89e407e1-e1e0-49d1-8b89-de11484eee46
-ms.service: active-directory-ds
+ms.service: active-directory
+ms.component: domain-services
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 10/27/2017
 ms.author: maheshu
-ms.openlocfilehash: f61f6df85e47bec32e147990d956a4409429a60c
-ms.sourcegitcommit: e266df9f97d04acfc4a843770fadfd8edf4fa2b7
+ms.openlocfilehash: af24c7f9b721aab4f1ab810cf42f737fd14bdf88
+ms.sourcegitcommit: 9222063a6a44d4414720560a1265ee935c73f49e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/11/2017
+ms.lasthandoff: 08/03/2018
+ms.locfileid: "39505570"
 ---
 # <a name="disable-azure-active-directory-domain-services-using-the-azure-portal"></a>使用 Azure 入口網站停用 Azure Active Directory Domain Services
 本文將示範如何使用 Azure 入口網站停用您 Azure AD 目錄的 Azure Active Directory (AD) 網域服務。

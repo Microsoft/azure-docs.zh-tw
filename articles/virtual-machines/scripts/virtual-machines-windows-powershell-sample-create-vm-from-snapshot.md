@@ -1,13 +1,13 @@
 ---
-title: "Azure PowerShell 指令碼範例 - 從快照集建立 VM | Microsoft Docs"
-description: "Azure PowerShell 指令碼範例 - 從快照集建立 VM"
+title: Azure PowerShell 指令碼範例 - 從快照集建立 VM | Microsoft Docs
+description: Azure PowerShell 指令碼範例 - 從快照集建立 VM
 services: virtual-machines-windows
 documentationcenter: virtual-machines
 author: ramankum
 manager: kavithag
 editor: ramankum
 tags: azure-service-management
-ms.assetid: 
+ms.assetid: ''
 ms.service: virtual-machines-windows
 ms.devlang: na
 ms.topic: sample
@@ -21,6 +21,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23116716"
 ---
 # <a name="create-a-virtual-machine-from-a-snapshot-with-powershell"></a>使用 PowerShell 從快照集建立虛擬機器
 

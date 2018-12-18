@@ -1,10 +1,10 @@
 ---
-title: "建立自訂 Linux 虛擬機器 | Microsoft Docs"
-description: "了解如何使用傳統的部署模型從 Azure 入口網站建立自訂 Linux 虛擬機器。"
+title: 建立自訂 Linux 虛擬機器 | Microsoft Docs
+description: 了解如何使用傳統的部署模型從 Azure 入口網站建立自訂 Linux 虛擬機器。
 services: virtual-machines-linux
-documentationcenter: 
+documentationcenter: ''
 author: cynthn
-manager: timlt
+manager: jeconnoc
 editor: tysonn
 tags: azure-service-management
 ROBOTS: NOINDEX
@@ -16,11 +16,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/31/2017
 ms.author: cynthn
-ms.openlocfilehash: e82350f1895bd0c4bca8bb38cb5c32302623e9ff
-ms.sourcegitcommit: 9a8b9a24d67ba7b779fa34e67d7f2b45c941785e
+ms.openlocfilehash: e84a39a2f9f62769ce2acfa74a38662aac5b2f4c
+ms.sourcegitcommit: 6fcd9e220b9cd4cb2d4365de0299bf48fbb18c17
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2018
+ms.lasthandoff: 04/05/2018
+ms.locfileid: "30842433"
 ---
 # <a name="create-a-custom-virtual-machine-running-linux"></a>建立執行 Linux 的自訂虛擬機器
 > [!IMPORTANT] 

@@ -1,35 +1,42 @@
 ---
 title: Azure Cosmos DB 教學課程︰在Apache TinkerPops Gremlin 主控台中建立、查詢和周遊 | Microsoft Docs
-description: Azure Cosmos DB 快速入門，說明如何使用 Azure Cosmos DB 圖形 API建立頂點、邊緣和查詢。
+description: Azure Cosmos DB 快速入門，說明如何使用 Azure Cosmos DB Gremlin API 建立頂點、邊緣和查詢。
 services: cosmos-db
 author: luisbosquez
-manager: jhubbard
-editor: monicar
-ms.assetid: bf08e031-718a-4a2a-89d6-91e12ff8797d
+manager: kfile
 ms.service: cosmos-db
-ms.workload: data-services
-ms.tgt_pltfrm: na
-ms.devlang: terminal
+ms.component: cosmosdb-graph
+ms.devlang: na
 ms.topic: quickstart
 ms.date: 01/08/2018
 ms.author: lbosq
-ms.openlocfilehash: 3f0ec59ccee61fd0dbb7587a9d2ec3e17b1cf873
-ms.sourcegitcommit: c3d53d8901622f93efcd13a31863161019325216
+ms.openlocfilehash: e73b0e88a98c1b06216378078626b4338c598816
+ms.sourcegitcommit: 42405ab963df3101ee2a9b26e54240ffa689f140
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/29/2018
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47422961"
 ---
 # <a name="azure-cosmos-db-create-query-and-traverse-a-graph-in-the-gremlin-console"></a>Azure Cosmos DB︰在 Gremlin 主控台中建立、查詢和周遊圖形
 
+> [!div class="op_single_selector"]
+> * [Gremlin 主控台](create-graph-gremlin-console.md)
+> * [.NET](create-graph-dotnet.md)
+> * [Java](create-graph-java.md)
+> * [Node.js](create-graph-nodejs.md)
+> * [Python](create-graph-python.md)
+> * [PHP](create-graph-php.md)
+>  
+
 Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您可以快速建立及查詢文件、索引鍵/值及圖形資料庫，所有這些都受惠於位於 Azure Cosmos DB 核心的全域散發和水平調整功能。 
 
-此快速入門會示範如何使用 Azure 入口網站建立 Azure Cosmos DB [Graph API](graph-introduction.md) 帳戶、資料庫和圖形 (容器)，然後從 [Apache TinkerPop](http://tinkerpop.apache.org) 使用 [Gremlin 主控台](https://tinkerpop.apache.org/docs/current/reference/#gremlin-console)來處理圖形 API 資料。 在本教學課程中，您將建立和查詢頂點和邊緣、更新頂點屬性、查詢頂點、周遊該圖形，以及刪除頂點。
+本快速入門示範如何使用 Azure 入口網站建立 Azure Cosmos DB [Gremlin API](graph-introduction.md) 帳戶、資料庫和圖表 (容器)，然後從 [Apache TinkerPop](http://tinkerpop.apache.org) (英文) 使用 [Gremlin 主控台](https://tinkerpop.apache.org/docs/current/reference/#gremlin-console) (英文) 來處理Gremlin API 資料。 在本教學課程中，您將建立和查詢頂點和邊緣、更新頂點屬性、查詢頂點、周遊該圖形，以及刪除頂點。
 
 ![Apache Gremlin 主控台中的 Azure Cosmos DB](./media/create-graph-gremlin-console/gremlin-console.png)
 
 Gremlin 主控台是以 Groovy/Java 為基礎並且在 Linux、Mac 和 Windows 上執行。 您可以從 [Apache TinkerPop 網站](http://tinkerpop.apache.org/downloads.html)進行下載。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 您必須擁有 Azure 訂用帳戶，才能針對本快速入門建立 Azure Cosmos DB 帳戶。
 
@@ -47,11 +54,11 @@ Gremlin 主控台是以 Groovy/Java 為基礎並且在 Linux、Mac 和 Windows �
 
 ## <a id="ConnectAppService"></a>連線到您的應用程式服務
 1. 啟動 Gremlin 主控台之前，請建立或修改 `apache-tinkerpop-gremlin-console-3.2.5/conf` 目錄中的 remote-secure.yaml 組態檔。
-2. 填入您的 host、port、username、password、connectionPool 和 serializer 組態︰
+2. 填入如下表中定義的 host、port、username、password、connectionPool 和 serializer 組態︰
 
     設定|建議的值|說明
     ---|---|---
-    主機|針對 2017 年 12 月 20 日之前建立的帳戶，[***.gremlin.cosmosdb.azure.com] 或 [***.graphs.azure.com]|請看下方的螢幕擷取畫面。 這是 Azure 入口網站的 [概觀] 頁面上的 Gremlin URI 值，其以方括號括住並已移除尾端的 :443/。<br><br>此值也可以從 [金鑰] 索引標籤擷取，方法是移除 https://、將文件變更為圖形 pr gremlin.cosmosdb，並移除尾端的 :443/ 來使用 URI 值。
+    主機|針對 2017 年 12 月 20 日之前建立的帳戶，[account-name.gremlin.cosmosdb.azure.com] 或 [account-name.graphs.azure.com]|請參閱下列螢幕擷取畫面。 這是 Azure 入口網站的 [概觀] 頁面上的 Gremlin URI 值，其以方括號括住並已移除尾端的 :443/。
     連接埠|443|設為 443。
     username|您的使用者名稱|`/dbs/<db>/colls/<coll>` 表單的資源，其中 `<db>` 是您的資料庫名稱，而 `<coll>` 是您的集合名稱。
     password|您的主要金鑰| 請看下方的第二個螢幕擷取畫面。 這是您的主要金鑰，可以從 Azure 入口網站 [金鑰] 頁面的 [主鑰金鑰] 方塊中擷取。 使用方塊左側的 [複製] 按鈕來複製此值。
@@ -81,21 +88,18 @@ serializer: { className: org.apache.tinkerpop.gremlin.driver.ser.GraphSONMessage
     > [!TIP]
     > 如果您收到 `No appenders could be found for logger` 錯誤，確定您如步驟 2 所述更新了 remote-secure.yaml 檔案中的序列化程式值。 
 
+5. 接下來，執行 `:remote console` 以將所有主控台命令重新導向至遠端伺服器。
+
+   > [!NOTE]
+   > 如果您不執行 `:remote console` 命令，但想要將所有主控台命令重新導向至遠端伺服器，則應在命令前面加上 `:>` 前置詞，例如，您應以 `:> g.V().count()` 的形式執行此命令。 此前置詞是命令的一部分，在搭配使用 Gremlin 主控台與 Azure Cosmos DB 時務必要使用。 省略此前置詞會指示主控台在本機執行命令，通常是針對記憶體中的圖形。 使用此前置詞 `:>` 會指示主控台要執行遠端命令，在此案例中是針對 Azure Cosmos DB (localhost 模擬器或 Azure 執行個體)。
+
 太棒了！ 現在已完成安裝程式，讓我們開始執行一些主控台命令。
 
 我們來試試簡單的 count() 命令。 在提示字元中，將下列內容輸入到主控台：
-```
-:> g.V().count()
-```
 
-> [!TIP]
-> 請注意，`:>` 位於 `g.V().count()` 文字前面？ 
->
-> 這是您需要輸入之命令的一部分。 使用 Gremlin 主控台時請務必搭配 Azure Cosmos DB。  
->
-> 省略此 `:>` 前置詞會指示主控台在本機執行命令，通常是針對記憶體中的圖形。
-> 使用此 `:>` 會告訴主控台要執行遠端命令，在此案例中是針對 Cosmos DB (localhost 模擬器或是 > Azure 執行個體)。
-
+```
+g.V().count()
+```
 
 ## <a name="create-vertices-and-edges"></a>建立頂點和邊緣
 
@@ -104,7 +108,7 @@ serializer: { className: org.apache.tinkerpop.gremlin.driver.ser.GraphSONMessage
 輸入 (Thomas)：
 
 ```
-:> g.addV('person').property('firstName', 'Thomas').property('lastName', 'Andersen').property('age', 44).property('userid', 1)
+g.addV('person').property('firstName', 'Thomas').property('lastName', 'Andersen').property('age', 44).property('userid', 1)
 ```
 
 輸出：
@@ -115,7 +119,7 @@ serializer: { className: org.apache.tinkerpop.gremlin.driver.ser.GraphSONMessage
 輸入 (Mary Kay)：
 
 ```
-:> g.addV('person').property('firstName', 'Mary Kay').property('lastName', 'Andersen').property('age', 39).property('userid', 2)
+g.addV('person').property('firstName', 'Mary Kay').property('lastName', 'Andersen').property('age', 39).property('userid', 2)
 
 ```
 
@@ -129,7 +133,7 @@ serializer: { className: org.apache.tinkerpop.gremlin.driver.ser.GraphSONMessage
 輸入 (Robin)：
 
 ```
-:> g.addV('person').property('firstName', 'Robin').property('lastName', 'Wakefield').property('userid', 3)
+g.addV('person').property('firstName', 'Robin').property('lastName', 'Wakefield').property('userid', 3)
 ```
 
 輸出：
@@ -141,7 +145,7 @@ serializer: { className: org.apache.tinkerpop.gremlin.driver.ser.GraphSONMessage
 輸入 (Ben)：
 
 ```
-:> g.addV('person').property('firstName', 'Ben').property('lastName', 'Miller').property('userid', 4)
+g.addV('person').property('firstName', 'Ben').property('lastName', 'Miller').property('userid', 4)
 
 ```
 
@@ -154,7 +158,7 @@ serializer: { className: org.apache.tinkerpop.gremlin.driver.ser.GraphSONMessage
 輸入 (Jack)：
 
 ```
-:> g.addV('person').property('firstName', 'Jack').property('lastName', 'Connor').property('userid', 5)
+g.addV('person').property('firstName', 'Jack').property('lastName', 'Connor').property('userid', 5)
 ```
 
 輸出：
@@ -169,7 +173,7 @@ serializer: { className: org.apache.tinkerpop.gremlin.driver.ser.GraphSONMessage
 輸入 (Thomas -> Mary Kay)：
 
 ```
-:> g.V().hasLabel('person').has('firstName', 'Thomas').addE('knows').to(g.V().hasLabel('person').has('firstName', 'Mary Kay'))
+g.V().hasLabel('person').has('firstName', 'Thomas').addE('knows').to(g.V().hasLabel('person').has('firstName', 'Mary Kay'))
 ```
 
 輸出：
@@ -181,7 +185,7 @@ serializer: { className: org.apache.tinkerpop.gremlin.driver.ser.GraphSONMessage
 輸入 (Thomas -> Robin)：
 
 ```
-:> g.V().hasLabel('person').has('firstName', 'Thomas').addE('knows').to(g.V().hasLabel('person').has('firstName', 'Robin'))
+g.V().hasLabel('person').has('firstName', 'Thomas').addE('knows').to(g.V().hasLabel('person').has('firstName', 'Robin'))
 ```
 
 輸出：
@@ -193,7 +197,7 @@ serializer: { className: org.apache.tinkerpop.gremlin.driver.ser.GraphSONMessage
 輸入 (Robin -> Ben)：
 
 ```
-:> g.V().hasLabel('person').has('firstName', 'Robin').addE('knows').to(g.V().hasLabel('person').has('firstName', 'Ben'))
+g.V().hasLabel('person').has('firstName', 'Robin').addE('knows').to(g.V().hasLabel('person').has('firstName', 'Ben'))
 ```
 
 輸出：
@@ -208,7 +212,7 @@ serializer: { className: org.apache.tinkerpop.gremlin.driver.ser.GraphSONMessage
 
 輸入：
 ```
-:> g.V().hasLabel('person').has('firstName', 'Thomas').property('age', 45)
+g.V().hasLabel('person').has('firstName', 'Thomas').property('age', 45)
 ```
 輸出：
 
@@ -225,7 +229,7 @@ serializer: { className: org.apache.tinkerpop.gremlin.driver.ser.GraphSONMessage
 輸入 (篩選查詢)︰
 
 ```
-:> g.V().hasLabel('person').has('age', gt(40))
+g.V().hasLabel('person').has('age', gt(40))
 ```
 
 輸出：
@@ -239,7 +243,7 @@ serializer: { className: org.apache.tinkerpop.gremlin.driver.ser.GraphSONMessage
 輸入 (篩選 + 預測查詢)：
 
 ```
-:> g.V().hasLabel('person').has('age', gt(40)).values('firstName')
+g.V().hasLabel('person').has('age', gt(40)).values('firstName')
 ```
 
 輸出：
@@ -255,7 +259,7 @@ serializer: { className: org.apache.tinkerpop.gremlin.driver.ser.GraphSONMessage
 輸入 (Thomas 的朋友)：
 
 ```
-:> g.V().hasLabel('person').has('firstName', 'Thomas').outE('knows').inV().hasLabel('person')
+g.V().hasLabel('person').has('firstName', 'Thomas').outE('knows').inV().hasLabel('person')
 ```
 
 輸出： 
@@ -270,7 +274,7 @@ serializer: { className: org.apache.tinkerpop.gremlin.driver.ser.GraphSONMessage
 輸入 (Thomas 朋友的朋友)：
 
 ```
-:> g.V().hasLabel('person').has('firstName', 'Thomas').outE('knows').inV().hasLabel('person').outE('knows').inV().hasLabel('person')
+g.V().hasLabel('person').has('firstName', 'Thomas').outE('knows').inV().hasLabel('person').outE('knows').inV().hasLabel('person')
 ```
 輸出：
 
@@ -285,7 +289,7 @@ serializer: { className: org.apache.tinkerpop.gremlin.driver.ser.GraphSONMessage
 輸入 (置放 Jack 頂點)：
 
 ```
-:> g.V().hasLabel('person').has('firstName', 'Jack').drop()
+g.V().hasLabel('person').has('firstName', 'Jack').drop()
 ```
 
 ## <a name="clear-your-graph"></a>清除圖形
@@ -295,11 +299,11 @@ serializer: { className: org.apache.tinkerpop.gremlin.driver.ser.GraphSONMessage
 輸入：
 
 ```
-:> g.E().drop()
-:> g.V().drop()
+g.E().drop()
+g.V().drop()
 ```
 
-恭喜！ 您已經完成此 Azure Cosmos DB：圖形 API 教學課程！
+恭喜！ 您已經完成此 Azure Cosmos DB：Gremlin API 教學課程！
 
 ## <a name="review-slas-in-the-azure-portal"></a>在 Azure 入口網站中檢閱 SLA
 
@@ -307,10 +311,7 @@ serializer: { className: org.apache.tinkerpop.gremlin.driver.ser.GraphSONMessage
 
 ## <a name="clean-up-resources"></a>清除資源
 
-如果您將不繼續使用此應用程式，請使用下列步驟，在 Azure 入口網站中刪除本快速入門所建立的所有資源：  
-
-1. 從 Azure 入口網站的左側功能表中，按一下 [資源群組]，然後按一下您所建立資源的名稱。 
-2. 在資源群組頁面上，按一下 [刪除]，在文字方塊中輸入要刪除之資源的名稱，然後按一下 [刪除]。
+[!INCLUDE [cosmosdb-delete-resource-group](../../includes/cosmos-db-delete-resource-group.md)]
 
 ## <a name="next-steps"></a>後續步驟
 

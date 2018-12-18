@@ -1,6 +1,6 @@
 ---
-title: "啟用對於 Azure DC/OS 容器應用程式的存取"
-description: "如何在 Azure Container Service 中啟用對 DC/OS 容器的公用存取。"
+title: 啟用對於 Azure DC/OS 容器應用程式的存取
+description: 如何在 Azure Container Service 中啟用對 DC/OS 容器的公用存取。
 services: container-service
 author: sauryadas
 manager: madhana
@@ -14,6 +14,7 @@ ms.sourcegitcommit: 5d3e99478a5f26e92d1e7f3cec6b0ff5fbd7cedf
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 12/06/2017
+ms.locfileid: "26332274"
 ---
 # <a name="enable-public-access-to-an-azure-container-service-application"></a>啟用 Azure Container Service 應用程式的公用存取
 

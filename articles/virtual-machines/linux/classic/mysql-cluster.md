@@ -1,11 +1,11 @@
 ---
-title: "使用負載平衡集將 MySQL 叢集化 | Microsoft Docs"
-description: "在 Azure 上安裝以傳統部署模型建立的負載平衡、高可用性 Linux MySQL 叢集"
+title: 使用負載平衡集將 MySQL 叢集化 | Microsoft Docs
+description: 在 Azure 上安裝以傳統部署模型建立的負載平衡、高可用性 Linux MySQL 叢集
 services: virtual-machines-linux
-documentationcenter: 
+documentationcenter: ''
 author: bureado
-manager: timlt
-editor: 
+manager: jeconnoc
+editor: ''
 tags: azure-service-management
 ms.assetid: 6c413a16-e9b5-4ffe-a8a3-ae67046bbdf3
 ms.service: virtual-machines-linux
@@ -15,11 +15,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/14/2015
 ms.author: jparrel
-ms.openlocfilehash: 8b39da7b96002e14c7d9a567ddc4f1dbc9d45c60
-ms.sourcegitcommit: e266df9f97d04acfc4a843770fadfd8edf4fa2b7
+ms.openlocfilehash: e2671def47879e3d4eae000c9084cd458e29b933
+ms.sourcegitcommit: 6fcd9e220b9cd4cb2d4365de0299bf48fbb18c17
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/11/2017
+ms.lasthandoff: 04/05/2018
+ms.locfileid: "30841259"
 ---
 # <a name="use-load-balanced-sets-to-clusterize-mysql-on-linux"></a>在 Linux 上使用負載平衡集合將 MySQL 叢集化
 > [!IMPORTANT]

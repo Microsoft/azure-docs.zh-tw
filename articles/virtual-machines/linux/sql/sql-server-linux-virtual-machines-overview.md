@@ -10,13 +10,14 @@ ms.service: virtual-machines-sql
 ms.devlang: na
 ms.topic: get-started-article
 ms.workload: iaas-sql-server
-ms.date: 03/22/2018
+ms.date: 04/10/2018
 ms.author: jroth
-ms.openlocfilehash: e752ad844a6efe572564e7081ebac87193e9c2a7
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 9c24536d8d5647e4a2c19afa17c35050e1f11c20
+ms.sourcegitcommit: 9cdd83256b82e664bd36991d78f87ea1e56827cd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 04/16/2018
+ms.locfileid: "31424114"
 ---
 # <a name="overview-of-sql-server-on-azure-virtual-machines-linux"></a>Azure 虛擬機器上的 SQL Server 概觀 (Linux)
 
@@ -24,27 +25,16 @@ ms.lasthandoff: 03/23/2018
 > * [Windows](../../windows/sql/virtual-machines-windows-sql-server-iaas-overview.md)
 > * [Linux](sql-server-linux-virtual-machines-overview.md)
 
-本主題說明在 Azure Linux 擬機器 (VM) 上執行 SQL Server 的選項，以及提供[入口網站映像的連結](#create)。
+Azure 虛擬機器上的 SQL Server 可讓您在雲端使用完整的 SQL Server 版本，而不需要管理任何內部部署硬體。 當您使用預付型方案時，SQL Server VM 也會簡化授權成本。
 
-> [!NOTE]
-> 如果您已熟悉 SQL Server，並只需要了解如何部署 SQL Server Linux VM，請參閱[在 Azure 中佈建 Linux SQL Server VM](provision-sql-server-linux-virtual-machine.md)。 或者如果您需要使用 SQL Server 建立 Windows VM，請參閱[在 Azure 中佈建 Windows SQL Server VM](../../windows/sql/virtual-machines-windows-portal-sql-server-provision.md)。
+Azure 虛擬機器會在全球許多不同的[地理區域](https://azure.microsoft.com/regions/)中執行。 此外，也提供各種[機器大小](../sizes.md)。 虛擬機器映像庫可讓您使用正確的版本、版次及作業系統建立 SQL Server VM。 這可讓虛擬機器成為許多不同 SQL Server 工作負載的適合選項。
 
-如果您是資料庫管理員或開發人員，Azure VM 提供您將內部部署 SQL Server 工作負載和應用程式移動到雲端的方式。
+## <a id="create"></a>開始使用 SQL VM
 
-## <a name="scenarios"></a>案例
-
-可能會有許多原因讓您選擇主控 Azure 中的資料。 如果您正在開發或要將應用程式移轉至 Azure，它可改善效能，也能在 Azure 中找出後端資料。 您會自動取得多個資料中心的存取權，以獲得全域支援和災害復原。 資料也是高度安全且具有持久性。
-
-在 Azure VM 上執行的 SQL Server，是用來將關聯式資料儲存到 Azure 的選項之一。 您也可以選擇使用 Azure SQL Database 服務。 如需在虛擬機器上的 SQL Server 與 Azure SQL Database 之間選擇的詳細資訊，請參閱[選擇雲端 SQL Server 選項：Azure SQL (PaaS) Database 或 Azure VM 上的 SQL Server (IaaS)](../../../sql-database/sql-database-paas-vs-sql-server-iaas.md)。
-
-## <a id="create"></a>建立新的 SQL VM
-
-在[在 Azure 中佈建 Linux SQL Server VM](provision-sql-server-linux-virtual-machine.md) 教學課程中尋找適用於建立新 SQL VM 的逐步指引。
-
-下表提供虛擬機器資源庫中最新的 SQL Server 映像對照表。 按一下任何連結，即可開始建立採用您指定的版本和作業系統的新 SQL VM。
+若要開始使用，請選擇具有您所需版本、版次及作業系統的 SQL Server 虛擬機器映像。 下列各節提供 Azure 入口網站中 SQL Server 虛擬機器資源庫映像的直接連結。
 
 > [!TIP]
-> 若要了解這些映像的 VM 和 SQL 定價，請參閱 [Linux SQL Server VM 的定價頁面](https://azure.microsoft.com/pricing/details/virtual-machines/linux/)。
+> 如需了解 SQL 映像定價的詳細資訊，請參閱[ Linux SQL Server VM 的定價頁面](https://azure.microsoft.com/pricing/details/virtual-machines/linux/)。
 
 | 版本 | 作業系統 | 版本 |
 | --- | --- | --- |
@@ -65,6 +55,33 @@ ms.lasthandoff: 03/23/2018
 | SLES | ![是](./media/sql-server-linux-virtual-machines-overview/yes.png) | ![是](./media/sql-server-linux-virtual-machines-overview/yes.png) | ![是](./media/sql-server-linux-virtual-machines-overview/yes.png) | ![是](./media/sql-server-linux-virtual-machines-overview/yes.png) | ![no](./media/sql-server-linux-virtual-machines-overview/no.png) | ![no](./media/sql-server-linux-virtual-machines-overview/no.png) |
 | Ubuntu | ![是](./media/sql-server-linux-virtual-machines-overview/yes.png) | ![是](./media/sql-server-linux-virtual-machines-overview/yes.png) | ![是](./media/sql-server-linux-virtual-machines-overview/yes.png) | ![是](./media/sql-server-linux-virtual-machines-overview/yes.png) | ![是](./media/sql-server-linux-virtual-machines-overview/yes.png) | ![是](./media/sql-server-linux-virtual-machines-overview/yes.png) |
 
+## <a name="related-products-and-services"></a>相關產品與服務
+
+### <a name="linux-virtual-machines"></a>Linux 虛擬機器
+
+* [虛擬機器概觀](../overview.md)
+
+### <a name="storage"></a>儲存體
+
+* [Microsoft Azure 儲存體簡介](../../../storage/common/storage-introduction.md)
+
+### <a name="networking"></a>網路
+
+* [虛擬網路概觀](../../../virtual-network/virtual-networks-overview.md)
+* [Azure 中的 IP 位址](../../../virtual-network/virtual-network-ip-addresses-overview-arm.md)
+* [在 Azure 入口網站中建立完整格式的網域名稱](../portal-create-fqdn.md)
+
+### <a name="sql"></a>SQL
+
+* [Linux 上的 SQL Server 文件](https://docs.microsoft.com/sql/linux) \(機器翻譯\)
+* [Azure SQL Database 比較](../../../sql-database/sql-database-paas-vs-sql-server-iaas.md)
+
 ## <a name="next-steps"></a>後續步驟
 
-若要深入了解如何在 Linux 上設定及使用 SQL Server，請參閱 [Linux 上的 SQL Server 概觀](https://docs.microsoft.com/sql/linux/sql-server-linux-overview)。
+在 Azure Linux 虛擬機器上開始使用 SQL Server：
+
+* [在 Azure 入口網站中建立 SQL Server VM](provision-sql-server-linux-virtual-machine.md)
+
+獲得有關 Linux 上 SQL VM 常見問題的答案：
+
+* [Azure Linux 虛擬機器上的 SQL Server 常見問題集](sql-server-linux-faq.md)

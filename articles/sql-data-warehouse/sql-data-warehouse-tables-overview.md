@@ -1,30 +1,27 @@
 ---
-title: "資料表設計簡介 - Azure SQL 資料倉儲 | Microsoft Docs"
-description: "在 Azure SQL 資料倉儲中設計資料表的簡介。"
+title: 設計資料表 - Azure SQL 資料倉儲 | Microsoft Docs
+description: 在 Azure SQL 資料倉儲中設計資料表的簡介。
 services: sql-data-warehouse
-documentationcenter: NA
-author: barbkess
-manager: jhubbard
-editor: 
+author: ronortloff
+manager: craigg
 ms.service: sql-data-warehouse
-ms.devlang: NA
-ms.topic: article
-ms.tgt_pltfrm: NA
-ms.workload: data-services
-ms.custom: performance
-ms.date: 01/18/2018
-ms.author: barbkess
-ms.openlocfilehash: 5c163880a7508d69bce0019cc5379bca8c704d59
-ms.sourcegitcommit: 5ac112c0950d406251551d5fd66806dc22a63b01
+ms.topic: conceptual
+ms.component: implement
+ms.date: 04/17/2018
+ms.author: rortloff
+ms.reviewer: igorstan
+ms.openlocfilehash: f09b9a93956c9d23e17c742c5f6ec4730591933b
+ms.sourcegitcommit: 1fb353cfca800e741678b200f23af6f31bd03e87
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2018
+ms.lasthandoff: 08/30/2018
+ms.locfileid: "43302308"
 ---
-# <a name="introduction-to-designing-tables-in-azure-sql-data-warehouse"></a>在 Azure SQL 資料倉儲中設計資料表的簡介
+# <a name="designing-tables-in-azure-sql-data-warehouse"></a>在 Azure SQL 資料倉儲中設計資料表
 
 瞭解在 Azure SQL 資料倉儲中設計資料表的重要概念。 
 
-## <a name="determining-table-category"></a>決定資料表類別 
+## <a name="determine-table-category"></a>決定資料表類別 
 
 [星狀結構描述](https://en.wikipedia.org/wiki/Star_schema)會將資料分類為事實和維度資料表。 某些資料表用於資料移至事實或維度資料表之前的整合或暫存。 設計資料表時，請決定資料表的資料將屬於事實、維度還是整合資料表。 此決定將使資料表具有適當的結構和散發機制。 
 
@@ -46,7 +43,7 @@ CREATE SCHEMA wwi;
 若要在 SQL 資料倉儲中顯示資料表的組織，可以使用 fact、dim、int 作為資料表名稱的前置詞。 下表顯示 WideWorldImportersDW 的一些結構描述和資料表名稱。 此表格會比較 SQL Server 中的名稱和 SQL 資料倉儲中的名稱。 
 
 | WideWorldImportersDW 資料表  | 資料表類型 | SQL Server | SQL 資料倉儲 |
-|:-----|:-----|:------|
+|:-----|:-----|:------|:-----|
 | City | 維度 | Dimension.City | wwi.DimCity |
 | 順序 | 事實 | Fact.Order | wwi.FactOrder |
 
@@ -70,7 +67,7 @@ CREATE TABLE MyTable (col1 int, col2 int );
 外部資料表會指向位於 Azure 儲存體 blob 或 Azure Data Lake Store 中的資料。 與 CREATE TABLE AS SELECT 陳述式搭配使用時，如果從外部資料表選取，資料將會匯入 SQL 資料倉儲中。 因此，外部資料表對於載入資料有所助益。 如需載入的教學課程，請參閱[使用 PolyBase 從 Azure Blob 儲存體載入資料](load-data-from-azure-blob-storage-using-polybase.md)。
 
 ## <a name="data-types"></a>資料類型
-SQL 資料倉儲支援最常用的資料類型。 如需支援的資料類型清單，請參閱 CREATE TABLE 參考中 CREATE TABLE 陳述式中的[資料類型](https://docs.microsoft.com/sql/t-sql/statements/create-table-azure-sql-data-warehouse#DataTypes)。 將資料類型的大小最小化，可改善查詢效能。 如需資料類型的使用指引，請參閱[資料類型](sql-data-warehouse-tables-data-types.md)。
+SQL 資料倉儲支援最常用的資料類型。 如需支援的資料類型清單，請參閱 CREATE TABLE 參考中 CREATE TABLE 陳述式中的[資料類型](/sql/t-sql/statements/create-table-azure-sql-data-warehouse#DataTypes)。 將資料類型的大小最小化，可改善查詢效能。 如需資料類型的使用指引，請參閱[資料類型](sql-data-warehouse-tables-data-types.md)。
 
 ## <a name="distributed-tables"></a>分散式資料表
 SQL 資料倉儲的基本功能，是它能跨越 60 個[散發](massively-parallel-processing-mpp-architecture.md#distributions)儲存及操作資料表。  資料表會以循環配置資源、雜湊或複寫方式散發。
@@ -106,7 +103,7 @@ SQL 資料倉儲的基本功能，是它能跨越 60 個[散發](massively-paral
 ## <a name="columnstore-indexes"></a>資料行存放區索引
 根據預設，SQL 資料倉儲會將資料表儲存為叢集資料行存放區索引。 這種形式的資料儲存對於大型資料表可達到高度的資料壓縮和查詢效能。  叢集資料行存放區索引通常是最佳選擇，但在某些情況下，叢集索引或堆積會是更適當的儲存結構。
 
-如需資料行存放區功能的清單，請參閱[資料行存放區索引的新功能](/sql/relational-databases/indexes/columnstore-indexes-what-s-new)。 若要改善資料行存放區索引效能，請參閱[盡可能提高資料行存放區索引的資料列群組品質](sql-data-warehouse-memory-optimizations-for-columnstore-compression.md)。
+如需資料行存放區功能的清單，請參閱[資料行存放區索引的新功能](/sql/relational-databases/indexes/columnstore-indexes-whats-new)。 若要改善資料行存放區索引效能，請參閱[盡可能提高資料行存放區索引的資料列群組品質](sql-data-warehouse-memory-optimizations-for-columnstore-compression.md)。
 
 ## <a name="statistics"></a>統計資料
 查詢最佳化工具在建立執行查詢的計劃時，會使用資料行層級的統計資料。 若要改善查詢效能，請務必建立個別資料行的統計資料，尤其是查詢聯結中使用的資料行。 統計資料並不會自動建立和更新。 請在建立資料表後[建立統計資料](/sql/t-sql/statements/create-statistics-transact-sql)。 在新增或變更大量的資料列之後，請更新統計資料。 例如，請在載入之後更新統計資料。 如需詳細資訊，請參閱[統計資料指引](sql-data-warehouse-tables-statistics.md)。
@@ -143,7 +140,7 @@ SQL 資料倉儲支援其他資料庫所提供的多項 (但並非所有) 資料
 - [使用者定義的類型](/sql/relational-databases/native-client/features/using-user-defined-types)
 
 ## <a name="table-size-queries"></a>資料表大小查詢
-要識別資料表在每個散發 (共 60 個) 中耗用的空間和資料列數，可採用一個簡單的方式，就是使用 [DBCC PDW_SHOWSPACEUSED][DBCC PDW_SHOWSPACEUSED]。
+識別資料表在每個散發 (共 60 個) 中所耗用的空間和資料列數的其中一種簡單方式，就是使用 [DBCC PDW_SHOWSPACEUSED](/sql/t-sql/database-console-commands/dbcc-pdw-showspaceused-transact-sql)。
 
 ```sql
 DBCC PDW_SHOWSPACEUSED('dbo.FactInternetSales');
@@ -342,4 +339,4 @@ ORDER BY    distribution_id
 ```
 
 ## <a name="next-steps"></a>後續步驟
-為您的資料倉儲建立資料表之後，下一個步驟是將資料載入資料表中。  如需載入的教學課程，請參閱[使用 PolyBase 從 Azure Blob 儲存體載入資料](load-data-from-azure-blob-storage-using-polybase.md)。
+為您的資料倉儲建立資料表之後，下一個步驟是將資料載入資料表中。  如需載入教學課程，請參閱[載入資料到 SQL 資料倉儲](load-data-wideworldimportersdw.md)。

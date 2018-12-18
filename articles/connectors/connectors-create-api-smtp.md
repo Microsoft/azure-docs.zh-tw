@@ -1,72 +1,81 @@
 ---
-title: Azure Logic Apps 中的 SMTP 連接器 | Microsoft Docs
-description: 使用 Azure App Service 建立邏輯應用程式。 連接到 SMTP 以傳送電子郵件。
+title: 從 Azure Logic Apps 連線到 SMTP | Microsoft Docs
+description: 藉由使用 Azure Logic Apps，讓透過 SMTP (簡易郵件傳輸通訊協定) 帳戶傳送電子郵件的工作和工作流程自動化
 services: logic-apps
-documentationcenter: .net,nodejs,java
-author: ecfan
-manager: anneta
-editor: ''
-tags: connectors
-ms.assetid: d4141c08-88d7-4e59-a757-c06d0dc74300
 ms.service: logic-apps
-ms.devlang: multiple
+ms.suite: integration
+author: ecfan
+ms.author: estfan
+ms.reviewer: klam, LADocs
+ms.assetid: d4141c08-88d7-4e59-a757-c06d0dc74300
 ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: integration
-ms.date: 07/15/2016
-ms.author: estfan; ladocs
-ms.openlocfilehash: 9bf7c9b7c3e775ab03b071d13d792f4b2d8fb3e3
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+tags: connectors
+ms.date: 08/25/2018
+ms.openlocfilehash: 90af33574093cfbe529093c7091ee6988f043aa6
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43052017"
 ---
-# <a name="get-started-with-the-smtp-connector"></a>開始使用 SMTP 連接器
-連接到 SMTP 以傳送電子郵件。
+# <a name="send-email-from-your-smtp-account-with-azure-logic-apps"></a>使用 Azure Logic Apps 從您的 SMTP 帳戶傳送電子郵件
 
-若要使用[任何連接器](apis-list.md)，您必須先建立邏輯應用程式。 您可以從[立即建立邏輯應用程式](../logic-apps/quickstart-create-first-logic-app-workflow.md)來開始。
+您可以使用 Azure Logic Apps 和簡易郵件傳輸通訊協定 (SMTP) 連接器，建立自動化的工作和工作流程，以便從您的 SMTP 帳戶傳送電子郵件。 您也可以讓其他動作使用 SMTP 動作的輸出。 例如，在您的 SMTP 傳送電子郵件之後，您可以使用 Slack 連接器，在 Slack 中通知您的小組。 如果您不熟悉邏輯應用程式，請檢閱[什麼是 Azure Logic Apps？](../logic-apps/logic-apps-overview.md)
+
+## <a name="prerequisites"></a>必要條件
+
+* Azure 訂用帳戶。 如果您沒有 Azure 訂用帳戶，請先<a href="https://azure.microsoft.com/free/" target="_blank">註冊免費的 Azure 帳戶</a>。 
+
+* 您的 SMTP 帳戶和使用者認證
+
+  您的認證會授權邏輯應用程式建立連線並存取 SMTP 帳戶。
+
+* [如何建立邏輯應用程式](../logic-apps/quickstart-create-first-logic-app-workflow.md)的基本知識
+
+* 您要在其中存取 SMTP 帳戶的邏輯應用程式。 若要使用 SMTP 動作，請使用觸發程序來啟動邏輯應用程式，例如 Salesforce 觸發程序 (如果您有 Salesforce 帳戶)。
+
+  例如，您可以使用**記錄建立時機** Salesforce 觸發程序來啟動邏輯應用程式。 
+  此觸發程序會在每次於 Salesforce 中建立新記錄 (例如潛在客戶) 時引發。 
+  然後，您可以使用 SMTP [傳送電子郵件] 動作，來追蹤此觸發程序。 這樣一來，在建立新記錄時，邏輯應用程式會從您的 SMTP 帳戶，傳送與新記錄相關的電子郵件。
 
 ## <a name="connect-to-smtp"></a>連接到 SMTP
-您必須先建立與服務的連線，才能透過邏輯應用程式存取任何服務。 [連線](connectors-overview.md)可讓邏輯應用程式與另一個服務連線。 例如，若要連接到 SMTP，您必須先有 SMTP「連線」。 若要建立連線，請輸入平常用來存取連線服務的認證。 因此，在 SMTP 範例中，請輸入連接名稱、SMTP 伺服器位址，以及使用者登入資訊等認證來建立 SMTP 連線。  
 
-### <a name="create-a-connection-to-smtp"></a>建立至 SMTP 的連線
-> [!INCLUDE [Steps to create a connection to SMTP](../../includes/connectors-create-api-smtp.md)]
-> 
-> 
+[!INCLUDE [Create connection general intro](../../includes/connectors-create-connection-general-intro.md)]
 
-## <a name="use-an-smtp-trigger"></a>使用 SMTP 觸發程序
-觸發程序是可用來啟動邏輯應用程式中所定義之工作流程的事件。 [深入了解觸發程序](../logic-apps/logic-apps-overview.md#logic-app-concepts)。
+1. 登入 [Azure 入口網站](https://portal.azure.com)，如果邏輯應用程式尚未開啟，請在邏輯應用程式設計工具中開啟邏輯應用程式。
 
-在此範例中，SMTP 沒有自己的觸發程序。 因此，使用「**SalesForce - 當物件建立時**」觸發程序。 當 Salesforce 中有新的物件建立時，觸發程序就會啟動。 在此範例中，我們會設定使其每次在 Salesforce 中建立新的潛在客戶時，系統會使用 SMTP 連接器執行*傳送電子郵件*的動作，並附帶已建立新潛在客戶的通知。
+1. 請在想要新增 SMTP 動作的最後一個步驟底下，選擇 [新增步驟]。 
 
-1. 在邏輯應用程式設計工具的搜尋方塊中輸入 *salesforce*，然後選取 [Salesforce - 當建立物件時] 觸發程序。  
-   ![](../../includes/media/connectors-create-api-salesforce/trigger-1.png)  
-2. [當建立物件時]  控制項隨即顯示。
-   ![](../../includes/media/connectors-create-api-salesforce/trigger-2.png)  
-3. 選取 [物件類型] 然後從清單的物件中選取 [潛在客戶]。 在此步驟中，您將建立一個觸發程序，此觸發程序將在每次 Salesforce 中有建立新潛在客戶的情況時，通知您的邏輯應用程式。  
-   ![](../../includes/media/connectors-create-api-salesforce/trigger3.png)  
-4. 觸發程序已建立。  
-   ![](../../includes/media/connectors-create-api-salesforce/trigger-4.png)  
+   若要在步驟之間新增動作，將指標移至步驟之間的箭號。 
+   選擇顯示的加號 (**+**)，然後選取 [新增動作]。
 
-## <a name="use-an-smtp-action"></a>使用 SMTP 動作
-動作是由邏輯應用程式中定義的工作流程所執行的作業。 [深入了解動作](../logic-apps/logic-apps-overview.md#logic-app-concepts)。
+1. 在搜尋方塊中，輸入 "smtp" 作為篩選條件。 請在動作清單底下，選取您想要的動作。
 
-現在已新增觸發程序之後，請使用下列步驟新增 Salesforce 中有新的潛在客戶建立時會發生的 SMTP 動作。
+1. 出現提示時，請提供這項連線資訊：
 
-1. 選取 [+ 新的步驟]，來新增您想要在建立新的潛在客戶時採取的動作。  
-   ![](../../includes/media/connectors-create-api-salesforce/trigger4.png)  
-2. 選取 [新增動作]。 這會開啟搜尋方塊，您可以在其中搜尋任何想要採取的動作。  
-   ![](../../includes/media/connectors-create-api-smtp/using-smtp-action-2.png)  
-3. 輸入 *smtp* 以搜尋與 SMTP 相關的動作。  
-4. 選取 [SMTP - 傳送電子郵件]，做為建立新的潛在客戶時要採取的動作。 動作控制區塊便會開啟。 如果您先前未曾在設計工具區塊中建立 SMTP 連線，您必須這麼做。  
-   ![](../../includes/media/connectors-create-api-smtp/smtp-2.png)    
-5. 在 [SMTP - 傳送電子郵件] 區塊中輸入所需的電子郵件資訊。  
-   ![](../../includes/media/connectors-create-api-smtp/using-smtp-action-4.PNG)  
-6. 儲存您的工作以啟動工作流程。  
+   | 屬性 | 必要 | 說明 |
+   |----------|----------|-------------|
+   | 連線名稱 | 是 | 與 SMTP 伺服器的連線名稱 | 
+   | **SMTP 伺服器位址** | 是 | SMTP 伺服器的位址 | 
+   | **使用者名稱** | 是 | SMTP 帳戶的使用者名稱 | 
+   | **密碼** | 是 | SMTP 帳戶的密碼 | 
+   | **SMTP 伺服器連接埠** | 否 | SMTP 伺服器上您想要使用的特定連接埠 | 
+   | **是否啟用 SSL？** | 否 | 開啟或關閉 SSL 加密。 | 
+   |||| 
 
-## <a name="connector-specific-details"></a>連接器特定的詳細資料
+1. 為您選取的動作提供必要的詳細資料。 
 
-檢視 Swagger 中定義的任何觸發程序和動作，另請參閱[連接器詳細資料](/connectors/smtpconnector/)的所有限制。
+1. 儲存您的邏輯應用程式，或繼續建置邏輯應用程式的工作流程。
 
-## <a name="more-connectors"></a>其他連接器
-返回 [API 清單](apis-list.md)。
+## <a name="connector-reference"></a>連接器參考
+
+如需觸發程序、動作和限制的技術詳細資訊，它們是由連接器的 OpenAPI (以前稱為 Swagger) 來描述，請檢閱連接器的[參考頁面](/connectors/smtpconnector/)。
+
+## <a name="get-support"></a>取得支援
+
+* 如有問題，請瀏覽 [Azure Logic Apps 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurelogicapps)。
+* 若要提交或票選功能構想，請造訪 [Logic Apps 使用者意見反應網站](http://aka.ms/logicapps-wish)。
+
+## <a name="next-steps"></a>後續步驟
+
+* 了解其他 [Logic Apps 連接器](../connectors/apis-list.md)

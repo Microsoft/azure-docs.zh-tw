@@ -1,24 +1,25 @@
 ---
-title: "Azure SQL 資料同步 (預覽) 最佳做法 | Microsoft Docs"
-description: "了解設定及執行 Azure SQL 資料同步 (預覽) 的最佳做法。"
+title: Azure SQL 資料同步最佳做法 | Microsoft Docs
+description: 了解設定及執行 Azure SQL 資料同步的最佳做法。
 services: sql-database
-ms.date: 11/13/2017
-ms.topic: article
+ms.date: 08/20/2018
+ms.topic: conceptual
 ms.service: sql-database
-author: douglaslMS
-ms.author: douglasl
+author: allenwux
+ms.author: xiwu
 manager: craigg
-ms.openlocfilehash: 1c8ad4b318d52b5cb6af284b3304cfa7ad35522b
-ms.sourcegitcommit: f847fcbf7f89405c1e2d327702cbd3f2399c4bc2
+ms.openlocfilehash: 96fff35b95a63e4f806258eff59d08afb2db0ffd
+ms.sourcegitcommit: 3f8f973f095f6f878aa3e2383db0d296365a4b18
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/28/2017
+ms.lasthandoff: 08/20/2018
+ms.locfileid: "42141922"
 ---
-# <a name="best-practices-for-sql-data-sync-preview"></a>SQL 資料同步最佳做法 (預覽) 
+# <a name="best-practices-for-sql-data-sync"></a>SQL 資料同步最佳做法 
 
-本文描述 Azure SQL 資料同步 (預覽) 的最佳做法。
+本文描述 Azure SQL 資料同步的最佳做法。
 
-如需 SQL 資料同步 (預覽) 的概觀，請參閱[使用 Azure SQL 資料同步 (預覽)，跨多個雲端和內部部署資料庫同步資料](sql-database-sync-data.md)。
+如需 SQL 資料同步的概觀，請參閱[使用 Azure SQL 資料同步，跨多個雲端和內部部署資料庫同步處理資料](sql-database-sync-data.md)。
 
 ## <a name="security-and-reliability"></a> 安全性與可靠性
 
@@ -49,10 +50,10 @@ Azure SQL Database 僅支援一組認證。 若要在此條件約束內完成這
 
 #### <a name="sql-database-instance-size"></a>SQL Database 執行個體大小
 
-當您建立新的 SQL Database 執行個體時，請設定大小上限，使其一律大於您部署的資料庫。 如果您未將大小上限設為大於已部署的資料庫，同步處理將會失敗。 雖然 SQL 資料同步 (預覽) 不提供自動增加，不過您可以在資料庫建立之後執行 `ALTER DATABASE` 命令來增加大小。 請務必保持在 SQL Database 執行個體的大小限制範圍內。
+當您建立新的 SQL Database 執行個體時，請設定大小上限，使其一律大於您部署的資料庫。 如果您未將大小上限設為大於已部署的資料庫，同步處理將會失敗。 雖然 SQL 資料同步不提供自動成長，不過，您可以在資料庫建立之後執行 `ALTER DATABASE` 命令來增加它的大小。 請務必保持在 SQL Database 執行個體的大小限制範圍內。
 
 > [!IMPORTANT]
-> SQL 資料同步 (預覽) 會與每個資料庫一起儲存其他中繼資料。 在計算所需的空間時，請務必將這些中繼資料納入考量。 所增加的額外負荷量與資料表寬度 (例如，窄的資料表需要更多額外負荷) 和流量相關。
+> SQL 資料同步會與每個資料庫一起儲存其他中繼資料。 在計算所需的空間時，請務必將這些中繼資料納入考量。 所增加的額外負荷量與資料表寬度 (例如，窄的資料表需要更多額外負荷) 和流量相關。
 
 ### <a name="table-considerations-and-constraints"></a> 資料表考量與限制
 
@@ -62,32 +63,32 @@ Azure SQL Database 僅支援一組認證。 若要在此條件約束內完成這
 
 #### <a name="primary-keys"></a>主索引鍵
 
-同步群組中的每個資料表都必須有主索引鍵。 SQL 資料同步 (預覽) 服務無法同步處理沒有主索引鍵的資料表。
+同步群組中的每個資料表都必須有主索引鍵。 SQL 資料同步服務無法同步處理沒有主索引鍵的資料表。
 
-在生產環境中使用 SQL 資料同步 (預覽) 之前，請測試初始和持續進行的同步處理效能。
+在生產環境中使用 SQL 資料同步之前，請先測試初始和持續進行的同步處理效能。
 
 ### <a name="provisioning-destination-databases"></a> 佈建目的地資料庫
 
-SQL 資料同步 (預覽) 預覽提供基本資料庫自動佈建。
+SQL 資料同步提供基本資料庫自動佈建。
 
-本節將討論 SQL 資料同步 (預覽) 的佈建限制。
+本節將討論 SQL 資料同步的佈建限制。
 
 #### <a name="autoprovisioning-limitations"></a>自動佈建限制
 
-SQL 資料同步 (預覽) 的自動佈建限制如下：
+「SQL 資料同步」的自動佈建限制如下：
 
--   只選取會在目的地資料表中建立的資料行。  
-    所有不屬於同步群組的資料行，都不會佈建在目的地資料表中。
--   只會針對所選資料行建立索引。  
-    如果來源資料表索引具有不是同步群組一部分的資料行，那些索引便不會佈建在目的地資料表中。  
+-   只選取會在目的地資料表中建立的資料行。 所有不屬於同步群組的資料行，都不會佈建在目的地資料表中。
+-   只會針對所選資料行建立索引。 如果來源資料表索引具有不是同步群組一部分的資料行，那些索引便不會佈建在目的地資料表中。  
 -   不會佈建 XML 型別資料行的索引。  
 -   不會佈建 CHECK 條件約束。  
 -   不會佈建來源資料表上的現有觸發程序。  
 -   不會在目的地資料庫上建立檢視和預存程序。
+-   目的地資料表中不會針對外部索引鍵限制式重新建立 ON UPDATE CASCADE 和 ON DELETE CASCADE 動作。
+-   若您有精確度大於 28 的十進位或數值資料行，「SQL 資料同步」在同步處理期間可能會遇到轉換溢位問題。建議您將十進位或數值的精確度限制為 28 以下 (含 28)。
 
 #### <a name="recommendations"></a>建議
 
--   唯有當您試用服務時，才使用 SQL 資料同步 (預覽) 自動佈建功能。  
+-   唯有當您試用服務時，才能使用 SQL 資料同步自動佈建功能。  
 -   針對生產環境，佈建資料庫結構描述。
 
 ### <a name="locate-hub"></a> 要在哪裡尋找中樞資料庫
@@ -113,7 +114,7 @@ SQL 資料同步 (預覽) 的自動佈建限制如下：
 
 #### <a name="how-initial-sync-works"></a>首次同步處理的運作方式
 
-當您建立同步群組時，請從只有一個資料庫的資料開始。 如果您有多個資料庫中的資料，則 SQL 資料同步 (預覽) 會將每個資料列視為需要解決的衝突。 解決衝突會導致首次同步處理進展緩慢。 如果您有多個容納資料的資料庫，首次同步處理可能需要耗費幾天到幾個月的時間，視資料庫大小而定。
+當您建立同步群組時，請從只有一個資料庫的資料開始。 如果您在多個資料庫中均有資料，則 SQL 資料同步會將每個資料列視為需要解決的衝突。 解決衝突會導致首次同步處理進展緩慢。 如果您有多個容納資料的資料庫，首次同步處理可能需要耗費幾天到幾個月的時間，視資料庫大小而定。
 
 如果資料庫位在不同的資料中心內，每個資料列都必須在不同資料中心之間移動。 這會導致首次同步處理的成本增加。
 
@@ -208,16 +209,15 @@ SQL 資料同步 (預覽) 的自動佈建限制如下：
 如果您嘗試移除資料庫，然後編輯同步群組而不先部署其中一項變更，則其中一項作業會失敗。 入口網站介面也可能會呈現不一致的狀態。 發生這種情況時，您可以重新整理頁面以還原正確狀態。
 
 ## <a name="next-steps"></a>後續步驟
-如需有關 SQL 資料同步 (預覽) 的詳細資訊，請參閱：
+如需有關 SQL 資料同步的詳細資訊，請參閱：
 
--   [使用 Azure SQL 資料同步 (預覽)，跨多個雲端和內部部署資料庫同步資料](sql-database-sync-data.md)
--   [設定 Azure SQL 資料同步 (預覽)](sql-database-get-started-sql-data-sync.md)
--   [使用 OMS Log Analytics 監視 Azure SQL 資料同步 (預覽)](sql-database-sync-monitor-oms.md)
--   [為 Azure SQL 資料同步 (預覽) 的問題進行疑難排解](sql-database-troubleshoot-data-sync.md)  
--   示範如何設定 SQL 資料同步 (預覽) 的完整 PowerShell 範例：  
+-   [使用 Azure SQL 資料同步，跨多個雲端和內部部署資料庫同步處理資料](sql-database-sync-data.md)
+-   [設定 Azure SQL 資料同步](sql-database-get-started-sql-data-sync.md)
+-   [透過 Log Analytics 監視 Azure SQL 資料同步](sql-database-sync-monitor-oms.md)
+-   [對 Azure SQL 資料同步的問題進行疑難排解](sql-database-troubleshoot-data-sync.md)  
+-   示範如何設定 SQL 資料同步的完整 PowerShell 範例：  
     -   [使用 PowerShell 在多個 Azure SQL Database 之間進行同步處理](scripts/sql-database-sync-data-between-sql-databases.md)  
     -   [使用 PowerShell 設定「資料同步」在內部部署的 Azure SQL Database 和 SQL Server 之間進行同步處理](scripts/sql-database-sync-data-between-azure-onprem.md)  
--   [下載 SQL 資料同步 (預覽) REST API 文件](https://github.com/Microsoft/sql-server-samples/raw/master/samples/features/sql-data-sync/Data_Sync_Preview_REST_API.pdf?raw=true)  
 
 如需有關 SQL Database 的詳細資訊，請參閱：
 

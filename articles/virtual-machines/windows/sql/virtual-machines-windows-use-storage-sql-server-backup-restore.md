@@ -1,8 +1,8 @@
 ---
-title: "如何使用 Azure 儲存體進行 SQL Server 備份與還原 | Microsoft Docs"
-description: "了解如何將 SQL Server 備份到「Azure 儲存體」。 說明將 SQL 資料庫備份到「Azure 儲存體」的好處。"
+title: 如何使用 Azure 儲存體進行 SQL Server 備份與還原 | Microsoft Docs
+description: 了解如何將 SQL Server 備份到「Azure 儲存體」。 說明將 SQL 資料庫備份到「Azure 儲存體」的好處。
 services: virtual-machines-windows
-documentationcenter: 
+documentationcenter: ''
 author: MikeRayMSFT
 manager: craigg
 tags: azure-service-management
@@ -19,6 +19,7 @@ ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 02/21/2018
+ms.locfileid: "29399044"
 ---
 # <a name="use-azure-storage-for-sql-server-backup-and-restore"></a>使用 Azure 儲存體進行 SQL Server 備份與還原
 ## <a name="overview"></a>概觀

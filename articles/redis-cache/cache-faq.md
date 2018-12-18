@@ -14,11 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/27/2017
 ms.author: wesmc
-ms.openlocfilehash: 66340e690e5a6ac3e440b8b4d26e1a8b2abab266
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: c0d88f0eaacaadbb508519f2e6804b9b311408c2
+ms.sourcegitcommit: c2c64fc9c24a1f7bd7c6c91be4ba9d64b1543231
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 07/26/2018
+ms.locfileid: "39259325"
 ---
 # <a name="azure-redis-cache-faq"></a>Azure Redis 快取常見問題集
 了解 Azure Redis 快取常見問題、模式和最佳作法的答案。
@@ -78,8 +79,9 @@ ms.lasthandoff: 03/28/2018
 * [為什麼看到逾時？](#why-am-i-seeing-timeouts)
 * [我的用戶端為什麼中斷與快取的連線？](#why-was-my-client-disconnected-from-the-cache)
 
-## <a name="prior-cache-offering-faqs"></a>先前的快取服務常見問題集
-* [我適合使用哪個 Azure 快取服務？](#which-azure-cache-offering-is-right-for-me)
+## <a name="prior-cache-offering-faqs"></a>先前的快取供應項目常見問題集
+* 
+  [我適合使用哪個 Azure 快取服務？](#which-azure-cache-offering-is-right-for-me)
 
 ### <a name="what-is-azure-redis-cache"></a>何謂 Azure Redis 快取？
 Azure Redis 快取是以常用的開放原始碼 [Redis 快取](http://redis.io)為基礎。 它可讓您從 Azure 內的任何應用程式，存取由 Microsoft 管理的安全、專用 Redis 快取。 如需更詳細的概觀，請參閱 Azure.com 上的 [Azure Redis 快取](https://azure.microsoft.com/services/cache/) 產品頁面。
@@ -103,15 +105,19 @@ Azure Redis 快取是以常用的開放原始碼 [Redis 快取](http://redis.io)
 
 下列是選擇快取供應項目的考量。
 
-* **記憶體**：基本層和標準層提供 250 MB – 53 GB。 Premium 層提供最多 530 GB。 如需詳細資訊，請參閱 [Azure Redis 快取價格](https://azure.microsoft.com/pricing/details/cache/)。
-* **網路效能**：如果您的工作負載需要高輸送量，高階層提供的頻寬大於標準或基本層。 此外，因為每一層內有裝載快取的基礎 VM，較大型快取還有更大頻寬。 如需詳細資訊，請參閱[下列表格](#cache-performance)。
-* **輸送量**：進階層提供最大的可用輸送量。 如果快取伺服器或用戶端達到頻寬限制，您在用戶端可能會收到逾時。 如需詳細資訊，請參閱下列表格。
+* 
+  **記憶體**：基本層和標準層提供 250 MB – 53 GB。 Premium 層提供最多 530 GB。 如需詳細資訊，請參閱 [Azure Redis 快取價格](https://azure.microsoft.com/pricing/details/cache/)。
+* 
+  **網路效能**：如果您的工作負載需要高輸送量，高階層提供的頻寬大於標準或基本層。 此外，因為每一層內有裝載快取的基礎 VM，較大型快取還有更大頻寬。 如需詳細資訊，請參閱[下列表格](#cache-performance)。
+* 
+  **輸送量**：進階層提供最大的可用輸送量。 如果快取伺服器或用戶端達到頻寬限制，您在用戶端可能會收到逾時。 如需詳細資訊，請參閱下列表格。
 * **高可用性/SLA**：Azure Redis 快取保證標準/進階快取的可用性時間不低於 99.9%。 若要深入了解我們的 SLA，請參閱 [Azure Redis 快取價格](https://azure.microsoft.com/support/legal/sla/cache/v1_0/)。 SLA 的範圍僅涵蓋與快取端點的連線。 SLA 未涵蓋資料遺失防護。 建議您使用高階層中的 Redis 資料永續性功能，以增加資料遺失時的復原能力。
 * **Redis 資料持續性**：進階層可讓您將快取資料保存在 Azure 儲存體帳戶。 在基本/標準快取中，所有資料都只儲存在記憶體中。 如果基礎結構發生問題，資料可能會遺失。 建議您使用高階層中的 Redis 資料永續性功能，以增加資料遺失時的復原能力。 Azure Redis 快取在 Redis 永續性中提供 RDB 和 AOF (即將推出) 選項。 如需詳細資訊，請參閱 [如何設定進階 Azure Redis 快取的持續性](cache-how-to-premium-persistence.md)。
 * **Redis 叢集**︰若要建立大於 53 GB 的快取，或要跨多個 Redis 節點共用資料，您可以使用高階層中的 Redis 叢集。 每個節點均包含一個主要/複本快取組以提供高可用性。 如需詳細資訊，請參閱 [如何設定進階 Azure Redis 快取叢集](cache-how-to-premium-clustering.md)。
 * **增強的安全性和網路隔離**：Azure 虛擬網路 (VNET) 部署可為您的 Azure Redis 快取、子網路、存取控制原則和其他功能提供增強的安全性和隔離，以進一步限制存取權。 如需詳細資訊，請參閱 [如何設定進階 Azure Redis 快取的虛擬網路支援](cache-how-to-premium-vnet.md)。
 * **設定 Redis**：在標準層和進階層中，您可以設定 Redis 以接收 Keyspace 通知。
-* **用戶端連線的最大數目**：進階層提供可連線至 Redis 的最大用戶端數目，針對較大型的快取有更高的連線數目。 叢集化不會增加叢集快取的可用連線數目。 如需詳細資訊，請參閱 [Azure Redis 快取定價](https://azure.microsoft.com/pricing/details/cache/)。
+* 
+  **用戶端連線的最大數目**：進階層提供可連線至 Redis 的最大用戶端數目，針對較大型的快取有更高的連線數目。 叢集化不會增加叢集快取的可用連線數目。 如需詳細資訊，請參閱 [Azure Redis 快取定價](https://azure.microsoft.com/pricing/details/cache/)。
 * **Redis 伺服器的專用核心**：在進階層中，所有的快取大小均有 Redis 專用核心。 在基本/標準層中，C1 以上的大小有 Redis 伺服器專用核心。
 * **Redis 為單一執行緒** ，因此兩個以上核心所提供的優點與只有兩個核心相同，但較大的 VM 大小通常會比較小的有更多頻寬。 如果快取伺服器或用戶端達到頻寬限制，您在用戶端會收到逾時。
 * **效能改良**：進階層中的快取是部署在處理器較快的硬體上，因此效能優於基本或標準層。 高階層快取的輸送量較高，延遲性較低。
@@ -177,7 +183,6 @@ Azure Redis 快取是以常用的開放原始碼 [Redis 快取](http://redis.io)
 - [Microsoft Azure (德國)](https://azure.microsoft.com/overview/clouds/germany/)
 
 如需有關在 Azure Government 雲端、Azure 中國雲端或 Microsoft Azure (德國) 中搭配 PowerShell 使用 Azure Redis 快取的詳細資訊，請參閱[如何連線到其他雲端 - Azure Redis 快取 PowerShell](cache-howto-manage-redis-cache-powershell.md#how-to-connect-to-other-clouds)。
-
 
 <a name="cache-configuration"></a>
 
@@ -386,13 +391,16 @@ CLR 執行緒集區有兩種類型的執行緒：「背景工作」和「I/O 完
 
 如何設定這項設定：
 
-* 在 ASP.NET 中，使用 web.config 中的 `<processModel>` 組態元素下的 ["minIoThreads" 組態設定]["minIoThreads" configuration setting]。如果您在 Azure 網站內執行，此設定不會透過組態選項公開。 不過，您應該仍然能夠透過 global.asax.cs 的 Application_Start 方法，以程式設計方式進行此設定 (如下所示)。
+* 在 ASP.NET 中，使用 web.config 中 `<processModel>` 組態元素下的 ["minIoThreads" 或 "minWorkerThreads" 組態設定]["minIoThreads" configuration setting]。如果您在 Azure 網站內執行，此設定不會透過組態選項公開。 不過，您應該仍然能夠透過 global.asax.cs 的 Application_Start 方法，以程式設計方式進行此設定 (如下所示)。
 
   > [!NOTE] 
   > 這個組態元素中指定的值是「每一核心」設定。 例如，如果您有 4 核心的電腦，並且想要在執行階段將 minIOThreads 設為 200，您會使用 `<processModel minIoThreads="50"/>`。
   >
 
-* 在 ASP.NET 之外，請使用 [ThreadPool.SetMinThreads(...)](https://msdn.microsoft.com/library/system.threading.threadpool.setminthreads.aspx) API。
+* 若非 ASP.NET 和 Azure WebSites global.asax，請使用 [ThreadPool.SetMinThreads (...)] (https://msdn.microsoft.com/library/system.threading.threadpool.setminthreads.aspx) API。
+
+  > [!NOTE]
+  > 此 API 指定的值是全域設定，會影響整個 AppDomain。 如果您有一部 4 核心電腦，而且想要將 minWorkerThreads 和 minIOThreads 設為執行階段期間每個 CPU 50 個，可以使用 ThreadPool.SetMinThreads (200, 200)。
 
 <a name="server-gc"></a>
 
@@ -446,7 +454,7 @@ Redis 快取**資源功能表**也包含數個工具，可監控快取並進行�
   * Azure 會修補已部署快取的執行個體
     * 這可能適用於 Redis 伺服器更新或一般 VM 維護。
 
-### <a name="which-azure-cache-offering-is-right-for-me"></a>我適合使用哪個 Azure 快取服務？
+### <a name="which-azure-cache-offering-is-right-for-me"></a>我適合使用哪個 Azure 快取供應項目？
 > [!IMPORTANT]
 > 根據去年的[公告](https://azure.microsoft.com/blog/azure-managed-cache-and-in-role-cache-services-to-be-retired-on-11-30-2016/)，Azure 受控快取服務和 Azure In-Role Cache 服務已在 2016 年 11 月 30 日**淘汰**。 我們建議使用 [Azure Redis 快取](https://azure.microsoft.com/services/cache/)。 如需移轉的相關資訊，請參閱 [從受控快取服務移轉至 Azure Redis 快取](cache-migrate-to-redis.md)。
 >
@@ -455,7 +463,7 @@ Redis 快取**資源功能表**也包含數個工具，可監控快取並進行�
 ### <a name="azure-redis-cache"></a>Azure Redis 快取
 Azure Redis 快取已正式提供，大小最多 53 GB 和可用性 SLA 99.9%。 新的 [進階層](cache-premium-tier-intro.md) 以 99.9% SLA 提供高達 530 GB 的大小，並且支援叢集、VNET 和持續性。
 
-Azure Redis Cache 可以讓客戶使用 Microsoft 所管理的安全、專用 Redis 快取。 使用這項提供項目，您可以利用 Redis 提供的豐富功能集和生態系統，並使用 Microsoft 提供的可靠託管及監控服務。
+Azure Redis Cache 可以讓客戶使用 Microsoft 所管理的安全、專用 Redis 快取。 使用這項供應項目，您可以利用 Redis 提供的豐富功能集和生態系統，並使用 Microsoft 提供的可靠託管及監控服務。
 
 不同於僅處理金鑰-值組的傳統快取，Redis 受到歡迎是因為其高效能資料類型。 Redis 也支援在這些類型上執行不可部分完成的作業，例如附加至字串、在雜湊中遞增值、推入至清單、計算集合交集、聯集和差異，或取得已排序集合中最高排名的成員。 其他功能包括支援交易、發行/訂用、Lua 指令碼撰寫、存活時間有限的索引鍵及組態設定，可讓 Redis 的行為更像傳統快取。
 

@@ -2,24 +2,25 @@
 title: 使用 Azure Site Recovery 將 VMware VM 複寫至 Azure (CSP) 的多租用戶支援概觀 | Microsoft Docs
 description: 提供在多租用戶環境中，透過 CSP 方案對於租用戶訂用帳戶之 Azure Site Recovery 支援的概觀。
 services: site-recovery
-author: mayanknayar
+author: mayurigupta13
 manager: rochakm
 ms.service: site-recovery
 ms.devlang: na
-ms.topic: article
-ms.date: 03/05/2018
-ms.author: manayar
-ms.openlocfilehash: 9b4fbb34686a12f992b344ac61420c9ba99ee405
-ms.sourcegitcommit: 168426c3545eae6287febecc8804b1035171c048
+ms.topic: conceptual
+ms.date: 10/16/2018
+ms.author: mayg
+ms.openlocfilehash: 4cd0c3baf385a864e2173de9bbce897bb5066dae
+ms.sourcegitcommit: 8e06d67ea248340a83341f920881092fd2a4163c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/08/2018
+ms.lasthandoff: 10/16/2018
+ms.locfileid: "49352866"
 ---
 # <a name="overview-of-multi-tenant-support-for-vmware-replication-to-azure-with-csp"></a>使用 CSP 將 VMware 複寫至 Azure 的多租用戶支援概觀
 
-[Azure Site Recovery](site-recovery-overview.md) 支援租用戶訂用帳戶的多租用戶環境。 對於透過 Microsoft Cloud 解決方案提供者 (CSP) 方案建立及管理的租用戶訂用帳戶，它也支援多租用戶。 
+[Azure Site Recovery](site-recovery-overview.md) 支援租用戶訂用帳戶的多租用戶環境。 對於透過 Microsoft Cloud 解決方案提供者 (CSP) 方案建立及管理的租用戶訂用帳戶，它也支援多租用戶。
 
-本文提供實作及管理多租用戶 VMware 到 Azure 複寫的概觀。 
+本文提供實作及管理多租用戶 VMware 到 Azure 複寫的概觀。
 
 ## <a name="multi-tenant-environments"></a>多租用戶環境
 
@@ -33,7 +34,7 @@ ms.lasthandoff: 03/08/2018
 
 ## <a name="shared-hosting-services-provider-hsp"></a>共用主機服務提供者 (HSP)
 
- 另外兩個案例是共用主機案例的子集，且使用相同的原則。 共用主機指南最後面會詳述其中的差異。
+另外兩個案例是共用主機案例的子集，且使用相同的原則。 共用主機指南最後面會詳述其中的差異。
 
 多租用戶案例的基本需求是必須隔離租用戶。 一個租用戶無法觀察另一個租用戶裝載的內容。 這個需求在自助管理環境中，比在合作夥伴管理的環境中來得重要，甚至有重大影響。 本文假設租用戶隔離是必要條件。
 
@@ -51,7 +52,7 @@ ms.lasthandoff: 03/08/2018
 * 處理序伺服器
 * 主要目標伺服器
 
-個別相應放大處理序伺服器也是在交易夥伴的控制之下。
+個別相應放大處理序伺服器也是在合作夥伴的控制之下。
 
 ## <a name="configuration-server-accounts"></a>組態伺服器帳戶
 
@@ -63,7 +64,7 @@ ms.lasthandoff: 03/08/2018
 
 ## <a name="vcenter-account-requirements"></a>vCenter 帳戶需求
 
-您必須使用獲得特殊角色指派的帳戶來設定組態伺服器。 
+使用獲得特殊角色指派的帳戶來設定組態伺服器。
 
 - 針對每個 vCenter 物件，必須將角色指派套用於 vCenter 存取帳戶，而且不要傳播到子物件。 此設定可以確保租用戶隔離，因為存取傳播可能會導致意外存取其他物件。
 
@@ -108,22 +109,36 @@ ms.lasthandoff: 03/08/2018
 - 不要將 Azure_Site_Recovery 角色指派給 vCenter 存取帳戶，而是僅將「唯讀」角色指派給帳戶。 這個權限集合會允許虛擬機器複寫和容錯移轉，而不允許容錯回復。
 - 以上程序的其餘部分都保持原狀。 為了確保租用戶隔離及限制虛擬機器探索，所有權限仍僅指派到物件層級而未傳播到子物件。
 
+### <a name="deploy-resources-to-the-tenant-subscription"></a>將資源部署到租用戶訂用帳戶
+
+1. 在 Azure 入口網站上，建立「資源群組」，然後對於每個一般程序部署「復原服務」保存庫。
+2. 下載保存庫註冊金鑰。
+3. 使用保存庫註冊金鑰為租用戶註冊 CS。
+4. 針對兩個存取帳戶輸入認證：用來存取 vCenter 伺服器的帳戶，以及用來存取 VM 的帳戶。
+
+    ![管理員設定伺服器帳戶](./media/vmware-azure-multi-tenant-overview/config-server-account-display.png)
+
+### <a name="register-servers-in-the-vault"></a>在保存庫中註冊伺服器
+
+1. 在 Azure 入口網站您稍早建立的保存庫中，使用您建立的 vCenter 帳戶，向組態伺服器註冊 vCenter 伺服器。
+2. 針對每個一般程序的 Site Recovery 完成「準備基礎結構」程序。
+3. 現在可以開始複寫 VM。 確認 [複寫] > [選取虛擬機器] 僅顯示租用戶的 VM。
 
 ## <a name="dedicated-hosting-solution"></a>專用主機解決方案
 
-如下圖所示，專用主機方案的架構差異是每個租用戶的基礎結構完全針對該租用戶設定。 因為租用戶是透過個別的 vCenter 隔離，所以主機提供者仍必須按照針對共用主機提供的 CSP 步驟來執行，但不需要擔心租用戶隔離。 CSP 安裝程式會保持不變。
+如下圖所示，專用主機方案的架構差異是每個租用戶的基礎結構完全針對該租用戶設定。
 
 ![architecture-shared-hsp](./media/vmware-azure-multi-tenant-overview/dedicated-hosting-scenario.png)  
 **含多個 vCenters 的專用主機案例**
 
 ## <a name="managed-service-solution"></a>受控服務解決方案
 
-如下圖所示，受控服務方案本身的架構差異是每個租用戶的基礎結構在實體上與其他租用戶的基礎結構分開。 此案例通常是在租用戶擁有基礎結構時存在，而且需要解決方案提供者來管理災害復原。 同樣地，因為租用戶在實體上透過不同的基礎結構來隔離，所以合作夥伴仍需要按照針對共用主機提供的 CSP 步驟來執行，但不需要擔心租用戶隔離。 CSP 佈建保持不變。
+如下圖所示，受控服務方案本身的架構差異是每個租用戶的基礎結構在實體上與其他租用戶的基礎結構分開。 此案例通常是在租用戶擁有基礎結構時存在，而且需要解決方案提供者來管理災害復原。
 
 ![architecture-shared-hsp](./media/vmware-azure-multi-tenant-overview/managed-service-scenario.png)  
 **含多個 vCenters 的受控服務案例**
 
 ## <a name="next-steps"></a>後續步驟
-[深入了解](site-recovery-role-based-linked-access-control.md) Site Recovery 中的角色型存取控制。
-了解如何[設定 VMware VM 到 Azure 的災害復原](vmware-azure-tutorial.md)
-[在多租用戶環境中使用 CSP 設定 VMWare VM 的災害復原](vmware-azure-multi-tenant-csp-disaster-recovery.md)
+- [深入了解](site-recovery-role-based-linked-access-control.md) Site Recovery 中的角色型存取控制。
+- 深入了解[為 VMware VM 設定以 Azure 作為目標的災害復原](vmware-azure-tutorial.md)。
+- 深入了解[具有 VMWare VM 之 CSP 的多租用戶](vmware-azure-multi-tenant-csp-disaster-recovery.md)。

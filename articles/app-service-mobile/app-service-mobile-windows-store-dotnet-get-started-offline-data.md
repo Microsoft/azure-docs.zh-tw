@@ -1,10 +1,10 @@
 ---
-title: "使用 Mobile Apps 啟用通用 Windows 平台 (UWP) 應用程式的離線同步處理 | Microsoft Docs"
-description: "了解如何使用 Azure 行動應用程式快取及同步處理通用 Windows 平台 (UWP) 應用程式中的離線資料。"
+title: 使用 Mobile Apps 啟用通用 Windows 平台 (UWP) 應用程式的離線同步處理 | Microsoft Docs
+description: 了解如何使用 Azure 行動應用程式快取及同步處理通用 Windows 平台 (UWP) 應用程式中的離線資料。
 documentationcenter: windows
 author: conceptdev
 manager: crdun
-editor: 
+editor: ''
 services: app-service\mobile
 ms.assetid: 8fe51773-90de-4014-8a38-41544446d9b5
 ms.service: app-service-mobile
@@ -14,11 +14,12 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 10/01/2016
 ms.author: crdun
-ms.openlocfilehash: a16de4cef82c29f9b6becfae1901662ee1936934
-ms.sourcegitcommit: df4ddc55b42b593f165d56531f591fdb1e689686
+ms.openlocfilehash: 3df6951129f7beda7970e394ffdd32c7e02304dd
+ms.sourcegitcommit: f06925d15cfe1b3872c22497577ea745ca9a4881
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/04/2018
+ms.lasthandoff: 06/27/2018
+ms.locfileid: "37060302"
 ---
 # <a name="enable-offline-sync-for-your-windows-app"></a>啟用 Windows 應用程式離線同步處理
 [!INCLUDE [app-service-mobile-selector-offline](../../includes/app-service-mobile-selector-offline.md)]
@@ -28,15 +29,15 @@ ms.lasthandoff: 01/04/2018
 
 在本教學課程中，您將會更新[建立 Windows 應用程式]教學課程中的 UWP 應用程式專案，以支援 Azure Mobile Apps 的離線功能。 如果您不要使用下載的快速入門伺服器專案，必須將資料存取擴充套件新增至您的專案。 如需伺服器擴充套件的詳細資訊，請參閱 [使用 Azure Mobile Apps 的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
 
-若要深入了解離線同步處理功能，請參閱 [Azure 行動應用程式中的離線資料同步處理]主題。
+若要深入了解離線同步處理功能，請參閱 [Azure Mobile Apps 中的離線資料同步處理]主題。
 
-## <a name="requirements"></a>需求
+## <a name="requirements"></a>需求  
 本教學課程需要下列必要條件：
 
 * 執行於 Windows 8.1 或更新版本的 Visual Studio 2013。
 * 完成 [建立 Windows 應用程式][建立 Windows 應用程式]。
 * [Azure 行動服務 SQLite Store][sqlite store nuget]
-* [適用於通用 Windows 平台開發的 SQLite](http://www.sqlite.org/downloads)
+* [適用於通用 Windows 平台開發的 SQLite](https://marketplace.visualstudio.com/items?itemName=SQLiteDevelopmentTeam.SQLiteforUniversalWindowsPlatform) 
 
 ## <a name="update-the-client-app-to-support-offline-features"></a>更新用戶端應用程式以支援離線功能
 Azure 行動應用程式的離線功能可讓您在離線狀態時，仍可與本機資料庫互動。 若要在您的應用程式中使用這些功能，您必須將 [SyncContext][synccontext] 初始化至本機存放區。 接著，請透過 [IMobileServiceSyncTable][IMobileServiceSyncTable] 介面參考您的資料表。 SQLite 可做為裝置上的本機存放區。
@@ -74,7 +75,7 @@ Azure 行動應用程式的離線功能可讓您在離線狀態時，仍可與�
 3. (選擇性) 使用 SQL Server 物件總管或 REST 工具 (例如 Fiddler) 檢視已更新的資料。 請注意，Azure 行動應用程式後端資料庫與本機存放區之間的資料已同步處理。
 4. 在應用程式中，按一下幾個項目旁邊的核取方塊，以在本機存放區中完成它們。
 
-   `UpdateCheckedTodoItem` 會呼叫 `SyncAsync`，以便與行動應用程式後端同步處理每個已完成的項目。 `SyncAsync` 會同時呼叫推送與提取。 不過，**每當您對用戶端已變更的資料表執行提取時，一定會執行自動推送**。 此行為可確保本機存放區中的所有資料表和關聯性都保持一致。 此行為可能會導致非預期的推送。  如需此行為的詳細資訊，請參閱 [Azure 行動應用程式中的離線資料同步處理]。
+   `UpdateCheckedTodoItem` 會呼叫 `SyncAsync`，以便與行動應用程式後端同步處理每個已完成的項目。 `SyncAsync` 會同時呼叫推送與提取。 不過，**每當您對用戶端已變更的資料表執行提取時，一定會執行自動推送**。 此行為可確保本機存放區中的所有資料表和關聯性都保持一致。 此行為可能會導致非預期的推送。  如需此行為的詳細資訊，請參閱 [Azure Mobile Apps 中的離線資料同步處理]。
 
 ## <a name="api-summary"></a>API 摘要
 為了支援行動服務的離線功能，我們使用 [IMobileServiceSyncTable] 介面，並初始化本機 SQLite 資料庫的 [MobileServiceClient.SyncContext][synccontext]。 離線時，Mobile Apps 的一般 CRUD 作業運作方式，就如同應用程式仍處於連線狀態，而作業會對本機存放區執行。 下列方法可用來同步處理本機存放區與伺服器︰
@@ -88,7 +89,7 @@ Azure 行動應用程式的離線功能可讓您在離線狀態時，仍可與�
 ## <a name="more-info"></a>其他資訊
 下列主題提供其他關於 Mobile Apps 離線同步處理功能的背景資訊︰
 
-* [Azure 行動應用程式中的離線資料同步處理]
+* [Azure Mobile Apps 中的離線資料同步處理]
 * [Azure Mobile Apps .NET SDK HOWTO][8]
 
 <!-- Anchors. -->
@@ -104,7 +105,7 @@ Azure 行動應用程式的離線功能可讓您在離線狀態時，仍可與�
 
 
 <!-- URLs. -->
-[Azure 行動應用程式中的離線資料同步處理]: app-service-mobile-offline-data-sync.md
+[Azure Mobile Apps 中的離線資料同步處理]: app-service-mobile-offline-data-sync.md
 [建立 Windows 應用程式]: app-service-mobile-windows-store-dotnet-get-started.md
 [SQLite for Windows 8.1]: http://go.microsoft.com/fwlink/?LinkID=716919
 [SQLite for Windows Phone 8.1]: http://go.microsoft.com/fwlink/?LinkID=716920

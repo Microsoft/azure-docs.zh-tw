@@ -1,21 +1,22 @@
 ---
-title: "建立包含 Web 應用程式防火牆的應用程式閘道 - Azure 入口網站 | Microsoft Docs"
-description: "了解如何使用 Azure 入口網站建立具有 Web 應用程式防火牆的應用程式閘道。"
+title: 建立包含 Web 應用程式防火牆的應用程式閘道 - Azure 入口網站 | Microsoft Docs
+description: 了解如何使用 Azure 入口網站建立具有 Web 應用程式防火牆的應用程式閘道。
 services: application-gateway
-author: davidmu1
-manager: timlt
+author: vhorne
+manager: jpconnock
 editor: tysonn
 tags: azure-resource-manager
 ms.service: application-gateway
 ms.topic: article
 ms.workload: infrastructure-services
 ms.date: 01/26/2018
-ms.author: davidmu
-ms.openlocfilehash: d2b8fc65e6cd03f61151dbae66bb89821cdab13b
-ms.sourcegitcommit: ded74961ef7d1df2ef8ffbcd13eeea0f4aaa3219
+ms.author: victorh
+ms.openlocfilehash: 9967813b193159b68aa0f008dae4440aa6e533dc
+ms.sourcegitcommit: c47ef7899572bf6441627f76eb4c4ac15e487aec
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/29/2018
+ms.lasthandoff: 05/04/2018
+ms.locfileid: "33207386"
 ---
 # <a name="create-an-application-gateway-with-a-web-application-firewall-using-the-azure-portal"></a>使用 Azure 入口網站建立包含 Web 應用程式防火牆的應用程式閘道
 
@@ -24,7 +25,7 @@ ms.lasthandoff: 01/29/2018
 在本文中，您將了解：
 
 > [!div class="checklist"]
-> * 已啟用建立包含 WAF 的應用程式閘道
+> * 建立已啟用 WAF 的應用程式閘道
 > * 建立用來作為後端伺服器的虛擬機器
 > * 建立儲存體帳戶和設定診斷
 
@@ -32,14 +33,14 @@ ms.lasthandoff: 01/29/2018
 
 ## <a name="log-in-to-azure"></a>登入 Azure
 
-登入 Azure 入口網站，網址是 [http://portal.azure.com](http://portal.azure.com)
+在 [http://portal.azure.com](http://portal.azure.com) 上登入 Azure 入口網站
 
 ## <a name="create-an-application-gateway"></a>建立應用程式閘道
 
-需要虛擬網路，才能在您所建立的資源之間進行通訊。 這個範例中會建立兩個子網路：一個是適用於應用程式閘道，另一個則是適用於後端伺服器。 您建立應用程式閘道時，可以同時建立虛擬網路。
+需要虛擬網路，才能在您所建立的資源之間進行通訊。 這個範例中會建立兩個子網路：一個用於應用程式閘道，另一個用於後端伺服器。 您建立應用程式閘道時，可以同時建立虛擬網路。
 
 1. 按一下 Azure 入口網站左上角的 [新增]。
-2. 在「精選」清單中選取 [網路]，然後選取 [應用程式閘道]。
+2. 在 [精選] 清單中選取 [網路]，然後選取 [應用程式閘道]。
 3. 針對應用程式閘道輸入這些值：
 
     - myAppGateway - 作為應用程式閘道的名稱。
@@ -79,7 +80,7 @@ ms.lasthandoff: 01/29/2018
 ### <a name="create-a-virtual-machine"></a>建立虛擬機器
 
 1. 按一下 [新增] 。
-2. 按一下 [計算]，然後選取「精選」清單中的 [Windows Server 2016 Datacenter]。
+2. 按一下 [計算]，然後選取 [精選] 清單中的 [Windows Server 2016 Datacenter]。
 3. 針對虛擬機器，請輸入這些值：
 
     - myVM - 作為虛擬機器的名稱。
@@ -87,9 +88,9 @@ ms.lasthandoff: 01/29/2018
     - *Azure123456!* 作為密碼。
     - 選取 [使用現有的]，然後選取 [myResourceGroupAG]。
 
-4. 按一下 [SERVICEPRINCIPAL] 。
+4. 按一下 [確定]。
 5. 選取 [DS1_V2] 作為虛擬機器的大小，然後按一下 [選取]。
-6. 請確定您已選取 [myVNet] 作為虛擬網路，及選取 [myBackendSubnet] 作為子網路。 
+6. 確定您已選取 [myVNet] 作為虛擬網路，而且子網路是 [myBackendSubnet]。 
 7. 按一下 [停用] 來停用開機診斷。
 8. 按一下 [確定]，檢閱 [摘要] 頁面上的設定，然後按一下 [建立]。
 
@@ -97,7 +98,7 @@ ms.lasthandoff: 01/29/2018
 
 1. 開啟互動式殼層，並確定它是設定為 **PowerShell**。
 
-    ![安裝自訂擴充功能](./media/application-gateway-web-application-firewall-portal/application-gateway-extension.png)
+    ![安裝自訂延伸模組](./media/application-gateway-web-application-firewall-portal/application-gateway-extension.png)
 
 2. 執行下列命令以在虛擬機器上安裝 IIS： 
 
@@ -113,7 +114,7 @@ ms.lasthandoff: 01/29/2018
       -Location EastUS
     ```
 
-3. 建立第二個虛擬機器，並使用您剛完成的步驟來安裝 IIS。 輸入 myVM2 作為其名稱，及作為 AzureRmVMExtension 中的 VMName。
+3. 建立第二個虛擬機器，並使用您剛完成的步驟來安裝 IIS。 輸入 myVM2 作為其名稱，及作為 Set-AzureRmVMExtension 中的 VMName。
 
 ### <a name="add-backend-servers"></a>新增後端伺服器
 
@@ -125,7 +126,7 @@ ms.lasthandoff: 01/29/2018
 
 4. 按一下 [檔案] 。
 
-## <a name="create-a-storage-account-and-configure-diagnostics"></a>建立儲存體帳戶和設定診斷
+## <a name="create-a-storage-account-and-configure-diagnostics"></a>建立儲存體帳戶並設定診斷
 
 ## <a name="create-a-storage-account"></a>建立儲存體帳戶
 
@@ -137,7 +138,7 @@ ms.lasthandoff: 01/29/2018
 
 ## <a name="configure-diagnostics"></a>設定診斷
 
-將記錄資料的診斷設定為 ApplicationGatewayAccessLog、ApplicationGatewayPerformanceLog 和 ApplicationGatewayFirewallLog 記錄。
+設定診斷以將資料記錄到 ApplicationGatewayAccessLog、ApplicationGatewayPerformanceLog 和 ApplicationGatewayFirewallLog 記錄。
 
 1. 在左側功能表中，按一下 [所有資源]，然後選取 [myAppGateway]。
 2. 在 [監視] 底下，按一下 [診斷記錄]。
@@ -168,4 +169,4 @@ ms.lasthandoff: 01/29/2018
 > * 建立用來作為後端伺服器的虛擬機器
 > * 建立儲存體帳戶和設定診斷
 
-若要深入了解應用程式閘道和其相關聯的資源，請繼續進行說明文章。
+若要深入了解應用程式閘道和其相關聯的資源，請繼續進行操作說明文章。

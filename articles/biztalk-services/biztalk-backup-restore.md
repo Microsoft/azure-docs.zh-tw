@@ -1,11 +1,11 @@
 ---
-title: "在 BizTalk 服務中建立和還原備份 | Microsoft Docs"
-description: "BizTalk 服務包含備份與還原功能。 了解如何建立和還原備份，以及判斷該備份什麼。 MABS，WABS"
+title: 在 BizTalk 服務中建立和還原備份 | Microsoft Docs
+description: BizTalk 服務包含備份與還原功能。 了解如何建立和還原備份，以及判斷該備份什麼。 MABS，WABS
 services: biztalk-services
-documentationcenter: 
+documentationcenter: ''
 author: MandiOhlinger
 manager: anneta
-editor: 
+editor: ''
 ms.assetid: 59f91173-4683-48df-abd5-41262bfce6df
 ms.service: biztalk-services
 ms.workload: integration
@@ -14,11 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/07/2016
 ms.author: mandia
-ms.openlocfilehash: 45365092f5bcd1a8d309c10404a7437c494a8967
-ms.sourcegitcommit: dcf5f175454a5a6a26965482965ae1f2bf6dca0a
+ms.openlocfilehash: 90cf2d0ddbba47a856bf1299a101c5185873b5d8
+ms.sourcegitcommit: 248c2a76b0ab8c3b883326422e33c61bd2735c6c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/10/2017
+ms.lasthandoff: 07/23/2018
+ms.locfileid: "39214407"
 ---
 # <a name="biztalk-services-backup-and-restore"></a>BizTalk 服務：備份與還原
 
@@ -53,7 +54,7 @@ Azure BizTalk 服務包含備份與還原功能。
 ### <a name="postrestore"></a>還原備份之後
 BizTalk 服務永遠還原成 **暫止** 狀態。 在此狀態下，您可以在新環境開始運作前進行任何設定變更，包括：
 
-* 若您使用 Azure BizTalk 服務 SDK 來建立 BizTalk 服務應用程式，您可能需要在這些應用程式中更新存取控制 (ACS) 認證，才能使用還原後的環境。
+* 若您使用 Azure BizTalk 服務 SDK 來建立 BizTalk 服務應用程式，您可能需要在那些應用程式中更新存取控制 (ACS) 認證，才能搭配還原後的環境使用。
 * 您可以還原 BizTalk 服務來複寫現有的 BizTalk 服務環境。 在此情況下，如果在原始 BizTalk 服務入口網站中有設定的協議使用 FTP 來源資料夾，則您可能需要在剛還原的環境中更新協議，以使用其他 FTP 來源資料夾。 否則，可能會有兩個不同的協議都嘗試提取相同的訊息。
 * 如果您已進行還原而產生多個 BizTalk 服務環境，則在使用 Visual Studio 應用程式、PowerShell Cmdlet、REST API 或交易夥伴管理 OM API 時，請確定目標環境正確。
 * 在剛還原的 BizTalk 服務環境上，建議設定自動備份。

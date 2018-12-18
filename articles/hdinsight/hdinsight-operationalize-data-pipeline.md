@@ -1,25 +1,20 @@
 ---
-title: "使用資料分析管線進行作業 - Azure | Microsoft Docs"
-description: "設定及執行範例資料管線，其是由新資料所觸發並可產生精確的結果。"
+title: 使用資料分析管線進行作業 - Azure
+description: 設定及執行範例資料管線，其是由新資料所觸發並可產生精確的結果。
 services: hdinsight
-documentationcenter: 
-author: ashishthaps
-manager: jhubbard
-editor: cgronlun
-ms.assetid: 
 ms.service: hdinsight
-ms.custom: hdinsightactive
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 01/11/2018
+author: ashishthaps
 ms.author: ashishth
-ms.openlocfilehash: 7a439c9d25a470a2474b427f6b20addb6ff3b0c7
-ms.sourcegitcommit: 384d2ec82214e8af0fc4891f9f840fb7cf89ef59
+ms.reviewer: jasonh
+ms.custom: hdinsightactive
+ms.topic: conceptual
+ms.date: 01/11/2018
+ms.openlocfilehash: 9057d9f5d63598ea249e8f3193b84fd715018829
+ms.sourcegitcommit: f6e2a03076679d53b550a24828141c4fb978dcf9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/16/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43109966"
 ---
 # <a name="operationalize-a-data-analytics-pipeline"></a>使用資料分析管線進行作業
 

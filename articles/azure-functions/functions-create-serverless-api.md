@@ -1,27 +1,27 @@
 ---
-title: "使用 Azure Functions 建立無伺服器 API | Microsoft Docs"
-description: "如何使用 Azure Functions 建立無伺服器 API"
+title: 使用 Azure Functions 建立無伺服器 API | Microsoft Docs
+description: 如何使用 Azure Functions 建立無伺服器 API
 services: functions
 author: mattchenderson
-manager: cfowler
-ms.service: functions
-ms.tgt_pltfrm: na
+manager: jeconnoc
+ms.service: azure-functions
 ms.devlang: multiple
 ms.topic: tutorial
 ms.date: 05/04/2017
 ms.author: mahender
 ms.custom: mvc
-ms.openlocfilehash: 7c3933210c01c81077b594abb8c3183d6e3c58a0
-ms.sourcegitcommit: 9a61faf3463003375a53279e3adce241b5700879
+ms.openlocfilehash: 9a35c1205c0b564c8d0db1fbd0535d41bb9c84a0
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/15/2017
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46989901"
 ---
 # <a name="create-a-serverless-api-using-azure-functions"></a>使用 Azure Functions 建立無伺服器 API
 
 在本教學課程中，您將了解 Azure Functions 如何讓您建置可靈活調整的 API。 Azure Functions 隨附一組內建的 HTTP 觸發程序和繫結，可讓您以各種語言輕鬆撰寫端點，包括 Node.JS、C# 等。 在本教學課程中，您將自訂 HTTP 觸發程序來處理 API 設計中的特定動作。 您也會準備整合 API 與 Azure Functions Proxy，並設定模擬 API，以擴充您的 API。 這一切都在 Functions 無伺服器計算環境之上完成，因此，您不必擔心調整資源 - 只需要專注於您的 API 邏輯。
 
-## <a name="prerequisites"></a>先決條件 
+## <a name="prerequisites"></a>必要條件 
 
 [!INCLUDE [Previous quickstart note](../../includes/functions-quickstart-previous-topics.md)]
 
@@ -29,7 +29,7 @@ ms.lasthandoff: 11/15/2017
 
 ### <a name="sign-in-to-azure"></a>登入 Azure
 
-開啟 Azure 入口網站。 若要這麼做，請以您的 Azure 帳戶登入 [https://portal.azure.com](https://portal.azure.com)。
+開啟 Azure 入口網站。 若要這麼做，請使用您的 Azure 帳戶登入 [https://portal.azure.com](https://portal.azure.com)。
 
 ## <a name="customize-your-http-function"></a>自訂 HTTP 函式
 
@@ -53,7 +53,7 @@ ms.lasthandoff: 11/15/2017
 
 1. 按一下 [檔案] 。
 
-您可以在 [Azure Functions HTTP 和 webhook 繫結](https://docs.microsoft.com/azure/azure-functions/functions-bindings-http-webhook#customizing-the-http-endpoint)中，進一步了解自訂 HTTP 函式。
+您可以在 [Azure Functions HTTP 繫結](https://docs.microsoft.com/azure/azure-functions/functions-bindings-http-webhook#customizing-the-http-endpoint)中深入了解 HTTP 函式的自訂。
 
 ### <a name="test-your-api"></a>測試您的 API
 
@@ -103,7 +103,7 @@ Proxy 可以指向任何 HTTP 資源，例如︰
 
     | 欄位 | 範例值 | 說明 |
     |---|---|---|
-    | Name | HelloProxy | 僅用於管理的易記名稱 |
+    | 名稱 | HelloProxy | 僅用於管理的易記名稱 |
     | 路由範本 | /api/hello | 決定使用什麼路由來叫用此 Proxy |
     | 後端 URL | https://%HELLO_HOST%/api/hello | 指定端點，而其要求應該透過代理 |
     
@@ -186,7 +186,7 @@ Proxy 可以指向任何 HTTP 資源，例如︰
 
 進一步開發您的 API 時，下列參考可能很有幫助︰
 
-- [Azure Functions HTTP 和 webhook 繫結](https://docs.microsoft.com/azure/azure-functions/functions-bindings-http-webhook)
+- [Azure Functions HTTP 繫結](https://docs.microsoft.com/azure/azure-functions/functions-bindings-http-webhook)
 - [使用 Azure Functions Proxy]
 - [定義 Azure Functions API (預覽)](https://docs.microsoft.com/azure/azure-functions/functions-api-definition-getting-started)
 

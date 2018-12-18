@@ -1,10 +1,10 @@
 ---
-title: "登入傳統 Azure VM | Microsoft Docs"
-description: "使用 Azure 入口網站來登入以傳統部署模型建立的 Windows 虛擬機器。"
+title: 登入傳統 Azure VM | Microsoft Docs
+description: 使用 Azure 入口網站來登入以傳統部署模型建立的 Windows 虛擬機器。
 services: virtual-machines-windows
-documentationcenter: 
+documentationcenter: ''
 author: cynthn
-manager: timlt
+manager: jeconnoc
 editor: tysonn
 tags: azure-service-management
 ROBOTS: NOINDEX
@@ -16,11 +16,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/30/2017
 ms.author: cynthn
-ms.openlocfilehash: c35bfeaa81f89dc5a636d67ed9a2a930d689c54a
-ms.sourcegitcommit: 176c575aea7602682afd6214880aad0be6167c52
+ms.openlocfilehash: 87ecc65d2d4802ae826f3260b66b26e0bbe414e6
+ms.sourcegitcommit: 909469bf17211be40ea24a981c3e0331ea182996
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/09/2018
+ms.lasthandoff: 05/10/2018
+ms.locfileid: "34012354"
 ---
 # <a name="log-on-to-a-windows-virtual-machine-using-the-azure-portal"></a>使用 Azure 入口網站登入 Windows 虛擬機器
 在 Azure 入口網站中，使用 [連接]  按鈕來啟動遠端桌面工作階段，並登入 Windows VM。
@@ -42,20 +43,22 @@ Learn how to [perform these steps using new Azure portal](../connect-logon.md?to
 
     ![Virtual-machine-locations](./media/connect-logon/azureportaldashboard.png)
 
-3. 按一下虛擬機器儀表板頂端命令列上的 [連接]。
-
-    ![虛擬機器的 [連接] 圖示](./media/connect-logon/virtualmachine_dashboard_connect.png)
-
-<!-- Don't know if this still applies
-     I think we can zap this.
-> [!TIP]
-> If the **Connect** button isn't available, see the troubleshooting tips at the end of this article.
->
->
--->
-
-## <a name="log-on-to-the-virtual-machine"></a>登入虛擬機器
-[!INCLUDE [virtual-machines-log-on-win-server](../../../../includes/virtual-machines-log-on-win-server.md)]
+1. 按一下虛擬機器屬性頁面上的 [連線] 按鈕。 
+2. 在 [連線至虛擬機器] 頁面上，維持選取適當的選項，然後按一下 [下載 RDP 檔案]。
+2. 開啟下載的 RDP 檔案，然後在出現提示時按一下 [連線]。 
+2. 您會收到警告，表示 `.rdp` 來自未知的發行者。 這是正常現象。 在 [遠端桌面] 視窗中按一下 [連接]  以繼續。
+   
+    ![未知發行者相關警告的螢幕擷取畫面。](./media/connect-logon/rdp-warn.png)
+3. 在 [Windows 安全性] 視窗中，選取 [更多選擇]，然後選取 [使用不同的帳戶]。 輸入虛擬機器上帳戶的認證，然後按一下 [確定]。
+   
+     **本機帳戶** - 這通常是您在建立虛擬機器時所指定的本機帳戶使用者名稱和密碼。 在此案例中，虛擬機器的名稱是網域，而它的輸入格式為 *vmname*&#92;*username*。  
+   
+    **已加入網域的 VM** - 如果 VM 屬於網域，請輸入 *Domain*&#92;*Username* 格式的使用者名稱。 此帳戶也必須屬於系統管理員群組，或者已授與遠端存取 VM 的權限。
+   
+    **網域控制站** - 如果 VM 是網域控制站，請輸入該網域的網域系統管理員帳戶的使用者名稱和密碼。
+4. 按一下 [是]  來確認虛擬機器的身分識別，並完成登入。
+   
+   ![顯示驗證 VM 身分識別相關訊息的螢幕擷取畫面。](./media/connect-logon/cert-warning.png)
 
 ## <a name="next-steps"></a>後續步驟
 * 如果 [連接] 按鈕無法使用，或是有其他「遠端桌面」連線問題，請嘗試重設組態。 從虛擬機器儀表板按一下 [重設遠端存取]。

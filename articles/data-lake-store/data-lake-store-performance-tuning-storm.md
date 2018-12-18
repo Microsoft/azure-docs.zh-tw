@@ -1,8 +1,8 @@
 ---
-title: "Azure Data Lake Store Storm 效能微調方針 | Microsoft Docs"
-description: "Azure Data Lake Store Storm 效能微調方針"
+title: Azure Data Lake Store Storm 效能微調方針 | Microsoft Docs
+description: Azure Data Lake Store Storm 效能微調方針
 services: data-lake-store
-documentationcenter: 
+documentationcenter: ''
 author: stewu
 manager: amitkul
 editor: stewu
@@ -10,15 +10,14 @@ ms.assetid: ebde7b9f-2e51-4d43-b7ab-566417221335
 ms.service: data-lake-store
 ms.devlang: na
 ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
 ms.date: 12/19/2016
 ms.author: stewu
-ms.openlocfilehash: c872bfe36673af1292b5af9cf40374de39a5c159
-ms.sourcegitcommit: b07d06ea51a20e32fdc61980667e801cb5db7333
+ms.openlocfilehash: 5ebca90ffd679de1c30d1bc324bf4f1c3b9f6f70
+ms.sourcegitcommit: eb75f177fc59d90b1b667afcfe64ac51936e2638
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2017
+ms.lasthandoff: 05/16/2018
+ms.locfileid: "34198855"
 ---
 # <a name="performance-tuning-guidance-for-storm-on-hdinsight-and-azure-data-lake-store"></a>HDInsight 和 Azure Data Lake Store 上的 Storm 效能微調方針
 
@@ -122,7 +121,7 @@ ms.lasthandoff: 12/08/2017
 
 ## <a name="troubleshoot-common-problems"></a>針對常見問題進行疑難排解
 以下是一些常見的疑難排解案例。
-* **許多 Tuple 逾時。**查看拓撲中的每個節點，以判斷瓶頸所在。 最常見的原因是 Bolt 無法跟上 Spout。 這導致 Tuple 在等待處理時阻塞了內部緩衝區。 請考慮增加逾時值，或減少 Spout 暫止上限。
+* **許多 Tuple 逾時。** 查看拓撲中的每個節點，以判斷瓶頸所在。 最常見的原因是 Bolt 無法跟上 Spout。 這導致 Tuple 在等待處理時阻塞了內部緩衝區。 請考慮增加逾時值，或減少 Spout 暫止上限。
 
 * **總處理序執行延遲很高，但 Bolt 處理序延遲卻很低。** 在此情況下，認可 Tuple 的速度可能不夠快。 請確認認可者的數量足夠。 另一個可能的原因是，它們在佇列中等待很久之後，Bolt 才開始處理。 減少 Spout 暫止上限。
 

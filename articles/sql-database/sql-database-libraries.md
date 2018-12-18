@@ -6,14 +6,15 @@ author: MightyPen
 manager: craigg
 ms.service: sql-database
 ms.custom: develop apps
-ms.topic: article
-ms.date: 11/29/2017
+ms.topic: conceptual
+ms.date: 04/01/2018
 ms.author: genemi
-ms.openlocfilehash: f371afc89273af4ce1c6c55eccc99a6f8a6349d5
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: cb9bc6dc21d043bfa2d5b278eec4d91494263515
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34647522"
 ---
 # <a name="connectivity-libraries-and-frameworks-for-sql-server"></a>適用於 SQL Server 的連線程式庫和架構
 

@@ -1,9 +1,9 @@
 ### YamlMime:YamlDocument
 documentType: LandingData
-title: "Azure Container Service 與 DC/OS 和 Swarm 文件"
+title: Azure Container Service 與 DC/OS 和 Swarm 文件
 metadata:
   document_id: 
-  title: "Azure Container Service 與 DC/OS 和 Swarm 文件 - 教學課程、API 參考 | Microsoft Docs"
+  title: Azure Container Service 與 DC/OS 和 Swarm 文件 - 教學課程、API 參考 | Microsoft Docs
   meta.description: Azure Container Service allows you to quickly deploy a production ready DC/OS or Docker Swarm cluster. Learn how to use Azure Container Service with these quickstarts, tutorials, and samples.
   services: container-service
   author: carolz
@@ -19,49 +19,50 @@ metadata:
   ms.translationtype: HT
   ms.contentlocale: zh-TW
   ms.lasthandoff: 10/11/2017
+  ms.locfileid: "23068401"
 abstract:
-  description: "Azure Container Service 可讓您快速部署可進行生產的 DC/OS 或 Docker Swarm 叢集。 了解如何透過我們的快速入門、教學課程和範例使用 Azure Container Service。"
+  description: Azure Container Service 可讓您快速部署可進行生產的 DC/OS 或 Docker Swarm 叢集。 了解如何透過我們的快速入門、教學課程和範例使用 Azure Container Service。
 sections:
-- title: "5 分鐘快速入門"
+- title: 5 分鐘快速入門
   items:
   - type: paragraph
-    text: "了解如何使用 Azure Container Service 部署 DC/OS 叢集："
+    text: 了解如何使用 Azure Container Service 部署 DC/OS 叢集：
   - type: list
     style: icon48
     items:
     - image:
         src: https://docs.microsoft.com/media/logos/logo_linux.svg
-      text: "建立 DC/OS 叢集"
+      text: 建立 DC/OS 叢集
       href: /azure/container-service/container-service-dcos-quickstart
     - image:
         src: https://docs.microsoft.com/media/logos/logo_docker.svg
-      text: "建立 Docker Swarm 叢集"
+      text: 建立 Docker Swarm 叢集
       href: /azure/container-service/dcos-swarm/container-service-swarm-walkthrough
-- title: "逐步教學課程"
+- title: 逐步教學課程
   items:
   - type: paragraph
-    text: "了解如何部署、管理及更新 Azure Container Service DC/OS 叢集中的應用程式。"
+    text: 了解如何部署、管理及更新 Azure Container Service DC/OS 叢集中的應用程式。
   - type: list
     style: ordered
     items:
-    - html: "<a href=\"/azure/container-service/container-service-dcos-manage-tutorial\">建立和管理 Azure Container Service DC/OS 叢集</a>"
-    - html: "<a href=\"/azure/container-service/container-service-load-balancing\">Azure Container Service DC/OS 叢集中容器的負載平衡</a>"
-    - html: "<a href=\"/azure/container-service/container-service-dcos-fileshare\">建立檔案共用並將它掛接到 DC/OS 叢集</a>"
-    - html: "<a href=\"/azure/container-service/container-service-dcos-acr\">搭配使用 Azure Container Registry 與 DC/OS 叢集以部署應用程式</a>"
-- title: "範例"
+    - html: <a href="/azure/container-service/container-service-dcos-manage-tutorial">建立和管理 Azure Container Service DC/OS 叢集</a>
+    - html: <a href="/azure/container-service/container-service-load-balancing">Azure Container Service DC/OS 叢集中容器的負載平衡</a>
+    - html: <a href="/azure/container-service/container-service-dcos-fileshare">建立檔案共用並將它掛接到 DC/OS 叢集</a>
+    - html: <a href="/azure/container-service/container-service-dcos-acr">搭配使用 Azure Container Registry 與 DC/OS 叢集以部署應用程式</a>
+- title: 範例
   items:
   - type: list
     style: unordered
     className: spaced noBullet
     items:
     - html: <a href="/azure/container-service/cli-samples">Azure CLI</a>
-- title: "參考"
+- title: 參考
   items:
   - type: list
     style: cards
     className: cardsD
     items:
-    - title: "命令列"
+    - title: 命令列
       html: <p><a href="/cli/azure/acs">Azure CLI</a></p>
     - title: REST
       html: <p><a href="/rest/api/container-service">REST API</a></p>

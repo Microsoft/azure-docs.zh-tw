@@ -1,6 +1,6 @@
 ---
-title: "如何管理 Azure Redis 快取 | Microsoft Docs"
-description: "了解如何執行管理工作，例如重新啟動以及排程 Azure Redis 快取更新"
+title: 如何管理 Azure Redis 快取 | Microsoft Docs
+description: 了解如何執行管理工作，例如重新啟動以及排程 Azure Redis 快取更新
 services: redis-cache
 documentationcenter: na
 author: wesmc7777
@@ -14,11 +14,12 @@ ms.tgt_pltfrm: cache-redis
 ms.workload: tbd
 ms.date: 07/05/2017
 ms.author: wesmc
-ms.openlocfilehash: 37e7395a26ead737009ad9e285e9f88372b25d26
-ms.sourcegitcommit: 2a70752d0987585d480f374c3e2dba0cd5097880
+ms.openlocfilehash: 3b62b41fb7b9d7ff6f40191c48d00c1f0a941e48
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/19/2018
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34639447"
 ---
 # <a name="how-to-administer-azure-redis-cache"></a>如何管理 Azure Redis 快取
 本主題說明如何執行管理工作，例如為 Azure Redis 快取執行個體進行[重新啟動](#reboot)並[排程更新](#schedule-updates)。
@@ -91,10 +92,8 @@ ms.lasthandoff: 01/19/2018
 
 若要指定維護期間，請檢查所需的天數，並指定每一天的維護期間開始小時，然後按一下 [確定] 。 請注意，維護期間時間是 UTC。 
 
-> [!NOTE]
-> 更新的預設維護期間是 5 小時。 這個值不可以從 Azure 入口網站設定，不過您可以在 PowerShell 中使用 [New-AzureRmRedisCacheScheduleEntry](/powershell/module/azurerm.rediscache/new-azurermrediscachescheduleentry) Cmdlet 的 `MaintenanceWindow` 參數加以設定。 如需詳細資訊，請參閱[我可以使用 PowerShell、CLI 或其他管理工具管理排程更新嗎？](#can-i-manage-scheduled-updates-using-powershell-cli-or-other-management-tools)
-> 
-> 
+更新的預設、最短維護期間是 5 小時。 這個值不可以從 Azure 入口網站設定，不過您可以在 PowerShell 中使用 [New-AzureRmRedisCacheScheduleEntry](/powershell/module/azurerm.rediscache/new-azurermrediscachescheduleentry) Cmdlet 的 `MaintenanceWindow` 參數加以設定。 如需詳細資訊，請參閱[我可以使用 PowerShell、CLI 或其他管理工具管理排程更新嗎？](#can-i-manage-scheduled-updates-using-powershell-cli-or-other-management-tools)
+
 
 ## <a name="schedule-updates-faq"></a>排程更新常見問題集
 * [如果我未使用排程更新功能，更新會在何時發生？](#when-do-updates-occur-if-i-dont-use-the-schedule-updates-feature)

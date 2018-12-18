@@ -1,28 +1,23 @@
 ---
-title: "使用 Azure Data Lake U-SQL SDK 調整 U-SQL 本機執行和測試 | Microsoft Docs"
-description: "了解如何使用 Azure Data Lake U-SQL SDK 在本機工作站上使用命令列及程式設計介面來調整 U-SQL 作業本機執行和測試。"
+title: 使用 Azure Data Lake U-SQL SDK 在本機執行及測試 U-SQL 作業
+description: 了解如何使用本機工作站上的命令列及程式設計介面，在本機執行及測試 U-SQL 作業。
 services: data-lake-analytics
-documentationcenter: 
-author: 
-manager: 
-editor: 
-ms.assetid: 
 ms.service: data-lake-analytics
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 03/01/2017
+author: yanacai
 ms.author: yanacai
-ms.openlocfilehash: 55242bcf644ca0e7f30cfe7eada2130451c36e64
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.reviewer: jasonwhowell
+ms.topic: conceptual
+ms.date: 03/01/2017
+ms.openlocfilehash: ae5334dcb93e34569131ab51dca99c310831082d
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43052082"
 ---
-# <a name="scale-u-sql-local-run-and-test-with-azure-data-lake-u-sql-sdk"></a>使用 Azure Data Lake U-SQL SDK 調整 U-SQL 本機執行和測試
+# <a name="run-and-test-u-sql-with-azure-data-lake-u-sql-sdk"></a>使用 Azure Data Lake U-SQL SDK 來執行及測試 U-SQL
 
-在開發 U-SQL 指令碼時，通常會在本機執行並測試 U-SQL 指令碼，然後才送出至雲端。 Azure Data Lake 針對此案例提供稱為 Azure Data Lake U-SQL SDK 的 Nuget 套件，讓您可以輕鬆地調整 U-SQL 本機執行和測試。 此外，也可以將此 U-SQL 測試與 CI (持續整合) 系統整合以自動化編譯和測試。
+在開發 U-SQL 指令碼時，通常會在本機執行並測試 U-SQL 指令碼，然後才送出至雲端。 Azure Data Lake 針對此案例提供稱為 Azure Data Lake U-SQL SDK 的 Nuget 套件，讓您可以輕鬆地調整 U-SQL 執行和測試。 此外，也可以將此 U-SQL 測試與 CI (持續整合) 系統整合以自動化編譯和測試。
 
 如果您在意要如何使用 GUI 工具來手動本機執行並針對 U-SQL 指令碼進行偵錯，您可以使用 Azure Data Lake Tools for Visual Studio 來執行。 您可以在[這裡](data-lake-analytics-data-lake-tools-local-run.md)深入了解。
 
@@ -77,7 +72,7 @@ Data Lake U-SQL SDK 需要下列相依性︰
 | | |\_ScopeCodeGenEngine\_.*|編譯器輸出|產生的原生程式碼|
 | | |參考的組件|組件參考|參考的組件檔案|
 | | |deployed_resources|資源部署|資源部署檔案|
-| | |xxxxxxxx.xxx[1..n]\_\*.*|執行記錄檔|執行步驟的記錄檔|
+| | |xxxxxxxx.xxx[1..n]\_\*.\*|執行記錄檔|執行步驟的記錄檔|
 
 
 ## <a name="use-the-sdk-from-the-command-line"></a>從命令列使用 SDK
@@ -212,12 +207,12 @@ U-SQL 本機執行需要指定的資料根做為本機儲存體帳戶，以及�
 
 下列為 **execute** 的選擇性引數：
 
-|引數|說明|
-|--------|-----------|
-|-DataRoot [預設值 '']|中繼資料執行的資料根。 它預設為 **LOCALRUN_DATAROOT** 環境變數。|
-|-MessageOut [預設值 '']|將主控台上的訊息傾印成檔案。|
-|-Parallel [預設值 '1']|使用指定的平行處理原則層級執行產生本機執行步驟的指示器。|
-|-Verbose [預設值 'False']|顯示詳細執行階段輸出的指示器。|
+|引數|預設值|說明|
+|--------|-------------|-----------|
+|-DataRoot | '' |中繼資料執行的資料根。 它預設為 **LOCALRUN_DATAROOT** 環境變數。|
+|-MessageOut | '' |將主控台上的訊息傾印成檔案。|
+|-Parallel | '1' |使用指定的平行處理原則層級執行產生本機執行步驟的指示器。|
+|-Verbose | 'False' |顯示詳細執行階段輸出的指示器。|
 
 以下是使用範例︰
 

@@ -1,11 +1,11 @@
 ---
-title: "如何使用 Azure Resource Manager 範本建立 ILB ASE | Microsoft Docs"
-description: "了解如何使用 Azure Resource Manager 範本建立內部負載平衡器 ASE"
+title: 如何使用 Azure Resource Manager 範本建立 ILB ASE | Microsoft Docs
+description: 了解如何使用 Azure Resource Manager 範本建立內部負載平衡器 ASE
 services: app-service
-documentationcenter: 
+documentationcenter: ''
 author: stefsch
 manager: nirma
-editor: 
+editor: ''
 ms.assetid: 091decb6-b0de-42a1-9f2f-c18d9b2e67df
 ms.service: app-service
 ms.workload: na
@@ -14,11 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: stefsch
-ms.openlocfilehash: ea9407208f1bf555cf1a6d166825896dec89ec29
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 20531cb301cad23fbadb617bdf33e710a4481be4
+ms.sourcegitcommit: ebd06cee3e78674ba9e6764ddc889fc5948060c4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 09/07/2018
+ms.locfileid: "44050029"
 ---
 # <a name="how-to-create-an-ilb-ase-using-azure-resource-manager-templates"></a>如何使用 Azure Resource Manager 範本建立 ILB ASE範本建立 ILB ASE
 
@@ -33,7 +34,7 @@ ms.lasthandoff: 10/11/2017
 
 1. 首先會使用內部負載平衡器位址 (而不是公用 VIP)，在虛擬網路中建立基底 ASE。  在此步驟中，根網域名稱會指派給 ILB ASE。
 2. 一旦建立 ILB ASE，就會上傳 SSL 憑證。  
-3. 上傳的 SSL 憑證會明確指派給 ILB ASE 做為其「預設」SSL 憑證。  如果應用程式是使用指派給 ASE 的一般根網域 (例如 https://someapp.mycustomrootcomain.com ) 來定址，此 SSL 憑證將使用於 ILB ASE 上應用程式的 SSL 流量
+3. 上傳的 SSL 憑證會明確指派給 ILB ASE 做為其「預設」SSL 憑證。  如果應用程式是使用指派給 ASE 的一般根網域 (例如 https://someapp.mycustomrootcomain.com) 來定址，此 SSL 憑證將使用於 ILB ASE 上應用程式的 SSL 流量
 
 ## <a name="creating-the-base-ilb-ase"></a>建立基底 ILB ASE
 在 GitHub 上 ([這裡][quickstartilbasecreate]) 可以取得範例 Azure Resource Manager 範本及其相關聯的參數檔案。
@@ -54,12 +55,12 @@ ms.lasthandoff: 10/11/2017
 提交 Azure Resource Manager 範本之後，需要數小時的時間才能建立 ILB ASE。  建立完成後，ILB ASE 會顯示在觸發部署之訂用帳戶的 App Service 環境清單的入口網站 UX 中。
 
 ## <a name="uploading-and-configuring-the-default-ssl-certificate"></a>上傳和設定「預設」SSL 憑證
-建立 ILB ASE 後， SSL 憑證應與 ASE 相關聯，做為用來建立應用程式的 SSL 連線的「預設」SSL 憑證。  繼續討論假定的 Contoso Corporation 範例，如果 ASE 的預設 DNS 尾碼是 internal-contoso.com，則連接到 https://some-random-app.internal-contoso.com 需要有對 *.internal contoso.com 有效的 SSL 憑證。 
+建立 ILB ASE 後， SSL 憑證應與 ASE 相關聯，做為用來建立應用程式的 SSL 連線的「預設」SSL 憑證。  繼續討論假定的 Contoso Corporation 範例，如果 ASE 的預設 DNS 尾碼是 *internal-contoso.com*，則連接到 *https://some-random-app.internal-contoso.com* 需要有對 **.internal-contoso.com* 有效的 SSL 憑證。 
 
 有各種不同的方式可取得有效的 SSL 憑證，包括內部 CA、向外部簽發者購買憑證，以及使用自我簽署的憑證。  無論 SSL 憑證的來源，都需要正確設定下列憑證屬性︰
 
-* 主體︰此屬性必須設為 *.your-root-domain-here.com
-* 主體替代名稱︰此屬性必須同時包含 *.your-root-domain-here.com 和 *.scm.your-root-domain-here.com。第二個項目的原因是將使用 your-app-name.scm.your-root-domain-here.com 形式的位址，進行與每個應用程式相關聯的 SCM/Kudu 網站的 SSL 連線。
+* *主體*︰  此屬性必須設為 **.your-root-domain-here.com*
+* *主體替代名稱*︰  此屬性必須同時包含 **.your-root-domain-here.com* 和 **.scm.your-root-domain-here.com*。  第二個項目的原因是將使用 *your-app-name.scm.your-root-domain-here.com*  形式的位址，進行與每個應用程式相關聯的 SCM/Kudu 網站的 SSL 連線。
 
 備妥有效的 SSL 憑證，還需要兩個額外的準備步驟。  SSL 憑證必須能夠轉換/另存為 .pfx 檔案。  請記住，.pfx 檔案必須包含所有中繼和根憑證，而且也必須使用密碼保護。
 
@@ -126,7 +127,7 @@ ms.lasthandoff: 10/11/2017
 
 提交 Azure Resource Manager 範本之後，每個 ASE 前端需要大約 40 分鐘的時間套用變更。  例如，有一個預設大小的 ASE 使用兩個前端，則範本將需要大約一小時 20 分鐘的時間才能完成。  執行範本時，將無法調整 ASE。  
 
-完成範本後，可透過 HTTPS 存取 ILB ASE 上的應用程式，並使用預設 SSL 憑證保護連線。  如果 ILB ASE 上的應用程式是使用應用程式名稱加上預設主機名稱的組合來定址，則會使用預設 SSL 憑證。  例如，https://mycustomapp.internal-contoso.com 會使用 *.internal contoso.com 的預設 SSL 憑證。
+完成範本後，可透過 HTTPS 存取 ILB ASE 上的應用程式，並使用預設 SSL 憑證保護連線。  如果 ILB ASE 上的應用程式是使用應用程式名稱加上預設主機名稱的組合來定址，則會使用預設 SSL 憑證。  例如，*https://mycustomapp.internal-contoso.com* 會使用 **.internal-contoso.com* 的預設 SSL 憑證。
 
 不過，就如同在公用多租用戶服務上執行的應用程式，開發人員也可以為個別的應用程式設定自訂主機名稱，然後為個別的應用程式設定唯一的 SNI SSL 憑證繫結。  
 

@@ -14,17 +14,18 @@ ms.tgt_pltfrm: na
 ms.workload: multiple
 ms.date: 06/08/2016
 ms.author: mlearned
-ms.openlocfilehash: 11e238fa901a164df1dfd896e38df828601e650b
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 7c78f27fa948c15202e83df4ed42a805a414a72e
+ms.sourcegitcommit: 744747d828e1ab937b0d6df358127fcf6965f8c8
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 08/16/2018
+ms.locfileid: "42140466"
 ---
 # <a name="configure-a-docker-host-with-virtualbox"></a>使用 VirtualBox 設定 Docker 主機
 ## <a name="overview"></a>概觀
-本文會逐步引導您使用 Docker 機器和 VirtualBox 來設定預設 Docker 執行個體。 如果您是使用 [Docker for Windows Beta 版](http://beta.docker.com/)，則不需要此組態。
+本文會逐步引導您使用 Docker 機器和 VirtualBox 來設定預設 Docker 執行個體。 如果您使用 [Docker for Windows](https://www.docker.com/products/docker-desktop)，則不需要此組態。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 您的電腦必須安裝下列工具。
 
 * [Docker 工具箱](https://github.com/docker/toolbox/releases)

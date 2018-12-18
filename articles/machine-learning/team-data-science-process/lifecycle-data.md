@@ -3,22 +3,24 @@ title: Team Data Science Process 生命週期的資料取得與認知階段 - Az
 description: 資料科學專案資料取得與認知階段的目標、工作和交付項目
 services: machine-learning
 documentationcenter: ''
-author: bradsev
+author: deguhath
 manager: cgronlun
 editor: cgronlun
 ms.assetid: ''
 ms.service: machine-learning
+ms.component: team-data-science-process
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 11/04/2017
-ms.author: bradsev
-ms.openlocfilehash: 028992561b1c2481dc72af3c4edcc16f65f25105
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.author: deguhath
+ms.openlocfilehash: af295b5fb0afca03f33f65fd3b0a9fb5b8165bba
+ms.sourcegitcommit: 944d16bc74de29fb2643b0576a20cbd7e437cef2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 06/07/2018
+ms.locfileid: "34837305"
 ---
 # <a name="data-acquisition-and-understanding"></a>資料取得與認知
 

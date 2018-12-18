@@ -1,36 +1,37 @@
 ---
-title: "在 Azure 中部署 OpenShift 容器平台 | Microsoft Docs"
-description: "在 Azure 中部署 OpenShift 容器平台。"
+title: 在 Azure 中部署 OpenShift 容器平台 | Microsoft Docs
+description: 在 Azure 中部署 OpenShift 容器平台。
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: haroldw
 manager: najoshi
-editor: 
+editor: ''
 tags: azure-resource-manager
-ms.assetid: 
+ms.assetid: ''
 ms.service: virtual-machines-linux
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
-ms.date: 
+ms.date: ''
 ms.author: haroldw
-ms.openlocfilehash: f1ba6a3d3b9e576d513b55beac4e9365102433e9
-ms.sourcegitcommit: 059dae3d8a0e716adc95ad2296843a45745a415d
+ms.openlocfilehash: 48b6287fef673c5f335531b6f230993969fc9e1c
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46996327"
 ---
 # <a name="deploy-openshift-container-platform-in-azure"></a>在 Azure 中部署 OpenShift 容器平台
 
 您可以使用數種方法其中之一，在 Azure 中部署 OpenShift 容器平台：
 
-- 您可以手動部署必要的 Azure 基礎結構元件，然後依照 OpenShift 容器平台[文件](https://docs.openshift.com/container-platform/3.6/welcome/index.html) \(英文\) 進行。
+- 您可以手動部署必要的 Azure 基礎結構元件，然後依照 OpenShift 容器平台[文件](https://docs.openshift.com/container-platform/3.10/welcome/index.html) \(英文\) 進行。
 - 您也可以使用能夠簡化 OpenShift 容器平台叢集部署的現有 [Resource Manager 範本](https://github.com/Microsoft/openshift-container-platform/) \(英文\)。
 - 另一個選項是使用 [Azure Marketplace 供應項目](https://azuremarketplace.microsoft.com/marketplace/apps/redhat.openshift-container-platform?tab=Overview) \(英文\)。
 
 對於所有選項，都需要有 Red Hat 訂用帳戶。 在部署期間，Red Hat Enterprise Linux 執行個體會向 Red Hat 訂用帳戶註冊，並且附加至包含 OpenShift 容器平台之權利的集區識別碼。
-請確定您具備有效的 Red Hat Subscription Manager (RHSM) 使用者名稱、密碼和集區識別碼。 您可以登入 https://access.redhat.com 來驗證資訊。
+請確定您具備有效的 Red Hat Subscription Manager (RHSM) 使用者名稱、密碼和集區識別碼。 您可以登入 https://access.redhat.com 來驗證這項資訊。
 
 ## <a name="deploy-by-using-the-openshift-container-platform-resource-manager-template"></a>使用 OpenShift 容器平台 Resource Manager 範本部署
 
@@ -138,7 +139,7 @@ ms.lasthandoff: 02/09/2018
 ### <a name="deploy-by-using-azure-cli"></a>使用 Azure CLI 進行部署
 
 > [!NOTE] 
-> 下列命令需要 Azure CLI 2.0.8 或更新版本。 您可以使用 `az --version` 命令來確認 CLI 版本。 若要更新 CLI 版本，請參閱[安裝 Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli?view=azure-cli-latesti)。
+> 下列命令需要 Azure CLI.8 或更新版本。 您可以使用 `az --version` 命令來確認 CLI 版本。 若要更新 CLI 版本，請參閱[安裝 Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli?view=azure-cli-latesti)。
 
 下列範例會使用 myOpenShiftCluster 的部署名稱，將 OpenShift 叢集和所有相關的資源部署到名稱為 myResourceGroup 的資源群組。 範本直接參考自 GitHub 儲存機制，而且會使用名為 azuredeploy.parameters.json 檔案的本機參數檔案。
 

@@ -1,21 +1,22 @@
 ---
-title: "如何在適用於 MySQL 的 Azure 資料庫中還原伺服器"
-description: "本文說明如何使用 Azure 入口網站，在適用於 MySQL 的 Azure 資料庫中還原伺服器。"
+title: 如何在適用於 MySQL 的 Azure 資料庫中還原伺服器
+description: 本文說明如何使用 Azure 入口網站，在適用於 MySQL 的 Azure 資料庫中還原伺服器。
 services: mysql
 author: ajlam
 ms.author: andrela
 manager: kfile
 editor: jasonwhowell
-ms.service: mysql-database
+ms.service: mysql
 ms.topic: article
-ms.date: 02/28/2018
-ms.openlocfilehash: 5bef3f11d0b546fbd6b1161b20d7dfb81e975f99
-ms.sourcegitcommit: 782d5955e1bec50a17d9366a8e2bf583559dca9e
+ms.date: 04/01/2018
+ms.openlocfilehash: 6a34bbb5eefac117775c9876f3e4a25d3dade736
+ms.sourcegitcommit: 1b8665f1fff36a13af0cbc4c399c16f62e9884f3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/02/2018
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35266266"
 ---
-# <a name="how-to-back-up-and-restore-a-server-in-azure-database-for-mysql-using-the-azure-portal"></a>如何使用 Azure 入口網站，在適用於 MySQL 的 Azure 資料庫中備份和還原伺服器
+# <a name="how-to-backup-and-restore-a-server-in-azure-database-for-mysql-using-the-azure-portal"></a>如何使用 Azure 入口網站在適用於 MySQL 的 Azure 資料庫中備份和還原伺服器
 
 ## <a name="backup-happens-automatically"></a>備份會自動進行
 為了能使用還原功能，適用於 MySQL 的 Azure 資料庫伺服器會定期備份。 透過此功能，您可以將伺服器和其所有資料庫還原至更早的時間點 (在新的伺服器上)。
@@ -49,7 +50,7 @@ ms.lasthandoff: 03/02/2018
 
 備份保留期限會控制可往回多少時間來擷取時間點還原，因為這會以可用的備份為基礎。 下一節會進一步說明時間點還原。 
 
-## <a name="point-in-time-restore-in-the-azure-portal"></a>Azure 入口網站中的時間點還原
+## <a name="point-in-time-restore"></a>還原時間點
 適用於 MySQL 的 Azure 資料庫可讓您將伺服器還原至過去的時間點，並還原至新的伺服器複本。 您可以使用這個新的伺服器來復原資料，或將用戶端應用程式指向這個新的伺服器。
 
 比方說，如果今天中午不小心卸除資料表，您可以還原至中午之前的時刻，然後從該新的伺服器複本擷取遺漏的資料表和資料。 時間點還原是在伺服器層級進行，不是在資料庫層級。
@@ -75,6 +76,26 @@ ms.lasthandoff: 03/02/2018
 
 >[!Note]
 >請注意，所選時間點上的現有伺服器與時間點還原所建立的新伺服器，具有相同且有效的伺服器管理員登入名稱和密碼。 您可以從新伺服器的 [概觀] 頁面變更密碼。
+
+## <a name="geo-restore"></a>異地還原
+如果您已將伺服器設定為使用異地備援備份，則可以從現有伺服器的備份建立新的伺服器。 您可以在任何可使用「適用於 MySQL 的 Azure 資料庫」的區域中建立這個新伺服器。  
+
+1. 選取入口網站左上角的 [建立資源] 按鈕 (+)。 選取 [資料庫] > [Azure Database for MySQL]。
+
+   ![[適用於 MySQL 的 Azure 資料庫] 選項](./media/howto-restore-server-portal/2_navigate-to-mysql.png)
+
+2. 在表單的 [選取來源] 下拉式清單中，選擇 [備份]。 這個動作會載入已啟用異地備援備份的伺服器清單。 選取其中一個備份來作為新伺服器的來源。
+   ![選取來源：備份和異地備援備份清單](./media/howto-restore-server-portal/2-georestore.png)
+
+   > [!NOTE]
+   > 第一次建立伺服器時，可能無法立即用來進行異地還原。 必要的中繼資料可能需要幾小時才會填入。
+   >
+
+3. 根據您的需要填寫表單的其餘部分。 您可以選取任何**位置**。 選好位置之後，您可以選取 [定價層]。 根據預設，系統會顯示要作為還原來源的現有伺服器參數。 您可以按一下 [確定]，不進行任何變更地繼承這些設定。 或者，您可以變更**計算世代** (如果適用於您選擇的區域)、**虛擬核心**數目、**備份保留期限**及**備份備援選項**。 還原期間不支援變更**定價層** (基本、一般用途或記憶體最佳化) 或**儲存體**大小。
+
+>[!Note]
+>還原啟動時的現有伺服器與異地還原所建立的新伺服器，具有相同且有效的伺服器管理員登入名稱和密碼。 您可以從新伺服器的 [概觀] 頁面變更密碼。
+
 
 ## <a name="next-steps"></a>後續步驟
 - 深入了解服務的[備份](concepts-backup.md)。

@@ -1,259 +1,293 @@
+items:
 - name: App Service 文件
   href: index.yml
 - name: 概觀
   items:
-    - name: 關於 Web Apps
-      href: app-service-web-overview.md
-    - name: 關於 Linux 上的 App Service
-      href: containers/app-service-linux-intro.md
-    - name: 關於 App Service Environment
-      href: environment/intro.md
-    - name: 比較主機選項
-      href: choose-web-site-cloud-service-vm.md
+  - name: 關於 Web Apps
+    href: app-service-web-overview.md
+  - name: 關於 Linux 上的 App Service
+    href: containers/app-service-linux-intro.md
+  - name: 關於 App Service Environment
+    href: environment/intro.md
+  - name: 比較主機選項
+    href: choose-web-site-cloud-service-vm.md
 - name: 快速入門
-  expanded: true
   items:
-    - name: 建立 .NET Core 應用程式
-      href: app-service-web-get-started-dotnet.md
-    - name: 建立.NET Framework 應用程式
-      href: app-service-web-get-started-dotnet-framework.md
-    - name: 建立 Node.js 應用程式
-      href: app-service-web-get-started-nodejs.md
-    - name: 建立 PHP 應用程式
-      href: app-service-web-get-started-php.md
-    - name: 建立 Java 應用程式
-      href: app-service-web-get-started-java.md
-    - name: 建立 Python 應用程式
-      href: app-service-web-get-started-python.md
-    - name: 建立靜態 HTML 網站
-      href: app-service-web-get-started-html.md
+  - name: 建立 .NET Core 應用程式
+    href: app-service-web-get-started-dotnet.md
+  - name: 建立.NET Framework 應用程式
+    href: app-service-web-get-started-dotnet-framework.md
+  - name: 建立 Node.js 應用程式
+    href: app-service-web-get-started-nodejs.md
+  - name: 建立 PHP 應用程式
+    href: app-service-web-get-started-php.md
+  - name: 建立 Java 應用程式
+    href: app-service-web-get-started-java.md
+  - name: 建立靜態 HTML 網站
+    href: app-service-web-get-started-html.md
+  - name: 執行 Windows 容器
+    href: app-service-web-get-started-windows-container.md
+  expanded: true
 - name: 教學課程
   items:
-    - name: 1 - App with DB
-      items:
-        - name: .NET Core with SQL DB
-          href: app-service-web-tutorial-dotnetcore-sqldb.md
-        - name: .NET with SQL DB
-          href: app-service-web-tutorial-dotnet-sqldatabase.md
-        - name: PHP with MySQL
-          href: app-service-web-tutorial-php-mysql.md
-        - name: Node.js 搭配 MongoDB
-          href: app-service-web-tutorial-nodejs-mongodb-app.md
-        - name: Java with MySQL
-          href: app-service-web-tutorial-java-mysql.md
-        - name: Python with PostgreSQL
-          href: app-service-web-tutorial-python-postgresql.md
-    - name: 1 - 託管 RESTful API
-      href: app-service-web-tutorial-rest-api.md
-    - name: 2 - 對應自訂網域
-      href: app-service-web-tutorial-custom-domain.md
-    - name: 3 - 繫結 SSL 憑證
-      href: app-service-web-tutorial-custom-ssl.md
-    - name: 4 - 新增 CDN
-      href: app-service-web-tutorial-content-delivery-network.md
-    - name: 5 - 驗證使用者
-      href: app-service-web-tutorial-auth-aad.md
+  - name: App with DB
+    items:
+    - name: .NET Core with SQL DB
+      href: app-service-web-tutorial-dotnetcore-sqldb.md
+    - name: .NET with SQL DB
+      href: app-service-web-tutorial-dotnet-sqldatabase.md
+    - name: PHP with MySQL
+      href: app-service-web-tutorial-php-mysql.md
+    - name: Node.js 搭配 MongoDB
+      href: app-service-web-tutorial-nodejs-mongodb-app.md
+    - name: Java with MySQL
+      href: app-service-web-tutorial-java-mysql.md
+  - name: 自訂 Windows (容器)
+    href: app-service-web-tutorial-windows-containers-custom-fonts.md
+  - name: 安全存取 SQL DB
+    href: app-service-web-tutorial-connect-msi.md
+  - name: 託管 RESTful API
+    href: app-service-web-tutorial-rest-api.md
+  - name: 對應自訂網域
+    href: app-service-web-tutorial-custom-domain.md
+  - name: 繫結 SSL 憑證
+    href: app-service-web-tutorial-custom-ssl.md
+  - name: 新增 CDN
+    href: ../cdn/cdn-add-to-web-app.md?toc=%2fazure%2fcdn%2ftoc.json
+  - name: 驗證使用者
+    href: app-service-web-tutorial-auth-aad.md
 - name: 範例
   items:
-    - name: Azure CLI
-      href: app-service-cli-samples.md
-    - name: Azure PowerShell
-      href: app-service-powershell-samples.md
-    - name: Resource Manager 範本
-      href: app-service-rm-template-samples.md
+  - name: Azure CLI
+    href: app-service-cli-samples.md
+  - name: Azure PowerShell
+    href: app-service-powershell-samples.md
+  - name: Resource Manager 範本
+    href: app-service-rm-template-samples.md
 - name: 概念
   items:
-    - name: App Service 的運作方式
-      href: app-service-how-works-readme.md
-    - name: App Service 方案
-      href: azure-web-sites-web-hosting-plans-in-depth-overview.md
-    - name: 作業系統功能
-      href: web-sites-available-operating-system-functionality.md
+  - name: App Service 的運作方式
+    href: app-service-how-works-readme.md
+  - name: App Service 方案
+    href: azure-web-sites-web-hosting-plans-in-depth-overview.md
+  - name: 作業系統功能
+    href: web-sites-available-operating-system-functionality.md
+  - name: 安全性
+    href: app-service-security.md
+    items:
     - name: 驗證和授權
       href: app-service-authentication-overview.md
-    - name: 混合式連線
-      href: app-service-hybrid-connections.md
-    - name: 流量管理員整合
-      href: web-sites-traffic-manager.md
-    - name: 本機快取
-      href: app-service-local-cache-overview.md
-    - name: 診斷
-      href: app-service-diagnostics.md
     - name: 作業系統和執行階段修補
       href: app-service-patch-os-runtime.md
+  - name: 輸入和輸出 IP
+    href: app-service-ip-addresses.md
+  - name: 混合式連線
+    href: app-service-hybrid-connections.md
+  - name: 流量管理員整合
+    href: web-sites-traffic-manager.md
+  - name: 本機快取
+    href: app-service-local-cache-overview.md
+  - name: 診斷
+    href: app-service-diagnostics.md
 - name: 使用說明指南
   items:
-    - name: 設定應用程式
+  - name: 設定應用程式
+    items:
+    - name: 使用應用程式設定
+      href: web-sites-configure.md
+    - name: 上傳現有 Java 應用程式
+      href: web-sites-java-add-app.md
+    - name: 設定 PHP
+      href: web-sites-php-configure.md
+    - name: 連線到內部部署資源
+      href: web-sites-integrate-with-vnet.md
+  - name: 部署至 Azure
+    items:
+    - name: 部署應用程式
       items:
-        - name: 使用應用程式設定
-          href: web-sites-configure.md
-        - name: 上傳現有 Java 應用程式
-          href: web-sites-java-add-app.md
-        - name: 設定 PHP
-          href: web-sites-php-configure.md
-        - name: Python
-          href: web-sites-python-configure.md
-        - name: 連線到內部部署資源
-          href: web-sites-integrate-with-vnet.md
-    - name: 部署至 Azure
+      - name: 部署 ZIP 或 WAR 檔案
+        href: app-service-deploy-zip.md
+      - name: 透過 FTP 進行部署
+        href: app-service-deploy-ftp.md
+      - name: 透過雲端同步進行部署
+        href: app-service-deploy-content-sync.md
+      - name: 連續部署
+        href: app-service-continuous-deployment.md
+      - name: 從本機 Git 進行部署
+        href: app-service-deploy-local-git.md
+      - name: 透過範本進行部署
+        href: app-service-deploy-complex-application-predictably.md
+    - name: 設定部署認證
+      href: app-service-deployment-credentials.md
+    - name: 建立預備環境
+      href: web-sites-staged-publishing.md
+    - name: Resource Manager 範本指導方針
+      href: web-sites-rm-template-guidance.md
+  - name: 對應自訂網域
+    items:
+    - name: 購買網域
+      href: custom-dns-web-site-buydomains-web-app.md
+    - name: 使用流量管理員對應網域
+      href: web-sites-traffic-manager-custom-domain-name.md
+    - name: 移轉作用中的網域
+      href: app-service-custom-domain-name-migrate.md
+  - name: 安全的應用程式
+    items:
+    - name: 購買 SSL 憑證
+      href: web-sites-purchase-ssl-web-site.md
+    - name: 驗證使用者
       items:
-        - name: 部署應用程式
-          items:
-            - name: 部署 ZIP 或 WAR 檔案
-              href: app-service-deploy-zip.md
-            - name: 透過 FTP 進行部署
-              href: app-service-deploy-ftp.md
-            - name: 透過雲端同步進行部署
-              href: app-service-deploy-content-sync.md
-            - name: 連續部署
-              href: app-service-continuous-deployment.md
-            - name: 從本機 Git 進行部署
-              href: app-service-deploy-local-git.md
-            - name: 透過範本進行部署
-              href: app-service-deploy-complex-application-predictably.md
-        - name: 設定部署認證
-          href: app-service-deployment-credentials.md
-        - name: 建立預備環境
-          href: web-sites-staged-publishing.md
-        - name: Resource Manager 範本指導方針
-          href: web-sites-rm-template-guidance.md
-    - name: 對應自訂網域
-      items:
-        - name: 購買網域
-          href: custom-dns-web-site-buydomains-web-app.md
-        - name: 使用流量管理員對應網域
-          href: web-sites-traffic-manager-custom-domain-name.md
-        - name: 移轉作用中的網域
-          href: app-service-custom-domain-name-migrate.md
-    - name: 安全的應用程式
-      items:
-        - name: 購買 SSL 憑證
-          href: web-sites-purchase-ssl-web-site.md
-        - name: 驗證使用者
-          items:
-            - name: 使用 Azure AD 進行驗證
-              href: app-service-mobile-how-to-configure-active-directory-authentication.md
-            - name: 使用 Facebook 進行驗證
-              href: app-service-mobile-how-to-configure-facebook-authentication.md
-            - name: 使用 Google 進行驗證
-              href: app-service-mobile-how-to-configure-google-authentication.md
-            - name: 使用 Microsoft 帳戶進行認證
-              href: app-service-mobile-how-to-configure-microsoft-authentication.md
-            - name: 使用 Twitter 進行驗證
-              href: app-service-mobile-how-to-configure-twitter-authentication.md
-        - name: 自訂驗證
-          href: app-service-authentication-how-to.md
-        - name: 使用受控服務識別
-          href: app-service-managed-service-identity.md
-        - name: 在應用程式程式碼中使用 SSL 憑證
-          href: app-service-web-ssl-cert-load.md
-        - name: 設定 TLS 相互驗證
-          href: app-service-web-configure-tls-mutual-auth.md
-    - name: 調整應用程式
-      items:
-        - name: 相應增加伺服器容量
-          href: web-sites-scale.md
-        - name: 設定 PremiumV2 層
-          href: app-service-configure-premium-tier.md
-        - name: 相應放大至多個執行個體
-          href: ../monitoring-and-diagnostics/insights-how-to-scale.md?toc=%2fazure%2fapp-service%2ftoc.json
-    - name: 監視應用程式
-      items:
-        - name: 配額與警示
-          href: web-sites-monitor.md
-        - name: 啟用記錄
-          href: web-sites-enable-diagnostic-log.md
-    - name: 管理應用程式
-      items:
-        - name: 管理主機方案
-          href: app-service-plan-manage.md
-        - name: 備份應用程式
-          href: web-sites-backup.md
-        - name: 還原備份
-          href: web-sites-restore.md
-        - name: 複製應用程式
-          href: app-service-web-app-cloning.md
-        - name: 移動資源
-          href: '../azure-resource-manager/resource-group-move-resources.md?toc=%2fazure%2fapp-service%2ftoc.json#app-service-limitations'
-    - name: 執行背景工作
-      items:
-        - name: 建立 WebJobs
-          href: web-sites-create-web-jobs.md
-        - name: 使用 VS 開發 WebJobs
-          href: websites-dotnet-deploy-webjobs.md
+      - name: 使用 Azure AD 進行驗證
+        href: app-service-mobile-how-to-configure-active-directory-authentication.md
+      - name: 使用 Facebook 進行驗證
+        href: app-service-mobile-how-to-configure-facebook-authentication.md
+      - name: 使用 Google 進行驗證
+        href: app-service-mobile-how-to-configure-google-authentication.md
+      - name: 使用 Microsoft 帳戶進行認證
+        href: app-service-mobile-how-to-configure-microsoft-authentication.md
+      - name: 使用 Twitter 進行驗證
+        href: app-service-mobile-how-to-configure-twitter-authentication.md
+    - name: 自訂驗證
+      href: app-service-authentication-how-to.md
+    - name: 限制 IP
+      href: app-service-ip-restrictions.md
+    - name: 建立受控識別
+      href: app-service-managed-service-identity.md
+    - name: 在應用程式程式碼中使用 SSL 憑證
+      href: app-service-web-ssl-cert-load.md
+    - name: 設定 TLS 相互驗證
+      href: app-service-web-configure-tls-mutual-auth.md
+  - name: 調整應用程式
+    items:
+    - name: 相應增加伺服器容量
+      href: web-sites-scale.md
+    - name: 設定 PremiumV2 層
+      href: app-service-configure-premium-tier.md
+    - name: 相應放大至多個執行個體
+      href: ../monitoring-and-diagnostics/monitoring-autoscale-get-started.md?toc=%2fazure%2fapp-service%2ftoc.json
+    - name: 高密度託管
+      href: app-service-high-density-hosting.md
+  - name: 監視應用程式
+    items:
+    - name: 配額與警示
+      href: web-sites-monitor.md
+    - name: 啟用記錄
+      href: web-sites-enable-diagnostic-log.md
+  - name: 管理應用程式
+    items:
+    - name: 管理主機方案
+      href: app-service-plan-manage.md
+    - name: 備份應用程式
+      href: web-sites-backup.md
+    - name: 還原備份
+      href: web-sites-restore.md
+    - name: 還原快照集
+      href: app-service-web-restore-snapshots.md
+    - name: 複製應用程式
+      href: app-service-web-app-cloning.md
+    - name: 移動資源
+      href: ../azure-resource-manager/resource-group-move-resources.md?toc=%2fazure%2fapp-service%2ftoc.json#app-service-limitations
+  - name: 執行背景工作
+    items:
+    - name: 建立 WebJobs
+      href: web-sites-create-web-jobs.md
+    - name: 使用 VS 開發 WebJobs
+      href: websites-dotnet-deploy-webjobs.md
+    - name: 開始使用 WebJobs SDK
+      href: webjobs-sdk-get-started.md
+    - name: 使用 WebJobs SDK
+      href: webjobs-sdk-how-to.md
 - name: 參考
   items:
-    - name: Azure CLI
-      href: /cli/azure/appservice
-    - name: Azure PowerShell
-      href: /powershell
-    - name: REST API
-      href: /rest/api/appservice/
+  - name: Azure CLI
+    href: /cli/azure/appservice
+  - name: Azure PowerShell
+    href: /powershell
+  - name: REST API
+    href: /rest/api/appservice/
 - name: 資源
   items:
-    - name: Azure 藍圖
-      href: 'https://azure.microsoft.com/roadmap/'
-    - name: 價格
-      href: 'https://azure.microsoft.com/pricing/details/app-service/'
-    - name: 配額資訊
-      href: '../azure-subscription-service-limits.md#app-service-limits'
-    - name: 服務更新與版本資訊
+  - name: 透過 Microsoft Learn 增進您的技巧
+    href: /learn/browse/
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/app-service/
+  - name: 配額資訊
+    href: ../azure-subscription-service-limits.md#app-service-limits
+  - name: 服務更新與版本資訊
+    items:
+    - name: Azure 更新
+      href: https://azure.microsoft.com/updates/?product=app-service
+    - name: Azure SDK for .NET 3.0
+      href: azure-sdk-dotnet-release-notes-3-0.md
+    - name: Azure SDK for .NET 2.9
+      href: azure-sdk-dotnet-release-notes-2-9.md
+    - name: Azure SDK for .NET 2.8
+      href: azure-sdk-dotnet-release-notes-2-8.md
+    - name: Azure SDK for .NET 2.7
+      href: azure-sdk-dotnet-release-notes-2-7.md
+    - name: Azure SDK for .NET 2.6
+      href: azure-sdk-dotnet-release-notes-2-6.md
+    - name: Azure SDK for .NET 2.5.1
+      href: app-service-release-notes.md
+    - name: Azure SDK for .NET 2.5
+      href: https://msdn.microsoft.com/library/azure/dn873976.aspx
+    - name: Azure SDK for .NET 2.4
+      href: https://msdn.microsoft.com/library/azure/dn794167.aspx
+    - name: Azure SDK for .NET 2.3
+      href: https://msdn.microsoft.com/library/azure/dn655054.aspx
+    - name: Azure SDK for .NET 2.2
+      href: https://msdn.microsoft.com/library/azure/dn459835.aspx
+    - name: Azure SDK for .NET 2.1
+      href: https://msdn.microsoft.com/library/azure/dn407359.aspx
+    - name: Azure SDK for .NET 2.0
+      href: https://msdn.microsoft.com/library/azure/dn169556.aspx
+  - name: 最佳作法
+    href: app-service-best-practices.md
+  - name: 範例
+    href: https://azure.microsoft.com/resources/samples/?service=app-service
+  - name: 影片
+    href: https://azure.microsoft.com/resources/videos/index/?services=app-service
+  - name: Cookbooks
+    items:
+    - name: 參考架構
+      href: https://docs.microsoft.com/azure/architecture/reference-architectures/#web-applications
+    - name: 部署指令碼
+      href: https://azure.microsoft.com/documentation/scripts/
+  - name: 疑難排解
+    items:
+    - name: 使用 Visual Studio 進行疑難排解
+      href: web-sites-dotnet-troubleshoot-visual-studio.md
+    - name: 針對 Node.js 應用程式進行疑難排解
+      href: app-service-web-nodejs-best-practices-and-troubleshoot-guide.md
+    - name: 針對 HTTP 502 與 503 進行疑難排解
+      href: app-service-web-troubleshoot-http-502-http-503.md
+    - name: 針對效能問題進行疑難排解
+      href: app-service-web-troubleshoot-performance-degradation.md
+    - name: 針對網域和憑證問題進行疑難排解
+      href: app-service-web-troubleshoot-domain-ssl-certificates.md
+    - name: 常見問題集
       items:
-        - name: Azure 更新
-          href: 'https://azure.microsoft.com/updates/?product=app-service'
-        - name: Azure SDK for .NET 3.0
-          href: azure-sdk-dotnet-release-notes-3-0.md
-        - name: Azure SDK for .NET 2.9
-          href: azure-sdk-dotnet-release-notes-2-9.md
-        - name: Azure SDK for .NET 2.8
-          href: azure-sdk-dotnet-release-notes-2-8.md
-        - name: Azure SDK for .NET 2.7
-          href: azure-sdk-dotnet-release-notes-2-7.md
-        - name: Azure SDK for .NET 2.6
-          href: azure-sdk-dotnet-release-notes-2-6.md
-        - name: Azure SDK for .NET 2.5.1
-          href: app-service-release-notes.md
-        - name: Azure SDK for .NET 2.5
-          href: 'https://msdn.microsoft.com/library/azure/dn873976.aspx'
-        - name: Azure SDK for .NET 2.4
-          href: 'https://msdn.microsoft.com/library/azure/dn794167.aspx'
-        - name: Azure SDK for .NET 2.3
-          href: 'https://msdn.microsoft.com/library/azure/dn655054.aspx'
-        - name: Azure SDK for .NET 2.2
-          href: 'https://msdn.microsoft.com/library/azure/dn459835.aspx'
-        - name: Azure SDK for .NET 2.1
-          href: 'https://msdn.microsoft.com/library/azure/dn407359.aspx'
-        - name: Azure SDK for .NET 2.0
-          href: 'https://msdn.microsoft.com/library/azure/dn169556.aspx'
-    - name: 最佳作法
-      href: app-service-best-practices.md
-    - name: 範例
-      href: 'https://azure.microsoft.com/resources/samples/?service=app-service'
-    - name: 影片
-      href: 'https://azure.microsoft.com/resources/videos/index/?services=app-service'
-    - name: Cookbooks
-      items:
-        - name: 參考架構
-          href: /azure/architecture/reference-architectures/app-service-web-app/
-        - name: 部署指令碼
-          href: 'https://azure.microsoft.com/documentation/scripts/'
-    - name: 疑難排解
-      items:
-        - name: 使用 Visual Studio 進行疑難排解
-          href: web-sites-dotnet-troubleshoot-visual-studio.md
-        - name: 針對 Node.js 應用程式進行疑難排解
-          href: app-service-web-nodejs-best-practices-and-troubleshoot-guide.md
-        - name: 針對 HTTP 502 與 503 進行疑難排解
-          href: app-service-web-troubleshoot-http-502-http-503.md
-        - name: 針對效能問題進行疑難排解
-          href: app-service-web-troubleshoot-performance-degradation.md
-        - name: 常見問題集
-          items:
-            - name: 可用性、效能和應用程式常見問題
-              href: app-service-web-availability-performance-application-issues-faq.md
-            - name: 部署常見問題
-              href: app-service-web-deployment-faq.md
-            - name: 開放原始碼技術常見問題
-              href: app-service-web-open-source-technologies-faq.md
-            - name: 設定和管理常見問題
-              href: app-service-web-configuration-and-management-faq.md
+      - name: 可用性、效能和應用程式常見問題
+        href: app-service-web-availability-performance-application-issues-faq.md
+      - name: 部署常見問題
+        href: app-service-web-deployment-faq.md
+      - name: 開放原始碼技術常見問題
+        href: app-service-web-open-source-technologies-faq.md
+      - name: 設定和管理常見問題
+        href: app-service-web-configuration-and-management-faq.md
+  - name: IP 位址變更
+    items:
+    - name: 輸入 IP 位址
+      href: ip-address-change-inbound.md
+    - name: 輸出 IP 位址
+      href: ip-address-change-outbound.md
+    - name: SSL 位址
+      href: ip-address-change-ssl.md
+ms.openlocfilehash: 78ab77477c4aa80f955c2350ea0d0acddb258b94
+ms.sourcegitcommit: ad08b2db50d63c8f550575d2e7bb9a0852efb12f
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/26/2018
+ms.locfileid: "47223776"

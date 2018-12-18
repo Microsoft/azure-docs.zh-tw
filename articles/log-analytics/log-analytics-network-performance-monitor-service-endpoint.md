@@ -1,6 +1,6 @@
 ---
 title: Azure Log Analytics 中的網路效能監視器方案 | Microsoft Docs
-description: 使用網路效能監控中的服務端點管理員功能，對任何具有已開啟 TCP 通訊埠的端點進行網路連線監視。
+description: 使用網路效能監控中的服務連線能力監視功能，對任何具有已開啟 TCP 連接埠的端點進行網路連線監視。
 services: log-analytics
 documentationcenter: ''
 author: abshamsft
@@ -11,20 +11,22 @@ ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 02/20/2018
 ms.author: abshamsft
-ms.openlocfilehash: b21d711e59ddc762eaf72f49e501d9f324d75105
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.component: na
+ms.openlocfilehash: 3c9352e8e4aee7817b1195c15f74503e86e597ea
+ms.sourcegitcommit: e0834ad0bad38f4fb007053a472bde918d69f6cb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37434914"
 ---
-# <a name="service-endpoint-monitor"></a>服務端點監視
+# <a name="service-connectivity-monitor"></a>服務連線能力監視
 
-您可以使用[網路效能監控](log-analytics-network-performance-monitor.md)中的服務端點監視功能，對任何具有已開啟 TCP 通訊埠的端點進行網路連線監視。 這類端點包括網站、SaaS 應用程式、PaaS 應用程式和 SQL 資料庫。 
+您可以使用[網路效能監控](log-analytics-network-performance-monitor.md)中的服務連線能力監視功能，對任何具有已開啟 TCP 連接埠的端點進行網路連線監視。 這類端點包括網站、SaaS 應用程式、PaaS 應用程式和 SQL 資料庫。 
 
-您可以使用服務端點監視來執行下列功能： 
+您可以使用服務連線能力監視來執行下列功能： 
 
 - 監視多個分公司或位置與您的應用程式和網路服務的網路連線。 應用程式和網路服務包括 Office 365、Dynamics CRM、內部企業營運系統應用程式及 SQL 資料庫。
 - 使用內建測試來監視 Office365 和 Dynamics365 端點的網路連線。 
@@ -33,7 +35,7 @@ ms.lasthandoff: 03/28/2018
 - 檢視拓撲地圖上每個躍點所提供的延遲，識別可能導致應用程式效能低落的作用點。
 
 
-![服務端點監視](media/log-analytics-network-performance-monitor/service-endpoint-intro.png)
+![服務連線能力監視](media/log-analytics-network-performance-monitor/service-endpoint-intro.png)
 
 
 ## <a name="configuration"></a>組態 
@@ -42,7 +44,7 @@ ms.lasthandoff: 03/28/2018
 ![設定網路效能監控](media/log-analytics-network-performance-monitor/npm-configure-button.png)
 
 
-### <a name="configure-operations-management-suite-agents-for-monitoring"></a>設定用來監視的 Operations Management Suite 代理程式
+### <a name="configure-operations-management-suite-agents-for-monitoring"></a>設定用於監視的 Operations Management Suite 代理程式
 在用於監視的節點上啟用下列防火牆規則，讓解決方案可以探索從您的節點到服務端點的拓撲： 
 
 ```
@@ -51,14 +53,14 @@ netsh advfirewall firewall add rule name="NPMDICMPV6Echo" protocol="icmpv6:128,a
 netsh advfirewall firewall add rule name="NPMDICMPV4DestinationUnreachable" protocol="icmpv4:3,any" dir=in action=allow 
 netsh advfirewall firewall add rule name="NPMDICMPV6DestinationUnreachable" protocol="icmpv6:1,any" dir=in action=allow 
 netsh advfirewall firewall add rule name="NPMDICMPV4TimeExceeded" protocol="icmpv4:11,any" dir=in action=allow 
-netsh advfirewall firewall add rule name="NPMDICMPV6TimeExceeded" protocol="icmpv6:3,any" dir=in action 
+netsh advfirewall firewall add rule name="NPMDICMPV6TimeExceeded" protocol="icmpv6:3,any" dir=in action=allow 
 ```
 
-### <a name="create-service-endpoint-monitor-tests"></a>建立服務端點監視測試 
+### <a name="create-service-connectivity-monitor-tests"></a>建立服務連線能力監視測試 
 
 開始建立您的測試，來監視服務端點的網路連線。
 
-1. 選取 [服務端點監視] 索引標籤。
+1. 選取 [服務連線能力監視] 索引標籤。
 2. 選取 [新增測試] 並輸入測試名稱和描述。 
 3. 選取測試類型：<br>
 
@@ -77,35 +79,35 @@ netsh advfirewall firewall add rule name="NPMDICMPV6TimeExceeded" protocol="icmp
 10. 選擇監視條件。 您可以輸入閾值，以設定健康情況事件產生的自訂閾值。 只要條件的值高於針對所選網路或子網路配對選取的閾值時，就會產生健康情況事件。 
 11. 選取 [儲存] 以儲存組態。 
 
-    ![服務端點監視測試組態](media/log-analytics-network-performance-monitor/service-endpoint-configuration.png)
+    ![服務連線能力監視測試組態](media/log-analytics-network-performance-monitor/service-endpoint-configuration.png)
 
 
 
 ## <a name="walkthrough"></a>逐步介紹 
 
-移至 [網路效能監控] 儀表板檢視。 若要取得您建立之不同測試的健康情況摘要，請查閱 [服務端點監視] 頁面。 
+移至 [網路效能監控] 儀表板檢視。 若要對您所建立的不同測試取得健康情況摘要，請查看 [服務連線能力監視] 頁面。 
 
-![服務端點監視頁面](media/log-analytics-network-performance-monitor/service-endpoint-blade.png)
+![服務連線能力監視頁面](media/log-analytics-network-performance-monitor/service-endpoint-blade.png)
 
 選取圖格以檢視 [測試] 頁面上的測試詳細資料。 在左側資料表中，您可以檢視所有測試的時間點健康情況和服務回應時間的值、網路延遲及封包遺失。 使用 [網路狀態錄製器] 控制項，檢視過去另一個時間的網路快照集。 在資料表中選取您要調查的測試。 您可以在右側窗格的圖表中，檢視遺失、延遲和回應時間值的歷史趨勢。 選取 [測試詳細資料] 連結，即可檢視每個節點的效能。
 
-![服務端點監視測試](media/log-analytics-network-performance-monitor/service-endpoint-tests.png)
+![服務連線能力監視測試](media/log-analytics-network-performance-monitor/service-endpoint-tests.png)
 
 在 [測試節點] 檢視中，您可以觀察來自每個節點的網路連線。 選取效能降低的節點。 這是能觀察到應用程式執行速度緩慢的節點。
 
 若要判斷應用程式效能低落是因為網路還是因為應用程式提供者端的某些問題所造成，可觀察應用程式回應時間與網路延遲之間的相互關聯。 
 
-* **應用程式問題：**如果回應時間突然增加，但網路延遲是一致的，則表示網路運作正常，而問題可能是應用程式端的問題所致。 
+* **應用程式問題：** 如果回應時間突然增加，但網路延遲是一致的，則表示網路運作正常，而問題可能是應用程式端的問題所致。 
 
-    ![服務端點監視應用程式問題](media/log-analytics-network-performance-monitor/service-endpoint-application-issue.png)
+    ![服務連線能力監視應用程式問題](media/log-analytics-network-performance-monitor/service-endpoint-application-issue.png)
 
-* **網路問題：**如果回應時間尖峰與對應的網路延遲尖峰同時出現，則表示回應時間增加可能是網路延遲的增加所致。 
+* **網路問題：** 如果回應時間尖峰與對應的網路延遲尖峰同時出現，則表示回應時間增加可能是網路延遲的增加所致。 
 
-    ![服務端點監視網路問題](media/log-analytics-network-performance-monitor/service-endpoint-network-issue.png)
+    ![服務連線能力監視網路問題](media/log-analytics-network-performance-monitor/service-endpoint-network-issue.png)
 
 在您判定問題是因為網路之後，選取 [拓撲] 檢視連結，以識別拓撲地圖上的問題躍點。 範例如下圖所示。 節點與應用程式端點之間的 105 毫秒延遲總計之中，有 96 毫秒是因為躍點標示為紅色。 識別出問題躍點之後，您可以採取矯正措施。 
 
-![服務端點監視測試](media/log-analytics-network-performance-monitor/service-endpoint-topology.png)
+![服務連線能力監視測試](media/log-analytics-network-performance-monitor/service-endpoint-topology.png)
 
 ## <a name="diagnostics"></a>診斷 
 

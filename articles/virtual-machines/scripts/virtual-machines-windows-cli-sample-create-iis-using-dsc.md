@@ -1,13 +1,13 @@
 ---
-title: "Azure CLI 指令碼範例 - 使用 DSC 建立具有 IIS 的 Windows Server 2016 VM | Microsoft Docs"
-description: "Azure CLI 指令碼範例 - 使用 DSC 建立具有 IIS 的 Windows Server 2016 VM"
+title: Azure CLI 指令碼範例 - 使用 DSC 建立具有 IIS 的 Windows Server 2016 VM | Microsoft Docs
+description: Azure CLI 指令碼範例 - 使用 DSC 建立具有 IIS 的 Windows Server 2016 VM
 services: virtual-machines-windows
 documentationcenter: virtual-machines
 author: rickstercdn
-manager: timlt
+manager: jeconnoc
 editor: tysonn
-tags: 
-ms.assetid: 
+tags: ''
+ms.assetid: ''
 ms.service: virtual-machines-Windows
 ms.devlang: azurecli
 ms.topic: sample
@@ -16,11 +16,12 @@ ms.workload: infrastructure
 ms.date: 02/23/2017
 ms.author: rclaus
 ms.custom: mvc
-ms.openlocfilehash: 7cb0532eff41ab28c9769a7582cc810f768859c7
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+ms.openlocfilehash: bb3f10c44ddf8ded35f4d80b599cda7d44226652
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34654652"
 ---
 # <a name="create-a-vm-with-iis-using-dsc"></a>使用 DSC 建立具有 IIS 的 VM
 

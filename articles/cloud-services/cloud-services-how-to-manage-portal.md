@@ -1,11 +1,11 @@
 ---
-title: "常見的雲端服務管理工作 | Microsoft Docs"
-description: "了解如何在 Azure 入口網站中管理雲端服務。 這些範例使用 Azure 入口網站。"
+title: 常見的雲端服務管理工作 | Microsoft Docs
+description: 了解如何在 Azure 入口網站中管理雲端服務。 這些範例使用 Azure 入口網站。
 services: cloud-services
-documentationcenter: 
-author: Thraka
+documentationcenter: ''
+author: jpconnock
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: cb218ad9-77d4-4149-83db-71159c00767e
 ms.service: cloud-services
 ms.workload: tbd
@@ -13,12 +13,13 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 07/05/2017
-ms.author: adegeo
-ms.openlocfilehash: e60bf5c82e68d49abaa44d80ac9fafba2d8265da
-ms.sourcegitcommit: 059dae3d8a0e716adc95ad2296843a45745a415d
+ms.author: jeconnoc
+ms.openlocfilehash: e9f4153c68f0a2a4ce83f900ff63152311163ff6
+ms.sourcegitcommit: 387d7edd387a478db181ca639db8a8e43d0d75f7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 08/10/2018
+ms.locfileid: "40038038"
 ---
 # <a name="manage-cloud-services-in-the-azure-portal"></a>在 Azure 入口網站中管理雲端服務
 在 Azure 入口網站的 [雲端服務] 區域中，您可以：
@@ -82,7 +83,7 @@ ms.lasthandoff: 02/09/2018
 
 - 如果您想要讓生產環境位置使用靜態 IP 位址，就必須為您的預備位置也保留一個靜態 IP 位址。 否則，交換會失敗。
 
-- 您的所有角色執行個體必須都處於執行中狀態，您才能執行交換。 您可以在 Azure 入口網站的 [概觀] 刀鋒視窗上檢查您的執行個體狀態。 或者，也可以使用 Windows PowerShell 的 [Get-AzureRole](/powershell/module/azure/get-azurerole?view=azuresmps-3.7.0) 命令。
+- 您的所有角色執行個體必須都處於執行中狀態，您才能執行交換。 您可以在 Azure 入口網站的 [概觀] 刀鋒視窗上檢查您的執行個體狀態。 或者，也可以使用 Windows PowerShell 的 [Get-AzureRole](/powershell/module/servicemanagement/azure/get-azurerole?view=azuresmps-3.7.0) 命令。
 
 請注意，客體 OS 更新和服務修復作業也可能導致部署交換失敗。 如需詳細資訊，請參閱[對雲端服務部署問題進行疑難排解](cloud-services-troubleshoot-deployment-problems.md)。
 

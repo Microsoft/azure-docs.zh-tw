@@ -1,10 +1,10 @@
 ---
-title: "疑難排解 Azure 流量管理員上的已降級狀態"
-description: "如何在流量管理員顯示為降級狀態時疑難排解流量管理員設定檔。"
+title: 疑難排解 Azure 流量管理員上的已降級狀態
+description: 如何在流量管理員顯示為降級狀態時疑難排解流量管理員設定檔。
 services: traffic-manager
-documentationcenter: 
-author: kumudd
-manager: timlt
+documentationcenter: ''
+author: chadmath
+manager: cshepard
 ms.assetid: 8af0433d-e61b-4761-adcc-7bc9b8142fc6
 ms.service: traffic-manager
 ms.devlang: na
@@ -12,12 +12,13 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/03/2017
-ms.author: kumud
-ms.openlocfilehash: b1d00fb84695d2289f37647f55a7c56cf28c8c96
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.author: genli
+ms.openlocfilehash: f5b2f471b13db67411f15f32abad5afc644c04ba
+ms.sourcegitcommit: ca05dd10784c0651da12c4d58fb9ad40fdcd9b10
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 05/03/2018
+ms.locfileid: "32777725"
 ---
 # <a name="troubleshooting-degraded-state-on-azure-traffic-manager"></a>疑難排解 Azure 流量管理員上的已降級狀態
 
@@ -48,7 +49,7 @@ ms.lasthandoff: 10/11/2017
 
 您也可以在 Internet Explorer 中，使用 [F12 偵錯工具] 的 [網路] 索引標籤來檢視 HTTP 回應。
 
-在此範例中，我們想要查看來自探查 URL http://watestsdp2008r2.cloudapp.net:80/Probe 的回應。 下列 PowerShell 範例說明問題。
+在此範例中，我們想要查看來自下列探查 URL 的回應：http://watestsdp2008r2.cloudapp.net:80/Probe。 下列 PowerShell 範例說明問題。
 
 ```powershell
 Invoke-WebRequest 'http://watestsdp2008r2.cloudapp.net/Probe' -MaximumRedirection 0 -ErrorAction SilentlyContinue | Select-Object StatusCode,StatusDescription

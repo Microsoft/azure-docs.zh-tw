@@ -21,6 +21,7 @@ ms.sourcegitcommit: 20d103fb8658b29b48115782fe01f76239b240aa
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 04/03/2018
+ms.locfileid: "30316074"
 ---
 # <a name="azure-cli-examples-for-azure-batch"></a>適用於 Azure Batch 的 Azure CLI 範例
 

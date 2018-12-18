@@ -1,25 +1,19 @@
 ---
-title: "Azure Analysis Services 教學課程第 12 課：在 Excel 中進行分析 | Microsoft Docs"
-description: "說明如何在 Azure Analysis Services 教學課程專案中使用「在 Excel 中進行分析」。"
-services: analysis-services
-documentationcenter: 
-author: Minewiskan
+title: Azure Analysis Services 教學課程第 12 課：在 Excel 中進行分析 | Microsoft Docs
+description: 說明如何在 Azure Analysis Services 教學課程專案中使用「在 Excel 中進行分析」。
+author: minewiskan
 manager: kfile
-editor: 
-tags: 
-ms.assetid: 
-ms.service: analysis-services
-ms.devlang: NA
-ms.topic: get-started-article
-ms.tgt_pltfrm: NA
-ms.workload: na
-ms.date: 01/08/2018
+ms.service: azure-analysis-services
+ms.topic: conceptual
+ms.date: 07/03/2018
 ms.author: owend
-ms.openlocfilehash: 8d7f79db612ee02eaf585f9b45d888b3533a91b2
-ms.sourcegitcommit: 176c575aea7602682afd6214880aad0be6167c52
+ms.reviewer: minewiskan
+ms.openlocfilehash: 1e487f6778c45e554f95489e62ac2dedd01ee3f0
+ms.sourcegitcommit: 86cb3855e1368e5a74f21fdd71684c78a1f907ac
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/09/2018
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37442947"
 ---
 # <a name="analyze-in-excel"></a>使用 Excel 分析
 

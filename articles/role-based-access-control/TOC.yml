@@ -1,0 +1,76 @@
+- name: 角色型存取控制文件
+  href: index.yml
+  items: null
+- name: 概觀
+  items:
+    - name: 什麼是 RBAC？
+      href: overview.md
+    - name: 了解不同的角色
+      href: rbac-and-directory-admin-roles.md
+- name: 快速入門
+  items:
+    - name: 授與使用者存取權
+      href: quickstart-assign-role-user-portal.md
+- name: 教學課程
+  items:
+    - name: 授與使用者存取權 - PowerShell
+      href: tutorial-role-assignments-user-powershell.md
+    - name: 授與群組存取權 - PowerShell
+      href: tutorial-role-assignments-group-powershell.md
+    - name: 建立自訂角色 - PowerShell
+      href: tutorial-custom-role-powershell.md
+    - name: 建立自訂角色 - CLI
+      href: tutorial-custom-role-cli.md
+- name: 概念
+  items:
+    - name: 了解角色定義
+      href: role-definitions.md
+    - name: RBAC 的 Privileged Identity Management (PIM)
+      href: pim-azure-resource.md
+    - name: Azure 管理的條件式存取
+      href: conditional-access-azure-management.md
+- name: 使用說明指南
+  items:
+    - name: 管理存取權
+      items:
+        - name: 入口網站
+          href: role-assignments-portal.md
+        - name: PowerShell
+          href: role-assignments-powershell.md
+        - name: Azure CLI
+          href: role-assignments-cli.md
+        - name: REST API
+          href: role-assignments-rest.md
+        - name: 範本
+          href: role-assignments-template.md
+    - name: 自訂角色
+      href: custom-roles.md
+      items:
+        - name: PowerShell
+          href: custom-roles-powershell.md
+        - name: Azure CLI
+          href: custom-roles-cli.md
+        - name: REST API
+          href: custom-roles-rest.md
+    - name: 檢視活動記錄檔
+      href: change-history-report.md
+    - name: 提升全域管理員的存取權限
+      href: elevate-access-global-admin.md
+    - name: 管理外部使用者的存取
+      href: role-assignments-external-users.md
+    - name: 疑難排解
+      href: troubleshooting.md
+- name: 參考
+  items:
+    - name: 內建角色
+      href: built-in-roles.md
+    - name: 資源提供者作業
+      href: resource-provider-operations.md
+    - name: RBAC 限制
+      href: '../azure-subscription-service-limits.md#role-based-access-control-limits'
+    - name: Azure PowerShell
+      href: /powershell/module/azurerm.resources
+    - name: Azure CLI
+      href: /cli/azure/role?view=azure-cli-latest
+    - name: REST API
+      href: /rest/api/authorization/

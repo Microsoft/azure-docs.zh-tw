@@ -1,11 +1,11 @@
 ---
-title: "使用 Azure CLI 選取 Linux VM 映像 | Microsoft Docs"
-description: "了解如何使用 Azure CLI 來判斷發行者、優惠、SKU 和 Marketplace VM 映像的版本。"
+title: 使用 Azure CLI 選取 Linux VM 映像 | Microsoft Docs
+description: 了解如何使用 Azure CLI 來判斷發行者、供應項目、SKU 和 Marketplace VM 映像的版本。
 services: virtual-machines-linux
-documentationcenter: 
+documentationcenter: ''
 author: dlepow
 manager: jeconnoc
-editor: 
+editor: ''
 tags: azure-resource-manager
 ms.assetid: 7a858e38-4f17-4e8e-a28a-c7f801101721
 ms.service: virtual-machines-linux
@@ -16,16 +16,19 @@ ms.workload: infrastructure
 ms.date: 02/28/2018
 ms.author: danlep
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: c65ebbc8a61c13b96364dadde45bd4bca828e337
-ms.sourcegitcommit: 782d5955e1bec50a17d9366a8e2bf583559dca9e
+ms.openlocfilehash: 33ffb9d1685f3d76e884ae0d90545f659b5ec87c
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/02/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46953340"
 ---
 # <a name="how-to-find-linux-vm-images-in-the-azure-marketplace-with-the-azure-cli"></a>如何使用 Azure CLI 在 Azure Marketplace 中尋找 Linux VM 映像
-本主題描述如何在 Azure Marketplace 中使用 Azure CLI 2.0 尋找 Windows VM 映像。 當您使用 CLI、Resource Manager 範本或其他工具以程式設計方式建立 VM 時，使用此資訊來指定 Marketplace 映像。
+本主題描述如何在 Azure Marketplace 中使用 Azure CLI 尋找 VM 映像。 當您使用 CLI、Resource Manager 範本或其他工具以程式設計方式建立 VM 時，使用此資訊來指定 Marketplace 映像。
 
-請確定您[已安裝](/cli/azure/install-az-cli2)最新的 Azure CLI 2.0 並登入 Azure 帳戶 (`az login`)。
+也請透過 [Azure Marketplace](https://azuremarketplace.microsoft.com/) 店面、[Azure 入口網站](https://portal.azure.com)或 [Azure PowerShell](../windows/cli-ps-findimage.md) 瀏覽可用的映像和供應項目。 
+
+請確定您已安裝最新的 [Azure CLI](/cli/azure/install-azure-cli) 並登入 Azure 帳戶 (`az login`)。
 
 [!INCLUDE [virtual-machines-common-image-terms](../../../includes/virtual-machines-common-image-terms.md)]
 
@@ -57,7 +60,7 @@ UbuntuServer   Canonical               16.04-LTS           Canonical:UbuntuServe
 
 若要在 Marketplace 中尋找特定 VM 映像，請使用 `az vm image list` 命令搭配 `--all` 選項。 這個版本的命令需要一些時間才能完成，而且可能會傳回冗長的輸出，因此您通常會依 `--publisher` 或其他參數篩選清單。 
 
-例如，以下命令會顯示所有的 Debian 優惠 (請記住，如果沒有 `--all` 參數，則只會搜尋通用映像的本機快取)：
+例如，以下命令會顯示所有的 Debian 供應項目 (請記住，如果沒有 `--all` 參數，則只會搜尋通用映像的本機快取)：
 
 ```azurecli
 az vm image list --offer Debian --all --output table 
@@ -127,8 +130,8 @@ Debian   credativ     8                  credativ:Debian:8:8.0.201706210        
 要在位置中找到映像的另一個方法是在序列中執行 [az vm image list-publishers](/cli/azure/vm/image#az_vm_image_list_publishers)、[az vm image list-offers](/cli/azure/vm/image#az_vm_image_list_offers) 和 [az vm image list-skus](/cli/azure/vm/image#az_vm_image_list_skus) 命令。 您可以使用這些命令來判斷下列的值：
 
 1. 列出映像發行者。
-2. 針對指定的發行者，列出其提供項目。
-3. 針對指定的提供項目，列出其 SKU。
+2. 針對指定的發行者，列出其供應項目。
+3. 針對指定的供應項目，列出其 SKU。
 
 然後，對於選取的 SKU，您可以選擇要部署的版本。
 
@@ -157,7 +160,7 @@ westus      activeeon
 westus      adatao
 ...
 ```
-使用這項資訊從特定的發行者尋找優惠。 例如，如果 Canonical 是位於美國西部的映像發行者，執行 `azure vm image list-offers` 可找到其供應項目。 傳遞位置和發行者，如下列範例所示：
+使用這項資訊從特定的發行者尋找供應項目。 例如，如果 Canonical 是位於美國西部的映像發行者，執行 `azure vm image list-offers` 可找到其供應項目。 傳遞位置和發行者，如下列範例所示：
 
 ```azurecli
 az vm image list-offers --location westus --publisher Canonical --output table
@@ -176,7 +179,7 @@ westus      Ubuntu_Core
 westus      Ubuntu_Snappy_Core
 westus      Ubuntu_Snappy_Core_Docker
 ```
-您看到在美國西部區域中，Canonical 在 Azure 上發佈 *UbuntuServer* 優惠。 但是，是什麼 SKU？ 若要取得這些值，請執行 `azure vm image list-skus` 並設定您探索到的位置、發行者和功能項目：
+您看到在美國西部區域中，Canonical 在 Azure 上發佈 *UbuntuServer* 供應項目。 但是，是什麼 SKU？ 若要取得這些值，請執行 `azure vm image list-skus` 並設定您探索到的位置、發行者和供應項目：
 
 ```azurecli
 az vm image list-skus --location westus --publisher Canonical --offer UbuntuServer --output table
@@ -282,16 +285,16 @@ az vm image show --location westus --publisher Canonical --offer UbuntuServer --
 針對 RabbitMQ Certified by Bitnami 映像執行類似的命令會顯示下列 `plan` 屬性：`name`、`product` 和 `publisher`。 (某些映像也有 `promotion code` 屬性。)若要部署此映像，請參閱下列各節，以接受條款並啟用以程式設計方式部署。
 
 ```azurecli
-az vm image show --location westus --publisher bitnami --offer rabbitmq --sku rabbitmq --version 3.7.1801130730
+az vm image show --location westus --publisher bitnami --offer rabbitmq --sku rabbitmq --version 3.7.1807171506
 ```
 輸出：
 
 ```
 {
   "dataDiskImages": [],
-  "id": "/Subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/Providers/Microsoft.Compute/Locations/westus/Publishers/bitnami/ArtifactTypes/VMImage/Offers/rabbitmq/Skus/rabbitmq/Versions/3.7.1801130730",
+  "id": "/Subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/Providers/Microsoft.Compute/Locations/westus/Publishers/bitnami/ArtifactTypes/VMImage/Offers/rabbitmq/Skus/rabbitmq/Versions/3.7.1807171506",
   "location": "westus",
-  "name": "3.7.1801130730",
+  "name": "3.7.1807171506",
   "osDiskImage": {
     "operatingSystem": "Linux"
   },

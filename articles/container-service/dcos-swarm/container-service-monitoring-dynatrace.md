@@ -1,19 +1,20 @@
 ---
-title: "監視 Azure DC/OS 叢集 - Dynatrace"
-description: "使用 Dynatrace 監視 Azure Container Service DC/OS 叢集。 使用 DC/OS 儀表板部署 Dynatrace OneAgent。"
+title: 監視 Azure DC/OS 叢集 - Dynatrace
+description: 使用 Dynatrace 監視 Azure Container Service DC/OS 叢集。 使用 DC/OS 儀表板部署 Dynatrace OneAgent。
 services: container-service
 author: MartinGoodwell
-manager: timlt
+manager: jeconnoc
 ms.service: container-service
 ms.topic: article
 ms.date: 12/13/2016
 ms.author: rogardle
 ms.custom: mvc
-ms.openlocfilehash: 52a8a05f050017f5062ff986bad7ec2e6a650aa5
-ms.sourcegitcommit: 5d3e99478a5f26e92d1e7f3cec6b0ff5fbd7cedf
+ms.openlocfilehash: 3d1bfc3bb61781d487c40831edd5da6fcb5a7df9
+ms.sourcegitcommit: e2adef58c03b0a780173df2d988907b5cb809c82
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/06/2017
+ms.lasthandoff: 04/28/2018
+ms.locfileid: "32162036"
 ---
 # <a name="monitor-an-azure-container-service-dcos-cluster-with-dynatrace-saasmanaged"></a>使用 Dynatrace SaaS/受控監視 Azure Container Service DC/OS 叢集
 
@@ -32,7 +33,7 @@ Dynatrace 是高動態容器和叢集環境適用的雲端原生監視解決方�
 ## <a name="configure-a-dynatrace-deployment-with-marathon"></a>使用 Marathon 設定 Dynatrace 部署
 這些步驟示範如何使用 Marathon 設定 Dynatrace 應用程式並將它部署到您的叢集。
 
-1. 透過 [http://localhost:80/](http://localhost:80/)存取 DC/OS UI。 在進入 DC/OS UI 後，瀏覽至 **Universe**，然後搜尋 **Dynatrace**。
+1. 透過 [http://localhost:80/](http://localhost:80/) 存取 DC/OS UI。 在進入 DC/OS UI 後，瀏覽至 **Universe**，然後搜尋 **Dynatrace**。
 
     ![DC/OS Universe 中的 Dynatrace](./media/container-service-monitoring-dynatrace/dynatrace-universe.png)
 

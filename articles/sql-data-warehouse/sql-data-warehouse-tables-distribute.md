@@ -1,42 +1,39 @@
 ---
-title: "分散式資料表設計指引 - Azure SQL 資料倉儲 | Microsoft Docs"
-description: "在 Azure SQL 資料倉儲中設計雜湊分散式資料表和循環配置資源資料表的建議。"
+title: 分散式資料表設計指引 - Azure SQL 資料倉儲 | Microsoft Docs
+description: 在 Azure SQL 資料倉儲中設計雜湊分散式資料表和循環配置資源分散式資料表的建議。
 services: sql-data-warehouse
-documentationcenter: NA
-author: barbkess
-manager: jenniehubbard
-editor: 
+author: ronortloff
+manager: craigg
 ms.service: sql-data-warehouse
-ms.devlang: NA
-ms.topic: article
-ms.tgt_pltfrm: NA
-ms.workload: data-services
-ms.custom: tables
-ms.date: 01/18/2018
-ms.author: barbkess
-ms.openlocfilehash: 3c86b89da796223336e3a0d9dd809ae140d6911e
-ms.sourcegitcommit: 9d317dabf4a5cca13308c50a10349af0e72e1b7e
+ms.topic: conceptual
+ms.component: implement
+ms.date: 04/17/2018
+ms.author: rortloff
+ms.reviewer: igorstan
+ms.openlocfilehash: 36db91cd7c4dad3c28c0c110ee837ca6d1284959
+ms.sourcegitcommit: e2ea404126bdd990570b4417794d63367a417856
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 09/14/2018
+ms.locfileid: "45575371"
 ---
 # <a name="guidance-for-designing-distributed-tables-in-azure-sql-data-warehouse"></a>在 Azure SQL 資料倉儲中設計分散式資料表的指引
+在 Azure SQL 資料倉儲中設計雜湊分散式資料表和循環配置資源分散式資料表的建議。
 
-本文提供在 Azure SQL 資料倉儲中設計分散式資料表的建議。 雜湊分散式資料表是本文的重點，其可改善大型事實資料表的查詢效能。 循環配置資源資料表可用於改善載入速度。 這些設計選擇對於改善查詢和載入效能有顯著的影響。
+本文假設您已熟悉「SQL 資料倉儲」中的資料散發和資料移動概念。  如需詳細資訊，請參閱[Azure SQL 資料倉儲 - 大量平行處理 (MPP) 架構](massively-parallel-processing-mpp-architecture.md)。 
 
-## <a name="prerequisites"></a>先決條件
-本文假設您已熟悉「SQL 資料倉儲」中的資料散發和資料移動概念。  如需詳細資訊，請參閱[架構](massively-parallel-processing-mpp-architecture.md)文章。 
+## <a name="what-is-a-distributed-table"></a>什麼是分散式資料表？
+分散式資料表會顯示為單一資料表，但資料列實際上會儲存在 60 個散發。 這些資料列是透過雜湊或循環配置資源演算法來散發。  
+
+**雜湊分散式資料表**是本文的重點，其可改善大型事實資料表的查詢效能。 **循環配置資源資料表**可用於改善載入速度。 這些設計選擇對於改善查詢和載入效能有顯著的影響。
+
+另一個資料表儲存體選項是將小型資料表複寫到所有計算節點。 如需詳細資訊，請參閱[複寫資料表的設計指引](design-guidance-for-replicated-tables.md)。 若要在三個選項中快速做選擇，請參閱[資料表概觀](sql-data-warehouse-tables-overview.md)中的分散式資料表。 
 
 在資料表設計過程中，請儘可能了解您的資料及查詢資料的方式。  例如，請思考一下下列問題：
 
 - 資料表的大小為何？   
 - 資料表的重新整理頻率為何？   
 - 我是否在資料倉儲中有事實資料表和維度資料表？   
-
-## <a name="what-is-a-distributed-table"></a>什麼是分散式資料表？
-分散式資料表會顯示為單一資料表，但資料列實際上會儲存在 60 個散發。 這些資料列是透過雜湊或循環配置資源演算法來散發。 
-
-另一個資料表儲存體選項是將小型資料表複寫到所有計算節點。 如需詳細資訊，請參閱[複寫資料表的設計指引](design-guidance-for-replicated-tables.md)。 若要在三個選項中快速做選擇，請參閱[資料表概觀](sql-data-warehouse-tables-overview.md)中的分散式資料表。 
 
 
 ### <a name="hash-distributed"></a>雜湊分散式
@@ -67,7 +64,7 @@ ms.lasthandoff: 02/01/2018
 - 如果此聯結比查詢中的其他聯結較不重要
 - 當資料表是暫存預備資料表時
 
-[從 Azure 儲存體 blob 載入資料](load-data-from-azure-blob-storage-using-polybase.md#load-the-data-into-your-data-warehouse)教學課程會提供範例，示範如何將資料載入循環配置資源的暫存資料表。
+[將紐約計程車資料載入 Azure SQL 資料倉儲](load-data-from-azure-blob-storage-using-polybase.md#load-the-data-into-your-data-warehouse)教學課程會提供範例，示範如何將資料載入循環配置資源的暫存資料表。
 
 
 ## <a name="choosing-a-distribution-column"></a>選擇散發資料行
@@ -91,7 +88,7 @@ WITH
 ;
 ``` 
 
-選擇散發資料行是很重要的設計決策，因為此資料行中的值會決定資料列的散發方式。 最佳選擇取決於許多因素，通常需要權衡取捨。 不過，如果您未在第一次就選擇最佳資料行，您可以使用 [CREATE TABLE AS SELECT (CTAS)](https://docs.microsoft.com/sql/t-sql/statements/create-table-as-select-azure-sql-data-warehouse) 來重建具有不同散發資料行的資料表。 
+選擇散發資料行是很重要的設計決策，因為此資料行中的值會決定資料列的散發方式。 最佳選擇取決於許多因素，通常需要權衡取捨。 不過，如果您未在第一次就選擇最佳資料行，您可以使用 [CREATE TABLE AS SELECT (CTAS)](/sql/t-sql/statements/create-table-as-select-azure-sql-data-warehouse) 來重建具有不同散發資料行的資料表。 
 
 ### <a name="choose-a-distribution-column-that-does-not-require-updates"></a>選擇不需要更新的散發資料行
 除非您刪除資料列並以更新後的值插入新資料列，否則無法更新散發資料行。 因此，請選取具有靜態值的資料行。 
@@ -129,7 +126,7 @@ WITH
 將資料載入雜湊分散式資料表之後，請查看資料列如何平均散發於 60 個散發。 每個發佈區的資料列最多可有 10% 的變化，而且不會對效能產生顯著影響。 
 
 ### <a name="determine-if-the-table-has-data-skew"></a>判斷資料表是否有資料扭曲
-快速檢查資料扭曲的方法是使用 [DBCC PDW_SHOWSPACEUSED](https://docs.microsoft.com/sql/t-sql/database-console-commands/dbcc-pdw-showspaceused-transact-sql)。 下列 SQL 程式碼會傳回在 60 個散發的每個散發中儲存的資料表資料列數目。 為了達到平衡的效能，分散式資料表中的資料列應平均散發於所有散發。
+快速檢查資料扭曲的方法是使用 [DBCC PDW_SHOWSPACEUSED](/sql/t-sql/database-console-commands/dbcc-pdw-showspaceused-transact-sql)。 下列 SQL 程式碼會傳回在 60 個散發的每個散發中儲存的資料表資料列數目。 為了達到平衡的效能，分散式資料表中的資料列應平均散發於所有散發。
 
 ```sql
 -- Find data skew for a distributed table
@@ -177,7 +174,7 @@ order by two_part_name, row_count
 由於您無法變更現有資料表上的散發資料行，所以解決資料扭曲的典型方式就是重建具有不同散發資料行的資料表。  
 
 ### <a name="re-create-the-table-with-a-new-distribution-column"></a>重建具有新散發資料行的資料表
-此範例會使用 [CREATE TABLE AS SELECT](/sql/t-sql/statements/create-table-as-select-azure-sql-data-warehouse.md) 來重建具有不同雜湊散發資料行的資料表。
+此範例會使用 [CREATE TABLE AS SELECT](https://docs.microsoft.com/sql/t-sql/statements/create-table-as-select-azure-sql-data-warehouse?view=aps-pdw-2016-au7) 來重建具有不同雜湊散發資料行的資料表。
 
 ```sql
 CREATE TABLE [dbo].[FactInternetSales_CustomerKey]

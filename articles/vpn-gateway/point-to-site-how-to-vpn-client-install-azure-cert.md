@@ -1,52 +1,45 @@
 ---
-title: "安裝 P2S 用戶端憑證 | Azure"
-description: "安裝用於 P2S 憑證驗證的 Mac 或 Windows 用戶端憑證。"
+title: 安裝點對站用戶端憑證：Azure |Microsoft Docs
+description: 安裝用於 P2S 憑證驗證的用戶端憑證 - Windows、Mac 或 Linux。
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
-manager: jpconnock
-editor: 
-tags: azure-resource-manager, azure-service-management
-ms.assetid: 
 ms.service: vpn-gateway
-ms.devlang: na
 ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: infrastructure-services
-ms.date: 02/12/2018
+ms.date: 09/06/2018
 ms.author: cherylmc
-ms.openlocfilehash: de98201b65f5531f334aded1056f622cecb6e190
-ms.sourcegitcommit: 95500c068100d9c9415e8368bdffb1f1fd53714e
+ms.openlocfilehash: eec15b84e4bdb8df3fe84a53909d5da4b39545ff
+ms.sourcegitcommit: f3bd5c17a3a189f144008faf1acb9fabc5bc9ab7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 09/10/2018
+ms.locfileid: "44294437"
 ---
-# <a name="install-a-client-certificate-for-point-to-site-azure-certificate-authentication-connections"></a>安裝用於 Azure 點對站憑證驗證連線的用戶端憑證
+# <a name="install-client-certificates-for-p2s-certificate-authentication-connections"></a>安裝用於 P2S 憑證驗證連線的用戶端憑證
 
 使用 Azure 點對站憑證驗證來連線到虛擬網路的所有用戶端都必須有用戶端憑證。 本文可協助您安裝使用 P2S 連線至 VNet 時要供驗證使用的用戶端憑證。
 
-## <a name="generate"></a>產生並匯出用戶端憑證
+## <a name="generate"></a>取得用戶端憑證
 
-您可以透過使用企業 CA 解決方案所產生的根憑證來產生用戶端憑證，也可以透過自我簽署的根憑證來產生。 如需相關步驟，請參閱 [PowerShell](vpn-gateway-certificates-point-to-site.md) 或 [MakeCert](vpn-gateway-certificates-point-to-site-makecert.md) 指示。 在產生用戶端憑證後，請將它們匯出為 .pfx 檔案。 匯出時請務必包含整個憑證鏈結。
+無論您想要從哪個用戶端作業系統進行連線，都必須一律使用戶端憑證。 您可以透過使用企業 CA 解決方案所產生的根憑證來產生用戶端憑證，也可以透過自我簽署的根憑證來產生。 請參閱 [PowerShell](vpn-gateway-certificates-point-to-site.md)、[MakeCert](vpn-gateway-certificates-point-to-site-makecert.md) 或 [Linux](vpn-gateway-certificates-point-to-site-linux.md) 指示，來取得產生用戶端憑證的步驟。 
 
-## <a name="installwin"></a>在 Windows 用戶端上安裝憑證
+## <a name="installwin"></a>Windows
 
 [!INCLUDE [Install on Windows](../../includes/vpn-gateway-certificates-install-client-cert-include.md)]
 
-## <a name="installmac"></a>在 Mac 用戶端上安裝憑證
+## <a name="installmac"></a>Mac
 
-只有 Resource Manager 部署模型能支援 Mac VPN 用戶端。 傳統部署模型則不支援。
-
-> [!NOTE]
->  IKEv2 目前為預覽版。
+>[!NOTE]
+>只有 Resource Manager 部署模型能支援 Mac VPN 用戶端。 傳統部署模型則不支援。
+>
 >
 
 [!INCLUDE [Install on Mac](../../includes/vpn-gateway-certificates-install-mac-client-cert-include.md)]
 
+## <a name="installlinux"></a>Linux
+
+Linux 用戶端憑證會安裝在用戶端，是用戶端組態的一部分。 如需相關指示，請參閱[用戶端組態 - Linux](point-to-site-vpn-client-configuration-azure-cert.md#linuxinstallcli)。
+
 ## <a name="next-steps"></a>後續步驟
 
-繼續進行點對站組態步驟。
-
-* [Azure 入口網站](vpn-gateway-howto-point-to-site-resource-manager-portal.md)
-* [PowerShell](vpn-gateway-howto-point-to-site-rm-ps.md)
-* [Azure 入口網站 (傳統)](vpn-gateway-howto-point-to-site-classic-azure-portal.md)
+請繼續進行點對站設定步驟，以[建立和安裝 VPN 用戶端組態檔](point-to-site-vpn-client-configuration-azure-cert.md)。

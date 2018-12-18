@@ -1,26 +1,20 @@
 ---
-title: "使用 Apache Hive 作為 ETL 工具 - Azure HDInsight | Microsoft Docs"
-description: "使用 Apache Hive 在 Azure HDInsight 中擷取、轉換和載入 (ETL) 資料。"
+title: 使用 Apache Hive 作為 ETL 工具 - Azure HDInsight
+description: 使用 Apache Hive 在 Azure HDInsight 中擷取、轉換和載入 (ETL) 資料。
 services: hdinsight
-documentationcenter: 
-author: ashishthaps
-manager: jhubbard
-editor: cgronlun
-tags: azure-portal
-ms.assetid: 
 ms.service: hdinsight
-ms.custom: hdinsightactive
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 11/14/2017
+author: ashishthaps
 ms.author: ashishth
-ms.openlocfilehash: 6d0d7c8643551dde69a7bf785de72c1ca984c580
-ms.sourcegitcommit: e19742f674fcce0fd1b732e70679e444c7dfa729
+ms.reviewer: jasonh
+ms.custom: hdinsightactive
+ms.topic: conceptual
+ms.date: 11/14/2017
+ms.openlocfilehash: cd62083bc7bd0254084f0fc209540de929c25d06
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43042248"
 ---
 # <a name="use-apache-hive-as-an-extract-transform-and-load-etl-tool"></a>使用 Apache Hive 作為擷取、 轉換和載入 (ETL) 工具
 
@@ -98,4 +92,5 @@ ms.lasthandoff: 02/01/2018
 
 * [大規模 ETL](apache-hadoop-etl-at-scale.md)
 * [使用資料管線](../hdinsight-operationalize-data-pipeline.md)
+
 <!-- * [ETL Deep Dive](../hdinsight-etl-deep-dive.md) -->

@@ -1,12 +1,12 @@
 ---
-title: "長期函式中的繫結 - Azure"
-description: "如何使用 Azure Functions 之長期函式延伸模組的觸發程序和繫結。"
+title: 長期函式中的繫結 - Azure
+description: 如何使用 Azure Functions 之長期函式延伸模組的觸發程序和繫結。
 services: functions
 author: cgillum
 manager: cfowler
-editor: 
-tags: 
-keywords: 
+editor: ''
+tags: ''
+keywords: ''
 ms.service: functions
 ms.devlang: multiple
 ms.topic: article
@@ -14,11 +14,12 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 09/29/2017
 ms.author: azfuncdf
-ms.openlocfilehash: 8198fbe9f919638565357c61ba487e47a8f5229c
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.openlocfilehash: 370e6e2c569aaf6d9289bddccde2174b4dd2ee97
+ms.sourcegitcommit: e221d1a2e0fb245610a6dd886e7e74c362f06467
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 05/07/2018
+ms.locfileid: "33763351"
 ---
 # <a name="bindings-for-durable-functions-azure-functions"></a>長期函式中的繫結 (Azure Functions)
 
@@ -36,17 +37,12 @@ ms.lasthandoff: 02/21/2018
 {
     "name": "<Name of input parameter in function signature>",
     "orchestration": "<Optional - name of the orchestration>",
-    "version": "<Optional - version label of this orchestrator function>",
     "type": "orchestrationTrigger",
     "direction": "in"
 }
 ```
 
 * `orchestration` 是協調流程的名稱。 這是用戶端在想要啟動這個協調器函式的新執行個體時必須使用的值。 這是選用屬性。 如果未指定，會使用函式的名稱。
-* `version` 是協調流程的版本標籤。 啟動協調流程新執行個體的用戶端必須包含相符的版本標籤。 這是選用屬性。 如果未指定，會使用空字串。 如需有關版本設定的詳細資訊，請參閱[版本設定](durable-functions-versioning.md)。
-
-> [!NOTE]
-> 不建議現在設定 `orchestration` 或 `version` 屬性的值。
 
 此觸發程序繫結會在內部輪詢函式應用程式之預設儲存體帳戶中的一系列佇列。 這些佇列是延伸模組的內部實作詳細資料，這就是為什麼它們未在繫結屬性中明確設定。
 
@@ -69,12 +65,11 @@ ms.lasthandoff: 02/21/2018
 * **輸入** - 協調流程函式僅支援 [DurableOrchestrationContext](https://azure.github.io/azure-functions-durable-extension/api/Microsoft.Azure.WebJobs.DurableOrchestrationContext.html) 作為參數類型。 不支援直接在函式簽章中還原序列化輸入。 程式碼必須使用 [GetInput\<T>](https://azure.github.io/azure-functions-durable-extension/api/Microsoft.Azure.WebJobs.DurableOrchestrationContext.html#Microsoft_Azure_WebJobs_DurableOrchestrationContext_GetInput__1) 方法來擷取協調器函式輸入。 這些輸入必須是 JSON 可序列化類型。
 * **輸出** - 協調流程觸發程序支援輸出值以及輸入。 函式的傳回值會用來指派輸出值，而且必須是 JSON 可序列化。 如果函式傳回 `Task` 或 `void`，則 `null` 值將儲存為輸出。
 
-> [!NOTE]
-> 目前只在 C# 中支援協調流程觸發程序。
-
 ### <a name="trigger-sample"></a>觸發程序範例
 
-以下是最簡單的 "Hello World" C# 協調器函式外觀的範例：
+以下是最簡單的 "Hello World" 協調器函式外觀的範例：
+
+#### <a name="c"></a>C#
 
 ```csharp
 [FunctionName("HelloWorld")]
@@ -85,17 +80,45 @@ public static string Run([OrchestrationTrigger] DurableOrchestrationContext cont
 }
 ```
 
+#### <a name="javascript-functions-v2-only"></a>JavaScript (僅限 Functions v2)
+
+```javascript
+const df = require("durable-functions");
+
+module.exports = df(function*(context) {
+    const name = context.df.getInput();
+    return `Hello ${name}!`;
+});
+```
+
+> [!NOTE]
+> JavaScript 協調器應使用 `return`。 `durable-functions` 程式庫會負責呼叫 `context.done` 方法。
+
 大部分協調器函式會呼叫活動函式；因此，這裡的 "Hello World" 範例示範如何呼叫活動函式：
+
+#### <a name="c"></a>C#
 
 ```csharp
 [FunctionName("HelloWorld")]
 public static async Task<string> Run(
     [OrchestrationTrigger] DurableOrchestrationContext context)
 {
-    string name = await context.GetInput<string>();
+    string name = context.GetInput<string>();
     string result = await context.CallActivityAsync<string>("SayHello", name);
     return result;
 }
+```
+
+#### <a name="javascript-functions-v2-only"></a>JavaScript (僅限 Functions v2)
+
+```javascript
+const df = require("durable-functions");
+
+module.exports = df(function*(context) {
+    const name = context.df.getInput();
+    const result = yield context.df.callActivityAsync("SayHello", name);
+    return result;
+});
 ```
 
 ## <a name="activity-triggers"></a>活動觸發程序
@@ -110,17 +133,12 @@ public static async Task<string> Run(
 {
     "name": "<Name of input parameter in function signature>",
     "activity": "<Optional - name of the activity>",
-    "version": "<Optional - version label of this activity function>",
     "type": "activityTrigger",
     "direction": "in"
 }
 ```
 
 * `activity` 是活動的名稱。 這是協調器函式用來叫用此活動函式的值。 這是選用屬性。 如果未指定，會使用函式的名稱。
-* `version` 是活動的版本標籤。 叫用活動的協調器函式式必須包含相符的版本標籤。 這是選用屬性。 如果未指定，會使用空字串。 如需詳細資訊，請參閱[版本設定](durable-functions-versioning.md)。
-
-> [!NOTE]
-> 不建議現在設定 `activity` 或 `version` 屬性的值。
 
 此觸發程序繫結會在內部輪詢函式應用程式之預設儲存體帳戶中的佇列。 這個佇列是延伸模組的內部實作詳細資料，這就是為什麼它未在繫結屬性中明確設定。
 
@@ -144,12 +162,11 @@ public static async Task<string> Run(
 * **輸出** - 活動函式支援輸出值和輸入。 函式的傳回值會用來指派輸出值，而且必須是 JSON 可序列化。 如果函式傳回 `Task` 或 `void`，則 `null` 值將儲存為輸出。
 * **中繼資料** - 活動函式可以繫結至 `string instanceId` 參數，以取得父代協調流程的執行個體識別碼。
 
-> [!NOTE]
-> 在 Node.js 函式中目前不支援活動觸發程序。
-
 ### <a name="trigger-sample"></a>觸發程序範例
 
-以下是簡單的 "Hello World" C# 活動函式外觀的範例：
+以下是簡單的 "Hello World" 活動函式外觀的範例：
+
+#### <a name="c"></a>C#
 
 ```csharp
 [FunctionName("SayHello")]
@@ -160,13 +177,69 @@ public static string SayHello([ActivityTrigger] DurableActivityContext helloCont
 }
 ```
 
+#### <a name="javascript-functions-v2-only"></a>JavaScript (僅限 Functions v2)
+
+```javascript
+module.exports = function(context) {
+    context.done(null, `Hello ${context.bindings.name}!`);
+};
+```
+
 `ActivityTriggerAttribute` 繫結的預設參數類型是 `DurableActivityContext`。 不過，活動觸發程序也支援直接繫結至JSON 可序列化類型 (包括基本類型)，所以相同函式可以簡化如下：
+
+#### <a name="c"></a>C#
 
 ```csharp
 [FunctionName("SayHello")]
 public static string SayHello([ActivityTrigger] string name)
 {
     return $"Hello {name}!";
+}
+```
+
+#### <a name="javascript-functions-v2-only"></a>JavaScript (僅限 Functions v2)
+
+```javascript
+module.exports = function(context, name) {
+    context.done(null, `Hello ${name}!`);
+};
+```
+
+### <a name="passing-multiple-parameters"></a>傳遞多個參數。 
+
+您不可能直接將多個參數傳遞至活動函式。 在此情況下，建議傳入物件陣列，或使用 [ValueTuples](https://docs.microsoft.com/dotnet/csharp/tuples) 物件。
+
+下列範例會使用附加 [C# 7](https://docs.microsoft.com/dotnet/csharp/whats-new/csharp-7#tuples) 的 [ValueTuples](https://docs.microsoft.com/dotnet/csharp/tuples) 新功能：
+
+```csharp
+[FunctionName("GetCourseRecommendations")]
+public static async Task<dynamic> RunOrchestrator(
+    [OrchestrationTrigger] DurableOrchestrationContext context)
+{
+    string major = "ComputerScience";
+    int universityYear = context.GetInput<int>();
+
+    dynamic courseRecommendations = await context.CallActivityAsync<dynamic>("CourseRecommendations", (major, universityYear));
+    return courseRecommendations;
+}
+
+[FunctionName("CourseRecommendations")]
+public static async Task<dynamic> Mapper([ActivityTrigger] DurableActivityContext inputs)
+{
+    // parse input for student's major and year in university 
+    (string Major, int UniversityYear) studentInfo = inputs.GetInput<(string, int)>();
+
+    // retrieve and return course recommendations by major and university year
+    return new {
+        major = studentInfo.Major,
+        universityYear = studentInfo.UniversityYear,
+        recommendedCourses = new []
+        {
+            "Introduction to .NET Programming",
+            "Introduction to Linux",
+            "Becoming an Entrepreneur"
+        }
+    };
 }
 ```
 
@@ -264,9 +337,9 @@ public static Task<string> Run(string input, DurableOrchestrationClient starter)
 }
 ```
 
-#### <a name="nodejs-sample"></a>Node.js 範例
+#### <a name="javascript-sample"></a>JavaScript 範例
 
-下列範例會示範如何使用長期協調流程用戶端繫結以從 Node.js 函式啟動新的函式執行個體：
+下列範例會示範如何使用長期協調流程用戶端繫結以從 JavaScript 函式啟動新的函式執行個體：
 
 ```js
 module.exports = function (context, input) {

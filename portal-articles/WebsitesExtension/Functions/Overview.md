@@ -1,6 +1,6 @@
 ---
-title: "Azure Functions 概觀 | Microsoft Docs"
-description: "Azure 入口網站內 Azure Functions 概觀的說明內容"
+title: Azure Functions 概觀 | Microsoft Docs
+description: Azure 入口網站內 Azure Functions 概觀的說明內容
 services: functions
 author: sewatson
 manager: lwelicki
@@ -13,6 +13,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23073804"
 ---
 # <a name="azure-functions-documentation"></a>Azure Functions 文件
 

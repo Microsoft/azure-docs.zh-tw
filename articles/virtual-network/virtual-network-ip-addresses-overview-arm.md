@@ -13,13 +13,14 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 11/16/2017
+ms.date: 09/24/2018
 ms.author: jdial
-ms.openlocfilehash: a5cda1b5ecb686c9b03da27bdbca42ddc1a74f54
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 65dc420b6832b7b0a4cf14d63203d4c66e2a4254
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46993590"
 ---
 # <a name="ip-address-types-and-allocation-methods-in-azure"></a>Azure 中的 IP 位址類型及配置方法
 
@@ -27,6 +28,8 @@ ms.lasthandoff: 03/23/2018
 
 * **公用 IP 位址**：用於與網際網路通訊，包括 Azure 公眾對應服務。
 * **私人 IP 位址**：用於 Azure 虛擬網路 (VNet) 內的通訊，而當您使用 VPN 閘道或 ExpressRoute 電路將網路擴充至 Azure 時，則使用於內部部署網路內的通訊。
+
+您也可以透過公用 IP 前置詞，建立連續範圍的靜態公用 IP 位址。 [深入瞭解功用首碼。](public-ip-address-prefix.md)
 
 > [!NOTE]
 > Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../azure-resource-manager/resource-manager-deployment-model.md?toc=%2fazure%2fvirtual-network%2ftoc.json)。  本文涵蓋之內容包括使用 Resource Manager 部署模型，Microsoft 建議大部分的新部署使用此模型，而不是[傳統部署模型](virtual-network-ip-addresses-overview-classic.md)。
@@ -53,11 +56,15 @@ ms.lasthandoff: 03/23/2018
 
 公用 IP 位址是使用下列其中一個 SKU 所建立的：
 
+>[!IMPORTANT]
+> 負載平衡器和公用 IP 資源必須使用相符的 SKU。 您無法將基本 SKU 資源與標準 SKU 資源混用。 您無法將獨立虛擬機器、可用性設定組資源中的虛擬機器或虛擬機器擴展集資源同時連結到這兩個 SKU。  新的設計應該考慮使用標準 SKU 資源。  請檢閱[標準負載平衡器](../load-balancer/load-balancer-standard-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json)以取得詳細資料。
+
 #### <a name="basic"></a>基本
 
 在 SKU 推出之前所建立的公用 IP 位址全都是基本 SKU 的公用 IP 位址。 SKU 推出後，您則可以選擇指定要讓公用 IP 位址成為哪種 SKU。 基本 SKU 的位址有下列特性：
 
 - 使用靜態或動態配置方法來指派。
+- 預設為開放狀態。  建議 (但不強制) 使用網路安全性群組來限制輸入或輸出流量。
 - 會指派給任何可以指派公用 IP 位址的 Azure 資源，例如網路介面、VPN 閘道、應用程式閘道和網際網路對應負載平衡器。
 - 可指派到特定區域。
 - 無區域備援功能。 若要深入了解可用性區域，請參閱[可用性區域概觀](../availability-zones/az-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json)。
@@ -67,17 +74,18 @@ ms.lasthandoff: 03/23/2018
 標準 SKU 的公用 IP 位址有下列特性：
 
 - 只會使用靜態配置方法來指派。
-- 會指派給網路介面或標準的網際網路對應負載平衡器。 如需 Azure 負載平衡器 SKU 的詳細資訊，請參閱 [Azure 負載平衡器的標準 SKU](../load-balancer/load-balancer-standard-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json)。
-- 預設具有區域備援功能。 可以建立為區域型，並保證在特定可用性區域中。 若要深入了解可用性區域，請參閱[可用性區域概觀](../availability-zones/az-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json)。
+- 預設為保護狀態，且禁止輸入流量。 您必須透過[網路安全性群組](security-overview.md#network-security-groups)，明確地將允許的輸入流量列入白名單。
+- 會指派給網路介面或公用的標準負載平衡器。 如需 Azure 標準負載平衡器的詳細資訊，請參閱 [Azure 標準負載平衡器](../load-balancer/load-balancer-standard-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json)。
+- 預設具有區域備援功能。 可以建立為區域型，並保證在特定可用性區域中。 若要了解可用性區域，請參閱[可用性區域概觀](../availability-zones/az-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json)和[標準負載平衡器和可用性區域](../load-balancer/load-balancer-standard-availability-zones.md?toc=%2fazure%2fvirtual-network%2ftoc.json)。
  
 > [!NOTE]
-> 當您將標準 SKU 的公用 IP 位址指派給虛擬機器的網路介面時，您必須使用[網路安全性群組](security-overview.md#network-security-groups)明確地允許預定的流量。 在建立和關聯網路安全性群組並明確地允許所要流量前，與資源進行的通訊都會失敗。
+> 在建立和關聯[網路安全性群組](security-overview.md#network-security-groups)並明確地允許所要輸入流量前，與標準 SKU 資源進行的通訊都會失敗。
 
 ### <a name="allocation-method"></a>配置方法
 
-有兩種方法可將 IP 位址配置給公用 IP 位址資源：「動態」或「靜態」。 預設配置方法是「動態」 ，此方法 **不會** 在建立 IP 位址時進行配置。 相反地，公用 IP 位址會在您啟動 (或建立) 相關聯的資源 (例如 VM 或負載平衡器) 時進行配置。 此 IP 位址會在您停止 (或刪除) 資源時釋出 。 例如，在從資源 A 釋出後，您就能將該 IP 位址指派給不同的資源。 如果在資源 A 停止時將 IP 位址指派給不同的資源，當您重新啟動資源 A 時，系統會指派不同的 IP 位址。
+基本和標準 SKU 的公用 IP 位址可支援「靜態」配置方法。  資源在建立時會獲得指派的 IP 位址，而此 IP 位址會在資源刪除時釋出。
 
-若要確保相關聯資源的 IP 位址維持不變，您可以明確地將配置方法設定為「靜態」 。 系統會立即指派靜態 IP 位址。 只有在您刪除資源或將其配置方法變更為「動態」時，系統才會釋出該位址。
+基本 SKU 的公用 IP 位址也支援「動態」配置方法，這是未指定配置方法時的預設值。  為基本公用 IP 位址選取「動態」配置方法，則表示**不會**在資源建立時配置 IP 位址。  公用 IP 位址會在您讓公用 IP 位址與虛擬機器產生關聯時配置，或是當您將第一個虛擬機器執行個體放到基本負載平衡器的後端集區時配置。   此 IP 位址會在您停止 (或刪除) 資源時釋出 。  例如，在從資源 A 釋出後，您就能將該 IP 位址指派給不同的資源。 如果在資源 A 停止時將 IP 位址指派給不同的資源，當您重新啟動資源 A 時，系統會指派不同的 IP 位址。 如果您將基本公用 IP 位址資源的配置方法從「靜態」變更為「動態」，則會釋出該位址。 若要確保相關聯資源的 IP 位址維持不變，您可以明確地將配置方法設定為「靜態」 。 系統會立即指派靜態 IP 位址。
 
 > [!NOTE]
 > 即使將配置方法設定為「靜態」，您也無法指定已指派給公用 IP 位址資源的實際 IP 位址。 Azure 會從資源建立所在的 Azure 位置中可用的 IP 位址集區指派 IP 位址。
@@ -91,7 +99,7 @@ ms.lasthandoff: 03/23/2018
 * 您使用已連結到 IP 位址的 SSL 憑證。
 
 > [!NOTE]
-> Azure 會從對每個 Azure 區域來說都是唯一的範圍來配置公用 IP 位址。 如需詳細資訊，請參閱 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/details.aspx?id=41653)。
+> 在每個 Azure 雲端中，Azure 會從對每個區域來說都是唯一的範圍來配置公用 IP 位址。 您可以針對 Azure [公開](https://www.microsoft.com/download/details.aspx?id=56519)、[美國政府](https://www.microsoft.com/download/details.aspx?id=57063)、[中國](https://www.microsoft.com/download/details.aspx?id=57062)及[德國](https://www.microsoft.com/download/details.aspx?id=57064)雲端，下載範圍 (前置詞) 清單。
 >
 
 ### <a name="dns-hostname-resolution"></a>DNS 主機名稱解析
@@ -111,21 +119,21 @@ ms.lasthandoff: 03/23/2018
 
 ### <a name="vpn-gateways"></a>VPN 閘道
 
-[Azure VPN 閘道](../vpn-gateway/vpn-gateway-about-vpngateways.md?toc=%2fazure%2fvirtual-network%2ftoc.json)會將 Azure 虛擬網路連線到其他 Azure 虛擬網路或內部部署網路。 系統會將公用 IP 位址指派給 VPN 閘道，以便它能與遠端網路通訊。 您只可以將「動態」公用 IP 位址指派給 VPN 閘道。
+[Azure VPN 閘道](../vpn-gateway/vpn-gateway-about-vpngateways.md?toc=%2fazure%2fvirtual-network%2ftoc.json)會將 Azure 虛擬網路連線到其他 Azure 虛擬網路或內部部署網路。 系統會將公用 IP 位址指派給 VPN 閘道，以便它能與遠端網路通訊。 您只可以將「動態」基本公用 IP 位址指派給 VPN 閘道。
 
 ### <a name="application-gateways"></a>應用程式閘道
 
-您可以將公用 IP 位址指派給閘道的 [前端](../application-gateway/application-gateway-introduction.md?toc=%2fazure%2fvirtual-network%2ftoc.json)組態，以建立其與 Azure **應用程式閘道** 的關聯。 此公用 IP 位址可做為負載平衡的 VIP。 您只可以將「動態」公用 IP 位址指派給應用程式閘道前端組態。
+您可以將公用 IP 位址指派給閘道的 [前端](../application-gateway/application-gateway-introduction.md?toc=%2fazure%2fvirtual-network%2ftoc.json)組態，以建立其與 Azure **應用程式閘道** 的關聯。 此公用 IP 位址可做為負載平衡的 VIP。 您只可以將「動態」基本公用 IP 位址指派給應用程式閘道的前端組態。
 
 ### <a name="at-a-glance"></a>快速總覽
 下表顯示特定的屬性，公用 IP 位址可透過它關聯到最上層資源，以及顯示可以使用的可能配置方法 (動態或靜態)。
 
 | 最上層資源 | IP 位址關聯 | 動態 | 靜態 |
 | --- | --- | --- | --- |
-| 虛擬機器 |Linux |yes |yes |
-| 網際網路對應負載平衡器 |前端組態 |yes |yes |
-| VPN 閘道 |閘道 IP 組態 |yes |否 |
-| 應用程式閘道 |前端組態 |yes |否 |
+| 虛擬機器 |Linux |是 |是 |
+| 網際網路對應負載平衡器 |前端組態 |是 |是 |
+| VPN 閘道 |閘道 IP 組態 |是 |否 |
+| 應用程式閘道 |前端組態 |是 |否 |
 
 ## <a name="private-ip-addresses"></a>私人 IP 位址
 私人 IP 位址可讓 Azure 資源透過 VPN 閘道或 ExpressRoute 電路，與 [虛擬網路](virtual-networks-overview.md) 中或內部部署網路中的其他資源進行通訊，而不必使用可網際網路連線的 IP 位址。
@@ -170,9 +178,9 @@ ms.lasthandoff: 03/23/2018
 
 | 最上層資源 | IP 位址關聯 | 動態 | 靜態 |
 | --- | --- | --- | --- |
-| 虛擬機器 |Linux |yes |yes |
-| 負載平衡器 |前端組態 |yes |yes |
-| 應用程式閘道 |前端組態 |yes |yes |
+| 虛擬機器 |Linux |是 |是 |
+| 負載平衡器 |前端組態 |是 |是 |
+| 應用程式閘道 |前端組態 |是 |是 |
 
 ## <a name="limits"></a>限制
 加諸於 IP 位址上的限制，如在 Azure 中的完整[網路限制](../azure-subscription-service-limits.md?toc=%2fazure%2fvirtual-network%2ftoc.json#networking-limits)所示。 這些限制是針對每一區域和每一訂用帳戶。 您可以 [連絡支援人員](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade) ，以根據您的業務需求將預設上限調升到最高上限。
@@ -182,5 +190,4 @@ ms.lasthandoff: 03/23/2018
 
 ## <a name="next-steps"></a>後續步驟
 * [使用 Azure 入口網站部署使用靜態公用 IP 的 VM](virtual-network-deploy-static-pip-arm-portal.md)
-* [使用範本部署使用靜態公用 IP 的 VM](virtual-network-deploy-static-pip-arm-template.md)
 * [部署使用靜態私人 IP 位址的 VM](virtual-networks-static-private-ip-arm-pportal.md)

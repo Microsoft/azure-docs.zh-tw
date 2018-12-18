@@ -1,0 +1,44 @@
+items:
+- name: Azure 入口網站自訂文件
+  href: index.yml
+- name: Azure 儀表板
+  items:
+  - name: 建立和共用 Azure 儀表板
+    href: azure-portal-dashboards.md
+  - name: 使用角色型存取控制來共用儀表板
+    href: azure-portal-dashboard-share-access.md
+  - name: Azure 儀表板結構
+    href: azure-portal-dashboards-structure.md
+  - name: 以程式設計方式建立 Azure 儀表板
+    href: azure-portal-dashboards-create-programmatically.md
+- name: 設定
+  items:
+  - name: 鍵盤快速鍵
+    href: azure-portal-keyboard-shortcuts.md
+  - name: 支援的瀏覽器和裝置
+    href: ../azure-preview-portal-supported-browsers-devices.md
+  - name: 開啟高對比或變更佈景主題
+    href: azure-portal-change-theme-high-contrast.md
+  - name: 匯出或刪除使用者設定
+    href: azure-portal-export-delete-settings.md
+  expanded: true
+- name: 資源
+  items:
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/updates/
+  - name: 透過 Microsoft Learn 增進您的技巧
+    href: /learn/browse/?products=azure-portal
+  - name: 定價計算機
+    href: https://azure.microsoft.com/pricing/calculator/
+  - name: 區域可用性
+    href: https://azure.microsoft.com/regions/services/
+  - name: 堆疊溢位
+    href: http://stackoverflow.com/questions/tagged/azure-management-portal
+  - name: 影片
+    href: https://azure.microsoft.com/documentation/videos/index/?services=azure-portal&sort=newest
+ms.openlocfilehash: d2918197e211cc40662d51fa9f6d6131df426ef6
+ms.sourcegitcommit: 4b1083fa9c78cd03633f11abb7a69fdbc740afd1
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/10/2018
+ms.locfileid: "49079701"

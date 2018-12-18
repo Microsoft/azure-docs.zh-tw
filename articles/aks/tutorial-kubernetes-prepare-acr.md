@@ -2,22 +2,23 @@
 title: Azure 上的 Kubernetes 教學課程 - 準備 ACR
 description: AKS 教學課程 - 準備 ACR
 services: container-service
-author: neilpeterson
-manager: timlt
+author: iainfoulds
+manager: jeconnoc
 ms.service: container-service
 ms.topic: tutorial
 ms.date: 02/22/2018
-ms.author: nepeters
+ms.author: iainfou
 ms.custom: mvc
-ms.openlocfilehash: 6ef1e126001d40bd18acfd28efab48461e40c56e
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 4ad5dcb8dbb11f1d6e12e3c19eab5da68009df58
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39430751"
 ---
 # <a name="tutorial-deploy-and-use-azure-container-registry"></a>教學課程：部署和使用 Azure Container Registry
 
-Azure Container Registry (ACR) 是以 Azure 為基礎的私人登錄，用於裝載 Docker 容器映像。 本教學課程 (八個章節的第二部分) 逐步解說如何部署 Azure Container Registry 執行個體，以及將容器映像推送至該執行個體。 完成的步驟包括：
+Azure Container Registry (ACR) 是以 Azure 為基礎的私人登錄，用於裝載 Docker 容器映像。 本教學課程 (2/7 部分) 逐步解說如何部署 Azure Container Registry 執行個體，以及將容器映像推送至該執行個體。 完成的步驟包括：
 
 > [!div class="checklist"]
 > * 部署 Azure Container Registry (ACR) 執行個體
@@ -171,11 +172,11 @@ v1
 <!-- LINKS - internal -->
 [az-acr-create]: /cli/azure/acr#create
 [az-acr-list]: /cli/azure/acr#list
-[az-acr-login]: https://docs.microsoft.com/cli/azure/acr#az_acr_login
-[az-acr-list]: https://docs.microsoft.com/cli/azure/acr#az_acr_list
+[az-acr-login]: https://docs.microsoft.com/cli/azure/acr#az-acr-login
+[az-acr-list]: https://docs.microsoft.com/cli/azure/acr#az-acr-list
 [az-acr-repository-list]: /cli/azure/acr/repository#list
 [az-acr-repository-show-tags]: /cli/azure/acr/repository#show-tags
-[az-group-create]: /cli/azure/group#az_group_create
+[az-group-create]: /cli/azure/group#az-group-create
 [azure-cli-install]: /cli/azure/install-azure-cli
 [aks-tutorial-deploy-cluster]: ./tutorial-kubernetes-deploy-cluster.md
 [aks-tutorial-prepare-app]: ./tutorial-kubernetes-prepare-app.md

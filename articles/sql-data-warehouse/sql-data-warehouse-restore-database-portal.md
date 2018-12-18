@@ -1,25 +1,21 @@
 ---
-title: "還原 Azure SQL 資料倉儲 (Azure 入口網站) | Microsoft Docs"
-description: "還原 Azure SQL 資料倉儲的 Azure 入口網站工作。"
+title: 還原 Azure SQL 資料倉儲 (Azure 入口網站) | Microsoft Docs
+description: 還原 Azure SQL 資料倉儲的 Azure 入口網站工作。
 services: sql-data-warehouse
-documentationcenter: NA
-author: barbkess
-manager: jenniehubbard
-editor: 
-ms.assetid: b0aef539-7657-4b0e-9899-74098f5c21bc
+author: kevinvngo
+manager: craigg
 ms.service: sql-data-warehouse
-ms.devlang: NA
-ms.topic: article
-ms.tgt_pltfrm: NA
-ms.workload: data-services
-ms.custom: backup-restore
-ms.date: 12/06/2017
-ms.author: barbkess
-ms.openlocfilehash: 6be187784a68174b63f7fc068c772826a0db52c6
-ms.sourcegitcommit: b5c6197f997aa6858f420302d375896360dd7ceb
+ms.topic: conceptual
+ms.component: manage
+ms.date: 04/17/2018
+ms.author: kevin
+ms.reviewer: igorstan
+ms.openlocfilehash: 8752bc1977bac75928651a62576272ffc673ee7e
+ms.sourcegitcommit: 1fb353cfca800e741678b200f23af6f31bd03e87
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/21/2017
+ms.lasthandoff: 08/30/2018
+ms.locfileid: "43306295"
 ---
 # <a name="restore-azure-sql-data-warehouse-portal"></a>還原 Azure SQL 資料倉儲 (入口網站)
 > [!div class="op_single_selector"]

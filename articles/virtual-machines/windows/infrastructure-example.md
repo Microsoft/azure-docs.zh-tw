@@ -3,7 +3,7 @@ title: 範例 Azure 基礎結構逐步解說 | Microsoft Docs
 description: 了解適合用來在 Azure 中部署範例基礎結構的關鍵設計和實作指導方針。
 documentationcenter: ''
 services: virtual-machines-windows
-author: iainfoulds
+author: cynthn
 manager: jeconnoc
 editor: ''
 tags: azure-resource-manager
@@ -14,13 +14,14 @@ ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: article
 ms.date: 12/15/2017
-ms.author: iainfou
+ms.author: cynthn
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: c532657951d6d0241a5d8d25a56bb237ad481567
-ms.sourcegitcommit: 168426c3545eae6287febecc8804b1035171c048
+ms.openlocfilehash: ddbaed6704fd32f7fd4fe5a790424cbf829d2f1c
+ms.sourcegitcommit: aa988666476c05787afc84db94cfa50bc6852520
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/08/2018
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37932852"
 ---
 # <a name="example-azure-infrastructure-walkthrough-for-windows-vms"></a>適用於 Windows VM 的範例 Azure 基礎結構逐步解說
 本文將逐步解說建置範例應用程式基礎結構的方法。 我們會詳述設計簡單線上商店基礎結構的方式，此線上商店能將所有命名慣例、可用性設定組、虛擬網路及負載平衡器的指導方針和決定集合在一起，並實際部署您的虛擬機器 (VM)。
@@ -53,7 +54,7 @@ Adventure Works Cycles 想要在 Azure 中建置一個線上商店，該商店�
 
 * Adventure Works Cycles 使用 **[IT workload]-[location]-[Azure resource]** 做為首碼
   * 針對此範例，"**azos**" (Azure 線上商店) 是 IT 工作負載名稱，而 "**use**" (美國東部 2) 是位置
-* 虛擬網路會使用 AZOS-USE-VN**[number]**
+* 虛擬網路會使用 AZOS-USE-VN **[number]**
 * 可用性設定組會使用 azos-use-as-**[role]**
 * 虛擬機器名稱會使用 azos-use-vm-**[vmname]**
 

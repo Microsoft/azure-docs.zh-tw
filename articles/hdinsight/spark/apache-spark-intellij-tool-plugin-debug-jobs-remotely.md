@@ -1,26 +1,20 @@
 ---
-title: "適用於 IntelliJ 的 Azure 工具組：在 HDInsight Spark 中遠端偵錯應用程式 | Microsoft Docs"
-description: "了解如何使用適用於 IntelliJ 的 Azure 工具組中的 HDInsight 工具，透過 VPN 對 HDInsight 叢集上執行的 Spark 應用程式進行遠端偵錯。"
+title: 'Azure Toolkit for IntelliJ：在 HDInsight Spark 中遠端偵錯應用程式 '
+description: 了解如何使用適用於 IntelliJ 的 Azure 工具組中的 HDInsight 工具，透過 VPN 對 HDInsight 叢集上執行的 Spark 應用程式進行遠端偵錯。
 services: hdinsight
-documentationcenter: 
-author: nitinme
-manager: jhubbard
-editor: cgronlun
-tags: azure-portal
-ms.assetid: 55fb454f-c7dc-46de-a978-e242e9a94f4c
+author: jasonwhowell
+ms.author: jasonh
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 11/28/2017
-ms.author: nitinme
-ms.openlocfilehash: 315a879368e522cc17eeff7be766f0c8a38d470b
-ms.sourcegitcommit: a0be2dc237d30b7f79914e8adfb85299571374ec
+ms.openlocfilehash: 1a7fcc11bf1b98d5feaeae07264e556acce2b14b
+ms.sourcegitcommit: 1b561b77aa080416b094b6f41fce5b6a4721e7d5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/13/2018
+ms.lasthandoff: 09/17/2018
+ms.locfileid: "45736067"
 ---
 # <a name="use-azure-toolkit-for-intellij-to-debug-spark-applications-remotely-in-hdinsight-through-vpn"></a>使用適用於 IntelliJ 的 Azure 工具組透過 VPN 對 HDInsight 中的 Spark 應用程式進行遠端偵錯
 
@@ -29,12 +23,12 @@ ms.lasthandoff: 03/13/2018
 本文提供逐步指引，說明如何使用適用於 IntelliJ 的 Azure 工具組中的 HDInsight 工具，來提交 HDInsight Spark 叢集上的 Spark 作業，然後從桌上型電腦遠端偵錯。 若要完成這些工作，您必須執行下列高階步驟：
 
 1. 建立站對站或點對站 Azure 虛擬網路。 本文件中的步驟假設您使用站對站網路。
-2. 在 HDInsight 中建立 Spark 叢集是站對站虛擬網路的一部分。
-3. 請確認叢集前端節點與您桌上型電腦之間的連線能力。
-4. 在 IntelliJ IDEA 中建立 Scala 應用程式，然後設定它以進行遠端偵錯。
-5. 執行和偵錯應用程式。
+1. 在 HDInsight 中建立 Spark 叢集是站對站虛擬網路的一部分。
+1. 請確認叢集前端節點與您桌上型電腦之間的連線能力。
+1. 在 IntelliJ IDEA 中建立 Scala 應用程式，然後設定它以進行遠端偵錯。
+1. 執行和偵錯應用程式。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 * **Azure 訂用帳戶**。 如需詳細資訊，請參閱[取得 Azure 的免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
 * **HDInsight 中的 Apache Spark 叢集**。 如需指示，請參閱[在 Azure HDInsight 中建立 Apache Spark 叢集](apache-spark-jupyter-spark-sql.md)。
 * **Oracle JAVA Development Kit**。 您可以從 [Oracle 網站](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)下載。
@@ -57,16 +51,16 @@ ms.lasthandoff: 03/13/2018
 1. 取得前端節點的 IP 位址。 開啟叢集的 Ambari UI。 從叢集刀鋒視窗中，選取 [儀表板]。
 
     ![在 Ambari 中選取儀表板](./media/apache-spark-intellij-tool-plugin-debug-jobs-remotely/launch-ambari-ui.png)
-2. 從 Ambari UI 中，選取 [主機]。
+1. 從 Ambari UI 中，選取 [主機]。
 
     ![在 Ambari 中選取主機](./media/apache-spark-intellij-tool-plugin-debug-jobs-remotely/ambari-hosts.png)
-3. 您會看到前端節點、背景工作角色節點和 zookeeper 節點的清單。 前端節點有 **hn*** 前置詞。 選取第一個前端節點。
+1. 您會看到前端節點、背景工作角色節點和 zookeeper 節點的清單。 前端節點有 **hn*** 前置詞。 選取第一個前端節點。
 
     ![在 Ambari 中尋找前端節點](./media/apache-spark-intellij-tool-plugin-debug-jobs-remotely/cluster-headnodes.png)
-4. 從開啟的頁面底部 [摘要] 窗格，複製前端節點的 **IP 位址**和**主機名稱**。
+1. 從開啟的頁面底部 [摘要] 窗格，複製前端節點的 **IP 位址**和**主機名稱**。
 
     ![在 Ambari 中尋找 IP 位址](./media/apache-spark-intellij-tool-plugin-debug-jobs-remotely/headnode-ip-address.png)
-5. 將前端節點的 IP 位址和主機名稱新增到電腦 (您需要從中執行和遠端偵錯 Spark 作業) 上的**主機**檔案。 這可讓您使用 IP 位址和主機名稱，與前端節點進行通訊。
+1. 將前端節點的 IP 位址和主機名稱新增到電腦 (您需要從中執行和遠端偵錯 Spark 作業) 上的**主機**檔案。 這可讓您使用 IP 位址和主機名稱，與前端節點進行通訊。
 
    a. 以提高的權限開啟 [記事本] 檔案。 從 [檔案] 功能表中，選取 [開啟]，然後尋找主機檔案的位置。 在 Windows 電腦上的位置是 **C:\Windows\System32\Drivers\etc\hosts**。
 
@@ -79,13 +73,13 @@ ms.lasthandoff: 03/13/2018
            # For headnode1
            192.xxx.xx.xx hn1-nitinp
            192.xxx.xx.xx hn1-nitinp.lhwwghjkpqejawpqbwcdyp3.gx.internal.cloudapp.net
-6. 從您連線到 HDInsight 叢集所使用之 Azure 虛擬網路的電腦，確認您可以使用 IP 位址和主機名稱來偵測兩個前端節點。
-7. 遵循[使用 SSH 連線到 HDInsight 叢集](../hdinsight-hadoop-linux-use-ssh-unix.md)中的指示，使用 SSH 連線至叢集前端節點。 從叢集前端節點，偵測桌上型電腦的 IP 位址。 測試指派給電腦之兩個 IP 位址的連線能力：
+1. 從您連線到 HDInsight 叢集所使用之 Azure 虛擬網路的電腦，確認您可以使用 IP 位址和主機名稱來偵測兩個前端節點。
+1. 遵循[使用 SSH 連線到 HDInsight 叢集](../hdinsight-hadoop-linux-use-ssh-unix.md)中的指示，使用 SSH 連線至叢集前端節點。 從叢集前端節點，偵測桌上型電腦的 IP 位址。 測試指派給電腦之兩個 IP 位址的連線能力：
 
     - 一個是網路連線
     - 一個是 Azure 虛擬網路
 
-8. 對其他前端節點重複這些步驟。
+1. 對其他前端節點重複這些步驟。
 
 ## <a name="step-4-create-a-spark-scala-application-by-using-hdinsight-tools-in-azure-toolkit-for-intellij-and-configure-it-for-remote-debugging"></a>步驟 4：使用適用於 IntelliJ 的 Azure 工具組中的 HDInsight 工具來建立 Spark Scala 應用程式，並設定它以進行遠端偵錯
 1. 開啟 IntelliJ IDEA，並建立新的專案。 在 [新增專案]  對話方塊中，執行下列操作：
@@ -95,7 +89,7 @@ ms.lasthandoff: 03/13/2018
     a. 選取 [HDInsight] > [HDInsight 上的 Spark (Scala)]。
 
     b. 選取 [下一步] 。
-2. 在下一個 [新增專案] 對話方塊中，執行下列操作，然後選取 [完成]：
+1. 在下一個 [新增專案] 對話方塊中，執行下列操作，然後選取 [完成]：
 
     - 輸入專案名稱和位置。
 
@@ -105,7 +99,7 @@ ms.lasthandoff: 03/13/2018
   
    ![選取專案 SDK 和 Spark 版本](./media/apache-spark-intellij-tool-plugin-debug-jobs-remotely/hdi-scala-project-details.png)
   
-3. Spark 專案會自動為您建立構件。 若要檢視構件，請執行下列動作：
+1. Spark 專案會自動為您建立構件。 若要檢視構件，請執行下列動作：
 
     a. 從 [檔案] 功能表，選取 [專案結構]。
 
@@ -114,7 +108,7 @@ ms.lasthandoff: 03/13/2018
    ![建立 JAR](./media/apache-spark-intellij-tool-plugin-debug-jobs-remotely/default-artifact.png)
 
 
-4. 將程式庫新增至專案。 若要新增文件庫，請執行下列操作：
+1. 將程式庫新增至專案。 若要新增文件庫，請執行下列操作：
 
     a. 以滑鼠右鍵按一下專案樹狀結構中的專案名稱，然後選取 [開啟模組設定]。 
 
@@ -126,7 +120,7 @@ ms.lasthandoff: 03/13/2018
 
    * `org.scalatest:scalatest_2.10:2.2.1`
    * `org.apache.hadoop:hadoop-azure:2.7.1`
-5. 從叢集前端節點複製 `yarn-site.xml` 和 `core-site.xml`，並將它們新增至專案。 使用下列命令來複製檔案。 您可以使用 [Cygwin](https://cygwin.com/install.html) 來執行下列 `scp` 命令，從叢集前端節點複製檔案：
+1. 從叢集前端節點複製 `yarn-site.xml` 和 `core-site.xml`，並將它們新增至專案。 使用下列命令來複製檔案。 您可以使用 [Cygwin](https://cygwin.com/install.html) 來執行下列 `scp` 命令，從叢集前端節點複製檔案：
 
         scp <ssh user name>@<headnode IP address or host name>://etc/hadoop/conf/core-site.xml .
 
@@ -136,9 +130,9 @@ ms.lasthandoff: 03/13/2018
         scp sshuser@hn0-nitinp:/etc/hadoop/conf/yarn-site.xml .
 
     若要將這些檔案新增至專案，請在您專案樹狀結構的 **/src** 資料夾下複製這些檔案，例如 `<your project directory>\src`。
-6. 更新 `core-site.xml` 檔案以進行下列變更：
+1. 更新 `core-site.xml` 檔案以進行下列變更：
 
-   a. 取代加密的金鑰。 `core-site.xml` 檔案包含與叢集相關聯之儲存體帳戶的加密金鑰。 在您新增至專案的 `core-site.xml` 檔案中，以與預設儲存體帳戶相關聯的實際儲存體金鑰取代加密金鑰。 如需詳細資訊，請參閱[管理儲存體存取金鑰](../../storage/common/storage-create-storage-account.md#manage-your-storage-account)。
+   a. 取代加密的金鑰。 `core-site.xml` 檔案包含與叢集相關聯之儲存體帳戶的加密金鑰。 在您新增至專案的 `core-site.xml` 檔案中，以與預設儲存體帳戶相關聯的實際儲存體金鑰取代加密金鑰。 如需詳細資訊，請參閱[管理儲存體存取金鑰](../../storage/common/storage-account-manage.md#access-keys)。
 
            <property>
                  <name>fs.azure.account.key.hdistoragecentral.blob.core.windows.net</name>
@@ -161,13 +155,13 @@ ms.lasthandoff: 03/13/2018
                  <value>/etc/hadoop/conf/topology_script.py</value>
            </property>
    c. 儲存檔案。
-7. 新增您應用程式的主要類別。 從**專案總管**，以滑鼠右鍵按一下 [src]、指向 [新增]，然後選取 [Scala 類別]。
+1. 新增您應用程式的主要類別。 從**專案總管**，以滑鼠右鍵按一下 [src]、指向 [新增]，然後選取 [Scala 類別]。
 
     ![選取主要類別](./media/apache-spark-intellij-tool-plugin-debug-jobs-remotely/hdi-spark-scala-code.png)
-8. 在 [建立新的 Scala 類別] 對話方塊中，提供一個名稱，並在 [種類] 方塊中選取 [物件]，然後選取 [確定]。
+1. 在 [建立新的 Scala 類別] 對話方塊中，提供一個名稱，並在 [種類] 方塊中選取 [物件]，然後選取 [確定]。
 
     ![建立新的 Scala 類別](./media/apache-spark-intellij-tool-plugin-debug-jobs-remotely/hdi-spark-scala-code-object.png)
-9. 在 `MyClusterAppMain.scala` 檔案中，貼上下列程式碼。 此程式碼會建立 Spark 內容，並且從 `SparkSample` 物件開啟 `executeJob` 方法。
+1. 在 `MyClusterAppMain.scala` 檔案中，貼上下列程式碼。 此程式碼會建立 Spark 內容，並且從 `SparkSample` 物件開啟 `executeJob` 方法。
 
         import org.apache.spark.{SparkConf, SparkContext}
 
@@ -183,7 +177,7 @@ ms.lasthandoff: 03/13/2018
           }
         }
 
-10. 重複步驟 8 和 9，以新增稱為 `*SparkSample` 的新 Scala 物件。 將下列程式碼新增至這個類別。 此程式碼會從 HVAC.csv (所有 HDInsight Spark 叢集上均有提供) 讀取資料。 它會擷取在 CSV 檔案的第七個資料行中只有個位數的資料列，然後將輸出寫入叢集預設儲存體容器下的 **/HVACOut** 中。
+1. 重複步驟 8 和 9，以新增稱為 `*SparkSample` 的新 Scala 物件。 將下列程式碼新增至這個類別。 此程式碼會從 HVAC.csv (所有 HDInsight Spark 叢集上均有提供) 讀取資料。 它會擷取在 CSV 檔案的第七個資料行中只有個位數的資料列，然後將輸出寫入叢集預設儲存體容器下的 **/HVACOut** 中。
 
         import org.apache.spark.SparkContext
 
@@ -201,7 +195,7 @@ ms.lasthandoff: 03/13/2018
            //rdd1.collect().foreach(println)
          }
         }
-11. 重複步驟 8 和 9，以新增稱為 `RemoteClusterDebugging` 的新類別。 這個類別會實作 Spark 測試架構，可用於偵錯應用程式。 將下列程式碼新增至 `RemoteClusterDebugging` 類別：
+1. 重複步驟 8 和 9，以新增稱為 `RemoteClusterDebugging` 的新類別。 這個類別會實作 Spark 測試架構，可用於偵錯應用程式。 將下列程式碼新增至 `RemoteClusterDebugging` 類別：
 
         import org.apache.spark.{SparkConf, SparkContext}
         import org.scalatest.FunSuite
@@ -227,14 +221,14 @@ ms.lasthandoff: 03/13/2018
 
       * 對於 `.set("spark.yarn.jar", "wasb:///hdp/apps/2.4.2.0-258/spark-assembly-1.6.1.2.4.2.0-258-hadoop2.7.1.2.4.2.0-258.jar")`，請確定 Spark 組件 JAR 可用於位於指定路徑的叢集存放區。
       * 對於 `setJars`，指定要建立構件 JAR 的位置。 通常是 `<Your IntelliJ project directory>\out\<project name>_DefaultArtifact\default_artifact.jar`。
-12. 在 `*RemoteClusterDebugging` 類別中，以滑鼠右鍵按一下 `test` 關鍵字，然後選取 [建立 RemoteClusterDebugging 組態]。
+1. 在 `*RemoteClusterDebugging` 類別中，以滑鼠右鍵按一下 `test` 關鍵字，然後選取 [建立 RemoteClusterDebugging 組態]。
 
     ![建立遠端組態](./media/apache-spark-intellij-tool-plugin-debug-jobs-remotely/create-remote-config.png)
 
-13. 在 [建立 RemoteClusterDebugging 組態] 對話方塊中，提供組態的名稱，然後選取 [測試種類] 作為 [測試名稱]。 保留所有其他值作為預設設定。 選取 [套用]，然後選取 [確定]。
+1. 在 [建立 RemoteClusterDebugging 組態] 對話方塊中，提供組態的名稱，然後選取 [測試種類] 作為 [測試名稱]。 保留所有其他值作為預設設定。 選取 [套用]，然後選取 [確定]。
 
     ![新增組態詳細資料](./media/apache-spark-intellij-tool-plugin-debug-jobs-remotely/provide-config-value.png)
-14. 您現在應該會在功能表列中看到 [遠端執行] 組態下拉式清單。
+1. 您現在應該會在功能表列中看到 [遠端執行] 組態下拉式清單。
 
     ![[遠端執行] 下拉式清單](./media/apache-spark-intellij-tool-plugin-debug-jobs-remotely/config-run.png)
 
@@ -242,13 +236,13 @@ ms.lasthandoff: 03/13/2018
 1. 在您的 IntelliJ IDEA 專案中，開啟 `SparkSample.scala`，並在 `val rdd1` 旁邊建立中斷點。 在快顯功能表的 [建立中斷點] 中，選取 **executeJob 函式中的一行**。
 
     ![新增中斷點](./media/apache-spark-intellij-tool-plugin-debug-jobs-remotely/create-breakpoint.png)
-2. 若要執行應用程式，請選取 [遠端執行] 組態下拉式清單旁的 [偵錯執行] 按鈕。
+1. 若要執行應用程式，請選取 [遠端執行] 組態下拉式清單旁的 [偵錯執行] 按鈕。
 
     ![選取 [偵錯執行] 按鈕](./media/apache-spark-intellij-tool-plugin-debug-jobs-remotely/debug-run-mode.png)
-3. 當程式執行觸達中斷點時，您會在下方窗格中看到 [偵錯工具] 索引標籤。
+1. 當程式執行觸達中斷點時，您會在下方窗格中看到 [偵錯工具] 索引標籤。
 
     ![檢視 [偵錯工具] 索引標籤](./media/apache-spark-intellij-tool-plugin-debug-jobs-remotely/debug-add-watch.png)
-4. 若要新增監看式，請選取 ([+]) 圖示。
+1. 若要新增監看式，請選取 ([+]) 圖示。
 
     ![選取 [+] 圖示](./media/apache-spark-intellij-tool-plugin-debug-jobs-remotely/debug-add-watch-variable.png)
 
@@ -257,10 +251,10 @@ ms.lasthandoff: 03/13/2018
     ![在偵錯模式中執行程式](./media/apache-spark-intellij-tool-plugin-debug-jobs-remotely/debug-add-watch-variable-value.png)
 
     先前映像中看到的內容是在執行階段，您可以查詢數 TB 的資料，並且針對應用程式的進度進行偵錯。 例如，您可以在先前映像中顯示的輸出，看到輸出的第一個資料列是標頭。 您可以此輸出作為基礎來修改應用程式程式碼，視需要跳過標頭資料列。
-5. 您現在可以選取 [繼續程式] 圖示，以繼續執行應用程式。
+1. 您現在可以選取 [繼續程式] 圖示，以繼續執行應用程式。
 
     ![選取繼續程式](./media/apache-spark-intellij-tool-plugin-debug-jobs-remotely/debug-continue-run.png)
-6. 如果應用程式順利完成，就會看到類似下列的輸出：
+1. 如果應用程式順利完成，就會看到類似下列的輸出：
 
     ![主控台輸出](./media/apache-spark-intellij-tool-plugin-debug-jobs-remotely/debug-complete.png)
 

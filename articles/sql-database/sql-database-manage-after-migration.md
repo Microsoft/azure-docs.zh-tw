@@ -2,25 +2,26 @@
 title: 在移轉後進行管理 - Azure SQL Database | Microsoft Docs
 description: 了解如何在移轉至 Azure SQL Database 之後管理資料庫。
 services: sql-database
-author: joesackmsft
-manager: craigg
 ms.service: sql-database
-ms.custom: migrate
-ms.topic: article
-ms.date: 03/16/2018
+ms.subservice: operations
+ms.custom: ''
+ms.devlang: ''
+ms.topic: conceptual
+author: joesackmsft
 ms.author: josack
-ms.suite: sql
-ms.prod_service: sql-database
-ms.component: migration
-ms.openlocfilehash: 4e50a1be3437ab1b027c1ca0f160402239e13e92
-ms.sourcegitcommit: a36a1ae91968de3fd68ff2f0c1697effbb210ba8
+ms.reviewer: carlrab
+manager: craigg
+ms.date: 09/14/2018
+ms.openlocfilehash: 6dd4aacddfbce3e06c1ea9a356a559cc8cd8049c
+ms.sourcegitcommit: 51a1476c85ca518a6d8b4cc35aed7a76b33e130f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/17/2018
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47166481"
 ---
 # <a name="new-dba-in-the-cloud--managing-your-database-in-azure-sql-database"></a>雲端中的新 DBA - 在 Azure SQL Database 中管理您的資料庫
 
-從傳統的自我管理、自我控管的環境轉移至 PaaS 環境，一開始會讓人有點不知所措。 身為應用程式開發人員或 DBA，建議您熟知可協助您讓應用程式持續保持可用、高效能、安全且有彈性的平台核心功能。 本文章的用意就是如此。 本文章簡潔地整理了資源，並提供一些指引，說明如何善用 SQL Database 的重要功能來管理應用程式並讓其有效率地在雲端中執行及達到最佳結果。 本文章的典型對象是：
+從傳統的自我管理、自我控管的環境轉移至 PaaS 環境，一開始會讓人有點不知所措。 身為應用程式開發人員或 DBA，建議您熟知可協助您讓應用程式持續保持可用、高效能、安全且有彈性的平台核心功能。 本文章的用意就是如此。 本文章簡潔地整理了資源，並提供一些指引，說明如何善用 SQL Database 的重要功能來管理應用程式並讓其有效率地在雲端中執行及達到最佳結果。 本文章的典型對象是： 
 - 正在評估將其應用程式移轉到 Azure SQL DB 的使用者 - 將您的應用程式現代化。
 - 正處於移轉其應用程式的使用者 - 持續中的移轉案例。
 - 最近完成移轉至 Azure SQL DB 的使用者 - 雲端中的新 DBA。
@@ -31,14 +32,13 @@ ms.lasthandoff: 03/17/2018
 - 智慧型資料庫監視和維護
 - 資料移動
 
-
 ## <a name="business-continuity-and-disaster-recovery-bcdr"></a>業務持續性和災害復原 (BCDR)
 業務持續性和災害復原功能可讓您在發生災害時如往常一樣持續您的業務。 災害可以是資料庫層級事件 (例如，某人不小心卸除重要資料表) 或資料中心層級事件 (區域性災難，例如海嘯)。 
 
 ### <a name="how-do-i-create-and-manage-backups-on-sql-database"></a>如何建立及管理 SQL Database 上的備份？
-您未在 Azure SQL DB 上建立備份，而這是因為您不需要。 SQL Database 會自動為您備份資料庫，因此您不再需要擔心排程、取得及管理備份。 該平台會每週進行完整備份，每幾小時進行差異備份，以及每隔 5 分鐘進行記錄備份，以確保災害復原有效率並且資料遺失最少。 在您建立資料庫時，就會開始進行第一個完整備份。 這些備份可供您使用達一段時間 (稱為「保留期限」)，而且可能因您選擇的效能層而異。  SQL Database 使用[時間點復原 (PITR)](sql-database-recovery-using-backups.md#point-in-time-restore)，讓您能夠還原為此保留期間內的任何時間點。
+您未在 Azure SQL DB 上建立備份，而這是因為您不需要。 SQL Database 會自動為您備份資料庫，因此您不再需要擔心排程、取得及管理備份。 該平台會每週進行完整備份，每幾小時進行差異備份，以及每隔 5 分鐘進行記錄備份，以確保災害復原有效率並且資料遺失最少。 在您建立資料庫時，就會開始進行第一個完整備份。 這些備份可供您使用一段時間 (稱為「保留期限」)，而且可能因您選擇的服務層而異。 SQL Database 使用[時間點復原 (PITR)](sql-database-recovery-using-backups.md#point-in-time-restore)，讓您能夠還原為此保留期間內的任何時間點。
 
-|效能層級|保留期間 (天)|
+|服務層|保留期間 (天)|
 |---|:---:|
 |基本|7|
 |標準|35|
@@ -73,12 +73,12 @@ SQL Database 提供[兩個驗證方法](sql-database-control-access.md#authentic
 - [Azure Active Directory 驗證](sql-database-aad-authentication.md)
 - SQL 驗證。 
 
-不支援傳統 Windows 驗證。 Azure Active Directory (AD) 是集中式身分識別和存取管理服務。 利用此服務，您可以非常輕鬆地為組織中的所有人員提供單一登入存取 (SSO)。 這表示認證會在所有 Azure 服務間共用，以簡化驗證。 AAD 支援 [MFA (多重要素驗證) ](sql-database-ssms-mfa-authentication.md)，並且[按幾下滑鼠](../active-directory/connect/active-directory-aadconnect-get-started-express.md)，AAD 即可與 Windows Server Active Directory 整合。 SQL 驗證的運作方式正如同您過去使用它的方式。 您提供使用者名稱/密碼，而您可以向指定邏輯伺服器上的任何資料庫驗證使用者。 這也可讓 SQL Database 和 SQL 資料倉儲提供多重要素驗證和 Azure AD 網域內的來賓使用者帳戶。 如果您已經有內部部署 Active Directory，您可以使目錄與 Azure Active Directory 結成同盟，將您的目錄延伸至 Azure。
+不支援傳統 Windows 驗證。 Azure Active Directory (AD) 是集中式身分識別和存取管理服務。 利用此服務，您可以非常輕鬆地為組織中的所有人員提供單一登入存取 (SSO)。 這表示認證會在所有 Azure 服務間共用，以簡化驗證。 AAD 支援 [MFA (多重要素驗證) ](sql-database-ssms-mfa-authentication.md)，並且[按幾下滑鼠](../active-directory/hybrid/how-to-connect-install-express.md)，AAD 即可與 Windows Server Active Directory 整合。 SQL 驗證的運作方式正如同您過去使用它的方式。 您提供使用者名稱/密碼，而您可以向指定邏輯伺服器上的任何資料庫驗證使用者。 這也可讓 SQL Database 和 SQL 資料倉儲提供多重要素驗證和 Azure AD 網域內的來賓使用者帳戶。 如果您已經有內部部署 Active Directory，您可以使目錄與 Azure Active Directory 結成同盟，將您的目錄延伸至 Azure。
 
 |**如果您...**|**SQL Database/SQL 資料倉儲**|
 |---|---|
 |不想在 Azure 中使用 Azure Active Directory (AD)|使用 [SQL 驗證](sql-database-security-overview.md)|
-|已在內部部署 SQL Server 上使用 AD|[使 AD 與 Azure AD 結成同盟](../active-directory/connect/active-directory-aadconnect.md)，並使用 Azure AD 驗證。 如此一來，您即可使用單一登入。|
+|已在內部部署 SQL Server 上使用 AD|[使 AD 與 Azure AD 結成同盟](../active-directory/hybrid/whatis-hybrid-identity.md)，並使用 Azure AD 驗證。 如此一來，您即可使用單一登入。|
 |需要強制執行多重要素驗證 (MFA)|透過 [Microsoft 條件式存取](sql-database-conditional-access.md)要求 MFA 作為原則，並使用[具有 MFA 支援的 Azure AD 通用驗證](sql-database-ssms-mfa-authentication.md)。|
 |具有來自 Microsoft 帳戶 (live.com、outlook.com) 或其他網域 (gmail.com) 的來賓帳戶|在 SQL Database/資料倉儲中使用 [Azure AD 通用驗證](sql-database-ssms-mfa-authentication.md)，它會利用 [Azure AD B2B 共同作業](../active-directory/active-directory-b2b-what-is-azure-ad-b2b.md)。|
 |已使用 Azure AD 認證從同盟網域登入 Windows|使用 [Azure AD 整合式驗證](sql-database-aad-authentication-configure.md)。|
@@ -98,14 +98,14 @@ SQL Database 提供[兩個驗證方法](sql-database-control-access.md#authentic
 您可以在伺服器層級或資料庫層級建立防火牆規則。 可以透過入口網站或透過 SSMS 建立伺服器層級防火牆規則。 若要深入了解如何設定伺服器和資料庫層級防火牆規則，請參閱：[在 SQL Database 中建立防火牆規則](sql-database-security-tutorial.md#create-a-server-level-firewall-rule-in-the-azure-portal)。
 
 #### <a name="service-endpoints"></a>服務端點
-根據預設，SQL 資料庫會設定為「允許所有 Azure 服務」- 這表示 Azure 中的所有虛擬機器可嘗試連線到您的資料庫。 這些嘗試仍需要取得驗證。 不過，如果不想要資料庫可供任何 Azure IP 存取，可以停用「允許所有 Azure 服務」。 此外，您可以設定 [VNET 服務端點](sql-database-vnet-service-endpoint-rule-overview.md)。
+根據預設，SQL 資料庫會設定為 [允許 Azure 服務存取伺服器]；這表示 Azure 中之任何虛擬機器都可以嘗試連線到您的資料庫。 這些嘗試仍需要取得驗證。 不過，如果您不想要資料庫可供任何 Azure IP 存取，則可以停用 [允許 Azure 服務存取伺服器]。 此外，您可以設定 [VNET 服務端點](sql-database-vnet-service-endpoint-rule-overview.md)。
 
 服務端點 (SE) 可讓您僅對自己在 Azure 中的私人虛擬網路公開您的重要 Azure 資源。 如此一來，基本上可排除對您的資源的公用存取。 您的虛擬網路與 Azure 之間的流量會保持在 Azure 骨幹網路上。 若沒有 SE，則會強制執行通道封包路由。 您的虛擬網路會強制對您的組織的網際網路流量與 Azure 服務流量通過相同的路由。 利用服務端點，您可以將此最佳化，因為封包會直接從您的虛擬網路通往 Azure 骨幹網路上的服務。
 
 ![VNET 服務端點](./media/sql-database-manage-after-migration/vnet-service-endpoints.png) 
 
 #### <a name="reserved-ips"></a>保留的 IP
-另一個選項就是為您的 VM 佈建[保留的 IP](../virtual-network/virtual-networks-reserved-public-ip.md)，並將伺服器防火牆設定中的特定 VM IP 位址列入白名單。 藉由指派保留的 IP，即可免去必須以不斷變更的 IP 位址更新防火牆規則的麻煩。
+另一個選項就是為您的 VM 佈建[保留的 IP](../virtual-network/virtual-networks-reserved-public-ip.md)，並將伺服器防火牆設定中的特定 VM IP 位址列入允許清單。 藉由指派保留的 IP，即可免去必須以不斷變更的 IP 位址更新防火牆規則的麻煩。
 
 ### <a name="what-port-do-i-connect-to-sql-database-on"></a>我會透過哪個連接埠連接到 SQL Database？
 
@@ -170,7 +170,7 @@ Express Route 也可讓您高載至所購買的頻寬限制最多 2 倍，不額
 - [工作流程](../expressroute/expressroute-workflows.md)
 
 ### <a name="is-sql-database-compliant-with-any-regulatory-requirements-and-how-does-that-help-with-my-own-organizations-compliance"></a>SQL Database 是否符合任何法規需求，以及這對於自己組織的合規性有何幫助？
-SQL Database 符合各種法規規範。 若要檢視已符合的最新一組規範，請瀏覽 [Microsoft 信任中心](https://www.microsoft.com/trustcenter/compliance/complianceofferings)，並向下切入至對您的組織而言很重要的規範，以查看 SQL Database 是否包含在合規的 Azure 服務之下。 請務必注意，雖然 SQL Database 可能被公認為合規的服務，這有助於您組織的服務合規性，但不自動保證這點。
+SQL Database 符合各種法規規範。 若要檢視已符合的最新一組規範，請瀏覽 [Microsoft 信任中心](https://microsoft.com/trustcenter/compliance/complianceofferings)，並向下切入至對您的組織而言很重要的規範，以查看 SQL Database 是否包含在合規的 Azure 服務之下。 請務必注意，雖然 SQL Database 可能被公認為合規的服務，這有助於您組織的服務合規性，但不自動保證這點。
 
 ## <a name="intelligent-database-monitoring-and-maintenance-after-migration"></a>移轉之後的智慧型資料庫監視及維護
 
@@ -202,7 +202,7 @@ SQL Database 符合各種法規規範。 若要檢視已符合的最新一組規
 
    ![監視圖表 2](./media/sql-database-manage-after-migration/chart.png)
 
-透過這個圖表，您也可以依照資源設定警示。 這些警示可讓您透過電子郵件回應資源條件、寫入至 HTTPS/HTTP 端點或執行動作。 如需詳細指示，請參閱[在 SQL Database 中監視資料庫效能](sql-database-single-database-monitor.md)。
+透過這個圖表，您也可以依照資源設定警示。 這些警示可讓您透過電子郵件回應資源條件、寫入至 HTTPS/HTTP 端點或執行動作。 如需詳細資訊，請參閱[建立警示](sql-database-insights-alerts-portal.md)。
 
 - **動態管理檢視**：您可以查詢 [sys.dm_db_resource_stats](/sql/relational-databases/system-dynamic-management-views/sys-dm-db-resource-stats-azure-sql-database) 動態管理檢視，以傳回過去一小時的資源耗用量統計資料歷程記錄，而查詢 [sys.resource_stats](/sql/relational-databases/system-catalog-views/sys-resource-stats-azure-sql-database) 系統目錄檢視，可傳回過去 14 天的歷程記錄。
 - **查詢效能深入解析**：[查詢效能深入解析](sql-database-query-performance.md)可讓您針對特定的資料庫，查看前幾名資源耗用查詢和長時間執行查詢的歷程記錄。 您可以依資源使用量、期間和執行頻率快速識別排名最前面的查詢。 您可以追蹤查詢並偵測迴歸。 這項功能需要啟用[查詢存放區](/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store)，而且對資料庫有作用。
@@ -218,23 +218,23 @@ SQL Database 符合各種法規規範。 若要檢視已符合的最新一組規
 
 對效能進行疑難排解時，請務必找出影響應用程式效能的是否只是應用程式或是後端資料庫。 往往效能問題會出在應用程式層。 可能是架構或資料存取模式。 例如，假設您有對網路延遲敏感的交談應用程式。 在此情況下，因為在應用程式與伺服器之間有許多往返傳送的簡短要求 (「交談」)，而在網路壅塞時，這些來回會快速增加，使得您的應用程式遭遇困境。 若要改善此情況下的效能，您可以使用[批次查詢](sql-database-performance-guidance.md#batch-queries)。 使用批次對您大有幫助，因為現在系統會以批次處理您的要求，因此可協助您減少來回延遲，並改善您的應用程式效能。 
 
-此外，如果您發現資料庫整體效能降低，您可以監視 [sys.dm_db_resource_stats](/sql/relational-databases/system-dynamic-management-views/sys-dm-db-resource-stats-azure-sql-database) 和 [sys.resource_stats](/sql/relational-databases/system-catalog-views/sys-resource-stats-azure-sql-database) 動態管理檢視，以便了解 CPU、I/O 和記憶體耗用量。 您的效能可能受到影響，因為您的資料庫極需要資源。 您可能需要根據成長和縮減的工作負載需求來變更效能層級和/或服務層。 
+此外，如果您發現資料庫整體效能降低，您可以監視 [sys.dm_db_resource_stats](/sql/relational-databases/system-dynamic-management-views/sys-dm-db-resource-stats-azure-sql-database) 和 [sys.resource_stats](/sql/relational-databases/system-catalog-views/sys-resource-stats-azure-sql-database) 動態管理檢視，以便了解 CPU、IO 和記憶體耗用量。 您的效能可能受到影響，因為您的資料庫極需要資源。 您可能需要根據成長和縮減的工作負載需求來變更計算大小和/或服務層。 
 
 如需一組完整的調整效能問題相關建議，請參閱[微調資料庫](sql-database-performance-guidance.md#tune-your-database)。
 
-### <a name="how-do-i-ensure-i-am-using-the-appropriate-service-tier-and-performance-level"></a>如何確保我是使用適當的服務層和效能層級？
-SQL Database 提供三個服務層：基本、標準和進階。 在每個服務層，您會獲得與該服務等級保證連結的可預測效能。 根據您的工作負載，您的活動可能會激增，此時的資源使用率可能到達目前所在效能層級的上限。 在這種情況下，先從評估進行任何調整 (例如，新增或改變索引等) 是否有幫助很有用。 如果您仍然遇到限制問題，請考慮移到較高的效能層級或服務等級。 
+### <a name="how-do-i-ensure-i-am-using-the-appropriate-service-tier-and-compute-size"></a>如何確保我使用適當的服務層和計算大小？
+SQL Database 提供三個服務層：基本、標準和進階。 在每個服務層，您會獲得與該服務層保證連結的可預測效能。 根據您的工作負載，您的活動可能會激增，此時的資源使用量可能到達目前所在計算大小上限。 在這種情況下，先從評估進行任何調整 (例如，新增或改變索引等) 是否有幫助很有用。 如果您仍然遇到限制問題，請考慮移到較高的服務層或計算大小。 
 
-|**服務等級**|**常見的使用案例**|
+|**服務層**|**常見的使用案例**|
 |---|---|
 |**基本**|應用程式具有少數使用者與一個資料庫，沒有高度並行能力、規模和效能需求。 |
 |**標準**|應用程式具有相當大的並行能力、規模和效能需求，結合低到中等的 IO 要求。 |
 |**高級**|應用程式具有許多並行使用者、高度 CPU/記憶體和高度 IO 要求。 高度並行能力、高輸送量和對延遲敏感的應用程式可以利用高級層級。 |
 |||
 
-若要確定您已採用正確的效能層級，您可以透過上述的「如何在 SQL Database 中監視效能和資源使用率？」中的其中一個方式來監視您的查詢和資料庫資源耗用量。 如果您發現您的查詢/資料庫持續耗用 CPU/記憶體等，可以考慮向上增加至更高的效能層級。 同樣地，如果您發現，即使在尖峰時刻也沒有使用一樣多的資源，請考慮從目前的效能層級向下縮減。 
+若要確定您已採用正確的計算大小，您可以透過上述「如何在 SQL Database 中監視效能和資源使用量？」中之其中一個方式來監視您的查詢和資料庫資源耗用量。 如果您發現您的查詢/資料庫持續耗用 CPU/記憶體等，可以考慮向上增加至更高的計算大小。 同樣地，如果您發現即使在尖峰時刻也未使用一樣多的資源，請考慮從目前的計算大小向下縮減。 
 
-如果您有 SaaS 應用程式模式或資料庫彙總案例，為了成本最佳化，請考慮使用彈性集區。 彈性集區是達到資料庫合併和成本最佳化的好方法。 若要閱讀使用彈性集區管理多個資料庫的相關資訊，請參閱：[管理集區和資料庫](sql-database-elastic-pool.md#manage-elastic-pools-and-databases-using-the-azure-portal)。 
+如果您有 SaaS 應用程式模式或資料庫彙總情節，為了成本最佳化，請考慮使用彈性集區。 彈性集區是達到資料庫合併和成本最佳化的好方法。 若要閱讀使用彈性集區管理多個資料庫的相關資訊，請參閱：[管理集區和資料庫](sql-database-elastic-pool-manage.md#azure-portal-manage-elastic-pools-and-pooled-databases)。 
 
 ### <a name="how-often-do-i-need-to-run-database-integrity-checks-for-my-database"></a>我必須為我的資料庫執行資料庫完整性檢查的頻率為何？
 SQL Database 會使用的一些智慧技術可讓它自動處理特定類別的資料損毀，並且不會遺失任何資料。 服務中內建了這些技術，並且可在需求出現時由服務加以利用。 系統會定期將您在服務間的資料庫備份，藉由還原它們並對其執行 DBCC CHECKDB 來進行測試。 如果有問題，SQL Database 會主動解決它們。 運用[自動頁面修復](/sql/sql-server/failover-clusters/automatic-page-repair-availability-groups-database-mirroring)來修正損毀或有資料完整性問題的頁面。 系統一律會使用可驗證頁面完整性的預設總和檢查碼設定驗證資料庫頁面。 SQL Database 會主動監視並檢閱資料庫的資料完整性，並且，如果發生問題，便以最高優先順序來加以解決。 除了這些，您可以選擇視需要選擇性地執行完整性檢查。  如需詳細資訊，請參閱 [SQL Database 中的資料完整性](https://azure.microsoft.com/blog/data-integrity-in-azure-sql-database/)
@@ -254,7 +254,7 @@ SQL Database 會使用的一些智慧技術可讓它自動處理特定類別的�
 ### <a name="how-do-i-synchronize-data-between-sql-database-and-sql-server"></a>如何同步處理 SQL Database 與 SQL Server 之間的資料？
 您有幾種方式來達到此目的： 
 - **[資料同步](sql-database-sync-data.md)** - 此功能可協助您在多個內部部署 SQL Server 資料庫與 SQL Database 之間雙向同步處理資料。 若要與內部部署 SQL Server 資料庫同步，您需要在本機電腦上安裝並設定同步處理代理程式，以及開放輸出 TCP 連接埠 1433。
-- **[交易複寫](https://azure.microsoft.com/blog/transactional-replication-to-azure-sql-database-is-now-generally-available/)** - 利用交易複寫，您可以從內部部署將您的資料同步處理到 Azure SQL DB，以內部部署作為發行者和 Azure SQL DB 作為訂閱者。 目前僅支援此安裝程式。 如需有關如何將資料從內部部署移轉到 Azure SQL 且具有最少停機時間的詳細資訊，請參閱：[使用交易複寫](sql-database-cloud-migrate.md#method-2-use-transactional-replication)
+- **[交易複寫](https://azure.microsoft.com/blog/transactional-replication-to-azure-sql-database-is-now-generally-available/)** - 您可以利用交易複寫，從內部部署將資料同步處理到 Azure SQL DB，以內部部署作為發行者和 Azure SQL DB 作為訂閱者。 目前僅支援此安裝程式。 如需有關如何將資料從內部部署移轉到 Azure SQL 且具有最少停機時間的詳細資訊，請參閱：[使用交易複寫](sql-database-cloud-migrate.md#method-2-use-transactional-replication)
 
 ## <a name="next-steps"></a>後續步驟
 了解 [SQL Database](sql-database-technical-overview.md)。

@@ -6,14 +6,15 @@ author: douglaslMS
 manager: craigg
 ms.custom: reference
 ms.service: sql-database
-ms.topic: article
-ms.date: 03/20/2017
+ms.topic: conceptual
+ms.date: 04/01/2018
 ms.author: douglasl
-ms.openlocfilehash: 34ff31c0542fba5fbd132c89c6bb028ba9ca6b88
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: be93dbff39c47ed1d8834efa3ef6c033525b4bea
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34648909"
 ---
 # <a name="public-data-sets-for-testing-and-prototyping"></a>用於測試和建立原型的公用資料集
 

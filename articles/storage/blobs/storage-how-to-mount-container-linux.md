@@ -1,22 +1,20 @@
 ---
-title: "如何在 Linux 上將 Azure Blob 儲存體掛接為檔案系統 | Microsoft Docs"
-description: "在 Linux 上使用 FUSE 掛接 Azure Blob 儲存體容器"
+title: 如何在 Linux 上將 Azure Blob 儲存體掛接為檔案系統 | Microsoft Docs
+description: 在 Linux 上使用 FUSE 掛接 Azure Blob 儲存體容器
 services: storage
-documentationcenter: linux
 author: seguler
-manager: jahogg
 ms.service: storage
-ms.devlang: bash
 ms.topic: article
-ms.date: 01/19/2018
+ms.date: 05/10/2018
 ms.author: seguler
-ms.openlocfilehash: 299b96c783fb3606347bb448d00d44f0071da429
-ms.sourcegitcommit: 5ac112c0950d406251551d5fd66806dc22a63b01
+ms.openlocfilehash: 9964aa4d263e0b75eb59b4e1434a9b3f0aac6ea1
+ms.sourcegitcommit: d4c076beea3a8d9e09c9d2f4a63428dc72dd9806
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2018
+ms.lasthandoff: 08/01/2018
+ms.locfileid: "39400181"
 ---
-# <a name="how-to-mount-blob-storage-as-a-file-system-with-blobfuse-preview"></a>如何使用 Blobfuse 將 Blob 儲存體掛接為檔案系統 (預覽)
+# <a name="how-to-mount-blob-storage-as-a-file-system-with-blobfuse"></a>如何使用 Blobfuse 將 Blob 儲存體掛接為檔案系統
 
 ## <a name="overview"></a>概觀
 [Blobfuse](https://github.com/Azure/azure-storage-fuse) 是 Azure Blob 儲存體的虛擬檔案系統驅動程式，能讓您透過 Linux 檔案系統存取儲存體帳戶中現有的區塊 Blob 資料。 Azure Blob 儲存體是物件儲存體服務，因此沒有階層式的命名空間。 透過使用虛擬目錄配置，再將正斜線 '/' 當做分隔符號，Blobfuse 遂能提供此種命名空間。  
@@ -24,7 +22,7 @@ ms.lasthandoff: 01/23/2018
 本指南示範如何使用 Blobfuse，以及如何在 Linux 上掛接 Blob 儲存體容器並存取資料。 若要深入了解 Blobfuse，請閱讀 [Blobfuse 存放庫](https://github.com/Azure/azure-storage-fuse)中的詳細資料。
 
 > [!WARNING]
-> Blobfuse 不保證 100% 合乎 POSIX 的規範，因為它只會將要求轉譯成 [Blob REST API](https://docs.microsoft.com/en-us/rest/api/storageservices/blob-service-rest-api)。 例如，重新命名作業在 POSIX 中不可部分完成，不過在 Blobfuse 中並非如此。
+> Blobfuse 不保證 100% 合乎 POSIX 的規範，因為它只會將要求轉譯成 [Blob REST API](https://docs.microsoft.com/rest/api/storageservices/blob-service-rest-api)。 例如，重新命名作業在 POSIX 中不可部分完成，不過在 Blobfuse 中並非如此。
 > 如需原生檔案系統與 Blobfuse 之間差異的完整清單，請造訪 [Blobfuse 原始程式碼存放庫](https://github.com/azure/azure-storage-fuse)。
 > 
 
@@ -78,7 +76,7 @@ sudo chown <youruser> /mnt/ramdisk/blobfusetmp
 ```
 
 ### <a name="use-an-ssd-for-temporary-path"></a>將 SSD 當做暫存路徑
-在 Azure 中，您可以使用虛擬機器上的暫時磁碟 (SSD) 來當做低延遲的 Blobfuse 緩衝區。 在 Ubuntu 發行版中，此處的暫時磁碟會掛接於 '/mnt'，在 RedHat 和 CentOS 發行版中則掛接於 '/mnt/resource/'。
+在 Azure 中，您可以使用虛擬機器上的暫時磁碟 (SSD) 來當做低延遲的 Blobfuse 緩衝區。 在 Ubuntu 發行版中，此處的暫時磁碟會掛接於 '/mnt'，在 Red Hat 和 CentOS 發行版中則掛接於 '/mnt/resource/'。
 
 請確認使用者擁有暫存路徑的存取權限：
 ```bash

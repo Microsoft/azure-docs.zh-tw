@@ -1,25 +1,20 @@
 ---
-title: "從 Visual Studio R 工具提交作業 - Azure HDInsight | Microsoft Docs"
-description: "從您的本機 Visual Studio 機器將 R 作業提交至 HDInsight 叢集。"
+title: 從 Visual Studio R 工具提交作業 - Azure HDInsight
+description: 從您的本機 Visual Studio 機器將 R 作業提交至 HDInsight 叢集。
 services: hdinsight
-documentationcenter: 
-author: maxluk
-manager: jhubbard
-editor: cgronlun
-tags: azure-portal
 ms.service: hdinsight
-ms.custom: hdinsightactive
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
-ms.date: 01/11/2018
+author: maxluk
 ms.author: maxluk
-ms.openlocfilehash: 1a82ba7790f739768156a8bee33a74d7130e24e1
-ms.sourcegitcommit: be9a42d7b321304d9a33786ed8e2b9b972a5977e
+ms.reviewer: jasonh
+ms.custom: hdinsightactive
+ms.topic: conceptual
+ms.date: 06/27/2018
+ms.openlocfilehash: 65a0d8074b8dcf89d8fc713cb4b2272c6576e8fb
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/19/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43043949"
 ---
 # <a name="submit-jobs-from-r-tools-for-visual-studio"></a>從 Visual Studio R 工具提交作業
 
@@ -38,7 +33,7 @@ RTVS 會增強您的 R 工作流程，方法是提供例如 [R 互動視窗](htt
 3. 您需要有公開和私密金鑰以進行 SSH 驗證。
 <!-- {TODO tbd, no such file yet}[use SSH with HDInsight](hdinsight-hadoop-linux-use-ssh-windows.md) -->
 
-4. 在您的電腦上安裝 [R 伺服器](https://msdn.microsoft.com/microsoft-r/rserver-install-windows)。 R 伺服器提供 [`RevoScaleR`](https://msdn.microsoft.com/microsoft-r/scaler/scaler) 和 `RxSpark` 函式。
+4. 在您的電腦上安裝 [Machine Learning Server](https://msdn.microsoft.com/microsoft-r/rserver-install-windows)。 Machine Learning Server 提供 [`RevoScaleR`](https://msdn.microsoft.com/microsoft-r/scaler/scaler) 和 `RxSpark` 函式。
 
 5. 安裝 [PuTTY](http://www.putty.org/) 以提供計算內容，從您的本機用戶端將 `RevoScaleR` 函式執行至 HDInsight 叢集。
 
@@ -54,7 +49,7 @@ RTVS 會增強您的 R 工作流程，方法是提供例如 [R 互動視窗](htt
 
 ## <a name="execute-local-r-methods"></a>執行本機 R 方法
 
-1. 建立您的 [R 伺服器 HDInsight 叢集](r-server-get-started.md)。
+1. 建立 [HDInsight ML 服務叢集](r-server-get-started.md)。
 2. 安裝 [RTVS 擴充功能](https://docs.microsoft.com/visualstudio/rtvs/installation)。
 3. 下載[範例 zip 檔案](https://github.com/Microsoft/RTVS-docs/archive/master.zip)。
 4. 在 Visual Studio 中開啟 `examples/Examples.sln` 以啟動解決方案。
@@ -67,11 +62,11 @@ RTVS 會增強您的 R 工作流程，方法是提供例如 [R 互動視窗](htt
 
     ![資料科學設定...](./media/r-server-submit-jobs-r-tools-vs/workspace.png)
 
-## <a name="submit-jobs-to-an-hdinsight-r-cluster"></a>將作業提交至 HDInsight R 叢集
+## <a name="submit-jobs-to-an-hdinsight-ml-services-cluster"></a>將作業提交至 HDInsight ML 服務叢集
 
-從配備 PuTTY 的 Windows 電腦使用 Microsoft R 伺服器/Microsoft R 用戶端，您可以建立計算內容，會從本機用戶端將分散式 `RevoScaleR` 函式執行至 HDInsight 叢集。 使用 `RxSpark` 來建立計算內容，指定您的使用者名稱、Hadoop 叢集的邊緣節點、SSH 參數等等。
+您可以透過配備 PuTTY 的 Windows 電腦使用 Microsoft Machine Learning Server/Microsoft R Client，建立計算內容，此內容會從本機用戶端將分散式 `RevoScaleR` 函式執行至 HDInsight 叢集。 使用 `RxSpark` 來建立計算內容，指定您的使用者名稱、Hadoop 叢集的邊緣節點、SSH 參數等等。
 
-1. 若要尋找邊緣節點的主機名稱，開啟您在 Azure 上的 HDInsight R 叢集窗格，然後選取 [概觀] 窗格功能表頂端的 [安全殼層 (SSH)]。
+1. 若要尋找邊緣節點的主機名稱，請開啟您在 Azure 上的 HDInsight ML 服務叢集窗格，然後選取 [概觀] 窗格功能表頂端的 [安全殼層 (SSH)]。
 
     ![安全殼層 (SSH)](./media/r-server-submit-jobs-r-tools-vs/ssh.png)
 
@@ -123,7 +118,7 @@ RTVS 會增強您的 R 工作流程，方法是提供例如 [R 互動視窗](htt
 
 5. 確認 `rxHadoopCopy` 成功將 `people.json` 檔案從範例資料資料夾複製到新建立的 `/user/RevoShare/newUser` 資料夾：
 
-    1. 從 Azure 中的 HDInsight R 叢集窗格，選取左側功能表的 [儲存體帳戶]。
+    1. 從 Azure 中的 HDInsight ML 服務叢集窗格，選取左側功能表的 [儲存體帳戶]。
 
         ![儲存體帳戶](./media/r-server-submit-jobs-r-tools-vs/storage-accounts.png)
 
@@ -145,6 +140,6 @@ RTVS 會增強您的 R 工作流程，方法是提供例如 [R 互動視窗](htt
 
 ## <a name="next-steps"></a>後續步驟
 
-* [適用於 HDInsight 上 R 伺服器的計算內容選項](r-server-compute-contexts.md)
+* [在 HDInsight 上計算 ML 服務的內容選項](r-server-compute-contexts.md)
 * [結合 ScaleR 和 SparkR](../hdinsight-hadoop-r-scaler-sparkr.md)提供航班延誤預測的範例。
 <!-- * You can also submit R jobs with the [R Studio Server](hdinsight-submit-jobs-from-r-studio-server.md) -->

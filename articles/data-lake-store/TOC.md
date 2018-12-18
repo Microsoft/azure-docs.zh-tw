@@ -1,17 +1,17 @@
-# [Data Lake Store 文件](index.md)
+# [Data Lake Storage Gen1 文件](index.md)
+# [切換為第二代 Data Lake Storage (預覽) 文件](https://docs.microsoft.com/azure/storage/data-lake-storage/introduction)
 
 # 概觀
-## [Azure Data Lake Store 概觀](data-lake-store-overview.md)
-## [比較 Azure Data Lake Store 與 Azure 儲存體](data-lake-store-comparison-with-blob-storage.md)
-## [使用 Azure Data Lake Store 處理巨量資料](data-lake-store-data-scenarios.md)
-## [與 Azure Data Lake Store 搭配使用的開放原始碼應用程式](data-lake-store-compatible-oss-other-applications.md)
-## [使用 Data Lake Store 的最佳做法](data-lake-store-best-practices.md)
+## [Data Lake Storage Gen1 概觀](data-lake-store-overview.md)
+## [與 Azure 儲存體比較](data-lake-store-comparison-with-blob-storage.md)
+## [巨量資料處理](data-lake-store-data-scenarios.md)
+## [使用開放原始碼應用程式](data-lake-store-compatible-oss-other-applications.md)
+## [最佳做法](data-lake-store-best-practices.md)
 
 # 開始使用
-## [使用入口網站](data-lake-store-get-started-portal.md)
-## [使用 PowerShell](data-lake-store-get-started-powershell.md)
-## [使用 Azure CLI 2.0](data-lake-store-get-started-cli-2.0.md)
-
+## [使用 Azure 入口網站](data-lake-store-get-started-portal.md)
+## [使用 Azure PowerShell](data-lake-store-get-started-powershell.md)
+## [使用 Azure CLI](data-lake-store-get-started-cli-2.0.md)
 
 # 作法
 ## 載入和移動資料
@@ -21,15 +21,16 @@
 ### [使用 DistCp](data-lake-store-copy-data-wasb-distcp.md)
 ### [使用 Sqoop](data-lake-store-data-transfer-sql-sqoop.md)
 ### [從離線來源上傳資料](data-lake-store-offline-bulk-data-upload.md)
-### [跨區移轉 Azure Data Lake Store](data-lake-store-migration-cross-region.md)
+### [跨區域遷移 Data Lake Storage Gen1](data-lake-store-migration-cross-region.md)
 
 ## 保護資料
 ### [安全性概觀](data-lake-store-security-overview.md)
-### [Data Lake Store 中的存取控制](data-lake-store-access-control.md)
-### [保護 Data Lake Store 中的資料](data-lake-store-secure-data.md)
+### [存取控制](data-lake-store-access-control.md)
+### [保護儲存的資料](data-lake-store-secure-data.md)
 ### [加密](data-lake-store-encryption.md)
+### [虛擬網路整合 (預覽)](data-lake-store-network-security.md)
 
-## 使用 Data Lake Store 進行驗證
+## 使用 Data Lake Storage Gen1 進行驗證
 ### [驗證選項](data-lakes-store-authentication-using-azure-active-directory.md)
 ### [使用者驗證](data-lake-store-end-user-authenticate-using-active-directory.md)
 #### [使用 Java](data-lake-store-end-user-authenticate-java-sdk.md)
@@ -42,7 +43,7 @@
 #### [使用 REST API](data-lake-store-service-to-service-authenticate-rest-api.md)
 #### [使用 Python](data-lake-store-service-to-service-authenticate-python.md)
 
-## 與 Data Lake Store 搭配使用
+## 與 Data Lake Storage Gen1 搭配使用
 ### 帳戶管理作業
 #### [使用 .NET SDK](data-lake-store-get-started-net-sdk.md)
 #### [使用 REST API](data-lake-store-get-started-rest-api.md)
@@ -54,12 +55,12 @@
 #### [使用 Python](data-lake-store-data-operations-python.md)
 
 ## 效能
-### [Azure Data Lake Store 的效能微調方針](data-lake-store-performance-tuning-guidance.md)
-### [使用 PowerShell 和 Azure Data Lake Store 進行效能微調之方針](data-lake-store-performance-tuning-powershell.md)
-### [HDInsight 和 Azure Data Lake Store 上的 Spark 效能微調方針](data-lake-store-performance-tuning-spark.md)
-### [HDInsight 和 Azure Data Lake Store 上的 Hive 效能微調方針](data-lake-store-performance-tuning-hive.md)
-### [HDInsight 和 Azure Data Lake Store 上的 MapReduce 效能微調方針](data-lake-store-performance-tuning-mapreduce.md)
-### [HDInsight 和 Azure Data Lake Store 上的 Storm 效能微調方針](data-lake-store-performance-tuning-storm.md)
+### [概觀](data-lake-store-performance-tuning-guidance.md)
+### [使用 Azure PowerShell](data-lake-store-performance-tuning-powershell.md)
+### [使用 HDInsight 上的 Spark](data-lake-store-performance-tuning-spark.md)
+### [使用 HDInsight 上的 Hive](data-lake-store-performance-tuning-hive.md)
+### [在 HDInsight 上使用 MapReduce](data-lake-store-performance-tuning-mapreduce.md)
+### [使用 HDInsight 上的 Storm](data-lake-store-performance-tuning-storm.md)
 
 ## 與 Azure 服務整合
 ### 搭配 HDInsight
@@ -83,12 +84,12 @@
 ### [高可用性規劃](data-lake-store-disaster-recovery-guidance.md)
 
 # 參考
-## [程式碼範例](https://azure.microsoft.com/en-us/resources/samples/?service=data-lake-store)
+## [程式碼範例](https://azure.microsoft.com/resources/samples/?service=data-lake-store)
 ## [Azure PowerShell](/powershell/module/azurerm.datalakestore)
 ## [.NET](https://docs.microsoft.com/dotnet/api/overview/azure/data-lake-store?view=azure-dotnet)
 ## [Java](/java/api/com.microsoft.azure.datalake.store)
 ## [Node.js](https://www.npmjs.com/package/azure-arm-datalake-store)
-## [Python (帳戶管理)](http://azure-sdk-for-python.readthedocs.io/en/latest/sample_azure-mgmt-datalake-store.html)
+## [Python (帳戶管理)](https://docs.microsoft.com/python/api/azure.mgmt.datalake.store?view=azure-python)
 ## [Python (檔案系統管理)](http://azure-datalake-store.readthedocs.io/en/latest)
 ## [REST](/rest/api/datalakestore)
 ## [Azure CLI](https://docs.microsoft.com/cli/azure/dls)

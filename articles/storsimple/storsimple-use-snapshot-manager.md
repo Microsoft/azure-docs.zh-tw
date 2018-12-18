@@ -1,11 +1,11 @@
 ---
-title: "StorSimple Snapshot Manager 使用者介面 | Microsoft Docs"
-description: "描述 StorSimple Snapshot Manager 使用者介面，並說明如何使用其來管理備份作業和備份目錄。"
+title: StorSimple Snapshot Manager 使用者介面 | Microsoft Docs
+description: 描述 StorSimple Snapshot Manager 使用者介面，並說明如何使用其來管理備份作業和備份目錄。
 services: storsimple
 documentationcenter: NA
 author: SharS
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: c7d91892-2881-41a2-a7a2-908dc3646493
 ms.service: storsimple
 ms.devlang: NA
@@ -14,12 +14,13 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 06/05/2017
 ms.author: v-sharos
-ms.custom: 
+ms.custom: ''
 ms.openlocfilehash: b48c507e38eb7cadff56259f617e336e4efe5708
 ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23113526"
 ---
 # <a name="use-storsimple-snapshot-manager-user-interface-to-manage-backup-jobs-and-backup-catalog"></a>使用 StorSimple Snapshot Manager 使用者介面來管理備份作業與備份類別目錄
 

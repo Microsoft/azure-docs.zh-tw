@@ -1,11 +1,11 @@
 ---
-title: "清除 Azure CDN 端點 | Microsoft Docs"
-description: "了解如何清除 Azure CDN 端點的所有快取內容。"
+title: 清除 Azure CDN 端點 | Microsoft Docs
+description: 了解如何清除 Azure CDN 端點的所有快取內容。
 services: cdn
-documentationcenter: 
-author: zhangmanling
-manager: erikre
-editor: 
+documentationcenter: ''
+author: mdgattuso
+manager: danielgi
+editor: ''
 ms.assetid: 0b50230b-fe82-4740-90aa-95d4dde8bd4f
 ms.service: cdn
 ms.workload: tbd
@@ -13,12 +13,13 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
-ms.author: mazha
-ms.openlocfilehash: b6157ddaf320f942a704d32f066b821425596308
-ms.sourcegitcommit: 62eaa376437687de4ef2e325ac3d7e195d158f9f
+ms.author: magattus
+ms.openlocfilehash: a3777533fc967e1974b99375496dd3777fa9fb3a
+ms.sourcegitcommit: 4047b262cf2a1441a7ae82f8ac7a80ec148c40c4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/22/2017
+ms.lasthandoff: 10/11/2018
+ms.locfileid: "49093845"
 ---
 # <a name="purge-an-azure-cdn-endpoint"></a>清除 Azure CDN 端點
 ## <a name="overview"></a>概觀

@@ -1,11 +1,11 @@
 ---
-title: "在 Azure 擴展集範本中參考現有的虛擬網路 | Microsoft Docs"
-description: "了解如何將虛擬網路新增到現有的「Azure 虛擬機器擴展集」範本"
+title: 在 Azure 擴展集範本中參考現有的虛擬網路 | Microsoft Docs
+description: 了解如何將虛擬網路新增到現有的「Azure 虛擬機器擴展集」範本
 services: virtual-machine-scale-sets
-documentationcenter: 
+documentationcenter: ''
 author: gatneil
 manager: jeconnoc
-editor: 
+editor: ''
 tags: azure-resource-manager
 ms.assetid: 76ac7fd7-2e05-4762-88ca-3b499e87906e
 ms.service: virtual-machine-scale-sets
@@ -20,6 +20,7 @@ ms.sourcegitcommit: f46cbcff710f590aebe437c6dd459452ddf0af09
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 12/20/2017
+ms.locfileid: "26782366"
 ---
 # <a name="add-reference-to-an-existing-virtual-network-in-an-azure-scale-set-template"></a>在 Azure 擴展集範本中新增對現有虛擬網路的參考
 

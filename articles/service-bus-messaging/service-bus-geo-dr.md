@@ -2,22 +2,18 @@
 title: Azure 服務匯流排地理災害復原 | Microsoft Docs
 description: 如何使用地理區域，在 Azure 服務匯流排中進行容錯移轉並執行災害復原
 services: service-bus-messaging
-documentationcenter: ''
-author: christianwolf42
+author: spelluru
 manager: timlt
-editor: ''
 ms.service: service-bus-messaging
-ms.workload: na
-ms.tgt_pltfrm: na
-ms.devlang: na
 ms.topic: article
-ms.date: 12/15/2017
-ms.author: sethm
-ms.openlocfilehash: 652adcf78add8ae699a7f827a915e90ce1694c61
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.date: 06/14/2018
+ms.author: spelluru
+ms.openlocfilehash: 42960222efb1ade1b48a1d0db56ae3fb0349d174
+ms.sourcegitcommit: cb61439cf0ae2a3f4b07a98da4df258bfb479845
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 09/05/2018
+ms.locfileid: "43695386"
 ---
 # <a name="azure-service-bus-geo-disaster-recovery"></a>Azure 服務匯流排地理災害復原
 
@@ -76,7 +72,7 @@ Azure 服務匯流排的地理災害復原功能就是一個災害復原解決�
 
 ![2][]
 
-## <a name="management"></a>管理
+## <a name="management"></a>管理性
 
 如果您發生錯誤；例如，您在初始化安裝期間配對錯誤的區域，您可以隨時中斷兩個命名空間的配對。 如果您想要使用配對的命名空間作為一般命名空間，請刪除別名。
 
@@ -88,7 +84,7 @@ Azure 服務匯流排的地理災害復原功能就是一個災害復原解決�
 
 [GitHub 上的範例](https://github.com/Azure/azure-service-bus/tree/master/samples/DotNet/Microsoft.ServiceBus.Messaging/GeoDR/SBGeoDR2/)示範如何設定及初始化容錯移轉。 這些範例示範下列概念：
 
-- 在 Azure Active Directory 中使用 Azure Resource Manager 與服務匯流排來設定和啟用地理災害復原所需的設定。
+- 在 Azure Active Directory 中使用 Azure Resource Manager 搭配服務匯流排，以設定和啟用異地災害復原所需的 .NET 範例和設定。
 - 執行範例程式碼所需的步驟。
 - 如何使用現有命名空間作為別名。
 - 另外透過 PowerShell 或 CLI 啟用地理災害復原的步驟。
@@ -106,6 +102,17 @@ Azure 服務匯流排的地理災害復原功能就是一個災害復原解決�
 
 4. 同步處理實體可能需要一些時間，大約每分鐘 50-100 個實體。 訂用帳戶和規則也算是實體。 
 
+## <a name="availability-zones-preview"></a>可用性區域 (預覽)
+
+服務匯流排進階 SKU 也支援[可用性區域](../availability-zones/az-overview.md)，在 Azure 區域內提供錯誤隔離位置。 
+
+> [!NOTE]
+> 只有在**美國中部**、**美國東部 2** 和**法國中部**區域才支援可用性區域預覽。
+
+使用 Azure 入口網站時，只能在新的命名空間上啟用可用性區域。 服務匯流排不支援移轉現有的命名空間。 在命名空間上啟用區域備援之後，便無法停用。
+
+![3][]
+
 ## <a name="next-steps"></a>後續步驟
 
 - 請參閱地理災害復原在[這裡的 REST API 參考](/rest/api/servicebus/disasterrecoveryconfigs)。
@@ -122,3 +129,4 @@ Azure 服務匯流排的地理災害復原功能就是一個災害復原解決�
 
 [1]: ./media/service-bus-geo-dr/geo1.png
 [2]: ./media/service-bus-geo-dr/geo2.png
+[3]: ./media/service-bus-geo-dr/az.png

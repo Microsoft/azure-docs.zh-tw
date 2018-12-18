@@ -1,16 +1,18 @@
 ---
-title: "Azure Site Recovery 中的實體伺服器至 Azure 複寫架構 | Microsoft Docs"
-description: "本文概述使用 Azure Site Recovery 服務將內部部署實體伺服器複寫至 Azure 時，所使用的元件和架構"
+title: Azure Site Recovery 中的實體伺服器至 Azure 複寫架構 | Microsoft Docs
+description: 本文概述使用 Azure Site Recovery 服務將內部部署實體伺服器複寫至 Azure 時，所使用的元件和架構
 author: rayne-wiselman
+manager: carmonm
 ms.service: site-recovery
-ms.topic: article
-ms.date: 03/09/2018
+ms.topic: conceptual
+ms.date: 10/10/2018
 ms.author: raynew
-ms.openlocfilehash: a8af2ee4a32925603d24aee2403ab504a0ca05a8
-ms.sourcegitcommit: a0be2dc237d30b7f79914e8adfb85299571374ec
+ms.openlocfilehash: 15e8e9ce7b12585f7ea89a0440fdb93cfb171feb
+ms.sourcegitcommit: 4b1083fa9c78cd03633f11abb7a69fdbc740afd1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/12/2018
+ms.lasthandoff: 10/10/2018
+ms.locfileid: "49077034"
 ---
 # <a name="physical-server-to-azure-replication-architecture"></a>實體伺服器至 Azure 複寫架構
 

@@ -1,0 +1,189 @@
+items:
+- name: 網路監看員文件
+  href: index.yml
+- name: 概觀
+  items:
+  - name: 關於網路監看員
+    href: network-watcher-monitoring-overview.md
+- name: 快速入門
+  items:
+  - name: 診斷虛擬機器流量篩選問題 - 入口網站
+    href: diagnose-vm-network-traffic-filtering-problem.md
+  - name: 診斷虛擬機器流量篩選問題 - PowerShell
+    href: diagnose-vm-network-traffic-filtering-problem-powershell.md
+  - name: 診斷虛擬機器流量篩選問題 - Azure CLI
+    href: diagnose-vm-network-traffic-filtering-problem-cli.md
+  expanded: true
+- name: 教學課程
+  items:
+  - name: 診斷虛擬機器路由問題
+    href: diagnose-vm-network-routing-problem.md
+  - name: 監視 VM 間的通訊
+    href: connection-monitor.md
+  - name: 診斷網路間的通訊問題
+    href: diagnose-communication-problem-between-networks.md
+  - name: 記錄 VM 網路流量
+    href: network-watcher-nsg-flow-logging-portal.md
+- name: 概念
+  items:
+  - name: 診斷虛擬機器網路流量篩選問題
+    href: network-watcher-ip-flow-verify-overview.md
+  - name: 診斷虛擬機器路由問題
+    href: network-watcher-next-hop-overview.md
+  - name: 診斷輸出虛擬機器通訊問題
+    href: network-watcher-connectivity-overview.md
+  - name: 針對 VPN 連線問題進行疑難排解
+    href: network-watcher-troubleshoot-overview.md
+  - name: 變數封包擷取
+    href: network-watcher-packet-capture-overview.md
+  - name: 網路安全性群組流量記錄
+    href: network-watcher-nsg-flow-logging-overview.md
+  - name: 網路安全性群組檢視
+    href: network-watcher-security-group-view-overview.md
+  - name: 角色型存取控制權限
+    href: required-rbac-permissions.md
+- name: 使用說明指南
+  items:
+  - name: 設定網路監看員
+    href: network-watcher-create.md
+  - name: 診斷 VM 網路問題
+    items:
+    - name: 安裝 VM 擴充功能
+      items:
+      - name: Windows
+        href: ../virtual-machines/windows/extensions-nwa.md?toc=%2fazure%2fnetwork-watcher%2ftoc.json
+      - name: Linux
+        href: ../virtual-machines/linux/extensions-nwa.md?toc=%2fazure%2fnetwork-watcher%2ftoc.json
+    - name: 診斷路由問題
+      items:
+      - name: Azure PowerShell
+        href: diagnose-vm-network-routing-problem-powershell.md
+      - name: Azure CLI
+        href: diagnose-vm-network-routing-problem-cli.md
+    - name: 診斷輸出連線問題
+      items:
+      - name: Azure 入口網站
+        href: network-watcher-connectivity-portal.md
+      - name: Azure PowerShell
+        href: network-watcher-connectivity-powershell.md
+      - name: Azure CLI
+        href: network-watcher-connectivity-cli.md
+      - name: REST
+        href: network-watcher-connectivity-rest.md
+    - name: 擷取及分析封包
+      items:
+      - name: 管理封包擷取
+        items:
+        - name: Azure 入口網站
+          href: network-watcher-packet-capture-manage-portal.md
+        - name: Azure PowerShell
+          href: network-watcher-packet-capture-manage-powershell.md
+        - name: Azure CLI
+          href: network-watcher-packet-capture-manage-cli.md
+        - name: REST
+          href: network-watcher-packet-capture-manage-rest.md
+      - name: 分析封包擷取
+        items:
+        - name: 尋找異常
+          href: network-watcher-deep-packet-inspection.md
+        - name: 使用 Azure Functions 進行主動式網路監視
+          href: network-watcher-alert-triggered-packet-capture.md
+        - name: 使用開放原始碼執行侵入偵測
+          href: network-watcher-intrusion-detection-open-source-tools.md
+        - name: 使用開放原始碼工具視覺化流量模式
+          href: network-watcher-using-open-source-tools.md
+  - name: 使用網路安全性群組
+    items:
+    - name: 設定 NSG 流量記錄
+      items:
+      - name: Azure PowerShell
+        href: network-watcher-nsg-flow-logging-powershell.md
+      - name: Azure CLI
+        href: network-watcher-nsg-flow-logging-cli.md
+      - name: REST
+        href: network-watcher-nsg-flow-logging-rest.md
+    - name: 分析 NSG 流量記錄
+      items:
+      - name: 讀取 NSG 流量記錄
+        href: network-watcher-read-nsg-flow-logs.md
+      - name: 使用流量分析
+        href: traffic-analytics.md
+        items:
+        - name: 常見問題集
+          href: traffic-analytics-faq.md
+      - name: 使用 Power BI
+        href: network-watcher-visualize-nsg-flow-logs-power-bi.md
+      - name: 使用彈性堆疊
+        href: network-watcher-visualize-nsg-flow-logs-open-source-tools.md
+      - name: 使用 Grafana
+        href: network-watcher-nsg-grafana.md
+      - name: 使用 Graylog
+        href: network-watcher-analyze-nsg-flow-logs-graylog.md
+    - name: 檢視網路安全性群組
+      items:
+      - name: Azure PowerShell
+        href: network-watcher-security-group-view-powershell.md
+      - name: Azure CLI
+        href: network-watcher-security-group-view-cli.md
+      - name: REST
+        href: network-watcher-security-group-view-rest.md
+    - name: 在您的網路上執行合規性和稽核
+      href: network-watcher-nsg-auditing-powershell.md
+  - name: 診斷 VPN 閘道和連線
+    items:
+    - name: 疑難排解
+      items:
+      - name: Azure PowerShell
+        href: network-watcher-troubleshoot-manage-powershell.md
+      - name: Azure CLI
+        href: network-watcher-troubleshoot-manage-cli.md
+      - name: REST
+        href: network-watcher-troubleshoot-manage-rest.md
+    - name: 透過 Azure 自動化監控 VPN 閘道
+      href: network-watcher-monitor-with-azure-automation.md
+    - name: 透過 VPN 閘道診斷內部部署連線能力
+      href: network-watcher-diagnose-on-premises-connectivity.md
+  - name: 檢視網路拓撲
+    href: view-network-topology.md
+  - name: 判斷位置和 Azure 區域間的相對延遲
+    href: view-relative-latencies.md
+  - name: 監視網路效能
+    href: ../log-analytics/log-analytics-network-performance-monitor.md?toc=%2fazure%2fnetwork-watcher%2ftoc.json
+- name: 參考
+  items:
+  - name: Azure CLI
+    href: /cli/azure/network/watcher
+  - name: Azure PowerShell
+    href: /powershell/module/azurerm.network/#network_watcher
+  - name: Java
+    href: /java/api/com.microsoft.azure.management.network
+  - name: Ruby
+    href: http://www.rubydoc.info/gems/azure_mgmt_network/Azure/Network/Mgmt/V2016_09_01/Models/NetworkWatcher
+  - name: Python
+    href: /python/api/overview/azure/network
+  - name: .NET
+    href: /dotnet/api/overview/azure/virtual-network
+  - name: Node.js
+    href: /javascript/api/azure-arm-network
+  - name: REST
+    href: /rest/api/network-watcher/
+- name: 資源
+  items:
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/
+  - name: MSDN 論壇
+    href: https://social.msdn.microsoft.com/Forums/home?forum=WAVirtualMachinesVirtualNetwork
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/network-watcher/
+  - name: 服務更新
+    href: https://azure.microsoft.com/updates/?product=network-watcher
+  - name: SLA
+    href: https://azure.microsoft.com/support/legal/sla/
+  - name: 堆疊溢位
+    href: http://stackoverflow.com/questions/tagged/network-watcher
+ms.openlocfilehash: 69b4efb5adc0b6c3c7766b7c9178ccefb816711d
+ms.sourcegitcommit: 794bfae2ae34263772d1f214a5a62ac29dcec3d2
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44391635"

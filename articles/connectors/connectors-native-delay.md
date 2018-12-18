@@ -1,11 +1,11 @@
 ---
-title: "在邏輯應用程式中新增延遲 | Microsoft Docs"
-description: "延遲和延遲直到動作的概觀，以及如何搭配 Azure 邏輯應用程式使用它們。"
-services: 
-documentationcenter: 
+title: 在邏輯應用程式中新增延遲 | Microsoft Docs
+description: 延遲和延遲直到動作的概觀，以及如何搭配 Azure 邏輯應用程式使用它們。
+services: ''
+documentationcenter: ''
 author: jeffhollan
 manager: erikre
-editor: 
+editor: ''
 tags: connectors
 ms.assetid: 915f48bf-3bd8-4656-be73-91a941d0afcd
 ms.service: logic-apps
@@ -20,6 +20,7 @@ ms.sourcegitcommit: be9a42d7b321304d9a33786ed8e2b9b972a5977e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 01/19/2018
+ms.locfileid: "27963667"
 ---
 # <a name="get-started-with-the-delay-and-delay-until-actions"></a>開始使用延遲和延遲直到動作
 透過延遲和「延遲直到」動作，您可以完成工作流程案例。

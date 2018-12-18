@@ -2,18 +2,18 @@
 title: Azure Container Registry 教學課程 - 準備異地複寫的 Azure Container Registry
 description: 建立 Azure Container Registry、設定異地複寫、準備 Docker 映像並將其部署至登錄。 三段式教學課程的第一段。
 services: container-registry
-author: mmacy
-manager: timlt
+author: dlepow
 ms.service: container-registry
 ms.topic: tutorial
-ms.date: 10/26/2017
-ms.author: marsma
+ms.date: 04/30/2017
+ms.author: danlep
 ms.custom: mvc
-ms.openlocfilehash: 3463acc3db3dae9633635aaf7410d876aacf9b38
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: 9d1371dc02f37889b15b3448d82c62d76472f847
+ms.sourcegitcommit: 67abaa44871ab98770b22b29d899ff2f396bdae3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 10/08/2018
+ms.locfileid: "48854298"
 ---
 # <a name="tutorial-prepare-a-geo-replicated-azure-container-registry"></a>教學課程：準備異地複寫的 Azure Container Registry
 
@@ -31,17 +31,13 @@ Azure Container Registry 是一種部署在 Azure 中的私人 Docker 登錄，�
 
 ## <a name="before-you-begin"></a>開始之前
 
-本教學課程需要您執行 Azure CLI 2.0.20 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。
+本教學課程需要 Azure CLI (2.0.31 版或更新版本) 的本機安裝。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI]( /cli/azure/install-azure-cli)。
 
-本教學課程假設使用者對核心 Docker 概念有基本認識，例如容器、容器映像和基本 Docker 命令。 如有需要，請參閱[開始使用 Docker]( https://docs.docker.com/get-started/)以取得容器基本概念入門。
+您應熟悉核心 Docker 概念，例如容器、容器映像和基本 Docker CLI 命令。 如需容器基本概念的入門參考資料，請參閱[開始使用 Docker]( https://docs.docker.com/get-started/)。
 
-若要完成本教學課程，您需要 Docker 開發環境。 Docker 提供可輕鬆在 [Mac](https://docs.docker.com/docker-for-mac/)、[Windows](https://docs.docker.com/docker-for-windows/) 或 [Linux](https://docs.docker.com/engine/installation/#supported-platforms) 系統上設定 Docker 的套件。
+若要完成本教學課程，您必須安裝本機 Docker。 Docker 提供 [macOS](https://docs.docker.com/docker-for-mac/)、[Windows](https://docs.docker.com/docker-for-windows/) 和 [Linux](https://docs.docker.com/engine/installation/#supported-platforms) 系統的安裝指示。
 
 Azure Cloud Shell 不包括完成本教學課程每個步驟所需的 Docker 元件。 因此，我們建議您本機安裝 Azure CLI 和 Docker 開發環境。
-
-> [!IMPORTANT]
-> Azure 容器登錄的異地複寫功能目前處於**預覽**。 若您同意[補充的使用規定](https://azure.microsoft.com/support/legal/preview-supplemental-terms/)即可取得預覽。 在公開上市 (GA) 之前，此功能的某些領域可能會變更。
->
 
 ## <a name="create-a-container-registry"></a>建立容器登錄庫
 
@@ -91,9 +87,9 @@ Azure Cloud Shell 不包括完成本教學課程每個步驟所需的 Docker 元
 
 ## <a name="container-registry-login"></a>Container Registry 登入
 
-現在，您已設定異地複寫、建置容器映像，並將它推送到您的登錄。 您必須先登入 ACR 執行個體，再將映像推送至該處。 使用[基本 SKU、標準 SKU 和進階 SKU](container-registry-skus.md)時，您可以使用 Azure 身分識別進行驗證。
+現在，您已設定異地複寫、建置容器映像，並將它推送到您的登錄。 您必須先登入 ACR 執行個體，再將映像推送至該處。
 
-使用 [az acr login](https://docs.microsoft.com/cli/azure/acr#az_acr_login) 命令，驗證並快取登錄的認證。 將 `<acrName>` 取代為您在上述步驟中建立的登錄名稱。
+使用 [az acr login](https://docs.microsoft.com/cli/azure/acr#az-acr-login) 命令，驗證並快取登錄的認證。 將 `<acrName>` 取代為您先前建立的登錄名稱。
 
 ```azurecli
 az acr login --name <acrName>
@@ -103,7 +99,7 @@ az acr login --name <acrName>
 
 ## <a name="get-application-code"></a>取得應用程式程式碼
 
-本教學課程的範例包含一個由 [ASP.NET Core](http://dot.net) 建置的小型 Web 應用程式。 該應用程式有一個 HTML 網頁，可顯示 Azure Container Registry 部署映像的來源區域。
+本教學課程的範例包含一個由 [ASP.NET Core][aspnet-core] 建置的小型 Web 應用程式。 該應用程式有一個 HTML 網頁，可顯示 Azure Container Registry 部署映像的來源區域。
 
 ![在瀏覽器中顯示的教學課程應用程式][tut-app-01]
 
@@ -114,11 +110,13 @@ git clone https://github.com/Azure-Samples/acr-helloworld.git
 cd acr-helloworld
 ```
 
+如果您未安裝 `git`，您可以直接從 GitHub [下載 ZIP 封存檔][acr-helloworld-zip]。
+
 ## <a name="update-dockerfile"></a>更新 Dockerfile
 
-範例隨附的 Dockerfile 會示範如何建置容器。 此作業會先從官方 [aspnetcore](https://store.docker.com/community/images/microsoft/aspnetcore) 映像開始，將應用程式檔案複製到容器內、安裝相依性，再使用官方 [aspnetcore-build](https://store.docker.com/community/images/microsoft/aspnetcore-build) 映像編譯輸出，最後建置最佳化的 aspnetcore 映像。
+範例隨附的 Dockerfile 會示範如何建置容器。 此作業會先從官方 [aspnetcore][dockerhub-aspnetcore] 映像開始，將應用程式檔案複製到容器內、安裝相依性，再使用官方 [aspnetcore-build][dockerhub-aspnetcore-build] 映像編譯輸出，最後建置最佳化的 aspnetcore 映像。
 
-Dockerfile 是位於複製來源中的 `./AcrHelloworld/Dockerfile`。
+[Dockerfile][dockerfile] 位於複製來源中的 `./AcrHelloworld/Dockerfile`。
 
 ```dockerfile
 FROM microsoft/aspnetcore:2.0 AS base
@@ -146,9 +144,9 @@ COPY --from=publish /app .
 ENTRYPOINT ["dotnet", "AcrHelloworld.dll"]
 ```
 
-*acr-helloworld* 映像中的應用程式會查詢 DNS 以取得登錄的登入伺服器相關資訊，並嘗試判斷其容器的部署來源區域。 您必須在 Dockerfile 的 `DOCKER_REGISTRY` 環境變數中，指定登錄的登入伺服器 URL。
+*acr-helloworld* 映像中的應用程式會查詢 DNS 以取得登錄的登入伺服器相關資訊，並嘗試判斷其容器的部署來源區域。 您必須在 Dockerfile 的 `DOCKER_REGISTRY` 環境變數中，指定登錄登入伺服器的完整網域名稱 (FQDN)。
 
-首先，使用 `az acr show` 命令取得登錄的登入伺服器 URL。 將 `<acrName>` 取代為您在上述步驟中建立的登錄名稱。
+首先，請使用 `az acr show` 命令取得登錄的登入伺服器。 將 `<acrName>` 取代為您在上述步驟中建立的登錄名稱。
 
 ```azurecli
 az acr show --name <acrName> --query "{acrLoginServer:loginServer}" --output table
@@ -162,7 +160,7 @@ AcrLoginServer
 uniqueregistryname.azurecr.io
 ```
 
-接下來，使用登錄的登入伺服器 URL 更新 `DOCKER_REGISTRY` 這一行。 在此範例中，我們會將這一行更新為顯示範例登錄名稱 *uniqueregistryname*：
+接著，使用登錄的登入伺服器的 FQDN 更新 `ENV DOCKER_REGISTRY` 這一行。 此範例會反映範例登錄名稱 *uniqueregistryname*：
 
 ```dockerfile
 ENV DOCKER_REGISTRY uniqueregistryname.azurecr.io
@@ -170,7 +168,7 @@ ENV DOCKER_REGISTRY uniqueregistryname.azurecr.io
 
 ## <a name="build-container-image"></a>建置容器映像
 
-現在，您已使用登錄 URL 更新 Dockerfile，即可使用 `docker build` 建立容器映像。 執行下列命令以建置映像，然後使用私人登錄 URL 加以標記，同樣將 `<acrName>` 取代為您的登錄名稱：
+現在，您已使用登錄登入伺服器的 FQDN 更新 Dockerfile，接下來可使用 `docker build` 建立容器映像。 執行下列命令以建置映像，然後使用私人登錄 URL 加以標記，同樣將 `<acrName>` 取代為您的登錄名稱：
 
 ```bash
 docker build . -f ./AcrHelloworld/Dockerfile -t <acrName>.azurecr.io/acr-helloworld:v1
@@ -183,7 +181,9 @@ Sending build context to Docker daemon  523.8kB
 Step 1/18 : FROM microsoft/aspnetcore:2.0 AS base
 2.0: Pulling from microsoft/aspnetcore
 3e17c6eae66c: Pulling fs layer
-...
+
+[...]
+
 Step 18/18 : ENTRYPOINT dotnet AcrHelloworld.dll
  ---> Running in 6906d98c47a1
  ---> c9ca1763cfb1
@@ -192,23 +192,18 @@ Successfully built c9ca1763cfb1
 Successfully tagged uniqueregistryname.azurecr.io/acr-helloworld:v1
 ```
 
-使用 `docker images` 命令查看已建置的映像：
+使用 `docker images` 查看已建置並加上標記的映像：
 
-```bash
-docker images
-```
-
-輸出：
-
-```bash
+```console
+$ docker images
 REPOSITORY                                      TAG    IMAGE ID        CREATED               SIZE
 uniqueregistryname.azurecr.io/acr-helloworld    v1     01ac48d5c8cf    About a minute ago    284MB
-...
+[...]
 ```
 
 ## <a name="push-image-to-azure-container-registry"></a>將映像推送至 Azure Container Registry
 
-最後，使用 `docker push` 命令，將 *acr-helloworld* 映像推送至您的登錄。 將 `<acrName>` 取代為您的登錄名稱。
+接著，使用 `docker push` 命令，將 *acr-helloworld* 映像推送至您的登錄。 將 `<acrName>` 取代為您的登錄名稱。
 
 ```bash
 docker push <acrName>.azurecr.io/acr-helloworld:v1
@@ -216,9 +211,8 @@ docker push <acrName>.azurecr.io/acr-helloworld:v1
 
 由於您已將登錄設定為要進行異地複寫，因此系統會使用單一 `docker push` 命令，將您的映像自動複寫至「美國西部」和「美國東部」地區。
 
-輸出：
-
-```bash
+```console
+$ docker push uniqueregistryname.azurecr.io/acr-helloworld:v1
 The push refers to a repository [uniqueregistryname.azurecr.io/acr-helloworld]
 cd54739c444b: Pushed
 d6803756744a: Pushed
@@ -232,15 +226,9 @@ v1: digest: sha256:0799014f91384bda5b87591170b1242bcd719f07a03d1f9a1ddbae72b3543
 
 ## <a name="next-steps"></a>後續步驟
 
-在本教學課程中，您已建立私人的異地複寫容器登錄、建置容器映像，並將該映像推送至您的登錄。 在遵循本教學課程的步驟時，您即已完成下列作業：
+在本教學課程中，您已建立私人的異地複寫容器登錄、建置容器映像，並將該映像推送至您的登錄。
 
-> [!div class="checklist"]
-> * 建立異地複寫的 Azure Container Registry
-> * 從 GitHub 複製應用程式原始程式碼
-> * 從應用程式來源建置 Docker 容器映像
-> * 將容器映像推送至登錄
-
-若要了解如何使用異地複寫來提供本地的映像，以將容器部署至多個「用於容器的 Web 應用程式」執行個體，請前往下一個教學課程。
+進入下一個教學課程，使用異地複寫提供本機的映像，以將容器部署至多個「用於容器的 Web 應用程式」執行個體。
 
 > [!div class="nextstepaction"]
 > [從 Azure Container Registry 部署 Web 應用程式](container-registry-tutorial-deploy-app.md)
@@ -253,3 +241,10 @@ v1: digest: sha256:0799014f91384bda5b87591170b1242bcd719f07a03d1f9a1ddbae72b3543
 [tut-portal-05]: ./media/container-registry-tutorial-prepare-registry/tut-portal-05.png
 [tut-app-01]: ./media/container-registry-tutorial-prepare-registry/tut-app-01.png
 [tut-map-01]: ./media/container-registry-tutorial-prepare-registry/tut-map-01.png
+
+<!-- LINKS - External -->
+[acr-helloworld-zip]: https://github.com/Azure-Samples/acr-helloworld/archive/master.zip
+[aspnet-core]: http://dot.net
+[dockerhub-aspnetcore]: https://hub.docker.com/r/microsoft/aspnetcore/
+[dockerhub-aspnetcore-build]: https://store.docker.com/community/images/microsoft/aspnetcore-build
+[dockerfile]: https://github.com/Azure-Samples/acr-helloworld/blob/master/AcrHelloworld/Dockerfile

@@ -1,11 +1,11 @@
 ---
-title: "Azure API 管理原則範例 - 將功能新增至後端服務 | Microsoft Docs"
-description: "Azure API 管理原則範例：示範如何將功能新增至後端服務。 例如，在天氣預報 API 中接受地點的名稱，而不是緯度和經度。"
+title: Azure API 管理原則範例 - 將功能新增至後端服務 | Microsoft Docs
+description: Azure API 管理原則範例：示範如何將功能新增至後端服務。 例如，在天氣預報 API 中接受地點的名稱，而不是緯度和經度。
 services: api-management
-documentationcenter: 
-author: juliako
+documentationcenter: ''
+author: vladvino
 manager: cfowler
-editor: 
+editor: ''
 ms.service: api-management
 ms.workload: mobile
 ms.tgt_pltfrm: na
@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/13/2017
 ms.author: apimpm
-ms.openlocfilehash: d500df0f0e48134ac9c1397795d65706d2e56ff9
-ms.sourcegitcommit: b854df4fc66c73ba1dd141740a2b348de3e1e028
+ms.openlocfilehash: a019eb4556dc7cde34d51af6858f576e8ea9abcf
+ms.sourcegitcommit: d8ffb4a8cef3c6df8ab049a4540fc5e0fa7476ba
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/04/2017
+ms.lasthandoff: 06/20/2018
+ms.locfileid: "36284526"
 ---
 # <a name="add-capabilities-to-a-backend-service"></a>將功能新增至後端服務
 
@@ -27,7 +28,7 @@ ms.lasthandoff: 12/04/2017
 
 將程式碼貼至 [輸入] 區塊。
 
-[!code-xml[Main](../../../api-management-policy-samples/Snippets/Call out to an HTTP endpoint and cache the response.policy.xml)]
+[!code-xml[Main](../../../api-management-policy-samples/examples/Call out to an HTTP endpoint and cache the response.policy.xml)]
 
 ## <a name="next-steps"></a>後續步驟
 

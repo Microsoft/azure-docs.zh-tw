@@ -1,33 +1,27 @@
 ---
-title: "針對 Azure HDInsight 中的 Apache Spark 叢集問題進行疑難排解 | Microsoft Docs"
-description: "了解 Azure HDInsight 中的 Apache Spark 叢集相關問題，以及如何解決這些問題。"
+title: 針對 Azure HDInsight 中的 Apache Spark 叢集問題進行疑難排解
+description: 了解 Azure HDInsight 中的 Apache Spark 叢集相關問題，以及如何解決這些問題。
 services: hdinsight
-documentationcenter: 
-author: nitinme
-manager: jhubbard
-editor: cgronlun
-tags: azure-portal
-ms.assetid: 610c4103-ffc8-4ec0-ad06-fdaf3c4d7c10
+author: jasonwhowell
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 02/21/2018
-ms.author: nitinme
-ms.openlocfilehash: de7847055c00fe9d0d1cc08cf5ba5d2ab54a9fc0
-ms.sourcegitcommit: fbba5027fa76674b64294f47baef85b669de04b7
+ms.author: jasonh
+ms.openlocfilehash: 92baa28393100abe3d7694920e5ee327966db927
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/24/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43048303"
 ---
 # <a name="known-issues-for-apache-spark-cluster-on-hdinsight"></a>HDInsight 上的 Apache Spark 叢集已知問題
 
 這份文件記錄 HDInsight Spark 公開預覽版本的所有已知問題。  
 
 ## <a name="livy-leaks-interactive-session"></a>Livy 會流失互動式工作階段
-Livy 在有互動式工作階段仍作用中的情況下重新啟動時 (從 Ambari 或是因為前端節點 0 虛擬機器重新開機)，互動式作業工作階段將會流失。 因為這個緣故，新的作業可能會卡在「已接受」狀態中，而無法啟動。
+Livy 在互動式工作階段仍作用中的情況下重新啟動時 (從 Ambari 或是因為前端節點 0 虛擬機器重新開機)，互動式作業工作階段將會流失。 因此，新的作業可能會卡在「已接受」狀態中。
 
 **緩和：**
 
@@ -54,7 +48,12 @@ Livy 在有互動式工作階段仍作用中的情況下重新啟動時 (從 Amb
 請從 Ambari 手動啟動歷程記錄伺服器。
 
 ## <a name="permission-issue-in-spark-log-directory"></a>Spark 記錄檔目錄中的權限問題
-在 hdiuser 透過 spark-submit 提交作業時，將會發生錯誤 java.io.FileNotFoundException：/var/log/spark/sparkdriver_hdiuser.log (沒有使用權限)，且不會寫入驅動程式記錄檔。 
+hdiuser 在使用 spark-submit 提交作業時會發生下列錯誤：
+
+```
+java.io.FileNotFoundException: /var/log/spark/sparkdriver_hdiuser.log (Permission denied)
+```
+沒有任何驅動程式記錄寫入。 
 
 **緩和：**
 
@@ -65,7 +64,7 @@ Livy 在有互動式工作階段仍作用中的情況下重新啟動時 (從 Amb
 
 ## <a name="spark-phoenix-connector-is-not-supported"></a>不支援 Spark-Phoenix 連接器
 
-目前不支援將 Spark-Phoenix 連接器與 HDInsight Spark 叢集搭配使用。
+HDInsight Spark 叢集不支援 Spark-Phoenix 連接器。
 
 **緩和：**
 
@@ -75,7 +74,7 @@ Livy 在有互動式工作階段仍作用中的情況下重新啟動時 (從 Amb
 以下是 Jupyter Notebook 的已知問題。
 
 ### <a name="notebooks-with-non-ascii-characters-in-filenames"></a>Notebook 在檔名中有非 ASCII 字元
-可以用在 Spark HDInsight 叢集中的 Jupyter Notebook，檔名中不該有非 ASCII 字元。 如果您嘗試透過有非 ASCII 檔名的 Jupyter UI 上傳檔案，它會以無訊息方式失敗 (亦即 Jupyter 不會讓您上傳檔案，但也不會擲回可見的錯誤)。 
+請勿在 Jupyter Notebook 檔名中使用非 ASCII 字元。 如果您嘗試透過 Jupyter UI 上傳具有非 ASCII 檔名的檔案，則會上傳失敗，但沒有任何錯誤訊息。 Jupyter 不會讓您上傳檔案，但也不會擲回可見的錯誤。
 
 ### <a name="error-while-loading-notebooks-of-larger-sizes"></a>載入大型 Notebook 時發生錯誤
 載入大型 Notebook 時，您可能會看到錯誤訊息 **`Error loading notebook`** 。  

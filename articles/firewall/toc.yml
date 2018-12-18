@@ -1,0 +1,74 @@
+items:
+- name: Azure 防火牆文件
+  href: index.yml
+- name: 概觀
+  items:
+  - name: 何謂 Azure 防火牆？
+    href: overview.md
+- name: 教學課程
+  items:
+  - name: 部署及設定
+    href: tutorial-firewall-deploy-portal.md
+  - name: 在混合式網路中部署
+    href: tutorial-hybrid-ps.md
+  - name: 使用 DNAT 篩選輸入流量
+    href: tutorial-firewall-dnat.md
+  - name: 監視器診斷記錄
+    href: tutorial-diagnostics.md
+  expanded: true
+- name: 範例
+  items:
+  - name: Azure PowerShell
+    href: sample-powershell.md
+- name: 概念
+  items:
+  - name: FQDN 標記
+    href: fqdn-tags.md
+  - name: 基礎結構 FQDN
+    href: infrastructure-fqdns.md
+  - name: 記錄和計量
+    href: logs-and-metrics.md
+  - name: 規則處理邏輯
+    href: rule-processing.md
+- name: 使用說明指南
+  items:
+  - name: 使用範本部署
+    href: deploy-template.md
+- name: 參考
+  items:
+  - name: Azure CLI
+    href: /cli/azure/network
+  - name: Azure PowerShell
+    href: /powershell/azure/overview
+  - name: .NET
+    href: /dotnet/api
+  - name: Java
+    href: /java/api
+  - name: Node.js
+    href: https://azure.microsoft.com/develop/nodejs/#azure-sdk
+  - name: Python
+    href: https://azure.microsoft.com/develop/python/
+  - name: REST
+    href: /rest/api/firewall
+  - name: Azure Resource Manager
+    href: ../azure-resource-manager/resource-group-overview.md
+- name: 資源
+  items:
+  - name: 常見問題集
+    href: firewall-faq.md
+  - name: 作者範本
+    href: ../azure-resource-manager/resource-group-authoring-templates.md
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/
+  - name: 社群範本
+    href: https://azure.microsoft.com/documentation/templates
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/azure-firewall/
+  - name: 區域可用性
+    href: https://azure.microsoft.com/regions/services/
+ms.openlocfilehash: 712453ac1d49d5f8a2ad3f4cb525651dcdb131da
+ms.sourcegitcommit: 6361a3d20ac1b902d22119b640909c3a002185b3
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49364909"

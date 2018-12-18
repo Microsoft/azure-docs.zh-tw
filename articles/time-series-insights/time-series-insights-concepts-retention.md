@@ -1,24 +1,31 @@
 ---
-title: "了解 Azure 時間序列深入解析環境中的資料保留 | Microsoft Docs"
-description: "本文說明「Azure 時間序列深入解析」環境中，控制資料保留的兩個設定。"
-services: time-series-insights
+title: 了解 Azure 時間序列深入解析環境中的資料保留 | Microsoft Docs
+description: 本文說明「Azure 時間序列深入解析」環境中，控制資料保留的兩個設定。
 ms.service: time-series-insights
-author: anshan
+services: time-series-insights
+author: ashannon7
 ms.author: anshan
-manager: kfile
-editor: MicrosoftDocs/tsidocs
+manager: cshankar
 ms.reviewer: jasonh, kfile, anshan
 ms.workload: big-data
-ms.topic: article
+ms.topic: conceptual
 ms.date: 02/09/2018
-ms.openlocfilehash: 46e0c4fa25c7d8a56763b80bf7de97c775c7ee99
-ms.sourcegitcommit: 95500c068100d9c9415e8368bdffb1f1fd53714e
+ms.openlocfilehash: e265a66b841530d1133d760ebdcdf56046d1aee1
+ms.sourcegitcommit: ce526d13cd826b6f3e2d80558ea2e289d034d48f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 09/19/2018
+ms.locfileid: "46364099"
 ---
 # <a name="understand-data-retention-in-time-series-insights"></a>了解時間序列深入解析中的資料保留
+
 本文說明時間序列深入解析 (TSI) 環境中，影響資料保留的兩個設定。
+
+## <a name="video"></a>視訊： 
+
+### <a name="in-this-video-we-cover-time-series-insights-data-retention-and-how-to-plan-for-itbr"></a>在本影片中，我們將說明時間序列深入解析資料保留以及如何進行規劃。</br>
+
+> [!VIDEO https://www.youtube.com/embed/03x6zKDQ6DU]
 
 每個 TSI 環境都有可控制**資料保留時間**的設定。 可設定的值為 1 到 400 天。 資料會依環境儲存容量或保留持續時間 (1-400) 進行刪除，以先達到者為準。
 

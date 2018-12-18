@@ -1,23 +1,22 @@
 ---
-title: "服務對服務驗證︰使用 Azure Active Directory 以 Data Lake Store 進行 | Microsoft Docs"
-description: "了解如何使用 Azure Active Directory 以 Data Lake Store 完成服務對服務驗證"
+title: 服務對服務驗證︰使用 Azure Active Directory 以 Data Lake Store 進行 | Microsoft Docs
+description: 了解如何使用 Azure Active Directory 以 Data Lake Store 完成服務對服務驗證
 services: data-lake-store
-documentationcenter: 
+documentationcenter: ''
 author: nitinme
 manager: jhubbard
 editor: cgronlun
 ms.service: data-lake-store
 ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 01/09/2018
+ms.topic: conceptual
+ms.date: 05/29/2018
 ms.author: nitinme
-ms.openlocfilehash: 0b3f19bb92d1eeb214150bf118d546cd1c67cd78
-ms.sourcegitcommit: 9292e15fc80cc9df3e62731bafdcb0bb98c256e1
+ms.openlocfilehash: 1e59ed093417d8761135b946e2fa3f183bb085c9
+ms.sourcegitcommit: 248c2a76b0ab8c3b883326422e33c61bd2735c6c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/10/2018
+ms.lasthandoff: 07/23/2018
+ms.locfileid: "39215966"
 ---
 # <a name="service-to-service-authentication-with-data-lake-store-using-azure-active-directory"></a>使用 Azure Active Directory 以 Data Lake Store 進行服務對服務驗證
 > [!div class="op_single_selector"]
@@ -35,7 +34,7 @@ Azure Data Lake Store 使用 Azure Active Directory 進行驗證。 撰寫搭配
 
 本文說明如何建立 **Azure AD Web 應用程式，以進行服務對服務驗證**。 如需有關適用於終端使用者驗證的 Azure AD 應用程式設定的指示，請參閱[使用 Azure Active Directory 以 Data Lake Store 進行終端使用者驗證](data-lake-store-end-user-authenticate-using-active-directory.md)。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 * Azure 訂用帳戶。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
 ## <a name="step-1-create-an-active-directory-web-application"></a>步驟 1：建立 Active Directory Web 應用程式
@@ -69,7 +68,7 @@ Azure Data Lake Store 使用 Azure Active Directory 進行驗證。 撰寫搭配
 5. 按一下 [新增] 圖示，以開啟 [新增自訂存取] 刀鋒視窗。 在此刀鋒視窗中，按一下 [選取使用者或群組]，然後在 [選取使用者或群組] 刀鋒視窗中，尋找您稍早建立的 Azure Active Directory 應用程式。 若您需要搜尋大量的群組，請使用頂端的文字方塊來篩選群組名稱。 按一下您要新增的群組，然後按一下 [選取] 。
    
     ![加入群組](./media/data-lake-store-authenticate-using-active-directory/adl.acl.3.png "加入群組")
-6. 按一下 [選取權限]，選取權限及權限的指派方式 (例如預設 ACL、存取 ACL 或兩者並用)。 按一下 [SERVICEPRINCIPAL] 。
+6. 按一下 [選取權限]，選取權限及權限的指派方式 (例如預設 ACL、存取 ACL 或兩者並用)。 按一下 [確定]。
    
     ![將權限指派至群組](./media/data-lake-store-authenticate-using-active-directory/adl.acl.4.png "將權限指派至群組")
    
@@ -77,6 +76,9 @@ Azure Data Lake Store 使用 Azure Active Directory 進行驗證。 撰寫搭配
 7. 在 [新增自訂存取] 刀鋒視窗中，按一下 [確定]。 具有相關權限的新增群組會列在 [存取] 刀鋒視窗中。
    
     ![將權限指派至群組](./media/data-lake-store-authenticate-using-active-directory/adl.acl.5.png "將權限指派至群組")
+
+> [!NOTE]
+> 如果您打算將 Azure Active Directory 應用程式限制在特定資料夾中，則還需要提供根與 Azure Active Directory 應用程式相同的**執行**權限，才能透過 .NET SDK 進行檔案建立存取。
 
 > [!NOTE]
 > 如果您需要使用 SDK 來建立 Data Lake Store 帳戶，必須將 Azure AD web 應用程式作為角色指派給您在其中建立 Data Lake Store 帳戶的資源群組。

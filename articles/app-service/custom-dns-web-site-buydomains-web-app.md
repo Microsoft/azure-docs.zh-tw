@@ -1,11 +1,11 @@
 ---
-title: "針對 Azure Web Apps 購買自訂網域名稱"
-description: "了解如何在 Azure App Service 中購買搭配 Web 應用程式的自訂網域名稱。"
+title: 針對 Azure Web Apps 購買自訂網域名稱
+description: 了解如何在 Azure App Service 中購買搭配 Web 應用程式的自訂網域名稱。
 services: app-service\web
-documentationcenter: 
+documentationcenter: ''
 author: cephalin
 manager: cfowler
-editor: 
+editor: ''
 ms.assetid: 70fb0e6e-8727-4cca-ba82-98a4d21586ff
 ms.service: app-service-web
 ms.workload: web
@@ -14,11 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/24/2017
 ms.author: cephalin
-ms.openlocfilehash: 152dbb6d47dfdf3bf5df945b823f64e58e7d91e2
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.openlocfilehash: 48e0e68794e83739835d97aa8a2b26516c660357
+ms.sourcegitcommit: 30fd606162804fe8ceaccbca057a6d3f8c4dd56d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 07/30/2018
+ms.locfileid: "39345186"
 ---
 # <a name="buy-a-custom-domain-name-for-azure-web-apps"></a>針對 Azure Web Apps 購買自訂網域名稱
 
@@ -26,7 +27,7 @@ App Service 網域 (預覽) 是直接在 Azure 中管理的頂層網域。 它�
 
 本文適用於 Azure App Service (Web Apps、API Apps、Mobile Apps、Logic Apps)。 若為 Azure VM 或 Azure 儲存體，請參閱[將 App Service 網域指派給 Azure VM 或 Azure 儲存體](https://blogs.msdn.microsoft.com/appserviceteam/2017/07/31/assign-app-service-domain-to-azure-vm-or-azure-storage/)。 若為雲端服務，請參閱[設定 Azure 雲端服務的自訂網域名稱](../cloud-services/cloud-services-custom-domain-name-portal.md)。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 若要完成本教學課程：
 
@@ -57,17 +58,17 @@ App Service 網域 (預覽) 是直接在 Azure 中管理的頂層網域。 它�
 
 ![相應增加功能表](./media/app-service-web-tutorial-custom-domain/scale-up-menu.png)
 
-會以藍色框線醒目顯示應用程式目前的層。 請檢查以確定您的應用程式不是位於**免費**層。 **免費**層不支援自訂 DNS。 
+會以藍色框線醒目顯示應用程式目前的層。 請檢查以確定您的應用程式不是位於 **F1** 層。 **F1** 層不支援自訂 DNS。 
 
 ![檢查定價層](./media/app-service-web-tutorial-custom-domain/check-pricing-tier.png)
 
-如果 App Service 方案不是「免費」，請關閉 [選擇定價層] 頁面，然後跳至[購買網域](#buy-the-domain)。
+如果 App Service 方案不是位於 **F1** 層，請關閉 [相應增加] 頁面，然後跳至 [[購買網域]](#buy-the-domain)。
 
 ### <a name="scale-up-the-app-service-plan"></a>相應增加 App Service 方案
 
-選取任一個非免費層 (**共用**、**基本**、**標準**或**進階**)。 
+選取任何非免費層 (**D1**、**B1**、**B2**、**B3** 或「生產」類別中的任何一層)。 如需其他選項，請按一下 [查看其他選項]。
 
-按一下 [選取] 。
+按一下 [套用]。
 
 ![檢查定價層](./media/app-service-web-tutorial-custom-domain/choose-pricing-tier.png)
 
@@ -76,6 +77,9 @@ App Service 網域 (預覽) 是直接在 Azure 中管理的頂層網域。 它�
 ![擴充作業確認](./media/app-service-web-tutorial-custom-domain/scale-notification.png)
 
 ## <a name="buy-the-domain"></a>購買網域
+
+### <a name="pricing-information"></a>定價資訊
+如需 Azure App Service 網域的定價資訊，請瀏覽 [App Service 定價頁面](https://azure.microsoft.com/pricing/details/app-service/windows/)並向下捲動至＜App Service 網域＞。
 
 ### <a name="sign-in-to-azure"></a>登入 Azure
 開啟 [Azure 入口網站](https://portal.azure.com/)並使用您的 Azure 帳戶登入。

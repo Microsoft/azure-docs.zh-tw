@@ -1,0 +1,54 @@
+### YamlMime:YamlDocument
+ms.openlocfilehash: 3314df7dc932553f56e0c937c8065f55f9dc50a3
+ms.sourcegitcommit: cc4fdd6f0f12b44c244abc7f6bc4b181a2d05302
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47090770"
+documentType: LandingData
+title: 自訂決策服務文件
+metadata:
+  title: 自訂決策服務文件 - 教學課程和 API 參考 - Azure 認知服務 | Microsoft Docs
+  meta.description: Learn how to create a contextual, decision-making API that improves with experience
+  services: cognitive-services
+  author: noellelacharite
+  manager: nolachar
+  ms.service: cognitive-services
+  ms.component: custom-decision-service
+  ms.tgt_pltfrm: na
+  ms.devlang: na
+  ms.topic: landing-page
+  ms.date: 05/01/2018
+  ms.author: nolachar
+abstract:
+  description: Azure 自訂決策服務使用透過體驗所加強的雲端式內容相關決策制定 API，協助您建立智慧型系統。 自訂決策服務利用增強式的學習功能，並配合您應用程式中的內容，以將使用者的整體參與度最大化。 該系統將使用者意見反應即時納入其決策，並在幾分鐘內回應緊急趨勢和突發事故。 透過這些快速入門，了解如何註冊您的應用程式，並從瀏覽器或應用程式呼叫 API。 然後將您的文章設定為個人化並將內容標示為「精選」，以準備好使用教學課程進行機器學習。
+sections:
+- title: 5 分鐘快速入門
+  items:
+  - type: paragraph
+    text: 註冊您的應用程式，並直接從瀏覽器或智慧型手機應用程式呼叫 Azure 自訂決策服務 API：
+  - type: list
+    style: unordered
+    items:
+    - html: <a href="/azure/cognitive-services/custom-decision-service/custom-decision-service-get-started-register">註冊您的應用程式</a>
+    - html: <a href="/azure/cognitive-services/custom-decision-service/custom-decision-service-get-started-browser">從瀏覽器呼叫 API</a>
+    - html: <a href="/azure/cognitive-services/custom-decision-service/custom-decision-service-get-started-app">從應用程式呼叫 API</a>
+- title: 逐步教學課程
+  items:
+  - type: paragraph
+    text: 將您網站首頁的文章個人化，並使用自訂決策服務 API 將內容指定為「精選」，以準備好進行機器學習：
+  - type: list
+    style: unordered
+    items:
+    - html: <a href="/azure/cognitive-services/custom-decision-service/custom-decision-service-tutorial-news">文章個人化</a>
+    - html: <a href="/azure/cognitive-services/custom-decision-service/custom-decision-service-tutorial-ml">Machine Learning</a>
+- title: 參考
+  items:
+  - type: paragraph
+    text: 這些 API 會共同作業。 API 參考中有三個 API 有助於自訂決策。 測試 API 會使用 LogDownloader API 所產生的記錄檔。 文章中分享了詳細的案例。
+  - type: list
+    style: cards
+    className: cardsD
+    items:
+    - title: API
+      html: <p><a href="/azure/cognitive-services/custom-decision-service/custom-decision-service-api-reference">API</a></p><p><a href="/azure/cognitive-services/custom-decision-service/custom-decision-service-experimentation-reference">測試</a></p><p><a href="/azure/cognitive-services/custom-decision-service/custom-decision-service-log-downloader-reference">LogDownloader</a><p>

@@ -1,24 +1,25 @@
 ---
-title: "使用 Azure Resource Manager 範本建立服務匯流排授權規則 | Microsoft Docs"
-description: "使用 Azure Resource Manager 範本建立命名空間和佇列的服務匯流排授權規則"
+title: 使用 Azure Resource Manager 範本建立服務匯流排授權規則 | Microsoft Docs
+description: 使用 Azure Resource Manager 範本建立命名空間和佇列的服務匯流排授權規則
 services: service-bus-messaging
 documentationcenter: .net
-author: sethmanheim
+author: spelluru
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 7f1443a0-5fa8-4d90-8637-1a977ef0b1f0
 ms.service: service-bus-messaging
 ms.devlang: tbd
 ms.topic: article
 ms.tgt_pltfrm: dotnet
 ms.workload: na
-ms.date: 11/10/2017
-ms.author: sethm;shvija
-ms.openlocfilehash: 384a2fce4bf338ffc4ab6690980c12ad7ff34a6e
-ms.sourcegitcommit: 6a22af82b88674cd029387f6cedf0fb9f8830afd
+ms.date: 04/11/2018
+ms.author: spelluru
+ms.openlocfilehash: ac57c27cf973a2ba236ad1812129e29284deb211
+ms.sourcegitcommit: cb61439cf0ae2a3f4b07a98da4df258bfb479845
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/11/2017
+ms.lasthandoff: 09/05/2018
+ms.locfileid: "43696117"
 ---
 # <a name="create-a-service-bus-authorization-rule-for-namespace-and-queue-using-an-azure-resource-manager-template"></a>使用 Azure Resource Manager 範本建立命名空間和佇列的服務匯流排授權規則
 
@@ -107,8 +108,7 @@ ms.lasthandoff: 11/11/2017
             "location": "[variables('location')]",
             "kind": "Messaging",
             "sku": {
-                "name": "StandardSku",
-                "tier": "Standard"
+                "name": "Standard",
             },
             "resources": [
                 {

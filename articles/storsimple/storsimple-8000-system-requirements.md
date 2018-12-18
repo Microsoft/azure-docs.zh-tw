@@ -1,12 +1,12 @@
 ---
-title: "StorSimple 8000 系列系統需求 | Microsoft Docs"
-description: "描述 Microsoft Azure StorSimple 解決方案的軟體、網路及高可用性需求和最佳作法。"
+title: StorSimple 8000 系列系統需求 | Microsoft Docs
+description: 描述 Microsoft Azure StorSimple 解決方案的軟體、網路及高可用性需求和最佳作法。
 services: storsimple
 documentationcenter: NA
 author: alkohli
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: NA
 ms.topic: article
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 9cc3d9b9c36e4c973dd9c9028361af1ec5d29910
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 01/23/2018
+ms.locfileid: "28011056"
 ---
 # <a name="storsimple-8000-series-software-high-availability-and-networking-requirements"></a>StorSimple 8000 系列軟體、高可用性和網路需求
 

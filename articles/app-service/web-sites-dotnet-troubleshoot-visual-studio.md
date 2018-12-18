@@ -14,15 +14,16 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/29/2016
 ms.author: cephalin
-ms.openlocfilehash: 7973f4311095b7c87ccd2394b048ec92c50f32a9
-ms.sourcegitcommit: c3d53d8901622f93efcd13a31863161019325216
+ms.openlocfilehash: ba84d297420ca5a9b75b4cfa432373d3070e0d01
+ms.sourcegitcommit: 2ad510772e28f5eddd15ba265746c368356244ae
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/29/2018
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "43125239"
 ---
 # <a name="troubleshoot-a-web-app-in-azure-app-service-using-visual-studio"></a>使用 Visual Studio 疑難排解 Azure App Service 中的 Web 應用程式
 ## <a name="overview"></a>概觀
-本教學課程示範如何使用 Visual Studio 工具，協助針對 [App Service](http://go.microsoft.com/fwlink/?LinkId=529714) 中的 Web 應用程式進行偵錯，方法是以[偵錯模式](http://www.visualstudio.com/get-started/debug-your-app-vs.aspx)從遠端執行，或者檢視應用程式記錄與 Web 伺服器記錄。
+本教學課程示範如何使用 Visual Studio 工具，協助針對 [App Service](http://go.microsoft.com/fwlink/?LinkId=529714) 中的 Web 應用程式進行偵錯，方法是以[偵錯模式](https://docs.microsoft.com/visualstudio/debugger/)從遠端執行，或者檢視應用程式記錄與 Web 伺服器記錄。
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
@@ -38,7 +39,7 @@ ms.lasthandoff: 03/29/2018
 如果您有 Visual Studio Ultimate，您也可以使用 [IntelliTrace](http://msdn.microsoft.com/library/vstudio/dd264915.aspx) 進行偵錯。 本教學課程未涵蓋 IntelliTrace。
 
 ## <a name="prerequisites"></a>必要條件
-本教學課程可運用於開發環境、Web 專案與您在[開始使用 Azure 和 ASP.NET][GetStarted] 中所設定的 Azure Web 應用程式。 針對 WebJobs 區段，您將會用到您在[開始使用 Azure WebJobs SDK][GetStartedWJ] 中建立的應用程式。
+本教學課程可運用於開發環境、Web 專案與您在[開始使用 Azure 和 ASP.NET](app-service-web-get-started-dotnet-framework.md) 中所設定的 Azure Web 應用程式。 針對 WebJobs 區段，您將會用到您在[開始使用 Azure WebJobs SDK][GetStartedWJ] 中建立的應用程式。
 
 本教學課程中所提供的程式碼範例適用於 C# MVC Web 應用程式，但是疑難排解程序則是與 Visual Basic 和 Web Form 應用程式一樣。
 
@@ -60,7 +61,7 @@ Visual Studio 可讓您存取 [Azure 入口網站](http://go.microsoft.com/fwlin
 
     如需從 Visual Studio 連線至 Azure 資源的詳細資訊，請參閱 [管理帳戶、訂閱和系統管理角色](http://go.microsoft.com/fwlink/?LinkId=324796#BKMK_AccountVCert)。
 2. 在 [伺服器總管] 中，展開 [Azure]，然後展開 [App Service]。
-3. 展開資源群組 (其包含您[在 Azure 中建立 ASP.NET Web 應用程式][app-service-web-get-started-dotnet.md]中建立的 Web 應用程式)，以滑鼠右鍵按一下 Web 應用程式節點，然後按一下 [檢視設定]。
+3. 展開包含 Web 應用程式的資源群組，該 Web 應用程式是您在＜[在 Azure 中建立 ASP.NET Web 應用程式](app-service-web-get-started-dotnet-framework.md)＞中建立的，然後使用滑鼠右鍵按一下 Web 應用程式節點，然後按一下 [檢視設定]。
 
     ![在伺服器總管中檢視設定](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-viewsettings.png)
 
@@ -117,9 +118,9 @@ Visual Studio 可讓您存取 [Azure 入口網站](http://go.microsoft.com/fwlin
 
 遠端偵錯無法在 Visual Studio 的 Express 版本中運作。
 
-本節示範如何使用您在[在 Azure 中建立 ASP.NET Web 應用程式](app-service-web-get-started-dotnet.md)中建立的專案進行遠端偵錯。
+本節示範如何使用您在[在 Azure 中建立 ASP.NET Web 應用程式](app-service-web-get-started-dotnet-framework.md)中建立的專案進行遠端偵錯。
 
-1. 開啟您在[在 Azure 中建立 ASP.NET Web 應用程式](app-service-web-get-started-dotnet.md)中建立的 Web 專案。
+1. 開啟您在[在 Azure 中建立 ASP.NET Web 應用程式](app-service-web-get-started-dotnet-framework.md)中建立的 Web 專案。
 
 2. 開啟 *Controllers\HomeController.cs*。
 
@@ -133,11 +134,12 @@ public ActionResult About()
     return View();
 }
 ```
-4. [在 `ViewBag.Message`這行設定中斷點](http://www.visualstudio.com/get-started/debug-your-app-vs.aspx)。
+
+4. [在 `ViewBag.Message`這行設定中斷點](https://docs.microsoft.com/visualstudio/debugger/)。
 
 5. 在 [方案總管] 中，於專案上按一下滑鼠右鍵，再按一下 [發行]。
 
-6. 在 [設定檔] 下拉式清單中，選取您在[在 Azure 中建立 ASP.NET Web 應用程式](app-service-web-get-started-dotnet.md)中所使用的同一設定檔。 然後，按一下 [設定]。
+6. 在 [設定檔] 下拉式清單中，選取您在[在 Azure 中建立 ASP.NET Web 應用程式](app-service-web-get-started-dotnet-framework.md)中所使用的同一設定檔。 然後，按一下 [設定]。
 
 7. 在 [發佈] 對話方塊中，按一下 [設定] 索引標籤，然後將 [設定] 變更為 [偵錯]，接著按一下 [儲存]。
 
@@ -184,7 +186,7 @@ public ActionResult About()
 
 2. 在 ContosoAdsWebJob 專案中，開啟 *Functions.cs*。
 
-3. 在 `GnerateThumbnail` 方法的第一個陳述式上[設定中斷點](http://www.visualstudio.com/get-started/debug-your-app-vs.aspx)。
+3. 在 `GnerateThumbnail` 方法的第一個陳述式上[設定中斷點](https://docs.microsoft.com/visualstudio/debugger/)。
 
     ![設定中斷點](./media/web-sites-dotnet-troubleshoot-visual-studio/wjbreakpoint.png)
 
@@ -249,7 +251,7 @@ public ActionResult About()
   <httpRuntime targetFramework="4.5" />
 </system.web>
 ```
-* 如果您發現偵錯工具不會逐步執行您要進行偵錯的程式碼，可能需要變更 [Just My Code] 設定。  如需詳細資訊，請參閱 [將逐步執行限制於 Just My Code](http://msdn.microsoft.com/library/vstudio/y740d9d3.aspx#BKMK_Restrict_stepping_to_Just_My_Code)。
+* 如果您發現偵錯工具不會逐步執行您要進行偵錯的程式碼，可能需要變更 [Just My Code] 設定。  如需詳細資訊，請參閱[指定是否使用 Visual Studio 中的 Just My Code 只對使用者程式碼進行偵錯](https://docs.microsoft.com/visualstudio/debugger/just-my-code)。
 * 當您啟用遠端偵錯功能時，伺服器上會啟動計時器，並在 48 小時後自動關閉此功能。 此 48 小時的限制是為了安全性與效能起見而設計的功能。 若需要，您可以輕鬆開啟這項功能，次數不限。 當您不需要偵錯時，建議您將其保持為停用。
 * 您可以手動將偵錯工具附加至任何處理序，不僅止於 Web 應用程式處理序 (w3wp.exe)。 如需如何在 Visual Studio 中使用偵錯模式的詳細資訊，請參閱 [Visual Studio 偵錯](http://msdn.microsoft.com/library/vstudio/sc65sadd.aspx)。
 
@@ -272,7 +274,7 @@ public ActionResult About()
 ## <a name="apptracelogs"></a>建立並檢視應用程式追蹤記錄
 在本節中，您將會執行下列工作：
 
-* 將追蹤陳述式新增至您在[開始使用 Azure 和 ASP.NET][GetStarted] 中建立的 Web 專案。
+* 將追蹤陳述式新增至您在[開始使用 Azure 和 ASP.NET](app-service-web-get-started-dotnet-framework.md) 中建立的 Web 專案。
 * 當您在本機上執行專案時檢視記錄。
 * 依原樣檢視 Azure 中執行的應用程式所產生的記錄。
 
@@ -621,7 +623,7 @@ Azure Web 應用程式會使用 IIS 7.0 及更新版本所提供的相同失敗�
 ### <a name="azure-web-app-troubleshooting"></a>Azure Web 應用程式疑難排解
 如需在 Azure App Service 中疑難排解 Web 應用程式的詳細資訊，請參閱下列資源：
 
-* [如何監視 Web 應用程式](/manage/services/web-sites/how-to-monitor-websites/)
+* [如何監視 Web 應用程式](web-sites-monitor.md)
 * [使用 Visual Studio 2013 調查 Azure Web 應用程式中的記憶體流失](http://blogs.msdn.com/b/visualstudioalm/archive/2013/12/20/investigating-memory-leaks-in-azure-web-sites-with-visual-studio-2013.aspx)。 Microsoft ALM 部落格文章，討論 Visual Studio 中分析受控記憶體問題的功能。
 * [您應該了解的 Azure Web 應用程式線上工具](https://azure.microsoft.com/blog/2014/03/28/windows-azure-websites-online-tools-you-should-know-about-2/)。 取自 Amit Apple 的部落格文章。
 
@@ -672,7 +674,7 @@ catch (Exception ex)
 
 * [從 Azure 命令列串流診斷追蹤記錄 (加上 Glimpse！)](http://www.hanselman.com/blog/StreamingDiagnosticsTraceLoggingFromTheAzureCommandLinePlusGlimpse.aspx)<br/>
   如何使用命令列來執行本教學課程所示範的 Visual Studio 步驟。 [Glimpse](http://www.hanselman.com/blog/IfYoureNotUsingGlimpseWithASPNETForDebuggingAndProfilingYoureMissingOut.aspx) (英文) 工具可供您偵錯 ASP.NET 應用程式。
-* [使用 Azure Web Apps 記錄和診斷功能 - 與 David Ebbo 合作](/documentation/videos/azure-web-site-logging-and-diagnostics/)以及[來自 Web Apps 的串流記錄 - 與 David Ebbo 合作](/documentation/videos/log-streaming-with-azure-web-sites/)<br>
+* [使用 Azure Web Apps 記錄和診斷功能 - 與 David Ebbo 合作](https://azure.microsoft.com/documentation/videos/azure-web-site-logging-and-diagnostics/)以及[來自 Web Apps 的串流記錄 - 與 David Ebbo 合作](https://azure.microsoft.com/documentation/videos/log-streaming-with-azure-web-sites/)<br>
   (英文) 影片，由 Scott Hanselman 與 David Ebbo 共同錄製。
 
 針對錯誤記錄，做為撰寫自己的追蹤程式碼的替代方法，便是使用開放原始碼的記錄架構，例如 [ELMAH](http://nuget.org/packages/elmah/)。 如需詳細資訊，請參閱 [Scott Hanselman 關於 ELMAH 的部落格文章](http://www.hanselman.com/blog/NuGetPackageOfTheWeek7ELMAHErrorLoggingModulesAndHandlersWithSQLServerCompact.aspx)(英文)。

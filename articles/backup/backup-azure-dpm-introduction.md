@@ -1,25 +1,20 @@
 ---
-title: 使用 DPM 將工作負載備份至 Azure 入口網站 | Microsoft Docs
-description: 使用 Azure 備份服務來備份 DPM 伺服器的簡介
+title: 使用 DPM 將工作負載備份至 Azure
+description: 簡介如何將 DPM 資料備份到 Azure 復原服務保存庫。
 services: backup
-documentationcenter: ''
 author: adigan
 manager: nkolli
-editor: ''
 keywords: System Center Data Protection Manager, Data Protection Manager, DPM 備份
-ms.assetid: c8c322cf-f5eb-422c-a34c-04a4801bfec7
 ms.service: backup
-ms.workload: storage-backup-recovery
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
-ms.date: 08/15/2017
-ms.author: adigan;giridham;jimpark;markgal;trinadhk
-ms.openlocfilehash: 05917705264965afda873fb32a28b70e4da87aa3
-ms.sourcegitcommit: 20d103fb8658b29b48115782fe01f76239b240aa
+ms.topic: conceptual
+ms.date: 8/22/2018
+ms.author: adigan
+ms.openlocfilehash: 873e7066bcf51b32c3a7a54e845ffd5a744f407f
+ms.sourcegitcommit: b5ac31eeb7c4f9be584bb0f7d55c5654b74404ff
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2018
+ms.lasthandoff: 08/23/2018
+ms.locfileid: "42745430"
 ---
 # <a name="preparing-to-back-up-workloads-to-azure-with-dpm"></a>準備使用 DPM 將工作負載備份到 Azure
 > [!div class="op_single_selector"]
@@ -28,9 +23,9 @@ ms.lasthandoff: 04/03/2018
 >
 >
 
-本文簡介如何使用 Microsoft Azure 備份來保護 System Center Data Protection Manager (DPM) 伺服器和工作負載。 在閱讀本文後，您將了解：
+本文說明如何將 System Center Data Protection Manager (DPM) 資料備份至 Azure；包括：
 
-* Azure DPM 伺服器備份的運作方式
+* 如何將 DPM 伺服器資料備份至 Azure
 * 使備份流暢的必要條件
 * 遇到的一般錯誤以及如何排除
 * 支援的案例
@@ -42,7 +37,7 @@ ms.lasthandoff: 04/03/2018
 
 [System Center DPM](https://docs.microsoft.com/system-center/dpm/dpm-overview) 會備份檔案和應用程式資料。 如需所支援工作負載的詳細資訊，請參閱[這裡](https://docs.microsoft.com/system-center/dpm/dpm-protection-matrix)。 備份到 DPM 的資料可以儲存在磁帶、磁碟上，或使用 Microsoft Azure 備份來備份到 Azure。 DPM 與 Azure 備份的互動方式如下：
 
-* **DPM 部署為實體伺服器或內部部署虛擬機器** — 如果 DPM 部署為實體伺服器或內部部署 Hyper-V 虛擬機器，除了備份到磁碟和磁帶上，您還可以將資料備份到復原服務保存庫。
+* **DPM 部署為實體伺服器或內部部署虛擬機器** — 部署為實體伺服器或內部部署 Hyper-V 虛擬機器的 DPM，除了可將資料備份到磁碟和磁帶外，還可將資料備份到復原服務保存庫。
 * **DPM 部署為 Azure 虛擬機器** — 從 System Center 2012 R2 Update 3 開始，您可以在 Azure 虛擬機器上部署 DPM。 如果 DPM 部署為 Azure 虛擬機器，您可以將資料備份到連結至 VM 的 Azure 磁碟，或者將資料備份到復原服務保存庫以卸載資料儲存體。
 
 ## <a name="why-back-up-dpm-to-azure"></a>為何要將 DPM 備份至 Azure？
@@ -51,7 +46,7 @@ ms.lasthandoff: 04/03/2018
 * 在內部部署 DPM 部署中，使用 Azure 來替代長期的磁帶部署。
 * 若要在 Azure 中於 VM 上部署 DPM，請從 Azure 磁碟卸載儲存體。 在您的復原服務保存庫中儲存較舊的資料，可讓您將新資料儲存至磁碟，進而相應增加業務。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 如下所示讓 Azure 備份做好備份 DPM 資料的準備：
 
 1. **建立復原服務保存庫** — 在 Azure 入口網站中建立保存庫。
@@ -69,55 +64,44 @@ ms.lasthandoff: 04/03/2018
 3. **安全性 PIN 碼** — 如果您已啟用保存庫的[安全性設定](https://docs.microsoft.com/azure/backup/backup-azure-security-feature)，則需要安全性 PIN 碼才能執行重要的備份作業。 這個多重要素驗證可多一道安全性。 
 4. **復原資料夾** — 它是雲端復原期間要將備份從雲端暫時下載到之位置的慣用語。 其大小約等於您想要平行復原之備份項目的大小。
 
+[!INCLUDE [backup-create-rs-vault.md](../../includes/backup-create-rs-vault.md)]
 
-### <a name="1-create-a-recovery-services-vault"></a>1.建立復原服務保存庫。
-若要建立復原服務保存庫：
+## <a name="edit-storage-replication"></a>編輯儲存體複寫
 
-1. 登入 [Azure 入口網站](https://portal.azure.com/)。
-2. 在 [中樞] 功能表上按一下 [瀏覽]，然後在資源清單中輸入**復原服務**。 當您開始輸入時，清單將會根據您輸入的文字進行篩選。 按一下 [復原服務保存庫] 。
-
-    ![建立復原服務保存庫的步驟 1](./media/backup-azure-dpm-introduction/open-recovery-services-vault.png)
-
-    隨即會顯示 [復原服務保存庫] 清單。
-3. 在 [復原服務保存庫] 功能表上，按一下 [新增]。
-
-    ![建立復原服務保存庫的步驟 2](./media/backup-azure-dpm-introduction/rs-vault-menu.png)
-
-    [復原服務保存庫] 功能表隨即開啟，並提示您提供 [名稱]、[訂用帳戶]、[資源群組] 和 [位置]。
-
-    ![建立復原服務保存庫的步驟 5](./media/backup-azure-dpm-introduction/rs-vault-attributes.png)
-4. 在 [名稱] 中，輸入易記名稱來識別保存庫。 必須是 Azure 訂用帳戶中唯一的名稱。 輸入包含 2 到 50 個字元的名稱。 該名稱必須以字母開頭，而且只可以包含字母、數字和連字號。
-5. 按一下 [訂用帳戶]  以查看可用的訂用帳戶清單。 如果您不確定要使用哪個訂用帳戶，請使用預設 (或建議) 的訂用帳戶。 只有在您的組織帳戶與多個 Azure 訂用帳戶相關聯時，才會有多個選擇。
-6. 按一下 [資源群組] 以查看可用的資源群組清單，或按一下 [新增] 以建立新的資源群組。 如需資源群組的完整資訊，請參閱 [Azure Resource Manager 概觀](../azure-resource-manager/resource-group-overview.md)
-7. 按一下 [位置]  以選取保存庫的地理區域。
-8. 按一下頁面底部的 [新增] 。 要等復原服務保存庫建立好，可能需要一些時間。 請監視入口網站右上方區域中的狀態通知。
-   保存庫一旦建立好，就會在入口網站中開啟。
-
-### <a name="set-storage-replication"></a>設定儲存體複寫
-儲存體複寫選項有異地備援儲存體和本地備援儲存體可供您選擇。 根據預設，保存庫具有異地備援儲存體。 如果這是您的主要備份，請讓選項繼續設定為異地備援儲存體。 如果您想要更便宜但不持久的選項，請選擇本地備援儲存體。 在 [Azure 儲存體複寫概觀](../storage/common/storage-redundancy.md)中，深入了解[異地備援](../storage/common/storage-redundancy-grs.md)和[本地備援](../storage/common/storage-redundancy-lrs.md)儲存體選項。
+儲存體複寫有異地備援儲存體和本地備援儲存體可供您選擇。 根據預設，保存庫具有異地備援儲存體。 如果保存庫是主要備份，請讓選項繼續設定為異地備援儲存體。 如果您想要更便宜但不持久的選項，請使用下列程序來設定本地備援儲存體。 在 [Azure 儲存體複寫概觀](../storage/common/storage-redundancy.md)中，深入了解[異地備援](../storage/common/storage-redundancy-grs.md)和[本地備援](../storage/common/storage-redundancy-lrs.md)儲存體選項。
 
 若要編輯儲存體複寫設定︰
 
-1. 選取保存庫以開啟保存庫儀表板和 [設定] 功能表。 如果 [設定] 功能表未開啟，請按一下保存庫儀表板中的 [所有設定]。
-2. 在 [設定] 功能表上按一下 [備份基礎結構] > [備份組態]，開啟 [備份組態] 功能表。 在 [備份組態]  功能表上，選擇保存庫的儲存體複寫選項。
+> [!NOTE] 
+> 在觸發初始備份之前，請先設定儲存體複寫。 如果您決定要在備份受保護的項目後變更儲存體複寫設定，則必須先在保存庫停止保護，再切換儲存體設定。
+>  
 
-    ![備份保存庫的清單](./media/backup-azure-vms-first-look-arm/choose-storage-configuration-rs-vault.png)
+1. 選取保存庫並開啟其保存庫儀表板。
+
+2. 在 [管理] 區段中，按一下 [備份基礎結構]。
+
+3. 在 [備份組態]  功能表上，選擇保存庫的儲存體複寫選項。
+
+    ![備份保存庫的清單](./media/backup-azure-dpm-introduction/choose-storage-configuration-rs-vault.png)
 
     選擇好保存庫的儲存體選項後，就可以開始建立 VM 與保存庫的關聯。 若要開始關聯，請探索及註冊 Azure 虛擬機器。
 
-### <a name="2-download-vault-credentials"></a>2.下載保存庫認證
-保存庫認證檔是入口網站針對每個備份保存庫所產生的憑證。 入口網站接著會將公開金鑰上傳至「存取控制服務」(ACS)。 憑證的私密金鑰可供使用者作為工作流程的一部分，屬於電腦註冊工作流程中的指定輸入。 這會對電腦進行驗證，以便將備份資料傳送至 Azure 備份服務中的已識別保存庫。
+## <a name="download-vault-credentials"></a>下載保存庫認證
+保存庫認證檔是入口網站針對每個備份保存庫所產生的憑證。 入口網站接著會將公開金鑰上傳至「存取控制服務」(ACS)。 在機器註冊工作流程進行期間，憑證的私密金鑰會提供給使用者以進行機器驗證。 根據驗證結果，Azure 備份服務會將資料傳送至已識別的保存庫。
 
-保存庫認證僅在註冊工作流程期間使用。 使用者應自行負責，並確保保存庫認證檔不會遭到破解。 保存庫認證檔落入任何惡意使用者的手中，則可用來針對相同的保存庫註冊其他電腦。 不過，當使用屬於客戶的複雜密碼來加密備份資料時，現有的備份資料不會遭到洩漏。 若要減輕這個問題，保存庫認證設在 48 小時後過期。 您可以下載復原服務的保存庫認證，次數不受限制，但僅最新的保存庫認證檔可在註冊工作流程期間提供使用。
+保存庫認證僅在註冊工作流程期間使用。 使用者應自行負責，並確保保存庫認證檔不會遭到破解。 若失去認證的控制權，則可使用保存庫認證來向保存庫註冊其他機器。 不過，系統會使用屬於客戶的複雜密碼來加密備份資料，因此，現有的備份資料不會外洩。 為了降低此顧慮，保存庫認證會在 48 小時後過期。 請視需要下載新的保存庫認證，次數不限。 不過，在註冊工作流程進行期間，您只能使用最新的保存庫認證檔案。
 
-保存庫認證檔會透過安全通道，從 Azure 入口網站下載。 Azure 備份服務不會知道憑證的私密金鑰，且私密金鑰不會保存在入口網站或服務中。 使用下列步驟將保存庫認證檔下載至本機電腦。
+保存庫認證檔會透過安全通道，從 Azure 入口網站下載。 Azure 備份服務不會知道憑證的私密金鑰，且私密金鑰無法在入口網站或服務中取得。 使用下列步驟將保存庫認證檔下載至本機電腦。
 
 1. 登入 [Azure 入口網站](https://portal.azure.com/)。
-2. 開啟要註冊 DPM 機器的復原服務保存庫。
-3. 根據預設，[設定] 功能表隨即會開啟。 如果該功能表未開啟，請在保存庫儀表板上按一下 [設定]，以開啟 [設定] 功能表。 在 [設定] 功能表中，按一下 [屬性]。
+
+2. 開啟要向 DPM 伺服器註冊的復原服務保存庫。
+
+3. 根據預設，[設定] 功能表隨即會開啟。 如果是關閉狀態，請在保存庫儀表板上按一下 [設定] 以開啟該功能表。 在 [設定] 功能表中，按一下 [屬性]。
 
     ![開啟保存庫功能表](./media/backup-azure-dpm-introduction/vault-settings-dpm.png)
-4. 在 [屬性] 頁面中，按一下 [備份認證] 下方的 [下載]。 入口網站會產生可供下載的保存庫認證檔。
+
+4. 在 [屬性] 頁面上，按一下 [備份認證] 下方的 [下載]。 入口網站會產生可供下載的保存庫認證檔。
 
     ![下載](./media/backup-azure-dpm-introduction/vault-credentials.png)
 
@@ -128,7 +112,7 @@ ms.lasthandoff: 04/03/2018
 * 保存庫認證檔僅在註冊工作流程期間使用。
 * 保存庫認證檔會在 48 小時後過期，並且可以從入口網站下載。
 
-### <a name="3-install-backup-agent"></a>3.安裝備份代理程式
+## <a name="install-backup-agent"></a>安裝備份代理程式
 建立 Azure 備份保存庫之後，您的每部 Windows 電腦 (Windows Server、Windows 用戶端、System Center Data Protection Manager 伺服器，或 Azure 備份伺服器電腦) 上應該安裝代理程式，以便讓您將資料和應用程式備份至 Azure。
 
 1. 開啟要註冊 DPM 機器的復原服務保存庫。
@@ -140,12 +124,17 @@ ms.lasthandoff: 04/03/2018
     ![下載](./media/backup-azure-dpm-introduction/azure-backup-agent.png)
 
    代理程式下載完成後，執行 MARSAgentInstaller.exe 來啟動 Azure 備份代理程式的安裝。 選擇安裝資料夾和代理程式所需要的暫存資料夾。 指定的快取位置必須至少包含備份資料大小 5%的可用空間。
+
 4. 若您使用 Proxy 伺服器連接至網際網路，請在 [ **Proxy 組態** ] 畫面上，輸入 Proxy 伺服器詳細資料。 若您使用已驗證的 Proxy，請在此畫面中輸入使用者名稱和密碼的詳細資料。
+
 5. Azure 備份代理程式會安裝 .NET Framework 4.5 和 Windows PowerShell (若尚未安裝) 來完成安裝。
+
 6. 安裝代理程式之後， 請 **關閉** 視窗。
 
    ![關閉](../../includes/media/backup-install-agent/dpm_FinishInstallation.png)
+
 7. 若要向保存庫**註冊 DPM 伺服器**，請在 [管理] 索引標籤中，按一下 [線上]。 接著，選取 [註冊] 。 隨即會開啟 [註冊設定] 精靈。
+
 8. 若您使用 Proxy 伺服器連接至網際網路，請在 [ **Proxy 組態** ] 畫面上，輸入 Proxy 伺服器詳細資料。 若您使用已驗證的 Proxy，請在此畫面中輸入使用者名稱和密碼的詳細資料。
 
     ![Proxy 組態](../../includes/media/backup-install-agent/DPM_SetupOnlineBackup_Proxy.png)
@@ -158,12 +147,15 @@ ms.lasthandoff: 04/03/2018
     請確定保存庫認證檔位於可透過設定應用程式存取的位置。 如果您遇到存取權相關的錯誤，請將保存庫認證檔複製至此電腦中的暫存位置並重試作業。
 
     如果您遇到無效的保存庫認證錯誤 (例如，「提供的保存庫認證無效」)，檔案可能損毀或沒有復原服務所關聯的最新認證。 從入口網站下載新的保存庫認證檔後重試作業。 若使用者在 Azure 入口網站中連續快速地按下 [ **下載保存庫認證** ] 選項，則通常會看見此錯誤。 在此情況下，僅第二個保存庫認證檔為有效。
+
 10. 若要控制工作期間以及非工作期間的網路頻寬使用，您可以在 [節流設定]  畫面中，設定頻寬使用限制，並定義工作與非工作時間。
 
     ![節流設定](../../includes/media/backup-install-agent/DPM_SetupOnlineBackup_Throttling.png)
+
 11. 在 [復原資料夾設定]  畫面上，瀏覽將暫存從 Azure 所下載檔案的資料夾。
 
     ![復原資料夾設定](../../includes/media/backup-install-agent/DPM_SetupOnlineBackup_RecoveryFolder.png)
+
 12. 在 [ **加密設定** ] 畫面中，您可以產生複雜密碼或提供複雜密碼 (最少 16 個字元)。 請記得將複雜密碼存放在安全的位置。
 
     ![加密](../../includes/media/backup-install-agent/DPM_SetupOnlineBackup_Encryption.png)
@@ -172,7 +164,9 @@ ms.lasthandoff: 04/03/2018
     > 如果遺失或忘記複雜密碼，Microsoft 將無法協助您復原備份資料。 加密複雜密碼為使用者所有，Microsoft 將不會看到使用者所使用的複雜密碼。 請將檔案儲存在安全的位置，在復原作業期間需要該檔案。
     >
     >
+
 13. 一旦您按一下 [註冊]  按鈕，電腦即成功註冊至保存庫，且現在您已準備好開始備份至 Microsoft Azure。
+
 14. 當使用 Data Protection Manager 時，您可以修改註冊工作流程期間所指定的設定，方法是選取 [管理] 索引標籤下的 [線上]，接著按一下 [設定] 選項。
 
 ## <a name="requirements-and-limitations"></a>需求 (和限制)
@@ -203,6 +197,6 @@ ms.lasthandoff: 04/03/2018
 * 疏鬆資料流
 
 > [!NOTE]
-> 從 System Center 2012 DPM SP1 開始，您可以使用 Microsoft Azure 備份將受到 DPM 保護的工作負載備份至 Azure。
+> 從 System Center 2012 DPM (含 SP1) 開始，您可以將受保護的工作負載備份至 Azure。
 >
 >

@@ -2,28 +2,30 @@
 title: 執行資料科學工作 - Azure Machine Learning | Microsoft Docs
 description: 資料科學家如何以可追蹤、版本控制，以及共同作業的方式執行資料科學專案。
 documentationcenter: ''
-author: bradsev
+author: deguhath
 manager: cgronlun
 editor: cgronlun
 ms.assetid: ''
 ms.service: machine-learning
+ms.component: team-data-science-process
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 11/28/2017
-ms.author: bradsev
-ms.openlocfilehash: da09ab7daba115e570bb8b97549cc5f01e7496b6
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.author: deguhath
+ms.openlocfilehash: 19267429510207129b0229dc55fbd46f12977d5d
+ms.sourcegitcommit: 7827d434ae8e904af9b573fb7c4f4799137f9d9b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 07/18/2018
+ms.locfileid: "39112639"
 ---
 # <a name="execute-data-science-tasks-exploration-modeling-and-deployment"></a>執行資料科學工作：探索、模型化和部署
 
 一般資料科學工作包括資料探索、模型化和部署。 本文示範如何使用**互動式資料探索、分析與報告 (IDEAR)** 和**自動模型化與報告 (AMAR)** 公用程式來完成數個常見的資料科學工作，例如互動式資料探索、資料分析、報告和模型建立。 它也會列出使用各種工具組和資料平台，將模型部署到生產環境的選項，如下所示：
 
-- [Azure Machine Learning](../preview/index.yml)
+- [Azure Machine Learning](../service/index.yml)
 - [SQL-Server 與 ML 服務](https://docs.microsoft.com/sql/advanced-analytics/r/r-services#in-database-analytics-with-sql-server)
 - [Microsoft Machine Learning Server](https://docs.microsoft.com/machine-learning-server/what-is-machine-learning-server)
 
@@ -32,7 +34,7 @@ ms.lasthandoff: 03/28/2018
 
 資料科學家可以利用許多方式執行探索和報告：使用 Python 可用的程式庫和套件 (例如 matplotlib) 或使用 R (例如 ggplot 或 lattice)。 資料科學家可以自訂這類程式碼，以符合特定情節的資料探索需求。 處理結構化資料與非結構化資料的需求不同，例如文字或影像。 
 
-諸如 Azure Machine Learning Workbench 等產品也提供[進階資料準備](../preview/tutorial-bikeshare-dataprep.md)以進行資料討論及探索，包括功能建立。 使用者應決定最符合其需求的工具、程式庫和套件。 
+諸如 Azure Machine Learning Workbench 等產品也提供[進階資料準備](../desktop-workbench/tutorial-bikeshare-dataprep.md)以進行資料討論及探索，包括功能建立。 使用者應決定最符合其需求的工具、程式庫和套件。 
 
 在此階段結尾處的交付項目是資料探索報告。 報告應該提供相當完整的資料檢視，以用於模型化及評估資料是否適合繼續進行模型化步驟。 下列各節中針對半自動探索、模型化和報告所討論的 Team Data Science Process (TDSP) 公用程式也提供標準化的資料探索和模型化報告。 
 
@@ -75,9 +77,9 @@ YAML 檔案是用來指定：
 ### <a name="model-management"></a>模型管理
 在多個模型都已建置完成之後，您通常需要有可註冊和管理模型的系統。 通常您需要指令碼或 API 以及後端資料庫或版本控制系統的組合。 針對這些管理工作，您可以考慮以下的一些選項：
 
-1. [Azure Machine Learning - 模型管理服務](../preview/index.yml)
+1. [Azure Machine Learning - 模型管理服務](../service/index.yml)
 2. [從 MIT ModelDB](https://mitdbg.github.io/modeldb/) 
-3. [SQL-Server 即模型管理系統](https://blogs.technet.microsoft.com/dataplatforminsider/2016/10/17/sql-server-as-a-machine-learning-model-management-system/)
+3. [SQL-Server 即模型管理系統](https://blogs.technet.microsoft.com/dataplatforminsider/2016/10/17/sql-server-as-a-machine-learning-model-management-system/) \(英文\)
 4. [Microsoft Machine Learning Server](https://docs.microsoft.com/sql/advanced-analytics/r/r-server-standalone)
 
 ## 3.<a name='Deployment-3'></a> 部署
@@ -88,18 +90,21 @@ YAML 檔案是用來指定：
 有許多方法和平台可將模型置入生產環境。 以下提供一些選項：
 
 
-- [在 Azure Machine Learning 中的模型部署](../preview/model-management-overview.md)
+- [在 Azure Machine Learning 中的模型部署](../desktop-workbench/model-management-overview.md)
 - [在 SQL-Server 中部署模型](https://docs.microsoft.com/sql/advanced-analytics/tutorials/sqldev-py6-operationalize-the-model)
 - [Microsoft Machine Learning Server](https://docs.microsoft.com/sql/advanced-analytics/r/r-server-standalone)
 
+> [!NOTE]
+> 在部署之前，必須確保模型計分的延遲夠低，以便在生產環境中使用。
 >
->
->注意：在部署之前，必須確保模型計分的延遲夠低，以便在生產環境中使用。
 >
 
 逐步解說還會提供進一步範例，說明**特定情節**之程序中的所有步驟。 [範例逐步解說](walkthroughs.md)文章中會列出這些逐步解說以及簡短說明的連結。 這些逐步解說說明如何將雲端、內部部署工具及服務組合成工作流程或管線，以建立智慧型應用程式。
 
-注意：如需使用 Azure Machine Learning Studio 進行部署，請參閱[部署 Azure Machine Learning Web 服務](../studio/publish-a-machine-learning-web-service.md)。
+> [!NOTE]
+> 如需使用 Azure Machine Learning Studio 進行部署，請參閱[部署 Azure Machine Learning Web 服務](../studio/publish-a-machine-learning-web-service.md)。
+>
+>
 
 ### <a name="ab-testing"></a>A/B 測試
 多個模型在生產環境中時，執行 [A/B 測試](https://en.wikipedia.org/wiki/A/B_testing)來比較模型的效能會很有用。 
@@ -108,6 +113,7 @@ YAML 檔案是用來指定：
 ## <a name="next-steps"></a>後續步驟
 
 [追蹤資料科學專案的進度](track-progress.md)會顯示資料科學家可如何追蹤資料科學專案的進度。
- 
+
+[模型作業和 CI/CD](ci-cd-flask.md) 會示範如何使用開發模型執行 CI/CD。
 
 

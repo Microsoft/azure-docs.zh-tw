@@ -10,16 +10,18 @@ manager: hjerez
 editor: cgronlun
 ms.assetid: 99a3a0fd-b359-481a-b236-66868deccd96
 ms.service: machine-learning
+ms.component: studio
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 01/06/2017
-ms.openlocfilehash: 231d505e91fc036b30344e2fd9971db8ba2fdf05
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 97107bb5ca1a598906cac9adbf508b2d15668e7d
+ms.sourcegitcommit: 16ddc345abd6e10a7a3714f12780958f60d339b6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36227234"
 ---
 # <a name="quickstart-tutorial-for-the-r-programming-language-for-azure-machine-learning"></a>Azure Machine Learning 之 R 程式設計語言的快速入門教學課程
 
@@ -39,7 +41,7 @@ Microsoft Azure Machine Learning 包含許多功能強大的機器學習和資�
 
 在本快速入門指南中，我們將使用加州乳製品產量和訂價資料。 此資料包含數項乳製品之產量及奶油 (基準商品) 價格的每月相關資訊。
 
-本文中使用的資料以及 R 指令碼可[在此下載][download]。 此資料原先是綜合自可從威斯康辛大學取得的資訊，網址為 http://future.aae.wisc.edu/tab/production.html。
+本文中使用的資料以及 R 指令碼可[在此下載](https://github.com/Azure-Samples/MachineLearningSamples-Notebooks/blob/master/studio-samples/cadairydata.csv)。 此資料原先是綜合自可從威斯康辛大學取得的資訊，網址為 https://dairymarkets.com。
 
 ### <a name="organization"></a>組織
 我們將循序進行數個步驟，讓您了解如何在 Azure Machine Learning 環境中建立、測試及執行分析和資料操作 R 程式碼。  
@@ -112,8 +114,8 @@ R 程式碼的執行及在 Azure Machine Learning 平台上的執行所產生的
 
 若要檢查 R 中任何物件的值，您可以將這些值列印至 output.log 檔案中。 檢查物件值的規則基本上與在互動式 R 工作階段中相同。 例如，如果您在一行輸入變數名稱，物件的值就會列印至 output.log 檔案中。  
 
-#### <a name="packages-in-machine-learning-studio"></a>Machine Learning Studio 中的套件
-Azure Machine Learning 附有超過 350 個預先安裝的 R 語言套件。 您可以使用[執行 R 指令碼][execute-r-script]模組中的下列程式碼，來擷取預先安裝的套件清單。
+#### <a name="packages-in-machine-learning-studio"></a>Machine Learning Studio 中的封裝
+Azure Machine Learning 附有超過 350 個預先安裝的 R 語言封裝。 您可以使用[執行 R 指令碼][execute-r-script]模組中的下列程式碼，來擷取預先安裝的封裝清單。
 
     data.set <- data.frame(installed.packages())
     maml.mapOutputPort("data.set")
@@ -123,7 +125,7 @@ Azure Machine Learning 附有超過 350 個預先安裝的 R 語言套件。 您
 ### <a name="introduction-to-rstudio"></a>RStudio 簡介
 RStudio 是一個廣泛使用、適用於 R 的 IDE。我將使用 RStudio 對本快速入門指南中所用的 R 程式碼進行編輯、測試及偵錯。 測試並備妥 R 程式碼之後，您只要從 RStudio 編輯器剪下並貼到 Machine Learning Studio 的[執行 R 指令碼][execute-r-script]模組中即可。  
 
-如果您的桌上型電腦上並未安裝 R 程式設計語言，建議您現在安裝。 您可以從 Comprehensive R Archive Network (CRAN) 免費下載開放原始碼 R 語言，網址為 [http://www.r-project.org/](http://www.r-project.org/)。 有提供適用於 Windows、MacOS 及 Linux/UNIX 的下載項目。 請選擇附近的鏡像，然後依照下載指示進行。 此外，CRAN 也包含大量實用的分析和資料操作套件。
+如果您的桌上型電腦上並未安裝 R 程式設計語言，建議您現在安裝。 您可以從 Comprehensive R Archive Network (CRAN) 免費下載開放原始碼 R 語言，網址為 [http://www.r-project.org/](http://www.r-project.org/)。 有提供適用於 Windows、MacOS 及 Linux/UNIX 的下載項目。 請選擇附近的鏡像，然後依照下載指示進行。 此外，CRAN 也包含大量實用的分析和資料操作封裝。
 
 如果您是 RStudio 新手，您應該下載並安裝桌上型電腦版本。 您可以在 http://www.rstudio.com/products/RStudio/ 找到適用於 Windows、Mac OS 與 Linux/UNIX 的 RStudio 下載項目。 請依照提供的指示，在您的桌上型電腦上安裝 RStudio。  
 
@@ -642,7 +644,7 @@ POSIXct 時間序列類別是常用且相對簡單的類別。 此時間序列�
     [ModuleOutput] 
     [ModuleOutput]  $ Month.Count      : num  0 1 2 3 4 5 6 7 8 9 ...
 
- *14.[執行 R 指令碼] 模組中資料框架的摘要。*
+*14.[執行 R 指令碼] 模組中資料框架的摘要。*
 
 此資料的類型和格式皆如預期。 請注意，'Month' 資料行的類型是因素，並且具有預期的層級數目。
 
@@ -682,7 +684,7 @@ POSIXct 時間序列類別是常用且相對簡單的類別。 此時間序列�
     [ModuleOutput] 
     [ModuleOutput]  $ Time             : POSIXct, format: "1995-01-01" "1995-02-01" ...
 
- *15.含有時間序列物件之資料框架的摘要。*
+*15.含有時間序列物件之資料框架的摘要。*
 
 我們可以從摘要看出，新資料行的類別事實上是 POSIXct。
 
@@ -881,7 +883,7 @@ POSIXct 時間序列類別是常用且相對簡單的類別。 此時間序列�
 ## <a id="seasonalforecasting"></a>時間序列範例：季節性預測
 我們的資料現在是適用於分析的形式，而我們已判斷出變數之間沒有重大的相互關聯。 讓我們繼續來建立時間序列預測模型。 我們將使用此模型預測 2013 年 12 個月的加州牛奶產量。
 
-我們的預測模型將會有兩個元件，亦即趨勢元件和季節性元件。 這兩個元件的乘積即是完整預測。 這種模型稱為乘法模型。 替代模型是加法模型。 我們已經將對數轉換套用到感興趣的變數，以便控制這個分析。
+我們的預測模型將會有兩個元件，亦即趨勢元件和季節性元件。 這兩個元件的乘積即是完整預測。 這種模型稱為乘法模型。 替代模型是加法模型。 我們已經將對數轉換套用到感興趣的變數，以便控制這項分析。
 
 您稍早下載的 Zip 檔中有本節的完整 R 程式碼。
 
@@ -956,7 +958,7 @@ POSIXct 時間序列類別是常用且相對簡單的類別。 此時間序列�
 *圖 22.加州乳製品產量和價格資料的時間序列圖。*
 
 ### <a name="a-trend-model"></a>趨勢模型
-建立時間序列物件並查看過資料之後，讓我們開始建構加州牛奶產量資料的趨勢模型。 我們可以使用時間序列迴歸來進行這個操作。 不過，從圖中可以清楚看出，若要精確地為在訓練資料中所觀察到的趨勢建立模型，我們所需要的將不只是一個斜率和截距。
+建立時間序列物件並查看過資料之後，讓我們開始建構加州牛奶產量資料的趨勢模型。 我們可以使用時間序列迴歸來進行這項操作。 不過，從圖中可以清楚看出，若要精確地為在訓練資料中所觀察到的趨勢建立模型，我們所需要的將不只是一個斜率和截距。
 
 在資料規模較小的情況下，我會在 RStudio 中為趨勢建置模型，再將產生的模型剪下並貼到 Azure Machine Learning 中。 RStudio 針對這種互動式分析提供了互動式環境。
 
@@ -989,7 +991,7 @@ POSIXct 時間序列類別是常用且相對簡單的類別。 此時間序列�
     ## Multiple R-squared:  0.941,    Adjusted R-squared:  0.94
     ## F-statistic: 1.12e+03 on 3 and 212 DF,  p-value: <2e-16
 
-從這個輸出的 P 值 (Pr(>|t|))，我們可以看出平方項可能沒有意義。 我將使用 `update()` 函式來捨去平方項，以修改此模型。
+從這個輸出的 P 值 (Pr(>|t|))，我們可以看出平方項可能沒有意義。 我將使用 `update()` 函式來卸除平方項，以修改此模型。
 
     milk.lm <- update(milk.lm, . ~ . - I(Month.Count^2))
     summary(milk.lm)
@@ -1032,9 +1034,9 @@ POSIXct 時間序列類別是常用且相對簡單的類別。 此時間序列�
 看起來趨勢模型與資料非常相符。 此外，看來似乎也沒有過度配適的跡象，例如模型曲線中有奇怪的擺動。  
 
 ### <a name="seasonal-model"></a>季節性模型
-有了趨勢模型之後，我們還需要繼續進行來納入季節性效果。 我們將使用年中月份做為線性模型中的虛擬變數，以擷取逐月的效果。 請注意，當您將因素變數導入到模型中時，必須不計算截距。 如果不這麼做，便會過度指定該公式，R 將會捨去其中一個想要的因素，而保留截距項。
+有了趨勢模型之後，我們還需要繼續進行來納入季節性效果。 我們將使用年中月份做為線性模型中的虛擬變數，以擷取逐月的效果。 請注意，當您將因素變數導入到模型中時，必須不計算截距。 如果不這麼做，便會過度指定該公式，R 將會卸除其中一個想要的因素，而保留截距項。
 
-既然我們有了令人滿意的趨勢模型，我們可以使用 `update()` 函式將新項新增到現有的模型。 更新公式中的-1 會捨去截距項。 目前先繼續在 RStudio 中進行：
+既然我們有了令人滿意的趨勢模型，我們可以使用 `update()` 函式將新項新增到現有的模型。 更新公式中的-1 會卸除截距項。 目前先繼續在 RStudio 中進行：
 
     milk.lm2 <- update(milk.lm, . ~ . + Month - 1)
     summary(milk.lm2)
@@ -1130,7 +1132,7 @@ POSIXct 時間序列類別是常用且相對簡單的類別。 此時間序列�
 這些圖中有指出一些高影響力的點，但是不需要太過關注。 此外，我們可以從常態分佈 Q-Q 圖看出殘差接近常態分佈，這是線性模型的重要認定依據。
 
 ### <a name="forecasting-and-model-evaluation"></a>預測和模型評估
-距離完成我們的範例，只剩一件事情要做。 我們需要計算預測，並對照實際資料來測量誤差。 我們的預測將會針對 2013 年的 12 個月。 我們可以針對這個不屬於我們訓練資料集之實際資料的預測，計算誤差衡量值。 此外，我們可以將 18 年訓練資料的相關表現與 12 個月的測試資料做比較。  
+距離完成我們的範例，只剩一件事情要做。 我們需要計算預測，並對照實際資料來測量誤差。 我們的預測將會針對 2013 年的 12 個月。 我們可以針對這項不屬於我們訓練資料集之實際資料的預測，計算誤差衡量值。 此外，我們可以將 18 年訓練資料的相關表現與 12 個月的測試資料做比較。  
 
 有一些衡量標準可用來衡量時間序列模型的表現。 在我們的案例中，我們將使用均方根 (RMS) 誤差。 下列函式會計算兩個數列間的 RMS 誤差。  
 
@@ -1219,7 +1221,7 @@ RStudio 已經有相當充分的說明，因此在本附錄中，我將提供一
 2. 編輯和執行 R 程式碼
    
    RStudio 提供一個可編輯和執行 R 程式碼的整合式環境。 文件可在 https://support.rstudio.com/hc/articles/200484448-Editing-and-Executing-Code 找到。
-3. 偵錯
+3. Debugging
    
    RStudio 包含強大的偵錯功能。 這些功能的文件位於 https://support.rstudio.com/hc/articles/200713843-Debugging-with-RStudio。
    
@@ -1239,13 +1241,13 @@ RStudio 已經有相當充分的說明，因此在本附錄中，我將提供一
 * Patrick Burns 所著的《R Inferno》是一本令人出乎意料的幽默書籍，當中處理一些使用 R 進行程式設計時，可能遇到的較具技巧性和困難度的主題。這本書提供免費下載，網址為 http://www.burns-stat.com/documents/books/the-r-inferno/。
 * 如果您想要深入探索 R 中的進階主題，可以看看 Hadley Wickham 所著的《Advanced R》。 這本書的線上版本提供免費下載，網址為 http://adv-r.had.co.nz/。
 
-您可以在「CRAN 工作檢視：時間序列分析」找到 R 時間序列套件目錄：http://cran.r-project.org/web/views/TimeSeries.html。 如需特定時間序列物件套件的資訊，您應該參考該套件的相關文件。
+您可以在「CRAN 工作檢視：時間序列分析」找到 R 時間序列套件目錄：http://cran.r-project.org/web/views/TimeSeries.html。 如需特定時間序列物件封裝的資訊，您應該參考該封裝的相關文件。
 
 Paul Cowpertwait 與 Andrew Metcalfe 所著的 《Introductory Time Series with R》介紹如何使用 R 進行時間序列分析。 許多理論文本皆有提供 R 範例。
 
 一些絕佳的網際網路資源：
 
-* DataCamp：DataCamp 利用視訊課程和程式碼撰寫練習在瀏覽器中輕鬆教導 R。 最新 R 技巧和套件均有互動式教學課程。 在 https://www.datacamp.com/courses/introduction-to-r 取得免費的互動式 R 教學課程
+* DataCamp：DataCamp 利用視訊課程和程式碼撰寫練習在瀏覽器中輕鬆教導 R。 最新 R 技巧和封裝均有互動式教學課程。 在 https://www.datacamp.com/courses/introduction-to-r 取得免費的互動式 R 教學課程
 * Programiz 提供的 R 使用者入門指南：https://www.programiz.com/r-programming
 * Clarkson 大學 Kelly Black 提供的快速 R 教學課程：http://www.cyclismo.org/tutorial/R/
 * http://www.computerworld.com/article/2497464/business-intelligence-60-r-resources-to-improve-your-data-skills.html 列出了 60 種以上的 R 資源

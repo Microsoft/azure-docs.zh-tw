@@ -10,23 +10,24 @@ ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 10/01/2017
 ms.author: douglasl
 robots: noindex
-ms.openlocfilehash: 7861a3380ee330241f0c735ee6c5ed84f121e512
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 534fbeaa8ba3c27c8d3f3bbcc59717d8bdb5c654
+ms.sourcegitcommit: 0c490934b5596204d175be89af6b45aafc7ff730
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 06/27/2018
+ms.locfileid: "37050313"
 ---
 # <a name="transform-data-by-running-u-sql-scripts-on-azure-data-lake-analytics"></a>在 Azure Data Lake Analytics 上執行 U-SQL 指令碼來轉換資料 
 > [!div class="op_single_selector" title1="Select the version of Data Factory service you are using:"]
-> * [第 1 版 - 正式推出](data-factory-usql-activity.md)
-> * [第 2 版 - 預覽](../transform-data-using-data-lake-analytics.md)
+> * [第 1 版](data-factory-usql-activity.md)
+> * [第 2 版 (目前的版本)](../transform-data-using-data-lake-analytics.md)
 
 > [!NOTE]
-> 本文適用於正式推出 (GA) 的第 1 版 Data Factory。 如果您使用處於預覽狀態的 Data Factory 服務第 2 版，請參閱[第 2 版中的 U-SQL 活動](../transform-data-using-data-lake-analytics.md)。
+> 本文適用於 Data Factory 的第 1 版。 如果您使用目前版本的 Data Factory 服務，請參閱[第 2 版中的 U-SQL 活動](../transform-data-using-data-lake-analytics.md)。
 
 Azure Data Factory 中的「管線」會使用連結的計算服務，來處理連結的儲存體服務中的資料。 它包含一系列活動，其中每個活動都會執行特定的處理作業。 本文將說明 **Data Lake Analytics U-SQL 活動**，它在 **Azure Data Lake Analytics** 計算連結的服務上執行 **U-SQL** 指令碼。 
 
@@ -217,7 +218,7 @@ if (linkedService.Properties.TypeProperties is AzureDataLakeStoreLinkedService |
 | 優先順序            | 判斷應該選取排入佇列的哪些工作首先執行。 編號愈低，優先順序愈高。 | 否                                       |
 | parameters          | U-SQL 指令碼的參數          | 否                                       |
 | runtimeVersion      | 所要使用之 U-SQL 引擎的執行階段版本 | 否                                       |
-| compilationMode     | <p>U-SQL 的編譯模式。 必須是下列其中一個值：</p> <ul><li>**Semantic：**僅執行語意檢查和必要的例行性檢查。</li><li>**Full：**執行完整編譯，包括語法檢查、最佳化、程式碼產生等。</li><li>**SingleBox：**在將 TargetType 設定為 SingleBox 的情況下，執行完整編譯。</li></ul><p>如果您沒有為此屬性指定值，伺服器將會判斷最佳的編譯模式。 </p> | 否                                       |
+| compilationMode     | <p>U-SQL 的編譯模式。 必須是下列其中一個值：</p> <ul><li>**Semantic：** 僅執行語意檢查和必要的例行性檢查。</li><li>**Full：** 執行完整編譯，包括語法檢查、最佳化、程式碼產生等。</li><li>**SingleBox：** 在將 TargetType 設定為 SingleBox 的情況下，執行完整編譯。</li></ul><p>如果您沒有為此屬性指定值，伺服器將會判斷最佳的編譯模式。 </p> | 否                                       |
 
 指令碼定義請參閱 [SearchLogProcessing.txt 指令碼定義](#sample-u-sql-script) 。 
 

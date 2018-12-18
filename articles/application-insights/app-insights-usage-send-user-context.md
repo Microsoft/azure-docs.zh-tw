@@ -1,22 +1,24 @@
 ---
-title: "傳送使用者內容識別碼以啟用 Azure Application Insights 中的使用體驗 | Microsoft Docs"
-description: "追蹤使用者如何在您的服務移動，方法是為每個使用者指派 Application Insights 中唯一的持續性識別碼字串。"
+title: 傳送使用者內容識別碼以啟用 Azure Application Insights 中的使用體驗 | Microsoft Docs
+description: 追蹤使用者如何在您的服務移動，方法是為每個使用者指派 Application Insights 中唯一的持續性識別碼字串。
 services: application-insights
-documentationcenter: 
-author: abgreg
+documentationcenter: ''
+author: mrbullwinkle
 manager: carmonm
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: csharp
-ms.topic: article
+ms.topic: conceptual
 ms.date: 08/02/2017
+ms.reviewer: abgreg
 ms.author: mbullwin
-ms.openlocfilehash: fe4481cf851fc021b3073a6d9d6254f546218785
-ms.sourcegitcommit: 9890483687a2b28860ec179f5fd0a292cdf11d22
+ms.openlocfilehash: 14322162d3f78f0cb90ecaf077d1d85f7cbba581
+ms.sourcegitcommit: cc4fdd6f0f12b44c244abc7f6bc4b181a2d05302
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/24/2018
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47091527"
 ---
 #  <a name="send-user-context-ids-to-enable-usage-experiences-in-azure-application-insights"></a>傳送使用者內容識別碼以啟用 Azure Application Insights 中的使用體驗
 

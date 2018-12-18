@@ -2,22 +2,24 @@
 title: Team 資料科學程序專案負責人工作 - Azure | Microsoft Docs
 description: 資料科學 Team 專案上專案負責人工作的概述。
 documentationcenter: ''
-author: bradsev
+author: deguhath
 manager: cgronlun
 editor: cgronlun
 ms.assetid: ''
 ms.service: machine-learning
+ms.component: team-data-science-process
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 11/13/2017
-ms.author: bradsev
-ms.openlocfilehash: 5c769fda09e70cfb0a43e0305ffab4923fbe3307
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.author: deguhath
+ms.openlocfilehash: 6a618efc6860371883bff7ebb953880293ad3120
+ms.sourcegitcommit: f3bd5c17a3a189f144008faf1acb9fabc5bc9ab7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 09/10/2018
+ms.locfileid: "44303876"
 ---
 # <a name="project-lead-tasks"></a>專案負責人工作
 
@@ -29,7 +31,7 @@ ms.lasthandoff: 03/28/2018
 
 本主題目前涵蓋專案負責人此工作流程的工作 1、2 和 6。
 
->[AZURE.NOTE] 我們概述在下列指示中使用 Visual Studio Team Services (VSTS) 為專案設定 TDSP 小組環境所需的步驟。 我們會指定如何使用 VSTS 完成這些工作，因為這是我們在 Microsoft 中實作 TDSP 的方式。 如果針對您的群組使用另一個程式碼裝載平台，必須由小組負責人完成的工作通常不會變更。 但是完成這些工作的方式將會不同。
+>[AZURE.NOTE] 我們概述在下列指示中使用 Azure DevOps 為專案設定 TDSP 小組環境所需的步驟。 我們會指定如何使用 Azure DevOps 完成這些工作，因為這是我們在 Microsoft 中實作 TDSP 的方式。 如果針對您的群組使用另一個程式碼裝載平台，必須由小組負責人完成的工作通常不會變更。 但是完成這些工作的方式將會不同。
 
 
 ## <a name="repositories-and-directories"></a>存放庫和目錄
@@ -42,33 +44,33 @@ ms.lasthandoff: 03/28/2018
 - **D5**：從 R5 複製的本機目錄。
 
 
-## <a name="0-prerequisites"></a>0.先決條件
+## <a name="0-prerequisites"></a>0.必要條件
 
 完成[資料科學小組的群組管理員工作](group-manager-tasks.md)中所述，指派給您的群組管理員的工作，以及[資料科學小組的小組負責人工作](team-lead-tasks.md)中所述，指派給您的小組負責人的工作，即可滿足必要條件。 
 
 簡單來說，就是在您開始小組負責人工作之前，必須符合下列需求： 
 
-- 您的**群組 VSTS 伺服器** (或其他某些程式碼裝載平台上的群組帳戶) 已由您的群組管理員設定。
+- 您的**群組 Azure DevOps Services** (或其他某些程式碼裝載平台上的群組帳戶) 已由您的群組管理員設定。
 - 您的 **TeamProjectTemplate 存放庫** (R3) 已由您計劃使用之程式碼裝載平台上的小組負責人，在群組帳戶之下設定。
 - 您已經被小組負責人**授權**，為您的小組在群組帳戶上建立存放庫。
 - Git 必須安裝在您的機器上。 如果您使用資料科學虛擬機器 (DSVM)，則已預先安裝 Git，而您可以繼續作業。 否則，請參閱[平台和工具附錄](platforms-and-tools.md#appendix)。  
 - 如果您使用 **Windows DSVM**，您必須在機器上安裝 [Git 認證管理員 (GCM)](https://github.com/Microsoft/Git-Credential-Manager-for-Windows) \(英文\)。 在 README.md 檔案中，向下捲動至 [下載並安裝] 區段，然後按一下 [最新的安裝程式]。 這樣會帶您到最新的安裝程式分頁。 從這裡下載 .exe 安裝程式並執行它。 
-- 如果您使用 **Linux DSVM**，在您的 DSVM 上建立 SSH 公開金鑰，並將它新增到您的群組 VSTS 伺服器。 如需 SSH 的詳細資訊，請參閱[平台和工具附錄](platforms-and-tools.md#appendix)中的**建立 SSH 公開金鑰**一節。 
+- 如果您使用 **Linux DSVM**，請在您的 DSVM 上建立 SSH 公開金鑰，並將它新增到您的群組 Azure DevOps Services。 如需 SSH 的詳細資訊，請參閱[平台和工具附錄](platforms-and-tools.md#appendix)中的**建立 SSH 公開金鑰**一節。 
 
 
 ## <a name="1-create-a-project-repository-r5"></a>1.建立專案存放庫 (R5)
 
-- 登入您的群組 VSTS 伺服器，位於 *https://\<VSTS 伺服器名稱\>.visualstudio.com*。 
-- 在 [最近使用的專案和小組] 底下，按一下 [瀏覽]。 快顯視窗會列出 VSTS 伺服器上的所有 Team 專案。 
+- 經由 *https://\<Azure DevOps Services 名稱\>.visualstudio.com* 登入您的群組 Azure DevOps Services。 
+- 在 [最近使用的專案和小組] 底下，按一下 [瀏覽]。 快顯視窗會列出 Azure DevOps Services 上的所有專案。 
 
     ![2](./media/project-lead-tasks/project-leads-2-create-project-repo.png)
 
-- 按一下您要在其中建立專案存放庫的 Team 專案名稱。 在此範例中，按一下 [MyTeam]。 
-- 然後，按一下 [瀏覽] 以導向至 Team 專案 **MyTeam** 的首頁：
+- 按一下您要在其中建立專案存放庫的專案名稱。 在此範例中，按一下 [MyTeam]。 
+- 然後，按一下 [瀏覽] 以導向至專案 **MyTeam** 的首頁：
 
     ![3](./media/project-lead-tasks/project-leads-3-create-project-repo-2.png)
 
-- 按一下 [在程式碼上共同作業] 以導向至 Team 專案的 git 首頁。  
+- 按一下 [在程式碼上共同作業] 以導向至專案的 git 首頁。  
 
     ![4](./media/project-lead-tasks/project-leads-4-create-project-repo-3.png)
 
@@ -85,33 +87,33 @@ ms.lasthandoff: 03/28/2018
 
 ## <a name="2-seed-the-dsproject1-project-repository"></a>2.植入 DSProject1 專案存放庫
 
-以下的工作是從 Team 專案範本存放庫 (R3) 植入 **DSProject1** 專案存放庫 (R5)。 植入程序會使用本機 DSVM 上的目錄 D3 和 D5，作為中繼暫存網站。 綜上所述，植入路徑是：R3 -> D3 -> D5 -> R5。
+以下工作是從您的專案範本存放庫 (R3) 植入 **DSProject1** 專案存放庫 (R5)。 植入程序會使用本機 DSVM 上的目錄 D3 和 D5，作為中繼暫存網站。 綜上所述，植入路徑是：R3 -> D3 -> D5 -> R5。
 
 如果您需要自訂 **DSProject1** 專案存放庫以符合一些特定專案需求，您要在下列程序的倒數第二個步驟執行這項操作。 以下是用來植入 **DSProject1** 專案存放庫內容的步驟摘要。 個別步驟對應至植入程序中的各小節：
 
-- 將 Team 專案範本存放庫複製到本機目錄：Team R3 - 複製到 -> 本機 D3。
+- 將專案範本存放庫複製到本機目錄：Team R3 - 複製到 -> 本機 D3。
 - 將 DSProject1 存放庫複製到本機目錄：Team R5 - 複製到 -> 本機 D5。
-- 將複製的 Team 專案範本內容複製到 DSProject1 存放庫的本機複製：D3 - 內容複製到 -> D5。
+- 將複製的專案範本內容複製到 DSProject1 存放庫的本機複製：D3 - 內容複製到 -> D5。
 - (選擇性) 自訂本機 D5。
 - 將本機 DSProject1 內容推送到 Team 存放庫：D5 - 內容新增至 -> Team R5。
 
 
-### <a name="clone-your-team-project-template-repository-r3-to-a-directory-d3-on-your-local-machine"></a>將您的 Team 專案範本存放庫 (R3) 複製到本機電腦上的目錄 (D3)。
+### <a name="clone-your-project-template-repository-r3-to-a-directory-d3-on-your-local-machine"></a>將您的專案範本存放庫 (R3) 複製到本機電腦上的目錄 (D3)。
 
 在您的本機電腦上建立目錄：
 
 - *C:\GitRepos\MyTeamCommon* (適用於 Windows) 
 - *$home/GitRepos/MyTeamCommon* (適用於 Linux)
 
-變更為該目錄。 然後，執行下列命令以將您的 Team 專案範本存放庫複製到本機電腦。 
+變更為該目錄。 然後，執行下列命令，將您的專案範本存放庫複製到本機電腦。 
 
 **Windows**
             
     git clone <the HTTPS URL of the TeamProjectTemplate repository>
     
-如果您使用 VSTS 作為程式碼裝載平台，*Team 專案範本存放庫的 HTTPS URL* 通常是：
+如果您使用 Azure DevOps 作為程式碼裝載平台，*專案範本存放庫的 HTTPS URL* 通常是：
 
- ***https://\<VSTS 伺服器名稱\>.visualstudio.com/\<您的 Team 專案名稱\>/_git/\<您的 Team 專案範本存放庫名稱\>***。 
+ ***https://\<Azure DevOps Services 名稱\>.visualstudio.com/\<您的專案名稱\>/_git/\<您的專案範本存放庫名稱\>***。 
 
 在此範例中，我們有：
 
@@ -125,9 +127,9 @@ ms.lasthandoff: 03/28/2018
         
 ![8](./media/project-lead-tasks/project-leads-8-clone-team-project-template-linux.png)
 
-如果您使用 VSTS 作為程式碼裝載平台，*Team 專案範本存放庫的 SSH URL* 通常是：
+如果您使用 Azure DevOps 作為程式碼裝載平台，*專案範本存放庫的 SSH URL* 通常是：
 
-***ssh://\<VSTS 伺服器名稱\>@\<VSTS 伺服器名稱\>.visualstudio.com:22/\<您的 Team 專案名稱>/_git/\<您的 Team 專案範本存放庫名稱\>。*** 
+***ssh://\<Azure DevOps Services 名稱\>@\<Azure DevOps Services 名稱\>.visualstudio.com:22/\<您的專案名稱>/_git/\<您的專案範本存放庫名稱\>***。 
 
 在此範例中，我們有：
 
@@ -143,7 +145,7 @@ ms.lasthandoff: 03/28/2018
 
 ![9](./media/project-lead-tasks/project-leads-9-clone-project-repository.png)
 
-如果您使用 VSTS 作為程式碼裝載平台，_專案存放庫的 HTTPS URL_ 通常是 ***https://\<VSTS 伺服器名稱\>.visualstudio.com/\<您的 Team 專案名稱>/_git/<您的專案存放庫名稱\>***。 在此範例中，我們有 ***https://mysamplegroup.visualstudio.com/MyTeam/_git/DSProject1***。
+如果您使用 Azure DevOps 作為程式碼裝載平台，_專案存放庫的 HTTPS URL_ 通常是 ***https://\<Azure DevOps Services 伺服器名稱\>.visualstudio.com/\<您的專案名稱>/_git/<您的專案存放庫名稱\>***。 在此範例中，我們有 ***https://mysamplegroup.visualstudio.com/MyTeam/_git/DSProject1***。
 
 **Linux**
 
@@ -151,7 +153,7 @@ ms.lasthandoff: 03/28/2018
 
 ![10](./media/project-lead-tasks/project-leads-10-clone-project-repository-linux.png)
 
-如果您使用 VSTS 作為程式碼裝載平台，_專案存放庫的 SSH URL_ 通常是 _ssh://<VSTS 伺服器名稱\>@<VSTS 伺服器名稱\>.visualstudio.com:22/<Your Team Project Name>/\_git/<您的專案存放庫名稱\>。 在此範例中，我們有 ***ssh://mysamplegroup@mysamplegroup.visualstudio.com:22/MyTeam/_git/DSProject1***。
+如果您使用 Azure DevOps 作為程式碼裝載平台，_專案存放庫的 SSH URL_ 通常是 _ssh://<Azure DevOps Services 名稱\>@<Azure DevOps Services 名稱\>.visualstudio.com:22/<Your Project Name>/\_git/<您的專案存放庫名稱\>。 在此範例中，我們有 ***ssh://mysamplegroup@mysamplegroup.visualstudio.com:22/MyTeam/_git/DSProject1***。
 
 ### <a name="copy-contents-of-d3-to-d5"></a>將 D3 的內容複製到 D5 
 
@@ -182,11 +184,11 @@ ms.lasthandoff: 03/28/2018
 
 ### <a name="customize-d5-if-you-need-to-optional"></a>視需要自訂 D5 (選擇性)
 
-如果您的專案需要一些特定目錄或文件，而不是您從 Team 專案範本所取得的項目 (在上一個步驟中複製到 D5 目錄)，您可以立即自訂 D5 的內容。 
+如果您的專案需要一些特定目錄或文件，而不是您從專案範本取得的項目 (在上一個步驟中複製到 D5 目錄)，您可於此時自訂 D5 的內容。 
 
-### <a name="add-contents-of-dsproject1-in-d5-to-r5-on-your-group-vsts-server"></a>將 D5 中 DSProject1 的內容新增至群組 VSTS 伺服器上的 R5
+### <a name="add-contents-of-dsproject1-in-d5-to-r5-on-your-group-azure-devops-services"></a>將 D5 中 DSProject1 的內容新增至群組 Azure DevOps Services 上的 R5
 
-現在您需要將 **_DSProject1_** 中的資料推送至群組 VSTS 伺服器上 Team 專案中的 _R5_ 存放庫。 
+現在，您必須將 **_DSProject1_** 中的內容推送至群組 Azure DevOps Services 上設定於專案中的 _R5_ 存放庫。 
 
 
 - 將目錄變更為 **D5**。 

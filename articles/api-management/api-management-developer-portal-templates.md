@@ -1,11 +1,11 @@
 ---
-title: "使用範本自訂 API 管理開發人員入口網站 - Azure | Microsoft Docs"
-description: "了解如何使用範本自訂 Azure API 管理開發人員入口網站。"
+title: 使用範本自訂 API 管理開發人員入口網站 - Azure | Microsoft Docs
+description: 了解如何使用範本自訂 Azure API 管理開發人員入口網站。
 services: api-management
-documentationcenter: 
+documentationcenter: ''
 author: vladvino
 manager: erikre
-editor: 
+editor: ''
 ms.assetid: a195675b-f7d0-4fc9-90bf-860e6f17ccf7
 ms.service: api-management
 ms.workload: mobile
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 059dae3d8a0e716adc95ad2296843a45745a415d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 02/09/2018
+ms.locfileid: "29118219"
 ---
 # <a name="how-to-customize-the-azure-api-management-developer-portal-using-templates"></a>如何使用範本自訂 Azure API 管理開發人員入口網站。
 

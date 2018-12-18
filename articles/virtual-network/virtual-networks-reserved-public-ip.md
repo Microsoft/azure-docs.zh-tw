@@ -1,10 +1,10 @@
 ---
-title: "管理 Azure 保留的 IP 位址 (傳統) - PowerShell | Microsoft Docs"
-description: "了解保留的 IP 位址 (傳統)，以及如何使用 PowerShell 管理這些 IP 位址。"
+title: 管理 Azure 保留的 IP 位址 (傳統) - PowerShell | Microsoft Docs
+description: 了解保留的 IP 位址 (傳統)，以及如何使用 PowerShell 管理這些 IP 位址。
 services: virtual-network
 documentationcenter: na
-author: jimdial
-manager: carmonm
+author: genlin
+manager: cshepard
 editor: tysonn
 ms.assetid: 34652a55-3ab8-4c2d-8fb2-43684033b191
 ms.service: virtual-network
@@ -13,12 +13,13 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/10/2016
-ms.author: jdial
-ms.openlocfilehash: 5e9c83cebec96c6bc8afd53b0c637d7af899746f
-ms.sourcegitcommit: b5c6197f997aa6858f420302d375896360dd7ceb
+ms.author: genli
+ms.openlocfilehash: 25fe3c5361ff58f8d62d5d083b7a69f517d2a267
+ms.sourcegitcommit: fa493b66552af11260db48d89e3ddfcdcb5e3152
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/21/2017
+ms.lasthandoff: 04/23/2018
+ms.locfileid: "31798949"
 ---
 # <a name="reserved-ip-addresses-classic"></a>保留的 IP 位址 (傳統)
 
@@ -26,7 +27,6 @@ ms.lasthandoff: 12/21/2017
 > * [Azure 入口網站](virtual-network-deploy-static-pip-arm-portal.md)
 > * [PowerShell](virtual-network-deploy-static-pip-arm-ps.md)
 > * [Azure CLI](virtual-network-deploy-static-pip-arm-cli.md)
-> * [範本](virtual-network-deploy-static-pip-arm-template.md)
 > * [PowerShell (傳統)](virtual-networks-reserved-public-ip.md)
 
 Azure 中的 IP 位址分為兩個類別：動態和保留。 依預設由 Azure 管理的公用 IP 位址是動態的。 這表示當資源關閉或停止 (解除配置) 時，用於所指定雲端服務的 IP 位址 (VIP) 或用來直接存取 VM 或角色執行個體的 IP 位址 (ILPIP) 可以隨時變更。

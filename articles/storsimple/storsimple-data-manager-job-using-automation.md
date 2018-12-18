@@ -1,12 +1,12 @@
 ---
-title: "使用 Azure 自動化在 StorSimple 資料管理員中啟動作業 | Microsoft Docs"
-description: "了解如何使用 Azure 自動化來觸發 StorSimple 資料管理員作業"
+title: 使用 Azure 自動化在 StorSimple 資料管理員中啟動作業 | Microsoft Docs
+description: 了解如何使用 Azure 自動化來觸發 StorSimple 資料管理員作業
 services: storsimple
 documentationcenter: NA
 author: alkohli
 manager: jeconnoc
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: NA
 ms.topic: article
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 7edfa9fbed0f9e274209cec6456bf4a689a4c1a6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 01/17/2018
+ms.locfileid: "27862191"
 ---
 # <a name="use-azure-automation-to-trigger-a-job"></a>使用 Azure 自動化來觸發作業
 

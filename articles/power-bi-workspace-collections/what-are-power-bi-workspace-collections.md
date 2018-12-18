@@ -1,26 +1,21 @@
 ---
-title: "什麼是 Power BI 工作區集合？"
-description: "Power BI Embedded 可讓您將 Power BI 報告整合到 Web 或行動應用程式中，您就不需要建置自訂解決方案。"
+title: 什麼是 Power BI 工作區集合？
+description: Power BI Embedded 可讓您將 Power BI 報告整合到 Web 或行動應用程式中，您就不需要建置自訂解決方案。
 services: power-bi-embedded
-documentationcenter: 
-author: guyinacube
-manager: erikre
-editor: 
-tags: 
+author: markingmyname
 ROBOTS: NOINDEX
 ms.assetid: 03649b72-b7d7-40ca-b077-12356d72d4f3
 ms.service: power-bi-embedded
-ms.devlang: NA
 ms.topic: article
-ms.tgt_pltfrm: NA
 ms.workload: powerbi
 ms.date: 09/20/2017
-ms.author: asaxton
-ms.openlocfilehash: 7df172895bb926f1715370b941964e2c29ab393d
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.author: maghan
+ms.openlocfilehash: 73b13dcea84ba322072217c3feacebdefb3bf1e6
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43052034"
 ---
 # <a name="what-are-power-bi-workspace-collections"></a>什麼是 Power BI 工作區集合？
 

@@ -3,23 +3,21 @@ title: 使用 MongoDB API 建置 Azure Cosmos DB 應用程式 | Microsoft Docs
 description: 使用適用於 MongoDB 的 Azure Cosmos DB API 建立線上資料庫的教學課程。
 keywords: mongodb 範例
 services: cosmos-db
-author: AndrewHoh
-manager: jhubbard
+author: SnehaGunda
+manager: kfile
 editor: ''
-documentationcenter: ''
-ms.assetid: fb38bc53-3561-487d-9e03-20f232319a87
 ms.service: cosmos-db
-ms.workload: data-services
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+ms.component: cosmosdb-mongo
+ms.devlang: nodejs
+ms.topic: sample
 ms.date: 03/23/2018
-ms.author: anhoh
-ms.openlocfilehash: 1571ed8bc3146a6351d0010a9f072cad986d6dc7
-ms.sourcegitcommit: c3d53d8901622f93efcd13a31863161019325216
+ms.author: sngun
+ms.openlocfilehash: 188b192cf9b86a2d28a578bbcec0d6b19a8cc5d0
+ms.sourcegitcommit: d1eefa436e434a541e02d938d9cb9fcef4e62604
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/29/2018
+ms.lasthandoff: 06/28/2018
+ms.locfileid: "37084897"
 ---
 # <a name="build-an-azure-cosmos-db-api-for-mongodb-app-using-nodejs"></a>使用 Node.js 建置 Azure Cosmos DB：適用於 MongoDB 的 API 應用程式
 > [!div class="op_single_selector"]
@@ -28,8 +26,6 @@ ms.lasthandoff: 03/29/2018
 > * [Java](sql-api-java-get-started.md)
 > * [Node.js for MongoDB](mongodb-samples.md)
 > * [Node.js](sql-api-nodejs-get-started.md)
-> * [C++](sql-api-cpp-get-started.md)
->  
 >
 
 此範例將示範如何使用 Node.js 建置 Azure Cosmos DB：適用於 MongoDB 的 API 主控台應用程式。

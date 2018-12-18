@@ -10,14 +10,15 @@ ms.custom: scale out apps
 ms.workload: Inactive
 ms.tgt_pltfrm: na
 ms.devlang: ''
-ms.topic: article
-ms.date: 11/13/2017
+ms.topic: conceptual
+ms.date: 04/01/2018
 ms.author: AyoOlubeko
-ms.openlocfilehash: d33b95cf4dc05f4eb9f79509cda56e8ab51b7701
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: 95ea5f2a40bd629384e1bc1f7d707eb30d9eaf5f
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34644268"
 ---
 # <a name="run-ad-hoc-analytics-queries-across-multiple-azure-sql-databases"></a>跨多個 Azure SQL Database 執行臨機操作分析查詢
 

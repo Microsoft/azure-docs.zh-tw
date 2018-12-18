@@ -1,7 +1,7 @@
 ---
-title: "Microsoft Genomics：常見問題 | Microsoft Docs"
+title: Microsoft Genomics：常見問題 | Microsoft Docs
 titleSuffix: Azure
-description: "有關 Microsoft Genomics 之客戶常見問題的解答。"
+description: 有關 Microsoft Genomics 之客戶常見問題的解答。
 services: microsoft-genomics
 author: grhuynh
 manager: jhubbard
@@ -11,15 +11,16 @@ ms.service: microsoft-genomics
 ms.workload: genomics
 ms.topic: article
 ms.date: 12/07/2017
-ms.openlocfilehash: 2077eeb5177b07c458476ae900f81b72e35f0dc3
-ms.sourcegitcommit: 922687d91838b77c038c68b415ab87d94729555e
+ms.openlocfilehash: b3f30dc5d185615370a8273f71554f784d286cd9
+ms.sourcegitcommit: 1362e3d6961bdeaebed7fb342c7b0b34f6f6417a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/13/2017
+ms.lasthandoff: 04/18/2018
+ms.locfileid: "31517013"
 ---
 # <a name="microsoft-genomics-common-questions"></a>Microsoft Genomics：常見問題
 
-本文會列出關於 Microsoft Genomics 的最常見疑問。 如需有關 Microsoft Genomics 服務的詳細資訊，請參閱[什麼是 Microsoft Genomics？](overview-what-is-genomics.md) 
+本文會列出關於 Microsoft Genomics 的最常見疑問。 如需有關 Microsoft Genomics 服務的詳細資訊，請參閱[什麼是 Microsoft Genomics？](overview-what-is-genomics.md)。 如需有關疑難排解的詳細資訊，請參閱[疑難排解指南](troubleshooting-guide-genomics.md)。 
 
 
 ## <a name="what-is-the-sla-for-microsoft-genomics"></a>什麼是適用於 Microsoft Genomics 的 SLA？

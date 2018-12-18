@@ -2,24 +2,20 @@
 title: 套用效能建議 - Azure SQL Database |Microsoft Docs
 description: 使用 Azure 入口網站以找出可最佳化 Azure SQL Database 的效能建議。
 services: sql-database
-documentationcenter: ''
-author: stevestein
-manager: jhubbard
-editor: monicar
-ms.assetid: cda8a646-0584-4368-b28a-85cdd9b54fcd
+author: danimir
+manager: craigg
 ms.service: sql-database
 ms.custom: monitor & tune
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: On Demand
-ms.date: 07/05/2017
-ms.author: sstein
-ms.openlocfilehash: 32071522bbe069e68bdaed181f64b814eb70b84c
-ms.sourcegitcommit: 168426c3545eae6287febecc8804b1035171c048
+ms.topic: conceptual
+ms.date: 04/01/2018
+ms.author: v-daljep
+ms.reviewer: carlrab
+ms.openlocfilehash: 67432c8751cd8809649d41195957a7d68b392074
+ms.sourcegitcommit: 31241b7ef35c37749b4261644adf1f5a029b2b8e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/08/2018
+ms.lasthandoff: 09/04/2018
+ms.locfileid: "43665594"
 ---
 # <a name="find-and-apply-performance-recommendations"></a>尋找和套用效能建議
 
@@ -27,7 +23,7 @@ ms.lasthandoff: 03/08/2018
 
 ## <a name="viewing-recommendations"></a>檢視建議
 
-若要檢視和套用效能建議，您在 Azure 中必須有正確的[角色型存取控制](../active-directory/role-based-access-control-what-is.md)權限。 需要**讀取者**、**SQL DB 參與者**權限，才能檢視建議，以及需要**擁有者**、**SQL DB 參與者**權限，才能執行任何動作；建立或卸除索引並取消建立索引。
+若要檢視和套用效能建議，您在 Azure 中必須有正確的[角色型存取控制](../role-based-access-control/overview.md)權限。 需要**讀取者**、**SQL DB 參與者**權限，才能檢視建議，以及需要**擁有者**、**SQL DB 參與者**權限，才能執行任何動作；建立或卸除索引並取消建立索引。
 
 使用下列步驟在 Azure 入口網站上尋找效能建議：
 
@@ -104,7 +100,13 @@ Azure SQL Database 可讓您使用下列 3 個選項的其中任一選項來控�
     ![建議程式設定](./media/sql-database-advisor-portal/settings.png)
 2. 選取要自動執行的動作：
    
-    ![建議的索引](./media/sql-database-advisor-portal/automation.png)
+    ![建議的索引](./media/sql-database-automatic-tuning-enable/server.png)
+
+> [!NOTE]
+> 請注意，此時 [DROP_INDEX] 選項與使用分割區切換和索引提示的應用程式不相容，而且不應該在這些情況下啟用。
+>
+
+選取所需的組態後，按一下 [套用]。
 
 ### <a name="manually-run-the-recommended-t-sql-script"></a>手動執行建議的 T-SQL 指令碼
 選取任何建議，然後按一下 [檢視指令碼] 。 對資料庫執行這個指令碼，以手動套用建議。
@@ -112,7 +114,7 @@ Azure SQL Database 可讓您使用下列 3 個選項的其中任一選項來控�
  ，因此建議您在建立這些索引之後監視索引，以確認它們能夠提高效能，且於必要時調整或刪除它們。 如需有關建立索引的詳細資訊，請參閱 [CREATE INDEX (Transact-SQL)](https://msdn.microsoft.com/library/ms188783.aspx)。
 
 ### <a name="canceling-recommendations"></a>取消建議
-可以取消處於**擱置中**、**確認中**或**成功**狀態的建議。 狀態為 **執行中** 的建議無法取消。
+可以取消處於**擱置中**、**驗證中**或**成功**狀態的建議。 狀態為 **執行中** 的建議無法取消。
 
 1. 在 [調整歷程記錄] 區域中選取建議，以開啟 [建議詳細資料] 頁面。
 2. 按一下 [取消]  以中止套用建議的程序。
@@ -124,7 +126,7 @@ Azure SQL Database 可讓您使用下列 3 個選項的其中任一選項來控�
 |:--- |:--- |
 | Pending |已收到套用建議命令，且已排程執行。 |
 | 執行中 |正在套用建議。 |
-| 驗證中 |成功套用建議，而服務正在衡量益處。 |
+| Validating |成功套用建議，而服務正在衡量益處。 |
 | 成功 |已成功套用建議，並證實有益處。 |
 | Error |套用建議程序期間發生錯誤。 這可能是暫時性問題，也可能是資料表的結構描述變更，造成指令碼不再有效。 |
 | 還原 |已套用建立但被認為無助於效能，正在自動還原。 |
@@ -160,5 +162,5 @@ Azure SQL Database 會提供可改善 SQL Database 效能的建議。 藉由提�
 ## <a name="additional-resources"></a>其他資源
 * [查詢存放區](https://msdn.microsoft.com/library/dn817826.aspx)
 * [CREATE INDEX](https://msdn.microsoft.com/library/ms188783.aspx)
-* [角色型存取控制](../active-directory/role-based-access-control-what-is.md)
+* [角色型存取控制](../role-based-access-control/overview.md)
 

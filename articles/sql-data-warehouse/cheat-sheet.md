@@ -3,18 +3,19 @@ title: Azure SQL 資料倉儲速查表 | Microsoft Docs
 description: 尋找快速建置 Azure SQL 資料倉儲解決方案的連結和最佳做法。
 services: sql-data-warehouse
 author: acomet
-manager: jhubbard
+manager: craigg
 ms.service: sql-data-warehouse
 ms.topic: overview
 ms.component: design
-ms.date: 03/28/2018
+ms.date: 04/17/2018
 ms.author: acomet
-ms.reviewer: mausher,igorstan,jrj
-ms.openlocfilehash: 1e09dc2f3c7e7aa4ae98ef98a8957454a1beee6b
-ms.sourcegitcommit: 34e0b4a7427f9d2a74164a18c3063c8be967b194
+ms.reviewer: igorstan
+ms.openlocfilehash: 4ef64b9d4e4e5c7f5a628359a8512dcb61b9c941
+ms.sourcegitcommit: 2b2129fa6413230cf35ac18ff386d40d1e8d0677
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/30/2018
+ms.lasthandoff: 08/30/2018
+ms.locfileid: "43245888"
 ---
 # <a name="cheat-sheet-for-azure-sql-data-warehouse"></a>Azure SQL 資料倉儲的速查表
 本速查表提供實用的秘訣和最佳作法，協助您建立 Azure SQL 資料倉儲解決方案。 開始之前，請先閱讀 [Azure SQL 資料倉儲工作負載模式和反向模式](https://blogs.msdn.microsoft.com/sqlcat/2017/09/05/azure-sql-data-warehouse-workload-patterns-and-anti-patterns)，詳細瞭解每個步驟，文內會說明何謂 SQL 資料倉儲，何者又不屬於 SQL 資料倉儲。
@@ -34,7 +35,7 @@ ms.lasthandoff: 03/30/2018
 
 ## <a name="data-migration"></a>資料移轉
 
-首先，請將資料載入 [Azure Data Lake Store](https://docs.microsoft.com/en-us/azure/data-factory/connector-azure-data-lake-store) 或 Azure Blob 儲存體。 接下來，在單一資料表中使用 PolyBase 將資料載入 SQL 資料倉儲。 請使用下列組態︰
+首先，請將資料載入 [Azure Data Lake Store](https://docs.microsoft.com/azure/data-factory/connector-azure-data-lake-store) 或 Azure Blob 儲存體。 接下來，在單一資料表中使用 PolyBase 將資料載入 SQL 資料倉儲。 請使用下列組態︰
 
 | 設計 | 建議 |
 |:--- |:--- |
@@ -43,7 +44,7 @@ ms.lasthandoff: 03/30/2018
 | 分割 | None |
 | 資源類別 | largerc 或 xlargerc |
 
-深入了解[資料移轉]、[資料載入]及[擷取、載入和轉換 (ELT) 的流程](https://docs.microsoft.com/en-us/azure/sql-data-warehouse/design-elt-data-loading)。 
+深入了解[資料移轉]、[資料載入]及[擷取、載入和轉換 (ELT) 的流程](https://docs.microsoft.com/azure/sql-data-warehouse/design-elt-data-loading)。 
 
 ## <a name="distributed-or-replicated-tables"></a>分散式或複寫資料表
 
@@ -78,7 +79,7 @@ ms.lasthandoff: 03/30/2018
 **祕訣：**
 * 在叢集索引之上，您可能會想要將非叢集索引加入到重度使用之資料行中，以用來篩選。 
 * 請注意您在具有 CCI 之資料表上管理記憶體的方式。 當您載入資料時，您會希望使用者 (或查詢) 受益於大型資源類別。 請務必避免修剪和建立許多小型的壓縮資料列群組。
-* 針對使用 CCI 的計算層進行最佳化。
+* 在 Gen2 上，系統會在計算節點本機上快取 CCI 資料表，以獲得最大效能。
 * CCI 會因為資料列群組的壓縮不良而造成效能變慢。 如果發生這種情況，請重新建置或重新組織您的 CCI。 您希望每個壓縮資料列群組至少各有 10 萬個資料列。 理想狀況是一個資料列群組有 100 萬個資料列。
 * 根據累加式載入頻率和大小，您希望在您重新組織或重新建置您的索引時自動化。 徹底清理總是很有幫助。
 * 當您想要修剪資料列群組時，請運用策略思考。 開啟的資料列群組有多大？ 您預期未來會載入多少資料？
@@ -111,7 +112,7 @@ SQL 資料倉儲會使用資源群組，做為將記憶體配置給查詢的一�
 
 如果您注意到查詢時間過長，請檢查您的使用者沒有在大型的資源類別中執行。 大型的資源類別會耗用許多並行處理的位置。 它們會導致其他查詢排入佇列。
 
-最後，如果您使用「計算最佳化層」，每個資源類別可取得彈性最佳化層 2.5 倍以上的記憶體。
+最後，藉由使用 SQL 資料倉儲的 Gen2，每個資源類別都會獲得比 Gen1 多 2.5 倍的記憶體。
 
 深入了解如何使用[資源類別與並行處理]。
 

@@ -1,33 +1,36 @@
 ---
-title: Azure 快速入門 - 使用 Go 上傳、下載及列出 Azure 儲存體中的 Blob | Microsoft Docs
-description: 在本快速入門中，您會建立儲存體帳戶和容器。 然後，使用 Go 的儲存體用戶端程式庫將 blob 上傳至 Azure 儲存體、下載 blob，以及列出容器中的 blob。
+title: Azure 快速入門 - 使用 Go 在物件儲存體中建立 Blob | Microsoft Docs
+description: 在本快速入門中，您會在物件 (Blob) 儲存體中建立儲存體帳戶和容器。 然後，使用 Go 的儲存體用戶端程式庫將 blob 上傳至 Azure 儲存體、下載 blob，以及列出容器中的 blob。
 services: storage
 author: seguler
-manager: jeconnoc
 ms.custom: mvc
 ms.service: storage
 ms.topic: quickstart
-ms.date: 02/22/2018
+ms.date: 04/09/2018
 ms.author: seguler
-ms.openlocfilehash: 5572eaafa49200be0b2a8156dbc96bffd48be925
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 93dc651767fc2be815fb706f71386ce72b382a37
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46981710"
 ---
 # <a name="quickstart-upload-download-and-list-blobs-using-go"></a>快速入門：使用 Go 上傳、下載及列出 Blob
 
 在本快速入門中，您會了解如何使用 Go 程式設計語言在 Azure Blob 儲存體容器中上傳、下載及列出區塊 Blob。 
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 若要完成本快速入門： 
 * [安裝 Go 1.8 或更新版本](https://golang.org/dl/)
-* 使用 `go get -u github.com/azure/azure-storage-blob-go/2016-05-31/azblob` 下載並安裝 [Azure Storage Blov SDK for Go](https://github.com/azure/azure-storage-blob-go/)。 
+* 使用 `go get -u github.com/Azure/azure-storage-blob-go/2016-05-31/azblob` 下載並安裝 [Azure Storage Blov SDK for Go](https://github.com/azure/azure-storage-blob-go/)。 
+
+> [!WARNING]
+> 務必將 URL 中的 Azure 變成大寫。 使用 SDK 時，若未這麼做可能會造成與大小寫相關的匯入問題。 您也需要將 Import 陳述式中的 Azure 變成大寫。
 
 如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
 
-[!INCLUDE [storage-quickstart-tutorial-create-account-portal](../../../includes/storage-quickstart-tutorial-create-account-portal.md)]
+[!INCLUDE [storage-create-account-portal-include](../../../includes/storage-create-account-portal-include.md)]
 
 ## <a name="download-the-sample-application"></a>下載範例應用程式
 本快速入門中使用的[範例應用程式](https://github.com/Azure-Samples/storage-blobs-go-quickstart.git)是基本的 Go 應用程式。  
@@ -39,6 +42,8 @@ git clone https://github.com/Azure-Samples/storage-blobs-go-quickstart
 ```
 
 此命令會將存放庫複製到本機的 git 資料夾。 若要開啟 Blob 儲存體的 Go 範例，請尋找 storage-quickstart.go 檔案。  
+
+[!INCLUDE [storage-copy-account-key-portal](../../../includes/storage-copy-account-key-portal.md)]
 
 ## <a name="configure-your-storage-connection-string"></a>設定儲存體連接字串
 此解決方案要求將儲存體帳戶名稱和金鑰安全地儲存在執行範例之電腦本機的環境變數。 視您的作業系統而定，遵循以下其中一個範例來建立環境變數。
@@ -150,7 +155,7 @@ file, err := os.Open(fileName)
 handleErrors(err)
 
 // You can use the low-level PutBlob API to upload files. Low-level APIs are simple wrappers for the Azure Storage REST APIs.
-// Note that PutBlob can upload up to 256MB data in one shot. Details: https://docs.microsoft.com/en-us/rest/api/storageservices/put-blob
+// Note that PutBlob can upload up to 256MB data in one shot. Details: https://docs.microsoft.com/rest/api/storageservices/put-blob
 // Following is commented out intentionally because we will instead use UploadFileToBlockBlob API to upload the blob
 // _, err = blobURL.PutBlob(ctx, file, azblob.BlobHTTPHeaders{}, azblob.Metadata{}, azblob.BlobAccessConditions{})
 // handleErrors(err)

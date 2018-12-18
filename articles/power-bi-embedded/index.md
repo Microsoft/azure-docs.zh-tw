@@ -1,22 +1,21 @@
 ---
-title: "Azure Power BI Embedded 文件 - 教學課程和 API 參考 | Microsoft Docs"
-description: "了解如何將 Power BI 資料視覺效果和互動式報表內嵌到應用程式中。 教學課程、API 參考和其他文件。"
+title: Azure Power BI Embedded 文件 - 教學課程和 API 參考 | Microsoft Docs
+description: 了解如何將 Power BI 資料視覺效果和互動式報表內嵌到應用程式中。 教學課程、API 參考和其他文件。
 services: power-bi-embedded
-author: czeumault
-manager: carolz
+author: markingmyname
+ms.author: maghan
+manager: kfile
 layout: LandingPage
-ms.assetid: 
 ms.service: power-bi-embedded
-ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: landing-page
-ms.date: 09/28/2017
-ms.author: carolz
-ms.openlocfilehash: d8e1fafe9b3fecc9822ef6f25d8c527eebe586cb
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.date: 07/31/2018
+ms.openlocfilehash: f3cc56bb3a294cd06684a14c1898389d2093aa96
+ms.sourcegitcommit: e3d5de6d784eb6a8268bd6d51f10b265e0619e47
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/01/2018
+ms.locfileid: "39391349"
 ---
 # <a name="power-bi-embedded-documentation"></a>Power BI Embedded 文件
 
@@ -24,7 +23,7 @@ ms.lasthandoff: 10/11/2017
 
 <ul class="panelContent cardsFTitle">
     <li>
-        <a href="/azure/power-bi-embedded/what-is-power-bi-embedded">
+        <a href="https://docs.microsoft.com/power-bi/developer/azure-pbie-what-is-power-bi-embedded">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
@@ -60,7 +59,7 @@ ms.lasthandoff: 10/11/2017
         </a>
     </li>
     <li>
-        <a href="/azure/power-bi-embedded/get-started">
+        <a href="https://docs.microsoft.com/power-bi/developer/embedding#embedding-for-your-customers">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
@@ -78,7 +77,7 @@ ms.lasthandoff: 10/11/2017
         </a>
     </li>
     <li>
-        <a href="https://powerbi.microsoft.com/documentation/powerbi-developer-embed-sample-app-owns-data/">
+        <a href="https://docs.microsoft.com/power-bi/developer/embed-sample-for-customers">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
@@ -107,7 +106,7 @@ ms.lasthandoff: 10/11/2017
                 <div class="card">
                     <div class="cardText">
                         <h3>PowerShell</h3>
-                        <p><a href="/powershell/resourcemanager/azurerm.powerbiembedded/v2.3.0/azurerm.powerbiembedded">PowerShell</a></p>
+                        <p><a href="https://docs.microsoft.com/powershell/module/azurerm.powerbiembedded/?view=azurermps-6.5.0#power_bi_embedded_capacity">PowerShell</a></p>
                     </div>
                 </div>
             </div>
@@ -119,7 +118,7 @@ ms.lasthandoff: 10/11/2017
                 <div class="card">
                     <div class="cardText">
                         <h3>語言</h3>
-                        <p><a href="/dotnet/api/microsoft.azure.management.powerbiembedded">.NET</a></p>
+                        <p><a href="https://docs.microsoft.com/dotnet/api/microsoft.azure.management.powerbiembedded?view=azure-dotnet">.NET</a></p>
                         <p><a href="https://www.nuget.org/packages/Microsoft.PowerBI.Api/">.NET SDK 下載</a></p>
                         <p><a href="https://microsoft.github.io/PowerBI-JavaScript/">JavaScript</a></p>
                         <p><a href="https://www.nuget.org/packages/Microsoft.PowerBI.JavaScript/">JavaScript SDK 下載</a></p>
@@ -134,7 +133,8 @@ ms.lasthandoff: 10/11/2017
                 <div class="card">
                     <div class="cardText">
                         <h3>REST</h3>
-                        <p><a href="https://msdn.microsoft.com/library/mt147898.aspx">REST API 參考</a></p>
+                        <p><a href="https://docs.microsoft.com/rest/api/power-bi-embedded/">Azure Resource Manager REST API 參考</a></p>
+                        <p><a href="https://msdn.microsoft.com/library/mt147898.aspx">REST API 參考資料</a></p>
                     </div>
                 </div>
             </div>

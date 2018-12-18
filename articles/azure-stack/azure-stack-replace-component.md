@@ -1,11 +1,11 @@
 ---
-title: "取代 Azure Stack 縮放單位節點上的硬體元件 | Microsoft Docs"
-description: "了解如何取代 Azure Stack 整合式系統上的硬體元件。"
+title: 取代 Azure Stack 縮放單位節點上的硬體元件 | Microsoft Docs
+description: 了解如何取代 Azure Stack 整合式系統上的硬體元件。
 services: azure-stack
-documentationcenter: 
+documentationcenter: ''
 author: mattbriggs
 manager: femila
-editor: 
+editor: ''
 ms.assetid: c6e036bf-8c80-48b5-b2d2-aa7390c1b7c9
 ms.service: azure-stack
 ms.workload: na
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 9d317dabf4a5cca13308c50a10349af0e72e1b7e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 02/01/2018
+ms.locfileid: "28919707"
 ---
 # <a name="replace-a-hardware-component-on-an-azure-stack-scale-unit-node"></a>取代 Azure Stack 縮放單位節點上的硬體元件
 
@@ -44,7 +45,7 @@ ms.lasthandoff: 02/01/2018
 
 *根據硬體的實體條件，可能不需要此動作。
 
-**不論 OEM 硬體廠商是否會執行元件更換和更新，韌體都可能根據支援合約而有所不同。
+\*\*不論 OEM 硬體廠商是否會執行元件更換和更新，韌體都可能根據支援合約而有所不同。
 
 ## <a name="review-alert-information"></a>檢閱警示資訊
 

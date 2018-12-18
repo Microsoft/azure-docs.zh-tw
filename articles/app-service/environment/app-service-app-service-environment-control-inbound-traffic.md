@@ -1,11 +1,11 @@
 ---
-title: "如何控制 App Service 環境的輸入流量"
-description: "了解如何設定網路安全性規則，以控制 App Service 環境的輸入流量。"
+title: 如何控制 App Service 環境的輸入流量
+description: 了解如何設定網路安全性規則，以控制 App Service 環境的輸入流量。
 services: app-service
-documentationcenter: 
+documentationcenter: ''
 author: ccompy
 manager: erikre
-editor: 
+editor: ''
 ms.assetid: 4cc82439-8791-48a4-9485-de6d8e1d1a08
 ms.service: app-service
 ms.workload: na
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "22987003"
 ---
 # <a name="how-to-control-inbound-traffic-to-an-app-service-environment"></a>如何控制 App Service 環境的輸入流量
 ## <a name="overview"></a>概觀

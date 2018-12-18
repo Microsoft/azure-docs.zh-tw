@@ -1,24 +1,20 @@
 ---
-title: 以程式設計方式監視串流分析的作業 | Microsoft Docs
-description: 了解如何以程式設計方式監視透過 REST API、Azure SDK 或 PowerShell 建立的串流分析作業。
-keywords: .net 監視, 工作監視, 監視應用程式
+title: 以程式設計方式監視和管理 Azure 串流分析作業
+description: 本文說明如何以程式設計方式監視透過 REST API、Azure SDK 或 PowerShell 建立的串流分析作業。
 services: stream-analytics
-documentationcenter: ''
 author: jseb225
-manager: ryanw
-ms.assetid: 2ec02cc9-4ca5-4a25-ae60-c44be9ad4835
-ms.service: stream-analytics
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: data-services
-ms.date: 04/20/2017
 ms.author: jeanb
-ms.openlocfilehash: a619120b2d30284633ba5248edd0b82bb1bf656b
-ms.sourcegitcommit: 34e0b4a7427f9d2a74164a18c3063c8be967b194
+manager: kfile
+ms.reviewer: jasonh
+ms.service: stream-analytics
+ms.topic: conceptual
+ms.date: 04/20/2017
+ms.openlocfilehash: 2688f148185b1c1523178d190a7a2a76e6ceabef
+ms.sourcegitcommit: 5b2ac9e6d8539c11ab0891b686b8afa12441a8f3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/30/2018
+ms.lasthandoff: 04/06/2018
+ms.locfileid: "30908780"
 ---
 # <a name="programmatically-create-a-stream-analytics-job-monitor"></a>以程式設計方式來建立串流分析工作監視
 
@@ -174,7 +170,7 @@ ms.lasthandoff: 03/30/2018
 
 ## <a name="get-support"></a>取得支援
 
-如需進一步的協助，請參閱我們的 [Azure Stream Analytics 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)。
+如需進一步的協助，請參閱我們的 [Azure Stream Analytics 論壇](https://social.msdn.microsoft.com/Forums/azure/home?forum=AzureStreamAnalytics)。
 
 ## <a name="next-steps"></a>後續步驟
 

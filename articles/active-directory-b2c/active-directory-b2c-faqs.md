@@ -1,23 +1,27 @@
 ---
-title: 常見問題集 - Azure Active Directory B2C
-description: Azure Active Directory B2C 常見問題集 (FAQ)
+title: Azure Active Directory B2C 的常見問題集 | Microsoft Docs
+description: Azure Active Directory B2C 常見問題集 (FAQ)。
 services: active-directory-b2c
 author: davidmu1
 manager: mtillman
-editor: ''
-ms.service: active-directory-b2c
+ms.service: active-directory
 ms.workload: identity
-ms.topic: article
+ms.topic: conceptual
 ms.date: 08/16/2017
 ms.author: davidmu
-ms.openlocfilehash: d213a3f8bed5af526efba39868855b6f6727a7c0
-ms.sourcegitcommit: c3d53d8901622f93efcd13a31863161019325216
+ms.component: B2C
+ms.openlocfilehash: 6b5cc1eff5c6d080854754ec5b3b62068f1cbb9c
+ms.sourcegitcommit: a5eb246d79a462519775a9705ebf562f0444e4ec
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/29/2018
+ms.lasthandoff: 07/26/2018
+ms.locfileid: "39264710"
 ---
 # <a name="azure-ad-b2c-frequently-asked-questions-faq"></a>Azure AD B2C：常見問題集 (FAQ) 
 此頁面會回答有關 Azure Active Directory (Azure AD) B2C 的常見問題。 請隨時回來查看最新消息。
+
+### <a name="why-cant-i-access-the-azure-ad-b2c-extension-in-the-azure-portal"></a>為什麼無法存取 Azure 入口網站中的 Azure AD B2C 擴充功能？
+Azure AD 擴充功能無法運作有兩個常見原因。  Azure AD B2C 要求您在目錄中的使用者角色是全域管理員。  如果您認為自己具有存取權，請連絡您的管理員。  如果您有全域管理員權限，請確定您是在 Azure AD B2C 目錄中，而非 Azure Active Directory 目錄。  可至此查看[教學課程：建立 Azure Active Directory B2C 租用戶](https://docs.microsoft.com/azure/active-directory-b2c/tutorial-create-tenant)。
 
 ### <a name="can-i-use-azure-ad-b2c-features-in-my-existing-employee-based-azure-ad-tenant"></a>我可以在以員工為主的現有 Azure AD 租用戶中使用 Azure AD B2C 功能嗎？
 Azure AD 和 Azure AD B2C 為個別的產品供應項目，無法共存於同一個租用戶。  一個 Azure AD 租用戶代表一個組織。  一個 Azure AD B2C 租用戶代表一組要用於信賴憑證者應用程式的身分識別。  透過自訂原則 (處於公開預覽狀態)，Azure AD B2C 可以與 Azure AD 結成同盟，所以能夠驗證組織中的員工。
@@ -55,7 +59,7 @@ Azure AD B2C 也新增了[自訂原則](https://docs.microsoft.com/azure/active-
 在 Azure 入口網站的左側功能表中開啟 'Azure AD B2C' 之前，您必須切換到需要管理的目錄。  在 Azure 入口網站右上角按一下您的身分識別來切換目錄，然後選擇出現在下拉式清單中的目錄。  如需逐步映像，請參閱[瀏覽至 Azure AD B2C 設定](active-directory-b2c-app-registration.md#navigate-to-b2c-settings)。
 
 ### <a name="how-do-i-customize-verification-emails-the-content-and-the-from-field-sent-by-azure-ad-b2c"></a>我如何自訂 Azure AD B2C 傳送的驗證電子郵件 (內容和 [寄件者:] 欄位)？
-您可以使用 [公司商標功能](../active-directory/customize-branding.md) 自訂驗證電子郵件的內容。 明確地說，您可以自訂電子郵件的下列兩個元素：
+您可以使用 [公司商標功能](../active-directory/fundamentals/customize-branding.md) 自訂驗證電子郵件的內容。 明確地說，您可以自訂電子郵件的下列兩個元素：
 
 * **橫幅標幟**：顯示在右下方。
 * **背景色彩**：顯示在頂端。
@@ -88,7 +92,7 @@ Azure AD B2C 的本機帳戶密碼原則是以 Azure AD 的原則為基礎。 Az
 與 Microsoft Dynamics 365 入口網站的整合已可供使用。  請參閱[設定 Dynamics 365 入口網站，以使用 Azure AD B2C 進行驗證](https://docs.microsoft.com/dynamics365/customer-engagement/portals/azure-ad-b2c)。
 
 ### <a name="does-azure-ad-b2c-work-with-sharepoint-on-premises-2016-or-earlier"></a>Azure AD B2C 可以搭配 SharePoint 內部部署的 2016 或更舊版本一起使用嗎？
-Azure AD B2C 不適用於 SharePoint 外部夥伴共用的情節。請改以參閱 [Azure AD B2B](http://blogs.technet.com/b/ad/archive/2015/09/15/learn-all-about-the-azure-ad-b2b-collaboration-preview.aspx)。
+Azure AD B2C 不適用於 SharePoint 外部夥伴共用的情節。請改以參閱 [Azure AD B2B](https://cloudblogs.microsoft.com/enterprisemobility/2015/09/15/learn-all-about-the-azure-ad-b2b-collaboration-preview/)。
 
 ### <a name="should-i-use-azure-ad-b2c-or-b2b-to-manage-external-identities"></a>我應該使用 Azure AD B2C 或 B2B 來管理外部身分識別？
 請閱讀這篇關於 [外部身分識別](../active-directory/active-directory-b2b-compare-external-identities.md) 的文章，以深入了解將適當的功能套用至外部身分識別的案例。
@@ -96,9 +100,9 @@ Azure AD B2C 不適用於 SharePoint 外部夥伴共用的情節。請改以參�
 ### <a name="what-reporting-and-auditing-features-does-azure-ad-b2c-provide-are-they-the-same-as-in-azure-ad-premium"></a>Azure AD B2C 提供哪些報告和稽核功能？ 它們與 Azure AD Premium 的功能相同嗎？
 否，Azure AD B2C 不支援與 Azure AD Premium 相同的一組報告。 不過有許多共同點：
 
-* **登入報告**只能在 Azure 入口網站 ([Azure Active Directory] > [活動] > [登入]) 中提供，而無法透過圖形 API 提供。 該報告會提供每次登入的記錄，並縮減詳細資料。
-* **稽核報告**只能在 Azure 入口網站 ([Azure Active Directory] > [活動] > [稽核記錄]) 中提供，而無法透過圖形 API 提供。 其包含管理活動以及應用程式活動。 
-* **使用報告**只能透過[使用報告 API](active-directory-b2c-reference-usage-reporting-api.md) 提供，無法透過 Azure 入口網站提供。 其包含使用者數目、登入數目，以及 MFA 的磁碟區。 
+* **登入報告**會提供每次登入的記錄，並縮減詳細資料。
+* **稽核報告**包含管理活動以及應用程式活動。 
+* **使用報告**包含使用者數目、登入數目，以及 MFA 的磁碟區。 
 
 ### <a name="can-i-localize-the-ui-of-pages-served-by-azure-ad-b2c-what-languages-are-supported"></a>我可以將 Azure AD B2C 所提供的頁面 UI 當地語系化嗎？ 支援哪些語言？
 可以！  請參閱[語言自訂](active-directory-b2c-reference-language-customization.md) (處於公開預覽狀態)。  我們提供 36 種語言的翻譯，您可以覆寫任何字串以符合您的需求。

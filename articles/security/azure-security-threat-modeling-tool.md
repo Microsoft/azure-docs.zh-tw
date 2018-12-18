@@ -1,24 +1,25 @@
 ---
-title: "Microsoft 威脅模型化工具 - Azure | Microsoft Docs"
-description: "Microsoft 威脅模型化工具的主頁面，內含開始使用工具的資訊，包括威脅模型化程序"
+title: Microsoft 威脅模型化工具 - Azure | Microsoft Docs
+description: Microsoft 威脅模型化工具的主頁面，內含開始使用工具的資訊，包括威脅模型化程序
 services: security
 documentationcenter: na
-author: RodSan
-manager: RodSan
-editor: RodSan
+author: jegeib
+manager: jegeib
+editor: jegeib
 ms.assetid: na
 ms.service: security
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/17/2017
-ms.author: rodsan
-ms.openlocfilehash: 6e26b0af2a16a872c8e02b736e24019b47ed5780
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.date: 02/16/2017
+ms.author: jegeib
+ms.openlocfilehash: 8b0700e76bbcc0913b376e607f706f540b1df2bb
+ms.sourcegitcommit: 1fb353cfca800e741678b200f23af6f31bd03e87
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/30/2018
+ms.locfileid: "43307070"
 ---
 # <a name="microsoft-threat-modeling-tool"></a>Microsoft 威脅模型化工具
 
@@ -32,11 +33,11 @@ ms.lasthandoff: 10/11/2017
 
 以下列舉部分工具功能和創新︰
 
-* **自動化︰**繪製模型的指引和意見反應
-* **每個元素的 STRIDE：**引導式的威脅與降低風險分析
-* **報告︰**驗證階段的安全性活動和測試
-* **獨特的方法︰**可讓使用者更加看懂和了解威脅
-* **專為開發人員所設計並聚焦於軟體上︰**許多方法都聚焦在資產或攻擊者上。 我們則聚焦在軟體上。 我們以所有軟體開發人員和架構設計人員都熟悉的活動為基礎來建置 -- 例如繪製其軟體架構的圖片
+* **自動化︰** 繪製模型的指引和意見反應
+* **每個元素的 STRIDE：** 引導式的威脅與降低風險分析
+* **報告︰** 驗證階段的安全性活動和測試
+* **獨特的方法︰** 可讓使用者更加看懂和了解威脅
+* **專為開發人員所設計並聚焦於軟體上︰** 許多方法都聚焦在資產或攻擊者上。 我們則聚焦在軟體上。 我們以所有軟體開發人員和架構設計人員都熟悉的活動為基礎來建置 -- 例如繪製其軟體架構的圖片
 * **聚焦在設計分析︰**「威脅模型化」一詞指的可能是需求或設計分析技巧。 有時指的是這兩個情況的複雜混合。 Microsoft SDL 威脅模型化方法是聚焦在設計分析技巧
 
 ## <a name="next-steps"></a>後續步驟

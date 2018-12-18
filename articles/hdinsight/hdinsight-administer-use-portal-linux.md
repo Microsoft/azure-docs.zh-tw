@@ -1,26 +1,20 @@
 ---
-title: "使用 Azure 入口網站管理 HDInsight 中的 Hadoop 叢集 | Microsoft Docs"
-description: "了解如何使用 Azure 入口網站來監視和管理 HDInsight 叢集。"
+title: 使用 Azure 入口網站管理 HDInsight 中的 Hadoop 叢集
+description: 了解如何使用 Azure 入口網站來監視和管理 HDInsight 叢集。
 services: hdinsight
-documentationcenter: 
-author: mumian
-manager: jhubbard
-editor: cgronlun
-tags: azure-portal
-ms.assetid: 5a76f897-02e8-4437-8f2b-4fb12225854a
+author: jasonwhowell
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
-ms.date: 02/22/2018
-ms.author: jgao
-ms.openlocfilehash: b0a9b808f2c1a65d10c1c12500325a9b5a34bc5a
-ms.sourcegitcommit: 12fa5f8018d4f34077d5bab323ce7c919e51ce47
+ms.topic: conceptual
+ms.date: 05/18/2018
+ms.author: jasonh
+ms.openlocfilehash: b00c88e526bf72f51df0d2a3d6a87fbd5bc1f991
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/23/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46991975"
 ---
 # <a name="manage-hadoop-clusters-in-hdinsight-by-using-the-azure-portal"></a>使用 Azure 入口網站管理 HDInsight 上的 Hadoop 叢集
 
@@ -63,7 +57,7 @@ HDInsight 可以與很多 Hadoop 元件搭配使用。 如需已驗證和所支�
     1. 登入 [Azure 入口網站](https://portal.azure.com)。
     2. 按一下左側功能表的 [訂用帳戶]。 它有黃色的鑰匙圖示。 您應該會看到訂用帳戶清單。
     3. 按一下您要用來建立叢集的訂用帳戶。 
-    4. 按一下 [我的權限]。  它會顯示您在訂用帳戶上的[角色](../active-directory/role-based-access-control-what-is.md#built-in-roles)。 您至少需要「參與者」存取權限才能建立 HDInsight 叢集。
+    4. 按一下 [我的權限]。  它會顯示您在訂用帳戶上的[角色](../role-based-access-control/built-in-roles.md)。 您至少需要「參與者」存取權限才能建立 HDInsight 叢集。
 
 - 若要使用現有的資源群組：
 
@@ -89,7 +83,7 @@ HDInsight 可以與很多 Hadoop 元件搭配使用。 如需已驗證和所支�
 
     **左側功能表**：
     * **活動記錄檔**︰顯示和查詢活動記錄檔。
-    * **存取控制 (IAM)**︰使用角色指派。  請參閱[使用角色指派來管理 Azure 訂用帳戶資源的存取權](../active-directory/role-based-access-control-configure.md)。
+    * **存取控制 (IAM)**︰使用角色指派。  請參閱[使用角色指派來管理 Azure 訂用帳戶資源的存取權](../role-based-access-control/role-assignments-portal.md)。
     * **標記**：可讓您設定索引鍵/值組，以定義自訂的雲端服務分類法。 例如，您可建立名為 **project**的索引鍵，然後使用與特定專案相關聯之所有服務的通用值。
     * **診斷並解決問題**︰顯示疑難排解資訊。
     * **鎖定**︰新增鎖定以防止叢集遭到修改或刪除。
@@ -103,10 +97,10 @@ HDInsight 可以與很多 Hadoop 元件搭配使用。 如需已驗證和所支�
     * **外部中繼存放區**：檢視 Hive 和 Oozie 中繼存放區。 中繼存放區只可以在叢集建立程序期間進行設定。 請參閱[使用 Hive/Oozie 中繼存放區](hdinsight-hadoop-provision-linux-clusters.md#use-hiveoozie-metastore)。
     * **指令碼動作**︰在叢集上執行 Bash 指令碼。 請參閱 [使用指令碼動作自訂 Linux 型 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)。
     * **應用程式**：新增/移除 HDInsight 應用程式。  請參閱[安裝自訂 HDInsight 應用程式](hdinsight-apps-install-custom-applications.md)。
-    * **監視**：監視 Azure Operations Management Suite 和 Azure Log Analytics 中的叢集。
+    * **監視**：監視 Azure Log Analytics 中的叢集。
     * **屬性**：檢視叢集屬性。
     * **儲存體帳戶**︰檢視儲存體帳戶和金鑰。 儲存體帳戶是在進行叢集建立程序時設定。
-    * **Data Lake Store 存取**：設定 Data Lake Store 的存取。  請參閱[使用 Azure 入口網站建立搭配 Data Lake Store 的 HDInsight 叢集](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)。
+    * **Data Lake Store 存取**：設定 Data Lake Store 的存取。  請參閱[快速入門：在 HDInsight 中設定叢集](../storage/data-lake-storage/quickstart-create-connect-hdi-cluster.md)。
     * **資源健康狀態**：請參閱 [Azure 資源健康狀態概觀](../service-health/resource-health-overview.md)。
     * **新的支援要求**︰可讓您透過 Microsoft 支援服務建立支援票證。
     
@@ -127,7 +121,7 @@ HDInsight 可以與很多 Hadoop 元件搭配使用。 如需已驗證和所支�
    * **預設資料來源**︰預設叢集檔案系統。
    * **背景工作節點大小**：背景工作節點的選取 VM 大小。
    * **前端節點大小**：前端節點的選取 VM 大小。
-   * **虛擬網路**：虛擬網路的名稱以及要部署叢集之子網路的名稱，如果已在部署階段選取一個。
+   * **虛擬網路**：要部署叢集的虛擬網路名稱 (如果已在部署階段選取一個的話)。
 
 ## <a name="delete-clusters"></a>刪除叢集
 刪除叢集時，並不會刪除預設的儲存體帳戶或任何連結的儲存體帳戶。 您可以使用相同的儲存體帳戶和相同的中繼存放區重新建立叢集。 建議您在重新建立叢集時使用新的預設 Blob 容器。
@@ -213,7 +207,7 @@ HDInsight 可以與很多 Hadoop 元件搭配使用。 如需已驗證和所支�
 
 * 使用 Azure Data Factory。 如需建立隨選 HDInsight 連結服務，請參閱 [使用 Azure Data Factory 在 HDInsight 中建立 Linux 型隨選 Handooop 叢集](hdinsight-hadoop-create-linux-clusters-adf.md) 。
 * 使用 Azure PowerShell。  請參閱 [分析航班延誤資料](hdinsight-analyze-flight-delay-data.md)。
-* 使用 Azure CLI。 請參閱 [使用 Azure CLI 管理 HDInsight 叢集](hdinsight-administer-use-command-line.md)。
+* 使用 Azure 傳統 CLI。 請參閱[使用 Azure CLI 管理 HDInsight 中的 Hadoop 叢集](hdinsight-administer-use-command-line.md)。
 * 使用 HDInsight .NET SDK。 請參閱 [提交 Hadoop 工作](hadoop/submit-apache-hadoop-jobs-programmatically.md)。
 
 如需定價資訊，請參閱 [HDInsight 定價](https://azure.microsoft.com/pricing/details/hdinsight/)。 若要從入口網站刪除叢集，請參閱 [刪除叢集](#delete-clusters)
@@ -281,7 +275,7 @@ Ambari 會變更叢集中所有節點上的密碼。
 
    | 欄位 | 值 |
    | --- | --- |
-   | Name |變更 SSH 密碼 |
+   | 名稱 |變更 SSH 密碼 |
    | Bash 指令碼 URI |changepassword.sh 檔案的 URI |
    | 節點 (前端、背景工作、Nimbus、監督員、Zookeeper 等) |✓ 針對列出的所有節點類型 |
    | 參數 |輸入 SSH 使用者名稱，然後輸入密碼。 使用者名稱和密碼之間應該有一個空格。 |
@@ -297,7 +291,7 @@ HDInsight 叢集具有下列 HTTP Web 服務 (所有這些服務都有 RESTful �
 * Oozie
 * Templeton
 
-預設會授與這些服務的存取權。 您可以使用 [Azure CLI](hdinsight-administer-use-command-line.md#enabledisable-http-access-for-a-cluster) 和 [Azure PowerShell](hdinsight-administer-use-powershell.md#grantrevoke-access) 撤銷/授與存取權。
+預設會授與這些服務的存取權。 您可以使用 [Azure 傳統 CLI](hdinsight-administer-use-command-line.md#enabledisable-http-access-for-a-cluster) 和 [Azure PowerShell](hdinsight-administer-use-powershell.md#grantrevoke-access) 撤銷/授與存取權。
 
 ## <a name="find-the-subscription-id"></a>尋找訂用帳戶識別碼
 
@@ -369,7 +363,7 @@ HDInsight 叢集刀鋒視窗的 [使用量] 區段會顯示以下資訊：訂用
 在本文中，您已了解一些基本的系統管理功能。 若要深入了解，請參閱下列文章：
 
 * [使用 Azure PowerShell 管理 HDInsight](hdinsight-administer-use-powershell.md)
-* [使用 Azure CLI 管理 HDInsight](hdinsight-administer-use-command-line.md)
+* [使用 Azure 傳統 CLI 管理 HDInsight](hdinsight-administer-use-command-line.md)
 * [建立 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md)
 * [深入了解使用 Ambari Web UI](hdinsight-hadoop-manage-ambari.md)
 * [使用 Ambari REST API 的詳細資料](hdinsight-hadoop-manage-ambari-rest-api.md)

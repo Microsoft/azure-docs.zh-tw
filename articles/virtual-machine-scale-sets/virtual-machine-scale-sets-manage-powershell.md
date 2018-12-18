@@ -3,7 +3,7 @@ title: 使用 Azure PowerShell 管理虛擬機器擴展集 | Microsoft Docs
 description: 管理虛擬機器擴展集 (例如如何啟動和停止執行個體，或變更擴展集容量) 的一般 Azure PowerShell Cmdlet。
 services: virtual-machine-scale-sets
 documentationcenter: ''
-author: iainfoulds
+author: cynthn
 manager: jeconnoc
 editor: ''
 tags: azure-resource-manager
@@ -13,13 +13,14 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/13/2017
-ms.author: iainfou
-ms.openlocfilehash: c463dd26c106b3178becc977a8afd742220d7973
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.date: 05/29/2018
+ms.author: cynthn
+ms.openlocfilehash: a300e2f2febab8436f8d52b71955b3614bd10605
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38707437"
 ---
 # <a name="manage-a-virtual-machine-scale-set-with-azure-powershell"></a>使用 Azure PowerShell 管理虛擬機器擴展集
 在虛擬機器擴展集生命週期期間，您可能需要執行一或多個管理工作。 此外，您可以建立指令碼來自動化各種生命週期工作。 本文詳述一些可讓您執行這些工作的一般 Azure PowerShell Cmdlet。
@@ -36,7 +37,7 @@ Get-AzureRmVmss -ResourceGroupName "myResourceGroup" -VMScaleSetName "myScaleSet
 
 
 ## <a name="view-vms-in-a-scale-set"></a>檢視擴展集中的 VM
-若要檢視擴展集中的 VM 執行個體清單，請使用 [Get-AzureRmVmssVM](/powershell/module/azurerm.compute/get-azurermvmssvm)。 下列範例列出 myScaleSet 擴展集和 myResourceGroup 資源群組中的所有 VM 執行個體。 針對這些名稱提供您自己的值：
+若要檢視擴展集中的 VM 執行個體清單，請使用 [Get-AzureRmVmssVM](/powershell/module/azurerm.compute/get-azurermvmssvm)。 下列範例列出 myScaleSet 擴展集和 myResourceGroup 資源群組中的所有虛擬機器執行個體。 針對這些名稱提供您自己的值：
 
 ```powershell
 Get-AzureRmVmssVM -ResourceGroupName "myResourceGroup" -VMScaleSetName "myScaleSet"
@@ -60,7 +61,7 @@ $vmss = Get-AzureRmVmss -ResourceGroupName "myResourceGroup" -VMScaleSetName "my
 
 # Set and update the capacity of your scale set
 $vmss.sku.capacity = 5
-Update-AzureRmVmss -ResourceGroupName "myResourceGroup" -Name "myScaleSet" -VirtualMachineScaleSet $vmss 
+Update-AzureRmVmss -ResourceGroupName "myResourceGroup" -Name "myScaleSet" -VirtualMachineScaleSet $vmss
 ```
 
 如果需要幾分鐘的時間才能更新您擴展集的容量。 如果您減少擴展集的容量，則會先移除具有最高執行個體識別碼的 VM。
@@ -69,7 +70,7 @@ Update-AzureRmVmss -ResourceGroupName "myResourceGroup" -Name "myScaleSet" -Virt
 ## <a name="stop-and-start-vms-in-a-scale-set"></a>停止和啟動擴展集中的 VM
 若要停止擴展集中的一或多個 VM，請使用 [Stop-AzureRmVmss](/powershell/module/azurerm.compute/stop-azurermvmss)。 `-InstanceId` 參數可讓您指定停止一或多個 VM。 如果您未指定執行個體識別碼，則會停止擴展集中的所有 VM。 若要停止多個 VM，請以逗號分隔每個執行個體識別碼。
 
-下列範例停止 myScaleSet 擴展集和 myResourceGroup 資源群組中的執行個體 *0*。 提供您的值，如下所示︰
+下列範例停止 myScaleSet 擴展集和 myResourceGroup 資源群組中的執行個體 *0*。 提供您自己的值，如下所示︰
 
 ```powershell
 Stop-AzureRmVmss -ResourceGroupName "myResourceGroup" -VMScaleSetName "myScaleSet" -InstanceId "0"
@@ -81,7 +82,7 @@ Stop-AzureRmVmss -ResourceGroupName "myResourceGroup" -VMScaleSetName "myScaleSe
 ### <a name="start-vms-in-a-scale-set"></a>啟動擴展集中的 VM
 若要啟動擴展集中的一或多個 VM，請使用 [Start-AzureRmVmss](/powershell/module/azurerm.compute/start-azurermvmss)。 `-InstanceId` 參數可讓您指定啟動一或多個 VM。 如果您未指定執行個體識別碼，則會啟動擴展集中的所有 VM。 若要啟動多個 VM，請以逗號分隔每個執行個體識別碼。
 
-下列範例啟動 myScaleSet 擴展集和 myResourceGroup 資源群組中的執行個體 *0*。 提供您的值，如下所示︰
+下列範例啟動 myScaleSet 擴展集和 myResourceGroup 資源群組中的執行個體 *0*。 提供您自己的值，如下所示︰
 
 ```powershell
 Start-AzureRmVmss -ResourceGroupName "myResourceGroup" -VMScaleSetName "myScaleSet" -InstanceId "0"
@@ -91,7 +92,7 @@ Start-AzureRmVmss -ResourceGroupName "myResourceGroup" -VMScaleSetName "myScaleS
 ## <a name="restart-vms-in-a-scale-set"></a>重新啟動擴展集中的 VM
 若要重新啟動擴展集中的一或多個 VM，請使用 [Retart-AzureRmVmss](/powershell/module/azurerm.compute/restart-azurermvmss)。 `-InstanceId` 參數可讓您指定重新啟動一或多個 VM。 如果您未指定執行個體識別碼，則會重新啟動擴展集中的所有 VM。 若要重新啟動多個 VM，請以逗號分隔每個執行個體識別碼。
 
-下列範例重新啟動 myScaleSet 擴展集和 myResourceGroup 資源群組中的執行個體 *0*。 提供您的值，如下所示︰
+下列範例重新啟動 myScaleSet 擴展集和 myResourceGroup 資源群組中的執行個體 *0*。 提供您自己的值，如下所示︰
 
 ```powershell
 Restart-AzureRmVmss -ResourceGroupName "myResourceGroup" -VMScaleSetName "myScaleSet" -InstanceId "0"
@@ -101,7 +102,7 @@ Restart-AzureRmVmss -ResourceGroupName "myResourceGroup" -VMScaleSetName "myScal
 ## <a name="remove-vms-from-a-scale-set"></a>移除擴展集中的 VM
 若要移除擴展集中的一或多個 VM，請使用 [Remove-AzureRmVmss](/powershell/module/azurerm.compute/remove-azurermvmss)。 `-InstanceId` 參數可讓您指定移除一或多個 VM。 如果您未指定執行個體識別碼，則會移除擴展集中的所有 VM。 若要移除多個 VM，請以逗號分隔每個執行個體識別碼。
 
-下列範例移除 myScaleSet 擴展集和 myResourceGroup 資源群組中的執行個體 *0*。 提供您的值，如下所示︰
+下列範例移除 myScaleSet 擴展集和 myResourceGroup 資源群組中的執行個體 *0*。 提供您自己的值，如下所示︰
 
 ```powershell
 Remove-AzureRmVmss -ResourceGroupName "myResourceGroup" -VMScaleSetName "myScaleSet" -InstanceId "0"

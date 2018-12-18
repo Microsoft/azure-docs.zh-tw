@@ -9,16 +9,17 @@ editor: ''
 ms.assetid: f406eac9-7271-4c37-a0d3-0a2957b60537
 ms.service: service-fabric
 ms.devlang: dotNet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 02/23/2018
 ms.author: mikhegn
-ms.openlocfilehash: a3d0770d3b9c8702dbe4dac86f86030bea4090c0
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: dac96ef6fce38a0557444e181fa6eccb649cfb9a
+ms.sourcegitcommit: f3bd5c17a3a189f144008faf1acb9fabc5bc9ab7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/10/2018
+ms.locfileid: "44298330"
 ---
 # <a name="manage-applications-for-multiple-environments"></a>管理多個環境的應用程式
 
@@ -41,16 +42,16 @@ Azure Service Fabric 叢集可讓您使用任意數量的機器 (從一部至數
 
 > [!NOTE]
 > 並非應用程式及服務資訊清單檔中的所有屬性皆支援參數。
-> 在這些案例中，您必須依賴將字串取代為部署工作流程的一部分。 在 Visual Studio Team Services 中，您可以使用擴充功能，如「取代權杖」：https://marketplace.visualstudio.com/items?itemName=qetza.replacetokens，或您可以在 Jenkins 中，執行指令碼工作來取代該值。
+> 在這些案例中，您必須依賴將字串取代為部署工作流程的一部分。 在 Azure DevOps 中，您可以使用「取代權杖」之類的擴充功能： https://marketplace.visualstudio.com/items?itemName=qetza.replacetokens，或可在 Jenkins 中執行指令碼工作來取代該值。
 >
 
 ## <a name="specifying-parameters-during-application-creation"></a>在應用程式建立期間指定參數
 
 在 Service Fabric 中建立具名的應用程式執行個體時，您可以傳入參數。 執行的方式取決於您如何建立應用程式執行個體。
 
-  - 在 PowerShell 中，[`New-ServiceFabricApplication`](https://docs.microsoft.com/en-us/powershell/module/servicefabric/new-servicefabricapplication?view=azureservicefabricps) Cmdlet 會將應用程式參數作為雜湊表。
-  - 使用 sfctl，[`sfctl application create`](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-sfctl-application#sfctl-application-create) 命令會將參數作為 JSON 字串。 install.sh 指令碼會使用 sfctl。
-  - Visual Studio 會在應用程式專案的 [參數] 資料夾中為您提供一組參數檔案。 當這些參數檔案從 Visual Studio 透過 Visual Studio Team Service 或 Team Foundation Server 發佈時，參數檔案會受到使用。 在 Visual Studio 中，參數檔案會傳遞至 Deploy-FabricApplication.ps1 指令碼。
+  - 在 PowerShell 中，[`New-ServiceFabricApplication`](https://docs.microsoft.com/powershell/module/servicefabric/new-servicefabricapplication?view=azureservicefabricps) Cmdlet 會將應用程式參數作為雜湊表。
+  - 使用 sfctl，[`sfctl application create`](https://docs.microsoft.com/azure/service-fabric/service-fabric-sfctl-application#sfctl-application-create) 命令會將參數作為 JSON 字串。 install.sh 指令碼會使用 sfctl。
+  - Visual Studio 會在應用程式專案的 [參數] 資料夾中為您提供一組參數檔案。 從 Visual Studio 使用 Azure DevOps Services 或 Team Foundation Server 發佈時，會使用這些參數檔案。 在 Visual Studio 中，參數檔案會傳遞至 Deploy-FabricApplication.ps1 指令碼。
 
 ## <a name="next-steps"></a>後續步驟
 下列文章將示範如何使用此處所述的一些概念：

@@ -1,27 +1,23 @@
 ---
-title: "從 Azure Logic Apps 部署及呼叫 web API 與 REST API | Microsoft Docs"
-description: "部署並呼叫 web API 與 REST API，以便與 Azure Logic Apps 中的工作流程進行系統整合"
-keywords: "web API, REST API, 連接器, 工作流程, 系統整合, 驗證"
+title: 從 Azure Logic Apps 部署及呼叫 web API 與 REST API | Microsoft Docs
+description: 部署並呼叫 Web API 與 REST API，以便與 Azure Logic Apps 中的工作流程進行系統整合
 services: logic-apps
-author: stepsic-microsoft-com
-manager: anneta
-editor: 
-documentationcenter: 
-ms.assetid: f113005d-0ba6-496b-8230-c1eadbd6dbb9
 ms.service: logic-apps
-ms.workload: integration
-ms.tgt_pltfrm: na
-ms.devlang: na
+ms.suite: integration
+author: ecfan
+ms.author: estfan
+ms.reviewer: klam, stepsic, LADocs
 ms.topic: article
+ms.assetid: f113005d-0ba6-496b-8230-c1eadbd6dbb9
 ms.date: 05/26/2017
-ms.author: LADocs; stepsic
-ms.openlocfilehash: c7a240bf5b7ed5e7780b90f438d2e336ee79f0b3
-ms.sourcegitcommit: 782d5955e1bec50a17d9366a8e2bf583559dca9e
+ms.openlocfilehash: 0d53c8355fadf53c81676a1fe3c71f8e0b046630
+ms.sourcegitcommit: 2ad510772e28f5eddd15ba265746c368356244ae
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/02/2018
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "43126563"
 ---
-# <a name="deploy-and-call-custom-apis-from-logic-app-workflows"></a>從邏輯應用程式工作流程部署和呼叫自訂 API
+# <a name="deploy-and-call-custom-apis-from-workflows-in-azure-logic-apps"></a>在 Azure Logic Apps 中從工作流程部署和呼叫自訂 API
 
 在您[建立可在 Logic Apps 工作流程中所使用的自訂 API](./logic-apps-create-api-app.md) 之後，您在呼叫之前必須先部署您的 API。 您可以將 API 部署為 [web 應用程式](../app-service/app-service-web-overview.md)，但請考慮將您的 API 部署為 [API 應用程式](../app-service/app-service-web-tutorial-rest-api.md)，如此一來，當您在雲端中及內部部署建置、裝載並自訂 API 時，可讓您的作業更容易。 您不需要在 API 中變更任何程式碼 - 只需將您的程式碼部署至 API 應用程式。 您可以將 API 裝載在 [Azure App Service](../app-service/app-service-web-overview.md) 上，這是一個平台即服務 (PaaS) 供應項目，提供擴充性高且簡便的 API 裝載服務。
 

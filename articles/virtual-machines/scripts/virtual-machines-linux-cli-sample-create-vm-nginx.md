@@ -1,26 +1,27 @@
 ---
-title: "Azure CLI 指令碼範例 - 使用 NGINX 建立 Linux VM | Microsoft Docs"
-description: "Azure CLI 指令碼範例 - 使用 NGINX 建立 Linux VM"
+title: Azure CLI 指令碼範例 - 使用 NGINX 建立 Linux VM | Microsoft Docs
+description: Azure CLI 指令碼範例 - 使用 NGINX 建立 Linux VM
 services: virtual-machines-linux
 documentationcenter: virtual-machines
-author: neilpeterson
-manager: timlt
+author: cynthn
+manager: jeconnoc
 editor: tysonn
 tags: azure-resource-manager
-ms.assetid: 
+ms.assetid: ''
 ms.service: virtual-machines-linux
 ms.devlang: azurecli
 ms.topic: sample
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 02/27/2017
-ms.author: nepeters
+ms.author: cynthn
 ms.custom: mvc
-ms.openlocfilehash: a88077d405a662c0b5f83022209712545fea537f
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+ms.openlocfilehash: 642dd46ee44fd1c69f2c66549dbb5806bb4ee5d7
+ms.sourcegitcommit: aa988666476c05787afc84db94cfa50bc6852520
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37927565"
 ---
 # <a name="create-a-vm-with-nginx"></a>使用 NGINX 建立 VM
 
@@ -36,7 +37,7 @@ ms.lasthandoff: 03/09/2018
 
 ## <a name="custom-script-extension"></a>自訂指令碼延伸模組
 
-自訂指令碼延伸模組會將此指令碼複製到虛擬機器上。 接著執行指令碼來安裝和設定 NGINX Web 伺服器。 
+自訂指令碼延伸模組會將此指令碼複製到虛擬機器上。 接著執行指令碼來安裝和設定 NGINX Web 伺服器。
 
 ```bash
 #!/bin/bash
@@ -48,11 +49,11 @@ apt-get -y update
 apt-get -y install nginx
 ```
 
-## <a name="clean-up-deployment"></a>清除部署 
+## <a name="clean-up-deployment"></a>清除部署
 
 執行下列命令來移除資源群組、VM 和所有相關資源。
 
-```azurecli-interactive 
+```azurecli-interactive
 az group delete --name myResourceGroup
 ```
 

@@ -2,25 +2,22 @@
 title: Azure Cosmos DB 資料表 API 簡介 | Microsoft Docs
 description: 了解如何透過受歡迎的 OSS MongoDB API，使用 Azure Cosmos DB 來儲存及查詢大量機碼值資料 (低延遲)。
 services: cosmos-db
-author: mimig1
-manager: jhubbard
-editor: monicar
-documentationcenter: ''
-ms.assetid: ''
+author: SnehaGunda
+manager: kfile
 ms.service: cosmos-db
-ms.workload: data-services
-ms.tgt_pltfrm: na
+ms.component: cosmosdb-table
 ms.devlang: na
-ms.topic: get-started-article
+ms.topic: overview
 ms.date: 11/20/2017
-ms.author: mimig
-ms.openlocfilehash: 6a69bc74f0175a8c30607ada006ebfce9a88c5b5
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.author: sngun
+ms.openlocfilehash: 225811195ffa01ce26f51fdbb78ee567c747c3d1
+ms.sourcegitcommit: f94f84b870035140722e70cab29562e7990d35a3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 08/30/2018
+ms.locfileid: "43282961"
 ---
-# <a name="introduction-to-azure-cosmos-db-table-api"></a>Azure Cosmos DB 資料表 API 簡介
+# <a name="introduction-to-azure-cosmos-db-table-api"></a>Azure Cosmos DB 簡介：資料表 API
 
 [Azure Cosmos DB](introduction.md) 提供的表格 API 適用於針對 Azure 資料表儲存體所撰寫、且需要進階功能的應用程式，例如：
 
@@ -31,12 +28,6 @@ ms.lasthandoff: 03/28/2018
 * [自動次要索引](http://www.vldb.org/pvldb/vol8/p1668-shukla.pdf)。
 
 針對 Azure 資料表儲存體所撰寫的應用程式可使用資料表 API (不變更程式碼) 來移轉至 Azure Cosmos DB，並且利用進階功能。 資料表 API 具有適用於 .NET、Java、Python 和 Node.js 的用戶端 SDK。
-
-建議觀看下列影片，Aravind Krishna 會在影片中說明如何開始使用 Azure Cosmos DB 資料表 API：
-
-> [!VIDEO https://channel9.msdn.com/Shows/Azure-Friday/Table-API-for-Azure-Cosmos-DB/player]
-> 
-> 
 
 ## <a name="table-offerings"></a>表格供應項目
 如果您目前是使用 Azure 資料表儲存體，移至 Azure Cosmos DB 資料表 API 可獲得下列好處：

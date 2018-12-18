@@ -1,24 +1,26 @@
 ---
-title: "使用基礎結構備份服務進行 Azure Stack 的備份和資料復原 | Microsoft Docs"
-description: "您可以使用基礎結構備份服務，來備份和還原設定和服務。"
+title: 使用基礎結構備份服務進行 Azure Stack 的備份和資料復原 | Microsoft Docs
+description: 您可以使用基礎結構備份服務，來備份和還原設定和服務。
 services: azure-stack
-documentationcenter: 
+documentationcenter: ''
 author: mattbriggs
 manager: femila
-editor: 
+editor: ''
 ms.assetid: 9B51A3FB-EEFC-4CD8-84A8-38C52CFAD2E4
 ms.service: azure-stack
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/15/2017
+ms.date: 9/10/2018
 ms.author: mabrigg
-ms.openlocfilehash: 84ce0d72ff826ecb3f5deff165db00a1e50ae89d
-ms.sourcegitcommit: 85012dbead7879f1f6c2965daa61302eb78bd366
+ms.reviewer: hectorl
+ms.openlocfilehash: 9f2668ff84ade4ba99b7aa7dcd67feafadc1c6c4
+ms.sourcegitcommit: 5a9be113868c29ec9e81fd3549c54a71db3cec31
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/02/2018
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44377831"
 ---
 # <a name="backup-and-data-recovery-for-azure-stack-with-the-infrastructure-backup-service"></a>使用基礎結構備份服務進行 Azure Stack 的備份和資料復原
 
@@ -35,7 +37,7 @@ ms.lasthandoff: 01/02/2018
 
 ## <a name="the-infrastructure-backup-service"></a>基礎結構備份服務
 
-服務包含下列功能。
+這些服務包含下列功能。
 
 | 功能                                            | 說明                                                                                                                                                |
 |----------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -52,7 +54,7 @@ ms.lasthandoff: 01/02/2018
 - **認證**  
   您會需要網域使用者帳戶和認證 (例如，您可以使用 Azure Stack 管理員認證)。
 - **加密金鑰**  
-  備份檔案會使用此金鑰來加密。 請務必將此金鑰儲存在安全的位置。 您第一次設定此金鑰後或在未來更換金鑰時，都無法再從這個介面檢視此金鑰。 如需產生預先共用的詳細指示，請遵照[使用 PowerShell 來啟用 Azure Stack 的備份](http://azure-stack-backup-enable-backup-powershell.md)中的指令碼。
+  備份檔案會使用此金鑰來加密。 請務必將此金鑰儲存在安全的位置。 您第一次設定此金鑰後或在未來更換金鑰時，都無法再從這個介面檢視此金鑰。 如需產生預先共用的詳細指示，請遵照[使用 PowerShell 來啟用 Azure Stack 的備份](azure-stack-backup-enable-backup-powershell.md)中的指令碼。
 
 ## <a name="next-steps"></a>後續步驟
 

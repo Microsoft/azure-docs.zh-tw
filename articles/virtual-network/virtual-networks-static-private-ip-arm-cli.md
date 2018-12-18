@@ -1,11 +1,11 @@
 ---
-title: "設定 VM 的私人 IP 位址 - Azure CLI | Microsoft Docs"
-description: "了解如何使用 Azure 命令列介面 (CLI) 設定虛擬機器的私人 IP 位址。"
+title: 設定 VM 的私人 IP 位址 - Azure CLI | Microsoft Docs
+description: 了解如何使用 Azure 命令列介面 (CLI) 設定虛擬機器的私人 IP 位址。
 services: virtual-network
 documentationcenter: na
 author: jimdial
 manager: jeconnoc
-editor: 
+editor: ''
 tags: azure-resource-manager
 ms.assetid: 40b03a1a-ea00-454c-b716-7574cea49ac0
 ms.service: virtual-network
@@ -16,11 +16,12 @@ ms.workload: infrastructure-services
 ms.date: 02/16/2017
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: a9fe7020719079e11150c62068650aa6ca17b056
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+ms.openlocfilehash: 0ffcf483b2852ec87c263573a97b4508d5b5d39c
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46997466"
 ---
 # <a name="configure-private-ip-addresses-for-a-virtual-machine-using-the-azure-cli"></a>使用 Azure CLI 設定虛擬機器的私人 IP 位址
 
@@ -41,13 +42,13 @@ ms.lasthandoff: 03/09/2018
 
 若要在名為 *TestVNet* 之 VNet 的 *FrontEnd* 子網路中建立名為 *DNS01* 的 VM，且其靜態私人 IP 為 *192.168.1.101*，請完成下列步驟：
 
-1. 安裝及設定最新的 [Azure CLI 2.0](/cli/azure/install-az-cli2) (若您尚未這麼做)，並使用 [az login](/cli/azure/reference-index#az_login) 來登入 Azure 帳戶。 
+1. 安裝並設定最新的 [Azure CLI](/cli/azure/install-azure-cli) (若您尚未這樣做)，並使用 [az login](/cli/azure/reference-index#az_login) 來登入 Azure 帳戶。
 
 2. 使用 [az network public-ip create](/cli/azure/network/public-ip#az_network_public_ip_create) 命令來建立 VM 的公用 IP。 輸出後顯示的清單可說明所使用的參數。
 
     > [!NOTE]
     > 視您的環境而定，您可能會想要或需要為此步驟和後續步驟中的引數使用不同的值。
-   
+
     ```azurecli
     az network public-ip create \
     --name TestPIP \
@@ -57,7 +58,7 @@ ms.lasthandoff: 03/09/2018
     ```
 
     預期的輸出：
-   
+
    ```json
    {
         "publicIp": {
@@ -158,6 +159,7 @@ ms.lasthandoff: 03/09/2018
 
    * `--nics`︰VM 所連接至之 NIC 的名稱。
    
+建議您不要靜態指派在 VM 作業系統內已指派給 Azure 虛擬機器的私人 IP，除非必要，例如[將多個 IP 位址指派給 Windows VM](virtual-network-multiple-ip-addresses-cli.md) 時。 如果您確實手動設定作業系統內的私人 IP 位址，請確保它的位址與指派給 Azure [網路介面](virtual-network-network-interface-addresses.md#change-ip-address-settings)的私人 IP 位址相同，否則您可能會失去與虛擬機器的連線。 深入了解[私人 IP 位址](virtual-network-network-interface-addresses.md#private)設定。
 
 ## <a name="retrieve-static-private-ip-address-information-for-a-vm"></a>擷取 VM 的靜態私人 IP 位址資訊
 
@@ -267,9 +269,7 @@ rivateIpAllocationMethod,PublicAddress:publicIpAddress}'
 
     > [!NOTE]
     > 如果 VM 夠大而可容納多個 NIC，請執行 **azure network nic delete** 命令，以刪除舊 NIC。
-   
-## <a name="next-steps"></a>後續步驟
-* 深入了解 [保留的公用 IP](virtual-networks-reserved-public-ip.md) 位址。
-* 深入了解 [執行個體層級公用 IP (ILPIP)](virtual-networks-instance-level-public-ip.md) 位址。
-* 請參閱 [保留 IP REST API](https://msdn.microsoft.com/library/azure/dn722420.aspx)。
 
+## <a name="next-steps"></a>後續步驟
+
+了解如何管理 [IP 位址設定](virtual-network-network-interface-addresses.md)。

@@ -1,23 +1,24 @@
 ---
-title: 透過 Azure Container Service (AKS) 執行 Apache Spark 作業
-description: 使用 Azure Container Service (AKS) 執行 Apache Spark 作業
+title: 透過 Azure Kubernetes Service (AKS) 執行 Apache Spark 作業
+description: 使用 Azure Kubernetes Service (AKS) 執行 Apache Spark 作業
 services: container-service
 author: lenadroid
-manager: timlt
+manager: jeconnoc
 ms.service: container-service
 ms.topic: article
 ms.date: 03/15/2018
 ms.author: alehall
 ms.custom: mvc
-ms.openlocfilehash: 3991312d7f7609bb0a206ccc0ecc67123ebec469
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: cb23c21fd22a35a3e8a5920a94aa5a89fe966cfa
+ms.sourcegitcommit: d98d99567d0383bb8d7cbe2d767ec15ebf2daeb2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 05/10/2018
+ms.locfileid: "33934940"
 ---
 # <a name="running-apache-spark-jobs-on-aks"></a>在 AKS 上執行 Apache Spark 作業
 
-[Apache Spark][apache-spark] 是進行大規模資料處理的快速引擎。 從 [Spark 2.3.0 版][spark-latest-release] 開始，Apache Spark 支援與 Kubernetes 叢集的原生整合。 Azure Container Service (AKS) 是在 Azure 中執行的受控 Kubernetes 環境。 本文件詳述在 Azure Container Service (AKS) 叢集上準備和執行 Apache Spark 作業的做法。
+[Apache Spark][apache-spark] 是進行大規模資料處理的快速引擎。 從 [Spark 2.3.0 版][spark-latest-release] 開始，Apache Spark 支援與 Kubernetes 叢集的原生整合。 Azure Kubernetes Service (AKS) 是在 Azure 中執行的受控 Kubernetes 環境。 本文件詳述在 Azure Kubernetes Service (AKS) 叢集上準備和執行 Apache Spark 作業的做法。
 
 ## <a name="prerequisites"></a>先決條件
 
@@ -32,7 +33,7 @@ ms.lasthandoff: 03/28/2018
 
 ## <a name="create-an-aks-cluster"></a>建立 AKS 叢集
 
-Spark 會用於大規模的資料處理，而且需要將 Kubernetes 節點的大小調整為符合 Spark 資源需求。 針對您的 Azure Container Service (AKS) 節點，我們建議使用 `Standard_D3_v2` 大小的最小值。
+Spark 會用於大規模的資料處理，而且需要將 Kubernetes 節點的大小調整為符合 Spark 資源需求。 針對您的 Azure Kubernetes Service (AKS) 節點，我們建議使用 `Standard_D3_v2` 大小的最小值。
 
 如果您需要符合此最小值建議的 AKS 叢集，請執行下列命令。
 
@@ -332,8 +333,8 @@ ENTRYPOINT [ "/opt/entrypoint.sh" ]
 
 
 <!-- LINKS - internal -->
-[acr-aks]: https://docs.microsoft.com/en-us/azure/container-registry/container-registry-auth-aks
-[acr-create]: https://docs.microsoft.com/en-us/azure/container-registry/container-registry-get-started-azure-cli
-[aks-quickstart]: https://docs.microsoft.com/en-us/azure/aks/
-[azure-cli]: https://docs.microsoft.com/en-us/cli/azure/?view=azure-cli-latest
-[storage-account]: https://docs.microsoft.com/en-us/azure/storage/common/storage-azure-cli
+[acr-aks]: https://docs.microsoft.com/azure/container-registry/container-registry-auth-aks
+[acr-create]: https://docs.microsoft.com/azure/container-registry/container-registry-get-started-azure-cli
+[aks-quickstart]: https://docs.microsoft.com/azure/aks/
+[azure-cli]: https://docs.microsoft.com/cli/azure/?view=azure-cli-latest
+[storage-account]: https://docs.microsoft.com/azure/storage/common/storage-azure-cli

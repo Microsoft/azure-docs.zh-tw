@@ -1,0 +1,133 @@
+items:
+- name: 針對 Azure VM 進行疑難排解
+  href: index.md
+- name: 配置失敗
+  items:
+  - name: 配置失敗
+    href: allocation-failure.md
+  - name: 傳統部署的配置失敗
+    href: allocation-failure-classic.md
+- name: RDP
+  items:
+  - name: 重設 RDP
+    href: reset-rdp.md
+  - name: RDP 疑難排解
+    href: troubleshoot-rdp-connection.md
+  - name: 詳細 RDP 疑難排解
+    href: detailed-troubleshoot-rdp.md
+  - name: 針對特定錯誤進行疑難排解
+    href: troubleshoot-specific-rdp-errors.md
+- name: SSH
+  items:
+  - name: SSH 疑難排解
+    href: troubleshoot-ssh-connection.md
+  - name: 詳細 SSH 疑難排解
+    href: detailed-troubleshoot-ssh-connection.md
+- name: 常見的錯誤訊息
+  href: error-messages.md
+- name: Windows VM 效能問題
+  href: performance-diagnostics.md
+  items:
+  - name: 如何使用 PerfInsights
+    href: how-to-use-perfInsights.md
+  - name: 效能診斷擴充功能
+    href: performance-diagnostics-vm-extension.md
+- name: 離線安裝 Windows VM 代理程式
+  href: install-vm-agent-offline.md
+- name: 重新部署 VM
+  items:
+  - name: Linux
+    href: redeploy-to-new-node-linux.md
+  - name: Windows
+    href: redeploy-to-new-node-windows.md
+- name: 重設 VM 密碼
+  items:
+  - name: Windows
+    href: reset-local-password-without-agent.md
+  - name: Linux
+    href: reset-password.md
+- name: 重設 NIC
+  href: reset-network-interface.md
+- name: 重新啟動或調整 VM 大小
+  href: restart-resize-error-troubleshooting.md
+- name: 使用序列主控台
+  items:
+  - name: Linux VM
+    href: serial-console-linux.md
+    items:
+    - name: 序列主控台 GRUB/單一使用者模式
+      href: serial-console-grub-single-user-mode.md
+    - name: 序列主控台 NMI/SysRq
+      href: serial-console-nmi-sysrq.md
+  - name: Windows VM
+    href: serial-console-windows.md
+    items:
+    - name: CMD 及 PowerShell 命令
+      href: serial-console-cmd-ps-commands.md
+- name: 刪除儲存體資源時發生錯誤
+  href: storage-resource-deletion-errors.md
+- name: 包含連結 VHD 的 VM 非預期重新開機
+  href: unexpected-reboots-attached-vhds.md
+- name: Windows 啟用問題
+  href: troubleshoot-activation-problems.md
+- name: 應用程式存取問題
+  href: troubleshoot-app-connection.md
+- name: 新的 VM 部署
+  items:
+  - name: Linux
+    href: troubleshoot-deployment-new-vm-linux.md
+  - name: Windows
+    href: troubleshoot-deployment-new-vm-windows.md
+- name: 針對部署進行疑難排解
+  items:
+  - name: Linux
+    href: troubleshoot-deploy-vm-linux.md
+  - name: Windows
+    href: troubleshoot-deploy-vm-windows.md
+- name: 裝置名稱已變更
+  href: troubleshoot-device-names-problems.md
+- name: VM 復原存取
+  items:
+  - name: Windows
+    items:
+    - name: PowerShell
+      href: troubleshoot-recovery-disks-windows.md
+    - name: Azure 入口網站
+      href: troubleshoot-recovery-disks-portal-windows.md
+  - name: Linux
+    items:
+    - name: CLI
+      href: troubleshoot-recovery-disks-linux.md
+    - name: Azure 入口網站
+      href: troubleshoot-recovery-disks-portal-linux.md
+- name: 開機錯誤
+  href: boot-error-troubleshoot.md
+  items:
+  - name: 開機診斷
+    href: boot-diagnostics.md
+  - name: BitLocker 錯誤
+    href: troubleshoot-bitlocker-boot-error.md
+  - name: 檢查檔案系統錯誤
+    href: troubleshoot-check-disk-boot-error.md
+  - name: 藍色畫面錯誤
+    href: troubleshoot-common-blue-screen-error.md
+  - name: VM 啟動已停滯
+    href: troubleshoot-vm-boot-configure-update.md
+  - name: 重要服務已失敗
+    href: troubleshoot-critical-service-failed-boot-error.md
+  - name: 重新開機迴圈
+    href: troubleshoot-reboot-loop.md
+  - name: 在執行 Windows 更新時停滯
+    href: troubleshoot-stuck-updating-boot-error.md
+- name: 節流處理錯誤
+  href: troubleshooting-throttling-errors.md
+- name: 使用巢狀虛擬化
+  href: troubleshoot-vm-by-use-nested-virtualization.md
+- name: 了解系統重新開機
+  href: understand-vm-reboot.md
+ms.openlocfilehash: bc20944fa18251a5ee9e7c5d5cf90955305b45b4
+ms.sourcegitcommit: 3a7c1688d1f64ff7f1e68ec4bb799ba8a29a04a8
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49376212"

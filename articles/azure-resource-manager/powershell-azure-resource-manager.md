@@ -1,8 +1,8 @@
 ---
-title: "使用 PowerShell 管理 Azure 解決方案 | Microsoft Docs"
-description: "使用 Azure PowerShell 和 Resource Manager 管理資源。"
+title: 使用 PowerShell 管理 Azure 解決方案 | Microsoft Docs
+description: 使用 Azure PowerShell 和 Resource Manager 管理資源。
 services: azure-resource-manager
-documentationcenter: 
+documentationcenter: ''
 author: tfitzmac
 manager: timlt
 editor: tysonn
@@ -11,14 +11,15 @@ ms.service: azure-resource-manager
 ms.workload: multiple
 ms.tgt_pltfrm: powershell
 ms.devlang: na
-ms.topic: article
-ms.date: 02/16/2018
+ms.topic: conceptual
+ms.date: 07/20/2018
 ms.author: tomfitz
-ms.openlocfilehash: 96206482195cdcbd06ee2dafdc551f7b1f81d319
-ms.sourcegitcommit: 168426c3545eae6287febecc8804b1035171c048
+ms.openlocfilehash: 7cda2a406c6c49e9252bfd5840e8f943e5b7043f
+ms.sourcegitcommit: 30221e77dd199ffe0f2e86f6e762df5a32cdbe5f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/08/2018
+ms.lasthandoff: 07/23/2018
+ms.locfileid: "39205794"
 ---
 # <a name="manage-resources-with-azure-powershell"></a>使用 Azure PowerShell 管理資源
 
@@ -26,7 +27,7 @@ ms.lasthandoff: 03/08/2018
 
 [!INCLUDE [cloud-shell-powershell.md](../../includes/cloud-shell-powershell.md)]
 
-如果您選擇在本機安裝和使用 PowerShell，請參閱[安裝 Azure PowerShell 模組](/powershell/azure/install-azurerm-ps)。 如果您在本機執行 PowerShell，則也需要執行 `Login-AzureRmAccount` 以建立與 Azure 的連線。
+如果您選擇在本機安裝和使用 PowerShell，請參閱[安裝 Azure PowerShell 模組](/powershell/azure/install-azurerm-ps)。 如果您在本機執行 PowerShell，則也需要執行 `Connect-AzureRmAccount` 以建立與 Azure 的連線。
 
 ## <a name="understand-scope"></a>了解範圍
 
@@ -51,11 +52,11 @@ New-AzureRmResourceGroup -Name myResourceGroup -Location EastUS
 
 在本文中，您會部署虛擬機器以及和其相關的虛擬網路。 為了管理虛擬機器解決方案，有三個資源專屬角色可提供您經常需要的存取權：
 
-* [虛擬機器參與者](../active-directory/role-based-access-built-in-roles.md#virtual-machine-contributor)
-* [網路參與者](../active-directory/role-based-access-built-in-roles.md#network-contributor)
-* [儲存體帳戶參與者](../active-directory/role-based-access-built-in-roles.md#storage-account-contributor)
+* [虛擬機器參與者](../role-based-access-control/built-in-roles.md#virtual-machine-contributor)
+* [網路參與者](../role-based-access-control/built-in-roles.md#network-contributor)
+* [儲存體帳戶參與者](../role-based-access-control/built-in-roles.md#storage-account-contributor)
 
-相較於將角色指派給個別使用者，為需要執行類似動作的使用者[建立 Azure Active Directory 群組](../active-directory/active-directory-groups-create-azure-portal.md)通常會更加容易。 然後，將該群組指派給適當的角色。 一言以蔽之，您要建立沒有成員的 Azure Active Directory 群組。 您仍然可以指派此群組給範圍內的角色。 
+相較於將角色指派給個別使用者，為需要執行類似動作的使用者[建立 Azure Active Directory 群組](../active-directory/fundamentals/active-directory-groups-create-azure-portal.md)通常會更加容易。 然後，將該群組指派給適當的角色。 一言以蔽之，您要建立沒有成員的 Azure Active Directory 群組。 您仍然可以指派此群組給範圍內的角色。 
 
 下列範例會建立群組，並將其指派給資源群組中的「虛擬機器參與者」角色。 若要執行 `New-AzureAdGroup` 命令，您必須使用 [Azure Cloud Shell](/azure/cloud-shell/overview) 或[下載 Azure AD PowerShell 模組](https://www.powershellgallery.com/packages/AzureAD/)。
 
@@ -71,13 +72,9 @@ New-AzureRmRoleAssignment -ObjectId $adgroup.ObjectId `
 
 通常您需要針對**網路參與者**和**儲存體帳戶參與者**重複程序，以確保已指派使用者來管理已部署的資源。 在本文中，您可以略過這些步驟。
 
-## <a name="azure-policies"></a>Azure 原則
+## <a name="azure-policy"></a>Azure 原則
 
-[!INCLUDE [Resource Manager governance policy](../../includes/resource-manager-governance-policy.md)]
-
-### <a name="apply-policies"></a>套用原則
-
-您的訂用帳戶已經有數個原則定義。 若要查看可使用的原則定義，請使用：
+[Azure 原則](../azure-policy/azure-policy-introduction.md)可協助您確認訂用帳戶中的所有資源均符合公司標準。 您的訂用帳戶已經有數個原則定義。 若要查看可使用的原則定義，請使用：
 
 ```azurepowershell-interactive
 (Get-AzureRmPolicyDefinition).Properties | Format-Table displayName, policyType
@@ -222,4 +219,4 @@ Remove-AzureRmResourceGroup -Name myResourceGroup
 * 若要深入了解如何監視您的虛擬機器，請參閱[使用 Azure PowerShell 監視和更新 Windows 虛擬機器](../virtual-machines/windows/tutorial-monitoring.md)。
 * 若要了解如何使用 Azure 資訊安全中心來實作建議的安全性作法，請參閱[使用 Azure 資訊安全中心監視虛擬機器安全性](../virtual-machines/windows/tutorial-azure-security.md)。
 * 您可以將現有的資源移動到新的資源群組。 如需範例，請參閱 [將資源移至新的資源群組或訂用帳戶](resource-group-move-resources.md)。
-* 如需關於企業如何使用 Resource Manager 有效地管理訂用帳戶的指引，請參閱 [Azure 企業 Scaffold - 規定的訂用帳戶治理](resource-manager-subscription-governance.md)。
+* 如需關於企業如何使用 Resource Manager 有效地管理訂用帳戶的指引，請參閱 [Azure 企業 Scaffold - 規定的訂用帳戶治理](/azure/architecture/cloud-adoption-guide/subscription-governance)。

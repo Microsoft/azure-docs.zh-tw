@@ -1,12 +1,12 @@
 ---
-title: "管理 StorSimple 磁碟區 (Update 3) | Microsoft Docs"
-description: "說明如何加入、修改及監視 StorSimple 磁碟區，以及如何在必要時使其離線。"
+title: 管理 StorSimple 磁碟區 (Update 3) | Microsoft Docs
+description: 說明如何加入、修改及監視 StorSimple 磁碟區，以及如何在必要時使其離線。
 services: storsimple
 documentationcenter: NA
 author: alkohli
 manager: jeconnoc
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: NA
 ms.topic: article
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 094061b19b0a707eace42ae47f39d7a666364d58
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 12/08/2017
+ms.locfileid: "26578868"
 ---
 # <a name="use-the-storsimple-device-manager-service-to-manage-volumes-update-3-or-later"></a>使用 StorSimple 裝置管理員服務來管理磁碟區 (Update 3 或更新版本)
 

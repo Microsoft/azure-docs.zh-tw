@@ -1,24 +1,25 @@
 ---
-title: "在本機部署和升級 Azure 微服務 | Microsoft Docs"
-description: "了解如何設定本機 Service Fabric 叢集、將現有的應用程式部署至該叢集，然後升級該應用程式。"
+title: 在本機部署和升級 Azure Service Fabric 服務 | Microsoft Docs
+description: 了解如何設定本機 Service Fabric 叢集、將現有的應用程式部署至該叢集，然後升級該應用程式。
 services: service-fabric
 documentationcenter: .net
 author: rwike77
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 60a1f6a5-5478-46c0-80a8-18fe62da17a8
 ms.service: service-fabric
 ms.devlang: dotNet
-ms.topic: get-started-article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 11/03/2017
-ms.author: ryanwi;mikhegn
-ms.openlocfilehash: 9d547039491f6b0c0d308c64d11e9c54b4b4e3d5
-ms.sourcegitcommit: 3df3fcec9ac9e56a3f5282f6c65e5a9bc1b5ba22
+ms.author: ryanwi
+ms.openlocfilehash: 0243f6ca96b5e2c20b40bf6e0fc11e8d760db475
+ms.sourcegitcommit: ebd06cee3e78674ba9e6764ddc889fc5948060c4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/04/2017
+ms.lasthandoff: 09/07/2018
+ms.locfileid: "44053358"
 ---
 # <a name="get-started-with-deploying-and-upgrading-applications-on-your-local-cluster"></a>在您的本機叢集上開始部署和升級應用程式
 Azure Service Fabric SDK 包含完整的本機開發環境，可讓您快速地在本機叢集上開始部署和管理應用程式。 在本文中，您會從 Windows PowerShell 建立本機叢集、將現有的應用程式部署至該叢集，然後將應用程式升級為新版本。
@@ -85,7 +86,7 @@ Service Fabric SDK 包含一組豐富的架構以及用來建立應用程式的�
     如果順利執行，您應該會看到如下的輸出：
    
     ![將應用程式部署至本機叢集][deploy-app-to-local-cluster]
-7. 若要查看動作中的應用程式，請啟動瀏覽器並瀏覽至 [http://localhost:8081/wordcount/index.html](http://localhost:8081/wordcount/index.html)。 您應該會看到：
+7. 若要查看作用中的應用程式，請啟動瀏覽器並瀏覽至 [http://localhost:8081/wordcount/index.html](http://localhost:8081/wordcount/index.html)。 您應該會看到：
    
     ![部署應用程式 UI][deployed-app-ui]
    
@@ -124,7 +125,7 @@ Service Fabric SDK 包含一組豐富的架構以及用來建立應用程式的�
    
     您所使用的命令集 (例如所有的 Service Fabric PowerShell 命令) 適用於任何您可能連接的叢集 (本機或遠端)。
    
-    若要以更具視覺效果的方式來與叢集互動，您可以在瀏覽器中瀏覽至 [http://localhost:19080/Explorer](http://localhost:19080/Explorer) ，以使用 Web 型 Service Fabric 總管工具。
+    若要以更具視覺效果的方式與叢集互動，您可以在瀏覽器中瀏覽至 [http://localhost:19080/Explorer](http://localhost:19080/Explorer)，以使用 Web 型 Service Fabric Explorer 工具。
    
     ![在 Service Fabric 總管中檢視應用程式詳細資料][sfx-service-overview]
    

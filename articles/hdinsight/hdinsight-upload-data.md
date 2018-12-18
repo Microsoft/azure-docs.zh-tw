@@ -1,33 +1,27 @@
 ---
-title: 在 HDInsight 上將 Hadoop 工作的資料上傳 | Microsoft Docs
-description: 了解如何使用 Azure CLI、Azure 儲存體總管、Azure PowerShell、Hadoop 命令列或 Sqoop 在 HDInsight 中上傳及存取 Hadoop 工作。
-keywords: etl hadoop、將資料上傳到 hadoop、hadoop 載入資料
-services: hdinsight,storage
-documentationcenter: ''
-tags: azure-portal
-author: mumian
-manager: jhubbard
-editor: cgronlun
-ms.assetid: 56b913ee-0f9a-4e9f-9eaf-c571f8603dd6
+title: 在 HDInsight 上將 Hadoop 工作的資料上傳
+description: 了解如何使用 Azure 傳統 CLI、Azure 儲存體總管、Azure PowerShell、Hadoop 命令列或 Sqoop 在 HDInsight 中上傳及存取 Hadoop 作業的資料。
+keywords: etl hadoop, 將資料上傳到 hadoop, hadoop 載入資料
+services: hdinsight
+author: jasonwhowell
+ms.reviewer: jasonh
+ms.author: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive,hdiseo17may2017
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
-ms.date: 12/15/2017
-ms.author: jgao
-ms.openlocfilehash: ddb6291cdff7e2b65f54e89196c2b07dd6e4aaff
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.topic: conceptual
+ms.date: 05/14/2018
+ms.openlocfilehash: 44aaccee436011bd7d27bec87515fde0e898732e
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46985974"
 ---
 # <a name="upload-data-for-hadoop-jobs-in-hdinsight"></a>在 HDInsight 上將 Hadoop 工作的資料上傳
 
 Azure HDInsight 在 Azure 儲存體和 Azure Data Lake Store 上提供了功能完整的 Hadoop 分散式檔案系統 (HDFS)。 Azure 儲存體和 Data Lake Store 是設計作為 HDFS 的延伸，以便為客戶提供順暢的體驗。 它們可讓 Hadoop 生態系統中的完整元件集直接在它管理的資料上運作。 Azure 儲存體和 Data Lake Store 是不同的檔案系統，但經過最佳化後，都非常適合儲存資料以及計算儲存的資料。 如需關於使用 Azure 儲存體有哪些優點的資訊，請參閱[搭配 HDInsight 使用 Azure Storage][hdinsight-storage] 和[搭配 HDInsight 使用 Data Lake Store](hdinsight-hadoop-use-data-lake-store.md)。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 開始進行之前，請注意下列需求：
 
@@ -44,22 +38,22 @@ Microsoft 提供下列公用程式來使用 Azure 儲存體：
 
 | 工具 | Linux | OS X | Windows |
 | --- |:---:|:---:|:---:|
-| [Azure 命令列介面][azurecli] |✔ |✔ |✔ |
+| [Azure 傳統 CLI][azurecli] |✔ |✔ |✔ |
 | [Azure PowerShell][azure-powershell] | | |✔ |
 | [AzCopy][azure-azcopy] |✔ | |✔ |
 | [Hadoop 命令](#commandline) |✔ |✔ |✔ |
 
 > [!NOTE]
-> 雖然 Azure CLI、Azure PowerShell 與 AzCopy 都可從外部 Azure 使用，但是 Hadoop 命令只能在 HDInsight 叢集上使用。 此命令只允許從本機檔案系統將資料載入 Azure 儲存體中。
+> 雖然 Azure 傳統 CLI、Azure PowerShell 與 AzCopy 都可從外部 Azure 使用，但是 Hadoop 命令只能在 HDInsight 叢集上使用。 此命令只允許從本機檔案系統將資料載入 Azure 儲存體中。
 >
 >
 
-#### <a id="xplatcli"></a>Azure CLI
-Azure CLI 是可讓您管理 Azure 服務的跨平台工具。 使用以下步驟將資料上傳至 Azure 儲存體：
+#### <a id="xplatcli"></a>Azure 傳統 CLI
+Azure 傳統 CLI 是可讓您管理 Azure 服務的跨平台工具。 使用以下步驟將資料上傳至 Azure 儲存體：
 
-[!INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)]
+[!INCLUDE [classic-cli-warning](../../includes/requires-classic-cli.md)]
 
-1. [安裝和設定適用於 Mac、Linux 和 Windows 的 Azure CLI](../cli-install-nodejs.md)。
+1. [安裝並設定適用於 Mac、Linux 與 Windows 的 Azure 傳統 CLI](../cli-install-nodejs.md)。
 2. 開啟命令提示字元、Bash 或其他殼層，然後使用以下命令驗證您的 Azure 訂用帳戶。
 
     ```cli

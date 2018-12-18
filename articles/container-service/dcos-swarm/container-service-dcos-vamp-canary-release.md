@@ -1,19 +1,20 @@
 ---
-title: "Azure DC/OS 叢集上具備 Vamp 的 Canary 版本"
-description: "如何使用 Vamp 進行 Canary 版本服務，並在 Azure Container Service DC/OS 叢集上套用智慧型流量篩選"
+title: Azure DC/OS 叢集上具備 Vamp 的 Canary 版本
+description: 如何使用 Vamp 進行 Canary 版本服務，並在 Azure Container Service DC/OS 叢集上套用智慧型流量篩選
 services: container-service
 author: gggina
-manager: timlt
+manager: jeconnoc
 ms.service: container-service
 ms.topic: article
 ms.date: 04/17/2017
 ms.author: rasquill
 ms.custom: mvc
-ms.openlocfilehash: e23b316311ff88d1587da8d5ef777b91bfe0a2e9
-ms.sourcegitcommit: 5d3e99478a5f26e92d1e7f3cec6b0ff5fbd7cedf
+ms.openlocfilehash: 0f6c0e9206d9e056ee0496b6cc515625b08b1e4a
+ms.sourcegitcommit: 0408c7d1b6dd7ffd376a2241936167cc95cfe10f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/06/2017
+ms.lasthandoff: 06/26/2018
+ms.locfileid: "36959911"
 ---
 # <a name="canary-release-microservices-with-vamp-on-an-azure-container-service-dcos-cluster"></a>Azure Container Service DC/OS 叢集上具備 Vamp 的 Canary 版本微服務
 
@@ -292,5 +293,5 @@ Vamp 會使用**條件**來篩選閘道路由之間的流量。 流量會以套�
 
 * 在 Node.js 中建置 Vamp 自動化指令碼，並以 [Vamp 工作流程](http://vamp.io/documentation/tutorials/create-a-workflow/)來執行這些指令碼。
 
-* 請參閱其他 [VAMP 教學課程](http://vamp.io/documentation/tutorials/overview/)。
+* 請參閱其他 [VAMP 教學課程](http://vamp.io/documentation/tutorials/)。
 

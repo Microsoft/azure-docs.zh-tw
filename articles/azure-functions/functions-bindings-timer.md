@@ -3,8 +3,8 @@ title: Azure Functions 的計時器觸發程序
 description: 了解如何在 Azure Functions 中使用計時器觸發程序。
 services: functions
 documentationcenter: na
-author: tdykstra
-manager: cfowler
+author: ggailey777
+manager: jeconnoc
 editor: ''
 tags: ''
 keywords: azure functions, 函數, 事件處理, 動態運算, 無伺服器架構
@@ -14,14 +14,15 @@ ms.devlang: multiple
 ms.topic: reference
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 02/27/2017
-ms.author: tdykstra
+ms.date: 08/08/2018
+ms.author: glenga
 ms.custom: ''
-ms.openlocfilehash: 89469af2b1d02ef00fc347e47719956885e7f142
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: 270228e73243e6b2670e7ccb30765526a5db6463
+ms.sourcegitcommit: 974c478174f14f8e4361a1af6656e9362a30f515
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 08/20/2018
+ms.locfileid: "42144032"
 ---
 # <a name="timer-trigger-for-azure-functions"></a>Azure Functions 的計時器觸發程序 
 
@@ -29,9 +30,15 @@ ms.lasthandoff: 03/28/2018
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
-## <a name="packages"></a>封裝
+## <a name="packages---functions-1x"></a>套件 - Functions 1.x
 
-[Microsoft.Azure.WebJobs.Extensions](http://www.nuget.org/packages/Microsoft.Azure.WebJobs.Extensions) NuGet 套件中提供計時器觸發程序。 套件的原始程式碼位於 [azure-webjobs-sdk-extensions](https://github.com/Azure/azure-webjobs-sdk-extensions/blob/master/src/WebJobs.Extensions/Extensions/Timers/) GitHub 存放庫中。
+[Microsoft.Azure.WebJobs.Extensions](http://www.nuget.org/packages/Microsoft.Azure.WebJobs.Extensions) NuGet 套件 2.x 版中提供計時器觸發程序。 套件的原始程式碼位於 [azure-webjobs-sdk-extensions](https://github.com/Azure/azure-webjobs-sdk-extensions/blob/v2.x/src/WebJobs.Extensions/Extensions/Timers/) GitHub 存放庫中。
+
+[!INCLUDE [functions-package-auto](../../includes/functions-package-auto.md)]
+
+## <a name="packages---functions-2x"></a>套件 - Functions 2.x
+
+[Microsoft.Azure.WebJobs.Extensions](http://www.nuget.org/packages/Microsoft.Azure.WebJobs.Extensions) NuGet 套件 3.x 版中提供計時器觸發程序。 套件的原始程式碼位於 [azure-webjobs-sdk-extensions](https://github.com/Azure/azure-webjobs-sdk-extensions/blob/master/src/WebJobs.Extensions/Extensions/Timers/) GitHub 存放庫中。
 
 [!INCLUDE [functions-package-auto](../../includes/functions-package-auto.md)]
 
@@ -43,6 +50,7 @@ ms.lasthandoff: 03/28/2018
 * [C# 指令碼 (.csx)](#trigger---c-script-example)
 * [F#](#trigger---f-example)
 * [JavaScript](#trigger---javascript-example)
+* [Java](#trigger---java-example)
 
 ### <a name="c-example"></a>C# 範例
 
@@ -144,6 +152,21 @@ module.exports = function (context, myTimer) {
 };
 ```
 
+### <a name="java-example"></a>Java 範例
+
+下列範例函式會每五分鐘觸發並執行。 函式上的 `@TimerTrigger` 註釋會使用與 [CRON 運算式](http://en.wikipedia.org/wiki/Cron#CRON_expression)相同的字串格式來定義排程。
+
+```java
+@FunctionName("keepAlive")
+public void keepAlive(
+  @TimerTrigger(name = "keepAliveTrigger", schedule = "0 *&#47;5 * * * *") String timerInfo,
+      ExecutionContext context
+ ) {
+     // timeInfo is a JSON string, you can deserialize it to an object using your favorite JSON library
+     context.getLogger().info("Timer is triggered: " + timerInfo);
+}
+```
+
 ## <a name="attributes"></a>屬性
 
 在 [C# 類別庫](functions-dotnet-class-library.md)中，使用 [TimerTriggerAttribute](https://github.com/Azure/azure-webjobs-sdk-extensions/blob/master/src/WebJobs.Extensions/Extensions/Timers/TimerTriggerAttribute.cs)。
@@ -171,8 +194,8 @@ public static void Run([TimerTrigger("0 */5 * * * *")]TimerInfo myTimer, TraceWr
 |**type** | n/a | 必須設定為 "timerTrigger"。 當您在 Azure 入口網站中建立觸發程序時，會自動設定此屬性。|
 |**direction** | n/a | 必須設定為 "in"。 當您在 Azure 入口網站中建立觸發程序時，會自動設定此屬性。 |
 |**name** | n/a | 代表函式程式碼中計時器物件的變數名稱。 | 
-|**schedule**|**ScheduleExpression**|[CRON 運算式](#cron-expressions)或 [TimeSpan](#timespan) 值。 `TimeSpan` 只能用於 App Service 方案上執行的函式應用程式。 您可以將排程運算式放在應用程式設定中，並將此屬性設定為以 **%** 符號包裝的應用程式設定名稱，如此範例所示："%NameOfAppSettingWithScheduleExpression%"。 |
-|**runOnStartup**|**RunOnStartup**|如果為 `true`，當執行階段啟動時，會叫用函式。 例如，當函式應用程式因無活動而處於閒置狀態後再甦醒時、 當函式應用程式因函式變更而重新啟動時，以及當函式應用程式相應放大時，執行階段便會啟動。因此 **runOnStartup** 應該幾乎不會設定為 `true`，因為它會使程式碼在極度無法預期的時間執行。 如果您需要觸發計時器排程之外的函式，可以使用不同的觸發程序類型來建立第二個函式，並在兩個函式之間共用程式碼。 例如，若要在部署上觸發，您可以在部署完成時，提出 HTTP 要求來[自訂部署](https://github.com/projectkudu/kudu/wiki/Customizing-deployments)以叫用第二個函式。|
+|**schedule**|**ScheduleExpression**|[CRON 運算式](#cron-expressions)或 [TimeSpan](#timespan) 值。 `TimeSpan` 只能用於 App Service 方案上執行的函式應用程式。 您可以將排程運算式放在應用程式設定中，並將此屬性設定為以 **%** 符號包裝的應用程式設定名稱，如此範例所示："%ScheduleAppSetting%"。 |
+|**runOnStartup**|**RunOnStartup**|如果為 `true`，當執行階段啟動時，會叫用函式。 例如，當函式應用程式因無活動而處於閒置狀態後再甦醒時、 當函式應用程式因函式變更而重新啟動時，以及當函式應用程式相應放大時，執行階段便會啟動。因此 **runOnStartup** 應該幾乎不會設定為 `true`，因為它會使程式碼在極度無法預期的時間執行。|
 |**useMonitor**|**UseMonitor**|設定為 `true` 或 `false` 以表示是否應該監視排程。 排程監視會使排程持續進行，以協助確保即使在函式應用程式執行個體重新啟動時，排程也能正確地持續運作。 如果未明確設定，則循環間隔大於 1 分鐘的排程之預設值為 `true`。 若為每分鐘觸發超過一次的排程，預設值為 `false`。
 
 [!INCLUDE [app settings to local.settings.json](../../includes/functions-app-settings-local.md)]
@@ -198,7 +221,7 @@ public static void Run([TimerTrigger("0 */5 * * * *")]TimerInfo myTimer, TraceWr
 
 ## <a name="cron-expressions"></a>CRON 運算式 
 
-Azure Functions 計時器觸發程序的 CRON 運算式包含六個欄位： 
+Azure Functions 會使用 [NCronTab](https://github.com/atifaziz/NCrontab) \(英文\) 程式庫來解譯 CRON 運算式。 CRON 運算式包含六個欄位：
 
 `{second} {minute} {hour} {day} {month} {day-of-week}`
 
@@ -212,19 +235,26 @@ Azure Functions 計時器觸發程序的 CRON 運算式包含六個欄位：
 |一組值 (`,` 運算子)|<nobr>"5,8,10 * * * * *"</nobr>|於 hh:mm:05、hh:mm:08 和 hh:mm:10，其中 hh: mm 是每小時的每一分鐘 (一分鐘 3 次)|
 |間隔值 (`/` 運算子)|<nobr>"0 */5 * * * *"</nobr>|於 hh:05:00、hh:10:00、hh:15:00 以此類推，直到 hh:55:00，其中 hh 是每小時 (一小時 12 次)|
 
+若要指定月或日，您可以使用數值、名稱，或是名稱的縮寫：
+
+* 針對日，數值必須為 0 到 6，其中 0 為星期日。
+* 名稱必須為英文。 例如：`Monday`, `January`。
+* 名稱不區分大小寫。
+* 名稱可為縮寫。 建議的縮寫長度為三個字母。  例如：`Mon`, `Jan`。 
+
 ### <a name="cron-examples"></a>CRON 範例
 
 以下是您可以在 Azure Functions 中使用於計時器觸發程序的一些 CRON 運算式範例。
 
 |範例|觸發時間  |
 |---------|---------|
-|"0 */5 * * * *"|每隔 5 分鐘一次|
-|"0 0 * * * *"|每小時開始時一次|
-|"0 0 */2 * * *"|每隔 2 小時一次|
-|"0 0 9-17 * * *"|上午 9 點到下午 5 點之間每隔一小時一次|
-|"0 30 9 * * *"|每天上午 9:30|
-|"0 30 9 * * 1-5"|每個工作日上午 9:30|
-
+|`"0 */5 * * * *"`|每隔 5 分鐘一次|
+|`"0 0 * * * *"`|每小時開始時一次|
+|`"0 0 */2 * * *"`|每隔 2 小時一次|
+|`"0 0 9-17 * * *"`|上午 9 點到下午 5 點之間每隔一小時一次|
+|`"0 30 9 * * *"`|每天上午 9:30|
+|`"0 30 9 * * 1-5"`|每個工作日上午 9:30|
+|`"0 30 9 * Jan Mon"`|一月每個星期一上午 9:30|
 >[!NOTE]   
 >您可以在線上找到 CRON 運算式範例，但其中大部分都會省略 `{second}` 欄位。 如果您複製其中一個運算式，請新增遺漏的 `{second}` 欄位。 通常您在該欄位中需要零，而非星號。
 
@@ -237,14 +267,16 @@ CRON 運算式使用的預設時區是國際標準時間 (UTC)。 若要讓 CRON
 例如，*美加東部標準時間*是 UTC-05:00。 若要讓計時器觸發程序在每天上午 10:00 (美加東部標準時間) 觸發，您可以使用說明 UTC 時區的下列 CRON 運算式︰
 
 ```json
-"schedule": "0 0 15 * * *",
+"schedule": "0 0 15 * * *"
 ``` 
 
 或者為名為 `WEBSITE_TIME_ZONE` 的函式應用程式建立應用程式設定，並將值設為**美加東部標準時間**。  然後使用下列 CRON 運算式： 
 
 ```json
-"schedule": "0 0 10 * * *",
+"schedule": "0 0 10 * * *"
 ``` 
+
+當您使用 `WEBSITE_TIME_ZONE` 時，時間會隨特定時區的時間變更 (例如日光節約時間) 而調整。 
 
 ## <a name="timespan"></a>時間範圍
 
@@ -266,11 +298,15 @@ CRON 運算式使用的預設時區是國際標準時間 (UTC)。 若要讓 CRON
 
 ## <a name="function-apps-sharing-storage"></a>共用儲存體的函式應用程式
 
-如果您在多個函式應用程式中共用儲存體帳戶，請確定每個函式應用程式在 host.json 中具有不同的 `id`。 您可以省略 `id` 屬性或將每個函式應用程式的 `id` 手動設定為不同的值。 計時器觸發程序會使用儲存體鎖定，以確保當函式應用程式相應放大至多個執行個體時，只會有一個計時器執行個體。 如果兩個函式應用程式共用相同的 `id`，且每一個都是使用計時器觸發程序，則只有一個計時器會執行。
+如果您在多個函式應用程式中共用儲存體帳戶，請確定每個函式應用程式在 host.json 中具有不同的 `id`。 您可以省略 `id` 屬性或將每個函式應用程式的 `id` 手動設定為不同的值。 計時器觸發程序會使用儲存體鎖定，以確保當函數應用程式相應放大至多個執行個體時，只會有一個計時器執行個體。 如果兩個函式應用程式共用相同的 `id`，且每一個都是使用計時器觸發程序，則只有一個計時器會執行。
 
 ## <a name="retry-behavior"></a>重試行為
 
-不同於佇列觸發程序，計時器觸發程序在函式失敗後並不會重試。 當函式失敗時，需等到排程上的下一次觸發，才會再次呼叫函式。
+不同於佇列觸發程序，計時器觸發程序在函式失敗後並不會重試。 當函式失敗時，必須等到下次排程的時間才會再次呼叫函式。
+
+## <a name="troubleshooting"></a>疑難排解
+
+如需有關當計時器觸發程序未如預期般運作時該怎麼做的資訊，請參閱[調查及報告計時器觸發的函式並未引發的問題](https://github.com/Azure/azure-functions-host/wiki/Investigating-and-reporting-issues-with-timer-triggered-functions-not-firing)。
 
 ## <a name="next-steps"></a>後續步驟
 

@@ -1,22 +1,21 @@
 ---
-title: "使用 Java 和註冊群組將模擬 X.509 裝置佈建至 Azure IoT 中樞 | Microsoft Docs"
-description: "Azure 教學課程 - 使用適用於 IoT 中樞裝置佈建服務的 Java 裝置和服務 SDK 和註冊群組來建立及佈建模擬 X.509 裝置"
-services: iot-dps
-keywords: 
-author: msebolt
-ms.author: v-masebo
+title: 使用 Java 和註冊群組將模擬 X.509 裝置佈建至 Azure IoT 中樞 | Microsoft Docs
+description: Azure 教學課程 - 使用適用於 IoT 中樞裝置佈建服務的 Java 裝置和服務 SDK 和註冊群組來建立及佈建模擬 X.509 裝置
+author: wesmc7777
+ms.author: wesmc
 ms.date: 01/04/2018
 ms.topic: tutorial
 ms.service: iot-dps
-documentationcenter: 
+services: iot-dps
 manager: timlt
 ms.devlang: java
 ms.custom: mvc
-ms.openlocfilehash: 2f1ae92c05e02dffa22fb2c64c6c076a0adfc176
-ms.sourcegitcommit: 782d5955e1bec50a17d9366a8e2bf583559dca9e
+ms.openlocfilehash: 7f51ac0e1137bf09c220c892e2c21b154f2f2433
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/02/2018
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39522640"
 ---
 # <a name="create-and-provision-a-simulated-x509-device-using-java-device-and-service-sdk-and-group-enrollments-for-iot-hub-device-provisioning-service"></a>使用適用於 IoT 中樞裝置佈建服務的 Java 裝置和服務 SDK 以及註冊群組來建立及佈建模擬 X.509 裝置
 
@@ -33,7 +32,7 @@ ms.lasthandoff: 03/02/2018
 
 1. 確定 `git` 已安裝在電腦上，並已新增至命令視窗可存取的環境變數。 請參閱[軟體自由保護協會的 Git 用戶端工具](https://git-scm.com/download/)以取得所要安裝的最新版 `git` 工具，其中包括 **Git Bash** (您可用來與本機 Git 存放庫互動的命令列應用程式)。 
 
-1. 使用下列[憑證概觀](https://github.com/Azure/azure-iot-sdk-c/blob/master/tools/CACertificates/CACertificateOverview.md)建立測試憑證。 如需深入了解如何建立憑證，請參閱[對 CA 簽署的 X.509 憑證進行管理的 PowerShell 指令碼](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-security-x509-create-certificates)。
+1. 使用下列[憑證概觀](https://github.com/Azure/azure-iot-sdk-c/blob/master/tools/CACertificates/CACertificateOverview.md)建立測試憑證。
 
     > [!NOTE]
     > 此步驟需要 [OpenSSL](https://www.openssl.org/)，您可以從來源加以建置並安裝，或從[第三方](https://wiki.openssl.org/index.php/Binaries) (例如[這個](https://sourceforge.net/projects/openssl/)) 加以下載並安裝。 如果您已建立_根_、_中繼_和_裝置_憑證，您可以略過此步驟。

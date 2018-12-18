@@ -1,21 +1,21 @@
 ---
-title: Azure Active Directory B2C：驗證通訊協定 | Microsoft Docs
-description: 如何直接使用 Azure Active Directory B2C 支援的通訊協定來建置應用程式
+title: Azure Active Directory B2C 中的驗證通訊協定 | Microsoft Docs
+description: 如何直接使用 Azure Active Directory B2C 支援的通訊協定來建置應用程式。
 services: active-directory-b2c
-documentationcenter: ''
 author: davidmu1
 manager: mtillman
-editor: ''
-ms.service: active-directory-b2c
+ms.service: active-directory
 ms.workload: identity
-ms.topic: article
+ms.topic: conceptual
 ms.date: 01/07/2017
 ms.author: davidmu
-ms.openlocfilehash: 9159a1ff55ada7f2c3bdcc60a15eae5ddc7e08b2
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: B2C
+ms.openlocfilehash: 6cfa3e0cb23f13b50c0fb7cd4f07a8d53c0f3186
+ms.sourcegitcommit: 0c64460a345c89a6b579b1d7e273435a5ab4157a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43340761"
 ---
 # <a name="azure-ad-b2c-authentication-protocols"></a>Azure AD B2C：驗證通訊協定
 Azure Active Directory B2C (Azure AD B2C) 支援 OpenID Connect 與 OAuth 2.0 兩種業界標準通訊協定，為您的 app 提供身分識別即服務。 這是符合標準的服務，但是這些通訊協定在任兩個實作之間仍會有些微差異。 
@@ -34,8 +34,8 @@ Azure Active Directory B2C (Azure AD B2C) 支援 OpenID Connect 與 OAuth 2.0 �
 註冊您的應用程式之後，它會傳送要求給端點，藉此與 Azure Active Directory (Azure AD) 通訊：
 
 ```
-https://login.microsoftonline.com/{tenant}/oauth2/v2.0/authorize
-https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token
+https://{tenant}.b2clogin.com/{tenant}.onmicrosoft.com/oauth2/v2.0/authorize
+https://{tenant}.b2clogin.com/{tenant}.onmicrosoft.com/oauth2/v2.0/token
 ```
 
 幾乎在所有的 OAuth 和 OpenID Connect 流程中，都包含四個參與交換的合作對象：

@@ -3,34 +3,30 @@ title: 建立與 Azure Logic Apps 整合的函式 | Microsoft Docs
 description: 建立可整合 Azure Logic Apps 和 Azure 認知服務的函數，以將推文情感進行分類，並在偵測到不佳的情感時傳送通知。
 services: functions, logic-apps, cognitive-services
 keywords: 工作流程, 雲端應用程式, 雲端服務, 商務程序, 系統整合, 企業應用程式整合, EAI
-documentationcenter: ''
 author: ggailey777
-manager: cfowler
-editor: ''
+manager: jeconnoc
 ms.assetid: 60495cc5-1638-4bf0-8174-52786d227734
-ms.service: functions
-ms.workload: na
-ms.tgt_pltfrm: na
-ms.devlang: na
+ms.service: azure-functions
 ms.topic: tutorial
-ms.date: 12/12/2017
+ms.date: 09/24/2018
 ms.author: glenga
 ms.custom: mvc, cc996988-fb4f-47
-ms.openlocfilehash: 16a46b4c49687186e25c399dcc2c5c168e7c5004
-ms.sourcegitcommit: 34e0b4a7427f9d2a74164a18c3063c8be967b194
+ms.openlocfilehash: 0b2e0ff800ab80a2c638293ce23fc1911390f2dd
+ms.sourcegitcommit: ad08b2db50d63c8f550575d2e7bb9a0852efb12f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/30/2018
+ms.lasthandoff: 09/26/2018
+ms.locfileid: "47221107"
 ---
 # <a name="create-a-function-that-integrates-with-azure-logic-apps"></a>建立與 Azure Logic Apps 整合的函式
 
-Azure Functions 與 Logic Apps 設計工具中的 Azure Logic Apps 進行整合。 這項整合可讓您搭配其他 Azure 和第三方服務，使用協調流程中的 Functions 計算能力。 
+Azure Functions 與 Logic Apps 設計工具中的 Azure Logic Apps 進行整合。 這個整合可讓您搭配其他 Azure 和第三方服務，使用協調流程中的 Functions 計算能力。 
 
-本教學課程說明如何使用 Functions 搭配 Logic Apps 和 Azure 上的 Microsoft 認知服務，分析來自 Twitter 貼文的情感。 HTTP 觸發函式會以情感分數作為基礎，將推文分類為綠色、黃色或紅色。 偵測到不佳的情感時，會傳送一封電子郵件。 
+此教學課程說明如何使用 Functions 搭配 Logic Apps 和 Azure 上的 Microsoft 認知服務，分析來自 Twitter 貼文的情感。 HTTP 觸發函式會以情感分數作為基礎，將推文分類為綠色、黃色或紅色。 偵測到不佳的情感時，會傳送一封電子郵件。 
 
 ![此映像顯示邏輯應用程式設計工具中應用程式的前兩個步驟](media/functions-twitter-email/designer1.png)
 
-在本教學課程中，您了解如何：
+在此教學課程中，您了解如何：
 
 > [!div class="checklist"]
 > * 建立認知服務 API 資源。
@@ -44,7 +40,7 @@ Azure Functions 與 Logic Apps 設計工具中的 Azure Logic Apps 進行整合�
 
 + 使用中的 [Twitter](https://twitter.com/) 帳戶。 
 + [Outlook.com](https://outlook.com/) 帳戶 (用於傳送通知)。
-+ 本主題使用[從 Azure 入口網站建立您的第一個函式](functions-create-first-azure-function.md)中所建立的資源作為起點。  
++ 此主題使用[從 Azure 入口網站建立您的第一個函式](functions-create-first-azure-function.md)中所建立的資源作為起點。  
 如果您尚未這麼做，請立即完成這些步驟，才能建立函式應用程式。
 
 ## <a name="create-a-cognitive-services-resource"></a>建立認知服務資源
@@ -64,7 +60,7 @@ Azure Functions 與 Logic Apps 設計工具中的 Azure Logic Apps 進行整合�
     | **名稱** | MyCognitiveServicesAccnt | 請選擇唯一的帳戶名稱。 |
     | **位置** | 美國西部 | 使用距離您最近的位置。 |
     | **定價層** | F0 | 從最低層開始。 如果您用完呼叫，請調整為較高層。|
-    | **資源群組** | myResourceGroup | 本教學課程中所有的服務，都是使用相同的資源群組。|
+    | **資源群組** | myResourceGroup | 此教學課程中所有的服務，都是使用相同的資源群組。|
 
 4. 按一下 [建立] 以建立資源。 建立之後，請選取釘選到儀表板的新認知服務資源。 
 
@@ -74,7 +70,7 @@ Azure Functions 與 Logic Apps 設計工具中的 Azure Logic Apps 進行整合�
 
 ## <a name="create-the-function-app"></a>建立函式應用程式
 
-Functions 提供的絕佳方法，可讓您將 Logic Apps 工作流程中的處理工作進行卸載。 本教學課程會使用 HTTP 觸發函式來處理認知服務的推文情感分數，並將類別值傳回。  
+Functions 提供的絕佳方法，可讓您將 Logic Apps 工作流程中的處理工作進行卸載。 此教學課程會使用 HTTP 觸發函式來處理認知服務的推文情感分數，並將類別值傳回。  
 
 [!INCLUDE [Create function app Azure portal](../../includes/functions-create-function-app-portal.md)]
 
@@ -88,6 +84,8 @@ Functions 提供的絕佳方法，可讓您將 Logic Apps 工作流程中的處�
 
     ![選擇 HTTP 觸發程序](./media/functions-twitter-email/select-http-trigger-portal.png)
 
+    新增到函數應用程式的所有後續函式都使用 C# 語言範本。
+
 3. 輸入您函式的 [名稱] ，針對 [[驗證等級](functions-bindings-http-webhook.md#http-auth)] 選擇 `Function`，然後選取 [建立]。 
 
     ![建立由 HTTP 觸發的函式](./media/functions-twitter-email/select-http-trigger-portal-2.png)
@@ -97,28 +95,35 @@ Functions 提供的絕佳方法，可讓您將 Logic Apps 工作流程中的處�
 4. 使用下列程式碼取代 `run.csx` 檔案的內容，然後按一下 [儲存]：
 
     ```csharp
-    using System.Net;
+    #r "Newtonsoft.Json"
     
-    public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceWriter log)
+    using System;
+    using System.Net;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Primitives;
+    using Newtonsoft.Json;
+    
+    public static async Task<IActionResult> Run(HttpRequest req, ILogger log)
     {
-        // The sentiment category defaults to 'GREEN'. 
         string category = "GREEN";
     
-        // Get the sentiment score from the request body.
-        double score = await req.Content.ReadAsAsync<double>();
-        log.Info(string.Format("The sentiment score received is '{0}'.",
-                    score.ToString()));
+        string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+        log.LogInformation(string.Format("The sentiment score received is '{0}'.", requestBody));
     
-        // Set the category based on the sentiment score.
-        if (score < .3)
+        double score = Convert.ToDouble(requestBody);
+    
+        if(score < .3)
         {
             category = "RED";
         }
-        else if (score < .6)
+        else if (score < .6) 
         {
             category = "YELLOW";
         }
-        return req.CreateResponse(HttpStatusCode.OK, category);
+    
+        return requestBody != null
+            ? (ActionResult)new OkObjectResult(category)
+            : new BadRequestObjectResult("Please pass a value on the query string or in the request body");
     }
     ```
     此函式程式碼會以要求中所收到的情感分數作為基礎，將色彩類別傳回。 
@@ -207,7 +212,7 @@ Functions 提供的絕佳方法，可讓您將 Logic Apps 工作流程中的處�
 
 ## <a name="add-email-notifications"></a>新增電子郵件通知
 
-工作流程的最後一個部分，是當情感計分為_紅色_時，要將電子郵件觸發。 本主題是使用 Outlook.com 連接器。 您可以執行類似的步驟，來使用 Gmail 或 Office 365 Outlook 連接器。   
+工作流程的最後一個部分，是當情感計分為_紅色_時，要將電子郵件觸發。 此主題是使用 Outlook.com 連接器。 您可以執行類似的步驟，來使用 Gmail 或 Office 365 Outlook 連接器。   
 
 1. 在 Logic Apps 設計工具中，按一下 [新增步驟] > [新增條件]。 
 
@@ -259,7 +264,7 @@ Functions 提供的絕佳方法，可讓您將 Logic Apps 工作流程中的處�
         return req.CreateResponse(HttpStatusCode.OK, category);
 
     > [!IMPORTANT]
-    > 完成本教學課程之後，您應停用邏輯應用程式。 您可以透過停用應用程式，在執行及用完認知服務 API 中的交易時可避免支付費用。
+    > 完成此教學課程之後，您應停用邏輯應用程式。 您可以透過停用應用程式，在執行及用完認知服務 API 中的交易時可避免支付費用。
 
 現在您已經知道要將 Functions 整合至 Logic Apps 工作流程有多麼輕鬆。
 
@@ -271,7 +276,7 @@ Functions 提供的絕佳方法，可讓您將 Logic Apps 工作流程中的處�
 
 ## <a name="next-steps"></a>後續步驟
 
-在本教學課程中，您已了解如何：
+在此教學課程中，您已了解如何：
 
 > [!div class="checklist"]
 > * 建立認知服務 API 資源。

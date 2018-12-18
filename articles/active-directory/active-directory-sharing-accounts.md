@@ -1,26 +1,25 @@
 ---
-title: "使用 Azure AD 共用帳戶 | Microsoft Docs"
-description: "描述 Azure Active Directory 如何讓組織安全地共用內部部署應用程式和取用者雲端服務的帳戶。"
+title: 使用 Azure AD 共用帳戶 | Microsoft Docs
+description: 描述 Azure Active Directory 如何讓組織安全地共用內部部署應用程式和取用者雲端服務的帳戶。
 services: active-directory
-documentationcenter: 
+documentationcenter: ''
 author: curtand
 manager: mtillman
-editor: 
-ms.assetid: e2d77104-d978-46a3-bfea-03ffdf3b61e6
+editor: ''
 ms.service: active-directory
 ms.workload: identity
-ms.tgt_pltfrm: na
-ms.devlang: na
+ms.component: users-groups-roles
 ms.topic: article
-ms.date: 11/13/2017
+ms.date: 09/11/2018
 ms.author: curtand
 ms.reviewer: jeffsta
 ms.custom: it-pro
-ms.openlocfilehash: 3b6a83d91ec5d8466669655d6c3bd7ae7b42dd2f
-ms.sourcegitcommit: e266df9f97d04acfc4a843770fadfd8edf4fa2b7
+ms.openlocfilehash: 163972329161f90ad364b25e7e60e9e5a04324d5
+ms.sourcegitcommit: c29d7ef9065f960c3079660b139dd6a8348576ce
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/11/2017
+ms.lasthandoff: 09/12/2018
+ms.locfileid: "44719999"
 ---
 # <a name="sharing-accounts-with-azure-ad"></a>使用 Azure AD 共用帳戶
 ## <a name="overview"></a>概觀
@@ -48,31 +47,31 @@ Azure AD 提供使用共用帳戶的新方法，可以消除這些缺點。
 
 共用帳戶不只增加監督的方便性和改善可用性，也可增強安全性。 具有認證使用權限的使用者看不到共用密碼，而是會在協調的驗證流程當中取得密碼的使用權限。 此外，某些密碼 SSO 應用程式可讓您選擇使用 Azure AD 以定期換用 (更新) 密碼。 系統會使用大型、複雜的密碼，以提高帳戶安全性。 管理員可以輕易地授與或撤銷應用程式的存取權，知道誰有權存取帳戶以及誰曾經存取帳戶。
 
-Azure AD 支援的共用帳戶適用於任何 Enterprise Mobility Suite (EMS)、進階或基本型的授權使用者，含括所有類型的密碼單一登入應用程式。 您可以共用應用程式庫中數千個預先整合的應用程式的帳戶，並可加入含有 [自訂 SSO 應用程式](active-directory-enterprise-apps-manage-sso.md)的密碼驗證應用程式。
+Azure AD 支援的共用帳戶適用於任何 Enterprise Mobility Suite (EMS)、進階或基本型的授權使用者，含括所有類型的密碼單一登入應用程式。 您可以共用應用程式庫中數千個預先整合的應用程式的帳戶，並可加入含有 [自訂 SSO 應用程式](manage-apps/configure-single-sign-on-portal.md)的密碼驗證應用程式。
 
 啟用帳戶共用的 Azure AD 功能包括：
 
-* [密碼單一登入](active-directory-appssoaccess-whatis.md#password-based-single-sign-on)
+* [密碼單一登入](manage-apps/what-is-single-sign-on.md#password-based-single-sign-on)
 * 密碼單一登入代理程式
-* [群組指派](active-directory-accessmanagement-self-service-group-management.md)
+* [群組指派](users-groups-roles/groups-self-service-management.md)
 * 自訂密碼應用程式
 * [應用程式使用方式儀表板/報告](active-directory-passwords-get-insights.md)
 * 使用者存取入口網站
-* [應用程式 proxy](active-directory-application-proxy-get-started.md)
+* [應用程式 proxy](manage-apps/application-proxy.md)
 * [Active Directory 市集](https://azure.microsoft.com/marketplace/active-directory/all/)
 
 ## <a name="sharing-an-account"></a>共用帳戶
 若要使用 Azure AD 來共用帳戶，您必須：
 
-* 新增應用程式[應用程式庫](https://azure.microsoft.com/marketplace/active-directory/)或[自訂應用程式](http://blogs.technet.com/b/ad/archive/2015/06/17/bring-your-own-app-with-azure-ad-self-service-saml-configuration-gt-now-in-preview.aspx)
+* 新增應用程式[應用程式庫](https://azure.microsoft.com/marketplace/active-directory/)或[自訂應用程式](https://cloudblogs.microsoft.com/enterprisemobility/2015/06/17/bring-your-own-app-with-azure-ad-self-service-saml-configuration-now-in-preview/)
 * 設定應用程式使用密碼單一登入 (SSO)
-* 使用[以群組為基礎的指派](active-directory-accessmanagement-group-saasapps.md)，並選取輸入共用認證的選項
-* 選擇性：在某些應用程式 (例如 Facebook、Twitter 或 LinkedIn) 中，您可以啟用 [Azure AD 自動變換密碼](http://blogs.technet.com/b/ad/archive/2015/02/20/azure-ad-automated-password-roll-over-for-facebook-twitter-and-linkedin-now-in-preview.aspx)
+* 使用[以群組為基礎的指派](users-groups-roles/groups-saasapps.md)，並選取輸入共用認證的選項
+* 選擇性：在某些應用程式 (例如 Facebook、Twitter 或 LinkedIn) 中，您可以啟用 [Azure AD 自動變換密碼](https://cloudblogs.microsoft.com/enterprisemobility/2015/02/20/azure-ad-automated-password-roll-over-for-facebook-twitter-and-linkedin-now-in-preview/)
 
-使用 Azure AD，可以透過 Multi-Factor Authentication (MFA) 讓您的共用帳戶更安全 (深入了解[使用 Azure AD 保護應用程式](../multi-factor-authentication/multi-factor-authentication-get-started.md))，並可使用 [Azure AD 自助式](active-directory-accessmanagement-self-service-group-management.md)群組管理來委派管理誰有權存取應用程式。
+使用 Azure AD，可以透過 Multi-Factor Authentication (MFA) 讓您的共用帳戶更安全 (深入了解[使用 Azure AD 保護應用程式](authentication/concept-mfa-whichversion.md))，並可使用 [Azure AD 自助式](users-groups-roles/groups-self-service-management.md)群組管理來委派管理誰有權存取應用程式。
 
 ## <a name="related-articles"></a>相關文章
-* [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
+* [Azure Active Directory 中的應用程式管理](manage-apps/what-is-application-management.md)
 * [使用條件式存取來保護應用程式](active-directory-conditional-access-azure-portal.md)
-* [自助式群組管理/SSAA](active-directory-accessmanagement-self-service-group-management.md)
+* [自助式群組管理/SSAA](users-groups-roles/groups-self-service-management.md)
 

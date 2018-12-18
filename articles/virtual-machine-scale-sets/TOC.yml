@@ -1,0 +1,273 @@
+items:
+- name: 虛擬機器擴展集文件
+  href: index.yml
+- name: 概觀
+  items:
+  - name: 什麼是虛擬機器擴展集？
+    href: overview.md
+- name: 快速入門
+  items:
+  - name: 在 Azure 入口網站中建立
+    href: quick-create-portal.md
+  - name: 使用 Azure CLI 2.0 建立
+    href: quick-create-cli.md
+  - name: 使用 Azure PowerShell 建立
+    href: quick-create-powershell.md
+  - name: 使用範本建立
+    items:
+    - name: Linux 擴展集
+      href: quick-create-template-linux.md
+    - name: Windows 擴展集
+      href: quick-create-template-windows.md
+  expanded: true
+- name: 教學課程
+  items:
+  - name: 1 - 建立/管理擴展集
+    items:
+    - name: Azure CLI 2.0
+      href: tutorial-create-and-manage-cli.md
+    - name: Azure PowerShell
+      href: tutorial-create-and-manage-powershell.md
+  - name: 2 - 使用資料磁碟
+    items:
+    - name: Azure CLI 2.0
+      href: tutorial-use-disks-cli.md
+    - name: Azure PowerShell
+      href: tutorial-use-disks-powershell.md
+  - name: 3 - 使用自訂的 VM 映像
+    items:
+    - name: Azure CLI 2.0
+      href: tutorial-use-custom-image-cli.md
+    - name: Azure PowerShell
+      href: tutorial-use-custom-image-powershell.md
+  - name: 4 - 將應用程式部署到擴展集
+    items:
+    - name: Azure CLI 2.0
+      href: tutorial-install-apps-cli.md
+    - name: Azure PowerShell
+      href: tutorial-install-apps-powershell.md
+    - name: 範本
+      href: tutorial-install-apps-template.md
+  - name: 5 - 自動調整擴展集
+    items:
+    - name: Azure CLI 2.0
+      href: tutorial-autoscale-cli.md
+    - name: Azure PowerShell
+      href: tutorial-autoscale-powershell.md
+    - name: 範本
+      href: tutorial-autoscale-template.md
+- name: 範例
+  items:
+  - name: Azure CLI 2.0
+    href: cli-samples.md
+  - name: PowerShell
+    href: powershell-samples.md
+- name: 概念
+  items:
+  - name: Azure Resource Manager
+    href: ../azure-resource-manager/resource-group-overview.md
+    maintainContext: true
+  - name: 區域和可用性
+    href: ../virtual-machines/windows/regions-and-availability.md
+    maintainContext: true
+  - name: VM 類型和大小
+    href: ../virtual-machines/windows/sizes.md
+    items:
+    - name: 一般用途
+      href: ../virtual-machines/windows/sizes-general.md
+      items:
+      - name: B 系列 Burstable
+        href: ../virtual-machines/windows/b-series-burstable.md
+        maintainContext: true
+      maintainContext: true
+    - name: 計算最佳化
+      href: ../virtual-machines/windows/sizes-compute.md
+      maintainContext: true
+    - name: 記憶體最佳化
+      href: ../virtual-machines/windows/sizes-memory.md
+      items:
+      - name: 限制 vCPU
+        href: ../virtual-machines/windows/constrained-vcpu.md
+        maintainContext: true
+      maintainContext: true
+    - name: 儲存體最佳化
+      href: ../virtual-machines/windows/sizes-storage.md
+      maintainContext: true
+    - name: GPU 最佳化
+      href: ../virtual-machines/windows/sizes-gpu.md
+      items:
+      - name: 設定 GPU 驅動程式
+        href: ../virtual-machines/windows/n-series-driver-setup.md
+        maintainContext: true
+      maintainContext: true
+    - name: 高效能計算
+      href: ../virtual-machines/windows/sizes-hpc.md
+      maintainContext: true
+    - name: Azure 計算單位 (ACU)
+      href: ../virtual-machines/windows/acu.md
+      maintainContext: true
+    - name: 基準測試分數
+      href: ../virtual-machines/windows/compute-benchmark-scores.md
+      maintainContext: true
+    maintainContext: true
+  - name: 經過背書的 Linux 散發版本
+    href: ../virtual-machines/linux/endorsed-distros.md
+    maintainContext: true
+  - name: 維護和更新
+    href: ../virtual-machines/windows/maintenance-and-updates.md
+    maintainContext: true
+  - name: 磁碟儲存體
+    href: ../virtual-machines/windows/about-disks-and-vhds.md
+    items:
+    - name: 受控磁碟
+      href: ../virtual-machines/windows/managed-disks-overview.md
+      maintainContext: true
+    - name: 進階儲存體
+      href: ../virtual-machines/windows/premium-storage.md
+      maintainContext: true
+    - name: 進階儲存體效能
+      href: ../virtual-machines/windows/premium-storage-performance.md
+      maintainContext: true
+    - name: 標準儲存體
+      href: ../virtual-machines/windows/standard-storage.md
+      maintainContext: true
+    - name: 磁碟適用的延展性目標
+      href: ../virtual-machines/windows/disk-scalability-targets.md
+      maintainContext: true
+    - name: 磁碟備份和災害復原
+      href: ../virtual-machines/windows/backup-and-disaster-recovery-for-azure-iaas-disks.md
+      maintainContext: true
+    maintainContext: true
+  - name: 網路功能
+    href: ../virtual-machines/windows/network-overview.md
+    maintainContext: true
+  - name: 基礎結構自動化
+    href: ../virtual-machines/windows/infrastructure-automation.md
+    maintainContext: true
+  - name: 安全性與原則
+    href: ../virtual-machines/windows/security-policy.md
+    maintainContext: true
+  - name: 監視
+    href: ../virtual-machines/windows/monitor.md
+    maintainContext: true
+  - name: 高效能運算
+    href: ../virtual-machines/windows/high-performance-computing.md
+    maintainContext: true
+  - name: 部署考量
+    items:
+    - name: vCPU 配額
+      href: ../virtual-machines/windows/quotas.md
+      maintainContext: true
+- name: 作法
+  items:
+  - name: 規劃和設計
+    items:
+    - name: 設計考量
+      href: virtual-machine-scale-sets-design-overview.md
+    - name: 了解執行個體識別碼
+      href: virtual-machine-scale-sets-instance-ids.md
+  - name: 建立範本
+    items:
+    - name: 了解擴展集範本
+      href: virtual-machine-scale-sets-mvss-start.md
+    - name: 使用現有的虛擬網路
+      href: virtual-machine-scale-sets-mvss-existing-vnet.md
+    - name: 使用自訂映像
+      href: virtual-machine-scale-sets-mvss-custom-image.md
+    - name: 使用來賓型自動調整搭配 Linux 擴展集範本
+      href: virtual-machine-scale-sets-mvss-guest-based-autoscale-linux.md
+  - name: 部署
+    items:
+    - name: Ansible
+      items:
+      - name: 建立和管理擴展集
+        href: /azure/ansible/ansible-create-configure-vmss
+        maintainContext: true
+      - name: 將應用程式部署到擴展集
+        href: /azure/ansible/ansible-deploy-app-vmss
+        maintainContext: true
+    - name: 使用 Visual Studio 建立
+      href: virtual-machine-scale-sets-vs-create.md
+    - name: 使用可用性區域
+      href: virtual-machine-scale-sets-use-availability-zones.md
+    - name: 自動調整擴展集
+      href: virtual-machine-scale-sets-autoscale-overview.md
+      items:
+      - name: 使用 Azure 入口網站
+        href: virtual-machine-scale-sets-autoscale-portal.md
+      - name: 進階自動調整
+        href: ../monitoring-and-diagnostics/insights-advanced-autoscale-virtual-machine-scale-sets.md
+    - name: 應用程式擴展集
+      href: virtual-machine-scale-sets-deploy-app.md
+    - name: 使用資料磁碟搭配擴展集
+      href: virtual-machine-scale-sets-attached-disks.md
+    - name: 在擴展集中加密磁碟
+      items:
+      - name: 使用 PowerShell
+        href: virtual-machine-scale-sets-encrypt-disks-ps.md
+      - name: 使用 Azure CLI 2.0
+        href: virtual-machine-scale-sets-encrypt-disks-cli.md
+    - name: 使用大型擴展集
+      href: virtual-machine-scale-sets-placement-groups.md
+    - name: 將擴展集範本轉換為使用受控磁碟
+      href: virtual-machine-scale-sets-convert-template-to-md.md
+    - name: 使用低優先順序
+      href: virtual-machine-scale-sets-use-low-priority.md
+  - name: 管理
+    items:
+    - name: 一般管理工作
+      items:
+      - name: 使用 Azure CLI 2.0
+        href: virtual-machine-scale-sets-manage-cli.md
+      - name: 使用 Azure PowerShell
+        href: virtual-machine-scale-sets-manage-powershell.md
+    - name: 擴展集內的垂直縮放比例
+      href: virtual-machine-scale-sets-vertical-scale-reprovision.md
+    - name: 作業系統自動升級
+      href: virtual-machine-scale-sets-automatic-upgrade.md
+    - name: 修改擴展集
+      href: virtual-machine-scale-sets-upgrade-scale-set.md
+    - name: 使用 DSC 與擴展集
+      href: virtual-machine-scale-sets-dsc.md
+    - name: 擴展集的網路功能
+      href: virtual-machine-scale-sets-networking.md
+    - name: 將範本轉換為受控磁碟
+      href: virtual-machine-scale-sets-convert-template-to-md.md
+    - name: 預定的維修
+      href: virtual-machine-scale-sets-maintenance-notifications.md
+  - name: 疑難排解
+    items:
+    - name: Autoscale
+      href: virtual-machine-scale-sets-troubleshoot.md
+  - name: 常見問題集
+    items:
+    - name: 擴展集常見問題
+      href: virtual-machine-scale-sets-faq.md
+- name: 參考
+  items:
+  - name: Azure PowerShell
+    href: /powershell/azure/overview
+  - name: Azure CLI
+    href: ../virtual-machines/azure-cli-arm-commands.md
+  - name: REST
+    href: /rest/api/virtualmachinescalesets/
+- name: 資源
+  items:
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/?category=compute
+  - name: 價格
+    items:
+    - name: Linux
+      href: https://azure.microsoft.com/pricing/details/virtual-machine-scale-sets/linux/
+    - name: Windows
+      href: https://azure.microsoft.com/pricing/details/virtual-machine-scale-sets/windows/
+  - name: 定價計算機
+    href: https://azure.microsoft.com/pricing/calculator/
+  - name: 堆疊溢位
+    href: http://stackoverflow.com/questions/tagged/azure-vm-scale-set
+ms.openlocfilehash: 4700df5aa7d3f0a253ef66cd612187f2d187aa11
+ms.sourcegitcommit: c29d7ef9065f960c3079660b139dd6a8348576ce
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/12/2018
+ms.locfileid: "44714321"

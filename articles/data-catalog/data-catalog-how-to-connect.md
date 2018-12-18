@@ -1,30 +1,23 @@
 ---
-title: "如何連接到資料來源 | Microsoft Docs"
-description: "操作說明文章著重在說明如何連接到使用 Azure 資料目錄找到的資料來源。"
+title: 如何連線到 Azure 資料目錄中的資料來源
+description: 操作說明文章著重在說明如何連接到使用 Azure 資料目錄找到的資料來源。
 services: data-catalog
-documentationcenter: 
-author: steelanddata
-manager: NA
-editor: 
-tags: 
+author: markingmyname
+ms.author: maghan
 ms.assetid: 4e6b27a5-cf75-4012-b88c-333c1fe638e8
 ms.service: data-catalog
-ms.devlang: NA
-ms.topic: article
-ms.tgt_pltfrm: NA
-ms.workload: data-catalog
+ms.topic: conceptual
 ms.date: 01/18/2018
-ms.author: maroche
-ms.openlocfilehash: b5bed534d9fa1a64b0e90c268407281724185ce8
-ms.sourcegitcommit: be9a42d7b321304d9a33786ed8e2b9b972a5977e
+ms.openlocfilehash: 973077b56f1a777d917a94f9c1470e6f8c15a489
+ms.sourcegitcommit: b7e5bbbabc21df9fe93b4c18cc825920a0ab6fab
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/19/2018
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47405049"
 ---
 # <a name="how-to-connect-to-data-sources"></a>如何連接到資料來源
 ## <a name="introduction"></a>簡介
-
-            **Microsoft Azure 資料目錄** 是完全受控的雲端服務，可作為企業資料來源的註冊系統和探索系統。 換句話說，[Azure 資料目錄]  的重點在於協助人們探索、了解，以及使用資料來源，並可協助組織從現有的資料獲得更多價值。 這個背景的重點就在於使用資料，也就是使用者探索資料來源並了解其用途，然後連接到資料來源將使用其資料。
+**Microsoft Azure 資料目錄** 是完全受控的雲端服務，可作為企業資料來源的註冊系統和探索系統。 換句話說，[Azure 資料目錄]  的重點在於協助人們探索、了解，以及使用資料來源，並可協助組織從現有的資料獲得更多價值。 這個背景的重點就在於使用資料，也就是使用者探索資料來源並了解其用途，然後連接到資料來源將使用其資料。
 
 ## <a name="data-source-locations"></a>資料來源位置
 資料來源在註冊期間， **Azure 資料目錄** 會收到有關資料來源的中繼資料。 此中繼資料包含資料來源位置的詳細資料。 位置的詳細資料會因資料來源而異，但永遠會包含連接所需的資訊。 例如，SQL Server 資料表的位置包含伺服器名稱、資料庫名稱、結構描述名稱和資料表名稱，而 SQL Server Reporting Services 報表的位置包含伺服器名稱和報表的路徑。 其他資料來源類型的位置，則會反映結構與來源系統的功能。
@@ -49,7 +42,7 @@ ms.lasthandoff: 01/19/2018
 | Power Query |.xlsx |安裝了 Power Query for Excel 增益集的 Excel 2016、Excel 2010 或 Excel 2013 |
 | Power BI Desktop |.pbix |Power BI Desktop 2016 年 7 月或更新版本 |
 | SQL Server Data Tools |vsweb:// |安裝了 SQL Server 工具的 Visual Studio 2013 Update 4 或更新版本 |
-| 報表管理員 |http:// |請參閱 [SQL Server Reporting Services 的瀏覽器需求](https://technet.microsoft.com/en-us/library/ms156511.aspx) |
+| 報表管理員 |http:// |請參閱 [SQL Server Reporting Services 的瀏覽器需求](https://technet.microsoft.com/library/ms156511.aspx) |
 
 ## <a name="your-data-your-tools"></a>您的資料與工具
 功能表中可用的選項取決於目前選取的資料資產的類型。 當然，並非所有可能的工具都將包含於 [開啟於...] 功能表中，但仍能使用任何用戶端工具輕鬆連接至資料來源。 在 **Azure 資料目錄**入口網站中選取資料資產時，完整的位置會顯示於屬性窗格中。

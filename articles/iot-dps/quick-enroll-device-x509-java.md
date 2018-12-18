@@ -1,61 +1,56 @@
 ---
-title: "使用 Java 向 Azure 裝置佈建服務註冊 X.509 裝置 | Microsoft Docs"
-description: "Azure 快速入門 - 使用 Java 服務 SDK 向 Azure IoT 中樞裝置佈建服務註冊 X.509 裝置"
-services: iot-dps
-keywords: 
-author: dsk-2015
-ms.author: dkshir
+title: 本快速入門說明如何使用 Java 向 Azure 裝置佈建服務註冊 X.509 裝置 | Microsoft Docs
+description: 在本快速入門中，您會使用 Java 向 Azure IoT 中樞裝置佈建服務註冊 X.509 裝置
+author: wesmc7777
+ms.author: wesmc
 ms.date: 12/20/2017
-ms.topic: hero-article
+ms.topic: quickstart
 ms.service: iot-dps
-documentationcenter: 
+services: iot-dps
 manager: timlt
-ms.devlang: na
+ms.devlang: java
 ms.custom: mvc
-ms.openlocfilehash: b1d21278c821c4501c121266823e153490a50df5
-ms.sourcegitcommit: 059dae3d8a0e716adc95ad2296843a45745a415d
+ms.openlocfilehash: 505aee35c839a0224ca158d918fc5e54dc6e0f28
+ms.sourcegitcommit: 30221e77dd199ffe0f2e86f6e762df5a32cdbe5f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 07/23/2018
+ms.locfileid: "39205760"
 ---
-# <a name="enroll-x509-devices-to-iot-hub-device-provisioning-service-using-java-service-sdk"></a>使用 Java 服務 SDK 向 IoT 中樞裝置佈建服務註冊 X.509 裝置
+# <a name="quickstart-enroll-x509-devices-to-the-device-provisioning-service-using-java"></a>快速入門：使用 Java 向裝置佈建服務註冊 X.509 裝置
 
 [!INCLUDE [iot-dps-selector-quick-enroll-device-x509](../../includes/iot-dps-selector-quick-enroll-device-x509.md)]
 
-這些步驟顯示如何使用 [Java 服務 SDK](https://azure.github.io/azure-iot-sdk-java/service/) 與範例 Java 應用程式的協助，以程式設計方式向 Azure IoT 中樞裝置佈建服務註冊 X.509 模擬裝置的群組。 雖然 Java 服務 SDK 在 Windows 和 Linux 電腦上都適用，本文會使用 Windows 開發電腦來逐步引導進行註冊程序。
+本快速入門說明如何使用 Java 以程式設計方式向 Azure IoT 中樞裝置佈建服務註冊 X.509 模擬裝置的群組。 藉由建立[註冊群組](concepts-service.md#enrollment-group)或[個別註冊](concepts-service.md#individual-enrollment)，可將裝置註冊到佈建服務執行個體。 本快速入門說明如何建立這兩種類型的註冊。 註冊可使用 [Java 服務 SDK](https://azure.github.io/azure-iot-sdk-java/service/) 並輔以範例 Java 應用程式來建立。 
 
-繼續之前，請務必[使用 Azure 入口網站設定 IoT 中樞裝置佈建服務](./quick-setup-auto-provision.md)。
+本快速入門預期您已建立 IoT 中樞和裝置佈建服務執行個體。 如果您尚未建立這些資源，請先完成[使用 Azure 入口網站設定 IoT 中樞裝置佈建服務](./quick-setup-auto-provision.md)快速入門，再繼續閱讀本文。
 
-<a id="setupdevbox"></a>
+雖然 Java 服務 SDK 在 Windows 和 Linux 電腦上都適用，本文會使用 Windows 開發電腦來逐步引導進行註冊程序。
 
-## <a name="prepare-the-development-environment"></a>準備開發環境 
+[!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
-1. 請確定您已在電腦上安裝 [Java SE 開發套件 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)。 
+## <a name="prerequisites"></a>必要條件
 
-2. 設定您 Java 安裝的環境變數。 `PATH` 變數應該包含 jdk1.8.x\bin 目錄的完整路徑。 如果這是您第一次在電腦上安裝 Java，請建立名為 `JAVA_HOME` 的新環境變數，並加以指向 jdk1.8.x 目錄的完整路徑。 在 Windows 電腦上，此目錄通常是位於 C:\\Program Files\\Java\\ 資料夾，您可以在 Windows 電腦的 [控制台] 上搜尋 [編輯系統環境變數] 來建立或編輯環境變數。 
+* 安裝 [Java SE 開發套件 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)。
+* 安裝 [Maven 3](https://maven.apache.org/download.cgi)。 您可以執行下列作業，以確認您目前的 Maven 版本：
 
-  您可以在命令視窗中執行下列命令，查看 Java 是否在您的電腦上成功設定：
-
-    ```cmd\sh
-    java -version
-    ```
-
-3. 下載並擷取您電腦上的 [Maven 3](https://maven.apache.org/download.cgi)。 
-
-4. 編輯環境變數 `PATH`，在擷取 Maven 的資料夾內，指向 apache-maven-3.x.x\\bin 資料夾。 您可以在命令視窗中執行此命令，來確認 Maven 已成功安裝：
-
-    ```cmd\sh
+    ```cmd/sh
     mvn --version
     ```
 
-5. 確定 [git](https://git-scm.com/download/) 已安裝在電腦上，並已新增至環境變數 `PATH`。 
+* 安裝 [Git](https://git-scm.com/download/)。
 
 
 <a id="javasample"></a>
 
 ## <a name="download-and-modify-the-java-sample-code"></a>下載並修改 Java 範例程式碼
 
-本節說明如何將 X.509 裝置的佈建詳細資料新增至範例程式碼。 
+本節使用自我簽署 X.509 憑證，請務必留意下列事項：
+
+* 自我簽署憑證僅適用於測試，不應該用於生產環境。
+* 自我簽署憑證的預設到期日為一年。
+
+下列步驟說明如何將 X.509 裝置的佈建詳細資料新增至範例程式碼。 
 
 1. 開啟命令提示字元。 使用 Java 服務 SDK 來複製裝置註冊程式碼範例的 GitHub 存放庫：
     
@@ -114,7 +109,7 @@ ms.lasthandoff: 02/09/2018
                         "-----END CERTIFICATE-----\n";
                 ```
 
-        9. 關閉命令視窗，或在出現提示要求驗證碼時，輸入 **n**。 
+        9. 關閉命令視窗，或在出現提示要求「驗證碼」時，輸入 **n**。 
  
     3. (選擇性) 您可以透過範例程式碼來設定佈建服務：
         - 若要將此設定新增至範例，請遵循下列步驟：

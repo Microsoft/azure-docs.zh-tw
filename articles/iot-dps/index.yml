@@ -1,57 +1,58 @@
 ### YamlMime:YamlDocument
+ms.openlocfilehash: c55cdff8c8738a04f5e62ae165a8b798f3743a18
+ms.sourcegitcommit: 744747d828e1ab937b0d6df358127fcf6965f8c8
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/16/2018
+ms.locfileid: "41929422"
 documentType: LandingData
-title: "Azure IoT 中樞裝置佈建服務文件"
+title: Azure IoT 中樞裝置佈建服務文件
 metadata:
-  title: "Azure IoT 中樞裝置佈建服務文件 - 教學課程及 API 參考"
-  meta.description: Overview of Azure IoT Hub Device Provisioning Service.
-  services: iot-dps
+  title: Azure IoT 中樞裝置佈建服務文件 - 教學課程及 API 參考
+  description: Azure IoT 中樞裝置佈建服務概觀。
   author: nberdy
-  manager: timlt
+  manager: briz
   ms.service: iot-dps
-  ms.tgt_pltfrm: na
-  ms.devlang: na
+  services: iot-dps
   ms.topic: landing-page
   ms.date: 01/23/2017
   ms.author: nberdy
-  ms.openlocfilehash: 4e7b5563b64be95c9453990af928713ef04284c0
-  ms.sourcegitcommit: a48e503fce6d51c7915dd23b4de14a91dd0337d8
-  ms.translationtype: HT
-  ms.contentlocale: zh-TW
-  ms.lasthandoff: 12/05/2017
 abstract:
-  description: "IoT 中樞裝置佈建服務是 IoT 中樞的協助程式服務，無須人為介入，即可對正確的 IoT 中樞進行 Just-In-Time 自動佈建，讓客戶能以安全又可調整的方式佈建數百萬個裝置。 了解如何透過快速入門、教學課程及範例，將裝置佈建至您的 IoT 中樞。"
+  description: IoT 中樞裝置佈建服務是 IoT 中樞的協助程式服務，無須人為介入，即可對正確的 IoT 中樞進行 Just-In-Time 自動佈建，讓客戶能以安全又可調整的方式佈建數百萬個裝置。 了解如何透過快速入門、教學課程及範例，將裝置佈建至您的 IoT 中樞。
 sections:
-- title: "5 分鐘快速入門"
+- title: 5 分鐘快速入門
   items:
   - type: paragraph
-    text: "了解如何設定您的第一個裝置佈建服務執行個體，並將模擬裝置佈建至您的 IoT 中樞。"
+    text: 了解如何設定您的第一個裝置佈建服務執行個體，並將模擬裝置佈建至您的 IoT 中樞。
   - type: list
     style: icon48
     items:
     - image:
         src: /azure/sql-database/media/index/portal.svg
-      text: "設定自動佈建"
+      text: 設定自動佈建
       href: /azure/iot-dps/quick-setup-auto-provision
     - image:
         src: /azure/sql-database/media/index/portal.svg
-      text: "建立模擬裝置"
+      text: 建立模擬裝置
       href: /azure/iot-dps/quick-create-simulated-device
-- title: "逐步教學課程"
+- title: 逐步教學課程
   items:
   - type: paragraph
-    text: "了解如何使用 IoT 中樞裝置佈建服務，將啟用安全性的裝置自動佈建至單一或多個 IoT 中樞。"
+    text: 了解如何使用 IoT 中樞裝置佈建服務，將啟用安全性的裝置自動佈建至單一或多個 IoT 中樞。
   - type: list
     style: ordered
     items:
-    - html: "<a href=\"/azure/iot-dps/tutorial-set-up-cloud\">設定雲端資源</a>"
-    - html: "<a href=\"/azure/iot-dps/tutorial-set-up-device\">設定您的裝置以連線至 Azure</a>"
-    - html: "<a href=\"/azure/iot-dps/tutorial-provision-device-to-hub\">將裝置佈建至單一 IoT 中樞</a>"
-    - html: "<a href=\"/azure/iot-dps/tutorial-provision-multiple-hubs\">將裝置佈建至多個負載平衡 IoT 中樞</a>"
-- title: "參考"
+    - html: <a href="/azure/iot-dps/tutorial-set-up-cloud">設定雲端資源</a>
+    - html: <a href="/azure/iot-dps/tutorial-set-up-device">設定您的裝置以連線至 Azure</a>
+    - html: <a href="/azure/iot-dps/tutorial-provision-device-to-hub">將裝置佈建至單一 IoT 中樞</a>
+    - html: <a href="/azure/iot-dps/tutorial-provision-multiple-hubs">將裝置佈建至多個負載平衡 IoT 中樞</a>
+- title: 參考
   items:
   - type: list
     style: cards
     className: cardsD
     items:
-    - title: REST
-      html: <p><a href="/rest/api/iot-dps">REST API</a></p>
+    - title: REST API
+      html: <p><a href="/rest/api/iot-dps">REST</a></p>
+    - title: Azure IoT SDK
+      html: <p><a href="https://github.com/Azure/azure-iot-sdk-c">C</a></p><p><a href="https://github.com/Azure/azure-iot-sdk-python">Python</a></p><p><a href="https://github.com/Azure/azure-iot-sdk-node">Node</a></p><p><a href="https://github.com/Azure/azure-iot-sdk-java">Java</a></p><p><a href="https://github.com/Azure/azure-iot-sdk-csharp">C#</a></p>

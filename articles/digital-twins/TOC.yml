@@ -1,0 +1,115 @@
+items:
+- name: Azure IoT 基礎
+  href: /azure/iot-fundamentals
+- name: Azure Digital Twins
+  href: index.yml
+- name: 概觀
+  items:
+  - name: 關於 Azure Digital Twins
+    href: about-digital-twins.md
+- name: 快速入門
+  items:
+  - name: 尋找閒置空間
+    href: quickstart-view-occupancy-dotnet.md
+- name: 教學課程
+  items:
+  - name: 使用 Digital Twins 監控建築物
+    items:
+    - name: 部署及設定
+      href: tutorial-facilities-setup.md
+    - name: 佈建與監控情況
+      href: tutorial-facilities-udf.md
+    - name: 使用 Logic Apps 發出通知
+      href: tutorial-facilities-events.md
+    - name: 使用 TSI 將活動視覺化
+      href: tutorial-facilities-analyze.md
+- name: 概念
+  items:
+  - name: Digital Twins 物件模型與空間智慧圖表
+    href: concepts-objectmodel-spatialgraph.md
+  - name: 裝置連線能力與遙測輸入
+    href: concepts-device-ingress.md
+  - name: 資料處理與各項使用者定義功能
+    href: concepts-user-defined-functions.md
+  - name: 活動及訊息路線規劃
+    href: concepts-events-routing.md
+  - name: 公開預覽服務限制
+    href: concepts-service-limits.md
+  - name: 安全性
+    items:
+    - name: 安全性最佳作法
+      href: security-best-practices.md
+    - name: 角色型存取控制
+      href: security-role-based-access-control.md
+    - name: 建立和管理角色指派
+      href: security-create-manage-role-assignments.md
+    - name: 管理 API 驗證
+      href: security-authenticating-apis.md
+- name: 使用說明指南
+  items:
+  - name: 如何啟用多租用戶應用程式
+    href: how-to-multitenant-applications.md
+  - name: 如何建立使用者定義函數
+    href: how-to-user-defined-functions.md
+  - name: 如何透過端點規劃活動及訊息路線
+    href: how-to-egress-endpoints.md
+  - name: 如何使用 Digital Twins Swagger
+    href: how-to-use-swagger.md
+  - name: 針對使用者定義函數進行偵錯
+    href: how-to-diagnose-user-defined-functions.md
+  - name: 如何設定監視
+    href: how-to-configure-monitoring.md
+- name: 相關參考
+  items:
+  - name: 解決方案
+    items:
+    - name: IoT 解決方案加速器
+      href: /azure/iot-accelerators
+    - name: IoT 中心
+      href: https://docs.microsoft.com/microsoft-iot-central/
+  - name: 平台服務
+    items:
+    - name: IoT 中樞
+      href: /azure/iot-hub
+    - name: IoT 中樞裝置佈建服務
+      href: /azure/iot-dps
+    - name: IoT 服務 SDK
+      href: /azure/iot-hub/iot-hub-devguide-sdks#azure-iot-service-sdks
+    - name: 地圖
+      href: /azure/azure-maps
+    - name: 時間序列深入解析
+      href: /azure/time-series-insights
+  - name: Edge
+    items:
+    - name: IoT Edge
+      href: /azure/iot-edge
+    - name: IoT 裝置 SDK
+      href: /azure/iot-hub/iot-hub-devguide-sdks#azure-iot-device-sdks
+- name: 資源
+  items:
+  - name: Azure Digital Twins C# 範例 (.NET)
+    href: https://github.com/Azure-Samples/digital-twins-samples-csharp
+  - name: Azure Digital Twins REST API
+    href: https://docs.westcentralus.azuresmartspaces.net/management/swagger
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/digital-twins/
+  - name: 定價計算機
+    href: https://azure.microsoft.com/pricing/calculator/
+  - name: 堆疊溢位
+    href: https://stackoverflow.com/questions/tagged/azure-digital-twins
+  - name: MSDN 論壇
+    href: https://social.msdn.microsoft.com/Forums/azure/home?forum=azuredigitaltwins
+  - name: 客戶案例
+    href: https://blogs.microsoft.com/iot/2018/09/24/announcing-azure-digital-twins-create-digital-replicas-of-spaces-and-infrastructure-using-cloud-ai-and-iot/
+  - name: Azure IoT 開發人員中心
+    href: https://azure.microsoft.com/develop/iot/
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/?category=iot
+  - name: 影片
+    href: https://channel9.msdn.com/Search?term=%22Azure%20Digital%20Twins%22&lang-en=true
+ms.openlocfilehash: 5cd8e5a3b9d4e08508167af0b8f1b796dabde584
+ms.sourcegitcommit: ccdea744097d1ad196b605ffae2d09141d9c0bd9
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/23/2018
+ms.locfileid: "49647728"

@@ -6,20 +6,21 @@ manager: craigg
 author: anumjs
 ms.service: sql-database
 ms.custom: scale out apps
-ms.topic: article
-ms.date: 11/16/2017
+ms.topic: conceptual
+ms.date: 08/27/2018
 ms.author: anjangsh
-ms.openlocfilehash: 28ff3f6eee2316a078badcf29e6780f3844f3a54
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: 778d08f6154b999215f27b765560b7394c2cd59b
+ms.sourcegitcommit: 2ad510772e28f5eddd15ba265746c368356244ae
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "43123378"
 ---
 # <a name="get-started-with-elastic-database-tools"></a>開始使用彈性資料庫工具
 本文將協助您執行範例應用程式，以介紹[彈性資料庫用戶端程式庫](sql-database-elastic-database-client-library.md)的開發人員體驗。 範例應用程式會建立簡易的分區化應用程式，並探討 Azure SQL Database 彈性資料庫工具功能的主要功能。 它著重在[分區對應管理](sql-database-elastic-scale-shard-map-management.md)、[資料相依路由](sql-database-elastic-scale-data-dependent-routing.md)和[多分區查詢](sql-database-elastic-scale-multishard-querying.md)的使用案例。 用戶端程式庫可供 .NET 和 Java 取得。 
 
 ## <a name="elastic-database-tools-for-java"></a>適用於 Java 的彈性資料庫工具
-### <a name="prerequisites"></a>先決條件
+### <a name="prerequisites"></a>必要條件
 * Java Developer Kit (JDK) 1.8 版或更新版本
 * [Maven](http://maven.apache.org/download.cgi)
 * 在 Azure 或本機 SQL Server 執行個體中的邏輯伺服器
@@ -62,7 +63,7 @@ ms.lasthandoff: 03/16/2018
 ```
 
 ## <a name="elastic-database-tools-for-net"></a>適用於 .NET 的彈性資料庫工具 
-### <a name="prerequisites"></a>先決條件
+### <a name="prerequisites"></a>必要條件
 * 含 C# 的 Visual Studio 2012 或更新版本。 請在 [Visual Studio 下載](http://www.visualstudio.com/downloads/download-visual-studio-vs.aspx)上下載免費版本。
 * NuGet 2.7 或更新版本。 若要取得最新版本，請參閱[安裝 NuGet](http://docs.nuget.org/docs/start-here/installing-nuget)。
 
@@ -119,7 +120,6 @@ ms.lasthandoff: 03/16/2018
   * [適用於 Azure SQL 的彈性資料庫工具 - Entity Framework 整合](http://code.msdn.microsoft.com/Elastic-Scale-with-Azure-bae904ba?SRC=VSIDE)
   * [指令碼中心的分區彈性](https://gallery.technet.microsoft.com/scriptcenter/Elastic-Scale-Shard-c9530cbe)
 * 部落格：[Elastic Scale 公告 (英文)](https://azure.microsoft.com/blog/2014/10/02/introducing-elastic-scale-preview-for-azure-sql-database/)
-* Microsoft Virtual Academy：[使用分區化與彈性資料庫用戶端程式庫視訊實作相應放大](https://mva.microsoft.com/training-courses/elastic-database-capabilities-with-azure-sql-db-16554?l=lWyQhF1fC_6306218965) 
 * 第 9 頻道：[Elastic Scale 概觀影片 (英文)](http://channel9.msdn.com/Shows/Data-Exposed/Azure-SQL-Database-Elastic-Scale)
 * 討論論壇：[Azure SQL Database 論壇](http://social.msdn.microsoft.com/forums/azure/home?forum=ssdsgetstarted)
 * 若要測量效能︰ [分區對應管理員的效能計數器](sql-database-elastic-database-client-library.md)

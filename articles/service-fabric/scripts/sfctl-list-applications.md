@@ -1,25 +1,26 @@
 ---
-title: "Service Fabric CLI 指令碼範例 - 列出叢集上的應用程式"
-description: "Service Fabric CLI 指令碼範例 - 列出 Service Fabric 叢集上佈建的應用程式。"
+title: Service Fabric CLI 指令碼範例 - 列出叢集上的應用程式
+description: Service Fabric CLI 指令碼範例 - 列出 Service Fabric 叢集上佈建的應用程式。
 services: service-fabric
-documentationcenter: 
-author: Thraka
+documentationcenter: ''
+author: TylerMSFT
 manager: timlt
-editor: 
-tags: 
-ms.assetid: 
+editor: ''
+tags: ''
+ms.assetid: ''
 ms.service: service-fabric
 ms.workload: multiple
 ms.devlang: na
-ms.topic: article
-ms.date: 12/06/2017
-ms.author: adegeo
-ms.custom: 
-ms.openlocfilehash: f764c36bcc4905224242cbdf1602d7482e52efac
-ms.sourcegitcommit: b07d06ea51a20e32fdc61980667e801cb5db7333
+ms.topic: sample
+ms.date: 04/13/2018
+ms.author: twhitney
+ms.custom: ''
+ms.openlocfilehash: bea88460ecaa093a0719d627e3608fd1d530727b
+ms.sourcegitcommit: 0b05bdeb22a06c91823bd1933ac65b2e0c2d6553
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2017
+ms.lasthandoff: 07/17/2018
+ms.locfileid: "39070193"
 ---
 # <a name="list-applications-running-in-a-service-fabric-cluster"></a>列出 Service Fabric 叢集中執行的應用程式
 

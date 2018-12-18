@@ -1,11 +1,11 @@
 ---
-title: "在 .NET 中開始使用 Azure 轉送 WCF 轉送 | Microsoft Docs"
-description: "了解如何使用 Azure 轉送 WCF 轉送連接主控於相異位置的兩個應用程式。"
+title: 在 .NET 中開始使用 Azure 轉送 WCF 轉送 | Microsoft Docs
+description: 了解如何使用 Azure 轉送 WCF 轉送連接主控於相異位置的兩個應用程式。
 services: service-bus-relay
 documentationcenter: .net
-author: sethmanheim
+author: spelluru
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 5493281a-c2e5-49f2-87ee-9d3ffb782c75
 ms.service: service-bus-relay
 ms.workload: na
@@ -13,12 +13,13 @@ ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
 ms.date: 12/20/2017
-ms.author: sethm
-ms.openlocfilehash: face684190456fbf4b78a84ac3afe7a4ead8995a
-ms.sourcegitcommit: b5c6197f997aa6858f420302d375896360dd7ceb
+ms.author: spelluru
+ms.openlocfilehash: 6c8498a43b127fecc02473177ac955ae51a647d6
+ms.sourcegitcommit: 67abaa44871ab98770b22b29d899ff2f396bdae3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/21/2017
+ms.lasthandoff: 10/08/2018
+ms.locfileid: "48854111"
 ---
 # <a name="how-to-use-azure-relay-wcf-relays-with-net"></a>如何使用 Azure 轉送 WCF 轉送搭配 .NET
 本文說明如何使用 Azure 轉送服務。 這些範例均以 C# 撰寫，並使用 Windows Communication Foundation (WCF) API 以及包含在服務匯流排組件中的擴充功能。 如需 Azure 轉送的詳細資訊，請參閱 [Azure 轉送概觀](relay-what-is-it.md)。
@@ -219,7 +220,6 @@ using (var ch = cf.CreateChannel())
 了解基本的 Azure 轉送之後，請參考下列連結以取得更多資訊。
 
 * [什麼是 Azure 轉送？](relay-what-is-it.md)
-* [Azure 服務匯流排架構概觀](../service-bus-messaging/service-bus-fundamentals-hybrid-solutions.md)
 * 從 [Azure 範例][Azure samples]下載服務匯流排範例，或參閱[服務匯流排範例概觀][overview of Service Bus samples]。
 
 [Shared Access Signature Authentication with Service Bus]: ../service-bus-messaging/service-bus-shared-access-signature-authentication.md

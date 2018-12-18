@@ -1,26 +1,27 @@
 ---
-title: "Azure PowerShell 範例 - Service Fabric | Microsoft Docs"
-description: "Azure PowerShell 範例 - Service Fabric"
+title: Azure PowerShell 範例 - Service Fabric | Microsoft Docs
+description: Azure PowerShell 範例 - Service Fabric
 services: service-fabric
 documentationcenter: service-fabric
 author: rwike77
 manager: timlt
-editor: 
-tags: 
+editor: ''
+tags: ''
 ms.assetid: b48d1137-8c04-46e0-b430-101e07d7e470
 ms.service: service-fabric
 ms.devlang: na
 ms.topic: sample
 ms.tgt_pltfrm: na
 ms.workload: service-fabric
-ms.date: 12/13/2017
+ms.date: 04/09/2018
 ms.author: ryanwi
 ms.custom: mvc
-ms.openlocfilehash: 1825b2a58e1022f22c71395477a5fca54c715455
-ms.sourcegitcommit: fa28ca091317eba4e55cef17766e72475bdd4c96
+ms.openlocfilehash: 65f6252ecfa4e5850824fc7aa2e6eca2bdb88692
+ms.sourcegitcommit: eb75f177fc59d90b1b667afcfe64ac51936e2638
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/14/2017
+ms.lasthandoff: 05/16/2018
+ms.locfileid: "34205751"
 ---
 # <a name="azure-powershell-samples"></a>Azure PowerShell 範例
 

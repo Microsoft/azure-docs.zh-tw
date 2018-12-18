@@ -1,25 +1,20 @@
 ---
-title: "針對 Azure 備份設定報告"
-description: "本文說明如何使用復原服務保存庫針對 Azure 備份設定 Power BI 報告。"
+title: 針對 Azure 備份設定報告
+description: 使用復原服務保存庫針對 Azure 備份設定 Power BI 報告。
 services: backup
-documentationcenter: 
-author: JPallavi
-manager: vijayts
-editor: 
-ms.assetid: 86e465f1-8996-4a40-b582-ccf75c58ab87
+author: adiganmsft
+manager: shivamg
 ms.service: backup
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: storage-backup-recovery
-ms.date: 11/10/2017
-ms.author: pajosh
+ms.topic: conceptual
+ms.date: 07/26/2018
+ms.author: adigan
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: f51d85da1bda0d9483883301b71c20e405724b9b
-ms.sourcegitcommit: 0b02e180f02ca3acbfb2f91ca3e36989df0f2d9c
+ms.openlocfilehash: c59653bf3709f7798fd92a44fa420b99f2cbc6b6
+ms.sourcegitcommit: 1b561b77aa080416b094b6f41fce5b6a4721e7d5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/05/2018
+ms.lasthandoff: 09/17/2018
+ms.locfileid: "45733548"
 ---
 # <a name="configure-azure-backup-reports"></a>設定 Azure 備份報告
 本文說明使用復原服務保存庫針對 Azure 備份設定報告，以及使用 Power BI 存取這些報告的步驟。 執行這些步驟後，您可以直接移至 Power BI 以檢閱所有報告，以及自訂和建立報告。 
@@ -29,10 +24,9 @@ ms.lasthandoff: 03/05/2018
 2. 目前不支援針對 Azure SQL、DPM 和 Azure 備份伺服器的報告功能。
 3. 如果針對每個保存庫皆設定相同的儲存體帳戶，則可以檢閱跨保存庫和跨訂用帳戶的報告。 選取的儲存體帳戶應與復原服務保存庫位於相同的區域。
 4. Power BI 中報告的排程重新整理頻率為 24 小時。 您也可以在 Power BI 中執行報告的臨機操作重新整理，這會使用客戶儲存體帳戶中的最新資料來轉譯報告。 
-5. 國家雲端目前不支援 Azure 備份報告。
 
-## <a name="prerequisites"></a>先決條件
-1. 建立 [Azure 儲存體帳戶](../storage/common/storage-create-storage-account.md#create-a-storage-account)以針對報告進行設定。 這個儲存體帳戶是用來儲存與報告相關的資料。
+## <a name="prerequisites"></a>必要條件
+1. 建立 [Azure 儲存體帳戶](../storage/common/storage-quickstart-create-account.md)以針對報告進行設定。 這個儲存體帳戶是用來儲存與報告相關的資料。
 2. [建立 Power BI 帳戶](https://powerbi.microsoft.com/landing/signin/)，以使用 Power BI 入口網站檢視、自訂和建立您自己的報告。
 3. 如果尚未註冊，請註冊資源提供者 **Microsoft.insights**，並搭配儲存體帳戶及復原服務保存庫的訂用帳戶，來使報告資料能流入儲存體帳戶。 若要這麼做，您必須前往 Azure 入口網站 > [訂用帳戶] > [資源提供者]，並查看此提供者以註冊它。 
 
@@ -80,7 +74,7 @@ ms.lasthandoff: 03/05/2018
 ## <a name="view-reports-in-power-bi"></a>在 Power BI 中檢視報告 
 使用復原服務保存庫針對報告設定儲存體帳戶之後，報告資料大約需要 24 小時的時間才會開始流入。 在設定儲存體帳戶的 24 小時後，請使用下列步驟以在 Power BI 中檢視報告：
 1. [登入](https://powerbi.microsoft.com/landing/signin/) Power BI。
-2. 按一下 [取得資料]，然後在內容套件庫中的 [服務] 底下，按一下 [取得]。 使用[針對存取內容套件的 Power BI 文件](https://powerbi.microsoft.com/en-us/documentation/powerbi-content-packs-services/)中所述的步驟。
+2. 按一下 [取得資料]，然後在內容套件庫中的 [服務] 底下，按一下 [取得]。 使用[針對存取內容套件的 Power BI 文件](https://powerbi.microsoft.com/documentation/powerbi-content-packs-services/)中所述的步驟。
 
      ![匯入內容套件](./media/backup-azure-configure-reports/content-pack-import.png)
 3. 在搜尋列中輸入 **Azure Backup**，並按一下 [立即取得]。
@@ -89,7 +83,7 @@ ms.lasthandoff: 03/05/2018
 4. 輸入上述步驟 5 中所設定的儲存體帳戶名稱，然後按一下 [下一步] 按鈕。
 
     ![輸入儲存體帳戶名稱](./media/backup-azure-configure-reports/content-pack-storage-account-name.png)    
-5. 輸入此儲存體帳戶的儲存體帳戶金鑰。 您可以透過瀏覽至 Azure 入口網站中的儲存體帳戶，來[檢視並複製儲存體存取金鑰](../storage/common/storage-create-storage-account.md#manage-your-storage-account)。 
+5. 輸入此儲存體帳戶的儲存體帳戶金鑰。 您可以透過瀏覽至 Azure 入口網站中的儲存體帳戶，來[檢視並複製儲存體存取金鑰](../storage/common/storage-account-manage.md#access-keys)。 
 
      ![輸入儲存體帳戶](./media/backup-azure-configure-reports/content-pack-storage-account-key.png) <br/>
      

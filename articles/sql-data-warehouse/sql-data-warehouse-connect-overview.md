@@ -1,31 +1,27 @@
 ---
-title: "連線到 Azure SQL 資料倉儲 | Microsoft Docs"
-description: "如何尋找您的伺服器名稱和 Azure SQL 資料倉儲的連接字串"
+title: 連線到 Azure SQL 資料倉儲 | Microsoft Docs
+description: 連線到 Azure SQL 資料倉儲。
 services: sql-data-warehouse
-documentationcenter: NA
-author: antvgski
-manager: jhubbard
-editor: 
-ms.assetid: e52872ca-ae74-4e25-9c56-d49c85c8d0f0
+author: kavithaj
+manager: craigg
 ms.service: sql-data-warehouse
-ms.devlang: NA
-ms.topic: get-started-article
-ms.tgt_pltfrm: NA
-ms.workload: data-services
-ms.custom: connect
-ms.date: 12/14/2017
-ms.author: anvang;barbkess;kevin
-ms.openlocfilehash: 804d91d309fcce42f0ac50ac98dbad9c5648b4eb
-ms.sourcegitcommit: 9890483687a2b28860ec179f5fd0a292cdf11d22
+ms.topic: conceptual
+ms.component: consume
+ms.date: 04/17/2018
+ms.author: kavithaj
+ms.reviewer: igorstan
+ms.openlocfilehash: 0b2d8cec03c54ebd5bd780a2524da61d718a9673
+ms.sourcegitcommit: 2b2129fa6413230cf35ac18ff386d40d1e8d0677
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/24/2018
+ms.lasthandoff: 08/30/2018
+ms.locfileid: "43247853"
 ---
 # <a name="connect-to-azure-sql-data-warehouse"></a>連接到 Azure SQL 資料倉儲
-本文可協助您第一次連接到 SQL 資料倉儲。
+連線到 Azure SQL 資料倉儲。
 
 ## <a name="find-your-server-name"></a>尋找您的伺服器名稱
-連接到 SQL 資料倉儲的第一個步驟是了解如何尋找您的伺服器名稱。  例如，下列範例中的伺服器名稱是 samplesvr.database.windows.net。 若要尋找完整的伺服器名稱：
+下列範例中的伺服器名稱是 samplesvr.database.windows.net。 若要尋找完整的伺服器名稱：
 
 1. 移至 [Azure 入口網站][Azure portal]。
 2. 按一下 [SQL 資料倉儲]。
@@ -35,7 +31,7 @@ ms.lasthandoff: 01/24/2018
     ![完整伺服器名稱][1]
 
 ## <a name="supported-drivers-and-connection-strings"></a>支援的驅動程式和連接字串
-Azure SQL 資料倉儲支援 [ADO.NET][ADO.NET]、[ODBC][ODBC]、[PHP][PHP] 和 [JDBC][JDBC]。 按一下上述其中一個驅動程式，以尋找最新版本和文件。 若要從 Azure 入口網站自動為您使用的驅動程式產生連接字串，您可以按一下前述範例中的 [顯示資料庫連接字串]  。  下列一些範例顯示每個驅動程式的連接字串。
+Azure SQL 資料倉儲支援 [ADO.NET][ADO.NET]、[ODBC][ODBC]、[PHP][PHP] 和 [JDBC][JDBC]。 若要尋找最新版本和文件，請按一下前述的其中一個驅動程式。 若要從 Azure 入口網站自動為您使用的驅動程式產生連接字串，按一下前述範例中的 [顯示資料庫連接字串]。 下列一些範例顯示每個驅動程式的連接字串。
 
 > [!NOTE]
 > 請考慮將連線逾時設定為 300 秒，以便在短時間無法使用時能夠維持連線。

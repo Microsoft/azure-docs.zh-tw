@@ -1,16 +1,20 @@
 ---
-title: "使用 Terraform 從 Packer 自訂映像建立 Azure 虛擬機器擴展集"
-description: "使用 Terraform 從 Packer 產生的自訂映像設定 Azure 虛擬機器擴展集和控制版本 (完整包含虛擬網路和受控連接磁碟)。"
-keywords: "terraform, devops, 擴展集, 虛擬機器, 網路, 儲存體, 模組, 自訂映像, packer"
-author: VaijanathB
+title: 使用 Terraform 從 Packer 自訂映像建立 Azure 虛擬機器擴展集
+description: 使用 Terraform 從 Packer 產生的自訂映像設定 Azure 虛擬機器擴展集和控制版本 (完整包含虛擬網路和受控連接磁碟)。
+services: terraform
+ms.service: terraform
+keywords: terraform, devops, 擴展集, 虛擬機器, 網路, 儲存體, 模組, 自訂映像, packer
+author: tomarcher
+manager: jeconnoc
 ms.author: tarcher
+ms.topic: tutorial
 ms.date: 10/29/2017
-ms.topic: article
-ms.openlocfilehash: 284eae93de36986e41ba80f98f86495d8f34f57b
-ms.sourcegitcommit: 43c3d0d61c008195a0177ec56bf0795dc103b8fa
+ms.openlocfilehash: 9e999ba8a36edd990bbab4648d9d4d98e3301153
+ms.sourcegitcommit: 31241b7ef35c37749b4261644adf1f5a029b2b8e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/01/2017
+ms.lasthandoff: 09/04/2018
+ms.locfileid: "43668626"
 ---
 # <a name="use-terraform-to-create-an-azure-virtual-machine-scale-set-from-a-packer-custom-image"></a>使用 Terraform 從 Packer 自訂映像建立 Azure 虛擬機器擴展集
 

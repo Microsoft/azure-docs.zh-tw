@@ -1,24 +1,20 @@
 ---
-title: "監視 Azure Cosmos DB 要求及儲存體 | Microsoft Docs"
-description: "了解如何監視 Azure Cosmos DB 帳戶的效能計量 (如要求和伺服器錯誤) 和使用量計量 (如儲存體耗用量)。"
+title: 監視 Azure Cosmos DB 要求及儲存體 | Microsoft Docs
+description: 了解如何監視 Azure Cosmos DB 帳戶的效能計量 (如要求和伺服器錯誤) 和使用量計量 (如儲存體耗用量)。
 services: cosmos-db
-documentationcenter: 
-author: mimig1
-manager: jhubbard
-editor: cgronlun
-ms.assetid: 4c6a2e6f-6e78-48e3-8dc6-f4498b235a9e
+author: SnehaGunda
+manager: kfile
 ms.service: cosmos-db
-ms.workload: data-services
-ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 09/19/2017
-ms.author: mimig
-ms.openlocfilehash: 0e9a47e6a1a5c7a44c5553742d6c5c81f8ca7286
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.author: sngun
+ms.openlocfilehash: 1f4bf4ba660e83be9879c56d04b27c932d563e17
+ms.sourcegitcommit: 8e06d67ea248340a83341f920881092fd2a4163c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 10/16/2018
+ms.locfileid: "49354054"
 ---
 # <a name="monitor-azure-cosmos-db"></a>監視 Azure Cosmos DB
 您可以在 [Azure 入口網站](https://portal.azure.com/)中監視 Azure Cosmos DB 帳戶。 對於每個 Azure Cosmos DB 帳戶，會提供一套完整的度量，供監視輸送量、儲存體、可用性、延遲和一致性。
@@ -80,7 +76,7 @@ ms.lasthandoff: 02/21/2018
 
 擷取個別度量的查詢會使用下列格式：
 
-    https://management.azure.com/subscriptions/{SubecriptionId}/resourceGroups/{ResourceGroup}/providers/Microsoft.DocumentDb/databaseAccounts/{DocumentDBAccountName}/metrics?api-version=2015-04-08&$filter=%28name.value%20eq%20%27Total%20Requests%27%29%20and%20timeGrain%20eq%20duration%27PT5M%27%20and%20startTime%20eq%202016-06-03T03%3A26%3A00.0000000Z%20and%20endTime%20eq%202016-06-10T03%3A26%3A00.0000000Z
+    https://management.azure.com/subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroup}/providers/Microsoft.DocumentDb/databaseAccounts/{DocumentDBAccountName}/metrics?api-version=2015-04-08&$filter=%28name.value%20eq%20%27Total%20Requests%27%29%20and%20timeGrain%20eq%20duration%27PT5M%27%20and%20startTime%20eq%202016-06-03T03%3A26%3A00.0000000Z%20and%20endTime%20eq%202016-06-10T03%3A26%3A00.0000000Z
 
 如需詳細資訊，請參閱 [Retrieving Resource Metrics via the Azure Monitor REST API (透過 Azure 監視器 API 擷取資源度量)](https://blogs.msdn.microsoft.com/cloud_solution_architect/2016/02/23/retrieving-resource-metrics-via-the-azure-insights-api/)。 請注意，"Azure Insights" 已重新命名為「Azure 監視器」。  此部落格項目參考的是舊名稱。
 

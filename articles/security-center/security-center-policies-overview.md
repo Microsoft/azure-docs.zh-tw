@@ -1,37 +1,42 @@
 ---
-title: "Azure 資訊安全中心安全性原則簡介 | Microsoft Docs"
-description: "了解 Azure 資訊安全中心安全性原則和主要功能。"
+title: Azure 資訊安全中心的安全性原則設定 | Microsoft Docs
+description: 設定 Azure 資訊安全中心的安全性原則設定。
 services: security-center
 documentationcenter: na
-author: YuriDio
+author: rkarlin
 manager: MBaldwin
-editor: 
+editor: ''
 ms.assetid: f24b1e4a-cc36-4542-b21e-041453cdfcd8
 ms.service: security-center
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/13/2017
-ms.author: yurid
-ms.openlocfilehash: 7a4d056fa71f211dea5e7be649c39034eabc9395
-ms.sourcegitcommit: b07d06ea51a20e32fdc61980667e801cb5db7333
+ms.date: 09/3/2018
+ms.author: rkarlin
+ms.openlocfilehash: ab8a289ea0de263871b76788514052c09a6bf4da
+ms.sourcegitcommit: f3bd5c17a3a189f144008faf1acb9fabc5bc9ab7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2017
+ms.lasthandoff: 09/10/2018
+ms.locfileid: "44295732"
 ---
-# <a name="security-policies-overview"></a>安全性原則概觀
-本文提供資訊安全中心的安全性原則概觀。
+# <a name="security-policy-settings"></a>安全政策設定
+本文提供資訊安全中心的安全性原則設定概觀。
 
 ## <a name="what-are-security-policies"></a>什麼是安全性原則？
-安全性原則會定義工作負載的所需設定，並且協助確保符合公司或法規安全性需求。 在資訊安全中心，您可以為 Azure 訂用帳戶定義原則，並按照工作負載的類型或資料的機密性訂定這些原則。 例如，對於使用個人識別資訊等規範資料的應用程式，其需要的安全性層級可能比工作負載還高。 
+安全性原則會定義工作負載的所需設定，並且協助確保符合公司或法規安全性需求。 在資訊安全中心，您可以為 Azure 訂用帳戶定義原則，並按照工作負載的類型或資料的機密性訂定這些原則。 例如，對於使用個人識別資訊等規範資料的應用程式，其需要的安全性層級可能比工作負載還高。
 
-資訊安全中心原則包含下列元件：
+您可以在安全性原則下設定以下內容：
 
 - **資料收集**：決定代理程式佈建和[資料收集](https://docs.microsoft.com/azure/security-center/security-center-enable-data-collection)設定。
-- **安全性原則**：決定何者控制資訊安全中心監視和建議。 您可以編輯資訊安全中心的[安全性原則](https://docs.microsoft.com/azure/security-center/security-center-policies)。 您也可以使用 [Azure 原則](security-center-azure-policy.md) (在有限預覽中) 建立新的定義、定義額外的原則，並在管理群組指派原則。
-- **電子郵件通知**：決定安全性連絡人和[電子郵件通知](https://docs.microsoft.com/azure/security-center/security-center-provide-security-contact-details)設定。
-- **定價層**：定義免費或標準[選取項目](https://docs.microsoft.com/azure/security-center/security-center-pricing)。 您選擇的一層將決定範圍中的資源可用的資訊安全中心功能。 您可以指定一層用於訂閱、資源群組和工作區。 
+- **安全性原則**：決定何者控制資訊安全中心監視和建議。 您可以編輯資訊安全中心的[安全性原則](security-center-policies.md)。 您也可以使用 [Azure 原則](security-center-azure-policy.md)建立新的定義、定義額外的原則，並在管理群組指派原則。 
+- **電子郵件通知**：決定安全性連絡人和[電子郵件通知](security-center-provide-security-contact-details.md)設定。
+- **定價層**：定義免費或標準[選取項目](security-center-pricing.md)。 您選擇的一層將決定範圍中的資源可用的資訊安全中心功能。 您可以指定一層用於訂閱、資源群組和工作區。
+
+> [!NOTE]
+> 您可以對每個訂用帳戶設定所有這些內容。 針對工作區，您只能設定資料收集和定價層。 針對資源群組，您只能設定定價層。
+>
 
 
 ## <a name="who-can-edit-security-policies"></a>誰可以編輯安全性原則？
@@ -52,5 +57,3 @@ ms.lasthandoff: 12/08/2017
 - [Azure 資訊安全中心資料安全性](security-center-data-security.md)：了解資訊安全中心如何管理和保護資料。
 * [Azure 資訊安全中心常見問題集](security-center-faq.md)：取得使用服務常見問題的解答。
 * [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/)：取得最新的 Azure 安全性新聞和資訊。
-
-

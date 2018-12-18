@@ -1,26 +1,27 @@
 ---
-title: "Azure 受控應用程式 PublicIpAddressCombo UI 元素 | Microsoft Docs"
-description: "描述 Azure 受控應用程式的 Microsoft.Network.PublicIpAddressCombo UI 元素"
-services: azure-resource-manager
+title: Azure PublicIpAddressCombo UI 元素 | Microsoft Docs
+description: 描述 Azure 入口網站的 Microsoft.Network.PublicIpAddressCombo UI 元素。
+services: managed-applications
 documentationcenter: na
 author: tfitzmac
 manager: timlt
 editor: tysonn
-ms.service: azure-resource-manager
+ms.service: managed-applications
 ms.devlang: na
 ms.topic: reference
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/12/2017
+ms.date: 06/28/2018
 ms.author: tomfitz
-ms.openlocfilehash: 990b84cf0df74b7b08a5fa105c2c2213aa251f9d
-ms.sourcegitcommit: 6f33adc568931edf91bfa96abbccf3719aa32041
+ms.openlocfilehash: c3e8c99f6648f0f4927140f3215978566afb9eb8
+ms.sourcegitcommit: 0bb8db9fe3369ee90f4a5973a69c26bff43eae00
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/22/2017
+ms.lasthandoff: 10/08/2018
+ms.locfileid: "48868899"
 ---
 # <a name="microsoftnetworkpublicipaddresscombo-ui-element"></a>Microsoft.Network.PublicIpAddressCombo UI 元素
-選取新的或現有公用 IP 位址的控制項群組。 您可以在[建立 Azure 受控應用程式](publish-service-catalog-app.md)時使用此元素。
+選取新的或現有公用 IP 位址的控制項群組。
 
 ## <a name="ui-sample"></a>UI 範例
 ![Microsoft.Network.PublicIpAddressCombo](./media/managed-application-elements/microsoft.network.publicipaddresscombo.png)
@@ -44,7 +45,7 @@ ms.lasthandoff: 12/22/2017
   },
   "defaultValue": {
     "publicIpAddressName": "ip01",
-    "domainNameLabel": "foobar"
+    "domainNameLabel": "mydomain"
   },
   "constraints": {
     "required": {
@@ -54,7 +55,8 @@ ms.lasthandoff: 12/22/2017
   "options": {
     "hideNone": false,
     "hideDomainNameLabel": false,
-    "hideExisting": false
+    "hideExisting": false,
+    "zone": 3
   },
   "visible": true
 }
@@ -65,29 +67,33 @@ ms.lasthandoff: 12/22/2017
 - 如果將 `options.hideNone` 設為 **true**，公用 IP 位址的 [無] 選項就會加以隱藏。 預設值為 **false**。
 - 如果將 `options.hideDomainNameLabel` 設為 **true**，網域名稱標籤的文字方塊就會加以隱藏。 預設值為 **false**。
 - 如果 `options.hideExisting` 為 true，使用者就無法選擇現有的公用 IP 位址。 預設值為 **false**。
+- 對於 `zone`，只能使用指定區域的公用 IP 位址或區域復原公用 IP 位址。
 
 ## <a name="sample-output"></a>範例輸出
-如果使用者未選取公用 IP 位址，則預期會產生下列輸出︰
+如果使用者未選取公用 IP 位址，則控制項會傳回下列輸出︰
+
 ```json
 {
   "newOrExistingOrNone": "none"
 }
 ```
 
-如果使用者選取新的或現有 IP 位址，則預期會產生下列輸出︰
+如果使用者選取全新或現有 IP 位址，則控制項會傳回下列輸出︰
+
 ```json
 {
   "name": "ip01",
   "resourceGroup": "rg01",
-  "domainNameLabel": "foobar",
+  "domainNameLabel": "mydomain",
   "publicIPAllocationMethod": "Dynamic",
+  "sku": "Basic",
   "newOrExistingOrNone": "new"
 }
 ```
+
 - 當 `options.hideNone` 指定為 **true** 時，`newOrExistingOrNone` 只會有**新的**或**現有的**值。
 - 當 `options.hideDomainNameLabel` 指定為 **true** 時，`domainNameLabel` 為未宣告。
 
 ## <a name="next-steps"></a>後續步驟
-* 如需受控應用程式的簡介，請參閱 [Azure 受控應用程式概觀](overview.md)。
 * 如需建立 UI 定義的簡介，請參閱[開始使用 CreateUiDefinition](create-uidefinition-overview.md)。
 * 如需 UI 元素中通用屬性的說明，請參閱 [CreateUiDefinition 元素](create-uidefinition-elements.md)。

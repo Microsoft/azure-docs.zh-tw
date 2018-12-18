@@ -1,24 +1,19 @@
 ---
-title: "使用 Ambari - Azure HDInsight 將叢集設定最佳化 | Microsoft Docs"
-description: "使用 Ambari web UI 設定 HDInsight 叢集並使之最佳化。"
-documentationcenter: 
+title: 使用 Ambari - Azure HDInsight 將叢集組態最佳化
+description: 使用 Ambari web UI 設定 HDInsight 叢集並使之最佳化。
 author: ashishthaps
-manager: jhubbard
-editor: cgronlun
-ms.assetid: 
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 01/09/2018
+ms.topic: conceptual
+ms.date: 07/09/2018
 ms.author: ashish
-ms.openlocfilehash: 74c1b3298cd7b6ffd5b4a60e2fa78ed733232f92
-ms.sourcegitcommit: be9a42d7b321304d9a33786ed8e2b9b972a5977e
+ms.openlocfilehash: 73fdd3f221e35bc1e0b0904bdbbaa63525ba4be3
+ms.sourcegitcommit: f6e2a03076679d53b550a24828141c4fb978dcf9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/19/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43105468"
 ---
 # <a name="use-ambari-to-optimize-hdinsight-cluster-configurations"></a>使用 Ambari 將 HDInsight 叢集設定最佳化
 
@@ -48,19 +43,19 @@ NameNode Java 堆積大小取決於許多因素，例如叢集的負載、檔案
 
     ![HDFS 設定](./media/hdinsight-changing-configs-via-ambari/hdfs-config.png)
 
-2. 找出 [NameNode Java 堆積大小] 設定。 您也可以使用 [篩選] 文字方塊來輸入並尋找特定的設定。 選取設定名稱旁邊的**畫筆**圖示。
+1. 找出 [NameNode Java 堆積大小] 設定。 您也可以使用 [篩選] 文字方塊來輸入並尋找特定的設定。 選取設定名稱旁邊的**畫筆**圖示。
 
     ![NameNode Java 堆積大小](./media/hdinsight-changing-configs-via-ambari/java-heap-size.png)
 
-3. 在文字方塊中輸入新值，然後按 **Enter** 儲存變更。
+1. 在文字方塊中輸入新值，然後按 **Enter** 儲存變更。
 
     ![編輯 NameNode Java 堆積大小](./media/hdinsight-changing-configs-via-ambari/java-heap-size-edit.png)
 
-4. NameNode Java 堆積大小從 1GB 變更為 2 GB。
+1. NameNode Java 堆積大小從 1GB 變更為 2 GB。
 
     ![編輯的 NameNode Java 堆積大小](./media/hdinsight-changing-configs-via-ambari/java-heap-size-edited.png)
 
-5. 按一下設定畫面頂端的綠色 [儲存] 按鈕，儲存您的變更。
+1. 按一下設定畫面頂端的綠色 [儲存] 按鈕，儲存您的變更。
 
     ![儲存變更](./media/hdinsight-changing-configs-via-ambari/save-changes.png)
 
@@ -69,7 +64,7 @@ NameNode Java 堆積大小取決於許多因素，例如叢集的負載、檔案
 下節會說明將 Hive 整體效能最佳化的設定選項。
 
 1. 若要修改 Hive 組態參數，請選取 [服務] 資訊看板中的 [Hive]。
-2. 瀏覽至 [設定] 索引標籤。
+1. 瀏覽至 [設定] 索引標籤。
 
 ### <a name="set-the-hive-execution-engine"></a>設定 Hive 執行引擎
 
@@ -79,7 +74,7 @@ Hive 提供兩個執行引擎：MapReduce 和 Tez。 Tez 比 MapReduce 更快。
 
     ![搜尋執行引擎](./media/hdinsight-changing-configs-via-ambari/search-execution.png)
 
-2. [最佳化] 屬性的預設值是 **Tez**。
+1. [最佳化] 屬性的預設值是 **Tez**。
 
     ![最佳化 - Tez](./media/hdinsight-changing-configs-via-ambari/optimization-tez.png)
 
@@ -96,7 +91,7 @@ Hadoop 會嘗試將單一檔案分割 (*對應*) 為多個檔案，並且平行�
 
 1. 若要修改限制參數，請瀏覽至 Tez 服務的 [設定] 索引標籤。 展開 [一般] 面板，並找出 `tez.grouping.max-size` 和 `tez.grouping.min-size` 參數。
 
-2. 將這兩個參數設定為 **33,554,432** 位元組 (32 MB)。
+1. 將這兩個參數設定為 **33,554,432** 位元組 (32 MB)。
 
     ![Tez 群組大小](./media/hdinsight-changing-configs-via-ambari/tez-grouping-size.png)
  
@@ -116,13 +111,13 @@ ORC 和 Snappy 均可達到高效能。 不過，Hive 預設的歸納器數量�
 
     ![各歸納器的資料](./media/hdinsight-changing-configs-via-ambari/data-per-reducer.png)
  
-2. 選取 [編輯] 將值修改為 128 MB (134,217,728 位元組)，然後按下 **Enter** 儲存。
+1. 選取 [編輯] 將值修改為 128 MB (134,217,728 位元組)，然後按下 **Enter** 儲存。
 
     ![各歸納器的資料 - 已編輯](./media/hdinsight-changing-configs-via-ambari/data-per-reducer-edited.png)
   
     假設輸入大小為 1024 MB，而且各個歸納器有 128 MB 的資料，則共有八個歸納器 (1024/128)。
 
-3. [各歸納器的資料] 參數的值不正確會導致歸納器的數目增加，而對於查詢效能造成負面影響。 若要限制歸納器數目上限，請將 `hive.exec.reducers.max` 設定為合適的值。 預設值是 1009。
+1. [各歸納器的資料] 參數的值不正確會導致歸納器的數目增加，而對於查詢效能造成負面影響。 若要限制歸納器數目上限，請將 `hive.exec.reducers.max` 設定為合適的值。 預設值是 1009。
 
 ### <a name="enable-parallel-execution"></a>啟用平行執行
 
@@ -130,7 +125,7 @@ ORC 和 Snappy 均可達到高效能。 不過，Hive 預設的歸納器數量�
 
 1.  若要啟用平行查詢執行，請瀏覽至 Hive [設定] 索引標籤，並搜尋 `hive.exec.parallel` 屬性。 預設值為 False。 將值變更為 true，然後按下 **Enter** 儲存值。
  
-2.  若要限制平行執行的作業數目，請修改 `hive.exec.parallel.thread.number` 屬性。 預設值為 8。
+1.  若要限制平行執行的作業數目，請修改 `hive.exec.parallel.thread.number` 屬性。 預設值為 8。
 
     ![Hive 執行平行](./media/hdinsight-changing-configs-via-ambari/hive-exec-parallel.png)
 
@@ -141,7 +136,7 @@ Hive 會逐列處理資料。 向量化會指示 Hive 處理 1,024 列的資料�
 
 1. 若要啟用向量化查詢執行，請瀏覽至 Hive [設定] 索引標籤，並搜尋 `hive.vectorized.execution.enabled` 參數。 Hive 0.13.0 或更新版本的預設值為 true。
  
-2. 若要對於查詢的歸納器端啟用向量化執行，將 `hive.vectorized.execution.reduce.enabled` 參數設定為 true。 預設值為 False。
+1. 若要對於查詢的歸納器端啟用向量化執行，將 `hive.vectorized.execution.reduce.enabled` 參數設定為 true。 預設值為 False。
 
     ![Hive 向量化執行](./media/hdinsight-changing-configs-via-ambari/hive-vectorized-execution.png)
 
@@ -184,7 +179,7 @@ Hadoop 工作通常出現 I/O 瓶頸。 壓縮資料可以加快 I/O 和整體�
 | 格式 | 工具 | 演算法 | 檔案副檔名 | 可分割？ |
 | -- | -- | -- | -- | -- |
 | Gzip | Gzip | DEFLATE | .gz | 否 |
-| Bzip2 | Bzip2 | Bzip2 |.bz2 | yes |
+| Bzip2 | Bzip2 | Bzip2 |.bz2 | 是 |
 | LZO | Lzop | LZO | .lzo | 是，如果已編製索引 |
 | Snappy | N/A | Snappy | Snappy | 否 |
 
@@ -197,9 +192,9 @@ Hadoop 工作通常出現 I/O 瓶頸。 壓縮資料可以加快 I/O 和整體�
     > [!NOTE]
     > 若要壓縮中繼檔案，即使轉碼器沒有高壓縮輸出，也請選擇較低 CPU 成本的壓縮轉碼器。
 
-2. 若要設定中繼壓縮轉碼器，請將自訂屬性 `mapred.map.output.compression.codec` 新增至 `hive-site.xml` 或 `mapred-site.xml` 檔案。
+1. 若要設定中繼壓縮轉碼器，請將自訂屬性 `mapred.map.output.compression.codec` 新增至 `hive-site.xml` 或 `mapred-site.xml` 檔案。
 
-3. 若要新增自訂設定：
+1. 若要新增自訂設定：
 
     a. 瀏覽至 Hive [設定] 索引標籤，並選取 [進階] 索引標籤。
 
@@ -224,13 +219,13 @@ Hadoop 工作通常出現 I/O 瓶頸。 壓縮資料可以加快 I/O 和整體�
 
 1. 若要壓縮最終 Hive 輸出，請瀏覽至 Hive [設定] 索引標籤，然後將 `hive.exec.compress.output` 參數設定為 true。 預設值為 False。
 
-2. 若要選擇輸出壓縮轉碼器，請將 `mapred.output.compression.codec` 自訂屬性新增至 [自訂 Hive 網站] 窗格，如上一節的步驟 3 中所述。
+1. 若要選擇輸出壓縮轉碼器，請將 `mapred.output.compression.codec` 自訂屬性新增至 [自訂 Hive 網站] 窗格，如上一節的步驟 3 中所述。
 
     ![Hive 自訂屬性](./media/hdinsight-changing-configs-via-ambari/hive-custom-property2.png)
 
 ### <a name="enable-speculative-execution"></a>啟用推測性執行
 
-推測性執行會啟動特定數目的重複工作，以偵測緩慢執行的工作並列入黑名單，同時將個別工作的結果最佳化，藉以改善整體的工作執行效果。
+推測性執行會啟動特定數目的重複工作，以偵測緩慢執行的工作並列入封鎖清單，同時將個別工作的結果最佳化，藉以改善整體的工作執行效果。
 
 對於有大量輸入的長時間執行 MapReduce 工作，不應該開啟推測性執行。
 
@@ -244,11 +239,11 @@ Hive 能夠在將記錄插入資料表時建立動態分割區，不需要預先
 
 1. 若要 Hive 執行動態分割，`hive.exec.dynamic.partition` 參數值應該為 true (預設值)。
 
-2. 將動態分割模式變更為 [嚴格]。 在嚴格模式中，至少一個分割區必須為靜態。 這可防止在沒有分割區篩選器出現在 WHERE 子句的情況下進行查詢，也就是說，[嚴格] 會防止掃描所有分割區的查詢。 瀏覽至 Hive [設定] 索引標籤，然後將 `hive.exec.dynamic.partition.mode` 設定為 [嚴格]。 預設值為 **nonstrict**。
+1. 將動態分割模式變更為 [嚴格]。 在嚴格模式中，至少一個分割區必須為靜態。 這可防止在沒有分割區篩選器出現在 WHERE 子句的情況下進行查詢，也就是說，[嚴格] 會防止掃描所有分割區的查詢。 瀏覽至 Hive [設定] 索引標籤，然後將 `hive.exec.dynamic.partition.mode` 設定為 [嚴格]。 預設值為 **nonstrict**。
  
-3. 若要限制建立的動態分割區數目，請修改 ``hive.exec.max.dynamic.partitions` 參數。 預設值是 5,000。
+1. 若要限制建立的動態分割區數目，請修改 `hive.exec.max.dynamic.partitions` 參數。 預設值為 5000。
  
-4. 若要限制每個節點的動態分割區總數，請修改 `hive.exec.max.dynamic.partitions.pernode`。 預設值是 2,000。
+1. 若要限制每個節點的動態分割區總數，請修改 `hive.exec.max.dynamic.partitions.pernode`。 預設值為 2000。
 
 ### <a name="enable-local-mode"></a>啟用本機模式
 
@@ -298,9 +293,9 @@ Hive 的預設聯結類型是*隨機聯結*。 在 Hive 中，特殊對應程式
 
 1. 若要修改 Pig 屬性，請瀏覽至 Pig [設定] 索引標籤，然後展開 [進階 pig 屬性] 窗格。
 
-2. 尋找、取消註解並變更您想要修改的屬性值。
+1. 尋找、取消註解並變更您想要修改的屬性值。
 
-3. 選取視窗右上方的 [儲存] 儲存新值。 某些屬性可能需要服務重新啟動。
+1. 選取視窗右上方的 [儲存] 儲存新值。 某些屬性可能需要服務重新啟動。
 
     ![進階 pig 屬性](./media/hdinsight-changing-configs-via-ambari/advanced-pig-properties.png)
  
@@ -313,7 +308,7 @@ Hive 的預設聯結類型是*隨機聯結*。 在 Hive 中，特殊對應程式
 
 1. 若要修改執行引擎，請在 [進階 pig 屬性] 窗格中找出屬性 `exectype`。
 
-2. 預設值為 **MapReduce**。 將它變更為 [Tez]。
+1. 預設值為 **MapReduce**。 將它變更為 [Tez]。
 
 
 ### <a name="enable-local-mode"></a>啟用本機模式
@@ -322,7 +317,7 @@ Hive 的預設聯結類型是*隨機聯結*。 在 Hive 中，特殊對應程式
 
 1. 若要啟用本機模式，請將 `pig.auto.local.enabled` 設定為 **true**。 預設值為 False。
 
-2. 輸入資料大小比 `pig.auto.local.input.maxbytes` 屬性值小的作業會被視為小型作業。 預設值為 1 GB。
+1. 輸入資料大小比 `pig.auto.local.input.maxbytes` 屬性值小的作業會被視為小型作業。 預設值為 1 GB。
 
 
 ### <a name="copy-user-jar-cache"></a>複製使用者 jar 快取
@@ -331,7 +326,7 @@ Pig 會將 UDF 需要的 JAR 檔案複製到分散式快取，以供工作節點
 
 1. 若要啟用，請將 `pig.user.cache.enabled` 設定為 true。 預設值為 false。
 
-2. 若要設定快取 jar 的基底路徑，請將 `pig.user.cache.location` 設定為基底路徑。 預設值為 `/tmp`。
+1. 若要設定快取 jar 的基底路徑，請將 `pig.user.cache.location` 設定為基底路徑。 預設值為 `/tmp`。
 
 
 ### <a name="optimize-performance-with-memory-settings"></a>使用記憶體設定將效能最佳化
@@ -376,7 +371,7 @@ HBase 堆積大小會指定*區域*和*主要*伺服器將使用的堆積最大�
 
 1. 若要修改，請瀏覽至 HBase [設定] 索引標籤的 [進階 HBase-env] 窗格，然後尋找 `HBASE_HEAPSIZE` 設定。
 
-2. 將預設值變更為 5,000 MB。
+1. 將預設值變更為 5,000 MB。
 
     ![HBASE_HEAPSIZE](./media/hdinsight-changing-configs-via-ambari/hbase-heapsize.png)
 
@@ -393,7 +388,7 @@ HBase 堆積大小會指定*區域*和*主要*伺服器將使用的堆積最大�
 
     ![HBase 區塊快取大小](./media/hdinsight-changing-configs-via-ambari/hbase-block-cache-size.png)
  
-2. 若要變更該值，請選取 [編輯] 圖示。
+1. 若要變更該值，請選取 [編輯] 圖示。
 
 
 #### <a name="memstore-size"></a>Memstore 大小

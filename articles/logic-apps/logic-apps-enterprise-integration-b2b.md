@@ -1,30 +1,27 @@
 ---
-title: "建立 B2B 解決方案 - Azure Logic Apps | Microsoft Docs"
-description: "使用企業整合套件中的 B2B 功能在邏輯應用程式中接收資料"
+title: 建立 B2B 企業整合 - Azure Logic Apps | Microsoft Docs
+description: 使用 Azure Logic Apps 與 Enterprise Integration Pack 接收 B2B 資料
 services: logic-apps
-documentationcenter: .net,nodejs,java
-author: msftman
-manager: anneta
-editor: cgronlun
-ms.assetid: 20fc3722-6f8b-402f-b391-b84e9df6fcff
 ms.service: logic-apps
-ms.workload: integration
-ms.tgt_pltfrm: na
-ms.devlang: na
+ms.suite: integration
+author: divyaswarnkar
+ms.author: divswa
+ms.reviewer: jonfan, estfan, LADocs
 ms.topic: article
+ms.assetid: 20fc3722-6f8b-402f-b391-b84e9df6fcff
 ms.date: 07/08/2016
-ms.author: LADocs; padmavc
-ms.openlocfilehash: 0625787ddcbc0091e70b111f687e25929720ad15
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: ad7a29f4a554d599b17576921542b1ac6e403911
+ms.sourcegitcommit: 2ad510772e28f5eddd15ba265746c368356244ae
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "43127759"
 ---
-# <a name="receive-data-in-logic-apps-with-the-b2b-features-in-the-enterprise-integration-pack"></a>使用企業整合套件中的 B2B 功能在邏輯應用程式中接收資料
+# <a name="receive-b2b-data-with-azure-logic-apps-and-enterprise-integration-pack"></a>使用 Azure Logic Apps 與 Enterprise Integration Pack 接收 B2B 資料
 
 建立具有合作夥伴與合約的整合帳戶之後，您就可以使用[企業整合套件](logic-apps-enterprise-integration-overview.md)為您的邏輯應用程式建立企業對企業 (B2B) 工作流程。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 若要使用 AS2 和 X12 動作，您必須有企業整合帳戶。 了解[如何建立企業整合帳戶](../logic-apps/logic-apps-enterprise-integration-accounts.md)。
 

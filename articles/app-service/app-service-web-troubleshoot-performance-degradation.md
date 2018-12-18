@@ -1,13 +1,13 @@
 ---
-title: "App Service 中的 Web 應用程式效能變慢 | Microsoft Docs"
-description: "本文可協助您針對 Azure App Service 中 Web 應用程式效能變慢的問題進行疑難排解。"
+title: App Service 中的 Web 應用程式效能變慢 | Microsoft Docs
+description: 本文可協助您針對 Azure App Service 中 Web 應用程式效能變慢的問題進行疑難排解。
 services: app-service\web
-documentationcenter: 
+documentationcenter: ''
 author: cephalin
 manager: erikre
-editor: 
+editor: ''
 tags: top-support-issue
-keywords: "Web 應用程式效能、變慢的應用程式、應用程式變慢"
+keywords: Web 應用程式效能、變慢的應用程式、應用程式變慢
 ms.assetid: b8783c10-3a4a-4dd6-af8c-856baafbdde5
 ms.service: app-service-web
 ms.workload: web
@@ -16,11 +16,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/03/2016
 ms.author: cephalin
-ms.openlocfilehash: 6b71aa004095a94bea84623fd2b5dbdfc1f81af0
-ms.sourcegitcommit: d1f35f71e6b1cbeee79b06bfc3a7d0914ac57275
+ms.openlocfilehash: 3ec67488b238118067e771baf3dd5124308a84cf
+ms.sourcegitcommit: f3bd5c17a3a189f144008faf1acb9fabc5bc9ab7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/22/2018
+ms.lasthandoff: 09/10/2018
+ms.locfileid: "44296188"
 ---
 # <a name="troubleshoot-slow-web-app-performance-issues-in-azure-app-service"></a>針對 Azure App Service 中 Web 應用程式效能變慢的問題進行疑難排解
 本文可協助您針對 [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714)中 Web 應用程式效能變慢的問題進行疑難排解。
@@ -45,7 +46,7 @@ ms.lasthandoff: 02/22/2018
 2. [收集資料](#collect)
 3. [減輕問題](#mitigate)
 
-[App Service Web Apps](/services/app-service/web/) 在每個步驟均提供您各種選項。
+[App Service Web Apps](app-service-web-overview.md) 在每個步驟均提供您各種選項。
 
 <a name="observe" />
 
@@ -87,10 +88,10 @@ ms.lasthandoff: 02/22/2018
 
 每個 App Service Web 應用程式都提供可擴充的管理端點，讓您得以運用一套以網站擴充功能形式部署的強大工具。 擴充功能包括： 
 
-- 原始程式碼編輯器，例如 [Visual Studio Team Services](https://www.visualstudio.com/products/what-is-visual-studio-online-vs.aspx)。 
+- 原始程式碼編輯器，例如 [Azure DevOps](https://www.visualstudio.com/products/what-is-visual-studio-online-vs.aspx)。 
 - 適用於已連線的資源的管理工具，例如連線到 Web 應用程式的 MySQL 資料庫。
 
-[Azure Application Insights](/services/application-insights/) 也是可使用的效能監視網站擴充功能。 若要使用 Application Insights，您可以使用 SDK 重建您的程式碼。 您也可以安裝擴充功能來存取供其他資料。 SDK 可讓您撰寫程式碼來監視應用程式的詳細使用狀況和效能。 如需詳細資訊，請參閱[監視 Web 應用程式中的效能](../application-insights/app-insights-web-monitor-performance.md)。
+[Azure Application Insights](https://azure.microsoft.com/services/application-insights/) 也是可使用的效能監視網站擴充功能。 若要使用 Application Insights，您可以使用 SDK 重建您的程式碼。 您也可以安裝擴充功能來存取供其他資料。 SDK 可讓您撰寫程式碼來監視應用程式的詳細使用狀況和效能。 如需詳細資訊，請參閱[監視 Web 應用程式中的效能](../application-insights/app-insights-web-monitor-performance.md)。
 
 <a name="collect" />
 
@@ -157,7 +158,7 @@ Kudu 提供的部分項目為：
 
 Kudu 的另一項實用功能是，如果應用程式擲回第一次例外狀況，您可以使用 Kudu 和 SysInternals 工具 Procdump 建立記憶體傾印。 這些記憶體傾印是處理序的快照集，通常可以協助您疑難排解 Web 應用程式較複雜的問題。
 
-如需 Kudu 可用功能的詳細資訊，請參閱 [您應該知道的 Azure 網站 Team Services 工具](https://azure.microsoft.com/blog/windows-azure-websites-online-tools-you-should-know-about/)。
+如需有關 Kudu 可用功能的詳細資訊，請參閱 [您應該知道的 Azure DevOps 工具](https://azure.microsoft.com/blog/windows-azure-websites-online-tools-you-should-know-about/)。
 
 <a name="mitigate" />
 

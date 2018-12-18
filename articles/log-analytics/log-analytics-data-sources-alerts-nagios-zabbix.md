@@ -1,38 +1,43 @@
 ---
-title: "在 OMS Log Analytics 中收集 Nagios 和 Zabbix 警示 | Microsoft Docs"
-description: "Nagios 和 Zabbix 是開放原始碼監視工具。 您可以將來自這些工具的警示收集到 Log Analytics，以搭配其他來源的警示一起分析。  本文說明如何設定 OMS Agent for Linux 以收集來自這些系統的警示。"
+title: 在 OMS Log Analytics 中收集 Nagios 和 Zabbix 警示 | Microsoft Docs
+description: Nagios 和 Zabbix 是開放原始碼監視工具。 您可以將來自這些工具的警示收集到 Log Analytics，以搭配其他來源的警示一起分析。  本文說明如何設定 OMS Agent for Linux 以收集來自這些系統的警示。
 services: log-analytics
-documentationcenter: 
+documentationcenter: ''
 author: mgoedtel
 manager: carmonm
 editor: tysonn
 ms.assetid: f1d5bde4-6b86-4b8e-b5c1-3ecbaba76198
 ms.service: log-analytics
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 05/04/2017
+ms.date: 04/13/2018
 ms.author: magoedte
-ms.openlocfilehash: 0b64c32e1031e704d50aab0b38eaea41e27d134b
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.component: na
+ms.openlocfilehash: 240e56e3e482b81d6336f7d6d2a1f5688953ecd8
+ms.sourcegitcommit: 5892c4e1fe65282929230abadf617c0be8953fd9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 06/29/2018
+ms.locfileid: "37131546"
 ---
 # <a name="collect-alerts-from-nagios-and-zabbix-in-log-analytics-from-oms-agent-for-linux"></a>從 OMS Agent for Linux 在 Log Analytics 中收集來自 Nagios 和 Zabbix 的警示 
-[Nagios](https://www.nagios.org/) 和 [Zabbix](http://www.zabbix.com/) 是開放原始碼監視工具。  您可以將來自這些工具的警示收集到 Log Analytics，以搭配[其他來源的警示](log-analytics-alerts.md)一起分析。  本文說明如何設定 OMS Agent for Linux 以收集來自這些系統的警示。
+[Nagios](https://www.nagios.org/) 和 [Zabbix](http://www.zabbix.com/) 是開放原始碼監視工具。 您可以將來自這些工具的警示收集到 Log Analytics，以搭配[其他來源的警示](log-analytics-alerts.md)一起分析。  本文說明如何設定 OMS Agent for Linux 以收集來自這些系統的警示。
  
+## <a name="prerequisites"></a>先決條件
+適用於 Linux 的 OMS 代理程式支援從 Nagios 收集的警示最高為 4.2.x 版，Zabbix 則最高為 2.x 版。
+
 ## <a name="configure-alert-collection"></a>設定警示收集
 
 ### <a name="configuring-nagios-alert-collection"></a>設定 Nagios 警示收集
-在 Nagios 伺服器上執行下列步驟來收集警示。
+若要收集警示，請在 Nagios 伺服器上執行下列步驟。
 
-1. 將 Nagios 記錄檔 (即 `/var/log/nagios/nagios.log`) 的讀取權授與使用者 **omsagent**。 假設 nagios.log 檔案是由 `nagios` 群組所擁有，您可以將使用者 **omsagent** 新增至 **nagios** 群組。 
+1. 將 Nagios 記錄檔 `/var/log/nagios/nagios.log` 的讀取權授與使用者 **omsagent**。 假設 nagios.log 檔案是由 `nagios` 群組所擁有，您可以將使用者 **omsagent** 新增至 **nagios** 群組。 
 
     sudo usermod -a -G nagios omsagent
 
-2.  編輯組態檔 (位於 `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.conf`)。 確定下列項目存在且未標成註解︰  
+2.  編輯位於 `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.conf` 的組態檔。 確定下列項目存在且未標成註解︰  
 
         <source>  
           type tail  
@@ -53,11 +58,11 @@ ms.lasthandoff: 10/11/2017
     ```
 
 ### <a name="configuring-zabbix-alert-collection"></a>設定 Zabbix 警示收集
-若要收集來自 Zabbix 伺服器的警示，您需要以「純文字」指定使用者名稱和密碼。 這雖然不理想，但建議您建立使用者，而且只授與監視權限。
+若要收集來自 Zabbix 伺服器的警示，您需要以「純文字」指定使用者名稱和密碼。  雖然不理想，但建議您建立具有唯讀權限的 Zabbix 使用者來擷取相關警示。
 
-在 Nagios 伺服器上執行下列步驟來收集警示。
+若要在 Nagios 伺服器上收集警示，請執行下列步驟。
 
-1. 編輯組態檔 (位於 `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.conf`)。 確定下列項目存在且未標成註解。將使用者名稱和密碼變更為您的 Zabbix 環境值。
+1. 編輯位於 `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.conf` 的組態檔。 確定下列項目存在且未標成註解。將使用者名稱和密碼變更為您的 Zabbix 環境值。
 
         <source>
          type zabbix_alerts
@@ -70,7 +75,7 @@ ms.lasthandoff: 10/11/2017
 
 2. 重新啟動 omsagent 精靈
 
-    sudo sh /opt/microsoft/omsagent/bin/service_control restart
+    `sudo sh /opt/microsoft/omsagent/bin/service_control restart`
 
 
 ## <a name="alert-records"></a>警示記錄

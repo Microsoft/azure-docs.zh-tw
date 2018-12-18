@@ -1,8 +1,8 @@
 ---
-title: "所有 SQL Server Stretch Database 服務的主題 | Microsoft Docs"
-description: "http://azure.microsoft.com/documentation/articles/ 上名為 SQL Server Stretch Database 的 Azure 服務之所有主題的表格 (標題與說明)。"
+title: 所有 SQL Server Stretch Database 服務的主題 | Microsoft Docs
+description: http://azure.microsoft.com/documentation/articles/ 上名為 SQL Server Stretch Database 的 Azure 服務之所有主題的表格 (標題與說明)。
 services: sql-server-stretch-database
-documentationcenter: 
+documentationcenter: ''
 author: DouglasL
 manager: jhubbard
 editor: MightyPen
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23055523"
 ---
 # <a name="all-topics-for-azure-sql-server-stretch-database-service"></a>所有 Azure SQL Server Stretch Database 服務的主題
 本主題會列出每一個直接適用於 Azure 的 **SQL Server Stretch Database** 服務的主題。 您可以使用 **Ctrl+F**，利用關鍵字搜尋本網頁，以尋找目前感興趣的主題。

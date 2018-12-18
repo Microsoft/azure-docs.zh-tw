@@ -2,31 +2,34 @@
 title: 使用 Ruby 查詢 Azure SQL Database | Microsoft Docs
 description: 本主題說明如何使用 Ruby 來建立連線到 Azure SQL Database 的程式，並使用 Transact-SQL 陳述式查詢。
 services: sql-database
-author: CarlRabeler
-manager: craigg
 ms.service: sql-database
-ms.custom: mvc,develop apps
+ms.subservice: development
+ms.custom: ''
 ms.devlang: ruby
 ms.topic: quickstart
-ms.date: 07/15/2017
+author: CarlRabeler
 ms.author: carlrab
-ms.openlocfilehash: 19ff40c5e4a42195dcfe0b68c8d0b941e53f25a2
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.reviewer: ''
+manager: craigg
+ms.date: 04/01/2018
+ms.openlocfilehash: 7b2652c1e25c2815518ac533bde5bced5b3ee635
+ms.sourcegitcommit: cc4fdd6f0f12b44c244abc7f6bc4b181a2d05302
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47063399"
 ---
 # <a name="use-ruby-to-query-an-azure-sql-database"></a>使用 Ruby 查詢 Azure SQL 資料庫
 
-此快速入門教學課程示範如何使用 [Ruby](https://www.ruby-lang.org) 來建立程式以連線至 Azure SQL 資料庫，並使用 Transact-SQL 陳述式來查詢資料。
+此快速入門示範如何使用 [Ruby](https://www.ruby-lang.org) 建立程式以連線至 Azure SQL 資料庫，並使用 Transact-SQL 陳述式來查詢資料。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
-若要完成本快速入門教學課程，請確定您具有下列必要條件︰
+若要完成本快速入門，請確定您具備下列必要條件︰
 
 [!INCLUDE [prerequisites-create-db](../../includes/sql-database-connect-query-prerequisites-create-db-includes.md)]
 
-- 在此快速入門教學課程中，您所使用電腦的公用 IP 位址[伺服器層級防火牆規則](sql-database-get-started-portal.md#create-a-server-level-firewall-rule)。
+- 在此快速入門中，您所使用電腦的公用 IP 位址[伺服器層級防火牆規則](sql-database-get-started-portal-firewall.md)。
 
 - 您已安裝適用於您作業系統的 Ruby 和相關軟體：
     - **MacOS**：安裝 Homebrew、安裝 rbenv 和 ruby-build、安裝 Ruby，然後安裝 FreeTDS。 請參閱[步驟 1.2、1.3、1.4 和 1.5](https://www.microsoft.com/sql-server/developer-get-started/ruby/mac/)。
@@ -37,7 +40,7 @@ ms.lasthandoff: 03/16/2018
 [!INCLUDE [prerequisites-server-connection-info](../../includes/sql-database-connect-query-prerequisites-server-connection-info-includes.md)]
 
 > [!IMPORTANT]
-> 在您執行本教學課程的電腦上，公用 IP 位址必須有防火牆規則。 如果您在不同電腦上或有不同的公用 IP 位址，請建立[使用 Azure 入口網站的伺服器層級防火牆規則](sql-database-get-started-portal.md#create-a-server-level-firewall-rule)。 
+> 在您執行本教學課程的電腦上，公用 IP 位址必須有防火牆規則。 如果您在不同電腦上或有不同的公用 IP 位址，請建立[使用 Azure 入口網站的伺服器層級防火牆規則](sql-database-get-started-portal-firewall.md)。 
 
 ## <a name="insert-code-to-query-sql-database"></a>插入程式碼以查詢 SQL 資料庫
 

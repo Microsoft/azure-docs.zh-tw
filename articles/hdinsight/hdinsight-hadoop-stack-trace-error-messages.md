@@ -1,26 +1,21 @@
 ---
-title: "Hadoop 堆疊追蹤錯誤訊息 - Azure HDInsight | Microsoft Docs"
-description: "Azure HDInsight 中 Hadoop 堆疊追蹤錯誤訊息的索引。 查看清單中的錯誤，以了解疑難排解資訊。"
-keywords: "堆疊追蹤，錯誤訊息"
+title: Hadoop 堆疊追蹤錯誤訊息 - Azure HDInsight
+description: Azure HDInsight 中 Hadoop 堆疊追蹤錯誤訊息的索引。 查看清單中的錯誤，以了解疑難排解資訊。
+keywords: 堆疊追蹤，錯誤訊息
 services: hdinsight
-documentationcenter: NA
-author: mumian
-manager: jhubbard
-editor: cgronlun
-ms.assetid: 310051e5-5e2f-4be2-9780-2e8c0430e52d
 ms.service: hdinsight
+author: jasonwhowell
+ms.author: jasonh
+ms.reviewer: jasonh
 ms.custom: hdinsightactive
-ms.devlang: NA
-ms.topic: article
-ms.tgt_pltfrm: NA
-ms.workload: big-data
-ms.date: 02/22/2018
-ms.author: jgao
-ms.openlocfilehash: 49a7629987df77da0844a65b265cde87473b4d0c
-ms.sourcegitcommit: 12fa5f8018d4f34077d5bab323ce7c919e51ce47
+ms.topic: conceptual
+ms.date: 05/14/2018
+ms.openlocfilehash: 37b36f45a8648b5a3a4d685e935bf9b8a022a4cb
+ms.sourcegitcommit: f6e2a03076679d53b550a24828141c4fb978dcf9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/23/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43111347"
 ---
 # <a name="index-of-hadoop-in-hdinsight-troubleshooting-articles"></a>HDInsight 中的 Hadoop 疑難排解文章索引
 文章是依錯誤的類型加以整理。

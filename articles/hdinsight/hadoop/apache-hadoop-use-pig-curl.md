@@ -1,26 +1,20 @@
 ---
-title: "在 HDInsight 中搭配使用 Hadoop Pig 與 REST - Azure | Microsoft Docs"
-description: "了解如何使用 REST 在 Azure HDInsight 中的 Hadoop 叢集上執行 Pig Latin 作業。"
+title: 在 HDInsight 中搭配使用 Hadoop Pig 與 REST - Azure
+description: 了解如何使用 REST 在 Azure HDInsight 中的 Hadoop 叢集上執行 Pig Latin 作業。
 services: hdinsight
-documentationcenter: 
-author: Blackmist
-manager: jhubbard
-editor: cgronlun
-tags: azure-portal
-ms.assetid: ed5e10d1-4f47-459c-a0d6-7ff967b468c4
+author: jasonwhowell
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 01/17/2018
-ms.author: larryfr
-ms.openlocfilehash: c2c441d92607a017b4451cd8a06fb78a5e8e7135
-ms.sourcegitcommit: f1c1789f2f2502d683afaf5a2f46cc548c0dea50
+ms.topic: conceptual
+ms.date: 04/10/2018
+ms.author: jasonh
+ms.openlocfilehash: e97dcd5a15fa1a58782fb8225e8b3381d7061bb6
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/18/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43051718"
 ---
 # <a name="run-pig-jobs-with-hadoop-on-hdinsight-by-using-rest"></a>使用 REST 在 HDInsight 上搭配 Hadoop 執行 Pig 作業
 
@@ -66,7 +60,7 @@ ms.lasthandoff: 01/18/2018
     * **-u**：用來驗證要求的使用者名稱和密碼
     * **-G**：指出此要求是 GET 要求
 
-     所有要求的 URL 開頭 **https://CLUSTERNAME.azurehdinsight.net/templeton/v1** 都相同。 路徑 **/status** 指出要求是要傳回伺服器之 WebHCat (也稱為 Templeton) 的狀態。
+     URL 的開頭 **https://CLUSTERNAME.azurehdinsight.net/templeton/v1** 適用於所有的要求。 路徑 **/status** 指出要求是要傳回伺服器之 WebHCat (也稱為 Templeton) 的狀態。
 
 2. 使用下列程式碼，以將 Pig Latin 工作提交至叢集：
 

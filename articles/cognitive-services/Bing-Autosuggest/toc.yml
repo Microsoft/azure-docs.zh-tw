@@ -1,0 +1,72 @@
+items:
+- name: Bing 自動建議文件
+  href: index.yml
+- name: 概觀
+  items:
+  - name: 什麼是 Bing 自動建議？
+    href: get-suggested-search-terms.md
+- name: REST API 快速入門
+  items:
+  - name: C#
+    href: quickstarts/csharp.md
+  - name: Java
+    href: quickstarts/java.md
+  - name: Node.js
+    href: quickstarts/nodejs.md
+  - name: PHP
+    href: quickstarts/php.md
+  - name: Python
+    href: quickstarts/python.md
+  - name: Ruby
+    href: quickstarts/ruby.md
+  expanded: true
+- name: 教學課程
+  items:
+  - name: 單一頁面 Web 應用程式
+    href: tutorials/autosuggest.md
+  - name: 單一頁面 Web 應用程式 (原始程式碼)
+    href: tutorials/autosuggest-source.md
+- name: 使用說明指南
+  items:
+  - name: 使用和顯示需求
+    href: UseAndDisplayRequirements.md
+  - name: 從 v5 升級到 v7
+    href: bing-autosuggest-upgrade-guide-v5-to-v7.md
+- name: 參考
+  items:
+  - name: Bing 自動建議 API v7
+    href: https://docs.microsoft.com/rest/api/cognitiveservices/bing-autosuggest-api-v7-reference
+  - name: Bing 自動建議 API v5
+    href: https://docs.microsoft.com/rest/api/cognitiveservices/bing-autosuggest-api-v5-reference
+- name: 資源
+  items:
+  - name: 常見問題集
+    href: bing-autosuggest-resource-faq.md
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/cognitive-services/autosuggest-api/
+  - name: UserVoice
+    href: https://cognitive.uservoice.com/forums/598198-bing-autosuggest
+  - name: 堆疊溢位
+    href: https://stackoverflow.com/search?q=bing+autosuggest
+  - name: 區域可用性
+    href: https://azure.microsoft.com/global-infrastructure/services/
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/
+  - name: 知識庫
+    href: https://cognitive.uservoice.com/knowledgebase/topics/127875-bing-search-web-image-video-news-autosuggest
+  - name: 取得 API 金鑰
+    href: https://azure.microsoft.com/try/cognitive-services/?api=autosuggest-api
+  - name: 試試看！
+    href: https://azure.microsoft.com/services/cognitive-services/autosuggest/
+  - name: Bing 自動建議端點
+    href: autosuggest-endpoint.md
+  - name: 語言與區域支援
+    href: language-support.md
+  - name: Bing 自動建議 API 的分析
+    href: bing-autosuggest-stats.md
+ms.openlocfilehash: 2023b16534a23db1df0562a163614f1d0237fb6e
+ms.sourcegitcommit: 7c4fd6fe267f79e760dc9aa8b432caa03d34615d
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47434699"

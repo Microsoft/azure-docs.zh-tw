@@ -7,21 +7,23 @@ documentationcenter: ''
 author: MarkusVi
 manager: mtillman
 editor: ''
+ms.component: devices
 ms.assetid: f45d0515-99f7-42ad-94d8-307bc0d07be5
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/15/2018
+ms.date: 07/23/2018
 ms.author: markvi
 ms.reviewer: tanning
 ms.custom: it-pro
-ms.openlocfilehash: d9936da3ee1b0cfb4ee6e834a838798a35140620
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: c7a2428e4e5e3b5af0e9e01514ba433707e6a3c8
+ms.sourcegitcommit: d211f1d24c669b459a3910761b5cacb4b4f46ac9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/06/2018
+ms.locfileid: "44022793"
 ---
 # <a name="troubleshooting-enterprise-state-roaming-settings-in-azure-active-directory"></a>針對 Azure Active Directory 中的企業狀態漫遊設定進行疑難排解
 
@@ -69,7 +71,7 @@ ms.lasthandoff: 03/23/2018
 **可能的原因**：**WamDefaultSet** 和 **AzureAdJoined** 的欄位值都是 [NO]、裝置已經加入網域且已經在 Azure AD 註冊，以及裝置沒有同步處理。如果顯示此問題，表示裝置可能需要等待原則套用，或裝置在連線至 Azure AD 時驗證失敗。 使用者可能需等待幾個小時來等待原則套用。 其他疑難排解步驟可能包括透過登出並重新登入來重試自動註冊，或在工作排程器中啟動工作。 在某些情況下，於已提升權限的命令提示字元視窗中執行 *dsregcmd.exe /leave*、重新開機，然後再試一次註冊，可能有助於解決此問題。
 
 
-**可能的原因**：**AzureAdSettingsUrl** 的欄位空白且裝置沒有同步處理。使用者上次登入裝置的時間可能是在於 Azure Active Directory 入口網站中啟用企業狀態漫遊之前。 重新啟動裝置並讓使用者登入。 (選擇性) 在入口網站中，嘗試停用 IT 系統管理員，然後重新啟用「使用者可以同步設定及企業應用程式資料」。 重新啟用之後，請重新啟動裝置並讓使用者登入。 如果這樣做無法解決問題，錯誤裝置憑證中的 **AzureAdSettingsUrl** 可能是空的。 在此情況下，於已提升權限的命令提示字元視窗中執行 *dsregcmd.exe /leave*、重新開機，然後再試一次註冊，可能有助於解決此問題。
+**可能的原因**：**SettingsUrl** 的欄位空白且裝置並未同步。使用者上次登入裝置的時間可能是在於 Azure Active Directory 入口網站中啟用企業狀態漫遊之前。 重新啟動裝置並讓使用者登入。 (選擇性) 在入口網站中，嘗試停用 IT 系統管理員，然後重新啟用「使用者可以同步設定及企業應用程式資料」。 重新啟用之後，請重新啟動裝置並讓使用者登入。 如果這樣做無法解決問題，錯誤裝置憑證中的 **SettingsUrl** 可能是空的。 在此情況下，於已提升權限的命令提示字元視窗中執行 *dsregcmd.exe /leave*、重新開機，然後再試一次註冊，可能有助於解決此問題。
 
 ## <a name="enterprise-state-roaming-and-multi-factor-authentication"></a>企業狀態漫遊與 Multi-Factor Authentication 
 在某些情況下，如果設定了 Azure Multi-Factor Authentication，「企業狀態漫遊」可能會無法同步處理資料。 如需有關這些徵兆的其他詳細資料，請參閱支援文件 [KB3193683](https://support.microsoft.com/kb/3193683)。 
@@ -79,7 +81,7 @@ ms.lasthandoff: 03/23/2018
 **可能的原因**：如果系統管理員設定 Active Directory Federation Services Multi-Factor Authentication 條件式存取原則，而裝置上的存取權杖到期，則同步處理可能會失敗。 務必使用 Microsoft Passport for Work PIN 來登入和登出，或在存取其他 Azure 服務 (例如 Office 365) 時完成 Multi-Factor Authentication。
 
 ### <a name="event-viewer"></a>事件檢視器
-進行進階疑難排解時，可以使用「事件檢視器」來找出特定錯誤。 這些錯誤記載在下面的表格中。 您可以在 [事件檢視器] > [應用程式及服務紀錄檔] > [Microsoft] > [Windows] > [SettingSync] 底下找到事件，和身分識別有關的問題則可以透過同步處理 [Microsoft] > [Windows] > [Azure AD] 來找到。
+進行進階疑難排解時，可以使用「事件檢視器」來找出特定錯誤。 這些錯誤記載在下面的表格中。 您可以在 [事件檢視器] > [應用程式及服務紀錄檔] > [Microsoft] > [Windows] > [SettingSync-Azure] 底下找到事件，而身分識別相關問題則可透過同步處理 [Microsoft] > [Windows] > [AAD] 來找到。
 
 
 ## <a name="known-issues"></a>已知問題
@@ -172,14 +174,6 @@ ms.lasthandoff: 03/23/2018
 
 **建議的動作**  
 請繼續執行 [KB3196528](https://support.microsoft.com/kb/3196528) 中列出的步驟。  
-
-
-
-## <a name="next-steps"></a>後續步驟
-
-- 利用[使用者心聲論壇](https://feedback.azure.com/forums/169401-azure-active-directory/category/158658-enterprise-state-roaming)來提供意見並提出如何改善企業狀態漫遊的建議。
-
-- 如需詳細資訊，請參閱[企業狀態漫遊概觀](active-directory-windows-enterprise-state-roaming-overview.md)。 
 
 ## <a name="related-topics"></a>相關主題
 * [企業狀態漫遊概觀](active-directory-windows-enterprise-state-roaming-overview.md)

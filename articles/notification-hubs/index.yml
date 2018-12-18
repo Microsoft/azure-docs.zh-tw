@@ -1,0 +1,66 @@
+### YamlMime:YamlDocument
+ms.openlocfilehash: 36c8cc5e980ab203a0abda2e7b8e2e8ac1336c1c
+ms.sourcegitcommit: f94f84b870035140722e70cab29562e7990d35a3
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/30/2018
+ms.locfileid: "43284458"
+documentType: LandingData
+title: Azure 通知中樞文件
+metadata:
+  title: Azure 通知中樞文件 - 教學課程和 API 參考 | Microsoft Docs
+  description: 了解如何透過通知中樞，將推播通知從任何後端傳送至任何行動裝置。 教學課程、API 參考和其他文件。
+  services: notification-hubs
+  author: spelluru
+  manager: 
+  ms.service: notification-hubs
+  ms.tgt_pltfrm: na
+  ms.devlang: na
+  ms.topic: landing-page
+  ms.date: 03/01/2017
+  ms.author: spelluru
+abstract:
+  description: 了解如何使用通知中樞 (這是一個多平台、可調整的推播通知引擎) 快速地將數百萬則訊息傳送到在各種類型裝置 (Android、iOS、Windows、Windows Phone、百度、Kindle) 上執行的應用程式。 <p>教學課程、API 參考和其他文件會示範如何設定推播通知，並將這類通知從任何後端傳送至任何行動裝置。</p>
+  aside:
+    image:
+      alt: 
+      height: 110
+      src: media/index/video.png
+      width: 250
+    title: 將推播通知傳送至 Android 應用程式
+    href: https://channel9.msdn.com/Shows/Azure-Friday/Using-Azure-Notification-Hubs-in-an-Android-Application
+    width: 250
+sections:
+- title: 逐步教學課程
+  items:
+  - type: paragraph
+    text: 了解如何使用通知中樞來推播通知：
+  - type: list
+    style: ordered
+    items:
+    - html: 將推播通知傳送到所有註冊的裝置 - <a href="/azure/notification-hubs/notification-hubs-android-push-notification-google-fcm-get-started">Android</a> | <a href="/azure/notification-hubs/notification-hubs-baidu-china-android-notifications-get-started">百度</a> | <a href="/azure/notification-hubs/notification-hubs-chrome-push-notifications-get-started">Chrome</a> | <a href="/azure/notification-hubs/notification-hubs-ios-apple-push-notification-apns-get-started">iOS</a> | <a href="/azure/notification-hubs/notification-hubs-kindle-amazon-adm-push-notification">Kindle</a> | <a href="/azure/notification-hubs/notification-hubs-windows-store-dotnet-get-started-wns-push-notification">Windows</a> | <a href="/azure/notification-hubs/notification-hubs-windows-mobile-push-notifications-mpns">Windows Phone</a> | <a href="/azure/notification-hubs/xamarin-notification-hubs-push-notifications-android-gcm">Xamarin.Android</a> | <a href="/azure/notification-hubs/xamarin-notification-hubs-ios-push-notification-apns-get-started">Xamarin.iOS</a>
+    - html: 將推播通知傳送到特定裝置 - <a href="/azure/notification-hubs/notification-hubs-aspnet-backend-android-xplat-segmented-gcm-push-notification">Android</a> | <a href="/azure/notification-hubs/notification-hubs-ios-xplat-segmented-apns-push-notification">iOS</a> | <a href="/azure/notification-hubs/notification-hubs-windows-notification-dotnet-push-xplat-segmented-wns">Windows</a> | <a href="/azure/notification-hubs/notification-hubs-windows-phone-push-xplat-segmented-mpns-notification">Windows Phone</a>
+    - html: 將推播通知傳送給特定使用者 - <a href="/azure/notification-hubs/notification-hubs-aspnet-backend-gcm-android-push-to-user-google-notification">Android</a> | <a href="/azure/notification-hubs/notification-hubs-aspnet-backend-ios-apple-apns-notification">iOS</a> | <a href="/azure/notification-hubs/notification-hubs-aspnet-backend-windows-dotnet-wns-notification">Windows</a>
+    - html: 推播以位置為基礎的通知 - <a href="/azure/notification-hubs/notification-hubs-push-bing-spartial-data-geofencing-notification">Windows</a>
+    - html: 推播個人化及本地化的通知 - <a href="/azure/notification-hubs/notification-hubs-ios-xplat-localized-apns-push-notification">iOS</a> | <a href="/azure/notification-hubs/notification-hubs-windows-store-dotnet-xplat-localized-wns-push-notification">Windows</a>
+- title: 範例
+  items:
+  - type: paragraph
+    text: 使用下列範例來使用通知中樞
+  - type: list
+    style: unordered
+    className: spaced noBullet
+    items:
+    - html: <a href="/azure/notification-hubs/samples-powershell">PowerShell</a>
+- title: 參考
+  items:
+  - type: list
+    style: cards
+    className: cardsD
+    items:
+    - title: 命令列
+      html: <p><a href="https://docs.microsoft.com/powershell/module/azurerm.notificationhubs/?view=azurermps-6.8.1">Azure PowerShell</a></p>
+    - title: 語言
+      html: <p><a href="/dotnet/api/microsoft.azure.notificationhubs">.NET</a></p>
+    - title: REST
+      html: <p><a href="/rest/api/notificationhubs">REST API</a></p>

@@ -1,23 +1,20 @@
 ---
-title: "在建立期間啟用 Azure VM 備份 | Microsoft Docs"
-description: "請參閱在建立程序期間啟用 Azure 虛擬機器備份的步驟。"
+title: 在建立期間啟用 Azure VM 備份
+description: 請參閱在建立程序期間啟用 Azure 虛擬機器備份的步驟。
 services: backup, virtual-machines
-documentationcenter: 
 author: markgalioto
 manager: carmonm
 tags: azure-resource-manager, virtual-machine-backup
-ms.assetid: 
 ms.service: backup, virtual-machines
-ms.devlang: na
-ms.topic: article
-ms.workload: storage-backup-recovery
+ms.topic: conceptual
 ms.date: 01/08/2018
 ms.author: trinadhk
-ms.openlocfilehash: 4041fc555fe4b61d10f84236dcae5156c6282fd3
-ms.sourcegitcommit: 7edfa9fbed0f9e274209cec6456bf4a689a4c1a6
+ms.openlocfilehash: 928481f07875286a21f68dae6556f04eb2b6ae5c
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/17/2018
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34606115"
 ---
 # <a name="enable-backup-during-azure-virtual-machine-creation"></a>在 Azure 虛擬機器建立期間啟用備份 
 
@@ -57,6 +54,10 @@ Azure 備份服務提供介面供您在雲端中建立和設定備份。 請定�
 ## <a name="initiate-a-backup-after-creating-the-vm"></a>在建立 VM 之後起始備份 
 
 雖然您已建立備份原則，但最好再建立初始備份。 若要在 VM 建立範本完成後檢視虛擬機器的備份詳細資料，請從左側功能表上的 [作業] 設定，按一下 [備份]。 您可以使用此選項來觸發隨選備份、還原完整的 VM 或所有磁碟、從 VM 備份還原檔案，或變更與虛擬機器相關聯的備份原則。  
+
+## <a name="using-a-resource-manager-template-to-deploy-a-protected-vm"></a>使用 Resource Manager 範本部署受保護的 VM
+
+先前的步驟說明如何使用 Azure 入口網站來建立虛擬機器，並保護它到復原服務保存庫。 如果您想要快速部署一或多部虛擬機器，並保護它們到復原服務保存庫，請參閱下列範本：[部署 Windows VM 並啟用備份](https://azure.microsoft.com/resources/templates/101-recovery-services-create-vm-and-configure-backup/)。
 
 ## <a name="frequently-asked-questions"></a>常見問題集 
 

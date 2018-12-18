@@ -1,25 +1,26 @@
 ---
-title: "驗證傳輸到 Microsoft Azure 虛擬網路的 VPN 輸送量 | Microsoft Docs"
-description: "本文件的目的是在協助使用者驗證從其內部部署資源到 Azure 虛擬機器的網路輸送量。"
+title: 驗證傳輸到 Microsoft Azure 虛擬網路的 VPN 輸送量 | Microsoft Docs
+description: 本文件的目的是在協助使用者驗證從其內部部署資源到 Azure 虛擬機器的網路輸送量。
 services: vpn-gateway
 documentationcenter: na
 author: chadmath
 manager: jasmc
-editor: 
+editor: ''
 tags: azure-resource-manager,azure-service-management
-ms.assetid: 
+ms.assetid: ''
 ms.service: vpn-gateway
 ms.devlang: na
 ms.topic: troubleshooting
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 09/08/2017
+ms.date: 06/15/2018
 ms.author: radwiv;chadmat;genli
-ms.openlocfilehash: e7e3c641791e7c72f5c2d6f8ecf674d1d7ee7ffa
-ms.sourcegitcommit: b07d06ea51a20e32fdc61980667e801cb5db7333
+ms.openlocfilehash: 7e6b3e7496c4a063156ff3b8feae1f5096efe55f
+ms.sourcegitcommit: 04fc1781fe897ed1c21765865b73f941287e222f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2017
+ms.lasthandoff: 07/13/2018
+ms.locfileid: "39035613"
 ---
 # <a name="how-to-validate-vpn-throughput-to-a-virtual-network"></a>如何驗證傳輸到虛擬網路的 VPN 輸送量
 
@@ -53,7 +54,7 @@ VPN 閘道連線涉及下列元件：
 4.  決定您網際網路服務提供者 (ISP) 的頻寬。
 5.  計算您預期的輸送量 - 最小頻寬的 (VM、閘道、ISP) * 0.8。
 
-如果您算出的輸送量不符合您應用程式的基準輸送量需求，您需要增加您發現已成為瓶頸的資源頻寬。 如果要調整 Azure VPN 閘道的大小，請參閱 [變更閘道 SKU](https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-about-vpn-gateway-settings.md#gwsku)。 如果調整虛擬機器的大小，請參閱 [調整 VM 的大小](../virtual-machines/virtual-machines-windows-resize-vm.md)。 如果您未能享有預期的網際網路頻寬，您可能也需要連絡您的 ISP。
+如果您算出的輸送量不符合您應用程式的基準輸送量需求，您需要增加您發現已成為瓶頸的資源頻寬。 如果要調整 Azure VPN 閘道的大小，請參閱 [變更閘道 SKU](vpn-gateway-about-vpn-gateway-settings.md#gwsku)。 如果調整虛擬機器的大小，請參閱 [調整 VM 的大小](../virtual-machines/virtual-machines-windows-resize-vm.md)。 如果您未能享有預期的網際網路頻寬，您可能也需要連絡您的 ISP。
 
 ## <a name="validate-network-throughput-by-using-performance-tools"></a>使用效能工具驗證網路輸送量
 
@@ -76,7 +77,7 @@ iPerf 是我們用於此測試的工作，分別在 Windows 與 Linux 上工作�
 
 2. 在這兩個節點上，啟用連接埠 5001 的防火牆例外狀況。
 
-    **Windows：**以系統管理員身分執行下列命令。
+    **Windows：** 以系統管理員身分執行下列命令。
 
     ```CMD
     netsh advfirewall firewall add rule name="Open Port 5001" dir=in action=allow protocol=TCP localport=5001
@@ -87,8 +88,8 @@ iPerf 是我們用於此測試的工作，分別在 Windows 與 Linux 上工作�
     ```CMD
     netsh advfirewall firewall delete rule name="Open Port 5001" protocol=TCP localport=5001
     ```
-    </br>
-    **Azure Linux：**Azure Linux 映像有寬鬆的防火牆。 如果有應用程式接聽連接埠，則允許通過流量。 受保護的自訂映像可能需要明確開啟連接埠。 常見的 Linux OS 層防火牆包括 `iptables`、`ufw` 或 `firewalld`。
+     
+    **Azure Linux：** Azure Linux 映像有寬鬆的防火牆。 如果有應用程式接聽連接埠，則允許通過流量。 受保護的自訂映像可能需要明確開啟連接埠。 常見的 Linux OS 層防火牆包括 `iptables`、`ufw` 或 `firewalld`。
 
 3. 在伺服器節點上，請變更至將 iperf3.exe 解壓縮的目錄。 然後在伺服器模式中執行 iPerf，並以下列命令設為接聽連接埠 5001︰
 
@@ -121,7 +122,7 @@ iPerf 是我們用於此測試的工作，分別在 Windows 與 Linux 上工作�
 ## <a name="address-slow-file-copy-issues"></a>處理檔案複製變慢的問題
 使用 Windows 檔案總管或透過 RDP 工作階段拖放時，您可能會遇到檔案複製變慢的問題。 此問題一般是因為下列一個或多個因素造成︰
 
-- 如 Windows 檔案總管與 RDP 的檔案應用程式，並未在複製檔案時使用多執行緒。 為了提升效能，請使用如 [Richcopy](https://technet.microsoft.com/en-us/magazine/2009.04.utilityspotlight.aspx) 等多執行緒的檔案複製應用程式，以 16 或 32 條執行緒複製檔案。 如果要在 Richcopy 內變更用於檔案複製的執行緒數量，請按一下 [動作]  >  [複製選項]  >  [檔案複製] 。<br><br>
+- 如 Windows 檔案總管與 RDP 的檔案應用程式，並未在複製檔案時使用多執行緒。 為了提升效能，請使用如 [Richcopy](https://technet.microsoft.com/magazine/2009.04.utilityspotlight.aspx) 等多執行緒的檔案複製應用程式，以 16 或 32 條執行緒複製檔案。 如果要在 Richcopy 內變更用於檔案複製的執行緒數量，請按一下 [動作]  >  [複製選項]  >  [檔案複製] 。<br><br>
 ![檔案複製變慢的問題](./media/vpn-gateway-validate-throughput-to-vnet/Richcopy.png)<br>
 - VM 磁碟讀取/寫入速度不足。 如需詳細資訊，請參閱 [Azure 儲存體疑難排解](../storage/common/storage-e2e-troubleshooting.md)。
 

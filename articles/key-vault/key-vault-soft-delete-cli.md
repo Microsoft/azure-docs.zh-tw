@@ -1,19 +1,20 @@
 ---
-ms.assetid: 
-title: "Azure Key Vault - 如何以 CLI 使用虛刪除"
-description: "以 CLI 程式碼片段進行虛刪除的使用案例範例"
-author: lleonard-msft
+ms.assetid: ''
+title: Azure Key Vault - 如何以 CLI 使用虛刪除
+description: 以 CLI 程式碼片段進行虛刪除的使用案例範例
+author: bryanla
 manager: mbaldwin
 ms.service: key-vault
-ms.topic: article
+ms.topic: conceptual
 ms.workload: identity
 ms.date: 08/04/2017
-ms.author: alleonar
-ms.openlocfilehash: a9b80cae69c4e5852341385b98fcccc86d7959e9
-ms.sourcegitcommit: 2a70752d0987585d480f374c3e2dba0cd5097880
+ms.author: bryanla
+ms.openlocfilehash: 73ece43c26c3957a1b7dba02a673099f7d35e8d6
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/19/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46951775"
 ---
 # <a name="how-to-use-key-vault-soft-delete-with-cli"></a>如何以 CLI 使用金鑰保存庫虛刪除
 
@@ -22,11 +23,11 @@ Azure Key Vault 的虛刪除功能可復原已刪除的保存庫和保存庫物�
 - 可復原的 Key Vault 刪除支援
 - 支援可復原的金鑰保存庫物件刪除；金鑰、密碼和憑證
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
-- Azure CLI 2.0 - 如果您沒有為您的環境進行此安裝，請參閱[使用 CLI 2.0 管理金鑰保存庫](key-vault-manage-with-cli2.md)。
+- Azure CLI - 如果您沒有為環境進行此設定，請參閱[使用 Azure CLI 管理 Key Vault](key-vault-manage-with-cli2.md)。
 
-如需 CLI 的金鑰保存庫特定參考資訊，請參閱 [Azure CLI 2.0 金鑰保存庫參考](https://docs.microsoft.com/cli/azure/keyvault)。
+如需 CLI 的 Key Vault 特定參考資訊，請參閱 [Azure CLI Key Vault 參考](https://docs.microsoft.com/cli/azure/keyvault) \(英文\)。
 
 ## <a name="required-permissions"></a>所需的權限
 
@@ -103,7 +104,7 @@ az keyvault list-deleted
 若要復原金鑰保存庫，您需要指定金鑰保存庫名稱、資源群組和位置。 請記下已刪除之金鑰保存庫的位置和資源群組，因為您需要這些才能進行金鑰保存庫復原程序。
 
 ```azurecli
-az keyvault recover --location westus --name ContosoVault
+az keyvault recover --location westus --resource-group ContosoRG --name ContosoVault
 ```
 
 在金鑰保存庫復原之後，結果會是新的資源，並具有金鑰保存庫的原始資源識別碼。 如果金鑰保存庫存在的資源群組已被移除，則必須先建立具有相同名稱的新資源群組，才能復原金鑰保存庫。

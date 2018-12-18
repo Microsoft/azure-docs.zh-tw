@@ -1,0 +1,135 @@
+- name: DNS 文件
+  href: index.yml
+- name: 概觀
+  items:
+    - name: 什麼是 Azure DNS？
+      href: dns-overview.md
+- name: 快速入門
+  expanded: true
+  items:
+    - name: 名稱解析 - 入口網站
+      href: dns-getstarted-portal.md
+    - name: 名稱解析 - PowerShell
+      href: dns-getstarted-powershell.md
+    - name: 名稱解析 - CLI
+      href: dns-getstarted-cli.md
+- name: 教學課程
+  items:
+    - name: 在 Azure DNS 上裝載您的網域
+      href: dns-delegate-domain-azure-dns.md
+    - name: 建立 Web 應用程式的自訂 DNS 記錄
+      href: dns-web-sites-custom-domain.md
+    - name: 建立私人 DNS 區域和記錄
+      href: private-dns-getstarted-powershell.md
+- name: 範例
+  items:
+    - name: Azure CLI
+      href: cli-samples.md
+- name: 概念
+  items:
+    - name: DNS 區域和記錄
+      href: dns-zones-records.md
+    - name: 使用 Azure DNS 委派 DNS
+      href: dns-domain-delegation.md
+    - name: DNS 常見問題
+      href: dns-faq.md
+    - name: 使用私人 DNS 區域
+      href: private-dns-overview.md
+    - name: 私人 DNS 案例
+      href: private-dns-scenarios.md
+    - name: DNS 計量與警示
+      href: dns-alerts-metrics.md
+    - name: 反向 DNS
+      href: dns-reverse-dns-overview.md
+    - name: 使用 Azure DNS 和流量管理員進行災害復原
+      href: ../networking/disaster-recovery-dns-traffic-manager.md
+- name: 作法
+  items:
+    - name: 建立私人 DNS 區域和記錄 - Azure CLI
+      href: private-dns-getstarted-cli.md
+    - name: 管理 DNS 區域
+      items:
+        - name: Azure 入口網站
+          href: dns-operations-dnszones-portal.md
+        - name: Azure PowerShell
+          href: dns-operations-dnszones.md
+        - name: Azure CLI
+          href: dns-operations-dnszones-cli.md
+    - name: 管理 DNS 記錄
+      items:
+        - name: Azure 入口網站
+          href: dns-operations-recordsets-portal.md
+        - name: Azure PowerShell
+          href: dns-operations-recordsets.md
+        - name: Azure CLI
+          href: dns-operations-recordsets-cli.md
+    - name: 管理反向 DNS
+      items:
+        - name: Azure DNS 中的主機反向對應區域
+          href: dns-reverse-dns-hosting.md
+        - name: 管理 Azure 服務的反向 DNS 記錄
+          href: dns-reverse-dns-for-azure-services.md
+    - name: 匯入和匯出 DNS 區域檔案
+      href: dns-import-export.md
+    - name: 與其他 Azure 服務整合
+      href: dns-for-azure-services.md
+    - name: 保護 DNS 區域和記錄
+      href: dns-protect-zones-recordsets.md
+    - name: 使用 .NET SDK 自動執行 DNS 作業
+      href: dns-sdk.md
+    - name: Azure 資源自訂網域
+      href: dns-custom-domain.md
+    - name: 疑難排解
+      items:
+        - name: 疑難排解指南
+          href: dns-troubleshoot.md
+- name: 參考
+  items:
+    - name: 程式碼範例
+      href: 'https://azure.microsoft.com/resources/samples/?service=dns'
+    - name: Azure PowerShell
+      href: /powershell/module/azurerm.dns
+    - name: Azure CLI
+      href: /cli/azure/network/dns
+    - name: .NET
+      href: /dotnet/api/microsoft.azure.management.dns.models
+    - name: Java
+      href: /java/api/com.microsoft.azure.management.dns
+    - name: Node.js
+      href: 'http://azure.github.io/azure-sdk-for-node/azure-arm-dns/latest/'
+    - name: Ruby
+      href: 'http://www.rubydoc.info/gems/azure_mgmt_dns/0.8.0'
+    - name: Python
+      href: 'http://azure-sdk-for-python.readthedocs.io/en/latest/sample_azure-mgmt-dns.html'
+    - name: REST
+      href: /rest/api/dns/
+- name: 相關參考
+  items:
+    - name: 應用程式閘道
+      href: /azure/application-gateway/
+    - name: 虛擬網路
+      href: /azure/virtual-network/
+    - name: 虛擬機器
+      href: /azure/virtual-machines/
+    - name: 負載平衡器
+      href: /azure/load-balancer/
+    - name: 流量管理員
+      href: /azure/traffic-manager/
+    - name: Web 應用程式
+      href: /azure/app-service/
+- name: 資源
+  items:
+    - name: Azure 藍圖
+      href: 'https://azure.microsoft.com/roadmap/?category=networking'
+    - name: 功能要求
+      href: 'https://feedback.azure.com/forums/217313-networking/category/77466-domain-name-service-dns-traffic-manager'
+    - name: MSDN 論壇
+      href: 'https://social.msdn.microsoft.com/Forums/en-US/home?forum=WAVirtualMachinesVirtualNetwork'
+    - name: 網路部落格
+      href: 'http://azure.microsoft.com/blog/topics/networking'
+    - name: 價格
+      href: 'https://azure.microsoft.com/pricing/details/dns/'
+    - name: 定價計算機
+      href: 'https://azure.microsoft.com/pricing/calculator/'
+    - name: 服務更新
+      href: 'https://azure.microsoft.com/updates/?product=dns'

@@ -1,32 +1,28 @@
 ---
-title: "迴圈 - 處理陣列或重複動作 - Azure Logic Apps | Microsoft Docs"
-description: "使用 \"for each\" 迴圈處理陣列或重複動作，直到符合邏輯應用程式中的特定條件"
+title: 新增會重複動作或處理陣列的迴圈 - Azure Logic Apps | Microsoft Docs
+description: 如何在 Azure Logic Apps 中建立會重複工作流程動作或處理陣列的迴圈
 services: logic-apps
-keywords: "for each 迴圈"
-documentationcenter: 
-author: ecfan
-manager: anneta
-editor: 
-ms.assetid: 75b52eeb-23a7-47dd-a42f-1351c6dfebdc
 ms.service: logic-apps
-ms.workload: logic-apps
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+author: ecfan
+ms.author: estfan
+manager: jeconnoc
 ms.date: 03/05/2018
-ms.author: estfan; LADocs
-ms.openlocfilehash: f634b1004fef2eb65c6b8134088ceead47c91890
-ms.sourcegitcommit: 0b02e180f02ca3acbfb2f91ca3e36989df0f2d9c
+ms.topic: article
+ms.reviewer: klam, LADocs
+ms.suite: integration
+ms.openlocfilehash: 87595eeb0330a2d8210258c097c29b205b628cf4
+ms.sourcegitcommit: 6f6d073930203ec977f5c283358a19a2f39872af
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/05/2018
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35298180"
 ---
-# <a name="loops-process-arrays-or-repeat-actions-until-a-condition-is-met"></a>迴圈：處理陣列或重複動作，直到符合條件
+# <a name="create-loops-that-repeat-workflow-actions-or-process-arrays-in-azure-logic-apps"></a>在 Azure Logic Apps 中建立會重複工作流程動作或處理陣列的迴圈
 
-若要逐一查看邏輯應用程式中的陣列，您可以使用 ["Foreach" 迴圈](#foreach-loop)或[循序 "Foreach" 迴圈](#sequential-foreach-loop)。 標準 "Foreach" 迴圈中的循環會平行執行，而循序 "Foreach" 迴圈中的循環為每一次執行一個。 如需 "Foreach" 迴圈在單一邏輯應用程式中可處理的陣列項目數上限，請參閱[限制和設定](../logic-apps/logic-apps-limits-and-config.md)。 
+若要逐一查看邏輯應用程式中的陣列，您可以使用  [Foreach](#foreach-loop) 迴圈 或循序  [Foreach 迴圈](#sequential-foreach-loop)。 標準  "Foreach" 迴圈中的反覆項目會平行執行，而循序  "Foreach" 迴圈中的反覆項目為每次執行一個。 如需 "Foreach" 迴圈在單一邏輯應用程式中可處理的陣列項目數上限，請參閱[限制和設定](../logic-apps/logic-apps-limits-and-config.md)。 
 
 > [!TIP] 
-> 如果您的觸發程序接收到陣列，並想要針對每個陣列項目執行工作流程，您可以使用 **SplitOn** 觸發屬性](../logic-apps/logic-apps-workflow-actions-triggers.md#split-on-debatch)將該陣列「解除批次」[。 
+> 如果您的觸發程序接收到陣列，並想要針對每個陣列項目執行工作流程，您可以使用 [**SplitOn** 觸發屬性](../logic-apps/logic-apps-workflow-actions-triggers.md#split-on-debatch)將該陣列「解除批次」。 
   
 若要重複動作直到條件符合或某些狀態改變，請使用 ["Until" 迴圈](#until-loop)。 邏輯應用程式會先執行迴圈內所有動作，然後將檢查條件當作最後一個步驟。 如果符合條件，則迴圈會停止。 否則，迴圈會重複。 如需單一邏輯應用程式中可執行的 "Until" 迴圈數上限，請參閱[限制和設定](../logic-apps/logic-apps-limits-and-config.md)。 
 
@@ -52,7 +48,7 @@ ms.lasthandoff: 03/05/2018
 2. 在 RSS 觸發程序和傳送電子郵件動作之間，新增 "Foreach" 迴圈。 
 
    若要在步驟之間新增迴圈，請將指標移至您要新增迴圈的箭號上。 
-   選擇顯示的 **加號** \(**+**\)，然後選擇 [新增 for each]。
+   選擇顯示的 **加號** \(**+** \)，然後選擇 [新增 for each]。
 
    ![在兩個步驟之間新增 "Foreach" 迴圈](media/logic-apps-control-flow-loops/add-for-each-loop.png)
 
@@ -153,9 +149,6 @@ ms.lasthandoff: 03/05/2018
 
 * 呼叫端點，直到您獲得您想要的回應。
 * 在資料庫中建立一筆記錄，等到該記錄中的特定欄位獲得核准，然後繼續處理。 
-
-> [!NOTE]
-> "Until" 迴圈不能包含 "Foreach" 迴圈或其他 "Until" 迴圈。
 
 例如，每天上午 8:00，此邏輯應用程式會遞增變數，直到變數的值等於 10。 接著，邏輯應用程式傳送用來確認目前值的電子郵件。 雖然此範例使用 Office 365 Outlook，但您可以使用 Logic Apps 支援的任何電子郵件提供者 ([在此檢閱連接器清單](https://docs.microsoft.com/connectors/))。 如果您使用另一個電子郵件帳戶，則整體步驟相同，但您的 UI 可能稍有不同。 
 

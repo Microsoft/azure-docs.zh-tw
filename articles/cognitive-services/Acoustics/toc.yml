@@ -1,0 +1,32 @@
+items:
+- name: Project Acoustics 文件
+- name: 概觀
+  items:
+  - name: 何謂 Project Acoustics？
+    href: what-is-acoustics.md
+- name: 快速入門
+  items:
+  - name: 開始使用
+    href: getting-started.md
+- name: 操作說明
+  items:
+  - name: 建立 Azure Batch 帳戶
+    href: create-azure-account.md
+  - name: Bake Acoustics
+    href: bake-ui-walkthrough.md
+  - name: Design Acoustics
+    href: design-process.md
+- name: 資源
+  items:
+  - name: Acoustics Sample Scene
+    href: sample-walkthrough.md
+  - name: 常見問題集
+    href: faq.md
+  - name: 已知問題
+    href: known-issues.md
+ms.openlocfilehash: 225d620cddfd68f3d5fb6d6d841c8f33254f1309
+ms.sourcegitcommit: 1aedb52f221fb2a6e7ad0b0930b4c74db354a569
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/17/2018
+ms.locfileid: "40181823"

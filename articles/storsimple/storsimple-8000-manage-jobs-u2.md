@@ -1,12 +1,12 @@
 ---
-title: "管理和檢視 StorSimple 8000 系列的作業 | Microsoft Docs"
-description: "說明 StorSimple 裝置管理員服務作業刀鋒視窗，以及如何使用該視窗來追蹤最近、當前和排程的備份作業。"
+title: 管理和檢視 StorSimple 8000 系列的作業 | Microsoft Docs
+description: 說明 StorSimple 裝置管理員服務作業刀鋒視窗，以及如何使用該視窗來追蹤最近、當前和排程的備份作業。
 services: storsimple
 documentationcenter: NA
 author: alkohli
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: NA
 ms.topic: article
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23108186"
 ---
 # <a name="use-the-storsimple-device-manager-service-to-view-and-manage-jobs-update-3-and-later"></a>使用 StorSimple 裝置管理員服務來檢視和管理作業 (Update 3 和更新版本)
 

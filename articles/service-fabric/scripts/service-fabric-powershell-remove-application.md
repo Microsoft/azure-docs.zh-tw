@@ -1,13 +1,13 @@
 ---
-title: "Azure PowerShell 指令碼範例 - 從叢集移除應用程式 | Microsoft Docs"
-description: "Azure PowerShell 指令碼範例 - 從 Service Fabric 叢集移除應用程式。"
+title: Azure PowerShell 指令碼範例 - 從叢集移除應用程式 | Microsoft Docs
+description: Azure PowerShell 指令碼範例 - 從 Service Fabric 叢集移除應用程式。
 services: service-fabric
-documentationcenter: 
+documentationcenter: ''
 author: rwike77
 manager: timlt
-editor: 
+editor: ''
 tags: azure-service-management
-ms.assetid: 
+ms.assetid: ''
 ms.service: service-fabric
 ms.workload: multiple
 ms.devlang: na
@@ -20,6 +20,7 @@ ms.sourcegitcommit: 2a70752d0987585d480f374c3e2dba0cd5097880
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 01/19/2018
+ms.locfileid: "27927857"
 ---
 # <a name="remove-an-application-from-a-service-fabric-cluster"></a>從 Service Fabric 叢集移除應用程式
 

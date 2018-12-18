@@ -1,26 +1,21 @@
 ---
-title: "將 Windows Server 備份至 Azure | Microsoft 文件"
-description: "本教學會詳細說明如何將內部部署 Windows Server 備份至復原服務保存庫。"
+title: 將 Windows Server 備份到 Azure
+description: 本教學會詳細說明如何將內部部署 Windows Server 備份至復原服務保存庫。
 services: backup
-documentationcenter: 
 author: saurabhsensharma
 manager: shivamg
-editor: 
-keywords: "Windows Server 備份; 備份 Windows Server; 備份與災害復原"
-ms.assetid: 
+keywords: Windows Server 備份; 備份 Windows Server; 備份與災害復原
 ms.service: backup
-ms.workload: storage-backup-recovery
-ms.tgt_pltfrm: na
-ms.devlang: na
 ms.topic: tutorial
 ms.date: 2/14/2018
-ms.author: saurabhsensharma;markgal;
+ms.author: saurse
 ms.custom: mvc
-ms.openlocfilehash: de0398b7f295894a3cac7c67b68cef237c3ac2c2
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.openlocfilehash: d52866a4f441a74bbc4b63f6dc362989865151b3
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34609013"
 ---
 # <a name="back-up-windows-server-to-azure"></a>將 Windows Server 備份到 Azure
 
@@ -36,7 +31,7 @@ ms.lasthandoff: 02/21/2018
 
 ## <a name="log-in-to-azure"></a>登入 Azure
 
-登入 Azure 入口網站，網址是 http://portal.azure.com/。
+在 http://portal.azure.com 上登入 Azure 入口網站。
 
 ## <a name="create-a-recovery-services-vault"></a>建立復原服務保存庫
 

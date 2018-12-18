@@ -13,12 +13,12 @@ Azure 資料表儲存體可儲存大量的結構化資料。 此服務是一個 
 
 ![資料表儲存體元件圖表][Table1]
 
-* **URL 格式：**Azure 資料表儲存體帳戶會使用下列格式：`http://<storage account>.table.core.windows.net/<table>`
+* **URL 格式：** Azure 資料表儲存體帳戶會使用下列格式：`http://<storage account>.table.core.windows.net/<table>`
 
   Azure Cosmos DB 資料表 API 帳戶會使用下列格式：`http://<storage account>.table.cosmosdb.azure.com/<table>`  
 
   您可以使用此位址搭配 OData 通訊協定來直接定址 Azure 資料表。 如需詳細資訊，請參閱 [OData.org][OData.org]。
-* **帳戶：**所有對 Azure 儲存體的存取都會透過儲存體帳戶執行。 如需關於儲存體帳戶容量的詳細資訊，請參閱＜ [Azure 儲存體延展性和效能目標](../articles/storage/common/storage-scalability-targets.md) ＞(英文)。 
+* **帳戶：** 所有對 Azure 儲存體的存取都會透過儲存體帳戶執行。 如需關於儲存體帳戶容量的詳細資訊，請參閱＜ [Azure 儲存體延展性和效能目標](../articles/storage/common/storage-scalability-targets.md) ＞(英文)。 
 
     所有對 Azure Cosmos DB 的存取都會透過資料表 API 帳戶執行。 如需建立資料表 API 帳戶的詳細資訊，請參閱[建立資料表 API 帳戶](../articles/cosmos-db/create-table-dotnet.md#create-a-database-account)。
 * **資料表**：資料表是一組實體。 資料表不強制規定實體的結構描述，這表示單一資料表包含的實體可以有幾組不同的屬性。  

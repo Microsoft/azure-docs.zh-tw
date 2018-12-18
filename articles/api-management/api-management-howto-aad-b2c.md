@@ -1,11 +1,11 @@
 ---
-title: "使用 Azure Active Directory B2C 授權開發人員帳戶 - Azure API 管理 | Microsoft Docs"
-description: "了解如何在 API 管理中使用 Azure Active Directory B2C 授權使用者。"
+title: 使用 Azure Active Directory B2C 授權開發人員帳戶 - Azure API 管理 | Microsoft Docs
+description: 了解如何在 API 管理中使用 Azure Active Directory B2C 授權使用者。
 services: api-management
 documentationcenter: API Management
-author: juliako
+author: miaojiang
 manager: cfowler
-editor: 
+editor: ''
 ms.service: api-management
 ms.workload: mobile
 ms.tgt_pltfrm: na
@@ -13,14 +13,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/30/2017
 ms.author: apimpm
-ms.openlocfilehash: d843757c2ed63c4f8cff09d809c2de382b2aeb59
-ms.sourcegitcommit: b854df4fc66c73ba1dd141740a2b348de3e1e028
+ms.openlocfilehash: a6e7aad6c3d20a67ecba66c49be4efcdebdf718a
+ms.sourcegitcommit: e2adef58c03b0a780173df2d988907b5cb809c82
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/04/2017
+ms.lasthandoff: 04/28/2018
+ms.locfileid: "32153416"
 ---
 > [!WARNING]
-> 僅[「開發人員」與「進階」](https://azure.microsoft.com/en-us/pricing/details/api-management/)層提供 Azure Active Directory B2C 整合。
+> 僅[「開發人員」、「標準」與「進階」](https://azure.microsoft.com/pricing/details/api-management/)層提供 Azure Active Directory B2C 整合。
 
 # <a name="how-to-authorize-developer-accounts-by-using-azure-active-directory-b2c-in-azure-api-management"></a>如何在 Azure API 管理中使用 Azure Active Directory B2C 授權開發人員帳戶
 ## <a name="overview"></a>概觀

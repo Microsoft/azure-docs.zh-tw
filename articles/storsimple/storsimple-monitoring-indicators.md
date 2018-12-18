@@ -1,11 +1,11 @@
 ---
-title: "StorSimple 監視指示器 | Microsoft Docs"
-description: "描述用來監視 StorSimple 裝置狀態的發光二極體 (LED 燈) 與警報器。"
+title: StorSimple 監視指示器 | Microsoft Docs
+description: 描述用來監視 StorSimple 裝置狀態的發光二極體 (LED 燈) 與警報器。
 services: storsimple
 documentationcenter: NA
 author: alkohli
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 59dee7b9-ca6d-4fd9-96e6-a0071e8d248e
 ms.service: storsimple
 ms.devlang: NA
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 0930aabc3ede63240f60c2c61baa88ac6576c508
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 11/07/2017
+ms.locfileid: "24030352"
 ---
 # <a name="use-storsimple-monitoring-indicators-to-manage-your-device"></a>使用 StorSimple 監視指示器來管理您的裝置
 

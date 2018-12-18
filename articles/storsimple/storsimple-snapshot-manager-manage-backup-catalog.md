@@ -1,11 +1,11 @@
 ---
-title: "StorSimple Snapshot Manager 備份目錄 | Microsoft Docs"
-description: "說明如何使用 StorSimple Snapshot Manager MMC 嵌入式管理單元來檢視和管理備份磁碟區。"
+title: StorSimple Snapshot Manager 備份目錄 | Microsoft Docs
+description: 說明如何使用 StorSimple Snapshot Manager MMC 嵌入式管理單元來檢視和管理備份磁碟區。
 services: storsimple
 documentationcenter: NA
 author: SharS
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 6abdbfd2-22ce-45a5-aa15-38fae4c8f4ec
 ms.service: storsimple
 ms.devlang: NA
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23111286"
 ---
 # <a name="use-storsimple-snapshot-manager-to-manage-the-backup-catalog"></a>使用 StorSimple Snapshot Manager 來管理備份目錄
 

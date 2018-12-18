@@ -1,11 +1,11 @@
 ---
-title: "Logic Apps 連接器概觀 | Microsoft Docs"
-description: "可在邏輯應用程式中使用的連接器概觀"
-services: 
-documentationcenter: 
+title: Logic Apps 連接器概觀 | Microsoft Docs
+description: 可在邏輯應用程式中使用的連接器概觀
+services: ''
+documentationcenter: ''
 author: jeffhollan
 manager: erikre
-editor: 
+editor: ''
 tags: connectors
 ms.assetid: ca8dab2e-9b69-4b1e-865d-1facd9f0cdac
 ms.service: logic-apps
@@ -20,6 +20,7 @@ ms.sourcegitcommit: be9a42d7b321304d9a33786ed8e2b9b972a5977e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 01/19/2018
+ms.locfileid: "27961647"
 ---
 # <a name="using-connectors-in-a-logic-app"></a>在邏輯應用程式中使用連接器
 連接器可讓您跨服務、通訊協定與平台快速存取事件、資料和動作。  Logic Apps 所支援的連接器完整清單可以 [在這裡找到](apis-list.md)。  連接器可做為邏輯應用程式的觸發程序或動作，而且可能需要設定「連線」  才能使用 (例如︰授權 Twitter 帳戶代表您存取或張貼)。

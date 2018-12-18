@@ -9,14 +9,16 @@ ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: multiple
-ms.topic: article
+ms.topic: conceptual
 ms.date: 01/25/2018
-ms.author: mbullwin ; daviste
-ms.openlocfilehash: d76db02647ce878343f60fc84cf063c5b7833438
-ms.sourcegitcommit: 059dae3d8a0e716adc95ad2296843a45745a415d
+ms.reviewer: daviste
+ms.author: mbullwin
+ms.openlocfilehash: 9188776fdd213f01523069b08bd898f48bee57a4
+ms.sourcegitcommit: cc4fdd6f0f12b44c244abc7f6bc4b181a2d05302
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47091476"
 ---
 # <a name="impact-analysis-with-application-insights"></a>使用 Application Insights 進行影響分析
 
@@ -33,7 +35,7 @@ ms.lasthandoff: 02/09/2018
 ![依瀏覽器的轉換螢幕擷取畫面](./media/app-insights-usage-impact/0004-browsers.png)
 
 > [!NOTE]
-> 您的 Application Insights 資源必須包含頁面檢視或自訂事件，以便使用「影響」工具。 [了解如何設定應用程式以使用 Application Insights JavaScript SDK 自動收集頁面檢視](app-insights-javascript.md)。 也請記住，因為您是要分析相互關聯，所以樣本大小很重要。
+> 您的 Application Insights 資源必須包含頁面檢視或自訂事件，以便使用「影響」工具。 [了解如何設定應用程式以使用 Application Insights JavaScript SDK 自動收集分頁檢視](app-insights-javascript.md)。 也請記住，因為您是要分析相互關聯，所以樣本大小很重要。
 >
 >
 
@@ -66,7 +68,7 @@ ms.lasthandoff: 02/09/2018
 
 ## <a name="how-does-the-impact-tool-calculate-these-conversion-rates"></a>「影響」工具如何計算這些轉換率？
 
-「影像」工具背後的運作原理是以[皮爾森相互關聯係數] (https://en.wikipedia.org/wiki/Pearson_correlation_coefficient)為依據。 計算結果會介於-1 與 1 之間，-1 代表零關聯，1 則代表正向關聯。
+「影像」工具背後的運作原理是以[皮爾森相互關聯係數] (https://en.wikipedia.org/wiki/Pearson_correlation_coefficient) 為依據。 計算結果會介於-1 與 1 之間，-1 代表零關聯，1 則代表正向關聯。
 
 「影響分析」運作方式的基本細節如下：
 

@@ -7,14 +7,15 @@ manager: jeconnoc
 ms.service: batch
 ms.devlang: python
 ms.topic: tutorial
-ms.date: 01/23/2018
+ms.date: 09/24/2018
 ms.author: danlep
 ms.custom: mvc
-ms.openlocfilehash: a04cd63944d0ed75ff90f211134cd93c77abe1e3
-ms.sourcegitcommit: 20d103fb8658b29b48115782fe01f76239b240aa
+ms.openlocfilehash: 6bbaa9693bb8d8e54e78f1e83617449cd013ad48
+ms.sourcegitcommit: 51a1476c85ca518a6d8b4cc35aed7a76b33e130f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2018
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47158729"
 ---
 # <a name="tutorial-run-a-parallel-workload-with-azure-batch-using-the-python-api"></a>教學課程：使用 Python API 透過 Azure Batch 執行平行工作負載
 
@@ -38,7 +39,7 @@ ms.lasthandoff: 04/03/2018
 
 * [pip](https://pip.pypa.io/en/stable/installing/) 套件管理員
 
-* Azure Batch 帳戶和連結的一般用途 Azure 儲存體帳戶。 若要建立這些帳戶，請參閱使用 [Azure 入口網站](quick-create-portal.md)或 [Azure CLI](quick-create-cli.md) 的 Batch 快速入門。
+* Azure Batch 帳戶和連結的 Azure 儲存體帳戶。 若要建立這些帳戶，請參閱使用 [Azure 入口網站](quick-create-portal.md)或 [Azure CLI](quick-create-cli.md) 的 Batch 快速入門。
 
 ## <a name="sign-in-to-azure"></a>登入 Azure
 
@@ -126,8 +127,8 @@ Elapsed time: 00:09:14.3418742
 
 ```python
 blob_client = azureblob.BlockBlobService(
-    account_name=STORAGE_ACCOUNT_NAME,
-    account_key=STORAGE_ACCOUNT_KEY)
+    account_name=_STORAGE_ACCOUNT_NAME,
+    account_key=_STORAGE_ACCOUNT_KEY)
 ```
 
 應用程式會建立 [BatchServiceClient](/python/api/azure.batch.batchserviceclient) 物件，以在 Batch 服務中建立和管理集區、作業和工作。 範例中的 Batch 用戶端會使用共用金鑰驗證。 Batch 也支援透過 [Azure Active Directory](batch-aad-auth.md) 進行驗證，以便驗證個別使用者或自動執行的應用程式。
@@ -150,7 +151,7 @@ blob_client.create_container(input_container_name, fail_on_exist=False)
 blob_client.create_container(output_container_name, fail_on_exist=False)
 input_file_paths = []
     
-for folder, subs, files in os.walk('./InputFiles/'):
+for folder, subs, files in os.walk(os.path.join(sys.path[0],'./InputFiles/')):
     for filename in files:
         if filename.endswith(".mp4"):
             input_file_paths.append(os.path.abspath(os.path.join(folder, filename)))
@@ -178,7 +179,7 @@ new_pool = batch.models.PoolAddParameter(
         image_reference=batchmodels.ImageReference(
             publisher="Canonical",
             offer="UbuntuServer",
-            sku="16.04.0-LTS",
+            sku="16.04-LTS",
             version="latest"
             ),
         node_agent_sku_id="batch.node.ubuntu 16.04"),
@@ -203,8 +204,8 @@ Batch 工作會指定要在其中執行工作的集區及選擇性設定，例�
 
 ```python
 job = batch.models.JobAddParameter(
-    job_id,
-    batch.models.PoolInformation(pool_id=pool_id))
+    id=job_id,
+    pool_info=batch.models.PoolInformation(pool_id=pool_id))
 
 batch_service_client.job.add(job)
 ```
@@ -228,13 +229,15 @@ for idx, input_file in enumerate(input_files):
         id='Task{}'.format(idx),
         command_line=command,
         resource_files=[input_file],
-        output_files=[batchmodels.OutputFile(output_file_path,
-              destination=batchmodels.OutputFileDestination(
-                container=batchmodels.OutputFileBlobContainerDestination(output_container_sas_url)),
-              upload_options=batchmodels.OutputFileUploadOptions(
-                batchmodels.OutputFileUploadCondition.task_success))]
-            )
-     )
+        output_files=[batchmodels.OutputFile(
+            file_pattern=output_file_path,
+            destination=batchmodels.OutputFileDestination(
+                container=batchmodels.OutputFileBlobContainerDestination(
+                    container_url=output_container_sas_url)),
+            upload_options=batchmodels.OutputFileUploadOptions(
+                upload_condition=batchmodels.OutputFileUploadCondition.task_success))]
+        )
+    )
 batch_service_client.task.add_collection(job_id, tasks)
 ```    
 
@@ -250,7 +253,7 @@ while datetime.datetime.now() < timeout_expiration:
     sys.stdout.flush()
     tasks = batch_service_client.task.list(job_id)
 
-     incomplete_tasks = [task for task in tasks if
+    incomplete_tasks = [task for task in tasks if
                          task.state != batchmodels.TaskState.completed]
     if not incomplete_tasks:
         print()

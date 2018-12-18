@@ -1,24 +1,25 @@
 ---
-title: "服務匯流排寄不出的信件佇列 |Microsoft Docs"
-description: "Azure 服務匯流排寄不出的信件佇列的概觀"
+title: 服務匯流排寄不出的信件佇列 |Microsoft Docs
+description: Azure 服務匯流排寄不出的信件佇列的概觀
 services: service-bus-messaging
 documentationcenter: .net
-author: sethmanheim
+author: spelluru
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 68b2aa38-dba7-491a-9c26-0289bc15d397
 ms.service: service-bus-messaging
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/31/2018
-ms.author: sethm
-ms.openlocfilehash: a82d70e7bf776bf470d14e7f061774ccbb136316
-ms.sourcegitcommit: 9d317dabf4a5cca13308c50a10349af0e72e1b7e
+ms.date: 09/26/2018
+ms.author: spelluru
+ms.openlocfilehash: df69406bd0a6e09f66262ce66f8eeb7cada2422a
+ms.sourcegitcommit: d1aef670b97061507dc1343450211a2042b01641
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47393974"
 ---
 # <a name="overview-of-service-bus-dead-letter-queues"></a>服務匯流排寄不出的信件佇列的概觀
 

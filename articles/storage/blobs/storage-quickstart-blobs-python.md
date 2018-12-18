@@ -1,25 +1,25 @@
 ---
-title: Azure 快速入門 - 使用 Python 上傳、下載及列出 Azure 儲存體中的 Blob | Microsoft Docs
-description: 在本快速入門中，您會建立儲存體帳戶和容器。 然後，使用 Python 的儲存體用戶端程式庫將 blob 上傳至 Azure 儲存體、下載 blob，以及列出容器中的 blob。
+title: Azure 快速入門 - 使用 Python 在物件儲存體中建立 Blob | Microsoft Docs
+description: 在本快速入門中，您會在物件 (Blob) 儲存體中建立儲存體帳戶和容器。 然後，使用 Python 的儲存體用戶端程式庫將 blob 上傳至 Azure 儲存體、下載 blob，以及列出容器中的 blob。
 services: storage
 author: craigshoemaker
-manager: jeconnoc
 ms.custom: mvc
 ms.service: storage
 ms.topic: quickstart
-ms.date: 03/15/2018
+ms.date: 04/09/2018
 ms.author: cshoe
-ms.openlocfilehash: 9ea8fdcd2d21729117101748e20e52029c315e15
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: f9e39a8630302111f4646e085872399c6def6ab2
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46974488"
 ---
 # <a name="quickstart-upload-download-and-list-blobs-using-python"></a>快速入門：使用 Python 上傳、下載及列出 Blob
 
 在本快速入門中，您會了解如何在 Azure Blob 儲存體容器中，使用 Python 上傳、下載及列出區塊 Blob。 
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 若要完成本快速入門： 
 * 安裝 [Python](https://www.python.org/downloads/)
@@ -27,7 +27,7 @@ ms.lasthandoff: 03/28/2018
 
 如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
 
-[!INCLUDE [storage-quickstart-tutorial-create-account-portal](../../../includes/storage-quickstart-tutorial-create-account-portal.md)]
+[!INCLUDE [storage-create-account-portal-include](../../../includes/storage-create-account-portal-include.md)]
 
 ## <a name="download-the-sample-application"></a>下載範例應用程式
 本快速入門使用的[範例應用程式](https://github.com/Azure-Samples/storage-blobs-python-quickstart.git)是基本的 Python 應用程式。  
@@ -40,6 +40,8 @@ git clone https://github.com/Azure-Samples/storage-blobs-python-quickstart.git
 
 此命令會將存放庫複製到本機的 git 資料夾。 若要開啟 Python 程式，請尋找 storage-blobs-python-quickstart 資料夾，以及 example.py 檔案。  
 
+[!INCLUDE [storage-copy-account-key-portal](../../../includes/storage-copy-account-key-portal.md)]
+
 ## <a name="configure-your-storage-connection-string"></a>設定儲存體連接字串
 在應用程式中，您必須提供儲存體帳戶名稱和帳戶金鑰，才能建立 `BlockBlobService` 物件。 從 IDE 中的方案總管開啟 `example.py` 檔案。 使用您的帳戶名稱和金鑰取代 **accountname** 和 **accountkey**。 
 
@@ -50,7 +52,11 @@ block_blob_service = BlockBlobService(account_name='accountname', account_key='a
 ## <a name="run-the-sample"></a>執行範例
 這個範例會在 'Documents' 資料夾中建立測試檔案。 範例程式會將測試檔案上傳至 Blob 儲存體、列出容器中的 Blob，並下載具有新名稱的檔案。 
 
-執行範例。 下列輸出是執行應用程式時所傳回的輸出範例：
+首先，執行 `pip install` 來安裝相依性：
+
+    pip install azure-storage
+
+接下來，執行範例。 下列輸出是執行應用程式時所傳回的輸出範例：
   
 ```
 Temp file = C:\Users\azureuser\Documents\QuickStart_9f4ed0f9-22d3-43e1-98d0-8b2c05c01078.txt
@@ -134,9 +140,9 @@ block_blob_service.create_blob_from_path(container_name, local_file_name, full_p
 ```python
 # List the blobs in the container
 print("\nList blobs in the container")
-    generator = block_blob_service.list_blobs(container_name)
-    for blob in generator:
-        print("\t Blob name: " + blob.name)
+generator = block_blob_service.list_blobs(container_name)
+for blob in generator:
+    print("\t Blob name: " + blob.name)
 ```
 
 ### <a name="download-the-blobs"></a>下載 Blob

@@ -1,9 +1,9 @@
 ---
-title: "DevOps 適用的 Azure Application Insights 概觀 | Microsoft Docs"
-description: "了解如何在 Dev Ops 環境中使用 Application Insights。"
+title: DevOps 適用的 Azure Application Insights 概觀 | Microsoft Docs
+description: 了解如何在 Dev Ops 環境中使用 Application Insights。
 author: mrbullwinkle
 services: application-insights
-documentationcenter: 
+documentationcenter: ''
 manager: carmonm
 ms.assetid: 6ccab5d4-34c4-4303-9d3b-a0f1b11e6651
 ms.service: application-insights
@@ -12,13 +12,14 @@ ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.custom: mvc
 ms.topic: overview
-ms.date: 06/26/2017
+ms.date: 09/06/2018
 ms.author: mbullwin
-ms.openlocfilehash: b83d08b9dac4fccc033ad4537afd343a6fbe02c2
-ms.sourcegitcommit: e462e5cca2424ce36423f9eff3a0cf250ac146ad
+ms.openlocfilehash: 799593758bf24924d91d38bd6a626b945247183b
+ms.sourcegitcommit: ebd06cee3e78674ba9e6764ddc889fc5948060c4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/01/2017
+ms.lasthandoff: 09/07/2018
+ms.locfileid: "44050233"
 ---
 # <a name="overview-of-application-insights-for-devops"></a>DevOps 適用的 Application Insights 概觀
 
@@ -49,7 +50,7 @@ ms.lasthandoff: 11/01/2017
 ## <a name="detect-poor-availability"></a>偵測可用性不佳
 Marcela Markova 是 OBS 小組的資深開發人員，主導線上效能監視。 她設定了數項[可用性測試](app-insights-monitor-web-app-availability.md)：
 
-* 用於應用程式主要登陸頁面 (http://fabrikambank.com/onlinebanking/) 的單一 URL 測試。 她設定 HTTP 代碼 200 與文字「歡迎使用！」的準則。 如果此測試失敗，表示網路或伺服器發生嚴重錯誤，或可能有部署問題。 (或是有人變更了頁面上的「歡迎使用！」 訊息，但沒讓她知道。)
+* 應用程式主要登陸頁面的單一 URL 測試 http://fabrikambank.com/onlinebanking/。 她設定 HTTP 代碼 200 與文字「歡迎使用！」的準則。 如果此測試失敗，表示網路或伺服器發生嚴重錯誤，或可能有部署問題。 (或是有人變更了頁面上的「歡迎使用！」 訊息，但沒讓她知道。)
 * 更深入的多步驟測試將會記錄並取得目前帳戶清單，檢查每個頁面上的一些重要詳細資料。 此測試會驗證對帳戶資料庫的連結運作中。 她使用虛構的客戶識別碼：其中少數幾個保留供測試目的。
 
 透過設定這些測試，Marcela 能確信若要任何中斷情況，小組將快速知道。  
@@ -63,7 +64,7 @@ Marcela Markova 是 OBS 小組的資深開發人員，主導線上效能監視�
 ## <a name="monitor-performance"></a>監視效能
 在 Application Insights 中的概觀頁面上，有一個顯示各種[重要度量](app-insights-web-monitor-performance.md)的圖表。
 
-![各種度量](./media/app-insights-detect-triage-diagnose/05-perfMetrics.png)
+![概觀效能 KPI 圖表的螢幕擷取畫面](./media/app-insights-detect-triage-diagnose/overview-graphs.png)
 
 瀏覽器頁面載入時間是從網頁直接傳送的遙測所衍生。 伺服器回應時間、伺服器要求計數和失敗的要求計數，都是在 Web 伺服器中測量，然後從該處傳送到 Application Insights。
 
@@ -71,7 +72,7 @@ Marcela 有些擔心伺服器回應圖形。 此圖表會顯示伺服器自收�
 
 她將「伺服器」圖表打開：
 
-![各種度量](./media/app-insights-detect-triage-diagnose/06.png)
+![各種度量](./media/app-insights-detect-triage-diagnose/002-servers.png)
 
 其中似乎沒有資源限制的徵兆，也許伺服器回應圖表中的起伏只是巧合。
 
@@ -153,7 +154,7 @@ TrackException 用來報告例外狀況，因為它會傳送堆疊的副本。 T
 ## <a name="monitor-proactively"></a>主動監視
 Marcela 不會無所事事等候警示。 在每次重新部署之後，她都會立即查看[回應時間](app-insights-web-monitor-performance.md) - 除了例外狀況計數之外，也查看整體數據和最緩慢的要求表。  
 
-![回應時間圖及伺服器回應時間格線。](./media/app-insights-detect-triage-diagnose/09-dependencies.png)
+![回應時間圖及伺服器回應時間格線。](./media/app-insights-detect-triage-diagnose/response-time.png)
 
 她可以評估每個部署的效能影響，通常是將每週與前一週比較。 如果突然有變慢的情況，她會將該情況向相關的開發人員反應。
 
@@ -167,8 +168,6 @@ Marcela 不會無所事事等候警示。 在每次重新部署之後，她都�
 實用的分級策略是「自己動手做」。 如果您遇到相同問題，就會知道它是真的。
 
 哪個部分的使用者受到影響？ 若要獲得約略的答案，請將失敗率除以工作階段計數。
-
-![失敗的要求和工作階段的圖表](./media/app-insights-detect-triage-diagnose/10-failureRate.png)
 
 在緩慢回應的情況中，將回應最緩慢的要求表與每個頁面的使用頻率相比較。
 
@@ -202,7 +201,6 @@ Fabrikam 銀行的開發小組對效能測量採取較使用 Application Insight
 * 他們會在 Application Insights 概觀頁面就特定度量設定效能目標。
 * 他們從頭為應用程式設計效能度量，例如透過「漏斗」測量使用者進度的度量。  
 
-
 ## <a name="monitor-user-activity"></a>監視使用者活動
 當回應時間一直都不錯，而且例外狀況不多時，開發小組可以繼續往可用性的方向努力。 他們可以思考如何改善使用者體驗，以及如何鼓勵更多使用者達到想要的目標。
 
@@ -210,7 +208,7 @@ Application Insights 也可以用來了解使用者在應用程式內執行的�
 
 例如，使用者在網站上的典型使用者旅程是明確的「漏斗圖」。 許多客戶會研究不同類型的貸款利率。 少部分的客戶會繼續填寫報價單。 在取得報價單的客戶當中，有一部分會繼續，並取得貸款。
 
-![頁面檢視計數](./media/app-insights-detect-triage-diagnose/12-funnel.png)
+![頁面檢視計數](./media/app-insights-detect-triage-diagnose/funnel.png)
 
 透過找出最多客戶放棄的位置，企業可以思考如何讓更多使用者通過漏斗。 在某些情況下，可能是使用者體驗 (UX) 失敗 - 例如，很難找到 [下一步] 按鈕，或者指示不太明顯。 更有可能是因為重要的商業理由放棄：可能是貸款利率太高。
 

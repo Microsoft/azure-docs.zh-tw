@@ -1,24 +1,25 @@
 ---
-title: "使用 .NET Standard 程式庫從 Azure 事件中樞接收事件 | Microsoft Docs"
-description: "開始使用 .NET Standard 中的 EventProcessorHost 接收訊息"
+title: 使用 .NET Standard 程式庫從 Azure 事件中樞接收事件 | Microsoft Docs
+description: 開始使用 .NET Standard 中的 EventProcessorHost 接收訊息
 services: event-hubs
 documentationcenter: na
-author: sethmanheim
+author: ShubhaVijayasarathy
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: event-hubs
 ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/28/2017
-ms.author: sethm
-ms.openlocfilehash: 5eb5c2d1f0b85c907f788fb6ac752488601f613a
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.date: 08/16/2018
+ms.author: shvija
+ms.openlocfilehash: 5abb2447fa90ea5900afb86746cc17eff62c2d2e
+ms.sourcegitcommit: c282021dbc3815aac9f46b6b89c7131659461e49
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 10/12/2018
+ms.locfileid: "49166271"
 ---
 # <a name="get-started-receiving-messages-with-the-event-processor-host-in-net-standard"></a>開始使用 .NET Standard 中的事件處理器主機來接收訊息
 
@@ -27,13 +28,13 @@ ms.lasthandoff: 02/21/2018
 
 本教學課程說明如何撰寫 .NET Core 主控台應用程式，以使用**事件處理器主機**程式庫從事件中樞接收訊息。 您可以依現狀執行 [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleEphReceiver) 解決方案，其中以您事件中樞和儲存體帳戶的值來取代字串。 或者，您可以遵循本教學課程中的步驟，來建立自己的解決方案。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 * [Microsoft Visual Studio 2015 或 2017](http://www.visualstudio.com)。 本教學課程中的範例使用 Visual Studio 2017，但也支援 Visual Studio 2015。
 * [.NET Core Visual Studio 2015 或 2017 工具](http://www.microsoft.com/net/core)。
 * Azure 訂用帳戶。
-* Azure 事件中樞命名空間。
-* Azure 儲存體帳戶。
+* Azure 事件中樞命名空間和事件中樞。
+* 一個 Azure 儲存體帳戶。
 
 ## <a name="create-an-event-hubs-namespace-and-an-event-hub"></a>建立事件中樞命名空間和事件中樞  
 
@@ -42,13 +43,18 @@ ms.lasthandoff: 02/21/2018
 ## <a name="create-an-azure-storage-account"></a>建立 Azure 儲存體帳戶  
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。  
-2. 在入口網站的左方瀏覽窗格中，依序按一下 [建立資源]、[儲存體] 及 [儲存體帳戶]。  
-3. 完成 [儲存體帳戶] 視窗中的欄位，然後按一下 [建立]。
+2. 在入口網站的左側導覽窗格中，依序選取 [建立資源]、類別中的 [儲存體] 以及 [儲存體帳戶 - Blob、檔案、資料表、佇列]。  
+3. 完成 [建立儲存體帳戶] 視窗中的欄位，然後選取 [檢閱 + 建立]。 
 
     ![建立儲存體帳戶][1]
 
-4. 在看到「部署成功」訊息之後，按一下新儲存體帳戶的名稱。 在 [基本資訊] 視窗中，按一下 [Blob]。 當 [Blob 服務] 對話方塊開啟時，按一下頂端的 [+ 容器]。 為容器命名，然後關閉 [Blob 服務]。  
-5. 按一下左側視窗中的 [存取金鑰]，然後複製儲存體容器的名稱、儲存體帳戶及 **key1** 的值。 將這些值儲存到記事本或一些其他暫存位置。  
+4. 在 [檢閱 + 建立] 頁面上檢閱欄位的值，然後選取 [建立]。 
+5. 在看到「部署成功」訊息之後，選取新儲存體帳戶的名稱。 
+6. 在 [基本資訊] 視窗中，選取 [Blob]。 
+7. 選取位於頂端的 [+ 容器]。 指定容器的名稱。  
+8. 選取左側視窗中的 [存取金鑰]，然後複製儲存體容器的名稱、儲存體帳戶及 **key1** 的值。 
+
+    將這些值儲存到記事本或一些其他暫存位置。
 
 ## <a name="create-a-console-application"></a>建立主控台應用程式
 
@@ -122,11 +128,11 @@ ms.lasthandoff: 02/21/2018
     using System.Threading.Tasks;
     ```
 
-2. 針對事件中樞連接字串、事件中樞名稱、儲存體帳戶容器名稱、儲存體帳戶名稱及儲存體帳戶金鑰，將常數新增到 `Program` 類別。 新增下列程式碼，其中將預留位置取代成其對應的值。
+2. 針對事件中樞連接字串、事件中樞名稱、儲存體帳戶容器名稱、儲存體帳戶名稱及儲存體帳戶金鑰，將常數新增到 `Program` 類別。 新增下列程式碼，其中將預留位置取代成其對應的值：
 
     ```csharp
-    private const string EhConnectionString = "{Event Hubs connection string}";
-    private const string EhEntityPath = "{Event Hub path/name}";
+    private const string EventHubConnectionString = "{Event Hubs connection string}";
+    private const string EventHubName = "{Event Hub path/name}";
     private const string StorageContainerName = "{Storage account container name}";
     private const string StorageAccountName = "{Storage account name}";
     private const string StorageAccountKey = "{Storage account key}";
@@ -142,9 +148,9 @@ ms.lasthandoff: 02/21/2018
         Console.WriteLine("Registering EventProcessor...");
 
         var eventProcessorHost = new EventProcessorHost(
-            EhEntityPath,
+            EventHubName,
             PartitionReceiver.DefaultConsumerGroupName,
-            EhConnectionString,
+            EventHubConnectionString,
             StorageConnectionString,
             StorageContainerName);
 
@@ -173,8 +179,8 @@ ms.lasthandoff: 02/21/2018
 
         public class Program
         {
-            private const string EhConnectionString = "{Event Hubs connection string}";
-            private const string EhEntityPath = "{Event Hub path/name}";
+            private const string EventHubConnectionString = "{Event Hubs connection string}";
+            private const string EventHubName = "{Event Hub path/name}";
             private const string StorageContainerName = "{Storage account container name}";
             private const string StorageAccountName = "{Storage account name}";
             private const string StorageAccountKey = "{Storage account key}";
@@ -191,9 +197,9 @@ ms.lasthandoff: 02/21/2018
                 Console.WriteLine("Registering EventProcessor...");
 
                 var eventProcessorHost = new EventProcessorHost(
-                    EhEntityPath,
+                    EventHubName,
                     PartitionReceiver.DefaultConsumerGroupName,
-                    EhConnectionString,
+                    EventHubConnectionString,
                     StorageConnectionString,
                     StorageContainerName);
 
@@ -222,4 +228,4 @@ ms.lasthandoff: 02/21/2018
 * [事件中樞常見問題集](event-hubs-faq.md)
 
 [1]: ./media/event-hubs-dotnet-standard-getstarted-receive-eph/event-hubs-python1.png
-[2]: ./media/event-hubs-dotnet-standard-getstarted-receive-eph/netcore.png
+[2]: ./media/event-hubs-dotnet-standard-getstarted-receive-eph/netcorercv.png

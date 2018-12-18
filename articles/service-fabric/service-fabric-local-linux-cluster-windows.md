@@ -1,24 +1,25 @@
 ---
-title: "在 Windows 上設定 Azure Service Fabric Linux 叢集 | Microsoft Docs"
-description: "本文說明如何設定在 Windows 開發電腦上執行的 Service Fabric Linux 叢集。 這特別適用於跨平台開發。"
+title: 在 Windows 上設定 Azure Service Fabric Linux 叢集 | Microsoft Docs
+description: 本文說明如何設定在 Windows 開發電腦上執行的 Service Fabric Linux 叢集。 這特別適用於跨平台開發。
 services: service-fabric
 documentationcenter: .net
 author: suhuruli
 manager: mfussell
-editor: 
+editor: ''
 ms.assetid: bf84458f-4b87-4de1-9844-19909e368deb
 ms.service: service-fabric
 ms.devlang: java
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 11/20/2017
 ms.author: suhuruli
-ms.openlocfilehash: db6ad8b83ce34a8b86de822bc074e8a13345a1b4
-ms.sourcegitcommit: 088a8788d69a63a8e1333ad272d4a299cb19316e
+ms.openlocfilehash: ad0d383888c173ece5a7fbd3b0de690ed13074f7
+ms.sourcegitcommit: eb75f177fc59d90b1b667afcfe64ac51936e2638
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/27/2018
+ms.lasthandoff: 05/16/2018
+ms.locfileid: "34206288"
 ---
 # <a name="set-up-a-linux-service-fabric-cluster-on-your-windows-developer-machine"></a>在 Windows 開發人員電腦上設定 Linux Service Fabric 叢集
 
@@ -36,7 +37,7 @@ ms.lasthandoff: 02/27/2018
 
 
 ## <a name="create-a-local-container-and-setup-service-fabric"></a>建立本機容器並設定 Service Fabric
-若要設定本機的 Docker 容器，並在容器上執行 Service Fabric 叢集，請執行下列步驟：
+若要設定本機的 Docker 容器，並在容器上執行 Service Fabric 叢集，請在 PowerShell 中執行下列步驟：
 
 1. 從 Docker 中樞存放庫中提取映像：
 

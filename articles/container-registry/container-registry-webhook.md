@@ -1,18 +1,19 @@
 ---
 title: Azure Container Registry Webhook
-description: "了解如何在您的登錄存放庫發生特定動作時，使用 Webhook 來觸發事件。"
+description: 了解如何在您的登錄存放庫發生特定動作時，使用 Webhook 來觸發事件。
 services: container-registry
-author: neilpeterson
-manager: timlt
+author: mmacy
+manager: jeconnoc
 ms.service: container-registry
 ms.topic: article
-ms.date: 12/02/2017
-ms.author: nepeters
-ms.openlocfilehash: 915f90fd5d969d5544d56e5bec754b799f349015
-ms.sourcegitcommit: 9d317dabf4a5cca13308c50a10349af0e72e1b7e
+ms.date: 08/20/2017
+ms.author: marsma
+ms.openlocfilehash: c424e81b13c3c60e975d3721693b1f80e00cfdd7
+ms.sourcegitcommit: 3f8f973f095f6f878aa3e2383db0d296365a4b18
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 08/20/2018
+ms.locfileid: "42145558"
 ---
 # <a name="using-azure-container-registry-webhooks"></a>使用 Azure Container Registry Webhook
 
@@ -20,7 +21,7 @@ Azure Container Registry 會儲存和管理私人 Docker 容器映像，其方�
 
 如需 Webhook 要求的詳細資訊，請參閱 [Azure Container Registry Webhook 結構描述參考](container-registry-webhook-reference.md)。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 * Azure 容器登錄 - 在 Azure 訂用帳戶中建立容器登錄。 例如，使用 [Azure 入口網站](container-registry-get-started-portal.md)或 [Azure CLI](container-registry-get-started-azure-cli.md)。
 * Docker CLI - 若要將您的本機電腦設定為 Docker 主機並存取 Docker CLI 命令，請安裝 [Docker 引擎](https://docs.docker.com/engine/installation/)。
@@ -35,12 +36,12 @@ Azure Container Registry 會儲存和管理私人 Docker 容器映像，其方�
 
 | 值 | 說明 |
 |---|---|
-| Name | 您想要提供給 Webhook 的名稱。 它只能包含小寫字母和數字，且長度必須介於 5-50 個字元。 |
+| 名稱 | 您想要提供給 Webhook 的名稱。 它只能包含小寫字母和數字，且長度必須介於 5-50 個字元。 |
 | 服務 URI | Webhook 需在當中傳送 POST 通知的 URI。 |
 | 自訂標頭 | 您想要與 POST 要求一起傳遞的標頭。 它們應該為「金鑰：值」的格式。 |
 | 觸發程序動作 | 觸發 Webhook 的動作。 可藉由推送映像及/或刪除動作來觸發 Webhook。 |
 | 狀態 | Webhook 建立之後的狀態。 此選項預設為啟用狀態。 |
-| Scope | Webhook 的運作範圍。 根據預設，範圍是登錄中的所有事件。 可以使用「存放庫：標記」格式，針對存放庫或標記加以指定。 |
+| 影響範圍 | Webhook 的運作範圍。 根據預設，範圍是登錄中的所有事件。 可以使用「存放庫：標記」格式，針對存放庫或標記加以指定。 |
 
 範例 Webhook 表單：
 
@@ -48,7 +49,7 @@ Azure Container Registry 會儲存和管理私人 Docker 容器映像，其方�
 
 ## <a name="create-webhook-azure-cli"></a>建立 Webhook Azure CLI
 
-若要使用 Azure CLI 建立 Webhook，請使用 [az acr webhook create](/cli/azure/acr/webhook#az_acr_webhook_create) 命令。
+若要使用 Azure CLI 建立 Webhook，請使用 [az acr webhook create](/cli/azure/acr/webhook#az-acr-webhook-create) 命令。
 
 ```azurecli-interactive
 az acr webhook create --registry mycontainerregistry --name myacrwebhook01 --actions delete --uri http://webhookuri.com
@@ -68,7 +69,7 @@ az acr webhook create --registry mycontainerregistry --name myacrwebhook01 --act
 
 ### <a name="azure-cli"></a>Azure CLI
 
-若要使用 Azure CLI 測試 ACR Webhook，請使用 [az acr webhook ping](/cli/azure/acr/webhook#az_acr_webhook_ping) 命令。
+若要使用 Azure CLI 測試 ACR Webhook，請使用 [az acr webhook ping](/cli/azure/acr/webhook#az-acr-webhook-ping) 命令。
 
 ```azurecli-interactive
 az acr webhook ping --registry mycontainerregistry --name myacrwebhook01
@@ -94,4 +95,14 @@ az acr webhook delete --registry mycontainerregistry --name myacrwebhook01
 
 ## <a name="next-steps"></a>後續步驟
 
+### <a name="webhook-schema-reference"></a>Webhook 結構描述參考
+
+若要深入了解 Azure Container Registry 所發出的 JSON 事件裝載格式與內容，請參閱 Webhook 結構描述參考：
+
 [Azure Container Registry Webhook 結構描述參考](container-registry-webhook-reference.md)
+
+### <a name="event-grid-events"></a>事件方格的事件
+
+除了本文所討論的原生登錄 Webhook 事件，Azure Container Registry 可將事件發送至事件方格：
+
+[快速入門：將容器登錄事件傳送至事件方格](container-registry-event-grid-quickstart.md)

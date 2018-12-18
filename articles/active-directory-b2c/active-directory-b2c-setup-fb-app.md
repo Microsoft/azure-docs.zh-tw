@@ -1,67 +1,52 @@
 ---
-title: Azure Active Directory B2C：Facebook 設定 | Microsoft Docs
-description: 在受 Azure Active Directory B2C 保護的應用程式中，針對具有 Facebook 帳戶的取用者提供註冊和登入。
+title: 使用 Azure Active Directory B2C 設定註冊，並以 Facebook 帳戶登入 | Microsoft Docs
+description: 使用 Azure Active Directory B2C，讓具有 Facebook 帳戶的客戶得以註冊和登入您的應用程式。
 services: active-directory-b2c
-documentationcenter: ''
 author: davidmu1
 manager: mtillman
-editor: ''
-ms.service: active-directory-b2c
+ms.service: active-directory
 ms.workload: identity
-ms.topic: article
-ms.date: 8/7/2017
+ms.topic: conceptual
+ms.date: 09/11/2018
 ms.author: davidmu
-ms.openlocfilehash: 899677500b0d33b5f98807a341449199b6b3dcac
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: B2C
+ms.openlocfilehash: b1fbf77bfb771bd94ed9acdecb3c54e4c6894687
+ms.sourcegitcommit: 5b8d9dc7c50a26d8f085a10c7281683ea2da9c10
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/26/2018
+ms.locfileid: "47182105"
 ---
-# <a name="azure-active-directory-b2c-provide-sign-up-and-sign-in-to-consumers-with-facebook-accounts"></a>Azure Active Directory B2C：針對具有 Facebook 帳戶的取用者提供註冊和登入
+# <a name="set-up-sign-up-and-sign-in-with-a-facebook-account-using-azure-active-directory-b2c"></a>使用 Azure Active Directory B2C 設定註冊，並以 Facebook 帳戶登入
+
 ## <a name="create-a-facebook-application"></a>建立 Facebook 應用程式
-若要在 Azure Active Directory (Azure AD) B2C 中使用 Facebok 做為身分識別提供者，您必須建立 Facebook 應用程式，並對其提供正確的參數。 您需要 Facebook 帳戶來執行此動作。 如果您沒有帳戶，您可以在 [https://www.facebook.com/](https://www.facebook.com/) 上取得。
 
-1. 前往 [Facebook for developers (開發人員專用的 Facebook)](https://developers.facebook.com/) 網站，並以您的 Facebook 帳戶認證登入。
-2. 如果您尚未這麼做，您需要註冊為 Facebook 開發人員。 若要這樣做，請按一下 **[註冊]**  \(位於頁面右上角)、接受 Facebook 的原則，然後完成註冊步驟。
-3. 按一下 [我的應用程式]，然後按一下 [新增應用程式]。 
-4. 在表單中，提供**顯示名稱**和有效的**連絡人電子郵件**。
+若要在 Azure Active Directory (Azure AD) B2C 中使用 Facebook 帳戶做為識別提供者，您需要在代表該帳戶的租用戶中建立應用程式。 如果您還沒有 Facebook 帳戶，可以至 [https://www.facebook.com/](https://www.facebook.com/) 取得。
+
+1. 請以您的 Facebook 帳戶認證登入 [Facebook for developers (開發人員專用的 Facebook)](https://developers.facebook.com/)。
+2. 如果您尚未這麼做，您需要註冊為 Facebook 開發人員。 若要這樣做，請選取頁面右上角的 [註冊]，接受 Facebook 的原則，然後完成註冊步驟。
+3. 選取 [My Apps] \(我的應用程式\)，然後按一下 [Add a New App] \(新增應用程式\)。 
+4. 輸入**顯示名稱**和有效的**連絡人電子郵件**。
 5. 按一下 [建立應用程式識別碼]。 這可能會要求您接受 Facebook 平台原則，並完成線上安全性檢查。
-6. 在左欄中，按一下 [設定]，然後選取 [基本] \(如果尚未選取)。
-7. 選取一個**類別**。 
-8. 按一下 [+ 新增平台]，然後選取 [網站]。
-   
-    ![Facebook - 設定](./media/active-directory-b2c-setup-fb-app/fb-settings.png)
-   
-    ![Facebook - 設定 - 網站](./media/active-directory-b2c-setup-fb-app/fb-website.png)
-9. 在頁面底部的 [網站 URL] 欄位中輸入 `https://login.microsoftonline.com/`，然後按一下 [儲存變更]。
-   
-    ![Facebook - 網站 URL](./media/active-directory-b2c-setup-fb-app/fb-site-url.png)
+6. 選取 [設定] > [基本]。
+7. 選擇**分類**，例如 `Business and Pages`。 此為 Facebook 所需的值，但不會用於 Azure AD B2C。
+8. 在頁面底部選取 [新增平台]，然後選取 [網站]。
+9. 在 [Site URL] \(網站 URL\) 中，輸入 `https://your-tenant-name.b2clogin.com/`，並將 `your-tenant-name` 取代為您的租用戶名稱。 輸入**隱私權原則 URL** 的 URL，如 `http://www.contoso.com`。 原則 URL 是您需維護以提供應用程式隱私權資訊的網頁。
+10. 選取 [Save Changes] \(儲存變更\)。
+11. 在頁面頂端複製 [應用程式識別碼] 的值。 
+12. 按一下 [顯示]，並複製 [應用程式密碼] 的值。 您必須同時使用這兩個值，將 Facebook 設定為租用戶中的身分識別提供者。 **應用程式密碼**是重要的安全性認證。
+13. 選取 [產品]，然後在 [Facebook 登入] 下方選取 [設定]。
+14. 在 [Facebook 登入] 下方選取 [設定]。
+15. 在 [Valid OAuth redirect URIs] \(有效的 OAuth 重新導向 URI\) 中，輸入 `https://your-tenant-name.b2clogin.com/your-tenant-name.onmicrosoft.com/oauth2/authresp`。 以您的租用戶名稱取代 `your-tenant-name`。 按一下頁面底部的 [儲存變更]。
+16. 若要將 Facebook 應用程式提供給 Azure AD B2C，請選取 [App Review] \(應用程式審查\)、將 [Make My Application public?] \(公開提供我的應用程式？\) 設定為 [YES] \(是\)，然後按一下 [Confirm] \(確認\)。
 
-10. 複製 [應用程式識別碼] 的值。 按一下 [顯示]，並複製 [應用程式密碼] 的值。 您必須同時使用這兩個值，將 Facebook 設定為您租用戶中的身分識別提供者。 **應用程式密碼**是重要的安全性認證。
-   
-    ![Facebook - 應用程式識別碼和應用程式密碼](./media/active-directory-b2c-setup-fb-app/fb-app-id-app-secret.png)
-11. 在左側導覽中按一下 [+ 新增產品]，然後按一下 [Facebook 登入] 的 [設定] 按鈕。
-   
-    ![Facebook - Facebook 登入](./media/active-directory-b2c-setup-fb-app/fb-login.png)
-12. 在 [Facebook 登入] 下，按一下右側導覽中的 [設定]
+## <a name="configure-a-facebook-account-as-an-identity-provider"></a>將 Facebook 帳戶設為識別提供者
 
-    ![Facebook - Facebook 登入設定](./media/active-directory-b2c-setup-fb-app/fb-login-settings.png)
-13. 在 [用戶端 OAuth 設定] 區段的 [有效的 OAuth 重新導向 URI] 欄位中輸入 `https://login.microsoftonline.com/te/{tenant}/oauth2/authresp`。 使用您的租用戶名稱 (例如 contosob2c.onmicrosoft.com) 來取代 **{tenant}**。 按一下頁面底部的 [儲存變更]。
-    
-    ![Facebook - OAuth 重新導向 URI](./media/active-directory-b2c-setup-fb-app/fb-oauth-redirect-uri.png)
-14. 若要讓您的 Facebook 應用程式可供 Azure AD B2C 使用，您必須將其設定為對外公開。 若要執行此動作，請在左側導覽中按一下 [應用程式檢閱]，然後將頁面頂端的開關切換為 [是]，並按一下 [確認]。
-    
-    ![Facebook - App 公開](./media/active-directory-b2c-setup-fb-app/fb-app-public.png)
-
-## <a name="configure-facebook-as-an-identity-provider-in-your-tenant"></a>將 Facebook 設定為您租用戶中的身分識別提供者
-1. 遵循下列步驟以 [瀏覽至 B2C 功能刀鋒視窗](active-directory-b2c-app-registration.md#navigate-to-b2c-settings) (位於 Azure 入口網站上)。
-2. 在 B2C 功能刀鋒視窗中，按一下 [ **身分識別提供者**]。
-3. 按一下刀鋒視窗頂端的 [新增]  。
-4. 針對身分識別提供者組態，提供容易辨識的 **名稱** 。 例如，輸入「Facebook」。
-5. 按一下 [識別提供者類型]、選取 [Facebook]，然後按一下 [確定]。
-6. 按一下 [設定此識別提供者]，然後在 [用戶端識別碼] 與 [用戶端密碼] 欄位中，分別輸入您先前建立之 Facebook 應用程式的應用程式識別碼和應用程式密碼。
-7. 依序按一下 [確定] 與 [建立]，以儲存您的 Facebook 設定。
-
-> [!NOTE]
-> 將「識別提供者」新增至您的租用戶不會修改您現有的原則。 請記得加入剛才建立的識別提供者，以更新您的原則。
->
+1. 以 Azure AD B2C 租用戶的全域管理員身分登入 [Azure 入口網站](https://portal.azure.com/)。
+2. 按一下頂端功能表中的**目錄和訂用帳戶篩選**，然後選擇包含您租用戶的目錄，以確定您使用的是包含 Azure AD B2C 租用戶的目錄。 
+3. 選擇 Azure 入口網站左上角的 [所有服務]，搜尋並選取 [Azure AD B2C]。
+4. 選取 [識別提供者]，然後選取 [新增]。
+5. 輸入 [名稱]。 例如，輸入 *Facebook*。
+6. 選取 [識別提供者類型]、選取 [Facebook]，然後按一下 [確定]。
+7. 選取 [設定此識別提供者]、輸入您先前記錄的應用程式識別碼作為**用戶端識別碼**，然後輸入您所記錄的應用程式祕密作為您先前建立的 Facebook 應用程式**用戶端密碼**。
+8. 依序按一下 [確定] 與 [建立]，以儲存您的 Facebook 設定。

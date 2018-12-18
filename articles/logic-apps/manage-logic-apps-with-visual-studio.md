@@ -1,25 +1,22 @@
 ---
 title: 使用 Visual Studio 管理邏輯應用程式 - Azure Logic Apps | Microsoft Docs
 description: 使用 Visual Studio Cloud Explorer 管理邏輯應用程式和其他 Azure 資產
-author: ecfan
-manager: SyntaxC4
-editor: ''
 services: logic-apps
-documentationcenter: ''
-ms.assetid: ''
 ms.service: logic-apps
-ms.workload: logic-apps
-ms.tgt_pltfrm: na
-ms.devlang: na
+author: ecfan
+ms.author: estfan
+manager: jeconnoc
 ms.topic: article
 ms.custom: mvc
 ms.date: 03/15/2018
-ms.author: estfan; LADocs
-ms.openlocfilehash: db847d5fa3d5f5b2b2f0293f1756226870a8b47e
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.reviewer: klam, LADocs
+ms.suite: integration
+ms.openlocfilehash: d4de75238e48b8eb955095b5a3823f2fed799fae
+ms.sourcegitcommit: fab878ff9aaf4efb3eaff6b7656184b0bafba13b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 08/22/2018
+ms.locfileid: "42445638"
 ---
 # <a name="manage-logic-apps-with-visual-studio"></a>使用 Visual Studio 管理邏輯應用程式
 
@@ -30,7 +27,7 @@ ms.lasthandoff: 03/16/2018
 
 <a name="requirements"></a>
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 * 如果您沒有 Azure 訂用帳戶，請先<a href="https://azure.microsoft.com/free/" target="_blank">註冊免費的 Azure 帳戶</a>。
 
@@ -46,7 +43,7 @@ ms.lasthandoff: 03/16/2018
     您可以直接從 Visual Studio Marketplace 下載並安裝 Azure Logic Apps Tools，或了解<a href="https://docs.microsoft.com/visualstudio/ide/finding-and-using-visual-studio-extensions" target="_blank">如何從 Visual Studio 內部安裝此擴充功能</a>。 
     請務必在完成安裝之後重新啟動 Visual Studio。
 
-* 使用內嵌的邏輯應用程式設計工具時能夠存取 Web
+* 使用內嵌的 Logic Apps 設計工具時能夠存取 Web
 
   設計工具需要網際網路連線才能在 Azure 中建立資源，以及從邏輯應用程式中的連接器讀取屬性和資料。 
   例如，如果您使用 Dynamics CRM Online 連接器，則設計工具會檢查您的 CRM 執行個體，以取得可用的預設和自訂屬性。
@@ -84,7 +81,7 @@ ms.lasthandoff: 03/16/2018
 
   ![從 Azure 入口網站開啟已部署的邏輯應用程式](./media/manage-logic-apps-with-visual-studio/open-logic-app-in-editor.png)
 
-   邏輯應用程式在邏輯應用程式設計工具中開啟之後，您可以在設計工具的底部選擇 [程式碼檢視]，以便檢閱基礎邏輯應用程式定義結構。 
+   邏輯應用程式在 Logic Apps 設計工具中開啟之後，您可以在設計工具的底部選擇 [程式碼檢視]，以便檢閱基礎邏輯應用程式定義結構。 
    如果您想要為邏輯應用程式建立部署範本，請了解針對該邏輯應用程式要[如何下載 Azure Resource Manager 範本](#download-logic-app)。 深入了解 [Resource Manager 範本](../azure-resource-manager/resource-group-overview.md#template-deployment)。
 
 <a name="download-logic-app"></a>
@@ -160,6 +157,9 @@ ms.lasthandoff: 03/16/2018
 
 ![停用邏輯應用程式](./media/manage-logic-apps-with-visual-studio/disable-logic-app.png)
 
+> [!NOTE]
+> 當您停用邏輯應用程式後，就不會具現化新的執行。 所有進行中和擱置的執行將會繼續直到完成，這可能需要一些時間。 
+
 當您準備好讓邏輯應用程式繼續作業時，可以重新啟動邏輯應用程式。 在 Cloud Explorer 中，開啟邏輯應用程式的捷徑功能表，然後選取 [啟用]。
 
 ![啟用邏輯應用程式](./media/manage-logic-apps-with-visual-studio/enable-logic-app.png)
@@ -169,6 +169,9 @@ ms.lasthandoff: 03/16/2018
 若要從 Azure 入口網站刪除您的邏輯應用程式，請在 Cloud Explorer 中開啟邏輯應用程式的捷徑功能表，然後選取 [刪除]。
 
 ![刪除邏輯應用程式](./media/manage-logic-apps-with-visual-studio/delete-logic-app.png)
+
+> [!NOTE]
+> 當您刪除邏輯應用程式後，就不會具現化新的執行。 所有進行中和擱置的執行都會取消。 如果您有數千個執行，加以取消可能需要很長的時間。 
 
 ## <a name="next-steps"></a>後續步驟
 

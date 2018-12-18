@@ -1,24 +1,19 @@
 ---
-title: "Azure Analysis Services 備份與還原 | Microsoft Docs"
-description: "說明如何備份和還原 Azure Analysis Services 資料庫。"
-services: analysis-services
-documentationcenter: 
+title: Azure Analysis Services 備份與還原 | Microsoft Docs
+description: 說明如何備份和還原 Azure Analysis Services 資料庫。
 author: minewiskan
 manager: kfile
-editor: 
-ms.assetid: 
-ms.service: analysis-services
-ms.workload: data-management
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
-ms.date: 02/14/2018
+ms.service: azure-analysis-services
+ms.topic: conceptual
+ms.date: 07/03/2018
 ms.author: owend
-ms.openlocfilehash: 52db3916392c3ff304311717b12a163213197717
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.reviewer: minewiskan
+ms.openlocfilehash: a6e1b7c5661f919af34cb10807e83bfcb7f5e137
+ms.sourcegitcommit: 86cb3855e1368e5a74f21fdd71684c78a1f907ac
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37446753"
 ---
 # <a name="backup-and-restore"></a>備份與還原
 

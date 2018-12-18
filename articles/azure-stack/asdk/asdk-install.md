@@ -12,14 +12,15 @@ ms.workload: na
 pms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/22/2018
+ms.date: 09/10/2018
 ms.author: jeffgilb
 ms.reviewer: misainat
-ms.openlocfilehash: 7b8fe61731a9412c61152bc58e55deebb611d011
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 2bdda273a32167f70633096d463be59884eca033
+ms.sourcegitcommit: c29d7ef9065f960c3079660b139dd6a8348576ce
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/12/2018
+ms.locfileid: "44718216"
 ---
 # <a name="install-the-azure-stack-development-kit-asdk"></a>安裝 Azure Stack 開發套件 (ASDK)
 [準備 ASDK 主機電腦](asdk-prepare-host.md)後，可以使用本文中的下列步驟將 ASDK 部署到 CloudBuilder.vhdx 映像。
@@ -37,7 +38,7 @@ ms.lasthandoff: 03/23/2018
     ![](media/asdk-install/1.PNG) 
 
 3. 在識別提供者 [類型] 下拉式方塊中，選取 [Azure 雲端] 或 [AD FS]。 在 [本機系統管理員密碼] 底下的 [密碼] 方塊中，輸入本機系統管理員密碼 (必須符合目前設定的本機系統管理員密碼)，然後按 [下一步]。
-    - **Azure 雲端**：將 Azure Active Directory (Azure AD) 設定為識別提供者。 若要使用此選項，您需有網際網路連線、Azure AD 目錄租用戶的完整名稱 (採用 *domainname*.onmicrosoft.com 形式或 Azure AD 驗證的自訂網域名稱)，以及所指定目錄的全域管理員認證。 
+    - **Azure 雲端**：將 Azure Active Directory (Azure AD) 設定為識別提供者。 若要使用此選項，您需有網際網路連線、Azure AD 目錄租用戶的完整名稱 (採用 *domainname*.onmicrosoft.com 形式或 Azure AD 驗證的自訂網域名稱)，以及所指定目錄的全域管理員認證。 部署之後，就不需要 Azure Active Directory 全域管理員權限。 不過，某些作業可能需要全域管理員認證。 例如，需要獲派權限的資源提供者安裝程式指令碼或新功能。 您可以暫時恢復帳戶的全域管理員權限，或使用擁有「預設提供者訂用帳戶」的個別全域管理員帳戶。
     - **AD FS**：預設戳記目錄服務會作為識別提供者。 用於登入的預設帳戶是 azurestackadmin@azurestack.local，而要使用的密碼是您在設定過程中所提供的密碼。
 
     ![](media/asdk-install/2.PNG) 
@@ -57,7 +58,7 @@ ms.lasthandoff: 03/23/2018
     - 輸入有效的**時間伺服器 IP** 位址。 此必填欄位會設定開發套件所要使用的時間伺服器。 此參數必須以有效的時間伺服器 IP 位址形式提供。 不支援伺服器名稱。
 
       > [!TIP]
-      > 若要尋找時間伺服器 IP 位址，請造訪 [pool.ntp.org](http:\\pool.ntp.org) 或 ping time.windows.com。 
+      > 若要尋找時間伺服器 IP 位址，請造訪 [pool.ntp.org](http://pool.ntp.org) 或 ping time.windows.com。 
 
     - **(選擇性)** 您可以設定下列值：
         - **VLAN 識別碼**：設定 VLAN 識別碼。 只有當主機與 AzS-BGPNAT01 必須設定 VLAN 識別碼來存取實體網路 (以及網際網路) 時，才使用此選項。 

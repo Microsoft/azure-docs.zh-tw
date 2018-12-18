@@ -3,19 +3,19 @@ title: 將大量隨機資料平行上傳至 Azure 儲存體 | Microsoft Docs
 description: 了解如何使用 Azure SDK 將大量隨機資料平行上傳至 Azure 儲存體帳戶
 services: storage
 author: roygara
-manager: jeconnoc
 ms.service: storage
-ms.workload: web
-ms.devlang: csharp
+ms.devlang: dotnet
 ms.topic: tutorial
 ms.date: 02/20/2018
 ms.author: rogarana
 ms.custom: mvc
-ms.openlocfilehash: 668700cf3ff3d1a90f9639129ef2953ddca016f1
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.component: blobs
+ms.openlocfilehash: 557dd1d89fc05d82f1839a7b02356857f41164c6
+ms.sourcegitcommit: d4c076beea3a8d9e09c9d2f4a63428dc72dd9806
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 08/01/2018
+ms.locfileid: "39399731"
 ---
 # <a name="upload-large-amounts-of-random-data-in-parallel-to-azure-storage"></a>將大量隨機資料平行上傳至 Azure 儲存體
 
@@ -33,7 +33,7 @@ Azure Blob 儲存體會提供可擴充的服務來儲存您的資料。 若要�
 
 使用 Blob 設計高度執行的應用程式時，[分割區命名](../common/storage-performance-checklist.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json#subheading47)是另一個重要的要素。 Azure 儲存體使用範圍型的資料分割配置來進行縮放和負載平衡。 此設定表示具有相似命名慣例或前置詞的檔案會進入相同分割區。 此邏輯也包含將對其上傳檔案的容器名稱。 在本教學課程中，您會使用以 GUID 命名的檔案和隨機產生的內容。 然後這些項目會上傳至五個具有隨機名稱的不同容器。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 若要完成本教學課程，您必須先完成上一個儲存體教學課程：[為可擴充的應用程式建立虛擬機器和儲存體帳戶][previous-tutorial]。
 

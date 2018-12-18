@@ -17,6 +17,7 @@ ms.sourcegitcommit: 20d103fb8658b29b48115782fe01f76239b240aa
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 04/03/2018
+ms.locfileid: "30312672"
 ---
 # <a name="batch-analytics"></a>批次分析
 批次分析中的主題包含批次服務資源所適用事件和警示的參考資訊。

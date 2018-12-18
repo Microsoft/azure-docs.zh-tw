@@ -8,12 +8,14 @@ ms.reviewer: CarlRabeler
 ms.service: sql-database
 ms.custom: develop databases, mvc, devcenter
 ms.topic: tutorial
-ms.date: 03/15/2018
-ms.openlocfilehash: 3b6f260983e3c826bf558f0fe6d1a0fa6ae6b3af
-ms.sourcegitcommit: a36a1ae91968de3fd68ff2f0c1697effbb210ba8
+ms.author: genemi
+ms.date: 06/07/2018
+ms.openlocfilehash: 9fdc23eb2e607d1264e1bd2bc9dc85ef8d9be642
+ms.sourcegitcommit: 8b694bf803806b2f237494cd3b69f13751de9926
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/17/2018
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "46498148"
 ---
 # <a name="design-an-azure-sql-database-and-connect-with-cx23-and-adonet"></a>設計 Azure SQL Database 並連接 C&#x23; 和 ADO.NET
 
@@ -29,7 +31,7 @@ Azure SQL Database 是 Microsoft Cloud (Azure) 中的關聯式資料庫即服務
 
 如果您沒有 Azure 訂用帳戶，請在開始之前先[建立免費帳戶](https://azure.microsoft.com/free/)。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 安裝 [Visual Studio Community 2017、Visual Studio Professional 2017 或 Visual Studio Enterprise 2017](https://www.visualstudio.com/downloads/)。
 
@@ -61,5 +63,5 @@ And it starts with a ## H2.
 請前進到下一個教學課程，以了解如何移轉資料。
 
 > [!div class="nextstepaction"]
->[將 SQL Server Database 移轉至 Azure SQL Database](sql-database-migrate-your-sql-server-database.md)
+> [將 SQL Server Database 移轉至 Azure SQL Database](sql-database-migrate-your-sql-server-database.md)
 

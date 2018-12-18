@@ -9,16 +9,18 @@ manager: hjerez
 editor: cgronlun
 ms.assetid: f4248922-c961-4d3a-9e1b-aec743210166
 ms.service: machine-learning
+ms.component: studio
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
-ms.openlocfilehash: d6de7aa6d16196f415688d68251e8c1b0a4b9aee
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: d57e780fbf5187f2481d40bde28b113181c15b4a
+ms.sourcegitcommit: 944d16bc74de29fb2643b0576a20cbd7e437cef2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 06/07/2018
+ms.locfileid: "34834653"
 ---
 # <a name="discover-experiments-in-azure-ai-gallery"></a>探索 Azure AI 資源庫中的實驗
 [!INCLUDE [machine-learning-gallery-item-selector](../../../includes/machine-learning-gallery-item-selector.md)]
@@ -34,7 +36,7 @@ Gallery 包含各種在 [Azure Machine Learning Studio](https://studio.azureml.n
 ## <a name="discover"></a>探索
 若要瀏覽 [Gallery 中](http://gallery.cortanaintelligence.com)的實驗，請在 Gallery 首頁頂端選取 [實驗]。
 
-**[實驗](https://gallery.cortanaintelligence.com/experiments)**頁面會顯示最近新增與熱門實驗清單。 若要查看所有實驗，請選取 [查看全部] 按鈕。 若要搜尋特定的實驗，請選取 [查看全部]，然後選取篩選準則。 您也可以在資源庫頁面頂端的 [搜尋] 方塊中輸入搜尋字詞。
+**[實驗](https://gallery.cortanaintelligence.com/experiments)** 頁面會顯示最近新增與熱門實驗清單。 若要查看所有實驗，請選取 [查看全部] 按鈕。 若要搜尋特定的實驗，請選取 [查看全部]，然後選取篩選準則。 您也可以在資源庫頁面頂端的 [搜尋] 方塊中輸入搜尋字詞。
 
 您可以實驗詳細資料頁面上取得實驗的詳細資訊。 若要開啟實驗詳細資料頁面，請選取該實驗。 在實驗詳細資料頁面上的 [註解] 區段中，您可以留言、提供意見反應，或詢問有關實驗的問題。 您甚至可以在 Twitter 或 LinkedIn 上與朋友或同事分享實驗。 您也可以用電子郵件寄出實驗詳細資料頁面連結，以邀請其他使用者檢視該頁面。
 

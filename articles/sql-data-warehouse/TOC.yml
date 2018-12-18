@@ -1,243 +1,306 @@
+items:
 - name: SQL 資料倉儲文件
   href: index.md
 - name: 概觀
   items:
-    - name: 關於 Azure SQL 資料倉儲
-      href: sql-data-warehouse-overview-what-is.md
-    - name: 功能提要
-      href: cheat-sheet.md
+  - name: 關於 Azure SQL 資料倉儲
+    href: sql-data-warehouse-overview-what-is.md
+  - name: SQL 資料倉儲架構
+    href: massively-parallel-processing-mpp-architecture.md
+  - name: 資料倉儲單位
+    href: what-is-a-data-warehouse-unit-dwu-cdwu.md
+  - name: 功能提要
+    href: cheat-sheet.md
+  - name: 最佳作法
+    href: sql-data-warehouse-best-practices.md
+  - name: 容量限制
+    href: sql-data-warehouse-service-capacity-limits.md
+  - name: 常見問題集
+    href: sql-data-warehouse-overview-faq.md
+- name: 版本資訊
+  items:
+  - name: 2018 年 9 月
+    href: release-notes-september-2018.md
+  - name: 2018 年 8 月
+    href: release-notes-august-2018.md
+  - name: 2018 年 7 月
+    href: release-notes-july-2018.md
+  - name: 2018 年 6 月
+    href: release-notes-june-2018.md
+  - name: 2018 年 5 月
+    href: release-notes-may-2018.md
+  - name: 2018 年 4 月
+    href: release-notes-april-2018.md
 - name: 快速入門
-  expanded: true
   items:
-    - name: 建立與連線 - 入口網站
+  - name: 建立與連線
+    items:
+    - name: 入口網站
       href: create-data-warehouse-portal.md
-    - name: 暫停與繼續計算
-      items:
-        - name: 入口網站
-          href: pause-and-resume-compute-portal.md
-        - name: PowerShell
-          href: pause-and-resume-compute-powershell.md
-    - name: 調整計算
-      items:
-        - name: 入口網站
-          href: quickstart-scale-compute-portal.md
-        - name: PowerShell
-          href: quickstart-scale-compute-powershell.md
-        - name: T-SQL
-          href: quickstart-scale-compute-tsql.md
-- name: 教學課程
-  items:
-    - name: 1 - 載入 WideWorldImporters
-      href: load-data-wideworldimportersdw.md
+    - name: PowerShell
+      href: create-data-warehouse-powershell.md
+  - name: 暫停與繼續
+    items:
+    - name: 入口網站
+      href: pause-and-resume-compute-portal.md
+    - name: PowerShell
+      href: pause-and-resume-compute-powershell.md
+  - name: 調整
+    items:
+    - name: 入口網站
+      href: quickstart-scale-compute-portal.md
+    - name: PowerShell
+      href: quickstart-scale-compute-powershell.md
+    - name: T-SQL
+      href: quickstart-scale-compute-tsql.md
+  expanded: true
 - name: 概念
   items:
-    - name: 服務功能
+  - name: 安全性
+    items:
+    - name: 概觀
+      href: sql-data-warehouse-overview-manage-security.md
+    - name: 存取控制
+      href: ../sql-database/sql-database-control-access.md?toc=/azure/sql-data-warehouse/toc.json
+    - name: 防火牆規則
+      href: ../sql-database/sql-database-firewall-configure.md?toc=/azure/sql-data-warehouse/toc.json
+    - name: 防火牆虛擬網路規則
+      href: ../sql-database/sql-database-vnet-service-endpoint-rule-overview.md?toc=/azure/sql-data-warehouse/toc.json
+    - name: 驗證
+      href: sql-data-warehouse-authentication.md?toc=/azure/sql-data-warehouse/toc.json
+    - name: Azure AD
+      href: ../sql-database/sql-database-aad-authentication.md?toc=/azure/sql-data-warehouse/toc.json
+    - name: 登入和使用者
+      href: ../sql-database/sql-database-manage-logins.md?toc=/azure/sql-data-warehouse/toc.json
+    - name: 多因素驗證
+      href: ../sql-database/sql-database-ssms-mfa-authentication.md?toc=/azure/sql-data-warehouse/toc.json
+    - name: 稽核
+      href: sql-data-warehouse-auditing-overview.md
+    - name: 資料行層級安全性
+      href: column-level-security.md
+  - name: 載入資料
+    items:
+    - name: 概觀
+      href: design-elt-data-loading.md
+    - name: 最佳作法
+      href: guidance-for-loading-data.md
+    - name: 資料行存放區壓縮
+      href: sql-data-warehouse-memory-optimizations-for-columnstore-compression.md
+  - name: 開發
+    items:
+    - name: 概觀
+      href: sql-data-warehouse-overview-develop.md
+    - name: 最佳作法
+      href: sql-data-warehouse-best-practices-development.md
+    - name: 資料表
       items:
-        - name: MPP 架構
-          href: massively-parallel-processing-mpp-architecture.md
-        - name: 效能層級
-          href: performance-tiers.md
-        - name: 資料倉儲單位
-          href: what-is-a-data-warehouse-unit-dwu-cdwu.md
-        - name: 向外縮放、暫停、繼續
-          href: sql-data-warehouse-manage-compute-overview.md
-        - name: 備份與還原
-          href: backup-and-restore.md
-        - name: 稽核
-          href: sql-data-warehouse-auditing-overview.md
-        - name: 容量限制
-          href: sql-data-warehouse-service-capacity-limits.md
-        - name: 常見問題集
-          href: sql-data-warehouse-overview-faq.md
-    - name: 安全性
+      - name: 概觀
+        href: sql-data-warehouse-tables-overview.md
+      - name: CTAS
+        href: sql-data-warehouse-develop-ctas.md
+      - name: 資料類型
+        href: sql-data-warehouse-tables-data-types.md
+      - name: 分散式資料表
+        href: sql-data-warehouse-tables-distribute.md
+      - name: 索引數
+        href: sql-data-warehouse-tables-index.md
+      - name: 身分識別
+        href: sql-data-warehouse-tables-identity.md
+      - name: 分割數
+        href: sql-data-warehouse-tables-partition.md
+      - name: 複寫資料表
+        href: design-guidance-for-replicated-tables.md
+      - name: 統計資料
+        href: sql-data-warehouse-tables-statistics.md
+      - name: 暫存
+        href: sql-data-warehouse-tables-temporary.md
+    - name: T-SQL 語言元素
       items:
-        - name: 概觀
-          href: sql-data-warehouse-overview-manage-security.md
-        - name: 驗證
-          href: sql-data-warehouse-authentication.md
-    - name: 移轉至 SQL 資料倉儲
-      items:
-        - name: 概觀
-          href: sql-data-warehouse-overview-migrate.md
-        - name: 移轉結構描述
-          href: sql-data-warehouse-migrate-schema.md
-        - name: 移轉程式碼
-          href: sql-data-warehouse-migrate-code.md
-        - name: 移轉資料
-          href: sql-data-warehouse-migrate-data.md
-    - name: 載入與移動資料
-      items:
-        - name: 概觀
-          href: design-elt-data-loading.md
-        - name: 最佳作法
-          href: guidance-for-loading-data.md
-    - name: 整合
-      items:
-        - name: 概觀
-          href: sql-data-warehouse-overview-integrate.md
-        - name: SQL Database 彈性查詢
-          href: how-to-use-elastic-query-with-sql-data-warehouse.md
-    - name: 查詢效能
-      items:
-        - name: 資源類別
-          href: resource-classes-for-workload-management.md
-        - name: 資料行存放區壓縮
-          href: sql-data-warehouse-memory-optimizations-for-columnstore-compression.md
-    - name: 監視
-      href: sql-data-warehouse-manage-monitor.md
-    - name: 開發資料倉儲
-      items:
-        - name: 概觀
-          href: sql-data-warehouse-overview-develop.md
-        - name: 資料倉儲元件
-          href: sql-data-warehouse-overview-workload.md
-        - name: 資料表
-          items:
-            - name: 概觀
-              href: sql-data-warehouse-tables-overview.md
-            - name: CTAS
-              href: sql-data-warehouse-develop-ctas.md
-            - name: 資料類型
-              href: sql-data-warehouse-tables-data-types.md
-            - name: 分散式資料表
-              href: sql-data-warehouse-tables-distribute.md
-            - name: 索引數
-              href: sql-data-warehouse-tables-index.md
-            - name: 身分識別
-              href: sql-data-warehouse-tables-identity.md
-            - name: 分割數
-              href: sql-data-warehouse-tables-partition.md
-            - name: 複寫資料表
-              href: design-guidance-for-replicated-tables.md
-            - name: 統計資料
-              href: sql-data-warehouse-tables-statistics.md
-            - name: 暫存
-              href: sql-data-warehouse-tables-temporary.md
-        - name: 查詢
-          items:
-            - name: 動態 SQL
-              href: sql-data-warehouse-develop-dynamic-sql.md
-            - name: 依據選項分組
-              href: sql-data-warehouse-develop-group-by-options.md
-            - name: 標籤
-              href: sql-data-warehouse-develop-label.md
-        - name: T-SQL 語言元素
-          items:
-            - name: 迴圈
-              href: sql-data-warehouse-develop-loops.md
-            - name: 預存程序
-              href: sql-data-warehouse-develop-stored-procedures.md
-            - name: 交易
-              href: sql-data-warehouse-develop-transactions.md
-            - name: 交易的最佳作法
-              href: sql-data-warehouse-develop-best-practices-transactions.md
-            - name: 使用者定義的結構描述
-              href: sql-data-warehouse-develop-user-defined-schemas.md
-            - name: 變數指派
-              href: sql-data-warehouse-develop-variable-assignment.md
-            - name: Views
-              href: sql-data-warehouse-develop-views.md
+      - name: 迴圈
+        href: sql-data-warehouse-develop-loops.md
+      - name: 預存程序
+        href: sql-data-warehouse-develop-stored-procedures.md
+      - name: 交易
+        href: sql-data-warehouse-develop-transactions.md
+      - name: 交易的最佳作法
+        href: sql-data-warehouse-develop-best-practices-transactions.md
+      - name: 使用者定義的結構描述
+        href: sql-data-warehouse-develop-user-defined-schemas.md
+      - name: 變數指派
+        href: sql-data-warehouse-develop-variable-assignment.md
+      - name: Views
+        href: sql-data-warehouse-develop-views.md
+  - name: 查詢
+    items:
+    - name: 動態 SQL
+      href: sql-data-warehouse-develop-dynamic-sql.md
+    - name: 依據選項分組
+      href: sql-data-warehouse-develop-group-by-options.md
+    - name: 標籤
+      href: sql-data-warehouse-develop-label.md
+  - name: 工作負載管理
+    items:
+    - name: 資源類別與工作負載管理
+      href: resource-classes-for-workload-management.md
+    - name: 記憶體與並行限制
+      href: memory-and-concurrency-limits.md
+  - name: 可管理性與監視
+    items:
+    - name: 概觀
+      href: sql-data-warehouse-overview-manageability-monitoring.md
+    - name: 縮放、暫停、繼續
+      href: sql-data-warehouse-manage-compute-overview.md
+    - name: 資源使用率與查詢活動
+      href: sql-data-warehouse-concept-resource-utilization-query-activity.md
+    - name: 資料保護
+      href: backup-and-restore.md
+    - name: 建議
+      href: sql-data-warehouse-concept-recommendations.md
+    - name: 維護排程
+      href: service-maintenance.md
     - name: 疑難排解
       href: sql-data-warehouse-troubleshoot.md
+  - name: 維護排程
+    items:
+    - name: 概觀
+      href: maintenance-scheduling.md
+    - name: 檢視維護排程
+      href: viewing-maintenance-schedule.md
+    - name: 變更維護排程
+      href: changing-maintenance-schedule.md
+  - name: 整合
+    items:
+    - name: 概觀
+      href: sql-data-warehouse-overview-integrate.md
+    - name: SQL Database 彈性查詢
+      href: how-to-use-elastic-query-with-sql-data-warehouse.md
 - name: 使用說明指南
   items:
-    - name: 升級
+  - name: 安全
+    items:
+    - name: 設定 Azure AD 驗證
+      href: ../sql-database/sql-database-aad-authentication-configure.md?toc=/azure/sql-data-warehouse/toc.json
+    - name: 條件式存取
+      href: ../sql-database/sql-database-conditional-access.md?toc=/azure/sql-data-warehouse/toc.json
+    - name: PowerShell 的虛擬網路規則
+      href: ../sql-database/sql-database-vnet-service-endpoint-rule-powershell.md?toc=/azure/sql-data-warehouse/toc.json
+    - name: 啟用加密 - 入口網站
+      href: sql-data-warehouse-encryption-tde.md
+    - name: 啟用加密 - T-SQL
+      href: sql-data-warehouse-encryption-tde-tsql.md
+    - name: 威脅偵測
+      href: sql-data-warehouse-security-threat-detection.md
+  - name: 載入資料
+    items:
+    - name: 紐約計程車資料
+      href: load-data-from-azure-blob-storage-using-polybase.md
+    - name: Contoso 公用資料
+      href: sql-data-warehouse-load-from-azure-blob-storage-with-polybase.md
+    - name: Azure Data Lake Storage Gen1
+      href: sql-data-warehouse-load-from-azure-data-lake-store.md
+    - name: Azure Databricks
+      href: /azure/azure-databricks/databricks-extract-load-sql-data-warehouse?toc=/azure/sql-data-warehouse/toc.json
+    - name: Data Factory
+      href: /azure/data-factory/load-azure-sql-data-warehouse?toc=/azure/sql-data-warehouse/toc.json
+    - name: SSIS
+      href: /sql/integration-services/load-data-to-sql-data-warehouse
+    - name: 載入 WideWorldImporters
+      href: load-data-wideworldimportersdw.md
+  - name: 開發
+    items:
+    - name: 概觀
+      href: sql-data-warehouse-connect-overview.md
+    - name: 連接字串
+      href: sql-data-warehouse-connection-strings.md
+    - name: sqlcmd
+      href: sql-data-warehouse-get-started-connect-sqlcmd.md
+    - name: 使用 SSMS 查詢
+      href: sql-data-warehouse-query-ssms.md
+    - name: 使用 Visual Studio 查詢
+      href: sql-data-warehouse-query-visual-studio.md
+    - name: 安裝 Visual Studio
+      href: sql-data-warehouse-install-visual-studio.md
+  - name: 管理工作負載
+    items:
+    - name: 分析工作負載
+      href: analyze-your-workload.md
+  - name: 監視與微調
+    items:
+    - name: 監視工作負載
+      href: sql-data-warehouse-manage-monitor.md
+    - name: 升級至 Gen2
       href: upgrade-to-latest-generation.md
-    - name: Restore
+    - name: 監視 Gen2 快取
+      href: sql-data-warehouse-how-to-monitor-cache.md
+    - name: 還原資料倉儲
+      href: sql-data-warehouse-restore.md
+    - name: 將效能層級自動化
+      href: manage-compute-with-azure-functions.md
+  - name: 整合
+    items:
+    - name: 使用機器學習服務
+      href: sql-data-warehouse-get-started-analyze-with-azure-machine-learning.md
+    - name: 資料管線
       items:
-        - name: 入口網站
-          href: sql-data-warehouse-restore-database-portal.md
-        - name: PowerShell
-          href: sql-data-warehouse-restore-database-powershell.md
-        - name: REST API
-          href: sql-data-warehouse-restore-database-rest-api.md
-    - name: 安全性
+      - name: 使用 Fivetran 連線
+        href: fivetran-quickstart.md
+      - name: 開始使用 Striim
+        href: striim-quickstart.md
+      - name: 新增 Azure 串流分析作業
+        href: sql-data-warehouse-integrate-azure-stream-analytics.md
+    - name: 建置儀表板與報告
       items:
-        - name: 啟用加密 - 入口網站
-          href: sql-data-warehouse-encryption-tde.md
-        - name: 啟用加密 - T-SQL
-          href: sql-data-warehouse-encryption-tde-tsql.md
-        - name: 威脅偵測
-          href: sql-data-warehouse-security-threat-detection.md
-    - name: 載入與移動資料
-      items:
-        - name: 紐約計程車資料
-          href: load-data-from-azure-blob-storage-using-polybase.md
-        - name: Contoso 公用資料
-          href: sql-data-warehouse-load-from-azure-blob-storage-with-polybase.md
-        - name: Azure Data Lake Store
-          href: sql-data-warehouse-load-from-azure-data-lake-store.md
-        - name: Azure Databricks
-          href: /azure/azure-databricks/databricks-extract-load-sql-data-warehouse?toc=/azure/sql-data-warehouse/toc.json
-        - name: BCP
-          href: sql-data-warehouse-load-with-bcp.md
-        - name: Data Factory
-          href: sql-data-warehouse-load-with-data-factory.md
-        - name: AzCopy
-          href: sql-data-warehouse-load-from-sql-server-with-polybase.md
-        - name: RedGate
-          href: sql-data-warehouse-load-with-redgate.md
-        - name: SSIS
-          href: /sql/integration-services/load-data-to-sql-data-warehouse
-    - name: 整合
-      items:
-        - name: 設定 SQL Database 彈性查詢
-          href: tutorial-elastic-query-with-sql-datababase-and-sql-data-warehouse.md
-        - name: 新增 Azure 串流分析作業
-          href: sql-data-warehouse-integrate-azure-stream-analytics.md
-        - name: 使用機器學習服務
-          href: sql-data-warehouse-get-started-analyze-with-azure-machine-learning.md
-        - name: 使用 Power BI 將資料視覺化
-          href: sql-data-warehouse-get-started-visualize-with-power-bi.md
-    - name: 監視與微調
-      items:
-        - name: 分析工作負載
-          href: analyze-your-workload.md
-    - name: 相應放大
-      items:
-        - name: 自動化計算層級
-          href: manage-compute-with-azure-functions.md
+      - name: 設定 SQL Database 彈性查詢
+        href: tutorial-elastic-query-with-sql-datababase-and-sql-data-warehouse.md
+      - name: 使用 Power BI 將資料視覺化
+        href: sql-data-warehouse-get-started-visualize-with-power-bi.md
 - name: 參考
   items:
-    - name: T-SQL
-      items:
-        - name: 完整參考
-          href: 'https://docs.microsoft.com/sql/t-sql/language-reference/'
-        - name: SQL DW 語言元素
-          href: sql-data-warehouse-reference-tsql-language-elements.md
-        - name: SQL DW 陳述式
-          href: sql-data-warehouse-reference-tsql-statements.md
-    - name: 系統檢視表
-      href: sql-data-warehouse-reference-tsql-system-views.md
-    - name: PowerShell Cmdlet
-      href: sql-data-warehouse-reference-powershell-cmdlets.md
-    - name: REST API
-      href: sql-data-warehouse-manage-compute-rest-api.md
+  - name: T-SQL
+    items:
+    - name: 完整參考
+      href: https://docs.microsoft.com/sql/t-sql/language-reference/
+    - name: SQL DW 語言元素
+      href: sql-data-warehouse-reference-tsql-language-elements.md
+    - name: SQL DW 陳述式
+      href: sql-data-warehouse-reference-tsql-statements.md
+  - name: 系統檢視表
+    href: sql-data-warehouse-reference-tsql-system-views.md
+  - name: PowerShell Cmdlet
+    href: sql-data-warehouse-reference-powershell-cmdlets.md
+  - name: REST API
+    href: sql-data-warehouse-manage-compute-rest-api.md
 - name: 資源
   items:
-    - name: Azure 藍圖
-      href: 'https://azure.microsoft.com/roadmap/?category=databases'
-    - name: 論壇
-      href: 'https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureSQLDataWarehouse'
-    - name: 價格
-      href: 'https://azure.microsoft.com/pricing/details/sql-data-warehouse/'
-    - name: 定價計算機
-      href: 'https://azure.microsoft.com/pricing/calculator/'
-    - name: 功能要求
-      href: 'https://feedback.azure.com/forums/307516-sql-data-warehouse/'
-    - name: 服務更新
-      href: 'https://azure.microsoft.com/updates/?product=sql-data-warehouse'
-    - name: 堆疊溢位
-      href: 'https://stackoverflow.com/questions/tagged/azure-sqldw/'
-    - name: 支援
-      href: sql-data-warehouse-get-started-create-support-ticket.md
-    - name: 影片
-      href: 'https://azure.microsoft.com/documentation/videos/index/?services=sql-data-warehouse'
-    - name: 合作夥伴
-      items:
-        - name: 商業智慧
-          href: sql-data-warehouse-partner-business-intelligence.md
-        - name: 資料整合
-          href: sql-data-warehouse-partner-data-integration.md
-        - name: 資料管理
-          href: sql-data-warehouse-partner-data-management.md
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/?category=databases
+  - name: 論壇
+    href: https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureSQLDataWarehouse
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/sql-data-warehouse/
+  - name: 定價計算機
+    href: https://azure.microsoft.com/pricing/calculator/
+  - name: 功能要求
+    href: https://feedback.azure.com/forums/307516-sql-data-warehouse/
+  - name: 服務更新
+    href: https://azure.microsoft.com/updates/?product=sql-data-warehouse
+  - name: 堆疊溢位
+    href: https://stackoverflow.com/questions/tagged/azure-sqldw/
+  - name: 支援
+    href: sql-data-warehouse-get-started-create-support-ticket.md
+  - name: 影片
+    href: https://azure.microsoft.com/documentation/videos/index/?services=sql-data-warehouse
+  - name: 合作夥伴
+    items:
+    - name: 商業智慧
+      href: sql-data-warehouse-partner-business-intelligence.md
+    - name: 資料整合
+      href: sql-data-warehouse-partner-data-integration.md
+    - name: 資料管理
+      href: sql-data-warehouse-partner-data-management.md
+ms.openlocfilehash: 46faacd4a8704c89ed86f97d205f81cfff222b79
+ms.sourcegitcommit: 8e06d67ea248340a83341f920881092fd2a4163c
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/16/2018
+ms.locfileid: "49354150"

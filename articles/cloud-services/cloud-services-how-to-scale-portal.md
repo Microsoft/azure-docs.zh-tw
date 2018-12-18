@@ -1,11 +1,11 @@
 ---
-title: "在入口網站中自動調整雲端服務 | Microsoft Docs"
-description: "了解如何使用入口網站在 Azure 中設定雲端服務 web 角色或背景工作角色的自動調整規則。"
+title: 在入口網站中自動調整雲端服務 | Microsoft Docs
+description: 了解如何使用入口網站在 Azure 中設定雲端服務 web 角色或背景工作角色的自動調整規則。
 services: cloud-services
-documentationcenter: 
-author: Thraka
+documentationcenter: ''
+author: jpconnock
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 701d4404-5cc0-454b-999c-feb94c1685c0
 ms.service: cloud-services
 ms.workload: tbd
@@ -13,12 +13,13 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 05/18/2017
-ms.author: adegeo
-ms.openlocfilehash: 0eea38cdb9827ab6e322025ff344ebbab0e83da3
-ms.sourcegitcommit: 1fbaa2ccda2fb826c74755d42a31835d9d30e05f
+ms.author: jeconnoc
+ms.openlocfilehash: 29ee71e7946145e50cc875df96b674abec3e12df
+ms.sourcegitcommit: e0a678acb0dc928e5c5edde3ca04e6854eb05ea6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/22/2018
+ms.lasthandoff: 07/13/2018
+ms.locfileid: "39004331"
 ---
 # <a name="how-to-configure-auto-scaling-for-a-cloud-service-in-the-portal"></a>如何在入口網站中設定雲端服務的自動調整
 
@@ -27,7 +28,7 @@ ms.lasthandoff: 01/22/2018
 > [!NOTE]
 > 本文著重於雲端服務 web 和背景工作角色。 當您直接建立虛擬機器 (傳統) 時，它會裝載於雲端服務中。 如果要調整標準虛擬機器，您可以將它與[可用性設定組](../virtual-machines/windows/classic/configure-availability-classic.md)產生關聯，還可以手動開啟或關閉它們。
 
-## <a name="considerations"></a>注意事項
+## <a name="considerations"></a>考量
 在設定應用程式的調整之前，您應該先考量下列資訊：
 
 * 調整受到核心使用量影響。

@@ -1,11 +1,11 @@
 ---
-title: "在 Azure 資訊安全中心監視和處理安全性事件 | Microsoft Docs"
-description: "了解如何使用資訊安全中心的事件儀表板，查看 Azure 虛擬機器 (VM) 和非 Azure 電腦的安全性事件。"
+title: 在 Azure 資訊安全中心監視和處理安全性事件 | Microsoft Docs
+description: 了解如何使用資訊安全中心的事件儀表板，查看 Azure 虛擬機器 (VM) 和非 Azure 電腦的安全性事件。
 services: security-center
 documentationcenter: na
 author: TerryLanfear
 manager: MBaldwin
-editor: 
+editor: ''
 ms.assetid: 70c076ef-3ad4-4000-a0c1-0ac0c9796ff1
 ms.service: security-center
 ms.devlang: na
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23040653"
 ---
 # <a name="monitoring-and-processing-security-events-in-azure-security-center"></a>在 Azure 資訊安全中心監視和處理安全性事件
 事件儀表板可對一段時間下來收集的安全性事件提供事件數的概觀，並列出可能需要注意的事件。  

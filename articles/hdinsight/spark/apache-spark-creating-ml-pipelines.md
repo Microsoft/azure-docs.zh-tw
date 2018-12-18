@@ -1,26 +1,20 @@
 ---
-title: "建立 Apache Spark 機器學習服務管線 - Azure HDInsight | Microsoft Docs"
-description: "使用 Apache Spark 機器學習服務程式庫以建立資料管線。"
+title: 建立 Apache Spark 機器學習服務管線 - Azure HDInsight
+description: 使用 Apache Spark 機器學習服務程式庫以建立資料管線。
 services: hdinsight
-documentationcenter: 
-tags: azure-portal
-author: maxluk
-manager: jhubbard
-editor: cgronlun
-ms.assetid: 
 ms.service: hdinsight
-ms.custom: hdinsightactive
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
-ms.date: 01/19/2018
+author: maxluk
 ms.author: maxluk
-ms.openlocfilehash: 238ab5f940fbea836b75e20b015ae16f22eef3e9
-ms.sourcegitcommit: 1fbaa2ccda2fb826c74755d42a31835d9d30e05f
+ms.reviewer: jasonh
+ms.custom: hdinsightactive
+ms.topic: conceptual
+ms.date: 01/19/2018
+ms.openlocfilehash: 8a1148bbb04bbad2ff25be9bcbe68d086e91027c
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/22/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43049248"
 ---
 # <a name="create-a-spark-machine-learning-pipeline"></a>建立 Spark 機器學習管線
 

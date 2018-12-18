@@ -10,11 +10,12 @@ ms.service: application-insights
 ms.custom: mvc
 ms.topic: tutorial
 manager: carmonm
-ms.openlocfilehash: 8489992303425cc00c15994b55ade958d77549e4
-ms.sourcegitcommit: a36a1ae91968de3fd68ff2f0c1697effbb210ba8
+ms.openlocfilehash: 4ce4c9e2479c8d570766169ce5094dcc2b4bc511
+ms.sourcegitcommit: 58c5cd866ade5aac4354ea1fe8705cee2b50ba9f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/17/2018
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42812866"
 ---
 # <a name="find-and-diagnose-performance-issues-with-azure-application-insights"></a>使用 Azure Application Insights 尋找並診斷效能問題
 
@@ -27,7 +28,7 @@ Azure Application Insights 會從您的應用程式收集遙測，以協助分�
 > * 使用查詢語言分析頁面檢視的詳細資料
 
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 若要完成本教學課程：
 
@@ -52,27 +53,20 @@ Application Insights 會收集您應用程式中不同作業的效能詳細資�
 
     ![[效能] 面板](media/app-insights-tutorial-performance/performance-blade.png)
 
-3. 此圖形目前顯示所有作業長期以來的平均持續時間。  將您感興趣的作業釘選至圖形以新增它們。  這裡顯示有些尖峰值得調查。  減少此圖形的時間範圍，以進一步隔離它。
+3. 此圖形目前顯示選取的作業在一段時間內的平均持續時間。 您可以切換到第 95 個百分位數，以找出效能問題。 將您感興趣的作業釘選至圖形以新增它們。  這裡顯示有些尖峰值得調查。  減少此圖形的時間範圍，以進一步隔離它。
 
     ![釘選作業](media/app-insights-tutorial-performance/pin-operations.png)
 
-4.  按一下作業，以在右側檢視其效能面板。 這會顯示不同要求的持續時間分佈。  使用者通常會注意到效能緩慢的時間約是半秒，因此請將範圍縮小至超過 500 毫秒的要求。  
+4.  右側的效能面板會顯示所選作業不同要求的持續時間分佈。  請將時間範圍縮小為從第 95 個百分位數開始。 從「前 3 大相依性」深入解析卡片您可以很快地看出，外部相依性很可能是交易緩慢的主因。  按一下附有範例數目的按鈕，以檢視範例清單。 接著，您可以選取任何範例以檢視交易詳細資料。
 
     ![持續時間分佈](media/app-insights-tutorial-performance/duration-distribution.png)
 
-5.  在此範例中，您可以看到有大量要求的處理時間超過 1 秒。 您可以按一下 [作業詳細資料] 來查看這項作業的詳細資料。
+5.  您可以一眼看出，交易的總持續時間最主要來自於 Fabrikamaccount Azure 資料表。 您也可以查看導致交易失敗的例外狀況。 您可以按一下清單中的任何項目，以在右側查看其詳細資料。 [深入了解交易診斷體驗](app-insights-transaction-diagnostics.md)
 
     ![作業詳細資料](media/app-insights-tutorial-performance/operation-details.png)
+    
 
-    > [!NOTE]
-    啟用「整合詳細資料：E2E 交易診斷」[預覽版體驗](app-insights-previews.md)，可在單一全螢幕檢視中查看所有相關的伺服器端遙測資料，例如要求、相依性、例外狀況、追蹤、事件等。 
-
-    啟用預覽版時，您將可檢視相依性呼叫所花費的時間，以及整合體驗中的任何失敗或例外狀況。 對於跨元件交易，甘特圖以及詳細資料窗格將可協助您快速診斷與根本原因有關的元件、相依性或例外狀況。 您可以展開底部區段，檢視任何針對所選元件作業收集之追蹤或事件的時間序列。 [深入了解新的體驗](app-insights-transaction-diagnostics.md)  
-
-    ![交易診斷](media/app-insights-tutorial-performance/e2e-transaction-preview.png)
-
-
-6.  您目前所收集到的資訊只確認了效能緩慢，卻無法得知根本原因。  透過顯示針對作業執行的實際程式碼和每個步驟需要的時間，[Profiler] 可協助解決此問題。 因為 Profiler 是定期執行，某些作業可能不具有追蹤。  隨著時間累積，將會有更多作業具有追蹤。  若要針對作業啟動 Profiler，請按一下 [Profiler 追蹤]。
+6.  **Profiler** 可顯示為作業執行的實際程式碼和每個步驟所需的時間，以協助您深入進行程式碼層級的診斷。 因為 Profiler 是定期執行，某些作業可能不具有追蹤。  隨著時間累積，將會有更多作業具有追蹤。  若要針對作業啟動 Profiler，請按一下 [Profiler 追蹤]。
 5.  追蹤會顯示每個作業的個別事件，讓您可以診斷整體作業持續時間的根本原因。  按一下持續時間最長之前幾個範例的其中一個。
 6.  按一下 [顯示最忙碌路徑] 來反白顯示對於作業的總持續時間影響最深之事件的特定路徑。  在此範例中，您可以看到最慢的呼叫是來自 FabrikamFiberAzureStorage.GetStorageTableData 方法。 花費最多時間的部分是 CloudTable.CreateIfNotExist 方法。 如果每次呼叫函式時都會執行此程式碼，就會使用不必要的網路呼叫和 CPU 資源。 修正程式碼的最佳方式，是將這一行放在只執行一次的某些啟動方法中。 
 

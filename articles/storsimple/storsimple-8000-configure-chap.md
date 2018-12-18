@@ -1,24 +1,25 @@
 ---
-title: "針對 StorSimple 8000 系列裝置設定 CHAP | Microsoft Docs"
-description: "描述如何在 StorSimple 裝置上設定 Challenge Handshake 驗證通訊協定 (CHAP)。"
+title: 針對 StorSimple 8000 系列裝置設定 CHAP | Microsoft Docs
+description: 描述如何在 StorSimple 裝置上設定 Challenge Handshake 驗證通訊協定 (CHAP)。
 services: storsimple
-documentationcenter: 
+documentationcenter: ''
 author: alkohli
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: TBD
-ms.date: 07/03/2017
+ms.date: 05/09/2018
 ms.author: alkohli
-ms.openlocfilehash: 61e0877187759d76b6f7efcef0a5ed8bec8500fe
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: c1a558769ffaa52ed2e996a2b537a5ea409101bd
+ms.sourcegitcommit: 909469bf17211be40ea24a981c3e0331ea182996
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 05/10/2018
+ms.locfileid: "34012653"
 ---
 # <a name="configure-chap-for-your-storsimple-device"></a>為 StorSimple 裝置設定 CHAP
 
@@ -77,9 +78,9 @@ CHAP 代表 Challenge Handshake 驗證通訊協定。 它是伺服器用來驗�
 4. 在 [進階設定]  對話方塊中：
    
    1. 選取 [啟用 CHAP 登入]  核取方塊。
-   2. 在 [名稱]  欄位中，提供您在傳統入口網站中指定給 CHAP 啟動器的使用者名稱。
-   3. 在 [目標密碼]  欄位中，提供您在傳統入口網站中指定給 CHAP 啟動器的密碼。
-   4. 按一下 [SERVICEPRINCIPAL] 。
+   2. 在 [名稱]  欄位中，提供您在 Azure 入口網站中指定給 CHAP 啟動器的使用者名稱。
+   3. 在 [目標密碼] 欄位中，提供您在 Azure 入口網站中指定給 CHAP 啟動器的密碼。
+   4. 按一下 [確定]。
       
        ![進階設定 - 一般](./media/storsimple-configure-chap/IC740946.png)
 5. 在 [iSCSI 啟動器屬性] 視窗的 [目標] 索引標籤上，裝置狀態應該會顯示為 [已連線]。 如果您使用 StorSimple 1200 裝置，則每個磁碟區會掛接為 iSCSI 目標。 因此，需要對每個磁碟區重複執行步驟 3-4。
@@ -122,7 +123,7 @@ CHAP 代表 Challenge Handshake 驗證通訊協定。 它是伺服器用來驗�
 4. 在 [iSCSI 啟動器相互 CHAP 密碼]  對話方塊中：
    
    1. 輸入您在 Azure 入口網站中設定的 [反向 CHAP 密碼]。
-   2. 按一下 [SERVICEPRINCIPAL] 。
+   2. 按一下 [確定]。
       
        ![iSCSI 啟動器相互 CHAP 密碼](./media/storsimple-configure-chap/IC740949.png)
 5. 按一下 [目標]  索引標籤。
@@ -131,8 +132,8 @@ CHAP 代表 Challenge Handshake 驗證通訊協定。 它是伺服器用來驗�
 8. 在 [進階屬性]  對話方塊中：
    
    1. 選取 [啟用 CHAP 登入]  核取方塊。
-   2. 在 [名稱]  欄位中，提供您在傳統入口網站中指定給 CHAP 啟動器的使用者名稱。
-   3. 在 [目標密碼]  欄位中，提供您在傳統入口網站中指定給 CHAP 啟動器的密碼。
+   2. 在 [名稱] 欄位中，提供您在 Azure 入口網站中指定給 CHAP 啟動器的使用者名稱。
+   3. 在 [目標密碼] 欄位中，提供您在 Azure 入口網站中指定給 CHAP 啟動器的密碼。
    4. 選取 [執行相互驗證]  核取方塊。
       
        ![進階設定 - 相互驗證](./media/storsimple-configure-chap/IC740950.png)

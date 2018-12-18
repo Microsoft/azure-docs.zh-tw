@@ -1,25 +1,19 @@
 ---
-title: "Azure Analysis Services 教學課程補充課程：詳細資料列 | Microsoft Docs"
-description: "說明如何在 Azure Analysis Services 教學課程中建立詳細資料列運算式。"
-services: analysis-services
-documentationcenter: 
-author: Minewiskan
+title: Azure Analysis Services 教學課程補充課程：詳細資料列 | Microsoft Docs
+description: 說明如何在 Azure Analysis Services 教學課程中建立詳細資料列運算式。
+author: minewiskan
 manager: kfile
-editor: 
-tags: 
-ms.assetid: 
-ms.service: analysis-services
-ms.devlang: NA
-ms.topic: get-started-article
-ms.tgt_pltfrm: NA
-ms.workload: na
-ms.date: 01/08/2018
+ms.service: azure-analysis-services
+ms.topic: conceptual
+ms.date: 07/03/2018
 ms.author: owend
-ms.openlocfilehash: 5a4dc7004245923fa6bda779114166ecf08d075f
-ms.sourcegitcommit: 176c575aea7602682afd6214880aad0be6167c52
+ms.reviewer: minewiskan
+ms.openlocfilehash: 626258488afec4b3c3f025ae85bd3b5866aa0cf3
+ms.sourcegitcommit: 86cb3855e1368e5a74f21fdd71684c78a1f907ac
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/09/2018
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37443972"
 ---
 # <a name="supplemental-lesson---detail-rows"></a>補充課程 - 詳細資料列
 
@@ -39,11 +33,11 @@ ms.lasthandoff: 01/09/2018
 
     ![aas-lesson-detail-rows-pivottable](../tutorials/media/aas-lesson-detail-rows-pivottable.png)
 
-3. 在樞紐分析表中，按兩下某個年度和區域名稱的彙總值。 我們在此按兩下澳洲 2014 年的值。 包含資料 (但非實用資料) 的新工作表隨即開啟。
+3. 在樞紐分析表中，按兩下某個年度和區域名稱的彙總值。 澳洲 2014 年的值。 包含資料 (但非實用資料) 的新工作表隨即開啟。
 
     ![aas-lesson-detail-rows-pivottable](../tutorials/media/aas-lesson-detail-rows-sheet.png)
   
-我們想要在此查看一個資料表，其中包含構成 InternetTotalSales 量值彙總結果的資料行和資料列。 若要這麼做，我們可以新增詳細資料列運算式做為量值的屬性。
+此處的目標是資料表，其中包含構成 InternetTotalSales 量值彙總結果的資料行和資料列。 若要這麼做，新增詳細資料列運算式作為量值的屬性。
 
 ## <a name="add-a-detail-rows-expression"></a>新增詳細資料列運算式
 
@@ -80,6 +74,8 @@ ms.lasthandoff: 01/09/2018
 
   
 ## <a name="see-also"></a>另請參閱  
-[SELECTCOLUMNS 函式 (DAX)](https://msdn.microsoft.com/library/mt761759.aspx)  
-[補充課程 - 動態安全性](../tutorials/aas-supplemental-lesson-dynamic-security.md)  
-[補充課程 - 不完全階層](../tutorials/aas-supplemental-lesson-ragged-hierarchies.md)  
+
+[SELECTCOLUMNS 函式 (DAX)](https://msdn.microsoft.com/library/mt761759.aspx)   
+[補充課程 - 動態安全性](../tutorials/aas-supplemental-lesson-dynamic-security.md)   
+[補充課程 - 不完全階層](../tutorials/aas-supplemental-lesson-ragged-hierarchies.md)   
+ 

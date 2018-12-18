@@ -1,24 +1,22 @@
 ---
-title: 教學課程：使用 Azure Databricks 執行 ETL 作業 | Microsoft Docs
+title: 教學課程：使用 Azure Databricks 執行 ETL 作業
 description: 了解如何將資料從 Data Lake Store 擷取至 Azure Databricks 並轉換資料，然後將資料載入 Azure SQL 資料倉儲。
 services: azure-databricks
-documentationcenter: ''
 author: nitinme
+ms.author: nitinme
 manager: cgronlun
 editor: cgronlun
 ms.service: azure-databricks
 ms.custom: mvc
-ms.devlang: na
 ms.topic: tutorial
-ms.tgt_pltfrm: na
 ms.workload: Active
-ms.date: 03/23/2018
-ms.author: nitinme
-ms.openlocfilehash: c3aa87f2c74175d1b61a8db6a9c7a0318a408658
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.date: 07/26/2018
+ms.openlocfilehash: c416937f98f6bcb49f86fce18213ca4ed349c513
+ms.sourcegitcommit: 7824e973908fa2edd37d666026dd7c03dc0bafd0
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 10/10/2018
+ms.locfileid: "48902054"
 ---
 # <a name="tutorial-extract-transform-and-load-data-using-azure-databricks"></a>教學課程：使用 Azure Databrick 擷取、轉換和載入資料
 
@@ -44,7 +42,7 @@ ms.lasthandoff: 03/28/2018
 
 如果您沒有 Azure 訂用帳戶，請在開始之前先[建立免費帳戶](https://azure.microsoft.com/free/)。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 開始本教學課程之前，請確定您符合下列需求：
 - 建立 Azure SQL 資料倉儲、建立伺服器層級的防火牆規則，並以伺服器管理員的身分連線至伺服器。請依照[快速入門：建立 Azure SQL 資料倉儲](../sql-data-warehouse/create-data-warehouse-portal.md)中的指示操作
@@ -59,7 +57,7 @@ ms.lasthandoff: 03/28/2018
 
 在本節中，您會使用 Azure 入口網站建立 Azure Databricks 工作區。 
 
-1. 在 Azure 入口網站中，選取 [建立資源] > [資料 + 分析] > [Azure Databricks]。 
+1. 在 Azure 入口網站中，選取 [建立資源] > [資料 + 分析] > [Azure Databricks]。
 
     ![Azure 入口網站上的 Databricks](./media/databricks-extract-load-sql-data-warehouse/azure-databricks-on-portal.png "Azure 入口網站上的 Databricks")
 
@@ -99,7 +97,7 @@ ms.lasthandoff: 03/28/2018
 
     * 輸入叢集的名稱。
     * 針對本文，使用 **4.0** 執行階段建立叢集。 
-    * 請確定您選取 [在活動 ___ 分鐘後終止] 核取方塊。 請提供用來終止叢集的叢集未使用持續時間 (以分鐘為單位)。
+    * 請確定您選取 **在活動 ___ 分鐘後終止** 核取方塊。 請提供用來終止叢集的叢集未使用持續時間 (以分鐘為單位)。
     
     選取 [建立叢集]。 叢集在執行後，您就可以將 Notebook 連結至叢集，並執行 Spark 作業。
 
@@ -194,22 +192,6 @@ ms.lasthandoff: 03/28/2018
 
    ![租用戶識別碼](./media/databricks-extract-load-sql-data-warehouse/copy-directory-id.png) 
 
-### <a name="associate-service-principal-with-azure-data-lake-store"></a>讓服務主體與 Azure Data Lake Store 產生關聯
-
-在本節中，您會讓 Azure Data Lake Store 帳戶與所建立的 Azure Active Directory 服務主體產生關聯。 這可確保您可以從 Azure Databricks 存取 Data Lake Store 帳戶。
-
-1. 從 [Azure 入口網站](https://portal.azure.com)，選取您建立的 Data Lake Store 帳戶。
-
-2. 從左側窗格中，選取 [存取控制] > [新增]。
-
-    ![新增 Data Lake Store 存取](./media/databricks-extract-load-sql-data-warehouse/add-adls-access.png "新增 Data Lake Store 存取")
-
-3. 在 [新增權限] 中，選取您要指派給服務主體的角色。 針對本教學課程，請選取 [擁有者]。 針對 [存取權指派對象為]，選取 [Azure AD 使用者、群組或應用程式]。 針對 [選取項目]，輸入您建立的服務主體名稱，以篩選出能選取的服務主體數目。
-
-    ![選取服務主體](./media/databricks-extract-load-sql-data-warehouse/select-service-principal.png "選取的服務主體")
-
-    選取您稍早建立的服務主體，然後選取 [儲存]。 服務主體現在已與 Azure Data Lake Store 帳戶相關聯。
-
 ## <a name="upload-data-to-data-lake-store"></a>將資料上傳至 Data Lake Store
 
 在本節中，您會將資料檔案範例上傳至 Data Lake Store。 您稍後可以在 Azure Databricks 中使用此檔案來執行部分轉換。 您可以在此 [Github 存放庫](https://github.com/Azure/usql/blob/master/Examples/Samples/Data/json/radiowebsite/small_radio_json.json)中取得本教學課程中使用的資料範例 (**small_radio_json.json**)。
@@ -229,6 +211,53 @@ ms.lasthandoff: 03/28/2018
     ![上傳選項](./media/databricks-extract-load-sql-data-warehouse/upload-data.png "上傳選項")
 
 5. 在本教學課程中，您會將資料檔案上傳至 Data Lake Store 的根目錄。 因此，檔案現在已位於 `adl://<YOUR_DATA_LAKE_STORE_ACCOUNT_NAME>.azuredatalakestore.net/small_radio_json.json`。
+
+## <a name="associate-service-principal-with-azure-data-lake-store"></a>讓服務主體與 Azure Data Lake Store 產生關聯
+
+在本節中，您會讓 Azure Data Lake Store 帳戶中的資料與您建立的 Azure Active Directory 服務主體產生關聯。 這可確保您可以從 Azure Databricks 存取 Data Lake Store 帳戶。 在本文的案例中，您會讀取 Data Lake Store 中的資料，以填入 SQL 資料倉儲中的資料表。 根據 [Data Lake Store 中的存取控制概觀](../data-lake-store/data-lake-store-access-control.md#common-scenarios-related-to-permissions)，對於 Data Lake Store 中的檔案若要有讀取存取權，您必須：
+
+- 對資料夾結構中所有包含檔案的資料夾具備 [執行] 權限。
+- 具備檔案本身的 [讀取] 權限。
+
+請執行下列步驟以授與這些權限。
+
+1. 在 [Azure 入口網站](https://portal.azure.com)中，選取您所建立的 Data Lake Store 帳戶，然後選取 [資料總管]。
+
+    ![啟動資料總管](./media/databricks-extract-load-sql-data-warehouse/azure-databricks-data-explorer.png "啟動資料總管")
+
+2. 在此案例中，由於範例資料檔案位於資料夾結構的根目錄，因此您只需要指派資料夾根目錄的 [執行] 權限。 若要這樣做，請從資料總管的根目錄選取 [存取]。
+
+    ![新增資料夾的 ACL](./media/databricks-extract-load-sql-data-warehouse/add-adls-access-folder-1.png "新增資料夾的 ACL")
+
+3. 在 [存取] 下方，選取 [新增]。
+
+    ![新增資料夾的 ACL](./media/databricks-extract-load-sql-data-warehouse/add-adls-access-folder-2.png "新增資料夾的 ACL")
+
+4. 在 [指派權限] 下方按一下 [選取使用者或群組]，並搜尋您先前建立的 Azure Active Directory 服務主體。
+
+    ![新增 Data Lake Store 存取](./media/databricks-extract-load-sql-data-warehouse/add-adls-access-folder-3.png "新增 Data Lake Store 存取")
+
+    選取您要指派的 AAD 服務主體，然後按一下 [選取]。
+
+5. 在 [指派權限] 下方，按一下 [選取權限] > [執行]。 保留其他預設值，並選取 [選取權限] 下方的 [確定]，然後選取 [指派權限] 下的 [確定]。
+
+    ![新增 Data Lake Store 存取](./media/databricks-extract-load-sql-data-warehouse/add-adls-access-folder-4.png "新增 Data Lake Store 存取")
+
+6. 返回 [資料總管]，並按一下要指派讀取權限的檔案。 在 [檔案預覽] 下方，選取 [存取]。
+
+    ![新增 Data Lake Store 存取](./media/databricks-extract-load-sql-data-warehouse/add-adls-access-file-1.png "新增 Data Lake Store 存取")
+
+7. 在 [存取] 下方，選取 [新增]。 在 [指派權限] 下方按一下 [選取使用者或群組]，並搜尋您先前建立的 Azure Active Directory 服務主體。
+
+    ![新增 Data Lake Store 存取](./media/databricks-extract-load-sql-data-warehouse/add-adls-access-folder-3.png "新增 Data Lake Store 存取")
+
+    選取您要指派的 AAD 服務主體，然後按一下 [選取]。
+
+8. 在 [指派權限] 下方，按一下 [選取權限] > [讀取]。 選取 [選取權限] 下方的 [確定]，然後選取 [指派權限] 下的 [確定]。
+
+    ![新增 Data Lake Store 存取](./media/databricks-extract-load-sql-data-warehouse/add-adls-access-file-2.png "新增 Data Lake Store 存取")
+
+    服務主體現在已有足夠的權限可讀取 Azure Data Lake Store 中的範例資料檔案。
 
 ## <a name="extract-data-from-data-lake-store"></a>從 Data Lake Store 擷取資料
 
@@ -283,6 +312,7 @@ ms.lasthandoff: 03/28/2018
 1. 一開始，僅在已建立的資料框架中擷取 *firstName*、*lastName**gender**location* 和 *level* 資料行。
 
         val specificColumnsDf = df.select("firstname", "lastname", "gender", "location", "level")
+        specificColumnsDf.show()
 
     您會取得如下列程式碼片段所示的輸出：
 
@@ -313,8 +343,8 @@ ms.lasthandoff: 03/28/2018
 
 2.  您可以進一步轉換此資料，將 **level** 資料行重新命名為 **subscription_type**。
 
-        val renamedColumnsDF = specificColumnsDf.withColumnRenamed("level", "subscription_type")
-        renamedColumnsDF.show()
+        val renamedColumnsDf = specificColumnsDf.withColumnRenamed("level", "subscription_type")
+        renamedColumnsDf.show()
 
     您會取得如下列程式碼片段所示的輸出。
 
@@ -347,7 +377,7 @@ ms.lasthandoff: 03/28/2018
 
 在本節中，您會將已轉換的資料上傳至 Azure SQL 資料倉儲。 您可以使用適用於 Azure Databricks 的 Azure SQL 資料倉儲連接器，直接將資料框架以表格形式上傳至 SQL 資料倉儲。
 
-如先前所述，在 Azure Databricks 和 Azure SQL 資料倉儲之間上傳資料時，SQL 資料倉儲連接器會使用 Azure Blob 儲存體作為暫時儲存體。 因此，一開始您需提供要連線到儲存體帳戶的組態。 您必須已建立屬於本文必要條件的帳戶。
+如先前所述，在 Azure Databricks 和 Azure SQL 資料倉儲之間上傳資料時，SQL 資料倉儲連接器會使用 Azure Blob 儲存體作為暫時儲存位置。 因此，一開始您需提供要連線到儲存體帳戶的組態。 您必須已建立屬於本文必要條件的帳戶。
 
 1. 提供可從 Azure Databricks 存取 Azure 儲存體帳戶的組態。
 
@@ -376,13 +406,13 @@ ms.lasthandoff: 03/28/2018
         val sqlDwUrl = "jdbc:sqlserver://" + dwServer + ".database.windows.net:" + dwJdbcPort + ";database=" + dwDatabase + ";user=" + dwUser+";password=" + dwPass + ";$dwJdbcExtraOptions"
         val sqlDwUrlSmall = "jdbc:sqlserver://" + dwServer + ".database.windows.net:" + dwJdbcPort + ";database=" + dwDatabase + ";user=" + dwUser+";password=" + dwPass
 
-5. 執行下列程式碼片段，將已轉換的資料框架 **renamedColumnsDF** 以表格形式載入 SQL 資料倉儲。 此程式碼片段會在 SQL 資料庫中建立名為 **SampleTable** 的資料表。
+5. 執行下列程式碼片段，將已轉換的資料框架 **renamedColumnsDf** 以資料表形式載入 SQL 資料倉儲中。 此程式碼片段會在 SQL 資料庫中建立名為 **SampleTable** 的資料表。 請注意，Azure SQL DW 需要主要金鑰。  您可以在 SQL Server Management Studio 中執行 "CREATE MASTER KEY;" 命令，以建立主要金鑰。
 
         spark.conf.set(
           "spark.sql.parquet.writeLegacyFormat",
           "true")
         
-        renamedColumnsDF.write
+        renamedColumnsDf.write
             .format("com.databricks.spark.sqldw")
             .option("url", sqlDwUrlSmall) 
             .option("dbtable", "SampleTable")
@@ -395,7 +425,7 @@ ms.lasthandoff: 03/28/2018
 
     ![確認範例資料表](./media/databricks-extract-load-sql-data-warehouse/verify-sample-table.png "確認範例資料表")
 
-7. 執行 SELECT 查詢，以確認資料表的內容。 這應該與 **renamedColumnsDF** 資料框架的資料相同。
+7. 執行 SELECT 查詢，以確認資料表的內容。 其中應包含與 **renamedColumnsDf** 資料框架相同的資料。
 
     ![確認範例資料表內容](./media/databricks-extract-load-sql-data-warehouse/verify-sample-table-content.png "確認範例資料表的內容")
 

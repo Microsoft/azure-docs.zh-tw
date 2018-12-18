@@ -1,31 +1,47 @@
 ---
-title: "如何將事件中樞的事件來源新增至 Azure Time Series Insights | Microsoft Docs"
-description: "本文說明如何將與事件中樞連線的事件來源新增至時間序列深入解析環境。"
-services: time-series-insights
+title: 如何將事件中樞的事件來源新增至 Azure Time Series Insights | Microsoft Docs
+description: 本文說明如何將與事件中樞連線的事件來源新增至時間序列深入解析環境。
 ms.service: time-series-insights
-author: sandshadow
-ms.author: edett
-manager: jhubbard
-editor: MicrosoftDocs/tsidocs
+services: time-series-insights
+author: ashannon7
+ms.author: anshan
+manager: cshankar
 ms.reviewer: v-mamcge, jasonh, kfile, anshan
 ms.workload: big-data
-ms.topic: article
+ms.topic: conceptual
 ms.date: 11/21/2017
-ms.openlocfilehash: c07c847784eb13c62e350e9c655e027e7df696a3
-ms.sourcegitcommit: 62eaa376437687de4ef2e325ac3d7e195d158f9f
+ms.openlocfilehash: ce4bf1ab74e4203f0deb7b2984ffa6a66d5efd4a
+ms.sourcegitcommit: 4de6a8671c445fae31f760385710f17d504228f8
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/22/2017
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39627105"
 ---
 # <a name="how-to-add-an-event-hub-event-source-to-time-series-insights-environment"></a>如何將事件中樞事件來源新增至時間序列深入解析環境
 
 本文說明如何使用 Azure 入口網站，將從事件中樞讀取資料的事件來源新增至時間序列深入解析環境。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 - 建立時間序列深入解析環境。 如需詳細資訊，請參閱[建立 Azure 時間序列深入解析環境](time-series-insights-get-started.md) 
 - 建立事件中樞。 如需事件中樞的詳細資料，請參閱[使用 Azure 入口網站建立事件中樞命名空間和事件中樞](../event-hubs/event-hubs-create.md)
 - 事件中樞必須要有傳入的作用中訊息事件。 如需詳細資訊，請參閱[使用 .NET Framework 將事件傳送至 Azure 事件中樞](../event-hubs/event-hubs-dotnet-framework-getstarted-send.md)。
 - 在事件中樞建立專用取用者群組，讓時間序列深入解析環境從中取用。 每個時間序列深入解析事件必須有自身專屬的取用者群組，且不可與任何其他取用者共用。 如果多個讀取器從同一個取用者群組取用事件，則所有讀取器都可能會看到錯誤。 請注意，每一個事件中樞另外還有 20 個用戶群組的限制。 如需詳細資訊，請參閱 [事件中樞程式設計指南](../event-hubs/event-hubs-programming-guide.md)。
+
+### <a name="add-a-consumer-group-to-your-event-hub"></a>將取用者群組新增至事件中樞
+應用程式會使用取用者群組從 Azure 事件中樞提取資料。 只為時間序列深入解析環境提供專用取用者群組，以便可靠地從事件中樞讀取資料。
+
+若要將新的取用者群組新增至事件中樞，請遵循下列步驟：
+1. 在 Azure 入口網站中，找出事件中樞並開啟。
+
+2. 在 [實體] 標題底下，選取 [取用者群組]。
+
+   ![事件中樞 - 新增取用者群組](media/time-series-insights-how-to-add-an-event-source-eventhub/5-event-hub-consumer-group.png)
+
+3. 選取 [+ 取用者群組] 以新增取用者群組。 
+
+4. 在 [取用者群組] 頁面上，提供新的唯一 [名稱]。  在時間序列深入解析環境中建立新的事件來源時，使用此相同名稱。
+
+5. 選取 [建立] 以建立新的取用者群組。
 
 ## <a name="add-a-new-event-source"></a>新增事件來源
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
@@ -78,29 +94,14 @@ ms.lasthandoff: 11/22/2017
    | 事件序列化格式 | JSON 是目前唯一可用的序列化。 事件訊息必須是這種格式，否則無法讀取任何資料。 |
    | 時間戳記屬性名稱 | 若要判斷此值，您需要了解傳送至事件中樞的訊息資料訊息格式。 這個值是您想要使用作為事件時間戳記之訊息資料中特定事件屬性的**名稱**。 此值區分大小寫。 保留空白時，會使用事件來源內的**事件加入佇列時間**作為事件時間戳記。 |
 
+10. 新增您新增至事件中樞的專用 TSI 取用者群組名稱。
 
-10. 選取 [建立] 以新增事件來源。
+11. 選取 [建立] 以新增事件來源。
    
-   ![Click Create](media/time-series-insights-how-to-add-an-event-source-eventhub/4-create-button.png)
+   ![按一下 [建立專案]。](media/time-series-insights-how-to-add-an-event-source-eventhub/4-create-button.png)
 
    建立事件來源之後，Time Series Insights 會自動開始將資料串流處理至您的環境。
 
-
-### <a name="add-a-consumer-group-to-your-event-hub"></a>將取用者群組新增至事件中樞
-應用程式會使用取用者群組從 Azure 事件中樞提取資料。 只為時間序列深入解析環境提供專用取用者群組，以便可靠地從事件中樞讀取資料。
-
-若要將新的取用者群組新增至事件中樞，請遵循下列步驟：
-1. 在 Azure 入口網站中，找出事件中樞並開啟。
-
-2. 在 [實體] 標題底下，選取 [取用者群組]。
-
-   ![事件中樞 - 新增取用者群組](media/time-series-insights-how-to-add-an-event-source-eventhub/5-event-hub-consumer-group.png)
-
-3. 選取 [+ 取用者群組] 以新增取用者群組。 
-
-4. 在 [取用者群組] 頁面上，提供新的唯一 [名稱]。  在時間序列深入解析環境中建立新的事件來源時，使用此相同名稱。
-
-5. 選取 [建立] 以建立新的取用者群組。
 
 ## <a name="next-steps"></a>後續步驟
 - [定義資料存取原則](time-series-insights-data-access.md)來保護資料。

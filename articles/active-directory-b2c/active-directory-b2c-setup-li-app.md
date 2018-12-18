@@ -1,50 +1,43 @@
 ---
-title: Azure Active Directory B2C：LinkedIn 設定 | Microsoft Docs
-description: 在受 Azure Active Directory B2C 保護的應用程式中，為具有 LinkedIn 帳戶的取用者提供註冊和登入
+title: 使用 Azure Active Directory B2C 設定註冊，並以 LinkedIn 帳戶登入 | Microsoft Docs
+description: 使用 Azure Active Directory B2C，讓具有 LinkedIn 帳戶的客戶得以註冊和登入您的應用程式。
 services: active-directory-b2c
-documentationcenter: ''
 author: davidmu1
 manager: mtillman
-editor: ''
-ms.service: active-directory-b2c
+ms.service: active-directory
 ms.workload: identity
-ms.topic: article
-ms.date: 12/06/2016
+ms.topic: conceptual
+ms.date: 09/10/2018
 ms.author: davidmu
-ms.openlocfilehash: 91970b3ec41c645cd1cd3e203cc96ad655dafd7e
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: B2C
+ms.openlocfilehash: 1719da96a849bb5390745ec3df3ed11374bb8700
+ms.sourcegitcommit: 5b8d9dc7c50a26d8f085a10c7281683ea2da9c10
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/26/2018
+ms.locfileid: "47180490"
 ---
-# <a name="azure-active-directory-b2c-provide-sign-up-and-sign-in-to-consumers-with-linkedin-accounts"></a>Azure Active Directory B2C：為具有 LinkedIn 帳戶的取用者提供註冊和登入
+# <a name="set-up-sign-up-and-sign-in-with-a-linkedin-account-using-azure-active-directory-b2c"></a>使用 Azure Active Directory B2C 設定註冊，並以 LinkedIn 帳戶登入
+
 ## <a name="create-a-linkedin-application"></a>建立 LinkedIn 應用程式
-如果要在 Azure Active Directory (Azure AD) B2C 中將 LinkedIn 作為識別提供者，您必須建立 LinkedIn 應用程式，然後為其提供正確的參數。 您需要 LinkedIn 帳戶才能執行此動作。 如果您沒有帳戶，您可以在 [https://www.linkedin.com/](https://www.linkedin.com/) 上取得。
 
-1. 前往 [LinkedIn 開發人員網站](https://www.developer.linkedin.com/) ，並以您的 LinkedIn 帳戶認證登入。
-2. 按一下最上方功能表列的 [我的應用程式]，然後按一下 [建立應用程式]。
-   
-    ![LinkedIn - 新建應用程式](./media/active-directory-b2c-setup-li-app/linkedin-new-app.png)
-3. 在 [建立新的應用程式] 表單中，填入相關資訊 (**公司名稱**、**名稱**、**說明**、**應用程式標誌 URL**、**應用程式使用**、**網站 URL**、**公司電子郵件**和**公司電話**)。
+若要在 Azure Active Directory (Azure AD) B2C 中使用 LinkedIn 帳戶做為識別提供者，您需要在代表該帳戶的租用戶中建立應用程式。 如果您還沒有 LinkedIn 帳戶，可以在 [https://www.linkedin.com/](https://www.linkedin.com/) 中取得。
+
+1. 使用您的 LinkedIn 帳戶認證登入 [LinkedIn 開發人員網站](https://www.developer.linkedin.com/)。
+2. 選取 [我的應用程式]，然後按一下 [建立應用程式]。
+3. 請輸入 [公司名稱][應用程式名稱]、[應用程式描述]、[應用程式標誌]、[應用程式使用]、[網站 URL]、[公司電子郵件]，以及 [公司電話]。
 4. 同意 **LinkedIn API 使用條款**，然後按一下 [提交]。
-   
-    ![LinkedIn - 註冊應用程式](./media/active-directory-b2c-setup-li-app/linkedin-register-app.png)
-5. 複製 [用戶端識別碼] 和 [用戶端密碼] 的值。 (您可以在 [驗證金鑰] 下方找到這些資訊)。您必須使用這兩個值，將 LinkedIn 設為租用戶中的身分識別提供者。
-   
-   > [!NOTE]
-   > **用戶端密碼** 是重要的安全性認證。
-   > 
-   > 
-6. 在 [授權重新導向 URL] 欄位 (位於 [OAuth 2.0] 下方) 中輸入 `https://login.microsoftonline.com/te/{tenant}/oauth2/authresp`。 使用您的租用戶名稱 (例如 contoso.onmicrosoft.com) 來取代 **{tenant}**。 按一下 [新增]，然後按一下 [更新]。 **{tenant}** 值會區分大小寫。
-   
-    ![LinkedIn - 設定應用程式](./media/active-directory-b2c-setup-li-app/linkedin-setup.png)
+5. 複製 [用戶端識別碼] 和 [用戶端密碼] 的值。 您可以在 [驗證金鑰] 下方找到這些資訊。 您必須使用這兩個值，將 LinkedIn 設為租用戶中的身分識別提供者。 **用戶端密碼** 是重要的安全性認證。
+6. 請在 [授權重新導向 URL] 中輸入 `https://your-tenant-name.b2clogin.com/your-tenant-name.onmicrosoft.com/oauth2/authresp`。 以您的租用戶名稱取代 `your-tenant-name`。 即使租用戶在 Azure AD B2C 中是使用大寫字母來定義的，您還是需要在輸入租用戶名稱時，全部使用小寫字母。 選取 [新增]，然後按一下 [更新]。
 
-## <a name="configure-linkedin-as-an-identity-provider-in-your-tenant"></a>將 LinkedIn 設定為您租用戶中的識別提供者
-1. 遵循下列步驟以 [瀏覽至 B2C 功能刀鋒視窗](active-directory-b2c-app-registration.md#navigate-to-b2c-settings) (位於 Azure 入口網站上)。
-2. 在 B2C 功能刀鋒視窗中，按一下 [ **身分識別提供者**]。
-3. 按一下刀鋒視窗頂端的 [新增]  。
-4. 針對身分識別提供者組態，提供容易辨識的 **名稱** 。 例如，輸入「LI」。
-5. 按一下 [識別提供者類型]、選取 [LinkedIn]，然後按一下 [確定]。
-6. 按一下 [設定此身分識別提供者]  ，然後輸入您先前建立之 LinkedIn 應用程式的用戶端識別碼與用戶端密碼。
-7. 按一下 [確定]，然後在按一下 [建立]，儲存您的 LinkedIn 設定。
+## <a name="configure-a-linkedin-account-as-an-identity-provider"></a>將 LinkedIn 帳戶設為識別提供者
+
+1. 以 Azure AD B2C 租用戶的全域管理員身分登入 [Azure 入口網站](https://portal.azure.com/)。
+2. 按一下頂端功能表中的**目錄和訂用帳戶篩選**，然後選擇包含您租用戶的目錄，以確定您使用的是包含 Azure AD B2C 租用戶的目錄。
+3. 選擇 Azure 入口網站左上角的 [所有服務]，搜尋並選取 [Azure AD B2C]。
+4. 選取 [識別提供者]，然後選取 [新增]。
+5. 提供 [名稱]。 例如，輸入 *LinkedIn*。
+6. 依序選取 [識別提供者類型]、[LinkedIn]，然後按一下 [確定]。
+7. 選取 [設定此識別提供者]，並輸入 [用戶端識別碼] (您先前記錄的**用戶端識別碼**) ，然後輸入 [用戶端密碼] (您記錄之先前建立的 LinkedIn 帳戶應用程式的**用戶端密碼**)。
+8. 按一下 [確定]，然後按一下 [建立]，儲存您的 LinkedIn 帳戶設定。
 

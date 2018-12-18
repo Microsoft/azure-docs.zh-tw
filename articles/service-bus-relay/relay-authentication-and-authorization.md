@@ -1,24 +1,25 @@
 ---
-title: "Azure 轉送驗證和授權 | Microsoft Docs"
-description: "Azure 轉送中的共用存取簽章 (SAS) 驗證概觀"
+title: Azure 轉送驗證和授權 | Microsoft Docs
+description: Azure 轉送中的共用存取簽章 (SAS) 驗證概觀
 services: service-bus-relay
 documentationcenter: na
-author: sethmanheim
+author: spelluru
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: service-bus-relay
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/23/2018
-ms.author: sethm
-ms.openlocfilehash: 86a9cf2c1106180ba5c8c65849042784bfd2afcd
-ms.sourcegitcommit: 9890483687a2b28860ec179f5fd0a292cdf11d22
+ms.author: spelluru
+ms.openlocfilehash: fff484f2ee6722083a34383b8960931cb37b8316
+ms.sourcegitcommit: cb61439cf0ae2a3f4b07a98da4df258bfb479845
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/24/2018
+ms.lasthandoff: 09/05/2018
+ms.locfileid: "43700441"
 ---
 # <a name="azure-relay-authentication-and-authorization"></a>Azure 轉送驗證和授權
 

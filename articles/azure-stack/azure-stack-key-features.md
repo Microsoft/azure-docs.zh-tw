@@ -12,14 +12,15 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/27/2018
+ms.date: 05/10/2018
 ms.author: jeffgilb
 ms.reviewer: ''
-ms.openlocfilehash: 958b1757dd773f8c46185b13c84f766ce4f827ee
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 851530910c702d388cd4dc8607bf09ecb5fa44e0
+ms.sourcegitcommit: eb75f177fc59d90b1b667afcfe64ac51936e2638
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 05/16/2018
+ms.locfileid: "34198468"
 ---
 # <a name="key-features-and-concepts-in-azure-stack"></a>Azure Stack 的主要功能與概念
 如果您是 Microsoft Azure Stack 的新手，這些字詞與功能描述可能相當實用。
@@ -86,14 +87,15 @@ Azure Stack 區域是級別和管理的基本元素。 組織可能會有多重�
 
 訂用帳戶能協助提供者整理和存取雲端資源與服務。
 
-對於系統管理員，在部署期間則會建立「預設提供者訂閱」。 此訂用帳戶可用來管理 Azure Stack、部署其他資源提供者，以及為租用戶建立方案與產品。 此訂用帳戶不應用於執行客戶工作負載和應用程式。 
-
+對於系統管理員，在部署期間則會建立「預設提供者訂閱」。 此訂用帳戶可用來管理 Azure Stack、部署其他資源提供者，以及為租用戶建立方案與產品。 此訂用帳戶不應用於執行客戶工作負載和應用程式。 從版本 1804 開始，有兩個額外的訂用帳戶可補充預設提供者訂用帳戶：計量訂用帳戶和取用訂用帳戶。 這些新增項目有助於區隔核心基礎結構、額外的資源提供者及工作負載的管理。  
 
 ## <a name="azure-resource-manager"></a>Azure Resource Manager
 透過使用 Azure Resource Manager，您能夠以範本為基礎、宣告式模型來使用基礎結構資源。   其提供單一介面，您可用來部署和管理解決方案的元件。 如需完整的資訊與指引，請參閱 [Azure Resource Manager 概觀](../azure-resource-manager/resource-group-overview.md)。
 
 ### <a name="resource-groups"></a>資源群組
 資源群組是資源、服務與應用程式的集合，而且每個資源各有類型，例如虛擬機器、虛擬網路、公用 IP、儲存體帳戶與網站。 每個資源都必須位於資源群組中，而資源群組有助於整理本機資源，例如依工作負載或位置。  在 Microsoft Azure Stack，像是方案與優惠等資源，也會於資源群組中進行管理。
+
+不同於 [Azure](../azure-resource-manager/resource-group-move-resources.md)，您無法在資源群組間移動資源。 當您在 Azure Stack 管理入口網站中檢視資源或資源群組的屬性時，[移動] 按鈕會呈現灰色且無法使用。 
  
 ### <a name="azure-resource-manager-templates"></a>Azure 資源管理員範本
 利用 Azure Resource Manager，您可以建立可定義應用程式之部署和設定的範本 (以 JSON 格式)。 此範本就是所謂的 Azure 資源管理員範本，可提供定義部署的宣告方式。 藉由使用範本，您可以在整個應用程式週期重複部署應用程式，並確信您的資源會部署在一致的狀態中。
@@ -133,7 +135,7 @@ KeyVault RP 提供管理和稽核的祕密，例如密碼和憑證。 例如，�
 
   ![Azure Stack 高可用性](media/azure-stack-key-features/high-availability.png)
 
-### <a name="availablity-sets-in-azure-stack"></a>Azure Stack 中的可用性設定組
+### <a name="availability-sets-in-azure-stack"></a>Azure Stack 中的可用性設定組
 雖然 Azure Stack 的基礎結構已經具備失敗復原能力，但在發生硬體故障時，基礎技術 (容錯移轉叢集) 仍然會造成受影響實體伺服器上的 VM 產生一些停機時間。 Azure Stack 支援的可用性設定組最多可以有三個容錯網域 (與 Azure 一致)。
 
 - **容錯網域**。 系統會將放在可用性設定組中的 VM 儘可能平均分散到多個容錯網域 (Azure Stack 節點)，讓這些 VM 在實體上彼此隔離。 當發生硬體故障時，失敗容錯網域中的 VM 會在其他容錯網域中重新啟動，但可能的話，會放在與相同可用性設定組中其他 VM 不同的容錯網域中。 當硬體回到線上時，系統會將 VM 重新平衡以保持高可用性。 
@@ -143,7 +145,7 @@ KeyVault RP 提供管理和稽核的祕密，例如密碼和憑證。 例如，�
 ### <a name="upgrade-scenarios"></a>升級案例 
 可用性設定組中的 VM 若是在 Azure Stack 1802 版之前建立的，會被賦予預設的容錯和更新網域數目 (分別為 1 和 1)。 為了讓在這些預先存在之可用性設定組中的 VM 達到高可用性，您必須先刪除現有的 VM，然後將它們重新部署至具有正確容錯和更新網域計數的新可用性設定組中，如[變更 Windows VM 的可用性設定組](https://docs.microsoft.com/azure/virtual-machines/windows/change-availability-set)所述。 
 
-針對 VM 擴展集，會在內部建立具有預設容錯網域和更新網域計數 (分別為 3 和 5) 的可用性設定組。 任何 VM 擴展集只要是在 1802 更新之前建立的，都會放在具有預設容錯和更新網域計數 (分別為 1 和 1) 的可用性設定組中。 若要更新這些 VM 擴展集以達到較新的分配，請依據 1802 更新之前便已存在的執行個體數目，將 VM 擴展集向外延展，然後刪除較舊的 VM 擴展集執行個體。 
+針對虛擬機器擴展集，會在內部建立具有預設容錯網域和更新網域計數 (分別為 3 和 5) 的可用性設定組。 任何虛擬機器擴展集只要是在 1802 更新之前建立的，都會放在具有預設容錯和更新網域計數 (分別為 1 和 1) 的可用性設定組中。 若要更新這些虛擬機器擴展集以達到較新的分配，請依據 1802 更新之前便已存在的執行個體數目，將虛擬機器擴展集向外延展，然後刪除較舊的虛擬機器擴展集執行個體。 
 
 ## <a name="role-based-access-control-rbac"></a>角色型存取控制 (RBAC)
 您可使用 RBAC 在訂用帳戶、資源群組或各個資源層級，為授權的使用者、群組與服務指派角色，即可為其授與系統存取權。 每個角色皆會定義使用者、群組或服務對於 Microsoft Azure Stack 資源所具有的存取層級。

@@ -1,35 +1,37 @@
 ---
-title: "Azure AI 資源庫產業特有的解決方案 | Microsoft Docs"
-description: "探索 Azure AI 資源庫中的產業解決方案。"
+title: Azure AI 資源庫產業特有的解決方案 | Microsoft Docs
+description: 探索 Azure AI 資源庫中的產業解決方案。
 services: machine-learning
-documentationcenter: 
+documentationcenter: ''
 author: garyericson
 manager: jhubbard
 editor: cgronlun
 ms.assetid: fd2ecf9a-ff76-4a0f-8d68-7f762249648c
 ms.service: machine-learning
+ms.component: studio
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: garye
-ms.openlocfilehash: 0113742cd0b51470559f4e7b03edbfddf2d7e0de
-ms.sourcegitcommit: eeb5daebf10564ec110a4e83874db0fb9f9f8061
+ms.openlocfilehash: c1ca9c45a7bd070ba0dbcee3b428f986ebac47d3
+ms.sourcegitcommit: f06925d15cfe1b3872c22497577ea745ca9a4881
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/03/2018
+ms.lasthandoff: 06/27/2018
+ms.locfileid: "37062092"
 ---
 # <a name="discover-industry-specific-solutions-in-the-azure-ai-gallery"></a>探索 Azure AI 資源庫中產業特有的解決方案
 [!INCLUDE [machine-learning-gallery-item-selector](../../../includes/machine-learning-gallery-item-selector.md)]
 
 ## <a name="industry-specific-cortana-intelligence-solutions"></a>產業特有的 Cortana Intelligence 解決方案
-Gallery 的 **[Industries](https://gallery.cortanaintelligence.com/industries)** (產業) 區段彙集了各種該產業特有的資源
+Gallery 的 **[Industries](https://gallery.azure.ai/industries)** (產業) 區段彙集了各種該產業特有的資源
 
-* [Retail](https://gallery.cortanaintelligence-int.com/industries/retail) (零售) - 尋找零售業資源，例如銷售預測、預測客戶流失，及開發定價模型。
-* [Manufacturing](https://gallery.cortanaintelligence-int.com/industries/manufacturing) (製造) -尋找製造業解決方案，例如預期設備維護及預測能源價格。
-* [Banking](https://gallery.cortanaintelligence-int.com/industries/banking) (銀行) - 尋找銀行解決方案，例如預測信用風險和監控線上詐欺。
-* [Healthcare](https://gallery.cortanaintelligence-int.com/industries/healthcare) (醫療保健) - 尋找醫療保健解決方案，例如偵測疾病及預測再住院率。
+* [Retail](https://gallery.azure.ai/industries/retail) (零售) - 尋找零售業資源，例如銷售預測、預測客戶流失，及開發定價模型。
+* [Manufacturing](https://gallery.azure.ai/industries/manufacturing) (製造) -尋找製造業解決方案，例如預期設備維護及預測能源價格。
+* [Banking](https://gallery.azure.ai/industries/banking) (銀行) - 尋找銀行解決方案，例如預測信用風險和監控線上詐欺。
+* [Healthcare](https://gallery.azure.ai/industries/healthcare) (醫療保健) - 尋找醫療保健解決方案，例如偵測疾病及預測再住院率。
 
 這些資源包括實驗、自訂模組、API、集合，以及任何其他可協助您開發您目前所在產業特有解決方案的 Gallery 項目。
 

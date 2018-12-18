@@ -1,0 +1,164 @@
+items:
+- name: 媒體服務文件
+  href: ./index.yml
+- name: 概觀
+  items:
+  - name: 關於媒體服務
+    href: media-services-overview.md
+- name: 快速入門
+  items:
+  - name: 使用 .NET 來串流影片檔案
+    href: stream-files-dotnet-quickstart.md
+  expanded: true
+- name: 教學課程
+  items:
+  - name: 上傳、編碼和串流
+    items:
+    - name: 透過 .NET
+      href: stream-files-tutorial-with-api.md
+    - name: 透過 REST
+      href: stream-files-tutorial-with-rest.md
+  - name: 即時串流
+    items:
+    - name: 透過 .NET Core
+      href: stream-live-tutorial-with-api.md
+  - name: 分析您的影片
+    items:
+    - name: 透過 .NET
+      href: analyze-videos-tutorial-with-api.md
+- name: 範例
+  items:
+  - name: Azure 程式碼範例
+    href: https://azure.microsoft.com/resources/samples/?sort=0&service=media-services&term=v3
+  - name: Azure CLI
+    href: cli-samples.md
+- name: 概念
+  items:
+  - name: 分析內容
+    href: analyzing-video-audio-files-concept.md
+  - name: 內容編碼
+    items:
+    - name: 概觀
+      href: encoding-concept.md
+    - name: Autogen 彈性位元速率階梯
+      href: autogen-bitrate-ladder.md
+  - name: 檢查實體
+    items:
+    - name: Assets
+      href: assets-concept.md
+    - name: 內容金鑰原則
+      href: content-key-policy-concept.md
+    - name: 串流端點
+      href: streaming-endpoint-concept.md
+    - name: 串流定位器
+      href: streaming-locators-concept.md
+    - name: 串流原則
+      href: streaming-policy-concept.md
+    - name: 轉換和作業
+      href: transform-concept.md
+  - name: 檢查儲存體帳戶
+    href: storage-account-concept.md
+  - name: 處理事件方格事件
+    href: reacting-to-media-services-events.md
+  - name: 保護內容
+    items:
+    - name: 概觀
+      href: content-protection-overview.md
+    - name: 多 DRM 系統與存取控制
+      href: design-multi-drm-system-with-access-control.md
+  - name: 即時串流
+    href: live-streaming-overview.md
+- name: 使用說明指南
+  items:
+  - name: 從 v2 遷移至 v3
+    href: migrate-from-v2-to-v3.md
+  - name: 建立帳戶 - CLI
+    href: create-account-cli-how-to.md
+  - name: 存取 API - CLI
+    href: access-api-cli-how-to.md
+  - name: 上傳
+    items:
+    - name: 從 HTTP(s) - .NET
+      href: job-input-from-http-how-to.md
+    - name: 從本機檔案 - .NET
+      href: job-input-from-local-file-how-to.md
+  - name: 編碼
+    items:
+    - name: 自訂轉換預設 - .NET Core
+      href: customize-encoder-presets-how-to.md
+  - name: 使用事件方格
+    items:
+    - name: 監視事件 - 入口網站
+      href: monitor-events-portal-how-to.md
+    - name: 監視事件 - CLI
+      href: job-state-events-cli-how-to.md
+  - name: Protect
+    items:
+    - name: 使用 AES-128 - .NET
+      href: protect-with-aes128.md
+    - name: 使用 DRM - .NET
+      href: protect-with-drm.md
+- name: 參考
+  items:
+  - name: REST
+    href: https://aka.ms/ams-v3-rest-ref
+  - name: Azure CLI
+    href: https://aka.ms/ams-v3-cli-ref
+  - name: .NET
+    href: https://aka.ms/ams-v3-dotnet-ref
+  - name: Java
+    href: https://aka.ms/ams-v3-java-ref
+  - name: Python
+    href: https://aka.ms/ams-v3-python-ref
+  - name: Node .js
+    href: https://aka.ms/ams-v3-nodejs-ref
+  - name: Go
+    href: https://godoc.org/github.com/Azure/azure-sdk-for-go/services/preview/mediaservices/mgmt/2018-06-01-preview/media
+  - name: 事件結構描述
+    href: media-services-event-schemas.md
+  - name: DRM 授權
+    items:
+    - name: PlayReady 授權範本
+      href: playready-license-template-overview.md
+    - name: Widevine 授權範本
+      href: widevine-license-template-overview.md
+    - name: FairPlay 授權需求
+      href: fairplay-license-overview.md
+- name: 資源
+  items:
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/?category=web-mobile
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/media-services/
+  - name: 區域可用性
+    href: https://azure.microsoft.com/regions/services/
+  - name: 影片
+    href: https://azure.microsoft.com/resources/videos/index/?services=media-services
+  - name: SDK
+    items:
+    - name: Azure CLI
+      href: https://aka.ms/ams-v3-cli
+    - name: REST
+      href: https://aka.ms/ams-v3-rest-sdk
+    - name: .NET
+      href: https://aka.ms/ams-v3-dotnet-sdk
+    - name: Java
+      href: https://aka.ms/ams-v3-java-sdk
+    - name: Python
+      href: https://aka.ms/ams-v3-python-sdk
+    - name: Node .js
+      href: https://aka.ms/ams-v3-nodejs-sdk
+    - name: Ruby
+      href: https://aka.ms/ams-v3-ruby-sdk
+  - name: 版本資訊
+    href: release-notes.md
+  - name: 配額和限制
+    href: limits-quotas-constraints.md
+  - name: 常見問題集
+    href: frequently-asked-questions.md
+ms.openlocfilehash: bf3836af892b68b41e166c62fb49ec47ecc5fb75
+ms.sourcegitcommit: 07a09da0a6cda6bec823259561c601335041e2b9
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/18/2018
+ms.locfileid: "49403866"

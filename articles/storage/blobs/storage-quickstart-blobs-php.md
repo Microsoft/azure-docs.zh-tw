@@ -1,25 +1,24 @@
 ---
-title: Azure 快速入門 - 使用 PHP 在 Azure Blob 儲存體之間傳送物件 | Microsoft Docs
+title: Azure 快速入門 - 使用 PHP 在物件儲存體中建立 Blob | Microsoft Docs
 description: 快速了解使用 PHP 在 Azure Blob 儲存體之間傳送物件
 services: storage
 author: roygara
-manager: jeconnoc
 ms.service: storage
-ms.tgt_pltfrm: na
 ms.devlang: php
 ms.topic: quickstart
-ms.date: 03/15/2018
+ms.date: 04/09/2018
 ms.author: rogarana
-ms.openlocfilehash: a1d0232f093ab99bfbeba3012d78c35d6476496e
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: b0a562bd37c1877651863525241d70990d38ded2
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46969589"
 ---
 #  <a name="transfer-objects-tofrom-azure-blob-storage-using-php"></a>使用 PHP 在 Azure Blob 儲存體之間傳送物件
 在本快速入門中，您會了解如何使用 PHP 在 Azure Blob 儲存體容器中上傳、下載及列出區塊 Blob。 
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 若要完成本快速入門： 
 * 安裝 [PHP](http://php.net/downloads.php)
@@ -28,7 +27,7 @@ ms.lasthandoff: 03/23/2018
 
 如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
 
-[!INCLUDE [storage-quickstart-tutorial-create-account-portal](../../../includes/storage-quickstart-tutorial-create-account-portal.md)]
+[!INCLUDE [storage-create-account-portal-include](../../../includes/storage-create-account-portal-include.md)]
 
 ## <a name="download-the-sample-application"></a>下載範例應用程式
 本快速入門中使用的[範例應用程式](https://github.com/Azure-Samples/storage-blobs-php-quickstart.git)是基本的 PHP 應用程式。  
@@ -40,6 +39,8 @@ git clone https://github.com/Azure-Samples/storage-blobs-php-quickstart.git
 ```
 
 此命令會將存放庫複製到本機的 git 資料夾。 若要開啟 PHP 範例應用程式，請尋找 storage-blobs-php-quickstart 資料夾，然後開啟 phpqs.php 檔案。  
+
+[!INCLUDE [storage-copy-account-key-portal](../../../includes/storage-copy-account-key-portal.md)]
 
 ## <a name="configure-your-storage-connection-string"></a>設定儲存體連接字串
 在應用程式中，您必須提供儲存體帳戶名稱和帳戶金鑰，才能建立應用程式的 **BlobRestProxy** 執行個體。 建議您在執行應用程式的本機電腦上，將這些識別碼儲存在環境變數內。 請根據您的作業系統，使用以下其中一個範例來建立環境變數。 使用您的帳戶名稱和金鑰取代 **youraccountname** 和 **youraccountkey** 值。
@@ -126,7 +127,7 @@ Blob 儲存體支援區塊 Blob、附加 Blob 和分頁 Blob。 最常使用的�
 
 若要將檔案上傳至 Blob，請加入本機磁碟機上的目錄名稱和檔案名稱，取得檔案的完整路徑。 然後，您可以使用 **createBlockBlob()** 方法，將檔案上傳至指定的路徑。 
 
-範例程式碼會取得本機檔案並將它上傳至 Azure。 此檔案會在程式碼中儲存為 **myfile**，而 blob 的名稱會儲存為 **fileToUpload**。 下列範例會將檔案上傳到名為 **quickstartblobs** 的容器。
+範例程式碼會取得本機檔案並將它上傳至 Azure。 此檔案會在程式碼中儲存為 **myfile**，而 Blob 的名稱會儲存為 **fileToUpload**。 下列範例會將檔案上傳到名為 **quickstartblobs** 的容器。
 
 ```PHP
     $myfile = fopen("HelloWorld.txt", "w") or die("Unable to open file!");
@@ -209,7 +210,7 @@ Blob 儲存體支援區塊 Blob、附加 Blob 和分頁 Blob。 最常使用的�
 在此快速入門中，您已了解如何使用 PHP 在本機磁碟和 Azure Blob 儲存體之間傳輸檔案。 若要深入了解 PHP 的用法，請繼續使用我們的 PHP 開發人員中心。
 
 > [!div class="nextstepaction"]
-> [PHP 開發人員中心](https://azure.microsoft.com/en-us/develop/php/)
+> [PHP 開發人員中心](https://azure.microsoft.com/develop/php/)
 
 
 如需儲存體總管和 Blob 的詳細資訊，請參閱[使用儲存體總管管理 Azure Blob 儲存體資源](../../vs-azure-tools-storage-explorer-blobs.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json)。

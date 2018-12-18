@@ -1,11 +1,11 @@
 ---
-title: "建立自訂探查 - Azure 應用程式閘道 - PowerShell 傳統 | Microsoft Docs"
-description: "了解如何在傳統部署模型中使用 PowerShell 建立應用程式閘道的自訂探查"
+title: 建立自訂探查 - Azure 應用程式閘道 - PowerShell 傳統 | Microsoft Docs
+description: 了解如何在傳統部署模型中使用 PowerShell 建立應用程式閘道的自訂探查
 services: application-gateway
 documentationcenter: na
-author: davidmu1
-manager: timlt
-editor: 
+author: vhorne
+manager: jpconnock
+editor: ''
 tags: azure-service-management
 ms.assetid: 338a7be1-835c-48e9-a072-95662dc30f5e
 ms.service: application-gateway
@@ -14,12 +14,13 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/26/2017
-ms.author: davidmu
-ms.openlocfilehash: b167a0584740a4e583a35bd6d44ec5d616ba04f7
-ms.sourcegitcommit: b5c6197f997aa6858f420302d375896360dd7ceb
+ms.author: victorh
+ms.openlocfilehash: 97d1376dc7908b72d8e8ec15145229cf3cf4acae
+ms.sourcegitcommit: c47ef7899572bf6441627f76eb4c4ac15e487aec
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/21/2017
+ms.lasthandoff: 05/04/2018
+ms.locfileid: "33201941"
 ---
 # <a name="create-a-custom-probe-for-azure-application-gateway-classic-by-using-powershell"></a>使用 PowerShell 建立 Azure 應用程式閘道 (傳統) 的自訂探查
 
@@ -151,7 +152,7 @@ Get-AzureApplicationGateway AppGwTest
 |---|---|
 |**名稱** |自訂探查的參考名稱。 |
 * **Protocol** | 使用的通訊協定 (可能的值是 HTTP 或 HTTPS)。|
-| **Host** 和 **Path** | 應用程式閘道所叫用的完整 URL 路徑，可藉以判斷執行個體健康狀態。 例如，若您擁有網站 http://contoso.com/，則可以為 "http://contoso.com/path/custompath.htm" 設定自訂探查，以便讓探查檢查有成功的 HTTP 回應。|
+| **Host** 和 **Path** | 應用程式閘道所叫用的完整 URL 路徑，可藉以判斷執行個體健康狀態。 例如，若您擁有網站 http://contoso.com/，則可以為 "http://contoso.com/path/custompath.htm" 設定自訂探查，以便讓探查檢查是否有成功的 HTTP 回應。|
 | **間隔** | 以秒為單位設定探查間隔檢查。|
 | **逾時** | 定義 HTTP 回應檢查的探查逾時。|
 | **UnhealthyThreshold** | 要將後端執行個體標記為「狀況不良」所需的失敗 HTTP 回應次數。|

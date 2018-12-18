@@ -1,11 +1,11 @@
 ---
-title: "Azure PowerShell 指令碼範例 - 刪除 Web 應用程式的備份 | Microsoft Docs"
-description: "Azure PowerShell 指令碼範例 - 刪除 Web 應用程式的備份"
+title: Azure PowerShell 指令碼範例 - 刪除 Web 應用程式的備份 | Microsoft Docs
+description: Azure PowerShell 指令碼範例 - 刪除 Web 應用程式的備份
 services: app-service\web
-documentationcenter: 
+documentationcenter: ''
 author: cephalin
 manager: cfowler
-editor: 
+editor: ''
 tags: azure-service-management
 ms.assetid: ebcadb49-755d-4202-a5eb-f211827a9168
 ms.service: app-service-web
@@ -15,11 +15,12 @@ ms.topic: sample
 ms.date: 10/30/2017
 ms.author: cephalin
 ms.custom: mvc
-ms.openlocfilehash: f4204cbb4aefe590b87d0a72675823321f280f33
-ms.sourcegitcommit: e5355615d11d69fc8d3101ca97067b3ebb3a45ef
+ms.openlocfilehash: 6fede6d7c8de473debea927366fca0ab52cf6e5b
+ms.sourcegitcommit: 7ad9db3d5f5fd35cfaa9f0735e8c0187b9c32ab1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/31/2017
+ms.lasthandoff: 07/27/2018
+ms.locfileid: "39325807"
 ---
 # <a name="delete-a-backup-for-a-web-app"></a>刪除 Web 應用程式的備份
 
@@ -29,7 +30,7 @@ ms.lasthandoff: 10/31/2017
 
 ## <a name="sample-script"></a>範例指令碼
 
-[!code-powershell[main](../../../powershell_scripts/app-service/backup-delete/backup-delete.ps1?highlight=1-2,11 "Delete a backup for a web app")]
+[!code-azurepowershell-interactive[main](../../../powershell_scripts/app-service/backup-delete/backup-delete.ps1?highlight=1-2,11 "Delete a backup for a web app")]
 
 ## <a name="clean-up-deployment"></a>清除部署 
 

@@ -4,29 +4,30 @@ description: Log Analytics 警示 REST API 可讓您在 Log Analytics (其為 Op
 services: log-analytics
 documentationcenter: ''
 author: bwren
-manager: jwhit
+manager: carmonm
 editor: tysonn
 ms.assetid: 628ad256-7181-4a0d-9e68-4ed60c0f3f04
 ms.service: log-analytics
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 05/12/2017
+ms.date: 04/10/2018
 ms.author: bwren
-ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: ed0ac6e2041ef503470f7317a5736deecd1d2b8f
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: na
+ms.openlocfilehash: 7f55b762bda5ff0c7bbedf414b18465656496cbb
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46984580"
 ---
 # <a name="create-and-manage-alert-rules-in-log-analytics-with-rest-api"></a>使用 REST API 在 Log Analytics 中建立及管理警示規則
 Log Analytics 警示 REST API 可讓您在 Operations Management Suite (OMS) 中建立及管理警示。  本文提供此 API 的詳細資料和幾個執行不同作業的範例。
 
 Log Analytics 搜尋 API 是 RESTful，可透過 Azure Resource Manager REST API 來存取。 在這份文件中，您會找到從 PowerShell 命令列使用 [ARMClient](https://github.com/projectkudu/ARMClient) (一個可簡化 Azure Resource Manager API 叫用流程的開放原始碼命令列工具) 來存取 API 的範例。 使用 ARMClient 和 PowerShell 是存取 Log Analytics 搜尋 API 的許多選項之一。 透過這些工具，您可以利用 RESTful Azure Resource Manager API 來呼叫 OMS 工作區，並在其中執行搜尋命令。 API 會以 JSON 格式向您輸出搜尋結果，讓您以程式設計方式透過許多不同的方法使用搜尋結果。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 目前，在 Log Analytics 中只能使用已儲存的搜尋來建立警示。  如需詳細資訊，請參閱 [記錄檔搜尋 REST API](log-analytics-log-search-api.md) 。
 
 ## <a name="schedules"></a>排程
@@ -95,13 +96,13 @@ Log Analytics 搜尋 API 是 RESTful，可透過 Azure Resource Manager REST API
 | 屬性 | 說明 |
 |:--- |:--- |
 | 類型 |動作的類型。  目前可能的值為 Alert 和 Webhook。 |
-| Name |警示的顯示名稱。 |
+| 名稱 |警示的顯示名稱。 |
 | 版本 |所使用的 API 版本。  目前，這應該一律設為 1。 |
 
 ### <a name="retrieving-actions"></a>擷取動作
 
 > [!NOTE]
-> 從 2018 年 4 月 23 日開始，工作區中的所有警示都將自動延伸至 Azure。 在 2018 年 4 月 23 日之前，使用者可以主動起始將警示延伸至 Azure。 如需詳細資訊，請參閱[將警示從 OMS 延伸至 Azure](../monitoring-and-diagnostics/monitoring-alerts-extend.md)。 針對將警示延伸至 Azure 的使用者，現在便會以 Azure 動作群組來控制動作。 將工作區及其警示延伸至 Azure 之後，您便可以使用 [Azure 群組 API](https://docs.microsoft.com/en-us/rest/api/monitor/actiongroups) 來擷取或新增動作。
+> 從 2018 年 5 月 14 日開始，Log Analytics 工作區的 Azure 公用雲端執行個體內所有警示都將自動延伸至 Azure。 在 2018 年 5 月 14 日之前，使用者可以主動起始將警示延伸至 Azure。 如需詳細資訊，請參閱[將警示從 OMS 延伸至 Azure](../monitoring-and-diagnostics/monitoring-alerts-extend.md)。 針對將警示延伸至 Azure 的使用者，現在便會以 Azure 動作群組來控制動作。 將工作區及其警示延伸至 Azure 之後，您便可以使用 [Azure 群組 API](https://docs.microsoft.com/rest/api/monitor/actiongroups) 來擷取或新增動作。
 
 使用 Get 方法來擷取排程的所有動作。
 
@@ -124,7 +125,7 @@ Log Analytics 搜尋 API 是 RESTful，可透過 Azure Resource Manager REST API
 ### <a name="deleting-actions"></a>刪除動作
 
 > [!NOTE]
-> 從 2018 年 4 月 23 日開始，工作區中的所有警示都將自動延伸至 Azure。 在 2018 年 4 月 23 日之前，使用者可以主動起始將警示延伸至 Azure。 如需詳細資訊，請參閱[將警示從 OMS 延伸至 Azure](../monitoring-and-diagnostics/monitoring-alerts-extend.md)。 針對將警示延伸至 Azure 的使用者，現在便會以 Azure 動作群組來控制動作。 將工作區及其警示延伸至 Azure 之後，您便可以使用 [Azure 群組 API](https://docs.microsoft.com/en-us/rest/api/monitor/actiongroups) 來擷取或新增動作。
+> 從 2018 年 5 月 14 日開始，Log Analytics 工作區的 Azure 公用雲端執行個體內所有警示都將自動延伸至 Azure。 在 2018 年 5 月 14 日之前，使用者可以主動起始將警示延伸至 Azure。 如需詳細資訊，請參閱[將警示從 OMS 延伸至 Azure](../monitoring-and-diagnostics/monitoring-alerts-extend.md)。 針對將警示延伸至 Azure 的使用者，現在便會以 Azure 動作群組來控制動作。 將工作區及其警示延伸至 Azure 之後，您便可以使用 [Azure 群組 API](https://docs.microsoft.com/rest/api/monitor/actiongroups) 來擷取或新增動作。
 
 使用 Delete 方法並指定動作識別碼來刪除動作。
 
@@ -144,7 +145,7 @@ Log Analytics 搜尋 API 是 RESTful，可透過 Azure Resource Manager REST API
 | Webhook 動作 | 將來自警示的資料以 JSON 形式推送至所需的服務 |如果將警示延伸至 Azure，則不須指定|
 
 > [!NOTE]
-> 從 2018 年 4 月 23 日開始，工作區中的所有警示都將自動延伸至 Azure。 在 2018 年 4 月 23 日之前，使用者可以主動起始將警示延伸至 Azure。 如需詳細資訊，請參閱[將警示從 OMS 延伸至 Azure](../monitoring-and-diagnostics/monitoring-alerts-extend.md)。
+> 從 2018 年 5 月 14 日開始，Log Analytics 工作區的 Azure 公用雲端執行個體內所有警示都將自動延伸至 Azure。 在 2018 年 5 月 14 日之前，使用者可以主動起始將警示延伸至 Azure。 如需詳細資訊，請參閱[將警示從 OMS 延伸至 Azure](../monitoring-and-diagnostics/monitoring-alerts-extend.md)。
 
 #### <a name="thresholds"></a>臨界值
 一個警示動作應該只有一個臨界值。  當已儲存的搜尋結果符合與該搜尋相關聯動作中的臨界值時，將會執行該動作中的任何其他處理序。  動作也可以只包含臨界值，以便與不包含臨界值的其他類型動作一起搭配使用。
@@ -216,7 +217,7 @@ Log Analytics 可讓您將警示分類成數個類別，以便於管理和分級
 #### <a name="action-groups"></a>動作群組
 Azure 中的所有警示都使用「動作群組」作為處理動作的預設機制。 使用「動作群組」時，您可以指定您的動作一次，然後將動作群組與整個 Azure 中的多個警示建立關聯。 這樣就不需要一再地重複宣告相同的動作。 「動作群組」支援多個動作 - 包括電子郵件、、SMS、語音通話、ITSM 連線、自動化 Runbook、Webhook URI 等。 
 
-針對將警示延伸至 Azure 的使用者 - 排程的「動作群組」詳細資料現在應該與閾值一起傳遞，才能建立警示。 必須先在「動作群組」內定義電子郵件詳細資料、Webhook URL、「Runbook 自動化」詳細資料及其他動作，才能建立警示；使用者可以在入口網站中[從 Azure 監視器建立動作群組](../monitoring-and-diagnostics/monitoring-action-groups.md)，或使用[動作群組 API](https://docs.microsoft.com/en-us/rest/api/monitor/actiongroups) 來建立動作群組。
+針對將警示延伸至 Azure 的使用者 - 排程的「動作群組」詳細資料現在應該與閾值一起傳遞，才能建立警示。 必須先在「動作群組」內定義電子郵件詳細資料、Webhook URL、「Runbook 自動化」詳細資料及其他動作，才能建立警示；使用者可以在入口網站中[從 Azure 監視器建立動作群組](../monitoring-and-diagnostics/monitoring-action-groups.md)，或使用[動作群組 API](https://docs.microsoft.com/rest/api/monitor/actiongroups) 來建立動作群組。
 
 若要將動作群組關聯新增至警示，請在警示定義中指定該動作群組的唯一 Azure Resource Manager 識別碼。 以下提供範例說明：
 
@@ -266,7 +267,7 @@ Azure 中的所有警示都使用「動作群組」作為處理動作的預設�
         "AzNsNotification": {
           "GroupIds": [
             "/subscriptions/1234a45-123d-4321-12aa-123b12a5678/resourcegroups/my-resource-group/providers/microsoft.insights/actiongroups/test-actiongroup"
-          ]
+          ],
           "CustomEmailSubject": "Azure Alert fired"
         },
         "Severity": "critical",
@@ -300,7 +301,7 @@ Azure 中的所有警示都使用「動作群組」作為處理動作的預設�
         "AzNsNotification": {
           "GroupIds": [
             "/subscriptions/1234a45-123d-4321-12aa-123b12a5678/resourcegroups/my-resource-group/providers/microsoft.insights/actiongroups/test-actiongroup"
-          ]
+          ],
           "CustomWebhookPayload": "{\"field1\":\"value1\",\"field2\":\"value2\"}",
           "CustomEmailSubject": "Azure Alert fired"
         },
@@ -322,7 +323,7 @@ Azure 中的所有警示都使用「動作群組」作為處理動作的預設�
 「電子郵件通知」會將郵件傳送給一或多位收件者。  它們包含下表中的屬性。
 
 > [!NOTE]
-> 從 2018 年 4 月 23 日開始，工作區中的所有警示都將自動延伸至 Azure。 在 2018 年 4 月 23 日之前，使用者可以主動起始將警示延伸至 Azure。 如需詳細資訊，請參閱[將警示從 OMS 延伸至 Azure](../monitoring-and-diagnostics/monitoring-alerts-extend.md)。 針對將警示延伸至 Azure 的使用者，現在便會以 Azure 動作群組來控制動作 (例如「電子郵件通知」)。 將工作區及其警示延伸至 Azure 之後，您便可以使用 [Azure 群組 API](https://docs.microsoft.com/en-us/rest/api/monitor/actiongroups) 來擷取或新增動作。
+> 從 2018 年 5 月 14 日開始，Log Analytics 工作區的 Azure 公用雲端執行個體內所有警示都將自動延伸至 Azure。 在 2018 年 5 月 14 日之前，使用者可以主動起始將警示延伸至 Azure。 如需詳細資訊，請參閱[將警示從 OMS 延伸至 Azure](../monitoring-and-diagnostics/monitoring-alerts-extend.md)。 針對將警示延伸至 Azure 的使用者，現在便會以 Azure 動作群組來控制動作 (例如「電子郵件通知」)。 將工作區及其警示延伸至 Azure 之後，您便可以使用 [Azure 群組 API](https://docs.microsoft.com/rest/api/monitor/actiongroups) 來擷取或新增動作。
    
 
 | 屬性 | 說明 |
@@ -366,7 +367,7 @@ Azure 中的所有警示都使用「動作群組」作為處理動作的預設�
 「補救」會在 Azure 自動化中啟動 Runbook，嘗試更正警示所識別的問題。  您必須為補救動作中使用的 Runbook 建立 webhook，然後在 WebhookUri 屬性中指定 URI。  當您使用 OMS 主控台建立此動作時，將會自動為 Runbook 建立新的 webhook。
 
 > [!NOTE]
-> 從 2018 年 4 月 23 日開始，工作區中的所有警示都將自動延伸至 Azure。 在 2018 年 4 月 23 日之前，使用者可以主動起始將警示延伸至 Azure。 如需詳細資訊，請參閱[將警示從 OMS 延伸至 Azure](../monitoring-and-diagnostics/monitoring-alerts-extend.md)。 針對將警示延伸至 Azure 的使用者，現在便會以 Azure 動作群組來控制動作 (例如使用 Runbook 的「補救」)。 將工作區及其警示延伸至 Azure 之後，您便可以使用 [Azure 群組 API](https://docs.microsoft.com/en-us/rest/api/monitor/actiongroups) 來擷取或新增動作。
+> 從 2018 年 5 月 14 日開始，Log Analytics 工作區的 Azure 公用雲端執行個體內所有警示都將自動延伸至 Azure。 在 2018 年 5 月 14 日之前，使用者可以主動起始將警示延伸至 Azure。 如需詳細資訊，請參閱[將警示從 OMS 延伸至 Azure](../monitoring-and-diagnostics/monitoring-alerts-extend.md)。 針對將警示延伸至 Azure 的使用者，現在便會以 Azure 動作群組來控制動作 (例如使用 Runbook 的「補救」)。 將工作區及其警示延伸至 Azure 之後，您便可以使用 [Azure 群組 API](https://docs.microsoft.com/rest/api/monitor/actiongroups) 來擷取或新增動作。
 
 「補救」包含下表中的屬性。
 
@@ -425,7 +426,7 @@ Azure 中的所有警示都使用「動作群組」作為處理動作的預設�
 Webhook 動作會呼叫 URL 並選擇性地提供要傳送的承載，以啟動處理序。  這些動作類似於「補救」動作，不同之處在於它們用於可能叫用 Azure 自動化 Runbook 以外之處理序的 webhook。  它們還提供另一個選項，可指定要傳遞到遠端處理序的承載。
 
 > [!NOTE]
-> 從 2018 年 4 月 23 日開始，工作區中的所有警示都將自動延伸至 Azure。 在 2018 年 4 月 23 日之前，使用者可以主動起始將警示延伸至 Azure。 如需詳細資訊，請參閱[將警示從 OMS 延伸至 Azure](../monitoring-and-diagnostics/monitoring-alerts-extend.md)。 針對將警示延伸至 Azure 的使用者，現在便會以 Azure 動作群組來控制動作 (例如 Webhook)。 將工作區及其警示延伸至 Azure 之後，您便可以使用 [Azure 群組 API](https://docs.microsoft.com/en-us/rest/api/monitor/actiongroups) 來擷取或新增動作。
+> 從 2018 年 5 月 14 日開始，Log Analytics 工作區的 Azure 公用雲端執行個體內所有警示都將自動延伸至 Azure。 在 2018 年 5 月 14 日之前，使用者可以主動起始將警示延伸至 Azure。 如需詳細資訊，請參閱[將警示從 OMS 延伸至 Azure](../monitoring-and-diagnostics/monitoring-alerts-extend.md)。 針對將警示延伸至 Azure 的使用者，現在便會以 Azure 動作群組來控制動作 (例如 Webhook)。 將工作區及其警示延伸至 Azure 之後，您便可以使用 [Azure 群組 API](https://docs.microsoft.com/rest/api/monitor/actiongroups) 來擷取或新增動作。
 
 
 Webhook 動作沒有臨界值，應該加入至具有警示動作和臨界值的排程。  

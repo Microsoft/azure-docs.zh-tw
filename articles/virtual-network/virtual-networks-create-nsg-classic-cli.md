@@ -1,11 +1,11 @@
 ---
-title: "如何在傳統模式中使用 Azure CLI 建立 NSG | Microsoft Docs"
-description: "了解如何在傳統模式中使用 Azure CLI 建立及部署 NSG"
+title: 使用 Azure 傳統 CLI 建立網路安全性群組 (傳統) | Microsoft Docs
+description: 了解如何使用 Azure 傳統 CLI 建立及部署網路安全性群組 (傳統)。
 services: virtual-network
 documentationcenter: na
-author: jimdial
-manager: carmonm
-editor: tysonn
+author: genlin
+manager: cshepard
+editor: ''
 tags: azure-service-management
 ms.assetid: 17d98950-5fbb-4653-bef6-d822ab37541e
 ms.service: virtual-network
@@ -14,224 +14,82 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/02/2016
-ms.author: jdial
-ms.openlocfilehash: 115a1937a4c88ba2b986a40c84b1b759ed5e03b5
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.author: genli
+ms.openlocfilehash: 5e81fa709589e5fa4a109cdf7709b87bc446ac3c
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46947229"
 ---
-# <a name="how-to-create-nsgs-classic-in-the-azure-cli"></a>如何在 Azure CLI 中建立 NSG (傳統)
+# <a name="create-a-network-security-group-classic-using-the-azure-classic-cli"></a>使用 Azure 傳統 CLI 建立網路安全性群組 (傳統)
 [!INCLUDE [virtual-networks-create-nsg-selectors-classic-include](../../includes/virtual-networks-create-nsg-selectors-classic-include.md)]
 
 [!INCLUDE [virtual-networks-create-nsg-intro-include](../../includes/virtual-networks-create-nsg-intro-include.md)]
 
 [!INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]
 
-本文涵蓋之內容包括傳統部署模型。 您也可以 [在資源管理員部署模型中建立 NSG](virtual-networks-create-nsg-arm-cli.md)。
+本文涵蓋之內容包括傳統部署模型。 您也可以 [在資源管理員部署模型中建立 NSG](tutorial-filter-network-traffic-cli.md)。
 
 [!INCLUDE [virtual-networks-create-nsg-scenario-include](../../includes/virtual-networks-create-nsg-scenario-include.md)]
 
-以下的範例 Azure CLI 命令是假設您已根據上述案例建立簡單的環境。 如果您想要執行如本文件中所顯示的命令，請先建置 [建立 VNet](virtual-networks-create-vnet-classic-cli.md)以建置測試環境。
+下列範例 Azure CLI 命令會假設您已根據案例建立簡單的環境。 如果您想要執行如本文件中所顯示的命令，請先建置 [建立 VNet](virtual-networks-create-vnet-classic-cli.md)以建置測試環境。
 
-## <a name="how-to-create-the-nsg-for-the-front-end-subnet"></a>如何建立前端子網路的 NSG
-若要根據上述案例建立名為 **NSG-FrontEnd** 的 NSG，請依照下列步驟執行。
+## <a name="create-an-nsg-for-the-front-end-subnet"></a>建立前端子網路的 NSG
 
-1. 如果您從未使用過 Azure CLI，請參閱 [安裝和設定 Azure CLI](../cli-install-nodejs.md) ，並依照指示進行，直到選取您的 Azure 帳戶和訂用帳戶為止。
-2. 執行 **`azure config mode`** 命令，以切換為傳統模式，如下所示。
-   
-        azure config mode asm
-   
-    預期的輸出：
-   
-        info:    New mode is asm
-3. 執行 **`azure network nsg create`** 命令，以建立 NSG。
-   
-        azure network nsg create -l uswest -n NSG-FrontEnd
-   
-    預期的輸出：
-   
-        info:    Executing command network nsg create
-        info:    Creating a network security group "NSG-FrontEnd"
-        info:    Looking up the network security group "NSG-FrontEnd"
-        data:    Name                            : NSG-FrontEnd
-        data:    Location                        : West US
-        data:    Security group rules:
-        data:    Name                               Source IP           Source Port  Destination IP   Destination Port  Protocol  Type      Action  Prior
-        ity  Default
-        data:    ---------------------------------  ------------------  -----------  ---------------  ----------------  --------  --------  ------  -----
-        ---  -------
-        data:    ALLOW VNET OUTBOUND                VIRTUAL_NETWORK     *            VIRTUAL_NETWORK  *                 *         Outbound  Allow   65000
-             true   
-        data:    ALLOW VNET INBOUND                 VIRTUAL_NETWORK     *            VIRTUAL_NETWORK  *                 *         Inbound   Allow   65000
-             true   
-        data:    ALLOW AZURE LOAD BALANCER INBOUND  AZURE_LOADBALANCER  *            *                *                 *         Inbound   Allow   65001
-             true   
-        data:    ALLOW INTERNET OUTBOUND            *                   *            INTERNET         *                 *         Outbound  Allow   65001
-             true   
-        data:    DENY ALL OUTBOUND                  *                   *            *                *                 *         Outbound  Deny    65500
-             true   
-        data:    DENY ALL INBOUND                   *                   *            *                *                 *         Inbound   Deny    65500
-             true   
-        info:    network nsg create command OK
-   
-    參數：
-   
-   * **-l (或 --location)**。 將要建立新 NSG 的 Azure 區域。 在本文案例中為 *westus*。
-   * **-n (or --name)**。 新 NSG 的名稱。 在本文案例中為 *NSG-FrontEnd*。
-4. 執行 **`azure network nsg rule create`** 命令來建立允許從網際網路存取連接埠 3389 (RDP) 的規則。
-   
-        azure network nsg rule create -a NSG-FrontEnd -n rdp-rule -c Allow -p Tcp -r Inbound -y 100 -f Internet -o * -e * -u 3389
-   
-    預期的輸出：
-   
-        info:    Executing command network nsg rule create
-        info:    Looking up the network security group "NSG-FrontEnd"
-        info:    Creating a network security rule "rdp-rule"
-        info:    Looking up the network security group "NSG-FrontEnd"
-        data:    Name                            : rdp-rule
-        data:    Source address prefix           : INTERNET
-        data:    Source Port                     : *
-        data:    Destination address prefix      : *
-        data:    Destination Port                : 3389
-        data:    Protocol                        : TCP
-        data:    Type                            : Inbound
-        data:    Action                          : Allow
-        data:    Priority                        : 100
-        info:    network nsg rule create command OK
-   
-    參數：
-   
-   * **-a (或 --nsg-name)**。 將在其中建立規則之 NSG 的名稱。 在本文案例中為 *NSG-FrontEnd*。
-   * **-n (or --name)**。 新規則的名稱。 在本文案例中為 *rdp-rule*。
-   * **-c (或 --action)**。 規則 (拒絕或允許) 的存取層級。
-   * **-p (或 --protocol)**。 規則的通訊協定 (TCP、UDP 或 *)。
-   * **-r (或 --type)**。 連線 (輸入或輸出) 的方向。
-   * **-y (或 --priority)**。 規則的優先順序。
-   * **-f (或 --source-address-prefix)**。 CIDR 中的來源位址首碼或使用預設標記。
-   * **-o (或 --source-port-range)**。 來源連接埠，或連接埠範圍。
-   * **-e (或 --destination-address-prefix)**。 CIDR 中的目的地位址首碼或使用預設標記。
-   * **-u (或 --destination-port-range)**。 目的地連接埠，或連接埠範圍。
-5. 執行 **`azure network nsg rule create`** 命令來建立允許從網際網路存取連接埠 80 (HTTP) 的規則。
-   
-        azure network nsg rule create -a NSG-FrontEnd -n web-rule -c Allow -p Tcp -r Inbound -y 200 -f Internet -o * -e * -u 80
-   
-    預期的輸出：
-   
-        info:    Executing command network nsg rule create
-        info:    Looking up the network security group "NSG-FrontEnd"
-        info:    Creating a network security rule "web-rule"
-        info:    Looking up the network security group "NSG-FrontEnd"
-        data:    Name                            : web-rule
-        data:    Source address prefix           : INTERNET
-        data:    Source Port                     : *
-        data:    Destination address prefix      : *
-        data:    Destination Port                : 80
-        data:    Protocol                        : TCP
-        data:    Type                            : Inbound
-        data:    Action                          : Allow
-        data:    Priority                        : 200
-        info:    network nsg rule create command OK
-6. 執行 **`azure network nsg subnet add`** 命令來連結 NSG 與前端子網路。
-   
-        azure network nsg subnet add -a NSG-FrontEnd --vnet-name TestVNet --subnet-name FrontEnd
-   
-    預期的輸出：
-   
-        info:    Executing command network nsg subnet add
-        info:    Looking up the network security group "NSG-FrontEnd"
-        info:    Looking up the subnet "FrontEnd"
-        info:    Looking up network configuration
-        info:    Creating a network security group "NSG-FrontEnd"
-        info:    network nsg subnet add command OK
+1. 若您未曾用過 Azure CLI，請參閱[安裝和設定 Azure CLI](/cli/azure/install-cli-version-1.0)。
+2. 切換到傳統模式：
 
-## <a name="how-to-create-the-nsg-for-the-back-end-subnet"></a>如何建立後端子網路的 NSG
-若要根據上述案例建立名為 *NSG-BackEnd* 的 NSG，請依照下列步驟執行。
+    ```azurecli
+    azure config mode asm
+    ```   
 
-1. 執行 **`azure network nsg create`** 命令，以建立 NSG。
+3. 建立 NSG：
    
-        azure network nsg create -l uswest -n NSG-BackEnd
+    ```azurecli   
+     azure network nsg create -l uswest -n NSG-FrontEnd
+    ```
    
-    預期的輸出：
+4. 建立允許從網際網路存取連接埠 3389 (RDP) 的安全性規則：
    
-        info:    Executing command network nsg create
-        info:    Creating a network security group "NSG-BackEnd"
-        info:    Looking up the network security group "NSG-BackEnd"
-        data:    Name                            : NSG-BackEnd
-        data:    Location                        : West US
-        data:    Security group rules:
-        data:    Name                               Source IP           Source Port  Destination IP   Destination Port  Protocol  Type      Action  Prior
-        ity  Default
-        data:    ---------------------------------  ------------------  -----------  ---------------  ----------------  --------  --------  ------  -----
-        ---  -------
-        data:    ALLOW VNET OUTBOUND                VIRTUAL_NETWORK     *            VIRTUAL_NETWORK  *                 *         Outbound  Allow   65000
-             true   
-        data:    ALLOW VNET INBOUND                 VIRTUAL_NETWORK     *            VIRTUAL_NETWORK  *                 *         Inbound   Allow   65000
-             true   
-        data:    ALLOW AZURE LOAD BALANCER INBOUND  AZURE_LOADBALANCER  *            *                *                 *         Inbound   Allow   65001
-             true   
-        data:    ALLOW INTERNET OUTBOUND            *                   *            INTERNET         *                 *         Outbound  Allow   65001
-             true   
-        data:    DENY ALL OUTBOUND                  *                   *            *                *                 *         Outbound  Deny    65500
-             true   
-        data:    DENY ALL INBOUND                   *                   *            *                *                 *         Inbound   Deny    65500
-             true   
-        info:    network nsg create command OK
-   
-    參數：
-   
-   * **-l (或 --location)**。 將要建立新 NSG 的 Azure 區域。 在本文案例中為 *westus*。
-   * **-n (or --name)**。 新 NSG 的名稱。 在本文案例中為 *NSG-FrontEnd*。
-2. 執行 **`azure network nsg rule create`** 命令來建立允許從前端子網路存取連接埠 1433 (SQL) 的規則。
-   
-        azure network nsg rule create -a NSG-BackEnd -n sql-rule -c Allow -p Tcp -r Inbound -y 100 -f 192.168.1.0/24 -o * -e * -u 1433
-   
-    預期的輸出：
-   
-        info:    Executing command network nsg rule create
-        info:    Looking up the network security group "NSG-BackEnd"
-        info:    Creating a network security rule "sql-rule"
-        info:    Looking up the network security group "NSG-BackEnd"
-        data:    Name                            : sql-rule
-        data:    Source address prefix           : 192.168.1.0/24
-        data:    Source Port                     : *
-        data:    Destination address prefix      : *
-        data:    Destination Port                : 1433
-        data:    Protocol                        : TCP
-        data:    Type                            : Inbound
-        data:    Action                          : Allow
-        data:    Priority                        : 100
-        info:    network nsg rule create command OK
-3. 執行 **`azure network nsg rule create`** 命令來建立拒絕存取網際網路的規則。
-   
-        azure network nsg rule create -a NSG-BackEnd -n web-rule -c Deny -p Tcp -r Outbound -y 200 -f * -o * -e Internet -u 80
-   
-    預期的輸出：
-   
-        info:    Executing command network nsg rule create
-        info:    Looking up the network security group "NSG-BackEnd"
-        info:    Creating a network security rule "web-rule"
-        info:    Looking up the network security group "NSG-BackEnd"
-        data:    Name                            : web-rule
-        data:    Source address prefix           : *
-        data:    Source Port                     : *
-        data:    Destination address prefix      : INTERNET
-        data:    Destination Port                : 80
-        data:    Protocol                        : TCP
-        data:    Type                            : Outbound
-        data:    Action                          : Deny
-        data:    Priority                        : 200
-        info:    network nsg rule create command OK
-4. 執行 **`azure network nsg subnet add`** 命令來連結 NSG 與後端子網路。
-   
-        azure network nsg subnet add -a NSG-BackEnd --vnet-name TestVNet --subnet-name BackEnd
-   
-    預期的輸出：
-   
-        info:    Executing command network nsg subnet add
-        info:    Looking up the network security group "NSG-BackEndX"
-        info:    Looking up the subnet "BackEnd"
-        info:    Looking up network configuration
-        info:    Creating a network security group "NSG-BackEndX"
-        info:    network nsg subnet add command OK
+    ```azurecli
+    azure network nsg rule create -a NSG-FrontEnd -n rdp-rule -c Allow -p Tcp -r Inbound -y 100 -f Internet -o * -e * -u 3389
+   ```
 
+5. 建立允許從網際網路存取連接埠 80 (HTTP) 的規則：
+   
+    ```azurecli
+    azure network nsg rule create -a NSG-FrontEnd -n web-rule -c Allow -p Tcp -r Inbound -y 200 -f Internet -o * -e * -u 80
+    ```   
+
+6. 建立 NSG 與前端子網路的關聯：
+   
+    ```azurecli
+    azure network nsg subnet add -a NSG-FrontEnd --vnet-name TestVNet --subnet-name FrontEnd
+   ```
+
+## <a name="create-the-nsg-for-the-back-end-subnet"></a>建立後端子網路的 NSG
+
+1. 建立 NSG：
+   
+    ```azurecli
+    azure network nsg create -l uswest -n NSG-BackEnd
+   ```
+
+2. 建立允許從前端子網路存取連接埠 1433 (SQL) 的規則：
+   
+    ```azurecli
+    azure network nsg rule create -a NSG-BackEnd -n sql-rule -c Allow -p Tcp -r Inbound -y 100 -f 192.168.1.0/24 -o * -e * -u 1433
+   ```
+
+3. 建立拒絕存取網際網路的規則：
+   
+    ```azurecli
+    azure network nsg rule create -a NSG-BackEnd -n web-rule -c Deny -p Tcp -r Outbound -y 200 -f * -o * -e Internet -u 80
+   ```
+
+4. 建立 NSG 與後端子網路的關聯：
+   
+    ```azurecli
+    azure network nsg subnet add -a NSG-BackEnd --vnet-name TestVNet --subnet-name BackEnd
+    ```

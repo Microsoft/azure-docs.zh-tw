@@ -10,15 +10,16 @@ ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 01/10/2018
 ms.author: douglasl
 robots: noindex
-ms.openlocfilehash: 60df540d847a1e7422e87bc375220819dac4b25c
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: b10fbd953eb9ca904043973ebc1f7c6adb9f9abc
+ms.sourcegitcommit: 0c490934b5596204d175be89af6b45aafc7ff730
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 06/27/2018
+ms.locfileid: "37047382"
 ---
 # <a name="sql-server-stored-procedure-activity"></a>SQL Server 預存程序活動
 > [!div class="op_single_selector" title1="Transformation Activities"]
@@ -34,7 +35,7 @@ ms.lasthandoff: 03/23/2018
 > * [.NET 自訂活動](data-factory-use-custom-activities.md)
 
 > [!NOTE]
-> 本文適用於第 1 版 Azure Data Factory (正式運作版)。 如果您使用第 2 版 Data Factory 服務 (預覽版)，請參閱[使用 Data Factory 第 2 版中的預存程序活動來轉換資料](../transform-data-using-stored-procedure.md)。
+> 本文適用於 Azure Data Factory 第 1 版。 如果您使用目前版本的 Data Factory 服務，請參閱[在 Data Factory 中使用預存程序活動來轉換資料](../transform-data-using-stored-procedure.md)。
 
 ## <a name="overview"></a>概觀
 您在 Data Factory [管線](data-factory-create-pipelines.md)中使用資料轉換活動，以轉換和處理您的原始資料以進行預測和深入了解。 預存程序活動是 Data Factory 支援的其中一個轉換活動。 本文是以[資料轉換活動](data-factory-data-transformation-activities.md)一文為基礎，提供 Data Factory 中資料轉換及所支援轉換活動的一般概觀。
@@ -161,9 +162,9 @@ ms.lasthandoff: 03/23/2018
 
 - **type** 屬性會設定為 **SqlServerStoredProcedure**。 
 - 類型屬性中的 **storedProcedureName** 會設定為 **sp_sample** (預存程序的名稱)。
-- **storedProcedureParameters** 區段包含一個名為 **DataTime** 的參數。 JSON 中參數的名稱和大小寫必須符合預存程序定義中參數的名稱和大小寫。 如果您需要為參數傳遞 null，請使用此語法：`"param1": null` (全部小寫)。
+- **storedProcedureParameters** 區段包含一個名為 **DateTime** 的參數。 JSON 中參數的名稱和大小寫必須符合預存程序定義中參數的名稱和大小寫。 如果您需要為參數傳遞 null，請使用此語法：`"param1": null` (全部小寫)。
  
-1. 按一下**...命令列上的 [更多]**，然後按一下 [新增管線]。
+1. 按一下 **...命令列上的 [更多]**，然後按一下 [新增管線]。
 2. 複製/貼上下列 JSON 程式碼片段：   
 
     ```JSON

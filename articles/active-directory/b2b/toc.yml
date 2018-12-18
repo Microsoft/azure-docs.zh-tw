@@ -1,0 +1,124 @@
+items:
+- name: Azure Active Directory B2B 文件
+  href: index.yml
+  items:
+  - name: 概觀
+    items:
+    - name: 什麼是 B2B 來賓使用者存取權？
+      href: what-is-b2b.md
+    - name: 比較 B2B 與 B2C
+      href: compare-with-b2c.md
+  - name: 快速入門
+    items:
+    - name: 在入口網站中新增來賓使用者
+      href: b2b-quickstart-add-guest-users-portal.md
+    - name: 使用 PowerShell 新增來賓使用者
+      href: b2b-quickstart-invite-powershell.md
+  - name: 教學課程
+    items:
+    - name: 大量邀請 B2B 來賓使用者
+      href: b2b-tutorial-bulk-invite.md
+    - name: 強制執行 Multi-Factor Authentication
+      href: b2b-tutorial-require-mfa.md
+  - name: 範例
+    items:
+    - name: 自助入口網站註冊範例
+      href: self-service-portal.md
+    - name: 程式碼和 Azure PowerShell 範例
+      href: code-samples.md
+  - name: 概念
+    items:
+    - name: B2B 授權
+      href: licensing-guidance.md
+    - name: B2B 和 Office 365 外部共用
+      href: o365-external-user.md
+    - name: 兌換邀請
+      href: redemption-experience.md
+    - name: 邀請電子郵件
+      href: invitation-email-elements.md
+    - name: 了解 B2B 使用者
+      href: user-properties.md
+    - name: B2B 使用者宣告對應
+      href: claims-mapping.md
+    - name: B2B 使用者權杖
+      href: user-token.md
+    - name: B2B 的條件式存取
+      href: conditional-access.md
+    - name: 適用於混合式組織的 B2B
+      href: hybrid-organizations.md
+    - name: 目前的限制
+      href: current-limitations.md
+    expanded: false
+  - name: 使用說明指南
+    items:
+    - name: 管理邀請
+      items:
+      - name: 管理員新增 B2B 使用者
+        href: add-users-administrator.md
+      - name: 資訊背景工作新增 B2B 使用者
+        href: add-users-information-worker.md
+      - name: Google 同盟
+        href: google-federation.md
+      - name: B2B 共用原則
+        href: delegate-invitations.md
+      - name: 允許或封鎖邀請
+        href: allow-deny-list.md
+      - name: 在沒有邀請的情況下新增 B2B 使用者
+        href: add-user-without-invite.md
+      - name: API 與自訂
+        href: customize-invitation-api.md
+    - name: 管理來賓帳戶
+      items:
+      - name: 將 B2B 使用者新增至角色
+        href: add-guest-to-role.md
+      - name: 動態群組和 B2B 使用者
+        href: use-dynamic-groups.md
+      - name: 了解 B2B 使用者
+        href: user-properties.md
+      - name: 適用於 Azure AD 整合應用程式的 B2B
+        href: configure-saas-apps.md
+    - name: 管理混合式組織中的存取權
+      items:
+      - name: 授與本機使用者雲端應用程式的存取權限
+        href: hybrid-on-premises-to-cloud.md
+      - name: 授與 B2B 使用者本機應用程式的存取權限
+        href: hybrid-cloud-to-on-premises.md
+    - name: 從組織離職
+      href: leave-the-organization.md
+    - name: 稽核與報告
+      href: auditing-and-reporting.md
+    - name: 疑難排解 B2B
+      href: troubleshoot.md
+    expanded: true
+  - name: 參考
+    items:
+    - name: 邀請管理員 API
+      href: customize-invitation-api.md
+  - name: 資源
+    items:
+    - name: 常見問題集
+      href: faq.md
+    - name: 取得 B2B 支援
+      href: get-support.md
+    - name: Azure 意見反應論壇
+      href: https://feedback.azure.com/forums/169401-azure-active-directory
+    - name: Azure 藍圖
+      href: https://azure.microsoft.com/roadmap/?category=security-identity
+    - name: MSDN 論壇
+      href: https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=WindowsAzureAD
+    - name: 價格
+      href: https://azure.microsoft.com/pricing/details/active-directory/
+    - name: 定價計算機
+      href: https://azure.microsoft.com/pricing/calculator/
+    - name: 服務更新
+      href: https://azure.microsoft.com/updates/?product=active-directory
+    - name: 堆疊溢位
+      href: http://stackoverflow.com/questions/tagged/azure-active-directory
+    - name: 影片
+      href: https://azure.microsoft.com/documentation/videos/index/?services=active-directory
+ms.openlocfilehash: e3517af7c8cf84834a7487089f426c5c5ff4a80f
+ms.sourcegitcommit: 776b450b73db66469cb63130c6cf9696f9152b6a
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "45986693"

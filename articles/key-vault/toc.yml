@@ -1,0 +1,140 @@
+items:
+- name: 金鑰保存庫文件
+  href: index.yml
+- name: 概觀
+  items:
+  - name: 關於 Key Vault
+    href: key-vault-overview.md
+- name: 快速入門
+  items:
+  - name: 設定和擷取祕密 - CLI
+    href: quick-create-cli.md
+  - name: 設定和擷取祕密 - PowerShell
+    href: quick-create-powershell.md
+  - name: 設定和擷取祕密 - 入口網站
+    href: quick-create-portal.md
+  - name: 設定和擷取祕密 - .NET
+    href: quick-create-net.md
+  - name: 設定和擷取祕密 - Node.js
+    href: quick-create-node.md
+- name: 教學課程
+  items:
+  - name: 從 Key Vault 讀取祕密
+    href: tutorial-web-application-keyvault.md
+  - name: 設定金鑰輪換和稽核
+    href: key-vault-key-rotation-log-monitoring.md
+- name: 範例
+  items:
+  - name: 程式碼範例
+    href: https://azure.microsoft.com/resources/samples/?service=key-vault
+- name: 概念
+  items:
+  - name: 什麼是金鑰保存庫？
+    href: key-vault-whatis.md
+  - name: 安全性環境
+    href: key-vault-ovw-security-worlds.md
+  - name: 虛刪除
+    href: key-vault-ovw-soft-delete.md
+  - name: 儲存體帳戶金鑰
+    href: key-vault-ovw-storage-keys.md
+  - name: 節流
+    href: key-vault-ovw-throttling.md
+  - name: 虛擬網路服務端點
+    href: key-vault-overview-vnet-service-endpoints.md
+  - name: 關於金鑰、祕密與憑證
+    href: about-keys-secrets-and-certificates.md
+    items:
+    - name: 開始使用憑證
+      href: certificate-scenarios.md
+    - name: 憑證建立方式
+      href: create-certificate.md
+    - name: 監視和管理憑證建立
+      href: create-certificate-scenarios.md
+- name: 使用說明指南
+  items:
+  - name: Azure Key Vault 記錄
+    href: key-vault-logging.md
+  - name: 防火牆後的存取
+    href: key-vault-access-behind-firewall.md
+  - name: 可用性與備援
+    href: key-vault-disaster-recovery-guidance.md
+  - name: 變更租用戶識別碼
+    href: key-vault-subscription-move-fix.md
+  - name: 使用 Azure CLI 建立和管理
+    href: key-vault-manage-with-cli2.md
+  - name: 透過 CLI 使用 Key Vault 虛刪除
+    href: key-vault-soft-delete-cli.md
+  - name: 透過 Azure PowerShell 使用 Key Vault 虛刪除
+    href: key-vault-soft-delete-powershell.md
+  - name: 使用群組以授與存取權
+    href: key-vault-group-permissions-for-apps.md
+  - name: 保護您的金鑰保存庫
+    href: key-vault-secure-your-key-vault.md
+  - name: 設定防火牆和虛擬網路
+    href: key-vault-network-security.md
+- name: 參考
+  items:
+  - name: Azure PowerShell
+    href: /powershell/module/azurerm.keyvault
+  - name: Azure CLI
+    href: /cli/azure/keyvault
+  - name: .NET
+    href: /dotnet/api/overview/azure/key-vault?view=azure-dotnet
+  - name: Java
+    href: /java/api/overview/azure/keyvault?view=azure-java-stable
+  - name: Node.js
+    href: /javascript/api/overview/azure/key-vault?view=azure-node-latest
+  - name: Python
+    href: /python/api/overview/azure/key-vault?view=azure-python
+  - name: REST
+    href: /rest/api/keyvault
+  - name: 開發
+    items:
+    - name: 金鑰保存庫開發人員指南
+      href: key-vault-developers-guide.md
+    - name: 服務限制
+      href: key-vault-service-limits.md
+    - name: 受 HSM 保護的金鑰
+      href: key-vault-hsm-protected-keys.md
+    - name: 遷移到 .NET 2.0
+      href: key-vault-dotnet2api-release-notes.md
+    - name: 儲存 Web 應用程式祕密
+      href: vs-secure-secret-appsettings.md
+    - name: 使用 .NET 驗證服務
+      href: service-to-service-authentication.md
+    - name: 使用 Visual Studio
+      items:
+      - name: 使用 Key Vault 連線服務
+        href: vs-key-vault-add-connected-service.md
+      - name: 開始使用 ASP.NET 專案
+        href: vs-key-vault-aspnet-get-started.md
+      - name: 我的 ASP.NET 專案發生什麼情形？
+        href: vs-key-vault-aspnet-what-happened.md
+      - name: 開始使用 ASP.NET Core 專案
+        href: vs-key-vault-aspnet-core-get-started.md
+      - name: 我的 ASP.NET Core 專案發生什麼情形？
+        href: vs-key-vault-aspnet-core-what-happened.md
+- name: 資源
+  items:
+  - name: 服務概觀
+    href: https://azure.microsoft.com/services/key-vault/
+  - name: 驗證、要求和回應
+    href: authentication-requests-and-responses.md
+  - name: 通用參數和標頭
+    href: common-parameters-and-headers.md
+  - name: 客戶資料
+    href: key-vault-customer-data.md
+  - name: 部落格
+    href: http://blogs.technet.com/b/kv/
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/key-vault/
+  - name: 產品意見反應
+    href: https://feedback.azure.com/forums/906355-azure-key-vault
+- name: 版本資訊
+  href: key-vault-versions.md
+ms.openlocfilehash: cd88b2ce876e462140f9d25833678e2f3b7f7805
+ms.sourcegitcommit: 0c64460a345c89a6b579b1d7e273435a5ab4157a
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43340008"

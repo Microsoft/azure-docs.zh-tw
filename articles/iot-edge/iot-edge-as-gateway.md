@@ -1,28 +1,28 @@
 ---
-title: "使用 Azure IoT Edge 裝置作為閘道 | Microsoft Docs"
-description: "使用 Azure IoT Edge 來建立透明、不透明或 Proxy 閘道裝置，將資料從多個下游裝置傳送到雲端或在本機處理。"
-services: iot-edge
-keywords: 
+title: 使用 Azure IoT Edge 裝置作為閘道 | Microsoft Docs
+description: 使用 Azure IoT Edge 來建立透明、不透明或 Proxy 閘道裝置，將資料從多個下游裝置傳送到雲端或在本機處理。
 author: kgremban
 manager: timlt
 ms.author: kgremban
-ms.date: 11/27/2017
-ms.topic: article
+ms.date: 09/21/2017
+ms.topic: conceptual
 ms.service: iot-edge
-ms.openlocfilehash: fe7ad2444b9378550e9624e3d109c8be4fd29f23
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+services: iot-edge
+ms.openlocfilehash: e1825bcdd8dbb06ef027919416b2d0532a7df9c2
+ms.sourcegitcommit: 42405ab963df3101ee2a9b26e54240ffa689f140
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47422825"
 ---
-# <a name="how-an-iot-edge-device-can-be-used-as-a-gateway---preview"></a>如何使用 IoT Edge 裝置作為閘道 - 預覽
+# <a name="how-an-iot-edge-device-can-be-used-as-a-gateway"></a>如何使用 IoT Edge 裝置作為閘道
 
 IoT 解決方案中的閘道用途為解決方案所特有，結合了裝置連線能力與邊緣分析。 不論 Azure IoT Edge 是與連線能力、身分識別或邊緣分析相關，都可用來滿足 IoT 閘道的所有需求。 本文中的閘道模式只是指下游裝置連線能力和裝置身分識別的特性，而非在閘道上處理裝置資料的方式。
 
 ## <a name="patterns"></a>模式
 使用 IoT Edge 裝置作為閘道的模式有三種：透明、通訊協定轉譯及身分識別轉譯：
 * **透明** – 理論上可連線到 IoT 中樞的裝置可以改為連線到閘道裝置。 這表示下游裝置有自己的 IoT 中樞身分識別，而且使用任何 MQTT、AMQP 或 HTTP 通訊協定。 閘道只會傳遞裝置與 IoT 中樞之間的通訊。 裝置並未察覺它們是透過閘道來與雲端通訊，而與 IoT 中樞中的裝置互動的使用者則未察覺中繼閘道裝置。 因此，閘道是透明的。 請參閱[建立透明閘道][ lnk-iot-edge-as-transparent-gateway]作法，以了解使用 IoT Edge 裝置作為透明閘道的詳情。
-* **通訊協定轉譯** – 不支援 MQTT、AMQP 或 HTTP 的裝置會使用閘道裝置將資料傳送到 IoT 中樞。 閘道很聰明，足以了解下游裝置所使用的通訊協定；不過，它是在 IoT 中樞唯一具有身分識別的裝置。 所有資訊看似來自一部裝置 (也就是閘道)。 這意味著，如果雲端應用程式想要推論每個裝置的資料，下游裝置必須在其訊息中內嵌其他身分識別資訊。 此外，IoT 中樞基本元件如同對應項，而方法僅適用於閘道裝置，而不適用於下游裝置。
+* **通訊協定轉譯** – 又稱為不透明閘道模式；不支援 MQTT、AMQP 或 HTTP 的裝置會使用閘道裝置將資料傳送到 IoT 中樞。 閘道很聰明，足以了解下游裝置所使用的通訊協定；不過，它是在 IoT 中樞唯一具有身分識別的裝置。 所有資訊看似來自一部裝置 (也就是閘道)。 這意味著，如果雲端應用程式想要推論每個裝置的資料，下游裝置必須在其訊息中內嵌其他身分識別資訊。 此外，IoT 中樞基本元件如同對應項，而方法僅適用於閘道裝置，而不適用於下游裝置。
 * **身分識別轉譯** - 無法連線到 IoT 中樞的裝置會連線到閘道裝置，以代表下游裝置提供 IoT 中樞身分識別和通訊協定轉譯。 閘道很聰明，足以了解下游裝置所使用的通訊協定，可提供這些裝置的身分識別，以及轉譯 IoT 中樞基本元件。 下游裝置會出現於 IoT 中樞，成為具有對應項和方法的第一級裝置。 使用者可與 IoT 中樞中的裝置互動，且並未察覺中繼閘道裝置。
 
 ![閘道模式的圖表][1]
@@ -40,7 +40,7 @@ IoT 解決方案中的閘道用途為解決方案所特有，結合了裝置連�
 進行身分識別轉譯的閘道可提供通訊協定轉譯的優點，此外還可從雲端進行下游裝置的完整管理。 不論 IoT 解決方案中的所有裝置使用的通訊協定為何，全都會出現在 IoT 中樞中。
 
 ## <a name="cheat-sheet"></a>功能提要
-以下的快速功能提要比較使用透明、不透明和 Proxy 閘道時的 IoT 中樞基本元件。
+以下的速查表提供使用透明、不透明 (通訊協定) 和 Proxy 閘道時的 IoT 中樞基本項目比較。
 
 | &nbsp; | 透明閘道 | 通訊協定翻譯 | 身分識別協定翻譯 |
 |--------|-------------|--------|--------|
@@ -54,7 +54,7 @@ IoT 解決方案中的閘道用途為解決方案所特有，結合了裝置連�
 ## <a name="next-steps"></a>後續步驟
 使用 IoT Edge 裝置作為[透明閘道][lnk-iot-edge-as-transparent-gateway] 
 
-[lnk-iot-edge-as-transparent-gateway]: ./how-to-create-transparent-gateway.md
+[lnk-iot-edge-as-transparent-gateway]: ./how-to-create-transparent-gateway-linux.md
 [lnk-iothub-throttles-quotas]: ../iot-hub/iot-hub-devguide-quotas-throttling.md
 
 [1]: ./media/iot-edge-as-gateway/edge-as-gateway.png

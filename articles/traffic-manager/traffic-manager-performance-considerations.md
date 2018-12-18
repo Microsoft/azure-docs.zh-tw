@@ -1,11 +1,11 @@
 ---
-title: "Azure 流量管理員的效能考量 | Microsoft Docs"
-description: "了解流量管理員的效能，以及如何在使用流量管理員時測試您的網站效能"
+title: Azure 流量管理員的效能考量 | Microsoft Docs
+description: 了解流量管理員的效能，以及如何在使用流量管理員時測試您的網站效能
 services: traffic-manager
-documentationcenter: 
+documentationcenter: ''
 author: kumudd
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 3ba5dfa1-2922-43f1-9a23-d06969c4a516
 ms.service: traffic-manager
 ms.devlang: na
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23110786"
 ---
 # <a name="performance-considerations-for-traffic-manager"></a>流量管理員的效能考量
 

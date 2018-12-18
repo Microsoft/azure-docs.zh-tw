@@ -1,11 +1,11 @@
 ---
-title: "將 Azure 中 Linux VM 上的磁碟加密 | Microsoft Docs"
-description: "如何使用 Azure CLI 2.0 將 Linux VM 上的虛擬磁碟加密以增強安全性"
+title: 將 Azure 中 Linux VM 上的磁碟加密 | Microsoft Docs
+description: 如何使用 Azure CLI 將 Linux VM 上的虛擬磁碟加密以增強安全性
 services: virtual-machines-linux
-documentationcenter: 
-author: iainfoulds
+documentationcenter: ''
+author: cynthn
 manager: jeconnoc
-editor: 
+editor: ''
 tags: azure-resource-manager
 ms.assetid: 2a23b6fa-6941-4998-9804-8efe93b647b3
 ms.service: virtual-machines-linux
@@ -13,109 +13,22 @@ ms.devlang: azurecli
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
-ms.date: 12/14/2017
-ms.author: iainfou
-ms.openlocfilehash: b87d187eadff98ba84aa6478c2d233f2ec1c203c
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+ms.date: 05/31/2018
+ms.author: cynthn
+ms.openlocfilehash: 044486424f8bcc9d66998f775154eff9c52e7d1b
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46981224"
 ---
-# <a name="how-to-encrypt-virtual-disks-on-a-linux-vm"></a>如何將 Linux VM 上的虛擬磁碟加密
-如需強化虛擬機器 (VM) 安全性與合規性，可以將虛擬磁碟和 VM 本身加密。 VM 會使用 Azure 金鑰保存庫中受保護的密碼編譯金鑰進行加密。 您可控制這些密碼編譯金鑰，並可稽核其使用情況。 本文詳細說明如何使用 Azure CLI 2.0 將 Linux VM 上的虛擬磁碟加密。 您也可以使用 [Azure CLI 1.0](encrypt-disks-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 來執行這些步驟。
+# <a name="how-to-encrypt-a-linux-virtual-machine-in-azure"></a>如何在 Azure 中將 Linux 虛擬機器加密
 
-## <a name="quick-commands"></a>快速命令
-如果您需要快速完成工作，下列章節詳細說明將 VM 上的虛擬磁碟加密的基本命令。 每個步驟的詳細資訊和內容可在文件其他地方找到，[從這裡開始](#overview-of-disk-encryption)。
+如需強化虛擬機器 (VM) 安全性與合規性，可以將虛擬磁碟和 VM 本身加密。 VM 會使用 Azure 金鑰保存庫中受保護的密碼編譯金鑰進行加密。 您可控制這些密碼編譯金鑰，並可稽核其使用情況。 本文詳細說明如何使用 Azure CLI 將 Linux VM 上的虛擬磁碟加密。 
 
-您需要安裝最新的 [Azure CLI 2.0](/cli/azure/install-az-cli2)，並使用 [az login](/cli/azure/reference-index#az_login) 來登入 Azure 帳戶。 在下列範例中，請以您自己的值取代範例參數名稱。 範例參數名稱包括 *myResourceGroup*、*myKey* 及 *myVM*。
+[!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-首先，使用 [az provider register](/cli/azure/provider#az_provider_register) 啟用您的 Azure 訂用帳戶中的 Azure Key Vault 提供者，以及使用 [az group create](/cli/azure/group#az_group_create) 建立資源群組。 下列範例會在 *eastus* 位置建立名為 *myResourceGroup* 的資源群組：
-
-```azurecli
-az provider register -n Microsoft.KeyVault
-az group create --name myResourceGroup --location eastus
-```
-
-使用 [az keyvault create](/cli/azure/keyvault#az_keyvault_create) 建立 Azure Key Vault 並啟用 Key Vault 以便搭配磁碟加密使用。 針對 *keyvault_name* 指定一個唯一的 Key Vault 名稱，如下所示︰
-
-```azurecli
-keyvault_name=myuniquekeyvaultname
-az keyvault create \
-    --name $keyvault_name \
-    --resource-group myResourceGroup \
-    --location eastus \
-    --enabled-for-disk-encryption True
-```
-
-使用 [az keyvault key create](/cli/azure/keyvault/key#az_keyvault_key_create) 在 Key Vault 中建立密碼編譯金鑰。 下列範例會建立一個名為 *myKey* 的金鑰：
-
-```azurecli
-az keyvault key create --vault-name $keyvault_name --name myKey --protection software
-```
-
-使用 Azure Active Directory 搭配 [az ad sp create-for-rbac](/cli/azure/ad/sp#az_ad_sp_create_for_rbac) 建立服務主體。 服務主體會處理 Key Vault 中密碼編譯金鑰的驗證與交換。 下列範例會讀取服務主體識別碼和密碼的值，以便使用於後續命令︰
-
-```azurecli
-read sp_id sp_password <<< $(az ad sp create-for-rbac --query [appId,password] -o tsv)
-```
-
-密碼只會在您建立服務主體時輸出。 如有需要，檢視及記錄密碼 (`echo $sp_password`)。 您可以使用 [az ad sp list](/cli/azure/ad/sp#az_ad_sp_list) 列出服務主體，以及使用 [az ad sp show](/cli/azure/ad/sp#az_ad_sp_show) 檢視特定服務主體的其他相關資訊。
-
-使用 [az keyvault set-policy](/cli/azure/keyvault#az_keyvault_set_policy) 設定 Key Vault 的權限。 下列範例中的服務主體識別碼是由先前命令所提供的︰
-
-```azurecli
-az keyvault set-policy --name $keyvault_name --spn $sp_id \
-    --key-permissions wrapKey \
-    --secret-permissions set
-```
-
-使用 [az vm create](/cli/azure/vm#az_vm_create) 建立 VM 並連結 5GB 資料磁碟。 只有某些 Marketplace 映像支援磁碟加密。 下列範例會使用 *CentOS 7.2n* 映像來建立名為 *myVM* 的 VM︰
-
-```azurecli
-az vm create \
-    --resource-group myResourceGroup \
-    --name myVM \
-    --image OpenLogic:CentOS:7.2n:7.2.20160629 \
-    --admin-username azureuser \
-    --generate-ssh-keys \
-    --data-disk-sizes-gb 5
-```
-
-請使用先前命令輸出中所顯示的 *publicIpAddress*，來透過 SSH 連線到您的 VM。 建立磁碟分割和檔案系統，然後掛接資料磁碟。 如需詳細資訊，請參閱[連線到 Linux VM 以掛接新磁碟](add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json#connect-to-the-linux-vm-to-mount-the-new-disk)。 關閉 SSH 工作階段。
-
-使用 [az vm encryption enable](/cli/azure/vm/encryption#az_vm_encryption_enable) 將您的 VM 加密。 下列範例使用先前 `ad sp create-for-rbac` 命令中的 *$sp_id* 和 *$sp_password* 變數︰
-
-```azurecli
-az vm encryption enable \
-    --resource-group myResourceGroup \
-    --name myVM \
-    --aad-client-id $sp_id \
-    --aad-client-secret $sp_password \
-    --disk-encryption-keyvault $keyvault_name \
-    --key-encryption-key myKey \
-    --volume-type all
-```
-
-磁碟加密程序需花一些時間完成。 使用 [az vm encryption show](/cli/azure/vm/encryption#az_vm_encryption_show) 監視此程序的狀態：
-
-```azurecli
-az vm encryption show --resource-group myResourceGroup --name myVM
-```
-
-狀態顯示 **EncryptionInProgress**。 等到 OS 磁碟的狀態回報 **VMRestartPending**，然後使用 [az vm restart](/cli/azure/vm#az_vm_restart) 重新啟動您的 VM：
-
-```azurecli
-az vm restart --resource-group myResourceGroup --name myVM
-```
-
-磁碟加密程序會在開機過程中完成，因此請等候幾分鐘，再使用 [az vm encryption show](/cli/azure/vm/encryption#az_vm_encryption_show) 檢查加密的狀態：
-
-```azurecli
-az vm encryption show --resource-group myResourceGroup --name myVM
-```
-
-狀態現在應會將 OS 磁碟和資料磁碟回報為 [已加密]。
-
+如果您選擇在本機安裝和使用 CLI，本文會要求您執行 Azure CLI 2.0.30 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI]( /cli/azure/install-azure-cli)。
 
 ## <a name="overview-of-disk-encryption"></a>磁碟加密概觀
 Linux VM 上的待用虛擬磁碟會使用 [dm-crypt](https://wikipedia.org/wiki/Dm-crypt) 進行加密。 將 Azure 中的虛擬磁碟加密完全免費。 密碼編譯金鑰會使用軟體保護功能儲存在 Azure 金鑰保存庫中，或者您可以在 FIPS 140-2 第 2 級標準認證的硬體安全性模組 (HSM) 中匯入或產生金鑰。 您可保留這些密碼編譯金鑰的控制權，並可稽核其使用情況。 這些密碼編譯金鑰用來加密及解密連接到 VM 的虛擬磁碟。 Azure Active Directory 服務主體會提供一個安全機制，以便在 VM 開機或關機時發出這些密碼編譯金鑰。
@@ -157,21 +70,21 @@ Linux VM 上的待用虛擬磁碟會使用 [dm-crypt](https://wikipedia.org/wiki
 如需有關支援的案例和限制的詳細資訊，請參閱 [IaaS VM 的 Azure 磁碟加密](../../security/azure-security-disk-encryption.md)
 
 
-## <a name="create-azure-key-vault-and-keys"></a>建立 Azure Key Vault 和金鑰
-您需要安裝最新的 [Azure CLI 2.0](/cli/azure/install-az-cli2)，並使用 [az login](/cli/azure/reference-index#az_login) 來登入 Azure 帳戶。 在下列範例中，請以您自己的值取代範例參數名稱。 範例參數名稱包括 *myResourceGroup*、*myKey* 及 *myVM*。
+## <a name="create-an-azure-key-vault-and-keys"></a>建立 Azure Key Vault 和金鑰
+在下列範例中，請以您自己的值取代範例參數名稱。 範例參數名稱包括 *myResourceGroup*、*myKey* 及 *myVM*。
 
 建立 Azure 金鑰保存庫的第一個步驟是儲存您的密碼編譯金鑰。 Azure 金鑰保存庫儲存可讓您安全地在應用程式和服務中實作的金鑰和密碼 (Secret 或 Password)。 如需虛擬磁碟加密，您可使用金鑰保存庫來儲存用來加密或解密虛擬磁碟的密碼編譯金鑰。
 
-使用 [az provider register](/cli/azure/provider#az_provider_register) 啟用您的 Azure 訂用帳戶中的 Azure Key Vault 提供者，以及使用 [az group create](/cli/azure/group#az_group_create) 建立資源群組。 下列範例會在 `eastus` 位置建立名為 *myResourceGroup* 的資源群組：
+使用 [az provider register](/cli/azure/provider#az-provider-register) 啟用您的 Azure 訂用帳戶中的 Azure Key Vault 提供者，以及使用 [az group create](/cli/azure/group#az-group-create) 建立資源群組。 下列範例會在 `eastus` 位置建立名為 *myResourceGroup* 的資源群組：
 
-```azurecli
+```azurecli-interactive
 az provider register -n Microsoft.KeyVault
 az group create --name myResourceGroup --location eastus
 ```
 
-包含密碼編譯金鑰和相關聯計算資源 (例如儲存體和 VM) 的 Azure 金鑰保存庫本身必須位於相同的區域中。 使用 [az keyvault create](/cli/azure/keyvault#az_keyvault_create) 建立 Azure Key Vault 並啟用 Key Vault 以便搭配磁碟加密使用。 針對 *keyvault_name* 指定一個唯一的 Key Vault 名稱，如下所示︰
+包含密碼編譯金鑰和相關聯計算資源 (例如儲存體和 VM) 的 Azure 金鑰保存庫本身必須位於相同的區域中。 使用 [az keyvault create](/cli/azure/keyvault#az-keyvault-create) 建立 Azure Key Vault 並啟用 Key Vault 以便搭配磁碟加密使用。 針對 *keyvault_name* 指定一個唯一的 Key Vault 名稱，如下所示︰
 
-```azurecli
+```azurecli-interactive
 keyvault_name=myuniquekeyvaultname
 az keyvault create \
     --name $keyvault_name \
@@ -182,41 +95,41 @@ az keyvault create \
 
 您可以使用軟體或硬體安全性模型 (HSM) 保護功能來儲存密碼編譯金鑰。 使用 HSM 時需要進階金鑰保存庫。 建立進階金鑰保存庫 (而非用來儲存軟體保護金鑰的標準金鑰保存庫) 會有額外的成本。 若要建立進階金鑰保存庫，在前一個步驟中將 `--sku Premium` 新增至命令。 下列範例會使用軟體保護的金鑰，因為您建立了標準金鑰保存庫。
 
-在兩種保護模型中，Azure 平台都必須獲得存取權，才能在 VM 開機時要求密碼編譯金鑰來將虛擬磁碟解密。 使用 [az keyvault key create](/cli/azure/keyvault/key#az_keyvault_key_create) 在 Key Vault 中建立密碼編譯金鑰。 下列範例會建立一個名為 *myKey* 的金鑰：
+在兩種保護模型中，Azure 平台都必須獲得存取權，才能在 VM 開機時要求密碼編譯金鑰來將虛擬磁碟解密。 使用 [az keyvault key create](/cli/azure/keyvault/key#az-keyvault-key-create) 在 Key Vault 中建立密碼編譯金鑰。 下列範例會建立一個名為 *myKey* 的金鑰：
 
-```azurecli
+```azurecli-interactive
 az keyvault key create --vault-name $keyvault_name --name myKey --protection software
 ```
 
 
-## <a name="create-the-azure-active-directory-service-principal"></a>建立 Azure Active Directory 服務主體
+## <a name="create-an-azure-active-directory-service-principal"></a>建立 Azure Active Directory 服務主體
 將虛擬磁碟加密或解密時，您可以指定帳戶以處理 Key Vault 中密碼編譯金鑰的驗證和交換。 此帳戶 (Azure Active Directory 服務主體) 可讓 Azure 平台代表 VM 要求適當的密碼編譯金鑰。 雖然許多組織都有專用的 Azure Active Directory 目錄，但您的訂用帳戶中會有預設 Azure Active Directory 執行個體。
 
-使用 Azure Active Directory 搭配 [az ad sp create-for-rbac](/cli/azure/ad/sp#az_ad_sp_create_for_rbac) 建立服務主體。 下列範例會讀取服務主體識別碼和密碼的值，以便使用於後續命令︰
+使用 Azure Active Directory 搭配 [az ad sp create-for-rbac](/cli/azure/ad/sp#az-ad-sp-create-for-rbac) 建立服務主體。 下列範例會讀取服務主體和密碼的值，以便使用於後續命令：
 
-```azurecli
+```azurecli-interactive
 read sp_id sp_password <<< $(az ad sp create-for-rbac --query [appId,password] -o tsv)
 ```
 
-密碼只會在您建立服務主體時顯示。 如有需要，檢視及記錄密碼 (`echo $sp_password`)。 您可以使用 [az ad sp list](/cli/azure/ad/sp#az_ad_sp_list) 列出服務主體，以及使用 [az ad sp show](/cli/azure/ad/sp#az_ad_sp_show) 檢視特定服務主體的其他相關資訊。
+密碼只會在您建立服務主體時顯示。 如有需要，檢視及記錄密碼 (`echo $sp_password`)。 您可以使用 [az ad sp list](/cli/azure/ad/sp#az-ad-sp-list) 列出服務主體，以及使用 [az ad sp show](/cli/azure/ad/sp#az-ad-sp-show) 檢視特定服務主體的其他相關資訊。
 
-若要成功加密或解密虛擬磁碟，Key Vault 中儲存之密碼編譯金鑰的權限必須設定為允許 Azure Active Directory 服務主體讀取金鑰。 使用 [az keyvault set-policy](/cli/azure/keyvault#az_keyvault_set_policy) 設定 Key Vault 的權限。 下列範例中的服務主體識別碼是由先前命令所提供的︰
+若要成功加密或解密虛擬磁碟，Key Vault 中儲存之密碼編譯金鑰的權限必須設定為允許 Azure Active Directory 服務主體讀取金鑰。 使用 [az keyvault set-policy](/cli/azure/keyvault#az-keyvault-set-policy) 設定 Key Vault 的權限。 下列範例中的服務主體識別碼是由先前命令所提供的︰
 
-```azurecli
+```azurecli-interactive
 az keyvault set-policy --name $keyvault_name --spn $sp_id \
   --key-permissions wrapKey \
   --secret-permissions set
 ```
 
 
-## <a name="create-virtual-machine"></a>建立虛擬機器
-使用 [az vm create](/cli/azure/vm#az_vm_create) 建立要加密的 VM 並連結 5GB 資料磁碟。 只有某些 Marketplace 映像支援磁碟加密。 下列範例會使用 *CentOS 7.2n* 映像來建立名為 *myVM* 的 VM︰
+## <a name="create-a-virtual-machine"></a>建立虛擬機器
+使用 [az vm create](/cli/azure/vm#az-vm-create) 建立 VM 並連結 5GB 資料磁碟。 只有某些 Marketplace 映像支援磁碟加密。 下列範例會使用 *Ubuntu 16.04 LTS* 映像來建立名為 *myVM* 的 VM：
 
-```azurecli
+```azurecli-interactive
 az vm create \
     --resource-group myResourceGroup \
     --name myVM \
-    --image OpenLogic:CentOS:7.2n:7.2.20160629 \
+    --image UbuntuLTS \
     --admin-username azureuser \
     --generate-ssh-keys \
     --data-disk-sizes-gb 5
@@ -225,7 +138,7 @@ az vm create \
 請使用先前命令輸出中所顯示的 *publicIpAddress*，來透過 SSH 連線到您的 VM。 建立磁碟分割和檔案系統，然後掛接資料磁碟。 如需詳細資訊，請參閱[連線到 Linux VM 以掛接新磁碟](add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json#connect-to-the-linux-vm-to-mount-the-new-disk)。 關閉 SSH 工作階段。
 
 
-## <a name="encrypt-virtual-machine"></a>將虛擬機器加密
+## <a name="encrypt-the-virtual-machine"></a>將虛擬機器加密
 若要將虛擬磁碟加密，您可結合所有先前的元件︰
 
 1. 指定 Azure Active Directory 服務主體和密碼。
@@ -233,9 +146,9 @@ az vm create \
 3. 指定要用於實際加密和解密的密碼編譯金鑰。
 4. 指定是否要將作業系統磁碟、資料磁碟或所有磁碟加密。
 
-使用 [az vm encryption enable](/cli/azure/vm/encryption#az_vm_encryption_enable) 將您的 VM 加密。 下列範例使用先前 [az ad sp create-for-rbac](/cli/azure/ad/sp#az_ad_sp_create_for_rbac) 命令中的 *$sp_id* 和 *$sp_password* 變數︰
+使用 [az vm encryption enable](/cli/azure/vm/encryption#az-vm-encryption-enable) 將您的 VM 加密。 下列範例使用先前 [az ad sp create-for-rbac](/cli/azure/ad/sp#az-ad-sp-create-for-rbac) 命令中的 *$sp_id* 和 *$sp_password* 變數︰
 
-```azurecli
+```azurecli-interactive
 az vm encryption enable \
     --resource-group myResourceGroup \
     --name myVM \
@@ -246,9 +159,9 @@ az vm encryption enable \
     --volume-type all
 ```
 
-磁碟加密程序需花一些時間完成。 使用 [az vm encryption show](/cli/azure/vm/encryption#az_vm_encryption_show) 監視此程序的狀態：
+磁碟加密程序需花一些時間完成。 使用 [az vm encryption show](/cli/azure/vm/encryption#az-vm-encryption-show) 監視此程序的狀態：
 
-```azurecli
+```azurecli-interactive
 az vm encryption show --resource-group myResourceGroup --name myVM
 ```
 
@@ -257,19 +170,19 @@ az vm encryption show --resource-group myResourceGroup --name myVM
 ```json
 [
   "dataDisk": "EncryptionInProgress",
-  "osDisk": "EncryptionInProgress",
+  "osDisk": "EncryptionInProgress"
 ]
 ```
 
-等到 OS 磁碟的狀態回報 **VMRestartPending**，然後使用 [az vm restart](/cli/azure/vm#az_vm_restart) 重新啟動您的 VM：
+等到 OS 磁碟的狀態回報 **VMRestartPending**，然後使用 [az vm restart](/cli/azure/vm#az-vm-restart) 重新啟動您的 VM：
 
-```azurecli
+```azurecli-interactive
 az vm restart --resource-group myResourceGroup --name myVM
 ```
 
-磁碟加密程序會在開機過程中完成，因此請等候幾分鐘，再使用 **az vm encryption show** 檢查加密的狀態：
+磁碟加密程序會在開機過程中完成，因此請等候幾分鐘，再使用 [az vm encryption show](/cli/azure/vm/encryption#az-vm-encryption-show) 檢查加密的狀態：
 
-```azurecli
+```azurecli-interactive
 az vm encryption show --resource-group myResourceGroup --name myVM
 ```
 
@@ -279,13 +192,18 @@ az vm encryption show --resource-group myResourceGroup --name myVM
 ## <a name="add-additional-data-disks"></a>新增其他資料磁碟
 一旦將資料磁碟加密，您稍後即可將其他虛擬磁碟新增至您的 VM，而且予以加密。 例如，將第二個虛擬磁碟新增至您的 VM，如下所示︰
 
-```azurecli
-az vm disk attach-new --resource-group myResourceGroup --vm-name myVM --size-in-gb 5
+```azurecli-interactive
+az vm disk attach \
+    --resource-group myResourceGroup \
+    --vm-name myVM \
+    --disk myDataDisk \
+    --new \
+    --size-gb 5
 ```
 
 重新執行命令來加密虛擬磁碟，如下所示：
 
-```azurecli
+```azurecli-interactive
 az vm encryption enable \
     --resource-group myResourceGroup \
     --name myVM \

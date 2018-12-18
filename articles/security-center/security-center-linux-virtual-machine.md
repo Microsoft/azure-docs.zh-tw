@@ -1,11 +1,11 @@
 ---
-title: "使用 Linux 的 Azure 資訊安全中心和 Azure 虛擬機器 | Microsoft Docs"
-description: "本文件協助您了解 Azure 資訊安全中心可如何保護您的 Azure 虛擬機器。"
+title: 使用 Linux 的 Azure 資訊安全中心和 Azure 虛擬機器 | Microsoft Docs
+description: 本文件協助您了解 Azure 資訊安全中心可如何保護您的 Azure 虛擬機器。
 services: security-center
 documentationcenter: na
-author: YuriDio
-manager: swadhwa
-editor: 
+author: terrylan
+manager: mbaldwin
+editor: ''
 ms.assetid: 5fe5a12c-5d25-430c-9d47-df9438b1d7c5
 ms.service: security-center
 ms.devlang: na
@@ -14,11 +14,12 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/03/2017
 ms.author: yurid
-ms.openlocfilehash: 0df4fca59575bd8e18e91fea2066a9e694ed320d
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: d75750372c240edfa821c692cd6254f4ad60f4c4
+ms.sourcegitcommit: 870d372785ffa8ca46346f4dfe215f245931dae1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 05/08/2018
+ms.locfileid: "33895988"
 ---
 # <a name="azure-security-center-and-azure-virtual-machines-with-linux"></a>使用 Linux 的 Azure 資訊安全中心和 Azure 虛擬機器
 [Azure 資訊安全中心](https://azure.microsoft.com/services/security-center/)可協助您保護、偵測威脅並採取相應的措施。 它提供您 Azure 訂用帳戶之間的整合式安全性監視和原則管理，協助您偵測可能會忽略的威脅，且適用於廣泛的安全性解決方案生態系統。
@@ -32,7 +33,7 @@ ms.lasthandoff: 10/11/2017
 * 系統安全性和重大更新遺失
 * 端點保護建議
 * 磁碟加密驗證
-* 網路型攻擊 (僅適用於[標準版本](https://azure.microsoft.com/en-us/pricing/details/security-center/))
+* 網路型攻擊 (僅適用於[標準版本](https://azure.microsoft.com/pricing/details/security-center/))
 
 除了協助您保護 Azure VM，資訊安全中心也提供雲端服務、應用程式服務、虛擬網路等的安全性監視和管理功能。 
 

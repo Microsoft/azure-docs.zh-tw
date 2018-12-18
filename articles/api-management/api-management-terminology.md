@@ -1,21 +1,22 @@
 ---
-title: "Azure API 管理術語 | Microsoft Docs"
-description: "本文提供 API 管理專用的詞彙定義。"
+title: Azure API 管理術語 | Microsoft Docs
+description: 本文提供 API 管理專用的詞彙定義。
 services: api-management
-documentationcenter: 
-author: Juliako
+documentationcenter: ''
+author: vladvino
 manager: cfowler
-editor: 
+editor: ''
 ms.service: api-management
 ms.workload: integration
 ms.topic: article
 ms.date: 10/11/2017
 ms.author: apimpm
-ms.openlocfilehash: 9391b65a5aade4c050ca964354bfea2d3a2338d8
-ms.sourcegitcommit: b854df4fc66c73ba1dd141740a2b348de3e1e028
+ms.openlocfilehash: 81cf34cacdfe37e25d6b745304ab0879245fd8da
+ms.sourcegitcommit: d98d99567d0383bb8d7cbe2d767ec15ebf2daeb2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/04/2017
+ms.lasthandoff: 05/10/2018
+ms.locfileid: "33934589"
 ---
 # <a name="terminology"></a>術語
 

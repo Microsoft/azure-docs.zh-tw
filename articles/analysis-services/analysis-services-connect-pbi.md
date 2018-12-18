@@ -1,25 +1,19 @@
 ---
-title: "使用 Power BI 來連接到 Azure Analysis Services | Microsoft Docs"
-description: "了解如何使用 Power BI 來連接到 Azure Analysis Services 伺服器。"
-services: analysis-services
-documentationcenter: 
+title: 使用 Power BI 來連接到 Azure Analysis Services | Microsoft Docs
+description: 了解如何使用 Power BI 來連接到 Azure Analysis Services 伺服器。
 author: minewiskan
 manager: kfile
-editor: 
-tags: 
-ms.assetid: 
-ms.service: analysis-services
-ms.devlang: NA
-ms.topic: article
-ms.tgt_pltfrm: NA
-ms.workload: na
-ms.date: 02/10/2018
+ms.service: azure-analysis-services
+ms.topic: conceptual
+ms.date: 07/03/2018
 ms.author: owend
-ms.openlocfilehash: 568c18fb0591284995f5986f98b3762a9d19b056
-ms.sourcegitcommit: b32d6948033e7f85e3362e13347a664c0aaa04c1
+ms.reviewer: minewiskan
+ms.openlocfilehash: 00a975ae3acb470912c702d8a37717e5c270c9af
+ms.sourcegitcommit: 86cb3855e1368e5a74f21fdd71684c78a1f907ac
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/13/2018
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37446787"
 ---
 # <a name="connect-with-power-bi"></a>使用 Power BI 進行連接
 

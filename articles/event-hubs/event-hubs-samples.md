@@ -1,73 +1,51 @@
 ---
-title: "Azure 事件中樞範例 | Microsoft Docs"
-description: "Azure 事件中樞範例"
+title: Azure 事件中樞範例 | Microsoft Docs
+description: Azure 事件中樞範例
 services: event-hubs
 documentationcenter: na
-author: sethmanheim
+author: ShubhaVijayasarathy
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: event-hubs
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/05/2018
-ms.author: sethm
-ms.openlocfilehash: a581b7039a3631b7f1dc35816175242f892bd7dd
-ms.sourcegitcommit: 168426c3545eae6287febecc8804b1035171c048
+ms.date: 07/17/2018
+ms.author: shvija
+ms.openlocfilehash: fbde6e5a5ed053d6c151b3af25535c397a496ef4
+ms.sourcegitcommit: d0ea925701e72755d0b62a903d4334a3980f2149
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/08/2018
+ms.lasthandoff: 08/09/2018
+ms.locfileid: "40005329"
 ---
 # <a name="event-hubs-samples"></a>事件中樞範例 
+您可以在 [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples) 上尋找事件中樞範例。 這些範例示範 [Azure 事件中樞](/azure/event-hubs/)中的主要功能。 本主題分類及描述可用的範例與每個範例的連結。
 
-「Azure 事件中樞」範例集示範 [Azure 事件中樞](/azure/event-hubs/)中的主要功能。 本主題分類及描述可用的範例與每個範例的連結。
+## <a name="net-samples"></a>.NET 範例
 
-在撰寫本文時，事件中樞範例位於數個不同的位置：
+| 範例名稱 | 說明 | 
+| ----------- | ----------- | 
+| [SampleSender](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleSender) | 這個範例示範如何撰寫 .NET Core 主控台應用程式，以將一組事件傳送到事件中樞。 |
+| [SampleEHReceiver](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleEphReceiver) | 這個範例示範如何撰寫 .NET Core 主控台應用程式，以使用「事件處理器主機」程式庫從事件中樞接收一組事件。  | 
 
-- [MSDN 開發人員程式碼範例](https://code.msdn.microsoft.com/site/search?query=event%20hubs&f%5B0%5D.Value=event%20hubs&f%5B0%5D.Type=SearchText&ac=5)
-- [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples)
+## <a name="java-samples"></a>Java 範例
 
-如需不同版本的 .NET Framework 的詳細資訊，請參閱[架構與目標](/dotnet/articles/standard/frameworks)。
-
-更多的範例會隨時新增，所以請經常回到這裡查看更新。
-
-## <a name="net-standard"></a>.NET Standard
-
-下列範例會示範如何使用 [.NET Standard 程式庫](/dotnet/articles/standard/library)的[事件中樞用戶端](https://github.com/Azure/azure-event-hubs-dotnet/blob/master/readme.md)傳送與接收事件。
-
-### <a name="send-events"></a>傳送事件 
-
-[開始傳送](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleSender)範例示範如何撰寫一個 .NET Core 主控台應用程式，以將事件傳送到事件中樞。
-
-### <a name="receive-events"></a>接收事件 
-
-[開始使用事件處理器主機接收](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleEphReceiver)範例是一個 .NET Core 主控台應用程式，可使用事件處理器主機從事件中樞接收訊息。
-
-## <a name="net-framework"></a>.NET Framework   
-
-這些範例會示範 Azure 事件中樞的各種其他功能，以 [.NET Framework 程式庫](/dotnet/framework/index)為目標。
- 
-### <a name="notify-users-of-events-received"></a>通知使用者收到的事件
-
-[AppToNotifyUsers](https://github.com/Azure-Samples/event-hubs-dotnet-user-notifications) 範例通知使用者從感應器或其他系統接收到的資料。
-
-### <a name="get-started-with-event-hubs"></a>開始使用事件中心 
-
-[開始使用事件中樞](https://code.msdn.microsoft.com/Service-Bus-Event-Hub-286fd097)範例示範「事件中樞」的基本功能，例如如何建立事件中樞、將事件傳送到事件中樞，以及使用[事件處理器主機](https://www.nuget.org/packages/Microsoft.Azure.ServiceBus.EventProcessorHost/)來取用事件。
-
-### <a name="scale-out-event-processing"></a>相應放大事件處理 
-
-[相應放大事件處理](https://code.msdn.microsoft.com/Service-Bus-Event-Hub-45f43fc3)範例示範如何使用 [Event Processor Host](https://www.nuget.org/packages/Microsoft.Azure.ServiceBus.EventProcessorHost/) 來分散事件中樞資料流耗用量的工作負載。 它示範如何實作 **EventProcessor** 和 **EventProcessorFactory** 物件，以管理事件資料流。 
+| 範例名稱 | 說明 | 
+| ----------- | ----------- | 
+| [SendBatch](https://github.com/Azure/azure-event-hubs/tree/master/samples/Java/Basic/SendBatch)  | 這個範例說明如何將事件批次內嵌到事件中樞。 | 
+| [SimpleSend](https://github.com/Azure/azure-event-hubs/tree/master/samples/Java/Basic/SimpleSend) | 這個範例說明如何將事件內嵌到事件中樞。 |
+| [AdvanceSendOptions](https://github.com/Azure/azure-event-hubs/blob/master/samples/Java/Basic/AdvancedSendOptions) | 這個範例說明各種可供事件中樞用於內嵌事件的選項。 |
+| [ReceiveByDateTime](https://github.com/Azure/azure-event-hubs/blob/master/samples/Java/Basic/ReceiveByDateTime) | 這個範例說明如何使用特定日期時間位移，從事件中樞分割區接收事件。 |
+| [ReceiveUsingOffset](https://github.com/Azure/azure-event-hubs/blob/master/samples/Java/Basic/ReceiveUsingOffset) | 這個範例說明如何使用特定日期位移，從事件中樞分割區接收事件。 |  
+| [ReceiveUsingSequenceNumber](https://github.com/Azure/azure-event-hubs/blob/master/samples/Java/Basic/ReceiveUsingSequenceNumber) | 這個範例說明如何使用序號，從事件中樞分割區進行接收。 |   
+| [EventProcessorSample](https://github.com/Azure/azure-event-hubs/blob/master/samples/Java/Basic/EventProcessorSample) |這個範例說明如何使用事件處理器主機從事件中樞接收事件，該主機可提供自動分割區選取和跨越多個並行接收端的容錯移轉。 | 
+| [AutoScaleOnIngress](https://github.com/Azure/azure-event-hubs/blob/master/samples/Java/Benchmarks/AutoScaleOnIngress) | 這個範例說明事件中樞如何才能在高負載的情況下自動相應增加。 這個範例傳送事件的速率僅超過事件中樞已設定的速率，因而導致事件中樞相應增加。 | 
+| [IngressBenchmark](https://github.com/Azure/azure-event-hubs/blob/master/samples/Java/Benchmarks/IngressBenchmark) | 這個範例可讓您測量輸入速率。 | 
 
 ## <a name="next-steps"></a>後續步驟
-
-請造訪下列連結深入了解 .NET Framework 版本︰
-
-- [架構與目標](/dotnet/articles/standard/frameworks)
-- [.NET Framework 4.6 和 4.5](/dotnet/framework/index)
-
 您可以參閱下列文章，深入了解事件中樞：
 
 - [事件中心概觀](event-hubs-what-is-event-hubs.md)

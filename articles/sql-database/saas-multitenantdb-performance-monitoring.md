@@ -1,26 +1,29 @@
 ---
 title: 監視多租用戶 SaaS 應用程式中分區化多租用戶 Azure SQL Database 的效能 | Microsoft Docs
 description: 監視及管理多租用戶 SaaS 應用程式中分區化多租用戶 Azure SQL Database 的效能
-keywords: SQL Database Azure
 services: sql-database
-author: stevestein
-manager: craigg
 ms.service: sql-database
-ms.custom: scale out apps
-ms.topic: article
-ms.date: 11/14/2017
+ms.subservice: scenario
+ms.custom: ''
+ms.devlang: ''
+ms.topic: conceptual
+author: stevestein
 ms.author: sstein
-ms.openlocfilehash: 53d8c099d68fd7eb3f00fb4d1be7ec54404521ff
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.reviewer: ''
+manager: craigg
+ms.date: 09/14/2018
+ms.openlocfilehash: 7681e3fabe9eb216da81d9f09dc584097bcbaf84
+ms.sourcegitcommit: 26cc9a1feb03a00d92da6f022d34940192ef2c42
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 10/06/2018
+ms.locfileid: "48830000"
 ---
 # <a name="monitor-and-manage-performance-of-sharded-multi-tenant-azure-sql-database-in-a-multi-tenant-saas-app"></a>監視及管理多租用戶 SaaS 應用程式中分區化多租用戶 Azure SQL Database 的效能
 
 本教學課程會探索 SaaS 應用程式中使用的數個關鍵效能管理案例。 使用負載產生器來跨分區化多租用戶資料庫模擬活動，而且示範 SQL Database 的內建監視和警示功能。
 
-Wingtip Tickets SaaS 多租用戶資料庫應用程式會使用分區化多租用戶資料模型，場地 (租用戶) 資料會在當中依租用戶識別碼跨可能為多個的資料庫進行分散。 與許多 SaaS 應用程式類似，預期的租用戶工作負載模式無法預測且偶爾發生。 換句話說，票證銷售可能會在任何時間發生。 若要利用這個一般資料庫使用模式，可以將資料庫調相應增加及相應減少，從而最佳化解決方案的成本。 使用這種類型的模式，請務必監視資料庫資源使用量，以確保合理地跨可能為多個的資料庫集區平衡負載。 您也必須確定個別的資料庫擁有足夠的資源，且未達到其 [DTU](sql-database-what-is-a-dtu.md) 限制。 本教學課程將探討監視及管理資料庫的方式，以及如何採取矯正措施以回應工作負載的變化。
+Wingtip Tickets SaaS 多租用戶資料庫應用程式會使用分區化多租用戶資料模型，場地 (租用戶) 資料會在當中依租用戶識別碼跨可能為多個的資料庫進行分散。 與許多 SaaS 應用程式類似，預期的租用戶工作負載模式無法預測且偶爾發生。 換句話說，票證銷售可能會在任何時間發生。 若要利用這個一般資料庫使用模式，可以將資料庫調相應增加及相應減少，從而最佳化解決方案的成本。 使用這種類型的模式，請務必監視資料庫資源使用量，以確保合理地跨可能為多個的資料庫集區平衡負載。 您也必須確定個別的資料庫擁有足夠的資源，且未達到其 [DTU](sql-database-service-tiers.md#dtu-based-purchasing-model) 限制。 本教學課程將探討監視及管理資料庫的方式，以及如何採取矯正措施以回應工作負載的變化。
 
 在本教學課程中，您將了解如何：
 
@@ -43,13 +46,13 @@ Wingtip Tickets SaaS 多租用戶資料庫應用程式會使用分區化多租�
 ### <a name="performance-management-strategies"></a>效能管理策略
 
 * 若要避免手動監視效能，最有效的方式是**設定在資料庫偏離正常範圍時觸發的警示**。
-* 若要回應資料庫效能層級中的短期波動，**DTU 層級可以相應增加或減少**。 如果這樣的波動是以定期或可預測的方式發生，則**可排定自動調整資料庫**。 例如，當您知道夜間或者週末期間工作負載較輕時，就可以相應減少。
+* 若要回應資料庫計算大小的短期波動，可以**相應增加或減少 DTU 層級**。 如果這樣的波動是以定期或可預測的方式發生，則**可排定自動調整資料庫**。 例如，當您知道夜間或者週末期間工作負載較輕時，就可以相應減少。
 * 若要回應長期波動或租用戶中的變更，**個別租用戶可以移至其他租用戶**。
-* 若要回應「個別」租用戶負載中的短期增加，**可由資料庫中取出個別租用戶並指派個別效能等級**。 一旦負載降低後，就可以讓租用戶返回到多租用戶資料庫。 事先知道時，則能預先移動租用戶以確保資料庫一律擁有它所需的資源，和避免影響多租用戶資料庫中的其他租用戶。 如果可預測此需求，例如場地因熱門活動而發生票券銷售熱潮，則此管理行為可以與應用程式整合。
+* 若要回應「個別」租用戶負載中的短期增加，**可由資料庫中取出個別租用戶並指派個別計算大小**。 一旦負載降低後，就可以讓租用戶返回到多租用戶資料庫。 事先知道時，則能預先移動租用戶以確保資料庫一律擁有它所需的資源，和避免影響多租用戶資料庫中的其他租用戶。 如果可預測此需求，例如場地因熱門活動而發生票券銷售熱潮，則此管理行為可以與應用程式整合。
 
 [Azure 入口網站](https://portal.azure.com)提供大部分資源的內建監視與警示功能。 針對 SQL Database，可使用資料庫監視與警示功能。 這個內建的監視與警示功能是資源特定，因此針對少數資源使用很方便，但是搭配許多資源使用時則不方便。
 
-在您處理許多資源的大量案例中，可以使用 [Log Analytics (OMS)](https://azure.microsoft.com/services/log-analytics/)。 這是個別的 Azure 服務，可針對發出的診斷記錄和記錄分析工作區中收集的遙測提供分析。 Log Analytics 可以收集來自許多服務的遙測並用來查詢及設定警示。
+在您處理許多資源的大量案例中，可以使用 [Log Analytics](https://azure.microsoft.com/services/log-analytics/)。 這是個別的 Azure 服務，可針對發出的診斷記錄和記錄分析工作區中收集的遙測提供分析。 Log Analytics 可以收集來自許多服務的遙測並用來查詢及設定警示。
 
 ## <a name="get-the-wingtip-tickets-saas-multi-tenant-database-application-source-code-and-scripts"></a>取得 Wingtip Tickets SaaS 多租用戶資料庫應用程式原始碼和指令碼
 

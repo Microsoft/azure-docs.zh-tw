@@ -1,10 +1,10 @@
 ---
-title: "建立網際網路對向負載平衡器 - Azure PowerShell 傳統 | Microsoft Docs"
-description: "了解如何使用 PowerShell 在傳統模式中建立網際網路面向的負載平衡器"
+title: 建立網際網路對向負載平衡器 - Azure PowerShell 傳統 | Microsoft Docs
+description: 了解如何使用 PowerShell 在傳統模式中建立網際網路面向的負載平衡器
 services: load-balancer
 documentationcenter: na
-author: KumudD
-manager: timlt
+author: genlin
+manager: cshepard
 tags: azure-service-management
 ms.assetid: 73e8bfa4-8086-4ef0-9e35-9e00b24be319
 ms.service: load-balancer
@@ -13,12 +13,13 @@ ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
-ms.author: kumud
-ms.openlocfilehash: 56e29dc792ef832a7693b9c8769e9b4269766955
-ms.sourcegitcommit: 68aec76e471d677fd9a6333dc60ed098d1072cfc
+ms.author: genli
+ms.openlocfilehash: 07d3658ff86a46875a57cb3359a60661911e0c8b
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/18/2017
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38539864"
 ---
 # <a name="get-started-creating-an-internet-facing-load-balancer-classic-in-powershell"></a>開始在 PowerShell 中建立網際網路面向的負載平衡器 (傳統)
 

@@ -1,23 +1,24 @@
 ---
-title: "在 Application Insights SDK 中篩選及前置處理 | Microsoft Docs"
-description: "撰寫 SDK 的遙測處理器和遙測初始設定式來篩選屬性或將屬性新增至資料，再將遙測傳送至 Application Insights 入口網站。"
+title: 在 Application Insights SDK 中篩選及前置處理 | Microsoft Docs
+description: 撰寫 SDK 的遙測處理器和遙測初始設定式來篩選屬性或將屬性新增至資料，再將遙測傳送至 Application Insights 入口網站。
 services: application-insights
-documentationcenter: 
-author: beckylino
+documentationcenter: ''
+author: mrbullwinkle
 manager: carmonm
 ms.assetid: 38a9e454-43d5-4dba-a0f0-bd7cd75fb97b
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: multiple
-ms.topic: article
+ms.topic: conceptual
 ms.date: 11/23/2016
-ms.author: borooji;mbullwin
-ms.openlocfilehash: 3f621010c1c36445ad35d81d96a2e5aefc46b10c
-ms.sourcegitcommit: 9890483687a2b28860ec179f5fd0a292cdf11d22
+ms.author: mbullwin
+ms.openlocfilehash: 2f8a22c6cda6c63a225fbfe8fba4cf4c8396b53e
+ms.sourcegitcommit: 4ea0cea46d8b607acd7d128e1fd4a23454aa43ee
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/24/2018
+ms.lasthandoff: 08/15/2018
+ms.locfileid: "42140873"
 ---
 # <a name="filtering-and-preprocessing-telemetry-in-the-application-insights-sdk"></a>在 Application Insights SDK 中篩選及前置處理遙測
 
@@ -53,7 +54,7 @@ ms.lasthandoff: 01/24/2018
 
     請注意，遙測處理器建構一連串的處理。 當您具現化遙測處理器時，您會傳遞連結至鏈結中的下一個處理器。 遙測資料點傳遞至處理序方法時，它會完成其工作並接著呼叫鏈結中的下一個遙測處理器。
 
-    ``` C#
+    ```csharp
 
     using Microsoft.ApplicationInsights.Channel;
     using Microsoft.ApplicationInsights.Extensibility;
@@ -100,7 +101,7 @@ ms.lasthandoff: 01/24/2018
     ```
 1. 在 ApplicationInsights.config 中插入：
 
-```XML
+```xml
 
     <TelemetryProcessors>
       <Add Type="WebApplication9.SuccessfulDependencyFilter, WebApplication9">
@@ -120,7 +121,7 @@ ms.lasthandoff: 01/24/2018
 >
 >
 
-或者， 您也可以在程式碼中初始化篩選。 在適當的初始化類別中 - 例如在 Global.asax.cs 中的 AppStart - 插入您的處理器至鏈結：
+ ，您也可以在程式碼中初始化篩選。 在適當的初始化類別中 - 例如在 Global.asax.cs 中的 AppStart - 插入您的處理器至鏈結：
 
 ```csharp
 
@@ -136,22 +137,11 @@ ms.lasthandoff: 01/24/2018
 
 在這個點之後建立的 TelemetryClients 會使用您的處理器。
 
-下列程式碼說明如何在 ASP.NET Core 中新增遙測初始設定式。
-
-```csharp
-public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-{
-    var initializer = new SuccessfulDependencyFilter();
-    var configuration = app.ApplicationServices.GetService<TelemetryConfiguration>();
-    configuration.TelemetryInitializers.Add(initializer);
-}
-```
-
 ### <a name="example-filters"></a>範例篩選器
 #### <a name="synthetic-requests"></a>綜合要求
 篩選出 bot 和 Web 測試。 雖然計量瀏覽器可讓您篩選出綜合來源，此選項會藉由在 SDK 篩選它們以降低流量。
 
-``` C#
+```csharp
 
     public void Process(ITelemetry item)
     {
@@ -192,7 +182,7 @@ public void Process(ITelemetry item)
 >
 >
 
-``` C#
+```csharp
 
 public void Process(ITelemetry item)
 {
@@ -218,7 +208,7 @@ public void Process(ITelemetry item)
 
 例如，Web 封裝的 Application Insights 會收集有關 HTTP 要求的遙測。 根據預設，它會將所有含 >= 400 回應碼的要求標記為失敗。 但如果您想將 400 視為成功，您可以提供設定 Success 屬性的遙測初始設定式。
 
-如果您提供遙測初始設定式，會在呼叫任何的 Track*() 方法時呼叫它。 這包括由標準遙測模組呼叫的方法。 依照慣例，這些模組不會設定任何已由初始設定式設定的屬性。
+如果您提供遙測初始設定式，則會在呼叫任何的 Track*() 方法時呼叫它。 這包括由標準遙測模組呼叫的方法。 依照慣例，這些模組不會設定任何已由初始設定式設定的屬性。
 
 **定義您的初始設定式**
 
@@ -265,6 +255,7 @@ public void Process(ITelemetry item)
 
 在 ApplicationInsights.config 中：
 
+```xml
     <ApplicationInsights>
       <TelemetryInitializers>
         <!-- Fully qualified type name, assembly name: -->
@@ -272,6 +263,7 @@ public void Process(ITelemetry item)
         ...
       </TelemetryInitializers>
     </ApplicationInsights>
+```
 
 *或者* ，您也可以在程式碼 (如 Global.aspx.cs) 中具現化初始設定式：
 
@@ -288,6 +280,25 @@ public void Process(ITelemetry item)
 [詳細查看此範例。](https://github.com/Microsoft/ApplicationInsights-Home/tree/master/Samples/AzureEmailService/MvcWebRole)
 
 <a name="js-initializer"></a>
+
+### <a name="java-telemetry-initializers"></a>Java 遙測初始設定式
+
+[Java SDK 文件](https://docs.microsoft.com/java/api/com.microsoft.applicationinsights.extensibility._telemetry_initializer?view=azure-java-stable)
+
+```Java
+public interface TelemetryInitializer
+{ /** Initializes properties of the specified object. * @param telemetry The {@link com.microsoft.applicationinsights.telemetry.Telemetry} to initialize. */
+
+void initialize(Telemetry telemetry); }
+```
+
+然後，在 applicationinsights.xml 檔案中註冊自訂的初始設定式。
+
+```xml
+<Add type="mypackage.MyConfigurableContextInitializer">
+<Param name="some_config_property" value="some_value" />
+</Add>
+```
 
 ### <a name="javascript-telemetry-initializers"></a>JavaScript 遙測初始設定式
 *JavaScript*
@@ -355,7 +366,7 @@ public void Process(ITelemetry item)
 * [ASP.NET 參考](https://msdn.microsoft.com/library/dn817570.aspx)
 
 ## <a name="sdk-code"></a>SDK 程式碼
-* [ASP.NET 核心 SDK](https://github.com/Microsoft/ApplicationInsights-aspnetcore)
+* [ASP.NET Core SDK](https://github.com/Microsoft/ApplicationInsights-aspnetcore)
 * [ASP.NET SDK](https://github.com/Microsoft/ApplicationInsights-dotnet)
 * [JavaScript SDK](https://github.com/Microsoft/ApplicationInsights-JS)
 

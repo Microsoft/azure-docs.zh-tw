@@ -1,25 +1,20 @@
 ---
-title: 使用以 Linux 為基礎的 HDInsight 開發指令碼動作 - Azure | Microsoft Docs
+title: 使用以 Linux 為基礎的 HDInsight 開發指令碼動作 - Azure
 description: 深入了解如何使用 Bash 指令碼自訂以 Linux 為基礎的 HDInsight 叢集。 HDInsight 的指令碼動作功能可讓您在建立叢集期間或之後執行指令碼。 指令碼可用於變更叢集組態設定或安裝其他軟體。
 services: hdinsight
-documentationcenter: ''
-author: Blackmist
-manager: jhubbard
-editor: cgronlun
-ms.assetid: cf4c89cd-f7da-4a10-857f-838004965d3e
+author: jasonwhowell
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
-ms.date: 01/17/2018
-ms.author: larryfr
-ms.openlocfilehash: 5074345533f0fdb0c72bf319646ad614632d1940
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.topic: conceptual
+ms.date: 04/10/2018
+ms.author: jasonh
+ms.openlocfilehash: 9a10620e3a388fa47076afd54e1789607e5ca47e
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46986246"
 ---
 # <a name="script-action-development-with-hdinsight"></a>使用 HDInsight 開發指令碼動作
 
@@ -38,7 +33,7 @@ ms.lasthandoff: 03/28/2018
 | --- |:---:|:---:|
 | Azure 入口網站 |✓ |✓ |
 | Azure PowerShell |✓ |✓ |
-| Azure CLI |&nbsp; |✓ |
+| Azure 傳統 CLI |&nbsp; |✓ |
 | HDInsight .NET SDK |✓ |✓ |
 | Azure Resource Manager 範本 |✓ |&nbsp; |
 
@@ -283,7 +278,7 @@ echo "HADOOP_CONF_DIR=/etc/hadoop/conf" | sudo tee -a /etc/environment
 
 * __可公開讀取的 URI__。 例如，在 OneDrive、Dropbox 或其他檔案裝載服務上儲存之資料的 URL。
 
-* 與 HDInsight 叢集相關聯的 __Azure Data Lake Store 帳戶__。 如需使用 Azure Data Lake Store 與 HDInsight 的詳細資訊，請參閱[建立使用 Data Lake Store 的 HDInsight 叢集](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)。
+* 與 HDInsight 叢集相關聯的 __Azure Data Lake Store 帳戶__。 如需有關使用 Azure Data Lake Store 與 HDInsight 的詳細資訊，請參閱[快速入門：在 HDInsight 中設定叢集](../storage/data-lake-storage/quickstart-create-connect-hdi-cluster.md)。
 
     > [!NOTE]
     > 用來存取 Data Lake Store 的服務主體 HDInsight 必須具有指令碼的讀取權限。
@@ -376,5 +371,5 @@ Microsoft 提供了在 HDInsight 叢集上安裝元件的範例指令碼。 請�
 ## <a name="seeAlso"></a>後續步驟
 
 * 深入了解 [使用指令碼動作來自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)
-* 使用 [HDInsight.NET SDK 參考](https://msdn.microsoft.com/library/mt271028.aspx) ，深入了解如何建立 .NET 應用程式來管理 HDInsight
+* 使用 [HDInsight.NET SDK 參考](https://docs.microsoft.com/dotnet/api/overview/azure/hdinsight) ，深入了解如何建立 .NET 應用程式來管理 HDInsight
 * 使用 [HDInsight REST API](https://msdn.microsoft.com/library/azure/mt622197.aspx) ，以了解如何使用 REST 在 HDInsight 叢集上執行管理動作。

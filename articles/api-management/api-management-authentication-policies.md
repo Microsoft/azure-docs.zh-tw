@@ -1,11 +1,11 @@
 ---
-title: "Azure API 管理驗證原則 | Microsoft Docs"
-description: "了解「Azure API 管理」中可用的驗證原則。"
+title: Azure API 管理驗證原則 | Microsoft Docs
+description: 了解「Azure API 管理」中可用的驗證原則。
 services: api-management
-documentationcenter: 
+documentationcenter: ''
 author: vladvino
 manager: erikre
-editor: 
+editor: ''
 ms.assetid: 061702a7-3a78-472b-a54a-f3b1e332490d
 ms.service: api-management
 ms.workload: mobile
@@ -19,6 +19,7 @@ ms.sourcegitcommit: b854df4fc66c73ba1dd141740a2b348de3e1e028
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 12/04/2017
+ms.locfileid: "26127754"
 ---
 # <a name="api-management-authentication-policies"></a>API 管理驗證原則
 本主題提供下列「API 管理」原則的參考。 如需有關新增和設定原則的資訊，請參閱 [API 管理中的原則](http://go.microsoft.com/fwlink/?LinkID=398186)。  
@@ -60,9 +61,9 @@ ms.lasthandoff: 12/04/2017
 ### <a name="usage"></a>使用量  
  此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。  
   
--   **原則區段︰**inbound  
+-   **原則區段︰** inbound  
   
--   **原則範圍︰**API  
+-   **原則範圍︰** API  
   
 ##  <a name="ClientCertificate"></a> 使用用戶端憑證進行驗證  
  使用 `authentication-certificate` 原則以利用用戶端憑證向後端服務進行驗證。 憑證必須先[安裝到 API 管理中](http://go.microsoft.com/fwlink/?LinkID=511599)且會以其指紋作為識別。  
@@ -94,9 +95,9 @@ ms.lasthandoff: 12/04/2017
 ### <a name="usage"></a>使用量  
  此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。  
   
--   **原則區段︰**inbound  
+-   **原則區段︰** inbound  
   
--   **原則範圍︰**API  
+-   **原則範圍︰** API  
   
 
 ## <a name="next-steps"></a>後續步驟

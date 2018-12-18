@@ -1,9 +1,9 @@
 ### YamlMime:YamlDocument
 documentType: LandingData
-title: "API 管理文件"
+title: API 管理文件
 metadata:
-  title: "Azure API 管理文件 - 教學課程和 API 參考 | Microsoft Docs"
-  description: "了解如何使用 API 管理功能，大規模且安全地向外部、合作夥伴和員工開發人員發佈 API。 教學課程、API 參考和其他文件會顯示如何建立及管理隨處裝載之現有後端服務的新式 API 閘道。"
+  title: Azure API 管理文件 - 教學課程和 API 參考 | Microsoft Docs
+  description: 了解如何使用 API 管理功能，大規模且安全地向外部、合作夥伴和員工開發人員發佈 API。 教學課程、API 參考和其他文件會顯示如何建立及管理隨處裝載之現有後端服務的新式 API 閘道。
   services: api-management
   author: czeumault
   manager: carolz
@@ -18,45 +18,46 @@ metadata:
   ms.translationtype: HT
   ms.contentlocale: zh-TW
   ms.lasthandoff: 01/12/2018
+  ms.locfileid: "27786691"
 abstract:
-  description: "了解如何使用 API 管理功能，大規模且安全地向外部、合作夥伴和員工開發人員發佈 API。 教學課程、API 參考和其他文件會顯示如何建立及管理隨處裝載之現有後端服務的新式 API 閘道。"
+  description: 了解如何使用 API 管理功能，大規模且安全地向外部、合作夥伴和員工開發人員發佈 API。 教學課程、API 參考和其他文件會顯示如何建立及管理隨處裝載之現有後端服務的新式 API 閘道。
 sections:
-- title: "5 分鐘快速入門"
+- title: 5 分鐘快速入門
   items:
   - type: paragraph
-    text: "建立 API 管理執行個體。"
+    text: 建立 API 管理執行個體。
   - type: list
     style: icon48
     items:
     - image:
         src: https://docs.microsoft.com/azure/sql-database/media/index/portal.svg
-      text: "建立執行個體 - 入口網站"
+      text: 建立執行個體 - 入口網站
       href: /azure/api-management/get-started-create-service-instance
     - image:
         src: https://docs.microsoft.com/azure/sql-database/media/index/logo_powershell.svg
-      text: "建立執行個體 - PowerShell"
+      text: 建立執行個體 - PowerShell
       href: /azure/api-management/powershell-create-service-instance
-- title: "逐步教學課程"
+- title: 逐步教學課程
   items:
   - type: paragraph
-    text: "了解如何管理 API 管理。"
+    text: 了解如何管理 API 管理。
   - type: list
     style: ordered
     items:
-    - html: "<a href=\"/azure/api-management/import-and-publish\">匯入和發佈您的第一個 API</a>"
-    - html: "<a href=\"/azure/api-management/api-management-howto-add-products\">建立和發佈產品</a>"
-    - html: "<a href=\"/azure/api-management/mock-api-responses\">模擬 API 回應</a>"
-    - html: "<a href=\"/azure/api-management/transform-api\">轉換及保護您的 API</a>"
-    - html: "<a href=\"/azure/api-management/api-management-howto-use-azure-monitor\">監視發佈的 API</a>"
-    - html: "<a href=\"/azure/api-management/api-management-howto-api-inspector\">使用要求追蹤對 API 進行偵錯</a>"
-    - html: "<a href=\"/azure/api-management/api-management-get-started-revise-api\">使用修訂項目安全地進行不間斷的變更</a>"
-    - html: "<a href=\"/azure/api-management/api-management-get-started-publish-versions\">為您的 API 發佈多個版本</a>"
-    - html: "<a href=\"/azure/api-management/api-management-customize-styles\">自訂開發人員入口網站頁面的風格</a>"
-- title: "範例"
+    - html: <a href="/azure/api-management/import-and-publish">匯入和發佈您的第一個 API</a>
+    - html: <a href="/azure/api-management/api-management-howto-add-products">建立和發佈產品</a>
+    - html: <a href="/azure/api-management/mock-api-responses">模擬 API 回應</a>
+    - html: <a href="/azure/api-management/transform-api">轉換及保護您的 API</a>
+    - html: <a href="/azure/api-management/api-management-howto-use-azure-monitor">監視發佈的 API</a>
+    - html: <a href="/azure/api-management/api-management-howto-api-inspector">使用要求追蹤對 API 進行偵錯</a>
+    - html: <a href="/azure/api-management/api-management-get-started-revise-api">使用修訂項目安全地進行不間斷的變更</a>
+    - html: <a href="/azure/api-management/api-management-get-started-publish-versions">為您的 API 發佈多個版本</a>
+    - html: <a href="/azure/api-management/api-management-customize-styles">自訂開發人員入口網站頁面的風格</a>
+- title: 範例
   items:
   - type: list
     style: unordered
     className: spaced noBullet
     items:
-    - html: "<a href=\"/azure/api-management/policy-samples\">原則</a>"
+    - html: <a href="/azure/api-management/policy-samples">原則</a>
     - html: <a href="/azure/api-management/powershell-samples">Azure PowerShell</a>

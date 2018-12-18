@@ -1,22 +1,24 @@
 ---
-title: "Azure Application Insights 遙測資料模型 - 計量遙測 | Microsoft Docs"
-description: "計量遙測的 Application Insights 資料模型"
+title: Azure Application Insights 遙測資料模型 - 計量遙測 | Microsoft Docs
+description: 計量遙測的 Application Insights 資料模型
 services: application-insights
 documentationcenter: .net
-author: SergeyKanzhelev
+author: mrbullwinkle
 manager: carmonm
 ms.service: application-insights
 ms.workload: TBD
 ms.tgt_pltfrm: ibiza
 ms.devlang: multiple
-ms.topic: article
+ms.topic: conceptual
 ms.date: 04/25/2017
+ms.reviewer: sergkanz
 ms.author: mbullwin
-ms.openlocfilehash: 4139e3675e2202cc42b6b8d7ff7562e9c9d693bb
-ms.sourcegitcommit: 782d5955e1bec50a17d9366a8e2bf583559dca9e
+ms.openlocfilehash: df16efcca70f4fc3392fbd97cd98b5a293a60b96
+ms.sourcegitcommit: e8f443ac09eaa6ef1d56a60cd6ac7d351d9271b9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/02/2018
+ms.lasthandoff: 09/12/2018
+ms.locfileid: "35633021"
 ---
 # <a name="metric-telemetry-application-insights-data-model"></a>計量遙測：Application Insights 資料模型
 
@@ -40,7 +42,7 @@ Application Insights 支援數個已知的計量名稱。 這些計量會置入 
 | `\ASP.NET Applications(??APP_W3SVC_PROC??)\Request Execution Time`   | 進行中... | [requestExecutionTime](https://dev.applicationinsights.io/apiexplorer/metrics?appId=DEMO_APP&apiKey=DEMO_KEY&metricId=performanceCounters%2FrequestExecutionTime) | 平均要求執行時間
 | `\ASP.NET Applications(??APP_W3SVC_PROC??)\Requests In Application Queue` | 進行中... | [requestsInQueue](https://dev.applicationinsights.io/apiexplorer/metrics?appId=DEMO_APP&apiKey=DEMO_KEY&metricId=performanceCounters%2FrequestsInQueue) | 佇列中等候處理的要求數目
 
-## <a name="name"></a>Name
+## <a name="name"></a>名稱
 
 您想要在 Application Insights 入口網站和 UI 中看到的計量名稱。 
 

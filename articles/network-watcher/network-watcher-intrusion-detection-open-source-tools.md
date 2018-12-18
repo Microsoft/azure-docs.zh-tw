@@ -1,11 +1,11 @@
 ---
-title: "使用 Azure 網路監看員和開放原始碼工具執行網路入侵偵測 | Microsoft Docs"
-description: "本文說明如何使用 Azure 網路監看員和開放原始碼工具來執行網路入侵偵測"
+title: 使用 Azure 網路監看員和開放原始碼工具執行網路入侵偵測 | Microsoft Docs
+description: 本文說明如何使用 Azure 網路監看員和開放原始碼工具來執行網路入侵偵測
 services: network-watcher
 documentationcenter: na
 author: jimdial
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 0f043f08-19e1-4125-98b0-3e335ba69681
 ms.service: network-watcher
 ms.devlang: na
@@ -15,16 +15,17 @@ ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: jdial
 ms.openlocfilehash: aff1b5f9e8860d3b8dc09b37684bb8a4ac2bf134
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.sourcegitcommit: 6fcd9e220b9cd4cb2d4365de0299bf48fbb18c17
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 04/05/2018
+ms.locfileid: "23036733"
 ---
 # <a name="perform-network-intrusion-detection-with-network-watcher-and-open-source-tools"></a>使用網路監看員和開放原始碼工具執行網路入侵偵測
 
 封包擷取是實作網路入侵偵測系統 (ID) 和執行網路安全性監視 (NSM) 的重要元件。 有數個開放原始碼 IDS 工具，可處理封包擷取並尋找可能的網路入侵和惡意活動的簽章。 使用網路監看員所提供的封包擷取，您可以分析您的網路找出任何有害的入侵或安全性弱點。
 
-一種開放原始碼工具是 Suricata，這是使用規則集監視網路流量且在可疑事件發生時就會觸發警示的 IDS 引擎。 Suricata 提供多執行緒的引擎，這表示它可以更高的速度和效率執行網路流量分析。 如需關於 Suricata 和其功能的詳細資訊，請瀏覽其網站︰https://suricata-ids.org/。
+一種開放原始碼工具是 Suricata，這是使用規則集監視網路流量且在可疑事件發生時就會觸發警示的 IDS 引擎。 Suricata 提供多執行緒的引擎，這表示它可以更高的速度和效率執行網路流量分析。 如需關於 Suricata 和其功能的詳細資訊，請瀏覽其網站：https://suricata-ids.org/。
 
 ## <a name="scenario"></a>案例
 
@@ -38,7 +39,7 @@ ms.lasthandoff: 10/11/2017
 
 ### <a name="install-suricata"></a>安裝 Suricata
 
-如需安裝的其他方法，請瀏覽 http://suricata.readthedocs.io/en/latest/install.html
+如需其他所有安裝方法，請瀏覽 http://suricata.readthedocs.io/en/latest/install.html
 
 1. 在您 VM 的命令列終端機執行下列命令︰
 

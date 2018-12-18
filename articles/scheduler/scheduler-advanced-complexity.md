@@ -1,127 +1,161 @@
 ---
-title: "如何使用 Azure 排程器建置複雜的排程和進階週期"
-description: "了解如何使用 Azure 排程器建置複雜的排程和進階週期。"
+title: 建置進階的作業排程和週期 - Azure 排程器
+description: 了解如何在 Azure 排程器中建立作業的進階排程和週期
 services: scheduler
-documentationcenter: .NET
-author: derek1ee
-manager: kevinlam1
-editor: 
-ms.assetid: 5c124986-9f29-4cbc-ad5a-c667b37fbe5a
 ms.service: scheduler
-ms.workload: infrastructure-services
-ms.tgt_pltfrm: na
-ms.devlang: dotnet
+author: derek1ee
+ms.author: deli
+ms.reviewer: klam
+ms.suite: infrastructure-services
+ms.assetid: 5c124986-9f29-4cbc-ad5a-c667b37fbe5a
 ms.topic: article
 ms.date: 08/18/2016
-ms.author: deli
-ms.openlocfilehash: 4293442e13fc4bae871b1f32a3ed4231d9f32632
-ms.sourcegitcommit: c765cbd9c379ed00f1e2394374efa8e1915321b9
+ms.openlocfilehash: f5a8b929cf5af6e4e43c6003e6b622d04a50b93e
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/28/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46980935"
 ---
-# <a name="build-complex-schedules-and-advanced-recurrence-with-azure-scheduler"></a>如何使用 Azure 排程器建置複雜的排程和進階週期
+# <a name="build-advanced-schedules-and-recurrences-for-jobs-in-azure-scheduler"></a>在 Azure 排程器中建置作業的進階排程和週期
 
-排程是 Azure 排程器作業的核心。 排程會決定排程器執行作業的時機和方式。 
+> [!IMPORTANT]
+> [Azure Logic Apps](../logic-apps/logic-apps-overview.md) 會取代 Azure 排程器，Azure 排程器之後將無法使用。 若要排程作業，請[改為試用 Azure Logic Apps](../scheduler/migrate-from-scheduler-to-logic-apps.md)。 
 
-您可以使用排程器為作業設定多個單次和週期排程。 單次排程在指定時間觸發一次。 單次排程實際上是只執行一次的週期排程。 週期排程會根據預先決定的頻率引發。
+在 [Azure 排程器](../scheduler/scheduler-intro.md)作業內，排程為決定排程器服務何時及如何執行作業的核心。 您可以使用排程器，為作業設定多個單次和週期性排程。 單次排程只會在指定的時間執行一次，而且基本上是僅執行一次的週期性排程。 週期性排程會以指定的頻率來執行。 由於這種彈性，您可以將排程器用於各種商務案例，例如：
 
-由於這種彈性，您可以將排程器用於各種商務案例：
+* **定期清除資料**：建立每日作業，以刪除所有超過三個月的推文。
 
-* **定期資料清理**。 例如，每天刪除三個月之前的所有推文。
-* **封存**。 例如，每個月將發票記錄推送到備份服務。
-* **要求外部資料**。 例如，每 15 分鐘從 NOAA 提取新的滑雪氣象報告。
-* **影像處理**。 例如，每個工作日的離峰時段期間，使用雲端運算來壓縮當天上傳的影像。
+* **封存資料**：建立每月作業，將發票歷程記錄推送到備份服務。
 
-在本文中，我們會逐步引導您完成可使用排程器建立的範例作業。 我們提供描述每個排程的 JSON 資料。 如果您使用[排程器 REST API](https://msdn.microsoft.com/library/mt629143.aspx) \(英文\)，則可以使用相同的 JSON 來[建立排程器工作](https://msdn.microsoft.com/library/mt629145.aspx) \(英文\)。
+* **要求外部資料**：建立作業，每隔 15 分鐘執行一次，並從 NOAA 提取新氣象報告。
+
+* **處理影像**：建立工作日作業，在離峰時間執行，並使用雲端運算來壓縮當天上傳的影像。
+
+本文說明您可以使用排程器和 [Azure 排程器 REST API](https://docs.microsoft.com/rest/api/schedule) 建立的範例作業，並包含每個排程的 JavaScript 物件標記法 (JSON) 定義。 
 
 ## <a name="supported-scenarios"></a>支援的案例
-本文中的範例說明排程器支援的案例範圍。 範例能廣泛說明如何建立適用於許多行為模式的排程，包括：
+
+這些範例示範 Azure 排程器支援的各種案例，以及如何為各種不同行為模式建立排程，例如：
 
 * 於特定日期和時間單次執行。
 * 執行並重複特定次數。
 * 立即執行並重複。
-* 執行並從特定時間開始，每隔 *n* 分鐘、小時、天、週或個月重複執行一次。
-* 執行並以每週或每月的頻率重複，但僅於當週的特定某天，或當月的特定某天。
-* 執行並在期間內重複多次。 例如，在每個月的最後一個星期五和最後一個星期一執行，或是在每天的上午 5:15 和下午 5:15 執行。
+* 執行並從特定時間開始，每隔 *n* 分鐘、小時、天、週或月重複執行一次。
+* 執行且每週或每月重複，但僅於當週的特定天，或當月的特定天。
+* 執行並針對特定的期間重複多次。 例如，在每月的最後一個星期五和星期一執行，或是在每天的上午 5:15 和下午 5:15 執行。
 
-## <a name="date-and-date-time"></a>日期和日期時間
-排程器工作中的日期參考遵循 [ISO 8601 規格](http://en.wikipedia.org/wiki/ISO_8601)，並且只包含日期。
+本文稍後將更詳細地說明這些案例。
 
-排程器工作中的日期時間參考遵循 [ISO 8601 規格](http://en.wikipedia.org/wiki/ISO_8601)，並且同時包含日期和時間。 系統會將未指定 UTC 時差的日期時間假設為 UTC。  
+<a name="create-scedule"></a>
 
-## <a name="use-json-and-the-rest-api-to-create-a-schedule"></a>使用 JSON 和 REST API 來建立排程
-若要使用[排程器 REST API](https://msdn.microsoft.com/library/mt629143) \(英文\) 建立基本的排程，請先[向資源提供者註冊您的訂用帳戶](https://msdn.microsoft.com/library/azure/dn790548.aspx) \(英文\)。 排程器的提供者名稱是 **Microsoft.Scheduler**。 然後，請[建立工作集合](https://msdn.microsoft.com/library/mt629159.aspx) \(英文\)。 最後，請[建立作業](https://msdn.microsoft.com/library/mt629145.aspx) \(英文\)。 
+## <a name="create-schedule-with-rest-api"></a>使用 REST API 建立排程
 
-當您建立作業時，可以使用 JSON 來指定排程與循環，如此範例所示：
+若要使用 [Azure 排程器 REST API](https://docs.microsoft.com/rest/api/schedule) 建立基本排程，請遵循下列步驟：
 
-    {
-        "startTime": "2012-08-04T00:00Z", // Optional
-         …
-        "recurrence":                     // Optional
-        {
-            "frequency": "week",     // Can be "year", "month", "day", "week", "hour", or "minute"
-            "interval": 1,                // How often to fire
-            "schedule":                   // Optional (advanced scheduling specifics)
-            {
-                "weekDays": ["monday", "wednesday", "friday"],
-                "hours": [10, 22]                      
-            },
-            "count": 10,                  // Optional (default to recur infinitely)
-            "endTime": "2012-11-04",      // Optional (default to recur infinitely)
-        },
-        …
-    }
+1. 使用[註冊操作 - Resource Manager REST API](https://docs.microsoft.com/rest/api/resources/providers#Providers_Register) 來向資源提供者註冊您的 Azure 訂用帳戶。 Azure 排程器服務的提供者名稱是 **Microsoft.Scheduler**。 
 
-## <a name="job-schema-basics"></a>作業結構描述的基本概念
-下表提供您用於在作業中設定週期和排程之主要元素的高階概觀：
+1. 在排程器 REST API 中，使用[適用於作業集合的建立或更新操作](https://docs.microsoft.com/rest/api/scheduler/jobcollections#JobCollections_CreateOrUpdate)來建立作業集合。 
 
-| JSON 名稱 | 說明 |
-|:--- |:--- |
-| **startTime** |日期時間值。 針對簡單的排程，**startTime** 為首次執行。 針對複雜的排程，作業一到 **startTime** 就會啟動。 |
-| **recurrence** |指定作業的週期規則，以及作業執行的週期。 recurrence 物件支援下列元素：**frequency**、**interval**、**endTime**、**count** 和 **schedule**。 如果已定義 **recurrence**，就需要 **frequency**。 其他 **recurrence** 元素為選擇性。 |
-| **frequency** |字串，代表作業重複頻率的單位。 支援的值有 "minute"、"hour"、"day"、"week" 和 "month"。 |
-| **interval** |正整數。 **interval** 代表會決定工作多久執行一次之 **frequency** 值的間隔。 例如，如果 **interval** 為 3，而 **frequency** 為 "week"，則作業每隔三週重複執行一次。<br /><br />排程器支援的最大 **interval**，為最多 18 次的每月頻率、最多 78 次的每週頻率，以及最多 548 次的每日頻率。 對於 hour 和 minute 頻率，支援的範圍為 1 <= **interval** <= 1000。 |
-| **endTime** |字串，指定超過之後就不執行作業的日期時間。 您可以將 **endTime** 的值設定為過去的時間。 如果未指定 **endTime** 和 **count**，則該作業會無限期執行。 您不能在同一個作業中包含 **endTime** 和 **count**。 |
-| **count** |正整數 (大於零)，指定作業完成之前的執行次數。<br /><br />**count** 表示作業在被判斷為已完成之前的執行次數。 例如，針對每天執行的作業，若其 **count** 值為 5 且開始日期為星期一，則該作業會在星期五執行之後完成。 如果開始日期為過去日期，則會從建立時間計算第一次執行時間。<br /><br />如果未指定 **endTime** 或 **count**，則作業會無限期執行。 您不能在同一個作業中包含 **endTime** 和 **count**。 |
-| **schedule** |具有指定頻率的工作會根據週期排程來改變其週期。 **schedule** 值包含根據分鐘數、小時數、週日數、月日數和週數的修改。 |
+1. 使用[適用於作業的建立或更新操作](https://docs.microsoft.com/rest/api/scheduler/jobs/createorupdate)來建立作業。 
 
-## <a name="job-schema-defaults-limits-and-examples"></a>作業結構描述的預設、限制及範例
-我們稍後會在本文中詳細討論下列元素：
+## <a name="job-schema-elements"></a>作業結構描述元素
 
-| JSON 名稱 | 值類型 | 必要？ | 預設值 | 有效值 | 範例 |
-|:--- |:--- |:--- |:--- |:--- |:--- |
-| **startTime** |字串 |否 |None |ISO 8601 日期時間 |`"startTime" : "2013-01-09T09:30:00-08:00"` |
-| **recurrence** |物件 |否 |None |recurrence 物件 |`"recurrence" : { "frequency" : "monthly", "interval" : 1 }` |
-| **frequency** |字串 |yes |None |"minute"、"hour"、"day"、"week"、"month" |`"frequency" : "hour"` |
-| **interval** |number |yes |None |1 到 1000 |`"interval":10` |
-| **endTime** |字串 |否 |None |代表未來時間的日期時間值 |`"endTime" : "2013-02-09T09:30:00-08:00"` |
-| **count** |number |否 |None |>= 1 |`"count": 5` |
-| **schedule** |物件 |否 |None |schedule 物件 |`"schedule" : { "minute" : [30], "hour" : [8,17] }` |
+此表格提供您在設定作業的週期和排程時可使用之主要 JSON 元素的高階概觀。 
 
-## <a name="deep-dive-starttime"></a>深入探討：startTime
-下表描述 **startTime** 如何控制作業的執行方式：
+| 元素 | 必要 | 說明 | 
+|---------|----------|-------------|
+| **startTime** | 否 | [ISO 8601 格式](http://en.wikipedia.org/wiki/ISO_8601) \(英文\) 的日期時間字串值，會在基本排程中指定作業第一次啟動的時機。 <p>針對複雜的排程，作業一到 **startTime** 就會啟動。 | 
+| **recurrence** | 否 | 適用於作業執行時機的週期規則。 **recurrence** 物件支援下列元素：**frequency**、**interval**、**schedule**、**count** 及 **endTime**。 <p>如果您使用 **recurrence** 元素，也必須使用 **frequency** 元素，而其他 **recurrence** 元素均為選擇性的。 |
+| **frequency** | 是，當您使用 **recurrence** 時 | 發生次數之間的時間單位，並支援下列值："Minute"、"Hour"、"Day"、"Week"、"Month" 及 "Year" | 
+| **interval** | 否 | 正整數，根據 **frequency** 來決定發生次數之間的時間單位數。 <p>例如，如果 **interval** 為 10 且 **frequency** 為 "Week"，則作業每隔 10 週就會重複執行一次。 <p>以下是適用於每個頻率的間隔最大數目： <p>- 18 個月 <br>- 78 週 <br>- 548 天 <br>- 若為小時和分鐘，則範圍是 1 <= <*interval*> <= 1000。 | 
+| **schedule** | 否 | 根據分鐘標記、小時標記、星期幾和每月執行日來定義週期的變更 | 
+| **count** | 否 | 正整數，指定作業完成之前執行的次數。 <p>例如，若將每日作業的 **count** 設為 7，而且開始日期為星期一，作業就會在星期日完成執行。 如果開始日期已經過去，則會從建立時間計算第一次執行時間。 <p>如果沒有 **endTime** 或 **count**，作業就會無限期執行。 您無法在同一個作業中同時使用**count** 和 **endTime**，但會接受先完成的規則。 | 
+| **endTime** | 否 | [ISO 8601 格式](http://en.wikipedia.org/wiki/ISO_8601) \(英文\) 的日期或日期時間字串值，會指定作業停止執行的時機。 您可以將 **endTime** 的值設定為過去的時間。 <p>如果沒有 **endTime** 或 **count**，作業就會無限期執行。 您無法在同一個作業中同時使用**count** 和 **endTime**，但會接受先完成的規則。 |
+|||| 
 
-| startTime 值 | 無週期 | 週期、無排程 | 週期性有排程 |
-|:--- |:--- |:--- |:--- |
-| **没有開始時間** |立即執行一次。 |立即執行一次。 根據上次執行時間算出的時間執行後續的執行作業。 |立即執行一次。<br /><br />根據週期排程執行後續的執行作業。 |
-| **過去的開始時間** |立即執行一次。 |計算開始時間之後的第一個未來執行時間，並在該時間執行。<br /><br />根據上次執行時間算出的時間執行後續的執行作業。 <br /><br />如需詳細資訊，請參閱此表格後面的範例。 |作業「一到」指定的開始時間即啟動。 第一次執行是根據從開始時間計算的排程。<br /><br />根據週期排程執行後續的執行作業。 |
-| **在未來或目前時間的開始時間** |在指定的開始時間執行一次。 |在指定的開始時間執行一次。<br /><br />根據上次執行時間算出的時間執行後續的執行作業。|作業「一到」指定的開始時間即啟動。 第一次發生是根據排程，從開始時間計算。<br /><br />根據週期排程執行後續的執行作業。 |
+例如，此 JSON 結構描述說明作業的基本排程和週期： 
 
-讓我們看一個範例，了解當 **startTime** 是在過去且具有週期但沒有排程時，會發生什麼事。  假設目前的時間是 2015-04-08 13:00，**startTime** 是 2015-04-07 14:00，而 **recurrence** 是每二天 (以 **frequency**: day 和 **interval**: 2 定義)。請注意，**startTime** 是在過去，因此發生在目前時間之前。
+```json
+"properties": {
+   "startTime": "2012-08-04T00:00Z", 
+   "recurrence": {
+      "frequency": "Week",
+      "interval": 1,
+      "schedule": {
+         "weekDays": ["Monday", "Wednesday", "Friday"],
+         "hours": [10, 22]                      
+      },
+      "count": 10,       
+      "endTime": "2012-11-04"
+   },
+},
+``` 
 
-根據這些條件，第一次執行將發生於 2015-04-09 的 14:00。 排程器引擎會從開始時間計算執行週期。 過去的任何執行個體都會遭到捨棄。 引擎會使用下一個在未來發生的執行個體。 在此案例中，**startTime** 為 2015-04-07 下午 2:00，所以下一個執行個體是在該時間的二天後，即 2015-04-09 下午 2:00。
+日期和日期時間值
 
-請注意，無論 **startTime** 是 2015-04-05 14:00 或 2015-04-01 14:00\.，第一次執行的時間都相同。 在第一次執行之後，就會使用排程來算出後續的執行時間。 它們都會在 2015-04-11 下午 2:00 執行，然後在 2015-04-13 下午 2:00 執行，然後在 2015-04-15 下午 2:00 執行，依此類推。
+* 排程器作業中的日期只包含日期並遵循 [ISO 8601 規格](http://en.wikipedia.org/wiki/ISO_8601) \(英文\)。
 
-最後，當作業具有排程時，如果未在排程中設定小時和分鐘，則該值會分別預設為第一次執行的小時和分鐘。
+* 排程器作業中的日期時間包含日期和時間、遵循 [ISO 8601 規格](http://en.wikipedia.org/wiki/ISO_8601) \(英文\)，並在未指定任何 UTC 時差時假設為 UTC。 
 
-## <a name="deep-dive-schedule"></a>深入探討：排程
+如需詳細資訊，請參閱[概念、術語及實體](../scheduler/scheduler-concepts-terms.md)。
+
+<a name="start-time"></a>
+
+## <a name="details-starttime"></a>詳細資料：startTime
+
+下表說明 **startTime** 如何控制作業執行的方式：
+
+| startTime | 無週期 | 週期、無排程 | 週期性有排程 |
+|-----------|---------------|-------------------------|--------------------------|
+| **没有開始時間** | 立即執行一次。 | 立即執行一次。 根據上次執行時間算出的時間執行後續的執行作業。 | 立即執行一次。 根據週期排程執行後續的執行作業。 | 
+| **過去的開始時間** | 立即執行一次。 | 計算開始時間之後的第一個未來執行時間，並在該時間執行。 <p>根據上次執行時間算出的時間執行後續的執行作業。 <p>請參閱這個表格後面的範例。 | 「一到」指定的開始時間就啟動作業。 第一次執行是根據從開始時間計算的排程。 <p>根據週期排程執行後續的執行作業。 | 
+| **在未來或目前時間的開始時間** | 在指定的開始時間執行一次。 | 在指定的開始時間執行一次。 <p>根據上次執行時間算出的時間執行後續的執行作業。 | 「一到」指定的開始時間就啟動作業。 第一次發生是根據排程，從開始時間計算。 <p>根據週期排程執行後續的執行作業。 |
+||||| 
+
+假設這個範例具備下列條件：過去的開始時間，有週期但無排程。
+
+```json
+"properties": {
+   "startTime": "2015-04-07T14:00Z", 
+   "recurrence": {
+      "frequency": "Day",
+      "interval": 2
+   }
+}
+```
+
+* 目前的日期和時間是 "2015-04-08 13:00"。
+
+* 開始日期和時間是 "2015年-04-07 14:00"，其在目前的日期和時間之前。
+
+* 週期是每隔兩天。
+
+1. 根據這些條件，第一次執行是在 2015-04-09 的 14:00。 
+
+   排程器會根據開始時間計算執行出現次數、捨棄過去的任何執行個體，並在未來使用下一個執行個體。 
+   在此案例中，**startTime** 是在 2015-04-07 下午 2:00，所以下一個執行個體是在該時間的二天後，即 2015-04-09 下午 2:00。
+
+   不論 **startTime** 為 2015-04-05 14:00 或 2015-04-01 14:00，第一次執行都一樣。 第一次執行之後，就會根據排程來計算出後續的執行時間。 
+   
+1. 執行接著會遵循下列順序： 
+   
+   1. 2015-04-11 下午 2:00
+   1. 2015-04-13 下午 2:00 
+   1. 2015-04-15 下午 2:00
+   1. 依此類推...
+
+1. 最後，當作業具備排程但未指定小時和分鐘時，這些值會分別預設為第一次執行的小時和分鐘。
+
+<a name="schedule"></a>
+
+## <a name="details-schedule"></a>詳細資料：schedule
+
 您可以使用 **schedule** 來*限制*作業執行的數目。 例如，如果作業的 **frequency** 為 "month" 且具有只在 31 日執行的排程，則該作業只在具有第三十一天的月份執行。
 
 您也可以使用 **schedule** 來*擴充*作業執行的數目。 例如，如果作業的 **frequency** 為 "month" 且具有在當月 1 日和 2 日執行的排程，則該作業會在當月的第一天和第二天執行，而不是一個月只執行一次。
 
-如果您指定了多個 schedule 元素，則評估的順序是從最大到最小：週數、月日、星期幾、小時和分鐘。
+如果您指定了多個 schedule 元素，則評估的順序是從最大到最小：週數、月日、工作日、小時和分鐘。
 
 下表詳細說明 schedule 元素：
 
@@ -134,6 +168,7 @@ ms.lasthandoff: 02/28/2018
 | **monthDays** |作業將在當月的哪一日執行。 只能搭配 monthly 頻率指定。 |包含下列值的陣列：<br />- <= -1 且 >= -31 的任何值<br />- >= 1 且 <= 31 的任何值|
 
 ## <a name="examples-recurrence-schedules"></a>範例：週期排程
+
 下列範例顯示各種循環排程。 該範例著重於 schedule 物件和其子元素。
 
 排程假設 **interval** 設定為 1\. 此範例也會假設 **schedule** 中值的 **frequency** 值是正確的。 例如，在 **schedule** 中具有 **monthDays** 修改的情況下，您無法將 **frequency** 設為 "day" 。 我們稍早在文章中已描述這些限制。
@@ -150,7 +185,7 @@ ms.lasthandoff: 02/28/2018
 | `{"minutes":[15]}` |在每小時整點過 15 分鐘後執行。<br /><br />每小時執行，從上午 00:15 開始，然後在上午 1:15、上午 2:15，依此類推。 它結束於下午 11:15。 |
 | `{"hours":[17], "weekDays":["saturday"]}` |在每週於星期六的下午 5 點執行。 |
 | `{hours":[17], "weekDays":["monday", "wednesday", "friday"]}` |在每週於星期一、星期三及星期五的下午 5 點執行。 |
-| `{"minutes":[15,45], "hours":[17], "weekDays":["monday", "wednesday", "friday"]}` |在每週於星期一、星期三及星期五的下午 5:15 和 5:45 執行。 |
+| `{"minutes":[15,45], "hours":[17], "weekDays":["monday", "wednesday", "friday"]}` |在每週星期一、星期三及星期五的下午 5:15 和 5:45 執行。 |
 | `{"hours":[5,17], "weekDays":["monday", "wednesday", "friday"]}` |在每週於星期一、星期三及星期五的上午 5 點和下午 5 點執行。 |
 | `{"minutes":[15,45], "hours":[5,17], "weekDays":["monday", "wednesday", "friday"]}` |在每週於星期一、星期三及星期五的上午 5:15、上午 5:45、下午 5:15 和上午 5:45 執行。 |
 | `{"minutes":[0,15,30,45], "weekDays":["monday", "tuesday", "wednesday", "thursday", "friday"]}` |在工作日每隔 15 分鐘執行一次。 |
@@ -174,13 +209,6 @@ ms.lasthandoff: 02/28/2018
 
 ## <a name="see-also"></a>另請參閱
 
-- [排程器是什麼？](scheduler-intro.md)
-- [Azure 排程器概念、術語及實體階層](scheduler-concepts-terms.md)
-- [在 Azure 入口網站中開始使用排程器](scheduler-get-started-portal.md)
-- [Azure 排程器的計劃和計費](scheduler-plans-billing.md)
-- [Azure 排程器 REST API 參考](https://msdn.microsoft.com/library/mt629143)
-- [Azure 排程器 PowerShell Cmdlet 參考](scheduler-powershell-reference.md)
-- [Azure 排程器高可用性和可靠性](scheduler-high-availability-reliability.md)
-- [Azure 排程器限制、預設值和錯誤碼](scheduler-limits-defaults-errors.md)
-- [Azure 排程器輸出驗證](scheduler-outbound-authentication.md)
-
+* [什麼是 Azure 排程器？](scheduler-intro.md)
+* [Azure 排程器概念、術語及實體階層](scheduler-concepts-terms.md)
+* [Azure 排程器限制、預設值和錯誤碼](scheduler-limits-defaults-errors.md)

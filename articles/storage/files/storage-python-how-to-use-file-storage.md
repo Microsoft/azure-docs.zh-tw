@@ -1,24 +1,20 @@
 ---
-title: "使用 Python 開發 Azure 檔案服務 | Microsoft Docs"
-description: "了解如何開發使用 Azure 檔案服務的 Python 應用程式和服務來儲存檔案資料。"
+title: 使用 Python 開發 Azure 檔案服務 | Microsoft Docs
+description: 了解如何開發使用 Azure 檔案服務的 Python 應用程式和服務來儲存檔案資料。
 services: storage
-documentationcenter: python
-author: tamram
-manager: timlt
-editor: tysonn
-ms.assetid: 297f3a14-6b3a-48b0-9da4-db5907827fb5
+author: wmgries
 ms.service: storage
-ms.workload: storage
-ms.tgt_pltfrm: na
 ms.devlang: python
 ms.topic: article
 ms.date: 09/19/2017
 ms.author: tamram
-ms.openlocfilehash: cee6ece907950724f6ad4a86c489a5f07dfcaaec
-ms.sourcegitcommit: b07d06ea51a20e32fdc61980667e801cb5db7333
+ms.component: files
+ms.openlocfilehash: 7e5c85890585230961f52803b081c636c950c518
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2017
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39529189"
 ---
 # <a name="develop-for-azure-files-with-python"></a>使用 Python 開發 Azure 檔案服務
 [!INCLUDE [storage-selector-file-include](../../../includes/storage-selector-file-include.md)]
@@ -33,7 +29,7 @@ ms.lasthandoff: 12/08/2017
 * 上傳、下載及刪除檔案
 
 > [!Note]  
-> 由於 Azure 檔案服務可透過 SMB 存取，因此便可使用標準 Python I/O 類別和函式撰寫簡單的應用程式以存取 Azure 檔案共用。 本文將說明如何撰寫使用 Azure 儲存體 Python SDK 的應用程式，它會使用 [Azure 檔案服務 REST API](https://docs.microsoft.com/rest/api/storageservices/fileservices/file-service-rest-api) 與 Azure 檔案服務通訊。
+> 由於 Azure 檔案可透過 SMB 來存取，因此可以使用標準 Python I/O 類別和函式撰寫簡單的應用程式，以存取 Azure 檔案共用。 本文將說明如何撰寫使用 Azure 儲存體 Python SDK 的應用程式，它會使用 [Azure 檔案服務 REST API](https://docs.microsoft.com/rest/api/storageservices/file-service-rest-api) 與 Azure 檔案服務通訊。
 
 ## <a name="download-and-install-azure-storage-sdk-for-python"></a>下載並安裝 Azure Storage SDK for Python
 
@@ -93,7 +89,7 @@ for file_or_dir in generator:
 ```
 
 ## <a name="upload-a-file"></a>上傳檔案 
-Azure 檔案共用至少包含根目錄，檔案可以放置其中。 在本節中，您將學習如何從本機儲存體將檔案上傳至共用的根目錄。
+Azure 檔案共用至少包含可放置檔案的根目錄。 在本節中，您將學習如何從本機儲存體將檔案上傳至共用的根目錄。
 
 若要建立檔案並上傳資料，請使用 `create_file_from_path`、`create_file_from_stream`、`create_file_from_bytes` 或 `create_file_from_text` 方法。 這些是高階方法，可在資料大小超過 64 MB 時執行必要的區塊化動作。
 

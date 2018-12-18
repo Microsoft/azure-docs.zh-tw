@@ -1,13 +1,13 @@
 ---
-title: "Azure 計算單位概觀 | Microsoft Docs"
-description: "適用於 Windows 的 Azure 計算單位概念概觀。 ACU 提供一種比較各個 Azure SKU 之 CPU 效能的方式。"
+title: Azure 計算單位概觀 | Microsoft Docs
+description: 適用於 Windows 的 Azure 計算單位概念概觀。 ACU 提供一種比較各個 Azure SKU 之 CPU 效能的方式。
 services: virtual-machines-windows
-documentationcenter: 
+documentationcenter: ''
 author: jonbeck7
-manager: timlt
-editor: 
+manager: jeconnoc
+editor: ''
 tags: azure-resource-manager,azure-service-management
-ms.assetid: 
+ms.assetid: ''
 ms.service: virtual-machines-windows
 ms.devlang: na
 ms.topic: article
@@ -15,11 +15,12 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 12/05/2017
 ms.author: jonbeck
-ms.openlocfilehash: aa7fd198a2b9eba6b47afdbb124e6a632a0a24c0
-ms.sourcegitcommit: cc03e42cffdec775515f489fa8e02edd35fd83dc
+ms.openlocfilehash: baf49856f8f7480ece10e065b3ac002297f06617
+ms.sourcegitcommit: 59914a06e1f337399e4db3c6f3bc15c573079832
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/07/2017
+ms.lasthandoff: 04/20/2018
+ms.locfileid: "30918076"
 ---
 # <a name="azure-compute-unit-acu"></a>Azure 計算單位 (ACU)
 

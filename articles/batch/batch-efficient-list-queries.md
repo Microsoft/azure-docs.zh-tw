@@ -12,27 +12,25 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: ''
 ms.workload: big-compute
-ms.date: 08/02/2017
+ms.date: 06/26/2018
 ms.author: danlep
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 330350d6ac6838ea5b09763fe1f73fab1934710c
-ms.sourcegitcommit: 20d103fb8658b29b48115782fe01f76239b240aa
+ms.openlocfilehash: 6bc31e8541797930583e41fb6efbb6473cd4b894
+ms.sourcegitcommit: e0a678acb0dc928e5c5edde3ca04e6854eb05ea6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2018
+ms.lasthandoff: 07/13/2018
+ms.locfileid: "39004450"
 ---
 # <a name="create-queries-to-list-batch-resources-efficiently"></a>建立查詢以便有效率地列出 Batch 資源
 
-在此您將了解如何透過減少在使用 [Batch .NET][api_net] 程式庫查詢作業、工作和計算節點時所傳回的資料量，增加 Azure Batch 應用程式的效能。
+在此您將了解如何透過減少在使用 [Batch .NET][api_net] 程式庫查詢作業、工作、計算節點和其他資源時所傳回的資料量，增加 Azure Batch 應用程式的效能。
 
 幾乎所有 Batch 應用程式都必須執行某種類型的監視或其他查詢 Batch 服務的作業，並且通常是定期執行。 例如，若要判斷作業中是否有任何剩餘的已排入佇列的工作，您必須取得作業內每項工作的資料。 若要判斷集區中節點的狀態，您必須取得集區中每個節點的資料。 這篇文章說明如何以最有效率的方式執行這類查詢。
 
 > [!NOTE]
-> Batch 服務會針對計算作業中工作的常見案例，提供特殊的 API 支援。 您可以呼叫[取得工作計數][rest_get_task_counts]作業，而非使用清單查詢。 「取得工作計數」會指出多少工作擱置中、執行中或已完成，以及有多少工作成功或失敗。 「取得工作計數」比清單查詢更有效率。 如需詳細資訊，請參閱[依狀態計算作業的工作 (預覽)](batch-get-task-counts.md)。 
->
-> 「取得工作計數」作業不適用於早於 2017-06-01.5.1 的 Batch 服務版本。 如果您使用舊版的服務，則改用清單查詢來計算作業中的工作。
->
-> 
+> Batch 服務會針對計算作業中的工作，以及計算 Batch 集區中的計算節點這類常見案例，提供特殊的 API 支援。 您可以呼叫[取得工作計數][rest_get_task_counts]和[列出集區節點計數][rest_get_node_counts] 作業，而非使用清單查詢。 這些作業比清單查詢更有效率，但會傳回更多限制的資訊。 請參閱[依照狀態計算工作和計算節點](batch-get-resource-counts.md)。 
+
 
 ## <a name="meet-the-detaillevel"></a>認識 DetailLevel
 在生產用 Batch 應用程式中，作業、工作和計算節點等實體的數量可能有數千個。 當您要求這些資源的資訊時，可能會有大量資料必須從 Batch 服務「傳送」到每個查詢上的應用程式。 透過限制項目數量及查詢所傳回的資訊類型，您可以加速查詢，因而提高應用程式的效能。
@@ -247,15 +245,12 @@ internal static ODATADetailLevel OnlyChangedAfter(DateTime time)
 ### <a name="parallel-node-tasks"></a>平行節點工作
 [使用並行節點工作最大化 Azure Batch 計算資源使用量](batch-parallel-node-tasks.md) 是另一篇與 Batch 應用程式效能有關的文章。 某些類型的工作負載可以受益於在規模較大但數量較少的計算節點上執行平行工作。 如需這類案例的詳細資訊，請查看 [範例案例](batch-parallel-node-tasks.md#example-scenario) 。
 
-### <a name="batch-forum"></a>Batch 論壇
-MSDN 上的 [Azure Batch 論壇][forum]是一個很棒的地方，可以討論 Batch 和詢問有關此服務的問題。 請前去查看很有幫助的「便利貼」文章，在建立 Batch 解決方案時，出現問題就張貼。
 
 [api_net]: http://msdn.microsoft.com/library/azure/mt348682.aspx
 [api_net_listjobs]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.joboperations.listjobs.aspx
 [api_rest]: http://msdn.microsoft.com/library/azure/dn820158.aspx
 [batch_metrics]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/BatchMetrics
 [efficient_query_sample]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/ArticleProjects/EfficientListQueries
-[forum]: https://social.msdn.microsoft.com/forums/azure/en-US/home?forum=azurebatch
 [github_samples]: https://github.com/Azure/azure-batch-samples
 [odata]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.odatadetaillevel.aspx
 [odata_ctor]: https://msdn.microsoft.com/library/azure/dn866178.aspx
@@ -299,4 +294,5 @@ MSDN 上的 [Azure Batch 論壇][forum]是一個很棒的地方，可以討論 B
 [net_schedule]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.cloudjobschedule.aspx
 [net_task]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.cloudtask.aspx
 
-[rest_get_task_counts]: https://docs.microsoft.com/rest/api/batchservice/get-the-task-counts-for-a-job
+[rest_get_task_counts]: /rest/api/batchservice/get-the-task-counts-for-a-job
+[rest_get_node_counts]: /rest/api/batchservice/account/listpoolnodecounts

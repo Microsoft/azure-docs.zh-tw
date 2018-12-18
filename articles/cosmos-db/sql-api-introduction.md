@@ -4,22 +4,19 @@ description: 了解如何透過 SQL 和 JavaScript，使用 Azure Cosmos DB 來�
 keywords: JSON 資料庫，文件資料庫
 services: cosmos-db
 author: rafats
-manager: jhubbard
-editor: monicar
-documentationcenter: ''
-ms.assetid: 686cdd2b-704a-4488-921e-8eefb70d5c63
+manager: kfile
 ms.service: cosmos-db
-ms.workload: data-services
-ms.tgt_pltfrm: na
+ms.component: cosmosdb-sql
 ms.devlang: na
-ms.topic: get-started-article
+ms.topic: overview
 ms.date: 05/22/2017
 ms.author: rafats
-ms.openlocfilehash: 32313c28de9065b57ec98d3668813a4b24c0becc
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: fdeb58d72e15f563fd70ae94804de0773dd603c7
+ms.sourcegitcommit: f20e43e436bfeafd333da75754cd32d405903b07
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49387340"
 ---
 # <a name="introduction-to-azure-cosmos-db-sql-api"></a>Azure Cosmos DB 簡介：SQL API
 
@@ -32,15 +29,15 @@ ms.lasthandoff: 03/28/2018
 ## <a name="what-capabilities-and-key-features-does-azure-cosmos-db-offer"></a>Azure Cosmos DB 提供哪些功能和主要功能？
 Azure Cosmos DB 可透過 SQL API 提供下列重要功能和優點：
 
-* **可彈性調整的輸送量和儲存體：**輕鬆相應增加或相應減少 JSON 資料庫，以符合您應用程式的需求。 您的資料會儲存在固態硬碟 (SSD) 中以便獲得可預測的低延遲。 Azure Cosmos DB 支援用來儲存稱為集合之 JSON 資料的容器，這些集合可調整為幾乎沒有限制的儲存體大小和佈建的輸送量。 隨著應用程式的成長，您可以依據可預測的效能彈性且順暢地調整 Azure Cosmos DB。 
+* **可彈性調整的輸送量和儲存體：** 輕鬆相應增加或相應減少 JSON 資料庫，以符合您應用程式的需求。 您的資料會儲存在固態硬碟 (SSD) 中以便獲得可預測的低延遲。 Azure Cosmos DB 支援用來儲存稱為集合之 JSON 資料的容器，這些集合可調整為幾乎沒有限制的儲存體大小和佈建的輸送量。 隨著應用程式的成長，您可以依據可預測的效能彈性且順暢地調整 Azure Cosmos DB。 
 
 
 * **多重區域複寫**︰Azure Cosmos DB 會自動將您的資料複寫至與您 Azure Cosmos DB 帳戶相關聯的所有區域，讓您開發需要全域存取資料的應用程式，同時能在一致性、可用性與效能之間做出取捨，且全都有相對應的保證。 Azure Cosmos DB 利用多重定址 API 提供自動的區域性容錯移轉，還能夠彈性調整世界各地的輸送量和儲存體。 深入了解[使用 Azure Cosmos DB 全域發佈資料](distribute-data-globally.md)。
 
-* **運用常見的 SQL 語法進行特定查詢：**儲存異質 JSON 文件，並透過常見的 SQL 語法來查詢這些文件。 Azure Cosmos DB 採用高度並行、無鎖定、記錄結構化索引技術，自動編製所有文件內容的索引。 這樣一來，不需要指定結構描述提示、次要索引或檢視，就能進行大量且即時的查詢。 深入了解[查詢 Azure Cosmos DB](sql-api-sql-query.md)。 
+* **運用常見的 SQL 語法進行特定查詢：** 儲存異質 JSON 文件，並透過常見的 SQL 語法來查詢這些文件。 Azure Cosmos DB 採用高度並行、無鎖定、記錄結構化索引技術，自動編製所有文件內容的索引。 這樣一來，不需要指定結構描述提示、次要索引或檢視，就能進行大量且即時的查詢。 深入了解[查詢 Azure Cosmos DB](sql-api-sql-query.md)。 
 * **在資料庫內執行 JavaScript：** 使用標準 JavaScript，以預存程序、觸發程序和使用者定義函式 (UDF) 的形式表示應用程式邏輯。 這允許您的應用程式邏輯操作 JSON 資料，而不需要擔心應用程式與資料庫結構描述之間的不相符。 SQL API 可讓您直接在資料庫引擎內以完整的交易方式執行 JavaScript 應用程式邏輯。 JavaScript 的深入整合則可讓您以獨立交易的形式，從 JavaScript 程式內執行 INSERT、REPLACE、DELETE 和 SELECT 作業。 在 [SQL 伺服器端程式設計](programming.md)中深入了解。
 
-* **可調整的一致性等級：**有五個定義完善的一致性等級可選擇，讓您在一致性與效能之間做出最好的取捨。 針對查詢和讀取作業，Azure Cosmos DB 提供五個不同的一致性層級：強式、限定過期、工作階段、一致的前置和最終。 這些細微且定義完善的一致性層級可讓您在一致性、可用性與延遲三者間做出合理取捨。 深入了解[使用一致性層級將可用性和效能最大化](consistency-levels.md)。
+* **可調整的一致性等級：** 有五個定義完善的一致性等級可選擇，讓您在一致性與效能之間做出最好的取捨。 針對查詢和讀取作業，Azure Cosmos DB 提供五個不同的一致性等級：強式、限定過期、工作階段、一致的前置和最終。 這些細微且定義完善的一致性層級可讓您在一致性、可用性與延遲三者間做出合理取捨。 深入了解[使用一致性層級將可用性和效能最大化](consistency-levels.md)。
 
 * **完全受控：** 消除資料庫和電腦資源的管理需求。 因為是完全受控的 Microsoft Azure 服務，您不需要管理虛擬機器、部署和設定軟體、管理調整事宜，或處理複雜的資料層升級。 每個資料庫都會自動進行備份，防範區域性失敗。 您可以輕鬆地新增 Azure Cosmos DB 帳戶，並在需要時佈建容量，將精力投注在應用程式，不用浪費時間來操作和管理資料庫。 
 
@@ -48,7 +45,7 @@ Azure Cosmos DB 可透過 SQL API 提供下列重要功能和優點：
 
 * **自動編製索引**：根據預設，Azure Cosmos DB 會自動為資料庫中的所有文件編制索引，且不預期或需要任何結構描述或建立次要索引。 不想要編製所有項目的索引嗎？ 別擔心，您也可以 [選擇退出 JSON 檔案中的路徑](indexing-policies.md) 。
 
-* **變更摘要支援：**變更摘要可提供一份 Azure Cosmos DB 集合內的文件排序清單，並以文件的修改順序排序。 此摘要可用於接聽資料修改，以便複寫資料、觸發 API 呼叫或執行更新的串流處理。 變更摘要會自動啟用且容易使用：[深入了解變更摘要](https://docs.microsoft.com/azure/cosmos-db/change-feed)。 
+* **變更摘要支援：** 變更摘要可提供一份 Azure Cosmos DB 集合內的文件排序清單，並以文件的修改順序排序。 此摘要可用於接聽資料修改，以便複寫資料、觸發 API 呼叫或執行更新的串流處理。 變更摘要會自動啟用且容易使用：[深入了解變更摘要](https://docs.microsoft.com/azure/cosmos-db/change-feed)。 
 
 ## <a name="data-management"></a>您要如何使用 SQL API 來管理資料？
 SQL API 透過定義完善的資料庫資源來協助管理 JSON 資料。 這些資源會進行複寫來達到高可用性，並且會透過其邏輯 URI 來進行唯一定址。 SQL API 針對所有資源提供簡單的 HTTP 式 RESTful 程式設計模型。 
@@ -70,14 +67,10 @@ Azure Cosmos DB 公開資源的方式是透過 REST API，此 API 可供任何�
 
 | 下載 | 文件 |
 | --- | --- |
-| [.NET SDK](http://go.microsoft.com/fwlink/?LinkID=402989) |[.NET 程式庫](/dotnet/api/overview/azure/cosmosdb?view=azure-dotnet) |
-| [Node.js SDK](http://go.microsoft.com/fwlink/?LinkID=402990) |[Node.js 程式庫](http://azure.github.io/azure-documentdb-node/) |
-| [Java SDK](http://go.microsoft.com/fwlink/?LinkID=402380) |[Java 程式庫](/java/api/com.microsoft.azure.documentdb) |
-| [JavaScript SDK](http://go.microsoft.com/fwlink/?LinkID=402991) |[JavaScript 程式庫](http://azure.github.io/azure-documentdb-js/) |
-| n/a |[伺服器端 JavaScript SDK](http://azure.github.io/azure-documentdb-js-server/) |
-| [Python SDK](https://pypi.python.org/pypi/pydocumentdb) |[Python 程式庫](http://azure.github.io/azure-documentdb-python/) |
-| n/a | [適用於 MongoDB 的 API](mongodb-introduction.md)
-
+| [.NET SDK](http://go.microsoft.com/fwlink/?LinkID=402989) |[.NET 參考文件](/dotnet/api/overview/azure/cosmosdb?view=azure-dotnet) |
+| [Java SDK](http://go.microsoft.com/fwlink/?LinkID=402380) |[.NET 參考文件](/java/api/com.microsoft.azure.documentdb) |
+| [JavaScript SDK](https://www.npmjs.com/package/@azure/cosmos) |[JavaScript 參考文件](https://docs.microsoft.com/javascript/api/@azure/cosmos/?view=azure-node-latest) |
+| [Python SDK](https://pypi.python.org/pypi/pydocumentdb) |[Python 參考文件](https://github.com/Azure/azure-cosmos-python) |
 
 您可以使用 [Azure Cosmos DB 模擬器](local-emulator.md)，透過 SQL API 在本機開發及測試應用程式，不需建立 Azure 訂用帳戶，也不會產生任何費用。 如果您滿意應用程式在模擬器中的運作方式，就可以切換成使用雲端的 Azure Cosmos DB 帳戶。
 

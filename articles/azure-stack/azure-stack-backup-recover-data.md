@@ -1,24 +1,26 @@
 ---
-title: "在 Azure Stack 中使用基礎結構備份服務，從重大資料遺失的情況下復原 | Microsoft Docs"
-description: "發生重大錯誤而導致 Azure Stack 失敗時，您可以在重新建立 Azure Stack 部署時還原基礎結構資料。"
+title: 在 Azure Stack 中使用基礎結構備份服務，從重大資料遺失的情況下復原 | Microsoft Docs
+description: 發生重大錯誤而導致 Azure Stack 失敗時，您可以在重新建立 Azure Stack 部署時還原基礎結構資料。
 services: azure-stack
-documentationcenter: 
-author: mattbriggs
+documentationcenter: ''
+author: jeffgilb
 manager: femila
-editor: 
+editor: ''
 ms.assetid: 2ECE8580-0BDE-4D4A-9120-1F6771F2E815
 ms.service: azure-stack
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/13/2017
-ms.author: mabrigg
-ms.openlocfilehash: 141641b01b338e3426861dad7424a1de1bd2c63c
-ms.sourcegitcommit: 95500c068100d9c9415e8368bdffb1f1fd53714e
+ms.date: 07/17/2018
+ms.author: jeffgilb
+ms.reviewer: hectorl
+ms.openlocfilehash: ed89468d65f35d0a8cda90da365e8625f46e3f92
+ms.sourcegitcommit: 387d7edd387a478db181ca639db8a8e43d0d75f7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 08/10/2018
+ms.locfileid: "41954621"
 ---
 # <a name="recover-from-catastrophic-data-loss"></a>從重大資料遺失的情況下復原
 
@@ -63,11 +65,11 @@ Azure Stack 支援一種稱為「雲端復原模式」的部署。 只有在災�
  - 內部身分識別系統
  - 同盟身分識別設定 (已中斷連線的部署)
  - 內部憑證授權單位所使用的根憑證
- - Azure Resource Manager 設定使用者資料，例如訂用帳戶、方案，以及儲存體、網路和計算資源的配額
+ - Azure Resource Manager 設定使用者資料，例如訂用帳戶、方案、供應項目，以及儲存體、網路和計算資源的配額
  - KeyVault 祕密和保存庫
  - RBAC 原則指派和角色指派 
 
-在部署期間不會復原任何使用者的基礎結構即服務 (IaaS) 或平台即服務 (PaaS) 資源。 也就是說，包括 IaaS VM、儲存體帳戶、BLOb、資料表、網路設定等等都會遺失。 雲端復原的目的在於確保您的操作員和使用者在部署完成後，可以重新登入入口網站。 重新登入的使用者不會看到任何資源。 系統會還原使用者的訂用帳戶，以及系統管理員所定義的原始方案和訂閱詳情原則。 重新登入系統的使用者在操作時，同樣會受到災害發生前原始解決方案所設下限制的約束。 雲端復原完成後，操作員可以手動還原加值和第三方 RP 及相關聯的資料。
+在部署期間不會復原任何使用者的基礎結構即服務 (IaaS) 或平台即服務 (PaaS) 資源。 也就是說，包括 IaaS VM、儲存體帳戶、BLOb、資料表、網路設定等等都會遺失。 雲端復原的目的在於確保您的操作員和使用者在部署完成後，可以重新登入入口網站。 重新登入的使用者不會看到任何資源。 系統會還原使用者的訂用帳戶，以及系統管理員所定義的原始方案和供應項目原則。 重新登入系統的使用者在操作時，同樣會受到災害發生前原始解決方案所設下限制的約束。 雲端復原完成後，操作員可以手動還原加值和第三方 RP 及相關聯的資料。
 
 ## <a name="next-steps"></a>後續步驟
 

@@ -1,25 +1,23 @@
 ---
-title: "Azure Cosmos DB：使用 .NET 搭配資料表 API 進行開發 | Microsoft Docs"
-description: "了解如何使用 .NET 搭配 Azure Cosmos DB 的「資料表 API」進行開發"
+title: Azure Cosmos DB：使用 .NET 搭配資料表 API 進行開發 | Microsoft Docs
+description: 了解如何使用 .NET 搭配 Azure Cosmos DB 的「資料表 API」進行開發
 services: cosmos-db
-documentationcenter: 
-author: mimig1
-manager: jhubbard
-editor: 
-ms.assetid: 4b22cb49-8ea2-483d-bc95-1172cd009498
+author: SnehaGunda
+manager: kfile
+editor: ''
 ms.service: cosmos-db
-ms.workload: 
-ms.tgt_pltfrm: na
+ms.component: cosmosdb-table
 ms.devlang: dotnet
 ms.topic: tutorial
 ms.date: 12/18/2017
-ms.author: arramac
+ms.author: sngun
 ms.custom: mvc
-ms.openlocfilehash: bb08a60a9ec2db0fa145f75e00be96bc05664e32
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.openlocfilehash: e6511b9511d2598b58fd3afee34803ceb09ac5ce
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38582847"
 ---
 # <a name="azure-cosmos-db-develop-with-the-table-api-in-net"></a>Azure Cosmos DB：使用 .NET 搭配資料表 API 進行開發
 

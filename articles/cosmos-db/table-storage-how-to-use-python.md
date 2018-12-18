@@ -1,66 +1,55 @@
 ---
-title: 以 Python 開始使用 Azure 表格儲存體 | Microsoft Docs
-description: 使用 Azure 表格儲存體 (NoSQL 資料存放區) 將結構化的資料儲存在雲端。
+title: 以 Python 開始使用 Azure 表格儲存體和 Azure Cosmos DB 資料表 API | Microsoft Docs
+description: 使用 Azure 表格儲存體或 Azure Cosmos DB 資料表 API 將結構化資料儲存在雲端。
 services: cosmos-db
-documentationcenter: python
-author: mimig1
-manager: jhubbard
-editor: tysonn
-ms.assetid: 7ddb9f3e-4e6d-4103-96e6-f0351d69a17b
+author: SnehaGunda
+manager: kfile
 ms.service: cosmos-db
-ms.workload: data-services
-ms.tgt_pltfrm: na
+ms.component: cosmosdb-table
 ms.devlang: python
-ms.topic: article
-ms.date: 02/08/2018
-ms.author: mimig
-ms.openlocfilehash: 455479c9eb77093dd5611263fe5bdcf699b9d026
-ms.sourcegitcommit: 168426c3545eae6287febecc8804b1035171c048
+ms.topic: sample
+ms.date: 04/05/2018
+ms.author: sngun
+ms.openlocfilehash: 4e9d1742401e30d451282ea8dc22a56c0347dbf9
+ms.sourcegitcommit: 8ebcecb837bbfb989728e4667d74e42f7a3a9352
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/08/2018
+ms.lasthandoff: 08/21/2018
+ms.locfileid: "41918593"
 ---
-# <a name="get-started-with-azure-table-storage-using-python"></a>以 Python 開始使用 Azure 表格儲存體
+# <a name="get-started-with-azure-table-storage-and-the-azure-cosmos-db-table-api-using-python"></a>以 Python 開始使用 Azure 表格儲存體和 Azure Cosmos DB 資料表 API
 
 [!INCLUDE [storage-selector-table-include](../../includes/storage-selector-table-include.md)]
-[!INCLUDE [storage-table-cosmos-db-tip-include](../../includes/storage-table-cosmos-db-tip-include.md)]
+[!INCLUDE [storage-table-applies-to-storagetable-and-cosmos](../../includes/storage-table-applies-to-storagetable-and-cosmos.md)]
 
-Azure 表格儲存體是可將結構化的 NoSQL 資料儲存在雲端中的服務，並提供具有無結構描述設計的索引鍵/屬性存放區。 由於表格儲存體並無結構描述，因此可輕易隨著應用程式發展需求改寫資料。 相較於類似資料量的傳統 SQL，對許多類型的應用程式而言，表格儲存體資料可快速存取且符合成本效益，通常可降低成本。
+Azure 表格儲存體和 Azure Cosmos DB 是可將結構化的 NoSQL 資料儲存在雲端中的服務，並提供具有無結構描述設計的索引鍵/屬性存放區。 由於表格儲存體和 Azure Cosmos DB 並無結構描述，因此可輕易隨著應用程式發展需求改寫資料。 相較於類似資料量的傳統 SQL，對許多類型的應用程式而言，表格儲存體和資料表 API 資料可快速存取且符合成本效益，通常可降低成本。
 
-您可以使用表格儲存體來儲存具彈性的資料集，例如 Web 應用程式的使用者資料、通訊錄、裝置資訊，以及服務所需的其他中繼資料類型。 您可以在資料表中儲存任意數目的實體，且儲存體帳戶可包含任意數目的資料表，最高可達儲存體帳戶的容量限制。
+您可以使用表格儲存體或 Azure Cosmos DB 來儲存具彈性的資料集，例如 Web 應用程式的使用者資料、通訊錄、裝置資訊，以及服務所需的其他中繼資料類型。 您可以在資料表中儲存任意數目的實體，且儲存體帳戶可包含任意數目的資料表，最高可達儲存體帳戶的容量限制。
 
-### <a name="about-this-tutorial"></a>關於本教學課程
-本教學課程示範如何在常見的 Azure 表格儲存體案例中使用[適用於 Python 的 Azure Cosmos DB 表格 SDK](https://pypi.python.org/pypi/azure-cosmosdb-table/) \(英文\)。 SDK 名稱表示其適用於 Azure Cosmos DB，但也同時適用於 Azure Cosmos DB 和 Azure 表格儲存體，兩個服務皆具有唯一的端點。 在這些案例探索中會使用 Python 範例，可說明如何執行下列動作：
+### <a name="about-this-sample"></a>關於此範例
+此範例示範如何在常見的 Azure 表格儲存體案例中使用[適用於 Python 的 Azure Cosmos DB 表格 SDK](https://pypi.python.org/pypi/azure-cosmosdb-table/) \(英文\)。 SDK 名稱表示其適用於 Azure Cosmos DB，但也同時適用於 Azure Cosmos DB 和 Azure 表格儲存體，兩個服務皆具有唯一的端點。 在這些案例探索中會使用 Python 範例，可說明如何執行下列動作：
 * 建立和刪除表格
 * 插入和查詢實體
 * 修改實體
 
-在進行本教學課程中的案例時，您可以參閱 [Azure Cosmos DB SDK for Python API 參考資料](https://azure.github.io/azure-cosmosdb-python/) \(英文\)。
+在進行此範例中的案例時，您可以參閱 [Azure Cosmos DB SDK for Python API 參考資料](https://azure.github.io/azure-cosmosdb-python/) \(英文\)。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
-您需要下列項目才能成功完成此教學課程︰
+您需要下列項目才能成功完成此範例︰
 
 - [Python](https://www.python.org/downloads/) 2.7、3.3、3.4、3.5 或 3.6
 - [適用於 Python 的 Azure Cosmos DB 資料表 SDK ](https://pypi.python.org/pypi/azure-cosmosdb-table/)。 此 SDK 與 Azure 表格儲存體和 Azure Cosmos DB 資料表 API 連線。
-- [Azure 儲存體帳戶](https://docs.microsoft.com/en-us/azure/storage/common/storage-create-storage-account#create-a-storage-account)或 [Azure Cosmos DB 帳戶](https://azure.microsoft.com/en-us/try/cosmosdb/)
-
-[!INCLUDE [storage-table-concepts-include](../../includes/storage-table-concepts-include.md)]
+- [Azure 儲存體帳戶](../storage/common/storage-quickstart-create-account.md)或 [Azure Cosmos DB 帳戶](https://azure.microsoft.com/try/cosmosdb/)
 
 ## <a name="create-an-azure-service-account"></a>建立 Azure 服務帳戶
-
-您可以使用 Azure 表格儲存體或 Azure Cosmos DB 來搭配使用表格。 您可以參閱[表格供應項目](table-introduction.md#table-offerings)，深入了解各服務之間的差異。 您必須為您要使用的服務建立帳戶。 
+[!INCLUDE [cosmos-db-create-azure-service-account](../../includes/cosmos-db-create-azure-service-account.md)]
 
 ### <a name="create-an-azure-storage-account"></a>建立 Azure 儲存體帳戶
-建立您第一個 Azure 儲存體帳戶最簡單的方法，就是使用 [Azure 入口網站](https://portal.azure.com)。 若要深入了解，請參閱 [建立儲存體帳戶](../storage/common/storage-create-storage-account.md#create-a-storage-account)。
-
-您也可以使用 [Azure PowerShell](../storage/common/storage-powershell-guide-full.md) 或 [Azure CLI](../storage/common/storage-azure-cli.md) 來建立 Azure 儲存體帳戶。
-
-如果您不想在此時建立儲存體帳戶，也可以使用 Azure 儲存體模擬器在本機環境中執行並測試您的程式碼。 如需詳細資訊，請參閱 [使用 Azure 儲存體模擬器進行開發和測試](../storage/common/storage-use-emulator.md)。
+[!INCLUDE [cosmos-db-create-storage-account](../../includes/cosmos-db-create-storage-account.md)]
 
 ### <a name="create-an-azure-cosmos-db-table-api-account"></a>建立 Azure Cosmos DB 表格 API 帳戶
-
-有關建立 Azure Cosmos DB 表格 API 帳戶的指示，請參閱[建立表格 API 帳戶](create-table-dotnet.md#create-a-database-account)。
+[!INCLUDE [cosmos-db-create-tableapi-account](../../includes/cosmos-db-create-tableapi-account.md)]
 
 ## <a name="install-the-azure-cosmos-db-table-sdk-for-python"></a>安裝適用於 Python 的 Azure Cosmos DB 資料表 SDK
 
@@ -232,11 +221,11 @@ table_service.delete_table('tasktable')
 
 ## <a name="next-steps"></a>後續步驟
 
-* [常見問題集 - 利用資料表 API 進行開發](https://docs.microsoft.com/en-us/azure/cosmos-db/faq#develop-with-the-table-api)
+* [常見問題集 - 利用資料表 API 進行開發](https://docs.microsoft.com/azure/cosmos-db/faq#develop-with-the-table-api)
 * [Azure Cosmos DB SDK for Python API 參考資料](https://azure.github.io/azure-cosmosdb-python/) \(英文\)
 * [Python 開發人員中心](https://azure.microsoft.com/develop/python/)
 * [Microsoft Azure 儲存體總管](../vs-azure-tools-storage-manage-with-storage-explorer.md)：一個免費、跨平台的應用程式，以視覺化方式在 Windows、macOS 和 Linux 上使用 Azure 儲存體資料。
-* [在 Visual Studio 中使用 Python (Windows)](https://docs.microsoft.com/en-us/visualstudio/python/overview-of-python-tools-for-visual-studio)
+* [在 Visual Studio 中使用 Python (Windows)](https://docs.microsoft.com/visualstudio/python/overview-of-python-tools-for-visual-studio)
 
 [py_commit_batch]: https://azure.github.io/azure-cosmosdb-python/ref/azure.cosmosdb.table.tableservice.html
 [py_create_table]: https://azure.github.io/azure-cosmosdb-python/ref/azure.cosmosdb.table.tableservice.html

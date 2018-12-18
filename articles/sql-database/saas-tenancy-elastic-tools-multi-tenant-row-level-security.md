@@ -1,20 +1,23 @@
 ---
 title: 使用 RLS 與彈性資料庫工具的多租用戶應用程式 | Microsoft Docs
 description: 使用彈性資料庫工具搭配資料列層級安全性，建置具有可高度擴充性資料層的應用程式。
-metakeywords: azure sql database elastic tools multi tenant row level security rls
 services: sql-database
-manager: craigg
-author: tmullaney
 ms.service: sql-database
-ms.custom: scale out apps
-ms.topic: article
-ms.date: 11/16/2017
+ms.subservice: scenario
+ms.custom: ''
+ms.devlang: ''
+ms.topic: conceptual
+author: tmullaney
 ms.author: thmullan
-ms.openlocfilehash: 62213eeeee0b1d93cabc32101ad6fe51bf394080
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.reviewer: ''
+manager: craigg
+ms.date: 04/01/2018
+ms.openlocfilehash: 94430d3b72bb5b8e8bde0e9e2e9fb2eb2b0c3632
+ms.sourcegitcommit: 715813af8cde40407bd3332dd922a918de46a91a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "47056279"
 ---
 # <a name="multi-tenant-applications-with-elastic-database-tools-and-row-level-security"></a>使用彈性資料庫工具和資料列層級安全性的多租用戶應用程式
 
@@ -37,7 +40,7 @@ ms.lasthandoff: 03/16/2018
 ### <a name="prerequisites"></a>先決條件
 
 - 使用 Visual Studio (2012 或更新版本) 
-- 建立三個 Azure SQL Database 
+- 建立三個 Azure SQL 資料庫 
 - 下載範例專案：[Azure SQL 的彈性資料庫工具：多租用戶分區](http://go.microsoft.com/?linkid=9888163)
   - 在 **Program.cs** 開頭填寫您的資料庫資訊 
 

@@ -1,24 +1,26 @@
 ---
-title: "Azure Stack 基礎結構備份服務的最佳做法 | Microsoft Docs"
-description: "您在資料中心內部署和管理 Azure Stack 時，可以遵照一套最佳做法，以利發生重大失敗時減少資料遺失。"
+title: Azure Stack 基礎結構備份服務的最佳做法 | Microsoft Docs
+description: 您在資料中心內部署和管理 Azure Stack 時，可以遵照一套最佳做法，以利發生重大失敗時減少資料遺失。
 services: azure-stack
-documentationcenter: 
-author: mattbriggs
+documentationcenter: ''
+author: jeffgilb
 manager: femila
-editor: 
+editor: ''
 ms.assetid: 221FDE40-3EF8-4F54-A075-0C4D66EECE1A
 ms.service: azure-stack
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/27/2017
-ms.author: mabrigg
-ms.openlocfilehash: b9438f3bab92f40a5c79ce7b7a572195c182be45
-ms.sourcegitcommit: 85012dbead7879f1f6c2965daa61302eb78bd366
+ms.date: 08/01/2018
+ms.author: jeffgilb
+ms.reviewer: hectorl
+ms.openlocfilehash: 08d8822410545fb0ae3a2a99de00b38566c9834c
+ms.sourcegitcommit: 387d7edd387a478db181ca639db8a8e43d0d75f7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/02/2018
+ms.lasthandoff: 08/10/2018
+ms.locfileid: "41946512"
 ---
 # <a name="infrastructure-backup-service-best-practices"></a>基礎結構備份服務的最佳做法
 
@@ -32,17 +34,15 @@ ms.lasthandoff: 01/02/2018
 
 ### <a name="deployment"></a>部署
 
-在部署每個 Azure Stack 雲端後，啟用基礎結構備份。 您可以使用 Azure Stack 工具，從任何可存取操作員管理 API 端點的用戶端/伺服器來排程備份。
+在部署每個 Azure Stack 雲端後，啟用基礎結構備份。 您可以使用 Azure Stack PowerShell，從任何可存取操作員管理 API 端點的用戶端/伺服器來排程備份。
 
-### <a name="networking"></a>網路
+### <a name="networking"></a>網路功能
 
 路徑的通用命名慣例 (UNC) 字串必須使用完整網域名稱 (FQDN)。 若無法進行名稱解析，也可以使用 IP 位址。 UNC 字串會指定資源的位置，例如共用的檔案或裝置。
 
 ### <a name="encryption"></a>加密
 
-加密金鑰用於將匯出到外部儲存位置的備份資料加密。 可以使用 Azure Stack 工具來產生金鑰。 
-
-![Azure Stack 工具](media\azure-stack-backup\azure-stack-backup-encryption1.png)
+加密金鑰用於將匯出到外部儲存位置的備份資料加密。 金鑰會在[使用 PowerShell 為 Azure Stack 啟用備份](azure-stack-backup-enable-backup-powershell.md)的過程中產生。
 
 金鑰必須儲存在安全的位置 (例如，公用 Azure Key Vault 祕密中)。 在重新部署 Azure Stack 期間，必須使用此金鑰。 
 
@@ -61,7 +61,7 @@ ms.lasthandoff: 01/02/2018
  - 基礎結構會自動建立 MASBACKUP 資料夾。 這是 Microsoft 管理的共用。 您可以在與 MASBACKUP 相同的層級建立共用。 不建議您在 MASBACKUP 資料夾內，建立 Azure Stack 未建立的資料夾或儲存體資料。 
  -  請使用資料夾名稱中的 FQDN 和區域，區分來自不同雲端的備份資料。 您 Azure Stack 部署和端點的完整網域名稱 (FQDN) 是「區域」參數和「外部網域名稱」參數的組合。 如需詳細資訊，請參閱 [Azure Stack 資料中心整合 - DNS](azure-stack-integrate-dns.md)。
 
-例如，備份共用是裝載在 fileserver01.contoso.com 上的 AzSBackups。在該檔案共用中，每個 Azure Stack 部署可能都會有一個使用外部網域名稱的資料夾，和一個使用區域名稱的子資料。 
+例如，備份共用是裝載在 fileserver01.contoso.com 上的 AzSBackups。 在該檔案共用中，每個 Azure Stack 部署可能都會有一個使用外部網域名稱的資料夾，和一個使用區域名稱的子資料。 
 
 FQDN：contoso.com  
 區域：nyc

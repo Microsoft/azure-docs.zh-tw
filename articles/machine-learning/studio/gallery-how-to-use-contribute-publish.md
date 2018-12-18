@@ -9,16 +9,18 @@ manager: hjerez
 editor: cgronlun
 ms.assetid: cf518538-6046-4657-a7cb-a0bc487c67e6
 ms.service: machine-learning
+ms.component: studio
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
-ms.openlocfilehash: 540f97d1383b8a992a12426b03249ef82af0e7a4
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 0494963f59e885cf2e7fe42704f1314e66ea28a5
+ms.sourcegitcommit: 944d16bc74de29fb2643b0576a20cbd7e437cef2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 06/07/2018
+ms.locfileid: "34834782"
 ---
 # <a name="share-and-discover-resources-in-the-azure-ai-gallery"></a>共用及探索 Azure AI 資源庫中的資源
 [!INCLUDE [gallery-item-selector](../../../includes/machine-learning-gallery-item-selector.md)]
@@ -46,7 +48,7 @@ Azure AI 資源庫包含各資源，可供您開發自己的分析解決方案�
 * **[集合](gallery-collections.md)**：集合可讓您將用於處理特定解決方案或概念的實驗、API 和其他資源庫項目群組在一起。
 * **[產業](gallery-industries.md)**：資源庫的 [產業] 區段集結了零售、製造、金融和醫療保健等產業特有的各種資源。
 
-最後，**[競賽](gallery-competitions.md)**提供了絕佳機會讓您與資料科學家社群較量，看誰能用 Cortana Intelligence Suite 解決複雜的問題。
+最後，**[競賽](gallery-competitions.md)** 提供了絕佳機會讓您與資料科學家社群較量，看誰能用 Cortana Intelligence Suite 解決複雜的問題。
 
 ![Azure AI 資源庫首頁](./media/gallery-how-to-use-contribute-publish/gallery-home-page.png)
 

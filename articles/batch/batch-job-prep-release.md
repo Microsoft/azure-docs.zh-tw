@@ -15,18 +15,19 @@ ms.workload: big-compute
 ms.date: 02/27/2017
 ms.author: danlep
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 543c03c22b31389c3d6e048cc9f13c24add5aae7
-ms.sourcegitcommit: 20d103fb8658b29b48115782fe01f76239b240aa
+ms.openlocfilehash: da69cc22fbb071ce3fa4b2c53aaf0b1ec4ba5e46
+ms.sourcegitcommit: cc4fdd6f0f12b44c244abc7f6bc4b181a2d05302
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2018
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47096305"
 ---
 # <a name="run-job-preparation-and-job-release-tasks-on-batch-compute-nodes"></a>在 Batch 計算節點上執行作業準備和作業解除工作
 
  Azure Batch 作業在執行其工作之前，通常需要經過某種形式的設定，並需要在其工作完成時進行後置作業維護。 您可能需要將常見的工作輸入資料下載到計算節點，或在作業完成後，將工作輸出資料上傳至 Azure 儲存體。 您可以使用**作業準備**和**作業解除**工作來執行這些操作。
 
 ## <a name="what-are-job-preparation-and-release-tasks"></a>什麼是作業準備和作業解除工作？
-在作業的工作執行之前，會在排定執行至少一個工作的所有計算節點上執行作業準備工作。 作業一旦完成，作業解除工作會在集區中的每個節點上執行，集區至少會執行一項工作。 如同一般的 Batch 工作，您可以指定要在作業準備或作業解除工作執行時叫用的命令列。
+在作業的工作執行之前，會在排定執行至少一個工作的所有計算節點上執行作業準備工作。 作業一旦完成，作業解除工作會在集區中的每個節點上執行，集區至少會執行一個工作。 如同一般的 Batch 工作，您可以指定要在作業準備或作業解除工作執行時叫用的命令列。
 
 作業準備和作業解除工作會提供熟悉的 Batch 工作功能，例如檔案下載 ([資源檔][net_job_prep_resourcefiles])、提升權限的執行、自訂環境變數、最大執行持續時間、重試計數和檔案保留時間。
 
@@ -60,7 +61,7 @@ Batch 作業通常需要一組常用的資料做為作業工作的輸入。 例�
 ## <a name="job-preparation-task"></a>作業準備工作
 執行作業的工作之前，Batch 會在排定執行工作的每個計算節點上執行作業準備工作。 依預設，Batch 服務會等作業準備工作完成，才執行節點上排定的工作。 不過，您可以設定服務不要等待。 如果節點重新啟動，作業準備工作會再次執行，但您也可以停用此行為。
 
-作業準備工作只會在排定執行工作的節點上執行。 這可避免未指派工作的節點執行不必要的準備工作。 這種情況會發生在當作業的工作數目小於集區中的節點數目時。 此外，也適用於已啟用 [並行工作執行](batch-parallel-node-tasks.md) 時，而如果作業計數小於可能的並行工作總數，則會讓一些節點閒置。 藉由不在閒置的節點上執行作業準備工作，您在資料傳輸費用上可以花費更少金錢。
+作業準備工作只會在排定執行工作的節點上執行。 這可避免未指派工作的節點執行不必要的準備工作。 這種情況會發生在當作業的工作數目小於集區中的節點數目時。 此外，也適用於已啟用 [並行工作執行](batch-parallel-node-tasks.md) 時，而如果作業計數小於可能的並行工作總數，則會讓一些節點閒置。 透過不在閒置的節點上執行作業準備工作，您在資料傳輸費用上可以花費更少金錢。
 
 > [!NOTE]
 > [JobPreparationTask][net_job_prep_cloudjob] 與 [CloudPool.StartTask][pool_starttask] 的不同之處在於，JobPreparationTask 在每個作業開始時執行，而 StartTask 只在計算節點第一次加入集區或重新啟動時執行。
@@ -68,7 +69,7 @@ Batch 作業通常需要一組常用的資料做為作業工作的輸入。 例�
 > 
 
 ## <a name="job-release-task"></a>作業解除工作
-作業一旦標示為完成，作業解除工作會在集區中的每個節點上執行，集區至少會執行一項工作。 透過發出終止要求將工作標示為完成。 然後 Batch 服務會將作業狀態設定為「正在終止」，終止與作業相關聯的任何作用中或執行中工作，並執行作業解除工作。 作業接著會進入「已完成」狀態。
+作業一旦標示為完成，作業解除工作會在集區中的每個節點上執行，集區至少會執行一個工作。 透過發出終止要求將工作標示為完成。 然後 Batch 服務會將作業狀態設定為「正在終止」，終止與作業相關聯的任何作用中或執行中工作，並執行作業解除工作。 作業接著會進入「已完成」狀態。
 
 > [!NOTE]
 > 工作刪除也會執行工作解除任務。 不過，如果先前已終止作業，當後來刪除該作業時，解除工作不會執行第二次。
@@ -117,7 +118,7 @@ await myBatchClient.JobOperations.TerminateJobAsync("JobPrepReleaseSampleJob");
 ## <a name="code-sample-on-github"></a>GitHub 上的程式碼範例
 若要了解作業準備和作業解除工作的運作，請查看 GitHub 上的 [JobPrepRelease][job_prep_release_sample] 範例專案。 此主控台應用程式會做這些事：
 
-1. 建立包含兩個「小」節點的集區。
+1. 建立包含兩個節點的集區。
 2. 建立具有作業準備、解除和標準工作的作業。
 3. 執行作業準備工作，將節點識別碼第一次寫入節點的「共用」目錄的文字檔中。
 4. 在每個節點上執行工作，將其工作識別碼寫入同一文字檔案中。
@@ -130,7 +131,7 @@ await myBatchClient.JobOperations.TerminateJobAsync("JobPrepReleaseSampleJob");
 
 ```
 Attempting to create pool: JobPrepReleaseSamplePool
-Created pool JobPrepReleaseSamplePool with 2 small nodes
+Created pool JobPrepReleaseSamplePool with 2 nodes
 Checking for existing job JobPrepReleaseSampleJob...
 Job JobPrepReleaseSampleJob not found, creating...
 Submitting tasks and awaiting completion...
@@ -184,8 +185,8 @@ Sample complete, hit ENTER to exit...
 ![Azure 入口網站中的作業準備屬性][1]
 
 ## <a name="next-steps"></a>後續步驟
-### <a name="application-packages"></a>應用程式封裝
-除了作業準備工作外，您還可以使用 Batch 的 [應用程式封裝](batch-application-packages.md) 功能來為計算節點做好工作執行準備。 這項功能特別適合用於部署不需要執行安裝程式的應用程式、包含許多 (100 個以上) 檔案的應用程式，或需要嚴格版本控制的應用程式。
+### <a name="application-packages"></a>應用程式套件
+除了作業準備工作外，您還可以使用 Batch 的 [應用程式套件](batch-application-packages.md)功能來為計算節點做好工作執行準備。 此功能特別適合用於部署不需要執行安裝程式的應用程式、包含許多 (100 個以上) 檔案的應用程式，或需要嚴格版本控制的應用程式。
 
 ### <a name="installing-applications-and-staging-data"></a>安裝應用程式和預備資料
 這篇 MSDN 論壇文章概述幾個方法來讓您的節點做好執行工作的準備︰

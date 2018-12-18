@@ -1,11 +1,11 @@
 ---
-title: "在 App Service 環境 v1 中建立 Web 應用程式"
-description: "了解如何在 App Service 環境 v1 中建立 Web 應用程式和 App Service 方案"
+title: 在 App Service 環境 v1 中建立 Web 應用程式
+description: 了解如何在 App Service 環境 v1 中建立 Web 應用程式和 App Service 方案
 services: app-service
-documentationcenter: 
+documentationcenter: ''
 author: ccompy
 manager: stefsch
-editor: 
+editor: ''
 ms.assetid: 983ba055-e9e4-495a-9342-fd3708dcc9ac
 ms.service: app-service
 ms.workload: web
@@ -19,6 +19,7 @@ ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 02/21/2018
+ms.locfileid: "29386906"
 ---
 # <a name="create-a-web-app-in-an-app-service-environment-v1"></a>在 App Service 環境 v1 中建立 Web 應用程式
 

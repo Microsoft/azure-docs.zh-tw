@@ -1,10 +1,10 @@
 ---
-title: "Azure SDK for .NET 2.6 版本資訊"
-description: "Azure SDK for .NET 2.6 版本資訊"
+title: Azure SDK for .NET 2.6 版本資訊
+description: Azure SDK for .NET 2.6 版本資訊
 services: app-service/web
 documentationcenter: .net
 author: chrissfanos
-editor: 
+editor: ''
 ms.assetid: b45853d5-a2b8-4962-a22d-579cb36ae14c
 ms.service: app-service
 ms.devlang: multiple
@@ -18,6 +18,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "22986153"
 ---
 # <a name="azure-sdk-for-net-26-release-notes"></a>Azure SDK for .NET 2.6 版本資訊
 本文件包含 Azure SDK for .NET 2.6 版的版本資訊。 

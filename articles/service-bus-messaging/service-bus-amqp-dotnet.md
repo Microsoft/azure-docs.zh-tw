@@ -1,24 +1,25 @@
 ---
-title: "服務匯流排和 .NET 與 AMQP 1.0 |Microsoft Docs"
-description: "搭配使用 .NET 的 Azure 服務匯流排與 AMQP"
+title: Azure 服務匯流排和 .NET 與 AMQP 1.0 | Microsoft Docs
+description: 搭配使用 .NET 的 Azure 服務匯流排與 AMQP
 services: service-bus-messaging
 documentationcenter: na
-author: sethmanheim
+author: spelluru
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 332bcb13-e287-4715-99ee-3d7d97396487
 ms.service: service-bus-messaging
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 12/21/2017
-ms.author: sethm
-ms.openlocfilehash: 0eb68c97ca26a862a79de9ffb83b1fc630ba2af4
-ms.sourcegitcommit: 6f33adc568931edf91bfa96abbccf3719aa32041
+ms.date: 08/16/2018
+ms.author: spelluru
+ms.openlocfilehash: ad789b7a65fd12abb2a6e92c7c8896677de80cec
+ms.sourcegitcommit: cb61439cf0ae2a3f4b07a98da4df258bfb479845
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/22/2017
+ms.lasthandoff: 09/05/2018
+ms.locfileid: "43702233"
 ---
 # <a name="use-service-bus-from-net-with-amqp-10"></a>搭配使用 .NET 的服務匯流排與 AMQP 1.0
 
@@ -28,7 +29,7 @@ ms.lasthandoff: 12/22/2017
 
 依預設，服務匯流排 .NET 用戶端程式庫能使用專屬的 SOAP 型通訊協定與服務匯流排服務通訊。 若要使用 AMQP 1.0 (而非預設的通訊協定)，您需要明確地設定服務匯流排連接字串，如下節內容所述。 除了這項變更之外，在使用 AMQP 1.0 時，應用程式程式碼會維持不變。
 
-目前的版本中有幾項在使用 AMQP 時不支援的 API 功能。 這些不支援的功能稍後會在[不支援的功能、限制與行為差異](#unsupported-features-restrictions-and-behavioral-differences)一節中列示。 在使用 AMQP 時，某些進階組態設定亦有不同的意義。
+目前的版本中有幾項在使用 AMQP 時不支援的 API 功能。 不支援的功能皆列在[行為差異](#behavioral-differences)一節中。 在使用 AMQP 時，某些進階組態設定亦有不同的意義。
 
 ### <a name="configuration-using-appconfig"></a>使用 App.config 進行設定
 
@@ -94,14 +95,9 @@ ms.lasthandoff: 12/22/2017
 | DateTimeOffset |`<type name=”datetime-offset” class=restricted source=”long”> <descriptor name=”com.microsoft:datetime-offset” /></type>` |DateTimeOffset.UtcTicks |
 | 時間範圍 |`<type name=”timespan” class=restricted source=”long”> <descriptor name=”com.microsoft:timespan” /></type> ` |TimeSpan.Ticks |
 
-## <a name="unsupported-features-restrictions-and-behavioral-differences"></a>不支援的功能、限制和行為差異
+## <a name="behavioral-differences"></a>行為差異
 
-使用 AMQP 時，目前不支援服務匯流排 .NET API 的以下功能：
-
-* 交易
-* 透過傳輸目的地傳送
-
-相較於預設通訊協定，使用 AMQP 時，服務匯流排 .NET API 也有一些細微的行為差異：
+相較於預設通訊協定，使用 AMQP 時，服務匯流排 .NET API 有一些細微的行為差異：
 
 * [OperationTimeout][OperationTimeout] 屬性會被忽略。
 * `MessageReceiver.Receive(TimeSpan.Zero)` 會實作為 `MessageReceiver.Receive(TimeSpan.FromSeconds(10))`。

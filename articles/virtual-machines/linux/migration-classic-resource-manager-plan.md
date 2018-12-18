@@ -1,11 +1,11 @@
 ---
-title: "將 IaaS 資源從傳統移轉至 Azure Resource Manager 的規劃 | Microsoft Docs"
-description: "將 IaaS 資源從傳統移轉至 Azure Resource Manager 的規劃"
+title: 將 IaaS 資源從傳統移轉至 Azure Resource Manager 的規劃 | Microsoft Docs
+description: 將 IaaS 資源從傳統移轉至 Azure Resource Manager 的規劃
 services: virtual-machines-linux
-documentationcenter: 
+documentationcenter: ''
 author: singhkays
-manager: timlt
-editor: 
+manager: jeconnoc
+editor: ''
 tags: azure-resource-manager
 ms.assetid: 78492a2c-2694-4023-a7b8-c97d3708dcb7
 ms.service: virtual-machines-linux
@@ -15,11 +15,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/01/2017
 ms.author: kasing
-ms.openlocfilehash: 246032701d97fc7d16e6cb38ee79fbd5470f65d9
-ms.sourcegitcommit: e266df9f97d04acfc4a843770fadfd8edf4fa2b7
+ms.openlocfilehash: 1efe5a12da665901cdf1d09d45c36a1e3272c367
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/11/2017
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46948667"
 ---
 # <a name="planning-for-migration-of-iaas-resources-from-classic-to-azure-resource-manager"></a>將 IaaS 資源從傳統移轉至 Azure Resource Manager 的規劃
 雖然 Azure Resource Manager 提供了許多令人讚嘆的功能，但請務必詳加規劃您的移轉作業，以確保一切順利進行。 詳細規劃可確保您在執行移轉活動期間不會遇到問題。 
@@ -94,7 +95,7 @@ ms.lasthandoff: 12/11/2017
 - **ExpressRoute 線路和 VPN**。 目前具有授權連結的 ExpressRoute 閘道，無法在沒有停機時間的情況下進行移轉。 如需因應措施，請參閱[將 ExpressRoute 線路和相關聯的虛擬網路從傳統部署模型移轉至 Resource Manager 部署模型](../../expressroute/expressroute-migration-classic-resource-manager.md)。
 
 - **VM 擴充功能** - 虛擬機器擴充功能可能是移轉執行中 VM 其中一個最大的障礙。 VM 擴充功能的修復可能需要多達 1-2 天，因此請適當地進行規劃。  需要使用中的 Azure 代理程式，才能向 VM 擴充功能回報執行中 VM 的狀態。 如果執行中 VM 的狀態恢復為已損毀，這種情況將會中止移轉。 代理程式本身不需要採用工作順序即可啟用移轉，但如果 VM 上存在擴充功能，則將需要工作代理程式與輸出網際網路連線 (具有 DNS)，移轉才能繼續進行。
-  - 如果在移轉期間遺失對 DNS 伺服器的連線，則在準備移轉之前，必須先從每個 VM 中移除 BGInfo v1.\* 以外的所有 VM 擴充功能，並在 Azure Resource Manager 移轉之後，陸續重新新增回 VM。  **這僅適用於執行中的 VM。**  如果 VM 已停止 (解除配置)，則不需要移除 VM 擴充功能。 **注意：**許多擴充功能 (例如 Azure 診斷和資訊安全中心監視) 在移轉之後將會自行重新安裝，因此移除這些功能不是問題。
+  - 如果在移轉期間遺失對 DNS 伺服器的連線，則在準備移轉之前，必須先從每個 VM 中移除 BGInfo v1.\* 以外的所有 VM 擴充功能，並在 Azure Resource Manager 移轉之後，陸續重新新增回 VM。  **這僅適用於執行中的 VM。**  如果 VM 已停止 (解除配置)，則不需要移除 VM 擴充功能。 **注意：** 許多擴充功能 (例如 Azure 診斷和資訊安全中心監視) 在移轉之後將會自行重新安裝，因此移除這些功能不是問題。
   - 此外，請確定網路安全性群組不會限制輸出網際網路存取。 某些網路安全性群組組態可能會發生此情況。 需要輸出網際網路存取 (和 DNS)，才能將 VM 擴充功能移轉至 Azure Resource Manager。 
   - BGInfo 擴充功能有兩個版本：v1 和 v2。  如果 VM 是使用 Azure 入口網站或 PowerShell 建立，VM 上可能會有 v1 擴充功能。 不需要移除此擴充功能，且移轉 API 將會略過它 (不移轉)。 不過，如果傳統 VM 是使用新的 Azure 入口網站建立，在代理程式運作中，且具有輸出網際網路存取 (DNS) 的前提下，可能會有以 JSON 為基礎，且可以移轉至 Azure Resource Manager 的 BGInfo v2 版本。 
   - **修復選項 1**。 如果您知道您的 VM 在不會有輸出網際網路存取、使用中 DNS 服務，和使用中 Azure 代理程式，則請在準備移轉之前解除安裝所有 VM 擴充功能，然後在移轉之後重新安裝 VM 擴充功能。 
@@ -121,7 +122,7 @@ ms.lasthandoff: 12/11/2017
     - 網路安全性群組
     - 路由表
 
-    您可以透過最新版本的 Azure CLI 2.0，使用下列命令來檢查您目前的 Azure Resource Manager 配額。
+    您可以透過最新版本的 Azure CLI，使用下列命令來檢查您目前的 Azure Resource Manager 配額。
 
     **計算** *(核心，可用性設定組)*
 
@@ -145,7 +146,7 @@ ms.lasthandoff: 12/11/2017
 
 - **佈建逾時 VM 狀態** - 如果任何 VM 的狀態為**佈建逾時**，這個問題必須在移轉前解決。 您只能利用停機時間解除佈建/重新佈 VM (刪除、保留磁碟，並重新建立 VM)。 
 
-- **RoleStateUnknown VM 狀態** - 如果因為出現 [角色狀態未知] 錯誤訊息而使得移轉中止，請使用入口網站檢查 VM，並確定它正在執行中。 此錯誤通常會在幾分鐘之後自行消失 (不需補救)，而且是虛擬機器**啟動**、**停止**、**重新啟動**作業期間經常會看到的暫時性類型。 **建議做法：**幾分鐘後再重試移轉。 
+- **RoleStateUnknown VM 狀態** - 如果因為出現 [角色狀態未知] 錯誤訊息而使得移轉中止，請使用入口網站檢查 VM，並確定它正在執行中。 此錯誤通常會在幾分鐘之後自行消失 (不需補救)，而且是虛擬機器**啟動**、**停止**、**重新啟動**作業期間經常會看到的暫時性類型。 **建議做法：** 幾分鐘後再重試移轉。 
 
 - **Fabric 叢集不存在** - 在某些情況下，某些 VM 由於各種奇怪的原因而無法移轉。 其中一種已知的情況為，如果是最近才建立 VM (在過去一個星期內左右)，然後在尚無法因應 Azure Resource Manager 工作負載的 Azure 叢集登陸時會發生此情況。  您會收到 [網狀架構叢集不存在] 錯誤訊息，且無法移轉 VM。 通常等候幾天就可解決此特定問題，因為叢集很快就會啟用 Azure Resource Manager。 不過，有一個立即的解決方法是對 VM `stop-deallocate`，然後再繼續進行移轉，並且在移轉之後，於 Azure Resource Manager 中啟動 VM 備份。
 

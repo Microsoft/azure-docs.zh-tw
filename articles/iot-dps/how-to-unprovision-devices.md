@@ -1,43 +1,45 @@
 ---
-title: "如何解除佈建使用 Azure IoT 中樞裝置佈建服務註冊的裝置 | Microsoft Docs"
-description: "如何在 Azure 入口網站中，將裝置佈建服務所註冊的裝置解除佈建"
-services: iot-dps
-keywords: 
-author: JimacoMS
-ms.author: v-jamebr
-ms.date: 01/08/2018
-ms.topic: article
+title: 如何取消佈建使用 Azure IoT 中樞裝置佈建服務佈建的裝置 | Microsoft Docs
+description: 如何取消佈建使用 Azure IoT 中樞裝置佈建服務佈建的裝置
+author: wesmc7777
+ms.author: wesmc
+ms.date: 05/11/2018
+ms.topic: conceptual
 ms.service: iot-dps
-documentationcenter: 
+services: iot-dps
 manager: timlt
-ms.devlang: na
-ms.custom: mvc
-ms.openlocfilehash: 1d057a4df43cf25e6817672d198207d9a50e462e
-ms.sourcegitcommit: eeb5daebf10564ec110a4e83874db0fb9f9f8061
+ms.openlocfilehash: 3c6e2a9006d73d269422292dc959866d3f6d8a82
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/03/2018
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39522667"
 ---
-# <a name="how-to-unprovision-devices-enrolled-by-your-provisioning-service"></a>如何將佈建服務所註冊的裝置解除佈建
+# <a name="how-to-deprovision-devices-that-were-previously-auto-provisioned"></a>如何取消佈建先前自動佈建的裝置 
 
-您可能會發現，有時必須將已透過裝置佈建服務佈建的裝置解除佈建。 比方說，裝置可能會售出或移至不同的 IoT 中樞，或者可能遺失、遭竊或發生其他遭破壞的狀況。 
+您可能會發現，有時必須將先前已透過裝置佈建服務自動佈建的裝置取消佈建。 比方說，裝置可能會售出或移至不同的 IoT 中樞，或者可能遺失、遭竊或發生其他遭破壞的狀況。 
 
-一般而言，解除佈建裝置包含兩個步驟：
+一般而言，取消佈建裝置包含兩個步驟：
 
-1. 撤銷裝置對佈建服務的存取權限。 端看您想要暫時還是永久撤銷存取權，或者對 X.509 證明機制而言，在現有的註冊群組階層上，您可能會想要停用或刪除註冊項目。 
+1. 從您的佈建服務取消註冊裝置，以避免未來自動佈建該裝置。 根據您要暫時或永久撤銷存取權，您可以停用或刪除註冊項目。 針對使用 X.509 證明的裝置，您可以停用/刪除現有註冊群組階層中的項目。  
  
-   - 若要了解如何使用入口網站撤銷裝置的存取權限，請參閱[撤銷裝置存取](how-to-revoke-device-access-portal.md)。
-   - 若要了解如何以程式設計方式使用其中一種佈建服務 SDK 來撤銷裝置的存取權限，請參閱[使用服務 SDK 管理裝置註冊](how-to-manage-enrollments-sdks.md)。
+   - 若要了解如何取消註冊裝置，請參閱[如何從 Azure IoT 中樞裝置佈建服務中取消註冊裝置](how-to-revoke-device-access-portal.md)。
+   - 若要了解如何以程式設計方式使用其中一種佈建服務 SDK 來取消註冊裝置，請參閱[使用服務 SDK 管理裝置註冊](how-to-manage-enrollments-sdks.md)。
 
-2. 停用或刪除身分識別登錄中對於所佈建的 IoT 中樞登錄的裝置項目。 若要進一步了解，請參閱 Azure IoT 中樞文件的[管理裝置身分識別](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-identity-registry#disable-devices)。 
+2. 從您的 IoT 中樞取消登錄裝置，以避免未來產生通訊和資料轉送。 同樣地，您可以針對已佈建裝置的 IoT 中樞，暫時停用或永久刪除其身分識別登錄中的裝置項目。 請參閱[停用裝置](/azure/iot-hub/iot-hub-devguide-identity-registry#disable-devices)以深入了解停用作業。 請在 [Azure 入口網站](https://portal.azure.com)中參閱 IoT 中樞資源的「裝置管理/IoT 裝置」。
 
-解除佈建裝置的確切步驟取決於其證明機制，以及其適用的註冊項目與您的佈建服務。
+取消佈建裝置的確切步驟取決於其證明機制，以及其適用的註冊項目與您的佈建服務。 下列各節將根據註冊和證明類型提供程序概觀。
 
 ## <a name="individual-enrollments"></a>個別註冊
 使用 TPM 證明或 X.509 證明搭配分葉憑證的裝置會透過個別的註冊項目進行佈建。 
 
-若要解除佈建具有個別註冊的裝置： 
-1. 對於使用 TPM 證明的裝置，刪除個別註冊項目以永久撤銷裝置對佈建服務的存取權，或停用該項目以暫時撤銷其存取權。 對於使用 X.509 證明的裝置，您可以刪除或停用項目。 不過請注意，如果您針對使用 X.509 證明的裝置刪除個別註冊，而且該裝置憑證鏈結中的單一憑證有已啟用的註冊群組存在，則該裝置可以重新註冊。 對於這類裝置而言，停用註冊項目可能更安全。 不論裝置的其中一個簽署憑證是否有已啟用的註冊群組存在，這麼做都能防止裝置重新註冊。
+若要取消佈建具有個別註冊的裝置： 
+
+1. 從您的佈建服務取消註冊裝置：
+
+   - 對於使用 TPM 證明的裝置，刪除個別註冊項目以永久撤銷裝置對佈建服務的存取權，或停用該項目以暫時撤銷其存取權。 
+   - 對於使用 X.509 證明的裝置，您可以刪除或停用項目。 不過請注意，如果您針對使用 X.509 的裝置刪除個別註冊，而且該裝置信任鏈結中的單一憑證有已啟用的註冊群組存在，則該裝置可以重新註冊。 對於這類裝置而言，停用註冊項目可能更安全。 不論裝置的其中一個簽署憑證是否有已啟用的註冊群組存在，這麼做都能防止裝置重新註冊。
+
 2. 在佈建裝置之 IoT 中樞的身分識別登錄中，停用或刪除該裝置。 
 
 
@@ -55,11 +57,12 @@ ms.lasthandoff: 02/03/2018
 
 對於註冊群組，有兩個案例要加以考慮：
 
-- 若要解除佈建所有透過註冊群組佈建的裝置：
-  1. 停用註冊群組，將其簽署憑證列入黑名單。 
+- 若要取消佈建所有透過註冊群組佈建的裝置：
+  1. 停用註冊群組，將其簽署憑證列入封鎖清單。 
   2. 請使用該註冊群組的佈建裝置清單，從個別的 IoT 中樞身分識別登錄中停用或刪除每個裝置。 
   3. 從個別的 IoT 中樞停用或刪除所有裝置之後，可以選擇是否要刪除註冊群組。 不過請注意，如果您刪除註冊群組，而憑證鏈結之中一個或多個更上層裝置的簽署憑證有已啟用的註冊群組，這些裝置可以重新註冊。 
-- 若要從註冊群組解除佈建單一裝置：
+
+- 若要從註冊群組取消佈建單一裝置：
   1. 為其分葉 (裝置) 憑證建立已停用的個別註冊。 如此會撤銷該裝置的佈建服務存取權限，但是仍允許鏈結之中具有註冊群組簽署憑證的其他裝置進行存取。 請勿刪除裝置已停用的個別註冊。 否則會使得裝置透過註冊群組重新註冊。 
   2. 使用該註冊群組的已佈建裝置清單來尋找佈建裝置的 IoT 中樞，再從該中樞的身分識別登錄停用或刪除裝置。 
   

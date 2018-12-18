@@ -1,11 +1,11 @@
 ---
-title: "ExpressRoute 客戶路由器組態範例 | Microsoft Docs"
-description: "此頁面提供適用於 Cisco 和 Juniper 路由器的路由器組態範例。"
+title: ExpressRoute 客戶路由器組態範例 | Microsoft Docs
+description: 此頁面提供適用於 Cisco 和 Juniper 路由器的路由器組態範例。
 documentationcenter: na
 services: expressroute
 author: cherylmc
 manager: carmonm
-editor: 
+editor: ''
 ms.assetid: 564826bc-017a-4683-a385-37c9fa814948
 ms.service: expressroute
 ms.devlang: na
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23013103"
 ---
 # <a name="router-configuration-samples-to-set-up-and-manage-routing"></a>設定和管理路由的路由器組態範例
 此頁面提供適用於 Cisco IOS XE 和 Juniper MX 系列路由器的介面和路由組態範例。 這些範例僅可用作指引，不能依原樣使用。 您可以和廠商合作來擬定適合您網路的組態。 

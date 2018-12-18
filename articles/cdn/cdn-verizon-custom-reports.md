@@ -1,28 +1,29 @@
 ---
-title: "來自 Verizon 的自訂報告 | Microsoft Docs"
-description: "您可以使用下列報告檢視 CDN 的使用模式：頻寬、傳輸的資料、點擊、快取狀態、快取點擊率、已傳輸的 IPV4/IPV6 資料。"
+title: 來自 Verizon 的自訂報告 | Microsoft Docs
+description: 您可以使用下列報告檢視 CDN 的使用模式：頻寬、傳輸的資料、點擊、快取狀態、快取點擊率、已傳輸的 IPV4/IPV6 資料。
 services: cdn
-documentationcenter: 
-author: dksimpson
-manager: 
-editor: 
-ms.assetid: 
+documentationcenter: ''
+author: mdgattuso
+manager: danielgi
+editor: ''
+ms.assetid: ''
 ms.service: cdn
 ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 10/11/2017
-ms.author: v-deasim
-ms.openlocfilehash: f09195dc07a96ebcca7f7a9e4bcf521fae13630c
-ms.sourcegitcommit: 7f1ce8be5367d492f4c8bb889ad50a99d85d9a89
+ms.author: magattus
+ms.openlocfilehash: 75a1fb4beb4025dc3ec63d29944331d07be35d8a
+ms.sourcegitcommit: 4047b262cf2a1441a7ae82f8ac7a80ec148c40c4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/06/2017
+ms.lasthandoff: 10/11/2018
+ms.locfileid: "49092061"
 ---
 # <a name="custom-reports-from-verizon"></a>來自 Verizon 的自訂報告
 
-[!INCLUDE[cdn-verizon-only](../../includes/cdn-verizon-only.md)]
+[!INCLUDE [cdn-verizon-only](../../includes/cdn-verizon-only.md)]
 
 透過管理入口網站使用 Verizon 設定檔的 Verizon 自訂報告，您可以定義要針對 Edge CNAME 報告收集的資料類型。
 

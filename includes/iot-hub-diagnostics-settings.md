@@ -1,3 +1,20 @@
+---
+title: 包含檔案
+description: 包含檔案
+services: iot-hub
+author: dominicbetts
+ms.service: iot-hub
+ms.topic: include
+ms.date: 05/17/2018
+ms.author: dobett
+ms.custom: include file
+ms.openlocfilehash: 1c7f006c066a4f1505a642af04a1ef027fde0a44
+ms.sourcegitcommit: 59fffec8043c3da2fcf31ca5036a55bbd62e519c
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 06/04/2018
+ms.locfileid: "34666937"
+---
 ### <a name="enable-logging-with-diagnostics-settings"></a>利用診斷設定啟用記錄
 
 1. 登入 [Azure 入口網站][lnk-portal]，然後瀏覽至 IoT 中樞。
@@ -27,8 +44,8 @@
 
 如果您想要使用 PowerShell 開啟診斷設定，請使用下列程式碼：
 
-```
-Login-AzureRmAccount
+```azurepowershell
+Connect-AzureRmAccount
 Select-AzureRmSubscription -SubscriptionName <subscription that includes your IoT Hub>
 Set-AzureRmDiagnosticSetting -ResourceId <your resource Id> -ServiceBusRuleId <your service bus rule Id> -Enabled $true
 ```

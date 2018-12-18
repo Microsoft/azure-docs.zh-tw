@@ -1,11 +1,11 @@
 ---
-title: "建立具有多個 NIC 的 VM (傳統) - Azure PowerShell | Microsoft Docs"
-description: "了解如何使用 PowerShell 建立具有多個 NIC 的 VM (傳統)。"
+title: 建立具有多個 NIC 的 VM (傳統) - Azure PowerShell | Microsoft Docs
+description: 了解如何使用 PowerShell 建立具有多個 NIC 的 VM (傳統)。
 services: virtual-network
 documentationcenter: na
-author: jimdial
-manager: jeconnoc
-editor: 
+author: genlin
+manager: cshepard
+editor: ''
 tags: azure-service-management
 ms.assetid: 6e50f39a-2497-4845-a5d4-7332dbc203c5
 ms.service: virtual-network
@@ -13,14 +13,15 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 02/02/2016
-ms.author: jdial
+ms.date: 05/22/2018
+ms.author: genli
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 824af3f0f5f6d42341f6f1dc94104f6009b568b8
-ms.sourcegitcommit: 234c397676d8d7ba3b5ab9fe4cb6724b60cb7d25
+ms.openlocfilehash: ca4e9e77d0e0ca62c04fbbfe132a41fb3e01df46
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/20/2017
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38477653"
 ---
 # <a name="create-a-vm-classic-with-multiple-nics-using-powershell"></a>使用 PowerShell 建立具有多個 NIC 的 VM (傳統)
 
@@ -198,4 +199,10 @@ ms.lasthandoff: 12/20/2017
 
 ### <a name="step-5---configure-routing-within-the-vms-operating-system"></a>步驟 5 - 設定 VM 的作業系統內的路由
 
-Azure DHCP 會將預設閘道指派給連接至虛擬機器的第一個 (主要) 網路介面。 Azure 不會將預設閘道指派給連接至虛擬機器的其他 (次要) 網路介面。 因此，依預設，您無法與次要網路介面中子網路之外的資源進行通訊。 不過，次要網路介面可與它們的子網路之外的資源通訊。 若要設定次要網路介面的路由，請參閱[在具有多個網路介面的虛擬機器作業系統內路由](virtual-network-network-interface-vm.md)。
+Azure DHCP 會將預設閘道指派給連接至虛擬機器的第一個 (主要) 網路介面。 Azure 不會將預設閘道指派給連接至虛擬機器的其他 (次要) 網路介面。 因此，依預設，您無法與次要網路介面中子網路之外的資源進行通訊。 不過，次要網路介面可與它們的子網路之外的資源通訊。 若要設定次要網路介面的路由，請參閱下列文章：
+
+- [設有多個 NIC 的 Windows VM](../virtual-machines/windows/multiple-nics.md#configure-guest-os-for-multiple-nics
+)
+
+- [設有多個 NIC 的 Linux VM](../virtual-machines/linux/multiple-nics.md#configure-guest-os-for-multiple-nics
+)

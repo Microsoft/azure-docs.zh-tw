@@ -1,6 +1,6 @@
 ---
-title: "Azure CLI 範例 - App Service | Microsoft Docs"
-description: "Azure CLI 範例 - App Service"
+title: Azure CLI 範例 - App Service | Microsoft Docs
+description: Azure CLI 範例 - App Service
 services: app-service
 documentationcenter: app-service
 author: syntaxc4
@@ -21,6 +21,7 @@ ms.sourcegitcommit: aaba209b9cea87cb983e6f498e7a820616a77471
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 12/12/2017
+ms.locfileid: "26738970"
 ---
 # <a name="azure-cli-samples"></a>Azure CLI 範例
 
@@ -34,7 +35,7 @@ ms.lasthandoff: 12/12/2017
 | [建立可從 GitHub 連續部署的 Web 應用程式](./scripts/app-service-cli-continuous-deployment-github.md?toc=%2fcli%2fazure%2ftoc.json)| 建立可從您擁有的 GitHub 存放庫連續發佈的 Azure Web 應用程式。 |
 | [建立 Web 應用程式並從本機 Git 存放庫部署程式碼](./scripts/app-service-cli-deploy-local-git.md?toc=%2fcli%2fazure%2ftoc.json) | 建立 Azure Web 應用程式並設定從本機 Git 存放庫推送程式碼的作業。 |
 | [建立 Web 應用程式並將程式碼部署至預備環境](./scripts/app-service-cli-deploy-staging-environment.md?toc=%2fcli%2fazure%2ftoc.json) | 建立具有部署位置以供放置預備程式碼變更的 Azure Web 應用程式。 |
-| [在 Docker 容器中建立 ASP.NET 核心 Web 應用程式](./scripts/app-service-cli-linux-docker-aspnetcore.md?toc=%2fcli%2fazure%2ftoc.json)| 在 Linux 上建立 Azure Web 應用程式，並從 Docker Hub 載入 Docker 映像。 |
+| [在 Docker 容器中建立 ASP.NET Core Web 應用程式](./scripts/app-service-cli-linux-docker-aspnetcore.md?toc=%2fcli%2fazure%2ftoc.json)| 在 Linux 上建立 Azure Web 應用程式，並從 Docker Hub 載入 Docker 映像。 |
 |**設定應用程式**||
 | [將自訂網域對應至 Web 應用程式](./scripts/app-service-cli-configure-custom-domain.md?toc=%2fcli%2fazure%2ftoc.json)| 建立 Azure Web 應用程式，並向它對應自訂網域名稱。 |
 | [將自訂 SSL 憑證繫結至 Web 應用程式](./scripts/app-service-cli-configure-ssl-certificate.md?toc=%2fcli%2fazure%2ftoc.json)| 建立 Azure Web 應用程式，並將自訂網域名稱的 SSL 憑證加以繫結。 |

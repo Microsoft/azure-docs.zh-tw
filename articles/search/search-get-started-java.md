@@ -1,24 +1,19 @@
 ---
-title: "開始在 Java 中使用 Azure 搜尋服務 | Microsoft Docs"
-description: "如何使用 Java 做為程式設計語言，在 Azure 上建置雲端託管搜尋應用程式。"
+title: 開始在 Java 中使用 Azure 搜尋服務 | Microsoft Docs
+description: 如何使用 Java 做為程式設計語言，在 Azure 上建置雲端託管搜尋應用程式。
 services: search
-documentationcenter: 
-author: EvanBoyle
-manager: pablocas
-editor: v-lincan
-ms.assetid: 8b4df3c9-3ae5-4e3a-b4bb-74b516a91c8e
+author: jj09
+manager: jlembicz
 ms.service: search
-ms.devlang: na
-ms.workload: search
-ms.topic: hero-article
-ms.tgt_pltfrm: na
-ms.date: 07/14/2016
-ms.author: evboyle
-ms.openlocfilehash: 8b253ef1eccfbc6ca703657b124d17d1482c2eed
-ms.sourcegitcommit: 828cd4b47fbd7d7d620fbb93a592559256f9d234
+ms.topic: conceptual
+ms.date: 08/26/2018
+ms.author: jjed
+ms.openlocfilehash: 6fed5a8afe6030038752d540bfabbc446c57db2c
+ms.sourcegitcommit: 2ad510772e28f5eddd15ba265746c368356244ae
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/18/2018
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "43124146"
 ---
 # <a name="get-started-with-azure-search-in-java"></a>開始在 Java 中使用 Azure 搜尋服務
 > [!div class="op_single_selector"]
@@ -33,9 +28,9 @@ ms.lasthandoff: 01/18/2018
 
 我們使用了以下軟體建置及測試此範例：
 
-* [Eclipse IDE for Java EE Developers](https://eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/lunar)。 請務必下載 EE 版本。 其中一個驗證步驟所需的功能只有在此版本中才能找到。
-* [JDK 8u40。](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
-* [Apache Tomcat 8.0。](http://tomcat.apache.org/download-80.cgi)
+* [Eclipse IDE for Java EE Developers](https://www.eclipse.org/downloads/packages/release/photon/r/eclipse-ide-java-ee-developers)。 請務必下載 EE 版本。 其中一個驗證步驟所需的功能只有在此版本中才能找到。
+* [JDK 8u181](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+* [Apache Tomcat 8.5.33](https://tomcat.apache.org/download-80.cgi#8.5.33)
 
 ## <a name="about-the-data"></a>關於資料
 此範例應用程式使用的 [美國地理服務中心 (USGS)](http://geonames.usgs.gov/domestic/download_data.htm)資料已依據羅德島州進行篩選，藉此減少資料集的大小。 我們將使用此資料建置可傳回地標建築物 (例如醫院和學校) 及地理特徵 (例如河流、湖泊和山峰) 的搜尋應用程式。
@@ -56,7 +51,7 @@ ms.lasthandoff: 01/18/2018
 * SearchServiceHelper.java：提供靜態方法的協助程式類別
 * Document.java：提供資料模型
 * config.properties：設定搜尋服務 URL 和 API 金鑰
-* Pom.xml：Maven 相依性
+* pom.xml：Maven 相依性
 
 <a id="sub-2"></a>
 
@@ -91,7 +86,7 @@ ms.lasthandoff: 01/18/2018
 ## <a name="configure-the-service-url-and-api-key"></a>設定服務 URL 和 API 金鑰
 1. 在**專案總管**中按兩下 **config.properties** 以編輯含有伺服器名稱和 API 金鑰的組態設定。
 2. 請參閱本文中稍早的步驟，其中提及如何在 [Azure 入口網站](https://portal.azure.com)中找到服務 URL 和 API 金鑰，藉此取得您現在要輸入 **config.properties** 中的值。
-3. 在 **config.properties**中，以您服務的 API 金鑰取代 "Api Key"。 接著，在同一個檔案中以服務名稱 (URL http://servicename.search.windows.net 的第一個部分) 取代 "service name"。
+3. 在 **config.properties**中，以您服務的 API 金鑰取代 "Api Key"。 接著，在同一個檔案中以服務名稱 (URL http://servicename.search.windows.net) 的第一個部分) 取代 "service name"。
    
     ![][5]
 
@@ -164,7 +159,7 @@ USGS 資料集包含與羅德島州相關的記錄。 如果您在空白的搜�
 
 如果您已有一些 Azure 搜尋服務的背景知識，可以利用此範例做為進一步實驗的跳板，例如擴充[搜尋頁面](search-pagination-page-layout.md)或實作[多面向導覽](search-faceted-navigation.md)。 您也可以新增計數和批次處理文件，讓使用者可以逐頁查看結果，藉此改進搜尋結果頁面。
 
-不熟悉 Azure 搜尋服務嗎？ 建議您嘗試學習其他教學課程，深入了解您還可以建立哪些東西。 請瀏覽我們的 [文件頁面](https://azure.microsoft.com/documentation/services/search/) 以尋找更多資源。 您也可以查看我們 [影片和教學課程清單](search-video-demo-tutorial-list.md) 中的連結，以存取更多資訊。
+不熟悉 Azure 搜尋服務嗎？ 建議您嘗試學習其他教學課程，深入了解您還可以建立哪些東西。 請瀏覽我們的 [文件頁面](https://azure.microsoft.com/documentation/services/search/) 以尋找更多資源。 
 
 <!--Image references-->
 [1]: ./media/search-get-started-java/create-search-portal-1.PNG

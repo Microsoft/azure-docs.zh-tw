@@ -1,11 +1,11 @@
 ---
-title: "具有 App Service 環境的多層式安全性架構"
-description: "實作具有 App Service 環境的多層式安全性架構。"
+title: 具有 App Service 環境的多層式安全性架構
+description: 實作具有 App Service 環境的多層式安全性架構。
 services: app-service
-documentationcenter: 
+documentationcenter: ''
 author: stefsch
 manager: erikre
-editor: 
+editor: ''
 ms.assetid: 73ce0213-bd3e-4876-b1ed-5ecad4ad5601
 ms.service: app-service
 ms.workload: na
@@ -14,11 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/30/2016
 ms.author: stefsch
-ms.openlocfilehash: 6c1f62b5e10a625911feea17ae6835e027709790
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 29c928c7d81eb3a2532f735be9132b49db5da373
+ms.sourcegitcommit: b6319f1a87d9316122f96769aab0d92b46a6879a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 05/20/2018
+ms.locfileid: "34356200"
 ---
 # <a name="implementing-a-layered-security-architecture-with-app-service-environments"></a>實作具有 App Service 環境的多層式安全性架構。
 ## <a name="overview"></a>概觀
@@ -32,15 +33,15 @@ ms.lasthandoff: 10/11/2017
 
 綠色加號指出包含 "apiase" 之子網路上的網路安全性群組，允許來自於上游 Web 應用程式的傳入呼叫，及其本身的呼叫。  不過，相同的網路安全群組明確拒絕網際網路對一般輸入流量的存取。 
 
-此主題的其餘部分將逐步解說在包含 "apiase" 的子網路上設定網路安全群組所需的步驟。
+此文的其餘部分將逐步解說在包含 "apiase" 的子網路上設定網路安全群組所需的步驟。
 
 ## <a name="determining-the-network-behavior"></a>判斷網路行為
 若要知道需要哪些網路安全性規則，您必須判斷哪些網路用戶端將能夠聯繫包含 API 應用程式的 App Service 服務環境，而哪些用戶端將遭到封鎖。
 
 由於[網路安全性群組 (NSG)][NetworkSecurityGroups] 會套用至子網路，而 App Service 環境部署在子網路中，因此 NSG 中包含的規則將會套用至**所有**在 App Service 環境上執行的應用程式。  舊本文的範例架構而言，一旦將網路安全性群組套用至包含 "apiase" 的子網路後，所有在 "apiase" App Service 環境上執行的應用程式都將受到相同安全性規則集的保護。 
 
-* **判斷上游呼叫端的輸出 IP 位址：**上游呼叫端的 IP 位址為何？  這些位址在 NSG 中必須明確地允許存取。  由於 App Service 環境之間的呼叫會被視為「網際網路」呼叫，因此這表示指派給這三個上游 App Service 環境的輸出 IP 位址，在 "apiase" 子網路的 NSG 中必須是允許存取的。   若想進一步了解如何判斷在 App Service 環境中執行之應用程式的輸出 IP 位址，請參閱[網路架構][NetworkArchitecture]概觀文章。
-* **後端 API 應用程式是否需要呼叫本身？**  後端應用程式有時候需要呼叫本身，這是常會被忽略而難以察覺的情況。  如果 App Service 環境上的後端 API 應用程式需要呼叫本身，我們也會將其視為「網際網路」呼叫。  在範例架構中，這必須允許 "apiase" App Service 環境的輸出 IP 位址進行存取。
+* **判斷上游呼叫端的輸出 IP 位址：** 上游呼叫端的 IP 位址為何？  這些位址在 NSG 中必須明確地允許存取。  由於 App Service 環境之間的呼叫會被視為「網際網路」呼叫，所以指派給這三個上游 App Service 環境的輸出 IP 位址，在 "apiase" 子網路的 NSG 中必須是允許存取的。   若想進一步了解如何判斷在 App Service 環境中執行之應用程式的輸出 IP 位址，請參閱[網路架構][NetworkArchitecture]概觀文章。
+* **後端 API 應用程式是否需要呼叫本身？**  後端應用程式有時候需要呼叫本身，這是常會被忽略而難以察覺的情況。  如果 App Service 環境上的後端 API 應用程式需要呼叫本身，也會將其視為「網際網路」呼叫。  在範例架構中，這必須允許 "apiase" App Service 環境的輸出 IP 位址進行存取。
 
 ## <a name="setting-up-the-network-security-group"></a>設定網路安全性群組
 得知輸出 IP 位址集後，下一步是要建構網路安全群組。  您可以針對以 Resource Manager 為基礎的虛擬網路以及傳統虛擬網路建立網路安全性群組。  下列範例說明如何在傳統虛擬網路上使用 Powershell 建立和設定 NSG。
@@ -76,13 +77,13 @@ ms.lasthandoff: 10/11/2017
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityRule -Name "ALLOW HTTP apiase" -Type Inbound -Priority 800 -Action Allow -SourceAddressPrefix '70.37.xyz.abc'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '80' -Protocol TCP
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityRule -Name "ALLOW HTTPS apiase" -Type Inbound -Priority 900 -Action Allow -SourceAddressPrefix '70.37.xyz.abc'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '443' -Protocol TCP
 
-無須設定其他網路安全性規則，因為依預設每個 NSG 有一組預設規則會封鎖來自網際網路的輸入存取。
+不需要任何其他網路安全性，因為依預設每個 NSG 有一組預設規則會封鎖來自網際網路的輸入存取。
 
-網路安全性群組中的完整規則清單顯示如下。  請留意最後一個規則 (反白顯示) 如何封鎖未被明確授與存取權的所有呼叫端進行的輸入存取。
+網路安全性群組中的完整規則清單顯示如下。  請留意最後一個規則 (反白顯示) 如何封鎖來自所有呼叫端 (已明確獲取存取權的呼叫端除外) 的輸入存取。
 
 ![NSG 組態][NSGConfiguration] 
 
-最後一個步驟是將 NSG 套用至包含 "apiase" App Service 環境的子網路。  
+最後一個步驟是將 NSG 套用至包含 "apiase" App Service 環境的子網路。
 
      #Apply the NSG to the backend API subnet
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityGroupToSubnet -VirtualNetworkName 'yourvnetnamehere' -SubnetName 'API-ASE-Subnet'
@@ -90,7 +91,7 @@ ms.lasthandoff: 10/11/2017
 NSG 套用至子網路後，將只有三個上游 App Service 環境以及包含 API 後端的 App Service 環境能夠呼叫 "apiase" 環境。
 
 ## <a name="additional-links-and-information"></a>其他連結和資訊
-關於 [網路安全性群組](../../virtual-network/virtual-networks-nsg.md)的資訊。 
+關於 [網路安全性群組](../../virtual-network/security-overview.md)的資訊。
 
 了解[輸出 IP 位址][NetworkArchitecture]和 App Service 環境。
 

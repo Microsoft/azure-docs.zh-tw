@@ -1,66 +1,60 @@
 ---
-title: Azure Active Directory B2C：QQ 設定 | Microsoft Docs
-description: 在受 Azure Active Directory B2C 保護的應用程式中，針對具有 QQ 帳戶的取用者提供註冊和登入。
+title: 使用 Azure Active Directory B2C 設定註冊，並以 QQ 帳戶登入 | Microsoft Docs
+description: 使用 Azure Active Directory B2C，讓具有 QQ 帳戶的客戶得以註冊和登入您的應用程式。
 services: active-directory-b2c
-documentationcenter: ''
 author: davidmu1
 manager: mtillman
-editor: ''
-ms.service: active-directory-b2c
+ms.service: active-directory
 ms.workload: identity
-ms.topic: article
-ms.date: 3/26/2017
+ms.topic: conceptual
+ms.date: 09/11/2018
 ms.author: davidmu
-ms.openlocfilehash: 12daed5f90e2b073a7520c061f18761baaed5c03
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: B2C
+ms.openlocfilehash: 23e44763b773835583d255104771d2329851aac8
+ms.sourcegitcommit: 5b8d9dc7c50a26d8f085a10c7281683ea2da9c10
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/26/2018
+ms.locfileid: "47181409"
 ---
-# <a name="azure-active-directory-b2c-provide-sign-up-and-sign-in-to-consumers-with-qq-accounts"></a>Azure Active Directory B2C：針對具有QQ 帳戶的取用者提供註冊和登入
+# <a name="set-up-sign-up-and-sign-in-with-a-qq-account-using-azure-active-directory-b2c"></a>使用 Azure Active Directory B2C 設定註冊，並以 QQ 帳戶登入
 
 > [!NOTE]
-> 這項功能處於預覽狀態。
+> 此功能處於預覽狀態。
 > 
 
 ## <a name="create-a-qq-application"></a>建立 QQ 應用程式
 
-若要在 Azure Active Directory (Azure AD) B2C 中使用 QQ 做為識別提供者，您必須建立 QQ 應用程式，並對其提供正確參數。 您需要 QQ 帳戶才能執行此動作。 如果您沒有帳戶，您可以在 [https://ssl.zc.qq.com/en/index.html?type=1&ptlang=1033](https://ssl.zc.qq.com/en/index.html?type=1&ptlang=1033) 上取得。
+若要在 Azure Active Directory (Azure AD) B2C 中使用 QQ 帳戶做為識別提供者，您需要在代表該帳戶的租用戶中建立應用程式。 如果您還沒有 QQ 帳戶，可以至 [https://ssl.zc.qq.com/en/index.html?type=1&ptlang=1033](https://ssl.zc.qq.com/en/index.html?type=1&ptlang=1033) 取得。
 
 ### <a name="register-for-the-qq-developer-program"></a>註冊 QQ 開發人員計劃
 
-1. 移至 [QQ 開發人員入口網站](http://open.qq.com)並以您的 QQ 帳戶認證登入。
+1. 使用您的 QQ 帳戶認證登入 [QQ 開發人員入口網站](http://open.qq.com)。
 2. 登入之後，請移至 [http://open.qq.com/reg](http://open.qq.com/reg)，將您自己註冊為開發人員。
-3. 在功能表中，選取 [个人] \(個人開發人員)。
-4. 在表單中輸入所需的資訊，然後按 [下一步]。
-5. 完成電子郵件驗證程序。
-
-> [!NOTE]
-> 在註冊為開發人員之後，您必須等待數天以進行核准。 
+3. 選取 [个人]\(個人開發人員\)。
+4. 輸入必要資訊，並選取 [下一步]\(下一步\)。
+5. 完成電子郵件驗證程序。 在註冊為開發人員之後，您必須等待數天以進行核准。 
 
 ### <a name="register-a-qq-application"></a>註冊 QQ 應用程式
 
 1. 移至 [https://connect.qq.com/index.html](https://connect.qq.com/index.html)。
-2. 按一下 [应用管理] \(應用程式管理)。
-3. 按一下 [创建应用] \(建立應用程式)。
-4. 輸入必要的應用程式資訊。
-5. 按一下 [创建应用] \(建立應用程式)。
-6. 輸入必要資訊。
-7. 針對 [授权回调域] \(回呼 URL) 欄位，輸入 `https://login.microsoftonline.com/te/{tenant_name}/oauth2/authresp`。 例如，如果您的 `tenant_name` 是 contoso.onmicrosoft.com，請將 URL 設為 `https://login.microsoftonline.com/te/contoso.onmicrosoft.com/oauth2/authresp`。
-8. 按一下 [创建应用] \(建立應用程式)。
-9. 在 [確認] 頁面上，按一下 [应用管理] \(應用程式管理) 以返回應用程式管理頁面。
-10. 在您剛建立的應用程式旁邊，按一下 [查看] \(檢視)。
-11. 按一下 [修改] \(編輯)。
-12. 從頁面頂端複製**應用程式識別碼**和**應用程式金鑰**。
+2. 選取 [应用管理]\(應用程式管理\)。
+5. 選取 [创建应用]\(建立應用程式\)，然後輸入所需的資訊。
+7. 在 [授权回调域]\(回呼 URL\) 中，輸入 `https://your-tenant-name.b2clogin.com/your-tenant-name}.onmicrosoft.com/oauth2/authresp`。 例如，如果您的 `tenant_name` 是 contoso，請將 URL 設為 `https://contoso.b2clogin.com/contoso.onmicrosoft.com/oauth2/authresp`。
+8. 選取 [创建应用]\(建立應用程式\)。
+9. 在 [確認] 頁面上，選取 [应用管理]\(應用程式管理\) 以返回應用程式管理頁面。
+10. 在您建立的應用程式旁邊，選取 [查看]\(檢視\)。
+11. 選取 [修改]\(編輯\)。
+12. 複製**應用程式識別碼**和**應用程式金鑰**。 您需要這兩個值，才能將識別提供者新增至您的租用戶。
 
-## <a name="configure-qq-as-an-identity-provider-in-your-tenant"></a>在租用戶中將 QQ 設為識別提供者
-1. 遵循下列步驟以 [瀏覽至 B2C 功能刀鋒視窗](active-directory-b2c-app-registration.md#navigate-to-b2c-settings) (位於 Azure 入口網站上)。
-2. 在 B2C 功能刀鋒視窗中，按一下 [ **身分識別提供者**]。
-3. 按一下刀鋒視窗頂端的 [新增]  。
-4. 針對身分識別提供者組態，提供容易辨識的 **名稱** 。 例如，輸入 "QQ"。
-5. 按一下 [識別提供者類型]、選取 [QQ]，然後按一下 [確定]。
-6. 按一下 [設定此識別提供者]。
-7. 輸入您稍早複製為**用戶端識別碼**的**應用程式金鑰**。
-8. 輸入您稍早複製為**用戶端密碼**的**應用程式密碼**。
-9. 依序按一下 [確定] 和 [建立]，儲存您的 QQ 設定。
+## <a name="configure-qq-as-an-identity-provider"></a>將 QQ 設為識別提供者
+
+1. 以 Azure AD B2C 租用戶的全域管理員身分登入 [Azure 入口網站](https://portal.azure.com/)。
+2. 按一下頂端功能表中的**目錄和訂用帳戶篩選**，然後選擇包含您租用戶的目錄，以確定您使用的是包含 Azure AD B2C 租用戶的目錄。
+3. 選擇 Azure 入口網站左上角的 [所有服務]，搜尋並選取 [Azure AD B2C]。
+4. 選取 [識別提供者]，然後選取 [新增]。
+5. 提供 [名稱]。 例如，輸入 *QQ*。
+6. 依序選取 [識別提供者類型]、[QQ (預覽)]，然後按一下 [確定]。
+7. 選取 [設定此識別提供者]，並輸入 [用戶端識別碼] (您先前記錄的用戶端識別碼)，然後輸入 [用戶端密碼] (您先前建立的 QQ 應用程式的應用程式金鑰)。
+8. 依序按一下 [確定] 和 [建立]，儲存您的 QQ 設定。
 

@@ -1,8 +1,8 @@
 ---
-title: "Azure App Service 的最佳作法"
-description: "了解 Azure App service 的最佳作法和疑難排解。"
+title: Azure App Service 的最佳作法
+description: 了解 Azure App service 的最佳作法和疑難排解。
 services: app-service
-documentationcenter: 
+documentationcenter: ''
 author: dariagrigoriu
 manager: erikre
 editor: mollybos
@@ -19,6 +19,7 @@ ms.sourcegitcommit: f1c1789f2f2502d683afaf5a2f46cc548c0dea50
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 01/18/2018
+ms.locfileid: "27868313"
 ---
 # <a name="best-practices-for-azure-app-service"></a>Azure App Service 的最佳作法
 本文將摘要說明使用 [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714)的最佳作法。 

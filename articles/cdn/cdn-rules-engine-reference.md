@@ -1,11 +1,11 @@
 ---
-title: "Azure CDN 規則引擎參考 | Microsoft Docs"
-description: "Azure CDN 規則引擎比對條件和功能的參考文件。"
+title: Azure CDN 規則引擎參考 | Microsoft Docs
+description: Azure CDN 規則引擎比對條件和功能的參考文件。
 services: cdn
-documentationcenter: 
+documentationcenter: ''
 author: Lichard
 manager: akucer
-editor: 
+editor: ''
 ms.assetid: 669ef140-a6dd-4b62-9b9d-3f375a14215e
 ms.service: cdn
 ms.workload: media
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 782d5955e1bec50a17d9366a8e2bf583559dca9e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 03/02/2018
+ms.locfileid: "29733674"
 ---
 # <a name="azure-cdn-rules-engine-reference"></a>Azure CDN 規則引擎參考
 本文會針對 Azure 內容傳遞網路 (CDN) [規則引擎](cdn-rules-engine.md)列出可用比對條件和功能的詳細描述。

@@ -1,11 +1,11 @@
 ---
-title: "StorSimple 8000 系列系統限制 | Microsoft Docs"
-description: "描述 StorSimple 8000 系列元件和連線的系統限制和建議大小。"
+title: StorSimple 8000 系列系統限制 | Microsoft Docs
+description: 描述 StorSimple 8000 系列元件和連線的系統限制和建議大小。
 services: storsimple
 documentationcenter: NA
 author: alkohli
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: c7392678-0924-46c6-9c59-1665cb9b6586
 ms.service: storsimple
 ms.devlang: NA
@@ -16,10 +16,11 @@ ms.date: 03/28/2017
 ms.author: alkohli
 ms.custom: H1Hack27Feb2017
 ms.openlocfilehash: cc3c0ad193af7625c8c4c1c2e82b6bdc8be33310
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.sourcegitcommit: 6fcd9e220b9cd4cb2d4365de0299bf48fbb18c17
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 04/05/2018
+ms.locfileid: "23108246"
 ---
 # <a name="what-are-storsimple-8000-series-system-limits"></a>StorSimple 8000 系列的系統有何限制？
 
@@ -51,7 +52,7 @@ StorSimple 提供您的資料中心的擴充性和彈性儲存體。 不過，�
 | 雲端快照集的處理速率 |15 分鐘/TB |<ul><li>針對備份中每 TB 的已配置磁碟區資料而言，要準備好雲端快照集以便上傳的最短時間。 </li><li> 雲端快照集時間總計的計算方式，是把這個時間加上快照集的上傳時間，但上傳時間會受到連線至雲端的網際網路頻寬影響。 |
 | 用戶端讀取/寫入輸送量最大值 (從 SSD 層提供服務時)* |920/720 MB/秒，使用單一 10 GbE 網路介面 |最多 2x，使用 MPIO 和兩個網路介面。 |
 | 用戶端讀取/寫入輸送量最大值 (從 HDD 層提供服務時)* |120/250 MB/秒 | |
-| Update 3 和更新版本**的用戶端讀取/寫入輸送量最大值 (從雲端層提供服務時)* |分層磁碟區可達到 40/60 MB/s<br><br>磁碟區建立期間選取的封存選項在其中的分層磁碟區可達到 60/80 MB/s |讀取輸送量取決於用戶端產生和維護足夠的 I/O 佇列深度。 <br><br>達到的速度取決於使用的基礎儲存體帳戶本身的速度。 |
+| Update 3 和更新版本\*\*的用戶端讀取/寫入輸送量最大值 (從雲端層提供服務時)\* |分層磁碟區可達到 40/60 MB/s<br><br>磁碟區建立期間選取的封存選項在其中的分層磁碟區可達到 60/80 MB/s |讀取輸送量取決於用戶端產生和維護足夠的 I/O 佇列深度。 <br><br>達到的速度取決於使用的基礎儲存體帳戶本身的速度。 |
 
 &#42; 每個 I/O 類型的輸送量最大值的測量方式是使用 100% 讀取和 100% 寫入案例。 實際輸送量可能較低，取決於 I/O 混合和網路狀況。
 

@@ -1,0 +1,150 @@
+items:
+- name: Content Moderator 文件
+- name: 概觀
+  items:
+  - name: 什麼是內容仲裁？
+    href: overview.md
+- name: 快速入門
+  items:
+  - name: 開始使用 Content Moderator
+    href: quick-start.md
+  - name: 使用 .NET SDK
+    items:
+    - name: 檢查映像內容
+      href: image-moderation-quickstart-dotnet.md
+    - name: 檢查文字內容
+      href: text-moderation-quickstart-dotnet.md
+    - name: 檢查影片內容
+      href: video-moderation-api.md
+- name: 概念
+  items:
+  - name: 影像仲裁
+    href: image-moderation-api.md
+  - name: 文字仲裁
+    href: text-moderation-api.md
+  - name: 影片仲裁
+    href: video-moderation-human-review.md
+  - name: 作業和檢閱
+    href: review-api.md
+  - name: 工作流程
+    href: workflow-api.md
+- name: 使用說明指南
+  items:
+  - name: 使用仲裁服務
+    items:
+    - name: 仲裁 API
+      items:
+      - name: 使用 .NET SDK
+        items:
+        - name: 檢查對應自訂清單的映像
+          href: image-lists-quickstart-dotnet.md
+        - name: 檢查對應自訂字詞的文字
+          href: term-lists-quickstart-dotnet.md
+      - name: 使用 REST API
+        items:
+        - name: 映像 - API 主控台
+          href: try-image-api.md
+        - name: 自訂映像 - API 主控台
+          href: try-image-list-api.md
+        - name: 文字 - API 主控台
+          href: try-text-api.md
+        - name: 自訂條款 - API 主控台
+          href: try-terms-list-api.md
+  - name: 使用檢閱工具
+    items:
+    - name: 檢閱 API
+      items:
+      - name: 使用 .NET SDK
+        items:
+        - name: 作業 - .NET
+          href: moderation-jobs-quickstart-dotnet.md
+        - name: 檢閱 - .NET
+          href: moderation-reviews-quickstart-dotnet.md
+        - name: 影片檢閱 - .NET
+          href: video-reviews-quickstart-dotnet.md
+        - name: 影片文字記錄檢閱 - .NET
+          href: video-transcript-reviews-quickstart-dotnet.md
+      - name: 使用 REST API
+        items:
+        - name: 作業 - API 主控台
+          href: try-review-api-job.md
+        - name: 檢閱 - API 主控台
+          href: try-review-api-review.md
+        - name: 工作流程 - API 主控台
+          href: try-review-api-workflow.md
+    - name: 迴圈中的人員
+      href: Review-Tool-User-Guide/human-in-the-loop.md
+    - name: 使用設定
+      href: Review-Tool-User-Guide/Configure.md
+    - name: 管理小組
+      href: Review-Tool-User-Guide/SubTeams.md
+    - name: 使用標籤
+      href: Review-Tool-User-Guide/Tags.md
+    - name: 檢閱映像
+      href: Review-Tool-User-Guide/Review-Moderated-Images.md
+    - name: 檢閱文字
+      href: Review-Tool-User-Guide/Text-Reviews.md
+    - name: 管理認證
+      href: Review-Tool-User-Guide/Credentials.md
+    - name: 使用連接器
+      href: Review-Tool-User-Guide/Connectors.md
+    - name: 使用工作流程
+      href: Review-Tool-User-Guide/Workflows.md
+    - name: 檢視儀表板
+      href: Review-Tool-User-Guide/View-Dashboard.md
+  - name: 第一個內容仲裁應用程式
+    items:
+    - name: Facebook 內容仲裁
+      href: facebook-post-moderation.md
+    - name: 電子商務影像仲裁
+      href: ecommerce-retail-catalog-moderation.md
+    - name: 影片和文字記錄仲裁
+      href: video-transcript-moderation-review-tutorial-dotnet.md
+- name: 範例
+  items:
+  - name: .NET SDK 範例
+    href: samples-dotnet.md
+  - name: C# 中的 REST API 範例
+    href: samples-rest.md
+- name: 參考
+  items:
+  - name: 內容仲裁 API
+    href: api-reference.md
+  - name: SDK
+    items:
+    - name: Java
+      href: https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-cognitiveservices-contentmoderator%22
+    - name: Node.js
+      href: https://docs.microsoft.com/javascript/api/azure-cognitiveservices-contentmoderator/?view=azure-node-latest
+    - name: Python
+      href: https://docs.microsoft.com/python/api/overview/azure/cognitiveservices/contentmoderator?view=azure-python
+    - name: .NET
+      href: https://www.nuget.org/packages/Microsoft.Azure.CognitiveServices.ContentModerator
+- name: 資源
+  items:
+  - name: 常見問題集
+    href: FAQs.md
+  - name: 語言與區域支援
+    href: language-support.md
+  - name: 區域可用性
+    href: https://azure.microsoft.com/global-infrastructure/services/
+  - name: 價格和限制
+    href: https://azure.microsoft.com/pricing/details/cognitive-services/content-moderator
+  - name: 匯出或刪除帳戶資料
+    href: ./export-delete-data.md
+  - name: UserVoice
+    href: https://cognitive.uservoice.com/forums/559960-content-moderator
+  - name: 堆疊溢位
+    href: https://stackoverflow.com/questions/tagged/microsoft-cognitive
+  - name: 知識庫
+    href: https://cognitive.uservoice.com/knowledgebase/topics/132073-content-moderator
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/?category=ai-machine-learning
+  - name: 隨選網路研討會
+    href: https://info.microsoft.com/cognitive-services-content-moderator-ondemand.html
+ms.openlocfilehash: d162bcaefdde1aceb171d2ad83b5386e54cea890
+ms.sourcegitcommit: 9e179a577533ab3b2c0c7a4899ae13a7a0d5252b
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/23/2018
+ms.locfileid: "49944150"

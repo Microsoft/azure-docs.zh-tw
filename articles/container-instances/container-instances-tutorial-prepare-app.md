@@ -2,18 +2,18 @@
 title: Azure Container Instances 教學課程 - 準備您的應用程式
 description: Azure 容器執行個體教學課程第 1 部分 (共 3 部分) - 準備應用程式以部署至 Azure 容器執行個體
 services: container-instances
-author: mmacy
-manager: timlt
+author: dlepow
 ms.service: container-instances
 ms.topic: tutorial
 ms.date: 03/21/2018
-ms.author: marsma
+ms.author: danlep
 ms.custom: mvc
-ms.openlocfilehash: 134cc6ea84a5851755c757cbcf20130bf890575c
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: dfe494eba64f546616e4e6cc9898f9d63d81eaa2
+ms.sourcegitcommit: 67abaa44871ab98770b22b29d899ff2f396bdae3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 10/08/2018
+ms.locfileid: "48854774"
 ---
 # <a name="tutorial-create-container-for-deployment-to-azure-container-instances"></a>教學課程：建立容器以部署至 Azure Container Instances
 
@@ -116,7 +116,7 @@ $ docker run -d -p 8080:80 aci-tutorial-app
 a2e3e4435db58ab0c664ce521854c2e1a1bda88c9cf2fcff46aedf48df86cccf
 ```
 
-現在，在瀏覽器中瀏覽至 http://localhost:8080，以確認容器正在執行。 您應該會看到如下所示的網面：
+現在，在瀏覽器中瀏覽至 http://localhost:8080 ，以確認容器正在執行。 您應該會看到如下所示的網面：
 
 ![在本機瀏覽器中執行應用程式][aci-tutorial-app-local]
 

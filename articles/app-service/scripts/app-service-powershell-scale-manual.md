@@ -1,11 +1,11 @@
 ---
-title: "Azure PowerShell 指令碼範例 - 手動調整 Web 應用程式 | Microsoft Docs"
-description: "Azure PowerShell 指令碼範例 - 手動調整 Web 應用程式"
+title: Azure PowerShell 指令碼範例 - 手動調整 Web 應用程式 | Microsoft Docs
+description: Azure PowerShell 指令碼範例 - 手動調整 Web 應用程式
 services: app-service\web
-documentationcenter: 
+documentationcenter: ''
 author: syntaxc4
 manager: erikre
-editor: 
+editor: ''
 tags: azure-service-management
 ms.assetid: de5d4285-9c7d-4735-a695-288264047375
 ms.service: app-service
@@ -16,21 +16,22 @@ ms.workload: web
 ms.date: 03/20/2017
 ms.author: cfowler
 ms.custom: mvc
-ms.openlocfilehash: e99dfc02b6ab4123cd5f95997285dca5cb686380
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: bb4f4dbb0486687353f60667f158539df492dcf2
+ms.sourcegitcommit: 7ad9db3d5f5fd35cfaa9f0735e8c0187b9c32ab1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 07/27/2018
+ms.locfileid: "39325746"
 ---
 # <a name="scale-a-web-app-manually"></a>手動調整 Web 應用程式
 
 在此案例中，您會學習如何建立資源群組、App Service 方案和 Web 應用程式。 然後，您會將 App Service 方案從單一執行個體調整為多個執行個體。
 
-您可以視需要使用 [Azure PowerShell 指南](/powershell/azure/overview) \(英文\) 中的指示來安裝 Azure PowerShell，然後執行 `Login-AzureRmAccount` 來建立與 Azure 的連線。
+您可以視需要使用 [Azure PowerShell 指南](/powershell/azure/overview) \(英文\) 中的指示來安裝 Azure PowerShell，然後執行 `Connect-AzureRmAccount` 來建立與 Azure 的連線。
 
 ## <a name="sample-script"></a>範例指令碼
 
-[!code-powershell[main](../../../powershell_scripts/app-service/scale-manual/scale-manual.ps1 "Scale a web app manually")]
+[!code-azurepowershell-interactive[main](../../../powershell_scripts/app-service/scale-manual/scale-manual.ps1 "Scale a web app manually")]
 
 ## <a name="clean-up-deployment"></a>清除部署 
 

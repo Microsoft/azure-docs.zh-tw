@@ -1,21 +1,19 @@
 ---
-title: "對 Azure 中的雲端儲存體應用程式進行疑難排解及監視 | Microsoft Docs"
-description: "使用診斷工具、計量和警示，針對雲端應用程式進行疑難排解及監視。"
+title: 對 Azure 中的雲端儲存體應用程式進行疑難排解及監視 | Microsoft Docs
+description: 使用診斷工具、計量和警示，針對雲端應用程式進行疑難排解及監視。
 services: storage
 author: tamram
-manager: jeconnoc
 ms.service: storage
-ms.workload: web
-ms.devlang: csharp
 ms.topic: tutorial
-ms.date: 02/20/2018
+ms.date: 07/20/2018
 ms.author: tamram
 ms.custom: mvc
-ms.openlocfilehash: a1b3a1d4bb397e19f033b8f3bfe68ca6a63725c4
-ms.sourcegitcommit: d1f35f71e6b1cbeee79b06bfc3a7d0914ac57275
+ms.openlocfilehash: ff4d39a69df90c31186153c077b1b6183a08dd34
+ms.sourcegitcommit: d4c076beea3a8d9e09c9d2f4a63428dc72dd9806
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/22/2018
+ms.lasthandoff: 08/01/2018
+ms.locfileid: "39397206"
 ---
 # <a name="monitor-and-troubleshoot-a-cloud-storage-application"></a>對雲端儲存體應用程式進行疑難排解及監視
 
@@ -29,9 +27,9 @@ ms.lasthandoff: 02/22/2018
 > * 使用不正確的 SAS 權杖來執行測試流量
 > * 下載及分析記錄檔
 
-[Azure 儲存體分析](../common/storage-analytics.md)可提供儲存體帳戶的記錄和計量資料。 這些資料可讓您深入了解儲存體帳戶的健康狀態。 您必須先設定資料收集，才能取得儲存體帳戶的可見性。 此程序包含開啟記錄、設定計量，以及啟用警示。
+[Azure 儲存體分析](../common/storage-analytics.md)可提供儲存體帳戶的記錄和計量資料。 這些資料可讓您深入了解儲存體帳戶的健康狀態。 若要從 Azure 儲存體分析收集資料，您可以設定記錄、計量和警示。 此程序包含開啟記錄、設定計量，以及啟用警示。
 
-您可透過 Azure 入口網站中的 [診斷] 索引標籤，啟用儲存體帳戶的記錄和計量。 有兩種類型的計量。 **彙總計量**可收集輸入/輸出、可用性、延遲和成功百分比。 系統會為 Blob、佇列、資料表和檔案服務彙總這些計量。 **依 API** 會針對 Azure 儲存體服務 API 的每個儲存體作業收集一組相同的計量。 儲存體記錄可讓您記錄儲存體帳戶中的成功和失敗要求詳細資料。 這些記錄檔可讓您查看 Azure 資料表、佇列和 Blob 的讀取、寫入和刪除作業詳細資料， 以及要求失敗的原因，例如逾時、節流和授權錯誤。
+您可透過 Azure 入口網站中的 [診斷] 索引標籤，啟用儲存體帳戶的記錄和計量。 儲存體記錄可讓您記錄儲存體帳戶中的成功和失敗要求詳細資料。 這些記錄檔可讓您查看 Azure 資料表、佇列和 Blob 的讀取、寫入和刪除作業詳細資料， 以及要求失敗的原因，例如逾時、節流和授權錯誤。
 
 ## <a name="log-in-to-the-azure-portal"></a>登入 Azure 入口網站
 
@@ -41,11 +39,11 @@ ms.lasthandoff: 02/22/2018
 
 從左側功能表中，依序選取 [資源群組] 和 [myResourceGroup]，然後選取資源清單中的儲存體帳戶。
 
-將 [診斷] 下方的 [狀態] 設定為 [開啟]。 請確定 [Blob 彙總計量]、[Blob (依 API 計量)] 和 [Blob 記錄] 已啟用。
+將 [診斷設定 (傳統)] 下方的 [狀態] 設定為 [開啟]。 請確定 **Blob 屬性** 下方的所有選項皆已啟用。
 
 完成時，按一下 [儲存]。
 
-![[診斷] 窗格](media/storage-monitor-troubleshoot-storage-application/figure1.png)
+![[診斷] 窗格](media/storage-monitor-troubleshoot-storage-application/enable-diagnostics.png)
 
 ## <a name="enable-alerts"></a>啟用警示
 
@@ -53,34 +51,33 @@ ms.lasthandoff: 02/22/2018
 
 ### <a name="navigate-to-the-storage-account-in-the-azure-portal"></a>在 Azure 入口網站中巡覽至儲存體帳戶
 
-從左側功能表中，依序選取 [資源群組] 和 [myResourceGroup]，然後選取資源清單中的儲存體帳戶。
+在 [監視] 區段下方，選取 [警示 (傳統)]。
 
-選取 [監視] 區段底下的 [警示規則]。
+選取 [新增計量警示 (傳統)]，並填入必要的資訊以完成 [新增規則] 表單。 從 [計量] 下拉式清單中，選取 `SASClientOtherError`。 若要讓警示在第一次出現錯誤時觸發，請從 [條件] 下拉式清單中選取 [大於或等於]。
 
-選取 [+ 新增警示]，並在 [新增警示規則] 下方，填寫必要的資訊。 從 [計量] 下拉式清單中，選擇 `SASClientOtherError`。
-
-![[診斷] 窗格](media/storage-monitor-troubleshoot-storage-application/figure2.png)
+![[診斷] 窗格](media/storage-monitor-troubleshoot-storage-application/add-alert-rule.png)
 
 ## <a name="simulate-an-error"></a>模擬錯誤
 
-若要模擬有效警示，您可以嘗試要求儲存體帳戶中不存在的 Blob。 若要這樣做，請將 `<incorrect-blob-name>` 取代為不存在的值。 執行幾次下列程式碼範例，以模擬失敗的 Blob 要求。
+若要模擬有效警示，您可以嘗試要求儲存體帳戶中不存在的 Blob。 下列命令需要儲存體容器名稱。 您可以使用現有容器的名稱，或建立新名稱供此範例使用。
+
+請預留位置取代為實際值 (請確定 `<INCORRECT_BLOB_NAME>` 設定為不存在的值)，然後執行命令。
 
 ```azurecli-interactive
 sasToken=$(az storage blob generate-sas \
-    --account-name <storage-account-name> \
-    --account-key <storage-account-key> \
-    --container-name <container> \
-    --name <incorrect-blob-name> \
+    --account-name <STORAGE_ACCOUNT_NAME> \
+    --account-key <STORAGE_ACCOUNT_KEY> \
+    --container-name <CONTAINER_NAME> \
+    --name <INCORRECT_BLOB_NAME> \
     --permissions r \
-    --expiry `date --date="next day" +%Y-%m-%d` \
-    --output tsv)
+    --expiry `date --date="next day" +%Y-%m-%d`)
 
-curl https://<storage-account-name>.blob.core.windows.net/<container>/<incorrect-blob-name>?$sasToken
+curl https://<STORAGE_ACCOUNT_NAME>.blob.core.windows.net/<CONTAINER_NAME>/<INCORRECT_BLOB_NAME>?$sasToken
 ```
 
 下圖的範例警示即是以上述範例執行的失敗模擬而得。
 
- ![範例警示](media/storage-monitor-troubleshoot-storage-application/alert.png)
+ ![範例警示](media/storage-monitor-troubleshoot-storage-application/email-alert.png)
 
 ## <a name="download-and-view-logs"></a>下載及檢視記錄檔
 

@@ -1,13 +1,13 @@
 ---
-title: "Azure CLI 指令碼範例 - 將快照集匯出/複製成不同區域儲存體帳戶的 VHD | Microsoft Docs"
-description: "Azure CLI 指令碼範例 - 將快照集匯出/複製成相同或不同訂用帳戶之儲存體帳戶的 VHD"
+title: Azure CLI 指令碼範例 - 將快照集匯出/複製成不同區域儲存體帳戶的 VHD | Microsoft Docs
+description: Azure CLI 指令碼範例 - 將快照集匯出/複製成相同或不同訂用帳戶之儲存體帳戶的 VHD
 services: virtual-machines-linux
 documentationcenter: storage
 author: ramankumarlive
 manager: kavithag
 editor: tysonn
 tags: azure-service-management
-ms.assetid: 
+ms.assetid: ''
 ms.service: virtual-machines-linux
 ms.devlang: azurecli
 ms.topic: sample
@@ -21,6 +21,7 @@ ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 03/09/2018
+ms.locfileid: "29852596"
 ---
 # <a name="exportcopy-managed-snapshots-as-vhd-to-a-storage-account-in-different-region-with-cli"></a>使用 CLI 將受控快照集匯出/複製到不同區域的儲存體帳戶當做 VHD
 

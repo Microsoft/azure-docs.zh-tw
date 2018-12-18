@@ -1,18 +1,19 @@
 ---
-title: "使用 Azure Site Recovery 設定實體內部部署伺服器至 Azure 的災害復原 | Microsoft Docs"
-description: "了解如何使用 Azure Site Recovery 服務，以設定內部部署 Windows 和 Linux 伺服器至 Azure 的災害復原。"
+title: 使用 Azure Site Recovery 設定實體內部部署伺服器至 Azure 的災害復原 | Microsoft Docs
+description: 了解如何使用 Azure Site Recovery 服務，以設定內部部署 Windows 和 Linux 伺服器至 Azure 的災害復原。
 services: site-recovery
 author: rayne-wiselman
 manager: carmonm
 ms.service: site-recovery
 ms.topic: article
-ms.date: 03/08/2018
+ms.date: 10/10/2018
 ms.author: raynew
-ms.openlocfilehash: d460da197c6e9f0bface402d83d4788f8164cc9c
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+ms.openlocfilehash: 6f2b4a83d4c13dcb866737d27c33b4f5a95c2f94
+ms.sourcegitcommit: 4b1083fa9c78cd03633f11abb7a69fdbc740afd1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 10/10/2018
+ms.locfileid: "49078608"
 ---
 # <a name="set-up-disaster-recovery-to-azure-for-on-premises-physical-servers"></a>設定內部部署實體伺服器至 Azure 的災害復原
 
@@ -27,18 +28,25 @@ ms.lasthandoff: 03/09/2018
 > * 建立複寫原則
 > * 啟用伺服器的複寫
 
-## <a name="prerequisites"></a>先決條件
+針對此災害復原案例[檢閱架構](concepts-hyper-v-to-azure-architecture.md)。
+
+## <a name="prerequisites"></a>必要條件
 
 若要完成本教學課程：
 
-- 請確定您了解[情節架構和元件](physical-azure-architecture.md)。
+- 請確定您了解此案例的[架構和元件](physical-azure-architecture.md)。
 - 檢閱所有元件的[支援需求](vmware-physical-secondary-support-matrix.md)。
 - 請確定您想要複寫的伺服器符合 [Azure VM 需求](vmware-physical-secondary-support-matrix.md#replicated-vm-support)。
 - 準備 Azure。 您需要 Azure 訂用帳戶、Azure 虛擬網路及儲存體帳戶。
 - 準備帳戶以自動在您要複寫的每個伺服器上安裝行動服務。
 
-> [!NOTE]
-> 在開始之前請您注意，容錯移轉至 Azure 之後，實體伺服器即無法容錯回復到內部部署實體機器。 您只能容錯回復到 VMware VM。 
+開始之前，請注意︰
+
+- 在容錯移轉至 Azure 之後，實體伺服器即無法容錯回復到內部部署實體機器。 您只能容錯回復到 VMware VM。 
+- 本教學課程會以最簡單的設定，來設定移轉至 Azure 的實體伺服器災害復原。 如果您想要了解其他選項，請閱讀我們的做法指南：
+    - 設定[複寫來源](physical-azure-set-up-source.md)，包括 Site Recovery 組態伺服器。
+    - 設定[複寫目標](physical-azure-set-up-target.md)。
+    - 設定[複寫原則](vmware-azure-set-up-replication.md)及[啟用複寫](vmware-azure-enable-replication.md)。
 
 
 ### <a name="set-up-an-azure-account"></a>設定 Azure 帳戶
@@ -54,7 +62,7 @@ ms.lasthandoff: 03/09/2018
 請確定您的 Azure 帳戶具有權限將 VM 複寫至 Azure。
 
 - 檢閱您將機器複寫至 Azure 所需的[權限](site-recovery-role-based-linked-access-control.md#permissions-required-to-enable-replication-for-new-virtual-machines)。
-- 驗證並修改[角色型存取](../active-directory/role-based-access-control-configure.md)權限。 
+- 驗證並修改[角色型存取](../role-based-access-control/role-assignments-portal.md)權限。 
 
 
 
@@ -68,7 +76,7 @@ ms.lasthandoff: 03/09/2018
 
 ## <a name="set-up-an-azure-storage-account"></a>設定 Azure 儲存體帳戶
 
-設定 [Azure 儲存體帳戶](../storage/common/storage-create-storage-account.md#create-a-storage-account)。
+設定 [Azure 儲存體帳戶](../storage/common/storage-quickstart-create-account.md)。
 
 - Site Recovery 會將內部部署機器複寫至 Azure 儲存體。 容錯移轉發生後，會從儲存體建立 Azure VM。
 - 儲存體帳戶與復原服務保存庫必須位於相同的區域。
@@ -116,19 +124,25 @@ ms.lasthandoff: 03/09/2018
 
 開始之前，請執行下列動作： 
 
-- 在組態伺服器機器上，確定系統時鐘會與[時間伺服器](https://technet.microsoft.com/windows-server-docs/identity/ad-ds/get-started/windows-time-service/windows-time-service)同步。 應該相符。 如果快慢誤差 15 分鐘，安裝可能會失敗。
-- 請確定主機可以存取這些 URL：       [!INCLUDE [site-recovery-URLS](../../includes/site-recovery-URLS.md)]
+#### <a name="verify-time-accuracy"></a>驗證時間精確度
+在組態伺服器機器上，確定系統時鐘會與[時間伺服器](https://technet.microsoft.com/windows-server-docs/identity/ad-ds/get-started/windows-time-service/windows-time-service)同步。 應該相符。 如果快慢誤差 15 分鐘，安裝可能會失敗。
 
-- 以 IP 位址為基礎的防火牆規則都應該允許對 Azure 的通訊。
-- 允許 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/confirmation.aspx?id=41653)和 HTTPS (443) 連接埠。
-- 允許訂用帳戶的 Azure 區域和美國西部使用 IP 位址範圍 (用於存取控制和身分識別管理)。
+#### <a name="verify-connectivity"></a>驗證連線能力
+請確定主機可以根據您的環境，存取這些 URL： 
 
+[!INCLUDE [site-recovery-URLS](../../includes/site-recovery-URLS.md)]  
+
+以 IP 位址為基礎的防火牆規則應該允許透過 HTTPS (443) 連接埠，對以上所列的所有 Azure URL 進行通訊。 為簡化並限制 IP 範圍，建議您執行 URL 篩選。
+
+- **商用 IP**：允許 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/confirmation.aspx?id=41653)和 HTTPS (443) 連接埠。 允許訂用帳戶 Azure 區域的 IP 位址範圍，以支援 AAD、 備份、複寫和儲存體 URL。  
+- **政府機關 IP**：允許 [Azure Government 資料中心 IP 範圍](https://www.microsoft.com/en-us/download/details.aspx?id=57063)以及用於所有 USGov 區域 (維吉尼亞州、德州、亞歷桑那州和愛荷華州) 的 HTTPS (443) 連接埠，以支援 AAD、備份、複寫和儲存體 URL。  
+
+#### <a name="run-setup"></a>執行安裝程式
 以本機系統管理員身分執行整合安裝程式，以安裝設定伺服器。 根據預設，處理序伺服器與主要目標伺服器也會安裝在設定伺服器上。
 
 [!INCLUDE [site-recovery-add-configuration-server](../../includes/site-recovery-add-configuration-server.md)]
 
 註冊完成後，設定伺服器會顯示在保存庫的 [設定] > [伺服器] 頁面上。
-
 
 ## <a name="set-up-the-target-environment"></a>設定目標環境
 

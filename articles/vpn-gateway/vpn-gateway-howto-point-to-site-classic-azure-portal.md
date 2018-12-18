@@ -1,11 +1,11 @@
 ---
-title: "使用點對站將電腦連線至 Azure 虛擬網路︰Azure 入口網站傳統 | Microsoft Docs"
-description: "使用 Azure 入口網站建立傳統的點對站 VPN 閘道連線。"
+title: 使用點對站將電腦連線至 Azure 虛擬網路︰Azure 入口網站傳統 | Microsoft Docs
+description: 使用 Azure 入口網站建立傳統的點對站 VPN 閘道連線。
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
 manager: jpconnock
-editor: 
+editor: ''
 tags: azure-service-management
 ms.assetid: 65e14579-86cf-4d29-a6ac-547ccbd743bd
 ms.service: vpn-gateway
@@ -20,6 +20,7 @@ ms.sourcegitcommit: d1f35f71e6b1cbeee79b06bfc3a7d0914ac57275
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 02/22/2018
+ms.locfileid: "29464264"
 ---
 # <a name="configure-a-point-to-site-connection-to-a-vnet-using-certificate-authentication-classic-azure-portal"></a>使用憑證驗證設定 VNet 的點對站連線 (傳統)：Azure 入口網站
 
@@ -62,7 +63,7 @@ ms.lasthandoff: 02/22/2018
 * **位址空間：192.168.0.0/16**<br>在此範例中，我們只使用一個位址空間。 您可以為 VNet 使用多個位址空間，如圖所示。
 * **子網路名稱：FrontEnd**
 * **子網路位址範圍：192.168.1.0/24**
-* **訂用帳戶：**如果您有一個以上的訂用帳戶，請確認您使用正確的訂用帳戶。
+* **訂用帳戶：** 如果您有一個以上的訂用帳戶，請確認您使用正確的訂用帳戶。
 * **資源群組：TestRG**
 * **位置：美國東部**
 * **連線類型：點對站**

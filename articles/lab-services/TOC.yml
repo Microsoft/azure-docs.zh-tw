@@ -1,0 +1,202 @@
+items:
+- name: 實驗室服務文件
+  href: index.yml
+- name: 概觀
+  items:
+  - name: 關於實驗室服務
+    href: lab-services-overview.md
+  - name: 比較實驗室類型
+    href: compare-lab-types.md
+- name: 教學課程
+  items:
+  - name: DevTest Labs
+    items:
+    - name: 1. 設定實驗室
+      href: tutorial-create-custom-lab.md
+    - name: 2. 存取實驗室
+      href: tutorial-use-custom-lab.md
+  - name: 教室實驗室
+    items:
+    - name: 1. 設定實驗室帳戶
+      href: classroom-labs/tutorial-setup-lab-account.md
+    - name: 2. 設定教室實驗室
+      href: classroom-labs/tutorial-setup-classroom-lab.md
+    - name: 3. 存取教室實驗室
+      href: classroom-labs/tutorial-connect-virtual-machine-classroom-lab.md
+    - name: 4. 追蹤教室實驗的使用情況
+      href: classroom-labs/tutorial-track-usage.md
+- name: 範例
+  items:
+  - name: DevTest Labs
+    items:
+    - name: Resource Manager 範本
+      href: https://github.com/Azure/azure-devtestlab/tree/master/Samples
+    - name: Azure PowerShell
+      href: samples-powershell.md
+    - name: Azure CLI
+      href: samples-cli.md
+- name: 概念
+  items:
+  - name: DevTest Labs
+    href: devtest-lab-concepts.md
+    items:
+    - name: 使用適用於開發人員的實驗室
+      href: devtest-lab-developer-lab.md
+    - name: 使用實驗室作為測試環境
+      href: devtest-lab-test-env.md
+    - name: 使用實驗室進行訓練
+      href: devtest-lab-training-lab.md
+    - name: DevTest 實驗簡介
+      href: devtest-lab-overview.md
+- name: 使用說明指南
+  items:
+  - name: 教室實驗室
+    items:
+    - name: 管理實驗室帳戶
+      href: classroom-labs/how-to-manage-lab-accounts.md
+    - name: 管理教室實驗室
+      href: classroom-labs/how-to-manage-classroom-labs.md
+    - name: 存取教室實驗室
+      href: classroom-labs/how-to-use-classroom-lab.md
+  - name: DevTest 實驗室
+    items:
+    - name: 建立實驗室
+      href: devtest-lab-create-lab.md
+    - name: 在實驗室中建立虛擬機器
+      href: devtest-lab-create-first-vm.md
+    - name: 在實驗室中刪除實驗或 VM
+      href: devtest-lab-delete-lab-vm.md
+    - name: 為實驗室設定原則
+      href: devtest-lab-get-started-with-lab-policies.md
+    - name: 將祕密儲存在 Azure Key Vault 中
+      href: devtest-lab-store-secrets-in-key-vault.md
+    - name: 在 Azure 測試您的應用程式
+      href: test-app-azure.md
+    - name: 在實驗室中使用 VM
+      items:
+      - name: 建立 VM
+        href: devtest-lab-add-vm.md
+      - name: 建立及管理可認領 VM
+        href: devtest-lab-add-claimable-vm.md
+      - name: 使用 Azure CLI 來建立和管理虛擬機器
+        href: devtest-lab-vmcli.md
+      - name: 從 Resource Manager 範本建立虛擬機器
+        href: devtest-lab-use-resource-manager-template.md
+      - name: 重新啟動 VM
+        href: devtest-lab-restart-vm.md
+      - name: 調整 VM 的大小
+        href: devtest-lab-resize-vm.md
+      - name: 重新部署 VM
+        href: devtest-lab-redeploy-vm.md
+      - name: 匯入 VM
+        href: devtest-lab-import-vm.md
+    - name: 在實驗室環境中
+      items:
+      - name: 建立環境
+        href: devtest-lab-create-environment-from-arm.md
+      - name: 設定並使用公用環境
+        href: devtest-lab-configure-use-public-environments.md
+    - name: 保護對實驗室的存取
+      items:
+      - name: 加入實驗室擁有者與使用者
+        href: devtest-lab-add-devtest-user.md
+      - name: 以自訂角色來自訂權限
+        href: devtest-lab-grant-user-permissions-to-specific-lab-policies.md
+    - name: 設定實驗室
+      items:
+      - name: 設定原則和排程
+        href: devtest-lab-set-lab-policy.md
+      - name: 設定成本管理
+        href: devtest-lab-configure-cost-management.md
+      - name: 設定 Azure Marketplace 映像
+        href: devtest-lab-configure-marketplace-images.md
+      - name: 啟用授權的映像
+        href: devtest-lab-enable-licensed-images.md
+      - name: 將標籤加入至實驗室
+        href: devtest-lab-add-tag.md
+      - name: 在實驗室中張貼公告
+        href: devtest-lab-announcements.md
+      - name: 在實驗室中新增支援資訊
+        href: devtest-lab-internal-support-message.md
+    - name: 選取自訂映像或公式
+      href: devtest-lab-comparing-vm-base-image-types.md
+    - name: 管理自訂映像
+      items:
+      - name: 從虛擬機器建立自訂映像
+        href: devtest-lab-create-custom-image-from-vm-using-portal.md
+      - name: 使用 Azure 入口網站從 VHD 建立自訂映像
+        href: devtest-lab-create-template.md
+      - name: 使用 PowerShell 從 VHD 建立自訂映像
+        href: devtest-lab-create-custom-image-from-vhd-using-powershell.md
+      - name: 使用 AzCopy 來上傳 VHD 檔案
+        href: devtest-lab-upload-vhd-using-azcopy.md
+      - name: 使用 PowerShell 來上傳 VHD 檔案
+        href: devtest-lab-upload-vhd-using-powershell.md
+      - name: 使用儲存體總管來上傳 VHD 檔案
+        href: devtest-lab-upload-vhd-using-storage-explorer.md
+    - name: 管理可重複使用的範本
+      items:
+      - name: 新增成品和範本的 Git 存放庫
+        href: devtest-lab-add-artifact-repo.md
+      - name: 管理公式
+        href: devtest-lab-manage-formulas.md
+    - name: 管理構件
+      items:
+      - name: 指定必要的成品
+        href: devtest-lab-mandatory-artifacts.md
+      - name: 建立自訂構件
+        href: devtest-lab-artifact-author.md
+      - name: 診斷構件失敗
+        href: devtest-lab-troubleshoot-artifact-failure.md
+    - name: 管理虛擬網路
+      items:
+      - name: 設定虛擬網路
+        href: devtest-lab-configure-vnet.md
+      - name: 選取 IP 組態選項
+        href: devtest-lab-shared-ip.md
+    - name: 管理資料磁碟
+      items:
+      - name: 連結和中斷連結資料磁碟
+        href: devtest-lab-attach-detach-data-disk.md
+    - name: 調整您的實驗室
+      href: devtest-lab-scale-lab.md
+    - name: 與 CI/CD 整合
+      items:
+      - name: 將實驗與您的 Azure DevOps CI/CD 管線整合
+        href: devtest-lab-integrate-ci-cd-vsts.md
+    - name: 使用 Resource Manager 範本建立或修改實驗室
+      href: devtest-lab-use-arm-and-powershell-for-lab-resources.md
+- name: 參考
+  items:
+  - name: CLI
+    href: /cli/azure/lab
+  - name: PowerShell
+    href: /powershell/module/azurerm.devtestlabs/#devtest_labs
+  - name: REST API
+    href: https://docs.microsoft.com/rest/api/dtl/
+- name: 資源
+  items:
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/?category=developer-tools
+  - name: 定價計算機
+    href: https://azure.microsoft.com/pricing/calculator/
+  - name: DevTest 實驗室 - 常見問題集
+    href: devtest-lab-faq.md
+  - name: 服務更新
+    href: https://azure.microsoft.com/updates/?product=devtest-lab
+  - name: MSDN 論壇
+    href: https://social.msdn.microsoft.com/Forums/home?forum=AzureDevTestLabs
+  - name: 小組部落格
+    href: https://blogs.msdn.microsoft.com/devtestlab/
+  - name: 堆疊溢位
+    href: http://stackoverflow.com/questions/tagged/azure-devtest-labs
+  - name: 影片
+    href: https://azure.microsoft.com/documentation/videos/index/?services=devtest-lab
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/devtest-lab/
+ms.openlocfilehash: c2e701b16c67be86d3e8d2463b8ad45646f0ed0b
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46988626"

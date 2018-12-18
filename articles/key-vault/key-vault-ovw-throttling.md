@@ -1,16 +1,23 @@
 ---
-ms.assetid: 
-title: "Azure Key Vault 節流指導方針 | Microsoft Docs"
-ms.service: key-vault
-author: lleonard-msft
-ms.author: alleonar
+title: Azure Key Vault 節流指導方針
+description: Key Vault 節流措施會限制並行呼叫數目，以防止過度使用資源。
+services: key-vault
+documentationcenter: ''
+author: bryanla
 manager: mbaldwin
-ms.date: 06/21/2017
-ms.openlocfilehash: cc39a5ee466d2e1661281a32010c3d3201c4a0af
-ms.sourcegitcommit: 2a70752d0987585d480f374c3e2dba0cd5097880
+tags: ''
+ms.assetid: 9b7d065e-1979-4397-8298-eeba3aec4792
+ms.service: key-vault
+ms.workload: identity
+ms.topic: article
+ms.date: 05/10/2018
+ms.author: bryanla
+ms.openlocfilehash: 28756cf28305927246d82f1f006f02b2e9b96469
+ms.sourcegitcommit: 0fcd6e1d03e1df505cf6cb9e6069dc674e1de0be
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/19/2018
+ms.lasthandoff: 08/14/2018
+ms.locfileid: "42144006"
 ---
 # <a name="azure-key-vault-throttling-guidance"></a>Azure Key Vault 節流指導方針
 

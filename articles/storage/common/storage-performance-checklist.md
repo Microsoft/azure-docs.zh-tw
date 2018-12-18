@@ -2,23 +2,18 @@
 title: Azure 儲存體效能與延展性檢查清單 | Microsoft Docs
 description: 在開發具效能的應用程式中使用 Azure 儲存體的實證做法檢查清單。
 services: storage
-documentationcenter: ''
 author: roygara
-manager: jeconnoc
-editor: tysonn
-ms.assetid: 959d831b-a4fd-4634-a646-0d2c0c462ef8
 ms.service: storage
-ms.workload: storage
-ms.tgt_pltfrm: na
-ms.devlang: na
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: rogarana
-ms.openlocfilehash: 945289a172270eea56625287baf437fd4b70c7f3
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.component: common
+ms.openlocfilehash: 32881f815a714e355adf05c07a3cf114933f3fe9
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39529700"
 ---
 # <a name="microsoft-azure-storage-performance-and-scalability-checklist"></a>Microsoft Azure 儲存體效能與延展性檢查清單
 ## <a name="overview"></a>概觀
@@ -145,7 +140,7 @@ Azure 儲存體使用範圍型的資料分割配置，調整和負載平衡系�
 如需 Azure CDN 的詳細資訊，請參閱 [Azure CDN](https://azure.microsoft.com/services/cdn/)。  
 
 ### <a name="subheading6"></a>使用 SAS 和 CORS
-當您必須在使用者的網頁瀏覽器或行動電話應用程式中授權程式碼 (例如 JavaScript) 以存取 Azure 儲存體中的資料時，一個方法是將 Web 角色中的應用程式作為 Proxy 使用：使用者的裝置會向 Web 角色進行驗證，Web 服務轉而向儲存體服務進行驗證。 如此一來，您可以避免在未受到保護的裝置上公開您的儲存體帳戶金鑰。 不過，因為在使用者裝置和儲存體服務之間傳輸的所有資料都必須通過 Web 角色，所以這會在 Web 角色上加上大量負荷。 您可以透過使用共用存取簽章 (SAS)，有時與跨原始來源資源分享 (CORS) 標頭搭配使用，來避免將 Web 角色作為儲存體服務的 Proxy 使用。 使用 SAS，您可以透過有限的存取權杖，允許使用者裝置直接對儲存體服務提出要求。 例如，如果使用者想要將相片上傳到您的應用程式，您的 Web 角色可產生 SAS 權杖，可授與接下來 30 分鐘內寫入特定 Blob 或容器的權限 (時間過後 SAS 權杖便會過期)，並將它傳送到使用者裝置。
+當您必須在使用者的網頁瀏覽器或行動電話應用程式中授權程式碼 (例如 JavaScript) 以存取 Azure 儲存體中的資料時，一個方法是將 Web 角色中的應用程式作為 Proxy 使用：使用者的裝置會向 Web 角色進行驗證，Web 角色再授與儲存體資源的存取權。 如此一來，您可以避免在未受到保護的裝置上公開您的儲存體帳戶金鑰。 不過，因為在使用者裝置和儲存體服務之間傳輸的所有資料都必須通過 Web 角色，所以這會在 Web 角色上加上大量負荷。 您可以透過使用共用存取簽章 (SAS)，有時與跨原始來源資源分享 (CORS) 標頭搭配使用，來避免將 Web 角色作為儲存體服務的 Proxy 使用。 使用 SAS，您可以透過有限的存取權杖，允許使用者裝置直接對儲存體服務提出要求。 例如，如果使用者想要將相片上傳到您的應用程式，您的 Web 角色可產生 SAS 權杖，可授與接下來 30 分鐘內寫入特定 Blob 或容器的權限 (時間過後 SAS 權杖便會過期)，並將它傳送到使用者裝置。
 
 通常，在某個網域上由網站託管的頁面中，瀏覽器不允許 JavaScript 對另一個網域執行特定作業 (例如 "PUT")。 例如，如果您在 "contosomarketing.cloudapp.net" 上主控 Web 角色，並想要使用用戶端 JavaScript 來將 Blob 上傳至您在 "contosoproducts.blob.core.windows.net" 的儲存體帳戶，則瀏覽器的「相同原始原則」將會禁止此作業。 CORS 是個瀏覽器功能，可允許目標網域 (在此案例中是儲存體帳戶) 與信任源自來源網域 (在此案例中是 Web 角色) 要求的瀏覽器進行通訊。  
 

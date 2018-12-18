@@ -1,6 +1,6 @@
 ---
-title: "Azure Resource Manager 範本參數區段 | Microsoft Docs"
-description: "使用宣告式 JSON 語法描述 Azure Resource Manager 範本的參數區段。"
+title: Azure Resource Manager 範本參數區段 | Microsoft Docs
+description: 使用宣告式 JSON 語法描述 Azure Resource Manager 範本的參數區段。
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -8,16 +8,17 @@ manager: timlt
 editor: tysonn
 ms.service: azure-resource-manager
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/19/2018
+ms.date: 05/18/2018
 ms.author: tomfitz
-ms.openlocfilehash: 5a519908f43193e41da9237a236d720fe2db58eb
-ms.sourcegitcommit: 1fbaa2ccda2fb826c74755d42a31835d9d30e05f
+ms.openlocfilehash: 6d09a057d9b8a02c7f8313161e64aa3a42eb6db2
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/22/2018
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34604330"
 ---
 # <a name="parameters-section-of-azure-resource-manager-templates"></a>Azure Resource Manager 範本中的參數區段
 在範本的 parameters 區段中，您會指定可在部署資源時輸入的值。 提供針對特定環境 (例如開發、測試和生產環境) 量身訂做的參數值，可讓您自訂部署。 您不必在範本中提供參數，但若沒有參數，您的範本一律會部署具有相同名稱、位置和屬性的相同資源。
@@ -85,14 +86,14 @@ ms.lasthandoff: 01/22/2018
 | 元素名稱 | 必要 | 說明 |
 |:--- |:--- |:--- |
 | parameterName |yes |參數名稱。 必須是有效的 JavaScript 識別碼。 |
-| type |yes |參數值類型。 允許的類型和值為 **string**、**secureString**、**int**、**bool**、**object**、**secureObject**，以及 **array**。 |
+| type |yes |參數值類型。 允許的類型和值為 **string**、**securestring**、**int**、**bool**、**object**、**secureObject**，以及 **array**。 |
 | defaultValue |否 |如果未提供參數值，則會使用參數的預設值。 |
 | allowedValues |否 |參數的允許值陣列，確保提供正確的值。 |
 | minValue |否 |int 類型參數的最小值，含此值。 |
 | maxValue |否 |int 類型參數的最大值，含此值。 |
-| minLength |否 |字串、secureString 及陣列類型參數長度的最小值，含此值。 |
-| maxLength |否 |字串、secureString 及陣列類型參數長度的最大值，含此值。 |
-| description |否 |透過入口網站向使用者顯示的參數說明。 |
+| minLength |否 |字串、securestring 及陣列類型參數長度的最小值，含此值。 |
+| maxLength |否 |字串、securestring 及陣列類型參數長度的最大值，含此值。 |
+| 說明 |否 |透過入口網站向使用者顯示的參數說明。 |
 
 ## <a name="template-functions-with-parameters"></a>使用參數的範本函式
 
@@ -225,7 +226,7 @@ ms.lasthandoff: 01/22/2018
    }
    ```
 
-* 所有密碼和祕密都要使用 **SecureString**。 如果您在 JSON 物件中傳遞敏感資料，請使用 **secureObject** 類型。 部署資源後，無法讀取類型為 secureString 或 secureObject 的範本參數。 
+* 所有密碼都要使用 **securestring** 。 如果您在 JSON 物件中傳遞敏感資料，請使用 **secureObject** 類型。 部署資源後，無法讀取類型為 securestring 或 secureObject 的範本參數。 
    
    ```json
    "parameters": {

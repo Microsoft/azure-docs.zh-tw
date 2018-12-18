@@ -1,23 +1,24 @@
 ---
-title: "以程式設計方式建立 Azure 儀表板 | Microsoft Docs"
-description: "本文說明如何以程式設計方式建立 Azure 儀表板。"
+title: 以程式設計方式建立 Azure 儀表板 | Microsoft Docs
+description: 本文說明如何以程式設計方式建立 Azure 儀表板。
 services: azure-portal
-documentationcenter: 
-author: adamab
-manager: timlt
+documentationcenter: ''
+author: adamabmsft
+manager: dougeby
 editor: tysonn
 ms.service: azure-portal
 ms.devlang: NA
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 09/01/2017
 ms.author: adamab
-ms.openlocfilehash: 0e84ff61346f2788cf475cee2783ba2056a091ad
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+ms.openlocfilehash: 8ac3bb2c95420eb4a608f003f3d937e3a47c272b
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39448225"
 ---
 # <a name="programmatically-create-azure-dashboards"></a>以程式設計方式建立 Azure Dashboards
 
@@ -55,7 +56,7 @@ Azure 中的共用儀表板屬於[資源](https://docs.microsoft.com/azure/azure
 
 ![共用命令](./media/azure-portal-dashboards-create-programmatically/share-command.png)
 
-按一下「共用」命令即會顯示對話方塊，要求您選擇要發佈的目的地訂用帳戶和資源群組。 請注意，對於您選擇的訂用帳戶和資源群組，[您必須擁有寫入權限](https://docs.microsoft.com/azure/active-directory/role-based-access-control-configure)。
+按一下「共用」命令即會顯示對話方塊，要求您選擇要發佈的目的地訂用帳戶和資源群組。 請注意，對於您選擇的訂用帳戶和資源群組，[您必須擁有寫入權限](https://docs.microsoft.com/azure/role-based-access-control/role-assignments-portal)。
 
 ![共用和存取](./media/azure-portal-dashboards-create-programmatically/sharing-and-access.png)
 
@@ -88,11 +89,11 @@ Azure 可讓您協調多個資源的部署。 您可建立部署範本表示要�
 如果您採用此方式，則應該使用範本的參數語法執行參數化。  您可取代我們先前找到全部出現的資源識別碼，如下所示。
 
 ### <a name="example-json-property-with-hard-coded-resource-id"></a>使用硬式編碼資源識別碼的 JSON 屬性範例
-`id: “/subscriptions/6531c8c8-df32-4254-d717-b6e983273e5d/resourceGroups/contoso/providers/Microsoft.Compute/virtualMachines/myVM1”`
+`id: "/subscriptions/6531c8c8-df32-4254-d717-b6e983273e5d/resourceGroups/contoso/providers/Microsoft.Compute/virtualMachines/myVM1"`
 
 ### <a name="example-json-property-converted-to-a-parameterized-version-based-on-template-parameters"></a>按照範本參數轉換為參數化版本的 JSON 屬性範例
 
-`id: "[resourceId(parameters('virtualMachineResourceGroup'), ‘Microsoft.Compute/virtualMachines’, parameters('virtualMachineName'))]"`
+`id: "[resourceId(parameters('virtualMachineResourceGroup'), 'Microsoft.Compute/virtualMachines', parameters('virtualMachineName'))]"`
 
 在 json 範本的頂端，您也需要宣告一些所需的範本中繼資料和參數，如下所示：
 
@@ -119,7 +120,7 @@ Azure 可讓您協調多個資源的部署。 您可建立部署範本表示要�
 
 __這份文件的結尾有提供完整的可行範本。__
 
-您製作範本後，可以使用 [REST API](https://docs.microsoft.com/rest/api/resources/deployments)、[PowerShell](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-template-deploy)、[Azure CLI](https://docs.microsoft.com/cli/azure/group/deployment#az_group_deployment_create) 或[入口網站的範本部署頁面](https://portal.azure.com/#create/Microsoft.Template)部署範本。
+您製作範本後，可以使用 [REST API](https://docs.microsoft.com/rest/api/resources/deployments)、[PowerShell](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-template-deploy)、[Azure CLI](https://docs.microsoft.com/cli/azure/group/deployment#az-group-deployment-create) 或[入口網站的範本部署頁面](https://portal.azure.com/#create/Microsoft.Template)部署範本。
 
 以下是範例儀表板 JSON 的兩個版本。 第一個是我們從已經繫結至資源的入口網站匯出的版本。 第二個是能夠以程式設計方式繫結至任何 VM 並使用 Azure Resource Manager 部署的範本版本。
 

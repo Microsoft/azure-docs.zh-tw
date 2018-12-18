@@ -1,9 +1,9 @@
 ---
-title: "調查使用方式資料並且與 Azure Application Insights 中的互動式活頁簿共用 | Microsoft docs"
-description: "您 Web 應用程式的使用者人口統計分析。"
+title: 調查使用方式資料並且與 Azure Application Insights 中的互動式活頁簿共用 | Microsoft docs
+description: 您 Web 應用程式的使用者人口統計分析。
 services: application-insights
-documentationcenter: 
-author: numberbycolors
+documentationcenter: ''
+author: mrbullwinkle
 manager: carmonm
 ms.service: application-insights
 ms.workload: tbd
@@ -11,12 +11,12 @@ ms.tgt_pltfrm: ibiza
 ms.devlang: multiple
 ms.topic: article
 ms.date: 06/12/2017
-ms.author: mbullwin
-ms.openlocfilehash: 3edaefa942b834a070c55fe28daf60c74ea9f59d
-ms.sourcegitcommit: adf6a4c89364394931c1d29e4057a50799c90fc0
+ms.author: mbullwin; daviste
+ms.openlocfilehash: a871378b3e2cc0b34c925593c6f01952de3aa08e
+ms.sourcegitcommit: 870d372785ffa8ca46346f4dfe215f245931dae1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/09/2017
+ms.lasthandoff: 05/08/2018
 ---
 # <a name="investigate-and-share-usage-data-with-interactive-workbooks-in-application-insights"></a>調查使用方式資料並且與 Application Insights 中的互動式活頁簿共用
 

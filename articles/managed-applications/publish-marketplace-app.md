@@ -1,20 +1,21 @@
 ---
 title: Marketplace 中 Azure 受控應用程式 | Microsoft Docs
 description: 描述可透過 Marketplace 取得的 Azure 受控應用程式。
-services: azure-resource-manager
+services: managed-applications
 author: tfitzmac
 manager: timlt
-ms.service: azure-resource-manager
+ms.service: managed-applications
 ms.devlang: na
-ms.topic: article
+ms.topic: tutorial
 ms.tgt_pltfrm: na
-ms.date: 03/15/2018
+ms.date: 07/10/2018
 ms.author: tomfitz
-ms.openlocfilehash: 61815098a4935983f19b3dcea6e001230aee4771
-ms.sourcegitcommit: a36a1ae91968de3fd68ff2f0c1697effbb210ba8
+ms.openlocfilehash: 8f35bda8c6925bdc10097ac6d180f5998bd5cf1d
+ms.sourcegitcommit: df50934d52b0b227d7d796e2522f1fd7c6393478
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/17/2018
+ms.lasthandoff: 07/12/2018
+ms.locfileid: "38989780"
 ---
 # <a name="azure-managed-applications-in-the-marketplace"></a>Marketplace 中 Azure 受控應用程式
 
@@ -43,7 +44,7 @@ ms.lasthandoff: 03/17/2018
 1. 建立 Microsoft ID - 使用屬於貴公司網域，但不屬於單一個人的電子郵件地址，建立您的 Microsoft 帳戶。 此電子郵件地址用於 Microsoft 開發人員中心和雲端合作夥伴入口網站。 如需詳細資訊，請參閱 [Azure Marketplace 發行者指南](https://aka.ms/sellerguide)。
 1. 提交 [Azure Marketplace 提名表單](https://aka.ms/ampnomination) - 針對**您想要發行的解決方案？**，選取 [受控應用程式]。 一旦提交表單，Marketplace 上架小組會檢閱應用程式並驗證要求。 核准程序可能需要一到三天。 您的提名核准時，您會收到促銷代碼，以撤銷開發人員中心的註冊費用。 如果您**未**完成 Marketplace 提名表單，系統會要求您支付 $99 的註冊費用。
 1. 在[開發人員中心](http://dev.windows.com/registration?accountprogram=azure)註冊 - Microsoft 會驗證您的組織是有效的法律實體，具有註冊所在國家/地區的有效統一編號。 核准程序可能需要 5 到 10 天。 若要避免註冊費用，使用您在提名程序電子郵件中收到的促銷代碼。 如需詳細資訊，請參閱 [Azure Marketplace 發行者指南](https://aka.ms/sellerguide)。
-1. 登入[雲端合作夥伴入口網站](https://cloudpartner.azure.com) - 在發行者設定檔中，將您的開發人員中心帳戶與 Marketplace 發行者設定檔產生關聯。 如需詳細資訊，請參閱 [Azure Marketplace 發行者指南](https://aka.ms/sellerguide)。
+1. 登入 [Cloud Partner 入口網站](https://cloudpartner.azure.com) - 在發行者設定檔中，將您的開發人員中心帳戶與 Marketplace 發行者設定檔產生關聯。 如需詳細資訊，請參閱 [Azure Marketplace 發行者指南](https://aka.ms/sellerguide)。
 
 ## <a name="create-a-new-azure-application-offer"></a>建立新的 Azure 應用程式供應項目
 
@@ -51,11 +52,11 @@ ms.lasthandoff: 03/17/2018
 
 ### <a name="set-up-an-offer"></a>設定供應項目
 
-受控應用程式的供應項目對應至發行者提供的產品分類供應項目。 如果您有想要在 Marketplace 中提供的新應用程式類型，可以將它設定為新的供應項目。 優惠 SKU 的集合。 每個供應項目會以個別實體出現在 Marketplace。
+受控應用程式的供應項目對應至發行者提供的產品分類供應項目。 如果您有想要在 Marketplace 中提供的新應用程式類型，可以將它設定為新的供應項目。 供應項目 SKU 的集合。 每個供應項目會以個別實體出現在 Marketplace。
 
 1. 登入 [Cloud Partner 入口網站](https://cloudpartner.azure.com/)。
 
-1. 在左側瀏覽窗格中，選取 [+ 新增優惠] > **[Azure 應用程式]**。
+1. 在左側瀏覽窗格中，選取 [+ 新增供應項目] > **[Azure 應用程式]**。
 
 1. 在 [編輯器] 檢視中，您會看見所需的表單。 本文稍後將說明每個表單。
 
@@ -73,7 +74,7 @@ ms.lasthandoff: 03/17/2018
 
 下一個步驟是為您的供應項目新增 SKU。
 
-SKU 是優惠的最小購買單位。 您可以使用相同產品類別 (供應項目) 內的 SKU 來區分：
+SKU 是供應項目的最小購買單位。 您可以使用相同產品類別 (供應項目) 內的 SKU 來區分：
 
 * 所支援的不同功能
 * 供應項目為受控或非受控
@@ -83,7 +84,7 @@ SKU 會顯示在 Marketplace 中的父供應項目底下。 它會在 Azure 入�
 
 1. 選取 [SKU] > [新增 SKU]。
 
-1. 輸入 [SKU 識別碼]。 SKU 識別碼是在供應項目內 SKU 的唯一識別碼。 此識別碼會顯示在產品的 URL，Resource Manager 範本和計費報告中。 此識別碼只能包含小寫英數字元或連字號 (-)。 此識別碼不能以連字號結尾，且最多不能超過 50 個字元。 供應項目上架後，此欄位便會鎖住。 您可以在一個優惠內建立多個 SKU。 您預計發佈的每個映像都需要 SKU。
+1. 輸入 [SKU 識別碼]。 SKU 識別碼是在供應項目內 SKU 的唯一識別碼。 此識別碼會顯示在產品的 URL，Resource Manager 範本和計費報告中。 此識別碼只能包含小寫英數字元或連字號 (-)。 此識別碼不能以連字號結尾，且最多不能超過 50 個字元。 供應項目上架後，此欄位便會鎖住。 您可以在一個供應項目內建立多個 SKU。 您預計發佈的每個映像都需要 SKU。
 
 1. 填寫下列表單上的 [SKU 詳細資料] 區段：
 
@@ -100,14 +101,15 @@ SKU 會顯示在 Marketplace 中的父供應項目底下。 它會在 Azure 入�
 
    填寫下列欄位：
 
-   * **目前的版本**：輸入您上傳的套件版本。 其格式應該是 `{number}.{number}.{number}{number}`。
-   * **選取套件檔案**：此套件包含壓縮成 .zip 套件的兩個必要檔案。 其中一個檔案為資源管理員範本，此範本定義要與受控應用程式一起部署的資源。 另一個檔案會針對透過入口網站部署受控應用程式的取用者，定義[使用者介面](create-uidefinition-overview.md)。 在使用者介面中，您可以指定讓取用者提供參數值的項目。
+   * **版本**：輸入您上傳的套件版本。 其格式應該是 `{number}.{number}.{number}{number}`。
+   * **套件檔案 (.zip)**：此套件包含壓縮成 .zip 套件的兩個必要檔案。 其中一個檔案為資源管理員範本，此範本定義要與受控應用程式一起部署的資源。 另一個檔案會針對透過入口網站部署受控應用程式的取用者，定義[使用者介面](create-uidefinition-overview.md)。 在使用者介面中，您可以指定讓取用者提供參數值的項目。
    * **PrincipalId**：這個屬性是使用者、使用者群組或應用程式的 Azure Active Directory (Azure AD) 識別碼，其擁有者被授與客戶訂用帳戶中資源的存取權。 角色定義描述權限。
    * **角色定義**：這個屬性是 Azure AD 提供的所有內建角色型存取控制 (RBAC) 角色清單。 您可以選取最適合用於代表客戶管理資源的角色。
+   * **原則設定**：將 [Azure 原則](../azure-policy/azure-policy-introduction.md)套用至您的受控應用程式，以指定已部署解決方案的合規性需求。 從可用的選項中，選取要套用的原則。 針對 [原則參數]，提供包含參數值的 JSON 字串。 如需了解原則定義和參數值格式，請參閱 [Azure 原則範例](../azure-policy/json-samples.md)。
 
-您可以新增多個授權。 建議您建立 AD 使用者群組並且在 **PrincipalId** 中指定其識別碼。 如此一來，您可以將更多使用者新增至使用者群組，而不需要更新 SKU。
+您可以新增數個授權。 建議您建立 AD 使用者群組並且在 **PrincipalId** 中指定其識別碼。 如此一來，您可以將更多使用者新增至使用者群組，而不需要更新 SKU。
 
-如需 RBAC 的詳細資訊，請參閱[在 Azure 入口網站中開始使用 RBAC](../active-directory/role-based-access-control-what-is.md)。
+如需 RBAC 的詳細資訊，請參閱[在 Azure 入口網站中開始使用 RBAC](../role-based-access-control/overview.md)。
 
 ## <a name="marketplace-form"></a>Marketplace 表單
 
@@ -170,7 +172,7 @@ Marketplace 表單會要求 [Azure Marketplace](https://azuremarketplace.microso
 
 在 [支援] 表單中填寫貴公司的支援連絡人。 此資訊可能是工程連絡人和客戶支援連絡人。
 
-## <a name="publish-an-offer"></a>發佈提供項目
+## <a name="publish-an-offer"></a>發佈供應項目
 
 填妥所有區段之後，請選取 [發佈] 開始讓客戶可使用供應項目的程序。
 

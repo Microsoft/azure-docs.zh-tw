@@ -1,24 +1,25 @@
 ---
-title: "了解 Azure 發票"
-description: "了解如何閱讀並了解 Azure 訂用帳戶的使用情形和帳單"
-services: 
-documentationcenter: 
+title: 了解您的 Azure 發票 | Microsoft Docs
+description: 了解如何閱讀並了解 Azure 訂用帳戶的使用情形和帳單
+services: ''
+documentationcenter: ''
 author: tonguyen10
 manager: tonguyen
-editor: 
+editor: ''
 tags: billing
 ms.service: billing
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/31/2017
 ms.author: tonguyen
-ms.openlocfilehash: 54de5e123dbb51948eb62d90b444ebd78f9879cb
-ms.sourcegitcommit: 176c575aea7602682afd6214880aad0be6167c52
+ms.openlocfilehash: 6601ade7db52043de8150a3fca671591b9b469fd
+ms.sourcegitcommit: f06925d15cfe1b3872c22497577ea745ca9a4881
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/09/2018
+ms.lasthandoff: 06/27/2018
+ms.locfileid: "37063454"
 ---
 # <a name="understand-terms-on-your-microsoft-azure-invoice"></a>了解您 Microsoft Azure 發票上的字詞
 
@@ -51,7 +52,7 @@ ms.lasthandoff: 01/09/2018
 | 發票日期 |發票產生的日期，通常是計費週期結束之後的一天 |
 | 付款方法 |帳戶 (發票或信用卡) 上所使用的付款類型 |
 | 帳單收件者 |為帳戶所列的帳單地址 |
-| 訂用帳戶優惠 (「隨收隨付」) |已購買之訂用帳戶優惠的類型 (隨用隨付、BizSpark Plus、Azure Pass 等等)。 如需詳細資訊，請參閱 [Azure 優惠類型](https://azure.microsoft.com/support/legal/offer-details/)。 |
+| 訂用帳戶供應項目 (「隨收隨付」) |已購買之訂用帳戶供應項目的類型 (隨用隨付、BizSpark Plus、Azure Pass 等等)。 如需詳細資訊，請參閱 [Azure 供應項目類型](https://azure.microsoft.com/support/legal/offer-details/)。 |
 | 帳戶擁有者的電子郵件 | 註冊 Microsoft Azure 時所使用的帳戶電子郵件地址。 <br /><br />若要變更電子郵件地址，請參閱[如何變更連絡人電子郵件、地址和電話號碼等 Azure 帳戶的設定檔資訊](billing-how-to-change-azure-account-profile.md)。 |
 
 ### <a name="understand-the-invoice-summary"></a>了解發票摘要
@@ -77,7 +78,7 @@ ms.lasthandoff: 01/09/2018
 | --- | --- |
 | 使用費用 |使用量費用是訂用帳戶目前帳單週期的每月總費用|
 | 折扣 |目前計費期間適用的服務折扣|
-| 調整 |目前帳單週期適用的其他信用額度 (免費使用量、信用額度等) 或未償費用。<br/><br/>例如，如果您享有 Visual Studio Enterprise 含 MSDN 優惠，您會看到每月信用額度。 如果您取消訂用帳戶，您會看到超過您使用訂用帳戶優惠獲得的每月信用額度的所有每月使用費用。 這些費用是目前計費期間開始日期到訂用帳戶取消日期所產生的。 |
+| 調整 |目前帳單週期適用的其他信用額度 (免費使用量、信用額度等) 或未償費用。<br/><br/>例如，如果您享有 Visual Studio Enterprise 含 MSDN 供應項目，您會看到每月信用額度。 如果您取消訂用帳戶，您會看到超過您使用訂用帳戶供應項目獲得的每月信用額度的所有每月使用費用。 這些費用是目前計費期間開始日期到訂用帳戶取消日期所產生的。 |
 
 #### <a name="sold-to-and-payment-instructions"></a>買方和付款指示
 
@@ -104,7 +105,7 @@ ms.lasthandoff: 01/09/2018
 | 區域 |針對以資料中心位置作為基礎所定價的某些服務，識別資料中心的位置 |
 | 已耗用 |計費期間所使用之計量的數量 |
 | 已包括 |目前計費期間免費提供之計量的數量 |
-| 可計費 |顯示「已耗用的數量」和「已包括的數量」之間的差額。 我們會針對此數量向您收費。 對於不提供優惠所含數量的隨收隨付優惠，這個總數會與「已耗用的數量」相同 |
+| 可計費 |顯示「已耗用的數量」和「已包括的數量」之間的差額。 我們會針對此數量向您收費。 對於不提供供應項目所含數量的隨收隨付供應項目，這個總數會與「已耗用的數量」相同 |
 | 費率 |每個計費單位向您收取的費率 |
 | 值 |顯示 [超額數量] 資料行和 [費率] 資料行兩者相乘的結果。 如果「已耗用的數量」沒有超過「已包括的數量」，則此資料行中沒有任何費用。 |
 | 小計 |此計費期間所有費用稅前的總和 |

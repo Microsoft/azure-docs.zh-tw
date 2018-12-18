@@ -1,6 +1,6 @@
 ---
-title: "Service Fabric 備份與還原 | Microsoft Docs"
-description: "Service Fabric 備份與還原的概念文件"
+title: Service Fabric 備份與還原 | Microsoft Docs
+description: Service Fabric 備份與還原的概念文件
 services: service-fabric
 documentationcenter: .net
 author: mcoskun
@@ -9,16 +9,17 @@ editor: subramar,zhol
 ms.assetid: 91ea6ca4-cc2a-4155-9823-dcbd0b996349
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/6/2017
 ms.author: mcoskun
-ms.openlocfilehash: d276ce9233da9137c49faf8c4d975bd1dcf2ff81
-ms.sourcegitcommit: 6a6e14fdd9388333d3ededc02b1fb2fb3f8d56e5
+ms.openlocfilehash: 46f9c6129ccf99fb72a285fa4089b7b3f01f7d7b
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/07/2017
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34643027"
 ---
 # <a name="back-up-and-restore-reliable-services-and-reliable-actors"></a>備份與還原 Reliable Services 和 Reliable Actors
 Azure Service Fabric 是高可用性平台，跨多個節點之間複寫狀態以維護這個高可用性。  因此，即使叢集中的一個節點失敗，服務可以繼續。 雖然這個由平台提供的內建備援對於一些特定情況可能已經足夠，但是服務最好能夠備份資料 (到外部存放區)。
@@ -153,7 +154,7 @@ protected override async Task<bool> OnDataLossAsync(RestoreContext restoreCtx, C
 > 
 
 ## <a name="deleted-or-lost-service"></a>已刪除或遺失的服務
-如果服務已移除，您必須先重新建立該服務，才可以還原資料。  請務必以相同的組態建立服務 (例如分割配置)，如此才能順暢地還原資料。  一旦服務啟動後，就必須在此服務的每個分割區上叫用還原資料的 API (上述的 `OnDataLossAsync`)。 達到此動作的其中一種方式，是使用每個分割區上的 `[FabricClient.TestManagementClient.StartPartitionDataLossAsync](https://msdn.microsoft.com/library/mt693569.aspx)`。  
+如果服務已移除，您必須先重新建立該服務，才可以還原資料。  請務必以相同的組態建立服務 (例如分割配置)，如此才能順暢地還原資料。  一旦服務啟動後，就必須在此服務的每個分割區上叫用還原資料的 API (上述的 `OnDataLossAsync`)。 達到這個目標的其中一種方法是在每個分割區上使用 [FabricClient.TestManagementClient.StartPartitionDataLossAsync](https://msdn.microsoft.com/library/mt693569.aspx)。  
 
 從這裡開始，實作與上述案例相同。 每個資料分割都需要從外部存放區還原最新的相關備份。 有一點需要注意，分割識別碼現在可能已變更，因為執行階段會以動態方式建立分割識別碼。 因此，服務需要儲存適當的分割資訊和服務名稱，來識別要針對每個分割區還原的正確最新備份。
 
@@ -164,7 +165,7 @@ protected override async Task<bool> OnDataLossAsync(RestoreContext restoreCtx, C
 ## <a name="replication-of-corrupt-application-data"></a>損毀之應用程式資料的複寫
 如果新部署的應用程式升級有錯誤，可能會造成資料損毀。 例如，應用程式升級可能會開始以無效的區碼更新「可靠的字典」中的每個電話號碼記錄。  在此情況下，因為 Service Fabric 並不知道要儲存的資料本質，所以會複寫無效的電話號碼。
 
-偵測造成資料損毀的這類嚴重錯誤之後，您要做的第一件事是在應用程式層級凍結服務，並且在可行時升級至沒有錯誤的應用程式程式碼的版本。  不過，即使在修正服務程式碼之後，資料仍可能會損毀並且因此需要還原資料。  在這種情況下，還原最新的備份可能還不足夠，因為最新的備份也可能已損毀。  因此，您必須尋找在資料損毀之前所做的最後一個備份。
+偵測造成資料損毀的這類嚴重錯誤之後，您要做的第一件事是在應用程式層級凍結服務，並且在可行時升級至沒有錯誤的應用程式程式碼的版本。  不過，即使在修正服務程式碼之後，資料仍可能會損毀，因此需要還原資料。  在這種情況下，還原最新的備份可能還不足夠，因為最新的備份也可能已損毀。  因此，您必須尋找在資料損毀之前所做的最後一個備份。
 
 如果不確定哪些備份正確，您可以部署新的 Service Fabric 叢集，並還原受影響的分割區備份，就像上述「已刪除或遺失的服務」案例一樣。  針對每個資料分割，開始還原從最新到最舊的備份。 一旦您找到沒有損毀的備份，就移動/刪除這個資料分割較新 (相較於備份) 的所有備份。 針對每個資料分割重複此程序。 現在，當您在生產叢集中的分割區上呼叫 `OnDataLossAsync` 時，外部存放區中找到的最後一個備份會是上述程序所挑選的備份。
 
@@ -255,12 +256,7 @@ class MyCustomActorService : ActorService
 然後，會在新的主要複本上叫用 `OnDataLossAsync`。
 在服務成功完成此 API (藉由傳回 true 或 false) 並完成相關重新設定之前，將會一次一個地繼續呼叫 API。
 
-`RestoreAsync` 會在過去曾呼叫的主要複本中先卸除所有現有狀態。  
-然後，可靠的狀態管理員會建立存在於備份資料夾中所有可靠的物件。  
-接下來，可靠的物件會獲得指示從其備份資料夾中的檢查點還原。  
-最後，可靠的狀態管理員會從備份資料夾中的記錄檔記錄復原自己的狀態，並執行復原。  
-做為復原程序的一部分，作業是從「開始點」開始，在備份資料夾中認可記錄檔記錄，並對可靠的物件重新執行。  
-這個步驟可確保復原的狀態一致。
+`RestoreAsync` 會在過去曾呼叫的主要複本中先卸除所有現有狀態。 然後，可靠的狀態管理員會建立存在於備份資料夾中所有可靠的物件。 接下來，可靠的物件會獲得指示從其備份資料夾中的檢查點還原。 最後，可靠的狀態管理員會從備份資料夾中的記錄檔記錄復原自己的狀態，並執行復原。 做為復原程序的一部分，作業是從「開始點」開始，在備份資料夾中認可記錄檔記錄，並對可靠的物件重新執行。 這個步驟可確保復原的狀態一致。
 
 ## <a name="next-steps"></a>後續步驟
   - [可靠的集合](service-fabric-work-with-reliable-collections.md)
@@ -268,4 +264,5 @@ class MyCustomActorService : ActorService
   - [Reliable Services 通知](service-fabric-reliable-services-notifications.md)
   - [Reliable Services 組態](service-fabric-reliable-services-configuration.md)
   - [可靠的集合的開發人員參考資料](https://msdn.microsoft.com/library/azure/microsoft.servicefabric.data.collections.aspx)
+  - [在 Azure Service Fabric 中定期備份和還原](service-fabric-backuprestoreservice-quickstart-azurecluster.md)
 

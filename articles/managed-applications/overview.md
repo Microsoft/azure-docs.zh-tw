@@ -1,36 +1,37 @@
 ---
-title: "Azure 受控應用程式概觀 | Microsoft Docs"
-description: "說明 Azure 受控應用程式的概念"
+title: Azure 受控應用程式概觀 | Microsoft Docs
+description: 說明 Azure 受控應用程式的概念
 services: managed-applications
 author: tfitzmac
 manager: timlt
 ms.service: managed-applications
 ms.devlang: na
-ms.topic: article
+ms.topic: overview
 ms.tgt_pltfrm: na
-ms.date: 10/26/2017
+ms.date: 10/04/2018
 ms.author: tomfitz
-ms.openlocfilehash: a26cfc632dacb41435b3755409d3e91630f5f3eb
-ms.sourcegitcommit: 562a537ed9b96c9116c504738414e5d8c0fd53b1
+ms.openlocfilehash: 67797f3bc5eadc126bad1051e793a8d3bc4590e5
+ms.sourcegitcommit: 9eaf634d59f7369bec5a2e311806d4a149e9f425
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/12/2018
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48800939"
 ---
 # <a name="azure-managed-applications-overview"></a>Azure 受控應用程式概觀
 
 Azure 受控應用程式可讓您提供雲端解決方案，讓取用者方便部署及操作。 您會實作基礎結構，並且提供持續的支援。 若要讓受控應用程式可供所有客戶使用，請將它發佈到 Azure Marketplace 中。 若要讓它僅可供組織中的使用者使用，請將它發佈到內部目錄。 
 
-受控應用程式與 Marketplace 中的解決方案範本類似，只有一個主要差異。 在受控應用程式中，資源會佈建到應用程式發行者所管理的資源群組。 資源群組存在於客戶的訂用帳戶，但發行者租用戶中的身分識別可以存取資源群組。 身為發行者，您可以指定解決方案持續支援的成本。
+受控應用程式與 Marketplace 中的解決方案範本類似，只有一個主要差異。 在受控應用程式中，資源會部署到應用程式發行者所管理的資源群組。 資源群組存在於客戶的訂用帳戶，但發行者租用戶中的身分識別可以存取資源群組。 身為發行者，您可以指定解決方案持續支援的成本。
 
 ## <a name="advantages-of-managed-applications"></a>受控應用程式的優點
 
-受控應用程式會降低取用者使用您解決方案的障礙。 他們不需要具備雲端基礎結構的專業知識，就可以使用您的解決方案。 取用者具有有限的重要資源存取權。 他們不需要擔心會在管理時發生錯誤。 
+受控應用程式會降低取用者使用您解決方案的障礙。 他們不需要具備雲端基礎結構的專業知識，就可以使用您的解決方案。 取用者只有重要資源的有限存取權，不必擔心管理時會犯下錯誤。 
 
 受控應用程式可讓您與取用者建立持續的關係。 定義用來管理應用程式的條款，所有費用都是透過 Azure 帳單處理。
 
 雖然客戶在其訂用帳戶中部署這些受控應用程式，但他們不需要維護、更新或服務它們。 您可以確保所有客戶都使用核准的版本。 客戶不需要開發特定應用程式特定領域的知識，就可以管理這些應用程式。 客戶會自動取得應用程式更新，而不必擔心應用程式的疑難排解和診斷問題。 
 
-對於 IT 小組，受控應用程式可讓您為組織中的使用者提供預先核准的解決方案。 您確定這些解決方案都符合組織標準。
+對於 IT 小組，受控應用程式可讓您為組織中的使用者提供預先核准的解決方案。 您知道這些解決方案都符合組織標準。
 
 ## <a name="types-of-managed-applications"></a>受控應用程式的類型
 
@@ -40,7 +41,7 @@ Azure 受控應用程式可讓您提供雲端解決方案，讓取用者方便�
 
 ### <a name="service-catalog"></a>服務類別目錄
 
-服務類別目錄是組織中使用者適用的已核准解決方案的內部目錄。 您會使用目錄來確保符合特定組織標準，同時為其組織提供一些解決方案。 員工會使用目錄輕易探索其 IT 部門所建議和核准的豐富應用程式集合。 他們會看到組織中的其他人所共用的受控應用程式。
+服務類別目錄是組織中使用者適用的已核准解決方案的內部目錄。 您會使用目錄來符合組織標準，同時為組織提供一些解決方案。 員工會使用目錄輕鬆尋找其 IT 部門所建議和核准的應用程式。 他們會看到組織中的其他人所共用的受控應用程式。
 
 如需發佈服務類別目錄受控應用程式的詳細資訊，請參閱[建立服務類別目錄應用程式](publish-service-catalog-app.md)。
 
@@ -52,7 +53,9 @@ Azure 受控應用程式可讓您提供雲端解決方案，讓取用者方便�
 
 ## <a name="resource-groups-for-managed-applications"></a>受控應用程式的資源群組
 
-一般來說，受控應用程式的資源位於兩個資源群組中。 取用者會管理一個資源群組，發行者會管理另一個資源群組。 在定義受控應用程式時，發行者會指定存取的層級。 下圖顯示的案例是發行者要求受控資源群組的擁有者角色。 發行者會為取用者對這個資源群組進行唯讀鎖定。
+一般來說，受控應用程式的資源位於兩個資源群組中。 取用者會管理一個資源群組，發行者會管理另一個資源群組。 在定義受控應用程式時，發行者會指定存取的層級。 Azure 中的所有資料提供者目前都不支援限制存取[資料作業](../role-based-access-control/role-definitions.md)。
+
+下圖顯示的案例是發行者要求受控資源群組的擁有者角色。 發行者會為取用者對這個資源群組進行唯讀鎖定。 獲取受控資源群組存取權的發行者身分識別免除鎖定。
 
 ![資源群組存取](./media/overview/access.png)
 
@@ -68,8 +71,13 @@ Azure 受控應用程式可讓您提供雲端解決方案，讓取用者方便�
 
 當取用者刪除受控應用程式時，也會刪除受控資源群組。
 
+## <a name="azure-policy"></a>Azure 原則
+
+您可以將 [Azure 原則](../azure-policy/azure-policy-introduction.md)套用至您的受控應用程式。 您要套用原則，以確保受控應用程式的已部署執行個體符合資料和安全性需求。 如果您的應用程式與敏感性資料互動，請確定您已評估其保護方式。 例如，如果您的應用程式是與 Office 365 中的資料互動，則套用原則以確定資料加密已啟用。
+
 ## <a name="next-steps"></a>後續步驟
 
-* 如需定義及部署受控應用程式的簡介，請參閱[使用 Azure CLI 建立及部署 Azure 受控應用程式](managed-apps-quickstart-cli.md)
-* 如需發佈內部應用程式的詳細資訊，請參閱[建立服務類別目錄應用程式](publish-service-catalog-app.md)。
-* 如需將受控應用程式發佈到 Marketplace 的資訊，請參閱 [建立 Marketplace 應用程式](publish-marketplace-app.md)。
+在本文中，您會了解使用受控應用程式的優點。 移至下一篇文章以建立受控應用程式定義。
+
+> [!div class="nextstepaction"]
+> [快速入門：發佈 Azure 受控應用程式定義](publish-managed-app-definition-quickstart.md)

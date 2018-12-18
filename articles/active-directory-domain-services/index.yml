@@ -1,0 +1,102 @@
+### YamlMime:YamlDocument
+ms.openlocfilehash: 840e4a7cb70d32927d4d11e0364826231ac73841
+ms.sourcegitcommit: 30c7f9994cf6fcdfb580616ea8d6d251364c0cd1
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/18/2018
+ms.locfileid: "41926918"
+documentType: LandingData
+title: Azure AD Domain Services 文件
+metadata:
+  title: Azure AD Domain Services 文件
+  description: 了解如何使用 Active Directory Domain Services 將 Azure 虛擬機器加入網域中，而不需使用網域控制站。 教學課程和其他文件會示範如何使用群組原則來管理虛擬機器。
+  keywords: Azure AD, Azure, 網域加入, 群組原則, LDAP, Kerberos, 網域控制器, DC, 工作負載平移
+  author: mahesh-unnikrishnan
+  ms.author: maheshu
+  manager: mtillman
+  ms.date: 6/1/2018
+  ms.topic: landing-page
+  ms.devlang: na
+  ms.service: active-directory
+  ms.component: domain-services
+sections:
+- items:
+  - type: markdown
+    text: 了解如何使用 Active Directory Domain Services 將 Azure 虛擬機器加入網域中，而不需使用網域控制站。 教學課程和其他文件會示範如何使用群組原則來管理虛擬機器。
+- items:
+  - type: list
+    style: cards
+    className: cardsM
+    columns: 2
+    items:
+    - href: active-directory-ds-overview.md
+      html: <p>閱讀以了解 Azure AD Domain Services 提供的服務。</p>
+      image:
+        src: https://docs.microsoft.com/media/common/i_investigate.svg
+      title: 何謂 Azure AD 網域服務？
+    - href: active-directory-ds-getting-started.md
+      html: <p>透過這個簡單的逐步解說，建立自己的受控網域。</p>
+      image:
+        src: https://docs.microsoft.com/media/common/i_deploy.svg
+      title: 開始使用
+    - href: active-directory-ds-contact-us.md
+      html: <p>在需要時獲得協助。</p>
+      image:
+        src: https://docs.microsoft.com/media/common/i_support.svg
+      title: 取得支援
+    - href: https://azure.microsoft.com/updates/?product=active-directory-ds
+      html: <p>查看 Azure AD Domain Services 中的新功能。</p>
+      image:
+        src: https://docs.microsoft.com/media/common/i_whats-new.svg
+      title: 新功能
+- title: 影片
+  items:
+  - type: markdown
+    text: '>[!VIDEO https://www.youtube.com/embed/T1Nd9APNceQ]'
+- title: 即將推出的文章
+  items:
+  - type: list
+    style: unordered
+    items:
+    - html: <a href="active-directory-ds-comparison.md">判斷服務是否適合您？</a>
+    - html: <a href="active-directory-ds-features.md">Azure AD Domain Services 的各項功能</a>
+    - html: <a href="active-directory-ds-scenarios.md">服務使用方式為何？</a>
+    - html: <a href="active-directory-ds-synchronization.md">了解同步處理在 Azure AD Domain Services 中的運作方式</a>
+    - html: <a href="https://azure.microsoft.com/pricing/details/active-directory-ds/">Azure AD Domain Services 定價</a>
+- title: 應用程式和 Azure AD Domain Services
+  items:
+  - type: list
+    style: unordered
+    items:
+    - html: <a href="active-directory-ds-deploy-azure-app-proxy.md">部署 Azure AD App Proxy</a>
+    - html: <a href="active-directory-ds-enable-sharepoint-profile-sync.md">適用於SharePoint 伺服器的設定檔同步處理</a>
+    - html: <a href="active-directory-ds-enable-kcd.md">設定 Kerberos 限制委派</a>
+- title: 操作說明文章
+  items:
+  - type: list
+    style: unordered
+    items:
+    - html: <a href="active-directory-ds-check-health.md">檢查受控網域健康情況</a>
+    - html: <a href="active-directory-ds-csp.md">Azure CSP 訂用帳戶和 Azure AD Domain Services</a>
+    - html: <a href="active-directory-ds-admin-guide-administer-dns.md">管理 DNS</a>
+    - html: <a href="active-directory-ds-networking.md">選取虛擬網路</a>
+    - html: <a href="active-directory-ds-admin-guide-configure-secure-ldap.md">設定安全 LDAP</a>
+    - html: <a href="active-directory-ds-admin-guide-create-ou.md">建立 OU</a>
+    - html: <a href="active-directory-ds-admin-guide-administer-group-policy.md">管理群組原則</a>
+- title: 疑難排解文章
+  items:
+  - type: list
+    style: unordered
+    items:
+    - html: <a href="active-directory-ds-troubleshooting.md">疑難排解指南</a>
+    - html: <a href="active-directory-ds-troubleshoot-alerts.md">針對受控網域上的警示進行疑難排解</a>
+    - html: <a href="active-directory-ds-faqs.md">常見問題集</a>
+    - html: <a href="https://azure.microsoft.com/support/options/">取得支援</a>
+- title: 其他資源
+  items:
+  - type: list
+    style: unordered
+    items:
+    - html: <a href="https://feedback.azure.com/forums/169401-azure-active-directory/">在 UserVoice 中針對 Azure AD Domain Services 提出意見反應</a>
+    - html: <a href="https://azure.microsoft.com/roadmap/?category=security-identity">Azure 藍圖</a>
+    - html: <a href="https://docs.microsoft.com/azure/active-directory-domain-services/active-directory-ds-contact-us">與我們連絡</a>

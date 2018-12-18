@@ -7,18 +7,20 @@ author: mahesh-unnikrishnan
 manager: mtillman
 editor: curtand
 ms.assetid: 23a857a5-2720-400a-ab9b-1ba61e7b145a
-ms.service: active-directory-ds
+ms.service: active-directory
+ms.component: domain-services
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 03/08/2018
+ms.topic: conceptual
+ms.date: 12/01/2017
 ms.author: maheshu
-ms.openlocfilehash: eee7905db4faedef3217118e8d491e2cb019fa30
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+ms.openlocfilehash: de5f3582a931cbf21d5504afd1fd385066874f45
+ms.sourcegitcommit: 9222063a6a44d4414720560a1265ee935c73f49e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 08/03/2018
+ms.locfileid: "39504228"
 ---
 # <a name="networking-considerations-for-azure-ad-domain-services"></a>Azure AD 網域服務的網路考量
 ## <a name="how-to-select-an-azure-virtual-network"></a>如何選取 Azure 虛擬網路
@@ -53,7 +55,6 @@ ms.lasthandoff: 03/09/2018
 * 請勿將 NSG 套用至受控網域的專用子網路。 如果您必須將 NSG 套用至專用子網路，請確保**不會封鎖服務及管理您的網域所需的連接埠**。
 * 請勿過度限制受控網域的專用子網路內可用的 IP 位址數目。 此限制會使服務無法將兩個網域控制站提供給受控網域使用。
 * **請勿在虛擬網路的閘道子網路中啟用 Azure AD 網域服務**。
-* 請勿封鎖來自已啟用您受控網域之子網路的對外存取。
 
 > [!WARNING]
 > 當您讓 NSG 與已啟用 Azure AD 網域服務的子網路產生關聯時，可能會中斷 Microsoft 服務及管理網域的功能。 此外，Azure AD 租用戶與受控網域之間的同步處理已中斷。 **SLA 不適用於已套用 NSG 的部署，因為 NSG 會阻止 Azure AD 網域服務更新和管理您的網域。**
@@ -67,31 +68,30 @@ ms.lasthandoff: 03/09/2018
 | --- | --- | --- |
 | 443 | 強制 |與 Azure AD 租用戶同步處理 |
 | 5986 | 強制 | 管理您的網域 |
-| 3389 | 選用 | 管理您的網域 |
+| 3389 | 強制 | 管理您的網域 |
 | 636 | 選用 | 保護受控網域的 LDAP (LDAPS) 存取 |
 
 **連接埠 443 (與 Azure AD 同步)**
 * 用來同步您的 Azure AD 目錄與受控網域。
 * 在 NSG 中允許存取此連接埠是必要的。 若無法存取此連接埠，您的受控網域將無法與 Azure AD 目錄同步。 使用者可能會因為他們變更的密碼未與受控網域同步，而無法登入。
-* 您可以限制僅屬於 Azure IP 位址範圍的 IP 位址有此連接埠的對內存取權。
+* 您可以限制僅屬於 Azure IP 位址範圍的 IP 位址有此連接埠的對內存取權。 請注意，Azure IP 位址範圍是與下面規則中所示的 PowerShell 範圍不同的範圍。
 
 **連接埠 5986 (PowerShell 遠端處理)**
 * 用來在受控網域上使用 PowerShell 遠端執行管理工作。
 * 在 NSG 中允許透過此連接埠進行存取是必要的。 若無法存取此連接埠，您的受控網域會無法進行更新、設定、備份或監視。
-* 您可以限制僅下列來源 IP 位址有此連接埠的對內存取權：52.180.183.8、23.101.0.70、52.225.184.198、52.179.126.223、13.74.249.156、52.187.117.83、52.161.13.95、104.40.156.18、104.40.87.209、52.180.179.108、52.175.18.134、52.138.68.41、104.41.159.212、52.169.218.0、52.187.120.237、52.161.110.169、52.174.189.149、13.64.151.161
+* 如需任何新的網域或者使用 Azure Resource Manager 虛擬網路的網域，可以將對這個連接埠的對內存取限制為以下的來源 IP 位址：52.180.179.108、52.180.177.87、13.75.105.168、52.175.18.134、52.138.68.41、52.138.65.157、104.41.159.212、104.45.138.161、52.169.125.119、52.169.218.0、52.187.19.1、52.187.120.237、13.78.172.246、52.161.110.169、52.174.189.149、40.68.160.142、40.83.144.56、13.64.151.161、52.180.183.67、52.180.181.39、52.175.28.111、52.175.16.141、52.138.70.93、52.138.64.115、40.80.146.22、40.121.211.60、52.138.143.173、52.169.87.10、13.76.171.84、52.187.169.156、13.78.174.255、13.78.191.178、40.68.163.143、23.100.14.28、13.64.188.43、23.99.93.197
+* 如需使用傳統虛擬網路的網域，您可以將對內存取限制為下列的來源 IP 位址：52.180.183.8、23.101.0.70、52.225.184.198、52.179.126.223、13.74.249.156、52.187.117.83、52.161.13.95、104.40.156.18、104.40.87.209
 * 受控網域的網域控制站不通常會接聽此連接埠。 只有在需要對受控網域執行管理或維護作業時，服務才會於受控網域控制站上開啟此連接埠。 只要作業完成，服務就會在受控網域控制站上關閉此連接埠。
 
 **連接埠 3389 (遠端桌面)**
 * 用於對受控網域的網域控制站進行遠端桌面連線。
-* 透過您的 NSG 開啟此連接埠是選擇性選項。
+* 您可以將對內存取限制為下列的來源 IP 位址：207.68.190.32/27、13.106.78.32/27、13.106.174.32/27、13.106.4.96/27
 * 此連接埠在您的受控網域上也會維持為大致關閉。 因為使用 PowerShell 遠端執行管理和監視工作，因此不會持續使用此機制。 只有在罕見的情況下，Microsoft 需要從遠端連線到您的受控網域進行進階疑難排解，才會使用此連接埠。 一旦疑難排解作業完成，隨即會關閉連接埠。
 
 **連接埠 636 (安全 LDAP)**
 * 用來啟用受控網域的安全 LDAP 存取 (透過網際網路)。
 * 透過您的 NSG 開啟此連接埠是選擇性選項。 僅在您啟用網際網路上的安全 LDAP 存取時，開啟該連接埠。
 * 您可以限制只有預期透過安全 LDAP 進行連線的來源 IP 位址，可以有此連接埠的對內存取權。
-
-**對外存取** AAD Domain Services 需要對外存取各種其他 Azure 服務，才能管理、備份及監視您的受控網域。 請勿封鎖來自已啟用您受控網域之專用子網路的對外存取。
 
 
 ## <a name="network-security-groups"></a>網路安全性群組
@@ -104,7 +104,7 @@ ms.lasthandoff: 03/09/2018
 
 ![透過網際網路之安全 LDAP 存取的範例 NSG](.\media\active-directory-domain-services-alerts\default-nsg.png)
 
-**更多資訊** - [建立網路安全性群組](../virtual-network/virtual-networks-create-nsg-arm-pportal.md)。
+**更多資訊** - [建立網路安全性群組](../virtual-network/manage-network-security-group.md)。
 
 
 ## <a name="network-connectivity"></a>網路連線
@@ -141,5 +141,5 @@ Azure AD Domain Services 受控網域只可在 Azure 的單一虛擬網路中啟
 ## <a name="related-content"></a>相關內容
 * [Azure 虛擬網路對等互連](../virtual-network/virtual-network-peering-overview.md)
 * [設定傳統部署模型的 VNet 對 VNet 連接](../vpn-gateway/virtual-networks-configure-vnet-to-vnet-connection.md)
-* [Azure 網路安全性群組](../virtual-network/virtual-networks-nsg.md)
-* [建立網路安全性群組](../virtual-network/virtual-networks-create-nsg-arm-pportal.md)
+* [Azure 網路安全性群組](../virtual-network/security-overview.md)
+* [建立網路安全性群組](../virtual-network/manage-network-security-group.md)

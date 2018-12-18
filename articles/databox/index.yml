@@ -1,0 +1,50 @@
+### YamlMime:YamlDocument
+ms.openlocfilehash: 7056f5478838eec1cccf6329e172d86ea90d4dd8
+ms.sourcegitcommit: 3a02e0e8759ab3835d7c58479a05d7907a719d9c
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/13/2018
+ms.locfileid: "49311043"
+documentType: LandingData
+title: Azure 資料箱文件 - 離線傳輸
+metadata:
+  title: Azure 資料箱文件 - 離線傳輸
+  description: 當您受限於時間、網路或成本時，請使用資料箱裝置將離線資料轉送至 Azure。
+  services: databox
+  author: alkohli
+  manager: twooley
+  ms.service: databox
+  ms.subservice: pod
+  ms.topic: landing-page
+  ms.date: 10/12/2018
+  ms.author: alkohli
+abstract:
+  description: Azure 資料箱系列可讓您以快速、實惠和可靠的方式，將數百 TB 的資料轉送到 Azure 中。 當您受限於時間、網路或成本時，請使用適用於離線資料轉送的資料箱裝置。<p>根據您的資料大小，選擇資料箱磁碟、資料箱<SUP>預覽</SUP>，或 Data Box Heavy <SUP>預覽</SUP>。 針對每個裝置，以 4 個簡單步驟將資料轉送到 Azure – 訂購、接收、將資料複製到裝置，以及將裝置退回給 Azure。 資料會在 Azure 資料中心上傳，而後清除。</p><p>了解如何透過我們的快速入門及教學課程，使用資料箱進行離線資料轉送。</p>
+sections:
+- title: 快速入門
+  items:
+  - type: list
+    style: icon48
+    items:
+    - image:
+        src: https://docs.microsoft.com/media/common/i_quick-start.svg
+      text: 在 Azure 入口網站中設定資料箱
+      href: /azure/databox/data-box-quickstart-portal
+    - image:
+        src: https://docs.microsoft.com/media/common/i_quick-start.svg
+      text: 在 Azure 入口網站中設定資料箱<SUP>預覽</SUP>
+      href: /azure/databox/data-box-disk-quickstart-portal
+    - image:
+        src: https://docs.microsoft.com/media/common/i_quick-start.svg
+      text: 註冊 Data Box Heavy <SUP>預覽</SUP>
+      href: /azure/databox/data-box-heavy-overview#sign-up
+- title: 教學課程
+  items:
+  - type: list
+    style: cards
+    className: cardsD
+    items:
+    - title: 適用於資料箱
+      html: <p><a href="/azure/databox/data-box-deploy-ordered">訂購 Azure 資料箱</a></p><p><a href="/azure/databox/data-box-deploy-set-up">連接 Azure 資料箱的纜線並且連線</a></p><p><a href="/azure/databox/data-box-deploy-copy-data">將資料複製到 Azure 資料箱</a></p><p><a href="/azure/databox/data-box-deploy-picked-up">退回 Azure 資料箱並確認上傳</a></p>
+    - title: 適用於 Data Box Disk<SUP>預覽</SUP>
+      html: <p><a href="/azure/databox/data-box-disk-deploy-ordered">訂購 Azure 資料箱磁碟</a></p><p><a href="/azure/databox/data-box-disk-deploy-set-up">針對 Azure 資料箱磁碟打開包裝、連線、解除鎖定</a></p><p><a href="/azure/databox/data-box-disk-deploy-copy-data">將資料複製到 Azure 資料箱磁碟</a></p><p><a href="/azure/databox/data-box-disk-deploy-picked-up">退回 Azure 資料箱磁碟並確認上傳</a></p>

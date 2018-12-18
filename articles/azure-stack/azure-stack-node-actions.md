@@ -1,24 +1,25 @@
 ---
-title: "Azure Stack 中的縮放單位節點動作 | Microsoft Docs"
-description: "了解如何檢視節點狀態和在 Azure Stack 整合系統上使用開啟電源、關閉電源、清空和繼續節點動作。"
+title: Azure Stack 中的縮放單位節點動作 | Microsoft Docs
+description: 了解如何檢視節點狀態和在 Azure Stack 整合系統上使用開啟電源、關閉電源、清空和繼續節點動作。
 services: azure-stack
-documentationcenter: 
+documentationcenter: ''
 author: mattbriggs
 manager: femila
-editor: 
-ms.assetid: dbb68b10-c721-4188-aa07-584d0cd63138
+editor: ''
 ms.service: azure-stack
 ms.workload: na
 pms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/09/2018
+ms.date: 08/14/2018
 ms.author: mabrigg
-ms.openlocfilehash: 55cc0eb3cc187d87e0d2ae96e2433cb9682ab370
-ms.sourcegitcommit: 9292e15fc80cc9df3e62731bafdcb0bb98c256e1
+ms.reviewer: ppacent
+ms.openlocfilehash: 1f59f2ce6e3bf8d34ce225aa93da76ad523775e0
+ms.sourcegitcommit: 4ea0cea46d8b607acd7d128e1fd4a23454aa43ee
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/10/2018
+ms.lasthandoff: 08/15/2018
+ms.locfileid: "41946457"
 ---
 # <a name="scale-unit-node-actions-in-azure-stack"></a>Azure Stack 中的縮放單位節點動作
 
@@ -42,11 +43,11 @@ ms.lasthandoff: 01/10/2018
  
 您可以在此處檢視下列資訊：
 
-- 區域名稱
+- 區域名稱。 在 PowerShell 模組中，會使用 **-Location** 來參考區域名稱。
 - 系統類型
 - 邏輯核心數總計
 - 記憶體總計
-- 個別節點的清單和其狀態；執行中或已停止。
+- 個別節點的清單和其狀態；**執行中**或**已停止**。
 
 ![顯示每個節點執行狀態的縮放單位圖格](media/azure-stack-node-actions/ScaleUnitStatus.PNG)
 
@@ -69,7 +70,6 @@ ms.lasthandoff: 01/10/2018
 
 當您檢視縮放單位節點的相關資訊時，您也可以執行節點動作，例如：
 
-- 開啟電源與關閉電源
 - 清空與繼續
 - 修復
 
@@ -88,7 +88,7 @@ ms.lasthandoff: 01/10/2018
 若要透過 PowerShell 執行關閉電源動作：
 
 ````PowerShell
-  Stop-AzsScaleUnitNode -Region <RegionName> -Name <NodeName>
+  Stop-AzsScaleUnitNode -Location <RegionName> -Name <NodeName>
 ```` 
 
 在關閉電源動作無法運作的罕見情況下，請改用 BMC Web 介面。
@@ -103,7 +103,7 @@ ms.lasthandoff: 01/10/2018
 若要透過 PowerShell 執行開啟電源動作：
 
 ````PowerShell
-  Start-AzsScaleUnitNode -Region <RegionName> -Name <NodeName>
+  Start-AzsScaleUnitNode -Location <RegionName> -Name <NodeName>
 ````
 
 在開啟電源動作無法運作的罕見情況下，請改用 BMC Web 介面。
@@ -114,13 +114,13 @@ ms.lasthandoff: 01/10/2018
 
 這個動作通常用於現場更換組件期間，例如，更換整個節點。
 
-> [!IMPORTANT]
+> [!IMPORTANT]  
 > 確定您只在已通知使用者、計劃性的維護期間清空節點。 在某些情況下，使用中的工作負載可能會導致中斷。
 
 若要透過 PowerShell 執行清空動作：
 
   ````PowerShell
-  Disable-AzsScaleUnitNode -Region <RegionName> -Name <NodeName>
+  Disable-AzsScaleUnitNode -Location <RegionName> -Name <NodeName>
   ````
 
 ### <a name="resume"></a>繼續
@@ -130,7 +130,7 @@ ms.lasthandoff: 01/10/2018
 若要透過 PowerShell 執行繼續動作：
 
   ````PowerShell
-  Enable-AzsScaleUnitNode -Region <RegionName> -Name <NodeName>
+  Enable-AzsScaleUnitNode -Location <RegionName> -Name <NodeName>
   ````
 
 ### <a name="repair"></a>修復
@@ -140,7 +140,7 @@ ms.lasthandoff: 01/10/2018
 - 完整節點更換 (不論有無新資料磁碟)
 - 硬體元件失敗並取代之後 (如果現場可更換單元 (FRU) 文件中有建議)。
 
-> [!IMPORTANT]
+> [!IMPORTANT]  
 > 需要更換節點或個別硬體元件時，請參閱 FRU OEM 硬體廠商的文件，以了解確切步驟。 FRU 文件會指定在更換硬體元件之後是否需要執行修復動作。  
 
 執行修復動作時，您需要指定 BMC IP 位址。 
@@ -148,7 +148,9 @@ ms.lasthandoff: 01/10/2018
 若要透過 PowerShell 執行修復動作：
 
   ````PowerShell
-  Repair-AzsScaleUnitNode -Region <RegionName> -Name <NodeName> -BMCIPAddress <BMCIPAddress>
+  Repair-AzsScaleUnitNode -Location <RegionName> -Name <NodeName> -BMCIPAddress <BMCIPAddress>
   ````
 
+## <a name="next-steps"></a>後續步驟
 
+若要深入了解 Azure Stack 網狀架構系統管理員模組，請參閱 [Azs.Fabric.Admin](https://docs.microsoft.com/powershell/module/azs.fabric.admin/?view=azurestackps-1.4.0)。

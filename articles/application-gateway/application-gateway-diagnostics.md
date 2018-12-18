@@ -1,25 +1,23 @@
 ---
-title: 監視應用程式閘道的存取記錄、效能記錄、後端健康情況及計量 | Microsoft Docs
+title: 監視應用程式閘道的存取記錄、效能記錄、後端健康情況及計量
 description: 了解如何啟用和管理應用程式閘道的存取記錄和效能記錄
 services: application-gateway
-documentationcenter: na
 author: amitsriva
 manager: rossort
-editor: tysonn
 tags: azure-resource-manager
-ms.assetid: 300628b8-8e3d-40ab-b294-3ecc5e48ef98
 ms.service: application-gateway
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 3/23/2018
+ms.date: 6/20/2018
 ms.author: amitsriva
-ms.openlocfilehash: 885ae8b97175cac4cd29793eb0a935e81d54d0e4
-ms.sourcegitcommit: c3d53d8901622f93efcd13a31863161019325216
+ms.openlocfilehash: 563194ea0b3e4bda2021c75c544d068f00d74ba7
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/29/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46963827"
 ---
 # <a name="back-end-health-diagnostic-logs-and-metrics-for-application-gateway"></a>應用程式閘道的後端健康情況、診斷記錄和計量
 
@@ -29,7 +27,7 @@ ms.lasthandoff: 03/29/2018
 
 * [記錄](#diagnostic-logging)：記錄能夠儲存效能、存取和其他資料，或從資源取用記錄以便進行監視。
 
-* [計量](#metrics)：應用程式閘道目前有一個計量。 此計量會測量應用程式閘道的輸送量，以每秒的位元組數為單位。
+* [計量](#metrics)：應用程式閘道目前有七個計量，可用來檢視效能計數器。
 
 ## <a name="back-end-health"></a>後端健康情況
 
@@ -38,7 +36,7 @@ ms.lasthandoff: 03/29/2018
 後端健康情況報表會將應用程式閘道健康情況探查的輸出反映到後端執行個體。 當探查成功且後端可以接收流量，則視為狀況良好。 否則，視為狀況不良。
 
 > [!IMPORTANT]
-> 如果應用程式閘道子網路上有網路安全性群組 (NSG)，請在應用程式閘道子網路上開啟連接埠範圍 65503-65534，供輸入流量使用。 需要這些連接埠，後端健康情況 API 才能運作。
+> 如果應用程式閘道子網路上有網路安全性群組 (NSG)，請在應用程式閘道子網路上開啟連接埠範圍 65503-65534，供輸入流量使用。 Azure 基礎結構通訊需要此連接埠範圍。 它們受到 Azure 憑證的保護 (鎖定)。 若沒有適當的憑證，外部實體 (包括這些閘道的客戶) 將無法對這些端點起始任何變更。
 
 
 ### <a name="view-back-end-health-through-the-portal"></a>透過入口網站檢視後端健康情況
@@ -60,7 +58,7 @@ ms.lasthandoff: 03/29/2018
 Get-AzureRmApplicationGatewayBackendHealth -Name ApplicationGateway1 -ResourceGroupName Contoso
 ```
 
-### <a name="view-back-end-health-through-azure-cli-20"></a>透過 Azure CLI 2.0 檢視後端健康情況
+### <a name="view-back-end-health-through-azure-cli"></a>透過 Azure CLI 檢視後端健康情況
 
 ```azurecli
 az network application-gateway show-backend-health --resource-group AdatumAppGatewayRG --name AdatumAppGateway
@@ -314,17 +312,30 @@ Azure [Log Analytics](../log-analytics/log-analytics-azure-networking-analytics.
 > 
 > 
 
-## <a name="metrics"></a>度量
+#### <a name="analyzing-access-logs-through-goaccess"></a>透過 GoAccess 分析存取記錄
+
+我們已發佈會安裝並執行常用 [GoAccess](https://goaccess.io/) 記錄分析器的 Resource Manager 範本，該分析器適用於應用程式閘道存取記錄。 GoAccess 提供實用的 HTTP 流量統計資料，例如非重複訪客、要求的檔案、主機、作業系統、瀏覽器、HTTP 狀態碼等等。 如需詳細資訊，請參閱 [GitHub 中 Resource Manager 範本資料夾中的讀我檔案](https://aka.ms/appgwgoaccessreadme) \(英文\)。
+
+## <a name="metrics"></a>計量
 
 計量是某些 Azure 資源的功能，可供您在入口網站中檢視效能計數器。 應用程式閘道可使用下列計量：
 
-- 目前的連線數
-- 失敗的要求
-- 狀況良好的主機計數
-- 回應狀態
-- Throughput
-- 要求總數
-- 狀況不良的主機計數
+- **目前的連線數**
+- **失敗的要求**
+- **狀況良好的主機計數**
+
+   您可以根據每個後端集區進行篩選，以顯示特定後端集區中狀況良好/狀況不良的主機。
+
+
+- **回應狀態**
+
+   回應狀態碼發佈可以進一步分類，以顯示回應 2xx、3xx、4xx 和 5xx 分類中的回應。
+
+- **輸送量**
+- **要求總數**
+- **狀況不良的主機計數**
+
+   您可以根據每個後端集區進行篩選，以顯示特定後端集區中狀況良好/狀況不良的主機。
 
 瀏覽至應用程式閘道，在 [監視] 之下按一下 [計量]。 若要檢視可用的值，請選取 [計量] 下拉式清單。
 

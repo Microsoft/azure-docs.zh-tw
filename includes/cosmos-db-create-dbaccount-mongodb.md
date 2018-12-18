@@ -1,18 +1,19 @@
 ---
-title: 建立 Azure Cosmos DB MongoDB API 帳戶
-description: 說明如何在 Azure 入口網站中建立 Azure Cosmos DB MongoDB API 帳戶
+title: 包含檔案
+description: 包含檔案
 services: cosmos-db
-author: mimig1
+author: SnehaGunda
 ms.service: cosmos-db
 ms.topic: include
-ms.date: 03/20/2018
-ms.author: mimig
+ms.date: 04/13/2018
+ms.author: sngun
 ms.custom: include file
-ms.openlocfilehash: 02ea0e011642313b885bc48ec48104fa2789da81
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: 690c5f07a2b0f7a88e16f0b0bbbaa9ca78e37317
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38728981"
 ---
 1. 在新的視窗中，登入 [Azure 入口網站](https://portal.azure.com/)。
 2. 在左側功能表中，依序按一下 [建立資源]、[資料庫]，然後在 [Azure Cosmos DB] 下按一下 [建立]。
@@ -21,18 +22,15 @@ ms.lasthandoff: 03/28/2018
 
 3. 在 [新增帳戶] 刀鋒視窗中指定 [MongoDB] 作為 API，並填入所需的 Azure Cosmos DB 帳戶組態。
  
-    ![[新增 Azure Cosmos DB] 刀鋒視窗的螢幕擷取畫面](./media/cosmos-db-create-dbaccount-mongodb/create-nosql-db-databases-json-tutorial-2.png)
-
     * [識別碼] 必須是您要用來識別 Azure Cosmos DB 帳戶的唯一名稱。 它只能包含小寫字母、數字及 '-' 字元，且長度必須是 3 到 50 個字元。
     * [訂用帳戶] 是您的 Azure 訂用帳戶。 系統會自動加以填入。
-    * [資源群組] 是您 Azure Cosmos DB 帳戶的資源群組名稱。
+    * [資源群組] 是您 Azure Cosmos DB 帳戶的資源群組名稱。 選取 [新建]，然後為您的帳戶輸入新的資源群組名稱。 為求簡化，您可以使用和識別碼相同的名稱。
     * [位置] 是您的 Azure Cosmos DB 帳戶所在的地理位置。 請選擇最靠近使用者的位置。
 
-4. 按一下 [建立]  來建立帳戶。
-5. 在工具列上，按一下 [通知] 以監視部署程序。
+    接著，按一下 [建立]。
 
-    ![「部署已啟動」通知](./media/cosmos-db-create-dbaccount-mongodb/azure-documentdb-nosql-notification.png)
+    ![Azure Cosmos DB 的新帳戶頁面](./media/cosmos-db-create-dbaccount-mongodb/azure-cosmos-db-create-new-account.png)
 
-6.  當部署完成時，從 [所有資源] 圖格開啟新的帳戶。 
+4. 建立帳戶需要幾分鐘的時間。 等候入口網站顯示 [恭喜!您的 Azure Cosmos DB 帳戶及 MongoDB API 已就緒] 頁面。
 
-    ![[所有資源] 圖格上的 Azure Cosmos DB 帳戶](./media/cosmos-db-create-dbaccount-mongodb/azure-documentdb-all-resources.png)
+    ![Azure 入口網站的 [通知] 窗格](./media/cosmos-db-create-dbaccount-mongodb/azure-cosmos-db-account-created.png)

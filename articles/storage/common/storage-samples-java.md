@@ -1,24 +1,20 @@
 ---
-title: "使用 Java 的 Azure 儲存體範例 | Microsoft Docs"
-description: "檢視、下載及執行 Azure 儲存體的範例程式碼和應用程式。 探索使用 Java 儲存體用戶端程式庫之 Blob、佇列、資料表和檔案的入門範例。"
+title: 使用 Java 的 Azure 儲存體範例 | Microsoft Docs
+description: 檢視、下載及執行 Azure 儲存體的範例程式碼和應用程式。 探索使用 Java 儲存體用戶端程式庫之 Blob、佇列、資料表和檔案的入門範例。
 services: storage
-documentationcenter: na
 author: seguler
-manager: jahogg
-editor: tysonn
-ms.assetid: 
 ms.service: storage
 ms.devlang: java
 ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: storage
 ms.date: 01/12/2017
 ms.author: seguler
-ms.openlocfilehash: fd27e1ac9a773e7b0f5245aa74acdb0521cd098c
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.component: common
+ms.openlocfilehash: bdc25a7aeff88d058eaf3fddf6cec023edff3b9e
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39529206"
 ---
 # <a name="azure-storage-samples-using-java"></a>使用 Java 的 Azure 儲存體範例
 
@@ -205,14 +201,14 @@ ms.lasthandoff: 10/11/2017
 
 如果您要尋找有關如何安裝和開始使用 Azure 儲存體用戶端程式庫的指示，請查看下列指南。
 
-* [開始使用 Java 中的 Azure Blob 服務](../blobs/storage-java-how-to-use-blob-storage.md)
-* [開始使用 Java 中的 Azure 佇列服務](../storage-java-how-to-use-queue-storage.md)
+* [開始使用 Java 中的 Azure Blob 服務](../blobs/storage-quickstart-blobs-java.md)
+* [開始使用 Java 中的 Azure 佇列服務](../queues/storage-java-how-to-use-queue-storage.md)
 * [開始使用 Java 中的 Azure 表格服務](../../cosmos-db/table-storage-how-to-use-java.md)
-* [開始使用 Java 中的 Azure 檔案服務](../storage-java-how-to-use-file-storage.md)
+* [開始使用 Java 中的 Azure 檔案服務](../files/storage-java-how-to-use-file-storage.md)
 
 ## <a name="next-steps"></a>後續步驟
 
 如需其他語言的範例相關資訊︰
 
-* .NET：[使用 .NET 的 Azure 儲存體範例](../storage-samples-dotnet.md)
-* 所有其他語言︰[Azure 儲存體範例](../storage-samples.md)
+* .NET：[使用 .NET 的 Azure 儲存體範例](storage-samples-dotnet.md)
+* 所有其他語言︰[Azure 儲存體範例](storage-samples.md)

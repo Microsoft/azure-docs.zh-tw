@@ -1,0 +1,75 @@
+### YamlMime:YamlDocument
+documentType: LandingData
+title: 應用程式閘道文件
+metadata:
+  title: Azure 應用程式閘道文件 - 教學課程和 API 參考
+  meta.description: Learn how to create application gateways. Documentation helps you plan, deploy, and manage web traffic to your Azure resources.
+  services: application-gateway
+  author: davidmu1
+  manager: jeconnocfte
+  ms.service: application-gateway
+  ms.topic: landing-page
+  ms.date: 02/01/2018
+  ms.author: davidmu
+  ms.openlocfilehash: b49cebd1a9d6554d17a9237ff33c4fcbe0d9f4f7
+  ms.sourcegitcommit: e2adef58c03b0a780173df2d988907b5cb809c82
+  ms.translationtype: HT
+  ms.contentlocale: zh-TW
+  ms.lasthandoff: 04/28/2018
+abstract:
+  description: 了解如何部署應用程式閘道 (應用程式傳遞控制站 (ADC) 即服務)。 教學課程、API 參考和其他文件會示範如何設定應用程式層級的路由及負載平衡服務，讓您建置可調整及高可用性的 Web 前端。
+sections:
+- title: 5 分鐘快速入門
+  items:
+  - type: paragraph
+    text: 了解如何使用「應用程式閘道」管理資源的網路流量：
+  - type: list
+    style: icon48
+    items:
+    - image:
+        src: https://docs.microsoft.com/azure/application-gateway/media/index/portal.svg
+      text: Azure 入口網站
+      href: https://docs.microsoft.com/azure/application-gateway/quick-create-portal
+    - image:
+        src: https://docs.microsoft.com/azure/application-gateway/media/index/logo_powershell.svg
+      text: Azure PowerShell
+      href: https://docs.microsoft.com/azure/application-gateway/quick-create-powershell
+    - image:
+        src: https://docs.microsoft.com/azure/application-gateway/media/index/cli.svg
+      text: Azure CLI
+      href: https://docs.microsoft.com/azure/application-gateway/quick-create-cli
+- title: 逐步教學課程
+  items:
+  - type: paragraph
+    text: 了解如何在 Azure 中部署、管理和監視應用程式閘道
+  - type: list
+    style: ordered
+    items:
+    - html: <a href="/azure/application-gateway/tutorial-manage-web-traffic-cli">使用應用程式閘道管理網路流量。</a>
+    - html: <a href="/azure/application-gateway/tutorial-restrict-web-traffic-cli">在應用程式閘道上使用 Web 應用程式防火牆來限制網路流量。</a>
+    - html: <a href="/azure/application-gateway/tutorial-ssl-cli">在應用程式閘道上啟用 SSL 終止。</a>
+    - html: <a href="/azure/application-gateway/tutorial-multiple-sites-cli">使用應用程式閘道裝載多個網站。</a>
+    - html: <a href="/azure/application-gateway/tutorial-url-route-cli">根據應用程式閘道中的 URL 路由傳送流量。</a>
+    - html: <a href="/azure/application-gateway/tutorial-url-redirect-cli">將流量重新導向到應用程式閘道集區中的特定伺服器。</a>
+- title: 範例
+  items:
+  - type: paragraph
+    text: 使用應用程式閘道管理網路流量。
+  - type: list
+    style: unordered
+    className: spaced noBullet
+    items:
+    - html: <a href="/azure/application-gateway/cli-samples">Azure CLI</a>
+    - html: <a href="/azure/application-gateway/powershell-samples">Azure PowerShell</a>
+- title: 參考
+  items:
+  - type: list
+    style: cards
+    className: cardsD
+    items:
+    - title: 命令列
+      html: <p><a href="/powershell/resourcemanager">Azure PowerShell</a></p><p><a href="/cli/azure/network/application-gateway">Azure CLI</a></p>
+    - title: 語言
+      html: <p><a href="/dotnet/api">.NET</a></p><p><a href="/java/api/com.microsoft.azure.management.network">Java</a></p><p><a href="http://azure.github.io/azure-sdk-for-node/azure-arm-network/latest/ApplicationGateways">Node.js</a></p><p><a href="http://azure-sdk-for-python.readthedocs.io/en/latest/ref/azure.mgmt.network.operations.html#azure.mgmt.network.operations.ApplicationGatewaysOperations#azure.mgmt.network.operations.ApplicationGatewaysOperations">Python</a></p>
+    - title: REST
+      html: <p><a href="https://msdn.microsoft.com/library/mt684941">計算 REST API 參考</a></p>

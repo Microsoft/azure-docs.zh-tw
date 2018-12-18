@@ -1,0 +1,71 @@
+### YamlMime:YamlDocument
+ms.openlocfilehash: 2bd243fc660cc92f073b2b5e258aaaf221ec72e6
+ms.sourcegitcommit: 668b486f3d07562b614de91451e50296be3c2e1f
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/19/2018
+ms.locfileid: "49455754"
+documentType: LandingData
+title: Bing 自動建議文件
+metadata:
+  document_id: ce69fd12-adf8-11e7-abc4-cec278b6b50a
+  title: Bing 自動建議文件 - 教學課程、快速入門和 API 參考 | Microsoft Docs
+  description: 了解如何使用 Bing 自動建議 API，依據部分查詢來取得建議的查詢。 教學課程會示範如何建置使用此服務的應用程式。
+  services: cognitive-services
+  author: v-jaswel
+  manager: kamrani
+  ms.service: cognitive-services
+  ms.component: bing-autosuggest
+  ms.tgt_pltfrm: na
+  ms.devlang: na
+  ms.topic: landing-page
+  ms.date: 10/10/2017
+  ms.author: v-jaswel
+abstract:
+  description: Bing 自動建議 API 可讓您將部分搜尋查詢字詞傳送到 Bing，並取得其他使用者已搜尋過的建議查詢清單。  例如，當使用者輸入其搜索字詞的每個字元時，您會呼叫此 API 並將建議的查詢字詞填入搜尋方塊的下拉式清單。 了解如何透過快速入門、教學課程和範例使用自動建議 API。
+sections:
+- title: 5 分鐘快速入門
+  items:
+  - type: paragraph
+    text: 透過進行查詢並檢視 JSON 回應，開始使用 Bing 自動建議 API：
+  - type: list
+    style: icon48
+    items:
+    - image:
+        src: media/index/logo_csharp.svg
+      href: quickstarts/csharp
+      text: C&#35;
+    - image:
+        src: media/index/logo_java.svg
+      href: quickstarts/java
+      text: Java
+    - image:
+        src: media/index/logo_nodejs.svg
+      href: quickstarts/nodejs
+      text: Node.js
+    - image:
+        src: media/index/logo_php.svg
+      href: quickstarts/php
+      text: PHP
+    - image:
+        src: media/index/logo_python.svg
+      href: quickstarts/python
+      text: Python
+    - image:
+        src: media/index/logo_ruby.svg
+      href: quickstarts/ruby
+      text: Ruby
+- title: 逐步教學課程
+  items:
+  - type: paragraph
+    text: 了解如何使用 Bing 自動建議 API 開發應用程式：
+  - type: paragraph
+    text: <a href="tutorials/autosuggest.md">單頁 Web 應用程式 </a> | <a href="tutorials/autosuggest-source.md">原始程式碼</a>
+- title: 參考
+  items:
+  - type: list
+    style: cards
+    className: cardsD
+    items:
+    - title: API
+      html: <p><a href="https://docs.microsoft.com/rest/api/cognitiveservices/bing-autosuggest-api-v7-reference">Bing 自動建議 API v7</a></p><p><a href="https://docs.microsoft.com/rest/api/cognitiveservices/bing-autosuggest-api-v5-reference">Bing 自動建議 API v5</p>

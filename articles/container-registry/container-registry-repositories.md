@@ -1,18 +1,19 @@
 ---
-title: "Azure 入口網站中的 Azure Container Registry 存放庫"
-description: "如何檢視 Azure 入口網站中的 Azure Container Registry 存放庫。"
+title: Azure 入口網站中的 Azure Container Registry 存放庫
+description: 如何檢視 Azure 入口網站中的 Azure Container Registry 存放庫。
 services: container-registry
 author: cristy
-manager: timlt
+manager: jeconnoc
 ms.service: container-registry
 ms.topic: article
 ms.date: 01/05/2018
 ms.author: cristyg
-ms.openlocfilehash: 593972e972207a27d1232fcb0c1bf220ac3a8def
-ms.sourcegitcommit: 1d423a8954731b0f318240f2fa0262934ff04bd9
+ms.openlocfilehash: 171593483fc94c1c67013ab520b0085ca98f3a82
+ms.sourcegitcommit: e221d1a2e0fb245610a6dd886e7e74c362f06467
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/05/2018
+ms.lasthandoff: 05/07/2018
+ms.locfileid: "33768323"
 ---
 # <a name="view-container-registry-repositories-in-the-azure-portal"></a>檢視 Azure 入口網站中的容器登錄存放庫
 
@@ -49,7 +50,7 @@ docker push myregistry.azurecr.io/samples/nginx
 
 ## <a name="next-steps"></a>後續步驟
 
-您現在知道檢視和使用入口網站中存放庫的基本概念，請嘗試以[Azure Container Service (AKS)](../aks/tutorial-kubernetes-prepare-app.md) 叢集來使用 Azure Container Registry。
+您現在已了解檢視和使用入口網站中存放庫的基本概念，請嘗試以[Azure Kubernetes Service (AKS)](../aks/tutorial-kubernetes-prepare-app.md) 叢集來使用 Azure Container Registry。
 
 <!-- LINKS - External -->
 [docker-install]: https://docs.docker.com/engine/installation/

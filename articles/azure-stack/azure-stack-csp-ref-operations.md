@@ -11,14 +11,15 @@ ms.workload: na
 pms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/22/2018
+ms.date: 07/12/2018
 ms.author: mabrigg
 ms.reviewer: alfredo
-ms.openlocfilehash: be15fbc5fad79f1079b901b3d6cb4948c45a0ab4
-ms.sourcegitcommit: a0be2dc237d30b7f79914e8adfb85299571374ec
+ms.openlocfilehash: 9396d49f455f8f4af1abf7f0020e95e8fd0a14cc
+ms.sourcegitcommit: 1b561b77aa080416b094b6f41fce5b6a4721e7d5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/12/2018
+ms.lasthandoff: 09/17/2018
+ms.locfileid: "45729581"
 ---
 # <a name="manage-tenant-registration-in-azure-stack"></a>管理 Azure Stack 中的租用戶註冊
 
@@ -34,6 +35,13 @@ ms.lasthandoff: 03/12/2018
 
 請注意，您只能將一個 Azure 訂用帳戶與租用戶相關聯。 如果您嘗試將第二個訂用帳戶新增至現有租用戶，系統就會覆寫第一個訂用帳戶。 
 
+### <a name="use-api-profiles"></a>使用 API 設定檔
+
+本文中的 Cmdlet 會要求您在執行 PowerShell 時指定 API 設定檔。 API 設定檔代表一組 Azure 資源提供者和其 API 版本。 這些設定檔可協助您在與多個 Azure 雲端互動時使用正確的 API 版本，例如，在使用全域 Azure 和 Azure Stack 時。 設定檔的指定是透過與其發行日期相符的名稱來完成。 在本文中，您必須使用 **2017-09-03** 設定檔。
+
+如需 Azure Stack 和 API 設定檔的詳細資訊，請參閱[管理 Azure Stack 中的 API 版本設定檔](user/azure-stack-version-profiles.md)。 如需有關在 PowerShell 中使用 API 設定檔來啟動並執行的指示，請參閱[在 Azure Stack 中使用適用於 PowerShell 的 API 版本設定檔](user/azure-stack-version-profiles-powershell.md)。
+
+### <a name="parameters"></a>參數
 
 | 參數                  | 說明 |
 |---                         | --- |
@@ -47,7 +55,7 @@ ms.lasthandoff: 03/12/2018
 
 ### <a name="powershell"></a>PowerShell
 
-使用 New-AzureRmResource Cmdlet 來更新註冊資源。 使用初始註冊所用的帳戶來登入 Azure (`Login-AzureRMAccount`)。 以下是如何新增租用戶的範例：
+使用 New-AzureRmResource Cmdlet 來更新註冊資源。 使用初始註冊所用的帳戶來登入 Azure (`Add-AzureRmAccount`)。 以下是如何新增租用戶的範例：
 
 ```powershell
   New-AzureRmResource -ResourceId "subscriptions/{registrationSubscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AzureStack/registrations/{registrationName}/customerSubscriptions/{customerSubscriptionId}" -ApiVersion 2017-06-01 -Properties
@@ -78,10 +86,10 @@ ms.lasthandoff: 03/12/2018
 
 ### <a name="powershell"></a>PowerShell
 
-使用 Get-AzureRmResovurce Cmdlet 列出所有已註冊的租用戶。 使用初始註冊所用的帳戶來登入 Azure (`Login-AzureRMAccount`)。 以下是如何新增租用戶的範例：
+使用 Get-AzureRmResource Cmdlet 來列出所有已註冊的租用戶。 使用初始註冊所用的帳戶來登入 Azure (`Add-AzureRmAccount`)。 以下是如何新增租用戶的範例：
 
 ```powershell
-  Get-AzureRmResovurce -ResourceId "subscriptions/{registrationSubscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AzureStack/registrations/{registrationName}/customerSubscriptions" -ApiVersion 2017-06-01
+  Get-AzureRmResource -ResourceId "subscriptions/{registrationSubscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AzureStack/registrations/{registrationName}/customerSubscriptions" -ApiVersion 2017-06-01
 ```
 
 ### <a name="api-call"></a>API 呼叫
@@ -146,4 +154,4 @@ api-version=2017-06-01 HTTP/1.1`
 
 ## <a name="next-steps"></a>後續步驟
 
- - 若要深入了解如何取出 Azure Stack 的資源使用量資訊，請參閱 [Azure Stack 中的使用量與帳單](/azure-stack-billing-and-chargeback.md)。
+ - 若要深入了解如何取出 Azure Stack 的資源使用量資訊，請參閱 [Azure Stack 中的使用量與帳單](azure-stack-billing-and-chargeback.md)。

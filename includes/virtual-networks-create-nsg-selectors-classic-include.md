@@ -2,22 +2,22 @@
 title: 包含檔案
 description: 包含檔案
 services: virtual-network
-author: jimdial
+author: genlin
 ms.service: virtual-network
 ms.topic: include
 ms.date: 03/30/2018
-ms.author: jdial
+ms.author: genli
 ms.custom: include file
-ms.openlocfilehash: a882c52813447ce39db876741d1b6509c739c317
-ms.sourcegitcommit: 20d103fb8658b29b48115782fe01f76239b240aa
+ms.openlocfilehash: 987ac064432dc823dad3b8df9d3b59e71b4c2ee9
+ms.sourcegitcommit: ea5193f0729e85e2ddb11bb6d4516958510fd14c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2018
+ms.lasthandoff: 06/21/2018
+ms.locfileid: "36313491"
 ---
 > [!div class="op_single_selector"]
-> * [入口網站](../articles/virtual-network/virtual-networks-create-nsg-arm-pportal.md)
+> * [入口網站](../articles/virtual-network/tutorial-filter-network-traffic.md)
 > * [PowerShell](../articles/virtual-network/tutorial-filter-network-traffic.md)
 > * [Azure CLI](../articles/virtual-network/tutorial-filter-network-traffic-cli.md)
-> * [ARM 範本](../articles/virtual-network/virtual-networks-create-nsg-arm-template.md)
 > * [PowerShell (傳統)](../articles/virtual-network/virtual-networks-create-nsg-classic-ps.md)
 > * [Azure CLI (傳統)](../articles/virtual-network/virtual-networks-create-nsg-classic-cli.md)

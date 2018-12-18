@@ -10,29 +10,27 @@ ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 03/16/2018
+ms.topic: conceptual
+ms.date: 06/15/2018
 ms.author: jingwang
-ms.openlocfilehash: 3b92aed83e01d223b33f269f0202355836f806c1
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 8e34b0823b7f10455ac0b66fb0614d3946f2382e
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38542698"
 ---
 # <a name="copy-activity-in-azure-data-factory"></a>Azure Data Factory 中的複製活動
 
 ## <a name="overview"></a>概觀
 
 > [!div class="op_single_selector" title1="Select the version of Data Factory service you are using:"]
-> * [第 1 版 - 正式推出](v1/data-factory-data-movement-activities.md)
-> * [第 2 版 - 預覽](copy-activity-overview.md)
+> * [第 1 版](v1/data-factory-data-movement-activities.md)
+> * [目前的版本](copy-activity-overview.md)
 
 在 Azure Data Factory 中，您可以使用「複製活動」在內部部署與雲端資料存放區之間複製資料。 複製資料之後，可以將它進一步轉換及進行分析。 您也可以使用「複製活動」來發佈商業智慧 (BI) 及應用程式使用情況的轉換和分析結果。
 
 ![複製活動的角色](media/copy-activity-overview/copy-activity.png)
-
-> [!NOTE]
-> 本文適用於第 2 版的 Data Fatory (目前為預覽版)。 如果您使用第 1 版的 Data Factory 服務，也就是正式推出 (GA) 的版本，請參閱[第 1 版的複製活動](v1/data-factory-data-movement-activities.md)。
 
 複製活動會在[整合執行階段](concepts-integration-runtime.md)上執行。 針對不同的資料複製案例，可以運用整合執行階段的不同類別：
 
@@ -113,7 +111,7 @@ Integration Runtime 必須與每個來源及接收端資料存放區相關聯。
                 "type": "TabularTranslator",
                 "columnMappings": "<column mapping>"
             },
-            "cloudDataMovementUnits": <number>,
+            "dataIntegrationUnits": <number>,
             "parallelCopies": <number>,
             "enableStaging": true/false,
             "stagingSettings": {
@@ -139,7 +137,7 @@ Integration Runtime 必須與每個來源及接收端資料存放區相關聯。
 | 來源 | 指定關於如何擷取資料的複製來源類型和對應的屬性。<br/><br/>如需詳細資料，請參閱[支援的資料存放區和格式](#supported-data-stores-and-formats)中所列之連接器發行項的＜複製活動屬性＞一節。 | yes |
 | 接收 | 指定複製接收類型和關於如何寫入資料的對應屬性。<br/><br/>如需詳細資料，請參閱[支援的資料存放區和格式](#supported-data-stores-and-formats)中所列之連接器發行項的＜複製活動屬性＞一節。 | yes |
 | 轉譯程式 | 指定從來源到接收的明確資料行對應。 適用於預設複製行為無法滿足您的需求時。<br/><br/>如需詳細資料，請參閱[結構描述和資料類型對應](copy-activity-schema-and-type-mapping.md)。 | 否 |
-| cloudDataMovementUnits | 指定 [Azure 整合執行階段](concepts-integration-runtime.md)以執行資料複製。<br/><br/>如需詳細資料，請參閱[雲端資料移動單位](copy-activity-performance.md)。 | 否 |
+| dataIntegrationUnits | 指定 [Azure 整合執行階段](concepts-integration-runtime.md)以執行資料複製。 之前稱為「資料移動單位」(DMU)。 <br/><br/>如需詳細資訊，請參閱[資料整合單位](copy-activity-performance.md#data-integration-units)。 | 否 |
 | parallelCopies | 指定從來源讀取資料和寫入資料到接收時，「複製活動」要使用的平行處理原則。<br/><br/>如需詳細資料，請參閱[平行複製](copy-activity-performance.md#parallel-copy)。 | 否 |
 | enableStaging<br/>stagingSettings | 選擇在 aa blob 儲存體暫存過度資料，而不是直接從來源將資料複製到接收。<br/><br/>如需實用案例和設定的詳細資料，請參閱[分段複製](copy-activity-performance.md#staged-copy)。 | 否 |
 | enableSkipIncompatibleRow<br/>redirectIncompatibleRowSettings| 選擇從來源將資料複製到接收時，要如何處理不相容的資料列。<br/><br/>如需詳細資料，請參閱[容錯](copy-activity-fault-tolerance.md)。 | 否 |
@@ -184,7 +182,7 @@ Integration Runtime 必須與每個來源及接收端資料存放區相關聯。
 | redshiftUnload | 如果從 Redshift 複製資料時使用 UNLOAD。 | BOOLEAN |
 | hdfsDistcp | 如果從 HDFS 複製資料時使用 DistCp。 | BOOLEAN |
 | effectiveIntegrationRuntime | 以 `<IR name> (<region if it's Azure IR>)` 的格式，來顯示是使用哪個 Integration Runtime 來讓活動執行。 | 文字 (字串) |
-| usedCloudDataMovementUnits | 複製期間的有效雲端資料移動單位。 | Int32 值 |
+| usedDataIntegrationUnits | 複製期間的有效資料整合單位。 | Int32 值 |
 | usedParallelCopies | 複製期間有效的 parallelCopies。 | Int32 值|
 | redirectRowPath | 您在 redirectIncompatibleRowSettings 下設定之 Blob 儲存體中略過之不相容資料列的記錄路徑。 請參閱下列範例。 | 文字 (字串) |
 | executionDetails | 複製活動經歷的階段，以及對應步驟、持續時間、使用的組態等詳細資料。不建議剖析此區段，因為它可能會變更。 | 陣列 |
@@ -199,7 +197,7 @@ Integration Runtime 必須與每個來源及接收端資料存放區相關聯。
     "throughput": 467707.344,
     "errors": [],
     "effectiveIntegrationRuntime": "DefaultIntegrationRuntime (East US 2)",
-    "usedCloudDataMovementUnits": 32,
+    "usedDataIntegrationUnits": 32,
     "usedParallelCopies": 8,
     "executionDetails": [
         {
@@ -212,7 +210,7 @@ Integration Runtime 必須與每個來源及接收端資料存放區相關聯。
             "status": "Succeeded",
             "start": "2018-01-17T15:13:00.3515165Z",
             "duration": 221,
-            "usedCloudDataMovementUnits": 32,
+            "usedDataIntegrationUnits": 32,
             "usedParallelCopies": 8,
             "detailedDurations": {
                 "queuingDuration": 2,
@@ -236,10 +234,10 @@ Integration Runtime 必須與每個來源及接收端資料存放區相關聯。
 請參閱 [複製活動的效能及微調指南](copy-activity-performance.md)，其中說明在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素。 它也列出在內部測試期間所觀察到的效能，並討論各種可將「複製活動」效能最佳化的方式。
 
 ## <a name="incremental-copy"></a>增量複製 
-Data Factory 第 2 版支援以累加方式將差異資料從來源資料存放區複製到目的地資料存放區的案例。 請參閱[教學課程：以累加方式複製資料](tutorial-incremental-copy-overview.md)。 
+Data Factory 支援以累加方式將差異資料從來源資料存放區複製到目的地資料存放區的案例。 請參閱[教學課程：以累加方式複製資料](tutorial-incremental-copy-overview.md)。 
 
 ## <a name="read-and-write-partitioned-data"></a>讀取和寫入分割的資料
-在第 1 版中，Azure Data Factory 支援使用 SliceStart/SliceEnd/WindowStart/WindowEnd 系統變數讀取或寫入分割的資料。 在第 2 版中，您可以透過使用管線參數，以觸發程序的開始時間/已排程的時間作為參數的值來達成此行為。 如需詳細資訊，請參閱[如何讀取或寫入分割的資料](how-to-read-write-partitioned-data.md)。
+在第 1 版中，Azure Data Factory 支援使用 SliceStart/SliceEnd/WindowStart/WindowEnd 系統變數讀取或寫入分割的資料。 在目前的版本中，您可以透過使用管線參數，以觸發程序的開始時間/已排程時間作為參數的值來達成此行為。 如需詳細資訊，請參閱[如何讀取或寫入分割的資料](how-to-read-write-partitioned-data.md)。
 
 ## <a name="next-steps"></a>後續步驟
 請參閱下列快速入門、教學課程和範例：

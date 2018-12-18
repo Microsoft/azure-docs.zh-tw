@@ -1,20 +1,23 @@
 ---
 title: Azure SQL Database 多租用戶應用程式範例 - Wingtip SaaS | Microsoft Docs
 description: 藉由使用採用 Azure SQL Database (Wingtip SaaS 範例) 的範例多租用戶應用程式來學習
-keywords: SQL Database Azure
 services: sql-database
-author: stevestein
-manager: craigg
 ms.service: sql-database
-ms.custom: scale out apps
-ms.topic: article
-ms.date: 11/12/2017
+ms.subservice: scenario
+ms.custom: ''
+ms.devlang: ''
+ms.topic: conceptual
+author: stevestein
 ms.author: sstein
-ms.openlocfilehash: 563d82076721a669069ba3e36df84a050188813c
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.reviewer: ''
+manager: craigg
+ms.date: 04/01/2018
+ms.openlocfilehash: dd67e49a80c403e807b24276cf14b9e8c47037b9
+ms.sourcegitcommit: 715813af8cde40407bd3332dd922a918de46a91a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "47055504"
 ---
 # <a name="introduction-to-a-multitenant-saas-app-that-uses-the-database-per-tenant-pattern-with-sql-database"></a>搭配 SQL Database 使用每一租用戶一個資料庫模式的多租用戶 SaaS 應用程式簡介
 
@@ -24,7 +27,7 @@ Wingtip SaaS 應用程式是一個範例多租用戶應用程式。 此應用程
 
 ## <a name="application-architecture"></a>應用程式架構
 
-Wingtip SaaS 應用程式會使用每一租用戶一個資料庫的模型。 它會使用 SQL 彈性集區來發揮最高效率。 若要將租用戶佈建和對應至其資料，則會使用目錄資料庫。 核心 Wingtip SaaS 應用程式會使用具有三個範例租用戶的集區，再加上目錄資料庫。 在完成許多 Wingtip SaaS 教學課程之後，初始部署就會擁有附加元件。 導入的附加元件包括分析資料戶和跨資料庫結構描述管理等。
+Wingtip SaaS 應用程式會使用每一租用戶一個資料庫的模型。 它會使用 SQL 彈性集區來發揮最高效率。 若要將租用戶佈建和對應至其資料，則會使用目錄資料庫。 核心 Wingtip SaaS 應用程式會使用具有三個範例租用戶的集區，再加上目錄資料庫。 目錄和租用戶伺服器已透過 DNS 別名進行佈建。 這些別名會用來為 Wingtip 應用程式使用的作用中資源維護參考。 這些別名會更新為指向災害復原教學課程中的復原資源。 在完成許多 Wingtip SaaS 教學課程之後，初始部署就會擁有附加元件。 導入的附加元件包括分析資料戶和跨資料庫結構描述管理等。
 
 
 ![Wingtip SaaS 架構](media/saas-dbpertenant-wingtip-app-overview/app-architecture.png)
@@ -43,7 +46,7 @@ Wingtip SaaS 應用程式會使用每一租用戶一個資料庫的模型。 它
 |[部署及探索 Wingtip SaaS 應用程式](saas-dbpertenant-get-started-deploy.md)|  使用您的 Azure 訂用帳戶來部署及探索 Wingtip SaaS 應用程式。 |
 |[佈建租用戶並在目錄中註冊](saas-dbpertenant-provision-and-catalog.md)| 了解應用程式如何使用目錄資料庫來連線至租用戶，以及目錄如何將租用戶對應至其資料。 |
 |[監視及管理效能](saas-dbpertenant-performance-monitoring.md)| 了解如何使用 SQL Database 的監視功能，以及設定超過效能閾值時的警示。 |
-|[使用 Azure Log Analytics (Operations Management Suite) 進行監視](saas-dbpertenant-log-analytics.md) | 了解如何使用 [Log Analytics](../log-analytics/log-analytics-overview.md) 來監視跨多個集區的大量資源。 |
+|[透過 Azure Log Analytics 監視](saas-dbpertenant-log-analytics.md) | 了解如何使用 [Log Analytics](../log-analytics/log-analytics-overview.md) 來監視跨多個集區的大量資源。 |
 |[還原單一租用戶](saas-dbpertenant-restore-single-tenant.md)| 了解如何將租用戶資料庫還原到先前的時間點。 此外，也了解如何還原到平行資料庫，這會讓現有的租用戶資料庫維持上線狀態。 |
 |[管理租用戶資料庫結構描述](saas-tenancy-schema-management.md)| 了解如何更新結構描述，以及更新跨所有租用戶資料庫的參考資料。 |
 |[執行跨租用戶分散式查詢](saas-tenancy-cross-tenant-reporting.md) | 建立臨機操作分析資料庫，並跨所有租用戶執行即時分散式查詢。  |

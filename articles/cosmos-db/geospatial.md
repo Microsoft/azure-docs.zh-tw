@@ -1,25 +1,21 @@
 ---
-title: "使用 Azure Cosmos DB 中的地理空間資料 | Microsoft Docs"
-description: "了解如何使用 Azure Cosmos DB 和 SQL API 建立與查詢空間物件，以及為其編製索引。"
+title: 使用 Azure Cosmos DB 中的地理空間資料 | Microsoft Docs
+description: 了解如何使用 Azure Cosmos DB 和 SQL API 建立與查詢空間物件，以及為其編製索引。
 services: cosmos-db
-documentationcenter: 
-author: arramac
-manager: jhubbard
-editor: monicar
-ms.assetid: 82ce2898-a9f9-4acf-af4d-8ca4ba9c7b8f
+author: SnehaGunda
+manager: kfile
 ms.service: cosmos-db
 ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: data-services
+ms.topic: conceptual
 ms.date: 10/20/2017
-ms.author: arramac
+ms.author: sngun
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 3e778f4a9b7ec4935d53eb335462f3c414ff99cd
-ms.sourcegitcommit: 0e4491b7fdd9ca4408d5f2d41be42a09164db775
+ms.openlocfilehash: 74824af6f17a6c1d2638c8604edd38ffa419d607
+ms.sourcegitcommit: 0b4da003fc0063c6232f795d6b67fa8101695b61
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/14/2017
+ms.lasthandoff: 07/05/2018
+ms.locfileid: "37858113"
 ---
 # <a name="working-with-geospatial-and-geojson-location-data-in-azure-cosmos-db"></a>使用 Azure Cosmos DB 中的地理空間和 GeoJSON 位置資料
 本文將介紹 [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) 中的地理空間功能。 閱讀本文後，您將能夠回答下列問題：
@@ -99,12 +95,12 @@ Azure Cosmos DB 支援對使用 [GeoJSON 規格 (英文)](https://tools.ietf.org
 除了點、LineString 和多邊形之外，GeoJSON 也會指定如何將多個地理空間位置的表示加以分組，以及如何將任意屬性與地理位置產生關聯成為**特徵**的表示。 由於這些物件都是有效的 JSON，因此均可在 Azure Cosmos DB 中儲存及處理。 不過，Azure Cosmos DB 僅支援自動編製點的索引。
 
 ### <a name="coordinate-reference-systems"></a>座標參考系統
-由於地球的形狀並不規則，地理空間資料的座標可以許多座標參考系統 (CRS) 來表示，而這些系統各有自己的參考框架和測量單位。 例如「英國國家格網參考系統」對英國而言是非常精確的參考系統，但對其他地區則不是。 
+由於地球的形狀並不規則，地理空間資料的座標可以許多座標參考系統 (CRS) 來表示，而這些系統各有自己的參考框架和測量單位。 例如「英國國家格網參考系統」對英國而言是精確的參考系統，但對其他地區則不是。 
 
 現今最常使用的 CRS 是「全球大地座標系統」[WGS-84](http://earth-info.nga.mil/GandG/wgs84/)。 GPS 裝置和許多地圖服務，包括 Google 地圖與 Bing Maps API 均是使用 WGS-84。 Azure Cosmos DB 僅支援對使用 WGS-84 CRS 的地理空間資料執行編製索引和查詢。 
 
 ## <a name="creating-documents-with-spatial-data"></a>建立具有空間資料的文件
-當您建立包含 GeoJSON 值的文件時，值會根據集合的索引編製原則，自動以空間索引進行索引編製。 如果您是以動態類型的語言 (如 Python 或 Node.js) 使用 Azure Cosmos DB SDK，則必須建立有效的 GeoJSON。
+當您建立包含 GeoJSON 值的文件時，值會根據容器的索引編製原則，自動以空間索引進行索引編製。 如果您是以動態類型的語言 (如 Python 或 Node.js) 使用 Azure Cosmos DB SDK，則必須建立有效的 GeoJSON。
 
 **以 Node.js 建立具有地理空間資料的文件**
 
@@ -392,7 +388,7 @@ SQL .NET SDK 也是虛設常式方法 `Distance()` 和 `Within()` 的提供者�
 > 
 
 ## <a name="next-steps"></a>後續步驟
-既然您已經學會如何開始使用 Azure Cosmos DB 中的地理空間支援，您可以：
+既然您已了解如何開始使用 Azure Cosmos DB 中的地理空間支援，您可以接著：
 
 * 使用 [GitHub 上的地理空間 .NET 程式碼範例](https://github.com/Azure/azure-documentdb-dotnet/blob/fcf23d134fc5019397dcf7ab97d8d6456cd94820/samples/code-samples/Geospatial/Program.cs)來開始轉寫程式碼
 * 在 [Azure Cosmos DB 查詢園地 (英文)](http://www.documentdb.com/sql/demo#geospatial) 中瞭解地理空間查詢

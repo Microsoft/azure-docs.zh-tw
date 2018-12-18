@@ -1,11 +1,11 @@
 ---
-title: "Azure Web 應用程式的部署常見問題集 | Microsoft Docs"
-description: "對於 Azure App Service 的 Web 應用程式功能之中的部署相關的常見問題集獲得解答。"
+title: Azure Web 應用程式的部署常見問題集 | Microsoft Docs
+description: 對於 Azure App Service 的 Web 應用程式功能之中的部署相關的常見問題集獲得解答。
 services: app-service\web
-documentationcenter: 
+documentationcenter: ''
 author: genlin
 manager: cshepard
-editor: 
+editor: ''
 tags: top-support-issue
 ms.assetid: 2fa5ee6b-51a6-4237-805f-518e6c57d11b
 ms.service: app-service-web
@@ -13,13 +13,14 @@ ms.workload: web
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 11/03/2017
+ms.date: 05/11/2018
 ms.author: genli
-ms.openlocfilehash: 318a236652229c4e093ca33886ac1831686aed73
-ms.sourcegitcommit: 3df3fcec9ac9e56a3f5282f6c65e5a9bc1b5ba22
+ms.openlocfilehash: ab8750e5824cf9f7635d11a6b2be332b2f9a761c
+ms.sourcegitcommit: f3bd5c17a3a189f144008faf1acb9fabc5bc9ab7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/04/2017
+ms.lasthandoff: 09/10/2018
+ms.locfileid: "44302583"
 ---
 # <a name="deployment-faqs-for-web-apps-in-azure"></a>Azure 中 Web 應用程式的部署常見問題集
 
@@ -61,7 +62,7 @@ App Service 支援兩種認證類型，用於本機 Git 部署和 FTP/S 部署�
 
 ## <a name="how-do-i-set-up-continuous-deployment-for-my-app-service-web-app"></a>如何為 App Service Web 應用程式設定持續部署？
 
-您可以從數個資源設定持續部署，包括 Visual Studio Team Services、OneDrive、GitHub、Bitbucket、Dropbox 和其他 Git 存放庫。 這些選項可在入口網站中使用。 [持續部署至 App Service](app-service-continuous-deployment.md) 是很有幫助的教學課程，說明如何設定持續部署。
+您可以從數個資源設定持續部署，包括 Azure DevOps、OneDrive、GitHub、Bitbucket、Dropbox 和其他 Git 存放庫。 這些選項可在入口網站中使用。 [持續部署至 App Service](app-service-continuous-deployment.md) 是很有幫助的教學課程，說明如何設定持續部署。
 
 ## <a name="how-do-i-troubleshoot-issues-with-continuous-deployment-from-github-and-bitbucket"></a>如何針對從 GitHub 和 Bitbucket 持續部署的問題進行疑難排解？
 
@@ -84,9 +85,9 @@ App Service 支援兩種認證類型，用於本機 Git 部署和 FTP/S 部署�
 
 若要深入了解可能會造成重新啟動之應用程式部署的情況，請參閱[部署與執行階段問題](https://github.com/projectkudu/kudu/wiki/Deployment-vs-runtime-issues#deployments-and-web-app-restarts")。 如本文章所述，App Service 會將檔案部署到 wwwroot 資料夾。 它永遠不會直接重新啟動您的應用程式。
 
-## <a name="how-do-i-integrate-visual-studio-team-services-code-with-app-service"></a>如何整合 Visual Studio Team Services 程式碼與 App Service？
+## <a name="how-do-i-integrate-azure-devops-code-with-app-service"></a>如何整合 Azure DevOps 程式碼與 App Service？
 
-您有兩個選項可以使用 Visual Studio Team Services 進行持續部署：
+您有兩個選項可以使用 Azure DevOps 進行持續部署：
 
 *   使用 Git 專案。 藉由使用該存放庫的部署選項以透過 App Service 連線。
 *   使用 Team Foundation 版本控制 (TFVC) 專案。 藉由使用 App Service 的組建代理程式來部署。
@@ -94,7 +95,7 @@ App Service 支援兩種認證類型，用於本機 Git 部署和 FTP/S 部署�
 這兩個選項的持續程式碼部署取決於現有的開發人員工作流程和簽入程序。 如需詳細資訊，請參閱這些文章： 
 
 *   [實作您的應用程式到 Azure 網站的持續部署](https://www.visualstudio.com/docs/release/examples/azure/azure-web-apps-from-build-and-release-hubs)
-*   [設定 Visual Studio Team Services 帳戶，讓它可以部署到 Web 應用程式](https://github.com/projectkudu/kudu/wiki/Setting-up-a-VSTS-account-so-it-can-deploy-to-a-Web-App)
+*   [設定 Azure DevOps 組織，使其可部署至 Web 應用程式](https://github.com/projectkudu/kudu/wiki/Setting-up-a-VSTS-account-so-it-can-deploy-to-a-Web-App)
 
 ## <a name="how-do-i-use-ftp-or-ftps-to-deploy-my-app-to-app-service"></a>如何使用 FTP 或 FTPS 將我的應用程式部署到 App Service？
 

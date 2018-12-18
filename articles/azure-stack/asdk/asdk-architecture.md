@@ -12,14 +12,15 @@ ms.workload: na
 pms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/16/2018
+ms.date: 10/15/2018
 ms.author: jeffgilb
 ms.reviewer: misainat
-ms.openlocfilehash: 68da3ac0eb135f5956dfea76e186d9c57beea79c
-ms.sourcegitcommit: a36a1ae91968de3fd68ff2f0c1697effbb210ba8
+ms.openlocfilehash: 21c54e2e996bb987f7a27ac3e6333df6f74d6f4b
+ms.sourcegitcommit: 1aacea6bf8e31128c6d489fa6e614856cf89af19
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/17/2018
+ms.lasthandoff: 10/16/2018
+ms.locfileid: "49338619"
 ---
 # <a name="microsoft-azure-stack-development-kit-architecture"></a>Microsoft Azure Stack 開發套件架構
 Azure Stack 開發套件 (ASDK) 是 Azure Stack 的單一節點部署。 所有元件都安裝在於單一主機電腦上執行的虛擬機器中。 
@@ -32,7 +33,7 @@ Azure Stack 開發套件 (ASDK) 是 Azure Stack 的單一節點部署。 所有�
 ## <a name="virtual-machine-roles"></a>虛擬機器角色
 ASDK 會使用開發套件主機電腦上所裝載的下列 VM 來提供服務：
 
-| Name | 說明 |
+| 名稱 | 說明 |
 | ----- | ----- |
 | **AzS-ACS01** | Azure Stack 儲存體服務。|
 | **AzS-ADFS01** | Active Directory 同盟服務 (AD FS)。  |

@@ -1,11 +1,11 @@
 ---
-title: "如何在 Azure API 管理中建立及發行產品"
-description: "了解如何在 Azure API 管理中建立及發行產品。"
+title: 如何在 Azure API 管理中建立及發行產品
+description: 了解如何在 Azure API 管理中建立及發行產品。
 services: api-management
-documentationcenter: 
-author: juliako
+documentationcenter: ''
+author: vladvino
 manager: cfowler
-editor: 
+editor: ''
 ms.service: api-management
 ms.workload: mobile
 ms.tgt_pltfrm: na
@@ -14,11 +14,12 @@ ms.custom: mvc
 ms.topic: tutorial
 ms.date: 11/19/2017
 ms.author: apimpm
-ms.openlocfilehash: b9e3127a6b055a1fe013fa91714676a7c56686c5
-ms.sourcegitcommit: 83ea7c4e12fc47b83978a1e9391f8bb808b41f97
+ms.openlocfilehash: af1768a6555168b777e68f378d32a0b44e9b2c78
+ms.sourcegitcommit: d98d99567d0383bb8d7cbe2d767ec15ebf2daeb2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/28/2018
+ms.lasthandoff: 05/10/2018
+ms.locfileid: "33934472"
 ---
 # <a name="create-and-publish-a-product"></a>建立和發行產品  
 
@@ -36,8 +37,6 @@ ms.lasthandoff: 02/28/2018
 
 + 完成下列快速入門：[建立 Azure API 管理執行個體](get-started-create-service-instance.md)。
 + 同時也請完成下列教學課程：[匯入和發佈您的第一個 API](import-and-publish.md)。
-
-[!INCLUDE [api-management-navigate-to-instance.md](../../includes/api-management-navigate-to-instance.md)]
 
 ## <a name="create-and-publish-a-product"></a>建立和發行產品
 

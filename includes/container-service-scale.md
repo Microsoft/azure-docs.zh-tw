@@ -1,6 +1,6 @@
 在[部署 Azure Container Service 叢集](../articles/container-service/dcos-swarm/container-service-deployment.md)之後，您可能需要變更代理程式節點的數目。 例如，您可能需要更多代理程式，以便可以執行更多的容器應用程式或執行個體。 
 
-您可以使用 Azure 入口網站或 Azure CLI 2.0 來變更 DC/OS、Docker Swarm 或 Kubernetes 叢集中的代理程式節點數目。 
+您可以使用 Azure 入口網站或 Azure CLI 來變更 DC/OS、Docker Swarm 或 Kubernetes 叢集中的代理程式節點數目。 
 
 ## <a name="scale-with-the-azure-portal"></a>使用 Azure 入口網站進行調整
 
@@ -12,9 +12,9 @@
 
 4. 若要儲存組態時，請按一下 [儲存]。
 
-## <a name="scale-with-the-azure-cli-20"></a>使用 Azure CLI 2.0 進行調整
+## <a name="scale-with-the-azure-cli"></a>使用 Azure CLI 進行調整
 
-請確定您[已安裝](/cli/azure/install-az-cli2)最新的 Azure CLI 2.0 並登入 Azure 帳戶 (`az login`)。
+請確定您[已安裝](/cli/azure/install-az-cli2)最新的 Azure CLI 並登入 Azure 帳戶 (`az login`)。
 
 ### <a name="see-the-current-agent-count"></a>查看目前的代理程式計數
 若要查看叢集中目前擁有的代理程式數目，請執行 `az acs show` 命令。 這會顯示叢集組態。 例如，下列命令會顯示資源群組 `myResourceGroup` 中名為 `containerservice-myACSName` 之容器服務的組態：
@@ -34,7 +34,7 @@ az acs show -g myResourceGroup -n containerservice-myACSName
 az acs scale -g myResourceGroup -n containerservice-myACSName --new-agent-count 10
 ```
 
-Azure CLI 2.0 會傳回 JSON 字串，這個字串代表容器服務的新組態，其中包括新的代理程式計數。
+Azure CLI 會傳回 JSON 字串，這個字串代表容器服務的新組態，其中包括新的代理程式計數。
 
 如需更多的命令選項，請執行 `az acs scale --help`。
 
@@ -48,9 +48,8 @@ Azure CLI 2.0 會傳回 JSON 字串，這個字串代表容器服務的新組態
 
 * 您可以根據您在叢集中部署的 Orchestrator，個別地調整在叢集上執行之容器的執行個體數目。 例如，在 DC/OS 叢集中，使用 [Marathon UI](../articles/container-service/dcos-swarm/container-service-mesos-marathon-ui.md) 來變更容器應用程式的執行個體數目。
 
-* 目前並不支援在容器服務叢集中自動調整代理程式節點。
 
 ## <a name="next-steps"></a>後續步驟
-* 請參閱[更多範例](../articles/container-service/dcos-swarm/container-service-create-acs-cluster-cli.md)，以了解如何搭配使用 Azure CLI 2.0 命令與 Azure Container Service。
+* 請參閱[更多範例](../articles/container-service/dcos-swarm/container-service-create-acs-cluster-cli.md)，以了解如何搭配使用 Azure CLI 命令與 Azure Container Service。
 * 深入了解 Azure Container Service 中的 [DC/OS 代理程式集區](../articles/container-service/dcos-swarm/container-service-dcos-agents.md)。
 

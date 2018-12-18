@@ -1,37 +1,38 @@
 ---
-title: "刪除虛擬網路閘道：PowerShell：Azure 傳統 | Microsoft Docs"
-description: "在傳統部署模型中使用 PowerShell 刪除虛擬網路閘道。"
+title: 刪除虛擬網路閘道：PowerShell：Azure 傳統 | Microsoft Docs
+description: 在傳統部署模型中使用 PowerShell 刪除虛擬網路閘道。
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
 manager: timlt
-editor: 
+editor: ''
 tags: azure-service-management
-ms.assetid: 
+ms.assetid: ''
 ms.service: vpn-gateway
 ms.devlang: na
-ms.topic: 
+ms.topic: ''
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/11/2017
 ms.author: cherylmc
-ms.openlocfilehash: b1bc18307227a728e2bc8fd95e30fdc1cbdb8c59
-ms.sourcegitcommit: b5c6197f997aa6858f420302d375896360dd7ceb
+ms.openlocfilehash: 2c92db96820b9796ba2c952affcb3b3eef5b985e
+ms.sourcegitcommit: 74941e0d60dbfd5ab44395e1867b2171c4944dbe
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/21/2017
+ms.lasthandoff: 10/15/2018
+ms.locfileid: "49319841"
 ---
 # <a name="delete-a-virtual-network-gateway-using-powershell-classic"></a>使用 PowerShell (傳統) 刪除虛擬網路閘道
+
 > [!div class="op_single_selector"]
 > * [Resource Manager - Azure 入口網站](vpn-gateway-delete-vnet-gateway-portal.md)
 > * [Resource Manager - PowerShell](vpn-gateway-delete-vnet-gateway-powershell.md)
 > * [傳統 - PowerShell](vpn-gateway-delete-vnet-gateway-classic-powershell.md)
 >
->
 
 本文章會協助您使用 PowerShell 刪除傳統部署模型中的 VPN 閘道。 在刪除虛擬網路閘道之後，請修改網路設定檔，以移除您不再使用的項目。
 
-##<a name="connect"></a>步驟 1：連線到 Azure
+## <a name="connect"></a>步驟 1：連線到 Azure
 
 ### <a name="1-install-the-latest-powershell-cmdlets"></a>1.安裝最新的 PowerShell Cmdlet。
 
@@ -100,7 +101,7 @@ Status : Successful
  </Gateway>
 ```
 
-###<a name="lns"></a>區域網路網站
+### <a name="lns"></a>區域網路網站
 
 移除所有您不再使用的區域網站。 根據您所建立的組態而定，您可能並未列出 **LocalNetworkSite**。
 
@@ -194,3 +195,4 @@ Set-AzureVNetConfig -ConfigurationPath C:\AzureNet\NetworkConfig.xml
 OperationDescription        OperationId                      OperationStatus                                                
 --------------------        -----------                      ---------------                                           
 Set-AzureVNetConfig         e0ee6e66-9167-cfa7-a746-7casb9   Succeeded
+```

@@ -72,7 +72,7 @@
 #### [Azure PowerShell](cloud-services-diagnostics-powershell.md)
 #### [.NET](cloud-services-dotnet-diagnostics.md)
 #### [Visual Studio](../vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines.md)
-### [在 Azure 儲存體中儲存和檢視診斷資料](cloud-services-dotnet-diagnostics-storage.md)
+### [在 Azure 儲存體中儲存和檢視診斷資料](../monitoring-and-diagnostics/azure-diagnostics-storage.md?toc=%2fazure%2fcloud-services%2ftoc.json )
 ### [使用診斷追蹤雲端服務](cloud-services-dotnet-diagnostics-trace-flow.md)
 
 ## 疑難排解
@@ -93,7 +93,7 @@
 #### [部署常見問題](cloud-services-deployment-faq.md)
 
 # 參考
-## [程式碼範例](https://azure.microsoft.com/en-us/resources/samples/?service=cloud-services)
+## [程式碼範例](https://azure.microsoft.com/resources/samples/?service=cloud-services)
 ## [.csdef XML 結構描述](schema-csdef-file.md)
 ### [LoadBalancerProbe 結構描述](schema-csdef-loadbalancerprobe.md)
 ### [WebRole 結構描述](schema-csdef-webrole.md)
@@ -108,7 +108,7 @@
 ## [Azure 藍圖](https://azure.microsoft.com/roadmap/?category=compute)
 ## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/cloud-services/)
 ## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/en-us/home?forum=windowsazuredevelopment)
-## [價格](https://azure.microsoft.com/pricing/details/cloud-services/)
+## [定價](https://azure.microsoft.com/pricing/details/cloud-services/)
 ## [定價計算機](https://azure.microsoft.com/pricing/calculator/)
 ## [服務更新](https://azure.microsoft.com/updates/?product=cloud-services&updatetype=&platform=)
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=cloud-services)

@@ -1,25 +1,55 @@
-- name: Chef 文件
-  href: index.md
-- name: 快速入門
-  expanded: true
+items:
+- name: Chef Software on Azure 文件
+  href: ./index.yml
+- name: 概觀
   items:
-    - name: 自動化：快速入門範本
-      href: 'https://azuremarketplace.microsoft.com/en-us/marketplace/apps/chef-software.chef-automate?tab=Overview'
+  - name: 關於 Chef on Azure
+    href: ./chef-overview.md
+  - name: 關於 Habitat on Azure
+    href: ./chef-habitat-overview.md
+  - name: 關於 InSpec on Azure
+    href: ./chef-inspec-overview.md
+- name: 快速入門
+  items:
+  - name: Chef
+    items:
+    - name: 使用 Azure 入口網站安裝 Chef
+      href: ./chef-extension-portal.md
+    expanded: true
+  expanded: true
 - name: 教學課程
   items:
-    - name: 自動化 VM
+  - name: Chef
+    items:
+    - name: 建立 Windows VM
       href: /azure/virtual-machines/windows/chef-automation
+- name: 參考
+  items:
+  - name: Azure Chef 擴充功能
+    href: https://docs.chef.io/azure_portal.html#azure-chef-extension
 - name: 資源
   items:
-    - name: Azure 藍圖
-      href: 'https://azure.microsoft.com/roadmap/'
-    - name: 部落格：VSTS 和 Chef
-      href: 'https://blog.chef.io/2017/05/10/integrate-chef-into-your-build-and-release-pipelines-with-microsoft-visual-studio-team-services/'
-    - name: Chef 和 Azure PS
-      href: 'https://docs.microsoft.com/powershell/module/azure/get-azurevmchefextension?view=azuresmps-4.0.0'
-    - name: Chef 和 VSTS
-      href: 'https://github.com/chef-partners/vsts-chef/wiki/Getting-Started'
-    - name: Chef 網站
-      href: 'https://www.chef.io'
-    - name: 影片：Chef 和 VSTS
-      href: 'https://channel9.msdn.com/Events/TechDaysOnline/UK-TechDays-Online-2016/Release-Management-with-VSTS--integration-with-Azure--Chef-Deployment'
+  - name: Chef Automate
+    items:
+    - name: Chef 自動化概觀
+      href: https://docs.chef.io/chef_automate.html
+    - name: Chef 自動化安裝指南
+      href: https://docs.chef.io/install_chef_automate.html
+    - name: Azure Marketplace 中的 Chef 自動化
+      href: https://azuremarketplace.microsoft.com/en-us/marketplace/apps/chef-software.chef-automate
+  - name: Chef 軟體新聞
+    items:
+    - name: Chef 軟體部落格
+      href: https://blog.chef.io/
+- name: 工具
+  items:
+  - name: Chef Visual Studio Team Services 擴充功能
+    href: https://marketplace.visualstudio.com/items?itemName=chef-software.vsts-chef-tasks
+  - name: Habitat Visual Studio Team Services 擴充功能
+    href: https://marketplace.visualstudio.com/items?itemName=chef-software.vsts-habitat-tasks
+ms.openlocfilehash: 5fc5b99196bb24d43d0ec21470e374ff7a25182e
+ms.sourcegitcommit: 31241b7ef35c37749b4261644adf1f5a029b2b8e
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/04/2018
+ms.locfileid: "43663478"

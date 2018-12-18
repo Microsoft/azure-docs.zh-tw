@@ -1,11 +1,11 @@
 ---
-title: "Azure 虛擬機器的多個 IP 位址 - PowerShell | Microsoft Docs"
-description: "了解如何使用 PowerShell 對虛擬機器指派多個 IP 位址 | Resource Manager."
+title: Azure 虛擬機器的多個 IP 位址 - PowerShell | Microsoft Docs
+description: 了解如何使用 PowerShell 對虛擬機器指派多個 IP 位址 | Resource Manager.
 services: virtual-network
 documentationcenter: na
 author: jimdial
 manager: timlt
-editor: 
+editor: ''
 tags: azure-resource-manager
 ms.assetid: c44ea62f-7e54-4e3b-81ef-0b132111f1f8
 ms.service: virtual-network
@@ -15,11 +15,12 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/24/2017
 ms.author: jdial;annahar
-ms.openlocfilehash: b3690ec991add437afdaba3ef22022d49c962b34
-ms.sourcegitcommit: 1131386137462a8a959abb0f8822d1b329a4e474
+ms.openlocfilehash: 4c74833933642ec67bdd2a77d073b083d54a3038
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/13/2017
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38678607"
 ---
 # <a name="assign-multiple-ip-addresses-to-virtual-machines-using-powershell"></a>使用 PowerShell 對虛擬機器指派多個 IP 位址
 
@@ -27,14 +28,14 @@ ms.lasthandoff: 10/13/2017
 
 本文說明如何使用 PowerShell 透過 Azure Resource Manager 部署模型建立虛擬機器 (VM)。 無法將多個 IP 位址指派給透過傳統部署模型建立的資源。 若要深入了解 Azure 部署模型，請參閱[了解部署模型](../resource-manager-deployment-model.md)文章。
 
-[!INCLUDE [virtual-network-multiple-ip-addresses-template-scenario.md](../../includes/virtual-network-multiple-ip-addresses-scenario.md)]
+[!INCLUDE [virtual-network-multiple-ip-addresses-scenario.md](../../includes/virtual-network-multiple-ip-addresses-scenario.md)]
 
 ## <a name = "create"></a>建立有多個 IP 位址的 VM
 
 後續步驟說明如何使用多個 IP 位址建立範例 VM，如案例中所述。 請依據您的實作需求來變更變數值。
 
 1. 開啟 PowerShell 命令提示字元，在單一 PowerShell 工作階段內完成本節中其餘的步驟。 如果您尚未安裝和設定 PowerShell，請先完成 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview) 文章中的步驟。
-2. 使用 `login-azurermaccount` 命令來登入您的帳戶。
+2. 使用 `Connect-AzureRmAccount` 命令來登入您的帳戶。
 3. 使用您選擇的名稱和位置來取代 *myResourceGroup* 和 *westus*。 建立資源群組。 資源群組是在其中部署與管理 Azure 資源的邏輯容器。
 
     ```powershell
@@ -194,7 +195,7 @@ ms.lasthandoff: 10/13/2017
 
 ## <a name="add"></a>將 IP 位址新增至 VM
 
-您可以完成後續步驟，將私人和公用 IP 位址新增至 NIC。 下列各節中的範例假設您已經有一個 VM，其具有本文中的[案例](#Scenario)所述的三項 IP 組態，您不需要進行設定。
+您可以完成後續步驟，將私人和公用 IP 位址新增至 Azure 網路介面。 下列各節中的範例假設您已經有一個 VM，其具有本文中的[案例](#Scenario)所述的三項 IP 組態，您不需要進行設定。
 
 1. 開啟 PowerShell 命令提示字元，在單一 PowerShell 工作階段內完成本節中其餘的步驟。 如果您尚未安裝和設定 PowerShell，請先完成 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview) 文章中的步驟。
 2. 將下列 $Variables 的「值」變更為您想要對其新增 IP 位址的 NIC 名稱，以及 NIC 所在的資源群組和位置︰

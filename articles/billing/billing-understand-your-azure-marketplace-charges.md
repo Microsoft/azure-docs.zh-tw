@@ -1,29 +1,30 @@
 ---
-title: "了解您的 Azure 外部服務費用 | Microsoft Docs"
-description: "了解 Azure 中外部服務 (先前稱為 Marketplace) 費用的計費方式。"
-services: 
-documentationcenter: 
+title: 了解您的 Azure 外部服務費用 | Microsoft Docs
+description: 了解 Azure 中外部服務 (先前稱為 Marketplace) 費用的計費方式。
+services: ''
+documentationcenter: ''
 author: adpick
 manager: tonguyen
-editor: 
+editor: ''
 tags: billing
 ms.assetid: 5e0e2a3c-d111-4054-8508-0c111c1b749b
 ms.service: billing
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 10/9/2017
+ms.topic: conceptual
+ms.date: 06/15/2018
 ms.author: adpick
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 64bfd8581141001aa6c11ca17ec1af681054f490
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: bd99cf7b57cd004eb5ab2b62fd4c56e129583c8c
+ms.sourcegitcommit: a62cbb539c056fe9fcd5108d0b63487bd149d5c3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/22/2018
+ms.locfileid: "42617632"
 ---
 # <a name="understand-your-azure-billing-for-external-service-charges"></a>了解外部服務費用的 Azure 計費方式
-外部服務是由 Azure Marketplace 中的協力廠商軟體廠商發佈。 例如，ClearDB 和 SendGrid 是可在 Azure 中購買的外部服務，然而它們並非由 Microsoft 所發行。
+外部服務是由 Azure Marketplace 中的協力廠商軟體廠商發佈。 比方說，SendGrid 是您可以在 Azure 中購買的外部服務，但不是由 Microsoft 所發佈。
 
 當您佈建新的外部服務或資源時，系統會顯示警告︰
 

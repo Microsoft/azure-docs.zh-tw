@@ -1,9 +1,9 @@
 ### YamlMime:YamlDocument
 documentType: LandingData
-title: "Azure Migrate 文件"
+title: Azure Migrate 文件
 metadata:
-  title: "Azure Migrate 文件 - 教學課程和 API 參考 | Microsoft Docs"
-  description: "了解如何評定內部部署機器以移轉至 Azure"
+  title: Azure Migrate 文件 - 教學課程和 API 參考 | Microsoft Docs
+  description: 了解如何評定內部部署機器以移轉至 Azure
   services: migration-planner
   author: rayne-wiselman
   manager: carmonm
@@ -18,14 +18,15 @@ metadata:
   ms.translationtype: HT
   ms.contentlocale: zh-TW
   ms.lasthandoff: 11/27/2017
+  ms.locfileid: "25927113"
 abstract:
-  description: "Azure Migrate 可協助您探索及評定內部部署機器是否適合移轉至 Azure，並提供可執行 Azure VM 的尺寸及成本預估。"
+  description: Azure Migrate 可協助您探索及評定內部部署機器是否適合移轉至 Azure，並提供可執行 Azure VM 的尺寸及成本預估。
 sections:
-- title: "逐步教學課程"
+- title: 逐步教學課程
   items:
   - type: paragraph
-    text: "了解如何評定 VMware VM 以移轉至 Azure"
+    text: 了解如何評定 VMware VM 以移轉至 Azure
   - type: list
     style: unordered
     items:
-    - html: "<a href=\"tutorial-assessment-vmware\">探索及評定內部部署 VMware VM</a>"
+    - html: <a href="tutorial-assessment-vmware">探索及評定內部部署 VMware VM</a>

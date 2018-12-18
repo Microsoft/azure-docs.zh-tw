@@ -1,26 +1,20 @@
 ---
-title: "在 HDInsight 中使用 Hadoop Pig | Microsoft Docs"
-description: "了解如何在 HDInsight 上搭配 Hadoop 使用 Pig。"
+title: 在 HDInsight 中使用 Hadoop Pig
+description: 了解如何在 HDInsight 上搭配 Hadoop 使用 Pig。
 services: hdinsight
-documentationcenter: 
-author: Blackmist
-manager: jhubbard
-editor: cgronlun
-tags: azure-portal
-ms.assetid: acfeb52b-4b81-4a7d-af77-3e9908407404
+author: jasonwhowell
+ms.author: jasonh
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 01/29/2018
-ms.author: larryfr
-ms.openlocfilehash: ca68391db99d882887e41005928a30610c7cb930
-ms.sourcegitcommit: 9d317dabf4a5cca13308c50a10349af0e72e1b7e
+ms.topic: conceptual
+ms.date: 04/23/2018
+ms.openlocfilehash: e97763adbe7998ed93e3ba8b87d89ffe8d8de6aa
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43045439"
 ---
 # <a name="use-pig-with-hadoop-on-hdinsight"></a>搭配使用 Pig 與 HDInsight 上的 Hadoop
 
@@ -56,7 +50,7 @@ Pig Latin 語言可讓您從原始輸入描述資料流 (經過一或多個轉�
 
 Pig Latin 也支援使用者定義函數 (UDF)，此函數讓您可用叫用外部元件，這些元件會實作很難以 Pig Latin 模型化的邏輯。
 
-如需 Pig Latin 的詳細資訊，請參閱 [Pig Latin 參考手冊 1](http://pig.apache.org/docs/r0.7.0/piglatin_ref1.html) (英文) 和 [Pig Latin 參考手冊 2](http://pig.apache.org/docs/r0.7.0/piglatin_ref2.html) (英文)。
+如需 Pig Latin 的詳細資訊，請參閱 [Pig Latin 參考手冊 1](http://archive.cloudera.com/cdh/3/pig/piglatin_ref1.html) (英文) 和 [Pig Latin 參考手冊 2](http://archive.cloudera.com/cdh/3/pig/piglatin_ref2.html) (英文)。
 
 如需搭配 Pig 使用 UDF 的範例，請參閱以下文件：
 

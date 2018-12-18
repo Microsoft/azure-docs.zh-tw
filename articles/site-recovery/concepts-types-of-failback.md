@@ -1,18 +1,19 @@
 ---
-title: "Azure Site Recovery 中的容錯回復 | Microsoft Docs"
-description: "本文概述使用 Azure Site Recovery 服務容錯回復至內部部署時要考慮之各種類型的容錯回復和警告。"
+title: Azure Site Recovery 中的容錯回復 | Microsoft Docs
+description: 本文概述使用 Azure Site Recovery 服務容錯回復至內部部署時要考慮之各種類型的容錯回復和警告。
 services: site-recovery
 author: rajani-janaki-ram
 manager: guaravd
 ms.service: site-recovery
 ms.topic: article
-ms.date: 03/05/2018
+ms.date: 07/06/2018
 ms.author: rajanki
-ms.openlocfilehash: 372a7867b47960338d7a1bf7e646fb9fffbe72e1
-ms.sourcegitcommit: 168426c3545eae6287febecc8804b1035171c048
+ms.openlocfilehash: 2a9ee380fc16c4088d98875dd465509c4023d037
+ms.sourcegitcommit: a06c4177068aafc8387ddcd54e3071099faf659d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/08/2018
+ms.lasthandoff: 07/09/2018
+ms.locfileid: "37920384"
 ---
 # <a name="overview-of-failback"></a>容錯回復的概觀
 

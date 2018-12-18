@@ -1,28 +1,23 @@
 ---
-title: "異地複寫 Azure 容器登錄"
-description: "開始建立及管理異地複寫 Azure 容器登錄。"
+title: 異地複寫 Azure 容器登錄
+description: 開始建立及管理異地複寫 Azure 容器登錄。
 services: container-registry
 author: stevelas
-manager: timlt
+manager: jeconnoc
 ms.service: container-registry
 ms.topic: overview-article
-ms.date: 10/24/2017
+ms.date: 04/10/2018
 ms.author: stevelas
-ms.openlocfilehash: 92df5a37d62dc9731842a4312339aa571072a487
-ms.sourcegitcommit: 68aec76e471d677fd9a6333dc60ed098d1072cfc
+ms.openlocfilehash: e4695428b03961f5e899007609dfb1088dde77a8
+ms.sourcegitcommit: e221d1a2e0fb245610a6dd886e7e74c362f06467
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/18/2017
+ms.lasthandoff: 05/07/2018
+ms.locfileid: "33768204"
 ---
 # <a name="geo-replication-in-azure-container-registry"></a>Azure 容器登錄中的異地複寫
 
-公司想要本機存在或熱備份時，選擇從多個 Azure 區域執行服務。 最佳做法是將容器登錄中放入每個區域，其中執行映像以允許網路關閉作業、啟用快速、可靠的映像圖層傳輸。
-
-異地複寫可讓 Azure 容器登錄成為單一登錄、服務包含多個區域登錄的多重主要區域。
-
-> [!IMPORTANT]
-> Azure 容器登錄的異地複寫功能目前處於**預覽**。 若您同意[補充的使用規定](https://azure.microsoft.com/support/legal/preview-supplemental-terms/)即可取得預覽。 在公開上市 (GA) 之前，此功能的某些領域可能會變更。
->
+公司想要本機存在或熱備份時，選擇從多個 Azure 區域執行服務。 最佳做法是將容器登錄中放入每個區域，其中執行映像以允許網路關閉作業、啟用快速、可靠的映像圖層傳輸。 異地複寫可讓 Azure 容器登錄成為單一登錄、服務包含多個區域登錄的多重主要區域。
 
 異地複寫登錄提供下列優點：
 
@@ -70,7 +65,7 @@ docker push contosowesteu.azurecr.io/pubic/products/web:1.2
 
 ![在 Azure 入口網站中切換 SKU](media/container-registry-skus/update-registry-sku.png)
 
-若要設定進階登錄的異地複寫，登入 http://portal.azure.com 的 Azure 入口網站。
+若要設定進階登錄的異地複寫，請登入 Azure 入口網站 ( http://portal.azure.com )。
 
 導覽到 Azure 容器登錄，並選取 [複寫]：
 

@@ -1,12 +1,12 @@
 ---
-title: "Azure 虛擬網路效能疑難排解 | Microsoft Docs"
-description: "本頁提供測試 Azure 網路連結效能的標準化方法。"
+title: Azure 虛擬網路效能疑難排解 | Microsoft Docs
+description: 本頁提供測試 Azure 網路連結效能的標準化方法。
 services: expressroute
 documentationcenter: na
 author: tracsman
 manager: rossort
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: expressroute
 ms.devlang: na
 ms.topic: article
@@ -19,6 +19,7 @@ ms.sourcegitcommit: a648f9d7a502bfbab4cd89c9e25aa03d1a0c412b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 12/22/2017
+ms.locfileid: "27319372"
 ---
 # <a name="troubleshooting-network-performance"></a>網路效能疑難排解
 ## <a name="overview"></a>概觀

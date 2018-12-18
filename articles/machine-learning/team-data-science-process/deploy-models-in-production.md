@@ -2,22 +2,24 @@
 title: 在生產環境中部署模型 - Azure Machine Learning | Microsoft Docs
 description: 如何將模型部署到生產環境，好讓這些模型能夠在進行業務決策時扮演主動角色。
 documentationcenter: ''
-author: bradsev
+author: deguhath
 manager: cgronlun
 editor: cgronlun
 ms.assetid: ''
 ms.service: machine-learning
+ms.component: team-data-science-process
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 11/30/2017
-ms.author: bradsev
-ms.openlocfilehash: ddb45dd5fae0fbdecebbc262d7bac78ff2b10f21
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.author: deguhath
+ms.openlocfilehash: 0505d58261ec32015f8847b710791249f87f049b
+ms.sourcegitcommit: 944d16bc74de29fb2643b0576a20cbd7e437cef2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 06/07/2018
+ms.locfileid: "34838287"
 ---
 # <a name="deploy-models-in-production"></a>在生產環境中部署模型
 
@@ -27,7 +29,7 @@ ms.lasthandoff: 03/28/2018
 有許多方法和平台可將模型置入生產環境。 以下提供一些選項：
 
 
-- [在 Azure Machine Learning 中的模型部署](../preview/model-management-overview.md)
+- [在 Azure Machine Learning 中的模型部署](../desktop-workbench/model-management-overview.md)
 - [在 SQL-Server 中部署模型](https://docs.microsoft.com/sql/advanced-analytics/tutorials/sqldev-py6-operationalize-the-model)
 - [Microsoft Machine Learning Server](https://docs.microsoft.com/sql/advanced-analytics/r/r-server-standalone)
 

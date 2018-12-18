@@ -1,24 +1,19 @@
 ---
-title: 開始使用 Azure 監視器的角色、權限和安全性 | Microsoft Docs
+title: 開始使用 Azure 監視器的角色、權限和安全性
 description: 了解如何使用 Azure 監視器的內建角色和權限來限制存取監視資源。
 author: johnkemnetz
-manager: orenr
-editor: ''
-services: monitoring-and-diagnostics
-documentationcenter: monitoring-and-diagnostics
-ms.assetid: 2686e53b-72f0-4312-bcd3-3dc1b4a9b912
-ms.service: monitoring-and-diagnostics
-ms.workload: na
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+services: azure-monitor
+ms.service: azure-monitor
+ms.topic: conceptual
 ms.date: 10/27/2017
 ms.author: johnkem
-ms.openlocfilehash: 81f083b799e359f69605de22c30d3adc4480e44b
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: ''
+ms.openlocfilehash: 1a42c13bc0b441074829b1753c1d3cab8fbfaccf
+ms.sourcegitcommit: b7e5bbbabc21df9fe93b4c18cc825920a0ab6fab
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47407564"
 ---
 # <a name="get-started-with-roles-permissions-and-security-with-azure-monitor"></a>開始使用 Azure 監視器的角色、權限和安全性
 許多團隊需要嚴格規範對監視資料及設定的存取。 例如，如果您擁有專門從事監視 (技術支援工程師、devops 工程師) 的團隊成員，或如果您使用受控服務提供者，則您可能只要授與他們監視資料的存取權，同時限制他們建立、修改或刪除資源的能力。 本文說明如何在 Azure 中快速將內建的監視 RBAC 角色套用到使用者，或針對需要有限監視權限的使用者建置您自己的自訂角色。 接著會討論 Azure 監視器相關資源的安全性考量，以及如何限制對這些資源所包含的資料進行存取。
@@ -33,7 +28,7 @@ Azure 監視器的內建角色是專為協助限制存取訂用帳戶中的資�
 * 檢視 [Azure 警示](monitoring-overview-unified-alerts.md)中定義的警示規則
 * 使用 [Azure 監視器 REST API](https://msdn.microsoft.com/library/azure/dn931930.aspx)、[PowerShell cmdlets](insights-powershell-samples.md) 或[跨平台 CLI](insights-cli-samples.md) 查詢度量。
 * 使用入口網站、Azure 監視器 REST API、PowerShell Cmdlets 或跨平台 CLI 查詢活動記錄檔。
-* 檢視用於資源的 [診斷設定](monitoring-overview-of-diagnostic-logs.md#resource-diagnostic-settings) 。
+* 檢視用於資源的 [診斷設定](monitoring-overview-of-diagnostic-logs.md#diagnostic-settings) 。
 * 檢視用於訂用帳戶的 [記錄檔設定檔](monitoring-overview-activity-logs.md#export-the-activity-log-with-a-log-profile) 。
 * 檢視自動調整設定。
 * 檢視警示活動和設定。
@@ -54,7 +49,7 @@ Azure 監視器的內建角色是專為協助限制存取訂用帳戶中的資�
 受指派監視參與者角色的人員可以檢視訂用帳戶中所有的監視資料，並建立或修改監視設定，但無法修改任何其他資源。 此角色是監視讀取者角色的超集，且適用於組織的監視團隊成員或受控服務提供者，這些服務提供者除了上述的權限之外，也必須能夠︰
 
 * 將監視儀表板發佈為共用儀表板。
-* 設定用於資源的[診斷設定](monitoring-overview-of-diagnostic-logs.md#resource-diagnostic-settings)。*
+* 設定用於資源的[診斷設定](monitoring-overview-of-diagnostic-logs.md#diagnostic-settings)。*
 * 設定用於訂用帳戶的[記錄檔設定檔](monitoring-overview-activity-logs.md#export-the-activity-log-with-a-log-profile)。*
 * 透過 [Azure 警示](monitoring-overview-unified-alerts.md)設定警示規則活動和設定。
 * 建立 Application Insights web 測試和元件。
@@ -71,7 +66,7 @@ Azure 監視器的內建角色是專為協助限制存取訂用帳戶中的資�
 > 
 
 ## <a name="monitoring-permissions-and-custom-rbac-roles"></a>監視權限和自訂的 RBAC 角色
-如果上述的內建角色不符合您團隊的確切需求，您可以使用更精確的權限 [建立自訂的 RBAC 角色](../active-directory/role-based-access-control-custom-roles.md) 。 以下是一般 Azure 監視器 RBAC 作業及其說明。
+如果上述的內建角色不符合您團隊的確切需求，您可以使用更精確的權限 [建立自訂的 RBAC 角色](../role-based-access-control/custom-roles.md) 。 以下是一般 Azure 監視器 RBAC 作業及其說明。
 
 | 作業 | 說明 |
 | --- | --- |
@@ -125,7 +120,7 @@ New-AzureRmRoleDefinition -Role $role
 
 * 針對監視資料使用單一、專用的儲存體帳戶。 如果您需要將監視資料分成多個儲存體帳戶，切勿在監視及非監視資料之間分享儲存體帳戶的使用情況，因為這可能會不小心讓只需要存取監視資料 (例如，第三方 SIEM) 的人員存取非監視資料。
 * 以上述相同的原因在所有的診斷設定中使用單一、專用的服務匯流排或事件中樞命名空間。
-* 將存取監視相關的儲存體帳戶或事件中樞保存在不同的資源群組中，以限制存取它們，並在監視角色上 [使用範圍](../active-directory/role-based-access-control-what-is.md#basics-of-access-management-in-azure) 來限制只能存取該資源群組。
+* 將存取監視相關的儲存體帳戶或事件中樞保存在不同的資源群組中，以限制存取它們，並在監視角色上 [使用範圍](../role-based-access-control/overview.md#scope) 來限制只能存取該資源群組。
 * 當使用者只需要存取監視資料時，切勿針對訂用帳戶範圍內的儲存體帳戶或事件中樞授與 ListKeys 權限。 反之，對資源或資源群組 (如果您有專用的監視資源群組) 範圍內的使用者授與這些權限。
 
 ### <a name="limiting-access-to-monitoring-related-storage-accounts"></a>限制存取監控相關的儲存體帳戶
@@ -177,7 +172,19 @@ New-AzureRmRoleDefinition -Role $role
    New-AzureRmRoleDefinition -Role $role 
    ```
 
+## <a name="monitoring-within-a-secured-virtual-network"></a>在受保護虛擬網路內監視
+
+Azure 監視器需要存取您的 Azure 資源，才能提供您啟用的服務。 如果您想要監視 Azure 資源，同時防止其存取公用網際網路，您可以啟用下列設定。
+
+### <a name="secured-storage-accounts"></a>受保護的儲存體帳戶 
+
+監視資料通常會寫入到儲存體帳戶。 您可能想要確定未經授權的使用者無法存取複製到儲存體帳戶的資料。 為了增加安全性，您可以限制儲存體帳戶使用「選取的網路」來鎖定網路存取權，只允許已授權的資源與信任的 Microsoft 服務存取儲存體帳戶。
+![Azure 儲存體設定對話方塊](./media/monitoring-roles-permissions-security/secured-storage-example.png) Azure 監視器可視為「信任的 Microsoft 服務」之一。如果您允許信任的 Microsoft 服務存取受保護儲存體，Azure 監視器會擁有受保護儲存體帳戶的存取權，能在受保護情況下，將 Azure 監視器診斷記錄、活動記錄與計量寫入到您的儲存體帳戶。 這也會讓 Log Analytics 讀取來自受保護儲存體的記錄。   
+
+
+如需詳細資訊，請參閱[網路安全性與 Azure 儲存體](../storage/common/storage-network-security.md)
+
 ## <a name="next-steps"></a>後續步驟
-* [深入了解 RBAC 和 Resource Manager 中的權限](../active-directory/role-based-access-control-what-is.md)
+* [深入了解 RBAC 和 Resource Manager 中的權限](../role-based-access-control/overview.md)
 * [閱讀 Azure 中的監視概觀](monitoring-overview.md)
 

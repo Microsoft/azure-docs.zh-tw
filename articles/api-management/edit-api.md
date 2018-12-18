@@ -1,11 +1,11 @@
 ---
-title: "透過 Azure 入口網站編輯 API | Microsoft Docs"
-description: "本教學課程會示範如何使用 API 管理 (APIM) 來編輯 API。"
+title: 透過 Azure 入口網站編輯 API | Microsoft Docs
+description: 本教學課程會示範如何使用 API 管理 (APIM) 來編輯 API。
 services: api-management
-documentationcenter: 
-author: juliako
+documentationcenter: ''
+author: vladvino
 manager: cfowler
-editor: 
+editor: ''
 ms.service: api-management
 ms.workload: mobile
 ms.tgt_pltfrm: na
@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: tutorial
 ms.date: 11/08/2017
 ms.author: apimpm
-ms.openlocfilehash: 362c36181da706e3fe0a27cc5ab262271c2a1e57
-ms.sourcegitcommit: b854df4fc66c73ba1dd141740a2b348de3e1e028
+ms.openlocfilehash: b39259fcfc93cb0a2a1a2dc600e5235da8cc6930
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/04/2017
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38488946"
 ---
 # <a name="edit-an-api"></a>編輯 API
 

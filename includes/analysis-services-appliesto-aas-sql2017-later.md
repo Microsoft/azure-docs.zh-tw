@@ -1,1 +1,0 @@
-**適用於：**![yes](media/analysis-services-appliesto/yes.png)Azure Analysis Services![yes](media/analysis-services-appliesto/yes.png)SQL Server Analysis Services (2017 年起)

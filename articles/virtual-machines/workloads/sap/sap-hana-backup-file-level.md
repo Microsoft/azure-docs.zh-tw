@@ -4,20 +4,21 @@ description: 備份 Azure 虛擬機器上的 SAP HANA 有兩種主要做法，�
 services: virtual-machines-linux
 documentationcenter: ''
 author: hermanndms
-manager: timlt
+manager: jeconnoc
 editor: ''
 ms.service: virtual-machines-linux
 ms.devlang: NA
 ms.topic: article
 ums.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
-ms.date: 3/13/2017
+ms.date: 07/05/2018
 ms.author: rclaus
-ms.openlocfilehash: 5db0ceb1648b5afa278e1cbe1c42fce8033bfdc1
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: d3d1769766053b513a98df153cb635ae148f26b1
+ms.sourcegitcommit: ab3b2482704758ed13cccafcf24345e833ceaff3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 07/06/2018
+ms.locfileid: "37867365"
 ---
 # <a name="sap-hana-azure-backup-on-file-level"></a>檔案層級的 SAP HANA Azure 備份
 
@@ -25,7 +26,7 @@ ms.lasthandoff: 03/23/2018
 
 這是與 SAP HANA 備份相關的三篇系列文章的其中一篇。 [Azure 虛擬機器上 SAP HANA 的備份指南](./sap-hana-backup-guide.md)提供開始使用的概觀和資訊，[以儲存體快照集為基礎的 SAP HANA 備份](./sap-hana-backup-storage-snapshots.md)涵蓋以儲存體快照集為基礎的備份選項。
 
-查看 Azure VM 的大小，可看出一個 GS5 可連結 64 個資料磁碟。 在大型的 SAP HANA 系統中，大量磁碟可能已被資料和記錄檔佔據，可能還加上用於最佳磁碟 IO 輸送量的軟體 RAID。 所以問題是，一段時間後已填滿連結資料磁碟的 SAP HANA 備份檔案要放在哪裡？ 請參閱 [Azure 中的 Linux 虛擬機器大小](../../linux/sizes.md)中的 Azure VM 大小資料表。
+Azure 中的不同 VM 類型允許連接不同數目的 VHD。 確切的詳細資料記載於 [Azure 中的 Linux 虛擬機器大小](../../linux/sizes.md)。 在本文件所參照的測試中，我們使用允許 64 個已連接資料磁碟的 GS5 Azure VM。 在較大型的 SAP HANA 系統中，資料和記錄檔可能已佔據大量磁碟，可能還加上用於最佳磁碟 IO 輸送量的軟體等量。 如需 Azure VM 上 SAP HANA 部署之建議磁碟設定的詳細資料，請閱讀 [Azure 上的 SAP HANA 作業指南](https://docs.microsoft.com/azure/virtual-machines/workloads/sap/hana-vm-operations)一文。 所提供的建議也包括本機備份的磁碟空間建議。
 
 目前 SAP HANA 備份還沒有與 Azure 備份服務整合。 在檔案層級管理備份/還原的標準方式，是透過 SAP HANA Studio 或 SAP HANA SQL 陳述式使用以檔案為基礎的備份。 詳細資訊請參閱 [SAP HANA SQL 和系統檢視參考](https://help.sap.com/hana/SAP_HANA_SQL_and_System_Views_Reference_en.pdf)。
 
@@ -33,7 +34,7 @@ ms.lasthandoff: 03/23/2018
 
 本圖顯示 SAP HANA Studio 中的備份的功能表對話方塊。 當選擇 [檔案]&quot;&quot; 類型，必須指定檔案系統中的路徑讓 SAP HANA 寫入備份檔案。 還原的運作方式亦同。
 
-雖然這項選擇聽起來簡單又直接，但仍有一些事要考量。 之前有提到，Azure 虛擬機器可連結的資料磁碟數目有限制。 可能無法在 VM 的檔案系統上儲存 SAP HANA 備份檔案，取決於資料庫的大小和磁碟輸送量需求，其中可能牽涉到使用串接跨多個資料磁碟的軟體 RAID。 在本文稍後提供多種選項，可用於在處理數 TB 資料時，移動這些備份檔案以及管理檔案大小限制和效能。
+雖然這項選擇聽起來簡單又直接，但仍有一些事要考量。 之前有提到，Azure 虛擬機器可連結的資料磁碟數目有限制。 可能無法在 VM 的檔案系統上儲存 SAP HANA 備份檔案，取決於資料庫的大小和磁碟輸送量需求，其中可能牽涉跨多個資料磁碟的軟體等量。 在本文稍後提供多種選項，可用於在處理數 TB 資料時，移動這些備份檔案以及管理檔案大小限制和效能。
 
 另一個可以不計總容量提供更多自由的選項是 Azure Blob 儲存體。 雖然單一 blob 也有 1 TB 的限制，單一 blob 容器的總容量目前為 500 TB。 此外，它讓客戶可以選擇較具成本效益的「非經常性」&quot;&quot;blob 儲存體。 如需非經常性 blob 儲存體的詳細資訊，請參閱 [Azure Blob 儲存體︰經常性存取與非經常性存取儲存層](../../../storage/blobs/storage-blob-storage-tiers.md)。
 
@@ -43,7 +44,7 @@ ms.lasthandoff: 03/23/2018
 
 ## <a name="azure-backup-agent"></a>Azure 備份代理程式
 
-Azure 備份提供的選項不僅可備份完整的 VM，但可透過備份代理程式 (必須在客體 OS 上安裝) 備份檔案和目錄。 但自 2016 年 12 月起，僅在 Windows 上支援此代理程式 (請參閱[使用 Resource Manager 部署模型將 Windows Server 或用戶端備份至 Azure](../../../backup/backup-configure-vault.md))。
+Azure 備份提供的選項不僅可備份完整的 VM，但可透過備份代理程式 (必須在客體 OS 上安裝) 備份檔案和目錄。 但只有在 Windows 上才支援此代理程式 (請參閱[使用 Resource Manager 部署模型將 Windows Server 或用戶端備份至 Azure](../../../backup/backup-configure-vault.md))。
 
 解決方法是先將 SAP HANA 備份檔案複製到 Azure 上的 Windows VM (例如，透過 SAMBA 共用)，然後從該處使用 Azure 備份代理程式。 雖然技術上可行，但可能會增加複雜度，並因為在 Linux 和 Windows VM 之間的複製而使備份或還原程序變慢許多。 不建議採取此做法。
 
@@ -51,7 +52,7 @@ Azure 備份提供的選項不僅可備份完整的 VM，但可透過備份代�
 
 為了在 Azure 儲存體上儲存目錄和檔案，可以使用 CLI 或 PowerShell，或開發使用其中一種 [Azure SDK](https://azure.microsoft.com/downloads/) 的工具。 另外也有現成的公用程式 AzCopy，可將資料複製到 Azure 儲存體，但是它只適用於 Windows (請參閱[使用 AzCopy 命令列公用程式傳輸資料](../../../storage/common/storage-use-azcopy.md))。
 
-因此，使用 blobxfer 來複製 SAP HANA 備份檔案。 blobxfer 是開放原始碼，可從 [GitHub](https://github.com/Azure/blobxfer) 取得，許多客戶在生產環境中使用它。 此工具不允許將資料直接複製到 Azure blob 儲存體或 Azure 檔案共用。 它也提供各種實用的功能，例如 md5 雜湊、複製含多個檔案的目錄時可使用自動平行處理原則。
+因此，使用 Blobxfer 來複製 SAP HANA 備份檔案。 blobxfer 是開放原始碼，可從 [GitHub](https://github.com/Azure/blobxfer) 取得，許多客戶在生產環境中使用它。 此工具不允許將資料直接複製到 Azure blob 儲存體或 Azure 檔案共用。 它也提供各種實用的功能，例如 md5 雜湊、複製含多個檔案的目錄時可使用自動平行處理原則。
 
 ## <a name="sap-hana-backup-performance"></a>SAP HANA 備份的效能
 
@@ -65,11 +66,11 @@ Azure 備份提供的選項不僅可備份完整的 VM，但可透過備份代�
 
 ![對軟體 RAID 重複相同的備份，並串接五個連結的 Azure 標準儲存體資料磁碟](media/sap-hana-backup-file-level/image025.png)
 
-對軟體 RAID 重複相同的備份，並串接五個連結的 Azure 標準儲存體資料磁碟，將備份時間從 42 分鐘降到 10 分鐘。 磁碟已連結，且沒有快取至 VM。 由此可見，磁碟寫入輸送量對備份時間有多重要。 您可以改換到 Azure 進階儲存體，進一步加速處理程序，以獲得最佳效能。 一般而言，生產系統應該使用 Azure 進階儲存體。
+對軟體 RAID 重複相同的備份，並串接五個連結的 Azure 標準儲存體資料磁碟，將備份時間從 42 分鐘降到 10 分鐘。 磁碟已連結，且沒有快取至 VM。 由此可見，磁碟寫入輸送量對備份時間有多重要。 您可以改為切換到 Azure 進階儲存體，進一步加速程序，以獲得最佳效能。 一般而言，生產系統應該使用 Azure 進階儲存體。
 
 ## <a name="copy-sap-hana-backup-files-to-azure-blob-storage"></a>將 SAP HANA 備份檔案複製到 Azure Blob 儲存體
 
-自 2016 年 12 月起，快速儲存 SAP HANA 備份檔案的最佳選擇是 Azure Blob 儲存體。 單一 blob 容器的上限為 500 TB，對於大多數在 Azure 上執行 GS5 VM 的 SAP HANA 系統來説已經夠用，可保留充足的 SAP HANA 備份。 客戶可在「經常性存取」&quot;&quot;和「非經常性存取」&quot;&quot;儲存體之間選擇 (請參閱 [Azure Blob 儲存體︰經常性存取與非經常性存取儲存層](../../../storage/blobs/storage-blob-storage-tiers.md)。
+快速儲存 SAP HANA 備份檔案的另一個選項是 Azure Blob 儲存體。 使用 M32ts、M32ls、M64ls 和 GS5 VM 類型的 Azure，單一 Blob 容器的上限為 500 TB，對於一些較小的 SAP HANA 系統來說就已經足夠，可保留充足的 SAP HANA 備份。 客戶可在「經常性存取」&quot;&quot;和「非經常性存取」&quot;&quot;儲存體之間選擇 (請參閱 [Azure Blob 儲存體︰經常性存取與非經常性存取儲存層](../../../storage/blobs/storage-blob-storage-tiers.md)。
 
 使用 blobxfer 工具，將 SAP HANA 備份檔案直接複製到 Azure Blob 儲存體很容易。
 
@@ -89,7 +90,7 @@ HANA Studio 備份主控台可讓您限制 HANA 備份檔案的檔案大小上�
 
 ![設定 HANA 端的備份檔案大小限制不會改善備份時間](media/sap-hana-backup-file-level/image029.png)
 
-設定 HANA 端的備份檔案大小限制不會改善備份時間，因為檔案會循序寫入，如此圖中所示。 檔案大小上限設定為 60 GB，因此備份會建立四個大型資料檔案，而不是 230 GB 的單一檔案。
+設定 HANA 端的備份檔案大小限制不會改善備份時間，因為檔案會循序寫入，如此圖中所示。 檔案大小上限設定為 60 GB，因此備份會建立四個大型資料檔案，而不是 230 GB 的單一檔案。 需要使用多個備份檔案來備份 HANA 資料庫，以利用較大型 Azure VM (例如 M64s、M64ms, M128s 和 M128ms) 的記憶體。
 
 ![為了測試 blobxfer 工具的平行處理原則，而將 HANA 備份的檔案大小上限設為 15 GB](media/sap-hana-backup-file-level/image030.png)
 
@@ -135,7 +136,7 @@ NFS 共用是快速串接集，就像 SAP HANA 伺服器上的一樣。 不過�
 
 它的確可行，但效能不如 230 GB 備份測試好。 若遇到數 TB 的資料，可能會更糟。
 
-## <a name="copy-sap-hana-backup-files-to-azure-file-service"></a>將 SAP HANA 備份檔案複製到 Azure 檔案服務
+## <a name="copy-sap-hana-backup-files-to-azure-files"></a>將 SAP HANA 備份檔案複製到 Azure 檔案
 
 可以將 Azure 檔案共用掛接在 Azure Linux VM 內部。 [如何搭配使用 Azure 檔案儲存體與 Linux](../../../storage/files/storage-how-to-use-files-linux.md) 一文提供作法的詳細資訊。 請記住，目前 Azure 檔案共用有 5 TB 配額的限制，以及每個檔案 1 TB 的檔案大小限制。 如需儲存體限制的詳細資訊，請參閱 [Azure 儲存體延展性和效能目標](../../../storage/common/storage-scalability-targets.md) (英文)。
 

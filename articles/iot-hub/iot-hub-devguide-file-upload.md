@@ -1,47 +1,42 @@
 ---
-title: "了解 Azure IoT 中樞檔案上傳 | Microsoft Docs"
-description: "開發人員指南 - 使用 IoT 中樞的檔案上傳功能，管理將檔案從裝置上傳至 Azure 儲存體 blob 容器。"
-services: iot-hub
-documentationcenter: .net
+title: 了解 Azure IoT 中樞檔案上傳 | Microsoft Docs
+description: 開發人員指南 - 使用 IoT 中樞的檔案上傳功能，管理將檔案從裝置上傳至 Azure 儲存體 blob 容器。
 author: dominicbetts
 manager: timlt
-editor: 
-ms.assetid: a0427925-3e40-4fcd-96c1-2a31d1ddc14b
 ms.service: iot-hub
-ms.devlang: multiple
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: na
+services: iot-hub
+ms.topic: conceptual
 ms.date: 08/08/2017
 ms.author: dobett
-ms.openlocfilehash: 7bf1ba333f36dcfa8959320566bcb771f37cfe22
-ms.sourcegitcommit: 9d317dabf4a5cca13308c50a10349af0e72e1b7e
+ms.openlocfilehash: 8fee8dd727623e81140656a070e6855547693154
+ms.sourcegitcommit: f31bfb398430ed7d66a85c7ca1f1cc9943656678
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47451149"
 ---
 # <a name="upload-files-with-iot-hub"></a>透過 IoT 中樞上傳檔案
 
-如 [IoT 中樞端點][lnk-endpoints]一文所詳述，裝置可以藉由透過面向裝置的端點 (**/devices/{deviceId}/files**) 傳送通知，來起始檔案上傳。 當裝置向 IoT 中樞告知上傳作業完成時，IoT 中樞會透過 **/messages/servicebound/filenotifications** 面向服務的端點傳送檔案上傳通知訊息。
+如 [IoT 中樞端點](iot-hub-devguide-endpoints.md)一文所詳述，裝置可以藉由透過面向裝置的端點 (**/devices/{deviceId}/files**) 傳送通知，來起始檔案上傳。 當裝置向 IoT 中樞告知上傳作業完成時，IoT 中樞會透過 **/messages/servicebound/filenotifications** 面向服務的端點傳送檔案上傳通知訊息。
 
 不是透過 IoT 中樞本身的代理訊息，IoT 中樞會做為相關聯 Azure 儲存體帳戶的發送器。 裝置會向 IoT 中樞要求儲存體權杖，這是裝置想要上傳的檔案的特定權杖。 裝置會使用 SAS URI，將檔案上傳至儲存體，上傳完成時，裝置會將完成的通知傳送到 IoT 中樞。 IoT 中樞會在確認檔案上傳已完成後，再將檔案上傳通知訊息新增至服務面向檔案通知端點。
 
-將檔案從裝置上傳到 IoT 中樞之前，您必須先對中樞[關聯 Azure 儲存體][lnk-associate-storage]帳戶以設定中樞。
+將檔案從裝置上傳到 IoT 中樞之前，您必須先對中樞[關聯 Azure 儲存體](iot-hub-devguide-file-upload.md#associate-an-azure-storage-account-with-iot-hub)帳戶以設定中樞。
 
-接著，您的裝置就可以[初始化上傳][lnk-initialize]，然後在上傳完成時[通知 IoT 中樞][lnk-notify]。 (選擇性) 當裝置將上傳已完成的狀態通知 IoT 中樞時，服務就會產生[通知訊息][lnk-service-notification]。
+接著，您的裝置就可以[初始化上傳](iot-hub-devguide-file-upload.md#initialize-a-file-upload)，然後在上傳完成時[通知 IoT 中樞](iot-hub-devguide-file-upload.md#notify-iot-hub-of-a-completed-file-upload)。 (選擇性) 當裝置將上傳已完成的狀態通知 IoT 中樞時，服務就會產生[通知訊息](iot-hub-devguide-file-upload.md#file-upload-notifications)。
 
 ### <a name="when-to-use"></a>使用時機
 
 使用檔案上傳來傳送間歇性連線裝置所上傳或為了節省頻寬而壓縮的媒體檔案和大型遙測批次。
 
-如果不確定要使用報告屬性、裝置對雲端訊息或檔案上傳，請參閱[裝置到雲端通訊指引][lnk-d2c-guidance]。
+如果不確定要使用報告屬性、裝置對雲端訊息或檔案上傳，請參閱[裝置到雲端通訊指引](iot-hub-devguide-d2c-guidance.md)。
 
 ## <a name="associate-an-azure-storage-account-with-iot-hub"></a>讓 Azure 儲存體帳戶與 IoT 中樞產生關聯
 
-若要使用檔案上傳功能，您必須先將 Azure 儲存體帳戶連結至 IoT 中樞。 您可以透過 [Azure 入口網站][lnk-management-portal]完成此工作，或透過 [IoT 中樞資源提供者 REST API][lnk-resource-provider-apis] 以程式設計方式完成此工作。 一旦您將 Azure 儲存體帳戶與 IoT 中樞產生關聯，服務會在裝置起始檔案上傳要求時，將 SAS URI 傳回至裝置。
+若要使用檔案上傳功能，您必須先將 Azure 儲存體帳戶連結至 IoT 中樞。 您可以透過 [Azure 入口網站](https://portal.azure.com)完成此工作，或透過 [IoT 中樞資源提供者 REST API](/rest/api/iothub/iothubresource) 以程式設計方式完成此工作。 一旦您將 Azure 儲存體帳戶與 IoT 中樞產生關聯，服務會在裝置起始檔案上傳要求時，將 SAS URI 傳回至裝置。
 
 > [!NOTE]
-> [Azure IoT SDK][lnk-sdks] 會自動處理擷取 SAS URI、上傳檔案，並且通知 IoT 中樞已完成上傳。
+> [Azure IoT SDK](iot-hub-devguide-sdks.md) 會自動處理擷取 SAS URI、上傳檔案，並且通知 IoT 中樞已完成上傳。
 
 
 ## <a name="initialize-a-file-upload"></a>初始化檔案上傳
@@ -73,6 +68,7 @@ IoT 中樞擁有專供裝置用來要求儲存體 SAS URI 以便上傳檔案的�
 IoT 中樞有兩個 REST 端點可以支援檔案上傳，一個用來取得儲存體的 SAS URI，另一個用來通知 IoT 中樞已完成上傳。 裝置會起始檔案上傳程序，方法是將 GET 傳送至 IoT 中樞的 `{iot hub}.azure-devices.net/devices/{deviceId}/files/{filename}`。 IoT 中樞會傳回：
 
 * 要上傳之檔案專屬的 SAS URI。
+
 * 要在上傳完成後使用的相互關聯識別碼。
 
 ## <a name="notify-iot-hub-of-a-completed-file-upload"></a>通知 IoT 中樞已完成檔案上傳
@@ -98,7 +94,7 @@ IoT 中樞有兩個 REST 端點可以支援檔案上傳，一個用來取得儲�
 
 (選擇性) 當裝置向「IoT 中樞」通知上傳已完成時，「IoT 中樞」會產生通知訊息，其中包含檔案的名稱和儲存位置。
 
-如[端點][lnk-endpoints]中所述，IoT 中樞會透過面向服務的端點 (**/messages/servicebound/fileuploadnotifications**) 利用訊息來傳遞檔案上傳通知。 檔案上傳通知的接收語意與雲端到裝置訊息的接收語意相同，並且具有相同的[訊息生命週期][lnk-lifecycle]。 從檔案上傳通知端點擷取的每則訊息是具有下列屬性的 JSON 記錄：
+如[端點](iot-hub-devguide-endpoints.md)中所述，IoT 中樞會透過面向服務的端點 (**/messages/servicebound/fileuploadnotifications**) 利用訊息來傳遞檔案上傳通知。 檔案上傳通知的接收語意與雲端到裝置訊息的接收語意相同，並且具有相同的[訊息生命週期](iot-hub-devguide-messages-c2d.md#the-cloud-to-device-message-lifecycle)。 從檔案上傳通知端點擷取的每則訊息是具有下列屬性的 JSON 記錄：
 
 | 屬性 | 說明 |
 | --- | --- |
@@ -137,43 +133,30 @@ IoT 中樞有兩個 REST 端點可以支援檔案上傳，一個用來取得儲�
 
 IoT 中樞開發人員指南中的其他參考主題包括︰
 
-* [IoT 中樞端點][lnk-endpoints]說明每個 IoT 中樞公開給執行階段和管理作業的各種端點。
-* [節流和配額][lnk-quotas]描述適用於 IoT 中樞服務的配額和節流行為。
-* [Azure IoT 裝置和服務 SDK][lnk-sdks] 列出各種語言 SDK，可供您在開發與「IoT 中樞」互動的裝置和服務應用程式時使用。
-* [IoT 中樞查詢語言][lnk-query]描述可用來從 IoT 中樞擷取有關裝置對應項和作業之資訊的查詢語言。
-* [IoT 中樞 MQTT 支援][lnk-devguide-mqtt]針對 MQTT 通訊協定提供 IoT 中樞支援的詳細資訊。
+* [IoT 中樞端點](iot-hub-devguide-endpoints.md)說明每個 IoT 中樞公開給執行階段和管理作業的各種端點。
+
+* [節流和配額](iot-hub-devguide-quotas-throttling.md)描述適用於 IoT 中樞服務的配額和節流行為。
+
+* [Azure IoT 裝置和服務 SDK](iot-hub-devguide-sdks.md) 列出各種語言 SDK，可供您在開發與「IoT 中樞」互動的裝置和服務應用程式時使用。
+
+* [IoT 中樞查詢語言](iot-hub-devguide-query-language.md)描述可用來從 IoT 中樞擷取有關裝置對應項和作業之資訊的查詢語言。
+
+* [IoT 中樞 MQTT 支援](iot-hub-mqtt-support.md)針對 MQTT 通訊協定提供 IoT 中樞支援的詳細資訊。
 
 ## <a name="next-steps"></a>後續步驟
 
 現在您已了解如何使用 IoT 中樞從裝置上傳檔案，接下來您可能對下列 IoT 中樞開發人員指南主題感興趣︰
 
-* [在 IoT 中樞管理裝置身分識別][lnk-devguide-identities]
-* [控制 IoT 中樞的存取權][lnk-devguide-security]
-* [使用裝置對應項同步處理狀態和組態][lnk-devguide-device-twins]
-* [在裝置上叫用直接方法][lnk-devguide-directmethods]
-* [排程多個裝置上的作業][lnk-devguide-jobs]
+* [在 IoT 中樞管理裝置身分識別](iot-hub-devguide-identity-registry.md)
+
+* [控制 IoT 中樞的存取權](iot-hub-devguide-security.md)
+
+* [使用裝置對應項同步處理狀態和組態](iot-hub-devguide-device-twins.md)
+
+* [在裝置上叫用直接方法](iot-hub-devguide-direct-methods.md)
+
+* [排程多個裝置上的作業](iot-hub-devguide-jobs.md)
 
 若要嘗試本文所述的一些概念，請參閱下列「IoT 中樞」教學課程：
 
-* [如何使用 IoT 中樞從裝置將檔案上傳至雲端][lnk-fileupload-tutorial]
-
-[lnk-resource-provider-apis]: https://docs.microsoft.com/rest/api/iothub/iothubresource
-[lnk-endpoints]: iot-hub-devguide-endpoints.md
-[lnk-quotas]: iot-hub-devguide-quotas-throttling.md
-[lnk-sdks]: iot-hub-devguide-sdks.md
-[lnk-query]: iot-hub-devguide-query-language.md
-[lnk-devguide-mqtt]: iot-hub-mqtt-support.md
-[lnk-management-portal]: https://portal.azure.com
-[lnk-fileupload-tutorial]: iot-hub-csharp-csharp-file-upload.md
-[lnk-associate-storage]: iot-hub-devguide-file-upload.md#associate-an-azure-storage-account-with-iot-hub
-[lnk-initialize]: iot-hub-devguide-file-upload.md#initialize-a-file-upload
-[lnk-notify]: iot-hub-devguide-file-upload.md#notify-iot-hub-of-a-completed-file-upload
-[lnk-service-notification]: iot-hub-devguide-file-upload.md#file-upload-notifications
-[lnk-lifecycle]: iot-hub-devguide-messages-c2d.md#the-cloud-to-device-message-lifecycle
-[lnk-d2c-guidance]: iot-hub-devguide-d2c-guidance.md
-
-[lnk-devguide-identities]: iot-hub-devguide-identity-registry.md
-[lnk-devguide-security]: iot-hub-devguide-security.md
-[lnk-devguide-device-twins]: iot-hub-devguide-device-twins.md
-[lnk-devguide-directmethods]: iot-hub-devguide-direct-methods.md
-[lnk-devguide-jobs]: iot-hub-devguide-jobs.md
+* [如何使用 IoT 中樞從裝置將檔案上傳至雲端](iot-hub-csharp-csharp-file-upload.md)

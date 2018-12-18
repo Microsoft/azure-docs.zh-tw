@@ -1,19 +1,20 @@
 ---
-title: "Linux 中虛擬機器磁碟的延展性和效能目標 - Microsoft Azure | Microsoft Docs"
-description: "針對連結至執行 Linux 之虛擬機器的虛擬機器磁碟，深入了解其延展性和效能目標。"
-services: virtual-machines
-author: tamram
-manager: jeconnoc
-ms.author: tamram
+title: Linux 中虛擬機器磁碟的延展性和效能目標 - Microsoft Azure | Microsoft Docs
+description: 針對連結至執行 Linux 之虛擬機器的虛擬機器磁碟，深入了解其延展性和效能目標。
+services: virtual-machines-linux,storage
+author: roygara
+ms.author: rogarana
 ms.date: 11/15/2017
 ms.topic: article
-ms.service: virtual-machines
+ms.service: virtual-machines-linux
 ms.tgt_pltfrm: linux
-ms.openlocfilehash: 2c56f07dbfa1fc1a2025410f5340235d08b6a05f
-ms.sourcegitcommit: 7d107bb9768b7f32ec5d93ae6ede40899cbaa894
+ms.component: disks
+ms.openlocfilehash: f93b2d39f3aba21351fabe4c60195adead903923
+ms.sourcegitcommit: d16b7d22dddef6da8b6cfdf412b1a668ab436c1f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/16/2017
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39713409"
 ---
 # <a name="scalability-and-performance-targets-for-vm-disks-on-linux"></a>Linux 中虛擬機器磁碟的延展性和效能目標
 

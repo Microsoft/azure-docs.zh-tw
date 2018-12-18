@@ -1,27 +1,21 @@
 ---
-title: "透過 Hortonworks 沙箱使用 Azure Toolkit for IntelliJ | Microsoft Docs"
-description: "了解如何透過 Hortonworks 沙箱使用 Azure Toolkit for IntelliJ 中的 HDInsight 工具。"
-keywords: "hadoop 工具,hive 查詢,intellij,hortonworks 沙箱,azure toolkit for intellij"
-services: HDInsight
-documentationcenter: 
-tags: azure-portal
-author: mumian
-manager: jhubbard
-editor: cgronlun
-ms.assetid: b587cc9b-a41a-49ac-998f-b54d6c0bdfe0
+title: 透過 Hortonworks 沙箱使用 Azure Toolkit for IntelliJ
+description: 了解如何透過 Hortonworks 沙箱使用 Azure Toolkit for IntelliJ 中的 HDInsight 工具。
+keywords: hadoop 工具,hive 查詢,intellij,hortonworks 沙箱,azure toolkit for intellij
+services: hdinsight
+author: jasonwhowell
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 12/20/2017
-ms.author: jgao
-ms.openlocfilehash: 6bb29dc4e231bc859be620e56a606fbbfade102b
-ms.sourcegitcommit: 901a3ad293669093e3964ed3e717227946f0af96
+ms.topic: conceptual
+ms.date: 05/16/2018
+ms.author: jasonh
+ms.openlocfilehash: 9e87392ad7730571b973dbec809f64487eefa849
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/21/2017
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43048586"
 ---
 # <a name="use-hdinsight-tools-for-intellij-with-hortonworks-sandbox"></a>透過 Hortonworks 沙箱使用 HDInsight Tools for IntelliJ
 
@@ -29,7 +23,7 @@ ms.lasthandoff: 12/21/2017
 
 [IntelliJ IDEA](https://www.jetbrains.com/idea/) 是 Java 整合式開發環境 (IDE)，可用來開發電腦軟體。 在 Hortonworks 沙箱上開發並測試應用程式之後，您可以將應用程式移至 [Azure HDInsight](apache-hadoop-introduction.md)。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 開始進行本教學課程之前，您必須具備下列項目：
 

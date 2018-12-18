@@ -1,6 +1,6 @@
 ---
-title: "Linux 虛擬機器概觀 | Microsoft Docs"
-description: "Azure 入口網站內 Linux 虛擬機器概觀的說明內容"
+title: Linux 虛擬機器概觀 | Microsoft Docs
+description: Azure 入口網站內 Linux 虛擬機器概觀的說明內容
 services: virtual-machines-linux
 author: sewatson
 manager: lwelicki
@@ -8,11 +8,12 @@ ms.service: virtual-machines-linux
 ms.topic: article
 ms.date: 04/27/2017
 ms.author: sewatson
-ms.openlocfilehash: 0de3fc4cab53564d7d131666e4a8c0ace8a64fb8
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 9a61b5d25d554ea7e39490b0ca64cde3dcb396d6
+ms.sourcegitcommit: 63613e4c7edf1b1875a2974a29ab2a8ce5d90e3b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/29/2018
+ms.locfileid: "43186484"
 ---
 # <a name="linux-virtual-machines-documentation"></a>Linux 虛擬機器文件
 
@@ -22,7 +23,7 @@ Azure Linux 虛擬機器依您的選擇使用 Red Hat、Ubuntu 或 Linux 發行�
 
 了解如何在執行 Ubuntu 的虛擬機器中部署 NGINX 網頁伺服器：
 
-- [HttpTrigger Nodejs 函數](/azure/virtual-machines/virtual-machines-linux-quick-create-portal?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+- [Azure 入口網站](/azure/virtual-machines/virtual-machines-linux-quick-create-portal?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 - [Azure PowerShell](/azure/virtual-machines/virtual-machines-linux-quick-create-powershell?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 - [Azure CLI](/azure/virtual-machines/virtual-machines-linux-quick-create-cli?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
@@ -45,9 +46,7 @@ Azure Linux 虛擬機器依您的選擇使用 Red Hat、Ubuntu 或 Linux 發行�
 
 ## <a name="free-pluralsight-video-training"></a>免費 Pluralsight 影片訓練
 
-- [管理基礎結構](https://www.pluralsight.com/courses/managing-infrastructure-microsoft-azure-getting-started?twoid=d6abac77-7dcc-4d33-9e03-f85e78989f02)
-- [開始使用虛擬機器](https://www.pluralsight.com/courses/azure-vms-getting-started?twoid=d6abac77-7dcc-4d33-9e03-f85e78989f02)
-- [開始使用 IaaS 監視](https://www.pluralsight.com/courses/azure-iaas-monitoring-management-getting-started?twoid=d6abac77-7dcc-4d33-9e03-f85e78989f02")
+- [Azure 系統管理員](https://go.microsoft.com/fwlink/?linkid=2012827)
 
 ## <a name="samples"></a>範例 
 

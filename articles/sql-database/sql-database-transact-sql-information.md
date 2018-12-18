@@ -2,18 +2,22 @@
 title: 解決移轉至 Azure SQL Database 期間的 Transact-SQL 差異 | Microsoft Docs
 description: 在 Azure SQL Database 中未完整支援 Transact-SQL 陳述式
 services: sql-database
-author: CarlRabeler
-manager: craigg
 ms.service: sql-database
-ms.custom: migrate
-ms.topic: article
-ms.date: 10/23/2017
+ms.subservice: ''
+ms.custom: ''
+ms.devlang: ''
+ms.topic: conceptual
+author: CarlRabeler
 ms.author: carlrab
-ms.openlocfilehash: acc2c2556763650e0a0aff93fd247d882cb37852
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.reviewer: ''
+manager: craigg
+ms.date: 09/14/2018
+ms.openlocfilehash: dfff51d7541ffdc2d279b238a6d993d5e29515f0
+ms.sourcegitcommit: 51a1476c85ca518a6d8b4cc35aed7a76b33e130f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47160702"
 ---
 # <a name="resolving-transact-sql-differences-during-migration-to-sql-database"></a>解決移轉至 SQL Database 期間的 Transact-SQL 差異   
 [將您的資料庫從 SQL Server 移轉](sql-database-cloud-migrate.md)至 Azure SQL Server 時，您可能會發現您的資料庫必須先進行一些再造，才能移轉 SQL Server。 本文章提供一些指引，以協助您執行此再造作業，以及了解為何必須執行再造的基礎原因。 若要偵測不相容性，請使用 [Data Migration Assistant (DMA)](https://www.microsoft.com/download/details.aspx?id=53595)。
@@ -48,7 +52,7 @@ Microsoft SQL Server 和 Azure SQL Database 都支援應用程式使用的大部
 - 高可用性：與透過 Microsoft Azure 帳戶管理的高可用性相關的語法。 這包括備份、還原、永遠開啟、資料庫鏡像、記錄傳送、修復模式的語法。
 - 記錄讀取器：依賴 SQL Database 上不適用之記錄讀取器的語法：發送複寫、異動資料擷取。 SQL Database 可以是推送複寫文章的訂閱者。
 - 函式：`fn_get_sql`、`fn_virtualfilestats`、`fn_virtualservernodes`
-- 硬體：與硬體相關伺服器設定相關的語法：例如記憶體、背景工作執行緒、CPU 親和性、追蹤旗標。 改用服務層級。
+- 硬體：與硬體相關伺服器設定相關的語法：例如記憶體、背景工作執行緒、CPU 親和性、追蹤旗標。 改為使用服務層和計算大小。
 - `KILL STATS JOB`
 - `OPENQUERY`、`OPENROWSET`、`OPENDATASOURCE` 和四部分的名稱
 - .NET Framework：與 SQL Server 整合的 CLR

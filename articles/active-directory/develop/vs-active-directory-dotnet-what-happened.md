@@ -1,25 +1,23 @@
 ---
-title: 連線到 Azure AD 時對 MVC 專案所做的變更 | Microsoft Docs
+title: 連線至 Azure AD 時對 MVC 專案所做的變更
 description: 說明您使用 Visual Studio 已連線服務連線至 Azure AD 時，MVC 專案會有何狀況
 services: active-directory
-documentationcenter: na
 author: ghogen
 manager: douge
-editor: ''
 ms.assetid: 8b24adde-547e-4ffe-824a-2029ba210216
-ms.service: active-directory
-ms.workload: web
-ms.tgt_pltfrm: vs-what-happened
-ms.devlang: na
-ms.topic: article
+ms.prod: visual-studio-dev15
+ms.technology: vs-azure
+ms.workload: azure-vs
+ms.topic: conceptual
 ms.date: 03/12/2018
 ms.author: ghogen
-ms.custom: aaddev
-ms.openlocfilehash: 1925a32ce5745673c08af3f9cfe63090d4adfa23
-ms.sourcegitcommit: 34e0b4a7427f9d2a74164a18c3063c8be967b194
+ms.custom: aaddev, vs-azure
+ms.openlocfilehash: f5ce147e61566ba75532103b4f17460e8029da12
+ms.sourcegitcommit: 30c7f9994cf6fcdfb580616ea8d6d251364c0cd1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/30/2018
+ms.lasthandoff: 08/18/2018
+ms.locfileid: "42144242"
 ---
 # <a name="what-happened-to-my-mvc-project-visual-studio-azure-active-directory-connected-service"></a>我的 MVC 專案 (Visual Studio Azure Active Directory 已連線服務) 發生什麼事？
 
@@ -166,5 +164,5 @@ ms.lasthandoff: 03/30/2018
 
 ## <a name="next-steps"></a>後續步驟
 
-- [Azure Active Directory 的驗證案例](active-directory-authentication-scenarios.md)
-- [將「使用 Microsoft 登入」新增至 ASP.NET Web 應用程式](guidedsetups/active-directory-aspnetwebapp-v1.md)
+- [Azure Active Directory 的驗證案例](authentication-scenarios.md)
+- [將「使用 Microsoft 登入」新增至 ASP.NET Web 應用程式](quickstart-v1-aspnet-webapp.md)

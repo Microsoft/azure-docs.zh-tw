@@ -1,12 +1,12 @@
 ---
-title: "StorSimple 8000 系列硬體元件更換 | Microsoft Docs"
-description: "說明如何安全地更換 PCM、電池、控制器模組、EBOD 控制器、磁碟機，以及 StorSimple 裝置底座。"
+title: StorSimple 8000 系列硬體元件更換 | Microsoft Docs
+description: 說明如何安全地更換 PCM、電池、控制器模組、EBOD 控制器、磁碟機，以及 StorSimple 裝置底座。
 services: storsimple
-documentationcenter: 
+documentationcenter: ''
 author: alkohli
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: NA
 ms.topic: article
@@ -14,12 +14,13 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 06/02/2017
 ms.author: alkohli
-ms.custom: 
+ms.custom: ''
 ms.openlocfilehash: 6de50c5031db59176bdf17ecc69b934559220f6a
 ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23108446"
 ---
 # <a name="replace-a-hardware-component-on-your-storsimple-8000-series-device"></a>更換 StorSimple 8000 系列裝置上的硬體元件
 

@@ -1,6 +1,6 @@
 ---
-title: "Microsoft 威脅模型化工具 - Azure | Microsoft Docs"
-description: "深入了解威脅模型化工具中可用的所有功能"
+title: Microsoft 威脅模型化工具 - Azure | Microsoft Docs
+description: 深入了解威脅模型化工具中可用的所有功能
 services: security
 documentationcenter: na
 author: RodSan
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 68aec76e471d677fd9a6333dc60ed098d1072cfc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 12/18/2017
+ms.locfileid: "26754740"
 ---
 # <a name="threat-modeling-tool-feature-overview"></a>威脅模型化工具功能概觀
 

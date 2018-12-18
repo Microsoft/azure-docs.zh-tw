@@ -2,24 +2,26 @@
 title: 資料科學 Team 專案的平台和工具 - Azure  | Microsoft Docs
 description: 逐項列出及討論可以讓企業對 Team 資料科學程序進行標準化的資料和分析資源。
 documentationcenter: ''
-author: bradsev
+author: deguhath
 manager: cgronlun
 editor: cgronlun
 ms.assetid: ''
 ms.service: machine-learning
+ms.component: team-data-science-process
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 09/04/2017
-ms.author: bradsev
-ms.openlocfilehash: 404e3dd106edf82f4f22e4c6a17987bd0bc51f65
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.author: deguhath
+ms.openlocfilehash: 0c5cfaad096b5702f321eead1f3da0d9225f4b53
+ms.sourcegitcommit: f3bd5c17a3a189f144008faf1acb9fabc5bc9ab7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 09/10/2018
+ms.locfileid: "44302855"
 ---
-# <a name="platforms-and-tools-for-data-science-team-projects"></a>資料科學 Team 專案的平台和工具
+# <a name="platforms-and-tools-for-data-science-projects"></a>資料科學專案的平台和工具
 
 Microsoft 提供雲端或內部部署平台的完整範圍資料和分析服務與資源。 它們可以部署以有效率且可調整地執行資料科學專案。 [Team 資料科學程序](overview.md) (TDSP) 中提供小組以可追蹤、版本控制及共同作業的方式實作資料科學專案的指引。  如需人員角色的大綱，以及對此程序進行標準化之資料科學小組所處理相關聯工作的大綱，請參閱 [Team 資料科學程序角色和工作](roles-tasks.md)。
 
@@ -100,9 +102,9 @@ Azure 檔案儲存體是使用標準伺服器訊息區塊 (SMB) 通訊協定，�
 
 R Services (資料庫內) 提供用於開發和部署智慧型應用程式的平台，可以發掘新的見解。 您可以使用豐富且功能強大的 R 語言 (包括 R 社群提供的許多套件) 來建立模型，並為 SQL Server 資料產生預測。 因為 R Services (資料庫內) 會整合 R 語言與 SQL Server，所以分析會貼近資料，這樣可以排除與移動資料相關聯的成本和安全性風險。
 
-R Services (資料庫內) 支援開放原始碼 R 語言與一組完整的 SQL Server 工具和技術。 它們提供更優異的效能、安全性、可靠性及管理能力。 您可以使用方便且熟悉的工具來部署 R 解決方案。 生產應用程式可以使用 Transact-SQL 呼叫 R 執行階段，並且擷取預測和視覺效果。 您也可以使用 ScaleR 程式庫來改善 R 解決方案的規模和效能。 如需詳細資訊，請參閱 [SQL Server R Services](https://msdn.microsoft.com/library/mt604845.aspx)
+R Services (資料庫內) 支援開放原始碼 R 語言與一組完整的 SQL Server 工具和技術。 它們提供更優異的效能、安全性、可靠性及管理能力。 您可以使用方便且熟悉的工具來部署 R 解決方案。 生產應用程式可以使用 Transact-SQL 呼叫 R 執行階段，並且擷取預測和視覺效果。 您也可以使用 ScaleR 程式庫來改善 R 解決方案的規模和效能。 如需詳細資訊，請參閱 [SQL Server R Services](https://docs.microsoft.com/sql/advanced-analytics/r/sql-server-r-services)。
 
-Microsoft 的 TDSP 小組已發佈兩個端對端逐步解說，示範如何在 SQL Server 2016 R Services 中建置資料科學解決方案：一個適用於 R 程式設計人員，另一個適用於 SQL 開發人員。 若是 **R 程式設計人員**，請參閱[資料科學端對端逐步解說](https://msdn.microsoft.com/library/mt612857.aspx)。 若是 **SQL 開發人員**，請參閱[適用於 SQL 開發人員的資料庫內進階分析 (教學課程)](https://msdn.microsoft.com/library/mt683480.aspx)。
+Microsoft 的 TDSP 小組已發佈兩個端對端逐步解說，示範如何在 SQL Server 2016 R Services 中建置資料科學解決方案：一個適用於 R 程式設計人員，另一個適用於 SQL 開發人員。 若是 **R 程式設計人員**，請參閱[資料科學端對端逐步解說](https://docs.microsoft.com/sql/advanced-analytics/tutorials/walkthrough-data-science-end-to-end-walkthrough)。 若是 **SQL 開發人員**，請參閱[適用於 SQL 開發人員的資料庫內進階分析 (教學課程)](https://docs.microsoft.com/sql/advanced-analytics/tutorials/sqldev-in-database-r-for-sql-developers)。
 
 
 ## <a name="appendix"></a>附錄：用來設定資料科學專案的工具
@@ -124,7 +126,7 @@ Microsoft 的 TDSP 小組已發佈兩個端對端逐步解說，示範如何在 
 
 ### <a name="generate-public-ssh-key-on-linux-centos-machines"></a>產生 Linux (CentOS) 機器的公開 SSH 金鑰
 
-如果您是使用 Linux (CentOS) 機器來執行 git 命令，您必須將機器的 SSH 金鑰新增至 VSTS 伺服器，讓此機器能夠被 VSTS 伺服器辨識。 首先，您必須產生公開 SSH 金鑰，並將金鑰新增至 VSTS 安全性設定分頁中的 SSH 公開金鑰。 
+如果您使用 Linux (CentOS) 機器來執行 git 命令，您必須將機器的公用 SSH 金鑰新增至 Azure DevOps Services，讓 Azure DevOps Services 能夠辨識此機器。 首先，您必須產生公開 SSH 金鑰，並將金鑰新增至 Azure DevOps Services 安全性設定頁面中的 SSH 公開金鑰。 
 
 - 若要產生 SSH 金鑰，請執行下列兩個命令： 
 
@@ -134,7 +136,7 @@ Microsoft 的 TDSP 小組已發佈兩個端對端逐步解說，示範如何在 
 ![](./media/platforms-and-tools/resources-1-generate_ssh.png)
 
 - 複製整個 ssh 金鑰，包括 ssh-rsa。 
-- 登入 VSTS 伺服器。 
+- 登入您的 Azure DevOps Services。 
 - 在分頁右上角，按一下 [<您的名稱\>]，然後按一下 [安全性]。 
     
     ![](./media/platforms-and-tools/resources-2-user-setting.png)

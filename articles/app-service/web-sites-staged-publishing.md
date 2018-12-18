@@ -15,11 +15,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/16/2016
 ms.author: cephalin
-ms.openlocfilehash: a262ba335256878b03a9a2cce6f7ba6a3dae715c
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: ecd58779262f6580287e6c72d3aa2aecf237a562
+ms.sourcegitcommit: 776b450b73db66469cb63130c6cf9696f9152b6a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "45983094"
 ---
 # <a name="set-up-staging-environments-in-azure-app-service"></a>在 Azure App Service 中設定預備環境
 <a name="Overview"></a>
@@ -30,11 +31,7 @@ ms.lasthandoff: 03/16/2018
 * 先將應用程式部署至某個位置，然後再將它交換到生產位置，可確保該位置的所有執行個體在交換到生產位置之前都已準備就緒。 這麼做可以排除部署應用程式時的停機情況。 交換作業期間所有的流量都能順暢地重新導向，而且不會捨棄任何要求封包。 不需要預先交換驗證時，這整個工作流程可藉由設定 [自動交換](#Auto-Swap) 來自動化。
 * 交換之後，先前具有預備應用程式的位置，現在已經有之前的生產應用程式。 若交換到生產位置的變更不是您需要的變更，您可以立即執行相同的交換，以取回「上一個已知良好的網站」。
 
-每個 App Service 方案層所支援的部署位置個數都不一樣。 若要找出應用程式層所支援的位置個數，請參閱 [App Service 定價](https://azure.microsoft.com/pricing/details/app-service/)。
-
-* 當您的應用程式擁有多個位置時，就無法變更層級。
-* 非生產的位置無法使用調整規模。
-* 非生產位置不支援連結的資源管理。 只有在 [Azure 入口網站](http://go.microsoft.com/fwlink/?LinkId=529715)中，您才能藉由暫時將非生產位置移到其他 App Service 方案層，來避免這種對生產位置的潛在影響。 請注意，非生產位置必須先再次與生產位置共用相同層級，您才能交換這兩個位置。
+每個 App Service 方案層所支援的部署位置個數都不一樣。 若要找出應用程式層所支援的位置個數，請參閱 [App Service 限制](https://docs.microsoft.com/azure/azure-subscription-service-limits#app-service-limits)。 若要將您的應用程式調整到不同層，目標層必須支援您應用程式已經使用的位置數。 例如，如果您的應用程式有 5 個以上的位置，您無法將它相應縮小為**標準**層，因為**標準**層只支援 5 部署位置。
 
 <a name="Add"></a>
 
@@ -54,7 +51,7 @@ ms.lasthandoff: 03/16/2018
    
     ![組態來源][ConfigurationSource1]
    
-    第一次新增位置時，您只會有兩個選項：從生產環境的預設位置複製設定，或者完全不複製。
+    第一次新增位置時，您只有兩個選項：從生產環境的預設位置複製設定，或者完全不複製。
     建立數個位置後，就可以從生產位置以外的位置複製組態：
    
     ![組態來源][MultipleConfigurationSources]
@@ -67,8 +64,8 @@ ms.lasthandoff: 03/16/2018
 
 <a name="AboutConfiguration"></a>
 
-## <a name="configuration-for-deployment-slots"></a>部署位置組態
-當您複製其他部署位置的組態時，可以編輯複製的組態。 此外，某些組態項目在交換時會遵循內容 (非位置特定)，而其他組態項目將會在交換之後保留於同一個位置中 (位置特定)。 以下清單顯示當您交換位置時會變更的組態。
+## <a name="which-settings-are-swapped"></a>哪些設定已交換？
+當您複製其他部署位置的組態時，可以編輯複製的組態。 此外，某些組態項目在交換時會遵循內容 (非位置特定)，而其他組態項目將會在交換之後保留於同一個位置中 (位置特定)。 以下清單顯示當您交換位置時會變更的設定。
 
 **交換的設定**：
 
@@ -87,7 +84,7 @@ ms.lasthandoff: 03/16/2018
 * 擴充設定
 * WebJobs 排程器
 
-若要將應用程式設定或連接字串設定為停留在某一個位置 (未交換)，可存取特定位置的 [應用程式設定] 刀鋒視窗，然後針對應停留在該位置的設定項目選取 [位置設定] 方塊。 請注意，將組態項目標記為位置特定的，會在將該項目建立為無法跨所有與該應用程式相關聯的部署位置進行交換時產生影響。
+若要將應用程式設定或連接字串設定為停留在某一個位置 (未交換)，可存取特定位置的 [應用程式設定] 刀鋒視窗，然後針對應停留在該位置的設定項目選取 [位置設定] 方塊。 將組態項目標記為位置特定的，會在將該項目建立為無法跨所有與該應用程式相關聯的部署位置進行交換時產生影響。
 
 ![位置設定][SlotSettings]
 
@@ -129,7 +126,7 @@ ms.lasthandoff: 03/16/2018
 - 當您完成交換時︰將 pre-warmed-up 來源位置移到目的地位置。 目的地位置會如手動交換移到來源位置。
 - 當您取消交換時︰將來源位置的組態項目重新套用至來源位置。
 
-您可以完全預覽應用程式與目的地位置組態的行為模式。 當您完成驗證時，會在個別步驟中完成交換。 此步驟有額外好處，來源位置已做好使用所需的設定，且用戶端不會發生任何停機時間。  
+您可以完全預覽應用程式與目的地位置組態的行為模式。 當您完成驗證時，會在個別步驟中完成交換。 此步驟有額外好處，來源位置已做好使用所需的設定，且用戶端不會遇到任何停機狀況。  
 
 Azure PowerShell Cmdlet 可供多階段交換的範例，包含在部署位置區段的 Azure PowerShell Cmdlet 內。
 
@@ -146,14 +143,14 @@ Azure PowerShell Cmdlet 可供多階段交換的範例，包含在部署位置�
 > [!NOTE]
 > Linux 上的 Web 應用程式不支援自動交換。
 
-為位置設定自動交換很容易。 請依照下列步驟執行：
+為位置設定自動交換很容易。 請遵循下列步驟：
 
 1. 在**部署位置**中，選取非生產位置，然後在該位置的資源刀鋒視窗中選擇 [應用程式設定]。  
    
     ![][Autoswap1]
 2. 針對 [自動交換] 選取 [開啟]、在 [自動交換位置] 中選取所需的目標位置，然後按一下命令列中的 [儲存]。 確定此位置的組態設定完全適用於目標位置的組態設定。
    
-    當操作完成時，[通知] 索引標籤會有綠色的「成功」字樣閃爍顯示。
+    當作業完成時，[通知] 索引標籤會有綠色的「成功」字樣閃爍顯示。
    
     ![][Autoswap2]
    
@@ -161,11 +158,11 @@ Azure PowerShell Cmdlet 可供多階段交換的範例，包含在部署位置�
    > 若要針對您的應用程式測試自動交換，可在 [自動交換位置] 中選取非生產的目標位置，以便先熟悉這個功能。  
    > 
    > 
-3. 執行程式碼推送至該部署位置。 自動交換不久之後就會發生，而更新將反映於目標位置的 URL 上。
+3. 執行程式碼推送至該部署位置。 自動交換不久之後就會發生，而更新會反映於目標位置的 URL。
 
 <a name="Rollback"></a>
 
-## <a name="to-rollback-a-production-app-after-swap"></a>交換之後回復生產應用程式
+## <a name="roll-back-a-production-app-after-swap"></a>交換之後回復生產應用程式
 若交換位置後，在生產位置中識別出錯誤，可以立即交換相同的兩個位置，將位置還原成交換前的狀態。
 
 <a name="Warm-up"></a>
@@ -173,14 +170,26 @@ Azure PowerShell Cmdlet 可供多階段交換的範例，包含在部署位置�
 ## <a name="custom-warm-up-before-swap"></a>交換前的自訂準備
 某些應用程式可能需要自訂的準備動作。 web.config 中的 `applicationInitialization` 組態項目可讓您指定收到要求之前要執行的自訂初始化動作。 必須等候此自訂準備完成，才會進行交換作業。 以下是範例 web.config 片段。
 
-    <applicationInitialization>
-        <add initializationPage="/" hostName="[app hostname]" />
-        <add initializationPage="/Home/About" hostname="[app hostname]" />
-    </applicationInitialization>
+    <system.webServer>
+        <applicationInitialization>
+            <add initializationPage="/" hostName="[app hostname]" />
+            <add initializationPage="/Home/About" hostname="[app hostname]" />
+        </applicationInitialization>
+    </system.webServer>
+
+## <a name="monitor-swap-progress"></a>監視交換進度
+
+有時候，交換作業需要一些時間才能完成，例如當交換的應用程式有很長的熱身時間時。 您可以在 [Azure 入口網站](https://portal.azure.com)的[活動記錄](../monitoring-and-diagnostics/monitoring-overview-activity-logs.md)中，取得交換作業的詳細資訊。
+
+在入口網站的應用程式頁面中，選取左導覽列中 [活動記錄]。
+
+交換作業在記錄查詢中會顯示為 `Slotsswap`。 您可以展開它，然後選取其中一個子作業或錯誤，以查看詳細資料。
+
+![位置交換的活動記錄](media/web-sites-staged-publishing/activity-log.png)
 
 <a name="Delete"></a>
 
-## <a name="to-delete-a-deployment-slot"></a>刪除部署位置
+## <a name="delete-a-deployment-slot"></a>刪除部署位置
 在部署位置的刀鋒視窗中，開啟部署位置的刀鋒視窗，按一下 概觀 \(預設頁面)，然後按一下命令列中的 [刪除]。  
 
 ![刪除部署位置][DeleteStagingSiteButton]
@@ -189,41 +198,47 @@ Azure PowerShell Cmdlet 可供多階段交換的範例，包含在部署位置�
 
 <a name="PowerShell"></a>
 
-## <a name="azure-powershell-cmdlets-for-deployment-slots"></a>適用於部署位置的 Azure PowerShell Cmdlet
+## <a name="automate-with-azure-powershell"></a>透過 Azure PowerShell 自動執行
+
 Azure PowerShell 模組提供透過 Windows PowerShell 來管理 Azure 的 Cmdlet，包括支援管理 Azure App Service 中的部署位置。
 
 * 如需安裝與設定 Azure PowerShell，以及使用您的 Azure 訂用帳戶驗證 Azure PowerShell 的詳細資訊，請參閱 [如何安裝和設定 Microsoft Azure PowerShell](/powershell/azure/overview)(英文)。  
 
 - - -
 ### <a name="create-a-web-app"></a>建立 Web 應用程式
-```
+```PowerShell
 New-AzureRmWebApp -ResourceGroupName [resource group name] -Name [app name] -Location [location] -AppServicePlan [app service plan name]
 ```
 
 - - -
 ### <a name="create-a-deployment-slot"></a>建立部署位置
-```
+```PowerShell
 New-AzureRmWebAppSlot -ResourceGroupName [resource group name] -Name [app name] -Slot [deployment slot name] -AppServicePlan [app service plan name]
 ```
 
 - - -
 ### <a name="initiate-a-swap-with-preview-multi-phase-swap-and-apply-destination-slot-configuration-to-source-slot"></a>起始使用預覽交換 (多階段交換) 並將目的地位置組態套用至來源位置
-```
+```PowerShell
 $ParametersObject = @{targetSlot  = "[slot name – e.g. “production”]"}
 Invoke-AzureRmResourceAction -ResourceGroupName [resource group name] -ResourceType Microsoft.Web/sites/slots -ResourceName [app name]/[slot name] -Action applySlotConfig -Parameters $ParametersObject -ApiVersion 2015-07-01
 ```
 
 - - -
 ### <a name="cancel-a-pending-swap-swap-with-review-and-restore-source-slot-configuration"></a>取消擱置中的交換 (使用預覽交換)，並還原來源位置組態
-```
+```PowerShell
 Invoke-AzureRmResourceAction -ResourceGroupName [resource group name] -ResourceType Microsoft.Web/sites/slots -ResourceName [app name]/[slot name] -Action resetSlotConfig -ApiVersion 2015-07-01
 ```
 
 - - -
 ### <a name="swap-deployment-slots"></a>交換部署位置
-```
+```PowerShell
 $ParametersObject = @{targetSlot  = "[slot name – e.g. “production”]"}
 Invoke-AzureRmResourceAction -ResourceGroupName [resource group name] -ResourceType Microsoft.Web/sites/slots -ResourceName [app name]/[slot name] -Action slotsswap -Parameters $ParametersObject -ApiVersion 2015-07-01
+```
+
+### <a name="monitor-swap-events-in-the-activity-log"></a>監視活動記錄中的交換事件
+```PowerShell
+Get-AzureRmLog -ResourceGroup [resource group name] -StartTime 2018-03-07 -Caller SlotSwapJobProcessor  
 ```
 
 - - -
@@ -237,52 +252,13 @@ Remove-AzureRmResource -ResourceGroupName [resource group name] -ResourceType Mi
 
 <a name="CLI"></a>
 
-## <a name="azure-command-line-interface-azure-cli-commands-for-deployment-slots"></a>適用於部署位置的 Azure 命令列介面 (Azure CLI) 命令
-Azure CLI 提供跨平台命令供您處理 Azure，包括支援管理 App Service 部署位置。
+## <a name="automate-with-azure-cli"></a>透過 Azure CLI 自動執行
 
-* 如需安裝與設定 Azure CLI 的相關說明，包括如何將 Azure CLI 連線至 Azure 訂用帳戶的資訊，請參閱 [安裝與設定 Azure CLI](../cli-install-nodejs.md)。
-* 若要在 Azure CLI 中列出 Azure App Service 可用的命令，請呼叫 `azure site -h`。
-
-> [!NOTE] 
-> 針對適用於部署位置的 [Azure CLI 2.0](https://github.com/Azure/azure-cli) 命令，請參閱 [az webapp deployment slot](/cli/azure/webapp/deployment/slot)。
-
-- - -
-### <a name="azure-site-list"></a>azure site list
-如需目前訂用帳戶中應用程式的相關資訊，請呼叫 **azure site list**，如下列範例所示。
-
-`azure site list webappslotstest`
-
-- - -
-### <a name="azure-site-create"></a>azure site create
-若要建立部署位置，請呼叫 **azure site create** 並指定現有應用程式的名稱與要建立之位置的名稱，如下列範例所示。
-
-`azure site create webappslotstest --slot staging`
-
-若要對新位置啟用來源控制，請使用 **--git** 選項，如以下範例所示。
-
-`azure site create --git webappslotstest --slot staging`
-
-- - -
-### <a name="azure-site-swap"></a>azure site swap
-若要將已更新的部署位置轉變成生產應用程式，請使用 **azure site swap** 命令來執行交換作業，如下列範例所示。 生產應用程式不會發生任何停機事件，也不會進行冷啟動。
-
-`azure site swap webappslotstest`
-
-- - -
-### <a name="azure-site-delete"></a>azure site delete
-若要刪除不再需要的部署位置，請使用 **azure site delete** 命令，如以下範例所示。
-
-`azure site delete webappslotstest --slot staging`
-
-- - -
-> [!NOTE]
-> 請看看作用中的 Web 應用程式。 [試用 App Service](https://azure.microsoft.com/try/app-service/) 並建立短期的入門應用程式 — 不需信用卡，不需任何承諾。
-> 
-> 
+如需適用於部署位置的 [Azure CLI](https://github.com/Azure/azure-cli) 命令，請參閱 [az webapp deployment slot](/cli/azure/webapp/deployment/slot)。
 
 ## <a name="next-steps"></a>後續步驟
-[Azure App Service Web 應用程式 - 封鎖對非生產環境部署位置的 Web 存取 (英文)](http://ruslany.net/2014/04/azure-web-sites-block-web-access-to-non-production-deployment-slots/)
-[Linux 上的 App Service 簡介](../app-service/containers/app-service-linux-intro.md)
+[Azure App Service Web 應用程式 - 封鎖對非生產部署位置的 Web 存取](http://ruslany.net/2014/04/azure-web-sites-block-web-access-to-non-production-deployment-slots/)  
+[Linux 上的 App Service 簡介](../app-service/containers/app-service-linux-intro.md)  
 [Microsoft Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)
 
 <!-- IMAGES -->

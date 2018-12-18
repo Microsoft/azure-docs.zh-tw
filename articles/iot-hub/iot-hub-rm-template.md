@@ -1,24 +1,20 @@
 ---
-title: "使用範本建立 Azure IoT 中樞 (.NET) | Microsoft Docs"
-description: "如何在 C# 程式中使用 Azure Resource Manager 範本建立 IoT 中樞。"
-services: iot-hub
-documentationcenter: .net
+title: 使用範本建立 Azure IoT 中樞 (.NET) | Microsoft Docs
+description: 如何在 C# 程式中使用 Azure Resource Manager 範本建立 IoT 中樞。
 author: dominicbetts
 manager: timlt
-editor: 
-ms.assetid: a447b40c-c728-487e-875d-db554db5adc3
 ms.service: iot-hub
-ms.devlang: dotnet
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: na
+services: iot-hub
+ms.devlang: csharp
+ms.topic: conceptual
 ms.date: 08/08/2017
 ms.author: dobett
-ms.openlocfilehash: 3f84ab26c43f33827479faed46db1de246920ae5
-ms.sourcegitcommit: 933af6219266cc685d0c9009f533ca1be03aa5e9
+ms.openlocfilehash: 1a64749b7218fccfdad6b6eeebfac39a44aa0522
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/18/2017
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38687766"
 ---
 # <a name="create-an-iot-hub-using-azure-resource-manager-template-net"></a>使用 Azure Resource Manager 範本建立 IoT 中樞 (.NET)
 

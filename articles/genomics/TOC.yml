@@ -23,8 +23,14 @@
   items:
     - name: 常見問題
       href: frequently-asked-questions-genomics.md
+    - name: 疑難排解指南
+      href: troubleshooting-guide-genomics.md
+    - name: 提出支援要求
+      href: file-support-ticket-genomics.md
     - name: 版本發行歷程記錄
       href: version-release-history-genomics.md
+    - name: 業務持續性
+      href: business-continuity-genomics.md
     - name: Azure 藍圖
       href: 'https://azure.microsoft.com/roadmap/?category=cognitive-services'
     - name: 價格

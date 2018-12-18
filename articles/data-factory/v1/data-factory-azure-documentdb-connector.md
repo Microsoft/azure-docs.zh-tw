@@ -10,23 +10,24 @@ ms.service: multiple
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 01/22/2018
 ms.author: jingwang
 robots: noindex
-ms.openlocfilehash: 996fdd9934d79f1640e58c7853564ac05ebb90bb
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: f3ebd704129aabecffdaa2589b8b086803a2d092
+ms.sourcegitcommit: 0c490934b5596204d175be89af6b45aafc7ff730
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 06/27/2018
+ms.locfileid: "37046593"
 ---
 # <a name="move-data-to-and-from-azure-cosmos-db-using-azure-data-factory"></a>使用 Azure Data Factory 從 Azure Cosmos DB 來回移動資料
 > [!div class="op_single_selector" title1="Select the version of Data Factory service you are using:"]
-> * [第 1 版 - 正式推出](data-factory-azure-documentdb-connector.md)
-> * [第 2 版 - 預覽](../connector-azure-cosmos-db.md)
+> * [第 1 版](data-factory-azure-documentdb-connector.md)
+> * [第 2 版 (目前的版本)](../connector-azure-cosmos-db.md)
 
 > [!NOTE]
-> 本文適用於正式推出 (GA) 的第 1 版 Data Factory。 如果您使用處於預覽狀態的 Data Factory 第 2 版，請參閱[第 2 版中的 Azure Cosmos DB 連接器](../connector-azure-cosmos-db.md)。
+> 本文適用於 Data Factory 的第 1 版。 如果您使用目前版本的 Data Factory 服務，請參閱[第 2 版中的 Azure Cosmos DB 連接器](../connector-azure-cosmos-db.md)。
 
 本文說明如何使用 Azure Data Factory 中的「複製活動」，將資料移進/移出 Azure Cosmos DB (SQL API)。 本文是根據[資料移動活動](data-factory-data-movement-activities.md)一文，該文提供使用複製活動來移動資料的一般概觀。 
 
@@ -485,13 +486,13 @@ Azure Cosmos DB 是 JSON 文件的 NoSQL 存放區 (允許巢狀結構)。 Azure
 1. **問：** 複製活動支援現有記錄的更新嗎？
 
     **答：** 否。
-2. **問：**重試複製 Azure Cosmos DB 時，會如何處理已經複製的記錄？
+2. **問：** 重試複製 Azure Cosmos DB 時，會如何處理已經複製的記錄？
 
     **回：** 如果記錄有 [識別碼] 欄位，而複製作業嘗試插入具有相同識別碼的記錄，則複製作業會擲回錯誤。  
-3. **問：**Data Factory 支援[範圍或雜湊式資料分割](../../cosmos-db/sql-api-partition-data.md)嗎？
+3. **問：** Data Factory 支援[範圍或雜湊式資料分割](../../cosmos-db/sql-api-partition-data.md)嗎？
 
     **答：** 否。
-4. **問：**我可以為資料表指定多個 Azure Cosmos DB 集合嗎？
+4. **問：** 我可以為資料表指定多個 Azure Cosmos DB 集合嗎？
 
     **答：** 否。 目前只能指定一個集合。
 

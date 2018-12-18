@@ -1,8 +1,8 @@
 ---
-title: "Azure Data Lake Store MapReduce 效能微調方針 | Microsoft Docs"
-description: "Azure Data Lake Store MapReduce 效能微調方針"
+title: Azure Data Lake Storage Gen1 MapReduce 效能微調方針 | Microsoft Docs
+description: Azure Data Lake Storage Gen1 MapReduce 效能微調方針
 services: data-lake-store
-documentationcenter: 
+documentationcenter: ''
 author: stewu
 manager: amitkul
 editor: stewu
@@ -10,30 +10,28 @@ ms.assetid: ebde7b9f-2e51-4d43-b7ab-566417221335
 ms.service: data-lake-store
 ms.devlang: na
 ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
 ms.date: 12/19/2016
 ms.author: stewu
-ms.openlocfilehash: 522e03769a8f09acd88d92d72c4658407b86bd0b
-ms.sourcegitcommit: b07d06ea51a20e32fdc61980667e801cb5db7333
+ms.openlocfilehash: b661499786057a3083f79684dfd12c85266b7b5c
+ms.sourcegitcommit: f10653b10c2ad745f446b54a31664b7d9f9253fe
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2017
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46128786"
 ---
-# <a name="performance-tuning-guidance-for-mapreduce-on-hdinsight-and-azure-data-lake-store"></a>HDInsight 和 Azure Data Lake Store 上的 MapReduce 效能微調方針
+# <a name="performance-tuning-guidance-for-mapreduce-on-hdinsight-and-azure-data-lake-storage-gen1"></a>HDInsight 和 Azure Data Lake Storage Gen1 上的 MapReduce 效能微調方針
 
-
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 * **Azure 訂用帳戶**。 請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
-* **Azure 資料湖儲存區帳戶**。 如需有關如何建立帳戶的詳細指示，請參閱 [開始使用 Azure Data Lake Store](data-lake-store-get-started-portal.md)
-* **Azure HDInsight 叢集** 。 請參閱 [建立具有 Data Lake Store 的 HDInsight 叢集](data-lake-store-hdinsight-hadoop-use-portal.md)。 請確實為叢集啟用遠端桌面。
-* **在 HDInsight 上使用 MapReduce**。  如需詳細資訊，請參閱[在 HDInsight 上的 Hadoop 中使用 MapReduce](https://docs.microsoft.com/azure/hdinsight/hdinsight-use-mapreduce)  
-* **ADLS 的效能微調指導方針**。  如需一般的效能概念，請參閱 [Data Lake Store 效能微調指導方針](https://docs.microsoft.com/azure/data-lake-store/data-lake-store-performance-tuning-guidance)  
+* **Azure Data Lake Storage Gen1 帳戶**。 如需建立帳戶的指示，請參閱[開始使用 Azure Data Lake Storage Gen1](data-lake-store-get-started-portal.md)
+* 可存取 Data Lake Storage Gen1 帳戶的 **Azure HDInsight 叢集**。 請參閱[建立具有 Data Lake Storage Gen1 的 HDInsight 叢集](data-lake-store-hdinsight-hadoop-use-portal.md)。 請確實為叢集啟用遠端桌面。
+* **在 HDInsight 上使用 MapReduce**。  如需詳細資訊，請參閱[在 HDInsight 上的 Hadoop 中使用 MapReduce](https://docs.microsoft.com/azure/hdinsight/hdinsight-use-mapreduce)
+* **Data Lake Storage Gen1 的效能微調方針**。  如需一般的效能概念，請參閱 [Data Lake Storage Gen1 效能微調指導方針](https://docs.microsoft.com/azure/data-lake-store/data-lake-store-performance-tuning-guidance)
 
 ## <a name="parameters"></a>參數
 
-在執行 MapReduce 作業時，以下是可供您設定以在 ADLS 上增加效能的最重要參數︰
+在執行 MapReduce 作業時，您可以設定以下最重要的參數，以在 Data Lake Storage Gen1 上增加效能︰
 
 * **Mapreduce.map.memory.mb** – 要配置給每個對應器的記憶體數量
 * **Mapreduce.job.maps** – 每個作業的對應工作數目
@@ -85,9 +83,9 @@ CPU 排程和 CPU 隔離預設會關閉，因此 YARN 容器的數目會受記�
 
 ## <a name="limitations"></a>限制
 
-**ADLS 節流**
+**Data Lake Storage Gen1 節流**
 
-ADLS 是多租用戶服務，因此會設定帳戶層級的頻寬限制。  如果您達到這些限制，您將會開始看到工作失敗。 透過觀察工作記錄檔中的節流錯誤即可加以識別。  如果您的作業需要更多頻寬，請與我們連絡。   
+Data Lake Storage Gen1 為多租用戶服務，因此會設定帳戶層級的頻寬限制。  如果您達到這些限制，您將會開始看到工作失敗。 透過觀察工作記錄檔中的節流錯誤即可加以識別。  如果您的作業需要更多頻寬，請與我們連絡。   
 
 若要檢查您是否遭到節流，您必須在用戶端啟用偵錯記錄。 做法如下：
 
@@ -99,7 +97,7 @@ ADLS 是多租用戶服務，因此會設定帳戶層級的頻寬限制。  如�
 
 ## <a name="examples-to-run"></a>要執行的範例
 
-為了示範 MapReduce 在 Azure Data Lake Store 中的執行方式，以下提供了一些使用下列設定在叢集上執行的範例程式碼︰
+為示範 MapReduce 在 Data Lake Storage Gen1 中的執行方式，以下提供一些使用下列設定在叢集上執行的範例程式碼︰
 
 * 16 節點 D14v2
 * 執行 HDI 3.6 的 Hadoop 叢集

@@ -3,17 +3,19 @@ title: Azure 自動化概觀
 description: 了解如何使用 Azure 自動化，將基礎結構和應用程式的生命週期自動化。
 services: automation
 ms.service: automation
+ms.component: process-automation
 author: eamonoreilly
 ms.author: eamono
 keywords: azure 自動化, DSC, powershell, Desired State Configuration, 更新管理, 變更追蹤, 清查, Runbook, python, 圖形
 ms.date: 03/15/2018
 ms.custom: mvc
 ms.topic: overview
-ms.openlocfilehash: c44968dbceee2fdd29818a65e14f5b64ffcccade
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: e09a1b1c1a849e9957c2969da2b8e4c1d00347ff
+ms.sourcegitcommit: f3bd5c17a3a189f144008faf1acb9fabc5bc9ab7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/10/2018
+ms.locfileid: "44297685"
 ---
 # <a name="an-introduction-to-azure-automation"></a>Azure 自動化簡介
 
@@ -63,7 +65,7 @@ Azure 自動化旨在讓您可跨混合式雲端環境運作，並適用於 Wind
 
 Azure 自動化可跨基礎結構和應用程式的生命週期進行管理。 將組織傳遞和維護工作負載方式的知識傳送到系統。 以常用語言 (例如 PowerShell)、Desired State Configuration、Python 和圖形化 Runbook 撰寫。 取得已部署資源的完整清查，以了解目標、報告與相容性。 識別可能造成設定不正確的變更，並且改善作業相容性。
 
-* **建置 / 部署資源** - 使用 Runbook 和 Azure Resource Manager 範本，跨混合式環境部署 VM。 整合至諸如 Jenkins 和 Visual Studio Team 服務等開發工具。
+* **建置 / 部署資源** - 使用 Runbook 和 Azure Resource Manager 範本，跨混合式環境部署 VM。 整合至諸如 Jenkins 和 Azure DevOps 等開發工具。
 * **設定 VM** - 使用基礎結構和應用程式的所需設定，評估及設定 Windows 和 Linux 電腦。
 * **監視** - 識別電腦上造成問題的變更，並加以修復或向管理系統呈報。
 * **保護** - 如果產生安全性警示，就隔離 VM。 設定客體需求。

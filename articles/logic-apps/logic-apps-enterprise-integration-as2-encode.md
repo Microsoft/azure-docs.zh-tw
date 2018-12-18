@@ -1,26 +1,23 @@
 ---
-title: "將 AS2 訊息編碼 - Azure Logic Apps | Microsoft Docs"
-description: "如何在 Azure Logic Apps 的企業整合套件中使用 AS2 編碼器"
+title: 將 AS2 訊息編碼 - Azure Logic Apps | Microsoft Docs
+description: 使用 Azure Logic Apps 與 Enterprise Integration Pack 將 AS 訊息編碼
 services: logic-apps
-documentationcenter: .net,nodejs,java
-author: padmavc
-manager: anneta
-editor: 
-ms.assetid: 332fb9e3-576c-4683-bd10-d177a0ebe9a3
 ms.service: logic-apps
-ms.workload: integration
-ms.tgt_pltfrm: na
-ms.devlang: na
+ms.suite: integration
+author: divyaswarnkar
+ms.author: divswa
+ms.reviewer: jonfan, estfan, LADocs
 ms.topic: article
-ms.date: 01/27/2017
-ms.author: LADocs; padmavc
-ms.openlocfilehash: bccc8f81a3a664e090796ae8a3cbb38c890c0479
-ms.sourcegitcommit: be9a42d7b321304d9a33786ed8e2b9b972a5977e
+ms.assetid: 332fb9e3-576c-4683-bd10-d177a0ebe9a3
+ms.date: 08/08/2018
+ms.openlocfilehash: 6bb19199929a004ee5668a3a6e057a69c24dd752
+ms.sourcegitcommit: 2ad510772e28f5eddd15ba265746c368356244ae
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/19/2018
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "43122708"
 ---
-# <a name="encode-as2-messages-for-azure-logic-apps-with-the-enterprise-integration-pack"></a>使用企業整合套件將 Azure Logic Apps 的 AS2 訊息編碼
+# <a name="encode-as2-messages-with-azure-logic-apps-and-enterprise-integration-pack"></a>使用 Azure Logic Apps 與 Enterprise Integration Pack 將 AS2 訊息編碼
 
 若要在傳輸訊息時建立安全性和可靠性，請使用編碼 AS2 訊息連接器。 此連接器可透過訊息處置通知 (MDN) 提供數位簽章、加密和通知，這也可能導致支援不可否認性。
 
@@ -70,6 +67,14 @@ ms.lasthandoff: 01/19/2018
 * 簽署外寄訊息 (若已設定)
 * 加密外寄訊息 (若已設定)
 * 壓縮訊息 (若已設定)
+* 以 MIME 標頭傳輸檔案名稱 (若已設定)
+
+
+  > [!NOTE]
+  > 如果您使用 Azure 金鑰保存庫來管理憑證，請確定您已設定允許**加密**作業的金鑰。
+  > 否則，AS2 編碼會失敗。
+  >
+  > ![金鑰保存庫解密](media/logic-apps-enterprise-integration-as2-encode/keyvault1.png)
 
 ## <a name="try-this-sample"></a>嘗試此範例
 

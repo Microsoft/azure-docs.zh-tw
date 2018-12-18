@@ -1,241 +1,240 @@
+items:
 - name: 概觀
   items:
-    - name: 簡介
-      href: storage-files-introduction.md
-    - name: 選擇 Blob、檔案或資料磁碟
-      href: ../common/storage-decide-blobs-files-disks.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
-    - name: 常見問題集
-      href: storage-files-faq.md
-- name: 開始使用
+  - name: 什麼是 Azure 檔案服務？
+    href: storage-files-introduction.md
+  - name: 選擇 Blob、檔案或資料磁碟
+    href: ../common/storage-decide-blobs-files-disks.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
+- name: 快速入門
   items:
-    - name: 建立儲存體帳戶
-      href: ../common/storage-create-storage-account.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
+  - name: 建立檔案共用 - 入口網站
+    href: storage-how-to-use-files-portal.md
+  - name: 建立檔案共用 - PowerShell
+    href: storage-how-to-use-files-powershell.md
+  - name: 建立檔案共用 - CLI
+    href: storage-how-to-use-files-cli.md
+  - name: 建立檔案共用 - 儲存體總管
+    href: storage-how-to-use-files-storage-explorer.md
+  expanded: true
+- name: 教學課程
+  items:
+  - name: 使用 Azure 檔案同步擴充 Windows 檔案伺服器
+    href: storage-sync-files-extend-servers.md
+- name: 概念
+  items:
+  - name: 規劃
+    items:
+    - name: Azure 檔案
+      href: storage-files-planning.md
+    - name: Azure 檔案同步
+      href: storage-sync-files-planning.md
+  - name: 了解儲存體帳戶
+    href: ../common/storage-account-options.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
+  - name: 資料備援
+    items:
+    - name: 備援概觀
+      href: ../common/storage-redundancy.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
+    - name: 本地備援儲存體
+      href: ../common/storage-redundancy-lrs.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
+    - name: 區域備援儲存體
+      href: ../common/storage-redundancy-zrs.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
+    - name: 異地備援儲存體
+      href: ../common/storage-redundancy-grs.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
+  - name: 擴充和效能目標
+    href: storage-files-scale-targets.md
+  - name: 災害復原指引
+    href: ../common/storage-disaster-recovery-guidance.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
+  - name: 常見問題集
+    href: storage-files-faq.md
+- name: 作法
+  items:
+  - name: 部署
+    items:
+    - name: 部署 Azure 檔案
+      href: storage-files-deployment-guide.md
+    - name: 部署 Azure 檔案同步
+      href: storage-sync-files-deployment-guide.md
+    - name: 檔案同步 Proxy 和防火牆設定
+      href: storage-sync-files-firewall-and-proxy.md
+    - name: Azure 檔案同步處理版本資訊
+      href: storage-files-release-notes.md
+  - name: 管理
+    items:
     - name: 建立檔案共用
       href: storage-how-to-create-file-share.md
-    - name: Windows 上的掛接
+    - name: 搭配使用 Azure 檔案服務與 Windows
       href: storage-how-to-use-files-windows.md
-    - name: Linux 上的掛接
+    - name: 搭配 Linux 使用 Azure 檔案
       href: storage-how-to-use-files-linux.md
-    - name: Mac 上的掛接
+    - name: 搭配使用 Azure 檔案服務與 macOS
       href: storage-how-to-use-files-mac.md
-    - name: 以 Azure 入口網站管理
-      href: storage-how-to-use-files-portal.md
-    - name: 以 PowerShell 管理
-      href: storage-how-to-use-files-powershell.md
-    - name: 以 Azure CLI 管理
-      href: storage-how-to-use-files-cli.md
-    - name: 以儲存體總管管理
-      href: storage-how-to-use-files-storage-explorer.md
-- name: |
-    作法
-  items:
-    - name: 規劃
+    - name: 向 Azure 檔案同步註冊伺服器
+      href: storage-sync-files-server-registration.md
+    - name: 了解檔案共用快照集
+      href: storage-snapshots-files.md
+    - name: 新增 Azure 檔案同步伺服器端點
+      href: storage-sync-files-server-endpoint.md
+    - name: 適用於中國、政府與德國雲端的 PowerShell
+      href: ../common/storage-powershell-independent-clouds.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
+  - name: 傳送資料
+    items:
+    - name: 將資料移入和移出儲存體
+      href: ../common/storage-moving-data.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
+    - name: AzCopy on Windows
+      href: ../common/storage-use-azcopy.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
+    - name: AzCopy on Linux
+      href: ../common/storage-use-azcopy-linux.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
+  - name: 開發
+    items:
+    - name: 管理並行
+      href: ../common/storage-concurrency.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
+    - name: 設定連接字串
+      href: ../common/storage-configure-connection-string.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
+    - name: .NET
+      href: storage-dotnet-how-to-use-files.md
+    - name: Java
+      href: storage-java-how-to-use-file-storage.md
+    - name: C++
+      href: storage-c-plus-plus-how-to-use-files.md
+    - name: Python
+      href: storage-python-how-to-use-file-storage.md
+  - name: 安全
+    items:
+    - name: 安全性指南
+      href: ../common/storage-security-guide.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
+    - name: 設定防火牆和虛擬網路
+      href: ../common/storage-network-security.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
+    - name: 待用資料的加密
+      href: ../common/storage-service-encryption.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
+    - name: 需要安全傳輸
+      href: ../common/storage-require-secure-transfer.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
+    - name: 共用金鑰驗證
+      href: /rest/api/storageservices/Authorization-for-the-Azure-Storage-Services
+    - name: 共用存取簽章 (SAS)
+      href: ../common/storage-dotnet-shared-access-signature-part-1.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
+    - name: 為 Azure 儲存體用戶端啟用安全的 TLS
+      href: ../common/storage-security-tls.md
+    - name: 合規性供應項目
+      href: ../common/storage-compliance-offerings.md
+  - name: 監視及疑難排解
+    items:
+    - name: 針對 Windows 中的 Azure 檔案服務進行疑難排解
+      href: storage-troubleshoot-windows-file-connection-problems.md
+    - name: 針對 Linux 中的 Azure 檔案服務進行疑難排解
+      href: storage-troubleshoot-linux-file-connection-problems.md
+    - name: 針對 Azure 檔案同步進行移難排解
+      href: storage-sync-files-troubleshoot.md
+    - name: 監控、診斷及疑難排解
+      href: ../common/storage-monitoring-diagnosing-troubleshooting.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
+    - name: 計量與記錄
       items:
-        - name: 規劃 Azure 檔案服務部署
-          href: storage-files-planning.md
-        - name: 規劃 Azure 檔案同步部署
-          href: storage-sync-files-planning.md
-        - name: 了解儲存體帳戶
-          href: ../common/storage-account-options.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
-        - name: 了解檔案共用快照集
-          href: storage-snapshots-files.md
-        - name: 資料備援
-          items:
-            - name: 備援概觀
-              href: ../common/storage-redundancy.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
-            - name: 本地備援儲存體
-              href: ../common/storage-redundancy-lrs.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
-            - name: 區域備援儲存體
-              href: ../common/storage-redundancy-zrs.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
-            - name: 異地備援儲存體
-              href: ../common/storage-redundancy-grs.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
-        - name: 擴充和效能目標
-          href: storage-files-scale-targets.md
-        - name: 災害復原指引
-          href: ../common/storage-disaster-recovery-guidance.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
-        - name: Azure 檔案同步處理版本資訊
-          href: storage-files-release-notes.md
-    - name: 部署
-      items:
-        - name: 如何部署 Azure 檔案服務
-          href: storage-files-deployment-guide.md
-        - name: 如何部署 Azure 檔案同步
-          href: storage-sync-files-deployment-guide.md
-        - name: Azure 檔案同步 Proxy 和防火牆設定
-          href: storage-sync-files-firewall-and-proxy.md
-    - name: 管理
-      items:
-        - name: 向 Azure 檔案同步註冊伺服器
-          href: storage-sync-files-server-registration.md
-        - name: 新增 Azure 檔案同步伺服器端點
-          href: storage-sync-files-server-endpoint.md
-        - name: 適用於中國、政府與德國雲端的 PowerShell
-          href: ../common/storage-powershell-independent-clouds.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
-        - name: Azure 自動化
-          href: ../common/storage-manage-with-automation.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
-    - name: 開發
-      items:
-        - name: 管理並行存取
-          href: ../common/storage-concurrency.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
-        - name: .NET
-          href: storage-dotnet-how-to-use-files.md
-        - name: Java
-          href: storage-java-how-to-use-file-storage.md
-        - name: C++
-          href: storage-c-plus-plus-how-to-use-files.md
-        - name: Python
-          href: storage-python-how-to-use-file-storage.md
-        - name: 範例
-          items:
-            - name: .NET
-              href: ../common/storage-samples-dotnet.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
-            - name: Java
-              href: ../common/storage-samples-java.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
-        - name: 設定連接字串
-          href: ../common/storage-configure-connection-string.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
-    - name: 安全
-      items:
-        - name: 安全性指南
-          href: ../common/storage-security-guide.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
-        - name: 設定防火牆和虛擬網路
-          href: ../common/storage-network-security.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
-        - name: 待用資料的加密
-          href: ../common/storage-service-encryption.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
-        - name: 需要安全傳輸
-          href: ../common/storage-require-secure-transfer.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
-        - name: 共用金鑰驗證
-          href: /rest/api/storageservices/Authentication-for-the-Azure-Storage-Services
-        - name: 共用存取簽章 (SAS)
-          href: ../common/storage-dotnet-shared-access-signature-part-1.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
-    - name: 監視及疑難排解
-      items:
-        - name: 針對 Azure 檔案連線進行疑難排解 - Windows
-          href: storage-troubleshoot-windows-file-connection-problems.md
-        - name: 針對 Azure 檔案連線進行疑難排解 - Linux
-          href: storage-troubleshoot-linux-file-connection-problems.md
-        - name: 針對 Azure 檔案同步進行移難排解
-          href: storage-sync-files-troubleshoot.md
-        - name: 疑難排解教學課程
-          href: ../common/storage-e2e-troubleshooting.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
-        - name: 監控、診斷及疑難排解
-          href: ../common/storage-monitoring-diagnosing-troubleshooting.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
-        - name: 計量與記錄
-          items:
-            - name: Azure 監視器中的 Azure 儲存體計量
-              href: ../common/storage-metrics-in-azure-monitor.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
-            - name: 儲存體分析
-              href: ../common/storage-analytics.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
-            - name: 啟用和檢視計量
-              href: ../common/storage-enable-and-view-metrics.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
-    - name: 傳送資料
-      items:
-        - name: 將資料移入和移出儲存體
-          href: ../common/storage-moving-data.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
-        - name: AzCopy on Windows
-          href: ../common/storage-use-azcopy.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
-        - name: AzCopy on Linux
-          href: ../common/storage-use-azcopy-linux.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
-    - name: 範例
-      href: 'https://azure.microsoft.com/documentation/samples/?service=storage&term=file'
+      - name: Azure 監視器中的計量
+        href: ../common/storage-metrics-in-azure-monitor.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json
+      - name: 移轉為新計量
+        href: ../common/storage-metrics-migration.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json
+      - name: 儲存體分析
+        href: ../common/storage-analytics.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json
+      - name: 啟用和檢視計量 (傳統)
+        href: ../common/storage-enable-and-view-metrics.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json
 - name: 參考
   items:
-    - name: PowerShell
-      href: /powershell/module/azure.storage
-    - name: Azure CLI
-      href: /cli/azure/storage
-    - name: .NET
-      items:
-        - name: Blob、佇列、資料表和檔案
-          href: 'https://docs.microsoft.com/dotnet/api/overview/azure/storage/client?view=azure-dotnet'
-        - name: 資料移動
-          href: 'https://docs.microsoft.com/dotnet/api/microsoft.windowsazure.storage.datamovement?view=azure-dotnet'
-        - name: Resource Manager
-          href: 'https://docs.microsoft.com/dotnet/api/overview/azure/storage/management?view=azure-dotnet'
-    - name: Java
-      items:
-        - name: Blob、佇列、資料表和檔案
-          href: 'https://docs.microsoft.com/java/api/overview/azure/storage/clientlibrary'
-        - name: Resource Manager
-          href: 'https://docs.microsoft.com/java/api/overview/azure/storage/managementapi'
-    - name: Node.js
-      href: 'http://azure.github.io/azure-storage-node'
-    - name: Ruby
-      href: 'http://azure.github.io/azure-storage-ruby'
-    - name: PHP
-      href: 'http://azure.github.io/azure-storage-php/'
-    - name: Python
-      href: 'https://azure-storage.readthedocs.io/en/latest/index.html'
-    - name: C++
-      href: 'http://azure.github.io/azure-storage-cpp'
-    - name: iOS
-      href: 'http://azure.github.io/azure-storage-ios/'
-    - name: Android
-      href: 'http://azure.github.io/azure-storage-android'
-    - name: REST
-      items:
-        - name: Blob、佇列、資料表和檔案
-          href: /rest/api/storageservices
-        - name: 資源提供者
-          href: /rest/api/storagerp
-        - name: 匯入/匯出
-          href: /rest/api/storageimportexport
+  - name: PowerShell
+    href: /powershell/module/azure.storage
+  - name: Azure CLI
+    href: /cli/azure/storage
+  - name: .NET
+    items:
+    - name: Blob、佇列、資料表和檔案
+      href: https://docs.microsoft.com/dotnet/api/overview/azure/storage/client
+    - name: 資料移動
+      href: https://docs.microsoft.com/dotnet/api/microsoft.windowsazure.storage.datamovement
+    - name: Resource Manager
+      href: https://docs.microsoft.com/dotnet/api/overview/azure/storage/management
+  - name: Java
+    items:
+    - name: Blob、佇列、資料表和檔案
+      href: https://docs.microsoft.com/java/api/overview/azure/storage/client
+    - name: Resource Manager
+      href: https://docs.microsoft.com/java/api/overview/azure/storage/management
+  - name: Node.js
+    href: https://docs.microsoft.com/javascript/api/overview/azure/storage
+  - name: Ruby
+    href: http://azure.github.io/azure-storage-ruby
+  - name: PHP
+    href: http://azure.github.io/azure-storage-php/
+  - name: Python
+    href: https://docs.microsoft.com/python/api/overview/azure/storage
+  - name: C++
+    href: http://azure.github.io/azure-storage-cpp
+  - name: iOS
+    href: http://azure.github.io/azure-storage-ios/
+  - name: Android
+    href: http://azure.github.io/azure-storage-android
+  - name: REST
+    items:
+    - name: Blob、佇列、資料表和檔案
+      href: /rest/api/storageservices
+    - name: 資源提供者
+      href: /rest/api/storagerp
+    - name: 匯入/匯出
+      href: /rest/api/storageimportexport
+  - name: 範例
+    href: https://azure.microsoft.com/documentation/samples/?service=storage&term=file
 - name: 資源
   items:
-    - name: Azure 藍圖
-      href: 'https://azure.microsoft.com/roadmap/?category=storage'
-    - name: Azure 儲存體用戶端工具
-      href: ../common/storage-explorers.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
-    - name: 堆疊溢位
-      href: 'http://stackoverflow.com/questions/tagged/windows-azure-storage'
-    - name: 論壇
-      href: 'https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazuredata'
-    - name: 價格
-      href: 'https://azure.microsoft.com/pricing/details/storage/blobs/'
-    - name: 定價計算機
-      href: 'https://azure.microsoft.com/pricing/calculator/'
-    - name: 服務更新
-      href: 'https://azure.microsoft.com/updates/?product=storage'
-    - name: 影片
-      href: 'https://azure.microsoft.com/documentation/videos/index/?services=storage'
-    - name: Azure 儲存體總管
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/?category=storage
+  - name: Azure 儲存體用戶端工具
+    href: ../common/storage-explorers.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
+  - name: 堆疊溢位
+    href: http://stackoverflow.com/questions/tagged/windows-azure-storage
+  - name: 論壇
+    href: https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazuredata
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/storage/blobs/
+  - name: 定價計算機
+    href: https://azure.microsoft.com/pricing/calculator/
+  - name: 服務更新
+    href: https://azure.microsoft.com/updates/?product=storage
+  - name: 影片
+    href: https://azure.microsoft.com/documentation/videos/index/?services=storage
+  - name: Azure 儲存體總管
+    items:
+    - name: 儲存體總管
+      href: ../../vs-azure-tools-storage-manage-with-storage-explorer.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
+    - name: 儲存體總管版本資訊
+      href: ../../vs-azure-tools-storage-explorer-relnotes.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
+    - name: 針對儲存體總管進行疑難排解
+      href: ../common/storage-explorer-troubleshooting.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
+    - name: 儲存體總管協助工具
+      href: ../../vs-azure-tools-storage-explorer-accessibility.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
+  - name: NuGet 套件
+    items:
+    - name: 適用於 .NET 的 Azure 儲存體用戶端程式庫
+      href: https://www.nuget.org/packages/WindowsAzure.Storage/
+    - name: Azure 儲存體資料移動程式庫
+      href: https://www.nuget.org/packages/Microsoft.Azure.Storage.DataMovement/
+    - name: Azure 組態管理員
+      href: https://www.nuget.org/packages/Microsoft.WindowsAzure.ConfigurationManager/
+  - name: 原始程式碼
+    items:
+    - name: .NET
       items:
-        - name: 儲存體總管
-          href: ../../vs-azure-tools-storage-manage-with-storage-explorer.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
-        - name: 儲存體總管版本資訊
-          href: ../../vs-azure-tools-storage-explorer-relnotes.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
-        - name: 針對儲存體總管進行疑難排解
-          href: ../common/storage-explorer-troubleshooting.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
-        - name: 儲存體總管協助工具
-          href: ../../vs-azure-tools-storage-explorer-accessibility.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json
-    - name: NuGet 套件
-      items:
-        - name: 適用於 .NET 的 Azure 儲存體用戶端程式庫
-          href: 'https://www.nuget.org/packages/WindowsAzure.Storage/'
-        - name: Azure 儲存體資料移動程式庫
-          href: 'https://www.nuget.org/packages/Microsoft.Azure.Storage.DataMovement/'
-        - name: Azure 組態管理員
-          href: 'https://www.nuget.org/packages/Microsoft.WindowsAzure.ConfigurationManager/'
-    - name: 原始程式碼
-      items:
-        - name: .NET
-          items:
-            - name: Blob、佇列、資料表及檔案
-              href: 'https://github.com/Azure/azure-storage-net'
-            - name: 資料移動
-              href: 'https://github.com/Azure/azure-storage-net-data-movement'
-            - name: 資源提供者
-              href: 'https://github.com/Azure/azure-sdk-for-net'
-        - name: Node.js
-          href: 'http://azure.github.io/azure-storage-node/'
-        - name: Java
-          href: 'https://github.com/Azure/azure-storage-java'
-        - name: C++
-          href: 'https://github.com/Azure/azure-storage-cpp'
-        - name: PHP
-          href: 'https://github.com/Azure/azure-storage-php'
-        - name: Python
-          href: 'https://github.com/Azure/azure-storage-python'
-        - name: Ruby
-          href: 'https://github.com/Azure/azure-storage-ruby'
-        - name: iOS
-          href: 'https://github.com/Azure/azure-storage-ios'
+      - name: Blob、佇列、資料表及檔案
+        href: https://github.com/Azure/azure-storage-net
+      - name: 資料移動
+        href: https://github.com/Azure/azure-storage-net-data-movement
+      - name: 資源提供者
+        href: https://github.com/Azure/azure-sdk-for-net
+    - name: Java
+      href: https://github.com/Azure/azure-storage-java
+    - name: C++
+      href: https://github.com/Azure/azure-storage-cpp
+    - name: Python
+      href: https://github.com/Azure/azure-storage-python
+ms.openlocfilehash: a649fd094459493c982e7c3f3ef0da2ca14116bd
+ms.sourcegitcommit: 5c00e98c0d825f7005cb0f07d62052aff0bc0ca8
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49958776"

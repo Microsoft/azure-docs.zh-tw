@@ -9,16 +9,18 @@ manager: hjerez
 editor: cgronlun
 ms.assetid: 03a0b844-e8a7-4896-996f-d3c7a0db7a50
 ms.service: machine-learning
+ms.component: studio
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 01/19/2018
-ms.openlocfilehash: 38f31220b7cf4624367d872df152ef9e1304e841
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 7a90a8f05082e2c0731f9f112d3e56ecaf4ea55b
+ms.sourcegitcommit: d4c076beea3a8d9e09c9d2f4a63428dc72dd9806
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 08/01/2018
+ms.locfileid: "39398796"
 ---
 # <a name="use-the-sample-datasets-in-azure-machine-learning-studio"></a>在 Azure Machine Learning Studio 中使用範例資料集
 [top]: #machine-learning-sample-datasets
@@ -145,7 +147,7 @@ KDD Cup 2009 客戶關係預測挑戰 (<a href="http://www.sigkdd.org/site/2009/
 <tr>
   <td>共用 CRM 資料集</td>
   <td>
-此資料來自 KDD Cup 2009 客戶關係預測挑戰 (<a href="http://www.sigkdd.org/kdd-cup-2009-customer-relationship-prediction - orange_small_train.data.zip">orange_small_train.data.zip</a>)。
+此資料來自 KDD Cup 2009 客戶關係預測挑戰 (<a href="http://www.sigkdd.org/site/2009/files/orange_small_train.data.zip">orange_small_train.data.zip</a>)。
 <p></p>
 資料集包含來自法國電信公司 Orange 的 50K 個客戶。 每個客戶都有 230 項不具名的特性，其中有 190 項數值特性和 40 項類別特性。 這些特性非常稀疏。
   </td>
@@ -203,7 +205,7 @@ KDD Cup 2009 客戶關係預測挑戰 (<a href="http://www.sigkdd.org/site/2009/
 <p></p>
 <b>相關研究：</b>Cortez, P. 和 Morais, A.(2008 年)。 UCI Machine Learning Repository <a href="http://archive.ics.uci.edu/ml">http://archive.ics.uci.edu/ml</a>。 Irvine, CA: University of California, School of Information and Computer Science
 <p></p>
-[Cortez and Morais, 2007] P. Cortez and A. Morais。 一個使用氣象資料預測森林火災的資料採礦方法。 In J. Neves, M. F. Santos and J. Machado Eds., New Trends in Artificial Intelligence, Proceedings of the 13th EPIA 2007 - Portuguese Conference on Artificial Intelligence, December, Guimarães, Portugal, pp. 512-523, 2007. APPIA, ISBN-13 978-989-95618-0-9. 可在下列地方獲取：<a href="http://www.dsi.uminho.pt/~pcortez/fires.pdf">http://www.dsi.uminho.pt/~pcortez/fires.pdf</a>。
+[Cortez and Morais, 2007] P. Cortez and A. Morais。 一個使用氣象資料預測森林火災的資料採礦方法。 In J. Neves, M. F. Santos 與 J. Machado 編著，New Trends in Artificial Intelligence (人工智慧的新趨勢)，第 13 屆 EPIA 2007 年會議論文集 - 葡萄牙人工智慧會議，12 月，葡萄牙吉馬良斯，第 512-523 頁，2007 年。 APPIA, ISBN-13 978-989-95618-0-9. 可在下列地方獲取：<a href="http://www.dsi.uminho.pt/~pcortez/fires.pdf">http://www.dsi.uminho.pt/~pcortez/fires.pdf</a>。
   </td>
 </tr>
 
@@ -306,7 +308,7 @@ National Institute of Diabetes and Digestive and Kidney Diseases 資料庫中的
 <p></p>
 <b>相關研究：</b>Sterling, D. 和 Buntine, W.(NA)。 UCI Machine Learning Repository <a href="http://archive.ics.uci.edu/ml">http://archive.ics.uci.edu/ml</a>。 Irvine, CA: University of California, School of Information and Computer Science
 <p></p>
-鋼鐵等級的實用指南可在這裡找到：<a href="http://www.outokumpu.com/SiteCollectionDocuments/Outokumpu-steel-grades-properties-global-standards.pdf">http://www.outokumpu.com/SiteCollectionDocuments/Outokumpu-steel-grades-properties-global-standards.pdf</a>
+鋼鐵等級的實用指南可在這裡找到：<a href="https://otk-sitecore-prod-v2-cdn.azureedge.net/-/media/from-sharepoint/documents/product/outokumpu-steel-grades-properties-global-standards.pdf">https://otk-sitecore-prod-v2-cdn.azureedge.net/-/media/from-sharepoint/documents/product/outokumpu-steel-grades-properties-global-standards.pdf</a>
   </td>
 </tr>
 
@@ -331,7 +333,7 @@ National Institute of Diabetes and Digestive and Kidney Diseases 資料庫中的
 <tr>
   <td>天氣資料集</td>
   <td>
-NOAA 提供的每小時起降天候觀測值 (<a href="http://cdo.ncdc.noaa.gov/qclcd_ascii/, merged data from 201304 to 201310">將 201304 的資料合併至 201310</a>)。
+NOAA 提供的每小時起降天候觀測值 (<a href="http://az754797.vo.msecnd.net/data/WeatherDataset.csv">將 201304 的資料合併至 201310</a>)。
 <p></p>
 天氣資料涵蓋從機場天候觀測站進行的觀測，涵蓋期間為 2013 年 4 月至 10 月。 上傳至 Azure Machine Learning Studio 之前，資料集已經過下列處理：
 <ul>
@@ -401,7 +403,7 @@ RCV1-V2 路透社新聞資料集中新聞文章的主題指派。 一篇新聞�
 <tr>
   <td><a href="https://azuremlsampleexperiments.blob.core.windows.net/datasets/student_performance.txt">student_performance.txt</a></td>
   <td>
-此資料來自 KDD Cup 2010 學員績效評估挑戰 (<a href="http://www.kdd.org/kdd-cup-2010-student-performance-evaluation">student performance evaluation</a>)。 使用的資料為 Algebra_2008_2009 訓練集 (Stamper, J.、Niculescu-Mizil, A.、Ritter, S.、Gordon, G.J.、& Koedinger, K.R. (2010)。 Algebra I 2008-2009。 KDD Cup 2010 教育資料探勘挑戰中的的挑戰資料集。 請在 <a href="http://pslcdatashop.web.cmu.edu/KDDCup/downloads.jsp">downloads.jsp</a> 或 <a href="http://www.kdd.org/sites/default/files/kddcup/site/2010/files/algebra_2008_2009.zip">algebra_2008_2009.zip</a> 尋找。
+此資料來自 KDD Cup 2010 學員績效評估挑戰 (<a href="http://www.kdd.org/kdd-cup/view/kdd-cup-2010-student-performance-evaluation">student performance evaluation</a>)。 使用的資料為 Algebra_2008_2009 訓練集 (Stamper, J.、Niculescu-Mizil, A.、Ritter, S.、Gordon, G.J.、& Koedinger, K.R. (2010)。 Algebra I 2008-2009。 KDD Cup 2010 教育資料探勘挑戰中的的挑戰資料集。 請在 <a href="http://pslcdatashop.web.cmu.edu/KDDCup/downloads.jsp">downloads.jsp</a> 尋找。
 <p></p>
 此資料集已下載並儲存在 Azure Blob 儲存體 (<a href="https://azuremlsampleexperiments.blob.core.windows.net/datasets/student_performance.txt">student_performance.txt</a>) 中並包含來自學員教學系統的記錄檔。 提供的特性包括問題識別碼及其簡短說明、學員識別碼、時間戳記，以及學員以正確方式解出問題之間的嘗試次數。 原始資料集有 8.9M 的記錄，此資料集已縮減為前 100K 個資料列。 此資料集有 23 個以 Tab 字元分隔的各種資料行：數值、類別和時間戳記。
   </td>

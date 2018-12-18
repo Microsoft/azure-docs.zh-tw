@@ -1,32 +1,37 @@
 ---
-title: "使用 Azure 串流分析作業來執行 Azure Functions | Microsoft Docs"
-description: "了解如何設定 Azure Functions 做為串流分析作業的輸出接收。"
-keywords: "資料輸出、串流資料、Azure Function"
-documentationcenter: 
+title: 教學課程：使用 Azure 串流分析作業來執行 Azure Functions | Microsoft Docs
+description: 在本教學課程中，您將了解如何設定 Azure Functions 作為串流分析作業的輸出接收。
 services: stream-analytics
-author: SnehaGunda
+author: jasonwhowell
 manager: kfile
-ms.assetid: 
 ms.service: stream-analytics
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
+ms.topic: tutorial
+ms.custom: mvc
 ms.workload: data-services
-ms.date: 12/19/2017
-ms.author: sngun
-ms.openlocfilehash: f2f4a8d8cda752dc6ed197b8402119f7cbcaf58f
-ms.sourcegitcommit: 28178ca0364e498318e2630f51ba6158e4a09a89
+ms.date: 04/09/2018
+ms.author: jasonh
+ms.reviewer: jasonh
+ms.openlocfilehash: 0408ea6ead1ddf482ce0a07c21859af80ab6ca43
+ms.sourcegitcommit: cb61439cf0ae2a3f4b07a98da4df258bfb479845
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/24/2018
+ms.lasthandoff: 09/05/2018
+ms.locfileid: "43697810"
 ---
-# <a name="run-azure-functions-with-azure-stream-analytics-jobs"></a>使用 Azure 串流分析作業執行 Azure Functions 
+# <a name="run-azure-functions-from-azure-stream-analytics-jobs"></a>從 Azure 串流分析作業執行 Azure Functions 
 
-您可以將 Functions 設定為串流分析作業的其中一個輸出接收，藉以使用 Azure 串流分析執行 Azure Functions。 Functions 是事件取向隨選計算的體驗，可讓您實作在 Azure 或協力廠商服務中發生之事件所觸發的程式碼。 Functions 回應觸發程序的功能，很適合作為串流分析作業的輸出。
+您可以將 Functions 設定為串流分析作業的其中一個輸出接收，藉以從 Azure 串流分析執行 Azure Functions。 Functions 是事件導向隨選計算的體驗，可讓您實作在 Azure 或第三方服務中發生之事件所觸發的程式碼。 Functions 回應觸發程序的功能，很適合作為串流分析作業的輸出。
 
 串流分析會透過 HTTP 觸發程序叫用 Functions。 Functions 輸出配接器可以讓使用者將 Functions 連接至串流分析，如此便可以根據串流分析的查詢來觸發事件。 
 
-本教學課程示範如何使用 [Azure Functions](../azure-functions/functions-overview.md) 將串流分析連接至 [Azure Redis 快取](../redis-cache/cache-dotnet-how-to-use-azure-redis-cache.md)。 
+在本教學課程中，您了解如何：
+
+> [!div class="checklist"]
+> * 建立串流分析作業
+> * 建立 Azure 函式
+> * 將 Azure 函式設定為您作業的輸出
+
+如果您沒有 Azure 訂用帳戶，請在開始前建立[免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
 
 ## <a name="configure-a-stream-analytics-job-to-run-a-function"></a>設定串流分析作業以執行函式 
 
@@ -161,7 +166,7 @@ ms.lasthandoff: 01/24/2018
 
 3. 提供輸出別名的別名。 在此教學課程中，我們將其命名 **saop1** (您可以使用您選擇的任何名稱)。 填入其他詳細資料。  
 
-4. 開啟串流分析作業，並更新下列的查詢。 (如果您將輸出接收命名為不同的名稱，務必取代「saop1」文字。)  
+4. 開啟串流分析作業，並更新下列的查詢。 (如果您將輸出接收命名為不同的名稱，務必取代 "saop1" 文字。)  
 
    ```sql
     SELECT 
@@ -196,3 +201,16 @@ ms.lasthandoff: 01/24/2018
 
 在 Azure 入口網站中，您嘗試將最大批次大小/最大批次計數值重設為空 (預設值) 時，值將儲存時變更回先前輸入的值。 在此情況下，請手動將預設值輸入欄位。
 
+## <a name="clean-up-resources"></a>清除資源
+
+若不再需要，可刪除資源群組、串流作業和所有相關資源。 刪除作業可避免因為作業使用串流單位而產生費用。 如果您計劃在未來使用該作業，您可以將其停止並在之後需要時重新啟動。 如果您將不繼續使用此作業，請使用下列步驟，刪除本快速入門所建立的所有資源：
+
+1. 從 Azure 入口網站的左側功能表中，按一下 [資源群組]，然後按一下您所建立資源的名稱。  
+2. 在資源群組頁面上，按一下 [刪除]，在文字方塊中輸入要刪除之資源的名稱，然後按一下 [刪除]。
+
+## <a name="next-steps"></a>後續步驟
+
+在本教學課程中，您已建立可執行 Azure 函式的簡單串流分析作業，若要深入了解串流分析作業，請繼續進行下一個教學課程：
+
+> [!div class="nextstepaction"]
+> [在串流分析作業內執行 JavaScript 使用者定義函式](stream-analytics-javascript-user-defined-functions.md)

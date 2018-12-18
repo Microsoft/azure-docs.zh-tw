@@ -2,7 +2,7 @@
 title: 長期函式中的人為互動和逾時 - Azure
 description: 了解如何處理 Azure Functions 之長期函式延伸模組中的人為互動和逾時。
 services: functions
-author: cgillum
+author: kashimiz
 manager: cfowler
 editor: ''
 tags: ''
@@ -12,13 +12,14 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 03/19/2018
+ms.date: 07/11/2018
 ms.author: azfuncdf
-ms.openlocfilehash: 071a9ffb8305a30b0fedeaa49c4a95d91fbce6c1
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: a62baf64e35dfad55f76138e2f1aaef65dd434be
+ms.sourcegitcommit: 04fc1781fe897ed1c21765865b73f941287e222f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 07/13/2018
+ms.locfileid: "39036300"
 ---
 # <a name="human-interaction-in-durable-functions---phone-verification-sample"></a>長期函式中的人為互動 - 電話驗證範例
 
@@ -26,7 +27,7 @@ ms.lasthandoff: 03/23/2018
 
 這個範例會實作以 SMS 為基礎的電話驗證系統。 這些類型的流量通常會在驗證客戶的電話號碼時，或針對多重要素驗證 (MFA) 使用。 這是功能強大的範例，因為整個實作是使用幾個小型函式來完成。 不需要外部資料存放區，例如資料庫。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 * [安裝 Durable Functions](durable-functions-install.md)。
 * 完成 [Hello 序列](durable-functions-sequence.md)逐步解說。
@@ -50,7 +51,7 @@ ms.lasthandoff: 03/23/2018
 * **E4_SmsPhoneVerification**
 * **E4_SendSmsChallenge**
 
-下列各節說明用於 C# 指令碼的設定和程式碼。 適用於 Visual Studio 開發的程式碼顯示在本文結尾。
+下列各節說明用於 C# 指令碼和 JavaScript 的設定和程式碼。 適用於 Visual Studio 開發的程式碼顯示在本文結尾。
  
 ## <a name="the-sms-verification-orchestration-visual-studio-code-and-azure-portal-sample-code"></a>SMS 驗證協調流程 (Visual Studio Code 和 Azure 入口網站範例程式碼) 
 
@@ -60,7 +61,13 @@ ms.lasthandoff: 03/23/2018
 
 以下是實作函式的程式碼：
 
+### <a name="c"></a>C#
+
 [!code-csharp[Main](~/samples-durable-functions/samples/csx/E4_SmsPhoneVerification/run.csx)]
+
+### <a name="javascript-functions-v2-only"></a>JavaScript (僅限 Functions v2)
+
+[!code-javascript[Main](~/samples-durable-functions/samples/javascript/E4_SmsPhoneVerification/index.js)]
 
 一旦啟動，此協調器函式會執行下列作業：
 
@@ -75,7 +82,7 @@ ms.lasthandoff: 03/23/2018
 > 起初可能不明顯，不過這個協調器函式完全具有決定性。 這是因為 `CurrentUtcDateTime` 屬性是用來計算計時器到期時間，且這個屬性會在協調器程式碼中此點的每個重新執行都傳回相同的值。 這對於確保每次重複呼叫 `Task.WhenAny` 都有相同 `winner` 結果而言非常重要。
 
 > [!WARNING]
-> 如果您不再需要計時器，如同上述範例中已接受挑戰回應，請務必[使用 CancellationTokenSource 取消計時器](durable-functions-timers.md)。
+> 如果您已經在上述範例中接受挑戰回應，且不再需要使用計時器，請務必[取消計時器](durable-functions-timers.md)。
 
 ## <a name="send-the-sms-message"></a>傳送 SMS 訊息
 
@@ -85,7 +92,13 @@ ms.lasthandoff: 03/23/2018
 
 以下是代碼，它會產生 4 位數挑戰碼並且傳送 SMS 訊息：
 
+### <a name="c"></a>C#
+
 [!code-csharp[Main](~/samples-durable-functions/samples/csx/E4_SendSmsChallenge/run.csx)]
+
+### <a name="javascript-functions-v2-only"></a>JavaScript (僅限 Functions v2)
+
+[!code-javascript[Main](~/samples-durable-functions/samples/javascript/E4_SendSmsChallenge/index.js)]
 
 這個 **E4_SendSmsChallenge** 函式只會呼叫一次，即使處理程序損毀或重新執行也是如此。 這樣是好的，因為您不會想要讓使用者收到多則 SMS 訊息。 `challengeCode` 傳回值會自動保存，讓協調器函式一定知道正確的代碼是什麼。
 
@@ -108,6 +121,9 @@ Location: http://{host}/admin/extensions/DurableTaskExtension/instances/741c6565
 
 {"id":"741c65651d4c40cea29acdd5bb47baf1","statusQueryGetUri":"http://{host}/admin/extensions/DurableTaskExtension/instances/741c65651d4c40cea29acdd5bb47baf1?taskHub=DurableFunctionsHub&connection=Storage&code={systemKey}","sendEventPostUri":"http://{host}/admin/extensions/DurableTaskExtension/instances/741c65651d4c40cea29acdd5bb47baf1/raiseEvent/{eventName}?taskHub=DurableFunctionsHub&connection=Storage&code={systemKey}","terminatePostUri":"http://{host}/admin/extensions/DurableTaskExtension/instances/741c65651d4c40cea29acdd5bb47baf1/terminate?reason={text}&taskHub=DurableFunctionsHub&connection=Storage&code={systemKey}"}
 ```
+
+   > [!NOTE]
+   > 目前，JavaScript 協調流程入門函式無法傳回執行個體管理 URI。 這項功能會在未來版本中新增。
 
 協調器函式會接收提供的電話號碼，並且立即傳送 SMS 訊息給該電話號碼，訊息包含隨機產生的 4 位數驗證碼&mdash;，例如 2168。 此函式接著會在 90 秒的時間內等候回應。
 

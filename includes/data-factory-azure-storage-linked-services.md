@@ -3,8 +3,8 @@
 
 | 屬性 | 說明 | 必要 |
 |:--- |:--- |:--- |
-| type |類型屬性必須設為： **AzureStorage** |yes |
-| connectionString |針對 connectionString 屬性指定連接到 Azure 儲存體所需的資訊。 |yes |
+| type |類型屬性必須設為： **AzureStorage** |是 |
+| connectionString |針對 connectionString 屬性指定連接到 Azure 儲存體所需的資訊。 |是 |
 
 請參閱下列文章的步驟來檢視/複製 Azure 儲存體帳戶金鑰：[檢視、複製和重新產生儲存體存取金鑰](../articles/storage/common/storage-create-storage-account.md#manage-your-storage-account)。
 
@@ -36,8 +36,8 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 
 | 屬性 | 說明 | 必要 |
 |:--- |:--- |:--- |
-| type |類型屬性必須設為： **AzureStorageSas** |yes |
-| sasUri |指定 Azure 儲存體資源 (例如 Blob、容器或資料表) 的共用存取簽章 URI。  |yes |
+| type |類型屬性必須設為： **AzureStorageSas** |是 |
+| sasUri |指定 Azure 儲存體資源 (例如 Blob、容器或資料表) 的共用存取簽章 URI。  |是 |
 
 **範例：**
 

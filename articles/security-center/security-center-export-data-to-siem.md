@@ -1,24 +1,25 @@
 ---
-title: "將 Azure 安全性資料匯出至 SIEM - 管線設定 [預覽] | Microsoft Docs"
-description: "本文記載將 Azure 資訊安全中心記錄移至 SIEM 的程序"
+title: 將 Azure 安全性資料匯出至 SIEM - 管線設定 [預覽] | Microsoft Docs
+description: 本文記載將 Azure 資訊安全中心記錄移至 SIEM 的程序
 services: security-center
 documentationcenter: na
 author: Barclayn
 manager: MBaldwin
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: security-center
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 02/01/2018
 ms.author: barclayn
-ms.openlocfilehash: 7a0a72a25010952f13eb190f0e0a1a65cc6d42d3
-ms.sourcegitcommit: 059dae3d8a0e716adc95ad2296843a45745a415d
+ms.openlocfilehash: aede60a729fe9c0594ded485e189c0b467e34271
+ms.sourcegitcommit: f3bd5c17a3a189f144008faf1acb9fabc5bc9ab7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 09/10/2018
+ms.locfileid: "44298228"
 ---
 # <a name="azure-security-data-export-to-siem--pipeline-configuration-preview"></a>將 Azure 安全性資料匯出至 SIEM - 管線設定 [預覽]
 

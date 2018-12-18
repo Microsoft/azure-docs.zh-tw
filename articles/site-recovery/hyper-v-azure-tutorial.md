@@ -1,18 +1,20 @@
 ---
-title: "使用 Azure Site Recovery 設定內部部署 Hyper-V VM (不含 VMM) 至 Azure 的災害復原 | Microsoft Docs"
-description: "了解如何使用 Azure Site Recovery 服務來設定內部部署 Hyper-V VM (不含 VMM) 至 Azure 的災害復原。"
+title: 使用 Azure Site Recovery 設定內部部署 Hyper-V VM (不含 VMM) 至 Azure 的災害復原 | Microsoft Docs
+description: 了解如何使用 Azure Site Recovery 服務來設定內部部署 Hyper-V VM (不含 VMM) 至 Azure 的災害復原。
 services: site-recovery
 author: rayne-wiselman
+manager: carmonm
 ms.service: site-recovery
 ms.topic: tutorial
-ms.date: 02/14/2018
+ms.date: 10/10/2018
 ms.author: raynew
 ms.custom: MVC
-ms.openlocfilehash: e7ddb3046b0725b3afcea2ed6a533388a89cf306
-ms.sourcegitcommit: fbba5027fa76674b64294f47baef85b669de04b7
+ms.openlocfilehash: 978b79fbd35178191ff5c95b8897045d00c7a272
+ms.sourcegitcommit: 4b1083fa9c78cd03633f11abb7a69fdbc740afd1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/24/2018
+ms.lasthandoff: 10/10/2018
+ms.locfileid: "49078031"
 ---
 # <a name="set-up-disaster-recovery-of-on-premises-hyper-v-vms-to-azure"></a>設定 Hyper-V VM 至 Azure 的災害復原
 
@@ -40,19 +42,31 @@ ms.lasthandoff: 02/24/2018
 2. 在 [使用者入門] 中，按一下 [Site Recovery]。 然後按一下 [準備基礎結構]
 3. 在 [保護目標] > [您的電腦位於何處] 中，選取 [內部部署]。
 4. 在 [您要將電腦複寫到何處] 中，選取 [複製到 Azure]。
-5. 在 [您的電腦虛擬化了嗎] 中，選取 [否]。 然後按一下 [確定] 。
+5. 在 [您是否使用 System Center VMM 來管理 Hyper-V 主機]，選取 [否]。 然後按一下 [確定] 。
 
     ![複寫目標](./media/hyper-v-azure-tutorial/replication-goal.png)
 
+## <a name="confirm-deployment-planning"></a>確認部署規劃
+
+當您規劃大型部署時，您應確定完成 [Hyper-V 複寫的部署規劃](hyper-v-deployment-planner-overview.md)。 針對教學課程的目的，在 [完成部署規劃了嗎?] 中，從下拉式清單選取 [稍後再進行]。
+
+![部署規劃](./media/hyper-v-azure-tutorial/deployment-planning.png)
+
 ## <a name="set-up-the-source-environment"></a>設定來源環境
 
-若要設定來源環境，請將 Hyper-V 主機新增至 Hyper-V 網站，下載並安裝 Azure Site Recovery Provider 和 Azure 復原服務代理程式，並且在保存庫中註冊 Hyper-V 網站。 
+若要設定來源環境，您可以建立 Hyper-V 網站並將 Hyper-V 主機新增至該網站。 然後下載 Azure Site Recovery Provider 和 Azure 復原服務代理程式並安裝於每部主機上，然後在保存庫中註冊 Hyper-V 網站。 
 
 1. 在 [準備基礎結構] 中，按一下 [來源]。
 2. 按一下 [+Hyper-V 網站]，並指定在前一個教學課程中建立的網站名稱 **ContosoHyperVSite**。
-3. 按一下 [+Hyper-V 伺服器]。
+
+    ![Hyper-V 站台](./media/hyper-v-azure-tutorial/hyperv-site.png)
+
+3. 建立網站之後，按一下 [+Hyper-V 伺服器]。
+
+    ![Hyper-V 伺服器](./media/hyper-v-azure-tutorial/hyperv-server.png)
+
 4. 下載 Provider 安裝程式檔案。
-5. 下載保存庫註冊金鑰。 您需要此金鑰才能執行提供者安裝程式。 該金鑰在產生後會維持 5 天有效。
+6. 下載保存庫註冊金鑰。 您需要此金鑰才能執行提供者安裝程式。 該金鑰在產生後會維持 5 天有效。
 
     ![下載 Provider](./media/hyper-v-azure-tutorial/download.png)
     

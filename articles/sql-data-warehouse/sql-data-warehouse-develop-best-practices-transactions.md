@@ -1,30 +1,27 @@
 ---
-title: 最佳化 SQL 資料倉儲的交易 | Microsoft Docs
-description: 在 Azure SQL 資料倉儲中撰寫有效率交易更新的最佳作法指引
+title: 將 Azure SQL 資料倉儲的交易最佳化 | Microsoft Docs
+description: 了解如何在 Azure SQL 資料倉儲中將您的交易程式碼效能最佳化，同時將長時間回復的風險降至最低。
 services: sql-data-warehouse
-documentationcenter: NA
-author: jrowlandjones
-manager: jhubbard
-editor: ''
+author: ckarst
+manager: craigg
 ms.service: sql-data-warehouse
-ms.devlang: NA
-ms.topic: article
-ms.tgt_pltfrm: NA
-ms.workload: data-services
-ms.custom: t-sql
-ms.date: 03/15/2018
-ms.author: jrj;barbkess
-ms.openlocfilehash: 607c169e3d9e8aa741084392439da383f46cfe0c
-ms.sourcegitcommit: a36a1ae91968de3fd68ff2f0c1697effbb210ba8
+ms.topic: conceptual
+ms.component: implement
+ms.date: 04/19/2018
+ms.author: cakarst
+ms.reviewer: igorstan
+ms.openlocfilehash: eb9c66c23440d2fd55c62de02b6c0070245c6d67
+ms.sourcegitcommit: 2b2129fa6413230cf35ac18ff386d40d1e8d0677
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/17/2018
+ms.lasthandoff: 08/30/2018
+ms.locfileid: "43247914"
 ---
-# <a name="optimizing-transactions-for-sql-data-warehouse"></a>最佳化 SQL 資料倉儲的交易
-本文說明如何將您的交易程式碼效能最佳化，同時將長時間回復的風險降至最低。
+# <a name="optimizing-transactions-in-azure-sql-data-warehouse"></a>將 Azure SQL 資料倉儲的交易最佳化
+了解如何在 Azure SQL 資料倉儲中將您的交易程式碼效能最佳化，同時將長時間回復的風險降至最低。
 
 ## <a name="transactions-and-logging"></a>交易和記錄
-交易是關聯式資料庫引擎的重要元件。 SQL 資料倉儲會在資料修改期間使用交易。 這些交易可以是明確或隱含的。 單一 `INSERT`、`UPDATE` 和 `DELETE` 陳述式都是隱含交易的範例。 明確交易會使用 `BEGIN TRAN`、`COMMIT TRAN` 或 `ROLLBACK TRAN`。 通常在多個修改陳述式必須一起連結為單一不可部分完成單位的時候會使用明確交易。 
+交易是關聯式資料庫引擎的重要元件。 SQL 資料倉儲會在資料修改期間使用交易。 這些交易可以是明確或隱含的。 單一 INSERT、UPDATE 和 DELETE 陳述式都是隱含交易的範例。 明確交易會使用 BEGIN TRAN、COMMIT TRAN 或 ROLLBACK TRAN。 通常在多個修改陳述式必須一起連結為單一不可部分完成單位的時候會使用明確交易。 
 
 Azure SQL 資料倉儲認可使用交易記錄檔之資料庫的變更。 每個散發套件都有自己的交易記錄檔。 交易記錄檔寫入是自動的。 不需要任何組態。 不過，儘管這個程序可保證寫入，但是它會在系統中引進額外負荷。 您可以藉由撰寫交易式的有效程式碼，將影響降到最低。 交易式的有效程式碼大致分為兩個類別。
 
@@ -33,7 +30,7 @@ Azure SQL 資料倉儲認可使用交易記錄檔之資料庫的變更。 每個
 * 採用分割切換模式進行指定分割的大規模修改
 
 ## <a name="minimal-vs-full-logging"></a>最低限度 vs. 完整記錄
-完整記錄作業使用交易記錄檔追蹤每個資料列的變更，最低限度記錄作業不一樣，它只會追蹤程度配置與中繼資料變更。 因此，最低限度記錄只會記錄在失敗後或針對明確要求 (`ROLLBACK TRAN`) 復原交易所需的資訊。 因為在交易記錄檔中追蹤較少的資訊，最低限度記錄作業的執行效果優於大小類似的完整記錄作業。 此外，因為交易記錄檔中較少寫入，所以產生更少量的記錄檔資料，因此有更多有效的 I/O。
+完整記錄作業使用交易記錄檔追蹤每個資料列的變更，最低限度記錄作業不一樣，它只會追蹤程度配置與中繼資料變更。 因此，最低限度記錄只會記錄在失敗後或針對明確要求 (ROLLBACK TRAN) 復原交易所需的資訊。 因為在交易記錄檔中追蹤較少的資訊，最低限度記錄作業的執行效果優於大小類似的完整記錄作業。 此外，因為交易記錄檔中較少寫入，所以產生更少量的記錄檔資料，因此有更多有效的 I/O。
 
 交易安全限制僅適用於完整記錄的作業。
 
@@ -45,7 +42,7 @@ Azure SQL 資料倉儲認可使用交易記錄檔之資料庫的變更。 每個
 ## <a name="minimally-logged-operations"></a>最低限度記錄作業
 下列作業也能以最低限度記錄︰
 
-* CREATE TABLE AS SELECT ([CTAS][CTAS])
+* CREATE TABLE AS SELECT ([CTAS](sql-data-warehouse-develop-ctas.md))
 * INSERT..SELECT
 * CREATE INDEX
 * ALTER INDEX REBUILD
@@ -61,12 +58,12 @@ Azure SQL 資料倉儲認可使用交易記錄檔之資料庫的變更。 每個
 -->
 
 > [!NOTE]
-> 內部資料移動作業 (例如 `BROADCAST` 和 `SHUFFLE`) 不受交易安全限制影響。
+> 內部資料移動作業 (例如 BROADCAST 和 SHUFFLE) 不受交易安全限制影響。
 > 
 > 
 
 ## <a name="minimal-logging-with-bulk-load"></a>大量載入的最低限度記錄
-`CTAS` 和 `INSERT...SELECT` 都是大量載入作業。 不過，兩者都會受到目標資料表定義的影響，取決於載入案例。 下表說明完全或以最低限度記錄大量作業的時機：  
+CTAS 和 INSERT...SELECT 都是大量載入作業。 不過，兩者都會受到目標資料表定義的影響，取決於載入案例。 下表說明完全或以最低限度記錄大量作業的時機：  
 
 | 主要索引 | 載入案例 | 記錄模式 |
 | --- | --- | --- |
@@ -87,7 +84,7 @@ Azure SQL 資料倉儲認可使用交易記錄檔之資料庫的變更。 每個
 利用叢集索引將資料載入非空白資料表中，通常會混合包含完整記錄和最低限度記錄資料列。 叢集索引是頁面的平衡樹狀結構 (b 型樹狀目錄)。 如果寫入的頁面中已包含另一個交易的資料列，則這些寫入將會完整記錄。 不過，如果頁面是空的，則該頁面的寫入將會以最低限度記錄。
 
 ## <a name="optimizing-deletes"></a>最佳化刪除
-`DELETE` 是完整記錄的作業。  如果您需要刪除資料表或分割中的大量資料，比較理想的做法通常是 `SELECT` 您想要保留的資料，這可以最低限度記錄作業來執行。  若要選取資料，請使用 [CTAS][CTAS] 建立新的資料表。  建立之後，請使用 [RENAME][RENAME] 來交換您的舊資料表與新建立的資料表。
+DELETE 作業會有完整的記錄。  如果您需要刪除資料表或分割中的大量資料，比較理想的做法通常是 `SELECT` 您想要保留的資料，這可以最低限度記錄作業來執行。  若要選取資料，請使用 [CTAS](sql-data-warehouse-develop-ctas.md) 建立新的資料表。  建立之後，請使用 [RENAME](/sql/t-sql/statements/rename-transact-sql)，以新建立的資料表置換舊資料表。
 
 ```sql
 -- Delete all sales transactions for Promotions except PromotionKey 2.
@@ -118,9 +115,9 @@ RENAME OBJECT [dbo].[FactInternetSales_d] TO [FactInternetSales];
 ```
 
 ## <a name="optimizing-updates"></a>最佳化更新
-`UPDATE` 是完整記錄的作業。  如果您需要更新資料表或分割區中的大量資料列，通常更有效率的方法是使用最低限度記錄作業 (例如 [CTAS][CTAS]) 來達成此目的。
+UPDATE 作業會有完整的記錄。  如果您需要更新資料表或分割區中的大量資料列，通常使用只有最少記錄的作業 (例如 [CTAS](/sql/t-sql/statements/create-table-as-select-azure-sql-data-warehouse)) 會有效率得多。
 
-在下列範例中，完整的資料表更新已轉換成 `CTAS` ，以便進行最低限度記錄。
+在下方的範例中，完整的資料表更新已轉換成 CTAS，以便進行最低限度的記錄。
 
 在此情況下，我們反而要將折扣金額新增到資料表中的銷售額︰
 
@@ -184,7 +181,7 @@ DROP TABLE [dbo].[FactInternetSales_old]
 > 
 
 ## <a name="optimizing-with-partition-switching"></a>利用分割切換進行最佳化
-如果面臨[資料表分割區][table partition]內部的大規模修改，則分割區切換模式很實用。 如果大量修改資料而且跨越多個分割區，則逐一查看分割區也可達到相同的結果。
+面臨[資料表分割區](sql-data-warehouse-tables-partition.md)內部的大規模修改時，則分割區切換模式會很實用。 如果大量修改資料而且跨越多個分割區，則逐一查看分割區也可達到相同的結果。
 
 執行分割切換的步驟如下︰
 
@@ -416,23 +413,9 @@ Azure SQL 資料倉儲可讓您視需要[暫停、繼續及調整](sql-data-ware
 
 最佳案例是在暫停或調整 SQL 資料倉儲之前，讓進行中的資料修改交易完成。 但是，此案例不一定都可行。 若要降低長時間回復的風險，請考慮下列其中一個選項：
 
-* 使用 [CTAS][CTAS] 重新撰寫長期執行的作業
+* 請使用 [CTAS](/sql/t-sql/statements/create-table-as-select-azure-sql-data-warehouse) 重新撰寫長期執行的作業
 * 將作業分成多個區塊；在資料列子集上運作
 
 ## <a name="next-steps"></a>後續步驟
-若要進一步了解隔離等級和交易限制，請參閱 [SQL 資料倉儲中的交易][Transactions in SQL Data Warehouse]。  如需其他最佳做法的概觀，請參閱 [SQL 資料倉儲最佳做法][SQL Data Warehouse Best Practices]。
-
-<!--Image references-->
-
-<!--Article references-->
-[Transactions in SQL Data Warehouse]: ./sql-data-warehouse-develop-transactions.md
-[table partition]: ./sql-data-warehouse-tables-partition.md
-[CTAS]: ./sql-data-warehouse-develop-ctas.md
-[SQL Data Warehouse Best Practices]: ./sql-data-warehouse-best-practices.md
-
-<!--MSDN references-->
-[alter index]:https://msdn.microsoft.com/library/ms188388.aspx
-[RENAME]: https://msdn.microsoft.com/library/mt631611.aspx
-
-<!-- Other web references -->
+若要進一步了解隔離等級和交易限制，請參閱 [SQL 資料倉儲中的交易](sql-data-warehouse-develop-transactions.md)。  如需其他最佳做法的概觀，請參閱 [SQL 資料倉儲最佳做法](sql-data-warehouse-best-practices.md)。
 

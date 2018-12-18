@@ -10,16 +10,18 @@ manager: hjerez
 editor: cgronlun
 ms.assetid: 0923074b-3728-439d-a1b8-8a7245e39be4
 ms.service: machine-learning
+ms.component: studio
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: reference
 ms.date: 11/16/2016
-ms.openlocfilehash: 0ba44b2a93bcd542db1350def2d0554c8c44233c
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: fbedf355c6b1c45d581408a962b875544838087f
+ms.sourcegitcommit: 944d16bc74de29fb2643b0576a20cbd7e437cef2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 06/07/2018
+ms.locfileid: "34836084"
 ---
 # <a name="machine-learning-rest-api-error-codes"></a>Machine Learning REST API 錯誤碼
  
@@ -35,11 +37,11 @@ Azure Machine Learning Web 服務上的作業可以傳回下列錯誤碼。
 | ---------- |--------------|
 | BadParameterValue | 所提供的參數值不符合參數上的規則參數 |
 | BadSubscriptionId | 用來評分的訂用帳戶識別碼並不是資源中顯示的識別碼 |
-| BadVersionCall | 在 API 呼叫期間傳遞的版本參數無效︰{0}。 檢查 API 說明頁面，以便傳遞的正確版本並再試一次。 |
-| BatchJobInputsNotSpecified | 未使用要求指定下列必要的輸入：{0}。 請確定已指定所有的輸入資料，然後再試一次。 |
+| BadVersionCall | 進行 API 呼叫時所傳遞的版本參數無效：{0}。 檢查 API 說明頁面，以便傳遞的正確版本並再試一次。 |
+| BatchJobInputsNotSpecified | 未在要求搭配指定下列必要輸入：{0}。 請確定已指定所有的輸入資料，然後再試一次。 |
 | BatchJobInputsTooManySpecified | 要求指定的輸入超過服務中所定義的輸入。 接受的輸入清單︰{0}。 請確定已正確指定所有的輸入資料，然後再試一次。 |
 | BlobNameTooLong | 針對診斷輸出提供的 Azure Blob 儲存體路徑太長︰{0}。 縮短路徑並再試一次。 |
-| BlobNotFound | 無法存取所提供的 Azure blob - {0}。  Azure 錯誤訊息：{1}。 |
+| BlobNotFound | 無法存取所提供的 Azure Blob - {0}。  Azure 錯誤訊息：{1}。 |
 | ContainerIsEmpty | 未提供 Azure 儲存體容器名稱。 提供有效的容器名稱，然後再試一次。 |
 | ContainerSegmentInvalid | 容器名稱無效。 提供有效的容器名稱，然後再試一次。 |
 | ContainerValidationFailed | Blob 容器驗證失敗，發生下列錯誤︰{0}。 |
@@ -48,20 +50,20 @@ Azure Machine Learning Web 服務上的作業可以傳回下列錯誤碼。
 | ExpiryTimeInThePast | 所提供的到期時間已經過去︰{0}。 提供未來的到期時間 (UTC)，然後再試一次。 若永遠不要到期，將到期時間設為 NULL。 |
 | IncompleteSettings | 診斷設定不完整。 |
 | InputBlobRelativeLocationInvalid | 未提供 Azure 儲存體 Blob 名稱。 提供有效的 Blob 名稱，然後再試一次。 |
-| InvalidBlob | Blob 的 Blob 規格 無效：{0}。 確認連接字串 / 相對路徑或 SAS 權杖規格正確無誤，然後再試一次。 |
+| InvalidBlob | Blob 的 Blob 規格無效：{0}。 確認連接字串 / 相對路徑或 SAS 權杖規格正確無誤，然後再試一次。 |
 | InvalidBlobConnectionString | 針對其中一個輸入/輸出 Blob 指定的連接字串無效︰{0}。 請更正此錯誤，然後再試一次。 |
-| InvalidBlobExtension | Blob 參考︰{0} 的副檔名無效或遺漏。 此輸出類型支援的檔案副檔名為："{1}"。 |
+| InvalidBlobExtension | Blob 參考︰{0} 的副檔名無效或遺漏。 此輸出類型支援的副檔名為："{1}"。 |
 | InvalidInputNames | 在要求中指定的服務輸入名稱無效：{0}。 請將輸入資料對應至正確的服務輸入，然後再試一次。 |
-| InvalidOutputOverrideName | 輸出覆寫名稱無效︰{0}。 服務沒有使用此名稱的輸出節點。 請傳入要覆寫的正確輸出節點名稱 (需區分大小寫)。 |
-| InvalidQueryParameter | 查詢參數 '{0}' 無效。 {1} |
+| InvalidOutputOverrideName | 無效的輸出覆寫名稱︰{0}。 服務沒有使用此名稱的輸出節點。 請傳入要覆寫的正確輸出節點名稱 (需區分大小寫)。 |
+| InvalidQueryParameter | 無效的查詢參數 '{0}'。 {1} |
 | MissingInputBlobInformation | Azure 儲存體 Blob 資訊遺失。 提供有效的連接字串和相對路徑或 URI，然後再試一次。 |
 | MissingJobId | 未提供作業識別碼。 第一次提交作業時會傳回作業識別碼。 確認作業識別碼正確無誤，然後再試一次。 |
 | MissingKeys | 未提供任何金鑰，或未提供其中一個主要或次要金鑰。 |
 | MissingModelPackage | 未提供模型套件識別碼或模型套件。 提供有效的模型套件識別碼或模型套件，然後再試一次。 |
-| MissingOutputOverrideSpecification | 要求遺失了輸出覆寫 {0} 的 Blob 規格。 請透過要求指定有效的 Blob 位置，或移除輸出規格 (如果不想要位置覆寫)。 |
+| MissingOutputOverrideSpecification | 要求遺漏輸出覆寫 {0} 的 Blob 規格。 請透過要求指定有效的 Blob 位置，或移除輸出規格 (如果不想要位置覆寫)。 |
 | MissingRequestInput | Web 服務預期會有輸入，但未提供任何輸入。 確定根據模型中發佈的輸入連接埠提供有效的輸入，然後再試一次。 |
 | MissingRequiredGlobalParameters | 未提供所有必要的 Web 服務參數。 確認模組所預期的參數正確無誤，然後再試一次。 |
-| MissingRequiredOutputOverrides | 呼叫已加密的服務端點時，強制針對服務的所有輸出傳入輸出覆寫。 這些輸出此時遺漏覆寫︰{0} |
+| MissingRequiredOutputOverrides | 呼叫已加密的服務端點時，強制針對服務的所有輸出傳入輸出覆寫。 目前遺漏下列輸出的覆寫︰{0} |
 | MissingWebServiceGroupId | 未提供 Web 服務群組識別碼。 提供有效的 Web 服務群組識別碼，然後再試一次。 |
 | MissingWebServiceId | 未提供 Web 服務識別碼。 提供有效的 Web 服務識別碼，然後再試一次。 |
 | MissingWebServicePackage | 未提供 Web 服務套件。 提供有效的 Web 服務套件，然後再試一次。 |
@@ -116,9 +118,9 @@ Web 服務套件無效。 確認所提供的 Web 服務套件正確無誤，然�
  
 | 錯誤碼 | 使用者訊息 |
 | ---------- |--------------|
-| FormatError | Web 服務套件的格式不正確。 詳細資料︰{0} |
-| RuntimesError | Web 服務套件圖形無效。 詳細資料︰{0} |
-| ValidationError | Web 服務套件圖形無效。 詳細資料︰{0} |
+| FormatError | Web 服務套件的格式不正確。 詳細資料：{0} |
+| RuntimesError | Web 服務套件圖形無效。 詳細資料：{0} |
+| ValidationError | Web 服務套件圖形無效。 詳細資料：{0} |
  
 ## <a name="unauthorized-http-status-code-401"></a>未經授權 (HTTP 狀態碼 401)
  
@@ -193,7 +195,7 @@ Web 服務套件無效。 確認所提供的 Web 服務套件正確無誤，然�
 | ModuleLoadFailed |  |
 | ModuleObjectCloneFailed |  |
 | OutputConversionFailed |  |
-| PortDataTypeNotSupported | 連接埠識別碼 = {0} 具有不支援的資料類型：{1}。 |
+| PortDataTypeNotSupported | 連接埠識別碼={0} 具有不支援的資料類型：{1}。 |
 | ResourceDownload |  |
 | ResourceLoadFailed |  |
 | ServiceUrisNotFound |  |
@@ -201,7 +203,7 @@ Web 服務套件無效。 確認所提供的 Web 服務套件正確無誤，然�
 | UnexpectedScoreStatus |  |
 | UnknownBackendErrorResponse |  |
 | UnknownError |  |
-| UnknownJobStatusCode | 未知的作業狀態碼為 {0}。 |
+| UnknownJobStatusCode | 未知的作業狀態碼 {0}。 |
 | UnknownModuleError |  |
 | UpdateWebServiceResourceFailed |  |
 | WebServiceGroupNotFound |  |
@@ -225,7 +227,7 @@ Web 服務套件無效。 確認所提供的 Web 套件正確無誤，然後再�
  
 | 錯誤碼 | 使用者訊息 |
 | ---------- |--------------|
-| ModuleError | Web 服務套件圖形無效。 詳細資料︰{0} |
+| ModuleError | Web 服務套件圖形無效。 詳細資料：{0} |
  
 ## <a name="initializingcontainers-http-status-code-503"></a>InitializingContainers (HTTP 狀態碼 503)
  

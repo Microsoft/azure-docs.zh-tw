@@ -3,7 +3,7 @@ title: 在 Azure App Service 中使用 WebJob 執行背景工作
 description: 了解如何在 Azure App Service Web 應用程式、API 應用程式或行動裝置應用程式中，使用 WebJobs 執行背景工作。
 services: app-service
 documentationcenter: ''
-author: tdykstra
+author: ggailey777
 manager: erikre
 editor: jimbe
 ms.assetid: af01771e-54eb-4aea-af5f-f883ff39572b
@@ -14,11 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/09/2017
 ms.author: glenga;david.ebbo;suwatch;pbatum;naren.soni
-ms.openlocfilehash: f41cc83bfb18146e46e7d8501318acd68ce9c421
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: c3a41733dd193d10349a0126bfa9c25ce4ba56e7
+ms.sourcegitcommit: 615403e8c5045ff6629c0433ef19e8e127fe58ac
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39577672"
 ---
 # <a name="run-background-tasks-with-webjobs-in-azure-app-service"></a>在 Azure App Service 中使用 WebJob 執行背景工作
 
@@ -85,7 +86,7 @@ when making changes in one don't forget the other two.
    | **類型** | 連續 | [WebJob 類型](#webjob-types)在本文稍早已有提及。 |
    | **調整** | 多重執行個體 | 僅適用於連續 WebJob。 決定程式或指令碼是在所有執行個體上執行，或是只在一個執行個體上執行。 在多個執行個體上執行的選項不適用於免費或共用[定價層](https://azure.microsoft.com/pricing/details/app-service/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio)。 | 
 
-4. 按一下 [SERVICEPRINCIPAL] 。
+4. 按一下 [確定]。
 
    新的 WebJob 會出現在 [WebJob] 分頁。
 
@@ -123,7 +124,7 @@ when making changes in one don't forget the other two.
    | **類型** | 觸發 | [WebJob 類型](#webjob-types)在本文稍早已有提及。 |
    | **觸發程序** | 手動 | |
 
-4. 按一下 [SERVICEPRINCIPAL] 。
+4. 按一下 [確定]。
 
    新的 WebJob 會出現在 [WebJob] 分頁。
 
@@ -162,7 +163,7 @@ when making changes in one don't forget the other two.
    | **觸發程序** | 已排程 | 若要讓排程可靠地運作，請啟用 [永遠開啟] 功能。 [永遠開啟] 僅適用於基本、標準和進階定價層。|
    | **CRON 運算式** | 0 0/20 * * * * | [CRON 運算式](#cron-expressions)將於下一節中說明。 |
 
-4. 按一下 [SERVICEPRINCIPAL] 。
+4. 按一下 [確定]。
 
    新的 WebJob 會出現在 [WebJob] 分頁。
 

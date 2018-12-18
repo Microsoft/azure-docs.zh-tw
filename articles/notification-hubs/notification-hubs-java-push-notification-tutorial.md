@@ -1,29 +1,30 @@
 ---
-title: "如何搭配使用通知中樞與 Java"
-description: "了解如何從 Java 後端使用 Azure 通知中樞。"
+title: 如何搭配使用通知中樞與 Java
+description: 了解如何從 Java 後端使用 Azure 通知中樞。
 services: notification-hubs
-documentationcenter: 
-author: ysxu
-manager: erikre
-editor: 
+documentationcenter: ''
+author: dimazaid
+manager: kpiteira
+editor: spelluru
 ms.assetid: 4c3f966d-0158-4a48-b949-9fa3666cb7e4
 ms.service: notification-hubs
 ms.workload: mobile
 ms.tgt_pltfrm: java
 ms.devlang: java
 ms.topic: article
-ms.date: 06/29/2016
-ms.author: yuaxu
-ms.openlocfilehash: 41f978750ddef9f7e878c65b0017e909720154aa
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.date: 04/14/2018
+ms.author: dimazaid
+ms.openlocfilehash: fe20cf9c9137dc1ca41d3b8e2445bac079fb33fc
+ms.sourcegitcommit: 4ea0cea46d8b607acd7d128e1fd4a23454aa43ee
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/15/2018
+ms.locfileid: "42141480"
 ---
 # <a name="how-to-use-notification-hubs-from-java"></a>如何從 Java 使用通知中樞
 [!INCLUDE [notification-hubs-backend-how-to-selector](../../includes/notification-hubs-backend-how-to-selector.md)]
 
-本主題說明最新完整支援的官方 Azure 通知中樞 Java SDK 有哪些主要功能。 這是開放原始碼專案，您可以在 [Java SDK]中檢視完整的 SDK 程式碼。 
+本主題說明最新完整支援的官方 Azure 通知中樞 Java SDK 有哪些主要功能。 此專案為開放原始碼專案，您可以在 [Java SDK] 中檢視完整的 SDK 程式碼。 
 
 一般而言，您可以使用通知中樞 REST 介面，來存取 Java/PHP/Python/Ruby 後端的所有通知中樞功能，如 MSDN 主題 [通知中樞 REST API](http://msdn.microsoft.com/library/dn223264.aspx)中所述。 此 Java SDK 透過 Java 中的這些 REST 介面提供了精簡型包裝函式。 
 
@@ -102,9 +103,9 @@ SDK 目前支援：
     reg.getHeaders().put("X-WNS-Type", "wns/toast");
     hub.createRegistration(reg);
 
-**使用建立 registrationid + upsert 模式來建立註冊**
+**使用 create registrationid + upsert 模式來建立註冊**
 
-如果將註冊識別碼儲存在裝置上，請在發生任何遺失回應時移除複本：
+移除因將註冊識別碼儲存在裝置上而導致任何遺失回應的複本：
 
     String id = hub.createRegistrationId();
     WindowsRegistration reg = new WindowsRegistration(id, new URI(CHANNELURI));
@@ -122,23 +123,27 @@ SDK 目前支援：
 
 * **取得單一註冊：**
   
-    hub.getRegistration(regid);
+        hub.getRegistration(regid);
+
 * **取得中樞的所有註冊：**
   
-    hub.getRegistrations();
+        hub.getRegistrations();
+
 * **取得具有標籤的註冊：**
   
-    hub.getRegistrationsByTag("myTag");
+        hub.getRegistrationsByTag("myTag");
+
 * **依通道取得註冊：**
   
-    hub.getRegistrationsByChannel("devicetoken");
+        hub.getRegistrationsByChannel("devicetoken");
+
 
 所有集合查詢都支援 $top 和接續權杖。
 
 ### <a name="installation-api-usage"></a>安裝 API 的使用方式
-安裝 API 是註冊管理的替代機制。 要維護多個註冊並非易事，並且可能容易出錯或效率低落，但現在您已可以使用單一安裝物件。 安裝包含所需的一切：推播通道 (裝置權杖)、標籤、範本、次要磚 (適用於 WNS 和 APNS)。 現在您無須呼叫服務即可取得識別碼 - 只要產生 GUID 或任何其他識別碼、將它保存在裝置上，並透過推播通道傳送至您的後端 (裝置權杖) 即可。 您只能在後端執行單一呼叫：CreateOrUpdateInstallation，它是完全等冪的，因此您可以儘管在必要時重試。
+安裝 API 是註冊管理的替代機制。 要維護多個註冊並非易事，並且很可能出錯或降低效率。現在，您可以改為使用單一的安裝物件。 安裝包含所需的一切：推播通道 (裝置權杖)、標籤、範本、次要磚 (適用於 WNS 和 APNS)。 您不再需要呼叫服務來取得識別碼，只需要產生 GUID 或任何其他識別碼，將它保存在裝置上，並透過推送通道 (裝置權杖) 一起傳送至您的後端即可。 您只應該在後端執行單一呼叫：CreateOrUpdateInstallation，它是完全等冪的，因此您可以視需要重試。
 
-以 Amazon Kindle Fire 為例，將如下所示：
+以 Amazon Kindle Fire 為例：
 
     Installation installation = new Installation("installation-id", NotificationPlatform.Adm, "adm-push-channel");
     hub.createOrUpdateInstallation(installation);
@@ -150,7 +155,7 @@ SDK 目前支援：
     installation.addTemplate("template2", new InstallationTemplate("{\"data\":{\"key2\":\"$(value2)\"}}","tag-for-template2"));
     hub.createOrUpdateInstallation(installation);
 
-在進階案例中，我們提供了部分更新功能，僅允許使用者對安裝物件的特定屬性進行修改。 基本上，部分更新是您可以對安裝物件執行的 JSON Patch 作業子集。
+針對進階案例，請使用部分更新功能，它能僅允許對安裝物件的特定屬性進行修改。 部分更新是您可以對安裝物件執行的 JSON 修補作業子集。
 
     PartialUpdateOperation addChannel = new PartialUpdateOperation(UpdateOperationType.Add, "/pushChannel", "adm-push-channel2");
     PartialUpdateOperation addTag = new PartialUpdateOperation(UpdateOperationType.Add, "/tags", "bar");
@@ -161,9 +166,9 @@ SDK 目前支援：
 
     hub.deleteInstallation(installation.getInstallationId());
 
-CreateOrUpdate、Patch 和 Delete 最終都會與 Get 一致。 您要求的作業只會在呼叫期間進入系統佇列，並會在背景中執行。 請注意，Get 不是針對主要執行階段案例而設計的，而是專門用於偵錯和疑難排解的目的，因此受到服務嚴格的節流。
+CreateOrUpdate、Patch 和 Delete 最終都會與 Get 一致。 您要求的作業只會在呼叫期間進入系統佇列，並會在背景中執行。 Get 不是針對主要執行階段案例而設計的，而是專門用於偵錯和疑難排解目的，因此受到服務嚴格的節流。
 
-安裝的傳送流量與註冊相同。 我們僅介紹以特定安裝的通知為目標的選項 - 僅使用標籤 "InstallationId:{desired-id}"。 就上述案例而言，將如下所示：
+安裝的傳送流量與註冊相同。 若要將通知的目標設為特定安裝，請使用標記 "InstallationId:{desired-id}"。 針對此案例，其程式碼為：
 
     Notification n = Notification.createWindowsNotification("WNS body");
     hub.sendNotification(n, "InstallationId:{installation-id}");
@@ -176,7 +181,7 @@ CreateOrUpdate、Patch 和 Delete 最終都會與 Get 一致。 您要求的作�
     hub.sendNotification(n, "InstallationId:{installation-id} && tag-for-template1");
 
 ### <a name="schedule-notifications-available-for-standard-tier"></a>排程通知 (適用於 STANDARD 層)
-與定期傳送相同，但使用了一個額外參數 scheduledTime，指出何時應傳遞通知。 服務可接受目前 + 5 分鐘與目前 + 7 天之間的任何時間點。
+與定期傳送相同，但會使用額外的參數 scheduledTime，它能指出何時應傳遞通知。 服務可接受目前 + 5 分鐘與目前 + 7 天之間的任何時間點。
 
 **排程 Windows 原生通知：**
 
@@ -186,7 +191,7 @@ CreateOrUpdate、Patch 和 Delete 最終都會與 Get 一致。 您要求的作�
     hub.scheduleNotification(n, c.getTime());
 
 ### <a name="importexport-available-for-standard-tier"></a>匯入/匯出 (適用於 STANDARD 層)
-有時候您需要對註冊執行大量作業。 通常這是為了與另一個系統整合，或是要進行大規模修正，例如更新標籤。 如果註冊數高達數千個，強烈建議您不要使用 Get/Update 流程。 匯入/匯出功能可因應此案例。 基本上，您會在儲存體帳戶提供對某個 Blob 容器的的存取權，做為內送資料的來源和輸出的位置。
+有時候您需要對註冊執行大量作業。 通常這是為了與另一個系統整合，或是要進行大規模修正，例如更新標籤。 如果涉及的註冊數高達數千個，建議您不要使用 Get/Update 流程。 匯入/匯出功能可因應此案例。 基本上，您會在儲存體帳戶提供對某個 Blob 容器的的存取權，做為內送資料的來源和輸出的位置。
 
 **提交匯出工作：**
 
@@ -217,7 +222,7 @@ CreateOrUpdate、Patch 和 Delete 最終都會與 Get 一致。 您要求的作�
 
     List<NotificationHubJob> jobs = hub.getAllNotificationHubJobs();
 
-**具備 SAS 簽章的 URI：** 這是某個 Blob 檔案或 Blob 容器的 URL，加上參數集 (例如權限和到期時間)，再加上所有使用帳戶 SAS 金鑰之項目的簽章。 Azure Storage Java SDK 具有豐富的功能，包括建立此類的 URI。 此外您可以參考 ImportExportE2E 測試類別 (從 github 位置) 的簡單替代方法，它可實作非常基本而精簡的簽署演算法。
+**具備 SAS 簽章的 URI：** 這是某個 Blob 檔案或 Blob 容器的 URL，加上一系列參數 (例如權限和到期時間)，再加上這些項目使用帳戶 SAS 金鑰所建立全部項目的簽章。 Azure Storage Java SDK 具有豐富的功能，包括建立此類的 URI。 作為簡單的替代方案，您也可以參考 ImportExportE2E 測試類別 (來自 github 位置)，它具有簽署演算法的基本且精簡實作。
 
 ### <a name="send-notifications"></a>傳送通知
 通知物件是附有標頭的本文，某些公用程式方法有助於建立原生和範本通知物件。
@@ -272,22 +277,22 @@ CreateOrUpdate、Patch 和 Delete 最終都會與 Get 一致。 您要求的作�
 執行 Java 程式碼現在應會產生一則顯示於目標裝置的通知。
 
 ## <a name="next-steps"></a>後續步驟
-在本主題中，我們會說明如何為通知中心建立簡單的 Java REST 用戶端。 您可以在這裡執行下列動作：
+本主題會說明如何為通知中樞建立簡單的 Java REST 用戶端。 您可以在這裡執行下列動作：
 
 * 下載完整的 [Java SDK]，其中包含完整的 SDK 程式碼。 
 * 試用範例：
-  * [開始使用通知中樞]
+  * [開始使用通知中心]
   * [傳送即時新聞]
   * [傳送當地語系化的即時新聞]
   * [傳送通知給已驗證的使用者]
   * [傳送跨平台通知給已驗證的使用者]
 
 [Java SDK]: https://github.com/Azure/azure-notificationhubs-java-backend
-[Get started tutorial]: http://azure.microsoft.com/documentation/articles/notification-hubs-ios-get-started/
-[開始使用通知中樞]: http://www.windowsazure.com/manage/services/notification-hubs/getting-started-windows-dotnet/
-[傳送即時新聞]: http://www.windowsazure.com/manage/services/notification-hubs/breaking-news-dotnet/
-[傳送當地語系化的即時新聞]: http://www.windowsazure.com/manage/services/notification-hubs/breaking-news-localized-dotnet/
-[傳送通知給已驗證的使用者]: http://www.windowsazure.com/manage/services/notification-hubs/notify-users/
-[傳送跨平台通知給已驗證的使用者]: http://www.windowsazure.com/manage/services/notification-hubs/notify-users-xplat-mobile-services/
+[Get started tutorial]: notification-hubs-ios-apple-push-notification-apns-get-started.md
+[開始使用通知中心]: notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md
+[傳送即時新聞]: notification-hubs-windows-notification-dotnet-push-xplat-segmented-wns.md
+[傳送當地語系化的即時新聞]: notification-hubs-windows-store-dotnet-xplat-localized-wns-push-notification.md
+[傳送通知給已驗證的使用者]: notification-hubs-aspnet-backend-windows-dotnet-wns-notification.md
+[傳送跨平台通知給已驗證的使用者]: notification-hubs-aspnet-backend-windows-dotnet-wns-notification.md
 [Maven]: http://maven.apache.org/
 

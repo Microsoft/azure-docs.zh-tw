@@ -1,24 +1,25 @@
 ---
-title: "Azure 上的微服務簡介 | Microsoft Docs"
-description: "概述在現代應用程式開發中，為何使用微服務方法建置雲端應用程式很重要，以及 Azure Service Fabric 如何提供平台以達成此目標。"
+title: Azure 上的微服務簡介 | Microsoft Docs
+description: 概述在現代應用程式開發中，為何使用微服務方法建置雲端應用程式很重要，以及 Azure Service Fabric 如何提供平台以達成此目標。
 services: service-fabric
 documentationcenter: .net
 author: msfussell
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: fae2be85-0ab4-4cd3-9d1f-e0d95fe1959b
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 07/02/2017
 ms.author: msfussell
-ms.openlocfilehash: f69f594d058ba061cec116f87435c96280e19f93
-ms.sourcegitcommit: b723436807176e17e54f226fe00e7e977aba36d5
+ms.openlocfilehash: 04342be06430747ef64cb69c27ee93e6896775e5
+ms.sourcegitcommit: 0b05bdeb22a06c91823bd1933ac65b2e0c2d6553
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/19/2017
+ms.lasthandoff: 07/17/2018
+ms.locfileid: "39070841"
 ---
 # <a name="why-a-microservices-approach-to-building-applications"></a>為何要用微服務方式建置應用程式？
 身為軟體開發人員，已熟悉思考如何將應用程式分解成元件部分。 它是物件導向、軟體抽象化和元件化的中心範型。 現在，這種分解經常以共用程式庫和技術層之間的類別與介面呈現。 通常是透過一種分層方法，有後端存放區、中間層商務邏輯和前端使用者介面 (UI)。 過去幾年來的變化  是身為開發人員的我們，開始為商業驅動和雲端建置分散式應用程式。
@@ -145,9 +146,9 @@ Service Fabric 提供三個廣泛的領域，可協助您建置使用微服務�
 ***Service Fabric 不會限制您建置服務的方式，您可以使用任何技術。不過，它提供可讓您輕鬆建置微服務的內建程式設計 API。***
 
 ### <a name="migrating-existing-applications-to-service-fabric"></a>將現有的應用程式移轉到 Service Fabric
-Service Fabric 的一個主要方法是重複使用現有的程式碼，而這些程式碼可接著藉由新的微服務來現代化。 應用程式的現代化階段有五個，而您可以在任何階段開始和停止。 這些階段包括：
+Service Fabric 的一個主要方法是重複使用現有的程式碼，而這些程式碼可接著藉由新的微服務來現代化。 應用程式的現代化階段有五個，而您可以在任何階段開始和停止。 它們是：
 
-1) 選擇一個傳統單體式應用程式  
+1) 開始使用傳統單體式應用程式。  
 2) 原封不動轉移 - 使用容器或客體可執行檔來裝載 Service Fabric 中現有的程式碼。  
 3) 現代化 - 在現有的容器化程式碼之外，再加上新的微服務。  
 4) 創新 - 將單體完全根據需求拆解成微服務。  
@@ -157,18 +158,18 @@ Service Fabric 的一個主要方法是重複使用現有的程式碼，而這�
 
 再重新強調一遍，您可以**在這當中任何階段開始和停止**。 不會被迫移至下一個階段。 現在，讓我們看看這每一個階段的範例。
 
-**隨即轉移** - 許多公司將現有單體式應用程式原封不動轉移到容器中的原因有兩個：
+**原封不動轉移** - 許多公司將現有單體式應用程式原封不動轉移到容器中的原因有兩個：
 
 - 降低成本 - 不論是為了合併和移除現有的硬體，還是為了以更高密度的方式執行應用程式。 
 - 開發與作業之間的一致性部署合約。
 
-降低成本是可理解的，在 Microsoft 內，大量現有的應用程式都正透過容器化來節省數百萬美元。 一致性部署較難以評估，但同樣重要。 開發人員仍可自由選擇適合他們的技術，不過，作業將只接受單一的方式來部署和管理這些應用程式。 它緩和了作業必須處理許多不同技術的複雜性，或是強制開發人員只能選擇特定技術的情況。 基本上，每個應用程式都會透過容器化成為獨立性部署映像。
+降低成本是可理解的，在 Microsoft 內，大量現有的應用程式都正透過容器化來節省數百萬美元。 一致性部署較難以評估，但同樣重要。 這表示開發人員仍可自由選擇適合他們的技術，不過，作業將只接受單一的方式來部署和管理這些應用程式。 它緩和了作業必須處理許多不同技術的複雜性，或是強制開發人員只能選擇特定技術的情況。 基本上，每個應用程式都會透過容器化成為獨立性部署映像。
 
 許多組織都在此停止。 它們已經享有容器的好處，而且 Service Fabric 提供包含了部署、升級、版本設定、復原、健康情況監視等完整的管理體驗。
 
 **現代化** - 是在現有的容器化程式碼之外，再加上新的服務。 如果您要撰寫新的程式碼，最好是決定順著微服務的路徑步步為營。 這可能是新增新的 REST API 端點，或是新的商務邏輯。 如此一來，您便開始了建置新微服務的旅程，以及練習開發和部署這些微服務。
 
-**創新** - 還記得本文開頭那些促使採用微服務方法的原始變更業務需求嗎？ 在此階段，要判斷的是，這些情況是否發生在我目前的應用程式上，如果是，我便需要開始分割單體應用程式或進行創新。 這裡的其中一個範例，就是當資料庫因為作為工作流程佇列而變成處理瓶頸的時候。 隨著工作流程要求數目的增加，將需要分配工作來進行調整。 因此針對不進行調整或您需要更頻繁地更新的特定應用程式部分，請將此部分劃分出來成為微服務並進行創新。 
+**創新** - 還記得本文開頭那些促使採用微服務方法的原始變更業務需求嗎？ 在此階段，要判斷的是，這些情況是否發生在我目前的應用程式上；如果是，就需要開始將單體應用程式分割成不同服務或進行創新。 這裡的其中一個範例，就是當用來作為工作流程佇列的資料庫變成處理瓶頸的時候。 隨著工作流程要求數目的增加，將需要分配工作來進行調整。 因此針對不進行調整或您需要更頻繁地更新的特定應用程式部分，請將此部分劃分出來成為微服務並進行創新。 
 
 **轉換成微服務** - 這是應用程式完全由微服務構成 (或解構成微服務) 的階段。 到此階段，您已完成微服務旅程。 您可以從這裡開始，但是在沒有微服務平台來協助您的情況下執行此操作會是相當大的投資。 
 
@@ -181,7 +182,7 @@ Service Fabric 的目標是將使用微服務方法建置應用程式時的複�
 
 ## <a name="next-steps"></a>後續步驟
 * [Service Fabric 術語概觀](service-fabric-technical-overview.md)
-* [微服務︰採用雲端技術的應用程式革命](https://azure.microsoft.com/en-us/blog/microservices-an-application-revolution-powered-by-the-cloud/)
+* [微服務︰採用雲端技術的應用程式革命](https://azure.microsoft.com/blog/microservices-an-application-revolution-powered-by-the-cloud/)
 
 [Image1]: media/service-fabric-overview-microservices/monolithic-vs-micro.png
 [Image2]: media/service-fabric-overview-microservices/statemonolithic-vs-micro.png

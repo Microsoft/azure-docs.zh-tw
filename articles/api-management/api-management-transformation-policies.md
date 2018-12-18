@@ -18,6 +18,7 @@ ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 03/28/2018
+ms.locfileid: "30233780"
 ---
 # <a name="api-management-transformation-policies"></a>API 管理轉換原則
 本主題提供下列 API 管理原則的參考。 如需有關新增和設定原則的資訊，請參閱 [API 管理中的原則](http://go.microsoft.com/fwlink/?LinkID=398186)。
@@ -84,9 +85,9 @@ ms.lasthandoff: 03/28/2018
 ### <a name="usage"></a>使用量
  此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。
 
--   **原則區段︰**輸入、輸出、錯誤
+-   **原則區段︰** 輸入、輸出、錯誤
 
--   **原則範圍︰**全域、產品、API、作業
+-   **原則範圍︰** 全域、產品、API、作業
 
 ##  <a name="ConvertXMLtoJSON"></a> 將 XML 轉換成 JSON
  `xml-to-json` 原則將要求或回應本文從 XML 轉換成 JSON。 此原則可用於將架構在「僅使用 XML 的後端 Web 服務」上的 API 現代化。
@@ -128,9 +129,9 @@ ms.lasthandoff: 03/28/2018
 ### <a name="usage"></a>使用量
  此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。
 
--   **原則區段︰**輸入、輸出、錯誤
+-   **原則區段︰** 輸入、輸出、錯誤
 
--   **原則範圍︰**全域、產品、API、作業
+-   **原則範圍︰** 全域、產品、API、作業
 
 ##  <a name="Findandreplacestringinbody"></a> 在本文中尋找並取代字串
  `find-and-replace` 原則會尋找要求或回應子字串，並取代為不同的子字串。
@@ -163,9 +164,9 @@ ms.lasthandoff: 03/28/2018
 ### <a name="usage"></a>使用量
  此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。
 
--   **原則區段︰**輸入、輸出、後端、錯誤
+-   **原則區段︰** 輸入、輸出、後端、錯誤
 
--   **原則範圍︰**全域、產品、API、作業
+-   **原則範圍︰** 全域、產品、API、作業
 
 ##  <a name="MaskURLSContent"></a> 遮罩內容中的 URL
  `redirect-content-urls` 原則會重寫 (遮罩) 回應本文中的連結，使其經由閘道器指向同等的連結。 使用在輸出區段中，用以重新撰寫回應本文連結，使其指向閘道。 使用在輸入區段中則效果相反。
@@ -194,9 +195,9 @@ ms.lasthandoff: 03/28/2018
 ### <a name="usage"></a>使用量
  此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。
 
--   **原則區段︰**輸入、輸出
+-   **原則區段︰** 輸入、輸出
 
--   **原則範圍︰**全域、產品、API、作業
+-   **原則範圍︰** 全域、產品、API、作業
 
 ##  <a name="SetBackendService"></a> 設定後端服務
  使用 `set-backend-service` 原則將傳入要求重新導向至不同的後端，而不是 API 設定中為該作業指定的後端。 此原則會將傳入要求中的後端服務基底 URL 變更為原則中指定的 URL。
@@ -270,9 +271,9 @@ ms.lasthandoff: 03/28/2018
 ### <a name="usage"></a>使用量
  此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。
 
--   **原則區段︰**輸入、後端
+-   **原則區段︰** 輸入、後端
 
--   **原則範圍︰**全域、產品、API、作業
+-   **原則範圍︰** 全域、產品、API、作業
 
 ##  <a name="SetBody"></a> 設定本文
  使用 `set-body` 原則來設定傳入和傳出要求的訊息本文。 若要存取訊息本文，您可以使用 `context.Request.Body` 屬性或 `context.Response.Body`，取決於原則是在輸入或輸出區段中。
@@ -440,9 +441,9 @@ OriginalUrl.
 ### <a name="usage"></a>使用量
  此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。
 
--   **原則區段︰**輸入、輸出、後端
+-   **原則區段︰** 輸入、輸出、後端
 
--   **原則範圍︰**全域、產品、API、作業
+-   **原則範圍︰** 全域、產品、API、作業
 
 ##  <a name="SetHTTPheader"></a> 設定 HTTP 標頭
  `set-header` 原則會指派值給現有的回應及/或要求標頭，或加入新的回應及/或要求標頭。
@@ -497,9 +498,9 @@ OriginalUrl.
 ### <a name="usage"></a>使用量
  此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。
 
--   **原則區段︰**輸入、輸出、後端、錯誤
+-   **原則區段︰** 輸入、輸出、後端、錯誤
 
--   **原則範圍︰**全域、產品、API、作業
+-   **原則範圍︰** 全域、產品、API、作業
 
 ##  <a name="SetQueryStringParameter"></a> 設定查詢字串參數
  `set-query-parameter` 原則會新增、取代值或刪除要求查詢字串參數。 可用來傳遞後端服務所需的查詢參數，為選擇性或從未存在於要求中。
@@ -557,9 +558,9 @@ OriginalUrl.
 ### <a name="usage"></a>使用量
  此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。
 
--   **原則區段︰**輸入、後端
+-   **原則區段︰** 輸入、後端
 
--   **原則範圍︰**全域、產品、API、作業
+-   **原則範圍︰** 全域、產品、API、作業
 
 ##  <a name="RewriteURL"></a> 重寫 URL
  `rewrite-uri` 原則會將要求 URL 從公用格式轉換成 Web 服務所需的格式，如以下範例中所示。
@@ -635,9 +636,9 @@ OriginalUrl.
 ### <a name="usage"></a>使用量
  此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。
 
--   **原則區段︰**inbound
+-   **原則區段︰** inbound
 
--   **原則範圍︰**產品、API、作業
+-   **原則範圍︰** 產品、API、作業
 
 ##  <a name="XSLTransform"></a> 使用 XSLT 轉換 XML
  `Transform XML using an XSLT` 原則會將 XSL 轉換套用至要求或回應本文中的 XML。
@@ -699,9 +700,9 @@ OriginalUrl.
 ### <a name="usage"></a>使用量
  此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。
 
--   **原則區段︰**輸入、輸出
+-   **原則區段︰** 輸入、輸出
 
--   **原則範圍︰**全域、產品、API、作業
+-   **原則範圍︰** 全域、產品、API、作業
 
 ## <a name="next-steps"></a>後續步驟
 

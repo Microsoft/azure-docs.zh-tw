@@ -1,27 +1,21 @@
 ---
-title: "什麼是 Apache Hive 和 HiveQL - Azure HDInsight | Microsoft Docs"
-description: "Apache Hive 是適用於 Hadoop 的資料倉儲系統。 您可以使用 HiveQL (這類似於 TRANSACT-SQL) 查詢 Hive 中儲存的資料。 在本文件中，您將了解如何使用 Hive 和 HiveQL 搭配 Azure HDInsight。"
-keywords: "hiveql,什麼是 hive,hadoop hiveql,如何使用 hive,了解 hive,什麼是s hive"
+title: 什麼是 Apache Hive 和 HiveQL - Azure HDInsight
+description: Apache Hive 是適用於 Hadoop 的資料倉儲系統。 您可以使用 HiveQL (這類似於 TRANSACT-SQL) 查詢 Hive 中儲存的資料。 在本文件中，您將了解如何使用 Hive 和 HiveQL 搭配 Azure HDInsight。
+keywords: hiveql,什麼是 hive,hadoop hiveql,如何使用 hive,了解 hive,什麼是s hive
 services: hdinsight
-documentationcenter: 
-author: Blackmist
-manager: jhubbard
-editor: cgronlun
-tags: azure-portal
-ms.assetid: 2c10f989-7636-41bf-b7f7-c4b67ec0814f
+author: jasonwhowell
+ms.author: jasonh
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive,hdiseo17may2017
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 01/26/2018
-ms.author: larryfr
-ms.openlocfilehash: afd2bc95beb2458ec149824723ec62381b31b2da
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.topic: conceptual
+ms.date: 04/23/2018
+ms.openlocfilehash: 446bb23e15d908c8afe189a33e4d8a70faad284a
+ms.sourcegitcommit: 2ad510772e28f5eddd15ba265746c368356244ae
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "43126632"
 ---
 # <a name="what-is-apache-hive-and-hiveql-on-azure-hdinsight"></a>Azure HDInsight 上的 Apache Hive 和 HiveQL 是什麼？
 
@@ -45,11 +39,11 @@ HDInsight 提供數種已針對特定工作負載進行微調的叢集類型。 
 
 | **使用此方法**，如果您想要... | ...**互動式**查詢 | ...**批次** 處理 | ...搭配此 **叢集作業系統** | ...從此 **用戶端作業系統** |
 |:--- |:---:|:---:|:--- |:--- |
+| [適用於 Visual Studio Code 的 HDInsight 工具](../hdinsight-for-vscode.md) |✔ |✔ |Linux | Linux、Unix、Mac OS X 或 Windows |
+| [HDInsight Tools for Visual Studio](../hadoop/apache-hadoop-use-hive-visual-studio.md) |✔ |✔ |Linux 或 Windows* |Windows |
 | [Hive 檢視](../hadoop/apache-hadoop-use-hive-ambari-view.md) |✔ |✔ |Linux |任何 (以瀏覽器為基礎) |
 | [Beeline 用戶端](../hadoop/apache-hadoop-use-hive-beeline.md) |✔ |✔ |Linux |Linux、Unix、Mac OS X 或 Windows |
 | [REST API](../hadoop/apache-hadoop-use-hive-curl.md) |&nbsp; |✔ |Linux 或 Windows* |Linux、Unix、Mac OS X 或 Windows |
-| [適用於 Visual Studio Code 的 HDInsight 工具](../hdinsight-for-vscode.md) |✔ |✔ |Linux | Linux、Unix、Mac OS X 或 Windows |
-| [HDInsight Tools for Visual Studio](../hadoop/apache-hadoop-use-hive-visual-studio.md) |&nbsp; |✔ |Linux 或 Windows* |Windows |
 | [Windows PowerShell](../hadoop/apache-hadoop-use-hive-powershell.md) |&nbsp; |✔ |Linux 或 Windows* |Windows |
 
 > [!IMPORTANT]
@@ -57,7 +51,7 @@ HDInsight 提供數種已針對特定工作負載進行微調的叢集類型。 
 
 ## <a name="hiveql-language-reference"></a>HiveQL 語言參考
 
-在[語言手冊 (https://cwiki.apache.org/confluence/display/Hive/LanguageManual)](https://cwiki.apache.org/confluence/display/Hive/LanguageManual) 中可取得 HiveQL 語言參考。
+HiveQL 語言參考可在[語言手冊 (https://cwiki.apache.org/confluence/display/Hive/LanguageManual)](https://cwiki.apache.org/confluence/display/Hive/LanguageManual) 中找到。
 
 ## <a name="hive-and-data-structure"></a>Hive 和資料結構
 
@@ -78,7 +72,7 @@ STORED AS TEXTFILE LOCATION '/example/data/';
 
 Hive 也支援自訂複雜或不規則結構化資料的 **序列化/反序列化程式 (SerDe)** 。 如需詳細資訊，請參閱[如何搭配 HDInsight 使用自訂 JSON SerDe](http://blogs.msdn.com/b/bigdatasupport/archive/2014/06/18/how-to-use-a-custom-json-serde-with-microsoft-azure-hdinsight.aspx) 文件 (英文)。
 
-如需 Hive 所支援檔案格式的詳細資訊，請參閱[語言手冊 (https://cwiki.apache.org/confluence/display/Hive/LanguageManual)](https://cwiki.apache.org/confluence/display/Hive/LanguageManual)
+如需 Hive 所支援檔案格式的詳細資訊，請參閱[語言手冊 (https://cwiki.apache.org/confluence/display/Hive/LanguageManual)](https://cwiki.apache.org/confluence/display/Hive/LanguageManual)。
 
 ### <a name="hive-internal-tables-vs-external-tables"></a>Hive 內部和外部資料表比較。
 
@@ -104,7 +98,7 @@ Hive 也支援自訂複雜或不規則結構化資料的 **序列化/反序列�
 
 ## <a name="user-defined-functions-udf"></a>使用者定義函數 (UDF)
 
-Hive 也可透過 **使用者定義函數 (UDF)**延伸。 UDF 可讓您在 HiveQL 中實作功能或不易模型化的邏輯。 如需將 UDF 與 Hive 搭配使用的範例，請參閱以下文件：
+Hive 也可透過 **使用者定義函數 (UDF)** 延伸。 UDF 可讓您在 HiveQL 中實作功能或不易模型化的邏輯。 如需將 UDF 與 Hive 搭配使用的範例，請參閱以下文件：
 
 * [將 Java 使用者定義的函式與 Hive 搭配使用](../hadoop/apache-hadoop-hive-java-udf.md)
 
@@ -228,7 +222,7 @@ HDInsight 可提供互動式查詢叢集類型的 LLAP。 如需詳細資訊，�
 
 ### <a name="azure-data-factory"></a>Azure Data Factory
 
-Azure Data Factory 可讓您使用 HDInsight 作為 Data Factory 管線的一部分。 若想進一步了解如何使用管線中的 Hive，請參閱[使用 Azure Data Factory 中的 Hive 活動轉換資料](/data-factory/transform-data-using-hadoop-hive.md)文件。
+Azure Data Factory 可讓您使用 HDInsight 作為 Data Factory 管線的一部分。 若想進一步了解如何使用管線中的 Hive，請參閱[使用 Azure Data Factory 中的 Hive 活動轉換資料](../../data-factory/transform-data-using-hadoop-hive.md)文件。
 
 ### <a name="hive-jobs-and-sql-server-integration-services"></a>Hive 工作和 SQL Server 整合服務
 

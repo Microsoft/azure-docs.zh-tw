@@ -1,25 +1,19 @@
 ---
-title: "Azure Analysis Services 教學課程第 4 課：建立關聯性 | Microsoft Docs"
-description: "說明如何在 Azure Analysis Services 教學課程專案中建立關聯性。"
-services: analysis-services
-documentationcenter: 
-author: Minewiskan
+title: Azure Analysis Services 教學課程第 4 課：建立關聯性 | Microsoft Docs
+description: 說明如何在 Azure Analysis Services 教學課程專案中建立關聯性。
+author: minewiskan
 manager: kfile
-editor: 
-tags: 
-ms.assetid: 
-ms.service: analysis-services
-ms.devlang: NA
-ms.topic: get-started-article
-ms.tgt_pltfrm: NA
-ms.workload: na
-ms.date: 01/08/2018
+ms.service: azure-analysis-services
+ms.topic: conceptual
+ms.date: 07/03/2018
 ms.author: owend
-ms.openlocfilehash: 57b3a172445047291f0aea5b1616b9dcbf6bf745
-ms.sourcegitcommit: 176c575aea7602682afd6214880aad0be6167c52
+ms.reviewer: minewiskan
+ms.openlocfilehash: 5007e18db0af40621ab4b30a16d705d3a5b3915c
+ms.sourcegitcommit: 86cb3855e1368e5a74f21fdd71684c78a1f907ac
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/09/2018
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37443812"
 ---
 # <a name="create-relationships"></a>建立關聯性
 

@@ -1,10 +1,27 @@
+---
+title: 包含檔案
+description: 包含檔案
+services: iot-suite
+author: dominicbetts
+ms.service: iot-suite
+ms.topic: include
+ms.date: 04/24/2018
+ms.author: dobett
+ms.custom: include file
+ms.openlocfilehash: 181432c3050bbc614898b1ddf779bc90239a35be
+ms.sourcegitcommit: bf522c6af890984e8b7bd7d633208cb88f62a841
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 07/20/2018
+ms.locfileid: "39189490"
+---
 # <a name="internet-of-things-security-from-the-ground-up"></a>徹底保護物聯網安全性
 
 物聯網 (IoT) 使得全球企業面臨獨特的安全性、隱私權及相容性挑戰。 不同於傳統網路技術 (這類問題是以軟體及其實作方式為中心)，IoT 在意的是當網路與實體世界交會時會發生什麼事。 保護 IoT 解決方案要求確保安全佈建裝置，保護這些裝置與雲端之間的連接，以及在處理和儲存期間保護雲端中資料保護的安全。 但是，會針對這類功能運作的是資源受限的裝置、根據地理位置分佈的部署，以及解決方案中的大量裝置。
 
-本文將說明 Microsoft Azure IoT 套件如何提供安全且私密的物聯網雲端解決方案。 Azure IoT 套件提供完整的端對端解決方案，徹底為每個階段內建安全性。 在 Microsoft，開發安全的軟體是軟體工程實務的一部分，這立基於 Microsoft 數十年來長時間開發安全軟體的體驗。 為了確保這一點，安全性開發週期 (SDL) 是基礎的開發方法，再加上基礎結構層級安全性服務的主機，例如營運安全性保證 (OSA)，以及 Microsoft 數位犯罪防治中心、Microsoft 安全性回應中心及 Microsoft 惡意程式碼防護中心。
+本文將說明 IoT 解決方案加速器如何提供安全且私密的物聯網雲端解決方案。 此解決方案加速器提供完整的端對端解決方案，徹底為每個階段內建安全性。 在 Microsoft，開發安全的軟體是軟體工程實務的一部分，這立基於 Microsoft 數十年來長時間開發安全軟體的體驗。 為了確保這一點，安全性開發週期 (SDL) 是基礎的開發方法，再加上基礎結構層級安全性服務的主機，例如營運安全性保證 (OSA)，以及 Microsoft 數位犯罪防治中心、Microsoft 安全性回應中心及 Microsoft 惡意程式碼防護中心。
 
-Azure IoT 套件提供獨特的功能，從 IoT 裝置佈建、連線及儲存資料都是簡單且明確的，而最棒的是很安全。 本文將檢驗 Azure IoT 套件的安全性功能和部署策略，以確保能夠應付安全性、隱私權及相容性的挑戰。
+此解決方案加速器提供獨特的功能，從 IoT 裝置佈建、連線及儲存資料都是簡單且明確的，而最棒的是很安全。 本文將檢驗 Azure IoT 解決方案加速器的安全性功能和部署策略，以確保能夠應付安全性、隱私權及相容性的挑戰。
 
 ## <a name="introduction"></a>簡介
 
@@ -16,28 +33,28 @@ Azure IoT 套件提供獨特的功能，從 IoT 裝置佈建、連線及儲存�
 
 ## <a name="secure-infrastructure-from-the-ground-up"></a>徹底保護基礎結構的安全
 
-[Microsoft Cloud](https://www.microsoft.com/enterprise/microsoftcloud/default.aspx#fbid=WzBsRQi6aGk) 基礎結構支援 127 個國家/地區中超過十億位客戶。 利用 Microsoft 數十年來建置企業軟體，以及在世界各地執行一些大型線上服務的經驗，相較於多數客戶可自行實現的部分，Microsoft Cloud 提供更高層級的增強安全性、隱私權、相容性及威脅減輕做法。
+[Microsoft Cloud](https://azure.microsoft.com) 基礎結構支援 127 個國家/地區中超過十億位客戶。 利用 Microsoft 數十年來建置企業軟體，以及在世界各地執行一些大型線上服務的經驗，相較於多數客戶可自行實現的部分，Microsoft Cloud 提供更高層級的增強安全性、隱私權、相容性及威脅減輕做法。
 
 [安全性開發週期 (SDL)](https://www.microsoft.com/sdl/) 可提供必要的全公司開發程序，將安全性需求嵌入整個軟體週期。 為了協助確保營運活動會遵循相同層級的安全性做法，SDL 會使用 Microsoft 的營運安全性保證 (OSA) 程序中所列出的嚴謹安全性指導方針。 Microsoft 也會與第三方稽核公司合作，持續驗證其是否符合法律遵循義務，並且 Microsoft 會透過建立卓越的中心 (包括 Microsoft 數位犯罪防治中心、Microsoft 安全性回應中心及 Microsoft 惡意程式碼防護中心)，致力於產生廣泛的安全性成果。
 
 ## <a name="microsoft-azure---secure-iot-infrastructure-for-your-business"></a>Microsoft Azure - 適用於貴公司的安全 IoT 基礎結構
 
-Microsoft Azure 提供完整的雲端解決方案，其中結合了持續成長的整合式雲端服務 (分析、機器學習服務、儲存體、安全性、網路功能及 Web) 集合，透過業界領先的承諾來為您的資料提供保護與隱私權。 Microsoft 的[模擬缺口](https://azure.microsoft.com/blog/red-teaming-using-cutting-edge-threat-simulation-to-harden-the-microsoft-enterprise-cloud/) 策略會透過由軟體安全性專家組成的專屬「紅隊」，來模擬攻擊、測試要偵測的 Azure 能力、防範新興威脅，以及從缺口中復原。 Microsoft 的[全域事件回應](https://www.microsoft.com/TrustCenter/Security/DesignOpSecurity)小組夜以繼日地工作，能夠減緩攻擊與惡意活動所產生的影響。 此小組會遵循事件管理、通訊及復原所建立的程序，並與內部和外部夥伴合作來使用可探索且可預測的介面。
+Microsoft Azure 提供完整的雲端解決方案，其中結合了持續成長的整合式雲端服務 (分析、機器學習服務、儲存體、安全性、網路功能及 Web) 集合，透過業界領先的承諾來為您的資料提供保護與隱私權。 Microsoft 的[模擬缺口](https://azure.microsoft.com/blog/red-teaming-using-cutting-edge-threat-simulation-to-harden-the-microsoft-enterprise-cloud/) 策略會透過由軟體安全性專家組成的專屬「紅隊」，來模擬攻擊、測試要偵測的 Azure 能力、防範新興威脅，以及從缺口中復原。 Microsoft 的[全域事件回應](https://www.microsoft.com/en-us/TrustCenter/Security/DesignOpSecurity)小組夜以繼日地工作，能夠減緩攻擊與惡意活動所產生的影響。 此小組會遵循事件管理、通訊及復原所建立的程序，並與內部和外部夥伴合作來使用可探索且可預測的介面。
 
-Microsoft 的系統能提供持續的入侵偵測與防護、阻斷服務攻擊防護、一般滲透測試，以及可協助識別及緩解威脅的法務工具。 [Multi-Factor Authentication](../articles/multi-factor-authentication/multi-factor-authentication.md) 可為存取網路的使用者提供額外的安全性層級。 此外，針對應用程式和主機提供者，Microsoft 會提供存取控制、監視、反惡意程式碼、弱點掃描、修補程式及組態管理。
+Microsoft 的系統能提供持續的入侵偵測與防護、阻斷服務攻擊防護、一般滲透測試，以及可協助識別及緩解威脅的法務工具。 [Multi-Factor Authentication](../articles/active-directory/authentication/multi-factor-authentication.md) 可為存取網路的使用者提供額外的安全性層級。 此外，針對應用程式和主機提供者，Microsoft 會提供存取控制、監視、反惡意程式碼、弱點掃描、修補程式及組態管理。
 
-Microsoft Azure IoT 套件會充分利用內建於 Azure 平台的安全性和隱私權，以及針對所有 Microsoft 軟體進行的安全開發，和作業所提供的 SDL 和 OSA 程序。 這些程序提供基礎結構保護、網路保護，以及身分識別與管理功能，以做為任何解決方案安全性的基礎。
+此解決方案加速器會充分利用內建於 Azure 平台的安全性和隱私權，以及針對所有 Microsoft 軟體進行的安全開發，和作業所提供的 SDL 和 OSA 程序。 這些程序提供基礎結構保護、網路保護，以及身分識別與管理功能，以做為任何解決方案安全性的基礎。
 
 
-            [IoT 套件](../articles/iot-suite/iot-suite-what-is-azure-iot.md)內的 [Azure IoT 中樞](../articles/iot-hub/iot-hub-what-is-iot-hub.md)提供完全受控服務，使用每一裝置的安全性認證和存取控制，在 IoT 裝置與 Azure 服務之間啟用可靠且安全的雙向通訊，例如 [Azure Machine Learning](../articles/machine-learning/studio/what-is-machine-learning.md) 和 [Azure 串流分析](../articles/stream-analytics/stream-analytics-introduction.md)。
+  [IoT 解決方案加速器](../articles/iot-fundamentals/iot-introduction.md)內的 [Azure IoT 中樞](../articles/iot-hub/about-iot-hub.md)提供完全受控服務，使用每一裝置的安全性認證和存取控制，在 IoT 裝置與 Azure 服務之間啟用可靠且安全的雙向通訊，例如 [Azure Machine Learning](../articles/machine-learning/studio/what-is-machine-learning.md) 和 [Azure 串流分析](../articles/stream-analytics/stream-analytics-introduction.md)。
 
-為了以最佳方式傳達內建於 Azure IoT 套件的安全性和隱私權功能，本文將套件細分成三個主要的安全性領域。
+為了以最佳方式傳達內建於 Azure IoT 解決方案加速器的安全性和隱私權功能，本文將套件細分成三個主要的安全性領域。
 
-![Azure IoT 套件](media/iot-security-ground-up/securing-iot-ground-up-fig3.png)
+![Azure IoT 解決方案加速器](media/iot-security-ground-up/securing-iot-ground-up-fig3.png)
 
 ### <a name="secure-device-provisioning-and-authentication"></a>保護裝置佈建和驗證
 
-當裝置不在現場時，Azure IoT 套件會保護它們，方法是為每個裝置提供唯一的身分識別金鑰，在裝置運作時，IoT 基礎結構可用來與其進行通訊。 此程序非常快速且可輕易地設定。 利用使用者選取的裝置識別碼產生的金鑰會形成權杖的基礎，可以在裝置和 Azure IoT 中樞間的所有通訊中使用。
+當裝置不在現場時，解決方案加速器會保護它們，方法是為每個裝置提供唯一的身分識別金鑰，在裝置運作時，IoT 基礎結構可用來與其進行通訊。 此程序非常快速且可輕易地設定。 利用使用者選取的裝置識別碼產生的金鑰會形成權杖的基礎，可以在裝置和 Azure IoT 中樞間的所有通訊中使用。
 
 裝置識別碼可以在製造期間 (也就是硬體信任模組中所閃現的) 與裝置產生關聯，或是可以使用現有的固定識別碼作為 Proxy (例如 CPU 序號)。 由於變更裝置中的這個識別資訊並不簡單，因此請務必導入邏輯裝置識別碼，以防萬一基礎裝置硬體變更，但邏輯裝置維持不變。 在某些情況下，裝置身分識別的關聯會在裝置部署期間發生 (例如，經驗證的現場工程師會在與解決方案後端通訊的同時，實際設定新的裝置)。 [Azure IoT 中樞身分識別登錄](../articles/iot-hub/iot-hub-devguide.md) 會針對方案，為裝置身分識別和安全性金鑰提供安全的儲存體。 個別或群組的裝置身分識別可以新增到允許的清單或封鎖清單，以便完整控制裝置存取。
 
@@ -65,9 +82,9 @@ Microsoft Azure IoT 套件會充分利用內建於 Azure 平台的安全性和�
 
 ### <a name="secure-processing-and-storage-in-the-cloud"></a>安全處理和雲端中的儲存體
 
-透過加密通訊以處理雲端中的資料，Azure IoT 套件有助於確保資料安全。 這會提供彈性來實作額外加密並管理安全性金鑰。
+透過加密通訊以處理雲端中的資料，解決方案加速器有助於確保資料安全。 這會提供彈性來實作額外加密並管理安全性金鑰。
 
-使用 Azure Active Directory (AAD) 進行使用者驗證和授權，Azure IoT 套件可以針對在雲端中的資料提供以原則為基礎的授權模型，啟用可稽核和檢閱的輕鬆存取管理。 此模型也能夠幾近即時的方式撤銷存取雲端中的資料，以及連到 Azure IoT 套件的裝置。
+使用 Azure Active Directory (AAD) 進行使用者驗證和授權，Azure IoT 解決方案加速器可以針對在雲端中的資料提供以原則為基礎的授權模型，啟用可稽核和檢閱的輕鬆存取管理。 此模型也能夠幾近即時的方式撤銷存取雲端中的資料，以及連到 Azure IoT 解決方案加速器的裝置。
 
 一旦資料位於雲端之後，它就能進行處理並儲存於任何使用者定義的工作流程中。 存取資料的每個部分是根據所用的儲存體服務，透過 Azure Active Directory 來控制。
 
@@ -77,11 +94,11 @@ IoT 基礎結構所使用的所有金鑰都會儲存於雲端的安全儲存體�
 
 物聯網是從您的事物開始 — 對企業最重要的事物。 IoT 可以藉由降低成本、提高營收，並使企業轉型，為企業提供令人讚嘆的價值。 這個轉型的成功，多半取決於選擇正確的 IoT 軟體和服務提供者。 這表示尋找提供者，其不僅可藉由了解企業需要與需求來催化這個轉型，也會提供使用安全性、隱私權、透明度及相容性建置的服務和軟體做為主要設計考量。 Microsoft 具備開發和部署安全軟體和服務的豐富經驗，並持續在這個新的物聯網紀元中保持領先的地位。
 
-Microsoft Azure IoT 套件根據設計會建置安全性措施，啟用安全的資產監視來改善效率、衍生營運效能來賦予創新，並採用進階的資料分析來使企業轉型。 Azure IoT 套件可利用關於安全性的分層式方式、多個安全性功能及設計模式，來協助部署基礎結構，可安心進行任何企業轉型。
+解決方案加速器根據設計會建置安全性措施，啟用安全的資產監視來改善效率、衍生營運效能來賦予創新，並採用進階的資料分析來使企業轉型。 解決方案加速器可利用關於安全性的分層式方式、多個安全性功能及設計模式，來協助部署基礎結構，可安心進行任何企業轉型。
 
 ## <a name="additional-information"></a>其他資訊
 
-每個 Azure IoT 套件的預先設定解決方案都會建立 Azure 服務的執行個體，例如︰
+每個解決方案加速器都會建立 Azure 服務的執行個體，例如：
 
 * [**Azure IoT 中樞**](https://azure.microsoft.com/services/iot-hub/)：將雲端連線到裝置的閘道。 您可以調整為每個中樞有百萬個連接，並利用每一裝置驗證支援來處理大量資料，以協助保護您的解決方案。
 * [**Azure Cosmos DB**](https://azure.microsoft.com/services/cosmos-db/)：一個適用於半結構化資料的可調整、已完全編製索引的資料庫服務，可管理您所佈建裝置的中繼資料，例如屬性、組態及安全性屬性。 Azure Cosmos DB 提供高效能且高輸送量的處理、無從驗證結構描述的資料索引編製，以及豐富的 SQL 查詢介面。

@@ -1,19 +1,20 @@
 ---
-title: "Azure Container Service 教學課程 - 管理 DC/OS"
-description: "Azure Container Service 教學課程 - 管理 DC/OS"
+title: Azure Container Service 教學課程 - 管理 DC/OS
+description: Azure Container Service 教學課程 - 管理 DC/OS
 services: container-service
-author: neilpeterson
-manager: timlt
+author: iainfoulds
+manager: jeconnoc
 ms.service: container-service
 ms.topic: tutorial
 ms.date: 02/26/2018
-ms.author: nepeters
+ms.author: iainfou
 ms.custom: mvc
-ms.openlocfilehash: ea5cbcc115e3da08b54d34da8b9d240c6d6a869c
-ms.sourcegitcommit: 088a8788d69a63a8e1333ad272d4a299cb19316e
+ms.openlocfilehash: 8f4b1c1c66243c06d46ef3fddec8ea495163fa07
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/27/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46999608"
 ---
 # <a name="azure-container-service-tutorial---manage-dcos"></a>Azure Container Service 教學課程 - 管理 DC/OS
 
@@ -29,11 +30,11 @@ DC/OS 所提供的分散式平台可執行現代及容器化的應用程式。 �
 > * DC/OS 的基本管理
 > * 刪除 DC/OS 叢集
 
-本教學課程需要 Azure CLI 2.0.4 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
+本教學課程需要 Azure CLI 2.0.4 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要升級，請參閱[安裝 Azure CLI]( /cli/azure/install-azure-cli)。 
 
 ## <a name="create-dcos-cluster"></a>建立 DC/OS 叢集
 
-首先，使用 [az group create](/cli/azure/group#az_group_create) 命令來建立資源群組。 Azure 資源群組是在其中部署與管理 Azure 資源的邏輯容器。 
+首先，使用 [az group create](/cli/azure/group#az-group-create) 命令來建立資源群組。 Azure 資源群組是在其中部署與管理 Azure 資源的邏輯容器。 
 
 下列範例會在 westeurope 位置建立名為 myResourceGroup 的資源群組。
 
@@ -41,7 +42,7 @@ DC/OS 所提供的分散式平台可執行現代及容器化的應用程式。 �
 az group create --name myResourceGroup --location westeurope
 ```
 
-接下來，使用 [az acs create](/cli/azure/acs#az_acs_create) 命令來建立 DC/OS 叢集。
+接下來，使用 [az acs create](/cli/azure/acs#az-acs-create) 命令來建立 DC/OS 叢集。
 
 下列範例會建立名為 myDCOSCluster 的 DC/OS 叢集，並建立 SSH 金鑰 (如果它們尚未存在)。 若要使用一組特定金鑰，請使用 `--ssh-key-value` 選項。  
 
@@ -71,7 +72,7 @@ sudo ssh -i ~/.ssh/id_rsa -fNL 80:localhost:80 -p 2200 azureuser@$ip
 
 ## <a name="install-dcos-cli"></a>安裝 DC/OS CLI
 
-使用 [az acs dcos install-cli](/azure/acs/dcos#install-cli) 命令來安裝 DC/OS CLI。 如果您是使用 Azure CloudShell，就已安裝 DC/OS CLI。 如果您是在 Mac OS 或 Lunix 上執行 Azure CLI，可能需要搭配 sudo 來執行命令。
+使用 [az acs dcos install-cli](/cli/azure/acs/dcos#az-acs-dcos-install-cli) 命令來安裝 DC/OS CLI。 如果您是使用 Azure CloudShell，就已安裝 DC/OS CLI。 如果您是在 Mac OS 或 Lunix 上執行 Azure CLI，可能需要搭配 sudo 來執行命令。
 
 ```azurecli
 az acs dcos install-cli
@@ -237,15 +238,15 @@ az network public-ip list --resource-group myResourceGroup --query "[?contains(n
 
 ## <a name="scale-dcos-cluster"></a>調整 DC/OS 叢集
 
-在上一個範例中，應用程式會調整為多個執行個體。 也可以調整 DC/OS 基礎結構以提供較多或較少的計算容量。 方法是使用 [az acs scale]() 命令。 
+在上一個範例中，應用程式會調整為多個執行個體。 也可以調整 DC/OS 基礎結構以提供較多或較少的計算容量。 方法是使用 [az acs scale](/cli/azure/acs#az-acs-scale) 命令。 
 
-若要查看目前 DC/OS 代理程式的計數，請使用 [az acs show](/cli/azure/acs#az_acs_show) 命令。
+若要查看目前 DC/OS 代理程式的計數，請使用 [az acs show](/cli/azure/acs#az-acs-show) 命令。
 
 ```azurecli
 az acs show --resource-group myResourceGroup --name myDCOSCluster --query "agentPoolProfiles[0].count"
 ```
 
-若要將計數增加至 5，請使用 [az acs scale](/cli/azure/acs#az_acs_scale) 命令。 
+若要將計數增加至 5，請使用 [az acs scale](/cli/azure/acs#az-acs-scale) 命令。 
 
 ```azurecli
 az acs scale --resource-group myResourceGroup --name myDCOSCluster --new-agent-count 5
@@ -253,7 +254,7 @@ az acs scale --resource-group myResourceGroup --name myDCOSCluster --new-agent-c
 
 ## <a name="delete-dcos-cluster"></a>刪除 DC/OS 叢集
 
-若不再需要，您可以使用 [az group delete](/cli/azure/group#az_group_delete) 命令將資源群組、DC/OS 叢集和所有相關資源移除。
+若不再需要，您可以使用 [az group delete](/cli/azure/group#az-group-delete) 命令將資源群組、DC/OS 叢集和所有相關資源移除。
 
 ```azurecli 
 az group delete --name myResourceGroup --no-wait

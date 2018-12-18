@@ -10,14 +10,15 @@ ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
-ms.topic: get-started-article
+ms.topic: conceptual
 ms.date: 03/14/2017
 ms.author: mbullwin
-ms.openlocfilehash: a2cb3d504abcd3f9c50df2427884d478ad2240c4
-ms.sourcegitcommit: 20d103fb8658b29b48115782fe01f76239b240aa
+ms.openlocfilehash: 6d826702d8302246a225ebfcdf0a5987cf9d2045
+ms.sourcegitcommit: c282021dbc3815aac9f46b6b89c7131659461e49
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2018
+ms.lasthandoff: 10/12/2018
+ms.locfileid: "49167047"
 ---
 # <a name="application-insights-for-web-pages"></a>適用於網頁的 Application Insights
 了解您的網頁或應用程式的效能和使用量。 如果將 [Application Insights](app-insights-overview.md) 新增至頁面指令碼，您會取得頁面載入的時間和 AJAX 呼叫、計數和瀏覽器例外狀況與 AJAX 失敗的詳細資料，以及使用者和工作階段計數。 這些項目可以依據頁面、用戶端作業系統和瀏覽器版本、地區位置和其他維度分割。 您可以對失敗計數或緩慢頁面載入設定警示。 而在 JavaScript 程式碼中插入追蹤呼叫，即可追蹤網頁應用程式的各種功能使用方式。
@@ -47,16 +48,10 @@ Application Insights 資源是您的頁面的效能和使用量相關資料顯�
 *已經有問題了嗎？* [建立資源的詳細資訊](app-insights-create-new-resource.md)訂用帳戶。
 
 ### <a name="add-the-sdk-script-to-your-app-or-web-pages"></a>將 SDK 指令碼加入至您的應用程式或網頁
-在快速入門中，取得網頁指令碼：
-
-![在您的應用程式概觀刀鋒視窗中，選擇 [快速入門]，取得程式碼以監視我的網頁。 複製指令碼。](./media/app-insights-javascript/02-monitor-web-page.png)
-
-> [!NOTE]
-> 建立 Application Insights 資源時，「使用者入門」體驗會因為所選的應用程式類型不同而有所差異。 如果指令碼沒有如上述螢幕擷取畫面所示存在於應用程式中，請直接使用下列指令碼。
 
 ```HTML
 <!-- 
-To collect end-user usage analytics about your application, 
+To collect user behavior analytics about your application, 
 insert the following script into each page you want to track.
 Place this code immediately before the closing </head> tag,
 and before any other scripts. Your first data will appear 
@@ -113,11 +108,8 @@ window.appInsights=appInsights,appInsights.queue&&0===appInsights.queue.length&&
     // Time page load up to execution of first trackPageView().
     overridePageViewDuration: boolean,
 
-    // Set these dynamically for an authenticated user.
-    appUserId: string,
+    // Set dynamically for an authenticated user.
     accountId: string,
-
-
 
 ## <a name="run"></a>執行您的應用程式
 執行您的 Web 應用程式，稍微使用一下來產生遙測，並等候數秒鐘。 您可以在開發電腦上使用 **F5** 執行應用程式，或發佈應用程式讓使用者處理。
@@ -129,7 +121,7 @@ window.appInsights=appInsights,appInsights.queue&&0===appInsights.queue.length&&
 
 ![在 portal.azure.com 中，開啟您的應用程式資源然後按一下 [設定]、[瀏覽器]。](./media/app-insights-javascript/03.png)
 
-*仍沒有資料？按一下頁面頂端的 [重新整理]。仍然沒有嗎？請參閱[疑難排解](app-insights-troubleshoot-faq.md)。*
+仍沒有資料？ 按一下頁面頂端的 [重新整理]**。 仍然沒有嗎？ 請參閱 [疑難排解](app-insights-troubleshoot-faq.md)。
 
 [瀏覽器] 刀鋒視窗是[計量瀏覽器刀鋒視窗](app-insights-metrics-explorer.md)，具有預設篩選器與圖表選項。 如果您想要的話，可以編輯時間範圍、篩選器和圖表設定，並將結果儲存為我的最愛。 按一下 [還原預設值]  以返回原始刀鋒視窗設定。
 
@@ -238,7 +230,7 @@ Ajax 呼叫包含從您的網頁指令碼所做的任何 HTTP/HTTPS 呼叫。 �
 ## <a name="usage-tracking"></a>使用情況追蹤
 想要了解使用者如何使用您的應用程式嗎？
 
-* [深入了解使用情況追蹤](app-insights-web-track-usage.md)
+* [了解使用者行為分析工具](app-insights-web-track-usage.md)
 * [深入了解自訂事件和計量 API](app-insights-api-custom-events-metrics.md)。
 
 ## <a name="video"></a> 影片

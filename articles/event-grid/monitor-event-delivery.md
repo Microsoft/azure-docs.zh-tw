@@ -1,24 +1,25 @@
 ---
-title: "監視 Azure 事件格線訊息傳遞"
-description: "說明如何監視 Azure 事件格線訊息的傳遞。"
+title: 監視 Azure 事件格線訊息傳遞
+description: 說明如何監視 Azure 事件格線訊息的傳遞。
 services: event-grid
 author: tfitzmac
 manager: timlt
 ms.service: event-grid
-ms.topic: article
-ms.date: 01/30/2018
+ms.topic: conceptual
+ms.date: 05/24/2018
 ms.author: tomfitz
-ms.openlocfilehash: f726959a10eb6bf57153746a901cbba747a68e5f
-ms.sourcegitcommit: 9d317dabf4a5cca13308c50a10349af0e72e1b7e
+ms.openlocfilehash: 625f3e228bb28c85e68fb592914fb2191baf3e4e
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34626984"
 ---
 # <a name="monitor-event-grid-message-delivery"></a>監視事件格線訊息傳遞 
 
 本文說明如何使用入口網站來查看事件傳遞的狀態。
 
-Event Grid 提供持久的傳遞。 它針對每個訂用帳戶傳遞每則訊息至少一次。 事件會立即傳送到每個訂用帳戶的已註冊 Webhook。 如果 Webhook 在第一次嘗試傳遞的 60 秒內未確認接收事件，Event Grid 會重試傳遞事件。
+Event Grid 提供持久的傳遞。 它針對每個訂用帳戶傳遞每則訊息至少一次。 事件會立即傳送到每個訂用帳戶的已註冊 Webhook。 如果 Webhook 在第一次嘗試傳遞的 60 秒內未確認接收事件，事件格線會重試傳遞事件。
 
 如需事件傳遞和重試的相關資訊，請參閱[事件格線訊息傳遞與重試](delivery-and-retry.md)。
 
@@ -41,9 +42,15 @@ Event Grid 提供持久的傳遞。 它針對每個訂用帳戶傳遞每則訊�
 
 ## <a name="event-subscription-status"></a>事件訂閱狀態
 
-若要查看事件訂閱的計量，請在可用服務中搜尋**事件格線訂閱**並加以選取。
+若要查看事件訂閱的計量，您可以依訂閱類型或特定資源的訂閱搜尋。
 
-![搜尋事件訂閱](./media/monitor-event-delivery/select-event-subscriptions.png)
+若要依事件訂閱類型搜尋，請選取 [所有服務]。
+
+![選取 [所有服務]](./media/monitor-event-delivery/all-services.png)
+
+搜尋 [事件格線]，然後從可用的選項選取 [事件格線訂閱]。
+
+![搜尋事件訂閱](./media/monitor-event-delivery/search-and-select.png)
 
 依事件的類型、訂閱及位置進行篩選。 針對要檢視的訂閱選取 [計量]。
 
@@ -53,9 +60,15 @@ Event Grid 提供持久的傳遞。 它針對每個訂用帳戶傳遞每則訊�
 
 ![檢視事件計量](./media/monitor-event-delivery/subscription-metrics.png)
 
+若要尋找特定資源的計量，請選取該資源。 然後，選取 [事件]。
+
+![選取資源的事件](./media/monitor-event-delivery/select-events.png)
+
+您會看到該資源訂閱的計量。
+
 ## <a name="custom-event-status"></a>自訂事件狀態
 
-如果您已發行自訂主題，就可以檢視它的計量。 選取包含該主題的資源群組，並選取該主題。
+如果您已發佈自訂主題，就可以檢視它的計量。 選取該主題的資源群組，並選取該主題。
 
 ![選取自訂主題](./media/monitor-event-delivery/select-custom-topic.png)
 

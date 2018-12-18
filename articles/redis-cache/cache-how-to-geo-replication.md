@@ -1,11 +1,11 @@
 ---
-title: "如何設定 Azure Redis 快取的異地複寫 | Microsoft Docs"
-description: "了解如何跨地理區域複寫您的 Azure Redis 快取執行個體。"
+title: 如何設定 Azure Redis 快取的異地複寫 | Microsoft Docs
+description: 了解如何跨地理區域複寫您的 Azure Redis 快取執行個體。
 services: redis-cache
-documentationcenter: 
+documentationcenter: ''
 author: wesmc7777
 manager: cfowler
-editor: 
+editor: ''
 ms.assetid: 375643dc-dbac-4bab-8004-d9ae9570440d
 ms.service: cache
 ms.workload: tbd
@@ -14,11 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/15/2017
 ms.author: wesmc
-ms.openlocfilehash: 883683f6af7943fa4da49095c9a15aefd5cfa719
-ms.sourcegitcommit: 2a70752d0987585d480f374c3e2dba0cd5097880
+ms.openlocfilehash: 644a7414365ded53acb20bb2f9ae9d086f263765
+ms.sourcegitcommit: a2ae233e20e670e2f9e6b75e83253bd301f5067c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/19/2018
+ms.lasthandoff: 08/13/2018
+ms.locfileid: "42141471"
 ---
 # <a name="how-to-configure-geo-replication-for-azure-redis-cache"></a>如何設定 Azure Redis 快取的異地複寫
 
@@ -34,7 +35,9 @@ ms.lasthandoff: 01/19/2018
 - 如果主要連結快取已啟用叢集，次要連結快取就必須啟用具有相同分區數目的叢集作為主要連結快取。
 - 必須建立兩個快取並同時處於執行中狀態。
 - 任何一個快取上皆不能啟用持續性。
-- 支援在相同 VNET 中多個快取之間的異地複寫。 只要將兩個 VNET 設定為 VNET 中的資源能透過 TCP 連線觸達彼此的方式，就也可支援在不同 VNET 中多個快取之間的異地複寫。
+- 支援在相同 VNET 中多個快取之間的異地複寫。 
+- 在相同區域內對等互連 VNet 中的快取之間進行異地複寫，目前為預覽功能。 兩個 VNet 必須設定成能讓 VNet 中的資源透過 TCP 連線觸達彼此。
+- 目前還不支援在不同區域內對等互連 VNet 中的快取之間進行異地複寫，但很快就會推出其預覽功能。
 
 在設定異地複寫之後，下列限制適用於連結的快取組：
 

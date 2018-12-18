@@ -1,23 +1,19 @@
 ---
-title: "IoT 裝置佈建服務中的安全性端點 | Microsoft Docs"
-description: "概念 - 如何控制後端應用程式之 IoT 裝置佈建服務的存取權。 包含安全性權杖的相關資訊。"
-services: iot-dps
-documentationcenter: .net
-author: dsk-2015
+title: IoT 裝置佈建服務中的安全性端點 | Microsoft Docs
+description: 概念 - 如何控制後端應用程式之 IoT 裝置佈建服務的存取權。 包含安全性權杖的相關資訊。
+author: wesmc7777
 manager: timlt
-editor: 
 ms.service: iot-dps
-ms.devlang: multiple
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: na
+services: iot-dps
+ms.topic: conceptual
 ms.date: 09/28/2017
-ms.author: dkshir,rajeevmv
-ms.openlocfilehash: 718fe9b3ca449f8f7b1420080ea75716e8badcf5
-ms.sourcegitcommit: 3ee36b8a4115fce8b79dd912486adb7610866a7c
+ms.author: wesmc
+ms.openlocfilehash: e476ca498e4dc1b36d18927beddc812d6d803120
+ms.sourcegitcommit: 58c5cd866ade5aac4354ea1fe8705cee2b50ba9f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/15/2017
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42818505"
 ---
 # <a name="control-access-to-azure-iot-hub-device-provisioning-service"></a>控制 Azure IoT 中樞裝置佈建服務的存取權
 
@@ -38,7 +34,7 @@ ms.lasthandoff: 11/15/2017
 
 * **共用存取授權原則**。 共用存取原則可以授與上面所列[權限](#device-provisioning-service-permissions)的任意組合。 您可以在 [Azure 入口網站][lnk-management-portal]中定義原則，或使用 [裝置佈建服務 REST API][lnk-resource-provider-apis] 以程式設計方式定義原則。 新建立的佈建服務有下列預設原則︰
 
-  * **provisioningserviceowner**︰具備所有權限的原則。
+* **provisioningserviceowner**︰具備所有權限的原則。
 
 > [!NOTE]
 > 如需詳細資訊，請參閱[權限](#device-provisioning-service-permissions)。
@@ -55,12 +51,16 @@ Azure IoT 中樞裝置佈建服務可根據共用存取原則驗證權杖，以�
 HTTP 是唯一支援的通訊協定，是以在 **Authorization** 要求標頭中包含有效權杖的方式實作驗證。
 
 #### <a name="example"></a>範例
-`SharedAccessSignature sr=mydps.azure-devices-provisioning.net&sig=kPszxZZZZZZZZZZZZZZZZZAhLT%2bV7o%3d&se=1487709501&skn=provisioningserviceowner`
+```csharp
+SharedAccessSignature sr = 
+   mydps.azure-devices-provisioning.net&sig=kPszxZZZZZZZZZZZZZZZZZAhLT%2bV7o%3d&se=1487709501&skn=provisioningserviceowner`\
+```
 
 > [!NOTE]
 > [Azure IoT 裝置佈建服務 SDK][lnk-sdks] 會在連接至服務時自動產生權杖。
 
 ## <a name="security-tokens"></a>安全性權杖
+
 裝置佈建服務使用安全性權杖來驗證服務，以避免透過線路傳送金鑰。 此外，安全性權杖有時效性和範圍的限制。 [Azure IoT 裝置佈建服務 SDK][lnk-sdks] 能在不需要任何特殊組態的情況下，自動產生權杖。 在某些案例中，您必須直接產生及使用安全性權杖。 這類案例包括直接使用 HTTP 介面。
 
 ### <a name="security-token-structure"></a>安全性權杖結構
@@ -135,7 +135,6 @@ def generate_sas_token(uri, key, policy_name, expiry=3600):
 > [!NOTE]
 > 由於權杖的時效性會在 IoT 裝置佈建服務機器上驗證，因此產生權杖之機器上的時鐘飄移必須降低最低。
 
-
 ### <a name="use-security-tokens-from-service-components"></a>使用來自服務元件的安全性權杖
 
 服務元件只能使用授與適當權限的共用存取原則來產生安全性權杖，如上所述。
@@ -154,9 +153,9 @@ def generate_sas_token(uri, key, policy_name, expiry=3600):
 * 資源 URI： `{mydps}.azure-devices-provisioning.net`、
 * 簽署金鑰︰ `enrollmentread` 原則的其中一個金鑰、
 * 原則名稱： `enrollmentread`、
-* 任何到期時間。
+* 任何到期 time.backn
 
-![在入口網站中建立 DPS 執行個體的共用存取原則][img-add-shared-access-policy]
+![在入口網站中建立裝置佈建服務執行個體的共用存取原則][img-add-shared-access-policy]
 
 ```nodejs
 var endpoint ="mydps.azure-devices-provisioning.net";
@@ -174,7 +173,7 @@ var token = generateSasToken(endpoint, policyKey, policyName, 60);
 
 下列參考主題會提供您有關控制 IoT 裝置佈建服務存取權的詳細資訊。
 
-## <a name="device-provisioning-service-permissions"></a>裝置佈建服務權限
+### <a name="device-provisioning-service-permissions"></a>裝置佈建服務權限
 
 下表列出可用來控制您的 IoT 裝置佈建服務存取權的權限。
 

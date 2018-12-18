@@ -1,25 +1,26 @@
 ---
-title: "Azure 服務匯流排診斷記錄 | Microsoft Docs"
-description: "了解如何為 Azure 中的「服務匯流排」設定診斷記錄。"
-keywords: 
+title: Azure 服務匯流排診斷記錄 | Microsoft Docs
+description: 了解如何為 Azure 中的「服務匯流排」設定診斷記錄。
+keywords: ''
 documentationcenter: .net
 services: service-bus-messaging
-author: banisadr
+author: spelluru
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: service-bus-messaging
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 02/05/2018
-ms.author: sethm
-ms.openlocfilehash: 4ce724adc9ca167634be9a0b7137b6a3d54211bf
-ms.sourcegitcommit: 059dae3d8a0e716adc95ad2296843a45745a415d
+ms.author: spelluru
+ms.openlocfilehash: 3c2528634dea5c75e4a0e35b7e1a6a30de8d96c1
+ms.sourcegitcommit: cb61439cf0ae2a3f4b07a98da4df258bfb479845
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 09/05/2018
+ms.locfileid: "43696151"
 ---
 # <a name="service-bus-diagnostic-logs"></a>服務匯流排診斷記錄
 
@@ -63,7 +64,7 @@ ms.lasthandoff: 02/09/2018
 
 作業記錄 JSON 字串包括下表所列的元素：
 
-Name | 說明
+名稱 | 說明
 ------- | -------
 ActivityId | 用於追蹤的內部識別碼
 EventName | 作業名稱           

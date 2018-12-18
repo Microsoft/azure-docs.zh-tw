@@ -4,7 +4,7 @@ description: RESTful 介面，用以取得 Linux VM 的計算、網路和近期�
 services: virtual-machines-linux
 documentationcenter: ''
 author: harijayms
-manager: timlt
+manager: jeconnoc
 editor: ''
 tags: azure-resource-manager
 ms.service: virtual-machines-linux
@@ -14,11 +14,12 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 10/10/2017
 ms.author: harijayms
-ms.openlocfilehash: 5c65157d1fdb0effd272437cc92c305ca4d1a510
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: 229f3dd11a90c4f6d65c9cae2a5dd3447eedf83e
+ms.sourcegitcommit: ad08b2db50d63c8f550575d2e7bb9a0852efb12f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/26/2018
+ms.locfileid: "47225254"
 ---
 # <a name="azure-instance-metadata-service"></a>Azure 執行個體中繼資料服務
 
@@ -36,10 +37,10 @@ Azure 的執行個體中繼資料服務是透過 [Azure Resource Manager](https:
 
 區域                                        | 可用性？                                 | 支援的版本
 -----------------------------------------------|-----------------------------------------------|-----------------
-[所有正式推出的全域 Azure 區域](https://azure.microsoft.com/regions/)     | 正式推出   | 2017-04-02, 2017-08-01, 2017-12-01
-[Azure Government](https://azure.microsoft.com/overview/clouds/government/)              | 正式推出 | 2017-04-02、2017-08-01
-[Azure China](https://www.azure.cn/)                                                           | 正式推出 | 2017-04-02、2017-08-01
-[Azure Germany](https://azure.microsoft.com/overview/clouds/germany/)                    | 正式推出 | 2017-04-02、2017-08-01
+[所有正式推出的全域 Azure 區域](https://azure.microsoft.com/regions/)     | 正式推出   | 2017-04-02、2017-08-01、2017-12-01、2018-02-01、2018-04-02
+[Azure Government](https://azure.microsoft.com/overview/clouds/government/)              | 正式推出 | 2017-04-02、2017-08-01、2017-12-01、2018-02-01
+[Azure China](https://www.azure.cn/)                                                           | 正式推出 | 2017-04-02、2017-08-01、2017-12-01、2018-02-01
+[Azure Germany](https://azure.microsoft.com/overview/clouds/germany/)                    | 正式推出 | 2017-04-02、2017-08-01、2017-12-01、2018-02-01
 
 當有服務更新和/或提供新支援的版本時，此表格便會更新
 
@@ -48,7 +49,7 @@ Azure 的執行個體中繼資料服務是透過 [Azure Resource Manager](https:
 ## <a name="usage"></a>使用量
 
 ### <a name="versioning"></a>版本控制
-執行個體中繼資料服務已建立版本。 版本是必要項目，且全域 Azure 上目前的版本為 `2017-12-01`。 目前支援的版本為 (2017-04-02、2017-08-01、2017-12-01)
+執行個體中繼資料服務已建立版本。 版本是必要項目，且全域 Azure 上目前的版本為 `2018-04-02`。 目前支援的版本為 (2017-04-02、2017-08-01、2017-12-01、2018-02-01、2018-04-02)
 
 > [!NOTE] 
 > 先前排定事件的預覽版支援作為 API 版本的 {latest}。 此格式將不再受到支援且之後會遭到取代。
@@ -285,7 +286,7 @@ Invoke-RestMethod -Headers @{"Metadata"="true"} -URI http://169.254.169.254/meta
 -----|-------------|-----------------------
 location | VM 執行所在的 Azure 區域 | 2017-04-02 
 name | VM 的名稱 | 2017-04-02
-提供項目 | 提供 VM 映像的資訊。 此值只會針對從 Azure 映像庫部署的映像呈現。 | 2017-04-02
+供應項目 | 提供 VM 映像的資訊。 此值只會針對從 Azure 映像庫部署的映像呈現。 | 2017-04-02
 publisher | VM 映像的發佈者 | 2017-04-02
 sku | VM 映像的特定 SKU | 2017-04-02
 version | VM 映像的版本 | 2017-04-02
@@ -298,6 +299,8 @@ subscriptionId | 虛擬機器的 Azure 訂用帳戶 | 2017-08-01
 tags | 虛擬機器的[標籤](../../azure-resource-manager/resource-group-using-tags.md)  | 2017-08-01
 resourceGroupName | 虛擬機器的[資源群組](../../azure-resource-manager/resource-group-overview.md) | 2017-08-01
 placementGroupId | 虛擬機器擴展集的[放置群組](../../virtual-machine-scale-sets/virtual-machine-scale-sets-placement-groups.md) | 2017-08-01
+計劃 | VM 在其 Azure Marketplace 映像中的[計劃](https://docs.microsoft.com/en-us/rest/api/compute/virtualmachines/createorupdate#plan)，包含名稱、產品和發行者 | 2017-04-02
+publicKeys | 指派給 VM 和路徑的公開金鑰集合[https://docs.microsoft.com/en-us/rest/api/compute/virtualmachines/createorupdate#sshpublickey] | 2017-04-02
 vmScaleSetName | 您虛擬機器擴展集的[虛擬機器擴展集名稱] (../../virtual-machine-scale-sets/virtual-machine-scale-sets-overview.md) | 2017-12-01
 區域 | 您虛擬機器的[可用性區域](../../availability-zones/az-overview.md) | 2017-12-01 
 ipv4/privateIpAddress | VM 的本機 IPv4 位址 | 2017-04-02
@@ -307,6 +310,7 @@ subnet/prefix | 子網路首碼，範例 24 | 2017-04-02
 ipv6/ipAddress | VM 的本機 IPv6 位址 | 2017-04-02 
 macAddress | VM mac 位址 | 2017-04-02 
 scheduledevents | 請參閱[排定的事件](scheduled-events.md) | 2017-08-01
+身分識別 | (預覽) 受控服務識別。 請參閱[取得存取權杖](../../active-directory/managed-identities-azure-resources/how-to-use-vm-token.md) | 2018-02-01 
 
 ## <a name="example-scenarios-for-usage"></a>使用方式的範例案例  
 
@@ -376,6 +380,36 @@ curl -H Metadata:true "http://169.254.169.254/metadata/instance/compute?api-vers
 }
 ```
 
+### <a name="getting-azure-environment-where-the-vm-is-running"></a>取得 VM 執行所在的 Azure 環境 
+
+Azure 有各種不同的主權雲端，例如 [Azure Government](https://azure.microsoft.com/overview/clouds/government/)。 有時候您會需要 Azure 環境來進行一些執行階段決策。 下列範例將說明如何達成此目的。
+
+**要求**
+
+> [!NOTE] 
+> 必須安裝 jq。 
+
+```bash
+  metadata=$(curl "http://169.254.169.254/metadata/instance/compute?api-version=2018-02-01" -H "Metadata:true")
+  endpoints=$(curl "https://management.azure.com/metadata/endpoints?api-version=2017-12-01")
+ 
+  location=$(echo $metadata | jq .location -r)
+ 
+  is_ww=$(echo $endpoints | jq '.cloudEndpoint.public.locations[]' -r | grep -w $location)
+  is_us=$(echo $endpoints | jq '.cloudEndpoint.usGovCloud.locations[]' -r | grep -w $location)
+  is_cn=$(echo $endpoints | jq '.cloudEndpoint.chinaCloud.locations[]' -r | grep -w $location)
+  is_de=$(echo $endpoints | jq '.cloudEndpoint.germanCloud.locations[]' -r | grep -w $location)
+ 
+  environment="Unknown"
+  if [ ! -z $is_ww ]; then environment="AzureCloud"; fi
+  if [ ! -z $is_us ]; then environment="AzureUSGovernment"; fi
+  if [ ! -z $is_cn ]; then environment="AzureChinaCloud"; fi
+  if [ ! -z $is_de ]; then environment="AzureGermanCloud"; fi
+ 
+  echo $environment
+```
+
+
 ### <a name="examples-of-calling-metadata-service-using-different-languages-inside-the-vm"></a>在 VM 內使用不同語言呼叫中繼資料服務的範例 
 
 語言 | 範例 
@@ -391,6 +425,7 @@ Bash       | https://github.com/Microsoft/azureimds/blob/master/IMDSSample.sh
 Perl       | https://github.com/Microsoft/azureimds/blob/master/IMDSSample.pl
 Java       | https://github.com/Microsoft/azureimds/blob/master/imdssample.java
 Visual Basic | https://github.com/Microsoft/azureimds/blob/master/IMDSSample.vb
+Puppet | https://github.com/keirans/azuremetadata
     
 
 ## <a name="faq"></a>常見問題集
@@ -400,7 +435,7 @@ Visual Basic | https://github.com/Microsoft/azureimds/blob/master/IMDSSample.vb
    * 目前執行個體中繼資料服務僅支援使用 Azure Resource Manager 建立的執行個體。 未來可能會新增雲端服務 VM 的支援。
 3. 我在一陣子之後回過頭來透過 Azure Resource Manager 建立我的虛擬機器。 為什麼我看不到計算中繼資料資訊？
    * 針對在 2016 年 9 月之後建立的 VM，新增[標記](../../azure-resource-manager/resource-group-using-tags.md)才會開始看到計算中繼資料。 針對較舊的 VM (在 2016 年 9 月之前建立)，對 VM 新增/移除擴充功能或資料磁碟，以重新整理中繼資料。
-4. 我看不到針對 2017-08-01 這個新版本所填入的所有資料
+4. 我看不到為新版本填入的所有資料
    * 針對在 2016 年 9 月之後建立的 VM，新增[標記](../../azure-resource-manager/resource-group-using-tags.md)才會開始看到計算中繼資料。 針對較舊的 VM (在 2016 年 9 月之前建立)，對 VM 新增/移除擴充功能或資料磁碟，以重新整理中繼資料。
 5. 我為何收到錯誤 `500 Internal Server Error`？
    * 請根據指數型輪詢系統重試您的要求。 若問題持續發生，請連絡 Azure 支援。
@@ -410,6 +445,10 @@ Visual Basic | https://github.com/Microsoft/azureimds/blob/master/IMDSSample.vb
    * 是，中繼資料服務適用於擴展集執行個體。 
 8. 如何取得服務支援？
    * 若要取得服務支援，請在 Azure 入口網站中針對您無法在長時間重試後取得中繼資料回應的 VM 建立支援問題。 
+9. 為何在呼叫服務時會出現要求逾時的狀況？
+   * 中繼資料呼叫必須從為 VM 的網路卡派的主要 IP 位址執行，除非您已變更路由，否則您的網路卡一定會有 169.254.0.0/16 位址的路由。
+10. 我已更新虛擬機器擴展集內的標籤，但為何它們並未像 VM 一樣出現在執行個體中？
+   * 目前，只有對執行個體重新開機、重新安裝映像或變更磁碟時，ScaleSets 標籤才會對 VM 顯示。 
 
    ![執行個體中繼資料支援](./media/instance-metadata-service/InstanceMetadata-support.png)
     

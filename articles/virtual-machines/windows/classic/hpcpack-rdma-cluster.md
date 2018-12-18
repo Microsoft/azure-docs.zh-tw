@@ -15,16 +15,15 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
 ms.date: 03/06/2018
 ms.author: danlep
-ms.openlocfilehash: 437c475735ec3823de51c5f9e996a5303fe9cfa7
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+ms.openlocfilehash: 7bb49e48f3777304aa6f40cee40e0b7147994201
+ms.sourcegitcommit: 1aacea6bf8e31128c6d489fa6e614856cf89af19
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 10/16/2018
+ms.locfileid: "49345232"
 ---
 # <a name="set-up-a-windows-rdma-cluster-with-hpc-pack-to-run-mpi-applications"></a>使用 HPC Pack 設定 Windows RDMA 叢集以執行 MPI 應用程式
 使用 [Microsoft HPC Pack](https://technet.microsoft.com/library/cc514029) \(英文\) 和[支援 RDMA 的 HPC VM 大小](../sizes-hpc.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json#rdma-capable-instances)在 Azure 中設定 Windows RDMA 叢集，以執行平行訊息傳遞介面 (MPI) 應用程式。 當您在 HPC Pack 叢集中設定了支援 RDMA 的 Windows Server 型節點時，MPI 應用程式會在 Azure 中透過以遠端直接記憶體存取 (RDMA) 技術為基礎的低延遲、高輸送量網路，有效率地進行通訊。
-
-如果您想要在存取 Azure RDMA 網路的 Linux VM 上執行 MPI 工作負載，請參閱 [設定 Linux RDMA 叢集以執行 MPI 應用程式](../../linux/classic/rdma-cluster.md)。
 
 ## <a name="hpc-pack-cluster-deployment-options"></a>HPC Pack 叢集部署選項
 Microsoft HPC Pack 是免費提供的工具，可在內部部署環境中或 Azure 中建立 HPC 叢集來執行 Windows 或 Linux HPC 應用程式。 HPC Pack 包含 Windows 訊息傳遞介面 (MS-MPI) 之 Microsoft 實作的執行階段環境。 與支援 RDMA 且執行支援之 Windows Server 作業系統的執行個體搭配使用時，HPC Pack 可提供一個有效率的選項來執行存取 Azure RDMA 網路的 Windows MPI 應用程式。 
@@ -83,7 +82,7 @@ Microsoft HPC Pack 是免費提供的工具，可在內部部署環境中或 Azu
    工作執行完成後，請讓節點離線，然後使用 [HPC 叢集管理員] 中的 [停止]  動作。
 
 ## <a name="scenario-2-deploy-compute-nodes-in-compute-intensive-vms-iaas"></a>案例 2︰在大量計算 VM 中部署計算節點 (IaaS)
-在此案例中，您會在 Azure 虛擬網路中的 VM 上部署 HPC Pack 前端節點和叢集計算節點。 HPC Pack 提供一些 [Azure VM 中的部署選項](../../linux/hpcpack-cluster-options.md)，包括自動部署指令碼和 Azure 快速入門範本。 舉例來說，下列考量和步驟會引導您使用 [HPC Pack IaaS 部署指令碼](hpcpack-cluster-powershell-script.md)，在 Azure 中自動部署 HPC Pack 2012 R2 叢集。
+在此案例中，您會在 Azure 虛擬網路中的 VM 上部署 HPC Pack 前端節點和叢集計算節點。 HPC Pack 提供一些 [Azure VM 中的部署選項](../../windows/hpcpack-cluster-options.md)，包括自動部署指令碼和 Azure 快速入門範本。 舉例來說，下列考量和步驟會引導您使用 [HPC Pack IaaS 部署指令碼](hpcpack-cluster-powershell-script.md)，在 Azure 中自動部署 HPC Pack 2012 R2 叢集。
 
 ![Azure VM 中的叢集][iaas]
 
@@ -184,7 +183,6 @@ Microsoft HPC Pack 是免費提供的工具，可在內部部署環境中或 Azu
 
 ## <a name="next-steps"></a>後續步驟
 * 除了使用 HPC Pack 之外，還可以在 Azure 中計算節點的受控集區上使用 Azure Batch 服務來進行開發以執行 MPI 應用程式。 請參閱 [在 Azure Batch 中使用多重執行個體工作來執行訊息傳遞介面 (MPI) 應用程式](../../../batch/batch-mpi.md)。
-* 如果您想要執行可存取 Azure RDMA 網路的 Linux MPI 應用程式，請參閱 [設定 Linux RDMA 叢集以執行 MPI 應用程式](../../linux/classic/rdma-cluster.md)。
 
 <!--Image references-->
 [burst]:media/hpcpack-rdma-cluster/burst.png

@@ -1,11 +1,11 @@
 ---
-title: "多租用戶 Web 應用程式模式 | Microsoft Docs"
-description: "找出說明如何在 Azure 實作多租用戶 Web 應用程式的結構概觀和設計模式。"
-services: 
+title: 多租用戶 Web 應用程式模式 | Microsoft Docs
+description: 找出說明如何在 Azure 實作多租用戶 Web 應用程式的結構概觀和設計模式。
+services: ''
 documentationcenter: .net
 author: wadepickett
 manager: wpickett
-editor: 
+editor: ''
 ms.assetid: 4f0281d2-1555-42b0-a99d-1222fade0b0f
 ms.service: active-directory
 ms.workload: identity
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23013023"
 ---
 # <a name="multitenant-applications-in-azure"></a>Azure 中的多租用戶應用程式
 多租用戶應用程式是一種共用資源，可讓個別使用者 (或「租用戶」) 將應用程式視為其本身的應用程式。 適用多租用戶應用程式的常見情況，是應用程式的所有使用者都想自訂個人的使用性，但另一方面又有相同的基本商業需求時。 舉例來說，Office 365、Outlook.com 和 visualstudio.com 都屬於大型多租用戶應用程式。

@@ -8,7 +8,7 @@
 1. 使用下列命令來登入您的 Azure 訂用帳戶：
 
     ```powershell
-    Login-AzureRmAccount
+    Connect-AzureRmAccount
     ```
 
 1. 如果您有多個 Azure 訂用帳戶，則登入 Azure 即會為您授與和您認證相關聯之所有 Azure 訂用帳戶的存取權。 使用下列命令來列出可供您使用的 Azure 訂用帳戶：
@@ -27,13 +27,14 @@
 2. 請記下您的 **TenantId** 和 **SubscriptionId**。 您稍後需要這些資訊。
 3. 使用下列命令並取代預留位置，以建立新的 Azure Active Directory 應用程式：
    
-   * **{Display name}：**應用程式的顯示名稱，如 **MySampleApp**
-   * **{Home page URL}：**應用程式首頁的 URL，如 **http://mysampleapp/home**。 此 URL 不需要指向實際的應用程式。
-   * **{Application identifier}：**唯一識別碼，如 **http://mysampleapp**。 此 URL 不需要指向實際的應用程式。
-   * **{Password}：**您用來驗證應用程式的密碼。
+   * **{Display name}：** 應用程式的顯示名稱，如 **MySampleApp**
+   * **{Home page URL}：** 應用程式首頁的 URL，如 **http://mysampleapp/home**。 此 URL 不需要指向實際的應用程式。
+   * **{Application identifier}：** 唯一識別碼，如 **http://mysampleapp**。 此 URL 不需要指向實際的應用程式。
+   * **{Password}：** 您用來驗證應用程式的密碼。
      
      ```powershell
-     New-AzureRmADApplication -DisplayName {Display name} -HomePage {Home page URL} -IdentifierUris {Application identifier} -Password {Password}
+     $SecurePassword=ConvertTo-SecureString {password} –asplaintext –force
+     New-AzureRmADApplication -DisplayName {Display name} -HomePage {Home page URL} -IdentifierUris {Application identifier} -Password $SecurePassword
      ```
 4. 請記下建立之應用程式的 **ApplicationId** 。 您稍後需要此資訊。
 5. 使用下列命令，並將 **{MyApplicationId}** 取代為上一個步驟的 **ApplicationId**，藉此建立新的服務主體：

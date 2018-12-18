@@ -1,12 +1,12 @@
 ---
-title: "Azure App Service 方案概觀 | Microsoft Docs"
-description: "了解 Azure App Service 之應用程式服務方案的運作方式，以及在管理經驗上帶來的效益。"
-keywords: "App Service, Azure App Service, 級別, 可調整, 延展性, App Service 方案, App Service 成本"
+title: Azure App Service 方案概觀 | Microsoft Docs
+description: 了解 Azure App Service 之應用程式服務方案的運作方式，以及在管理經驗上帶來的效益。
+keywords: App Service, Azure App Service, 級別, 可調整, 延展性, App Service 方案, App Service 成本
 services: app-service
-documentationcenter: 
+documentationcenter: ''
 author: cephalin
 manager: cfowler
-editor: 
+editor: ''
 ms.assetid: dea3f41e-cf35-481b-a6bc-33d7fc9d01b1
 ms.service: app-service
 ms.workload: na
@@ -20,6 +20,7 @@ ms.sourcegitcommit: 7edfa9fbed0f9e274209cec6456bf4a689a4c1a6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 01/17/2018
+ms.locfileid: "27862354"
 ---
 # <a name="azure-app-service-plan-overview"></a>Azure App Service 方案概觀
 

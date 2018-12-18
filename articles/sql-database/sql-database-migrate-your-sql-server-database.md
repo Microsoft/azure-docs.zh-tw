@@ -1,23 +1,32 @@
 ---
-title: 將 SQL Server DB 移轉至 Azure SQL Database | Microsoft Docs
-description: 學習如何將 SQL Server Database 移轉至 Azure SQL Database。
+title: 使用 DMA 將 SQL Server DB 遷移至 Azure SQL Database | Microsoft Docs
+description: 學習如何使用 DMA 將 SQL Server 資料庫遷移至 Azure SQL Database。
 services: sql-database
-author: CarlRabeler
-manager: craigg
 ms.service: sql-database
-ms.custom: mvc,migrate
-ms.topic: tutorial
-ms.date: 03/15/2018
-ms.author: carlrab
-ms.openlocfilehash: c333fd4f87f30d9aa1ace755c7414423ab348e03
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.subservice: data-movement
+ms.custom: ''
+ms.devlang: ''
+ms.topic: conceptual
+author: sachinpMSFT
+ms.author: sachinp
+ms.reviewer: carlrab
+manager: craigg
+ms.date: 09/14/2018
+ms.openlocfilehash: 58016636dad24b9b7d5278ce89643e6cd8d5be9e
+ms.sourcegitcommit: 51a1476c85ca518a6d8b4cc35aed7a76b33e130f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47162849"
 ---
-# <a name="migrate-your-sql-server-database-to-azure-sql-database"></a>將 SQL Server Database 移轉至 Azure SQL Database
+# <a name="migrate-your-sql-server-database-to-azure-sql-database-using-dma"></a>使用 DMA 將 SQL Server 資料庫遷移至 Azure SQL Database
 
-將 SQL Server 資料庫移到 Azure SQL Database 很簡單，只要在 Azure 中建立的空 SQL 資料庫，然後使用[資料移轉小幫手](https://www.microsoft.com/download/details.aspx?id=53595)(DMA) 將資料庫匯入 Azure。 您會在本教學課程中學到：
+將 SQL Server 資料庫移到 Azure SQL Database 的單一資料庫很簡單，只要在 Azure 中建立的空 SQL 資料庫，然後使用[資料移轉小幫手](https://www.microsoft.com/download/details.aspx?id=53595) (DMA) 將資料庫匯入 Azure。 如需其他移轉選項，請參閱[將資料庫遷移至 Azure SQL Database](sql-database-cloud-migrate.md)。
+
+> [!IMPORTANT]
+> 若要遷移至「Azure SQL Database 受控執行個體」，請參閱[從 SQL Server 遷移至受控執行個體](sql-database-managed-instance-migrate.md)
+
+您會在本教學課程中學到：
 
 > [!div class="checklist"]
 > * 在 Azure 入口網站中建立空的 Azure SQL 資料庫 (使用新的或現有的 Azure SQL Database 伺服器)
@@ -27,7 +36,7 @@ ms.lasthandoff: 03/16/2018
 
 如果您沒有 Azure 訂用帳戶，請在開始之前先[建立免費帳戶](https://azure.microsoft.com/free/)。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 若要完成本教學課程，請確定已完成下列必要條件：
 
@@ -41,7 +50,7 @@ ms.lasthandoff: 03/16/2018
 
 ## <a name="create-a-blank-sql-database"></a>建立空白 SQL Database
 
-Azure SQL Database 會使用一組定義的[計算和儲存體資源](sql-database-service-tiers.md)建立。 此資料庫建立於 [Azure 資源群組](../azure-resource-manager/resource-group-overview.md)和 [Azure SQL Database 邏輯伺服器](sql-database-features.md)內。 
+Azure SQL Database 會使用一組定義的[計算和儲存體資源](sql-database-service-tiers-dtu.md)建立。 此資料庫建立於 [Azure 資源群組](../azure-resource-manager/resource-group-overview.md)和 [Azure SQL Database 邏輯伺服器](sql-database-features.md)內。 
 
 遵循以下步驟來建立空白 SQL 資料庫。 
 
@@ -82,10 +91,7 @@ Azure SQL Database 會使用一組定義的[計算和儲存體資源](sql-databa
 8. 若要使用 [附加元件儲存體] 選項，請接受預覽條款。 
 
    > [!IMPORTANT]
-   > \* 大於內含儲存體數量的儲存體大小尚在預覽中，而且會產生額外成本。 如需詳細資訊，請參閱 [SQL Database 定價](https://azure.microsoft.com/pricing/details/sql-database/)。 
-   >
-   >\* 在進階層，目前於下列區域中提供超過 1 TB 的儲存體：巴西南部、加拿大中部、加拿大東部、美國中部、法國中部、德國中部、日本東部、日本西部、韓國中部、美國中北部、北歐、美國中南部、東南亞、英國南部、英國西部、美國東部 2、美國西部、美國維吉尼亞州政府及西歐。 請參閱 [P11-P15 目前限制](sql-database-resource-limits.md#single-database-limitations-of-p11-and-p15-when-the-maximum-size-greater-than-1-tb)。  
-   > 
+   > 所有區域目前均可取得進階層中超過 1 TB 的儲存體，下列區域除外：美國中西部、中國東部、USDoDCentral、US Gov (愛荷華州)、德國中部、USDoDEast、US Gov (西南部)、US Gov (中南部)、德國東北部、中國北部。 在其他區域，進階層中的儲存空間上限為 1 TB。 請參閱 [P11-P15 目前限制]( sql-database-dtu-resource-limits-single-databases.md#single-database-limitations-of-p11-and-p15-when-the-maximum-size-greater-than-1-tb)。  
 
 9. 在選取伺服器層、DTU 數目和儲存體數量之後，按一下 [套用]。  
 
@@ -138,7 +144,7 @@ SQL Database 服務會在伺服器層級建立防火牆，防止外部應用程�
 
 ## <a name="migrate-your-database"></a>移轉資料庫
 
-遵循以下步驟，使用**[資料移轉小幫手](https://www.microsoft.com/download/details.aspx?id=53595)**評估資料庫對於移轉至 Azure SQL Database 的整備程度，並完成移轉。
+遵循以下步驟，使用**[資料移轉小幫手](https://www.microsoft.com/download/details.aspx?id=53595)** 評估資料庫對於移轉至 Azure SQL Database 的整備程度，並完成移轉。
 
 1. 開啟 **Data Migration Assistant**。 您可在任何電腦上執行 DMA，只要它能連線至網際網路並連線至內含您規劃要移轉之資料庫的 SQL Server 執行個體。 無須在裝載要移轉之 SQL Server 執行個體的電腦上安裝 DMA。 您在上一個程序中建立的防火牆規則，必須適用於您執行資料移轉小幫手的電腦。
 
@@ -243,11 +249,11 @@ SQL Database 服務會在伺服器層級建立防火牆，防止外部應用程�
 
 ## <a name="change-database-properties"></a>變更資料庫屬性
 
-您可使用 SQL Server Management Studio 變更服務層、效能等級和相容性層級。 在匯入階段，建議您匯入至更高的效能層級資料庫以獲得最佳效能，但您可以在匯入完成之後相應減少該資料庫以節省成本，直到您準備好主動使用匯入的資料庫為止。 變更相容性層級可能會產生較佳的效能，並存取 Azure SQL Database 服務的最新功能。 當您移轉較舊的資料庫時，會在與所匯入資料庫相容的最低支援層級維護其資料庫相容性層級。 如需詳細資訊，請參閱[改善 Azure SQL Database 中相容性層級 130 的查詢效能](sql-database-compatibility-level-query-performance-130.md).
+您可使用 SQL Server Management Studio 變更服務層、計算大小和相容性層級。 在匯入階段，建議您匯入至更高的服務層或計算大小以獲得最佳效能，但您可以在匯入完成之後相應減少該資料庫以節省成本，直到您準備好主動使用匯入的資料庫為止。 變更相容性層級可能會產生較佳的效能，並存取 Azure SQL Database 服務的最新功能。 當您移轉較舊的資料庫時，會在與所匯入資料庫相容的最低支援層級維護其資料庫相容性層級。 如需詳細資訊，請參閱[改善 Azure SQL Database 中相容性層級 130 的查詢效能](sql-database-compatibility-level-query-performance-130.md).
 
 1. 在 [物件總管] 中，於 **mySampleDatabase** 上按一下滑鼠右鍵，然後按一下 [新增查詢]。 此時會開啟已連線到您資料庫的查詢視窗。
 
-2. 執行下列命令，將服務層設定為 [標準]，並將效能等級設定為 [S1]。
+2. 執行下列命令，將服務層設定為 [標準]，並將計算大小設定為 [S1]。
 
     ```sql
     ALTER DATABASE mySampleDatabase 

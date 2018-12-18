@@ -3,36 +3,40 @@ title: 適用於 Machine Learning Web 服務的 Excel 增益集 | Microsoft Docs
 description: 如何在 Excel 中直接使用 Azure Machine Learning Web 服務，而不需要撰寫任何程式碼。
 services: machine-learning
 documentationcenter: ''
-author: YasinMSFT
-ms.author: yahajiza
-manager: hjerez
-editor: cgronlun
+author: marthalc
+ms.author: marthalc
 ms.assetid: 9618079d-502f-4974-a3e2-8f924042a23f
 ms.service: machine-learning
+ms.component: studio
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 2/1/2018
-ms.openlocfilehash: 6610777ff4ad3a04f9d0d5b47f402aea7db59d9b
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 8fade171095ff6a9f4c10925089452d8925e11fe
+ms.sourcegitcommit: cc4fdd6f0f12b44c244abc7f6bc4b181a2d05302
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47095803"
 ---
-# <a name="excel-add-in-for-azure-machine-learning-web-services"></a>適用於 Azure Machine Learning Web 服務的 Excel 增益集
+# <a name="excel-add-in-for-azure-machine-learning-studio-web-services"></a>適用於 Azure Machine Learning Studio Web 服務的 Excel 增益集
 Excel 可以讓您直接輕鬆呼叫 Web 服務，而不需要撰寫任何程式碼。
 
 ## <a name="steps-to-use-an-existing-web-service-in-the-workbook"></a>使用活頁簿中現有 Web 服務的步驟
 
-1. 開啟 [範例 Excel 檔案](http://aka.ms/amlexcel-sample-2)，其中包含 Excel 增益集和鐵達尼號乘客的相關資料。
+1. 開啟 [範例 Excel 檔案](http://aka.ms/amlexcel-sample-2)，其中包含 Excel 增益集和鐵達尼號乘客的相關資料。 
+ 
+> [!NOTE]
+> 您會看到和檔案相關聯的 Web 服務清單，以及在底部的 [Auto-predict] \(自動預測\) 核取方塊。 如果您啟用自動預測，每當輸入變更時，您**所有**服務的預測都會更新。 如果取消選取，您將需要按一下 [Predict All] \(全部預測\) 來重新整理。 若要啟用服務層級的自動預測，請移至步驟 6。
+
 2. 按一下 Web 服務加以選擇，在此範例中為「鐵達尼號存活者預測工具 (Excel 增益集範例) [分數]」。
    
     ![選取 Web 服務][01]
 3. 這會帶領您到 [預測] 區段。  此活頁簿已經包含範例資料，但若為空白的活頁簿，您可在 Excel 中選取一個儲存格並按一下 [使用範例資料] 。
 4. 選取含有標頭的資料並按一下輸入資料範圍圖示。  請確定已核取 [我的資料有標頭] 方塊。
 5. 在 [輸出] 之下，輸入您想要輸出所在的儲存格編號，例如此處的 "H1"。
-6. 按一下 [預測] 。
+6. 按一下 [預測] 。 如果選取 [Auto-predict] \(自動預測\) 核取方塊，所選區域 (指定為輸入的區域) 上的任何變更都會觸發輸出儲存格的要求和更新，而不需要按一下預測按鈕。
    
     ![預測區段][02]
 

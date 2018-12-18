@@ -1,12 +1,12 @@
 ---
-title: "Azure 流量管理員地理路由類型使用的國家/地區階層 | Microsoft Docs"
-description: "本文列出 Azure 流量管理員地理路由類型使用的國家/地區階層"
+title: Azure 流量管理員地理路由類型使用的國家/地區階層 | Microsoft Docs
+description: 本文列出 Azure 流量管理員地理路由類型使用的國家/地區階層
 services: traffic-manager
-documentationcenter: 
+documentationcenter: ''
 author: kumudd
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: traffic-manager
 ms.devlang: na
 ms.topic: article
@@ -19,6 +19,7 @@ ms.sourcegitcommit: ded74961ef7d1df2ef8ffbcd13eeea0f4aaa3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 01/29/2018
+ms.locfileid: "28201491"
 ---
 # <a name="countryregion-hierarchy-used-by-azure-traffic-manager-for-geographic-traffic-routing-method"></a>Azure 流量管理員用於地理流量路由方法的國家/地區階層
 

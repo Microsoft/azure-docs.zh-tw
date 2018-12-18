@@ -1,20 +1,21 @@
 ---
-title: "在 Azure 雲端儲存體中搜尋半結構化資料"
-description: "使用 Azure 搜尋服務來搜尋半結構化 Blob 資料。"
-author: roygara
-manager: timlt
+title: 在 Azure 搜尋服務中從 Azure 雲端儲存體搜尋半結構化資料的教學課程 | Microsoft Docs
+description: 在本教學課程，了解如何使用 Azure 搜尋服務搜尋半結構化的 Azure blob 資料。
+author: HeidiSteen
+manager: cgronlun
+services: search
 ms.service: search
 ms.topic: tutorial
-ms.date: 10/12/2017
-ms.author: v-rogara
-ms.custom: mvc
-ms.openlocfilehash: a80ae99c2ada00885019ee93e4ef36821340d3a5
-ms.sourcegitcommit: e19f6a1709b0fe0f898386118fbef858d430e19d
+ms.date: 07/12/2018
+ms.author: heidist
+ms.openlocfilehash: a7b006bd8469ddce1415ab6cb7c52c0171ae11cd
+ms.sourcegitcommit: e0a678acb0dc928e5c5edde3ca04e6854eb05ea6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/13/2018
+ms.lasthandoff: 07/13/2018
+ms.locfileid: "39005072"
 ---
-# <a name="part-2-search-semi-structured-data-in-cloud-storage"></a>第 2 部分：在雲端儲存體中搜尋半結構化資料
+# <a name="tutorial-search-semi-structured-data-in-azure-cloud-storage"></a>教學課程：在 Azure 雲端儲存體中搜尋半結構化資料
 
 在這個兩部分的教學課程系列中，您可以了解如何使用 Azure 搜尋服務來搜尋半結構化及未結構化資料。 [第 1 部分](../storage/blobs/storage-unstructured-search.md)不僅引導您完成非結構化資料的搜尋步驟，也說明了本教學課程的重要必要條件 (如建立儲存體帳戶)。 
 
@@ -27,14 +28,16 @@ ms.lasthandoff: 01/13/2018
 > * 建立及填入 Azure 搜尋服務索引和索引子，以便搜耙容器和擷取可搜尋內容
 > * 搜尋剛剛建立的索引
 
-> [!NOTE]
-> 本教學課程仰賴 JSON 陣列支援，該功能目前是 Azure 搜尋服務中的預覽功能， 因此入口網站並未提供。 基於此因素，我們使用提供這項功能的預覽 REST API 和 REST 用戶端工具來呼叫 API。
+如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
 
 ## <a name="prerequisites"></a>必要條件
 
 * 完成[上一個教學課程](../storage/blobs/storage-unstructured-search.md)，提供在該課程中建立的儲存體帳戶和搜尋服務。
 
 * 安裝 REST 用戶端並了解如何建構 HTTP 要求。 基於本教學課程的目的，我們使用的是 [Postman](https://www.getpostman.com/) \(英文\)。 如果您已經很熟悉某個特定的 REST 用戶端，即可隨意使用不同的用戶端。
+
+> [!NOTE]
+> 本教學課程仰賴 JSON 陣列支援，該功能目前是 Azure 搜尋服務中的預覽功能， 因此入口網站並未提供。 基於此因素，我們使用提供這項功能的預覽 REST API 和 REST 用戶端工具來呼叫 API。
 
 ## <a name="set-up-postman"></a>設定 Postman
 
@@ -54,7 +57,7 @@ ms.lasthandoff: 01/13/2018
 
 範例中所含的是範例 JSON 檔案，其原本是從 [clinicaltrials.gov](https://clinicaltrials.gov/ct2/results) \(英文\) 取得的文字檔。 我們已將其轉換為 JSON，方便供您使用。
 
-## <a name="log-in-to-azure"></a>登入 Azure
+## <a name="sign-in-to-azure"></a>登入 Azure
 
 登入 [Azure 入口網站](http://portal.azure.com)。
 
@@ -276,15 +279,13 @@ ms.lasthandoff: 01/13/2018
 
 `$filter` 參數只能與在索引建立期間標記為可篩選的中繼資料一起使用。
 
+## <a name="clean-up-resources"></a>清除資源
+
+在完成教學課程後，最快速的清除方式是刪除包含 Azure 搜尋服務的資源群組。 您現在可以刪除資源群組，以永久刪除當中所包含的所有項目。 在入口網站中，資源群組名稱位在 Azure 搜尋服務的 [概觀] 頁面上。
+
 ## <a name="next-steps"></a>後續步驟
 
-在本教學課程中，您已了解如何使用 Azure 搜尋服務來搜尋半結構化資料，例如，如何：
-
-> [!div class="checklist"]
-> * 使用 REST API 建立 Azure 搜尋服務
-> * 使用 Azure 搜尋服務來搜尋您的容器
-
-遵循此連結，即可深入了解搜尋。
+您可以將 AI 功能的演算法附加至索引子的管線。 下一個步驟中，繼續進行下列教學課程。
 
 > [!div class="nextstepaction"]
 > [在 Azure Blob 儲存體中為文件編製索引](search-howto-indexing-azure-blob-storage.md)

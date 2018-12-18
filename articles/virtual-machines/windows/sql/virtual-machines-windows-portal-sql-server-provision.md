@@ -12,13 +12,14 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: infrastructure-services
-ms.date: 02/15/2018
+ms.date: 05/04/2018
 ms.author: jroth
-ms.openlocfilehash: 33b7c82f08f63199cd128055bc497f61cb30fc4a
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: d2bcabf845a2178abbebe8f2998d58b462e37c78
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38704533"
 ---
 # <a name="how-to-provision-a-windows-sql-server-virtual-machine-in-the-azure-portal"></a>如何在 Azure 入口網站中佈建 Windows SQL Server 虛擬機器
 
@@ -114,7 +115,7 @@ ms.lasthandoff: 03/23/2018
 
 ![SQL VM 大小選項](./media/virtual-machines-windows-portal-sql-server-provision/azure-sql-vm-choose-a-size.png)
 
-對於生產工作負載，請參閱 [Azure 虛擬機器中的 SQL Server 效能最佳做法](virtual-machines-windows-sql-performance.md)中建議的機器大小和組態。 如果您需要未列出的機器大小，請按一下 [全部檢視] 按鈕。
+對於生產工作負載，請參閱 [Azure 虛擬機器中的 SQL Server 效能最佳做法](virtual-machines-windows-sql-performance.md)中建議的機器大小和組態。
 
 > [!NOTE]
 > 如需關於虛擬機器大小的詳細資訊，請參閱[虛擬機器大小](../sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
@@ -130,7 +131,14 @@ ms.lasthandoff: 03/23/2018
    > [!NOTE]
    > Microsoft 建議使用 SQL Server 適用的受控磁碟。 受控磁碟會在背景中處理儲存體。 此外，當具有受控磁碟的虛擬機器在相同的可用性設定組時，Azure 會分散儲存資源以提供適當的備援。 如需詳細資訊，請參閱 [Azure 受控磁碟概觀][../managed-disks-overview.md)。 如需可用性設定組中受控磁碟的具體資訊，請參閱[在可用性設定組中使用 VM 的受控磁碟](../manage-availability.md)。
 
-* 在 [網路] 底下，您可以接受自動填入的值。 也可以按一下每個功能，手動設定 [虛擬網路]、[子網路]、[公用 IP 位址] 及 [網路安全性群組]。 基於本逐步介紹的用途，您可以保留預設值。
+* 在 [網路] 底下，選取位於 [選取公用輸入連接埠] 清單中的任何輸入連接埠。 例如，如果您想要將遠端桌面輸入至 VM，請選取 [RDP (3389)] 連接埠。
+
+   ![輸入連接埠](./media/quickstart-sql-vm-create-portal/inbound-ports.png)
+
+   > [!NOTE]
+   > 您可以選取 [MS SQL (1433)] 連接埠，以從遠端存取 SQL Server。 但是，在這裡這並非必要動作，因為 **SQL Server 設定**步驟也會提供此選項。 如果您在此步驟中選取連接埠 1433，則無論在 **SQL Server 設定**步驟中進行了哪些選取，都會開放該連接埠。
+
+   您可以對網路設定進行其他變更，或保留預設值。
 
 * Azure 預設會使用為 VM 指定的相同儲存體帳戶來啟用 [監視]  。 您可以在這裡變更這些設定。
 

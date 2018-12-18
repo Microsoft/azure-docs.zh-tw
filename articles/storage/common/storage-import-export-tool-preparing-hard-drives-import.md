@@ -1,30 +1,25 @@
 ---
-title: "準備 Azure 匯入/匯出匯入工作的硬碟 |Microsoft Docs"
-description: "了解如何使用 WAImportExport 工具準備硬碟，以建立 Azure 匯入/匯出服務的匯入工作。"
+title: 準備 Azure 匯入/匯出匯入工作的硬碟 |Microsoft Docs
+description: 了解如何使用 WAImportExport 工具準備硬碟，以建立 Azure 匯入/匯出服務的匯入工作。
 author: muralikk
-manager: syadav
-editor: tysonn
 services: storage
-documentationcenter: 
-ms.assetid: 
 ms.service: storage
-ms.workload: storage
-ms.tgt_pltfrm: na
-ms.devlang: na
 ms.topic: article
 ms.date: 06/29/2017
 ms.author: muralikk
-ms.openlocfilehash: 2854822907e818297c8d2f74cab48b0afa0d646c
-ms.sourcegitcommit: b723436807176e17e54f226fe00e7e977aba36d5
+ms.component: common
+ms.openlocfilehash: 9d8509e97ad83dd636f0a1b1892a2fa67c69e0b7
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/19/2017
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39521790"
 ---
 # <a name="preparing-hard-drives-for-an-import-job"></a>準備匯入工作的硬碟
 
 WAImportExport 工具是磁碟機準備及修復工具，可搭配 [Microsoft Azure 匯入/匯出服務](../storage-import-export-service.md)使用。 您可以使用此工具，將資料複製到要寄送至 Azure 資料中心的硬碟。 匯入工作完成後，您可以使用此工具來修復損毀、遺漏或與其他 Blob 衝突的任何 Blob。 當您收到已完成的匯出工作中的磁碟機後，您可以使用此工具來修復磁碟機上損毀或遺漏的任何檔案。 我們會在本文中介紹此工具的使用方式。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 ### <a name="requirements-for-waimportexportexe"></a>WAImportExport.exe 的需求
 
@@ -338,7 +333,7 @@ WAImportExport 工具擁有 WAImportExport V1 工具的所有功能。 WAImportE
 
 記錄檔目錄指定要用來儲存詳細資訊記錄檔和暫存資訊清單檔案的目錄。 如未指定，將使用目前的目錄做為記錄檔目錄。 記錄是詳細資訊記錄。
 
-### <a name="prerequisites"></a>先決條件
+### <a name="prerequisites"></a>必要條件
 
 #### <a name="what-are-the-specifications-of-my-disk"></a>什麼是磁碟的規格？
 

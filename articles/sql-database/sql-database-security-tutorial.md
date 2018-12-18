@@ -2,22 +2,33 @@
 title: 保護 Azure SQL Database | Microsoft Docs
 description: 深入了解保護 Azure SQL Database 的技術和功能。
 services: sql-database
-author: DRediske
-manager: craigg
 ms.service: sql-database
-ms.custom: mvc,security
+ms.subservice: security
+ms.custom: ''
+ms.devlang: ''
 ms.topic: tutorial
-ms.date: 06/28/2017
+author: DRediske
 ms.author: daredis
-ms.openlocfilehash: 99b719c302bb02e96e4bfa0ea4588862e9f304e2
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.reviewer: vanto, carlrab
+manager: craigg
+ms.date: 09/07/2018
+ms.openlocfilehash: ceed69503900b38d7f6a29bbe116ab9a4d54e396
+ms.sourcegitcommit: 67abaa44871ab98770b22b29d899ff2f396bdae3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 10/08/2018
+ms.locfileid: "48857953"
 ---
 # <a name="secure-your-azure-sql-database"></a>保護 Azure SQL Database
 
-SQL Database 使用防火牆規則、要求使用者證明其身分的驗證機制，以及透過角色型成員資格與權限和透過資料列層級安全性與動態資料遮罩的資料授權來限制資料庫的存取，進而保護您的資料。
+SQL Database 保護您資料的方式： 
+- 使用防火牆規則限制資料庫的存取權 
+- 使用需要其身分識別的驗證機制
+- 透過以角色為基礎的成員資格和權限進行資料授權 
+- 資料列層級安全性
+- 動態資料遮罩
+
+SQL Database 也具有複雜的監視、稽核和威脅偵測功能。 
 
 只需要幾個簡單步驟，您就可以讓資料庫預防惡意使用者或未經授權的存取。 您會在本教學課程中學到： 
 
@@ -32,13 +43,13 @@ SQL Database 使用防火牆規則、要求使用者證明其身分的驗證機�
 
 如果您沒有 Azure 訂用帳戶，請在開始之前先[建立免費帳戶](https://azure.microsoft.com/free/)。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 若要完成本教學課程，請確定您具有下列項目︰
 
 - 已安裝最新版的 [SQL Server Management Studio](https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms) (SSMS)。 
 - 已安裝 Microsoft Excel
-- 已建立 Azure SQL Server 和 SQL Database - 請參閱[在 Azure 入口網站中建立 Azure SQL Database](sql-database-get-started-portal.md)、[使用 Azure CLI 建立單一 Azure SQL Database](sql-database-get-started-cli.md) 和[使用 PowerShell 建立單一 Azure SQL Database](sql-database-get-started-powershell.md)。 
+- 已建立 Azure SQL Server 和 SQL Database - 請參閱[在 Azure 入口網站中建立 Azure SQL Database](sql-database-get-started-portal.md)、[使用 Azure CLI 建立單一 Azure SQL Database](sql-database-cli-samples.md) 和[使用 PowerShell 建立單一 Azure SQL Database](sql-database-powershell-samples.md)。 
 
 ## <a name="log-in-to-the-azure-portal"></a>登入 Azure 入口網站
 
@@ -99,7 +110,7 @@ Azure 的防火牆會保護 SQL Database。 依預設，伺服器與其內部資
 - 要求加密的連線，並且
 - 不要信任伺服器憑證。 
 
-此動作會建立使用傳輸層安全性 (TLS) 的連線，並降低發生攔截式攻擊的風險。 從 Azure 入口網站，您可以取得受支援用戶端驅動程式的 SQL Database 連接字串 (已正確設定)，如同此螢幕截圖中的 ADO.net 所示。
+此動作會建立使用傳輸層安全性 (TLS) 的連線，並降低發生攔截式攻擊的風險。 從 Azure 入口網站，您可以取得受支援用戶端驅動程式的 SQL Database 連接字串 (已正確設定)，如同此螢幕截圖中的 ADO.net 所示。 如需 TLS 和連線能力的相關資訊，請參閱 [TLS 考量](sql-database-connect-query.md#tls-considerations-for-sql-database-connectivity)。
 
 1. 從左側功能表中選取 [SQL Database]，按一下 [SQL Database] 頁面上您的資料庫。
 
@@ -155,7 +166,7 @@ Azure SQL Database 透明資料加密 (TDE) 會自動為您的待用資料加密
 
 3. 如有必要，請將 [資料加密] 設為「開啟」，然後按一下 [儲存]。
 
-加密程序會在背景中啟動。 您可以使用 [SQL Server Management Studio](./sql-database-connect-query-ssms.md) 來連線至 SQL Database，並查詢 `sys.dm_database_encryption_keys` 檢視的 encryption_state 資料行，以監視進度。
+加密程序會在背景中啟動。 使用 [SQL Server Management Studio](./sql-database-connect-query-ssms.md) 連線至 SQL Database，以及查詢 [sys.dm_database_encryption_keys](https://docs.microsoft.com/sql/relational-databases/system-dynamic-management-views/sys-dm-database-encryption-keys-transact-sql?view=sql-server-2017) 檢視的 encryption_state 資料欄，即可監視進度。 狀態 3 表示資料庫已加密。 
 
 ## <a name="enable-sql-database-auditing-if-necessary"></a>啟用 SQL Database 稽核 (如有必要)
 
@@ -167,7 +178,7 @@ Azure SQL Database 稽核會追蹤資料庫事件並將事件寫入您 Azure 儲
 
     ![稽核刀鋒視窗](./media/sql-database-security-tutorial/auditing-get-started-settings.png)
 
-3. 如果您想要啟用的稽核類型 (或位置？) 與伺服器層級所指定的類型不同，請**開啟**稽核，並選擇 [Blob] 稽核類型。 如果已經啟用伺服器 Blob 稽核，資料庫設定的稽核將會與伺服器 Blob 稽核並存。
+3. 如果您想要啟用的稽核類型 (或位置？) 與伺服器層級所指定的類型不同，請**開啟**稽核，並選擇 [Blob] 稽核類型。 如果已啟用伺服器 Blob 稽核，資料庫設定的稽核將會與伺服器 Blob 稽核並存。
 
     ![開啟稽核](./media/sql-database-security-tutorial/auditing-get-started-turn-on.png)
 

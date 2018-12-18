@@ -3,22 +3,23 @@ title: Azure 資訊安全中心整備藍圖 | Microsoft Docs
 description: 本文件提供進一步了解 Azure 資訊安全中心的整備藍圖。
 services: security-center
 documentationcenter: na
-author: YuriDio
+author: terrylan
 manager: ndicola
 editor: ''
 ms.assetid: fece670cc-df70-445d-9773-b32cbaba8d4a
 ms.service: security-center
 ms.devlang: na
-ms.topic: hero-article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/05/2018
+ms.date: 04/03/2018
 ms.author: yurid
-ms.openlocfilehash: 0de8dda6f88f31208c3fe7d560a461fea46a67e6
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 73ed6976450ef89fb87dd054147325c8b250d1a7
+ms.sourcegitcommit: 2d961702f23e63ee63eddf52086e0c8573aec8dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/07/2018
+ms.locfileid: "44161504"
 ---
 # <a name="azure-security-center-readiness-roadmap"></a>Azure 資訊安全中心整備藍圖
 本文件提供的整備藍圖將協助您開始使用 Azure 資訊安全中心。
@@ -94,8 +95,9 @@ Azure VM 可以利用資訊安全中心的進階雲端防禦功能。 這些功�
 
 使用下列資源來了解如何在資訊安全中心使用這些功能。
 
-影片   
+影片  
 * [Azure 資訊安全中心 - Just-in-Time VM 存取](https://youtu.be/UOQb2FcdQnU)
+* [Azure 資訊安全中心 - 自適性應用程式控制](https://youtu.be/wWWekI1Y9ck)
 
 文章    
 * [使用 Just-In-Time 管理虛擬機器存取](https://docs.microsoft.com/azure/security-center/security-center-just-in-time)
@@ -105,6 +107,7 @@ Azure VM 可以利用資訊安全中心的進階雲端防禦功能。 這些功�
 
 * [資訊安全中心實際操作實驗室](https://www.microsoft.com/handsonlabs/SelfPacedLabs/?storyGuid=78871abf-6f35-4aa0-840f-d801f5cdbd72)
 * [資訊安全中心的 Web 應用程式防火牆 (WAF) 建議腳本](https://gallery.technet.microsoft.com/ASC-Playbook-Protect-38bd47ff)
+* [Azure 資訊安全中心腳本：安全性警示](https://gallery.technet.microsoft.com/Azure-Security-Center-f621a046)
 
 ## <a name="additional-resources"></a>其他資源
 * [資訊安全中心文件頁面](https://docs.microsoft.com/azure/security-center/)
@@ -114,7 +117,8 @@ Azure VM 可以利用資訊安全中心的進階雲端防禦功能。 這些功�
 * [身分識別安全性最佳做法](https://docs.microsoft.com/azure/security/azure-security-identity-management-best-practices)
 * [網路安全性的最佳做法](https://docs.microsoft.com/azure/security/azure-security-network-security-best-practices)
 * [PaaS 建議](https://docs.microsoft.com/azure/security/security-paas-deployments)
-* [合規性](https://www.microsoft.com/trustcenter/Compliance/Due-Diligence-Checklist)
+* [合規性](https://www.microsoft.com/en-us/trustcenter/compliance/due-diligence-checklist)
+* [OMS 客戶現在可以使用 Azure 資訊安全中心保護其混合式雲端工作負載](https://blogs.technet.microsoft.com/msoms/2017/09/25/oms-customers-can-now-use-azure-security-center-to-protect-their-hybrid-cloud-workloads/)
 
 ## <a name="community-resources"></a>社群資源
 

@@ -1,28 +1,23 @@
 ---
-title: "將 Azure 服務匯流排應用程式與服務匯流排中斷和災害隔絕 | Microsoft Docs"
-description: "用來保護應用程式，避免潛在服務匯流排中斷的技巧。"
+title: 將 Azure 服務匯流排應用程式與服務匯流排中斷和災害隔絕 | Microsoft Docs
+description: 用來保護應用程式，避免潛在服務匯流排中斷的技巧。
 services: service-bus-messaging
-documentationcenter: na
-author: sethmanheim
+author: spelluru
 manager: timlt
-editor: 
-ms.assetid: fd9fa8ab-f4c4-43f7-974f-c876df1614d4
 ms.service: service-bus-messaging
-ms.devlang: na
 ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: na
-ms.date: 01/30/2018
-ms.author: sethm
-ms.openlocfilehash: 7b01412202b5091ad3ae420089049bf456f9a30b
-ms.sourcegitcommit: 9d317dabf4a5cca13308c50a10349af0e72e1b7e
+ms.date: 09/14/2018
+ms.author: spelluru
+ms.openlocfilehash: 85481deceeadaf4154659d35fccf777f489bd782
+ms.sourcegitcommit: d1aef670b97061507dc1343450211a2042b01641
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47393702"
 ---
 # <a name="best-practices-for-insulating-applications-against-service-bus-outages-and-disasters"></a>將應用程式與服務匯流排中斷和災難隔絕的最佳做法
 
-關鍵任務應用程式必須持續作業，即使發生非預期的中斷或災害亦然。 本主題說明您可用來保護服務匯流排應用程式，避免潛在的服務中斷或災害的技巧。
+關鍵任務應用程式必須持續作業，即使發生非預期的中斷或災害亦然。 本文說明您可用來保護服務匯流排應用程式，避免潛在服務中斷或災害發生的技巧。
 
 中斷的定義是暫時無法使用 Azure 服務匯流排。 中斷可能會影響服務匯流排的否些元件，例如訊息存放區或甚至整個資料中心。 修正問題之後，服務匯流排可再次使用。 中斷通常不會導致訊息或其他資料遺失。 元件失敗的範例是特定的訊息存放區無法使用。 資料中心全面中斷的範例是資料中心電源中斷、或錯誤的資料中心網路交換器。 中斷可能持續數分鐘到數天。
 
@@ -34,7 +29,9 @@ ms.lasthandoff: 02/01/2018
 所有服務匯流排訊息實體 (佇列、主題、轉送) 都位於附屬於資料中心的服務命名空間中。 服務匯流排現在支援命名空間層級的[地理災害復原和異地複寫](service-bus-geo-dr.md)。
 
 ## <a name="protecting-queues-and-topics-against-messaging-store-failures"></a>保護佇列和主題免於發生訊息存放區失敗
-非分割的佇列或主題會指派給一個訊息存放區。 如果此訊息存放區無法使用，該佇列或主題上的所有作業都會失敗。 另一方面，分割佇列包含多個片段。 每個片段都儲存在不同的訊息存放區。 當訊息傳送至分割的佇列或主題時，服務匯流排會指派訊息到其中一個片段。 如果對應的訊息存放區無法使用，服務匯流排會盡可能將訊息寫入至不同的片段。 如需有關已分割實體的詳細資訊，請參閱[分割的傳訊實體][Partitioned messaging entities]。
+非分割的佇列或主題會指派給一個訊息存放區。 如果此訊息存放區無法使用，該佇列或主題上的所有作業都會失敗。 另一方面，分割佇列包含多個片段。 每個片段都儲存在不同的訊息存放區。 當訊息傳送至分割的佇列或主題時，服務匯流排會指派訊息到其中一個片段。 如果對應的訊息存放區無法使用，服務匯流排會盡可能將訊息寫入至不同的片段。 [Premium SKU](service-bus-premium-messaging.md) 不再支援分割的實體。 
+
+如需分割實體的詳細資訊，請參閱[分割的傳訊實體][Partitioned messaging entities]。
 
 ## <a name="protecting-against-datacenter-outages-or-disasters"></a>保護資料中心免於中斷或災害
 若要允許兩個資料中心之間的容錯移轉，您可以在每個資料中心建立服務匯流排服務命名空間。 例如，服務匯流排服務命名空間 **contosoPrimary.servicebus.windows.net** 可能位於美國北部/中部區域，而 **contosoSecondary.servicebus.windows.net** 可能位於美國南部/中部區域。 如果服務匯流排訊息實體必須在資料中心發生中斷時保持可存取狀態，您可以在這兩個命名空間建立該實體。
@@ -81,6 +78,17 @@ ms.lasthandoff: 02/01/2018
 
 服務匯流排支援命名空間層級的地理災害復原和異地複寫。 如需詳細資訊，請參閱 [Azure 服務匯流排地理災害復原](service-bus-geo-dr.md)。 災害復原功能僅適用於[進階 SKU](service-bus-premium-messaging.md)，其會實作中繼資料災害復原，並依賴主要和次要災害復原命名空間。
 
+## <a name="availability-zones-preview"></a>可用性區域 (預覽)
+
+服務匯流排進階 SKU 支援[可用性區域](../availability-zones/az-overview.md)，在 Azure 區域內提供錯誤隔離位置。 
+
+> [!NOTE]
+> 只有在**美國中部**、**美國東部 2** 和**法國中部**區域才支援可用性區域預覽。
+
+使用 Azure 入口網站時，只能在新的命名空間上啟用可用性區域。 服務匯流排不支援移轉現有的命名空間。 在命名空間上啟用區域備援之後，便無法停用。
+
+![1][]
+
 ## <a name="next-steps"></a>後續步驟
 若要深入了解災害復原，請參閱這些文章：
 
@@ -96,3 +104,5 @@ ms.lasthandoff: 02/01/2018
 [Geo-replication with Service Bus Brokered Messages]: https://github.com/Azure/azure-service-bus/tree/master/samples/DotNet/Microsoft.ServiceBus.Messaging/GeoReplication
 [Azure SQL Database Business Continuity]: ../sql-database/sql-database-business-continuity.md
 [Azure resiliency technical guidance]: /azure/architecture/resiliency
+
+[1]: ./media/service-bus-outages-disasters/az.png

@@ -1,24 +1,26 @@
 ---
-title: "瀏覽 Hadoop 叢集中的資料，並在 Azure Machine Learning 中建立模型 | Microsoft Docs"
-description: "對採用 HDInsight Hadoop 叢集來建置和部署模型的端對端案例使用 Team Data Science Process。"
+title: 瀏覽 Hadoop 叢集中的資料，並在 Azure Machine Learning 中建立模型 | Microsoft Docs
+description: 對採用 HDInsight Hadoop 叢集來建置和部署模型的端對端案例使用 Team Data Science Process。
 services: machine-learning,hdinsight
-documentationcenter: 
-author: bradsev
+documentationcenter: ''
+author: deguhath
 manager: cgronlun
 editor: cgronlun
 ms.assetid: e9e76c91-d0f6-483d-bae7-2d3157b86aa0
 ms.service: machine-learning
+ms.component: team-data-science-process
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 11/29/2017
-ms.author: bradsev
-ms.openlocfilehash: 4671493c23bfed72517e436dd6922f4ef8a213b0
-ms.sourcegitcommit: 83ea7c4e12fc47b83978a1e9391f8bb808b41f97
+ms.author: deguhath
+ms.openlocfilehash: ff4daf350783e02141a6afea815165ccecfe0116
+ms.sourcegitcommit: 8ebcecb837bbfb989728e4667d74e42f7a3a9352
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/28/2018
+ms.lasthandoff: 08/21/2018
+ms.locfileid: "42140300"
 ---
 # <a name="the-team-data-science-process-in-action-use-azure-hdinsight-hadoop-clusters"></a>Team Data Science Process 實務：使用 Azure HDInsight Hadoop 叢集
 在此逐步解說中，我們在端對端案例中使用 [Team Data Science Process (TDSP)](overview.md)。 我們使用 [Azure HDInsight Hadoop 叢集](https://azure.microsoft.com/services/hdinsight/)，以對 [NYC 計程車車程](http://www.andresmh.com/nyctaxitrips/) \(英文\) 資料集內可公開使用的資料進行儲存、探索和特徵工程設計，並縮減取樣資料。 若要處理二元和多元分類和迴歸預測工作，我們使用 Azure Machine Learning 建置資料的模型。 
@@ -73,7 +75,7 @@ NYC 計程車車程資料是約 20 GB 的壓縮逗點分隔值 (CSV) 檔案 (未
 
 您可以採取三個步驟，為利用 HDInsight 叢集的進階分析設定 Azure 環境：
 
-1. [建立儲存體帳戶](../../storage/common/storage-create-storage-account.md)：這個儲存體帳戶是用來將資料儲存在 Azure Blob 儲存體中。 HDInsight 叢集中使用的資料也位於此處。
+1. [建立儲存體帳戶](../../storage/common/storage-quickstart-create-account.md)：這個儲存體帳戶是用來將資料儲存在 Azure Blob 儲存體中。 HDInsight 叢集中使用的資料也位於此處。
 2. [針對進階分析程序和技術自訂 Azure HDInsight Hadoop 叢集](customize-hadoop-cluster.md)。 這個步驟會建立已在所有節點上安裝 64 位元 Anaconda Python 2.7 的 HDInsight Hadoop 叢集。 自訂 HDInsight 叢集時應注意兩個重要的步驟。
    
    * 建立步驟 1 中的儲存體帳戶時，請務必將之與您的 HDInsight 叢集連結。 這個儲存體帳戶可存取在叢集內處理的資料。
@@ -105,9 +107,9 @@ NYC 計程車車程資料是約 20 GB 的壓縮逗點分隔值 (CSV) 檔案 (未
 在下列 AzCopy 命令中，以建立 Hadoop 叢集和解壓縮資料檔案時指定的實際值取代下列參數。
 
 * ***<path_to_data_folder>***：您的電腦上包含未解壓縮之資料檔案的目錄 (以及路徑)。  
-* ***<storage account name of Hadoop cluster>***與您的 HDInsight 叢集相關聯的儲存體帳戶。
-* ***<default container of Hadoop cluster>***您的叢集所使用的預設容器。 請注意，預設容器的名稱通常與叢集本身的名稱相同。 例如，如果叢集稱為 "abc123.azurehdinsight.net"，預設容器即為 abc123。
-* ***<storage account key>***您的叢集所使用的儲存體帳戶金鑰。
+* ***<storage account name of Hadoop cluster>*** 與您的 HDInsight 叢集相關聯的儲存體帳戶。
+* ***<default container of Hadoop cluster>*** 您的叢集所使用的預設容器。 請注意，預設容器的名稱通常與叢集本身的名稱相同。 例如，如果叢集稱為 "abc123.azurehdinsight.net"，預設容器即為 abc123。
+* ***<storage account key>*** 您的叢集所使用的儲存體帳戶金鑰。
 
 從命令提示字元或 Windows PowerShell 視窗，執行下列兩個 AzCopy 命令。
 
@@ -723,7 +725,7 @@ NYC 計程車資料集中的圓形徽章會識別唯一的計程車。 您可以
 
 以下是[匯入資料][import-data]模組及輸入參數的一些詳細資料：
 
-**HCatalog 伺服器 URI**：如果叢集名稱是 **abc123**，則為 https://abc123.azurehdinsight.net。
+**HCatalog 伺服器 URI**：如果叢集名稱是 **abc123**，則為：https://abc123.azurehdinsight.net。
 
 **Hadoop 使用者帳戶名稱**：為叢集選擇的使用者名稱 (非遠端存取使用者名稱)。
 
@@ -824,9 +826,9 @@ NYC 計程車資料集中的圓形徽章會識別唯一的計程車。 您可以
 此範例逐步解說及其隨附的指令碼是在 MIT 授權下由 Microsoft 所共用。 如需詳細資料，請查看 GitHub 上範例程式碼目錄中的 **LICENSE.txt** 檔案。
 
 ## <a name="references"></a>參考
-•    [Andrés Monroy NYC 計程車車程下載頁面](http://www.andresmh.com/nyctaxitrips/)  
+•    [Andrés Monroy NYC 計程車車程下載頁面](http://www.andresmh.com/nyctaxitrips/) \(英文\)  
 •    [FOILing NYC 的計程車車程資料 (作者為 Chris Whong)](http://chriswhong.com/open-data/foil_nyc_taxi/)   
-•    [NYC 計程車和禮車委託研究和統計資料](https://www1.nyc.gov/html/tlc/html/about/statistics.shtml)
+•    [NYC 計程車和禮車委託研究和統計資料](http://www.nyc.gov/html/tlc/html/technology/aggregated_data.shtml)
 
 [2]: ./media/hive-walkthrough/output-hive-results-3.png
 [11]: ./media/hive-walkthrough/hive-reader-properties.png

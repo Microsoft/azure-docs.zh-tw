@@ -13,6 +13,7 @@ ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 03/23/2018
+ms.locfileid: "30197167"
 ---
 下表依照閘道 SKU 顯示閘道類型和預估的彙總輸送量。 此表適用於 Resource Manager 與傳統部署模型。 
 

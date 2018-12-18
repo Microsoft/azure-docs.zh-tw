@@ -1,12 +1,12 @@
 ---
-title: "遠端連線至 StorSimple 裝置 | Microsoft Docs"
-description: "說明如何設定您的裝置以進行遠端管理，以及如何透過 HTTP 或 HTTPS 連線到 Windows PowerShell for StorSimple。"
+title: 遠端連線至 StorSimple 裝置 | Microsoft Docs
+description: 說明如何設定您的裝置以進行遠端管理，以及如何透過 HTTP 或 HTTPS 連線到 Windows PowerShell for StorSimple。
 services: storsimple
-documentationcenter: 
+documentationcenter: ''
 author: alkohli
 manager: jeconnoc
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: NA
 ms.topic: article
@@ -20,6 +20,7 @@ ms.sourcegitcommit: 79683e67911c3ab14bcae668f7551e57f3095425
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 01/25/2018
+ms.locfileid: "28103950"
 ---
 # <a name="connect-remotely-to-your-storsimple-8000-series-device"></a>遠端連線至 StorSimple 8000 系列裝置
 

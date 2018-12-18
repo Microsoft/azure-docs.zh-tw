@@ -24,18 +24,18 @@
 
 <sup>2</sup> 這個數目包括佇列、已完成、作用中和已取消的工作。 不包含已刪除的工作。 您可以使用 **IJob.Delete** 或 **DELETE** HTTP 要求刪除舊工作。
 
-自 2017 年 4 月 1 日起，您的帳戶中任何超過 90 天的作業記錄以及其相關工作記錄都會自動刪除，即使記錄總數低於配額上限亦然。 如果您需要封存作業/工作資訊，您可以使用[這裡](../articles/media-services/media-services-dotnet-manage-entities.md)所述的程式碼。
+自 2017 年 4 月 1 日起，您的帳戶中任何超過 90 天的作業記錄以及其相關工作記錄都會自動刪除，即使記錄總數低於配額上限亦然。 如果您需要封存作業/工作資訊，您可以使用[這裡](../articles/media-services/previous/media-services-dotnet-manage-entities.md)所述的程式碼。
 
 <sup>3</sup> 提出要求來列出作業實體時，每個要求會傳回最多 1000 個作業。 如果您需要追蹤所有已送出的工作，您可以如 [OData 系統查詢選項](http://msdn.microsoft.com/library/gg309461.aspx)中所述，使用 top/skip。
 
-<sup>4</sup> 定位器並非設計來管理每個使用者的存取控制。 若要給予個別使用者不同的存取權限，請使用數位版權管理 (DRM) 方案。 如需詳細資訊，請參閱 [本節](../articles/media-services/media-services-content-protection-overview.md) 。
+<sup>4</sup> 定位器並非設計來管理每個使用者的存取控制。 若要給予個別使用者不同的存取權限，請使用數位版權管理 (DRM) 方案。 如需詳細資訊，請參閱 [本節](../articles/media-services/previous/media-services-content-protection-overview.md) 。
 
 <sup>5</sup> 儲存體帳戶必須來自相同的 Azure 訂用帳戶。
 
 <sup>6</sup> 對於不同的 AMS 原則 (例如 Locator 原則或 ContentKeyAuthorizationPolicy) 有 1,000,000 個原則的限制。 
 
 >[!NOTE]
-> 如果您總是使用相同的天數 / 存取權限 / 等等，您應該使用相同的原則識別碼。如需詳細資訊與範例，請參閱[本節](../articles/media-services/media-services-dotnet-manage-entities.md#limit-access-policies)。
+> 如果您總是使用相同的天數 / 存取權限 / 等等，您應該使用相同的原則識別碼。如需詳細資訊與範例，請參閱[本節](../articles/media-services/previous/media-services-dotnet-manage-entities.md#limit-access-policies)。
 
 <sup>7</sup> 如果您要將內容上傳至 Azure 媒體服務中的資產，以在服務中透過其中一種媒體處理器加以處理 (也就是像媒體編碼器標準和媒體編碼器高階工作流程之類的編碼器，或像臉部偵測器這類分析引擎)，則您應該注意支援的檔案上小上限的條件約束。 
 

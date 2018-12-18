@@ -13,14 +13,15 @@ ms.workload: web
 ms.tgt_pltfrm: linux
 ms.devlang: na
 ms.topic: quickstart
-ms.date: 08/30/2017
+ms.date: 04/11/2018
 ms.author: cfowler
 ms.custom: mvc
-ms.openlocfilehash: 0f40d2d953f028f2014c88a22f9ad31fed705b76
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: 1345d4c4d349ed2fa5bb95ee35299c77fb391359
+ms.sourcegitcommit: f1e6e61807634bce56a64c00447bf819438db1b8
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42884980"
 ---
 # <a name="create-a-net-core-web-app-in-app-service-on-linux"></a>在 Linux 上的 App Service 中建立.NET Core Web 應用程式
 
@@ -36,12 +37,12 @@ ms.lasthandoff: 03/16/2018
 
 [!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 若要完成本快速入門：
 
 * <a href="https://git-scm.com/" target="_blank">安裝 Git</a>
-* <a href="https://github.com/dotnet/core/blob/master/release-notes/download-archives/1.1.6-sdk-download.md" target="_blank">安裝 .NET Core SDK 1.1</a>
+* <a href="https://www.microsoft.com/net/core/" target="_blank">安裝 .NET Core</a>
 
 ## <a name="create-the-app-locally"></a>在本機建立應用程式
 
@@ -59,6 +60,8 @@ dotnet new web
 ```
 
 ## <a name="run-the-app-locally"></a>在本機執行應用程式
+
+在本機執行應用程式，以便您查看它在部署至 Azure 時的樣貌。 
 
 還原 NuGet 套件，並執行應用程式。
 

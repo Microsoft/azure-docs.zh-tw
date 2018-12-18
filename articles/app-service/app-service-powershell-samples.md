@@ -1,6 +1,6 @@
 ---
-title: "Azure PowerShell 範例 - App Service | Microsoft Docs"
-description: "Azure PowerShell 範例 - App Service"
+title: Azure PowerShell 範例 - App Service | Microsoft Docs
+description: Azure PowerShell 範例 - App Service
 services: app-service
 documentationcenter: app-service
 author: syntaxc4
@@ -21,6 +21,7 @@ ms.sourcegitcommit: 176c575aea7602682afd6214880aad0be6167c52
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 01/09/2018
+ms.locfileid: "27713411"
 ---
 # <a name="azure-powershell-samples"></a>Azure PowerShell 範例
 

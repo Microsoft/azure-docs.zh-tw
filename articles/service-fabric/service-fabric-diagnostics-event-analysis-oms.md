@@ -1,79 +1,111 @@
 ---
-title: "使用 OMS 進行 Azure Service Fabric 事件分析 | Microsoft Docs"
-description: "了解如何使用 OMS 視覺化及分析事件，來監視和診斷 Azure Service Fabric 叢集。"
+title: 使用 Log Analytics 進行 Azure Service Fabric 事件分析 | Microsoft Docs
+description: 了解如何使用 Log Analytics 視覺化及分析事件，以監視和分析 Azure Service Fabric 叢集。
 services: service-fabric
 documentationcenter: .net
-author: dkkapur
+author: srrengar
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 10/15/2017
-ms.author: dekapur
-ms.openlocfilehash: 977c5d64a32157b39aa6b618196dde20c4c3cc8e
-ms.sourcegitcommit: 922687d91838b77c038c68b415ab87d94729555e
+ms.date: 05/29/2018
+ms.author: srrengar
+ms.openlocfilehash: 49d9b5306a0fcf51cc0de036c725fca8345cd0ec
+ms.sourcegitcommit: ea5193f0729e85e2ddb11bb6d4516958510fd14c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/13/2017
+ms.lasthandoff: 06/21/2018
+ms.locfileid: "36302177"
 ---
-# <a name="event-analysis-and-visualization-with-oms"></a>使用 OMS 進行事件分析和視覺效果
+# <a name="event-analysis-and-visualization-with-log-analytics"></a>使用 Log Analytics 進行事件分析與視覺化
+Log Analytics 會從裝載於雲端的應用程式和服務收集和分析遙測，並提供分析工具來協助您將其可用性和效能最大化。 本文將概述如何在 Log Analytics 中執行查詢，以便深入了解叢集發生什麼狀況並進行疑難排解。 我們將討論下列常見的問題：
 
-Operations Management Suite (OMS) 是管理服務集合，可協助您監視及診斷裝載於雲端中的應用程式和服務。 若要取得 OMS 及其提供項目的更詳細概觀，請參閱 [OMS 是什麼？](../operations-management-suite/operations-management-suite-overview.md)
+* 如何針對健康情況事件進行疑難排解？
+* 如何知道節點發生故障？
+* 如何知道我的應用程式服務已經啟動或停止？
 
-## <a name="log-analytics-and-the-oms-workspace"></a>Log Analytics 和 OMS 工作區
+## <a name="log-analytics-workspace"></a>Log Analytics 工作區
 
-Log Analytics 會從受控資源 (包括 Azure 儲存體資料表或代理程式) 收集資料，並在中央存放庫中維護資料。 此資料可接著用於分析、警示和視覺效果，或進一步匯出。 Log Analytics 支援事件、效能資料或任何其他自訂資料。
+Log Analytics 會從受控資源 (包括 Azure 儲存體資料表或代理程式) 收集資料，並在中央存放庫中維護資料。 此資料可接著用於分析、警示和視覺效果，或進一步匯出。 Log Analytics 支援事件、效能資料或任何其他自訂資料。 請查看[如何設定分析延伸模組來彙總事件](service-fabric-diagnostics-event-aggregation-wad.md)以及[如何建立 Log Analytics 工作區來讀取儲存體中的事件](service-fabric-diagnostics-oms-setup.md)，以確定資料會流入 Log Analytics。
 
-設定 OMS 時，您可以存取特定 *OMS 工作區*，以從中查詢資料或在儀表板中視覺化該資料。
+Log Analytics 收到資料之後，Azure 會針對數個案例自訂數個*管理解決方案*，這些預先封裝的解決方案可監視傳入資料。 其中包括 *Service Fabric 分析*解決方案和*容器*解決方案，這是與使用 Service Fabric 叢集進行診斷和監視最相關的兩個解決方案。 本文說明如何使用 Service Fabric 分析解決方案，它是用工作區建立的。
 
-Log Analytics 收到資料之後，OMS 會針對數個案例自訂數個*管理解決方案*，這些預先封裝的解決方案可監視傳入資料。 其中包括 *Service Fabric 分析*解決方案和*容器*解決方案，這是與使用 Service Fabric 叢集進行診斷和監視最相關的兩個解決方案。 還有幾個其他解決方案也值得您探索，此外 OMS 也可讓您建立自訂解決方案，您可以在[這裡](../operations-management-suite/operations-management-suite-solutions.md)深入了解。 您選擇用於叢集的每個解決方案都會在並存 Log Analytics 的相同 OMS 工作區中設定。 工作區可讓您自訂儀表板和資料視覺效果，並修改您要收集、處理及分析的資料。
+## <a name="access-the-service-fabric-analytics-solution"></a>存取 Service Fabric 分析解決方案
 
-## <a name="setting-up-an-oms-workspace-with-the-service-fabric-analytics-solution"></a>使用 Service Fabric 分析解決方案設定 OMS 工作區
-建議您在 OMS 工作區中包含 Service Fabric 解決方案 - 它包含儀表板，會顯示從平台和應用程式層級傳入的各種記錄通道，而且提供查詢 Service Fabric 特定記錄的功能。 以下顯示一個相當簡單的 Service Fabric 解決方案，該解決方案在叢集上部署了單一應用程式：
+1. 在 Azure 入口網站中，移至您建立 Service Fabric 分析解決方案所在的資源群組。
 
-![OMS SF 解決方案](media/service-fabric-diagnostics-event-analysis-oms/service-fabric-solution.png)
+2. 選取資源 **ServiceFabric\<nameOfOMSWorkspace\>**。
 
-請參閱[設定 OMS Log Analytics](service-fabric-diagnostics-oms-setup.md)，開始對於叢集進行此作業。
+2. 在 [摘要] 中，您會看到磚以圖形形式來代表每一個啟用的解決方案，其中有一個是 Service Fabric 的解決方案。 按一下 **Service Fabric** 的圖形 (第一個圖像下方) 以繼續前往 Service Fabric 分析解決方案 (第二個圖像下方)。
 
-## <a name="using-the-oms-agent"></a>使用 OMS 代理程式
+    ![Service Fabric 解決方案](media/service-fabric-diagnostics-event-analysis-oms/oms_service_fabric_summary.PNG)
 
-建議使用 EventFlow 和 WAD 作為彙總解決方案，因為它們允許以更模組化的方式進行診斷和監視。 例如，如果您想要變更 EventFlow 中的輸出，您不需要變更實際工具，只要簡單修改設定檔即可。 不過，如果您決定使用 OMS Log Analytics，您應該設定 [OMS 代理程式](../log-analytics/log-analytics-windows-agent.md)。 您也應該在將容器部署至叢集時使用 OMS 代理程式，如下所述。 
+    ![Service Fabric 解決方案](media/service-fabric-diagnostics-event-analysis-oms/oms_service_fabric_solution.PNG)
 
-參閱[將 OMS 代理程式新增至叢集](service-fabric-diagnostics-oms-agent.md)了解此作業的步驟。
+上面的圖像是 Service Fabric 分析解決方案的首頁。 這是叢集目前情況的快照集檢視。 如果您建立叢集的時候啟用了分析功能，就可以看到以下各項的事件 
 
-這樣做有下列好處：
+* [操作通道](service-fabric-diagnostics-event-generation-operational.md)：Service Fabric 平台 (系統服務的集合) 執行的較高層級操作。
+* [Reliable Actors 程式設計模型事件](service-fabric-reliable-actors-diagnostics.md)
+* [Reliable Services 程式設計模型事件](service-fabric-reliable-services-diagnostics.md)
 
-* 效能計數器和計量端的資料更豐富
-* 容易設定從叢集收集的計量，而且不需要更新叢集的設定。 變更代理程式的設定可以從 OMS 入口網站完成，而且代理程式會自動重新啟動以符合所需的設定。 若要設定 OMS 代理程式以挑選特定的效能計數器，請移至工作區 [首頁] > [設定] > [資料] > [Windows 效能計數器]，然後挑選您要收集的資料
-* 比起必須儲存再由 OMS / Log Analytics 挑選，資料的顯示速度更快
-* 更容易監視容器，因為它可以挑選 docker 記錄 (stdout、stderr) 和統計資料 (容器和節點層級的效能計量)
+>[!NOTE]
+>除了操作通道外，[更新分析延伸模組的設定](service-fabric-diagnostics-event-aggregation-wad.md#log-collection-configurations)可以收集更詳細的系統事件。
 
-這裡的主要考量是由於它是代理程式，它將會與您所有的應用程式一起部署在您的叢集上，因此對叢集上的應用程式效能只會有一些影響。
+### <a name="view-service-fabric-events-including-actions-on-nodes"></a>檢視 Service Fabric 事件，包括節點上的動作
 
-## <a name="monitoring-containers"></a>監視容器
+1. 在 Service Fabric 分析頁面上，按一下 **Service Fabric 事件**的圖形。
 
-將容器部署到 Service Fabric 叢集時，建議已透過 OMS 代理程式設定叢集，而且已將容器解決方案新增至 OMS 工作區，以啟用監視和診斷功能。 工作區中的容器解決方案如下所示：
+    ![Service Fabric 解決方案操作通道](media/service-fabric-diagnostics-event-analysis-oms/oms_service_fabric_events_selection.png)
 
-![基本 OMS 儀表板](./media/service-fabric-diagnostics-event-analysis-oms/oms-containers-dashboard.png)
+2. 按一下 [清單] 來檢視清單中的事件。 這裡您會看到所有收集的系統事件。 為了方便參考，這些是來自 Azure 儲存體帳戶中的 WADServiceFabricSystemEventsTable，而且同樣地，您接下來看到的 Reliable Service 和 Actor 事件是來自這些個別的表格。
+    
+    ![查詢操作通道](media/service-fabric-diagnostics-event-analysis-oms/oms_service_fabric_events.png)
 
-代理程式會收集數個容器的特定記錄檔，您可以在 OMS 中查詢這些記錄檔，或用來視覺化效能指標。 所收集的記錄類型有：
+或者您可以按一下左邊的放大鏡，然後使用 Kusto 查詢語言來尋找您想要的資料。 例如，如果想尋找針對叢集節點所採取的動作，您可以使用下列查詢。 下面使用的事件識別碼，可以在[操作通道事件參考](service-fabric-diagnostics-event-generation-operational.md)中找到。
 
-* ContainerInventory︰顯示容器位置、名稱和映像的相關資訊
-* ContainerImageInventory︰已部署映像相關資訊，包括 ID 或大小
-* ContainerLog︰特定的錯誤記錄檔、 docker 記錄檔 (stdout 等) 及其他項目
-* ContainerServiceLog：已執行的 docker 精露命令
-* 效能︰包括容器 CPU、記憶體、網路流量、磁碟 I/O，以及主機電腦的自訂計量
+```kusto
+ServiceFabricOperationalEvent
+| where EventId < 25627 and EventId > 25619 
+```
 
-[使用 OMS Log Analytics 監視容器](service-fabric-diagnostics-oms-containers.md)涵蓋為您的叢集設定容器監視所需的步驟。 若要深入了解 OMS 的容器解決方案，請參閱其[文件](../log-analytics/log-analytics-containers.md)。
+您可以查詢很多欄位，例如特定的節點 (電腦)、系統服務 (TaskName) 等。
+
+### <a name="view-service-fabric-reliable-service-and-actor-events"></a>檢視 Service Fabric Reliable Service 和 Actor 事件
+
+1. 在 Service Fabric 分析頁面上，按一下 **Reliable Services** 的圖形。
+
+    ![Service Fabric 解決方案 Reliable Services](media/service-fabric-diagnostics-event-analysis-oms/oms_reliable_services_events_selection.png)
+
+2. 按一下 [清單] 來檢視清單中的事件。 這裡您會看到來自 Reliable Services 的事件。 啟動及完成 runasync 服務時，您可以看到不同的事件，它們通常是在部署和升級發生的。 
+
+    ![查詢 Reliable Services](media/service-fabric-diagnostics-event-analysis-oms/oms_reliable_service_events.png)
+
+以類似的方式，就可以檢視 Reliable Actor 事件。 若要為 Reliable Actor 設定更詳細的事件，您需要到分析延伸模組的設定中去變更 `scheduledTransferKeywordFilter` (如下所示)。 [Reliable Actor 事件參考](service-fabric-reliable-actors-diagnostics.md#keywords)會有這些事件值的詳細資料。
+
+```json
+"EtwEventSourceProviderConfiguration": [
+                {
+                    "provider": "Microsoft-ServiceFabric-Actors",
+                    "scheduledTransferKeywordFilter": "1",
+                    "scheduledTransferPeriod": "PT5M",
+                    "DefaultEvents": {
+                    "eventDestination": "ServiceFabricReliableActorEventTable"
+                    }
+                },
+```
+
+Kusto 查詢語言功能很強大。 您可以執行的另一個重要查詢是找出哪些節點會產生最多事件。 下列螢幕擷取畫面中的查詢會顯示如何使用特定服務和節點來彙總 Service Fabric 操作事件。
+
+![每個節點的查詢事件](media/service-fabric-diagnostics-event-analysis-oms/oms_kusto_query.png)
 
 ## <a name="next-steps"></a>後續步驟
 
-請探索下列 OMS 工具和選項，以依照您的需求自訂工作區：
-
-* 針對內部部署叢集，OMS 提供可用來傳送資料至 OMS 的閘道 (HTTP 正向 Proxy)。 如需詳細資訊，請參閱[在無網際網路存取下使用 OMS 閘道將電腦連線到 OMS](../log-analytics/log-analytics-oms-gateway.md)
-* 設定 OMS 以設定[自動化警示](../log-analytics/log-analytics-alerts.md)，來協助偵測與診斷
+* 若要啟用基礎結構監視 (也就是監視效能計數器)，請前往[新增 Log Analytics 代理程式](service-fabric-diagnostics-oms-agent.md)。 這個代理程式會收集效能計數器，並將它們新增至現有的工作區。
+* 針對內部部署叢集，Log Analytics 提供可用於將資料傳送至 Log Analytics 的閘道 (HTTP 正向 Proxy)。 如需詳細資訊，請參閱[在無網際網路存取下使用 OMS 閘道將電腦連線到 Log Analytics](../log-analytics/log-analytics-oms-gateway.md)
+* 設定[自動化警示](../log-analytics/log-analytics-alerts.md)，以協助偵測與診斷
 * 熟悉 Log Analytics 的[記錄搜尋和查詢](../log-analytics/log-analytics-log-searches.md)功能
+* 若要深入了解 Log Analytics 及其提供的功能，請參閱 [Log Analytics 是什麼？](../operations-management-suite/operations-management-suite-overview.md)

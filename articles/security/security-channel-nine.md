@@ -1,6 +1,6 @@
 ---
-title: "Channel 9 上的 Azure 安全性影片 | Microsoft Docs"
-description: "本文提供 Channel 9 上策劃的 Azure 安全性簡報清單。 Channel 9 是一個社群，連繫使用我們產品的人員與我們產品的工作人員。"
+title: Channel 9 上的 Azure 安全性影片 | Microsoft Docs
+description: 本文提供 Channel 9 上策劃的 Azure 安全性簡報清單。 Channel 9 是一個社群，連繫使用我們產品的人員與我們產品的工作人員。
 services: security
 documentationcenter: na
 author: TomShinder
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 62eaa376437687de4ef2e325ac3d7e195d158f9f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 11/22/2017
+ms.locfileid: "25540130"
 ---
 # <a name="azure-security-videos-on-channel-9"></a>Channel 9 上的 Azure 安全性影片
 [Channel 9](https://channel9.msdn.com/) 是讓產品幕後功臣露面，並讓他們與客戶保持聯繫的社群。

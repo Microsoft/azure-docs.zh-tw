@@ -1,6 +1,6 @@
 ---
-title: "Azure Resource Manager 要求限制 | Microsoft Docs"
-description: "描述如何在到達訂用帳戶限制時，對 Azure Resource Manager 要求使用節流。"
+title: Azure Resource Manager 要求限制 | Microsoft Docs
+description: 描述如何在到達訂用帳戶限制時，對 Azure Resource Manager 要求使用節流。
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -9,16 +9,17 @@ editor: tysonn
 ms.assetid: e1047233-b8e4-4232-8919-3268d93a3824
 ms.service: azure-resource-manager
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/26/2018
+ms.date: 04/10/2018
 ms.author: tomfitz
-ms.openlocfilehash: dc109cdaeade900e239624f408cea2a1f448ae5a
-ms.sourcegitcommit: ded74961ef7d1df2ef8ffbcd13eeea0f4aaa3219
+ms.openlocfilehash: f3dcb0c5036b2cfc38ef2a6a16269a8697bbd9e6
+ms.sourcegitcommit: b6319f1a87d9316122f96769aab0d92b46a6879a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/29/2018
+ms.lasthandoff: 05/20/2018
+ms.locfileid: "34358858"
 ---
 # <a name="throttling-resource-manager-requests"></a>對 Resource Manager 要求進行節流
 針對每個訂用帳戶和租用戶，Resource Manager 限制每小時只能有 15000 個讀取要求和 1200 個寫入要求。 這些限制適用於每個 Azure Resource Manager 執行個體。 每個 Azure 區域中都有多個執行個體，且 Azure Resource Manager 會部署到所有 Azure 區域。  因此，實際上的限制比這些限制還要高，因為通常是由多個不同的執行個體來服務使用者要求。
@@ -36,8 +37,8 @@ ms.lasthandoff: 01/29/2018
 
 | 回應標頭 | 說明 |
 | --- | --- |
-| x-ms-ratelimit-remaining-subscription-reads |受訂用帳戶限制的剩餘讀取 |
-| x-ms-ratelimit-remaining-subscription-writes |受訂用帳戶限制的剩餘寫入 |
+| x-ms-ratelimit-remaining-subscription-reads |受訂用帳戶限制的剩餘讀取。 讀取作業會傳回此值。 |
+| x-ms-ratelimit-remaining-subscription-writes |受訂用帳戶限制的剩餘寫入。 寫入作業會傳回此值。 |
 | x-ms-ratelimit-remaining-tenant-reads |受租用戶限制的剩餘讀取 |
 | x-ms-ratelimit-remaining-tenant-writes |受租用戶限制的剩餘寫入 |
 | x-ms-ratelimit-remaining-subscription-resource-requests |受訂用帳戶限制的剩餘資源類型要求。<br /><br />只有在服務已覆寫預設限制時，才會傳回此標頭值。 Resource Manager 會新增此值，而非訂用帳戶讀取或寫入。 |
@@ -70,7 +71,6 @@ Get-AzureRmResourceGroup -Debug
 這會傳回許多值，包括下列回應值︰
 
 ```powershell
-...
 DEBUG: ============================ HTTP RESPONSE ============================
 
 Status Code:
@@ -79,7 +79,25 @@ OK
 Headers:
 Pragma                        : no-cache
 x-ms-ratelimit-remaining-subscription-reads: 14999
-...
+```
+
+若要取得寫入限制，請使用寫入作業： 
+
+```powershell
+New-AzureRmResourceGroup -Name myresourcegroup -Location westus -Debug
+```
+
+這會傳回許多值，包括下列值︰
+
+```powershell
+DEBUG: ============================ HTTP RESPONSE ============================
+
+Status Code:
+Created
+
+Headers:
+Pragma                        : no-cache
+x-ms-ratelimit-remaining-subscription-writes: 1199
 ```
 
 在 **Azure CLI** 中，您可以使用更詳細的選項擷取標頭值。
@@ -88,20 +106,37 @@ x-ms-ratelimit-remaining-subscription-reads: 14999
 az group list --verbose --debug
 ```
 
-這會傳回許多值，包括下列物件︰
+這會傳回許多值，包括下列值︰
 
 ```azurecli
-...
-silly: returnObject
-{
-  "statusCode": 200,
-  "header": {
-    "cache-control": "no-cache",
-    "pragma": "no-cache",
-    "content-type": "application/json; charset=utf-8",
-    "expires": "-1",
-    "x-ms-ratelimit-remaining-subscription-reads": "14998",
-    ...
+msrest.http_logger : Response status: 200
+msrest.http_logger : Response headers:
+msrest.http_logger :     'Cache-Control': 'no-cache'
+msrest.http_logger :     'Pragma': 'no-cache'
+msrest.http_logger :     'Content-Type': 'application/json; charset=utf-8'
+msrest.http_logger :     'Content-Encoding': 'gzip'
+msrest.http_logger :     'Expires': '-1'
+msrest.http_logger :     'Vary': 'Accept-Encoding'
+msrest.http_logger :     'x-ms-ratelimit-remaining-subscription-reads': '14998'
+```
+
+若要取得寫入限制，請使用寫入作業： 
+
+```azurecli
+az group create -n myresourcegroup --location westus --verbose --debug
+```
+
+這會傳回許多值，包括下列值︰
+
+```azurecli
+msrest.http_logger : Response status: 201
+msrest.http_logger : Response headers:
+msrest.http_logger :     'Cache-Control': 'no-cache'
+msrest.http_logger :     'Pragma': 'no-cache'
+msrest.http_logger :     'Content-Length': '163'
+msrest.http_logger :     'Content-Type': 'application/json; charset=utf-8'
+msrest.http_logger :     'Expires': '-1'
+msrest.http_logger :     'x-ms-ratelimit-remaining-subscription-writes': '1199'
 ```
 
 ## <a name="waiting-before-sending-next-request"></a>在傳送下一個要求前先稍候

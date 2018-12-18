@@ -1,21 +1,21 @@
 ---
-title: 如何將 Azure 訂用帳戶連結到 Azure AD B2C | Microsoft Docs
+title: 如何將 Azure 訂用帳戶連結到 Azure Active Directory B2C | Microsoft Docs
 description: 啟用 Azure 訂用帳戶內 Azure AD B2C 租用戶計費的逐步指南。
 services: active-directory-b2c
-documentationcenter: dev-center-name
 author: davidmu1
 manager: mtillman
-editor: ''
-ms.service: active-directory-b2c
-ms.topic: article
+ms.service: active-directory
+ms.topic: conceptual
 ms.workload: identity
 ms.date: 12/05/2017
 ms.author: davidmu
-ms.openlocfilehash: bb9324b01bb810ba15994612bac2ff20dc83ab82
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: B2C
+ms.openlocfilehash: 80ba42d7eab1726c7add6c4c9426b7dde3b55480
+ms.sourcegitcommit: 86cb3855e1368e5a74f21fdd71684c78a1f907ac
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37445924"
 ---
 # <a name="linking-an-azure-subscription-to-an-azure-ad-b2c-tenant"></a>將 Azure 訂用帳戶連結至 Azure AD B2C 租用戶
 

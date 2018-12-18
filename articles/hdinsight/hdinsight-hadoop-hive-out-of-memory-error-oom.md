@@ -1,26 +1,21 @@
 ---
-title: "修正 Azure HDInsight 中的 Hive 記憶體錯誤 | Microsoft Docs"
-description: "修正 HDInsight 中的 Hive 記憶體不足錯誤。 客戶案例是一個橫跨許多大型資料表的查詢。"
-keywords: "記憶體不足錯誤, OOM, Hive 設定"
+title: 修正 Azure HDInsight 中的 Hive 記憶體不足錯誤
+description: 修正 HDInsight 中的 Hive 記憶體不足錯誤。 客戶案例是一個橫跨許多大型資料表的查詢。
+keywords: 記憶體不足錯誤, OOM, Hive 設定
 services: hdinsight
-documentationcenter: 
-author: mumian
-manager: jhubbard
-editor: cgronlun
-ms.assetid: 7bce3dff-9825-4fa0-a568-c52a9f7d1dad
+author: jasonwhowell
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 02/22/2018
-ms.author: jgao
-ms.openlocfilehash: ea83a6b4fa3399ae6a30157c720005683d445d8a
-ms.sourcegitcommit: 12fa5f8018d4f34077d5bab323ce7c919e51ce47
+ms.topic: conceptual
+ms.date: 05/14/2018
+ms.author: jasonh
+ms.openlocfilehash: 1ef4d8fa85a983c736fad73b652d8614c9a96ae5
+ms.sourcegitcommit: f6e2a03076679d53b550a24828141c4fb978dcf9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/23/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43109846"
 ---
 # <a name="fix-a-hive-out-of-memory-error-in-azure-hdinsight"></a>修正 Azure HDInsight 中的 Hive 記憶體不足錯誤
 

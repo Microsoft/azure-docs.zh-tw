@@ -1,32 +1,40 @@
 ---
-title: "定價 & 計費 - Azure Logic Apps | Microsoft Docs"
-description: "了解 Azure Logic Apps 的定價和計費方式"
-author: kevinlam1
-manager: anneta
-editor: 
+title: 定價 & 計費 - Azure Logic Apps | Microsoft Docs
+description: 了解 Azure Logic Apps 的定價和計費方式
 services: logic-apps
-documentationcenter: 
-ms.assetid: f8f528f5-51c5-4006-b571-54ef74532f32
 ms.service: logic-apps
-ms.workload: na
-ms.tgt_pltfrm: na
-ms.devlang: na
+ms.suite: logic-apps
+author: kevinlam1
+ms.author: klam
+ms.reviewer: estfan, LADocs
+ms.assetid: f8f528f5-51c5-4006-b571-54ef74532f32
 ms.topic: article
-ms.date: 11/11/2017
-ms.author: LADocs; klam
-ms.openlocfilehash: 096fdd5a6604ed8cecc931da2169194b777664d2
-ms.sourcegitcommit: 059dae3d8a0e716adc95ad2296843a45745a415d
+ms.date: 09/24/2018
+ms.openlocfilehash: 5f9147035c07bbe4fb3f38b74025015e70dd87b3
+ms.sourcegitcommit: 51a1476c85ca518a6d8b4cc35aed7a76b33e130f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47159548"
 ---
-# <a name="logic-apps-pricing-model"></a>Logic Apps 的定價模式
+# <a name="pricing-model-for-azure-logic-apps"></a>Azure Logic Apps 的定價模式
 
 您可以使用 Azure Logic Apps，在雲端建立和執行可調整規模的自動化整合工作流程。 以下是關於 Logic Apps 計費和定價運作方式的詳細資料。 
 
+<a name="consumption-pricing"></a>
+
 ## <a name="consumption-pricing-model"></a>取用量定價模式
 
-透過新建立的邏輯應用程式，您只需支付您使用的項目。 新的邏輯應用程式會使用取用量方案和定價模型，這表示由邏輯應用程式執行個體所執行的所有動作執行都會納入計量。 邏輯應用程式定義中的每個步驟都是一個動作，包括觸發程序、控制流程步驟、呼叫內建動作，以及呼叫連接器。 如需詳細資訊，請參閱 [Logic Apps 價格](https://azure.microsoft.com/pricing/details/logic-apps)。
+對於使用公用或「全域」Logic Apps 服務建立的新邏輯應用程式，您只需針對您使用的部分付費。 這些邏輯應用程式會使用取用量方案和定價模型，這表示由邏輯應用程式所執行的所有動作執行都會納入計量。 邏輯應用程式定義中的每個步驟都是一個動作，包括觸發程序、控制流程步驟、呼叫內建動作，以及呼叫連接器。 如需詳細資訊，請參閱 [Logic Apps 價格](https://azure.microsoft.com/pricing/details/logic-apps)。
+
+<a name="fixed-pricing"></a>
+
+## <a name="fixed-pricing-model"></a>固定定價模式
+
+> [!NOTE]
+> 整合服務環境目前為*個人預覽版*。 若要要求存取，請在[這裡建立您的加入要求](https://aka.ms/iseprivatepreview)。
+
+您透過[*整合服務環境* (ISE)](../logic-apps/connect-virtual-network-vnet-isolated-environment-overview.md) 建立的新邏輯應用程式是隔離的私人 Logic Apps 執行個體，使用專用的資源，對於這個新的邏輯應用程式，您每個月會支付固定的費用來使用其內建的動作與標準 ISE 標示的連接器。 您的 ISE 免費隨附一個企業連接器，如需額外的企業連接器，則會根據企業使用量價格計費。 如需詳細資訊，請參閱 [Logic Apps 價格](https://azure.microsoft.com/pricing/details/logic-apps)。
 
 <a name="triggers"></a>
 
@@ -46,7 +54,7 @@ ms.lasthandoff: 02/09/2018
 
 ## <a name="actions"></a>動作
 
-內建動作 (例如，呼叫 HTTP、Azure Functions 或 API 管理的動作，以及控制流程步驟) 會以原生動作來計量，而且其具有其各自的類型。 呼叫[連接器](https://docs.microsoft.com/connectors) \(英文\) 的動作具有 "ApiConnection" 類型。 這些連接器會歸類為標準或企業連接器，並以其各自的[定價][pricing]來計量。 
+內建動作 (例如，呼叫 HTTP、Azure Functions 或 API 管理的動作，以及控制流程步驟) 會以原生動作來計量，而且其具有其各自的類型。 呼叫[連接器](https://docs.microsoft.com/connectors) \(英文\) 的動作具有 "ApiConnection" 類型。 這些連接器會歸類為標準或企業連接器，並以其各自的[定價][pricing]來計量。 預覽版的企業連接器會依標準連接器的標準收費。
 
 所有成功和失敗的執行動作都會納入計算，並以動作執行來計量。 不過，因為條件不符而略過的動作，或因為邏輯應用程式在完成之前就終止而未執行的動作，均不會當成動作執行來計算。 停用的邏輯應用程式無法將新的執行個體具現化，因此，停用它們時，就不會針對它們進行收費。
 
@@ -57,7 +65,7 @@ ms.lasthandoff: 02/09/2018
 
 ## <a name="integration-account-usage"></a>整合帳戶使用量
 
-以取用量為根據的使用量包括一個[整合帳戶](logic-apps-enterprise-integration-create-integration-account.md)，您可以在其中探勘、開發和測試 Logic Apps 的 [B2B/EDI](logic-apps-enterprise-integration-b2b.md) 和 [XML 處理](logic-apps-enterprise-integration-xml.md)功能，而不需額外成本。 您可以在每個區域中擁有這其中一個整合帳戶，最多可儲存 10 個合約和 25 張地圖。 您可以擁有且上傳不限數量的夥伴、結構描述和憑證。
+以取用量為根據的使用量包括一個[整合帳戶](logic-apps-enterprise-integration-create-integration-account.md)，您可以在其中探勘、開發和測試 Logic Apps 的 [B2B/EDI](logic-apps-enterprise-integration-b2b.md) 和 [XML 處理](logic-apps-enterprise-integration-xml.md)功能，而不需額外成本。 您可以在每個區域擁有一個整合帳戶，並可儲存一定[成品數量](../logic-apps/logic-apps-limits-and-config.md)，例如，EDI 交易夥伴和協議、對應、結構描述、組件、憑證和批次組態。
 
 Logic Apps 也會搭配支援的 Logic Apps SLA 來提供基本和標準整合帳戶。 當您只想使用訊息處理，或者做為與較大商務實體有交易夥伴關係的小型企業夥伴時，就可以使用基本整合帳戶。 標準整合帳戶支援更複雜的 B2B 關係，並增加您可以管理的實體數目。 如需詳細資訊，請參閱 [Azure 價格](https://azure.microsoft.com/pricing/details/logic-apps)。
 

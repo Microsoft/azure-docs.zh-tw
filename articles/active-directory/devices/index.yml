@@ -1,0 +1,41 @@
+### YamlMime:YamlDocument
+ms.openlocfilehash: 03a96770462e66c897b93ae0790838a9c8f1bd9b
+ms.sourcegitcommit: 2ad510772e28f5eddd15ba265746c368356244ae
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "43130631"
+documentType: LandingData
+title: Azure AD 裝置管理文件
+metadata:
+  document_id: 
+  title: Azure Active Directory 裝置管理文件 - 教學課程、概念和參考 | Microsoft Docs
+  description: 了解如何設定及測試 Azure Active 裝置管理。
+  services: active-directory
+  ms.component: devices
+  author: MarkusVi
+  manager: mtillman
+  ms.service: active-directory
+  ms.tgt_pltfrm: na
+  ms.devlang: na
+  ms.topic: landing-page
+  ms.date: 08/14/2018
+  ms.author: markvi
+abstract:
+  description: 透過裝置，您的使用者可存取公司資產。 為了保護公司資產，身為 IT 管理員，您希望控制這些裝置。 這可讓您確保使用者會從符合安全性與合規性之標準的裝置來存取您的資源。<br>裝置管理也是裝置型條件式存取的基礎。 使用裝置型條件式存取時，您可以確保只能透過受控裝置存取環境中的資源。
+sections:
+- title: 逐步教學課程
+  items:
+  - type: paragraph
+    text: 了解如何與 Azure AD 整合內部部署已加入 AD 的裝置。
+  - type: list
+    style: icon48
+    items:
+    - image:
+        src: ./media/index/i_security-management.png
+      text: 受控網域
+      href: hybrid-azuread-join-managed-domains.md
+    - image:
+        src: ./media/index/i_security-management.png
+      text: 同盟網域
+      href: hybrid-azuread-join-federated-domains.md

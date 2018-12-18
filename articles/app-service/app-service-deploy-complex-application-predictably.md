@@ -1,8 +1,8 @@
 ---
-title: "透過可預測方式在 Azure 中佈建和部署微服務"
-description: "學習如何在 Azure App Service 中將包含微服務的應用程式佈建和部署為單一單位，並且使用 JSON 資源群組範本和 PowerShell 指令碼為可預測的方式。"
+title: 透過可預測方式在 Azure 中佈建和部署微服務
+description: 學習如何在 Azure App Service 中將包含微服務的應用程式佈建和部署為單一單位，並且使用 JSON 資源群組範本和 PowerShell 指令碼為可預測的方式。
 services: app-service
-documentationcenter: 
+documentationcenter: ''
 author: cephalin
 manager: erikre
 editor: jimbe
@@ -14,16 +14,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/06/2016
 ms.author: cephalin
-ms.openlocfilehash: 3719e037f1564411a8f94d1ca962ba1ef6b5d435
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 049f5211e800dace4b8968cd9e3db9ad968f8813
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43050741"
 ---
 # <a name="provision-and-deploy-microservices-predictably-in-azure"></a>透過可預測方式在 Azure 中佈建和部署微服務
-本教學課程示範如何在 [Azure App Service](/services/app-service/) 中將包含[微服務](https://en.wikipedia.org/wiki/Microservices)的應用程式佈建和部署為單一單位，並且使用 JSON 資源群組範本和 PowerShell 指令碼的可預測方式。 
+本教學課程示範如何在 [Azure App Service](https://azure.microsoft.com/services/app-service/) 中將包含[微服務](https://en.wikipedia.org/wiki/Microservices)的應用程式佈建和部署為單一單位，並且使用 JSON 資源群組範本和 PowerShell 指令碼的可預測方式。 
 
-佈建和部署包含高低耦合微服務的高級別應用程式時，重複性和可預測性是成功的重要關鍵。 [Azure App Service](/services/app-service/) 可讓您建立微服務，其中包括 Web 應用程式、行動應用程式、API 應用程式和邏輯應用程式。 [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) 可讓您將所有微服務當成一個單位來進行管理，以及管理資源相依性 (例如資料庫和原始檔控制設定)。 現在，您也可以使用 JSON 範本和簡單 PowerShell 指令碼來部署這類應用程式。 
+佈建和部署包含高低耦合微服務的高級別應用程式時，重複性和可預測性是成功的重要關鍵。 [Azure App Service](https://azure.microsoft.com/services/app-service/) 可讓您建立微服務，其中包括 Web 應用程式、行動應用程式、API 應用程式和邏輯應用程式。 [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) 可讓您將所有微服務當成一個單位來進行管理，以及管理資源相依性 (例如資料庫和原始檔控制設定)。 現在，您也可以使用 JSON 範本和簡單 PowerShell 指令碼來部署這類應用程式。 
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
@@ -39,7 +40,7 @@ ms.lasthandoff: 10/11/2017
 在本教學課程中，您將使用下列工具。 這不是工具的完整討論，因此將著重在端對端案例，並且只對每個工具進行簡短介紹，以及您可以在哪裡找到更多資訊。 
 
 ### <a name="azure-resource-manager-templates-json"></a>Azure 資源管理員範本 (JSON)
-例如，每次在 Azure App Service 中建立 Web 應用程式時，Azure 資源管理員都會使用 JSON 範本來建立具有元件資源的整個資源群組。 像是 [Scalable WordPress](/marketplace/partners/wordpress/scalablewordpress/) 應用程式等來自 [Azure Marketplace](/marketplace) 的複雜範本，可包括 MySQL 資料庫、儲存體帳戶、App Service 方案、Web 應用程式本身、警示規則等等，而且您可以透過 PowerShell 使用所有這類範本。 如需如何下載和使用這些範本的詳細資訊，請參閱 [搭配使用 Azure PowerShell 與 Azure 資源管理員](../powershell-azure-resource-manager.md)。
+例如，每次在 Azure App Service 中建立 Web 應用程式時，Azure 資源管理員都會使用 JSON 範本來建立具有元件資源的整個資源群組。 來自 [Azure Marketplace](/azure/marketplace) 的複雜範本，可包括資料庫、儲存體帳戶、App Service 方案、Web 應用程式本身、警示規則、應用程式設定、自動調整設定等等，而且您可以透過 PowerShell 使用所有這類範本。 如需如何下載和使用這些範本的詳細資訊，請參閱 [搭配使用 Azure PowerShell 與 Azure 資源管理員](../powershell-azure-resource-manager.md)。
 
 如需 Azure 資源管理員範本的詳細資訊，請參閱 [編寫 Azure 資源管理員範本](../azure-resource-manager/resource-group-authoring-templates.md)
 
@@ -67,7 +68,7 @@ ms.lasthandoff: 10/11/2017
 3. 您會進入 [deploy-to-azure](https://deploy.azure.com) 網站，並要求您輸入部署參數。 請注意，大部分的欄位都會填入儲存機制名稱以及一些隨機字串。 您可以視需要變更所有欄位，但唯一必須輸入的項目是 SQL Server 管理登入和密碼，然後按 [ **下一步**]。
    
    ![](./media/app-service-deploy-complex-application-predictably/gettemplate-1-deploybuttonui.png)
-4. 接著，按一下 [ **部署** ] 啟動部署程序。 程序執行並完成之後，請按一下 http://todoapp*XXXX*.azurewebsites.net 連結來瀏覽已部署的應用程式。 
+4. 接著，按一下 [ **部署** ] 啟動部署程序。 程序執行並完成之後，請按一下 http://todoappXXXX.azurewebsites.net 連結來瀏覽已部署的應用程式。 
    
    ![](./media/app-service-deploy-complex-application-predictably/gettemplate-2-deployprogress.png)
    

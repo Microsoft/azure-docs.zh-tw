@@ -1,11 +1,11 @@
 ---
-title: "與 DMZ 搭配使用的 Azure 範例應用程式 | Microsoft Docs"
-description: "在建立 DMZ 來測試流量案例後部署這個簡單的 Web 應用程式"
+title: 與 DMZ 搭配使用的 Azure 範例應用程式 | Microsoft Docs
+description: 在建立 DMZ 來測試流量案例後部署這個簡單的 Web 應用程式
 services: virtual-network
 documentationcenter: na
 author: tracsman
 manager: rossort
-editor: 
+editor: ''
 ms.assetid: 60340ab7-b82b-40e0-bd87-83e41fe4519c
 ms.service: virtual-network
 ms.devlang: na
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23124346"
 ---
 # <a name="sample-application-for-use-with-dmzs"></a>與 DMZ 搭配使用的範例應用程式
 [返回 [安全性界限最佳作法] 頁面][HOME]

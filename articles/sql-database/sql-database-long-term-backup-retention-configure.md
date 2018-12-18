@@ -1,261 +1,165 @@
 ---
-title: 設定長期備份保留 - Azure SQL Database | Microsoft Docs
-description: 了解如何從在 Azure 復原服務保存庫中儲存自動備份，以及從 Azure 復原服務保存庫還原
+title: 管理 Azure SQL Database 長期備份保留 | Microsoft Docs
+description: 了解如何在 SQL Azure 儲存體中儲存自動備份，然後將它們還原
 services: sql-database
-author: CarlRabeler
-manager: craigg
 ms.service: sql-database
-ms.custom: business continuity
-ms.topic: article
-ms.date: 04/10/2017
-ms.author: carlrab
-ms.openlocfilehash: f6d32976cc4b9d669e629005be4d7aacebd62f9e
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.subservice: operations
+ms.custom: ''
+ms.devlang: ''
+ms.topic: conceptual
+author: anosov1960
+ms.author: sashan
+ms.reviewer: carlrab
+manager: craigg
+ms.date: 09/18/2018
+ms.openlocfilehash: 0a91139d92570a2ee2828f9295590d580902c501
+ms.sourcegitcommit: 51a1476c85ca518a6d8b4cc35aed7a76b33e130f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47164985"
 ---
-# <a name="configure-and-restore-from-azure-sql-database-long-term-backup-retention"></a>設定 Azure SQL Database 長期備份保留並從中還原
+# <a name="manage-azure-sql-database-long-term-backup-retention"></a>管理 Azure SQL Database 長期備份保留
 
-您可以設定 Azure 復原服務保存庫以存放 Azure SQL 資料庫備份，然後使用透過 Azure 入口網站或 PowerShell 保留在保存庫中的備份，來復原資料庫。
+您可以使用[長期備份保留](sql-database-long-term-retention.md) 原則 (LTR) 來設定 Azure SQL Database，以在 Azure blob 儲存體中自動保留最多 10 年的備份。 然後，您可以使用 Azure 入口網站或 PowerShell 來復原資料庫。
 
-## <a name="azure-portal"></a>Azure 入口網站
+## <a name="use-the-azure-portal-to-configure-long-term-retention-policies-and-restore-backups"></a>使用 Azure 入口網站來設定長期保留原則和還原備份
 
-下列幾節中會示範如何使用 Azure 入口網站來設定 Azure 復原服務保存庫、檢視保存庫中的備份，以及從保存庫中還原。
+下列各節說明如何使用 Azure 入口網站來設定長期保留、檢視長期保留的備份，以及從長期保留還原備份。
 
-### <a name="configure-the-vault-register-the-server-and-select-databases"></a>設定保存庫、註冊伺服器及選取資料庫
+### <a name="configure-long-term-retention-policies"></a>設定長期保留原則
 
-您會[設定 Azure 復原服務保存庫以保留自動備份](sql-database-long-term-retention.md)，時間較您服務層的保留期限長。 
+您可以將 Azure SQL Database 設定為[保留自動備份](sql-database-long-term-retention.md)的期間比您服務層的保留期限還要長。 
 
-1. 開啟您伺服器的 **SQL Server** 頁面。
+1. 在 Azure 入口網站中，選取您的 SQL Server，然後按一下 [管理備份]。 在 [設定原則] 索引標籤上，針對您要設定或修改長期備份保留原則的資料庫選取其核取方塊。
 
-   ![SQL Server 頁面](./media/sql-database-get-started-portal/sql-server-blade.png)
+   ![管理備份連結](./media/sql-database-long-term-retention/ltr-configure-ltr.png)
 
-2. 按一下 [長期備份保留]。
+2. 在 [設定原則] 窗格中，選取您想要保留每週、每月或每年備份並指定各項的保留期限。 
 
-   ![長期備份保留連結](./media/sql-database-get-started-backup-recovery/long-term-backup-retention-link.png)
+   ![設定原則](./media/sql-database-long-term-retention/ltr-configure-policies.png)
 
-3. 在伺服器的 [長期備份保留] 頁面中，檢閱並接受預覽條款 (除非您已完成，或預覽中沒有這項功能)。
+3. 完成時，按一下 [套用]。
 
-   ![接受預覽條款](./media/sql-database-get-started-backup-recovery/accept-the-preview-terms.png)
+### <a name="view-backups-and-restore-from-a-backup-using-azure-portal"></a>使用 Azure 入口網站檢視備份及從備份還原
 
-4. 若要設定長期備份保留時間，在方格中選取該資料庫，然後按一下工具列上的 [設定]。
+檢視使用 LTR 原則針對特定資料庫保留的備份，然後從這些備份還原。 
 
-   ![選取長期備份保留的資料庫](./media/sql-database-get-started-backup-recovery/select-database-for-long-term-backup-retention.png)
+1. 在 Azure 入口網站中，選取您的 SQL Server，然後按一下 [管理備份]。 在 [可用備份] 索引標籤上，選取您要查看可用備份的資料庫。
 
-5. 在 [設定] 頁面上，按一下 [復原服務保存庫] 下的 [設定所需設定]。
+   ![選取資料庫](./media/sql-database-long-term-retention/ltr-available-backups-select-database.png)
 
-   ![設定保存庫連結](./media/sql-database-get-started-backup-recovery/configure-vault-link.png)
+3. 在 [可用備份] 窗格中，檢閱可用的備份。 
 
-6. 在 [復原服務保存庫] 頁面中，選取現有的保存庫 (若有)。 否則，如果找不到您訂用帳戶的復原服務保存庫，按一下以結束流程，並建立復原服務保存庫。
+   ![檢視備份](./media/sql-database-long-term-retention/ltr-available-backups.png)
 
-   ![建立保存庫連結](./media/sql-database-get-started-backup-recovery/create-new-vault-link.png)
+4. 選取您要還原的備份，然後指定新的資料庫名稱。
 
-7. 在 [復原服務保存庫] 頁面上，按一下 [新增]。
+   ![還原](./media/sql-database-long-term-retention/ltr-restore.png)
 
-   ![新增保存庫連結](./media/sql-database-get-started-backup-recovery/add-new-vault-link.png)
-   
-8. 在 [復原服務保存庫] 頁面上，提供復原服務保存庫的有效名稱。
+5. 按一下 [確定]，將您的資料庫從 Azure SQL 儲存體中的備份還原到新的資料庫。
 
-   ![新增保存庫名稱](./media/sql-database-get-started-backup-recovery/new-vault-name.png)
+6. 在工具列上，按一下 [通知] 圖示以檢視還原作業的狀態。
 
-9. 選取您的訂用帳戶和資源群組，然後選取保存庫的位置。 完成時，按一下 [建立]。
-
-   ![建立保存庫](./media/sql-database-get-started-backup-recovery/create-new-vault.png)
-
-   > [!IMPORTANT]
-   > 保存庫必須位於與 Azure SQL 邏輯伺服器相同的區域，而且必須使用相同的資源群組做為邏輯伺服器。
-   >
-
-10. 建立新的保存庫之後，執行必要的步驟以返回 [復原服務保存庫] 頁面。
-
-11. 在 [復原服務保存庫] 頁面上，按一下保存庫，然後按一下 [選取]。
-
-   ![選取現有的保存庫](./media/sql-database-get-started-backup-recovery/select-existing-vault.png)
-
-12. 在 [設定] 頁面上，提供新保留原則的有效名稱、適當修改預設保留原則，然後按一下 [確定]。
-
-   ![定義保留原則](./media/sql-database-get-started-backup-recovery/define-retention-policy.png)
-   
-   >[!NOTE]
-   >保留原則名稱不允許某些字元，包括空格。
-
-13. 在伺服器的 [長期備份保留] 頁面上，按一下 [儲存]，然後按一下 [確定]，將長期備份保留原則套用到所有選取的資料庫。
-
-   ![定義保留原則](./media/sql-database-get-started-backup-recovery/save-retention-policy.png)
-
-14. 按一下 [儲存] 以使用這個新的原則對您所設定的 Azure 復原服務保存庫啟用長期備份保留。
-
-   ![定義保留原則](./media/sql-database-get-started-backup-recovery/enable-long-term-retention.png)
-
-> [!IMPORTANT]
-> 設定之後，備份會在接下來七天內顯示於保存庫中。 備份出現在保存庫之前，請勿繼續本教學課程。
->
-
-### <a name="view-backups-in-long-term-retention-using-azure-portal"></a>使用 Azure 入口網站在長期保留期限中檢視備份
-
-檢視[長期備份保留](sql-database-long-term-retention.md)中資料庫備份的相關資訊。 
-
-1. 在 Azure 入口網站中，開啟資料庫備份的 Azure 復原服務保存庫 (移至 [所有資源]，並從您訂用帳戶的資源清單中選取)，以在保存庫中檢視資料庫備份所使用的儲存體數量。
-
-   ![使用備份檢視復原服務保存庫](./media/sql-database-get-started-backup-recovery/view-recovery-services-vault-with-data.png)
-
-2. 開啟您資料庫的 [SQL Database] 頁面。
-
-   ![新範例 DB 頁面](./media/sql-database-get-started-portal/new-sample-db-blade.png)
-
-3. 在工具列上，按一下 [還原]。
-
-   ![還原工具列](./media/sql-database-get-started-backup-recovery/restore-toolbar.png)
-
-4. 在 [還原] 頁面上，按一下 [長期]。
-
-5. 在 Azure 保存庫備份下，按一下 [選取備份]，在長期備份保留中檢視可用的資料庫備份。
-
-   ![保存庫中的備份](./media/sql-database-get-started-backup-recovery/view-backups-in-vault.png)
-
-### <a name="restore-a-database-from-a-backup-in-long-term-backup-retention-using-the-azure-portal"></a>使用 Azure 入口網站從長期備份保留的備份中還原資料庫
-
-從 Azure 復原服務保存庫中的備份將資料庫還原到新的資料庫。
-
-1. 在 [Azure 保存庫備份] 頁面上，按一下要還原的備份，然後按一下 [選取]。
-
-   ![選取保存庫中的備份](./media/sql-database-get-started-backup-recovery/select-backup-in-vault.png)
-
-2. 在 [資料庫名稱] 文字方塊中，提供還原的資料庫名稱。
-
-   ![新的資料庫名稱](./media/sql-database-get-started-backup-recovery/new-database-name.png)
-
-3. 按一下 [確定]，從保存庫中的備份將資料庫還原到新的資料庫。
-
-4. 在工具列上，按一下 [通知] 圖示以檢視還原作業的狀態。
-
-   ![從保存庫還原作業進度](./media/sql-database-get-started-backup-recovery/restore-job-progress-long-term.png)
+   ![還原作業進度](./media/sql-database-get-started-backup-recovery/restore-job-progress-long-term.png)
 
 5. 完成還原作業之後，開啟 [SQL Database] 頁面，以檢視剛還原的資料庫。
-
-   ![從保存庫還原的資料庫](./media/sql-database-get-started-backup-recovery/restored-database-from-vault.png)
 
 > [!NOTE]
 > 從這裡開始，您可以使用 SQL Server Management Studio 連接到已還原的資料庫來執行所需的工作，例如[從還原的資料庫擷取一堆資料來複製到現有的資料庫，或刪除現有的資料庫，並將還原的資料庫重新命名為現有的資料庫名稱](sql-database-recovery-using-backups.md#point-in-time-restore)。
 >
 
-## <a name="powershell"></a>PowerShell
+## <a name="use-powershell-to-configure-long-term-retention-policies-and-restore-backups"></a>使用 PowerShell 來設定長期保留原則和還原備份
 
-下列幾節中會示範如何使用 PowerShell 來設定 Azure 復原服務保存庫、檢視保存庫中的備份，以及從保存庫中還原。
-
-### <a name="create-a-recovery-services-vault"></a>建立復原服務保存庫。
-
-使用 [New-AzureRmRecoveryServicesVault](/powershell/module/azurerm.recoveryservices/new-azurermrecoveryservicesvault) 來建立復原服務保存庫。
+下列各節說明如何使用 PowerShell 來設定長期備份保留、檢視 Azure SQL 儲存體中的備份，以及從 Azure SQL 儲存體中的備份還原。
 
 > [!IMPORTANT]
-> 保存庫必須位於與 Azure SQL 邏輯伺服器相同的區域，而且必須使用相同的資源群組做為邏輯伺服器。
+> 下列 PowerShell 版本支援 LTR V2 API：
+- [AzureRM.Sql-4.5.0](https://www.powershellgallery.com/packages/AzureRM.Sql/4.5.0) 或更新版本
+- [AzureRM-6.1.0](https://www.powershellgallery.com/packages/AzureRM/6.1.0) 或更新版本
+> 
 
-```PowerShell
-# Create a recovery services vault
+### <a name="create-an-ltr-policy"></a>建立 LTR 原則
 
-#$resourceGroupName = "{resource-group-name}"
-#$serverName = "{server-name}"
-$serverLocation = (Get-AzureRmSqlServer -ServerName $serverName -ResourceGroupName $resourceGroupName).Location
-$recoveryServiceVaultName = "{new-vault-name}"
+```powershell
+# Get the SQL server 
+# $subId = “{subscription-id}”
+# $serverName = “{server-name}”
+# $resourceGroup = “{resource-group-name}” 
+# $dbName = ”{database-name}”
 
-$vault = New-AzureRmRecoveryServicesVault -Name $recoveryServiceVaultName -ResourceGroupName $ResourceGroupName -Location $serverLocation 
-Set-AzureRmRecoveryServicesBackupProperties -BackupStorageRedundancy LocallyRedundant -Vault $vault
+Connect-AzureRmAccount
+Select-AzureRmSubscription -SubscriptionId $subId
+
+# get the server
+$server = Get-AzureRmSqlServer -ServerName $serverName -ResourceGroupName $resourceGroup
+
+# create LTR policy with WeeklyRetention = 12 weeks. MonthlyRetention and YearlyRetention = 0 by default.
+Set-AzureRmSqlDatabaseBackupLongTermRetentionPolicy -ServerName $serverName -DatabaseName $dbName -ResourceGroupName $resourceGroup -WeeklyRetention P12W 
+
+# create LTR policy with WeeklyRetention = 12 weeks, YearlyRetetion = 5 years and WeekOfYear = 16 (week of April 15). MonthlyRetention = 0 by default.
+Set-AzureRmSqlDatabaseBackupLongTermRetentionPolicy -ServerName $serverName -DatabaseName $dbName -ResourceGroupName $resourceGroup -WeeklyRetention P12W -YearlyRetention P5Y -WeekOfYear 16
 ```
 
-### <a name="set-your-server-to-use-the-recovery-vault-for-its-long-term-retention-backups"></a>設定您的伺服器設以將復原保存庫用於其長期保留備份
+### <a name="view-ltr-policies"></a>檢視 LTR 原則
+此範例示範如何列出伺服器內的 LTR 原則
 
-使用 [Set-AzureRmSqlServerBackupLongTermRetentionVault](/powershell/module/azurerm.sql/set-azurermsqlserverbackuplongtermretentionvault) Cmdlet，讓先前建立的復原服務保存庫與特定 Azure SQL Server 產生關聯。
+```powershell
+# Get all LTR policies within a server
+$ltrPolicies = Get-AzureRmSqlDatabase -ResourceGroupName Default-SQL-WestCentralUS -ServerName trgrie-ltr-server | Get-AzureRmSqlDatabaseLongTermRetentionPolicy -Current 
 
-```PowerShell
-# Set your server to use the vault to for long-term backup retention 
+# Get the LTR policy of a specific database 
+$ltrPolicies = Get-AzureRmSqlDatabaseBackupLongTermRetentionPolicy -ServerName $serverName -DatabaseName $dbName  -ResourceGroupName $resourceGroup -Current
+```
+### <a name="clear-an-ltr-policy"></a>清除 LTR 原則
+此範例示範如何清除資料庫中的 LTR 原則
 
-Set-AzureRmSqlServerBackupLongTermRetentionVault -ResourceGroupName $resourceGroupName -ServerName $serverName -ResourceId $vault.Id
+```powershell
+Set-AzureRmSqlDatabaseBackupLongTermRetentionPolicy -ServerName $serverName -DatabaseName $dbName -ResourceGroupName $resourceGroup -RemovePolicy
 ```
 
-### <a name="create-a-retention-policy"></a>建立保留原則
+### <a name="view-ltr-backups"></a>檢視 LTR 備份
 
-保留原則就是您設定資料庫備份保留時間長度的位置。 使用 [Get-AzureRmRecoveryServicesBackupRetentionPolicyObject](https://docs.microsoft.com/powershell/resourcemanager/azurerm.recoveryservices.backup/v2.3.0/get-azurermrecoveryservicesbackupretentionpolicyobject) Cmdlet 來取得預設保留原則，以便作為建立原則的範本。 在此範本中，保留期限設定為 2 年。 接下來，執行 [New-AzureRmRecoveryServicesBackupProtectionPolicy](/powershell/module/azurerm.recoveryservices.backup/new-azurermrecoveryservicesbackupprotectionpolicy) 完成原則建立。 
+此範例示範如何列出伺服器內的 LTR 備份。 
 
-> [!NOTE]
-> 有些 Cmdlet 會要求您先設定保存庫內容，然後才執行 ([Set-AzureRmRecoveryServicesVaultContext](/powershell/module/azurerm.recoveryservices/set-azurermrecoveryservicesvaultcontext))，所以您會在幾個相關的程式碼片段中看見此 Cmdlet。 因為原則是保存庫的一部分，所以我們會設定內容。 您可以為每個保存庫建立多個保留原則，然後將所需的原則套用到特定資料庫。 
+```powershell
+# Get the list of all LTR backups in a specific Azure region 
+# The backups are grouped by the logical database id.
+# Within each group they are ordered by the timestamp, the earliest
+# backup first.  
+$ltrBackups = Get-AzureRmSqlDatabaseLongTermRetentionBackup -Location $server.Location 
 
+# Get the list of LTR backups from the Azure region under 
+# the named server. 
+$ltrBackups = Get-AzureRmSqlDatabaseLongTermRetentionBackup -Location $server.Location -ServerName $serverName
 
-```PowerShell
-# Retrieve the default retention policy for the AzureSQLDatabase workload type
-$retentionPolicy = Get-AzureRmRecoveryServicesBackupRetentionPolicyObject -WorkloadType AzureSQLDatabase
+# Get the LTR backups for a specific database from the Azure region under the named server 
+$ltrBackups = Get-AzureRmSqlDatabaseLongTermRetentionBackup -Location $server.Location -ServerName $serverName -DatabaseName $dbName
 
-# Set the retention value to two years (you can set to any time between 1 week and 10 years)
-$retentionPolicy.RetentionDurationType = "Years"
-$retentionPolicy.RetentionCount = 2
-$retentionPolicyName = "my2YearRetentionPolicy"
+# List LTR backups only from live databases (you have option to choose All/Live/Deleted)
+$ltrBackups = Get-AzureRmSqlDatabaseLongTermRetentionBackup -Location $server.Location -DatabaseState Live
 
-# Set the vault context to the vault you are creating the policy for
-Set-AzureRmRecoveryServicesVaultContext -Vault $vault
-
-# Create the new policy
-$policy = New-AzureRmRecoveryServicesBackupProtectionPolicy -name $retentionPolicyName -WorkloadType AzureSQLDatabase -retentionPolicy $retentionPolicy
-$policy
+# Only list the latest LTR backup for each database 
+$ltrBackups = Get-AzureRmSqlDatabaseLongTermRetentionBackup -Location $server.Location -ServerName $serverName -OnlyLatestPerDatabase
 ```
 
-### <a name="configure-a-database-to-use-the-previously-defined-retention-policy"></a>設定資料庫以使用先前定義的保留原則
+### <a name="delete-ltr-backups"></a>刪除 LTR 備份
 
-使用 [Set-AzureRmSqlDatabaseBackupLongTermRetentionPolicy](/powershell/module/azurerm.sql/set-azurermsqldatabasebackuplongtermretentionpolicy) Cmdlet，將新原則套用到特定資料庫。
+此範例示範如何刪除備份清單中的 LTR 備份。
 
-```PowerShell
-# Enable long-term retention for a specific SQL database
-$policyState = "enabled"
-Set-AzureRmSqlDatabaseBackupLongTermRetentionPolicy -ResourceGroupName $resourceGroupName -ServerName $serverName -DatabaseName $databaseName -State $policyState -ResourceId $policy.Id
+```powershell
+# remove the earliest backup 
+$ltrBackup = $ltrBackups[0]
+Remove-AzureRmSqlDatabaseLongTermRetentionBackup -ResourceId $ltrBackup.ResourceId
 ```
 
-### <a name="view-backup-info-and-backups-in-long-term-retention"></a>檢視備份資訊和長期保留中的備份
+### <a name="restore-from-ltr-backups"></a>從 LTR 備份還原
+此範例示範如何從 LTR 備份還原。 請注意，這個介面並未變更，但是資源識別碼參數現在需要 LTR 備份資源識別碼。 
 
-檢視[長期備份保留](sql-database-long-term-retention.md)中資料庫備份的相關資訊。 
-
-請使用下列 Cmdlet 來檢視備份資訊︰
-
-- [Get-AzureRmRecoveryServicesBackupContainer](/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackupcontainer)
-- [Get-AzureRmRecoveryServicesBackupItem](/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackupitem)
-- [Get-AzureRmRecoveryServicesBackupRecoveryPoint](/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackuprecoverypoint)
-
-```PowerShell
-#$resourceGroupName = "{resource-group-name}"
-#$serverName = "{server-name}"
-$databaseNeedingRestore = $databaseName
-
-# Set the vault context to the vault we want to restore from
-#$vault = Get-AzureRmRecoveryServicesVault -ResourceGroupName $resourceGroupName
-Set-AzureRmRecoveryServicesVaultContext -Vault $vault
-
-# the following commands find the container associated with the server 'myserver' under resource group 'myresourcegroup'
-$container = Get-AzureRmRecoveryServicesBackupContainer -ContainerType AzureSQL -FriendlyName $vault.Name
-
-# Get the long-term retention metadata associated with a specific database
-$item = Get-AzureRmRecoveryServicesBackupItem -Container $container -WorkloadType AzureSQLDatabase -Name $databaseNeedingRestore
-
-# Get all available backups for the previously indicated database
-# Optionally, set the -StartDate and -EndDate parameters to return backups within a specific time period
-$availableBackups = Get-AzureRmRecoveryServicesBackupRecoveryPoint -Item $item
-$availableBackups
+```powershell
+# Restore LTR backup as an S3 database
+Restore-AzureRmSqlDatabase -FromLongTermRetentionBackup -ResourceId $ltrBackup.ResourceId -ServerName $serverName -ResourceGroupName $resourceGroup -TargetDatabaseName $dbName -ServiceObjectiveName S3
 ```
-
-### <a name="restore-a-database-from-a-backup-in-long-term-backup-retention"></a>從長期備份保留備份中還原資料庫
-
-使用 [Restore-AzureRmSqlDatabase](/powershell/module/azurerm.sql/restore-azurermsqldatabase) Cmdlet 從長期備份保留中還原。
-
-```PowerShell
-# Restore the most recent backup: $availableBackups[0]
-#$resourceGroupName = "{resource-group-name}"
-#$serverName = "{server-name}"
-$restoredDatabaseName = "{new-database-name}"
-$edition = "Basic"
-$performanceLevel = "Basic"
-
-$restoredDb = Restore-AzureRmSqlDatabase -FromLongTermRetentionBackup -ResourceId $availableBackups[0].Id -ResourceGroupName $resourceGroupName `
- -ServerName $serverName -TargetDatabaseName $restoredDatabaseName -Edition $edition -ServiceObjectiveName $performanceLevel
-$restoredDb
-```
-
 
 > [!NOTE]
 > 從這裡開始，您可以使用 SQL Server Management Studio 連線到已還原的資料庫來執行所需的工作，例如從還原的資料庫擷取一堆資料來複製到現有的資料庫，或刪除現有的資料庫，並將還原的資料庫重新命名為現有的資料庫名稱。 請參閱[還原時間點](sql-database-recovery-using-backups.md#point-in-time-restore)。
@@ -264,4 +168,3 @@ $restoredDb
 
 - 若要深入了解服務產生的自動備份，請參閱[自動備份](sql-database-automated-backups.md)
 - 若要深入了解長期備份保留，請參閱[長期備份保留](sql-database-long-term-retention.md)
-- 若要深入了解從備份還原，請參閱[從備份還原](sql-database-recovery-using-backups.md)

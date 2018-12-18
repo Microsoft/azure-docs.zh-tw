@@ -1,22 +1,23 @@
 ---
-title: 在 Azure 成本管理中了解成本管理報告 | Microsoft Docs
+title: 在 Azure 中了解 Cloudyn 成本管理報告 | Microsoft Docs
 description: 本文可協助您了解 Cloudyn 成本管理報告的基本結構和功能。
 services: cost-management
 keywords: ''
 author: bandersmsft
 ms.author: banders
-ms.date: 03/07/2018
-ms.topic: article
+ms.date: 09/18/2018
+ms.topic: conceptual
 ms.service: cost-management
-manager: carmonm
+manager: dougeby
 ms.custom: ''
-ms.openlocfilehash: bc2c696dceb3ed4741c10a5c611bd2d438b71bd5
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: e4d4c2115ddae592e9ca7bdf119b36d0ccee2da4
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46998707"
 ---
-# <a name="understanding-cost-management-reports"></a>了解成本管理報告
+# <a name="understanding-cloudyn-cost-management-reports"></a>了解 Cloudyn 成本管理報告
 
 本文可協助您了解 Cloudyn 成本管理報告的基本結構和功能。 大部分 Cloudyn 報告是直覺式的，並且具有一致的外觀及操作。 閱讀完本文之後，就做好了使用所有成本管理報告的準備。 各種不同的報告提供了許多標準功能，讓您可以輕鬆瀏覽報告。 報告可自訂，而且可以選取數個選項來計算和呈現結果。
 
@@ -175,6 +176,10 @@ ms.lasthandoff: 03/23/2018
 
     使用動作儲存、匯出或排定報告。
 
+15. **原則**
+
+    有些報告雖然未說明，但仍包含預計成本計算原則。 在這些報告中，**彙總**原則會顯示目前實體 (如 Microsoft 註冊或 AWS 付款人) 下的所有帳戶和訂用帳戶的建議。 而**獨立**原則會以如同沒有其他訂用帳戶的方式，顯示單一帳戶或訂用帳戶的建議。 選取的原則會因組織使用的最佳化策略而異。 預計成本是以過去 30 天的使用狀況為基準。
+
 ## <a name="save-and-schedule-reports"></a>儲存和排程報表
 
 建立報告之後，您可加以儲存供日後使用。 在 [我的工具] > [我的報告] 中可取得已儲存的報告。 如果您變更現有的報告並加以儲存，該報告就會儲存為新版本。 或者，您可以將它儲存為新報告。
@@ -198,4 +203,5 @@ ms.lasthandoff: 03/23/2018
 
 ## <a name="next-steps"></a>後續步驟
 
-- 如果您尚未完成成本管理的第一個教學課程，請在[檢閱使用量和成本](tutorial-review-usage.md)中閱讀。
+- 在 [使用 Cloudyn 報告](use-reports.md) 中了解 Cloudyn 所含的報告。
+- 了解如何使用報告建立 [儀表板](dashboards.md)。

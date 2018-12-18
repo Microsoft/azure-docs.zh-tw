@@ -1,35 +1,30 @@
 ---
-title: 安裝 Azure 備份伺服器 v2 | Microsoft Docs
+title: 安裝 Azure 備份伺服器 v2
 description: Azure 備份伺服器 v2 可提供您經過強化的備份功能，讓您保護 VM、檔案和資料夾以及工作負載等項目。 了解如何安裝或升級為 Azure 備份伺服器 v2。
 services: backup
-documentationcenter: ''
 author: markgalioto
 manager: carmonm
-editor: ''
-ms.assetid: ''
 ms.service: backup
-ms.workload: storage-backup-recovery
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 05/15/2017
-ms.author: masaran;markgal
-ms.openlocfilehash: dd7b76d9e06bc82ffd75f12131c2c247da05cc91
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.author: adigan
+ms.openlocfilehash: a458a46f3775a593f369d5acb967fc90d61efde8
+ms.sourcegitcommit: 4de6a8671c445fae31f760385710f17d504228f8
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39628336"
 ---
 # <a name="install-azure-backup-server-v2"></a>安裝 Azure 備份伺服器 v2
 
-Azure 備份伺服器可協助保護您的虛擬機器 (VM)、工作負載以及檔案和資料夾等項目。 Azure 備份伺服器 v2 是以 Azure 備份伺服器 v1 作為建置基礎，並可提供您 v1 所沒有的新功能。 如需 v1 和 v2 的功能比較，請參閱 [Azure 備份伺服器保護對照表](backup-mabs-protection-matrix.md)。 
+Azure 備份伺服器可協助保護您的虛擬機器 (VM)、工作負載以及檔案和資料夾等項目。 Azure 備份伺服器 v2 是以 Azure 備份伺服器 v1 作為建置基礎，並可提供您 v1 所沒有的新功能。 如需 v1 和 v2 的功能比較，請參閱 [Azure 備份伺服器保護矩陣](backup-mabs-protection-matrix.md)。 
 
 備份伺服器 v2 中新增的功能是備份伺服器 v1 的升級。 不過，並非一定要有備份伺服器 v1 才能安裝備份伺服器 v2。 如果您想要從備份伺服器 v1 升級為備份伺服器 v2，請在備份伺服器保護伺服器上安裝備份伺服器 v2。 您現有的備份伺服器設定會保持不變。
 
-您可以在 Windows Server 2012 R2 或 Windows Server 2016 上安裝備份伺服器 v2。 若要利用新功能 (例如 System Center 2016 Data Protection Manager 的新式備份儲存體)，您必須在 Windows Server 2016 上安裝備份伺服器 v2。 在安裝或升級為備份伺服器 v2 之前，請先閱讀[安裝必要條件](https://docs.microsoft.com/system-center/dpm/install-dpm#setup-prerequisites)。
+您可以在 Windows Server 2016 或 Windows Server 2012 R2 上安裝備份伺服器 v2。 若要利用新功能 (例如 System Center 2016 Data Protection Manager 的新式備份儲存體)，您必須在 Windows Server 2016 上安裝備份伺服器 v2。 在安裝或升級為備份伺服器 v2 之前，請先閱讀[安裝必要條件](https://docs.microsoft.com/system-center/dpm/install-dpm#setup-prerequisites)。
 
 > [!NOTE]
-> Azure 備份伺服器具有和 System Center Data Protection Manager 一樣的程式碼基底。 備份伺服器 v1 相當於 Data Protection Manager 2012 R2，備份伺服器 v2 則相當於 Data Protection Manager 2016。 本文偶爾會參考 Data Protection Manager 文件。
+> Azure 備份伺服器具有和 System Center Data Protection Manager 一樣的程式碼基底。 備份伺服器 v1 相當於 Data Protection Manager 2012 R2。 備份伺服器 v2 相當於 Data Protection Manager 2016。 本文偶爾會參考 Data Protection Manager 文件。
 >
 >
 
@@ -72,7 +67,7 @@ Azure 備份伺服器可協助保護您的虛擬機器 (VM)、工作負載以及
 
   檢查可能需要幾分鐘的時間。 檢查完畢後，選取 [下一步]。
 
-  ![設定安裝程式 - [SQL 設定] 的 [檢查並安裝] 按鈕](./media/backup-mabs-upgrade-to-v2/mabs-installer-s5a-check-and fix-settings.png)
+  ![設定安裝程式 - [SQL 設定] 的 [檢查並安裝] 按鈕](./media/backup-mabs-upgrade-to-v2/mabs-installer-s5a-check-and-fix-settings.png)
 
 8. 在 [安裝設定] 頁面上，對備份伺服器安裝所在的位置或臨時位置進行任何變更。 選取 [下一步] 。
 
@@ -82,31 +77,31 @@ Azure 備份伺服器可協助保護您的虛擬機器 (VM)、工作負載以及
 
   ![設定安裝程式 - 完成](./media/backup-mabs-upgrade-to-v2/run-setup.png)
 
-
-
 ## <a name="add-storage-for-modern-backup-storage"></a>為新式備份儲存體新增儲存體
 
-為了提升備份儲存體效率，備份伺服器 v2 新增了磁碟區支援。 和備份伺服器 v1 一樣，備份伺服器 v2 也支援磁碟。
+為了提升備份儲存體效率，備份伺服器 v2 新增了磁碟區支援。 備份伺服器 v1 和備份伺服器 v2 都支援磁碟。
 
 ### <a name="add-volumes-and-disks"></a>新增磁碟區和磁碟
+
 如果您在 Windows Server 2016 上執行備份伺服器 v2，您可以使用磁碟區來儲存備份資料。 磁碟區可節省儲存空間並提高備份速度。 磁碟區是備份伺服器的新功能，因此您必須新增磁碟區。 
 
-當您在備份伺服器中新增磁碟區時，您可以讓磁碟區有個好記的名稱。 對您想要命名的磁碟區按一下 [易記名稱] 資料行。 如有必要，您可於稍後變更名稱。 您也可以使用 PowerShell 來新增或變更磁碟區的易記名稱。
+當您在備份伺服器中新增磁碟區時，您可以讓磁碟區有個好記的名稱。 對您想要命名的磁碟區選取 [易記名稱] 資料行。 如有必要，您可於稍後變更名稱。 您也可以使用 PowerShell 來新增或變更磁碟區的易記名稱。
 
 若要在管理員主控台中新增磁碟區：
 
 1. 在 Azure 備份伺服器管理員主控台中，選取 [管理] > [磁碟儲存體] > [新增]。
 
-    ![開啟「新增磁碟儲存體」精靈](./media//backup-mabs-upgrade-to-v2/open-add-disk-storage-wizard.png)
+  ![開啟「新增磁碟儲存體」精靈](./media//backup-mabs-upgrade-to-v2/open-add-disk-storage-wizard.png)
 
-    這會開啟「新增磁碟儲存體」精靈。
+  「新增磁碟儲存體」精靈隨即開啟。
 
 2. 在 [新增磁碟儲存體] 頁面上，於 [可用磁碟區] 方塊中選取磁碟區，然後選取 [新增]。
+
 3. 在 [已選取的磁碟區] 方塊中，為磁碟區輸入易記名稱，然後選取 [確定]。
 
-      ![新增磁碟儲存體精靈 - 新增磁碟區](./media/backup-mabs-upgrade-to-v2/add-volume.png)
+  ![新增磁碟儲存體精靈 - 新增磁碟區](./media/backup-mabs-upgrade-to-v2/add-volume.png)
 
-  如果您想要新增磁碟，該磁碟必須屬於具有舊式儲存體的保護群組。 這些磁碟僅能用於這些保護群組。 如果備份伺服器所擁有的來源並沒有舊式保護功能，則磁碟不會列出。
+  如果您想要新增磁碟，該磁碟必須屬於具有舊式儲存體的保護群組。 您只能將這些磁碟用於這些保護群組。 如果備份伺服器所擁有的來源並沒有舊式保護功能，則磁碟不會列出。
 
   如需新增磁碟的詳細資訊，請參閱[新增磁碟以增加舊式儲存體](http://docs.microsoft.com/system-center/dpm/upgrade-to-dpm-2016#adding-disks-to-increase-legacy-storage)。 您不能對磁碟賦予易記名稱。
 
@@ -117,14 +112,14 @@ Azure 備份伺服器可協助保護您的虛擬機器 (VM)、工作負載以及
 
 #### <a name="update-dpmdiskstorage"></a>Update-DPMDiskStorage
 
-若要更新備份伺服器儲存集區磁碟區的屬性，請使用 PowerShell Cmdlet Update-DPMDiskStorage。
+若要更新備份伺服器儲存集區磁碟區的屬性，請使用 PowerShell Cmdlet **Update-DPMDiskStorage**。
 
 語法：
 
 `Parameter Set: Volume`
 
 ```
-Update-DPMDiskStorage [-Volume] <Volume> [[-FriendlyName] <String> ] [[-DatasourceType] <VolumeTag[]> ] [-Confirm] [-WhatIf] [ <CommonParameters>]
+Update-DPMDiskStorage [-Volume] <Volume> [[-FriendlyName] <String> ] [[-DatasourceType] <VolumeTag[]> ] [-Confirm] [-WhatIf] [<CommonParameters>]
 ```
 
 您使用 PowerShell 所進行的變更都會反映在 UI 中。
@@ -139,20 +134,21 @@ Update-DPMDiskStorage [-Volume] <Volume> [[-FriendlyName] <String> ] [[-Datasour
 
 2. 在工具功能區中選取 [新增]。
 
-    這會開啟「建立新保護群組」精靈。
+  [建立新保護群組] 精靈隨即開啟。
 
   ![建立新保護群組精靈](./media/backup-mabs-upgrade-to-v2/create-a-protection-group-1.png)
 
 3. 在 [歡迎] 頁面上，選取 [下一步]。
+
 4. 在 [選取保護群組類型] 頁面上，選取您要建立的保護群組類型，然後選取 [下一步]。
 
   ![[選取保護群組類型] 頁面](./media/backup-mabs-upgrade-to-v2/create-a-protection-group-2.png)
 
-5. [選取群組成員] 頁面上的 [可用成員] 窗格中會列出具有保護代理程式的成員。 在此範例中，選取磁碟區 D:\ 和 E:\，並將其新增至 [已選取的成員] 窗格。 選取 [下一步] 。
+5. [選取群組成員] 頁面上的 [可用成員] 方塊中會列出具有保護代理程式的成員。 在此範例中，選取磁碟區 D:\ 和 E:\,，然後將其新增至 [已選取的成員]。 選取 [下一步] 。
 
   ![[選取群組成員] 頁面](./media/backup-mabs-upgrade-to-v2/create-a-protection-group-3.png)
 
-6. 在 [選取資料保護方式] 頁面上輸入**保護群組名稱**，選取保護方式，然後選取 [下一步]。 如果您想要短期保護，則必須選取 [磁碟] 備份方式。
+6. 在 [選取資料保護方式] 頁面上輸入**保護群組名稱**，選取保護方式，然後選取 [下一步]。 如果您想要短期保護，則請選取 [磁碟] 備份方式。
 
   ![[選取資料保護方式] 頁面](./media/backup-mabs-upgrade-to-v2/create-a-protection-group-4.png)
 
@@ -160,7 +156,7 @@ Update-DPMDiskStorage [-Volume] <Volume> [[-FriendlyName] <String> ] [[-Datasour
 
   ![[指定短期目標] 頁面](./media/backup-mabs-upgrade-to-v2/create-a-protection-group-5.png)
 
-8. 在 [檢閱磁碟儲存體配置] 頁面上，檢閱您所選取之資料來源的詳細資料、其大小，以及要佈建的空間值和目標儲存體磁碟區。
+8. 在 [檢閱磁碟儲存體配置] 頁面上，檢閱您所選取的資料來源詳細資料，包括資料來源大小、要佈建的空間值和目標儲存體磁碟區。
 
   ![[檢閱磁碟儲存體配置] 頁面](./media/backup-mabs-upgrade-to-v2/create-a-protection-group-6.png)
 
@@ -170,18 +166,18 @@ Update-DPMDiskStorage [-Volume] <Volume> [[-FriendlyName] <String> ] [[-Datasour
 
   ![配置不足的磁碟儲存體](./media/backup-mabs-upgrade-to-v2/create-a-protection-group-7.png)
 
-   若要完成保護群組的建立，請完成精靈。
+  若要完成保護群組的建立，請完成精靈。
 
 ## <a name="migrate-legacy-storage-to-modern-backup-storage"></a>將舊式儲存體移轉至新式備份儲存體
-在安裝或升級為備份伺服器 v2，並將作業系統升級為 Windows Server 2016 之後，請將您的保護群組更新為使用新式備份儲存體。 根據預設，系統不會變更保護群組。 保護群組會繼續依照一開始的設定方式運作。 
+在安裝或升級為備份伺服器 v2，然後將作業系統升級為 Windows Server 2016 之後，請將保護群組更新為使用新式備份儲存體。 根據預設，系統不會變更保護群組。 保護群組會繼續依照一開始的設定方式運作。 
 
 您可以選擇是否將保護群組更新為使用新式備份儲存體。 若要更新保護群組，請使用保留資料選項來停止保護所有資料來源。 然後，將資料來源新增至新的保護群組。
 
-1. 在管理員主控台中選取 [保護] 功能。 在 [保護群組成員] 清單中，以滑鼠右鍵按一下成員，然後選取 [停止保護成員]。
+1. 在 System Center 2016 DPM 管理主控台中選取 [保護] 功能。 在 [保護群組成員] 清單中，以滑鼠右鍵按一下成員，然後選取 [停止保護成員]。
 
   ![停止保護成員](http://docs.microsoft.com/system-center/dpm/media/upgrade-to-dpm-2016/dpm-2016-stop-protection1.png)
 
-2. 在 [從群組中移除] 對話方塊中，檢閱儲存集區中已使用的磁碟空間和可用空間。 預設值是讓復原點留在磁碟上，並讓復原點按照所關聯的保留原則來到期。 按一下 [SERVICEPRINCIPAL] 。
+2. 在 [從群組中移除] 對話方塊中，檢閱儲存集區中已使用的磁碟空間和可用空間。 預設值是讓復原點留在磁碟上，並讓復原點按照所關聯的保留原則來到期。 選取 [確定] 。
 
   如果您想要立即將已使用的磁碟空間歸還給可用的儲存集區，請選取 [刪除磁碟上的複本] 核取方塊，以刪除與該成員相關聯的備份資料 (與復原點)。
 
@@ -196,13 +192,13 @@ Update-DPMDiskStorage [-Volume] <Volume> [[-FriendlyName] <String> ] [[-Datasour
 
 若要新增磁碟儲存體：
 
-1. 在管理員主控台中，選取 [管理] > [磁碟儲存體] > [新增]。
+1. 在 System Center 2016 DPM 管理主控台中選取 [管理] > [磁碟儲存體] > [新增]。
 
-    ![[新增磁碟儲存體] 對話方塊](http://docs.microsoft.com/system-center/dpm/media/upgrade-to-dpm-2016/dpm-2016-add-disk-storage.png)
+  ![[新增磁碟儲存體] 對話方塊](http://docs.microsoft.com/system-center/dpm/media/upgrade-to-dpm-2016/dpm-2016-add-disk-storage.png)
 
-4. 在 [新增磁碟儲存體] 對話方塊中選取 [新增磁碟]。
+2. 在 [新增磁碟儲存體] 對話方塊中選取 [新增磁碟]。
 
-5. 在可用磁碟清單中選取您要新增的磁碟，選取 [新增]，然後選取 [確定]。
+3. 在可用磁碟清單中選取您要新增的磁碟。 選取 [新增]，然後選取 [確定]。
 
 ## <a name="update-the-data-protection-manager-protection-agent"></a>升級 Data Protection Manager 保護代理程式
 
@@ -218,8 +214,6 @@ Update-DPMDiskStorage [-Volume] <Volume> [[-FriendlyName] <String> ] [[-Datasour
 
   > [!NOTE]
   > [代理程式更新] 資料行會在各個受保護的電腦可以進行保護代理程式更新時予以指出。 在 [動作] 窗格中，只有當您已選取受保護的電腦且其可供更新時，才可使用 [更新] 動作。
-  >
-  >
 
 3. 若要在選取的電腦上安裝已更新的保護代理程式，請在 [動作] 窗格中選取 [更新]。
 
@@ -230,50 +224,69 @@ Update-DPMDiskStorage [-Volume] <Volume> [[-FriendlyName] <String> ] [[-Datasour
 2. 在顯示窗格中，選取您要更新保護代理程式的用戶端電腦。
 
   > [!NOTE]
-   > [代理程式更新] 資料行會在各個受保護的電腦可以進行保護代理程式更新時予以指出。 在 [動作] 窗格中，除非已選取的受保護電腦可供更新，否則您無法使用 [更新] 動作。
-  >
-  >
+  > [代理程式更新] 資料行會在各個受保護的電腦可以進行保護代理程式更新時予以指出。 在 [動作] 窗格中，除非已選取的受保護電腦可供更新，否則您無法使用 [更新] 動作。
 
 3. 若要在選取的電腦上安裝已更新的保護代理程式，請選取 [更新]。
 
 4. 對於未連線到網路的用戶端電腦，除非該電腦連線到網路，否則 [代理程式狀態] 資料行會顯示 [更新擱置中] 的狀態。
 
-  在用戶端電腦連線到網路之後，用戶端電腦的 [代理程式更新] 資料行會顯示 [更新中] 狀態。
+  當用戶端電腦連線到網路時，用戶端電腦的 [代理程式更新] 資料行會顯示 [更新中] 狀態。
   
-### <a name="move-legacy-protection-groups-from-old-version-and-sync-the-new-version-with-azure"></a>將舊版保護群組從舊版本中移出，並透過 Azure 同步處理新版本
+### <a name="move-legacy-protection-groups-from-the-old-version-and-sync-the-new-version-with-azure"></a>將舊版保護群組從舊版本中移出，並透過 Azure 同步處理新版本
 
-一旦更新 Azure 備份伺服器與 OS，您就可以使用新式備份儲存體來保護新的資料來源。 不過，已受保護的資料來源會繼續在舊版中受到保護 (如同在 Azure 備份伺服器中一樣)，但所有新的保護將使用新式備份儲存體。
+當 Azure 備份伺服器與 OS 皆更新時，您就可以使用新式備份儲存體來保護新的資料來源。 已受保護的資料來源會繼續和在 Azure 備份伺服器 (舊版) 時一樣受到保護。 新的保護群組全都會使用 Modern Backup Storage。
 
-下列步驟會將資料來源從傳統的保護模式移轉到新式備份儲存體。
+若要將資料來源從傳統的保護模式遷移到 Modern Backup Storage：
 
-• 將新磁碟區新增到 DPM 儲存集區，並視需要指派易記的名稱和資料來源標籤。
-• 對於傳統模式下的每個資料來源，停止資料來源保護並「保留受保護的資料」。  這允許在移轉之後復原舊的復原點。
+1.  在 Data Protection Manager 儲存體集區中新增磁碟區。 您也可以指派易記名稱，然後選取資料來源標記。
 
-• 建立新的 PG，然後選取要使用新格式儲存的資料來源。
-• DPM 將在本機執行從舊版備份儲存體到新式備份儲存體磁碟區的複本複製。
-注意：這會被視為復原後作業 • 所有新的同步處理和復原點則會儲存在新式備份儲存體中。
-• 舊的復原點將在過期時剪除，最終會釋出磁碟空間。
-• 從舊儲存體中刪除所有舊式磁碟區後，就可以從 Azure 備份和系統中移除磁碟。
-• 進行 Azure DPMDB 的備份。
+2. 對於傳統模式下的每個資料來源，停止資料來源保護。 然後，選取 [保留受保護的資料]。  這可讓您在移轉之後復原舊的復原點。
 
-第 2 部分︰重要事項 -> 新伺服器的名稱必須與原始 Azure 備份伺服器相同。 如果您想要使用舊的儲存集區和 DPMDB 來保留復原點，則無法變更新 Azure 備份伺服器的名稱 - 必須具有 DPMDB 備份，因為必須將它還原
+3. 建立新的保護群組。 然後，選取您想要使用新格式來儲存的資料來源。
 
-1) 關閉原始 Azure 備份伺服器，或讓它離線。
-2) 在 Active Directory 中重設電腦帳戶。
-3) 在新機器上安裝 Server 2016 並將它命名為與原始 Azure 備份伺服器相同的電腦名稱。
-4) 加入網域
-5) 安裝 Azure 備份伺服器 V2 (從舊伺服器中移出 DPM 儲存集區並匯入)
-6) 還原取自第 2 部分結尾的 DPMDB
-7) 將原始備份伺服器的儲存體連結到新伺服器。
-8) 從 SQL 還原 DPMDB
-9) 從新伺服器上的系統管理員命令列，切換至 Microsoft Azure 備份安裝位置和 bin 資料夾
+  Data Protection Manager 會在本機的 Modern Backup Storage 磁碟區中，儲存舊版備份儲存體中的複本。
+    > [!NOTE] 
+    > 建立複本會顯示為復原後操作作業。
 
-路徑範例：C:\windows\system32>cd "c:\Program Files\Microsoft Azure Backup\DPM\DPM\bin\
-至 Azure 備份 執行 DPMSYNC -SYNC
+  然後，所有新的同步處理和復原點會儲存到 Modern Backup Storage 中。
 
-10) 執行 DPMSYNC -SYNC 注意 如果您已將「新」磁碟新增至 DPM 儲存集區，而非移動就磁碟，則執行 DPMSYNC -Reallocatereplica
+  舊的復原點則會在過期時剪除。 舊的復原點遭到刪除時，便會釋放磁碟空間。
 
-## <a name="new-powershell-cmdlets-in-v2"></a>v2 中的新 PowerShell Cmdlet
+  當舊有儲存體中刪除了所有舊式磁碟區時，您便可以從 Azure 備份中移除磁碟。 然後，您可以從系統中移除磁碟。
+
+4. 製作 Data Protection Manager 資料庫的備份。
+
+  > [!IMPORTANT]
+  > - 新的伺服器名稱必須與原始 Azure 備份伺服器執行個體的名稱相同。 如果您想要使用先前的儲存體集區和 Data Protection Manager 資料庫以保留復原點，就無法變更新 Azure 備份伺服器執行個體的名稱。
+  > - 您必須有 Data Protection Manager 資料庫的備份。 您必須還原資料庫。
+
+5. 關閉原始的 Azure 備份伺服器執行個體，或讓伺服器離線。
+
+6. 在 Active Directory 中重設機器帳戶。
+
+7. 在新機器上安裝 Windows Server 2016。 至於伺服器名稱，請使用與原始 Azure 備份伺服器執行個體相同的機器名稱。
+
+8. 加入網域。
+
+9. 安裝 Azure 備份伺服器 v2。 (從舊伺服器移除 Data Protection Manager 儲存體集區磁碟，並將這些磁碟匯入到新的伺服器)。
+
+10. 還原您在步驟 4 中所建立的 Data Protection Manager 資料庫。
+
+11. 將原始備份伺服器的儲存體連結到新伺服器。
+
+12. 在 SQL Server 中，還原 Data Protection Manager 資料庫。
+
+13. 在新伺服器上的系統管理員命令列中，使用 `cd` 移至 Microsoft Azure 備份安裝位置和 bin 資料夾。  
+
+  範例：  
+  C:\windows\system32>cd "c:\Program Files\Microsoft Azure Backup\DPM\DPM\bin\ to Azure Backup
+
+14. 執行 `DPMSYNC -SYNC`。
+  
+  > [!NOTE]
+  > 如果您已將「新」磁碟新增至 Data Protection Manager 儲存體集區，而不是移動舊磁碟，則請執行 `DPMSYNC -Reallocatereplica`。
+
+## <a name="new-powershell-cmdlets-in-backup-server-v2"></a>備份伺服器 v2 中的新 PowerShell Cmdlet
 
 當您在安裝 Azure 備份伺服器 v2 時，系統有兩個新的 Cmdlet 可供使用： 
 * [Mount-DPMRecoveryPoint](https://technet.microsoft.com/library/mt787159.aspx)

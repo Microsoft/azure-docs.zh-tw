@@ -1,11 +1,11 @@
 ---
-title: "Azure 資訊安全中心教學課程 - 使用 Azure 資訊安全中心保護您的資源 | Microsoft Docs"
-description: "本教學課程說明如何設定 Just-in-Time VM 存取原則和應用程式控制原則。"
+title: Azure 資訊安全中心教學課程 - 使用 Azure 資訊安全中心保護您的資源 | Microsoft Docs
+description: 本教學課程說明如何設定 Just-in-Time VM 存取原則和應用程式控制原則。
 services: security-center
 documentationcenter: na
-author: TerryLanfear
+author: rkarlin
 manager: MBaldwin
-editor: 
+editor: ''
 ms.assetid: 61e95a87-39c5-48f5-aee6-6f90ddcd336e
 ms.service: security-center
 ms.devlang: na
@@ -13,16 +13,17 @@ ms.topic: tutorial
 ms.custom: mvc
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/22/2018
-ms.author: terrylan
-ms.openlocfilehash: cda204f5b54aef239cc0795b62c6fa484a27ebb5
-ms.sourcegitcommit: 12fa5f8018d4f34077d5bab323ce7c919e51ce47
+ms.date: 08/30/2018
+ms.author: rkarlin
+ms.openlocfilehash: 1d3d775a13f83ada6ca702eb984262668507f7e9
+ms.sourcegitcommit: d211f1d24c669b459a3910761b5cacb4b4f46ac9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/23/2018
+ms.lasthandoff: 09/06/2018
+ms.locfileid: "44025441"
 ---
 # <a name="tutorial-protect-your-resources-with-azure-security-center"></a>教學課程：使用 Azure 資訊安全中心保護您的資源
-資訊安全中心使用存取和應用程式控制原則來阻擋惡意活動，以限制您暴露於威脅的風險。 Just-in-Time 虛擬機器 (VM) 存取透過讓您拒絕對 VM 的持續存取，進而減少您暴露於攻擊的風險。 不過，您可以只在需要的時候，提供對 VM 的受控制及稽核的存取。 自適性應用程式控制透過控制可在 VM 上執行的應用程式，進而協助強化 VM 以抵禦惡意軟體。 資訊安全中心會利用機器學習服務來分析在 VM 中執行的程序，並協助您利用此情報來套用列入白名單規則。
+資訊安全中心使用存取和應用程式控制原則來阻擋惡意活動，以限制您暴露於威脅的風險。 Just-in-Time 虛擬機器 (VM) 存取透過讓您拒絕對 VM 的持續存取，進而減少您暴露於攻擊的風險。 不過，您可以只在需要的時候，提供對 VM 的受控制及稽核的存取。 自適性應用程式控制透過控制可在 VM 上執行的應用程式，進而協助強化 VM 以抵禦惡意軟體。 資訊安全中心會利用機器學習服務來分析在 VM 中執行的程序，並協助您利用此情報來套用列入允許清單規則。
 
 在本教學課程中，您將了解如何：
 
@@ -32,13 +33,11 @@ ms.lasthandoff: 02/23/2018
 
 如果您沒有 Azure 訂用帳戶，請在開始前建立[免費帳戶](https://azure.microsoft.com/pricing/free-trial/)。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 若要逐步執行本教學課程中涵蓋的功能，您必須是在資訊安全中心的標準定價層。 前 60 天可以免費試用資訊安全中心標準定價層。 [將 Azure 訂用帳戶上架到資訊安全中心標準定價層](security-center-get-started.md)快速入門為您逐步解說如何升級至「標準」定價層。
 
 ## <a name="manage-vm-access"></a>管理 VM 存取
 Just-In-Time VM 存取可用於鎖定 Azure VM 的連入流量，進而降低暴露於攻擊的風險，同時讓您視需要輕鬆地連線至 VM。
-
-Just-in-Time VM 存取為預覽狀態。
 
 管理連接埠不需要隨時保持開啟。 只有在連線至 VM 時 (例如進行執行管理或維修工作)，才需要將管理連接埠開啟。 啟用 Just-In-Time 之後，資訊安全中心會使用「網路安全性群組」(NSG) 規則，以限制對管理連接埠的存取，讓攻擊者無法將這些連接埠作為攻擊目標。
 
@@ -72,9 +71,9 @@ Just-in-Time VM 存取為預覽狀態。
 4. 選取 [確定] 以儲存。
 
 ## <a name="harden-vms-against-malware"></a>強化 VM 以抵禦惡意軟體
-自適性應用程式控制可協助您定義一組可以在設定之資源群組上執行的應用程式，再加上其他的好處可共同協助強化您的 VM 以抵禦惡意軟體。 資訊安全中心會利用機器學習服務來分析在 VM 中執行的程序，並協助您利用此情報來套用列入白名單規則。
+自適性應用程式控制可協助您定義一組可以在設定之資源群組上執行的應用程式，再加上其他的好處可共同協助強化您的 VM 以抵禦惡意軟體。 資訊安全中心會利用機器學習服務來分析在 VM 中執行的程序，並協助您利用此情報來套用列入允許清單規則。
 
-自適性應用程式控制為預覽狀態。 此功能只適用於 Windows 電腦。
+此功能只適用於 Windows 電腦。
 
 1. 返回 [資訊安全中心] 主功能表。 在 [進階雲端防禦] 下，選取 [自適性應用程式控制]。
 
@@ -90,12 +89,12 @@ Just-in-Time VM 存取為預覽狀態。
 
   ![應用程式控制建議][4]
 
-3. 選取資源群組以開啟 [建立應用程式控制規則] 選項。 在 [選取 VM] 中，檢閱建議的 VM 清單，並取消選取任何不想套用應用程式控制的 VM。 在 [選取列入白名單規則的程序] 中，檢閱建議的應用程式清單，並取消選取任何不想套用的規則。 此清單包括：
+3. 選取資源群組以開啟 [建立應用程式控制規則] 選項。 在 [選取 VM] 中，檢閱建議的 VM 清單，並取消選取任何不想套用應用程式控制的 VM。 在 [選取列入允許清單規則的程序] 中，檢閱建議的應用程式清單，並取消選取任何不想套用的規則。 此清單包括：
 
   - **名稱**：完整應用程式路徑
   - **處理序**：每個路徑內有多少個應用程式
   - **通用**：[是] 表示這些處理序已在此資源群組中的大部分 VM 上執行
-  - **可利用進行攻擊**：警告圖示將會指出攻擊者是否可能使用應用程式來略過應用程式白名單。 建議您在核准之前檢閱這些應用程式。
+  - **可利用進行攻擊**：警告圖示將會指出攻擊者是否可能使用應用程式來略過應用程式允許清單。 建議您在核准之前檢閱這些應用程式。
 
 4. 一旦完成您的選擇，請選取 [建立]。
 

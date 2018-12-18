@@ -1,27 +1,23 @@
 ---
-title: "Azure 無伺服器概觀 | Microsoft Docs"
-description: "在雲端建立功能強大的解決方案，而不必考慮基礎結構。"
-keywords: 
+title: Azure 無伺服器概觀 | Microsoft Docs
+description: 了解如何在雲端建立強大的解決方案，而不必擔心基礎結構
 services: logic-apps
-author: jeffhollan
-manager: anneta
-editor: 
-documentationcenter: 
-ms.assetid: d565873c-6b1b-4057-9250-cf81a96180ae
 ms.service: logic-apps
-ms.workload: integration
-ms.tgt_pltfrm: na
-ms.devlang: na
+ms.suite: integration
+author: jeffhollan
+ms.author: jehollan
+ms.reviewer: klam, estfan, LADocs
+ms.custom: vs-azure
 ms.topic: article
 ms.date: 03/30/2017
-ms.author: LADocs; jehollan
-ms.openlocfilehash: 5cc6837ed0b0f4467e48c736f5d596a51a799fae
-ms.sourcegitcommit: be9a42d7b321304d9a33786ed8e2b9b972a5977e
+ms.openlocfilehash: 97c928c34a18a5d4f3549c348a273df268ee1db0
+ms.sourcegitcommit: 2ad510772e28f5eddd15ba265746c368356244ae
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/19/2018
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "43123303"
 ---
-# <a name="overview-of-azure-serverless-with-functions-and-logic-apps"></a>Azure 無伺服器搭配 Functions 和 Logic Apps 的概觀
+# <a name="overview-azure-serverless-with-azure-logic-apps-and-azure-functions"></a>概觀：Azure 無伺服器搭配 Azure Logic Apps 和 Azure Functions
 
 無伺服器應用程式提供的好處包括加速開發、減少必要的程式碼，以及簡單調整。  本文描述無伺服器解決方案的各種屬性和 Azure 無伺服器供應項目。
 
@@ -45,7 +41,7 @@ Azure Logic Apps 能夠在雲端中簡化和實作可調整的整合和工作流
 
 ## <a name="how-can-i-build-and-deploy-serverless-applications-in-azure"></a>如何在 Azure 中建置和部署無伺服器應用程式？
 
-Azure 提供一組豐富的工具，涵蓋開發、部署和管理無伺服器應用程式。  您可以直接在 Azure 入口網站中建置應用程式，或使用 [Visual Studio 中的工具](logic-apps-serverless-get-started-vs.md)來建置。  開發應用程式之後，就可以[立即部署](logic-apps-create-deploy-template.md)。  Azure 也支援監視無伺服器應用程式。  您可以從 Azure 入口網站、透過 API 或 SDK，或使用 OMS 和 Application Insights 的整合式工具，存取此監視功能。
+Azure 提供一組豐富的工具，涵蓋開發、部署和管理無伺服器應用程式。  您可以直接在 Azure 入口網站中建置應用程式，或使用 [Visual Studio 中的工具](logic-apps-serverless-get-started-vs.md)來建置。  開發應用程式之後，就可以[立即部署](logic-apps-create-deploy-template.md)。  Azure 也支援監視無伺服器應用程式。  您可以從 Azure 入口網站、透過 API 或 SDK，或使用 Log Analytics 和 Application Insights 的整合式工具，存取此監視功能。
 
 ## <a name="next-steps"></a>後續步驟
 

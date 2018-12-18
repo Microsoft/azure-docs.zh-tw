@@ -1,25 +1,26 @@
 ---
-title: "使用 NPS 伺服器保護 Azure VPN 閘道 RADIUS 驗證以進行多重要素驗證 | Microsoft Docs'"
-description: "描述整合 Azure 閘道 RADIUS 驗證與 NPS 伺服器以進行多重要素驗證。"
+title: 使用 NPS 伺服器保護 Azure VPN 閘道 RADIUS 驗證以進行多重要素驗證 | Microsoft Docs'
+description: 描述整合 Azure 閘道 RADIUS 驗證與 NPS 伺服器以進行多重要素驗證。
 services: vpn-gateway
 documentationcenter: na
 author: ahmadnyasin
 manager: willchen
-editor: 
+editor: ''
 tags: azure-resource-manager
-ms.assetid: 
+ms.assetid: ''
 ms.service: vpn-gateway
 ms.devlang: na
-ms.topic: 
+ms.topic: ''
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/13/2018
 ms.author: genli
-ms.openlocfilehash: f0d95cc0dabb253a72afdbc1bc518df882c4d861
-ms.sourcegitcommit: 95500c068100d9c9415e8368bdffb1f1fd53714e
+ms.openlocfilehash: 70c760cd0cb571cc95250ab793829b060341e0ed
+ms.sourcegitcommit: 7208bfe8878f83d5ec92e54e2f1222ffd41bf931
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 07/14/2018
+ms.locfileid: "39056573"
 ---
 # <a name="integrate-azure-vpn-gateway-radius-authentication-with-nps-server-for-multi-factor-authentication"></a>整合 Azure VPN 閘道 RADIUS 驗證與 NPS 伺服器以進行多重要素驗證 
 
@@ -27,7 +28,7 @@ ms.lasthandoff: 02/14/2018
 
 ## <a name="prerequisite"></a>必要條件
 
-若要啟用 MFA，使用者必須使用 Azure Active Directory (Azure AD)，必須從內部部署或雲端環境同步。 而且，使用者必須已經完成 MFA 的自動註冊程序。  如需詳細資訊，請參閱[對我的帳戶進行雙步驟驗證設定](../multi-factor-authentication/end-user/multi-factor-authentication-end-user-first-time.md)
+若要啟用 MFA，使用者必須使用 Azure Active Directory (Azure AD)，必須從內部部署或雲端環境同步。 而且，使用者必須已經完成 MFA 的自動註冊程序。  如需詳細資訊，請參閱[對我的帳戶進行雙步驟驗證設定](../active-directory/user-help/multi-factor-authentication-end-user-first-time.md)
 
 ## <a name="detailed-steps"></a>詳細步驟
 
@@ -50,7 +51,7 @@ ms.lasthandoff: 02/14/2018
  
 ### <a name="step-2-configure-the-nps-for-azure-mfa"></a>步驟 2：設定 Azure MFA 的 NPS
 
-1. 在 NPS 伺服器上，[安裝 Azure MFA 的 NPS 延伸模組](../multi-factor-authentication/multi-factor-authentication-nps-extension.md#install-the-nps-extension)。
+1. 在 NPS 伺服器上，[安裝 Azure MFA 的 NPS 延伸模組](../active-directory/authentication/howto-mfa-nps-extension.md#install-the-nps-extension)。
 2. 開啟 NSP 主控台，用滑鼠右鍵按一下 [RADUIS 用戶端]，然後選取 [新增]。 藉由指定下列設定建立 RADUIS 用戶端：
 
     - **易記名稱**：輸入任何名稱。
@@ -80,5 +81,5 @@ ms.lasthandoff: 02/14/2018
 
 ## <a name="next-steps"></a>後續步驟
 
-- [Azure Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md)
-- [將現有的 NPS 基礎結構與 Azure Multi-Factor Authentication 整合](../multi-factor-authentication/multi-factor-authentication-nps-extension.md)
+- [Azure Multi-Factor Authentication](../active-directory/authentication/multi-factor-authentication.md)
+- [將現有的 NPS 基礎結構與 Azure Multi-Factor Authentication 整合](../active-directory/authentication/howto-mfa-nps-extension.md)

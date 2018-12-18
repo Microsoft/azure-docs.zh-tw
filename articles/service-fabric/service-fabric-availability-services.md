@@ -1,24 +1,25 @@
 ---
-title: "Service Fabric 服務的可用性 | Microsoft Docs"
-description: "描述錯誤偵測、容錯移轉與服務復原"
+title: Service Fabric 服務的可用性 | Microsoft Docs
+description: 描述錯誤偵測、容錯移轉與服務復原
 services: service-fabric
 documentationcenter: .net
 author: masnider
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 279ba4a4-f2ef-4e4e-b164-daefd10582e4
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/18/2017
 ms.author: masnider
-ms.openlocfilehash: 6c23a56df48434db3b82bce70cbd3a23941a077a
-ms.sourcegitcommit: 5735491874429ba19607f5f81cd4823e4d8c8206
+ms.openlocfilehash: 0794c0e190ecbc4cce808e94f98bb0ac63d1075a
+ms.sourcegitcommit: eb75f177fc59d90b1b667afcfe64ac51936e2638
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/16/2017
+ms.lasthandoff: 05/16/2018
+ms.locfileid: "34206244"
 ---
 # <a name="availability-of-service-fabric-services"></a>Service Fabric 服務的可用性
 本文章概述 Azure Service Fabric 如何維護服務的可用性。
@@ -35,7 +36,7 @@ Service Fabric 服務可能是具狀態或無狀態。 無狀態服務是一種�
 
 只能有一個「主要複本」，但可以有多個「作用中次要複本」。 「作用中次要複本」的數目是可設定的，且複本數目越高，所能容許的並行軟體和硬體失敗次數就越多。
 
-如果「主要複本」當機，Service Fabric 就會讓其中一個「作用中次要複本」成為新的「主要複本」。 此「作用中次要複本」已經有更新過的狀態版本 (透過「複寫」)，因此能夠繼續處理進一步的讀取/寫入作業。 此流程也就是所謂的*重新設定*，會在[重新設定](service-fabric-concepts-reconfiguration.md)一文中進一步說明。
+如果「主要複本」當機，Service Fabric 就會讓其中一個「作用中次要複本」成為新的「主要複本」。 此「作用中次要複本」已經有更新過的狀態版本 (透過「複寫」)，因此能夠繼續處理進一步的讀取/寫入作業。 此流程也就是所謂的「重新設定」，會在 [重新設定](service-fabric-concepts-reconfiguration.md) 一文中進一步說明。
 
 複本不是「主要複本」就是「作用中次要複本」的概念稱為「複本角色」。 這些複本皆會在[複本和執行個體](service-fabric-concepts-replica-lifecycle.md)一文中進一步說明。 
 

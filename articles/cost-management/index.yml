@@ -1,9 +1,9 @@
 ### YamlMime:YamlDocument
 documentType: LandingData
-title: "Azure 成本管理文件"
+title: Azure 成本管理文件
 metadata:
-  title: "成本管理文件 - 教學課程和 API 參考 | Microsoft Docs"
-  description: "Azure 成本管理是多雲端成本管理解決方案，可協助您使用 Azure 和其他雲端資源。 了解如何透過我們的快速入門和教學課程，檢閱使用量和成本、主動管理成本、預測花費，以及達到成本最佳化。"
+  title: 成本管理文件 - 教學課程和 API 參考 | Microsoft Docs
+  description: Azure 成本管理是多雲端成本管理解決方案，可協助您使用 Azure 和其他雲端資源。 了解如何透過我們的快速入門和教學課程，檢閱使用量和成本、主動管理成本、預測花費，以及達到成本最佳化。
   services: cost-management
   author: bandersmsft
   manager: carmonm
@@ -18,29 +18,30 @@ metadata:
   ms.translationtype: HT
   ms.contentlocale: zh-TW
   ms.lasthandoff: 03/16/2018
+  ms.locfileid: "29935327"
 abstract:
-  description: "Azure Cost Management 是由 Microsoft 分公司 Cloudyn 授權的多雲端成本管理解決方案，可協助您充分利用及管理 Azure 和其他雲端資源。 了解如何透過我們的快速入門和教學課程，檢閱使用量和成本、主動管理成本、預測花費，以及達到成本最佳化。"
+  description: Azure Cost Management 是由 Microsoft 分公司 Cloudyn 授權的多雲端成本管理解決方案，可協助您充分利用及管理 Azure 和其他雲端資源。 了解如何透過我們的快速入門和教學課程，檢閱使用量和成本、主動管理成本、預測花費，以及達到成本最佳化。
 sections:
-- title: "5 分鐘快速入門"
+- title: 5 分鐘快速入門
   items:
   - type: paragraph
-    text: "了解如何向「成本管理」註冊 Azure 合約或訂用帳戶資訊，並開始檢視成本資料。"
+    text: 了解如何向「成本管理」註冊 Azure 合約或訂用帳戶資訊，並開始檢視成本資料。
   - type: list
     style: icon48
     items:
     - image:
         src: https://docs.microsoft.com/media/common/i_portal.svg
-      text: "檢視成本資料"
+      text: 檢視成本資料
       href: quick-register-azure-sub
-- title: "逐步教學課程"
+- title: 逐步教學課程
   items:
   - type: paragraph
-    text: "了解如何利用「成本管理」檢閱使用量和成本、主動管理成本、預測花費，以及達到成本最佳化。"
+    text: 了解如何利用「成本管理」檢閱使用量和成本、主動管理成本、預測花費，以及達到成本最佳化。
   - type: list
     style: ordered
     items:
-    - html: "<a href=\"tutorial-review-usage\">檢閱使用量和成本以偵測異常狀況和效率</a>"
-    - html: "<a href=\"tutorial-forecast-spending\">測未來花費</a>"
-    - html: "<a href=\"tutorial-manage-costs\">管理成本，以及成本配置、回報和退款報表</a>"
-    - html: "<a href=\"tutorial-optimize-reserved-instances\">最佳化保留的執行個體</a>"
-    - html: "<a href=\"tutorial-user-access\">指派成本管理資料的存取權</a>"
+    - html: <a href="tutorial-review-usage">檢閱使用量和成本以偵測異常狀況和效率</a>
+    - html: <a href="tutorial-forecast-spending">測未來花費</a>
+    - html: <a href="tutorial-manage-costs">管理成本，以及成本配置、回報和退款報表</a>
+    - html: <a href="tutorial-optimize-reserved-instances">最佳化保留的執行個體</a>
+    - html: <a href="tutorial-user-access">指派成本管理資料的存取權</a>

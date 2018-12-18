@@ -22,7 +22,8 @@
 
 ## 作法
 ### [透過 Azure 入口網站管理](storsimple-virtual-array-manager-service-administration.md)
-#### [安裝最新的更新](storsimple-virtual-array-install-update-1.md)
+#### [安裝最新的更新](storsimple-virtual-array-install-update-11.md)
+##### [安裝 Update 1](storsimple-virtual-array-install-update-1.md)
 ##### [安裝 Update 0.6](storsimple-virtual-array-install-update-06.md)
 ##### 封存
 ###### [安裝 Update 0.5](storsimple-virtual-array-install-update-05.md)
@@ -47,7 +48,8 @@
 ### [透過本機 Web UI 設定](storsimple-ova-web-ui-admin.md)
 
 ## 版本資訊
-### [Update 1 - 目前](storsimple-virtual-array-update-1-release-notes.md)
+### [Update 1.1 - 目前](storsimple-virtual-array-update-11-release-notes.md)
+### [Update 1](storsimple-virtual-array-update-1-release-notes.md)
 ### [更新 0.6](storsimple-virtual-array-update-06-release-notes.md)
 ### 封存
 #### [Update 0.5](storsimple-virtual-array-update-05-release-notes.md)
@@ -62,7 +64,7 @@
 ### [StorSimple 學習圖](https://azure.microsoft.com/documentation/learning-paths/storsimple-typical/)
 ### [安全性考量](storsimple-8000-security.md)
 ### [區域可用性](storsimple-regions.md)
-### [常見問題集：移至 Azure 入口網站](storsimple-8000-move-azure-portal-faq.md)
+
 
 ## 開始使用
 
@@ -178,7 +180,9 @@
 
 ### 移轉
 #### [訂用帳戶與儲存體帳戶](storsimple-8000-migrate-classic-azure-portal.md)
-#### [從 5000/7000 系列裝置](storsimple-8000-migrate-from-5000-7000.md)
+#### [從 5000/7000 系列裝置](storsimple-8000-migration-options.md)
+##### [至 StorSimple 8000 系列裝置](storsimple-8000-migrate-from-5000-7000.md)
+##### [至 Azure 檔案同步](storsimple-5000-7000-afs-migration.md)
 #### [從其他存放裝置](http://download.microsoft.com/download/9/4/A/94AB8165-CCC4-430B-801B-9FD40C8DA340/Migrating Data to StorSimple Volumes_09-02-15.pdf)
 
 ### 更新
@@ -189,10 +193,11 @@
 ## 版本資訊
 ### [Update 5 - 目前](storsimple-update5-release-notes.md)
 ### [Update 4](storsimple-update4-release-notes.md)
-### [Update 3](storsimple-update3-release-notes.md)
-### [Update 2.2](storsimple-update21-release-notes.md)
+
 
 ### 封存
+#### [Update 3](storsimple-update3-release-notes.md)
+#### [Update 2.2](storsimple-update21-release-notes.md)
 #### [Update 2 ](storsimple-update2-release-notes.md)
 #### [Update 1 ](storsimple-update1-release-notes.md)
 #### [Update 0.3](storsimple-february-2015-release-notes.md)
@@ -240,7 +245,7 @@
 ## [行銷](https://www.microsoft.com/server-cloud/products/storsimple/explore.aspx)
 ## [StorSimple 支援選項](storsimple-8000-support-options.md)
 ## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure/home?forum=StorSimple)
-## [價格](https://azure.microsoft.com/pricing/details/storsimple/)
+## [定價](https://azure.microsoft.com/pricing/details/storsimple/)
 ## [定價計算機](https://azure.microsoft.com/pricing/calculator/)
 ## [服務更新](https://azure.microsoft.com/updates/?product=storsimple)
 ## [支援部落格](http://blogs.msdn.com/b/storsimple/)

@@ -1,11 +1,11 @@
 ---
-title: "針對 Azure CDN 中的檔案壓縮進行疑難排解 | Microsoft Docs"
-description: "針對 Azure CDN 檔案壓縮的問題進行疑難排解。"
+title: 針對 Azure CDN 中的檔案壓縮進行疑難排解 | Microsoft Docs
+description: 針對 Azure CDN 檔案壓縮的問題進行疑難排解。
 services: cdn
-documentationcenter: 
+documentationcenter: ''
 author: zhangmanling
 manager: erikre
-editor: 
+editor: ''
 ms.assetid: a6624e65-1a77-4486-b473-8d720ce28f8b
 ms.service: cdn
 ms.workload: tbd
@@ -14,11 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
-ms.openlocfilehash: 5ef8a8262eb40aa827161764f03a63d031e43273
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 14d50cb7cac77af75dd4b7293812154d1f24e47c
+ms.sourcegitcommit: e221d1a2e0fb245610a6dd886e7e74c362f06467
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 05/07/2018
+ms.locfileid: "33765519"
 ---
 # <a name="troubleshooting-cdn-file-compression"></a>CDN 檔案壓縮疑難排解
 這篇文章可協助您針對 [CDN 檔案壓縮](cdn-improve-performance.md)的問題進行疑難排解。
@@ -61,9 +62,9 @@ ms.lasthandoff: 10/11/2017
 
 ![CDN 要求標頭](./media/cdn-troubleshoot-compression/cdn-request-headers.png)
 
-### <a name="verify-compression-settings-standard-cdn-profile"></a>驗證壓縮設定 (標準 CDN 設定檔)
+### <a name="verify-compression-settings-standard-cdn-profiles"></a>驗證壓縮設定 (標準 CDN 設定檔)
 > [!NOTE]
-> 如果您的 CDN 設定檔是**來自 Akamai 的 Azure CDN 標準**或**來自 Verizon 的 Azure CDN 標準**設定檔，才能套用此步驟。 
+> 如果您的 CDN 設定檔是**來自 Microsoft 的標準 Azure CDN**、**來自 Verizon 的標準 Azure CDN**或**來自 Akamai 的標準 Azure CDN** 設定檔，才能套用此步驟。 
 > 
 > 
 
@@ -74,9 +75,9 @@ ms.lasthandoff: 10/11/2017
 
 ![CDN 壓縮設定](./media/cdn-troubleshoot-compression/cdn-compression-settings.png)
 
-### <a name="verify-compression-settings-premium-cdn-profile"></a>驗證壓縮設定 (進階 CDN 設定檔)
+### <a name="verify-compression-settings-premium-cdn-profiles"></a>驗證壓縮設定 (進階 CDN 設定檔)
 > [!NOTE]
-> 如果您的 CDN 設定檔是 **來自 Verizon 的 Azure CDN 進階** 設定檔，才能套用此步驟。
+> 如果您的 CDN 設定檔是 **來自 Verizon 的進階 Azure CDN** 設定檔，才能套用此步驟。
 > 
 > 
 
@@ -88,9 +89,9 @@ ms.lasthandoff: 10/11/2017
 
 ![CDN 進階壓縮設定](./media/cdn-troubleshoot-compression/cdn-compression-settings-premium.png)
 
-### <a name="verify-the-content-is-cached"></a>驗證已快取內容
+### <a name="verify-the-content-is-cached-verizon-cdn-profiles"></a>驗證已快取內容 (Verizon CDN 設定檔)
 > [!NOTE]
-> 如果您的 CDN 設定檔是 **來自 Verizon 的 Azure CDN** 設定檔 (標準或進階)，才能套用此步驟。
+> 如果您的 CDN 設定檔是**來自 Verizon 的標準 Azure CDN** 或**來自 Verizon 的進階 Azure CDN** 設定檔，才能套用此步驟。
 > 
 > 
 
@@ -101,9 +102,9 @@ ms.lasthandoff: 10/11/2017
 
 ![CDN 回應標頭](./media/cdn-troubleshoot-compression/cdn-response-headers.png)
 
-### <a name="verify-the-file-meets-the-size-requirements"></a>驗證檔案符合大小需求
+### <a name="verify-the-file-meets-the-size-requirements-verizon-cdn-profiles"></a>驗證檔案符合大小需求 (Verizon CDN 設定檔)
 > [!NOTE]
-> 如果您的 CDN 設定檔是 **來自 Verizon 的 Azure CDN** 設定檔 (標準或進階)，才能套用此步驟。
+> 如果您的 CDN 設定檔是**來自 Verizon 的標準 Azure CDN** 或**來自 Verizon 的進階 Azure CDN** 設定檔，才能套用此步驟。
 > 
 > 
 

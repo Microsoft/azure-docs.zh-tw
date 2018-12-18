@@ -1,29 +1,31 @@
 ---
-title: Azure 快速入門 - 使用 Azure 儲存體總管上傳、下載及列出 Azure 儲存體中的 Blob | Microsoft Docs
-description: 本快速入門中，您會使用 Azure 儲存體總管來建立儲存體帳戶和容器。 然後使用儲存體總管，將 blob 上傳至 Azure 儲存體、下載 blob，以及列出容器中的 blob。
+title: 快速入門：使用 Azure 儲存體總管在物件儲存體中建立 Blob
+description: 在本快速入門中，您將了解如何使用 Azure 儲存體總管來建立容器和 Blob。 接下來，您要了解如何將 Blob 下載到本機電腦，以及如何檢視容器中的所有 Blob。 您也將了解如何建立 Blob 的快照集、管理容器存取原則，以及建立共用的存取簽章。
 services: storage
 author: tamram
-manager: jeconnoc
 ms.custom: mvc
 ms.service: storage
 ms.topic: quickstart
-ms.date: 02/22/2018
+ms.date: 10/09/2018
 ms.author: tamram
-ms.openlocfilehash: f44d42b949eae0d017e3bba218234fd1e2ead78e
-ms.sourcegitcommit: 20d103fb8658b29b48115782fe01f76239b240aa
+ms.openlocfilehash: 336fecf95dab36dcf00b5a0c92b700297622cc6d
+ms.sourcegitcommit: 7824e973908fa2edd37d666026dd7c03dc0bafd0
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2018
+ms.lasthandoff: 10/10/2018
+ms.locfileid: "48902972"
 ---
-# <a name="quickstart-upload-download-and-list-blobs-using-azure-storage-explorer"></a>快速入門：使用 Azure 儲存體總管上傳、下載及列出 Blob
+# <a name="quickstart-use-azure-storage-explorer-to-create-a-blob-in-object-storage"></a>快速入門：使用 Azure 儲存體總管在物件儲存體中建立 Blob
 
-[Azure 儲存體總管](https://azure.microsoft.com/features/storage-explorer/)是多重平台使用者介面，可用來管理儲存體帳戶的內容。 本指南詳細說明如何使用 Azure 儲存體總管在本機磁碟和 Azure Blob 儲存體之間傳輸檔案。
+在本快速入門中，您將了解如何使用 [Azure 儲存體總管](https://azure.microsoft.com/features/storage-explorer/)來建立容器和 Blob。 接下來，您要了解如何將 Blob 下載到本機電腦，以及如何檢視容器中的所有 Blob。 您也將了解如何建立 Blob 的快照集、管理容器存取原則，以及建立共用的存取簽章。
+
+## <a name="prerequisites"></a>必要條件
 
 如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
 
-本快速入門需要安裝 Azure 儲存體總管。 如果您需要進行安裝，請瀏覽 [Azure 儲存體總管](https://azure.microsoft.com/features/storage-explorer/)，下載適用於 Windows、Macintosh 或 Linux 的項目。
+本快速入門會要求您安裝 Azure 儲存體總管。 若要安裝適用於 Windows、Macintosh 或 Linux 的 Azure 儲存體總管，請參閱 [Azure 儲存體總管](https://azure.microsoft.com/features/storage-explorer/)。
 
-[!INCLUDE [storage-quickstart-tutorial-create-account-portal](../../../includes/storage-quickstart-tutorial-create-account-portal.md)]
+[!INCLUDE [storage-create-account-portal-include](../../../includes/storage-create-account-portal-include.md)]
 
 ## <a name="log-in-to-storage-explorer"></a>登入儲存體總管
 
@@ -77,7 +79,7 @@ Blob 儲存體支援區塊 Blob、附加 Blob 和分頁 Blob。 用來備份 Iaa
 
 ## <a name="manage-snapshots"></a>管理快照集
 
-Azure 儲存體總管可讓您取得及管理 blob 的[快照集](storage-blob-snapshots.md)。 若要取得 blob 的快照集，請以滑鼠右鍵按一下 blob，然後選取 [製作快照集]。 若要檢視 blob 的快照集，請以滑鼠右鍵按一下 blob，然後選取 [管理快照集]。 Blob 的快照集清單會顯示在目前的索引標籤中。
+Azure 儲存體總管可讓您取得及管理 blob 的[快照集](storage-blob-snapshots.md)。 若要取得 blob 的快照集，請以滑鼠右鍵按一下 blob，然後選取 [建立快照集]。 若要檢視 blob 的快照集，請以滑鼠右鍵按一下 blob，然後選取 [管理快照集]。 Blob 的快照集清單會顯示在目前的索引標籤中。
 
 ![Microsoft Azure 儲存體總管 - 在容器中列出 blob](media/storage-quickstart-blobs-storage-explorer/snapshots.png)
 

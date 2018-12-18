@@ -32,6 +32,16 @@
       href: use-deep-learning-dsvm.md
     - name: 使用地區人工智慧資料科學虛擬機器 (Geo AI Data Science VM)
       href: use-geo-ai-dsvm.md
+- name: 企業版指導方針
+  items:
+    - name: 概觀
+      href: dsvm-enterprise-overview.md
+    - name: 調整大小
+      href: dsvm-pools.md
+    - name: Active Directory 整合
+      href: dsvm-common-identity.md
+    - name: 保護資源存取認證
+      href: dsvm-secure-access-keys.md
 - name: 參考
   expanded: true
   items:

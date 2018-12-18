@@ -1,11 +1,11 @@
 ---
-title: "傳統至 Azure Resource Manager 移轉的常見問題集 | Microsoft Docs"
-description: "傳統至 Azure Resource Manager 移轉的常見問題集"
+title: 傳統至 Azure Resource Manager 移轉的常見問題集 | Microsoft Docs
+description: 傳統至 Azure Resource Manager 移轉的常見問題集
 services: virtual-machines-linux
-documentationcenter: 
+documentationcenter: ''
 author: singhkays
-manager: timlt
-editor: 
+manager: jeconnoc
+editor: ''
 tags: azure-resource-manager
 ms.assetid: 78492a2c-2694-4023-a7b8-c97d3708dcb7
 ms.service: virtual-machines-linux
@@ -15,11 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/01/2017
 ms.author: kasing
-ms.openlocfilehash: d1e7e065da0d6bcbf2f9df40c5d2926954be1bbb
-ms.sourcegitcommit: 62eaa376437687de4ef2e325ac3d7e195d158f9f
+ms.openlocfilehash: 7413ae0a9f2c3b1815223c385c00fec521d33923
+ms.sourcegitcommit: 5b2ac9e6d8539c11ab0891b686b8afa12441a8f3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/22/2017
+ms.lasthandoff: 04/06/2018
 ---
 [!INCLUDE [virtual-machines-common-migration-faq](../../../includes/virtual-machines-common-classic-resource-manager-migration-faq.md)]
 

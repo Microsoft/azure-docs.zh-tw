@@ -1,24 +1,25 @@
 ---
-title: "服務匯流排非同步傳訊 |Microsoft Docs"
-description: "「Azure 服務匯流排」非同步傳訊說明。"
+title: 服務匯流排非同步傳訊 |Microsoft Docs
+description: 「Azure 服務匯流排」非同步傳訊說明。
 services: service-bus-messaging
 documentationcenter: na
-author: sethmanheim
+author: spelluru
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: f1435549-e1f2-40cb-a280-64ea07b39fc7
 ms.service: service-bus-messaging
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/30/2018
-ms.author: sethm
-ms.openlocfilehash: e48e95d99847e68bdb218b341ad2fbcd44eb31f4
-ms.sourcegitcommit: 9d317dabf4a5cca13308c50a10349af0e72e1b7e
+ms.date: 09/26/2018
+ms.author: spelluru
+ms.openlocfilehash: 9bacce96e65a7aef611bec3ddae8b1872d5f9fae
+ms.sourcegitcommit: d1aef670b97061507dc1343450211a2042b01641
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47391458"
 ---
 # <a name="asynchronous-messaging-patterns-and-high-availability"></a>非同步傳訊模式和高可用性
 

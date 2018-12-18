@@ -1,24 +1,26 @@
 ---
-title: "解決現有 Azure AD Domain Services 受控網域的不相符目錄錯誤 | Microsoft Docs"
-description: "了解並解決現有 Azure AD Domain Services 受控網域的不相符目錄錯誤"
+title: 解決現有 Azure AD Domain Services 受控網域的不相符目錄錯誤 | Microsoft Docs
+description: 了解並解決現有 Azure AD Domain Services 受控網域的不相符目錄錯誤
 services: active-directory-ds
-documentationcenter: 
+documentationcenter: ''
 author: mahesh-unnikrishnan
 manager: mtillman
 editor: curtand
 ms.assetid: 40eb75b7-827e-4d30-af6c-ca3c2af915c7
-ms.service: active-directory-ds
+ms.service: active-directory
+ms.component: domain-services
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 12/11/2017
 ms.author: maheshu
-ms.openlocfilehash: 24e11769e9b403bc00157e3f60869effa6a9633f
-ms.sourcegitcommit: a5f16c1e2e0573204581c072cf7d237745ff98dc
+ms.openlocfilehash: f791993a95534f66097e3e7e22141bf34e311f21
+ms.sourcegitcommit: 9222063a6a44d4414720560a1265ee935c73f49e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/11/2017
+ms.lasthandoff: 08/03/2018
+ms.locfileid: "39504546"
 ---
 # <a name="resolve-mismatched-directory-errors-for-existing-azure-ad-domain-services-managed-domains"></a>解決現有 Azure AD Domain Services 受控網域的不相符目錄錯誤
 您有現有的 Azure AD 網域服務受控網域。 當您瀏覽至 Azure 入口網站並檢視受控網域時，您會看到下列錯誤訊息：
@@ -35,13 +37,11 @@ ms.lasthandoff: 12/11/2017
 
 簡單來說，您無法在屬於另一個 Azure AD 租用戶 'fabrikam.com' 擁有之 Azure 訂用帳戶的虛擬網路中，針對 Azure AD 租用戶 'contoso.com' 啟用受控網域。 
 
-
-            **有效設定**：在此案例中，Contoso 受控網域是針對 Contoso Azure AD 租用戶啟用。 受控網域會在屬於 Contoso Azure AD 租用戶擁有之 Azure 訂用帳戶的虛擬網路中公開。 因此，受控網域以及虛擬網路屬於相同的 Azure AD 租用戶。 此設定有效且完全受到支援。
+**有效設定**：在此案例中，Contoso 受控網域是針對 Contoso Azure AD 租用戶啟用。 受控網域會在屬於 Contoso Azure AD 租用戶擁有之 Azure 訂用帳戶的虛擬網路中公開。 因此，受控網域以及虛擬網路屬於相同的 Azure AD 租用戶。 此設定有效且完全受到支援。
 
 ![有效租用戶設定](./media/getting-started/valid-tenant-config.png)
 
-
-            **不相符租用戶設定**：在此案例中，Contoso 受控網域是針對 Contoso Azure AD 租用戶啟用。 但是，受控網域會在屬於 Fabrikam Azure AD 租用戶擁有之 Azure 訂用帳戶的虛擬網路中公開。 因此，受控網域和虛擬網路分別屬於兩個不同的 Azure AD 租用戶。 此設定是不相符租用戶設定，不受到支援。 虛擬網路必須移至與受控網域相同的 Azure AD 租用戶 (也就是 Contoso)。 如需詳細資訊，請參閱[解決方案](#resolution)一節。
+**不相符租用戶設定**：在此案例中，Contoso 受控網域是針對 Contoso Azure AD 租用戶啟用。 但是，受控網域會在屬於 Fabrikam Azure AD 租用戶擁有之 Azure 訂用帳戶的虛擬網路中公開。 因此，受控網域和虛擬網路分別屬於兩個不同的 Azure AD 租用戶。 此設定是不相符租用戶設定，不受到支援。 虛擬網路必須移至與受控網域相同的 Azure AD 租用戶 (也就是 Contoso)。 如需詳細資訊，請參閱[解決方案](#resolution)一節。
 
 ![不相符租用戶設定](./media/getting-started/mismatched-tenant-config.png)
 

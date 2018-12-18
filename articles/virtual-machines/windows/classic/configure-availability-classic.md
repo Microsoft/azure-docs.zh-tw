@@ -1,11 +1,11 @@
 ---
-title: "Windows 傳統 VM 的可用性設定組 | Microsoft Docs"
-description: "使用 Azure 入口網站和 Azure PowerShell，以傳統部署模型設定新的或現有 Windows 虛擬機器的可用性設定組。"
+title: Windows 傳統 VM 的可用性設定組 | Microsoft Docs
+description: 使用 Azure 入口網站和 Azure PowerShell，以傳統部署模型設定新的或現有 Windows 虛擬機器的可用性設定組。
 services: virtual-machines-windows
-documentationcenter: 
+documentationcenter: ''
 author: cynthn
-manager: timlt
-editor: 
+manager: jeconnoc
+editor: ''
 tags: azure-service-management
 ROBOTS: NOINDEX
 ms.assetid: c3b7fdec-fb59-4412-a4f4-f3a0b9c62e93
@@ -16,11 +16,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/27/2016
 ms.author: cynthn
-ms.openlocfilehash: c21fac7349834361cae709c91dbc0349a151b512
-ms.sourcegitcommit: 176c575aea7602682afd6214880aad0be6167c52
+ms.openlocfilehash: 53ac8c64a1b79560df30d9c94b401423ecd24586
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/09/2018
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38719017"
 ---
 # <a name="how-to-configure-an-availability-set-for-windows-virtual-machines-in-the-classic-deployment-model"></a>如何以傳統部署模型設定 Windows 虛擬機器的可用性設定組
 > [!IMPORTANT] 

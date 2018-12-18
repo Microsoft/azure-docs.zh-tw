@@ -1,24 +1,26 @@
 ---
-title: "清除並準備 Azure Machine Learning 的資料 | Microsoft Docs"
-description: "前置處理和清除資料，為用於機器學習服務做準備。"
+title: 清除並準備 Azure Machine Learning 的資料 | Microsoft Docs
+description: 前置處理和清除資料，為用於機器學習服務做準備。
 services: machine-learning
-documentationcenter: 
-author: bradsev
+documentationcenter: ''
+author: deguhath
 manager: cgronlun
 editor: cgronlun
 ms.assetid: bdf659ec-4881-4324-8b9c-747cbfa0c3cd
 ms.service: machine-learning
+ms.component: team-data-science-process
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 11/09/2017
-ms.author: bradsev
-ms.openlocfilehash: 7f0c1f0f549e746cc99db3b47f6c90bb51145d5d
-ms.sourcegitcommit: bc8d39fa83b3c4a66457fba007d215bccd8be985
+ms.author: deguhath
+ms.openlocfilehash: 127c51b9a2617c6b8520d972a3cd4b6c3bbcddd1
+ms.sourcegitcommit: 944d16bc74de29fb2643b0576a20cbd7e437cef2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/10/2017
+ms.lasthandoff: 06/07/2018
+ms.locfileid: "34837689"
 ---
 # <a name="tasks-to-prepare-data-for-enhanced-machine-learning"></a>準備增強機器學習服務的資料的工作
 前置處理和清除資料是很重要的工作，必須先執行這些工作，才能有效地將資料集用於機器學習服務。 未經處理的資料通常會有雜訊且不可靠，還可能會有遺漏值。 使用這類資料進行模型化可能會產生誤導的結果。 這些工作屬於 Team Data Science Process (TDSP)，通常會遵循用來探索及計劃所需預先處理的資料集初始探索。 如需更多關於 TDSP 程序的詳細指示，請參閱 [Team Data Science Process](overview.md)中概述的步驟。
@@ -96,7 +98,8 @@ ms.lasthandoff: 11/10/2017
 ## <a name="how-to-clean-text-data"></a>如何清除文字資料？
 **表格式資料中的文字欄位** 可能包含影響資料行對齊和 (或) 記錄界限的字元。 例如，定位鍵分隔檔案的內嵌定位鍵可能導致資料行對齊錯誤，而內嵌的新行字元會中斷記錄行。 寫入/讀取文字時，不適當的文字編碼處理會造成資訊遺失，而意外引進無法讀取的字元 (例如 null)，這可能也會影響文字剖析。 您可以需要仔細地進行剖析和編輯，以清除文字欄位來取得正確的對齊方式，及 (或) 從非結構化或半結構化的文字資料中擷取結構化資料。
 
-**資料探索** 可讓您檢視早期資料。 在此步驟中可以發現一些資料問題，然後套用對應的方法以解決這些問題。  請務必提出問題，例如，問題的來源是什麼，以及問題可能是如何引發的。 這也有助於您決定必須採取以解決這些問題的資料處理步驟。 深入探討某一個想要從資料衍生的類型，也可用來排列資料處理工作的優先順序。
+
+  **資料探索** 可讓您檢視早期資料。 在此步驟中可以發現一些資料問題，然後套用對應的方法以解決這些問題。  請務必提出問題，例如，問題的來源是什麼，以及問題可能是如何引發的。 這也有助於您決定必須採取以解決這些問題的資料處理步驟。 深入探討某一個想要從資料衍生的類型，也可用來排列資料處理工作的優先順序。
 
 ## <a name="references"></a>參考
 > *Data Mining: Concepts and Techniques*(資料採礦：觀念與技術)，第三版，Morgan Kaufmann，2011，Jiawei Han、Micheline Kamber 及 Jian Pei

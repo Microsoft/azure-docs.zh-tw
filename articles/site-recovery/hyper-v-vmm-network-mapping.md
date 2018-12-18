@@ -1,18 +1,19 @@
 ---
-title: "關於使用 Site Recovery 對 Hyper-V VM (含VMM) 複寫至 Azure 所需的網路對應 | Microsoft Docs"
-description: "說明如何設定使用 Site Recovery 對 VMM 雲端中管理的 Hyper-V VM 進行複寫所需的網路對應。"
+title: 關於使用 Site Recovery 對 Hyper-V VM (含VMM) 複寫至 Azure 所需的網路對應 | Microsoft Docs
+description: 說明如何設定使用 Site Recovery 對 VMM 雲端中管理的 Hyper-V VM 進行複寫所需的網路對應。
 services: site-recovery
 author: rayne-wiselman
 manager: carmonm
 ms.service: site-recovery
 ms.topic: article
-ms.date: 02/22/2018
+ms.date: 10/10/2018
 ms.author: raynew
-ms.openlocfilehash: 524de918bd24d51680110dc2af213bf328e349fd
-ms.sourcegitcommit: fbba5027fa76674b64294f47baef85b669de04b7
+ms.openlocfilehash: d683554a97a1616b0d4d7b1ae95d62b476de04eb
+ms.sourcegitcommit: 4b1083fa9c78cd03633f11abb7a69fdbc740afd1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/24/2018
+ms.lasthandoff: 10/10/2018
+ms.locfileid: "49078506"
 ---
 # <a name="prepare-network-mapping-for-hyper-v-vm-replication-to-azure"></a>準備 Azure 之 Hyper-V VM 複寫的網路對應
 
@@ -58,7 +59,7 @@ ms.lasthandoff: 02/24/2018
 紐約 | VMM-NewYork| VMNetwork1-NewYork | 對應至 VMNetwork1-Chicago
  |  | VMNetwork2-NewYork | 未對應
 芝加哥 | VMM-Chicago| VMNetwork1-Chicago | 對應至 VMNetwork1-NewYork
- | | VMNetwork1-Chicago | 未對應
+ | | VMNetwork2-Chicago | 未對應
 
 在此範例中：
 

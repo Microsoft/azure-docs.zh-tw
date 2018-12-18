@@ -10,19 +10,20 @@ ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 01/10/2018
 ms.author: abnarain
 robots: noindex
-ms.openlocfilehash: d04500e770bf43278b88c2f980a10693590c7d16
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 58f612906af55575e9d42307af924ea0a8501ca1
+ms.sourcegitcommit: 744747d828e1ab937b0d6df358127fcf6965f8c8
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 08/16/2018
+ms.locfileid: "42144805"
 ---
 # <a name="data-management-gateway---high-availability-and-scalability-preview"></a>資料管理閘道 - 高可用性和延展性 (預覽)
 > [!NOTE]
-> 本文適用於正式推出 (GA) 的第 1 版 Data Factory。 如果您使用第 2 版 Data Factory 服務 (預覽版)，請參閱[第 2 版中的自我裝載整合執行階段](../create-self-hosted-integration-runtime.md)。 
+> 本文適用於 Data Factory 第 1 版。 如果您使用目前版本的 Data Factory 服務，請參閱 [自我裝載整合執行階段](../create-self-hosted-integration-runtime.md)。 
 
 
 本文可協助您使用資料管理閘道/整合來設定高可用性和延展性解決方案。    
@@ -168,7 +169,7 @@ ms.lasthandoff: 03/23/2018
 - 支援萬用字元憑證。 若您的 FQDN 名稱為 **node1.domain.contoso.com**，則您可使用 ***.domain.contoso.com** 做為憑證的主體名稱。
 - 由於系統僅會使用主體別名的最後一個項目，其他所有項目則會因目前的限制而遭到忽略，因此不建議使用 SAN 憑證。 例如 若您具有 SAN 憑證，且其 SAN 為 **node1.domain.contoso.com** 和 **node2.domain.contoso.com**，則您僅可在 FQDN 為 **node2.domain.contoso.com** 的電腦上使用此憑證。
 - 支援 Windows Server 2012 R2 所支援的任何 SSL 憑證金鑰大小。
-- 不支援使用 CNG 金鑰的憑證。 不支援使用 CNG 金鑰的憑證。
+- 不支援使用 CNG 金鑰的憑證。
 
 #### <a name="faq-when-would-i-not-enable-this-encryption"></a>常見問題集：何時不會啟用此加密？
 啟用加密會為您的基礎結構增加特定成本 (擁有公用憑證)，因此在以下情況可能會跳過啟用加密：
@@ -186,7 +187,7 @@ ms.lasthandoff: 03/23/2018
 
 監視屬性 | 說明
 :------------------ | :---------- 
-Name | 邏輯閘道和閘道相關聯節點的名稱。  
+名稱 | 邏輯閘道和閘道相關聯節點的名稱。  
 狀態 | 邏輯閘道和閘道節點的狀態。 範例：線上/離線/受限制/等等。如需這些狀態的相關資訊，請參閱[閘道狀態](#gateway-status)一節。 
 版本 | 顯示邏輯閘道和每個閘道節點的版本。 邏輯閘道的版本取決於群組中大多數節點的版本。 如果邏輯閘道設定中有不同版本的節點，則只有版本號碼和邏輯閘道相同的節點會正常運作。 其他節點會進入受限制模式，並需要加以手動更新 (如果自動更新失敗才需要這麼做)。 
 可用的記憶體 | 閘道節點上可用的記憶體。 這個值是近乎即時的快照集。 

@@ -1,24 +1,20 @@
 ---
-title: 利用 Azure 串流分析中的查詢平行化作業 | Microsoft Docs
-description: 了解如何透過設定輸入資料分割、微調查詢定義，及設定工作串流處理單元來調整串流分析工作。
-keywords: 資料串流處理, 串流資料處理, 微調分析
+title: 使用 Azure 串流分析中的查詢平行化和調整作業
+description: 本文說明如何透過設定輸入資料分割、微調查詢定義，及設定工作串流處理單元來調整串流分析工作。
 services: stream-analytics
-documentationcenter: ''
 author: JSeb225
-manager: ryanw
-ms.assetid: 7e857ddb-71dd-4537-b7ab-4524335d7b35
-ms.service: stream-analytics
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: data-services
-ms.date: 06/22/2017
 ms.author: jeanb
-ms.openlocfilehash: eb19a9b4e92e7007f64ae7b593663be6a47a7a4b
-ms.sourcegitcommit: 34e0b4a7427f9d2a74164a18c3063c8be967b194
+manager: kfile
+ms.reviewer: jasonh
+ms.service: stream-analytics
+ms.topic: conceptual
+ms.date: 05/07/2018
+ms.openlocfilehash: 44a7c0721d8a0683162d2219bff0e4a4ecb117e6
+ms.sourcegitcommit: e221d1a2e0fb245610a6dd886e7e74c362f06467
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/30/2018
+ms.lasthandoff: 05/07/2018
+ms.locfileid: "33777622"
 ---
 # <a name="leverage-query-parallelization-in-azure-stream-analytics"></a>利用 Azure 串流分析中的查詢平行化作業
 本文會示範如何利用 Azure 串流分析中的平行化作業。 您可以了解如何透過設定輸入資料分割並調整分析查詢定義來調整串流分析工作。
@@ -34,8 +30,8 @@ ms.lasthandoff: 03/30/2018
 
 ### <a name="inputs"></a>輸入
 所有 Azure 串流分析輸入都可以利用資料分割：
--   事件中樞 (需要明確地設定資料分割索引鍵)
--   IoT 中樞 (需要明確地設定資料分割索引鍵)
+-   事件中樞 (需要明確地使用 PARTITION BY 關鍵字設定分割區索引鍵)
+-   IoT 中樞 (需要明確地使用 PARTITION BY 關鍵字設定分割區索引鍵)
 -   Blob 儲存體
 
 ### <a name="outputs"></a>輸出
@@ -44,13 +40,13 @@ ms.lasthandoff: 03/30/2018
 -   Azure Data Lake 儲存體
 -   Azure Functions
 -   Azure 資料表
--   Blob 儲存體
+-   Blob 儲存體 (可明確地設定資料分割索引鍵)
 -   CosmosDB (需要明確地設定資料分割索引鍵)
 -   事件中樞 (需要明確地設定資料分割索引鍵)
 -   IoT 中樞 (需要明確地設定資料分割索引鍵)
 -   服務匯流排
 
-PowerBI、SQL 和 SQL 資料倉儲輸出不支援資料分割。 不過，您仍然可以分割輸入，如[本節](#multi-step-query-with-a-grouping-key)中所述 
+PowerBI、SQL 和 SQL 資料倉儲輸出不支援資料分割。 不過，您仍然可以分割輸入，如[本節](#multi-step-query-with-different-partition-by-values)中所述 
 
 如需分割區的詳細資訊，請參閱下列文章：
 
@@ -61,18 +57,19 @@ PowerBI、SQL 和 SQL 資料倉儲輸出不支援資料分割。 不過，您仍
 ## <a name="embarrassingly-parallel-jobs"></a>窘迫平行作業
 「窘迫平行」作業是我們在 Azure 串流分析中調整性最高的情節。 它將對於查詢執行個體之輸入的某個資料分割，連接到輸出的某個資料分割。 此平行處理原則具有下列需求︰
 
-1. 如果查詢邏輯相依於同一個查詢執行個體所處理的相同索引鍵，則您必須確保事件會傳送至輸入的相同分割區。 對於事件中樞，這表示事件資料必須設定 **PartitionKey** 值。 或者，您可以使用分割的傳送者。 對於 Blob 儲存體，這表示事件會傳送至相同的磁碟分割資料夾。 如果查詢邏輯並不需要同一個查詢執行個體所處理的相同索引鍵，您可以忽略這項需求。 簡單的選取-投影-篩選查詢，即為此邏輯的一個例子。  
+1. 如果查詢邏輯相依於同一個查詢執行個體所處理的相同索引鍵，則您必須確保事件會傳送至輸入的相同分割區。 對於事件中樞或 IoT 中樞，這表示事件資料必須設定 **PartitionKey** 值。 或者，您可以使用分割的傳送者。 對於 Blob 儲存體，這表示事件會傳送至相同的磁碟分割資料夾。 如果查詢邏輯並不需要同一個查詢執行個體所處理的相同索引鍵，您可以忽略這項需求。 簡單的選取-投影-篩選查詢，即為此邏輯的一個例子。  
 
 2. 當資料放在輸入端時，您必須確保查詢已分割。 所有步驟中都必須使用 **PARTITION BY**。 您可以使用多個步驟，但全部都必須依相同的索引鍵來分割。 目前，資料分割索引鍵必須設定為 **PartitionId**，作業才能完全平行。  
 
-3. 我們大部分的輸出都可以利用資料分割，不過，如果您使用不支援資料分割的輸出類型，您的作業將無法進行平行處理。 如需詳細資訊，請參閱[輸出](#Outputs)一節。
+3. 我們大部分的輸出都可以利用資料分割，不過，如果您使用不支援資料分割的輸出類型，您的作業將無法進行平行處理。 如需詳細資訊，請參閱[輸出](#outputs)一節。
 
-4. 輸入分割區的數目必須等於輸出分割區的數目。 Blob 儲存體輸出目前不支援分割區。 但是沒關係，因為它會繼承上游查詢的資料分割配置。 以下是允許完全平行作業的分割區值範例：  
+4. 輸入分割區的數目必須等於輸出分割區的數目。 Blob 儲存體輸出可支援資料分割，並繼承上游查詢的資料分割配置。 當針對 Blob 儲存體指定資料分割索引鍵時，資料會依每個輸入分割區進行分割，因此結果仍然是完全平行。 以下是允許完全平行作業的分割區值範例：
 
    * 8 個事件中樞輸入分割區和 8 個事件中樞輸出分割區
-   * 8 個事件中樞輸入分割區和 blob 儲存體輸出  
-   * 8 個 blob 儲存體輸入分割區和 blob 儲存體輸出  
-   * 8 個 blob 儲存體輸入分割區和 8 個事件中樞輸出分割區  
+   * 8 個事件中樞輸入分割區和 blob 儲存體輸出
+   * 8 個事件中樞輸入分割區和 Blob 儲存體輸出，依含有任意基數的自訂欄位分割
+   * 8 個 blob 儲存體輸入分割區和 blob 儲存體輸出
+   * 8 個 blob 儲存體輸入分割區和 8 個事件中樞輸出分割區
 
 以下幾節討論一些窘迫平行的範例情節。
 
@@ -221,7 +218,7 @@ PowerBI 輸出目前不支援資料分割。 因此，此情節不是窘迫平�
 
 
 ## <a name="get-help"></a>取得說明
-如需進一步的協助，請參閱我們的 [Azure Stream Analytics 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)。
+如需進一步的協助，請參閱我們的 [Azure Stream Analytics 論壇](https://social.msdn.microsoft.com/Forums/azure/home?forum=AzureStreamAnalytics)。
 
 ## <a name="next-steps"></a>後續步驟
 * [Azure Stream Analytics 介紹](stream-analytics-introduction.md)

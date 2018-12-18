@@ -1,24 +1,19 @@
 ---
-title: "準備 Azure 匯入/匯出匯入作業的硬碟 - v1 |Microsoft Docs"
-description: "了解如何使用 WAImportExport v1 工具準備硬碟，以建立 Azure 匯入/匯出服務的匯入作業。"
+title: 準備 Azure 匯入/匯出匯入作業的硬碟 - v1 |Microsoft Docs
+description: 了解如何使用 WAImportExport v1 工具準備硬碟，以建立 Azure 匯入/匯出服務的匯入作業。
 author: muralikk
-manager: syadav
-editor: tysonn
 services: storage
-documentationcenter: 
-ms.assetid: 3d818245-8b1b-4435-a41f-8e5ec1f194b2
 ms.service: storage
-ms.workload: storage
-ms.tgt_pltfrm: na
-ms.devlang: na
 ms.topic: article
 ms.date: 01/15/2017
 ms.author: muralikk
-ms.openlocfilehash: 361e16262e528c7dea1bab4b9d945a28af8be399
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.component: common
+ms.openlocfilehash: 861b3302e065689a4ea9c0df0879f9c0df12e619
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39526941"
 ---
 # <a name="preparing-hard-drives-for-an-import-job"></a>針對匯入作業準備硬碟
 若要準備匯入工作的一個或多個硬碟，請依照下列步驟執行︰

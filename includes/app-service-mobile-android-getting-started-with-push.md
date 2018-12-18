@@ -1,3 +1,16 @@
+---
+author: conceptdev
+ms.author: crdun
+ms.service: app-service-mobile
+ms.topic: include
+ms.date: 08/23/2018
+ms.openlocfilehash: 654bc3745768fccea41d7c3991142bf7183b54be
+ms.sourcegitcommit: 58c5cd866ade5aac4354ea1fe8705cee2b50ba9f
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42809509"
+---
 1. 在您的 **app** 專案中開啟 `AndroidManifest.xml` 檔案。 在 `application` 起始標籤後新增下列程式碼：
 
     ```xml

@@ -1,24 +1,21 @@
 ---
-title: "B2B 通訊的合約 - Azure Logic Apps | Microsoft Docs"
-description: "建立合約，讓合作夥伴可以針對 Azure Logic Apps 與企業整合套件在 B2B 案例中溝通"
+title: B2B 通訊的合約 - Azure Logic Apps | Microsoft Docs
+description: 建立使用 Azure Logic Apps 與 Enterprise Integration Pack 的 B2B 交易夥伴通訊合約
 services: logic-apps
-documentationcenter: .net,nodejs,java
-author: msftman
-manager: anneta
-editor: cgronlun
-ms.assetid: 447ffb8e-3e91-4403-872b-2f496495899d
 ms.service: logic-apps
-ms.workload: integration
-ms.tgt_pltfrm: na
-ms.devlang: na
+ms.suite: integration
+author: divyaswarnkar
+ms.author: divswa
+ms.reviewer: jonfan, estfan, LADocs
 ms.topic: article
+ms.assetid: 447ffb8e-3e91-4403-872b-2f496495899d
 ms.date: 06/29/2016
-ms.author: LADocs
-ms.openlocfilehash: 1f939c626be11a358b0f8bece8840992a4362e1f
-ms.sourcegitcommit: be9a42d7b321304d9a33786ed8e2b9b972a5977e
+ms.openlocfilehash: 09bee10649e2bc0d745e42b8aa13ae9c21df35aa
+ms.sourcegitcommit: 2ad510772e28f5eddd15ba265746c368356244ae
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/19/2018
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "43128822"
 ---
 # <a name="partner-agreements-for-b2b-communication-with-azure-logic-apps-and-enterprise-integration-pack"></a>具有 Azure Logic Apps 與企業整合套件的 B2B 的合作夥伴合約
 

@@ -9,16 +9,17 @@ editor: amanbha
 ms.assetid: 45839a7f-0536-46f1-ae2b-8ba3556407fb
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 03/19/2018
 ms.author: vturecek
-ms.openlocfilehash: d6e88f2ac1f239386efe29cb3f4a02e6040189d2
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: c72aea9d104264243ef0654aea01e0a41f33ed6f
+ms.sourcegitcommit: eb75f177fc59d90b1b667afcfe64ac51936e2638
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 05/16/2018
+ms.locfileid: "34206861"
 ---
 # <a name="implement-reliable-actors-backup-and-restore"></a>實作 Reliable Actors 備份與還原
 在下列範例中，自訂動作項目服務會利用已經存在於 `ActorService` 中的遠端處理接聽程式，藉以公開用來備份動作項目資料的方法：

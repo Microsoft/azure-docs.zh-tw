@@ -1,13 +1,13 @@
 ---
-title: "在 Azure 中的 SAP ASCS/SCS 執行個體的 Windows 容錯移轉叢集和共用磁碟上安裝 SAP NetWeaver HA | Microsoft Docs"
-description: "了解如何在 SAP ASCS/SCS 執行個體的 Windows 容錯移轉叢集和共用磁碟上安裝 SAP NetWeaver HA。"
+title: 在 Azure 中的 SAP ASCS/SCS 執行個體的 Windows 容錯移轉叢集和共用磁碟上安裝 SAP NetWeaver HA | Microsoft Docs
+description: 了解如何在 SAP ASCS/SCS 執行個體的 Windows 容錯移轉叢集和共用磁碟上安裝 SAP NetWeaver HA。
 services: virtual-machines-windows,virtual-network,storage
 documentationcenter: saponazure
 author: goraco
-manager: timlt
-editor: 
+manager: jeconnoc
+editor: ''
 tags: azure-resource-manager
-keywords: 
+keywords: ''
 ms.assetid: 6209bcb3-5b20-4845-aa10-1475c576659f
 ms.service: virtual-machines-windows
 ms.devlang: NA
@@ -17,11 +17,12 @@ ms.workload: infrastructure-services
 ms.date: 05/05/2017
 ms.author: rclaus
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 419bbdd57a391dbbf01c2110a1609cb3d0ded003
-ms.sourcegitcommit: 732e5df390dea94c363fc99b9d781e64cb75e220
+ms.openlocfilehash: d5d52653d68c6ebfca7e35a134da263eee99fd3e
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34657072"
 ---
 # <a name="install-sap-netweaver-ha-on-a-windows-failover-cluster-and-shared-disk-for-an-sap-ascsscs-instance-in-azure"></a>在 Azure 中的 SAP ASCS/SCS 執行個體的 Windows 容錯移轉叢集和共用磁碟上安裝 SAP NetWeaver HA
 
@@ -193,13 +194,13 @@ ms.lasthandoff: 11/14/2017
 
   ![圖 1：定義 SAP ASCS/SCS 叢集虛擬名稱和 TCP/IP 位址的 DNS 項目][sap-ha-guide-figure-3046]
 
-  _**圖 1：**定義 SAP ASCS/SCS 叢集虛擬名稱和 TCP/IP 位址的 DNS 項目_
+  _**圖 1：** 定義 SAP ASCS/SCS 叢集虛擬名稱和 TCP/IP 位址的 DNS 項目_
 
 2.  若要定義指派給虛擬主機名稱的 IP 位址，選取 [DNS 管理員] > [網域]。
 
   ![圖 2：SAP ASCS/SCS 叢集設定的新虛擬名稱和 TCP/IP 位址][sap-ha-guide-figure-3047]
 
-  _**圖 2：**SAP ASCS/SCS 叢集設定的新虛擬名稱和 TCP/IP 位址_
+  _**圖 2：** SAP ASCS/SCS 叢集設定的新虛擬名稱和 TCP/IP 位址_
 
 ### <a name="eb5af918-b42f-4803-bb50-eff41f84b0b0"></a> 安裝 SAP 的第一個叢集節點
 
@@ -263,7 +264,7 @@ ms.lasthandoff: 11/14/2017
 
   ![圖 3：叢集設定探查連接埠預設為 0][sap-ha-guide-figure-3048]
 
-  _**圖 3：**預設叢集設定探查連接埠為 0_
+  _**圖 3：** 預設叢集設定探查連接埠為 0_
 
   SAP Azure Resource Manager 範本中已定義連接埠號碼。 您可以在 PowerShell 中指派連接埠號碼。
 
@@ -338,7 +339,7 @@ ms.lasthandoff: 11/14/2017
 
   ![圖 4：設定新值之後，探查叢集連接埠][sap-ha-guide-figure-3049]
 
-  _**圖 4：**設定新值之後，探查叢集連接埠_
+  _**圖 4：** 設定新值之後，探查叢集連接埠_
 
 ### <a name="4498c707-86c0-4cde-9c69-058a7ab8c3ac"></a> 開啟 Windows 防火牆探查連接埠
 
@@ -366,7 +367,7 @@ ms.lasthandoff: 11/14/2017
 
 ![圖 5：將 SAP ERS 執行個體的服務類型變更為延遲的自動類型][sap-ha-guide-figure-3050]
 
-_**圖 5：**將 SAP ERS 執行個體的服務類型變更為延遲的自動類型_
+_**圖 5：** 將 SAP ERS 執行個體的服務類型變更為延遲的自動類型_
 
 ## <a name="2477e58f-c5a7-4a5d-9ae3-7b91022cafb5"></a> 安裝 SAP 主要應用程式伺服器
 
@@ -390,13 +391,13 @@ SAP PR1 叢集群組在叢集節點 A 上執行，例如，在 pr1-ascs-0 上。
 
 ![圖 6：容錯移轉叢集管理員：SAP \<SID\> 叢集群組在叢集結點 A 上執行][sap-ha-guide-figure-5000]
 
-_**圖 6：**容錯移轉叢集管理員：SAP \<SID\> 叢集群組在叢集結點 A 上執行_
+_**圖 6：** 容錯移轉叢集管理員：SAP \<SID\> 叢集群組在叢集結點 A 上執行_
 
 在 SIOS DataKeeper 管理和組態工具中，您可以看到共用磁碟資料以同步方式從叢集節點 A 上的來源磁碟區 S 複寫到叢集節點 B 上的目標磁碟區 S。例如，從 pr1-ascs-0 [10.0.0.40] 複寫到 pr1-ascs-1 [10.0.0.41]。
 
 ![圖 7：在 SIOS DataKeeper 中，將本機磁碟區從叢集節點 A 複寫到叢集節點 B][sap-ha-guide-figure-5001]
 
-_**圖 7：**在 SIOS DataKeeper 中，將本機磁碟區從叢集節點 A 複寫到叢集節點 B_
+_**圖 7：** 在 SIOS DataKeeper 中，將本機磁碟區從叢集節點 A 複寫到叢集節點 B_
 
 ### <a name="5e959fa9-8fcd-49e5-a12c-37f6ba07b916"></a> 從節點 A 到節點 B 進行容錯移轉
 
@@ -425,4 +426,4 @@ _**圖 7：**在 SIOS DataKeeper 中，將本機磁碟區從叢集節點 A 複�
 
   ![圖 9：SIOS DataKeeper 將本機磁碟區從叢集節點 B 複寫到叢集節點 A][sap-ha-guide-figure-5003]
 
-  _**圖 9：**SIOS DataKeeper 將本機磁碟區從叢集節點 B 複寫到叢集節點 A_
+  _**圖 9：** SIOS DataKeeper 將本機磁碟區從叢集節點 B 複寫到叢集節點 A_

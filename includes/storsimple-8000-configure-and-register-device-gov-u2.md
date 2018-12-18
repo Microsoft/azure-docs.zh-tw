@@ -6,7 +6,7 @@
 3. 系統將提示您選擇想要為裝置設定的語言。 指定語言，然後按 **Enter** 鍵。
    
     ![StorSimple 設定和註冊裝置 1](./media/storsimple-configure-and-register-device-gov-u2/HCS_RegisterYourDevice1-gov-include.png)
-4. 在顯示的序列主控台功能表中，選擇選項 1 以使用完整存取權進行登入。
+4. 在顯示的序列主控台功能表中，選擇選項 1 [以完整存取權登入]。
    
     ![StorSimple 註冊裝置 2](./media/storsimple-configure-and-register-device-gov-u2/HCS_RegisterYourDevice2-gov-include.png)
 5. 執行下列步驟，為裝置設定最小的必要網路設定。

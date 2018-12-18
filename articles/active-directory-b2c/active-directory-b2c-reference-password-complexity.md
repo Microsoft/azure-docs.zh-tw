@@ -1,26 +1,26 @@
 ---
-title: 密碼複雜度 - Azure AD B2C | Microsoft Docs
-description: 如何設定 Azure Active Directory B2C 中的取用者所提供之密碼複雜度需求
+title: Azure Active Directory B2C 中的密碼複雜度 | Microsoft Docs
+description: 如何設定 Azure Active Directory B2C 中取用者所提供的密碼複雜度需求。
 services: active-directory-b2c
-documentationcenter: ''
 author: davidmu1
 manager: mtillman
-editor: ''
-ms.service: active-directory-b2c
+ms.service: active-directory
 ms.workload: identity
-ms.topic: article
+ms.topic: conceptual
 ms.date: 08/16/2017
 ms.author: davidmu
-ms.openlocfilehash: b89a404d583e9d495b65180e145295e6a106b3ab
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: B2C
+ms.openlocfilehash: 4b027f6cd57dfa48ba2e230371ffcad97b1f8ec4
+ms.sourcegitcommit: 86cb3855e1368e5a74f21fdd71684c78a1f907ac
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37445104"
 ---
 # <a name="azure-ad-b2c-configure-complexity-requirements-for-passwords"></a>Azure AD B2C：設定密碼複雜度需求
 
 > [!NOTE]
-> **這項功能處於預覽狀態。**  請連絡 [AADB2CPreview@microsoft.com](mailto:AADB2CPreview@microsoft.com)，讓您的測試租用戶可以使用此功能。  請勿在實際執行的租用戶上進行此測試。
+> **這項功能處於公開預覽狀態。**
 
 Azure Active Directory B2C (Azure AD B2C) 支援的變更密碼複雜度需求，是在建立帳戶時由使用者所提供的。  根據預設，Azure AD B2C 是使用 `Strong` 密碼。  Azure AD B2C 也支援組態選項，可控制客戶可以使用的密碼複雜度。
 

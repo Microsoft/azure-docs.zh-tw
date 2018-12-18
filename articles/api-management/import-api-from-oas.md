@@ -3,7 +3,7 @@ title: 使用 Azure 入口網站匯入 OpenAPI 規格 | Microsoft Docs
 description: 了解如何使用 API 管理匯入 OpenAPI 規格。
 services: api-management
 documentationcenter: ''
-author: juliako
+author: vladvino
 manager: cfowler
 editor: ''
 ms.service: api-management
@@ -13,18 +13,19 @@ ms.devlang: na
 ms.topic: tutorial
 ms.date: 11/22/2017
 ms.author: apimpm
-ms.openlocfilehash: 0ea24b58deb7b33755a44737a66938883f74a13c
-ms.sourcegitcommit: 20d103fb8658b29b48115782fe01f76239b240aa
+ms.openlocfilehash: f5132215b1fda93c62c1fbea46c3266fcc44ec46
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2018
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38307274"
 ---
 # <a name="import-an-openapi-specification"></a>匯入 OpenAPI 規格
 
 本文示範如何匯入位於 http://conferenceapi.azurewebsites.net?format=json 的「OpenAPI 規格」後端 API。 這個後端 API 是由 Microsoft 所提供且裝載於 Azure 上。 本文也會示範如何測試 APIM API。
 
 > [!IMPORTANT]
-> 請參閱此[文件](https://blogs.msdn.microsoft.com/apimanagement/2018/03/28/important-changes-to-openapi-import-and-export/)中的重要資訊和 OpenAPI 匯入相關祕訣。
+> 請參閱此[文件](https://blogs.msdn.microsoft.com/apimanagement/2018/04/11/important-changes-to-openapi-import-and-export/)中 OpenAPI 匯入相關的重要資訊和祕訣。
 
 在本文中，您將了解：
 

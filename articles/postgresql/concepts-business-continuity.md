@@ -1,6 +1,6 @@
 ---
-title: "使用「適用於 PostgreSQL 的 Azure 資料庫」的商務持續性概觀"
-description: "使用「適用於 PostgreSQL 的 Azure 資料庫」的商務持續性概觀。"
+title: 使用「適用於 PostgreSQL 的 Azure 資料庫」的商務持續性概觀
+description: 使用「適用於 PostgreSQL 的 Azure 資料庫」的商務持續性概觀。
 services: postgresql
 author: kamathsun
 ms.author: sukamat
@@ -14,6 +14,7 @@ ms.sourcegitcommit: c765cbd9c379ed00f1e2394374efa8e1915321b9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 02/28/2018
+ms.locfileid: "29693116"
 ---
 # <a name="overview-of-business-continuity-with-azure-database-for-postgresql"></a>使用「適用於 PostgreSQL 的 Azure 資料庫」的商務持續性概觀
 

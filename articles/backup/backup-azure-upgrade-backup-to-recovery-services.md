@@ -1,23 +1,19 @@
 ---
-title: "將備份保存庫升級至復原服務保存庫 | Microsoft Docs"
-description: "將 Azure 備份保存庫升級至復原服務保存庫的指示和支援資訊。"
+title: 將備份保存庫升級至復原服務保存庫
+description: 將 Azure 備份保存庫升級至復原服務保存庫的指示和支援資訊。
 services: backup
-documentationcenter: dev-center-name
 author: markgalioto
 manager: carmonm
-ms.assetid: 228fef19-2f6b-4067-acc3-fb6e501afb88
 ms.service: backup
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: storage-backup-recovery
+ms.topic: conceptual
 ms.date: 1/4/2018
-ms.author: sogup;markgal;arunak
-ms.openlocfilehash: 8396a7276fde10eb95a22ed07fa61625acfdd77f
-ms.sourcegitcommit: d6984ef8cc057423ff81efb4645af9d0b902f843
+ms.author: sogup
+ms.openlocfilehash: 551bc2aa4ff80feb3f28b5698e25dfd1b03dc870
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/05/2018
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34607332"
 ---
 # <a name="upgrade-a-backup-vault-to-a-recovery-services-vault"></a>將備份保存庫升級至復原服務保存庫
 
@@ -84,7 +80,7 @@ PowerShell 指令碼會提示您輸入認證。 輸入您的認證兩次︰一�
 ### <a name="pre-requisites-checking"></a>必要條件檢查
 一旦您輸入 Azure 認證後，Azure 就會檢查您的環境是否符合下列必要條件︰
 
-- **代理程式最低版本** - 將備份保存庫升級至復原服務保存庫需要至少 2.0.9083.0 版的 MARS 代理程式。 如果您的項目所登錄之備份保存庫是包含 2.0.9083.0 版以前的代理程式，必要條件檢查就會失敗。 如果必要條件檢查失敗，請更新代理程式，然後嘗試再次升級保存庫。 您可以從 [http://download.microsoft.com/download/F/4/B/F4B06356-150F-4DB0-8AD8-95B4DB4BBF7C/MARSAgentInstaller.exe](http://download.microsoft.com/download/F/4/B/F4B06356-150F-4DB0-8AD8-95B4DB4BBF7C/MARSAgentInstaller.exe) 下載最新版的代理程式。
+- **代理程式最低版本** - 將備份保存庫升級至復原服務保存庫需要至少 2.0.9083.0 版的 MARS 代理程式。 如果您的項目所登錄之備份保存庫是包含 2.0.9083.0 版以前的代理程式，必要條件檢查就會失敗。 如果必要條件檢查失敗，請更新代理程式，然後嘗試再次升級保存庫。 您可以從 [http://download.microsoft.com/download/F/4/B/F4B06356-150F-4DB0-8AD8-95B4DB4BBF7C/MARSAgentInstaller.exe](http://download.microsoft.com/download/F/4/B/F4B06356-150F-4DB0-8AD8-95B4DB4BBF7C/MARSAgentInstaller.exe) 下載最新版本的代理程式。
 - **持續的設定作業**︰如果有人要設定的是已設定為要升級之備份保存庫的作業，或是要將項目進行登錄，必要條件檢查就會失敗。 完成設定或完成登錄項目，然後再開始進行保存庫升級程序。
 - **以儲存體為基礎的計費模型**︰復原服務保存庫支援以執行個體為基礎的計費模型。 如果您執行的保存庫升級是在使用以儲存體為基礎之計費模型的備份保存庫上，系統會提示您升級計費模型以及保存庫。 否則，您可以先更新計費模型，然後再執行保存庫升級。
 - 識別復原服務保存庫的資源群組。 若要充分利用 Resource Manager 部署功能，您必須將復原服務保存庫放入資源群組。 如果您不知道要使用哪一個資源群組，請提供名稱，升級程序就會為您建立資源群組。 升級程序也會將保存庫與新的資源群組建立關聯。
@@ -106,7 +102,7 @@ PowerShell 指令碼會提示您輸入認證。 輸入您的認證兩次︰一�
 
 ## <a name="enhanced-security"></a>強化的安全性
 
-當備份保存庫升級為復原服務保存庫時，系統會自動開啟該保存庫的安全性設定。 當安全性設定開啟時，某些作業 (例如刪除備份或變更複雜密碼) 會需要 [Azure Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md) PIN 碼。 如需強化的安全性的詳細資訊，請參閱[用來保護混合式備份的安全性功能](backup-azure-security-feature.md)一文。 
+當備份保存庫升級為復原服務保存庫時，系統會自動開啟該保存庫的安全性設定。 當安全性設定開啟時，某些作業 (例如刪除備份或變更複雜密碼) 會需要 [Azure Multi-Factor Authentication](../active-directory/authentication/multi-factor-authentication.md) PIN 碼。 如需強化的安全性的詳細資訊，請參閱[用來保護混合式備份的安全性功能](backup-azure-security-feature.md)一文。 
 
 開啟強化的安全性時，在您從保存庫中刪除復原點資訊後，資料最多保留 14 天的時間。 客戶需支付此安全性資料的儲存體費用。 安全性資料保留原則適用於 Azure 備份代理程式、Azure 備份伺服器和 System Center Data Protection Manager 所備份的復原點。 
 

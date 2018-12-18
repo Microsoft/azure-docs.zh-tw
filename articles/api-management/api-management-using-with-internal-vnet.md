@@ -14,11 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/29/2017
 ms.author: apimpm
-ms.openlocfilehash: be4aa45c919f579355c6ac6c5682c1537e9cc0cb
-ms.sourcegitcommit: c3d53d8901622f93efcd13a31863161019325216
+ms.openlocfilehash: 6b6fd7395f7aff303f4950fb07bd0472cf7057a2
+ms.sourcegitcommit: 727a0d5b3301fe20f20b7de698e5225633191b06
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/29/2018
+ms.lasthandoff: 07/19/2018
+ms.locfileid: "39145735"
 ---
 # <a name="using-azure-api-management-service-with-an-internal-virtual-network"></a>在內部虛擬網路中使用 Azure API 管理服務
 在 Azure 虛擬網路中，Azure API 管理可以管理無法在網際網路上存取的 API。 有許多 VPN 技術可讓您建立連線。 API 管理在虛擬網路內有兩種主要的部署模式：
@@ -34,7 +35,7 @@ ms.lasthandoff: 03/29/2018
 * 使用單一閘道端點，管理裝載於多個地理位置的 API。 
 
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 若要執行本文所述的步驟，您必須具有：
 
@@ -60,6 +61,9 @@ ms.lasthandoff: 03/29/2018
 部署成功後，您應該會在儀表板上看到服務的內部虛擬 IP 位址。
 
 ![已設定內部虛擬網路的 API 管理儀表板][api-management-internal-vnet-dashboard]
+
+> [!NOTE]
+> Azure 入口網站上可用的測試主控台不適用於**內部** VNET 部署服務，因為並未在公用 DNS 上註冊閘道器 URL。 您應該改為使用**開發人員入口網站**上提供的測試主控台。
 
 ### <a name="enable-a-virtual-network-connection-by-using-powershell-cmdlets"></a>使用 PowerShell Cmdlet 啟用虛擬網路連線
 您也可以使用 PowerShell Cmdlet 來啟用虛擬網路連線能力。
@@ -115,7 +119,7 @@ ms.lasthandoff: 03/29/2018
 若要深入了解，請參閱下列文章：
 * [在虛擬網路中設定 Azure API 管理時常見的網路設定問題][Common network configuration problems]
 * [虛擬網路常見問題集](../virtual-network/virtual-networks-faq.md)
-* [在 DNS 中建立記錄](https://msdn.microsoft.com/en-us/library/bb727018.aspx)
+* [在 DNS 中建立記錄](https://msdn.microsoft.com/library/bb727018.aspx)
 
 [api-management-using-internal-vnet-menu]: ./media/api-management-using-with-internal-vnet/api-management-internal-vnet-menu.png
 [api-management-internal-vnet-dashboard]: ./media/api-management-using-with-internal-vnet/api-management-internal-vnet-dashboard.png

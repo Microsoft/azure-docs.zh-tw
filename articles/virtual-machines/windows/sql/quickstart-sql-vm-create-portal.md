@@ -1,6 +1,6 @@
 ---
-title: "在入口網站中建立 SQL Server Windows VM | Microsoft Docs"
-description: "本教學課程會示範如何在 Azure 入口網站中建立 Windows SQL Server 2017 虛擬機器。"
+title: 在入口網站中建立 SQL Server Windows VM | Microsoft Docs
+description: 本教學課程會示範如何在 Azure 入口網站中建立 Windows SQL Server 2017 虛擬機器。
 services: virtual-machines-windows
 documentationcenter: na
 author: rothja
@@ -11,13 +11,14 @@ ms.devlang: na
 ms.topic: quickstart
 ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: infrastructure-services
-ms.date: 12/12/2017
+ms.date: 05/11/2018
 ms.author: jroth
-ms.openlocfilehash: 080fecc7e89d9a76a9b160ba2ff4ba9dc31d0925
-ms.sourcegitcommit: 168426c3545eae6287febecc8804b1035171c048
+ms.openlocfilehash: aeeee58242a5f6ea41b9ba354efc4f5d5087151c
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/08/2018
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38720119"
 ---
 # <a name="quickstart-create-a-sql-server-2017-windows-virtual-machine-in-the-azure-portal"></a>快速入門：在 Azure 入口網站中建立 SQL Server 2017 Windows 虛擬機器
 
@@ -31,7 +32,7 @@ ms.lasthandoff: 03/08/2018
 > 本快速入門提供快速佈建及連線到 SQL VM 的途徑。 如需其他 SQL VM 佈建選項的詳細資訊，請參閱[在 Azure 入口網站中佈建 Windows SQL Server VM 的指南](virtual-machines-windows-portal-sql-server-provision.md)。
 
 > [!TIP]
-> 如果您有 SQL Server 虛擬機器相關問題，請參閱[常見問題集](virtual-machines-windows-sql-server-iaas-faq.md)。
+> 如果您有 SQL Server 虛擬機器的相關問題，請參閱[常見問題集](virtual-machines-windows-sql-server-iaas-faq.md)。
 
 ## <a id="subscription"></a> 取得 Azure 訂用帳戶
 
@@ -72,11 +73,9 @@ ms.lasthandoff: 03/08/2018
 
 ## <a name="choose-virtual-machine-size"></a>選擇虛擬機器大小
 
-在 [大小] 步驟上，請在 [選擇大小] 視窗中選擇虛擬機器大小。 此視窗一開始會顯示以您選取的映像為基礎的建議機器大小。 
+1. 在 [大小] 步驟上，請在 [選擇大小] 視窗中選擇虛擬機器大小。
 
-1. 按一下 [檢視全部] 來查看所有可用的機器大小。
-
-1. 在此快速入門中選取 [D2S_V3]。 入口網站顯示持續使用 (不包括 SQL Server 授權成本) 的每月預估機器成本。 請注意，Developer 版本沒有 SQL Server 的額外授權成本。 如需特定的定價詳細資訊，請參閱[頁面](https://azure.microsoft.com/pricing/details/virtual-machines/windows/)。
+   在此快速入門中選取 [D2S_V3]。 入口網站顯示持續使用 (不包括 SQL Server 授權成本) 的每月預估機器成本。 請注意，Developer 版本沒有 SQL Server 的額外授權成本。 如需特定的定價詳細資訊，請參閱[頁面](https://azure.microsoft.com/pricing/details/virtual-machines/windows/)。
 
    > [!TIP]
    > **D2S_V3** 機器大小在測試時可以節省金錢。 但對於生產工作負載，請參閱 [Azure 虛擬機器中的 SQL Server 效能最佳做法](virtual-machines-windows-sql-performance.md)中建議的機器大小和組態。
@@ -85,7 +84,14 @@ ms.lasthandoff: 03/08/2018
 
 ## <a name="configure-optional-features"></a>設定選用功能
 
-在 [設定] 視窗中，按一下 [確定] 以選取預設值。
+1. 在 [設定] 視窗中，如果您要從遠端桌面進入 VM，請選取 [選取公用輸入連接埠] 清單中的 [RDP (3389)] 連接埠。
+
+   ![輸入連接埠](./media/quickstart-sql-vm-create-portal/inbound-ports.png)
+
+   > [!NOTE]
+   > 您可以選取 [MS SQL (1433)] 連接埠，以從遠端存取 SQL Server。 但這並非必要動作，因為 **SQL Server 設定**步驟也會提供此選項。 如果您在此步驟中選取連接埠 1433，則無論您在 **SQL Server 設定**步驟中進行了哪些選取，該連接埠都會開啟。
+
+1. 按一下 [確定]  以儲存變更並繼續。
 
 ## <a name="sql-server-settings"></a>SQL Server 設定
 

@@ -1,11 +1,11 @@
 ---
-title: "StorSimple Virtual Array 更新版本資訊 | Microsoft Docs"
-description: "描述執行 Update 0.2 和 0.1 的 StorSimple Virtual Array 的重大未決問題和解決方式。"
+title: StorSimple Virtual Array 更新版本資訊 | Microsoft Docs
+description: 描述執行 Update 0.2 和 0.1 的 StorSimple Virtual Array 的重大未決問題和解決方式。
 services: storsimple
-documentationcenter: 
+documentationcenter: ''
 author: alkohli
 manager: carmonm
-editor: 
+editor: ''
 ms.assetid: 3993864d-2ddd-4302-a2f1-8d737fba6eab
 ms.service: storsimple
 ms.devlang: NA
@@ -15,10 +15,11 @@ ms.workload: NA
 ms.date: 06/16/2016
 ms.author: alkohli
 ms.openlocfilehash: c4ccde9635b3874864baa9d4d262ff5ddcf2a425
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.sourcegitcommit: 6fcd9e220b9cd4cb2d4365de0299bf48fbb18c17
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 04/05/2018
+ms.locfileid: "23109976"
 ---
 # <a name="storsimple-virtual-array-update-02-and-01-release-notes"></a>StorSimple Virtual Array Update 0.2 和 0.1 版本資訊
 ## <a name="overview"></a>概觀

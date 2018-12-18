@@ -2,23 +2,18 @@
 title: 將 VM 移轉至 Azure 進階儲存體 | Microsoft Docs
 description: 將您現有的 VM 移轉至 Azure 進階儲存體。 「進階儲存體」可針對在「Azure 虛擬機器」上執行且需要大量 I/O 的工作負載，提供高效能、低延遲的磁碟支援。
 services: storage
-documentationcenter: na
 author: yuemlu
-manager: tadb
-editor: tysonn
-ms.assetid: 272250b3-fd4e-41d2-8e34-fd8cc341ec87
 ms.service: storage
-ms.workload: storage
-ms.tgt_pltfrm: na
-ms.devlang: na
 ms.topic: article
 ms.date: 06/27/2017
 ms.author: yuemlu
-ms.openlocfilehash: 36ff73d36c752fb342dcfff2360b4f6f7013740e
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: common
+ms.openlocfilehash: c6256fc209a4ffa5308dc3b24794f8295c57f4ef
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39521773"
 ---
 # <a name="migrating-to-azure-premium-storage-unmanaged-disks"></a>移轉至 Azure 進階儲存體 (非受控磁碟)
 
@@ -45,7 +40,7 @@ ms.lasthandoff: 03/23/2018
 ## <a name="plan-the-migration-to-premium-storage"></a>規劃移轉至進階儲存體
 這一節確保您準備好遵循本文中的移轉步驟，並協助您對於 VM 和磁碟類型做出最佳的決策。
 
-### <a name="prerequisites"></a>先決條件
+### <a name="prerequisites"></a>必要條件
 * 您將需要 Azure 訂用帳戶。 如果您沒有訂用帳戶，可以建立一個月的[免費試用](https://azure.microsoft.com/pricing/free-trial/)訂用帳戶，或造訪 [Azure 價格](https://azure.microsoft.com/pricing/)以了解其他選項。
 * 若要執行 PowerShell Cmdlet，您將需要 Microsoft Azure PowerShell 模組。 如需安裝點和安裝指示的詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview) 。
 * 當您計劃使用在進階儲存體上執行的 Azure VM 時，您需要使用可支援進階儲存體的 VM。 您可以將「標準」和「進階」儲存體磁碟與支援「進階儲存體」的 VM 搭配使用。 未來進階儲存體磁碟將可搭配更多 VM 類型使用。 如需所有可用 Azure VM 磁碟類型和大小的詳細資訊，請參閱[虛擬機器的大小](../../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)和[雲端服務的大小](../../cloud-services/cloud-services-sizes-specs.md)。
@@ -94,7 +89,7 @@ Azure VM 大小的規格已列在 [虛擬機器的大小](../../virtual-machines
 * [案例 1：「將現有的 Azure VM 移轉到 Azure 進階儲存體。」](#scenario1)
 * [案例 2：「我要將其他平台上的 VM 移轉到 Azure 進階儲存體。」](#scenario2)
 
-### <a name="prerequisites"></a>先決條件
+### <a name="prerequisites"></a>必要條件
 若要準備移轉 VHD，您需要︰
 
 * Azure 訂用帳戶、儲存體帳戶，以及該儲存體帳戶中存放所複製 VHD 的容器。 請注意，目的地儲存體帳戶可以是標準或進階儲存體帳戶，端視您的需求而定。
@@ -163,7 +158,7 @@ VM 必須完全關閉，才能以全新狀態移轉。 在移轉完成之前會�
 若是資料磁碟，您可以選擇將一些資料磁碟保留在標準儲存體帳戶中 (例如，具有散熱器儲存體的磁碟)，但我們強烈建議您移動生產工作負載的所有資料以使用進階儲存體。
 
 #### <a name="copy-vhd-with-azcopy-or-powershell"></a>步驟 3. 使用 AzCopy 或 PowerShell 複製 VHD
-您必須尋找您的容器路徑和儲存體帳戶金鑰，才能處理這兩個選項之一。 容器路徑和儲存體帳戶金鑰位於 **Azure 入口網站** > **儲存體**。 容器 URL 會類似「https://myaccount.blob.core.windows.net/mycontainer/」。
+您必須尋找您的容器路徑和儲存體帳戶金鑰，才能處理這兩個選項之一。 容器路徑和儲存體帳戶金鑰位於 **Azure 入口網站** > **儲存體**。 容器 URL 會類似 「https://myaccount.blob.core.windows.net/mycontainer/」。
 
 ##### <a name="option-1-copy-a-vhd-with-azcopy-asynchronous-copy"></a>選項 1︰使用 AzCopy 複製 VHD (非同步複製)
 您可以使用 AzCopy，透過網際網路輕鬆上傳 VHD。 根據 VHD 的大小，這可能需要一些時間。 使用這個選項時，請記得檢查儲存體帳戶輸入/輸出限制。 如需詳細資訊，請參閱 [Azure 儲存體延展性和效能目標](storage-scalability-targets.md) 。
@@ -184,11 +179,11 @@ VM 必須完全關閉，才能以全新狀態移轉。 在移轉完成之前會�
 
     以下是有關用於 AzCopy 命令中之參數的描述：
 
-   * **/Source: *&lt;source&gt;：***包含 VHD 的資料夾或儲存體容器 URL 的位置。
-   * **/SourceKey: *&lt;source-account-key&gt;：*\**來源儲存體帳戶的儲存體帳戶金鑰。
-   * **/Dest: *&lt;destination&gt;：*\**要複製 VHD 的目的地儲存體容器 URL。
-   * **/DestKey: *&lt;dest-account-key&gt;：*\**目的地儲存體帳戶的儲存體帳戶金鑰。
-   * **/Pattern: *&lt;file-name&gt;：***指定要複製 VHD 的目標檔案名稱。
+   * **/Source: *&lt;source&gt;：*** 包含 VHD 的資料夾或儲存體容器 URL 的位置。
+   * **/SourceKey: *&lt;source-account-key&gt;：* \**來源儲存體帳戶的儲存體帳戶金鑰。
+   * **/Dest: *&lt;destination&gt;：* \**要複製 VHD 的目的地儲存體容器 URL。
+   * **/DestKey: *&lt;dest-account-key&gt;：* \**目的地儲存體帳戶的儲存體帳戶金鑰。
+   * **/Pattern: *&lt;file-name&gt;：*** 指定要複製 VHD 的目標檔案名稱。
 
 如需使用 AzCopy 工具的詳細資訊，請參閱 [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)》\。
 
@@ -278,12 +273,12 @@ Add-AzureVhd [-Destination] <Uri> [-LocalFilePath] <FileInfo>
 
     以下是有關用於 AzCopy 命令中之參數的描述：
 
-   * **/Source: *&lt;source&gt;：***包含 VHD 的資料夾或儲存體容器 URL 的位置。
-   * **/SourceKey: *&lt;source-account-key&gt;：*\**來源儲存體帳戶的儲存體帳戶金鑰。
-   * **/Dest: *&lt;destination&gt;：*\**要複製 VHD 的目的地儲存體容器 URL。
-   * **/DestKey: *&lt;dest-account-key&gt;：*\**目的地儲存體帳戶的儲存體帳戶金鑰。
+   * **/Source: *&lt;source&gt;：*** 包含 VHD 的資料夾或儲存體容器 URL 的位置。
+   * **/SourceKey: *&lt;source-account-key&gt;：* \**來源儲存體帳戶的儲存體帳戶金鑰。
+   * **/Dest: *&lt;destination&gt;：* \**要複製 VHD 的目的地儲存體容器 URL。
+   * **/DestKey: *&lt;dest-account-key&gt;：* \**目的地儲存體帳戶的儲存體帳戶金鑰。
    * **/BlobType: page:** 將目的地指定為分頁 Blob。
-   * **/Pattern: *&lt;file-name&gt;：*\**指定要複製 VHD 的目標檔案名稱。
+   * **/Pattern: *&lt;file-name&gt;：* \**指定要複製 VHD 的目標檔案名稱。
 
 如需使用 AzCopy 工具的詳細資訊，請參閱 [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)》\。
 

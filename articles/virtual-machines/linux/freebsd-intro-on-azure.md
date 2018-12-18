@@ -1,11 +1,11 @@
 ---
-title: "Azure 上的 FreeBSD 簡介 | Microsoft Docs"
-description: "了解如何使用 Azure 上的 FreeBSD 虛擬機器"
+title: Azure 上的 FreeBSD 簡介 | Microsoft Docs
+description: 了解如何使用 Azure 上的 FreeBSD 虛擬機器
 services: virtual-machines-linux
-documentationcenter: 
+documentationcenter: ''
 author: thomas1206
-manager: timlt
-editor: 
+manager: jeconnoc
+editor: ''
 tags: azure-resource-manager
 ms.assetid: 32b87a5f-d024-4da0-8bf0-77e233d1422b
 ms.service: virtual-machines-linux
@@ -15,14 +15,15 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 09/13/2017
 ms.author: huishao
-ms.openlocfilehash: e47a00a8375659f9112da57f9e7a4747f10f8f16
-ms.sourcegitcommit: be9a42d7b321304d9a33786ed8e2b9b972a5977e
+ms.openlocfilehash: 0eab96d85aa9cc8bea8d30c5a36c8489b8ea652e
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/19/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46974165"
 ---
 # <a name="introduction-to-freebsd-on-azure"></a>Azure 上的 FreeBSD 簡介
-本主題提供在 Azure 中執行 FreeBSD 虛擬機器的概觀。
+本文提供在 Azure 中執行 FreeBSD 虛擬機器的概觀。
 
 ## <a name="overview"></a>概觀
 適用於 Microsoft Azure 的 FreeBSD 是一套先進的電腦作業系統，可用來為新式伺服器、桌上型電腦及內嵌平台提供技術支援。
@@ -30,7 +31,7 @@ ms.lasthandoff: 01/19/2018
 Microsoft Corporation 目前在 Azure 上提供已預先設定 [Azure VM 客體代理程式](https://github.com/Azure/WALinuxAgent/)的 FreeBSD 映像。 目前，Microsoft 以映像形式提供下列 FreeBSD 版本：
 
 - FreeBSD 10.3-RELEASE
-- FreeBSD 11.0-RELEASE
+- FreeBSD 10.4-RELEASE
 - FreeBSD 11.1-RELEASE
 
 此代理程式會負責 FreeBSD VM 與 Azure 網狀架構之間作業的通訊，例如在第一次使用 VM 時佈建 VM (使用者名稱、密碼或 SSH 金鑰、主機名稱等)，以及啟用選擇性 VM 延伸模組的功能。
@@ -40,12 +41,12 @@ Microsoft Corporation 目前在 Azure 上提供已預先設定 [Azure VM 客體�
 ## <a name="deploying-a-freebsd-virtual-machine"></a>部署 FreeBSD 虛擬機器
 使用來自 Azure Marketplace 的映像從 Azure 入口網站部署 FreeBSD 虛擬機器相當簡單：
 
-- [Azure Marketplace 上的 FreeBSD 10.3](https://azure.microsoft.com/marketplace/partners/microsoft/freebsd103/)
-- [Azure Marketplace 上的 FreeBSD 11.0](https://azure.microsoft.com/marketplace/partners/microsoft/freebsd110/)
+- [Azure Marketplace 上的 FreeBSD 10.3](https://azure.microsoft.com/marketplace/partners/microsoft/freebsd103)
+- [Azure Marketplace 上的 FreeBSD 10.4](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/Microsoft.FreeBSD104)
 - [Azure Marketplace 上的 FreeBSD 11.1](https://azuremarketplace.microsoft.com/marketplace/apps/Microsoft.FreeBSD111)
 
-### <a name="create-a-freebsd-vm-through-azure-cli-20-on-freebsd"></a>透過 Azure CLI 2.0 在 FreeBSD 上建立 FreeBSD VM
-首先，您必須透過下列命令在 FreeBSD 電腦上安裝 [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli)。
+### <a name="create-a-freebsd-vm-through-azure-cli-on-freebsd"></a>透過 Azure CLI 在 FreeBSD 上建立 FreeBSD VM
+首先，您必須透過下列命令在 FreeBSD 電腦上安裝 [Azure CLI](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli)。
 
 ```bash 
 curl -L https://aka.ms/InstallAzureCli | bash
@@ -86,11 +87,11 @@ az vm create --name myFreeBSD11 \
 ssh azureuser@xx.xx.xx.xx -i /etc/ssh/ssh_host_rsa_key
 ```   
 
-## <a name="vm-extensions-for-freebsd"></a>適用於 FreeBSD 的 VM 擴充功能
-以下為 FreeBSD VM 中支援的 VM 擴充功能。
+## <a name="vm-extensions-for-freebsd"></a>適用於 FreeBSD 的 VM 延伸模組
+以下為 FreeBSD VM 中支援的 VM 延伸模組。
 
 ### <a name="vmaccess"></a>VMAccess
-[VMAccess](https://github.com/Azure/azure-linux-extensions/tree/master/VMAccess) 擴充功能可以：
+[VMAccess](https://github.com/Azure/azure-linux-extensions/tree/master/VMAccess) 延伸模組可以：
 
 * 重設原始 sudo 使用者的密碼。
 * 建立新的 sudo 使用者並指定密碼。
@@ -102,7 +103,7 @@ ssh azureuser@xx.xx.xx.xx -i /etc/ssh/ssh_host_rsa_key
 * 修復新增的磁碟。
 
 ### <a name="customscript"></a>CustomScript
-[CustomScript](https://github.com/Azure/azure-linux-extensions/tree/master/CustomScript) 擴充功能可以：
+[CustomScript](https://github.com/Azure/azure-linux-extensions/tree/master/CustomScript) 延伸模組可以：
 
 * 如果提供，可從 Azure 儲存體或外部公用儲存體 (例如 GitHub) 下載自訂的指令碼。
 * 執行進入點指令碼。
@@ -130,7 +131,7 @@ $ sudo <COMMAND>
 您可以視需要使用 `sudo -s` 來取得 root shell。
 
 ## <a name="known-issues"></a>已知問題
-[Azure VM 客體代理程式](https://github.com/Azure/WALinuxAgent/) 2.2.2 版有一個[已知問題] (https://github.com/Azure/WALinuxAgent/pull/517)，此問題會導致 Azure 上的 FreeBSD VM 佈建失敗。 [Azure VM 客體代理程式](https://github.com/Azure/WALinuxAgent/) 2.2.3 版和更新版本已包含這項修正。 
+[Azure VM 客體代理程式](https://github.com/Azure/WALinuxAgent/) 2.2.2 版有一個[已知問題] (https://github.com/Azure/WALinuxAgent/pull/517)，此問題會導致 Azure 上的 FreeBSD VM 佈建失敗。 [Azure VM 客體代理程式](https://github.com/Azure/WALinuxAgent/) 2.2.3 版和更新版本已包含此修正。 
 
 ## <a name="next-steps"></a>後續步驟
-* 前往 [Azure Marketplace](https://azure.microsoft.com/marketplace/partners/microsoft/freebsd110/) 以建立 FreeBSD VM。
+* 前往 [Azure Marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/Microsoft.FreeBSD111) 以建立 FreeBSD VM。

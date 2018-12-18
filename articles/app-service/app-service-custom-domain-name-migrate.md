@@ -1,8 +1,8 @@
 ---
-title: "將作用中的 DNS 名稱移轉至 Azure App Service | Microsoft Docs"
-description: "了解如何在完全不停機的情況下，將已指派給即時網站的自訂 DNS 網域名稱移轉至 Azure App Service。"
+title: 將作用中的 DNS 名稱移轉至 Azure App Service | Microsoft Docs
+description: 了解如何在完全不停機的情況下，將已指派給即時網站的自訂 DNS 網域名稱移轉至 Azure App Service。
 services: app-service
-documentationcenter: 
+documentationcenter: ''
 author: cephalin
 manager: erikre
 editor: jimbe
@@ -15,11 +15,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/28/2017
 ms.author: cephalin
-ms.openlocfilehash: cd04be2046a23901471cb7bd0da9e0ed2d514d0d
-ms.sourcegitcommit: 9ea2edae5dbb4a104322135bef957ba6e9aeecde
+ms.openlocfilehash: a5d031622103183fa9aa7a3f3771a055fc16edb2
+ms.sourcegitcommit: 7208bfe8878f83d5ec92e54e2f1222ffd41bf931
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/03/2018
+ms.lasthandoff: 07/14/2018
+ms.locfileid: "39049971"
 ---
 # <a name="migrate-an-active-dns-name-to-azure-app-service"></a>將作用中的 DNS 名稱移轉至 Azure App Service
 
@@ -29,7 +30,7 @@ ms.lasthandoff: 01/03/2018
 
 如果您不擔心 DNS 解析發生停機，請參閱[將現有的自訂 DNS 名稱對應至 Azure Web Apps](app-service-web-tutorial-custom-domain.md)。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 若要完成本操作說明：
 
@@ -54,7 +55,7 @@ ms.lasthandoff: 01/03/2018
 
 | DNS 記錄範例 | TXT 主機 | TXT 值 |
 | - | - | - |
-| @ (根網域) | _awverify_ | _&lt;應用程式名稱>.azurewebsites.net_ |
+| \@ (root) | _awverify_ | _&lt;應用程式名稱>.azurewebsites.net_ |
 | www (子網域) | _awverify.www_ | _&lt;應用程式名稱>.azurewebsites.net_ |
 | \* (萬用字元) | _awverify.\*_ | _&lt;應用程式名稱>.azurewebsites.net_ |
 

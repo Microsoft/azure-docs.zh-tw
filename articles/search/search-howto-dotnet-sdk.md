@@ -1,51 +1,55 @@
 ---
-title: "如何從 .NET 應用程式使用 Azure 搜尋服務 | Microsoft Docs"
-description: "如何從 .NET 應用程式使用 Azure 搜尋服務"
-services: search
-documentationcenter: 
+title: 如何從 .NET 應用程式使用 Azure 搜尋服務 | Microsoft Docs
+description: 如何從 .NET 應用程式使用 Azure 搜尋服務
 author: brjohnstmsft
 manager: jlembicz
-editor: 
-ms.assetid: 93653341-c05f-4cfd-be45-bb877f964fcb
+services: search
 ms.service: search
 ms.devlang: dotnet
-ms.workload: search
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.date: 05/22/2017
+ms.topic: conceptual
+ms.date: 04/20/2018
 ms.author: brjohnst
-ms.openlocfilehash: 7273ae6a698f2af52e78ea2aae9ca5cd80f6a2b1
-ms.sourcegitcommit: f8437edf5de144b40aed00af5c52a20e35d10ba1
+ms.openlocfilehash: 19913f9c30992e833e5435af7066611d4662ba56
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/03/2017
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39525632"
 ---
 # <a name="how-to-use-azure-search-from-a-net-application"></a>如何從 .NET 應用程式使用 Azure 搜尋服務
 本文會逐步指引您學會如何使用 [Azure 搜尋服務 .NET SDK](https://aka.ms/search-sdk)。 您可以透過 .NET SDK，利用 Azure 搜尋服務在應用程式中實作豐富的搜尋經驗。
 
 ## <a name="whats-in-the-azure-search-sdk"></a>Azure 搜尋服務 SDK 中有哪些內容
-SDK 包含用戶端程式庫 `Microsoft.Azure.Search`。 該程式庫可讓您管理索引、資料來源及索引子，以及更新和管理文件，還可以執行查詢，而且一律不需要處理 HTTP 和 JSON 的細節。
+SDK 包含數個用戶端程式庫，可讓您管理索引、資料來源、索引子及同義字地圖，以及上傳和管理文件，還可以執行查詢，而且一律不需要處理 HTTP 和 JSON 的細節。 這些用戶端程式庫都以 NuGet 套件來散發。
 
-用戶端程式庫會定義類別，例如 `Index`、`Field` 及 `Document`，以及定義作業，例如 `SearchServiceClient` 和 `SearchIndexClient` 類別上的 `Indexes.Create` 和 `Documents.Search`。 這些類別可編成以下命名空間：
+主要的 NuGet 套件是 `Microsoft.Azure.Search`，這是包含所有其他相依套件的中繼套件。 如果您剛開始使用，或知道應用程式將需要 Azure 搜尋服務的所有功能，則請使用此套件。
+
+SDK 中還有其他 NuGet 套件：
+ 
+  - `Microsoft.Azure.Search.Data`：如果您正在開發使用 Azure 搜尋服務的 .NET 應用程式，而且只需要查詢或更新索引中的文件，則請使用此套件。 如果您也需要建立或更新索引、同義字地圖或其他服務層級資源，請改用 `Microsoft.Azure.Search` 套件。
+  - `Microsoft.Azure.Search.Service`：如果您正在開發 .NET 自動化來管理 Azure 搜尋服務的索引、同義字地圖、索引子、資料來源或其他服務層級資源，請使用此套件。 如果您只需要查詢或更新索引中的文件，請改用 `Microsoft.Azure.Search.Data` 套件。 如果您需要 Azure 搜尋服務的所有功能，請改用 `Microsoft.Azure.Search` 套件。
+  - `Microsoft.Azure.Search.Common`：Azure 搜尋服務 .NET 程式庫所需的常用類型。 您不需要在應用程式中直接使用此套件；此套件乃是做為相依性之用。
+
+各種用戶端程式庫會定義類別，例如 `Index`、`Field` 及 `Document`，以及定義作業，例如 `SearchServiceClient` 和 `SearchIndexClient` 類別上的 `Indexes.Create` 和 `Documents.Search`。 這些類別可編成以下命名空間：
 
 * [Microsoft.Azure.Search](https://docs.microsoft.com/dotnet/api/microsoft.azure.search)
 * [Microsoft.Azure.Search.Models](https://docs.microsoft.com/dotnet/api/microsoft.azure.search.models)
 
 目前的 Azure 搜尋服務 .NET SDK 版本現在正式推出。 如果您想提供意見反應給我們，讓我們可以將您的意見併入下一個版本中，請瀏覽我們的 [意見回應頁面](https://feedback.azure.com/forums/263029-azure-search/)。
 
-.NET SDK 支援 `2016-09-01` 版的 [Azure 搜尋服務 REST API](https://docs.microsoft.com/rest/api/searchservice/)。 此版本現在包含自訂分析器支援及 Azure Blob 和 Azure 資料表索引子支援。 *不*屬於此版本的預覽功能 (例如 JSON 和 CSV 檔案編製索引支援) 處於[預覽](search-api-2016-09-01-preview.md)狀態，並可透過 [4.0.1-preview 版 .NET SDK](https://aka.ms/search-sdk-preview) 取得。
+.NET SDK 支援 `2017-11-11` 版的 [Azure 搜尋服務 REST API](https://docs.microsoft.com/rest/api/searchservice/)。 此版本現在支援同義字，以及索引子的累加增強功能。 不屬於此版本的預覽功能 (例如 JSON 陣列和 CSV 檔案編製索引的支援) 處於[預覽](search-api-2016-09-01-preview.md)狀態，並可透過 [4.0-preview 版 .NET SDK](https://aka.ms/search-sdk-preview) 取得。
 
 此 SDK 不支援[管理作業](https://docs.microsoft.com/rest/api/searchmanagement/)，例如建立及調整搜尋服務和管理 API 金鑰。 如果您需要從 .NET 應用程式管理搜尋資源，您可以使用 [Azure 搜尋服務 .NET 管理 SDK](https://aka.ms/search-mgmt-sdk)。
 
 ## <a name="upgrading-to-the-latest-version-of-the-sdk"></a>升級到最新版本的 SDK
-如果您已經在使用舊版的 Azure 搜尋服務 .NET SDK，而您想要升級至新的正式推出版本， [這篇文章](search-dotnet-sdk-migration.md) 會說明如何進行。
+如果您已經在使用舊版的 Azure 搜尋服務 .NET SDK，而您想要升級至新的正式推出版本， [這篇文章](search-dotnet-sdk-migration-version-5.md) 會說明如何進行。
 
 ## <a name="requirements-for-the-sdk"></a>SDK 的需求
 1. Visual Studio 2017。
 2. 擁有 Azure Search 服務。 為了使用 SDK，您需要為服務命名，還需要一或多個 API 金鑰。 [在入口網站建立服務](search-create-service-portal.md) 可協助您執行這些步驟。
-3. 使用 Visual Studio 中的 [管理 NuGet 封裝] 下載 Azure 搜尋服務 .NET SDK [NuGet 封裝](http://www.nuget.org/packages/Microsoft.Azure.Search) 。 只要在 NuGet.org 上搜尋封裝名稱 `Microsoft.Azure.Search` 即可。
+3. 使用 Visual Studio 中的 [管理 NuGet 封裝] 下載 Azure 搜尋服務 .NET SDK [NuGet 封裝](http://www.nuget.org/packages/Microsoft.Azure.Search) 。 只要在 NuGet.org 搜尋套件名稱 `Microsoft.Azure.Search` (或者，如果您只需要某個功能子集，則搜尋上述其中一個其他套件名稱)。
 
-Azure 搜尋服務 .NET SDK 支援以 .NET Framework 4.6 和 .NET Core 為目標的應用程式。
+Azure 搜尋服務 .NET SDK 支援以 .NET Framework 4.5.2 (含) 以上版本，以及 .NET Core 為目標的應用程式。
 
 ## <a name="core-scenarios"></a>核心案例
 您必須在搜尋應用程式中執行一些作業。 本教學課程中涵蓋了這些主要情節：
@@ -584,6 +588,5 @@ WriteDocuments(results);
 
 ## <a name="next-steps"></a>後續步驟
 * 瀏覽 [.NET SDK](https://docs.microsoft.com/dotnet/api/microsoft.azure.search) 及 [REST API](https://docs.microsoft.com/rest/api/searchservice/) 參考文章。
-* 使用 [影片與其他範例和教學課程](search-video-demo-tutorial-list.md)加深知識。
 * 檢閱 [命名規則](https://docs.microsoft.com/rest/api/searchservice/Naming-rules) ，了解命名各種物件的規則。
 * 檢閱 Azure 搜尋服務 [支援的資料類型](https://docs.microsoft.com/rest/api/searchservice/Supported-data-types) 。

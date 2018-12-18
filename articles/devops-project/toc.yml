@@ -1,0 +1,47 @@
+- name: Azure DevOps Projects 文件
+  href: index.yml
+- name: 概觀
+  items:
+    - name: Azure DevOps 專案是什麼？
+      href: overview.md
+- name: 快速入門
+  expanded: true
+  items:
+    - name: .NET
+      href: /azure/devops-project/azure-devops-project-aspnet-core
+      maintainContext: true
+    - name: Node.js
+      href: /azure/devops-project/azure-devops-project-nodejs
+      maintainContext: true
+    - name: Java
+      href: /azure/devops-project/azure-devops-project-java
+      maintainContext: true
+    - name: Python
+      href: /azure/devops-project/azure-devops-project-python
+      maintainContext: true
+    - name: PHP
+      href: /azure/devops-project/azure-devops-project-php
+      maintainContext: true
+    - name: Ruby
+      href: /azure/devops-project/azure-devops-project-ruby
+      maintainContext: true
+    - name: Go
+      href: /azure/devops-project/azure-devops-project-go
+      maintainContext: true
+- name: 教學課程
+  items:
+    - name: 1 - GitHub 和 DevOps 專案
+      href: azure-devops-project-github.md
+      maintainContext: true
+    - name: 2 - 部署到虛擬機器
+      href: azure-devops-project-vms.md
+      maintainContext: true
+    - name: 3 - 部署到 Azure SQL DataBase
+      href: azure-devops-project-sql-database.md
+      maintainContext: true
+    - name: 4 - 部署到 AKS
+      href: azure-devops-project-aks.md
+      maintainContext: true
+    - name: 5 - 部署到 Azure Service Fabric
+      href: azure-devops-project-service-fabric.md
+      maintainContext: true

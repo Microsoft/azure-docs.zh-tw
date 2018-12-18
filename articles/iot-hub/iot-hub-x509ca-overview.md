@@ -1,24 +1,19 @@
 ---
-title: "Azure IoT 中樞 X.509 CA 安全性概觀 | Microsoft Docs"
-description: "概觀 - 如何使用 X.509 憑證授權單位向 IoT 中樞進行裝置驗證。"
-services: iot-hub
-documentationcenter: .net
+title: Azure IoT 中樞 X.509 CA 安全性概觀 | Microsoft Docs
+description: 概觀 - 如何使用 X.509 憑證授權單位向 IoT 中樞進行裝置驗證。
 author: eustacea
 manager: arjmands
-editor: 
-ms.assetid: 
 ms.service: iot-hub
-ms.devlang: multiple
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: na
+services: iot-hub
+ms.topic: conceptual
 ms.date: 09/18/2017
 ms.author: eustacea
-ms.openlocfilehash: 7497753cc27867b1fdb9635ba6613ac75b449090
-ms.sourcegitcommit: b07d06ea51a20e32fdc61980667e801cb5db7333
+ms.openlocfilehash: 6a9b4fc5479dda58dd024cdf93cbdf4853f9c965
+ms.sourcegitcommit: f057c10ae4f26a768e97f2cb3f3faca9ed23ff1b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2017
+ms.lasthandoff: 08/17/2018
+ms.locfileid: "42140680"
 ---
 # <a name="device-authentication-using-x509-ca-certificates"></a>使用 X.509 CA 憑證進行裝置驗證
 
@@ -35,7 +30,7 @@ X.509 CA 功能可讓您使用「憑證授權單位」(CA) 向「IoT 中樞」�
 
 ## <a name="prerequisite"></a>必要條件
 
-若要使用 X.509 CA 功能，您必須擁有「IoT 中樞」帳戶。  如果您還沒有該帳戶，請[了解如何建立 IoT 中樞執行個體](iot-hub-csharp-csharp-getstarted.md)。
+若要使用 X.509 CA 功能，您必須擁有「IoT 中樞」帳戶。  如果您還沒有該帳戶，請[了解如何建立 IoT 中樞執行個體](quickstart-send-telemetry-dotnet.md)。
 
 ## <a name="how-to-get-an-x509-ca-certificate"></a>如何取得 X.509 CA 憑證
 
@@ -47,7 +42,7 @@ X.509 CA 憑證位於您每個裝置的憑證鏈結頂端。  您可以購買或
 
 不論您如何取得 X.509 CA 憑證，請務必在任何時候都將其對應的私密金鑰妥善保密及保護。  這對於在 X.509 CA 驗證中建立信任來說是必要的。 
 
-了解如何[建立自我簽署的 CA 憑證](iot-hub-security-x509-create-certificates.md#createcerts)，您可以使用此憑證在這整個功能描述中進行測試。
+了解如何[建立自我簽署的 CA 憑證](https://github.com/Azure/azure-iot-sdk-c/blob/master/tools/CACertificates/CACertificateOverview.md)，您可以使用此憑證在這整個功能描述中進行測試。
 
 ## <a name="sign-devices-into-the-certificate-chain-of-trust"></a>將裝置簽署至憑證信任鏈結中
 
@@ -55,7 +50,7 @@ X.509 CA 憑證的擁有者可以透過密碼編譯方式簽署中繼 CA，此 C
 
 ![img-generic-cert-chain-of-trust](./media/generic-cert-chain-of-trust.png)
 
-了解如何[建立憑證鏈結](iot-hub-security-x509-create-certificates.md#createcertchain) (會在簽署裝置時完成)。
+了解如何[建立憑證鏈結](https://github.com/Azure/azure-iot-sdk-c/blob/master/tools/CACertificates/CACertificateOverview.md) (會在簽署裝置時完成)。
 
 ## <a name="how-to-register-the-x509-ca-certificate-to-iot-hub"></a>如何向 IoT 中樞註冊 X.509 CA 憑證
 
@@ -69,7 +64,7 @@ X.509 CA 憑證的擁有者可以透過密碼編譯方式簽署中繼 CA，此 C
 
 ## <a name="how-to-create-a-device-on-iot-hub"></a>如何在 IoT 中樞上建立裝置
 
-為了杜絕裝置模擬，「IoT 中樞」會要求您讓它知道所要預期的裝置。  您可以在「IoT 中樞」的裝置登錄中建立裝置項目，來達到此目的。  當使用「IoT 中樞」[裝置佈建服務](https://azure.microsoft.com/en-us/blog/azure-iot-hub-device-provisioning-service-preview-automates-device-connection-configuration/) (DPS) 時，會自動執行此程序。 
+為了杜絕裝置模擬，「IoT 中樞」會要求您讓它知道所要預期的裝置。  您可以在「IoT 中樞」的裝置登錄中建立裝置項目，來達到此目的。  當使用「IoT 中樞」[裝置佈建服務](https://azure.microsoft.com/blog/azure-iot-hub-device-provisioning-service-preview-automates-device-connection-configuration/)時，會自動執行此程序。 
 
 請從這裡了解如何[在 IoT 中樞中手動建立裝置](iot-hub-security-x509-get-started.md#createdevice)。
 

@@ -1,12 +1,12 @@
 ---
-title: "修改 StorSimple 8000 系列裝置組態 | Microsoft Docs"
-description: "描述如何使用 StorSimple 裝置管理員服務來重新設定已部署的 StorSimple 裝置。"
+title: 修改 StorSimple 8000 系列裝置組態 | Microsoft Docs
+description: 描述如何使用 StorSimple 裝置管理員服務來重新設定已部署的 StorSimple 裝置。
 services: storsimple
 documentationcenter: NA
 author: alkohli
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: NA
 ms.topic: article
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23108756"
 ---
 # <a name="use-the-storsimple-device-manager-service-to-modify-your-storsimple-device-configuration"></a>使用 StorSimple 裝置管理員服務來修改 StorSimple 裝置組態
 

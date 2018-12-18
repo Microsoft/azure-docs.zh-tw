@@ -1,25 +1,21 @@
 ---
 title: 為 Azure 搜尋服務的 Azure Cosmos DB 資料來源編製索引 | Microsoft Docs
 description: 本文說明如何以 Azure Cosmos DB 資料來源建立 Azure 搜尋服務索引子。
-services: search
-documentationcenter: ''
 author: chaosrealm
-manager: pablocas
-editor: ''
-ms.assetid: ''
+manager: jlembicz
+services: search
 ms.service: search
 ms.devlang: rest-api
-ms.topic: article
-ms.tgt_pltfrm: NA
-ms.workload: search
-ms.date: 03/23/2018
+ms.topic: conceptual
+ms.date: 05/29/2018
 ms.author: eugenesh
 robot: noindex
-ms.openlocfilehash: 165402f5147224cd355f0ae14642069a3de58f19
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: 8206c076f9e89753adb16854a7d981c0f80c4a3a
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34640331"
 ---
 # <a name="connecting-cosmos-db-with-azure-search-using-indexers"></a>使用索引子連接 Cosmos DB 與 Azure 搜尋服務
 
@@ -76,9 +72,9 @@ ms.lasthandoff: 03/28/2018
 
 <a name="CreateDataSource"></a>
 ## <a name="step-1-create-a-data-source"></a>步驟 1：建立資料來源
-若要建立資料來源，請執行 POST：
+若要建立資料來源，執行：
 
-    POST https://[service name].search.windows.net/datasources?api-version=2016-09-01
+    POST https://[service name].search.windows.net/datasources?api-version=2017-11-11
     Content-Type: application/json
     api-key: [Search service admin key]
 
@@ -97,17 +93,17 @@ ms.lasthandoff: 03/28/2018
 
 要求的主體包含資料來源定義，其中應包含下列欄位：
 
-* **name**：選擇任何名稱，以代表您的資料庫。
+* **名稱**：選擇任何名稱，以代表您的資料庫。
 * **type**：必須是 `documentdb`。
-* **credentials**：
+* **認證**：
   
-  * **connectionString**：必要。 以下列格式指定 Azure Cosmos DB 資料庫的連接資訊：`AccountEndpoint=<Cosmos DB endpoint url>;AccountKey=<Cosmos DB auth key>;Database=<Cosmos DB database id>` 針對 MongoDB 集合，將 **ApiKind=MongoDB** 新增至連接字串：`AccountEndpoint=<Cosmos DB endpoint url>;AccountKey=<Cosmos DB auth key>;Database=<Cosmos DB database id>;ApiKind=MongoDB` 
-* **container**：
+  * **connectionString**：必要。 請以下列格式指定 Azure Cosmos DB 資料庫的連線資訊：`AccountEndpoint=<Cosmos DB endpoint url>;AccountKey=<Cosmos DB auth key>;Database=<Cosmos DB database id>` 針對 MongoDB 集合，將 **ApiKind=MongoDb** 新增至連接字串：`AccountEndpoint=<Cosmos DB endpoint url>;AccountKey=<Cosmos DB auth key>;Database=<Cosmos DB database id>;ApiKind=MongoDb` 
+* **容器**：
   
-  * **name**：必要。 指定要編製索引的資料收集識別碼。
-  * **query**：選擇性。 您可以指定查詢將任意 JSON 文件簡維成 Azure 搜尋服務可以編製索引的一般結構描述。 針對 MongoDB 集合，不支援查詢。 
-* **dataChangeDetectionPolicy**：建議使用。 請參閱[針對已變更的文件編製索引](#DataChangeDetectionPolicy)小節。
-* **dataDeletionDetectionPolicy**：選擇性。 請參閱[針對已刪除的文件編製索引](#DataDeletionDetectionPolicy)小節。
+  * **名稱**：必要。 指定要編製索引的資料收集識別碼。
+  * **查詢**：選擇性。 您可以指定查詢將任意 JSON 文件簡維成 Azure 搜尋服務可以編製索引的一般結構描述。 針對 MongoDB 集合，不支援查詢。 
+* **dataChangeDetectionPolicy**：建議使用。 請參閱[索引變更的文件](#DataChangeDetectionPolicy)小節。
+* **dataDeletionDetectionPolicy**：選擇性。 請參閱[索引刪除的文件](#DataDeletionDetectionPolicy)小節。
 
 ### <a name="using-queries-to-shape-indexed-data"></a>使用查詢來形塑索引的資料
 您可以指定 SQL 查詢來壓平合併巢狀屬性或陣列、投影 JSON 屬性，以及篩選要編製索引的資料。 
@@ -151,7 +147,7 @@ ms.lasthandoff: 03/28/2018
 
 下列範例會建立包含識別碼和描述欄位的索引：
 
-    POST https://[service name].search.windows.net/indexes?api-version=2016-09-01
+    POST https://[service name].search.windows.net/indexes?api-version=2017-11-11
     Content-Type: application/json
     api-key: [Search service admin key]
 
@@ -197,7 +193,7 @@ ms.lasthandoff: 03/28/2018
 
 建立索引和資料來源之後，您就可以開始建立索引子︰
 
-    POST https://[service name].search.windows.net/indexers?api-version=2016-09-01
+    POST https://[service name].search.windows.net/indexers?api-version=2017-11-11
     Content-Type: application/json
     api-key: [admin key]
 
@@ -210,13 +206,13 @@ ms.lasthandoff: 03/28/2018
 
 這個索引子每隔兩小時就會執行一次 (已將排程間隔設為 "PT2H")。 若每隔 30 分鐘就要執行索引子，可將間隔設為 "PT30M"。 支援的最短間隔為 5 分鐘。 排程為選擇性 - 如果省略，索引子只會在建立時執行一次。 不過，您隨時都可依需求執行索引子。   
 
-如需建立索引子 API 的詳細資訊，請參閱[建立索引子](https://docs.microsoft.com/rest/api/searchservice/create-indexer)。
+如需建立索引子 API 的詳細資訊，請參閱 [建立索引子](https://docs.microsoft.com/rest/api/searchservice/create-indexer)。
 
 <a id="RunIndexer"></a>
 ### <a name="running-indexer-on-demand"></a>視需要執行索引子
 除了依照排程定期執行以外，您也可以視需要叫用索引子：
 
-    POST https://[service name].search.windows.net/indexers/[indexer name]/run?api-version=2016-09-01
+    POST https://[service name].search.windows.net/indexers/[indexer name]/run?api-version=2017-11-11
     api-key: [Search service admin key]
 
 > [!NOTE]
@@ -228,7 +224,7 @@ ms.lasthandoff: 03/28/2018
 ### <a name="getting-indexer-status"></a>取得索引子狀態
 您可以擷取索引子的狀態和執行歷程記錄：
 
-    GET https://[service name].search.windows.net/indexers/[indexer name]/status?api-version=2016-09-01
+    GET https://[service name].search.windows.net/indexers/[indexer name]/status?api-version=2017-11-11
     api-key: [Search service admin key]
 
 回應包含整體索引子的狀態、最後 (或進行中) 的索引子叫用，以及最新的索引子叫用歷程記錄。
@@ -276,7 +272,7 @@ ms.lasthandoff: 03/28/2018
 
 <a name="IncrementalProgress"></a>
 ### <a name="incremental-progress-and-custom-queries"></a>累加進度與自訂查詢
-建立索引期間，採累加進度能確保當索引子執行因暫時性失敗或執行時間限制而中斷，索引子仍能夠在下次執行時從中斷的部分繼續建立索引，而不需要重新建立整個集合的索引。 這在建立大型集合的索引時尤其重要。 
+建立索引期間，採累加進度能確保當索引子執行因暫時性失敗或執行時間限制而中斷時，索引子仍能夠在下次執行時從中斷處繼續建立索引，而不需要重新建立整個集合的索引。 這在建立大型集合的索引時尤其重要。 
 
 若要在使用自訂查詢時啟用累加進度，請確保您的查詢是依 `_ts` 欄排序查詢結果。 如此會啟用定期檢查點設置，出現失敗時，Azure 搜尋服務會以此提供累加進度來應對。   
 
@@ -290,7 +286,7 @@ ms.lasthandoff: 03/28/2018
 
 <a name="DataDeletionDetectionPolicy"></a>
 ## <a name="indexing-deleted-documents"></a>索引已刪除的文件
-從集合中刪除資料列時，通常也會想刪除搜尋索引內的那些資料列。 資料刪除偵測原則可用來有效識別刪除的資料項目。 目前，唯一支援的原則是  `Soft Delete` 原則 (刪除會標示為某種形式的旗標)，指定方式如下：
+從集合中刪除資料列時，通常也會想刪除搜尋索引內的那些資料列。 資料刪除偵測原則可用來有效識別刪除的資料項目。 目前，唯一支援的原則是「 `Soft Delete` 」原則 (刪除會標示為某種形式的旗標)，指定方式如下：
 
     {
         "@odata.type" : "#Microsoft.Azure.Search.SoftDeleteColumnDeletionDetectionPolicy",
@@ -302,7 +298,7 @@ ms.lasthandoff: 03/28/2018
 
 下列範例會建立包含虛刪除原則的資料來源：
 
-    POST https://[Search service name].search.windows.net/datasources?api-version=2016-09-01
+    POST https://[service name].search.windows.net/datasources?api-version=2017-11-11
     Content-Type: application/json
     api-key: [Search service admin key]
 

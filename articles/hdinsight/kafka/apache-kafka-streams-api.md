@@ -1,31 +1,46 @@
 ---
-title: "使用 Apache Kafka 串流 API - Azure HDInsight | Microsoft Docs"
-description: "了解如何搭配 HDInsight 上的 Kafka 使用 Apache Kafka 串流 API。 此 API 可讓您在 Kafka 主題之間執行串流處理。"
+title: '教學課程：使用 Apache Kafka 串流 API - Azure HDInsight '
+description: 了解如何搭配 HDInsight 上的 Kafka 使用 Apache Kafka 串流 API。 此 API 可讓您在 Kafka 主題之間執行串流處理。
 services: hdinsight
-documentationcenter: 
-author: Blackmist
-manager: cgronlun
-editor: cgronlun
-tags: azure-portal
 ms.service: hdinsight
+author: jasonwhowell
+ms.author: jasonh
+ms.reviewer: jasonh
 ms.custom: hdinsightactive
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
-ms.date: 01/19/2018
-ms.author: larryfr
-ms.openlocfilehash: be6ed6d4c0c3a5fa55166b84b128881d434c4ab2
-ms.sourcegitcommit: 059dae3d8a0e716adc95ad2296843a45745a415d
+ms.topic: tutorial
+ms.date: 04/17/2018
+ms.openlocfilehash: 0c1b45d7db53bd2eb7c9f058eb1c44c762886b80
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43049829"
 ---
-# <a name="apache-kafka-streams-api"></a>Apache Kafka 串流 API
+# <a name="tutorial-apache-kafka-streams-api"></a>教學課程：Apache Kafka 串流 API
 
-了解如何建立應用程式，該應用程式會使用 Kafka 串流 AP，並且與 HDInsight 上的 Kafka 搭配使用。
+了解如何建立應用程式，該應用程式會使用 Kafka 串流 AP，並且與 HDInsight 上的 Kafka 搭配使用。 
 
-當使用 Apache Kafka 時，串流處理通常會使用 Apache Spark 或 Storm 來完成。 Kafka 0.10.0 版 (在 HDInsight 3.5 和 3.6 中) 導入了 Kafka 串流 API。 此 API 可讓您使用在 Kafka 上執行的應用程式，轉換輸入和輸出主題之間的資料流。 在某些情況下，這可能是建立 Spark 或 Storm 串流解決方案的替代方案。 如需有關 Kafka 串流的詳細資訊，請參閱 Apache.org 上的[串流簡介](https://kafka.apache.org/10/documentation/streams/)文件。
+本教學課程中使用的應用程式是串流字數統計程式。 它會讀取 Kafka 主題中的文字資料、擷取個別文字，然後將文字和字數儲存到另一個 Kafka 主題中。
+
+> [!NOTE]
+> Kafka 串流處理通常會使用 Apache Spark 或 Storm 來完成。 Kafka 0.10.0 版 (在 HDInsight 3.5 和 3.6 中) 導入了 Kafka 串流 API。 此 API 可讓您轉換輸入和輸出主題之間的資料流。 在某些情況下，這可能是建立 Spark 或 Storm 串流解決方案的替代方案。 
+>
+> 如需有關 Kafka 串流的詳細資訊，請參閱 Apache.org 上的[串流簡介](https://kafka.apache.org/10/documentation/streams/)文件。
+
+在本教學課程中，您了解如何：
+
+> [!div class="checklist"]
+> * 設定開發環境
+> * 了解程式碼
+> * 建置並部署應用程式
+> * 設定 Kafka 主題
+> * 執行程式碼
+
+## <a name="prerequisites"></a>必要條件
+
+* HDInsight 3.6 叢集上的 Kafka。 若要深入了解如何在 HDInsight 叢集上建立 Kafka，請參閱[開始使用 HDInsight 上的 Kafka](apache-kafka-get-started.md) 文件。
+
+* 完成 [Kafka Consumer 和 Producer API](apache-kafka-producer-consumer-api.md) 文件中的步驟。 此文件中的步驟會在本教學課程中建立的範例應用程式和主題。
 
 ## <a name="set-up-your-development-environment"></a>設定開發環境
 
@@ -37,13 +52,93 @@ ms.lasthandoff: 02/09/2018
 
 * SSH 用戶端和 `scp` 命令。 如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](../hdinsight-hadoop-linux-use-ssh-unix.md) 文件。
 
-## <a name="set-up-your-deployment-environment"></a>設定您的部署環境
+## <a name="understand-the-code"></a>了解程式碼
 
-這個範例需要 HDInsight 3.6 上的 Kafka。 若要深入了解如何在 HDInsight 叢集上建立 Kafka，請參閱[開始使用 HDInsight 上的 Kafka](apache-kafka-get-started.md) 文件。
+範例應用程式位於 [https://github.com/Azure-Samples/hdinsight-kafka-java-get-started](https://github.com/Azure-Samples/hdinsight-kafka-java-get-started) 的 `Streaming` 子目錄中。 該應用程式包含兩個檔案：
+
+* `pom.xml`：此檔案會定義專案相依性、Java 版本和封裝方法。
+* `Stream.java`：此檔案會實作串流邏輯。
+
+### <a name="pomxml"></a>Pom.xml
+
+在 `pom.xml` 檔案中務必要了解的事項包括：
+
+* 相依性：此專案依存於 `kafka-clients` 套件所提供的 Kafka 串流 API。 下列 XML 程式碼會定義此相依性：
+
+    ```xml
+    <!-- Kafka client for producer/consumer operations -->
+    <dependency>
+      <groupId>org.apache.kafka</groupId>
+      <artifactId>kafka-clients</artifactId>
+      <version>${kafka.version}</version>
+    </dependency>
+    ```
+
+    > [!NOTE]
+    > `${kafka.version}` 項目會在 `pom.xml` 的 `<properties>..</properties>` 區段中進行宣告，並設定為 HDInsight 叢集的 Kafka 版本。
+
+* 外掛程式：Maven 外掛程式可提供多種功能。 在此專案中，會使用下列外掛程式：
+
+    * `maven-compiler-plugin`：用來將專案所使用的 Java 版本設為 8。 HDInsight 3.6 需要 Java 8。
+    * `maven-shade-plugin`：用來產生包含此應用程式以及任何相依性的 uber jar。 它也可用來設定應用程式的進入點，如此您即可直接執行 Jar 檔案，而不需要指定主要類別。
+
+### <a name="streamjava"></a>Stream.java
+
+`Stream.java` 檔案會使用串流 API 來實作字數統計應用程式。 它會從名為 `test` 的 Kafka 主題中讀取資料，並將字數統計寫入名為 `wordcounts` 的主題中。
+
+下列程式碼會定義字數統計應用程式：
+
+```java
+package com.microsoft.example;
+
+import org.apache.kafka.common.serialization.Serde;
+import org.apache.kafka.common.serialization.Serdes;
+import org.apache.kafka.streams.KafkaStreams;
+import org.apache.kafka.streams.KeyValue;
+import org.apache.kafka.streams.StreamsConfig;
+import org.apache.kafka.streams.kstream.KStream;
+import org.apache.kafka.streams.kstream.KStreamBuilder;
+
+import java.util.Arrays;
+import java.util.Properties;
+
+public class Stream
+{
+    public static void main( String[] args ) {
+        Properties streamsConfig = new Properties();
+        // The name must be unique on the Kafka cluster
+        streamsConfig.put(StreamsConfig.APPLICATION_ID_CONFIG, "wordcount-example");
+        // Brokers
+        streamsConfig.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, args[0]);
+        // SerDes for key and values
+        streamsConfig.put(StreamsConfig.KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
+        streamsConfig.put(StreamsConfig.VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
+
+        // Serdes for the word and count
+        Serde<String> stringSerde = Serdes.String();
+        Serde<Long> longSerde = Serdes.Long();
+
+        KStreamBuilder builder = new KStreamBuilder();
+        KStream<String, String> sentences = builder.stream(stringSerde, stringSerde, "test");
+        KStream<String, Long> wordCounts = sentences
+                .flatMapValues(value -> Arrays.asList(value.toLowerCase().split("\\W+")))
+                .map((key, word) -> new KeyValue<>(word, word))
+                .countByKey("Counts")
+                .toStream();
+        wordCounts.to(stringSerde, longSerde, "wordcounts");
+
+        KafkaStreams streams = new KafkaStreams(builder, streamsConfig);
+        streams.start();
+
+        Runtime.getRuntime().addShutdownHook(new Thread(streams::close));
+    }
+}
+```
+
 
 ## <a name="build-and-deploy-the-example"></a>建置並部署範例
 
-使用下列步驟以建置專案，並將其部署至 HDInsight 叢集上的 Kafka。
+若要建置專案，並將其部署至 HDInsight 叢集上的 Kafka，請使用下列步驟：
 
 1. 從 [https://github.com/Azure-Samples/hdinsight-kafka-java-get-started](https://github.com/Azure-Samples/hdinsight-kafka-java-get-started) 下載範例。
 
@@ -53,77 +148,92 @@ ms.lasthandoff: 02/09/2018
     mvn clean package
     ```
 
-    此命令會建立名為 `target` 的目錄，其中包含名為 `kafka-streaming-1.0-SNAPSHOT.jar` 的檔案。
+    此命令會在 `target/kafka-streaming-1.0-SNAPSHOT.jar` 上建立套件。
 
 3. 使用下列命令將 `kafka-streaming-1.0-SNAPSHOT.jar` 檔案複製到 HDInsight 叢集：
    
     ```bash
-    scp ./target/kafka-streaming-1.0-SNAPSHOT.jar SSHUSER@CLUSTERNAME-ssh.azurehdinsight.net:kafka-streaming.jar
+    scp ./target/kafka-streaming-1.0-SNAPSHOT.jar sshuser@clustername-ssh.azurehdinsight.net:kafka-streaming.jar
     ```
    
-    以叢集的 SSH 使用者取代 **USERNAME**，並以叢集的名稱取代 **CLUSTERNAME**。 出現提示時，請輸入 SSH 使用者帳戶的密碼。 如需搭配 HDInsight 使用 `scp` 的詳細資訊，請參閱[搭配 HDInsight 使用 SSH](../hdinsight-hadoop-linux-use-ssh-unix.md)。
+    將 `sshuser` 取代為叢集的 SSH 使用者，並將 `clustername` 取代為叢集的名稱。 出現提示時，請輸入 SSH 使用者帳戶的密碼。 如需搭配 HDInsight 使用 `scp` 的詳細資訊，請參閱[搭配 HDInsight 使用 SSH](../hdinsight-hadoop-linux-use-ssh-unix.md)。
 
-## <a name="run-the-example"></a>執行範例
+## <a name="create-kafka-topics"></a>建立 Kafka 主題
 
 1. 若要開啟與叢集的 SSH 連線，使用下列命令：
 
     ```bash
-    ssh SSHUSER@CLUSTERNAME-ssh.azurehdinsight.net
+    ssh sshuser@clustername-ssh.azurehdinsight.net
     ```
 
-    以叢集的 SSH 使用者取代 **USERNAME**，並以叢集的名稱取代 **CLUSTERNAME**。 出現提示時，請輸入 SSH 使用者帳戶的密碼。 如需搭配 HDInsight 使用 `scp` 的詳細資訊，請參閱[搭配 HDInsight 使用 SSH](../hdinsight-hadoop-linux-use-ssh-unix.md)。
+    將 `sshuser` 取代為叢集的 SSH 使用者，並將 `clustername` 取代為叢集的名稱。 出現提示時，請輸入 SSH 使用者帳戶的密碼。 如需搭配 HDInsight 使用 `scp` 的詳細資訊，請參閱[搭配 HDInsight 使用 SSH](../hdinsight-hadoop-linux-use-ssh-unix.md)。
 
-4. 若要建立本範例所使用的 Kafka 主題，請使用下列命令：
+2. 將叢集名稱儲存到變數，並安裝 JSON 剖析公用程式 (`jq`)，請使用下列命令。 出現提示時，請輸入 Kafka 叢集名稱：
 
     ```bash
     sudo apt -y install jq
+    read -p 'Enter your Kafka cluster name:' CLUSTERNAME
+    ```
 
-    CLUSTERNAME='your cluster name'
+3. 若要取得 Kafka 代理程式主機和 Zookeeper 主機，請使用下列命令。 出現提示時，輸入叢集登入 (admin) 帳戶的密碼。 系統會提示您輸入密碼兩次。
 
-    export KAFKAZKHOSTS=`curl -sS -u admin -G https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/services/ZOOKEEPER/components/ZOOKEEPER_SERVER | jq -r '["\(.host_components[].HostRoles.host_name):2181"] | join(",")' | cut -d',' -f1,2`
+    ```bash
+    export KAFKAZKHOSTS=`curl -sS -u admin -G https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/services/ZOOKEEPER/components/ZOOKEEPER_SERVER | jq -r '["\(.host_components[].HostRoles.host_name):2181"] | join(",")' | cut -d',' -f1,2`; \
+    export KAFKABROKERS=`curl -sS -u admin -G https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/services/KAFKA/components/KAFKA_BROKER | jq -r '["\(.host_components[].HostRoles.host_name):9092"] | join(",")' | cut -d',' -f1,2`; \
+    ```
 
-    export KAFKABROKERS=`curl -sS -u admin -G https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/services/KAFKA/components/KAFKA_BROKER | jq -r '["\(.host_components[].HostRoles.host_name):9092"] | join(",")' | cut -d',' -f1,2`
+4. 若要建立串流作業所使用的主題，請使用下列命令：
 
+    > [!NOTE]
+    > 您可能會收到指出 `test` 主題已存在的錯誤。 這是正常的，因為該主題可能已在「Producer 和 Consumer API」教學課程中建立。
+
+    ```bash
     /usr/hdp/current/kafka-broker/bin/kafka-topics.sh --create --replication-factor 3 --partitions 8 --topic test --zookeeper $KAFKAZKHOSTS
 
     /usr/hdp/current/kafka-broker/bin/kafka-topics.sh --create --replication-factor 3 --partitions 8 --topic wordcounts --zookeeper $KAFKAZKHOSTS
+
+    /usr/hdp/current/kafka-broker/bin/kafka-topics.sh --create --replication-factor 3 --partitions 8 --topic RekeyedIntermediateTopic --zookeeper $KAFKAZKHOSTS
+
+    /usr/hdp/current/kafka-broker/bin/kafka-topics.sh --create --replication-factor 3 --partitions 8 --topic wordcount-example-Counts-changelog --zookeeper $KAFKAZKHOSTS
     ```
 
-    以您 HDInsight 叢集的名稱取代 __您的叢集名稱__。 出現提示時，輸入 HDInsight 叢集登入帳戶的密碼。
+    這些主題的用途如下：
+
+    * `test`：此主題是接收記錄之處。 串流應用程式會從中進行讀取。
+    * `wordcounts`：此主題是串流應用程式儲存其輸出之處。
+    * `RekeyedIntermediateTopic`：此主題可在 `countByKey` 運算子更新計數時用來重新分割資料。
+    * `wordcount-example-Counts-changelog`：此主題是 `countByKey` 作業所使用的狀態存放區
+
+    > [!IMPORTANT]
+    > HDInsight 上的 Kafka 也可設定為自動建立主題。 如需詳細資訊，請參閱[設定自動建立主題功能](apache-kafka-auto-create-topics.md)文件。
+
+## <a name="run-the-code"></a>執行程式碼
+
+1. 若要以背景程序的形式啟動串流應用程式，請使用下列命令：
+
+    ```bash
+    java -jar kafka-streaming.jar $KAFKABROKERS $KAFKAZKHOSTS &
+    ```
 
     > [!NOTE]
-    > 如果您的叢集登入與預設值 `admin` 不同，以您的叢集登入名稱取代上一個命令中的 `admin` 值。
+    > 您可能會收到關於 log4j 的警告。 您可以忽略此警告。
 
-5. 若要執行此範例，您必須執行三件事：
+2. 若要將記錄傳送至 `test` 主題，請使用下列命令啟動產生器應用程式：
 
-    * 啟動 `kafka-streaming.jar` 中包含的串流解決方案。
-    * 啟動會寫入 `test` 主題的產生者。
-    * 啟動取用者，讓您可以查看寫入至 `wordcounts` 主題的輸出
+    ```bash
+    java -jar kafka-producer-consumer.jar producer test $KAFKABROKERS
+    ```
+
+3. 產生器執行完成後，請使用下列命令檢視 `wordcounts` 主題中儲存的資訊：
+
+    ```bash
+    /usr/hdp/current/kafka-broker/bin/kafka-console-consumer.sh --bootstrap-server $KAFKABROKERS --topic wordcounts --formatter kafka.tools.DefaultMessageFormatter --property print.key=true --property key.deserializer=org.apache.kafka.common.serialization.StringDeserializer --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer --from-beginning
+    ```
 
     > [!NOTE]
-    > 您需要確認 Kafka 訊息代理程式設定檔中的 `auto.create.topics.enable` 屬性已設定為 `true`。 您可以使用 Ambari Web UI 在進階 Kafka 訊息代理程式設定檔中檢視和修改這個屬性。 否則，您需要在使用下列命令執行此範例之前，先手動建立中繼主題 `RekeyedIntermediateTopic`：
-    ```bash
-    /usr/hdp/current/kafka-broker/bin/kafka-topics.sh --create --replication-factor 3 --partitions 8 --topic RekeyedIntermediateTopic  --zookeeper $KAFKAZKHOSTS
-    ```
-    
-    您可以藉由開啟三個 SSH 工作階段來完成這些作業。 接著，您必須設定每個項目的 `$KAFKABROKERS` 和 `$KAFKAZKHOSTS`，方法是在每個 SSH 工作階段中執行此區段的步驟 4。 較簡單的解決方案是使用 `tmux` 公用程式，它可以將目前的 SSH 顯示分割成多個區段。 若要使用 `tmux` 來啟動串流、產生者和取用者，請使用下列命令：
+    > `--property` 參數會告知主控台取用者列印索引鍵 (字組) 和計數 (值)。 這個參數也會設定從 Kafka 讀取這些值時要使用的還原序列化。
 
-    ```bash
-    tmux new-session '/usr/hdp/current/kafka-broker/bin/kafka-console-consumer.sh --bootstrap-server $KAFKABROKERS --topic wordcounts --formatter kafka.tools.DefaultMessageFormatter --property print.key=true --property key.deserializer=org.apache.kafka.common.serialization.StringDeserializer --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer' \; split-window -h 'java -jar kafka-streaming.jar $KAFKABROKERS $KAFKAZKHOSTS' \; split-window -v '/usr/hdp/current/kafka-broker/bin/kafka-console-producer.sh --broker-list $KAFKABROKERS --topic test' \; attach
-    ```
-
-    此命令會將 SSH 顯示分割成三個區段：
-
-    * 左側區段會執行主控台取用者，它會從 `wordcounts` 主題讀取訊息：`/usr/hdp/current/kafka-broker/bin/kafka-console-consumer.sh --bootstrap-server $KAFKABROKERS --topic wordcounts --formatter kafka.tools.DefaultMessageFormatter --property print.key=true --property key.deserializer=org.apache.kafka.common.serialization.StringDeserializer --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer`
-
-        > [!NOTE]
-        > `--property` 參數會告知主控台取用者列印索引鍵 (字組) 和計數 (值)。 這個參數也會設定從 Kafka 讀取這些值時要使用的還原序列化。
-
-    * 右上方區段會執行串流 API 解決方案：`java -jar kafka-streaming.jar $KAFKABROKERS $KAFKAZKHOSTS`
-
-    * 右下方區段會執行主控台產生者，並等候您輸入訊息以傳送到 `test` 主題：`/usr/hdp/current/kafka-broker/bin/kafka-console-producer.sh --broker-list $KAFKABROKERS --topic test`
- 
-6. `tmux` 命令分割顯示之後，您的游標會在右下方區段。 開始輸入句子。 在每個句子後面，左窗格會更新以顯示唯一字組的計數。 輸出大致如下：
+    輸出大致如下：
    
         dwarfs  13635
         ago     13664
@@ -139,7 +249,7 @@ ms.lasthandoff: 02/09/2018
         jumped  13641
    
     > [!NOTE]
-    > 每次遇到一個單字，計數就會遞增。
+    > 參數 `--from-beginning` 會設定讓取用者從主題中儲存的記錄開頭處開始執行。 每遇到一個字，字數就會增加一個，因此主題中會包含每個字的多個項目，且計數會遞增。
 
 7. 使用 __Ctrl + C__ 來結束產生者。 繼續使用 __Ctrl + C__ 來結束應用程式和取用者。
 
@@ -149,9 +259,3 @@ ms.lasthandoff: 02/09/2018
 
 * [分析 Kafka 日誌](apache-kafka-log-analytics-operations-management.md)
 * [在Kafka 叢集之間複寫資料](apache-kafka-mirroring.md)
-* [採用 HDInsight 的 Kafka 產生者和取用者 API](apache-kafka-producer-consumer-api.md)
-* [搭配 HDInsight 上的 Kafka 使用 Apacha Spark 串流 (DStream)](../hdinsight-apache-spark-with-kafka.md)
-* [搭配 HDInsight 上的 Kafka 使用 Spark 結構化串流](../hdinsight-apache-kafka-spark-structured-streaming.md)
-* [使用 Apache Spark 結構化串流將資料從 HDInsight 上的 Kafka 移至 Cosmos DB](../apache-kafka-spark-structured-streaming-cosmosdb.md)
-* [使用 Apache Storm 搭配 HDInsight 上的 Kafka](../hdinsight-apache-storm-with-kafka.md)
-* [透過 Azure 虛擬網路連線到 Kafka](apache-kafka-connect-vpn-gateway.md)

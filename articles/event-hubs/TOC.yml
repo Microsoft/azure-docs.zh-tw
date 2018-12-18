@@ -1,0 +1,182 @@
+items:
+- name: 事件中樞文件
+  href: ./index.yml
+- name: 概觀
+  items:
+  - name: 何謂事件中樞？
+    href: event-hubs-about.md
+  - name: 適用於 Apache Kafka 的事件中樞 (預覽)
+    href: event-hubs-for-kafka-ecosystem-overview.md
+  - name: 事件中樞擷取
+    href: event-hubs-capture-overview.md
+- name: 快速入門
+  items:
+  - name: 建立事件中樞
+    items:
+    - name: Azure 入口網站
+      href: event-hubs-create.md
+    - name: Azure CLI
+      href: event-hubs-quickstart-cli.md
+    - name: Azure PowerShell
+      href: event-hubs-quickstart-powershell.md
+    - name: Azure Resource Manager 範本
+      href: event-hubs-resource-manager-namespace-event-hub.md
+  - name: 將事件傳送至事件中樞
+    items:
+    - name: .NET Standard
+      href: event-hubs-dotnet-standard-getstarted-send.md
+    - name: .NET Framework
+      href: event-hubs-dotnet-framework-getstarted-send.md
+    - name: Java
+      href: event-hubs-java-get-started-send.md
+    - name: C
+      href: event-hubs-c-getstarted-send.md
+    - name: Go
+      href: event-hubs-go-get-started-send.md
+    - name: Python
+      href: event-hubs-python-get-started-send.md
+    - name: Node.js
+      href: event-hubs-node-get-started-send.md
+  - name: 從事件中樞接收事件
+    items:
+    - name: .NET Standard
+      href: event-hubs-dotnet-standard-getstarted-receive-eph.md
+    - name: .NET Framework
+      href: event-hubs-dotnet-framework-getstarted-receive-eph.md
+    - name: Java
+      href: event-hubs-java-get-started-receive-eph.md
+    - name: Go
+      href: event-hubs-go-get-started-receive-eph.md
+    - name: Python
+      href: event-hubs-python-get-started-receive.md
+    - name: Node.js
+      href: event-hubs-node-get-started-receive.md
+    - name: Apache Storm
+      href: event-hubs-storm-getstarted-receive.md
+  - name: 串流至適用於 Apache Kafka 的事件中樞
+    href: event-hubs-quickstart-kafka-enabled-event-hubs.md
+  expanded: true
+- name: 教學課程
+  items:
+  - name: 在事件中樞資料流上將資料異常視覺化
+    href: event-hubs-tutorial-visualize-anomalies.md
+  - name: 將已擷取的資料儲存在 SQL 資料倉儲中
+    href: store-captured-data-data-warehouse.md
+  - name: 使用事件中樞將資料串流至 Azure Databricks
+    href: ../azure-databricks/databricks-stream-from-eventhubs.md
+    maintainContext: true
+  - name: 適用於 Apache Kafka 的事件中樞
+    items:
+    - name: 在已啟用 Apache Kafka 的事件中樞中鏡射 Kafka 訊息代理程式
+      href: event-hubs-kafka-mirror-maker-tutorial.md
+    - name: 將 Apache Flink 連線到已啟用 Apache Kafka 的事件中樞
+      href: event-hubs-kafka-flink-tutorial.md
+    - name: 將 Akka Streams 連線到已啟用 Apache Kafka 的事件中樞
+      href: event-hubs-kafka-akka-streams-tutorial.md
+- name: 範例
+  href: event-hubs-samples.md
+- name: 概念
+  items:
+  - name: 事件中樞功能
+    href: event-hubs-features.md
+  - name: 事件處理器主機概觀
+    href: event-hubs-event-processor-host.md
+  - name: 程式設計指南
+    href: event-hubs-programming-guide.md
+  - name: 適用於 Azure 資源的受控服務識別
+    href: event-hubs-managed-service-identity.md
+  - name: 角色型存取控制 (預覽)
+    href: event-hubs-role-based-access-control.md
+  - name: 異地災害復原和異地複寫
+    href: event-hubs-geo-dr.md
+  - name: 專用的事件中樞
+    href: event-hubs-dedicated-overview.md
+  - name: 驗證和安全性模型概觀
+    href: event-hubs-authentication-and-security-model-overview.md
+  - name: 可用性和一致性
+    href: event-hubs-availability-and-consistency.md
+  - name: 診斷記錄檔
+    href: event-hubs-diagnostic-logs.md
+  - name: AMQP 1.0 通訊協定指南
+    href: ../service-bus-messaging/service-bus-amqp-protocol-guide.md
+    maintainContext: true
+- name: 使用說明指南
+  items:
+  - name: 適用於 Apache Kafka 的事件中樞
+    items:
+    - name: 建立啟用 Apache kafka 的事件中樞
+      href: event-hubs-create-kafka-enabled.md
+    - name: 使用串流分析處理適用於事件中樞的 Apache Kafka
+      href: event-hubs-kafka-stream-analytics.md
+  - name: 擷取事件
+    items:
+    - name: 使用 Azure 入口網站啟用事件中樞擷取
+      href: event-hubs-capture-enable-through-portal.md
+    - name: 使用 Resource Manager 範本啟用事件中樞擷取
+      href: event-hubs-resource-manager-namespace-event-hub-enable-capture.md
+    - name: 使用 Python 擷取事件中樞資料
+      href: event-hubs-capture-python.md
+  - name: 管理
+    items:
+    - name: 透過 Azure 監視器監視事件中樞
+      href: event-hubs-metrics-azure-monitor.md
+    - name: 事件中樞管理程式庫
+      href: event-hubs-management-libraries.md
+  - name: 使用 IP 篩選器
+    href: event-hubs-ip-filtering.md
+  - name: 使用虛擬網路服務端點
+    href: event-hubs-service-endpoints.md
+  - name: 自動縮放輸送量單位
+    href: event-hubs-auto-inflate.md
+  - name: 使用事件中樞串流 Azure 診斷資料
+    href: event-hubs-streaming-azure-diags-data.md
+- name: 參考
+  items:
+  - name: Java
+    items:
+    - name: com.microsoft.azure.eventhubs
+      href: /java/api/com.microsoft.azure.eventhubs
+    - name: com.microsoft.azure.eventprocessorhost
+      href: /java/api/com.microsoft.azure.eventprocessorhost
+  - name: .NET
+    items:
+    - name: Microsoft.Azure.EventHubs
+      href: /dotnet/api/microsoft.azure.eventhubs
+    - name: Microsoft.Azure.EventHubs.Processor
+      href: /dotnet/api/microsoft.azure.eventhubs.processor
+    - name: Microsoft.ServiceBus.Messaging
+      href: /dotnet/api/microsoft.servicebus.messaging
+    - name: Microsoft.ServiceBus.Messaging.EventProcessorHost
+      href: /dotnet/api/microsoft.servicebus.messaging.eventprocessorhost
+    - name: Microsoft.Azure.Management.EventHub
+      href: /dotnet/api/microsoft.azure.management.eventhub
+  - name: REST
+    href: /rest/api/eventhub
+  - name: 例外狀況
+    href: event-hubs-messaging-exceptions.md
+  - name: 配額
+    href: event-hubs-quotas.md
+- name: 資源
+  items:
+  - name: 透過 Microsoft Learn 增進您的技巧
+    href: /learn/browse/?products=azure-event-hubs
+  - name: 常見問題集
+    href: event-hubs-faq.md
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/?category=iot
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/event-hubs/
+  - name: 定價計算機
+    href: https://azure.microsoft.com/pricing/calculator/
+  - name: 服務更新
+    href: https://azure.microsoft.com/updates/?product=event-hubs
+  - name: 堆疊溢位
+    href: http://stackoverflow.com/questions/tagged/azure-eventhub
+  - name: 影片
+    href: https://azure.microsoft.com/documentation/videos/index/?services=event-hubs
+ms.openlocfilehash: a72f5b19d899160fdc9569cbd2b77eb50a30e8f7
+ms.sourcegitcommit: 668b486f3d07562b614de91451e50296be3c2e1f
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/19/2018
+ms.locfileid: "49456349"

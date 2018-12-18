@@ -1,11 +1,11 @@
 ---
-title: "在具有 Azure Mobile Apps 的 iOS 上新增驗證"
-description: "了解如何使用 Azure Mobile Apps 透過眾多身分識別提供者驗證 iOS 應用程式使用者，包括 Google、Facebook、Twitter 和 Microsoft。"
+title: 在具有 Azure Mobile Apps 的 iOS 上新增驗證
+description: 了解如何使用 Azure Mobile Apps 透過眾多身分識別提供者驗證 iOS 應用程式使用者，包括 Google、Facebook、Twitter 和 Microsoft。
 services: app-service\mobile
 documentationcenter: ios
 author: conceptdev
 manager: crdun
-editor: 
+editor: ''
 ms.assetid: ef3d3cbe-e7ca-45f9-987f-80c44209dc06
 ms.service: app-service-mobile
 ms.workload: mobile
@@ -19,6 +19,7 @@ ms.sourcegitcommit: df4ddc55b42b593f165d56531f591fdb1e689686
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 01/04/2018
+ms.locfileid: "27592689"
 ---
 # <a name="add-authentication-to-your-ios-app"></a>將驗證新增至您的 iOS 應用程式
 [!INCLUDE [app-service-mobile-selector-get-started-users](../../includes/app-service-mobile-selector-get-started-users.md)]
@@ -76,7 +77,7 @@ ms.lasthandoff: 01/04/2018
     }
     ```
 
-    如果您不使用 Google 作為識別提供者，請將 google 變更為 microsoftaccount、twitter、facebook 或 windowsazureactivedirectory。 如果您使用 Facebook，則必須在應用程式中[將 Facebook 網域列入白名單][1]。
+    如果您不使用 Google 作為識別提供者，請將 google 變更為 microsoftaccount、twitter、facebook 或 windowsazureactivedirectory。 如果您使用 Facebook，則必須在應用程式中[將 Facebook 網域列入允許清單][1]。
 
     使用您應用程式的唯一名稱來取代 **urlScheme**。  urlScheme 必須與您在 Azure 入口網站中的 [允許的外部重新導向 URL] 欄位中指定的 URL 配置通訊協定相同。 urlScheme 可在完成驗證要求之後，供驗證回呼用來切換回您的應用程式。
 
@@ -162,7 +163,7 @@ ms.lasthandoff: 01/04/2018
     }
     ```
 
-    如果您不使用 Google 作為識別提供者，請將 google 變更為 microsoftaccount、twitter、facebook 或 windowsazureactivedirectory。 如果您使用 Facebook，則必須在應用程式中[將 Facebook 網域列入白名單][1]。
+    如果您不使用 Google 作為識別提供者，請將 google 變更為 microsoftaccount、twitter、facebook 或 windowsazureactivedirectory。 如果您使用 Facebook，則必須在應用程式中[將 Facebook 網域列入允許清單][1]。
 
     使用您應用程式的唯一名稱來取代 **urlScheme**。  urlScheme 必須與您在 Azure 入口網站中的 [允許的外部重新導向 URL] 欄位中指定的 URL 配置通訊協定相同。 urlScheme 可在完成驗證要求之後，供驗證回呼用來切換回您的應用程式。
 

@@ -1,24 +1,25 @@
 ---
-title: "上架到 Azure 資訊安全中心標準版以增強安全性 | Microsoft Docs"
+title: 上架到 Azure 資訊安全中心標準版以增強安全性 | Microsoft Docs
 description: " 了解如何上架到 Azure 資訊安全中心標準版以增強安全性。 "
 services: security-center
 documentationcenter: na
-author: TerryLanfear
+author: rkarlin
 manager: MBaldwin
-editor: 
+editor: ''
 ms.assetid: 411d7bae-c9d4-4e83-be63-9f2f2312b075
 ms.service: security-center
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/14/2017
-ms.author: terrylan
-ms.openlocfilehash: a6394b1b02ebfe518dc2f2b7f65eb677bb0ba5f2
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.date: 09/02/2018
+ms.author: rkarlin
+ms.openlocfilehash: 50055befaa0a5f0bb03bda18e01edfb751e49369
+ms.sourcegitcommit: 5a9be113868c29ec9e81fd3549c54a71db3cec31
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44379990"
 ---
 # <a name="onboarding-to-azure-security-center-standard-for-enhanced-security"></a>上架到 Azure 資訊安全中心標準版以增強安全性
 升級至資訊安全中心標準版，讓您的混合式雲端工作負載能充分享有強化的安全性管理和威脅防護。  您可以免費試用「標準版」60 天。 如需詳細資訊，請參閱資訊安全中心[價格頁面](https://azure.microsoft.com/pricing/details/security-center/)。
@@ -39,59 +40,40 @@ ms.lasthandoff: 10/11/2017
 >
 >
 
-## <a name="upgrade-an-azure-subscription"></a>升級 Azure 訂用帳戶
-若要將所有訂用帳戶升級至標準版：
-1. 在資訊安全中心主功能表下，選取 [上架]。
-2. 在 [上架至進階安全性] 下，資訊安全中心會列出符合上架資格的訂用帳戶。 您可以藉由選取 [套用標準版方案] 升級所有列出的訂用帳戶。
+## <a name="upgrade-an-azure-subscription-or-workspace"></a>升級 Azure 訂用帳戶或工作區
+若要將訂用帳戶或工作區升級至「標準」：
+1. 在 [資訊安全中心] 主功能表下，選取 [開始使用]。
+  ![開始使用](./media/security-center-onboarding/get-started.png)
+2. 在 [升級] 下，資訊安全中心會列出符合上架資格的訂用帳戶和工作區。 
+   - 您可以按一下可擴展的 [適用試用版] 以查看所有訂用帳戶和工作區的清單與其試用版的資格狀態。
+   -    您可以將沒有資格使用試用版的訂用帳戶和工作區升級。
+   -    您可以選取符合資格的工作區和訂用帳戶來啟動試用版。
+3.  按一下 [啟動試用版] 來啟動所選訂用帳戶上的試用版。
+  ![選取訂用帳戶](./media/security-center-onboarding/select-subscription.png)
 
-  ![升級所有訂用帳戶][1]
-
-若要將個別訂用帳戶升級到標準版：您可以藉由選取 [套用標準層]，從 [上架] 升級訂用帳戶。 若要將訂用帳戶下的資源群組升級為標準版，請選取訂用帳戶：
-1. 選取一個訂用帳戶。  **安全性原則**提供訂用帳戶中包含之資源群組的相關資訊。
-2. 選取訂用帳戶或資源群組。
-
-  ![升級所有訂用帳戶][2]
-
-3. 選取 [標準版] 以從免費版升級至標準版。
-4. 選取 [ **儲存**]。
-
-> [!NOTE]
-> 將訂用帳戶升級為標準版將會開啟[自動佈建](security-center-enable-data-collection.md) (如果之前已停用)。 建議自動佈建監控代理程式。
->
->
-
-## <a name="upgrade-a-workspace"></a>升級工作區
-將標準版套用至適用於向工作區回報的所有資源。
-
-1. 返回 [上架] 刀鋒視窗。
-2. 選取工作區。
-
-  ![升級工作區][8]
-
-3. 選取 [標準版] 以進行升級。  
-4. 選取 [ **儲存**]。
 
    > [!NOTE]
-   > 有一種情況，您可能無法將「免費版」或「標準版」套用至您的工作區。 如果您選取「免費版」，則資訊安全中心的「免費版」功能只會套用至您的 Azure 虛擬機器。 免費版功能不會套用至非 Azure 電腦。 如果您選取「標準版」，「標準版」功能會套用至所有 Azure 虛擬機器和回報工作區的非 Azure 電腦。 我們建議您套用「標準版」，為您的 Azure 與非 Azure 資源提供進階的安全性。
+   > 資訊安全中心的「免費版」功能只會套用至您的 Azure VM。 免費版功能不會套用至非 Azure 電腦。 如果您選取「標準版」，「標準版」功能會套用至所有 Azure 虛擬機器和回報工作區的非 Azure 電腦。 我們建議您套用「標準版」，為您的 Azure 與非 Azure 資源提供進階的安全性。
    >
    >
 
 ## <a name="onboard-non-azure-computers"></a>上架非 Azure 電腦
-資訊安全中心可以監視非 Azure 電腦的安全性狀態，但您需要先上架這些資源。 您可以從 [上架] 刀鋒視窗或從 [計算] 刀鋒視窗新增非 Azure 電腦。 我們將逐步解說這兩種方法。
+資訊安全中心可以監視非 Azure 電腦的安全性狀態，但您需要先上架這些資源。 您可以從 [開始使用] 刀鋒視窗或從 [計算] 刀鋒視窗新增非 Azure 電腦。 我們將逐步解說這兩種方法。
 
-### <a name="add-new-non-azure-computers-from-onboarding"></a>從上架新增非 Azure 電腦
+### <a name="add-new-non-azure-computers-from-getting-started"></a>從 [開始使用] 新增非 Azure 電腦
 
-1. 返回 [上架]。   
-2. 選取 [您是否要新增非 Azure 電腦]。
+1. 返回 [開始使用]。   
+2. 選取 [開始使用] 索引標籤。
 
-  ![新增非 Azure 電腦][3]
+  ![非 Azure](./media/security-center-onboarding/non-azure.png)
+
+3. 按一下 [新增非 Azure 電腦] 下方的 [設定]。 隨即會顯示 Log Analytics 工作區清單。 清單中顯示啟用自動佈建之後，資訊安全中心為您建立的預設工作區 (如果適用)。 選取此工作區或其他您要使用的工作區。
+
+  ![新增非 Azure 電腦][7]
 
 如果您有現有的工作區，它們會列在 [新增非 Azure 電腦] 下。 您可以將電腦新增至現有的工作區，或建立新的工作區。 若要建立新的工作區，請選取 [新增工作區] 連結。
 
-我們將逐步解說下列兩種方法：
-
-- 建立新的工作區，並新增電腦
-- 選取現有的工作區，並新增電腦
+### <a name="add-new-non-azure-computers-from-compute"></a>從 [計算] 新增非 Azure 電腦
 
 **建立新的工作區，並新增電腦**
 
@@ -112,8 +94,8 @@ ms.lasthandoff: 10/11/2017
 
    ![概觀][5]
 
-2. 選取 [計算] 圖格。
-3. 在 [計算] 下，選取 [新增電腦]。
+2. 選取 [計算及應用程式]。
+3. 在 [計算及應用程式] 下，選取 [新增電腦]。
 
    ![[計算] 刀鋒視窗][6]
 
@@ -121,7 +103,7 @@ ms.lasthandoff: 10/11/2017
 
    ![新增電腦][7]
 
- [直接代理程式] 刀鋒視窗提供下載 Windows 或 Linux 代理程式的連結，以及工作區識別碼的金鑰，以用於設定代理程式。   
+ [直接代理程式] 刀鋒視窗提供下載 Windows 或 Linux 代理程式的連結，以及用來設定代理程式的工作區識別碼和金鑰。   
 
 ## <a name="next-steps"></a>後續步驟
 您可以在本文中了解如何上架 Azure 與非 Azure 資源，以從資訊安全中心的進階安全性受益。  若要透過上架的資源執行更多動作，請參閱
@@ -133,9 +115,9 @@ ms.lasthandoff: 10/11/2017
 <!--Image references-->
 [1]: ./media/security-center-onboarding/onboard.png
 [2]: ./media/security-center-onboarding/onboard-subscription.png
-[3]: ./media/security-center-onboarding/add-non-azure-resource.png
+[3]: ./media/security-center-onboarding/get-started.png
 [4]: ./media/security-center-onboarding/create-workspace.png
 [5]: ./media/security-center-onboarding/overview.png
 [6]: ./media/security-center-onboarding/compute-blade.png
-[7]: ./media/security-center-onboarding/add-non-azure-computer.png
+[7]: ./media/security-center-onboarding/add-computer.png
 [8]: ./media/security-center-onboarding/onboard-workspace.png

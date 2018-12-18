@@ -1,24 +1,19 @@
 ---
-title: "擷取 Azure 匯入/匯出作業的狀態資訊 | Microsoft Docs"
-description: "了解如何取得 Microsoft Azure 匯入/匯出服務作業的狀態資訊。"
+title: 擷取 Azure 匯入/匯出作業的狀態資訊 | Microsoft Docs
+description: 了解如何取得 Microsoft Azure 匯入/匯出服務作業的狀態資訊。
 author: muralikk
-manager: syadav
-editor: tysonn
 services: storage
-documentationcenter: 
-ms.assetid: 22d7e5f0-94da-49b4-a1ac-dd4c14a423c2
 ms.service: storage
-ms.workload: storage
-ms.tgt_pltfrm: na
-ms.devlang: na
 ms.topic: article
 ms.date: 12/16/2016
 ms.author: muralikk
-ms.openlocfilehash: 13169716c47cf9389c8f2651393ac744441bdd6f
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.component: common
+ms.openlocfilehash: 76b2f73442261da4c791aaae8532d7a0dbbb6d95
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39520601"
 ---
 # <a name="retrieving-state-information-for-an-importexport-job"></a>擷取匯入/匯出作業的狀態資訊
 您可以呼叫 [Get Job](/rest/api/storageimportexport/jobs#Jobs_Get) 作業來擷取關於匯入和匯出作業的資訊。 傳回的資訊包括︰

@@ -1,174 +1,197 @@
 ---
-title: "以群組或集合批次處理 EDI 訊息 - Azure Logic Apps | Microsoft Docs"
-description: "傳送 EDI 訊息以便在邏輯應用程式中批次處理"
-keywords: "批次, 批次程序, 批次編碼"
-author: divswa
-manager: anneta
-editor: 
+title: 以群組或集合批次處理 EDI 訊息 - Azure Logic Apps | Microsoft Docs
+description: 傳送 EDI 訊息以便在邏輯應用程式中批次處理
 services: logic-apps
-documentationcenter: 
-ms.assetid: 
 ms.service: logic-apps
-ms.workload: na
-ms.tgt_pltfrm: na
-ms.devlang: na
+author: divyaswarnkar
+ms.author: divswa
+ms.reviewer: estfan, LADocs
 ms.topic: article
-ms.date: 09/21/2017
-ms.author: LADocs; estfan; divswa
-ms.openlocfilehash: 837cb0d9595da5b5bd4f01fb4576f75e98ab8912
-ms.sourcegitcommit: ccb84f6b1d445d88b9870041c84cebd64fbdbc72
+ms.date: 08/19/2018
+ms.openlocfilehash: 7e058b7cebb9c2cdc3fb8b97bf99554b2f26dd8c
+ms.sourcegitcommit: 2ad510772e28f5eddd15ba265746c368356244ae
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/14/2017
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "43121570"
 ---
-# <a name="send-x12-messages-in-batch-to-trading-partners"></a>批次傳送 X12 訊息給交易夥伴
+# <a name="send-edi-messages-in-batches-to-trading-partners-with-azure-logic-apps"></a>使用 Azure Logic Apps 對合作對象批次傳送 EDI 訊息
 
-在企業對企業 (B2B) 案例中，合作夥伴通常是以群組或批次方式交換訊息。 若要以群組或批次傳送訊息給交易夥伴，您可以建立一個含有多個項目的批次，然後使用 X12 批次動作將這些項目當作一個批次來處理。
+在企業對企業 (B2B) 案例中，合作夥伴通常是以群組或批次方式交換訊息。 當您使用 Logic Apps 建置批次處理解決方案時，您可以傳送訊息給合作對象，並以批次方式一起處理這些訊息。 本文說明如何使用 X12 作為範例，藉由建立「批次傳送者」邏輯應用程式和「批次接收者」邏輯應用程式，來批次處理 EDI 訊息。 
 
+批次處理 X12 訊息的作用，和批次處理其他訊息相同；您可以使用批次觸發程序將訊息收集到批次中，並使用批次動作將訊息傳送至該批次。 此外，X12 批次處理會先包含 X12 編碼步驟，再讓訊息移至合作對象或其他目的地。 若要深入了解批次觸發程序和動作，請參閱[批次處理訊息](../logic-apps/logic-apps-batch-process-send-receive-messages.md)。
 
-像其他訊息一樣，X12 訊息的批次處理也使用批次觸發程序和動作。 同樣地，就 X12 而言，批次也會先經過一個「X12 編碼」步驟，然後才傳送給合作夥伴或任何其他目的地。 如需有關批次觸發程序和動作的詳細資訊，請參閱[批次處理訊息](logic-apps-batch-process-send-receive-messages.md)。
+在本文中，您會藉由在相同 Azure 訂用帳戶、Azure 區域內建立兩個邏輯應用程式，並遵循這個特定順序，來建置批次處理解決方案：
 
-本主題將說明如何透過執行下列工作，以批次方式處理 X12 訊息：
-* [建立一個會接收項目並建立批次的邏輯應用程式](#receiver)。 這個「接收者」邏輯應用程式會執行下列動作：
- 
-   * 指定批次名稱，以及以批次形式發行項目之前要符合的發行準則。
+* [「批次接收者」](#receiver)邏輯應用程式，會接受訊息並收集到批次中，直到符合指定準則而可釋出和處理這些訊息。 在此案例中，批次接收者也會使用指定的 X12 協議或合作夥伴身分識別，將批次中的訊息編碼。
 
-   * 使用指定的 X12 協議或合作夥伴身分識別來處理或編碼批次中的項目。
+  請務必先建立批次接收者，這樣一來，您之後才可以在建立批次傳送者時選取批次目的地。
 
-* [建立邏輯應用程式，將項目傳送至批次](#sender)。 這個「傳送者」邏輯應用程式會指定要將項目傳送到哪個位置來進行處理，這個位置必須是現有的接收者邏輯應用程式。
+* [「批次傳送者」](#sender)邏輯應用程式，會將訊息傳送給先前建立的批次接收者。 
 
+請務必讓批次接收者和批次傳送者共用相同的 Azure 訂用帳戶和 Azure 區域。 如果未共用，您就無法在建立批次傳送者時選取批次接收者，原因是兩者並無法看到彼此。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 若要遵循此範例，您需要這些項目：
 
-* Azure 訂用帳戶。 如果您沒有訂用帳戶，您可以[開始使用免費 Azure 帳戶](https://azure.microsoft.com/free/)。 否則，您可以[註冊隨用隨付訂用帳戶](https://azure.microsoft.com/pricing/purchase-options/)。
+* Azure 訂用帳戶。 如果您沒有訂用帳戶，您可以[開始使用免費 Azure 帳戶](https://azure.microsoft.com/free/)。 或者，請[註冊預付型方案訂用帳戶](https://azure.microsoft.com/pricing/purchase-options/)。
 
-* 已經定義並與 Azure 訂用帳戶相關聯的[整合帳戶](logic-apps-enterprise-integration-create-integration-account.md)
+* [如何建立邏輯應用程式](../logic-apps/quickstart-create-first-logic-app-workflow.md)的基本知識
 
-* 至少要有兩個您已在整合帳戶中定義的[合作夥伴](logic-apps-enterprise-integration-partners.md)。 請確定每個合作夥伴在合作夥伴的屬性中都使用 X12 (標準運輸公司法典) 辨識符號作為企業身分識別。
+* 現有[整合帳戶](../logic-apps/logic-apps-enterprise-integration-create-integration-account.md)，已與 Azure 訂用帳戶相關聯，並連結到邏輯應用程式
 
-* 已經在整合帳戶中定義的 [X12 合約](logic-apps-enterprise-integration-x12.md)
+* 整合帳戶中至少要有兩個現有[合作夥伴](../logic-apps/logic-apps-enterprise-integration-partners.md)。 每個合作夥伴在合作夥伴的屬性中都必須使用 X12 (標準運輸公司法典) 辨識符號作為企業身分識別。
+
+* 整合帳戶中現有的 [X12 協議](../logic-apps/logic-apps-enterprise-integration-x12.md)
+
+* 若要使用 Visual Studio 而非 Azure 入口網站，請務必[設定 Visual Studio 以便使用 Logic Apps](../logic-apps/quickstart-create-logic-apps-with-visual-studio.md)。
 
 <a name="receiver"></a>
 
-## <a name="create-a-logic-app-that-receives-x12-messages-and-creates-a-batch"></a>建立一個會接收 X12 訊息並建立批次的邏輯應用程式
+## <a name="create-x12-batch-receiver"></a>建立 X12 批次接收者
 
-您必須先使用**批次**觸發程序來建立「接收者」邏輯應用程式，才能將訊息傳送給批次。 這樣一來，當您建立寄件者邏輯應用程式時，可以選取這個接收者邏輯應用程式。 針對接收者，您需指定批次名稱、發行準則、X12 協議，以及其他設定。 
+若要能夠將訊息傳送到批次中，該批次必須先成為這些訊息的傳送目的地。 因此，您必須先建立「批次接收者」邏輯應用程式 (其會從**批次**觸發程序來開始)。 這樣一來，當您建立「批次傳送者」邏輯應用程式時，就可以選取批次接收者邏輯應用程式。 批次接收者會繼續收集訊息，直到符合指定準則而可釋出和處理這些訊息。 雖然批次接收者不需要知道批次傳送者的任何訊息，但批次傳送者必須知道訊息的傳送目的地。 
 
+針對此批次接收者，您需要指定批次模式、名稱、釋出準則、X12 協議，以及其他設定。 
 
-1. 在 [Azure 入口網站](https://portal.azure.com)中，使用下列名稱來建立一個邏輯應用程式："BatchX12Messages"。
+1. 在 [Azure 入口網站](https://portal.azure.com)或 Visual Studio 中，使用下列名稱來建立一個邏輯應用程式："BatchX12Messages"
 
-2. 在 Logic Apps 設計工具中，新增**次**觸發程序，它會啟動您的邏輯應用程式工作流程。 在搜尋方塊中，輸入 "batch" 作為篩選條件。 選取此觸發程序：**批次 – 批次訊息**
+2. [將邏輯應用程式連結至整合帳戶](../logic-apps/logic-apps-enterprise-integration-create-integration-account.md#link-account)。
+
+3. 在 Logic Apps 設計工具中，新增**次**觸發程序，它會啟動您的邏輯應用程式工作流程。 在搜尋方塊中，輸入 "batch" 作為篩選條件。 選取此觸發程序：**批次訊息**
 
    ![新增批次觸發程序](./media/logic-apps-scenario-EDI-send-batch-messages/add-batch-receiver-trigger.png)
 
-3. 提供批次的名稱，並指定釋放批次的準則，例如：
+4. 設定批次接收者屬性： 
 
-   * **批次名稱**：用來識別批次，在本例中為 "TestBatch"。
+   | 屬性 | 值 | 注意 | 
+   |----------|-------|-------|
+   | **批次模式** | 內嵌 |  |  
+   | **批次名稱** | TestBatch | 僅適用於**內嵌**批次模式 | 
+   | **釋出準則** | 依據訊息計數、依據排程 | 僅適用於**內嵌**批次模式 | 
+   | **訊息計數** | 10 | 僅適用於**依據訊息計數**釋出準則 | 
+   | **間隔** | 10 | 僅適用於**依據排程**釋出準則 | 
+   | **頻率** | 分鐘 | 僅適用於**依據排程**釋出準則 | 
+   ||| 
 
-   * **發行準則**：批次發行準則，此準則可以訊息計數、排程作為基礎或同時以這兩者作為基礎。
-   
-     ![提供批次觸發程序詳細資料](./media/logic-apps-batch-process-send-receive-messages/receive-batch-release-criteria.png)
+   ![提供批次觸發程序詳細資料](./media/logic-apps-scenario-EDI-send-batch-messages/batch-receiver-release-criteria.png)
 
-   * **訊息計數**：在釋放進行處理之前要保留為一個批次的訊息數目，在本例中為 "5"。
+   > [!NOTE]
+   > 此範例不會設定批次的資料分割，因此每個批次會使用相同的資料分割索引鍵。 若要深入了解資料分割，請參閱[批次處理訊息](../logic-apps/logic-apps-batch-process-send-receive-messages.md#batch-sender)。
 
-     ![提供批次觸發程序詳細資料](./media/logic-apps-batch-process-send-receive-messages/receive-batch-count-based.png)
+5. 現在，新增動作來將每個批次編碼： 
 
-   * **排程**：用於進行處理的批次發行排程，在此範例中為「每隔 10 分鐘」。
+   1. 在批次觸發程序下方，選擇 [新增步驟]。
 
-     ![提供批次觸發程序詳細資料](./media/logic-apps-scenario-EDI-send-batch-messages/receive-batch-schedule-based.png)
+   2. 在搜尋方塊中，輸入 "X12 batch" 作為篩選條件，然後選取這個動作 (任何版本)：**批次編碼 <版本> - X12** 
 
+      ![選取「X12 批次編碼」動作](./media/logic-apps-scenario-EDI-send-batch-messages/add-batch-encode-action.png)
 
-4. 新增另一個動作，此動作會將已分組或分批的訊息編碼，然後建立 X12 批次處理訊息。 
+   3. 如果您先前未連線至整合帳戶，請立即建立該連線。 為連線提供名稱，選取您想要的整合帳戶，然後選擇 [建立]。
 
-   a. 選擇 [+ 新步驟] > [新增動作]。
+      ![建立批次編碼器與整合帳戶之間的連線](./media/logic-apps-scenario-EDI-send-batch-messages/batch-encoder-connect-integration-account.png)
 
-   b. 在搜尋方塊中，輸入 "X12 batch" 作為篩選條件，然後為 **X12 - 批次編碼**選取一個動作。 與「X12 編碼」連接器類似，批次編碼動作也有多種變化。 您可以選取其中任何一個。
+   4. 為批次編碼器動作設定這些屬性：
 
-   ![選取「X12 批次編碼」動作](./media/logic-apps-scenario-EDI-send-batch-messages/add-batch-encode-action.png)
-   
-5. 設定您剛才新增之動作的屬性。
+      | 屬性 | 說明 |
+      |----------|-------------|
+      | **X12 協議的名稱** | 開啟清單，然後選取現有的協議。 <p>如果清單是空的，請務必[將邏輯應用程式連結至整合帳戶](../logic-apps/logic-apps-enterprise-integration-create-integration-account.md#link-account) (具有所需協議)。 | 
+      | **BatchName** | 按一下此方塊內部，然後在動態內容清單出現後，選取 [批次名稱] 權杖。 | 
+      | **PartitionName** | 按一下此方塊內部，然後在動態內容清單出現後，選取 [資料分割名稱] 權杖。 | 
+      | **項目** | 關閉 [項目詳細資料] 方塊，然後按一下此方塊內部。 在動態內容清單出現後，選取 [批次處理的項目] 權杖。 | 
+      ||| 
 
-   * 在 [X12 協議名稱] 方塊中，從下拉式清單中選取協議。 如果您的清單是空的，請確定您已與整合帳戶建立連線。
+      ![「批次編碼」動作詳細資料](./media/logic-apps-scenario-EDI-send-batch-messages/batch-encode-action-details.png)
 
-   * 在 [BatchName] 方塊中，從動態內容清單中選取 [批次名稱] 欄位。
-   
-   * 在 [PartitionName] 方塊中，從動態內容清單中選取 [分割區名稱] 欄位。
+      在 [項目] 方塊中：
 
-   * 在 [項目] 方塊中，從動態內容清單中選取 [批次處理的項目]。
+      ![「批次編碼」動作項目](./media/logic-apps-scenario-EDI-send-batch-messages/batch-encode-action-items.png)
 
-   ![「批次編碼」動作詳細資料](./media/logic-apps-scenario-EDI-send-batch-messages/batch-encode-action-details.png)
+6. 儲存您的邏輯應用程式。 
 
-6. 針對測試用途，請新增一個將批次處理訊息傳送給[要求 Bin 服務](https://requestbin.fullcontact.com/) \(英文\) 的 HTTP 動作。 
+7. 如果您使用 Visual Studio，請務必[將批次接收者邏輯應用程式部署至 Azure](../logic-apps/quickstart-create-logic-apps-with-visual-studio.md#deploy-logic-app-to-azure)。 否則，當您建立批次傳送者時，將無法選取批次接收者。
 
-   1. 在搜尋方塊中輸入 "HTTP" 作為篩選條件。 選取此動作：**HTTP - HTTP**
+### <a name="test-your-logic-app"></a>測試應用程式邏輯
+
+為了確定批次接收者可正常運作，您可以新增測試用的 HTTP 動作，並將批次處理的訊息傳送至[要求 Bin 服務](https://requestbin.fullcontact.com/)。 
+
+1. 在 [X12 編碼] 動作下，選擇 [新增步驟]。 
+
+2. 在搜尋方塊中輸入 "http" 作為篩選條件。 選取此動作：**HTTP - HTTP**
     
-      ![選取 HTTP 動作](./media/logic-apps-scenario-EDI-send-batch-messages/batch-receive-add-http-action.png)
+   ![選取 HTTP 動作](./media/logic-apps-scenario-EDI-send-batch-messages/batch-receiver-add-http-action.png)
 
-   2. 從 [方法] 清單中，選取 [POST]。 針對 [Uri] 方塊，為您的要求 Bin 產生一個 URI，然後輸入該 URI。 在 [本文] 方塊中，當動態清單開啟時，選取 [依合約名稱的批次編碼] 區段底下的 [本文] 欄位。 如果您沒有看到 [本文]，請選擇 [依合約名稱的批次編碼]旁邊的 [查看更多]。
+3. 設定 HTTP 動作的屬性：
 
-      ![提供 HTTP 動作詳細資料](./media/logic-apps-scenario-EDI-send-batch-messages/batch-receive-add-http-action-details.png)
+   | 屬性 | 說明 | 
+   |----------|-------------|
+   | **方法** | 從這個清單中選取 [POST]。 | 
+   | **Uri** | 為要求 Bin 產生 URI，然後在這個方塊中輸入該 URI。 | 
+   | **內文** | 按一下此方塊內部，然後在動態內容清單開啟後，選取 [主體] 權杖，其會出現在 [依合約名稱的批次編碼] 區段中。 <p>如果您沒有看到 [主體] 權杖，請選取 [依合約名稱的批次編碼] 旁邊的 [查看更多]。 | 
+   ||| 
 
-7.  既然您已建立接收者邏輯應用程式，現在便可儲存您的邏輯應用程式。
+   ![提供 HTTP 動作詳細資料](./media/logic-apps-scenario-EDI-send-batch-messages/batch-receiver-add-http-action-details.png)
 
-    ![儲存您的邏輯應用程式](./media/logic-apps-scenario-EDI-send-batch-messages/save-batch-receiver-logic-app.png)
+4. 儲存您的邏輯應用程式。 
 
-    > [!IMPORTANT]
-    > 資料分割有 5,000 則訊息或 80 MB 的限制。 如果符合其中一個條件，即可能釋出批次 (即使不符合使用者定義的條件)。
+   批次接收者邏輯應用程式類似下列範例︰ 
+
+   ![儲存批次接收者邏輯應用程式](./media/logic-apps-scenario-EDI-send-batch-messages/batch-receiver-finished.png)
 
 <a name="sender"></a>
 
-## <a name="create-a-logic-app-that-sends-x12-messages-to-a-batch"></a>建立一個會將 X12 訊息傳送給批次的邏輯應用程式
+## <a name="create-x12-batch-sender"></a>建立 X12 批次傳送者
 
-現在建立一或多個將項目傳送給接收者邏輯應用程式所定義之批次的邏輯應用程式。 對於傳送者，您指定接收者邏輯應用程式和批次名稱、訊息內容，和任何其他設定。 您可以選擇性地提供唯一的資料分割索引鍵，將批次分成子集來收集具有該索引鍵的項目。
+現在，請建立一或多個會將訊息傳送給接收者邏輯應用程式的邏輯應用程式。 在每個批次傳送者中，您可以指定批次接收者邏輯應用程式和批次名稱、訊息內容，和任何其他設定。 您可以選擇性地提供唯一的資料分割索引鍵，將批次分成子集來收集具有該索引鍵的訊息。 
 
-傳送者邏輯應用程式需要知道要將項目傳送到何處，但接收者邏輯應用程式則不需知道任何關於傳送者的資訊。
+* 請確定您已經[建立批次接收者](#receiver)，因此當您建立批次傳送者時，可以選取現有批次接收者作為目的地批次。 雖然批次接收者不需要知道批次傳送者的任何訊息，但批次傳送者必須知道訊息的傳送目的地。 
 
+* 請務必讓批次接收者和批次傳送者共用相同的 Azure 區域和 Azure 訂用帳戶。 如果未共用，您就無法在建立批次傳送者時選取批次接收者，原因是兩者並無法看到彼此。
 
-1. 使用下列名稱來建立另一個邏輯應用程式："X12MessageSender"。 將以下觸發程序新增到您的邏輯應用程式中：**要求 / 回應 - 要求** 
+1. 使用下列名稱來建立另一個邏輯應用程式："SendX12MessagesToBatch" 
+
+2. 在搜尋方塊中，輸入「當 http 要求」作為篩選條件。 選取此觸發程序：[收到 HTTP 要求時] 
    
    ![新增「要求」觸發程序](./media/logic-apps-scenario-EDI-send-batch-messages/add-request-trigger-sender.png)
 
-2. 新增新的步驟，將訊息傳送至批次。
+3. 新增動作來將訊息傳送至批次。
 
-   1. 選擇 [+ 新步驟] > [新增動作]。
+   1. 在 [HTTP 要求] 動作下，選擇 [新增步驟]。
 
    2. 在搜尋方塊中，輸入 "batch" 作為篩選條件。 
+   選取 [動作] 清單，然後選取此動作：**選擇包含批次觸發程序的 Logic Apps 工作流程 - 將訊息傳送給批次**
 
-3. 選取此動作：**將訊息傳送給批次 – 選擇包含批次觸發程序的 Logic Apps 工作流程**
+      ![選取 [選擇包含批次觸發程序的 Logic Apps 工作流程]](./media/logic-apps-scenario-EDI-send-batch-messages/batch-sender-select-batch-trigger.png)
 
-   ![選取 [將訊息傳送給批次]](./media/logic-apps-scenario-EDI-send-batch-messages/send-messages-batch-action.png)
+   3. 現在，選取您先前建立的 "BatchX12Messages" 邏輯應用程式。
 
-4. 現在，選取您先前建立的 "BatchX12Messages" 邏輯應用程式，它現在會顯示為動作。
+      ![選取「批次接收者」邏輯應用程式](./media/logic-apps-scenario-EDI-send-batch-messages/batch-sender-select-batch-receiver.png)
 
-   ![選取「批次接收者」邏輯應用程式](./media/logic-apps-scenario-EDI-send-batch-messages/send-batch-select-batch-receiver.png)
+   4. 選取此動作：**Batch_messages - <*your-batch-receiver*>**
 
-   > [!NOTE]
-   > 此清單也會顯示有批次觸發程序的任何其他邏輯應用程式。
+      ![選取 [Batch_messages] 動作](./media/logic-apps-scenario-EDI-send-batch-messages/batch-sender-select-batch-messages-action.png)
 
-5. 設定批次屬性。
+4. 設定批次傳送者的屬性。
 
-   * **批次名稱**：接收者邏輯應用程式所定義的批次名稱，在本例中為 "TestBatch"，並會在執行階段進行驗證。
-
-     > [!IMPORTANT]
-     > 請確定您不要變更批次名稱，它必須符合接收者邏輯應用程式所指定的批次名稱。
-     > 變更批次名稱會導致傳送者邏輯應用程式失敗。
-
-   * **訊息內容**：您想要傳送給批次的訊息內容
+   | 屬性 | 說明 | 
+   |----------|-------------| 
+   | **批次名稱** | 接收者邏輯應用程式所定義的批次名稱，在本例中為 "TestBatch" <p>**重要**：批次名稱會在執行階段驗證，而且必須符合接收者邏輯應用程式所指定的名稱。 變更批次名稱會導致批次傳送者失敗。 | 
+   | **訊息內容** | 您想要傳送的訊息內容，在本例中為**主體**權杖 | 
+   ||| 
    
-   ![設定批次屬性](./media/logic-apps-scenario-EDI-send-batch-messages/send-batch-select-batch-properties.png)
+   ![設定批次屬性](./media/logic-apps-scenario-EDI-send-batch-messages/batch-sender-set-batch-properties.png)
 
-6. 儲存您的邏輯應用程式。 傳送者邏輯應用程式現在看起來應該類似這個範例：
+5. 儲存您的邏輯應用程式。 
 
-   ![儲存您的傳送者邏輯應用程式](./media/logic-apps-scenario-EDI-send-batch-messages/send-batch-finished.png)
+   批次傳送者邏輯應用程式類似下列範例︰
+
+   ![儲存批次傳送者邏輯應用程式](./media/logic-apps-scenario-EDI-send-batch-messages/batch-sender-finished.png)
 
 ## <a name="test-your-logic-apps"></a>儲存邏輯應用程式
 
-若要測試您的批次處理解決方案，請從 [Postman](https://www.getpostman.com/postman) 或類似的工具，將 X12 訊息張貼到您的傳送者邏輯應用程式。 不久之後，您的要求 Bin 中應該就會開始收到 X12 訊息 (以 5 個項目一批或每隔 10 分鐘的方式)，這些訊息全都具有相同的分割區索引鍵。
+若要測試批次處理解決方案，請從 [Postman](https://www.getpostman.com/postman) 或類似的工具，將 X12 訊息張貼到批次傳送者邏輯應用程式。 不久之後，您就會開始在要求 Bin 中收到 X12 訊息 (每隔 10 分鐘或每 10 個一批)，這些訊息全都具有相同的資料分割索引鍵。
 
 ## <a name="next-steps"></a>後續步驟
 
-* [以批次方式處理訊息](logic-apps-batch-process-send-receive-messages.md) 
-* [在 Visual Studio 中使用 Azure Logic Apps 和 Functions 建置邏輯應用程式](../logic-apps/logic-apps-serverless-get-started-vs.md)
-* [適用於邏輯應用程式的例外狀況處理與記錄錯誤](../logic-apps/logic-apps-scenario-error-and-exception-handling.md)
+* [以批次方式處理訊息](../logic-apps/logic-apps-batch-process-send-receive-messages.md) 

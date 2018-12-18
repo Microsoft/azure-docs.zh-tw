@@ -3,22 +3,23 @@ title: 在 Azure 入口網站中建立 Service Fabric 叢集 | Microsoft Docs
 description: 本文說明如何使用 Azure 入口網站和 Azure 金鑰保存庫在 Azure 中建立安全的 Service Fabric 叢集。
 services: service-fabric
 documentationcenter: .net
-author: chackdan
+author: aljo-microsoft
 manager: timlt
 editor: vturecek
 ms.assetid: 426c3d13-127a-49eb-a54c-6bde7c87a83b
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 02/09/2018
-ms.author: chackdan
-ms.openlocfilehash: 864952554b04d8d6bc14aad92d168298e554710e
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.author: aljo
+ms.openlocfilehash: 5d8f1d2634fd2efd624d1000f2fbc0400af4af11
+ms.sourcegitcommit: dc646da9fbefcc06c0e11c6a358724b42abb1438
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 07/18/2018
+ms.locfileid: "39136803"
 ---
 # <a name="create-a-service-fabric-cluster-in-azure-using-the-azure-portal"></a>使用 Azure 入口網站在 Azure 中建立 Service Fabric 叢集
 > [!div class="op_single_selector"]
@@ -70,9 +71,7 @@ ms.lasthandoff: 03/23/2018
 * 加密和解密應用程式組態值
 * 在複寫期間跨節點加密資料 
 
-透過 Azure 入口網站建立叢集時無法設定應用程式憑證。 若要在建立叢集時設定應用程式憑證，您必須[使用 Azure Resource Manager 建立叢集][create-cluster-arm]。 您也可以在建立叢集之後將應用程式憑證新增到叢集。
-
-</a "create-cluster-portal" ></a>
+[透過 Azure 入口網站建立叢集](https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/service-fabric/service-fabric-cluster-creation-via-portal.md)時無法設定應用程式憑證。 若要在建立叢集時設定應用程式憑證，您必須[使用 Azure Resource Manager 建立叢集][create-cluster-arm]。 您也可以在建立叢集之後將應用程式憑證新增到叢集。
 
 ## <a name="create-cluster-in-the-azure-portal"></a>在 Azure 入口網站中建立叢集
 
@@ -120,7 +119,7 @@ ms.lasthandoff: 03/23/2018
 5. **單一節點叢集與三個節點叢集**：僅供測試使用。 這些節點叢集不支援任何執行中的生產工作負載。
 6. 設定自訂端點。 此欄位可讓您輸入以逗號區隔的連接埠清單，您可以透過 Azure Load Balancer 針對您的應用程式向公用網際網路公開這些連接埠。 例如，如果您計劃對您的叢集部署 Web 應用程式，請在這裡輸入「80」來允許連接埠 80 的流量進入您的叢集。 如需端點的詳細資訊，請參閱[與應用程式通訊][service-fabric-connect-and-communicate-with-services]
 7. 設定叢集**診斷**。 預設會在您的叢集上啟用診斷功能，以協助排解疑難問題。 如果您要停用診斷，請將其 [狀態] 切換至 [關閉]。 **不**建議將診斷關閉。 如果您已經建立了 Application Insights 專案，那麼請提供其密鑰，以便將應用程式追蹤透過路由方式傳送至該專案。
-8. 選取您想要為叢集設定的 Fabric 升級模式。 如果您要讓系統自動挑選最新可用的版本，並嘗試將叢集升級到此版本，請選取 [自動] 。 如果您想要選擇支援的版本，將模式設定為 [手動] 。 如需 Fabric 升級模式的詳細資訊，請參閱 [service-fabric-cluster-upgrade 文件][service-fabric-cluster-upgrade]。
+8. 選取您想要為叢集設定的 Fabric 升級模式。 如果您要讓系統自動挑選最新可用的版本，並嘗試將叢集升級到此版本，請選取 [自動] 。 如果您想要選擇支援的版本，將模式設定為 [手動] 。 如需 Fabric 升級模式的詳細資訊，請參閱 [service-fabric-cluster-upgrade 文件。][service-fabric-cluster-upgrade]
 
 > [!NOTE]
 > 我們支援的叢集限於執行支援的 Service Fabric 版本。 如果選取 [手動]  模式，您必須負責將叢集升級到支援的版本。 > 
@@ -226,9 +225,7 @@ ms.lasthandoff: 03/23/2018
 [service-fabric-connect-and-communicate-with-services]: service-fabric-connect-and-communicate-with-services.md
 [service-fabric-health-introduction]: service-fabric-health-introduction.md
 [service-fabric-reliable-services-backup-restore]: service-fabric-reliable-services-backup-restore.md
-<!--[remote-connect-to-a-vm-scale-set]: service-fabric-cluster-nodetypes.md#remote-connect-to-a-virtual-machine-scale-set-instance-or-a-cluster-node -->
-[remote-connect-to-a-vm-scale-set]: service-fabric-cluster-nodetypes.md
-[service-fabric-cluster-upgrade]: service-fabric-cluster-upgrade.md
+<!--[remote-connect-to-a-vm-scale-set]: service-fabric-cluster-nodetypes.md#remote-connect-to-a-virtual-machine-scale-set-instance-or-a-cluster-node --> [remote-connect-to-a-vm-scale-set]: service-fabric-cluster-nodetypes.md [service-fabric-cluster-upgrade]: service-fabric-cluster-upgrade.mdd
 
 <!--Image references-->
 [SearchforServiceFabricClusterTemplate]: ./media/service-fabric-cluster-creation-via-portal/SearchforServiceFabricClusterTemplate.png

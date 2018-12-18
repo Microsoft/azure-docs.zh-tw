@@ -1,13 +1,13 @@
 ---
-title: "在 Azure 中建立一般化 VM 非受控映像 | Microsoft Docs"
-description: "建立一般化的 Windows VM 未受管理的映像，在 Azure 中用以建立多個 VM 複本。"
+title: 在 Azure 中建立一般化 VM 非受控映像 | Microsoft Docs
+description: 建立一般化的 Windows VM 未受管理的映像，在 Azure 中用以建立多個 VM 複本。
 services: virtual-machines-windows
-documentationcenter: 
+documentationcenter: ''
 author: cynthn
-manager: timlt
+manager: jeconnoc
 editor: tysonn
 tags: azure-resource-manager
-ms.assetid: 
+ms.assetid: ''
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
@@ -16,11 +16,12 @@ ms.topic: article
 ms.date: 05/23/2017
 ms.author: cynthn
 ROBOTS: NOINDEX
-ms.openlocfilehash: 39ac47df65743dc807b060f34a6df16977ef49a1
-ms.sourcegitcommit: 71fa59e97b01b65f25bcae318d834358fea5224a
+ms.openlocfilehash: b416acd9a2a3b03502b7eca11eade9dbd56f3afe
+ms.sourcegitcommit: c52123364e2ba086722bc860f2972642115316ef
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2018
+ms.lasthandoff: 05/11/2018
+ms.locfileid: "34072044"
 ---
 # <a name="how-to-create-an-unmanaged-vm-image-from-an-azure-vm"></a>如何從 Azure VM 建立非受控 VM 映像
 
@@ -48,7 +49,7 @@ ms.lasthandoff: 01/11/2018
 2. 以系統管理員身分開啟 [命令提示字元] 視窗。 切換至 **%windir%\system32\sysprep** 目錄，然後執行 `sysprep.exe`。
 3. 在 [系統準備工具] 對話方塊中，選取 [進入系統全新體驗 (OOBE)]，並確認已勾選 [一般化] 核取方塊。
 4. 在 [關機選項] 中選取 [關機]。
-5. 按一下 [SERVICEPRINCIPAL] 。
+5. 按一下 [確定]。
    
     ![啟動 Sysprep](./media/upload-generalized-managed/sysprepgeneral.png)
 6. Sysprep 完成時，會關閉虛擬機器。 
@@ -62,7 +63,7 @@ ms.lasthandoff: 01/11/2018
 1. 開啟 Azure PowerShell，並登入您的 Azure 帳戶。
    
     ```powershell
-    Login-AzureRmAccount
+    Connect-AzureRmAccount
     ```
    
     這會開啟一個可供您輸入 Azure 帳戶認證的快顯視窗。
@@ -78,6 +79,11 @@ ms.lasthandoff: 01/11/2018
     ```
 
 ## <a name="deallocate-the-vm-and-set-the-state-to-generalized"></a>解除配置 VM 並將狀態設定為一般化
+
+> [!IMPORTANT] 
+> 一旦將標記標示為一般化之後，您就無法從 VM 新增、編輯或移除標記。 如果您要將標記新增至 VM，請確定先新增標記，再將其標示為一般化。
+> 
+
 1. 解除配置 VM 資源。
    
     ```powershell

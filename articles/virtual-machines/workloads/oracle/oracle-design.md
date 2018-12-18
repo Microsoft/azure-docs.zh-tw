@@ -1,25 +1,26 @@
 ---
-title: "在 Azure 上設計和實作 Oracle 資料庫 | Microsoft Docs"
-description: "在 Azure 環境中設計和實作 Oracle 資料庫。"
+title: 在 Azure 上設計和實作 Oracle 資料庫 | Microsoft Docs
+description: 在 Azure 環境中設計和實作 Oracle 資料庫。
 services: virtual-machines-linux
 documentationcenter: virtual-machines
-author: v-shiuma
-manager: timlt
-editor: 
+author: romitgirdhar
+manager: jeconnoc
+editor: ''
 tags: azure-resource-manager
-ms.assetid: 
+ms.assetid: ''
 ms.service: virtual-machines-linux
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
-ms.date: 6/22/2017
-ms.author: rclaus
-ms.openlocfilehash: c8f858bf249c4b56ad4fe60654ab489676eceb1f
-ms.sourcegitcommit: 9ae92168678610f97ed466206063ec658261b195
+ms.date: 08/02/2018
+ms.author: rogirdh
+ms.openlocfilehash: d4c0bbdfb1afcef33727ba4b5b432c5de79168d4
+ms.sourcegitcommit: eaad191ede3510f07505b11e2d1bbfbaa7585dbd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/17/2017
+ms.lasthandoff: 08/03/2018
+ms.locfileid: "39495215"
 ---
 # <a name="design-and-implement-an-oracle-database-in-azure"></a>在 Azure 中設計和實作 Oracle 資料庫
 
@@ -51,8 +52,7 @@ ms.lasthandoff: 10/17/2017
 > | **預定的維修** |修補/升級|[可用性設定組](https://docs.microsoft.com/azure/virtual-machines/windows/infrastructure-availability-sets-guidelines) (Azure 所管理的修補/升級) |
 > | **Resource** |專用  |與其他用戶端共用|
 > | **區域** |資料中心 |[區域配對](https://docs.microsoft.com/azure/virtual-machines/windows/regions-and-availability)|
-> | **儲存體** |SAN/實體磁碟 |
-            [Azure 受控儲存體](https://azure.microsoft.com/pricing/details/managed-disks/?v=17.23h)|
+> | **儲存體** |SAN/實體磁碟 |[Azure 受控儲存體](https://azure.microsoft.com/pricing/details/managed-disks/?v=17.23h)|
 > | **調整** |垂直調整 |水平調整|
 
 
@@ -137,7 +137,7 @@ SQL> @?/rdbms/admin/awrrpt.sql
 
 ![SQL*Net 輸送量的螢幕擷取畫面](./media/oracle-design/sqlnet_info.png)
 
-根據您的網路頻寬需求，有各種閘道類型可供您選擇。 這些類型包括基本、VpnGw 和 Azure ExpressRoute。 如需詳細資訊，請參閱 [VPN 閘道定價頁面](https://azure.microsoft.com/en-us/pricing/details/vpn-gateway/?v=17.23h)。
+根據您的網路頻寬需求，有各種閘道類型可供您選擇。 這些類型包括基本、VpnGw 和 Azure ExpressRoute。 如需詳細資訊，請參閱 [VPN 閘道定價頁面](https://azure.microsoft.com/pricing/details/vpn-gateway/?v=17.23h)。
 
 **建議**
 

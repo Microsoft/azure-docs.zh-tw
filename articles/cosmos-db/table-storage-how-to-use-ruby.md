@@ -1,35 +1,38 @@
 ---
-title: 如何搭配 Ruby 使用 Azure 資料表儲存體和 Azure Cosmos DB 資料表 API | Microsoft Docs
-description: 使用 Azure 表格儲存體 (NoSQL 資料存放區) 將結構化的資料儲存在雲端。
+title: 如何搭配 Ruby 使用 Azure 表格儲存體和 Azure Cosmos DB 資料表 API | Microsoft Docs
+description: 使用 Azure 表格儲存體或 Azure Cosmos DB 資料表 API 將結構化資料儲存在雲端。
 services: cosmos-db
-documentationcenter: ruby
-author: mimig1
-manager: jhubbard
+author: SnehaGunda
+manager: kfile
 editor: ''
-ms.assetid: 047cd9ff-17d3-4c15-9284-1b5cc61a3224
 ms.service: cosmos-db
-ms.workload: data-services
-ms.tgt_pltfrm: na
+ms.component: cosmosdb-table
 ms.devlang: ruby
-ms.topic: article
-ms.date: 02/27/2018
-ms.author: mimig
-ms.openlocfilehash: 104d793826116462f71e4889386906256b2df8f8
-ms.sourcegitcommit: 168426c3545eae6287febecc8804b1035171c048
+ms.topic: sample
+ms.date: 04/05/2018
+ms.author: sngun
+ms.openlocfilehash: d1583001550f5f272f4070006a4a6ac3be000de6
+ms.sourcegitcommit: 6116082991b98c8ee7a3ab0927cf588c3972eeaa
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/08/2018
+ms.lasthandoff: 06/05/2018
+ms.locfileid: "34798265"
 ---
-# <a name="how-to-use-azure-table-storage-and-azure-cosmos-db-table-api-with-ruby"></a>如何搭配 Ruby 使用 Azure 資料表儲存體和 Azure Cosmos DB 資料表 API
+# <a name="how-to-use-azure-table-storage-and-the-azure-cosmos-db-table-api-with-ruby"></a>如何搭配 Ruby 使用 Azure 表格儲存體和 Azure Cosmos DB 資料表 API
 [!INCLUDE [storage-selector-table-include](../../includes/storage-selector-table-include.md)]
-[!INCLUDE [storage-table-cosmos-db-tip-include](../../includes/storage-table-cosmos-db-tip-include.md)]
+[!INCLUDE [storage-table-applies-to-storagetable-and-cosmos](../../includes/storage-table-applies-to-storagetable-and-cosmos.md)]
 
 ## <a name="overview"></a>概觀
-本指南說明如何使用「Azure 資料表」服務和「Azure Cosmos DB 資料表」API 來執行一般案例。 這些範例是以 Ruby 撰寫的，並且使用 [適用於 Ruby 的 Azure 儲存體資料表用戶端程式庫](https://github.com/azure/azure-storage-ruby/tree/master/table) \(英文\)。 所涵蓋的案例包括**建立和刪除資料表，以及在資料表中插入和查詢實體**。
+本指南說明如何使用 Azure 表格服務和 Azure Cosmos DB 資料表 API 來執行一般案例。 這些範例是以 Ruby 撰寫的，並且使用 [適用於 Ruby 的 Azure 儲存體資料表用戶端程式庫](https://github.com/azure/azure-storage-ruby/tree/master/table) \(英文\)。 所涵蓋的案例包括**建立和刪除資料表，以及在資料表中插入和查詢實體**。
 
-[!INCLUDE [storage-table-concepts-include](../../includes/storage-table-concepts-include.md)]
+## <a name="create-an-azure-service-account"></a>建立 Azure 服務帳戶
+[!INCLUDE [cosmos-db-create-azure-service-account](../../includes/cosmos-db-create-azure-service-account.md)]
 
-[!INCLUDE [storage-create-account-include](../../includes/storage-create-account-include.md)]
+### <a name="create-an-azure-storage-account"></a>建立 Azure 儲存體帳戶
+[!INCLUDE [cosmos-db-create-storage-account](../../includes/cosmos-db-create-storage-account.md)]
+
+### <a name="create-an-azure-cosmos-db-account"></a>建立 Azure Cosmos DB 帳戶
+[!INCLUDE [cosmos-db-create-tableapi-account](../../includes/cosmos-db-create-tableapi-account.md)]
 
 ## <a name="add-access-to-storage-or-azure-cosmos-db"></a>新增對儲存體或 Azure Cosmos DB 的存取權
 若要使用「Azure 儲存體」或 Azure Cosmos DB，您必須下載並使用 Ruby Azure 套件，這包含一組能夠與「資料表 REST」服務進行通訊的便利程式庫。
@@ -93,10 +96,10 @@ azure_table_service.insert_entity("testtable", entity)
 ## <a name="update-an-entity"></a>更新實體
 有多種方法可以用來更新現有的實體：
 
-* **update_entity()：**藉由取代現有實體來更新現有實體。
-* **merge_entity()：**藉由將新的屬性值合併到現有實體來更新現有實體。
-* **insert_or_merge_entity()：**藉由取代現有實體來更新現有實體。 如果實體不存在，將會插入新的實體：
-* **insert_or_replace_entity()：**藉由將新的屬性值合併到現有實體來更新現有實體。 如果實體不存在，將會插入新的實體。
+* **update_entity()：** 藉由取代現有實體來更新現有實體。
+* **merge_entity()：** 藉由將新的屬性值合併到現有實體來更新現有實體。
+* **insert_or_merge_entity()：** 藉由取代現有實體來更新現有實體。 如果實體不存在，將會插入新的實體：
+* **insert_or_replace_entity()：** 藉由將新的屬性值合併到現有實體來更新現有實體。 如果實體不存在，將會插入新的實體。
 
 下列範例示範使用 **update_entity()** 來更新實體：
 
@@ -130,7 +133,7 @@ result = azure_table_service.get_entity("testtable", "test-partition-key",
 ```
 
 ## <a name="query-a-set-of-entities"></a>查詢實體集合
-若要查詢資料表中的一組實體，請建立查詢雜湊物件，然後使用 **query_entities()**方法。 下列範例示範取得具備相同 **PartitionKey**的所有實體：
+若要查詢資料表中的一組實體，請建立查詢雜湊物件，然後使用 **query_entities()** 方法。 下列範例示範取得具備相同 **PartitionKey**的所有實體：
 
 ```ruby
 query = { :filter => "PartitionKey eq 'test-partition-key'" }
@@ -159,7 +162,7 @@ azure_table_service.delete_entity("testtable", "test-partition-key", "1")
 ```
 
 ## <a name="delete-a-table"></a>刪除資料表
-若要刪除資料表，請使用 **delete_table()**方法，然後傳入要刪除的資料表名稱。
+若要刪除資料表，請使用 **delete_table()** 方法，然後傳入要刪除的資料表名稱。
 
 ```ruby
 azure_table_service.delete_table("testtable")

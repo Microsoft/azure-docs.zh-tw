@@ -1,24 +1,24 @@
 ---
-title: "建立及發佈 Azure 受服務類別目錄管理的應用程式 | Microsoft Docs"
-description: "示範如何建立 Azure 受控應用程式，以供組織成員使用。"
+title: 建立及發佈 Azure 受服務類別目錄管理的應用程式 | Microsoft Docs
+description: 示範如何建立 Azure 受控應用程式，以供組織成員使用。
 services: managed-applications
 author: tfitzmac
-manager: timlt
 ms.service: managed-applications
 ms.devlang: na
-ms.topic: article
+ms.topic: tutorial
 ms.tgt_pltfrm: na
-ms.date: 11/02/2017
+ms.date: 10/04/2018
 ms.author: tomfitz
-ms.openlocfilehash: 46adcdf39625c85dc962a7541b68c5500cf920ee
-ms.sourcegitcommit: b7adce69c06b6e70493d13bc02bd31e06f291a91
+ms.openlocfilehash: a2e6e78268f97136533b4f72ce28373642b6c394
+ms.sourcegitcommit: 9eaf634d59f7369bec5a2e311806d4a149e9f425
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/19/2017
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48801262"
 ---
-# <a name="publish-a-managed-application-for-internal-consumption"></a>發佈受控應用程式，以供內部使用
+# <a name="create-and-publish-a-managed-application-definition"></a>建立及發佈受控應用程式定義
 
-您可以建立及發佈 Azure [受控應用程式](overview.md)，以供組織成員使用。 例如，IT 部門可以發佈受控應用程式，以確保符合組織標準。 這些受控應用程式可透過服務類別目錄取得，而非 Azure Marketplace。
+您可以建立及發佈 Azure [受控應用程式](overview.md)，以供組織成員使用。 例如，IT 部門可以發佈符合組織標準的受控應用程式。 這些受控應用程式可透過服務類別目錄取得，而非 Azure Marketplace。
 
 若要發佈受服務類別目錄管理的應用程式，您必須：
 
@@ -28,11 +28,13 @@ ms.lasthandoff: 12/19/2017
 * 決定需要存取使用者訂用帳戶中的資源群組之使用者、群組或應用程式。
 * 建立指向 .zip 套件並要求存取身分識別的受控應用程式定義。
 
-針對這篇文章，受控應用程式只包含儲存體帳戶。 它是用來說明發佈受控應用程式的步驟。 如需完整範例，請參閱[適用於 Azure 受控應用程式之範例專案](sample-projects.md)。
+在本文中，受控應用程式只有一個儲存體帳戶。 它是用來說明發佈受控應用程式的步驟。 如需完整範例，請參閱[適用於 Azure 受控應用程式之範例專案](sample-projects.md)。
+
+本文中的 PowerShell 範例需要 Azure PowerShell 6.2 或更新版本。 如有需要，[請更新您的版本](/powershell/azure/install-azurerm-ps)。
 
 ## <a name="create-the-resource-template"></a>建立資源範本
 
-每個受控應用程式定義包含名為 **mainTemplate.json** 的檔案。 您可以在其中定義要佈建的 Azure 資源。 此範本與一般 Resource Manager 範本不同。
+每個受控應用程式定義都包含名為 **mainTemplate.json** 的檔案。 您可以在其中定義要部署的 Azure 資源。 此範本與一般 Resource Manager 範本不同。
 
 建立名為 **mainTemplate.json** 的檔案。 名稱有區分大小寫。
 
@@ -55,7 +57,7 @@ ms.lasthandoff: 12/19/2017
         }
     },
     "variables": {
-        "storageAccountName": "[concat(parameters('storageAccountNamePrefix'), uniqueString('storage'))]"
+        "storageAccountName": "[concat(parameters('storageAccountNamePrefix'), uniqueString(resourceGroup().id))]"
     },
     "resources": [
         {
@@ -138,7 +140,7 @@ Azure 入口網站會使用 **createUiDefinition.json** 檔案，為建立受控
 }
 ```
 
-儲存 createUIDefinition.json 檔案。
+儲存 createUiDefinition.json 檔案。
 
 ## <a name="package-the-files"></a>封裝檔案
 
@@ -152,8 +154,7 @@ $storageAccount = New-AzureRmStorageAccount -ResourceGroupName storageGroup `
   -Name "mystorageaccount" `
   -Location eastus `
   -SkuName Standard_LRS `
-  -Kind Storage `
-  -EnableEncryptionService Blob
+  -Kind Storage
 
 $ctx = $storageAccount.Context
 
@@ -169,11 +170,13 @@ Set-AzureStorageBlobContent -File "D:\myapplications\app.zip" `
 
 ### <a name="create-an-azure-active-directory-user-group-or-application"></a>建立 Azure Active Directory 使用者群組或應用程式
 
-下一個步驟是選取要代表客戶管理資源的使用者群組或應用程式。 此使用者群組或應用程式會根據指派的角色，取得受控資源群組的權限。 角色可以是任何內建的角色型存取控制 (RBAC) 角色，例如擁有者或參與者。 您也可以將管理資源的權限提供給個別使用者，但您通常要將此權限指派給使用者群組。 若要建立新的 Active Directory 使用者群組，請參閱[在 Azure Active Directory 中建立群組和新增成員](../active-directory/active-directory-groups-create-azure-portal.md)。
+下一個步驟是選取要代表客戶管理資源的使用者群組或應用程式。 此使用者群組或應用程式會根據指派的角色，取得受控資源群組的權限。 角色可以是任何內建的角色型存取控制 (RBAC) 角色，例如擁有者或參與者。 您也可以將管理資源的權限提供給個別使用者，但您通常要將此權限指派給使用者群組。 若要建立新的 Active Directory 使用者群組，請參閱[在 Azure Active Directory 中建立群組和新增成員](../active-directory/fundamentals/active-directory-groups-create-azure-portal.md)。
 
 您需要使用者群組的物件識別碼，以便用於管理資源。 
 
-![取得群組識別碼](./media/publish-service-catalog-app/get-group-id.png)
+```powershell
+$groupID=(Get-AzureRmADGroup -DisplayName mygroup).Id
+```
 
 ### <a name="get-the-role-definition-id"></a>取得角色定義識別碼
 
@@ -203,46 +206,15 @@ New-AzureRmManagedApplicationDefinition `
   -LockLevel ReadOnly `
   -DisplayName "Managed Storage Account" `
   -Description "Managed Azure Storage Account" `
-  -Authorization "<group-id>:$ownerID" `
+  -Authorization "${groupID}:$ownerID" `
   -PackageFileUri $blob.ICloudBlob.StorageUri.PrimaryUri.AbsoluteUri
 ```
 
-## <a name="create-the-managed-application-by-using-the-portal"></a>使用入口網站建立受控應用程式
+### <a name="make-sure-users-can-see-your-definition"></a>確定使用者可以看到您的定義
 
-現在，讓我們使用入口網站來部署受控應用程式。 您會在套件中看到您建立的使用者介面。
-
-1. 移至 Azure 入口網站。 選取 [+ 新增]，並搜尋**服務類別目錄**。
-
-   ![服務類別目錄](./media/publish-service-catalog-app/select-new.png)
-
-1. 選取 [服務類別目錄受控應用程式]。
-
-   ![選取服務類別目錄](./media/publish-service-catalog-app/select-service-catalog.png)
-
-1. 選取 [建立] 。
-
-   ![選取 [建立]](./media/publish-service-catalog-app/select-create.png)
-
-1. 從可用的解決方案清單中，尋找並選取您想要建立的受控應用程式。 選取 [建立] 。
-
-   ![尋找受控應用程式](./media/publish-service-catalog-app/find-application.png)
-
-1. 提供受控應用程式所需的基本資訊。 指定要包含受控應用程式的訂用帳戶和新資源群組。 選取 [美國中西部] 為位置。 完成時，選取 [確認]。
-
-   ![提供受控應用程式參數](./media/publish-service-catalog-app/provide-basics.png)
-
-1. 提供專屬於受控應用程式中資源的值。 完成時，選取 [確認]。
-
-   ![提供資源參數](./media/publish-service-catalog-app/provide-resource-values.png)
-
-1. 範本會驗證您所提供的值。 如果驗證成功，請選取 [確定] 以開始部署。
-
-   ![驗證受控應用程式](./media/publish-service-catalog-app/validate.png)
-
-在部署完成之後，受控應用程式會存在名為 applicationGroup 的資源群組中。 儲存體帳戶會存在名為 applicationGroup (加上雜湊字串值) 的資源群組中。
+您可以存取受控應用程式定義，但您想確保您組織中的其他使用者可以存取它。 至少在定義上將讀者角色授與給他們。 他們可能已從訂用帳戶或資源群組繼承此存取層級。 若要檢查有誰可以存取定義及新增使用者或群組的，請參閱[使用角色型存取控制來管理 Azure 訂用帳戶資源的存取權](../role-based-access-control/role-assignments-portal.md)。
 
 ## <a name="next-steps"></a>後續步驟
 
-* 如需受控應用程式的簡介，請參閱[受控應用程式概觀](overview.md)。
-* 如需範例專案，請參閱[適用於 Azure 受控應用程式之範例專案](sample-projects.md)。
-* 若要了解如何建立受控應用程式的 UI 定義檔案，請參閱[開始使用 CreateUiDefinition](create-uidefinition-overview.md)。
+* 若要將您的受控應用程式發佈至 Azure Marketplace，請參閱 [Marketplace 中 Azure 受控應用程式](publish-marketplace-app.md)。
+* 若要部署受控應用程式執行個體，請參閱[透過 Azure 入口網站來部署服務目錄應用程式](deploy-service-catalog-quickstart.md)。

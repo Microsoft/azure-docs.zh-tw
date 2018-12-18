@@ -1,6 +1,6 @@
 ---
 title: 使用 cloud-init 在 Linux 虛擬機器上設定分頁檔 | Microsoft Docs
-description: 如何透過 Azure CLI 2.0 在建立期間使用 cloud-init 在 Linux 虛擬機器中設定分頁檔
+description: 如何透過 Azure CLI，在建立期間使用 cloud-init 在 Linux 虛擬機器中設定分頁檔
 services: virtual-machines-linux
 documentationcenter: ''
 author: rickstercdn
@@ -14,11 +14,12 @@ ms.devlang: azurecli
 ms.topic: article
 ms.date: 11/29/2017
 ms.author: rclaus
-ms.openlocfilehash: 88a141922f113caf7ad67c89de48f84a821f7ba3
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: 2a5a878b7c8c3b6126d90b978241fbcb237d8db7
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46946301"
 ---
 # <a name="use-cloud-init-to-configure-a-swapfile-on-a-linux-vm"></a>使用 cloud-init 在 Linux 虛擬機器上設定分頁檔
 本文會示範如何使用 [cloud-init](https://cloudinit.readthedocs.io) 在各種 Linux 發行套件上設定分頁檔。 傳統上是由 Linux 代理程式 (WALA) 根據發行套件的需求來設定分頁檔。  本文將概述在佈建期間，使用 cloud-init 依需求建置分頁檔的流程。  如需深入了解 cloud-init 如何以原生方式在 Azure 和支援的 Linux 散發版本中運作，請參閱 [cloud-init 概觀](using-cloud-init.md)
@@ -26,7 +27,7 @@ ms.lasthandoff: 03/16/2018
 ## <a name="create-swapfile-for-ubuntu-based-images"></a>建立 Ubuntu 型映像的分頁檔
 依預設，Azure 上的 Ubuntu 資源庫映像不會建立分頁檔。 若要使用 cloud-init 在虛擬機器佈建期間啟用分頁檔設定 - 請參閱 Ubuntu wiki 上的 [AzureSwapPartitions 文件](https://wiki.ubuntu.com/AzureSwapPartitions)。
 
-## <a name="create-swapfile-for-redhat-and-centos-based-images"></a>建立 RedHat 和 CentOS 型映像的分頁檔
+## <a name="create-swapfile-for-red-hat-and-centos-based-images"></a>建立 Red Hat 和 CentOS 型映像的分頁檔
 
 在您目前的殼層中，建立名為 cloud_init_swapfile.txt的檔案，並貼上下列設定。 針對此案例，在 Cloud Shell 中 (而不是本機電腦上) 建立該檔案。 您可以使用任何您想要的編輯器。 輸入 `sensible-editor cloud_init_swapfile.txt` 可建立檔案，並查看可用的編輯器清單。 建議首先選擇使用 **nano** 編輯器。 請確定已正確複製整個 cloud-init 檔案，特別是第一行。  
 

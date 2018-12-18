@@ -1,0 +1,76 @@
+### YamlMime:YamlDocument
+ms.openlocfilehash: 5403be527e8591f0f0b658131b08632d6d1458ca
+ms.sourcegitcommit: f31bfb398430ed7d66a85c7ca1f1cc9943656678
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47452236"
+documentType: LandingData
+title: Azure Machine Learning 服務 (預覽) 文件
+metadata:
+  title: Azure Machine Learning 文件 (預覽) – 教學課程、API 參考 | Microsoft Docs
+  meta.description: Learn how to build intelligent algorithms into apps and websites. Use Scikit-learn, Tensorflow, Pytorch or any other Python-based framework to build your machine learning model and train it locally or in the cloud. Tutorials, quickstarts, API references, and examples show you how.
+  services: machine-learning
+  author: j-martens
+  manager: jhubbard
+  ms.service: machine-learning
+  ms.component: core
+  ms.tgt_pltfrm: na
+  ms.devlang: na
+  ms.topic: landing-page
+  ms.date: 09/24/2018
+  ms.author: jmartens
+abstract:
+  description: 了解如何將智慧型演算法建置到應用程式與網站中。 使用 Scikit-learn、Tensorflow、Pytorch 或任何其他 Python 型架構在本機或雲端建置您的機器學習模型並進行定型。 教學課程、快速入門和 API 參考和範例示範。
+sections:
+- items:
+  - type: list
+    style: cards
+    className: cardsB
+    columns: 1
+    items:
+    - html: <p>在 Azure 雲端服務中定型及部署您的 ML 模型。 <a href="overview-what-is-azure-ml.md">深入了解服務...</a></p>
+      image:
+        src: /azure/machine-learning/media/index/i_machine-learning.svg
+      title: Azure Machine Learning 服務
+- title: 5 分鐘快速入門
+  items:
+  - type: paragraph
+    text: 設定您的 Azure Machine Learning 服務資源。
+  - type: list
+    style: unordered
+    items:
+    - html: <a href="quickstart-get-started.md">在 Azure 入口網站中開始使用</a>
+- title: 逐步教學課程
+  items:
+  - type: paragraph
+    text: 了解如何設定實驗，以及讓您的模型得以運作。
+  - type: list
+    style: unordered
+    items:
+    - html: <a href="tutorial-train-models-with-aml">為您自己的機器學習模型定型</a>
+    - html: <a href="tutorial-auto-train-models">讓我們為您自動產生及自訂調整模型</a>
+    - html: <a href="tutorial-deploy-models-with-aml">將模型部署為 Web 服務</a>
+- title: 參考
+  items:
+  - type: list
+    style: unordered
+    items:
+    - html: <a href="http://aka.ms/aml-sdk">Azure Machine Learning SDK for Python (主要 SDK)</a>
+    - html: <a href="http://aka.ms/data-prep-sdk">Azure Machine Learning 資料準備 SDK</a>
+- title: 其他 Azure Machine Learning 技術
+  items:
+  - type: list
+    style: cards
+    className: cardsFTitle
+    items:
+    - title: Azure Machine Learning Studio
+      href: /azure/machine-learning/studio/
+      image:
+        src: media/index/machine-learning-studio.svg
+        href: /azure/machine-learning/studio/
+    - title: 資料科學虛擬機器
+      href: /azure/machine-learning/data-science-virtual-machine/
+      image:
+        src: media/index/virtual-machines.svg
+        href: /azure/machine-learning/data-science-virtual-machine/

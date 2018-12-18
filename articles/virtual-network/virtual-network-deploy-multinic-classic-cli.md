@@ -1,11 +1,11 @@
 ---
-title: "建立具有多個 NIC 的 VM (傳統) - Azure CLI 1.0 | Microsoft Docs"
-description: "了解如何使用 Azure 命令列介面 (CLI) 1.0 建立具有多個 NIC 的 VM (傳統)。"
+title: 建立具有多個 NIC 的 VM (傳統) - Azure 傳統 CLI | Microsoft Docs
+description: 了解如何使用 Azure 傳統命令列介面 (CLI) 建立具有多個 NIC 的 VM (傳統)。
 services: virtual-network
 documentationcenter: na
-author: jimdial
-manager: timlt
-editor: 
+author: genlin
+manager: cshepard
+editor: ''
 tags: azure-service-management
 ms.assetid: b436e41e-866c-439f-a7c7-7b4b041725ef
 ms.service: virtual-network
@@ -14,15 +14,16 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/02/2016
-ms.author: jdial
+ms.author: genli
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: e5569209d3628003b3f3e169b227e069b920c03f
-ms.sourcegitcommit: 234c397676d8d7ba3b5ab9fe4cb6724b60cb7d25
+ms.openlocfilehash: 4ea53048819bfdad5c45e522115aa6e493dfc8bc
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/20/2017
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46953352"
 ---
-# <a name="create-a-vm-classic-with-multiple-nics-using-the-azure-cli-10"></a>使用 Azure CLI 1.0 建立具有多個 NIC 的 VM (傳統)
+# <a name="create-a-vm-classic-with-multiple-nics-using-the-azure-classic-cli"></a>使用 Azure 傳統 CLI 建立具有多個 NIC 的 VM (傳統)
 
 [!INCLUDE [virtual-network-deploy-multinic-classic-selectors-include.md](../../includes/virtual-network-deploy-multinic-classic-selectors-include.md)]
 
@@ -35,7 +36,7 @@ ms.lasthandoff: 12/20/2017
 
 在下列步驟中，WEB 伺服器使用名為 *IaaSStory* 的資源群組，而 DB 伺服器使用名為 *IaaSStory-BackEnd* 的資源群組。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 您需要建立 *IaaSStory* 資源群組，其中含有此案例的所有必要資源，才能建立 DB 伺服器。 若要建立這些資源，請完成下列步驟。 依照[建立虛擬網路](virtual-networks-create-vnet-classic-cli.md)文章中的步驟建立虛擬網路。
 
 [!INCLUDE [azure-cli-prerequisites-include.md](../../includes/azure-cli-prerequisites-include.md)]

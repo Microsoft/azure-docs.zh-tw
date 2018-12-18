@@ -8,11 +8,11 @@ ms.topic: include
 ms.date: 03/21/2018
 ms.author: cherylmc
 ms.custom: include file
-ms.openlocfilehash: c5952422bb4faec196a5a54b9f18cf9700988aad
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 655f0b625d9f1b7c7ad216e9276da62d8454380f
+ms.sourcegitcommit: 5b2ac9e6d8539c11ab0891b686b8afa12441a8f3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 04/06/2018
 ---
 1. 在入口網站中，按一下左側的 **+** 並在搜尋中輸入「虛擬網路閘道」。 在搜尋傳回的結果中找出**虛擬網路閘道**，然後按一下該項目。 在 [虛擬網路閘道] 頁面上，按一下頁面底部的 [建立]，以開啟 [建立虛擬網路閘道] 頁面。
 2. 在 [建立虛擬網路閘道] 頁面上，填入您虛擬網路閘道的值。
@@ -32,7 +32,7 @@ ms.lasthandoff: 03/23/2018
     - 首先，按一下 [建立閘道 IP 設定] 以開啟 [選擇公用 IP 位址] 頁面，然後按一下 [+ 新建] 以開啟 [建立公用 IP 位址] 頁面。
     - 接下來，輸入公用 IP 位址的 [名稱]。 將 SKU 保留作為**基本**，除非有特定原因要將它變更為其他項目，然後按一下這個頁面底部的 [確定]，即可儲存您的變更。
 
-      ![建立公用 IP](./media/vpn-gateway-add-gw-s2s-rm-portal-include/gwip.png "建立 PIP")
+      ![建立公用 IP](./media/vpn-gateway-add-gw-rm-portal-include/gwip.png "建立 PIP")
 
 4. 確認設定。 如果您希望閘道顯示在儀表板上，可以選取頁面底部的 [釘選到儀表板]。 
 5. 按一下 [建立]  即可開始建立 VPN 閘道。 設定會經過驗證，而您將會在儀表板上看到 [部署虛擬網路閘道] 圖格。 建立閘道可能需要長達 45 分鐘。 您可能需要重新整理入口網站頁面，才能看到完成的狀態。

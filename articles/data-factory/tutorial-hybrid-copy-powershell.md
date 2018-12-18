@@ -10,21 +10,20 @@ ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: get-started-article
+ms.topic: tutorial
 ms.date: 01/22/2018
 ms.author: jingwang
-ms.openlocfilehash: 3733531efb18a1fc14998af8bad2f61f22032048
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: ea5e393ebe204041d96d18481a5c64d2877755f2
+ms.sourcegitcommit: f3bd5c17a3a189f144008faf1acb9fabc5bc9ab7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 09/10/2018
+ms.locfileid: "44304606"
 ---
 # <a name="tutorial-copy-data-from-an-on-premises-sql-server-database-to-azure-blob-storage"></a>教學課程：將資料從內部部署 SQL Server 資料庫複製到 Azure Blob 儲存體
 在本教學課程中，您會使用 Azure PowerShell 建立資料處理站管線，以將資料從內部部署 SQL Server 資料庫複製到 Azure Blob 儲存體。 您要建立及使用自我裝載的整合執行階段，其會在內部部署與雲端資料存放區之間移動資料。 
 
 > [!NOTE]
-> 本文適用於第 2 版的 Azure Data Fatory (目前為預覽版)。 如果您使用第 1 版的 Data Factory 服務 (正式推出版本 (GA))，請參閱 [Data Factory 第 1 版文件](v1/data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
-> 
 > 本文不提供 Data Factory 服務的詳細簡介。 如需詳細資訊，請參閱 [Azure Data Factory 簡介](introduction.md)。 
 
 在本教學課程中，您會執行下列步驟：
@@ -39,26 +38,26 @@ ms.lasthandoff: 03/28/2018
 > * 監視管道執行。
 
 ## <a name="prerequisites"></a>先決條件
-### <a name="azure-subscription"></a>Azure 訂閱
+### <a name="azure-subscription"></a>Azure 訂用帳戶
 開始之前，如果您還沒有 Azure 訂用帳戶，[請建立免費帳戶](https://azure.microsoft.com/free/)。
 
 ### <a name="azure-roles"></a>Azure 角色
 若要建立資料處理站執行個體，您用來登入 Azure 的使用者帳戶必須具備「參與者」或「擁有者」角色，或必須是 Azure 訂用帳戶的「管理員」。 
 
-若要檢視您在訂用帳戶中所擁有的權限，請移至 Azure 入口網站，選取右上角的使用者名稱，然後選取 [權限]。 如果您有多個訂用帳戶的存取權，請選取適當的訂用帳戶。 如需將使用者新增至角色的範例指示，請參閱[新增角色](../billing/billing-add-change-azure-subscription-administrator.md)文章。
+若要檢視您在訂用帳戶中所擁有的權限，請移至 Azure 入口網站，選取右上角的使用者名稱，然後選取 [權限]。 如果您有多個訂用帳戶的存取權，請選取適當的訂用帳戶。 如需將使用者新增至角色的範例指示，請參閱[使用 RBAC 和 Azure 入口網站來管理存取權](../role-based-access-control/role-assignments-portal.md)文章。
 
 ### <a name="sql-server-2014-2016-and-2017"></a>SQL Server 2014、2016 和 2017
 在本教學課程中，您會使用內部部署 SQL 資料庫作為「來源」資料存放區。 您在本教學課程中建立於 Data Factory 的管線會將資料從此內部部署 SQL Server 資料庫 (來源) 複製到 Azure Blob 儲存體 (接收)。 然後在 SQL Server 資料庫中建立名為 **emp** 的資料表，並在資料表中插入幾個範例項目。 
 
 1. 啟動 SQL Server Management Studio。 如果它尚未安裝在電腦上，請移至[下載 SQL Server Management Studio](https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms)。 
 
-2. 使用您的認證連線到 SQL Server 執行個體。 
+1. 使用您的認證連線到 SQL Server 執行個體。 
 
-3. 建立範例資料庫。 在樹狀檢視中，以滑鼠右鍵按一下 [資料庫]，然後選取 [新增資料庫]。 
+1. 建立範例資料庫。 在樹狀檢視中，以滑鼠右鍵按一下 [資料庫]，然後選取 [新增資料庫]。 
  
-4. 在 [新增資料庫] 視窗中，輸入資料庫的名稱，然後選取 [確定]。 
+1. 在 [新增資料庫] 視窗中，輸入資料庫的名稱，然後選取 [確定]。 
 
-5. 若要建立 **emp** 資料表並在其中插入一些範例資料，請針對資料庫執行下列查詢指令碼：
+1. 若要建立 **emp** 資料表並在其中插入一些範例資料，請針對資料庫執行下列查詢指令碼：
 
    ```
        INSERT INTO emp VALUES ('John', 'Doe')
@@ -66,27 +65,27 @@ ms.lasthandoff: 03/28/2018
        GO
    ```
 
-6. 在樹狀檢視中，以滑鼠右鍵按一下您建立的資料庫，然後選取 [新增查詢]。
+1. 在樹狀檢視中，以滑鼠右鍵按一下您建立的資料庫，然後選取 [新增查詢]。
 
 ### <a name="azure-storage-account"></a>Azure 儲存體帳戶
-在本教學課程中，您可以使用一般用途的 Azure 儲存體帳戶 (特別是 Blob 儲存體) 作為目的地/接收資料存放區。 如果您沒有一般用途的 Azure 儲存體帳戶，請參閱[建立儲存體帳戶](../storage/common/storage-create-storage-account.md#create-a-storage-account)戶。 您在本教學課程中建立於 Data Factory 的管線會將資料從內部部署 SQL Server 資料庫 (來源) 複製到此 Azure Blob 儲存體 (接收)。 
+在本教學課程中，您可以使用一般用途的 Azure 儲存體帳戶 (特別是 Blob 儲存體) 作為目的地/接收資料存放區。 如果您沒有一般用途的 Azure 儲存體帳戶，請參閱[建立儲存體帳戶](../storage/common/storage-quickstart-create-account.md)戶。 您在本教學課程中建立於 Data Factory 的管線會將資料從內部部署 SQL Server 資料庫 (來源) 複製到此 Azure Blob 儲存體 (接收)。 
 
 #### <a name="get-storage-account-name-and-account-key"></a>取得儲存體帳戶名稱和帳戶金鑰
 您會在此教學課程中使用 Azure 儲存體帳戶的名稱和金鑰。 執行下列作業，以取得儲存體帳戶的名稱和金鑰： 
 
 1. 使用您的使用者名稱和密碼登入 [Azure 入口網站](https://portal.azure.com)。 
 
-2. 在左側功能表中，選取 [更多服務]，使用 **Storage** 關鍵字進行篩選，然後選取 [儲存體帳戶]。
+1. 在左側功能表中，選取 [更多服務]，使用 **Storage** 關鍵字進行篩選，然後選取 [儲存體帳戶]。
 
     ![搜尋儲存體帳戶](media/tutorial-hybrid-copy-powershell/search-storage-account.png)
 
-3. 在儲存體帳戶清單中，篩選您的儲存體帳戶 (如有需要)，然後選取您的儲存體帳戶。 
+1. 在儲存體帳戶清單中，篩選您的儲存體帳戶 (如有需要)，然後選取您的儲存體帳戶。 
 
-4. 在 [儲存體帳戶] 視窗中，選取 [存取金鑰]。
+1. 在 [儲存體帳戶] 視窗中，選取 [存取金鑰]。
 
     ![取得儲存體帳戶名稱和金鑰](media/tutorial-hybrid-copy-powershell/storage-account-name-key.png)
 
-5. 在 [儲存體帳戶名稱] 和 [金鑰1] 方塊中複製值，然後將它們貼到 [記事本] 或另一個編輯器中，以供稍後在教學課程中使用。 
+1. 在 [儲存體帳戶名稱] 和 [金鑰1] 方塊中複製值，然後將它們貼到 [記事本] 或另一個編輯器中，以供稍後在教學課程中使用。 
 
 #### <a name="create-the-adftutorial-container"></a>建立 adftutorial 容器 
 在這一節中，您會在 Azure Blob 儲存體中建立一個名為 **adftutorial** 的 Blob 容器。 
@@ -95,19 +94,19 @@ ms.lasthandoff: 03/28/2018
 
     ![選取 Blob 選項](media/tutorial-hybrid-copy-powershell/select-blobs.png)
 
-2. 在 [Blob 服務] 視窗中，選取 [容器]。 
+1. 在 [Blob 服務] 視窗中，選取 [容器]。 
 
     ![新增容器按鈕](media/tutorial-hybrid-copy-powershell/add-container-button.png)
 
-3. 在 [新容器] 視窗的 [名稱] 方塊中，輸入 **adftutorial**，然後選取 [確定]。 
+1. 在 [新容器] 視窗的 [名稱] 方塊中，輸入 **adftutorial**，然後選取 [確定]。 
 
     ![輸入容器名稱](media/tutorial-hybrid-copy-powershell/new-container-dialog.png)
 
-4. 在容器清單中選取 [adftutorial]。  
+1. 在容器清單中選取 [adftutorial]。  
 
     ![選取容器](media/tutorial-hybrid-copy-powershell/seelct-adftutorial-container.png)
 
-5. 保留 [容器] 視窗以供 **adftutorial** 開啟。 您可以在本快速入門結尾處使用它來確認輸出。 Data Factory 會在此容器中自動建立輸出資料夾，因此您不需要建立輸出資料夾。
+1. 保留 [容器] 視窗以供 **adftutorial** 開啟。 您可以在本快速入門結尾處使用它來確認輸出。 Data Factory 會在此容器中自動建立輸出資料夾，因此您不需要建立輸出資料夾。
 
     ![容器視窗](media/tutorial-hybrid-copy-powershell/container-page.png)
 
@@ -118,9 +117,9 @@ ms.lasthandoff: 03/28/2018
 
 1. 移至 [Azure SDK 下載](https://azure.microsoft.com/downloads/)。 
 
-2. 在 [命令列工具] 的 [PowerShell] 區段中，選取 [Windows 安裝]。 
+1. 在 [命令列工具] 的 [PowerShell] 區段中，選取 [Windows 安裝]。 
 
-3. 若要安裝 Azure PowerShell，請執行 MSI 檔案。 
+1. 若要安裝 Azure PowerShell，請執行 MSI 檔案。 
 
 如需詳細指示，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/install-azurerm-ps)。 
 
@@ -130,13 +129,13 @@ ms.lasthandoff: 03/28/2018
 
     ![啟動 PowerShell](media/tutorial-hybrid-copy-powershell/search-powershell.png)
 
-2. 執行下列命令，然後輸入您用來登入 Azure 入口網站的 Azure 使用者名稱和密碼：
+1. 執行下列命令，然後輸入您用來登入 Azure 入口網站的 Azure 使用者名稱和密碼：
        
     ```powershell
-    Login-AzureRmAccount
+    Connect-AzureRmAccount
     ```        
 
-3. 如果您有多個 Azure 訂用帳戶，請執行下列命令來選取您需要使用的訂用帳戶。 以您的 Azure 訂用帳戶識別碼取代 **SubscriptionId**：
+1. 如果您有多個 Azure 訂用帳戶，請執行下列命令來選取您需要使用的訂用帳戶。 以您的 Azure 訂用帳戶識別碼取代 **SubscriptionId**：
 
     ```powershell
     Select-AzureRmSubscription -SubscriptionId "<SubscriptionId>"       
@@ -150,7 +149,7 @@ ms.lasthandoff: 03/28/2018
     $resourceGroupName = "ADFTutorialResourceGroup"
     ```
 
-2. 若要建立 Azure 資源群組，請執行下列命令： 
+1. 若要建立 Azure 資源群組，請執行下列命令： 
 
     ```powershell
     New-AzureRmResourceGroup $resourceGroupName $location
@@ -158,7 +157,7 @@ ms.lasthandoff: 03/28/2018
 
     如果資源群組已經存在，您可能不想覆寫它。 將不同的值指派給 `$resourceGroupName` 變數，然後執行一次命令。
 
-3. 定義資料處理站名稱的變數，以便稍後在 PowerShell 命令中使用。 名稱必須以字母或數字開頭，並且只能包含字母、數字和虛線 (-) 字元。
+1. 定義資料處理站名稱的變數，以便稍後在 PowerShell 命令中使用。 名稱必須以字母或數字開頭，並且只能包含字母、數字和虛線 (-) 字元。
 
     > [!IMPORTANT]
     >  將資料處理站名稱更新為全域唯一的名稱。 例如，ADFTutorialFactorySP1127。 
@@ -167,13 +166,13 @@ ms.lasthandoff: 03/28/2018
     $dataFactoryName = "ADFTutorialFactory"
     ```
 
-4. 定義 Data Factory 位置的變數： 
+1. 定義 Data Factory 位置的變數： 
 
     ```powershell
     $location = "East US"
     ```  
 
-5. 若要建立資料處理站，請執行以下 `Set-AzureRmDataFactoryV2` Cmdlet： 
+1. 若要建立資料處理站，請執行以下 `Set-AzureRmDataFactoryV2` Cmdlet： 
     
     ```powershell       
     Set-AzureRmDataFactoryV2 -ResourceGroupName $resourceGroupName -Location $location -Name $dataFactoryName 
@@ -186,7 +185,7 @@ ms.lasthandoff: 03/28/2018
 >    The specified data factory name 'ADFv2TutorialDataFactory' is already in use. Data factory names must be globally unique.
 >    ```
 > * 若要建立資料處理站執行個體，您用來登入 Azure 的使用者帳戶必須具備「參與者」或「擁有者」角色，或必須是 Azure 訂用帳戶的「管理員」。
-> * 目前，使用 Data Factory 第 2 版，您只能在美國東部、美國東部 2 和西歐區域中建立資料處理站。 資料處理站所使用的資料存放區 (Azure 儲存體、Azure SQL Database 等) 和計算 (Azure HDInsight 等) 可位於其他區域。
+> * 如需目前可使用 Data Factory 的 Azure 區域清單，請在下列頁面上選取您感興趣的區域，然後展開 [分析] 以找出 [Data Factory]：[依區域提供的產品](https://azure.microsoft.com/global-infrastructure/services/)。 資料處理站所使用的資料存放區 (Azure 儲存體、Azure SQL Database 等) 和計算 (Azure HDInsight 等) 可位於其他區域。
 > 
 > 
 
@@ -200,7 +199,7 @@ ms.lasthandoff: 03/28/2018
    $integrationRuntimeName = "ADFTutorialIR"
     ```
 
-2. 建立自我裝載整合執行階段。 
+1. 建立自我裝載整合執行階段。 
 
     ```powershell
     Set-AzureRmDataFactoryV2IntegrationRuntime -ResourceGroupName $resourceGroupName -DataFactoryName $dataFactoryName -Name $integrationRuntimeName -Type SelfHosted -Description "selfhosted IR description"
@@ -216,7 +215,7 @@ ms.lasthandoff: 03/28/2018
     Description       : selfhosted IR description
     ```
 
-3. 若要擷取所建立整合執行階段的狀態，請執行下列命令：
+1. 若要擷取所建立整合執行階段的狀態，請執行下列命令：
 
     ```powershell
    Get-AzureRmDataFactoryV2IntegrationRuntime -name $integrationRuntimeName -ResourceGroupName $resourceGroupName -DataFactoryName $dataFactoryName -Status
@@ -241,7 +240,7 @@ ms.lasthandoff: 03/28/2018
     State                     : NeedRegistration
     ```
 
-4. 若要擷取*驗證金鑰*，用以向雲端中的 Data Factory 服務註冊自我裝載整合執行階段，請執行下列命令。 複製其中一個金鑰 (不含引號)，以註冊您在下一個步驟中安裝於電腦上的自我裝載整合執行階段。 
+1. 若要擷取*驗證金鑰*，用以向雲端中的 Data Factory 服務註冊自我裝載整合執行階段，請執行下列命令。 複製其中一個金鑰 (不含引號)，以註冊您在下一個步驟中安裝於電腦上的自我裝載整合執行階段。 
 
     ```powershell
     Get-AzureRmDataFactoryV2IntegrationRuntimeKey -Name $integrationRuntimeName -DataFactoryName $dataFactoryName -ResourceGroupName $resourceGroupName | ConvertTo-Json
@@ -259,21 +258,21 @@ ms.lasthandoff: 03/28/2018
 ## <a name="install-the-integration-runtime"></a>安裝整合執行階段
 1. 在本機 Windows 電腦下載 [Azure Data Factory Integration Runtime](https://www.microsoft.com/download/details.aspx?id=39717)，然後執行安裝。 
 
-2. 在 [歡迎使用 Microsoft Integration Runtime 設定] 精靈中，選取 [下一步]。  
+1. 在 [歡迎使用 Microsoft Integration Runtime 設定] 精靈中，選取 [下一步]。  
 
-3. 在 [使用者授權合約] 視窗中，接受條款和授權合約，然後選取 [下一步]。 
+1. 在 [使用者授權合約] 視窗中，接受條款和授權合約，然後選取 [下一步]。 
 
-4. 在 [目的地資料夾] 視窗中，選取 [下一步]。 
+1. 在 [目的地資料夾] 視窗中，選取 [下一步]。 
 
-5. 在 [準備好要安裝 Microsoft Integration Runtime] 視窗中，選取 [安裝]。 
+1. 在 [準備好要安裝 Microsoft Integration Runtime] 視窗中，選取 [安裝]。 
 
-6. 如果您看到一則有關正在設定不使用時要進入睡眠或休眠模式之電腦的警告訊息，請選取 [確定]。 
+1. 如果您看到一則有關正在設定不使用時要進入睡眠或休眠模式的電腦警告訊息，請選取 [確定]。 
 
-7. 如果顯示 [電源選項] 視窗，請將它關閉，然後切換到安裝視窗。 
+1. 如果顯示 [電源選項] 視窗，請將它關閉，然後切換到安裝視窗。 
 
-8. 在 [完成 Microsoft Integration Runtime 設定] 精靈中，選取 [完成]。
+1. 在 [完成 Microsoft Integration Runtime 設定] 精靈中，選取 [完成]。
 
-9. 在 [註冊 Integration Runtime (自我裝載)] 視窗中，貼上您在上一節中儲存的金鑰，然後選取 [註冊]。 
+1. 在 [註冊 Integration Runtime (自我裝載)] 視窗中，貼上您在上一節中儲存的金鑰，然後選取 [註冊]。 
 
     ![監視整合執行階段](media/tutorial-hybrid-copy-powershell/register-integration-runtime.png)
 
@@ -281,22 +280,22 @@ ms.lasthandoff: 03/28/2018
 
     ![已成功註冊](media/tutorial-hybrid-copy-powershell/registered-successfully.png)
 
-10. 在 [新增 Integration Runtime (自我裝載) 節點] 視窗中，選取 [下一步]。 
+1. 在 [新增 Integration Runtime (自我裝載) 節點] 視窗中，選取 [下一步]。 
 
     ![新增 Integration Runtime 節點視窗](media/tutorial-hybrid-copy-powershell/new-integration-runtime-node-page.png)
 
-11. 在 [內部網路通訊通道] 視窗中，選取 [略過]。  
+1. 在 [內部網路通訊通道] 視窗中，選取 [略過]。  
     您可以選取 TLS/SSL 憑證，以便保護在多節點整合執行階段環境中的內部節點通訊。
 
     ![內部網路通訊通道視窗](media/tutorial-hybrid-copy-powershell/intranet-communication-channel-page.png)
 
-12. 在 [註冊 Integration Runtime (自我裝載)] 視窗中，選取 [啟動組態管理員]。 
+1. 在 [註冊 Integration Runtime (自我裝載)] 視窗中，選取 [啟動組態管理員]。 
 
-13. 當節點連線至雲端服務時，隨即顯示下列訊息：
+1. 當節點連線至雲端服務時，隨即顯示下列訊息：
 
     ![節點已連線](media/tutorial-hybrid-copy-powershell/node-is-connected.png)
 
-14. 執行下列作業，以測試 SQL Server 資料庫的連線能力：
+1. 執行下列作業，以測試 SQL Server 資料庫的連線能力：
 
     ![[診斷] 索引標籤](media/tutorial-hybrid-copy-powershell/config-manager-diagnostics-tab.png)   
 
@@ -345,9 +344,9 @@ ms.lasthandoff: 03/28/2018
     }
    ```
 
-2. 在 PowerShell 中，切換至 C:\ADFv2Tutorial 資料夾。
+1. 在 PowerShell 中，切換至 C:\ADFv2Tutorial 資料夾。
 
-3. 若要建立 AzureStorageLinkedService 連結服務，請執行下列 `Set-AzureRmDataFactoryV2LinkedService` Cmdlet： 
+1. 若要建立 AzureStorageLinkedService 連結服務，請執行下列 `Set-AzureRmDataFactoryV2LinkedService` Cmdlet： 
 
    ```powershell
    Set-AzureRmDataFactoryV2LinkedService -DataFactoryName $dataFactoryName -ResourceGroupName $ResourceGroupName -Name "AzureStorageLinkedService" -File ".\AzureStorageLinkedService.json"
@@ -425,14 +424,14 @@ ms.lasthandoff: 03/28/2018
     > - 儲存檔案之前，以您的 SQL Server 執行個體值取代 **\<servername>**、**\<databasename>**、**\<username>** 和 **\<password>**。
     > - 如果您需要在使用者帳戶或伺服器名稱中使用反斜線 (\\)，請在它的前面加上逸出字元 (\\)。 例如，使用 mydomain\\\\myuser。 
 
-2. 若要將敏感性資料加密 (使用者名稱、密碼等)，請執行 `New-AzureRmDataFactoryV2LinkedServiceEncryptedCredential` Cmdlet。  
+1. 若要將敏感性資料加密 (使用者名稱、密碼等)，請執行 `New-AzureRmDataFactoryV2LinkedServiceEncryptedCredential` Cmdlet。  
     此加密可確保使用資料保護應用程式開發介面 (DPAPI) 來加密認證。 已加密的認證會本機儲存在自我裝載的整合執行階段節點 (本機電腦) 上。 輸出承載可以重新導向至另一個包含加密認證的 JSON 檔案 (在此例中是 encryptedLinkedService.json)。
     
    ```powershell
    New-AzureRmDataFactoryV2LinkedServiceEncryptedCredential -DataFactoryName $dataFactoryName -ResourceGroupName $ResourceGroupName -IntegrationRuntimeName $integrationRuntimeName -File ".\SQLServerLinkedService.json" > encryptedSQLServerLinkedService.json
    ```
 
-3. 執行下列命令，以建立 EncryptedSqlServerLinkedService：
+1. 執行下列命令，以建立 EncryptedSqlServerLinkedService：
 
    ```powershell
    Set-AzureRmDataFactoryV2LinkedService -DataFactoryName $dataFactoryName -ResourceGroupName $ResourceGroupName -Name "EncryptedSqlServerLinkedService" -File ".\encryptedSqlServerLinkedService.json"
@@ -443,7 +442,7 @@ ms.lasthandoff: 03/28/2018
 在此步驟中，您會建立輸入和輸出資料集。 其代表複製作業的輸入和輸出資料，而複製作業會將資料從內部部署 SQL Server 資料庫複製到 Azure Blob 儲存體。
 
 ### <a name="create-a-dataset-for-the-source-sql-server-database"></a>建立來源 SQL Server 資料庫的資料集
-在此步驟中，您要定義代表 SQL Server 資料庫執行個體中資料的資料集。 資料集的類型為 SqlServerTable。 它會參考您在前一個步驟中建立的 SQL Server 連結服務。 此連結服務具有連線資訊，可供 Data Factory 服務在執行階段用來連線到您的 SQL Server 執行個體。 此資料集會指定包含資料之資料庫中的 SQL 資料表。 在本教學課程中，**emp** 資料表包含來源資料。 
+在此步驟中，您要定義代表 SQL Server 資料庫執行個體中資料的資料集。 資料集的類型為 SqlServerTable。 它會參考您在前一個步驟中建立的 SQL Server 連結服務。 此連結服務具有連線資訊，可供 Data Factory 服務在執行階段用來連線到您的 SQL Server 執行個體。 此資料集會指定包含資料的資料庫中的 SQL 資料表。 在本教學課程中，**emp** 資料表包含來源資料。 
 
 1. 使用下列程式碼，在 C:\ADFv2Tutorial 資料夾中建立名為 SqlServerDataset.json 的 JSON 檔案：  
 
@@ -477,7 +476,7 @@ ms.lasthandoff: 03/28/2018
     }
     ```
 
-2. 若要建立 SqlServerDataset 資料集，請執行 `Set-AzureRmDataFactoryV2Dataset` Cmdlet。
+1. 若要建立 SqlServerDataset 資料集，請執行 `Set-AzureRmDataFactoryV2Dataset` Cmdlet。
 
     ```powershell
     Set-AzureRmDataFactoryV2Dataset -DataFactoryName $dataFactoryName -ResourceGroupName $resourceGroupName -Name "SqlServerDataset" -File ".\SqlServerDataset.json"
@@ -519,7 +518,7 @@ ms.lasthandoff: 03/28/2018
     }
     ```
 
-2. 若要建立 AzureBlobDataset 資料集，請執行 `Set-AzureRmDataFactoryV2Dataset` Cmdlet。
+1. 若要建立 AzureBlobDataset 資料集，請執行 `Set-AzureRmDataFactoryV2Dataset` Cmdlet。
 
     ```powershell
     Set-AzureRmDataFactoryV2Dataset -DataFactoryName $dataFactoryName -ResourceGroupName $resourceGroupName -Name "AzureBlobDataset" -File ".\AzureBlobDataset.json"
@@ -574,7 +573,7 @@ ms.lasthandoff: 03/28/2018
     }
     ```
 
-2. 若要建立 SqlServerToBlobPipeline 管道，請執行 `Set-AzureRmDataFactoryV2Pipeline` Cmdlet。
+1. 若要建立 SqlServerToBlobPipeline 管道，請執行 `Set-AzureRmDataFactoryV2Pipeline` Cmdlet。
 
     ```powershell
     Set-AzureRmDataFactoryV2Pipeline -DataFactoryName $dataFactoryName -ResourceGroupName $resourceGroupName -Name "SQLServerToBlobPipeline" -File ".\SQLServerToBlobPipeline.json"
@@ -635,7 +634,7 @@ $runId = Invoke-AzureRmDataFactoryV2Pipeline -DataFactoryName $dataFactoryName -
     Error             : {errorCode, message, failureType, target}
     ```
 
-2. 您可以取得 SQLServerToBlobPipeline管線 的執行識別碼，並執行下列命令來檢查詳細的活動執行結果： 
+1. 您可以取得 SQLServerToBlobPipeline管線 的執行識別碼，並執行下列命令來檢查詳細的活動執行結果： 
 
     ```powershell
     Write-Host "Pipeline 'SQLServerToBlobPipeline' run result:" -foregroundcolor "Yellow"
@@ -663,8 +662,8 @@ $runId = Invoke-AzureRmDataFactoryV2Pipeline -DataFactoryName $dataFactoryName -
 1. 在 Azure 入口網站的 [adftutorial] 容器視窗中，選取 [重新整理] 可查看輸出資料夾。
 
     ![已建立輸出資料夾](media/tutorial-hybrid-copy-powershell/fromonprem-folder.png)
-2. 在資料夾清單中選取 `fromonprem`。 
-3. 確認您看到名為 `dbo.emp.txt` 的檔案。
+1. 在資料夾清單中選取 `fromonprem`。 
+1. 確認您看到名為 `dbo.emp.txt` 的檔案。
 
     ![輸出檔案](media/tutorial-hybrid-copy-powershell/fromonprem-file.png)
 

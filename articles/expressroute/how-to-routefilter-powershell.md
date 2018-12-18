@@ -1,13 +1,13 @@
 ---
-title: "設定 Azure ExpressRoute Microsoft 對等互連的路由篩選：PowerShell | Microsoft Docs"
-description: "本文說明如何使用 PowerShell 針對 Microsoft 對等互連設定路由篩選"
+title: 設定 Azure ExpressRoute Microsoft 對等互連的路由篩選：PowerShell | Microsoft Docs
+description: 本文說明如何使用 PowerShell 針對 Microsoft 對等互連設定路由篩選
 documentationcenter: na
 services: expressroute
 author: ganesr
 manager: rossort
-editor: 
+editor: ''
 tags: azure-resource-manager
-ms.assetid: 
+ms.assetid: ''
 ms.service: expressroute
 ms.devlang: na
 ms.topic: article
@@ -15,15 +15,16 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 09/26/2017
 ms.author: ganesr
-ms.openlocfilehash: 9d953ea68e1e14ae12aa401af935d207f0747e8c
-ms.sourcegitcommit: 9cc3d9b9c36e4c973dd9c9028361af1ec5d29910
+ms.openlocfilehash: 6e767166ecf248aa0e7fc16dc21361394e03107d
+ms.sourcegitcommit: 59914a06e1f337399e4db3c6f3bc15c573079832
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2018
+ms.lasthandoff: 04/19/2018
+ms.locfileid: "31593486"
 ---
 # <a name="configure-route-filters-for-microsoft-peering-powershell"></a>針對 Microsoft 對等互連設定路由篩選：PowerShell
 > [!div class="op_single_selector"]
-> * [HttpTrigger Nodejs 函數](how-to-routefilter-portal.md)
+> * [Azure 入口網站](how-to-routefilter-portal.md)
 > * [Azure PowerShell](how-to-routefilter-powershell.md)
 > * [Azure CLI](how-to-routefilter-cli.md)
 > 
@@ -91,7 +92,7 @@ ms.lasthandoff: 01/23/2018
 以提高的權限開啟 PowerShell 主控台並連線至您的帳戶。 使用下列範例來協助您連接：
 
 ```powershell
-Login-AzureRmAccount
+Connect-AzureRmAccount
 ```
 
 如果您有多個 Azure 訂用帳戶，請檢查帳戶的訂用帳戶。

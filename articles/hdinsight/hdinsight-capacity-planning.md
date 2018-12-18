@@ -1,26 +1,20 @@
 ---
-title: "Azure HDInsight 中的叢集容量規劃 | Microsoft Docs"
-description: "如何指定 HDInsight 叢集的容量和效能。"
+title: Azure HDInsight 中的叢集容量規劃
+description: 如何指定 HDInsight 叢集的容量和效能。
 services: hdinsight
-documentationcenter: 
-tags: azure-portal
 author: maxluk
-manager: jhubbard
-editor: cgronlun
-ms.assetid: 
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 09/22/2017
 ms.author: maxluk
-ms.openlocfilehash: 70451c5a69a1a268aef0eb957cb92791b92eb221
-ms.sourcegitcommit: 059dae3d8a0e716adc95ad2296843a45745a415d
+ms.openlocfilehash: 4438cff0dcf5e896f39729d9871d4deb3207b4b8
+ms.sourcegitcommit: f6e2a03076679d53b550a24828141c4fb978dcf9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43107990"
 ---
 # <a name="capacity-planning-for-hdinsight-clusters"></a>HDInsight 叢集的容量規劃
 
@@ -115,5 +109,5 @@ VM 大小與類型是由 CPU 處理能力、RAM 大小和網路延遲所決定�
 
 ## <a name="next-steps"></a>後續步驟
 
-* [使用 Hadoop、Spark 及 Kafka 等在 HDInsight 中設定叢集](hdinsight-hadoop-provision-linux-clusters.md)：了解如何在 HDInsight 中使用 Hadoop、Spark、Kafka、Interactive Hive、HBase、R 伺服器或 Storm 安裝並設定叢集。
+* [使用 Hadoop、Spark 及 Kafka 等在 HDInsight 中設定叢集](hdinsight-hadoop-provision-linux-clusters.md)：了解如何在 HDInsight 中使用 Hadoop、Spark、Kafka、Interactive Hive、HBase、ML 服務或 Storm 安裝並設定叢集。
 * [監視叢集效能](hdinsight-key-scenarios-to-monitor.md)：了解重要情節，以監視可能會影響叢集容量的 HDInsight 叢集。

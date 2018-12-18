@@ -1,26 +1,20 @@
 ---
-title: "MapReduce 與 HDInsight 上的 Hadoop | Microsoft Docs"
-description: "了解如何在 HDInsight 叢集中的 Hadoop 上執行 MapReduce 工作。"
+title: MapReduce 與 HDInsight 上的 Hadoop
+description: 了解如何在 HDInsight 叢集中的 Hadoop 上執行 MapReduce 工作。
 services: hdinsight
-documentationcenter: 
-author: Blackmist
-manager: jhubbard
-editor: cgronlun
-tags: azure-portal
-ms.assetid: 7f321501-d62c-4ffc-b5d6-102ecba6dd76
+author: jasonwhowell
+ms.author: jasonh
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 02/20/2018
-ms.author: larryfr
-ms.openlocfilehash: bfd176aaf02dd96cee8877f1754dd0ce7ebded13
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.topic: conceptual
+ms.date: 05/16/2018
+ms.openlocfilehash: 3b9cc70a1adc55850923f2313f17be435257117d
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43044864"
 ---
 # <a name="use-mapreduce-in-hadoop-on-hdinsight"></a>在 HDInsight 上的 Hadoop 中使用 MapReduce
 

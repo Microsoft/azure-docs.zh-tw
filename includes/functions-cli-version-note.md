@@ -1,1 +1,1 @@
-此指令碼所建立的函式應用程式會使用 1.x 版的 [Azure Functions 執行階段](..\articles\azure-functions\functions-versions.md)。 若要了解如何升級到 2.x 版 (目前為預覽狀態)，請參閱[使用 Azure CLI 鎖定某個版本](..\articles\azure-functions\set-runtime-version.md#target-a-version-using-azure-cli)。 
+此指令碼所建立的函式應用程式會使用 1.x 版的 [Azure Functions 執行階段](..\articles\azure-functions\functions-versions.md)。 若要了解如何升級到 2.x 版，請參閱[使用 Azure CLI 鎖定某個版本](../articles/azure-functions/set-runtime-version.md#view-and-update-the-runtime-version-using-azure-cli)。 

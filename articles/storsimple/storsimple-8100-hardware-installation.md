@@ -1,11 +1,11 @@
 ---
-title: "安裝 Microsoft Azure StorSimple 8100 裝置 | Microsoft Docs"
-description: "描述如何打開包裝、掛接機架和佈線 StorSimple 8100 裝置，再部署和設定軟體。"
+title: 安裝 Microsoft Azure StorSimple 8100 裝置 | Microsoft Docs
+description: 描述如何打開包裝、掛接機架和佈線 StorSimple 8100 裝置，再部署和設定軟體。
 services: storsimple
 documentationcenter: NA
 author: alkohli
 manager: jeconnoc
-editor: 
+editor: ''
 ms.assetid: 6098a01e-c031-488a-a8d7-0b607ce665e1
 ms.service: storsimple
 ms.devlang: NA
@@ -15,10 +15,11 @@ ms.workload: TBD
 ms.date: 01/09/2018
 ms.author: alkohli
 ms.openlocfilehash: 5fbc407a9792d033037fdaa2b14f4055d94c15ab
-ms.sourcegitcommit: 9292e15fc80cc9df3e62731bafdcb0bb98c256e1
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/10/2018
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38701937"
 ---
 # <a name="unpack-rack-mount-and-cable-your-storsimple-8100-device"></a>打開包裝、掛接機架和佈線 StorSimple 8100 裝置
 ## <a name="overview"></a>概觀

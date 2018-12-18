@@ -1,6 +1,5 @@
 > [!div class="op_single_selector"]
 > * [裝置︰Node.js 服務︰Node.js](../articles/iot-hub/iot-hub-node-node-device-management-get-started.md)
-> * [裝置︰Node.js 服務︰C#](../articles/iot-hub/iot-hub-csharp-node-device-management-get-started.md)
 > * [裝置：C# 服務：C#](../articles/iot-hub/iot-hub-csharp-csharp-device-management-get-started.md)
 > * [裝置︰Java 服務︰Java](../articles/iot-hub/iot-hub-java-java-device-management-getstarted.md)
 > * [Python：Python 服務：Python](../articles/iot-hub/iot-hub-python-python-device-management-get-started.md)

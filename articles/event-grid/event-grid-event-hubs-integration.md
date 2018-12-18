@@ -1,22 +1,23 @@
 ---
-title: "Azure Event Grid 和事件中樞整合"
-description: "說明如何使用 Azure Event Grid 和事件中樞將資料移轉到 SQL 資料倉儲"
+title: Azure Event Grid 和事件中樞整合
+description: 說明如何使用 Azure Event Grid 和事件中樞將資料移轉到 SQL 資料倉儲
 services: event-grid
 author: tfitzmac
 manager: timlt
 ms.service: event-grid
-ms.topic: article
-ms.date: 01/30/2018
+ms.topic: tutorial
+ms.date: 08/22/2018
 ms.author: tomfitz
-ms.openlocfilehash: dba17a860dffd87b3784c53cf288b7a312c77e33
-ms.sourcegitcommit: 9d317dabf4a5cca13308c50a10349af0e72e1b7e
+ms.openlocfilehash: aad7a24d8b0e0bc74815cad3604db1cc21a6db96
+ms.sourcegitcommit: 2d961702f23e63ee63eddf52086e0c8573aec8dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 09/07/2018
+ms.locfileid: "44163221"
 ---
 # <a name="stream-big-data-into-a-data-warehouse"></a>將巨量資料串流處理至資料倉儲
 
-Azure [Event Grid](overview.md) 是一項智慧型的事件路由服務，它能讓您針對應用程式和服務發出的通知做出反應。 [事件中樞擷取和 Event Grid 範例](https://github.com/Azure/azure-event-hubs/tree/master/samples/e2e/EventHubsCaptureEventGridDemo)示範如何使用 Azure 事件中樞擷取搭配 Azure Event Grid，將資料順暢地從事件中樞移轉到 SQL 資料倉儲。
+Azure [Event Grid](overview.md) 是一項智慧型的事件路由服務，它能讓您針對應用程式和服務發出的通知做出反應。 例如，它可以觸發 Azure 函式以處理已擷取至 Azure Blob 儲存體或 Data Lake Store 的事件中樞資料，並將資料移轉至其他資料存放庫。 此[事件中樞擷取和事件格線範例](https://github.com/Azure/azure-event-hubs/tree/master/samples/e2e/EventHubsCaptureEventGridDemo)說明如何使用事件中樞擷取搭配事件格線，將事件中樞資料順暢地從 Blob 儲存體移轉至 SQL 資料倉儲。
 
 ![應用程式概觀](media/event-grid-event-hubs-integration/overview.png)
 
@@ -64,7 +65,7 @@ Event Grid 會將事件資料散發給訂閱者。 以下範例展示用來建�
 ]
 ```
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 若要完成本教學課程，您必須具備：
 
@@ -74,7 +75,7 @@ Event Grid 會將事件資料散發給訂閱者。 以下範例展示用來建�
 
 ## <a name="deploy-the-infrastructure"></a>部署基礎結構
 
-若要簡化本文章的內容，您可以利用 Resource Manager 範本部署必要的基礎結構。 若要查看已部署的資源，請檢視[範本](https://github.com/Azure/azure-docs-json-samples/blob/master/event-grid/EventHubsDataMigration.json)。 請使用其中一個[支援的區域](overview.md)作為資源群組位置。
+若要簡化本文章的內容，您可以利用 Resource Manager 範本部署必要的基礎結構。 若要查看已部署的資源，請檢視[範本](https://github.com/Azure/azure-docs-json-samples/blob/master/event-grid/EventHubsDataMigration.json)。
 
 對於 Azure CLI，請使用：
 
@@ -118,67 +119,41 @@ WITH (CLUSTERED COLUMNSTORE INDEX, DISTRIBUTION = ROUND_ROBIN);
 
 1. 在 Visual Studio 2017 (15.3.2 或更新版本) 中開啟 [EventHubsCaptureEventGridDemo 範例專案](https://github.com/Azure/azure-event-hubs/tree/master/samples/e2e/EventHubsCaptureEventGridDemo)。
 
-2. 在 [方案總管] 中，以滑鼠右鍵按一下 [FunctionDWDumper]，然後選取 [發佈]。
+1. 在 [方案總管] 中，以滑鼠右鍵按一下 [FunctionEGDWDumper]，然後選取 [發佈]。
 
    ![發佈函數應用程式](media/event-grid-event-hubs-integration/publish-function-app.png)
 
-3. 選取 [Azure 函數應用程式] 和 [選取現有的]。 選取 [確定] 。
+1. 選取 [Azure 函數應用程式] 和 [選取現有的]。 選取 [發佈] 。
 
    ![目標函數應用程式](media/event-grid-event-hubs-integration/pick-target.png)
 
-4. 選取透過範本部署的函數應用程式。 選取 [確定] 。
+1. 選取透過範本部署的函數應用程式。 選取 [確定] 。
 
    ![選取函數應用程式](media/event-grid-event-hubs-integration/select-function-app.png)
 
-5. 當 Visual Studio 完成設定檔設定時，選取 [發佈]。
+1. 當 Visual Studio 完成設定檔設定時，選取 [發佈]。
 
    ![Select publish](media/event-grid-event-hubs-integration/select-publish.png)
 
-6. 發佈函式後，移至 [Azure 入口網站](https://portal.azure.com/)。 選取您的資源群組和函數應用程式。
-
-   ![檢視函數應用程式](media/event-grid-event-hubs-integration/view-function-app.png)
-
-7. 選取函式。
-
-   ![選取函式](media/event-grid-event-hubs-integration/select-function.png)
-
-8. 取得函式的 URL。 建立事件訂閱時，您需要這個 URL。
-
-   ![取得函式 URL](media/event-grid-event-hubs-integration/get-function-url.png)
-
-9. 複製值。
-
-   ![複製 URL](media/event-grid-event-hubs-integration/copy-url.png)
+發行函式之後，您已準備好訂閱事件。
 
 ## <a name="subscribe-to-the-event"></a>訂閱事件
 
-您可以使用 Azure CLI 或入口網站來訂閱事件。 本文章說明這兩種方法。
+1. 移至 [Azure 入口網站](https://portal.azure.com/)。 選取您的資源群組和函數應用程式。
 
-### <a name="portal"></a>入口網站
+   ![檢視函數應用程式](media/event-grid-event-hubs-integration/view-function-app.png)
 
-1. 在事件中樞命名空間中，選取左側的 [Event Grid]。
+1. 選取函式。
 
-   ![選取 Event Grid](media/event-grid-event-hubs-integration/select-event-grid.png)
+   ![選取函式](media/event-grid-event-hubs-integration/select-function.png)
 
-2. 新增事件訂閱。
+1. 選取 [新增事件方格訂用帳戶]。
 
-   ![新增事件訂閱](media/event-grid-event-hubs-integration/add-event-subscription.png)
+   ![加入訂閱](media/event-grid-event-hubs-integration/add-event-grid-subscription.png)
 
-3. 提供事件訂閱的值。 使用您複製的 Azure Functions URL。 選取 [建立] 。
+9. 為事件方格訂用帳戶指定名稱。 使用 [事件中樞命名空間] 作為事件類型。 提供值以選取您的事件中樞命名空間執行個體。 將訂閱者端點保留為提供的值。 選取 [建立] 。
 
-   ![提供訂閱值](media/event-grid-event-hubs-integration/provide-values.png)
-
-### <a name="azure-cli"></a>Azure CLI
-
-若要訂閱事件，請執行下列命令 (需要 2.0.24 版本或更新版本的 Azure CLI)：
-
-```azurecli-interactive
-namespaceid=$(az resource show --namespace Microsoft.EventHub --resource-type namespaces --name <your-EventHubs-namespace> --resource-group rgDataMigrationSample --query id --output tsv)
-az eventgrid event-subscription create \
-  --resource-id $namespaceid \
-  --name captureEventSub \
-  --endpoint <your-function-endpoint>
-```
+   ![建立訂用帳戶](media/event-grid-event-hubs-integration/set-subscription-values.png)
 
 ## <a name="run-the-app-to-generate-data"></a>執行應用程式以產生資料
 
@@ -198,10 +173,10 @@ az eventgrid event-subscription create \
 
 4. 返回 Visual Studio 專案。 在 WindTurbineDataGenerator 專案中，開啟 **program.cs**。
 
-5. 取代兩個常數值。 使用複製的值來取代 **EventHubConnectionString**。 使用事件中樞名稱來取代 **EventHubName**。
+5. 取代兩個常數值。 使用複製的值來取代 **EventHubConnectionString**。 使用 **hubdatamigration** 作為事件中樞名稱。
 
    ```cs
-   private const string EventHubConnectionString = "Endpoint=sb://tfdatamigratens.servicebus.windows.net/...";
+   private const string EventHubConnectionString = "Endpoint=sb://demomigrationnamespace.servicebus.windows.net/...";
    private const string EventHubName = "hubdatamigration";
    ```
 
@@ -209,6 +184,7 @@ az eventgrid event-subscription create \
 
 ## <a name="next-steps"></a>後續步驟
 
+* 若要了解 Azure 傳訊服務的差異，請參閱[在傳遞訊息的 Azure 服務之間做選擇](compare-messaging-services.md)。
 * 如需 Event Grid 的簡介，請參閱[關於 Event Grid](overview.md)。
 * 如需事件中樞擷取的簡介，請參閱[使用 Azure 入口網站啟用事件中樞擷取](../event-hubs/event-hubs-capture-enable-through-portal.md)。
 * 如需設定及執行範例的詳細資訊，請參閱[事件中樞擷取和 Event Grid 範例](https://github.com/Azure/azure-event-hubs/tree/master/samples/e2e/EventHubsCaptureEventGridDemo)。

@@ -1,11 +1,11 @@
 ---
-title: "用 Docker 電腦在 Azure 中建立 Docker 主機 | Microsoft Docs"
-description: "說明如何使用 Docker 電腦在 Azure 中建立 Docker 主機。"
+title: 用 Docker 電腦在 Azure 中建立 Docker 主機 | Microsoft Docs
+description: 說明如何使用 Docker 電腦在 Azure 中建立 Docker 主機。
 services: azure-container-service
 documentationcenter: na
 author: mlearned
 manager: douge
-editor: 
+editor: ''
 ms.assetid: 7a3ff6e1-fa93-4a62-b524-ab182d2fea08
 ms.service: multiple
 ms.devlang: dotnet
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23124496"
 ---
 # <a name="create-docker-hosts-in-azure-with-docker-machine"></a>使用 Docker-Machine 在 Azure 中建立 Docker 主機
 執行 [Docker](https://www.docker.com/) 容器時需要執行 Docker 精靈的主機 VM。

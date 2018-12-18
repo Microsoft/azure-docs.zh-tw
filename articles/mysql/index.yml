@@ -1,10 +1,10 @@
 ### YamlMime:YamlDocument
 documentType: LandingData
-title: "適用於 MySQL 的 Azure 資料庫文件"
+title: 適用於 MySQL 的 Azure 資料庫文件
 metadata:
   document_id: 8d915ae6-9101-ad37-0736-3eaa59c2dd34
-  title: "Azure MySQL 文件 - 教學課程和 API 參考 | Microsoft Docs"
-  description: "適用於 MySQL 的 Azure 資料庫位於 Microsoft 雲端中，是以開放原始碼 MySQL 伺服器引擎為基礎的關聯式資料庫服務，供開發人員使用。"
+  title: Azure MySQL 文件 - 教學課程和 API 參考 | Microsoft Docs
+  description: 適用於 MySQL 的 Azure 資料庫位於 Microsoft 雲端中，是以開放原始碼 MySQL 伺服器引擎為基礎的關聯式資料庫服務，供開發人員使用。
   services: mysql
   author: czeumault
   manager: carolz
@@ -19,38 +19,39 @@ metadata:
   ms.translationtype: HT
   ms.contentlocale: zh-TW
   ms.lasthandoff: 10/11/2017
+  ms.locfileid: "23070798"
 abstract:
-  description: "適用於 MySQL 的 Azure 資料庫是以開放原始碼 MySQL 伺服器引擎為基礎的關聯式資料庫服務。  它是一個完全受控的資料庫即服務，可透過可預測效能及動態延展性處理任務關鍵性工作負載。 您可以使用開放原始碼工具，以及您選擇的平台，透過適用於 MySQL 的 Azure 資料庫來開發應用程式。 了解如何透過我們的快速入門、教學課程和範例使用適用於 MySQL 的 Azure 資料庫。"
+  description: 適用於 MySQL 的 Azure 資料庫是以開放原始碼 MySQL 伺服器引擎為基礎的關聯式資料庫服務。  它是一個完全受控的資料庫即服務，可透過可預測效能及動態延展性處理任務關鍵性工作負載。 您可以使用開放原始碼工具，以及您選擇的平台，透過適用於 MySQL 的 Azure 資料庫來開發應用程式。 了解如何透過我們的快速入門、教學課程和範例使用適用於 MySQL 的 Azure 資料庫。
 sections:
-- title: "5 分鐘快速入門"
+- title: 5 分鐘快速入門
   items:
   - type: paragraph
-    text: "如何使用下列方式建立 Azure 上的 MySQL 資料庫："
+    text: 如何使用下列方式建立 Azure 上的 MySQL 資料庫：
   - type: list
     style: icon48
     items:
     - image:
         src: /azure/virtual-machines/linux/media/index/portal.svg
-      text: "Azure 入口網站"
+      text: Azure 入口網站
       href: /azure/mysql/quickstart-create-mysql-server-database-using-azure-portal
     - image:
         src: /azure/virtual-machines/linux/media/index/cli.svg
       text: Azure CLI
       href: /azure/mysql/quickstart-create-mysql-server-database-using-azure-cli
-- title: "逐步教學課程"
+- title: 逐步教學課程
   items:
   - type: paragraph
-    text: "了解如何設計您的資料庫及開發應用程式："
+    text: 了解如何設計您的資料庫及開發應用程式：
   - type: list
     style: ordered
     items:
-    - html: "設計資料庫：<a href=\"/azure/mysql/tutorial-design-database-using-portal\">Azure 入口網站</a> | <a href=\"/azure/mysql/tutorial-design-database-using-cli\">Azure CLI</a>"
-    - html: "建立 Web 應用程式：<a href=\"https://portal.azure.com/#create/hub\">Wordpress - 入口網站</a> | <a href=\"../app-service-web/app-service-web-tutorial-php-mysql.md?toc=%2fazure%2fmysql%2ftoc.json\">PHP - Azure CLI</a>"
-- title: "參考"
+    - html: 設計資料庫：<a href="/azure/mysql/tutorial-design-database-using-portal">Azure 入口網站</a> | <a href="/azure/mysql/tutorial-design-database-using-cli">Azure CLI</a>
+    - html: 建立 Web 應用程式：<a href="https://portal.azure.com/#create/hub">Wordpress - 入口網站</a> | <a href="../app-service-web/app-service-web-tutorial-php-mysql.md?toc=%2fazure%2fmysql%2ftoc.json">PHP - Azure CLI</a>
+- title: 參考
   items:
   - type: list
     style: cards
     className: cardsD
     items:
-    - title: "命令列"
+    - title: 命令列
       html: <p><a href="/cli/azure/mysql">Azure CLI</a></p>

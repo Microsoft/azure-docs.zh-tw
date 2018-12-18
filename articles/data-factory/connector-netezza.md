@@ -1,5 +1,5 @@
 ---
-title: 使用 Azure Data Factory (搶鮮版 (Beta)) 從 Netezza 複製資料 | Microsoft Docs
+title: 使用 Azure Data Factory 從 Netezza 複製資料 | Microsoft Docs
 description: 了解如何使用 Azure Data Factory 管線中的複製活動，從 Netezza 將資料複製到支援的接收資料存放區。
 services: data-factory
 documentationcenter: ''
@@ -10,24 +10,19 @@ ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 02/26/2018
+ms.topic: conceptual
+ms.date: 06/15/2018
 ms.author: jingwang
-ms.openlocfilehash: 0896f2b23f9b74e12935c0a8b073b64dc743e6a8
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: f8c10e2200f830ea6e568e7b3fba1f0a6085cef2
+ms.sourcegitcommit: 0c490934b5596204d175be89af6b45aafc7ff730
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 06/27/2018
+ms.locfileid: "37055450"
 ---
-# <a name="copy-data-from-netezza-using-azure-data-factory-beta"></a>使用 Azure Data Factory (搶鮮版 (Beta)) 從 Netezza 複製資料
+# <a name="copy-data-from-netezza-using-azure-data-factory"></a>使用 Azure Data Factory 從 Netezza 複製資料 
 
 本文概述如何使用 Azure Data Factory 中的「複製活動」，從 Netezza 複製資料。 本文是根據[複製活動概觀](copy-activity-overview.md)一文，該文提供複製活動的一般概觀。
-
-> [!NOTE]
-> 本文適用於第 2 版的 Data Fatory (目前為預覽版)。 如果您使用第 1 版的 Data Factory 服務，也就是正式推出 (GA) 的版本，請參閱[第 1 版的複製活動](v1/data-factory-data-movement-activities.md)。
-
-> [!IMPORTANT]
-> 此連接器目前為搶鮮版 (Beta)。 您可以親身體驗並提供意見反應。 請勿在生產環境中使用它。
 
 ## <a name="supported-capabilities"></a>支援的功能
 
@@ -50,6 +45,13 @@ Azure Data Factory 提供的內建驅動程式可啟用連線，因此使用此�
 | type | 類型屬性必須設為：**Netezza** | yes |
 | connectionString | 連線到 Netezza 的 ODBC 連接字串。 將此欄位標記為 SecureString，將它安全地儲存在 Data Factory 中，或[參考 Azure Key Vault 中儲存的祕密](store-credentials-in-key-vault.md)。 | yes |
 | connectVia | 用來連線到資料存放區的 [Integration Runtime](concepts-integration-runtime.md)。 您可以使用「自我裝載 Integration Runtime」或 Azure Integration Runtime (如果您的資料存放區是可公開存取的)。 如果未指定，就會使用預設的 Azure Integration Runtime。 |否 |
+
+一般的連接字串為 `Server=<server>;Port=<port>;Database=<database>;UID=<user name>;PWD=<password>`。 您可以根據您的案例設定更多屬性：
+
+| 屬性 | 說明 | 必要 |
+|:--- |:--- |:--- |:--- |
+| SecurityLevel | 驅動程式用來連線到資料存放區的安全性 (SSL/TLS) 層級。 例如 `SecurityLevel=preferredSecured`。 支援的值包括：<br/>- 僅限未受保護連線 (**onlyUnSecured**)：驅動程式不會使用 SSL。<br/>- **偏好未受保護連線 (preferredUnSecured) (預設值)**：如果伺服器提供選擇，則驅動程式不使用 SSL。 <br/>- **偏好受保護連線 (preferredSecured)**：如果伺服器提供選擇，則驅動程式會使用 SSL。 <br/>- **僅限受保護連線 (onlySecured)**：除非有 SSL 連線，否則驅動程式不會連線 | 否 |
+| CaCertFile | 伺服器使用的 SSL 憑證完整路徑。 例如 `CaCertFile=<cert path>;`| 是，如果已啟用 SSL |
 
 **範例：**
 

@@ -1,37 +1,30 @@
 ---
-title: "搭配 Azure HDInsight 使用互動式查詢 | Microsoft Docs"
-description: "了解如何搭配 HDInsight 使用互動式查詢 (Hive LLAP)。"
-keywords: 
+title: 搭配 Azure HDInsight 使用互動式查詢
+description: 了解如何搭配 HDInsight 使用互動式查詢 (Hive LLAP)。
 services: hdinsight
-documentationcenter: 
-tags: azure-portal
-author: mumian
-manager: jhubbard
-editor: cgronlun
-ms.assetid: 0957643c-4936-48a3-84a3-5dc83db4ab1a
 ms.service: hdinsight
+author: jasonwhowell
+ms.author: jasonh
+ms.reviewer: jasonh
 ms.custom: hdinsightactive
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 02/22/2018
-ms.author: jgao
-ms.openlocfilehash: 1e094c801ffc9bc51609d119b0e6ad80ff17a091
-ms.sourcegitcommit: 12fa5f8018d4f34077d5bab323ce7c919e51ce47
+ms.openlocfilehash: a90ec3102f3ce821193d58b6d14ca119f6d7e916
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/23/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46959677"
 ---
 # <a name="use-interactive-query-with-hdinsight"></a>搭配 HDInsight 使用互動式查詢
-互動式查詢 (又稱為 Hive LLAP 或 [Live Long and Process](https://cwiki.apache.org/confluence/display/Hive/LLAP)) 是一種 Azure HDInsight [叢集類型](../hdinsight-hadoop-provision-linux-clusters.md#cluster-types)。 互動式查詢支援記憶體內快取，可讓 Hive 查詢速度更快且更具互動性。
+互動式查詢 (又稱為 Hive LLAP 或[低延遲分析處理](https://cwiki.apache.org/confluence/display/Hive/LLAP)) 是一種 Azure HDInsight [叢集類型](../hdinsight-hadoop-provision-linux-clusters.md#cluster-types)。 互動式查詢支援記憶體內快取，可讓 Hive 查詢速度更快且更具互動性。
 
 [!INCLUDE [hdinsight-price-change](../../../includes/hdinsight-enhancements.md)] 
 
 互動式查詢叢集與 Hadoop 叢集不同。 它只包含 Hive 服務。 
 
 > [!NOTE]
-> 您只能透過 Ambari Hive 檢視、Beeline 和 Microsoft Hive 開放式資料庫連線驅動程式 (Hive ODBC)，存取互動式查詢叢集中的 Hive 服務。 您無法透過 Hive 主控台、Templeton、Azure 命令列工具 (Azure CLI) 或 Azure PowerShell 來存取它。 
+> 您只能透過 Ambari Hive 檢視、Beeline 和 Microsoft Hive 開放式資料庫連線驅動程式 (Hive ODBC)，存取互動式查詢叢集中的 Hive 服務。 您無法透過 Hive 主控台、Templeton、Azure 傳統 CLI 或 Azure PowerShell 來存取它。 
 > 
 > 
 
@@ -70,7 +63,7 @@ ms.lasthandoff: 02/23/2018
 
 若要尋找 Java 資料庫連線 (JDBC) 連接字串：
 
-1. 使用下列 URL 登入 Ambari：https://\<cluster name\>.AzureHDInsight.net。
+1. 使用下列 URL 登入 Ambari： https://\<cluster name\>.AzureHDInsight.net。
 2. 在左側功能表中，選取 **Hive**。
 3. 若要複製 URL，選取剪貼簿圖示：
    

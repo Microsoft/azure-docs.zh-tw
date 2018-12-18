@@ -1,8 +1,8 @@
 ---
-title: "從 Application Insights 連續匯出遙測 | Microsoft Docs"
-description: "匯出診斷和使用量資料至 Microsoft Azure 中的儲存體，並從那裡下載。"
+title: 從 Application Insights 連續匯出遙測 | Microsoft Docs
+description: 匯出診斷和使用量資料至 Microsoft Azure 中的儲存體，並從那裡下載。
 services: application-insights
-documentationcenter: 
+documentationcenter: ''
 author: mrbullwinkle
 manager: carmonm
 ms.assetid: 5b859200-b484-4c98-9d9f-929713f1030c
@@ -10,19 +10,18 @@ ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
-ms.topic: article
-ms.date: 02/23/2017
+ms.topic: conceptual
+ms.date: 08/20/2018
 ms.author: mbullwin
-ms.openlocfilehash: 7d1f648bc2c2a42cfbd668f180bce8f56ebd065b
-ms.sourcegitcommit: e462e5cca2424ce36423f9eff3a0cf250ac146ad
+ms.openlocfilehash: a960ace141d5d71559c39c627f96746a25bf5207
+ms.sourcegitcommit: 8ebcecb837bbfb989728e4667d74e42f7a3a9352
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/01/2017
+ms.lasthandoff: 08/21/2018
+ms.locfileid: "42142333"
 ---
 # <a name="export-telemetry-from-application-insights"></a>從 Application Insights 匯出遙測
 想要讓遙測保留比標準保留期限還久的時間？ 或以某些特殊方式處理它？ 連續匯出很適合此用途。 在 Application Insights 入口網站中看見的事件，可以使用 JSON 格式匯出到 Microsoft Azure 中的儲存體。 從那裡，您可以下載資料並編寫處理所需的任何程式碼。  
-
-使用連續匯出，可能會產生額外的費用。 請檢查您的[定價模式](http://azure.microsoft.com/pricing/details/application-insights/)。
 
 在設定連續匯出之前，您可能要考慮某些替代作法︰
 
@@ -31,6 +30,7 @@ ms.lasthandoff: 11/01/2017
 * [分析](app-insights-analytics.md) 可提供功能強大的遙測查詢語言。 它也可以匯出結果。
 * 如果您想要 [在 Power BI 中探索資料](app-insights-export-power-bi.md)，不需要用到「連續匯出」也可以這麼做。
 * [資料存取 REST API](https://dev.applicationinsights.io/) 可讓您以程式設計方式存取您的遙測。
+* 您也可以[透過 Powershell 存取連續匯出設定](https://docs.microsoft.com/powershell/module/azurerm.applicationinsights/new-azurermapplicationinsightscontinuousexport?view=azurermps-5.7.0)。
 
 在「連續匯出」將您的資料複製到儲存體 (資料可在此依您喜好的時間長短存放) 之後，資料仍然會在 Application Insights 中依一般的[保留期間](app-insights-data-retention-privacy.md)可供使用。
 
@@ -176,7 +176,7 @@ Where
     否，抱歉。 我們的匯出引擎目前僅適用於 Azure 儲存體。  
 * *放置在我的儲存區中的資料量有任何限制？*
 
-    編號 我們將持續送入資料，直到刪除匯出為止。 如果我們到達 Blob 儲存體的外部限制，將會停止，但那個限制很大。 您可以自行控制使用的儲存體數量。  
+    否。 我們將持續送入資料，直到刪除匯出為止。 如果我們到達 Blob 儲存體的外部限制，將會停止，但那個限制很大。 您可以自行控制使用的儲存體數量。  
 * *應該在儲存體中看到多少 Blob？*
 
   * 針對您選取要匯出的每個資料類型，會每分鐘建立一個新的 Blob (如果有可用的資料)。

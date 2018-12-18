@@ -9,16 +9,18 @@ manager: hjerez
 editor: cgronlun
 ms.assetid: c49187db-b976-4731-89d6-11a0bf653db1
 ms.service: machine-learning
+ms.component: studio
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 01/12/2017
-ms.openlocfilehash: 520427b99c05fcbc8125bdbde7d8eb56e7487292
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 91b3c9df8a7fd0e1abb79c21b1e1d833e57c24d5
+ms.sourcegitcommit: 944d16bc74de29fb2643b0576a20cbd7e437cef2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 06/07/2018
+ms.locfileid: "34835921"
 ---
 # <a name="use-azure-machine-learning-web-service-parameters"></a>使用 Azure Machine Learning Web 服務參數
 藉由發行包含可設定參數模組的試驗，來建立 Azure Machine Learning Web 服務。 在某些情況下，您可能想要在執行 Web 服務時之際，變更模組的行為。 「Web 服務參數」可讓您執行這項工作。 
@@ -49,10 +51,10 @@ Web 服務的 API 文件會包含 Web 服務使用者在存取 Web 服務時，�
 1. 在 Machine Learning Studio 中，按一下 [[匯出資料][writer]] 模組來選取它。 其屬性會顯示在試驗畫布右邊的 [屬性] 窗格中。
 2. 指定儲存體類型：
    
-   * 在 **[請指定資料目的地]**底下，選取 [Azure Blob 儲存體]。
-   * 在 **[請指定驗證類型]**底下，選取 [帳戶]。
+   * 在 **[請指定資料目的地]** 底下，選取 [Azure Blob 儲存體]。
+   * 在 **[請指定驗證類型]** 底下，選取 [帳戶]。
    * 輸入 Azure Blob 儲存體的帳戶資訊。 
-     <p />
+
 3. 按一下 **[以容器參數為開頭的 Blob 路徑]** 右邊的圖示。 它看起來像這樣：
    
    ![Web 服務參數圖示][icon]

@@ -1,11 +1,11 @@
 ---
-title: "Azure App Service 中的 Node.js API 應用程式 | Microsoft Docs"
-description: "了解如何使用 Azure 入口網站來監視 Azure App Service 中的應用程式。"
+title: Azure App Service 中的 Node.js API 應用程式 | Microsoft Docs
+description: 了解如何使用 Azure 入口網站來監視 Azure App Service 中的應用程式。
 services: app-service
-documentationcenter: 
+documentationcenter: ''
 author: btardif
 manager: erikre
-editor: 
+editor: ''
 ms.assetid: d273da4e-07de-48e0-b99d-4020d84a425e
 ms.service: app-service
 ms.workload: na
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 088a8788d69a63a8e1333ad272d4a299cb19316e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 02/27/2018
+ms.locfileid: "29573798"
 ---
 # <a name="how-to-monitor-apps-in-azure-app-service"></a>作法：監視 Azure App Service 中的應用程式
 [App Service](http://go.microsoft.com/fwlink/?LinkId=529714) 在 [Azure 入口網站](https://portal.azure.com)中提供內建監視功能。

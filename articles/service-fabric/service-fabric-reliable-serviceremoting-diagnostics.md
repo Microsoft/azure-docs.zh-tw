@@ -1,6 +1,6 @@
 ---
-title: "Azure ServiceFabric 診斷和監視功能 | Microsoft Docs"
-description: "本文將說明 Service Fabric Reliable ServiceRemoting 執行階段中的效能監視功能，例如其發出的效能計數器。"
+title: Azure ServiceFabric 診斷和監視功能 | Microsoft Docs
+description: 本文將說明 Service Fabric Reliable ServiceRemoting 執行階段中的效能監視功能，例如其發出的效能計數器。
 services: service-fabric
 documentationcenter: .net
 author: suchiagicha
@@ -9,16 +9,17 @@ editor: suchiagicha
 ms.assetid: 1c229923-670a-4634-ad59-468ff781ad18
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/29/2017
 ms.author: suchiagicha
-ms.openlocfilehash: f54e157654fb15d2f7ff48ddc666c6c8803c75a2
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: d462ba0955a362c27b786ee6a5670eec20c52a22
+ms.sourcegitcommit: eb75f177fc59d90b1b667afcfe64ac51936e2638
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 05/16/2018
+ms.locfileid: "34206414"
 ---
 # <a name="diagnostics-and-performance-monitoring-for-reliable-service-remoting"></a>Reliable Service Remoting 的診斷和效能監視
 Reliable ServiceRemoting 執行階段會發出[效能計數器](https://msdn.microsoft.com/library/system.diagnostics.performancecounter.aspx)。 這些項目提供深入了解 ServiceRemoting 的運作方式，並有助於疑難排解及效能監視。

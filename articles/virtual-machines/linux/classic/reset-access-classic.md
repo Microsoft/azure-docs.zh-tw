@@ -1,11 +1,11 @@
 ---
-title: "從 CLI 重設 Linux VM 密碼和 SSH 金鑰 | Microsoft Docs"
-description: "如何從 Azure 命令列介面 (CLI) 使用 VMAccess 擴充功能來重設 Linux VM 密碼或 SSH 金鑰、修正 SSH 組態及檢查磁碟一致性"
+title: 從 CLI 重設 Linux VM 密碼和 SSH 金鑰 | Microsoft Docs
+description: 如何從 Azure 命令列介面 (CLI) 使用 VMAccess 擴充功能來重設 Linux VM 密碼或 SSH 金鑰、修正 SSH 組態及檢查磁碟一致性
 services: virtual-machines-linux
-documentationcenter: 
+documentationcenter: ''
 author: cynthn
-manager: timlt
-editor: 
+manager: jeconnoc
+editor: ''
 tags: azure-service-management
 ROBOTS: NOINDEX
 ms.assetid: d975eb70-5ff1-40d1-a634-8dd2646dcd17
@@ -14,13 +14,14 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: article
-ms.date: 11/16/2016
+ms.date: 04/30/2018
 ms.author: cynthn
-ms.openlocfilehash: 4577b6b9656b6a1cf83e6f9a227526701ba297b4
-ms.sourcegitcommit: 9a8b9a24d67ba7b779fa34e67d7f2b45c941785e
+ms.openlocfilehash: 3984c94770290ad29394a06b20f2dc64a980c4a8
+ms.sourcegitcommit: c52123364e2ba086722bc860f2972642115316ef
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2018
+ms.lasthandoff: 05/11/2018
+ms.locfileid: "34071505"
 ---
 # <a name="how-to-reset-a-linux-vm-password-or-ssh-key-fix-the-ssh-configuration-and-check-disk-consistency-using-the-vmaccess-extension"></a>如何使用 VMAccess 擴充功能重設 Linux VM 密碼或 SSH 金鑰、修正 SSH 組態，和檢查磁碟一致性
 如果您因為忘記密碼、安全殼層 (SSH) 金鑰不正確或 SSH 組態有問題而無法連線到 Linux 虛擬機器，請使用 VMAccessForLinux 擴充功能搭配 Azure CLI 來重設密碼或 SSH 金鑰、修正 SSH 組態和檢查磁碟一致性。 

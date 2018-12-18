@@ -1,28 +1,30 @@
 ---
-title: "設定和資料漫遊常見問題集 | Microsoft Docs"
-description: "回答 IT 系統管理員可能會遇到的設定和應用程式資料同步處理的一些問題。"
+title: 設定和資料漫遊常見問題集 | Microsoft Docs
+description: 回答 IT 系統管理員可能會遇到的設定和應用程式資料同步處理的一些問題。
 services: active-directory
-keywords: "企業狀態漫遊設定, windows 雲端, 企業狀態漫遊常見問題集"
-documentationcenter: 
-author: tanning
+keywords: 企業狀態漫遊設定, windows 雲端, 企業狀態漫遊常見問題集
+documentationcenter: ''
+author: MarkusVi
 manager: mtillman
 editor: curtand
+ms.component: devices
 ms.assetid: c0824f5c-129b-4240-969f-921f6a64eae7
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/14/2017
+ms.date: 07/23/2018
 ms.author: markvi
-ms.openlocfilehash: 0aac3a9d3595ea0e761ba14070bf7cff4d4b264c
-ms.sourcegitcommit: d1f35f71e6b1cbeee79b06bfc3a7d0914ac57275
+ms.openlocfilehash: 39d3913013d9528405191c5f052a943f1869048a
+ms.sourcegitcommit: d211f1d24c669b459a3910761b5cacb4b4f46ac9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/22/2018
+ms.lasthandoff: 09/06/2018
+ms.locfileid: "44026851"
 ---
 # <a name="settings-and-data-roaming-faq"></a>設定和資料漫遊常見問題集
-本主題將回答 IT 系統管理員可能會遇到的設定和應用程式資料同步處理的一些問題。
+本文將回答 IT 系統管理員可能會遇到的設定和應用程式資料同步處理的一些問題。
 
 ## <a name="what-data-roams"></a>哪些資料會漫遊？
 **Windows 設定**：Windows 作業系統內建的電腦設定。 一般而言，這些是將您電腦個人化的設定，這些設定包含下列廣泛的類別：
@@ -33,12 +35,12 @@ ms.lasthandoff: 02/22/2018
 * *密碼*- 包括網際網路密碼、Wi-Fi 設定檔等。
 * *語言喜好設定*- 包括鍵盤配置、系統語言、日期和時間等的設定。
 * *輕鬆存取功能*- 例如高對比佈景主題、朗讀程式及放大鏡。
-* *其他 Windows 設定*- 例如命令提示字元設定和應用程式清單。
+* *其他 Windows 設定*，例如滑鼠設定。
 
 **應用程式資料**：通用 Windows 應用程式可以將設定資料寫入漫遊資料夾中，而系統會對寫入這個資料夾中的任何資料自動進行同步處理。 由個別應用程式開發人員設計應用程式以充分利用這項功能。 如需有關如何開發使用漫遊功能之通用 Windows 應用程式的詳細資訊，請參閱 [AppData 儲存 API](https://msdn.microsoft.com/library/windows/apps/mt299098.aspx) 和 [Windows 8 AppData 漫遊開發人員部落格](http://blogs.msdn.com/b/windowsappdev/archive/2012/07/17/roaming-your-app-data.aspx)。
 
 ## <a name="what-account-is-used-for-settings-sync"></a>哪些帳戶用於設定同步處理？
-在 Windows 8 和 Windows 8.1 中，設定同步處理一律使用取用者 Microsoft 帳戶。 企業使用者有能力可以將 Microsoft 帳戶連接至 Active Directory 網域帳戶，以存取設定同步處理。在 Windows 10 中，這項連接的 Microsoft 帳戶功能將由主要/次要帳戶架構取代。
+在 Windows 8.1 中，設定同步處理一律使用取用者 Microsoft 帳戶。 企業使用者有能力可以將 Microsoft 帳戶連接至 Active Directory 網域帳戶，以存取設定同步處理。在 Windows 10 中，這項連接的 Microsoft 帳戶功能將由主要/次要帳戶架構取代。
 
 主要帳戶的定義是用來登入 Windows 的帳戶。 這可以是 Microsoft 帳戶、Azure Active Directory (Azure AD) 帳戶、內部部署 Active Directory 帳戶或本機帳戶。 除了主要帳戶，Windows 10 使用者可以將一或多個次要雲端帳戶新增至他們的裝置。 次要帳戶通常是 Microsoft 帳戶、Azure AD 帳戶或一些像是 Gmail 或 Facebook 的其他帳戶。 這些次要帳戶提供其他服務 (例如單一登入和 Windows 市集) 的存取權，但是無法進行設定同步處理。
 
@@ -57,7 +59,7 @@ ms.lasthandoff: 02/22/2018
 >
 
 ## <a name="how-do-i-upgrade-from-microsoft-account-settings-sync-in-windows-8-to-azure-ad-settings-sync-in-windows-10"></a>我該如何從 Windows 8 中的 Microsoft 帳戶設定同步處理升級至 Windows 10 中的 Azure AD 設定同步處理？
-如果您加入了執行 Windows 8 或 Windows 8.1 且具有已連接的 Microsoft 帳戶的 Active Directory 網域，您將會透過您的 Microsoft 帳戶來同步處理設定。 升級至 Windows 10 之後，只要您是已加入網域的使用者且 Active Directory 網域未與 Azure AD 連接，您就會繼續透過 Microsoft 帳戶來同步處理使用者設定。
+如果您加入了執行 Windows 8.1 且具有已連接的 Microsoft 帳戶的 Active Directory 網域，您將會透過您的 Microsoft 帳戶來同步處理設定。 升級至 Windows 10 之後，只要您是已加入網域的使用者且 Active Directory 網域未與 Azure AD 連接，您就會繼續透過 Microsoft 帳戶來同步處理使用者設定。
 
 如果內部部署 Active Directory 網域與 Azure AD 連接，您的裝置將會嘗試使用連接的 Azure AD 帳戶來同步處理設定。 如果 Azure AD 系統管理員未啟用「企業狀態漫遊」，連接的 Azure AD 帳戶將會停止同步處理設定。 如果您是 Windows 10 使用者且使用 Azure AD 身分識別來登入，則在您的系統管理員啟用透過 Azure AD 進行設定同步處理的功能之後，您將會立即開始同步處理 Windows 設定。
 
@@ -70,12 +72,12 @@ ms.lasthandoff: 02/22/2018
 在 Windows 10 的 2015 年 11 月版或更新版本中，一次只針對一個帳戶支援「企業狀態漫遊」。 如果您使用工作或學校 Azure AD 帳戶登入 Windows，則所有資料都將透過 Azure AD 進行同步處理。 如果您使用個人 Microsoft 帳戶登入 Windows，則所有資料都會透過 Microsoft 帳戶進行同步處理。 通用 AppData 只會使用裝置上的主要登入帳戶進行漫遊，並且只有當應用程式的授權是由主要帳戶所擁有時才會漫遊。 任何次要帳戶所擁有的應用程式的通用 AppData 都不會進行同步處理。
 
 ## <a name="do-settings-sync-for-azure-ad-accounts-from-multiple-tenants"></a>對來自多個租用戶的 Azure AD 帳戶進行設定同步處理？
-當來自不同 Azure AD 租用戶的多個 Azure AD 帳戶位於相同的裝置時，您必須更新裝置的登錄，才能與每個 Azure AD 租用戶的 Azure Rights Management (RMS) 進行通訊。  
+當來自不同 Azure AD 租用戶的多個 Azure AD 帳戶位於相同的裝置時，您必須更新裝置的登錄，才能與每個 Azure AD 租用戶的 Azure Rights Management 服務進行通訊。  
 
-1. 尋找每個 Azure AD 租用戶的 GUID。 開啟 Azure 入口網站，然後選取 Azure AD 租用戶。 租用戶的 GUID 是在標示為**目錄識別碼**之選取租用戶的 [屬性] 頁面上 (https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/Properties)。 
+1. 尋找每個 Azure AD 租用戶的 GUID。 開啟 Azure 入口網站，然後選取 Azure AD 租用戶。 租用戶的 GUID 是在所選租用戶的 [屬性] 頁面 (https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/Properties) 上，其標示為 [目錄識別碼]。 
 2. 取得 GUID 之後，您必須新增登錄機碼 **HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\SettingSync\WinMSIPC\<租用戶識別碼 GUID>**。
    從「租用戶識別碼 GUID」機碼，建立一個名為 **AllowedRMSServerUrls** 的新多字串值 (REG-MULTI-SZ)。 針對其資料，指定裝置所存取之其他 Azure 租用戶的授權發佈點 URL。
-3. 您可以藉由執行 **Get-AadrmConfiguration** Cmdlet 來尋找授權發佈點 URL。 如果 **LicensingIntranetDistributionPointUrl** 與 **LicensingExtranetDistributionPointUrl** 的值不同，則請同時指定這兩個值。 如果值相同，則只要指定值一次。
+3. 您可以藉由從 AADRM 模組執行 **Get-AadrmConfiguration** Cmdlet 來尋找授權發佈點 URL。 如果 **LicensingIntranetDistributionPointUrl** 與 **LicensingExtranetDistributionPointUrl** 的值不同，則請同時指定這兩個值。 如果值相同，則只要指定值一次。
 
 ## <a name="what-are-the-roaming-settings-options-for-existing-windows-desktop-applications"></a>適用於現有 Windows 傳統型應用程式的漫遊設定選項有哪些？
 漫遊僅適用於通用 Windows 應用程式。 有兩個選項可用來在現有 Windows 傳統型應用程式上啟用漫遊：
@@ -92,12 +94,12 @@ ms.lasthandoff: 02/22/2018
 在未來，Microsoft 可能會調查讓 UE-V 深度整合到 Windows 及透過 Azure AD 雲端擴充 UE-V 漫遊設定的方式。
 
 ## <a name="can-i-store-synced-settings-and-data-on-premises"></a>我可以將同步處理的設定和資料儲存在內部部署環境中嗎？
-「企業狀態漫遊」會將所有同步處理的資料都儲存在 Azure 雲端。 UE-V 提供一個內部部署漫遊解決方案。
+「企業狀態漫遊」會將所有同步處理的資料儲存在 Microsoft 雲端。 UE-V 提供一個內部部署漫遊解決方案。
 
 ## <a name="who-owns-the-data-thats-being-roamed"></a>誰擁有正在進行漫遊的資料？
-企業擁有透過企業狀態漫遊來漫遊的資料。 資料會儲存在 Azure 資料中心。 針對在傳輸過程中和在雲端中待用的所有使用者資料，都會使用 Azure RMS 進行加密。 相較於以 Microsoft 帳戶為基礎的設定同步處理 (只會針對某些機密資料 (例如使用者認證) 在其離開裝置前進行加密)，這是一大改進。
+企業擁有透過企業狀態漫遊來漫遊的資料。 資料會儲存在 Azure 資料中心。 在傳輸過程中和在雲端待用的所有使用者資料，都會使用來自 Azure 資訊保護的 Azure Rights Management 服務進行加密。 相較於以 Microsoft 帳戶為基礎的設定同步處理 (只會針對某些機密資料 (例如使用者認證) 在其離開裝置前進行加密)，這是一大改進。
 
-Microsoft 致力於保護客戶資料。 企業使用者的設定資料在離開 Windows 10 裝置前會自動由 Azure RMS 加密，因此沒有任何其他使用者可以讀取此資料。 如果貴組織擁有 Azure RMS 的付費訂用帳戶，您可以使用其他 Azure RMS 功能，例如追蹤及撤銷文件、自動保護包含機密資訊的電子郵件，以及管理您自己的金鑰 (「自備金鑰」解決方案，也稱為 BYOK)。 如需有關這些功能及 Azure RMS 運作方式的詳細資訊，請參閱 [什麼是 Azure Rights Management](https://technet.microsoft.com/jj585026.aspx)。
+Microsoft 致力於保護客戶資料。 企業使用者的設定資料在離開 Windows 10 裝置前會自動由 Azure Microsoft Azure AD Rights Management 服務加密，因此沒有任何其他使用者可以讀取此資料。 如果貴組織擁有 Azure Rights Management 服務的付費訂用帳戶，您可以使用其他保護功能，例如追蹤及撤銷文件、自動保護包含機密資訊的電子郵件，以及管理您自己的金鑰 (「自備金鑰」解決方案，也稱為 BYOK)。 如需有關這些功能以及此保護服務運作方式的詳細資訊，請參閱[什麼是 Azure Rights Management](/azure/information-protection/what-is-information-protection)。
 
 ## <a name="can-i-manage-sync-for-a-specific-app-or-setting"></a>我可以管理特定應用程式或設定的同步處理嗎？
 在 Windows 10 中，沒有 MDM 或群組原則設定可以停用個別應用程式的漫遊。 租用戶系統管理員可以停用受控裝置上所有應用程式的 AppData 同步處理，但是在每個應用程式或應用程式內的層級並沒有更細微的控制。
@@ -116,8 +118,8 @@ Microsoft 提供數個不同的設定漫遊解決方案可供使用，包括漫�
 ## <a name="how-does-enterprise-state-roaming-support-virtual-desktop-infrastructure-vdi"></a>企業狀態漫遊如何支援虛擬桌面基礎結構 (VDI)？
 Windows 10 用戶端 SKU 支援「企業狀態漫遊」，但伺服器 SKU 則不支援。 如果用戶端 VM 裝載於 Hypervisor 電腦上，而您是從遠端登入虛擬機器，您的資料就會漫遊。 如果有多位使用者共用相同的作業系統，而使用者是從遠端登入伺服器以獲得完整桌面體驗，漫遊可能會無法運作。 針對後者以工作階段為基礎的案例，並未正式支援。
 
-## <a name="what-happens-when-my-organization-purchases-azure-rms-after-using-roaming"></a>我的組織在使用漫遊之後購買 Azure RMS 會發生什麼情況？
-如果貴組織已經藉由有使用限制的 Azure RMS 免費訂用帳戶在 Windows 10 中使用漫遊，購買付費 Azure RMS 訂用帳戶不會對漫遊功能造成任何影響，且您的 IT 系統管理員也不需要進行任何組態變更。
+## <a name="what-happens-when-my-organization-purchases-a-subscription-that-includes-azure-rights-management-after-using-roaming"></a>我的組織在使用漫遊之後，購買包含 Azure Rights Management 的訂用帳戶會發生什麼情況？
+如果貴組織已經藉由有使用限制的 Azure Rights Management 免費訂用帳戶在 Windows 10 中使用漫遊，購買包含 Azure Rights Management 保護服務的[付費訂用帳戶](https://azure.microsoft.com/pricing/details/information-protection/)不會對漫遊功能造成任何影響，且您的 IT 系統管理員也不需要進行任何組態變更。
 
 ## <a name="known-issues"></a>已知問題
 如需已知問題清單，請參閱[疑難排解](active-directory-windows-enterprise-state-roaming-troubleshooting.md)一節中的文件。 

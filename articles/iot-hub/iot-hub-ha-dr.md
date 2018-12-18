@@ -1,63 +1,126 @@
 ---
-title: "Azure IoT 中樞高可用性和災害復原 | Microsoft Docs"
-description: "描述 Azure 和 IoT 中樞功能，協助您建立具有災害復原功能的高可用性 Azure IoT 解決方案。"
-services: iot-hub
-documentationcenter: 
-author: fsautomata
-manager: timlt
-editor: 
-ms.assetid: ae320e58-aa20-45b9-abdc-fa4faae8e6dd
+title: Azure IoT 中樞高可用性和災害復原 | Microsoft Docs
+description: 描述 Azure 和 IoT 中樞功能，協助您建立具有災害復原功能的高可用性 Azure IoT 解決方案。
+author: rkmanda
 ms.service: iot-hub
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: na
-ms.date: 10/13/2017
-ms.author: elioda
-ms.openlocfilehash: ecc5da8daf0f5c93dffc93798f40507f8eac48be
-ms.sourcegitcommit: 9d317dabf4a5cca13308c50a10349af0e72e1b7e
+services: iot-hub
+ms.topic: conceptual
+ms.date: 08/07/2018
+ms.author: rkmanda
+ms.openlocfilehash: 04a3f4bbe1f0534d0eed88fbb8eb6ada4000a4f0
+ms.sourcegitcommit: 35ceadc616f09dd3c88377a7f6f4d068e23cceec
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39620394"
 ---
 # <a name="iot-hub-high-availability-and-disaster-recovery"></a>IoT 中樞高可用性和災害復原
-作為 Azure 服務，IoT 中心提供高可用性 (HA)，在 Azure 區域層級使用備援，且解決方案不需任何額外的工作。 Microsoft Azure 平台也包含各種功能，以協助您建置具有災害復原 (DR) 功能或跨區域可用性的解決方案。 若想要為裝置或使用者提供全域、跨區域的高可用性，可善用這類 Azure DR 功能。 [Azure 業務持續性技術指引](../resiliency/resiliency-technical-guidance.md) 一文描述業務持續性和 DR 的 Azure 內建功能。 [Azure 應用程式的災害復原與高可用性][Disaster recovery and high availability for Azure applications]一文針對 Azure 應用程式的策略提供架構指引以達到 HA 和 DR。
+要實作具有恢復能力的 IoT 解決方案，架構設計人員、開發人員和企業主首先必須為其建置的解決方案定義運作時間目標。 這些目標主要可根據各種案例的特定營運目標來定義。 在此內容中，[Azure 商務持續性技術指引](https://docs.microsoft.com/azure/architecture/resiliency/) 一文會說明有助於您思考商務持續性和災害復原的一般架構。 [Azure 應用程式的災害復原與高可用性](https://msdn.microsoft.com/library/dn251004.aspx)文件針對 Azure 應用程式要達到高可用性 (HA) 和災害復原 (DR) 能力的策略，提供了相關架構指引。
 
-## <a name="azure-iot-hub-dr"></a>Azure IoT 中樞 DR
-除了內部區域 HA，IoT 中樞會實作不需要使用者介入的災害復原容錯移轉機制。 IoT 中樞 DR 會自行啟動，其復原時間目標 (RTO) 為 2 到 26 小時，而復原點目標 (RPO) 如下：
+本文將討論由 IoT 中樞服務提供的特定 HA 和 DR 功能。 本文討論的廣泛領域如下：
 
-| 功能 | RPO |
+- 內部區域 HA
+- 跨區域 DR
+- 達成跨區域 HA
+
+根據您為 IoT 解決方案定義的運作時間目標，您應判斷下列哪一個選項最符合您的商務目標。 若要將其中任何 HA/DR 替代方案納入您的 IoT 解決方案中，必須先謹慎評估下列事項的取捨：
+- 您需要的復原層級 
+- 實作和維護的複雜度
+- COGS 影響
+
+
+## <a name="intra-region-ha"></a>內部區域 HA
+IoT 中樞服務可在絕大多數的服務層級中實作備援功能，以提供內部區域 HA。 利用這些備援功能，即可達成 [IoT 中樞服務所發佈的 SLA](https://azure.microsoft.com/support/legal/sla/iot-hub)。 IoT 解決方案的開發人員無須執行其他工作，即可運用這些 HA 功能。 雖然 IoT 中樞提供了相當高的運作時間保證，但分散式運算平台仍可能發生暫時性的失敗。 如果您剛開始著手將解決方案從內部部署解決方案移轉至雲端，則應將焦點從「平均失敗時間」的最佳化，轉移至「平均復原時間」的最佳化。 換句話說，在混合環境中使用雲端時，應將暫時性失敗視為正常現象。 在與雲端應用程式互動的元件中必須建立適當的[重試原則](iot-hub-reliability-features-in-sdks.md)，用以處理暫時性失敗。
+
+> [!NOTE]
+> 某些 Azure 服務也可與[可用性區域 (AZ)](../availability-zones/az-overview.md) 整合，而在某個區域內提供額外的可用性層級。 IoT 中樞服務目前不支援 AZ。
+
+## <a name="cross-region-dr"></a>跨區域 DR
+在某些罕見的情況下，資料中心有可能因為停電或其他有關於實體資產的失效，而長時間中斷運作。 這類事件十分少見，但一旦發生，前述的內部區域 HA 功能不一定都能發揮效用。 IoT 中樞提供了多種可從這類長時間中斷運作復原的解決方案。 在這種情況下，客戶可用的復原選項包括「Microsoft 起始的容錯移轉」和「手動容錯移轉」。 兩者的基本差異在於，前者由 Microsoft 所起始，後者則由使用者起始。 此外，相較於 Microsoft 起始的容錯移轉選項，手動容錯移轉所提供的復原時間目標 (RTO) 較低。 以下幾節將討論各個選項所提供的特定 RTO。 從 IoT 中樞的主要區域執行中樞容錯移轉的其中一個選項在施行時，該中樞在對應的 [Azure 地理配對區域](../best-practices-availability-paired-regions.md)中將會完整運作。
+
+
+這兩個容錯移轉選項分別提供下列復原點目標 (RPO)：
+
+| 資料類型 | 復原點目標 (RPO) |
 | --- | --- |
-| 登錄和通訊作業的服務可用性 |可能的 CName 遺失 |
-| 身分識別登錄中的身分識別資料 |0 到 5 分鐘的資料遺失 |
+| 身分識別登錄 |0 到 5 分鐘的資料遺失 |
+| 裝置對應項資料 |0 到 5 分鐘的資料遺失 |
+| 雲端到裝置的訊息** |0 到 5 分鐘的資料遺失 |
+| 父系**和裝置作業 |0 到 5 分鐘的資料遺失 |
 | 裝置到雲端的訊息 |所有未讀取的訊息都會遺失 |
 | 作業監視訊息 |所有未讀取的訊息都會遺失 |
-| 雲端到裝置的訊息 |0 到 5 分鐘的資料遺失 |
-| 雲端到裝置的意見反應佇列 |所有未讀取的訊息都會遺失 |
-| 裝置對應項資料 |0 到 5 分鐘的資料遺失 |
-| 父系和裝置作業 |0 到 5 分鐘的資料遺失 |
+| 雲端到裝置的意見反應訊息 |所有未讀取的訊息都會遺失 |
 
-## <a name="regional-failover-with-iot-hub"></a>使用 IoT 中心的區域容錯移轉
+IoT 中樞的容錯移轉作業完成後，從裝置和後端應用程式執行的所有作業都應會繼續運作，而不需要手動介入。
+
+> [!CAUTION]
+> - 在容錯移轉之後，IoT 中樞內建事件端點的事件中樞相容名稱和端點都會變更。 在使用事件中樞用戶端或事件處理器主機接收到來自內建端點的遙測訊息時，您應[使用 IoT 中樞連接字串](iot-hub-devguide-messages-read-builtin.md#read-from-the-built-in-endpoint)來建立連線。 這可以確保您的後端應用程式在容錯移轉後可繼續運作，而無需手動介入。 如果您直接在後端應用程式中使用事件中樞相容名稱和端點，您將必須在容錯移轉之後[擷取新的事件中樞相容名稱和端點](iot-hub-devguide-messages-read-builtin.md#read-from-the-built-in-endpoint)，以重新設定應用程式，而繼續作業。
+>
+> - 在容錯移轉之後，透過 Event Grid 發出的事件都可透過先前設定的相同訂用帳戶來取用，只要這些 Event Grid 訂用帳戶仍然可用即可。
+>
+> - 在此功能的預覽版中，雲端到裝置的訊息和父作業並不會在手動容錯移轉的過程中復原。
+
+### <a name="microsoft-initiated-failover"></a>Microsoft 起始的容錯移轉
+Microsoft 起始的容錯移轉會由 Microsoft 在少數的情況下施行，用以將所有 IoT 中樞從受影響的區域容錯移轉至對應的地理配對區域。 此程序是預設選項 (使用者不可選擇退出)，且使用者無須執行任何動作。 Microsoft 有權決定施行此選項的時機。 施行此機制時，無須在使用者的中樞容錯移轉之前取得使用者的同意。 Microsoft 起始的容錯移轉具有 2 到 26 小時的復原時間目標 (RTO)。 RTO 之所以偏高，是因為 Microsoft 必須代表該區域中所有受影響的客戶執行容錯移轉作業。 如果您要執行的 IoT 解決方案較不重要，而可承受大約一天的停機時間，則可採用此選項來達成您 IoT 解決方案的整體災害復原目標。 執行階段作業在此程序觸發後進入完整運作狀態所需的總時間，詳述於「復原時間 」一節。
+
+### <a name="manual-failover-preview"></a>手動容錯移轉 (預覽)
+
+如果 Microsoft 起始的容錯移轉所提供的 RTO 不符合您的業務運作時間目標，您應考慮使用手動容錯移轉，以自行觸發容錯移轉程序。 使用此選項的 RTO 可能介於 10 分鐘到數小時之間。 此 RTO 目前取決於已對要進行容錯移轉的 IoT 中樞執行個體註冊的裝置數目。 對於大約裝載了 100,000 個裝置的中樞，預期的 RTO 將是 15 分鐘左右。 執行階段作業在此程序觸發後進入完整運作狀態所需的總時間，詳述於「復原時間 」一節。
+
+無論主要區域是否發生停機狀況，手動容錯移轉選項都一律可供使用。 因此，此選項有可能用來執行計劃性容錯移轉。 計劃性容錯移轉的使用範例之一，是執行定期的容錯移轉演練。 但要提醒您，計劃性容錯移轉作業會在此選項的 RTO 所定義的期間對中樞造成停機時間，同時也會導致前述 RPO 資料表所定義的資料遺失。 您可以考慮設定測試 IoT 中樞執行個體，以定期執行計劃性容錯移轉選項，以利確保您的端對端解決方案在真正的災害發生時能夠啟動並運作。
+
+> [!IMPORTANT]
+> - 測試演練不應對生產環境中正在使用的 IoT 中樞執行。
+>
+> - 手動容錯移轉不應作為在 Azure 地理配對區域之間永久遷移中樞的機制。 這麼做將會導致從位於舊有主要區域的裝置對中樞執行的作業出現更長的延遲。
+>
+> - 手動容錯移轉目前為預覽狀態，且不適用於下列 Azure 區域。 美國東部、美國西部、北歐、西歐、巴西南部、美國中南部。
+
+### <a name="failback"></a>容錯回復
+
+容錯回復至舊有主要區域的作業，可藉由再次觸發容錯移轉動作來執行。 如果執行原始容錯移轉作業的目的是為了從原始主要區域的長時間運作中斷復原，我們建議您，當原始位置從中斷的狀況復原後，中樞即應容錯回復至該位置。
+
+> [!IMPORTANT]
+> - 使用者每天最多只能執行 2 次成功的容錯移轉和 2 次成功的容錯回復作業。
+>
+> - 不允許連續執行容錯移轉/容錯回復作業。 在這些作業之間，使用者必須等候 1 小時。
+
+### <a name="time-to-recover"></a>復原時間
+
+雖然 IoT 中樞執行個體的 FQDN (以及連接字串) 在容錯移轉後仍保持相同，但基礎 IP 位址則會變更。 因此，在容錯移轉程序之後，要對您的 IoT 中樞執行個體執行的執行階段作業要進入完整運作狀態所需的總時間，可使用下列函式來表示。
+
+復原時間 = RTO [10 分鐘 - 2 小時 (手動容錯移轉) | 2 - 26 小時 (Microsoft 起始的容錯移轉)] + DNS 傳播延遲 + 用戶端應用程式重新整理任何快取的 IoT 中樞 IP 位址所花費的時間。
+
+> [!IMPORTANT]
+> IoT SDK 不會快取 IoT 中樞的 IP 位址。 我們建議，使用 SDK 的使用者程式碼不應快取的 IoT 中樞的 IP 位址。
+
+## <a name="achieve-cross-region-ha"></a>達成跨區域 HA
+如果 Microsoft 起始的容錯移轉或手動容錯移轉選項所提供的 RTO 皆不符合您的業務運作時間目標，您應考慮實作個別裝置的自動跨區域容錯移轉機制。
 IoT 解決方案中部署拓撲的完整處理方式不在本文討論範圍內。 本文討論為了實現高可用性和災害復原的目的，所建立的*區域容錯移轉*部署模型。
 
-在區域容錯移轉模式中，解決方案後端主要是在單一的資料中心位置執行。 次要 IoT 中樞與後端會部署於其他資料中心位置。 若主要資料中心的 IoT 中樞遭遇服務中斷，或是從裝置到主要資料中心的網路連線中斷，則裝置會使用次要服務端點。 可以藉由跨區域容錯移轉模式來改善解決方案，而無須停留在單一區域。 
+在區域容錯移轉模式中，解決方案後端主要是在單一的資料中心位置執行。 次要 IoT 中樞與後端會部署於其他資料中心位置。 若主要區域的 IoT 中樞發生運作中斷狀況，或是從裝置到主要區域的網路連線中斷，則裝置會使用次要服務端點。 可以藉由跨區域容錯移轉模式來改善解決方案，而無須停留在單一區域。 
 
-在較高層級，為了使用 IoT 中樞實作區域容錯移轉模型，您需要下列內容：
+在較高層級上，為了使用 IoT 中樞實作區域容錯移轉模型，您必須執行下列步驟：
 
-* **次要 IoT 中樞和裝置路由邏輯**：萬一主要區域的服務中斷，裝置必須開始連線至您的次要區域。 由於大部分服務狀態感知的本質，解決方案的系統管理員通常會觸發區域間的容錯移轉程序。 要讓新端點與裝置通訊，同時保有程序的控制權，最佳方式是讓它們定期檢查「指引」服務是否有目前作用中的端點。 這裡的指引服務可以是 Web 應用程式，其可藉由使用 DNS 重新導向技術複寫並保持連接 (例如使用 [Azure 流量管理員][Azure Traffic Manager])。
-* **身分識別登錄複寫**：為了成為可用狀態，次要 IoT 中樞必須包含能夠連線到解決方案的所有裝置身分識別。 解決方案應該保留裝置身分識別的異地複寫備份，並在切換裝置的作用中端點之前將其上傳至次要 IoT 中樞。 IoT 中樞的裝置身分識別匯出功能在此內容中很有用。 如需詳細資訊，請參閱 [IoT 中樞開發人員指南 - 身分識別登錄][IoT Hub developer guide - identity registry]。
-* **合併邏輯**：當主要區域再次可供使用時，所有在次要網站中建立的狀態和資料都必須移轉回主要區域。 此狀態和資料大多與裝置身分識別和應用程式中繼資料相關，必須與主要 IoT 中樞合併，也可能要與主要區域中的其他所有應用程式特定存放區合併。 若要簡化此步驟，您應該使用等冪作業。 等冪作業可以將副作用降到最低，不只包括來自最終一致的事件分佈的副作用，也包括來自事件的重複項目或失序傳遞的副作用。 此外，應用程式邏輯應該設計為能夠容忍潛在的不一致或「稍微」過期的狀態。 發生此狀況可能是因為系統需要額外的時間來根據復原點目標 (RPO)「療癒」。
+* **次要 IoT 中樞和裝置路由邏輯**：萬一主要區域的服務中斷，裝置必須開始連線至您的次要區域。 由於大部分服務狀態感知的本質，解決方案的系統管理員通常會觸發區域間的容錯移轉程序。 要讓新端點與裝置通訊，同時保有程序的控制權，最佳方式是讓它們定期檢查「指引」服務是否有目前作用中的端點。 指引服務可以是 Web 應用程式，其可藉由使用 DNS 重新導向技術複寫並保持連接 (例如使用 [Azure 流量管理員](../traffic-manager/traffic-manager-overview.md))。
+
+   > [!NOTE]
+   > IoT 中樞服務在 Azure 流量管理員中不是支援的端點類型。 建議您讓 Azure 流量管理員實作端點健康情況探查 API，而將其與建議的指引服務整合。
+
+* **身分識別登錄複寫**：為了成為可用狀態，次要 IoT 中樞必須包含能夠連線到解決方案的所有裝置身分識別。 解決方案應該保留裝置身分識別的異地複寫備份，並在切換裝置的作用中端點之前將其上傳至次要 IoT 中樞。 IoT 中樞的裝置身分識別匯出功能在此內容中很有用。 如需詳細資訊，請參閱 [IoT 中樞開發人員指南 - 身分識別登錄][IoT 中樞開發人員指南 - 身分識別登錄]。
+* **合併邏輯**：當主要區域再次可供使用時，所有在次要網站中建立的狀態和資料都必須移轉回主要區域。 此狀態和資料大多與裝置身分識別和應用程式中繼資料相關，必須與主要 IoT 中樞合併，也可能要與主要區域中的其他所有應用程式特定存放區合併。 若要簡化此步驟，您應該使用等冪作業。 等冪作業可以將副作用降到最低，不只包括來自最終一致的事件分佈的副作用，也包括來自事件的重複項目或失序傳遞的副作用。 此外，應用程式邏輯應該設計為能夠容忍潛在的不一致或稍微過期的狀態。 發生此狀況可能是因為系統需要額外的時間來根據復原點目標 (RPO) 進行療癒。
+
+## <a name="choose-the-right-hadr-option"></a>選擇適合的 HA/DR 選項
+以下彙整了本文說明的 HA/DR 選項，可讓您在選擇適用於解決方案的選項時作為參考依據
+
+| HA/DR 選項 | RTO | RPO | 需要手動操作？ | 實作複雜度 | 額外成本影響|
+| --- | --- | --- | --- | --- | --- | --- |
+| Microsoft 起始的容錯移轉 |2 - 26 小時|參考前述 RPO 資料表|否|None|None|
+| 手動容錯移轉 |10 分鐘 - 2 小時|參考前述 RPO 資料表|是|非常低。 您只需從入口網站觸發這項作業。|None|
+| 跨區域 HA |< 1 分鐘|取決於自訂 HA 解決方案的複寫頻率|否|高|> 1 個 IoT 中樞的成本|
 
 ## <a name="next-steps"></a>後續步驟
 遵循下列連結以深入了解 Azure IoT 中樞：
 
-* [開始使用 IoT 中心 (教學課程)][lnk-get-started]
-* [何謂 Azure IoT 中樞？][What is Azure IoT Hub?]
-
-[Disaster recovery and high availability for Azure applications]: ../resiliency/resiliency-disaster-recovery-high-availability-azure-applications.md
-[Azure Business Continuity Technical Guidance]: https://azure.microsoft.com/documentation/articles/resiliency-technical-guidance/
-[Azure Traffic Manager]: https://azure.microsoft.com/documentation/services/traffic-manager/
-[IoT Hub developer guide - identity registry]: iot-hub-devguide-identity-registry.md
-
-[lnk-get-started]: iot-hub-csharp-csharp-getstarted.md
-[What is Azure IoT Hub?]: iot-hub-what-is-iot-hub.md
+* [開始使用 IoT 中樞 (教學課程)](quickstart-send-telemetry-dotnet.md)
+* [何謂 Azure IoT 中樞？](about-iot-hub.md)

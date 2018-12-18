@@ -1,24 +1,25 @@
 ---
-title: "在 Azure 資訊安全中心提供安全性連絡人詳細資料 | Microsoft Docs"
-description: "本文件說明如何在 Azure 資訊安全中心提供安全性連絡人詳細資料。"
+title: 在 Azure 資訊安全中心提供安全性連絡人詳細資料 | Microsoft Docs
+description: 本文件說明如何在 Azure 資訊安全中心提供安全性連絡人詳細資料。
 services: security-center
 documentationcenter: na
 author: TerryLanfear
 manager: MBaldwin
-editor: 
+editor: ''
 ms.assetid: 26b5dcb4-ce3f-4f22-8d56-d2bf743cfc90
 ms.service: security-center
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/15/2017
+ms.date: 08/20/2018
 ms.author: terrylan
-ms.openlocfilehash: 726b59c45e2eb18eebe28a180db23336ae141408
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: c268538cf401b29f68210c6d017c2eac55e88939
+ms.sourcegitcommit: 3f8f973f095f6f878aa3e2383db0d296365a4b18
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/20/2018
+ms.locfileid: "42146396"
 ---
 # <a name="provide-security-contact-details-in-azure-security-center"></a>在 Azure 資訊安全中心提供安全性連絡人詳細資料
 Azure 資訊安全中心會建議您針對您的 Azure 訂用帳戶提供安全性連絡人詳細資料 (如果您還沒有這麼做)。 如果 Microsoft 安全性回應中心 (MSRC) 發現您的客戶資料遭到非法或未經授權的對象存取，Microsoft 會使用此資訊連絡您。 MSRC 執行 Azure 網路和基礎結構的選取安全性監視，並接收來自協力廠商的威脅情報和濫用客訴。
@@ -34,7 +35,7 @@ Azure 資訊安全中心會建議您針對您的 Azure 訂用帳戶提供安全�
 1. 在 [建議] 下方，選取 [提供安全性連絡人詳細資料]。
    ![提供安全性連絡人][1]
 2. 選取要提供連絡人資訊的 Azure 訂用帳戶。
-3. [安全性原則 - 電子郵件通知] 隨即會開啟。
+3. 這會開啟 [電子郵件通知]。
 
    ![提供安全性連絡人詳細資料][2]
 

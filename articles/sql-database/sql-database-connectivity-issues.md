@@ -7,14 +7,15 @@ author: dalechen
 manager: craigg
 ms.service: sql-database
 ms.custom: develop apps
-ms.topic: article
-ms.date: 11/29/2017
-ms.author: daleche
-ms.openlocfilehash: f6b5f825d7f8111075fe37b5dc29d174928d913e
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.topic: conceptual
+ms.date: 08/01/2018
+ms.author: ninarn
+ms.openlocfilehash: 1da4e8d94007653a43f187322c1d0e4077e337fa
+ms.sourcegitcommit: d4c076beea3a8d9e09c9d2f4a63428dc72dd9806
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 08/01/2018
+ms.locfileid: "39398932"
 ---
 # <a name="troubleshoot-diagnose-and-prevent-sql-connection-errors-and-transient-errors-for-sql-database"></a>排解、診斷和防止 SQL Database 的 SQL 連接錯誤和暫時性錯誤
 本文描述如何防止、排解、診斷和減少您的用戶端應用程式在與 Azure SQL Database 互動時發生的連接錯誤和暫時性錯誤。 了解如何設定重試邏輯、建置連接字串和調整其他連接設定。
@@ -180,17 +181,21 @@ Connection Timeout = ConnectRetryCount * ConnectionRetryInterval
 
 <a id="d-connection-ado-net-4-5" name="d-connection-ado-net-4-5"></a>
 
-### <a name="connection-adonet-461"></a>連接：ADO.NET 4.6.1
-如果您的程式使用 **System.Data.SqlClient.SqlConnection** 之類的 ADO.NET 類別來連線到 SQL Database，建議您使用 .NET Framework 4.6.1 版或更新版本。
+### <a name="connection-adonet-462-or-later"></a>連線：ADO.NET 4.6.2 或更新版本
+如果您的程式使用 **System.Data.SqlClient.SqlConnection** 之類的 ADO.NET 類別來連線到 SQL Database，建議您使用 .NET Framework 4.6.2 版或更新版本。
 
-ADO.NET 4.6.1：
+開頭是 ADO.NET 4.6.2：
+
+- 要立即針對 Azure SQL Database 重試的連線開啟嘗試，因而提升雲端式應用程式的效能。
+
+開頭是 ADO.NET 4.6.1：
 
 * 對於 SQL Database，使用 **SqlConnection.Open** 方法來開啟連線時，可靠性更高。 針對連線逾時期間內的特定錯誤，**Open** 方法現在包含最佳重試機制來因應暫時性錯誤。
 * 支援連線集區，包括其提供給您的程式的連線物件是否能運作的有效驗證。
 
 當您使用連線集區中的連線物件時，建議您的程式若未立即使用連線，則暫時將它關閉。 重新開啟連線並不會耗費很多資源，但是會建立新的連線。
 
-如果您使用 ADO.NET 4.0 或更舊版本，建議您升級到最新的 ADO.NET。 從 2015 年 11 月開始，您可以 [下載 ADO.NET 4.6.1](http://blogs.msdn.com/b/dotnet/archive/2015/11/30/net-framework-4-6-1-is-now-available.aspx)。
+如果您使用 ADO.NET 4.0 或更舊版本，建議您升級到最新的 ADO.NET。 從 2018 年 8 月起，您可以[下載 ADO.NET 4.6.2](https://blogs.msdn.microsoft.com/dotnet/2018/04/30/announcing-the-net-framework-4-7-2/)。
 
 <a id="e-diagnostics-test-utilities-connect" name="e-diagnostics-test-utilities-connect"></a>
 
@@ -307,8 +312,8 @@ Enterprise Library 6 (EntLib60) 是 .NET 類別的架構，可協助您實作雲
 
 > [!NOTE]
 > EntLib60 的原始程式碼可從[下載中心](http://go.microsoft.com/fwlink/p/?LinkID=290898)公開下載。 Microsoft 沒有計劃進一步更新或維護 EntLib 的功能。
-> 
-> 
+>
+>
 
 <a id="entlib60-classes-for-transient-errors-and-retry" name="entlib60-classes-for-transient-errors-and-retry"></a>
 
@@ -318,12 +323,12 @@ Enterprise Library 6 (EntLib60) 是 .NET 類別的架構，可協助您實作雲
 在命名空間 **Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling** 中：
 
 * **RetryPolicy** 類別
-  
+
   * **ExecuteAction** 方法
 * **ExponentialBackoff** 類別
 * **SqlDatabaseTransientErrorDetectionStrategy** 類別
 * **ReliableSqlConnection** 類別
-  
+
   * **ExecuteCommand** 方法
 
 在命名空間 **Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.TestSupport**中：
@@ -341,7 +346,7 @@ Enterprise Library 6 (EntLib60) 是 .NET 類別的架構，可協助您實作雲
 
 ### <a name="entlib60-the-logging-block"></a>EntLib60：記錄區塊
 * 記錄區塊是高度彈性且可設定的解決方案，您可用於：
-  
+
   * 建立記錄訊息，並儲存在各種不同的位置中。
   * 分類與篩選訊息。
   * 收集有助於偵錯和追蹤的內容資訊，以及用於稽核和一般記錄需求的內容資訊。
@@ -433,4 +438,3 @@ public bool IsTransient(Exception ex)
 [step-4-connect-resiliently-to-sql-with-ado-net-a78n]: https://docs.microsoft.com/sql/connect/ado-net/step-4-connect-resiliently-to-sql-with-ado-net
 
 [step-4-connect-resiliently-to-sql-with-php-p42h]: https://docs.microsoft.com/sql/connect/php/step-4-connect-resiliently-to-sql-with-php
-

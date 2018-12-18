@@ -9,16 +9,18 @@ manager: hjerez
 editor: cgronlun
 ms.assetid: 1333ffe2-59b8-4f40-9be7-3bf1173fc38d
 ms.service: machine-learning
+ms.component: studio
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 12/18/2017
-ms.openlocfilehash: 6c64444fc8d42782065d42ed5ee0c193678bb1f1
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 1beba951a6785aa90eef22a63a8064e9da1bb27f
+ms.sourcegitcommit: 944d16bc74de29fb2643b0576a20cbd7e437cef2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 06/07/2018
+ms.locfileid: "34835112"
 ---
 # <a name="analyzing-customer-churn-using-azure-machine-learning"></a>使用 Azure Machine Learning 分析客戶流失
 ## <a name="overview"></a>概觀
@@ -44,7 +46,7 @@ ms.lasthandoff: 03/23/2018
 
 例如，在行動電話業務中，手機或裝置選擇是導致客戶流失的一個明顯因素。 因此，常用的手段是補助新用戶的手機價格，但對既有客戶收取全額的升級費用。 根據歷史經驗，這種手段反而造成使客戶跳槽到另一家供應商來尋找新的折扣。 這使得供應商不得不修正策略
 
-手機產品日新月異，是造成以最新手機款式為主的客戶流失模型迅速失效的一項因素。 此外，行動電話不只是通訊裝置，也是流行的代表 (例外 iPhone)。 這些社會性指標並不在一般的電信資料集之內。
+手機供應項目日新月異，是造成以最新手機款式為主的客戶流失模型迅速失效的一項因素。 此外，行動電話不只是通訊裝置，也是流行的代表 (例外 iPhone)。 這些社會性指標並不在一般的電信資料集之內。
 
 建構模型的最後結果就是，單純地排除客戶流失的已知原因，就不可能設計出一套完美的策略。 事實上，持續性的模型建構策略是 **必要的**，包括量化類別變項的傳統模型 (例如決策樹)。
 
@@ -55,7 +57,7 @@ ms.lasthandoff: 03/23/2018
 
 1. 風險模型可讓您考量動作如何影響機率和風險。
 2. 介入模型讓您考量介入程度如何影響客戶流失機率和顧客終身價值 (CLV) 的數量。
-3. 此分析本身會形成定性分析，再逐步發展成以客戶族群為目標的積極行銷活動，以提供最佳服務。  
+3. 此分析本身會形成定性分析，再逐步發展成以客戶族群為目標的積極行銷活動，以提供最佳供應項目。  
 
 ![][1]
 

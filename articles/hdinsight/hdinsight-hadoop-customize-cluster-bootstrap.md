@@ -1,26 +1,20 @@
 ---
-title: "使用 Bootstrap 自訂 HDInsight 叢集 - Azure | Microsoft Docs"
-description: "了解如何使用 Bootstrap 自訂 HDInsight 叢集。"
+title: 使用 Bootstrap 自訂 HDInsight 叢集 - Azure
+description: 了解如何使用 Bootstrap 自訂 HDInsight 叢集。
 services: hdinsight
-documentationcenter: 
-author: mumian
-manager: jhubbard
-editor: cgronlun
-tags: azure-portal
-ms.assetid: ab2ebf0c-e961-4e95-8151-9724ee22d769
+author: jasonwhowell
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
-ms.date: 01/03/2018
-ms.author: jgao
-ms.openlocfilehash: 2bead1a879811349e4bee5dfebdcbbb838130b81
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.topic: conceptual
+ms.date: 05/14/2018
+ms.author: jasonh
+ms.openlocfilehash: f0fe09a6d67d2ad72a1984168b669f34c8d8f3ef
+ms.sourcegitcommit: f6e2a03076679d53b550a24828141c4fb978dcf9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43107400"
 ---
 # <a name="customize-hdinsight-clusters-using-bootstrap"></a>使用 Bootstrap 自訂 HDInsight 叢集
 
@@ -122,7 +116,7 @@ Resource Manager 範本中，您可以使用啟動程序︰
 
 ```json
 "configurations": {
-    …
+    �
     "hive-site": {
         "hive.metastore.client.connect.retry.delay": "5",
         "hive.execution.engine": "mr",
@@ -137,12 +131,10 @@ Resource Manager 範本中，您可以使用啟動程序︰
 * [在 HDInsight 中建立 Hadoop 叢集][hdinsight-provision-cluster]提供如何使用其他自訂選項建立 HDInsight 叢集的指示。
 * [開發 HDInsight 的指令碼動作指令碼][hdinsight-write-script]
 * [在 HDInsight 叢集上安裝和使用 Spark][hdinsight-install-spark]
-* [在 HDInsight 叢集上安裝和使用 R][hdinsight-install-r]
 * [在 HDInsight 叢集上安裝及使用 Solr](hdinsight-hadoop-solr-install.md)。
 * [在 HDInsight 叢集上安裝及使用 Giraph](hdinsight-hadoop-giraph-install.md)。
 
 [hdinsight-install-spark]: hdinsight-hadoop-spark-install.md
-[hdinsight-install-r]: hdinsight-hadoop-r-scripts.md
 [hdinsight-write-script]: hdinsight-hadoop-script-actions.md
 [hdinsight-provision-cluster]: hdinsight-hadoop-provision-linux-clusters.md
 [powershell-install-configure]: /powershell/azureps-cmdlets-docs
@@ -192,7 +184,7 @@ $ErrorActionPreference = "Stop"
 #region - Connect to Azure subscription
 Write-Host "`nConnecting to your Azure subscription ..." -ForegroundColor Green
 try{Get-AzureRmContext}
-catch{Login-AzureRmAccount}
+catch{Connect-AzureRmAccount}
 #endregion
 
 #region - Create an HDInsight cluster

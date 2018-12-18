@@ -1,25 +1,26 @@
 ---
-title: "監視 Azure Kubernetes 叢集 - Sysdig"
-description: "使用 Sysdig 監視 Azure Container Service 中的 Kubernetes 叢集"
+title: 監視 Azure Kubernetes 叢集 - Sysdig
+description: 使用 Sysdig 監視 Azure Container Service 中的 Kubernetes 叢集
 services: container-service
 author: bburns
-manager: timlt
+manager: jeconnoc
 ms.service: container-service
 ms.topic: article
 ms.date: 12/09/2016
 ms.author: bburns
 ms.custom: mvc
-ms.openlocfilehash: 4ff610f72af4e6a750749009f3cd4b4df632a37f
-ms.sourcegitcommit: 5d3e99478a5f26e92d1e7f3cec6b0ff5fbd7cedf
+ms.openlocfilehash: bbf59a35f420b5bbf292fbdaa5a8bbc173e4ee24
+ms.sourcegitcommit: e8f443ac09eaa6ef1d56a60cd6ac7d351d9271b9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/06/2017
+ms.lasthandoff: 09/12/2018
+ms.locfileid: "35633324"
 ---
 # <a name="monitor-an-azure-container-service-kubernetes-cluster-using-sysdig"></a>使用 Sysdig 監視 Azure Container Service Kubernetes 叢集
 
 [!INCLUDE [aks-preview-redirect.md](../../../includes/aks-preview-redirect.md)]
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 本逐步解說假設您已[使用 Azure Container Service 建立 Kubernetes 叢集](container-service-kubernetes-walkthrough.md)。
 
 同時也假設您已經安裝 azure cli 和 kubectl 工具。
@@ -57,7 +58,7 @@ Sysdig 是一家外部監視即服務公司，可監視您在 Azure 中執行的
 DaemonSets 是每部機器執行單一容器執行個體的 Kubernetes API 物件。
 它們非常適合用來安裝 Sysdig 監視代理程式之類的工具。
 
-若要安裝 Sysdig daemonset，您應該先從 sysdig 下載[範本](https://raw.githubusercontent.com/draios/sysdig-cloud-scripts/master/agent_deploy/kubernetes/sysdig-daemonset.yaml)。 將該檔案儲存為 `sysdig-daemonset.yaml`。
+若要安裝 Sysdig daemonset，您應該先從 sysdig 下載[範本](https://github.com/draios/sysdig-cloud-scripts/tree/master/agent_deploy/kubernetes)。 將該檔案儲存為 `sysdig-daemonset.yaml`。
 
 在 Linux 與 OS X 上，您可以執行︰
 

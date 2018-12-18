@@ -1,11 +1,11 @@
 ---
-title: "使用 Azure 資訊安全中心回應安全性事件 | Microsoft Docs"
-description: "本文件說明如何使用 Azure 資訊安全中心執行事件回應案例。"
+title: 使用 Azure 資訊安全中心回應安全性事件 | Microsoft Docs
+description: 本文件說明如何使用 Azure 資訊安全中心執行事件回應案例。
 services: security-center
 documentationcenter: na
-author: YuriDio
-manager: swadhwa
-editor: 
+author: terrylan
+manager: mbaldwin
+editor: ''
 ms.assetid: 8af12f1c-4dce-4212-8ac4-170d4313492d
 ms.service: security-center
 ms.topic: hero-article
@@ -14,11 +14,12 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/03/2017
 ms.author: yurid
-ms.openlocfilehash: 95af26a655e72a9cc370f339da5ecedbed441997
-ms.sourcegitcommit: 38c9176c0c967dd641d3a87d1f9ae53636cf8260
+ms.openlocfilehash: 8564dd8a86cab1229f31e77e072ddd4e776947e7
+ms.sourcegitcommit: 150a40d8ba2beaf9e22b6feff414f8298a8ef868
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/06/2017
+ms.lasthandoff: 06/27/2018
+ms.locfileid: "37029691"
 ---
 # <a name="using-azure-security-center-for-an-incident-response"></a>使用 Azure 資訊安全中心進行事件回應
 許多組織都了解如何只在遭受攻擊之後回應安全性事件。 為了降低成本和損害，一定要在攻擊發生前備妥事件回應計劃。 您可以在不同階段的事件回應使用 Azure 資訊安全中心。
@@ -96,7 +97,7 @@ Sam 會收到來自 Judy 的案例，開始檢閱資訊安全中心所建議的�
 ![事件回應生命週期](./media/security-center-incident-response/security-center-incident-response-fig6.png)
 
 ### <a name="additional-resources"></a>其他資源
-對於在調查過程中使用其安全性資訊和事件管理 (SIEM) 解決方案的公司而言，他們也可以[整合資訊安全中心與其解決方案](security-center-integrating-alerts-with-log-integration.md)。 您也可以使用 [Azure 記錄整合工具](https://blogs.msdn.microsoft.com/azuresecurity/2016/07/21/microsoft-azure-log-integration-preview/)來整合 Azure 稽核記錄檔和虛擬機器 (VM) 安全性事件。 若要調查攻擊，您可以搭配使用此資訊與資訊安全中心所提供的資訊。 您也可以使用資訊安全中心中的[調查](https://docs.microsoft.com/azure/security-center/security-center-investigation)功能，協助您判斷事件的根本原因。
+對於在調查過程中使用其安全性資訊和事件管理 (SIEM) 解決方案的公司而言，他們也可以[整合資訊安全中心與其解決方案](security-center-integrating-alerts-with-log-integration.md)。 您也可以使用 [Azure 記錄整合工具](https://azure.microsoft.com/blog/introducing-hdinsight-integration-with-azure-log-analytics/)來整合 Azure 稽核記錄檔和虛擬機器 (VM) 安全性事件。 若要調查攻擊，您可以搭配使用此資訊與資訊安全中心所提供的資訊。 您也可以使用資訊安全中心中的[調查](https://docs.microsoft.com/azure/security-center/security-center-investigation)功能，協助您判斷事件的根本原因。
 
 ## <a name="conclusion"></a>結論
 事件發生前召集小組對組織而言非常重要，可正面影響事件的處理方式。 擁有可監視資源的適當工具，有助於這個小組採取正確的步驟來修復安全性事件。 資訊安全中心[偵測功能](security-center-detection-capabilities.md)會協助 IT 部門快速地回應安全性事件並修復安全性問題。

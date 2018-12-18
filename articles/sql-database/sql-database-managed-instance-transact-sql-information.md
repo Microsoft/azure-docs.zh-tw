@@ -6,15 +6,16 @@ author: jovanpop-msft
 ms.reviewer: carlrab, bonova
 ms.service: sql-database
 ms.custom: managed instance
-ms.topic: article
-ms.date: 03/19/2018
+ms.topic: conceptual
+ms.date: 06/22/2018
 ms.author: jovanpop
 manager: craigg
-ms.openlocfilehash: b633c3c4a4f476cb8e89afde8adeb94558643d4b
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 89544ea72a4356fb8d4f3a192e6fc546eb6b3cff
+ms.sourcegitcommit: e32ea47d9d8158747eaf8fee6ebdd238d3ba01f7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 07/17/2018
+ms.locfileid: "39092005"
 ---
 # <a name="azure-sql-database-managed-instance-t-sql-differences-from-sql-server"></a>Azure SQL Database 受控執行個體的 T-SQL 差異 
 
@@ -207,6 +208,10 @@ WITH PRIVATE KEY ( <private_key_options> )
 - 不支援 `DBCC TRACEOFF`。 請參閱 [DBCC TRACEOFF](https://docs.microsoft.com/sql/t-sql/database-console-commands/dbcc-traceoff-transact-sql)。
 - 不支援 `DBCC TRACEON`。 請參閱 [DBCC TRACEON](https://docs.microsoft.com/sql/t-sql/database-console-commands/dbcc-traceon-transact-sql)。
 
+### <a name="distributed-transactions"></a>分散式交易
+
+受控執行個體中目前不支援 MSDTC 和[彈性交易](https://docs.microsoft.com/azure/sql-database/sql-database-elastic-transactions-overview)。
+
 ### <a name="extended-events"></a>擴充事件 
 
 不支援 XEvent 的某些 Windows 特定目標：
@@ -239,7 +244,7 @@ WITH PRIVATE KEY ( <private_key_options> )
 ### <a name="linked-servers"></a>連結的伺服器
  
 在受控執行個體中，連結伺服器支援的目標數有限： 
-- 支援的目標：SQL Server、SQL Database、受控執行個體和虛擬機器上的 SQL Server。
+- 支援的目標：SQL Server 及 SQL Database
 - 不支援目標：檔案、Analysis Services 和其他 RDBMS。
 
 作業
@@ -247,7 +252,7 @@ WITH PRIVATE KEY ( <private_key_options> )
 - 不支援跨執行個體寫入交易。
 - 支援使用 `sp_dropserver` 卸除連結的伺服器。 請參閱 [sp_dropserver](https://docs.microsoft.com/sql/relational-databases/system-stored-procedures/sp-dropserver-transact-sql)。
 - `OPENROWSET` 函式只可用來在 SQL Server 執行個體 (受控、內部部署或在虛擬機器中) 上執行查詢。 請參閱 [OPENROWSET](https://docs.microsoft.com/sql/t-sql/functions/openrowset-transact-sql)。
-- `OPENDATASOURCE` 函式只可用來在 SQL Server 執行個體 (受控、內部部署或在虛擬機器中) 上執行查詢。 只支援使用 `SQLNCLI`、`SQLNCLI11` 和 `SQLOLEDB` 值作為提供者。 例如：`SELECT * FROM OPENDATASOURCE('SQLNCLI', '...').AdventureWorks2012.HumanResources.Employee`。 請參閱 [OPENDATASOURCE](https://docs.microsoft.com/sql/t-sql/functions/opendatasource-transact-sql)。
+- `OPENDATASOURCE` 函式只可用來在 SQL Server 執行個體 (受控、內部部署或在虛擬機器中) 上執行查詢。 只支援使用 `SQLNCLI`、`SQLNCLI11` 和 `SQLOLEDB` 值作為提供者。 例如： `SELECT * FROM OPENDATASOURCE('SQLNCLI', '...').AdventureWorks2012.HumanResources.Employee` 。 請參閱 [OPENDATASOURCE](https://docs.microsoft.com/sql/t-sql/functions/opendatasource-transact-sql)。
  
 ### <a name="logins--users"></a>登入 / 使用者 
 
@@ -262,7 +267,7 @@ WITH PRIVATE KEY ( <private_key_options> )
 
 ### <a name="replication"></a>複寫 
  
-尚不支援複寫。 如需有關複寫的資訊，請參閱 [SQL Server 複寫](https://docs.microsoft.com/sql/relational-databases/replication/sql-server-replication)。
+受控執行個體上支援複寫功能。 如需有關複寫的資訊，請參閱 [SQL Server 複寫](http://review.docs.microsoft.com/sql/relational-databases/replication/replication-with-sql-database-managed-instance)。
  
 ### <a name="restore-statement"></a>RESTORE 陳述式 
  
@@ -366,21 +371,19 @@ WITH PRIVATE KEY ( <private_key_options> )
 不支援下列項目： 
 - `FILESTREAM` 
 - `FILETABLE` 
-- `EXTERNAL TABLE` 
+- `EXTERNAL TABLE`
 - `MEMORY_OPTIMIZED`  
 
 如需有關建立和更改資料表的資訊，請參閱 [CREATE TABLE](https://docs.microsoft.com/sql/t-sql/statements/create-table-transact-sql) 和 [ALTER TABLE](https://docs.microsoft.com/sql/t-sql/statements/alter-table-transact-sql)。
- 
+
 ## <a name="Changes"></a> 行為變更 
  
 下列變數、函式和檢視會傳回不同的結果：  
 - `SERVERPROPERTY('EngineEdition')` 傳回值「8」。 此屬性只會識別出受控執行個體。 請參閱 [SERVERPROPERTY](https://docs.microsoft.com/sql/t-sql/functions/serverproperty-transact-sql)。
-- `SERVERPROPERTY('InstanceName')` 會傳回簡短的執行個體名稱，例如 'myserver'。 請參閱 [SERVERPROPERTY('InstanceName')](https://docs.microsoft.com/sql/t-sql/functions/serverproperty-transact-sql)。
+- `SERVERPROPERTY('InstanceName')` 會傳回 NULL，因為執行個體基於 SQL Server 而存在的概念不適用於受控執行個體。 請參閱 [SERVERPROPERTY('InstanceName')](https://docs.microsoft.com/sql/t-sql/functions/serverproperty-transact-sql)。
 - `@@SERVERNAME` 會傳回完整的 DNS「可連線」名稱，例如 my-managed-instance.wcus17662feb9ce98.database.windows.net。 請參閱 [@@SERVERNAME](https://docs.microsoft.com/sql/t-sql/functions/servername-transact-sql)。  
 - `SYS.SERVERS` - 傳回完整的 DNS「可連線」名稱，例如 'name' 和 'data_source' 屬性的 `myinstance.domain.database.windows.net`。 請參閱 [SYS.SERVERS](https://docs.microsoft.com/sql/relational-databases/system-catalog-views/sys-servers-transact-sql)。 
-- `@@SERVERNAME` 會傳回完整 DNS「可連線」名稱，例如 `my-managed-instance.wcus17662feb9ce98.database.windows.net`。 請參閱 [@@SERVERNAME](https://docs.microsoft.com/sql/t-sql/functions/servername-transact-sql)。  
-- `SYS.SERVERS` - 傳回完整的 DNS「可連線」名稱，例如 'name' 和 'data_source' 屬性的 `myinstance.domain.database.windows.net`。 請參閱 [SYS.SERVERS](https://docs.microsoft.com/sql/relational-databases/system-catalog-views/sys-servers-transact-sql)。 
-- `@@SERVICENAME` 會傳回 NULL，因為其在受控執行個體環境中沒有意義。 請參閱 [@@SERVICENAME](https://docs.microsoft.com/sql/t-sql/functions/servicename-transact-sql)。   
+- `@@SERVICENAME` 會傳回 NULL，因為服務基於 SQL Server 而存在的概念不適用於受控執行個體。 請參閱 [@@SERVICENAME](https://docs.microsoft.com/sql/t-sql/functions/servicename-transact-sql)。   
 - 支援 `SUSER_ID`。 如果 AAD 登入不是 sys.syslogins，則傳回 NULL。 請參閱 [SUSER_ID](https://docs.microsoft.com/sql/t-sql/functions/suser-id-transact-sql)。  
 - 不支援 `SUSER_SID`。 傳回錯誤資料 (暫時的已知問題)。 請參閱 [SUSER_SID](https://docs.microsoft.com/sql/t-sql/functions/suser-sid-transact-sql)。 
 - `GETDATE()` 和其他內建的日期/時間函式一律會傳回時間 (UTC 時區)。 請參閱 [GETDATE](https://docs.microsoft.com/sql/t-sql/functions/getdate-transact-sql)。
@@ -395,9 +398,12 @@ WITH PRIVATE KEY ( <private_key_options> )
 
 每個「受控執行個體」最多會為「Azure 進階磁碟」空間保留 35 TB 的儲存體，且每個資料庫檔案都會放在個別的實體磁碟上。 磁碟大小可以是 128 GB、256 GB、512 GB、1 TB 或 4 TB。 針對磁碟上未使用的空間，並不收費，但「Azure 進階磁碟」大小的總和不可超過 35 TB。 在某些情況下，總計不需 8 TB 的「受控執行個體」可能會因內部分散的緣故而超過 35 TB 的 Azure 儲存體大小限制。 
 
-例如，「受控執行個體」可能有一個大小為 1.2 TB 而使用 4 TB 磁碟的檔案，以及 248 個各為 1 GB 的檔案，放在大小為 128 GB 的 248 個磁碟上。 在此範例中，磁碟儲存體大小總計為 1 x 4 TB + 248 x 128 GB = 35 TB。 不過，為資料庫保留的執行個體大小總計為 1 x 1.2 TB + 248 x 1 GB = 1.4 TB。 這說明了在特性情況下，由於非常特定的檔案散發方式，「受控執行個體」可能在您未預期的情形下，達到「Azure 進階磁碟」儲存體限制。 
+例如，「受控執行個體」可能有一個大小為 1.2 TB 而放置在 4 TB 磁碟上的檔案，以及 248 個各為 1 GB 大小而放置在其他 128 GB 磁碟上的檔案。 在此範例中， 
+* 磁碟儲存體大小總計為 1 x 4 TB + 248 x 128 GB = 35 TB。 
+* 為執行個體上的資料庫保留的大小總計為 1 x 1.2 TB + 248 x 1 GB = 1.4 TB。
+這說明了在特性情況下，由於非常特定的檔案散發方式，「受控執行個體」可能在您未預期的情形下，達到為所連結「Azure 進階磁碟」保留的 35 TB。 
 
-如果未新增檔案，在現有的資料庫上就不會發生錯誤，而且它們可以成長而不會有任何問題，但是新的資料庫將無法建立或還原，因為即使所有資料庫的大小總計並未達到執行個體大小限制，也沒有足夠的空間供新磁碟機使用。 在該情況下所傳回的錯誤將不清楚。
+在此範例中，現有資料庫會繼續運作，只要不新增檔案，就可正常成長而不會有任何問題。 不過，因為沒有足夠空間可供新的磁碟機使用，所以無法建立或還原新的資料庫，即使所有資料庫的大小總計未達到執行個體大小限制也是如此。 在該情況下所傳回的錯誤將不清楚。
 
 ### <a name="incorrect-configuration-of-sas-key-during-database-restore"></a>還原資料庫期間 SAS 金鑰設定不正確
 
@@ -419,4 +425,4 @@ SQL Server Management Studio 和 SQL Server Data Tools 在存取受控執行個�
 
 - 如需受控執行個體的詳細資訊，請參閱[受控執行個體是什麼？](sql-database-managed-instance.md)
 - 如需功能與比較清單，請參閱 [SQL 的一般功能](sql-database-features.md)。
-- 如需教學課程，請參閱[建立受控執行個體](sql-database-managed-instance-tutorial-portal.md)。
+- 如需示範如何新建受控執行個體的教學課程，請參閱[建立受控執行個體](sql-database-managed-instance-create-tutorial-portal.md)。

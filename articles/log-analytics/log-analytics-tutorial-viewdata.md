@@ -1,31 +1,32 @@
 ---
-title: "檢視或分析所收集的 Azure Log Analytics 資料 | Microsoft Docs"
-description: "本文包含一篇教學課程，說明如何使用記錄搜尋入口網站來建立記錄搜尋，以及分析儲存在 Log Analytics 資源的資料。  教學課程包含執行一些簡單查詢以傳回不同類型的資料並分析結果。"
+title: 檢視或分析所收集的 Azure Log Analytics 資料 | Microsoft Docs
+description: 本文包含一篇教學課程，說明如何使用記錄搜尋入口網站來建立記錄搜尋，以及分析儲存在 Log Analytics 資源的資料。  教學課程包含執行一些簡單查詢以傳回不同類型的資料並分析結果。
 services: log-analytics
 documentationcenter: log-analytics
 author: mgoedtel
 manager: carmonm
-editor: 
+editor: ''
 ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: tutorial
-ms.date: 09/26/2017
+ms.date: 07/31/2018
 ms.author: magoedte
 ms.custom: mvc
-ms.openlocfilehash: fc5dcc945750b4ab4eef337dbd96bd051bb4dd81
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.component: na
+ms.openlocfilehash: b5d7b71b76eebc0c14fe1403791c3d4b6cefd7f4
+ms.sourcegitcommit: 51a1476c85ca518a6d8b4cc35aed7a76b33e130f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47161032"
 ---
 # <a name="view-or-analyze-data-collected-with-log-analytics-log-search"></a>檢視或分析以 Log Analytics 記錄搜尋所收集的資料
 
 在 Log Analytics 中，您可以建構查詢以分析收集到的資料來利用記錄搜尋，使用可以最有價值搜尋的圖形檢視來自訂的既存儀表板。  您現在已定義從 Azure VM 和活動記錄收集的操作資料，在本教學課程中，您了解如何：
 
 > [!div class="checklist"]
-> * 將 Azure Log Analytics 資源升級至新的查詢語言 
 > * 執行事件資料的簡單搜尋，並使用功能來修改和篩選結果 
 > * 瞭解如何使用效能資料
 
@@ -36,21 +37,13 @@ ms.lasthandoff: 02/21/2018
 在本教學課程中，我們將在 Azure 入口網站中使用 [記錄搜尋]。 
 
 ## <a name="log-in-to-azure-portal"></a>登入 Azure 入口網站
-登入 Azure 入口網站，網址為 [https://portal.azure.com](https://portal.azure.com)。 
+在 [https://portal.azure.com](https://portal.azure.com) 上登入 Azure 入口網站。 
 
 ## <a name="open-the-log-search-portal"></a>開啟記錄搜尋入口網站 
 從開啟記錄搜尋入口網站開始。   
 
-1. 在 Azure 入口網站中，按一下 [所有服務]。 在資源清單中輸入 **Log Analytics**。 當您開始輸入時，清單會根據您輸入的文字進行篩選。 選取 [Log Analytics]。
-2. 在 [Log Analytics 訂用帳戶] 窗格中，選取工作區，然後選取 [記錄搜尋] 圖格。<br> ![[記錄搜尋] 按鈕](media/log-analytics-tutorial-viewdata/azure-portal-01.png)
-
-您可能已在入口網站發現 Log Analytics 資源頁面頂端的橫幅邀請您升級。<br> ![Azure 入口網站中的 Log Analytics 升級注意事項](media/log-analytics-tutorial-viewdata/log-analytics-portal-upgradebanner.png)
-
-Log Analytics 最近引進新的查詢語言可讓您更輕鬆地建構查詢，和各種來源的資料相互關聯，以及分析來快速找出趨勢或問題。
-
-升級很簡單。  按一下指出 [深入了解及升級] 的橫幅來開始程序。  閱讀升級資訊分頁上有關升級的其他資訊，然後按一下 [立即升級]。
-
-此程序需要幾分鐘的時間才能完成，在這段期間內，您可以在功能表的 [通知] 底下追蹤其進度。 您可以深入了解[新查詢語言的優點](log-analytics-log-search-upgrade.md#why-the-new-language)。
+1. 在 Azure 入口網站中，按一下 [所有服務]。 在資源清單中輸入 [監視器]。 當您開始輸入時，清單會根據您輸入的文字進行篩選。 選取 [監視器]。
+2. 在 [監視器] 導覽功能表上，選取 [Log Analytics]，然後選取工作區。
 
 ## <a name="create-a-simple-search"></a>建立簡單搜尋
 若要擷取某些資料來使用，最快的方式是使用會傳回資料表中所有記錄的簡單查詢。  如果有任何 Windows 或 Linux 用戶端連線到您的工作區，則您會擁有事件 (Windows) 或 Syslog (Linux) 資料表中的資料。
@@ -92,7 +85,7 @@ Syslog | where (SeverityLevel == "err")
 
 只有在將滑鼠移至上方時，名稱是藍色的屬性才會有 [篩選] 選項。  這些是可搜尋的欄位，已針對搜尋條件編列索引。  灰色的欄位是「自然語言檢索搜尋旗標」欄位，只有 [顯示參考] 選項。  此選項會傳回在任何屬性中具有該值的記錄。
 
-您可以選取記錄功能表中的 [分組依據] 選項，在單一屬性上群組結果。  這會將[摘要](https://docs.loganalytics.io/docs/Language-Reference/Tabular-operators/summarize-operator)運算子新增到查詢中，可在圖表中顯示結果。  您可以群組一個以上的屬性，但需要直接編輯查詢。  選取**電腦**屬性旁的記錄功能表，並選取 [依「電腦」分組]。  
+您可以選取記錄功能表中的 [分組依據] 選項，在單一屬性上群組結果。  這會將[摘要](/azure/kusto/query/summarizeoperator)運算子新增到查詢中，可在圖表中顯示結果。  您可以群組一個以上的屬性，但需要直接編輯查詢。  選取**電腦**屬性旁的記錄功能表，並選取 [Group by 'Computer'] \(依「電腦」分組\)。  
 
 ![依電腦分組](media/log-analytics-tutorial-viewdata/log-analytics-portal-eventlist-04.png)
 
@@ -132,23 +125,28 @@ Perf
 針對所有效能物件和計數器傳回數百萬筆記錄並不太實用。  您可以使用與上述相同的方法來篩選資料，或直接在 [記錄搜尋] 方塊中輸入下列查詢。  這對於 Windows 和 Linux 電腦都只會傳回處理器使用率記錄。
 
 ```
-Perf | where (ObjectName == "Processor")  | where (CounterName == "% Processor Time")
+Perf | where ObjectName == "Processor"  | where CounterName == "% Processor Time"
 ```
 
 ![處理器使用率](media/log-analytics-tutorial-viewdata/log-analytics-portal-perfsearch-02.png)
 
-這可讓資料限制在特定的計數器，但仍無法以非常實用的形式來呈現資料。  您可透過折線圖顯示資料，但首先需要以 [電腦] 與 [TimeGenerated] 進行群組。  若要群組多個欄位，您需要直接修改查詢，因此，請將查詢修改如下。  這是在 **CounterValue** 屬性上使用 [avg](https://docs.loganalytics.io/docs/Language-Reference/Aggregation-functions/avg()) 函式來計算每小時的平均值。
+這可讓資料限制在特定的計數器，但仍無法以非常實用的形式來呈現資料。  您可透過折線圖顯示資料，但首先需要以 [電腦] 與 [TimeGenerated] 進行群組。  若要群組多個欄位，您需要直接修改查詢，因此，請將查詢修改如下。  這是在 **CounterValue** 屬性上使用 [avg](/azure/kusto/query/avg-aggfunction) 函式來計算每小時的平均值。
 
 ```
-Perf  | where (ObjectName == "Processor")  | where (CounterName == "% Processor Time") | summarize avg(CounterValue) by Computer, TimeGenerated
+Perf  
+| where ObjectName == "Processor"  | where CounterName == "% Processor Time"
+| summarize avg(CounterValue) by Computer, TimeGenerated
 ```
 
 ![效能資料圖表](media/log-analytics-tutorial-viewdata/log-analytics-portal-perfsearch-03.png)
 
-資料既已適當分組，您可以新增[轉譯](https://docs.loganalytics.io/docs/Language-Reference/Tabular-operators/render-operator)運算子，以視覺圖表來顯示資料。  
+資料既已適當分組，您可以新增[轉譯](/azure/kusto/query/renderoperator)運算子，以視覺圖表來顯示資料。  
 
 ```
-Perf  | where (ObjectName == "Processor")  | where (CounterName == "% Processor Time") | summarize avg(CounterValue) by Computer, TimeGenerated | render timechart
+Perf  
+| where ObjectName == "Processor" | where CounterName == "% Processor Time" 
+| summarize avg(CounterValue) by Computer, TimeGenerated 
+| render timechart
 ```
 
 ![折線圖](media/log-analytics-tutorial-viewdata/log-analytics-portal-linechart-01.png)

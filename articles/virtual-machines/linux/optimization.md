@@ -1,11 +1,11 @@
 ---
-title: "在 Azure 上最佳化 Linux VM | Microsoft Docs"
-description: "了解一些最佳化提示，確保 Azure 上的 Linux VM 設定可獲得最佳效能。"
-keywords: "linux 虛擬機器,虛擬機器 linux,ubuntu 虛擬機器"
+title: 在 Azure 上最佳化 Linux VM | Microsoft Docs
+description: 了解一些最佳化提示，確保 Azure 上的 Linux VM 設定可獲得最佳效能。
+keywords: linux 虛擬機器,虛擬機器 linux,ubuntu 虛擬機器
 services: virtual-machines-linux
-documentationcenter: 
+documentationcenter: ''
 author: rickstercdn
-manager: timlt
+manager: jeconnoc
 editor: tysonn
 tags: azure-resource-manager
 ms.assetid: 8baa30c8-d40e-41ac-93d0-74e96fe18d4c
@@ -16,17 +16,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/06/2016
 ms.author: rclaus
-ms.openlocfilehash: d3ee98253a69580e5ecafb4e117ef93f7c981416
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+ms.openlocfilehash: 91e9cb6b436cc78a0c5bd4769d38622abda4c04d
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46977565"
 ---
 # <a name="optimize-your-linux-vm-on-azure"></a>在 Azure 上最佳化 Linux VM
 您可以從命令列或入口網站，輕鬆建立 Linux 虛擬機器 (VM)。 本教學課程示範如何在 Microsoft Azure 平台上設定，以確保將其效能最佳化。 本主題會使用 Ubuntu Server VM，但您也可以使用 [自己的映像做為範本](create-upload-generic.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)來建立 Linux 虛擬機器。  
 
-## <a name="prerequisites"></a>先決條件
-本主題假設您已具備有效的 Azure 訂用帳戶 ([註冊免費試用版](https://azure.microsoft.com/pricing/free-trial/))，並且已在 Azure 訂用帳戶中佈建 VM。 在[建立 VM](quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 之前，請先確定您已安裝最新的 [Azure CLI 2.0](/cli/azure/install-az-cli2)，並已使用 [az login](/cli/azure/reference-index#az_login) 登入 Azure 訂用帳戶。
+## <a name="prerequisites"></a>必要條件
+本主題假設您已具備有效的 Azure 訂用帳戶 ([註冊免費試用版](https://azure.microsoft.com/pricing/free-trial/))，並且已在 Azure 訂用帳戶中佈建 VM。 在[建立 VM](quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 之前，請先確定您已安裝最新的 [Azure CLI](/cli/azure/install-az-cli2)，並已使用 [az login](/cli/azure/reference-index#az_login) 登入 Azure 訂用帳戶。
 
 ## <a name="azure-os-disk"></a>Azure 作業系統磁碟
 在 Azure 中建立 Linux VM 後，它有兩個相關聯的磁碟。 **/dev/sda** 是作業系統磁碟，**/dev/sdb** 是暫存磁碟。  請勿將主要作業系統磁碟 (**/dev/sda**) 用於作業系統以外的用途，因為它已針對快速開啟 VM 進行最佳化，無法為工作負載提供良好的效能。 您會想要將一或多個磁碟連接至 VM，以取得具永續性且經過最佳化的資料儲存空間。 
@@ -41,7 +42,7 @@ ms.lasthandoff: 03/09/2018
 * 如果您使用 **XFS**，請使用掛接選項 `nobarrier` 停用阻礙 (若要啟用阻礙，請使用 `barrier` 選項)
 
 ## <a name="unmanaged-storage-account-considerations"></a>非受控儲存體帳戶考量事項
-使用 Azure CLI 2.0 建立 VM 時的預設動作是使用 Azure 受控磁碟。  這些磁碟是由 Azure 平台處理，不需要任何準備或位置來儲存它們。  非受控磁碟需要儲存體帳戶，且具有一些額外的效能注意事項。  如需受控磁碟的詳細資訊，請參閱 [Azure 受控磁碟概觀](../windows/managed-disks-overview.md)。  下一節概述使用非受控磁碟時才會有的效能注意事項。  同樣地，預設且建議的儲存體解決方案是使用受控磁碟。
+使用 Azure CLI 建立 VM 時的預設動作是使用 Azure 受控磁碟。  這些磁碟是由 Azure 平台處理，不需要任何準備或位置來儲存它們。  非受控磁碟需要儲存體帳戶，且具有一些額外的效能注意事項。  如需受控磁碟的詳細資訊，請參閱 [Azure 受控磁碟概觀](../windows/managed-disks-overview.md)。  下一節概述使用非受控磁碟時才會有的效能注意事項。  同樣地，預設且建議的儲存體解決方案是使用受控磁碟。
 
 如果您使用非受控磁碟建立 VM，請務必從區域與 VM 相同的儲存體帳戶連結磁碟，以確保高度鄰近性及降低網路延遲。  每個標準儲存體帳戶都有最高 20k 的 IOps 和 500 TB 大小的容量。  此限制大約等同於 40 個頻繁使用的磁碟，包括 OS 磁碟和您建立的任何資料磁碟。 進階儲存體帳戶沒有 IOps 上限，不過有 32 TB 的大小限制。 
 
@@ -117,7 +118,7 @@ Found memtest86+ image: /memtest86+.bin
 done
 ```
 
-若為 Redhat 散發版本系列，您只需要使用下列命令：   
+針對 Red Hat 散發版本系列，您只需要使用下列命令：   
 
 ```bash
 echo 'echo noop >/sys/block/sda/queue/scheduler' >> /etc/rc.local
@@ -132,6 +133,6 @@ echo 'echo noop >/sys/block/sda/queue/scheduler' >> /etc/rc.local
 以下是一些連往其他資源的實用連結： 
 
 * [Premium 儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](premium-storage.md)
-* [Azure Linux 代理程式使用者指南](agent-user-guide.md)
+* [Azure Linux 代理程式使用者指南](../extensions/agent-linux.md)
 * [在 Azure Linux VM 上最佳化 MySQL 效能](classic/optimize-mysql.md)
 * [在 Linux 上設定軟體 RAID](configure-raid.md)

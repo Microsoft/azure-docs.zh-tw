@@ -11,14 +11,15 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: quickstart
-ms.date: 3/6/2018
+ms.date: 05/29/2018
 ms.author: ccompy
 ms.custom: mvc
-ms.openlocfilehash: 92073cd29f29c1ddf5863e23c4a12dfdf8e21598
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: ba93aab14c8eaccf9e3ed9ae9db0d169f41dddea
+ms.sourcegitcommit: d211f1d24c669b459a3910761b5cacb4b4f46ac9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/06/2018
+ms.locfileid: "44024040"
 ---
 # <a name="configure-your-app-service-environment-with-forced-tunneling"></a>設定 App Service Environment 搭配強制通道
 
@@ -37,6 +38,7 @@ ASE 有一些外部相依性，[App Service Environment 網路架構][network]�
 如果您想要將 ASE 輸出流量路由傳送至某處，而非直接傳送至網際網路，您有下列選項：
 
 * 讓 ASE 可以直接存取網際網路
+* 將您的 ASE 子網路設定為略過 BGP 路由
 * 將您的 ASE 子網路設定為使用 Azure SQL 和 Azure 儲存體的服務端點
 * 將您自己的 IP 新增至 ASE Azure SQL 防火牆
 
@@ -49,6 +51,8 @@ ASE 有一些外部相依性，[App Service Environment 網路架構][network]�
 
 如果您做了這兩項變更，則源自 App Service Environment 子網路且目的地為網際網路的流量，將不會被強制經由 ExpressRoute 連線傳輸。
 
+如果網路已在內部部署路由流量，則您必須建立子網路以裝載您 ASE，並為其設定 UDR，然後再嘗試部署 ASE。  
+
 > [!IMPORTANT]
 > UDR 中定義的路由必須足夠明確，以優先於 ExpressRoute 組態所通告的任何路由。 前面的範例使用廣泛的 0.0.0.0/0 位址範圍。 因此有可能會不小心由使用更明確位址範圍的路由通告所覆寫。
 >
@@ -56,13 +60,30 @@ ASE 有一些外部相依性，[App Service Environment 網路架構][network]�
 
 ![直接存取網際網路][1]
 
-## <a name="configure-your-ase-with-service-endpoints"></a>使用服務端點設定您的 ASE
+## <a name="configure-your-ase-subnet-to-ignore-bgp-routes"></a>將您的 ASE 子網路設定為略過 BGP 路由 ## 
+
+您可以將您的 ASE 子網路設定為略過所有 BGP 路由。  若已經設定此項目，ASE 將能夠存取其相依性，而不發生任何問題。  不過，您必須建立 UDR，才能讓您的應用程式存取內部部署資源。
+
+若要將您的 ASE 子網路設定為略過 BGP 路由：
+
+* 如果您還沒有 UDR，請加以建立並將它指派給您的 ASE 子網路。
+* 在 Azure 入口網站中，開啟指派給 ASE 子網路的路由表 UI。  選取組態。  將 BCP 路由傳播設定為 [停用]。  按一下 [儲存]。 將它關閉的相關文件位於[建立路由表][routetable]文件中。
+
+執行這項操作之後，您的應用程式就不再能夠觸達內部部署環境。 若要解決此問題，請編輯指派給 ASE 子網路的 UDR，並新增內部部署位址範圍的路由。 下一個躍點類型應該設定為虛擬網路閘道。 
+
+
+## <a name="configure-your-ase-with-service-endpoints"></a>使用服務端點設定您的 ASE ##
+
+ > [!NOTE]
+   > 使用 SQL 的服務端點不適用於美國政府區域中的 ASE。  下列資訊僅適用於 Azure 公用區域。  
 
 若要從您的 ASE 路由傳送所有輸出流量 (移至 Azure SQL 和 Azure 儲存體的流量除外)，請執行下列步驟：
 
 1. 您可以建立路由表並將它指派給 ASC 子網路。 請在 [App Service Environment 管理位址][management]尋找符合您區域的位址。 為下一個躍點為網際網路的位址建立路由。 這是必要作業，因為 App Service Environment 輸入環境流量必須從它傳送至的相同位址回覆。   
 
-2. 在您的 ASE 子網路中使用 Azure SQL 和 Azure 儲存體啟用服務端點
+2. 在您的 ASE 子網路中使用 Azure SQL 和 Azure 儲存體啟用服務端點。  完成此步驟後，您可以使用強制通道設定您的 VNet。
+
+若要在已設定成在內部部署路由所有流量的虛擬網路中建立您的 ASE，您必須使用 Resource Manager 範本建立 ASE。  您無法使用入口網站在已存在的子網路中建立 ASE。  將您的 ASE 部署到已設定成在內部部署路由輸出流量的 VNet 時，您必須使用可讓您指定已存在的子網路的 Resource Manager 範本來建立 ASE。 如需關於使用範本部署 ASE 的詳細資訊，請參閱[使用範本建立 App Service 環境][template]。
 
 服務端點可讓您將多租用戶服務的存取權限制於一組 Azure 虛擬網路和子網路。 您可以在[虛擬網路服務端點][serviceendpoints]文件中深入了解服務端點。 
 
@@ -70,7 +91,7 @@ ASE 有一些外部相依性，[App Service Environment 網路架構][network]�
 
 透過 Azure SQL 執行個體在子網路上啟用服務端點時，從該子網路連線的所有 Azure SQL 執行個體都必須啟用服務端點。 如果您想要從相同的子網路存取多個 Azure SQL 執行個體，您就無法在一個 Azure SQL 執行個體啟用服務端點，而不要在另一個執行個體上啟用。  Azure 儲存體與 Azure SQL 的運作方式不同。  當您使用 Azure 儲存體啟用服務端點時，您會封鎖您的子網路存取該資源，，但仍可存取其他 Azure 儲存體帳戶 (即使它們未啟用服務端點)。  
 
-如果您設定網路篩選設備使用強制通道，請記住除了 Azure SQL 和 Azure 儲存體以外，ASE 具有一些相依性。 您必須允許該流量，否則 ASE 無法正常運作。
+如果您設定對網路篩選設備使用強制通道，請記住，除了 Azure SQL 和 Azure 儲存體以外，ASE 還具有一些相依性。 您必須允許對這些相依項目的流量，否則 ASE 無法正常運作。
 
 ![服務端點使用強制通道][2]
 
@@ -84,7 +105,7 @@ ASE 有一些外部相依性，[App Service Environment 網路架構][network]�
 
 3. 取得位址，該位址將使用於從您的 App Service Environment 至網際網路的所有輸出流量。 如果您將流量路由傳送至內部部署網路，則這些位址就是您的 NAT 或閘道 IP。 如果您想要透過 NVA 路由傳送 App Service Environment 連出流量，則輸出位址為 NVA 的公用 IP。
 
-4. _若要設定現有 App Service Environment 中的輸出位址：_移至 resource.azure.com，而後移至 Subscription/<subscription id>/resourceGroups/<ase resource group>/providers/Microsoft.Web/hostingEnvironments/<ase name>。 接著，您就可以看到描述您 App Service Environment 的 JSON。 確定最上方寫的是「讀取/寫入」。 選取 [編輯]。 向下捲動至底部。 將 **userWhitelistedIpRanges** 值從 **null** 變更為類似以下這樣。 使用您要設為輸出位址範圍的位址。 
+4. _若要設定現有 App Service Environment 中的輸出位址：_ 移至 resources.azure.com，而後移至 Subscription/\<subscription id>/resourceGroups/\<ase resource group>/providers/Microsoft.Web/hostingEnvironments/\<ase name>。 接著，您就可以看到描述您 App Service Environment 的 JSON。 確定最上方寫的是「讀取/寫入」。 選取 [編輯]。 向下捲動至底部。 將 **userWhitelistedIpRanges** 值從 **null** 變更為類似以下這樣。 使用您要設為輸出位址範圍的位址。 
 
         "userWhitelistedIpRanges": ["11.22.33.44/32", "55.66.77.0/24"] 
 
@@ -122,7 +143,7 @@ _若要以輸出位址建立您的 ASE_ ：請依照[使用範本建立 App Serv
 
 如果 ASE 與其相依性之間的通訊已中斷，則 ASE 會變成不良狀態。  如果維持不良狀態太久，則 ASE 會變成暫停狀態。 若要使 ASE 恢復權限，請遵循 ASE 入口網站中的指示操作。
 
-除了中斷通訊以外，您可能會因為造成過久延遲而對 ASE 產生負面影響。 如果您的 ASE 離您的內部部署網路太遠，可能會發生很久的延遲。  太遠的範例包括跨越海洋或大陸連到您的內部部署網路。 內部網路擁塞或輸出頻寬限制，也可能造成延遲。
+除了中斷通訊以外，您可能會因為造成過久延遲而對 ASE 產生負面影響。 如果您的 ASE 離您的內部部署網路太遠，可能會發生很久的延遲。  舉例來說，跨越海洋或大陸連到您的內部部署網路，都屬於太遠的距離。 內部網路擁塞或輸出頻寬限制，也可能造成延遲。
 
 
 <!--IMAGES-->
@@ -136,3 +157,4 @@ _若要以輸出位址建立您的 ASE_ ：請依照[使用範本建立 App Serv
 [routes]: ../../virtual-network/virtual-networks-udr-overview.md
 [template]: ./create-from-template.md
 [serviceendpoints]: ../../virtual-network/virtual-network-service-endpoints-overview.md
+[routetable]: ../../virtual-network/manage-route-table.md#create-a-route-table

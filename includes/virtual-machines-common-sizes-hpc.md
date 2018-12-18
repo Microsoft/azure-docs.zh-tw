@@ -5,18 +5,17 @@ services: virtual-machines
 author: jonbeck7
 ms.service: virtual-machines
 ms.topic: include
-ms.date: 03/09/2018
+ms.date: 07/06/2018
 ms.author: azcspmt;jonbeck;cynthn
 ms.custom: include file
-ms.openlocfilehash: ee145e5784ae6da6cce22f1b21f9a5d45335ea8b
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: 16e2a9cfbd9f08428fddade290117b27bc3401f7
+ms.sourcegitcommit: af9cb4c4d9aaa1fbe4901af4fc3e49ef2c4e8d5e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44369301"
 ---
-A8-A11 和 H 系列大小也稱為 *計算密集型執行個體*。 執行這些大小的硬體是針對計算密集型和網路密集型應用程式 (包括高效能運算 (HPC) 叢集應用程式)、模型化及模擬而設計及最佳化的。 A8-A11 系列使用 Intel Xeon E5-2670 @ 2.6 GHZ，而 H 系列使用 Intel Xeon E5-2667 v3 @ 3.2 GHz。  本文提供 vCPU 數量、資料磁碟和 NIC 的相關資訊，以及此群組中各種大小之儲存體輸送量和網路頻寬的相關資訊。 
-
-Azure H 系列虛擬機器是最新的高效能運算 VM，以高端運算需求為目標，例如分子建模以及運算流體力學。 這些 8 與 16 vCPU VM 是以 Intel Haswell E5-2667 V3 處理器技術，搭載 DDR4 記憶體與 SSD 型暫存儲存體為基礎建置。 
+Azure H 系列虛擬機器是最新的高效能運算 VM，專門用來處理批次處理、分析、分子建模和流體力學等工作負載。 這些 8 與 16 vCPU VM 是以 Intel Haswell E5-2667 V3 處理器技術，搭載 DDR4 記憶體與 SSD 型暫存儲存體為基礎建置。 
 
 除了大量的 CPU 能力，H 系列使用 FDR InfiniBand 與數個記憶體組態，針對低延遲 RDMA 網路提供不同的選項，以支援記憶體大量運算需求。
 
@@ -25,6 +24,10 @@ Azure H 系列虛擬機器是最新的高效能運算 VM，以高端運算需求
 ## <a name="h-series"></a>H 系列
 
 ACU：290 - 300
+
+進階儲存體：不支援
+
+進階儲存體快取：不支援
 
 | 大小 | vCPU | 記憶體：GiB | 暫存儲存體 (SSD) GiB | 最大資料磁碟 | 最大磁碟輸送量︰IOPS | 最大 NIC |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -41,20 +44,6 @@ ACU：290 - 300
 
 
 
-## <a name="a-series---compute-intensive-instances"></a>A 系列 - 大量計算執行個體
-
-ACU：225
-
-| 大小 | vCPU | 記憶體：GiB | 暫存儲存體 (HDD)：GiB | 最大資料磁碟 | 最大資料磁碟輸送量︰IOPS | 最大 NIC|
-| --- | --- | --- | --- | --- | --- | --- |
-| Standard_A8 <sup>1</sup> |8 |56 |382 |32 |32x500 |2 |
-| Standard_A9 <sup>1</sup> |16 |112 |382 |64 |64x500 |4 |
-| Standard_A10 |8 |56 |382 |32 |32x500 |2  |
-| Standard_A11 |16 |112 |382 |64 |64x500 |4 |
-
-<sup>1</sup> 對於 MPI 應用程式，FDR InfiniBand 網路會啟用專用 RDMA 後端網路，以提供超低延遲和高頻寬。
-
-<br>
 
 
 

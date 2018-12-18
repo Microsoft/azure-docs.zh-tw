@@ -1,11 +1,11 @@
 ---
-title: "從 Node.js 在 Azure 中的 Linux 上執行 Cassandra 叢集"
-description: "如何從 Node.js 應用程式在 Azure 虛擬機器的 Linux 上執行 Cassandra 叢集"
+title: 從 Node.js 在 Azure 中的 Linux 上執行 Cassandra 叢集
+description: 如何從 Node.js 應用程式在 Azure 虛擬機器的 Linux 上執行 Cassandra 叢集
 services: virtual-machines-linux
 documentationcenter: nodejs
 author: craigshoemaker
 manager: routlaw
-editor: 
+editor: ''
 tags: azure-service-management
 ms.assetid: 30de1f29-e97d-492f-ae34-41ec83488de0
 ms.service: virtual-machines-linux
@@ -15,11 +15,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/17/2017
 ms.author: cshoe
-ms.openlocfilehash: 00e42a00dffd1be37073f10f6ff7bff619fdee85
-ms.sourcegitcommit: be9a42d7b321304d9a33786ed8e2b9b972a5977e
+ms.openlocfilehash: b1945c68f0e320c834ae93a590f420403263a0fd
+ms.sourcegitcommit: d7725f1f20c534c102021aa4feaea7fc0d257609
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/19/2018
+ms.lasthandoff: 06/29/2018
+ms.locfileid: "37098935"
 ---
 # <a name="run-a-cassandra-cluster-on-linux-in-azure-with-nodejs"></a>使用 Node.js 在 Azure 中的 Linux 上執行 Cassandra 叢集
 
@@ -60,7 +61,7 @@ Cassandra 可以部署到單一 Azure 區域或多個區域，視工作負載的
 
 **叢集種子：** 務必選取可用性最高的節點作為種子，因為新的節點會與種子節點進行通訊以探索叢集的拓撲。 將每個可用性設定組中的一個節點指定為種子節點，可避免單一失敗點。
 
-**複寫因數和一致性層級：** Cassandra 內建的高可用性和資料耐久性的特點在於複寫因數 (RF - 儲存在叢集上的每個資料列複本數) 和一致性層級 (將結果傳回呼叫端之前要讀取/寫入的複本數)。 複寫因數是在 KEYSPACE (類似關聯式資料庫) 建立期間所指定，而一致性層級是在發出 CRUD 查詢的同時所指定。 如需一致性詳細資料和仲裁計算的公式，請參閱 Cassandra 文件中的 [一致性設定](http://www.datastax.com/documentation/cassandra/2.0/cassandra/dml/dml_config_consistency_c.html) 。
+**複寫因數和一致性層級：** Cassandra 內建的高可用性和資料耐久性的特點在於複寫因數 (RF - 儲存在叢集上的每個資料列複本數) 和一致性層級 (將結果傳回呼叫端之前要讀取/寫入的複本數)。 複寫因數是在 KEYSPACE (類似關聯式資料庫) 建立期間所指定，而一致性層級是在發出 CRUD 查詢的同時所指定。 如需一致性詳細資料和仲裁計算的公式，請參閱 Cassandra 文件中的 [一致性設定](https://docs.datastax.com/en/cassandra/3.0/cassandra/dml/dmlConfigConsistency.html) 。
 
 Cassandra 支援兩種類型的資料完整性模型 – 一致性和最終一致性。「複寫因素」和「一致性層級」將一起判斷資料會在寫入作業完成時就達成一致，或者最終才達成一致。 例如，指定「一致性層級」為 QUORUM，將一律確保在任何一致性層級時的資料一致性，低於達到 QUORUM (例如 ONE) 所需寫入的複本數目，會造成資料在最終才達成一致。
 
@@ -74,10 +75,10 @@ Cassandra 支援兩種類型的資料完整性模型 – 一致性和最終一�
 | 複寫因素 (RF) |3 |指定資料列的複本數目 |
 | 一致性層級 (寫入) |QUORUM[(RF/2) +1) = 2] 公式結果無條件捨去 |在回應傳送至呼叫者之前，最多寫入 2 個複本；第 3 個複本會以最終一致的方式寫入。 |
 | 一致性層級 (讀取) |QUORUM [(RF/2) +1= 2] 公式結果無條件捨去 |在傳送回應給呼叫者之前讀取 2 個複本。 |
-| 複寫策略 |如需 NetworkTopologyStrategy 的詳細資訊，請參閱 Cassandra 文件中的 [資料複寫](http://www.datastax.com/documentation/cassandra/2.0/cassandra/architecture/architectureDataDistributeReplication_c.html) (英文) |了解部署拓撲並將複本放在節點上，最後所有複本就不會都位於相同的機架上 |
-| Snitch |如需 GossipingPropertyFileSnitch 的詳細資訊，請參閱 Cassandra 文件中的 [Switches](http://www.datastax.com/documentation/cassandra/2.0/cassandra/architecture/architectureSnitchesAbout_c.html) (英文) |NetworkTopologyStrategy 使用 Snitch 的概念來了解拓撲。 GossipingPropertyFileSnitch 在將各個節點對應到資料中心與機架時提供較好的控制。 叢集再使用 Gossip 來散佈這項資訊。 相對於 PropertyFileSnitch，這在動態 IP 設定中簡單許多 |
+| 複寫策略 |如需 NetworkTopologyStrategy 的詳細資訊，請參閱 Cassandra 文件中的 [資料複寫](https://docs.datastax.com/en/cassandra/3.0/cassandra/architecture/archDataDistributeAbout.html) (英文) |了解部署拓撲並將複本放在節點上，最後所有複本就不會都位於相同的機架上 |
+| Snitch |如需 GossipingPropertyFileSnitch 的詳細資訊，請參閱 Cassandra 文件中的 [Switches](https://docs.datastax.com/en/cassandra/3.0/cassandra/architecture/archSnitchesAbout.html) (英文) |NetworkTopologyStrategy 使用 Snitch 的概念來了解拓撲。 GossipingPropertyFileSnitch 在將各個節點對應到資料中心與機架時提供較好的控制。 叢集再使用 Gossip 來散佈這項資訊。 相對於 PropertyFileSnitch，這在動態 IP 設定中簡單許多 |
 
-**Cassandra 叢集的 Azure 考量：**Microsoft Azure 虛擬機器功能會使用 Azure Blob 儲存體來取得磁碟持續性；Azure 儲存體會基於高持久性因素來為每個磁碟儲存三個複本。 這表示插入 Cassandra 資料表的每列資料已經儲存在三個複本中。 因此，即使複寫因數 (RF) 為 1，也已經處理資料一致性。 複寫因數是 1 的主要問題在於，即使單一 Cassandra 節點失敗，應用程式還是會經歷停機時間。 不過，如果節點因為 Azure 網狀架構控制器所辨識出的問題 (例如，硬體、系統軟體失敗) 而關閉，它將會使用相同的儲存體磁碟機，在其位置中佈建新的節點。 佈建新節點來取代舊節點，可能需要幾分鐘的時間。  類似於如客體 OS 變更、Cassandra 升級及應用程式變更等預定維護活動，Azure 網狀架構控制器會在叢集中執行節點的輪流升級。  輪流升級也可能會一次關閉數個節點，因此，叢集可能會遇到數個磁碟分割短暫停機的狀況。 不過，資料不會因為內建的 Azure 儲存體備援而遺失。  
+**Cassandra 叢集的 Azure 考量：** Microsoft Azure 虛擬機器功能會使用 Azure Blob 儲存體來取得磁碟持續性；Azure 儲存體會基於高持久性因素來為每個磁碟儲存三個複本。 這表示插入 Cassandra 資料表的每列資料已經儲存在三個複本中。 因此，即使複寫因數 (RF) 為 1，也已經處理資料一致性。 複寫因數是 1 的主要問題在於，即使單一 Cassandra 節點失敗，應用程式還是會經歷停機時間。 不過，如果節點因為 Azure 網狀架構控制器所辨識出的問題 (例如，硬體、系統軟體失敗) 而關閉，它將會使用相同的儲存體磁碟機，在其位置中佈建新的節點。 佈建新節點來取代舊節點，可能需要幾分鐘的時間。  類似於如客體 OS 變更、Cassandra 升級及應用程式變更等預定維護活動，Azure 網狀架構控制器會在叢集中執行節點的輪流升級。  輪流升級也可能會一次關閉數個節點，因此，叢集可能會遇到數個磁碟分割短暫停機的狀況。 不過，資料不會因為內建的 Azure 儲存體備援而遺失。  
 
 對於部署到 Azure 但不需要高可用性的系統 (例如，大約 99.9，相當於每年 8.76 個小時，請參閱[高可用性](http://en.wikipedia.org/wiki/High_availability)以了解詳細資料)，您可以採用 RF=1 和一致性層級=ONE 來執行。  對於具有高可用性需求的應用程式，RF=3 和一致性層級=QUORUM 可容忍其中一個節點之其中一個複本的停機時間。 不能在傳統部署 (例如內部部署) 中使用 RF=1，因為如磁碟損壞所產生的問題可能會導致資料遺失。   
 
@@ -86,9 +87,9 @@ Cassandra 的資料中心感知複寫和上述的一致性模型有助於進行�
 
 **以近接性為基礎的部署：** 清除租用戶使用者與區域對應的多租用戶應用程式，可以因為多地區叢集的低延遲而受益。 例如，適用於教育機構的學習管理系統可以在美國東部和美國西部區域部署分散式叢集，分別作為適用於交易與分析的校園。 資料可以在讀取和寫入期間維持本機一致性，而且最終可在這兩個區域間維持一致性。 其他的範例還有媒體發佈、電子商務，以及可為地理位置集中之使用者提供服務的一切 (這是此部署模型的絕佳使用案例)。
 
-**高可用性：**備援是取得軟體和硬體高可用性的關鍵因數；如需詳細資訊，請參閱＜在 Microsoft Azure 上建置可靠的雲端系統＞。 在 Microsoft Azure 上，實現真正備援的唯一可靠方式就是部署多區域叢集。 應用程式可部署於主動/主動或主動/被動模式中，如果其中一個區域已關閉，Azure 流量管理員就能將流量重新導向至作用中的區域。  使用單一區域部署時，如果可用性是 99.9，則兩個區域的部署可以達到 99.9999 的可用性，計算公式如下：(1-(1-0.999) * (1-0.999))*100)。如需詳細資訊，請參閱上述文件。
+**高可用性：** 備援是取得軟體和硬體高可用性的關鍵因數；如需詳細資訊，請參閱＜在 Microsoft Azure 上建置可靠的雲端系統＞。 在 Microsoft Azure 上，實現真正備援的唯一可靠方式就是部署多區域叢集。 應用程式可部署於主動/主動或主動/被動模式中，如果其中一個區域已關閉，Azure 流量管理員就能將流量重新導向至作用中的區域。  使用單一區域部署時，如果可用性是 99.9，則兩個區域的部署可以達到 99.9999 的可用性，計算公式如下：(1-(1-0.999) * (1-0.999))*100)。如需詳細資訊，請參閱上述文件。
 
-**災害復原：**如果設計正確，多區域的 Cassandra 叢集就能承受重大的資料中心中斷。 如果某個區域已關閉，部署到其他區域的應用程式就能開始為使用者提供服務。 和所有其他的商務持續實作一樣，應用程式必須能對非同步管線中的資料所產生的部分資料遺失進行容錯。 不過，相較於傳統資料庫復原程序所花費的時間，Cassandra 能夠更快速地進行復原。 圖 2 顯示每個區域中有八個節點的典型多區域部署模型。 這兩個區域是彼此具備相同對稱性的鏡映影像。真實世界的設計取決於工作負載類型 (例如，交易或分析)、RPO、RTO、資料一致性，以及可用性需求。
+**災害復原：** 如果設計正確，多區域的 Cassandra 叢集就能承受重大的資料中心中斷。 如果某個區域已關閉，部署到其他區域的應用程式就能開始為使用者提供服務。 和所有其他的商務持續實作一樣，應用程式必須能對非同步管線中的資料所產生的部分資料遺失進行容錯。 不過，相較於傳統資料庫復原程序所花費的時間，Cassandra 能夠更快速地進行復原。 圖 2 顯示每個區域中有八個節點的典型多區域部署模型。 這兩個區域是彼此具備相同對稱性的鏡映影像。真實世界的設計取決於工作負載類型 (例如，交易或分析)、RPO、RTO、資料一致性，以及可用性需求。
 
 ![多區域部署](./media/cassandra-nodejs/cassandra-linux2.png)
 
@@ -109,8 +110,8 @@ Cassandra 的資料中心感知複寫和上述的一致性模型有助於進行�
 | 複寫因素 (RF) |3 |指定資料列的複本數目 |
 | 一致性層級 (寫入) |LOCAL_QUORUM [(sum(RF)/2) +1) = 4] 公式結果無條件捨去 |2 個節點會以同步方式寫入第一個資料中心；仲裁所需的其他 2 個節點會以非同步方式寫入第二個資料中心。 |
 | 一致性層級 (讀取) |LOCAL_QUORUM ((RF/2) +1) = 2 公式結果無條件捨去 |只會達到來自一個區域的讀取要求；在回應傳送回用戶端之前，會讀取 2 個節點。 |
-| 複寫策略 |如需 NetworkTopologyStrategy 的詳細資訊，請參閱 Cassandra 文件中的 [資料複寫](http://www.datastax.com/documentation/cassandra/2.0/cassandra/architecture/architectureDataDistributeReplication_c.html) (英文) |了解部署拓撲並將複本放在節點上，最後所有複本就不會都位於相同的機架上 |
-| Snitch |如需 GossipingPropertyFileSnitch 的詳細資訊，請參閱 Cassandra 文件中的 [Snitches](http://www.datastax.com/documentation/cassandra/2.0/cassandra/architecture/architectureSnitchesAbout_c.html) (英文) |NetworkTopologyStrategy 使用 Snitch 的概念來了解拓撲。 GossipingPropertyFileSnitch 在將各個節點對應到資料中心與機架時提供較好的控制。 叢集再使用 Gossip 來散佈這項資訊。 相對於 PropertyFileSnitch，這在動態 IP 設定中簡單許多 |
+| 複寫策略 |如需 NetworkTopologyStrategy 的詳細資訊，請參閱 Cassandra 文件中的 [資料複寫](https://docs.datastax.com/en/cassandra/3.0/cassandra/architecture/archDataDistributeAbout.html) (英文) |了解部署拓撲並將複本放在節點上，最後所有複本就不會都位於相同的機架上 |
+| Snitch |如需 GossipingPropertyFileSnitch 的詳細資訊，請參閱 Cassandra 文件中的 [Snitches](https://docs.datastax.com/en/cassandra/3.0/cassandra/architecture/archSnitchesAbout.html) (英文) |NetworkTopologyStrategy 使用 Snitch 的概念來了解拓撲。 GossipingPropertyFileSnitch 在將各個節點對應到資料中心與機架時提供較好的控制。 叢集再使用 Gossip 來散佈這項資訊。 相對於 PropertyFileSnitch，這在動態 IP 設定中簡單許多 |
 
 ## <a name="the-software-configuration"></a>軟體設定
 部署期間將使用下列軟體版本：
@@ -119,7 +120,7 @@ Cassandra 的資料中心感知複寫和上述的一致性模型有助於進行�
 <tr><th>軟體</th><th>來源</th><th>版本</th></tr>
 <tr><td>JRE    </td><td>[JRE 8](http://www.oracle.com/technetwork/java/javase/downloads/server-jre8-downloads-2133154.html) </td><td>8U5</td></tr>
 <tr><td>JNA    </td><td>[JNA](https://github.com/twall/jna) </td><td> 3.2.7</td></tr>
-<tr><td>Cassandra</td><td>[Apache Cassandra 2.0.8](http://www.apache.org/dist/cassandra/2.0.8/apache-cassandra-2.0.8-bin.tar.gz)</td><td> 2.0.8</td></tr>
+<tr><td>Cassandra</td><td>[Apache Cassandra 2.0.8](http://www.apache.org/dist/cassandra/)</td><td> 2.0.8</td></tr>
 <tr><td>Ubuntu    </td><td>[Microsoft Azure](https://azure.microsoft.com/) </td><td>14.04 LTS</td></tr>
 </table>
 
@@ -355,7 +356,7 @@ Cassandra 的資料中心感知複寫和上述的一致性模型有助於進行�
         #Tested with Azure Powershell - November 2014
         #This powershell script deployes a number of VMs from an existing image inside an Azure region
         #Import your Azure subscription into the current Powershell session before proceeding
-        #The process: 1. create Azure Storage account, 2. create virtual network, 3.create the VM template, 2. crate a list of VMs from the template
+        #The process: 1. create Azure Storage account, 2. create virtual network, 3.create the VM template, 2. create a list of VMs from the template
 
         #fundamental variables - change these to reflect your subscription
         $country="us"; $region="west"; $vnetName = "your_vnet_name";$storageAccount="your_storage_account"

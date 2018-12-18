@@ -22,13 +22,19 @@
 
 當您連線到 VM 時，您應該使用公開金鑰加密來提供更安全的登入方式。 此程序包括使用安全殼層 (SSH) 命令 (而非使用者名稱和密碼) 來驗證自己的公用和私密金鑰交換。 密碼很容易遭受暴力密碼破解攻擊，尤其是在網際網路對向 VM (例如 Web 伺服器) 上。 您可以利用安全殼層 (SSH) 金鑰組，在 Azure 上建立使用 SSH 金鑰來進行驗證的 [Linux VM](../articles/virtual-machines/linux/mac-create-ssh-keys.md)，進而免除登入密碼的需求。 您也可以使用 SSH 金鑰從 [Windows VM](../articles/virtual-machines/linux/ssh-from-windows.md) 連線至 Linux VM。
 
+## <a name="managed-identities-for-azure-resources"></a>適用於 Azure 資源的受控識別
+
+建置雲端應用程式常見的難題是如何管理程式碼中的認證，以向雲端服務進行驗證。 保護好這些認證是相當重要的工作。 在理想情況下，這些認證永不會出現在開發人員工作站且簽入原始程式碼控制。 Azure Key Vault 可安全地儲存認證、祕密和其他金鑰，但是您的程式碼必須向 Key Vault 進行驗證，才可擷取這些項目。 
+
+Azure Active Directory (Azure AD) 中適用於 Azure 資源的受控識別功能可解決此問題。 這項功能會在 Azure AD 中將自動受控識別提供給 Azure 服務。 您可以使用此身分識別來完成任何支援 Azure AD 驗證的服務驗證 (包括 Key Vault)，不需要您程式碼中的任何認證。  您在 VM 上執行的程式碼可以向僅可從 VM 內存取的兩個端點要求權杖。 如需關於這項服務的詳細資訊，請檢閱 [Azure 資源的受控識別](../articles/active-directory/managed-identities-azure-resources/overview.md)概觀頁面。   
+
 ## <a name="policies"></a>原則
 
 [Azure 原則](../articles/azure-policy/azure-policy-introduction.md)可用來為您組織的 [Windows VM](../articles/virtual-machines/windows/policy.md) 和 [Linux VM](../articles/virtual-machines/linux/policy.md) 定義所要的行為。 藉由使用原則，組織可以強制執行整個企業的各種慣例和規則。 強制執行所要的行為有助於降低風險，同時促進組織的成功。
 
 ## <a name="role-based-access-control"></a>角色型存取控制
 
-使用[角色型存取控制 (RBAC)](../articles/active-directory/role-based-access-control-what-is.md)，可讓您區隔小組內的職責，而僅授予使用者在 VM 上執行作業所需的存取權。 您不需為每個人授與 VM 的權限，而是只允許執行特定的動作。 您可以使用 [Azure CLI](https://docs.microsoft.com/cli/azure/role) 或 [Azure PowerShell](../articles/active-directory/role-based-access-control-manage-access-powershell.md)，在 [Azure 入口網站](../articles/active-directory/role-based-access-control-configure.md)中設定 VM 的存取控制。
+使用[角色型存取控制 (RBAC)](../articles/role-based-access-control/overview.md)，可讓您區隔小組內的職責，而僅授予使用者在 VM 上執行作業所需的存取權。 您不需為每個人授與 VM 的權限，而是只允許執行特定的動作。 您可以使用 [Azure CLI](https://docs.microsoft.com/cli/azure/role) 或 [Azure PowerShell](../articles/role-based-access-control/role-assignments-powershell.md)，在 [Azure 入口網站](../articles/role-based-access-control/role-assignments-portal.md)中設定 VM 的存取控制。
 
 
 ## <a name="next-steps"></a>後續步驟

@@ -1,11 +1,11 @@
 ---
-title: "Azure API 管理中的範本資源 | Microsoft Docs"
-description: "了解在 Azure API 管理的開發人員入口網站範本中可使用的資源類型。"
+title: Azure API 管理中的範本資源 | Microsoft Docs
+description: 了解在 Azure API 管理的開發人員入口網站範本中可使用的資源類型。
 services: api-management
-documentationcenter: 
+documentationcenter: ''
 author: vladvino
 manager: erikre
-editor: 
+editor: ''
 ms.assetid: 51a1b4c6-a9fd-4524-9e0e-03a9800c3e94
 ms.service: api-management
 ms.workload: mobile
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "22983783"
 ---
 # <a name="azure-api-management-template-resources"></a>Azure API 管理中的範本資源
 Azure API 管理提供下列類型的資源，用於開發人員入口網站的範本。  
@@ -331,7 +332,7 @@ Azure API 管理提供下列類型的資源，用於開發人員入口網站的�
 |WebIssuesNotSignin|您尚未登入。 請至 {0} 回報問題或張貼註解。|  
 |WebIssuesReportIssueButton|報告問題|  
 |WebIssuesSignIn|登入|  
-|WebIssuesStatusReportedBy|狀態︰{0} &#124；由 {1} 報告|  
+|WebIssuesStatusReportedBy|狀態︰{0} &#124;由 {1} 報告|  
   
 ###  <a name="NotFoundStrings"></a> NotFoundStrings  
   

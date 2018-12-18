@@ -1,19 +1,20 @@
 ---
-title: "使用 Marathon REST API 管理 Azure DC/OS 叢集"
-description: "使用 Marathon REST API 將容器部署到 Azure Container Service DC/OS 叢集。"
+title: 使用 Marathon REST API 管理 Azure DC/OS 叢集
+description: 使用 Marathon REST API 將容器部署到 Azure Container Service DC/OS 叢集。
 services: container-service
-author: dlepow
-manager: timlt
+author: iainfoulds
+manager: jeconnoc
 ms.service: container-service
 ms.topic: article
 ms.date: 04/04/2017
-ms.author: danlep
+ms.author: iainfou
 ms.custom: mvc
-ms.openlocfilehash: c9322756c30011305ebe6f4f2fd38554f275a1b3
-ms.sourcegitcommit: 5d3e99478a5f26e92d1e7f3cec6b0ff5fbd7cedf
+ms.openlocfilehash: 34fc6f946d172f1431367e84f9d4d8a6855003ed
+ms.sourcegitcommit: d551ddf8d6c0fd3a884c9852bc4443c1a1485899
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/06/2017
+ms.lasthandoff: 07/07/2018
+ms.locfileid: "37901751"
 ---
 # <a name="dcos-container-management-through-the-marathon-rest-api"></a>透過 Marathon REST API 的 DC/OS 容器管理
 

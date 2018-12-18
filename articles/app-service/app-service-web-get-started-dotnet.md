@@ -1,6 +1,6 @@
 ---
-title: 在 Azure 中建立 ASP.NET Core Web 應用程式 | Microsoft Docs
-description: 藉由部署預設 ASP.NET Web 應用程式，了解如何在 Azure App Service 中執行 Web 應用程式。
+title: 在 Azure 中建立 C# ASP.NET Core Web 應用程式 | Microsoft Docs
+description: 藉由部署預設 C# ASP.NET Web 應用程式，了解如何在 Azure App Service 中執行 Web 應用程式。
 services: app-service\web
 documentationcenter: ''
 author: cephalin
@@ -12,14 +12,15 @@ ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: quickstart
-ms.date: 06/14/2017
+ms.date: 08/29/2018
 ms.author: cephalin
-ms.custom: mvc, devcenter
-ms.openlocfilehash: 698f23507da0707a4612f8d33fe7e2995429f361
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.custom: mvc, devcenter, vs-azure
+ms.openlocfilehash: d7b93c28bf83e468d1470b0962dcf9d87a52adb2
+ms.sourcegitcommit: 63613e4c7edf1b1875a2974a29ab2a8ce5d90e3b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 08/29/2018
+ms.locfileid: "43189571"
 ---
 # <a name="create-an-aspnet-core-web-app-in-azure"></a>在 Azure 中建立 ASP.NET Core Web 應用程式
 
@@ -29,23 +30,19 @@ ms.lasthandoff: 03/28/2018
 
 [Azure Web Apps](app-service-web-overview.md) 提供可高度擴充、自我修復的 Web 主機服務。  本快速入門會顯示如何將第一個 ASP.NET Core Web 應用程式部署至 Azure Web Apps。 當您完成時，您會有已部署 Web 應用程式的資源群，其中包含 App Service 方案和 Azure Web 應用程式。
 
-> [!NOTE]
-> 如果您要了解如何建置及部署 ASP.NET Framework Web 應用程式，可從[這裡](app-service-web-get-started-dotnet-framework.md)取得該文章。 
->
+![](./media/app-service-web-get-started-dotnet/web-app-running-live.png)
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 若要完成本教學課程：
 
-* 使用下列工作負載安裝 <a href="https://www.visualstudio.com/downloads/" target="_blank">Visual Studio 2017</a>：
-    - **ASP.NET 和 Web 開發**
-    - **Azure 開發**
+安裝包含 **ASP.NET 和 Web 開發**工作負載的 <a href="https://www.visualstudio.com/downloads/" target="_blank">Visual Studio 2017</a>。
 
-    ![ASP.NET 和 Web 開發及 Azure 開發 (在 [Web 和雲端] 之下)](media/app-service-web-tutorial-dotnet-sqldatabase/workloads.png)
+如果您已安裝 Visual Studio，請按一下 [工具] > [取得工具和功能] 在 Visual Studio 中新增工作負載。
 
-## <a name="create-an-aspnet-core-web-app"></a>建立 ASP.NET 核心 Web 應用程式
+## <a name="create-an-aspnet-core-web-app"></a>建立 ASP.NET Core Web 應用程式
 
 在 Visual Studio 中，選取 [檔案] > [新增] > [專案] 以建立專案。 
 
@@ -60,10 +57,6 @@ ms.lasthandoff: 03/28/2018
 選取 [確定] 。
 
 ![[新增 ASP.NET 專案] 對話方塊](./media/app-service-web-get-started-dotnet/razor-pages-aspnet-dialog.png)
-
-一旦建立了 ASP.NET Core 專案，ASP.NET Core 的歡迎頁面會隨即顯示，並提供許多可協助您開始使用的資源連結。 
-
-![歡迎頁面](./media/app-service-web-get-started-dotnet/aspnet-core-welcome-page.png)
 
 從功能表中，選取 [偵錯] > [啟動但不偵錯]，以在本機執行 Web 應用程式。
 
@@ -83,11 +76,10 @@ ms.lasthandoff: 03/28/2018
 
 ## <a name="sign-in-to-azure"></a>登入 Azure
 
-在 [建立 App Service] 對話方塊中，選取 [新增帳戶]，然後登入您的 Azure 訂用帳戶。 如果您已登入，請從下拉式清單中選取包含所需訂用帳戶的帳戶。
+在 [建立 App Service] 對話方塊中，按一下 [新增帳戶]，然後登入您的 Azure 訂用帳戶。 如果您已登入，請從下拉式清單中選取包含所需訂用帳戶的帳戶。
 
 > [!NOTE]
 > 如果您已經登入，請勿選取 [建立]。
->
 >
    
 ![登入 Azure](./media/app-service-web-get-started-dotnet/sign-in-azure.png)
@@ -149,7 +141,8 @@ ms.lasthandoff: 03/28/2018
 
 若要重新部署至 Azure，請在 [方案總管] 中，以滑鼠右鍵按一下 **myFirstAzureWebApp** 專案，然後選取 [發佈]。
 
-在發佈頁面中，選取 [發佈]。
+在發佈摘要頁面中，選取 [發佈]。
+![Visual Studio 發佈摘要頁面](./media/app-service-web-get-started-dotnet/publish-summary-page.png)
 
 發佈完成時，Visual Studio 會啟動瀏覽器以前往 Web 應用程式的 URL。
 

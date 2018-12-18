@@ -1,18 +1,19 @@
 ---
-title: "使用 Azure Site Recovery 執行從 Hyper-V VM 到次要網站的 DR 演練 | Microsoft Docs"
-description: "了解如何使用 Azure Site Recovery 執行從 VMM 雲端中的 Hyper-V VM 到次要資料中心的 DR 演練。"
+title: 使用 Azure Site Recovery 執行從 Hyper-V VM 到次要網站的 DR 演練 | Microsoft Docs
+description: 了解如何使用 Azure Site Recovery 執行從 VMM 雲端中的 Hyper-V VM 到次要資料中心的 DR 演練。
 services: site-recovery
 author: ponatara
 manager: abhemraj
 ms.service: site-recovery
 ms.topic: article
-ms.date: 02/12/2018
+ms.date: 07/06/2018
 ms.author: ponatara
-ms.openlocfilehash: a586eac3be39a4d3fb35dff7a4b1cc40f32f2720
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.openlocfilehash: 03533af27ac6fd406b4639c31c3add0015a76f45
+ms.sourcegitcommit: a06c4177068aafc8387ddcd54e3071099faf659d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 07/09/2018
+ms.locfileid: "37918793"
 ---
 # <a name="run-a-dr-drill-for-hyper-v-vms-to-a-secondary-site"></a>執行從 Hyper-V VM 到次要網站的 DR 演練
 
@@ -52,10 +53,17 @@ ms.lasthandoff: 02/21/2018
 ### <a name="best-practices"></a>最佳作法
 
 - 測試生產網路會導致生產工作停滯。 請要求您的使用者不要在進行災害復原測試時使用相關應用程式。
-- 測試網路不需要符合用於測試容錯移轉的 VMM 邏輯網路類型。 但某些組合並不適用 - 如果複本會使用 DHCP 和 VLAN 架構的隔離，則複本的 VM 網路不需要靜態 IP 位址集區。 因此，使用 Windows 網路虛擬化來測試容錯移轉將不會運作，因為沒有任何位址集區可供使用。 
-        - 如果使用「未隔離」複本網路和「Windows 網路虛擬化」測試網路，則測試容錯移轉將無法運作。 這是因為「未隔離」的網路沒有建立 Windows 網路虛擬化網路所需的子網路。
+
+- 測試網路不需要符合用於測試容錯移轉的 VMM 邏輯網路類型。 但是，某些組合將不會運作：
+
+     - 如果複本會使用 DHCP 和 VLAN 架構的隔離，則複本的 VM 網路不需要靜態 IP 位址集區。 因此，使用 Windows 網路虛擬化來測試容錯移轉將不會運作，因為沒有任何位址集區可供使用。 
+        
+     - 如果複本網路不使用隔離，而且測試網路使用 Windows 網路虛擬化，則測試容錯移轉將不會運作。 這是因為「未隔離」的網路沒有建立 Windows 網路虛擬化網路所需的子網路。
+        
 - 我們建議您不要針對測試容錯移轉使用您用來進行網路對應的網路。
+
 - 容錯移轉之後，用來將複本虛擬機器連線至對應 VM 網路的方式，取決於 VM 網路在 VMM 主控台中的設定方式。
+
 
 ### <a name="vm-network-configured-with-no-isolation-or-vlan-isolation"></a>設定為未隔離或 VLAN 隔離的 VM 網路
 

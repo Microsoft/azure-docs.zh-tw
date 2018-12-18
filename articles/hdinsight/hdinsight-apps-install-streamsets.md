@@ -1,26 +1,20 @@
 ---
-title: 安裝已發佈的應用程式 - StreamSets Data Collector - Azure HDInsight | Microsoft Docs
+title: 安裝已發佈的應用程式 - StreamSets Data Collector - Azure HDInsight
 description: 安裝及使用 StreamSets Data Collector 第三方 Hadoop 應用程式。
 services: hdinsight
-documentationcenter: ''
 author: ashishthaps
-manager: jhubbard
-editor: cgronlun
-tags: azure-portal
-ms.assetid: ''
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
+ms.topic: conceptual
 ms.date: 01/10/2018
 ms.author: ashish
-ms.openlocfilehash: 90775452c58457ae8ecc73687a375606474158f5
-ms.sourcegitcommit: ded74961ef7d1df2ef8ffbcd13eeea0f4aaa3219
+ms.openlocfilehash: 72ace99a8124b0a288e8facf630e947151169d0b
+ms.sourcegitcommit: f6e2a03076679d53b550a24828141c4fb978dcf9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/29/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43106877"
 ---
 # <a name="install-published-application---streamsets-data-collector"></a>安裝已發佈的應用程式 - StreamSets Data Collector
 
@@ -43,7 +37,7 @@ StreamSets Data Collector 可讓您使用許多巨量資料元件 (例如 HDFS�
 * [Slack 公用 StreamSets 通道](https://streamsetters.slack.com/)
 * [原始程式碼](https://github.com/streamsets)
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 若要在新的 HDInsight 叢集或現有叢集上安裝此應用程式，您必須具有下列設定：
 

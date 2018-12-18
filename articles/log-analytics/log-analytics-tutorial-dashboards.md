@@ -1,11 +1,11 @@
 ---
-title: "建立和共用 Azure Log Analytics 資料的儀表板 | Microsoft Docs"
-description: "本教學課程可幫助您了解 Log Analytics 儀表板如何以視覺化方式呈現所有儲存的記錄搜尋，讓您以單一方式檢視您的環境。"
+title: 建立和共用 Azure Log Analytics 資料的儀表板 | Microsoft Docs
+description: 本教學課程可幫助您了解 Log Analytics 儀表板如何以視覺化方式呈現所有儲存的記錄搜尋，讓您以單一方式檢視您的環境。
 services: log-analytics
 documentationcenter: log-analytics
-author: MGoedtel
+author: mgoedtel
 manager: carmonm
-editor: 
+editor: ''
 ms.assetid: abb07f6c-b356-4f15-85f5-60e4415d0ba2
 ms.service: log-analytics
 ms.workload: na
@@ -15,11 +15,13 @@ ms.topic: tutorial
 ms.date: 09/14/2017
 ms.author: magoedte
 ms.custom: mvc
-ms.openlocfilehash: 272945134b534a5ded794379ce5e96b0902a4227
-ms.sourcegitcommit: e6029b2994fa5ba82d0ac72b264879c3484e3dd0
+ms.component: na
+ms.openlocfilehash: 2c7c1e71830eb3fe4f7240195dac828ac9dfed3a
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2017
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46951556"
 ---
 # <a name="create-and-share-dashboards-of-log-analytics-data"></a>建立和共用 Log Analytics 資料的儀表板
 
@@ -34,7 +36,7 @@ Log Analytics 儀表板可以視覺化方式呈現所有儲存的記錄搜尋，
 若要完成本教學課程中的範例，您目前必須有[連線至 Log Analytics 工作區](log-analytics-quick-collect-azurevm.md)的虛擬機器。  
  
 ## <a name="log-in-to-azure-portal"></a>登入 Azure 入口網站
-登入 Azure 入口網站，網址為 [https://portal.azure.com](https://portal.azure.com)。 
+在 [https://portal.azure.com](https://portal.azure.com) 上登入 Azure 入口網站。 
 
 ## <a name="create-a-shared-dashboard"></a>建立共用儀表板
 
@@ -48,13 +50,13 @@ Log Analytics 儀表板可以視覺化方式呈現所有儲存的記錄搜尋，
 
 當您建立儀表板時，它預設是私人用途，這表示只有您會看得到。 若要讓其他人也能看見，請使用與其他儀表板命令一同出現的 [共用]  按鈕。<br> ![在 Azure 入口網站中共用新儀表板](media/log-analytics-tutorial-dashboards/log-analytics-share-dashboard.png) 
 
-系統會要求您選擇可將儀表板發佈至的訂用帳戶和資源群組。 為了方便起見，入口網站的發佈體驗會引導您朝向將儀表板放在稱為 **儀表板**的資源群組中的模式。  確認選取的訂用帳戶，然後按一下[發行]。  使用[Azure 資源存取控制](../active-directory/role-based-access-control-configure.md)來控制對儀表板中顯示資訊的存取權。   
+系統會要求您選擇可將儀表板發佈至的訂用帳戶和資源群組。 為了方便起見，入口網站的發佈體驗會引導您朝向將儀表板放在稱為 **儀表板**的資源群組中的模式。  確認選取的訂用帳戶，然後按一下[發行]。  使用[Azure 資源存取控制](../role-based-access-control/role-assignments-portal.md)來控制對儀表板中顯示資訊的存取權。   
 
 ## <a name="visualize-a-log-search"></a>以視覺化方式呈現記錄搜尋
 
 您可以在 Azure 入口網站中從記錄搜尋入口網站的任一行上建立基本查詢。 記錄搜尋入口網站不必啟動外部入口網站就可以使用，它可以透過記錄搜尋來執行各種函式，包括建立警示規則、建立電腦群組，以及匯出查詢結果。 
 
-[進階 Analytics 入口網站](https://docs.loganalytics.io/docs/Learn/Getting-Started/Getting-started-with-the-Analytics-portal)是一個專用的入口網站，提供記錄搜尋入口網站中無法使用的進階功能。 功能包括在多行上編輯查詢、選擇性執行程式碼、區分內容的 Intellisense 和 Smart Analytics。 在進階 Analytics 入口網站中，您將會以圖形的形式建立效能檢視，儲存以用於未來搜尋，然後將其釘選在稍早建立的共用儀表板。   
+[Log Analytics 入口網站](../log-analytics/query-language/get-started-analytics-portal.md)是一個專用的入口網站，提供記錄搜尋入口網站中無法使用的進階功能。 功能包括在多行上編輯查詢、選擇性執行程式碼、區分內容的 Intellisense 和 Smart Analytics。 在進階 Analytics 入口網站中，您將會以圖形的形式建立效能檢視，儲存以用於未來搜尋，然後將其釘選在稍早建立的共用儀表板。   
 
 您可從記錄搜尋入口網站中的連結啟動進階 Analytics 入口網站。<br> ![啟動進階 Analytics 入口網站](media/log-analytics-tutorial-dashboards/log-analytics-advancedportal-01.png)
 

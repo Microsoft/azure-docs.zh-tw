@@ -1,10 +1,10 @@
 ---
-title: Azure Batch AI 服務概觀 | Microsoft Docs
+title: Azure Batch AI 服務 - AI 訓練 | Microsoft Docs
 description: 了解如何使用受控 Azure Batch AI 服務，在 GPU 和 CPU 叢集上定型人工智慧 (AI) 和其他機器學習模型。
 services: batch-ai
 documentationcenter: ''
 author: alexsuttonms
-manager: timlt
+manager: jeconnoc
 editor: ''
 ms.assetid: ''
 ms.service: batch-ai
@@ -12,85 +12,63 @@ ms.workload: ''
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: overview
-ms.date: 10/13/2017
-ms.author: asutton
-ms.custom: ''
-ms.openlocfilehash: 69e7617f1a5918a08e3c692a1a25c4fcdeca536b
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+ms.date: 08/01/2018
+ms.author: danlep
+ms.openlocfilehash: 98497812e75d07fc153e0e351331c05484164fdd
+ms.sourcegitcommit: ebd06cee3e78674ba9e6764ddc889fc5948060c4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 09/07/2018
+ms.locfileid: "44052694"
 ---
-# <a name="what-is-batch-ai-in-azure"></a>Azure 中的 Batch AI 是什麼？
-Batch AI 是一項受控服務，可讓資料科學家和 AI 研究人員在 Azure 虛擬機器 (包括具有 GPU 支援的 VM) 叢集上定型 AI 和其他機器學習模型。 您可描述您的作業需求、尋找輸入和儲存輸出的位置，而 Batch AI 會處理其餘部分。  
- 
-## <a name="why-batch-ai"></a>為何要使用 Batch AI？ 
-開發強大的 AI 演算法需要大量計算且反覆運作的程序。 資料科學家和 AI 研究人員需要處理日漸變大的資料集。 他們正在開發具有多層的模型，並透過對超參數微調進行更多網路設計測試來執行此作業。 若要有效率地執行此作業，則每個模型中需有多個 CPU 和 GPU、以平行方式執行實驗，以及具備可供訓練資料、記錄和模型輸出的共用儲存體。   
- 
-![Batch AI 程序](media/overview/batchai-context.png)
+# <a name="what-is-azure-batch-ai"></a>什麼是 Azure Batch AI？
 
-資料科學家和 AI 研究人員都是其領域中的專家，然而對於大規模管理基礎結構卻可能是一大阻礙。 大規模開發 AI 需要進行執行許多基礎結構工作：佈建 VM 叢集、安裝軟體和容器、在工作排入佇列、設定作業的優先順序及排程、處理失敗、散發資料、共用結果、調整資源來管理成本以及與工具和工作流程整合。 Batch AI 會處理這些工作。 
- 
-## <a name="what-is-batch-ai"></a>Batch AI 是什麼？ 
+Azure Batch AI 是受控服務，可協助資料科學家和 AI 研究人員在 Azure 中大規模地將機器學習和 AI 模型定型，無需管理複雜的基礎結構。 您只需要描述計算資源、想要執行的作業，以及要在哪裡儲存模型的輸入和輸出，Batch AI 便會完成其餘工作。
 
-Batch AI 提供專為 AI 訓練和測試特製化的資源管理和作業排程。 主要功能包括： 
+您可以獨立使用 Batch AI，也可以作為較大型開發工作流程的一部分來執行模型訓練：
 
-* 執行長時間執行的批次作業、反覆測試，以及互動式訓練 
-* 使用 GPU 或 CPU 自動或手動調整 VM 叢集 
-* 設定 VM 之間的 SSH 通訊，以供遠端存取 
-* 任何深度學習或機器學習架構的支援，包含熱門工具組 (例如[Microsoft Cognitive Toolkit](https://github.com/Microsoft/CNTK) (CNTK)、[TensorFlow](https://www.tensorflow.org/), 和 [Chainer](https://chainer.org/)) 的最佳化組態 
-* 以優先順序為基礎的作業佇列，可共用叢集並利用低優先順序的 VM 和保留執行個體  
-* 彈性儲存體選項，包括 Azure 檔案服務和受控 NFS 伺服器 
-* 將遠端檔案共用掛接到 VM 和選擇性容器 
-* 提供作業狀態，並可在 VM 失敗時重新啟動 
-* 輸出記錄、stdout、stderr 和模型的存取權，包括從 Azure 儲存體串流 
-* Azure [命令列介面](/cli/azure) (CLI)、適用於 [Python](https://github.com/Azure/azure-sdk-for-python)[C#](https://www.nuget.org/packages/Microsoft.Azure.Management.BatchAI/1.0.0-preview) 和 Java 的 SDK、在 Azure 入口網站中監視，以及與 Microsoft AI 工具整合 
+* 單獨使用 Batch AI 在 [GPU](../virtual-machines/linux/sizes-gpu.md) 或 CPU 叢集上訓練、測試和批次處理評分機器學習和 AI 模型。 
 
-Batch AI SDK 支援撰寫指令碼或應用程式，以管理訓練管線與工具整合。 SDK 目前提供 Python、C#、Java 和 REST API。  
- 
+* 使用 [Azure Machine Learning](../machine-learning/service/overview-what-is-azure-ml.md) 或其他 [Azure AI 平台工具](https://azure.microsoft.com/overview/ai-platform/)來鎖定工作流程中的 Batch AI 叢集。 Azure ML 可提供豐富的資料準備、測試及作業記錄體驗。 Azure ML 也可以將經過訓練的模型封裝到容器中，並針對推斷或 IoT 裝置部署模型。  
 
-Batch AI 使用 Azure Resource Manager 來進行控制平面作業 (建立、列出、取得、刪除)。 Azure Active Directory 使用於驗證和角色型存取控制。  
- 
-## <a name="how-to-use-batch-ai"></a>如何使用 Batch AI 
+## <a name="train-machine-learning-and-ai-models"></a>訓練機器學習和 AI 模型
 
-若要使用 Batch AI，請定義和管理*叢集*和*作業*。 
+使用 Batch AI 可訓練機器學習模型，以及深度類神經網路 (深度學習) 和其他 AI 方法。 Batch AI 內建支援熱門的開放原始碼 AI 程式庫和架構，包括 [TensorFlow](https://github.com/tensorflow/tensorflow)、[PyTorch](https://github.com/pytorch/pytorch)、[Chainer](https://github.com/chainer/chainer) 和 [MicrosoftCognitive Toolkit (CNTK)](https://github.com/Microsoft/CNTK)。
 
- 
-**叢集**可描述您的計算需求： 
-* 您要在其中執行的 Azure 區域 
-* 要使用的 VM 系列和大小 - 例如，NC24 VM，其中包含 4 個 NVIDIA K80 GPU 
-* VM 數目，或可供自動調整的最小和最大數目 
-* VM 映像 - 例如 Ubuntu 16.04 LTS 或 [Microsoft 深度學習虛擬機器](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-ads.dsvm-deep-learning)
-* 要掛接的任何遠端檔案共用磁碟區 - 例如，從 Azure 檔案服務或 Batch AI 所管理的 NFS 伺服器 
-* 要在 VM 上設定的使用者名稱和 SSH 金鑰或密碼，以啟用互動式登入進行偵錯  
- 
+識別問題所在區域並準備好資料之後，請以互動方式使用 Batch AI 來測試模型概念。 然後，當您準備好進行大規模實驗時，啟動跨多個 GPU (具有 MPI 或其他通訊程式庫) 的作業，並以平行方式執行更多的實驗。
 
-**作業**可描述： 
-* 要使用的叢集和區域 
-* 有多少部 VM 可供作業使用 
-* 啟動時要傳遞給作業的輸入和輸出目錄。 通常會使用在叢集設定期間掛接的共用檔案系統 
-* 要執行軟體或安裝指令碼的選擇性容器 
-* 用來啟動作業的 AI 架構特有組態或命令列和參數 
- 
+Batch AI 可協助您以數種方式大規模地訓練模型。 例如︰ 
 
-開始使用 Batch AI 搭配 [Azure CLI](/cli/azure) 與叢集和作業的組態檔。 視需要使用此方式快速建立您的叢集，並執行作業來試驗網路設計或超參數。  
- 
+|  |  |
+|---------|---------|
+| **散發訓練**<br/>![分散式訓練](./media/overview/distributed-training.png)  | 將跨數個網路連線 GPU 的單一作業訓練相應增加，以使用大量資料訓練較大型的網路。|
+| **實驗**<br/>![測試](./media/overview/experimentation.png) | 相應放大具有多個作業的訓練。 執行參數掃掠來測試新的想法，或微調超參數以獲得最佳精確度和效能。 |
+| **以平行方式執行**![以平行方式執行](./media/overview/parallel-execution.png) | 一次針對跨一組伺服器平行執行的許多模型進行訓練或評分，以便更快地完成作業。|
 
-Batch AI 可讓您使用多個 GPU 輕鬆進行平行處理。 如果需要跨多個 GPU 調整作業，Batch AI 會設定 VM 之間的安全網路連線。 使用 InfiniBand 時，Batch AI 會設定驅動程式，並跨越作業中的節點啟動 MPI。  
+訓練好模型時，請使用 Batch AI 來測試模型 (如果訓練指令碼中沒有這個部分)，或執行批次評分。
 
-## <a name="data-management"></a>資料管理
-Batch AI 提供了訓練指令碼、資料和輸出的一些彈性選項：
-  
-* 將**本機磁碟**使用於早期測試和較小的資料集。 在此案例中，您可以透過 SSH 連線至虛擬機器，以編輯指令碼和讀取記錄。 
+## <a name="how-it-works"></a>運作方式
 
-* 使用 **Azure 檔案服務**跨多項作業共用訓練資料，並將輸出記錄和模型儲存在單一位置 
+使用 Batch AI SDK、命令列指令碼或 Azure 入口網站，來管理計算資源並排定作業來訓練和測試 AI： 
 
-* 設定 **NFS 伺服器** 以支援較大規模的資料和 VM 進行訓練。 Batch AI 可為您設定一部 NFS 伺服器，作為在 Azure 儲存體中支援磁碟的特殊叢集類型。 
- 
-* **平行檔案系統**可提供進一步的資料延展性和平行訓練。 雖然 Batch AI 不會管理平行檔案系統，但範例部署範本可供 Lustre、Gluster 及 BeeGFS 使用。  
+* **佈建和調整 VM 叢集** - 選擇節點 (VM) 數目，然後選取符合訓練需求的具 GPU 功能 VM 大小或其他 VM 大小。 以自動或手動方式相應增加或減少節點數目，以便只在需要時使用資源。 
+
+* **管理相依性和容器** - 根據預設，Batch AI 叢集會執行已預先安裝相依性的 Linux VM 映像，以在 GPU 或 CPU 上執行容器型訓練架構。 如需其他設定，請帶入自訂映像或執行啟動指令碼。
+
+* **散發資料** - 選擇一或多個儲存體選項來管理輸入資料、指令碼和作業輸出：Azure 檔案、Azure Blob 儲存體或受控 NFS 伺服器。 Batch AI 也支援自訂儲存體解決方案，包括高效能平行檔案系統。 使用簡單的設定檔將儲存體檔案系統掛接到叢集節點和作業容器。
+
+* **排程作業** - 將作業提交至以優先順序為基礎的作業佇列，以共用叢集資源並利用低優先順序的 VM 和保留執行個體。
+
+* **處理失敗** - 監視作業狀態，並在可能長時間執行的作業期間發生 VM 失敗時重新啟動作業。
+
+* **收集結果** - 輕鬆地存取輸出記錄、Stdout、Stderr 和經過訓練的模型。 設定 Batch AI 作業，將輸出直接推送至已掛接的儲存體。
+
+作為 Azure 服務，Batch AI 可支援角色型存取控制 (RBAC) 和 Azure 虛擬網路等常用工具以確保安全性。  
 
 ## <a name="next-steps"></a>後續步驟
 
-* 使用 [Azure CLI](quickstart-cli.md) 或 [Python](quickstart-python.md)，開始建立第一個 Batch AI 訓練作業。
-* 查看不同架構的範例[訓練配方](https://github.com/Azure/BatchAI)。
+* 深入了解 [Batch AI 資源](resource-concepts.md)以便訓練機器學習或 AI 模型。
 
+* 開始使用 Batch AI 來[訓練深度學習模型範例](quickstart-tensorflow-training-cli.md)。
+
+* 查看熱門 AI 架構的[訓練配方](https://github.com/Azure/BatchAI/blob/master/recipes)範例。

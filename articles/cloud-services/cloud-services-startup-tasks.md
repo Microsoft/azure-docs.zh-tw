@@ -1,11 +1,11 @@
 ---
-title: "在 Azure 雲端服務中執行啟動工作 | Microsoft Docs"
-description: "啟動工作可協助您為應用程式備妥雲端服務環境。 本文將說明啟動工作的運作方式，以及建立啟動工作的方法"
+title: 在 Azure 雲端服務中執行啟動工作 | Microsoft Docs
+description: 啟動工作可協助您為應用程式備妥雲端服務環境。 本文將說明啟動工作的運作方式，以及建立啟動工作的方法
 services: cloud-services
-documentationcenter: 
-author: Thraka
+documentationcenter: ''
+author: jpconnock
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 886939be-4b5b-49cc-9a6e-2172e3c133e9
 ms.service: cloud-services
 ms.workload: tbd
@@ -13,12 +13,13 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 07/05/2017
-ms.author: adegeo
-ms.openlocfilehash: 1c1b3aa86dc8211de0c07c9fb68da5685c86f551
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.author: jeconnoc
+ms.openlocfilehash: 6601eba90f3c3644d418ddd0a74746e1a12bcbd3
+ms.sourcegitcommit: e0a678acb0dc928e5c5edde3ca04e6854eb05ea6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 07/13/2018
+ms.locfileid: "39007774"
 ---
 # <a name="how-to-configure-and-run-startup-tasks-for-a-cloud-service"></a>如何設定和執行雲端服務的啟動工作
 您可以利用啟動工作，在角色啟動之前執行作業。 您可能想要執行的作業包括安裝元件、註冊 COM 元件、設定登錄機碼，或啟動長時間執行的處理序。
@@ -29,7 +30,7 @@ ms.lasthandoff: 10/11/2017
 > 
 
 ## <a name="how-startup-tasks-work"></a>啟動工作的運作方式
-啟動工作是在您的角色開始之前採取的動作，而且在 [Task] 檔案中利用 [Startup] 元素內的 [Task] 元素來定義。 啟動工作經常是批次檔，但也可以是主控台應用程式，或是啟動 PowerShell 指令碼的批次檔。
+啟動工作是在您的角色開始之前採取的動作，而且在 [ServiceDefinition.csdef] 檔案中利用 [Startup] 元素內的 [Task] 元素來定義。 啟動工作經常是批次檔，但也可以是主控台應用程式，或是啟動 PowerShell 指令碼的批次檔。
 
 環境變數可將資訊傳入啟動工作，而本機存放區可以用來傳遞來自啟動工作的資訊。 例如，環境變數可以指定您想要安裝的程式路徑，以及可以將哪些檔案寫入本機存放區，以便日後供您的角色讀取。
 
@@ -58,7 +59,7 @@ ms.lasthandoff: 10/11/2017
 6. 呼叫了 [Microsoft.WindowsAzure.ServiceRuntime.RoleEntryPoint.Run](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx) 方法。
 
 ## <a name="example-of-a-startup-task"></a>啟動工作範例
-啟動工作會在 [Task] 檔案中的 **Task** 項目定義。 **commandLine** 屬性指定啟動批次檔案或主控台命令的名稱和參數，**executionContext** 屬性指定啟動工作的權限等級，而 **taskType** 屬性則指定工作執行的方式。
+啟動工作會在 [ServiceDefinition.csdef] 檔案中的 **Task** 項目定義。 **commandLine** 屬性指定啟動批次檔案或主控台命令的名稱和參數，**executionContext** 屬性指定啟動工作的權限等級，而 **taskType** 屬性則指定工作執行的方式。
 
 在此範例中，針對啟動工作建立環境變數 **MyVersionNumber**，並設定為值 "**1.0.0.0**"。
 
@@ -87,7 +88,7 @@ EXIT /B 0
 > 
 
 ## <a name="description-of-task-attributes"></a>工作屬性說明
-以下說明 **ServiceDefinition.csdef** 檔案中 [Task] 項目的屬性：
+以下說明 **ServiceDefinition.csdef** 檔案中 [ServiceDefinition.csdef] 項目的屬性：
 
 **commandLine** - 指定啟動工作的命令列：
 
@@ -111,7 +112,7 @@ EXIT /B 0
 **taskType** - 指定啟動工作執行的方式。
 
 * **simple**  
-  工作會以同步的方式執行，一次一個，並依照 [Task] 檔案所指定的順序。 當某個 **simple** 啟動工作結束時的 **errorlevel** 為零，就會執行下一個 **simple** 啟動工作。 如果沒有任何 **simple** 啟動工作需要執行，則會啟動角色本身。   
+  工作會以同步的方式執行，一次一個，並依照 [ServiceDefinition.csdef] 檔案所指定的順序。 當某個 **simple** 啟動工作結束時的 **errorlevel** 為零，就會執行下一個 **simple** 啟動工作。 如果沒有任何 **simple** 啟動工作需要執行，則會啟動角色本身。   
   
   > [!NOTE]
   > 如果 **simple** 工作結束時的 **errorlevel** 不是零，則會封鎖執行個體。 後續的 **simple** 啟動工作和角色本身將不會啟動。
@@ -127,13 +128,13 @@ EXIT /B 0
 ## <a name="environment-variables"></a>環境變數
 環境變數是將資訊傳遞給啟動工作的方式。 例如，您可以放上這些項目的路徑：含有要安裝之程式的 Blob，或角色要使用的連接埠號碼，或是各項可控制啟動工作功能的設定。
 
-啟動工作的環境變數有兩種類型，包括靜態環境變數，還有以 [RoleEnvironment] 類別的成員為基礎的環境變數。 這兩者都位於 [Task] 檔案的 [Environment] 區段中，而且都使用 [value] 元素和 **name** 屬性。
+啟動工作的環境變數有兩種類型，包括靜態環境變數，還有以 [RoleEnvironment] 類別的成員為基礎的環境變數。 這兩者都位於 [ServiceDefinition.csdef] 檔案的 [Environment] 區段中，而且都使用 [Variable] 元素和 **name** 屬性。
 
-靜態環境變數會使用 **Variable** 項目的 [value] 屬性。 上述範例會建立環境變數 **MyVersionNumber**，這具有靜態值 "**1.0.0.0**"。 另一個範例則是建立 **StagingOrProduction** 環境變數，您可以手動將值設為 "**staging**" 或 "**production**"，以根據 **StagingOrProduction** 環境變數的值執行不同的啟動動作。
+靜態環境變數會使用 **Variable** 項目的 [Variable] 屬性。 上述範例會建立環境變數 **MyVersionNumber**，這具有靜態值 "**1.0.0.0**"。 另一個範例則是建立 **StagingOrProduction** 環境變數，您可以手動將值設為 "**staging**" 或 "**production**"，以根據 **StagingOrProduction** 環境變數的值執行不同的啟動動作。
 
-以 RoleEnvironment 類別的成員為基礎的環境變數不會使用 **Variable** 項目的 [value] 屬性。 相反地，這會使用具有適當 **XPath** 屬性值的 [RoleInstanceValue] 子元素，藉此建立以 [RoleEnvironment] 類別的特定成員為基礎的環境變數。 [這裡](cloud-services-role-config-xpath.md)有存取各種 [RoleEnvironment] 值的 **XPath** 屬性值。
+以 RoleEnvironment 類別的成員為基礎的環境變數不會使用 **Variable** 項目的 [Variable] 屬性。 相反地，這會使用具有適當 **XPath** 屬性值的 [RoleInstanceValue] 子元素，藉此建立以 [RoleEnvironment] 類別的特定成員為基礎的環境變數。 [這裡](cloud-services-role-config-xpath.md)有存取各種 [RoleEnvironment] 值的 **XPath** 屬性值。
 
-例如，若要建立一個環境變數，而且當執行個體在計算模擬器中執行時值為 "**true**"，而在雲端中執行時值為 "**false**"，請使用下列 [value] 和 [RoleInstanceValue] 元素：
+例如，若要建立一個環境變數，而且當執行個體在計算模擬器中執行時值為 "**true**"，而在雲端中執行時值為 "**false**"，請使用下列 [Variable] 和 [RoleInstanceValue] 元素：
 
 ```xml
 <Startup>
@@ -159,11 +160,11 @@ EXIT /B 0
 
 [封裝](cloud-services-model-and-package.md) 雲端服務。  
 
-[Task]: cloud-services-model-and-package.md#csdef
+[ServiceDefinition.csdef]: cloud-services-model-and-package.md#csdef
 [Task]: https://msdn.microsoft.com/library/azure/gg557552.aspx#Task
 [Startup]: https://msdn.microsoft.com/library/azure/gg557552.aspx#Startup
 [Runtime]: https://msdn.microsoft.com/library/azure/gg557552.aspx#Runtime
 [Environment]: https://msdn.microsoft.com/library/azure/gg557552.aspx#Environment
-[value]: https://msdn.microsoft.com/library/azure/gg557552.aspx#Variable
+[Variable]: https://msdn.microsoft.com/library/azure/gg557552.aspx#Variable
 [RoleInstanceValue]: https://msdn.microsoft.com/library/azure/gg557552.aspx#RoleInstanceValue
 [RoleEnvironment]: https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.aspx

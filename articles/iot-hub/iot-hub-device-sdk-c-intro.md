@@ -1,24 +1,20 @@
 ---
 title: 適用於 C 的 Azure IoT 裝置 SDK | Microsoft Docs
 description: 開始使用適用於 C 的 Azure IoT 裝置 SDK，以及了解如何建立與 IoT 中樞通訊的裝置應用程式。
-services: iot-hub
-documentationcenter: ''
 author: yzhong94
-manager: timlt
-editor: ''
-ms.assetid: e448b061-6bdd-470a-a527-15ec03cca7b9
+manager: arjmands
 ms.service: iot-hub
-ms.devlang: cpp
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: na
+services: iot-hub
+ms.devlang: c
+ms.topic: conceptual
 ms.date: 08/25/2017
 ms.author: yizhon
-ms.openlocfilehash: 6a85ae65a0f20892b3a20656abac05e90538a1bd
-ms.sourcegitcommit: 20d103fb8658b29b48115782fe01f76239b240aa
+ms.openlocfilehash: db9c22acfba0f6f1781348b36a1d253a515cc063
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46977261"
 ---
 # <a name="azure-iot-device-sdk-for-c"></a>適用於 C 的 Azure IoT 裝置 SDK
 
@@ -74,9 +70,10 @@ Azure IoT 裝置 SDK (適用於 C) 是以 ANSI C (C99) 撰寫，以獲得最大�
 有幾個開放原始碼工具可協助您管理 IoT 中樞。
 
 * 稱為[裝置總管](https://github.com/Azure/azure-iot-sdk-csharp/tree/master/tools/DeviceExplorer)的 Windows 應用程式。
-* 名為 [Azure CLI 2.0 的 IoT 擴充功能](https://github.com/Azure/azure-iot-cli-extension)的跨平台 Python CLI 工具。
+* 名為 [Azure IoT Toolkit](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.azure-iot-toolkit) 的跨平台 Visual Studio Code 延伸模組。
+* 名為 [Azure CLI 的 IoT 擴充功能](https://github.com/Azure/azure-iot-cli-extension)的跨平台 Python CLI。
 
-本教學課程使用圖形化「裝置總管」工具。 如果您偏好使用 CLI 工具，也可以使用 Azure CLI 2.0 的 IoT 擴充功能工具。
+本教學課程使用圖形化「裝置總管」工具。 若您在 VS Code 中開發，您可以使用*適用於 VS Code 的 Azure IoT Toolkit 延伸模組*。 如果您偏好使用 CLI 工具，也可以使用 Azure CLI 2.0 的 IoT 擴充功能工具。
 
 裝置總管工具會使用 Azure IoT 服務程式庫在 IoT 中樞上執行各種功能，包括新增裝置。 如果您使用裝置總管工具來新增裝置，您會得到裝置的連接字串。 您需要此連接字串才能執行應用程式範例。
 
@@ -88,7 +85,7 @@ Azure IoT 裝置 SDK (適用於 C) 是以 ANSI C (C99) 撰寫，以獲得最大�
 
   ![](media/iot-hub-device-sdk-c-intro/03-DeviceExplorer.PNG)
 
-請在第一個欄位中輸入您的 [IoT 中樞連接字串]，然後按一下 [更新]。 此步驟可設定此工具，以便與 IoT 中樞通訊。
+請在第一個欄位中輸入您的 [IoT 中樞連接字串]，然後按一下 [更新]。 此步驟可設定此工具，以便與 IoT 中樞通訊。 您可以在 [IoT 中樞服務] > [設定] > **[共用存取權責]** > **iothubowner** 下找到 [連接字串]。
 
 設定 IoT 中樞連接字串後，請按一下 [管理] 索引標籤：
 
@@ -106,7 +103,7 @@ Azure IoT 裝置 SDK (適用於 C) 是以 ANSI C (C99) 撰寫，以獲得最大�
 
 如果您選擇 [複製所選裝置的連接字串]，裝置連接字串就會複製到剪貼簿。 請保留一份裝置連接字串。 在執行後續各節中所述的範例應用程式時，您會需要它。
 
-完成上述步驟後，您就可以開始執行一些程式碼。 兩個範例在主要原始程式檔頂端都有一個常數，此常數可讓您輸入連接字串。 例如，來自 **iothub\_client\_sample\_mqtt** 應用程式的對應行會如以下所示。
+完成上述步驟後，您就可以開始執行一些程式碼。 大部分範例在主要原始程式檔頂端都有一個常數，此常數可讓您輸入連接字串。 例如，來自 **iothub\_client\_sample\_mqtt** 應用程式的對應行會如以下所示。
 
 ```c
 static const char* connectionString = "[device connection string]";

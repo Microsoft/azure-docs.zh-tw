@@ -1,45 +1,45 @@
 ---
-title: VPN 閘道概觀︰對 Azure 虛擬網路建立跨單位 VPN 連接 | Microsoft Docs
-description: 本文說明何謂 VPN 閘道，以及示範如何透過網際網路使用 VPN 連線來連線至 Azure 虛擬網路。 其中包含基本連接設定的圖表。
+title: Azure VPN 閘道 | Microsoft Docs
+description: 深入了解 VPN 閘道是什麼，以及您可以使用 VPN 閘道連線到 Azure 虛擬網路的方式。 包括 IPsec/IKE 站對站跨單位和 VNet 對 VNet 解決方案，以及點對站 VPN。
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
-manager: jpconnock
+manager: jeconnoc
 editor: ''
-tags: azure-resource-manager,azure-service-management
+tags: azure-resource-manager
+Customer intent: As someone with a basic network background, but is new to Azure, I want to understand the capabilities of Azure VPN Gateway so that I can securely connect to my Azure virtual networks.
 ms.assetid: 2358dd5a-cd76-42c3-baf3-2f35aadc64c8
 ms.service: vpn-gateway
 ms.devlang: na
-ms.topic: get-started-article
+ms.topic: overview
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 03/20/2018
+ms.date: 04/19/2018
 ms.author: cherylmc
-ms.openlocfilehash: 405af7d1191e8ea3c0ba1c526f0c5a526aef795b
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: 01052d8058d1b1e3a03f584ad66da2ad79f4c425
+ms.sourcegitcommit: e2adef58c03b0a780173df2d988907b5cb809c82
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 04/28/2018
+ms.locfileid: "32193201"
 ---
-# <a name="about-vpn-gateway"></a>關於 VPN 閘道
+# <a name="what-is-vpn-gateway"></a>什麼是 VPN 閘道？
 
-VPN 閘道是一種虛擬網路閘道，可透過內部部署位置的公用連線傳送加密的流量。 您也可以使用 VPN 閘道，透過 Microsoft 網路來傳送 Azure 虛擬網路之間的已加密流量。 若要在 Azure 虛擬網路和您的內部部署網站之間傳送加密的網路流量，您就必須為虛擬網路建立 VPN 閘道。
-
-每個虛擬網路只可以有一個 VPN 閘道，不過，您可以對相同的 VPN 閘道建立多個連線。 例如，多站台連線設定。 當您對相同的 VPN 閘道建立多個連線時，所有 VPN 通道 (包括點對站 VPN) 都會共用此閘道可用的頻寬。
+VPN 閘道是特定的虛擬網路閘道類型，可透過公用網際網路在 Azure 虛擬網路與內部部署位置之間傳送加密流量。 您也可以使用 VPN 閘道，透過 Microsoft 網路來傳送 Azure 虛擬網路之間的已加密流量。 每個虛擬網路只能有一個 VPN 閘道。 不過，您可以對相同的 VPN 閘道建立多個連線。 當您對相同的 VPN 閘道建立多個連線時，所有 VPN 通道都會共用可用的閘道頻寬。
 
 ## <a name="whatis"></a>什麼是虛擬網路閘道？
 
-虛擬網路閘道是由部署到特定子網路 (稱為 GatewaySubnet) 的兩部或多部虛擬機器所組成。 當您建立虛擬網路閘道時，會建立位於 GatewaySubnet 中的 VM。 虛擬網路閘道 VM 會設定為包含閘道特有的路由表和閘道服務。 您無法直接設定屬於虛擬網路閘道的 VM，您不該將額外的資源部署至 GatewaySubnet。
+虛擬網路閘道是由部署到您所建立的特定子網路 (稱為「閘道子網路」) 的兩部以上虛擬機器所組成。 當您建立虛擬網路閘道時，會建立位於閘道子網路中的 VM。 虛擬網路閘道 VM 會設定為包含閘道特有的路由表和閘道服務。 您無法直接設定屬於虛擬網路閘道的 VM，您不該將額外的資源部署至閘道子網路。
 
-當您使用閘道類型 'Vpn' 建立虛擬網路閘道時，它會建立特定類型的虛擬網路閘道來加密流量；VPN 閘道。 可能需要 45 分鐘的時間才能建立 VPN 閘道。 這是因為 VPN 閘道的 VM 正要部署到 GatewaySubnet，並以您指定的設定進行設定。 您選取的閘道 SKU 可決定 VM 有多強大。
+建立虛擬網路閘道最多可能需要花費 45 分鐘的時間來完成。 建立虛擬網路閘道時，閘道 VM 會部署到閘道子網路，並使用您指定的設定進行設定。 您所設定的其中一個設定是閘道類型。 閘道類型 'vpn' 會指定所建立虛擬網路閘道的類型是 VPN 閘道。 建立 VPN 閘道之後，您可以在 VPN 閘道與另一個 VPN 閘道 (VNet 對 VNet) 之間建立 IPsec/IKE VPN 通道連線，或在 VPN 閘道與內部部署 VPN 裝置 (站對站) 之間建立跨單位 IPsec/IKE VPN 通道連線。 您也可以建立點對站 VPN 連線 (透過 IKEv2 或 SSTP 的 VPN)，它可讓您從遠端位置連線到您的虛擬網路，例如從會議或住家。
 
 ## <a name="configuring"></a>設定 VPN 閘道
 
-VPN 閘道連線需仰賴多個具有特定設定的資源。 大部分的資源可以分別進行設定，雖然在某些情況下必須以特定順序來設定。
+VPN 閘道連線需仰賴多個具有特定設定的資源。 大部分的資源可以分別進行設定，雖然必須以特定順序設定某些資源。
 
 ### <a name="settings"></a>設定
 
-您為每個資源選擇的設定，對於建立成功連線而言極為重要。 如需 VPN 閘道個別資源和設定的資訊，請參閱 [關於 VPN 閘道設定](vpn-gateway-about-vpn-gateway-settings.md)。 本文包含的資訊可協助您了解閘道類型、VPN 類型、連線類型、閘道子網路、區域網路閘道，以及您需要考量的各種其他資源設定。
+您為每個資源選擇的設定，對於建立成功連線而言極為重要。 如需 VPN 閘道個別資源和設定的資訊，請參閱 [關於 VPN 閘道設定](vpn-gateway-about-vpn-gateway-settings.md)。 本文包含的資訊可協助您了解閘道類型、閘道 SKU、VPN 類型、連線類型、閘道子網路、區域網路閘道，以及您需要考量的各種其他資源設定。
 
 ### <a name="tools"></a>部署工具
 
@@ -47,7 +47,7 @@ VPN 閘道連線需仰賴多個具有特定設定的資源。 大部分的資源
 
 ### <a name="models"></a>部署模型
 
-當您設定 VPN 閘道時，您採用的步驟取決於用來建立虛擬網路的部署模型。 例如，如果您使用傳統部署模型建立 VNet，您會使用傳統部署模型的指導方針和指示來建立和進行 VPN 閘道設定。 如需部署模型的詳細資訊，請參閱 [了解 Resource Manager 和傳統部署模型](../azure-resource-manager/resource-manager-deployment-model.md)。
+目前有兩種部署模型適用於 Azure。 當您設定 VPN 閘道時，您採用的步驟取決於用來建立虛擬網路的部署模型。 例如，如果您使用傳統部署模型建立 VNet，您會使用傳統部署模型的指導方針和指示來建立和進行 VPN 閘道設定。 如需部署模型的詳細資訊，請參閱 [了解 Resource Manager 和傳統部署模型](../azure-resource-manager/resource-manager-deployment-model.md)。
 
 ### <a name="planningtable"></a>規劃表
 
@@ -83,7 +83,7 @@ VPN 閘道連線需仰賴多個具有特定設定的資源。 大部分的資源
 
 ### <a name="Multi"></a>多站台
 
-這類型的連線是站對站連線的變化。 您可以從虛擬網路閘道建立多個 VPN 連線，通常會連接至多個內部部署網站。 處理多重連線時，您必須使用路由式 VPN 類型 (也就是使用傳統 VNet 時的動態閘道)。 因為每個虛擬網路只能有一個 VPN 閘道，所以透過該閘道的所有連線會共用可用的頻寬。 這通常稱為「多網站」連線。
+這類型的連線是站對站連線的變化。 您可以從虛擬網路閘道建立多個 VPN 連線，通常會連接至多個內部部署網站。 處理多重連線時，您必須使用路由式 VPN 類型 (也就是使用傳統 VNet 時的動態閘道)。 因為每個虛擬網路只能有一個 VPN 閘道，所以透過該閘道的所有連線會共用可用的頻寬。 這種組態通常稱為「多站台」連線。
 
 ![Azure VPN 閘道多網站連接範例](./media/vpn-gateway-about-vpngateways/vpngateway-multisite-connection-diagram.png)
 
@@ -130,11 +130,11 @@ Azure 目前有兩種部署模型：傳統和 Resource Manager。 如果您已�
 
 ## <a name="ExpressRoute"></a>ExpressRoute (私人連線)
 
-Microsoft Azure ExpressRoute 可讓您透過連線提供者所提供的私人連線，將內部部署網路延伸至 Microsoft 雲端。 透過 ExpressRoute，您可以建立 Microsoft 雲端服務的連線，例如 Microsoft Azure、Office 365 和 CRM Online。 從任意點對任意點 (IP VPN) 網路、點對點乙太網路，或在共置設施上透過連線提供者的虛擬交叉連接，都可以進行連線。
+ExpressRoute 可讓您透過連線提供者所提供的私人連線，將內部部署網路延伸至 Microsoft 雲端。 透過 ExpressRoute，您可以建立 Microsoft 雲端服務的連線，例如 Microsoft Azure、Office 365 和 CRM Online。 從任意點對任意點 (IP VPN) 網路、點對點乙太網路，或在共置設施上透過連線提供者的虛擬交叉連接，都可以進行連線。
 
 ExpressRoute 連線不會經過公用網際網路。 相較於一般網際網路連線，這可讓 ExpressRoute 連線提供更可靠、更快速、延遲更短和更安全的連線。
 
-ExpressRoute 連線不會使用 VPN 閘道，但是會以虛擬網路閘道做為其必要組態的一部分。 在 ExpressRoute 連線中，虛擬網路閘道的閘道類型已設定為 'ExpressRoute' 而不是 'Vpn'。 如需 ExpressRoute 的詳細資訊，請參閱 [ExpressRoute 技術概觀](../expressroute/expressroute-introduction.md)。
+ExpressRoute 連線會以虛擬網路閘道作為其必要組態的一部分。 在 ExpressRoute 連線中，虛擬網路閘道的閘道類型已設定為 'ExpressRoute' 而不是 'Vpn'。 雖然透過 ExpressRoute 線路傳輸的流量預設並未加密，但有可能建立一個解決方案，讓您透過 ExpressRoute 線路傳送已加密的流量。 如需 ExpressRoute 的詳細資訊，請參閱 [ExpressRoute 技術概觀](../expressroute/expressroute-introduction.md)。
 
 ## <a name="coexisting"></a>站對站及 ExpressRoute 並存連線
 

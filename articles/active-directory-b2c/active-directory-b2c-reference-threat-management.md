@@ -1,21 +1,21 @@
 ---
-title: Azure Active Directory B2C：威脅管理 | Microsoft Docs
+title: Azure Active Directory B2C 中的威脅管理 | Microsoft Docs
 description: 了解 Azure Active Directory B2C 中針對拒絕服務攻擊和密碼攻擊的偵測和風險降低技術。
 services: active-directory-b2c
-documentationcenter: ''
 author: davidmu1
 manager: mtillman
-editor: ''
-ms.service: active-directory-b2c
+ms.service: active-directory
 ms.workload: identity
-ms.topic: article
+ms.topic: conceptual
 ms.date: 03/27/2016
 ms.author: davidmu
-ms.openlocfilehash: 5ab699b0dccd772ec905699d94dedaca0eefcdad
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: B2C
+ms.openlocfilehash: 1801fe9695aa15850d600300b957df2c7d7cd9ef
+ms.sourcegitcommit: 30c7f9994cf6fcdfb580616ea8d6d251364c0cd1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 08/18/2018
+ms.locfileid: "42140285"
 ---
 # <a name="azure-active-directory-b2c-threat-management"></a>Azure Active Directory B2C：威脅管理
 
@@ -29,4 +29,4 @@ Azure AD B2C 使用偵測和降低風險的技術 (例如 SYN Cookie) 及速率�
 
 Azure AD B2C 也備有降低風險的技術，可防範密碼攻擊。 風險降低包括暴力密碼破解攻擊和字典密碼破解攻擊。 使用者所設定的密碼必須達到適當的複雜性。 Azure AD B2C 會利用不同的訊號來分析要求的完整性。 Azure AD B2C 的設計會很聰明地區分預定使用者與駭客和殭屍網路。 Azure AD B2C 提供很精密的策略，在可能遭受攻擊時，可根據輸入的密碼來鎖定帳戶。
 
-如需詳細資訊，請瀏覽 [Microsoft 信任中心](https://www.microsoft.com/trustcenter/security/threatmanagement)。
+如需詳細資訊，請瀏覽 [Microsoft 信任中心](https://www.microsoft.com/trustcenter/default.aspx)。

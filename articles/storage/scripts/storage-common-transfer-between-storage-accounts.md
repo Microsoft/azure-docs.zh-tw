@@ -1,6 +1,6 @@
 ---
-title: "Azure PowerShell 指令碼範例 - 在 Windows 上使用 AzCopy 在儲存體帳戶間移轉 blob | Microsoft Docs"
-description: "使用 AzCopy，將一個 Azure 儲存體帳戶的 Blob 內容複製到另一個。"
+title: Azure PowerShell 指令碼範例 - 在 Windows 上使用 AzCopy 在儲存體帳戶間移轉 blob | Microsoft Docs
+description: 使用 AzCopy，將一個 Azure 儲存體帳戶的 Blob 內容複製到另一個。
 services: storage
 documentationcenter: na
 author: roygara
@@ -18,6 +18,7 @@ ms.sourcegitcommit: eeb5daebf10564ec110a4e83874db0fb9f9f8061
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 02/03/2018
+ms.locfileid: "29360712"
 ---
 # <a name="migrate-blobs-across-storage-accounts-using-azcopy-on-windows"></a>在 Windows 上使用 AzCopy 在儲存體帳戶間移轉 blob
 

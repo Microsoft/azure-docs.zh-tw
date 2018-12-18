@@ -1,10 +1,10 @@
 ---
-title: "啟用 Azure 行動應用程式的離線同步處理 (Xamarin.Forms) | Microsoft Docs"
-description: "了解如何在 Xamarin.Forms 應用程式中使用 App Service 行動應用程式快取和同步離線資料"
+title: 啟用 Azure 行動應用程式的離線同步處理 (Xamarin.Forms) | Microsoft Docs
+description: 了解如何在 Xamarin.Forms 應用程式中使用 App Service 行動應用程式快取和同步離線資料
 documentationcenter: xamarin
 author: conceptdev
 manager: yochayk
-editor: 
+editor: ''
 services: app-service\mobile
 ms.assetid: acf0f874-3ea5-4410-bd22-b0e72140f3b5
 ms.service: app-service-mobile
@@ -19,6 +19,7 @@ ms.sourcegitcommit: df4ddc55b42b593f165d56531f591fdb1e689686
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 01/04/2018
+ms.locfileid: "27594712"
 ---
 # <a name="enable-offline-sync-for-your-xamarinforms-mobile-app"></a>啟用 Xamarin.Forms 行動應用程式的離線同步處理
 [!INCLUDE [app-service-mobile-selector-offline](../../includes/app-service-mobile-selector-offline.md)]
@@ -39,9 +40,9 @@ ms.lasthandoff: 01/04/2018
         #define OFFLINE_SYNC_ENABLED
 3. (選擇性) 若要支援 Windows 裝置，請安裝下列其中一個 SQLite 執行階段封裝︰
 
-   * **Windows 8.1 執行階段：**安裝[適用於 Windows 8.1 的 SQLite][3]。
-   * **Windows Phone 8.1：**安裝[適用於 Windows Phone 8.1 的 SQLite][4]。
-   * **通用 Windows 平台：**安裝 [適用於通用 Windows 平台的 SQLite][5]。
+   * **Windows 8.1 執行階段：** 安裝[適用於 Windows 8.1 的 SQLite][3]。
+   * **Windows Phone 8.1：** 安裝[適用於 Windows Phone 8.1 的 SQLite][4]。
+   * **通用 Windows 平台：** 安裝 [適用於通用 Windows 平台的 SQLite][5]。
 
      雖然快速入門中未包含通用 Windows 專案，使用 Xamarin Forms 可支援通用 Windows 平台。
 4. (選擇性) 在每個 Windows 應用程式專案中，以滑鼠右鍵按一下 [參考] >  [新增參考...]，展開 [Windows] 資料夾 > [擴充]。

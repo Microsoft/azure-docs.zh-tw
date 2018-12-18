@@ -1,25 +1,19 @@
 ---
-title: "上傳資料 (REST API - Azure 搜尋服務) | Microsoft Docs"
-description: "了解如何使用 REST API 將資料上傳至 Azure 搜尋服務中的索引。"
+title: 上傳資料 (REST API - Azure 搜尋服務) | Microsoft Docs
+description: 了解如何使用 REST API 將資料上傳至 Azure 搜尋服務中的索引。
+author: brjohnstmsft
+manager: jlembicz
+ms.author: brjohnst
 services: search
-documentationcenter: 
-author: ashmaka
-manager: jhubbard
-editor: 
-tags: 
-ms.assetid: 8d0749fb-6e08-4a17-8cd3-1a215138abc6
 ms.service: search
 ms.devlang: rest-api
-ms.workload: search
-ms.topic: get-started-article
-ms.tgt_pltfrm: na
-ms.date: 12/08/2016
-ms.author: ashmaka
-ms.openlocfilehash: f22a33ed86fbfc46dfa732239263a49f34c4afee
-ms.sourcegitcommit: 68aec76e471d677fd9a6333dc60ed098d1072cfc
+ms.topic: quickstart
+ms.date: 04/20/2018
+ms.openlocfilehash: 53b20c9db7efe1f8876eec7c0167dc151aa38786
+ms.sourcegitcommit: e2adef58c03b0a780173df2d988907b5cb809c82
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/18/2017
+ms.lasthandoff: 04/28/2018
 ---
 # <a name="upload-data-to-azure-search-using-the-rest-api"></a>使用 REST API 將資料上傳至 Azure 搜尋服務
 > [!div class="op_single_selector"]
@@ -66,9 +60,9 @@ ms.lasthandoff: 12/18/2017
 既然您已收集好索引動作的必要欄位值，您可以開始建構實際的 HTTP 要求和 JSON 要求主體以匯入資料。
 
 #### <a name="request-and-request-headers"></a>要求和要求標頭
-您需要在 URL 中提供服務名稱、索引名稱 (在本例中為 "hotels") 以及適當的 API 版本 (本文件發行時的最新 API 版本是 `2016-09-01` )。 您也需要定義 `Content-Type` 和 `api-key` 要求標頭。 請對後者使用服務的其中一個系統管理金鑰。
+您需要在 URL 中提供服務名稱、索引名稱 (在本例中為 "hotels") 以及適當的 API 版本 (本文件發行時的最新 API 版本是 `2017-11-11` )。 您也需要定義 `Content-Type` 和 `api-key` 要求標頭。 請對後者使用服務的其中一個系統管理金鑰。
 
-    POST https://[search service].search.windows.net/indexes/hotels/docs/index?api-version=2016-09-01
+    POST https://[search service].search.windows.net/indexes/hotels/docs/index?api-version=2017-11-11
     Content-Type: application/json
     api-key: [admin key]
 

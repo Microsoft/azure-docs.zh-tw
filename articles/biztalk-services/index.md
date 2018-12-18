@@ -1,11 +1,11 @@
 ---
-title: "Azure BizTalk 服務文件 - 教學課程 | Microsoft Docs"
-description: "了解如何使用 BizTalk 服務，為 SAP、Oracle EBS、SQL Server 及 PeopleSoft 內部部署與企業營運應用程式整合提供最先進的雲端功能。"
+title: Azure BizTalk 服務文件 - 教學課程 | Microsoft Docs
+description: 了解如何使用 BizTalk 服務，為 SAP、Oracle EBS、SQL Server 及 PeopleSoft 內部部署與企業營運應用程式整合提供最先進的雲端功能。
 services: biztalk-services
 author: czeumault
 manager: carolz
 layout: LandingPage
-ms.assetid: 
+ms.assetid: ''
 ms.service: biztalk-services
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -17,6 +17,7 @@ ms.sourcegitcommit: e266df9f97d04acfc4a843770fadfd8edf4fa2b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 12/11/2017
+ms.locfileid: "26625091"
 ---
 # <a name="biztalk-services-documentation"></a>BizTalk 服務文件
 

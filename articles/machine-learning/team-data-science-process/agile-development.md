@@ -2,22 +2,24 @@
 title: 敏捷式資料科學專案開發 - Azure Machine Learning | Microsoft Docs
 description: 開發人員如何藉由使用 Team Data Science Process，在專案小組中以系統化、版本控制，以及共同作業的方式執行資料科學專案。
 documentationcenter: ''
-author: bradsev
+author: deguhath
 manager: cgronlun
 editor: cgronlun
 ms.assetid: ''
 ms.service: machine-learning
+ms.component: team-data-science-process
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 11/28/2017
-ms.author: bradsev
-ms.openlocfilehash: dbaf2df0f5572c9b269000c741f1d736a7521d73
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.author: deguhath
+ms.openlocfilehash: a032127d249f944d08cc6578a03f1a7e5a658361
+ms.sourcegitcommit: f3bd5c17a3a189f144008faf1acb9fabc5bc9ab7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 09/10/2018
+ms.locfileid: "44301084"
 ---
 # <a name="agile-development-of-data-science-projects"></a>敏捷式資料科學專案開發
 
@@ -29,7 +31,7 @@ ms.lasthandoff: 03/28/2018
 2. **新增工作項目**至短期衝刺。 
 
 > [!NOTE]
-> 下列指示集合中概述了使用 Visual Studio Team Services (VSTS) 設定 TDSP 小組環境所需的步驟。 它們會指定如何使用 VSTS 完成這些工作，因為這是在 Microsoft 中實作 TDSP 的方式。  上述清單中的項目 (3) 和 (4) 是您選擇使用 VSTS 時自然得到的權益。 如果針對您的群組使用另一個程式碼裝載平台，必須由小組負責人完成的工作通常不會變更。 但是完成這些工作的方式將會不同。 例如，區段 6 中的項目：**連結工作項目與 Git 分支**，可能無法像在 VSTS 上一樣簡單。
+> 下列指示集中概述了使用 Azure DevOps Services 設定 TDSP 小組環境所需的步驟。 他們會指定如何使用 Azure DevOps Services 完成這些工作，因為這是在 Microsoft 中實作 TDSP 的方式。  上述清單中的項目 (3) 和 (4) 是您選擇使用 Azure DevOps Services 時自然得到的權益。 如果針對您的群組使用另一個程式碼裝載平台，必須由小組負責人完成的工作通常不會變更。 但是完成這些工作的方式將會不同。 例如，區段 6 中的項目：**連結工作項目與 Git 分支**，可能無法像在 Azure DevOps Services 上一樣簡單。
 >
 >
 
@@ -40,7 +42,7 @@ ms.lasthandoff: 03/28/2018
 
 ##  1.<a name='Terminology-1'></a>術語 
 
-在 TDSP 短期衝刺計劃架構中，有四種常用的**工作項目**類型：**功能**、**使用者劇本**、**工作**和 **Bug**。 每個 Team 專案會針對所有工作項目維護單一待處理項目。 在 Team 專案底下的 Git 存放庫層級沒有任何待處理項目。 其定義如下：
+在 TDSP 短期衝刺計劃架構中，有四種常用的**工作項目**類型：**功能**、**使用者劇本**、**工作**和 **Bug**。 每個專案都會為所有工作項目維護單一待辦項目。 在專案下的 Git 存放庫層級沒有任何待辦項目。 其定義如下：
 
 - **功能**：對應至專案參與的功能。 用戶端的不同參與會被視為不同的功能。 同樣地，最好將用戶端專案的不同階段視為不同的功能。 如果您選擇例如 ***ClientName-EngagementName*** 的結構描述來為功能命名，則您可以輕易地從名稱本身辨識專案/參與的內容。
 - **劇本**：劇本是與端對端完成功能 (專案) 所需的工作項目不同的工作項目。 劇本的範例包括：
@@ -67,14 +69,14 @@ ms.lasthandoff: 03/28/2018
 
 ## 2.<a name='SprintPlanning-2'></a>短期衝刺計劃 
 
-短期衝刺計劃對於專案優先順序，以及資源規劃和配置相當有用。 許多資料科學家正在參與許多專案，每個專案都可能需要幾個月才能完成。 專案通常是以不同的步調進行。 在 VSTS 伺服器上，您可以輕鬆地建立、管理和追蹤 Team 專案中的工作項目，並且執行短期衝刺計劃，以確保您的專案如預期般前進。 
+短期衝刺計劃對於專案優先順序，以及資源規劃和配置相當有用。 許多資料科學家正在參與許多專案，每個專案都可能需要幾個月才能完成。 專案通常是以不同的步調進行。 在 Azure DevOps Services 上，您可以輕鬆地建立、管理和追蹤專案中的工作項目，並且執行短期衝刺計劃，以確保您的專案如預期般進行。 
 
-請遵循[此連結](https://www.visualstudio.com/en-us/docs/work/scrum/sprint-planning)以取得 VSTS 中短期衝刺計劃的逐步指示。 
+請遵循[此連結](https://www.visualstudio.com/en-us/docs/work/scrum/sprint-planning)以取得 Azure DevOps Services 中短期衝刺計劃的逐步指示。 
 
 
 ## 3.<a name='AddFeature-3'></a>新增功能  
 
-在 Team 專案底下建立專案存放庫之後，請移至小組 [概觀] 分頁，然後按一下 [管理工作]。
+在專案下建立專案存放庫之後，請移至小組 [概觀] 分頁，然後按一下 [管理工作]。
 
 ![2](./media/agile-development/2-sprint-team-overview.png)
 
@@ -159,11 +161,11 @@ ms.lasthandoff: 03/28/2018
 
 建立資料科學程序範本之後，您就可以建立及追蹤對應至 TDSP 生命週期的資料科學工作項目。
 
-1. 當您建立新的 team 專案時，請選取 "Agile\AgileDataScienceProcess" 作為 [工作項目程序]：
+1. 當您建立新的專案時，請選取 "Agile\AgileDataScienceProcess" 作為 [工作項目程序]：
 
     ![15](./media/agile-development/15-newproject.png)
 
-2. 瀏覽至新建立的 team 專案，然後按一下 [工作] -> [待辦項目]。
+2. 瀏覽至新建立的專案，然後按一下 [工作] -> [待辦項目]。
 
 3. 按一下 [設定小組設定] 並檢查「TDSP 專案」來顯示「TDSP 專案」；然後儲存。
 

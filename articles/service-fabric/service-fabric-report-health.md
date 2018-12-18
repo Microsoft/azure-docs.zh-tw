@@ -1,24 +1,24 @@
 ---
-title: "加入自訂 Service Fabric 健康狀態報告 | Microsoft Docs"
-description: "描述如何將自訂健康狀態報告傳送給 Azure Service Fabric 健康狀態實體。 提供設計和實作高品質健康狀態報告的建議。"
+title: 加入自訂 Service Fabric 健康狀態報告 | Microsoft Docs
+description: 描述如何將自訂健康狀態報告傳送給 Azure Service Fabric 健康狀態實體。 提供設計和實作高品質健康狀態報告的建議。
 services: service-fabric
 documentationcenter: .net
 author: oanapl
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 0a00a7d2-510e-47d0-8aa8-24c851ea847f
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 2/28/2018
 ms.author: oanapl
-ms.openlocfilehash: 1cd429ed8252573f8e8c3ed11d6c841cba855b52
-ms.sourcegitcommit: 782d5955e1bec50a17d9366a8e2bf583559dca9e
+ms.openlocfilehash: 3eccb6ba18e6689c3726c8d930279b8a85ab1c92
+ms.sourcegitcommit: eb75f177fc59d90b1b667afcfe64ac51936e2638
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/02/2018
+ms.lasthandoff: 05/16/2018
 ---
 # <a name="add-custom-service-fabric-health-reports"></a>新增自訂 Service Fabric 健康狀態報告
 Azure Service Fabric 引入了 [健康狀態模型](service-fabric-health-introduction.md) ，主要用於在特定實體上標示狀況不良的叢集和應用程式條件。 健康狀態模型使用 **健康狀態報告程式** (系統元件及看門狗)。 目標為輕易迅速的診斷並修復問題。 服務寫入器必須預先考慮到健康狀態。 任何可能會影響到健康狀態的條件都需加以回報，尤其是如果它有助標示出接近根目錄的問題。 健康情況資訊將可有效減少偵錯和調查工作所需的時間和心力。 一旦在雲端 (私人或 Azure) 大規模啟動並執行服務，效益特別明顯。

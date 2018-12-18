@@ -1,13 +1,13 @@
 ---
-title: "Azure CLI 指令碼範例 - 建立具有 OMS 監視的 Windows Server 2016 VM | Microsoft Docs"
-description: "Azure CLI 指令碼範例 - 建立具有 OMS 監視的 Windows Server 2016 VM"
+title: Azure CLI 指令碼範例 - 建立具有 OMS 監視的 Windows Server 2016 VM | Microsoft Docs
+description: Azure CLI 指令碼範例 - 建立具有 OMS 監視的 Windows Server 2016 VM
 services: virtual-machines-Windows
 documentationcenter: virtual-machines
 author: rickstercdn
-manager: timlt
+manager: jeconnoc
 editor: tysonn
-tags: 
-ms.assetid: 
+tags: ''
+ms.assetid: ''
 ms.service: virtual-machines-Windows
 ms.devlang: azurecli
 ms.topic: sample
@@ -16,11 +16,12 @@ ms.workload: infrastructure
 ms.date: 02/23/2017
 ms.author: rclaus
 ms.custom: mvc
-ms.openlocfilehash: 7d9a72ba46def786e03565521ca225d438aa26b4
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+ms.openlocfilehash: 05ecaa856cf2c513b48f0ba0f170dfb3bbf31e75
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34658286"
 ---
 # <a name="monitor-a-vm-with-operations-management-suite"></a>使用 Operations Management Suite 監視 VM
 

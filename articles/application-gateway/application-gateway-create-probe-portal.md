@@ -1,11 +1,11 @@
 ---
-title: "建立自訂探查 - Azure 應用程式閘道 - Azure 入口網站 | Microsoft Docs"
-description: "了解如何使用入口網站建立應用程式閘道的自訂探查"
+title: 建立自訂探查 - Azure 應用程式閘道 - Azure 入口網站 | Microsoft Docs
+description: 了解如何使用入口網站建立應用程式閘道的自訂探查
 services: application-gateway
 documentationcenter: na
-author: davidmu1
-manager: timlt
-editor: 
+author: vhorne
+manager: jpconnock
+editor: ''
 tags: azure-resource-manager
 ms.assetid: 33fd5564-43a7-4c54-a9ec-b1235f661f97
 ms.service: application-gateway
@@ -14,12 +14,13 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/26/2017
-ms.author: davidmu
-ms.openlocfilehash: bb77c9b39e1aa89f6411de8ec3b1fca41e954bf2
-ms.sourcegitcommit: b5c6197f997aa6858f420302d375896360dd7ceb
+ms.author: victorh
+ms.openlocfilehash: 45737c1c378ec56a5e2bedec8c1f7b7bc7ba6225
+ms.sourcegitcommit: c47ef7899572bf6441627f76eb4c4ac15e487aec
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/21/2017
+ms.lasthandoff: 05/04/2018
+ms.locfileid: "33203902"
 ---
 # <a name="create-a-custom-probe-for-application-gateway-by-using-the-portal"></a>使用入口網站建立應用程式閘道的自訂探查
 
@@ -53,7 +54,7 @@ ms.lasthandoff: 12/21/2017
   |**名稱**|customProbe|此值是可在入口網站中存取的易記探查名稱。|
   |**通訊協定**|HTTP 或 HTTPS | 健康狀態探查所使用的通訊協定。|
   |**Host**|亦即 contoso.com|此值是用於探查的主機名稱。 只有當應用程式閘道上設定多站台時適用，否則請使用 '127.0.0.1'。 此值與 VM 主機名稱不同。|
-  |**路徑**|/ 或另一個路徑|自訂探查完整 URL 的其餘部分。 有效路徑的開頭為 '/'。 針對 http://contoso.com 的預設路徑，只要使用 '/' |
+  |**路徑**|/ 或另一個路徑|自訂探查完整 URL 的其餘部分。 有效路徑的開頭為 '/'。 針對 http://contoso.com 的預設路徑，只要使用 '/' 即可 |
   |**間隔 (秒)**|30|執行探查以檢查健康狀態的頻率。 建議您不要設定低於 30 秒。|
   |**逾時 (秒)**|30|探查逾時前所等待的時間。逾時間隔需要高到足以進行 http 呼叫，以確保可使用後端的健康狀態頁面。|
   |**狀況不良臨界值**|3|視為狀況不良的失敗嘗試次數。 臨界值為 0 表示，如果健康狀態檢查失敗，後端會被立即斷定為狀況不良。|

@@ -1,26 +1,21 @@
 ---
-title: "採用 Python 元件的 Apache Storm - Azure HDInsight | Microsoft Docs"
-description: "了解如何建立使用 Python 元件的 Apache Storm 拓撲。"
+title: 使用 Python 元件的 Apache Storm - Azure HDInsight
+description: 了解如何建立使用 Python 元件的 Apache Storm 拓撲。
 services: hdinsight
-documentationcenter: 
-author: Blackmist
-manager: jhubbard
-editor: cgronlun
+author: jasonwhowell
+ms.reviewer: jasonh
 keywords: apache storm python
-ms.assetid: edd0ec4f-664d-4266-910c-6ecc94172ad8
 ms.service: hdinsight
 ms.custom: hdinsightactive,hdiseo17may2017
-ms.devlang: python
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 01/22/2018
-ms.author: larryfr
-ms.openlocfilehash: 1da38ebbe3354bbb36f68d1243b30bf2f4c5633f
-ms.sourcegitcommit: 5ac112c0950d406251551d5fd66806dc22a63b01
+ms.topic: conceptual
+ms.date: 04/30/2018
+ms.author: jasonh
+ms.openlocfilehash: 753c870f5d99d7bf887944b0d180645dc019b2b1
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43045762"
 ---
 # <a name="develop-apache-storm-topologies-using-python-on-hdinsight"></a>在 HDInsight 上使用 Python 開發 Apache Storm 拓撲
 
@@ -29,9 +24,9 @@ ms.lasthandoff: 01/23/2018
 > [!IMPORTANT]
 > 本文件中的資訊已使用 Storm on HDInsight 3.6 進行測試。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](../hdinsight-component-versioning.md#hdinsight-windows-retirement)。
 
-此專案的程式碼可於 [https://github.com/Azure-Samples/hdinsight-python-storm-wordcount](https://github.com/Azure-Samples/hdinsight-python-storm-wordcount)取得。
+此專案的程式碼位於 [https://github.com/Azure-Samples/hdinsight-python-storm-wordcount](https://github.com/Azure-Samples/hdinsight-python-storm-wordcount)。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 * Python 2.7 或更新版本
 
@@ -39,11 +34,11 @@ ms.lasthandoff: 01/23/2018
 
 * Maven 3
 
-* (選擇性) 本機 Storm 開發環境。 只有當您想要在本機執行拓撲時，才需要本機 Storm 環境。 如需詳細資訊，請參閱[設定開發環境](http://storm.apache.org/releases/1.1.0/Setting-up-development-environment.html)。
+* (選擇性) 本機 Storm 開發環境。 只有當您想要在本機執行拓撲時，才需要本機 Storm 環境。 如需詳細資訊，請參閱[設定開發環境](http://storm.apache.org/releases/1.1.2/Setting-up-development-environment.html)。
 
 ## <a name="storm-multi-language-support"></a>Storm 多語言支援
 
-Apache Storm 專門用來搭配以任何程式設計語言撰寫的元件。 這些元件必須了解如何使用 [Storm 的 Thrift 定義](https://github.com/apache/storm/blob/master/storm-core/src/storm.thrift)。 在 Python 中，Apache Storm 專案隨附一個模組，可讓您輕鬆地與 Strom 互動。 您可以在 [https://github.com/apache/storm/blob/master/storm-multilang/python/src/main/resources/resources/storm.py](https://github.com/apache/storm/blob/master/storm-multilang/python/src/main/resources/resources/storm.py)找到此模組。
+Apache Storm 專門用來搭配以任何程式設計語言撰寫的元件。 這些元件必須了解如何使用 [Storm 的 Thrift 定義](https://github.com/apache/storm/blob/master/storm-core/src/storm.thrift)。 在 Python 中，Apache Storm 專案隨附一個模組，可讓您輕鬆地與 Strom 互動。 您可以在 [https://github.com/apache/storm/blob/master/storm-multilang/python/src/main/resources/resources/storm.py](https://github.com/apache/storm/blob/master/storm-multilang/python/src/main/resources/resources/storm.py) 找到此模組。
 
 Storm 是在 Java 虛擬機器 (JVM) 上執行的 Java 程序。 以其他語言撰寫的元件會以子流程執行。 Storm 會使用透過 stdin/stdout 傳送的 JSON 訊息，與這些子流程進行通訊。 如需各元件之間通訊的詳細資訊，請參閱 [多語言通訊協定](https://storm.apache.org/documentation/Multilang-protocol.html) 文件。
 
@@ -98,7 +93,7 @@ storm jar WordCount-1.0-SNAPSHOT.jar org.apache.storm.flux.Flux -l -R /topology.
 ```
 
 > [!NOTE]
-> 此命令需要本機 Storm 開發環境。 如需詳細資訊，請參閱[設定開發環境](http://storm.apache.org/releases/1.0.1/Setting-up-development-environment.html)。
+> 此命令需要本機 Storm 開發環境。 如需詳細資訊，請參閱[設定開發環境](http://storm.apache.org/releases/current/Setting-up-development-environment.html)。
 
 拓撲啟動之後，就會將類似下列文字的資訊發出至本機主控台︰
 

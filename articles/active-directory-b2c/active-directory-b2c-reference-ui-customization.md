@@ -1,30 +1,30 @@
 ---
-title: 使用者介面 (UI) 自訂 - Azure AD B2C | Microsoft Docs
-description: 有關 Azure Active Directory B2C 中的使用者介面 (UI) 自訂功能的主題
+title: Azure Active Directory B2C 中的使用者介面 (UI) 自訂 | Microsoft Docs
+description: 有關 Azure Active Directory B2C 中使用者介面 (UI) 自訂功能的主題。
 services: active-directory-b2c
-documentationcenter: ''
 author: davidmu1
 manager: mtillman
-editor: ''
-ms.service: active-directory-b2c
+ms.service: active-directory
 ms.workload: identity
-ms.topic: article
+ms.topic: conceptual
 ms.date: 08/16/2017
 ms.author: davidmu
-ms.openlocfilehash: ea33fa95aa7b73668aeee313a9d71a7f78e89a77
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: B2C
+ms.openlocfilehash: 385c13194063761d6449fafa49714d8627f6c6fc
+ms.sourcegitcommit: 86cb3855e1368e5a74f21fdd71684c78a1f907ac
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37447048"
 ---
 # <a name="azure-active-directory-b2c-customize-the-azure-ad-b2c-user-interface-ui"></a>Azure Active Directory B2C：自訂 Azure AD B2C 使用者介面 (UI)
 
 使用者經驗是客戶面向應用程式中最重要的。  運用品牌外觀及風格來打造使用者經驗，從而擴大您的客戶群。 Azure Active Directory B2C (Azure AD B2C) 可讓您以精準的像素控制來自訂註冊、登入、設定檔編輯和密碼重設頁面。
 
 > [!NOTE]
-> 本文中所述的網頁 UI 自訂功能並不適用於唯登入原則、其伴隨的密碼重設頁面，以及驗證電子郵件。  反之，這些功能會使用[公司品牌功能](../active-directory/customize-branding.md)。
+> 本文中所述的網頁 UI 自訂功能並不適用於唯登入原則、其伴隨的密碼重設頁面，以及驗證電子郵件。  反之，這些功能會使用[公司品牌功能](../active-directory/fundamentals/customize-branding.md)。
 >
-> 同樣地，如果使用者在登入*之前*起始編輯設定檔原則，使用者會被重新導向至可使用[公司品牌特色](../active-directory/customize-branding.md)自訂的頁面。
+> 同樣地，如果使用者在登入*之前*起始編輯設定檔原則，使用者會被重新導向至可使用[公司品牌特色](../active-directory/fundamentals/customize-branding.md)自訂的頁面。
 
 本文章涵蓋下列主題：
 
@@ -332,7 +332,17 @@ ms.lasthandoff: 03/23/2018
 
 ## <a name="localizing-your-html-content"></a>將 HTML 內容當地語系化
 
-您可以開啟[「語言自訂」](active-directory-b2c-reference-language-customization.md)，將 HTML 內容當地語系化。  啟用此功能會讓 Azure AD B2C 將 Open ID Connect 參數 `ui-locales` 轉送給端點。  內容伺服器可以使用這個參數來提供語言特定的自訂 HTML 頁面。
+有兩種方法可將您的 HTML 內容當地語系化。 一種方式是開啟[語言自訂](active-directory-b2c-reference-language-customization.md)。 啟用此功能會讓 Azure AD B2C 將 Open ID Connect 參數 `ui-locales` 轉送給端點。  內容伺服器可以使用這個參數來提供語言特定的自訂 HTML 頁面。
+
+或者，您也可以根據所使用的地區設定，從不同的地方提取內容。 在已啟用 CORS 的端點中，您可以針對特定語言設定主機內容的資料夾結構。 如果您使用萬用字元值 `{Culture:RFC5646}`，則會呼叫正確的語言。  例如，假設這是您的自訂頁面 URI：
+
+```
+https://wingtiptoysb2c.blob.core.windows.net/{Culture:RFC5646}/wingtip/unified.html
+```
+您可以用 `fr` 載入頁面。 當頁面提取 HTML 和 CSS 內容時，它會從下列位置提取：
+```
+https://wingtiptoysb2c.blob.core.windows.net/fr/wingtip/unified.html
+```
 
 ## <a name="things-to-remember-when-building-your-own-content"></a>建置自己的內容時的注意事項
 
@@ -345,3 +355,4 @@ ms.lasthandoff: 03/23/2018
   * 對 Internet Explorer 9、8 提供有限支援
   * Google Chrome 42.0 和更新版本
   * Mozilla Firefox 38.0 和更新版本
+* 請確定您的 HTML 中未包含 `<form>` 標記，因為這會干擾從 Azure AD B2C 插入的 HTML 所產生的 POST 作業。

@@ -1,6 +1,6 @@
 ---
-title: "Azure CLI 指令碼範例 - 取得受控資源群組並調整 VM 的大小 | Microsoft Docs"
-description: "Azure CLI 指令碼範例 - 取得受控資源群組並調整 VM 的大小"
+title: Azure CLI 指令碼範例 - 取得受控資源群組並調整 VM 的大小 | Microsoft Docs
+description: Azure CLI 指令碼範例 - 取得受控資源群組並調整 VM 的大小
 services: managed-applications
 documentationcenter: na
 author: tfitzmac
@@ -12,11 +12,12 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 10/25/2017
 ms.author: tomfitz
-ms.openlocfilehash: 9c4032191738703b71319c05bce4f6bbbc61b44b
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+ms.openlocfilehash: 85d58538e15881308ee1f645f7ddd12ec27c94de
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39423407"
 ---
 # <a name="get-resources-in-a-managed-resource-group-and-resize-vms-with-azure-cli"></a>使用 Azure CLI 取得受控資源群組中的資源並調整 VM 大小
 
@@ -38,9 +39,9 @@ ms.lasthandoff: 03/09/2018
 
 | 命令 | 注意 |
 |---|---|
-| [az managedapp list](https://docs.microsoft.com/cli/azure/managedapp#az_managedapp_list) | 列出受控應用程式。 提供查詢值以聚焦在結果上。 |
-| [az resource list](https://docs.microsoft.com/cli/azure/resource#az_resource_list) | 列出資源。 提供用來聚焦結果的資源群組名稱。 |
-| [az vm resize](https://docs.microsoft.com/cli/azure/vm#az_vm_resize) | 更新虛擬機器的大小。 |
+| [az managedapp list](https://docs.microsoft.com/cli/azure/managedapp#az-managedapp-list) | 列出受控應用程式。 提供查詢值以聚焦在結果上。 |
+| [az resource list](https://docs.microsoft.com/cli/azure/resource#az-resource-list) | 列出資源。 提供用來聚焦結果的資源群組名稱。 |
+| [az vm resize](https://docs.microsoft.com/cli/azure/vm#az-vm-resize) | 更新虛擬機器的大小。 |
 
 
 ## <a name="next-steps"></a>後續步驟

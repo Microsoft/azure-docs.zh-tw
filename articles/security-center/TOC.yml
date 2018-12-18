@@ -1,197 +1,233 @@
+items:
 - name: 資訊安全中心文件
   href: index.yml
 - name: 概觀
   items:
-    - name: 關於資訊安全中心
-      href: security-center-intro.md
+  - name: 關於資訊安全中心
+    href: security-center-intro.md
+  - name: 資訊安全中心支援的平台及功能
+    href: security-center-os-coverage.md
 - name: 快速入門
-  expanded: true
   items:
-    - name: Azure 訂用帳戶
-      href: security-center-get-started.md
-    - name: Windows 電腦
-      href: quick-onboard-windows-computer.md
-    - name: Linux 電腦
-      href: quick-onboard-linux-computer.md
-    - name: 安全性解決方案
-      href: quick-security-solutions.md
+  - name: Azure 訂用帳戶
+    href: security-center-get-started.md
+  - name: Windows 電腦
+    href: quick-onboard-windows-computer.md
+  - name: Linux 電腦
+    href: quick-onboard-linux-computer.md
+  - name: 安全性解決方案
+    href: quick-security-solutions.md
+  expanded: true
 - name: 教學課程
   items:
-    - name: 定義安全性原則
-      href: tutorial-security-policy.md
-    - name: 保護您的資源
-      href: tutorial-protect-resources.md
-    - name: 回應事件
-      href: tutorial-security-incident.md
+  - name: 定義安全性原則
+    href: tutorial-security-policy.md
+  - name: 保護您的資源
+    href: tutorial-protect-resources.md
+  - name: 回應事件
+    href: tutorial-security-incident.md
 - name: 概念
   items:
-    - name: 權限
-      href: security-center-permissions.md
-    - name: 資料安全性
-      href: security-center-data-security.md
+  - name: 權限
+    href: security-center-permissions.md
+  - name: 資料安全性
+    href: security-center-data-security.md
 - name: 使用說明指南
   items:
-    - name: 升級為進階安全性
-      href: security-center-onboarding.md
-    - name: 設定安全性原則
-      href: security-center-policies-overview.md
+  - name: 改善您的安全分數
+    href: security-center-secure-score.md
+  - name: 升級為進階安全性
+    href: security-center-onboarding.md
+  - name: 使用 Windows Defender ATP 進行伺服器保護
+    href: security-center-wdatp.md
+  - name: 設定安全性原則
+    href: security-center-azure-policy.md
+  - name: 自訂資訊保護原則
+    href: security-center-info-protection-policy.md
+  - name: 安全政策設定
+    href: security-center-policies-overview.md
+    items:
+    - name: 資料收集
+      href: security-center-enable-data-collection.md
+    - name: 原則定義
+      href: security-center-policies.md
+    - name: 電子郵件通知
+      href: security-center-provide-security-contact-details.md
+    - name: 定價層
+      href: security-center-pricing.md
+    - name: 安全性設定
+      href: security-center-customize-os-security-config.md
+    - name: 跨租用戶可見性
+      href: security-center-management-groups.md
+  - name: 實作安全性建議
+    href: security-center-recommendations.md
+  - name: 監視安全性健康狀態
+    href: security-center-monitoring.md
+    items:
+    - name: 計算和應用程式安全性
+      href: security-center-virtual-machine-protection.md
       items:
-        - name: 資料收集
-          href: security-center-enable-data-collection.md
-        - name: 原則定義
-          href: security-center-policies.md
-        - name: 電子郵件通知
-          href: security-center-provide-security-contact-details.md
-        - name: 定價層
-          href: security-center-pricing.md
-        - name: 安全性設定
-          href: security-center-customize-os-security-config.md
-        - name: 使用 Azure 原則的安全性原則
-          href: security-center-azure-policy.md
-    - name: 實作安全性建議
-      href: security-center-recommendations.md
-    - name: 監視安全性健康狀態
-      href: security-center-monitoring.md
+      - name: VM 和電腦的建議
+        href: security-center-virtual-machine-recommendations.md
+        items:
+        - name: 套用磁碟加密
+          href: security-center-apply-disk-encryption.md
+        - name: 套用系統更新
+          href: security-center-apply-system-updates.md
+        - name: 啟用儲存體帳戶加密
+          href: security-center-enable-encryption-for-storage-account.md
+        - name: 啟用 VM 代理程式
+          href: security-center-enable-vm-agent.md
+        - name: 安裝端點保護
+          href: security-center-install-endpoint-protection.md
+        - name: 在系統更新之後重新開機
+          href: security-center-apply-system-updates.md#reboot-after-system-updates
+        - name: 修復安全性設定
+          href: security-center-remediate-os-vulnerabilities.md
+        - name: 更新作業系統版本
+          href: security-center-update-os-version.md
+        - name: 未安裝弱點評估
+          href: security-center-vulnerability-assessment-recommendations.md
+      - name: 應用程式建議
+        href: security-center-add-web-application-firewall.md
+        items:
+        - name: 新增 Web 應用程式防火牆
+          href: security-center-add-web-application-firewall.md
+        - name: 完成應用程式保護
+          href: security-center-add-web-application-firewall.md#finalize-application-protection
+      - name: 容器建議
+        href: security-center-container-recommendations.md
+    - name: 網路安全性
+      href: security-center-network-recommendations.md
       items:
-        - name: 計算安全性
-          href: security-center-virtual-machine-recommendations.md
-          items:
-            - name: 套用磁碟加密
-              href: security-center-apply-disk-encryption.md
-            - name: 套用系統更新
-              href: security-center-apply-system-updates.md
-            - name: 啟用儲存體帳戶加密
-              href: security-center-enable-encryption-for-storage-account.md
-            - name: 啟用 VM 代理程式
-              href: security-center-enable-vm-agent.md
-            - name: 安裝端點保護
-              href: security-center-install-endpoint-protection.md
-            - name: 在系統更新之後重新開機
-              href: 'security-center-apply-system-updates.md#reboot-after-system-updates'
-            - name: 修復安全性設定
-              href: security-center-remediate-os-vulnerabilities.md
-            - name: 更新作業系統版本
-              href: security-center-update-os-version.md
-            - name: 未安裝弱點評估
-              href: security-center-vulnerability-assessment-recommendations.md
-        - name: 網路安全性
-          href: security-center-network-recommendations.md
-          items:
-            - name: 新增新一代防火牆
-              href: security-center-add-next-generation-firewall.md
-            - name: 啟用網路安全性群組
-              href: security-center-enable-network-security-groups.md
-            - name: 透過網際網路面向端點限制存取
-              href: security-center-restrict-access-through-internet-facing-endpoints.md
-            - name: 僅透過 NGFW 路由傳送流量
-              href: 'security-center-add-next-generation-firewall.md#route-traffic-through-ngfw-only'
-        - name: 儲存體和資料安全性
-          href: security-center-sql-service-recommendations.md
-          items:
-            - name: 在 SQL 資料庫上啟用稽核與威脅偵測
-              href: security-center-enable-auditing-on-sql-databases.md
-            - name: 在 SQL 伺服器上啟用稽核與威脅偵測
-              href: security-center-enable-auditing-on-sql-servers.md
-            - name: 啟用透明資料加密
-              href: security-center-enable-transparent-data-encryption.md
-        - name: 應用程式安全性
-          href: security-center-application-recommendations.md
-          items:
-            - name: 新增 Web 應用程式防火牆
-              href: security-center-add-web-application-firewall.md
-            - name: 完成應用程式保護
-              href: 'security-center-add-web-application-firewall.md#finalize-application-protection'
-        - name: 身分識別與存取
-          href: security-center-identity-access.md
-    - name: 套用雲端防禦
+      - name: 新增新一代防火牆
+        href: security-center-add-next-generation-firewall.md
+      - name: 啟用網路安全性群組
+        href: security-center-enable-network-security-groups.md
+      - name: 透過網際網路面向端點限制存取
+        href: security-center-restrict-access-through-internet-facing-endpoints.md
+      - name: 僅透過 NGFW 路由傳送流量
+        href: security-center-add-next-generation-firewall.md#route-traffic-through-ngfw-only
+    - name: 資料與儲存體安全性
+      href: security-center-sql-service-recommendations.md
       items:
-        - name: Just-In-Time 存取
-          href: security-center-just-in-time.md
-        - name: 自適性應用程式控制
-          href: security-center-adaptive-application.md
-    - name: 管理安全性解決方案
-      href: security-center-partner-integration.md
-      items:
-        - name: 連線的解決方案
-          href: security-center-partner-solutions.md
-        - name: 探索到的解決方案
-          href: 'security-center-partner-integration.md#discovered-solutions'
-        - name: 連線外部解決方案
-          href: quick-security-solutions.md
-        - name: 連線應用程式閘道
-          href: security-center-connect-application-gateway.md
-        - name: 連線 Microsoft ATA
-          href: security-center-ata-integration.md
-        - name: 連線 Azure AD Identity Protection
-          href: security-center-aadip-integration.md
-        - name: 將資料匯出至 SIEM
-          href: security-center-export-data-to-siem.md
-    - name: 調查威脅
-      href: security-center-detection-capabilities.md
-      items:
-        - name: 安全性警示
-          href: security-center-managing-and-responding-alerts.md
-        - name: 安全性事件
-          href: security-center-incident.md
-        - name: 威脅報告
-          href: security-center-threat-report.md
-        - name: 警示類型
-          href: security-center-alerts-type.md
-        - name: 自訂警示
-          href: security-center-custom-alert.md
-        - name: 警示驗證
-          href: security-center-alert-validation.md
-        - name: 威脅情報對應
-          href: security-center-threat-intel.md
-        - name: 調查
-          href: security-center-investigation.md
-    - name: 將安全性工作流程自動化
-      items:
-        - name: Logic Apps 手冊
-          href: security-center-playbooks.md
-        - name: 檢視事件
-          href: security-center-events-dashboard.md
-        - name: Search
-          href: security-center-search.md
-    - name: 案例
-      items:
-        - name: 事件回應
-          href: security-center-incident-response.md
-        - name: 使用增強安全性的建議
-          href: security-center-using-recommendations.md
-    - name: 疑難排解
-      href: security-center-troubleshooting-guide.md
+      - name: 在 SQL 資料庫上啟用稽核與威脅偵測
+        href: security-center-enable-auditing-on-sql-databases.md
+      - name: 在 SQL 伺服器上啟用稽核與威脅偵測
+        href: security-center-enable-auditing-on-sql-servers.md
+      - name: 啟用透明資料加密
+        href: security-center-enable-transparent-data-encryption.md
+    - name: 監視身分識別和存取
+      href: security-center-identity-access.md
+  - name: 套用雲端防禦
+    items:
+    - name: 管理及時存取
+      href: security-center-just-in-time.md
+    - name: 自適性應用程式控制
+      href: security-center-adaptive-application.md
+    - name: 檔案完整性監視
+      href: security-center-file-integrity-monitoring.md
+  - name: 管理安全性解決方案
+    href: security-center-partner-integration.md
+    items:
+    - name: 連線的解決方案
+      href: security-center-partner-solutions.md
+    - name: 探索到的解決方案
+      href: security-center-partner-integration.md#discovered-solutions
+    - name: 連線外部解決方案
+      href: quick-security-solutions.md
+    - name: 連線應用程式閘道
+      href: security-center-connect-application-gateway.md
+    - name: 連線 Microsoft ATA
+      href: security-center-ata-integration.md
+    - name: 連線 Azure AD Identity Protection
+      href: security-center-aadip-integration.md
+    - name: 將資料匯出至 SIEM
+      href: security-center-export-data-to-siem.md
+  - name: 調查威脅
+    href: security-center-detection-capabilities.md
+    items:
+    - name: 安全性警示
+      href: security-center-managing-and-responding-alerts.md
+    - name: 安全性事件
+      href: security-center-incident.md
+    - name: 威脅報告
+      href: security-center-threat-report.md
+    - name: 警示類型
+      href: security-center-alerts-type.md
+    - name: 自訂警示
+      href: security-center-custom-alert.md
+    - name: 警示驗證
+      href: security-center-alert-validation.md
+    - name: 警示信賴分數
+      href: security-center-confidence-score.md
+    - name: 安全性警示地圖和威脅情報
+      href: security-center-threat-intel.md
+    - name: 調查
+      href: security-center-investigation.md
+    - name: 管理調查使用者資料
+      href: security-center-investigation-user-data.md
+    - name: Azure 資源和使用者的 UEBA
+      href: security-center-ueba-mcas.md
+  - name: 將安全性工作流程自動化
+    items:
+    - name: Logic Apps 手冊
+      href: security-center-playbooks.md
+    - name: 檢視事件
+      href: security-center-events-dashboard.md
+    - name: Search
+      href: security-center-search.md
+    - name: 檢視合規性 (REST)
+      href: security-center-review-policy-compliance.md
+    - name: 評估訂用帳戶 (REST)
+      href: security-center-compliance-rest-api.md
+    - name: 使用 PowerShell 進行自動上線
+      href: security-center-powershell-onboarding.md
+  - name: 案例
+    items:
+    - name: 事件回應
+      href: security-center-incident-response.md
+    - name: 使用增強安全性的建議
+      href: security-center-using-recommendations.md
+  - name: 疑難排解
+    href: security-center-troubleshooting-guide.md
 - name: 參考
   items:
-    - name: REST API
-      href: 'https://msdn.microsoft.com/library/mt704034(Azure.100).aspx'
+  - name: REST API
+    href: https://docs.microsoft.com/rest/api/securitycenter/
+  - name: 服務更新
+    href: https://azure.microsoft.com/updates/?product=security-center
 - name: 資源
   items:
-    - name: 常見問題集
-      href: security-center-faq.md
-    - name: 支援的平台
-      href: security-center-os-coverage.md
-    - name: 平台移轉
-      href: security-center-platform-migration.md
-    - name: 平台移轉常見問題
-      href: security-center-platform-migration-faq.md
-    - name: 規劃與作業
-      href: security-center-planning-and-operations-guide.md
-    - name: Azure 安全性
-      href: /azure/security/
-    - name: Azure 藍圖
-      href: 'https://azure.microsoft.com/roadmap/?category=security-identity'
-    - name: 整備藍圖
-      href: security-center-readiness-roadmap.md
-    - name: Azure 安全性、隱私權和相容性部落格
-      href: 'http://blogs.msdn.com/b/azuresecurity/'
-    - name: 堆疊溢位
-      href: 'https://stackoverflow.com/search?q=security-center'
-    - name: 影片
-      href: 'https://azure.microsoft.com/documentation/videos/index/?services=security-center'
-    - name: 價格
-      href: 'https://azure.microsoft.com/pricing/details/security-center/'
-    - name: 服務更新
-      href: 'https://azure.microsoft.com/updates/?product=security-center'
-    - name: 區域可用性
-      href: 'https://azure.microsoft.com/regions/services/'
+  - name: 透過 Microsoft Learn 增進您的技巧
+    href: /learn/browse/?term=securityS
+  - name: 管理使用者資料
+    href: security-center-privacy.md
+  - name: 常見問題集
+    href: security-center-faq.md
+  - name: 規劃與作業
+    href: security-center-planning-and-operations-guide.md
+  - name: Azure 安全性
+    href: /azure/security/
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/?category=security-identity
+  - name: 整備藍圖
+    href: security-center-readiness-roadmap.md
+  - name: Azure 安全性、隱私權和相容性部落格
+    href: http://blogs.msdn.com/b/azuresecurity/
+  - name: 堆疊溢位
+    href: https://stackoverflow.com/search?q=security-center
+  - name: 影片
+    href: https://azure.microsoft.com/documentation/videos/index/?services=security-center
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/security-center/
+  - name: 服務更新
+    href: https://azure.microsoft.com/updates/?product=security-center
+  - name: 區域可用性
+    href: https://azure.microsoft.com/regions/services/
+ms.openlocfilehash: 60bb35519dec1dc08dd9ed82633c594c56fdd893
+ms.sourcegitcommit: 74941e0d60dbfd5ab44395e1867b2171c4944dbe
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/15/2018
+ms.locfileid: "49318073"

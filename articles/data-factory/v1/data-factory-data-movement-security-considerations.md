@@ -9,20 +9,21 @@ ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 01/10/2018
 ms.author: abnarain
 robots: noindex
-ms.openlocfilehash: c2b6c494a9c4d0dac37315520b8d7b962f3490b7
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 222558a6596c676034e52812d3b2dd0c77e1466b
+ms.sourcegitcommit: 0c490934b5596204d175be89af6b45aafc7ff730
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 06/27/2018
+ms.locfileid: "37046896"
 ---
 # <a name="azure-data-factory---security-considerations-for-data-movement"></a>Azure Data Factory - 資料移動的安全性考量
 
 > [!NOTE]
-> 本文適用於正式推出 (GA) 的第 1 版 Data Factory。 如果您使用處於預覽狀態的 Data Factory 服務第 2 版，請參閱 [Data Factory 第 2 版的資料移動安全性考量](../data-movement-security-considerations.md)。
+> 本文適用於 Data Factory 第 1 版。 如果您使用目前版本的 Data Factory 服務，請參閱 [Data Factory 的資料移動安全性考量](../data-movement-security-considerations.md)。
 
 ## <a name="introduction"></a>簡介
 本文說明 Azure Data Factory 中資料移動服務用來保護您資料的基本安全性基礎結構。 Azure Data Factory 管理資源建置在 Azure 安全性基礎結構上，並使用 Azure 提供的所有可能安全性措施。
@@ -39,7 +40,7 @@ Azure Data Factory 本身除了用於雲端資料存放區的已連結服務認�
 -   [ISO/IEC 27018](https://www.microsoft.com/en-us/trustcenter/Compliance/ISO-IEC-27018) 
 -   [CSA STAR](https://www.microsoft.com/en-us/trustcenter/Compliance/CSA-STAR-Certification)
      
-如果您對 Azure 法規遵循以及 Azure 如何保護其專屬基礎結構感興趣，請瀏覽 [Microsoft 信任中心](https://www.microsoft.com/TrustCenter/default.aspx)。 
+如果您對 Azure 法規遵循以及 Azure 如何保護其專屬基礎結構感興趣，請瀏覽 [Microsoft 信任中心](https://microsoft.com/en-us/trustcenter/default.aspx)。 
 
 在本文中，我們會檢閱下列兩個資料移動案例中的安全性考量︰ 
 
@@ -98,7 +99,7 @@ Salesforce 支援「Shield 平台加密」，可加密所有檔案、附件、�
 #### <a name="javascript-cryptography-library-based-encryption"></a>JavaScript 密碼編譯程式庫型加密
 您可以從[複製精靈](data-factory-copy-wizard.md)使用 [JavaScript 密碼編譯程式庫](https://www.microsoft.com/download/details.aspx?id=52439)來加密資料存放區認證。 當您選取此選項時，「複製精靈」會擷取閘道的公開金鑰，然後使用它來加密金鑰存放區認證。 這些認證會由閘道電腦解密，並受到 Windows [DPAPI](https://msdn.microsoft.com/library/ms995355.aspx) 保護。
 
-**支援的瀏覽器：**IE8、IE9、IE10、IE11、Microsoft Edge，以及最新版 Firefox、Chrome、Opera、Safari 瀏覽器。 
+**支援的瀏覽器：** IE8、IE9、IE10、IE11、Microsoft Edge，以及最新版 Firefox、Chrome、Opera、Safari 瀏覽器。 
 
 #### <a name="click-once-credentials-manager-app"></a>Click-Once 認證管理員應用程式
 您可以在編寫管線時，從「Azure 入口網站」/「複製精靈」啟動 Click-Once 型認證管理員應用程式。 此應用程式可確保不會透過網路以純文字形式傳輸認證。 根據預設，它會在具有閘道的電腦上使用連接埠 **8050** 來進行安全通訊。 您可以視需要變更此連接埠。  
@@ -141,7 +142,7 @@ Salesforce 支援「Shield 平台加密」，可加密所有檔案、附件、�
 
 ![IPSec VPN 搭配閘道](media/data-factory-data-movement-security-considerations/ipsec-vpn-for-gateway.png)
 
-### <a name="firewall-configurations-and-whitelisting-ip-address-of-gateway"></a>防火牆組態及將閘道的 IP 位址加入白名單
+### <a name="firewall-configurations-and-whitelisting-ip-address-of-gateway"></a>防火牆組態及將閘道的 IP 位址加入允許清單
 
 #### <a name="firewall-requirements-for-on-premisesprivate-network"></a>內部部署/私人網路的防火牆需求  
 在企業中，「公司防火牆」會在組織的中央路由器上執行。 而「Windows 防火牆」則是在安裝閘道的本機電腦上以精靈的形式執行。 
@@ -168,9 +169,9 @@ Salesforce 支援「Shield 平台加密」，可加密所有檔案、附件、�
 ![閘道連接埠需求](media\data-factory-data-movement-security-considerations/gateway-port-requirements.png) 
 
 #### <a name="ip-configurations-whitelisting-in-data-store"></a>資料存放區中的 IP 組態/白名單設定
-有些雲端資料存放區也會要求必須將存取它們的電腦之 IP 位址加入白名單。 請確定在防火牆中已將閘道電腦的 IP 位址正確地加入白名單並進行設定。
+有些雲端資料存放區也會要求必須將存取它們的電腦之 IP 位址加入允許清單。 請確定在防火牆中已將閘道電腦的 IP 位址正確地加入允許清單並進行設定。
 
-下列雲端資料存放區會要求必須將閘道電腦的 IP 位址加入白名單。 在這些資料存放區中，有些可能預設不會要求將 IP 位址加入白名單。 
+下列雲端資料存放區會要求必須將閘道電腦的 IP 位址加入允許清單。 在這些資料存放區中，有些可能預設不會要求將 IP 位址加入白名單。 
 
 - [Azure SQL Database](../../sql-database/sql-database-firewall-configure.md) 
 - [Azure SQL 資料倉儲](../../sql-data-warehouse/sql-data-warehouse-get-started-provision.md)
@@ -180,14 +181,14 @@ Salesforce 支援「Shield 平台加密」，可加密所有檔案、附件、�
 
 ## <a name="frequently-asked-questions"></a>常見問題集
 
-**問：**是否可以跨不同的 Data Factory 共用閘道？
-**答：**我們尚未支援這項功能。 我們正積極處理這個問題。
+**問：** 是否可以跨不同的 Data Factory 共用閘道？
+**答：** 我們尚未支援這項功能。 我們正積極處理這個問題。
 
-**問：**閘道需要什麼連接埠才能運作？
-**答：**閘道會建立 HTTP 型連線來開啟網際網路。 必須開啟**輸出連接埠 443 和 80**，閘道才能建立此連線。 針對「認證管理員」應用程式，請只在電腦層級 (而非公司防火牆層級) 開啟**輸入連接埠 8050**。 如果使用 Azure SQL Database 或「Azure SQL 資料倉儲」作為來源/目的地，則也需要開啟 **1433** 連接埠。 如需詳細資訊，請參閱[防火牆組態及將 IP 位址加入白名單](#firewall-configurations-and-whitelisting-ip-address-of gateway)一節。 
+**問：** 閘道需要什麼連接埠才能運作？
+**答：** 閘道會建立 HTTP 型連線來開啟網際網路。 必須開啟**輸出連接埠 443 和 80**，閘道才能建立此連線。 針對「認證管理員」應用程式，請只在電腦層級 (而非公司防火牆層級) 開啟**輸入連接埠 8050**。 如果使用 Azure SQL Database 或「Azure SQL 資料倉儲」作為來源/目的地，則也需要開啟 **1433** 連接埠。 如需詳細資訊，請參閱[防火牆組態及將 IP 位址加入白名單](#firewall-configurations-and-whitelisting-ip-address-of gateway)一節。 
 
-**問：**閘道有什麼憑證需求？
-**答：**目前閘道必須要有認證管理員應用程式用來安全地設定資料存放區認證的憑證。 此憑證是閘道安裝程式所建立並設定的自我簽署憑證。 您可以改用自己的 TLS/SSL 憑證。 如需詳細資訊，請參閱 [Click-Once 認證管理員應用程式](#click-once-credentials-manager-app)一節。 
+**問：** 閘道有什麼憑證需求？
+**答：** 目前閘道必須要有認證管理員應用程式用來安全地設定資料存放區認證的憑證。 此憑證是閘道安裝程式所建立並設定的自我簽署憑證。 您可以改用自己的 TLS/SSL 憑證。 如需詳細資訊，請參閱 [Click-Once 認證管理員應用程式](#click-once-credentials-manager-app)一節。 
 
 ## <a name="next-steps"></a>後續步驟
 如需有關複製活動效能的資訊，請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)。

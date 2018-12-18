@@ -1,65 +1,89 @@
 ---
-title: 了解如何在您的邏輯應用程式中使用 SFTP 連接器 | Microsoft Docs
-description: 使用 Azure App Service 建立邏輯應用程式。 連接到 SFTP API 來傳送及接收檔案。 您可以執行各種作業，例如建立、更新、取得或刪除檔案。
+title: 從 Azure Logic Apps 連線到 SFTP 帳戶 | Microsoft Docs
+description: 藉由使用 Azure Logic Apps，讓針對 SFTP 伺服器監視、建立、管理、傳送及接收檔案的工作和工作流程自動化
 services: logic-apps
-documentationcenter: .net,nodejs,java
-author: ecfan
-manager: anneta
-editor: ''
-tags: connectors
-ms.assetid: 697eb8b0-4a66-40c7-be7b-6aa6b131c7ad
 ms.service: logic-apps
-ms.devlang: multiple
+ms.suite: integration
+author: ecfan
+ms.author: estfan
+ms.reviewer: klam, LADocs
+ms.assetid: 697eb8b0-4a66-40c7-be7b-6aa6b131c7ad
 ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: integration
-ms.date: 07/20/2016
-ms.author: estfan; ladocs
-ms.openlocfilehash: ee4dd59bd7b4c09cccadfff29868029559955c28
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+tags: connectors
+ms.date: 08/24/2018
+ms.openlocfilehash: 8f430477883543aa8f87eb3fb0fb49ab31e2d723
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43042033"
 ---
-# <a name="get-started-with-the-sftp-connector"></a>開始使用 SFTP 連接器
-使用 SFTP 連接器存取 SFTP 帳戶來傳送及接收檔案。 您可以執行各種作業，例如建立、更新、取得或刪除檔案。  
+# <a name="monitor-create-and-manage-sftp-files-by-using-azure-logic-apps"></a>藉由使用 Azure Logic Apps 來監視、建立及管理 SFTP 檔案
 
-若要使用[任何連接器](apis-list.md)，您必須先建立邏輯應用程式。 您可以從[立即建立邏輯應用程式](../logic-apps/quickstart-create-first-logic-app-workflow.md)來開始。
+您可以使用 Azure Logic Apps 和 SFTP 連接器，建立自動化的工作和工作流程，以便透過您在 [SFTP](https://www.ssh.com/ssh/sftp/) (英文) 伺服器上的帳戶，監視、建立、傳送及接收檔案，還有其他動作，例如：
+
+* 監視檔案何時新增或變更。
+* 取得、建立、複製、更新、列出以及刪除檔案。
+* 取得檔案內容與中繼資料。
+* 將封存檔案解壓縮到資料夾。
+
+您可以使用觸發程序，從您的 SFTP 伺服器收到回應，並且讓輸出可供其他動作使用。 您可以在邏輯應用程式中使用動作，對 SFTP 伺服器上的檔案執行工作。 您也可以讓其他動作使用 SFTP 動作的輸出。 例如，如果您定期從 SFTP 伺服器擷取檔案，可以藉由使用 Office 365 Outlook 連接器或 Outlook.com 連接器，傳送關於這些檔案及其內容的電子郵件。
+如果您不熟悉邏輯應用程式，請檢閱[什麼是 Azure Logic Apps？](../logic-apps/logic-apps-overview.md)
+
+## <a name="prerequisites"></a>必要條件
+
+* Azure 訂用帳戶。 如果您沒有 Azure 訂用帳戶，請先<a href="https://azure.microsoft.com/free/" target="_blank">註冊免費的 Azure 帳戶</a>。 
+
+* 您的 SFTP 主機伺服器位址和帳戶認證
+
+   您的認證會授權邏輯應用程式建立連線並存取 SFTP 帳戶。
+
+* [如何建立邏輯應用程式](../logic-apps/quickstart-create-first-logic-app-workflow.md)的基本知識
+
+* 您要在其中存取 SFTP 帳戶的邏輯應用程式。 若要開始使用 SFTP 觸發程序，請[建立空白邏輯應用程式](../logic-apps/quickstart-create-first-logic-app-workflow.md)。 若要使用 SFTP 動作，請使用其他觸發程序來啟動邏輯應用程式，例如「週期」觸發程序。
 
 ## <a name="connect-to-sftp"></a>連接至 SFTP
-您必須先建立與服務的連線，才能透過邏輯應用程式存取任何服務。 [連線](connectors-overview.md)可讓邏輯應用程式與另一個服務連線。  
 
-### <a name="create-a-connection-to-sftp"></a>建立至 SFTP 的連線
-> [!INCLUDE [Steps to create a connection to SFTP](../../includes/connectors-create-api-sftp.md)]
-> 
-> 
+[!INCLUDE [Create connection general intro](../../includes/connectors-create-connection-general-intro.md)]
 
-## <a name="use-an-sftp-trigger"></a>使用 SFTP 觸發程序
-觸發程序是可用來啟動邏輯應用程式中所定義之工作流程的事件。 [深入了解觸發程序](../logic-apps/logic-apps-overview.md#logic-app-concepts)。  
+1. 登入 [Azure 入口網站](https://portal.azure.com)，如果邏輯應用程式尚未開啟，請在邏輯應用程式設計工具中開啟邏輯應用程式。
 
-在此範例中，當在 SFTP 伺服器上新增或修改檔案時，就會使用 **SFTP - 新增或修改檔案時**觸發程序起始邏輯應用程式工作流程。 您也可以新增會檢查新的或修改之檔案內容的條件，並在使用內容之前如果檔案指出它應該要解壓縮時，決定將檔案解壓縮。 最後，新增動作以解壓縮檔案的內容，並將解壓縮的內容放在 SFTP 伺服器上的資料夾。 
+1. 針對空白邏輯應用程式，請在搜尋方塊中輸入 "sftp" 作為篩選條件。 請在觸發程序清單底下，選取您想要的觸發程序。 
 
-在企業範例中，您可以使用此觸發程序來監視代表客戶訂單的新檔案 SFTP 資料夾。  然後，您可以使用 SFTP 連接器動作 (例如**取得檔案內容**) 取得訂單的內容以進一步處理並儲存在訂單資料庫中。
+   -或-
 
-> [!INCLUDE [Steps to create an SFTP trigger](../../includes/connectors-create-api-sftp-trigger.md)]
-> 
-> 
+   若是現有的邏輯應用程式，請在想要新增動作的最後一個步驟底下，選擇 [新增步驟]。 
+   在搜尋方塊中，輸入 "sftp" 作為篩選條件。 
+   請在動作清單底下，選取您想要的動作。
 
-## <a name="add-a-condition"></a>新增條件
-> [!INCLUDE [Steps to add a condition](../../includes/connectors-create-api-sftp-condition.md)]
-> 
-> 
+   若要在步驟之間新增動作，將指標移至步驟之間的箭號。 
+   選擇顯示的加號 (**+**)，然後選取 [新增動作]。
 
-## <a name="use-an-sftp-action"></a>使用 SFTP 動作
-動作是由邏輯應用程式中定義的工作流程所執行的作業。 [深入了解動作](../logic-apps/logic-apps-overview.md#logic-app-concepts)。  
+1. 為您的連線提供必要的詳細資料，然後選擇 [建立]。
 
-> [!INCLUDE [Steps to create an SFTP action](../../includes/connectors-create-api-sftp-action.md)]
-> 
-> 
+1. 為您選取的觸發程序或動作提供必要的詳細資料，並且繼續建置邏輯應用程式的工作流程。
 
-## <a name="connector-specific-details"></a>連接器特定的詳細資料
+## <a name="examples"></a>範例
 
-檢視 Swagger 中定義的任何觸發程序和動作，另請參閱[連接器詳細資料](/connectors/sftpconnector/)的所有限制。
+### <a name="sftp-trigger-when-a-file-is-added-or-modified"></a>SFTP 觸發程序：當新增或修改檔案時
 
-## <a name="more-connectors"></a>其他連接器
-返回 [API 清單](apis-list.md)。
+此觸發程序會在偵測到 SFTP 伺服器上有檔案新增或變更時，啟動邏輯應用程式工作流程。 因此舉例來說，您可以新增條件，檢查檔案的內容，並且根據該內容是否符合指定條件，來決定是否取得該內容。 最後，您可以新增會取得檔案內容的動作，並將該內容放置於 SFTP 伺服器上的資料夾中。 
+
+**企業範例**：您可以使用此觸發程序，來監視代表客戶訂單的新檔案 SFTP 資料夾。 然後，您可以使用 SFTP 動作 (例如**取得檔案內容**)，取得訂單的內容以進一步處理，並儲存在訂單資料庫中。
+
+### <a name="sftp-action-get-content"></a>SFTP 動作：取得內容
+
+此動作會從 SFTP 伺服器上的檔案取得內容。 舉例來說，您可以新增來自上一個範例中的觸發程序，以及新增檔案內容必須符合的條件。 如果條件為 true，則可以執行會取得內容的動作。 
+
+## <a name="connector-reference"></a>連接器參考
+
+如需觸發程序、動作和限制的技術詳細資訊，它們是由連接器的 OpenAPI (以前稱為 Swagger) 來描述，請檢閱連接器的[參考頁面](/connectors/sftpconnector/)。
+
+## <a name="get-support"></a>取得支援
+
+* 如有問題，請瀏覽 [Azure Logic Apps 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurelogicapps)。
+* 若要提交或票選功能構想，請造訪 [Logic Apps 使用者意見反應網站](http://aka.ms/logicapps-wish)。
+
+## <a name="next-steps"></a>後續步驟
+
+* 了解其他 [Logic Apps 連接器](../connectors/apis-list.md)

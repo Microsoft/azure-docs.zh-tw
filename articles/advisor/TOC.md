@@ -23,7 +23,7 @@
 ## [App Service](https://azure.microsoft.com/documentation/articles/app-service-best-practices/)
 
 # 資源
-## [Azure Advisor 影片](https://azure.microsoft.com/en-us/resources/videos/index/?services=advisor)
+## [Azure Advisor 影片](https://azure.microsoft.com/resources/videos/index/?services=advisor)
 ## [Azure 藍圖](https://azure.microsoft.com/roadmap/?category=monitoring-management)
 ## [定價計算機](https://azure.microsoft.com/pricing/calculator/)
 

@@ -1,11 +1,11 @@
 ---
-title: "流量管理員端點類型 | Microsoft Docs"
-description: "本文說明可搭配 Azure 流量管理員使用的各類型端點"
+title: 流量管理員端點類型 | Microsoft Docs
+description: 本文說明可搭配 Azure 流量管理員使用的各類型端點
 services: traffic-manager
-documentationcenter: 
+documentationcenter: ''
 author: kumudd
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 4e506986-f78d-41d1-becf-56c8516e4d21
 ms.service: traffic-manager
 ms.devlang: na
@@ -14,14 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/29/2017
 ms.author: kumud
-ms.openlocfilehash: 792712e3e529d77ff20a7603b5fbf028ca60f8c8
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 115511d15bc2366e49f6b3d1b89b513ea0ee5e90
+ms.sourcegitcommit: d4c076beea3a8d9e09c9d2f4a63428dc72dd9806
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/01/2018
+ms.locfileid: "39398023"
 ---
 # <a name="traffic-manager-endpoints"></a>流量管理員端點
-Microsoft Azure 流量管理員可讓您控制如何將網路流量分散到在不同資料中心執行的應用程式部署。 您可以在流量管理員中將每個應用程式部署設定為「端點」。 當流量管理員收到 DNS 要求時，它會選擇可用的端點在 DNS 回應中傳回。 流量管理員會根據目前的端點狀態和流量路由方法來選擇。 如需詳細資訊，請參閱 [流量管理員的運作方式](traffic-manager-how-traffic-manager-works.md)。
+Microsoft Azure 流量管理員可讓您控制如何將網路流量分散到在不同資料中心執行的應用程式部署。 您可以在流量管理員中將每個應用程式部署設定為「端點」。 當流量管理員收到 DNS 要求時，它會選擇可用的端點在 DNS 回應中傳回。 流量管理員會根據目前的端點狀態和流量路由方法來選擇。 如需詳細資訊，請參閱 [流量管理員的運作方式](traffic-manager-how-it-works.md)。
 
 流量管理員支援三種類型的端點：
 * **Azure 端點** 用於在 Azure 中裝載的服務。
@@ -73,7 +74,7 @@ PublicIPAddress 資源是 Azure Resource Manager 資源。 它們不存在於傳
 您可以透過流量管理員入口網站、PowerShell、CLI 或 REST API 來啟用及停用端點，Resource Manager 和傳統部署模型中支援所有這些工具。
 
 > [!NOTE]
-> 停用 Azure 端點會與其在 Azure 中的部署狀態無關。 Azure 服務 (例如，VM 或 Web 應用程式) 即使在流量管理員中停用，仍會持續執行，且能夠接收流量。 流量可以直接定址到服務執行個體，而不必透過流量管理員設定檔 DNS 名稱。 如需詳細資訊，請參閱 [流量管理員的運作方式](traffic-manager-how-traffic-manager-works.md)。
+> 停用 Azure 端點會與其在 Azure 中的部署狀態無關。 Azure 服務 (例如，VM 或 Web 應用程式) 即使在流量管理員中停用，仍會持續執行，且能夠接收流量。 流量可以直接定址到服務執行個體，而不必透過流量管理員設定檔 DNS 名稱。 如需詳細資訊，請參閱 [流量管理員的運作方式](traffic-manager-how-it-works.md)。
 
 目前，每個端點接收流量的能力取決於下列因素︰
 
@@ -91,6 +92,6 @@ PublicIPAddress 資源是 Azure Resource Manager 資源。 它們不存在於傳
 
 ## <a name="next-steps"></a>後續步驟
 
-* 了解 [流量管理員的運作方式](traffic-manager-how-traffic-manager-works.md)。
+* 了解 [流量管理員的運作方式](traffic-manager-how-it-works.md)。
 * 了解「流量管理員」的 [端點監視和自動容錯移轉](traffic-manager-monitoring.md)。
 * 了解「流量管理員」的 [流量路由方法](traffic-manager-routing-methods.md)。

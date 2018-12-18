@@ -1,11 +1,11 @@
 ---
-title: "管理 StorSimple Virtual Array 的存取控制記錄 | Microsoft Docs"
-description: "說明如何使用存取控制記錄 (ACR) 以判斷哪些主機可以連接至 StorSimple Virtual Array 上的磁碟區。"
+title: 管理 StorSimple Virtual Array 的存取控制記錄 | Microsoft Docs
+description: 說明如何使用存取控制記錄 (ACR) 以判斷哪些主機可以連接至 StorSimple Virtual Array 上的磁碟區。
 services: storsimple
-documentationcenter: 
+documentationcenter: ''
 author: alkohli
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: e154bb4f-faab-4d92-a593-900c3ddc9595
 ms.service: storsimple
 ms.devlang: na
@@ -16,10 +16,11 @@ ms.date: 02/27/2017
 ms.author: alkohli
 ms.custom: H1Hack27Feb2017
 ms.openlocfilehash: 2ce65aa4efba735305208f7a6d761bc2814d1b8f
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38718881"
 ---
 # <a name="use-storsimple-device-manager-to-manage-access-control-records-for-storsimple-virtual-array"></a>使用 StorSimple 裝置管理員來管理 StorSimple Virtual Array 的存取控制記錄
 

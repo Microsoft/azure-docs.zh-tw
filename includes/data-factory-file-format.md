@@ -201,7 +201,7 @@ Azure Data Factory 支援下列格式類型：
 **JsonFormat** 類型的輸入資料集定義如下：(僅含相關元素的局部定義)。 具體而言：
 
 - `structure` 區段定義自訂資料行名稱，以及轉換成表格式資料時對應的資料類型。 除非您需要對應資料行，否則這個區段是**選擇性**。 如需詳細資訊，請參閱[指定矩形資料集的結構定義](#specifying-structure-definition-for-rectangular-datasets)一節。
-- `jsonPathDefinition` 指定每個資料行的 JSON 路徑，以指出從哪裡擷取資料。 若要從陣列複製資料，您可以使用 **array[x].property** 從第 x 個物件擷取指定屬性的值，也可以使用 **array[*].property** 從包含這類屬性的物件中尋找此值。
+- `jsonPathDefinition` 指定每個資料行的 JSON 路徑，以指出從哪裡擷取資料。 若要從陣列複製資料，您可以使用 **array[x].property** 從第 x 個物件擷取指定屬性的值，也可以使用 **array[*].property** 從任何包含這類屬性的物件中尋找此值。
 
 ```json
 "properties": {

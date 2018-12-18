@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 5/04/2017
 ms.author: rli
-ms.openlocfilehash: a58ab1165f3886484fb695170100422c2f1b0486
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: b4751320af82a29fb13dc6012c1b197ebc2b1f9b
+ms.sourcegitcommit: e221d1a2e0fb245610a6dd886e7e74c362f06467
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 05/07/2018
+ms.locfileid: "33764837"
 ---
 # <a name="http2-support-in-azure-cdn"></a>Azure CDN 中的 HTTP/2 支援
 
@@ -29,7 +30,7 @@ HTTP/2 的優點包括︰
 
 *   **多工和並行**
 
-    使用 HTTP 1.1 時，多方提出多個資源要求需要多個 TCP 連線，每個連線都有其相關聯的效能負荷。 HTTP/2 允許在單一 TCP 連線上要求多個資源。
+    使用 HTTP 1.1 時，提出多個資源要求需要多個 TCP 連線，每個連線都有其相關聯的效能負荷。 HTTP/2 允許在單一 TCP 連線上要求多個資源。
 
 *   **標頭壓縮**
 
@@ -54,7 +55,7 @@ HTTP/2 的優點包括︰
 
 ## <a name="enabling-http2-support-in-azure-cdn"></a>啟用 Azure CDN 中的 HTTP/2 支援
 
-目前，**Akamai 的 Azure CDN** 和 **Verizon 的 Azure CDN** 設定檔已支援 HTTP/2。 客戶不需要採取任何動作。
+目前，所有 Azure CDN 設定檔已支援 HTTP/2。 客戶不需要採取任何動作。
 
 ## <a name="next-steps"></a>後續步驟
 

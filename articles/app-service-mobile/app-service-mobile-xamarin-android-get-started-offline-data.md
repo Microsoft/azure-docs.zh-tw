@@ -1,10 +1,10 @@
 ---
-title: "啟用 Azure 行動應用程式 (Xamarin Android) 的離線同步處理"
-description: "了解如何在 Xamarin Android 應用程式中使用應用程式服務行動應用程式快取和同步處理離線資料"
+title: 啟用 Azure 行動應用程式 (Xamarin Android) 的離線同步處理
+description: 了解如何在 Xamarin Android 應用程式中使用應用程式服務行動應用程式快取和同步處理離線資料
 documentationcenter: xamarin
 author: conceptdev
 manager: crdun
-editor: 
+editor: ''
 services: app-service\mobile
 ms.assetid: 91d59e4b-abaa-41f4-80cf-ee7933b32568
 ms.service: app-service-mobile
@@ -14,11 +14,12 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 10/01/2016
 ms.author: crdun
-ms.openlocfilehash: 5c6ff5ac909e2dc6918f85d39beb781952ee6dd0
-ms.sourcegitcommit: df4ddc55b42b593f165d56531f591fdb1e689686
+ms.openlocfilehash: e0146be345215701cf1afe86345afc286933d51b
+ms.sourcegitcommit: 6eb14a2c7ffb1afa4d502f5162f7283d4aceb9e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/04/2018
+ms.lasthandoff: 06/25/2018
+ms.locfileid: "36750963"
 ---
 # <a name="enable-offline-sync-for-your-xamarinandroid-mobile-app"></a>啟用您 Xamarin.Android 行動應用程式的離線同步處理
 [!INCLUDE [app-service-mobile-selector-offline](../../includes/app-service-mobile-selector-offline.md)]
@@ -29,10 +30,10 @@ ms.lasthandoff: 01/04/2018
 
 在本教學課程中，您將會更新[建立 Xamarin Android 應用程式]教學課程中的用戶端專案，來支援 Azure Mobile Apps 的離線功能。 如果您不要使用下載的快速入門伺服器專案，必須將資料存取擴充套件新增至您的專案。 如需伺服器擴充套件的詳細資訊，請參閱 [使用 Azure Mobile Apps 的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
 
-若要深入了解離線同步處理功能，請參閱 [Azure 行動應用程式中的離線資料同步處理]主題。
+若要深入了解離線同步處理功能，請參閱 [Azure Mobile Apps 中的離線資料同步處理]主題。
 
 ## <a name="update-the-client-app-to-support-offline-features"></a>更新用戶端應用程式以支援離線功能
-Azure 行動應用程式的離線功能可讓您在離線狀態時，仍可與本機資料庫互動。 若要在您的應用程式中使用這些功能，您必須將 [SyncContext] 初始化至本機存放區。 接著，請透過 [IMobileServiceSyncTable][IMobileServiceSyncTable] 介面參考您的資料表。 SQLite 可做為裝置上的本機存放區。
+Azure 行動應用程式的離線功能可讓您在離線狀態時，仍可與本機資料庫互動。 若要在您的應用程式中使用這些功能，您必須將 [SyncContext] 初始化至本機存放區。 然後透過 [IMobileServiceSyncTable](https://docs.microsoft.com/dotnet/api/microsoft.windowsazure.mobileservices.sync.imobileservicesynctable?view=azure-dotnet) 介面參考您的資料表。 SQLite 可做為裝置上的本機存放區。
 
 1. 在 Visual Studio 中，在您於[建立 Xamarin Android 應用程式]教學課程中完成的專案中開啟 NuGet 封裝管理員。  搜尋並安裝 **Microsoft.Azure.Mobile.Client.SQLiteStore** NuGet 套件。
 2. 開啟 ToDoActivity.cs 檔案，並取消註解 `#define OFFLINE_SYNC_ENABLED` 定義。
@@ -60,10 +61,10 @@ Azure 行動應用程式的離線功能可讓您在離線狀態時，仍可與�
 3. (選擇性) 使用 SQL Server 物件總管或 REST 工具 (例如 Fiddler) 檢視已更新的資料。 請注意，Azure 行動應用程式後端資料庫與本機存放區之間的資料已同步處理。
 4. 在應用程式中，按一下幾個項目旁邊的核取方塊，以在本機存放區中完成它們。
 
-   `CheckItem` 會呼叫 `SyncAsync`，以便與行動應用程式後端同步處理每個已完成的項目。 `SyncAsync` 會同時呼叫推送與提取。 **每當您對用戶端已變更的資料表執行提取時，一定會執行自動推送**。 這可確保本機存放區中的所有資料表和關聯性都保持一致。 此行為可能會導致非預期的推送。 如需此行為的詳細資訊，請參閱 [Azure 行動應用程式中的離線資料同步處理]。
+   `CheckItem` 會呼叫 `SyncAsync`，以便與行動應用程式後端同步處理每個已完成的項目。 `SyncAsync` 會同時呼叫推送與提取。 **每當您對用戶端已變更的資料表執行提取時，一定會執行自動推送**。 這可確保本機存放區中的所有資料表和關聯性都保持一致。 此行為可能會導致非預期的推送。 如需此行為的詳細資訊，請參閱 [Azure Mobile Apps 中的離線資料同步處理]。
 
 ## <a name="review-the-client-sync-code"></a>檢閱用戶端同步處理程式碼
-當您完成 [建立 Xamarin Android 應用程式] 教學課程時所下載的 Xamarin 用戶端專案，已經包含了使用本機 SQLite 資料庫支援離線同步處理的程式碼。 以下是已經包含在教學課程程式碼中之內容的簡要概觀。 如需此功能的概念性概觀，請參閱 [Azure 行動應用程式中的離線資料同步處理]。
+當您完成 [建立 Xamarin Android 應用程式] 教學課程時所下載的 Xamarin 用戶端專案，已經包含了使用本機 SQLite 資料庫支援離線同步處理的程式碼。 以下是已經包含在教學課程程式碼中之內容的簡要概觀。 如需此功能的概念性概觀，請參閱 [Azure Mobile Apps 中的離線資料同步處理]。
 
 * 必須先初始化本機存放區，才可以執行資料表作業。 當 `ToDoActivity.OnCreate()` 執行 `ToDoActivity.InitLocalStoreAsync()` 時會初始化本機存放區資料庫。 這個方法會使用 Azure Mobile Apps 用戶端 SDK 所提供的 `MobileServiceSQLiteStore` 類別，建立本機 SQLite 資料庫。
 
@@ -95,7 +96,7 @@ Azure 行動應用程式的離線功能可讓您在離線狀態時，仍可與�
 
     每當重新整理 todoitem 清單或是已新增或完成 todoitem 時，提供的程式碼會呼叫 `ToDoActivity.SyncAsync()` 來進行同步處理。 每次本機變更之後，程式碼會同步處理。
 
-    在提供的程式碼中，遠端 `TodoItem` 資料表中的所有記錄都會進行查詢，但是也可能透過將查詢識別碼與查詢傳遞至 `PushAsync` 來篩選記錄。 如需詳細資訊，請參閱 [Azure 行動應用程式中的離線資料同步處理]中的*增量同步處理*一節。
+    在提供的程式碼中，遠端 `TodoItem` 資料表中的所有記錄都會進行查詢，但是也可能透過將查詢識別碼與查詢傳遞至 `PushAsync` 來篩選記錄。 如需詳細資訊，請參閱 [Azure Mobile Apps 中的離線資料同步處理]中的*增量同步處理*一節。
 
         // ToDoActivity.cs
         private async Task SyncAsync()
@@ -111,12 +112,12 @@ Azure 行動應用程式的離線功能可讓您在離線狀態時，仍可與�
         }
 
 ## <a name="additional-resources"></a>其他資源
-* [Azure 行動應用程式中的離線資料同步處理]
+* [Azure Mobile Apps 中的離線資料同步處理]
 * [Azure Mobile Apps .NET SDK HOWTO][8]
 
 <!-- URLs. -->
 [建立 Xamarin Android 應用程式]: ../app-service-mobile-xamarin-android-get-started.md
-[Azure 行動應用程式中的離線資料同步處理]: ../app-service-mobile-offline-data-sync.md
+[Azure Mobile Apps 中的離線資料同步處理]: ../app-service-mobile-offline-data-sync.md
 
 <!-- Images -->
 

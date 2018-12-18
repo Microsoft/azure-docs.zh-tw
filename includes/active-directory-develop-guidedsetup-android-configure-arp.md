@@ -1,4 +1,3 @@
-
 ## <a name="add-the-applications-registration-information-to-your-app"></a>將應用程式的註冊資訊新增到您的應用程式
 
 在這個步驟中，您需要將用戶端識別碼新增到您的專案。

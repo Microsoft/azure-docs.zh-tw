@@ -1,87 +1,128 @@
+items:
 - name: Container Instances
   href: index.yml
 - name: 概觀
   items:
-    - name: 關於 Azure Container Instances
-      href: container-instances-overview.md
+  - name: 關於 Azure Container Instances
+    href: container-instances-overview.md
 - name: 快速入門
-  expanded: true
   items:
-    - name: 建立容器 - CLI
-      href: container-instances-quickstart.md
-    - name: 建立容器 - 入口網站
-      href: container-instances-quickstart-portal.md
-    - name: 建立容器 - PowerShell
-      href: container-instances-quickstart-powershell.md
+  - name: 建立容器 - CLI
+    href: container-instances-quickstart.md
+  - name: 建立容器 - 入口網站
+    href: container-instances-quickstart-portal.md
+  - name: 建立容器 - PowerShell
+    href: container-instances-quickstart-powershell.md
+  expanded: true
 - name: 教學課程
   items:
-    - name: 1 - 建立容器映像
-      href: container-instances-tutorial-prepare-app.md
-    - name: 2 - 建立容器登錄
-      href: container-instances-tutorial-prepare-acr.md
-    - name: 3 - 部署應用程式
-      href: container-instances-tutorial-deploy-app.md
+  - name: 1 - 建立容器映像
+    href: container-instances-tutorial-prepare-app.md
+  - name: 2 - 建立容器登錄
+    href: container-instances-tutorial-prepare-acr.md
+  - name: 3 - 部署應用程式
+    href: container-instances-tutorial-deploy-app.md
+- name: 範例
+  items:
+  - name: 程式碼範例
+    href: https://azure.microsoft.com/resources/samples/?sort=0&term=aci
+  - name: Resource Manager 範本
+    href: container-instances-samples-rm.md
 - name: 概念
   items:
-    - name: 配額和區域限制
-      href: container-instances-quotas.md
-    - name: 與協調者的關聯
-      href: container-instances-orchestrator-relationship.md
-    - name: 容器群組
-      href: container-instances-container-groups.md
+  - name: 配額和區域限制
+    href: container-instances-quotas.md
+  - name: 與協調者的關聯
+    href: container-instances-orchestrator-relationship.md
+  - name: 容器群組
+    href: container-instances-container-groups.md
 - name: 使用說明指南
   items:
-    - name: 部署多個容器群組
+  - name: 部署
+    items:
+    - name: 多個容器群組 - YAML
+      href: container-instances-multi-container-yaml.md
+    - name: 多個容器群組 - 資源管理員
       href: container-instances-multi-container-group.md
+    - name: 虛擬網路部署模型 (預覽)
+      href: container-instances-vnet.md
     - name: 從 Azure Container Registry 進行部署
       href: container-instances-using-azure-container-registry.md
-    - name: 執行命令 (exec)
-      href: container-instances-exec.md
-    - name: 執行容器化工作
-      href: container-instances-restart-policy.md
     - name: 設定環境變數 (env)
       href: container-instances-environment-variables.md
-    - name: 針對部署進行疑難排解
+    - name: 設定活躍度探查
+      href: container-instances-liveness-probe.md
+  - name: 管理
+    items:
+    - name: 更新執行中的容器
+      href: container-instances-update.md
+    - name: 執行命令 (exec)
+      href: container-instances-exec.md
+    - name: 監視 CPU 和記憶體使用量
+      href: container-instances-monitor.md
+    - name: 透過 Azure Log Analytics 記錄
+      href: container-instances-log-analytics.md
+  - name: 執行工作負載
+    items:
+    - name: 使用重新啟動原則執行工作
+      href: container-instances-restart-policy.md
+    - name: ACI 上的 Jenkins 組建代理程式
+      href: container-instances-jenkins.md
+    - name: 使用受控識別 (預覽)
+      href: container-instances-managed-identity.md
+  - name: 設定資料磁碟區
+    items:
+    - name: Azure 檔案
+      href: container-instances-volume-azure-files.md
+    - name: emptyDir
+      href: container-instances-volume-emptydir.md
+    - name: gitRepo
+      href: container-instances-volume-gitrepo.md
+    - name: secret
+      href: container-instances-volume-secret.md
+  - name: 疑難排解
+    items:
+    - name: 取得容器記錄和事件
+      href: container-instances-get-logs.md
+    - name: 針對常見問題進行疑難排解
       href: container-instances-troubleshooting.md
-    - name: 設定資料磁碟區
-      items:
-        - name: Azure 檔案
-          href: container-instances-volume-azure-files.md
-        - name: emptyDir
-          href: container-instances-volume-emptydir.md
-        - name: gitRepo
-          href: container-instances-volume-gitrepo.md
-        - name: secret
-          href: container-instances-volume-secret.md
 - name: 參考
   items:
-    - name: Azure CLI
-      href: /cli/azure/container
-    - name: REST
-      href: /rest/api/container-instances
-    - name: PowerShell
-      href: '/powershell/module/azurerm.containerinstance#container_instances'
-    - name: .NET
-      href: /dotnet/api/overview/azure/containerinstances
-    - name: Python
-      href: /python/api/overview/azure/containerinstance
-    - name: Java
-      href: /java/api/overview/azure/containerinstance
-    - name: Node.js
-      href: /javascript/api/overview/azure/containerinstances
-    - name: Resource Manager 範本
-      href: /azure/templates/microsoft.containerinstance/containergroups
+  - name: Azure CLI
+    href: /cli/azure/container
+  - name: REST
+    href: /rest/api/container-instances
+  - name: PowerShell
+    href: /powershell/module/azurerm.containerinstance#container_instances
+  - name: .NET
+    href: /dotnet/api/overview/azure/containerinstance
+  - name: Python
+    href: /python/api/overview/azure/containerinstance
+  - name: Java
+    href: /java/api/overview/azure/containerinstance
+  - name: Node.js
+    href: /javascript/api/overview/azure/containerinstances
+  - name: Resource Manager 範本
+    href: /azure/templates/microsoft.containerinstance/containergroups
 - name: 資源
   items:
-    - name: 區域可用性
-      href: 'https://azure.microsoft.com/regions/services/'
-    - name: 價格
-      href: 'https://azure.microsoft.com/pricing/details/container-instances/'
-    - name: 藍圖
-      href: 'https://azure.microsoft.com/roadmap/'
-    - name: 提供產品意見反應
-      href: 'https://feedback.azure.com/forums/602224-azure-container-instances'
-    - name: 堆疊溢位
-      href: 'http://stackoverflow.com/questions/tagged/azure-container-instances'
-    - name: 影片
-      href: 'https://azure.microsoft.com/resources/videos/index/?services=container-instances&sort=newest'
+  - name: 透過 Microsoft Learn 增進您的技巧
+    href: /learn/browse/?products=azure-container-instances
+  - name: 區域可用性
+    href: https://azure.microsoft.com/regions/services/
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/container-instances/
+  - name: 藍圖
+    href: https://azure.microsoft.com/roadmap/
+  - name: 提供產品意見反應
+    href: https://feedback.azure.com/forums/602224-azure-container-instances
+  - name: 堆疊溢位
+    href: http://stackoverflow.com/questions/tagged/azure-container-instances
+  - name: 影片
+    href: https://azure.microsoft.com/resources/videos/index/?services=container-instances&sort=newest
+ms.openlocfilehash: 3512afb8c716e16b55a5115a91e4f7011ad865bb
+ms.sourcegitcommit: ccdea744097d1ad196b605ffae2d09141d9c0bd9
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/23/2018
+ms.locfileid: "49650191"

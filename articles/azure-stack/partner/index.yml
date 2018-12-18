@@ -1,0 +1,47 @@
+### YamlMime:YamlDocument
+ms.openlocfilehash: 26c0353bddb9455b1bda8961f3c05e0f6c7cc176
+ms.sourcegitcommit: ccdea744097d1ad196b605ffae2d09141d9c0bd9
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/23/2018
+ms.locfileid: "49647709"
+documentType: LandingData
+title: Azure Stack 合作夥伴文件
+metadata:
+  document_id: 
+  title: Azure Stack 合作夥伴文件 - 教學課程和 API 參考
+  description: 了解如何驗證硬體以裝載 Azure Stack。 「驗證即服務」是原生的 Azure Service，專供與 Microsoft 共同設計製造 Azure Stack 供應項目的解決方案合作夥伴使用。
+  services: azure-stack
+  author: mattbriggs
+  manager: femila
+  ms.service: azure-stack
+  ms.tgt_pltfrm: na
+  ms.devlang: na
+  ms.topic: landing-page
+  ms.date: 07/25/2018
+  ms.author: mabrigg
+  ms.reviewer: John.Haskin
+abstract:
+  description: 您可以使用「驗證即服務」來檢查要搭配 Azure Stack 使用的硬體。 此服務是原生的 Azure 服務，專供與 Microsoft 共同設計製造 Azure Stack 供應項目的解決方案合作夥伴使用。
+sections:
+- title: 5 分鐘快速入門
+  items:
+  - type: paragraph
+    text: 了解如何使用驗證即服務入口網站在硬體上排程測試。
+  - type: list
+    style: icon48
+    items:
+    - image:
+        src: media/i_account-management.svg
+      text: 使用「驗證即服務」入口網站來排程第一個測試
+      href: /azure/azure-stack/partner/azure-stack-vaas-schedule-test-pass
+- title: 逐步教學課程
+  items:
+  - type: paragraph
+    text: 了解如何驗證 Azure Stack 硬體。
+  - type: list
+    style: unordered
+    items:
+    - html: <a href="/azure/azure-stack/partner/azure-stack-vaas-validate-solution-new">驗證新的 Azure Stack 解決方案</a>
+    - html: <a href="/azure/azure-stack/partner/azure-stack-vaas-validate-oem-package">驗證 OEM 套件</a>
+    - html: <a href="/azure/azure-stack/partner/azure-stack-vaas-validate-microsoft-updates">驗證來自 Microsoft 的軟體更新</a>

@@ -1,23 +1,24 @@
 ---
-title: "調整 Azure Container Service (AKS) 叢集"
-description: "調整 Azure Container Service (AKS) 叢集。"
+title: 調整 Azure Kubernetes Service (AKS) 叢集
+description: 調整 Azure Kubernetes Service (AKS) 叢集。
 services: container-service
 author: gabrtv
-manager: timlt
+manager: jeconnoc
 ms.service: container-service
 ms.topic: article
 ms.date: 11/15/2017
 ms.author: gamonroy
 ms.custom: mvc
-ms.openlocfilehash: fbbc24c958152806964412b426aff81a894d4412
-ms.sourcegitcommit: 059dae3d8a0e716adc95ad2296843a45745a415d
+ms.openlocfilehash: 577fff2e659759647ffc7e96158ebcbe5a88ab25
+ms.sourcegitcommit: d98d99567d0383bb8d7cbe2d767ec15ebf2daeb2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 05/10/2018
+ms.locfileid: "33934680"
 ---
-# <a name="scale-an-azure-container-service-aks-cluster"></a>調整 Azure Container Service (AKS) 叢集
+# <a name="scale-an-azure-kubernetes-service-aks-cluster"></a>調整 Azure Kubernetes Service (AKS) 叢集
 
-將 AKS 叢集調整為不同數目的節點很簡單。  選取想要的節點數目，然後執行 `az aks scale` 命令。  縮減規模時，會將節點仔細地[隔離並清空][kubernetes-drain] \(英文\)，以將對執行中應用程式造成的中斷情況降到最低。  擴大規模時，`az` 命令會一直等待，直到 Kubernetes 叢集將節點標示 `Ready` 為止。
+將 AKS 叢集調整為不同數目的節點很簡單。  選取想要的節點數目，然後執行 `az aks scale` 命令。  縮減規模時，會將節點仔細地[隔離並清空][kubernetes-drain] \(英文\)，以將對執行中應用程式造成的中斷情況降到最低。  相應增加時，`az` 命令會一直等待，直到 Kubernetes 叢集將節點標示 `Ready` 為止。
 
 ## <a name="scale-the-cluster-nodes"></a>調整叢集節點
 

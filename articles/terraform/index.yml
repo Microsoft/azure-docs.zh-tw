@@ -1,67 +1,68 @@
 ### YamlMime:YamlDocument
+ms.openlocfilehash: 38f55894925febb66a50f019de15f8e7dcd9ef23
+ms.sourcegitcommit: 31241b7ef35c37749b4261644adf1f5a029b2b8e
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/04/2018
+ms.locfileid: "43666974"
 documentType: LandingData
-title: "Terraform on Azure 文件"
+title: Terraform on Azure 文件
 metadata:
-  title: "Terraform on Azure 文件 - 教學課程和參考"
-  meta.description: Learn how to use Terraform to reliably provision virtual machines and other infrastructure on Azure.
+  title: Terraform on Azure 文件 - 教學課程、範例、參考和資源
+  description: 了解如何使用 Terraform 可靠地佈建虛擬機器和 Azure 上的其他基礎結構。
   services: terraform
-  author: rloutlaw
-  manager: justhe
   ms.service: terraform
-  ms.tgt_pltfrm: na
-  ms.devlang: devops
+  keywords: terraform, azure, devops, 教學課程, 範例, 參考
+  author: tomarcher
+  manager: jeconnoc
+  ms.author: tarcher
   ms.topic: landing-page
-  ms.date: 09/21/2017
-  ms.author: routlaw
-  ms.openlocfilehash: 71ffbc2f8d6728a414a8e001198b8c9f9b36c485
-  ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
-  ms.translationtype: HT
-  ms.contentlocale: zh-TW
-  ms.lasthandoff: 03/16/2018
+  ms.date: 08/31/2018
 abstract:
-  description: "使用 Terraform 進行版本可靠化，並在 Azure 上建立架構。 了解如何建立資源、使用 Azure Terraform 模組，並使用我們的快速入門和教學課程，透過程式碼維護基礎結構。"
+  description: 使用 Terraform 進行版本可靠化，並在 Azure 上建立架構。 了解如何建立資源、使用 Azure Terraform 模組，並使用我們的快速入門和教學課程，透過程式碼維護基礎結構。
 sections:
-- title: "快速入門"
+- title: 快速入門
   items:
   - type: paragraph
-    text: "設定 Terraform ，並用它在 Azure 中建立 Linux VM。"
+    text: 設定 Terraform ，並用它在 Azure 中建立 Linux VM。
   - type: list
     style: icon48
     items:
     - image:
         src: https://docs.microsoft.com/azure/media/index/azure_dev-9.svg
-      text: "安裝及設定 Terraform"
+      text: 安裝及設定 Terraform
       href: https://docs.microsoft.com/azure/virtual-machines/linux/terraform-install-configure
     - image:
         src: https://docs.microsoft.com/azure/media/index/VirtualMachine.svg
-      text: "建立 Linux VM"
+      text: 建立 Linux VM
       href: https://docs.microsoft.com/azure/virtual-machines/linux/terraform-create-complete-vm
-- title: "逐步教學課程"
+- title: 逐步教學課程
   items:
   - type: paragraph
-    text: "了解如何以 Terraform，透過程式碼建立 Azure 計算和網路基礎結構。"
+    text: 了解如何以 Terraform，透過程式碼建立 Azure 計算和網路基礎結構。
   - type: list
     style: unordered
     items:
-    - html: "<a href=\"/azure/terraform/terraform-vm-msi\">使用 Azure Marketplace 映像，建立已啟用 MSI 驗證的 Terraform 虛擬機器</a>。"
-    - html: "<a href=\"/azure/terraform/terraform-create-vm-cluster-module\">使用 Azure Terraform 模組建立負載平衡 VM 叢集</a>."
-    - html: "<a href=\"/azure/terraform/terraform-create-vm-cluster-with-infrastructure\">在 Azure Cloud Shell 中建立負載平衡的 VM 叢集</a>。"
-    - html: "<a href=\"/azure/terraform/terraform-create-vm-scaleset-network-disks-hcl\">設定 VM 擴展集及網路服務和儲存體。</a>"
-    - html: "<a href=\"/azure/terraform/terraform-create-vm-scaleset-network-disks-using-packer-hcl\">從 Packer 自訂映像佈建 VM 擴展集。</a>"
-- title: "範例"
+    - html: <a href="/azure/terraform/terraform-create-k8s-cluster-with-tf-and-aks">使用 AKS 和 Terraform 建立 Kubernetes 叢集</a>。
+    - html: <a href="/azure/terraform/terraform-vm-msi">使用 Azure Marketplace 映像，建立已啟用 MSI 驗證的 Terraform 虛擬機器</a>。
+    - html: <a href="/azure/terraform/terraform-create-vm-cluster-module">使用 Azure Terraform 模組建立負載平衡 VM 叢集</a>.
+    - html: <a href="/azure/terraform/terraform-create-vm-cluster-with-infrastructure">在 Azure Cloud Shell 中建立負載平衡的 VM 叢集</a>。
+    - html: <a href="/azure/terraform/terraform-create-vm-scaleset-network-disks-hcl">設定 VM 擴展集及網路服務和儲存體。</a>
+    - html: <a href="/azure/terraform/terraform-create-vm-scaleset-network-disks-using-packer-hcl">從 Packer 自訂映像佈建 VM 擴展集。</a>
+- title: 範例
   items:
   - type: paragraph
-    text: "一般部署工作的範例組態範本。"
+    text: 一般部署工作的範例組態範本。
   - type: list
     style: unordered
     className: spaced noBullet
     items:
     - html: <a href="https://github.com/terraform-providers/terraform-provider-azurerm/tree/master/examples">GitHub</a>
-- title: "參考"
+- title: 參考
   items:
   - type: list
     style: cards
     className: cardsD
     items:
-    - title: "Azure Terraform 模組"
-      html: "<p><a href=\"https://registry.terraform.io/modules/Azure/database/azurerm\">Azure RM for Database</a></p><p><a href=\"https://registry.terraform.io/modules/Azure/loadbalancer\">Azure RM for Load Balancer</a></p><p><a href=\"https://registry.terraform.io/modules/Azure/computegroup\">Azure RM 計算群組</a></p><p><a href=\"https://registry.terraform.io/modules/Azure/network\">Azure RM 網路</a></p><p><a href=\"https://registry.terraform.io/modules/Azure/compute\">Azure RM 計算</a></p>"
+    - title: Azure Terraform 模組
+      html: <p><a href="https://registry.terraform.io/modules/Azure/database/azurerm">Azure RM for Database</a></p><p><a href="https://registry.terraform.io/modules/Azure/loadbalancer">Azure RM for Load Balancer</a></p><p><a href="https://registry.terraform.io/modules/Azure/computegroup">Azure RM 計算群組</a></p><p><a href="https://registry.terraform.io/modules/Azure/network">Azure RM 網路</a></p><p><a href="https://registry.terraform.io/modules/Azure/compute">Azure RM 計算</a></p>

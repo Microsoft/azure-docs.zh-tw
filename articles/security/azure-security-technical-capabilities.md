@@ -1,12 +1,12 @@
 ---
-title: "Azure 安全性技術功能 | Microsoft Docs"
-description: "了解雲端式計算服務，其中包含各式各樣的計算執行個體和服務，可自動相應增加或縮小以符合您應用程式或企業的需求。"
+title: Azure 安全性技術功能 | Microsoft Docs
+description: 了解雲端式計算服務，其中包含各式各樣的計算執行個體和服務，可自動相應增加或縮小以符合您應用程式或企業的需求。
 services: security
 documentationcenter: na
 author: UnifyCloud
-manager: swadhwa
+manager: mbaldwin
 editor: TomSh
-ms.assetid: 
+ms.assetid: ''
 ms.service: security
 ms.devlang: na
 ms.topic: article
@@ -14,11 +14,12 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/01/2017
 ms.author: TomSh
-ms.openlocfilehash: 536745d869ea3bcd0beedad3712597b00e600796
-ms.sourcegitcommit: 9d317dabf4a5cca13308c50a10349af0e72e1b7e
+ms.openlocfilehash: 6643db7b732cc5b01ce7602eb3d679c130c46720
+ms.sourcegitcommit: f606248b31182cc559b21e79778c9397127e54df
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 07/12/2018
+ms.locfileid: "38972191"
 ---
 # <a name="azure-security-technical-capabilities"></a>Azure 安全性技術功能
 
@@ -40,7 +41,7 @@ ms.lasthandoff: 02/01/2018
 
 - 保護其業務。
 
-## <a name="scope"></a>Scope
+## <a name="scope"></a>影響範圍
 
 本白皮書的焦點放在可支援 Microsoft Azure 核心元件 (也就是 [Microsoft Azure 儲存體](https://docs.microsoft.com/azure/storage/storage-introduction)、[Microsoft Azure SQL Database](https://docs.microsoft.com/azure/sql-database/)、[Microsoft Azure 的虛擬機器模型](https://docs.microsoft.com/azure/virtual-machines/)) 的安全性特性與功能，以及用以管理這一切的工具和基礎結構。 這份白皮書聚焦在 Microsoft Azure 的技術功能，這些功能可供身為客戶的您使用，以履行其保護其資料安全性和隱私權的角色。
 
@@ -134,7 +135,7 @@ Azure 身分識別管理核心功能如下：
 
 #### <a name="device-registration"></a>裝置註冊
 
-[Azure AD 裝置註冊](https://docs.microsoft.com/en-us/azure/active-directory/device-management-introduction) \(機器翻譯\) 是裝置型[條件式存取](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-device-registration-on-premises-setup)案例的基礎。 當裝置已註冊時，Azure AD 裝置註冊會在使用者登入時，對裝置提供用來驗證裝置的身分識別。 然後已驗證的裝置和裝置的屬性即可用來對裝載於雲端和內部部署的應用程式，強制執行條件式存取原則。
+[Azure AD 裝置註冊](https://docs.microsoft.com/azure/active-directory/device-management-introduction) \(機器翻譯\) 是裝置型[條件式存取](https://docs.microsoft.com/azure/active-directory/active-directory-device-registration-on-premises-setup)案例的基礎。 當裝置已註冊時，Azure AD 裝置註冊會在使用者登入時，對裝置提供用來驗證裝置的身分識別。 然後已驗證的裝置和裝置的屬性即可用來對裝載於雲端和內部部署的應用程式，強制執行條件式存取原則。
 
 與 Intune 這類的[行動裝置管理 (MDM)](https://www.microsoft.com/itshowcase/Article/Content/588/Mobile-device-management-at-Microsoft) 解決方案結合時，將會以裝置的其他相關資訊更新 Azure Active Directory 中的裝置屬性。 這可讓您建立條件式存取規則，強制讓裝置的存取符合您的安全性和相容性標準。
 
@@ -166,7 +167,8 @@ Azure AD Privileged Identity Management 可讓您：
 
 訂用帳戶也會與目錄產生關聯。 目錄會定義一組使用者。 他們可以是公司或學校中建立目錄的使用者，也可以是外部使用者 (也就是 Microsoft 帳戶)。 訂用帳戶可供已被指派為服務管理員 (SA) 或共同管理員 (CA) 的某些目錄使用者存取；唯一的例外就是，由於舊版原因，Microsoft 帳戶 (先前稱為 Windows Live ID) 不需存在目錄中，即可被指派為 SA 或 CA。
 
-安全性導向公司應該將焦點放在提供員工所需的確切權限。 權限太多可能會讓帳戶暴露在攻擊者的威脅下。 權限太少則會讓員工無法有效率地完成工作。 [Azure 角色型存取控制 (RBAC)](https://docs.microsoft.com/azure/active-directory/role-based-access-control-what-is) 可以為 Azure 提供更細緻的存取管理來協助解決這個問題。
+安全性導向公司應該將焦點放在提供員工所需的確切權限。 權限太多可能會讓帳戶暴露在攻擊者的威脅下。 權限太少則會讓員工無法有效率地完成工作。 
+  [Azure 角色型存取控制 (RBAC)](https://docs.microsoft.com/azure/role-based-access-control/overview) 可以為 Azure 提供更細緻的存取管理來協助解決這個問題。
 
 ![受保護的資源存取 ](media/azure-security-technical-capabilities/azure-security-technical-capabilities-fig4.png)
 
@@ -387,7 +389,7 @@ Microsoft 開發了[雲端服務審查評鑑檢查表](https://aka.ms/cloudcheck
 
 - 協助組織找出可能會影響雲端專案的任何潛在問題。
 
-- 使用相同的詞彙、定義、度量和交付成果對每個提供者提供一組一致的問題，以簡化不同雲端服務提供者所供應之項目的比較程序。
+- 使用相同的詞彙、定義、度量和交付成果對每個提供者提供一組一致的問題，以簡化不同雲端服務提供者供應項目的比較程序。
 
 ## <a name="azure-infrastructure-and-application-security-validation-detect"></a>Azure 基礎結構和應用程式安全性驗證 (偵測)
 

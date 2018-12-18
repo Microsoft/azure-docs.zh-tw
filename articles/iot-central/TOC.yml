@@ -1,0 +1,130 @@
+items:
+- name: Azure IoT 基礎
+  href: /azure/iot-fundamentals
+- name: Azure IoT Central 文件
+  href: index.yml
+- name: 概觀
+  items:
+  - name: 何謂 Azure IoT Central
+    href: overview-iot-central.md
+  - name: IoT 解決方案選項
+    href: overview-iot-options.md
+  - name: UI 導覽
+    href: overview-iot-central-tour.md
+- name: 快速入門
+  items:
+  - name: 建立新的應用程式
+    href: quick-deploy-iot-central.md
+  expanded: true
+- name: 教學課程
+  items:
+  - name: 1 - 定義新的裝置類型
+    href: tutorial-define-device-type.md
+  - name: 2 - 設定規則
+    href: tutorial-configure-rules.md
+  - name: 3 - 自訂操作者檢視
+    href: tutorial-customize-operator.md
+  - name: 4 - 監視您的裝置
+    href: tutorial-monitor-devices.md
+  - name: 5 - 新增裝置
+    href: tutorial-add-device.md
+- name: 概念
+  items:
+  - name: 架構
+    href: concepts-architecture.md
+  - name: 連線能力
+    href: concepts-connectivity.md
+- name: 使用說明指南
+  items:
+  - name: 連線裝置
+    items:
+    - name: 準備及連線 Node.js (一般) 應用程式
+      href: howto-connect-nodejs.md
+    - name: 準備及連線 MXChip IoT DevKit
+      href: howto-connect-devkit.md
+    - name: 準備及連線 Raspberry Pi (Python)
+      href: howto-connect-raspberry-pi-python.md
+    - name: 準備及連線 Raspberry Pi (C#)
+      href: howto-connect-raspberry-pi-csharp.md
+    - name: 準備及連線 Windows IoT Core 裝置
+      href: howto-connect-windowsiotcore.md
+    - name: 使用命令列監視裝置連線能力
+      href: howto-use-iotc-explorer.md
+  - name: 管理裝置
+    items:
+    - name: 設定裝置範本
+      href: howto-set-up-template.md
+    - name: 管理您的裝置
+      href: howto-manage-devices.md
+    - name: 執行作業
+      href: howto-run-a-job.md
+    - name: 使用裝置設定
+      href: howto-use-device-sets.md
+    - name: 版本裝置範本
+      href: howto-version-devicetemplate.md
+  - name: 監視和分析
+    items:
+    - name: 建立遙測規則
+      href: howto-create-telemetry-rules.md
+    - name: 建立事件規則
+      href: howto-create-event-rules.md
+    - name: 分析您的裝置資料
+      href: howto-create-analytics.md
+  - name: 動作和擴充性
+    items:
+    - name: 在規則上建立 Webhook 動作
+      href: howto-create-webhooks.md
+    - name: 在 Microsoft Flow 中建置工作流程
+      href: howto-add-microsoft-flow.md
+    - name: 觸發 Azure Functions
+      href: howto-trigger-azure-functions.md
+    - name: 匯出您的資料
+      href: howto-export-data.md
+    - name: 在 Power BI 中將資料視覺化
+      href: howto-connect-powerbi.md
+  - name: 管理
+    items:
+    - name: 管理您的應用程式
+      href: howto-administer.md
+    - name: 從 Azure 管理入口網站管理 IoT Central
+      href: howto-manage-iot-central-from-portal.md
+    - name: 如同 CSP，建立和管理應用程式
+      href: howto-create-and-manage-applications-as-CSP.md
+    - name: 設定首頁
+      href: howto-configure-homepage.md
+- name: 相關參考
+  items:
+  - name: 解決方案
+    items:
+    - name: IoT 解決方案加速器
+      href: /azure/iot-suite
+    - name: IoT 中心
+      href: /microsoft-iot-central
+  - name: 平台服務
+    items:
+    - name: IoT 中樞
+      href: /azure/iot-hub
+    - name: IoT 中樞裝置佈建服務
+      href: /azure/iot-dps
+    - name: 位置服務
+      href: /azure/location-based-services
+    - name: 服務 SDK
+      href: /azure/iot-hub/iot-hub-devguide-sdks#azure-iot-service-sdks
+    - name: 時間序列深入解析
+      href: /azure/time-series-insights
+  - name: Edge
+    items:
+    - name: IoT Edge
+      href: /azure/iot-edge
+    - name: IoT 裝置 SDK
+      href: /azure/iot-hub/iot-hub-devguide-sdks#azure-iot-device-sdks
+- name: 資源
+  items:
+  - name: 客戶資料要求
+    href: iot-central-customer-data-requests.md
+ms.openlocfilehash: 717e84cbbb1865fc442eee7afce23685f76a016f
+ms.sourcegitcommit: 4ecc62198f299fc215c49e38bca81f7eb62cdef3
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "47031776"

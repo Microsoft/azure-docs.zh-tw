@@ -2,24 +2,21 @@
 title: Azure Cosmos DB：SQL Node.js API、SDK 和資源 | Microsoft Docs
 description: 了解所有 SQL Node.js API 和 SDK 相關資訊，包括發行日期、停用日期及 Azure Cosmos DB Node.js SDK 每個版本之間所做的變更。
 services: cosmos-db
-documentationcenter: nodejs
-author: rnagpal
-manager: jhubbard
+author: deborahc
 editor: cgronlun
-ms.assetid: 9d5621fa-0e11-4619-a28b-a19d872bcf37
 ms.service: cosmos-db
-ms.workload: data-services
-ms.tgt_pltfrm: na
+ms.component: cosmosdb-sql
 ms.devlang: nodejs
-ms.topic: article
-ms.date: 1/4/2018
+ms.topic: reference
+ms.date: 09/24/2018
 ms.author: rnagpal
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 728db669954e317905d762c68c8990f064529699
-ms.sourcegitcommit: 34e0b4a7427f9d2a74164a18c3063c8be967b194
+ms.openlocfilehash: b6983b49135b5a8adbef1d0cfc5a407cb7b0c7ac
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/30/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46960544"
 ---
 # <a name="azure-cosmos-db-nodejs-sdk-for-sql-api-release-notes-and-resources"></a>Azure Cosmos DB Node.js SDK for SQL API：版本資訊與資源
 > [!div class="op_single_selector"]
@@ -33,34 +30,41 @@ ms.lasthandoff: 03/30/2018
 > * [REST](https://docs.microsoft.com/rest/api/cosmos-db/)
 > * [REST 資源提供者](https://docs.microsoft.com/rest/api/cosmos-db-resource-provider/)
 > * [SQL](https://msdn.microsoft.com/library/azure/dn782250.aspx)
-> 
-> 
+> * [BulkExecutor - .NET](sql-api-sdk-bulk-executor-dot-net.md)
+> * [BulkExecutor - Java](sql-api-sdk-bulk-executor-java.md)
 
-<table>
-
-<tr><td>**下載 SDK**</td><td>[NPM](https://www.npmjs.com/package/documentdb)</td></tr>
-
-<tr><td>**API 文件**</td><td>[Node.js API 參考文件](http://azure.github.io/azure-documentdb-node/DocumentClient.html)</td></tr>
-
-<tr><td>**SDK 安裝指示**</td><td>[安裝指示](http://azure.github.io/azure-documentdb-node/)</td></tr>
-
-<tr><td>**參與 SDK**</td><td>[GitHub](https://github.com/Azure/azure-documentdb-node/tree/master/source)</td></tr>
-
-<tr><td>**範例**</td><td>[Node.js 程式碼範例](sql-api-nodejs-samples.md)</td></tr>
-
-<tr><td>**開始使用教學課程**</td><td>[開始使用 Node.js SDK](sql-api-nodejs-get-started.md)</td></tr>
-
-<tr><td>**Web 應用程式教學課程**</td><td>[使用 Azure Cosmos DB 來建置 Node.js Web 應用程式](sql-api-nodejs-application.md)</td></tr>
-
-<tr><td>**目前支援的平台**</td><td> 
-[Node.js v6.x](https://nodejs.org/en/blog/release/v6.10.3/)<br/> 
-[Node.js v4.2.0](https://nodejs.org/en/blog/release/v4.2.0/)<br/> 
-[Node.js v0.12](https://nodejs.org/en/blog/release/v0.12.0/)<br/> 
-[Node.js v0.10](https://nodejs.org/en/blog/release/v0.10.0/) 
-</td></tr>
-</table></br>
+|資源  |連結  |
+|---------|---------|
+|下載 SDK  |   [NPM](https://www.npmjs.com/package/@azure/cosmos) 
+|API 文件  |  [JavaScript SDK 參考文件](https://docs.microsoft.com/javascript/api/%40azure/cosmos/?view=azure-node-latest)
+|SDK 安裝指示  |  [安裝指示](https://github.com/Azure/azure-cosmos-js#installation)
+|參與 SDK | [GitHub](https://github.com/Azure/azure-cosmos-js/tree/master)
+| 範例 | [Node.js 程式碼範例](sql-api-nodejs-samples.md)
+| 入門教學課程 | [開始使用 JavaScript SDK](sql-api-nodejs-get-started.md)
+| Web 應用程式教學課程 | [使用 Azure Cosmos DB 來建置 Node.js Web 應用程式](sql-api-nodejs-application.md)
+| 目前支援的平台 | [Node.js v6.x](https://nodejs.org/en/blog/release/v6.10.3/) - SDK 2.0.0 版和更新版本的必要項目。<br/>[Node.js v4.2.0](https://nodejs.org/en/blog/release/v4.2.0/)<br/> [Node.js v0.12](https://nodejs.org/en/blog/release/v0.12.0/)<br/> [Node.js v0.10](https://nodejs.org/en/blog/release/v0.10.0/) 
 
 ## <a name="release-notes"></a>版本資訊
+
+### <a name="2.0.0"/>2.0.0</a>
+* JavaScript SDK 2.0.0 版的公開推出
+* 已新增對多重區域寫入的支援。
+
+### <a name="2.0.0-3"/>2.0.0-3</a>
+* JavaScript SDK 2.0.0 版的 RC1 (用於公開預覽)。
+* 新的物件模型，具有最上層 CosmosClient，且方法分成相關的資料庫、容器和項目類別。 
+* 支援 [Promise](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Using_promises)。 
+* SDK 轉換成 TypeScript。
+
+### <a name="1.14.4"/>1.14.4</a>
+* 修正的 npm 文件。
+
+### <a name="1.14.3"/>1.14.3</a>
+* 已新增對連線問題預設重試次數的支援。
+* 已新增對讀取集合變更摘要的支援。
+* 已修正間歇造成「無法讀取工作階段」的工作階段一致性錯誤。
+* 已新增對查詢度量資訊的支援。
+* 已修正 http 代理程式的最大連接數目。
 
 ### <a name="1.14.2"/>1.14.2</a>
 * 更新參考 Azure Cosmos DB 而非 Azure DocumentDB 的文件。
@@ -193,6 +197,9 @@ Microsoft 至少會在停用 SDK 的 **12 個月** 之前提供通知，以供�
 
 | 版本 | 發行日期 | 停用日期 |
 | --- | --- | --- |
+| [2.0.0-3 (RC)](#2.0.0-3) |2018 年 8 月 2 日 |--- |
+| [1.14.4](#1.14.4) |2018 年 5 月 3 日 |--- |
+| [1.14.3](#1.14.3) |2018 年 5 月 3 日 |--- |
 | [1.14.2](#1.14.2) |2017 年 12 月 21 日 |--- |
 | [1.14.1](#1.14.1) |2017 年 11 月 10 日 |--- |
 | [1.14.0](#1.14.0) |2017 年 11 月 9 日 |--- |

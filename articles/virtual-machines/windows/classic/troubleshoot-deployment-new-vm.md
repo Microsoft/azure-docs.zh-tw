@@ -1,11 +1,11 @@
 ---
-title: "針對 Windows VM 部署-傳統進行疑難排解 | Microsoft Docs"
-description: "針對在 Azure 中建立新 Windows 虛擬機器的傳統部署問題進行疑難排解"
+title: 針對 Windows VM 部署-傳統進行疑難排解 | Microsoft Docs
+description: 針對在 Azure 中建立新 Windows 虛擬機器的傳統部署問題進行疑難排解
 services: virtual-machines-windows
-documentationcenter: 
+documentationcenter: ''
 author: JiangChen79
 manager: felixwu
-editor: 
+editor: ''
 tags: top-support-issue
 ms.assetid: 9f01d237-ba39-4c32-b72d-18f5f505d43a
 ms.service: virtual-machines-windows
@@ -20,6 +20,7 @@ ms.sourcegitcommit: adf6a4c89364394931c1d29e4057a50799c90fc0
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 11/09/2017
+ms.locfileid: "24056634"
 ---
 # <a name="troubleshoot-classic-deployment-issues-with-creating-a-new-windows-virtual-machine-in-azure"></a>針對在 Azure 中建立新 Windows 虛擬機器的傳統部署問題進行疑難排解
 [!INCLUDE [virtual-machines-troubleshoot-deployment-new-vm-selectors](../../../../includes/virtual-machines-windows-troubleshoot-deployment-new-vm-selectors-include.md)]
@@ -45,9 +46,9 @@ ms.lasthandoff: 11/09/2017
 
 **上傳錯誤：**
 
-**N<sup>1</sup>：**如果作業系統是一般化的 Windows，但是以特殊化被上傳，就會發生佈建逾時錯誤，VM 會卡在 OOBE 畫面。
+**N<sup>1</sup>：** 如果作業系統是一般化的 Windows，但是以特殊化被上傳，就會發生佈建逾時錯誤，VM 會卡在 OOBE 畫面。
 
-**N<sup>2</sup>：**如果作業系統是特殊化的 Windows，但是以一般化被上傳，就會發生佈建失敗錯誤，VM 會卡在 OOBE 畫面，因為新 VM 是以原始的電腦名稱、使用者名稱和密碼執行。
+**N<sup>2</sup>：** 如果作業系統是特殊化的 Windows，但是以一般化被上傳，就會發生佈建失敗錯誤，VM 會卡在 OOBE 畫面，因為新 VM 是以原始的電腦名稱、使用者名稱和密碼執行。
 
 **解決方案：**
 
@@ -55,9 +56,9 @@ ms.lasthandoff: 11/09/2017
 
 **擷取錯誤：**
 
-**N<sup>3</sup>：**如果作業系統是一般化的 Windows，但是以特殊化被擷取，就會發生佈建逾時錯誤，因為 VM 被標示為一般化而無法加以使用。
+**N<sup>3</sup>：** 如果作業系統是一般化的 Windows，但是以特殊化被擷取，就會發生佈建逾時錯誤，因為 VM 被標示為一般化而無法加以使用。
 
-**N<sup>4</sup>：**如果作業系統是特殊化的 Windows，但是以一般化的方式擷取，就會發生佈建失敗錯誤，因為新 VM 是以原始的電腦名稱、使用者名稱和密碼執行。 此外，原始 VM 會因被標示為特殊化而無法供使用。
+**N<sup>4</sup>：** 如果作業系統是特殊化的 Windows，但是以一般化的方式擷取，就會發生佈建失敗錯誤，因為新 VM 是以原始的電腦名稱、使用者名稱和密碼執行。 此外，原始 VM 會因被標示為特殊化而無法供使用。
 
 **解決方案：**
 

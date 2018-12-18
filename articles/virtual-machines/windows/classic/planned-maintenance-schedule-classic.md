@@ -1,11 +1,11 @@
 ---
-title: "如何為 Azure 中的 Windows VM 排定維護 | Microsoft Docs"
-description: "了解如何排定在 Azure VM 上的計劃性維護。"
+title: 如何為 Azure 中的 Windows VM 排定維護 | Microsoft Docs
+description: 了解如何排定在 Azure VM 上的計劃性維護。
 services: virtual-machines-windows
-documentationcenter: 
+documentationcenter: ''
 author: igalf
-manager: timlt
-editor: 
+manager: jeconnoc
+editor: ''
 tags: azure-service-management
 ROBOTS: NOINDEX
 ms.assetid: ab33e5da-6bb6-4e95-a7a6-a6303d21b15c
@@ -16,11 +16,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/23/2017
 ms.author: igalf
-ms.openlocfilehash: cf742ce61e1930e1b36647725cd08b63ce6d05a1
-ms.sourcegitcommit: 176c575aea7602682afd6214880aad0be6167c52
+ms.openlocfilehash: 583661e74260a86eab6a3632535d6e5e33d21a03
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/09/2018
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38561192"
 ---
 # <a name="how-to-schedule-planned-maintenance-on-azure-vms"></a>如何排定在 Azure VM 上的計劃性維護
 > [!IMPORTANT]

@@ -1,11 +1,11 @@
 ---
-title: "Azure App Service 中的 OS 和執行階段修補 | Microsoft Docs"
-description: "說明 Azure App Service 如何更新 OS 和執行階段，以及要如何取得更新公告。"
+title: Azure App Service 中的 OS 和執行階段修補 | Microsoft Docs
+description: 說明 Azure App Service 如何更新 OS 和執行階段，以及要如何取得更新公告。
 services: app-service
-documentationcenter: 
+documentationcenter: ''
 author: cephalin
 manager: cfowler
-editor: 
+editor: ''
 ms.service: app-service
 ms.workload: web
 ms.tgt_pltfrm: na
@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/02/2018
 ms.author: cephalin
-ms.openlocfilehash: 869bd0e3f684ff4a2291e189cf247daedfb74922
-ms.sourcegitcommit: eeb5daebf10564ec110a4e83874db0fb9f9f8061
+ms.openlocfilehash: 9855becd7c047788ed310dff4317a5df87cc9b61
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/03/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43047623"
 ---
 # <a name="os-and-runtime-patching-in-azure-app-service"></a>Azure App Service 中的 OS 和執行階段修補
 
@@ -73,31 +74,31 @@ az webapp config set --python-version 3.4 --resource-group <groupname> --name <a
 az webapp config set --java-version 1.8 --java-container Tomcat --java-container-version 9.0 --resource-group <groupname> --name <appname>
 ```
 
-### <a name="deprecated-versions"></a>已取代的版本
+### <a name="deprecated-versions"></a>已取代的版本  
 
 在要取代較舊的版本時，我們會公佈移除日期，讓您據此規劃執行階段版本升級。 
 
-## <a name="how-can-i-query-os-and-runtime-update-status-on-my-instances"></a>如何在執行個體上查詢 OS 和執行階段更新狀態？
+## <a name="how-can-i-query-os-and-runtime-update-status-on-my-instances"></a>如何在執行個體上查詢 OS 和執行階段更新狀態？  
 
 您無法存取重要的 OS 資訊 (請參閱 [Azure App Service 上的作業系統功能](web-sites-available-operating-system-functionality.md))，不過 [Kudu 主控台](https://github.com/projectkudu/kudu/wiki/Kudu-console)可讓您針對 OS 版本和執行階段版本來查詢 App Service 執行個體。 
 
 下表說明如何找到 Windows 的版本和執行應用程式之語言執行階段的版本：
 
-| 資訊 | 所在位置 |
+| 資訊 | 所在位置 | 
 |-|-|
 | Windows 版本 | 請參閱 `https://<appname>.scm.azurewebsites.net/Env.cshtml` (在 [系統資訊] 底下) |
 | .NET 版本 | 位於 `https://<appname>.scm.azurewebsites.net/DebugConsole`，在命令提示字元中執行下列命令： <br>`powershell -command "gci 'Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Net Framework Setup\NDP\CDF'"` |
 | .NET Core 版本 | 位於 `https://<appname>.scm.azurewebsites.net/DebugConsole`，在命令提示字元中執行下列命令： <br> `dotnet --version` |
 | PHP 版本 | 位於 `https://<appname>.scm.azurewebsites.net/DebugConsole`，在命令提示字元中執行下列命令： <br> `php --version` |
 | 預設的 Node.js 版本 | 在 [Cloud Shell](../cloud-shell/overview.md) 中執行下列命令︰ <br> `az webapp config appsettings list --resource-group <groupname> --name <appname> --query "[?name=='WEBSITE_NODE_DEFAULT_VERSION']"` |
-| Python 版本 | 位於 `https://<appname>.scm.azurewebsites.net/DebugConsole`，在命令提示字元中執行下列命令： <br> `python --version` |
+| Python 版本 | 位於 `https://<appname>.scm.azurewebsites.net/DebugConsole`，在命令提示字元中執行下列命令： <br> `python --version` |  
 
-> [!NOTE]
-> 您無法存取登錄位置 `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Component Based Servicing\Packages` (這裡儲存了有關 ["KB" 修補程式]((https://technet.microsoft.com/security/bulletins.aspx))的資訊)。
+> [!NOTE]  
+> 您無法存取登錄位置 `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Component Based Servicing\Packages` (這裡儲存了有關 ["KB" 修補程式](https://docs.microsoft.com/security-updates/SecurityBulletins/securitybulletins)的資訊)。
 >
 >
 
 ## <a name="more-resources"></a>其他資源
 
-[信任中心：安全性](https://www.microsoft.com/TrustCenter/Security/default.aspx)  
+[信任中心：安全性](https://www.microsoft.com/en-us/trustcenter/security)  
 [Azure App Service 上的 64 位元 ASP.NET Core](https://gist.github.com/glennc/e705cd85c9680d6a8f1bdb62099c7ac7)

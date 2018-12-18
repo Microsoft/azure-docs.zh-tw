@@ -1,12 +1,12 @@
 ---
-title: "Durable Functions 中的工作中樞 - Azure"
-description: "了解在 Azure Functions 的 Durable Functions 擴充中，什麼是工作中樞。 了解如何設定工作中樞。"
+title: Durable Functions 中的工作中樞 - Azure
+description: 了解在 Azure Functions 的 Durable Functions 擴充中，什麼是工作中樞。 了解如何設定工作中樞。
 services: functions
 author: cgillum
 manager: cfowler
-editor: 
-tags: 
-keywords: 
+editor: ''
+tags: ''
+keywords: ''
 ms.service: functions
 ms.devlang: multiple
 ms.topic: article
@@ -14,11 +14,12 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 09/29/2017
 ms.author: azfuncdf
-ms.openlocfilehash: b241bad7b0060551eba5e78efbb1b729bf5d0098
-ms.sourcegitcommit: 6acb46cfc07f8fade42aff1e3f1c578aa9150c73
+ms.openlocfilehash: 563667684accf8b434052cd412bf6e93c77ea63a
+ms.sourcegitcommit: e221d1a2e0fb245610a6dd886e7e74c362f06467
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/18/2017
+ms.lasthandoff: 05/07/2018
+ms.locfileid: "33762321"
 ---
 # <a name="task-hubs-in-durable-functions-azure-functions"></a>Durable Functions (Azure Functions) 中的工作中樞
 
@@ -35,6 +36,7 @@ ms.lasthandoff: 10/18/2017
 * 一或多個控制佇列。
 * 一個工作項目佇列。
 * 一個記錄資料表。
+* 一個執行個體資料表。
 * 一個儲存體容器，含有一或多個租用 blob。
 
 當協調器或活動函式執行時，或已排程執行時，就會在預設 Azure 儲存體帳戶中自動建立所有這些資源。 [效能和延展性](durable-functions-perf-and-scale.md)一文說明如何使用這些資源。

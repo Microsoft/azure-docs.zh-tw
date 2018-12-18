@@ -1,24 +1,24 @@
 ---
-title: "檢視 Azure Stack 中的公用 IP 位址使用 |Microsoft Docs"
-description: "系統管理員可以檢視區域中的公用 IP 位址使用"
+title: 檢視 Azure Stack 中的公用 IP 位址使用 |Microsoft Docs
+description: 系統管理員可以檢視區域中的公用 IP 位址使用
 services: azure-stack
-documentationcenter: 
+documentationcenter: ''
 author: mattbriggs
 manager: femila
-editor: 
-ms.assetid: 0f77be49-eafe-4886-8c58-a17061e8120f
+editor: ''
 ms.service: azure-stack
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 02/28/2018
+ms.date: 09/10/2018
 ms.author: mabrigg
-ms.openlocfilehash: 50bf01d6de6105d3041c6bb88e803f3d110f751d
-ms.sourcegitcommit: 782d5955e1bec50a17d9366a8e2bf583559dca9e
+ms.openlocfilehash: 6207a77555d0d4656c0728dddec769e483f4d762
+ms.sourcegitcommit: 5a9be113868c29ec9e81fd3549c54a71db3cec31
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/02/2018
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44378239"
 ---
 # <a name="view-public-ip-address-consumption-in-azure-stack"></a>檢視 Azure Stack 中的公用 IP 位址使用
 
@@ -38,9 +38,8 @@ ms.lasthandoff: 03/02/2018
 ## <a name="view-the-public-ip-address-usage-information"></a>檢視公用 IP 位址使用方式資訊
 若要檢視區域中已使用的公用 IP 位址總數：
 
-1. 在 Azure Stack 系統管理員入口網站中，選取 [更多服務]，然後在 [管理資源] 下方選取 [資源提供者]。
-2. 從 [資源提供者] 清單中，選取 [網路]。
-3. [網路] 視格會在 [概觀] 區段中顯示 [公用 IP 集區使用方式] 圖格。
+1. 在 Azure Stack 系統管理員入口網站中，選取 [所有服務]。 接著，在 [系統管理] 類別底下，選取 [網路]。
+1. [網路] 視格會在 [概觀] 區段中顯示 [公用 IP 集區使用方式] 圖格。
 
 ![網路資源提供者窗格](media/azure-stack-viewing-public-ip-address-consumption/image01.png)
 
@@ -60,11 +59,11 @@ ms.lasthandoff: 03/02/2018
 
 | **公用 IP 位址指派案例** | **顯示於使用方式摘要** | **顯示於租用戶公用 IP 位址清單** |
 | --- | --- | --- |
-| 尚未指派給 NIC 或負載平衡器 (暫時) 的動態公用 IP 位址 |否 |yes |
-| 已指派給 NIC 或負載平衡器的動態公用 IP 位址。 |yes |yes |
-| 已指派給租用戶 NIC 或負載平衡器的靜態公用 IP 位址。 |yes |yes |
-| 已指派給網狀架構基礎結構服務端點的靜態公用 IP 位址。 |yes |否 |
-| 公用 IP 位址會以隱含方式針對 IaaS VM 執行個體而建立，並用於虛擬網路上的輸出 NAT。 每當租用戶建立 VM 執行個體，讓 VM 可以將資訊送出到網際網路時，這些位址便會在幕後建立。 |yes |否 |
+| 尚未指派給 NIC 或負載平衡器 (暫時) 的動態公用 IP 位址 |否 |是 |
+| 已指派給 NIC 或負載平衡器的動態公用 IP 位址。 |是 |是 |
+| 已指派給租用戶 NIC 或負載平衡器的靜態公用 IP 位址。 |是 |是 |
+| 已指派給網狀架構基礎結構服務端點的靜態公用 IP 位址。 |是 |否 |
+| 公用 IP 位址會以隱含方式針對 IaaS VM 執行個體而建立，並用於虛擬網路上的輸出 NAT。 每當租用戶建立 VM 執行個體，讓 VM 可以將資訊送出到網際網路時，這些位址便會在幕後建立。 |是 |否 |
 
 ## <a name="next-steps"></a>後續步驟
 [在 Azure Stack 中管理儲存體帳戶](azure-stack-manage-storage-accounts.md)

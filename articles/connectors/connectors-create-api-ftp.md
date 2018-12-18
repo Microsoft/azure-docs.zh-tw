@@ -1,25 +1,22 @@
 ---
-title: "了解如何在邏輯應用程式中使用 FTP 連接器 | Microsoft Docs"
-description: "使用 Azure App Service 建立邏輯應用程式。 連線到 FTP 伺服器來管理您的檔案。 您可以執行各種動作，例如上傳、更新、取得及刪除 FTP 伺服器中的檔案。"
-services: logic-apps
-documentationcenter: .net,nodejs,java
-author: msftman
-manager: erikre
-editor: 
-tags: connectors
-ms.assetid: d83c55fe-eb59-4b7b-a5ec-afac5c772616
-ms.service: logic-apps
-ms.devlang: multiple
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: integration
+title: 連線到 FTP 伺服器 - Azure Logic Apps | Microsoft Docs
+description: 使用 Azure Logic Apps 在 FTP 伺服器上建立、監視和管理檔案
+author: ecfan
+manager: jeconnoc
+ms.author: estfan
 ms.date: 07/22/2016
-ms.author: mandia; ladocs
-ms.openlocfilehash: 7719e0e90df3a384e870e2e839cb77a27d95ada8
-ms.sourcegitcommit: be9a42d7b321304d9a33786ed8e2b9b972a5977e
+ms.topic: article
+ms.service: logic-apps
+services: logic-apps
+ms.reviewer: klam, LADocs
+ms.suite: integration
+tags: connectors
+ms.openlocfilehash: 4355a767d2ecd500662cdf4522e8a7e12de86b80
+ms.sourcegitcommit: ab3b2482704758ed13cccafcf24345e833ceaff3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/19/2018
+ms.lasthandoff: 07/06/2018
+ms.locfileid: "37866146"
 ---
 # <a name="get-started-with-the-ftp-connector"></a>開始使用 FTP 連接器
 使用 FTP 連接器在 FTP 伺服器上監視、管理和建立檔案。 
@@ -71,7 +68,7 @@ ms.lasthandoff: 01/19/2018
 3. 輸入 *FTP* 以搜尋與 FTP 相關的所有動作。
 4. 選取 [FTP - 取得檔案內容]，做為在 FTP 資料夾中找到新的或修改過檔案時所要採取的動作。      
    ![FTP 動作影像 2](./media/connectors-create-api-ftp/ftp-action-2.png)  
-   [取得檔案內容] 控制項隨即開啟。 **附註：**如果您未曾授權邏輯應用程式存取您的 FTP 伺服器帳戶，系統會提示您這麼做。  
+   [取得檔案內容] 控制項隨即開啟。 **附註：** 如果您未曾授權邏輯應用程式存取您的 FTP 伺服器帳戶，系統會提示您這麼做。  
    ![FTP 動作影像 3](./media/connectors-create-api-ftp/ftp-action-3.png)   
 5. 選取 [檔案] 控制項 (位於 **FILE*** 下方的空白處)。 在這裡，您可以使用 FTP 伺服器上找到之新的或修改過檔案中的各種屬性。  
 6. 選取 [檔案內容] 選項。  

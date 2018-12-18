@@ -1,11 +1,11 @@
 ---
-title: "偵錯本機 Docker 容器中的應用程式 | Microsoft Docs"
-description: "了解如何透過「編輯和重新整理」來修改在本機 Docker 容器中執行的應用程式、重新整理容器，以及設定偵錯中斷點"
+title: 偵錯本機 Docker 容器中的應用程式 | Microsoft Docs
+description: 了解如何透過「編輯和重新整理」來修改在本機 Docker 容器中執行的應用程式、重新整理容器，以及設定偵錯中斷點
 services: azure-container-service
 documentationcenter: na
-author: mlearned
+author: ghogen
 manager: douge
-editor: 
+editor: ''
 ms.assetid: 480e3062-aae7-48ef-9701-e4f9ea041382
 ms.service: multiple
 ms.devlang: dotnet
@@ -14,15 +14,16 @@ ms.tgt_pltfrm: na
 ms.workload: multiple
 ms.date: 07/22/2016
 ms.author: mlearned
-ms.openlocfilehash: 7df8bb2dd61466fd9af6492277d54cf0ffdfeb0b
-ms.sourcegitcommit: f46cbcff710f590aebe437c6dd459452ddf0af09
+ms.openlocfilehash: 01741ba25ac3a6ab187a08636b7e26ee58dbee90
+ms.sourcegitcommit: 387d7edd387a478db181ca639db8a8e43d0d75f7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/20/2017
+ms.lasthandoff: 08/10/2018
+ms.locfileid: "40038065"
 ---
 # <a name="debugging-apps-in-a-local-docker-container"></a>偵錯本機 Docker 容器中的應用程式
 ## <a name="overview"></a>概觀
-Visual Studio Tools for Docker 提供一致的方式，在 Linux Docker 容器中本機開發和驗證您的應用程式。
+Visual Studio 2017 可讓您以一致的方式在 Linux Docker 容器中進行開發，並在本機驗證應用程式。
 您不需要每次變更程式碼之後都重新啟動容器。
 本文章說明如何使用「編輯及重新整理」功能在本機 Docker 容器中啟動 ASP.NET Core Web 應用程式、進行任何必要的變更，然後重新整理瀏覽器來查看這些變更。
 本文章也會示範如何設定中斷點來進行偵錯。
@@ -32,11 +33,11 @@ Visual Studio Tools for Docker 提供一致的方式，在 Linux Docker 容器�
 >
 >
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 您的電腦必須安裝下列工具。
 
-* [最新版本的 Visual Studio](https://www.visualstudio.com/downloads/)
-* [Microsoft ASP.NET 核心 1.0 SDK](https://go.microsoft.com/fwlink/?LinkID=809122)
+* [Visual Studio 2017](https://www.visualstudio.com/downloads/)
+* [Microsoft ASP.NET Core 1.0 SDK](https://go.microsoft.com/fwlink/?LinkID=809122)
 
 若要在本機執行 Docker 容器，您需要本機 Docker 用戶端。
 您可以使用需要停用 Hyper-V 的 [Docker 工具箱](https://www.docker.com/products/docker-toolbox)，或是使用利用 Hyper-V 並需要 Windows 10 的 [Docker for Windows](https://www.docker.com/get-docker)。
@@ -89,13 +90,12 @@ Visual Studio Tools for Docker 提供一致的方式，在 Linux Docker 容器�
    ![][2]
 
 ## <a name="summary"></a>總結
-運用 [Visual Studio 2015 Tools for Docker](https://aka.ms/DockerToolsForVS)，您將可獲得在本機運作的生產力，以及在 Docker 容器內開發的生產環境真實性。
+透過 Visual Studio 2017 中的 Docker 支援，您將可獲得在本機運作的生產力，以及在 Docker 容器內開發的生產環境真實性。
 
 ## <a name="troubleshooting"></a>疑難排解
 [疑難排解 Visual Studio Docker 開發](vs-azure-tools-docker-troubleshooting-docker-errors.md)
 
 ## <a name="more-about-docker-with-visual-studio-windows-and-azure"></a>進一步了解 Docker 與 Visual Studio、Windows 和 Azure
-* [Docker Tools for Visual Studio](http://aka.ms/dockertoolsforvs) - 在容器中開發 .NET Core 程式碼
 * [Docker Tools for Visual Studio Team Services](http://aka.ms/dockertoolsforvsts) - 建置和部署 Docker 容器
 * [Docker Tools for Visual Studio Code](http://aka.ms/dockertoolsforvscode) - 用於編輯 Docker 檔案的語言服務，將推出更多其他 e2e 案例
 * [Windows 容器資訊](http://aka.ms/containers)- Windows Server 和 Nano Server 資訊

@@ -2,31 +2,34 @@
 title: 使用 Visual Studio 和 .NET 查詢 Azure SQL Database | Microsoft Docs
 description: 本主題說明如何使用 Visual Studio 來建立連線到 Azure SQL Database 的程式，並使用 Transact-SQL 陳述式查詢。
 services: sql-database
-author: CarlRabeler
-manager: craigg
 ms.service: sql-database
-ms.custom: devcenter
+ms.subservice: development
+ms.custom: ''
 ms.devlang: dotnet
 ms.topic: quickstart
-ms.date: 11/29/2017
+author: CarlRabeler
 ms.author: carlrab
-ms.openlocfilehash: a76b9058f0bf7afdc332cee4ff7a49fa0e6987a6
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.reviewer: ''
+manager: craigg
+ms.date: 04/01/2018
+ms.openlocfilehash: e6eaaa67914579edd5c3b53362835aa1ad168eca
+ms.sourcegitcommit: cc4fdd6f0f12b44c244abc7f6bc4b181a2d05302
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47064028"
 ---
 # <a name="use-net-c-with-visual-studio-to-connect-and-query-an-azure-sql-database"></a>使用 .NET (C#) 搭配 Visual Studio 連線及查詢 Azure SQL database
 
-此快速入門教學課程示範如何使用 [.NET framework](https://www.microsoft.com/net/) 搭配 Visual Studio 來建立 C# 程式以連線至 Azure SQL 資料庫，並使用 Transact-SQL 陳述式來查詢資料。
+此快速入門示範如何搭配使用 [.NET Framework](https://www.microsoft.com/net/) 與 Visual Studio 建立 C# 程式以連線至 Azure SQL 資料庫，並使用 Transact-SQL 陳述式來查詢資料。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
-若要完成本快速入門教學課程，請確定您具有下列項目︰
+若要完成本快速入門，請確定您具備下列項目︰
 
 [!INCLUDE [prerequisites-create-db](../../includes/sql-database-connect-query-prerequisites-create-db-includes.md)]
 
-- 在此快速入門教學課程中，您所使用電腦的公用 IP 位址[伺服器層級防火牆規則](sql-database-get-started-portal.md#create-a-server-level-firewall-rule)。
+- 在此快速入門中，您所使用電腦的公用 IP 位址[伺服器層級防火牆規則](sql-database-get-started-portal-firewall.md)。
 
 - 安裝 [Visual Studio Community 2017、Visual Studio Professional 2017 或 Visual Studio Enterprise 2017](https://www.visualstudio.com/downloads/)。
 
@@ -43,7 +46,7 @@ ms.lasthandoff: 03/16/2018
     ![ADO.NET 連接字串](./media/sql-database-connect-query-dotnet/adonet-connection-string.png)
 
 > [!IMPORTANT]
-> 在您執行本教學課程的電腦上，公用 IP 位址必須有防火牆規則。 如果您在不同電腦上或有不同的公用 IP 位址，請建立[使用 Azure 入口網站的伺服器層級防火牆規則](sql-database-get-started-portal.md#create-a-server-level-firewall-rule)。 
+> 在您執行本教學課程的電腦上，公用 IP 位址必須有防火牆規則。 如果您在不同電腦上或有不同的公用 IP 位址，請建立[使用 Azure 入口網站的伺服器層級防火牆規則](sql-database-get-started-portal-firewall.md)。 
 >
   
 ## <a name="create-a-new-visual-studio-project"></a>建立新的 Visual Studio 專案
@@ -53,7 +56,7 @@ ms.lasthandoff: 03/16/2018
 3. 選取 [主控台應用程式] 並輸入 sqltest 作為專案名稱。
 4. 按一下 [確定] 以在 Visual Studio 中建立並開啟新專案
 4. 在 [方案總管] 中，以滑鼠右鍵按一下 [sqltest]，然後按一下 [管理 NuGet 套件]。 
-5. 在 [瀏覽] 上，搜尋 ```System.Data.SqlClient```，並在找到後選取它。
+5. 在 [瀏覽] 索引標籤上搜尋 ```System.Data.SqlClient```，並在找到後加以選取。
 6. 在 **System.Data.SqlClient** 頁面上，按一下 [安裝]。
 7. 當安裝完成時，檢閱所做的變更，然後按一下 [確定] 來關閉 [預覽] 視窗。 
 8. 如果 [授權接受] 視窗出現時，按一下 [我接受]。

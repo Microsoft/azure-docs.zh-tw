@@ -1,25 +1,26 @@
 ---
-title: "Azure Service Fabric CLI 指令碼部署範例"
-description: "使用 Azure Service Fabric CLI 將應用程式部署至 Azure Service Fabric 叢集"
+title: Azure Service Fabric CLI (sfctl) 指令碼部署範例
+description: 使用 Azure Service Fabric CLI 將應用程式部署至 Azure Service Fabric 叢集
 services: service-fabric
-documentationcenter: 
-author: Thraka
+documentationcenter: ''
+author: TylerMSFT
 manager: timlt
-editor: 
+editor: ''
 tags: azure-service-management
-ms.assetid: 
+ms.assetid: ''
 ms.service: service-fabric
 ms.workload: multiple
 ms.devlang: na
 ms.topic: sample
-ms.date: 12/06/2017
-ms.author: adegeo
+ms.date: 04/16/2018
+ms.author: twhitney
 ms.custom: mvc
-ms.openlocfilehash: a9b7b2e3a8355aa0da0069bd27d2f61d8b5b8028
-ms.sourcegitcommit: b07d06ea51a20e32fdc61980667e801cb5db7333
+ms.openlocfilehash: d3e619750c45ac2d8e0b942a304aadfa05301624
+ms.sourcegitcommit: 0b05bdeb22a06c91823bd1933ac65b2e0c2d6553
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2017
+ms.lasthandoff: 07/17/2018
+ms.locfileid: "39069500"
 ---
 # <a name="deploy-an-application-to-a-service-fabric-cluster"></a>將應用程式部署到 Service Fabric 叢集
 

@@ -10,24 +10,22 @@ ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 02/26/2018
+ms.topic: conceptual
+ms.date: 08/21/2018
 ms.author: jingwang
-ms.openlocfilehash: e6440bfd3297ee68cd4ff79c8654b5f97cba077e
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 19ba4a97b93c01a049f921904d0f5aba4b8c0617
+ms.sourcegitcommit: fab878ff9aaf4efb3eaff6b7656184b0bafba13b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 08/22/2018
+ms.locfileid: "42442049"
 ---
 # <a name="copy-data-from-and-to-salesforce-by-using-azure-data-factory"></a>使用 Azure Data Factory 從 Salesforce 複製資料以及複製資料至 Salesforce
 > [!div class="op_single_selector" title1="Select the version of Data Factory service you are using:"]
-> * [第 1 版 - 正式運作](v1/data-factory-salesforce-connector.md)
-> * [第 2 版 - 預覽](connector-salesforce.md)
+> * [第 1 版](v1/data-factory-salesforce-connector.md)
+> * [目前的版本](connector-salesforce.md)
 
 本文概述如何使用 Azure Data Factory 中的「複製活動」，從 Salesforce 複製資料以及複製資料至 Salesforce。 本文是根據[複製活動概觀](copy-activity-overview.md)一文，該文提供複製活動的一般概觀。
-
-> [!NOTE]
-> 本文適用於第 2 版的 Data Fatory (目前為預覽版)。 如果您使用已正式運作的第 1 版 Data Factory，請參閱[第 1 版中的 Salesforce 連接器](v1/data-factory-salesforce-connector.md)。
 
 ## <a name="supported-capabilities"></a>支援的功能
 
@@ -38,7 +36,7 @@ ms.lasthandoff: 03/23/2018
 - Salesforce Developer、Professional、Enterprise 或 Unlimited 版本。
 - 從 Salesforce 生產環境、沙箱、自訂網域複製資料，以及將資料複製到這些位置。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 必須在 Salesforce 中啟用 API 權限。 如需詳細資訊，請參閱[在 Salesforce 中透過權限集啟用 API 存取權](https://www.data2crm.com/migration/faqs/enable-api-access-salesforce-permission-set/)。
 
@@ -63,11 +61,11 @@ Salesforce 對於 API 要求總數和並行 API 要求均有限制。 請注意�
 
 | 屬性 | 說明 | 必要 |
 |:--- |:--- |:--- |
-| type |type 屬性必須設為 **Salesforce**。 |yes |
+| type |type 屬性必須設為 **Salesforce**。 |是 |
 | environmentUrl | 指定 Salesforce 執行個體的 URL。 <br> - 預設為 `"https://login.salesforce.com"`. <br> - 若要從沙箱複製資料，請指定 `"https://test.salesforce.com"`。 <br> - 若要從自訂網域複製資料，舉例來說，請指定 `"https://[domain].my.salesforce.com"`。 |否 |
-| username |指定使用者帳戶的使用者名稱。 |yes |
-| password |指定使用者帳戶的密碼。<br/><br/>將此欄位標記為 SecureString，將它安全地儲存在 Data Factory 中，或[參考 Azure Key Vault 中儲存的祕密](store-credentials-in-key-vault.md)。 |yes |
-| securityToken |指定使用者帳戶的安全性權杖。 如需如何重設及取得安全性權杖的指示，請參閱[取得安全性權杖](https://help.salesforce.com/apex/HTViewHelpDoc?id=user_security_token.htm)。 若要整體了解安全性權杖，請參閱[安全性和 API](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_concepts_security.htm)。<br/><br/>將此欄位標記為 SecureString，將它安全地儲存在 Data Factory 中，或[參考 Azure Key Vault 中儲存的祕密](store-credentials-in-key-vault.md)。 |yes |
+| username |指定使用者帳戶的使用者名稱。 |是 |
+| password |指定使用者帳戶的密碼。<br/><br/>將此欄位標記為 SecureString，將它安全地儲存在 Data Factory 中，或[參考 Azure Key Vault 中儲存的祕密](store-credentials-in-key-vault.md)。 |是 |
+| securityToken |指定使用者帳戶的安全性權杖。 如需如何重設及取得安全性權杖的指示，請參閱[取得安全性權杖](https://help.salesforce.com/apex/HTViewHelpDoc?id=user_security_token.htm)。 若要整體了解安全性權杖，請參閱[安全性和 API](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_concepts_security.htm)。<br/><br/>將此欄位標記為 SecureString，將它安全地儲存在 Data Factory 中，或[參考 Azure Key Vault 中儲存的祕密](store-credentials-in-key-vault.md)。 |是 |
 | connectVia | 用來連線到資料存放區的[整合執行階段](concepts-integration-runtime.md)。 如果未指定，就會使用預設的 Azure Integration Runtime。 | 如果來源連結服務沒有整合執行階段，則對於來源而言為「否」；對於接收而言為「是」 |
 
 >[!IMPORTANT]
@@ -141,7 +139,7 @@ Salesforce 對於 API 要求總數和並行 API 要求均有限制。 請注意�
 
 | 屬性 | 說明 | 必要 |
 |:--- |:--- |:--- |
-| type | type 屬性必須設為 **SalesforceObject**。  | yes |
+| type | type 屬性必須設為 **SalesforceObject**。  | 是 |
 | objectApiName | 要從其中擷取資料的 Salesforce 物件名稱。 | 否 (來源)；是 (接收) |
 
 > [!IMPORTANT]
@@ -172,7 +170,7 @@ Salesforce 對於 API 要求總數和並行 API 要求均有限制。 請注意�
 
 | 屬性 | 說明 | 必要 |
 |:--- |:--- |:--- |
-| type | 資料集的 type 屬性必須設定為 **RelationalTable**。 | yes |
+| type | 資料集的 type 屬性必須設定為 **RelationalTable**。 | 是 |
 | tableName | Salesforce 中資料表的名稱。 | 否 (如果已指定活動來源中的「查詢」) |
 
 ## <a name="copy-activity-properties"></a>複製活動屬性
@@ -185,8 +183,8 @@ Salesforce 對於 API 要求總數和並行 API 要求均有限制。 請注意�
 
 | 屬性 | 說明 | 必要 |
 |:--- |:--- |:--- |
-| type | 複製活動來源的 type 屬性必須設定為 **SalesforceSource**。 | yes |
-| query |使用自訂查詢來讀取資料。 您可以使用 SQL-92 查詢或 [Salesforce 物件查詢語言 (SOQL)](https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql.htm) 查詢。 例如 `select * from MyTable__c`。 | 否 (如果已指定資料集中的 "tableName") |
+| type | 複製活動來源的 type 屬性必須設定為 **SalesforceSource**。 | 是 |
+| query |使用自訂查詢來讀取資料。 您可以使用 [Salesforce 物件查詢語言 (SOQL)](https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql.htm) 查詢或 SQL-92 查詢。 請參閱[查詢秘訣](#query-tips)一節中的秘訣。 | 否 (如果已指定資料集中的 "tableName") |
 | readBehavior | 指出是要查詢現有記錄，還是要查詢包含已刪除記錄在內的所有記錄。 如果未指定，預設行為是前者。 <br>允許的值：**query** (預設值)、**queryAll**。  | 否 |
 
 > [!IMPORTANT]
@@ -235,7 +233,7 @@ Salesforce 對於 API 要求總數和並行 API 要求均有限制。 請注意�
 
 | 屬性 | 說明 | 必要 |
 |:--- |:--- |:--- |
-| type | 複製活動接收的 type 屬性必須設定為 **SalesforceSink**。 | yes |
+| type | 複製活動接收的 type 屬性必須設定為 **SalesforceSink**。 | 是 |
 | writeBehavior | 作業的寫入行為。<br/>允許的值為 **Insert** 和 **Upsert**。 | 否 (預設為 Insert) |
 | externalIdFieldName | upsert 作業的外部識別碼欄位名稱。 指定的欄位在 Salesforce 物件中必須定義為「外部識別碼欄位」。 對應的輸入資料中不能有 NULL 值。 | 是 (用於 upsert) |
 | writeBatchSize | 每個批次中寫入 Salesforce 的資料列計數。 | 否 (預設值為 5,000) |
@@ -284,17 +282,27 @@ Salesforce 對於 API 要求總數和並行 API 要求均有限制。 請注意�
 
 ### <a name="retrieve-deleted-records-from-the-salesforce-recycle-bin"></a>從 Salesforce 資源回收筒擷取已刪除的記錄
 
-若要查詢 Salesforce 資源回收筒中的虛刪除記錄，您可以在查詢中指定 **"IsDeleted = 1"**。 例如︰
+若要查詢 Salesforce 資源回收筒中的虛刪除記錄，您可以將 `readBehavior` 指定為 `queryAll`。 
 
-* 若只要查詢已刪除的記錄，請指定 "select * from MyTable__c **where IsDeleted= 1**"。
-* 若要查詢所有記錄 (包括現有和已刪除的記錄)，請指定 "select * from MyTable__c **where IsDeleted = 0 or IsDeleted = 1**"。
+### <a name="difference-between-soql-and-sql-query-syntax"></a>SOQL 和 SQL 查詢語法的差異
+
+從 Salesforce 複製資料時，您可以使用 SOQL 查詢或 SQL 查詢。 請注意，這兩個查詢具有不同的語法和功能支援，不可混用。 建議您使用 Salesforce 原生支援的 SOQL 查詢。 下表列出主要差異：
+
+| 語法 | SOQL 模式 | SQL 模式 |
+|:--- |:--- |:--- |
+| 資料行選擇 | 需要列舉要在查詢中複製的欄位，例如 `SELECT field1, filed2 FROM objectname` | 支援 `SELECT *` (資料行選取除外)。 |
+| 引號 | 欄位/物件名稱不能加上引號。 | 欄位/物件名稱可以加上引號，例如 `SELECT "id" FROM "Account"` |
+| 日期時間格式 |  請參閱[這裡](https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql_select_dateformats.htm)的詳細資料和下一節中的範例。 | 請參閱[這裡](https://docs.microsoft.com/sql/odbc/reference/develop-app/date-time-and-timestamp-literals?view=sql-server-2017)的詳細資料和下一節中的範例。 |
+| 布林值 | 以 `False` 和 `Ture` 表示，例如 `SELECT … WHERE IsDeleted=True`。 | 以 0 或 1 表示，例如 `SELECT … WHERE IsDeleted=1`。 |
+| 資料行重新命名 | 不支援。 | 支援，例如 `SELECT a AS b FROM …`。 |
+| 關聯性 | 支援，例如 `Account_vod__r.nvs_Country__c`。 | 不支援。 |
 
 ### <a name="retrieve-data-by-using-a-where-clause-on-the-datetime-column"></a>在 DateTime 資料行上使用 where 子句來擷取資料
 
 指定 SOQL 或 SQL 查詢時，請注意 DateTime 格式差異。 例如︰
 
 * **SOQL 範例**：`SELECT Id, Name, BillingCity FROM Account WHERE LastModifiedDate >= @{formatDateTime(pipeline().parameters.StartTime,'yyyy-MM-ddTHH:mm:ssZ')} AND LastModifiedDate < @{formatDateTime(pipeline().parameters.EndTime,'yyyy-MM-ddTHH:mm:ssZ')}`
-* **SQL 範例**`SELECT * FROM Account WHERE LastModifiedDate >= {ts'@{formatDateTime(pipeline().parameters.StartTime,'yyyy-MM-dd HH:mm:ss')}'} AND LastModifiedDate < {ts'@{formatDateTime(pipeline().parameters.EndTime,'yyyy-MM-dd HH:mm:ss')}'}"`
+* **SQL 範例**`SELECT * FROM Account WHERE LastModifiedDate >= {ts'@{formatDateTime(pipeline().parameters.StartTime,'yyyy-MM-dd HH:mm:ss')}'} AND LastModifiedDate < {ts'@{formatDateTime(pipeline().parameters.EndTime,'yyyy-MM-dd HH:mm:ss')}'}`
 
 ## <a name="data-type-mapping-for-salesforce"></a>Salesforce 的資料類型對應
 
@@ -304,15 +312,15 @@ Salesforce 對於 API 要求總數和並行 API 要求均有限制。 請注意�
 |:--- |:--- |
 | 自動編號 |字串 |
 | 核取方塊 |BOOLEAN |
-| 貨幣 |兩倍 |
+| 貨幣 |十進位 |
 | 日期 |Datetime |
 | 日期/時間 |Datetime |
 | 電子郵件 |字串 |
 | id |字串 |
 | 查閱關聯性 |字串 |
 | 複選挑選清單 |字串 |
-| 數字 |兩倍 |
-| 百分比 |兩倍 |
+| 數字 |十進位 |
+| 百分比 |十進位 |
 | 電話 |字串 |
 | 挑選清單 |字串 |
 | 文字 |字串 |

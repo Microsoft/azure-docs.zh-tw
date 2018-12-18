@@ -1,6 +1,6 @@
 ---
-title: "風險降低 - Microsoft 威脅模型化工具 - Azure | Microsoft Docs"
-description: "Microsoft 威脅模型化工具的風險降低頁面，反白顯示大多數所產生之暴露威脅的可能解決方案。"
+title: 風險降低 - Microsoft 威脅模型化工具 - Azure | Microsoft Docs
+description: Microsoft 威脅模型化工具的風險降低頁面，反白顯示大多數所產生之暴露威脅的可能解決方案。
 services: security
 documentationcenter: na
 author: RodSan
@@ -19,12 +19,13 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23043433"
 ---
 # <a name="microsoft-threat-modeling-tool-mitigations"></a>Microsoft 威脅模型化工具風險降低
 
 威脅模型化工具是 Microsoft 安全性開發生命週期 (SDL) 的核心元素。 它可讓軟體架構設計人員及早識別和降低潛在安全性問題的風險，以在問題相對簡單且符合成本效益時加以解決。 因此，可大幅降低總開發成本。 此外，我們在設計此工具時已考慮到非安全性專家的問題，因此可讓所有開發人員更加方便地建立威脅模型，為他們提供清楚說明如何建立和分析威脅模型的指導方針。
 
-請造訪**[威脅模型化工具](./azure-security-threat-modeling-tool.md)**立即開始使用！
+請造訪**[威脅模型化工具](./azure-security-threat-modeling-tool.md)** 立即開始使用！
 
 ## <a name="mitigation-categories"></a>風險降低類別
 
@@ -52,4 +53,4 @@ ms.lasthandoff: 10/11/2017
 
 ## <a name="next-steps"></a>後續步驟
 
-請造訪**[威脅模型化工具威脅](./azure-security-threat-modeling-tool-threats.md)**以深入了解工具用來產生可能設計威脅的威脅類別。
+請造訪**[威脅模型化工具威脅](./azure-security-threat-modeling-tool-threats.md)** 以深入了解工具用來產生可能設計威脅的威脅類別。

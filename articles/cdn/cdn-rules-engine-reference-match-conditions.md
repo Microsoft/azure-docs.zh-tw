@@ -19,6 +19,7 @@ ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 03/23/2018
+ms.locfileid: "30173316"
 ---
 # <a name="azure-cdn-rules-engine-match-conditions"></a>Azure CDN 規則引擎比對條件 
 本文會針對 Azure 內容傳遞網路 (CDN) [規則引擎](cdn-rules-engine.md)列出可用比對條件的詳細描述。
@@ -737,7 +738,7 @@ HTML 慣用 DTD | %{wurfl_cap_html_preferred_dtd} | 字串，表示 HTML 內容�
     
 - 使用單一空格來分隔每個 URL 路徑，藉以指定多個 URL 路徑。
 
-   例如：/marketing/asset.* /sales/*.htm
+   例如：/marketing/asset.* /sales/\*.htm
 
 - 會忽略 URL 中的查詢字串。
     
@@ -962,7 +963,7 @@ User  | *     | 當所要求 URL 的查詢字串包含 User 參數時，會比�
  Name                 | 說明
  ---------------------|------------
 user=joe              | 當所要求 URL 的查詢字串為 "?user=joe" 時，會比對此模式。
-user=\*\* optout=\*\* | 當 CDN URL 查詢包含 user 或 optout 參數時，會比對此模式。
+\*user=\* \*optout=\* | 當 CDN URL 查詢包含 user 或 optout 參數時，會比對此模式。
 
 [回到頁首](#match-conditions-for-the-azure-cdn-rules-engine)
 

@@ -1,33 +1,37 @@
 ---
-title: "在 Linux 上建立 Azure Service Fabric 容器應用程式 | Microsoft Docs"
-description: "在 Azure Service Fabric 上建立第一個 Linux 容器應用程式。  使用您的應用程式建置 Docker 映像、將映像推送到容器登錄，建置和部署 Service Fabric 容器應用程式。"
+title: 在 Linux 上建立 Azure Service Fabric 容器應用程式 | Microsoft Docs
+description: 在 Azure Service Fabric 上建立第一個 Linux 容器應用程式。 使用您的應用程式建置 Docker 映像、將映像推送到容器登錄，建置和部署 Service Fabric 容器應用程式。
 services: service-fabric
 documentationcenter: .net
 author: rwike77
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: service-fabric
 ms.devlang: dotNet
-ms.topic: get-started-article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 1/09/2018
 ms.author: ryanwi
-ms.openlocfilehash: 0e7e0f1262ee8c31bc6e71b49e9ef62129887f2c
-ms.sourcegitcommit: fbba5027fa76674b64294f47baef85b669de04b7
+ms.openlocfilehash: 133b0d483eb47a76ad2525a430b09b82259c118f
+ms.sourcegitcommit: cb61439cf0ae2a3f4b07a98da4df258bfb479845
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/24/2018
+ms.lasthandoff: 09/05/2018
+ms.locfileid: "43698242"
 ---
 # <a name="create-your-first-service-fabric-container-application-on-linux"></a>在 Linux 建立第一個 Service Fabric 容器應用程式
 > [!div class="op_single_selector"]
 > * [Windows](service-fabric-get-started-containers.md)
 > * [Linux](service-fabric-get-started-containers-linux.md)
 
-在 Service Fabric 叢集上的 Linux 容器中執行現有的應用程式，無需變更您的應用程式。 本文會逐步引導您建立包含 Python [Flask](http://flask.pocoo.org/) Web 應用程式的 Docker 映像，並將它部署到 Service Fabric 叢集。  您也將透過 [Azure Container Registry](/azure/container-registry/) 共用容器化應用程式。  本文假設您對 Docker 有基本認識。 您可藉由閱讀 [Docker 概觀](https://docs.docker.com/engine/understanding-docker/)來了解 Docker。
+在 Service Fabric 叢集上的 Linux 容器中執行現有的應用程式，無需變更您的應用程式。 本文會逐步引導您建立包含 Python [Flask](http://flask.pocoo.org/) Web 應用程式的 Docker 映像，並將它部署到 Service Fabric 叢集。 您也將透過 [Azure Container Registry](/azure/container-registry/) 共用容器化應用程式。 本文假設您對 Docker 有基本認識。 您可藉由閱讀 [Docker 概觀](https://docs.docker.com/engine/understanding-docker/)來了解 Docker。
 
-## <a name="prerequisites"></a>先決條件
+> [!NOTE]
+> 本文適用於 Linux 開發環境。  Service Fabric 叢集執行階段與 Docker 執行階段必須在相同的作業系統上執行。  您無法在 Windows 叢集上執行 Linux 容器。
+
+## <a name="prerequisites"></a>必要條件
 * 執行下列項目的開發電腦︰
   * [Service Fabric SDK 和工具](service-fabric-get-started-linux.md)。
   * [Docker CE for Linux](https://docs.docker.com/engine/installation/#prior-releases). 
@@ -38,7 +42,7 @@ ms.lasthandoff: 02/24/2018
 ## <a name="define-the-docker-container"></a>定義 Docker 容器
 根據位於 Docker 中樞的 [Python 映像](https://hub.docker.com/_/python/)建立映像。 
 
-在 Dockerfile 中定義您的 Docker 容器。 Dockerfile 包含下列相關指示：設定您容器內的環境、載入您要執行的應用程式，以及對應連接埠。 Dockerfile 是 `docker build` 命令的輸入，該命令可建立映像。 
+在 Dockerfile 中指定您的 Docker 容器。 Dockerfile 包含下列相關指示：設定您容器內的環境、載入您要執行的應用程式，以及對應連接埠。 Dockerfile 是 `docker build` 命令的輸入，該命令可建立映像。 
 
 建立空的目錄並建立 Dockerfile 檔案 (沒有副檔名)。 將下列內容新增至 Dockerfile 並儲存變更：
 
@@ -67,13 +71,13 @@ CMD ["python", "app.py"]
 
 如需詳細資訊，請參閱 [Dockerfile 參考](https://docs.docker.com/engine/reference/builder/)。
 
-## <a name="create-a-simple-web-application"></a>建立簡單 Web 應用程式
-建立 Flask Web 應用程式，其會在連接埠 80 上接聽並傳回 "Hello World!"。  在相同的目錄中，建立 requirements.txt 檔案。  新增下列內容並儲存變更：
+## <a name="create-a-basic-web-application"></a>建立基本 Web 應用程式
+建立 Flask Web 應用程式，其會在連接埠 80 上接聽並傳回 "Hello World!"。 在相同的目錄中，建立 requirements.txt 檔案。 新增下列內容並儲存變更：
 ```
 Flask
 ```
 
-此外，建立 app.py 檔案並新增下列內容：
+此外，建立 app.py 檔案並新增下列程式碼片段：
 
 ```python
 from flask import Flask
@@ -96,7 +100,7 @@ if __name__ == "__main__":
 docker build -t helloworldapp .
 ```
 
-此命令會使用 Dockerfile 中的指示建立新映像，將此映像命名 (-t 標記) 為 "helloworldapp"。 建置映像時，會從 Docker 中樞向下提取基底映像，並根據基底映像建立可新增應用程式的新映像。  
+此命令會使用 Dockerfile 中的指示建立新映像，將此映像命名 (-t 標記) 為 `helloworldapp`。 若要建置容器映像，會先從作為應用程式新增目的地的 Docker Hub 下載基礎映像。 
 
 建置命令完成後，執行 `docker images` 命令以查看新映像的資訊︰
 
@@ -108,7 +112,7 @@ helloworldapp                 latest              86838648aab6        2 minutes 
 ```
 
 ## <a name="run-the-application-locally"></a>在本機執行應用程式
-先確認您的容器化應用程式在本機執行，再將它推送至容器登錄。  
+先確認您的容器化應用程式在本機執行，再將它推送至容器登錄。 
 
 執行此應用程式，並將您電腦的通訊埠 4000 對應至容器的已公開連接埠 80：
 
@@ -118,7 +122,7 @@ docker run -d -p 4000:80 --name my-web-site helloworldapp
 
 name - 提供執行中容器的名稱 (而不是容器識別碼)。
 
-連線到執行中的容器。  開啟 Web 瀏覽器並指向連接埠 4000 上傳回的 IP 位址，例如 http://localhost:4000 。 您應該會看到 "Hello World!" 標題 顯示在瀏覽器中。
+連線到執行中的容器。 開啟 Web 瀏覽器並指向連接埠 4000 上傳回的 IP 位址，例如 " http://localhost:4000 "。 您應該會看到 "Hello World!" 標題 顯示在瀏覽器中。
 
 ![Hello World!][hello-world]
 
@@ -139,7 +143,7 @@ docker rm my-web-site
 
 使用您的[登錄認證](../container-registry/container-registry-authentication.md)執行 `docker login` 登入容器登錄庫。
 
-下列範例會傳遞 Azure Active Directory [service principal](../active-directory/active-directory-application-objects.md) 的識別碼和密碼。 例如，您可能基於自動化案例已指派服務主體到您的登錄庫。  或者，您可以使用登錄使用者名稱和密碼進行登入。
+下列範例會傳遞 Azure Active Directory [service principal](../active-directory/develop/app-objects-and-service-principals.md) 的識別碼和密碼。 例如，您可能基於自動化案例已指派服務主體到您的登錄庫。 或者，您可以使用登錄使用者名稱和密碼進行登入。
 
 ```bash
 docker login myregistry.azurecr.io -u xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx -p myPassword
@@ -160,9 +164,9 @@ docker push myregistry.azurecr.io/samples/helloworldapp
 ## <a name="package-the-docker-image-with-yeoman"></a>使用 Yeoman 封裝 Docker 映像
 適用於 Linux 的 Service Fabric SDK 包含 [Yeoman](http://yeoman.io/) 產生器，可讓您輕鬆建立應用程式並新增容器映像。 讓我們使用 Yeoman 來建立具有單一 Docker 容器，名為 *SimpleContainerApp* 的應用程式。
 
-若要建立 Service Fabric 容器應用程式，請開啟終端機視窗並執行 `yo azuresfcontainer`。  
+若要建立 Service Fabric 容器應用程式，請開啟終端機視窗並執行 `yo azuresfcontainer`。 
 
-將應用程式命名 (例如，"mycontainer")，並將應用程式服務命名 (例如，"myservice")。
+將應用程式命名 (例如，`mycontainer`)，並將應用程式服務命名 (例如，`myservice`)。
 
 針對映像名稱，在容器登錄中提供容器映像的 URL (例如，"myregistry.azurecr.io/samples/helloworldapp")。 
 
@@ -170,26 +174,12 @@ docker push myregistry.azurecr.io/samples/helloworldapp
 
 指定執行個體計數為 "1"。
 
+以適當的格式指定連接埠對應。 針對本文章，您需要提供 ```80:4000``` 當作連接埠對應。 這樣做之後，原本要傳送至主機電腦之連接埠 4000 的任何送入要求，都會被重新導向至容器上的連接埠 80。
+
 ![容器的 Service Fabric Yeoman 產生器][sf-yeoman]
 
-## <a name="configure-port-mapping-and-container-repository-authentication"></a>設定連接埠對應和容器存放庫驗證
-您的容器化服務需要端點進行通訊。  現在將通訊協定、連接埠和類型新增至 ServiceManifest.xml 檔案中 'Resources' 標籤之下的 `Endpoint`。 在本文中，容器化服務會接聽連接埠 4000： 
-
-```xml
-
-<Resources>
-    <Endpoints>
-      <!-- This endpoint is used by the communication listener to obtain the port on which to 
-           listen. Please note that if your service is partitioned, this port is shared with 
-           replicas of different partitions that are placed in your code. -->
-      <Endpoint Name="myServiceTypeEndpoint" UriScheme="http" Port="4000" Protocol="http"/>
-    </Endpoints>
-  </Resources>
- ```
- 
-提供 `UriScheme`，就會自動向「Service Fabric 命名」服務註冊容器端點以供搜尋。 本文結尾會提供完整的 ServiceManifest.xml 範例檔案。 
-
-在 ApplicationManifest.xml 檔案的 `ContainerHostPolicies` 中指定 `PortBinding`，以設定容器連接埠與主機連接埠的對應。  在本文中，`ContainerPort` 為 80 (如 Dockerfile 所指定，容器會公開連接埠 80)，而 `EndpointRef` 為 "myServiceTypeEndpoint" (服務資訊清單中定義的端點)。  通訊埠 4000 上服務的連入要求會對應到容器上的連接埠 80。  如果您的容器需要向私人存放庫進行驗證，則新增 `RepositoryCredentials`。  在本文中，新增 myregistry.azurecr.io 容器登錄的帳戶名稱和密碼。 確保該原則已新增在對應至正確服務套件的 'ServiceManifestImport' 標籤之下。
+## <a name="configure-container-repository-authentication"></a>設定容器存放庫驗證
+ 如果您的容器需要向私人存放庫進行驗證，則新增 `RepositoryCredentials`。 在本文中，新增 myregistry.azurecr.io 容器登錄的帳戶名稱和密碼。 確保該原則已新增在對應至正確服務套件的 'ServiceManifestImport' 標籤之下。
 
 ```xml
    <ServiceManifestImport>
@@ -202,8 +192,41 @@ docker push myregistry.azurecr.io/samples/helloworldapp
     </Policies>
    </ServiceManifestImport>
 ``` 
+
+
+## <a name="configure-isolation-mode"></a>設定隔離模式
+使用 6.3 執行階段版本，可針對 Linux 容器支援 VM 隔離，因而可針對容器支援兩種格式模式：處理序和 HyperV。 使用 HyperV 隔離模式，在每個容器與容器主機之間隔離核心。 HyperV 隔離是使用 [Clear Containers](https://software.intel.com/en-us/articles/intel-clear-containers-2-using-clear-containers-with-docker) \(英文\) 來實作的。 隔離模式是在應用程式資訊清單檔的 `ServicePackageContainerPolicy` 元素中針對 Linux 叢集所指定的。 可以指定的隔離模式有 `process`、`hyperv` 和 `default`。 預設值為處理序隔離模式。 下列程式碼片段顯示如何在應用程式資訊清單檔中指定隔離模式。
+
+```xml
+<ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="MyServicePkg" ServiceManifestVersion="1.0.0"/>
+      <Policies>
+        <ServicePackageContainerPolicy Hostname="votefront" Isolation="hyperv">
+          <PortBinding ContainerPort="80" EndpointRef="myServiceTypeEndpoint"/>
+        </ServicePackageContainerPolicy>
+    </Policies>
+  </ServiceManifestImport>
+```
+
+
+## <a name="configure-resource-governance"></a>設定資源控管
+[資源控管](service-fabric-resource-governance.md)可限制容器在主機上可使用的資源。 應用程式資訊清單中指定的 `ResourceGovernancePolicy` 元素是用於宣告服務程式碼封裝的資源限制。 下列資源可設定資源限制：記憶體、MemorySwap、CpuShares (CPU relative weight)、MemoryReservationInMB、BlkioWeight (BlockIO 相對權數)。 在此範例中，service package Guest1Pkg 會在其所在的叢集節點上獲得一個核心。 記憶體限制是絕對的，因此程式碼封裝會限制為 1024MB 的記憶體 (並具有同樣的彈性保證保留)。 程式碼套件 (容器或處理序) 無法配置超過此限制的記憶體，如果嘗試這麼做，將會導致發生記憶體不足的例外狀況。 若要讓資源限制強制能夠運作，應該為服務套件內的所有程式碼套件都指定記憶體限制。
+
+```xml
+<ServiceManifestImport>
+  <ServiceManifestRef ServiceManifestName="MyServicePKg" ServiceManifestVersion="1.0.0" />
+  <Policies>
+    <ServicePackageResourceGovernancePolicy CpuCores="1"/>
+    <ResourceGovernancePolicy CodePackageRef="Code" MemoryInMB="1024"  />
+  </Policies>
+</ServiceManifestImport>
+```
+
+
+
+
 ## <a name="configure-docker-healthcheck"></a>設定 Docker HEALTHCHECK 
-從 6.1 版開始，Service Fabric 會自動將 [Docker HEALTHCHECK](https://docs.docker.com/engine/reference/builder/#healthcheck) 事件整合至其系統健康情況報告。 這表示，如果您的容器已啟用 **HEALTHCHECK**，每當 Docker 報告容器的健康情況狀態發生變更時，Service Fabric 就會報告健康情況。 如果 health_status 為「狀況良好」，則 [Service Fabric Explorer](service-fabric-visualizing-your-cluster.md) 中的健康情況報告會顯示 **OK (正常)**，如果 health_status 為「狀況不良」，則顯示 **WARNING (警告)**。 **HEALTHCHECK** 指令會指向針對監視容器健康情況而執行的實際檢查，該指令必須存在產生容器映像時使用的 **dockerfile** 中。 
+從 6.1 版開始，Service Fabric 會自動將 [Docker HEALTHCHECK](https://docs.docker.com/engine/reference/builder/#healthcheck) 事件整合至其系統健康情況報告。 這表示，如果您的容器已啟用 **HEALTHCHECK**，每當 Docker 報告容器的健康情況狀態發生變更時，Service Fabric 就會報告健康情況。 如果 health_status 為「狀況良好」，則 [Service Fabric Explorer](service-fabric-visualizing-your-cluster.md) 中的健康情況報告會顯示 **OK (正常)**，如果 health_status 為「狀況不良」，則顯示 **WARNING (警告)**。 **HEALTHCHECK** 指令會指向針對監視容器健康情況而執行的實際檢查，該指令必須存在產生容器映像時使用的 Dockerfile 中。 
 
 ![HealthCheckHealthy][1]
 
@@ -227,14 +250,6 @@ docker push myregistry.azurecr.io/samples/helloworldapp
 
 如果您需要停用整個 Service Fabric 叢集的 **HEALTHCHECK** 整合，就必須將 [EnableDockerHealthCheckIntegration](service-fabric-cluster-fabric-settings.md) 設為 **false**。
 
-## <a name="build-and-package-the-service-fabric-application"></a>建置及封裝 Service Fabric 應用程式
-Service Fabric Yeoman 範本包含 [Gradle](https://gradle.org/) 的建置指令碼，可用來從終端機建置應用程式。 若要建置和封裝應用程式，請執行下列指令碼：
-
-```bash
-cd mycontainer
-gradle
-```
-
 ## <a name="deploy-the-application"></a>部署應用程式
 建置應用程式後，可以使用 Service Fabric CLI 將它部署到本機叢集。
 
@@ -252,7 +267,7 @@ sfctl cluster select --endpoint http://localhost:19080
 
 開啟瀏覽器並瀏覽至位於 http://localhost:19080/Explorer 的 Service Fabric Explorer (如果在 Mac OS X 上使用 Vagrant，請以 VM 的私人 IP 取代 localhost)。 展開 [應用程式] 節點，請注意，您的應用程式類型現在有一個項目，而另一個則是該類型的第一個執行個體。
 
-連線到執行中的容器。  開啟 Web 瀏覽器並指向連接埠 4000 上傳回的 IP 位址，例如 http://localhost:4000 。 您應該會看到 "Hello World!" 標題 顯示在瀏覽器中。
+連線到執行中的容器。 開啟 Web 瀏覽器並指向連接埠 4000 上傳回的 IP 位址，例如 " http://localhost:4000 "。 您應該會看到 "Hello World!" 標題 顯示在瀏覽器中。
 
 ![Hello World!][hello-world]
 
@@ -348,7 +363,7 @@ docker rmi myregistry.azurecr.io/samples/helloworldapp
          
          The attribute ServiceTypeName below must match the name defined in the imported ServiceManifest.xml file. -->
     <Service Name="myservice">
-      <!-- On a local development cluster, set InstanceCount to 1.  On a multi-node production 
+      <!-- On a local development cluster, set InstanceCount to 1. On a multi-node production 
       cluster, set InstanceCount to -1 for the container service to run on every node in 
       the cluster.
       -->
@@ -363,7 +378,7 @@ docker rmi myregistry.azurecr.io/samples/helloworldapp
 
 若要將其他容器服務新增至已使用 yeoman 建立的應用程式，請執行下列步驟︰
 
-1. 將目錄變更為現有應用程式的根目錄。  例如，如果 `MyApplication` 是 Yeoman 所建立的應用程式，則為 `cd ~/YeomanSamples/MyApplication`。
+1. 將目錄變更為現有應用程式的根目錄。 例如，如果 `MyApplication` 是 Yeoman 所建立的應用程式，則為 `cd ~/YeomanSamples/MyApplication`。
 2. 執行 `yo azuresfcontainer:AddService`
 
 <a id="manually"></a>
@@ -371,7 +386,7 @@ docker rmi myregistry.azurecr.io/samples/helloworldapp
 
 ## <a name="configure-time-interval-before-container-is-force-terminated"></a>在容器被迫終止前設定時間間隔
 
-您可以在啟動服務刪除 (或移至另一個節點) 之後，設定執行階段在容器移除前所要等候的間隔時間。 設定時間間隔可將 `docker stop <time in seconds>` 命令傳送至容器。   如需更多詳細資訊，請參閱 [docker stop](https://docs.docker.com/engine/reference/commandline/stop/)。 所要等候的時間間隔指定於 `Hosting` 區段之下。 下列叢集資訊清單程式碼片段示範如何設定等候間隔：
+您可以在啟動服務刪除 (或移至另一個節點) 之後，設定執行階段在容器移除前所要等候的間隔時間。 設定時間間隔可將 `docker stop <time in seconds>` 命令傳送至容器。  如需更多詳細資訊，請參閱 [docker stop](https://docs.docker.com/engine/reference/commandline/stop/)。 所要等候的時間間隔指定於 `Hosting` 區段之下。 下列叢集資訊清單程式碼片段示範如何設定等候間隔：
 
 
 ```json
@@ -391,7 +406,7 @@ docker rmi myregistry.azurecr.io/samples/helloworldapp
 
 ## <a name="configure-the-runtime-to-remove-unused-container-images"></a>將執行階段設定為移除未使用的容器映像
 
-您可以將 Service Fabric 叢集設定為從節點移除未使用的容器映像。 如果節點上存在太多容器映像，此組態允許重新擷取磁碟空間。  若要啟用此功能，請更新叢集資訊清單中的 `Hosting` 區段，如下列程式碼片段所示： 
+您可以將 Service Fabric 叢集設定為從節點移除未使用的容器映像。 如果節點上存在太多容器映像，此組態允許重新擷取磁碟空間。 若要啟用此功能，請更新叢集資訊清單中的 `Hosting` 區段，如下列程式碼片段所示： 
 
 
 ```json
@@ -416,17 +431,17 @@ docker rmi myregistry.azurecr.io/samples/helloworldapp
 
 ## <a name="configure-container-image-download-time"></a>設定容器映像下載時間
 
-根據預設，Service Fabric 執行階段會配置 20 分鐘的時間來下載及擷取容器映像，這適用於大部分的容器映像。 針對大型映像或緩慢的網路連線速度，您可能需要延長中止下載及擷取映像之前的等待時間。 您可以在叢集資訊清單的 **Hosting** 區段中使用 **ContainerImageDownloadTimeout** 屬性來設定此項目，如下列程式碼片段所示：
+Service Fabric 執行階段會配置 20 分鐘來下載及擷取容器映像，這適用於大部分的容器映像。 針對大型映像或緩慢的網路連線速度，您可能需要延長中止下載及擷取映像之前的等待時間。 您可以在叢集資訊清單的 **Hosting** 區段中使用 **ContainerImageDownloadTimeout** 屬性來設定此逾時，如下列程式碼片段所示：
 
 ```json
 {
-"name": "Hosting",
+        "name": "Hosting",
         "parameters": [
           {
-              "name": " ContainerImageDownloadTimeout ",
+              "name": "ContainerImageDownloadTimeout",
               "value": "1200"
           }
-]
+        ]
 }
 ```
 
@@ -439,8 +454,25 @@ docker rmi myregistry.azurecr.io/samples/helloworldapp
  <ContainerHostPolicies CodePackageRef="NodeService.Code" Isolation="process" ContainersRetentionCount="2"  RunInteractive="true"> 
 ```
 
-**ContainersRetentionCount** 設定會指定容器失敗時要保留的容器數目。 如果指定負數值，就會保留所有失敗的容器。 如果未指定 **ContainersRetentionCount** 屬性，就不會保留任何容器。 **ContainersRetentionCount** 屬性也支援應用程式參數，因此使用者可以為測試和生產叢集指定不同的值。 使用此功能時，建議您使用位置限制將容器服務鎖定在特定節點上，以避免容器服務移到其他節點上。 使用此功能的所有容器皆需要手動移除。
+**ContainersRetentionCount** 設定會指定容器失敗時要保留的容器數目。 如果指定負數值，就會保留所有失敗的容器。 如果未指定 **ContainersRetentionCount** 屬性，就不會保留任何容器。 **ContainersRetentionCount** 屬性也支援應用程式參數，因此使用者可以為測試和生產叢集指定不同的值。 使用此功能時，請使用位置限制將容器服務鎖定在特定節點上，以避免容器服務移到其他節點上。 使用此功能的所有容器皆需要手動移除。
 
+## <a name="start-the-docker-daemon-with-custom-arguments"></a>使用自訂引數啟動 Docker 精靈
+
+若使用 6.2 版和更新版本的 Service Fabric 執行階段，您可以使用自訂引數啟動 Docker 精靈。 若指定了自訂引數，除了 `--pidfile` 引數外，Service Fabric 就不會再將任何其他引數傳遞至 Docker 引擎。 因此，不應該將 `--pidfile` 當作引數來傳遞。 此外，此引數也應該繼續讓 Docker 精靈在 Windows 的預設名稱管道 (若在 Linux 上，則是 Unix 網域通訊端) 上接聽，Service Fabric 才能與精靈通訊。 您可以在叢集資訊清單 [主控] 區段的 **ContainerServiceArguments** 底下指定自訂引數。 範例如下列程式碼片段所示： 
+ 
+
+```json
+{ 
+        "name": "Hosting", 
+        "parameters": [ 
+          { 
+            "name": "ContainerServiceArguments", 
+            "value": "-H localhost:1234 -H unix:///var/run/docker.sock" 
+          } 
+        ] 
+} 
+
+```
 
 ## <a name="next-steps"></a>後續步驟
 * 深入了解如何[在 Service Fabric 上執行容器](service-fabric-containers-overview.md)。

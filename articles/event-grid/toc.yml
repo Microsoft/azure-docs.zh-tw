@@ -1,92 +1,171 @@
+items:
 - name: Event Grid 文件
   href: index.yml
 - name: 概觀
   items:
-    - name: 關於 Event Grid
-      href: overview.md
-    - name: 比較訊息服務
-      href: compare-messaging-services.md
+  - name: 關於 Event Grid
+    href: overview.md
+  - name: 比較訊息服務
+    href: compare-messaging-services.md
 - name: 快速入門
-  expanded: true
   items:
-    - name: 路由 Blob 儲存體事件 - Azure CLI
+  - name: 儲存體事件
+    items:
+    - name: Azure CLI
       href: ../storage/blobs/storage-blob-event-quickstart.md?toc=%2fazure%2fevent-grid%2ftoc.json
-    - name: 路由 Blob 儲存體事件 - Azure PowerShell
+    - name: PowerShell
       href: ../storage/blobs/storage-blob-event-quickstart-powershell.md?toc=%2fazure%2fevent-grid%2ftoc.json
-    - name: 建立自訂事件 - Azure CLI
+    - name: 入口網站
+      href: blob-event-quickstart-portal.md
+  - name: 自訂事件
+    items:
+    - name: Azure CLI
       href: custom-event-quickstart.md
-    - name: 建立自訂事件 - Azure PowerShell
+    - name: PowerShell
       href: custom-event-quickstart-powershell.md
-    - name: 建立自訂事件 - Azure 入口網站
+    - name: 入口網站
       href: custom-event-quickstart-portal.md
+  - name: 佇列儲存體作為事件處理常式
+    href: custom-event-to-queue-storage.md
+  - name: 事件中樞作為事件處理常式
+    href: custom-event-to-eventhub.md
+  - name: Container Registry 事件
+    href: ../container-registry/container-registry-event-grid-quickstart.md?toc=%2fazure%2fevent-grid%2ftoc.json
+  expanded: true
 - name: 教學課程
   items:
-    - name: 監視 VM 變更與邏輯應用程式
-      href: monitor-virtual-machine-changes-event-grid-logic-app.md
-    - name: 調整上傳映像的大小
-      href: resize-images-on-storage-blob-upload-event.md
-    - name: 觸發自動化 Runbook
-      href: ensure-tags-exists-on-new-virtual-machines.md
+  - name: 當虛擬機器變更時傳送電子郵件
+    href: monitor-virtual-machine-changes-event-grid-logic-app.md
+  - name: 調整上傳映像的大小
+    href: resize-images-on-storage-blob-upload-event.md
+  - name: 觸發自動化 Runbook
+    href: ensure-tags-exists-on-new-virtual-machines.md
+  - name: 當新增 IoT 中樞裝置時傳送電子郵件
+    href: publish-iot-hub-events-to-logic-apps.md
+  - name: 回應服務匯流排事件
+    href: ../service-bus-messaging/service-bus-to-event-grid-integration-example.md?toc=%2fazure%2fevent-grid%2ftoc.json
+  - name: 來自事件中樞的串流資料
+    href: event-grid-event-hubs-integration.md
+  - name: 路由媒體服務事件
+    href: ../media-services/latest/job-state-events-cli-how-to.md?toc=%2fazure%2fevent-grid%2ftoc.json
+  - name: 路由傳送至混合式連線
+    href: custom-event-to-hybrid-connection.md
 - name: 範例
   items:
-    - name: Resource Manager 範本
-      href: template-samples.md
+  - name: Azure CLI
+    href: cli-samples.md
+    items:
+    - name: 建立自訂主題
+      href: scripts/event-grid-cli-create-custom-topic.md
+    - name: 訂閱 Azure 訂用帳戶
+      href: scripts/event-grid-cli-azure-subscription.md
+    - name: 訂閱 Blob 儲存體
+      href: scripts/event-grid-cli-blob.md
+    - name: 訂閱自訂主題
+      href: scripts/event-grid-cli-subscribe-custom-topic.md
+    - name: 訂閱資源群組
+      href: scripts/event-grid-cli-resource-group.md
+    - name: 訂閱和篩選資源群組的事件
+      href: scripts/event-grid-cli-resource-group-filter.md
+  - name: Azure PowerShell
+    href: powershell-samples.md
+    items:
+    - name: 建立自訂主題
+      href: scripts/event-grid-powershell-create-custom-topic.md
+    - name: 訂閱 Azure 訂用帳戶
+      href: scripts/event-grid-powershell-azure-subscription.md
+    - name: 訂閱 Blob 儲存體
+      href: scripts/event-grid-powershell-blob.md
+    - name: 訂閱自訂主題
+      href: scripts/event-grid-powershell-subscribe-custom-topic.md
+    - name: 訂閱資源群組
+      href: scripts/event-grid-powershell-resource-group.md
+    - name: 訂閱和篩選資源群組的事件
+      href: scripts/event-grid-powershell-resource-group-filter.md
+  - name: Resource Manager 範本
+    href: template-samples.md
+  - name: 程式碼範例
+    href: https://azure.microsoft.com/resources/samples/?sort=0&service=event-grid
 - name: 概念
   items:
-    - name: Event Grid 概念
-      href: concepts.md
-    - name: 安全性和驗證
-      href: security-authentication.md
-    - name: 傳遞和重試
-      href: delivery-and-retry.md
+  - name: Event Grid 概念
+    href: concepts.md
+  - name: 安全性和驗證
+    href: security-authentication.md
+  - name: 傳遞和重試
+    href: delivery-and-retry.md
+  - name: 事件來源
+    href: event-sources.md
+  - name: 事件處理常式
+    href: event-handlers.md
 - name: 使用說明指南
   items:
-    - name: 張貼到自訂主題
-      href: post-to-custom-topic.md
-    - name: 接收 HTTP 端點的事件
-      href: receive-events.md
-    - name: 將資料從事件中樞串流至資料倉儲
-      href: event-grid-event-hubs-integration.md
-    - name: 傳送關於 IoT 中樞事件的通知
-      href: publish-iot-hub-events-to-logic-apps.md
-    - name: 聆聽 Functions 和 Logic Apps 的服務匯流排事件
-      href: ../service-bus-messaging/service-bus-to-event-grid-integration-example.md?toc=%2fazure%2fevent-grid%2ftoc.json
-    - name: 監視事件傳遞
-      href: monitor-event-delivery.md
-    - name: 查詢事件訂用帳戶
-      href: query-event-subscriptions.md
+  - name: 張貼到自訂主題
+    href: post-to-custom-topic.md
+  - name: 接收 HTTP 端點的事件
+    href: receive-events.md
+  - name: 無法寄出信件並重試
+    href: manage-event-delivery.md
+  - name: 監視事件傳遞
+    href: monitor-event-delivery.md
+  - name: 查詢事件訂用帳戶
+    href: query-event-subscriptions.md
+  - name: 透過入口網站訂閱
+    href: subscribe-through-portal.md
+  - name: 將自訂欄位對應至結構描述
+    href: input-mappings.md
+  - name: 使用 CloudEvents 結構描述
+    href: cloudevents-schema.md
 - name: 參考
   items:
-    - name: Azure CLI
-      href: /cli/azure/eventgrid
-    - name: PowerShell
-      href: /powershell/module/azurerm.eventgrid
-    - name: REST
-      href: /rest/api/eventgrid
-    - name: SDK
-      href: sdk-overview.md
-    - name: 訂用帳戶結構描述
-      href: subscription-creation-schema.md
-    - name: 結構描述
-      href: event-schema.md
-      items:
-        - name: Azure 訂用帳戶
-          href: event-schema-subscriptions.md
-        - name: Blob 儲存體
-          href: event-schema-blob-storage.md
-        - name: 事件中樞
-          href: event-schema-event-hubs.md
-        - name: IoT 中樞
-          href: event-schema-iot-hub.md
-        - name: 資源群組
-          href: event-schema-resource-groups.md
+  - name: Azure CLI
+    href: /cli/azure/eventgrid
+  - name: PowerShell
+    href: /powershell/module/azurerm.eventgrid
+  - name: REST
+    href: /rest/api/eventgrid
+  - name: 訂用帳戶結構描述
+    href: subscription-creation-schema.md
+  - name: 結構描述
+    href: event-schema.md
+    items:
+    - name: Azure 訂用帳戶
+      href: event-schema-subscriptions.md
+    - name: Blob 儲存體
+      href: event-schema-blob-storage.md
+    - name: Container Registry
+      href: event-schema-container-registry.md
+    - name: 事件中樞
+      href: event-schema-event-hubs.md
+    - name: IoT 中樞
+      href: event-schema-iot-hub.md
+    - name: 媒體服務
+      href: ../media-services/latest/media-services-event-schemas.md?toc=%2fazure%2fevent-grid%2ftoc.json
+    - name: 資源群組
+      href: event-schema-resource-groups.md
+    - name: 服務匯流排
+      href: event-schema-service-bus.md
+  - name: 範本資源
+    items:
+    - name: 事件訂閱
+      href: /azure/templates/microsoft.eventgrid/eventsubscriptions
+    - name: 主題
+      href: /azure/templates/microsoft.eventgrid/topics
+  - name: SDK
+    href: sdk-overview.md
 - name: 資源
   items:
-    - name: Azure 藍圖
-      href: 'https://azure.microsoft.com/roadmap/'
-    - name: 價格
-      href: 'https://azure.microsoft.com/pricing/details/event-grid/'
-    - name: 定價計算機
-      href: 'https://azure.microsoft.com/pricing/calculator/'
-    - name: 堆疊溢位
-      href: 'http://stackoverflow.com/questions/tagged/azure-eventgrid'
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/event-grid/
+  - name: 定價計算機
+    href: https://azure.microsoft.com/pricing/calculator/
+  - name: 堆疊溢位
+    href: http://stackoverflow.com/questions/tagged/azure-eventgrid
+ms.openlocfilehash: b0a5cba2ea053ef50507597f1b47326e4d66d860
+ms.sourcegitcommit: a62cbb539c056fe9fcd5108d0b63487bd149d5c3
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/22/2018
+ms.locfileid: "42616563"

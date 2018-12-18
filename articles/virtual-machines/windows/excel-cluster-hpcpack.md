@@ -1,11 +1,11 @@
 ---
-title: "Excel 和 SOA 適用的 HPC Pack 叢集 | Microsoft Docs"
-description: "開始在 Azure 中的 HPC Pack 叢集上執行大規模 Excel 和 SOA 工作負載"
+title: Excel 和 SOA 適用的 HPC Pack 叢集 | Microsoft Docs
+description: 開始在 Azure 中的 HPC Pack 叢集上執行大規模 Excel 和 SOA 工作負載
 services: virtual-machines-windows
-documentationcenter: 
+documentationcenter: ''
 author: dlepow
-manager: timlt
-editor: 
+manager: jeconnoc
+editor: ''
 tags: azure-resource-manager,hpc-pack
 ms.assetid: cb6a9abe-caf3-44da-b911-849a50f6cfb3
 ms.service: virtual-machines-windows
@@ -15,11 +15,12 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
 ms.date: 06/01/2017
 ms.author: danlep
-ms.openlocfilehash: 63babd94fdab15217cfb0757e4cd6efe458a628d
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 4a6327fcfe6f6e6f3b8b5c6ecbd14b832b4134c5
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39421207"
 ---
 # <a name="get-started-running-excel-and-soa-workloads-on-an-hpc-pack-cluster-in-azure"></a>開始在 Azure 中的 HPC Pack 叢集上執行 Excel 和 SOA 工作負載
 此文章說明如何在 Azure 虛擬機器上使用 Azure 快速入門範本或 Azure PowerShell 部署指令碼 (選擇性) 部署 Microsoft HPC Pack 2012 R2 叢集。 此叢集使用 Azure Marketplace VM 映像，其設計目的為使用 HPC Pack 執行 Microsoft Excel 或服務導向架構 (SOA) 工作負載。 您可以從內部部署用戶端電腦使用叢集來執行 Excel HPC 和 SOA 服務。 Excel HPC 服務包括 Excel 活頁簿卸載和 Excel 使用者定義函數或 UDF。
@@ -34,7 +35,7 @@ ms.lasthandoff: 10/11/2017
 
 ![HPC 叢集與執行 Excel 工作負載的節點][scenario]
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 * **用戶端電腦** - 您需要 Windows 用戶端電腦，以將範例 Excel 和 SOA 工作提交至叢集。 您也需要 Windows 電腦來執行 Azure PowerShell 叢集部署指令碼 (如果您選擇該部署方法)。
 * **Azure 訂用帳戶** - 如果您沒有 Azure 訂用帳戶，只需要幾分鐘就可以建立 [免費帳戶](https://azure.microsoft.com/pricing/free-trial/) 。
 * **核心配額** - 您可能需要增加核心的配額，特別是如果您部署多核心 VM 大小的數個叢集節點。 如果您使用 Azure 快速入門範本，則 Resource Manager 中的核心配額是根據 Azure 區域而定。 在此情況下，您可能需要增加特定區域中的配額。 請參閱 [Azure 訂用帳戶限制、配額與限制](../../azure-subscription-service-limits.md)。 若要增加配額，請 [開立線上客戶支援要求](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) (免費)。
@@ -52,10 +53,10 @@ ms.lasthandoff: 10/11/2017
 > 
 
 1. 造訪 [在 GitHub 上建立 HPC 叢集範本頁面](https://github.com/Azure/azure-quickstart-templates/tree/master/create-hpc-cluster)。 您可根據意願檢視範本和原始碼的相關資訊。
-2. 按一下 [部署至 Azure]  ，以在 Azure 入口網站中利用範本開始部署。
+1. 按一下 [部署至 Azure]  ，以在 Azure 入口網站中利用範本開始部署。
    
    ![將範本部署到 Azure][github]
-3. 在入口網站中，遵循下列步驟輸入 HPC 叢集範本的參數。
+1. 在入口網站中，遵循下列步驟輸入 HPC 叢集範本的參數。
    
    a. 在 [參數] 頁面上，輸入或修改範本參數的值。 (按一下說明資訊的每個設定旁邊的圖示。)下列畫面顯示範例值。 此範例會在 *hpc.local* 網域中建立名為 *hpc01* 的叢集，由一個前端節點和 2 個計算節點組成。 計算節點是從包括 Microsoft Excel 的 HPC Pack VM 映像建立。
    
@@ -75,7 +76,7 @@ ms.lasthandoff: 10/11/2017
    d. 選擇資源群組的位置，例如美國中部。
    
    e. 在 [法律條款] 頁面上檢閱條款。 如果您同意，請按一下 [購買]。 接著，當您完成範本值的設定時，請按一下 [建立]。
-4. 當部署完成時 (通常需要約 30 分鐘)，從叢集前端節點匯出叢集憑證檔。 在稍後的步驟中，您要在用戶端電腦上匯入此公開憑證以提供安全 HTTP 繫結的伺服器端驗證。
+1. 當部署完成時 (通常需要約 30 分鐘)，從叢集前端節點匯出叢集憑證檔。 在稍後的步驟中，您要在用戶端電腦上匯入此公開憑證以提供安全 HTTP 繫結的伺服器端驗證。
    
    a. 在 Azure 入口網站中，依序移至儀表板，選取前端節點，然後按一下頁面頂端的 [連線]，即可使用遠端桌面連線。
    
@@ -176,12 +177,12 @@ HPC Pack IaaS 部署指令碼提供靈活的另一種方式部署 HPC Pack 叢�
 **執行指令碼**
 
 1. 在用戶端電腦上以系統管理員身分開啟 PowerShell 主控台。
-2. 將目錄變更為指令碼資料夾 (在本範例中為 E:\IaaSClusterScript)。
+1. 將目錄變更為指令碼資料夾 (在本範例中為 E:\IaaSClusterScript)。
    
    ```
    cd E:\IaaSClusterScript
    ```
-3. 若要部署 HPC Pack 叢集，請執行下列命令。 這個範例假設組態檔位於 E:\HPCDemoConfig.xml。
+1. 若要部署 HPC Pack 叢集，請執行下列命令。 這個範例假設組態檔位於 E:\HPCDemoConfig.xml。
    
    ```
    .\New-HpcIaaSCluster.ps1 –ConfigFile E:\HPCDemoConfig.xml –AdminUserName MyAdminName
@@ -213,8 +214,8 @@ HPC Pack 部署指令碼會執行一段時間。 指令碼會匯出和下載叢�
 遵循下列步驟來卸載 Excel 活頁簿，以在 Azure 的 HPC Pack 叢集上執行。 若要這樣做，您必須在用戶端電腦上安裝 Excel 2010 或 2013。
 
 1. 使用步驟 1 中的其中一個選項，來部署具有 Excel 計算節點映像的 HPC Pack 叢集。 取得叢集憑證檔 (.cer) 以及叢集的使用者名稱和密碼。
-2. 在用戶端電腦上，在 Cert:\CurrentUser\Root 下匯入叢集憑證。
-3. 請確定已安裝 Excel。 在與用戶端電腦上的 Excel.exe 相同的資料夾中，建立包含下列內容的 Excel.exe.config 檔案。 這樣可確保 HPC Pack 2012 R2 Excel COM 增益集順利載入。
+1. 在用戶端電腦上，在 Cert:\CurrentUser\Root 下匯入叢集憑證。
+1. 請確定已安裝 Excel。 在與用戶端電腦上的 Excel.exe 相同的資料夾中，建立包含下列內容的 Excel.exe.config 檔案。 這樣可確保 HPC Pack 2012 R2 Excel COM 增益集順利載入。
    
     ```
     <?xml version="1.0"?>
@@ -224,13 +225,13 @@ HPC Pack 部署指令碼會執行一段時間。 指令碼會匯出和下載叢�
         </startup>
     </configuration>
     ```
-4. 設定用戶端以將工作提交到 HPC Pack 叢集。 其中一個選項是下載完整的 [HPC Pack 2012 R2 Update 3 安裝](http://www.microsoft.com/download/details.aspx?id=49922) ，並安裝 HPC Pack 用戶端。 或者，為您的電腦 ([x64](http://www.microsoft.com/download/details.aspx?id=14632)、[x86](https://www.microsoft.com/download/details.aspx?id=5555)) 下載並安裝 [HPC Pack 2012 R2 Update 3 用戶端公用程式](https://www.microsoft.com/download/details.aspx?id=49923)及適當的 Visual C++ 2010 可轉散發套件。
-5. 在此範例中，我們使用名為 ConvertiblePricing_Complete.xlsb 的範例 Excel 活頁簿。 您可以從 [這裡](https://www.microsoft.com/en-us/download/details.aspx?id=2939)下載。
-6. 將 Excel 活頁簿複製到工作資料夾，例如 D:\Excel\Run。
-7. 開啟 Excel 活頁簿。 在 [開發] 功能區上，按一下 [COM 增益集] 並確認 HPC Pack Excel COM 增益集已成功載入。
+1. 設定用戶端以將工作提交到 HPC Pack 叢集。 其中一個選項是下載完整的 [HPC Pack 2012 R2 Update 3 安裝](http://www.microsoft.com/download/details.aspx?id=49922) ，並安裝 HPC Pack 用戶端。 或者，為您的電腦 ([x64](http://www.microsoft.com/download/details.aspx?id=14632)、[x86](https://www.microsoft.com/download/details.aspx?id=5555)) 下載並安裝 [HPC Pack 2012 R2 Update 3 用戶端公用程式](https://www.microsoft.com/download/details.aspx?id=49923)及適當的 Visual C++ 2010 可轉散發套件。
+1. 在此範例中，我們使用名為 ConvertiblePricing_Complete.xlsb 的範例 Excel 活頁簿。 您可以從 [這裡](https://www.microsoft.com/en-us/download/details.aspx?id=2939)下載。
+1. 將 Excel 活頁簿複製到工作資料夾，例如 D:\Excel\Run。
+1. 開啟 Excel 活頁簿。 在 [開發] 功能區上，按一下 [COM 增益集] 並確認 HPC Pack Excel COM 增益集已成功載入。
    
    ![HPC Pack 的 Excel 增益集][addin]
-8. 藉由變更加上註解的行，編輯 Excel 中的 VBA 巨集 HPCControlMacros，如下列指令碼所示。 請將您的環境取代為適當的值。
+1. 藉由變更加上註解的行，編輯 Excel 中的 VBA 巨集 HPCControlMacros，如下列指令碼所示。 請將您的環境取代為適當的值。
    
    ![HPC Pack 的 Excel 巨集][macro]
    
@@ -250,8 +251,8 @@ HPC Pack 部署指令碼會執行一段時間。 指令碼會匯出和下載叢�
    'HPCExcelClient.OpenSession headNode:=HPC_ClusterScheduler, remoteWorkbookPath:=HPCWorkbookPath
    HPCExcelClient.OpenSession headNode:=HPC_ClusterScheduler, remoteWorkbookPath:=HPCWorkbookPath, UserName:="hpc\azureuser", Password:="<YourPassword>"
    ```
-9. 將 Excel 活頁簿複製到上傳目錄，例如 D:\Excel\Upload。 此目錄是在 VBA 巨集的 HPC_DependsFiles 常數中指定。
-10. 若要在 Azure 的叢集中執行活頁簿，請按一下工作表上的 [叢集]  按鈕。
+1. 將 Excel 活頁簿複製到上傳目錄，例如 D:\Excel\Upload。 此目錄是在 VBA 巨集的 HPC_DependsFiles 常數中指定。
+1. 若要在 Azure 的叢集中執行活頁簿，請按一下工作表上的 [叢集]  按鈕。
 
 ### <a name="run-excel-udfs"></a>執行 Excel UDF
 若要執行 Excel UDF，請遵循上述的步驟 1 - 3 來設定用戶端電腦。 對於 Excel UDF，您不需在計算節點上安裝 Excel 應用程式。 因此，在建立您的叢集計算節點時，您可以選擇一般計算節點映像，而不是含有 Excel 的計算節點映像。
@@ -266,10 +267,10 @@ HPC Pack 部署指令碼會執行一段時間。 指令碼會匯出和下載叢�
 1. 開啟新的 Excel 活頁簿。 在 [開發] 功能區上，按一下 [增益集]。然後在對話方塊中按一下 [瀏覽]、瀏覽至 %CCP_HOME%Bin\XLL32 資料夾並選取範例 ClusterUDF32.xll。 如果 ClusterUDF32 不存在於用戶端電腦上，您可以從前端節點上的 %CCP_HOME%Bin\XLL32 資料夾複製它。
    
    ![選取 UDF][udf]
-2. 按一下 [檔案] > [選項] > [進階]。 在 [公式] 下，核取 [允許使用者定義的 XLL 函數執行計算叢集]。 然後按一下 [選項] 並在 [叢集前端節點名稱] 中輸入完整叢集名稱。 (如先前所述，這個輸入方塊限制為 34 個字元，因此較長的叢集名稱可能不適合。 您在這裡可以對完整叢集名稱使用電腦全域變數。)
+1. 按一下 [檔案] > [選項] > [進階]。 在 [公式] 下，核取 [允許使用者定義的 XLL 函數執行計算叢集]。 然後按一下 [選項] 並在 [叢集前端節點名稱] 中輸入完整叢集名稱。 (如先前所述，這個輸入方塊限制為 34 個字元，因此較長的叢集名稱可能不適合。 您在這裡可以對完整叢集名稱使用電腦全域變數。)
    
    ![設定 UDF][options]
-3. 若要在叢集上執行 UDF 運算，請按一下值 =XllGetComputerNameC() 的儲存格並按 Enter。 函數只會擷取 UDF 執行所在的計算節點名稱。 初次執行時，認證對話方塊會提示輸入使用者名稱和密碼以連接到 IaaS 叢集。
+1. 若要在叢集上執行 UDF 運算，請按一下值 =XllGetComputerNameC() 的儲存格並按 Enter。 函數只會擷取 UDF 執行所在的計算節點名稱。 初次執行時，認證對話方塊會提示輸入使用者名稱和密碼以連接到 IaaS 叢集。
    
    ![執行 UDF][run]
    
@@ -279,9 +280,9 @@ HPC Pack 部署指令碼會執行一段時間。 指令碼會匯出和下載叢�
 若要在 HPC Pack IaaS 叢集上執行一般 SOA 應用程式，請先使用步驟 1 的其中一個方法部署叢集。 在此案例中請指定一般計算節點映像，因為在計算節點上您不需要 Excel。 接著，遵循下列步驟。
 
 1. 擷取叢集憑證之後，在 Cert:\CurrentUser\Root 下的用戶端電腦上匯入叢集憑證。
-2. 安裝 [HPC Pack 2012 R2 Update 3 SDK](http://www.microsoft.com/download/details.aspx?id=49921) 和 [HPC Pack 2012 R2 Update 3 用戶端公用程式](https://www.microsoft.com/download/details.aspx?id=49923)。 這些工具可讓您開發和執行 SOA 用戶端應用程式。
-3. 下載 HelloWorldR2 [範例程式碼](https://www.microsoft.com/download/details.aspx?id=41633)。 在 Visual Studio 2010 或 2012 中開啟 HelloWorldR2.sln。 (此範例目前與較新的 Visual Studio 版本不相容。)
-4. 首先建置 EchoService 專案。 接著以您部署至內部部署叢集的相同方式，將服務部署到 IaaS 叢集。 如需詳細步驟，請參閱 HelloWordR2 中的 Readme.doc。 以下一節所述的方式修改並建置 HelloWorldR2 和其他專案，以產生執行於 Azure IaaS 叢集上的 SOA 用戶端應用程式。
+1. 安裝 [HPC Pack 2012 R2 Update 3 SDK](http://www.microsoft.com/download/details.aspx?id=49921) 和 [HPC Pack 2012 R2 Update 3 用戶端公用程式](https://www.microsoft.com/download/details.aspx?id=49923)。 這些工具可讓您開發和執行 SOA 用戶端應用程式。
+1. 下載 HelloWorldR2 [範例程式碼](https://www.microsoft.com/download/details.aspx?id=41633)。 在 Visual Studio 2010 或 2012 中開啟 HelloWorldR2.sln。 (此範例目前與較新的 Visual Studio 版本不相容。)
+1. 首先建置 EchoService 專案。 接著以您部署至內部部署叢集的相同方式，將服務部署到 IaaS 叢集。 如需詳細步驟，請參閱 HelloWordR2 中的 Readme.doc。 以下一節所述的方式修改並建置 HelloWorldR2 和其他專案，以產生執行於 Azure IaaS 叢集上的 SOA 用戶端應用程式。
 
 ### <a name="use-http-binding-with-azure-storage-queue"></a>搭配使用 Http 繫結和 Azure 儲存體佇列
 若要搭配使用 Http 繫結與 Azure 儲存體佇列，請對範例程式碼進行一些變更。
@@ -334,10 +335,10 @@ HPC Pack 部署指令碼會執行一段時間。 指令碼會匯出和下載叢�
 若要使用 NetTcp 繫結，組態就像是連接至內部部署叢集。 您必須在前端節點 VM 上開啟幾個端點。 舉例來說，如果您使用 HPC Pack IaaS 部署指令碼來建立叢集，請依下列方式在 Azure 入口網站中設定端點。
 
 1. 停止 VM。
-2. 新增 TCP 連接埠 9090、9087、9091、9094 分別做為工作階段、訊息代理程式、訊息代理程式背景工作和資料服務
+1. 新增 TCP 連接埠 9090、9087、9091、9094 分別做為工作階段、訊息代理程式、訊息代理程式背景工作和資料服務
    
     ![設定端點][endpoint-new-portal]
-3. 啟動 VM。
+1. 啟動 VM。
 
 SOA 用戶端應用程式不需要變更，除了將標頭名稱改變為 IaaS 叢集的完整名稱。
 

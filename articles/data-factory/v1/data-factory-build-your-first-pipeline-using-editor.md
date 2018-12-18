@@ -1,25 +1,26 @@
 ---
-title: "建置您的第一個 Data Factory (Azure 入口網站) | Microsoft Docs"
-description: "在本教學課程中，您會使用 Azure 入口網站中的 Data Factory 編輯器，建立 Azure Data Factory 管線範例。"
+title: 建置您的第一個 Data Factory (Azure 入口網站) | Microsoft Docs
+description: 在本教學課程中，您會使用 Azure 入口網站中的 Data Factory 編輯器，建立 Azure Data Factory 管線範例。
 services: data-factory
-documentationcenter: 
+documentationcenter: ''
 author: sharonlo101
-manager: 
-editor: 
+manager: ''
+editor: ''
 ms.assetid: d5b14e9e-e358-45be-943c-5297435d402d
 ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: hero-article
+ms.topic: tutorial
 ms.date: 01/22/2018
 ms.author: shlo
 robots: noindex
-ms.openlocfilehash: c4fe0e01936ebc131b10f011b98e9d0c1782179b
-ms.sourcegitcommit: 782d5955e1bec50a17d9366a8e2bf583559dca9e
+ms.openlocfilehash: f3dc27b35f35f3aaa649b03777ff13d385561673
+ms.sourcegitcommit: 1b561b77aa080416b094b6f41fce5b6a4721e7d5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/02/2018
+ms.lasthandoff: 09/17/2018
+ms.locfileid: "45732221"
 ---
 # <a name="tutorial-build-your-first-data-factory-by-using-the-azure-portal"></a>教學課程：使用 Azure 入口網站建置您的第一個資料處理站
 > [!div class="op_single_selector"]
@@ -32,7 +33,7 @@ ms.lasthandoff: 03/02/2018
 
 
 > [!NOTE]
-> 本文適用於第 1 版 Azure Data Factory (正式運作版)。 如果您使用第 2 版 Data Factory 服務 (預覽版)，請參閱[快速入門：使用 Data Factory 第 2 版來建立資料處理站](../quickstart-create-data-factory-dot-net.md)。
+> 本文適用於第 1 版 Azure Data Factory (正式運作版)。 如果您使用 Data Factory 服務的目前版本，請參閱[快速入門：使用 Data Factory 來建立資料處理站](../quickstart-create-data-factory-dot-net.md)。
 
 在本文中，您會了解如何使用 [Azure 入口網站](https://portal.azure.com/) 來建立您的第一個資料處理站。 若要使用其他工具/SDK 進行本教學課程，請選取下拉式清單的其中一個選項。 
 
@@ -43,7 +44,7 @@ ms.lasthandoff: 03/02/2018
 > 
 > 一個管線中可以有多個活動。 您可以將一個活動的輸出資料集設為另一個活動的輸入資料集，藉此鏈結兩個活動 (讓一個活動接著另一個活動執行)。 如需詳細資訊，請參閱 [Data Factory 排程和執行](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline)。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 請參閱[教學課程概觀](data-factory-build-your-first-pipeline.md)，並遵循＜先決條件＞一節的步驟。
 
 本文不提供 Data Factory 服務的概念性概觀。 如需有關服務的詳細資訊，請參閱 [Azure Data Factory 簡介](data-factory-introduction.md)。  
@@ -55,11 +56,11 @@ ms.lasthandoff: 03/02/2018
 
 1. 登入 [Azure 入口網站](https://portal.azure.com/)。
 
-2. 選取 [新增] > [資料 + 分析] > [資料處理站]。
+1. 選取 [新增] > [資料 + 分析] > [資料處理站]。
 
    ![建立刀鋒視窗](./media/data-factory-build-your-first-pipeline-using-editor/create-blade.png)
 
-3. 在 [新增資料處理站] 刀鋒視窗上的 [名稱] 底下，輸入 **GetStartedDF**。
+1. 在 [新增資料處理站] 刀鋒視窗上的 [名稱] 底下，輸入 **GetStartedDF**。
 
    ![新增 Data Factory 刀鋒視窗](./media/data-factory-build-your-first-pipeline-using-editor/new-data-factory-blade.png)
 
@@ -69,25 +70,25 @@ ms.lasthandoff: 03/02/2018
    > 資料處理站的名稱未來可能會註冊為 DNS 名稱，而且可能會變成公開可見的名稱。
    >
    >
-4. 在 [訂用帳戶] 底下，選取您想要建立資料處理站的 Azure 訂用帳戶。
+1. 在 [訂用帳戶] 底下，選取您想要建立資料處理站的 Azure 訂用帳戶。
 
-5. 請選取現有的資源群組，或建立資源群組。 在教學課程中，建立名稱為 **ADFGetStartedRG**的資源群組。
+1. 請選取現有的資源群組，或建立資源群組。 在教學課程中，建立名稱為 **ADFGetStartedRG**的資源群組。
 
-6. 在 [位置] 下，選取資料處理站的位置。 下拉式清單中只會顯示 Data Factory 服務支援的區域。
+1. 在 [位置] 下，選取資料處理站的位置。 下拉式清單中只會顯示 Data Factory 服務支援的區域。
 
-7. 選取 [釘選到儀表板] 核取方塊。
+1. 選取 [釘選到儀表板] 核取方塊。
 
-8. 選取 [建立] 。
+1. 選取 [建立] 。
 
    > [!IMPORTANT]
-   > 若要建立 Data Factory 執行個體，您必須是訂用帳戶/資源群組層級的 [Data Factory 參與者](../../active-directory/role-based-access-built-in-roles.md#data-factory-contributor)角色成員。
+   > 若要建立 Data Factory 執行個體，您必須是訂用帳戶/資源群組層級的 [Data Factory 參與者](../../role-based-access-control/built-in-roles.md#data-factory-contributor)角色成員。
    >
    >
-9. 在儀表板上，您會看到 [正在部署 Data Factory] 狀態的下列圖格︰    
+1. 在儀表板上，您會看到 [正在部署 Data Factory] 狀態的下列圖格︰    
 
    ![部署 Data Factory 狀態](./media/data-factory-build-your-first-pipeline-using-editor/creating-data-factory-image.png)
 
-10. 建立資料處理站之後，您會看到 [資料處理站] 頁面，當中會顯示資料處理站的內容。     
+1. 建立資料處理站之後，您會看到 [資料處理站] 頁面，當中會顯示資料處理站的內容。     
 
     ![Data Factory 刀鋒視窗](./media/data-factory-build-your-first-pipeline-using-editor/data-factory-blade.png)
 
@@ -103,17 +104,17 @@ ms.lasthandoff: 03/02/2018
 
    ![[製作和部署] 圖格](./media/data-factory-build-your-first-pipeline-using-editor/data-factory-author-deploy.png)
 
-2. 選取 [新增資料存放區]，然後選擇 [Azure 儲存體]。
+1. 選取 [新增資料存放區]，然後選擇 [Azure 儲存體]。
 
    ![[新增資料存放區] 刀鋒視窗](./media/data-factory-build-your-first-pipeline-using-editor/new-data-store-azure-storage-menu.png)
 
-3. 在編輯器中，您會看到用來建立儲存體連結服務的 JSON 指令碼。
+1. 在編輯器中，您會看到用來建立儲存體連結服務的 JSON 指令碼。
 
    ![儲存體連結服務](./media/data-factory-build-your-first-pipeline-using-editor/azure-storage-linked-service.png)
 
-4. 將**帳戶名稱**取代成您儲存體帳戶的名稱。 將**帳戶金鑰**取代成儲存體帳戶的存取金鑰。 若要了解如何取得您的儲存體存取金鑰，請參閱[管理儲存體帳戶](../../storage/common/storage-create-storage-account.md#manage-your-storage-account)，以了解如何檢視、複製及重新產生儲存體存取金鑰。
+1. 將**帳戶名稱**取代成您儲存體帳戶的名稱。 將**帳戶金鑰**取代成儲存體帳戶的存取金鑰。 若要了解如何取得您的儲存體存取金鑰，請參閱[管理儲存體帳戶](../../storage/common/storage-account-manage.md#access-keys)，以了解如何檢視、複製及重新產生儲存體存取金鑰。
 
-5. 選取命令列上的 [部署] 以部署連結服務。
+1. 選取命令列上的 [部署] 以部署連結服務。
 
     ![[部署] 按鈕](./media/data-factory-build-your-first-pipeline-using-editor/deploy-button.png)
 
@@ -128,7 +129,7 @@ ms.lasthandoff: 03/02/2018
 
     ![新增計算](./media/data-factory-build-your-first-pipeline-using-editor/new-compute-menu.png)
 
-2. 複製下列程式碼片段並貼到 [Draft-1] 視窗。 此 JSON 程式碼片段描述用來建立隨選 HDInsight 叢集的屬性。
+1. 複製下列程式碼片段並貼到 [Draft-1] 視窗。 此 JSON 程式碼片段描述用來建立隨選 HDInsight 叢集的屬性。
 
     ```JSON
     {
@@ -166,11 +167,11 @@ ms.lasthandoff: 03/02/2018
 
      如需詳細資訊，請參閱[隨選 HDInsight 連結服務](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service)。
 
-3. 選取命令列上的 [部署] 以部署連結服務。
+1. 選取命令列上的 [部署] 以部署連結服務。
 
     ![部署選項](./media/data-factory-build-your-first-pipeline-using-editor/ondemand-hdinsight-deploy.png)
 
-4. 確認您有在左側的樹狀檢視中看到 **AzureStorageLinkedService** 和 **HDInsightOnDemandLinkedService**。
+1. 確認您有在左側的樹狀檢視中看到 **AzureStorageLinkedService** 和 **HDInsightOnDemandLinkedService**。
 
     ![含連結服務的樹狀檢視](./media/data-factory-build-your-first-pipeline-using-editor/tree-view-linked-services.png)
 
@@ -182,7 +183,7 @@ ms.lasthandoff: 03/02/2018
 
     ![新增資料集](./media/data-factory-build-your-first-pipeline-using-editor/new-data-set.png)
 
-2. 複製下列程式碼片段並貼到 [Draft-1] 視窗。 在 JSON 程式碼片段中，您會建立名為 **AzureBlobInput** 的資料集，代表管線中活動的輸入資料。 此外，您指定將輸入資料在名為 **adfgetstarted** 的 Blob 容器及名為 **inputdata** 的資料夾中。
+1. 複製下列程式碼片段並貼到 [Draft-1] 視窗。 在 JSON 程式碼片段中，您會建立名為 **AzureBlobInput** 的資料集，代表管線中活動的輸入資料。 此外，您指定將輸入資料在名為 **adfgetstarted** 的 Blob 容器及名為 **inputdata** 的資料夾中。
 
     ```JSON
     {
@@ -222,14 +223,14 @@ ms.lasthandoff: 03/02/2018
 
     如需這些 JSON 屬性的詳細資訊，請參閱 [Azure Blob 連接器](data-factory-azure-blob-connector.md#dataset-properties)。
 
-3. 選取命令列的 [部署] 以部署新建立的資料集。 您會看到左側樹狀檢視中的資料集。
+1. 選取命令列的 [部署] 以部署新建立的資料集。 您會看到左側樹狀檢視中的資料集。
 
 ### <a name="create-the-output-dataset"></a>建立輸出資料集
 現在，您會建立輸出資料集來代表 Blob 儲存體中儲存的輸出資料。
 
 1. 在 Data Factory 編輯器中，選取 [更多] > [新增資料集] > [Azure Blob 儲存體]。
 
-2. 複製下列程式碼片段並貼到 [Draft-1] 視窗。 在 JSON 程式碼片段中，建立名為 **AzureBlobOutput**的資料集，並指定由 Hive 指令碼產生的資料結構。 您也可以指定將結果儲存在名為 **adfgetstarted** 的 Blob 容器及名為 **partitioneddata** 的資料夾中。 **availability** 區段會指定每月產生一次輸出資料集。
+1. 複製下列程式碼片段並貼到 [Draft-1] 視窗。 在 JSON 程式碼片段中，建立名為 **AzureBlobOutput**的資料集，並指定由 Hive 指令碼產生的資料結構。 您也可以指定將結果儲存在名為 **adfgetstarted** 的 Blob 容器及名為 **partitioneddata** 的資料夾中。 **availability** 區段會指定每月產生一次輸出資料集。
 
     ```JSON
     {
@@ -253,9 +254,9 @@ ms.lasthandoff: 03/02/2018
     ```
     請參閱＜建立輸入資料集＞一節，了解這些屬性的說明。 您並未在輸出資料集上設定外部屬性，因為資料集是由 Data Factory 服務產生。
 
-3. 選取命令列的 [部署] 以部署新建立的資料集。
+1. 選取命令列的 [部署] 以部署新建立的資料集。
 
-4. 驗證資料集已成功建立。
+1. 驗證資料集已成功建立。
 
     ![含連結服務的樹狀檢視](./media/data-factory-build-your-first-pipeline-using-editor/tree-view-data-set.png)
 
@@ -266,7 +267,7 @@ ms.lasthandoff: 03/02/2018
 
     ![新增管線選項](./media/data-factory-build-your-first-pipeline-using-editor/new-pipeline-button.png)
 
-2. 複製下列程式碼片段並貼到 [Draft-1] 視窗。
+1. 複製下列程式碼片段並貼到 [Draft-1] 視窗。
 
    > [!IMPORTANT]
    > 在 JSON 程式碼片段中使用您的儲存體帳戶名稱取代 **storageaccountname**。
@@ -332,7 +333,7 @@ ms.lasthandoff: 03/02/2018
    > 如需範例中使用的 JSON 屬性詳細資料，請參閱 [Data Factory 中的管線及活動](data-factory-create-pipelines.md)中的＜管線 JSON＞一節。
    >
    >
-3. 確認下列項目：
+1. 確認下列項目：
 
    a. **input.log** 檔案存在於 Blob 儲存體中 **adfgetstarted** 容器的 **inputdata** 資料夾中。
 
@@ -340,9 +341,9 @@ ms.lasthandoff: 03/02/2018
 
    c. 在管線 JSON 中使用您的儲存體帳戶名稱取代 **storageaccountname**。
 
-4. 選取命令列上的 [部署] 以部署管線。 由於 **start** 和 **end** 時間設定在過去，且 **isPaused** 設為 **false**，管線 (管線中的活動) 會在部署之後立即執行。
+1. 選取命令列上的 [部署] 以部署管線。 由於 **start** 和 **end** 時間設定在過去，且 **isPaused** 設為 **false**，管線 (管線中的活動) 會在部署之後立即執行。
 
-5. 確認您在樹狀檢視中看到管線。
+1. 確認您在樹狀檢視中看到管線。
 
     ![管線的樹狀檢視](./media/data-factory-build-your-first-pipeline-using-editor/tree-view-pipeline.png)
 
@@ -354,31 +355,31 @@ ms.lasthandoff: 03/02/2018
 
     ![[圖表] 圖格](./media/data-factory-build-your-first-pipeline-using-editor/diagram-tile.png)
 
-2. 在 [圖表] 檢視中，您會看到管線的概觀，以及在本教學課程中使用的資料集。
+1. 在 [圖表] 檢視中，您會看到管線的概觀，以及在本教學課程中使用的資料集。
 
     ![圖表檢視](./media/data-factory-build-your-first-pipeline-using-editor/diagram-view-2.png)
 
-3. 若要檢視管線中的所有活動，以滑鼠右鍵按一下圖表中的管線，再選取 [開啟管線]。
+1. 若要檢視管線中的所有活動，以滑鼠右鍵按一下圖表中的管線，再選取 [開啟管線]。
 
     ![開啟管線功能表](./media/data-factory-build-your-first-pipeline-using-editor/open-pipeline-menu.png)
 
-4. 確認您在管線中看到了 **Hive 活動**。
+1. 確認您在管線中看到了 **Hive 活動**。
 
     ![開啟管線檢視](./media/data-factory-build-your-first-pipeline-using-editor/open-pipeline-view.png)
 
     如要回到上一個檢視，請選取頂端功能表中的 [資料處理站]。
 
-5. 在 [圖表] 檢視中，按兩下 [AzureBlobInput] 資料集。 確認配量為 [就緒] 狀態。 可能需要數分鐘的時間，配量才會顯示為 [就緒] 狀態。 如果一段時間之後還未顯示，請查看輸入檔案 (**input.log**) 是否放置在正確的容器 (**adfgetstarted**) 和資料夾 (**inputdata**) 中。
+1. 在 [圖表] 檢視中，按兩下 [AzureBlobInput] 資料集。 確認配量為 [就緒] 狀態。 可能需要數分鐘的時間，配量才會顯示為 [就緒] 狀態。 如果一段時間之後還未顯示，請查看輸入檔案 (**input.log**) 是否放置在正確的容器 (**adfgetstarted**) 和資料夾 (**inputdata**) 中。
 
    ![輸入配量處於就緒狀態](./media/data-factory-build-your-first-pipeline-using-editor/input-slice-ready.png)
 
-6. 關閉 [AzureBlobInput] 刀鋒視窗。
+1. 關閉 [AzureBlobInput] 刀鋒視窗。
 
-7. 在 [圖表] 檢視中，按兩下 **AzureBlobOutput** 資料集。 您會看到目前正在處理的配量。
+1. 在 [圖表] 檢視中，按兩下 **AzureBlobOutput** 資料集。 您會看到目前正在處理的配量。
 
    ![正在處理資料集](./media/data-factory-build-your-first-pipeline-using-editor/dataset-blade.png)
 
-8. 處理完成之後，您會在 [就緒] 狀態中看到配量。
+1. 處理完成之後，您會在 [就緒] 狀態中看到配量。
 
    ![處於就緒狀態的資料集](./media/data-factory-build-your-first-pipeline-using-editor/dataset-slice-ready.png)  
 
@@ -387,15 +388,15 @@ ms.lasthandoff: 03/02/2018
    >
    >
 
-9. 當配量處於 [就緒] 狀態時，檢查您 Blob 儲存體中 **adfgetstarted** 容器內 **partitioneddata** 資料夾的輸出資料。  
+1. 當配量處於 [就緒] 狀態時，檢查您 Blob 儲存體中 **adfgetstarted** 容器內 **partitioneddata** 資料夾的輸出資料。  
 
    ![輸出資料](./media/data-factory-build-your-first-pipeline-using-editor/three-ouptut-files.png)
 
-10. 選取配量，以在 [資料配量] 刀鋒視窗中查看其詳細資訊。
+1. 選取配量，以在 [資料配量] 刀鋒視窗中查看其詳細資訊。
 
     ![資料配量資訊](./media/data-factory-build-your-first-pipeline-using-editor/data-slice-details.png)
 
-11. 在 [活動回合] 清單中，選取一個活動回合以查看其相關詳細資訊。 (在此案例中，指的是 Hive 活動。)資訊會出現在 [活動回合詳細資料] 刀鋒視窗。   
+1. 在 [活動回合] 清單中，選取一個活動回合以查看其相關詳細資訊。 (在此案例中，指的是 Hive 活動。)資訊會出現在 [活動回合詳細資料] 刀鋒視窗。   
 
     ![[活動回合詳細資料] 視窗](./media/data-factory-build-your-first-pipeline-using-editor/activity-window-blade.png)    
 
@@ -414,11 +415,11 @@ ms.lasthandoff: 03/02/2018
 
     ![監視及管理圖格](./media/data-factory-build-your-first-pipeline-using-editor/monitor-and-manage-tile.png)
 
-2. 在「監視及管理」應用程式中，變更 [開始時間] 和 [結束時間] 以符合您管線的開始和結束時間。 選取 [套用] 。
+1. 在「監視及管理」應用程式中，變更 [開始時間] 和 [結束時間] 以符合您管線的開始和結束時間。 選取 [套用] 。
 
     ![監視及管理應用程式](./media/data-factory-build-your-first-pipeline-using-editor/monitor-and-manage-app.png)
 
-3. 選取 [活動時段] 清單中的活動時段以查看其詳細資訊。
+1. 選取 [活動時段] 清單中的活動時段以查看其詳細資訊。
 
     ![活動時段清單](./media/data-factory-build-your-first-pipeline-using-editor/activity-window-details.png)
 

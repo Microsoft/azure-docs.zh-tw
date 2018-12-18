@@ -1,4 +1,4 @@
-若要建立進階快取，請先登入 [Azure 入口網站](https://portal.azure.com)，然後按一下 [建立資源] > [資料庫] > [Redis 快取]。
+若要建立進階快取，請登入 [Azure 入口網站](https://portal.azure.com)，然後按一下 [建立資源] > [資料庫] > [Redis 快取]。
 
 ![Create cache](media/redis-cache-premium-create/redis-cache-new-cache-menu.png)
 

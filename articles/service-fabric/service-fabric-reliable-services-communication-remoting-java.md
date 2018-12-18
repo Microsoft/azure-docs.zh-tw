@@ -1,32 +1,33 @@
 ---
-title: "Azure Service Fabric 的服務遠端處理 | Microsoft Docs"
-description: "Service Fabric 遠端處理可讓用戶端和服務使用遠端程序呼叫與服務進行通訊。"
+title: 在 Azure Service Fabric 中使用 Java 來進行的服務遠端處理 | Microsoft Docs
+description: Service Fabric 遠端處理可讓用戶端和服務使用遠端程序呼叫與 Java 服務進行通訊。
 services: service-fabric
 documentationcenter: java
 author: PavanKunapareddyMSFT
 manager: timlt
-ms.assetid: 
+ms.assetid: ''
 ms.service: service-fabric
 ms.devlang: java
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: required
 ms.date: 06/30/2017
 ms.author: pakunapa
-ms.openlocfilehash: 51a9c8bd628ef9e65d04a3a4ddbdc127d84d4b54
-ms.sourcegitcommit: 821b6306aab244d2feacbd722f60d99881e9d2a4
+ms.openlocfilehash: 3215ee4adf907524626b4919b637ce23b9e0e782
+ms.sourcegitcommit: 6eb14a2c7ffb1afa4d502f5162f7283d4aceb9e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/18/2017
+ms.lasthandoff: 06/25/2018
+ms.locfileid: "36750175"
 ---
-# <a name="service-remoting-with-reliable-services"></a>使用 Reliable Services 的遠端服務
+# <a name="service-remoting-in-java-with-reliable-services"></a>使用 Reliable Services 在 Java 中進行服務遠端處理
 > [!div class="op_single_selector"]
 > * [Windows 上的 C# ](service-fabric-reliable-services-communication-remoting.md)
 > * [在 Linux 上使用 Java](service-fabric-reliable-services-communication-remoting-java.md)
 >
 >
 
-Reliable Services 架構提供遠端機制，以快速且輕鬆地為服務設定遠端程序呼叫。
+對於未繫結至特定通訊協定或堆疊 (例如 WebAPI、Windows Communication Foundation (WCF) 或其他項目) 的服務，Reliable Services 架構會提供遠端機制，以便快速且輕鬆設定服務遠端程序呼叫。  本文會討論如何為以 Java 撰寫的服務設定遠端程序呼叫。
 
 ## <a name="set-up-remoting-on-a-service"></a>設定在服務上的遠端處理
 只要兩個簡單步驟，就能設定服務的遠端處理：
@@ -87,7 +88,7 @@ CompletableFuture<String> message = helloWorldClient.helloWorldAsync();
 遠端架構會將在服務擲回的例外狀況傳播給用戶端。 因此在用戶端使用 `ServiceProxyBase` 的例外狀況處理邏輯，可以直接處理服務擲回的例外狀況。
 
 ## <a name="service-proxy-lifetime"></a>服務 Proxy 存留期
-建立 ServiceProxy 是輕量型作業，因此沒有限制使用者可建立的數量。 只要有需要，使用者可以重複使用服務 Proxy 。 使用者可以重複使用相同的 Proxy，以防止發生例外狀況。 每個 ServiceProxy 皆包含用來透過網路傳送訊息的通訊用戶端。 叫用 API 時，我們會透過內部檢查來查看用戶端是否使用有效的通訊。 根據結果，我們會重新建立通訊用戶端。 因此使用者不需要重新建立 serviceproxy，以免發生例外狀況。
+建立 ServiceProxy 是輕量型作業，因此您可以建立的數目沒有限制。 只要有需要，可以重複使用服務 Proxy 執行個體。 如果遠端程序呼叫擲回例外狀況，您仍然可以重複使用相同的 Proxy 執行個體。 每個 ServiceProxy 都包含用來透過網路傳送訊息的通訊用戶端。 叫用遠端呼叫時，系統會執行內部檢查來判斷通訊用戶端是否有效。 根據這些檢查的結果，系統會在必要情況下重建通訊用戶端。 因此，如果發生例外狀況，您無須重建 `ServiceProxy`。
 
 ### <a name="serviceproxyfactory-lifetime"></a>ServiceProxyFactory 存留期
 [FabricServiceProxyFactory](https://docs.microsoft.com/java/api/microsoft.servicefabric.services.remoting.client._fabric_service_proxy_factory) 是一個為不同的遠端處理介面建立 Proxy 的處理站。 如果您使用 API `ServiceProxyBase.create` 來建立 Proxy，則架構會建立 `FabricServiceProxyFactory`。
@@ -101,7 +102,7 @@ CompletableFuture<String> message = helloWorldClient.helloWorldAsync();
 ServiceProxy 會處理服務分割區 (ServiceProxy 即是為其建立) 的所有容錯移轉列外狀況。 發生容錯移轉例外狀況 (非暫時性例外狀況) 時，ServiceProxy 會重新解析端點，然後以正確的端點再次嘗試呼叫。 容錯移轉例外狀況的重試次數並無限制。
 若是發生 TransientExceptions，ServiceProxy 僅會重試呼叫。
 
-預設的重試參數會由 [OperationRetrySettings] 提供。 (https://docs.microsoft.com/java/api/microsoft.servicefabric.services.communication.client._operation_retry_settings) 使用者可透過將 OperationRetrySettings 物件傳遞給 ServiceProxyFactory 建構函式來設定這些值。
+預設的重試參數會由 [OperationRetrySettings] 提供。 (https://docs.microsoft.com/java/api/microsoft.servicefabric.services.communication.client._operation_retry_settings) 您可以將 OperationRetrySettings 物件傳遞至 ServiceProxyFactory 建構函式，來設定這些值。
 
 ## <a name="next-steps"></a>後續步驟
-* [Reliable Services 的安全通訊](service-fabric-reliable-services-secure-communication.md)
+* [Reliable Services 的安全通訊](service-fabric-reliable-services-secure-communication-java.md)

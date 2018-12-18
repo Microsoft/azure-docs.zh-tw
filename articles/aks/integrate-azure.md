@@ -3,31 +3,32 @@ title: 使用 Open Service Broker for Azure (OSBA) 與 Azure 受控服務整合
 description: 使用 Open Service Broker for Azure (OSBA) 與 Azure 受控服務整合
 services: container-service
 author: sozercan
-manager: timlt
+manager: jeconnoc
 ms.service: container-service
 ms.topic: overview
 ms.date: 12/05/2017
 ms.author: seozerca
-ms.openlocfilehash: b1b51b6c36143747a81d1c1fc035ee6d54d34076
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: d0b6fc1ebd08b29b9acc28cfb0107b815c7d7bad
+ms.sourcegitcommit: 7b0778a1488e8fd70ee57e55bde783a69521c912
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 10/10/2018
+ms.locfileid: "49068232"
 ---
 # <a name="integrate-with-azure-managed-services-using-open-service-broker-for-azure-osba"></a>使用 Open Service Broker for Azure (OSBA) 與 Azure 受控服務整合
 
 Open Service Broker for Azure (OSBA) 可以與 [Kubernetes 服務類別目錄][kubernetes-service-catalog]搭配使用，允許開發人員利用 Kubernetes 中的 Azure 受控服務。 本指南著重於部署 Kubernetes 服務類別目錄、Open Service Broker for Azure (OSBA)，以及利用 Kubernetes 使用 Azure 受控服務的應用程式。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 * Azure 訂用帳戶
 
-* Azure CLI 2.0：您可以[在本機進行安裝][azure-cli-install]，或用於 [Azure Cloud Shell][azure-cloud-shell]。
+* Azure CLI：[在本機進行安裝][azure-cli-install]，或用於 [Azure Cloud Shell][azure-cloud-shell]。
 
-* Helm CLI 2.7+：您可以[在本機進行安裝install it locally][helm-cli-install]，或用於 [Azure Cloud Shell][azure-cloud-shell]。
+* Helm CLI 2.7+：[在本機進行安裝][helm-cli-install]，或用於 [Azure Cloud Shell][azure-cloud-shell]。
 
 * 在 Azure 訂用帳戶上使用參與者角色建立服務主體的權限
 
-* 現有的 Azure Container Service (AKS) 叢集。 如果您需要 AKS 叢集，請依照[建立 AKS 叢集][create-aks-cluster]快速入門進行。
+* 現有的 Azure Kubernetes Service (AKS) 叢集。 如果您需要 AKS 叢集，請依照[建立 AKS 叢集][create-aks-cluster]快速入門進行。
 
 ## <a name="install-service-catalog"></a>安裝服務類別目錄
 
@@ -43,10 +44,16 @@ helm init --upgrade
 helm repo add svc-cat https://svc-catalog-charts.storage.googleapis.com
 ```
 
-最後，安裝包含 Helm 圖表的服務類別目錄：
+最後，安裝包含 Helm 圖表的服務類別目錄。 如果您的叢集已啟用 RBAC，請執行此命令。
 
 ```azurecli-interactive
-helm install svc-cat/catalog --name catalog --namespace catalog --set rbacEnable=false
+helm install svc-cat/catalog --name catalog --namespace catalog --set controllerManager.healthcheck.enabled=false
+```
+
+如果您的叢集未啟用 RBAC，請執行此命令。
+
+```azurecli-interactive
+helm install svc-cat/catalog --name catalog --namespace catalog --set rbacEnable=false --set controllerManager.healthcheck.enabled=false
 ```
 
 執行 Helm 圖表之後，請確認 `servicecatalog` 出現在下列命令的輸出中：
@@ -68,7 +75,7 @@ v1beta1.storage.k8s.io               10
 
 ## <a name="install-open-service-broker-for-azure"></a>安裝 Open Service Broker for Azure
 
-下一步是安裝 [Open Service Broker for Azure][open-service-broker-azure]，其中包含用於 Azure 受控服務的類別目錄。 可用 Azure 服務的範例包括適用於 PostgreSQL 的 Azure 資料庫、Azure Redis Cache、適用於 MySQL 的 Azure 資料庫、Azure Cosmos DB、Azure SQL Database 等等。
+下一步是安裝 [Open Service Broker for Azure][open-service-broker-azure]，其中包含用於 Azure 受控服務的類別目錄。 可用 Azure 服務的範例包括適用於 PostgreSQL 的 Azure 資料庫、適用於 MySQL 的 Azure 資料庫和 Azure SQL Database。
 
 從新增 Open Service Broker for Azure Helm 存放庫開始：
 
@@ -182,13 +189,13 @@ kubectl get secrets -n wordpress -o yaml
 
 ## <a name="next-steps"></a>後續步驟
 
-依照本文件，將 Service Catalog 部署至 Azure Container Service (AKS) 叢集。 您要使用 Open Service Broker for Azure，部署使用 Azure 受控服務的 WordPress 安裝，在此案例中為適用於 MySQL 的 Azure 資料庫。
+依照本文件，將 Service Catalog 部署至 Azure Kubernetes Service (AKS) 叢集。 您要使用 Open Service Broker for Azure，部署使用 Azure 受控服務的 WordPress 安裝，在此案例中為適用於 MySQL 的 Azure 資料庫。
 
 若要存取其他更新的 OSBA 型 Helm 圖表，請參閱 [Azure/helm-charts][helm-charts] 存放庫。 如果您要建立使用 OSBA 的圖表，請參閱[建立新的圖表][helm-create-new-chart]。
 
 <!-- LINKS - external -->
 [helm-charts]: https://github.com/Azure/helm-charts
-[helm-cli-install]: kubernetes-helm.md#install-helm-cli
+[helm-cli-install]: https://docs.helm.sh/helm/#helm-install
 [helm-create-new-chart]: https://github.com/Azure/helm-charts#creating-a-new-chart
 [kubernetes-service-catalog]: https://github.com/kubernetes-incubator/service-catalog
 [open-service-broker-azure]: https://github.com/Azure/open-service-broker-azure

@@ -1,25 +1,21 @@
 ---
-title: "誰在使用 Azure 搜尋服務︰個案研究和客戶案例 | Microsoft Docs"
-description: "關於 Azure 搜尋服務 (在 Microsoft Azure 上託管的雲端搜尋服務) 的案例研究和客戶案例。"
-services: search
-documentationcenter: 
+title: 誰在使用 Azure 搜尋服務︰個案研究和客戶案例 | Microsoft Docs
+description: 關於 Azure 搜尋服務 (在 Microsoft Azure 上託管的雲端搜尋服務) 的案例研究和客戶案例。
 author: HeidiSteen
-manager: jhubbard
-editor: 
+manager: cgronlun
 tags: azure-portal
-ms.assetid: ad48e927-aaf9-48f5-8efd-48150cfe79b2
+services: search
 ms.service: search
 ms.devlang: NA
-ms.workload: search
-ms.topic: article
-ms.tgt_pltfrm: na
+ms.topic: conceptual
 ms.date: 08/29/2016
 ms.author: heidist
-ms.openlocfilehash: e7cbbdc606920b9698b30e4b7a9c3325a0f866e2
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: bc15d214d48978b2f8a6bceb3d1a0e945f10bd67
+ms.sourcegitcommit: fa493b66552af11260db48d89e3ddfcdcb5e3152
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 04/23/2018
+ms.locfileid: "31790265"
 ---
 # <a name="whos-using-azure-search-case-studies-and-customer-stories"></a>誰在使用 Azure 搜尋︰個案研究和客戶案例
 了解下列組織如何藉由將豐富的 Azure 搜尋經驗整合到其線上應用程式中來幫助推動其業務。

@@ -1,11 +1,11 @@
 ---
-title: "疑難排解 Azure 應用程式閘道閘道不正確 (502) 的錯誤 | Microsoft Docs"
-description: "了解如何對應用程式閘道 502 錯誤進行疑難排解"
+title: 疑難排解 Azure 應用程式閘道閘道不正確 (502) 的錯誤 | Microsoft Docs
+description: 了解如何對應用程式閘道 502 錯誤進行疑難排解
 services: application-gateway
 documentationcenter: na
 author: amitsriva
 manager: rossort
-editor: 
+editor: ''
 tags: azure-resource-manager
 ms.assetid: 1d431ead-d318-47d8-b3ad-9c69f7e08813
 ms.service: application-gateway
@@ -15,11 +15,12 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/09/2017
 ms.author: amsriva
-ms.openlocfilehash: e0099734a81cd8b1edf5cf80cb56b5c322a5feee
-ms.sourcegitcommit: 9292e15fc80cc9df3e62731bafdcb0bb98c256e1
+ms.openlocfilehash: 4eca6a588d2c95189f0ba995b8db195907e9dc39
+ms.sourcegitcommit: b6319f1a87d9316122f96769aab0d92b46a6879a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/10/2018
+ms.lasthandoff: 05/20/2018
+ms.locfileid: "34356030"
 ---
 # <a name="troubleshooting-bad-gateway-errors-in-application-gateway"></a>疑難排解應用程式閘道中閘道不正確的錯誤
 
@@ -92,7 +93,7 @@ DhcpOptions            : {
 * 對 http://127.0.0.1:port 的呼叫應該會傳回 HTTP 結果碼 200。 這應該會在 30 秒逾時期間內傳回。
 * 確定設定的連接埠已開啟，而且沒有任何防火牆或 Azure 網路安全性群組會在所設定的連接埠上封鎖連入或連出流量。
 * 如果Azure 傳統 VM 或雲端服務會與 FQDN 或公用 IP 搭配使用，請確認對應的 [端點](../virtual-machines/windows/classic/setup-endpoints.md?toc=%2fazure%2fapplication-gateway%2ftoc.json) 已開啟。
-* 如果 VM 是透過 Azure Resource Manager 所設定且位於應用程式閘道部署所在的 VNet 外部，就必須將 [網路安全性群組](../virtual-network/virtual-networks-nsg.md) 設定為允許在所需的連接埠上進行存取。
+* 如果 VM 是透過 Azure Resource Manager 所設定且位於應用程式閘道部署所在的 VNet 外部，就必須將 [網路安全性群組](../virtual-network/security-overview.md) 設定為允許在所需的連接埠上進行存取。
 
 ## <a name="problems-with-custom-health-probe"></a>自訂健全狀況探查的問題
 

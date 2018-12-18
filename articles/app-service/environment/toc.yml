@@ -1,131 +1,133 @@
+items:
 - name: App Service 環境
 - name: 概觀
   items:
-    - name: 關於 App Service Environment
-      href: intro.md
+  - name: 關於 App Service Environment
+    href: intro.md
 - name: 快速入門
-  expanded: true
   items:
-    - name: 建立外部 ASE
-      href: create-external-ase.md
-    - name: 建立內部 ASE
-      href: create-ilb-ase.md
+  - name: 建立外部 ASE
+    href: create-external-ase.md
+  - name: 建立內部 ASE
+    href: create-ilb-ase.md
+  expanded: true
 - name: 教學課程
   items:
-    - name: 與 WAF 整合
-      href: app-service-app-service-environment-web-application-firewall.md
-    - name: 設定 TLS
-      href: app-service-app-service-environment-custom-settings.md
+  - name: 與 WAF 整合
+    href: app-service-app-service-environment-web-application-firewall.md
+  - name: 設定 TLS
+    href: app-service-app-service-environment-custom-settings.md
 - name: 範例
   items:
-    - name: Azure CLI
-      href: ../app-service-cli-samples.md?toc=%2fazure%2fapp-service%2fenvironment%2ftoc.json
-    - name: Azure PowerShell
-      href: ../app-service-powershell-samples.md?toc=%2fazure%2fapp-service%2fenvironment%2ftoc.json
+  - name: Azure CLI
+    href: ../app-service-cli-samples.md?toc=%2fazure%2fapp-service%2fenvironment%2ftoc.json
+  - name: Azure PowerShell
+    href: ../app-service-powershell-samples.md?toc=%2fazure%2fapp-service%2fenvironment%2ftoc.json
 - name: 概念
   items:
-    - name: 網路架構
-      href: network-info.md
-    - name: 地理位置分散規模
-      href: app-service-app-service-environment-geo-distributed-scale.md
-    - name: ASEv1
-      href: app-service-app-service-environment-intro.md
+  - name: 網路架構
+    href: network-info.md
+  - name: 地理位置分散規模
+    href: app-service-app-service-environment-geo-distributed-scale.md
+  - name: ASEv1
+    href: app-service-app-service-environment-intro.md
+  - name: 診斷
+    href: ../app-service-diagnostics.md
+  - name: 憑證
+    href: certificates.md
 - name: 使用說明指南
   items:
-    - name: 使用 ASE
-      href: using-an-ase.md
-    - name: 與應用程式閘道整合
-      href: integrate-with-application-gateway.md
-    - name: 從範本建立 ASE
-      href: create-from-template.md
-    - name: 強制通道配置
-      href: forced-tunnel-support.md
+  - name: 使用 ASE
+    href: using-an-ase.md
+  - name: 與應用程式閘道整合
+    href: integrate-with-application-gateway.md
+  - name: 從範本建立 ASE
+    href: create-from-template.md
+  - name: 強制通道配置
+    href: forced-tunnel-support.md
+  - name: 防火牆整合
+    href: firewall-integration.md
 - name: 參考
   items:
-    - name: 管理位址
-      href: management-addresses.md
-    - name: ASEv1 文件
-      items:
-        - name: 建立 ASEv1
-          href: app-service-web-how-to-create-an-app-service-environment.md
-        - name: 設定 ASEv1
-          href: app-service-web-configure-an-app-service-environment.md
-        - name: 建立內部 ASEv1
-          href: app-service-environment-with-internal-load-balancer.md
-        - name: 從範本建立內部 ASEv1
-          href: app-service-app-service-environment-create-ilb-ase-resourcemanager.md
-        - name: 在 ASEv1 中設定自動調整
-          href: app-service-environment-auto-scale.md
-        - name: 在 ASEv1 中相應放大應用程式
-          href: app-service-web-scale-a-web-app-in-an-app-service-environment.md
-        - name: 網路架構
-          href: app-service-app-service-environment-network-architecture-overview.md
-        - name: 在 ASEv1 建立 Web 應用程式
-          href: app-service-web-how-to-create-a-web-app-in-an-ase.md
-        - name: 高密度託管
-          href: app-service-high-density-hosting.md
-        - name: 連線到後端
-          href: app-service-app-service-environment-securely-connecting-to-backend-resources.md
-        - name: 設定 ExpressRoute
-          href: app-service-app-service-environment-network-configuration-expressroute.md
-        - name: 控制前往公用應用程式的輸入流量
-          href: app-service-app-service-environment-control-inbound-traffic.md
-        - name: 使用多層式安全性
-          href: app-service-app-service-environment-layered-security.md
-    - name: CLI 2.0
-- name: 參考
-  items:
-    - name: Azure CLI
-      href: /cli/azure/appservice
-    - name: Azure PowerShell
-      href: /powershell
-    - name: REST API
-      href: /rest/api/appservice/
+  - name: 管理位址
+    href: management-addresses.md
+  - name: ASEv1 文件
+    items:
+    - name: 建立 ASEv1
+      href: app-service-web-how-to-create-an-app-service-environment.md
+    - name: 設定 ASEv1
+      href: app-service-web-configure-an-app-service-environment.md
+    - name: 建立內部 ASEv1
+      href: app-service-environment-with-internal-load-balancer.md
+    - name: 從範本建立內部 ASEv1
+      href: app-service-app-service-environment-create-ilb-ase-resourcemanager.md
+    - name: 在 ASEv1 中設定自動調整
+      href: app-service-environment-auto-scale.md
+    - name: 在 ASEv1 中相應放大應用程式
+      href: app-service-web-scale-a-web-app-in-an-app-service-environment.md
+    - name: 網路架構
+      href: app-service-app-service-environment-network-architecture-overview.md
+    - name: 在 ASEv1 建立 Web 應用程式
+      href: app-service-web-how-to-create-a-web-app-in-an-ase.md
+    - name: 連線到後端
+      href: app-service-app-service-environment-securely-connecting-to-backend-resources.md
+    - name: 設定 ExpressRoute
+      href: app-service-app-service-environment-network-configuration-expressroute.md
+    - name: 控制前往公用應用程式的輸入流量
+      href: app-service-app-service-environment-control-inbound-traffic.md
+    - name: 使用多層式安全性
+      href: app-service-app-service-environment-layered-security.md
 - name: 資源
   items:
-    - name: Azure 藍圖
-      href: 'https://azure.microsoft.com/roadmap/'
-    - name: 價格
-      href: 'https://azure.microsoft.com/pricing/details/app-service/'
-    - name: 配額資訊
-      href: '../../azure-subscription-service-limits.md#app-service-limits'
-    - name: 服務更新與版本資訊
-      href: 'https://azure.microsoft.com/updates/?product=app-service'
-    - name: 最佳作法
-      href: ../app-service-best-practices.md?toc=%2fazure%2fapp-service%2fenvironment%2ftoc.json
-    - name: 範例
-      href: 'https://azure.microsoft.com/resources/samples/?service=app-service'
-    - name: 影片
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/app-service/
+  - name: 配額資訊
+    href: ../../azure-subscription-service-limits.md#app-service-limits
+  - name: 服務更新與版本資訊
+    href: https://azure.microsoft.com/updates/?product=app-service
+  - name: 最佳作法
+    href: ../app-service-best-practices.md?toc=%2fazure%2fapp-service%2fenvironment%2ftoc.json
+  - name: 範例
+    href: https://azure.microsoft.com/resources/samples/?service=app-service
+  - name: 影片
+    items:
+    - name: Azure 影片
+      href: https://azure.microsoft.com/resources/videos/index/?services=app-service
+    - name: 利用 Azure App Service 的企業主要現代化 PaaS
+      href: https://channel9.msdn.com/Events/Ignite/2016/BRK3205/player
+    - name: 部署高度可擴充且安全的應用程式
+      href: https://channel9.msdn.com/Events/Microsoft-Azure/AzureCon-2015/ACON325/player
+    - name: 在 Azure App Service 上執行企業 Web 和行動裝置應用程式
+      href: https://channel9.msdn.com/Events/Ignite/2015/BRK3715/player
+  - name: Cookbooks
+    items:
+    - name: 部署指令碼
+      href: https://azure.microsoft.com/documentation/scripts/
+  - name: 疑難排解
+    items:
+    - name: 使用 Visual Studio 進行疑難排解
+      href: ../web-sites-dotnet-troubleshoot-visual-studio.md?toc=%2fazure%2fapp-service%2fenvironment%2ftoc.json
+    - name: 針對 Node.js 應用程式進行疑難排解
+      href: ../app-service-web-nodejs-best-practices-and-troubleshoot-guide.md?toc=%2fazure%2fapp-service%2fenvironment%2ftoc.json
+    - name: 針對 HTTP 502 與 503 進行疑難排解
+      href: ../app-service-web-troubleshoot-http-502-http-503.md?toc=%2fazure%2fapp-service%2fenvironment%2ftoc.json
+    - name: 針對效能問題進行疑難排解
+      href: ../app-service-web-troubleshoot-performance-degradation.md?toc=%2fazure%2fapp-service%2fenvironment%2ftoc.json
+    - name: 常見問題集
       items:
-        - name: Azure 影片
-          href: 'https://azure.microsoft.com/resources/videos/index/?services=app-service'
-        - name: 利用 Azure App Service 的企業主要現代化 PaaS
-          href: 'https://channel9.msdn.com/Events/Ignite/2016/BRK3205/player'
-        - name: 部署高度可擴充且安全的應用程式
-          href: 'https://channel9.msdn.com/Events/Microsoft-Azure/AzureCon-2015/ACON325/player'
-        - name: 在 Azure App Service 上執行企業 Web 和行動裝置應用程式
-          href: 'https://channel9.msdn.com/Events/Ignite/2015/BRK3715/player'
-    - name: Cookbooks
-      items:
-        - name: 部署指令碼
-          href: 'https://azure.microsoft.com/documentation/scripts/'
-    - name: 疑難排解
-      items:
-        - name: 使用 Visual Studio 進行疑難排解
-          href: ../web-sites-dotnet-troubleshoot-visual-studio.md?toc=%2fazure%2fapp-service%2fenvironment%2ftoc.json
-        - name: 針對 Node.js 應用程式進行疑難排解
-          href: ../app-service-web-nodejs-best-practices-and-troubleshoot-guide.md?toc=%2fazure%2fapp-service%2fenvironment%2ftoc.json
-        - name: 針對 HTTP 502 與 503 進行疑難排解
-          href: ../app-service-web-troubleshoot-http-502-http-503.md?toc=%2fazure%2fapp-service%2fenvironment%2ftoc.json
-        - name: 針對效能問題進行疑難排解
-          href: ../app-service-web-troubleshoot-performance-degradation.md?toc=%2fazure%2fapp-service%2fenvironment%2ftoc.json
-        - name: 常見問題集
-          items:
-            - name: 可用性、效能和應用程式常見問題
-              href: ../app-service-web-availability-performance-application-issues-faq.md?toc=%2fazure%2fapp-service%2fenvironment%2ftoc.json
-            - name: 部署常見問題
-              href: ../app-service-web-deployment-faq.md?toc=%2fazure%2fapp-service%2fenvironment%2ftoc.json
-            - name: 開放原始碼技術常見問題
-              href: ../app-service-web-open-source-technologies-faq.md?toc=%2fazure%2fapp-service%2fenvironment%2ftoc.json
-            - name: 設定和管理常見問題
-              href: ../app-service-web-configuration-and-management-faq.md?toc=%2fazure%2fapp-service%2fenvironment%2ftoc.json
+      - name: 可用性、效能和應用程式常見問題
+        href: ../app-service-web-availability-performance-application-issues-faq.md?toc=%2fazure%2fapp-service%2fenvironment%2ftoc.json
+      - name: 部署常見問題
+        href: ../app-service-web-deployment-faq.md?toc=%2fazure%2fapp-service%2fenvironment%2ftoc.json
+      - name: 開放原始碼技術常見問題
+        href: ../app-service-web-open-source-technologies-faq.md?toc=%2fazure%2fapp-service%2fenvironment%2ftoc.json
+      - name: 設定和管理常見問題
+        href: ../app-service-web-configuration-and-management-faq.md?toc=%2fazure%2fapp-service%2fenvironment%2ftoc.json
+ms.openlocfilehash: d9a026c0ba2601a1a4e61c5868b4fdd53599f579
+ms.sourcegitcommit: 51a1476c85ca518a6d8b4cc35aed7a76b33e130f
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47165733"

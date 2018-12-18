@@ -1,18 +1,19 @@
 ---
-title: "準備目標 (實體至 Azure) | Microsoft Docs"
-description: "本文將說明如何準備您的 Azure 環境，以便開始將執行 Windows 或 Linux 的實體伺服器複寫至 Azure。"
+title: 準備目標 (實體至 Azure) | Microsoft Docs
+description: 本文將說明如何準備您的 Azure 環境，以便開始將執行 Windows 或 Linux 的實體伺服器複寫至 Azure。
 services: site-recovery
 author: bsiva
 manager: abhemraj
 ms.service: site-recovery
 ms.topic: article
-ms.date: 03/05/2018
+ms.date: 07/06/2018
 ms.author: bsiva
-ms.openlocfilehash: a2465bb3397a175b6ad8b8be0de933dfae1dee5b
-ms.sourcegitcommit: 168426c3545eae6287febecc8804b1035171c048
+ms.openlocfilehash: 370d245e39b848acade18d0e73f60a3246737629
+ms.sourcegitcommit: a06c4177068aafc8387ddcd54e3071099faf659d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/08/2018
+ms.lasthandoff: 07/09/2018
+ms.locfileid: "37915515"
 ---
 # <a name="prepare-target-vmware-to-azure"></a>準備目標 (VMware 至 Azure)
 
@@ -30,8 +31,8 @@ ms.lasthandoff: 03/08/2018
 
 ![準備目標](./media/physical-azure-set-up-target/prepare-target-physical-to-azure.png)
 
-1. **訂用帳戶︰**從下拉式功能表中選取您想要的訂用帳戶，以將實體伺服器複寫至該訂用帳戶。
-2. **部署模型︰**選取部署模型 (傳統或資源管理員)
+1. **訂用帳戶︰** 從下拉式功能表中選取您想要的訂用帳戶，以將實體伺服器複寫至該訂用帳戶。
+2. **部署模型︰** 選取部署模型 (傳統或資源管理員)
 
 根據所選的部署模型，系統會執行驗證以確保您的目標訂用帳戶中有至少一個相容的儲存體帳戶和虛擬網路，以便將您的實體伺服器複寫和容錯移轉至其中。
 

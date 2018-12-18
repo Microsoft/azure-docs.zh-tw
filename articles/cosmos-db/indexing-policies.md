@@ -3,23 +3,19 @@ title: Azure Cosmos DB 編製索引原則 | Microsoft Docs
 description: 了解 Azure Cosmos DB 中編製索引的運作方式。 了解如何設定編製索引原則，以自動編製索引並追求更高的效能。
 keywords: 編製索引運作方式, 自動編製索引, 為資料庫編製索引
 services: cosmos-db
-documentationcenter: ''
 author: rafats
-manager: jhubbard
-editor: monicar
-ms.assetid: d5e8f338-605d-4dff-8a61-7505d5fc46d7
+manager: kfile
 ms.service: cosmos-db
 ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: data-services
+ms.topic: conceptual
 ms.date: 03/26/2018
 ms.author: rafats
-ms.openlocfilehash: 5610c5fdc6a04f9ef13d2e4592f0d7e5d8eba30c
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: fea3455b31ff2ea7119fa4146aa84f855a3b6e35
+ms.sourcegitcommit: ebd06cee3e78674ba9e6764ddc889fc5948060c4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 09/07/2018
+ms.locfileid: "44054667"
 ---
 # <a name="how-does-azure-cosmos-db-index-data"></a>Azure Cosmos DB 如何為資料編製索引？
 
@@ -40,6 +36,22 @@ ms.lasthandoff: 03/28/2018
 * 如何設定編製索引來執行 Order By 或範圍查詢？
 * 如何變更集合的索引編製原則？
 * 如何比較不同索引編製原則的儲存空間和效能？
+
+## <a id="Indexing"></a> Cosmos DB 索引編製
+
+資料庫索引的目的是要在使用最少資源 (例如 CPU、輸入/輸出) 的情況下，以各種方式提供查詢，同時兼顧良好的輸送量和低延遲。 通常，選擇適用於資料庫查詢的正確索引需要經過相當的規劃和實驗。 此方式對資料不符合嚴謹結構描述的無結構描述資料庫而言是種挑戰，而且發展十分迅速。 
+
+因此，我們在設計 Cosmos DB 索引子系統時，設定了下列目標：
+
+* 在不需要結構描述的情況下，對文件編製索引：索引子系統不需要任何結構描述資訊，或提出任何文件結構描述的相關假設。  
+
+* 支援有效率、豐富階層式及關聯式查詢：索引可有效率地支援 Cosmos DB 查詢語言，包括支援階層式和關聯式投射。  
+
+* 支援在面對持續大量寫入時進行一致查詢：在面對持續大量寫入時，針對具有一致查詢的高寫入輸送量工作負載，會以累加、有效率及線上方式更新索引。 一致的索引更新對於提供一致性層級的查詢十分重要，在此層級中是由使用者設定文件服務。  
+
+* 支援多重租用：由於是使用保留型模型進行跨租用戶的資源控管，因此會在為每一複本配置的系統資源 (CPU、記憶體，以及每秒的輸入/輸出作業) 預算內執行索引更新。  
+
+* 儲存體效率：基於成本效益，索引的磁碟儲存體額外負荷有所限制且可預測。 這十分重要，因為 Cosmos DB 允許開發人員在索引額外負荷與查詢效能之間做出成本取捨。  
 
 ## 自訂集合的編製索引原則<a id="CustomizingIndexingPolicy"></a>   
 您可以透過覆寫 Azure Cosmos DB 集合上的預設編製索引原則，來自訂在儲存空間、寫入/查詢效能及查詢一致性之間的取捨。 您可以設定下列層面：
@@ -80,9 +92,9 @@ Azure Cosmos DB 支援三個編製索引模式，這些模式可以透過 Azure 
 
 一致的編製索引支援一致的查詢，但代價可能是減少寫入輸送量。 這指的是減少需要編製索引的唯一路徑以及「一致性層級」的功能。 一致的索引編製模式是針對「快速寫入、立即查詢」工作負載而設計。
 
-**延遲**：索引會在 Azure Cosmos DB 集合靜止 (亦即，未完整利用集合的輸送量容量來處理使用者要求的時候) 時，以非同步方式更新。 對於需要文件擷取的「立即擷取、稍後查詢」工作負載，可能適合「延遲」編製索引模式。 請注意，因為資料擷取與編製索引緩慢，因此可能會有不一致的結果。 這表示，任何給定時間的 COUNT 查詢或特定查詢結果可能不會一致或可重複。 
+**延遲**：索引會在 Azure Cosmos DB 集合靜止 (亦即，未完整利用集合的輸送量容量來處理使用者要求的時候) 時，以非同步方式更新。  請注意，因為資料擷取與編製索引緩慢，因此可能會有不一致的結果。 這表示，指定時間的 COUNT 查詢或特定查詢結果可能不會一致或可重複。 
 
-對於擷取的資料，索引通常處於追補模式。 使用「延遲」編製索引時，存留時間 (TTL) 變更會導致索引被卸除並重新建立。 這會使一段時間內的 COUNT 和查詢結果不一致。 因此，大部分的 Azure Cosmos DB 帳戶都應使用「一致」編制索引模式。
+對於擷取的資料，索引通常處於追補模式。 使用「延遲」編製索引時，存留時間 (TTL) 變更會導致索引被卸除並重新建立。 這會使一段時間內的 COUNT 和查詢結果不一致。 大部分的 Azure Cosmos DB 帳戶都應使用「一致」編制索引模式。
 
 **無**：含有「無」索引模式的集合沒有任何與其相關聯的索引。 如果將 Azure Cosmos DB 做為索引鍵值儲存體，且只能依據文件的 ID 屬性來存取它們，常會使用此選項。 
 
@@ -148,6 +160,7 @@ Azure Cosmos DB 將 JSON 文件和索引模型化為樹狀結構。 您可以為
 
 下列範例會設定一個特定路徑，採用的是範圍索引，且自訂精確度值為 20 個位元組：
 
+```
     var collection = new DocumentCollection { Id = "rangeSinglePathCollection" };    
 
     collection.IndexingPolicy.IncludedPaths.Add(
@@ -168,7 +181,74 @@ Azure Cosmos DB 將 JSON 文件和索引模型化為樹狀結構。 您可以為
         });
 
     collection = await client.CreateDocumentCollectionAsync(UriFactory.CreateDatabaseUri("db"), pathRange);
+```
 
+新增路徑來編製索引時，這些路徑中的數字和字串都會編製索引。 因此即使您只為字串定義編製索引，Azure Cosmos DB 也會新增數字的預設定義。 換句話說，Azure Cosmos DB 可以從索引編製原則中排除路徑，但無法從具體的路徑排除類型。 以下是一個範例，請注意，paths (Path =  "/*" 和 ath =  "/\"attr1\"/?") 二者只被指定一個索引，但是數字資料類型也會新增至結果。
+
+```
+var indices = new[]{
+                new IncludedPath  {
+                    Indexes = new Collection<Index>
+                    {
+                        new RangeIndex(DataType.String) { Precision = 3 }// <- note: only 1 index specified
+                    },
+                    Path =  "/*"
+                },
+                new IncludedPath  {
+                    Indexes = new Collection<Index>
+                    {
+                        new RangeIndex(DataType.String) { Precision = 3 } // <- note: only 1 index specified
+                    },
+                    Path =  "/\"attr1\"/?"
+                }
+            };...
+
+            foreach (var index in indices)
+            {
+                documentCollection.IndexingPolicy.IncludedPaths.Add(index);
+            }
+```
+
+索引建立結果：
+
+```json
+{
+    "indexingMode": "consistent",
+    "automatic": true,
+    "includedPaths": [
+        {
+            "path": "/*",
+            "indexes": [
+                {
+                    "kind": "Range",
+                    "dataType": "String",
+                    "precision": 3
+                },
+                {
+                    "kind": "Range",
+                    "dataType": "Number",
+                    "precision": -1
+                }
+            ]
+        },
+        {
+            "path": "/\"attr\"/?",
+            "indexes": [
+                {
+                    "kind": "Range",
+                    "dataType": "String",
+                    "precision": 3
+                },
+                {
+                    "kind": "Range",
+                    "dataType": "Number",
+                    "precision": -1
+                }
+            ]
+        }
+    ],
+}
+```
 
 ### <a name="index-data-types-kinds-and-precisions"></a>索引資料類型、種類和精確度
 當您設定路徑的編制索引原則時，會有多個選項。 您可以為每個路徑指定一或多個編製索引的定義：
@@ -230,11 +310,11 @@ Azure Cosmos DB 針對每個路徑也支援空間索引類型 (可針對 Point�
 
 同樣地，您可以從編製索引完全排除路徑。 下一個範例示範如何使用 \* 萬用字元運算子將文件 (「樹狀子目錄」) 的整個區段自編製索引中排除。
 
-    var collection = new DocumentCollection { Id = "excludedPathCollection" };
-    collection.IndexingPolicy.IncludedPaths.Add(new IncludedPath { Path = "/*" });
-    collection.IndexingPolicy.ExcludedPaths.Add(new ExcludedPath { Path = "/nonIndexedContent/*" });
+    var excluded = new DocumentCollection { Id = "excludedPathCollection" };
+    excluded.IndexingPolicy.IncludedPaths.Add(new IncludedPath { Path = "/*" });
+    excluded.IndexingPolicy.ExcludedPaths.Add(new ExcludedPath { Path = "/nonIndexedContent/*" });
 
-    collection = await client.CreateDocumentCollectionAsync(UriFactory.CreateDatabaseUri("db"), excluded);
+    await client.CreateDocumentCollectionAsync(UriFactory.CreateDatabaseUri("db"), excluded);
 
 
 
@@ -259,9 +339,9 @@ Azure Cosmos DB 針對每個路徑也支援空間索引類型 (可針對 Point�
 
 ![編製索引的運作方式 – Azure Cosmos DB 線上索引轉換](./media/indexing-policies/index-transformations.png)
 
-索引轉換是在線上進行。 也就是說，每個舊原則編製的文件索引會根據每個新原則有效率地轉換，「而不會影響集合的寫入可用性或佈建的輸送量」。 使用 REST API、SDK 或從預存程序和觸發程序中建立的讀取和寫入作業一致性在索引轉換期間不會受到影響。 當您變更編制索引原則時，您的應用程式效能不會降低，也不需要停機時間。
+索引轉換是在線上進行。 也就是說，每個舊原則編製的文件索引會根據每個新原則有效率地轉換，「而不會影響集合的寫入可用性或佈建的輸送量」。 使用 REST API、SDK 或從預存程序和觸發程序中建立的讀取和寫入作業一致性在索引轉換期間不會受到影響。 
 
-不過，在索引轉換進行期間，不論索引編製模式設定 (「一致」或「延遲」) 為何，查詢最終會是一致的。 這適用於來自所有介面 (REST API、SDK) 的查詢，以及來自預存程序和觸發程序內的查詢。 索引轉換就像延遲編製索引一樣，是以非同步方式，使用適用於特定複本的備用資源，在複本背景執行。 
+變更索引原則是非同步程序，並完成此作業所需的時間取決於文件數目、佈建的 RU 和文件大小。 正在重新編製索引時，如果查詢使用正在修改的索引，查詢就可能不會傳回所有相符的結果，且查詢不會傳回任何錯誤/失敗。 正在重新編製索引時，不論索引編製模式設定為何 (「一致」或「延遲」)，查詢最終會是一致的。 在索引轉換完成後，您將繼續看見一致的結果。 這適用於來自所有介面 (REST API、SDK) 的查詢，以及來自預存程序和觸發程序內的查詢。 索引轉換就像延遲編製索引一樣，是以非同步方式，使用適用於特定複本的備用資源，在複本背景執行。 
 
 索引轉換也可就地執行。 Azure Cosmos DB 不會維護兩份索引，而是會以新索引交換舊索引。 也就是說，執行索引轉換時，您的集合中不需要也不會耗用其他任何磁碟空間。
 
@@ -310,7 +390,7 @@ Azure Cosmos DB 針對每個路徑也支援空間索引類型 (可針對 Point�
 **卸除集合的索引**
 
     // Switch to Lazy indexing mode.
-    Console.WriteLine("Dropping index by changing to to the None IndexingMode.");
+    Console.WriteLine("Dropping index by changing to the None IndexingMode.");
 
     collection.IndexingPolicy.IndexingMode = IndexingMode.None;
 

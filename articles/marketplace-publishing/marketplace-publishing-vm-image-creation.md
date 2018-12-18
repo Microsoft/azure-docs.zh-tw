@@ -3,8 +3,8 @@ title: 建立 Azure Marketplace 的虛擬機器映像 | Microsoft Docs
 description: 如何建立 Azure Marketplace 的虛擬機器映像以讓其他人購買的詳細指示。
 services: Azure Marketplace
 documentationcenter: ''
-author: msmbaldwin
-manager: mbaldwin
+author: HannibalSII
+manager: hascipio
 editor: ''
 ms.assetid: 5c937b8e-e28d-4007-9fef-624046bca2ae
 ms.service: marketplace
@@ -13,12 +13,13 @@ ms.topic: article
 ms.tgt_pltfrm: Azure
 ms.workload: na
 ms.date: 01/05/2017
-ms.author: mbaldwin
-ms.openlocfilehash: f7b19066ca3fa156456766ff82afeadadc6b1efa
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.author: hascipio; v-divte
+ms.openlocfilehash: 2a3c317dc9abdb861a007be9aaed714089e9f453
+ms.sourcegitcommit: f20e43e436bfeafd333da75754cd32d405903b07
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49388189"
 ---
 # <a name="guide-to-create-a-virtual-machine-image-for-the-azure-marketplace"></a>建立 Azure Marketplace 的虛擬機器映像的指南
 本文的 **步驟 2**會逐步引導您準備您將部署到 Azure Marketplace 的虛擬硬碟 (VHD)。 您的 VHD 是 SKU 的基礎。 這個程序會因為您是否提供以 Linux 或 Windows 為基礎的 SKU 而有所不同。 本文將探討這兩種狀況。 這個程序可與[帳戶建立和註冊][link-acct-creation]同步執行。
@@ -28,8 +29,8 @@ ms.lasthandoff: 03/16/2018
 
 供應項目是其所有 SKU 的「上層」。 您可以擁有多個供應項目。 您可以隨意決定供應項目的建構方式。 當供應項目進入預備環境，它的所有 SKU 也會一起進入。 細心考量您的 SKU 識別碼，因為這些識別碼會顯示於 URL 中：
 
-* Azure.com：http://azure.microsoft.com/marketplace/partners/{PartnerNamespace}/{OfferIdentifier}-{SKUidentifier}
-* Azure 預覽入口網站：https://portal.azure.com/#gallery/{PublisherNamespace}.{OfferIdentifier}{SKUIDdentifier}  
+* Azure.com： http://azure.microsoft.com/marketplace/partners/{PartnerNamespace}/{OfferIdentifier}-{SKUidentifier}
+* Azure 預覽入口網站： https://portal.azure.com/#gallery/{PublisherNamespace}.{OfferIdentifier}{SKUIDdentifier}  
 
 SKU 是 VM 映像的商務名稱。 VM 映像包含一個作業系統磁碟以及零或多個資料磁碟。 它在本質上是虛擬機器的完整儲存體設定檔。 每個磁碟都需要一個 VHD。 即使空的資料磁碟也需要建立一個 VHD。
 
@@ -69,8 +70,8 @@ VM 映像的作業系統 VHD 必須以獲得 Azure 核准的基底映像為基�
 若要開始，請從下列其中一個映像建立 VM，位於 [Microsoft Azure 入口網站][link-azure-portal]：
 
 * Windows Server ([2012 R2 Datacenter][link-datactr-2012-r2]、[2012 Datacenter][link-datactr-2012]、[2008 R2 SP1][link-datactr-2008-r2])
-* SQL Server 2014 ([Enterprise][link-sql-2014-ent]、[Standard][link-sql-2014-std]、[Web][link-sql-2014-web])
-* SQL Server 2012 SP2 ([Enterprise][link-sql-2012-ent]、[Standard][link-sql-2012-std]、[Web][link-sql-2012-web])
+* SQL Server 2014 
+* SQL Server 2012 SP2 
 
 這些連結也可以在 SKU 頁面下的發佈入口網站中找到。
 
@@ -188,9 +189,9 @@ Azure Marketplace 中的所有映像通常都必須能夠重複使用。 也就�
 * [VM 映像 PowerShell 如何](https://azure.microsoft.com/blog/vm-image-powershell-how-to-blog-post/)
 * [關於 Azure 中的 VM 映像](https://msdn.microsoft.com/library/azure/dn790290.aspx)
 
-### <a name="set-up-the-necessary-tools-powershell-and-azure-cli"></a>設定必要的工具 (PowerShell 和 Azure CLI)
+### <a name="set-up-the-necessary-tools-powershell-and-azure-classic-cli"></a>設定必要工具 (PowerShell 與 Azure 傳統 CLI)
 * [如何設定 PowerShell](/powershell/azure/overview)
-* [如何設定 Azure CLI](../cli-install-nodejs.md)
+* [如何設定 Azure 傳統 CLI](../cli-install-nodejs.md)
 
 ### <a name="41-create-a-user-vm-image"></a>4.1 建立使用者 VM 映像
 #### <a name="capture-vm"></a>擷取 VM
@@ -394,9 +395,9 @@ Azure Marketplace 中的所有映像通常都必須能夠重複使用。 也就�
 
     ![繪圖](media/marketplace-publishing-vm-image-creation/img5.2_13.png)
 
-    a.  **開始時間：**為了確保使用 UTC 時間，請選取目前日期之前的日期。 例如，如果目前日期為 2014 年 10 月 6 日，則選取 10/5/2014。
+    a.  **開始時間：** 為了確保使用 UTC 時間，請選取目前日期之前的日期。 例如，如果目前日期為 2014 年 10 月 6 日，則選取 10/5/2014。
 
-    b.  **到期時間︰**選取至少在 [開始時間] 日期之後 3 個星期的日期。
+    b.  **到期時間︰** 選取至少在 [開始時間] 日期之後 3 個星期的日期。
 
     c.  **權限：**：選取 [列出] 和 [讀取] 權限
 
@@ -426,11 +427,13 @@ Azure Marketplace 中的所有映像通常都必須能夠重複使用。 也就�
 
 11. 為 SKU 中的每個 VHD 重複這些步驟。
 
-**Azure CLI (建議用於非 Windows 和持續整合)**
+**Azure 傳統 CLI (建議用於非 Windows 與持續整合)**
 
-以下是關於使用 Azure CLI 產生 SAS URL 的步驟
+以下是關於使用 Azure 傳統 CLI 產生 SAS URL 的步驟
 
-1.  從[這裡](https://azure.microsoft.com/en-in/documentation/articles/xplat-cli-install/)下載 Microsoft Azure CLI。 您也可以找到適用於 **[Windows](http://aka.ms/webpi-azure-cli)** 和 **[MAC OS](http://aka.ms/mac-azure-cli)** 的不同連結。
+[!INCLUDE [outdated-cli-content](../../includes/contains-classic-cli-content.md)]
+
+1.  從[這裡](https://azure.microsoft.com/documentation/articles/xplat-cli-install/)下載 Azure 傳統 CLI。 您也可以找到適用於 **[Windows](http://aka.ms/webpi-azure-cli)** 和 **[MAC OS](http://aka.ms/mac-azure-cli)** 的不同連結。
 
 2.  下載之後，請安裝
 
@@ -446,9 +449,9 @@ Azure Marketplace 中的所有映像通常都必須能夠重複使用。 也就�
 
     b. **`<Storage Account Key>`**：提供您的儲存體帳戶金鑰
 
-    c. **`<Permission Start Date>`**：為了確保使用 UTC 時間，請選取目前日期之前的日期。 例如，如果目前日期為 2016 年 10 月 26 日，則值應該為 10/25/2016。 如果使用 Azure CLI 2.0 (az 命令)，請在 [開始日期] 和 [結束日期] 中提供日期和時間，例如：10-25-2016T00:00:00Z。
+    c. **`<Permission Start Date>`**：為了確保使用 UTC 時間，請選取目前日期之前的日期。 例如，如果目前日期為 2016 年 10 月 26 日，則值應該為 10/25/2016。 如果使用 Azure CLI 2.0 版或更高版本，請在 [開始日期] 和 [結束日期] 中提供日期和時間，例如：10-25-2016T00:00:00Z。
 
-    d. **`<Permission End Date>`**：選取至少在 [開始日期] 之後 3 個星期的日期。 此值應該是 **11/02/2016**。 如果使用 Azure CLI 2.0 (az 命令)，請在 [開始日期] 和 [結束日期] 中同時提供日期和時間，例如：11-02-2016T00:00:00Z。
+    d. **`<Permission End Date>`**：選取至少在 [開始日期] 之後 3 個星期的日期。 此值應該是 **11/02/2016**。 如果使用 Azure CLI 2.0 版或更高版本，請在 [開始日期] 和 [結束日期] 中提供日期和時間，例如：11-02-2016T00:00:00Z。
 
     以下是更新適當參數之後的範例程式碼
 
@@ -514,12 +517,12 @@ Azure Marketplace 中的所有映像通常都必須能夠重複使用。 也就�
 
 |問題|失敗訊息|修正|文件連結|
 |---|---|---|---|
-|複製映像失敗 - 在 SAS url 中找不到 "?"|失敗︰複製映像。 無法使用提供的 SAS Uri 下載 blob。|使用建議的工具更新 SAS Url|[https://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-shared-access-signature-part-1/](https://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-shared-access-signature-part-1/)|
-|映像複製失敗 - SAS url 中未設定 “st” 和 “se” 參數|失敗︰複製映像。 無法使用提供的 SAS Uri 下載 blob。|更新 SAS Url，必須包含開始和結束日期|[https://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-shared-access-signature-part-1/](https://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-shared-access-signature-part-1/)|
-|複製映像失敗 - SAS url 中沒有 “sp=rl”|失敗︰複製映像。 無法使用提供的 SAS Uri 下載 blob|更新 SAS Url，將權限設定為「讀取」和「列出」|[https://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-shared-access-signature-part-1/](https://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-shared-access-signature-part-1/)|
-|複製映像失敗 - SAS url 中的 vhd 名稱含有空格|失敗︰複製映像。 無法使用提供的 SAS Uri 下載 blob。|更新 SAS Url，不能含有空格|[https://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-shared-access-signature-part-1/](https://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-shared-access-signature-part-1/)|
-|複製映像失敗 – SAS Url 授權錯誤的|失敗︰複製映像。 因為發生授權錯誤，無法下載 blob|重新產生 SAS Url|[https://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-shared-access-signature-part-1/](https://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-shared-access-signature-part-1/)|
-|複製映像失敗 – SAS Url "st" 和 "se" 參數沒有完整的日期時間規格|失敗︰複製映像。 因為 SAS Url 不正確，無法下載 blob |SAS Url 的開始和結束日期參數 ("st"、"se") 必須有完整的日期時間規格，例如 11-02-2017T00:00:00Z，而不能只有日期或縮短的時間版本。 使用 Azure CLI 2.0 (az 命令) 可能會遇到此狀況。 請務必提供完整的日期時間規格，並重新產生 SAS Url。|[https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-1/](https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-1/)|
+|複製映像失敗 - 在 SAS url 中找不到 "?"|失敗︰複製映像。 無法使用提供的 SAS Uri 下載 blob。|使用建議的工具更新 SAS Url|[https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-1/](https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-1/)|
+|映像複製失敗 - SAS url 中未設定 “st” 和 “se” 參數|失敗︰複製映像。 無法使用提供的 SAS Uri 下載 blob。|更新 SAS Url，必須包含開始和結束日期|[https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-1/](https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-1/)|
+|複製映像失敗 - SAS url 中沒有 “sp=rl”|失敗︰複製映像。 無法使用提供的 SAS Uri 下載 blob|更新 SAS Url，將權限設定為「讀取」和「列出」|[https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-1/](https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-1/)|
+|複製映像失敗 - SAS url 中的 vhd 名稱含有空格|失敗︰複製映像。 無法使用提供的 SAS Uri 下載 blob。|更新 SAS Url，不能含有空格|[https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-1/](https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-1/)|
+|複製映像失敗 – SAS Url 授權錯誤的|失敗︰複製映像。 因為發生授權錯誤，無法下載 blob|重新產生 SAS Url|[https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-1/](https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-1/)|
+|複製映像失敗 – SAS Url "st" 和 "se" 參數沒有完整的日期時間規格|失敗︰複製映像。 因為 SAS Url 不正確，無法下載 blob |SAS Url 的開始和結束日期參數 ("st"、"se") 必須有完整的日期時間規格，例如 11-02-2017T00:00:00Z，而不能只有日期或縮短的時間版本。 使用 Azure CLI 2.0 版或更高版本，可能會遇到此狀況。 請務必提供完整的日期時間規格，並重新產生 SAS Url。|[https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-1/](https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-1/)|
 
 ## <a name="next-step"></a>後續步驟
 完成 SKU 詳細資料之後，您可以移至 [Azure Marketplace 行銷內容指南][link-pushstaging]。 在發佈程序的該步驟中，您會在 **步驟 3：在預備環境中測試您的 VM 供應項目**之前提供行銷內容、價格和其他必要資訊，而您會在該步驟中測試各種使用案例，然後再將供應項目部署到 Azure Marketplace 以供公開查看和購買。  
@@ -556,15 +559,6 @@ Azure Marketplace 中的所有映像通常都必須能夠重複使用。 也就�
 [link-technet-2]:https://msdn.microsoft.com/library/dn495261.aspx
 [link-azure-portal]:https://portal.azure.com
 [link-pubportal]:https://publish.windowsazure.com
-[link-sql-2014-ent]:http://azure.microsoft.com/marketplace/partners/microsoft/sqlserver2014enterprisewindowsserver2012r2/
-[link-sql-2014-std]:http://azure.microsoft.com/marketplace/partners/microsoft/sqlserver2014standardwindowsserver2012r2/
-[link-sql-2014-web]:http://azure.microsoft.com/marketplace/partners/microsoft/sqlserver2014webwindowsserver2012r2/
-[link-sql-2012-ent]:http://azure.microsoft.com/marketplace/partners/microsoft/sqlserver2012sp2enterprisewindowsserver2012/
-[link-sql-2012-std]:http://azure.microsoft.com/marketplace/partners/microsoft/sqlserver2012sp2standardwindowsserver2012/
-[link-sql-2012-web]:http://azure.microsoft.com/marketplace/partners/microsoft/sqlserver2012sp2webwindowsserver2012/
-[link-datactr-2012-r2]:http://azure.microsoft.com/marketplace/partners/microsoft/windowsserver2012r2datacenter/
-[link-datactr-2012]:http://azure.microsoft.com/marketplace/partners/microsoft/windowsserver2012datacenter/
-[link-datactr-2008-r2]:http://azure.microsoft.com/marketplace/partners/microsoft/windowsserver2008r2sp1/
 [link-acct-creation]:marketplace-publishing-accounts-creation-registration.md
 [link-technet-1]:https://technet.microsoft.com/library/hh848454.aspx
 [link-azure-vm-2]:./virtual-machines-linux-agent-user-guide/

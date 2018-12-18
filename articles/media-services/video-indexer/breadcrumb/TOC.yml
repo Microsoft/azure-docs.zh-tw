@@ -1,0 +1,18 @@
+items:
+- name: Azure
+  tocHref: /azure/
+  topicHref: /azure/index
+  items:
+  - name: 媒體服務
+    tocHref: /azure/media-services
+    topicHref: /azure/media-services/index
+    items:
+    - name: 影片索引子
+      tocHref: /azure/cognitive-services/video-indexer
+      topicHref: /azure/media-services/video-indexer/index
+ms.openlocfilehash: 7dd6abe91efaf4036efd6fa1e294ed73be2c5009
+ms.sourcegitcommit: 3a7c1688d1f64ff7f1e68ec4bb799ba8a29a04a8
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49380277"

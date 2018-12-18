@@ -1,24 +1,21 @@
 ---
-title: "在 Durable Functions 中處理錯誤 - Azure"
-description: "了解如何在 Azure Functions 的 Durable Functions 擴充中處理錯誤。"
+title: 在 Durable Functions 中處理錯誤 - Azure
+description: 了解如何在 Azure Functions 的 Durable Functions 擴充中處理錯誤。
 services: functions
 author: cgillum
-manager: cfowler
-editor: 
-tags: 
-keywords: 
-ms.service: functions
+manager: jeconnoc
+keywords: ''
+ms.service: azure-functions
 ms.devlang: multiple
-ms.topic: article
-ms.tgt_pltfrm: multiple
-ms.workload: na
-ms.date: 09/29/2017
+ms.topic: conceptual
+ms.date: 09/05/2018
 ms.author: azfuncdf
-ms.openlocfilehash: ee5362d33bb9dadadb4194457cfd7726f4825f56
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 6bf9eb2cd2ebdf5f6d53e00923146bab49a142bf
+ms.sourcegitcommit: 5a9be113868c29ec9e81fd3549c54a71db3cec31
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44377900"
 ---
 # <a name="handling-errors-in-durable-functions-azure-functions"></a>在 Durable Functions (Azure Functions) 中處理錯誤
 
@@ -26,7 +23,7 @@ Durable Function 協調流程在程式碼中實作，而且可以使用程式設
 
 ## <a name="errors-in-activity-functions"></a>活動函式中的錯誤
 
-活動函式中擲回的任何例外狀況會封送處理回到協調器函式，並以 `TaskFailedException` 擲回。 您可以在協調器函式中撰寫符合需求的錯誤處理和補償程式碼。
+活動函式中擲回的任何例外狀況會封送處理回到協調器函式，並以 `FunctionFailedException` 擲回。 您可以在協調器函式中撰寫符合需求的錯誤處理和補償程式碼。
 
 例如，假設有下列協調器函式會從一個帳戶轉帳到另一個帳戶：
 
@@ -80,7 +77,7 @@ public static async Task Run(DurableOrchestrationContext context)
         firstRetryInterval: TimeSpan.FromSeconds(5),
         maxNumberOfAttempts: 3);
 
-    await ctx.CallActivityWithRetryAsync("FlakyFunction", retryOptions);
+    await ctx.CallActivityWithRetryAsync("FlakyFunction", retryOptions, null);
     
     // ...
 }
@@ -95,7 +92,7 @@ public static async Task Run(DurableOrchestrationContext context)
 * **輪詢係數**：用來決定輪詢增加速率的係數。 預設值為 1。
 * **最大重試間隔**：重試嘗試之間等候的最大時間量。
 * **重試逾時**：花費在重試的最大時間量。 預設行為是無限期地重試。
-* **自訂**：您可以指定使用者定義的回呼，以決定是否應該重試函式呼叫。
+* **控制代碼**：您可以指定使用者定義的回呼，以決定是否應該重試函式呼叫。
 
 ## <a name="function-timeouts"></a>函式逾時
 
@@ -127,6 +124,9 @@ public static async Task<bool> Run(DurableOrchestrationContext context)
     }
 }
 ```
+
+> [!NOTE]
+> 這項機制並不會實際終止進行中的活動函式執行。 只是讓協調器函式略過結果並繼續執行。 如需詳細資訊，請參閱[計時器](durable-functions-timers.md#usage-for-timeout)文件。
 
 ## <a name="unhandled-exceptions"></a>未處理的例外狀況
 

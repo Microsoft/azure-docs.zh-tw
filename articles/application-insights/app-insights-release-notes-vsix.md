@@ -1,23 +1,25 @@
 ---
-title: "適用於 Developer Analytics 之 Visual Studio 延伸模組的版本資訊"
-description: "適用於 Developer Analytics 之 Visual Studio 工具的最新更新。"
+title: 適用於 Developer Analytics 之 Visual Studio 延伸模組的版本資訊
+description: 適用於 Developer Analytics 之 Visual Studio 工具的最新更新。
 services: application-insights
-documentationcenter: 
-author: acearun
+documentationcenter: ''
+author: mrbullwinkle
 manager: carmonm
 ms.assetid: 2001db30-efc5-417a-a413-93c1b218975f
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 03/20/2017
+ms.reviewer: aruna
 ms.author: mbullwin
-ms.openlocfilehash: b1181698deee265e4b6b2df8bb18e2297cdc8599
-ms.sourcegitcommit: e462e5cca2424ce36423f9eff3a0cf250ac146ad
+ms.openlocfilehash: 016d13a08ea3fe591529ad6dd29b25534d9c603d
+ms.sourcegitcommit: f3bd5c17a3a189f144008faf1acb9fabc5bc9ab7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/01/2017
+ms.lasthandoff: 09/10/2018
+ms.locfileid: "44303739"
 ---
 # <a name="release-notes-for-developer-analytics-tools"></a>Developer Analytics 工具的版本資訊
 
@@ -192,7 +194,7 @@ Windows Forms 專案節點的內容功能表現在包含將組建上傳至 Hocke
 
 請注意，此精靈有一個新欄位可供指定應用程式的版本。 在通用 Windows 應用程式中，資訊會從資訊清單填入。 不幸的是，Windows Forms 應用程式沒有這項功能的對等項目。 您需要手動進行指定。
 
-流程的其餘部分與通用 Windows 應用程式類似：在 HockeyApp 入口網站中選擇組建和發行選項、新增版本資訊、上傳及管理。
+流程的其餘部分與通用 Windows 應用程式類似：在 HockeyApp 入口網站中選擇 Azure Pipelines 選項、新增版本資訊、上傳及管理。
 
 整個過程就是這麼簡單。 立即試試並與我們分享您的想法。
 
@@ -289,8 +291,3 @@ Windows Forms 專案節點的內容功能表現在包含將組建上傳至 Hocke
 
 ![[新增專案] 對話方塊](./media/app-insights-release-notes-vsix/newproject.png)
 
-### <a name="device-support"></a>裝置支援
-我們在 Connect();  2015 中 [宣布了](https://azure.microsoft.com/blog/deep-diagnostics-for-web-apps-with-application-insights/) 裝置的行動開發人員體驗為 HockeyApp。 HockeyApp 可協助您發佈 Beta 組建發佈給測試人員、從您的應用程式收集和分析所有的損毀，並直接收集客戶的意見反應。
-HockeyApp 可讓您在任何所選的平台上建置應用程式，無論是 iOS、Android 或 Windows，或是 Xamarin、Cordova 或 Unity 之類的跨平台解決方案上。
-
-在未來版本的 Application Insights 延伸模組中，我們會在 HockeyApp 與 Visual Studio 之間提供更為整合的體驗。 現在您只要新增 NuGet 參考，即可開始使用 HockeyApp。 如需詳細資訊，請參閱 [文件](http://support.hockeyapp.net/kb/client-integration-windows-and-windows-phone) 。

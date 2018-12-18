@@ -1,11 +1,11 @@
 ---
-title: "DNS 區域和記錄概觀 - Azure DNS | Microsoft Docs"
-description: "將 DNS 區域和記錄，裝載於 Microsoft Azure DNS 中的支援概觀。"
+title: DNS 區域和記錄概觀 - Azure DNS | Microsoft Docs
+description: 將 DNS 區域和記錄，裝載於 Microsoft Azure DNS 中的支援概觀。
 services: dns
 documentationcenter: na
-author: KumudD
+author: vhorne
 manager: jeconnoc
-editor: 
+editor: ''
 ms.assetid: be4580d7-aa1b-4b6b-89a3-0991c0cda897
 ms.service: dns
 ms.devlang: na
@@ -14,12 +14,13 @@ ms.tgt_pltfrm: na
 ms.custom: H1Hack27Feb2017
 ms.workload: infrastructure-services
 ms.date: 12/18/2017
-ms.author: kumud
-ms.openlocfilehash: 0a0808d3963cc037aaf113c67fd01679ee8c1d40
-ms.sourcegitcommit: b7adce69c06b6e70493d13bc02bd31e06f291a91
+ms.author: victorh
+ms.openlocfilehash: 7f69d77ac7a6c2a17ef2568f0c7edaef2e1ee3f5
+ms.sourcegitcommit: 4e5ac8a7fc5c17af68372f4597573210867d05df
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/19/2017
+ms.lasthandoff: 07/20/2018
+ms.locfileid: "39174289"
 ---
 # <a name="overview-of-dns-zones-and-records"></a>DNS 區域和記錄的概觀
 
@@ -45,7 +46,7 @@ Azure DNS 目前不支援購買網域名稱。 若想要購買網域名稱，必
 
 ### <a name="time-to-live"></a>存留時間
 
-存留時間，或 TTL，指定每一筆記錄由用戶端快取多久，之後才會重新查詢。 在上述範例中，TTL 是 3600 秒 (1 小時)。
+存留時間 (或 TTL) 會指定用戶端快取每一筆記錄多長時間後，才會重新查詢。 在上述範例中，TTL 是 3600 秒 (1 小時)。
 
 在 Azure DNS 中，TTL 是針對記錄集而指定，而非針對每一筆記錄，因此相同的值，會套用到該記錄集內的所有記錄。  您可以指定介於 1 到 2,147,483,647 秒之間的任何 TTL 值。
 
@@ -69,21 +70,21 @@ CAA 記錄可讓網域擁有者指定哪些憑證授權單位 (CA) 有權為其�
 
 CNAME 記錄集不能與其他具有相同名稱的記錄集共存。 例如，您無法同時建立具有相對名稱 'www' 的 CNAME 記錄集和具有相對名稱 'www' 的 A 記錄。
 
-因為區域頂點 (名稱 = '@') 一定會包含建立區域時所建立的 NS 和 SOA 記錄集，您無法在區域頂點建立 CNAME 記錄集。
+因為區域頂點 (名稱 = '\@') 一定會包含建立區域時所建立的 NS 和 SOA 記錄集，您無法在區域頂點建立 CNAME 記錄集。
 
 這些條件約束源自於 DNS 標準，而不是 Azure DNS 的限制。
 
 ### <a name="ns-records"></a>NS 記錄
 
-區域頂點 (名稱 '@') 的 NS 記錄集會在每個 DNS 區域自動建立，並在刪除該區域時自動將其刪除 (無法個別刪除)。
+區域頂點 (名稱 '\@') 的 NS 記錄集會在每個 DNS 區域自動建立，並在刪除該區域時自動將其刪除 (無法個別刪除)。
 
 此記錄集包含指派給區域的 Azure DNS 名稱伺服器的名稱。 您可以將其他名稱伺服器新增至此 NS 記錄集，以支援使用多個 DNS 提供者的共同裝載網域。 您也可以修改此記錄集的 TTL 和中繼資料。 不過，您無法移除或修改預先填入的 Azure DNS 名稱伺服器。 
 
-請注意，這只適用於區域頂點的 NS 記錄集。 區域中的其他 NS 記錄集 (如用於委派子區域) 可以建立、修改和刪除，沒有條件約束。
+這只適用於區域頂點的 NS 記錄集。 區域中的其他 NS 記錄集 (如用於委派子區域) 可以建立、修改和刪除，沒有條件約束。
 
 ### <a name="soa-records"></a>SOA 記錄
 
-在每個區域頂點 (名稱 = '@') 會自動建立 SOA 記錄集，並在刪除該區域時自動將其刪除。  無法個別建立或刪除 SOA 記錄。
+在每個區域頂點 (名稱 = '\@') 會自動建立 SOA 記錄集，並在刪除該區域時自動將其刪除。  無法個別建立或刪除 SOA 記錄。
 
 可以修改 SOA 記錄除了 'Host' 屬性以外的所有屬性，因為依照預先設定，該屬性會參考 Azure DNS 所提供的主要名稱伺服器名稱。
 
@@ -95,7 +96,7 @@ CNAME 記錄集不能與其他具有相同名稱的記錄集共存。 例如，�
 
 各種服務都會使用 [SRV 記錄](https://en.wikipedia.org/wiki/SRV_record)來指定伺服器位置。 在 Azure DNS 中指定 SRV 記錄時︰
 
-* 必須在記錄集名稱中包括 [服務] 和 [通訊協定]，並在其前方加上底線。  例如，'\_sip.\_tcp.name'。  在區域頂點的記錄，則不需要在記錄名稱中指定 '@'，只要使用服務與通訊協定即可，例如 '\_sip.\_tcp'。
+* 必須在記錄集名稱中包括 [服務] 和 [通訊協定]，並在其前方加上底線。  例如，'\_sip.\_tcp.name'。  在區域頂點的記錄，則不需要在記錄名稱中指定 '\@'，只要使用服務與通訊協定即可，例如 '\_sip.\_tcp'。
 * 系統已將 [優先順序]、[權數]、[連接埠] 和 [目標]，指定為記錄集內每筆記錄的參數。
 
 ### <a name="txt-records"></a>TXT 記錄

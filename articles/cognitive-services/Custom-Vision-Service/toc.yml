@@ -1,0 +1,84 @@
+items:
+- name: 自訂視覺服務文件
+- name: 概觀
+  items:
+  - name: 什麼是自訂視覺服務？
+    href: home.md
+- name: 使用說明指南
+  items:
+  - name: 開始使用自訂視覺服務
+    items:
+    - name: 建置分類器
+      href: getting-started-build-a-classifier.md
+    - name: 測試您的模型
+      href: test-your-model.md
+    - name: 改善您的分類器
+      href: getting-started-improving-your-classifier.md
+    - name: 使用預測 API
+      href: use-prediction-api.md
+    - name: 將您的模型匯出至行動裝置
+      href: export-your-model.md
+    - name: 使用 ONNX 模型搭配 Windows ML
+      href: custom-vision-onnx-windows-ml.md
+    - name: 以 Python 執行 TensorFlow 模型
+      href: export-model-python.md
+    - name: 使用 REST API 建置模型
+      href: rest-api-tutorial.md
+  - name: 建置應用程式
+    items:
+    - name: 影像分類
+      items:
+      - name: C# 教學課程
+        href: csharp-tutorial.md
+      - name: Python 教學課程
+        href: python-tutorial.md
+      - name: Java 教學課程
+        href: java-tutorial.md
+    - name: 物件偵測
+      items:
+      - name: C# 教學課程
+        href: csharp-tutorial-od.md
+      - name: Python 教學課程
+        href: python-tutorial-od.md
+      - name: Java 教學課程
+        href: java-tutorial-od.md
+- name: 參考
+  items:
+  - name: 自訂視覺訓練 API
+    href: https://go.microsoft.com/fwlink/?linkid=865446
+  - name: 自訂視覺預測 API
+    href: https://go.microsoft.com/fwlink/?linkid=865445
+  - name: 詞彙
+    href: glossary-of-terms.md
+  - name: SDK
+    items:
+    - name: Windows
+      href: http://github.com/Microsoft/Cognitive-CustomVision-Windows
+    - name: Python
+      href: https://docs.microsoft.com/python/api/overview/azure/cognitive-services?view=azure-python#vision-modules
+    - name: Go
+      href: https://github.com/Azure/azure-sdk-for-go/tree/master/services/cognitiveservices
+- name: 資源
+  items:
+  - name: 版本資訊
+    href: release-notes.md
+  - name: 範例
+    href: https://azure.microsoft.com/resources/samples/?service=cognitive-services&term=vision
+  - name: 價格和限制
+    href: limits-and-quotas.md
+  - name: 匯出或刪除帳戶資料
+    href: ./export-delete-data.md
+  - name: UserVoice
+    href: https://cognitive.uservoice.com/forums/598141-custom-vision-service
+  - name: 堆疊溢位
+    href: https://stackoverflow.com/questions/tagged/microsoft-cognitive
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/?category=ai-machine-learning
+  - name: 區域可用性
+    href: https://azure.microsoft.com/global-infrastructure/services/
+ms.openlocfilehash: d7d919cd69e73ba2e4c4149bf38cceaae63ebcba
+ms.sourcegitcommit: 5c00e98c0d825f7005cb0f07d62052aff0bc0ca8
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49955089"

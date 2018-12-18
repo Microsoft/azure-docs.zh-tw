@@ -1,6 +1,6 @@
 ---
-title: 在 Azure 儲存體總管中管理 Azure Data Lake Store 資源
-description: 了解如何在 Azure 儲存體總管中存取和管理 Azure Data Lake Store 資料和資源
+title: 在 Azure 儲存體總管中管理 Azure Data Lake Storage Gen1 資源
+description: 了解如何在 Azure 儲存體總管中存取和管理 Azure Data Lake Storage Gen1 資料與資源
 Keywords: Azure Data Lake Store, Azure Storage Explorer
 services: Data Lake Store
 documentationcenter: ''
@@ -8,31 +8,30 @@ author: jejiang
 manager: DJ
 editor: Jenny Jiang
 ms.assetid: ''
-ms.service: Data Lake Store
+ms.service: data-lake-store
 ms.custom: Azure Data Lake Store
-ms.workload: ''
-ms.tgt_pltfrm: na
 ms.devlang: dotnet
-ms.topic: hero-article
+ms.topic: article
 ms.date: 02/05/2018
 ms.author: jejiang
-ms.openlocfilehash: a02844c678c08d8aefbceb16d3908faeffd755fb
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: 537c94976dbb4f7753b7fafb3b6c94e97cc2cc17
+ms.sourcegitcommit: f10653b10c2ad745f446b54a31664b7d9f9253fe
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46126321"
 ---
-# <a name="manage-azure-data-lake-store-resources-by-using-storage-explorer"></a>使用儲存體總管管理 Azure Data Lake Store 資源
+# <a name="manage-azure-data-lake-storage-gen1-resources-by-using-storage-explorer"></a>使用儲存體總管管理 Azure Data Lake Storage Gen1 資源
 
-[Azure Data Lake Store](https://docs.microsoft.com/en-us/azure/data-lake-store/data-lake-store-overview) 是用來儲存大量非結構化資料 (例如文字或二進位資料) 的服務。 您可以透過 HTTP 或 HTTPS 從任何位置存取資料。 Azure 儲存體總管中的 Data Lake Store 可讓您存取和管理 Data Lake Store 資料和資源，以及如 Blob 和佇列之類的其他 Azure 實體。 現在您可以使用同一個工具在同一處管理您不同的 Azure 實體。
+[Azure Data Lake Storage Gen1](https://docs.microsoft.com/azure/data-lake-store/data-lake-store-overview) 是用來儲存大量非結構化資料 (例如文字或二進位資料) 的服務。 您可以透過 HTTP 或 HTTPS 從任何位置存取資料。 Azure 儲存體總管中的 Data Lake Storage Gen1 可讓您存取和管理 Data Lake Storage Gen1 資料和資源，以及如 Blob 和佇列等其他 Azure 實體。 現在您可以使用同一個工具在同一處管理您不同的 Azure 實體。
 
-另一個優點是，您不需擁有訂用帳戶權限即可管理 Data Lake Store 資料。 在儲存體總管中，只要他人授與權限，您即可將 Data Lake Store 路徑連結至 [本機與已連結的資源] 節點。
+另一個優點是，您不需擁有訂用帳戶權限即可管理 Data Lake Storage Gen1 資料。 在儲存體總管中，只要他人授與權限，您即可將 Data Lake Storage Gen1 路徑連結至 [本機與已連結的資源] 節點。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 若要完成本文中的步驟，您必須符合下列先決條件︰
 
 *   Azure 訂用帳戶。 請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial)。
-*   Azure Data Lake Store 帳戶。 如需有關如何建立帳戶的詳細指示，請參閱[開始使用 Azure Data Lake Store](https://docs.microsoft.com/en-us/azure/data-lake-store/data-lake-store-get-started-portal)。
+*   Data Lake Storage Gen1 帳戶。 如需如何建立帳戶的指示，請參閱[開始使用 Azure Data Lake Storage Gen1](https://docs.microsoft.com/azure/data-lake-store/data-lake-store-get-started-portal)。
 
 ## <a name="install-storage-explorer"></a>安裝儲存體總管
 
@@ -60,10 +59,10 @@ ms.lasthandoff: 03/16/2018
 
     ![帳戶清單](./media/data-lake-store-in-storage-explorer/account-list.png)
 
-您已成功將 Azure Data Lake Store 連線至您的 Azure 訂用帳戶。
+您已成功將 Data Lake Storage Gen1 連線至您的 Azure 訂用帳戶。
 
-## <a name="connect-to-data-lake-store"></a>連線至 Data Lake Store
-如果有人為您提供資源的 URI，您即可存取您的訂用帳戶中不存在的資源。 您可以在登入後，使用此 URI 連線至 Data Lake Store。
+## <a name="connect-to-data-lake-storage-gen1"></a>連線至 Data Lake Storage Gen1
+如果有人為您提供資源的 URI，您即可存取您的訂用帳戶中不存在的資源。 您可以在登入後，使用此 URI 連線至 Data Lake Storage Gen1。
 1. 開啟儲存體總管。
 2. 在左窗格中，展開 [本機與已連結的資源]。
 3. 以滑鼠右鍵按一下 [Data Lake Store]，然後選取 [連線至 Data Lake Store]。
@@ -74,42 +73,42 @@ ms.lasthandoff: 03/16/2018
 
       ![[連線至 Data Lake Store] 對話方塊，內含可供輸入 URI 的文字方塊](./media/data-lake-store-in-storage-explorer/storageexplorer-adls-uri-attach-dialog.png)
 
-      ![連線至 Data Lake Store 的結果](./media/data-lake-store-in-storage-explorer/storageexplorer-adls-attach-finish.png)
+      ![連線至 Data Lake Storage Gen1 的結果](./media/data-lake-store-in-storage-explorer/storageexplorer-adls-attach-finish.png)
 
-## <a name="view-an-azure-data-lake-store-accounts-contents"></a>檢視 Azure Data Lake Store 帳戶的內容
-Azure Data Lake Store 帳戶的資源包含資料夾和檔案。
+## <a name="view-a-data-lake-storage-gen1-accounts-contents"></a>檢視 Data Lake Storage Gen1 帳戶的內容
+Data Lake Storage Gen1 帳戶的資源包含資料夾和檔案。
 
-下列步驟說明如何在儲存體總管中檢視 Data Lake Store 帳戶的內容：
+下列步驟說明如何在儲存體總管中檢視 Data Lake Storage Gen1 帳戶的內容：
 
 1. 開啟儲存體總管。
-2. 在左窗格中，展開您要檢視的 Azure Data Lake Store 帳戶所屬的訂用帳戶。
+2. 在左窗格中，展開包含您要檢視的 Data Lake Storage Gen1 帳戶之訂用帳戶。
 3. 展開 **Data Lake Store**。
-4. 以滑鼠右鍵按一下您要檢視的 Azure Data Lake Store 帳戶節點，然後選取 [開啟]。 您也可以按兩下 Data Lake Store 帳戶加以開啟。 
+4. 以滑鼠右鍵按一下您要檢視的 Data Lake Storage Gen1 帳戶節點，然後選取 [開啟]。 您也可以按兩下 Data Lake Storage Gen1 帳戶來開啟。 
    
-   主窗格會顯示 Data Lake Store 帳戶的內容。
+   主窗格會顯示 Data Lake Storage Gen1 帳戶的內容。
 
    ![內含資料夾清單的主窗格](./media/data-lake-store-in-storage-explorer/storageexplorer-adls-toolbar-mainpane.png) 
 
-## <a name="manage-resources-in-azure-data-lake-store"></a>在 Azure Data Lake Store 中管理資源
+## <a name="manage-resources-in-data-lake-storage-gen1"></a>管理 Data Lake Storage Gen1 中的資源
 
-您可以透過下列操作來管理 Azure Data Lake Store 資源：
-*   瀏覽橫跨多個 Azure Data Lake 帳戶的 Data Lake Store 資源。  
-*   使用連接字串直接連線和管理 Data Lake Store。 
-*   透過 [本機與已連結的資源] 下的 ACL 檢視與他人共用的 Data Lake Store 資源。
+您可以透過下列操作來管理 Data Lake Storage Gen1 資源：
+*   瀏覽橫跨多個 Data Lake Storage Gen1 帳戶的 Data Lake Storage Gen1 資源。  
+*   使用連接字串直接連線和管理 Data Lake Storage Gen1。 
+*   透過 [本機與已連結的資源] 下的 ACL 檢視與他人共用的 Data Lake Storage Gen1 資源。
 *   執行檔案和資料夾 CRUD 作業：支援遞迴資料夾和複選的檔案。 
 *   拖曳、卸除 及新增資料夾，以快速存取最近使用的位置。 這項作業會反映桌面檔案總管體驗。 
-*   在儲存體總管中按一下，即可複製和開啟 Azure Data Lake 超連結。 
+*   在儲存體總管中按一下，即可複製和開啟 Data Lake Storage Gen1 超連結。 
 *   在右下方的窗格中顯示活動記錄，以檢視活動狀態。
 *   顯示資料夾統計資料和檔案屬性。
 
 ## <a name="manage-resources-in-azure-storage-explorer"></a>在 Azure 儲存體總管中管理資源
-建立 Azure Data Lake Store 帳戶之後，您可以：
+建立 Data Lake Storage Gen1 帳戶後，您可以：
 
 * 上傳資料夾和檔案、下載資料夾和檔案，以及開啟本機電腦上的資源。
 * 釘選至 [快速存取]、建立新資料夾、複製 URL 以及全選。
 * 複製並貼上、重新命名、刪除、取得資料夾統計資料，以及重新整理。
 
-下列項目說明如何管理 Azure Data Lake Store 帳戶內的資源。 遵循您想要執行之工作的步驟。
+下列項目說明如何管理 Data Lake Storage Gen1 帳戶內的資源。 遵循您想要執行之工作的步驟。
 
 ### <a name="upload-files"></a>上傳檔案
 
@@ -160,13 +159,13 @@ Azure Data Lake Store 帳戶的資源包含資料夾和檔案。
 
 1. 選取您要複製的資料夾或檔案。
 2. 在主窗格工具列上選取 [複製] 。 或以滑鼠右鍵按一下選取的資料夾或檔案，然後選取捷徑功能表上的 [複製]。
-3. 在左窗格中，瀏覽至另一個 Data Lake Store 帳戶，然後按兩下以在主窗格中進行檢視。
+3. 在左窗格中，瀏覽至另一個 Data Lake Storage Gen1 帳戶，然後按兩下該帳戶以在主窗格中檢視。
 4. 在主窗格工具列上選取 [貼上]，以建立複本。 或者，在目的地的捷徑功能表上選取 [貼上]。
 
 ![複製資料夾的選取項目](./media/data-lake-store-in-storage-explorer/storageexplorer-adls-copy-paste.png)
 
 > [!NOTE] 
-> 不支援跨儲存體類型的複製 / 貼上作業。 您可以複製 Data Lake Store 資料夾或檔案，並將它們貼在另一個 Data Lake Store 帳戶中。 但是您「無法」複製 Data Lake Store 資料夾或檔案，並將它們貼到 Blob 儲存體，反之亦然。
+> 不支援跨儲存體類型的複製 / 貼上作業。 您可以複製 Data Lake Storage Gen1 資料夾或檔案，並將它們貼到另一個 Data Lake Storage Gen1 帳戶中。 但是您*無法*複製 Data Lake Storage Gen1 資料夾或檔案，並將它們貼到 Azure Blob 儲存體中，反之亦然。
 > 
 > 複製 / 貼上作業的運作方式，是先將資料夾或檔案下載到本機電腦，然後將它們上傳至目的地。 此工具「不會」在後端執行此動作。 大型檔案的複製 / 貼上作業速度很慢。 高效能檔案的複製 / 移動正在進行最佳化。
 
@@ -197,7 +196,7 @@ Azure Data Lake Store 帳戶的資源包含資料夾和檔案。
 
 ## <a name="next-steps"></a>後續步驟
 * 檢視 [最新的儲存體 Explorer 版本資訊與影片](http://www.storageexplorer.com)。
-* 了解如何[在 Azure 儲存體總管中管理 Azure Cosmos DB](https://docs.microsoft.com/en-us/azure/cosmos-db/storage-explorer)。
-* [開始使用儲存體總管](https://docs.microsoft.com/en-us/azure/vs-azure-tools-storage-manage-with-storage-explorer)
-* [開始使用 Azure Data Lake Store](https://docs.microsoft.com/en-us/azure/data-lake-store/data-lake-store-overview)。
+* 了解如何[在 Azure 儲存體總管中管理 Azure Cosmos DB](https://docs.microsoft.com/azure/cosmos-db/storage-explorer)。
+* [開始使用儲存體總管](https://docs.microsoft.com/azure/vs-azure-tools-storage-manage-with-storage-explorer)
+* [開始使用 Azure Data Lake Storage Gen1](https://docs.microsoft.com/azure/data-lake-store/data-lake-store-overview)。
 * 觀看[有關如何在 Azure 儲存體總管中使用 Azure Cosmos DB 的 YouTube 影片](https://www.youtube.com/watch?v=iNIbg1DLgWo&feature=youtu.be)。

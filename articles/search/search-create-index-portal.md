@@ -1,56 +1,46 @@
 ---
-title: "建立索引 (入口網站 - Azure 搜尋服務) | Microsoft Docs"
-description: "使用 Azure 入口網站建立索引。"
-services: search
-manager: jhubbard
+title: 在入口網站中建立 Azure 搜尋服務索引 | Microsoft Docs
+description: 了解如何使用內建入口網站索引設計工具，為 Azure 搜尋服務建立索引。
+manager: cgronlun
 author: heidisteen
-documentationcenter: 
-ms.assetid: 
+services: search
 ms.service: search
 ms.devlang: NA
-ms.workload: search
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.date: 06/20/2017
+ms.topic: conceptual
+ms.date: 07/10/2018
 ms.author: heidist
-ms.openlocfilehash: a7d98ab0937a7d3f932d5df34c19ae091129804e
-ms.sourcegitcommit: b5c6197f997aa6858f420302d375896360dd7ceb
+ms.openlocfilehash: bb1ba5e860dab237b3f6e16205b5e4cbad45e6e3
+ms.sourcegitcommit: df50934d52b0b227d7d796e2522f1fd7c6393478
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/21/2017
+ms.lasthandoff: 07/12/2018
+ms.locfileid: "38990841"
 ---
-# <a name="create-an-azure-search-index-using-the-azure-portal"></a>使用 Azure 入口網站建立 Azure 搜尋服務索引
-> [!div class="op_single_selector"]
-> * [概觀](search-what-is-an-index.md)
-> * [入口網站](search-create-index-portal.md)
-> * [.NET](search-create-index-dotnet.md)
-> * [REST](search-create-index-rest-api.md)
-> 
-> 
+# <a name="how-to-create-an-azure-search-index-using-the-azure-portal"></a>如何使用 Azure 入口網站建立 Azure 搜尋服務索引
 
-使用 Azure 入口網站中內建的索引設計工具來建立原型，或建立[搜尋索引](search-what-is-an-index.md)以在您的 Azure 搜尋服務上執行。 
+Azure 搜尋服務在入口網站中包含適用於原型的內建索引設計工具，或可供建立在您的 Azure 搜尋服務上裝載的[搜尋索引](search-what-is-an-index.md)。 此工具使用於結構描述建構。 當您儲存定義時，空的索引就會變成完全以 Azure 搜尋服務表示。 您將它與可搜尋資料一起載入的方式，由您決定。
 
-## <a name="prerequisites"></a>先決條件
+索引設計工具只是建立索引的一種方法。 以程式設計方式，您可使用 [.NET](search-create-index-dotnet.md) 或 [REST](search-create-index-rest-api.md) API 建立索引。
 
-本文採用 [Azure 訂用帳戶](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)和 [Azure 搜尋服務](search-create-service-portal.md)。  
+## <a name="prerequisites"></a>必要條件
 
-## <a name="find-your-search-service"></a>尋找您的搜尋服務
-1. 登入 Azure 入口網站頁面，並檢閱[訂用帳戶的搜尋服務](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices)
-2. 選取您的 Azure 搜尋服務。
+本文採用 [Azure 訂用帳戶](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)和 [Azure 搜尋服務](search-create-service-portal.md)。
 
-## <a name="name-the-index"></a>為索引命名
+## <a name="open-index-designer-and-name-an-index"></a>開啟索引設計工具並且為索引命名
 
-1. 在頁面頂端的命令列中，按一下 [新增索引] 按鈕。
-2. 為 Azure 搜尋服務索引命名。 
+1. 登入 [Azure 入口網站](https://portal.azure.com)並開啟服務儀表板。 您可以按一下導向列中的 [所有服務] 以搜尋目前訂用帳戶中的現有「搜尋服務」。 
+
+2.  在頁面頂端的命令列中，按一下 [新增索引] 按鈕。
+
+3. 為 Azure 搜尋服務索引命名。 在編製索引和查詢作業中會參考索引名稱。 索引名稱會成為連至索引之連線上所使用端點 URL 的一部分，並用來在 Azure 搜尋服務 REST API 中傳送 HTTP 要求。
+
    * 以字母開頭。
    * 僅使用小寫字母、數字或連字號 ("-")。
    * 將名稱長度限制為 60 個字元。
 
-  索引名稱會成為連至索引之連線上所使用端點 URL 的一部分，並用來在 Azure 搜尋服務 REST API 中傳送 HTTP 要求。
-
 ## <a name="define-the-fields-of-your-index"></a>定義索引的欄位
 
-索引組合包含「欄位集合」，用以定義索引中可搜尋的資料。 更具體來說，它會指定您分別上傳的文件結構。 欄位集合包含必要與選用欄位、具名與具類型，以及索引屬性，用以判斷如何使用欄位。
+索引組合包含「欄位集合」，用以定義索引中可搜尋的資料。 總之，Fields 集合會指定您分別上傳的文件結構。 Fields 集合包含必要與選用欄位 (具名與具類型)，以及用來判斷如何使用欄位的索引屬性。
 
 1. 在 [新增索引] 刀鋒視窗中，按一下 [欄位 >]，以滑動開啟欄位定義刀鋒視窗。 
 
@@ -71,6 +61,7 @@ ms.lasthandoff: 12/21/2017
 2. 接下來，使用每個屬性上方的核取方塊來大量啟用所有欄位的設定，然後選擇性地清除幾個不需用到之欄位的方塊。 例如，字串欄位通常是可搜尋的。 因此，您可以按一下 [可擷取] 和 [可搜尋]，同時在搜尋結果中傳回欄位的值，以及允許在欄位上進行全文檢索搜尋。 
 
 <a name="design"></a>
+
 ## <a name="design-guidance-for-setting-attributes"></a>設定屬性的設計指導方針
 
 雖然您可以隨時新增欄位，但現有的欄位定義會在索引的存留期間加以鎖定。 基於這個理由，開發人員通常會使用入口網站來建立簡單的索引、測試概念，或使用管理入口網站頁面來查詢設定。 如果您遵循以程式碼為基礎的方法，則整個索引設計中頻繁的反覆動作就會更有效率，如此便能讓您輕鬆地重建索引。

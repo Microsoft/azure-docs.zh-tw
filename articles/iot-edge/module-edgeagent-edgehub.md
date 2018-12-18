@@ -1,25 +1,25 @@
 ---
 title: Azure IoT EdgeAgent 和 EdgeHub 參考資訊 | Microsoft Docs
 description: 檢閱 edgeAgent 和 edgeHub 模組對應項的特定屬性及其值
-services: iot-edge
-keywords: ''
 author: kgremban
 manager: timlt
 ms.author: kgremban
-ms.date: 03/14/2018
-ms.topic: article
+ms.date: 09/21/2018
+ms.topic: conceptual
 ms.service: iot-edge
-ms.openlocfilehash: 17c97c6f233c9861ac42abc0a1f11089bb938e7c
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+services: iot-edge
+ms.openlocfilehash: 5e358992661f7bcf06121a07c1bafca0850316b2
+ms.sourcegitcommit: 42405ab963df3101ee2a9b26e54240ffa689f140
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47423132"
 ---
 # <a name="properties-of-the-edge-agent-and-edge-hub-module-twins"></a>Edge 代理程式和 Edge 中樞模組對應項的屬性
 
-Edge 代理程式和 Edge 中樞是構成 IoT Edge 執行階段的兩個模組。 如需模組各自執行哪些工作的相關資訊，請參閱 [了解 Azure IoT Edge 執行階段及其架構](iot-edge-runtime.md)。 
+Edge 代理程式和 Edge 中樞是構成 IoT Edge 執行階段的兩個模組。 如需模組各自執行哪些工作的相關資訊，請參閱[了解 Azure IoT Edge 執行階段及其架構](iot-edge-runtime.md)。 
 
-本文提供執行階段模組對應項的所需屬性和報告屬性。 請參閱[部署與監視][lnk-deploy]以取得如何在 IoT Edge 裝置上部署模組的詳細資訊。
+本文提供執行階段模組對應項的所需屬性和報告屬性。 如需如何在 IoT Edge 裝置上部署模組的詳細資訊，請參閱[部署與監視][lnk-deploy]。
 
 ## <a name="edgeagent-desired-properties"></a>EdgeAgent 的所需屬性
 
@@ -27,26 +27,29 @@ Edge 代理程式的模組對應項稱為 `$edgeAgent`，並且會協調裝置�
 
 | 屬性 | 說明 | 必要 |
 | -------- | ----------- | -------- |
-| schemaVersion | 必須為「1.0」 | yes |
-| runtime.type | 必須為「docker」 | yes |
-| runtime.settings.minDockerVersion | 此部署資訊清單需要設定為最小 Docker 版本 | yes |
+| schemaVersion | 必須為「1.0」 | 是 |
+| runtime.type | 必須為「docker」 | 是 |
+| runtime.settings.minDockerVersion | 此部署資訊清單需要設定為最小 Docker 版本 | 是 |
 | runtime.settings.loggingOptions | stringified JSON，包含 Edge 代理程式容器的記錄選項。 [Docker 記錄選項][lnk-docker-logging-options] | 否 |
-| systemModules.edgeAgent.type | 必須為「docker」 | yes |
-| systemModules.edgeAgent.settings.image | Edge 代理程式映像的 URI。 目前，Edge 代理程式無法自行更新。 | yes |
-| systemModules.edgeAgent.settings.createOptions | stringified JSON，包含 Edge 代理程式容器的建立選項。 [Docker 建立選項][lnk-docker-create-options] | 否 |
-| systemModules.edgeAgent.configuration.id | 部署此模組之部署的識別碼。 | 使用部署來套用此資訊清單時，這是由 IoT 中樞進行設定。 非部署資訊清單的一部分。 |
-| systemModules.edgeHub.type | 必須為「docker」 | yes |
-| systemModules.edgeHub.status | 必須為「執行中」 | yes |
-| systemModules.edgeHub.restartPolicy | 必須為「永遠」 | yes |
-| systemModules.edgeHub.settings.image | Edge 中樞映像的 URI。 | yes |
-| systemModules.edgeHub.settings.createOptions | stringified JSON，包含 Edge 中樞容器的建立選項。 [Docker 建立選項][lnk-docker-create-options] | 否 |
-| systemModules.edgeHub.configuration.id | 部署此模組之部署的識別碼。 | 使用部署來套用此資訊清單時，這是由 IoT 中樞進行設定。 非部署資訊清單的一部分。 |
-| modules.{moduleId}.version | 使用者定義的字串，表示此模組的版本。 | yes |
-| modules.{moduleId}.type | 必須為「docker」 | yes |
-| modules.{moduleId}.restartPolicy | {"never" \| "on-failed" \| "on-unhealthy" \| "always"} | yes |
-| modules.{moduleId}.settings.image | 模組映像的 URI。 | yes |
+| runtime.settings.registryCredentials<br>.{registryId}.username | 容器登錄的使用者名稱。 Azure Container Registry 的使用者名稱通常是登錄名稱。<br><br> 非公用的任何模組映像都需要登錄認證。 | 否 |
+| runtime.settings.registryCredentials<br>.{registryId}.password | 容器登錄的密碼。 | 否 |
+| runtime.settings.registryCredentials<br>.{registryId}.address | 容器登錄的位址。 Azure Container Registry 的位址通常是 *{registryname}.azurecr.io*。 | 否 |  
+| systemModules.edgeAgent.type | 必須為「docker」 | 是 |
+| systemModules.edgeAgent.settings.image | Edge 代理程式映像的 URI。 目前，Edge 代理程式無法自行更新。 | 是 |
+| systemModules.edgeAgent.settings<br>.createOptions | stringified JSON，包含 Edge 代理程式容器的建立選項。 [Docker 建立選項][lnk-docker-create-options] | 否 |
+| systemModules.edgeAgent.configuration.id | 部署此模組之部署的識別碼。 | 使用部署套用此資訊清單時，此屬性會由 IoT 中樞進行設定。 非部署資訊清單的一部分。 |
+| systemModules.edgeHub.type | 必須為「docker」 | 是 |
+| systemModules.edgeHub.status | 必須為「執行中」 | 是 |
+| systemModules.edgeHub.restartPolicy | 必須為「永遠」 | 是 |
+| systemModules.edgeHub.settings.image | Edge 中樞映像的 URI。 | 是 |
+| systemModules.edgeHub.settings<br>.createOptions | stringified JSON，包含 Edge 中樞容器的建立選項。 [Docker 建立選項][lnk-docker-create-options] | 否 |
+| systemModules.edgeHub.configuration.id | 部署此模組之部署的識別碼。 | 使用部署套用此資訊清單時，此屬性會由 IoT 中樞進行設定。 非部署資訊清單的一部分。 |
+| modules.{moduleId}.version | 使用者定義的字串，表示此模組的版本。 | 是 |
+| modules.{moduleId}.type | 必須為「docker」 | 是 |
+| modules.{moduleId}.restartPolicy | {"never" \| "on-failed" \| "on-unhealthy" \| "always"} | 是 |
+| modules.{moduleId}.settings.image | 模組映像的 URI。 | 是 |
 | modules.{moduleId}.settings.createOptions | stringified JSON，包含模組容器的建立選項。 [Docker 建立選項][lnk-docker-create-options] | 否 |
-| modules.{moduleId}.configuration.id | 部署此模組之部署的識別碼。 | 使用部署來套用此資訊清單時，這是由 IoT 中樞進行設定。 非部署資訊清單的一部分。 |
+| modules.{moduleId}.configuration.id | 部署此模組之部署的識別碼。 | 使用部署套用此資訊清單時，此屬性會由 IoT 中樞進行設定。 非部署資訊清單的一部分。 |
 
 ## <a name="edgeagent-reported-properties"></a>EdgeAgent 的報告屬性
 
@@ -59,7 +62,7 @@ Edge 代理程式報告屬性包含三個主要部分資訊：
 萬一最新的預期屬性未由執行階段成功套用，讓裝置仍在執行先前的部署資訊清單，這個最後一項資訊就很有用。
 
 > [!NOTE]
-> 可以使用 [IoT 中樞查詢語言][lnk-iothub-query]查詢，以調查大規模部署的狀態時，Edge 代理程式的報告屬性相當有用。 請參閱[部署][lnk-deploy]以取得如何使用這項功能的詳細資訊。
+> 可以使用 [IoT 中樞查詢語言][lnk-iothub-query]查詢，以調查大規模部署的狀態時，Edge 代理程式的報告屬性相當有用。 如需如何將 Edge 代理程式屬性用於狀態的詳細資訊，請參閱[了解單一裝置或大規模的 IoT Edge 部署][lnk-deploy]。
 
 下表不包含從預期屬性複製的資訊。
 
@@ -95,9 +98,9 @@ Edge 中樞的模組對應項稱為 `$edgeHub`，並且會協調裝置與 IoT �
 
 | 屬性 | 說明 | 部署資訊清單中的必要項目 |
 | -------- | ----------- | -------- |
-| schemaVersion | 必須為「1.0」 | yes |
+| schemaVersion | 必須為「1.0」 | 是 |
 | routes.{routeName} | 字串，表示 Edge 中樞路由。 | `routes` 元素可以存在但為空白。 |
-| storeAndForwardConfiguration.timeToLiveSecs | Edge 中樞在與路由端點中斷連線時保留訊息的時間 (以秒為單位)，例如，與 IoT 中樞或本機模組中斷連線 | yes |
+| storeAndForwardConfiguration.timeToLiveSecs | Edge 中樞在與路由端點中斷連線時保留訊息的時間 (以秒為單位)，例如，與 IoT 中樞或本機模組中斷連線 | 是 |
 
 ## <a name="edgehub-reported-properties"></a>EdgeHub 的報告屬性
 
@@ -106,9 +109,9 @@ Edge 中樞的模組對應項稱為 `$edgeHub`，並且會協調裝置與 IoT �
 | lastDesiredVersion | 此整數代表 Edge 中樞處理之所需屬性的最後版本。 |
 | lastDesiredStatus.code | 這是狀態代碼，代表 Edge 中樞看到的最後預期屬性。 允許的值：`200` 成功、`400` 無效的設定、`500` 失敗 |
 | lastDesiredStatus.description | 狀態的文字描述 |
-| clients.{device or module identity}.status | 此裝置或模組的連線狀態。 可能的值 {"connected" \| "disconnected"}。 只有模組身分識別可以處於中斷連線狀態。 連線到 Edge 中樞的下游裝置只會在連線時顯示。 |
-| clients.{device or module identity}.lastConnectTime | 上一次裝置或模組連線時 |
-| clients.{device or module identity}.lastDisconnectTime | 上一次裝置或模組中斷連線時 |
+| clients.{device or moduleId}.status | 此裝置或模組的連線狀態。 可能的值 {"connected" \| "disconnected"}。 只有模組身分識別可以處於中斷連線狀態。 連線到 Edge 中樞的下游裝置只會在連線時顯示。 |
+| clients.{device or moduleId}.lastConnectTime | 上一次裝置或模組連線時 |
+| clients.{device or moduleId}.lastDisconnectTime | 上一次裝置或模組中斷連線時 |
 
 ## <a name="next-steps"></a>後續步驟
 

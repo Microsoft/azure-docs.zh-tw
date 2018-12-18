@@ -1,12 +1,12 @@
 ---
-title: "StorSimple 雲端設備 Update 3 | Microsoft Docs"
-description: "了解如何建立、部署和管理 Microsoft Azure 虛擬網路中的 StorSimple 雲端設備。 (適用於 StorSimple Update 3 和更新版本)。"
+title: StorSimple 雲端設備 Update 3 | Microsoft Docs
+description: 了解如何建立、部署和管理 Microsoft Azure 虛擬網路中的 StorSimple 雲端設備。 (適用於 StorSimple Update 3 和更新版本)。
 services: storsimple
-documentationcenter: 
+documentationcenter: ''
 author: alkohli
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: NA
 ms.topic: hero-article
@@ -14,11 +14,12 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 11/08/2017
 ms.author: alkohli
-ms.openlocfilehash: 4d47b5426da5d857085991767faa5fb227476408
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+ms.openlocfilehash: 33be58ae3ac5fcc8d0b35b240f9f378ccce134cc
+ms.sourcegitcommit: f20e43e436bfeafd333da75754cd32d405903b07
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49387679"
 ---
 # <a name="deploy-and-manage-a-storsimple-cloud-appliance-in-azure-update-3-and-later"></a>部署和管理 Azure 中的 StorSimple 雲端設備 (Update 3 和更新版本)
 
@@ -264,7 +265,7 @@ DR 的必要條件如下︰
 ## <a name="troubleshoot-internet-connectivity-errors"></a>針對網際網路連線錯誤進行疑難排解
 在雲端設備建立期間，如果無法連線到網際網路，建立步驟就會失敗。 若要針對網際網路連線失敗進行疑難排解，請在 Azure 入口網站中執行下列步驟︰
 
-1. [在 Azure 中建立 Windows server 2012 虛擬機器](/articles/virtual-machines/windows/quick-create-portal.md)。 此虛擬機器應該與雲端設備使用相同的儲存體帳戶、VNet 和子網路。 如果 Azure 中已經有使用相同儲存體帳戶、VNet 和子網路的現有 Windows Server 主機，您也可以使用它來針對網際網路連線進行疑難排解。
+1. [在 Azure 入口網站中建立 Windows 虛擬機器](https://docs.microsoft.com/azure/virtual-machines/windows/quick-create-portal)。 此虛擬機器應該與雲端設備使用相同的儲存體帳戶、VNet 和子網路。 如果 Azure 中已經有使用相同儲存體帳戶、VNet 和子網路的現有 Windows Server 主機，您也可以使用它來針對網際網路連線進行疑難排解。
 2. 遠端登入在先前步驟中建立的虛擬機器。
 3. 在虛擬機器內開啟命令視窗 (Win + R，然後輸入 `cmd`)。
 4. 在命令提示字元執行下列命令。

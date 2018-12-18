@@ -1,213 +1,244 @@
+items:
 - name: Linux 上的 App Service 文件
   href: index.yml
 - name: 概觀
   items:
-    - name: 關於 Web Apps
-      href: ../app-service-web-overview.md
-    - name: 關於 Linux 上的 App Service
-      href: app-service-linux-intro.md
-    - name: 比較主機選項
-      href: ../choose-web-site-cloud-service-vm.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+  - name: 關於 Web Apps
+    href: ../app-service-web-overview.md
+  - name: 關於 Linux 上的 App Service
+    href: app-service-linux-intro.md
+  - name: 比較主機選項
+    href: ../choose-web-site-cloud-service-vm.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
 - name: 快速入門
-  expanded: true
   items:
-    - name: 建立 .NET Core 應用程式
-      href: quickstart-dotnetcore.md
-    - name: 建立 PHP 應用程式
-      href: quickstart-php.md
-    - name: 建立 Node.js 應用程式
-      href: quickstart-nodejs.md
-    - name: 建立 Java 應用程式
-      href: quickstart-java.md
-    - name: 建立 Ruby 應用程式
-      href: quickstart-ruby.md
-    - name: 建立 Docker/Go 應用程式
-      href: quickstart-docker-go.md
+  - name: 建立 .NET Core 應用程式
+    href: quickstart-dotnetcore.md
+  - name: 建立 PHP 應用程式
+    href: quickstart-php.md
+  - name: 建立 Node.js 應用程式
+    href: quickstart-nodejs.md
+  - name: 建立 Java 應用程式
+    href: quickstart-java.md
+  - name: 建立 Python 應用程式
+    href: quickstart-python.md
+  - name: 建立 Ruby 應用程式
+    href: quickstart-ruby.md
+  - name: 建立 Docker/Go 應用程式
+    href: quickstart-docker-go.md
+  - name: 建立多個容器應用程式
+    href: quickstart-multi-container.md
+  expanded: true
 - name: 教學課程
   items:
-    - name: 1 - App with DB
-      items:
-        - name: .NET Core with SQL DB
-          href: tutorial-dotnetcore-sqldb-app.md
-        - name: Ruby with MySQL
-          href: tutorial-ruby-mysql-app.md
-        - name: PHP with MySQL
-          href: tutorial-php-mysql-app.md
-        - name: Node.js 搭配 MongoDB
-          href: tutorial-nodejs-mongodb-app.md
-        - name: Python 自訂容器搭配 PostgreSQL
-          href: tutorial-docker-python-postgresql-app.md
-    - name: 1 - 自訂 Docker 映像
-      href: tutorial-custom-docker-image.md
-    - name: 2 - 對應自訂網域
-      href: ../app-service-web-tutorial-custom-domain.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-    - name: 3 - 繫結 SSL 憑證
-      href: ../app-service-web-tutorial-custom-ssl.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-    - name: 4 - 新增 CDN
-      href: ../app-service-web-tutorial-content-delivery-network.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+  - name: App with DB
+    items:
+    - name: .NET Core with SQL DB
+      href: tutorial-dotnetcore-sqldb-app.md
+    - name: Ruby with Postgres
+      href: tutorial-ruby-postgres-app.md
+    - name: PHP with MySQL
+      href: tutorial-php-mysql-app.md
+    - name: Node.js 搭配 MongoDB
+      href: tutorial-nodejs-mongodb-app.md
+    - name: Python with Postgres
+      href: tutorial-python-postgresql-app.md
+  - name: 多個容器應用程式
+    href: tutorial-multi-container-app.md
+  - name: 自訂 Docker 映像
+    href: tutorial-custom-docker-image.md
+  - name: 對應自訂網域
+    href: ../app-service-web-tutorial-custom-domain.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+  - name: 繫結 SSL 憑證
+    href: ../app-service-web-tutorial-custom-ssl.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+  - name: 新增 CDN
+    href: ../../cdn/cdn-add-to-web-app.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+  - name: 驗證使用者
+    href: tutorial-auth-aad.md
 - name: 範例
   items:
-    - name: Azure CLI
-      href: ../app-service-cli-samples.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-    - name: Azure PowerShell
-      href: ../app-service-powershell-samples.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+  - name: Azure CLI
+    href: ../app-service-cli-samples.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+  - name: Azure PowerShell
+    href: ../app-service-powershell-samples.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
 - name: 概念
   items:
-    - name: App Service 的運作方式
-      href: ../app-service-how-works-readme.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-    - name: App Service 方案
-      href: ../azure-web-sites-web-hosting-plans-in-depth-overview.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-    - name: App Service 環境
-      href: ../environment/intro.md
-    - name: 驗證和授權
-      href: ../app-service-authentication-overview.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-    - name: 選擇部署類型
-      href: choose-deployment-type.md
+  - name: App Service 的運作方式
+    href: ../app-service-how-works-readme.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+  - name: App Service 方案
+    href: ../azure-web-sites-web-hosting-plans-in-depth-overview.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+  - name: App Service 環境
+    href: ../environment/intro.md
+  - name: Java 開發人員指南
+    href: app-service-linux-java.md
+  - name: 輸入和輸出 IP
+    href: ../app-service-ip-addresses.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+  - name: 驗證和授權
+    href: ../app-service-authentication-overview.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+  - name: 選擇部署類型
+    href: choose-deployment-type.md
+  - name: 診斷
+    href: ../app-service-diagnostics.md
 - name: 使用說明指南
   items:
-    - name: 設定應用程式
+  - name: 設定應用程式
+    items:
+    - name: Python 映像
+      href: how-to-configure-python.md
+    - name: 使用應用程式設定
+      href: ../web-sites-configure.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+  - name: 部署至 Azure
+    items:
+    - name: 部署應用程式
       items:
-        - name: 使用應用程式設定
-          href: ../web-sites-configure.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-    - name: 部署至 Azure
+      - name: 透過 FTP 進行部署
+        href: ../app-service-deploy-ftp.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+      - name: 透過雲端同步進行部署
+        href: ../app-service-deploy-content-sync.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+      - name: 連續部署
+        href: ../containers/app-service-linux-ci-cd.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+      - name: 從本機 Git 進行部署
+        href: ../app-service-deploy-local-git.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+      - name: 透過範本進行部署
+        href: ../app-service-deploy-complex-application-predictably.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+    - name: 設定部署認證
+      href: ../app-service-deployment-credentials.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+    - name: 建立預備環境
+      href: ../web-sites-staged-publishing.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+  - name: 對應自訂網域
+    items:
+    - name: 購買網域
+      href: ../custom-dns-web-site-buydomains-web-app.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+    - name: 使用流量管理員對應網域
+      href: ../web-sites-traffic-manager-custom-domain-name.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+    - name: 移轉作用中的網域
+      href: ../app-service-custom-domain-name-migrate.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+  - name: 安全的應用程式
+    items:
+    - name: 購買 SSL 憑證
+      href: ../web-sites-purchase-ssl-web-site.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+    - name: 驗證使用者
       items:
-        - name: 部署應用程式
-          items:
-            - name: 透過 FTP 進行部署
-              href: ../app-service-deploy-ftp.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-            - name: 透過雲端同步進行部署
-              href: ../app-service-deploy-content-sync.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-            - name: 連續部署
-              href: ../containers/app-service-linux-ci-cd.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-            - name: 從本機 Git 進行部署
-              href: ../app-service-deploy-local-git.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-            - name: 透過範本進行部署
-              href: ../app-service-deploy-complex-application-predictably.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-        - name: 設定部署認證
-          href: ../app-service-deployment-credentials.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-        - name: 建立預備環境
-          href: ../web-sites-staged-publishing.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-    - name: 對應自訂網域
-      items:
-        - name: 購買網域
-          href: ../custom-dns-web-site-buydomains-web-app.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-        - name: 使用流量管理員對應網域
-          href: ../web-sites-traffic-manager-custom-domain-name.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-        - name: 移轉作用中的網域
-          href: ../app-service-custom-domain-name-migrate.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-    - name: 安全的應用程式
-      items:
-        - name: 購買 SSL 憑證
-          href: ../web-sites-purchase-ssl-web-site.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-        - name: 驗證使用者
-          items:
-            - name: 使用 Azure AD 進行驗證
-              href: ../app-service-mobile-how-to-configure-active-directory-authentication.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-            - name: 使用 Facebook 進行驗證
-              href: ../app-service-mobile-how-to-configure-facebook-authentication.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-            - name: 使用 Google 進行驗證
-              href: ../app-service-mobile-how-to-configure-google-authentication.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-            - name: 使用 Microsoft 帳戶進行認證
-              href: ../app-service-mobile-how-to-configure-microsoft-authentication.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-            - name: 使用 Twitter 進行驗證
-              href: ../app-service-mobile-how-to-configure-twitter-authentication.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-        - name: 設定 TLS 相互驗證
-          href: ../app-service-web-configure-tls-mutual-auth.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-    - name: 調整應用程式
-      items:
-        - name: 相應增加伺服器容量
-          href: ../web-sites-scale.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-        - name: 相應放大至多個執行個體
-          href: ../../monitoring-and-diagnostics/insights-how-to-scale.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-    - name: 監視應用程式
-      items:
-        - name: 配額與警示
-          href: ../web-sites-monitor.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-        - name: 啟用記錄
-          href: ../web-sites-enable-diagnostic-log.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-    - name: 管理應用程式
-      items:
-        - name: 備份應用程式
-          href: ../web-sites-backup.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-        - name: 還原備份
-          href: ../web-sites-restore.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-        - name: 複製應用程式
-          href: ../app-service-web-app-cloning.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-        - name: 移動資源
-          href: '../../azure-resource-manager/resource-group-move-resources.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json#app-service-limitations'
+      - name: 使用 Azure AD 進行驗證
+        href: ../app-service-mobile-how-to-configure-active-directory-authentication.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+      - name: 使用 Facebook 進行驗證
+        href: ../app-service-mobile-how-to-configure-facebook-authentication.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+      - name: 使用 Google 進行驗證
+        href: ../app-service-mobile-how-to-configure-google-authentication.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+      - name: 使用 Microsoft 帳戶進行認證
+        href: ../app-service-mobile-how-to-configure-microsoft-authentication.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+      - name: 使用 Twitter 進行驗證
+        href: ../app-service-mobile-how-to-configure-twitter-authentication.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+    - name: 自訂驗證
+      href: ../app-service-authentication-how-to.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+    - name: 設定 TLS 相互驗證
+      href: ../app-service-web-configure-tls-mutual-auth.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+  - name: 調整應用程式
+    items:
+    - name: 相應增加伺服器容量
+      href: ../web-sites-scale.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+    - name: 相應放大至多個執行個體
+      href: ../../monitoring-and-diagnostics/insights-how-to-scale.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+    - name: 高密度託管
+      href: ../app-service-high-density-hosting.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+  - name: 監視應用程式
+    items:
+    - name: 透過 SSH 連線到應用程式
+      href: app-service-linux-ssh-support.md
+    - name: 配額與警示
+      href: ../web-sites-monitor.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+    - name: 啟用記錄
+      href: ../web-sites-enable-diagnostic-log.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+  - name: 管理應用程式
+    items:
+    - name: 備份應用程式
+      href: ../web-sites-backup.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+    - name: 還原備份
+      href: ../web-sites-restore.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+    - name: 複製應用程式
+      href: ../app-service-web-app-cloning.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+    - name: 移動資源
+      href: ../../azure-resource-manager/resource-group-move-resources.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json#app-service-limitations
 - name: 參考
   items:
-    - name: Azure CLI
-      href: /cli/azure/appservice
-    - name: Azure PowerShell
-      href: /powershell
-    - name: REST API
-      href: /rest/api/appservice/
+  - name: Azure CLI
+    href: /cli/azure/appservice
+  - name: Azure PowerShell
+    href: /powershell
+  - name: REST API
+    href: /rest/api/appservice/
 - name: 資源
   items:
-    - name: Azure 藍圖
-      href: 'https://azure.microsoft.com/roadmap/'
-    - name: 價格
-      href: 'https://azure.microsoft.com/pricing/details/app-service/'
-    - name: 配額資訊
-      href: '../../azure-subscription-service-limits.md#app-service-limits'
-    - name: 服務更新與版本資訊
+  - name: Linux 上的 App Service 常見問題集
+    href: app-service-linux-faq.md
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/app-service/
+  - name: 配額資訊
+    href: ../../azure-subscription-service-limits.md#app-service-limits
+  - name: 服務更新與版本資訊
+    items:
+    - name: Azure 更新
+      href: https://azure.microsoft.com/updates/?product=app-service
+    - name: Azure SDK for .NET 3.0
+      href: ../azure-sdk-dotnet-release-notes-3-0.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+    - name: Azure SDK for .NET 2.9
+      href: ../azure-sdk-dotnet-release-notes-2-9.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+    - name: Azure SDK for .NET 2.8
+      href: ../azure-sdk-dotnet-release-notes-2-8.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+    - name: Azure SDK for .NET 2.7
+      href: ../azure-sdk-dotnet-release-notes-2-7.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+    - name: Azure SDK for .NET 2.6
+      href: ../azure-sdk-dotnet-release-notes-2-6.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+    - name: Azure SDK for .NET 2.5.1
+      href: ../app-service-release-notes.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+    - name: Azure SDK for .NET 2.5
+      href: https://msdn.microsoft.com/library/azure/dn873976.aspx
+    - name: Azure SDK for .NET 2.4
+      href: https://msdn.microsoft.com/library/azure/dn794167.aspx
+    - name: Azure SDK for .NET 2.3
+      href: https://msdn.microsoft.com/library/azure/dn655054.aspx
+    - name: Azure SDK for .NET 2.2
+      href: https://msdn.microsoft.com/library/azure/dn459835.aspx
+    - name: Azure SDK for .NET 2.1
+      href: https://msdn.microsoft.com/library/azure/dn407359.aspx
+    - name: Azure SDK for .NET 2.0
+      href: https://msdn.microsoft.com/library/azure/dn169556.aspx
+  - name: 最佳作法
+    href: ../app-service-best-practices.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+  - name: 範例
+    href: https://azure.microsoft.com/resources/samples/?service=app-service
+  - name: 影片
+    href: https://azure.microsoft.com/resources/videos/index/?services=app-service
+  - name: Cookbooks
+    items:
+    - name: 參考架構
+      href: /azure/architecture/reference-architectures/app-service-web-app/
+    - name: 部署指令碼
+      href: https://azure.microsoft.com/documentation/scripts/
+  - name: 疑難排解
+    items:
+    - name: 使用 Visual Studio 進行疑難排解
+      href: ../web-sites-dotnet-troubleshoot-visual-studio.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+    - name: 針對 Node.js 應用程式進行疑難排解
+      href: ../app-service-web-nodejs-best-practices-and-troubleshoot-guide.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+    - name: 針對 HTTP 502 與 503 進行疑難排解
+      href: ../app-service-web-troubleshoot-http-502-http-503.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+    - name: 針對效能問題進行疑難排解
+      href: ../app-service-web-troubleshoot-performance-degradation.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+    - name: 常見問題集
       items:
-        - name: Azure 更新
-          href: 'https://azure.microsoft.com/updates/?product=app-service'
-        - name: Azure SDK for .NET 3.0
-          href: ../azure-sdk-dotnet-release-notes-3-0.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-        - name: Azure SDK for .NET 2.9
-          href: ../azure-sdk-dotnet-release-notes-2-9.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-        - name: Azure SDK for .NET 2.8
-          href: ../azure-sdk-dotnet-release-notes-2-8.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-        - name: Azure SDK for .NET 2.7
-          href: ../azure-sdk-dotnet-release-notes-2-7.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-        - name: Azure SDK for .NET 2.6
-          href: ../azure-sdk-dotnet-release-notes-2-6.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-        - name: Azure SDK for .NET 2.5.1
-          href: ../app-service-release-notes.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-        - name: Azure SDK for .NET 2.5
-          href: 'https://msdn.microsoft.com/library/azure/dn873976.aspx'
-        - name: Azure SDK for .NET 2.4
-          href: 'https://msdn.microsoft.com/library/azure/dn794167.aspx'
-        - name: Azure SDK for .NET 2.3
-          href: 'https://msdn.microsoft.com/library/azure/dn655054.aspx'
-        - name: Azure SDK for .NET 2.2
-          href: 'https://msdn.microsoft.com/library/azure/dn459835.aspx'
-        - name: Azure SDK for .NET 2.1
-          href: 'https://msdn.microsoft.com/library/azure/dn407359.aspx'
-        - name: Azure SDK for .NET 2.0
-          href: 'https://msdn.microsoft.com/library/azure/dn169556.aspx'
-    - name: 最佳作法
-      href: ../app-service-best-practices.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-    - name: 範例
-      href: 'https://azure.microsoft.com/resources/samples/?service=app-service'
-    - name: 影片
-      href: 'https://azure.microsoft.com/resources/videos/index/?services=app-service'
-    - name: Cookbooks
-      items:
-        - name: 參考架構
-          href: /azure/architecture/reference-architectures/app-service-web-app/
-        - name: 部署指令碼
-          href: 'https://azure.microsoft.com/documentation/scripts/'
-    - name: 疑難排解
-      items:
-        - name: 使用 Visual Studio 進行疑難排解
-          href: ../web-sites-dotnet-troubleshoot-visual-studio.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-        - name: 針對 Node.js 應用程式進行疑難排解
-          href: ../app-service-web-nodejs-best-practices-and-troubleshoot-guide.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-        - name: 針對 HTTP 502 與 503 進行疑難排解
-          href: ../app-service-web-troubleshoot-http-502-http-503.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-        - name: 針對效能問題進行疑難排解
-          href: ../app-service-web-troubleshoot-performance-degradation.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-        - name: 常見問題集
-          items:
-            - name: 可用性、效能和應用程式常見問題
-              href: ../app-service-web-availability-performance-application-issues-faq.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-            - name: 部署常見問題
-              href: ../app-service-web-deployment-faq.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-            - name: 開放原始碼技術常見問題
-              href: ../app-service-web-open-source-technologies-faq.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
-            - name: 設定和管理常見問題
-              href: ../app-service-web-configuration-and-management-faq.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+      - name: 可用性、效能和應用程式常見問題
+        href: ../app-service-web-availability-performance-application-issues-faq.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+      - name: 部署常見問題
+        href: ../app-service-web-deployment-faq.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+      - name: 開放原始碼技術常見問題
+        href: ../app-service-web-open-source-technologies-faq.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+      - name: 設定和管理常見問題
+        href: ../app-service-web-configuration-and-management-faq.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json
+ms.openlocfilehash: e1974ed3bcd9de143f8fdac428fae57d476323e9
+ms.sourcegitcommit: 7c4fd6fe267f79e760dc9aa8b432caa03d34615d
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47434580"

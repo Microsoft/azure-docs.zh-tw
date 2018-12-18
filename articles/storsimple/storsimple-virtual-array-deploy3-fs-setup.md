@@ -1,11 +1,11 @@
 ---
-title: "將 StorSimple Virtual Array 設定為檔案伺服器 | Microsoft Docs"
-description: "這是如何部署 StorSimple Virtual Array 的第三個教學課程，教導您如何將虛擬裝置設定成檔案伺服器。"
+title: 將 StorSimple Virtual Array 設定為檔案伺服器 | Microsoft Docs
+description: 這是如何部署 StorSimple Virtual Array 的第三個教學課程，教導您如何將虛擬裝置設定成檔案伺服器。
 services: storsimple
 documentationcenter: NA
 author: alkohli
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: f609f6ff-0927-48bb-a68a-6d8985d2fe34
 ms.service: storsimple
 ms.devlang: NA
@@ -20,6 +20,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23111846"
 ---
 # <a name="deploy-storsimple-virtual-array---set-up-as-file-server-via-azure-portal"></a>部署 StorSimple Virtual Array - 透過 Azure 入口網站設定為檔案伺服器
 ![](./media/storsimple-virtual-array-deploy3-fs-setup/fileserver4.png)

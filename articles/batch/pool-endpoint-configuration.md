@@ -1,6 +1,6 @@
 ---
-title: "在 Azure Batch 集區中設定節點端點 | Microsoft Docs"
-description: "如何設定或停用 Azure Batch 集區內之計算節點上的 SSH 或 RDP 連接埠存取權。"
+title: 在 Azure Batch 集區中設定節點端點 | Microsoft Docs
+description: 如何設定或停用 Azure Batch 集區內之計算節點上的 SSH 或 RDP 連接埠存取權。
 services: batch
 author: dlepow
 manager: jeconnoc
@@ -8,11 +8,12 @@ ms.service: batch
 ms.topic: article
 ms.date: 02/13/2018
 ms.author: danlep
-ms.openlocfilehash: fdc68744406c3e995a2764f93d4474b807337ff5
-ms.sourcegitcommit: 95500c068100d9c9415e8368bdffb1f1fd53714e
+ms.openlocfilehash: 5898206761e5029f94b6d1f1b48223481ae2ca13
+ms.sourcegitcommit: b6319f1a87d9316122f96769aab0d92b46a6879a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 05/20/2018
+ms.locfileid: "34358722"
 ---
 # <a name="configure-or-disable-remote-access-to-compute-nodes-in-an-azure-batch-pool"></a>設定或停用 Azure Batch 集區內計算節點的遠端存取權
 
@@ -23,7 +24,7 @@ ms.lasthandoff: 02/14/2018
 ## <a name="about-the-pool-endpoint-configuration"></a>關於集區端點設定
 端點設定包含一或多個前端連接埠的[網路位址轉譯 (NAT) 集區](/rest/api/batchservice/pool/add#inboundnatpool)。 (請勿將 NAT 集區與計算節點的 Batch 集區混淆。)您可設定每個 NAT 集區以覆寫集區計算節點上的預設連線設定。 
 
-每個 NAT 集區設定都包含一或多個[網路安全性群組 (NSG) 規則](/rest/api/batchservice/pool/add#networksecuritygrouprule)。 每個 NSG 規則皆會允許或拒絕通往端點的特定網路流量。 您可選擇要允許或拒絕所有流量、以[預設標籤](../virtual-network/virtual-networks-nsg.md#default-tags) (例如「網際網路」) 識別的網路流量，或來自特定 IP 位址或子網路的流量。
+每個 NAT 集區設定都包含一或多個[網路安全性群組 (NSG) 規則](/rest/api/batchservice/pool/add#networksecuritygrouprule)。 每個 NSG 規則皆會允許或拒絕通往端點的特定網路流量。 您可選擇要允許或拒絕所有流量、以[服務標籤](../virtual-network/security-overview.md#service-tags) (例如「網際網路」) 識別的網路流量，或來自特定 IP 位址或子網路的流量。
 
 ### <a name="considerations"></a>考量
 * 集區端點設定是屬於集區[網路設定](/rest/api/batchservice/pool/add#NetworkConfiguration)的一部分。 網路設定可選擇性地包含將集區加入 [Azure 虛擬網路](batch-virtual-network.md)的設定。 如果您在虛擬網路中設定集區，您可以建立使用虛擬網路中位址設定的 NSG 規則。
@@ -124,7 +125,7 @@ pool.network_configuration=batchmodels.NetworkConfiguration(
 
 ## <a name="next-steps"></a>後續步驟
 
-- 如需 Azure 中 NSG 規則的相關詳細資訊，請參閱[使用網路安全性群組來篩選網路流量](../virtual-network/virtual-networks-nsg.md)。
+- 如需 Azure 中 NSG 規則的相關詳細資訊，請參閱[使用網路安全性群組來篩選網路流量](../virtual-network/security-overview.md)。
 
 - 如需 Batch 的深入概觀，請參閱[使用 Batch 開發大規模的平行計算解決方案](batch-api-basics.md)。
 

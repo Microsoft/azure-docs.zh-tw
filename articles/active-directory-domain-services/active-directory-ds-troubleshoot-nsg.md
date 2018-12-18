@@ -7,18 +7,20 @@ author: eringreenlee
 manager: ''
 editor: ''
 ms.assetid: 95f970a7-5867-4108-a87e-471fa0910b8c
-ms.service: active-directory-ds
+ms.service: active-directory
+ms.component: domain-services
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 03/01/2018
 ms.author: ergreenl
-ms.openlocfilehash: ca3292f1b89fc461950a47116126b6f5338fb381
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: a2acbed81e323718c7d294d87ebf699c35664d02
+ms.sourcegitcommit: 9222063a6a44d4414720560a1265ee935c73f49e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 08/03/2018
+ms.locfileid: "39502640"
 ---
 # <a name="troubleshoot-invalid-networking-configuration-for-your-managed-domain"></a>針對受控網域的無效網路設定進行移難排解
 本文將協助您針對導致下列警示訊息的網路相關設定錯誤進行疑難排解：
@@ -28,6 +30,13 @@ ms.lasthandoff: 03/23/2018
 
 Azure AD Domain Services 網路錯誤最常見的原因是 NSG 設定無效。 為您虛擬網路設定的「網路安全性群組」(NSG) 必須允許存取[特定連接埠](active-directory-ds-networking.md#ports-required-for-azure-ad-domain-services)。 如果這些連接埠遭到封鎖，Microsoft 便無法監視或更新您的受控網域。 此外，也會影響到 Azure AD 目錄與受控網域之間的同步處理。 建立 NSG 時，請將這些連接埠保持開啟，以避免服務中斷。
 
+### <a name="checking-your-nsg-for-compliance"></a>檢查 NSG 的合規性
+
+1. 在 Azure 入口網站中，瀏覽至 [網路安全性群組](https://portal.azure.com/#blade/HubsExtension/Resources/resourceType/Microsoft.Network%2FNetworkSecurityGroups) 頁面
+2. 從表格中，選擇與已啟用您受控網域的子網路關聯的 NSG。
+3. 在左窗格的 [設定] 下，按一下 [輸入安全性規則]
+4. 檢閱備妥的規則，並識別哪些規則會封鎖存取[這些連接埠](active-directory-ds-networking.md#ports-required-for-azure-ad-domain-services)
+5. 對 NSG 進行以下編輯以確保合規性：刪除規則、新增規則，或建立全新的 NSG。 [新增規則](#add-a-rule-to-a-network-security-group-using-the-azure-portal)或[建立全新符合規範的 NSG](#create-a-nsg-for-azure-ad-domain-services-using-powershell) 的步驟如下
 
 ## <a name="sample-nsg"></a>NSG 範例
 下表描述的 NSG 範例，能讓受控網域保持安全，同時允許 Microsoft 監視、管理及更新資訊。
@@ -40,17 +49,17 @@ Azure AD Domain Services 網路錯誤最常見的原因是 NSG 設定無效。 �
 ## <a name="add-a-rule-to-a-network-security-group-using-the-azure-portal"></a>使用 Azure 入口網站將規則新增至網路安全性群組
 如果您不想使用 PowerShell，則可使用 Azure 入口網站，手動對 NSG 新增單一規則。 若要在網路安全性群組中建立規則，請完成下列步驟：
 
-1. 在 Azure 入口網站中，瀏覽至 [網路安全性群組](https://portal.azure.com/#blade/HubsExtension/Resources/resourceType/Microsoft.Network%2FNetworkSecurityGroups) 頁面
+1. 在 Azure 入口網站中，瀏覽至 [網路安全性群組](https://portal.azure.com/#blade/HubsExtension/Resources/resourceType/Microsoft.Network%2FNetworkSecurityGroups) 頁面。
 2. 從表格中，選擇與已啟用您受控網域的子網路關聯的 NSG。
 3. 在左側面板的 [設定] 底下，按一下 [輸入安全性規則] 或 [輸出安全性規則]。
-4. 按一下 [新增] 並填入資訊來建立規則。 按一下 [SERVICEPRINCIPAL] 。
+4. 按一下 [新增] 並填入資訊來建立規則。 按一下 [確定]。
 5. 在規則資料表中尋找您的規則，確認規則已建立。
 
 
-## <a name="create-an-nsg-for-azure-ad-domain-services-using-powershell"></a>使用 PowerShell 來為 Azure AD Domain Services 建立 NSG
+## <a name="create-a-nsg-for-azure-ad-domain-services-using-powershell"></a>使用 PowerShell 為 Azure AD Domain Services 建立 NSG
 此 NSG 會設定成允許對 Azure AD Domain Services 所需連接埠的輸入流量，但拒絕任何其他不需要的對內存取。
 
-**先決條件：安裝並設定 Azure PowerShell。**請依照指示來[安裝 Azure PowerShell 模組並連線至您的 Azure 訂用帳戶](https://docs.microsoft.com/powershell/azure/install-azurerm-ps?toc=%2fazure%2factive-directory-domain-services%2ftoc.json) \(英文\)。
+**先決條件：安裝並設定 Azure PowerShell。** 請依照指示來[安裝 Azure PowerShell 模組並連線至您的 Azure 訂用帳戶](https://docs.microsoft.com/powershell/azure/install-azurerm-ps?toc=%2fazure%2factive-directory-domain-services%2ftoc.json) \(英文\)。
 
 >[!TIP]
 > 建議您使用最新版的 Azure PowerShell 模組。 如果您已經安裝舊版的 Azure PowerShell 模組，則請更新至最新版本。
@@ -61,7 +70,7 @@ Azure AD Domain Services 網路錯誤最常見的原因是 NSG 設定無效。 �
 
   ```PowerShell
   # Log in to your Azure subscription.
-  Login-AzureRmAccount
+  Connect-AzureRmAccount
   ```
 
 2. 建立具有三個規則的 NSG。 下列指令碼會定義 NSG 的三個規則，從而允許系統存取要執行 Azure AD Domain Services 所需使用的連接埠。 接著，此指令碼會建立包含這些規則的新 NSG。 如果在虛擬網路中部署的工作負載需要，請使用相同的格式來新增允許其他輸入流量的額外規則。
@@ -123,7 +132,7 @@ $VnetName = "exampleVnet"
 $SubnetName = "exampleSubnet"
 
 # Log in to your Azure subscription.
-Login-AzureRmAccount
+Connect-AzureRmAccount
 
 # Allow inbound HTTPS traffic to enable synchronization to your managed domain.
 $SyncRule = New-AzureRmNetworkSecurityRuleConfig -Name AllowSyncWithAzureAD -Description "Allow synchronization with Azure AD" `

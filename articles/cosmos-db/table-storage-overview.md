@@ -1,24 +1,21 @@
 ---
-title: "Azure 資料表儲存體概觀 | Microsoft Docs"
-description: "使用 Azure 表格儲存體 (NoSQL 資料存放區) 將結構化的資料儲存在雲端。"
+title: Azure 資料表儲存體概觀 | Microsoft Docs
+description: 使用 Azure 表格儲存體 (NoSQL 資料存放區) 將結構化的資料儲存在雲端。
 services: cosmos-db
-documentationcenter: .net
-author: mimig1
-manager: jhubbard
-editor: tysonn
-ms.assetid: fe46d883-7bed-49dd-980e-5c71df36adb3
+author: SnehaGunda
+manager: kfile
 ms.service: cosmos-db
-ms.workload: data-services
-ms.tgt_pltfrm: na
+ms.component: cosmosdb-table
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: overview
 ms.date: 11/03/2017
-ms.author: mimig
-ms.openlocfilehash: 5ad83a5a33440200c4e25f5752e5c3242941d022
-ms.sourcegitcommit: f1c1789f2f2502d683afaf5a2f46cc548c0dea50
+ms.author: sngun
+ms.openlocfilehash: 495fc0fff39a04dee4fc707bd0d2f6b3571cc46a
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/18/2018
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38582059"
 ---
 # <a name="azure-table-storage-overview"></a>Azure 資料表儲存體概觀
 

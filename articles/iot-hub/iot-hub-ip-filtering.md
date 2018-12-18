@@ -1,24 +1,18 @@
 ---
-title: "Azure IoT 中樞 IP 連線篩選器 | Microsoft Docs"
-description: "如何使用 IP 篩選來封鎖從特定 IP 位址至 Azure IoT 中樞的連接。 您可以封鎖來自個別 IP 位址或 IP 位址範圍的連接。"
-services: iot-hub
-documentationcenter: 
-author: BeatriceOltean
-manager: timlt
-editor: 
-ms.assetid: f833eac3-5b5f-46a7-a47b-f4f6fc927f3f
+title: Azure IoT 中樞 IP 連線篩選器 | Microsoft Docs
+description: 如何使用 IP 篩選來封鎖從特定 IP 位址至 Azure IoT 中樞的連接。 您可以封鎖來自個別 IP 位址或 IP 位址範圍的連接。
+author: rezasherafat
 ms.service: iot-hub
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: na
+services: iot-hub
+ms.topic: conceptual
 ms.date: 05/23/2017
-ms.author: boltean
-ms.openlocfilehash: 85f5f044faddd5180f0c19d3f2c235b20f6373d5
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.author: rezas
+ms.openlocfilehash: 864af9cae35912d95f2c0bf0b574a5ca2404a608
+ms.sourcegitcommit: 63613e4c7edf1b1875a2974a29ab2a8ce5d90e3b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/29/2018
+ms.locfileid: "43190636"
 ---
 # <a name="use-ip-filters"></a>使用 IP 篩選器
 
@@ -103,7 +97,7 @@ IP 篩選器規則會依序套用，第一個符合 IP 位址的規則會決定�
 <!-- Links -->
 
 [IoT Hub developer guide]: iot-hub-devguide.md
-[Azure Express Route]:  https://azure.microsoft.com/en-us/documentation/articles/expressroute-faqs/#supported-services
+[Azure Express Route]:  https://azure.microsoft.com/documentation/articles/expressroute-faqs/#supported-services
 
 [lnk-monitor]: iot-hub-operations-monitoring.md
 [lnk-metrics]: iot-hub-metrics.md

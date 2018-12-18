@@ -9,11 +9,11 @@
   items:
     - name: 建立 Jenkins 伺服器
       href: /azure/jenkins/install-jenkins-solution-template
+      maintainContext: true
 - name: 教學課程
   items:
     - name: App Service 中的 CI/CD
       href: /azure/jenkins/java-deploy-webapp-tutorial
-      maintainContext: true
     - name: Kubernetes 中的 CI/CD
       href: /azure/container-service/kubernetes/container-service-kubernetes-jenkins
       maintainContext: true
@@ -22,13 +22,13 @@
       maintainContext: true
     - name: 在管線作業中建立 Azure 資源
       href: /azure/jenkins/execute-cli-jenkins-pipeline
-      maintainContext: true
     - name: 用 Azure VM 代理程式進行調整
       href: /azure/jenkins/jenkins-azure-vm-agents
-      maintainContext: true
     - name: 使用 Azure Container Instances 建置
-      href: /azure/jenkins/azure-container-agents-plugin-run-container-as-an-agent
+      href: /azure/container-instances/container-instances-jenkins
       maintainContext: true
+    - name: 使用藍色/綠色模式部署至 AKS
+      href: /azure/jenkins/jenkins-aks-blue-green-deployment
 - name: 作法
   items:
     - name: 保護 Azure 上的 Jenkins

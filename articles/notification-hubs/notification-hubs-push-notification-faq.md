@@ -1,25 +1,26 @@
 ---
-title: "Azure 通知中樞：常見問題集 (FAQ) | Microsoft Docs"
-description: "在通知中樞上設計/實作解決方案的常見問題集"
+title: Azure 通知中樞：常見問題集 (FAQ) | Microsoft Docs
+description: 在通知中樞上設計/實作解決方案的常見問題集
 services: notification-hubs
 documentationcenter: mobile
-author: ysxu
-manager: erikre
-keywords: "推播通知, 推播通知, iOS 推播通知, android 推播通知, ios 推播, android 推播"
-editor: 
+author: dimazaid
+manager: kpiteira
+editor: spelluru
+keywords: 推播通知, 推播通知, iOS 推播通知, android 推播通知, ios 推播, android 推播
 ms.assetid: 7b385713-ef3b-4f01-8b1f-ffe3690bbd40
 ms.service: notification-hubs
 ms.workload: mobile
 ms.tgt_pltfrm: mobile-multiple
 ms.devlang: multiple
 ms.topic: article
-ms.date: 01/19/2017
-ms.author: yuaxu
-ms.openlocfilehash: d19a1b7c8d50ef0fde3cf65c9fd469bc34a27adc
-ms.sourcegitcommit: aaba209b9cea87cb983e6f498e7a820616a77471
+ms.date: 04/14/2018
+ms.author: dimazaid
+ms.openlocfilehash: fbdb52b1b2dee682021fd822d584551f41f723ff
+ms.sourcegitcommit: e221d1a2e0fb245610a6dd886e7e74c362f06467
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/12/2017
+ms.lasthandoff: 05/07/2018
+ms.locfileid: "33778506"
 ---
 # <a name="push-notifications-with-azure-notification-hubs-frequently-asked-questions"></a>使用 Azure 通知中樞推播通知：常見問題集 (FAQ)
 ## <a name="general"></a>一般
@@ -215,7 +216,7 @@ Azure 通知中樞提供數個功能以進行疑難排解，特別是在已捨�
 [通知中樞計量]: https://msdn.microsoft.com/library/dn458822.aspx
 [通知中樞計量範例]: https://github.com/Azure/azure-notificationhubs-samples/tree/master/FetchNHTelemetryInExcel
 [註冊匯出/匯入]: https://msdn.microsoft.com/library/dn790624.aspx
-[Azure portal]: https://portal.azure.com
+[Azure 入口網站]: https://portal.azure.com
 [complete samples]: https://github.com/Azure/azure-notificationhubs-samples
 [Mobile Apps]: https://azure.microsoft.com/services/app-service/mobile/
 [App Service 價格]: https://azure.microsoft.com/pricing/details/app-service/

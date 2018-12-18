@@ -1,24 +1,20 @@
 ---
-title: "Azure Cosmos DB 常見的使用案例與情況 | Microsoft Docs"
-description: "了解 Azure Cosmos DB 的前五大使用案例：使用者產生的內容、事件記錄、目錄資料、使用者喜好設定資料，以及物聯網 (IoT)。"
+title: Azure Cosmos DB 常見的使用案例與情況 | Microsoft Docs
+description: 了解 Azure Cosmos DB 的前五大使用案例：使用者產生的內容、事件記錄、目錄資料、使用者喜好設定資料，以及物聯網 (IoT)。
 services: cosmos-db
-author: mimig1
-manager: jhubbard
-editor: 
-documentationcenter: 
-ms.assetid: eca68a58-1a8c-4851-8cf8-6e4d2b889905
+author: SnehaGunda
+manager: kfile
 ms.service: cosmos-db
-ms.workload: data-services
-ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 11/15/2017
-ms.author: mimig
-ms.openlocfilehash: bcafc999c30d1e72971c8e26e951169ea6b56416
-ms.sourcegitcommit: 0e4491b7fdd9ca4408d5f2d41be42a09164db775
+ms.topic: conceptual
+ms.date: 05/7/2017
+ms.author: sngun
+ms.openlocfilehash: 2548213cf5d7d5a0fa1b0f5d7cd49f677ffe3ca4
+ms.sourcegitcommit: cb61439cf0ae2a3f4b07a98da4df258bfb479845
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/14/2017
+ms.lasthandoff: 09/05/2018
+ms.locfileid: "43700804"
 ---
 # <a name="common-azure-cosmos-db-use-cases"></a>常見的 Azure Cosmos DB 使用案例
 本文提供數個常見的 Azure Cosmos DB 使用案例概觀。  本文中的建議可作為使用 Cosmos DB 來開發應用程式時的起點。   
@@ -33,7 +29,7 @@ ms.lasthandoff: 12/14/2017
 ## <a name="introduction"></a>簡介
 [Azure Cosmos DB](../cosmos-db/introduction.md) 是 Microsoft 的全域分散式資料庫服務。 此服務的設計目的，是要讓客戶在任意數目的地理區域彈性地 (且獨立地) 調整輸送量和儲存空間。 Azure Cosmos DB 是現今市場中第一個提供涵蓋輸送量、延遲、可用性及一致性之全方位[服務等級協定](https://azure.microsoft.com/support/legal/sla/cosmos-db/)的全域分散式資料庫服務。 
 
-Azure Cosmos DB 是一種全域分散式、多模型資料庫，廣泛用於各種應用程式和使用案例。 對於任何需要低毫秒級回應時間及需要快速且全域調整的[無伺服器](http://azure.com/serverless)應用程式來說，它是一個理想的選擇。 它以原生方式和可延伸的方式支援多個資料模型 (索引鍵-值、文件、圖形及單欄式) 和許多 API (包括 [MongoDB API](mongodb-introduction.md)、[SQL API](documentdb-introduction.md)、[圖形 API (Gremlin)](graph-introduction.md) 及[資料表 API](table-introduction.md)) 來進行資料存取。 
+Azure Cosmos DB 是一種全域分散式、多模型資料庫，廣泛用於各種應用程式和使用案例。 對於任何需要低毫秒級回應時間及需要快速且全域調整的[無伺服器](http://azure.com/serverless)應用程式來說，它是一個理想的選擇。 它以原生方式和可延伸的方式支援多個資料模型 (索引鍵-值、文件、圖形及單欄式) 和許多 API (包括 [MongoDB API](mongodb-introduction.md)、[SQL API](documentdb-introduction.md)、[Gremlin API](graph-introduction.md) 及[資料表 API](table-introduction.md)) 來進行資料存取。 
 
 以下是 Azure Cosmos DB 的一些特性，可讓 Cosmos DB 非常適合用於有全域發展企圖的高效能應用程式。
 
@@ -51,11 +47,11 @@ IoT 使用案例在如何內嵌、處理和儲存資料方面通常共用一些�
 
 ![Azure Cosmos DB IoT 參考架構](./media/use-cases/iot.png)
 
-Azure 事件中樞可以擷取暴增的資料量，因為它提供高輸送量資料擷取和低延遲。 您可以將需要處理以取得即時資訊分析的內嵌資料，使用漏斗方式倒入 Azure 串流分析以進行即時分析。 您可以將資料載入 Azure Cosmos DB 以進行臨機操作查詢。 將資料載入 Azure Cosmos DB 之後，這些資料便可供查詢。 此外，可以在變更摘要上讀取新的資料以及現有資料的變更。 變更摘要是永久性的紀錄檔，僅以附加寫入方式循序儲存 Cosmos DB 集合之變更。 Azure Cosmos DB 中的全部資料或資料變更可用來在即時分析中作為參考資料。 此外，您還可以將 Azure Cosmos DB 資料連線到 HDInsight 來進行 Pig、Hive 或 Map/Reduce 作業，以進一步精簡和處理資料。  接著，系統會將精簡過的資料載入回 Azure Cosmos DB 以供報告使用。   
+Azure 事件中樞可以擷取暴增的資料量，因為它提供高輸送量資料擷取和低延遲。 您可以將需要處理以取得即時資訊分析的內嵌資料，使用漏斗方式倒入 Azure 串流分析以進行即時分析。 您可以將資料載入 Azure Cosmos DB 以進行臨機操作查詢。 將資料載入 Azure Cosmos DB 之後，這些資料便可供查詢。 此外，可以在變更摘要上讀取新的資料以及現有資料的變更。 變更摘要是永久性的記錄檔，僅以附加寫入方式循序儲存 Cosmos DB 容器的變更。 Azure Cosmos DB 中的全部資料或資料變更可用來在即時分析中作為參考資料。 此外，您還可以將 Azure Cosmos DB 資料連線到 HDInsight 來進行 Pig、Hive 或 Map/Reduce 作業，以進一步精簡和處理資料。  接著，系統會將精簡過的資料載入回 Azure Cosmos DB 以供報告使用。   
 
 如需使用 Azure Cosmos DB、EventHubs 和 Storm 的範例 IoT 解決方案，請參閱 [GitHub 上的 hdinsight-storm-examples 存放庫 (英文)](https://github.com/hdinsight/hdinsight-storm-examples/)。
 
-如需有關適用於 IoT 的 Azure 產品詳細資訊，請參閱[建立您的物聯網](http://www.microsoft.com/server-cloud/internet-of-things.aspx)。 
+如需有關適用於 IoT 的 Azure 供應項目詳細資訊，請參閱 [建立您的物聯網](https://www.microsoft.com/en-us/internet-of-things)。 
 
 ## <a name="retail-and-marketing"></a>零售和行銷
 Azure Cosmos DB 廣泛用於 Microsoft 自己的電子商務平台，這些平台執行了 Windows 市集和 XBox Live。 Azure Cosmos DB 也在零售業用於儲存目錄資料，並用於訂單處理管線中事件來源。
@@ -109,8 +105,8 @@ JSON (Cosmos DB 所支援的格式) 是一種呈現 UI 配置資料的有效格�
 
 或者，如果您想要了解更多有關使用 Cosmos DB 的客戶資訊，可以參考下列客戶案例：
 
-* [Jet.com](https://jet.com)。電子商務挑戰者著眼於最佳位置、在 Microsoft 雲端上執行、在全球運用 Cosmos DB。
-* [Asos.com](http://www.asos.com/)。Asos.com 是一個英國線上時尚與美妝商店。 Asos 的主要對象為年輕成人，除了自有的服飾與配件之外，還販售超過 850 個品牌的商品。
+* [Jet.com](https://jet.com)。 電子商務挑戰者著眼於最佳位置、在 Microsoft 雲端上執行、在全球運用 Cosmos DB。
+* [Asos.com](http://www.asos.com/)。 Asos.com 是一個英國線上時尚與美妝商店。 Asos 的主要對象為年輕成人，除了自有的服飾與配件之外，還販售超過 850 個品牌的商品。
 * [Toyota](https://www.toyota.com/)。 Toyota Motor Corporation 是一個日本汽車製造商。 Toyota 將 Cosmos DB 運用在全球 IoT 應用程式。
 * [Citrix](https://customers.microsoft.com/story/citrix)。 Citrix 使用 Azure Service Fabric 和 Azure Cosmos DB 開發單一登入解決方式。
 * [TEXA](https://customers.microsoft.com/story/texaspa) TEXA 針對汽車車主推出的革命性 IoT 解決方案不僅可幫助節省時間、金錢、燃料，還可能幫助保命。
@@ -118,7 +114,7 @@ JSON (Cosmos DB 所支援的格式) 是一種呈現 UI 配置資料的有效格�
 * [Johnson Controls](http://www.johnsoncontrols.com)。 Johnson Controls 是一個全球多樣化技術與多重產業領導者，為超過 150 個國家/地區的客戶提供多種服務。
 * [Microsoft Windows、通用市集、Azure IoT 中樞、Xbox Live 及其他網際網路級別的服務](https://azure.microsoft.com/blog/how-azure-documentdb-planet-scale-nosql-helps-run-microsoft-s-own-businesses/)。 Microsoft 如何使用 Azure Cosmos DB 來建置可大幅調整的服務。
 * [Microsoft 資料與分析小組](https://customers.microsoft.com/story/microsoftdataandanalytics)。 Microsoft 的「資料與分析」小組使用 Azure Cosmos DB 來達成全球級別的巨量資料收集
-* [Sulekha.com](https://customers.microsoft.com/story/sulekha-uses-azure-documentdb-to-connect-customers-and-businesses-across-india)。Sulekha 使用 Azure Cosmos DB 來連接印度各地的客戶和企業。
+* [Sulekha.com](https://customers.microsoft.com/story/sulekha-uses-azure-documentdb-to-connect-customers-and-businesses-across-india)。 Sulekha 使用 Azure Cosmos DB 來連接印度各地的客戶和企業。
 * [NewOrbit](https://customers.microsoft.com/story/neworbit-takes-flight-with-azure-documentdb)。 NewOrbit 使用 Azure Cosmos DB 而大展鴻圖。
 * [Affinio](https://customers.microsoft.com/doclink/affinio-switches-from-aws-to-azure-documentdb-to-harness-social-data-at-scale)。 Affinio 從 AWS 切換為 Azure Cosmos DB，以操控大規模的社交資料。
 * [Next Games](https://azure.microsoft.com//blog/the-walking-dead-no-mans-land-game-soars-to-1-with-azure-documentdb/)。 Walking Dead: No Man's Land 遊戲在 Azure Cosmos DB 的支援下躍升為排行第一的遊戲。

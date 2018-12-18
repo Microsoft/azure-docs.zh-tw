@@ -1,26 +1,23 @@
 ---
-title: "將 BizTalk Server EDI 解決方案移轉至 BizTalk 服務技術指南 | Microsoft Docs"
-description: "將 EDI 移轉到 MABS；Microsoft Azure BizTalk 服務"
+title: 將 BizTalk Server EDI 解決方案移轉至 BizTalk 服務 | Microsoft Docs
+description: 了解如何將 Microsoft BizTalk Server EDI 解決方案移轉至 Microsoft Azure BizTalk 服務 (MABS)
 services: biztalk-services
-documentationcenter: na
-author: MandiOhlinger
-manager: anneta
-editor: 
-ms.assetid: 61c179fa-3f37-495b-8016-dee7474fd3a6
 ms.service: biztalk-services
-ms.workload: integration
-ms.tgt_pltfrm: na
-ms.devlang: na
+author: jonfancey
+ms.author: jonfan
+manager: jeconnoc
 ms.topic: article
-ms.date: 11/07/2016
-ms.author: mandia
-ms.openlocfilehash: 1b70fc3d199d7f1521acb534dafec8fb3e69500e
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.date: 07/31/2018
+ms.reviewer: jonfan, LADocs
+ms.suite: integration
+ms.openlocfilehash: 4ce65f1b5dd22da031ebf6730b5efad2d04f91a0
+ms.sourcegitcommit: f86e5d5b6cb5157f7bde6f4308a332bfff73ca0f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 07/31/2018
+ms.locfileid: "39365582"
 ---
-# <a name="migrating-biztalk-server-edi-solutions-to-biztalk-services-technical-guide"></a>BizTalk Server EDI 解決方案移轉至 BizTalk 服務：技術指南
+# <a name="migrate-biztalk-server-edi-solutions-to-biztalk-services-technical-guide"></a>將 BizTalk Server EDI 解決方案移轉至 BizTalk 服務：技術指南
 
 > [!INCLUDE [BizTalk Services is being retired, and replaced with Azure Logic Apps](../../includes/biztalk-services-retirement.md)]
 
@@ -75,7 +72,7 @@ BizTalk 服務提供方便使用的組態經驗來快速建立及部署交易夥
 
 您可以在交易夥伴合約接收訊息之前，或在合約處理訊息，並將它傳遞到服務匯流排端點後，使用自訂程式碼和/或使用服務匯流排訊息佇列和主題插入發佈/訂閱流程。
 
-如需訊息流程模式的詳細資訊，請參閱本主題的 **案例/訊息流程** 。
+如需訊息流程模式的相關資訊，請參閱本文的**案例/訊息流程**。
 
 ## <a name="agreements"></a>合約
 如果您熟悉用於 EDI 處理的 BizTalk Server 2010 交易夥伴合約，則 BizTalk 服務交易夥伴合約看起來會很熟悉。 大部分的合約設定相同，而且使用相同的詞彙。 在某些情況下，相較於 BizTalk Server 中的相同設定，合約設定會簡單許多。 Microsoft Azure BizTalk 服務支援 X12、EDIFACT 和 AS2 傳輸。
@@ -103,7 +100,7 @@ Microsoft Azure BizTalk 服務提供工具，可將 BizTalk Server 移轉至 Biz
 ## <a name="orchestrations"></a>協調流程
 如果您需要將 BizTalk Server 協調流程移轉至 Microsoft Azure，協調流程需要重寫，因為 Microsoft Azure 不支援 BizTalk Server 協調流程的執行。  您可以在 Windows Workflow Foundation 4.0 (WF4) 服務中重寫協調流程功能。  這會完全重寫，因為目前沒有從 BizTalk Server 協調流程至 WF4 的移轉。 以下是 Windows 工作流程的一些資源：
 
-* [*如何整合 WCF 工作流程服務與服務匯流排佇列和主題*](https://msdn.microsoft.com/library/azure/hh709041.aspx) (由 Paolo Salvatori 撰寫)。 
+* [*如何整合 WCF 工作流程服務與服務匯流排佇列和主題*](https://blogs.msdn.microsoft.com/paolos/2013/04/09/how-to-integrate-a-wcf-workflow-service-with-service-bus-queues-and-topics/) (由 Paolo Salvatori 撰寫)。 
 * [*使用 Windows Workflow Foundation 和 Azure 建置應用程式*講習](http://go.microsoft.com/fwlink/p/?LinkId=237314) (來自 Build 2011 會議)。
 * [*Windows Workflow Foundation 開發人員中心*](http://go.microsoft.com/fwlink/p/?LinkId=237315) (位於 MSDN 上)。
 * [*Windows Workflow Foundation 4 (WF4) 文件*](https://msdn.microsoft.com/library/dd489441.aspx) (位於 MSDN 上)。
@@ -117,10 +114,7 @@ BizTalk Server EDI 處理程序有「後援合約」概念。  到目前為止�
 ### <a name="routing-to-multiple-destinations"></a>路由至多個目的地
 BizTalk 服務橋接器目前不支援使用發佈-訂閱模型，將訊息路由至多個目的地。 您可以轉為將訊息從 BizTalk 服務橋接器路由到服務匯流排主題，如此即可有多個訂用帳戶會接收位於多個端點的訊息。
 
-## <a name="conclusion"></a>結論
-Microsoft Azure BizTalk 服務會定期更新以新增更多特性和功能。 每次更新時，我們期望能支援更的多功能，以方便使用 BizTalk 服務與其他 Azure 技術建立端對端解決方案。
-
 ## <a name="see-also"></a>另請參閱
-[使用 Azure 開發企業應用程式](https://msdn.microsoft.com/library/azure/hh674490.aspx)
+[Azure 中的 LOB 解決方案](https://azure.microsoft.com/solutions/lob-applications)
 
 [EDImessageflow]: ./media/biztalk-migrating-to-edi-guide/IC719455.png

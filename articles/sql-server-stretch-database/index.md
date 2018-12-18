@@ -9,14 +9,15 @@ ms.assetid: ''
 ms.service: sql-server-stretch-database
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: landing-page
+ms.topic: overview
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: d40cd906abbee8b1d33f9e67c1940918ba4acb28
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: a8aa45765a784e4f843517e9dcc0a03e54bfb401
+ms.sourcegitcommit: a1140e6b839ad79e454186ee95b01376233a1d1f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "43144096"
 ---
 # <a name="sql-server-stretch-database-documentation"></a>SQL Server Stretch Database 文件
 

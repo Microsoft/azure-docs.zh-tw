@@ -19,6 +19,7 @@ ms.sourcegitcommit: 34e0b4a7427f9d2a74164a18c3063c8be967b194
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 03/30/2018
+ms.locfileid: "30292416"
 ---
 # <a name="learn-the-various-ways-to-debug-an-azure-cloud-service"></a>了解進行 Azure 雲端服務偵錯的各種方式
 本文提供進行 Azure 雲端服務偵錯的各種方法連結。 

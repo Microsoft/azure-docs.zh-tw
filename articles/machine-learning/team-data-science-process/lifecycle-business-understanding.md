@@ -3,22 +3,24 @@ title: Team Data Science Process 生命週期的了解商務階段 - Azure | Mic
 description: 資料科學專案了解商務階段的目標、工作和交付項目
 services: machine-learning
 documentationcenter: ''
-author: bradsev
+author: deguhath
 manager: cgronlun
 editor: cgronlun
 ms.assetid: ''
 ms.service: machine-learning
+ms.component: team-data-science-process
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 11/04/2017
-ms.author: bradsev
-ms.openlocfilehash: daaaccaeac196b5f4651183173c8e83085d5184d
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.author: deguhath
+ms.openlocfilehash: 6d8eedbbf4a682443e73ecb9cf9496f3cdd1cd9d
+ms.sourcegitcommit: 944d16bc74de29fb2643b0576a20cbd7e437cef2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 06/07/2018
+ms.locfileid: "34837196"
 ---
 # <a name="business-understanding"></a>了解商務
 
@@ -80,7 +82,7 @@ ms.lasthandoff: 03/28/2018
 以下是此階段的交付項目︰
 
    * [規範文件](https://github.com/Azure/Azure-TDSP-ProjectTemplate/blob/master/Docs/Project/Charter.md)：TDSP 專案結構定義中會提供標準範本。 規範文件是即時文件。 當您進行新的探索，以及當商務需求變更時，您就要更新整個專案的範本。 關鍵在於要反覆審視這份文件，並隨著探索程序的進行，新增更多詳細資料。 讓客戶和其他專案關係人參與變更，並清楚地說明進行這些變更的原因。  
-   * [資料來源](https://github.com/Azure/Azure-TDSP-ProjectTemplate/blob/master/Docs/DataReport/Data%20Defintion.md#raw-data-sources) \(英文\)：TDSP 專案 **Data report** 資料夾中 **Data definition** 報告的 **Raw data sources** 區段包含資料來源。 此區段指定未經處理資料的原始位置和目的地位置。 在後面的階段中，您要填入其他詳細資料，例如用來將資料移至分析環境的指令碼。  
+   * [資料來源](https://github.com/Azure/Azure-TDSP-ProjectTemplate/blob/master/Docs/Data_Report/Data%20Defintion.md#raw-data-sources) \(英文\)：TDSP 專案 **Data report** 資料夾中 **Data definition** 報告的 **Raw data sources** 區段包含資料來源。 此區段指定未經處理資料的原始位置和目的地位置。 在後面的階段中，您要填入其他詳細資料，例如用來將資料移至分析環境的指令碼。  
    * [資料字典](https://github.com/Azure/Azure-TDSP-ProjectTemplate/tree/master/Docs/Data_Dictionaries) \(英文\)：本文件提供用戶端所提供之資料的說明。 這些說明包含結構描述的相關資訊 (資料類型、驗證規則相關資訊 (如果有))，以及實體關聯性圖表 (如果有)。
 
 ## <a name="next-steps"></a>後續步驟

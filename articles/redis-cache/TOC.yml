@@ -2,37 +2,43 @@
   href: index.md
 - name: 概觀
   items:
-    - name: 為何使用 Redis 快取
-      href: 'https://azure.microsoft.com/services/cache/'
-    - name: 探索進階層功能
-      href: cache-premium-tier-intro.md
-    - name: 案例
-      items:
-        - name: 存取快取中的項目
-          href: 'cache-dotnet-how-to-use-azure-redis-cache.md#add-and-retrieve-objects-from-the-cache'
-        - name: 設定高可用性
-          href: 'https://azure.microsoft.com/pricing/details/cache/'
-        - name: 使用 SSL 安全連線
-          href: 'cache-dotnet-how-to-use-azure-redis-cache.md#connect-to-the-cache'
-        - name: 從受控快取服務遷移
-          href: cache-migrate-to-redis.md
-        - name: 模式與作法快取指導方針
-          href: ../best-practices-caching.md?toc=%2fazure%2fredis-cache%2ftoc.json
-- name: 開始使用
+    - name: 關於 Azure Redis 快取
+      href: cache-overview.md
+- name: 快速入門
   items:
-    - name: ASP.NET
+    - name: 建立 ASP.NET 應用程式
       href: cache-web-app-howto.md
-    - name: .NET
+    - name: 建立 .NET 應用程式
       href: cache-dotnet-how-to-use-azure-redis-cache.md
-    - name: 節點
+    - name: 建立 .NET Core 應用程式
+      href: cache-dotnet-core-quickstart.md
+    - name: 建立 Node.js 應用程式
       href: cache-nodejs-get-started.md
-    - name: Java
+    - name: 建立 Java 應用程式
       href: cache-java-get-started.md
-    - name: Python
+    - name: 建立 Python 應用程式
       href: cache-python-get-started.md
-    - name: Redis 快取常見問題集
-      href: cache-faq.md
-- name: 作法
+- name: 教學課程
+  items:
+    - name: 使用快取排行榜
+      href: cache-web-app-cache-aside-leaderboard.md
+- name: 範例
+  items:
+    - name: Redis 快取範例
+      href: cache-redis-samples.md
+    - name: Azure PowerShell
+      href: cache-howto-manage-redis-cache-powershell.md
+    - name: Azure CLI
+      href: cli-samples.md
+- name: 概念
+  items:
+    - name: 最佳做法
+      items:
+        - name: Azure Redis Cache 的最佳做法
+          href: 'https://gist.github.com/JonCole/925630df72be1351b21440625ff2671f'
+        - name: 針對快取的 Azure Architecture 最佳做法
+          href: 'https://docs.microsoft.com/azure/architecture/best-practices/caching?toc=%2Fazure%2Fredis-cache%2Ftoc.json'
+- name: 使用說明指南
   items:
     - name: 規劃
       items:
@@ -44,6 +50,8 @@
           href: cache-how-to-premium-vnet.md
         - name: 利用叢集來散發您的快取
           href: cache-how-to-premium-clustering.md
+        - name: 從受控快取服務遷移
+          href: cache-migrate-to-redis.md
     - name: 自動化
       items:
         - name: 使用 Azure Powershell 進行部署和管理
@@ -72,6 +80,8 @@
           href: 'cache-administration.md#reboot'
         - name: 更新排程
           href: 'cache-administration.md#schedule-updates'
+        - name: 設定 redis-cli.exe 存取
+          href: cache-how-to-redis-cli-tool.md
     - name: 監視及疑難排解
       items:
         - name: 在 Azure 入口網站中監視
@@ -114,5 +124,9 @@
       href: 'https://azure.microsoft.com/roadmap/?category=databases'
     - name: 價格
       href: 'https://azure.microsoft.com/pricing/details/cache/'
-    - name: Redis 快取範例
-      href: cache-redis-samples.md
+    - name: Redis 快取常見問題集
+      href: cache-faq.md
+    - name: 影片
+      href: 'https://www.youtube.com/results?search_query=azure+redis+cache'
+    - name: MSDN 論壇
+      href: 'https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurecache&filter=alltypes&sort=lastpostdesc'

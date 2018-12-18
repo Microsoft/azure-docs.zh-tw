@@ -1,8 +1,14 @@
 ### YamlMime:YamlDocument
+ms.openlocfilehash: e7a5c7f08b34c91512ad2bf5d9f3fcb82feb9e08
+ms.sourcegitcommit: d211f1d24c669b459a3910761b5cacb4b4f46ac9
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/06/2018
+ms.locfileid: "44026091"
 documentType: LandingData
-title: "Site Recovery 文件"
+title: Site Recovery 文件
 metadata:
-  title: "Azure Site Recovery 文件 - 教學課程和 API 參考 | Microsoft Docs"
+  title: Azure Site Recovery 文件 - 教學課程和 API 參考 | Microsoft Docs
   meta.description: Learn how to set up cloud disaster recovery and business continuity for physical servers and virtual machines by deploying and managing replication.
   services: site-recovery
   author: czeumault
@@ -13,72 +19,67 @@ metadata:
   ms.topic: landing-page
   ms.date: 09/23/2017
   ms.author: carolz
-  ms.openlocfilehash: 0d66952b5f159ce92b8586f7beb71c25fe7c7b39
-  ms.sourcegitcommit: 6fb44d6fbce161b26328f863479ef09c5303090f
-  ms.translationtype: HT
-  ms.contentlocale: zh-TW
-  ms.lasthandoff: 01/10/2018
 abstract:
-  description: "Azure Site Recovery 可協調和管理 Azure VM 以及內部部署 VM 和實體伺服器的災害復原。 了解如何透過我們的快速入門及教學課程來複寫、容錯移轉和容錯回復。"
+  description: Azure Site Recovery 可協調和管理 Azure VM 以及內部部署 VM 和實體伺服器的災害復原。 了解如何透過我們的快速入門及教學課程來複寫、容錯移轉和容錯回復。
 sections:
-- title: "5 分鐘快速入門"
+- title: 5 分鐘快速入門
   items:
   - type: paragraph
-    text: "快速設定 Azure VM 的災害復原"
+    text: 快速設定 Azure VM 的災害復原
   - type: list
     style: icon48
     items:
     - image:
         src: /azure/site-recovery/media/index/portal.svg
-      text: "Azure 入口網站"
+      text: Azure 入口網站
       href: /azure/site-recovery/azure-to-azure-quickstart
-- title: "逐步教學課程"
+- title: 逐步教學課程
   items:
   - type: paragraph
-    text: "了解如何設定 VM 和實體伺服器的災害復原。"
+    text: 了解如何設定 VM 和實體伺服器的災害復原。
   - type: text
-    html: "<h3>Azure 至 Azure</h3>"
+    html: <h3>Azure 至 Azure</h3>
   - type: list
     style: ordered
     items:
-    - html: "<a href=\"azure-to-azure-tutorial-enable-replication\">設定災害復原</a>"
-    - html: "<a href=\"azure-to-azure-tutorial-dr-drill\">執行災害復原演練</a>"
-    - html: "<a href=\"azure-to-azure-tutorial-failover-failback\">執行容錯移轉和容錯回復</a>"
+    - html: <a href="azure-to-azure-tutorial-enable-replication">設定災害復原</a>
+    - html: <a href="azure-to-azure-tutorial-dr-drill">執行災害復原演練</a>
+    - html: <a href="azure-to-azure-tutorial-failover-failback">執行容錯移轉和容錯回復</a>
   - type: text
     html: <h3>VMware</h3>
   - type: list
     style: ordered
     items:
-    - html: "<a href=\"tutorial-prepare-azure\">準備 Azure</a>"
-    - html: "<a href=\"tutorial-prepare-on-premises-vmware\">準備內部部署 VMware</a>"
-    - html: "<a href=\"tutorial-vmware-to-azure\">設定災害復原</a>"
-    - html: "<a href=\"tutorial-dr-drill-azure\">執行災害復原演練</a>"
-    - html: "<a href=\"tutorial-vmware-to-azure-failover-failback\">執行容錯移轉和容錯回復</a>"
+    - html: <a href="tutorial-prepare-azure">準備 Azure</a>
+    - html: <a href="tutorial-prepare-on-premises-vmware">準備內部部署 VMware</a>
+    - html: <a href="tutorial-vmware-to-azure">設定災害復原</a>
+    - html: <a href="tutorial-dr-drill-azure">執行災害復原演練</a>
+    - html: <a href="vmware-azure-tutorial-failover-failback">執行容錯移轉和容錯回復</a>
   - type: text
     html: <h3>Hyper-V</h3>
   - type: list
     style: ordered
     items:
-    - html: "<a href=\"tutorial-prepare-azure\">準備 Azure</a>"
-    - html: "<a href=\"tutorial-prepare-on-premises-hyper-v\">準備內部部署 Hyper-V</a>"
-    - html: "<a href=\"tutorial-hyper-v-to-azure\">設定適用於 Hyper-V 虛擬機器的災害復原</a>"
-    - html: "<a href=\"tutorial-hyper-v-vmm-to-azure\">安裝 System Center VMM 所管理的適用於 Hyper-V 虛擬機器的災害復原</a>"
-    - html: "<a href=\"tutorial-dr-drill-azure\">執行災害復原演練</a>"
-    - html: "<a href=\"tutorial-hyper-v-to-azure-failover-failback\">執行容錯移轉和容錯回復</a>"
+    - html: <a href="tutorial-prepare-azure">準備 Azure</a>
+    - html: <a href="tutorial-prepare-on-premises-hyper-v">準備內部部署 Hyper-V</a>
+    - html: <a href="tutorial-hyper-v-to-azure">設定適用於 Hyper-V 虛擬機器的災害復原</a>
+    - html: <a href="tutorial-hyper-v-vmm-to-azure">安裝 System Center VMM 所管理的適用於 Hyper-V 虛擬機器的災害復原</a>
+    - html: <a href="tutorial-dr-drill-azure">執行災害復原演練</a>
+    - html: <a href="tutorial-hyper-v-to-azure-failover-failback">執行容錯移轉和容錯回復</a>
   - type: text
-    html: "<h3>移轉至 Azure</h3>"
+    html: <h3>移轉至 Azure</h3>
   - type: list
     style: ordered
     items:
-    - html: "<a href=\"tutorial-prepare-azure\">準備 Azure</a>"
-    - html: "<a href=\"tutorial-migrate-on-premises-to-azure\">將內部部署機器</a>或 <a href=\"tutorial-migrate-aws-to-azure\">AWS 執行個體移轉至 Azure</a>"
-- title: "參考"
+    - html: <a href="tutorial-prepare-azure">準備 Azure</a>
+    - html: <a href="tutorial-migrate-on-premises-to-azure">將內部部署機器</a>或 <a href="tutorial-migrate-aws-to-azure">AWS 執行個體移轉至 Azure</a>
+- title: 參考
   items:
   - type: list
     style: cards
     className: cardsD
     items:
-    - title: "命令列"
-      html: <p><a href="/powershell/module/azurerm.siterecovery/?view=azurermps-4.3.1">Azure PowerShell</a></p>
+    - title: 命令列
+      html: <p><a href="/powershell/module/azurerm.siterecovery>Azure PowerShell</a></p>
     - title: REST
-      html: "<p><a href=\"/rest/api/site-recovery/\">REST API 參考</a></p>"
+      html: <p><a href="/rest/api/site-recovery/">REST API 參考</a></p>

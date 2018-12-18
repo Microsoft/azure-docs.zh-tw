@@ -9,19 +9,20 @@ ms.assetid: 6877a7e8-1a58-4cfb-bbd3-252ac72e4145
 ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 01/10/2018
 ms.author: shlo
 robots: noindex
-ms.openlocfilehash: 09568dcbbec90bcba2f2782072b83cc04d9e8a87
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 59631ee0115c817da1b0588c1ad37d2f8b34db67
+ms.sourcegitcommit: 0c490934b5596204d175be89af6b45aafc7ff730
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 06/27/2018
+ms.locfileid: "37053645"
 ---
 # <a name="compute-environments-supported-by-azure-data-factory"></a>Azure Data Factory 支援的計算環境
 > [!NOTE]
-> 本文適用於第 1 版 Azure Data Factory (正式運作版)。 如果您使用處於預覽狀態的 Data Factory 服務第 2 版，則請參閱[第 2 版中的計算連結服務](../compute-linked-services.md)。
+> 本文適用於第 1 版的 Azure Data Factory。 如果您使用目前版本的 Data Factory 服務，請參閱[計算連結服務](../compute-linked-services.md)。
 
 本文說明您可用來處理或轉換資料的計算環境。 本文還提供在設定連結服務以將這些計算環境連結至 Azure Data Factory 時，Data Factory 所支援之不同設定 (隨選與自備) 的詳細資料。
 
@@ -65,7 +66,7 @@ Microsoft 會更新具有最新 Hadoop 生態系統元件和修正程式的 HDIn
 - 如果您要使用隨選 HDInsight 連結服務來執行 Data Factory 第 1 版 DotNet 自訂活動，請將 DotNet 自訂活動 JSON 定義更新成改為使用 Azure Batch 連結服務。 如需詳細資訊，請參閱[在 Data Factory 管線中使用自訂活動](https://docs.microsoft.com/azure/data-factory/v1/data-factory-use-custom-activities)。 
 
 > [!Note]
-> 如果您使用現有的 Data Factory 第 1 版自備叢集 HDInsight 連結裝置，或 Azure Data Factory 第 2 版自備和隨選 HDInsight 連結服務，則不必採取任何動作。 這些案例已強制執行最新版的 HDInsight 叢集支援原則。 
+> 如果您使用現有的 Data Factory 第 1 版自備叢集 HDInsight 連結裝置，或 Azure Data Factory 自備和隨選 HDInsight 連結服務，則不必採取任何動作。 這些案例已強制執行最新版的 HDInsight 叢集支援原則。 
 >
 > 
 

@@ -1,6 +1,6 @@
 ---
-title: "SQL Server 可用性群組 - Azure 虛擬機器 - 概觀 | Microsoft Docs"
-description: "本文介紹 Azure 虛擬機器上的「SQL Server 可用性群組」。"
+title: SQL Server 可用性群組 - Azure 虛擬機器 - 概觀 | Microsoft Docs
+description: 本文介紹 Azure 虛擬機器上的「SQL Server 可用性群組」。
 services: virtual-machines
 documentationCenter: na
 authors: MikeRayMSFT
@@ -15,11 +15,12 @@ ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
 ms.date: 01/13/2017
 ms.author: mikeray
-ms.openlocfilehash: 4a531fb87d9cd2743138ba7a027bdf0d132b9747
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.openlocfilehash: b71ba12f6c533d67b04366f05b9334e1993823fa
+ms.sourcegitcommit: a3a0f42a166e2e71fa2ffe081f38a8bd8b1aeb7b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 09/01/2018
+ms.locfileid: "43382023"
 ---
 # <a name="introducing-sql-server-always-on-availability-groups-on-azure-virtual-machines"></a>Azure 虛擬機器上的 SQL Server Always On 可用性群組簡介 #
 

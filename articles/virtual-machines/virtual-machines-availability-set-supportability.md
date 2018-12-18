@@ -1,24 +1,25 @@
 ---
-title: "在現有的可用性設定組中新增 Azure VM 的可支援性 | Microsoft Docs"
-description: "在現有的可用性設定組中新增 Azure VM 的可支援性。"
+title: 在現有的可用性設定組中新增 Azure VM 的可支援性 | Microsoft Docs
+description: 在現有的可用性設定組中新增 Azure VM 的可支援性。
 services: virtual-machines-linux
-documentationcenter: 
+documentationcenter: ''
 author: Deland-Han
 manager: cshepard
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: virtual-machines
 ms.workload: virtual-machines
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: troubleshooting
-ms.date: 11/03/2017
+ms.date: 06/15/2018
 ms.author: delhan
-ms.openlocfilehash: 8bf2a55563772e26239445732b2b08df677436ef
-ms.sourcegitcommit: 3df3fcec9ac9e56a3f5282f6c65e5a9bc1b5ba22
+ms.openlocfilehash: 13448f4b335d84264d4141cb4fb8c3eadcf0303e
+ms.sourcegitcommit: e8f443ac09eaa6ef1d56a60cd6ac7d351d9271b9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/04/2017
+ms.lasthandoff: 09/12/2018
+ms.locfileid: "35767495"
 ---
 # <a name="supportability-of-adding-azure-vms-to-an-existing-availability-set"></a>在現有的可用性設定組中新增 Azure VM 的可支援性
 

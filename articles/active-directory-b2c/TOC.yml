@@ -1,0 +1,331 @@
+items:
+- name: Azure AD B2C 文件
+  href: index.yml
+- name: 概觀
+  items:
+  - name: 關於 Azure AD B2C
+    href: active-directory-b2c-overview.md
+    expanded: true
+- name: 快速入門
+  items:
+  - name: 設定登入 - ASP.NET
+    href: active-directory-b2c-quickstarts-web-app.md
+  - name: 設定登入 - 桌面
+    href: active-directory-b2c-quickstarts-desktop-app.md
+  - name: 設定登入 - 單一頁面
+    href: active-directory-b2c-quickstarts-spa.md
+  expanded: true
+- name: 教學課程
+  items:
+  - name: 1 - 建立 B2C 租用戶
+    href: tutorial-create-tenant.md
+  - name: 2 - 驗證帳戶
+    items:
+    - name: ASP.NET
+      href: active-directory-b2c-tutorials-web-app.md
+    - name: 桌上型
+      href: active-directory-b2c-tutorials-desktop-app.md
+    - name: 單一頁面
+      href: active-directory-b2c-tutorials-spa.md
+  - name: 3 - 授與 API 存取權限
+    items:
+    - name: ASP.NET
+      href: active-directory-b2c-tutorials-web-api.md
+    - name: 桌上型
+      href: active-directory-b2c-tutorials-desktop-app-webapi.md
+    - name: 單一頁面
+      href: active-directory-b2c-tutorials-spa-webapi.md
+- name: 範例
+  href: code-samples.md
+- name: 概念
+  items:
+  - name: 應用程式類型
+    href: active-directory-b2c-apps.md
+  - name: 驗證通訊協定
+    href: active-directory-b2c-reference-protocols.md
+  - name: 內建原則
+    href: active-directory-b2c-reference-policies.md
+  - name: 身分識別體驗架構
+    items:
+    - name: 自訂原則
+      href: active-directory-b2c-overview-custom.md
+    - name: 使用者存取
+      href: manage-user-access.md
+    - name: 使用者資料
+      href: manage-user-data.md
+  - name: OAuth 2.0
+    href: active-directory-b2c-reference-oauth-code.md
+  - name: OpenId Connect
+    href: active-directory-b2c-reference-oidc.md
+  - name: 單頁登入
+    href: active-directory-b2c-reference-spa.md
+  - name: 權杖
+    href: active-directory-b2c-reference-tokens.md
+  - name: 使用者帳戶
+    href: user-overview.md
+- name: 使用說明指南
+  items:
+  - name: 存取稽核記錄
+    href: active-directory-b2c-reference-audit-logs.md
+  - name: 設定權杖
+    href: active-directory-b2c-token-session-sso.md
+  - name: 自訂語言
+    href: active-directory-b2c-reference-language-customization.md
+  - name: 自訂密碼
+    href: active-directory-b2c-reference-password-complexity.md
+  - name: 自訂使用者介面
+    href: active-directory-b2c-reference-ui-customization.md
+    items:
+    - name: 可供自訂的協助程式工具
+      href: active-directory-b2c-reference-ui-customization-helper-tool.md
+  - name: 定義自訂屬性
+    href: active-directory-b2c-reference-custom-attr.md
+  - name: 停用電子郵件驗證
+    href: active-directory-b2c-reference-disable-ev.md
+  - name: 啟用 MFA
+    href: active-directory-b2c-reference-mfa.md
+  - name: 身分識別體驗架構
+    items:
+    - name: 建立自訂原則
+      href: active-directory-b2c-get-started-custom.md
+    - name: 使用 Application Insights 收集記錄
+      href: active-directory-b2c-troubleshoot-custom.md
+    - name: 整合 RESTful API
+      items:
+      - name: 驗證使用者輸入
+        href: active-directory-b2c-rest-api-validation-custom.md
+      - name: 取得額外宣告
+        href: active-directory-b2c-rest-api-step-custom.md
+      - name: 新增您自己的 RESTful API
+        href: active-directory-b2c-custom-rest-api-netfw.md
+      - name: 透過基本驗證保護 RESTful API
+        href: active-directory-b2c-custom-rest-api-netfw-secure-basic.md
+      - name: 透過憑證驗證保護 RESTful API
+        href: active-directory-b2c-custom-rest-api-netfw-secure-cert.md
+    - name: OIDC/OAUTH 提供者
+      items:
+      - name: Amazon
+        href: setup-amazon-custom.md
+      - name: Azure AD (單一租用戶)
+        href: active-directory-b2c-setup-aad-custom.md
+      - name: Azure AD (多租用戶)
+        href: active-directory-b2c-setup-commonaad-custom.md
+      - name: Google
+        href: active-directory-b2c-custom-setup-goog-idp.md
+      - name: LinkedIn
+        href: active-directory-b2c-custom-setup-li-idp.md
+      - name: Microsoft 帳戶
+        href: active-directory-b2c-custom-setup-msa-idp.md
+      - name: Twitter
+        href: active-directory-b2c-custom-setup-twitter-idp.md
+    - name: SAML 提供者
+      items:
+      - name: ADFS
+        href: active-directory-b2c-custom-setup-adfs2016-idp.md
+      - name: Salesforce
+        href: active-directory-b2c-setup-sf-app-custom.md
+    - name: 使用者流程
+      items:
+      - name: 設定使用者輸入
+        href: active-directory-b2c-configure-signup-self-asserted-custom.md
+      - name: 自訂屬性
+        href: active-directory-b2c-create-custom-attributes-profile-edit-custom.md
+      - name: 自訂 UI
+        href: active-directory-b2c-ui-customization-custom.md
+      - name: 以動態方式自訂 UI
+        href: active-directory-b2c-ui-customization-custom-dynamic.md
+      - name: 自訂權杖
+        href: active-directory-b2c-reference-manage-sso-and-token-configuration.md
+      - name: 密碼複雜度
+        href: active-directory-b2c-reference-password-complexity-custom.md
+      - name: 密碼變更
+        href: active-directory-b2c-reference-password-change-custom.md
+      - name: 啟用讓我保持登入
+        href: active-directory-b2c-reference-kmsi-custom.md
+    - name: 參考
+      items:
+      - name: 宣告解析程式
+        href: claim-resolver-overview.md
+      - name: 身分識別體驗架構結構描述
+        items:
+        - name: TrustFrameworkPolicy
+          href: trustframeworkpolicy.md
+        - name: BuildingBlocks
+          href: buildingblocks.md
+          items:
+          - name: ClaimsSchema
+            href: claimsschema.md
+          - name: ClaimsTransformations
+            href: claimstransformations.md
+            items:
+            - name: BOOLEAN
+              href: boolean-transformations.md
+            - name: 日期
+              href: date-transformations.md
+            - name: 一般
+              href: general-transformations.md
+            - name: '整數 '
+              href: integer-transformations.md
+            - name: JSON
+              href: json-transformations.md
+            - name: 社交帳戶
+              href: social-transformations.md
+            - name: StringCollection
+              href: stringcollection-transformations.md
+            - name: 字串
+              href: string-transformations.md
+          - name: 述詞
+            href: predicates.md
+          - name: ContentDefinitions
+            href: contentdefinitions.md
+          - name: 當地語系化
+            href: localization.md
+            items:
+            - name: 當地語系化字串識別碼
+              href: localization-string-ids.md
+        - name: ClaimsProviders
+          href: claimsproviders.md
+          items:
+          - name: TechnicalProfiles
+            href: technicalprofiles.md
+            items:
+            - name: 關於技術設定檔
+              href: technical-profiles-overview.md
+            - name: Azure Active Directory
+              href: active-directory-technical-profile.md
+            - name: 宣告轉換
+              href: claims-transformation-technical-profile.md
+            - name: JWT 權杖簽發者
+              href: jwt-issuer-technical-profile.md
+            - name: OAuth1
+              href: oauth1-technical-profile.md
+            - name: OAuth2
+              href: oauth2-technical-profile.md
+            - name: OpenId Connect
+              href: openid-connect-technical-profile.md
+            - name: REST
+              href: restful-technical-profile.md
+            - name: SAML
+              href: saml-technical-profile.md
+            - name: 自我判斷
+              href: self-asserted-technical-profile.md
+            - name: SSO 工作階段
+              href: active-directory-b2c-reference-sso-custom.md
+            - name: 驗證
+              href: validation-technical-profile.md
+        - name: UserJourneys
+          href: userjourneys.md
+        - name: RelyingParty
+          href: relyingparty.md
+      - name: 版本資訊
+        href: active-directory-b2c-developer-notes-custom.md
+      - name: 信任 Framework 定義
+        href: active-directory-b2c-reference-trustframeworks-defined-ief-custom.md
+  - name: 識別提供者
+    items:
+    - name: Amazon
+      href: active-directory-b2c-setup-amzn-app.md
+    - name: Azure AD (單一租用戶)
+      href: active-directory-b2c-setup-oidc-azure-active-directory.md
+    - name: Microsoft 帳戶
+      href: active-directory-b2c-setup-msa-app.md
+    - name: Facebook
+      href: active-directory-b2c-setup-fb-app.md
+    - name: GitHub
+      href: active-directory-b2c-setup-github-app.md
+    - name: Google
+      href: active-directory-b2c-setup-goog-app.md
+    - name: LinkedIn
+      href: active-directory-b2c-setup-li-app.md
+    - name: OpenID Connect
+      href: active-directory-b2c-setup-oidc-idp.md
+    - name: QQ
+      href: active-directory-b2c-setup-qq-app.md
+    - name: Twitter
+      href: active-directory-b2c-setup-twitter-app.md
+    - name: 微信
+      href: active-directory-b2c-setup-wechat-app.md
+    - name: 微博
+      href: active-directory-b2c-setup-weibo-app.md
+  - name: 移轉使用者
+    href: active-directory-b2c-user-migration.md
+  - name: 遷移具有社交身分識別的使用者
+    href: active-directory-b2c-social-migration.md
+  - name: 行動和桌面應用程式
+    items:
+    - name: 使用 App Auth 的 iOS ObjC
+      href: active-directory-b2c-devquickstarts-ios.md
+    - name: 使用 App Auth 的 Android
+      href: active-directory-b2c-devquickstarts-android.md
+  - name: 取得存取權杖
+    href: active-directory-b2c-access-tokens.md
+  - name: 註冊您的應用程式
+    href: active-directory-b2c-app-registration.md
+  - name: 報告使用方式
+    href: active-directory-b2c-reference-usage-reporting-api.md
+  - name: 資源擁有者密碼認證
+    href: configure-ropc.md
+  - name: 設定年齡管制
+    href: basic-age-gating.md
+  - name: 設定直接登入
+    href: direct-signin.md
+  - name: 設定自助密碼重設
+    href: active-directory-b2c-reference-sspr.md
+  - name: 使用 b2clogin.com
+    href: b2clogin.md
+  - name: 使用 Azure AD Graph API
+    href: active-directory-b2c-devquickstarts-graph-dotnet.md
+  - name: 追蹤使用者行為
+    href: active-directory-b2c-custom-guide-eventlogger-appins.md
+  - name: Web 應用程式
+    items:
+    - name: ASP.NET
+      href: active-directory-b2c-devquickstarts-web-dotnet-susi.md
+  - name: Web API
+    items:
+    - name: ASP.NET
+      href: active-directory-b2c-devquickstarts-api-dotnet.md
+    - name: 呼叫 .NET Web API
+      href: active-directory-b2c-devquickstarts-web-api-dotnet.md
+  - name: 參考
+    items:
+    - name: 程式碼範例
+      href: https://azure.microsoft.com/resources/samples/?service=active-directory-b2c
+    - name: 區域可用性與資料落地
+      href: active-directory-b2c-reference-tenant-type.md
+    - name: 啟用計費
+      href: active-directory-b2c-how-to-enable-billing.md
+    - name: 威脅管理
+      href: active-directory-b2c-reference-threat-management.md
+    - name: 建立目錄時的問題
+      href: active-directory-b2c-support-create-directory.md
+    - name: 擴充功能應用程式
+      href: active-directory-b2c-reference-extensions-app.md
+- name: 資源
+  items:
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/?category=security-identity
+  - name: 常見問題集
+    href: active-directory-b2c-faqs.md
+  - name: 取得說明
+    href: /azure/active-directory/develop/developer-support-help-options
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/active-directory-b2c/
+  - name: 定價計算機
+    href: https://azure.microsoft.com/pricing/calculator/
+  - name: 服務更新
+    href: https://azure.microsoft.com/updates/?product=active-directory-b2c
+  - name: 解決方案與訓練
+    href: solution-articles.md
+  - name: 堆疊溢位
+    href: https://stackoverflow.com/questions/tagged/azure-ad-b2c+identity-experience-framework
+  - name: 支援
+    href: active-directory-b2c-support.md
+  - name: 影片
+    href: https://azure.microsoft.com/documentation/videos/index/?services=active-directory-b2c
+ms.openlocfilehash: 87dbf2eb87d4761186e298e27da142ff8a0e789a
+ms.sourcegitcommit: 3a02e0e8759ab3835d7c58479a05d7907a719d9c
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/13/2018
+ms.locfileid: "49310516"

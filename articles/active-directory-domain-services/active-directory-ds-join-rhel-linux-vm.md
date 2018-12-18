@@ -7,21 +7,25 @@ author: mahesh-unnikrishnan
 manager: mtillman
 editor: curtand
 ms.assetid: d76ae997-2279-46dd-bfc5-c0ee29718096
-ms.service: active-directory-ds
+ms.service: active-directory
+ms.component: domain-services
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 10/04/2017
+ms.topic: conceptual
+ms.date: 06/22/2018
 ms.author: maheshu
-ms.openlocfilehash: b278f5c4c8c87590205aca13a50a82fe8712d909
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: e84a4b0c1f3496bc26f4a8830f7a08ddd5506338
+ms.sourcegitcommit: 9222063a6a44d4414720560a1265ee935c73f49e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 08/03/2018
+ms.locfileid: "39503718"
 ---
 # <a name="join-a-red-hat-enterprise-linux-7-virtual-machine-to-a-managed-domain"></a>將 Red Hat Enterprise Linux 7 虛擬機器加入受控網域
 本文說明如何將 Red Hat Enterprise Linux (RHEL) 7 虛擬機器加入 Azure AD 網域服務受控網域。
+
+[!INCLUDE [active-directory-ds-prerequisites.md](../../includes/active-directory-ds-prerequisites.md)]
 
 ## <a name="before-you-begin"></a>開始之前
 若要執行本文中所列的工作，您需要︰  
@@ -82,17 +86,17 @@ sudo vi /etc/hosts
     sudo realm discover CONTOSO100.COM
     ```
 
-     > [!NOTE] 
-     > **疑難排解：**如果 [領域探索] 找不到受控網域：
+     > [!NOTE]
+     > **疑難排解：** 如果 [領域探索] 找不到受控網域：
      * 確定可從虛擬機器觸達網域 (請嘗試 ping)。
      * 檢查虛擬機器已確實部署到有提供受控網域的相同虛擬網路上。
      * 查看您是否已更新虛擬網路的 DNS 伺服器設定，以指向受控網域的網域控制站。
      >
 
-2. 初始化 Kerberos。 在 SSH 終端機中輸入下列命令： 
+2. 初始化 Kerberos。 在 SSH 終端機中輸入下列命令：
 
-    > [!TIP] 
-    > * 請確定您是指定屬於 'AAD DC Administrators' 群組的使用者。 
+    > [!TIP]
+    > * 請確定您是指定屬於 'AAD DC Administrators' 群組的使用者。
     > * 以大寫字母指定網域名稱，否則 kinit 會失敗。
     >
 
@@ -100,9 +104,9 @@ sudo vi /etc/hosts
     kinit bob@CONTOSO100.COM
     ```
 
-3. 將電腦加入網域。 在 SSH 終端機中輸入下列命令： 
+3. 將電腦加入網域。 在 SSH 終端機中輸入下列命令：
 
-    > [!TIP] 
+    > [!TIP]
     > 使用您在前面步驟中指定的相同使用者帳戶 ('kinit')。
     >
 

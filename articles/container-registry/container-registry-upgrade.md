@@ -3,24 +3,29 @@ title: 將傳統的 Azure 容器登錄升級
 description: 將非受控的傳統容器登錄升級，以利用基本、標準和進階受控容器登錄的擴充功能集。
 services: container-registry
 author: mmacy
-manager: timlt
+manager: jeconnoc
 ms.service: container-registry
 ms.topic: article
-ms.date: 03/15/2018
+ms.date: 08/28/2018
 ms.author: marsma
-ms.openlocfilehash: c5a61941bab2aa49cd8205e0a07dd2b5f7378ce9
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 7a377c607639f5c044e689b11380e9778f9c72c8
+ms.sourcegitcommit: 63613e4c7edf1b1875a2974a29ab2a8ce5d90e3b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 08/29/2018
+ms.locfileid: "43189016"
 ---
 # <a name="upgrade-a-classic-container-registry"></a>將傳統的容器登錄升級
 
-有好幾個服務層 ([也就是所謂的 SKU](container-registry-skus.md)) 會提供 Azure Container Registry (ACR)。 初始的 ACR 版本提供了單一 SKU (傳統)，該 SKU 缺少基本、標準和進階 SKU (統稱為「受控」登錄) 固有的數種功能。 本文將詳細說明如何將非受控的傳統登錄移轉至其中一個受控 SKU，以便利用其經過強化的功能集。
+有好幾個服務層 ([也就是所謂的 SKU](container-registry-skus.md)) 會提供 Azure Container Registry (ACR)。 初始的 ACR 版本提供了單一 SKU (傳統)，該 SKU 缺少基本、標準和進階 SKU (統稱為「受控」登錄) 固有的數種功能。
+
+傳統 SKU 即將被取代，而且在 2019 年 3 月之後將無法使用。 本文將詳細說明如何將非受控的傳統登錄移轉至其中一個受控 SKU，以便利用其經過強化的功能集。
 
 ## <a name="why-upgrade"></a>為何要升級？
 
-因為傳統的非受控登錄功能有限，建議您將所有傳統登錄升級為基本、標準或進階受控登錄。 這些較高層級的 SKU 會將登錄更深入整合到 Azure 功能。
+傳統登錄 SKU 即將被**取代**，而且從 **2019 年 3 月**起將無法使用。 所有現有的傳統登錄都應該在 2019 年 3 月之前進行升級。
+
+因為傳統非受控登錄的取代計畫和功能有限，所有傳統登錄都應升級為基本、標準或進階受控登錄。 這些較高層級的 SKU 會將登錄更深入整合到 Azure 功能。
 
 受控登錄可提供：
 
@@ -29,7 +34,7 @@ ms.lasthandoff: 03/23/2018
 * [異地複寫](container-registry-geo-replication.md)
 * [Webhook](container-registry-webhook.md)
 
-「傳統」登錄大部分取決於您在建立登錄時，Azure 自動佈建在您 Azure 訂用帳戶中的儲存體帳戶。 相比之下，基本、標準和進階 SKU 會以透明的方式處理您的映像儲存體來利用 Azure 的[進階儲存體功能](container-registry-storage.md)。 您自己的訂用帳戶中未建立個別儲存體帳戶。
+「傳統」登錄依賴您在建立登錄時，Azure 自動佈建在您 Azure 訂用帳戶中的儲存體帳戶。 相比之下，基本、標準和進階 SKU 會以透明的方式處理您的映像儲存體來利用 Azure 的[進階儲存體功能](container-registry-storage.md)。 您自己的訂用帳戶中未建立個別儲存體帳戶。
 
 受控登錄儲存體可提供下列優點：
 
@@ -125,6 +130,6 @@ az acr update --name myclassicregistry --sku Premium
 [update-classic-04-updated]: ./media/container-registry-upgrade\update-classic-04-updated.png
 
 <!-- LINKS - internal -->
-[az-acr-update]: /cli/azure/acr#az_acr_update
+[az-acr-update]: /cli/azure/acr#az-acr-update
 [azure-cli]: /cli/azure/install-azure-cli
 [azure-portal]: https://portal.azure.com

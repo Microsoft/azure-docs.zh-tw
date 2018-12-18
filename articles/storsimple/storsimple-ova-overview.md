@@ -12,13 +12,14 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: TBD
-ms.date: 03/28/2018
+ms.date: 08/02/2018
 ms.author: alkohli
-ms.openlocfilehash: db06614ebd7dee4b0a320737ea8f575b3a3be70f
-ms.sourcegitcommit: c3d53d8901622f93efcd13a31863161019325216
+ms.openlocfilehash: 78ed53e5e2f5d04943e6c32ddfedf037cb9e1f73
+ms.sourcegitcommit: fc5555a0250e3ef4914b077e017d30185b4a27e6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/29/2018
+ms.lasthandoff: 08/03/2018
+ms.locfileid: "39480949"
 ---
 # <a name="introduction-to-the-storsimple-virtual-array"></a>StorSimple Virtual Array 簡介
 
@@ -39,7 +40,7 @@ Microsoft Azure StorSimple Virtual Array 是一個整合式儲存體解決方案
 | 功能 | StorSimple Virtual Array |
 | --- | --- |
 | 安裝需求 |使用虛擬化基礎結構 (Hyper-V 或 VMware) |
-| Availability |單一節點 |
+| 可用性 |單一節點 |
 | 總容量 (包括雲端) |每個虛擬陣列最多 64 TB 可用容量 |
 | 本機容量 |每個虛擬陣列有 390 GB 到 6.4 TB 可用容量 (需要佈建 500 GB 到 8 TB 的磁碟空間) |
 | 原生通訊協定 |iSCSI 或 SMB |
@@ -75,8 +76,8 @@ StorSimple 會在數分鐘內將使用者和伺服器連接到 Azure 儲存體�
 
 |案例     |工作負載     |支援      |限制               |
 |-------------|-------------|---------------|---------------------------|
-|ROBO  |檔案共用     |yes      |請參閱[檔案伺服器的上限](storsimple-ova-limits.md)。<br></br>請參閱[支援 SMB 版的系統需求](storsimple-ova-system-requirements.md)。| 所有版本     |
-|雲端封存  |封存檔案共用     |yes      |請參閱[檔案伺服器的上限](storsimple-ova-limits.md)。<br></br>請參閱[支援 SMB 版的系統需求](storsimple-ova-system-requirements.md)。| 所有版本     |
+|遠端辦公室/分公司 (ROBO)  |檔案共用     |是      |請參閱[檔案伺服器的上限](storsimple-ova-limits.md)。<br></br>請參閱[支援 SMB 版的系統需求](storsimple-ova-system-requirements.md)。| 所有版本     |
+|雲端封存  |封存檔案共用     |是      |請參閱[檔案伺服器的上限](storsimple-ova-limits.md)。<br></br>請參閱[支援 SMB 版的系統需求](storsimple-ova-system-requirements.md)。| 所有版本     |
 
 StorSimple Virtual Array 最適合不常存取的資料。 雖然虛擬陣列具有本機快取可提高效能，但使用者應該假設裝置為儲存體 (雲端) 最低層的檔案提供服務。 每個虛擬陣列都能以大約 100 Mbps 的速度寫入及讀取 Azure 儲存體。 該連結會在進入裝置的所有要求之間共用，並會形成瓶頸，如下圖所示。
 
@@ -206,10 +207,9 @@ StorSimple 會使用重複資料刪除和資料壓縮，來進一步降低雲端
 
 StorSimple 資料保護功能可讓您建立隨選備份。 此外，預設備份排程可確保每日備份資料。 備份採用儲存在雲端的累加快照形式。 快照集 (僅記錄自上次備份後的變更) 可以快速進行建立和還原。 這些快照集在災害復原案例中至關重要，因為這些快照集會取代次要儲存體系統 (例如磁帶備份)，並讓您將資料還原到資料中心或在必要時還原至其他網站。
 
-## <a name="gdpr-compliance"></a>GDPR 合規性
-[一般資料保護規定 (GDPR)](http://ec.europa.eu/justice/data-protection/reform/index_en.htm) 是歐盟 (EU) 所制定的資料保護和隱私權法律。 GDPR 包含許多有關如何收集、儲存和使用個人資訊的需求。 GDPR 規則強制實行於 EU 內營運，並且收集、分析 EU 居民相關之資料的公司、政府機關和其他組織。
+## <a name="managing-personal-information"></a>管理個人資訊
 
-StorSimple 裝置管理員虛擬系列符合 GDPR。 有兩個主要執行個體，其中會收集個人資訊並在服務中顯示：
+虛擬系列的 StorSimple 裝置管理員會收集兩個主要執行個體中的個人資訊：
  - 警示使用者設定，其中會設定使用者的電子郵件地址。 系統管理員可以清除此資訊。 
  - 可以存取位於共用上的資料的使用者。 顯示可存取共用資料之使用者的清單，並且可匯出。 刪除共用時，也會一併刪除這份清單。
 

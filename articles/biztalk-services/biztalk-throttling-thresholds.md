@@ -1,11 +1,11 @@
 ---
-title: "了解 BizTalk 服務中的節流 | Microsoft Docs"
-description: "了解 BizTalk 服務的節流閾值和產生的執行階段行為。 節流是以記憶體使用量和訊息數為依據。 MABS，WABS"
+title: 了解 BizTalk 服務中的節流 | Microsoft Docs
+description: 了解 BizTalk 服務的節流閾值和產生的執行階段行為。 節流是以記憶體使用量和訊息數為依據。 MABS，WABS
 services: biztalk-services
-documentationcenter: 
+documentationcenter: ''
 author: MandiOhlinger
 manager: anneta
-editor: 
+editor: ''
 ms.assetid: f6663cf2-cda4-4bac-855e-27d2ad5c4fa4
 ms.service: biztalk-services
 ms.workload: integration
@@ -19,6 +19,7 @@ ms.sourcegitcommit: dcf5f175454a5a6a26965482965ae1f2bf6dca0a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 11/10/2017
+ms.locfileid: "24102081"
 ---
 # <a name="biztalk-services-throttling"></a>BizTalk 服務：節流
 

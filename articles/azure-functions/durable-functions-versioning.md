@@ -1,12 +1,12 @@
 ---
-title: "Durable Functions 中的版本控制 - Azure"
-description: "了解如何在 Azure Functions 的 Durable Functions  擴充中實作版本控制。"
+title: Durable Functions 中的版本控制 - Azure
+description: 了解如何在 Azure Functions 的 Durable Functions  擴充中實作版本控制。
 services: functions
 author: cgillum
 manager: cfowler
-editor: 
-tags: 
-keywords: 
+editor: ''
+tags: ''
+keywords: ''
 ms.service: functions
 ms.devlang: multiple
 ms.topic: article
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "22991283"
 ---
 # <a name="versioning-in-durable-functions-azure-functions"></a>Durable Functions (Azure Functions) 中的版本控制
 

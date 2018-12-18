@@ -1,19 +1,19 @@
 ---
-title: "Azure 搜尋服務常見問題集 (FAQ) | Microsoft Docs"
-description: "取得 Microsoft Azure 搜尋服務常見問題的解答"
-services: search
+title: Azure 搜尋服務常見問題集 (FAQ) | Microsoft Docs
+description: 取得 Microsoft Azure 搜尋服務常見問題的解答
 author: HeidiSteen
-manager: jhubbard
+manager: cgronlun
+services: search
 ms.service: search
-ms.technology: search
-ms.topic: article
+ms.topic: conceptual
 ms.date: 08/03/2017
 ms.author: heidist
-ms.openlocfilehash: f61fe2930bc70e800e5d79773e0de6827621e845
-ms.sourcegitcommit: 6fb44d6fbce161b26328f863479ef09c5303090f
+ms.openlocfilehash: 1491fdb0f208100619e569f9a74d5e697a0065a6
+ms.sourcegitcommit: 3d0295a939c07bf9f0b38ebd37ac8461af8d461f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/10/2018
+ms.lasthandoff: 09/06/2018
+ms.locfileid: "43841672"
 ---
 # <a name="azure-search---frequently-asked-questions-faq"></a>Azure 搜尋服務 - 常見問題集 (FAQ)
 
@@ -46,6 +46,12 @@ Azure 搜尋服務支援多個資料來源、[許多語言的語言分析](https
 雖然您可以隨時[取得索引定義](https://docs.microsoft.com/rest/api/searchservice/get-index)，但沒有索引擷取、快照或備份還原功能，可將雲端中執行的「擴展」索引下載到本機系統，或移至其他 Azure 搜尋服務。
 
 索引是從您撰寫的程式碼建立及擴展，而且只會在雲端中的 Azure 搜尋服務上執行。 一般而言，想要將索引移至其他服務的客戶可藉由編輯其程式碼以使用新的端點，然後重新執行索引來完成。 如果您想要有擷取快照集或備份索引的功能，請在 [User Voice](https://feedback.azure.com/forums/263029-azure-search/suggestions/8021610-backup-snapshot-of-index) 上投下一票。
+
+### <a name="can-i-restore-my-index-or-service-once-it-is-deleted"></a>已刪除的索引或服務是否可以還原？
+
+否，您無法還原索引或服務。 刪除 Azure 搜尋服務索引是不可逆的作業，因此索引無法復原。 當您刪除 Azure 搜尋服務時，服務中的所有索引都會永久刪除。 此外，如果您刪除包含一或多個 Azure 搜尋服務的 Azure 資源群組，所有服務都將永久刪除。  
+
+若要還原索引、索引子、資料來源和技能等資源，您必須從程式碼重新加以建立。 針對索引，則必須從外部來源重新編製資料的索引。 因此，強烈建議您將原始資料的主要複本或備份保存在另一個資料存放區中，例如 Azure SQL Database 或 Cosmos DB。
 
 ### <a name="can-i-index-from-sql-database-replicas-applies-to-azure-sql-database-indexershttpsdocsmicrosoftcomazuresearchsearch-howto-connecting-azure-sql-database-to-azure-search-using-indexers"></a>我可以從 SQL 資料庫複本建立索引嗎 (適用於 [Azure SQL Database 索引子](https://docs.microsoft.com/azure/search/search-howto-connecting-azure-sql-database-to-azure-search-using-indexers))
 

@@ -1,24 +1,20 @@
 ---
-title: Azure 串流分析和 Azure Machine Learning 整合 | Microsoft Docs
-description: 如何在串流分析工作中使用使用者定義的函數和機器學習服務
-keywords: ''
-documentationcenter: ''
+title: Azure 串流分析與 Azure Machine Learning 整合
+description: 本文說明如何使用使用者定義函式，快速設定與 Azure Machine Learning 整合的簡單 Azure 串流分析作業。
 services: stream-analytics
-author: SnehaGunda
+author: jasonwhowell
+ms.author: jasonh
 manager: kfile
-ms.assetid: cfced01f-ccaa-4bc6-81e2-c03d1470a7a2
+ms.reviewer: jasonh
 ms.service: stream-analytics
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: data-services
-ms.date: 03/01/2018
-ms.author: sngun
-ms.openlocfilehash: e5661f9f3871619201ff9106e87785de802e8933
-ms.sourcegitcommit: 34e0b4a7427f9d2a74164a18c3063c8be967b194
+ms.topic: conceptual
+ms.date: 04/16/2018
+ms.openlocfilehash: 63648dfe02a0b5ed00d0a7206a6aabbe200f94c4
+ms.sourcegitcommit: 1362e3d6961bdeaebed7fb342c7b0b34f6f6417a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/30/2018
+ms.lasthandoff: 04/18/2018
+ms.locfileid: "31527907"
 ---
 # <a name="performing-sentiment-analysis-by-using-azure-stream-analytics-and-azure-machine-learning"></a>使用 Azure 串流分析和 Azure Machine Learning 執行情感分析
 本文說明如何快速設定簡單的 Azure 串流分析工作與 Azure Machine Learning 整合。 您要使用 Cortana 智慧資源庫的機器學習服務情感分析模型，來分析串流文字資料並即時判斷情感分數。 使用 Cortana Intelligence Suite 可讓您完成這項工作，而不需擔心建立情感分析模型的複雜性。
@@ -30,7 +26,7 @@ ms.lasthandoff: 03/30/2018
 * 評估論壇、部落格和影片的註解。 
 * 許多其他即時、預測評分的案例。
 
-在真實世界的案例中，您會直接從 Twitter 資料流取得資料。 為了簡化教學課程，我們已撰寫這個部分，讓串流分析工作從 Azure Blob 儲存體中的 CSV 檔案取得推文。 您可以建立您自己的 CSV 檔案，或使用範例 CSV 檔案，如下圖所示：
+在真實世界的案例中，您會直接從 Twitter 資料流取得資料。 我們為了簡化教學課程撰寫這個部分，讓串流分析作業從 Azure Blob 儲存體中的 CSV 檔案取得推文。 您可以建立您自己的 CSV 檔案，或使用範例 CSV 檔案，如下圖所示：
 
 ![CSV 檔案的範例推文](./media/stream-analytics-machine-learning-integration-tutorial/stream-analytics-machine-learning-integration-tutorial-figure-2.png)  
 
@@ -44,7 +40,7 @@ ms.lasthandoff: 03/30/2018
 開始之前，請確定您具有下列項目：
 
 * 有效的 Azure 訂用帳戶。
-* 內附資料的 CSV 檔。 您可以從 [GitHub](https://github.com/Azure/azure-stream-analytics/blob/master/Sample%20Data/sampleinput.csv) 下載之前顯示的檔案，或者建立您自己的檔案。 本文中，我們假設您使用 GitHub 的檔案。
+* 內附資料的 CSV 檔。 您可以從 [GitHub](https://github.com/Azure/azure-stream-analytics/blob/master/Sample%20Data/sampleinput.csv) 下載之前顯示的檔案，或者建立您自己的檔案。 本文中，假設您使用 GitHub 的檔案。
 
 總的來說，若要完成本文示範的工作，您要執行下列作業︰
 
@@ -110,7 +106,7 @@ ms.lasthandoff: 03/30/2018
 
    ![Machine Learning Studio 中的測試結果](./media/stream-analytics-machine-learning-integration-tutorial/stream-analytics-machine-learning-test-results.png)  
 
-7. 在 [應用程式] 欄中，按一下 [Excel 2010 或舊版活頁簿] 連結以下載 Excel 活頁簿。 活頁簿包含您稍後設定串流分析工作所需的 API 金鑰和 URL。
+7. 在 [應用程式] 欄中，按一下 [Excel 2010 或舊版活頁簿] 連結以下載 Excel 活頁簿。 活頁簿包含您稍後設定串流分析作業所需的 API 金鑰和 URL。
 
     ![串流分析機器學習服務, 快速概覽](./media/stream-analytics-machine-learning-integration-tutorial/stream-analytics-machine-learning-integration-tutorial-quick-glance.png)  
 
@@ -162,7 +158,7 @@ ms.lasthandoff: 03/30/2018
 
    |欄位  |值  |
    |---------|---------|
-   |**輸出別名** | 使用名稱 `datainput`，並選取 [從您的訂用帳戶選取 Blob 儲存體]       |
+   |**輸出別名** | 使用名稱 `datamloutput`，並選取 [從您的訂用帳戶選取 Blob 儲存體]       |
    |**儲存體帳戶**  |  選取您稍早建立的儲存體帳戶。  |
    |**容器**  | 選取您稍早建立的容器 (`azuresamldemoblob`)        |
    |**事件序列化格式**  |  選取 [CSV]       |
@@ -173,7 +169,7 @@ ms.lasthandoff: 03/30/2018
 
 
 ### <a name="add-the-machine-learning-function"></a>新增機器學習服務函數 
-稍早您將機器學習模型發佈至 Web 服務。 在我們的案例中，串流分析工作執行時，會將來自輸入的每則範例推文傳送至 Web 服務進行情感分析。 Machine Learning Web 服務會傳回情感 (`positive`、`neutral` 或 `negative`)，以及推文屬於正向的機率。 
+稍早您將機器學習模型發佈至 Web 服務。 在此案例中，串流分析作業執行時，會將來自輸入的每則範例推文傳送至 Web 服務進行情感分析。 Machine Learning Web 服務會傳回情感 (`positive`、`neutral` 或 `negative`)，以及推文屬於正向的機率。 
 
 在教學課程的本節中，您要在串流分析工作中定義函數。 叫用函數，可以將推文傳送至 Web 服務並得到回應。 
 
@@ -205,12 +201,13 @@ ms.lasthandoff: 03/30/2018
 
     ```
     WITH sentiment AS (  
-    SELECT text, sentiment(text) as result from datainput  
+    SELECT text, sentiment(text) as result 
+    FROM datainput  
     )  
 
-    Select text, result.[Score]  
-    Into datamloutput
-    From sentiment  
+    SELECT text, result.[Score]  
+    INTO datamloutput
+    FROM sentiment  
     ```    
 
     查詢會叫用您稍早建立的函數 (`sentiment`) 以便對輸入中的每則推文執行情感分析。 

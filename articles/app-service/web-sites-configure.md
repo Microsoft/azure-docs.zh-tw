@@ -14,11 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: cephalin
-ms.openlocfilehash: 58c27c0872978c3a6a4c47be37e6fa6078309286
-ms.sourcegitcommit: a0be2dc237d30b7f79914e8adfb85299571374ec
+ms.openlocfilehash: 84bd2019e9586fa008560dba07119323ecb7f02e
+ms.sourcegitcommit: 1438b7549c2d9bc2ace6a0a3e460ad4206bad423
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/12/2018
+ms.lasthandoff: 06/20/2018
+ms.locfileid: "36293711"
 ---
 # <a name="configure-web-apps-in-azure-app-service"></a>在 Azure App Service 中設定 Web 應用程式
 
@@ -45,7 +46,7 @@ ms.lasthandoff: 03/12/2018
 在技術上，針對您的應用程式啟用 Java 就會停用 .NET、PHP 與 Python 選項。
 
 <a name="platform"></a>
-**平台**。 選取 Web 應用程式是否會在 32 位元或 64 位元環境中執行。 64 位元環境需要 [基本] 或 [標準] 模式。 [免費] 與 [共用] 模式一律於 32 位元環境中執行。
+**平台**。 選取 Web 應用程式是否會在 32 位元或 64 位元環境中執行。 64 位元環境需要 [基本] 或 [標準] 層。 [免費] 與 [共用] 層一律於 32 位元環境中執行。
 
 [!INCLUDE [app-service-dev-test-note](../../includes/app-service-dev-test-note.md)]
 
@@ -55,6 +56,13 @@ ms.lasthandoff: 03/12/2018
 **永遠開啟**。 根據預設，Web 應用程式如果閒置一段時間，就會卸載。 此舉有助於系統保留資源。 在 [基本] 或 [標準] 模式中，您可以啟用 [ **永遠開啟** ]，讓應用程式隨時都能載入。 如果您的應用程式會執行連續的 WebJobs，或執行使用 CRON 運算式觸發的 WebJobs，就應該啟用 [一律開啟]，否則 Web 作業可能無法可靠地執行。
 
 **受控管線版本**。 設定 IIS [管線模式]。 除非您擁有的舊版應用程式需要舊版 IIS，否則請保留 [整合 (預設值)] 的設定。
+
+**HTTP 版本**。 設定為 **2.0** 來啟用 [HTTPS/2](https://wikipedia.org/wiki/HTTP/2) 通訊協定支援。 
+
+> [!NOTE]
+> 大部分的新式瀏覽器僅支援透過 TLS 的 HTTP/2 通訊協定，非加密的流量則會繼續使用 HTTP/1.1。 若要確保用戶端瀏覽器會使用 HTTP/2 連線至應用程式，請針對應用程式的自訂網域[購買 App Service 憑證](web-sites-purchase-ssl-web-site.md)或[繫結第三方憑證](app-service-web-tutorial-custom-ssl.md)。
+
+**ARR 同質性**。 在相應放大至多個 VM 執行個體的應用程式中，ARR 同質性 Cookie 可保證用戶端會在工作階段的存留期間路由至相同的執行個體。 若要提升無狀態應用程式的效能，請將此選項設定為 [關閉]。   
 
 **自動交換**。 如果您針對部署位置啟用「自動交換」，當您將更新推送到該位置時，App Service 就會將 Web 應用程式自動交換至生產位置。 如需詳細資訊，請參閱 [將 Azure App Service 中的 Web 應用程式部署至預備位置](web-sites-staged-publishing.md)。
 
@@ -66,6 +74,8 @@ ms.lasthandoff: 03/12/2018
 
 * 如果是 .NET 應用程式，這些設定就會在執行階段插入 .NET 設定 `AppSettings` ，並覆寫現有的設定。 
 * PHP、Python、Java 和 Node 應用程式可以在執行階段以環境變數的形式存取這些設定。 系統會為每個應用程式設定建立兩個環境變數，一個變數具有由應用程式設定項目指定的名稱，另一個則具有 APPSETTING_ 前置詞。 這兩個變數都包含相同的值。
+
+應用程式設定在儲存時一律加密 (待用加密)。
 
 ### <a name="connection-strings"></a>連接字串
 連結資源的連接字串。 
@@ -80,6 +90,8 @@ ms.lasthandoff: 03/12/2018
 * 自訂：`CUSTOMCONNSTR_`
 
 例如，如果 MySql 連接字串命名為 `connectionstring1`，則可透過環境變數 `MYSQLCONNSTR_connectionString1` 加以存取。
+
+連接字串在儲存時一律加密 (待用加密)。
 
 ### <a name="default-documents"></a>預設文件
 預設文件是顯示於網站根 URL 上的網頁。  系統會使用清單中第一個相符的檔案。 

@@ -1,26 +1,29 @@
 ---
 title: 自動調整電子郵件通知操作說明指南 - Azure SQL Database | Microsoft Docs
-description: Azure SQL Database 會分析 SQL 查詢，並自動針對使用者的工作負載調整。
+description: 啟用 Azure SQL Database 自動查詢調整的電子郵件通知。
 services: sql-database
-author: danimir
-manager: craigg
-ms.reviewer: carlrab
 ms.service: sql-database
-ms.custom: monitor & tune
-ms.topic: article
-ms.date: 02/05/2018
+ms.subservice: performance
+ms.custom: ''
+ms.devlang: ''
+ms.topic: conceptual
+author: danimir
 ms.author: v-daljep
-ms.openlocfilehash: a2799e45fbb54531289a89082f13e5ce0856c376
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.reviewer: carlrab
+manager: craigg
+ms.date: 10/15/2018
+ms.openlocfilehash: 1177703dc67e81e537d7682dcf9bbeb475748315
+ms.sourcegitcommit: 8e06d67ea248340a83341f920881092fd2a4163c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 10/16/2018
+ms.locfileid: "49353929"
 ---
 # <a name="email-notifications-for-automatic-tuning"></a>針對自動調整的電子郵件通知
 
 SQL Database 的調整建議是由 Azure SQL Database [自動調整](sql-database-automatic-tuning.md)產生。 這個解決方案會持續監視並分析 SQL Database 的工作負載，針對與建立索引、刪除索引和最佳化查詢執行計畫相關的個別資料庫提供自訂的調整建議。
 
-您可以在 [Azure 入口網站](sql-database-advisor-portal.md)中檢視使用 [REST API](https://docs.microsoft.com/rest/api/sql/databaserecommendedactions/listbydatabaseadvisor) 呼叫或使用 [T-SQL](https://azure.microsoft.com/blog/automatic-tuning-introduces-automatic-plan-correction-and-t-sql-management/) 和 [PowerShell](https://docs.microsoft.com/powershell/module/azurerm.sql/get-azurermsqldatabaserecommendedaction) 命令擷取的 SQL Database 自動調整建議。 本文使用 PowerShell 指令碼來擷取自動調整建議。
+您可以在 [Azure 入口網站](sql-database-advisor-portal.md)中檢視使用 [REST API](https://docs.microsoft.com/rest/api/sql/databaserecommendedactions/databaserecommendedactions_listbydatabaseadvisor) 呼叫或使用 [T-SQL](https://azure.microsoft.com/blog/automatic-tuning-introduces-automatic-plan-correction-and-t-sql-management/) 和 [PowerShell](https://docs.microsoft.com/powershell/module/azurerm.sql/get-azurermsqldatabaserecommendedaction) 命令擷取的 SQL Database 自動調整建議。 本文使用 PowerShell 指令碼來擷取自動調整建議。
 
 ## <a name="automate-email-notifications-for-automatic-tuning-recommendations"></a>對自動調整建議的電子郵件通知進行自動化
 
@@ -96,12 +99,12 @@ AzureRM.Resources 和 AzureRM.Sql 模組的必要版本必須是第 4 版及更�
 #
 # Microsoft Azure SQL Database team, 2018-01-22.
 
-# Set subscriptions : IMPORTANT – REPLACE <SUBSCRIPTION_ID_WITH_DATABASES> WITH YOUR SUBSCRIPTION ID 
+# Set subscriptions : IMPORTANT – REPLACE <SUBSCRIPTION_ID_WITH_DATABASES> WITH YOUR SUBSCRIPTION ID
 $subscriptions = ("<SUBSCRIPTION_ID_WITH_DATABASES>", "<SECOND_SUBSCRIPTION_ID_WITH_DATABASES>", "<THIRD_SUBSCRIPTION_ID_WITH_DATABASES>")
 
 # Get credentials
 $Conn = Get-AutomationConnection -Name AzureRunAsConnection
-Add-AzureRMAccount -ServicePrincipal -Tenant $Conn.TenantID -ApplicationId $Conn.ApplicationID -CertificateThumbprint $Conn.CertificateThumbprint
+Connect-AzureRmAccount -ServicePrincipal -Tenant $Conn.TenantID -ApplicationId $Conn.ApplicationID -CertificateThumbprint $Conn.CertificateThumbprint
 
 # Define the resource types
 $resourceTypes = ("Microsoft.Sql/servers/databases")
@@ -109,8 +112,8 @@ $advisors = ("CreateIndex", "DropIndex");
 $results = @()
 
 # Loop through all subscriptions
-foreach($subscriptionId in $subscriptions) {    
-    Select-AzureRmSubscription -SubscriptionId $subscriptionId    
+foreach($subscriptionId in $subscriptions) {
+    Select-AzureRmSubscription -SubscriptionId $subscriptionId
     $rgs = Get-AzureRmResourceGroup
 
     # Loop through all resource groups
@@ -119,7 +122,7 @@ foreach($subscriptionId in $subscriptions) {
 
         # Loop through all resource types
         foreach($resourceType in $resourceTypes) {
-            $resources = Get-AzureRmResource -ResourceGroupName $rgname -ResourceType $resourceType    
+            $resources = Get-AzureRmResource -ResourceGroupName $rgname -ResourceType $resourceType
 
             # Loop through all databases
             # Extract resource groups, servers and databases
@@ -138,7 +141,7 @@ foreach($subscriptionId in $subscriptions) {
                 if ($resourceId -match ".*/DATABASES/(?<content>.*)") {
                     $DatabaseName = $matches['content']
                 } else {
-                    continue 
+                    continue
                 }
 
                 # Skip if master
@@ -160,7 +163,7 @@ foreach($subscriptionId in $subscriptions) {
                             $results += $object
                         }
                     }
-                }                
+                }
             }
         }
     }
@@ -171,7 +174,7 @@ $table = $results | Format-List
 Write-Output $table
 ```
 
-按一下右上角的 [儲存] 按鈕以儲存指令碼。 當您對指令碼感到滿意之後，請按一下 [發佈] 按鈕以發佈此 Runbook。 
+按一下右上角的 [儲存] 按鈕以儲存指令碼。 當您對指令碼感到滿意之後，請按一下 [發佈] 按鈕以發佈此 Runbook。
 
 在主要 Runbook 窗格中，您可以選擇按一下 [啟動] 按鈕以**測試**指令碼。 按一下 [輸出] 以檢視所執行指令碼的結果。 此輸出將是您的電子郵件內容。 在下列螢幕擷取畫面中，可以看到指令碼的範例輸出。
 
@@ -183,7 +186,7 @@ Write-Output $table
 
 ## <a name="automate-the-email-jobs-with-microsoft-flow"></a>使用 Microsoft Flow 自動化電子郵件工作
 
-若要完成此解決方案，最後一個步驟是在 Microsoft Flow 中建立包含三個動作 (工作) 的自動化流程： 
+若要完成此解決方案，最後一個步驟是在 Microsoft Flow 中建立包含三個動作 (工作) 的自動化流程：
 
 1. **Azure 自動化 - 建立工作**：用來執行 PowerShell 指令碼以擷取 Azure 自動化 Runbook 內的自動調整建議
 2. **Azure 自動化 - 取得工作輸出**：用來擷取所執行 PowerShell 指令碼的輸出
@@ -202,25 +205,28 @@ Write-Output $table
 下一步是在新建立的週期性流程中加入三個工作 (建立、取得輸出和傳送電子郵件)。 若要將必要的工作加入流程，請遵循下列步驟：
 
 1. 建立動作來執行 PowerShell 指令碼，以擷取調整建議
-- 在 [週期] 流程窗格內選取 [+新增步驟]，然後選取 [加入動作]
-- 在搜尋欄位中輸入「自動化」，並從搜尋結果中選取 [Azure 自動化 – 建立工作]
-- 在 [建立工作] 窗格中，設定工作屬性。 針對此設定，您將需要先前在 [自動化帳戶] 窗格中記錄的 Azure 訂用帳戶識別碼、資源群組和自動化帳戶的詳細資料。 若要深入了解此區段所提供的選項，請參閱 [Azure 自動化 - 建立工作](https://docs.microsoft.com/connectors/azureautomation/#Create_job) \(英文\)。
-- 按一下 [儲存流程] 以完成建立此動作
+
+   - 在 [週期] 流程窗格內選取 [+新增步驟]，然後選取 [加入動作]
+   - 在搜尋欄位中輸入「自動化」，並從搜尋結果中選取 [Azure 自動化 – 建立工作]
+   - 在 [建立工作] 窗格中，設定工作屬性。 針對此設定，您將需要先前在 [自動化帳戶] 窗格中記錄的 Azure 訂用帳戶識別碼、資源群組和自動化帳戶的詳細資料。 若要深入了解此區段所提供的選項，請參閱 [Azure 自動化 - 建立工作](https://docs.microsoft.com/connectors/azureautomation/#create-job) \(英文\)。
+   - 按一下 [儲存流程] 以完成建立此動作
 
 2. 建立動作以從已執行的 PowerShell 指令碼擷取輸出
-- 在 [週期] 流程窗格內選取 [+新增步驟]，然後選取 [加入動作]
-- 在搜尋欄位中輸入「自動化」，並從搜尋結果中選取 [Azure 自動化 – 取得工作輸出]。 若要深入了解此區段所提供的選項，請參閱 [Azure 自動化 – 取得工作輸出](https://docs.microsoft.com/connectors/azureautomation/#Get_job_output) \(英文\)。
-- 填入必要欄位 (與建立先前的工作類似) - 填入 Azure 訂用帳戶識別碼、資源群組及自動化帳戶 (如同在 [自動化帳戶] 窗格中所輸入的)
-- 在 [工作識別碼] 欄位內按一下，以顯示 [動態內容] 功能表。 從這個功能表內，選取 [工作識別碼] 選項。
-- 按一下 [儲存流程] 以完成建立此動作
+
+   - 在 [週期] 流程窗格內選取 [+新增步驟]，然後選取 [加入動作]
+   - 在搜尋欄位中輸入「自動化」，並從搜尋結果中選取 [Azure 自動化 – 取得工作輸出]。 若要深入了解此區段所提供的選項，請參閱 [Azure 自動化 – 取得工作輸出](https://docs.microsoft.com/connectors/azureautomation/#get-job-output) \(英文\)。
+   - 填入必要欄位 (與建立先前的工作類似) - 填入 Azure 訂用帳戶識別碼、資源群組及自動化帳戶 (如同在 [自動化帳戶] 窗格中所輸入的)
+   - 在 [工作識別碼] 欄位內按一下，以顯示 [動態內容] 功能表。 從這個功能表內，選取 [工作識別碼] 選項。
+   - 按一下 [儲存流程] 以完成建立此動作
 
 3. 使用 Office 365 整合建立動作以傳送電子郵件
-- 在 [週期] 流程窗格內選取 [+新增步驟]，然後選取 [加入動作]
-- 在搜尋欄位中輸入「傳送電子郵件」，並從搜尋結果中選取 [Office 365 Outlook – 傳送電子郵件]
-- 在 [收件者] 欄位中，輸入必須傳送通知電子郵件的電子郵件地址
-- 在 [主旨] 欄位中，輸入您的電子郵件主旨，例如「自動調整建議電子郵件通知」
-- 在 [本文] 欄位內按一下，以顯示 [動態內容] 功能表。 從這個功能表內，在 [取得工作輸出] 底下，選取 [內容] 
-- 按一下 [儲存流程] 以完成建立此動作
+
+   - 在 [週期] 流程窗格內選取 [+新增步驟]，然後選取 [加入動作]
+   - 在搜尋欄位中輸入「傳送電子郵件」，並從搜尋結果中選取 [Office 365 Outlook – 傳送電子郵件]
+   - 在 [收件者] 欄位中，輸入必須傳送通知電子郵件的電子郵件地址
+   - 在 [主旨] 欄位中，輸入您的電子郵件主旨，例如「自動調整建議電子郵件通知」
+   - 在 [本文] 欄位內按一下，以顯示 [動態內容] 功能表。 從這個功能表內，在 [取得工作輸出] 底下，選取 [內容]
+   - 按一下 [儲存流程] 以完成建立此動作
 
 > [!TIP]
 > 若要傳送自動化電子郵件給不同的收件者，請建立個別流程。 在這些額外的流程中，變更 [收件者] 欄位中的收件者電子郵件地址，以及 [主旨] 欄位中的電子郵件主旨列。 使用自訂 PowerShell 指令碼 (例如變更 Azure 訂用帳戶識別碼) 在 Azure 自動化中建立新的 Runbook 可進一步自訂自動化案例，例如針對個別的訂用帳戶，傳送有關自動調整建議的電子郵件給個別的收件者。
@@ -244,7 +250,7 @@ Write-Output $table
 
 藉由調整 PowerShell 指令碼，您可以調整自動化電子郵件的輸出和格式，以符合您的需求。
 
-視您的自訂案例而定，您可進一步將解決方案自訂為根據特定調整事件建立電子郵件通知，以及針對多個訂用帳戶或資料庫傳送給多個收件者。 
+視您的自訂案例而定，您可進一步將解決方案自訂為根據特定調整事件建立電子郵件通知，以及針對多個訂用帳戶或資料庫傳送給多個收件者。
 
 ## <a name="next-steps"></a>後續步驟
 

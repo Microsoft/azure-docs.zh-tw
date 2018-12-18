@@ -1,0 +1,62 @@
+### YamlMime:YamlDocument
+documentType: LandingData
+title: 電腦視覺文件
+metadata:
+  title: 電腦視覺文件 - 快速入門、教學課程和 API 參考 - Azure 認知服務 | Microsoft Docs
+  description: 了解如何使用電腦視覺來處理影像，並傳回資訊。 教學課程會示範如何建置使用 API 的應用程式。
+  services: cognitive-services
+  author: noellelacharite
+  manager: nolachar
+  ms.service: cognitive-services
+  ms.component: computer-vision
+  ms.tgt_pltfrm: na
+  ms.devlang: na
+  ms.topic: landing-page
+  ms.date: 06/22/2018
+  ms.author: nolachar
+  ms.openlocfilehash: 7a68ff1e0cc80c99ec94cfe6f0480408afa92431
+  ms.sourcegitcommit: 4597964eba08b7e0584d2b275cc33a370c25e027
+  ms.translationtype: HT
+  ms.contentlocale: zh-TW
+  ms.lasthandoff: 07/02/2018
+  ms.locfileid: "37340704"
+abstract:
+  description: 雲端式電腦視覺 API 可供開發人員存取進階演算法，以處理影像及傳回資訊。 藉由上傳影像或指定影像 URL，Microsoft 電腦視覺演算法可根據輸入和使用者選擇，透過不同方式分析視覺內容。 透過快速入門、教學課程及範例，了解如何以不同的方式分析視覺內容。
+sections:
+- title: 5 分鐘快速入門
+  items:
+  - type: paragraph
+    text: 使用以下方式分析影像、產生縮圖，並從影像中擷取文字：
+  - type: list
+    style: icon48
+    items:
+    - image:
+        src: media/index/logo_Csharp.svg
+      text: C&#35;
+      href: quickstarts-sdk/csharp-analyze-sdk
+    - image:
+        src: media/index/logo_java.svg
+      text: Java
+      href: QuickStarts/java-analyze
+    - image:
+        src: media/index/logo_nodejs.svg
+      text: Node.js
+      href: QuickStarts/node-analyze
+    - image:
+        src: media/index/logo_python.svg
+      text: Python
+      href: QuickStarts/python-analyze
+    - image:
+        src: media/index/logo_go.svg
+      text: Go
+      href: QuickStarts/go-analyze
+- title: 參考
+  items:
+  - type: list
+    style: cards
+    className: cardsD
+    items:
+    - title: API
+      html: <p><a href="https://westus.dev.cognitive.microsoft.com/docs/services/5adf991815e1060e6355ad44">電腦視覺 API v2.0</a></p> <p><a href="https://westus.dev.cognitive.microsoft.com/docs/services/56f91f2d778daf23d8ec6739">電腦視覺 API v1.0</a></p>
+    - title: SDK
+      html: <p><a href="https://github.com/Microsoft/Cognitive-vision-windows">Windows</a></p> <p><a href="https://docs.microsoft.com/javascript/api/overview/azure/cognitive-services?view=azure-node-latest#vision-modules">Node.js</a></p> <p><a href="https://docs.microsoft.com/python/api/overview/azure/cognitive-services?view=azure-python#vision-modules">Python</a></p> <p><a href="https://github.com/Azure/azure-sdk-for-go/tree/master/services/cognitiveservices/v1.0/computervision">Go</a></p> <p><a href="https://github.com/Microsoft/Cognitive-vision-android">Android</a></p> <p><a href="https://github.com/DanilaVladi/Microsoft-Cognitive-Services-Swift-SDK">Swift</a></p>

@@ -1,11 +1,11 @@
 ---
-title: "使用 Azure 流量管理員設定優先順序流量路由方法 | Microsoft Docs"
-description: "此文章說明如何在流量管理員中設定優先順序流量路由方法"
+title: 使用 Azure 流量管理員設定優先順序流量路由方法 | Microsoft Docs
+description: 此文章說明如何在流量管理員中設定優先順序流量路由方法
 services: traffic-manager
-documentationcenter: 
+documentationcenter: ''
 author: kumudd
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 6dca6de1-18f7-4962-bd98-6055771fab22
 ms.service: traffic-manager
 ms.devlang: na
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23111136"
 ---
 # <a name="configure-priority-traffic-routing-method-in-traffic-manager"></a>在流量管理員中設定優先順序流量路由方法
 

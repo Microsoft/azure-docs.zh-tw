@@ -1,11 +1,11 @@
 ---
-title: "在 Azure 資訊安全中心的 SQL Database 上啟用稽核與威脅偵測 | Microsoft Docs"
-description: "本文件說明如何實作 Azure 資訊安全中心建議的**在 SQL Database 上啟用稽核與威脅偵測**。"
+title: 在 Azure 資訊安全中心的 SQL Database 上啟用稽核與威脅偵測 | Microsoft Docs
+description: 本文件說明如何實作 Azure 資訊安全中心建議的**在 SQL Database 上啟用稽核與威脅偵測**。
 services: security-center
 documentationcenter: na
 author: TerryLanfear
 manager: MBaldwin
-editor: 
+editor: ''
 ms.assetid: 224b6755-2b36-4ecd-9af8-139a198e0df1
 ms.service: security-center
 ms.devlang: na
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23040103"
 ---
 # <a name="enable-auditing-and-threat-detection-on-sql-databases-in-azure-security-center"></a>在 Azure 資訊安全中心的 SQL Database 上啟用稽核與威脅偵測
 如果尚未啟用稽核與威脅偵測，Azure 資訊安全中心將建議您針對所有 SQL Database 開啟稽核與威脅偵測。 稽核與威脅偵測可協助您保持符合法規、了解資料庫活動，以及深入了解可指出商務考量或疑似安全違規的不一致和異常。

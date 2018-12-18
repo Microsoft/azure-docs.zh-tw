@@ -2,21 +2,20 @@
 title: 從 Azure 儲存體下載大量隨機資料 | Microsoft Docs
 description: 了解如何使用 Azure SDK 從 Azure 儲存體帳戶下載大量隨機資料
 services: storage
-documentationcenter: ''
 author: roygara
-manager: jeconnoc
 ms.service: storage
-ms.workload: web
-ms.devlang: csharp
+ms.devlang: dotnet
 ms.topic: tutorial
 ms.date: 02/20/2018
 ms.author: rogarana
 ms.custom: mvc
-ms.openlocfilehash: 21186d3a2fd7d33cd78db3c3e45ff69240e7310d
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.component: blobs
+ms.openlocfilehash: d71d09dde45897ad171109f6e091ae29c7cb91c2
+ms.sourcegitcommit: d4c076beea3a8d9e09c9d2f4a63428dc72dd9806
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 08/01/2018
+ms.locfileid: "39397274"
 ---
 # <a name="download-large-amounts-of-random-data-from-azure-storage"></a>從 Azure 儲存體下載大量隨機資料
 
@@ -29,7 +28,7 @@ ms.lasthandoff: 03/28/2018
 > * 執行應用程式
 > * 驗證連線數目
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 若要完成本教學課程，您必須先完成上一個儲存體教學課程：[平行上傳大量隨機資料到 Azure 儲存體][previous-tutorial]。
 

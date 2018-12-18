@@ -1,22 +1,20 @@
 ---
 title: 使用 Node.js 將模擬 TPM 裝置佈建到 Azure IoT 中樞 | Microsoft Docs
 description: Azure 快速入門 - 使用適用於 Azure IoT 中樞裝置佈建服務的 Node.js 裝置 SDK 來建立及佈建模擬 TPM 裝置
-services: iot-dps
-keywords: ''
-author: msebolt
-ms.author: v-masebo
-ms.date: 03/01/2018
-ms.topic: hero-article
+author: wesmc7777
+ms.author: wesmc
+ms.date: 04/09/2018
+ms.topic: quickstart
 ms.service: iot-dps
-documentationcenter: ''
+services: iot-dps
 manager: timlt
-ms.devlang: na
 ms.custom: mvc
-ms.openlocfilehash: b73379baa2b0b73fb1501a4356db10279ac41185
-ms.sourcegitcommit: 20d103fb8658b29b48115782fe01f76239b240aa
+ms.openlocfilehash: 956bdf4770bd2a42a9ede6f59c2aa80d44d9429a
+ms.sourcegitcommit: 4ecc62198f299fc215c49e38bca81f7eb62cdef3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "47041586"
 ---
 # <a name="create-and-provision-a-simulated-tpm-device-using-nodejs-device-sdk-for-iot-hub-device-provisioning-service"></a>使用適用於 IoT 中樞裝置佈建服務的 Node.js 裝置 SDK 來建立及佈建模擬 TPM 裝置
 
@@ -24,9 +22,9 @@ ms.lasthandoff: 04/03/2018
 
 這些步驟顯示如何在執行 Windows 作業系統的開發電腦上建立模擬裝置、執行 Windows TPM 模擬器作為裝置的[硬體安全性模組 (HSM)](https://azure.microsoft.com/blog/azure-iot-supports-new-security-hardware-to-strengthen-iot-security/)，並使用程式碼範例來連線模擬裝置與裝置佈建服務和 IoT 中樞。 
 
-繼續之前，請務必完成[使用 Azure 入口網站設定 IoT 中樞裝置佈建服務](./quick-setup-auto-provision.md)中的步驟。
+如果您不熟悉自動佈建程序，請務必也要檢閱[自動佈建概念](concepts-auto-provisioning.md)。 繼續之前，請務必完成[使用 Azure 入口網站設定 IoT 中樞裝置佈建服務](./quick-setup-auto-provision.md)中的步驟。 
 
-[!INCLUDE [IoT DPS basic](../../includes/iot-dps-basic.md)]
+[!INCLUDE [IoT Device Provisioning Service basic](../../includes/iot-dps-basic.md)]
 
 ## <a name="prepare-the-environment"></a>準備環境 
 
@@ -134,9 +132,9 @@ ms.lasthandoff: 04/03/2018
 
 1. 登入 Azure 入口網站，按一下左側功能表上的 [所有資源] 按鈕，然後開啟您的裝置佈建服務。
 
-1. 在裝置佈建服務摘要刀鋒視窗上，選取 [管理註冊]。 選取 [個別註冊] 索引標籤，然後按一下頂端的 [新增] 按鈕。 
+1. 在裝置佈建服務摘要刀鋒視窗上，選取 [管理註冊]。 選取 [個別註冊] 索引標籤，然後按一下頂端的 [新增個別註冊] 按鈕。 
 
-1. 在 [新增註冊清單項目] 之下，輸入下列資訊：
+1. 在 [新增註冊] 之下，輸入下列資訊：
     - 選取 [TPM] 作為身分識別證明「機制」。
     - 輸入 TPM 裝置的 [註冊識別碼] 和 [簽署金鑰]。
     - 您可以選擇性地提供下列資訊：
@@ -154,7 +152,7 @@ ms.lasthandoff: 04/03/2018
 
 1. 在 Azure 入口網站中，選取裝置佈建服務的 **概觀** 刀鋒視窗，並記下 **_全域裝置端點_** 和 **_識別碼範圍_** 值。
 
-    ![從入口網站刀鋒視窗擷取 DPS 端點資訊](./media/quick-create-simulated-device/extract-dps-endpoints.png) 
+    ![從入口網站刀鋒視窗擷取裝置佈建服務端點資訊](./media/quick-create-simulated-device/extract-dps-endpoints.png) 
 
 1. 使用文字編輯器，在 **registerdevice** 資料夾中建立新的 **RegisterDevice.js** 檔案。
 

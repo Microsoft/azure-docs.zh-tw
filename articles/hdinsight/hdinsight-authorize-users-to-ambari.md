@@ -1,37 +1,31 @@
 ---
-title: 授權 Ambari 檢視的使用者 - Azure HDInsight | Microsoft Docs
-description: 如何管理已加入網域之 HDInsight 叢集的 Ambari 使用者和群組權限。
+title: 授權 Ambari 檢視的使用者 - Azure HDInsight
+description: 如何在啟用 ESP 的情況下，管理 HDInsight 叢集的 Ambari 使用者和群組權限。
 services: hdinsight
-documentationcenter: ''
-tags: azure-portal
 author: maxluk
-manager: jhubbard
-editor: cgronlun
-ms.assetid: ''
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 09/26/2017
 ms.author: maxluk
-ms.openlocfilehash: f4dfb51cf344d1ec51363ef3a9f74c1ca59119a6
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: 4e05d4ff9c090fac0242921e15ef16439d3ed27f
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46954444"
 ---
 # <a name="authorize-users-for-ambari-views"></a>授權 Ambari 檢視的使用者
 
-[已加入網域的 HDInsight 叢集](./domain-joined/apache-domain-joined-introduction.md)可提供企業級功能，包括以 Azure Active Directory 為基礎的驗證。 您可以將已新增至已獲得存取權之 Azure AD 群組的[新使用者同步](hdinsight-sync-aad-users-to-cluster.md)至叢集，讓這些特定使用者能夠執行特定動作。 已加入網域的 HDInsight 叢集和標準 HDInsight 叢集都支援在 Ambari 中使用使用者、群組及權限。
+[啟用企業安全性套件 (ESP) 的 HDInsight 叢集](./domain-joined/apache-domain-joined-introduction.md)可提供企業級功能，包括以 Azure Active Directory 為基礎的驗證。 您可以將已新增至已獲得存取權之 Azure AD 群組的[新使用者同步](hdinsight-sync-aad-users-to-cluster.md)至叢集，讓這些特定使用者能夠執行特定動作。 ESP HDInsight 叢集和標準 HDInsight 叢集都支援在 Ambari 中運用使用者、群組及權限。
 
 Active Directory 使用者可以使用其網域認證來登入叢集節點。 他們也可以使用其網域認證來驗證叢集與其他已核准之端點 (例如 Hue、Ambari 檢視、ODBC、JDBC、PowerShell 和 REST API) 的互動。
 
 > [!WARNING]
 > 請勿變更以 Linux 為基礎之 HDInsight 叢集上的 Ambari 看門狗 (hdinsightwatchdog) 密碼。 變更密碼會破壞在叢集上使用指令碼動作或執行調整作業的能力。
 
-如果您尚未這麼做，請依照[這些指示](./domain-joined/apache-domain-joined-configure.md)來佈建一個已加入網域的新叢集。
+如果您尚未這麼做，請依照[這些指示](./domain-joined/apache-domain-joined-configure.md)來佈建新 ESP 叢集。
 
 ## <a name="access-the-ambari-management-page"></a>存取 Ambari 管理頁面
 
@@ -122,7 +116,7 @@ Tez 檢視執行個體可讓使用者對所有 Tez 作業 (由 Hive 查詢和 Pi
 
     ![[角色] 清單檢視 - 使用者](./media/hdinsight-authorize-users-to-ambari/roles-list-view-users.png)
 
-* [List] \(清單\) 檢視的 [Groups] \(群組\) 類別會顯示所有群組，以及指派給每個群組的角色。 在我們的範例中，群組清單是透過同步處理，從叢集 [Domain] \(網域\) 設定之 [Access user group] \(存取使用者群組\) 屬性中指定的 Azure AD 群組取得。 請參閱[建立已加入網域的 HDInsight 叢集](/domain-joined/apache-domain-joined-configure-using-azure-adds.md#create-a-domain-joined-hdinsight-cluster)。
+*  [List] \(清單\) 檢視的 [Groups] \(群組\) 類別會顯示所有群組，以及指派給每個群組的角色。 在我們的範例中，群組清單是透過同步處理，從叢集 [Domain] \(網域\) 設定之 [Access user group] \(存取使用者群組\) 屬性中指定的 Azure AD 群組取得。 請參閱[建立啟用 ESP 的 HDInsight 叢集](./domain-joined/apache-domain-joined-configure-using-azure-adds.md#create-a-hdinsight-cluster-with-esp)。
 
     ![[角色] 清單檢視 - 群組](./media/hdinsight-authorize-users-to-ambari/roles-list-view-groups.png)
 
@@ -142,7 +136,7 @@ Tez 檢視執行個體可讓使用者對所有 Tez 作業 (由 Hive 查詢和 Pi
 
 ## <a name="next-steps"></a>後續步驟
 
-* [在已加入網域的 HDInsight 中設定 Hive 原則](./domain-joined/apache-domain-joined-run-hive.md)
-* [管理已加入網域的 HDInsight 叢集](./domain-joined/apache-domain-joined-manage.md)
+* [在有 ESP 的 HDInsight 中設定 Hive 原則](./domain-joined/apache-domain-joined-run-hive.md)
+* [管理 ESP HDInsight 叢集](./domain-joined/apache-domain-joined-manage.md)
 * [在 HDInsight 中搭配 Hadoop 使用 Hive 檢視](hadoop/apache-hadoop-use-hive-ambari-view.md)
 * [將 Azure AD 使用者同步至叢集](hdinsight-sync-aad-users-to-cluster.md)

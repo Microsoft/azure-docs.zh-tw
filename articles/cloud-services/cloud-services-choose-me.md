@@ -1,9 +1,9 @@
 ---
-title: "Azure 計算選項 - Azure 雲端服務 | Microsoft Docs"
-description: "了解 Azure 計算裝載選項以及其運作方式：App Service、Azure 雲端服務和虛擬機器"
+title: 什麼是 Azure 雲端服務 | Microsoft Docs
+description: 了解什麼是 Azure 雲端服務。
 services: cloud-services
-documentationcenter: 
-author: Thraka
+documentationcenter: ''
+author: jpconnock
 manager: timlt
 ms.assetid: ed7ad348-6018-41bb-a27d-523accd90305
 ms.service: multiple
@@ -12,21 +12,15 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 04/19/2017
-ms.author: adegeo
-ms.openlocfilehash: 2871a8c02db0ffc6d9033724e7c9f4a454afef8e
-ms.sourcegitcommit: 059dae3d8a0e716adc95ad2296843a45745a415d
+ms.author: jeconnoc
+ms.openlocfilehash: 6af4533a4ab374071b904cc4b03ca239a3e83364
+ms.sourcegitcommit: e0a678acb0dc928e5c5edde3ca04e6854eb05ea6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 07/13/2018
+ms.locfileid: "39011656"
 ---
-# <a name="should-i-choose-azure-cloud-services-or-something-else"></a>我該選擇 Azure 雲端服務還是其他服務？
-Azure 雲端服務適合您嗎？ Azure 對於執行的應用程式提供不同的裝載模型。 每一個各提供一組不同的服務。 您要選擇哪一個取決於您確實要嘗試執行的內容。
-
-[!INCLUDE [compute-table](../../includes/compute-options-table.md)]
-
-<a name="tellmecs"></a>
-
-## <a name="tell-me-about-azure-cloud-services"></a>我想了解 Azure 雲端服務
+# <a name="overview-of-azure-cloud-services"></a>Azure 雲端服務概觀
 Azure 雲端服務是[平台即服務](https://azure.microsoft.com/overview/what-is-paas/) (PaaS) 的一個範例。 這項技術如同 [Azure App Service](../app-service/app-service-web-overview.md)，是專為支援可調整、穩定可靠且操作成本低的應用程式而設計。 如同 App Service 是裝載於虛擬機器 (VM) 上，Azure 雲端服務也是如此。 不過，您可更充分地掌控 VM。 您可以使用 Azure 雲端服務在 VM 上安裝您自己的軟體，並從遠端加以存取。
 
 ![Azure 雲端服務圖表](./media/cloud-services-choose-me/diagram.png)

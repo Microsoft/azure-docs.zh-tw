@@ -1,26 +1,20 @@
 ---
-title: "為 Power BI 工作區集合中的報告切換檢視和編輯模式 | Microsoft Docs"
-description: "了解如何為 Power BI 工作區集合內的報告切換檢視和編輯模式。"
+title: 為 Power BI 工作區集合中的報告切換檢視和編輯模式 | Microsoft Docs
+description: 了解如何為 Power BI 工作區集合內的報告切換檢視和編輯模式。
 services: power-bi-embedded
-documentationcenter: 
-author: guyinacube
-manager: erikre
-editor: 
-tags: 
+author: markingmyname
 ROBOTS: NOINDEX
-ms.assetid: 
 ms.service: power-bi-embedded
-ms.devlang: NA
 ms.topic: article
-ms.tgt_pltfrm: NA
 ms.workload: powerbi
 ms.date: 09/20/2017
-ms.author: asaxton
-ms.openlocfilehash: e66778697f3f4f2f065d2757b3b60ac2699c0334
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.author: maghan
+ms.openlocfilehash: 19a576440742684849ffc74092162be7008621ba
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43045013"
 ---
 # <a name="toggle-between-view-and-edit-mode-for-reports-in-power-bi-workspace-collections"></a>為 Power BI 工作區集合中的報告切換檢視和編輯模式
 

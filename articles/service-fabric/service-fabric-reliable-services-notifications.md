@@ -1,6 +1,6 @@
 ---
-title: "Reliable Services 通知 | Microsoft Docs"
-description: "Service Fabric Reliable Services 通知的概念文件"
+title: Reliable Services 通知 | Microsoft Docs
+description: Service Fabric Reliable Services 通知的概念文件
 services: service-fabric
 documentationcenter: .net
 author: mcoskun
@@ -9,16 +9,17 @@ editor: masnider,vturecek
 ms.assetid: cdc918dd-5e81-49c8-a03d-7ddcd12a9a76
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 6/29/2017
 ms.author: mcoskun
-ms.openlocfilehash: c080ee1f67b558988e35613f7357137c89c872fc
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.openlocfilehash: a13e5d74390b82888f51cfd225c54e29550354e9
+ms.sourcegitcommit: 7c4fd6fe267f79e760dc9aa8b432caa03d34615d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47433509"
 ---
 # <a name="reliable-services-notifications"></a>Reliable Services 通知
 通知可讓用戶端追蹤對於他們感興趣物件所進行的變更。 兩種類型的物件支援通知：「可靠的狀態管理員」和「可靠的字典」。
@@ -96,7 +97,7 @@ public void OnStateManagerChangedHandler(object sender, NotifyStateManagerChange
 {
     if (e.Action == NotifyStateManagerChangedAction.Rebuild)
     {
-        this.ProcessStataManagerRebuildNotification(e);
+        this.ProcessStateManagerRebuildNotification(e);
 
         return;
     }

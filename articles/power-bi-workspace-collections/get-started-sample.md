@@ -1,26 +1,21 @@
 ---
-title: "以範例作為起始"
-description: "本文將介紹開始使用 Power BI 工作區集合範例。"
+title: 以範例作為起始
+description: 本文將介紹開始使用 Power BI 工作區集合範例。
 services: power-bi-embedded
-documentationcenter: 
-author: guyinacube
-manager: erikre
-editor: 
-tags: 
+author: markingmyname
 ROBOTS: NOINDEX
 ms.assetid: d8a9ef78-ad4e-4bc7-9711-89172dc5c548
 ms.service: power-bi-embedded
-ms.devlang: NA
 ms.topic: article
-ms.tgt_pltfrm: NA
 ms.workload: powerbi
 ms.date: 09/25/2017
-ms.author: asaxton
-ms.openlocfilehash: 9049f95c9f81c0217c96469a45561b6cd0b33ae9
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.author: maghan
+ms.openlocfilehash: cd7da8d2bbd684df29432bb924bdae3cd9ac7e64
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43044432"
 ---
 # <a name="get-started-with-power-bi-workspace-collections-sample"></a>開始使用 Power BI 工作區集合範例
 
@@ -56,7 +51,7 @@ ms.lasthandoff: 10/11/2017
 8. 複製並儲存新建立的「工作區識別碼」  ，以供稍後在此文章中使用。 建立**工作區識別碼**之後，您就可以在 **Azure 入口網站**中找到它。
 
     ![Azure 入口網站內的工作區識別碼](media/get-started-sample/workspace-id.png)
-9. 若要將 PBIX 檔案匯入到您的**工作區**，請選取選項 **6。**\[將 PBIX Desktop 檔案匯入現有的工作區\]。 如果您現在沒有 PBIX 檔案，可以下載[零售分析範例 PBIX](http://go.microsoft.com/fwlink/?LinkID=780547)。
+9. 若要將 PBIX 檔案匯入到您的**工作區**，請選取選項 **6。** \[將 PBIX Desktop 檔案匯入現有的工作區\]。 如果您現在沒有 PBIX 檔案，可以下載[零售分析範例 PBIX](http://go.microsoft.com/fwlink/?LinkID=780547)。
 10. 如果出現提示，請輸入易記名稱做為您「資料集」 的名稱。
 
 您應該會看到像這樣的回應：

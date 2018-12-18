@@ -3,35 +3,38 @@ title: 如何排程 Azure SSIS 整合執行階段 | Microsoft Docs
 description: 本文說明如何使用 Azure 自動化及 Data Factory 來排程 Azure SSIS 整合執行階段的啟動和停止。
 services: data-factory
 documentationcenter: ''
-author: douglaslMS
-manager: craigg
-editor: ''
 ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: ''
 ms.devlang: powershell
-ms.topic: article
-ms.date: 01/25/2018
-ms.author: douglasl
-ms.openlocfilehash: cc9ab244c784cab608a75092b542dea0a6f69f22
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.topic: conceptual
+ms.date: 07/16/2018
+author: swinarko
+ms.author: sawinark
+ms.reviewer: douglasl
+manager: craigg
+ms.openlocfilehash: f83715d2a382db271686210d9df285c255c09216
+ms.sourcegitcommit: 7827d434ae8e904af9b573fb7c4f4799137f9d9b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 07/18/2018
+ms.locfileid: "39113972"
 ---
-# <a name="how-to-schedule-starting-and-stopping-of-an-azure-ssis-integration-runtime"></a>如何排程 Azure SSIS 整合執行階段的啟動和停止 
-執行 Azure SSIS (SQL Server Integration Services) 整合執行階段 (IR) 會產生相關費用。 因此，您只應在需要於 Azure 中執行 SSIS 套件時才執行 IR，而在不需要時即應加以停止。 您可以使用 Data Factory UI 或 Azure PowerShell，[以手動方式啟動或停止 Azure SSIS IR](manage-azure-ssis-integration-runtime.md)。 本文說明如何使用 Azure 自動化及 Azure Data Factory 來排程 Azure SSIS 整合執行階段 (IR) 的啟動和停止。 以下是本文說明的概要步驟：
+# <a name="how-to-start-and-stop-the-azure-ssis-integration-runtime-on-a-schedule"></a>如何排程 Azure SSIS 整合執行階段的啟動和停止
+本文說明如何使用 Azure 自動化及 Azure Data Factory 來排程 Azure SSIS 整合執行階段 (IR) 的啟動和停止。 執行 Azure SSIS (SQL Server Integration Services) 整合執行階段 (IR) 會產生相關費用。 因此，您通常只應在需要於 Azure 中執行 SSIS 套件時才執行 IR，而在不需要時即應加以停止。 您可以使用 Data Factory UI 或 Azure PowerShell，[以手動方式啟動或停止 Azure SSIS IR](manage-azure-ssis-integration-runtime.md)。
+
+例如，您可以使用 Webhook 建立 Web 活動至 Azure 自動化 PowerShell Runbook，並在它們之間鏈結 Execute SSIS 套件活動。 Web 活動可在您的套件執行前或後即時啟動和停止您的 Azure SSIS IR。 如需有關 Execute SSIS 套件活動的詳細資訊，請參閱[在 Azure Data Factory 中使用 SSIS 活動執行 SSIS 套件](how-to-invoke-ssis-package-ssis-activity.md)。
+
+## <a name="overview-of-the-steps"></a>步驟概觀
+
+以下是本文說明的概要步驟：
 
 1. **建立並測試 Azure 自動化 Runbook。** 在此步驟中，您會使用指令碼建立啟動或停止 Azure SSIS IR 的 PowerShell Runbook。 然後，您會在「啟動」和「停止」的案例中測試 Runbook，並確認 IR 會啟動或停止。 
 2. **為 Runbook 建立兩個排程。** 在第一個排程中，您會設定具有 START 作業的 Runbook。 在第二個排程中，則設定具有 STOP 作業的 Runbook。 對這兩個排程，您都會指定執行 Runbook 的頻率。 例如，您可以將第一個 Runbook 排程在每天上午 8 點執行，第二個則在每天晚上 11 點執行。 第一個 Runbook 執行時，即會啟動 Azure SSIS IR。 第二個 Runbook 執行時，則會停止 Azure SSIS IR。 
 3. **為 Runbook 建立兩個 Webhook**，一個用於 START 作業，另一個則用於 STOP 作業。 您在 Data Factory 管線中設定 Web 活動時，可以使用這些 Webhook 的 URL。 
 4. **建立 Data Factory 管線**。 您建立的管線包含下列三個活動。 第一個 **Web** 活動會叫用第一個 Webhook，以啟動 Azure SSIS IR。 **預存程序**活動會執行 SQL 指令碼以執行 SSIS 套件。 第二個 **Web** 活動會停止 Azure SSIS IR。 如需如何使用預存程序活動從 Data Factory 管線叫用 SSIS 套件的詳細資訊，請參閱[叫用 SSIS 套件](how-to-invoke-ssis-package-stored-procedure-activity.md)。 接著，您可以建立排程觸發程序，以將管線排程為依照您指定的頻率執行。
 
-> [!NOTE]
-> 本文適用於第 2 版的 Data Fatory (目前為預覽版)。 如果您使用第 1 版的 Data Factory 服務，也就是正式推出 (GA) 的版本，請參閱[使用第 1 版的預存程序活動叫用 SSIS 封裝](v1/how-to-invoke-ssis-package-stored-procedure-activity.md)。
-
- 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 如果您尚未佈建 Azure SSIS 整合執行階段，請依照[教學課程](tutorial-create-azure-ssis-runtime-portal.md)中的指示加以佈建。 
 
 ## <a name="create-and-test-an-azure-automation-runbook"></a>建立並測試 Azure 自動化 Runbook
@@ -69,21 +72,17 @@ ms.lasthandoff: 03/23/2018
 
 ### <a name="import-data-factory-modules"></a>匯入資料處理站模組
 
-1. 在左側功能表的 [共用資源] 區段中選取 [模組]，然後確認您的模組清單中是否有 **AzureRM.Profile** 和 **AzureRM.DataFactoryV2**。 如果沒有，請選取工具列上的 [瀏覽資源庫]。
+1. 在左側功能表的 [共用資源] 區段中選取 [模組]，然後確認您的模組清單中是否有 **AzureRM.Profile** 和 **AzureRM.DataFactoryV2**。
 
-    ![自動化首頁](./media/how-to-schedule-azure-ssis-integration-runtime/automation-modules.png)
-2. 在 [瀏覽資源庫] 視窗的搜尋視窗中輸入 **AzureRM.Profile**，然後按 **ENTER** 鍵。 在清單中選取 **AzureRM.Profile**。 接著，按一下工具列上的 [匯入]。 
+    ![驗證必要的模組](media/how-to-schedule-azure-ssis-integration-runtime/automation-fix-image1.png)
 
-    ![選取 AzureRM.Profile](./media/how-to-schedule-azure-ssis-integration-runtime/select-azurerm-profile.png)
-1. 在 [匯入] 視窗中選取 [我同意更新所有 Azure 模組] 選項，然後按一下 [確定]。  
+2.  移至 [AzureRM.DataFactoryV2 模組](https://www.powershellgallery.com/packages/AzureRM.DataFactoryV2/)的 PowerShell 資源庫，選取 **[部署至 Azure 自動化]**，選取您的自動化帳戶，然後選取 **[確定]**。 回到左側功能表的 **[共用資源]** 中，檢視 **[模組]**，並等到您看到 **AzureRM.DataFactoryV2** 模組的 **[狀態]** 變更為 **[可用]** 為止。
 
-    ![匯入 AzureRM.Profile](./media/how-to-schedule-azure-ssis-integration-runtime/import-azurerm-profile.png)
-4. 關閉視窗以回到 [模組] 視窗。 您應該會在清單中看到匯入的狀態。 選取 [重新整理] 即可重新整理清單。 請靜待 [狀態] 顯示為 [可用]。
+    ![驗證 Data Factory 模組](media/how-to-schedule-azure-ssis-integration-runtime/automation-fix-image2.png)
 
-    ![匯入狀態](./media/how-to-schedule-azure-ssis-integration-runtime/module-list-with-azurerm-profile.png)
-1. 重複前述步驟以匯入 **AzureRM.DataFactoryV2** 模組。 請先確認此模組的狀態設為 [可用]，再繼續作業。 
+3.  移至 [AzureRM.Profile 模組](https://www.powershellgallery.com/packages/AzureRM.profile/)的 PowerShell 資源庫，按一下 **[部署至 Azure 自動化]**，選取您的自動化帳戶，然後選取 **[確定]**。 回到左側功能表的 **[共用資源]** 中，檢視 **[模組]**，並等到您看到 **AzureRM.Profile** 模組的 **[狀態]** 變更為 **[可用]** 為止。
 
-    ![最終匯入狀態](./media/how-to-schedule-azure-ssis-integration-runtime/module-list-with-azurerm-datafactoryv2.png)
+    ![驗證設定檔模組](media/how-to-schedule-azure-ssis-integration-runtime/automation-fix-image3.png)
 
 ### <a name="create-a-powershell-runbook"></a>建立 PowerShell Runbook
 下列程序提供建立 PowerShell Runbook 的步驟。 與 Runbook 相關聯的指令碼會根據您為 **OPERATION** 參數指定的命令來啟動/停止 Azure SSIS IR。 本節將不提供建立 Runbook 的所有詳細資料。 如需詳細資訊，請參閱[建立 Runbook](../automation/automation-quickstart-create-runbook.md) 一文。
@@ -123,7 +122,7 @@ ms.lasthandoff: 03/23/2018
         $servicePrincipalConnection=Get-AutomationConnection -Name $connectionName         
     
         "Logging in to Azure..."
-        Add-AzureRmAccount `
+        Connect-AzureRmAccount `
             -ServicePrincipal `
             -TenantId $servicePrincipalConnection.TenantId `
             -ApplicationId $servicePrincipalConnection.ApplicationId `
@@ -213,7 +212,7 @@ ms.lasthandoff: 03/23/2018
     4. 選取 [確定] 。 
 
         ![新增 Webhook 視窗](./media/how-to-schedule-azure-ssis-integration-runtime/new-web-hook-window.png)
-3. 切換至 [參數與回合設定] 索引標籤。指定資源群組名稱、資料處理站名稱和 Azure SSIS IR 名稱。 針對 [OPERATION]，輸入 **START**。 按一下 [SERVICEPRINCIPAL] 。 然後按一下 [ **建立**]。 
+3. 切換至 [參數與回合設定] 索引標籤。指定資源群組名稱、資料處理站名稱和 Azure SSIS IR 名稱。 針對 [OPERATION]，輸入 **START**。 按一下 [確定]。 然後按一下 [ **建立**]。 
 
     ![Webhook - 參數與回合設定](./media/how-to-schedule-azure-ssis-integration-runtime/webhook-parameters.png)
 4. 重複前三個步驟，以建立名為 **StopAzureSsisIR** 的另一個 Webhook。 別忘了複製 URL。 在指定參數與回合設定時，針對 [OPERATION] 輸入 **STOP**。 
@@ -226,7 +225,7 @@ ms.lasthandoff: 03/23/2018
 您建立的管線包含下列三個活動。 
 
 1. 第一個 **Web** 活動會叫用第一個 Webhook，以啟動 Azure SSIS IR。 
-2. **預存程序**活動會執行 SQL 指令碼以執行 SSIS 套件。 第二個 **Web** 活動會停止 Azure SSIS IR。 如需如何使用預存程序活動從 Data Factory 管線叫用 SSIS 套件的詳細資訊，請參閱[叫用 SSIS 套件](how-to-invoke-ssis-package-stored-procedure-activity.md)。 
+2. **執行 SSIS 套件**活動或**預存程序**活動會執行 SSIS 套件。
 3. 第二個 **Web** 活動會叫用停止 Azure SSIS IR 的 Webhook。 
 
 在建立並測試管線後，您會建立排程觸發程序，並使其與管線產生關聯。 排程觸發程序會定義管線的排程。 假設您建立了排程於每天晚上 11 點執行的觸發程序。 此觸發程序會在每天晚上 11 點執行管線。 管線會啟動 Azure SSIS IR、執行 SSIS 套件，然後停止 Azure SSIS IR。 
@@ -243,7 +242,7 @@ ms.lasthandoff: 03/23/2018
  
    Azure Data Factory 的名稱必須是 **全域唯一的**。 如果您收到下列錯誤，請變更資料處理站的名稱 (例如 yournameMyAzureSsisDataFactory)，然後試著重新建立。 請參閱 [Data Factory - 命名規則](naming-rules.md)一文，以了解 Data Factory 成品的命名規則。
   
-       `Data factory name “MyAzureSsisDataFactory” is not available`
+       `Data factory name �MyAzureSsisDataFactory� is not available`
 3. 選取您要在其中建立資料處理站的 Azure **訂用帳戶**。 
 4. 針對 [資源群組]，請執行下列其中一個步驟︰
      
@@ -251,7 +250,7 @@ ms.lasthandoff: 03/23/2018
       - 選取 [建立新的] ，然後輸入資源群組的名稱。   
          
       若要了解資源群組，請參閱 [使用資源群組管理您的 Azure 資源](../azure-resource-manager/resource-group-overview.md)。  
-4. 對 [版本] 選取 [V2 (預覽)]。
+4. 針對 [版本] 選取 [V2]。
 5. 選取 Data Factory 的 [位置]  。 清單中只會顯示資料處理站建立所支援的位置。
 6. 選取 [釘選到儀表板]。     
 7. 按一下頁面底部的 [新增] 。
@@ -278,69 +277,55 @@ ms.lasthandoff: 03/23/2018
     3. 針對 [本文]，輸入 `{"message":"hello world"}`。 
    
         ![第一個 Web 活動 - 設定索引標籤](./media/how-to-schedule-azure-ssis-integration-runtime/first-web-activity-settnigs-tab.png)
-5. 將 [活動] 工具箱的 [一般] 區段中拖放「預存程序」活動。 將活動的名稱設為 **RunSSISPackage**。 
-6. 在 [屬性] 視窗中切換至 [SQL 帳戶] 索引標籤。 
-7. 針對 [連結服務]，按一下 [+ 新增]。
-8. 在 [新增連結服務] 視窗中，執行下列動作： 
 
-    1. 選取 [類型] 的 [Azure SQL Database]。
-    2. 針對 [伺服器名稱] 欄位，選取裝載 **SSISDB** 資料庫的 Azure SQL 伺服器。 Azure SSIS IR 佈建程序會在您指定的 Azure SQL 伺服器中建立 SSIS 目錄 (SSISDB 資料庫)。
-    3. 選取 [資料庫名稱] 的 [SSISDB]。
-    4. 對於 [使用者名稱]，輸入可存取資料庫的使用者名稱。
-    5. 對於 [密碼]，輸入使用者的密碼。 
-    6. 按一下 [測試連接] 按鈕以測試資料庫連接。
-    7. 按一下 [儲存] 按鈕以儲存連結服務。
-9. 在 [屬性] 視窗中，從 [SQL 帳戶] 索引標籤切換至 [預存程序] 索引標籤，並執行下列步驟： 
+4. 從 [活動] 工具箱的 [一般] 區段中拖放「執行 SSIS 套件」活動或「預存程序」活動。 將活動的名稱設為 **RunSSISPackage**。 
 
-    1. 針對 [預存程序名稱] 選取 [編輯] 選項，然後輸入 **sp_executesql**。 
-    2. 選取 [預存程序參數] 區段中的 [+ 新增]。 
-    3. 對於參數的 [名稱]，輸入 **stmt**。 
-    4. 針對參數的 [類型]，輸入 [字串]。 
-    5. 針對參數的 [值]，輸入下列 SQL 查詢：
+5. 如果您選取「執行 SSIS 套件」活動，請依照[在 Azure Data Factory 中使用 SSIS 活動執行 SSIS 套件](how-to-invoke-ssis-package-ssis-activity.md)中的指示來完成活動建立。  確定您指定了足夠的重試次數，且該次數頻繁到足以等待 Azure-SSIS IR 的可用性，因為它最多需要 30 分鐘來啟動。 
 
-        在 SQL 查詢中，指定 **folder_name**、**project_name** 和 **package_name** 參數的正確值。 
+    ![重試設定](media/how-to-schedule-azure-ssis-integration-runtime/retry-settings.png)
 
-        ```sql
-        DECLARE       @return_value int, @exe_id bigint, @err_msg nvarchar(150)
+6. 如果您選取「預存程序」活動，請依照[在 Azure Data Factory 使用預存程序活動叫用 SSIS 套件](how-to-invoke-ssis-package-stored-procedure-activity.md)中的指示來完成活動建立。 確定您插入的 Transact-SQL 指令碼會等候 Azure-SSIS IR 的可用性，因為它最多需要 30 分鐘來啟動。
+    ```sql
+    DECLARE @return_value int, @exe_id bigint, @err_msg nvarchar(150)
 
-        -- Wait until Azure-SSIS IR is started
-        WHILE NOT EXISTS (SELECT * FROM [SSISDB].[catalog].[worker_agents] WHERE IsEnabled = 1 AND LastOnlineTime > DATEADD(MINUTE, -10, SYSDATETIMEOFFSET()))
-        BEGIN
-            WAITFOR DELAY '00:00:01';
-        END
+    -- Wait until Azure-SSIS IR is started
+    WHILE NOT EXISTS (SELECT * FROM [SSISDB].[catalog].[worker_agents] WHERE IsEnabled = 1 AND LastOnlineTime > DATEADD(MINUTE, -10, SYSDATETIMEOFFSET()))
+    BEGIN
+        WAITFOR DELAY '00:00:01';
+    END
 
-        EXEC @return_value = [SSISDB].[catalog].[create_execution] @folder_name=N'YourFolder',
-            @project_name=N'YourProject', @package_name=N'YourPackage',
-            @use32bitruntime=0, @runincluster=1, @useanyworker=1,
-            @execution_id=@exe_id OUTPUT 
+    EXEC @return_value = [SSISDB].[catalog].[create_execution] @folder_name=N'YourFolder',
+        @project_name=N'YourProject', @package_name=N'YourPackage',
+        @use32bitruntime=0, @runincluster=1, @useanyworker=1,
+        @execution_id=@exe_id OUTPUT 
 
-        EXEC [SSISDB].[catalog].[set_execution_parameter_value] @exe_id, @object_type=50, @parameter_name=N'SYNCHRONIZED', @parameter_value=1
+    EXEC [SSISDB].[catalog].[set_execution_parameter_value] @exe_id, @object_type=50, @parameter_name=N'SYNCHRONIZED', @parameter_value=1
 
-        EXEC [SSISDB].[catalog].[start_execution] @execution_id = @exe_id, @retry_count = 0
+    EXEC [SSISDB].[catalog].[start_execution] @execution_id = @exe_id, @retry_count = 0
 
-        -- Raise an error for unsuccessful package execution, check package execution status = created (1)/running (2)/canceled (3)/failed (4)/
-        -- pending (5)/ended unexpectedly (6)/succeeded (7)/stopping (8)/completed (9) 
-        IF (SELECT [status] FROM [SSISDB].[catalog].[executions] WHERE execution_id = @exe_id) <> 7 
-        BEGIN
-            SET @err_msg=N'Your package execution did not succeed for execution ID: '+ CAST(@execution_id as nvarchar(20))
-            RAISERROR(@err_msg, 15, 1)
-        END
+    -- Raise an error for unsuccessful package execution, check package execution status = created (1)/running (2)/canceled (3)/
+    -- failed (4)/pending (5)/ended unexpectedly (6)/succeeded (7)/stopping (8)/completed (9) 
+    IF (SELECT [status] FROM [SSISDB].[catalog].[executions] WHERE execution_id = @exe_id) <> 7 
+    BEGIN
+        SET @err_msg=N'Your package execution did not succeed for execution ID: '+ CAST(@execution_id as nvarchar(20))
+        RAISERROR(@err_msg, 15, 1)
+    END
+    ```
 
-        ```
-10. 將 **Web** 活動連線至**預存程序**活動。 
+7. 將 **Web** 活動連線至**執行 SSIS 套件**或**預存程序**活動。 
 
     ![將 Web 和預存程序活動連線](./media/how-to-schedule-azure-ssis-integration-runtime/connect-web-sproc.png)
 
-11. 將另一個 **Web** 活動拖放到**預存程序**活動右側。 將活動的名稱設為 **StopIR**。 
-12. 切換 [屬性] 視窗中的 [設定] 索引標籤，並執行下列動作： 
+8. 將另一個 **Web** 活動拖放到**執行 SSIS 套件**或**預存程序**活動右側。 將活動的名稱設為 **StopIR**。 
+9. 切換 [屬性] 視窗中的 [設定] 索引標籤，並執行下列動作： 
 
     1. 針對 [URL]，貼上會停止 Azure SSIS IR 之 Webhook 的 URL。 
     2. 針對 [方法]，選取 [POST]。 
     3. 針對 [本文]，輸入 `{"message":"hello world"}`。  
-4. 將**預存程序**活動連線至最後一個 **Web** 活動。
+10. 將**執行 SSIS 套件**活動或**預存程序**活動連線至最後一個 **Web** 活動。
 
     ![完整管線](./media/how-to-schedule-azure-ssis-integration-runtime/full-pipeline.png)
-5. 按一下工具列上的 [驗證]，以驗證管線設定。 按一下 **>>** 按鈕，以關閉 [管線驗證報告]。 
+11. 按一下工具列上的 [驗證]，以驗證管線設定。 按一下 **>>** 按鈕，以關閉 [管線驗證報告]。 
 
     ![驗證管線](./media/how-to-schedule-azure-ssis-integration-runtime/validate-pipeline.png)
 
@@ -388,17 +373,45 @@ ms.lasthandoff: 03/23/2018
 5. 選取左窗格中的 [全部發佈]，將解決方案發佈至資料處理站。 
 
     ![全部發佈](./media/how-to-schedule-azure-ssis-integration-runtime/publish-all.png)
-6. 若要監視觸發程序執行和管線執行，請使用左側的 [監視] 索引標籤。 如需詳細步驟，請參閱[監視管線](quickstart-create-data-factory-portal.md#monitor-the-pipeline)。
+
+### <a name="monitor-the-pipeline-and-trigger-in-the-azure-portal"></a>在 Azure 入口網站中監視管線和觸發程序
+
+1. 若要監視觸發程序執行和管線執行，請使用左側的 [監視] 索引標籤。 如需詳細步驟，請參閱[監視管線](quickstart-create-data-factory-portal.md#monitor-the-pipeline)。
 
     ![管線執行](./media/how-to-schedule-azure-ssis-integration-runtime/pipeline-runs.png)
-7. 若要檢視與管線執行相關聯的所有活動執行，請選取 [動作] 資料行中的第一個連結 ([檢視活動執行])。 您會看到和管線中每個活動相關聯的三個活動執行 (第一個 Web 活動、預存程序活動和第二個 Web 活動)。 若要切換回去以檢視管線執行，請選取頂端的 [管線] 連結。
+2. 若要檢視與管線執行相關聯的所有活動執行，請選取 [動作] 資料行中的第一個連結 ([檢視活動執行])。 您會看到和管線中每個活動相關聯的三個活動執行 (第一個 Web 活動、預存程序活動和第二個 Web 活動)。 若要切換回去以檢視管線執行，請選取頂端的 [管線] 連結。
 
     ![活動執行](./media/how-to-schedule-azure-ssis-integration-runtime/activity-runs.png)
-8. 您可以從頂端的 [管線執行] 旁邊的下拉式清單中選取 [觸發程序執行]，以檢視觸發程序執行。 
+3. 您可以從頂端的 [管線執行] 旁邊的下拉式清單中選取 [觸發程序執行]，以檢視觸發程序執行。 
 
     ![觸發程序執行](./media/how-to-schedule-azure-ssis-integration-runtime/trigger-runs.png)
 
+### <a name="monitor-the-pipeline-and-trigger-with-powershell"></a>使用 PowerShell 監視管線和觸發程序
+
+使用如以下範例的指令碼來監視管線和觸發程序。
+
+1. 取得管線執行的狀態。
+
+  ```powershell
+  Get-AzureRmDataFactoryV2PipelineRun -ResourceGroupName $ResourceGroupName -DataFactoryName $DataFactoryName -PipelineRunId $myPipelineRun
+  ```
+
+2. 取得有關觸發程序的資訊。
+
+  ```powershell
+  Get-AzureRmDataFactoryV2Trigger -ResourceGroupName $ResourceGroupName -DataFactoryName $DataFactoryName -Name  "myTrigger"
+  ```
+
+3. 取得觸發程序執行的狀態。
+
+  ```powershell
+  Get-AzureRmDataFactoryV2TriggerRun -ResourceGroupName $ResourceGroupName -DataFactoryName $DataFactoryName -TriggerName "myTrigger" -TriggerRunStartedAfter "2018-07-15" -TriggerRunStartedBefore "2018-07-16"
+  ```
+
 ## <a name="next-steps"></a>後續步驟
+請參閱下列部落格文章：
+-   [使用 ADF 管線中的 SSIS 活動來現代化及擴充您的 ETL/ELT 工作流程](https://blogs.msdn.microsoft.com/ssis/2018/05/23/modernize-and-extend-your-etlelt-workflows-with-ssis-activities-in-adf-pipelines/)
+
 請參閱 SSIS 文件中的下列文章： 
 
 - [在 Azure 上部署、執行和監視 SSIS 套件](/sql/integration-services/lift-shift/ssis-azure-deploy-run-monitor-tutorial)   

@@ -1,31 +1,32 @@
 ---
-title: "適用於開發人員的 Azure Batch 概觀 | Microsoft Docs"
-description: "從開發觀點了解 Batch 服務的功能及其 API。"
+title: 適用於開發人員的 Azure Batch 概觀 | Microsoft Docs
+description: 從開發觀點了解 Batch 服務的功能及其 API。
 services: batch
 documentationcenter: .net
 author: dlepow
 manager: jeconnoc
-editor: 
+editor: ''
 ms.assetid: 416b95f8-2d7b-4111-8012-679b0f60d204
 ms.service: batch
 ms.devlang: multiple
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: big-compute
-ms.date: 02/28/2018
+ms.date: 08/22/2018
 ms.author: danlep
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: b0a18f975530d2a291e529308ee53d6d48a68e42
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+ms.openlocfilehash: 8b6e543a4835410368e752e70e7e8cb6d8805c0e
+ms.sourcegitcommit: 1b561b77aa080416b094b6f41fce5b6a4721e7d5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 09/17/2018
+ms.locfileid: "45735574"
 ---
 # <a name="develop-large-scale-parallel-compute-solutions-with-batch"></a>使用 Batch 開發大規模的平行運算解決方案
 
 在 Azure Batch 服務的核心元件概觀中，我們會討論 Batch 開發人員可用來建置大規模平行計算解決方案的主要服務功能和資源。
 
-不論您正在開發可發出直接 [REST API][batch_rest_api] 呼叫的分散式計算應用程式或服務，或是正在使用其中一個 [Batch SDK](batch-apis-tools.md#azure-accounts-for-batch-development)，您都會使用本文所討論的眾多資源和功能。
+不論您正在開發可發出直接 [REST API][batch_rest_api] 呼叫的分散式計算應用程式或服務，或是正在使用其中一個 [Batch SDK](batch-apis-tools.md#azure-accounts-for-batch-development)，您都會使用此文章所討論的眾多資源和功能。
 
 > [!TIP]
 > 如需更高層級的 Batch 服務簡介，請參閱 [Azure Batch 的基本概念](batch-technical-overview.md)。 另請參閱最新的 [Batch 服務更新](https://azure.microsoft.com/updates/?product=batch)。
@@ -63,7 +64,7 @@ ms.lasthandoff: 03/09/2018
   * [作業準備和作業釋放工作](#job-preparation-and-release-tasks)
   * [多重執行個體工作 (MPI)](#multi-instance-tasks)
   * [作業相依性](#task-dependencies)
-* [應用程式封裝](#application-packages)
+* 套件[應用程式套件](#application-packages)
 
 ## <a name="account"></a>帳戶
 批次帳戶是批次服務內唯一識別的實體。 所有處理都與 Batch 帳戶相關聯。
@@ -72,17 +73,21 @@ ms.lasthandoff: 03/09/2018
 
 您可以在單一 Batch 帳戶中執行多個 Batch 工作負載，或在相同訂用帳戶 (但不同 Azure 區域) 的 Batch 帳戶之間散佈工作負載。
 
-> [!NOTE]
-> 建立 Batch 帳戶時，您通常應該選擇預設的 **Batch 服務**模式，可指定在幕後將集區配置在 Azure 管理的訂用帳戶中。 在其他**使用者訂用帳戶**模式中 (大部分情節中不再建議使用) 建立集區時，Batch VM 和其他資源會直接建立在您的訂用帳戶中。 若要在使用者訂用帳戶模式中建立 Batch 帳戶，您也必須向 Azure Batch 註冊訂用帳戶，並與 Azure Key Vault 中的帳戶建立關聯。
->
-
+[!INCLUDE [batch-account-mode-include](../../includes/batch-account-mode-include.md)]
 
 ## <a name="azure-storage-account"></a>Azure 儲存體帳戶
 
-大部分 Batch 解決方案都使用 Azure 儲存體來儲存資源檔和輸出檔。  
+大部分 Batch 解決方案都使用 Azure 儲存體來儲存資源檔和輸出檔。 例如，您的 Batch 工作 (包括標準工作、啟動工作、作業準備工作和作業發行工作) 通常會指定位於儲存體帳戶中的資源檔案。
 
-Batch 目前僅支援一般用途的儲存體帳戶類型，如[關於 Azure 儲存體帳戶](../storage/common/storage-create-storage-account.md)中[建立儲存體帳戶](../storage/common/storage-create-storage-account.md#create-a-storage-account)的步驟 5 所述。 您的 Batch 工作 (包括標準工作、啟動工作、作業準備工作和作業發行工作) 必須指定位於一般用途的儲存體帳戶中的資源檔。
+Batch 支援下列類型的「Azure 儲存體」帳戶：
 
+* 一般用途 v2 (GPv2) 帳戶 
+* 一般用途 v1 (GPv1) 帳戶
+* Blob 儲存體帳戶 (目前支援虛擬機器組態中的集區)
+
+如需有關儲存體帳戶的詳細資訊，請參閱 [Azure 儲存體帳戶概觀](../storage/common/storage-account-overview.md)。
+
+您可以在建立 Batch 帳戶時或在稍後，建立儲存體帳戶與 Batch 帳戶的關聯。 在選擇儲存體帳戶時，請考慮您的成本和效能需求。 例如，相較於 GPv1，GPv2 和 Blob 儲存體帳戶選項支援更大的[容量和延展性限制](https://azure.microsoft.com/blog/announcing-larger-higher-scale-storage-accounts/)。 (請連絡 Azure 支援以要求增加儲存體限制。)對於包含讀取自或寫入至儲存體帳戶之大量平行工作的 Batch 解決方案，這些帳戶選項可以改善其效能。
 
 ## <a name="compute-node"></a>計算節點
 計算節點是 Azure 虛擬機器 (VM) 或雲端服務 VM，專門用來處理您應用程式的部分工作負載。 節點大小決定配置給節點的 CPU 核心數目、記憶體容量，以及本機檔案系統大小。 您可以使用 Azure 雲端服務、[Azure 虛擬機器 Marketplace][vm_marketplace] 中的映像，或您準備的自訂映像來建立 Windows 或 Linux 節點的集區。 如需這些選項的詳細資訊，請參閱下列 [集區](#pool) 。
@@ -111,7 +116,7 @@ Azure Batch 集區的建置基礎為核心 Azure 計算平台。 這些集區可
 - 工作排程原則
 - 計算節點的通訊狀態
 - 計算節點的啟動工作
-- 應用程式封裝
+- 應用程式套件
 - 網路組態
 
 這些設定每一個都會在下列各節詳細說明。
@@ -125,7 +130,7 @@ Azure Batch 集區的建置基礎為核心 Azure 計算平台。 這些集區可
 
 當您建立 Batch 集區時，可以指定 Azure 虛擬機器設定，以及您想要在集區中的每個計算節點上執行之作業系統類型。 Batch 中可用的兩個設定類型為：
 
-- **虛擬機器設定**，會指定集區是由 Azure 虛擬機器所組成。 這些 VM 可能會從 Linux 或 Windows 映像加以建立。 
+- **虛擬機器設定**，會指定集區是由 Azure 虛擬機器所組成。 這些 VM 可能會從 Linux 或 Windows 映像建立。 
 
     以虛擬機器設定作為基礎建立集區時，您不僅需要指定節點的大小和用來建立這些節點的映像來源，也必須在節點上安裝**虛擬機器映像參考**和 Batch **節點代理程式 SKU**。 如需指定這些集區屬性的詳細資訊，請參閱 [在 Azure Batch 集區中佈建 Linux 計算節點](batch-linux-nodes.md)。 您可以選擇性地將一或多個空的資料磁碟連結至從 Marketplace 映像建立的集區 VM，或是在自訂映像中包含資料磁碟，以建立 VM。
 
@@ -183,7 +188,7 @@ Azure Batch 集區的建置基礎為核心 Azure 計算平台。 這些集區可
 
 [每個節點的工作數上限](batch-parallel-node-tasks.md) 組態選項會決定可在集區內的每個計算節點上平行執行的工作數目上限。
 
-預設組態會指定在節點上一次執行一項工作，但在某些情況下，在一個節點上同時執行兩項以上工作較為有利。 請參閱[並行節點工作](batch-parallel-node-tasks.md)一文中的[範例案例](batch-parallel-node-tasks.md#example-scenario)，以了解如何從每個節點的多項工作受惠。
+預設組態會指定在節點上一次執行一個工作，但在某些情況下，在一個節點上同時執行兩項以上工作較為有利。 請參閱[並行節點工作](batch-parallel-node-tasks.md)一文中的[範例案例](batch-parallel-node-tasks.md#example-scenario)，以了解如何從每個節點的多個工作受惠。
 
 您也可以指定「填滿類型」  ，以決定 Batch 是要將工作平均分散到集區中的所有節點，還是將最大數目的工作分配給一個節點後，再將工作指派給另一個節點。
 
@@ -199,9 +204,9 @@ Azure Batch 集區的建置基礎為核心 Azure 計算平台。 這些集區可
 
 選用的「啟動工作」  將在每個節點加入集區以及每次重新啟動節點或重新安裝其映像時，於該節點上執行。 啟動工作特別適合用於準備計算節點，以便執行工作，例如在計算節點上安裝工作要執行的應用程式。
 
-### <a name="application-packages"></a>應用程式封裝
+### <a name="application-packages"></a>應用程式套件
 
-您可以指定要部署至集區中計算節點的 [應用程式封裝](#application-packages) 。 應用程式封裝會提供您的工作執行之應用程式的簡化部署和版本控制。 您針對集區指定的應用程式封裝會安裝於加入該集區的每個節點，以及在節點重新啟動或重新安裝映像時安裝。
+您可以指定要部署至集區中計算節點的 [應用程式套件](#application-packages) 。 應用程式套件會提供您的工作執行之應用程式的簡化部署和版本控制。 您針對集區指定的應用程式套件會安裝於加入該集區的每個節點，以及在節點重新啟動或重新安裝映像時安裝。
 
 > [!NOTE]
 > 在 2017 年 7 月 5 日之後建立的所有 Batch 集區都支援應用程式套件。 只有在使用雲端服務設定建立集區時，在 2016 年 3 月 10 日與 2017 年 7 月 5 日之間所建立的 Batch 集區上才支援應用程式套件。 在 2016 年 3 月 10 日之前建立的 Batch 集區不支援應用程式套件。 如需使用應用程式套件將應用程式部署至 Batch 節點的詳細資訊，請參閱[使用 Batch 應用程式套件將應用程式部署至計算節點](batch-application-packages.md)。
@@ -231,7 +236,7 @@ Azure Batch 集區的建置基礎為核心 Azure 計算平台。 這些集區可
 ### <a name="job-priority"></a>作業優先順序
 您可以指派優先順序給在 Batch 中建立的作業。 Batch 服務會使用作業的優先順序值，以決定帳戶內的作業排程順序 (這不會與 [排程的作業](#scheduled-jobs)混淆)。 優先順序值可以介於 -1000 到 1000，-1000 表示最低優先順序，1000 表示最高優先順序。 若要更新作業的屬性，呼叫[更新作業的屬性][rest_update_job]作業 (Batch REST) 或藉由修改 [CloudJob.Priority][net_cloudjob_priority] 屬性 (Batch .NET)。
 
-在相同的帳戶內，較高優先順序的作業具有比低優先順序作業更高的排程優先順序。 一個帳戶中具有較高優先順序值的作業，其排程優先順序並不高於不同帳戶中較低優先順序值的另一項作業。
+在相同的帳戶內，較高優先順序的作業具有比低優先順序作業更高的排程優先順序。 一個帳戶中具有較高優先順序值的作業，其排程優先順序並不高於不同帳戶中較低優先順序值的另一個作業。
 
 不同集區的作業排程是獨立的。 在不同的集區之間，即使作業的優先順序較高，如果其相關聯的集區缺少閒置的節點，並不保證此作業會優先排程。 在相同的集區上，相同優先順序等級的作業有相同的排程機會。
 
@@ -252,10 +257,10 @@ Azure Batch 集區的建置基礎為核心 Azure 計算平台。 這些集區可
     `/bin/sh -c MyTaskApplication $MY_ENV_VAR`
 
     如果您的工作需要執行不在節點的 `PATH` 中的應用程式或指令碼，或參考環境變數，請在工作命令列中明確地叫用 Shell。
-* **資源檔** 。 在工作的命令列執行之前，這些檔案會自動從一般用途的 Azure 儲存體帳戶中的 Blob 儲存體複製到節點。 如需詳細資訊，請參閱[啟動工作](#start-task)和[檔案和目錄](#files-and-directories)章節。
+* **資源檔** 。 在工作的命令列執行之前，這些檔案會自動從 Azure 儲存體帳戶中的 Blob 儲存體複製到節點。 如需詳細資訊，請參閱[啟動工作](#start-task)和[檔案和目錄](#files-and-directories)章節。
 * 應用程式所需的 **環境變數** 。 如需詳細資訊，請參閱 [工作的環境設定](#environment-settings-for-tasks) 一節。
 * 執行工作所應根據的 **條件約束** 。 例如，條件約束包括允許執行工作的時間上限、失敗的工作應該重試的次數上限，以及檔案保留在工作的工作目錄中的時間上限。
-* **Application packages** 。 [應用程式封裝](#application-packages) 會提供您的工作執行之應用程式的簡化部署和版本控制。 在共用集區的環境中，工作層級的應用程式封裝特別有用：不同的作業會在一個集區上執行，而某項作業完成時並不會刪除該集區。 如果您的作業擁有的工作少於集區中的節點，工作應用程式套件可以減少資料傳輸，因為您的應用程式只會部署至執行工作的節點。
+* **Application packages** 。 [應用程式套件](#application-packages) 會提供您的工作執行之應用程式的簡化部署和版本控制。 在共用集區的環境中，工作層級的應用程式套件特別有用：不同的作業會在一個集區上執行，而某項作業完成時並不會刪除該集區。 如果您的作業擁有的工作少於集區中的節點，工作應用程式套件可以減少資料傳輸，因為您的應用程式只會部署至執行工作的節點。
 * Docker 中樞或私人登錄中的**容器映像**參考和其他設定，用來建立 Docker 容器，工作會在其中的節點上執行。 如果集區是使用容器設定進行設定，您只能指定此資訊。
 
 > [!NOTE]
@@ -285,7 +290,7 @@ Azure Batch 集區的建置基礎為核心 Azure 計算平台。 這些集區可
 如果您新增或更新現有集區的啟動工作，您必須重新啟動其計算節點，啟動工作才會套用至節點。
 
 >[!NOTE]
-> 啟動工作的總大小必須小於或等於 32768 個字元，包括資源檔案和環境變數。 若要確保啟動工作符合此需求，您可以使用兩種方法的其中一個：
+> Batch 會限制啟動工作的總大小，包括資源檔案和環境變數。 如果您需要減少啟動工作的大小，您可以使用下列其中一個方法：
 >
 > 1. 您可以使用應用程式套件，將應用程式或資料分散於 Batch 集區中的每個節點。 如需應用程式套件的詳細資訊，請參閱[使用 Batch 應用程式套件將應用程式部署至計算節點](batch-application-packages.md)。
 > 2. 您可以手動建立已壓縮的封存檔，其中包含您的應用程式檔案。 將已壓縮的封存檔以 blob 形式上傳至 Azure 儲存體。 指定已壓縮的封存檔作為您啟動工作的資源檔。 執行啟動工作的命令列之前，請從命令列將封存檔解壓縮。 
@@ -322,7 +327,7 @@ Batch 會提供作業前執行設定的作業準備工作。 作業釋放工作�
 如需在 Batch 中使用 Batch .NET 程式庫執行 MPI 作業的詳細討論，請參閱 [在 Azure Batch 中使用多個執行個體的工作執行訊息傳遞介面 (MPI) 應用程式](batch-mpi.md)。
 
 ### <a name="task-dependencies"></a>作業相依性
-[工作相依性](batch-task-dependencies.md)正如其名，可讓您在執行某個工作之前，指定該工作相依於其他工作。 此功能提供下列情況的支援：「下游」工作取用「上游」工作的輸出，或當上游工作執行下游工作所需的某種初始化時。 若要使用這項功能，您必須先在 Batch 作業上啟用工作相依性。 然後，針對每個相依於另一個工作 (或其他許多工作) 的工作，指定該工作相依的工作。
+[工作相依性](batch-task-dependencies.md)正如其名，可讓您在執行某個工作之前，指定該工作相依於其他工作。 此功能提供下列情況的支援：「下游」工作取用「上游」工作的輸出，或當上游工作執行下游工作所需的某種初始化時。 若要使用此功能，您必須先在 Batch 作業上啟用工作相依性。 然後，針對每個相依於另一個工作 (或其他許多工作) 的工作，指定該工作相依的工作。
 
 利用工作相依性，您可以設定如下所示的案例︰
 
@@ -352,7 +357,7 @@ Batch 服務會在節點上公開檔案系統的一部分作為「根目錄」 �
 
 * **共用**：此目錄允許對「所有」在節點上執行的工作進行讀取/寫入存取。 任何在節點上執行的工作都可以建立、讀取、更新和刪除此目錄中的檔案。 工作可藉由參考 `AZ_BATCH_NODE_SHARED_DIR` 環境變數來存取這個目錄。
 * **啟動**：啟動工作使用這個目錄做為它的工作目錄。 由啟動工作下載到的節點所有檔案都會儲存在這裡。 啟動工作可以建立、讀取、更新和刪除此目錄下的檔案。 工作可藉由參考 `AZ_BATCH_NODE_STARTUP_DIR` 環境變數來存取這個目錄。
-* **工作**：系統會為每個在節點上執行的工作建立一個目錄。 其可藉由參考 `AZ_BATCH_TASK_DIR` 環境變數來加以存取。
+* **工作**：系統會為每個在節點上執行的工作建立一個目錄。 它可透過參考 `AZ_BATCH_TASK_DIR` 環境變數來存取。
 
     在每個工作目錄中，Batch 服務會建立由 `AZ_BATCH_TASK_WORKING_DIR` 環境變數指定唯一路徑的工作目錄 (`wd`)。 這個目錄可供讀取/寫入工作。 工作可以建立、讀取、更新和刪除此目錄下的檔案。 此目錄會根據工作指定的「RetentionTime」  條件約束而保留。
 
@@ -363,12 +368,12 @@ Batch 服務會在節點上公開檔案系統的一部分作為「根目錄」 �
 >
 >
 
-## <a name="application-packages"></a>應用程式封裝
+## <a name="application-packages"></a>應用程式套件
 [應用程式套件](batch-application-packages.md) 功能可為集區中的計算節點提供簡單的應用程式管理和部署能力。 您可以輕鬆上傳及管理您的工作所執行的多個應用程式版本，包括其二進位檔和支援檔案。 接著，您可以將一或多個這種類型的應用程式自動部署到集區中的計算節點。
 
-您可以在集區和工作層級指定應用程式封裝。 當您指定集區應用程式封裝時，應用程式會部署到集區中的每個節點。 當您指定工作應用程式套件時，應用程式只會在執行工作的命令列之前，部署至排定要執行作業的至少一個工作的節點。
+您可以在集區和工作層級指定應用程式套件。 套件當您指定集區應用程式套件時，應用程式會部署到集區中的每個節點。 當您指定工作應用程式套件時，應用程式只會在執行工作的命令列之前，部署至排定要執行作業的至少一個工作的節點。
 
-Batch 可處理使用 Azure 儲存體將應用程式封裝儲存及部署到計算節點的詳細資料，因此可以簡化程式碼和管理額外負荷。
+Batch 可處理使用 Azure 儲存體將應用程式套件儲存及部署到計算節點的詳細資料，因此可以簡化程式碼和管理額外負荷。
 
 若要深入了解應用程式套件功能，請參閱[使用 Batch 應用程式套件將應用程式部署至計算節點](batch-application-packages.md)。
 
@@ -501,10 +506,9 @@ Batch 可處理使用 Azure 儲存體將應用程式封裝儲存及部署到計�
 
 ## <a name="next-steps"></a>後續步驟
 * 了解可用來建置 Batch 解決方案的 [Batch API 和工具](batch-apis-tools.md)。
-* 在 [開始使用適用於 .NET 的 Azure Batch 程式庫](batch-dotnet-get-started.md)中逐步了解範例 Batch 應用程式。 另外還有 [Python 版本](batch-python-tutorial.md) 的教學課程，該教學課程會在 Linux 計算節點上執行工作負載。
-* 下載並安裝 [BatchLabs][batch_labs] 以在開發 Batch 解決方案時使用。 您可以使用 BatchLabs 來協助建立、偵錯和監視 Azure Batch 應用程式。 
-* 了解如何 [建立 Linux 計算節點的集區](batch-linux-nodes.md)。
-* 瀏覽 MSDN 上的 [Azure Batch 論壇][batch_forum]。 不論您是新手或是使用 Batch 的專家，論壇都是詢問問題的好地方。
+* 了解使用 [Batch .NET 用戶端程式庫](quick-run-dotnet.md)或 [Python](quick-run-python.md) 開發啟用 Batch 之應用程式的基本概念。 這些快速入門會介紹使用 Batch 服務在多個計算節點上執行工作負載的範例應用程式，並說明如何使用 Azure 儲存體進行工作負載檔案的預備和擷取。
+* 下載並安裝 [Batch Explorer][batch_labs]，以在開發 Batch 解決方案時使用。 使用 Batch Explorer 有助於建立、偵錯和監視 Azure Batch 應用程式。 
+* 請參閱社群資源，包括[Stack Overflow](http://stackoverflow.com/questions/tagged/azure-batch)、[Batch 社群存放庫](https://github.com/Azure/Batch)以及 MSDN 上的 [Azure Batch 論壇][batch_forum]。 
 
 [1]: ./media/batch-api-basics/node-folder-structure.png
 
@@ -514,7 +518,7 @@ Batch 可處理使用 Azure 儲存體將應用程式封裝儲存及部署到計�
 [msmpi]: https://msdn.microsoft.com/library/bb524831.aspx
 [github_samples]: https://github.com/Azure/azure-batch-samples
 [github_sample_taskdeps]:  https://github.com/Azure/azure-batch-samples/tree/master/CSharp/ArticleProjects/TaskDependencies
-[batch_labs]: https://azure.github.io/BatchLabs/
+[batch_labs]: https://azure.github.io/BatchExplorer/
 [batch_net_api]: https://msdn.microsoft.com/library/azure/mt348682.aspx
 [msdn_env_vars]: https://msdn.microsoft.com/library/azure/mt743623.aspx
 [net_cloudjob_jobmanagertask]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.cloudjob.jobmanagertask.aspx
@@ -538,7 +542,7 @@ Batch 可處理使用 Azure 儲存體將應用程式封裝儲存及部署到計�
 [net_rdpfile]: https://msdn.microsoft.com/library/azure/Mt272127.aspx
 [vnet]: https://msdn.microsoft.com/library/azure/dn820174.aspx#bk_netconf
 
-[py_add_user]: http://azure-sdk-for-python.readthedocs.io/en/latest/ref/azure.batch.operations.html#azure.batch.operations.ComputeNodeOperations.add_user
+[py_add_user]: https://docs.microsoft.com/python/azure/?view=azure-python
 
 [batch_rest_api]: https://msdn.microsoft.com/library/azure/Dn820158.aspx
 [rest_add_job]: https://msdn.microsoft.com/library/azure/mt282178.aspx

@@ -1,19 +1,20 @@
 ---
-title: "監視 Azure DC/OS 叢集 - Datadog"
-description: "使用 Datadog 監視 Azure 容器服務叢集。 使用 DC/OS Web UI 將 Datadog 代理程式部署至您的叢集。"
+title: 監視 Azure DC/OS 叢集 - Datadog
+description: 使用 Datadog 監視 Azure 容器服務叢集。 使用 DC/OS Web UI 將 Datadog 代理程式部署至您的叢集。
 services: container-service
 author: sauryadas
-manager: timlt
+manager: jeconnoc
 ms.service: container-service
 ms.topic: article
 ms.date: 07/28/2016
 ms.author: saudas
 ms.custom: mvc
-ms.openlocfilehash: b895ef906a8c8f3f8cc21267d80f8b59b64837f4
-ms.sourcegitcommit: 5d3e99478a5f26e92d1e7f3cec6b0ff5fbd7cedf
+ms.openlocfilehash: 029f36e4362704fcec240f6e88da5c96e903c317
+ms.sourcegitcommit: e2adef58c03b0a780173df2d988907b5cb809c82
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/06/2017
+ms.lasthandoff: 04/28/2018
+ms.locfileid: "32162750"
 ---
 # <a name="monitor-an-azure-container-service-dcos-cluster-with-datadog"></a>使用 Datadog 監視 Azure Container Service DC/OS 叢集
 
@@ -30,7 +31,7 @@ Datadog 是一項監視服務，會從 Azure 容器服務叢集內的容器收�
 ## <a name="configure-a-datadog-deployment-with-marathon"></a>使用 Marathon 設定 Datadog 部署
 這些步驟將說明如何使用 Marathon 設定並將 Datadog 應用程式部署到您的叢集。 
 
-透過 [http://localhost:80/](http://localhost:80/)存取 DC/OS UI。 在進入 DC/OS UI 後，瀏覽至位於左下方的 [Universe]，然後搜尋「Datadog」並按一下 [安裝]。
+透過 [http://localhost:80/](http://localhost:80/) 存取 DC/OS UI。 在進入 DC/OS UI 後，瀏覽至位於左下方的 [Universe]，然後搜尋「Datadog」並按一下 [安裝]。
 
 ![DC/OS Universe 內的 Datadog 封裝](./media/container-service-monitoring/datadog1.png)
 

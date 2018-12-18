@@ -1,33 +1,34 @@
 ---
-title: "SAP HANA on Azure (大型執行個體) 類型 II SKU 的作業系統備份和還原 | Microsoft Docs"
-description: "執行 SAP HANA on Azure (大型執行個體) 類型 II SKU 的作業系統備份和還原"
+title: SAP HANA on Azure (大型執行個體) 類型 II SKU 的作業系統備份和還原 | Microsoft Docs
+description: 執行 SAP HANA on Azure (大型執行個體) 類型 II SKU 的作業系統備份和還原
 services: virtual-machines-linux
-documentationcenter: 
+documentationcenter: ''
 author: saghorpa
-manager: timlt
-editor: 
+manager: jeconnoc
+editor: ''
 ms.service: virtual-machines-linux
 ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
-ms.date: 10/31/2017
+ms.date: 06/27/2018
 ms.author: saghorpa
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 41349cd7fe3bf39b5b42c44ba47acf980d15ebe7
-ms.sourcegitcommit: 43c3d0d61c008195a0177ec56bf0795dc103b8fa
+ms.openlocfilehash: f01a32612b335003856a372ece15ef300b9d93db
+ms.sourcegitcommit: f06925d15cfe1b3872c22497577ea745ca9a4881
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/01/2017
+ms.lasthandoff: 06/27/2018
+ms.locfileid: "37063269"
 ---
 # <a name="os-backup-and-restore-for-type-ii-skus"></a>類型 II SKU 的 OS 備份和還原
 
-本文件說明針對 HANA 大型執行個體的**類型 II SKU** 執行作業系統備份和還原的步驟。 
+本文件說明針對 HANA 大型執行個體的**類型 II SKU** 執行作業系統檔案等級備份和還原的步驟。 
 
 >[!NOTE]
 >作業系統備份指令碼使用已預先安裝在伺服器中的 ReaR 軟體。  
 
-Microsoft 服務管理小組佈建完成之後，預設會設定伺服器使用兩個備份排程來備份完整的作業系統。 您可以使用下列命令檢查備份作業的排程：
+Microsoft 服務管理小組在完成佈建後，預設會設定伺服器使用兩個備份排程來備份作業系統的檔案系統等級備份。 您可以使用下列命令檢查備份作業的排程：
 ```
 #crontab –l
 ```
@@ -37,7 +38,7 @@ Microsoft 服務管理小組佈建完成之後，預設會設定伺服器使用�
 ```
 ## <a name="how-to-take-a-manual-backup"></a>如何進行手動備份？
 
-作業系統備份已經使用 **cron 作業**進行排程。 不過，您也可以手動執行作業系統備份。 若要執行手動備份，請執行下列命令：
+作業系統檔案系統備份已經使用 **cron 作業**進行排程。 不過，您也可以手動執行作業系統檔案等級備份。 若要執行手動備份，請執行下列命令：
 
 ```
 #rear -v mkbackup

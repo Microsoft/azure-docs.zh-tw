@@ -1,23 +1,24 @@
 ---
-title: "Azure 服務匯流排訊息傳輸、鎖定和安置 | Microsoft Docs"
-description: "服務匯流排訊息傳輸和安置作業概觀"
+title: Azure 服務匯流排訊息傳輸、鎖定和安置 | Microsoft Docs
+description: 服務匯流排訊息傳輸和安置作業概觀
 services: service-bus-messaging
-documentationcenter: 
+documentationcenter: ''
 author: clemensv
 manager: timlt
-editor: 
+editor: ''
 ms.service: service-bus-messaging
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/25/2018
-ms.author: sethm
-ms.openlocfilehash: 4789da3c84d52b2615bf4250a36093a74154e1d4
-ms.sourcegitcommit: ded74961ef7d1df2ef8ffbcd13eeea0f4aaa3219
+ms.date: 09/25/2018
+ms.author: spelluru
+ms.openlocfilehash: a1835e26f67427f84abd8a3cf24ad196fec8e99d
+ms.sourcegitcommit: 67abaa44871ab98770b22b29d899ff2f396bdae3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/29/2018
+ms.lasthandoff: 10/08/2018
+ms.locfileid: "48854417"
 ---
 # <a name="message-transfers-locks-and-settlement"></a>訊息傳輸、鎖定和安置
 
@@ -61,7 +62,7 @@ for (int i = 0; i < 100; i++)
 {
   tasks.Add(client.SendAsync(…));
 }
-await Task.WhenAll(tasks.ToArray());
+await Task.WhenAll(tasks);
 ```
 
 請務必注意，所有的非同步程式設計模型都會使用某種形式之以記憶體為基礎的隱藏工作佇列來保留暫止作業。 當 [SendAsync](/dotnet/api/microsoft.azure.servicebus.queueclient.sendasync#Microsoft_Azure_ServiceBus_QueueClient_SendAsync_Microsoft_Azure_ServiceBus_Message_) (C#) 或 **Send** (Java) 傳回時，會將傳送工作排入該工作佇列，但通訊協定軌跡只會在工作開始執行之後開始。 對於傾向推送暴增訊息且必須考量可靠性的程式碼而言，應該謹慎地不要同時「在途中」放置太多訊息，因為所有傳送訊息都會佔據記憶體，直到確實地將它們放到線路上為止。
@@ -78,7 +79,7 @@ for (int i = 0; i < 100; i++)
 
   tasks.Add(client.SendAsync(…).ContinueWith((t)=>semaphore.Release()));
 }
-await Task.WhenAll(tasks.ToArray());
+await Task.WhenAll(tasks);
 ```
 
 應用程式**絕對不應**以「射後不理」的方式來起始非同步傳送作業，而不擷取作業的結果。 這樣做可以載入內部和不可見的工作佇列，直到記憶體耗盡，並防止應用程式偵測到傳送錯誤：
@@ -95,7 +96,7 @@ for (int i = 0; i < 100; i++)
 
 ## <a name="settling-receive-operations"></a>安置接收作業
 
-對於接收作業，服務匯流排 API 用戶端會啟用兩個不同的 Explicit 模式：*接收並刪除*和*查看鎖定*。
+對於接收作業，服務匯流排 API 用戶端會啟用兩個不同的 Explicit 模式：「接收並刪除」和「查看鎖定」。
 
 [接收並刪除](/dotnet/api/microsoft.servicebus.messaging.receivemode)模式會告知訊息代理程式，考慮它傳送給接收用戶端且在傳送時已安置的所有訊息。 那就表示訊息會被視為在訊息代理程式將其放在線路上之後立即取用。 如果訊息傳輸失敗，訊息就會遺失。
 
@@ -125,7 +126,6 @@ for (int i = 0; i < 100; i++)
 
 若要深入了解服務匯流排傳訊，請參閱下列主題：
 
-* [服務匯流排基本概念](service-bus-fundamentals-hybrid-solutions.md)
 * [服務匯流排佇列、主題和訂用帳戶](service-bus-queues-topics-subscriptions.md)
 * [開始使用服務匯流排佇列](service-bus-dotnet-get-started-with-queues.md)
 * [如何使用服務匯流排主題和訂用帳戶](service-bus-dotnet-how-to-use-topics-subscriptions.md)

@@ -1,7 +1,7 @@
 ---
-title: "在 Azure Application Insights 中了解您的客戶 | Microsoft Docs"
-description: "此教學課程說明如何藉由 Azure Application Insights，以了解客戶如何使用您的應用程式。"
-keywords: 
+title: 在 Azure Application Insights 中了解您的客戶 | Microsoft Docs
+description: 此教學課程說明如何藉由 Azure Application Insights，以了解客戶如何使用您的應用程式。
+keywords: ''
 services: application-insights
 author: mrbullwinkle
 ms.author: mbullwin
@@ -15,6 +15,7 @@ ms.sourcegitcommit: 93902ffcb7c8550dcb65a2a5e711919bd1d09df9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 11/09/2017
+ms.locfileid: "24099016"
 ---
 # <a name="use-azure-application-insights-to-understand-how-customers-are-using-your-application"></a>藉由 Azure Application Insights，以了解客戶如何使用您的應用程式
 

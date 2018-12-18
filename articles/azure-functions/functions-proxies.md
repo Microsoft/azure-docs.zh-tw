@@ -2,23 +2,20 @@
 title: 在 Azure Functions 中使用 Proxy | Microsoft Docs
 description: 如何使用 Azure Functions Proxy 的概觀
 services: functions
-documentationcenter: ''
 author: alexkarcher-msft
-manager: cfowler
-editor: ''
+manager: jeconnoc
 ms.assetid: ''
-ms.service: functions
-ms.workload: na
-ms.tgt_pltfrm: na
+ms.service: azure-functions
 ms.devlang: multiple
-ms.topic: article
+ms.topic: conceptual
 ms.date: 01/22/2018
 ms.author: alkarche
-ms.openlocfilehash: 0e7fe474c3b247baa6550770c661af62e83b3737
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: 2aa8036149f4056f2d197f0712b86104f5cf2215
+ms.sourcegitcommit: af60bd400e18fd4cf4965f90094e2411a22e1e77
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/07/2018
+ms.locfileid: "44095040"
 ---
 # <a name="work-with-azure-functions-proxies"></a>使用 Azure Functions Proxy
 
@@ -76,7 +73,7 @@ Proxy 的設定不需要是靜態。 您可以將它設定為使用來自原始�
 您可以使用要求參數作為後端 URL 屬性的輸入，或在修改要求和回應時使用。 某些參數可能繫結自基底 Proxy 設定中指定的路由範本，而其他參數可能來自連入要求的屬性。
 
 #### <a name="route-template-parameters"></a>路由範本參數
-路由範本中使用的參數可依名稱參考。 參數名稱以大括號 ("{}") 括住。
+路由範本中使用的參數可依名稱參考。 參數名稱以大括號 ({}) 括住。
 
 例如，如果 Proxy 的路由範本是 `/pets/{petId}`，則後端 URL 可以包含 `{petId}` 的值，如 `https://<AnotherApp>.azurewebsites.net/api/pets/{petId}` 中所示。 如果路由範本的結尾是萬用字元，例如 `/api/{*restOfPath}`，則值 `{restOfPath}` 是連入要求之其餘路徑區段的字串表示。
 
@@ -99,7 +96,7 @@ Proxy 的設定不需要是靜態。 您可以將它設定為使用來自原始�
 
 您也可以參考[針對函式應用程式定義的應用程式設定](https://docs.microsoft.com/azure/azure-functions/functions-how-to-use-azure-function-app-settings#develop)，只要以百分比符號 (%) 括住設定名稱即可。
 
-例如，後端 URL *https://%ORDER_PROCESSING_HOST%/api/orders* 中會以 ORDER_PROCESSING_HOST 設定的值取代 "%ORDER_PROCESSING_HOST%"。
+例如， https://%ORDER_PROCESSING_HOST%/api/orders 的後端 URL 會將 "%ORDER_PROCESSING_HOST%" 取代為 ORDER_PROCESSING_HOST 設定的值。
 
 > [!TIP] 
 > 當您有多個部署或測試環境時，請使用後端主機的應用程式設定。 這樣一來，您就可以確保一律與該環境保持正確的後端通訊。

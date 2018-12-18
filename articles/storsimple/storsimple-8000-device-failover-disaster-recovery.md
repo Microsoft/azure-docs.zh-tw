@@ -1,12 +1,12 @@
 ---
-title: "8000 系列裝置的 StorSimple 容錯移轉和災害復原 | Microsoft Docs"
-description: "了解如何將 StorSimple 裝置容錯移轉至其本身、另一個實體裝置或雲端設備。"
+title: 8000 系列裝置的 StorSimple 容錯移轉和災害復原 | Microsoft Docs
+description: 了解如何將 StorSimple 裝置容錯移轉至其本身、另一個實體裝置或雲端設備。
 services: storsimple
-documentationcenter: 
+documentationcenter: ''
 author: alkohli
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: na
 ms.topic: article
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23108476"
 ---
 # <a name="failover-and-disaster-recovery-for-your-storsimple-8000-series-device"></a>StorSimple 8000 系列裝置的容錯移轉和災害復原
 

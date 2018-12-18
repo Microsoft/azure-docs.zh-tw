@@ -38,7 +38,7 @@
 
 4. 驗證組態：
    
-   1. 登入 SharePoint 管理中心網站，並瀏覽至 [設定 StorSimple Adapter]  頁面。
+   1. 登入 SharePoint 管理中心網站，並瀏覽至 [設定 StorSimple Adapter] 頁面。
    2. 請檢查組態詳細資料以確定它們符合您所輸入的設定。 
 5. 確認 RBS 正確地運作：
    

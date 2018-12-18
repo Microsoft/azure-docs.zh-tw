@@ -3,17 +3,18 @@ title: 快速入門 - 使用 Azure 入口網站在 Azure 中建立私用的 Dock
 description: 快速了解如何使用 Azure 入口網站建立私用的 Docker 容器登錄。
 services: container-registry
 author: mmacy
-manager: timlt
+manager: jeconnoc
 ms.service: container-registry
 ms.topic: quickstart
 ms.date: 03/03/2018
 ms.author: marsma
 ms.custom: mvc
-ms.openlocfilehash: 7ea0ae9c0c071a08c9ff99587cd8c5dc8034fe69
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: 55da52e0d314c353c669c56ad918c4dd6bef44c3
+ms.sourcegitcommit: e2adef58c03b0a780173df2d988907b5cb809c82
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 04/28/2018
+ms.locfileid: "32169800"
 ---
 # <a name="quickstart-create-a-container-registry-using-the-azure-portal"></a>快速入門：使用 Azure 入口網站建立容器登錄
 

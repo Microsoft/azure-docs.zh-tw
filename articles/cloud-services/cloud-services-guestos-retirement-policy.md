@@ -1,11 +1,11 @@
 ---
-title: "Azure 客體 OS 可支援性和淘汰原則指南 | Microsoft Docs"
-description: "提供關於雲端服務使用之 Azure 客體作業系統的 Microsoft 支援事項資訊。"
+title: Azure 客體 OS 可支援性和淘汰原則指南 | Microsoft Docs
+description: 提供關於雲端服務使用之 Azure 客體作業系統的 Microsoft 支援事項資訊。
 services: cloud-services
 documentationcenter: na
 author: raiye
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 919dd781-4dc6-4e50-bda8-9632966c5458
 ms.service: cloud-services
 ms.devlang: na
@@ -14,11 +14,12 @@ ms.tgt_pltfrm: na
 ms.workload: tbd
 ms.date: 9/20/2017
 ms.author: raiye
-ms.openlocfilehash: 4bc2d57cf4c7d6e0981aa1a5c7c989860600b897
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: dfa3bac95b9827789950b4931e3198237de4a1fd
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34608557"
 ---
 # <a name="azure-guest-os-supportability-and-retirement-policy"></a>Azure 客體作業系統可支援性和淘汰原則
 本頁面中的資訊涉及雲端服務背景工作和 Web 角色 (PaaS) 適用的 Azure 客體作業系統 ([客體 OS](cloud-services-guestos-update-matrix.md))。 這些資訊不適用於虛擬機器 (IaaS)。
@@ -33,9 +34,7 @@ Microsoft 已發佈 [客體 OS 支援原則](http://support.microsoft.com/gp/azu
 
 Microsoft 有時候會支援兩個以上的系列或版本。 正式的客體 OS 支援資訊會公告於「 [Azure 客體 OS 版本與 SDK 相容性比較表](cloud-services-guestos-update-matrix.md)」中。
 
-## <a name="when-a-guest-os-family-or-version-is-retired"></a>當客體作業系統系列或版本遭到淘汰時
-Microsoft 會在新的正式版本 Windows Server 作業系統發行後，擇日推出新的客體 OS **系列** 。 每當推出新客體作業系統時，Microsoft 都會淘汰最舊的客體作業系統系列。
-
+## <a name="when-a-guest-os-version-is-retired"></a>當客體作業系統版本遭到淘汰時
 Microsoft 大約會每月推出新的客體 OS **版本** ，以納入最新的 MSRC 更新。 因每月定期更新之故，每個客體作業系統版本通常會在發行的大約 60 天後遭到停用。 此活動會保持每個系列至少有兩個客體 OS 版本可供使用。
 
 ### <a name="process-during-a-guest-os-family-retirement"></a>客體作業系統系列淘汰期間的程序

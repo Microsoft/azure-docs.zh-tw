@@ -1,12 +1,12 @@
 ---
-title: "StorSimple 8000 系列部署問題的疑難排解 | Microsoft Docs"
-description: "說明如何診斷和修正您第一次部署 StorSimple 時發生的錯誤。"
+title: StorSimple 8000 系列部署問題的疑難排解 | Microsoft Docs
+description: 說明如何診斷和修正您第一次部署 StorSimple 時發生的錯誤。
 services: storsimple
 documentationcenter: NA
 author: alkohli
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: NA
 ms.topic: article
@@ -14,11 +14,12 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 07/03/2017
 ms.author: alkohli
-ms.openlocfilehash: d6642231bf9d012b0015902c82d2bfde3b86285c
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 61719d482a4db1c737bbe38277f2ac3b2d684b63
+ms.sourcegitcommit: 4597964eba08b7e0584d2b275cc33a370c25e027
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 07/02/2018
+ms.locfileid: "37342420"
 ---
 # <a name="troubleshoot-storsimple-device-deployment-issues"></a>StorSimple 裝置部署問題的疑難排解
 ## <a name="overview"></a>概觀
@@ -68,7 +69,7 @@ ms.lasthandoff: 10/11/2017
 * 註冊裝置。
 
 ## <a name="errors-during-the-required-network-settings"></a>所需的網路設定期間發生錯誤
-| 編號 | 錯誤訊息 | 可能的原因 | 建議的動作 |
+| 否。 | 錯誤訊息 | 可能的原因 | 建議的動作 |
 | --- | --- | --- | --- |
 | 1 |Invoke-HcsSetupWizard：這個命令只能在主動控制器上執行。 |設定是在被動控制站上執行。 |從主動控制器執行這個命令。 如需詳細資訊，請參閱 [識別裝置上的主動控制器](storsimple-8000-controller-replacement.md#identify-the-active-controller-on-your-device)。 |
 | 2 |Invoke-HcsSetupWizard：裝置尚未就緒。 |在 DATA 0 上發生網路連線問題。 |檢查 DATA 0 上的實體網路連線。 |
@@ -102,7 +103,7 @@ ms.lasthandoff: 10/11/2017
 
 在設定裝置系統管理員和 StorSimple Snapshot Manager 密碼時，可能會遇到下列一或多個錯誤。
 
-| 編號 | 錯誤訊息 | 建議的動作 |
+| 否。 | 錯誤訊息 | 建議的動作 |
 | --- | --- | --- |
 | 1 |密碼超過最大長度。 |您的裝置系統管理員密碼長度必須介於 8 到 15 個字元。 |
 | 2 |密碼不符合所需的長度。 |您的裝置系統管理員密碼長度必須介於 8 到 15 個字元。|
@@ -125,7 +126,7 @@ ms.lasthandoff: 10/11/2017
 ## <a name="errors-during-device-registration"></a>裝置註冊期間發生錯誤
 您使用在 Microsoft Azure 中執行的 StorSimple 裝置管理員服務來註冊裝置。 您可能會在裝置註冊期間遇到下列一或多個問題。
 
-| 編號 | 錯誤訊息 | 可能的原因 | 建議的動作 |
+| 否。 | 錯誤訊息 | 可能的原因 | 建議的動作 |
 | --- | --- | --- | --- |
 | 1 |錯誤 350027：無法向 StorSimple 裝置管理員註冊裝置。 | |等候幾分鐘的時間，然後再次嘗試操作。 如果問題持續發生， 請 [連絡 Microsoft 支援服務](storsimple-8000-contact-microsoft-support.md)。 |
 | 2 |錯誤 350013：註冊裝置時發生錯誤。 這可能是因為服務註冊金鑰不正確而引發。 | |請使用正確的服務註冊金鑰再次註冊裝置。 如需詳細資訊，請參閱 [取得服務註冊金鑰](storsimple-8000-manage-service.md#get-the-service-registration-key) |
@@ -188,7 +189,7 @@ StorSimple 隨附數個工具，可用來疑難排解 StorSimple 解決方案。
    * 如果介面的健康狀態良好但未啟用，**ifIndex** 狀態就會顯示為 **NotPresent**。
    * 如果介面不存在，它就不會出現在這份清單中。 StorSimple Manager 裝置管理員服務 UI 仍會顯示此介面處於失敗狀態。
 
-如需如何使用這個 Cmdlet 的詳細資訊，請參閱 Windows PowerShell Cmdlet 參考中的 [GetNetAdapter](https://technet.microsoft.com/library/jj130867.aspx) 。
+如需如何使用這個 Cmdlet 的詳細資訊，請參閱 Windows PowerShell Cmdlet 參考中的 [Get-NetAdapter](https://docs.microsoft.com/powershell/module/netadapter/get-netadapter?view=win10-ps)。
 
 下列各節示範來自 `Get-NetAdapter` Cmdlet 的輸出範例。
 

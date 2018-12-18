@@ -1,25 +1,22 @@
 ---
-title: 在 Logic Apps 中新增 Office 365 使用者連接器 | Microsoft Docs
-description: 搭配 REST API 參數來使用 Office 365 使用者連接器的概觀
-services: ''
-documentationcenter: ''
+title: 連線到 Office 365 使用者 - Azure Logic Apps | Microsoft Docs
+description: 使用 Office 365 使用者 REST API 和 Azure Logic Apps 管理使用者設定檔
 author: ecfan
-manager: anneta
-editor: ''
-tags: connectors
-ms.assetid: b2146481-9105-4f56-b4c2-7ae340cb922f
-ms.service: multiple
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: integration
+manager: jeconnoc
+ms.author: estfan
 ms.date: 08/18/2016
-ms.author: estfan; ladocs
-ms.openlocfilehash: 3d281bcb8e1d0ba4d1eb0b636bdd618340399898
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.topic: article
+ms.service: logic-apps
+services: logic-apps
+ms.reviewer: klam, LADocs
+ms.suite: integration
+tags: connectors
+ms.openlocfilehash: f030ac07dc1615c435c1a110836d7a03ab8a8546
+ms.sourcegitcommit: 6f6d073930203ec977f5c283358a19a2f39872af
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35295603"
 ---
 # <a name="get-started-with-the-office-365-users-connector"></a>開始使用 Office 365 使用者連接器
 連接至 Office 365 使用者，以取得設定檔、搜尋使用者等等。 您可以利用 Office 365 使用者來：

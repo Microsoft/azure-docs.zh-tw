@@ -1,282 +1,361 @@
+items:
 - name: Azure 安全性文件
   href: index.md
 - name: 架構與設計
   href: azure-security.md
-  expanded: false
   items:
-    - name: 進階威脅偵測
-      href: azure-threat-detection.md
-    - name: Azure 記錄與稽核
-      href: azure-log-audit.md
-    - name: Azure 網路安全性
-      href: azure-network-security.md
-    - name: 啟用作業安全性
-      href: azure-operational-security.md
-    - name: Azure 中的治理
-      href: governance-in-azure.md
-    - name: Azure 雲端中的隔離
-      href: azure-isolation.md
-    - name: 安全混合式網路架構
-      href: 'https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/dmz/secure-vnet-hybrid?toc=%2Fazure%2Fsecurity%2Ftoc.json'
-    - name: 安全性技術功能
-      href: azure-security-technical-capabilities.md
+  - name: 進階威脅偵測
+    displayName: vulnerability, virus, ids, incident
+    href: azure-threat-detection.md
+  - name: Azure 記錄與稽核
+    displayName: incident
+    href: azure-log-audit.md
+  - name: Azure 網路安全性
+    displayName: firewall, ssl, vpn, ids, gateway, https, application gateway, azure application gateway, ips, waf
+    href: abstract-azure-network-security.md
+  - name: Azure 無伺服器平台安全性
+    href: abstract-serverless-platform-security.md
+  - name: Azure 中的容器安全性
+    href: abstract-container-security-microsoft-azure.md
+  - name: 啟用作業安全性
+    displayName: policy, policies, azure monitor, soc
+    href: abstract-azure-operational-security.md
+  - name: Azure 雲端中的隔離
+    displayName: trust boundary
+    href: azure-isolation.md
+  - name: 安全混合式網路架構
+    displayName: trust boundary
+    href: https://docs.microsoft.com/azure/architecture/reference-architectures/dmz/secure-vnet-hybrid?toc=/azure/security/toc.json&bc=/azure/security/breadcrumb/toc.json
+  - name: 安全性技術功能
+    href: azure-security-technical-capabilities.md
+  expanded: false
 - name: 資料安全性與加密
   href: security-azure-encryption-overview.md
   items:
-    - name: 資料庫安全性
-      href: azure-database-security-overview.md
+  - name: 資料庫安全性
+    href: azure-database-security-overview.md
+    items:
+    - name: 最佳作法
+      href: azure-database-security-best-practices.md
+    - name: 安全性檢查清單
+      href: azure-database-security-checklist.md
+  - name: 磁碟加密
+    items:
+    - name: 最佳作法
+      displayName: transit
+      href: azure-security-data-encryption-best-practices.md
+    - name: 資料靜態加密
+      href: azure-security-encryption-atrest.md
+    - name: 為 IaaS 虛擬機器進行磁碟加密
       items:
-        - name: 最佳作法
-          href: azure-database-security-best-practices.md
-        - name: 安全性檢查清單
-          href: azure-database-security-checklist.md
-    - name: 磁碟加密
-      items:
-        - name: 最佳作法
-          href: azure-security-data-encryption-best-practices.md
-        - name: 資料靜態加密
-          href: azure-security-encryption-atrest.md
-        - name: 為 IaaS 虛擬機器進行磁碟加密
-          href: azure-security-disk-encryption.md
-          items:
-            - name: 磁碟加密常見問題
-              href: azure-security-disk-encryption-faq.md
-            - name: 疑難排解
-              href: azure-security-disk-encryption-tsg.md
-        - name: 加密 Azure 虛擬機器
-          href: ../security-center/security-center-disk-encryption.md?toc=%2fazure%2fsecurity%2ftoc.json
-    - name: Azure 儲存體安全性
-      href: security-storage-overview.md
-    - name: 儲存體安全性指南
-      href: ../storage/common/storage-security-guide.md?toc=%2fazure%2fsecurity%2ftoc.json
+      - name: 有關 Azure 磁碟加密
+        displayName: bitlocker, bek
+        href: azure-security-disk-encryption-overview.md
+      - name: 快速入門
+        items:
+        - name: 加密虛擬機器 - Azure PowerShell
+          href: quick-encrypt-vm-powershell.md
+      - name: Azure 磁碟加密
+        items:
+        - name: 磁碟加密必要條件
+          href: azure-security-disk-encryption-prerequisites.md
+        - name: 適用於 Windows VM 的磁碟加密
+          href: azure-security-disk-encryption-windows.md
+        - name: 適用於 Linux VM 的磁碟加密
+          href: azure-security-disk-encryption-linux.md
+      - name: 磁碟加密附錄
+        href: azure-security-disk-encryption-appendix.md
+      - name: 磁碟加密常見問題
+        href: azure-security-disk-encryption-faq.md
+      - name: 疑難排解
+        href: azure-security-disk-encryption-tsg.md
+      - name: Azure 磁碟加密與 Azure AD 應用程式 (舊版)
+        displayName: active directory
+        items:
+        - name: 磁碟加密與 Azure AD 應用程式的必要條件
+          displayName: active directory
+          href: azure-security-disk-encryption-prerequisites-aad.md
+        - name: 適用於 Windows VM 的磁碟加密與 Azure AD 應用程式
+          displayName: active directory
+          href: azure-security-disk-encryption-windows-aad.md
+        - name: 適用於 Linux VM 的磁碟加密與 Azure AD 應用程式
+          displayName: active directory
+          href: azure-security-disk-encryption-linux-aad.md
+  - name: Azure 儲存體安全性
+    href: security-storage-overview.md
+  - name: 儲存體安全性指南
+    href: ../storage/common/storage-security-guide.md?toc=/azure/security/toc.json&bc=/azure/security/breadcrumb/toc.json
 - name: 平台與基礎結構
   items:
-    - name: Microsoft Antimalware
-      href: azure-security-antimalware.md
-    - name: IaaS 安全性
-      href: security-virtual-machines-overview.md
-      items:
-        - name: 最佳做法 - Azure 虛擬機器
-          href: azure-security-best-practices-vms.md
-        - name: 最佳做法 - IaaS 工作負載
-          href: azure-security-iaas.md
-        - name: Azure 市集映像
-          href: security-recommendations-azure-marketplace-images.md
-    - name: 身分識別管理
-      href: security-identity-management-overview.md
-      items:
-        - name: 最佳作法
-          href: azure-security-identity-management-best-practices.md
-        - name: 訂用帳戶系統管理員強制執行 MFA
-          href: azure-security-global-admin.md
-    - name: 網路安全性
-      href: security-network-overview.md
-      items:
-        - name: 最佳作法
-          href: azure-security-network-security-best-practices.md
-        - name: 邊界安全性
-          href: ../best-practices-network-security.md?toc=%2fazure%2fsecurity%2ftoc.json
+  - name: 基礎結構安全性
+    href: azure-security-infrastructure.md
+    items:
+    - name: 實體安全性
+      href: azure-physical-security.md
+    - name: 可用性
+      href: azure-infrastructure-availability.md
+    - name: 元件和界線
+      href: azure-infrastructure-components.md
+    - name: 網路架構
+      displayName: ssl, https
+      href: azure-infrastructure-network.md
+    - name: 生產網路
+      href: azure-production-network.md
+    - name: SQL Database
+      href: azure-infrastructure-sql.md
+    - name: 作業
+      href: azure-infrastructure-operations.md
+    - name: 監視
+      href: azure-infrastructure-monitoring.md
+    - name: 完整性
+      href: azure-infrastructure-integrity.md
+    - name: 資料保護
+      href: azure-protection-of-customer-data.md
+  - name: Microsoft Antimalware
+    displayName: virus
+    href: azure-security-antimalware.md
+  - name: IaaS 安全性
+    href: security-virtual-machines-overview.md
+    items:
+    - name: 最佳做法 - IaaS 工作負載
+      displayName: patch
+      href: azure-security-iaas.md
+    - name: Azure 市集映像
+      href: security-recommendations-azure-marketplace-images.md
+  - name: 身分識別管理
+    href: security-identity-management-overview.md
+    items:
+    - name: 選擇 Azure AD 驗證
+      displayName: identity, active directory, seamless sso
+      href: azure-ad-choose-authn.md
+    - name: 安全性檢查清單
+      displayName: identity, active directory, password
+      href: azure-ad-secure-steps.md
+    - name: 最佳作法
+      displayName: password, identity, active directory
+      href: azure-security-identity-management-best-practices.md
+    - name: 訂用帳戶系統管理員強制執行 MFA
+      displayName: identity
+      href: azure-security-global-admin.md
+  - name: 網路安全性
+    displayName: firewall, ssl, vpn, ids, gateway, https, azure application gateway, application gateway, ips, waf
+    href: security-network-overview.md
+    items:
+    - name: 最佳作法
+      href: azure-security-network-security-best-practices.md
+    - name: DDoS保護
+      href: azure-ddos-best-practices.md
+    - name: 邊界安全性
+      href: ../best-practices-network-security.md?toc=/azure/security/toc.json&bc=/azure/security/breadcrumb/toc.json
 - name: Application
   items:
-    - name: PaaS
-      href: security-paas-deployments.md
-      items:
-        - name: 適用於 PaaS 的 Azure App Service
-          href: security-paas-applications-using-app-services.md
-        - name: 適用於 PaaS 的 Azure 儲存體
-          href: security-paas-applications-using-storage.md
-        - name: 適用於 PaaS 的資料庫最佳做法
-          href: security-paas-applications-using-sql.md
-        - name: IoT
-          href: security-internet-of-things-overview.md
-          items:
-            - name: IoT 安全性最佳做法
-              href: ../iot-suite/iot-security-best-practices.md
-            - name: IoT 安全性
-              href: '../iot-suite/iot-security-architecture.md#security-in-iot'
-            - name: 保護您的 IoT 部署
-              href: ../iot-suite/iot-suite-security-deployment.md
-    - name: Azure Service Fabric 安全性
-      href: azure-service-fabric-security-overview.md
-      items:
-        - name: 最佳作法
-          href: azure-service-fabric-security-best-practices.md
-        - name: 安全性檢查清單
-          href: azure-service-fabric-security-checklist.md
+  - name: PaaS
+    href: security-paas-deployments.md
+    items:
+    - name: 適用於 PaaS 的 Azure App Service
+      href: security-paas-applications-using-app-services.md
+    - name: 適用於 PaaS 的 Azure 儲存體
+      href: security-paas-applications-using-storage.md
+    - name: 適用於 PaaS 的資料庫最佳做法
+      href: security-paas-applications-using-sql.md
+  - name: IoT
+    href: security-internet-of-things-overview.md
+    items:
+    - name: IoT 安全性最佳做法
+      href: ../iot-accelerators/iot-security-best-practices.md?toc=/azure/security/toc.json&bc=/azure/security/breadcrumb/toc.json
+    - name: IoT 安全性
+      href: ../iot-accelerators/iot-security-architecture.md?toc=/azure/security/toc.json&bc=/azure/security/breadcrumb/toc.json#security-in-iot
+    - name: 保護您的 IoT 部署
+      href: ../iot-accelerators/iot-accelerators-security-deployment.md?toc=/azure/security/toc.json&bc=/azure/security/breadcrumb/toc.json
+  - name: Azure Service Fabric 安全性
+    href: azure-service-fabric-security-overview.md
+    items:
+    - name: 最佳作法
+      href: azure-service-fabric-security-best-practices.md
+    - name: 安全性檢查清單
+      href: azure-service-fabric-security-checklist.md
 - name: 監視、稽核與作業
   href: security-management-and-monitoring-overview.md
   items:
-    - name: 稽核和記錄
+  - name: 稽核和記錄
+    items:
+    - name: 安全性管理
+      displayName: vulnerability, incident, virus,
+      href: ../security-center/security-center-intro.md?toc=/azure/security/toc.json&bc=/azure/security/breadcrumb/toc.json
+    - name: 遠端管理安全性
+      href: azure-security-management.md
+    - name: Azure 記錄整合
       items:
-        - name: 安全性管理
-          href: ../security-center/security-center-intro.md?toc=%2fazure%2fsecurity%2ftoc.json
-        - name: 遠端管理安全性
-          href: azure-security-management.md
-        - name: Azure 記錄整合
-          items:
-            - name: 簡介
-              href: security-azure-log-integration-overview.md
-            - name: 開始使用
-              href: security-azure-log-integration-get-started.md
-            - name: 整合 Azure AD 稽核記錄
-              href: security-azure-log-integration-ad.md
-            - name: 整合資訊安全中心警示
-              href: security-azure-log-integration-security-center.md
-            - name: 整合 Key Vault 中的記錄
-              href: security-azure-log-integration-keyvault-eventhub.md
-            - name: 常見問題集
-              href: security-azure-log-integration-faq.md
-    - name: 作業安全性
-      href: azure-operational-security-overview.md
-      items:
-        - name: 最佳作法
-          href: azure-operational-security-best-practices.md
-        - name: 安全性檢查清單
-          href: azure-operational-security-checklist.md
+      - name: 簡介
+        href: security-azure-log-integration-overview.md
+      - name: 開始使用
+        href: security-azure-log-integration-get-started.md
+      - name: 整合 Azure AD 稽核記錄
+        displayName: active directory
+        href: security-azure-log-integration-ad.md
+      - name: 整合資訊安全中心警示
+        displayName: splunk
+        href: ../security-center/security-center-export-data-to-siem.md?toc=/azure/security/toc.json&bc=/azure/security/breadcrumb/toc.json
+      - name: 整合 Key Vault 中的記錄
+        displayName: keyvault
+        href: security-azure-log-integration-keyvault-eventhub.md
+      - name: 常見問題集
+        href: security-azure-log-integration-faq.md
+  - name: 作業安全性
+    href: azure-operational-security-overview.md
+    items:
+    - name: 最佳作法
+      href: azure-operational-security-best-practices.md
+    - name: 安全性檢查清單
+      href: azure-operational-security-checklist.md
 - name: 治理和合規性
+  displayName: blueprint, privacy, certifications
   items:
-    - name: 適用於已規範工作負載的金融服務
-      href: ./blueprints/financial-services-regulated-workloads.md
-    - name: GDPR
-      items:
-        - name: 管理個人資料
-          href: manage-personal-data-azure.md
-        - name: 探索、識別、分類個人資料
-          href: how-to-discover-classify-personal-data-azure.md
-        - name: 保護 Azure 中的個人資料
-          href: protect-personal-data-azure.md
-        - name: 透過資訊安全中心保護個人資料
-          href: protect-personal-data-azure-security-center.md
-        - name: 透過應用程式閘道保護個人資料
-          href: protect-personal-data-network-security.md
-        - name: 使用識別和存取控制來保護個人資料
-          href: protect-personal-data-identity-access-controls.md
-        - name: 使用加密來保護待用的個人資料
-          href: protect-personal-data-at-rest.md
-        - name: 使用加密來保護傳輸中的個人資料
-          href: protect-personal-data-in-transit-encryption.md
-        - name: 使用 Azure 報告工具來保護個人資料
-          href: protection-personal-data-azure-reporting-tools.md
-    - name: FEDRAMP
-      href: ./blueprints/fedramp.md
-      items:
-        - name: 安全性控制項概觀
-          href: ./blueprints/fedramp-controls-overview.md
-        - name: 存取控制
-          href: ./blueprints/fedramp-access-controls.md
-        - name: 稽核和責任
-          href: ./blueprints/fedramp-audit-accountability-controls.md
-        - name: 認知和訓練
-          href: ./blueprints/fedramp-awareness-training-controls.md
-        - name: 設定管理
-          href: ./blueprints/fedramp-configuration-manager-controls.md
-        - name: 應變計劃
-          href: ./blueprints/fedramp-contingency-planning-controls.md
-        - name: 驗證與授權
-          href: ./blueprints/fedramp-identification-authentication-controls.md
-        - name: 事件回應
-          href: ./blueprints/fedramp-incident-response-controls.md
-        - name: '維護 '
-          href: ./blueprints/fedramp-maintenance-controls.md
-        - name: 媒體保護
-          href: ./blueprints/fedramp-media-protection-controls.md
-        - name: 人員安全性
-          href: ./blueprints/fedramp-personnel-security-controls.md
-        - name: 實體和環境保護
-          href: ./blueprints/fedramp-physical-environmental-protection-controls.md
-        - name: 規劃
-          href: ./blueprints/fedramp-planning-controls.md
-        - name: 風險評估
-          href: ./blueprints/fedramp-risk-assessment-controls.md
-        - name: 安全性評估和授權
-          href: ./blueprints/fedramp-security-assessment-authorization-controls.md
-        - name: 系統與通訊保護
-          href: ./blueprints/fedramp-system-communications-protection-controls.md
-        - name: 系統和資訊完整性
-          href: ./blueprints/fedramp-system-information-integrity-controls.md
-        - name: 系統和服務擷取
-          href: ./blueprints/fedramp-system-services-acquisition-controls.md
-    - name: PCI DSS
-      href: ./blueprints/payment-processing-blueprint.md
-      items:
-        - name: 需求概觀
-          href: ./blueprints/pci-dss-requirements-overview.md
-        - name: 需求 1 - 防火牆
-          href: ./blueprints/pci-dss-requirement-1-firewall.md
-        - name: 需求 2 - 密碼
-          href: ./blueprints/pci-dss-requirement-2-password.md
-        - name: 需求 3 - CHD
-          href: ./blueprints/pci-dss-requirement-3-chd.md
-        - name: 需求 4 - 加密
-          href: ./blueprints/pci-dss-requirement-4-encryption.md
-        - name: 需求 5 - 惡意程式碼
-          href: ./blueprints/pci-dss-requirement-5-malware.md
-        - name: 需求 6 - 保護系統安全
-          href: ./blueprints/pci-dss-requirement-6-secure-system.md
-        - name: 需求 7 - 存取
-          href: ./blueprints/pci-dss-requirement-7-access.md
-        - name: 需求 8 - 身分識別
-          href: ./blueprints/pci-dss-requirement-8-identity.md
-        - name: 需求 9 - 實體存取
-          href: ./blueprints/pci-dss-requirement-9-physical-access.md
-        - name: 需求 10 - 監視
-          href: ./blueprints/pci-dss-requirement-10-monitoring.md
-        - name: 需求 11 - 測試
-          href: ./blueprints/pci-dss-requirement-11-testing.md
-        - name: 需求 12 - 原則
-          href: ./blueprints/pci-dss-requirement-12-policy.md
-    - name: 英國官方 (UK-OFFICIAL)
-      href: ./blueprints/uk-official-three-tier-applications-overview.md
-      items:
-        - name: 原則概觀
-          href: ./blueprints/uk-official-three-tier-applications-principles-overview.md
-    - name: HIPAA/HITRUST 健康情況資料和 AI
+  - name: 受保護的 AU
+    displayName: blueprint, privacy, certifications
+    items:
+    - name: IaaS Web 應用程式
+      href: ./blueprints/au-protected-iaaswa-overview.md
+    - name: PaaS Web 應用程式
+      href: ./blueprints/au-protected-paaswa-overview.md
+  - name: FedRAMP
+    displayName: blueprint, privacy, certifications
+    items:
+    - name: 資料分析
+      href: ./blueprints/fedramp-analytics-overview.md
+    - name: 資料倉儲
+      href: ./blueprints/fedramp-datawarehouse-overview.md
+    - name: IaaS Web 應用程式
+      href: ./blueprints/fedramp-iaaswa-overview.md
+    - name: PaaS Web 應用程式
+      href: ./blueprints/fedramp-paaswa-overview.md
+  - name: FFIEC
+    displayName: blueprint, privacy, certifications
+    items:
+    - name: 資料分析
+      href: ./blueprints/ffiec-analytics-overview.md
+    - name: 資料倉儲
+      href: ./blueprints/ffiec-dw-overview.md
+    - name: IaaS Web 應用程式
+      href: ./blueprints/ffiec-iaaswa-overview.md
+    - name: PaaS Web 應用程式
+      href: ./blueprints/ffiec-paaswa-overview.md
+  - name: GDPR
+    displayName: blueprint, privacy, certifications
+    items:
+    - name: 資料分析
+      href: ./blueprints/gdpr-analytics-overview.md
+    - name: 資料倉儲
+      href: ./blueprints/gdpr-datawarehouse-overview.md
+    - name: IaaS Web 應用程式
+      href: ./blueprints/gdpr-iaaswa-overview.md
+    - name: PaaS Web 應用程式
+      href: ./blueprints/gdpr-paaswa-overview.md
+  - name: HIPAA/HITRUST
+    displayName: blueprint, privacy, certifications
+    items:
+    - name: 健康情況資料和 AI
       href: ./blueprints/azure-health.md
+  - name: NIST SP 800-171
+    displayName: blueprint, privacy, certifications
+    items:
+    - name: 資料分析
+      href: ./blueprints/nist171-analytics-overview.md
+    - name: 資料倉儲
+      href: ./blueprints/nist171-datawarehouse-overview.md
+    - name: IaaS Web 應用程式
+      href: ./blueprints/nist171-iaaswa-overview.md
+    - name: PaaS Web 應用程式
+      href: ./blueprints/nist171-paaswa-overview.md
+  - name: PCI DSS
+    displayName: blueprint, privacy, certifications
+    items:
+    - name: 資料分析
+      href: ./blueprints/pcidss-analytics-overview.md
+    - name: 資料倉儲
+      href: ./blueprints/pcidss-dw-overview.md
+    - name: IaaS Web 應用程式
+      href: ./blueprints/pcidss-iaaswa-overview.md
+    - name: PaaS Web 應用程式
+      href: ./blueprints/pcidss-paaswa-overview.md
+  - name: TIC
+    displayName: blueprint, privacy, certifications
+    items:
+    - name: 受信任的 Azure 網際網路連線
+      href: ./compliance/compliance-tic.md
+  - name: UK NHS
+    displayName: blueprint, privacy, certifications
+    items:
+    - name: 資料分析
+      href: ./blueprints/uknhs-analytics-overview.md
+    - name: 資料倉儲
+      href: ./blueprints/uknhs-datawarehouse-overview.md
+    - name: IaaS Web 應用程式
+      href: ./blueprints/uknhs-iaaswa-overview.md
+    - name: PaaS Web 應用程式
+      href: ./blueprints/uknhs-paaswa-overview.md
+  - name: 英國官方
+    displayName: blueprint, privacy, certifications
+    items:
+    - name: IaaS Web 應用程式
+      href: ./blueprints/ukofficial-iaaswa-overview.md
+    - name: PaaS Web 應用程式
+      href: ./blueprints/ukofficial-paaswa-overview.md
 - name: 白皮書
   href: security-white-papers.md
+- name: Azure 安全性服務
+  href: azure-security-services-technologies.md
 - name: 技術概觀
   href: security-overviews.md
 - name: 最佳作法
   href: security-best-practices-and-patterns.md
 - name: 資源
   items:
-    - name: Azure 安全性 MVP 計畫
-      href: azure-security-mvp.md
-    - name: 網路安全性諮詢
-      href: azure-security-cyber-services.md
-    - name: 記錄安全性事件支援票證
-      href: azure-security-event-support-ticket.md
-    - name: 滲透測試
-      href: azure-security-pen-testing.md
-    - name: Microsoft 威脅模型化工具
-      href: azure-security-threat-modeling-tool.md
+  - name: Azure 安全性 MVP 計畫
+    href: azure-security-mvp.md
+  - name: 網路安全性諮詢
+    href: azure-security-cyber-services.md
+  - name: 記錄安全性事件支援票證
+    href: azure-security-event-support-ticket.md
+  - name: 滲透測試
+    displayName: penetration
+    href: azure-security-pen-testing.md
+  - name: Microsoft 威脅模型化工具
+    displayName: stride
+    href: azure-security-threat-modeling-tool.md
+    items:
+    - name: 開始使用
+      href: azure-security-threat-modeling-tool-getting-started.md
+    - name: 功能概觀
+      href: azure-security-threat-modeling-tool-feature-overview.md
+    - name: 威脅
+      href: azure-security-threat-modeling-tool-threats.md
+    - name: 風險降低
+      href: azure-security-threat-modeling-tool-mitigations.md
       items:
-        - name: 開始使用
-          href: azure-security-threat-modeling-tool-getting-started.md
-        - name: 功能概觀
-          href: azure-security-threat-modeling-tool-feature-overview.md
-        - name: 威脅
-          href: azure-security-threat-modeling-tool-threats.md
-        - name: 風險降低
-          href: azure-security-threat-modeling-tool-mitigations.md
-          items:
-            - name: 稽核和記錄
-              href: azure-security-threat-modeling-tool-auditing-and-logging.md
-            - name: 驗證
-              href: azure-security-threat-modeling-tool-authentication.md
-            - name: Authorization
-              href: azure-security-threat-modeling-tool-authorization.md
-            - name: 通訊安全性
-              href: azure-security-threat-modeling-tool-communication-security.md
-            - name: 設定管理
-              href: azure-security-threat-modeling-tool-configuration-management.md
-            - name: 加密
-              href: azure-security-threat-modeling-tool-cryptography.md
-            - name: 例外狀況管理
-              href: azure-security-threat-modeling-tool-exception-management.md
-            - name: 輸入驗證
-              href: azure-security-threat-modeling-tool-input-validation.md
-            - name: 敏感性資料
-              href: azure-security-threat-modeling-tool-sensitive-data.md
-            - name: 工作階段管理
-              href: azure-security-threat-modeling-tool-session-management.md
+      - name: 稽核和記錄
+        href: azure-security-threat-modeling-tool-auditing-and-logging.md
+      - name: 驗證
+        href: azure-security-threat-modeling-tool-authentication.md
+      - name: Authorization
+        href: azure-security-threat-modeling-tool-authorization.md
+      - name: 通訊安全性
+        href: azure-security-threat-modeling-tool-communication-security.md
+      - name: 設定管理
+        href: azure-security-threat-modeling-tool-configuration-management.md
+      - name: 加密
+        href: azure-security-threat-modeling-tool-cryptography.md
+      - name: 例外狀況管理
+        href: azure-security-threat-modeling-tool-exception-management.md
+      - name: 輸入驗證
+        href: azure-security-threat-modeling-tool-input-validation.md
+      - name: 敏感性資料
+        href: azure-security-threat-modeling-tool-sensitive-data.md
+      - name: 工作階段管理
+        href: azure-security-threat-modeling-tool-session-management.md
+ms.openlocfilehash: a5f78762baad4cf7f6173076bbb9a9e8f7e877f0
+ms.sourcegitcommit: 42405ab963df3101ee2a9b26e54240ffa689f140
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47423046"

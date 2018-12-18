@@ -2,23 +2,22 @@
 title: 使用伺服器總管瀏覽和管理儲存體資源 | Microsoft Docs
 description: 使用伺服器總管瀏覽和管理儲存體資源
 services: visual-studio-online
-documentationcenter: na
 author: ghogen
 manager: douge
-editor: ''
-ms.assetid: 658dc064-4a4e-414b-ae5a-a977a34c930d
-ms.service: storage
-ms.devlang: multiple
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: na
+assetId: 658dc064-4a4e-414b-ae5a-a977a34c930d
+ms.prod: visual-studio-dev15
+ms.technology: vs-azure
+ms.custom: vs-azure
+ms.workload: azure-vs
+ms.topic: conceptual
 ms.date: 8/24/2017
 ms.author: ghogen
-ms.openlocfilehash: 59e26082845b5934a5918ccfb3dc8b971bba7d54
-ms.sourcegitcommit: 34e0b4a7427f9d2a74164a18c3063c8be967b194
+ms.openlocfilehash: 74f5508586d073bcccc54894cce6fcde1b83fe18
+ms.sourcegitcommit: 30c7f9994cf6fcdfb580616ea8d6d251364c0cd1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/30/2018
+ms.lasthandoff: 08/18/2018
+ms.locfileid: "42141513"
 ---
 # <a name="browse-and-manage-storage-resources-by-using-server-explorer"></a>使用伺服器總管瀏覽和管理儲存體資源
 
@@ -159,7 +158,7 @@ Blob 資料會在本機快取，並在 Azure Blob 儲存體中針對 blob 的上
 
 ![檢視佇列](./media/vs-azure-tools-storage-resources-server-explorer-browse-manage/IC651470.png)
 
-如需儲存體服務佇列的詳細資訊，請參閱[以 .NET 開始使用 Azure 佇列儲存體](http://go.microsoft.com/fwlink/?LinkID=264702)。 如需儲存體服務佇列之 Web 服務的詳細資訊，請參閱 [佇列服務概念](http://go.microsoft.com/fwlink/?LinkId=264788)。 如需有關如何使用 Visual Studio 將訊息傳送至儲存體服務佇列的資訊，請參閱 [傳送訊息至儲存體服務佇列](https://msdn.microsoft.com/library/azure/jj649344.aspx)。
+如需儲存體服務佇列的詳細資訊，請參閱[以 .NET 開始使用 Azure 佇列儲存體](http://go.microsoft.com/fwlink/?LinkID=264702)。 如需儲存體服務佇列之 Web 服務的詳細資訊，請參閱 [佇列服務概念](http://go.microsoft.com/fwlink/?LinkId=264788)。 如需有關如何使用 Visual Studio 將訊息傳送至儲存體服務佇列的資訊，請參閱 [傳送訊息至儲存體服務佇列](https://docs.microsoft.com/azure/visual-studio/vs-storage-cloud-services-getting-started-queues)。
 
 > [!NOTE]
 > 儲存體服務佇列與 Azure 服務匯流排佇列不同。 如需服務匯流排佇列的詳細資訊，請參閱[服務匯流排佇列、主題和訂用帳戶](https://docs.microsoft.com/azure/service-bus-messaging/service-bus-queues-topics-subscriptions)。
@@ -221,7 +220,7 @@ Azure 資料表儲存體可儲存大量的結構化資料。 此服務是一個 
 1. 當您完成查詢建置時，請關閉對話方塊。 產生的查詢文字格式會出現在文字方塊中做為 WCF Data Services 篩選條件。
 1. 若要執行查詢，請選取綠色的三角形圖示。
 
-如果您直接在篩選文字方塊中輸入 WCF Data Services 篩選字串，您也可以篩選出現在資料表設計工具中的實體資料。 這種類型的字串與 SQL WHERE 子句相似，但是會傳送至伺服器做為 HTTP 要求。 如需如何建構篩選字串的資訊，請參閱 [建構資料表設計工具的篩選字串](https://msdn.microsoft.com/library/azure/ff683669.aspx)。
+如果您直接在篩選文字方塊中輸入 WCF Data Services 篩選字串，您也可以篩選出現在資料表設計工具中的實體資料。 這種類型的字串與 SQL WHERE 子句相似，但是會傳送至伺服器做為 HTTP 要求。 如需如何建構篩選字串的資訊，請參閱[建構資料表設計工具的篩選字串](https://docs.microsoft.com/azure/vs-azure-tools-table-designer-construct-filter-strings)。
 
 下圖顯示有效篩選字串的範例：
 

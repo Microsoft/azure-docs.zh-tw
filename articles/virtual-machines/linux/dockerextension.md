@@ -1,9 +1,9 @@
 ---
 title: 使用 Azure Docker VM 延伸模組 | Microsoft Docs
-description: 了解如何使用 Resource Manager 範本和 Azure CLI 2.0，在 Azure 中使用 Docker VM 延伸模組快速而安全地部署 Docker 環境
+description: 了解如何使用 Resource Manager 範本和 Azure CLI，在 Azure 中使用 Docker VM 延伸模組快速且安全地部署 Docker 環境
 services: virtual-machines-linux
 documentationcenter: ''
-author: iainfoulds
+author: cynthn
 manager: jeconnoc
 editor: ''
 ms.assetid: 936d67d7-6921-4275-bf11-1e0115e66b7f
@@ -13,22 +13,24 @@ ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 12/18/2017
-ms.author: iainfou
-ms.openlocfilehash: 1e5a4fcfd758c12213d6de7d0f5cfcc78531ee97
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.author: cynthn
+ms.openlocfilehash: 59dbbb8374455088d759a5e837b8d3bc22145d3e
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46981292"
 ---
 # <a name="create-a-docker-environment-in-azure-using-the-docker-vm-extension"></a>使用 Docker VM 延伸模組在 Azure 中建立 Docker 環境
-Docker 是常用的容器管理和映像處理平台，它能讓您在 Linux 上快速地操作容器。 在 Azure 中，您可以根據您的需求使用幾個方式來部署 Docker。 本文著重於搭配 Azure CLI 2.0 使用 Docker VM 延伸模組與 Azure Resource Manager 範本。 您也可以使用 [Azure CLI 1.0](dockerextension-nodejs.md) 來執行這些步驟。
+
+Docker 是常用的容器管理和映像處理平台，它能讓您在 Linux 上快速地操作容器。 在 Azure 中，您可以根據您的需求使用幾個方式來部署 Docker。 此文章著重於搭配 Azure CLI 使用 Docker VM 延伸模組與 Azure Resource Manager 範本。 
 
 > [!WARNING]
-> 適用於 Linux 的 Azure Docker VM 擴充功能已被取代，且即將在 2018 年 11 月淘汰。
-> 該擴充功能只會安裝 Docker，因此像是 cloud-init 或自訂指令碼擴充功能等替代方案，都是安裝選定 Docker 版本的更佳方法。 如需 cloud-init 使用方法的詳細資訊，請參閱[使用 cloud-init 來自訂 Linux VM](tutorial-automate-vm-deployment.md)。
+> 適用於 Linux 的 Azure Docker VM 延伸模組已被取代，且即將在 2018 年 11 月淘汰。
+> 該延伸模組只會安裝 Docker，因此像是 cloud-init 或自訂指令碼延伸模組等替代方案，都是安裝選定 Docker 版本的更佳方法。 如需 cloud-init 使用方法的詳細資訊，請參閱[使用 cloud-init 來自訂 Linux VM](tutorial-automate-vm-deployment.md)。
 
 ## <a name="azure-docker-vm-extension-overview"></a>Azure Docker VM 延伸模組概觀
-Azure Docker VM 擴充功能會在您的 Linux 虛擬機器 (VM) 中安裝並設定 Docker 精靈、Docker 用戶端和 Docker Compose。 相較於只使用 Docker 電腦或自行建立 Docker 主機，您使用 Azure Docker VM 延伸模組會有更多控制權和功能。 這些額外功能，例如 [Docker Compose](https://docs.docker.com/compose/overview/)，讓 Azure Docker VM 延伸模組適用於更穩固的開發人員或生產環境。
+Azure Docker VM 延伸模組會在您的 Linux 虛擬機器 (VM) 中安裝並設定 Docker 精靈、Docker 用戶端和 Docker Compose。 相較於只使用 Docker 電腦或自行建立 Docker 主機，您使用 Azure Docker VM 延伸模組會有更多控制權和功能。 這些額外功能，例如 [Docker Compose](https://docs.docker.com/compose/overview/)，讓 Azure Docker VM 延伸模組適用於更穩固的開發人員或生產環境。
 
 如需不同部署方法的詳細資訊，包括使用 Docker 電腦和 Azure Container Service，請參閱下列文章︰
 
@@ -36,8 +38,8 @@ Azure Docker VM 擴充功能會在您的 Linux 虛擬機器 (VM) 中安裝並設
 * 如需建置提供其他排程和管理工具的生產就緒、可調整環境，您可以在 Azure Container Service 上部署 [Kubernetes](../../container-service/kubernetes/index.yml) 或 [Docker Swarm](../../container-service/dcos-swarm/index.yml) 叢集。
 
 
-## <a name="deploy-a-template-with-the-azure-docker-vm-extension"></a>使用 Azure Docker VM 擴充功能部署範本
-使用現有的快速入門範本建立使用 Azure Docker VM 延伸模組的 Ubuntu VM，以安裝及設定 Docker 主機。 您可以在這裡檢視範本︰ [使用 Docker 簡易部署 Ubuntu VM](https://github.com/Azure/azure-quickstart-templates/tree/master/docker-simple-on-ubuntu)。 您需要安裝最新的 [Azure CLI 2.0](/cli/azure/install-az-cli2)，並使用 [az login](/cli/azure/reference-index#az_login) 來登入 Azure 帳戶。
+## <a name="deploy-a-template-with-the-azure-docker-vm-extension"></a>使用 Azure Docker VM 延伸模組部署範本
+使用現有的快速入門範本建立使用 Azure Docker VM 延伸模組的 Ubuntu VM，以安裝及設定 Docker 主機。 您可以在這裡檢視範本︰ [使用 Docker 簡易部署 Ubuntu VM](https://github.com/Azure/azure-quickstart-templates/tree/master/docker-simple-on-ubuntu)。 您需要安裝最新的 [Azure CLI](/cli/azure/install-az-cli2)，並使用 [az login](/cli/azure/reference-index#az_login) 來登入 Azure 帳戶。
 
 首先，使用 [az group create](/cli/azure/group#az_group_create) 建立資源群組。 下列範例會在 eastus 位置建立名為 myResourceGroup 的資源群組：
 
@@ -45,7 +47,7 @@ Azure Docker VM 擴充功能會在您的 Linux 虛擬機器 (VM) 中安裝並設
 az group create --name myResourceGroup --location eastus
 ```
 
-接下來，使用 [az group deployment create](/cli/azure/group/deployment#az_group_deployment_create) 來部署 VM，其中包含來自 [GitHub 上此 Azure Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/docker-simple-on-ubuntu)的 Azure Docker VM 擴充功能。 出現提示時，針對 newStorageAccountName、adminUsername、adminPassword 和 dnsNameForPublicIP 提供您自己唯一的值：
+接下來，使用 [az group deployment create](/cli/azure/group/deployment#az_group_deployment_create) 來部署 VM，其中包含來自 [GitHub 上此 Azure Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/docker-simple-on-ubuntu)的 Azure Docker VM 延伸模組。 出現提示時，針對 newStorageAccountName、adminUsername、adminPassword 和 dnsNameForPublicIP 提供您自己唯一的值：
 
 ```azurecli
 az group deployment create --resource-group myResourceGroup \

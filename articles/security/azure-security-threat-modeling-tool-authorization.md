@@ -1,24 +1,25 @@
 ---
-title: "授權 - Microsoft Threat Modeling Tool - Azure | Microsoft Docs"
-description: "降低威脅模型化工具所暴露的威脅"
+title: 授權 - Microsoft Threat Modeling Tool - Azure | Microsoft Docs
+description: 降低威脅模型化工具所暴露的威脅
 services: security
 documentationcenter: na
-author: RodSan
-manager: RodSan
-editor: RodSan
+author: jegeib
+manager: jegeib
+editor: jegeib
 ms.assetid: na
 ms.service: security
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/17/2017
-ms.author: rodsan
-ms.openlocfilehash: b9ad3ceeb77a4adc2c47b262aa40a48c14423198
-ms.sourcegitcommit: 9890483687a2b28860ec179f5fd0a292cdf11d22
+ms.date: 02/07/2017
+ms.author: jegeib
+ms.openlocfilehash: eec628a5084dc663978e16e617192802d3ecfcfa
+ms.sourcegitcommit: 1fb353cfca800e741678b200f23af6f31bd03e87
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/24/2018
+ms.lasthandoff: 08/30/2018
+ms.locfileid: "43307651"
 ---
 # <a name="security-frame-authorization--mitigations"></a>安全框架︰授權 | 緩和措施 
 | 產品/服務 | 文章 |
@@ -45,7 +46,7 @@ ms.lasthandoff: 01/24/2018
 | 標題                   | 詳細資料      |
 | ----------------------- | ------------ |
 | **元件**               | 電腦信任邊界 | 
-| **SDL 階段**               | Deployment |  
+| **SDL 階段**               | 部署 |  
 | **適用的技術** | 泛型 |
 | **屬性**              | N/A  |
 | **參考**              | N/A  |
@@ -56,7 +57,7 @@ ms.lasthandoff: 01/24/2018
 | 標題                   | 詳細資料      |
 | ----------------------- | ------------ |
 | **元件**               | 電腦信任邊界 | 
-| **SDL 階段**               | Deployment |  
+| **SDL 階段**               | 部署 |  
 | **適用的技術** | 泛型 |
 | **屬性**              | N/A  |
 | **參考**              | N/A  |
@@ -67,7 +68,7 @@ ms.lasthandoff: 01/24/2018
 | 標題                   | 詳細資料      |
 | ----------------------- | ------------ |
 | **元件**               | 電腦信任邊界 | 
-| **SDL 階段**               | Deployment |  
+| **SDL 階段**               | 部署 |  
 | **適用的技術** | 泛型 |
 | **屬性**              | N/A  |
 | **參考**              | N/A  |
@@ -176,7 +177,7 @@ WHERE userID=:id < - session var
 | 標題                   | 詳細資料      |
 | ----------------------- | ------------ |
 | **元件**               | IoT 雲端閘道 | 
-| **SDL 階段**               | Deployment |  
+| **SDL 階段**               | 部署 |  
 | **適用的技術** | 泛型 |
 | **屬性**              | 閘道選擇 - Azure IoT 中樞 |
 | **參考**              | [IoT 中樞存取控制](https://azure.microsoft.com/documentation/articles/iot-hub-devguide/#Security) |
@@ -242,7 +243,7 @@ WHERE userID=:id < - session var
 | 標題                   | 詳細資料      |
 | ----------------------- | ------------ |
 | **元件**               | Service Fabric 信任邊界 | 
-| **SDL 階段**               | Deployment |  
+| **SDL 階段**               | 部署 |  
 | **適用的技術** | 泛型 |
 | **屬性**              | 環境 - Azure |
 | **參考**              | [Service Fabric 用戶端的角色型存取控制](https://azure.microsoft.com/documentation/articles/service-fabric-cluster-security-roles/) |
@@ -311,7 +312,7 @@ WHERE userID=:id < - session var
 | **SDL 階段**               | 建置 |  
 | **適用的技術** | 泛型、NET Framework 3 |
 | **屬性**              | N/A  |
-| **參考**              | [MSDN](https://msdn.microsoft.com/library/ff648500.aspx)、[Fortify Kingdom](https://vulncat.fortify.com/en/vulncat/index.html) |
+| **參考**              | [MSDN](https://msdn.microsoft.com/library/ff648500.aspx)、[Fortify Kingdom](https://vulncat.fortify.com/en/detail?id=desc.config.dotnet.wcf_misconfiguration_weak_class_reference) |
 | **步驟** | <p>系統會使用弱式類別參考，其可讓攻擊者執行未經授權的程式碼。 程式會參考非唯一識別的使用者定義類別。 當 .NET 載入此弱式識別的類別時，CLR 類型載入器會以指定的順序在下列位置中搜尋此類別︰</p><ol><li>如果已知道類型的組件，則載入器會搜尋組態檔的重新導向位置、GAC、使用組態資訊的目前組件，以及應用程式基底目錄</li><li>如果不知道組件，載入器會搜尋目前組件、mscorlib 以及 TypeResolve 事件處理常式所傳回的位置</li><li>可以使用攔截程序修改此 CLR 搜尋順序，例如類型轉送機制和 AppDomain.TypeResolve 事件</li></ol><p>如果攻擊者建立具有相同名稱的替代類別，並將它放在 CLR 會先載入的替代位置，藉此利用 CLR 搜尋順序，則 CLR 會在無意中執行攻擊者提供的程式碼</p>|
 
 ### <a name="example"></a>範例
@@ -348,7 +349,7 @@ WHERE userID=:id < - session var
 | **SDL 階段**               | 建置 |  
 | **適用的技術** | 泛型、NET Framework 3 |
 | **屬性**              | N/A  |
-| **參考**              | [MSDN](https://msdn.microsoft.com/library/ff648500.aspx)、[Fortify Kingdom](https://vulncat.fortify.com/en/vulncat/index.html) |
+| **參考**              | [MSDN](https://msdn.microsoft.com/library/ff648500.aspx)、[Fortify Kingdom](https://vulncat.hpefod.com/en/detail?id=desc.semantic.dotnet.wcf_misconfiguration_unauthorized_access) |
 | **步驟** | <p>此服務並不會使用授權控制。 當用戶端呼叫特定 WCF 服務時，WCF 會提供各種授權方案，以確認呼叫端有權在伺服器上執行此服務方法。 如果未針對 WCF 服務啟用授權控制，經過驗證的使用者可以獲得權限提升。</p>|
 
 ### <a name="example"></a>範例

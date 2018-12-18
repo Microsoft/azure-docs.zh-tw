@@ -1,31 +1,31 @@
 ---
-title: "設定來源環境 (實體伺服器至 Azure) | Microsoft Docs"
-description: "這篇文章說明如何設定內部部署環境，開始將執行 Windows 或 Linux 的實體伺服器複寫至 Azure。"
+title: 設定來源環境 (實體伺服器至 Azure) | Microsoft Docs
+description: 這篇文章說明如何設定內部部署環境，開始將執行 Windows 或 Linux 的實體伺服器複寫至 Azure。
 services: site-recovery
-documentationcenter: 
-author: AnoopVasudavan
-manager: gauravd
+author: rayne-wiselman
 ms.service: site-recovery
 ms.topic: article
-ms.date: 03/05/2018
-ms.author: anoopkv
-ms.openlocfilehash: 96004a70547c4bfb3a1a3bfadecb1304e4910b52
-ms.sourcegitcommit: 168426c3545eae6287febecc8804b1035171c048
+ms.date: 07/21/2018
+ms.author: raynew
+ms.openlocfilehash: 0cbba45ce49667293d8f16bf370424acd70ff78b
+ms.sourcegitcommit: 248c2a76b0ab8c3b883326422e33c61bd2735c6c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/08/2018
+ms.lasthandoff: 07/23/2018
+ms.locfileid: "39213477"
 ---
 # <a name="set-up-the-source-environment-physical-server-to-azure"></a>設定來源環境 (實體伺服器至 Azure)
 
 這篇文章說明如何設定內部部署環境，開始將執行 Windows 或 Linux 的實體伺服器複寫至 Azure。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 本文假設您已經有：
-1. [Azure 入口網站] (http://portal.azure.com "Azure 入口網站")中的復原服務保存庫。
-3. 可供安裝設定伺服器的實體電腦。
+- [Azure 入口網站] (http://portal.azure.com "Azure 入口網站")中的復原服務保存庫。
+- 可供安裝設定伺服器的實體電腦。
+- 如果您已在您要安裝設定伺服器所在的電腦上停用 TLS 1.0，請確定已啟用 TLS 1.2，並在電腦上安裝 .NET Framework 4.6 或更新版本 (在已停用強式密碼編譯的情況下)。 [深入了解](https://support.microsoft.com/help/4033999/how-to-resolve-azure-site-recovery-agent-issues-after-disabling-tls-1)。
 
-### <a name="configuration-server-minimum-requirements"></a>組態伺服器的最低需求
+### <a name="configuration-server-minimum-requirements"></a>組態伺服器最低需求
 下表列出組態伺服器的最低硬體、軟體與網路需求。
 [!INCLUDE [site-recovery-configuration-server-requirements](../../includes/site-recovery-configuration-and-scaleout-process-server-requirements.md)]
 
@@ -62,7 +62,7 @@ ms.lasthandoff: 03/08/2018
 [!INCLUDE [site-recovery-add-configuration-server](../../includes/site-recovery-add-configuration-server.md)]
 
 > [!NOTE]
-> 您可以透過命令列安裝組態伺服器。 如需詳細資訊，請參閱[使用命令列工具安裝組態伺服器](http://aka.ms/installconfigsrv)。
+> 您可以透過命令列安裝組態伺服器。 [深入了解](physical-manage-configuration-server.md#install-from-the-command-line)。
 
 
 ## <a name="common-issues"></a>常見問題

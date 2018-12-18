@@ -1,39 +1,38 @@
 ---
-title: "在 Azure HDInsight 上使用資料視覺效果工具的 Spark BI | Microsoft Docs"
-description: "透過 HDInsight 叢集上的 Apache Spark BI 使用分析的資料視覺效果工具"
-keywords: "apache spark bi, spark bi, spark 資料視覺效果, spark 商業智慧"
+title: '教學課程：在 Azure HDInsight 中使用 Power BI 分析 Apache Spark 資料 '
+description: 使用 Microsoft Power BI 將儲存在 HDInsight 叢集中的 Spark 資料視覺化
 services: hdinsight
-documentationcenter: 
-author: mumian
-manager: cgronlun
-editor: cgronlun
-tags: azure-portal
-ms.assetid: 1448b536-9bc8-46bc-bbc6-d7001623642a
+author: jasonwhowell
+ms.author: jasonh
+ms.reviewer: jasonh
 ms.service: hdinsight
-ms.custom: hdinsightactive,hdiseo17may2017
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
-ms.date: 02/14/2018
-ms.author: jgao
-ms.openlocfilehash: 97305ec6774e89e776653adbcdcf86b1cd63642f
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.custom: hdinsightactive,mvc
+ms.topic: tutorial
+ms.date: 05/07/2018
+ms.openlocfilehash: b8f952f27b5971704c8202fe80a95026e513b373
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43045817"
 ---
-# <a name="apache-spark-bi-using-data-visualization-tools-with-azure-hdinsight"></a>使用資料視覺效果工具搭配 Azure HDInsight 的 Apache Spark BI
+# <a name="tutorial-analyze-spark-data-using-power-bi-in-hdinsight"></a>教學課程：在 HDInsight 中使用 Power BI 分析 Spark 資料 
 
-了解如何使用 [Microsoft Power BI](http://powerbi.microsoft.com) 在 Azure HDInsight 上對 Apache Spark 叢集中的資料進行視覺化。
+了解如何使用 Microsoft Power BI 在 Azure HDInsight 中將 Apache Spark 叢集中的資料視覺化。
 
-## <a name="prerequisites"></a>先決條件
+在本教學課程中，您了解如何：
+> [!div class="checklist"]
+> * 使用 Power BI 將 Spark 資料視覺化
 
-* **完成[在 HDInsight 中的 Spark 叢集上執行互動式查詢](./apache-spark-load-data-run-query.md)**一文。
+如果您沒有 Azure 訂用帳戶，請在開始之前先[建立免費帳戶](https://azure.microsoft.com/free/)。
+
+## <a name="prerequisites"></a>必要條件
+
+* **完成本文[教學課程：在 Azure HDInsight 中的 Apache Spark 叢集上載入資料和執行查詢](./apache-spark-load-data-run-query.md)**。
 * **Power BI**：[Power BI Desktop](https://powerbi.microsoft.com/en-us/desktop/) 與 [Power BI 試用訂用帳戶](https://app.powerbi.com/signupredirect?pbi_source=web) (選擇性)。
 
 
-## <a name="hivetable"></a>驗證資料
+## <a name="verify-the-data"></a>驗證資料
 
 您在[上一個教學課程](apache-spark-load-data-run-query.md)中建立的 Jupyter Notebook 包含可建立 `hvac` 資料表的程式碼。 本資料表根據的是 **\HdiSamples\HdiSamples\SensorSampleData\hvac\hvac.csv** 上所有 HDInsight Spark 叢集上的可用 CSV 檔案。 使用下列程序來驗證資料。
 
@@ -48,8 +47,7 @@ ms.lasthandoff: 02/21/2018
 
     ![顯示 Spark 中的資料表](./media/apache-spark-use-bi-tools/show-tables.png)
 
-    如果在開始本教學課程之前關閉 Notebook，則會清除 `hvactemptable`，因此其不會包含在輸出中。
-    從 BI 工具只可以存取儲存在中繼存放區的 Hive 資料表 (在 **isTemporary** 資料行下表示為 **False**)。 在此教學課程中，您會連線到您所建立的 **hvac** 資料表。
+    如果在開始本教學課程之前關閉 Notebook，則會清除 `hvactemptable`，因此其不會包含在輸出中。  從 BI 工具只可以存取儲存在中繼存放區的 Hive 資料表 (在 **isTemporary** 資料行下表示為 **False**)。 在此教學課程中，您會連線到您所建立的 **hvac** 資料表。
 
 2. 將以下程式碼貼入空白儲存格，然後按下 **SHIFT + ENTER** 鍵。 該程式碼會驗證資料表中的資料。
 
@@ -64,21 +62,7 @@ ms.lasthandoff: 02/21/2018
 
 3. 從 Notebook 的 [檔案] 功能表中，按一下 [關閉並終止]。 關閉 Notebook 來釋放資源。 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## <a name="powerbi"></a>使用 Power BI
+## <a name="visualize-the-data"></a>將資料視覺化
 
 在本節中，您會使用 Power BI 從 Spark 叢集資料建立視覺效果、報表及儀表板。 
 
@@ -228,8 +212,11 @@ Power BI 服務可讓您跨組織共用報表和儀表板。 在本節中，您�
 
 ## <a name="next-steps"></a>後續步驟
 
-到目前為止，您學會了如何建立叢集、建立 Spark 資料框架來查詢資料，然後從 BI 工具中存取該資料。 您現在可以看看如何管理叢集資源，以及對在 HDInsight Spark 叢集中執行的工作進行偵錯的指示。
+在本教學課程中，您已了解如何：
 
-* [在 Azure HDInsight 中管理 Apache Spark 叢集的資源](apache-spark-resource-manager.md)
-* [追蹤和偵錯在 HDInsight 中的 Apache Spark 叢集上執行的作業](apache-spark-job-debugging.md)
+- 使用 Power BI 將 Spark 資料視覺化。
+
+前往下一篇文章，以查看如何將您在 Spark 中註冊的資料提取至 BI 分析工具，例如 Power BI。 
+> [!div class="nextstepaction"]
+> [執行 Spark 串流作業](apache-spark-eventhub-streaming.md)
 

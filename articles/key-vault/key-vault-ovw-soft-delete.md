@@ -2,15 +2,17 @@
 ms.assetid: ''
 title: Azure Key Vault 虛刪除 | Microsoft Docs
 ms.service: key-vault
-author: lleonard-msft
-ms.author: alleonar
+ms.topic: conceptual
+author: bryanla
+ms.author: bryanla
 manager: mbaldwin
 ms.date: 09/25/2017
-ms.openlocfilehash: 6a3573cf31418309a31126b2a0c6a43ea2e0c745
-ms.sourcegitcommit: c3d53d8901622f93efcd13a31863161019325216
+ms.openlocfilehash: ac34f03c896e9e2180b653c41faa7f7525a40e33
+ms.sourcegitcommit: b7e5bbbabc21df9fe93b4c18cc825920a0ab6fab
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/29/2018
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47407870"
 ---
 # <a name="azure-key-vault-soft-delete-overview"></a>Azure Key Vault 虛刪除概觀
 
@@ -35,9 +37,26 @@ Azure Key Vault 是由 Azure Resource Manager 管理的追蹤資源。 Azure Res
 
 ### <a name="soft-delete-behavior"></a>虛刪除行為
 
-使用此功能，針對 Key Vault 或 Key Vault 物件的刪除作業是虛刪除，實際上在指定的保留期限內會保留資源，然而看起來物件卻為已刪除。 此服務進一步提供復原已刪除物件的機制 (基本上是復原刪除作業)。 
+使用此功能時，對 Key Vault 或 Key Vault 物件進行的 DELETE 作業是虛刪除，實際上會在指定的保留期間 (90 天) 內保留資源，但物件看起來會像已刪除。 此服務進一步提供復原已刪除物件的機制 (基本上是復原刪除作業)。 
 
 虛刪除是選擇性的 Key Vault 行為，在此版本中**預設未啟用**。 
+
+### <a name="purge-protection--flag"></a>清除保護旗標
+清除保護 (在 Azure CLI 中為 **--enable-purge-protection**) 旗標預設為關閉。 開啟此旗標時，必須等到 90 天的保留期間過後，才能清除處於已刪除狀態的保存庫或物件。 這類保存庫或物件仍可復原。 此旗標可為客戶加強確保在保留期間已過之前，一律無法永久刪除保存庫或物件。 只有在已開啟虛刪除旗標的情況下，或在建立保存庫時同時開啟虛刪除和清除保護的情況下，您才能開啟清除保護旗標。
+
+[!NOTE] 開啟清除保護的先決條件是您必須開啟虛刪除。 若要這樣做，在 Azure CLI 2 中的命令為
+
+```
+az keyvault create --name "VaultName" --resource-group "ResourceGroupName" --location westus --enable-soft-delete true --enable-purge-protection true
+```
+
+### <a name="permitted-purge"></a>允許的清除作業
+
+在 Proxy 資源上可透過 POST 作業永久刪除、清除 Key Vault，而這需要特殊權限。 一般而言，只有訂用帳戶擁有者可以清除 Key Vault。 POST 作業會對該保存庫觸發立即性且無法復原的刪除作業。 
+
+以下是例外情況
+- 當 Azure 訂用帳戶已標示為「無法刪除」時。 在此情況下，只有此服務可接著執行實際的刪除作業，而且會以排程的程序執行。 
+- 當在保存庫本身啟用 --enable-purge-protection 旗標時。 在此情況下，Key Vault 會從原始祕密物件標示為要刪除的那天算起，等待 90 天後才永久刪除該物件。
 
 ### <a name="key-vault-recovery"></a>Key Vault 復原
 
@@ -61,12 +80,6 @@ Azure Key Vault 是由 Azure Resource Manager 管理的追蹤資源。 Azure Res
 - 只有具備特殊權限的使用者，可以在對應的 Proxy 資源上發出刪除命令來強制刪除 Key Vault 或 Key Vault 物件。
 
 除非 Key Vault 或 Key Vault 物件已復原，否則在保留間隔結束時，此服務會對虛刪除的 Key Vault 或 Key Vault 物件及其內容執行清除作業。 資源刪除作業無法重新排程。
-
-### <a name="permitted-purge"></a>允許的清除作業
-
-在 Proxy 資源上可透過 POST 作業永久刪除、清除 Key Vault，而這需要特殊權限。 一般而言，只有訂用帳戶擁有者可以清除 Key Vault。 POST 作業會對該保存庫觸發立即性且無法復原的刪除作業。 
-
-唯一的例外是當 Azure 訂用帳戶已標示為「無法刪除」時。 在此情況下，只有此服務可接著執行實際的刪除作業，而且會以排程的程序執行。 
 
 ### <a name="billing-implications"></a>計費影響
 

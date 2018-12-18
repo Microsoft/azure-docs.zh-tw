@@ -4,21 +4,23 @@ description: Log Analytics 中的電腦群組可讓您將記錄檔搜尋範圍�
 services: log-analytics
 documentationcenter: ''
 author: bwren
-manager: jwhit
+manager: carmonm
 editor: ''
 ms.assetid: a28b9e8a-6761-4ead-aa61-c8451ca90125
 ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 03/19/2018
+ms.topic: conceptual
+ms.date: 05/03/2018
 ms.author: bwren
-ms.openlocfilehash: a6f0aa58762966f8da76387f3da7a7895801fcb9
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: na
+ms.openlocfilehash: 23ac75b4afb07c3f8d5f0d90755a5cf2087087e1
+ms.sourcegitcommit: 5892c4e1fe65282929230abadf617c0be8953fd9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 06/29/2018
+ms.locfileid: "37130670"
 ---
 # <a name="computer-groups-in-log-analytics-log-searches"></a>Log Analytics 記錄檔搜尋中的電腦群組
 
@@ -56,14 +58,6 @@ Log Analytics 中的電腦群組中可讓您將[記錄檔搜尋](log-analytics-l
 2. 開啟 [記錄搜尋]，然後按一下畫面頂端的 [已儲存的搜尋]。
 3. 按一下 [新增]，然後提供電腦群組的每一個屬性的值。
 4. 選取 [將此查詢儲存為電腦群組]，然後按一下 [確定]。
-
-
-使用下列程序在 OMS 入口網站中透過記錄搜尋建立電腦群組。
-
-1. 開啟 [記錄搜尋]，然後建立電腦群組的記錄搜尋。  
-2. 按一下畫面頂端的 [儲存] 按鈕。
-3. 在 [將此查詢儲存為電腦群組] 上選取 [是]。
-5. 提供電腦群組的每一個屬性的值。 
 
 
 

@@ -1,42 +1,113 @@
-### <a name="prerequisites"></a>先決條件
-* Azure 帳戶；您可以建立一個 [免費帳戶](https://azure.microsoft.com/free)
-* 包含此連線資訊 (伺服器名稱、資料庫名稱和使用者名稱/密碼) 的 [Azure SQL Database](../articles/sql-database/sql-database-get-started.md)。 此資訊包含在 SQL Database 連接字串中：
-  
-    Server=tcp:*yoursqlservername*.database.windows.net,1433;Initial Catalog=*yourqldbname*;Persist Security Info=False;User ID={your_username};Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
-  
-    深入了解 [Azure SQL Database](https://azure.microsoft.com/services/sql-database)。
+---
+title: 包含檔案
+description: 包含檔案
+services: logic-apps
+author: ecfan
+ms.service: logic-apps
+ms.topic: include
+ms.date: 05/15/2018
+ms.author: estfan
+ms.custom: include file
+ms.openlocfilehash: 4ffda692da0ab7b63f7376c36dfab0bec914e334
+ms.sourcegitcommit: 5a7f13ac706264a45538f6baeb8cf8f30c662f8f
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 06/29/2018
+ms.locfileid: "37138060"
+---
+* 如果您是使用 Azure SQL Database，請遵循[連線到 Azure SQL Database](#connect-azure-sql-db) 下的步驟。 
 
-> [!NOTE]
-> 當您建立 Azure SQL Database 時，您也可以建立 SQL 包含的範本資料庫。 
-> 
-> 
+* 如果您是使用 SQL Server，請遵循[連線到 SQL Server](#connect-sql-server) 下的步驟。
 
-在於邏輯應用程式中使用您的 Azure SQL Database 之前，請先連線到您的 SQL Database。 您可以在 Azure 入口網站上，從邏輯應用程式內輕鬆完成此操作。  
+<a name="connect-azure-sql-db"></a>
 
-請使用下列步驟來連線到您的 Azure SQL Database：  
+### <a name="connect-to-azure-sql-database"></a>連線到 Azure SQL Database
 
-1. 建立邏輯應用程式。 在 Logic Apps 設計工具中，新增一個觸發程序，然後新增一個動作。 從下拉式清單中選取 [顯示 Microsoft 受控 API]，然後在搜尋方塊中輸入 "sql"。 選取其中一個動作︰  
-   
-    ![SQL Azure 連接建立步驟](./media/connectors-create-api-sqlazure/sql-actions.png)
-2. 如果您之前尚未建立與 SQL Database 的任何連線，系統將會提示您輸入連線詳細資料：  
-   
-    ![SQL Azure 連接建立步驟](./media/connectors-create-api-sqlazure/connection-details.png) 
-3. 輸入 SQL Database 詳細資料。 具有星號的屬性為必要項目。
-   
-   | 屬性 | 詳細資料 |
-   | --- | --- |
-   | 透過閘道連線 |讓此屬性保持未核取狀態。 連線到內部部署 SQL Server 時會使用此屬性。 |
-   | 連線名稱 * |為連接器輸入任何名稱。 |
-   | SQL Server 名稱 * |輸入伺服器名稱；也就是類似 *servername.database.windows.net* 的名稱。 伺服器名稱會顯示在 Azure 入口網站的 SQL Database 屬性中，並且也會顯示在連接字串中。 |
-   | SQL Database 名稱 * |輸入提供給 SQL Database 的名稱。 這會列在連接字串的 SQL Database 屬性中︰Initial Catalog=yoursqldbname。 |
-   | 使用者名稱 * |輸入 SQL Database 建立時所建立的使用者名稱。 這會列在 Azure 入口網站的 SQL Database 屬性中。 |
-   | 密碼 * |輸入 SQL Database 建立時所建立的密碼。 |
-   
-    這些認證會用來授權邏輯應用程式連線並存取 SQL 資料。 完成後，連線詳細資料看起來類似下圖︰  
-   
-    ![SQL Azure 連接建立步驟](./media/connectors-create-api-sqlazure/sample-connection.png) 
-4. 選取 [建立] 。 
-5. 請注意，已建立連線。 現在，請繼續進行您邏輯應用程式中的其他步驟： 
-   
-    ![SQL Azure 連接建立步驟](./media/connectors-create-api-sqlazure/table.png)
+1. 當 SQL 觸發程序或動作提示您輸入連線資訊時，請遵循下列步驟：
 
+   1. 為您的連線建立一個名稱。
+
+   2. 選取您的 SQL 伺服器，然後選取資料庫。 
+
+      只在您選取 SQL 伺服器之後，才會顯示資料庫清單。
+ 
+   3. 提供伺服器的使用者名稱和密碼。
+
+      您可以在 Azure 入口網站的 SQL 資料庫屬性下，或在您的連接字串中找到此資訊： 
+      
+      "User ID=<yourUserName>"
+      <br>
+      "Password=<yourPassword>"
+
+   本範例顯示的是觸發程序的連線資訊，但這些步驟也適用於動作。
+
+   ![建立 Azure SQL Database 連線](./media/connectors-create-api-sqlazure/azure-sql-database-create-connection.png)
+   <br>
+   星號 (*) 表示必要值。
+
+   | 屬性 | 值 | 詳細資料 | 
+   |----------|-------|---------| 
+   | 連線名稱 | <*my-sql-connection*> | 您連線的名稱 | 
+   | SQL Server 名稱 | <*my-sql-server*> | 您 SQL 伺服器的名稱 |
+   | SQL Database 名稱 | <*my-sql-database*>  | 您 SQL 資料庫的名稱 | 
+   | 使用者名稱 | <*my-sql-username*> | 用以存取您資料庫的使用者名稱 |
+   | 密碼 | <*my-sql-password*> | 用以存取您資料庫的密碼 | 
+   |||| 
+
+2. 完成之後，請選擇 [建立]。
+
+3. 您在建立連線之後，請繼續[新增 SQL 觸發程序](#add-sql-trigger)或[新增 SQL 動作](#add-sql-action)。
+
+<a name="connect-sql-server"></a>
+
+### <a name="connect-to-sql-server"></a>連接到 SQL Server
+
+您在選取閘道之前，請確定您已[設定您的資料閘道](https://docs.microsoft.com/azure/logic-apps/logic-apps-gateway-connection)。 這樣一來，當您建立連線時，您的閘道就會出現在閘道清單中。
+
+1. 當 SQL 觸發程序或動作提示您輸入連線資訊時，請遵循下列步驟：
+
+   1. 在觸發程序或動作中，選取**透過內部部署資料閘道連線**，如此就會顯示 SQL 伺服器選項。
+
+   2. 為您的連線建立一個名稱。
+
+   3. 提供您 SQL 伺服器的位址，然後提供您資料庫的名稱。
+   
+      您可以在連接字串中找到這項資訊： 
+      
+      * "Server=<*yourServerAddress*>"
+      * "Database=<*yourDatabaseName*>"
+
+   4. 提供伺服器的使用者名稱和密碼。
+
+      您可以在連接字串中找到這項資訊： 
+      
+      * "User ID=<yourUserName>"
+      * "Password=<yourPassword>"
+
+   5. 如果您的 SQL 伺服器是使用 Windows 或基本驗證，請選取驗證類型。
+
+   6. 選取您先前所建立的內部部署資料閘道名稱。
+   
+      如果您的閘道未出現在清單中，請檢查您是否正確[設定閘道](https://docs.microsoft.com/azure/logic-apps/logic-apps-gateway-connection)。
+
+   本範例顯示的是觸發程序的連線資訊，但這些步驟也適用於動作。
+
+   ![建立 SQL Server 連線](./media/connectors-create-api-sqlazure/sql-server-create-connection.png)
+   <br>
+   星號 (*) 表示必要值。
+
+   | 屬性 | 值 | 詳細資料 | 
+   |----------|-------|---------| 
+   | 透過內部部署閘道連線 | 請先針對 SQL Server 設定選取此選項。 | | 
+   | 連線名稱 | <*my-sql-connection*> | 您連線的名稱 | 
+   | SQL Server 名稱 | <*my-sql-server*> | 您 SQL 伺服器的名稱 |
+   | SQL Database 名稱 | <*my-sql-database*>  | 您 SQL 資料庫的名稱 |
+   | 使用者名稱 | <*my-sql-username*> | 用以存取您資料庫的使用者名稱 |
+   | 密碼 | <*my-sql-password*> | 用以存取您資料庫的密碼 | 
+   | 驗證類型 | Windows 或基本 | 選用：您 SQL 伺服器所使用的驗證類型 | 
+   | 閘道 | <*my-data-gateway*> | 您內部部署資料閘道的名稱 | 
+   |||| 
+
+2. 完成之後，請選擇 [建立]。 
+
+3. 您在建立連線之後，請繼續[新增 SQL 觸發程序](#add-sql-trigger)或[新增 SQL 動作](#add-sql-action)。

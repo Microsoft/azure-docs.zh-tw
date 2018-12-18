@@ -1,28 +1,29 @@
 ---
-title: "Azure Kubernetes 叢集的服務主體"
-description: "在 Azure Container Service 中建立和管理 Kubernetes 叢集的 Azure Active Directory 服務主體"
+title: Azure Kubernetes 叢集的服務主體
+description: 在 Azure Container Service 中建立和管理 Kubernetes 叢集的 Azure Active Directory 服務主體
 services: container-service
 author: neilpeterson
-manager: timlt
+manager: jeconnoc
 ms.service: container-service
 ms.topic: get-started-article
 ms.date: 02/26/2018
 ms.author: nepeters
 ms.custom: mvc
-ms.openlocfilehash: 02588ca770ae519615360ce3e8935231aa74f8cf
-ms.sourcegitcommit: 088a8788d69a63a8e1333ad272d4a299cb19316e
+ms.openlocfilehash: e3e3a981daf1273b8b2387cb1c665317f860b1d2
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/27/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46974862"
 ---
 # <a name="set-up-an-azure-ad-service-principal-for-a-kubernetes-cluster-in-container-service"></a>在 Container Service 中設定 Kubernetes 叢集的 Azure AD 服務主體
 
 [!INCLUDE [aks-preview-redirect.md](../../../includes/aks-preview-redirect.md)]
 
-在 Azure Container Service 中，Kubernetes 叢集需要 [Azure Active Directory 服務主體](../../active-directory/develop/active-directory-application-objects.md)，才能與 Azure API 進行互動。 需要服務主體，才能以動態方式管理資源，例如[使用者定義的路由](../../virtual-network/virtual-networks-udr-overview.md)及[第 4 層 Azure Load Balancer](../../load-balancer/load-balancer-overview.md)。
+在 Azure Container Service 中，Kubernetes 叢集需要 [Azure Active Directory 服務主體](../../active-directory/develop/app-objects-and-service-principals.md)，才能與 Azure API 進行互動。 需要服務主體，才能以動態方式管理資源，例如[使用者定義的路由](../../virtual-network/virtual-networks-udr-overview.md)及[第 4 層 Azure Load Balancer](../../load-balancer/load-balancer-overview.md)。
 
 
-本文說明為 Kubernetes 叢集設定服務主體的各種選項。 例如，如果您已安裝並設定 [Azure CLI 2.0](/cli/azure/install-az-cli2)，您可以執行 [`az acs create`](/cli/azure/acs#az_acs_create) 命令，在同一時間建立 Kubernetes 叢集與服務主體。
+本文說明為 Kubernetes 叢集設定服務主體的各種選項。 例如，如果您已安裝並設定 [Azure CLI](/cli/azure/install-az-cli2)，您可以執行 [`az acs create`](/cli/azure/acs#az_acs_create) 命令，在同一時間建立 Kubernetes 叢集與服務主體。
 
 
 ## <a name="requirements-for-the-service-principal"></a>服務主體的需求
@@ -43,7 +44,7 @@ ms.lasthandoff: 02/27/2018
 
 如果您想要在部署 Kubernetes 叢集之前建立 Azure AD 服務主體，Azure 會提供數種方法。
 
-下列範例命令示範如何使用 [Azure CLI 2.0](../../azure-resource-manager/resource-group-authenticate-service-principal-cli.md) 執行這項作業。 或者，您也可以使用 [Azure PowerShell](../../azure-resource-manager/resource-group-authenticate-service-principal.md)、[入口網站](../../azure-resource-manager/resource-group-create-service-principal-portal.md)或其他方法來建立服務主體。
+下列範例命令示範如何使用 [Azure CLI](../../azure-resource-manager/resource-group-authenticate-service-principal-cli.md) 執行這項作業。 或者，您也可以使用 [Azure PowerShell](../../azure-resource-manager/resource-group-authenticate-service-principal.md)、[入口網站](../../azure-resource-manager/resource-group-create-service-principal-portal.md)或其他方法來建立服務主體。
 
 ```azurecli
 az login
@@ -66,13 +67,13 @@ az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/<subscrip
 
 當您建立 Kubernetes 叢集時，提供現有服務主體的**用戶端識別碼** (也稱為`appId`，適用於應用程式識別碼) 和**用戶端密碼** (`password`) 做為參數。 確定服務主體符合本文開頭所述的需求。
 
-使用 [Azure 命令列介面 (CLI) 2.0](container-service-kubernetes-walkthrough.md)、[Azure 入口網站](../dcos-swarm/container-service-deployment.md)或其他方法部署 Kubernetes 叢集時，您可以指定這些參數。
+使用 [Azure 命令列介面 (CLI)](container-service-kubernetes-walkthrough.md)、[Azure 入口網站](../dcos-swarm/container-service-deployment.md)或其他方法部署 Kubernetes 叢集時，您可以指定這些參數。
 
 >[!TIP]
 >指定**用戶端識別碼**時，務必使用服務主體的 `appId`，而非 `ObjectId`。
 >
 
-下列範例顯示使用 Azure CLI 2.0 傳遞參數的其中一種方式。 此範例使用 [Kubernetes 快速入門範本](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-kubernetes)。
+下列範例顯示使用 Azure CLI 傳遞參數的其中一種方式。 此範例使用 [Kubernetes 快速入門範本](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-kubernetes)。
 
 1. 從 GitHub [下載](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-acs-kubernetes/azuredeploy.parameters.json)範本參數檔案 `azuredeploy.parameters.json`。
 
@@ -95,7 +96,7 @@ az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/<subscrip
 
 ## <a name="option-2-generate-a-service-principal-when-creating-the-cluster-with-az-acs-create"></a>選項 2︰在使用 `az acs create` 建立叢集時產生服務主體
 
-如果您執行 [`az acs create`](/cli/azure/acs#az_acs_create) 命令來建立 Kubernetes 叢集，您可以選擇自動產生服務主體。
+如果您執行 [`az acs create`](/cli/azure/acs#az-acs-create) 命令來建立 Kubernetes 叢集，您可以選擇自動產生服務主體。
 
 至於其他 Kubernetes 叢集建立選項，您可以在執行 `az acs create` 時指定現有服務主體的參數。 不過，當您省略這些參數時，Azure CLI 會自動建立一個參數以搭配 Container Service 使用。 這會在部署期間以透明方式發生。
 
@@ -131,7 +132,7 @@ az acs create -n myClusterName -d myDNSPrefix -g myResourceGroup --generate-ssh-
 
 除非您在建立服務主體時以 `--years` 參數指定自訂的有效範圍，否則其認證的有效期為自建立起 1 年內。 當認證到期時，您的叢集節點可能會進入 **NotReady** 狀態。
 
-若要檢查服務主體的到期日，請執行 [az ad app show](/cli/azure/ad/app#az_ad_app_show) 命令並搭配 `--debug` 參數，然後在輸出底部附近尋找 `passwordCredentials` 的 `endDate` 值：
+若要檢查服務主體的到期日，請執行 [az ad app show](/cli/azure/ad/app#az-ad-app-show) 命令並搭配 `--debug` 參數，然後在輸出底部附近尋找 `passwordCredentials` 的 `endDate` 值：
 
 ```azurecli
 az ad app show --id <appId> --debug
@@ -145,7 +146,7 @@ az ad app show --id <appId> --debug
 ...
 ```
 
-如果您的服務主體認證到期，請使用 [az ad sp reset-credentials](/cli/azure/ad/sp#az_ad_sp_reset_credentials) 命令更新認證：
+如果您的服務主體認證到期，請使用 [az ad sp reset-credentials](/cli/azure/ad/sp#az-ad-sp-reset-credentials) 命令更新認證：
 
 ```azurecli
 az ad sp reset-credentials --name <appId>

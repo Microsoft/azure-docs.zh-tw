@@ -1,34 +1,31 @@
 ---
-title: "安全存取 Azure Logic Apps | Microsoft Docs"
-description: "新增安全性以保護存取 Azure Logic Apps 中工作流程使用的觸發程序、輸入和輸出、動作參數和服務。"
+title: 安全存取 Azure Logic Apps | Microsoft Docs
+description: 保護對 Azure Logic Apps 工作流程中觸發程序、輸入和輸出、動作參數和服務的存取
 services: logic-apps
-documentationcenter: .net,nodejs,java
-author: jeffhollan
-manager: anneta
-editor: 
-ms.assetid: 9fab1050-cfbc-4a8b-b1b3-5531bee92856
 ms.service: logic-apps
-ms.devlang: multiple
+ms.suite: integration
+author: kevinlam1
+ms.author: klam
+ms.reviewer: estfan, LADocs
+ms.assetid: 9fab1050-cfbc-4a8b-b1b3-5531bee92856
 ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: integration
 ms.date: 11/22/2016
-ms.author: LADocs; jehollan
-ms.openlocfilehash: 45a4e476f930e0f5f6633dc5b3b35b66dc6dfa20
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 1307b6df22c51af9710d44abb23178d65e3507aa
+ms.sourcegitcommit: 5a9be113868c29ec9e81fd3549c54a71db3cec31
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44377389"
 ---
-# <a name="secure-access-to-your-logic-apps"></a>安全存取您的邏輯應用程式
+# <a name="secure-access-in-azure-logic-apps"></a>在 Azure Logic Apps 中安全存取
 
-有許多工具可用來協助您保護您的邏輯應用程式。
+以下是您可以安全存取邏輯應用程式中不同元件的方式：
 
-* 保護觸發邏輯應用程式的存取 (HTTP 要求觸發程序)
-* 保護管理、編輯或讀取邏輯應用程式的存取
-* 保護輸入內容與執行輸出的存取
-* 保護工作流程中動作內的參數或輸入
-* 保護接受工作流程要求之服務的存取
+* 保護存取，以便透過 HTTP 要求觸發程序觸發邏輯應用程式工作流程。
+* 保護存取，以便管理、編輯或讀取邏輯應用程式。
+* 保護邏輯應用程式執行的輸入和輸出內容的存取。
+* 保護邏輯應用程式工作流程中動作的參數或輸入。
+* 保護可接收邏輯應用程式工作流程要求的服務存取。
 
 ## <a name="secure-access-to-trigger"></a>保護觸發程序的存取
 
@@ -77,10 +74,10 @@ POST
 此設定可在邏輯應用程式設定中進行設定：
 
 1. 在 Azure 入口網站中，開啟您要新增 IP 位址限制的邏輯應用程式
-1. 按一下 [設定] 之下的 [存取控制設定] 功能表項目
+1. 按一下 [設定] 下的 [工作流程設定] 功能表項目
 1. 指定觸發程序可接受的 IP 位址範圍清單
 
-有效的 IP 位址範圍格式為 `192.168.1.1/255`。 如果您只想讓邏輯應用程式做為巢狀邏輯應用程式進行引發，請選取 [僅其他邏輯應用程式] 選項。 這個選項會將空陣列寫入資源，表示只能成功引發來自服務本身 (父邏輯應用程式) 的呼叫。
+有效的 IP 位址範圍格式為 `192.168.1.1/32`。 如果您只想讓邏輯應用程式做為巢狀邏輯應用程式進行引發，請選取 [僅其他邏輯應用程式] 選項。 這個選項會將空陣列寫入資源，表示只能成功引發來自服務本身 (父邏輯應用程式) 的呼叫。
 
 > [!NOTE]
 > 您仍然可以透過 REST API / Management `/triggers/{triggerName}/run` 來執行含有要求觸發程序的邏輯應用程式，不論 IP 位址為何。 在此情況下，會要求針對 Azure REST API 進行驗證，而所有事件都會出現在 Azure 稽核記錄中。 請適當地設定存取控制原則。
@@ -119,7 +116,7 @@ POST
 
 ## <a name="secure-access-to-manage-or-edit-logic-apps"></a>保護管理或編輯邏輯應用程式的存取
 
-您可以限制邏輯應用程式的管理作業存取，以便只有特定的使用者或群組能夠在資源上執行操作。 邏輯應用程式使用 Azure [角色型存取控制 (RBAC)](../active-directory/role-based-access-control-configure.md) 功能，並且能夠使用相同的工具進行自訂。  您也可以將一些內建的角色指派給訂用帳戶的成員：
+您可以限制邏輯應用程式的管理作業存取，以便只有特定的使用者或群組能夠在資源上執行操作。 邏輯應用程式使用 Azure [角色型存取控制 (RBAC)](../role-based-access-control/role-assignments-portal.md) 功能，並且能夠使用相同的工具進行自訂。  您也可以將一些內建的角色指派給訂用帳戶的成員：
 
 * **邏輯應用程式參與者**：提供邏輯應用程式檢視、編輯和更新的存取權限。  無法移除資源或執行管理作業。
 * **邏輯應用程式操作員**：可以檢視邏輯應用程式和執行歷程記錄，以及啟用/停用。  無法編輯或更新定義。
@@ -135,8 +132,8 @@ POST
 這個設定可在 Azure 入口網站的資源設定中進行設定：
 
 1. 在 Azure 入口網站中，開啟您要新增 IP 位址限制的邏輯應用程式
-1. 按一下 [設定] 之下的 [存取控制設定] 功能表項目
-1. 針對內容的存取指定 IP 位址範圍清單
+2. 按一下 [設定] 之下的 [存取控制設定] 功能表項目
+3. 針對內容的存取指定 IP 位址範圍清單
 
 #### <a name="setting-ip-ranges-on-the-resource-definition"></a>在資源定義上設定 IP 範圍
 
@@ -183,64 +180,62 @@ POST
 
 ``` json
 {
-  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
-    "secretDeploymentParam": {
-      "type": "securestring"
-    }
-  },
-  "variables": {},
-  "resources": [
-    {
+   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+   "contentVersion": "1.0.0.0",
+   "parameters": {
+      "secretDeploymentParam": {
+         "type": "securestring"
+      }
+   },
+   "variables": {},
+   "resources": [ {
       "name": "secret-deploy",
       "type": "Microsoft.Logic/workflows",
       "location": "westus",
       "tags": {
-        "displayName": "LogicApp"
+         "displayName": "LogicApp"
       },
       "apiVersion": "2016-06-01",
       "properties": {
-        "definition": {
-          "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
-          "actions": {
-            "Call_External_API": {
-              "type": "http",
-              "inputs": {
-                "headers": {
-                  "Authorization": "@parameters('secret')"
-                },
-                "body": "This is the request"
-              },
-              "runAfter": {}
-            }
-          },
-          "parameters": {
+         "definition": {
+            "$schema": "https://schema.management.azure.com/schemas/2016-06-01/Microsoft.Logic.json",
+            "actions": {
+               "Call_External_API": {
+                  "type": "Http",
+                  "inputs": {
+                     "headers": {
+                        "Authorization": "@parameters('secret')"
+                     },
+                     "body": "This is the request"
+                  },
+                  "runAfter": {}
+               }
+            },
+            "parameters": {
+               "secret": {
+                  "type": "SecureString"
+               }
+            },
+            "triggers": {
+               "manual": {
+                  "type": "Request",
+                  "kind": "Http",
+                  "inputs": {
+                     "schema": {}
+                  }
+               }
+            },
+            "contentVersion": "1.0.0.0",
+            "outputs": {}
+         },
+         "parameters": {
             "secret": {
-              "type": "SecureString"
+               "value": "[parameters('secretDeploymentParam')]"
             }
-          },
-          "triggers": {
-            "manual": {
-              "type": "Request",
-              "kind": "Http",
-              "inputs": {
-                "schema": {}
-              }
-            }
-          },
-          "contentVersion": "1.0.0.0",
-          "outputs": {}
-        },
-        "parameters": {
-          "secret": {
-            "value": "[parameters('secretDeploymentParam')]"
-          }
-        }
+         }
       }
-    }
-  ],
-  "outputs": {}
+   } ],
+   "outputs": {}
 }
 ```
 

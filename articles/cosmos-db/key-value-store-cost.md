@@ -1,26 +1,22 @@
 ---
-title: "Azure Cosmos DB 做為金鑰值存放區 – 成本概觀 | Microsoft Docs"
-description: "了解使用 Azure Cosmos DB 做為金鑰值存放區的低成本。"
-keywords: "金鑰值存放區"
+title: Azure Cosmos DB 做為金鑰值存放區 – 成本概觀 | Microsoft Docs
+description: 了解使用 Azure Cosmos DB 做為金鑰值存放區的低成本。
+keywords: 金鑰值存放區
 services: cosmos-db
-author: mimig1
-manager: jhubbard
-editor: 
-tags: 
-documentationcenter: 
-ms.assetid: 7f765c17-8549-4509-9475-46394fc3a218
+author: SnehaGunda
+manager: kfile
+tags: ''
 ms.service: cosmos-db
-ms.workload: data-services
-ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 11/15/2017
-ms.author: mimig
-ms.openlocfilehash: e6f87cd82ebe31965fcaac1f66d2df03fd58294f
-ms.sourcegitcommit: 0e4491b7fdd9ca4408d5f2d41be42a09164db775
+ms.author: sngun
+ms.openlocfilehash: bcbe4afe5ca5abf9a709f5abbcdffa474c44702c
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/14/2017
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34612117"
 ---
 # <a name="azure-cosmos-db-as-a-key-value-store--cost-overview"></a>Azure Cosmos DB 做為金鑰值存放區 – 成本概觀
 

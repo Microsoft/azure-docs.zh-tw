@@ -4,8 +4,8 @@ description: 如何在用於容器的 Web App 中設定從 Docker 容器登錄�
 keywords: azure app service, linux, docker, acr,oss
 services: app-service
 documentationcenter: ''
-author: ahmedelnably
-manager: cfowler
+author: msangapu
+manager: jeconnoc
 editor: ''
 ms.assetid: a47fb43a-bbbd-4751-bdc1-cd382eae49f8
 ms.service: app-service
@@ -13,13 +13,14 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/10/2017
-ms.author: aelnably;msangapu
-ms.openlocfilehash: ac35dbd041de50ab8aae1a0fb4c00fe3917a7297
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.date: 06/29/2018
+ms.author: msangapu
+ms.openlocfilehash: 0f2d4626308eed376b71f1b3df2f9e43f1b2a4f7
+ms.sourcegitcommit: 5892c4e1fe65282929230abadf617c0be8953fd9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 06/29/2018
+ms.locfileid: "37130956"
 ---
 # <a name="continuous-deployment-with-web-app-for-containers"></a>使用用於容器的 Web 應用程式進行持續部署
 
@@ -53,7 +54,8 @@ az webapp deployment container config --name name --resource-group myResourceGro
 az webapp deployment container show-cd-url --name sname1 --resource-group rgname
 ```
 
-針對 Webhook URL，您需要下列端點︰`https://<publishingusername>:<publishingpwd>@<sitename>.scm.azurewebsites.net/docker/hook`。
+記下 Webhook URL。 您將會在下一節用到此 URL。
+`https://<publishingusername>:<publishingpwd>@<sitename>.scm.azurewebsites.net/docker/hook`。
 
 您可以取得 `publishingusername` 和 `publishingpwd`，方法是使用 Azure 入口網站來下載 Web 應用程式發佈設定檔。
 
@@ -61,29 +63,10 @@ az webapp deployment container show-cd-url --name sname1 --resource-group rgname
 
 ## <a name="add-a-webhook"></a>新增 Webhook
 
-### <a name="azure-container-registry"></a>Azure Container Registry
+若要新增 Webhook，請遵循這些指南中的步驟：
 
-1. 在您的登錄入口網站頁面上，選取 [Webhook]。
-2. 若要建立新的 Webhook，請選取 [新增]。 
-3. 在 [建立 Webhook] 窗格中，提供您的 Webhook 名稱。 針對 Webhook URI，提供在上一節中取得的 URL。
-
-請確定您將範圍定義為包含您容器映像的存放庫。
-
-![Webhook 的螢幕擷取畫面](./media/app-service-webapp-service-linux-ci-cd/step3ACRWebhook-1.png)
-
-當您更新映像時，Web 應用程式會以新的映像自動更新。
-
-### <a name="docker-hub"></a>Docker Hub
-
-在您的 [Docker Hub] 頁面上，選取 [Webhook]，然後 [建立 WEBHOOK]。
-
-![新增 Webhook 的螢幕擷取畫面 1](./media/app-service-webapp-service-linux-ci-cd/step3-1.png)
-
-針對 Webhook URL，提供您稍早取得的 URL。
-
-![新增 Webhook 的螢幕擷取畫面 2](./media/app-service-webapp-service-linux-ci-cd/step3-2.png)
-
-當您更新映像時，Web 應用程式會以新的映像自動更新。
+- 使用 Webhook URL 的 [Azure Container Registry](../../container-registry/container-registry-webhook.md)
+- [適用於 Docker Hub 的 Webhook](https://docs.docker.com/docker-hub/webhooks/)
 
 ## <a name="next-steps"></a>後續步驟
 

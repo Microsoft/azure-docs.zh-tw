@@ -1,31 +1,33 @@
 ---
-title: 使用 Azure CLI 控管 Azure 虛擬機器 | Microsoft Docs
-description: 教學課程 - 藉由使用 Azure CLI 來套用 RBAC、原則、鎖定和標籤以管理 Azure 虛擬機器
+title: 教學課程 - 使用 Azure CLI 控管 Azure 虛擬機器 | Microsoft Docs
+description: 在此教學課程中，您將了解如何使用 Azure CLI，透過套用 RBAC、原則、鎖定與標籤來管理 Azure 虛擬機器
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: tfitzmac
-manager: timlt
+manager: jeconnoc
 editor: tysonn
 ms.service: virtual-machines-linux
 ms.workload: infrastructure
 ms.tgt_pltfrm: vm-linux
 ms.devlang: na
-ms.topic: article
-ms.date: 02/21/2018
+ms.topic: tutorial
+ms.date: 10/12/2018
 ms.author: tomfitz
-ms.openlocfilehash: ac6f7b0d32479e9e7e9945f83dc63a5847cba6a4
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.custom: mvc
+ms.openlocfilehash: 715a8e5bab9e5d16b8c0e54298101df856d51a9a
+ms.sourcegitcommit: 3a02e0e8759ab3835d7c58479a05d7907a719d9c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 10/13/2018
+ms.locfileid: "49309854"
 ---
-# <a name="virtual-machine-governance-with-azure-cli"></a>使用 Azure CLI 控管虛擬機器
+# <a name="tutorial-learn-about-linux-virtual-machine-governance-with-azure-cli"></a>教學課程：了解如何使用 Azure CLI 控管 Linux 虛擬機器
 
 [!INCLUDE [Resource Manager governance introduction](../../../includes/resource-manager-governance-intro.md)]
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-若要在本機安裝並使用 CLI，請參閱[安裝 Azure CLI 2.0](/cli/azure/install-azure-cli)。
+如果您選擇在本機安裝和使用 Azure CLI，則在本教學課程中，您必須執行 Azure CLI 2.0.30 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI]( /cli/azure/install-azure-cli)。
 
 ## <a name="understand-scope"></a>了解範圍
 
@@ -43,39 +45,33 @@ az group create --name myResourceGroup --location "East US"
 
 ## <a name="role-based-access-control"></a>角色型存取控制
 
-您想要確定組織中的使用者具有這些資源的正確存取權等級。 您不想要授與不受限制的存取權給使用者，但是您又必須確定他們可以執行其工作。 [角色型存取控制](../../active-directory/role-based-access-control-what-is.md)可讓您管理哪些使用者具有權限可以在一個範圍內完成特定動作。
+您想要確定組織中的使用者具有這些資源的正確存取權等級。 您不想要授與不受限制的存取權給使用者，但是您又必須確定他們可以執行其工作。 [角色型存取控制](../../role-based-access-control/overview.md)可讓您管理哪些使用者具有權限可以在一個範圍內完成特定動作。
 
 若要建立和移除角色指派，使用者必須具有 `Microsoft.Authorization/roleAssignments/*` 存取權。 此存取權是透過擁有者或使用者存取系統管理員角色來授與。
 
 為了管理虛擬機器解決方案，有三個資源專屬角色可提供您經常需要的存取權：
 
-* [虛擬機器參與者](../../active-directory/role-based-access-built-in-roles.md#virtual-machine-contributor)
-* [網路參與者](../../active-directory/role-based-access-built-in-roles.md#network-contributor)
-* [儲存體帳戶參與者](../../active-directory/role-based-access-built-in-roles.md#storage-account-contributor)
+* [虛擬機器參與者](../../role-based-access-control/built-in-roles.md#virtual-machine-contributor)
+* [網路參與者](../../role-based-access-control/built-in-roles.md#network-contributor)
+* [儲存體帳戶參與者](../../role-based-access-control/built-in-roles.md#storage-account-contributor)
 
-相較於將角色指派給個別使用者，為需要執行類似動作的使用者[建立 Azure Active Directory 群組](../../active-directory/active-directory-groups-create-azure-portal.md)通常會更加容易。 然後，將該群組指派給適當的角色。 一言以蔽之，您要建立沒有成員的 Azure Active Directory 群組。 您仍然可以指派此群組給某個範圍內的角色。 
+相較於將角色指派給個別使用者，使用 Azure Active Directory 群組來含括需要執行類似動作的使用者，通常會較為容易。 然後，將該群組指派給適當的角色。 在本文中，請使用現有的群組來管理虛擬機器，或使用入口網站來[建立 Azure Active Directory 群組](../../active-directory/fundamentals/active-directory-groups-create-azure-portal.md)。
 
-下列範例會建立名為 VMDemoContributors、郵件暱稱為 vmDemoGroup 的 Azure Active Directory 群組。 郵件暱稱可作為群組的別名。
-
-```azurecli-interactive
-adgroupId=$(az ad group create --display-name VMDemoContributors --mail-nickname vmDemoGroup --query objectId --output tsv)
-```
-
-在命令提示字元傳回後，群組需要一些時間才會傳播到整個 Azure Active Directory。 等候 20 或 30 秒之後，使用 [az role assignment create](/cli/azure/role/assignment#az_role_assignment_create) 命令將新的 Azure Active Directory 群組指派給資源群組的虛擬機器參與者角色。  如果您在群組傳播完成之前執行下列命令，您會收到錯誤，指出：**原則 <guid> 不存在於目錄中**。 請嘗試再次執行命令。
+建立新群組或找到現有群組後，請使用 [az role assignment create](/cli/azure/role/assignment#az_role_assignment_create) 命令，將新的 Azure Active Directory 群組指派給資源群組的虛擬機器參與者角色。
 
 ```azurecli-interactive
+adgroupId=$(az ad group show --group <your-group-name> --query objectId --output tsv)
+
 az role assignment create --assignee-object-id $adgroupId --role "Virtual Machine Contributor" --resource-group myResourceGroup
 ```
 
+如果出現錯誤，指出**原則 <guid> 不存在於目錄中**，表示新群組未傳播至整個 Azure Active Directory。 請嘗試再次執行命令。
+
 通常您需要針對網路參與者和儲存體帳戶參與者重複進行此程序，以確保已指派使用者來管理已部署的資源。 在本文中，您可以略過這些步驟。
 
-## <a name="azure-policies"></a>Azure 原則
+## <a name="azure-policy"></a>Azure 原則
 
-[!INCLUDE [Resource Manager governance policy](../../../includes/resource-manager-governance-policy.md)]
-
-### <a name="apply-policies"></a>套用原則
-
-您的訂用帳戶已經有數個原則定義。 若要查看可用的原則定義，請使用 [az policy definition list](/cli/azure/policy/definition#az_policy_definition_list) 命令：
+[Azure 原則](../../azure-policy/azure-policy-introduction.md)可協助您確認訂用帳戶中的所有資源均符合公司標準。 您的訂用帳戶已經有數個原則定義。 若要查看可用的原則定義，請使用 [az policy definition list](/cli/azure/policy/definition#az_policy_definition_list) 命令：
 
 ```azurecli-interactive
 az policy definition list --query "[].[displayName, policyType, name]" --output table
@@ -135,7 +131,7 @@ az policy definition show --name $locationDefinition --query parameters
 
 ## <a name="deploy-the-virtual-machine"></a>部署虛擬機器
 
-您已指派角色和原則，現在可以開始部署您的解決方案。 預設大小是 Standard_DS1_v2，也就是所允許之 SKU 的其中一個。 如果預設的位置沒有 SSH 金鑰，命令會加以建立。
+您已指派角色和原則，現在可以開始部署您的解決方案。 預設大小是 Standard_DS1_v2，也就是所允許之 SKU 的其中一個。 如果預設位置中沒有 SSH 金鑰，命令會加以建立。
 
 ```azurecli-interactive
 az vm create --resource-group myResourceGroup --name myVM --image UbuntuLTS --generate-ssh-keys
@@ -173,7 +169,7 @@ az lock create --name LockNSG \
 az group delete --name myResourceGroup
 ```
 
-您會看到錯誤指出因為鎖定所以無法執行刪除作業。 只有當您明確移除鎖定後，才能刪除資源群組。 [清除資源](#clean-up-resources)中會說明該步驟。
+您會看到一則錯誤，指出刪除作業因鎖定而無法完成。 只有當您明確移除鎖定後，才能刪除資源群組。 [清除資源](#clean-up-resources)中會說明該步驟。
 
 ## <a name="tag-resources"></a>標記資源
 
@@ -181,7 +177,7 @@ az group delete --name myResourceGroup
 
 [!INCLUDE [Resource Manager governance tags CLI](../../../includes/resource-manager-governance-tags-cli.md)]
 
-若要將標籤套用至虛擬機器，請使用 [az resource tag](/cli/azure/resource#az_resource_tag) 命令。 不會保留資源上的任何現有標籤。
+若要將標籤套用至虛擬機器，請使用 [az resource tag](/cli/azure/resource#az_resource_tag) 命令。 資源上的任何現有標記都不會保留。
 
 ```azurecli-interactive
 az resource tag -n myVM \

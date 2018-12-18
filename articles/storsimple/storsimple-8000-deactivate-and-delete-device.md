@@ -1,24 +1,25 @@
 ---
-title: "停用及刪除 StorSimple 8000 系列裝置 | Microsoft Docs"
-description: "描述如何停用然後刪除 StorSimple 裝置，將其從服務中移除。"
+title: 停用及刪除 StorSimple 8000 系列裝置 | Microsoft Docs
+description: 描述如何停用然後刪除 StorSimple 裝置，將其從服務中移除。
 services: storsimple
-documentationcenter: 
+documentationcenter: ''
 author: alkohli
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 05/23/2017
+ms.date: 07/23/2018
 ms.author: alkohli
-ms.openlocfilehash: 3c00867a29cf8343a57e74e2aabe3971ae6837af
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: a2b764e76cd1987c83e7be38d365c1dfa8513db9
+ms.sourcegitcommit: 248c2a76b0ab8c3b883326422e33c61bd2735c6c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 07/23/2018
+ms.locfileid: "39214783"
 ---
 # <a name="deactivate-and-delete-a-storsimple-device"></a>停用及刪除 StorSimple 裝置
 
@@ -109,7 +110,7 @@ ms.lasthandoff: 10/11/2017
 
 * StorSimple 雲端設備會從服務中移除。
 * 刪除 StorSimple 雲端設備的虛擬機器。
-* 移除針對 StorSimple 雲端設備建立的作業系統磁碟和資料磁碟。
+* 保留針對 StorSimple 雲端設備建立的作業系統磁碟和資料磁碟。 如果您不使用這些項目，就應該手動加以刪除。
 * 保留在佈建期間建立的託管服務和虛擬網路。 如果您不使用這些項目，就應該手動加以刪除。
 * 保留 StorSimple 雲端設備建立的雲端快照。
 

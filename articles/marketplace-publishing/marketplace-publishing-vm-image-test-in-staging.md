@@ -3,8 +3,8 @@ title: 測試將發佈到 Marketplace 的 VM 供應項目 | Microsoft Docs
 description: 了解如何測試您的 VM 供應項目在 Azure Marketplace 的表現。
 services: marketplace-publishing
 documentationcenter: ''
-author: msmbaldwin
-manager: mbaldwin
+author: HannibalSII
+manager: hascipio
 editor: ''
 ms.assetid: 7a41c3c6-625c-4478-b804-e124dee89040
 ms.service: marketplace
@@ -13,12 +13,13 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/01/2016
-ms.author: mbaldwin
-ms.openlocfilehash: 7f225f113dd465f79d5d195b59a809fe3be6a1f8
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.author: hascipio
+ms.openlocfilehash: 26f856059b381be91b9cdd1f98a11dc90813c0c5
+ms.sourcegitcommit: d16b7d22dddef6da8b6cfdf412b1a668ab436c1f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39715867"
 ---
 # <a name="test-your-vm-offer-for-the-azure-marketplace-in-staging"></a>在預備環境中測試您將發佈到 Azure Marketplace 的 VM 供應項目
 預備環境代表將您的 SKU 部署在私人的「沙箱」中，您可以在部署到 Marketplace 之前在沙箱中測試與驗證其功能。 SKU 會出現在預備環境中，就如同客戶已部署該項目一樣。 您的 VM 映像必須經過認證才能推送至預備環境。

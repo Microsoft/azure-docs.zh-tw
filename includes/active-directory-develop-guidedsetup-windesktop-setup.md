@@ -1,4 +1,27 @@
-
+---
+title: 包含檔案
+description: 包含檔案
+services: active-directory
+documentationcenter: dev-center-name
+author: andretms
+manager: mtillman
+editor: ''
+ms.assetid: 820acdb7-d316-4c3b-8de9-79df48ba3b06
+ms.service: active-directory
+ms.devlang: na
+ms.topic: include
+ms.tgt_pltfrm: na
+ms.workload: identity
+ms.date: 04/19/2018
+ms.author: andret
+ms.custom: include file
+ms.openlocfilehash: 5e933406b266b8371019abf0f62365184d8900b3
+ms.sourcegitcommit: c851842d113a7078c378d78d94fea8ff5948c337
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 06/18/2018
+ms.locfileid: "36205239"
+---
 ## <a name="set-up-your-project"></a>設定專案
 
 您會在本節中建立新的專案來示範如何整合 Windows Desktop .NET 應用程式 (XAML) 與使用 Microsoft 登入，以便應用程式可以查詢需要權杖的 Web API。
@@ -6,7 +29,7 @@
 您使用本指南所建立的應用程式會顯示用來呼叫圖表的按鈕、在畫面上顯示結果的區域，以及登出按鈕。
 
 > [!NOTE]
-> 想要改為下載此範例的 Visual Studio 專案嗎？ [下載專案](https://github.com/Azure-Samples/active-directory-dotnet-desktop-msgraph-v2/archive/master.zip)並跳至[設定步驟](#create-an-application-express)，以在執行之前先設定程式碼範例。
+> 想要改為下載此範例的 Visual Studio 專案嗎？ [下載專案](https://github.com/Azure-Samples/active-directory-dotnet-desktop-msgraph-v2/archive/master.zip)並跳至[設定步驟](#register-your-application)，以在執行之前先設定程式碼範例。
 >
 
 若要建立應用程式，請執行下列動作：
@@ -51,6 +74,7 @@
     ```
 
 ## <a name="create-the-application-ui"></a>建立應用程式 UI
+
 本節會說明應用程式如何查詢受保護的後端伺服器 (例如 Microsoft Graph)。 
 
 系統應會自動建立 MainWindow.xaml 檔案，作為專案範本的一部分。 開啟此檔案，然後將應用程式的 \<Grid> 節點取代為下列程式碼：

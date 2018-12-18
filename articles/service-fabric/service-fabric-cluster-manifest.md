@@ -1,24 +1,25 @@
 ---
-title: "設定 Azure Service Fabric 獨立叢集 | Microsoft Docs"
-description: "了解如何設定獨立或內部部署 Service Fabric 叢集。"
+title: 設定 Azure Service Fabric 獨立叢集 | Microsoft Docs
+description: 了解如何設定獨立或內部部署 Service Fabric 叢集。
 services: service-fabric
 documentationcenter: .net
 author: dkkapur
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 0c5ec720-8f70-40bd-9f86-cd07b84a219d
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 12/06/2017
 ms.author: dekapur
-ms.openlocfilehash: bd6e5c1591d01329d95ccb168e5a14e436920baf
-ms.sourcegitcommit: cc03e42cffdec775515f489fa8e02edd35fd83dc
+ms.openlocfilehash: 37859a117c88238089a681e3814c2a52f62bfce4
+ms.sourcegitcommit: 96f498de91984321614f09d796ca88887c4bd2fb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/07/2017
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39412578"
 ---
 # <a name="configuration-settings-for-a-standalone-windows-cluster"></a>獨立 Windows 叢集的組態設定
 本文說明如何使用 ClusterConfig.json 檔案來設定獨立的 Azure Service Fabric 叢集。 您將會使用此檔案來指定叢集節點、安全性設定，以及容錯和升級網域方面之網路拓撲的相關資訊。
@@ -46,9 +47,6 @@ ms.lasthandoff: 12/07/2017
 若要為 Service Fabric 叢集提供任何易記名稱，您可以將它指派給 name 變數。 ClusterConfigurationVersion 是叢集的版本號碼。 請在每次升級 Service Fabric 叢集時上調此號碼。 讓 apiVersion 繼續設定為預設值。
 
 ## <a name="nodes-on-the-cluster"></a>叢集上的節點
-
-    <a id="clusternodes"></a>
-
 您可以使用 nodes 區段，在 Service Fabric 叢集上設定節點，如下列程式碼片段所示：
 
     "nodes": [{
@@ -87,8 +85,6 @@ ClusterConfig.json 中的 [屬性] 區段是用來設定叢集，如下所示：
 ### <a name="reliability"></a>可靠性
 reliabilityLevel 的概念會定義可以在叢集主要節點上執行之 Service Fabric 系統服務的複本或執行個體數目。 它會決定這些服務以及叢集的可靠性。 其值會由系統在建立和升級叢集時計算。
 
-    <a id="reliability"></a>
-
 ### <a name="diagnostics"></a>診斷
 在 diagnosticsStore 區段中，您可以設定參數，以啟用診斷以及疑難排解節點或叢集的失敗，如下列程式碼片段所示： 
 
@@ -123,9 +119,6 @@ security 區段對於安全獨立的 Service Fabric 叢集是必要的項目。 
 metadata 是安全叢集的說明，而且可根據您的設定來進行設定。 ClusterCredentialType 和 ServerCredentialType 決定叢集和節點會實作的安全性類型。 如果是憑證式安全性，可設定為 X509，如果是以 Azure Active Directory 為基礎的安全性，可設定為 Windows。 其餘的 security 區段則是根據安全性類型。 如需如何填滿其餘 security 區段的相關資訊，請參閱[獨立叢集中的憑證式安全性](service-fabric-windows-cluster-x509-security.md)或[獨立叢集中的 Windows 安全性](service-fabric-windows-cluster-windows-security.md)。
 
 ### <a name="node-types"></a>節點類型
-
-    <a id="nodetypes"></a>
-
 nodeTypes 區段說明叢集所擁有的節點類型。 至少必須針對叢集指定一個節點類型，如下列程式碼片段所示： 
 
     "nodeTypes": [{

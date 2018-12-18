@@ -3,22 +3,24 @@ title: 深入探索如何預測車輛健全狀態與駕駛習慣 - Azure | Micro
 description: 使用 Cortana Intelligence 具備的強大功能，取得關於車輛健全狀態與駕駛習慣的即時預測情資。
 services: machine-learning
 documentationcenter: ''
-author: bradsev
+author: deguhath
 manager: cgronlun
 editor: cgronlun
 ms.assetid: d8866fa6-aba6-40e5-b3b3-33057393c1a8
 ms.service: machine-learning
+ms.component: team-data-science-process
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 03/14/2018
-ms.author: bradsev
-ms.openlocfilehash: 370ab807ef85240238c51d1693796c26981edb15
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.author: deguhath
+ms.openlocfilehash: 991e4b86a1d3e75c02e5ed8fe97727c625f174a4
+ms.sourcegitcommit: 0c490934b5596204d175be89af6b45aafc7ff730
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 06/27/2018
+ms.locfileid: "37055470"
 ---
 # <a name="vehicle-telemetry-analytics-solution-playbook-deep-dive-into-the-solution"></a>車輛遙測分析方案腳本：深入探索方案
 此功能表會連結至此腳本的章節： 
@@ -33,7 +35,7 @@ ms.lasthandoff: 03/16/2018
 * 模擬車輛訊號和診斷資料集
 * 車輛目錄
 
-此方案包含車輛遠程資訊服務模擬器，如下列螢幕擷取畫面所示。 它會在指定的時間點發出對應於車輛狀態與駕駛模式的診斷資訊和訊號。 若要下載「車輛遠程資訊服務模擬器 Visual Studio 方案」，以根據您的需求來自訂，請移至[車輛遠程資訊服務模擬器](http://go.microsoft.com/fwlink/?LinkId=717075)網頁。 車輛目錄包含可將車輛識別號碼 (VIN) 對應至模型的參考資料集。
+此方案包含車輛遠程資訊服務模擬器，如下列螢幕擷取畫面所示。 它會在指定的時間點發出對應於車輛狀態與駕駛模式的診斷資訊和訊號。  車輛目錄包含可將車輛識別號碼 (VIN) 對應至模型的參考資料集。 注意：車輛遠程資訊服務模擬器 Visual Studio 方案資料集已無法再使用。 
 
 ![車輛遠程資訊服務模擬器](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig1-vehicle-telematics-simulator.png)
 
@@ -361,7 +363,7 @@ PCA 是已建立的機器學習服務技術，可運用於特徵選取、分類�
 
 此模式也適用於您想要整合企業營運應用程式與即時分析流程的案例中。 這些案例包括警示、通知和傳訊。
 
-若要下載 RealtimeDashboardApp Visual Studio 方案以供自訂，請參閱 [RealtimeDashboardApp 下載](http://go.microsoft.com/fwlink/?LinkId=717078)網頁。 
+注意：RealtimeDashboardApp Visual Studio 方案的資料已無法再使用。
 
 #### <a name="execute-the-real-time-dashboard-application"></a>**執行即時儀表板應用程式**
 1. 擷取 RealtimeDashboardApp，並將它儲存在本機。
@@ -667,10 +669,9 @@ Power BI 給此方案一個豐富的儀表板來提供即時資料和預測性�
 
 ### <a name="references"></a>參考
 
-* [Vehicle Telematics Simulator Visual Studio 方案](http://go.microsoft.com/fwlink/?LinkId=717075) 
 * [Azure 事件中樞](https://azure.microsoft.com/services/event-hubs/)
 * [Azure Data Factory](https://azure.microsoft.com/documentation/learning-paths/data-factory/)
 * [適用於串流擷取的 Azure 事件中樞 SDK](../../event-hubs/event-hubs-csharp-ephcs-getstarted.md)
-* [Azure Data Factory 資料移動功能](../../data-factory/v1/data-factory-data-movement-activities.md)
-* [Azure Data Factory .NET 活動](../../data-factory/v1/data-factory-use-custom-activities.md)
+* [Azure Data Factory 資料移動功能](../../data-factory/copy-activity-overview.md)
+* [Azure Data Factory .NET 活動](../../data-factory/transform-data-using-dotnet-custom-activity.md)
 * [用於準備範例資料的 Azure Data Factory .NET 活動 Visual Studio 方案](http://go.microsoft.com/fwlink/?LinkId=717077) 

@@ -7,19 +7,20 @@ author: ggailey777
 ms.author: glenga
 ms.date: 11/15/2017
 ms.topic: tutorial
-ms.service: functions
+ms.service: azure-functions
 ms.custom: mvc
 ms.devlang: azure-cli
-manager: cfowler
-ms.openlocfilehash: 758906126b42c103853e0047bb19d2e96a84fae6
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+manager: jeconnoc
+ms.openlocfilehash: a77018d5ee1738f24518742c2386e6e261a7c6a8
+ms.sourcegitcommit: 7824e973908fa2edd37d666026dd7c03dc0bafd0
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 10/10/2018
+ms.locfileid: "48901443"
 ---
 # <a name="create-a-function-on-linux-using-a-custom-image-preview"></a>在使用自訂映像 (預覽版) 的 Linux 上建立函式
 
-Azure Functions 可讓您在 Linux 的自訂容器中裝載函式。 您也可以[在預設的 Azure App Service 容器上裝載](functions-create-first-azure-function-azure-cli-linux.md)。 這項功能目前為預覽狀態並且需要 [Functions 2.0 執行階段](functions-versions.md) (這也是預覽狀態)。
+Azure Functions 可讓您在 Linux 的自訂容器中裝載函式。 您也可以[在預設的 Azure App Service 容器上裝載](functions-create-first-azure-function-azure-cli-linux.md)。 這項功能目前為預覽狀態並且需要 [Functions 2.0 執行階段](functions-versions.md)。
 
 在本教學課程中，您將了解如何部署函式應用程式作為自訂 Docker 映像。 當您需要自訂內建的 App Service 容器映像時，此模式相當有用。 當您的函式需要特定的語言版本，或需要內建映像未提供的特定相依性或設定時，您可能會想使用自訂映像。
 
@@ -37,13 +38,13 @@ Azure Functions 可讓您在 Linux 的自訂容器中裝載函式。 您也可�
 
 下列步驟適用於 Mac、Windows 或 Linux 電腦。  
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 若要完成本教學課程，您需要：
 
 * [Git](https://git-scm.com/downloads)
 * 有效的 [Azure 訂用帳戶](https://azure.microsoft.com/pricing/free-trial/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio)
-* [Docker](https://docs.docker.com/get-started/#setup)
+* [Docker](https://docs.docker.com/install/)
 * [Docker Hub 帳戶](https://docs.docker.com/docker-id/)
 
 [!INCLUDE [Free trial note](../../includes/quickstarts-free-trial-note.md)]
@@ -145,7 +146,7 @@ v1.0.0: digest: sha256:be080d80770df71234eb893fbe4d... size: 2422
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
-如果您選擇在本機安裝和使用 CLI，本主題需要 Azure CLI 2.0.21 版或更新版本。 執行 `az --version` 以尋找您擁有的版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
+如果您選擇在本機安裝和使用 CLI，本主題需要 Azure CLI 2.0.21 版或更新版本。 執行 `az --version` 以尋找您擁有的版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI]( /cli/azure/install-azure-cli)。 
 
 [!INCLUDE [functions-create-resource-group](../../includes/functions-create-resource-group.md)]
 
@@ -160,7 +161,7 @@ v1.0.0: digest: sha256:be080d80770df71234eb893fbe4d... size: 2422
 
 ## <a name="create-and-deploy-the-custom-image"></a>建立和部署自訂映像
 
-函式應用程式可裝載函式的執行。 使用 [az functionapp create](/cli/azure/functionapp#az_functionapp_create) 命令從 Docker Hub 映像建立函式應用程式。 
+函式應用程式可裝載函式的執行。 使用 [az functionapp create](/cli/azure/functionapp#az-functionapp-create) 命令從 Docker Hub 映像建立函式應用程式。 
 
 在下列命令中，使用唯一函式應用程式名稱來替代您看見 `<app_name>` 預留位置的地方，並使用儲存體帳戶名稱來替代 `<storage_name>`。 `<app_name>` 會作為函式應用程式的預設 DNS 網域，所以此名稱在 Azure 的所有應用程式中都必須是唯一的名稱。 如先前所述，`<docker-id>` 是您的 Docker 帳戶名稱。
 
@@ -195,7 +196,7 @@ _deployment-container-image-name_ 參數表示裝載於 Docker Hub 上用於建�
 
 此函式需要連接字串以連接到預設儲存體帳戶。 當您將自訂映像發佈至私人容器帳戶時，應使用 [ENV 指令](https://docs.docker.com/engine/reference/builder/#env) \(英文\) 或對等指令將 Dockerfile 中的這些應用程式設定改設為環境變數。 
 
-在本例中，`<storage_account>` 是您建立的儲存體帳戶名稱。 使用 [az storage account show-connection-string](/cli/azure/storage/account#show-connection-string) 命令取得連接字串。 使用 [az functionapp config appsettings set](/cli/azure/functionapp/config/appsettings#az_functionapp_config_appsettings_set) 命令，在函式應用程式中新增這些應用程式設定。
+在本例中，`<storage_account>` 是您建立的儲存體帳戶名稱。 使用 [az storage account show-connection-string](/cli/azure/storage/account#show-connection-string) 命令取得連接字串。 使用 [az functionapp config appsettings set](/cli/azure/functionapp/config/appsettings#az-functionapp-config-appsettings-set) 命令，在函式應用程式中新增這些應用程式設定。
 
 ```azurecli-interactive
 storageConnectionString=$(az storage account show-connection-string \
@@ -226,7 +227,7 @@ AzureWebJobsStorage=$storageConnectionString
 > * 從 Docker Hub 部署函式應用程式。
 > * 將應用程式設定加入函式應用程式。
 
-深入了解使用 Azure Functions Core Tools 在本機開發 Azure Functions。
+了解如何啟用核心 App Service 平台內建的持續整合功能。 您可以設定函式應用程式，以便當您在 Docker Hub 中更新您的映像時重新部署容器。
 
 > [!div class="nextstepaction"] 
-> [撰寫 Azure Functions 並在本機進行測試](functions-run-local.md)
+> [使用用於容器的 Web 應用程式進行持續部署](../app-service/containers/app-service-linux-ci-cd.md)

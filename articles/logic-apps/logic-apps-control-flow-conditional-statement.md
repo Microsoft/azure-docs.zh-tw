@@ -1,29 +1,25 @@
 ---
-title: "條件陳述式 - 根據條件執行步驟 - Azure Logic Apps | Microsoft Docs"
-description: "只有當符合條件後，才在邏輯應用程式中執行步驟。 根據指定的條件，建立執行工作流程的決策樹。"
+title: 將條件陳述式新增至工作流程 - Azure Logic Apps | Microsoft Docs
+description: 如何建立條件以控制 Azure Logic Apps 工作流程中的動作
 services: logic-apps
-keywords: "條件陳述式、決策樹"
-documentationcenter: 
-author: ecfan
-manager: anneta
-editor: 
-ms.assetid: 
 ms.service: logic-apps
-ms.workload: logic-apps
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+author: ecfan
+ms.author: estfan
+manager: jeconnoc
 ms.date: 03/05/2018
-ms.author: estfan; LADocs
-ms.openlocfilehash: 486c1053f42ed3becc2c4b60accc993db7f24baa
-ms.sourcegitcommit: 0b02e180f02ca3acbfb2f91ca3e36989df0f2d9c
+ms.topic: article
+ms.reviewer: klam, LADocs
+ms.suite: integration
+ms.openlocfilehash: d4e69d33e07f484b4ccc5343786865230368c7ca
+ms.sourcegitcommit: d7725f1f20c534c102021aa4feaea7fc0d257609
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/05/2018
+ms.lasthandoff: 06/29/2018
+ms.locfileid: "37096371"
 ---
-# <a name="conditional-statements-run-steps-based-on-a-condition-in-logic-apps"></a>條件陳述式：在邏輯應用程式中根據條件執行步驟
+# <a name="create-conditional-statements-that-control-workflow-actions-in-azure-logic-apps"></a>建立條件陳述式以控制 Azure Logic Apps 中的工作流程動作
 
-若要在完成指定條件之後才執行步驟，可使用*條件陳述式*。 此結構會比較您針對特定值或欄位，比對工作流程中的資料。 接著，您可以根據資料是否符合條件，來定義要執行的不同步驟。 您可以讓條件在彼此之中巢狀化。
+若只要在傳遞指定條件後在邏輯應用程式中執行特定動作，請新增*條件陳述式*。 此結構會將工作流程中的資料與特定值或欄位中的值進行比較。 接著，您可以根據資料是否符合條件，來定義要執行的不同動作。 您可以讓條件在彼此之中巢狀化。
 
 例如，假設在網站的 RSS 摘要上出現新項目時，您的邏輯應用程式傳送過多電子郵件給您。 您可以新增條件陳述式，讓應用程式只在新項目包含特定字串時，才傳送電子郵件。 
 
@@ -44,7 +40,7 @@ ms.lasthandoff: 03/05/2018
 
 2. 在您想要的位置上新增條件。 
 
-   若要在步驟之間新增條件，請將指標移至您要新增條件的箭號上。 選擇顯示的 **加號** \(**+**\)，然後選擇 [新增條件]。 例如︰
+   若要在步驟之間新增條件，請將指標移至您要新增條件的箭號上。 選擇顯示的 **加號** \(**+** \)，然後選擇 [新增條件]。 例如︰
 
    ![在步驟間新增條件](./media/logic-apps-control-flow-conditional-statement/add-condition.png)
 
@@ -54,32 +50,27 @@ ms.lasthandoff: 03/05/2018
 
    1. 在左側的方塊中，指定您要比較的資料或欄位。
 
-      在 [新增動態內容] 清單中，您可以從應用程式邏輯中選取現有的欄位。
+      當您按一下左側方塊內部時，動態內容清單隨即出現，以便您在邏輯應用程式中選取先前步驟的輸出。 
+      在此範例中，選取 RSS 摘要的摘要。
+
+      ![建立您的條件](./media/logic-apps-control-flow-conditional-statement/edit-condition.png)
 
    2. 在清單的中間，選取要執行的作業。 
-   3. 在右邊的方塊中，指定作為準則的值或欄位。
+   在此範例中，請選取 "**contains**"。 
 
-   例如︰
-
-   ![在基本模式中編輯條件](./media/logic-apps-control-flow-conditional-statement/edit-condition-basic-mode.png)
+   3. 在右邊的方塊中，指定作為準則的值或欄位。 
+   在此範例中，指定此字串：**Microsoft**
 
    以下是完整的條件：
 
-   ![完整條件](./media/logic-apps-control-flow-conditional-statement/edit-condition-basic-mode-2.png)
+   ![完整條件](./media/logic-apps-control-flow-conditional-statement/edit-condition-2.png)
+
+5. 在 **If true** 和 **If false** 之下，以是否符合條件為基礎，新增要執行的步驟。 例如︰
+
+   ![具有 "If true" 和 "If false" 路徑的條件](./media/logic-apps-control-flow-conditional-statement/condition-yes-no-path.png)
 
    > [!TIP]
-   > 若要建立更進階的條件或使用運算式，請選擇 [在進階模式中編輯]。 您可以使用[工作流程定義語言](../logic-apps/logic-apps-workflow-definition-language.md)所定義的運算式。
-   > 
-   > 例如︰
-   >
-   > ![在程式碼中編輯條件](./media/logic-apps-control-flow-conditional-statement/edit-condition-advanced-mode.png)
-
-5. 在 **IF YES** 和 **IF NO** 之下，以是否符合條件為基礎，新增要執行的步驟。 例如︰
-
-   ![具 YES 和 NO 路徑的條件](./media/logic-apps-control-flow-conditional-statement/condition-yes-no-path.png)
-
-   > [!TIP]
-   > 您可以將現有動作拖曳到 **IF YES** 和 **IF NO** 路徑。
+   > 您可以將現有動作拖曳到 **If true** 和 **If false** 路徑。
 
 6. 儲存您的邏輯應用程式。
 
@@ -91,14 +82,21 @@ ms.lasthandoff: 03/05/2018
 
 ``` json
 "actions": {
-  "myConditionName": {
+  "Condition": {
     "type": "If",
-    "expression": "@contains(triggerBody()?['summary'], 'Microsoft')",
     "actions": {
       "Send_an_email": {
-        "inputs": { },
+        "inputs": {},
         "runAfter": {}
-      }
+    },
+    "expression": {
+      "and": [ 
+        { 
+          "contains": [ 
+            "@triggerBody()?['summary']", "Microsoft"
+          ]
+        } 
+      ]
     },
     "runAfter": {}
   }
@@ -112,7 +110,7 @@ ms.lasthandoff: 03/05/2018
 
 ## <a name="next-steps"></a>後續步驟
 
-* [根據不同值 (Switch 陳述式) 執行步驟](../logic-apps/logic-apps-control-flow-switch-statement.md)
+* [根據不同的值 (Switch 陳述式) 執行步驟](../logic-apps/logic-apps-control-flow-switch-statement.md)
 * [執行並重複步驟 (迴圈)](../logic-apps/logic-apps-control-flow-loops.md)
 * [執行或合併平行步驟 (分支)](../logic-apps/logic-apps-control-flow-branches.md)
 * [依據群組的動作狀態執行步驟 (範圍)](../logic-apps/logic-apps-control-flow-run-steps-group-scopes.md)

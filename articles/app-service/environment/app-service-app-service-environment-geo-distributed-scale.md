@@ -1,11 +1,11 @@
 ---
-title: "App Service 環境的異地分散調整"
-description: "了解如何透過流量管理員和 App Service 環境，使用異地分散功能水平調整應用程式。"
+title: App Service 環境的異地分散調整
+description: 了解如何透過流量管理員和 App Service 環境，使用異地分散功能水平調整應用程式。
 services: app-service
-documentationcenter: 
+documentationcenter: ''
 author: stefsch
 manager: erikre
-editor: 
+editor: ''
 ms.assetid: c1b05ca8-3703-4d87-a9ae-819d741787fb
 ms.service: app-service
 ms.workload: na
@@ -14,11 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/07/2016
 ms.author: stefsch
-ms.openlocfilehash: 21f747239e565aba79a84c8e946a71e306b64968
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: bc85139dfa3589baf6505fac2269f8755dcaddc8
+ms.sourcegitcommit: 248c2a76b0ab8c3b883326422e33c61bd2735c6c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 07/23/2018
+ms.locfileid: "39213243"
 ---
 # <a name="geo-distributed-scale-with-app-service-environments"></a>App Service 環境的異地分散調整
 ## <a name="overview"></a>概觀
@@ -42,7 +43,7 @@ App Service 環境是水平相應放大的理想平台。在選取可支援已�
 在建置分散式應用程式的使用量之前，最好先備妥幾項資訊。
 
 * **應用程式的自訂網域：** 客戶將用來存取應用程式的自訂網域名稱為何？  範例應用程式的自訂網域名稱是 *www.scalableasedemo.com*
-* **流量管理員網域：**建立 [Azure 流量管理員設定檔][AzureTrafficManagerProfile]時必須選擇網域名稱。  此名稱會與 *trafficmanager.net* 尾碼結合，以註冊流量管理員所管理的網域項目。  就範例應用程式而言，選擇的名稱是 *scalable-ase-demo*。  因此，流量管理員所管理的完整網域名稱是 *scalable-ase-demo.trafficmanager.net*。
+* **流量管理員網域：** 建立 [Azure 流量管理員設定檔][AzureTrafficManagerProfile]時必須選擇網域名稱。  此名稱會與 *trafficmanager.net* 尾碼結合，以註冊流量管理員所管理的網域項目。  就範例應用程式而言，選擇的名稱是 *scalable-ase-demo*。  因此，流量管理員所管理的完整網域名稱是 *scalable-ase-demo.trafficmanager.net*。
 * **調整應用程式使用量的策略：** 應用程式使用量是否會分散到單一區域中的多個 App Service 環境？  多個區域嗎？  兩種方法混合搭配使用嗎？  決策依據應來自於客戶流量的來源位置，以及其餘應用程式的支援後端基礎結構的可調整性。  例如，對於 100% 無狀態的應用程式，可以使用每一 Azure 區域多個 App Service 環境的組合，乘以跨多個 Azure 區域部署的 App Service 環境數，來大幅調整應用程式。  由於有 15 個以上的公用 Azure 區域可供選擇，客戶將可真正建置全球性超高延展性的應用程式使用量。  在本文所使用的範例應用程式中，有三個 App Service 環境建立在單一 Azure 區域 (美國中南部) 中。
 * **App Service 環境的命名慣例：** 每個 App Service 環境都需要唯一名稱。  有兩個或更多 App Service 環境時，命名慣例將有助於識別每個 App Service 環境。  範例應用程式中使用簡單的命名慣例。  三個 App Service 環境的名稱分別是 fe1ase、fe2ase 和 fe3ase。
 * **應用程式的命名慣例：** 由於將會部署多個應用程式執行個體，每個部署的應用程式執行個體都要有名稱。  有一項鮮為人知、但非常方便的 App Service 環境功能，是多個 App Service 環境可以使用相同的應用程式名稱。  由於每個 App Service 環境都有唯一的網域尾碼，開發人員可以選擇在每個環境中重複使用相同的應用程式名稱。  例如，開發人員可以將應用程式命名如下：myapp.foo1.p.azurewebsites.net、myapp.foo2.p.azurewebsites.net、myapp.foo3.p.azurewebsites.net，依此類推。但範例應用程式的每個應用程式執行個體也都有唯一名稱。  所使用的應用程式執行個體名稱是 webfrontend1、webfrontend2 和 webfrontend3。
@@ -94,7 +95,7 @@ App Service 環境是水平相應放大的理想平台。在選取可支援已�
 
 ![自訂網域][CustomDomain] 
 
-如需向 Azure App Service 應用程式註冊自訂網域的概述，請參閱下列有關[註冊自訂網域][RegisterCustomDomain]的文章。
+如需向 Azure App Service 應用程式註冊自訂網域的重點回顧，請參閱下列有關[註冊自訂網域][RegisterCustomDomain]的文章。
 
 ## <a name="trying-out-the-distributed-topology"></a>嘗試使用分散式拓撲
 使用流量管理員及 DNS 組態的最終結果，是 *www.scalableasedemo.com* 的要求會歷經下列順序的流程：

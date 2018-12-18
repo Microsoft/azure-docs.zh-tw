@@ -1,31 +1,25 @@
 ---
-title: "使用 Azure 虛擬機器的進階自動調整 | Microsoft Docs"
-description: "使用 Resource Manager 和 VM 擴展集，搭配多個規則與設定檔，以傳送電子郵件並使用調整動作來呼叫 Webhook URL。"
+title: 使用 Azure 虛擬機器的進階自動調整
+description: 使用 Resource Manager 和 VM 擴展集，搭配多個規則與設定檔，以傳送電子郵件並使用調整動作來呼叫 Webhook URL。
 author: anirudhcavale
-manager: orenr
-editor: 
-services: monitoring-and-diagnostics
-documentationcenter: monitoring-and-diagnostics
-ms.assetid: 7e3576e2-4a2b-4736-b5ae-98c4689cdd2b
-ms.service: monitoring-and-diagnostics
-ms.workload: na
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+services: azure-monitor
+ms.service: azure-monitor
+ms.topic: conceptual
 ms.date: 02/22/2016
 ms.author: ancav
-ms.openlocfilehash: 80955535c8d863cd3d8d1b77e2ab8bc016b6d9f3
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.component: autoscale
+ms.openlocfilehash: 78e3bec0d00336ce7cedc1434bf6ad7c65435969
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46978177"
 ---
 # <a name="advanced-autoscale-configuration-using-resource-manager-templates-for-vm-scale-sets"></a>針對 VM 擴展集使用 Resource Manager 範本的進階自動調整設定
 您可以根據效能標準臨界值、循環排程或特定日期，針對虛擬機器擴展集進行相應縮小和放大。 您也可以針對調整動作設定電子郵件和 webhook 通知。 本逐步解說會示範在 VM 擴展集上使用 Resource Manager 範本設定所有這些物件。
 
 > [!NOTE]
-> 雖然本逐步解說是解釋 VM 擴展集的步驟，但相同的資訊也適用於自動調整[雲端服務](https://azure.microsoft.com/services/cloud-services/)和 [App Service - Web Apps](https://azure.microsoft.com/services/app-service/web/)。
-> 如需在 VM 擴展集上根據簡單的效能標準 (例如 CPU) 取得簡單的相應縮小/放大設定，請參閱 [Linux](../virtual-machine-scale-sets/virtual-machine-scale-sets-linux-autoscale.md) 和 [Windows](../virtual-machine-scale-sets/virtual-machine-scale-sets-windows-autoscale.md) 文件
+> 雖然此逐步解說會說明 VM 擴展集的各步驟，相同的資訊也適用於自動調整[雲端服務](https://azure.microsoft.com/services/cloud-services/)、[App Service - Web Apps](https://azure.microsoft.com/services/app-service/web/) 與 [API 管理服務](https://docs.microsoft.com/azure/api-management/api-management-key-concepts) 如需 VM 擴展集上根據簡單效能計量 (例如 CPU) 的簡單相應縮小/放大設定，請參閱 [Linux](../virtual-machine-scale-sets/virtual-machine-scale-sets-linux-autoscale.md) 與 [Windows](../virtual-machine-scale-sets/virtual-machine-scale-sets-windows-autoscale.md) 文件
 >
 >
 
@@ -200,7 +194,7 @@ ms.lasthandoff: 10/11/2017
             }
           }
     ```
-    如需支援的欄位和其值，請參閱[自動調整 REST API 文件](https://msdn.microsoft.com/en-us/library/azure/dn931928.aspx)。 現在，您的自動調整設定已包含前面所述的三個設定檔。
+    如需支援的欄位和其值，請參閱[自動調整 REST API 文件](https://msdn.microsoft.com/library/azure/dn931928.aspx)。 現在，您的自動調整設定已包含前面所述的三個設定檔。
 
 7. 最後，我們來看一下自動調整的**通知**區段。 自動調整通知能讓您在相應放大或縮小動作成功觸發時執行三件事。
    - 通知系統管理員和共同管理員有關您訂用帳戶的狀況
@@ -246,7 +240,7 @@ ms.lasthandoff: 10/11/2017
 
 [自動調整的常用計量](insights-autoscale-common-metrics.md)
 
-[Azure 自動調整的最佳作法](insights-autoscale-best-practices.md)
+[Azure 自動調整的最佳做法](insights-autoscale-best-practices.md)
 
 [使用 PowerShell 管理自動調整](insights-powershell-samples.md#create-and-manage-autoscale-settings)
 

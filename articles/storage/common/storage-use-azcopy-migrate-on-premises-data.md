@@ -3,27 +3,26 @@ title: 使用 AzCopy 將內部部署資料移轉至 Azure 儲存體 | Microsoft 
 description: 使用 AzCopy 從 blob、資料表以及檔案內容，來回移轉資料或複製資料。 輕鬆地將資料從您的本機儲存體移轉至 Azure 儲存體。
 services: storage
 author: roygara
-manager: jeconnoc
 ms.service: storage
-ms.tgt_pltfrm: na
-ms.devlang: azcopy
 ms.topic: tutorial
 ms.date: 12/14/2017
 ms.author: rogarana
-ms.openlocfilehash: 1e7292cf4d647b38a6fe8ceb270ba161e548a537
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.component: common
+ms.openlocfilehash: b238e0f8059e7b4e5223c72ebed04f7d5178fbf2
+ms.sourcegitcommit: 26cc9a1feb03a00d92da6f022d34940192ef2c42
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 10/06/2018
+ms.locfileid: "48830951"
 ---
-#  <a name="migrate-on-premises-data-to-cloud-storage-by-using-azcopy"></a>使用 AzCopy 將內部部署資料移轉至雲端儲存體
+#  <a name="tutorial-migrate-on-premises-data-to-cloud-storage-by-using-azcopy"></a>教學課程：使用 AzCopy 將內部部署資料移轉至雲端儲存體
 
 AzCopy 是命令列工具，可使用簡單的命令從 Azure Blob 儲存體、Azure 檔案和 Azure 資料表儲存體來回複製資料。 這些命令的設計目的是獲得最佳效能。 您可以在檔案系統和儲存體帳戶之間，或者儲存體帳戶之間複製資料。  
 
 您可以下載兩個版本的 AzCopy：
 
-* [Linux 上的 AzCopy](storage-use-azcopy.md) 是以 .NET Core Framework 建置。 它以 Linux 平台為目標，提供 POSIX 樣式的命令列選項。 
-* [Windows 上的 AzCopy](../storage-use-azcopy.md) 是以 .NET Framework 建置。 它提供了 Windows 樣式的命令列選項。 
+* [Linux 上的 AzCopy](storage-use-azcopy-linux.md) 是以 .NET Core Framework 建置。 它以 Linux 平台為目標，提供 POSIX 樣式的命令列選項。 
+* [Windows 上的 AzCopy](storage-use-azcopy.md) 是以 .NET Framework 建置。 它提供了 Windows 樣式的命令列選項。 
  
 在本教學課程中，您了解如何：
 
@@ -33,11 +32,11 @@ AzCopy 是命令列工具，可使用簡單的命令從 Azure Blob 儲存體、A
 > * 基於測試目的修改資料。
 > * 建立排程工作或 cron 作業來識別要上傳的新檔案。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 若要完成本教學課程，請下載 [Linux](https://docs.microsoft.com/azure/storage/common/storage-use-azcopy-linux#download-and-install-azcopy) 或 [Windows](http://aka.ms/downloadazcopy) 上最新版本的 AzCopy。 
 
-[!INCLUDE [storage-quickstart-tutorial-create-account-portal](../../../includes/storage-quickstart-tutorial-create-account-portal.md)]
+[!INCLUDE [storage-create-account-portal-include](../../../includes/storage-create-account-portal-include.md)]
 
 >[!NOTE]
 >如果您希望能從次要區域，將 blob 下載到您的本機儲存體 (反之亦然)，請將 [複寫] 設定為 [讀取權限異地備援儲存體]。 選取此選項會建立一個[異地備援儲存體](https://docs.microsoft.com/azure/storage/common/storage-redundancy#geo-redundant-storage)帳戶。 
@@ -69,7 +68,7 @@ Blob 一律會上傳到容器中。 您可以使用容器來組織 blob 的群�
         --recursive
 
 # <a name="windowstabwindows"></a>[Windows](#tab/windows)
-    AzCopy /Source:C:\myfolder /Dest:https://myaccount.blob.core.windows.net/mycontainer /DestKey: key /S
+    AzCopy /Source:C:\myfolder /Dest:https://myaccount.blob.core.windows.net/mycontainer /DestKey:<key> /S
 ---
 
 使用您的帳戶金鑰取代 `<key>` 和 `key`。 在 Azure 入口網站中，您可以擷取您的帳戶金鑰，方法是在您的儲存體帳戶中選取 [設定] 底下的 [存取金鑰]。 選取金鑰，並將它貼到 AzCopy 命令中。 如果指定的目的地容器不存在，則 AzCopy 會建立此容器並將檔案上傳至該容器中。 將來源路徑更新為您的資料目錄，並使用您的儲存體帳戶名稱取代目的地 URL 中的 **myaccount**。
@@ -90,7 +89,7 @@ Blob 一律會上傳到容器中。 您可以使用容器來組織 blob 的群�
     --exclude-older
 
 # <a name="windowstabwindows"></a>[Windows](#tab/windows)
-    AzCopy /Source:C:\myfolder /Dest:https://myaccount.blob.core.windows.net/mycontainer /DestKey: key /S /XO
+    AzCopy /Source:C:\myfolder /Dest:https://myaccount.blob.core.windows.net/mycontainer /DestKey:<key> /S /XO
 ---
 
 ## <a name="create-a-scheduled-task-or-cron-job"></a>建立排程工作或 cron 作業 
@@ -103,7 +102,7 @@ Blob 一律會上傳到容器中。 您可以使用容器來組織 blob 的群�
 
 # <a name="windowstabwindows"></a>[Windows](#tab/windows)
     cd C:\Program Files (x86)\Microsoft SDKs\Azure\AzCopy
-    AzCopy /Source: C:\myfolder  /Dest:https://myaccount.blob.core.windows.net/mycontainer /DestKey: key /V /XO /XN >C:\Path\to\logfolder\azcopy%date:~-4,4%%date:~-7,2%%date:~-10,2%%time:~-11,2%%time:~-8,2%%time:~-5,2%.log
+    AzCopy /Source: C:\myfolder  /Dest:https://myaccount.blob.core.windows.net/mycontainer /DestKey:<key> /V /XO /XN >C:\Path\to\logfolder\azcopy%date:~-4,4%%date:~-7,2%%date:~-10,2%%time:~-11,2%%time:~-8,2%%time:~-5,2%.log
 ---
 
 AzCopy 是以詳細資訊 `--verbose` (Linux) 或 `/V` (Windows) 選項執行。 輸出會重新導向到記錄檔。 

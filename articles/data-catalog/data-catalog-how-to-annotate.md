@@ -1,30 +1,23 @@
 ---
-title: "如何註解資料來源 | Microsoft Docs"
-description: "此作法文章重點在於於如何在 Azure 資料目錄中註解資料資產 (包括易記名稱、標記、說明和專家)。"
+title: 如何標註 Azure 資料目錄中的資料來源
+description: 此作法文章重點在於於如何在 Azure 資料目錄中註解資料資產 (包括易記名稱、標記、說明和專家)。
 services: data-catalog
-documentationcenter: 
 author: steelanddata
-manager: NA
-editor: 
-tags: 
+ms.author: maroche
 ms.assetid: 5a7e6bb2-863c-4eca-b614-1c814920d9ed
 ms.service: data-catalog
-ms.devlang: NA
-ms.topic: article
-ms.tgt_pltfrm: NA
-ms.workload: data-catalog
+ms.topic: conceptual
 ms.date: 01/18/2018
-ms.author: maroche
-ms.openlocfilehash: f9dd68380773e3cdb93cf1033ccd1b55d9f69305
-ms.sourcegitcommit: be9a42d7b321304d9a33786ed8e2b9b972a5977e
+ms.openlocfilehash: a6751a2cbb2a12d0d0ffe1eb0707ad4e8bc45ed8
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/19/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43052961"
 ---
 # <a name="how-to-annotate-data-sources"></a>如何註解資料來源
 ## <a name="introduction"></a>簡介
-
-            **Microsoft Azure 資料目錄** 是完全受控的雲端服務，可作為企業資料來源的註冊系統和探索系統。 換句話說，資料目錄的重點在於協助人們探索、了解和使用資料來源，並可協助組織從現有的資料獲得更多價值。 當資料來源向資料目錄註冊之後，該服務會複製其中繼資料並建立索引，但不僅止於此。 資料目錄可讓使用者提供自己的描述性中繼資料 (如描述和標記)，以補充擷取自資料來源的中繼資料，並且讓更多人能夠理解資料來源。
+**Microsoft Azure 資料目錄** 是完全受控的雲端服務，可作為企業資料來源的註冊系統和探索系統。 換句話說，資料目錄的重點在於協助人們探索、了解和使用資料來源，並可協助組織從現有的資料獲得更多價值。 當資料來源向資料目錄註冊之後，該服務會複製其中繼資料並建立索引，但不僅止於此。 資料目錄可讓使用者提供自己的描述性中繼資料 (如描述和標記)，以補充擷取自資料來源的中繼資料，並且讓更多人能夠理解資料來源。
 
 ## <a name="annotation-and-crowdsourcing"></a>註解與群眾外包
 每個人都有意見。 而這是一件好事。

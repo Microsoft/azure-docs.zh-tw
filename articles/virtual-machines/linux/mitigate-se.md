@@ -13,13 +13,14 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: article
-ms.date: 04/02/2018
+ms.date: 08/14/2018
 ms.author: cynthn
-ms.openlocfilehash: 5f00ddf2b96f7a29aaec4cb0e09ca20c0fbc7831
-ms.sourcegitcommit: 20d103fb8658b29b48115782fe01f76239b240aa
+ms.openlocfilehash: ce7f0bcbfdb3e23ff77431b95ac109e322b132cc
+ms.sourcegitcommit: 7b845d3b9a5a4487d5df89906cc5d5bbdb0507c8
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2018
+ms.lasthandoff: 08/14/2018
+ms.locfileid: "42144214"
 ---
 # <a name="guidance-for-mitigating-speculative-execution-side-channel-vulnerabilities-in-azure"></a>減少推測性執行旁路攻擊漏洞在 Azure 中造成的風險指引
 

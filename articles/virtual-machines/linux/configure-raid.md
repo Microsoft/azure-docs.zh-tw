@@ -1,10 +1,10 @@
 ---
-title: "在執行 Linux 的虛擬機器上設定軟體 RAID | Microsoft Docs"
-description: "了解如何使用 mdadm，在 Azure 的 Linux 上設定 RAID。"
+title: 在執行 Linux 的虛擬機器上設定軟體 RAID | Microsoft Docs
+description: 了解如何使用 mdadm，在 Azure 的 Linux 上設定 RAID。
 services: virtual-machines-linux
 documentationcenter: na
 author: rickstercdn
-manager: timlt
+manager: jeconnoc
 editor: tysonn
 tag: azure-service-management,azure-resource-manager
 ms.assetid: f3cb2786-bda6-4d2c-9aaf-2db80f490feb
@@ -15,11 +15,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/02/2017
 ms.author: rclaus
-ms.openlocfilehash: 12f540a700fbf85e579e8aadc9f6def039299ff7
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 2376ade49b990ff22683a14ecd4ae6b4dda356c3
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39434538"
 ---
 # <a name="configure-software-raid-on-linux"></a>在 Linux 上設定軟體 RAID
 在 Azure 的 Linux 虛擬機器上使用軟體 RAID，以單一 RAID 裝置的形式顯示多個連接的資料磁碟，這種案例很常遇到。 相較於只使用單一磁碟，這通常可用來提高效能並允許增加輸送量。
@@ -61,13 +62,13 @@ zypper install mdadm
                     sectors (command 'u').
     ```
 
-2. 出現提示時請按 'n'，以建立「新的」磁碟分割：
+1. 出現提示時請按 'n'，以建立 **新的**磁碟分割：
 
     ```bash
     Command (m for help): n
     ```
 
-3. 接著，請按 'p' 以建立 **主要**磁碟分割：
+1. 接著，請按 'p' 以建立 **主要**磁碟分割：
 
     ```bash 
     Command action
@@ -75,27 +76,27 @@ zypper install mdadm
             p   primary partition (1-4)
     ```
 
-4. 按 '1' 以選取磁碟分割編號 1：
+1. 按 '1' 以選取磁碟分割編號 1：
 
     ```bash
     Partition number (1-4): 1
     ```
 
-5. 選取新磁碟分割的起始點，或按 `<enter>` 接受預設值，將磁碟分割置於磁碟機上可用空間的開始位置：
+1. 選取新磁碟分割的起始點，或按 `<enter>` 接受預設值，將磁碟分割置於磁碟機上可用空間的開始位置：
 
     ```bash   
     First cylinder (1-1305, default 1):
     Using default value 1
     ```
 
-6. 選取磁碟分割的大小，例如，輸入 '+10G' 以建立 10 GB 的磁碟分割。 或者，按 `<enter>` 建立跨越整個磁碟機的單一磁碟分割：
+1. 選取磁碟分割的大小，例如，輸入 '+10G' 以建立 10 GB 的磁碟分割。 或者，按 `<enter>` 建立跨越整個磁碟機的單一磁碟分割：
 
     ```bash   
     Last cylinder, +cylinders or +size{K,M,G} (1-1305, default 1305): 
     Using default value 1305
     ```
 
-7. 接著，將磁碟分割的 ID 和類型 ( **t**) 從預設的 ID '83' (Linux) 變更為 ID 'fd' (Linux raid auto)：
+1. 接著，將磁碟分割的 ID 和類型 ( **t**) 從預設的 ID '83' (Linux) 變更為 ID 'fd' (Linux raid auto)：
 
     ```bash  
     Command (m for help): t
@@ -103,7 +104,7 @@ zypper install mdadm
     Hex code (type L to list codes): fd
     ```
 
-8. 最後，將磁碟分割資料表寫入磁碟機並結束 fdisk：
+1. 最後，將磁碟分割資料表寫入磁碟機並結束 fdisk：
 
     ```bash   
     Command (m for help): w
@@ -118,7 +119,7 @@ zypper install mdadm
         /dev/sdc1 /dev/sdd1 /dev/sde1
     ```
 
-2. 在新的 RAID 裝置上建立檔案系統
+1. 在新的 RAID 裝置上建立檔案系統
    
     a. **CentOS、Oracle Linux、SLES 12、openSUSE 和 Ubuntu**
 
@@ -153,7 +154,7 @@ zypper install mdadm
     ```bash
     sudo mkdir /data
     ```
-2. 編輯 /etc/fstab 時，應使用 **UUID** (而非使用裝置名稱) 來參考檔案系統。  使用 `blkid` 公用程式來決定新檔案系統的 UUID：
+1. 編輯 /etc/fstab 時，應使用 **UUID** (而非使用裝置名稱) 來參考檔案系統。  使用 `blkid` 公用程式來決定新檔案系統的 UUID：
 
     ```bash   
     sudo /sbin/blkid
@@ -161,7 +162,7 @@ zypper install mdadm
     /dev/md127: UUID="aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee" TYPE="ext4"
     ```
 
-3. 在文字編輯器中開啟 /etc/fstab，並為新檔案系統新增項目，例如：
+1. 在文字編輯器中開啟 /etc/fstab，並為新檔案系統新增項目，例如：
 
     ```bash   
     UUID=aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee  /data  ext4  defaults  0  2
@@ -175,7 +176,7 @@ zypper install mdadm
    
     接著，儲存並關閉 /etc/fstab。
 
-4. 測試 /etc/fstab 項目是否正確：
+1. 測試 /etc/fstab 項目是否正確：
 
     ```bash  
     sudo mount -a
@@ -191,7 +192,7 @@ zypper install mdadm
     /dev/md127 on /data type ext4 (rw)
     ```
 
-5. (選擇性) 保全開機參數
+1. (選擇性) 保全開機參數
    
     **fstab 組態**
    

@@ -1,25 +1,19 @@
 ---
 title: 非同步重新整理 Azure Analysis Services 模型 | Microsoft Docs
 description: 了解如何使用 REST API 撰寫非同步重新整理的程式碼。
-services: analysis-services
-documentationcenter: ''
 author: minewiskan
 manager: kfile
-editor: ''
-tags: ''
-ms.assetid: ''
-ms.service: analysis-services
-ms.devlang: NA
-ms.topic: article
-ms.tgt_pltfrm: NA
-ms.workload: na
-ms.date: 03/05/2018
+ms.service: azure-analysis-services
+ms.topic: conceptual
+ms.date: 07/03/2018
 ms.author: owend
-ms.openlocfilehash: bb3e50c3e481bcedc436b8382fb55d6402d058b2
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.reviewer: minewiskan
+ms.openlocfilehash: 883d03b9ffebf85815da7ae62546f75b3d72442f
+ms.sourcegitcommit: 86cb3855e1368e5a74f21fdd71684c78a1f907ac
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37441449"
 ---
 # <a name="asynchronous-refresh-with-the-rest-api"></a>使用 REST API 進行非同步重新整理
 使用任何支援 REST 呼叫的程式設計語言，您可以對 Azure Analysis Services 表格式模型執行非同步的資料重新整理作業。 這包括相應放大查詢的唯讀複本同步處理。 
@@ -104,7 +98,7 @@ https://westus.asazure.windows.net/servers/myserver/models/AdventureWorks/refres
 
 |Name  |類型  |說明  |預設值  |
 |---------|---------|---------|---------|
-|類型     |  例舉       |  要執行的處理類型。 Type 對應於 TMSL 的 [refresh 命令](https://docs.microsoft.com/sql/analysis-services/tabular-models-scripting-language-commands/refresh-command-tmsl)類型：full、clearValues、calculate、dataOnly、automatic、add、defragment。       |   automatic      |
+|類型     |  例舉       |  要執行的處理類型。 Type 對應於 TMSL 的 [refresh 命令](https://docs.microsoft.com/sql/analysis-services/tabular-models-scripting-language-commands/refresh-command-tmsl)類型：full、clearValues、calculate、dataOnly、automatic 和 defragment。 不支援 Add 類型。      |   automatic      |
 |CommitMode     |  例舉       |  決定物件要批次認可或只在完成時認可。 CommitMode 包括：default、transactional、partialBatch。  |  transactional       |
 |MaxParallelism     |   int      |  這個值決定了可以平行執行處理命令的執行緒數目上限。 此值與 MaxParallelism 屬性對應，後者可以在 TMSL 的 [sequence 命令](https://docs.microsoft.com/sql/analysis-services/tabular-models-scripting-language-commands/sequence-command-tmsl)中設定，或使用其他方法設定。       | 10        |
 |RetryCount    |    int     |   表示作業失敗之前重試的次數。      |     0    |
@@ -205,7 +199,7 @@ CommitMode 等於 partialBatch。 當進行大型資料集的初始載入需要�
 1.  複製或下載存放庫。 開啟 RestApiSample 解決方案。
 2.  找到 **client.BaseAddress = …** 這一行 並提供您的[基底 URL](#base-url)。
 
-此程式碼範例可以使用互動式登入、使用者名稱/密碼，或[服務主體](#service-principle)。
+此程式碼範例可以使用互動式登入、使用者名稱/密碼，或[服務主體](#service-principal)。
 
 #### <a name="interactive-login-or-usernamepassword"></a>互動式登入或使用者名稱/密碼
 

@@ -1,24 +1,19 @@
 ---
-title: "Azure Analysis Services 伺服器名稱別名 | Microsoft Docs"
-description: "說明如何建立及使用伺服器名稱的別名。"
-services: analysis-services
-documentationcenter: 
+title: Azure Analysis Services 伺服器名稱別名 | Microsoft Docs
+description: 說明如何建立及使用伺服器名稱的別名。
 author: minewiskan
 manager: kfile
-editor: 
-ms.assetid: 
-ms.service: analysis-services
-ms.workload: data-management
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
-ms.date: 02/14/2018
+ms.service: azure-analysis-services
+ms.topic: conceptual
+ms.date: 10/11/2018
 ms.author: owend
-ms.openlocfilehash: e0119580c4128ffd237127a62e29dac34297da5d
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.reviewer: minewiskan
+ms.openlocfilehash: dc649379ffc375282b853687573266ded2bf80eb
+ms.sourcegitcommit: 4047b262cf2a1441a7ae82f8ac7a80ec148c40c4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 10/11/2018
+ms.locfileid: "49093760"
 ---
 # <a name="alias-server-names"></a>伺服器名稱別名
 
@@ -31,7 +26,7 @@ ms.lasthandoff: 02/21/2018
 - 在一天之中的不同時間將使用者導向至不同的伺服器。 
 - 將不同區域的使用者導向至距離更接近的執行個體，例如，在使用 Azure 流量管理員時。 
 
-任何傳回有效 Azure Analysis Services 伺服器名稱的 HTTP 端點，都可作為別名。
+任何傳回有效 Azure Analysis Services 伺服器名稱的 HTTPS 端點，都可作為別名。 端點必須支援經由連接埠 443 的 HTTPS，且不得在 URI 中指定該連接埠。
 
 ![使用連結格式的別名](media/analysis-services-alias/aas-alias-browser.png)
 

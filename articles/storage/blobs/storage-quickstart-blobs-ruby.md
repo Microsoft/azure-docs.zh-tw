@@ -1,25 +1,25 @@
 ---
-title: Azure 快速入門 - 使用 Ruby 上傳、下載及列出 Azure 儲存體中的 Blob | Microsoft Docs
-description: 在本快速入門中，您會建立儲存體帳戶和容器。 然後，使用 Ruby 的儲存體用戶端程式庫將 blob 上傳至 Azure 儲存體、下載 blob，以及列出容器中的 blob。
+title: Azure 快速入門 - 使用 Ruby 在物件儲存體中建立 Blob | Microsoft Docs
+description: 在本快速入門中，您會在物件 (Blob) 儲存體中建立儲存體帳戶和容器。 然後，使用 Ruby 的儲存體用戶端程式庫將 blob 上傳至 Azure 儲存體、下載 blob，以及列出容器中的 blob。
 services: storage
 author: tamram
-manager: jeconnoc
 ms.custom: mvc
 ms.service: storage
 ms.topic: quickstart
-ms.date: 03/15/2018
+ms.date: 04/09/2018
 ms.author: seguler
-ms.openlocfilehash: fa92875fe859e7d1364267d6157f7a706d9eb8df
-ms.sourcegitcommit: a36a1ae91968de3fd68ff2f0c1697effbb210ba8
+ms.openlocfilehash: 88394d7da1aab52b752aee68de60e638d0c7e7f0
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/17/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46992757"
 ---
 # <a name="quickstart-upload-download-and-list-blobs-using-ruby"></a>快速入門：使用 Ruby 上傳、下載及列出 Blob
 
 在本快速入門中，您會了解如何使用 Ruby 在 Azure Blob 儲存體容器中上傳、下載及列出區塊 Blob。 
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 若要完成本快速入門： 
 * 安裝 [Ruby](https://www.ruby-lang.org/en/downloads/)
@@ -31,7 +31,7 @@ gem install azure-storage-blob
 
 如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
 
-[!INCLUDE [storage-quickstart-tutorial-create-account-portal](../../../includes/storage-quickstart-tutorial-create-account-portal.md)]
+[!INCLUDE [storage-create-account-portal-include](../../../includes/storage-create-account-portal-include.md)]
 
 ## <a name="download-the-sample-application"></a>下載範例應用程式
 本快速入門中使用的[範例應用程式](https://github.com/Azure-Samples/storage-blobs-ruby-quickstart.git)是基本的 Ruby 應用程式。  
@@ -43,6 +43,8 @@ git clone https://github.com/Azure-Samples/storage-blobs-ruby-quickstart.git
 ```
 
 此命令會將存放庫複製到本機的 git 資料夾。 若要開啟 Ruby 範例應用程式，請尋找 storage-blobs-ruby-quickstart 資料夾，並開啟 example.rb 檔案。  
+
+[!INCLUDE [storage-copy-account-key-portal](../../../includes/storage-copy-account-key-portal.md)]
 
 ## <a name="configure-your-storage-connection-string"></a>設定儲存體連接字串
 在應用程式中，您必須提供儲存體帳戶名稱和帳戶金鑰，才能建立應用程式的 `BlobService` 執行個體。 從 IDE 中的方案總管開啟 `example.rb` 檔案。 使用您的帳戶名稱和金鑰取代 **accountname** 和 **accountkey**。 

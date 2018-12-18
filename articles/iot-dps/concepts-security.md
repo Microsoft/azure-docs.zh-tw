@@ -1,26 +1,23 @@
 ---
 title: Azure IoT 中樞裝置佈建服務的安全性概念 | Microsoft Docs
 description: 說明具有裝置佈建服務和 IoT 中樞之裝置的特定安全性佈建概念
-services: iot-dps
-keywords: ''
 author: nberdy
 ms.author: nberdy
-ms.date: 03/27/2018
-ms.topic: article
+ms.date: 03/30/2018
+ms.topic: conceptual
 ms.service: iot-dps
-documentationcenter: ''
-manager: timlt
-ms.devlang: na
-ms.custom: mvc
-ms.openlocfilehash: 5e35a802349bd85b50a13a3d9a7e0c78945937bd
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+services: iot-dps
+manager: briz
+ms.openlocfilehash: 92a30f0754decc3052bf53a64da13325ddc4f954
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46946556"
 ---
 # <a name="iot-hub-device-provisioning-service-security-concepts"></a>IoT 中樞裝置佈建服務的安全性概念 
 
-IoT 中樞裝置佈建服務是 IoT 中樞適用的協助程式服務，用於設定在指定 IoT 中樞上的全自動佈建裝置作業。 這項裝置佈建服務可以讓您以安全且可調整的方式佈建數百萬個裝置。 本文提供關於裝置佈建*安全性*概念的概觀。 本文與為裝置進行部署準備工作的所有角色相關。
+IoT 中樞裝置佈建服務是 IoT 中樞適用的協助程式服務，用於設定在指定 IoT 中樞上的全自動佈建裝置作業。 這項裝置佈建服務可以讓您以安全且可調整的方式[自動佈建](concepts-auto-provisioning.md)數百萬個裝置。 本文提供關於裝置佈建*安全性*概念的概觀。 本文與為裝置進行部署準備工作的所有角色相關。
 
 ## <a name="attestation-mechanism"></a>證明機制
 
@@ -29,9 +26,11 @@ IoT 中樞裝置佈建服務是 IoT 中樞適用的協助程式服務，用於�
 > [!NOTE]
 > IoT 中樞會針對該服務中的類似概念使用「驗證配置」。
 
-裝置佈建服務支援兩種形式的證明：
+裝置佈建服務支援下列形式的證明：
 * 以標準 X.509 憑證驗證流程為基礎的 **X.509 憑證**。
-* **信賴平台模組 (TPM)** 是以 nonce 挑戰為基礎，使用金鑰的 TPM 標準，提供已簽署的共用存取簽章 (SAS) 權杖。 使用此種形式時，裝置不需要有實體 TPM 即可執行此動作，但該服務會因為 [TPM 規格](https://trustedcomputinggroup.org/work-groups/trusted-platform-module/)的需求，而預期裝置使用簽署金鑰進行證明。
+* **信賴平台模組 (TPM)** 是以 nonce 挑戰為基礎，使用金鑰的 TPM 標準，提供已簽署的共用存取簽章 (SAS) 權杖。 使用此證明形式時，裝置不需要有實體 TPM，但該服務會根據 [TPM 規格](https://trustedcomputinggroup.org/work-groups/trusted-platform-module/)，而預期裝置使用簽署金鑰進行證明。
+* 以共用存取簽章 (SAS) [安全性權杖](../iot-hub/iot-hub-devguide-security.md#security-tokens)為基礎的**對稱金鑰**，其包含雜湊簽章與內嵌到期日。 如需詳細資訊，請參閱[對稱金鑰證明](concepts-symmetric-key-attestation.md)。
+
 
 ## <a name="hardware-security-module"></a>硬體安全模組
 
@@ -46,6 +45,8 @@ IoT 中樞裝置佈建服務是 IoT 中樞適用的協助程式服務，用於�
 
 TPM 可以參考安全地儲存驗證平台所用之金鑰的標準，以及與實作標準之模組互動的 I/O 介面。 TPM 可以是獨立硬體、整合式硬體、韌體或軟體。 深入了解 [TPM 和 TPM 證明](/windows-server/identity/ad-ds/manage/component-updates/tpm-key-attestation)。 裝置佈建服務僅支援 TPM 2.0。
 
+TPM 證明是以 nonce 挑戰為基礎，會使用簽署和儲存根金鑰來出示共用存取簽章 (SAS) 權杖。
+
 ### <a name="endorsement-key"></a>簽署金鑰
 
 簽署金鑰是 TPM 內建的非對稱金鑰，該金鑰在製造 TPM 時內部產生或插入，且專屬於該 TPM。 您無法變更或移除簽署金鑰。 簽署金鑰的私密部分絕不會釋放到 TPM 外部，而簽署金鑰的公開部分則用於識別正版 TPM。 深入了解[簽署金鑰](https://technet.microsoft.com/library/cc770443(v=ws.11).aspx)。
@@ -56,21 +57,27 @@ TPM 可以參考安全地儲存驗證平台所用之金鑰的標準，以及與�
 
 ## <a name="x509-certificates"></a>X.509 憑證
 
-使用 X.509 憑證作為證明機制是調整生產環境並簡化裝置佈建的絕佳方式。 X.509 憑證通常會排列在信任鏈結中，其中每個憑證是由下一個較高憑證的私密金鑰簽署，依此類推，於自我簽署的根憑證終止。 這樣會從受信任根憑證授權單位 (CA) 產生的根憑證，透過每個中繼 CA 將委派的信任鏈結建立至裝置上安裝之終端實體憑證。 若要深入了解，請參閱[使用 X.509 CA 憑證進行裝置驗證](https://docs.microsoft.com/azure/iot-hub/iot-hub-x509ca-overview)。 
+使用 X.509 憑證作為證明機制是調整生產環境並簡化裝置佈建的絕佳方式。 X.509 憑證通常會排列在信任鏈結中，其中每個憑證是由下一個較高憑證的私密金鑰簽署，依此類推，於自我簽署的根憑證終止。 這種方式會從受信任根憑證授權單位 (CA) 產生的根憑證，透過每個中繼 CA 將委派的信任鏈結建立至裝置上安裝之終端實體「分葉」憑證。 若要深入了解，請參閱[使用 X.509 CA 憑證進行裝置驗證](/azure/iot-hub/iot-hub-x509ca-overview)。 
 
-通常憑證鏈結代表與裝置相關聯的某些邏輯或實體階層。 例如，製造商可能會發行自我簽署根 CA 憑證，使用該憑證來產生每個處理站的唯一中繼 CA 憑證，使用每個處理站的憑證以產生工廠中每個生產線的唯一中繼 CA 憑證，最終使用生產線憑證以產生生產線上製造之每個裝置的唯一裝置 (終端實體) 憑證。 若要深入了解，請參閱[概念性了解 IoT 產業中的 X.509 CA 憑證](https://docs.microsoft.com/azure/iot-hub/iot-hub-x509ca-concept)。 
+通常憑證鏈結代表與裝置相關聯的某些邏輯或實體階層。 例如，製造商可能：
+- 發出自我簽署根 CA 憑證
+- 使用根憑證來產生每個處理站的唯一中繼 CA 憑證
+- 使用每個處理站的憑證來產生工廠中每個生產線的唯一中繼 CA 憑證
+- 最後使用生產線憑證來產生該生產線上所製造之每個裝置的唯一裝置 (終端實體) 憑證。 
+
+若要深入了解，請參閱[概念性了解 IoT 產業中的 X.509 CA 憑證](/azure/iot-hub/iot-hub-x509ca-concept)。 
 
 ### <a name="root-certificate"></a>根憑證
 
-根憑證是自我簽署 X.509 憑證，代表憑證授權單位 (CA)。 它是憑證鏈結的終點或信任錨點。 根憑證可以由組織自我發行，或是向根憑證授權單位購買。 若要深入了解，請參閱[取得 X.509 CA 憑證](https://docs.microsoft.com/azure/iot-hub/iot-hub-security-x509-get-started#get-x509-ca-certificates)。 根憑證也可以稱為根 CA 憑證。
+根憑證是自我簽署 X.509 憑證，代表憑證授權單位 (CA)。 它是憑證鏈結的終點或信任錨點。 根憑證可以由組織自我發行，或是向根憑證授權單位購買。 若要深入了解，請參閱[取得 X.509 CA 憑證](/azure/iot-hub/iot-hub-security-x509-get-started#get-x509-ca-certificates)。 根憑證也可以稱為根 CA 憑證。
 
 ### <a name="intermediate-certificate"></a>中繼憑證
 
 中繼憑證是根憑證 (或其鏈結中具有根憑證的另一個中繼憑證) 簽署的一種 X.509 憑證。 鏈結中的最後一個中繼憑證會用來簽署分葉憑證。 中繼憑證也可以稱為中繼 CA 憑證。
 
-### <a name="leaf-certificate"></a>分葉憑證
+### <a name="end-entity-leaf-certificate"></a>終端實體「分葉」憑證
 
-分葉憑證 (或終端實體憑證) 會識別憑證持有者。 它在其憑證鏈結中有根憑證，以及零或多個中繼憑證。 分葉憑證無法用來簽署其他任何憑證。 它會唯一識別裝置來佈建服務，且有時稱為裝置憑證。 在驗證期間，裝置會使用與此憑證相關聯的私密金鑰，回應以證明來自服務的持有挑戰。 若要深入了解，請參閱[驗證以 X.509 CA 憑證簽署的裝置](https://docs.microsoft.com/azure/iot-hub/iot-hub-x509ca-overview#authenticating-devices-signed-with-x509-ca-certificates)。
+分葉憑證 (或終端實體憑證) 會識別憑證持有者。 它在其憑證鏈結中有根憑證，以及零或多個中繼憑證。 分葉憑證無法用來簽署其他任何憑證。 它會唯一識別裝置來佈建服務，且有時稱為裝置憑證。 在驗證期間，裝置會使用與此憑證相關聯的私密金鑰，回應以證明來自服務的持有挑戰。 若要深入了解，請參閱[驗證以 X.509 CA 憑證簽署的裝置](/azure/iot-hub/iot-hub-x509ca-overview#authenticating-devices-signed-with-x509-ca-certificates)。
 
 ## <a name="controlling-device-access-to-the-provisioning-service-with-x509-certificates"></a>使用 X.509 憑證控制對於佈建服務的裝置存取
 

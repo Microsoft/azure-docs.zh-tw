@@ -1,24 +1,25 @@
 ---
-title: "使用 Web API 註冊目前使用者以取得推播通知 | Microsoft Docs"
-description: "了解如何在 ASP.NET Web API 執行註冊時，在 iOS 應用程式中向 Azure 通知中樞要求推播通知註冊。"
+title: 使用 Web API 註冊目前使用者以取得推播通知 | Microsoft Docs
+description: 了解如何在 ASP.NET Web API 執行註冊時，在 iOS 應用程式中向 Azure 通知中樞要求推播通知註冊。
 services: notification-hubs
 documentationcenter: ios
-author: ysxu
-manager: erikre
-editor: 
+author: dimazaid
+manager: kpiteira
+editor: spelluru
 ms.assetid: 4e3772cf-20db-4b9f-bb74-886adfaaa65d
 ms.service: notification-hubs
 ms.workload: mobile
 ms.tgt_pltfrm: ios
 ms.devlang: objective-c
 ms.topic: article
-ms.date: 06/29/2016
-ms.author: yuaxu
-ms.openlocfilehash: fd56bb2dd627b31f00363851a4e76484aa382988
-ms.sourcegitcommit: b5c6197f997aa6858f420302d375896360dd7ceb
+ms.date: 04/14/2018
+ms.author: dimazaid
+ms.openlocfilehash: f89c97f1220c0e949912a3002021eca20f91441d
+ms.sourcegitcommit: 4ea0cea46d8b607acd7d128e1fd4a23454aa43ee
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/21/2017
+ms.lasthandoff: 08/15/2018
+ms.locfileid: "42146360"
 ---
 # <a name="register-the-current-user-for-push-notifications-by-using-aspnet"></a>使用 ASP.NET 來註冊目前使用者以取得推播通知
 > [!div class="op_single_selector"]
@@ -27,7 +28,7 @@ ms.lasthandoff: 12/21/2017
 > 
 
 ## <a name="overview"></a>概觀
-本主題將說明以 ASP.NET Web API 執行註冊時，應如何向 Azure 通知中心要求推播通知註冊。 這是 [使用通知中樞來通知使用者]教學課程的延伸主題。 您必須已完成該教學課程中的必要步驟，才能建立已驗證的行動服務。 如需通知使用者案例的詳細資訊，請參閱 [使用通知中樞來通知使用者]。
+本主題將說明以 ASP.NET Web API 執行註冊時，應如何向 Azure 通知中心要求推播通知註冊。 這是 [使用通知中心來通知使用者]教學課程的延伸主題。 您必須已完成該教學課程中的必要步驟，才能建立已驗證的行動服務。 如需通知使用者案例的詳細資訊，請參閱 [使用通知中心來通知使用者]。
 
 ## <a name="update-your-app"></a>更新應用程式
 1. 在您的 MainStoryboard_iPhone.storyboard 中，從物件程式庫新增下列元件：
@@ -106,12 +107,12 @@ ms.lasthandoff: 12/21/2017
     這會設定要求的裝置權杖。
    
    > [!NOTE]
-   > 此時，此方法中不應有任何其他程式碼。 如果您已呼叫您在完成 **開始使用通知中樞** 教學課程時所新增的 [registerNativeWithDeviceToken](/manage/services/notification-hubs/get-started-notification-hubs-ios/) 方法，您必須註解化或移除該呼叫。
+   > 此時，此方法中不應有任何其他程式碼。 如果您已呼叫您在完成 **開始使用通知中樞** 教學課程時所新增的 [registerNativeWithDeviceToken](notification-hubs-ios-apple-push-notification-apns-get-started.md) 方法，您必須註解化或移除該呼叫。
    > 
    > 
 8. 在 PushToUserAppDelegate.m 檔案中，新增下列處理常式方法：
    
-   * (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {   NSLog(@"%@", userInfo);   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notification" message:                         [userInfo objectForKey:@"inAppMessage"] delegate:nil cancelButtonTitle:                         @"OK" otherButtonTitles:nil, nil];   [alert show]; }
+   * (void) application:(UIApplication *) application didReceiveRemoteNotification:(NSDictionary *)userInfo {   NSLog(@"%@", userInfo);   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notification" message:                         [userInfo objectForKey:@"inAppMessage"] delegate:nil cancelButtonTitle:                         @"OK" otherButtonTitles:nil, nil];   [alert show]; }
    
    此方法會在您執行中的應用程式接收到通知時，在 UI 中顯示警示。
 9. 開啟 PushToUserViewController.m 檔案，然後在下列實作中傳回鍵盤：
@@ -206,9 +207,9 @@ ms.lasthandoff: 12/21/2017
                 }
             }];
     
-    This method gets both an installation ID and channel for push notifications and sends it, along with the device type, to the authenticated Web API method that creates a registration in Notification Hubs. 此 Web API 定義於[使用通知中樞來通知使用者]中。
+    This method gets both an installation ID and channel for push notifications and sends it, along with the device type, to the authenticated Web API method that creates a registration in Notification Hubs. 此 Web API 定義於[使用通知中心來通知使用者]中。
 
-現在，用戶端應用程式已更新，請回到 [使用通知中樞來通知使用者] ，並更新行動服務，以使用通知中心傳送通知。
+現在，用戶端應用程式已更新，請回到 [使用通知中心來通知使用者] ，並更新行動服務，以使用通知中心傳送通知。
 
 <!-- Anchors. -->
 
@@ -217,6 +218,6 @@ ms.lasthandoff: 12/21/2017
 [1]: ./media/notification-hubs-ios-aspnet-register-user-push-notifications/notification-hub-user-aspnet-ios2.png
 
 <!-- URLs. -->
-[使用通知中樞來通知使用者]: /manage/services/notification-hubs/notify-users-aspnet
+[使用通知中心來通知使用者]: notification-hubs-aspnet-backend-ios-apple-apns-notification.md
 
-[開始使用通知中心]: /manage/services/notification-hubs/get-started-notification-hubs-ios
+[開始使用通知中心]: notification-hubs-ios-apple-push-notification-apns-get-started.md

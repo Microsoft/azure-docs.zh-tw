@@ -9,16 +9,15 @@ editor: cgronlun
 ms.assetid: ebd5b2ac-c5cc-46d4-9cfd-1a1ee70024c2
 ms.service: data-lake-store
 ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
+ms.topic: conceptual
 ms.date: 03/26/2018
 ms.author: nitinme
-ms.openlocfilehash: 65319df8db339b1c124be47f27a841bbd7141921
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: f4014d304d1e0a7d841e797c3e3bdfe31918c151
+ms.sourcegitcommit: eb75f177fc59d90b1b667afcfe64ac51936e2638
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 05/16/2018
+ms.locfileid: "34198152"
 ---
 # <a name="security-in-azure-data-lake-store"></a>Azure Data Lake Store 安全性
 許多企業會運用巨量資料分析來獲得商業見解，以利他們做出明智的決策。 但企業的環境可能既複雜又受到規範，並且還有數目日益增加的各類使用者。 因此，企業必須確定重要的商業資料有受到更妥善的保存，並授與正確層級的存取權給個別使用者。 Azure Data Lake Store 的設計便是要協助企業符合這些安全性需求。 請透過本文了解 Data Lake Store 的安全性功能，包括︰
@@ -35,14 +34,14 @@ ms.lasthandoff: 03/28/2018
 每個 Azure 訂用帳戶都可與 Azure Active Directory 的執行個體相關聯。 只有 Azure Active Directory 服務中所定義的使用者和服務身分識別可以存取 Data Lake Store 帳戶，方法是使用 Azure 入口網站、命令列工具，或透過您的組織使用 Azure Data Lake Store SDK 所建立的用戶端應用程式。 使用 Azure Active Directory 做為集中式存取控制機制的主要優點如下︰
 
 * 簡化的身分識別生命週期管理。 只要刪除或停用目錄中的帳戶，即可快速建立及快速撤銷使用者或服務的身分識別 (服務主體身分識別)。
-* 多因素驗證。 [Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md) 可為使用者登入和交易提供額外的安全性。
+* 多因素驗證。 [Multi-Factor Authentication](../active-directory/authentication/multi-factor-authentication.md) 可為使用者登入和交易提供額外的安全性。
 * 可透過標準的開放通訊協定 (例如 OAuth 或 OpenID) 從任何用戶端進行驗證。
 * 可與企業目錄服務和雲端識別提供者同盟。
 
 ## <a name="authorization-and-access-control"></a>授權和存取控制
 在使用者通過 Azure Active Directory 驗證因而可以存取 Azure Data Lake Store 之後，授權便會控制 Data Lake Store 的存取權限。 Data Lake Store 會以下列方式分隔授權的帳戶以及資料相關的活動：
 
-* [角色型存取控制](../active-directory/role-based-access-control-what-is.md) (RBAC)
+* [角色型存取控制](../role-based-access-control/overview.md) (RBAC)
 * 適用於存取存放區資料的 POSIX ACL
 
 ### <a name="rbac-for-account-management"></a>用於帳戶管理的 RBAC
@@ -54,18 +53,18 @@ ms.lasthandoff: 03/28/2018
 
 | 角色 | 管理權限 | 資料存取權限 | 說明 |
 | --- | --- | --- | --- |
-| 未指派角色 |無 |由 ACL 控管 |使用者無法使用 Azure 入口網站或 Azure PowerShell Cmdlet 來瀏覽 Data Lake Store。 使用者只能使用命令列工具。 |
+| 未指派角色 |None |由 ACL 控管 |使用者無法使用 Azure 入口網站或 Azure PowerShell Cmdlet 來瀏覽 Data Lake Store。 使用者只能使用命令列工具。 |
 | 擁有者 |全部 |全部 |擁有者角色是超級使用者。 此角色可管理所有事項，且具有資料的完整存取權。 |
 | 讀取者 |唯讀 |由 ACL 控管 |讀取者角色可以檢視有關帳戶管理的所有事項，例如哪個使用者被指派給哪個角色。 讀取者角色無法進行任何變更。 |
 | 參與者 |除了新增和移除角色以外的一切 |由 ACL 控管 |參與者角色可以管理帳戶的某些層面，例如部署以及警示建立和管理。 參與者無法新增或移除角色。 |
 | 使用者存取系統管理員 |新增和移除角色 |由 ACL 控管 |使用者存取管理員角色可管理使用者對帳戶的存取權。 |
 
-如需相關指示，請參閱[指派使用者或安全性群組給 Data Lake Store 帳戶](data-lake-store-secure-data.md#assign-users-or-security-groups-to-azure-data-lake-store-accounts)。
+如需相關指示，請參閱 [指派使用者或安全性群組給 Data Lake Store 帳戶](data-lake-store-secure-data.md#assign-users-or-security-groups-to-azure-data-lake-store-accounts)。
 
 ### <a name="using-acls-for-operations-on-file-systems"></a>在檔案系統上使用 ACL 執行作業
 Data Lake Store 是 Hadoop 分散式檔案系統 (HDFS) 之類的階層式檔案系統，並可支援 [POSIX ACL](https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HdfsPermissionsGuide.html#ACLs_Access_Control_Lists)。 它會控制擁有者角色、擁有者群組以及其他使用者和群組對於資源的讀取 (r)、寫入 (w) 和執行 (x) 權限。 在 Data Lake Store 中，可在根資料夾、子資料夾和個別檔案上啟用 ACL。 如需 ACL 如何在 Data Lake Store 的內容中運作的詳細資訊，請參閱 [Data Lake Store 中的存取控制](data-lake-store-access-control.md)。
 
-建議您使用[安全性群組](../active-directory/active-directory-groups-create-azure-portal.md)為多個使用者定義 ACL。 將使用者新增到安全性群組，然後將檔案或資料夾的 ACL 指派給該安全性群組。 因為指派權限的上限為 28 個項目，所以當您想要提供指派權限時，此方法非常有用。 如需如何使用 Azure Active Directory 安全性群組更加妥善地保護 Data Lake Store 中所儲存之資料的詳細資訊，請參閱[將使用者或安全性群組以 ACL 形式指派給 Azure Data Lake Store 檔案系統](data-lake-store-secure-data.md#filepermissions)。
+建議您使用 [安全性群組](../active-directory/active-directory-groups-create-azure-portal.md)為多個使用者定義 ACL。 將使用者新增到安全性群組，然後將檔案或資料夾的 ACL 指派給該安全性群組。 因為指派權限的上限為 28 個項目，所以當您想要提供指派權限時，此方法非常有用。 如需如何使用 Azure Active Directory 安全性群組更加妥善地保護 Data Lake Store 中所儲存之資料的詳細資訊，請參閱 [將使用者或安全性群組以 ACL 形式指派給 Azure Data Lake Store 檔案系統](data-lake-store-secure-data.md#filepermissions)。
 
 ![列出存取權限](./media/data-lake-store-security-overview/adl.acl.2.png "列出存取權限")
 

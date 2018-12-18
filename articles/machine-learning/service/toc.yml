@@ -1,0 +1,355 @@
+items:
+- name: Azure Machine Learning 文件 (預覽)
+  href: index.yml
+- name: 概觀
+  items:
+  - name: 什麼是 Azure Machine Learning 服務？
+    displayName: AML, services
+    href: overview-what-is-azure-ml.md
+  - name: Workbench 的現況為何？
+    href: overview-what-happened-to-workbench.md
+  expanded: true
+- name: 快速入門
+  items:
+  - name: 開始使用 - 入口網站
+    href: quickstart-get-started.md
+  - name: 開始使用 - Python
+    href: quickstart-create-workspace-with-python.md
+- name: 教學課程
+  items:
+  - name: 將模型定型：第一部分
+    href: tutorial-train-models-with-aml.md
+  - name: 部署模型：第二部分
+    href: tutorial-deploy-models-with-aml.md
+  - name: 將自動化 ML 模型定型
+    href: tutorial-auto-train-models.md
+- name: 範例
+  items:
+  - name: Jupyter Notebook (GitHub)
+    displayName: example, examples
+    href: http://aka.ms/aml-notebooks
+- name: 概念
+  items:
+  - name: 服務 的運作方式
+    displayName: architecture
+    href: concept-azure-machine-learning-architecture.md
+  - name: 模型管理
+    href: concept-model-management-and-deployment.md
+  - name: 使用 FPGA 加速
+    href: concept-accelerate-with-fpgas.md
+  - name: 機器學習管線
+    href: concept-ml-pipelines.md
+- name: 使用說明指南
+  items:
+  - name: 管理工作區
+    href: how-to-manage-workspace.md
+  - name: '設定開發環境 '
+    items:
+    - name: 選擇環境
+      displayName: local, remote
+      href: how-to-choose-a-dev-environment.md
+    - name: 設定環境
+      href: how-to-configure-environment.md
+    - name: VS Code Tools for AI
+      items:
+      - name: 開始使用
+        href: how-to-vscode-tools.md
+      - name: 定型與部署
+        href: how-to-vscode-train-deploy.md
+  - name: 準備資料
+    displayName: data prep, etl, elt
+    href: how-to-data-prep.md
+    items:
+    - name: 載入資料
+      href: how-to-load-data.md
+    - name: 轉換資料
+      href: how-to-transform-data.md
+    - name: 寫入資料
+      href: how-to-write-data.md
+  - name: 將模型定型
+    items:
+    - name: 設定訓練環境
+      href: how-to-set-up-training-targets.md
+    - name: 存取訓練資料
+      href: how-to-access-data.md
+    - name: 建立估算器
+      href: how-to-train-ml-models.md
+      items:
+      - name: PyTorch
+        href: how-to-train-pytorch.md
+      - name: TensorFlow
+        href: how-to-train-tensorflow.md
+  - name: 調整模型
+    items:
+    - name: 微調超參數
+      href: how-to-tune-hyperparameters.md
+    - name: 追蹤實驗與計量
+      href: how-to-track-experiments.md
+  - name: 將機器學習自動化
+    href: how-to-automated-ml.md
+    items:
+    - name: 設定自動訓練
+      href: how-to-configure-auto-train.md
+    - name: 使用遠端計算目標
+      href: how-to-auto-train-remote.md
+  - name: ONNX 模型
+    items:
+    - name: 建立和部署
+      href: how-to-build-deploy-onnx.md
+  - name: 部署模型
+    items:
+    - name: 部署模型的位置
+      href: how-to-deploy-and-where.md
+    - name: 部署到 ACI
+      href: how-to-deploy-to-aci.md
+    - name: 部署到 AKS
+      href: how-to-deploy-to-aks.md
+    - name: 部署到 FPGA
+      href: how-to-deploy-fpga-web-service.md
+    - name: 部署到 IoT Edge
+      href: how-to-deploy-to-iot.md
+    - name: 疑難排解
+      href: how-to-troubleshoot-deployment.md
+    - name: 使用 SSL 保護
+      href: how-to-secure-web-service.md
+  - name: 監視模型
+    items:
+    - name: 在生產環境中收集資料
+      href: how-to-enable-data-collection.md
+    - name: 使用 Application Insights 進行監視
+      href: how-to-enable-app-insights.md
+  - name: 管理資源配額
+    href: how-to-manage-quotas.md
+- name: 參考
+  items:
+  - name: 機器學習 SDK
+    href: http://aka.ms/aml-sdk
+  - name: 資料準備 SDK
+    href: http://aka.ms/data-prep-sdk
+  - name: 機器學習 CLI
+    href: reference-azure-machine-learning-cli.md
+- name: 資源
+  items:
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/machine-learning-services/
+  - name: 區域可用性
+    href: https://azure.microsoft.com/regions/services/
+  - name: 版本資訊
+    href: azure-machine-learning-release-notes.md
+  - name: 已知問題
+    href: resource-known-issues.md
+  - name: 取得支援
+    href: support-for-aml-services.md
+  - name: 匯出及刪除資料
+    href: how-to-export-delete-data.md
+  - name: 已被取代的文件
+    items:
+    - name: 如何移轉
+      displayName: Workbench, upgrade, update, transfer
+      href: how-to-migrate.md
+    - name: 匯出或刪除帳戶資料 (已取代)
+      href: ../desktop-workbench/export-delete-experimentation-model-management-data-dsr.md
+    - name: Workbench 快速入門
+      href: ../desktop-workbench/quickstart-installation.md
+    - name: 教學課程 1：準備資料
+      href: ../desktop-workbench/tutorial-classifying-iris-part-1.md
+    - name: 教學課程 2：建置模型
+      href: ../desktop-workbench/tutorial-classifying-iris-part-2.md
+    - name: 教學課程 3：部署模型
+      href: ../desktop-workbench/tutorial-classifying-iris-part-3.md
+    - name: 教學課程 4：進階資料準備
+      href: ../desktop-workbench/tutorial-bikeshare-dataprep.md
+    - name: 模型管理概觀
+      href: ../desktop-workbench/model-management-overview.md
+    - name: 上層 CLI 工作
+      href: ../desktop-workbench/cli-for-azure-machine-learning.md
+    - name: 使用 Workbench
+      items:
+      - name: 使用 Python IDE
+        href: ../desktop-workbench/how-to-configure-your-IDE.md
+      - name: 使用 Jupyter Notebook
+        href: ../desktop-workbench/how-to-use-jupyter-notebooks.md
+      - name: 與 Git 存放庫整合
+        href: ../desktop-workbench/using-git-ml-project.md
+      - name: 使用 TDSP 的專案結構
+        href: ../desktop-workbench/how-to-use-tdsp-in-azure-ml.md
+      - name: 漫遊和共同作業
+        href: ../desktop-workbench/roaming-and-collaboration.md
+    - name: 使用 IDE 延伸模組
+      items:
+      - name: 使用 Visual Studio Tools for AI
+        href: ../desktop-workbench/quickstart-visual-studio-tools.md
+      - name: 使用適用於 AI 的 Visual Studio Code 工具
+        href: ../desktop-workbench/quickstart-visual-studio-code-tools.md
+    - name: 使用 Azure IoT Edge AI 工具組
+      href: ../desktop-workbench/use-azure-iot-edge-ai-toolkit.md
+    - name: 設定計算環境
+      items:
+      - name: 設定實驗
+        href: ../desktop-workbench/experimentation-service-configuration.md
+      - name: 建立 DSVM 及 HDI Spark 叢集
+        href: ../desktop-workbench/how-to-create-dsvm-hdi.md
+      - name: 透過 GPU 訓練
+        href: ../desktop-workbench/how-to-use-gpu.md
+    - name: 獲得並瞭解資料
+      items:
+      - name: 新增資料來源
+        href: ../desktop-workbench/data-source-wizard.md
+      - name: 資料準備指南
+        href: ../desktop-workbench/data-prep-getting-started.md
+      - name: 進階資料準備
+        href: ../desktop-workbench/data-prep-user-guide.md
+      - name: 資料準備轉換
+        href: ../desktop-workbench/data-prep-appendix3-supported-transforms.md
+        items:
+        - name: 依範例合併資料行
+          href: ../desktop-workbench/data-prep-combine-columns-by-example.md
+        - name: 依範例衍生資料行
+          href: ../desktop-workbench/data-prep-derive-column-by-example.md
+        - name: 依範例分割資料行
+          href: ../desktop-workbench/data-prep-split-column-by-example.md
+        - name: 展開 JSON
+          href: ../desktop-workbench/data-prep-expand-json.md
+    - name: 開發模型
+      items:
+      - name: 使用 CLI 將鳶尾花分類
+        href: ../desktop-workbench/tutorial-iris-azure-cli.md
+      - name: 追蹤執行歷程記錄和模型計量
+        href: ../desktop-workbench/how-to-use-run-history-model-metrics.md
+      - name: 尋找最佳的執行精確度
+        href: ../desktop-workbench/how-to-find-best-accuracy-cli.md
+      - name: 讀取和寫入資料
+        href: ../desktop-workbench/how-to-read-write-files.md
+      - name: 使用 MMLSpark 程式庫
+        href: ../desktop-workbench/how-to-use-mmlspark.md
+    - name: 部署及取用模型
+      items:
+      - name: 設定模型管理
+        href: ../desktop-workbench/deployment-setup-configuration.md
+      - name: 調整叢集和服務
+        href: ../desktop-workbench/how-to-scale-clusters.md
+      - name: 在 MLC 叢集上啟用 SSL
+        href: ../desktop-workbench/how-to-setup-ssl-on-mlc.md
+      - name: 部署 Web 服務
+        href: ../desktop-workbench/model-management-service-deploy.md
+      - name: 自訂容器
+        href: ../desktop-workbench/model-management-custom-container.md
+      - name: 部署到 IoT Edge 裝置
+        href: ../desktop-workbench/deploy-to-iot-edge-device.md
+      - name: 取用 Web 服務
+        href: ../desktop-workbench/model-management-consumption.md
+      - name: 收集模型資料
+        href: ../desktop-workbench/how-to-use-model-data-collection.md
+      - name: 部署疑難排解指南
+        href: ../desktop-workbench/how-to-deploy-troubleshooting-guide.md
+    - name: 之前的範例
+      items:
+      - name: 文件集合分析
+        href: ../desktop-workbench/scenario-document-collection-analysis.md
+      - name: 問答集比對
+        href: ../desktop-workbench/scenario-qna-matching.md
+      - name: 預測性維護
+        href: ../desktop-workbench/scenario-predictive-maintenance.md
+      - name: 空中影象分類
+        href: ../desktop-workbench/scenario-aerial-image-classification.md
+      - name: 資料的伺服器工作負載預測 (TB)
+        href: ../desktop-workbench/scenario-big-data.md
+      - name: 能源需求時間序列預測
+        href: ../desktop-workbench/scenario-time-series-forecasting.md
+      - name: 超參數的分散式調整
+        href: ../desktop-workbench/scenario-distributed-tuning-of-hyperparameters.md
+      - name: 客戶流失預測
+        href: ../desktop-workbench/scenario-churn-prediction.md
+      - name: 深入學習情感分析
+        href: ../desktop-workbench/scenario-sentiment-analysis-deep-learning.md
+      - name: 生物醫學實體辨識 - TDSP 專案
+        href: ../desktop-workbench/scenario-tdsp-biomedical-recognition.md
+      - name: 美國所得分類 - TDSP 專案
+        href: ../desktop-workbench/scenario-tdsp-classifying-us-incomes.md
+      - name: 使用 CNTK 進行影像分類
+        href: ../desktop-workbench/scenario-image-classification-using-cntk.md
+      - name: 深入學習預測性維護
+        href: ../desktop-workbench/scenario-deep-learning-for-predictive-maintenance.md
+    - name: 之前的參考
+      items:
+      - name: 資料準備的 Python 擴充功能
+        href: ../desktop-workbench/data-prep-python-extensibility-overview.md
+      - name: 支援的資料來源
+        href: ../desktop-workbench/data-prep-appendix2-supported-data-sources.md
+      - name: 將 Azure Cosmos DB 載入為資料來源
+        href: ../desktop-workbench/data-prep-load-azure-cosmos-db.md
+      - name: 支援的偵測器
+        href: ../desktop-workbench/data-prep-appendix4-supported-inspectors.md
+      - name: 支援的資料目的地
+        href: ../desktop-workbench/data-prep-appendix5-supported-destinations.md
+      - name: 支援的執行和資料環境組合
+        href: ../desktop-workbench/data-prep-supported-runtime-data-environments.md
+      - name: Python 中篩選運算式的範例
+        href: ../desktop-workbench/data-prep-appendix6-sample-filter-expressions-python.md
+      - name: Python 中自訂資料流程轉換的範例
+        href: ../desktop-workbench/data-prep-appendix7-sample-transform-data-flow-python.md
+      - name: Python 中來源連線的範例
+        href: ../desktop-workbench/data-prep-appendix8-sample-source-connections-python.md
+      - name: Python 中目的地連線的範例
+        href: ../desktop-workbench/data-prep-appendix9-sample-destination-connections-python.md
+      - name: Python 中資料行轉換的範例
+        href: ../desktop-workbench/data-prep-appendix10-sample-custom-column-transforms-python.md
+      - name: 資料準備執行 API
+        href: ../desktop-workbench/data-prep-python-execution-api.md
+      - name: 實驗服務組態
+        href: ../desktop-workbench/experimentation-service-configuration-reference.md
+      - name: 記錄 API
+        href: ../desktop-workbench/reference-logging-api.md
+      - name: 測試服務範本
+        href: ../desktop-workbench/experimentation-service-template.md
+      - name: 模型管理 API
+        href: ../desktop-workbench/model-management-api-reference.md
+      - name: 模型管理 CLI
+        href: ../desktop-workbench/model-management-cli-reference.md
+      - name: 模型資料收集 API
+        href: ../desktop-workbench/model-data-collection-api-reference.md
+    - name: 之前的概念
+      href: ../desktop-workbench/overview-general-concepts.md
+    - name: 網域套件
+      href: ../desktop-workbench/reference-python-package-overview.md
+      items:
+      - name: 電腦視覺套件
+        items:
+        - name: 安裝套件
+          href: https://docs.microsoft.com/python/api/overview/azure-machine-learning/computer-vision
+        - name: 模型化及部署
+          items:
+          - name: 影像分類
+            href: ../desktop-workbench/how-to-build-deploy-image-classification-models.md
+          - name: 物件偵測
+            href: ../desktop-workbench/how-to-build-deploy-object-detection-models.md
+          - name: 影像相似度
+            href: ../desktop-workbench/how-to-build-deploy-image-similarity-models.md
+          - name: 改善模型精確度
+            href: ../desktop-workbench/how-to-improve-accuracy-for-computer-vision-models.md
+      - name: 預測套件
+        items:
+        - name: 概觀和安裝
+          href: https://docs.microsoft.com/python/api/overview/azure-machine-learning/forecasting-overview
+        - name: 建置和部署預測模型
+          href: ../desktop-workbench/how-to-build-deploy-forecast-models.md
+      - name: FPGA 加速套件
+        href: reference-fpga-package-overview.md
+      - name: 文字分析套件
+        items:
+        - name: 概觀和安裝
+          href: https://docs.microsoft.com/python/api/overview/azure-machine-learning/textanalytics
+        - name: 建置及部署文字分類模型
+          href: ../desktop-workbench/how-to-build-deploy-text-classification-models.md
+    - name: 常見問題集
+      href: ../desktop-workbench/frequently-asked-questions.md
+    - name: 舊的問題
+      href: ../desktop-workbench/known-issues-and-troubleshooting-guide.md
+ms.openlocfilehash: 56a72b437397c65777c5fd0955c5257d60f3a6a4
+ms.sourcegitcommit: ccdea744097d1ad196b605ffae2d09141d9c0bd9
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/23/2018
+ms.locfileid: "49649239"

@@ -3,22 +3,23 @@ title: 註冊管理
 description: 本主題說明如何向通知中樞註冊裝置以接收推播通知。
 services: notification-hubs
 documentationcenter: .net
-author: ysxu
-manager: erikre
-editor: ''
+author: dimazaid
+manager: kpiteira
+editor: spelluru
 ms.assetid: fd0ee230-132c-4143-b4f9-65cef7f463a1
 ms.service: notification-hubs
 ms.workload: mobile
 ms.tgt_pltfrm: mobile-multiple
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 06/29/2016
-ms.author: yuaxu
-ms.openlocfilehash: af5738ac96bd2afacee493765453567f7f13c9e5
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.date: 04/14/2018
+ms.author: dimazaid
+ms.openlocfilehash: 7f9052da066fcc0021151bf3b547484859cf216d
+ms.sourcegitcommit: e221d1a2e0fb245610a6dd886e7e74c362f06467
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 05/07/2018
+ms.locfileid: "33776918"
 ---
 # <a name="registration-management"></a>註冊管理
 ## <a name="overview"></a>概觀
@@ -42,7 +43,7 @@ ms.lasthandoff: 03/23/2018
 安裝可以包含下列屬性。 如需完整的安裝屬性清單，請參閱[使用 REST API 建立或覆寫安裝](https://msdn.microsoft.com/library/azure/mt621153.aspx)或[安裝屬性](https://msdn.microsoft.com/library/azure/microsoft.azure.notificationhubs.installation_properties.aspx)。
 
     // Example installation format to show some supported properties
-    {
+    {,
         installationId: "",
         expirationTime: "",
         tags: [],
@@ -82,12 +83,12 @@ ms.lasthandoff: 03/23/2018
 註冊與安裝必須包含每個裝置/通道的有效 PNS 控制代碼。 由於 PNS 控制代碼只能在裝置上的用戶端 app 中取得，因此有一種模式是直接在該裝置上使用用戶端 app 進行註冊。 另一方面，與標記相關的安全性考量和商務邏輯可能會需要您在 app 後端管理裝置註冊。 
 
 #### <a name="templates"></a>範本
-如果您想要使用 [範本](notification-hubs-templates-cross-platform-push-messages.md)，裝置安裝也保有與該裝置關聯且採用 JSON 格式的所有範本 (請參閱上面的範例)。 範本名稱可協助將目標指向相同裝置的不同範本。
+如果您想要使用[範本](notification-hubs-templates-cross-platform-push-messages.md)，裝置安裝也保有與該裝置關聯且採用 JSON 格式的所有範本 (請參閱上面的範例)。 範本名稱可協助將目標指向相同裝置的不同範本。
 
-請注意，每個範本名稱皆對應到一個範本主體和一組選擇性的標記。 此外，每個平台可以有額外的範本屬性。 就 Windows 市集 (使用 WNS) 和 Windows Phone 8 (使用 MPNS) 而言，一組額外的標頭可以是範本的一部分。 如果是 APN，您可以將到期屬性設定為常數或範本運算式。 如需完整的安裝屬性清單，請參閱 [使用 REST 來建立或覆寫安裝](https://msdn.microsoft.com/library/azure/mt621153.aspx) 主題。
+每個範本名稱皆對應到一個範本主體和一組選擇性的標記。 此外，每個平台可以有額外的範本屬性。 就 Windows 市集 (使用 WNS) 和 Windows Phone 8 (使用 MPNS) 而言，一組額外的標頭可以是範本的一部分。 如果是 APN，您可以將到期屬性設定為常數或範本運算式。 如需完整的安裝屬性清單，請參閱 [使用 REST 來建立或覆寫安裝](https://msdn.microsoft.com/library/azure/mt621153.aspx) 主題。
 
 #### <a name="secondary-tiles-for-windows-store-apps"></a>Windows 市集應用程式的次要磚
-就「Windows 市集」用戶端應用程式而言，將通知傳送給次要磚與將通知傳送給主要磚一樣。 在安裝中也支援此行為。 請注意，次要磚具有不同的 ChannelUri，您用戶端 app 上的 SDK 會在背景處理此 ChannelUri。
+就「Windows 市集」用戶端應用程式而言，將通知傳送給次要磚與將通知傳送給主要磚一樣。 在安裝中也支援此行為。 次要磚具有不同的 ChannelUri，您用戶端 app 上的 SDK 會在背景處理此 ChannelUri。
 
 SecondaryTiles 字典使用的 TileId 會與在「Windows 市集」應用程式中建立 SecondaryTiles 時使用的 TileId 相同。
 如同主要 ChannelUri，次要磚的 ChannelUri 也會隨時變更。 為了讓通知中樞內的安裝保持更新，裝置必須以次要磚的 ChannelUri 來重新整理它們。
@@ -98,7 +99,7 @@ SecondaryTiles 字典使用的 TileId 會與在「Windows 市集」應用程式�
 ![](./media/notification-hubs-registration-management/notification-hubs-registering-on-device.png)
 
 裝置會先從 PNS 抓取 PNS 控制代碼，然後直接向通知中心進行註冊。 註冊成功之後，app 後端即可傳送以該註冊為目標的通知。 如需有關如何傳送通知的詳細資訊，請參閱 [路由與標記運算式](notification-hubs-tags-segment-push-message.md)。
-請注意，在此情況下，您將只使用「接聽」權限從裝置存取通知中樞。 如需詳細資訊，請參閱 [安全性](notification-hubs-push-notification-security.md)。
+在此情況下，您只使用「接聽」權限，從裝置存取通知中樞。 如需詳細資訊，請參閱[安全性](notification-hubs-push-notification-security.md)。
 
 從裝置註冊是最簡單的方法，但有一些缺點。
 第一個缺點是用戶端 app 只有在 app 處於使用中時，才能更新其標記。 舉例來說，如果使用者有兩個註冊球隊相關標記的裝置，當第一個裝置註冊另一個標記 (例如 Seahawks) 時，第二個裝置必須等到第二次執行時，才會收到有關 Seahawks 的通知。 更普遍來說，當標記受多個裝置影響時，從後端管理標記是一個較理想的選項。

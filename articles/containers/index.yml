@@ -1,11 +1,17 @@
 ### YamlMime:YamlDocument
+ms.openlocfilehash: 96f767e96bcebeadfd0557d64b8efbf45b9f9a39
+ms.sourcegitcommit: 63613e4c7edf1b1875a2974a29ab2a8ce5d90e3b
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/29/2018
+ms.locfileid: "43187559"
 documentType: LandingData
 title: Azure for Containers
 metadata:
   document_id: 
-  title: "Azure for Containers - 教學課程與 API 參考"
-  description: "請使用下列資源來尋找適用於容器的實用快速入門、教學課程和工具，以透過 Azure 開始開發應用程式。"
-  keywords: "Azure, 容器, Docker, API, Kubernetes"
+  title: Azure for Containers - 教學課程與 API 參考
+  description: 請使用下列資源來尋找適用於容器的實用快速入門、教學課程和工具，以透過 Azure 開始開發應用程式。
+  keywords: Azure, 容器, Docker, API, Kubernetes
   author: bketelsen
   ms.author: brketels
   manager: listonb
@@ -17,15 +23,11 @@ metadata:
   ms.technology: azure
   ms.devlang: multiple
   ms.service: multiple
-  ms.openlocfilehash: c455ee4d6c315de9d2366ff9a9d672639c1026cf
-  ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
-  ms.translationtype: HT
-  ms.contentlocale: zh-TW
-  ms.lasthandoff: 03/09/2018
 sections:
 - items:
   - type: markdown
-    text: "請使用下列資源來尋找適用於容器的實用教學課程和工具，以透過 Azure 開始開發應用程式。\n"
+    text: >
+      請使用下列資源來尋找適用於容器的實用教學課程和工具，以透過 Azure 開始開發應用程式。
 - items:
   - type: list
     style: cards
@@ -33,70 +35,70 @@ sections:
     columns: 2
     items:
     - href: https://docs.microsoft.com/azure/container-instances/container-instances-quickstart
-      html: "<p>透過 Azure Container 執行個體建立容器化應用程式</p>"
+      html: <p>透過 Azure Container 執行個體建立容器化應用程式</p>
       image:
         src: https://docs.microsoft.com/media/common/i_get-started.svg
-      title: "開始使用"
+      title: 開始使用
     - href: https://docs.microsoft.com/azure/container-service/kubernetes/cli-samples
-      html: "<p>適用於 Azure Container Service 的 Azure CLI 範例</p>"
+      html: <p>適用於 Azure Container Service 的 Azure CLI 範例</p>
       image:
         src: https://docs.microsoft.com/media/common/i_code-samples.svg
-      title: "程式碼範例"
-- title: "5 分鐘快速入門"
+      title: 程式碼範例
+- title: 5 分鐘快速入門
   items:
   - type: paragraph
-    text: "了解如何透過 Azure 服務來使用容器。"
+    text: 了解如何透過 Azure 服務來使用容器。
   - type: list
     style: cards
     className: cardsM
     columns: 2
     items:
     - href: ../aks/kubernetes-walkthrough.md
-      title: "以 Azure Container Service (AKS) 建立 Kubernetes 叢集"
+      title: 以 Azure Kubernetes Service (AKS) 建立 Kubernetes 叢集
       image:
         src: /azure/media/index/ContainerService.svg
     - href: https://docs.microsoft.com/azure/service-fabric/service-fabric-quickstart-containers
-      title: "透過 Service Fabric 部署 Windows 容器應用程式"
+      title: 透過 Service Fabric 部署 Windows 容器應用程式
       image:
         src: /azure/media/index/Fabric.svg
     - href: https://docs.microsoft.com/azure/app-service/containers/quickstart-docker-go
-      title: "透過 Azure Web App for Containers 建立容器化應用程式"
+      title: 透過 Azure Web App for Containers 建立容器化應用程式
       image:
         src: https://docs.microsoft.com/media/logos/logo_linux.svg
     - href: https://docs.microsoft.com/azure/container-registry/container-registry-get-started-azure-cli
-      title: "在 Azure Container Registry 中建立私人 Docker 登錄"
+      title: 在 Azure Container Registry 中建立私人 Docker 登錄
       image:
         src: /azure/media/index/container-registry.svg
-- title: "適用於 Azure 和容器的免費 Pluralsight 影片訓練"
+- title: 免費 Pluralsight 影片訓練
   items:
   - type: list
     style: cards
     className: cardsM
     columns: 3
     items:
-    - href: https://www.pluralsight.com/courses/azure-vms-getting-started?twoid=d6abac77-7dcc-4d33-9e03-f85e78989f02
+    - href: https://go.microsoft.com/fwlink/?linkid=2012827
       image:
         src: https://docs.microsoft.com/media/logos/logo_pluralsight.svg
-      title: "Microsoft Azure 虛擬機器 - 使用者入門"
-- title: "範例"
+      title: " Azure 系統管理員"
+- title: 範例
   items:
   - type: list
     style: unordered
     items:
-    - html: "<a href=\"https://azure.microsoft.com/resources/samples/app-service-java-deploy-image-from-acr-to-linux/\">開始使用 Appservice - 使用 Java 透過容器登錄管理 Linux Web 應用程式</a>"
-    - html: "<a href=\"https://azure.microsoft.com/resources/samples/service-fabric-containers/\">Service Fabric 容器範例</a>"
-    - html: "<a href=\"https://azure.microsoft.com/resources/samples/container-service-python-manage/\">部署並連線到 Azure 叢集中的 Docker 容器</a>"
-- title: "逐步教學課程"
+    - html: <a href="https://azure.microsoft.com/resources/samples/app-service-java-deploy-image-from-acr-to-linux/">開始使用 Appservice - 使用 Java 透過容器登錄管理 Linux Web 應用程式</a>
+    - html: <a href="https://azure.microsoft.com/resources/samples/service-fabric-containers/">Service Fabric 容器範例</a>
+    - html: <a href="https://azure.microsoft.com/resources/samples/container-service-python-manage/">部署並連線到 Azure 叢集中的 Docker 容器</a>
+- title: 逐步教學課程
   items:
   - type: paragraph
-    text: "了解如何使用 Azure Container Service (AKS)"
+    text: 了解如何使用 Azure Kubernetes Service (AKS)
   - type: list
     style: unordered
     items:
-    - html: "<a href=\"/azure/aks/tutorial-kubernetes-prepare-app\">從應用程式建立容器映像</a>"
-    - html: "<a href=\"/azure/aks/tutorial-kubernetes-prepare-acr\">將容器映像上傳至 Azure Container Registry</a>"
-    - html: "<a href=\"/azure/aks/tutorial-kubernetes-deploy-cluster\">部署 AKS 叢集</a>"
-    - html: "<a href=\"/azure/aks/tutorial-kubernetes-deploy-application\">在 Kubernetes 中執行容器映像</a>"
-    - html: "<a href=\"/azure/aks/tutorial-kubernetes-scale\">調整應用程式和 Kubernetes 基礎結構</a>"
-    - html: "<a href=\"/azure/aks/tutorial-kubernetes-app-update\">更新在 Kubernetes 中執行的應用程式</a>"
-    - html: "<a href=\"/azure/aks/tutorial-kubernetes-monitor\">透過 Log Analytics 監視 Kubernetes</a>"
+    - html: <a href="/azure/aks/tutorial-kubernetes-prepare-app">從應用程式建立容器映像</a>
+    - html: <a href="/azure/aks/tutorial-kubernetes-prepare-acr">將容器映像上傳至 Azure Container Registry</a>
+    - html: <a href="/azure/aks/tutorial-kubernetes-deploy-cluster">部署 AKS 叢集</a>
+    - html: <a href="/azure/aks/tutorial-kubernetes-deploy-application">在 Kubernetes 中執行容器映像</a>
+    - html: <a href="/azure/aks/tutorial-kubernetes-scale">調整應用程式和 Kubernetes 基礎結構</a>
+    - html: <a href="/azure/aks/tutorial-kubernetes-app-update">更新在 Kubernetes 中執行的應用程式</a>
+    - html: <a href="/azure/aks/tutorial-kubernetes-monitor">透過 Log Analytics 監視 Kubernetes</a>

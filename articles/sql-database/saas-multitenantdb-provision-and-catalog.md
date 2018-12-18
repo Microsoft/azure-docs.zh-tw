@@ -8,14 +8,15 @@ manager: craigg
 ms.reviewer: billgib;andrela;genemi
 ms.service: sql-database
 ms.custom: saas apps
-ms.topic: article
-ms.date: 12/19/2017
+ms.topic: conceptual
+ms.date: 04/01/2018
 ms.author: billgib
-ms.openlocfilehash: fb2f2bcbbc8b7f0b0012c4e7baf4a274671d4af0
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: 42f4aff50a5e3b89ee58f59c0db87f6a174e9be2
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34645958"
 ---
 # <a name="provision-and-catalog-new-tenants-in-a-saas-application-using-a-sharded-multi-tenant-azure-sql-database"></a>使用分區化多租用 Azure SQL 資料庫在 SaaS 應用程式中對新的租用戶進行佈建及編目
 

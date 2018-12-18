@@ -1,28 +1,28 @@
 ---
-title: "根據 SQL 資料倉儲中的選項分組 | Microsoft Docs"
-description: "根據 Azure SQL 資料倉儲中的選項實作群組以便開發解決方案的秘訣。"
+title: 使用 Azure SQL 資料倉儲中的分組方式選項 | Microsoft Docs
+description: 根據 Azure SQL 資料倉儲中的選項實作群組以便開發解決方案的秘訣。
 services: sql-data-warehouse
-documentationcenter: NA
-author: jrowlandjones
-manager: jhubbard
-editor: 
-ms.assetid: f95a1e43-768f-4b7b-8a10-8a0509d0c871
+author: ronortloff
+manager: craigg
 ms.service: sql-data-warehouse
-ms.devlang: NA
-ms.topic: article
-ms.tgt_pltfrm: NA
-ms.workload: data-services
-ms.custom: queries
-ms.date: 10/31/2016
-ms.author: jrj;barbkess
-ms.openlocfilehash: da71cb834c13da5d0f5690f471efc6c696163f30
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.topic: conceptual
+ms.component: implement
+ms.date: 04/17/2018
+ms.author: rortloff
+ms.reviewer: igorstan
+ms.openlocfilehash: 1f5723bd160abc164779062f213762751e5875c8
+ms.sourcegitcommit: 1fb353cfca800e741678b200f23af6f31bd03e87
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/30/2018
+ms.locfileid: "43303373"
 ---
 # <a name="group-by-options-in-sql-data-warehouse"></a>根據 SQL 資料倉儲中的選項分組
-[GROUP BY][GROUP BY] 子句是用來將資料彙總至摘要的一組資料列。 它也具有一些擴充其功能的選項，這些選項都需要克服，因為 Azure SQL 資料倉儲並不直接支援這些選項。
+根據 Azure SQL 資料倉儲中的選項實作群組以便開發解決方案的秘訣。
+
+## <a name="what-does-group-by-do"></a>GROUP BY 有什麼用途？
+
+[GROUP BY](/sql/t-sql/queries/select-group-by-transact-sql) T-SQL 子句可將資料彙總至摘要的一組資料列。 GROUP BY 有一些 SQL 資料倉儲不支援的選項。 這些選項有因應措施。
 
 可用選項包括
 
@@ -31,10 +31,9 @@ ms.lasthandoff: 10/11/2017
 * GROUP BY 搭配 CUBE
 
 ## <a name="rollup-and-grouping-sets-options"></a>Rollup 和 grouping sets 選項
-此處最簡單的選項是改為使用 `UNION ALL` 來執行彙總，而不是依賴明確的語法。 應該會出現幾乎相同的結果
+此處最簡單的選項是改為使用 UNION ALL 來執行彙總，而不是依賴明確的語法。 應該會出現幾乎相同的結果
 
-以下是使用 `ROLLUP` 選項的 group by 陳述式範例：
-
+下列範例使用 GROUP BY 陳述式搭配 ROLLUP 選項：
 ```sql
 SELECT [SalesTerritoryCountry]
 ,      [SalesTerritoryRegion]
@@ -48,13 +47,13 @@ GROUP BY ROLLUP (
 ;
 ```
 
-藉由使用 ROLLUP，我們要求下列彙總：
+藉由使用 ROLLUP，上述範例會要求下列彙總：
 
 * 國家及區域
 * 國家 (地區)
 * 總計
 
-若要將其取代，您必須使用 `UNION ALL`；指定彙總明確需要傳回相同的結果：
+若要取代 ROLLUP，並傳回相同的結果，您可以使用 UNION ALL，並明確指定所需的彙總：
 
 ```sql
 SELECT [SalesTerritoryCountry]
@@ -81,7 +80,7 @@ FROM  dbo.factInternetSales s
 JOIN  dbo.DimSalesTerritory t     ON s.SalesTerritoryKey       = t.SalesTerritoryKey;
 ```
 
-對於 GROUPING SETS，我們必須做的是採用相同的主體，並且只建立我們想要查看之彙總層級的 UNION ALL 區段
+若要取代 GROUPING SETS，則適用範例原則。 您只需要針對想要查看的彙總層級建立 UNION ALL 區段。
 
 ## <a name="cube-options"></a>Cube 選項
 可以使用 UNION ALL 方法建立 GROUP BY WITH CUBE。 問題是程式碼可能很快就會很麻煩且不易處理。 若要避免此情形，您可以使用這項更進階的方法。
@@ -119,9 +118,9 @@ SELECT Cols
 FROM GrpCube;
 ```
 
-CTAS 的結果如下所示：
+以下顯示 CTAS 的結果：
 
-![][1]
+![依 Cube 分組](media/sql-data-warehouse-develop-group-by-options/sql-data-warehouse-develop-group-by-cube.png)
 
 第二個步驟是指定目標資料表來儲存過渡結果：
 
@@ -170,7 +169,7 @@ BEGIN
 END
 ```
 
-最後，我們只需要從 #Results 暫存資料表讀取，就可以傳回結果
+最後，您只需要從 #Results 暫存資料表讀取，就可以傳回結果
 
 ```sql
 SELECT *
@@ -182,16 +181,5 @@ ORDER BY 1,2,3
 將程式碼分成區段，並產生迴圈建構，程式碼就會變得更容易管理及維護。
 
 ## <a name="next-steps"></a>後續步驟
-如需更多開發秘訣，請參閱[開發概觀][development overview]。
+如需更多開發秘訣，請參閱[開發概觀](sql-data-warehouse-overview-develop.md)。
 
-<!--Image references-->
-[1]: media/sql-data-warehouse-develop-group-by-options/sql-data-warehouse-develop-group-by-cube.png
-
-<!--Article references-->
-[development overview]: sql-data-warehouse-overview-develop.md
-
-<!--MSDN references-->
-[GROUP BY]: https://msdn.microsoft.com/library/ms177673.aspx
-
-
-<!--Other Web references-->

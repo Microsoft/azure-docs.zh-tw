@@ -1,22 +1,24 @@
 ---
-title: "Azure Application Insights 遙測資料模型 - 例外狀況遙測 | Microsoft Docs"
-description: "例外狀況遙測的 Application Insights 資料模型"
+title: Azure Application Insights 遙測資料模型 - 例外狀況遙測 | Microsoft Docs
+description: 例外狀況遙測的 Application Insights 資料模型
 services: application-insights
 documentationcenter: .net
-author: SergeyKanzhelev
+author: mrbullwinkle
 manager: carmonm
 ms.service: application-insights
 ms.workload: TBD
 ms.tgt_pltfrm: ibiza
 ms.devlang: multiple
-ms.topic: article
+ms.topic: conceptual
 ms.date: 04/25/2017
+ms.reviewer: sergkanz
 ms.author: mbullwin
-ms.openlocfilehash: 3c3c3a39c7986cc771fe4baf60ad9b316888f6ed
-ms.sourcegitcommit: e462e5cca2424ce36423f9eff3a0cf250ac146ad
+ms.openlocfilehash: dc5480b90ef6b5520f47c51f0c105202d7071089
+ms.sourcegitcommit: cc4fdd6f0f12b44c244abc7f6bc4b181a2d05302
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/01/2017
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47093588"
 ---
 # <a name="exception-telemetry-application-insights-data-model"></a>例外狀況遙測：Application Insights 資料模型
 

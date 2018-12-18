@@ -3,17 +3,18 @@ title: 監視 Azure DC/OS 叢集 - Operations Management
 description: 使用 Log Analytics 監視 Azure Container Service DC/OS 叢集。
 services: container-service
 author: keikhara
-manager: timlt
+manager: jeconnoc
 ms.service: container-service
 ms.topic: article
 ms.date: 11/17/2016
 ms.author: keikhara
 ms.custom: mvc
-ms.openlocfilehash: ba76f8480dedb37326505f7ed756eb51a41ee0fe
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: b326e5b686e14cefac4e6376bd3f26787ea1d10d
+ms.sourcegitcommit: e2adef58c03b0a780173df2d988907b5cb809c82
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 04/28/2018
+ms.locfileid: "32164586"
 ---
 # <a name="monitor-an-azure-container-service-dcos-cluster-with-log-analytics"></a>使用 Log Analytics 監視 Azure Container Service DC/OS 叢集
 

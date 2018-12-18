@@ -1,39 +1,33 @@
 ---
-title: "使用範本建立 Hadoop 叢集 - Azure HDInsight | Microsoft Docs"
-description: "了解如何使用 Resource Manager 範本建立 HDInsight 的叢集"
+title: 使用範本建立 Hadoop 叢集 - Azure HDInsight
+description: 了解如何使用 Resource Manager 範本建立 HDInsight 的叢集
 services: hdinsight
-documentationcenter: 
-tags: azure-portal
-author: mumian
-manager: jhubbard
-editor: cgronlun
-ms.assetid: 00a80dea-011f-44f0-92a4-25d09db9d996
+author: jasonwhowell
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 02/22/2018
-ms.author: jgao
-ms.openlocfilehash: 15edd860a86f5d865a6bcb52700b43eaca4ff5c6
-ms.sourcegitcommit: 12fa5f8018d4f34077d5bab323ce7c919e51ce47
+ms.topic: conceptual
+ms.date: 05/14/2018
+ms.author: jasonh
+ms.openlocfilehash: 4cf516550e9f9852ec50981932c2df8f236d0358
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/23/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46961309"
 ---
 # <a name="create-hadoop-clusters-in-hdinsight-by-using-resource-manager-templates"></a>使用 Resource Manager 範本在 HDInsight 中建立 Hadoop 叢集
 [!INCLUDE [selector](../../includes/hdinsight-create-linux-cluster-selector.md)]
 
 在本文中，您會學習使用 Azure Resource Manager 範本建立 Azure HDInsight 叢集的數種方式。 如需詳細資訊，請參閱 [使用 Azure Resource Manager 範本部署應用程式](../azure-resource-manager/resource-group-template-deploy.md)。 若要了解其他叢集建立工具和功能，請按一下此頁面頂端的索引標籤選取器，或參閱[叢集建立方法](hdinsight-hadoop-provision-linux-clusters.md#cluster-setup-methods)。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
 若要依照本文中的指示，您需要：
 
 * [Azure 訂用帳戶](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
-* Azure PowerShell 和/或 Azure CLI。
+* Azure PowerShell 和/或 Azure 傳統 CLI。
 
 ### <a name="resource-manager-templates"></a>Resource Manager 範本
 Resource Manager 範本可讓您輕鬆地在單一、協調的作業中為您的應用程式建立下列資源：
@@ -55,7 +49,7 @@ Resource Manager 可讓您使用不同工具，從您的訂用帳戶中現有的
 
 - Azure 入口網站：請參閱[從現有資源匯出 Azure Resource Manager 範本](../azure-resource-manager/resource-manager-export-template.md)。
 - Azure PowerShell：請參閱[使用 PowerShell 來匯出 Azure Resource Manager 範本](../azure-resource-manager/resource-manager-export-template-powershell.md)。
-- Azure CLI：請參閱[使用 Azure CLI 來匯出 Azure Resource Manager 範本](../azure-resource-manager/resource-manager-export-template-cli.md)。
+- Azure 傳統 CLI：請參閱[使用 Azure 傳統 CLI 來匯出 Azure Resource Manager 範本](../azure-resource-manager/resource-manager-export-template-cli.md)。
 
 
 ## <a name="deploy-using-the-portal"></a>使用入口網站進行部署
@@ -66,9 +60,9 @@ Resource Manager 可讓您使用不同工具，從您的訂用帳戶中現有的
 
 您可以使用 Azure PowerShell 部署 Resource Manager 範本。 如需詳細資訊，請參閱[使用 Resource Manager 範本與 Azure PowerShell 來部署資源](../azure-resource-manager/resource-group-template-deploy.md)和[使用 SAS 權杖和 Azure PowerShell 部署私用 Resource Manager 範本](../azure-resource-manager/resource-manager-powershell-sas-token.md)。
 
-## <a name="deploy-using-cli"></a>使用 CLI 進行部署
+## <a name="deploy-using-azure-cli"></a>使用 Azure CLI 部署
 
-您可以使用 Azure CLI 部署 Resource Manager 範本。 如需詳細資訊，請參閱[使用 Resource Manager 範本與 Azure CLI 來部署資源](../azure-resource-manager/resource-group-template-deploy-cli.md)和[使用 SAS 權杖和 Azure CLI 部署私用 Resource Manager 範本](../azure-resource-manager/resource-manager-cli-sas-token.md)。
+您可以使用傳統 CLI 來部署 Resource Manager 範本。 如需詳細資訊，請參閱[使用 Resource Manager 範本與 Azure CLI 來部署資源](../azure-resource-manager/resource-group-template-deploy-cli.md)和[使用 SAS 權杖和 Azure CLI 部署私用 Resource Manager 範本](../azure-resource-manager/resource-manager-cli-sas-token.md)。
 
 ## <a name="deploy-using-the-rest-api"></a>使用 REST API 進行部署
 您可以使用 REST API 部署 Resource Manager 範本。 如需詳細資訊，請參閱[使用 Resource Manager 範本與 Resource Manager REST API 來部署資源](../azure-resource-manager/resource-group-template-deploy-rest.md)。

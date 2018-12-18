@@ -1,33 +1,31 @@
 ---
-title: "使用 Python 來管理 Azure Data Lake Analytics | Microsoft Docs"
-description: "了解如何使用 Python 來建立 Data Lake Store 帳戶及提交作業。 "
+title: 使用 Python 來管理 Azure Data Lake Analytics
+description: 本文說明如何使用 Python 來管理 Data Lake Analytics 帳戶、資料來源、使用者和作業。
 services: data-lake-analytics
-documentationcenter: 
-author: matt1883
-manager: jhubbard
-editor: cgronlun
-ms.assetid: d4213a19-4d0f-49c9-871c-9cd6ed7cf731
 ms.service: data-lake-analytics
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 06/18/2017
+author: matt1883
 ms.author: saveenr
-ms.custom: devcenter
-ms.openlocfilehash: 22b56e9569ac1fd2afe2c91013fa5605f9f3ef99
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.reviewer: jasonwhowell
+ms.assetid: d4213a19-4d0f-49c9-871c-9cd6ed7cf731
+ms.topic: conceptual
+ms.date: 06/08/2018
+ms.openlocfilehash: f73ef118efbdfc94d8cb9b7d81717bd13511c785
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43048277"
 ---
 # <a name="manage-azure-data-lake-analytics-using-python"></a>使用 Python 來管理 Azure Data Lake Analytics
+[!INCLUDE [manage-selector](../../includes/data-lake-analytics-selector-manage.md)]
 
-## <a name="python-versions"></a>Python 版本
+本文說明如何使用 Python 來管理 Azure Data Lake Analytics 帳戶、資料來源、使用者和作業。
+
+## <a name="supported-python-versions"></a>支援的 Python 版本
 
 * 使用 64 位元版 Python。
 * 您可以使用在 **[Python.org 下載](https://www.python.org/downloads/)** \(英文\) 找到的標準 Python 散發套件。 
-* 許多開發人員發現使用 **[Anaconda Python 散發套件](https://www.continuum.io/downloads)** \(英文\) 相當便利。  
+* 許多開發人員發現使用 **[Anaconda Python 散發套件](https://www.anaconda.com/download/)** \(英文\) 相當便利。  
 * 本文是使用來自標準 Python 散發套件的 Python 3.6 版來撰寫的
 
 ## <a name="install-azure-python-sdk"></a>安裝 Azure Python SDK
@@ -35,9 +33,9 @@ ms.lasthandoff: 10/11/2017
 請安裝下列模組：
 
 * **azure-mgmt-resource** 模組包含適用於 Active Directory 等等的其他 Azure 模組。
-* **azure-mgmt-datalake-store** 模組包含 Azure Data Lake Store 帳戶管理作業。
 * **azure-datalake-store** 模組包含 Azure Data Lake Store 檔案系統作業。 
-* **azure-datalake-analytics** 模組包含 Azure Data Lake Analytics 作業。 
+* **azure-mgmt-datalake-store** 模組包含 Azure Data Lake Store 帳戶管理作業。
+* **azure-mgmt-datalake-analytics** 模組包含 Azure Data Lake Analytics 作業。 
 
 請先執行下列命令，以確保您擁有最新的 `pip`：
 
@@ -150,13 +148,11 @@ armGroupResult = resourceClient.resource_groups.create_or_update( rg, ResourceGr
 首先，建立一個存放區帳戶。
 
 ```python
-adlaAcctResult = adlaAcctClient.account.create(
+adlsAcctResult = adlsAcctClient.account.create(
     rg,
-    adla,
-    DataLakeAnalyticsAccount(
-        location=location,
-        default_data_lake_store_account=adls,
-        data_lake_store_accounts=[DataLakeStoreAccountInfo(name=adls)]
+    adls,
+    DataLakeStoreAccount(
+        location=location)
     )
 ).wait()
 ```

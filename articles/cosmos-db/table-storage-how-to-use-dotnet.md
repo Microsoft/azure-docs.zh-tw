@@ -1,73 +1,63 @@
 ---
-title: 以 .NET 開始使用 Azure 表格儲存體 | Microsoft Docs
-description: 使用 Azure 表格儲存體 (NoSQL 資料存放區) 將結構化的資料儲存在雲端。
+title: 以 .NET 開始使用 Azure 資料表儲存體和 Azure Cosmos DB 資料表 API
+description: 使用 Azure 資料表儲存體或 Azure Cosmos DB 資料表 API 將結構化資料儲存在雲端。
 services: cosmos-db
-documentationcenter: .net
-author: mimig1
-manager: jhubbard
-editor: tysonn
-ms.assetid: fe46d883-7bed-49dd-980e-5c71df36adb3
+author: SnehaGunda
+manager: kfile
 ms.service: cosmos-db
-ms.workload: data-services
-ms.tgt_pltfrm: na
+ms.component: cosmosdb-table
 ms.devlang: dotnet
-ms.topic: article
-ms.date: 03/14/2018
-ms.author: mimig
-ms.openlocfilehash: d31dd1c267bcc63106616b191b6b79d5800e31e9
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.topic: sample
+ms.date: 08/17/2018
+ms.author: sngun
+ms.openlocfilehash: 00bc950493e7b4eaad4a2165779f5c8151070aee
+ms.sourcegitcommit: 3856c66eb17ef96dcf00880c746143213be3806a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 10/02/2018
+ms.locfileid: "48042572"
 ---
-# <a name="get-started-with-azure-table-storage-using-net"></a>以 .NET 開始使用 Azure 表格儲存體
+# <a name="get-started-with-azure-table-storage-and-the-azure-cosmos-db-table-api-using-net"></a>以 .NET 開始使用 Azure 資料表儲存體和 Azure Cosmos DB 資料表 API
 [!INCLUDE [storage-selector-table-include](../../includes/storage-selector-table-include.md)]
-[!INCLUDE [storage-table-cosmos-db-tip-include](../../includes/storage-table-cosmos-db-tip-include.md)]
+[!INCLUDE [storage-table-applies-to-storagetable-and-cosmos](../../includes/storage-table-applies-to-storagetable-and-cosmos.md)]
 
-Azure 表格儲存體是可將結構化的 NoSQL 資料儲存在雲端中的服務，並提供具有無結構描述設計的索引鍵/屬性存放區。 由於表格儲存體並無結構描述，因此可輕易隨著應用程式發展需求改寫資料。 相較於類似資料量的傳統 SQL，對許多類型的應用程式而言，表格儲存體資料可快速存取且符合成本效益，通常可降低成本。
+您可以使用 Azure 資料表儲存體或 Azure Cosmos DB 資料表 API 將結構化的 NoSQL 資料儲存在雲端中，以提供具有無結構描述設計的索引鍵/屬性存放區。 由於資料表儲存體和 Azure Cosmos DB 資料表 API 並無結構描述，因此可輕易隨著應用程式發展需求改寫資料。 相較於類似資料量的傳統 SQL，對許多類型的應用程式而言，資料表儲存體資料和 Azure Cosmos DB 資料表 API 可快速存取且符合成本效益，通常可降低成本。
 
-您可以使用表格儲存體來儲存具彈性的資料集，例如 Web 應用程式的使用者資料、通訊錄、裝置資訊，以及服務所需的其他中繼資料類型。 您可以在資料表中儲存任意數目的實體，且儲存體帳戶可包含任意數目的資料表，最高可達儲存體帳戶的容量限制。
+您可以使用資料表儲存體或 Azure Cosmos DB 資料表 API 來儲存具彈性的資料集，例如 Web 應用程式的使用者資料、通訊錄、裝置資訊，以及服務所需的其他中繼資料類型。 您可以在資料表中儲存任意數目的實體，且儲存體帳戶或資料表 API 帳戶可包含任意數目的資料表，最高可達儲存體帳戶或資料表 API 帳戶的容量限制。
 
-### <a name="about-this-tutorial"></a>關於本教學課程
-本教學課程示範如何在常見的 Azure 表格儲存體案例中使用[適用於 .NET 的 Microsoft Azure CosmosDB 表格文件庫](https://www.nuget.org/packages/Microsoft.Azure.CosmosDB.Table)。 套件名稱表示其適用於 Azure Cosmos DB，但該套件也同時適用於 Azure Cosmos DB 和 Azure 表格儲存體，兩個服務皆具有唯一的端點。 在這些案例探索中會使用 C# 範例，可說明如何執行下列動作：
+### <a name="about-this-sample"></a>關於此範例
+此範例示範如何在常見的 Azure 資料表儲存體和資料表 API 案例中使用[適用於 .NET 的 Microsoft Azure CosmosDB 表格文件庫](https://www.nuget.org/packages/Microsoft.Azure.CosmosDB.Table)。 套件名稱表示其適用於 Azure Cosmos DB，但該套件也同時適用於 Azure Cosmos DB 資料表 API 和 Azure 資料表儲存體，兩個服務皆具有唯一的端點。 在這些案例探索中會使用 C# 範例，可說明如何執行下列動作：
 * 建立和刪除表格
 * 插入、更新和刪除資料列
 * 查詢資料表
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
-您需要下列項目才能成功完成此教學課程︰
+您需要下列項目才能成功完成此範例︰
 
 * [Microsoft Visual Studio](https://www.visualstudio.com/downloads/)
-* [適用於 .NET 的 Azure 儲存體通用程式庫 (預覽)](https://www.nuget.org/packages/Microsoft.Azure.Storage.Common/)。 這是在生產環境中受到支援的必要預覽套件。 
-* [適用於 .NET 的 Microsoft Azure CosmosDB 表格文件庫](https://www.nuget.org/packages/Microsoft.Azure.CosmosDB.Table)
+* [適用於 .NET 的 Azure 儲存體通用程式庫 (預覽)](https://www.nuget.org/packages/Microsoft.Azure.Storage.Common/)。 - 在生產環境中受到支援的必要預覽套件。 
+* [適用於 .NET 的 Microsoft Azure CosmosDB 表格文件庫](https://www.nuget.org/packages/Microsoft.Azure.CosmosDB.Table) - 此文件庫目前僅適用於 .NET Standard，尚不適用於 .NET Core。
 * [適用於.NET 的 Azure 設定管理員](https://www.nuget.org/packages/Microsoft.WindowsAzure.ConfigurationManager/)
-* [Azure 儲存體帳戶](../storage/common/storage-create-storage-account.md#create-a-storage-account)
+* [Azure 儲存體帳戶](../storage/common/storage-quickstart-create-account.md)
 
 [!INCLUDE [storage-dotnet-client-library-version-include](../../includes/storage-dotnet-client-library-version-include.md)]
 
 ### <a name="more-samples"></a>更多範例
 如需使用表格儲存體的其他範例，請參閱 [在 .NET 中開始使用 Azure 表格儲存體](https://azure.microsoft.com/documentation/samples/storage-table-dotnet-getting-started/)。 您可以下載範例應用程式並加以執行，或瀏覽 GitHub 上的程式碼。
 
-[!INCLUDE [storage-table-concepts-include](../../includes/storage-table-concepts-include.md)]
-
 ## <a name="create-an-azure-service-account"></a>建立 Azure 服務帳戶
-
-您可以使用 Azure 表格儲存體或 Azure Cosmos DB 來搭配使用表格。 您可以參閱[表格供應項目](table-introduction.md#table-offerings)，深入了解各服務之間的差異。 您必須為您要使用的服務建立帳戶。 
+[!INCLUDE [cosmos-db-create-azure-service-account](../../includes/cosmos-db-create-azure-service-account.md)]
 
 ### <a name="create-an-azure-storage-account"></a>建立 Azure 儲存體帳戶
-建立您第一個 Azure 儲存體帳戶最簡單的方法，就是使用 [Azure 入口網站](https://portal.azure.com)。 若要深入了解，請參閱 [建立儲存體帳戶](../storage/common/storage-create-storage-account.md#create-a-storage-account)。
+* 建立您第一個 Azure 儲存體帳戶最簡單的方法，就是使用 [Azure 入口網站](https://portal.azure.com)。 若要深入了解，請參閱 [建立儲存體帳戶](../storage/common/storage-quickstart-create-account.md)。
 
-您也可以使用 [Azure PowerShell](../storage/common/storage-powershell-guide-full.md)、[Azure CLI](../storage/common/storage-azure-cli.md)，或 [Storage Resource Provider Client Library for .NET](/dotnet/api/microsoft.azure.management.storage) 來建立 Azure 儲存體帳戶。
+* 您也可以使用 [Azure PowerShell](../storage/common/storage-powershell-guide-full.md)、[Azure CLI](../storage/common/storage-azure-cli.md)，或 [Storage Resource Provider Client Library for .NET](/dotnet/api/microsoft.azure.management.storage) 來建立 Azure 儲存體帳戶。
 
-如果您不想在此時建立儲存體帳戶，也可以使用 Azure 儲存體模擬器在本機環境中執行並測試您的程式碼。 如需詳細資訊，請參閱 [使用 Azure 儲存體模擬器進行開發和測試](../storage/common/storage-use-emulator.md)。
+* 如果您不想在此時建立儲存體帳戶，也可以使用 Azure 儲存體模擬器在本機環境中執行並測試您的程式碼。 如需詳細資訊，請參閱 [使用 Azure 儲存體模擬器進行開發和測試](../storage/common/storage-use-emulator.md)。
 
 ### <a name="create-an-azure-cosmos-db-table-api-account"></a>建立 Azure Cosmos DB 表格 API 帳戶
-
-有關建立 Azure Cosmos DB 表格 API 帳戶的指示，請參閱[建立表格 API 帳戶](create-table-dotnet.md#create-a-database-account)。
-
-## <a name="set-up-your-development-environment"></a>設定開發環境
-接下來，在 Visual Studio 中設定您的開發環境，以便您開始嘗試本指南中的程式碼範例。
+[!INCLUDE [cosmos-db-create-tableapi-account](../../includes/cosmos-db-create-tableapi-account.md)]
 
 ### <a name="create-a-windows-console-application-project"></a>建立 Windows 主控台應用程式專案
 在 Visual Studio 中，建立新的 Windows 主控台應用程式。 下列步驟示範如何在 Visual Studio 2017 中建立主控台應用程式。 這些步驟類似其他 Visual Studio 版本中的步驟。
@@ -78,21 +68,23 @@ Azure 表格儲存體是可將結構化的 NoSQL 資料儲存在雲端中的服�
 4. 在 [名稱] 欄位中，輸入應用程式的名稱。
 5. 選取 [確定] 。
 
-本教學課程中的所有程式碼範例均可新增至您主控台應用程式的 `Program.cs` 檔案中的 `Main()` 方法。
+此範例中的所有程式碼範例均可新增至您主控台應用程式的 `Program.cs` 檔案中的 `Main()` 方法。
 
 您可以在任何類型的 .NET 應用程式 (包括 Azure 雲端服務或 Web 應用程式和桌面與行動應用程式) 中使用 Azure CosmosDB 表格文件庫。 在本指南中，為求簡化，我們會使用主控台應用程式。
 
-### <a name="use-nuget-to-install-the-required-packages"></a>使用 NuGet 來安裝必要的封裝
-您必須在您的專案中參考下列三個建議套件，才能完成本教學課程︰
+### <a name="install-the-required-nuget-packages"></a>安裝必要的 NuGet 套件
+您必須在您的專案中參考下列三個建議套件，才能完成此範例︰
 
-* [適用於 .NET 的 Azure 儲存體通用程式庫 (預覽)](https://www.nuget.org/packages/Microsoft.Azure.Storage.Common)。 
-* [適用於 .NET 的 Microsoft Azure Cosmos DB 表格文件庫](https://www.nuget.org/packages/Microsoft.Azure.CosmosDB.Table)。 此套件可供以程式設計方式存取 Azure 表格儲存體帳戶或 Azure Cosmos DB 表格 API 帳戶中的資料資源。
+* [適用於 .NET 的 Azure 儲存體通用程式庫 (預覽)](https://www.nuget.org/packages/Microsoft.Azure.Storage.Common)。 - 使用低於或等於 9.0.0.1 (<= 9.0.0.1) 的版本。
+
+* [適用於 .NET 的 Microsoft Azure Cosmos DB 表格文件庫](https://www.nuget.org/packages/Microsoft.Azure.CosmosDB.Table)。 此套件可供以程式設計方式存取 Azure 表格儲存體帳戶或 Azure Cosmos DB 表格 API 帳戶中的資料資源。 此文件庫目前僅適用於 .NET Standard，尚不適用於 .NET Core。
+
 * [適用於 .NET 的 Microsoft Azure Configuration Manager 程式庫](https://www.nuget.org/packages/Microsoft.WindowsAzure.ConfigurationManager/)︰此套件提供一個類別，無論您的應用程式於何處執行，均可用來剖析組態檔中的連接字串。
 
-您可以使用 NuGet 來取得這兩個封裝。 請遵循下列步驟：
+若要取得 NuGet 套件，請遵循下列步驟：
 
 1. 在 [方案總管] 中以滑鼠右鍵按一下專案，然後選擇 [管理 NuGet 套件]。
-2. 線上搜尋 "Microsoft.Azure.Storage.Common"，然後選取 [安裝] 以安裝適用於 .NET 的 Azure 儲存體通用程式庫 (預覽) 及其相依性。 請確認已勾選 [包含發行前版本] 方塊，因為這是預覽套件。
+2. 線上搜尋 "Microsoft.Azure.Storage.Common"，選擇 <= 9.0.0.1 的版本，然後選取 [安裝] 以安裝適用於 .NET 的 Azure 儲存體通用程式庫 (預覽) 及其相依性。 請確認已勾選 [包含發行前版本] 方塊，因為這是預覽套件。
 3. 線上搜尋 "Microsoft.Azure.CosmosDB.Table"，然後選取 [安裝] 以安裝 Microsoft Azure CosmosDB 表格文件庫。
 4. 線上搜尋 "WindowsAzure.ConfigurationManager"，然後選取 [安裝] 以安裝 Microsoft Azure Configuration Manager Library。
 
@@ -102,21 +94,21 @@ Azure 表格儲存體是可將結構化的 NoSQL 資料儲存在雲端中的服�
 > 
 
 > [!TIP]
-> 已經熟悉 Azure 資料表儲存體的開發人員以往可能會使用 [WindowsAzure.Storage](https://www.nuget.org/packages/WindowsAzure.Storage/) 套件。 建議所有新的資料表應用程式使用 [Azure 儲存體通用程式庫](https://www.nuget.org/packages/Microsoft.Azure.CosmosDB.Table)和 [Azure Cosmos DB 表格文件庫](https://www.nuget.org/packages/Microsoft.Azure.CosmosDB.Table)，但是 WindowsAzure.Storage 套件仍然受到支援。 如果您使用 WindowsAzure.Storage 程式庫，在您使用的陳述式中包含 Microsoft.WindowsAzure.Storage.Table。
+> 已經熟悉 Azure 資料表儲存體的開發人員以往可能會使用 [WindowsAzure.Storage](https://www.nuget.org/packages/WindowsAzure.Storage/) 套件。 建議所有新的資料表應用程式使用 [Azure 儲存體通用程式庫](https://www.nuget.org/packages/Microsoft.Azure.Storage.Common)和 [Azure Cosmos DB 表格文件庫](https://www.nuget.org/packages/Microsoft.Azure.CosmosDB.Table)，但是 WindowsAzure.Storage 套件仍然受到支援。 如果您使用 WindowsAzure.Storage 程式庫，在您使用的陳述式中包含 Microsoft.WindowsAzure.Storage.Table。
 >
 >
 
 ### <a name="determine-your-target-environment"></a>決定您的目標環境
-有兩個環境選項可供您執行本指南中的範例︰
+有三個環境選項可供您執行本指南中的範例︰
 
 * 您可以對雲端中的 Azure 儲存體帳戶執行您的程式碼。 
 * 您可以對雲端中的 Azure Cosmos DB 帳戶執行您的程式碼。
 * 您可以對 Azure 儲存體模擬器執行您的程式碼。 儲存體模擬器是模擬雲端中 Azure 儲存體帳戶的本機環境。 模擬器是一個免費選項，在開發您的應用程式時可用於測試和偵錯您的程式碼。 模擬器會使用已知的帳戶和金鑰。 如需詳細資訊，請參閱[使用 Azure 儲存體模擬器進行開發和測試](../storage/common/storage-use-emulator.md)。
 
-如果您要選擇以雲端中的儲存體帳戶為目標，請從 Azure 入口網站複製您的儲存體帳戶的主要存取金鑰。 如需詳細資訊，請參閱 [檢視和複製儲存體存取金鑰](../storage/common/storage-create-storage-account.md#view-and-copy-storage-access-keys)。
+如果您要選擇以雲端中的儲存體帳戶為目標，請從 Azure 入口網站複製您的儲存體帳戶的主要存取金鑰。 如需詳細資訊，請參閱[儲存體帳戶存取金鑰](../storage/common/storage-account-manage.md#access-keys)。
 
 > [!NOTE]
-> 您可以選擇以儲存體模擬器為目標，以避免產生與 Azure 儲存體相關聯的任何費用。 不過，如果您選擇以雲端中的 Azure 儲存體帳戶為目標，則執行本教學課程的費用可以忽略不計。
+> 您可以選擇以儲存體模擬器為目標，以避免產生與 Azure 儲存體相關聯的任何費用。 不過，如果您選擇以雲端中的 Azure 儲存體帳戶為目標，則執行此範例的費用可以忽略不計。
 > 
 > 
 
@@ -129,7 +121,6 @@ Azure 表格儲存體是可將結構化的 NoSQL 資料儲存在雲端中的服�
 
 > [!NOTE]
 > 帳戶金鑰類似於儲存體帳戶的根密碼。 請務必小心保護您的儲存體帳戶金鑰。 請避免轉發給其他使用者、進行硬式編碼，或將它儲存在其他人可以存取的純文字檔案。 如果您認為金鑰可能遭到破解，請使用 Azure 入口網站重新產生金鑰。
-> 
 > 
 
 若要設定連接字串，請從 Visual Studio 中的 [方案總管] 開啟 `app.config` 檔案。 如下所示，加入 `<appSettings>` 元素的內容。 以您的帳戶名稱取代 `account-name`，並以您的帳戶存取金鑰取代 `account-key`：
@@ -148,13 +139,13 @@ Azure 表格儲存體是可將結構化的 NoSQL 資料儲存在雲端中的服�
 例如，如果您使用 Azure 儲存體帳戶，您的組態設定會類似於：
 
 ```xml
-<add key="StorageConnectionString" value="DefaultEndpointsProtocol=https;AccountName=storagesample;AccountKey=GMuzNHjlB3S9itqZJHHCnRkrokLkcSyW7yK9BRbGp0ENePunLPwBgpxV1Z/pVo9zpem/2xSHXkMqTHHLcx8XRA==" />
+<add key="StorageConnectionString" value="DefaultEndpointsProtocol=https;AccountName=storagesample;AccountKey=<account-key>" />
 ```
 
 如果您使用 Azure Cosmos DB 帳戶，您的組態設定會類似於：
 
 ```xml
-<add key="StorageConnectionString" value="DefaultEndpointsProtocol=https;AccountName=tableapiacct;AccountKey=GMuzNHjlB3S9itqZJHHCnRkrokLkcSyW7yK9BRbGp0ENePunLPwBgpxV1Z/pVo9zpem/2xSHXkMqTHHLcx8XRA==;TableEndpoint=https://tableapiacct.table.cosmosdb.azure.com:443/;" />
+<add key="StorageConnectionString" value="DefaultEndpointsProtocol=https;AccountName=tableapiacct;AccountKey=<account-key>;TableEndpoint=https://tableapiacct.table.cosmosdb.azure.com:443/;" />
 ```
 
 若要以儲存體模擬器為目標，您可以使用對應到已知帳戶名稱和金鑰的捷徑。 在此情況下，您的連接字串設定會是︰

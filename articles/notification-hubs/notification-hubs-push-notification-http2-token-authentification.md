@@ -1,23 +1,24 @@
 ---
-title: "適用於 Azure 通知中樞 APNS 的權杖型 (HTTP/2) 驗證 | Microsoft Docs"
-description: "本主題說明如何運用適用於 APNS 的新權杖驗證"
+title: 適用於 Azure 通知中樞 APNS 的權杖型 (HTTP/2) 驗證 | Microsoft Docs
+description: 本主題說明如何運用適用於 APNS 的新權杖驗證
 services: notification-hubs
 documentationcenter: .net
-author: kpiteira
-manager: erikre
-editor: 
+author: dimazaid
+manager: kpiteira
+editor: spelluru
 ms.service: notification-hubs
 ms.workload: mobile
 ms.tgt_pltfrm: mobile-multiple
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 05/17/2017
-ms.author: kapiteir
-ms.openlocfilehash: 5a21bcd9f12fc3f96b17a556ba15526c35ababe2
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.date: 04/14/2018
+ms.author: dimazaid
+ms.openlocfilehash: ca86130e9c184576fc44119190d6224a363c6561
+ms.sourcegitcommit: e221d1a2e0fb245610a6dd886e7e74c362f06467
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 05/07/2018
+ms.locfileid: "33777887"
 ---
 # <a name="token-based-http2-authentication-for-apns"></a>適用於 APNS 的權杖型 (HTTP/2) 驗證
 ## <a name="overview"></a>概觀
@@ -76,7 +77,7 @@ ms.lasthandoff: 10/11/2017
 根據您設定的是的「沙箱」或「生產」應用程式 (在 Apple 開發人員帳戶中指定)，使用其中一個對應端點：
 
 - 沙箱端點：[https://api.development.push.apple.com:443/3/device](https://api.development.push.apple.com:443/3/device)
-- 生產端點：[https://api.push.apple.com:443/3/device](https://api.push.apple.com:443/3/device)
+- 生產環境端點： [https://api.push.apple.com:443/3/device](https://api.push.apple.com:443/3/device)
 
 > [!IMPORTANT]
 > 權杖型驗證所需的 API 版本：**2017-04 或更新版本**。

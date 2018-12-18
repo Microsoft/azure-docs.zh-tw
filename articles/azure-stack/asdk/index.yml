@@ -1,10 +1,10 @@
 ### YamlMime:YamlDocument
 documentType: LandingData
-title: "Azure Stack 開發套件文件"
+title: Azure Stack 開發套件文件
 metadata:
   document_id: 
-  title: "Azure Stack 開發套件文件 - 教學課程和 API 參考"
-  description: "了解如何部署與使用 Azure Stack 開發套件。"
+  title: Azure Stack 開發套件文件 - 教學課程和 API 參考
+  description: 了解如何部署與使用 Azure Stack 開發套件。
   services: azure-stack
   author: jeffgilb
   manager: femila
@@ -12,34 +12,35 @@ metadata:
   ms.tgt_pltfrm: na
   ms.devlang: na
   ms.topic: landing-page
-  ms.date: 03/16/2018
+  ms.date: 04/13/2018
   ms.author: jeffgilb
-  ms.openlocfilehash: e95cf07386dd2c0ef6fe3a1133c8d727b7f929b3
-  ms.sourcegitcommit: a36a1ae91968de3fd68ff2f0c1697effbb210ba8
+  ms.openlocfilehash: a981164b82ede0695fce83f76e886cc0aa5b80c4
+  ms.sourcegitcommit: fa493b66552af11260db48d89e3ddfcdcb5e3152
   ms.translationtype: HT
   ms.contentlocale: zh-TW
-  ms.lasthandoff: 03/17/2018
+  ms.lasthandoff: 04/23/2018
+  ms.locfileid: "31786718"
 abstract:
-  description: "Azure Stack 開發套件 (ASDK) 是 Azure Stack 的單一節點部署，供您免費下載並使用。 ASDK 旨在提供一個環境，讓您評估 Azure Stack 並使用 API 以及與非生產環境中相同的 Azure 工具來開發現代化的應用程式。 <br/><br/>如果您是管理整合系統基礎結構並提供服務的 Azure Stack 操作員，請參閱我們的<a href=\"/azure/azure-stack/\">操作員文件</a>。"
+  description: Azure Stack 開發套件 (ASDK) 是 Azure Stack 的單一節點部署，供您免費下載並使用。 ASDK 旨在提供一個環境，讓您評估 Azure Stack 並使用 API 以及與非生產環境中相同的 Azure 工具來開發現代化的應用程式。 <br/><br/>如果您是管理整合系統基礎結構並提供服務的 Azure Stack 操作員，請參閱我們的<a href="/azure/azure-stack/">操作員文件</a>。<br/><br/>如果您使用 Azure Stack 服務或透過 Azure Stack 建置應用程式，請參閱我們的<a href="/azure/azure-stack/user">使用者文件</a>。
 sections:
-- title: "逐步教學課程"
+- title: 逐步教學課程
   items:
   - type: paragraph
-    text: "了解如何在您的 ASDK 部署中新增服務。"
+    text: 了解如何在您的 ASDK 部署中新增服務。
   - type: list
     style: ordered
     items:
-    - html: "<a href=\"/azure/azure-stack/asdk/asdk-deploy\">部署 ASDK</a>"
-    - html: "<a href=\"/azure/azure-stack/asdk/asdk-marketplace-item\">新增 Azure Stack 市集項目</a>"
-    - html: "<a href=\"/azure/azure-stack/asdk/asdk-offer-services\">提供 IaaS 服務</a>"
-    - html: "<a href=\"/azure/azure-stack/asdk/asdk-subscribe-services\">訂閱提供項目</a>"
-    - html: "<a href=\"/azure/azure-stack/asdk/asdk-update-offers\">更新優惠和方案</a>"
-    - html: "<a href=\"/azure/azure-stack/asdk/asdk-create-vm-template\">利用範本建立虛擬機器</a>"
-- title: "參考"
+    - html: <a href="/azure/azure-stack/asdk/asdk-deploy">部署 ASDK</a>
+    - html: <a href="/azure/azure-stack/asdk/asdk-marketplace-item">新增 Azure Stack 市集項目</a>
+    - html: <a href="/azure/azure-stack/asdk/asdk-offer-services">提供 IaaS 服務</a>
+    - html: <a href="/azure/azure-stack/asdk/asdk-subscribe-services">訂閱提供項目</a>
+    - html: <a href="/azure/azure-stack/asdk/asdk-update-offers">更新優惠和方案</a>
+    - html: <a href="/azure/azure-stack/asdk/asdk-create-vm-template">利用範本建立虛擬機器</a>
+- title: 參考
   items:
   - type: list
     style: cards
     className: cardsD
     items:
-    - title: "命令列"
+    - title: 命令列
       html: <p><a href="/powershell/azure/azure-stack/overview?view=azurestackps-1.2.10">Azure Stack PowerShell</a></p><p><a href="/cli/azure/?view=azure-cli-2017-03-09-profile">Azure Stack CLI</a></p>

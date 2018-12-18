@@ -1,11 +1,11 @@
 ---
-title: "使用 API 管理中的用戶端憑證驗證保護 API - Azure API 管理 | Microsoft Docs"
-description: "了解如何使用用戶端憑證來保護對 API 的存取"
+title: 使用 API 管理中的用戶端憑證驗證保護 API - Azure API 管理 | Microsoft Docs
+description: 了解如何使用用戶端憑證來保護對 API 的存取
 services: api-management
-documentationcenter: 
+documentationcenter: ''
 author: vladvino
 manager: erikre
-editor: 
+editor: ''
 ms.service: api-management
 ms.workload: mobile
 ms.tgt_pltfrm: na
@@ -18,6 +18,7 @@ ms.sourcegitcommit: b07d06ea51a20e32fdc61980667e801cb5db7333
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 12/08/2017
+ms.locfileid: "26406738"
 ---
 # <a name="how-to-secure-apis-using-client-certificate-authentication-in-api-management"></a>如何使用 API 管理中的用戶端憑證驗證保護 API
 

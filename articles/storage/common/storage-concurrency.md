@@ -1,24 +1,20 @@
 ---
-title: "管理 Microsoft Azure 儲存體中的並行存取"
-description: "如何管理 Blob、佇列、資料表和檔案服務的並行存取"
+title: 管理 Microsoft Azure 儲存體中的並行存取
+description: 如何管理 Blob、佇列、資料表和檔案服務的並行存取
 services: storage
-documentationcenter: 
 author: jasontang501
-manager: tadb
-editor: tysonn
-ms.assetid: cc6429c4-23ee-46e3-b22d-50dd68bd4680
 ms.service: storage
-ms.workload: storage
-ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
 ms.date: 05/11/2017
 ms.author: jasontang501
-ms.openlocfilehash: 937cca66a0af0674b868e6a87681adbea330e91c
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.component: common
+ms.openlocfilehash: 9c36347db2d1678e79e5ad80cda491f77850c4a6
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39525234"
 ---
 # <a name="managing-concurrency-in-microsoft-azure-storage"></a>管理 Microsoft Azure 儲存體中的並行存取
 ## <a name="overview"></a>概觀
@@ -90,14 +86,14 @@ catch (StorageException ex)
 
 | 作業 | 傳回容器 ETag 值 | 接受條件式標頭 |
 |:--- |:--- |:--- |
-| 建立容器 |yes |否 |
-| 取得容器屬性 |yes |否 |
-| 取得容器中繼資料 |yes |否 |
-| 設定容器中繼資料 |yes |yes |
-| 取得容器 ACL |yes |否 |
-| 設定容器 ACL |yes |是 (*) |
-| 刪除容器 |否 |yes |
-| 租用容器 |yes |yes |
+| 建立容器 |是 |否 |
+| 取得容器屬性 |是 |否 |
+| 取得容器中繼資料 |是 |否 |
+| 設定容器中繼資料 |是 |是 |
+| 取得容器 ACL |是 |否 |
+| 設定容器 ACL |是 |是 (*) |
+| 刪除容器 |否 |是 |
+| 租用容器 |是 |是 |
 | 列出 Blob |否 |否 |
 
 (*) 系統會快取由 SetContainerACL 定義的權限，而這些權限的更新約需 30 秒來完成填入，在此期間，更新並不一定會一致。  
@@ -106,22 +102,22 @@ catch (StorageException ex)
 
 | 作業 | 傳回 ETag 值 | 接受條件式標頭 |
 |:--- |:--- |:--- |
-| 放置 Blob |yes |yes |
-| 取得 Blob |yes |yes |
-| 取得 Blob 屬性 |yes |yes |
-| 設定 Blob 屬性 |yes |yes |
-| 取得 Blob 中繼資料 |yes |yes |
-| 設定 Blob 中繼資料 |yes |yes |
-| 租用 Blob (*) |yes |yes |
-| 快照 Blob |yes |yes |
-| 複製 Blob |yes |是 (針對來源及目的地 Blob) |
+| 放置 Blob |是 |是 |
+| 取得 Blob |是 |是 |
+| 取得 Blob 屬性 |是 |是 |
+| 設定 Blob 屬性 |是 |是 |
+| 取得 Blob 中繼資料 |是 |是 |
+| 設定 Blob 中繼資料 |是 |是 |
+| 租用 Blob (*) |是 |是 |
+| 快照 Blob |是 |是 |
+| 複製 Blob |是 |是 (針對來源及目的地 Blob) |
 | 中止複製 Blob |否 |否 |
-| 刪除 Blob |否 |yes |
+| 刪除 Blob |否 |是 |
 | 放置區塊 |否 |否 |
-| 放置區塊清單 |yes |yes |
-| 取得區塊清單 |yes |否 |
-| 放置頁面 |yes |yes |
-| 取得頁面範圍 |yes |yes |
+| 放置區塊清單 |是 |是 |
+| 取得區塊清單 |是 |否 |
+| 放置頁面 |是 |是 |
+| 取得頁面範圍 |是 |是 |
 
 (*) 租用 Blob 並不會變更 Blob 上的 ETag。  
 
@@ -241,13 +237,13 @@ customer.ETag = "*";
 
 | 作業 | 傳回 ETag 值 | 需要 If-Match 要求標頭 |
 |:--- |:--- |:--- |
-| 查詢實體 |yes |否 |
-| 插入實體 |yes |否 |
-| 更新實體 |yes |yes |
-| 合併實體 |yes |yes |
-| 刪除實體 |否 |yes |
-| 插入或取代實體 |yes |否 |
-| 插入或合併實體 |yes |否 |
+| 查詢實體 |是 |否 |
+| 插入實體 |是 |否 |
+| 更新實體 |是 |是 |
+| 合併實體 |是 |是 |
+| 刪除實體 |否 |是 |
+| 插入或取代實體 |是 |否 |
+| 插入或合併實體 |是 |否 |
 
 請注意，**插入或取代實體**和**插入或合併實體**作業並「不會」執行任何並行存取檢查，因為這些作業不會將 ETag 值傳送至資料表服務。  
 

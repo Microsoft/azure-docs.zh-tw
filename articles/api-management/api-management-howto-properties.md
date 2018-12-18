@@ -1,11 +1,11 @@
 ---
-title: "如何在 Azure API 管理原則中使用屬性"
-description: "了解如何在 Azure API 管理原則中使用屬性。"
+title: 如何在 Azure API 管理原則中使用具名值
+description: 了解如何在 Azure API 管理原則中使用具名值。
 services: api-management
-documentationcenter: 
+documentationcenter: ''
 author: vladvino
 manager: erikre
-editor: 
+editor: ''
 ms.service: api-management
 ms.workload: mobile
 ms.tgt_pltfrm: na
@@ -13,16 +13,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/25/2018
 ms.author: apimpm
-ms.openlocfilehash: e0559380f6d686a4e559779c4271ea85106558d6
-ms.sourcegitcommit: ded74961ef7d1df2ef8ffbcd13eeea0f4aaa3219
+ms.openlocfilehash: 829d6bc6cb3f8e78d065d7aaca4937634e7349c8
+ms.sourcegitcommit: e0834ad0bad38f4fb007053a472bde918d69f6cb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/29/2018
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37437060"
 ---
-# <a name="how-to-use-properties-in-azure-api-management-policies"></a>如何在 Azure API 管理原則中使用屬性
-API 管理原則是系統的強大功能，可讓 Azure 入口網站透過設定來變更 API 的行為。 原則是陳述式的集合，會因 API 的要求或回應循序執行。 原則陳述可以使用引述的文字、值、原則運算式及屬性來建構。 
+# <a name="how-to-use-named-values-in-azure-api-management-policies"></a>如何在 Azure API 管理原則中使用具名值
+API 管理原則是系統的強大功能，可讓 Azure 入口網站透過設定來變更 API 的行為。 原則是陳述式的集合，會因 API 的要求或回應循序執行。 原則陳述式可以使用常值文字值、原則運算式和具名值來建構。 
 
-每個 API 管理服務執行個體都有服務執行個體全域適用的之鍵/值組的屬性集合。 這個屬性可用來管理所有 API 組態及原則的常數字串值。 每個屬性可能都有下列屬性：
+每個 API 管理服務執行個體都有服務執行個體全域適用的的鍵/值組 (稱為具名值) 的屬性集合。 這個具名值可用來管理所有 API 組態及原則的常數字串值。 每個屬性可能都有下列屬性：
 
 | 屬性 | 類型 | 說明 |
 | --- | --- | --- |
@@ -49,7 +50,7 @@ API 管理原則是系統的強大功能，可讓 Azure 入口網站透過設定
 2. 選取 [具名值]。
 3. 按 [+新增]。
 
-  [名稱] 和 [值] 都是必要值。 如果此屬性值是祕密，請勾選 [這是祕密] 核取方塊。 輸入一或多個選擇性標籤來協助組織您的屬性，然後按一下 [儲存]。
+  [名稱] 和 [值] 都是必要值。 如果此屬性值是祕密，請勾選 [這是祕密] 核取方塊。 輸入一或多個選擇性標籤來協助組織您的具名值，然後按一下 [儲存]。
 4. 按一下頁面底部的 [新增] 。
 
 屬性建立之後，您可以按一下屬性來加以編輯。 如果您變更屬性名稱，任何參照該屬性的原則會自動更新以使用新的名稱。
@@ -67,11 +68,11 @@ API 管理原則是系統的強大功能，可讓 Azure 入口網站透過設定
 
 如需使用 REST API 刪除屬性的詳細資訊，請參閱 [使用 REST API 刪除屬性](https://msdn.microsoft.com/library/azure/mt651775.aspx#Delete)。
 
-## <a name="to-search-and-filter-properties"></a>搜尋與篩選屬性
+## <a name="to-search-and-filter-named-values"></a>搜尋與篩選具名值
 
-[具名值] 索引標籤包括可協助您管理屬性的搜尋與篩選功能。 若要按照屬性名稱篩選屬性清單，請在 [搜尋屬性]  文字方塊中輸入搜尋字詞。 若要顯示所有屬性，請清除 [搜尋屬性]  文字方塊並按 Enter。
+[具名值] 索引標籤包括可協助您管理具名值的搜尋與篩選功能。 若要按照屬性名稱篩選屬性清單，請在 [搜尋屬性]  文字方塊中輸入搜尋字詞。 若要顯示所有具名值，請清除 [搜尋屬性] 文字方塊，然後按 Enter 鍵。
 
-若要按照標籤值篩選屬性清單，請在 [依標籤篩選]  文字方塊中輸入一或多個標籤。 若要顯示所有屬性，請清除 [依標籤篩選]  文字方塊並按 Enter。
+若要按照標籤值篩選屬性清單，請在 [依標籤篩選]  文字方塊中輸入一或多個標籤。 若要顯示所有具名值，請清除 [依標記篩選] 文字方塊，然後按 Enter 鍵。
 
 ## <a name="to-use-a-property"></a>使用屬性
 
@@ -85,9 +86,9 @@ API 管理原則是系統的強大功能，可讓 Azure 入口網站透過設定
 
 在此範例中，`ContosoHeader` 是做為 `set-header` 原則中標頭的名稱，且 `ContosoHeaderValue` 是用來做為該標頭的值。 當此原則在對 API 管理閘道提出要求或回應管理閘道期間被評估時，`{{ContosoHeader}}` 和 `{{ContosoHeaderValue}}` 會被其各自的屬性值取代。
 
-如前一個範例所示，屬性可以做為完整的屬性或元素值使用，但它們也可以插入部分的常值文字運算式或與之結合，如以下範例所示： `<set-header name = "CustomHeader{{ContosoHeader}}" ...>`
+如前述範例所示，具名值可以作為完整的屬性或元素值使用，但它們也可以插入部分的常值文字運算式或與之結合，如以下範例所示：`<set-header name = "CustomHeader{{ContosoHeader}}" ...>`
 
-屬性也可以包含原則運算式。 以下範例使用 `ExpressionProperty`。
+具名值也可以包含原則運算式。 以下範例使用 `ExpressionProperty`。
 
 ```xml
 <set-header name="CustomHeader" exists-action="override">
@@ -97,15 +98,15 @@ API 管理原則是系統的強大功能，可讓 Azure 入口網站透過設定
 
 當評估此原則時，`{{ExpressionProperty}}` 會替代為其值 `@(DateTime.Now.ToString())`。 因為該值是原則運算式，所以會評估運算式，且原則會繼續執行。
 
-您可以在開發人員入口網站測試此項目，方法是呼叫在範圍內有包含屬性支援則的作業。 在下列範例中，已使用前兩個含屬性的範例 `set-header` 原則呼叫作業。 請注意，該回應中包含兩個已使用含屬性原則所設定的自訂標頭。
+您可以在開發人員入口網站測試此項目，方法是呼叫原則中包含範圍內具名值的作業。 在下列範例中，會使用前兩個含具名值的範例 `set-header` 原則來呼叫作業。 請注意，回應中包含兩個使用含具名值的原則設定的自訂標頭。
 
 ![開發人員入口網站][api-management-send-results]
 
-如果您查看包含之前兩個含屬性之範例原則的呼叫的 [API 檢查器追蹤](api-management-howto-api-inspector.md)，會看到兩個已插入屬性值的 `set-header` 原則，以及含原則運算式之屬性的原則運算式評估。
+如果您在 [API 檢查器追蹤](api-management-howto-api-inspector.md)中查看包含前述兩個含具名值之範例原則的呼叫，您會看到兩個已插入屬性值的 `set-header` 原則，以及包含原則運算式之屬性的原則運算式評估。
 
 ![API 檢查器追蹤][api-management-api-inspector-trace]
 
-雖然屬性值可以包含原則運算式，但屬性值不能包含其他屬性。 如果文字包含做為屬性值的屬性參照 (例如 `Property value text {{MyProperty}}`)，該屬性參照不會被取代，且將會包含做為屬性值的一部分。
+雖然屬性值可以包含原則運算式，但屬性值不可包含其他具名值。 如果文字包含做為屬性值的屬性參照 (例如 `Property value text {{MyProperty}}`)，該屬性參照不會被取代，且將會包含做為屬性值的一部分。
 
 ## <a name="next-steps"></a>後續步驟
 * 深入了解原則的使用方式

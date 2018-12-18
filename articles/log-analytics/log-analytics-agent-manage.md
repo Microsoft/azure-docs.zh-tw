@@ -1,24 +1,26 @@
 ---
-title: "管理 Azure Log Analytics 代理程式 | Microsoft Docs"
-description: "本文描述 Microsoft Monitoring Agent (MMA) 部署在機器上的生命週期內，您通常會執行的不同管理工作。"
+title: 管理 Azure Log Analytics 代理程式 | Microsoft Docs
+description: 本文描述 Microsoft Monitoring Agent (MMA) 部署在機器上的生命週期內，您通常會執行的不同管理工作。
 services: log-analytics
-documentationcenter: 
-author: MGoedtel
+documentationcenter: ''
+author: mgoedtel
 manager: carmonm
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 02/09/2018
+ms.topic: conceptual
+ms.date: 03/30/2018
 ms.author: magoedte
-ms.openlocfilehash: 2e4daebf18d5edeba92bc14d5a4f699fbd2d94ce
-ms.sourcegitcommit: b32d6948033e7f85e3362e13347a664c0aaa04c1
+ms.component: na
+ms.openlocfilehash: 908418dffaffc25be320bd0008edf03493aa4e55
+ms.sourcegitcommit: 5892c4e1fe65282929230abadf617c0be8953fd9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/13/2018
+ms.lasthandoff: 06/29/2018
+ms.locfileid: "37128787"
 ---
 # <a name="managing-and-maintaining-the-log-analytics-agent-for-windows-and-linux"></a>管理和維護適用於 Windows 和 Linux 的 Log Analytics 代理程式
 
@@ -69,6 +71,34 @@ $mma.ReloadConfiguration()
 >[!NOTE]
 >如果您先前使用過命令列或指令碼來安裝或設定代理程式，`EnableAzureOperationalInsights` 會換成 `AddCloudWorkspace` 和 `RemoveCloudWorkspace`。
 >
+
+### <a name="linux-agent"></a>Linux 代理程式
+如果您決定要向不同工作區註冊 Linux 代理程式，或想要從其設定中移除工作區，下列步驟示範如何重新設定該代理程式。  
+
+1.  若要確認已向工作區註冊該代理程式，請執行下列命令。
+
+    `/opt/microsoft/omsagent/bin/omsadmin.sh -l` 
+
+    它應該會傳回類似下列範例的狀態： 
+
+    `Primary Workspace: <workspaceId>   Status: Onboarded(OMSAgent Running)`
+
+    請務必確認狀態也會顯示代理程式正在執行，否則，重新設定代理程式的後續步驟將無法順利完成。  
+
+2. 如果已向工作區註冊，執行下列命令來移除已註冊的工作區。  否則，如果尚未註冊，請繼續進行下一個步驟。
+
+    `/opt/microsoft/omsagent/bin/omsadmin.sh -X`  
+    
+3. 若要向不同工作區註冊，執行命令 `/opt/microsoft/omsagent/bin/omsadmin.sh -w <workspace id> -s <shared key> [-d <top level domain>]` 
+4. 若要確認您的變更已生效，請執行下列命令。
+
+    `/opt/microsoft/omsagent/bin/omsadmin.sh -l` 
+
+    它應該會傳回類似下列範例的狀態： 
+
+    `Primary Workspace: <workspaceId>   Status: Onboarded(OMSAgent Running)`
+
+代理程式服務不需重新啟動，就能使變更生效。
 
 ## <a name="update-proxy-settings"></a>更新 Proxy 設定 
 若要在部署之後將代理程式設定為透過 Proxy 伺服器或 [OMS 閘道](log-analytics-oms-gateway.md)來與服務通訊，可使用下列其中一種方法來完成這項工作。

@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 8b772df55f8862330da9e557b9bf2ed11b9e2347
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: ed1843226d2b131bd4f98a18b2a48af3e7a3f13c
+ms.sourcegitcommit: af60bd400e18fd4cf4965f90094e2411a22e1e77
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/07/2018
+ms.locfileid: "44090536"
 ---
 # <a name="redis-cache-documentation"></a>Redis 快取文件
 
@@ -160,7 +161,7 @@ ms.lasthandoff: 03/23/2018
                 <div class="card">
                     <div class="cardText">
                         <h3>命令列</h3>
-                        <p><a href="/powershell/resourcemanager/azurerm.rediscache/v2.3.0/azurerm.rediscache">PowerShell</a></p>
+                        <p><a href="/powershell/module/azurerm.rediscache">PowerShell</a></p>
                         <p><a href="/cli/azure/redis">Azure CLI 2.0 (Preview)</a></p>
                     </div>
                 </div>

@@ -1,19 +1,20 @@
 ---
-title: "在 Azure 容器執行個體中掛接 Azure 檔案磁碟區"
-description: "了解如何掛接 Azure 檔案磁碟區來保存 Azure 容器執行個體的狀態"
+title: 在 Azure 容器執行個體中掛接 Azure 檔案磁碟區
+description: 了解如何掛接 Azure 檔案磁碟區來保存 Azure 容器執行個體的狀態
 services: container-instances
 author: seanmck
-manager: timlt
+manager: jeconnoc
 ms.service: container-instances
 ms.topic: article
 ms.date: 02/20/2018
 ms.author: seanmck
 ms.custom: mvc
-ms.openlocfilehash: 98be7e65c2280aa58cf904cbca265f87610eff55
-ms.sourcegitcommit: d1f35f71e6b1cbeee79b06bfc3a7d0914ac57275
+ms.openlocfilehash: 83c86d8310aff80f148e878261ba33b01846006b
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/22/2018
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39441318"
 ---
 # <a name="mount-an-azure-file-share-in-azure-container-instances"></a>在 Azure 容器執行個體中掛接 Azure 檔案共用
 
@@ -149,5 +150,5 @@ az container show --resource-group $ACI_PERS_RESOURCE_GROUP --name hellofiles --
 [storage-explorer]: https://storageexplorer.com
 
 <!-- LINKS - Internal -->
-[az-container-create]: /cli/azure/container#az_container_create
-[az-container-show]: /cli/azure/container#az_container_show
+[az-container-create]: /cli/azure/container#az-container-create
+[az-container-show]: /cli/azure/container#az-container-show

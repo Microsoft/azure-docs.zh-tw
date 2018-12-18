@@ -1,24 +1,18 @@
 ---
-title: "設定 ExpressRoute 線路的工作流程 | Microsoft Docs"
-description: "此頁面會引導您完成設定 ExpressRoute 線路的工作流程"
-documentationcenter: na
+title: 設定 Azure ExpressRoute 線路的工作流程 | Microsoft Docs
+description: 此頁面會引導您完成設定 ExpressRoute 線路的工作流程
 services: expressroute
 author: cherylmc
-manager: carmonm
-editor: 
-ms.assetid: 55e0418c-e0bf-44a7-9aa1-720076df9297
 ms.service: expressroute
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: infrastructure-services
-ms.date: 05/12/2017
+ms.topic: conceptual
+ms.date: 08/29/2018
 ms.author: cherylmc
-ms.openlocfilehash: cba1b2cfee379e7d2b079bcb3089981ef1044d66
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 765050c9c21c7ba752535fc391cc9bb7d8ac4083
+ms.sourcegitcommit: 1fb353cfca800e741678b200f23af6f31bd03e87
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/30/2018
+ms.locfileid: "43301033"
 ---
 # <a name="expressroute-workflows-for-circuit-provisioning-and-circuit-states"></a>ExpressRoute 工作流程線路佈建和線路狀態
 這個頁面以高階觀點引導您完成服務佈建和路由設定的工作流程。
@@ -32,9 +26,9 @@ ms.lasthandoff: 10/11/2017
 3. 請透過 PowerShell 驗證 ExpressRoute 線路佈建狀態，以確定線路已佈建成功。 
 4. 設定路由網域。 如果連線提供者為您管理第 3 層，他們會為您的線路設定路由。 如果連線提供者只提供第 2 層服務，您必須根據[路由需求](expressroute-routing.md)和[路由組態](expressroute-howto-routing-classic.md)頁面所述的指導方針來設定路由。
    
-   * 啟用 Azure 私用對等 - 您必須啟用此對等，才能連接到部署在虛擬網路內的 VM / 雲端服務。
-   * 啟用 Azure 公用對等 - 如果您想要連接到裝載於公用 IP 位址的 Azure 服務，則必須啟用 Azure 公用對等。 如果您已選擇啟用 Azure 私用對等的預設路由，則這是存取 Azure 資源的條件。
-   * 啟用 Microsoft 對等 - 您必須啟用此對等，才能存取 Office 365 和 Dynamics 365。 
+   * 啟用 Azure 私用對等互連 - 啟用此對等互連才能連接到部署在虛擬網路內的虛擬機器 / 雲端服務。
+
+   * 啟用 Microsoft 對等互連 - 啟用此對等互連才能存取 Office 365 和 Dynamics 365。 此外，透過 Microsoft 對等互連可存取所有 Azure PaaS 服務。
      
      > [!IMPORTANT]
      > 必須確定您使用個別的 Proxy / 邊緣來連接到 Microsoft，而不是您用於網際網路的 Proxy / 邊緣。 ExpressRoute 和網際網路使用相同的邊緣會導致路由不對稱，並造成網路連線中斷。

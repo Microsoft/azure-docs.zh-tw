@@ -1,18 +1,18 @@
 ---
-title: "使用服務主體進行 Azure Container Registry 驗證"
-description: "了解如何使用 Azure Active Directory 服務主體，提供您私人容器登錄中映像的存取權。"
+title: 使用服務主體進行 Azure Container Registry 驗證
+description: 了解如何使用 Azure Active Directory 服務主體，提供您私人容器登錄中映像的存取權。
 services: container-registry
-author: mmacy
-manager: timlt
+author: dlepow
 ms.service: container-registry
 ms.topic: article
-ms.date: 01/24/2018
-ms.author: marsma
-ms.openlocfilehash: 97036ecabceb12b87b76c6ecb7e521157cbef827
-ms.sourcegitcommit: 79683e67911c3ab14bcae668f7551e57f3095425
+ms.date: 04/23/2018
+ms.author: danlep
+ms.openlocfilehash: 30f0eb04b4b7d07785854e3079bc6656889edec6
+ms.sourcegitcommit: 67abaa44871ab98770b22b29d899ff2f396bdae3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/25/2018
+ms.lasthandoff: 10/08/2018
+ms.locfileid: "48854474"
 ---
 # <a name="azure-container-registry-authentication-with-service-principals"></a>使用服務主體進行 Azure Container Registry 驗證
 
@@ -38,16 +38,25 @@ Azure AD *服務主體*提供您訂用帳戶內 Azure 資源的存取權。 您�
 
 [!INCLUDE [container-registry-service-principal](../../includes/container-registry-service-principal.md)]
 
+## <a name="sample-scripts"></a>範例指令碼
+
+您可以找到前述適用於 GitHub 上的 Azure CLI 的範例指令碼，以及適用於 Azure PowerShell 的版本：
+
+* [Azure CLI][acr-scripts-cli]
+* [Azure PowerShell][acr-scripts-psh]
+
 ## <a name="next-steps"></a>後續步驟
 
 一旦為服務主體授與容器登錄的存取權之後，您就可以在應用程式和服務中使用它的認證進行登錄互動。
 
 儘管設定個別應用程式來使用服務主體認證不在本文的範圍內，但您可以在這裡找到一些特定服務和平台的指示：
 
-* [使用來自 Azure Container Service (AKS) 的 Azure Container Registry 進行驗證](container-registry-auth-aks.md)
+* [從 Azure Kubernetes Service 對 Azure Container Registry 進行驗證 (AKS)](container-registry-auth-aks.md)
 * [使用來自 Azure 容器執行個體 (ACI) 的 Azure Container Registry 進行驗證](container-registry-auth-aci.md)
 
 <!-- LINKS - External -->
+[acr-scripts-cli]: https://github.com/Azure/azure-docs-cli-python-samples/tree/master/container-registry
+[acr-scripts-psh]: https://github.com/Azure/azure-docs-powershell-samples/tree/master/container-registry
 
 <!-- LINKS - Internal -->
-[az-acr-login]: /cli/azure/acr#az_acr_login
+[az-acr-login]: /cli/azure/acr#az-acr-login

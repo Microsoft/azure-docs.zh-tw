@@ -1,6 +1,6 @@
 ---
-title: "連接至 Azure Service Fabric 中的服務並與其進行通訊 | Microsoft Docs"
-description: "了解如何解析、連接至 Service Fabric 應用程式中的服務並與其進行通訊。"
+title: 連接至 Azure Service Fabric 中的服務並與其進行通訊 | Microsoft Docs
+description: 了解如何解析、連接至 Service Fabric 應用程式中的服務並與其進行通訊。
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -9,16 +9,17 @@ editor: msfussell
 ms.assetid: 7d1052ec-2c9f-443d-8b99-b75c97266e6c
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 11/01/2017
 ms.author: vturecek
-ms.openlocfilehash: d0b4ff1959465ade5f57c045d2a005e828638eb2
-ms.sourcegitcommit: c7215d71e1cdeab731dd923a9b6b6643cee6eb04
+ms.openlocfilehash: 2b6fd2373a9cd0b376a6c8729d5952c5fc48ddf8
+ms.sourcegitcommit: eb75f177fc59d90b1b667afcfe64ac51936e2638
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/17/2017
+ms.lasthandoff: 05/16/2018
+ms.locfileid: "34205581"
 ---
 # <a name="connect-and-communicate-with-services-in-service-fabric"></a>連接至 Service Fabric 中的服務並與其進行通訊
 在 Service Fabric 中，服務會在 Service Fabric 叢集中的某處執行，通常是分散到多個 VM。 它可以由服務擁有者或是 Service Fabric 自動從某個位置移到其他位置。 服務無法以靜態方式繫結至特定電腦或位址。

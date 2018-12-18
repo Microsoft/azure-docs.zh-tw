@@ -1,25 +1,26 @@
 ---
-title: "應用程式閘道與 Azure 資訊安全中心整合 | Microsoft Docs"
-description: "此頁面提供如何將應用程式閘道整合到 Azure 資訊安全中心的相關資訊。"
+title: 應用程式閘道與 Azure 資訊安全中心整合 | Microsoft Docs
+description: 此頁面提供如何將應用程式閘道整合到 Azure 資訊安全中心的相關資訊。
 documentationcenter: na
 services: application-gateway
-author: davidmu1
-manager: timlt
-editor: 
+author: vhorne
+manager: jpconnock
+editor: ''
 ms.assetid: e5ea5cf9-3b41-4b85-a12c-e758bff7f3ec
 ms.service: application-gateway
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
-ms.custom: 
+ms.custom: ''
 ms.workload: infrastructure-services
 ms.date: 06/07/2017
-ms.author: davidmu
-ms.openlocfilehash: 68d4f9cb5fc9c9f15a355d9fdade922889d2aa30
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.author: victorh
+ms.openlocfilehash: b3a4abf4d0f408cdb49020d831b50d943c3467dd
+ms.sourcegitcommit: c47ef7899572bf6441627f76eb4c4ac15e487aec
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 05/04/2018
+ms.locfileid: "33205038"
 ---
 # <a name="overview-of-integration-between-application-gateway-and-azure-security-center"></a>應用程式閘道與 Azure 資訊安全中心整合概觀
 

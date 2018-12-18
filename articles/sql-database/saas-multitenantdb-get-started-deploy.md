@@ -3,19 +3,21 @@ title: 部署使用 Azure SQL Database 的分區化多租用戶 SaaS 應用程�
 description: 部署及探索分區化 Wingtip SaaS 多租用戶資料庫應用程式，其使用 Azure SQL Database 示範 SaaS 模式。
 keywords: SQL Database Azure
 services: sql-database
-author: MightyPen
+author: billgib
 manager: craigg
 ms.service: sql-database
 ms.custom: scale out apps
 ms.workload: data-management
-ms.topic: article
-ms.date: 12/18/2017
-ms.author: genemi
-ms.openlocfilehash: 3806b165e0124e979f59b51d5583cdbb1f949366
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.topic: conceptual
+ms.date: 04/02/2018
+ms.reviewer: genemi
+ms.author: billgib
+ms.openlocfilehash: 0c2677622b118c11216bef62ff70e87f4de4cded
+ms.sourcegitcommit: 31241b7ef35c37749b4261644adf1f5a029b2b8e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/04/2018
+ms.locfileid: "43665918"
 ---
 # <a name="deploy-and-explore-a-sharded-multi-tenant-application-that-uses-azure-sql-database"></a>部署及探索使用 Azure SQL Database 的分區化多租用戶應用程式
 
@@ -45,7 +47,7 @@ ms.lasthandoff: 03/23/2018
 
 建置此初始部署時可以取得一系列相關的教學課程。 教學課程會探索 SaaS 設計和管理模式的範圍。 當您進行教學課程時，我們鼓勵您逐步執行提供的指令碼，以查看如何實作不同的 SaaS 模式。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 若要完成本教學課程，請確定已完成下列必要條件：
 
@@ -57,7 +59,7 @@ ms.lasthandoff: 03/23/2018
 
 在本節的步驟中，您將提供使用者值來確保資源名稱是全域唯一，且為資源群組的名稱，該群組包含部署應用程式時建立的所有資源。 假設使用者的姓名為 Ann Finley，我們建議使用以下名稱：
 - 使用者：**af1** (姓名首字母縮寫加一個數字。如果您非首次部署應用程式，請使用另一個值 (例如 af2))。
-- 資源群組：**wingtip-dpt-af1** (wingtip-dpt 表示這是每一租用戶一個資料庫應用程式。 加上使用者名稱 af1，會使資源群組名稱與其中各項資源的名稱相互關聯)。
+- *資源群組：* **wingtip-mt-af1** *(wingtip-mt 表示這是共用的多租用戶應用程式。* 加上使用者名稱 af1，會使資源群組名稱與其中各項資源的名稱相互關聯)。
 
 現在請選擇您的名稱，然後將它們寫下來。 
 
@@ -99,7 +101,7 @@ ms.lasthandoff: 03/23/2018
 3. 按一下 [下載 ZIP]，並儲存檔案。
 4. 以滑鼠右鍵按一下 **WingtipTicketsSaaS-MultiTenantDb-master.zip** 檔案，然後選取 [屬性]。
 5. 在 [一般] 索引標籤上，選取 [解除封鎖]，然後按一下 [套用]。
-6. 按一下 [SERVICEPRINCIPAL] 。
+6. 按一下 [確定]。
 7. 將檔案解壓縮。
 
 指令碼位於 *..\\WingtipTicketsSaaS-MultiTenantDb-master\\Learning Modules\\* 資料夾中。

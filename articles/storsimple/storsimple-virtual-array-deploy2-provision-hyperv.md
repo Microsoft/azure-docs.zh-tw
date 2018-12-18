@@ -1,11 +1,11 @@
 ---
-title: "在 Hyper-V 中佈建 StorSimple Virtual Array | Microsoft Docs"
-description: "這是 StorSimple Virtual Array 部署中的第二個教學課程，說明在 Hyper-V 中佈建虛擬陣列。"
+title: 在 Hyper-V 中佈建 StorSimple Virtual Array | Microsoft Docs
+description: 這是 StorSimple Virtual Array 部署中的第二個教學課程，說明在 Hyper-V 中佈建虛擬陣列。
 services: storsimple
 documentationcenter: NA
 author: alkohli
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 4354963c-e09d-41ac-9c8b-f21abeae9913
 ms.service: storsimple
 ms.devlang: NA
@@ -20,6 +20,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23111076"
 ---
 # <a name="deploy-storsimple-virtual-array---provision-in-hyper-v"></a>部署 StorSimple Virtual Array：在 Hyper-V 中佈建
 ![](./media/storsimple-virtual-array-deploy2-provision-hyperv/hyperv4.png)

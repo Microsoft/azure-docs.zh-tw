@@ -1,21 +1,19 @@
 ---
-title: "使用 Jenkins 將您的 Web 應用程式部署至 Azure | Microsoft Docs"
-description: "使用 Jenkins 與 Docker 設定 Java Web 應用程式從 GitHub 到 Azure App Service 的持續整合。"
-author: rloutlaw
-manager: douge
+title: 使用 Jenkins 將 Web 應用程式部署至 Azure
+description: 使用 Jenkins 與 Docker 設定 Java Web 應用程式從 GitHub 到 Azure App Service 的持續整合。
 ms.service: jenkins
-ms.search.scope: 
-ms.devlang: java
-ms.topic: article
-ms.workload: web
-ms.date: 08/02/2017
-ms.author: routlaw
-ms.custom: Jenkins, devcenter
-ms.openlocfilehash: b2606acba341d4cfbc16314048e134fa30ff8606
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+keywords: jenkins, azure, devops, app service, 持續整合, ci, 持續部署, cd
+author: tomarcher
+manager: jeconnoc
+ms.author: tarcher
+ms.topic: tutorial
+ms.date: 07/31/2018
+ms.openlocfilehash: 81959159d4860512c184ada25930da814b5ae044
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46946573"
 ---
 # <a name="set-up-continuous-integration-and-deployment-to-azure-app-service-with-jenkins"></a>使用 Jenkins 設定 Azure App Service 的持續整合和部署
 
@@ -35,9 +33,9 @@ ms.lasthandoff: 03/09/2018
 
 若要完成本教學課程，您需要：
 
-* 設定含 JDK 的 [Jenkins](https://jenkins.io/) 和 Maven 工具。 如果您沒有 Jenkins 系統，請立即從 [Jenkins 解決方案範本](/azure/jenkins/install-jenkins-solution-template)在 Azure 中建立一個。
+* 已設定 JDK 和 Maven 工具的 [Jenkins](https://jenkins.io/)。 如果您沒有 Jenkins 系統，請立即從 [Jenkins 解決方案範本](/azure/jenkins/install-jenkins-solution-template)在 Azure 中建立一個。
 * [GitHub](https://github.com) 帳戶。
-* [Azure CLI 2.0](/cli/azure)，從本機命令列或在 [Azure Cloud Shell](/azure/cloud-shell/overview) 中
+* [Azure CLI](/cli/azure) (不論是從本機命令列，還是在 [Azure Cloud Shell](/azure/cloud-shell/overview) 中)
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
@@ -73,8 +71,8 @@ ms.lasthandoff: 03/09/2018
     ![從 GitHub 派生](media/jenkins-java-quickstart/fork_github_repo.png)
 1. 在 Jenkins Web 主控台中，選取 [新增項目]，為該項目指定名稱 **MyJavaApp**，選取 [自由樣式專案]，然後選取 [確定]。   
     ![新增 Jenkins 自由樣式專案](media/jenkins-java-quickstart/jenkins_freestyle.png)
-2. 在 [一般] 區段中，選取 [GitHub] 專案，然後輸入您的分支儲存機制 URL，例如 https://github.com/raisa/gs-spring-boot-docker
-3. 在 [原始程式碼管理] 區段中，選取 [Git]，然後輸入您的分支儲存機制 `.git` URL，例如 https://github.com/raisa/gs-spring-boot-docker.git
+2. 在 [一般] 區段下，選取 [GitHub 專案]，然後輸入您的分支存放庫 URL，例如 https://github.com/raisa/gs-spring-boot-docker
+3. 在 [原始碼管理] 區段中，選取 [Git]，輸入您的分支存放庫 `.git` URL，例如 https://github.com/raisa/gs-spring-boot-docker.git
 4. 在 [組建觸發程序] 下，選取 [GITScm 輪詢的 GitHub 勾點觸發程序]。
 5. 在 [組建] 區段下，選取 [新增組建步驟]，然後選擇 [叫用最上層 Maven 目標]。 在 [目標] 欄位中輸入 `package`。
 6. 選取 [ **儲存**]。 您可以藉由從專案頁面中選取 [立即組建]，以測試您的作業。
@@ -104,7 +102,7 @@ ms.lasthandoff: 03/09/2018
 ## <a name="configure-the-azure-app-service-jenkins-plug-in"></a>設定 Azure App Service Jenkins 外掛程式
 
 1. 在 Jenkins Web 主控台中，選取您建立的 [MyJavaApp] 作業，然後在頁面左側選取 [設定]。
-2. 向下捲動至 [建置後動作]，然後選取 [新增建置後動作]，並選擇 [發佈 Azure Web 應用程式]。
+2. 向下捲動至 [建置後動作]，選取 [新增建置後動作]，然後選擇 [發佈 Azure Web 應用程式]。
 3. 在 [Azure 設定檔組態] 下，選取 [Azure 認證] 旁的 [新增]，並選擇 [Jenkins]。
 4. 在 [新增認證] 對話方塊中，從 [種類] 下拉式清單中選取 [Microsoft Azure 服務主體]。
 5. 從 Azure CLI 或 [Cloud Shell](/azure/cloud-shell/overview) 建立 Active Directory 服務主體。
@@ -166,7 +164,7 @@ ms.lasthandoff: 03/09/2018
 ## <a name="deploy-the-app-from-github"></a>從 GitHub 部署應用程式
 
 1. 從 Jenkins 專案中，選取 [立即組建]，以將範例應用程式部署至 Azure。
-2. 一旦組建完成，您的應用程式會存留在其發佈的 URL，例如 http://myjavaapp.azurewebsites.net。   
+2. 建置完成後，您的應用程式會依其發佈的 URL 存留在 Azure 上，例如 http://myjavaapp.azurewebsites.net。   
    ![在 Azure 上檢視已部署的應用程式](media/jenkins-java-quickstart/hello_docker_world_unedited.png)
 
 ## <a name="push-changes-and-redeploy"></a>推送變更並重新部署
@@ -179,9 +177,12 @@ ms.lasthandoff: 03/09/2018
     ```
 3. 新組建會在 Jenkins 上啟動，由儲存機制之 `master` 分支上的新認可觸發。 完成時，請在 Azure 上重新載入您的應用程式。     
       ![在 Azure 上檢視已部署的應用程式](media/jenkins-java-quickstart/hello_docker_world.png)
-  
+
+## <a name="troubleshooting-the-jenkins-plugin"></a>對 Jenkins 外掛程式進行疑難排解
+
+如果您遇到任何有關 Jenkins 外掛程式的錯誤，請在 [Jenkins JIRA](https://issues.jenkins-ci.org/) 的特定元件中提交問題。
+
 ## <a name="next-steps"></a>後續步驟
 
-- [使用 Azure VM 做為組建代理程式](/azure/jenkins/jenkins-azure-vm-agents)
-- [使用 Azure CLI 管理作業和管線中的資源](/azure/jenkins/execute-cli-jenkins-pipeline)
- 
+> [!div class="nextstepaction"]
+> [使用 Azure VM 做為組建代理程式](/azure/jenkins/jenkins-azure-vm-agents)

@@ -1,28 +1,29 @@
 ---
-title: "Azure Stack Key Vault 簡介 | Microsoft Docs"
-description: "了解 Azure Stack Key Vault 如何管理金鑰和祕密"
+title: Azure Stack Key Vault 簡介 | Microsoft Docs
+description: 了解 Azure Stack Key Vault 如何管理金鑰和祕密
 services: azure-stack
-documentationcenter: 
-author: mattbriggs
+documentationcenter: ''
+author: sethmanheim
 manager: femila
-editor: 
+editor: ''
 ms.assetid: 70f1684a-3fbb-4cd1-bf29-9f9882e98fe9
 ms.service: azure-stack
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 03/04/2017
-ms.author: mabrigg
-ms.openlocfilehash: a50a03e70ccf014a8a9d33e0f177febed560853f
-ms.sourcegitcommit: a5f16c1e2e0573204581c072cf7d237745ff98dc
+ms.date: 08/15/2018
+ms.author: sethm
+ms.openlocfilehash: a6b4e8c3543d4681c92fbbde30eec0a543fcb0fd
+ms.sourcegitcommit: d2f2356d8fe7845860b6cf6b6545f2a5036a3dd6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/11/2017
+ms.lasthandoff: 08/16/2018
+ms.locfileid: "43050410"
 ---
 # <a name="introduction-to-key-vault-in-azure-stack"></a>Azure Stack 中的 Key Vault 簡介
 
-## <a name="prerequisites"></a>先決條件 
+## <a name="prerequisites"></a>必要條件 
 
 * 您必須訂閱包含 Azure Key Vault 服務的供應項目。  
 * [PowerShell 設定為搭配 Azure Stack 使用](azure-stack-powershell-configure-user.md)。
@@ -52,7 +53,7 @@ Azure Stack 中的 Key Vault 可協助保護雲端應用程式和服務所使用
 下列案例說明 Key Vault 如何協助滿足開發人員和安全性系統管理員的需求。
 
 ### <a name="developer-for-an-azure-stack-application"></a>Azure Stack 應用程式的開發人員
-**問題：**我想要撰寫使用金鑰進行簽署和加密的 Azure Stack 應用程式。 我希望這些金鑰會與我的應用程式分開，如此一來此解決方案便適用於位於不同地點的應用程式。
+**問題：** 我想要撰寫使用金鑰進行簽署和加密的 Azure Stack 應用程式。 我希望這些金鑰會與我的應用程式分開，如此一來此解決方案便適用於位於不同地點的應用程式。
 
 **說明**：金鑰會儲存在保存庫中，並且視需要由 URI 叫用。
 

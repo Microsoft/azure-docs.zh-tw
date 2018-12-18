@@ -1,12 +1,12 @@
 ---
-title: "針對 StorSimple 8000 系列裝置設定 Web Proxy | Microsoft Docs"
-description: "了解如何使用 Windows PowerShell for StorSimple 來設定 StorSimple 裝置的 Web Proxy。"
+title: 針對 StorSimple 8000 系列裝置設定 Web Proxy | Microsoft Docs
+description: 了解如何使用 Windows PowerShell for StorSimple 來設定 StorSimple 裝置的 Web Proxy。
 services: storsimple
-documentationcenter: 
+documentationcenter: ''
 author: alkohli
-manager: 
-editor: 
-ms.assetid: 
+manager: ''
+editor: ''
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: na
 ms.topic: article
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23108506"
 ---
 # <a name="configure-web-proxy-for-your-storsimple-device"></a>為 StorSimple 裝置設定 Web Proxy
 

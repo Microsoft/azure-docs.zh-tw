@@ -1,11 +1,11 @@
 ---
-title: "使用 Azure Resource Manager 佈建 Redis Cache | Microsoft Docs"
-description: "使用 Azure 資源管理員範本來部署 Azure Redis 快取。"
+title: 使用 Azure Resource Manager 佈建 Redis Cache | Microsoft Docs
+description: 使用 Azure 資源管理員範本來部署 Azure Redis 快取。
 services: app-service
-documentationcenter: 
+documentationcenter: ''
 author: wesmc7777
 manager: cfowler
-editor: 
+editor: ''
 ms.assetid: ce6f5372-7038-4655-b1c5-108f7c148282
 ms.service: cache
 ms.workload: web
@@ -15,10 +15,11 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: wesmc
 ms.openlocfilehash: b26116b974abbfe410b0a6ebc0186d73f4eea1bf
-ms.sourcegitcommit: 2a70752d0987585d480f374c3e2dba0cd5097880
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/19/2018
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38452578"
 ---
 # <a name="create-a-redis-cache-using-a-template"></a>使用範本建立 Redis 快取
 在本主題中，您將學習如何建立 Azure Resource Manager 範本，以部署 Azure Redis 快取。 快取可以搭配現有的儲存體帳戶以保留診斷資料。 您將學習如何定義要部署哪些資源，以及如何定義執行部署時所指定的參數。 您可以直接在自己的部署中使用此範本，或自訂此範本以符合您的需求。

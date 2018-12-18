@@ -1,6 +1,6 @@
 ---
-title: "Azure 應用程式閘道的 WebSocket 支援 | Microsoft Docs"
-description: "本頁面提供應用程式閘道 WebSocket 支援的概觀。"
+title: Azure 應用程式閘道的 WebSocket 支援 | Microsoft Docs
+description: 本頁面提供應用程式閘道 WebSocket 支援的概觀。
 documentationcenter: na
 services: application-gateway
 author: amsriva
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "22986723"
 ---
 # <a name="overview-of-websocket-support-in-application-gateway"></a>應用程式閘道中的 WebSocket 支援概觀
 

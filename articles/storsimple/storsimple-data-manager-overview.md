@@ -1,24 +1,25 @@
 ---
-title: "Microsoft Azure StorSimple Data Manager 概觀 | Microsoft Docs"
-description: "提供 StorSimple 資料管理員服務的概觀"
+title: Microsoft Azure StorSimple Data Manager 概觀 | Microsoft Docs
+description: 提供 StorSimple 資料管理員服務的概觀
 services: storsimple
 documentationcenter: NA
 author: vidarmsft
 manager: syadav
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: TBD
-ms.date: 02/26/2018
+ms.date: 05/21/2018
 ms.author: vidarmsft
-ms.openlocfilehash: 4d27bc3660035ace25436a4f756c41e88200649d
-ms.sourcegitcommit: c765cbd9c379ed00f1e2394374efa8e1915321b9
+ms.openlocfilehash: 5845fd246b20d29739eb6d60bbc8621489ccc0d6
+ms.sourcegitcommit: e0a678acb0dc928e5c5edde3ca04e6854eb05ea6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/28/2018
+ms.lasthandoff: 07/13/2018
+ms.locfileid: "39011936"
 ---
 # <a name="storsimple-data-manager-solution-overview"></a>StorSimple 資料管理員解決方案概觀
 
@@ -80,6 +81,18 @@ StorSimple 資料管理員必須有服務資料加密金鑰，才能從 StorSimp
 如果資料管理員所在的區域與作業定義所在的區域不同，請務必了解這些區域中各自擁有哪些資料/中繼資料。 下圖說明資料管理員與作業定義位於不同區域時的效果。
 
 ![位於不同區域的服務和作業定義](./media/storsimple-data-manager-overview/data-manager-job-different-regions.png)
+
+## <a name="managing-personal-information"></a>管理個人資訊
+
+StorSimple 資料管理員不會收集或顯示任何個人資訊。 如需詳細資訊，請在[信任中心](https://www.microsoft.com/trustcenter)檢閱 Microsoft 隱私權原則。
+
+## <a name="known-limitations"></a>已知限制
+
+服務目前有下列限制：
+- StorSimple 資料管理員目前不適用於以 Bitlocker 加密的磁碟區。 如果您嘗試以加密的磁碟機執行服務，作業將會失敗。
+- 檔案的部分中繼資料 (包括 ACL) 不會保留在轉換後的資料中。
+- 這項服務僅適用於 NTFS 磁碟區。
+- 檔案路徑長度必須少於 256 個字元，否則作業將會失敗。
 
 ## <a name="next-steps"></a>後續步驟
 

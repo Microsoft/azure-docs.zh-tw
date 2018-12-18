@@ -1,28 +1,30 @@
 ---
-title: "在 Azure 中初次開機時自訂 Linux VM | Microsoft Docs"
-description: "了解如何使用 cloud-init 和 Key Vault，以便在 Linux VM 初次於 Azure 中開機時加以自訂"
+title: 教學課程 - 在 Azure 中使用 cloud-init 自訂 Linux VM | Microsoft Docs
+description: 在本教學課程中，您會了解如何使用 cloud-init 和 Key Vault，以便在 Linux VM 初次於 Azure 中開機時加以自訂
 services: virtual-machines-linux
 documentationcenter: virtual-machines
-author: iainfoulds
+author: cynthn
 manager: jeconnoc
 editor: tysonn
 tags: azure-resource-manager
-ms.assetid: 
+ms.assetid: ''
 ms.service: virtual-machines-linux
 ms.devlang: na
 ms.topic: tutorial
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
-ms.date: 12/13/2017
-ms.author: iainfou
+ms.date: 05/30/2018
+ms.author: cynthn
 ms.custom: mvc
-ms.openlocfilehash: 79d87b5d332597f2c0faf3c585eee49aba3e03bc
-ms.sourcegitcommit: 059dae3d8a0e716adc95ad2296843a45745a415d
+ms.openlocfilehash: a023d9f600f63d1ead4cf7c7e2a3cceec794d28b
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46972585"
 ---
-# <a name="how-to-customize-a-linux-virtual-machine-on-first-boot"></a>如何在初次開機時自訂 Linux 虛擬機器
+# <a name="tutorial---how-to-use-cloud-init-to-customize-a-linux-virtual-machine-in-azure-on-first-boot"></a>教學課程 - 如何使用 cloud-init 在首次開機時於 Azure 中自訂 Linux 虛擬機器
+
 在先前的教學課程中，您學到了如何以 SSH 連線到虛擬機器 (VM) 並手動安裝 NGINX。 若要以快速且一致的方式建立 VM，您通常需要借助某種形式的自動化。 在初次開機時自訂 VM 的常見方法是使用 [cloud-init (英文)](https://cloudinit.readthedocs.io)。 在本教學課程中，您將了解如何：
 
 > [!div class="checklist"]
@@ -32,12 +34,9 @@ ms.lasthandoff: 02/09/2018
 > * 使用 Key Vault 安全地儲存憑證
 > * 使用 Cloud-init 來安全地自動部署 NGINX
 
-
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-如果您選擇在本機安裝和使用 CLI，本教學課程會要求您執行 Azure CLI 2.0.4 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。  
-
-
+如果您選擇在本機安裝和使用 CLI，本教學課程會要求您執行 Azure CLI 2.0.30 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI]( /cli/azure/install-azure-cli)。
 
 ## <a name="cloud-init-overview"></a>Cloud-Init 概觀
 [Cloud-init (英文)](https://cloudinit.readthedocs.io) 是在 Linux VM 初次開機時，廣泛用來自訂它們的方法。 您可以使用 cloud-init 來安裝封裝和寫入檔案，或者設定使用者和安全性。 當 cloud-init 在初次開機程序期間執行時，不需要使用任何額外的步驟或必要的代理程式來套用您的組態。
@@ -46,13 +45,13 @@ Cloud-init 也適用於散發套件。 例如，您不使用 **apt-get install**
 
 我們正在與合作夥伴合作，以期在他們提供給 Azure 的映像中包含和使用 cloud-init。 下表概述 cloud-init 目前在 Azure 平台映像上的可用性：
 
-| Alias | 發行者 | 提供項目 | SKU | 版本 |
+| Alias | 發行者 | 供應項目 | SKU | 版本 |
 |:--- |:--- |:--- |:--- |:--- |:--- |
 | UbuntuLTS |Canonical |UbuntuServer |16.04-LTS |最新 |
 | UbuntuLTS |Canonical |UbuntuServer |14.04.5-LTS |最新 |
 | CoreOS |CoreOS |CoreOS |Stable |最新 |
 | | OpenLogic | CentOS | 7-CI | 最新 |
-| | RedHat | RHEL | 7-RAW-CI | 最新
+| | RedHat | RHEL | 7-RAW-CI | 最新 |
 
 
 ## <a name="create-cloud-init-config-file"></a>建立 Cloud-init 組態檔
@@ -104,16 +103,16 @@ runcmd:
 
 如需 Cloud-init 組態選項的詳細資訊，請參閱 [Cloud-init 組態範例](https://cloudinit.readthedocs.io/en/latest/topics/examples.html) \(英文\)。
 
-## <a name="create-virtual-machine"></a>Create virtual machine
-建立 VM 之前，請先使用 [az group create](/cli/azure/group#az_group_create) 來建立資源群組。 下列範例會在 eastus 位置建立名為 myResourceGroupAutomate 的資源群組：
+## <a name="create-virtual-machine"></a>建立虛擬機器
+建立 VM 之前，請先使用 [az group create](/cli/azure/group#az-group-create) 來建立資源群組。 下列範例會在 eastus 位置建立名為 myResourceGroupAutomate 的資源群組：
 
-```azurecli-interactive 
+```azurecli-interactive
 az group create --name myResourceGroupAutomate --location eastus
 ```
 
-現在，使用 [az vm create](/cli/azure/vm#az_vm_create) 建立 VM。 使用 `--custom-data` 參數以傳入 cloud-init 組態檔。 如果您將檔案儲存於目前工作目錄之外的位置，請提供 cloud-init.txt 組態的完整路徑。 下列範例會建立名為 myAutomatedVM 的 VM：
+現在，使用 [az vm create](/cli/azure/vm#az-vm-create) 建立 VM。 使用 `--custom-data` 參數以傳入 cloud-init 組態檔。 如果您將檔案儲存於目前工作目錄之外的位置，請提供 cloud-init.txt 組態的完整路徑。 下列範例會建立名為 myAutomatedVM 的 VM：
 
-```azurecli-interactive 
+```azurecli-interactive
 az vm create \
     --resource-group myResourceGroupAutomate \
     --name myVM \
@@ -125,9 +124,9 @@ az vm create \
 
 系統需要花幾分鐘的時間來建立 VM、安裝封裝和啟動應用程式。 在 Azure CLI 將您返回提示字元之後，背景工作會繼續執行。 可能需要再等候幾分鐘，才能存取應用程式。 建立 VM 之後，請注意 Azure CLI 所顯示的 `publicIpAddress`。 此位址是用來透過 Web 瀏覽器存取 Node.js 應用程式。
 
-若要讓 Web 流量到達您的 VM，請使用 [az vm open-port](/cli/azure/vm#az_vm_open_port) 從網際網路開啟通訊埠 80：
+若要讓 Web 流量到達您的 VM，請使用 [az vm open-port](/cli/azure/vm#az-vm-open-port) 從網際網路開啟通訊埠 80：
 
-```azurecli-interactive 
+```azurecli-interactive
 az vm open-port --port 80 --resource-group myResourceGroupAutomate --name myVM
 ```
 
@@ -150,9 +149,9 @@ Azure Key Vault 會保護密碼編譯金鑰和祕密，像是憑證或密碼。 
 - 建立 VM 並插入憑證
 
 ### <a name="create-an-azure-key-vault"></a>建立 Azure Key Vault
-首先，使用 [az keyvault create](/cli/azure/keyvault#az_keyvault_create) 建立 Key Vault，並加以啟用以供您在部署 VM 時使用。 每個 Key Vault 需要唯一的名稱，而且應該全部小寫。 使用您自己唯一的 Key Vault 名稱來取代下列範例中的 mykeyvault：
+首先，使用 [az keyvault create](/cli/azure/keyvault#az-keyvault-create) 建立 Key Vault，並加以啟用以供您在部署 VM 時使用。 每個 Key Vault 需要唯一的名稱，而且應該全部小寫。 使用您自己唯一的 Key Vault 名稱來取代下列範例中的 mykeyvault：
 
-```azurecli-interactive 
+```azurecli-interactive
 keyvault_name=mykeyvault
 az keyvault create \
     --resource-group myResourceGroupAutomate \
@@ -161,9 +160,9 @@ az keyvault create \
 ```
 
 ### <a name="generate-certificate-and-store-in-key-vault"></a>產生憑證並儲存於 Key Vault
-若要在生產環境中使用，您應該使用 [az keyvault certificate import](/cli/azure/keyvault/certificate#az_keyvault_certificate_import) 來匯入由受信任的提供者所簽署的有效憑證。 在本教學課程中，下列範例示範如何透過使用預設憑證原則的 [az keyvault certificate create](/cli/azure/keyvault/certificate#az_keyvault_certificate_create) 來產生自我簽署憑證：
+若要在生產環境中使用，您應該使用 [az keyvault certificate import](/cli/azure/keyvault/certificate#az-keyvault-certificate-import) 來匯入由受信任的提供者所簽署的有效憑證。 在本教學課程中，下列範例示範如何透過使用預設憑證原則的 [az keyvault certificate create](/cli/azure/keyvault/certificate#az-keyvault-certificate-create) 來產生自我簽署憑證：
 
-```azurecli-interactive 
+```azurecli-interactive
 az keyvault certificate create \
     --vault-name $keyvault_name \
     --name mycert \
@@ -172,14 +171,14 @@ az keyvault certificate create \
 
 
 ### <a name="prepare-certificate-for-use-with-vm"></a>準備要與 VM 搭配使用的憑證
-若要在 VM 建立程序期間使用憑證，使用 [az keyvault secret list-versions](/cli/azure/keyvault/secret#az_keyvault_secret_list_versions) 來取得憑證的識別碼。 VM 需要特定格式的憑證，才能在開機時將其插入，因此請將憑證轉換為 [az vm format-secret](/cli/azure/vm#az_vm_format_secret)。 下列範例會將這些命令的輸出指派給變數，以方便在後續步驟中使用：
+若要在 VM 建立程序期間使用憑證，使用 [az keyvault secret list-versions](/cli/azure/keyvault/secret#az-keyvault-secret-list-versions) 來取得憑證的識別碼。 VM 需要特定格式的憑證，才能在開機時將其插入，因此請將憑證轉換為 [az vm secret format](/cli/azure/vm#az-vm-secret-format)。 下列範例會將這些命令的輸出指派給變數，以方便在後續步驟中使用：
 
-```azurecli-interactive 
+```azurecli-interactive
 secret=$(az keyvault secret list-versions \
           --vault-name $keyvault_name \
           --name mycert \
           --query "[?attributes.enabled].id" --output tsv)
-vm_secret=$(az vm format-secret --secret "$secret")
+vm_secret=$(az vm secret format --secret "$secret")
 ```
 
 
@@ -238,9 +237,9 @@ runcmd:
 ```
 
 ### <a name="create-secure-vm"></a>建立安全的 VM
-現在，使用 [az vm create](/cli/azure/vm#az_vm_create) 建立 VM。 使用 `--secrets` 參數，從 Key Vault 插入憑證資料。 如同先前範例，您也要使用 `--custom-data` 參數來傳入 cloud-init 組態：
+現在，使用 [az vm create](/cli/azure/vm#az-vm-create) 建立 VM。 使用 `--secrets` 參數，從 Key Vault 插入憑證資料。 如同先前範例，您也要使用 `--custom-data` 參數來傳入 cloud-init 組態：
 
-```azurecli-interactive 
+```azurecli-interactive
 az vm create \
     --resource-group myResourceGroupAutomate \
     --name myVMSecured \
@@ -253,9 +252,9 @@ az vm create \
 
 系統需要花幾分鐘的時間來建立 VM、安裝封裝和啟動應用程式。 在 Azure CLI 將您返回提示字元之後，背景工作會繼續執行。 可能需要再等候幾分鐘，才能存取應用程式。 建立 VM 之後，請注意 Azure CLI 所顯示的 `publicIpAddress`。 此位址是用來透過 Web 瀏覽器存取 Node.js 應用程式。
 
-若要讓 Web 流量安全到達您的 VM，請使用 [az vm open-port](/cli/azure/vm#az_vm_open_port) 從網際網路開啟通訊埠 443：
+若要讓 Web 流量安全到達您的 VM，請使用 [az vm open-port](/cli/azure/vm#az-vm-open-port) 從網際網路開啟通訊埠 443：
 
-```azurecli-interactive 
+```azurecli-interactive
 az vm open-port \
     --resource-group myResourceGroupAutomate \
     --name myVMSecured \
@@ -263,7 +262,7 @@ az vm open-port \
 ```
 
 ### <a name="test-secure-web-app"></a>測試安全的 Web 應用程式
-現在，您可以開啟 Web 瀏覽器，並在網址列輸入 *https://<publicIpAddress>*。 提供您自己從 VM 建立程序中取得的公用 IP 位址。 如果您使用自我簽署憑證，請接受安全性警告：
+現在，您可以開啟 Web 瀏覽器，並在網址列輸入 *https://<publicIpAddress>*。 提供您自己的公用 IP 位址，其已顯示在先前 VM 建立程序中的輸出中。 如果您使用自我簽署憑證，請接受安全性警告：
 
 ![接受 Web 瀏覽器安全性警告](./media/tutorial-automate-vm-deployment/browser-warning.png)
 

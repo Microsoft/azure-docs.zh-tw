@@ -2,18 +2,22 @@
 title: Azure SQL Database 連線架構 | Microsoft Docs
 description: 本文件說明 Azure 內外部的 Azure SQLDB 連線架構。
 services: sql-database
-author: CarlRabeler
-manager: craigg
 ms.service: sql-database
-ms.custom: DBs & servers
-ms.topic: article
+ms.subservice: development
+ms.custom: ''
+ms.devlang: ''
+ms.topic: conceptual
+author: DhruvMsft
+ms.author: dhruv
+ms.reviewer: carlrab
+manager: craigg
 ms.date: 01/24/2018
-ms.author: carlrab
-ms.openlocfilehash: 98784b2d1ede5354c965e483b34b5fcb323394aa
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: 66f558db713ab951864fe694f27f2e60d52e875a
+ms.sourcegitcommit: cc4fdd6f0f12b44c244abc7f6bc4b181a2d05302
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47064125"
 ---
 # <a name="azure-sql-database-connectivity-architecture"></a>Azure SQL Database 連線架構 
 
@@ -49,11 +53,17 @@ ms.lasthandoff: 03/16/2018
 
 ![架構概觀](./media/sql-database-connectivity-architecture/connectivity-from-outside-azure.png)
 
+> [!IMPORTANT]
+> 搭配 Azure SQL Database 使用服務端點時，您的預設原則會是 **Proxy**。 若要從 VNet 內進行連線，您必須允許對以下清單中指定的 Azure SQL Database 閘道 IP 位址進行連出連線。 使用服務端點時，強烈建議將您的連線原則變更為 [重新導向] 以達到更佳的效能。 如果您將連線原則變更為 [重新導向]，則不足以允許在您的 NSG 上輸出至下面所列的 Azure SQLDB 閘道 IP，您就必須允許輸出至所有 Azure SQLDB IP。 透過 NSG (網路安全性群組) 服務標籤可以完成此作業。 如需詳細資訊，請參閱[服務標籤](https://docs.microsoft.com/azure/virtual-network/security-overview#service-tags)。
+
 ## <a name="azure-sql-database-gateway-ip-addresses"></a>Azure SQL Database 閘道 IP 位址
 
 若要從內部部署資源連線到 Azure SQL Database，您必須允許輸出網路流量流到 Azure 區域的 Azure SQL Database 閘道。 在從內部部署資源連線時的預設 Proxy 模式中連線時，您只能透過閘道連線。
 
 下表列出所有資料區之 Azure SQL Database 閘道的主要和次要 IP。 對於某些區域，會有兩個 IP 位址。 在這些區域中，主要 IP 位址是閘道目前的 IP 位址，而次要 IP 位址為容錯移轉 IP 位址。 容錯移轉位址是指可能會移動伺服器以讓服務保持高可用性的位址。 對於這些區域，建議您針對這兩個 IP 位址允許輸出。 次要 IP 位址為 Microsoft 所有，在由 Azure SQL Database 啟動以接受連線之前，並不會接聽任何服務。
+
+> [!IMPORTANT]
+> 如果從 Azure 內部連線，則根據預設連線原則將為 [重新導向] (除非您使用的是服務端點)。 它不足以允許下列 IP。 您必須允許所有 Azure SQL Database IP。 如果您是從 VNet 內進行連線，透過 NSG (網路安全性群組) 服務標籤可以完成此作業。 如需詳細資訊，請參閱[服務標籤](https://docs.microsoft.com/azure/virtual-network/security-overview#service-tags)。
 
 | 區域名稱 | 主要 IP 位址 | 次要 IP 位址 |
 | --- | --- |--- |
@@ -71,8 +81,8 @@ ms.lasthandoff: 03/16/2018
 | 印度西部 | 104.211.160.80 | |
 | 日本東部 | 191.237.240.43 | 13.78.61.196 |
 | 日本西部 | 191.238.68.11 | 104.214.148.156 |
-| 韓國中部 | 52.231.32.42 | |
-| 韓國南部 | 52.231.200.86 |  |
+| 南韓中部 | 52.231.32.42 | |
+| 南韓南部 | 52.231.200.86 |  |
 | 美國中北部 | 23.98.55.75 | 23.96.178.199 |
 | 北歐 | 191.235.193.75 | 40.113.93.91 |
 | 美國中南部 | 23.98.162.75 | 13.66.62.124 |
@@ -87,11 +97,11 @@ ms.lasthandoff: 03/16/2018
 | 美國西部 2 | 13.66.226.202  | |
 ||||
 
-\* **注意：** [美國東部 2] 也有第三 IP 位址 `52.167.104.0`。
+\* **注意：**[美國東部 2] 也有第三 IP 位址 `52.167.104.0`。
 
 ## <a name="change-azure-sql-database-connection-policy"></a>變更 Azure SQL Database 連線原則
 
-若要變更 Azure SQL Database 伺服器的 Azure SQL Database 連線原則，請使用 [REST API](https://msdn.microsoft.com/library/azure/mt604439.aspx) \(英文\)。
+若要變更 Azure SQL Database 伺服器的 Azure SQL Database 連線原則，請使用 [conn-policy](https://docs.microsoft.com/cli/azure/sql/server/conn-policy) \(英文\) 命令。
 
 - 如果您的連線原則設定為 [Proxy]，所有網路封包都會流經 Azure SQL Database 閘道。 對於此設定，您必須只允許輸出至 Azure SQL Database 閘道 IP。 和 [重新導向] 設定相比，使用 [Proxy] 設定會較為延遲。
 - 如果您的連線原則設定為 [重新導向]，所有網路封包都會直接流到中介軟體 Proxy。 對於此設定，您需要允許輸出至多個 IP。
@@ -105,7 +115,7 @@ ms.lasthandoff: 03/16/2018
 下列 PowerShell 指令碼會示範如何變更連線原則。
 
 ```powershell
-Add-AzureRmAccount
+Connect-AzureRmAccount
 Select-AzureRmSubscription -SubscriptionName <Subscription Name>
 
 # Azure Active Directory ID
@@ -156,10 +166,10 @@ $body = @{properties=@{connectionType=$connectionType}} | ConvertTo-Json
 Invoke-RestMethod -Uri "https://management.azure.com/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Sql/servers/$serverName/connectionPolicies/Default?api-version=2014-04-01-preview" -Method PUT -Headers $authHeader -Body $body -ContentType "application/json"
 ```
 
-## <a name="script-to-change-connection-settings-via-azure-cli-20"></a>透過 Azure CLI 2.0 變更連線設定的指令碼
+## <a name="script-to-change-connection-settings-via-azure-cli"></a>透過 Azure CLI 變更連線設定的指令碼
 
 > [!IMPORTANT]
-> 此指令碼需要 [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli?view=azure-cli-latest)。
+> 此指令碼需要 [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli?view=azure-cli-latest)。
 >
 
 下列 CLI 指令碼會示範如何變更連線原則。
@@ -181,6 +191,6 @@ az resource update --ids $id --set properties.connectionType=Proxy
 
 ## <a name="next-steps"></a>後續步驟
 
-- 如需如何變更 Azure SQL Database 伺服器的 Azure SQL Database 連線原則，請參閱[使用 REST API 建立或更新伺服器連線原則](https://msdn.microsoft.com/library/azure/mt604439.aspx)。
+- 如需如何變更 Azure SQL Database 伺服器的 Azure SQL Database 連線原則相關資訊，請參閱 [conn-policy](https://docs.microsoft.com/cli/azure/sql/server/conn-policy) \(英文\)。
 - 如需使用 ADO.NET 4.5 或更新版本用戶端之 Azure SQL Database 連接行為的詳細資訊，請參閱 [ADO.NET 4.5 超過 1433以外的連接埠](sql-database-develop-direct-route-ports-adonet-v12.md)。
 - 如需一般應用程式開發概觀的資訊，請參閱 [SQL Database 應用程式開發概觀](sql-database-develop-overview.md)。

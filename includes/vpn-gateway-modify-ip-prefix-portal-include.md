@@ -13,6 +13,7 @@ ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 03/23/2018
+ms.locfileid: "30197936"
 ---
 ### <a name="noconnection"></a>修改區域網路閘道 IP 位址首碼 - 沒有閘道連線
 

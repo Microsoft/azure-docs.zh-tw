@@ -1,0 +1,85 @@
+### YamlMime:YamlDocument
+documentType: LandingData
+title: Translator Text API 文件
+metadata:
+  title: Translator Text 文件 - 快速入門、教學課程和 API 參考 - Azure 認知服務 | Microsoft Docs
+  description: 了解如何使用 Translator Text API 翻譯多種語言的文字。
+  services: cognitive-services
+  author: Jann-Skotdal
+  manager: Chris.Wendt
+  ms.service: cognitive-services
+  ms.tgt_pltfrm: na
+  ms.devlang: na
+  ms.topic: landing-page
+  ms.date: 10/30/2017
+  ms.author: v-jansko
+  ms.openlocfilehash: 85ef860a742c114d01696b9189f57ac9207c0bc5
+  ms.sourcegitcommit: bf522c6af890984e8b7bd7d633208cb88f62a841
+  ms.translationtype: HT
+  ms.contentlocale: zh-TW
+  ms.lasthandoff: 07/20/2018
+  ms.locfileid: "39185868"
+abstract:
+  description: Microsoft Translator Text API 是雲端式機器翻譯服務。 您可以使用此 API，透過簡單的 REST API 呼叫，在任何應用程式或服務中以幾乎即時的方式翻譯文字。 API 採用最先進的類神經機器翻譯技術，同時提供統計機器翻譯技術。 如需了解支援的語言清單，包括類神經機器翻譯和統計機器翻譯，請參閱<a href="languages.md">支援的語言</a>。
+sections:
+- title: 5 分鐘快速入門
+  items:
+  - type: paragraph
+    text: 開始使用 Translator Text API：
+  - type: table
+    style: dataMatrix
+    columns:
+    - image:
+        src: media/index/logo_csharp.svg
+      title: C#
+    - image:
+        src: media/index/logo_java.svg
+      title: Java
+    - image:
+        src: media/index/logo_nodejs.svg
+      title: Node.js
+    - image:
+        src: media/index/logo_python.svg
+      title: Python
+    - image:
+        src: media/index/logo_go.svg
+      title: Go
+    rows:
+    - title: 將文字從一種語言翻譯成另一種語言
+      values:
+      - href: quickstart-csharp-translate
+      - href: quickstart-java-translate
+      - href: quickstart-nodejs-translate
+      - href: quickstart-python-translate
+      - href: quickstart-go-translate
+    - title: 將文字從一種指令碼轉換成另一種指令碼
+      values:
+      - href: quickstart-csharp-transliterate
+      - href: quickstart-java-transliterate
+      - href: quickstart-nodejs-transliterate
+      - href: quickstart-python-transliterate
+      - href: quickstart-go-transliterate
+    - title: 識別文字的語言
+      values:
+      - href: quickstart-csharp-detect
+      - href: quickstart-java-detect
+      - href: quickstart-nodejs-detect
+      - href: quickstart-python-detect
+      - href: quickstart-go-detect
+    - title: 取得替代的翻譯和使用方式
+      values:
+      - href: quickstart-csharp-dictionary
+      - href: quickstart-java-dictionary
+      - href: quickstart-nodejs-dictionary
+      - href: quickstart-python-dictionary
+      - href: quickstart-go-dictionary
+- title: 逐步教學課程
+  items:
+  - type: paragraph
+    text: 了解如何使用翻譯工具文字 API 開發應用程式：
+  - type: paragraph
+    text: <a href="tutorial-wpf-translation-csharp.md">使用 C# 撰寫適用於翻譯工具文字的 WPF 應用程式</a>
+- title: 參考
+  items:
+  - type: paragraph
+    text: <p><a href="reference/v3-0-reference.md">API 參考</a></p>

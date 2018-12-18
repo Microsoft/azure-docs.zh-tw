@@ -10,24 +10,22 @@ ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 02/07/2018
+ms.topic: conceptual
+ms.date: 06/23/2018
 ms.author: jingwang
-ms.openlocfilehash: d7dea9a3d9eabdc9e4cdf21e6e584b745d22a54e
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: bb3179f1db077aacc7e36acf16486ee77a7f36e7
+ms.sourcegitcommit: 0c490934b5596204d175be89af6b45aafc7ff730
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 06/27/2018
+ms.locfileid: "37051258"
 ---
 # <a name="copy-data-from-mysql-using-azure-data-factory"></a>使用 Azure Data Factory 從 MySQL 複製資料
 > [!div class="op_single_selector" title1="Select the version of Data Factory service you are using:"]
-> * [第 1 版 - 正式推出](v1/data-factory-onprem-mysql-connector.md)
-> * [第 2 版 - 預覽](connector-mysql.md)
+> * [第 1 版](v1/data-factory-onprem-mysql-connector.md)
+> * [目前的版本](connector-mysql.md)
 
 本文概述如何使用 Azure Data Factory 中的「複製活動」，從 MySQL 資料庫複製資料。 本文是根據[複製活動概觀](copy-activity-overview.md)一文，該文提供複製活動的一般概觀。
-
-> [!NOTE]
-> 本文適用於第 2 版的 Data Fatory (目前為預覽版)。 如果您使用第 1 版的 Data Factory 服務 (也就是正式推出版 (GA))，請參閱 [V1 中的 MySQL 連接器](v1/data-factory-onprem-mysql-connector.md)。
 
 ## <a name="supported-capabilities"></a>支援的功能
 
@@ -37,13 +35,9 @@ ms.lasthandoff: 03/23/2018
 
 ## <a name="prerequisites"></a>先決條件
 
-若要使用這個 MySQL 連接器，您必須：
+如果您的 MySQL 資料庫無法公開存取，則必須設定自我裝載 Integration Runtime。 若要了解自我裝載整合執行階段，請參閱[自我裝載整合執行階段](create-self-hosted-integration-runtime.md)一文。 Integration Runtime 從 3.7 版開始提供內建的 MySQL 驅動程式，因此您不需要手動安裝任何驅動程式。
 
-- 設定一個「自我裝載 Integration Runtime」。 如需詳細資料，請參閱[自我裝載 Integration Runtime](create-self-hosted-integration-runtime.md) 一文。
-- 在 Integration Runtime 電腦上安裝 [Microsoft Windows 的 MySQL Connector/Net](https://dev.mysql.com/downloads/connector/net/) 6.6.5 版或更新版本。 這個 32 位元驅動程式可與 64 位元 IR 相容。
-
-> [!TIP]
-> 如果您遇到錯誤「驗證失敗，因為遠端合作對象已關閉傳輸串流」，請考慮將 MySQL 連接器/Net 更新為更高版本。
+針對 3.7 版以前的自我裝載 IR 版本，您必須在 Integration Runtime 電腦上安裝 [MySQL 連接器/適用於 Microsoft Windows 的 Net](https://dev.mysql.com/downloads/connector/net/)，版本為 6.6.5 與 6.10.7 之間的版本。 這個 32 位元驅動程式可與 64 位元 IR 相容。
 
 ## <a name="getting-started"></a>開始使用
 
@@ -58,14 +52,40 @@ ms.lasthandoff: 03/23/2018
 | 屬性 | 說明 | 必要 |
 |:--- |:--- |:--- |
 | type | 類型屬性必須設定為：**MySql** | yes |
-| 伺服器 | MySQL 伺服器的名稱。 | yes |
-| 資料庫 | MySQL 資料庫的名稱。 | yes |
-| 結構描述 | 在資料庫中的結構描述名稱。 | 否 |
-| username | 指定要連線到 MySQL 資料庫的使用者名稱。 | yes |
-| password | 指定您所指定使用者帳戶的密碼。 將此欄位標記為 SecureString，將它安全地儲存在 Data Factory 中，或[參考 Azure Key Vault 中儲存的祕密](store-credentials-in-key-vault.md)。 | yes |
-| connectVia | 用來連線到資料存放區的 [Integration Runtime](concepts-integration-runtime.md)。 如[必要條件](#prerequisites)所述，必須要有一個「自我裝載 Integration Runtime」。 |yes |
+| connectionString | 指定連線到適用於 MySQL 的 Azure 資料庫執行個體所需的資訊。 將此欄位標記為 SecureString，將它安全地儲存在 Data Factory 中，或[參考 Azure Key Vault 中儲存的祕密](store-credentials-in-key-vault.md)。 | yes |
+| connectVia | 用來連線到資料存放區的 [Integration Runtime](concepts-integration-runtime.md)。 您可以使用「自我裝載 Integration Runtime」或 Azure Integration Runtime (如果您的資料存放區是可公開存取的)。 如果未指定，就會使用預設的 Azure Integration Runtime。 |否 |
+
+一般的連接字串為 `Server=<server>;Port=<port>;Database=<database>;UID=<username>;PWD=<password>`。 您可以根據您的案例設定更多屬性：
+
+| 屬性 | 說明 | 選項 | 必要 |
+|:--- |:--- |:--- |:--- |:--- |
+| SSLMode | 此選項指定驅動程式在連接到 MySQL 時，是否會使用 SSL 加密及驗證。 例如 `SSLMode=<0/1/2/3/4>`| DISABLED (0) / PREFERRED (1) **(預設)** / REQUIRED (2) / VERIFY_CA (3) / VERIFY_IDENTITY (4) | 否 |
+| UseSystemTrustStore | 此選項指定是否使用來自系統信任存放區或來自指定 PEM 檔案的 CA 憑證。 例如 `UseSystemTrustStore=<0/1>;`| 啟用 (1) / 停用 (0) **(預設)** | 否 |
 
 **範例：**
+
+```json
+{
+    "name": "MySQLLinkedService",
+    "properties": {
+        "type": "MySql",
+        "typeProperties": {
+            "connectionString": {
+                 "type": "SecureString",
+                 "value": "Server=<server>;Port=<port>;Database=<database>;UID=<username>;PWD=<password>"
+            }
+        },
+        "connectVia": {
+            "referenceName": "<name of Integration Runtime>",
+            "type": "IntegrationRuntimeReference"
+        }
+    }
+}
+```
+
+如果您使用具有以下承載的 MySQL 連結服務，它仍然如同現狀受支援，但建議您使用新版本。
+
+**先前的承載：**
 
 ```json
 {
@@ -170,13 +190,14 @@ ms.lasthandoff: 03/23/2018
 |:--- |:--- |
 | `bigint` |`Int64` |
 | `bigint unsigned` |`Decimal` |
-| `bit` |`Decimal` |
+| `bit(1)` |`Boolean` |
+| `bit(M), M>1`|`Byte[]`|
 | `blob` |`Byte[]` |
-| `bool` |`Boolean` |
+| `bool` |`Int16` |
 | `char` |`String` |
 | `date` |`Datetime` |
 | `datetime` |`Datetime` |
-| `decimal` |`Decimal` |
+| `decimal` |`Decimal, String` |
 | `double` |`Double` |
 | `double precision` |`Double` |
 | `enum` |`String` |

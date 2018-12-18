@@ -1,13 +1,14 @@
 ---
 layout: HubPage
-hide_bc: ''
+hide_bc: true
 title: Microsoft Azure 文件
 description: 了解如何使用 Microsoft Azure 雲端服務建置和管理功能強大的應用程式。 取得文件、程式碼範例、教學課程等資訊。
-ms.openlocfilehash: 5084e6f9ab8d73e2c8ffefc95a376bc85222320c
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+ms.openlocfilehash: e1f01a63de4d9b2eaf45fa2b83875db6b1770418
+ms.sourcegitcommit: f20e43e436bfeafd333da75754cd32d405903b07
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49388257"
 ---
 <div id="main" class="v2">
     <div class="container">
@@ -136,6 +137,7 @@ ms.lasthandoff: 03/09/2018
                                                 </div>
                                                 <div class="ico48Link">
                                                     <a href="/go/azure/">
+                                                        <img src="https://docs.microsoft.com/media/logos/logo_Go-lightblue.svg" alt=""/>
                                                         <span>Go</span>
                                                     </a>
                                                 </div>
@@ -432,7 +434,7 @@ ms.lasthandoff: 03/09/2018
                                     </ul>
                                 </div>
                                 <div class="group">
-                                    <h3>網路</h3>
+                                    <h3>網路功能</h3>
                                     <ul>
                                         <li>
                                             <a href="/azure/networking/networking-overview">
@@ -449,7 +451,7 @@ ms.lasthandoff: 03/09/2018
                                         <li>
                                             <a href="/azure/load-balancer/">
                                                 <img src="media/index/LoadBalancer.svg" alt="" />
-                                                <p>負載平衡器</p>
+                                                <p>Load Balancer</p>
                                             </a>
                                         </li>
                                         <li>
@@ -699,7 +701,7 @@ ms.lasthandoff: 03/09/2018
                                         <li>
                                             <a href="/azure/backup/">
                                                 <img src="media/index/Backup.svg" alt="" />
-                                                <p>Backup </p>
+                                                <p>備份</p>
                                             </a>
                                         </li>
                                         <li>
@@ -777,11 +779,11 @@ ms.lasthandoff: 03/09/2018
                                         <li>
                                             <a href="https://www.visualstudio.com/docs/overview">
                                                 <img src="media/index/VisualStudioTeamServices.svg" alt="" />
-                                                <p>Visual Studio Team Services</p>
+                                                <p>Azure DevOps</p>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="/azure/devtest-lab/">
+                                            <a href="/services/devtest-lab/">
                                                 <img src="media/index/DevTestLabs.svg" alt="" />
                                                 <p>Azure DevTest Labs</p>
                                             </a>
@@ -852,7 +854,7 @@ ms.lasthandoff: 03/09/2018
                                         <li>
                                             <a href="/azure/time-series-insights/">
                                                 <img src="media/index/time-series-insights.svg" alt="" />
-                                                <p>Time Series Insights</p>
+                                                <p>時間序列深入解析</p>
                                             </a>
                                         </li>
                                     </ul>
@@ -900,12 +902,6 @@ ms.lasthandoff: 03/09/2018
                                             <a href="/azure/search/">
                                                 <img src="media/index/Search.svg" alt="" />
                                                 <p>Search</p>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="/azure/mobile-engagement/">
-                                                <img src="media/index/MobileEngagement.svg" alt="" />
-                                                <p>Mobile Engagement</p>
                                             </a>
                                         </li>
                                         <li>
@@ -1013,7 +1009,7 @@ ms.lasthandoff: 03/09/2018
                                         <li>
                                             <a href="/azure/advisor">
                                                 <img src="media/index/advisor.svg" alt="" />
-                                                <p>Azure 建議程式</p>
+                                                <p>Azure Advisor</p>
                                             </a>
                                         </li>
                                         <li>
@@ -1260,7 +1256,7 @@ ms.lasthandoff: 03/09/2018
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
-                                                    <h3>負載平衡器</h3>
+                                                    <h3>Load Balancer</h3>
                                                     <p>為您的應用程式提供高可用性和網路效能</p>
                                                 </div>
                                             </div>
@@ -1633,25 +1629,6 @@ ms.lasthandoff: 03/09/2018
                                                 <div class="cardText">
                                                     <h3>Search</h3>
                                                     <p>完全受控的搜尋即服務</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/azure/mobile-engagement/">
-                                    <div class="cardSize">
-                                        <div class="cardPadding">
-                                            <div class="card">
-                                                <div class="cardImageOuter">
-                                                    <div class="cardImage">
-                                                        <img src="media/index/MobileEngagement.svg" alt="" />
-                                                    </div>
-                                                </div>
-                                                <div class="cardText">
-                                                    <h3>Mobile Engagement</h3>
-                                                    <p>增加應用程式使用量與使用者回訪率</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2735,7 +2712,7 @@ ms.lasthandoff: 03/09/2018
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
-                                                    <h3>Visual Studio Team Services</h3>
+                                                    <h3>Azure DevOps</h3>
                                                     <p>供團隊分享程式碼、追蹤工作及送出軟體的服務</p>
                                                 </div>
                                             </div>
@@ -2744,7 +2721,7 @@ ms.lasthandoff: 03/09/2018
                                 </a>
                             </li>
                             <li>
-                                <a href="/azure/devtest-lab/">
+                                <a href="/services/devtest-lab/">
                                     <div class="cardSize">
                                         <div class="cardPadding">
                                             <div class="card">
@@ -2987,7 +2964,7 @@ ms.lasthandoff: 03/09/2018
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
-                                                    <h3>Azure 建議程式</h3>
+                                                    <h3>Azure Advisor</h3>
                                                     <p>改善您 Azure 資源的成本效益、效能、高可用性和安全性</p>
                                                 </div>
                                             </div>
@@ -3148,10 +3125,10 @@ ms.lasthandoff: 03/09/2018
                                                     <a href="https://pypi.python.org/pypi/azure">取得 Python SDK</a>
                                                 </h3>
                                                 <p>
-                                                    <a href="http://azure-sdk-for-python.readthedocs.io/en/latest/">開始使用</a>
+                                                    <a href="https://docs.microsoft.com/python/azure/?view=azure-python">開始使用</a>
                                                 </p>
                                                 <p>
-                                                    <a href="http://azure-sdk-for-python.readthedocs.io/en/latest/">API 參考</a>
+                                                    <a href="https://docs.microsoft.com/python/azure/?view=azure-python">API 參考</a>
                                                 </p>
                                                 <p>
                                                     <a href="https://azure.microsoft.com/resources/samples/?platform=python">取得範例</a>
@@ -3254,6 +3231,7 @@ ms.lasthandoff: 03/09/2018
                                         <div class="card">
                                             <div class="cardImageOuter">
                                                 <div class="cardImage">
+                                                    <img src="https://docs.microsoft.com/media/logos/logo_Go-lightblue.svg" alt="" />
                                                 </div>
                                             </div>
                                             <div class="cardText">
@@ -3310,12 +3288,12 @@ ms.lasthandoff: 03/09/2018
                                                 </div>
                                             </div>
                                             <div class="cardText">
-                                                <h3>Azure CLI 2.0 </h3>
+                                                <h3>Azure CLI </h3>
                                                 <p>
                                                     <a href="/cli/azure">開始使用</a>
                                                 </p>
                                                 <p>
-                                                    <a href="/cli/azure/install-azure-cli">下載 Azure CLI 2.0</a>
+                                                    <a href="/cli/azure/install-azure-cli">下載 Azure CLI</a>
                                                 </p>
                                                 <p>
                                                     <a href="/cli/azure">參考</a>
@@ -3360,7 +3338,7 @@ ms.lasthandoff: 03/09/2018
                                                 </div>
                                             </div>
                                             <div class="cardText">
-                                                <h3>Azure CLI </h3>
+                                                <h3>Azure 傳統 CLI </h3>
                                                 <p>
                                                     <a href="/azure/xplat-cli-install?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json">開始使用</a>
                                                 </p>
@@ -3424,13 +3402,13 @@ ms.lasthandoff: 03/09/2018
                                                     <a href="/dotnet/articles/core/docker/visual-studio-tools-for-docker">開始使用</a>
                                                 </p>
                                                 <p>
-                                                    <a href="https://go.microsoft.com/fwlink/?LinkId=780680">針對 Visual Studio 下載</a>
+                                                    <a href="https://marketplace.visualstudio.com/items?itemName=Click2CloudInc.Click2CloudDockerExtensionForVisualStudio2017">針對 Visual Studio 下載</a>
                                                 </p>
                                                 <p>
                                                     <a href="https://go.microsoft.com/fwlink/?LinkId=780681">針對 Visual Studio Code 下載</a>
                                                 </p>
                                                 <p>
-                                                    <a href="https://go.microsoft.com/fwlink/?LinkId=780682">針對 Team Services 下載</a>
+                                                    <a href="https://go.microsoft.com/fwlink/?LinkId=780682">下載 Azure DevOps</a>
                                                 </p>
                                             </div>
                                         </div>
@@ -3499,13 +3477,13 @@ ms.lasthandoff: 03/09/2018
                                             </div>
                                             <div class="cardText">
                                                 <h3>
-                                                    <a href="https://www.visualstudio.com/vs/python">Python 工具</a>
+                                                    <a href="http://aka.ms/ptvs">Python 工具</a>
                                                 </h3>
                                                 <p>
-                                                    <a href="https://github.com/Microsoft/PTVS/wiki/PTVS-Installation">開始使用 Visual Studio</a>
+                                                    <a href="http://aka.ms/ptvsdocs">開始使用 Visual Studio</a>
                                                 </p>
                                                 <p>
-                                                    <a href="https://marketplace.visualstudio.com/items?itemName=donjayamanne.python">開始使用 Visual Studio 程式碼</a>
+                                                    <a href="https://code.visualstudio.com/docs/python/python-tutorial">開始使用 Visual Studio 程式碼</a>
                                                 </p>
                                             </div>
                                         </div>

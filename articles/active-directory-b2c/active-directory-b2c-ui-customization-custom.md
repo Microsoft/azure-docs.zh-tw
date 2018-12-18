@@ -1,21 +1,21 @@
 ---
-title: 使用自訂原則來自訂 UI - Azure AD B2C | Microsoft Docs
+title: 在 Azure Active Directory B2C 中使用自訂原則來自訂 UI | Microsoft Docs
 description: 了解如何在 Azure AD B2C 中使用自訂原則時自訂使用者介面 (UI)。
 services: active-directory-b2c
-documentationcenter: ''
 author: davidmu1
 manager: mtillman
-editor: ''
-ms.service: active-directory-b2c
+ms.service: active-directory
 ms.workload: identity
-ms.topic: article
+ms.topic: conceptual
 ms.date: 04/04/2017
 ms.author: davidmu
-ms.openlocfilehash: 659910f239087a1d87d650c05af157c085e8c72c
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: B2C
+ms.openlocfilehash: 9908a7cf96c56e414e0a8d7faea0352b60214ea4
+ms.sourcegitcommit: 86cb3855e1368e5a74f21fdd71684c78a1f907ac
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37446158"
 ---
 # <a name="azure-active-directory-b2c-configure-ui-customization-in-a-custom-policy"></a>Azure Active Directory B2C︰在自訂原則中設定 UI 自訂
 
@@ -128,6 +128,7 @@ ms.lasthandoff: 03/23/2018
     <ContentDefinitions>
       <ContentDefinition Id="api.idpselections">
         <LoadUri>https://{your_storage_account}.blob.core.windows.net/customize-ui.html</LoadUri>
+        <DataUri>urn:com:microsoft:aad:b2c:elements:idpselection:1.0.0</DataUri>
       </ContentDefinition>
     </ContentDefinitions>
   </BuildingBlocks>

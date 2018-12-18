@@ -1,24 +1,19 @@
 ---
-title: "使用 Azure 備份伺服器將 Exchange Server 備份至 Azure 備份 | Microsoft Docs"
-description: "了解如何使用 Azure 備份伺服器將 Exchange Server 備份至 Azure 備份"
+title: 使用 Azure 備份伺服器將 Exchange Server 備份至 Azure 備份
+description: 了解如何使用 Azure 備份伺服器將 Exchange Server 備份至 Azure 備份
 services: backup
-documentationcenter: 
 author: pvrk
 manager: shivamg
-editor: 
-ms.assetid: e46557e8-2eaf-4ee0-99ea-00fbb8687dca
 ms.service: backup
-ms.workload: storage-backup-recovery
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 03/24/2017
 ms.author: pullabhk
-ms.openlocfilehash: 60b784fd00013c2b9504f8635c6b5c4c592563be
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: d64c273a189b1fe2337c4430b156874e0adf54b2
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34605955"
 ---
 # <a name="back-up-an-exchange-server-to-azure-backup-with-azure-backup-server"></a>使用 Azure 備份伺服器將 Exchange Server 備份至 Azure 備份
 本文說明如何設定 Microsoft Azure 備份伺服器 (MABS)，以將 Microsoft Exchange Server 備份至 Azure。  
@@ -105,7 +100,7 @@ ms.lasthandoff: 10/11/2017
 * **復原到 Exchange Server 上的其他資料庫：** 資料將會還原到其他 Exchange Server 上的其他資料庫。
 * **復原到復原資料庫：** 資料將會復原到 Exchange 復原資料庫 (RDB)。
 * **複製到網路資料夾：** 資料將會還原到網路資料夾。
-* **複製到磁帶：**如果您已在 MABS 上連接並設定磁帶媒體櫃或獨立磁帶機，則會將復原點複製到可用的磁帶。
+* **複製到磁帶：** 如果您已在 MABS 上連接並設定磁帶媒體櫃或獨立磁帶機，則會將復原點複製到可用的磁帶。
 
     ![選擇線上複寫](./media/backup-azure-backup-exchange-server/choose-online-replication.png)
 

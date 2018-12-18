@@ -1,25 +1,26 @@
 ---
-title: "Azure PowerShell 指令碼範例 - 加密 Windows VM | Microsoft Docs"
-description: "Azure PowerShell 指令碼範例 - 加密 Windows VM"
+title: Azure PowerShell 指令碼範例 - 加密 Windows VM | Microsoft Docs
+description: Azure PowerShell 指令碼範例 - 加密 Windows VM
 services: virtual-machines-windows
 documentationcenter: virtual-machines
-author: iainfoulds
-manager: timlt
+author: cynthn
+manager: jeconnoc
 editor: tysonn
 tags: azure-resource-manager
-ms.assetid: 
+ms.assetid: ''
 ms.service: virtual-machines-windows
 ms.devlang: na
 ms.topic: sample
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 ms.date: 12/12/2017
-ms.author: iainfou
-ms.openlocfilehash: f405cdaf61d6aaafa8568a9d7f21614071285c17
-ms.sourcegitcommit: d247d29b70bdb3044bff6a78443f275c4a943b11
+ms.author: cynthn
+ms.openlocfilehash: af12630839d31bd5e3baa4c67cdd881f936e9d19
+ms.sourcegitcommit: aa988666476c05787afc84db94cfa50bc6852520
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/13/2017
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37927524"
 ---
 # <a name="encrypt-a-windows-virtual-machine-with-azure-powershell"></a>使用 Azure PowerShell 加密 Windows 虛擬機器
 

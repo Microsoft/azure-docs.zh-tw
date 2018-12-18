@@ -1,6 +1,6 @@
 ---
 title: 教學課程：使用 Azure 入口網站來設計適用於 PostgreSQL 的 Azure 資料庫
-description: 本教學課程說明如何使用 Azure 入口網站來設計您的第一個「適用於 PostgreSQL 的 Azure 資料庫」。
+description: 此教學課程說明如何使用 Azure 入口網站來設計您的第一個「適用於 PostgreSQL 的 Azure 資料庫」。
 services: postgresql
 author: rachel-msft
 ms.author: raagyema
@@ -10,17 +10,18 @@ ms.service: postgresql
 ms.custom: tutorial, mvc
 ms.topic: tutorial
 ms.date: 03/20/2018
-ms.openlocfilehash: 181e31530960f031dd2785b852c0ae15c21af782
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 6a3241e15cc72d1d50862a9dec14c23712ec4226
+ms.sourcegitcommit: b7e5bbbabc21df9fe93b4c18cc825920a0ab6fab
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47406377"
 ---
 # <a name="tutorial-design-an-azure-database-for-postgresql-using-the-azure-portal"></a>教學課程：使用 Azure 入口網站來設計適用於 PostgreSQL 的 Azure 資料庫
 
 「適用於 PostgreSQL 的 Azure 資料庫」是一個受控服務，可讓您在雲端執行、管理及調整高可用性 PostgreSQL 資料庫。 使用 Azure 入口網站，您可以輕鬆管理伺服器和設計資料庫。
 
-在本教學課程中，您將使用 Azure 入口網站來學習如何：
+在此教學課程中，您將使用 Azure 入口網站來學習如何：
 > [!div class="checklist"]
 > * 建立適用於 PostgreSQL 的 Azure 資料庫伺服器
 > * 設定伺服器防火牆
@@ -31,7 +32,7 @@ ms.lasthandoff: 03/23/2018
 > * 還原資料
 
 ## <a name="prerequisites"></a>先決條件
-如果您沒有 Azure 訂用帳戶，請在開始前建立[免費帳戶](https://azure.microsoft.com/free/) 。
+如果您沒有 Azure 訂用帳戶，請在開始前建立[免費帳戶](https://azure.microsoft.com/free/)。
 
 ## <a name="log-in-to-the-azure-portal"></a>登入 Azure 入口網站
 登入 [Azure 入口網站](https://portal.azure.com)。
@@ -57,9 +58,9 @@ ms.lasthandoff: 03/23/2018
     - PostgreSQL 版本
 
    > [!IMPORTANT]
-   > 必須要有您在此處指定的伺服器系統管理員登入和密碼，稍後在本教學課程中才能登入伺服器及其資料庫。 請記住或記錄此資訊，以供稍後使用。
+   > 必須要有您在此處指定的伺服器系統管理員登入和密碼，稍後在此教學課程中才能登入伺服器及其資料庫。 請記住或記錄此資訊，以供稍後使用。
 
-4.  按一下 [定價層] 以指定新伺服器的定價層。 本教學課程中，選取 [一般用途]、[Gen 4] 計算世代，2 個 [虛擬核心]，5 GB 的 [儲存體]，以及 7 天的 [備份保留期限]。 在備份備援選項中選取 [異地備援]，將您伺服器的自動備份儲存在異地備援儲存體。
+4.  按一下 [定價層] 以指定新伺服器的定價層。 此教學課程中，選取 [一般用途]、[Gen 4] 計算世代，2 個 [虛擬核心]，5 GB 的 [儲存體]，以及 7 天的 [備份保留期限]。 在備份備援選項中選取 [異地備援]，將您伺服器的自動備份儲存在異地備援儲存體。
  ![適用於 PostgreSQL 的 Azure 資料庫 - 挑選定價層](./media/tutorial-design-database-using-azure-portal/2-pricing-tier.png)
 
 5.  按一下 [確定] 。
@@ -84,7 +85,7 @@ ms.lasthandoff: 03/23/2018
 
 2.  在伺服器頁面中，選取 [連線安全性]。 
 
-3.  在 [規則名稱] 底下的文字方塊中按一下，然後新增新的防火牆規則，以將 IP 範圍加入白名單來獲得連線能力。 針對本教學課程，我們將輸入 **Rule Name = AllowAllIps**、**Start IP = 0.0.0.0** 及 **End IP = 255.255.255.255**，然後按一下 [儲存]，來允許所有 IP。 您可以設定一個涵蓋較小 IP 範圍的特定防火牆規則，以便能夠從您的網路進行連線。
+3.  在 [規則名稱] 底下的文字方塊中按一下，然後新增新的防火牆規則，以將 IP 範圍加入允許清單來獲得連線能力。 輸入您的 IP 範圍。 按一下 [檔案] 。
 
    ![適用於 PostgreSQL 的 Azure 資料庫 - 建立防火牆規則](./media/tutorial-design-database-using-azure-portal/5-firewall-2.png)
 
@@ -201,7 +202,7 @@ SELECT * FROM inventory;
 3.  按一下 [確定] 以[將伺服器還原到刪除資料表之前的時間點](./howto-restore-server-portal.md)。 如果將伺服器還原到不同的時間點，將會從您指定的時間點 (前提是此時間點在您[定價層](./concepts-pricing-tiers.md)的保留期限內) 開始，建立重複的新伺服器作為原始伺服器。
 
 ## <a name="next-steps"></a>後續步驟
-在本教學課程中，您已了解如何使用 Azure 入口網站和其他公用程式來：
+在此教學課程中，您已了解如何使用 Azure 入口網站和其他公用程式來：
 > [!div class="checklist"]
 > * 建立適用於 PostgreSQL 的 Azure 資料庫伺服器
 > * 設定伺服器防火牆

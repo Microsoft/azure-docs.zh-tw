@@ -1,0 +1,86 @@
+items:
+- name: Service Fabric Mesh 文件
+  href: index.yml
+- name: 概觀
+  items:
+  - name: 關於 Service Fabric Mesh
+    href: service-fabric-mesh-overview.md
+  expanded: true
+- name: 快速入門
+  items:
+  - name: 部署 Hello World
+    href: service-fabric-mesh-quickstart-deploy-container.md
+  - name: 建立 Web 應用程式，並將其部署至 Azure Service Fabric Mesh
+    href: service-fabric-mesh-quickstart-dotnet-core.md
+- name: 教學課程
+  items:
+  - name: 使用 Visual Studio 來建置及部署 Mesh 應用程式
+    items:
+    - name: 1- 建立 Mesh 應用程式
+      href: service-fabric-mesh-tutorial-create-dotnetcore.md
+    - name: 2- 針對 Mesh 應用程式進行偵錯
+      href: service-fabric-mesh-tutorial-debug-service-fabric-mesh-app.md
+    - name: 3- 部署 Mesh 應用程式
+      href: service-fabric-mesh-tutorial-deploy-service-fabric-mesh-app.md
+    - name: 4- 升級 Mesh 應用程式
+      href: service-fabric-mesh-tutorial-upgrade.md
+    - name: 5- 清除 Mesh 資源
+      href: service-fabric-mesh-tutorial-cleanup-resources.md
+  - name: 使用範本來部署、調整及升級 Service Fabric Mesh 應用程式
+    items:
+    - name: 1- 部署 Service Fabric Mesh 應用程式
+      href: service-fabric-mesh-tutorial-template-deploy-app.md
+    - name: 2- 調整應用程式中的服務規模
+      href: service-fabric-mesh-tutorial-template-scale-services.md
+    - name: 3- 升級應用程式
+      href: service-fabric-mesh-tutorial-template-upgrade-app.md
+    - name: 4- 移除應用程式
+      href: service-fabric-mesh-tutorial-template-remove-app.md
+- name: 概念
+  items:
+  - name: 術語
+    href: service-fabric-mesh-terminology.md
+  - name: Service Fabric 資源
+    href: service-fabric-mesh-service-fabric-resources.md
+  - name: 監視和診斷
+    href: service-fabric-mesh-monitoring-diagnostics.md
+  - name: 存放狀態
+    href: service-fabric-mesh-storing-state.md
+- name: 使用說明指南
+  items:
+  - name: 設定開發環境
+    href: service-fabric-mesh-howto-setup-developer-environment-sdk.md
+  - name: 設定 Service Fabric Mesh CLI
+    href: service-fabric-mesh-howto-setup-cli.md
+  - name: 使用 Azure 檔案磁碟區的存放區狀態
+    href: service-fabric-mesh-howto-deploy-app-azurefiles-volume.md
+  - name: 獨立縮放應用程式中的微服務
+    href: service-fabric-mesh-howto-app-scale-out.md
+- name: 參考
+  items:
+  - name: Service Fabric Mesh 資源提供者 REST API
+    href: /rest/api/servicefabric/sfmeshrp-index
+  - name: Service Fabric 用戶端資源 REST API
+    href: /rest/api/servicefabric/sfclient-index#service-fabric-resource-model
+- name: 資源
+  items:
+  - name: 常見問題
+    href: service-fabric-mesh-faq.md
+  - name: 範例應用程式
+    href: https://github.com/Azure-Samples/service-fabric-mesh
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/?category=service-fabric-mesh
+  - name: 堆疊溢位
+    href: https://stackoverflow.com/search?q=service-fabric-mesh
+  - name: 影片
+    href: https://azure.microsoft.com/documentation/videos/index/?services=service-fabric-mesh
+  - name: 服務更新
+    href: https://azure.microsoft.com/updates/?product=service-fabric-mesh
+  - name: 區域可用性
+    href: https://azure.microsoft.com/regions/services/
+ms.openlocfilehash: 0a148c51aa21e197b3bb3222ec2acb8958fac089
+ms.sourcegitcommit: 5b8d9dc7c50a26d8f085a10c7281683ea2da9c10
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/26/2018
+ms.locfileid: "47180440"

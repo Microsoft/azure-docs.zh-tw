@@ -7,14 +7,15 @@ author: MightyPen
 manager: craigg
 ms.service: sql-database
 ms.custom: scale out apps
-ms.topic: article
-ms.date: 11/20/2017
+ms.topic: conceptual
+ms.date: 04/01/2018
 ms.author: genemi
-ms.openlocfilehash: 0bdb91fc9eb2fa23f8cf1e3f69206a89a93ceaee
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: 6c352298c701c827cd01c0ed7f427b7ed6015e29
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34646672"
 ---
 # <a name="general-guidance-for-working-with-wingtip-tickets-sample-saas-apps"></a>使用 Wingtip Tickets 範例 SaaS 應用程式的一般指導方針
 
@@ -32,7 +33,7 @@ ms.lasthandoff: 03/16/2018
 3. 按一下 [下載 zip]，並儲存檔案。
 4. 請以滑鼠右鍵按一下 zip 檔案，然後選取 [屬性]。 ZIP 檔案會對應至存放庫名稱。 (例如 _WingtipTicketsSaaS-DbPerTenant-master.zip_)
 5. 在 [一般] 索引標籤上，選取 [解除封鎖]。
-6. 按一下 [SERVICEPRINCIPAL] 。
+6. 按一下 [確定]。
 7. 將檔案解壓縮。
 
 指令碼檔案位於 ..\\學習模組資料夾中。
@@ -76,17 +77,17 @@ ms.lasthandoff: 03/16/2018
 
 部署一開始都有租用戶與目錄 SQL Database 伺服器加以連線。 伺服器的命名取決於資料庫租用戶模式 (如需詳細資訊，請參閱下方)。 
 
-   - **獨立應用程式：**每個租用戶的伺服器 (例如 contosoconcerthall-&lt;User&gt; 伺服器) 和 catalog-sa-&lt;User&gt;
-   - **每一租用戶一個資料庫：**tenants1-dpt-&lt;User&gt; 和 catalog-dpt-&lt;User&gt; 伺服器
-   - **多租用戶資料庫：**tenants1-mt-&lt;User&gt; 和 catalog-mt-&lt;User&gt; 伺服器
+   - **獨立應用程式：** 每個租用戶的伺服器 (例如 contosoconcerthall-&lt;User&gt; 伺服器) 和 catalog-sa-&lt;User&gt;
+   - **每一租用戶一個資料庫：** tenants1-dpt-&lt;User&gt; 和 catalog-dpt-&lt;User&gt; 伺服器
+   - **多租用戶資料庫：** tenants1-mt-&lt;User&gt; 和 catalog-mt-&lt;User&gt; 伺服器
 
 若要確保示範連線成功，所有伺服器都有允許所有 IP 通過的[防火牆規則](sql-database-firewall-configure.md)。
 
 
 1. 開啟 *SSMS* 並連線到租用戶。 伺服器名稱取決於您所選取 (如需詳細資訊，請參閱下方) 的租用戶資料庫模式：
-    - **獨立應用程式：**個別租用戶的伺服器 (例如 contosoconcerthall-&lt;User&gt;.database.windows.net) 
-    - **每一租用戶一個資料庫：**tenants1-dpt-&lt;User&gt;.database.windows.net
-    - **多租用戶資料庫：**tenants1-mt-&lt;User&gt;.database.windows.net 
+    - **獨立應用程式：** 個別租用戶的伺服器 (例如 contosoconcerthall-&lt;User&gt;.database.windows.net) 
+    - **每一租用戶一個資料庫：** tenants1-dpt-&lt;User&gt;.database.windows.net
+    - **多租用戶資料庫：** tenants1-mt-&lt;User&gt;.database.windows.net 
 2. 按一下 [連線] > **[資料庫引擎...]**：
 
    ![目錄伺服器](media/saas-tenancy-wingtip-app-guidance-tips/connect.png)
@@ -99,9 +100,9 @@ ms.lasthandoff: 03/16/2018
    
 
 4. 重複步驟 2-3，並連線到目錄伺服器 (請參閱下方以選取之資料庫租用戶模式作為基礎的特定伺服器名稱)
-    - **獨立應用程式：**catalog-sa-&lt;User&gt;.database.windows.net
-    - **每一租用戶一個資料庫：**catalog-dpt-&lt;User&gt;.database.windows.net
-    - **多租用戶資料庫：**catalog-mt-&lt;User&gt;.database.windows.net
+    - **獨立應用程式：** catalog-sa-&lt;User&gt;.database.windows.net
+    - **每一租用戶一個資料庫：** catalog-dpt-&lt;User&gt;.database.windows.net
+    - **多租用戶資料庫：** catalog-mt-&lt;User&gt;.database.windows.net
 
 
 成功連線之後，您會看到所有伺服器。 視您已佈建的租用戶而定，您的資料庫清單可能有所不同。

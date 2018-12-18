@@ -1,26 +1,21 @@
 ---
-title: "在 Power BI 工作區集合中連線到資料來源 | Microsoft Docs"
-description: "了解如何在 Power BI 工作區集合中連線到資料來源。"
+title: 在 Power BI 工作區集合中連線到資料來源 | Microsoft Docs
+description: 了解如何在 Power BI 工作區集合中連線到資料來源。
 services: power-bi-embedded
-documentationcenter: 
-author: guyinacube
-manager: erikre
-editor: 
-tags: 
+author: markingmyname
 ROBOTS: NOINDEX
 ms.assetid: 2a4caeb3-255d-4215-9554-0ca8e3568c13
 ms.service: power-bi-embedded
-ms.devlang: NA
 ms.topic: article
-ms.tgt_pltfrm: NA
 ms.workload: powerbi
 ms.date: 09/20/2017
-ms.author: asaxton
-ms.openlocfilehash: 24600c4343e3bfebe14f25020c5a7ba02d15af64
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.author: maghan
+ms.openlocfilehash: c626601d9eae7732779020b153c624f80605b56a
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43051870"
 ---
 # <a name="connect-to-a-data-source"></a>連接到資料來源
 

@@ -1,24 +1,25 @@
 ---
-title: "按發票支付 Azure 訂用帳戶 | Microsoft Docs"
-description: "描述如何按發票支付 Azure 訂用帳戶"
-services: 
-documentationcenter: 
+title: 按發票支付 Azure 訂用帳戶 | Microsoft Docs
+description: 描述如何按發票支付 Azure 訂用帳戶
+services: ''
+documentationcenter: ''
 author: genlin
 manager: jlian
-editor: 
+editor: ''
 tags: billing
 ms.service: billing
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: troubleshooting
-ms.date: 08/30/2017
-ms.author: genli
-ms.openlocfilehash: b9f785a8f24c013f01dd429539239a7396a94953
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.topic: conceptual
+ms.date: 05/11/2018
+ms.author: cwatson
+ms.openlocfilehash: 27d84748e932ae438f68ca7b84004c98c26e42d7
+ms.sourcegitcommit: d1aef670b97061507dc1343450211a2042b01641
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47393888"
 ---
 # <a name="submit-a-request-to-pay-azure-subscription-by-invoice"></a>提交按發票支付 Azure 訂用帳戶的要求
 
@@ -26,7 +27,7 @@ ms.lasthandoff: 10/11/2017
 
 > [!IMPORTANT]
 > * 發票支付只適用於商務帳戶。
-> * [第三方和外部服務](billing-understand-your-azure-marketplace-charges.md)無法購買或使用發票支付來付費。 如果您的訂用帳戶包含外部服務的資源，例如 ClearDB 或 SendGrid，在變更為發票支付之前，必須先將它們刪除。 切換到發票支付之後若要購買外部服務，您將需要個別訂用帳戶與信用卡或轉帳卡。
+> * [第三方和外部服務](billing-understand-your-azure-marketplace-charges.md)無法購買或使用發票支付來付費。 如果您的訂用帳戶包含外部服務的資源，例如 SendGrid，在變更為發票支付之前，必須先將它們刪除。 切換到發票支付之後若要購買外部服務，您將需要個別訂用帳戶與信用卡或轉帳卡。
 > * 一旦您切換到發票付款後，就無法切換回信用卡或轉帳卡付款。
 
 ## <a name="request-pay-by-invoice"></a>依發票要求付款

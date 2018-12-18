@@ -1,37 +1,32 @@
 ---
-title: "使用 Azure Analysis Services Web 設計工具來建立表格式模型 | Microsoft Docs"
-description: "了解如何在 Azure 入口網站中使用 Web 設計工具，建立 Azure Analysis Services 表格式模型。"
-services: analysis-services
-documentationcenter: 
+title: 使用 Azure Analysis Services Web 設計工具來建立表格式模型 | Microsoft Docs
+description: 了解如何在 Azure 入口網站中使用 Web 設計工具，建立 Azure Analysis Services 表格式模型。
 author: minewiskan
 manager: kfile
-editor: 
-tags: 
-ms.assetid: 
-ms.service: analysis-services
-ms.devlang: NA
-ms.topic: article
-ms.tgt_pltfrm: NA
-ms.workload: na
-ms.date: 02/14/2018
+ms.service: azure-analysis-services
+ms.topic: conceptual
+ms.date: 07/03/2018
 ms.author: owend
-ms.openlocfilehash: ff2f1dd89796a30d4e0fee0810ff45ff57f5f8bf
-ms.sourcegitcommit: c765cbd9c379ed00f1e2394374efa8e1915321b9
+ms.reviewer: minewiskan
+ms.openlocfilehash: dcfcfb24d2b47a8272c576856fc3accc547f354a
+ms.sourcegitcommit: f057c10ae4f26a768e97f2cb3f3faca9ed23ff1b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/28/2018
+ms.lasthandoff: 08/17/2018
+ms.locfileid: "42146175"
 ---
 # <a name="create-a-model-in-azure-portal"></a>在 Azure 入口網站中建立模型
 
 Azure 入口網站中的 Azure Analysis Services Web 設計工具 (預覽) 提供快速又簡單的方法，直接在瀏覽器中建立及編輯表格式模型和查詢模型資料。 
 
-請記住，Web 設計工具為**預覽**狀態。 雖然在預覽中隨時會新增新功能，但是功能受到限制。 對於進階模型開發和測試，最好使用 Visual Studio (SSDT) 和 SQL Server Management Studio (SSMS)。
+請記住，Web 設計工具為**預覽**狀態。 功能會受到限制。 對於進階模型開發和測試，最好使用 Visual Studio (SSDT) 和 SQL Server Management Studio (SSMS)。
 
 ## <a name="before-you-begin"></a>開始之前
 
-- 在標準或開發人員層的 Azure Analysis Services 伺服器。 使用 Web 設計工具所建立的新模型是 DirectQuery，只受到這些層級的支援。
-- 作為資料來源的 Azure SQL Database、Azure SQL 資料倉儲或 Power BI Desktop (.pbix) 檔案。 從 Power BI Desktop 檔案建立的新模型支援 Azure SQL Database、Azure SQL 資料倉儲、Oracle 和 Teradata 資料來源。
+- Azure Analysis Services 伺服器必須位於標準或開發人員層。 使用 Web 設計工具所建立的新模型是 DirectQuery，只受到這些層級的支援。
+- 作為資料來源的 Azure SQL Database、Azure SQL 資料倉儲或 Power BI Desktop (.pbix) 檔案。 從 Power BI Desktop 檔案建立的新模型支援 Azure SQL Database 和 Azure SQL 資料倉儲。
 - 用來連線至 Azure SQL Database 或 Azure SQL 資料倉儲資料來源的 SQL Server 帳戶和密碼。
+- 您必須具有伺服器系統管理員權限，才能建立新模型。 需要有資料庫管理員權限，才能使用設計工具來編輯和查詢模型。
 
 ## <a name="sign-in-to-the-azure-portal"></a>登入 Azure 入口網站
 

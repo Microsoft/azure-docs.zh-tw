@@ -1,11 +1,11 @@
 ---
-title: "Azure API 管理跨網域原則 | Microsoft Docs"
-description: "了解可在 Azure API 管理中使用的跨網域原則。"
+title: Azure API 管理跨網域原則 | Microsoft Docs
+description: 了解可在 Azure API 管理中使用的跨網域原則。
 services: api-management
-documentationcenter: 
+documentationcenter: ''
 author: vladvino
 manager: erikre
-editor: 
+editor: ''
 ms.assetid: 7689d277-8abe-472a-a78c-e6d4bd43455d
 ms.service: api-management
 ms.workload: mobile
@@ -19,6 +19,7 @@ ms.sourcegitcommit: b854df4fc66c73ba1dd141740a2b348de3e1e028
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 12/04/2017
+ms.locfileid: "26129029"
 ---
 # <a name="api-management-cross-domain-policies"></a>API 管理跨網域原則
 本主題提供下列 API 管理原則的參考。 如需有關新增和設定原則的資訊，請參閱 [API 管理中的原則](http://go.microsoft.com/fwlink/?LinkID=398186)。  
@@ -60,8 +61,8 @@ ms.lasthandoff: 12/04/2017
 ### <a name="usage"></a>使用量  
  此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。  
   
--   **原則區段︰**inbound  
--   **原則範圍︰**全域  
+-   **原則區段︰** inbound  
+-   **原則範圍︰** 全域  
   
 ##  <a name="CORS"></a>CORS  
  `cors` 原則會將跨原始來源資源分享 (CORS) 支援加入至操作或 API，以允許來自瀏覽器型用戶端的跨網域呼叫。  
@@ -143,8 +144,8 @@ ms.lasthandoff: 12/04/2017
 ### <a name="usage"></a>使用量  
  此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。  
   
--   **原則區段︰**輸入  
--   **原則範圍︰**API、作業  
+-   **原則區段︰** 輸入  
+-   **原則範圍︰** API、作業  
   
 ##  <a name="JSONP"></a>JSONP  
  `jsonp` 原則會將 JSON 與補充的 (JSONP) 支援加入至作業或 API，以允許來自 JavaScript 瀏覽器型用戶端的跨網域呼叫。 JSONP 是 JavaScript 程式中使用的方法，可從位於不同網域的伺服器要求資料。 JSONP 會略過大多數網頁瀏覽器中規定必須在相同網域內才能存取網頁的限制。  
@@ -180,8 +181,8 @@ ms.lasthandoff: 12/04/2017
 ### <a name="usage"></a>使用量  
  此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。  
   
--   **原則區段︰**輸出  
--   **原則範圍︰**全域、產品、API、作業  
+-   **原則區段︰** 輸出  
+-   **原則範圍︰** 全域、產品、API、作業  
   
 ## <a name="next-steps"></a>後續步驟
 

@@ -1,38 +1,41 @@
 ---
-title: "使用安全地存放在 Azure Stack 上的憑證部署虛擬機器 | Microsoft 文件"
-description: "了解如何使用 Azure Stack 中的金鑰保存庫來部署虛擬機器，並將憑證推送至該虛擬機器"
+title: 使用安全地存放在 Azure Stack 上的憑證部署虛擬機器 | Microsoft 文件
+description: 了解如何使用 Azure Stack 中的金鑰保存庫來部署虛擬機器，並將憑證推送至該虛擬機器
 services: azure-stack
-documentationcenter: 
-author: mattbriggs
+documentationcenter: ''
+author: sethmanheim
 manager: femila
-editor: 
+editor: ''
 ms.assetid: 46590eb1-1746-4ecf-a9e5-41609fde8e89
 ms.service: azure-stack
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 08/03/2017
-ms.author: mabrigg
-ms.openlocfilehash: e319f5c6d27d3a223764b0a5593480f02864ddbe
-ms.sourcegitcommit: a5f16c1e2e0573204581c072cf7d237745ff98dc
+ms.date: 08/15/2018
+ms.author: sethm
+ms.openlocfilehash: aef706d18d558f5fe321735c7f93361a5ef50606
+ms.sourcegitcommit: d2f2356d8fe7845860b6cf6b6545f2a5036a3dd6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/11/2017
+ms.lasthandoff: 08/16/2018
+ms.locfileid: "43050432"
 ---
-# <a name="create-a-virtual-machine-and-include-certificate-retrieved-from-a-key-vault"></a>建立虛擬機器，並加入從金鑰保存庫擷取的憑證
+# <a name="create-a-virtual-machine-and-install-a-certificate-retrieved-from-an-azure-stack-key-vault"></a>建立虛擬機器，並安裝從 Azure Stack 金鑰保存庫擷取的憑證
 
-本文可協助您在 Azure Stack 中建立虛擬機器，並將憑證推送至該虛擬機器。 
+*適用於：Azure Stack 整合系統和 Azure Stack 開發套件*
 
-## <a name="prerequisites"></a>先決條件
+了解如何使用已安裝的金鑰保存庫憑證建立 Azure Stack 虛擬機器 (VM)。
 
-* 您必須訂閱包含 Key Vault 服務的供應項目。 
-* [安裝適用於 Azure Stack 的 PowerShell](azure-stack-powershell-install.md)  
-* [設定 Azure Stack 使用者的 PowerShell 環境](azure-stack-powershell-configure-user.md)
+## <a name="overview"></a>概觀
 
-Azure Stack 中的金鑰保存庫可用來存放憑證。 憑證在許多不同情況下都很有幫助。 例如，假設您在 Azure Stack 中有一個虛擬機器正在執行需要憑證的應用程式。 此憑證可用於加密、向 Active Directory 進行驗證，或用於網站上的 SSL。 將憑證存放在金鑰保存庫有助於確保憑證的安全。
+在許多情況下都會用到憑證，例如，對 Active Directory 進行驗證時，或將網路流量加密時。 您可以安全地將憑證儲存為 Azure Stack 金鑰保存庫中的密碼。 使用 Azure Stack Key Vault 的優點如下：
 
-在本文中，我們會針對如何將憑證推送至 Azure Stack 中的 Windows 虛擬機器，逐步說明所需的步驟。 您可以從 Azure Stack 開發套件，或從 Windows 外部用戶端 (如果是透過 VPN 連線) 來使用這些步驟。
+* 憑證不會公開在指令碼、命令列歷程記錄或範本中。
+* 憑證管理程序得以簡化。
+* 您可以控制存取憑證的金鑰。
+
+### <a name="process-description"></a>程序說明
 
 下列步驟說明將憑證推送至虛擬機器所需的程序：
 
@@ -40,9 +43,21 @@ Azure Stack 中的金鑰保存庫可用來存放憑證。 憑證在許多不同�
 2. 更新 azuredeploy.parameters.json 檔案。
 3. 部署範本
 
+> [!NOTE]
+> 您可以從 Azure Stack 開發套件，或從外部用戶端 (如果是透過 VPN 連線) 來使用這些步驟。
+
+## <a name="prerequisites"></a>必要條件
+
+* 您必須訂閱包含 Key Vault 服務的供應項目。
+* [安裝適用於 Azure Stack 的 PowerShell](azure-stack-powershell-install.md)
+* [設定 Azure Stack 使用者的 PowerShell 環境](azure-stack-powershell-configure-user.md)
+
 ## <a name="create-a-key-vault-secret"></a>建立 Key Vault 祕密
 
-下列指令碼會建立 .pfx 格式的憑證、建立金鑰保存庫，並將憑證存放在金鑰保存庫中當做祕密。 建立金鑰保存庫時，您必須使用 `-EnabledForDeployment` 參數。 此參數可確保您能夠從 Azure Resource Manager 範本參考金鑰保存庫。
+下列指令碼會建立 .pfx 格式的憑證、建立金鑰保存庫，並將憑證存放在金鑰保存庫中當做祕密。
+
+> [!IMPORTANT]
+> 建立金鑰保存庫時，您必須使用 `-EnabledForDeployment` 參數。 此參數可確保您能夠從 Azure Resource Manager 範本參考金鑰保存庫。
 
 ```powershell
 
@@ -111,7 +126,7 @@ Set-AzureKeyVaultSecret `
 
 ## <a name="update-the-azuredeployparametersjson-file"></a>更新 azuredeploy.parameters.json 檔案
 
-根據您的環境，以 vaultName、祕密 URI、VmName 和其他值來更新 azuredeploy.parameters.json 檔案。 下列 JSON 檔案會顯示範本參數檔案的範例： 
+根據您的環境，以 vaultName、祕密 URI、VmName 和其他值來更新 azuredeploy.parameters.json 檔案。 下列 JSON 檔案會顯示範本參數檔案的範例：
 
 ```json
 {
@@ -148,7 +163,7 @@ Set-AzureKeyVaultSecret `
 
 ## <a name="deploy-the-template"></a>部署範本
 
-現在，使用下列 PowerShell 指令碼部署範本：
+使用下列 PowerShell 指令碼部署範本：
 
 ```powershell
 # Deploy a Resource Manager template to create a VM and push the secret onto it
@@ -161,13 +176,18 @@ New-AzureRmResourceGroupDeployment `
 
 成功部署範本之後，會產生下列輸出：
 
-![部署輸出](media/azure-stack-kv-push-secret-into-vm/deployment-output.png)
+![範本部署結果](media/azure-stack-kv-push-secret-into-vm/deployment-output.png)
 
-部署此虛擬機器時，Azure Stack 會將憑證推送至虛擬機器。 在 Windows 中，系統會利用使用者提供的憑證存放區，將憑證新增至 LocalMachine 憑證位置。 在 Linux 中，憑證會置於 /var/lib/waagent 目錄底下，其中 X509 憑證檔案的檔案名稱為 &lt;UppercaseThumbprint&gt;.crt，且私密金鑰的檔案名稱為 &lt;UppercaseThumbprint&gt;.prv。
+Azure Stack 會在部署期間將憑證推送至虛擬機器。 憑證的位置取決於 VM 的作業系統：
+
+* 在 Windows 中，系統會利用使用者提供的憑證存放區，將憑證新增至 LocalMachine 憑證位置。
+* 在 Linux 中，憑證會置於 /var/lib/waagent 目錄底下，其中 X509 憑證檔案的檔案名稱為 &lt;UppercaseThumbprint&gt;.crt，且私密金鑰的檔案名稱為 &lt;UppercaseThumbprint&gt;.prv。
 
 ## <a name="retire-certificates"></a>淘汰憑證
 
-在上一節中，我們示範如何將新的憑證推送至虛擬機器。 您的舊憑證仍然在虛擬機器上，而且無法移除。 不過，您可以使用 `Set-AzureKeyVaultSecretAttribute` Cmdlet 來停用舊版的祕密。 以下是此 Cmdlet 的使用範例。 請務必根據您的環境，取代保存庫名稱、祕密名稱和版本值：
+淘汰憑證是憑證管理程序的一部分。 您無法刪除舊版的憑證，但可以使用 `Set-AzureKeyVaultSecretAttribute` Cmdlet 加以停用。
+
+下列範例說明如何停用憑證。 對於 **VaultName**、**Name** 和 **Version** 參數，請使用您自己的值。
 
 ```powershell
 Set-AzureKeyVaultSecretAttribute -VaultName contosovault -Name servicecert -Version e3391a126b65414f93f6f9806743a1f7 -Enable 0
@@ -177,5 +197,3 @@ Set-AzureKeyVaultSecretAttribute -VaultName contosovault -Name servicecert -Vers
 
 * [使用金鑰保存庫密碼部署 VM](azure-stack-kv-deploy-vm-with-secret.md)
 * [允許應用程式存取 Key Vault](azure-stack-kv-sample-app.md)
-
-

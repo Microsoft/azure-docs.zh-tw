@@ -1,27 +1,28 @@
 ---
-title: "在 Azure 中搭配 SQL Database 來建置 ASP.NET 應用程式 | Microsoft Docs"
-description: "了解如何取得在 Azure 中運作的 ASP.NET 應用程式，並連接至 SQL Database。"
+title: 在 Azure 中搭配 SQL Database 來建置 ASP.NET 應用程式 | Microsoft Docs
+description: 了解如何將採用 SQL Server 資料庫的 C# ASP.NET 應用程式部署到 Azure。
 services: app-service\web
-documentationcenter: nodejs
+documentationcenter: ''
 author: cephalin
-manager: erikre
-editor: 
+manager: cfowler
+editor: ''
 ms.assetid: 03c584f1-a93c-4e3d-ac1b-c82b50c75d3e
 ms.service: app-service-web
 ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: csharp
 ms.topic: tutorial
-ms.date: 06/09/2017
+ms.date: 06/25/2018
 ms.author: cephalin
-ms.custom: mvc, devcenter
-ms.openlocfilehash: bd5aa5186bdec84e1943887ef0980fa50cd26324
-ms.sourcegitcommit: 9d317dabf4a5cca13308c50a10349af0e72e1b7e
+ms.custom: mvc, devcenter, vs-azure
+ms.openlocfilehash: 783bf93c8507e76717a4293b2b29a9c11e9a1eed
+ms.sourcegitcommit: 8e06d67ea248340a83341f920881092fd2a4163c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 10/16/2018
+ms.locfileid: "49353811"
 ---
-# <a name="build-an-aspnet-app-in-azure-with-sql-database"></a>在 Azure 中搭配 SQL Database 來建置 ASP.NET 應用程式
+# <a name="tutorial-build-an-aspnet-app-in-azure-with-sql-database"></a>教學課程：在 Azure 中搭配 SQL Database 來建置 ASP.NET 應用程式
 
 [Azure Web Apps](app-service-web-overview.md) 提供可高度擴充、自我修復的 Web 主機服務。 本教學課程示範如何在 Azure 中開發資料導向的 ASP.NET Web 應用程式，並且將它連線到 [Azure SQL Database](../sql-database/sql-database-technical-overview.md)。 完成時，您的 ASP.NET 應用程式將會在 Azure 中執行，並已連線到 SQL Database。
 
@@ -39,23 +40,20 @@ ms.lasthandoff: 02/01/2018
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 若要完成本教學課程：
 
-* 使用下列工作負載安裝 [Visual Studio 2017](https://www.visualstudio.com/downloads/)：
-  - **ASP.NET 和 Web 開發**
-  - **Azure 開發**
+安裝包含 **ASP.NET 和 Web 開發**工作負載的 <a href="https://www.visualstudio.com/downloads/" target="_blank">Visual Studio 2017</a>。
 
-  ![ASP.NET 和 Web 開發及 Azure 開發 (在 [Web 和雲端] 之下)](media/app-service-web-tutorial-dotnet-sqldatabase/workloads.png)
+如果您已安裝 Visual Studio，請按一下 [工具] > [取得工具和功能] 在 Visual Studio 中新增工作負載。
 
 ## <a name="download-the-sample"></a>下載範例
 
-[下載範例專案](https://github.com/Azure-Samples/dotnet-sqldb-tutorial/archive/master.zip)。
+- [下載範例專案](https://github.com/Azure-Samples/dotnet-sqldb-tutorial/archive/master.zip)。
+- 擷取 (解壓縮) dotnet-sqldb-tutorial-master.zip 檔案。
 
-擷取 (解壓縮) dotnet-sqldb-tutorial-master.zip 檔案。
-
-範例專案包含一個基本 [ASP.NET MVC](https://www.asp.net/mvc) CRUD (建立-讀取-更新-刪除) 應用程式，使用 [Entity Framework Code First](/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application)。
+範例專案包含一個使用 [Entity Framework Code First](/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application) 的基本 [ASP.NET MVC](https://www.asp.net/mvc) 建立-讀取-更新-刪除 (CRUD) 應用程式。
 
 ### <a name="run-the-app"></a>執行應用程式
 
@@ -83,20 +81,20 @@ ms.lasthandoff: 02/01/2018
 
 ### <a name="sign-in-to-azure"></a>登入 Azure
 
-在 [建立 App Service] 對話方塊中，按一下 [新增帳戶]，然後登入您的 Azure 訂用帳戶。 如果您已登入 Microsoft 帳戶，請確定該帳戶保留您的 Azure 訂用帳戶。 如果登入的 Microsoft 帳戶沒有 Azure 訂用帳戶，請按一下它來新增正確的帳戶。
+在 [建立 App Service] 對話方塊中，按一下 [新增帳戶]，然後登入您的 Azure 訂用帳戶。 如果您已登入 Microsoft 帳戶，請確定該帳戶保留您的 Azure 訂用帳戶。 如果登入的 Microsoft 帳戶沒有 Azure 訂用帳戶，請按一下它來新增正確的帳戶。 
+
+> [!NOTE]
+> 如果您已經登入，請勿選取 [建立]。
+>
+>
    
 ![登入 Azure](./media/app-service-web-tutorial-dotnet-sqldatabase/sign-in-azure.png)
-
-登入之後，您即可在此對話方塊中建立 Azure Web 應用程式需要的所有資源。
 
 ### <a name="configure-the-web-app-name"></a>設定 Web 應用程式名稱
 
 您可以保留產生的 Web 應用程式名稱，或將它變更為另一個唯一的名稱 (有效的字元是 `a-z`、`0-9` 和 `-`)。 Web 應用程式名稱是作為應用程式預設 URL 的一部分 (`<app_name>.azurewebsites.net`，其中 `<app_name>` 是您的 Web 應用程式名稱)。 Web 應用程式名稱在 Azure 中的所有應用程式之間必須是唯一的。 
 
 ![建立 App Service 對話方塊](media/app-service-web-tutorial-dotnet-sqldatabase/wan.png)
-
-> [!NOTE]
-> 不要按一下 [建立]。 您必須先在稍後步驟中設定 SQL Database。
 
 ### <a name="create-a-resource-group"></a>建立資源群組
 
@@ -128,13 +126,9 @@ ms.lasthandoff: 02/01/2018
 
 建立資料庫之前，您需要 [Azure SQL Database 邏輯伺服器](../sql-database/sql-database-features.md)。 邏輯伺服器包含一組當作群組管理的資料庫。
 
-選取 [瀏覽其他 Azure 服務]。
+按一下 [建立 SQL Database]。
 
-![設定 Web 應用程式名稱](media/app-service-web-tutorial-dotnet-sqldatabase/web-app-name.png)
-
-在 [服務] 索引標籤中，按一下 [SQL Database] 旁的 [+] 圖示。 
-
-![在 [服務] 索引標籤中，按一下 [SQL Database] 旁的 + 圖示。](media/app-service-web-tutorial-dotnet-sqldatabase/sql.png)
+![建立 SQL Database](media/app-service-web-tutorial-dotnet-sqldatabase/web-app-name.png)
 
 在 [設定 SQL Database] 對話方塊中，按一下 [SQL Server] 旁的 [新增]。 
 
@@ -144,9 +138,12 @@ ms.lasthandoff: 02/01/2018
 
 請記住這個使用者名稱和密碼。 您稍後需要它們以便管理邏輯伺服器執行個體。
 
+> [!IMPORTANT]
+> 即使您在連接字串中的密碼已經遮罩處理 (在 Visual Studio 以及 App Service 中)，但是它於某處受到維護的事實增加了您應用程式受到攻擊的可能性。 App Service 可以使用[受控服務識別](app-service-managed-service-identity.md)來降低此風險，方法是完全免除在您的程式碼或應用程式組態中維護祕密的需求。 如需詳細資訊，請參閱[後續步驟](#next-steps)。
+
 ![建立 SQL Server 執行個體](media/app-service-web-tutorial-dotnet-sqldatabase/configure-sql-database-server.png)
 
-按一下 [SERVICEPRINCIPAL] 。 尚不要關閉 [設定 SQL Database] 對話方塊。
+按一下 [確定]。 尚不要關閉 [設定 SQL Database] 對話方塊。
 
 ### <a name="create-a-sql-database"></a>建立 SQL Database
 
@@ -158,7 +155,7 @@ ms.lasthandoff: 02/01/2018
 
 ![設定 SQL Database](media/app-service-web-tutorial-dotnet-sqldatabase/configure-sql-database.png)
 
-[建立 App Service] 對話方塊會顯示您已建立的資源。 按一下頁面底部的 [新增] 。 
+[建立 App Service] 對話方塊會顯示您已設定的資源。 按一下頁面底部的 [新增] 。 
 
 ![您已建立的資源](media/app-service-web-tutorial-dotnet-sqldatabase/app_svc_plan_done.png)
 
@@ -308,7 +305,7 @@ public ActionResult Create([Bind(Include = "Description,CreatedDate,Done")] Todo
 
 就像之前一樣，以滑鼠右鍵按一下專案，然後選取 [發佈]。
 
-按一下 [設定] 以開啟發佈精靈。
+按一下 [設定] 來開啟發佈設定。
 
 ![開啟發佈設定](./media/app-service-web-tutorial-dotnet-sqldatabase/publish-settings.png)
 
@@ -411,8 +408,6 @@ Application: 2017-04-06T23:30:54  PID[8132] Verbose     GET /Todos/Index
 
 [!INCLUDE [Clean up section](../../includes/clean-up-section-portal-web-app.md)]
 
-<a name="next"></a>
-
 ## <a name="next-steps"></a>後續步驟
 
 在本教學課程中，您已了解如何：
@@ -425,7 +420,7 @@ Application: 2017-04-06T23:30:54  PID[8132] Verbose     GET /Todos/Index
 > * 將記錄從 Azure 串流到終端機
 > * 在 Azure 入口網站中管理應用程式
 
-前往下一個教學課程，了解如何將自訂的 DNS 名稱對應至 Web 應用程式。
+前進到下一個教學課程，以了解如何輕鬆改善 Azure SQL Database 連線的安全性。
 
 > [!div class="nextstepaction"]
-> [將現有的自訂 DNS 名稱對應至 Azure Web Apps](app-service-web-tutorial-custom-domain.md)
+> [使用 Azure 資源的受控識別安全地存取 SQL Database](app-service-web-tutorial-connect-msi.md)

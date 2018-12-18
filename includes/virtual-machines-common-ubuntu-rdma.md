@@ -26,8 +26,8 @@
 4. 安裝 Intel MPI Library。 從 Intel [購買並下載](https://software.intel.com/intel-mpi-library/) \(英文\) 程式庫 或下載[免費試用版](https://registrationcenter.intel.com/en/forms/?productid=1740) \(英文\)。
 
   ```bash
- wget http://registrationcenter-download.intel.com/akdlm/irc_nas/tec/9278/l_mpi_p_5.1.3.223.tgz
-   ```
+  wget http://registrationcenter-download.intel.com/akdlm/irc_nas/tec/9278/l_mpi_p_5.1.3.223.tgz
+  ```
  
  只支援 Intel MPI 5.x 執行階段。
  

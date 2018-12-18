@@ -1,0 +1,17 @@
+- name: 實體連結文件
+- name: 概觀
+  href: Home.md
+- name: 開始使用
+  href: GettingStarted.md
+- name: 參考
+  items:
+    - name: API 參考資料
+      href: 'https://westus.dev.cognitive.microsoft.com/docs/services/56f0eabfca730713cc392442/operations/56f0eabfca73070e44d0f39c'
+    - name: 實驗室 API 參考
+      href: 'https://dev.labs.cognitive.microsoft.com/docs/services/56f0eabfca730713cc392442/operations/56f0eabfca73070e44d0f39c'
+    - name: Windows SDK
+      href: 'https://github.com/Microsoft/Cognitive-EntityLinking-Windows'
+- name: 資源
+  items:
+    - name: Azure 藍圖
+      href: 'https://azure.microsoft.com/roadmap/'

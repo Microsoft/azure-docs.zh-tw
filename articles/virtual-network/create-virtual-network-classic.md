@@ -1,26 +1,27 @@
 ---
-title: "建立具有多個子網路的 Azure 虛擬網路 (傳統) | Microsoft Docs"
-description: "了解如何在 Azure 中建立具有多個子網路的虛擬網路 (傳統)。"
+title: 建立具有多個子網路的 Azure 虛擬網路 (傳統) | Microsoft Docs
+description: 了解如何在 Azure 中建立具有多個子網路的虛擬網路 (傳統)。
 services: virtual-network
-documentationcenter: 
-author: jimdial
-manager: timlt
-editor: 
-tags: azure-resource-manager
-ms.assetid: 
+documentationcenter: ''
+author: genlin
+manager: cshepard
+editor: ''
+tags: azure-service-management
+ms.assetid: ''
 ms.service: virtual-network
 ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 07/31/2017
-ms.author: jdial
-ms.custom: 
-ms.openlocfilehash: 1ec6d8d5327ec6d5ebb92e125cb4c52a7a929c0e
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+ms.date: 06/15/2018
+ms.author: genli
+ms.custom: ''
+ms.openlocfilehash: bede78782154e014d4ffad949f9ebd1a44eb2c4c
+ms.sourcegitcommit: e8f443ac09eaa6ef1d56a60cd6ac7d351d9271b9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 09/12/2018
+ms.locfileid: "35767166"
 ---
 # <a name="create-a-virtual-network-classic-with-multiple-subnets"></a>建立有多個子網路的虛擬網路 (傳統)
 
@@ -38,7 +39,7 @@ ms.lasthandoff: 03/09/2018
 
 ## <a name="portal"></a>入口網站
 
-1. 在網際網路瀏覽器中，移至 [Azure 入口網站](https://portal.azure.com)。 使用您的 [Azure 帳戶](../azure-glossary-cloud-terminology.md?toc=%2fazure%2fvirtual-network%2ftoc.json#account)登入。 如果您沒有 Azure 帳戶，您可以註冊 [免費試用](https://azure.microsoft.com/offers/ms-azr-0044p)。
+1. 在網際網路瀏覽器中，移至 [Azure 入口網站](https://portal.azure.com)。 使用您的 [Azure 帳戶](../azure-glossary-cloud-terminology.md?toc=%2fazure%2fvirtual-network%2ftoc.json#account)登入。 如果您沒有 Azure 帳戶，您可以註冊[免費試用](https://azure.microsoft.com/offers/ms-azr-0044p)。
 2. 在 Azure 入口網站中按一下 [建立資源]。
 3. 在出現的 [新增] 窗格頂端的 [搜尋市集] 方塊中，輸入 [虛擬網路]。 當搜尋結果中出現虛擬網路時，按一下 [虛擬網路]。
 4. 在出現的 [虛擬網路] 窗格中，於 [選取部署模型] 方塊中選取 [傳統]，然後按一下 [建立]。 
@@ -46,7 +47,7 @@ ms.lasthandoff: 03/09/2018
 
     |設定|值|
     |---|---|
-    |Name|myVnet|
+    |名稱|myVnet|
     |位址空間|10.0.0.0/16|
     |子網路名稱|公開|
     |子網路位址範圍|10.0.0.0/24|
@@ -57,7 +58,7 @@ ms.lasthandoff: 03/09/2018
 4. 當您在入口網站中建立虛擬網路時，您只能建立一個子網路。 在本教學課程中，您會在建立虛擬網路後建立第二個子網路。 稍後您可能會在**公用**子網路中建立可從網際網路存取的資源。 您也可能會在**私人**子網路中建立無法從網際網路存取的資源。 若要建立第二個子網路，在入口網站頂端的 [搜尋資源] 方塊中輸入 **myVnet**。 當 myVnet 出現在搜尋結果中時，按一下 [myVnet]。
 5. 在出現的 [建立虛擬網路 (傳統)] 窗格中，按一下 [設定] 區段中的 [子網路]。
 6. 在出現的 [myVnet - 子網路] 窗格中，按一下 [+ 新增]。
-7. 在 [新增子網路] 窗格中的 [名稱] 輸入**私人**。 在 [位址範圍] 輸入 **10.0.1.0/24**。  按一下 [SERVICEPRINCIPAL] 。
+7. 在 [新增子網路] 窗格中的 [名稱] 輸入**私人**。 在 [位址範圍] 輸入 **10.0.1.0/24**。  按一下 [確定]。
 8. 您就會在 [myVnet - 子網路] 窗格中看到您建立的 [公用] 和 [私人] 子網路。
 9. **選用**：當您完成本教學課程後，可能會想刪除您所建立的資源，以免產生使用費：
     - 按一下 [myVnet] 窗格上的 [概觀]。
@@ -162,7 +163,6 @@ ms.lasthandoff: 03/09/2018
 ## <a name="next-steps"></a>後續步驟
 
 - 若要了解所有虛擬網路和子網路的設定，請參閱[管理虛擬網路](manage-virtual-network.md)和[管理虛擬網路子網路](virtual-network-manage-subnet.md)。 您有各種選項可在生產環境中使用虛擬網路和子網路，以便符合不同的需求。
-- 若要篩選輸入和輸出的子網路流量，請對子網路建立和套用[網路安全性群組](virtual-networks-nsg.md)。
 - 建立 [Windows](../virtual-machines/windows/classic/createportal-classic.md?toc=%2fazure%2fvirtual-network%2ftoc.json) 或 [Linux](../virtual-machines/linux/classic/createportal-classic.md?toc=%2fazure%2fvirtual-network%2ftoc.json) 虛擬機器，然後將它連線至現有的虛擬網路。
 - 若要將同一個 Azure 位置中的兩個虛擬網路連線，請在兩個虛擬網路之間建立[虛擬網路對等互連](create-peering-different-deployment-models.md)。 您可以對等互連虛擬網路 (Resource Manager) 與虛擬網路 (傳統)，但無法對等互連兩個虛擬網路 (傳統)。
 - 使用 [VPN 閘道](../vpn-gateway/vpn-gateway-howto-multi-site-to-site-resource-manager-portal.md?toc=%2fazure%2fvirtual-network%2ftoc.json)或 [Azure ExpressRoute](../expressroute/expressroute-howto-linkvnet-portal-resource-manager.md?toc=%2fazure%2fvirtual-network%2ftoc.json) 線路將虛擬網路連線至內部部署網路。

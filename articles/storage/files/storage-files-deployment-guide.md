@@ -1,52 +1,47 @@
 ---
-title: "如何部署 Azure 檔案服務 | Microsoft Docs"
-description: "了解如何從頭到尾部署 Azure 檔案服務。"
+title: 如何部署 Azure 檔案服務 | Microsoft Docs
+description: 了解如何從頭到尾部署 Azure 檔案服務。
 services: storage
-documentationcenter: 
 author: wmgries
-manager: klaasl
-editor: jgerend
-ms.assetid: 297f3a14-6b3a-48b0-9da4-db5907827fb5
 ms.service: storage
-ms.workload: storage
-ms.tgt_pltfrm: na
-ms.devlang: na
 ms.topic: article
-ms.date: 10/08/2017
+ms.date: 05/22/2018
 ms.author: wgries
-ms.openlocfilehash: c33639723657d3c2875ed9607a887775d558be16
-ms.sourcegitcommit: 2a70752d0987585d480f374c3e2dba0cd5097880
+ms.component: files
+ms.openlocfilehash: d2e09c837597dfd15e6258cbd0100762b098eedf
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/19/2018
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39523480"
 ---
 # <a name="how-to-deploy-azure-files"></a>如何部署 Azure 檔案服務
 
-            [Azure 檔案服務](storage-files-introduction.md)可提供在雲端中完全受控的檔案共用，可透過業界標準 SMB 通訊協定加以存取。 本文將說明如何在組織中實際部署 Azure 檔案服務。
+  [Azure 檔案服務](storage-files-introduction.md)可提供在雲端中完全受控的檔案共用，可透過業界標準 SMB 通訊協定加以存取。 本文將說明如何在組織中實際部署 Azure 檔案服務。
 
 強烈建議您先閱讀[規劃 Azure 檔案服務部署](storage-files-planning.md)，再遵循這篇文章中的步驟。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 本文假設您已完成下列步驟：
 
 - 在所要區域中，建立 Azure 儲存體帳戶，並設定所需的復原和加密選項。 如需如何建立儲存體帳戶的逐步指示，請參閱[建立儲存體帳戶](../common/storage-create-storage-account.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json)。
 - 已在儲存體帳戶中建立 Azure 檔案共用，並設定所需的配額。 如需如何建立檔案共用的逐步指示，請參閱[建立檔案共用](storage-how-to-create-file-share.md)。
 
 ## <a name="transfer-data-into-azure-files"></a>將資料傳送到 Azure 檔案服務
-您可能想要將現有的檔案共用 (例如儲存在內部部署的檔案共用) 移轉至新的 Azure 檔案共用。 本節示範如何透過[規劃指南](storage-files-planning.md#data-transfer-method)詳述的幾個常用方法，將資料移至 Azure 檔案共用。
+您可能想要將現有的檔案共用 (例如儲存在內部部署的檔案共用) 移轉至新的 Azure 檔案共用。 本節示範如何透過[規劃指南](storage-files-planning.md#data-transfer-method)詳述的幾個常用方法，將資料移至 Azure 檔案共用
 
-### <a name="azure-file-sync-preview"></a>Azure 檔案同步 (預覽)
-Azure 檔案同步 (預覽) 可讓您將貴組織的檔案共用集中在「Azure 檔案服務」中，而不需要犧牲內部部署檔案伺服器的靈活度、效能及相容性。 它會將您的 Windows Server 轉換成 Azure 檔案共用的快速快取來達到這個目的。 您可以使用 Windows Server 上可用的任何通訊協定來存取本機資料 (包括 SMB、NFS 和 FTPS)，並且可以在世界各地擁有任何所需數量的快取。
+### <a name="azure-file-sync"></a>Azure 檔案同步
+Azure 檔案同步可讓您將組織的檔案共用集中在「Azure 檔案服務」中，而不需要犧牲內部部署檔案伺服器的靈活度、效能及相容性。 它會將您的 Windows Server 轉換成 Azure 檔案共用的快速快取來達到這個目的。 您可以使用 Windows Server 上可用的任何通訊協定來存取本機資料 (包括 SMB、NFS 和 FTPS)，並且可以在世界各地擁有任何所需數量的快取。
 
 即使您不需要長期使用同步處理機制，也可以使用 Azure 檔案同步，將資料移轉至 Azure 檔案共用。 如需如何使用 Azure 檔案同步將資料傳送至 Azure 檔案共用的詳細資訊，請參閱[規劃 Azure 檔案同步部署](storage-sync-files-planning.md)和[如何部署 Azure 檔案同步](storage-sync-files-deployment-guide.md)。
 
 ### <a name="azure-importexport"></a>Azure 匯入/匯出
-您可將硬碟寄送至 Azure 資料中心，透過 Azure 匯入/匯出服務，安全地將大量資料傳入 Azure 檔案共用。 請參閱[使用 Microsoft Azure 匯入/匯出服務將資料傳送至 Azure 儲存體](../common/storage-import-export-service.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json)，以取得服務的詳細概觀。
+您可將硬碟寄送至 Azure 資料中心，透過 Azure 匯入/匯出服務，安全地將大量資料傳送至 Azure 檔案共用。 請參閱[使用 Microsoft Azure 匯入/匯出服務將資料傳送至 Azure 儲存體](../common/storage-import-export-service.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json)，以取得服務的詳細概觀。
 
 > [!Note]  
 > Azure 匯入/匯出服務目前尚不支援從 Azure 檔案共用匯出檔案。
 
-下列步驟會將資料從內部部署的位置匯入 Azure 檔案共用。
+下列步驟會將資料從內部部署的位置匯入至 Azure 檔案共用。
 
 1. 取得要寄送至 Azure 所需的硬碟數目。 磁碟容量大小不拘，但必須是支援 SATA II 或 SATA III 標準的 2.5 吋或 3.5 吋 SSD 或 HDD。 
 
@@ -83,7 +78,7 @@ Azure 檔案同步 (預覽) 可讓您將貴組織的檔案共用集中在「Azur
     
     如需詳細資訊，請參閱[準備磁碟機集 CSV 檔案](../common/storage-import-export-tool-preparing-hard-drives-import.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json#prepare-initialdriveset-or-additionaldriveset-csv-file)。
 
-6. 使用 [WAImportExport 工具](http://download.microsoft.com/download/3/6/B/36BFF22A-91C3-4DFC-8717-7567D37D64C5/WAImportExport.zip)將資料複製到一或多個硬碟。
+6. 使用 [WAImportExport 工具](https://www.microsoft.com/en-us/download/details.aspx?id=55280)將資料複製到一或多個硬碟。
 
     ```
     WAImportExport.exe PrepImport /j:<JournalFile> /id:<SessionId> [/logdir:<LogDirectory>] [/sk:<StorageAccountKey>] [/silentmode] [/InitialDriveSet:<driveset.csv>] DataSet:<dataset.csv>
@@ -92,12 +87,12 @@ Azure 檔案同步 (預覽) 可讓您將貴組織的檔案共用集中在「Azur
     > [!Warning]  
     > 完成磁碟準備工作之後，請勿修改硬碟上的資料或日誌檔案。
 
-7. [建立匯入作業](../common/storage-import-export-service.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json#create-an-export-job)。
+7. [建立匯入作業](../common/storage-import-export-data-to-files.md#step-2-create-an-import-job)。
     
 ### <a name="robocopy"></a>Robocopy
 Robocopy 是隨附於 Windows 和 Windows Server 的常用複製工具。 Robocopy 可在本機掛接檔案共用，然後將該掛接位置作為 Robocopy 命令中的目的地，以將資料傳輸到 Azure 檔案服務中。 使用 Robocopy 相當簡單：
 
-1. [掛接 Azure 檔案共用](storage-how-to-use-files-windows.md)。 為了達到最佳效能，建議您在含有資料的伺服器上本機掛接 Azure 檔案共用。 某些情況可能無法這麼做，例如提供資料的檔案伺服器是 NAS 裝置時。 這時候，您完全可以將 Azure 檔案共用掛接到電腦上。 此範例會在命令列中使用 `net use` 以掛接檔案共用：
+1. [裝載 Azure 檔案共用](storage-how-to-use-files-windows.md)。 為了達到最佳效能，建議您在含有資料的伺服器上本機裝載 Azure 檔案共用。 某些情況可能無法這麼做，例如提供資料的檔案伺服器是 NAS 裝置時。 這時候，您完全可以將 Azure 檔案共用裝載到電腦上。 此範例會在命令列中使用 `net use` 以掛接檔案共用：
 
     ```
     net use <desired-drive-letter>: \\<storage-account-name>.file.core.windows.net\<share-name> <storage-account-key> /user:Azure\<storage-account-name>
@@ -133,7 +128,7 @@ AzCopy 是一種命令列公用程式，專為使用簡單命令高效率地在 
 若要取代內部部署檔案共用，最好預先在要使用該檔案共用的電腦上掛接共用。 這項作業可依據電腦清單自動完成。
 
 > [!Note]  
-> 掛接 Azure 檔案共用時，需要使用儲存體帳戶金鑰作為密碼，因此只建議您在受信任的環境中進行掛接。 
+> 裝載 Azure 檔案共用時，需要使用儲存體帳戶金鑰作為密碼，因此只建議您在受信任的環境中進行裝載。 
 
 ### <a name="windows"></a>Windows
 您可以使用 PowerShell，在多部電腦上執行 mount 命令。 在下列範例中，`$computers` 是手動填入的，但您可以產生電腦清單以自動掛接。 例如，您可以填入此變數與 Active Directory 產生的結果。

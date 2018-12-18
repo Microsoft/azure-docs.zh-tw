@@ -17,6 +17,8 @@
 Remove-AzureRmResourceGroup -ResourceGroupName $resourcegroupname
 ```
 
+注意：置放資源群組可能需要一些時間。 請耐心等候程序完成
+
 如果您需要只刪除 Data Factory，而非整個資源群組，請執行下列命令： 
 
 ```powershell

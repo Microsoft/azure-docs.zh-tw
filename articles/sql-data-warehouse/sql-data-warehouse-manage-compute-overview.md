@@ -2,24 +2,20 @@
 title: 管理 Azure SQL 資料倉儲中的計算資源 | Microsoft Docs
 description: 了解 Azure SQL 資料倉儲中的效能相應放大功能。 藉由調整 DWU 來相應放大，或藉由暫停資料倉儲來降低成本。
 services: sql-data-warehouse
-documentationcenter: NA
-author: hirokib
-manager: johnmac
-editor: ''
-ms.assetid: e13a82b0-abfe-429f-ac3c-f2b6789a70c6
+author: kevinvngo
+manager: craigg
 ms.service: sql-data-warehouse
-ms.devlang: NA
-ms.topic: article
-ms.tgt_pltfrm: NA
-ms.workload: data-services
-ms.custom: manage
-ms.date: 02/20/2018
-ms.author: elbutter
-ms.openlocfilehash: c34e37f0c6393c65d4b60705012769608bb7395b
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.topic: conceptual
+ms.component: manage
+ms.date: 04/17/2018
+ms.author: kevin
+ms.reviewer: igorstan
+ms.openlocfilehash: 53a801a367e6948c3070224b7ff36a013a1faab3
+ms.sourcegitcommit: 1fb353cfca800e741678b200f23af6f31bd03e87
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 08/30/2018
+ms.locfileid: "43300845"
 ---
 # <a name="manage-compute-in-azure-sql-data-warehouse"></a>管理 Azure SQL 資料倉儲中的計算能力
 了解如何管理 Azure SQL 資料倉儲中的計算資源。 藉由暫停資料倉儲來降低成本，或調整資料倉儲規模以符合效能需求。 
@@ -28,7 +24,7 @@ ms.lasthandoff: 03/28/2018
 SQL 資料倉儲的架構分隔儲存體和計算功能，可單獨進行調整。 因此，您可以調整計算規模以符合與資料儲存體無關的效能需求。 您也可以暫停和繼續計算資源。 這個架構的自然結果為計算[計費](https://azure.microsoft.com/pricing/details/sql-data-warehouse/)與儲存體無關。 如果您有一段時間不需要使用資料倉儲，您可暫停計算以節省計算成本。 
 
 ## <a name="scaling-compute"></a>調整計算規模
-您可藉由調整資料倉儲的[資料倉儲單位](what-is-a-data-warehouse-unit-dwu-cdwu.md)設定，來相應放大或縮小計算。 當您新增更多資料倉儲單位時，載入和查詢效能可以呈線性增加。 SQL 資料倉儲為資料倉儲單位提供的[服務等級](performance-tiers.md#service-levels)，可確保當您相應放大或縮小時，效能會有明顯改變。 
+您可藉由調整資料倉儲的[資料倉儲單位](what-is-a-data-warehouse-unit-dwu-cdwu.md)設定，來相應放大或縮小計算。 當您新增更多資料倉儲單位時，載入和查詢效能可以呈線性增加。 
 
 如需相應放大步驟，請參閱 [Azure 入口網站](quickstart-scale-compute-portal.md)、[PowerShell](quickstart-scale-compute-powershell.md) 或 [T-SQL](quickstart-scale-compute-tsql.md) 快速入門。 您也可以使用 [REST API](sql-data-warehouse-manage-compute-rest-api.md#scale-compute) 來執行相應放大作業。
 
@@ -103,7 +99,7 @@ SQL 資料倉儲的架構分隔儲存體和計算功能，可單獨進行調整�
 
 當您暫停或調整您的 SQL 資料倉儲時，您的查詢在您起始暫停或調整要求時會於幕後取消。  取消簡單的 SELECT 查詢是很快的作業，對於暫停或調整執行個體所花費的時間幾乎沒有什麼影響。  不過，交易性查詢 (會修改您的資料或結構) 可能無法快速地停止。  **顧名思義，交易性查詢必須完全完成或回復變更。**  回復交易性查詢已完成的工作可能需要很長時間，甚至比查詢套用原始變更更久。  例如，如果您取消的刪除資料列查詢已經執行一小時，系統可能需要一個小時將已刪除的資料列回復插入。  如果您在交易執行中執行暫停或調整，暫停或調整作業可能需要一些時間，因為暫停和調整必須等回復完成才能繼續。
 
-另請參閱[了解交易](sql-data-warehouse-develop-transactions.md)，以及 [最佳化交易] [最佳化交易](sql-data-warehouse-develop-best-practices-transactions.md)。
+另請參閱[了解交易](sql-data-warehouse-develop-transactions.md)和[最佳化交易](sql-data-warehouse-develop-best-practices-transactions.md)。
 
 ## <a name="automating-compute-management"></a>自動進行計算管理
 若要自動執行計算管理作業，請參閱[使用 Azure 函式管理計算](manage-compute-with-azure-functions.md)。
@@ -115,7 +111,7 @@ SQL 資料倉儲的架構分隔儲存體和計算功能，可單獨進行調整�
 
 ## <a name="permissions"></a>權限
 
-調整資料倉儲時需要 [ALTER DATABASE](/sql/t-sql/statements/alter-database-azure-sql-data-warehouse.md) 中所述的權限。  暫停和繼續則需要 [SQL DB 參與者](../active-directory/role-based-access-built-in-roles.md#sql-db-contributor)權限，特別是 Microsoft.Sql/servers/databases/action。
+調整資料倉儲時需要 [ALTER DATABASE](/sql/t-sql/statements/alter-database-azure-sql-data-warehouse) 中所述的權限。  暫停和繼續則需要 [SQL DB 參與者](../role-based-access-control/built-in-roles.md#sql-db-contributor)權限，特別是 Microsoft.Sql/servers/databases/action。
 
 
 ## <a name="next-steps"></a>後續步驟

@@ -1,25 +1,21 @@
 ---
-title: "Azure IoT 中樞感應器資料的即時資料視覺效果 – Power BI | Microsoft Docs"
-description: "使用 Power BI 來視覺化收集自感應器並傳送至 Azure IoT 中樞的溫度和溼度資料。"
-services: iot-hub
-documentationcenter: 
-author: shizn
-manager: timlt
-tags: 
-keywords: "即時資料視覺效果, 即時資料視覺效果, 感應器資料視覺效果"
-ms.assetid: e67c9c09-6219-4f0f-ad42-58edaaa74f61
+title: Azure IoT 中樞感應器資料的即時資料視覺效果 – Power BI | Microsoft Docs
+description: 使用 Power BI 來視覺化收集自感應器並傳送至 Azure IoT 中樞的溫度和溼度資料。
+author: rangv
+manager: ''
+keywords: 即時資料視覺效果, 即時資料視覺效果, 感應器資料視覺效果
 ms.service: iot-hub
-ms.devlang: arduino
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: na
-ms.date: 08/24/2017
-ms.author: xshi
-ms.openlocfilehash: 82915a92464f240591777595e878a534cde0136c
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+services: iot-hub
+ms.topic: conceptual
+ms.tgt_pltfrm: arduino
+ms.date: 4/11/2018
+ms.author: rangv
+ms.openlocfilehash: a3c54fe635fe0f8988c321684a815e9896922587
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38235500"
 ---
 # <a name="visualize-real-time-sensor-data-from-azure-iot-hub-using-power-bi"></a>使用 Power BI 將 Azure IoT 中樞的即時感應器資料視覺化
 

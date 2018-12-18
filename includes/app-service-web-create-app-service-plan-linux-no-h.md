@@ -2,10 +2,10 @@
 
 <!-- [!INCLUDE [app-service-plan](app-service-plan-linux.md)] -->
 
-下列範例會在**標準**定價層 (`--sku S1`) 和 Linux 容器 (`--is-linux`) 中，建立名為 `myAppServicePlan` 的 App Service 方案。
+下列範例會在**基本**定價層 (`--sku B1`) 和 Linux 容器 (`--is-linux`) 中，建立名為 `myAppServicePlan` 的 App Service 方案。
 
 ```azurecli-interactive
-az appservice plan create --name myAppServicePlan --resource-group myResourceGroup --sku S1 --is-linux
+az appservice plan create --name myAppServicePlan --resource-group myResourceGroup --sku B1 --is-linux
 ```
 
 建立 App Service 方案後，Azure CLI 會顯示類似下列範例的資訊：

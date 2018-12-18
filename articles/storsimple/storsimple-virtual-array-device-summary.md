@@ -1,11 +1,11 @@
 ---
-title: "StorSimple Virtual Array 裝置摘要刀鋒視窗 | Microsoft Docs"
-description: "描述 StorSimple 裝置管理員的裝置摘要刀鋒視窗，並說明如何使用它來監視 StorSimple Virtual Array 的健康狀態。"
+title: StorSimple Virtual Array 裝置摘要刀鋒視窗 | Microsoft Docs
+description: 描述 StorSimple 裝置管理員的裝置摘要刀鋒視窗，並說明如何使用它來監視 StorSimple Virtual Array 的健康狀態。
 services: storsimple
-documentationcenter: 
+documentationcenter: ''
 author: manuaery
 manager: syadav
-editor: 
+editor: ''
 ms.assetid: a13c1ea7-6428-4234-84a6-0ebf51670a85
 ms.service: storsimple
 ms.devlang: na
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23109636"
 ---
 # <a name="use-the-device-summary-blade-for-storsimple-device-manager-connected-to-storsimple-virtual-array"></a>在連接至 Microsoft Azure StorSimple Virtual Array 的 StorSimple 裝置管理員中使用裝置摘要刀鋒視窗
 

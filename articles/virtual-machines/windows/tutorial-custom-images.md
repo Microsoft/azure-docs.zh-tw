@@ -1,6 +1,6 @@
 ---
-title: 使用 Azure PowerShell 建立自訂的 VM 映像 | Microsoft Docs
-description: 教學課程 - 使用 Azure PowerShell 建立自訂的 VM 映像。
+title: 教學課程 - 使用 Azure PowerShell 建立自訂的 VM 映像 | Microsoft Docs
+description: 在本教學課程中，您會了解如何使用 Azure PowerShell 在 Azure 中建立自訂虛擬機器映像
 services: virtual-machines-windows
 documentationcenter: virtual-machines
 author: cynthn
@@ -10,19 +10,20 @@ tags: azure-resource-manager
 ms.assetid: ''
 ms.service: virtual-machines-windows
 ms.devlang: na
-ms.topic: article
+ms.topic: tutorial
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 ms.date: 03/27/2017
 ms.author: cynthn
 ms.custom: mvc
-ms.openlocfilehash: 443f47b98ea063c6fe1f0b3517c00b6cf3692161
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: 930f5dc0369c998039b9cc0c089f60de17993be0
+ms.sourcegitcommit: e0834ad0bad38f4fb007053a472bde918d69f6cb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37435148"
 ---
-# <a name="create-a-custom-image-of-an-azure-vm-using-powershell"></a>使用 PowerShell 建立 Azure VM 的自訂映像
+# <a name="tutorial-create-a-custom-image-of-an-azure-vm-with-azure-powershell"></a>教學課程：使用 Azure PowerShell 建立 Azure VM 的自訂映像
 
 自訂映像類似 Marketplace 映像，但您要自行建立它們。 自訂映像可用於啟動程序設定，例如，預先載入應用程式、應用程式設定和其他 OS 設定。 在本教學課程中，您將建立自己的 Azure 虛擬機器自訂映像。 您會了解如何：
 
@@ -33,7 +34,6 @@ ms.lasthandoff: 03/28/2018
 > * 列出訂用帳戶中的所有映像
 > * 删除映像
 
-
 ## <a name="before-you-begin"></a>開始之前
 
 下列步驟將詳細說明如何將現有 VM 轉換成可重複使用的自訂映像，以便讓您用來建立新的 VM 執行個體。
@@ -42,7 +42,7 @@ ms.lasthandoff: 03/28/2018
 
 [!INCLUDE [cloud-shell-powershell.md](../../../includes/cloud-shell-powershell.md)]
 
-如果您選擇在本機安裝和使用 PowerShell，則在執行本教學課程時，您必須使用 AzureRM 模組版本 5.6.0 版或更新版本。 執行 ` Get-Module -ListAvailable AzureRM` 以尋找版本。 如果您需要升級，請參閱[安裝 Azure PowerShell 模組](/powershell/azure/install-azurerm-ps)。
+如果您選擇在本機安裝和使用 PowerShell，則在執行本教學課程時，您必須使用 AzureRM 模組版本 5.7.0 版或更新版本。 執行 `Get-Module -ListAvailable AzureRM` 以尋找版本。 如果您需要升級，請參閱[安裝 Azure PowerShell 模組](/powershell/azure/install-azurerm-ps)。
 
 ## <a name="prepare-vm"></a>準備 VM
 
@@ -101,7 +101,7 @@ New-AzureRmImage -Image $image -ImageName myImage -ResourceGroupName myResourceG
  
 ## <a name="create-vms-from-the-image"></a>從映像建立 VM
 
-現在您已有映像，您可以從映像建立一個或多個新的 VM。 從自訂映像建立 VM 非常類似於使用 Marketplace 映像建立 VM。 使用 Marketplace 映像時，您必須提供關於映像、映像提供者、提供項目、SKU 和版本的資訊。 使用針對 [New-AzureRMVM]() Cmdlet 簡化的參數集時，只要自訂映像位在同一個資源群組，您就只需要提供自訂映像的名稱。 
+現在您已有映像，您可以從映像建立一個或多個新的 VM。 從自訂映像建立 VM 類似於使用 Marketplace 映像建立 VM。 使用 Marketplace 映像時，您必須提供關於映像、映像提供者、供應項目、SKU 和版本的資訊。 使用針對 [New-AzureRMVM]() Cmdlet 簡化的參數集時，只要自訂映像位在同一個資源群組，您就只需要提供自訂映像的名稱。 
 
 該範例會根據 *myResourceGroup* 中的 *myImage* 建立名為 *myVMfromImage* 的 VM。
 
@@ -126,7 +126,7 @@ New-AzureRmVm `
 依名稱列出所有映像。
 
 ```azurepowershell-interactive
-$images = Find-AzureRMResource -ResourceType Microsoft.Compute/images 
+$images = Get-AzureRMResource -ResourceType Microsoft.Compute/images 
 $images.name
 ```
 

@@ -1,10 +1,10 @@
 ---
-title: "自動調整 HPC Pack 叢集節點 | Microsoft Docs"
-description: "自動在 Azure 中增加和縮減 HPC Pack 叢集計算節點的數目"
+title: 自動調整 HPC Pack 叢集節點 | Microsoft Docs
+description: 自動在 Azure 中增加和縮減 HPC Pack 叢集計算節點的數目
 services: virtual-machines-windows
-documentationcenter: 
+documentationcenter: ''
 author: dlepow
-manager: 
+manager: ''
 editor: tysonn
 ms.assetid: 38762cd1-f917-464c-ae5d-b02b1eb21e3f
 ms.service: virtual-machines-windows
@@ -14,11 +14,12 @@ ms.tgt_pltfrm: vm-multiple
 ms.workload: big-compute
 ms.date: 12/08/2016
 ms.author: danlep
-ms.openlocfilehash: 0c8a5aacd19d83b26cfeb3750d57dd783687f1c4
-ms.sourcegitcommit: 3e3a5e01a5629e017de2289a6abebbb798cec736
+ms.openlocfilehash: 4a2350183bc0cb9360e9315cd8a351be20b66584
+ms.sourcegitcommit: 59914a06e1f337399e4db3c6f3bc15c573079832
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/27/2017
+ms.lasthandoff: 04/19/2018
+ms.locfileid: "31603839"
 ---
 # <a name="automatically-grow-and-shrink-the-hpc-pack-cluster-resources-in-azure-according-to-the-cluster-workload"></a>在 Azure 中根據叢集工作負載自動擴增和縮減 HPC Pack 叢集資源
 如果您在 HPC Pack 叢集部署 Azure「高載」節點，或您在 Azure VM 中建立 HPC Pack 叢集，您可能會想要能夠根據叢集上的工作負載，自動增加或縮減叢集資源 (例如節點或核心)。 以這樣的方式調整叢集資源可讓您更有效率地使用您的 Azure 資源及控制其成本。
@@ -50,13 +51,13 @@ ms.lasthandoff: 10/27/2017
     ```powershell
         cd $env:CCP_HOME\bin
 
-        Login-AzureRmAccount
+        Connect-AzureRmAccount
     ```
         
     如果您的帳戶是位於多個 Azure Active Directory 租用戶或 Azure 訂用帳戶中，您可以執行下列命令來選取正確的租用戶和訂用帳戶︰
   
     ```powershell
-        Login-AzureRMAccount -TenantId <TenantId> -SubscriptionId <subscriptionId>
+        Connect-AzureRmAccount -TenantId <TenantId> -SubscriptionId <subscriptionId>
     ```     
        
     執行下列命令來檢視目前選取的租用戶和訂用帳戶︰
@@ -186,12 +187,12 @@ Set-HpcClusterProperty –ExcludeNodeGroups <group1,group2,group3>
 * **HPC Pack 2012 R2 更新 1 或更新版本叢集** - **AzureAutoGrowShrink.ps1** 指令碼會安裝在 %CCP_HOME%bin 資料夾中。 叢集前端節點可以部署在內部部署或在 Azure VM 中。 請參閱 [使用 HPC Pack 設定混合式叢集](../../../cloud-services/cloud-services-setup-hybrid-hpcpack-cluster.md) ，以開始使用內部部署前端節點與 Azure「高載」節點。 請參閱 [HPC Pack IaaS 部署指令碼](hpcpack-cluster-powershell-script.md)，以在 Azure VM 中快速部署 HPC Pack 叢集，或使用 [Azure 快速入門範本](https://azure.microsoft.com/documentation/templates/create-hpc-cluster/)。
 * **Azure PowerShell 1.4.0** - 指令碼目前取決於此特定版本的 Azure PowerShell。
 * **針對具備 Azure 高載節點的叢集** - 在已安裝 HPC Pack 的用戶端電腦上或在前端節點上執行指令碼。 如果是在用戶端電腦上執行，請確定您設定變數 $env:CCP_SCHEDULER 以指向前端節點。 Azure「高載」節點必須新增至叢集，但它們可能處於「未部署」狀態。
-* **針對 Azure VM (Resource Manager 部署模型) 中部署的叢集** - 針對在 Resource Manager 部署模型中部署的 Azure VM 的叢集，指令碼支援兩個 Azure 驗證的方法：登入您的 Azure 帳戶以便每次執行指令碼 (藉由執行 `Login-AzureRmAccount`，或設定服務主體以使用憑證進行驗證。 HPC Pack 提供指令碼 **ConfigARMAutoGrowShrinkCert.ps** 來使用憑證建立服務主體。 指令碼會建立 Azure Active Directory (Azure AD) 應用程式和服務主體，並將參與者角色指派給服務主體。 若要執行指令碼，以系統管理員身分啟動 Azure PowerShell，並且執行下列命令︰
+* **針對 Azure VM (Resource Manager 部署模型) 中部署的叢集** - 針對在 Resource Manager 部署模型中部署的 Azure VM 的叢集，指令碼支援兩個 Azure 驗證的方法：登入您的 Azure 帳戶以便每次執行指令碼 (藉由執行 `Connect-AzureRmAccount`，或設定服務主體以使用憑證進行驗證。 HPC Pack 提供指令碼 **ConfigARMAutoGrowShrinkCert.ps** 來使用憑證建立服務主體。 指令碼會建立 Azure Active Directory (Azure AD) 應用程式和服務主體，並將參與者角色指派給服務主體。 若要執行指令碼，以系統管理員身分啟動 Azure PowerShell，並且執行下列命令︰
 
     ```powershell
     cd $env:CCP_HOME\bin
 
-    Login-AzureRmAccount
+    Connect-AzureRmAccount
 
     .\ConfigARMAutoGrowShrinkCert.ps1 -DisplayName “YourHpcPackAppName” -HomePage "https://YourHpcPackAppHomePage" -IdentifierUri "https://YourHpcPackAppUri" -PfxFile "d:\yourcertificate.pfx"
     ```

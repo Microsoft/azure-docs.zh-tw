@@ -1,5 +1,5 @@
 ---
-title: Azure 資料目錄文件 - 教學課程和 API 參考 | Microsoft Docs
+title: Azure 資料目錄文件 - 教學課程和 API 參考
 description: 了解如何設定資料目錄，以便您的組織尋找、了解及取用資料來源。 教學課程、API 參考和其他文件。
 services: data-catalog
 author: czeumault
@@ -7,16 +7,15 @@ manager: carolz
 layout: LandingPage
 ms.assetid: ''
 ms.service: data-catalog
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: landing-page
+ms.topic: conceptual
 ms.date: 05/25/2017
 ms.author: carolz
-ms.openlocfilehash: 7ec21b9b55015c247cef3f216dbb14f4ddc30e8d
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 5c409b3905b6d75502cfb40bd278865e2673aa27
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43050316"
 ---
 # <a name="data-catalog-documentation"></a>資料目錄文件
 

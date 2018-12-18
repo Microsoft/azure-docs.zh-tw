@@ -1,25 +1,26 @@
 ---
-title: "執行平行工作負載 - Azure Batch .NET"
-description: "教學課程 - 使用 Batch .NET 用戶端程式庫透過 Azure Batch 中的 ffmpeg 平行進行媒體檔案轉碼"
+title: 執行平行工作負載 - Azure Batch .NET
+description: 教學課程 - 使用 Batch .NET 用戶端程式庫透過 Azure Batch 中的 ffmpeg 平行進行媒體檔案轉碼
 services: batch
 author: dlepow
 manager: jeconnoc
-ms.assetid: 
+ms.assetid: ''
 ms.service: batch
 ms.devlang: dotnet
 ms.topic: tutorial
-ms.date: 01/23/2018
+ms.date: 09/07/2018
 ms.author: danlep
 ms.custom: mvc
-ms.openlocfilehash: 1100f8fddcd2f802b5f38e0b9789bc9ec359e03a
-ms.sourcegitcommit: 9d317dabf4a5cca13308c50a10349af0e72e1b7e
+ms.openlocfilehash: 02b715ade9a9a537f6bd0e476ada299140bff4bb
+ms.sourcegitcommit: 6f59cdc679924e7bfa53c25f820d33be242cea28
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48815506"
 ---
 # <a name="tutorial-run-a-parallel-workload-with-azure-batch-using-the-net-api"></a>教學課程：使用 .NET API 透過 Azure Batch 執行平行工作負載
 
-使用 Azure Batch 在 Azure 中有效率地執行大規模的平行和高效能運算 (HPC) 批次作業。 本教學課程會逐步說明使用 Batch 執行平行工作負載的 C# 範例。 您會了解通用的 Batch 應用程式工作流程，以及如何以程式設計方式與 Batch 和儲存體資源進行互動。 您會了解如何：
+使用 Azure Batch 在 Azure 中有效率地執行大規模的平行和高效能運算 (HPC) 批次作業。 本教學課程會逐步說明使用 Batch 執行平行工作負載的 C# 範例。 您會了解 Batch 應用程式的通用工作流程，以及如何以程式設計方式與 Batch 和儲存體資源進行互動。 您會了解如何：
 
 > [!div class="checklist"]
 > * 將應用程式套件新增至您的 Batch 帳戶
@@ -34,18 +35,17 @@ ms.lasthandoff: 02/01/2018
 
 [!INCLUDE [quickstarts-free-trial-note.md](../../includes/quickstarts-free-trial-note.md)]
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
-* [Visual Studio IDE](https://www.visualstudio.com/vs) (Visual Studio 2015 或更新版本)。 
+* 適用於 Linux、macOS 或 Windows 的 [Visual Studio 2017](https://www.visualstudio.com/vs) 或 [.NET Core 2.1](https://www.microsoft.com/net/download/dotnet-core/2.1)。
 
-* Batch 帳戶和連結的一般用途儲存體帳戶。 若要建立這些帳戶，請參閱使用 [Azure 入口網站](quick-create-portal.md)或 [Azure CLI](quick-create-cli.md) 的 Batch 快速入門。
+* Batch 帳戶和連結的 Azure 儲存體帳戶。 若要建立這些帳戶，請參閱使用 [Azure 入口網站](quick-create-portal.md)或 [Azure CLI](quick-create-cli.md) 的 Batch 快速入門。
 
 * [Windows 64 位元版本的 ffmpeg 3.4](https://ffmpeg.zeranoe.com/builds/win64/static/ffmpeg-3.4-win64-static.zip) (.zip)。 將 ZIP 檔案下載到本機電腦。 在本教學課程中，您只需要 ZIP 檔案。 您不需要將此檔案解壓縮或在本機進行安裝。 
 
 ## <a name="sign-in-to-azure"></a>登入 Azure
 
-登入 Azure 入口網站，位址是 [https://portal.azure.com](https://portal.azure.com)。
-
+在 [https://portal.azure.com](https://portal.azure.com) 登入 Azure 入口網站。
 
 ## <a name="add-an-application-package"></a>新增應用程式套件
 
@@ -84,13 +84,18 @@ private const string StorageAccountName = "mystorageaccount";
 private const string StorageAccountKey  = "xxxxxxxxxxxxxxxxy4/xxxxxxxxxxxxxxxxfwpbIC5aAWA8wDu+AFXZB827Mt9lybZB1nUcQbQiUrkPtilK5BQ==";
 ```
 
+[!INCLUDE [batch-credentials-include](../../includes/batch-credentials-include.md)]
+
 此外，請確定方案中的 ffmpeg 應用程式套件參考符合您上傳至 Batch 帳戶的 ffmpeg 套件識別碼和版本。
 
 ```csharp
 const string appPackageId = "ffmpeg";
 const string appPackageVersion = "3.4";
 ```
+
 ### <a name="build-and-run-the-sample-project"></a>建置及執行範例專案
+
+在 Visual Studio 中建置及執行應用程式，或是在命令列使用 `dotnet build` 和 `dotnet run` 命令。 執行此應用程式之後，檢閱程式碼以了解應用程式的每部分用途。 例如，在 Visual Studio 中：
 
 * 在 [方案總管] 中以滑鼠右鍵按一下方案，然後按一下 [建置方案]。 
 
@@ -133,7 +138,7 @@ Elapsed time: 00:09:14.3418742
 
 ## <a name="review-the-code"></a>檢閱程式碼
 
-後面各節將範例應用程式細分為用來處理 Batch 服務中工作負載的數個步驟。 請在閱讀本文的其餘部分時參考 Visual Studio 中開啟的方案，因為本文並不會討論範例中的每一行程式碼。
+後面各節將範例應用程式細分為用來處理 Batch 服務中工作負載的數個步驟。 在閱讀本文的其餘部分時，請參考解決方案中的 `Program.cs`，因為本文並不會討論範例中的每一行程式碼。
 
 ### <a name="authenticate-blob-and-batch-clients"></a>驗證 Blob 和 Batch 用戶端
 
@@ -142,7 +147,7 @@ Elapsed time: 00:09:14.3418742
 ```csharp
 // Construct the Storage account connection string
 string storageConnectionString = String.Format("DefaultEndpointsProtocol=https;AccountName={0};AccountKey={1}",
-StorageAccountName, StorageAccountKey);
+                                StorageAccountName, StorageAccountKey);
 
 // Retrieve the storage account
 CloudStorageAccount storageAccount = CloudStorageAccount.Parse(storageConnectionString);
@@ -161,41 +166,43 @@ using (BatchClient batchClient = BatchClient.Open(sharedKeyCredentials))
 
 ### <a name="upload-input-files"></a>上傳輸入檔案
 
-應用程式會將 `blobClient` 物件傳遞至 `CreateContainerIfNotExist` 方法，以建立輸入檔案 (MP4 格式) 的儲存體容器和工作輸出的容器。
+應用程式會將 `blobClient` 物件傳遞至 `CreateContainerIfNotExistAsync` 方法，以建立輸入檔案 (MP4 格式) 的儲存體容器和工作輸出的容器。
 
 ```csharp
-  CreateContainerIfNotExist(blobClient, inputContainerName;
-  CreateContainerIfNotExist(blobClient, outputContainerName);
+CreateContainerIfNotExistAsync(blobClient, inputContainerName;
+CreateContainerIfNotExistAsync(blobClient, outputContainerName);
 ```
 
 接著，檔案會從本機 `InputFiles` 資料夾上傳至輸入容器。 儲存體中的檔案會定義為 Batch [ResourceFile](/dotnet/api/microsoft.azure.batch.resourcefile) 物件，Batch 之後可將這類物件下載到計算節點。 
 
 上傳檔案時需要 `Program.cs` 中的兩個方法：
 
-* `UploadResourceFilesToContainer`：傳回 ResourceFile 物件的集合，並在內部呼叫 `UploadResourceFileToContainer` 以上傳在 `filePaths` 參數中傳入的每個檔案。
-* `UploadResourceFileToContainer`：將每個檔案當作 blob 上傳至輸入容器。 上傳檔案之後，它會取得此 blob 的共用存取簽章 (SAS) 並傳回代表它的 ResourceFile 物件。 
+* `UploadResourceFilesToContainerAsync`：傳回 ResourceFile 物件的集合，並在內部呼叫 `UploadResourceFileToContainerAsync` 以上傳在 `inputFilePaths` 參數中傳入的每個檔案。
+* `UploadResourceFileToContainerAsync`：將每個檔案當作 blob 上傳至輸入容器。 上傳檔案之後，它會取得此 blob 的共用存取簽章 (SAS) 並傳回代表它的 ResourceFile 物件。 
 
 ```csharp
-  List<string> inputFilePaths = new List<string>(Directory.GetFileSystemEntries(@"..\..\InputFiles", "*.mp4",
-      SearchOption.TopDirectoryOnly));
+string inputPath = Path.Combine(Environment.CurrentDirectory, "InputFiles");
 
-  List<ResourceFile> inputFiles = UploadResourceFilesToContainer(
-    blobClient,
-    inputContainerName,
-    inputFilePaths);
+List<string> inputFilePaths = new List<string>(Directory.GetFileSystemEntries(inputPath, "*.mp4",
+    SearchOption.TopDirectoryOnly));
+
+List<ResourceFile> inputFiles = await UploadResourceFilesToContainerAsync(
+  blobClient,
+  inputContainerName,
+  inputFilePaths);
 ```
 
-如需使用 .NET 將檔案當作 blob 上傳至儲存體帳戶的詳細資訊，請參閱[以 .NET 開始使用 Azure Blob 儲存體](../storage/blobs/storage-dotnet-how-to-use-blobs.md)。
+如需使用 .NET 將檔案當作 Blob 上傳至儲存體帳戶的詳細資訊，請參閱[使用 .NET 上傳、下載及列出 Blob](../storage/blobs/storage-quickstart-blobs-dotnet.md)。
 
 ### <a name="create-a-pool-of-compute-nodes"></a>建立計算節點的集區
 
-接著，範例會呼叫 `CreatePoolIfNotExist` 以在 Batch 帳戶中建立計算節點集區。 這個已定義的方法會使用 [BatchClient.PoolOperations.CreatePool](/dotnet/api/microsoft.azure.batch.pooloperations.createpool) 方法來設定節點數目、VM 大小和集區設定。 在此，[VirtualMachineConfiguration](/dotnet/api/microsoft.azure.batch.virtualmachineconfiguration) 物件會將 [ImageReference](/dotnet/api/microsoft.azure.batch.imagereference) 指定至 Azure Marketplace 中發佈的 Windows Server 映像。 Batch 支援 Azure Marketplace 中各式各樣的 VM 映像，以及自訂 VM 映像。
+接著，範例會呼叫 `CreatePoolIfNotExistAsync` 以在 Batch 帳戶中建立計算節點集區。 這個已定義的方法會使用 [BatchClient.PoolOperations.CreatePool](/dotnet/api/microsoft.azure.batch.pooloperations.createpool) 方法來設定節點數目、VM 大小和集區設定。 在此，[VirtualMachineConfiguration](/dotnet/api/microsoft.azure.batch.virtualmachineconfiguration) 物件會將 [ImageReference](/dotnet/api/microsoft.azure.batch.imagereference) 指定至 Azure Marketplace 中發佈的 Windows Server 映像。 Batch 支援 Azure Marketplace 中各式各樣的 VM 映像，以及自訂 VM 映像。
 
 使用已定義的常數可設定節點數目和 VM 大小。 Batch 支援專用節點和[低優先順序節點](batch-low-pri-vms.md)，而您可以在集區中使用其中一種或同時使用兩種。 專用節點會保留給您的集區使用。 低優先順序節點則會以較低的價格從 Azure 中的剩餘容量提供。 如果 Azure 沒有足夠的容量，便無法使用低優先順序節點。 此範例預設建立的集區只包含 5 個大小為 Standard_A1_v2 的低優先順序節點。 
 
 將 [ApplicationPackageReference](/dotnet/api/microsoft.azure.batch.applicationpackagereference) 新增到集區設定，ffmpeg 應用程式便會部署至計算節點。 
 
-[Commit](/dotnet/api/microsoft.azure.batch.cloudpool.commit) 方法會將集區提交至 Batch 服務。
+[CommitAsync](/dotnet/api/microsoft.azure.batch.cloudpool.commitasync) 方法會將集區提交至 Batch 服務。
 
 ```csharp
 ImageReference imageReference = new ImageReference(
@@ -222,30 +229,30 @@ pool.ApplicationPackageReferences = new List<ApplicationPackageReference>
     ApplicationId = appPackageId,
     Version = appPackageVersion}};
 
-pool.Commit();  
+await pool.CommitAsync();  
 ```
 
 ### <a name="create-a-job"></a>建立工作
 
-Batch 工作會指定要在其中執行工作的集區及選擇性設定，例如工作的優先順序和排程。 此範例會藉由呼叫 `CreateJobIfNotExist` 來建立作業。 這個已定義的方法會使用 [BatchClient.JobOperations.CreateJob](/dotnet/api/microsoft.azure.batch.joboperations.createjob) 方法在您的集區上建立作業。 
+Batch 工作會指定要在其中執行工作的集區及選擇性設定，例如工作的優先順序和排程。 此範例會藉由呼叫 `CreateJobAsync` 來建立作業。 這個已定義的方法會使用 [BatchClient.JobOperations.CreateJob](/dotnet/api/microsoft.azure.batch.joboperations.createjob) 方法在您的集區上建立作業。 
 
-[Commit](/dotnet/api/microsoft.azure.batch.cloudjob.commit) 方法會將作業提交至 Batch 服務。 一開始作業沒有任何工作。
+[CommitAsync](/dotnet/api/microsoft.azure.batch.cloudjob.commitasync) 方法會將作業提交至 Batch 服務。 一開始作業沒有任何工作。
 
 ```csharp
 CloudJob job = batchClient.JobOperations.CreateJob();
-    job.Id = JobId;
-    job.PoolInformation = new PoolInformation { PoolId = PoolId };
+job.Id = JobId;
+job.PoolInformation = new PoolInformation { PoolId = PoolId };
 
-job.Commit();        
+await job.CommitAsync();
 ```
 
 ### <a name="create-tasks"></a>建立工作
 
-此範例會藉由呼叫 `AddTasks` 方法在作業中建立工作，而這個方法會建立一份 [CloudTask](/dotnet/api/microsoft.azure.batch.cloudtask) 物件清單。 每項 `CloudTask` 都會使用 [CommandLine](/dotnet/api/microsoft.azure.batch.cloudtask.commandline) 屬數來執行 ffmpeg，以處理輸入 `ResourceFile` 物件。 ffmpeg 已在先前建立集區時安裝於每個節點上。 在此，命令列會執行 ffmpeg，將每個輸入 MP4 (影片) 檔案轉換為 MP3 (音訊) 檔案。
+此範例會藉由呼叫 `AddTasksAsync` 方法在作業中建立工作，而這個方法會建立一份 [CloudTask](/dotnet/api/microsoft.azure.batch.cloudtask) 物件清單。 每項 `CloudTask` 都會使用 [CommandLine](/dotnet/api/microsoft.azure.batch.cloudtask.commandline) 屬數來執行 ffmpeg，以處理輸入 `ResourceFile` 物件。 ffmpeg 已在先前建立集區時安裝於每個節點上。 在此，命令列會執行 ffmpeg，將每個輸入 MP4 (影片) 檔案轉換為 MP3 (音訊) 檔案。
 
 此範例會在執行命令列之後，為 MP3 檔案建立 [OutputFile](/dotnet/api/microsoft.azure.batch.outputfile) 物件。 每項工作的輸出檔案 (在此例中只有一個輸出檔案) 都會使用工作的 [OutputFiles](/dotnet/api/microsoft.azure.batch.cloudtask.outputfiles) 屬性，上傳至所連結儲存體帳戶中的容器。
 
-然後，範例會使用 [AddTask](/dotnet/api/microsoft.azure.batch.joboperations.addtask) 方法將工作新增至作業，該方法會將工作排入佇列以在計算節點上執行。 
+然後，範例會使用 [AddTaskAsync](/dotnet/api/microsoft.azure.batch.joboperations.addtaskasync) 方法將工作新增至作業，該方法會將工作排入佇列以在計算節點上執行。 
 
 ```csharp
 for (int i = 0; i < inputFiles.Count; i++)
@@ -263,7 +270,6 @@ for (int i = 0; i < inputFiles.Count; i++)
     // Create a cloud task (with the task ID and command line) 
     CloudTask task = new CloudTask(taskId, taskCommandLine);
     task.ResourceFiles = new List<ResourceFile> { inputFiles[i] };
-   
 
     // Task output file
     List<OutputFile> outputFileList = new List<OutputFile>();
@@ -277,7 +283,8 @@ for (int i = 0; i < inputFiles.Count; i++)
 }
 
 // Add tasks as a collection
-batchClient.JobOperations.AddTask(jobId, tasks);
+await batchClient.JobOperations.AddTaskAsync(jobId, tasks);
+return tasks
 ```
 
 ### <a name="monitor-tasks"></a>監視工作
@@ -290,21 +297,23 @@ batchClient.JobOperations.AddTask(jobId, tasks);
 TaskStateMonitor taskStateMonitor = batchClient.Utilities.CreateTaskStateMonitor();
 try
 {
-    batchClient.Utilities.CreateTaskStateMonitor().WaitAll(addedTasks, TaskState.Completed, timeout);
+    await taskStateMonitor.WhenAll(addedTasks, TaskState.Completed, timeout);
 }
 catch (TimeoutException)
 {
-    batchClient.JobOperations.TerminateJob(jobId, failureMessage);
-    Console.WriteLine(failureMessage);
+    batchClient.JobOperations.TerminateJob(jobId);
+    Console.WriteLine(incompleteMessage);
+    return false;
 }
-batchClient.JobOperations.TerminateJob(jobId, successMessage);
+batchClient.JobOperations.TerminateJob(jobId);
+ Console.WriteLine(completeMessage);
 ...
 
 ```
 
 ## <a name="clean-up-resources"></a>清除資源
 
-應用程式在執行工作之後，會自動刪除它所建立的輸入儲存體容器，並且為您提供用於刪除 Batch 集區和工作的選項。 BatchClient 的 [JobOperations](/dotnet/api/microsoft.azure.batch.batchclient.joboperations) 和 [PoolOperations](/dotnet/api/microsoft.azure.batch.batchclient.pooloperations) 類別都有對應的刪除方法 (在您確認刪除時呼叫)。 雖然您不需支付作業和工作本身的費用，但您需支付計算節點的費用。 因此，我們建議您只在必要時配置集區。 當您刪除集區時，節點上的所有工作輸出也會跟著刪除。 不過，輸入和輸出檔案會保留在儲存體帳戶中。
+應用程式在執行工作之後，會自動刪除它所建立的輸入儲存體容器，並且為您提供用於刪除 Batch 集區和工作的選項。 BatchClient 的 [JobOperations](/dotnet/api/microsoft.azure.batch.batchclient.joboperations) 和 [PoolOperations](/dotnet/api/microsoft.azure.batch.batchclient.pooloperations) 類別都有對應的刪除方法 (在您確認刪除時呼叫)。 雖然您不需支付作業和工作本身的費用，但您需支付計算節點的費用。 因此，我們建議您只在必要時配置集區。 當您刪除集區時，節點上的所有工作輸出也會跟著刪除。 不過，輸出檔案會保留在儲存體帳戶中。
 
 若不再需要，可刪除資源群組、Batch 帳戶和儲存體帳戶。 若要在 Azure 入口網站中這麼做，請選取 Batch 帳戶的資源群組，然後按一下 [刪除資源群組]。
 
@@ -324,4 +333,4 @@ batchClient.JobOperations.TerminateJob(jobId, successMessage);
 如需更多使用 .NET API 來排程和處理 Batch 工作負載的範例，請參閱 GitHub 上的範例。
 
 > [!div class="nextstepaction"]
-> [Batch C# 範例](https://github.com/Azure/azure-batch-samples/tree/master/CSharp)
+> [Batch C# 範例](https://github.com/Azure-Samples/azure-batch-samples/tree/master/CSharp)

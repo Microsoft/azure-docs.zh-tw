@@ -1,11 +1,11 @@
 ---
-title: "下載 Azure VM 的範本 | Microsoft Docs"
-description: "下載 VM 的範本以協助在 Resource Manager 部署模型中進行自動化部署"
+title: 下載 Azure VM 的範本 | Microsoft Docs
+description: 下載 VM 的範本以協助在 Resource Manager 部署模型中進行自動化部署
 services: virtual-machines-windows
-documentationcenter: 
+documentationcenter: ''
 author: cynthn
 manager: jeconnoc
-editor: 
+editor: ''
 tags: azure-resource-manager
 ms.assetid: 51ef4f51-0942-4249-afea-4a3f87ce1ff8
 ms.service: virtual-machines-windows
@@ -20,6 +20,7 @@ ms.sourcegitcommit: 80eb8523913fc7c5f876ab9afde506f39d17b5a1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 12/02/2017
+ms.locfileid: "26055784"
 ---
 # <a name="download-the-template-for-a-vm"></a>下載 VM 的範本
 當您使用入口網站或 PowerShell 在 Azure 中建立 VM 時，系統會自動為您建立 Resource Manager 範本。 您可以使用此範本快速地重複部署。 範本包含資源群組中所有資源的相關資訊。 針對虛擬機器，這表示範本包含針對支援該資源群組中 VM 而建立的所有項目，包括網路功能資源。

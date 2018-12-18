@@ -1,23 +1,24 @@
 ---
-title: "Azure 雲端服務角色結構描述 | Microsoft Docs"
-ms.custom: 
+title: Azure 雲端服務角色結構描述 | Microsoft Docs
+ms.custom: ''
 ms.date: 12/07/2016
-ms.prod: azure
-ms.reviewer: 
+services: cloud-services
+ms.reviewer: ''
 ms.service: cloud-services
-ms.suite: 
-ms.tgt_pltfrm: 
+ms.suite: ''
+ms.tgt_pltfrm: ''
 ms.topic: reference
 ms.assetid: e4fbffc1-98eb-449c-971c-de415e45ab34
-caps.latest.revision: 
-author: thraka
-ms.author: adegeo
+caps.latest.revision: 12
+author: jpconnock
+ms.author: jeconnoc
 manager: timlt
-ms.openlocfilehash: c25e7d139c7b7fd7c5da6bde8cfb9050eec8a88e
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 20f4186426152d2dc9b445981a69881c35587eb6
+ms.sourcegitcommit: e0a678acb0dc928e5c5edde3ca04e6854eb05ea6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 07/13/2018
+ms.locfileid: "39005776"
 ---
 # <a name="azure-cloud-services-config-role-schema"></a>Azure 雲端服務設定角色結構描述
 

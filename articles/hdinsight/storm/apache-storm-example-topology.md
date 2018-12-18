@@ -1,26 +1,20 @@
 ---
-title: "HDInsight 上的 Apache Storm 拓撲 | Microsoft Docs"
-description: "利用 Apache Storm on HDInsight 建立和測試的範例 Storm 拓撲清單 (包含基本 basic C# 和 Java 拓撲)，以及使用事件中樞。"
+title: Azure HDInsight 中的範例 Apache Storm 拓撲
+description: 利用 Apache Storm on HDInsight 建立和測試的範例 Storm 拓撲清單 (包含基本 basic C# 和 Java 拓撲)，以及使用事件中樞。
 services: hdinsight
-documentationcenter: 
-author: Blackmist
-manager: jhubbard
-editor: cgronlun
-tags: azure-portal
-ms.assetid: f9b1bdff-5928-4705-a76d-52fd200917cb
 ms.service: hdinsight
+author: jasonwhowell
+ms.author: jasonh
+ms.reviewer: jasonh
 ms.custom: hdinsightactive
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 02/21/2018
-ms.author: larryfr
-ms.openlocfilehash: 38a2d6e6c8594def54ac42546d0cb547445334ed
-ms.sourcegitcommit: d1f35f71e6b1cbeee79b06bfc3a7d0914ac57275
+ms.topic: conceptual
+ms.date: 05/30/2018
+ms.openlocfilehash: 6f88011bcc3d3c7a97e12a7c96da0b5e3280ad05
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/22/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43044921"
 ---
 # <a name="example-storm-topologies-and-components-for-apache-storm-on-hdinsight"></a>HDInsight 上 Apache Storm 的範例 Storm 拓撲及元件
 
@@ -40,6 +34,11 @@ ms.lasthandoff: 02/22/2018
 | [使用 Storm on HDInsight 從 Azure 事件中樞讀取的延展性效能評比][d6c540e3] |訊息輸送量、事件中心、SQL Database |C#，Java |
 | [搭配 Storm on HDInsight 使用 Python](apache-storm-develop-python-topology.md) |使用 Flux 拓撲的 Python 元件 |Python |
 | [搭配 Storm on HDInsight 使用 Kafka](../hdinsight-apache-storm-with-kafka.md) | 讀取和寫入 Apache Kafka 的 Apache Storm | Java |
+
+> [!WARNING]
+> 這份清單中的 C# 範例原先是以 Windows 為基礎的 HDInsight 進行建立和測試，而且無法搭配以 Linux 為基礎的 HDInsight 叢集正常運作。 以 Linux 為基礎的叢集會使用 Mono 來執行 .NET 程式碼，而範例中使用的架構和套件可能有相容性問題。
+>
+> Linux 是 HDInsight 版本 3.4 或更新版本上唯一使用的作業系統。
 
 ### <a name="next-steps"></a>後續步驟
 

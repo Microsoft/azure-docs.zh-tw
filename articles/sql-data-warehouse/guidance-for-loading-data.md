@@ -1,25 +1,21 @@
 ---
-title: "資料載入最佳做法 - Azure SQL 資料倉儲 | Microsoft Docs"
-description: "使用 Azure SQL 資料倉儲載入資料及執行 ELT 的建議。"
+title: 資料載入最佳做法 - Azure SQL 資料倉儲 | Microsoft Docs
+description: 將資料載入 Azure SQL 資料倉儲的建議和效能最佳化。
 services: sql-data-warehouse
-documentationcenter: NA
-author: barbkess
-manager: jenniehubbard
-editor: 
-ms.assetid: 7b698cad-b152-4d33-97f5-5155dfa60f79
+author: ckarst
+manager: craigg
 ms.service: sql-data-warehouse
-ms.devlang: NA
-ms.topic: get-started-article
-ms.tgt_pltfrm: NA
-ms.workload: data-services
-ms.custom: performance
-ms.date: 12/13/2017
-ms.author: barbkess
-ms.openlocfilehash: 277766c22e25945fb314aa51017a72f415cbab46
-ms.sourcegitcommit: 95500c068100d9c9415e8368bdffb1f1fd53714e
+ms.topic: conceptual
+ms.component: implement
+ms.date: 04/17/2018
+ms.author: cakarst
+ms.reviewer: igorstan
+ms.openlocfilehash: a2cc5b02744c04752ba11cbba14fe95c487d737c
+ms.sourcegitcommit: 2b2129fa6413230cf35ac18ff386d40d1e8d0677
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 08/30/2018
+ms.locfileid: "43248112"
 ---
 # <a name="best-practices-for-loading-data-into-azure-sql-data-warehouse"></a>將資料載入 Azure SQL 資料倉儲的最佳做法
 將資料載入 Azure SQL 資料倉儲的建議和效能最佳化。 
@@ -62,18 +58,18 @@ PolyBase 無法載入具有超過 1 百萬個位元組之資料的資料列。 �
 ```
 若要使用 staticRC20 資源類別的資源執行載入，只需以 LoaderRC20 身分登入並執行載入。
 
-在靜態資源類別，而不是動態資源類別之下執行載入。 不論您的[服務層級](performance-tiers.md#service-levels)為何，使用靜態資源類別可保證相同的資源。 如果您使用動態資源類別，資源就會根據您的服務層級而有所不同。 對於動態類別，較低服務層級表示您可能需要對您的載入使用者使用較大的資源類別。
+在靜態資源類別，而不是動態資源類別之下執行載入。 不論您的[資料倉儲單位](what-is-a-data-warehouse-unit-dwu-cdwu.md)為何，使用靜態資源類別可保證相同的資源。 如果您使用動態資源類別，資源就會根據您的服務層級而有所不同。 對於動態類別，較低服務層級表示您可能需要對您的載入使用者使用較大的資源類別。
 
 ## <a name="allowing-multiple-users-to-load"></a>允許多個使用者載入
 
-通常需要讓多個使用者將資料載入資料倉儲中。 使用 [CREATE TABLE AS SELECT (Transact-SQL)][CREATE TABLE AS SELECT (Transact-SQL)] 載入需要資料庫的 CONTROL 權限。  CONTROL 權限可控制所有結構描述的存取。 您可能不希望所有的載入使用者都能控制所有結構描述的存取。 若要限制權限，請使用 DENY CONTROL 陳述式。
+通常需要讓多個使用者將資料載入資料倉儲中。 使用 [CREATE TABLE AS SELECT (Transact-SQL)](/sql/t-sql/statements/create-table-as-select-azure-sql-data-warehouse) 載入所需資料庫的 CONTROL 權限。  CONTROL 權限可控制所有結構描述的存取。 您可能不希望所有的載入使用者都能控制所有結構描述的存取。 若要限制權限，請使用 DENY CONTROL 陳述式。
 
 例如，請考慮將資料庫結構描述 schema_A 用於 dept A 以及 schema_B 用於 dept B，讓資料庫使用者 user_A 和 user_B 個別成為 dept A 及 B 中載入的 PolyBase 之使用者。 這兩個使用者皆已獲得 CONTROL 資料庫權限。 結構描述 A 和 B 的建立者現在是使用 DENY 鎖定其結構描述：
 
 ```sql
    DENY CONTROL ON SCHEMA :: schema_A TO user_B;
    DENY CONTROL ON SCHEMA :: schema_B TO user_A;
-```   
+```
 
 user_A 和 user_B 現在已從其他部門的結構描述加以鎖定。
 
@@ -99,13 +95,13 @@ user_A 和 user_B 現在已從其他部門的結構描述加以鎖定。
 若要修正「錯誤」記錄，請確定您的外部資料表及外部檔案格式定義皆正確，且這些定義與您的外部資料相符。 萬一外部資料記錄的子集有錯誤，您可以使用 CREATE EXTERNAL TABLE 中的拒絕選項，選擇拒絕這些查詢記錄。
 
 ## <a name="inserting-data-into-a-production-table"></a>將資料插入生產資料表中
-使用 [INSERT 陳述式](/sql/t-sql/statements/insert-transact-sql.md)單次載入小型資料表，或甚至定期重新載入查閱，可能會與使用 `INSERT INTO MyLookup VALUES (1, 'Type 1')` 之類的陳述式有一樣好的效果。  不過，單一插入的效率不如執行大量載入。 
+使用 [INSERT 陳述式](/sql/t-sql/statements/insert-transact-sql)單次載入小型資料表，或甚至定期重新載入查閱，可能會與使用 `INSERT INTO MyLookup VALUES (1, 'Type 1')` 之類的陳述式有一樣好的效果。  不過，單一插入的效率不如執行大量載入。 
 
 如果您整天有數千個或更多單一插入，請將插入分批，以便進行大量載入。  開發將單一插入附加至檔案的程序，然後建立另一個可定期載入檔案的程序。
 
 ## <a name="creating-statistics-after-the-load"></a>建立載入後的統計資料
 
-為了改善查詢效能，在首次載入資料或資料發生重大變更之後，建立所有資料表的所有資料行統計資料非常重要。  如需統計資料的詳細說明，請參閱 [統計資料][統計資料]。 下列範例會在 Customer_Speed 資料表的五個資料行上建立統計資料。
+為了改善查詢效能，在首次載入資料或資料發生重大變更之後，建立所有資料表的所有資料行統計資料非常重要。  如需統計資料的詳細說明，請參閱 [統計資料](sql-data-warehouse-tables-statistics.md)。 下列範例會在 Customer_Speed 資料表的五個資料行上建立統計資料。
 
 ```sql
 create statistics [SensorKey] on [Customer_Speed] ([SensorKey]);
@@ -120,17 +116,21 @@ create statistics [YearMeasured] on [Customer_Speed] ([YearMeasured]);
 
 若要輪替 Azure 儲存體帳戶金鑰：
 
-對於金鑰已變更的每個儲存體帳戶，發出 [ALTER DATABASE SCOPED CREDENTIAL](/sql/t-sql/statements/alter-database-scoped-credential-transact-sql.md)。
+對於金鑰已變更的每個儲存體帳戶，發出 [ALTER DATABASE SCOPED CREDENTIAL](/sql/t-sql/statements/alter-database-scoped-credential-transact-sql)。
 
 範例：
 
 建立原始金鑰
 
-CREATE DATABASE SCOPED CREDENTIAL my_credential WITH IDENTITY = 'my_identity', SECRET = 'key1' 
+```sql
+CREATE DATABASE SCOPED CREDENTIAL my_credential WITH IDENTITY = 'my_identity', SECRET = 'key1'
+``` 
 
 將金鑰從 key 1 輪替為 key 2
 
+```sql
 ALTER DATABASE SCOPED CREDENTIAL my_credential WITH IDENTITY = 'my_identity', SECRET = 'key2' 
+```
 
 不需要對基礎外部資料來源進行其他變更。
 

@@ -12,14 +12,15 @@ ms.workload: na
 pms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/21/2018
+ms.date: 08/30/2018
 ms.author: jeffgilb
 ms.reviewer: wamota
-ms.openlocfilehash: 5ade2a09d0729f48c075a5bcaa20bee079ead47d
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 9b1eb6878dcafba68c230255f3b3f43e005421ab
+ms.sourcegitcommit: 0c64460a345c89a6b579b1d7e273435a5ab4157a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43340183"
 ---
 # <a name="network-connectivity"></a>網路連線
 本文提供 Azure Stack 網路基礎架構資訊，可協助您決定如何以最佳方式將 Azure Stack 整合至現有的網路環境。 
@@ -28,7 +29,7 @@ ms.lasthandoff: 03/23/2018
 > 若要從 Azure Stack 解析外部 DNS 名稱 (例如 www.bing.com)，您必須提供 DNS 伺服器來轉送 DNS 要求。 如需有關 Azure Stack DNS 需求的詳細資訊，請參閱 [Azure Stack 資料中心整合 - DNS](azure-stack-integrate-dns.md)。
 
 ## <a name="physical-network-design"></a>實體網路設計
-Azure Stack 解決方案需要有彈性且高可用性的實體基礎結構，以支援其作業和服務。 下圖顯示我們建議的設計：
+Azure Stack 解決方案需要有彈性且高可用性的實體基礎結構，以支援其作業和服務。 從 ToR 上行連結至界限交換器僅限用 SFP + 或 SFP28 媒體和 1 GB、10 GB 或 25 GB 的速度。 請洽詢您原始設備製造商 (OEM) 的硬體廠商，以了解可用性。 下圖是我們建議的設計：
 
 ![建議的 Azure Stack 網路設計](media/azure-stack-network/recommended-design.png)
 
@@ -40,11 +41,11 @@ Azure Stack 解決方案需要有彈性且高可用性的實體基礎結構，�
 
 | 邏輯網路 | 說明 | 大小 | 
 | -------- | ------------- | ------------ | 
-| 公用 VIP | 小 Azure Stack 服務集的公用 IP 位址，含租用戶虛擬機器所使用的其餘位址。 Azure Stack 基礎結構會從這個網路使用 32 個位址。 如果您打算使用 App Service 和 SQL 資源提供者，則會再使用 7 個位址。 | /26 (62 部主機) - /22 (1022 部主機)<br><br>建議 = / 24 (254 部主機) | 
+| 公用 VIP | Azure Stack 從這個網路使用總計 31 個位址。 有 8 個公用 IP 位址用於小型 Azure Stack 服務集，其餘位址由租用戶虛擬機器使用。 如果您打算使用 App Service 和 SQL 資源提供者，則會再使用 7 個位址。 其餘 15 個 IP 則保留給未來的 Azure 服務。 | /26 (62 部主機) - /22 (1022 部主機)<br><br>建議 = / 24 (254 部主機) | 
 | 交換器基礎結構 | 路由用途的點對點 IP 位址、專屬的交換器管理介面，及指派給參數的回送位址。 | /26 | 
 | 基礎結構 | 用於通訊的 Azure Stack 內部元件。 | /24 |
 | 私人 | 用於存放網路和私用 VIP。 | /24 | 
-| BMC | 用來與實體主機上的 BMC 通訊。 | /27 | 
+| BMC | 用來與實體主機上的 BMC 通訊。 | /26 | 
 | | | |
 
 ## <a name="network-infrastructure"></a>網路基礎結構
@@ -70,7 +71,7 @@ HLH 也會裝載部署 VM (DVM)。 DVM 會在 Azure Stack 部署期間使用，�
 此 /27 網路是來自先前所述 Azure Stack 基礎結構子網路中的小範圍，它不需要公用 IP 位址，但確實需要透過 NAT 或 Transparent Proxy 提供的網際網路存取權。 此網路將會配置給緊急修復主控台系統 (ERCS)，ERCS VM 在向 Azure 註冊期間以及在基礎結構備份期間，需要存取網際網路。 ERCS VM 應該可路由到您的管理網路，以進行疑難排解。
 
 ### <a name="public-vip-network"></a>公用 VIP 網路
-公用 VIP 網路會指派給 Azure Stack 中的網路控制器。 它不是交換器上的邏輯網路。 SLB 會針對租用戶工作負載使用位址集區並指派 /32 網路。 在交換器路由表上，這些 /32 IP 會公告為可透過 BGP 使用的路由。 此網路包含外部可存取的 IP 位址或公用 IP 位址。 Azure Stack 基礎結構使用來自此公用 VIP 網路的至少 8 個位址，而其餘位址則由租用戶 VM 使用。 此子網路上的網路大小範圍從最小 /26 (64 部主機) 到最大 /22 (1022 部主機)，我們建議您規劃 /24 網路。
+公用 VIP 網路會指派給 Azure Stack 中的網路控制器。 它不是交換器上的邏輯網路。 SLB 會針對租用戶工作負載使用位址集區並指派 /32 網路。 在交換器路由表上，這些 /32 IP 會公告為可透過 BGP 使用的路由。 此網路包含外部可存取的 IP 位址或公用 IP 位址。 Azure Stack 基礎結構保留公用 VIP 網路的前 31 個位址，而剩下的由租用戶 VM 使用。 此子網路上的網路大小範圍從最小 /26 (64 部主機) 到最大 /22 (1022 部主機)，我們建議您規劃 /24 網路。
 
 ### <a name="switch-infrastructure-network"></a>交換器基礎結構網路
 此 /26 網路是一個子網路，其中包含可路由傳送的點對點 IP /30 (2 個主機 IP) 子網路和回送 (這是用於頻內交換器管理與 BGP 路由器識別碼的專用 /32 子網路)。 此 IP 位址範圍必須可在 Azure Stack 解決方案外部路由傳送至您的資料中心，而這些 IP 位址可以是私人或公用 IP。
@@ -84,7 +85,7 @@ HLH 也會裝載部署 VM (DVM)。 DVM 會在 Azure Stack 部署期間使用，�
 ### <a name="ports-and-urls"></a>連接埠和 URL
 若要讓外部網路使用 Azure Stack 服務 (例如入口網站、Azure Resource Manager、DNS 等)，您必須允許針對特定 URL、連接埠和通訊協定允許至這些端點的輸入流量。
  
-在上行連結至傳統 Proxy 伺服器的 Transparent Proxy 部署中，您必須允許特定連接埠和 URL 進行[輸入](https://docs.microsoft.com/azure/azure-stack/azure-stack-integrate-endpoints#ports-and-protocols-inbound)和[出](https://docs.microsoft.com/azure/azure-stack/azure-stack-integrate-endpoints#ports-and-urls-outbound)通訊。 其中包括用於身分識別、Marketplace 摘要整合、修補和更新、註冊和使用資料的連接埠和 URL。
+在上行連結至傳統 Proxy 伺服器的 Transparent Proxy 部署中，您必須允許特定連接埠和 URL 進行[輸入](https://docs.microsoft.com/azure/azure-stack/azure-stack-integrate-endpoints#ports-and-protocols-inbound)和[出](https://docs.microsoft.com/azure/azure-stack/azure-stack-integrate-endpoints#ports-and-urls-outbound)通訊。 其中包括用於身分識別、Marketplace、修補和更新、註冊和使用狀況資料的連接埠和 URL。
 
 ## <a name="next-steps"></a>後續步驟
 [邊界連線能力](azure-stack-border-connectivity.md)

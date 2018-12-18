@@ -1,24 +1,18 @@
 ---
-title: 適用於 Azure DNS 私人區域的案例 | Microsoft Docs
+title: Azure DNS 私人區域的案例
 description: 使用 Azure DNS 私人區域的常見案例概觀。
 services: dns
-documentationcenter: na
-author: KumudD
-manager: jennoc
-editor: ''
-ms.assetid: ''
+author: vhorne
 ms.service: dns
-ms.devlang: na
 ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: infrastructure-services
 ms.date: 03/15/2018
-ms.author: kumud
-ms.openlocfilehash: fc6c871f89cd5f837eda741dfbadd64fd021bfbe
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.author: victorh
+ms.openlocfilehash: d84da36ad6b1ef3e2a507a0944aac583861d5ccb
+ms.sourcegitcommit: 1478591671a0d5f73e75aa3fb1143e59f4b04e6a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 07/19/2018
+ms.locfileid: "39162162"
 ---
 # <a name="azure-dns-private-zones-scenarios"></a>Azure DNS 私人區域案例
 Azure DNS 私人區域能在虛擬網路內及虛擬網路之間提供名稱解析。 在本文中，我們會檢視可透過此功能達成的一些常見案例。 
@@ -36,9 +30,9 @@ Azure DNS 私人區域能在虛擬網路內及虛擬網路之間提供名稱解�
 
 此為較常見的案例，其中您會需要將私人區域與多個虛擬網路關聯。 此案例適用於中樞和支點模型之類的架構。中樞和支點模型具有一個中央中樞虛擬網路，以及連線至該虛擬網路的多個其他支點虛擬網路。 中央中樞虛擬網路可以作為註冊虛擬網路連結至私人區域，而支點虛擬網路則可以作為解析虛擬網路進行連結。 
 
-下圖顯示此案例的簡單版本，其中只有兩個虛擬網路：A 和 B。我們將 A 指定為註冊虛擬網路，並將 B 指定為解析虛擬網路。 此目的是為了讓這兩個虛擬網路都共用相同的區域，contoso.com。在區域建立完畢，且解析及註冊虛擬網路皆已連結至該區域後，Azure 將會自動註冊來自虛擬網路 A 之 VM (VNETA-VM1 和 VNETA-VM2) 的 DNS 記錄。您也可以針對位於解析虛擬網路 B 中的 VM，將 DNS 記錄手動新增至區域。透過此設定，您將能針對順向及反向 DNS 查詢觀察到下列行為：
+下圖顯示此案例的簡單版本，其中只有兩個虛擬網路：A 和 B。我們將 A 指定為註冊虛擬網路，並將 B 指定為解析虛擬網路。 此目的是為了讓這兩個虛擬網路都共用相同的區域，contoso.com。 在區域建立完畢，且解析及註冊虛擬網路皆已連結至該區域後，Azure 將會自動註冊來自虛擬網路 A 之 VM (VNETA-VM1 和 VNETA-VM2) 的 DNS 記錄。您也可以針對位於解析虛擬網路 B 中的 VM，將 DNS 記錄手動新增至區域。透過此設定，您將能針對順向及反向 DNS 查詢觀察到下列行為：
 * 來自解析虛擬網路 B 中之 VNETB-VM1 的 DNS 查詢 (針對 VNETA-VM1.contoso.com)，將會接收到包含 VNETA-VM1 之私人 IP 的 DNS 回應。
-* 來自解析虛擬網路 B 中之 VNETB-VM2 的反向 DNS (PTR) 查詢 (針對 10.1.0.1)，將會接收到包含 VNETB-VM1.contoso.com 之 FQDN 的 DNS 回應。原因是反向 DNS 查詢的範圍為相同的虛擬網路。 
+* 來自解析虛擬網路 B 中之 VNETB-VM2 的反向 DNS (PTR) 查詢 (針對 10.1.0.1)，將會接收到包含 VNETB-VM1.contoso.com 之 FQDN 的 DNS 回應。 原因是反向 DNS 查詢的範圍為相同的虛擬網路。 
 * 來自解析虛擬網路 B 中之 VNETB-VM3 的反向 DNS (PTR) 查詢 (針對 10.0.0.1)，將會接收到 NXDOMAIN。 原因是反向 DNS 查詢的範圍僅為相同的虛擬網路。 
 
 

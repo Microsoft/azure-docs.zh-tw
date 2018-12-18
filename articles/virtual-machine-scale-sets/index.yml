@@ -13,10 +13,11 @@ metadata:
   ms.date: 03/14/2018
   ms.author: carolz
   ms.openlocfilehash: ea8437adf7224c4605f31ccdea281669b89bb7c9
-  ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+  ms.sourcegitcommit: a1e1b5c15cfd7a38192d63ab8ee3c2c55a42f59c
   ms.translationtype: HT
   ms.contentlocale: zh-TW
-  ms.lasthandoff: 03/28/2018
+  ms.lasthandoff: 07/10/2018
+  ms.locfileid: "37949725"
 abstract:
   description: Azure 虛擬機器擴展集可讓您建立和管理一組負載平衡且可自動調整的相同 VM。 了解如何使用快速入門、教學課程和範例來建立、設定、管理和自動調整虛擬機器擴展集。
 sections:

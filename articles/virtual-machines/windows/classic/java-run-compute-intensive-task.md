@@ -1,11 +1,10 @@
 ---
-title: "在 VM 上大量計算 Java 應用程式 | Microsoft Docs"
-description: "了解如何建立可執行大量運算 Java 應用程式 (此應用程式又可由另一個 Java 應用程式監控) 的 Azure 虛擬機器。"
+title: VM 上計算密集型 Java 應用程式
+description: 了解如何建立可執行大量運算 Java 應用程式 (此應用程式又可由另一個 Java 應用程式監控) 的 Azure 虛擬機器。
 services: virtual-machines-windows
 documentationcenter: java
 author: rmcmurray
-manager: erikre
-editor: 
+manager: mbaldwin
 tags: azure-service-management,azure-resource-manager
 ms.assetid: ae6f2737-94c7-4569-9913-d871450c2827
 ms.service: virtual-machines-windows
@@ -13,13 +12,14 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: Java
 ms.topic: article
-ms.date: 04/25/2017
+ms.date: 04/11/2018
 ms.author: robmcm
-ms.openlocfilehash: ccccdf58fbb84605bc5dff29d870b373134f1f97
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.openlocfilehash: e8da296c30f1d2be3c637e456e90d2f93da67548
+ms.sourcegitcommit: 1362e3d6961bdeaebed7fb342c7b0b34f6f6417a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 04/18/2018
+ms.locfileid: "31528455"
 ---
 # <a name="how-to-run-a-compute-intensive-task-in-java-on-a-virtual-machine"></a>如何在虛擬機器上以 Java 執行大量運算工作
 > [!IMPORTANT] 

@@ -2,25 +2,34 @@
 title: 安裝彈性資料庫工作 | Microsoft Docs
 description: 逐步解說如何安裝彈性工作功能。
 services: sql-database
-manager: craigg
-author: ddove
 ms.service: sql-database
-ms.custom: scale out apps
-ms.topic: article
-ms.date: 10/24/2016
+subservice: operations
+ms.custom: ''
+ms.devlang: ''
+ms.topic: conceptual
+author: stevestein
 ms.author: sstein
-ms.openlocfilehash: 7e5258e0ccb88c8e2f3fe3277f69444ae5424cd0
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.reviewer: ''
+manager: craigg
+ms.date: 09/14/2018
+ms.openlocfilehash: 37052c86736a05012b9bb996f07bbf2568d7c879
+ms.sourcegitcommit: 51a1476c85ca518a6d8b4cc35aed7a76b33e130f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47163153"
 ---
 # <a name="installing-elastic-database-jobs-overview"></a>安裝彈性資料庫工作概觀
+
+[!INCLUDE [elastic-database-jobs-deprecation](../../includes/sql-database-elastic-jobs-deprecate.md)]
+
+
+
 您可以經由 PowerShell 或透過 Azure 入口網站安裝[**彈性資料庫工作**](sql-database-elastic-jobs-overview.md)。只有在安裝 PowerShell 套件的情況下，您才能取得可使用 PowerShell API 來建立和管理工作的存取權。 此外，PowerShell API 目前比入口網站提供更多的功能。
 
 如果您已透過「入口網站」從現有的「彈性集區」安裝「彈性資料庫工作」，最新的 Powershell 預覽版包含可升級現有安裝的指令碼。 強烈建議將安裝升級至最新的 **彈性資料庫工作** 元件，以利用透過 PowerShell API 公開的新功能。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 * Azure 訂用帳戶。 如需免費試用版，請參閱 [免費試用版](https://azure.microsoft.com/pricing/free-trial/)。
 * Azure PowerShell。 使用 [Web Platform Installer](http://go.microsoft.com/fwlink/p/?linkid=320376)安裝最新版本。 如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview)。
 * [NuGet 命令列公用程式](https://nuget.org/nuget.exe) 可用來安裝彈性資料庫工作封裝。 如需詳細資訊，請參閱 http://docs.nuget.org/docs/start-here/installing-nuget。
@@ -87,7 +96,7 @@ ms.lasthandoff: 03/16/2018
 </tr>
     <tr>
     <td>SqlServerDatabaseSlo</td>
-    <td>提供 Standard Edition 的服務等級目標。 此參數預設為 S0。 接受 S0/S1/S2/S3/S4/S6/S9/S12 的參數值，這會導致 Azure SQL Database 使用各自的 SLO。 如需有關 SQL Database SLO 的詳細資訊，請參閱[彈性資料庫工作元件和價格](sql-database-elastic-jobs-overview.md#components-and-pricing)。</td>
+    <td>提供標準版的計算大小。 此參數預設為 S0。 接受 S0/S1/S2/S3/S4/S6/S9/S12 的參數值，這會導致 Azure SQL Database 使用各自的計算大小。 如需有關 SQL Database 計算大小的詳細資訊，請參閱[彈性資料庫工作元件和價格](sql-database-elastic-jobs-overview.md#components-and-pricing)。</td>
 </tr>
 
 </tr>

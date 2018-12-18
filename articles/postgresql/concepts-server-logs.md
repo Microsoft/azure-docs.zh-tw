@@ -1,6 +1,6 @@
 ---
-title: "適用於 PostgreSQL 的 Azure 資料庫中的伺服器記錄"
-description: "本文說明適用於 PostgreSQL 的 Azure 資料庫產生查詢和錯誤記錄的方式，以及設定記錄保留的方式。"
+title: 適用於 PostgreSQL 的 Azure 資料庫中的伺服器記錄
+description: 本文說明適用於 PostgreSQL 的 Azure 資料庫產生查詢和錯誤記錄的方式，以及設定記錄保留的方式。
 services: postgresql
 author: rachel-msft
 ms.author: raagyema
@@ -9,11 +9,12 @@ editor: jasonwhowell
 ms.service: postgresql
 ms.topic: article
 ms.date: 02/28/2018
-ms.openlocfilehash: a8d560aa8906e3ba1f65758239b645cd1b1df032
-ms.sourcegitcommit: c765cbd9c379ed00f1e2394374efa8e1915321b9
+ms.openlocfilehash: bcca8ce8d11482dd8517992297b7e8a5b94ac8b1
+ms.sourcegitcommit: e0834ad0bad38f4fb007053a472bde918d69f6cb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/28/2018
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37435485"
 ---
 # <a name="server-logs-in-azure-database-for-postgresql"></a>適用於 PostgreSQL 的 Azure 資料庫中的伺服器記錄 
 適用於 PostgreSQL 的 Azure 資料庫會產生查詢和錯誤記錄。 不過，不支援存取交易記錄。 查詢和錯誤記錄可用來針對組態錯誤及未達最佳效能的情況，進行識別、疑難排解及修復。 如需詳細資訊，請參閱[錯誤報告和記錄 (英文)](https://www.postgresql.org/docs/9.6/static/runtime-config-logging.html)。
@@ -28,7 +29,7 @@ ms.lasthandoff: 02/28/2018
 ## <a name="configure-logging-for-azure-postgresql-server"></a>設定 Azure PostgreSQL 伺服器的記錄
 您可以針對伺服器啟用查詢記錄和錯誤記錄。 錯誤記錄可包含自動清空、連線和檢查點資訊。
 
-您可以藉由設定下列兩個伺服器參數，為 PostgreSQL DB 執行個體啟用查詢記錄功能︰`log\_statement` 和 `log\_min\_duration\_statement`。
+您可以藉由設定下列兩個伺服器參數，為 PostgreSQL DB 執行個體啟用查詢記錄功能︰`log_statement` 和 `log_min_duration_statement`。
 
 **log\_statement** 參數控制要記錄哪些 SQL 陳述式。 我們建議將此參數設為 ***all*** 以記錄所有陳述式；預設值為 none。
 

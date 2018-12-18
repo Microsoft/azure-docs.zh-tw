@@ -1,8 +1,8 @@
 ---
-title: "在 Azure 中備份應用程式"
-description: "了解如何在 Azure App Service 中建立應用程式的備份。"
+title: 在 Azure 中備份應用程式
+description: 了解如何在 Azure App Service 中建立應用程式的備份。
 services: app-service
-documentationcenter: 
+documentationcenter: ''
 author: cephalin
 manager: erikre
 editor: jimbe
@@ -14,11 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/06/2016
 ms.author: cephalin
-ms.openlocfilehash: 435370a8758d439a5fcce2e04efd11b4aaaf0357
-ms.sourcegitcommit: 933af6219266cc685d0c9009f533ca1be03aa5e9
+ms.openlocfilehash: 44b4da7c293da0643fb88cc2de21433c6ea72c5c
+ms.sourcegitcommit: f1e6e61807634bce56a64c00447bf819438db1b8
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/18/2017
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42886399"
 ---
 # <a name="back-up-your-app-in-azure"></a>在 Azure 中備份應用程式
 [Azure App Service](app-service-web-overview.md) 中的「備份與還原」功能可讓您以手動或透過排程方式，輕鬆建立應用程式備份。 您可以透過覆寫現有的應用程式或還原到另一個應用程式，將應用程式還原到先前狀態的快照。 
@@ -35,9 +36,9 @@ App Service 可以將下列資訊備份到您已設定讓應用程式使用的 A
 * 已連線到您應用程式的資料庫
 
 備份功能支援下列資料庫解決方案： 
-   - [SQL Database](https://azure.microsoft.com/en-us/services/sql-database/)
-   - [適用於 MySQL 的 Azure 資料庫 (預覽)](https://azure.microsoft.com/en-us/services/mysql)
-   - [適用於 PostgreSQL 的 Azure 資料庫 (預覽)](https://azure.microsoft.com/en-us/services/postgres)
+   - [SQL Database](https://azure.microsoft.com/services/sql-database/)
+   - [適用於 MySQL 的 Azure 資料庫](https://azure.microsoft.com/services/mysql)
+   - [適用於 PostgreSQL 的 Azure 資料庫](https://azure.microsoft.com/services/postgresql)
    - [應用程式內 MySQL](https://blogs.msdn.microsoft.com/appserviceteam/2017/03/06/announcing-general-availability-for-mysql-in-app)
  
 
@@ -52,6 +53,11 @@ App Service 可以將下列資訊備份到您已設定讓應用程式使用的 A
   「進階」層所允許的每日備份數量比「標準」層多。
 * 您需要與您即將備份之應用程式隸屬於相同訂用帳戶的 Azure 儲存體帳戶和容器。 如需 Azure 儲存體帳戶的詳細資訊，請參閱本文結尾處的 [連結](#moreaboutstorage) 。
 * 備份上限是 10 GB 的應用程式和資料庫內容。 如果備份大小超出此限制，您就會收到錯誤。
+* 不支援備份具 SSL 功能的適用於 MySQL 的 Azure 資料庫。 如果設定備份，會得到失敗的備份檔案。
+* 不支援備份具 SSL 功能的適用於 PostgreSQL 的 Azure 資料庫。 如果設定備份，會得到失敗的備份檔案。
+* 應用程式內 MySQL 資料庫會自動備份 (不含任何設定)。 如果您對應用程式內 MySQL 資料庫進行手動設定 (例如，新增連接字串)，可能就無法正確備份。
+* 不支援將具防火牆功能的儲存體帳戶做為備份目的地。 如果設定備份，會得到失敗的備份檔案。
+
 
 <a name="manualbackup"></a>
 
@@ -80,7 +86,9 @@ App Service 可以將下列資訊備份到您已設定讓應用程式使用的 A
     ![Choose storage account](./media/web-sites-backup/03ConfigureDatabase1.png)
    
    > [!NOTE]
-   > 若要讓資料庫出現在此清單中，其連接字串必須存在於您應用程式之 [應用程式設定] 頁面的 [連接字串] 區段中。
+   > 若要讓資料庫出現在此清單中，其連接字串必須存在於您應用程式之 [應用程式設定] 頁面的 [連接字串] 區段中。 
+   >
+   > 應用程式內 MySQL 資料庫會自動備份 (不含任何設定)。 如果您對應用程式內 MySQL 資料庫進行手動設定 (例如，新增連接字串)，可能就無法正確備份。
    > 
    > 
 6. 在 [備份設定] 頁面中，按一下 [儲存]。    
@@ -138,7 +146,7 @@ App Service 可以將下列資訊備份到您已設定讓應用程式使用的 A
 > [!NOTE]
 > 您還原站台部分備份的方式會與[還原一般備份](web-sites-restore.md)的方式相同。 還原程序會執行正確的作業。
 > 
-> 還原完整備份時，網站上的所有內容都會取代為備份中的內容。 如果檔案在網站上，而不在備份中，系統就會將它刪除。 但是，還原部分備份時，位於其中一個黑名單目錄或任何黑名單檔案中的任何內容都會保持原狀。
+> 還原完整備份時，網站上的所有內容都會取代為備份中的內容。 如果檔案在網站上，而不在備份中，系統就會將它刪除。 但是，還原部分備份時，位於其中一個封鎖清單目錄或任何封鎖清單檔案中的任何內容都會保持原狀。
 > 
 
 

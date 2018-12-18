@@ -1,20 +1,22 @@
 ---
-title: "Azure Application Insights 快速入門 | Microsoft Docs"
-description: "提供指示說明如何快速設定 Java Web 應用程式，以透過 Application Insights 來監視"
+title: Azure Application Insights 快速入門 | Microsoft Docs
+description: 提供指示說明如何快速設定 Java Web 應用程式，以透過 Application Insights 來監視
 services: application-insights
-keywords: 
+keywords: ''
 author: mrbullwinkle
 ms.author: mbullwin
-ms.date: 12/12/2017
+ms.reviewer: lagayhar
+ms.date: 07/11/2018
 ms.service: application-insights
 ms.custom: mvc
 ms.topic: quickstart
 manager: carmonm
-ms.openlocfilehash: daf7fb88b41ca21ea08e1368215578971032e47d
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.openlocfilehash: b36e4598f5ff20b921c5cd150ae19be233cc2d14
+ms.sourcegitcommit: 2b2129fa6413230cf35ac18ff386d40d1e8d0677
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 08/30/2018
+ms.locfileid: "43246508"
 ---
 # <a name="start-monitoring-your-java-web-application"></a>開始監視 Java Web 應用程式
 
@@ -22,17 +24,19 @@ Azure Application Insights 可讓您輕鬆監視 Web 應用程式的可用性、
 
 本快速入門引導您將 Application Insights SDK 新增至現有的 Java 動態 Web 專案。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 若要完成本快速入門：
 
-- 安裝 Oracle JRE 1.6 或更新版本，或 Zulu JRE 1.6 或更新版本
+- 安裝 JRE 1.7 或 1.8
 - 安裝[免費的 Eclipse IDE for Java EE Developers](http://www.eclipse.org/downloads/)。 本快速入門使用 Eclipse Oxygen (4.7)
 - 您需要 Azure 訂用帳戶和現有的 Java 動態 Web 專案
  
 如果您沒有 Java 動態 Web 專案，請參閱[建立 Java Web 應用程式快速入門](https://docs.microsoft.com/azure/app-service-web/app-service-web-get-started-java)來建立。
 
-如果您沒有 Azure 訂用帳戶，請在開始前建立[免費帳戶](https://azure.microsoft.com/free/) 。
+如果您沒有 Azure 訂用帳戶，請在開始前建立[免費帳戶](https://azure.microsoft.com/free/)。
+
+如果您偏好 Spring 架構，可嘗試[設定 Spring Boot 初始設定式應用程式來使用 Application Insights 指南](https://docs.microsoft.com/java/azure/spring-framework/configure-spring-boot-java-applicationinsights) \(英文\)。
 
 ## <a name="log-in-to-the-azure-portal"></a>登入 Azure 入口網站
 
@@ -86,25 +90,25 @@ Application Insights 可以從任何連上網際網路的應用程式收集遙�
 
 1. 現在，您可以在 Azure 入口網站中重新開啟 Application Insights [概觀] 頁面 (您先前在此擷取檢測金鑰)，以檢視目前執行中應用程式的詳細資料。
 
-   ![Application Insights 概觀功能表](./media/app-insights-java-quick-start/0008-j.png)
+   ![Application Insights 概觀功能表](./media/app-insights-java-quick-start/overview-001.png)
 
-2. 按一下 [應用程式對應]，以顯示應用程式元件之間相依性關聯性的視覺化配置。 每個元件會顯示負載、效能、失敗和警示等 KPI。
+2. 按一下 [應用程式對應]，以顯示應用程式元件之間相依性關係的視覺化配置。 每個元件會顯示負載、效能、失敗和警示等 KPI。
 
-   ![應用程式對應](./media/app-insights-java-quick-start/005-j.png)
+   ![應用程式對應](./media/app-insights-java-quick-start/application-map-001.png)
 
 3. 按一下 [應用程式分析] 圖示 ![應用程式對應圖示](./media/app-insights-java-quick-start/006.png)。 這樣會開啟 **Application Insights Analytics**，它提供一種豐富查詢語言，可用於分析 Application Insights 收集的所有資料。 此案例中會為您產生查詢，可將要求計數以圖表呈現。 您可以撰寫自己的查詢來分析其他資料。
 
    ![經過一段時間的使用者要求分析圖表](./media/app-insights-java-quick-start/0010-j.png)
 
-4. 返回 [概觀] 頁面，檢查 [健康情況概觀時間軸]。  此儀表板會提供應用程式健康情況的統計資料，包括連入要求數量、這些要求的持續時間，以及任何發生的失敗。
+4. 返回 [概觀] 頁面，檢查 [KPI 圖形]。  此儀表板會提供應用程式健康情況的統計資料，包括連入要求數量、這些要求的持續時間，以及任何發生的失敗。
 
-   ![健康情況概觀時間軸圖表](./media/app-insights-java-quick-start/0009-j.png)
+   ![健康情況概觀時間軸圖表](./media/app-insights-java-quick-start/overview-perf.png)
 
    若要在 [網頁檢視載入時間] 圖表中填入**用戶端遙測**資料，請將此指令碼新增至您要追蹤的每個頁面：
 
    ```HTML
    <!-- 
-   To collect end-user usage analytics about your application, 
+   To collect user behavior analytics about your application, 
    insert the following script into each page you want to track.
    Place this code immediately before the closing </head> tag,
    and before any other scripts. Your first data will appear 

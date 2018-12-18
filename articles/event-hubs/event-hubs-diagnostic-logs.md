@@ -1,25 +1,26 @@
 ---
-title: "Azure 事件中樞診斷記錄 | Microsoft Docs"
-description: "了解如何為 Azure 中的事件中樞設定診斷記錄檔。"
-keywords: 
-documentationcenter: 
+title: Azure 事件中樞診斷記錄 | Microsoft Docs
+description: 了解如何為 Azure 中的事件中樞設定診斷記錄檔。
+keywords: ''
+documentationcenter: ''
 services: event-hubs
-author: banisadr
-manager: 
-editor: 
-ms.assetid: 
+author: ShubhaVijayasarathy
+manager: ''
+editor: ''
+ms.assetid: ''
 ms.service: event-hubs
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-services
-ms.date: 01/30/2018
-ms.author: sethm
-ms.openlocfilehash: 451fc42f573db2b60985912cfa63617e04f09e6c
-ms.sourcegitcommit: 9d317dabf4a5cca13308c50a10349af0e72e1b7e
+ms.date: 07/02/2018
+ms.author: shvija
+ms.openlocfilehash: d4ed53cf1f0d21e488631434b60309602169b59a
+ms.sourcegitcommit: d0ea925701e72755d0b62a903d4334a3980f2149
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 08/09/2018
+ms.locfileid: "40004645"
 ---
 # <a name="event-hubs-diagnostic-logs"></a>事件中樞診斷記錄檔
 
@@ -30,7 +31,7 @@ ms.lasthandoff: 02/01/2018
 
 ## <a name="enable-diagnostic-logs"></a>啟用診斷記錄
 
-診斷記錄預設為停用。 啟用診斷記錄：
+診斷記錄預設為停用。 若要啟用診斷記錄，請依照下列步驟操作：
 
 1.  在 [Azure 入口網站](https://portal.azure.com)的 [監視 + 管理] 下，按一下 [診斷記錄]。
 

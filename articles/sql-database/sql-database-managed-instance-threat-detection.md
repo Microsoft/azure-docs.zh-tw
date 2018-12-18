@@ -1,24 +1,27 @@
 ---
 title: 威脅偵測 - Azure SQL Database 受控執行個體 | Microsoft Docs
-description: 威脅偵測會偵測異常資料庫活動，指出資料庫有潛在的安全性威脅。
+description: 威脅偵測會偵測異常資料庫活動，指出受控執行個體中的資料庫有潛在的安全性威脅。
 services: sql-database
-author: rmatchoro
-manager: craigg
 ms.service: sql-database
-ms.custom: security, managed instance
-ms.topic: article
-ms.date: 03/07/2018
+ms.subservice: security
+ms.custom: ''
+ms.devlang: ''
+ms.topic: conceptual
+author: rmatchoro
 ms.author: ronmat
-ms.reviewer: carlrab
-ms.openlocfilehash: 2112a0a3997af478de6b8c80abcf7924a66302f0
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.reviewer: vanto
+manager: craigg
+ms.date: 09/19/2018
+ms.openlocfilehash: 7f05bd6c96a8e22b1e039c3edcec491b7c079d54
+ms.sourcegitcommit: 51a1476c85ca518a6d8b4cc35aed7a76b33e130f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47162404"
 ---
 # <a name="azure-sql-database-managed-instance-threat-detection"></a>Azure SQL Database 受控執行個體威脅偵測
 
-SQL 威脅偵測會偵測意圖存取或攻擊 Azure SQL Database 受控執行個體中的資料庫，並可能會造成損害的異常活動。
+SQL 威脅偵測會偵測意圖存取或惡意探索 Azure SQL Database 受控執行個體中的資料庫，並可能會造成損害的異常活動。
 
 ## <a name="overview"></a>概觀
 

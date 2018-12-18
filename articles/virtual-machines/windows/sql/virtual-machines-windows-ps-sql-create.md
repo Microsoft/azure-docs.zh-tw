@@ -1,11 +1,11 @@
 ---
-title: "使用 Azure PowerShell 佈建 SQL Server VM 的指南 | Microsoft Docs"
-description: "提供使用 SQL Server 虛擬機器資源庫映像建立 Azure VM 的步驟和 PowerShell 命令。"
+title: 使用 Azure PowerShell 佈建 SQL Server VM 的指南 | Microsoft Docs
+description: 提供使用 SQL Server 虛擬機器資源庫映像建立 Azure VM 的步驟和 PowerShell 命令。
 services: virtual-machines-windows
 documentationcenter: na
 author: rothja
 manager: craigg
-editor: 
+editor: ''
 tags: azure-resource-manager
 ms.assetid: 98d50dd8-48ad-444f-9031-5378d8270d7b
 ms.service: virtual-machines-sql
@@ -15,11 +15,12 @@ ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
 ms.date: 02/15/2018
 ms.author: jroth
-ms.openlocfilehash: 2f94cf2ab84179161c8d0a4f2ae6f73ded1d65c3
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.openlocfilehash: bb7a0b8c2d0511088282e180a108f8d925f0e4e8
+ms.sourcegitcommit: 387d7edd387a478db181ca639db8a8e43d0d75f7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 08/10/2018
+ms.locfileid: "40038062"
 ---
 # <a name="how-to-provision-sql-server-virtual-machines-with-azure-powershell"></a>如何使用 Azure PowerShell 佈建 SQL Server 虛擬機器
 
@@ -31,10 +32,10 @@ ms.lasthandoff: 02/21/2018
 
 ## <a name="configure-your-subscription"></a>設定您的訂用帳戶
 
-1. 開啟 PowerShell 並執行 **Add-AzureRmAccount** 來建立您的 Azure 帳戶存取權限。
+1. 開啟 PowerShell 並執行 **Connect-AzureRmAccount** 來建立您的 Azure 帳戶存取權限。
 
    ```PowerShell
-   Add-AzureRmAccount
+   Connect-AzureRmAccount
    ```
 
 1. 您會看到要輸入認證的登入畫面。 請使用與登入 Azure 入口網站相同的電子郵件和密碼。
@@ -93,7 +94,7 @@ $OSDiskName = $VMName + "OSDisk"
 ### <a name="choose-a-sql-server-image"></a>選擇 SQL Server 映像
 使用下列變數來定義用於虛擬機器的 SQL Server 映像。
 
-1. 首先，請使用 **Get-AzureRmVMImageOffer** 命令，列出 SQL Server 映像提供項目的完整清單︰
+1. 首先，請使用 **Get-AzureRmVMImageOffer** 命令，列出 SQL Server 映像供應項目的完整清單︰
 
    ```PowerShell
    Get-AzureRmVMImageOffer -Location $Location -Publisher 'MicrosoftSQLServer'
@@ -107,7 +108,7 @@ $OSDiskName = $VMName + "OSDisk"
    $Version = "latest"
    ```
 
-1. 接著列出您的提供項目的可用版本。
+1. 接著列出您的供應項目的可用版本。
 
    ```PowerShell
    Get-AzureRmVMImageSku -Location $Location -Publisher 'MicrosoftSQLServer' -Offer $OfferName | Select Skus
@@ -129,7 +130,7 @@ New-AzureRmResourceGroup -Name $ResourceGroupName -Location $Location
 ```
 
 ## <a name="create-a-storage-account"></a>建立儲存體帳戶
-虛擬機器需要作業系統磁碟和 SQL Server 資料和記錄檔的儲存體資源。 為了簡單起見，我們會針對兩者建立單一磁碟。 您可以在之後使用 [Add-Azure Disk](/powershell/module/azure/add-azuredisk) Cmdlet 來連結額外的磁碟，以便將您的 SQL Server 資料和記錄檔放在專用的磁碟上。 使用 [New-AzureRmStorageAccount](/powershell/module/azurerm.storage/new-azurermstorageaccount) Cmdlet 在新的資源群組中建立標準儲存體帳戶，此帳戶會使用以您先前初始化的變數定義的儲存體帳戶名稱、儲存體 Sku 名稱及位置。
+虛擬機器需要作業系統磁碟和 SQL Server 資料和記錄檔的儲存體資源。 為了簡單起見，我們會針對兩者建立單一磁碟。 您可以在之後使用 [Add-Azure Disk](/powershell/module/servicemanagement/azure/add-azuredisk) Cmdlet 來連結額外的磁碟，以便將您的 SQL Server 資料和記錄檔放在專用的磁碟上。 使用 [New-AzureRmStorageAccount](/powershell/module/azurerm.storage/new-azurermstorageaccount) Cmdlet 在新的資源群組中建立標準儲存體帳戶，此帳戶會使用以您先前初始化的變數定義的儲存體帳戶名稱、儲存體 Sku 名稱及位置。
 
 執行下列 Cmdlet 來建立新的儲存體帳戶。
 
@@ -246,7 +247,7 @@ $Credential = Get-Credential -Message "Type the name and password of the local a
 ```
 
 ### <a name="set-the-operating-system-properties-for-the-virtual-machine"></a>設定虛擬機器的作業系統屬性
-現在已準備好使用 [Set-AzureRmVMOperatingSystem](/powershell/module/azurerm.compute/set-azurermvmoperatingsystem) Cmdlet 來設定虛擬機器的作業系統屬性，以將作業系統的類型設定為 Windows、要求安裝[虛擬機器代理程式](../agent-user-guide.md)、指定此 Cmdlet 啟用自動更新，以及使用您先前初始化的變數來設定虛擬機器名稱、電腦名稱和認證。
+現在已準備好使用 [Set-AzureRmVMOperatingSystem](/powershell/module/azurerm.compute/set-azurermvmoperatingsystem) Cmdlet 來設定虛擬機器的作業系統屬性，以將作業系統的類型設定為 Windows、要求安裝[虛擬機器代理程式](../../extensions/agent-windows.md)、指定此 Cmdlet 啟用自動更新，以及使用您先前初始化的變數來設定虛擬機器名稱、電腦名稱和認證。
 
 執行下列 Cmdlet 來設定虛擬機器的作業系統屬性。
 
@@ -327,7 +328,7 @@ Stop-AzureRmVM -Name $VMName -ResourceGroupName $ResourceGroupName
 您也可以使用 **Remove-AzureRmResourceGroup**命令，將與虛擬機器相關聯的所有資源永久刪除。 這也會永久刪除虛擬機器，因此請小心使用此命令。
 
 ## <a name="example-script"></a>範例指令碼
-下列指令碼包含本教學課程的完整 PowerShell 指令碼。 假設您已經設定 Azure 訂用帳戶與 **Add-AzureRmAccount** 和 **Select-AzureRmSubscription** 命令搭配使用。
+下列指令碼包含本教學課程的完整 PowerShell 指令碼。 假設您已經設定 Azure 訂用帳戶與 **Connect-AzureRmAccount** 和 **Select-AzureRmSubscription** 命令搭配使用。
 
 ```PowerShell
 # Variables

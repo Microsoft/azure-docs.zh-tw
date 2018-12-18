@@ -1,11 +1,11 @@
 ---
-title: "如何更新雲端服務 | Microsoft Docs"
-description: "了解如何在 Azure 中更新雲端服務。 了解如何繼續進行雲端服務更新來確保可用性。"
+title: 如何更新雲端服務 | Microsoft Docs
+description: 了解如何在 Azure 中更新雲端服務。 了解如何繼續進行雲端服務更新來確保可用性。
 services: cloud-services
-documentationcenter: 
-author: Thraka
+documentationcenter: ''
+author: jpconnock
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: c6a8b5e6-5c99-454c-9911-5c7ae8d1af63
 ms.service: cloud-services
 ms.workload: tbd
@@ -13,12 +13,13 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 04/19/2017
-ms.author: adegeo
-ms.openlocfilehash: 36d4ee9dabd39f4103d17455e47521b378af6ebb
-ms.sourcegitcommit: afc78e4fdef08e4ef75e3456fdfe3709d3c3680b
+ms.author: jeconnoc
+ms.openlocfilehash: 2f5a82fac18ab34bfa9d6b46f553227ed44a994a
+ms.sourcegitcommit: e0a678acb0dc928e5c5edde3ca04e6854eb05ea6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/16/2017
+ms.lasthandoff: 07/13/2018
+ms.locfileid: "39008088"
 ---
 # <a name="how-to-update-a-cloud-service"></a>如何更新雲端服務
 
@@ -53,18 +54,18 @@ Azure 會將您的角色執行個體組織成名為升級網域 (UD) 的邏輯�
 
 | 允許對主機、服務和角色進行的變更 | 就地更新 | 預備 (VIP 交換) | 刪除並重新部署 |
 | --- | --- | --- | --- |
-| 作業系統版本 |yes |yes |yes |
-| .NET 信任等級 |yes |yes |yes |
-| 虛擬機器大小<sup>1</sup> |是<sup>2</sup> |yes |yes |
-| 本機儲存體設定 |只會增加<sup>2</sup> |yes |yes |
-| 在服務中新增或移除角色 |yes |yes |yes |
-| 特定角色的執行個體數目 |yes |yes |yes |
-| 服務端點的數目或類型 |是<sup>2</sup> |否 |yes |
-| 組態設定的名稱和值 |yes |yes |yes |
-| 組態設定的值 (而不是名稱) |yes |yes |yes |
-| 加入新憑證 |yes |yes |yes |
-| 變更現有的憑證 |yes |yes |yes |
-| 部署新程式碼 |yes |yes |yes |
+| 作業系統版本 |是 |yes |是 |
+| .NET 信任等級 |是 |yes |是 |
+| 虛擬機器大小<sup>1</sup> |是<sup>2</sup> |是 |是 |
+| 本機儲存體設定 |只會增加<sup>2</sup> |是 |是 |
+| 在服務中新增或移除角色 |是 |yes |是 |
+| 特定角色的執行個體數目 |是 |yes |是 |
+| 服務端點的數目或類型 |是<sup>2</sup> |否 |是 |
+| 組態設定的名稱和值 |是 |yes |是 |
+| 組態設定的值 (而不是名稱) |是 |yes |是 |
+| 加入新憑證 |是 |yes |是 |
+| 變更現有的憑證 |是 |yes |是 |
+| 部署新程式碼 |是 |yes |是 |
 
 <sup>1</sup> 大小變更已限制為可供雲端服務使用的大小子集。
 

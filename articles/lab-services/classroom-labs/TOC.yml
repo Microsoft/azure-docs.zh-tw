@@ -1,0 +1,59 @@
+items:
+- name: 實驗室服務文件
+  href: /azure/lab-services
+- name: 概觀
+  items:
+  - name: 關於教室實驗室
+    href: classroom-labs-overview.md
+  - name: 比較實驗室類型
+    href: ../compare-lab-types.md
+- name: 教學課程
+  items:
+  - name: 1. 設定實驗室帳戶
+    href: tutorial-setup-lab-account.md
+  - name: 2. 設定教室實驗室
+    href: tutorial-setup-classroom-lab.md
+  - name: 3. 存取教室實驗室
+    href: tutorial-connect-virtual-machine-classroom-lab.md
+  - name: 4. 追蹤教室實驗的使用情況
+    href: tutorial-track-usage.md
+- name: 使用說明指南
+  items:
+  - name: 管理實驗室帳戶
+    href: how-to-manage-lab-accounts.md
+  - name: 管理教室實驗室
+    href: how-to-manage-classroom-labs.md
+  - name: 存取教室實驗室
+    href: how-to-use-classroom-lab.md
+- name: 參考
+  items:
+  - name: CLI
+    href: /cli/azure/lab
+  - name: PowerShell
+    href: /powershell/module/azurerm.devtestlabs/#devtest_labs
+  - name: REST API
+    href: https://docs.microsoft.com/rest/api/dtl/
+- name: 資源
+  items:
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/?category=developer-tools
+  - name: 定價計算機
+    href: https://azure.microsoft.com/pricing/calculator/
+  - name: 服務更新
+    href: https://azure.microsoft.com/updates/?product=devtest-lab
+  - name: MSDN 論壇
+    href: https://social.msdn.microsoft.com/Forums/home?forum=AzureDevTestLabs
+  - name: 小組部落格
+    href: https://blogs.msdn.microsoft.com/devtestlab/
+  - name: 堆疊溢位
+    href: http://stackoverflow.com/questions/tagged/azure-devtest-labs
+  - name: 影片
+    href: https://azure.microsoft.com/documentation/videos/index/?services=devtest-lab
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/devtest-lab/
+ms.openlocfilehash: 0e890b8d7a5db914229a7d05a1590c91e83bcb6f
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46946318"

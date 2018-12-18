@@ -1,23 +1,24 @@
 ---
-title: 測試已啟用 Azure AD B2C 的桌面應用程式
-description: 試用範例 ASP.NET 桌面應用程式的快速入門，而該應用程式使用 Azure Active Directory B2C 來提供使用者登入。
+title: 快速入門 - 設定使用 Azure Active Directory B2C 登入傳統型應用程式 | Microsoft Docs
+description: 執行範例 ASP.NET 傳統型應用程式，而該應用程式使用 Azure Active Directory B2C 來提供帳戶登入。
 services: active-directory-b2c
 author: davidmu1
 manager: mtillman
-editor: ''
-ms.service: active-directory-b2c
+ms.service: active-directory
 ms.workload: identity
 ms.topic: quickstart
 ms.custom: mvc
 ms.date: 2/13/2018
 ms.author: davidmu
-ms.openlocfilehash: 8726a5816623d42deb495aa062ef82f1f95b76b7
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: B2C
+ms.openlocfilehash: af4fe8ce4d9f5584241b56762ddf9c60aa28f0ba
+ms.sourcegitcommit: 1438b7549c2d9bc2ace6a0a3e460ad4206bad423
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 06/20/2018
+ms.locfileid: "36293365"
 ---
-# <a name="quickstart-test-drive-an-azure-ad-b2c-enabled-desktop-app"></a>快速入門：測試已啟用 Azure AD B2C 的桌面應用程式
+# <a name="quickstart-set-up-sign-in-for-a-desktop-app-using-azure-active-directory-b2c"></a>快速入門：設定使用 Azure Active Directory B2C 登入傳統型應用程式 
 
 Azure Active Directory (Azure AD) B2C 提供雲端身分識別管理，使您的應用程式、企業和客戶受到保護。 Azure AD B2C 可讓您的應用程式使用開放式標準通訊協定，向社交帳戶和企業帳戶進行驗證。
 
@@ -90,7 +91,7 @@ Azure Active Directory B2C 提供讓使用者更新其設定檔的功能。  範
 
 ## <a name="access-a-protected-web-api-resource"></a>存取受保護的 Web API 資源
 
-按一下 [呼叫 API] 向 Azure AD B2C 保護的資源 https://fabrikamb2chello.azurewebsites.net/hello 提出要求。 
+按一下 [呼叫 API] 向 Azure AD B2C 保護的資源提出要求。 
 
 ![呼叫 API](media/active-directory-b2c-quickstarts-desktop-app/call-api-wpf.png)
 
@@ -107,4 +108,4 @@ Azure Active Directory B2C 提供讓使用者更新其設定檔的功能。  範
 下一個步驟是建立您自己的 Azure AD B2C 租用戶，並設定使用您的租用戶來執行的範例。 
 
 > [!div class="nextstepaction"]
-> [在 Azure 入口網站中建立 Azure Active Directory B2C 租用戶](active-directory-b2c-get-started.md)
+> [在 Azure 入口網站中建立 Azure Active Directory B2C 租用戶](tutorial-create-tenant.md)

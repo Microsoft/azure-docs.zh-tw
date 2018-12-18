@@ -1,24 +1,25 @@
 ---
-title: "建立和共用 Azure 入口網站儀表板 | Microsoft Docs"
-description: "本文說明如何在 Azure 入口網站建立和編輯儀表板。"
+title: 建立和共用 Azure 入口網站儀表板 | Microsoft Docs
+description: 本文說明如何在 Azure 入口網站建立和編輯儀表板。
 services: azure-portal
-documentationcenter: 
+documentationcenter: ''
 author: sewatson
-manager: timlt
+manager: doubeby
 editor: tysonn
 ms.assetid: ff422f36-47d2-409b-8a19-02e24b03ffe7
 ms.service: azure-portal
 ms.devlang: NA
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 09/06/2016
 ms.author: sewatson
-ms.openlocfilehash: 7f90c882285170bac34bfe020831d3ac04010a11
-ms.sourcegitcommit: a5f16c1e2e0573204581c072cf7d237745ff98dc
+ms.openlocfilehash: 3bdeb3255c8dc97d2867eca0b9cdec8223d31b21
+ms.sourcegitcommit: d78bcecd983ca2a7473fff23371c8cfed0d89627
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/11/2017
+ms.lasthandoff: 05/14/2018
+ms.locfileid: "34165344"
 ---
 # <a name="create-and-share-dashboards-in-the-azure-portal"></a>在 Azure 入口網站中建立和共用儀表板
 您可以建立多個儀表板，並與可存取您 Azure 訂用帳戶的其他人共用。  本文說明建立/編輯、發佈和管理儀表板存取權的基本概念。
@@ -75,7 +76,7 @@ ms.lasthandoff: 12/11/2017
 
 ![共用儀表板](./media/azure-portal-dashboards/share-dashboard.png)
 
-系統會要求您選擇可將儀表板發佈至的訂用帳戶和資源群組。 為了將儀表板完美整合到生態系統，我們已將共用儀表板實作為 Azure 資源 (因此，您無法透過輸入電子郵件地址來共用)。  入口網站中大多數圖格所顯示資訊的存取權是由 [Azure 角色型存取控制](../active-directory/role-based-access-control-configure.md)所控管。 從存取控制觀點來看，共用儀表板與虛擬機器或儲存體帳戶並無不同。  
+系統會要求您選擇可將儀表板發佈至的訂用帳戶和資源群組。 為了將儀表板完美整合到生態系統，我們已將共用儀表板實作為 Azure 資源 (因此，您無法透過輸入電子郵件地址來共用)。  入口網站中大多數圖格所顯示資訊的存取權是由 [Azure 角色型存取控制](../role-based-access-control/role-assignments-portal.md)所控管。 從存取控制觀點來看，共用儀表板與虛擬機器或儲存體帳戶並無不同。  
 
 假設您有 Azure 訂用帳戶，而且已為小組成員指派訂用帳戶的**擁有者**、**參與者**或**讀取者**角色。  身為擁有者或參與者的使用者能夠列出、檢視、建立、修改或刪除該訂用帳戶內的儀表板。  身為讀取者的使用者能夠列出和檢視儀表板，但無法進行修改或刪除。  具有讀取者存取權的使用者能夠對共用的儀表板進行本機編輯，但無法將這些變更發佈回伺服器。  不過，他們可以製作儀表板的私人複本供自己使用。  一如往常，儀表板上的個別圖格會根據其對應的資源，強制執行自己的存取控制規則。  
 

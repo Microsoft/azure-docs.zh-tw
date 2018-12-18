@@ -1,31 +1,25 @@
 ---
-title: "使用 .NET SDK 管理 HDInsight 中的 Hadoop 叢集 - Azure | Microsoft Docs"
-description: "了解如何使用 HDInsight .NET SDK 對 HDInsight 中的 Hadoop 叢集執行管理工作。"
+title: 使用 .NET SDK 管理 HDInsight 中的 Hadoop 叢集 - Azure
+description: 了解如何使用 HDInsight .NET SDK 對 HDInsight 中的 Hadoop 叢集執行管理工作。
 services: hdinsight
-editor: cgronlun
-manager: jhubbard
-tags: azure-portal
-author: mumian
-documentationcenter: 
-ms.assetid: fd134765-c2a0-488a-bca6-184d814d78e9
+ms.reviewer: jasonh
+author: jasonwhowell
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
-ms.date: 12/15/2017
-ms.author: jgao
-ms.openlocfilehash: d881d47e26460d3fff89c01245bba4c608dc8b08
-ms.sourcegitcommit: 68aec76e471d677fd9a6333dc60ed098d1072cfc
+ms.topic: conceptual
+ms.date: 05/14/2018
+ms.author: jasonh
+ms.openlocfilehash: 0d8238d5f1dca15aaba0f8f5a6580df97164006a
+ms.sourcegitcommit: f6e2a03076679d53b550a24828141c4fb978dcf9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/18/2017
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43110794"
 ---
 # <a name="manage-hadoop-clusters-in-hdinsight-by-using-net-sdk"></a>使用 .NET SDK 管理 HDInsight 中的 Hadoop 叢集
 [!INCLUDE [selector](../../includes/hdinsight-portal-management-selector.md)]
 
-了解如何使用 [HDInsight.NET SDK](https://msdn.microsoft.com/library/mt271028.aspx)管理 HDInsight 叢集。
+了解如何使用 [HDInsight.NET SDK](https://docs.microsoft.com/dotnet/api/overview/azure/hdinsight)管理 HDInsight 叢集。
 
 **先決條件**
 
@@ -272,7 +266,7 @@ foreach (var key in results.Configuration.Keys)
 請參閱[將資料上傳至 HDInsight][hdinsight-upload-data]。
 
 ## <a name="see-also"></a>另請參閱
-* [HDInsight .NET SDK 參考文件](https://msdn.microsoft.com/library/mt271028.aspx)
+* [HDInsight .NET SDK 參考文件](https://docs.microsoft.com/dotnet/api/overview/azure/hdinsight)
 * [使用 Azure 入口網站管理 HDInsight][hdinsight-admin-portal]
 * [使用命令列介面管理 HDInsight][hdinsight-admin-cli]
 * [建立 HDInsight 叢集][hdinsight-provision]

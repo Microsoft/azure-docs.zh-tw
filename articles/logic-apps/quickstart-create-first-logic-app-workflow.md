@@ -1,28 +1,24 @@
 ---
-title: 建立第一個自動化工作流程 - Azure Logic Apps | Microsoft Docs
-description: 本快速入門針對整合系統和雲端服務的系統整合和企業應用程式整合 (EAI) 案例，說明如何使用 Azure Logic Apps 自動執行第一個工作流程。
-author: ecfan
-manager: anneta
-editor: ''
+title: 建立和自動執行第一個工作流程 - Azure Logic Apps | Microsoft Docs
+description: 說明如何建立第一個邏輯應用程式，以使用 Azure Logic Apps 自動執行工作、程序和工作流程的快速入門。 針對系統和雲端服務的系統整合和企業應用程式整合 (EAI) 解決方案，建立邏輯應用程式
 services: logic-apps
-keywords: 工作流程, 雲端服務, 系統整合, 企業應用程式整合, EAI
-documentationcenter: ''
-ms.assetid: ce3582b5-9c58-4637-9379-75ff99878dcd
 ms.service: logic-apps
-ms.workload: na
-ms.tgt_pltfrm: na
-ms.devlang: na
+author: ecfan
+ms.author: estfan
+manager: jeconnoc
 ms.topic: quickstart
 ms.custom: mvc
-ms.date: 1/12/2018
-ms.author: LADocs; estfan
-ms.openlocfilehash: ccd00fbb3c5dc0f78a31adcaed31bbe6e4a6e785
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.date: 07/20/2018
+ms.reviewer: klam, LADocs
+ms.suite: integration
+ms.openlocfilehash: 0f38aabf008f0335a6f9e21717aa38aefdd21615
+ms.sourcegitcommit: 387d7edd387a478db181ca639db8a8e43d0d75f7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 08/10/2018
+ms.locfileid: "42024020"
 ---
-# <a name="quickstart-build-your-first-logic-app-workflow---azure-portal"></a>快速入門：建立第一個邏輯應用程式工作流程 - Azure 入口網站
+# <a name="quickstart-create-your-first-automated-workflow-with-azure-logic-apps---azure-portal"></a>快速入門：使用 Azure Logic Apps 建立第一個自動化工作流程 - Azure 入口網站
 
 本快速入門介紹如何使用 [Azure Logic Apps](../logic-apps/logic-apps-overview.md) 建立第一個自動化工作流程。 在本文中，您會建立一個邏輯應用程式，以定期檢查網站的 RSS 摘要中是否有新項目。 如果存在新的項目，邏輯應用程式會針對每個項目傳送電子郵件。 當您完成時，邏輯應用程式大致如下列工作流程所示︰
 
@@ -38,7 +34,7 @@ ms.lasthandoff: 03/16/2018
 
 ## <a name="create-your-logic-app"></a>建立邏輯應用程式 
 
-1. 從主要 Azure 功能表，選擇 [建立資源] > [企業整合] > [邏輯應用程式]。
+1. 在主要 Azure 功能表中，選擇 [建立資源] > [整合] > [邏輯應用程式]。
 
    ![建立邏輯應用程式](./media/quickstart-create-first-logic-app-workflow/create-logic-app.png)
 
@@ -46,12 +42,12 @@ ms.lasthandoff: 03/16/2018
 
    ![提供邏輯應用程式詳細資料](./media/quickstart-create-first-logic-app-workflow/create-logic-app-settings.png)
 
-   | 設定 | 值 | 說明 | 
-   | ------- | ----- | ----------- | 
+   | 屬性 | 值 | 說明 | 
+   |----------|-------|-------------| 
    | **名稱** | MyFirstLogicApp | 邏輯應用程式的名稱 | 
    | **訂用帳戶** | <your-Azure-subscription-name> | Azure 訂用帳戶的名稱 | 
    | **資源群組** | My-First-LA-RG | 用來組織相關資源之 [Azure 資源群組](../azure-resource-manager/resource-group-overview.md)的名稱 | 
-   | **位置** | 美國東部 2 | 用來存放邏輯應用程式資訊的區域 | 
+   | **位置** | 美國西部 | 用來存放邏輯應用程式資訊的區域 | 
    | **Log Analytics** | 關閉 | 保留診斷記錄的 [關閉] 設定。 | 
    |||| 
 
@@ -73,12 +69,12 @@ ms.lasthandoff: 03/16/2018
 
    ![使用 RSS 摘要、頻率和間隔設定觸發程序](./media/quickstart-create-first-logic-app-workflow/add-trigger-rss-settings.png)
 
-   | 設定 | 值 | 說明 | 
-   | ------- | ----- | ----------- | 
+   | 屬性 | 值 | 說明 | 
+   |----------|-------|-------------| 
    | **RSS 摘要 URL** | ```http://feeds.reuters.com/reuters/topNews``` | 您想要監視的 RSS 摘要連結 | 
    | **間隔** | 1 | 在檢查之間所要等待的間隔數目 | 
    | **頻率** | 分鐘 | 在檢查之間每個間隔的時間單位  | 
-   |  |  |  | 
+   |||| 
 
    時間間隔和頻率可一起為邏輯應用程式的觸發程序定義排程。 
    此邏輯應用程式會每分鐘檢查摘要。
@@ -99,9 +95,11 @@ ms.lasthandoff: 03/16/2018
 
    ![新增動作](./media/quickstart-create-first-logic-app-workflow/add-new-action.png)
 
-2. 在 [選擇動作] 下搜尋 [傳送電子郵件]，然後為您想要的電子郵件提供者選取 [傳送電子郵件] 動作。 若要篩選特定服務的動作清單，您可以選取 [連接器] 下的第一個連接器。
+2. 在 [選擇動作] 下方，輸入「傳送電子郵件」作為篩選條件。 在動作清單中，為您想要的電子郵件提供者選取 [傳送電子郵件] 動作。 
 
    ![選取此動作：Office 365 Outlook - 傳送電子郵件](./media/quickstart-create-first-logic-app-workflow/add-action-send-email.png)
+
+   若要篩選特定應用程式或服務的動作清單，您可以先選取該應用程式或服務：
 
    * 對於 Azure 工作或學校帳戶，選取 Office 365 Outlook。 
    * 對於個人 Microsoft 帳戶，選取 Outlook.com。
@@ -113,21 +111,14 @@ ms.lasthandoff: 03/16/2018
    1. 在 [收件者] 方塊中，輸入收件者的電子郵件地址。 
    為了測試用途，您可以使用自己的電子郵件地址。
 
-      現在，請忽略出現的參數清單或 [新增動態內容] 清單。 
-      當您按一下某些編輯方塊內部時，這份清單隨即出現，並顯示上一個步驟中可在工作流程中納為輸入的任何可用參數。
-      您的瀏覽器寬度可決定哪一份清單會出現。
+      現在，請忽略出現的 [新增動態內容] 清單。 
+      當您按一下某些編輯方塊內部時，這份清單隨即出現，並顯示上一個步驟中可在工作流程中納為輸入的任何可用參數。 
 
    2. 在 [主旨] 方塊中，輸入以下文字且尾端加上一個空格：```New RSS item: ```
 
       ![輸入電子郵件主旨](./media/quickstart-create-first-logic-app-workflow/add-action-send-email-subject.png)
  
-   3. 從參數清單或 [新增動態內容] 清單，選取 [摘要標題] 以包含 RSS 項目標題。
-
-      例如，以下是參數清單：
-
-      ![參數清單 - "摘要標題"](./media/quickstart-create-first-logic-app-workflow/add-action-send-email-subject-parameters-list.png)
-
-      而以下是動態內容清單：
+   3. 從 [新增動態內容] 清單中，選取 [摘要標題] 以包含 RSS 項目標題。
 
       ![動態內容清單 - "摘要標題"](./media/quickstart-create-first-logic-app-workflow/add-action-send-email-subject-dynamic-content.png)
 
@@ -135,18 +126,18 @@ ms.lasthandoff: 03/16/2018
 
       ![新增的摘要標題](./media/quickstart-create-first-logic-app-workflow/add-action-send-email-feed-title.png)
 
-      如果 "For each" 迴圈出現在設計工具上，則您會選取包含一個陣列的欄位，例如 **categories-item** 欄位。 
-      對於這類的欄位，設計工具會自動新增以參考該欄位的動作為主的這個迴圈。 
+      如果 "For each" 迴圈出現在設計工具上，表示您選取了陣列的權杖，例如 **categories-item** 權杖。 
+      對於這類權杖，設計工具會自動對參考該權杖的動作新增此迴圈。 
       如此一來，邏輯應用程式會在每個陣列項目上執行相同動作。 
       若要移除迴圈，請選擇迴圈標題列上的**省略符號** (**...**)，然後選擇 [刪除]。
 
-   4. 在 [內文] 方塊中輸入此文字，然後選取電子郵件內文的這些欄位。 
+   4. 在 [內文] 方塊中輸入此文字，然後為電子郵件內文選取這些權杖。 
    若要在編輯方塊中新增空白的行，請按 Shift + Enter。 
 
       ![新增電子郵件內文的內容](./media/quickstart-create-first-logic-app-workflow/add-action-send-email-body.png)
 
-      | 設定 | 說明 | 
-      | ------- | ----------- | 
+      | 屬性 | 說明 | 
+      |----------|-------------| 
       | **摘要標題** | 項目的標題 | 
       | **摘要發佈時間** | 項目的發佈日期和時間 | 
       | **主要摘要連結** | 項目的 URL | 
@@ -171,9 +162,18 @@ ms.lasthandoff: 03/16/2018
 
 ## <a name="clean-up-resources"></a>清除資源
 
-如果不再需要，請刪除包含邏輯應用程式的資源群組和相關資源。 在 Azure 主要功能表上，移至 [資源群組]，然後選取您邏輯應用程式的資源群組。 選擇 [刪除資源群組]。 輸入資源群組名稱作為確認，然後選擇 [刪除]。
+如果不再需要此範例，請刪除包含邏輯應用程式的資源群組和相關資源。 
 
-![[資源群組] > [概觀] > [刪除資源群組]](./media/quickstart-create-first-logic-app-workflow/delete-resource-group.png)
+1. 在主要 Azure 功能表上，移至 [資源群組]，然後選取邏輯應用程式的資源群組。 在 [概觀] 頁面上，選擇 [刪除資源群組]。 
+
+   ![[資源群組] > [概觀] > [刪除資源群組]](./media/quickstart-create-first-logic-app-workflow/delete-resource-group.png)
+
+2. 輸入資源群組名稱作為確認，然後選擇 [刪除]。
+
+   ![確認刪除](./media/quickstart-create-first-logic-app-workflow/delete-resource-group-2.png)
+
+> [!NOTE]
+> 當您刪除邏輯應用程式後，就不會具現化新的執行。 所有進行中和擱置的執行都會取消。 如果您有數千個執行，加以取消可能需要很長的時間。
 
 ## <a name="get-support"></a>取得支援
 

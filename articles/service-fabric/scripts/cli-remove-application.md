@@ -1,29 +1,30 @@
 ---
-title: "Azure Service Fabric CLI 指令碼移除範例"
-description: "使用 Azure Service Fabric CLI 將應用程式從 Azure Service Fabric 叢集中移除"
+title: Azure Service Fabric CLI (sfctl) 指令碼移除範例
+description: 使用 Azure Service Fabric CLI 將應用程式從 Azure Service Fabric 叢集中移除
 services: service-fabric
-documentationcenter: 
-author: thraka
+documentationcenter: ''
+author: TylerMSFT
 manager: timlt
-editor: 
+editor: ''
 tags: azure-service-management
-ms.assetid: 
+ms.assetid: ''
 ms.service: service-fabric
 ms.workload: multiple
 ms.devlang: na
 ms.topic: sample
 ms.date: 12/06/2017
-ms.author: adegeo
+ms.author: twhitney
 ms.custom: mvc
-ms.openlocfilehash: 95a6bac7ee79e3490584305e78d410104363b780
-ms.sourcegitcommit: b07d06ea51a20e32fdc61980667e801cb5db7333
+ms.openlocfilehash: 24b645552212c502c06cc4df725e77c1d017340e
+ms.sourcegitcommit: 0b05bdeb22a06c91823bd1933ac65b2e0c2d6553
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2017
+ms.lasthandoff: 07/17/2018
+ms.locfileid: "39069306"
 ---
 # <a name="remove-an-application-from-a-service-fabric-cluster"></a>從 Service Fabric 叢集移除應用程式
 
-這個範例指令碼會刪除執行中的 Service Fabric 應用程式執行個體，並從叢集取消註冊應用程式類型和版本。  刪除應用程式執行個體也會刪除應用程式相關聯的所有執行中服務執行個體。 接下來，系統會從映像存放區刪除應用程式檔案。 
+這個範例指令碼會刪除一個執行中的 Service Fabric 應用程式執行個體，並將叢集中的一個應用程式類型和版本取消註冊。  刪除應用程式執行個體也會刪除應用程式相關聯的所有執行中服務執行個體。 接下來，系統會從映像存放區刪除應用程式檔案。 
 
 如有需要，請安裝[ Service Fabric SDK](../service-fabric-cli.md)。
 

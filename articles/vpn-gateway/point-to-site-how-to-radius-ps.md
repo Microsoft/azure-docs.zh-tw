@@ -1,13 +1,13 @@
 ---
-title: "使用點對站和 RADIUS 驗證將電腦連線至虛擬網路︰PowerShell | Azure"
-description: "使用 P2S 和 RADIUS 驗證，將 Windows 和 Mac OS X 用戶端安全地連線到虛擬網路。"
+title: 使用點對站和 RADIUS 驗證將電腦連線至虛擬網路︰PowerShell | Azure
+description: 使用 P2S 和 RADIUS 驗證，將 Windows 和 Mac OS X 用戶端安全地連線到虛擬網路。
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
 manager: jpconnock
-editor: 
+editor: ''
 tags: azure-resource-manager
-ms.assetid: 
+ms.assetid: ''
 ms.service: vpn-gateway
 ms.devlang: na
 ms.topic: article
@@ -15,11 +15,12 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/12/2018
 ms.author: anzaman
-ms.openlocfilehash: 3b7315aaa57d1387e3cea31e8b306131a59a7006
-ms.sourcegitcommit: 95500c068100d9c9415e8368bdffb1f1fd53714e
+ms.openlocfilehash: df7afe9324831ffb8e79d7320f2c716ed18a7b4f
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38719680"
 ---
 # <a name="configure-a-point-to-site-connection-to-a-vnet-using-radius-authentication-powershell"></a>使用 RADIUS 驗證設定 VNet 的點對站連線：PowerShell
 
@@ -86,10 +87,10 @@ RADIUS 伺服器可位於內部部署環境或 Azure VNet 中。 在驗證期間
 * **子網路名稱：GatewaySubnet**<br>子網路名稱 *GatewaySubnet* 是 VPN 閘道能夠運作的必要項目。
   * **閘道子網路位址範圍：192.168.200.0/24** 
 * **VPN 用戶端位址集區：172.16.201.0/24**<br>使用這個點對站連線來連線到 VNet 的 VPN 用戶端，會收到來自 VPN 用戶端位址集區的 IP 位址。
-* **訂用帳戶：**如果您有一個以上的訂用帳戶，請確認您使用正確的訂用帳戶。
+* **訂用帳戶：** 如果您有一個以上的訂用帳戶，請確認您使用正確的訂用帳戶。
 * **資源群組：TestRG**
 * **位置：美國東部**
-* **DNS 伺服器：**您想要用於 VNet 名稱解析的 DNS 伺服器的 IP 位址。 (選用)
+* **DNS 伺服器：** 您想要用於 VNet 名稱解析的 DNS 伺服器的 IP 位址。 (選用)
 * **GW 名稱：Vnet1GW**
 * **公用 IP 名稱：VNet1GWPIP**
 * **VpnType：RouteBased** 

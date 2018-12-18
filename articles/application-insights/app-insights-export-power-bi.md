@@ -1,51 +1,36 @@
 ---
-title: "從 Azure Application Insights 匯出至 Power BI | Microsoft Docs"
-description: "Analytics 查詢可以在 Power BI 中顯示。"
+title: 從 Azure Application Insights 匯出至 Power BI | Microsoft Docs
+description: Analytics 查詢可以在 Power BI 中顯示。
 services: application-insights
-documentationcenter: 
-author: noamben
+documentationcenter: ''
+author: mrbullwinkle
 manager: carmonm
 ms.assetid: 7f13ea66-09dc-450f-b8f9-f40fdad239f2
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
-ms.topic: article
-ms.date: 10/18/2016
+ms.topic: conceptual
+ms.date: 08/10/2018
 ms.author: mbullwin
-ms.openlocfilehash: 19595983ba49a88d9139c85afbf38d3106d4a81d
-ms.sourcegitcommit: cf42a5fc01e19c46d24b3206c09ba3b01348966f
+ms.openlocfilehash: fc651b3bc28e59c5c5a195211d811e206eee3e42
+ms.sourcegitcommit: 8ebcecb837bbfb989728e4667d74e42f7a3a9352
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/29/2017
+ms.lasthandoff: 08/21/2018
+ms.locfileid: "40246402"
 ---
 # <a name="feed-power-bi-from-application-insights"></a>從 Application Insights 提供 Power BI
 [Power BI](http://www.powerbi.com/) 是一套商務工具，可協助您分析資料及分享見解。 每個裝置上都提供豐富的儀表板。 您可以結合許多來源的資料，包含來自 [Azure Application Insights](app-insights-overview.md) 的「分析」查詢。
 
-有三種建議方法可將 Application Insights 資料匯出至 Power BI。 您可以單獨或一起使用這些方法。
+有三種方法可將 Application Insights 資料匯出至 Power BI：
 
-* [**Power BI 配接器**](#power-pi-adapter)。 從您的應用程式設定完整的遙測儀表板。 儀表板中已預先定義一組圖表，但您可以從任何其他來源新增您自己的查詢。
-* [**匯出 Analytics 查詢**](#export-analytics-queries)。 撰寫任何您想要的查詢，並將它匯出至 Power BI。 您可以使用 Analytics 撰寫查詢，或透過「使用方式漏斗圖」來撰寫。 您可以將此查詢和任何其他資料一起放在儀表板上。
-* [**連續匯出和 Azure 串流分析**](app-insights-export-stream-analytics.md)。 如果您想要長期保留資料，此方法很有用。 此方法所涉及的設定工作較多，所以如果您不想這麼做，請使用其他任一方法。
+* [**匯出 Analytics 查詢**](#export-analytics-queries)。 這是慣用的方法。 撰寫任何您想要的查詢，並將它匯出至 Power BI。 您可以將此查詢和任何其他資料一起放在儀表板上。
+* [**連續匯出和 Azure 串流分析**](app-insights-export-stream-analytics.md)。 如果您想要長期儲存資料，此方法很有用。 如果您沒有延長資料保留期的需求，請使用匯出分析查詢方法。 連續匯出和串流分析牽涉到更多要設定的工作及其他儲存體額外負荷。
+* [**Power BI 配接器**](#power-pi-adapter)。 儀表板中已預先定義一組圖表，但您可以從任何其他來源新增您自己的查詢。
 
-## <a name="power-bi-adapter"></a>Power BI 配接器
-這個方法會為您建立完整的遙測儀表板。 儀表板中已預先定義初始資料集，但您也可以在資料集中新增更多資料。
-
-### <a name="get-the-adapter"></a>取得配接器
-1. 登入 [Power BI](https://app.powerbi.com/)。
-2. 依序開啟 [取得資料]、[服務] 和 [Application Insights]。
-   
-    ![「取自 Application Insights 資料來源」的螢幕擷取畫面](./media/app-insights-export-power-bi/power-bi-adapter.png)
-3. 提供 Application Insights 資源的詳細資料。
-   
-    ![「取自 Application Insights 資料來源」的螢幕擷取畫面](./media/app-insights-export-power-bi/azure-subscription-resource-group-name.png)
-4. 等候一兩分鐘來匯入資料。
-   
-    ![Power BI 配接器的螢幕擷取畫面](./media/app-insights-export-power-bi/010.png)
-
-您可以編輯儀表板，將 Application Insights 圖表與其他來源的圖表以及 Analytics 查詢相結合。 您可以從視覺效果資源庫取得更多圖表，且每個圖表都有您可以設定的參數。
-
-初始匯入之後，儀表板和報告會持續每日更新。 您可以控制資料集上的重新整理排程。
+> [!NOTE]
+> Power BI 配接器現在**已被取代**。 針對此解決方案預先定義的圖表已透過無法編輯的靜態查詢加以填入。 您無法編輯這些查詢，而且根據您資料的某些屬性而定，連線到 Power BI 可能會成功，但不會填入任何資料。 這是因為硬式編碼查詢內所設定的排除準則。 雖然這個解決方案仍然可能適用於某些客戶，但由於缺乏配接器的彈性，因此，建議的解決方案是使用[**匯出 Analytics 查詢**](#export-analytics-queries)功能。
 
 ## <a name="export-analytics-queries"></a>匯出 Analytics 查詢
 此途徑可讓您撰寫您喜歡的任何 Analytics 查詢，或從「使用方式漏斗圖」匯出，然後將其匯出至 Power BI 儀表板。 (您可以新增至配接器所建立的儀表板)。
@@ -82,10 +67,10 @@ ms.lasthandoff: 11/29/2017
 
 ### <a name="export-a-funnel"></a>匯出漏斗圖
 1. [建立您的漏斗圖](usage-funnels.md)。
-2. 選取 [Power BI] 。 
+2. 選取 [Power BI] 。
 
    ![Power BI 按鈕的螢幕擷取畫面](./media/app-insights-export-power-bi/button.png)
-   
+
 3. 在 Power BI Desktop 中，選取 [取得資料] > [空白查詢]。 然後在查詢編輯器的 [檢視] 底下，選取 [進階編輯器]。
 
    ![Power BI Desktop 的螢幕擷取畫面，並已醒目顯示 [空白查詢] 按鈕](./media/app-insights-export-power-bi/blankquery.png)
@@ -121,8 +106,8 @@ ms.lasthandoff: 11/29/2017
 
 1. 建立 [API 金鑰](https://dev.applicationinsights.io/documentation/Authorization/API-key-and-App-ID)。
 2. 更新您從 Analytics 匯出的 Power BI M 指令碼，方法是將 Azure Resource Manager URL 取代為 Application Insights API。
-   * 將 **https://management.azure.com/subscriptions/...**
-   * 取代為 **https://api.applicationinsights.io/beta/apps/...**
+   * 將 **https://management.azure.com/subscriptions/...** 取代
+   * 為 **https://api.applicationinsights.io/beta/apps/...**
 3. 最後，將認證更新為基本，並且使用您的 API 金鑰。
   
 
@@ -138,6 +123,35 @@ ms.lasthandoff: 11/29/2017
 ## <a name="about-sampling"></a>關於取樣
 如果您的應用程式會傳送大量資料，您可以使用調適性取樣功能，以便只傳送一定百分比的遙測資料。 如果您已經在 SDK 中或在擷取上手動設定取樣，也是如此。 [深入了解取樣](app-insights-sampling.md)。
 
+## <a name="power-bi-adapter-deprecated"></a>Power BI 配接器 (已被取代)
+這個方法會為您建立完整的遙測儀表板。 儀表板中已預先定義初始資料集，但您也可以在資料集中新增更多資料。
+
+### <a name="get-the-adapter"></a>取得配接器
+1. 登入 [Power BI](https://app.powerbi.com/)。
+2. 開啟 [取得資料] ![左下角 [取得資料] 圖示的螢幕擷取畫面](./media/app-insights-export-power-bi/001.png)、[服務]。
+
+    ![「取自 Application Insights 資料來源」的螢幕擷取畫面](./media/app-insights-export-power-bi/002.png)
+
+3. 選取 Application Insights 下方的 [立即取得]。
+
+   ![「取自 Application Insights 資料來源」的螢幕擷取畫面](./media/app-insights-export-power-bi/003.png)
+4. 提供 Application Insights 資源的詳細資料，然後**登入**。
+
+    ![「取自 Application Insights 資料來源」的螢幕擷取畫面](./media/app-insights-export-power-bi/005.png)
+
+     此資訊可在 Application Insights [概觀] 窗格中找到：
+
+     ![「取自 Application Insights 資料來源」的螢幕擷取畫面](./media/app-insights-export-power-bi/004.png)
+
+5. 開啟新建立的 Application Insights Power BI 應用程式。
+
+6. 等候一兩分鐘來匯入資料。
+
+    ![Power BI 配接器的螢幕擷取畫面](./media/app-insights-export-power-bi/010.png)
+
+您可以編輯儀表板，將 Application Insights 圖表與其他來源的圖表以及 Analytics 查詢相結合。 您可以從視覺效果資源庫取得更多圖表，且每個圖表都有您可以設定的參數。
+
+初始匯入之後，儀表板和報告會持續每日更新。 您可以控制資料集上的重新整理排程。
 
 ## <a name="next-steps"></a>後續步驟
 * [Power BI - 了解](http://www.powerbi.com/learning/)

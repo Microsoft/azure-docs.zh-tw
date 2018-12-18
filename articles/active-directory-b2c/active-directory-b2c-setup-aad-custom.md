@@ -1,24 +1,21 @@
 ---
-title: "Azure Active Directory B2C︰使用自訂原則新增 Azure AD 提供者 | Microsoft Docs"
-description: "深入了解 Azure Active Directory B2C 自訂原則"
+title: 在 Azure Active Directory B2C 中使用自訂原則新增 Azure AD 提供者 | Microsoft Docs
+description: 了解 Azure Active Directory B2C 自訂原則。
 services: active-directory-b2c
-documentationcenter: 
-author: parakhj
+author: davidmu1
 manager: mtillman
-editor: parakhj
-ms.assetid: 31f0dfe5-1ad0-4a25-a53b-8acc71bcea72
-ms.service: active-directory-b2c
+ms.service: active-directory
 ms.workload: identity
-ms.tgt_pltfrm: na
-ms.topic: article
-ms.devlang: na
-ms.date: 04/04/2017
-ms.author: parakhj
-ms.openlocfilehash: f34326bcb8a7cbf5b5cf75e8f18f2843abc0b3ab
-ms.sourcegitcommit: e266df9f97d04acfc4a843770fadfd8edf4fa2b7
+ms.topic: conceptual
+ms.date: 08/15/2018
+ms.author: davidmu
+ms.component: B2C
+ms.openlocfilehash: af97a85b4d5d9c38f0e2bf8947482a0585fa6ee1
+ms.sourcegitcommit: 0c64460a345c89a6b579b1d7e273435a5ab4157a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/11/2017
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43338306"
 ---
 # <a name="azure-active-directory-b2c-sign-in-by-using-azure-ad-accounts"></a>Azure Active Directory B2C︰使用 Azure AD 帳戶登入
 
@@ -26,7 +23,7 @@ ms.lasthandoff: 12/11/2017
 
 本文將說明如何使用[自訂原則](active-directory-b2c-overview-custom.md)讓特定 Azure Active Directory (Azure AD) 組織的使用者登入。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 完成[開始使用自訂原則](active-directory-b2c-get-started-custom.md)一文中的步驟。
 
@@ -46,24 +43,24 @@ ms.lasthandoff: 12/11/2017
 > 我們在下列指示中使用 "contoso.com" 作為組織的 Azure AD 租用戶，以及使用 "fabrikamb2c.onmicrosoft.com" 作為 Azure AD B2C 租用戶。
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
-1. 在頂端列上，選取您的帳戶。 從 [目錄] 清單中，選擇您要註冊應用程式的組織 Azure AD 租用戶 (contoso.com)。
-1. 選取左側窗格中的 [更多服務]，然後搜尋「應用程式註冊」。
-1. 選取 [新增應用程式註冊]。
-1. 輸入應用程式的名稱 (例如，`Azure AD B2C App`)。
-1. 選取 [Web 應用程式/API] 作為應用程式類型。
-1. 針對 [登入 URL]，輸入下列 URL，其中 `yourtenant` 由 Azure AD B2C 租用戶的名稱 (`fabrikamb2c.onmicrosoft.com`) 取代：
+2. 在頂端列上，選取您的帳戶。 從 [目錄] 清單中，選擇您要註冊應用程式的組織 Azure AD 租用戶 (contoso.com)。
+3. 選取左側窗格中的 [更多服務]，然後搜尋「應用程式註冊」。
+4. 選取 [新增應用程式註冊]。
+5. 輸入應用程式的名稱 (例如，`Azure AD B2C App`)。
+6. 選取 [Web 應用程式/API] 作為應用程式類型。
+7. 針對 [登入 URL]，輸入下列 URL，其中 `yourtenant` 由 Azure AD B2C 租用戶的名稱 (`fabrikamb2c.onmicrosoft.com`) 取代：
 
     >[!NOTE]
     >在**登入 URL** 中，「yourtenant」的值必須全部小寫。
 
     ```
-    https://login.microsoftonline.com/te/yourtenant.onmicrosoft.com/oauth2/authresp
+    https://yourtenant.b2clogin.com/te/yourtenant.onmicrosoft.com/oauth2/authresp
     ```
 
-1. 儲存應用程式識別碼。
-1. 選取新建立的應用程式。
-1. 在 [設定] 刀鋒視窗下，選取 [金鑰]。
-1. 建立新的金鑰並且儲存。 您在下一節中的步驟將會用到它。
+8. 儲存應用程式識別碼。
+9. 選取新建立的應用程式。
+10. 在 [設定] 刀鋒視窗下，選取 [金鑰]。
+11. 輸入金鑰描述，選取持續時間，然後按一下 [儲存]。 隨即顯示金鑰值。 請複製金鑰值，下一節中的步驟將會使用它。
 
 ## <a name="add-the-azure-ad-key-to-azure-ad-b2c"></a>將 Azure AD 金鑰新增至 Azure AD B2C
 
@@ -116,7 +113,7 @@ ms.lasthandoff: 12/11/2017
                     <OutputClaim ClaimTypeReferenceId="givenName" PartnerClaimType="given_name" />
                     <OutputClaim ClaimTypeReferenceId="surName" PartnerClaimType="family_name" />
                     <OutputClaim ClaimTypeReferenceId="displayName" PartnerClaimType="name" />
-                    <OutputClaim ClaimTypeReferenceId="authenticationSource" DefaultValue="contosoAuthentication" />
+                    <OutputClaim ClaimTypeReferenceId="authenticationSource" DefaultValue="socialIdpAuthentication" />
                     <OutputClaim ClaimTypeReferenceId="identityProvider" DefaultValue="AzureADContoso" />
                 </OutputClaims>
                 <OutputClaimsTransformations>

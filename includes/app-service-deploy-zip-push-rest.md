@@ -12,7 +12,7 @@
 curl -X POST -u <deployment_user> --data-binary @"<zip_file_path>" https://<app_name>.scm.azurewebsites.net/api/zipdeploy
 ```
 
-此要求會觸發從上傳的 .zip 檔案推送部署。 您可以使用 https://<app_name>.scm.azurewebsites.net/api/deployments 端點來檢閱目前和過去的部署，如下列 cURL 範例所示。 再次使用您的應用程式名稱取代 `<app_name>`，以及使用部署認證的使用者名稱取代 `<deployment_user>`。
+此要求會觸發從上傳的 .zip 檔案推送部署。 您可以使用 `https://<app_name>.scm.azurewebsites.net/api/deployments` 端點來檢閱目前和過去的部署，如下列 cURL 範例所示。 再次使用您的應用程式名稱取代 `<app_name>`，以及使用部署認證的使用者名稱取代 `<deployment_user>`。
 
 ```bash
 curl -u <deployment_user> https://<app_name>.scm.azurewebsites.net/api/deployments

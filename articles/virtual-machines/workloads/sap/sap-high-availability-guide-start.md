@@ -1,13 +1,13 @@
 ---
-title: "SAP NetWeaver 的 Azure 虛擬機器高可用性 | Microsoft Docs"
-description: "Azure 虛擬機器上的 SAP NetWeaver 高可用性指南"
+title: SAP NetWeaver 的 Azure 虛擬機器高可用性 | Microsoft Docs
+description: Azure 虛擬機器上的 SAP NetWeaver 高可用性指南
 services: virtual-machines-windows,virtual-network,storage
 documentationcenter: saponazure
 author: goraco
-manager: timlt
-editor: 
+manager: jeconnoc
+editor: ''
 tags: azure-resource-manager
-keywords: 
+keywords: ''
 ms.assetid: 1cfcc14a-6795-4cfd-a740-aa09d6d2b817
 ms.service: virtual-machines-windows
 ms.devlang: NA
@@ -17,11 +17,12 @@ ms.workload: infrastructure-services
 ms.date: 05/05/2017
 ms.author: rclaus
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: cf60a053c832c6f201705301454ab7cdbe106087
-ms.sourcegitcommit: 9a61faf3463003375a53279e3adce241b5700879
+ms.openlocfilehash: fdf6a1ecf71229dd2b641e2711a5f445e88f7afb
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/15/2017
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34658429"
 ---
 # <a name="azure-virtual-machines-high-availability-for-sap-netweaver"></a>SAP NetWeaver 的 Azure 虛擬機器高可用性
 
@@ -85,7 +86,7 @@ ms.lasthandoff: 11/15/2017
 [sap-ha-guide-9.1]:#31c6bd4f-51df-4057-9fdf-3fcbc619c170
 [sap-ha-guide-9.1.1]:#a97ad604-9094-44fe-a364-f89cb39bf097
 
-[sap-ha-multi-sid-guide]:sap-high-availability-multi-sid.md (SAP multi-SID high-availability configuration)
+[sap-ha-multi-sid-guide]:sap-high-availability-multi-sid.md (SAP 多重 SID 高可用性設定)
 
 [Logo_Linux]:media/virtual-machines-shared-sap-shared/Linux.png
 [Logo_Windows]:media/virtual-machines-shared-sap-shared/Windows.png
@@ -197,9 +198,9 @@ ms.lasthandoff: 11/15/2017
 
 ## <a name="high-availability-architecture-and-scenarios-for-sap-netweaver"></a>SAP NetWeaver 的高可用性架構和案例
 
-**摘要：**在本文中，我們會討論 Azure 中 SAP 系統的高可用性架構。 我們會討論如何解決 SAP 單一失敗點 (SPOF) 和備援元件的高可用性，以及 Azure 基礎結構高可用性的詳細資料。 我們也會說明這些組件與 SAP 系統元件的關係。 此外，這些討論都針對 Windows 和 Linux 詳細資料而劃分。 同時也涵蓋了各種 SAP 高可用性案例。
+**摘要：** 在本文中，我們會討論 Azure 中 SAP 系統的高可用性架構。 我們會討論如何解決 SAP 單一失敗點 (SPOF) 和備援元件的高可用性，以及 Azure 基礎結構高可用性的詳細資料。 我們也會說明這些組件與 SAP 系統元件的關係。 此外，這些討論都針對 Windows 和 Linux 詳細資料而劃分。 同時也涵蓋了各種 SAP 高可用性案例。
 
-**更新日期：**2017 年 10 月
+**更新日期：** 2017 年 10 月
 
 * [SAP NetWeaver 的 Azure 虛擬機器的高可用性架構和案例][sap-high-availability-architecture-scenarios]
 
@@ -208,9 +209,9 @@ ms.lasthandoff: 11/15/2017
 
 ## <a name="azure-infrastructure-preparation-for-sap-netweaver-high-availability-deployment"></a>SAP NetWeaver 高可用性部署的 Azure 基礎結構準備
 
-**摘要：**在此處所列的文件中，我們將討論部署 Azure 基礎結構以準備 SAP 安裝時可採取的步驟。 為了簡化 Azure 基礎結構部署，使用 SAP Azure Resource Manager 範本來自動化整個程序。
+**摘要：** 在此處所列的文件中，我們將討論部署 Azure 基礎結構以準備 SAP 安裝時可採取的步驟。 為了簡化 Azure 基礎結構部署，使用 SAP Azure Resource Manager 範本來自動化整個程序。
 
-**更新日期：**2017 年 10 月
+**更新日期：** 2017 年 10 月
 
 * ![Windows][Logo_Windows] [使用 SAP ASCS/SCS 執行個體的 Windows 容錯移轉叢集和**共用磁碟**，為 SAP 高可用性準備 Azure 基礎結構][sap-high-availability-infrastructure-wsfc-shared-disk]
 
@@ -220,9 +221,9 @@ ms.lasthandoff: 11/15/2017
 
 ## <a name="installation-of-an-sap-netweaver-high-availability-system-in-azure"></a>Azure 中的 SAP NetWeaver 高可用性系統安裝
 
-**摘要：**此處所列的文章中，會說明 Azure 中的 Windows Server 容錯移轉叢集的叢集和 Linux 叢集架構的高可用性 SAP 系統之安裝和設定的逐步範例。
+**摘要：** 此處所列的文章中，會說明 Azure 中的 Windows Server 容錯移轉叢集的叢集和 Linux 叢集架構的高可用性 SAP 系統之安裝和設定的逐步範例。
 
-**更新日期：**2017 年 10 月
+**更新日期：** 2017 年 10 月
 
 * ![Windows][Logo_Windows] [使用 SAP ASCS/SCS 執行個體的 Windows 容錯移轉叢集和**共用磁碟**，安裝 SAP NetWeaver 高可用性][sap-high-availability-installation-wsfc-shared-disk]
 

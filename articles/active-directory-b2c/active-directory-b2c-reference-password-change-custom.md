@@ -1,28 +1,28 @@
 ---
-title: Azure Active Directory B2C：自助式密碼變更 | Microsoft Docs
-description: 此主題示範如何在 Azure Active Directory B2C 中為您的取用者設定自助式密碼變更
+title: Azure Active Directory B2C 中的自助式密碼變更 | Microsoft Docs
+description: 此主題示範如何在 Azure Active Directory B2C 中為您的取用者設定自助式密碼變更。
 services: active-directory-b2c
-documentationcenter: ''
 author: davidmu1
 manager: mtillman
-editor: ''
-ms.service: active-directory-b2c
+ms.service: active-directory
 ms.workload: identity
-ms.topic: article
+ms.topic: conceptual
 ms.date: 09/05/2016
 ms.author: davidmu
-ms.openlocfilehash: 4c54abe8c3375b49b786c7849c7e963e5849fa3a
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: B2C
+ms.openlocfilehash: 491b3988a6581387c71b4214907e689119fcb979
+ms.sourcegitcommit: 0c64460a345c89a6b579b1d7e273435a5ab4157a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43344984"
 ---
 # <a name="azure-active-directory-b2c-configure-password-change-in-custom-policies"></a>Azure Active Directory B2C：在自訂原則中設定密碼變更  
 [!INCLUDE [active-directory-b2c-advanced-audience-warning](../../includes/active-directory-b2c-advanced-audience-warning.md)]
 
 利用密碼變更功能，登入的取用者 (使用本機帳戶) 可以變更其密碼而不需要透過電子郵件驗證來證明其真實性，如[自助式密碼重設流程](active-directory-b2c-reference-sspr.md)中所述。 如果取用者進入密碼變更流程時工作階段到期，系統會提示使用者重新登入。 
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 如[開始使用](active-directory-b2c-get-started-custom.md)所述，設定為完成本機帳戶註冊/登入的 Azure AD B2C 租用戶。
 
@@ -85,8 +85,8 @@ ms.lasthandoff: 03/23/2018
             <Item Key="UserMessageIfInvalidPassword">Your password is incorrect</Item>
             <Item Key="UserMessageIfOldPasswordUsed">Looks like you used an old password</Item>
             <Item Key="ProviderName">https://sts.windows.net/</Item>
-            <Item Key="METADATA">https://login.microsoftonline.com/{tenant}/.well-known/openid-configuration</Item>
-            <Item Key="authorization_endpoint">https://login.microsoftonline.com/{tenant}/oauth2/token</Item>
+            <Item Key="METADATA">https://{tenant}.b2clogin.com/{tenant}.onmicrosoft.com/.well-known/openid-configuration</Item>
+            <Item Key="authorization_endpoint">https://{tenant}.b2clogin.com/{tenant}.onmicrosoft.com/oauth2/token</Item>
             <Item Key="response_types">id_token</Item>
             <Item Key="response_mode">query</Item>
             <Item Key="scope">email openid</Item>

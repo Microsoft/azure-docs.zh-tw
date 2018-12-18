@@ -1,25 +1,19 @@
 ---
-title: "Azure Analysis Services 教學課程第 2 課：取得資料 | Microsoft Docs"
-description: "說明如何在 Azure Analysis Services 教學課程專案中取得和匯入資料。"
-services: analysis-services
-documentationcenter: 
-author: Minewiskan
+title: Azure Analysis Services 教學課程第 2 課：取得資料 | Microsoft Docs
+description: 說明如何在 Azure Analysis Services 教學課程專案中取得和匯入資料。
+author: minewiskan
 manager: kfile
-editor: 
-tags: 
-ms.assetid: 
-ms.service: analysis-services
-ms.devlang: NA
-ms.topic: get-started-article
-ms.tgt_pltfrm: NA
-ms.workload: na
-ms.date: 01/08/2018
+ms.service: azure-analysis-services
+ms.topic: conceptual
+ms.date: 07/03/2018
 ms.author: owend
-ms.openlocfilehash: 138f9f6e85d5e206c8b09d5c93822cfef5dd1246
-ms.sourcegitcommit: 176c575aea7602682afd6214880aad0be6167c52
+ms.reviewer: minewiskan
+ms.openlocfilehash: 5803bf2c71b2cf3fe7bb145b4d3d664c60642294
+ms.sourcegitcommit: f057c10ae4f26a768e97f2cb3f3faca9ed23ff1b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/09/2018
+ms.lasthandoff: 08/17/2018
+ms.locfileid: "42145334"
 ---
 # <a name="get-data"></a>取得資料
 
@@ -32,7 +26,7 @@ ms.lasthandoff: 01/09/2018
   
 這堂課的預估完成時間：**10 分鐘**  
   
-## <a name="prerequisites"></a>先決條件  
+## <a name="prerequisites"></a>必要條件  
 本主題是表格式模型教學課程的一部分，請依序完成。 在這堂課中執行工作之前，您必須已完成上一堂課︰[第 1 課︰建立新的表格式模型專案](../tutorials/aas-lesson-1-create-a-new-tabular-model-project.md)。  
   
 ## <a name="create-a-connection"></a>建立連線  
@@ -58,11 +52,11 @@ ms.lasthandoff: 01/09/2018
   
 5.  在 [導覽器] 中，選取 [AdventureWorksDW2014] 資料庫，然後按一下 [確定]。這會建立資料庫的連線。 
   
-6.  在 [導覽器] 中，選取下列資料表的核取方塊︰**DimCustomer**、**DimDate**、**DimGeography**、**DimProduct**、**DimProductCategory**、**DimProductSubcategory** 和 **FactInternetSales**。  
+6.  在 [導覽器] 中，選取下列資料表的核取方塊︰**DimCustomer**、**DimDate**、**DimGeography**、**DimProduct**、**DimProductCategory**、**DimProductSubcategory** 和 **FactInternetSales**，然後按一下 [編輯]。
 
     ![aas-lesson2-select-tables](../tutorials/media/aas-lesson2-select-tables.png)
   
-按一下 [確定] 之後，[查詢編輯器] 隨即開啟。 在下一個區段中，您只要選取想要匯入的資料。
+    查詢編輯器隨即開啟。 在下一個區段中，您只要選取想要匯入的資料。
 
   
 ## <a name="filter-the-table-data"></a>篩選資料表資料  

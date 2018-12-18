@@ -3,17 +3,18 @@ title: 將 Docker 映像推送至私人 Azure 登錄
 description: 使用 Docker CLI 推送和提取 Docker 映像至 Azure 中的私人容器登錄
 services: container-registry
 author: stevelas
-manager: timlt
+manager: jeconnoc
 ms.service: container-registry
 ms.topic: article
 ms.date: 11/29/2017
 ms.author: stevelas
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 8fc04ec77a101e08bfde22df76e845b87f8c316e
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 24cccd4745d611196046168f0125e7ef2a184e15
+ms.sourcegitcommit: 615403e8c5045ff6629c0433ef19e8e127fe58ac
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39576486"
 ---
 # <a name="push-your-first-image-to-a-private-docker-container-registry-using-the-docker-cli"></a>使用 Docker CLI 將您的第一個映像推送至私人 Docker 容器登錄
 
@@ -21,20 +22,20 @@ Azure 容器登錄庫儲存和管理私人 [Docker](http://hub.docker.com) 容�
 
 在下列步驟中，您會從公用 Docker 中樞登錄庫下載官方提供的 [Nginx 映像](https://store.docker.com/images/nginx)，將其標記為私人 Azure 容器登錄庫，推送到您的登錄庫，然後再從登錄庫將其提取出來。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
-* **Azure 容器登錄庫** - 在 Azure 訂用帳戶中建立容器登錄庫。 例如，使用 [Azure 入口網站](container-registry-get-started-portal.md)或 [Azure CLI 2.0](container-registry-get-started-azure-cli.md)。
+* **Azure 容器登錄庫** - 在 Azure 訂用帳戶中建立容器登錄庫。 例如，使用 [Azure 入口網站](container-registry-get-started-portal.md)或 [Azure CLI](container-registry-get-started-azure-cli.md)。
 * **Docker CLI** - 若要將您的本機電腦設定為 Docker 主機並存取 Docker CLI 命令，請安裝 [Docker](https://docs.docker.com/engine/installation/)。
 
 ## <a name="log-in-to-a-registry"></a>登入登錄庫
 
-您的私人容器登錄庫有[數種方式可進行驗證](container-registry-authentication.md)。 在命令列中工作時，建議的方法是使用 Azure CLI 命令 [az acr login](/cli/azure/acr?view=azure-cli-latest#az_acr_login)。 例如，若要登入名為 myregistry 的登錄庫：
+您的私人容器登錄庫有[數種方式可進行驗證](container-registry-authentication.md)。 在命令列中工作時，建議的方法是使用 Azure CLI 命令 [az acr login](/cli/azure/acr?view=azure-cli-latest#az-acr-login)。 例如，若要登入名為 myregistry 的登錄庫：
 
 ```azurecli
 az acr login --name myregistry
 ```
 
-您也可以使用 [docker login](https://docs.docker.com/engine/reference/commandline/login/) 來登入。 下列範例會傳遞 Azure Active Directory [service principal](../active-directory/active-directory-application-objects.md) 的識別碼和密碼。 例如，您可能已基於自動化案例[指派服務主體](container-registry-authentication.md#service-principal)到您的登錄庫。
+您也可以使用 [docker login](https://docs.docker.com/engine/reference/commandline/login/) 來登入。 下列範例會傳遞 Azure Active Directory [service principal](../active-directory/develop/app-objects-and-service-principals.md) 的識別碼和密碼。 例如，您可能已基於自動化案例[指派服務主體](container-registry-authentication.md#service-principal)到您的登錄庫。
 
 ```Bash
 docker login myregistry.azurecr.io -u xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx -p myPassword
@@ -103,7 +104,7 @@ docker pull myregistry.azurecr.io/samples/nginx
 docker run -it --rm -p 8080:80 myregistry.azurecr.io/samples/nginx
 ```
 
-瀏覽至 [http://localhost:8080/](http://localhost:8080) 以檢視執行中的容器。
+瀏覽至 [http://localhost:8080](http://localhost:8080) 以檢視執行中的容器。
 
 若要停止並移除該容器，請按 `Control`+`C`。
 
@@ -115,7 +116,7 @@ docker run -it --rm -p 8080:80 myregistry.azurecr.io/samples/nginx
 docker rmi myregistry.azurecr.io/samples/nginx
 ```
 
-若要從 Azure Container Registry 移除映像，您可以使用 Azure CLI 命令 [az acr repository delete](/cli/azure/acr/repository#az_acr_repository_delete)。 例如，下列命令會刪除標記所參考的資訊清單、任何相關聯的圖層資料，以及參考了資訊清單的所有其他標記。
+若要從 Azure Container Registry 移除映像，您可以使用 Azure CLI 命令 [az acr repository delete](/cli/azure/acr/repository#az-acr-repository-delete)。 例如，下列命令會刪除標記所參考的資訊清單、任何相關聯的圖層資料，以及參考了資訊清單的所有其他標記。
 
 ```azurecli
 az acr repository delete --name myregistry --repository samples/nginx --tag latest --manifest
@@ -125,6 +126,6 @@ az acr repository delete --name myregistry --repository samples/nginx --tag late
 
 現在您已瞭解基本概念了，可以開始使用您的登錄庫！ 將登錄的容器映像部署至：
 
-* [Azure Container Service (AKS)](../aks/tutorial-kubernetes-prepare-app.md)
+* [Azure Kubernetes Service (AKS)](../aks/tutorial-kubernetes-prepare-app.md)
 * [Azure Container Instances](../container-instances/container-instances-tutorial-prepare-app.md)
 * [Service Fabric](../service-fabric/service-fabric-tutorial-create-container-images.md)

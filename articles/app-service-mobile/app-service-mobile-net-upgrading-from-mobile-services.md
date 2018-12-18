@@ -1,11 +1,11 @@
 ---
-title: "從行動服務升級為 Azure App Service"
-description: "了解如何輕鬆地將您的行動服務應用程式升級為 App Service 行動 App"
+title: 從行動服務升級為 Azure App Service
+description: 了解如何輕鬆地將您的行動服務應用程式升級為 App Service 行動 App
 services: app-service\mobile
-documentationcenter: 
+documentationcenter: ''
 author: conceptdev
 manager: crdun
-editor: 
+editor: ''
 ms.assetid: 9c0ac353-afb6-462b-ab94-d91b8247322f
 ms.service: app-service-mobile
 ms.workload: mobile
@@ -14,14 +14,15 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 10/01/2016
 ms.author: crdun
-ms.openlocfilehash: f07b1d6037ff8ca16b673e6a1a235769355a9993
-ms.sourcegitcommit: df4ddc55b42b593f165d56531f591fdb1e689686
+ms.openlocfilehash: 25eb5c732927dcfb18bfd92991391ff99d4e3629
+ms.sourcegitcommit: ebb460ed4f1331feb56052ea84509c2d5e9bd65c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/04/2018
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42918253"
 ---
 # <a name="upgrade-your-existing-net-azure-mobile-service-to-app-service"></a>將您現有的 .NET Azure 行動服務升級為 App Service
-App Service Mobile 是一種使用 Microsoft Azure 建置行動應用程式的新方式。 若要深入了解，請參閱 [何謂 Mobile Apps？]
+App Service Mobile 是一種使用 Microsoft Azure 建置行動應用程式的新方式。 若要深入了解，請參閱 [什麼是 Mobile Apps？]
 
 本主題說明如何將現有的 .NET 後端應用程式從 Azure 行動服務升級為新的 App Service Mobile Apps。 執行此升級時，您現有的行動服務應用程式可以繼續運作。   如果您需要升級 Node.js 後端應用程式，請參閱[升級 Node.js 行動服務](app-service-mobile-node-backend-upgrading-from-mobile-services.md)。
 
@@ -259,16 +260,16 @@ Mobile Apps 中並未內建排程的工作，因此您在 .NET 後端中的任�
 
 [Azure 入口網站]: https://portal.azure.com/
 [Azure 傳統入口網站]: https://manage.windowsazure.com/
-[何謂 Mobile Apps？]: app-service-mobile-value-prop.md
+[什麼是 Mobile Apps？]: app-service-mobile-value-prop.md
 [I already use web sites and mobile services – how does App Service help me?]: /en-us/documentation/articles/app-service-mobile-value-prop-migration-from-mobile-services
 [行動應用程式伺服器 SDK]: http://www.nuget.org/packages/microsoft.azure.mobile.server
 [Create a Mobile App]: app-service-mobile-xamarin-ios-get-started.md
 [Add push notifications to your mobile app]: app-service-mobile-xamarin-ios-get-started-push.md
 [Add authentication to your mobile app]: app-service-mobile-xamarin-ios-get-started-users.md
-[Azure 排程器]: /en-us/documentation/services/scheduler/
+[Azure 排程器]: /azure/scheduler/
 [Web 工作]: https://github.com/Azure/azure-webjobs-sdk/wiki
 [如何使用 .NET 伺服器 SDK]: app-service-mobile-dotnet-backend-how-to-use-server-sdk.md
 [Migrate from Mobile Services to an App Service Mobile App]: app-service-mobile-migrating-from-mobile-services.md
 [Migrate your existing Mobile Service to App Service]: app-service-mobile-migrating-from-mobile-services.md
-[App Service 定價]: https://azure.microsoft.com/en-us/pricing/details/app-service/
+[App Service 定價]: https://azure.microsoft.com/pricing/details/app-service/
 [.NET 伺服器 SDK 概觀]: app-service-mobile-dotnet-backend-how-to-use-server-sdk.md

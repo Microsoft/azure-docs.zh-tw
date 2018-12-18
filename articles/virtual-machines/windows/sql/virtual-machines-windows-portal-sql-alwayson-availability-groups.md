@@ -1,11 +1,11 @@
 ---
-title: "設定 Azure Resource Manager VM 的高可用性 | Microsoft Docs"
-description: "本教學課程將說明如何使用 Azure Resource Manager 模式下的 Azure 虛擬機器來建立 Always On 可用性群組。"
+title: 設定 Azure Resource Manager VM 的高可用性 | Microsoft Docs
+description: 本教學課程將說明如何使用 Azure Resource Manager 模式下的 Azure 虛擬機器來建立 Always On 可用性群組。
 services: virtual-machines-windows
 documentationcenter: na
 author: MikeRayMSFT
 manager: craigg
-editor: 
+editor: ''
 tags: azure-resource-manager
 ms.assetid: 64e85527-d5c8-40d9-bbe2-13045d25fc68
 ms.service: virtual-machines-sql
@@ -20,6 +20,7 @@ ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 02/21/2018
+ms.locfileid: "29401016"
 ---
 # <a name="configure-always-on-availability-groups-in-azure-virtual-machines-automatically-resource-manager"></a>在 Azure 虛擬機器中自動設定 Always On 可用性群組：Resource Manager
 

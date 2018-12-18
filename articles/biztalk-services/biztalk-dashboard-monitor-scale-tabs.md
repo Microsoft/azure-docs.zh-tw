@@ -1,11 +1,11 @@
 ---
-title: "BizTalk 服務中的儀表板、監視、調整、設定和混合式連接 | Microsoft Docs"
-description: "深入了解 BizTalk 服務的控制項及監視效能"
+title: BizTalk 服務中的儀表板、監視、調整、設定和混合式連接 | Microsoft Docs
+description: 深入了解 BizTalk 服務的控制項及監視效能
 services: biztalk-services
-documentationcenter: 
+documentationcenter: ''
 author: MandiOhlinger
 manager: anneta
-editor: 
+editor: ''
 ms.assetid: 7a1815db-0de2-4274-8be0-198c1b077324
 ms.service: biztalk-services
 ms.workload: integration
@@ -19,6 +19,7 @@ ms.sourcegitcommit: dcf5f175454a5a6a26965482965ae1f2bf6dca0a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 11/10/2017
+ms.locfileid: "24103356"
 ---
 # <a name="review-the-dashboard-monitor-scale-configure-and-hybrid-connection-tabs"></a>檢閱儀表板、監視器、調整、設定和混合式連線索引標籤
 

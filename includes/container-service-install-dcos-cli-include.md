@@ -1,13 +1,13 @@
 ---
-title: "安裝 DC/OS CLI | Microsoft Docs"
-description: "安裝 DC/OS CLI。"
+title: 安裝 DC/OS CLI | Microsoft Docs
+description: 安裝 DC/OS CLI。
 services: container-service
-documentationcenter: 
+documentationcenter: ''
 author: rgardler
 manager: timlt
-editor: 
+editor: ''
 tags: acs, azure-container-service
-keywords: "容器, 微服務, DC/OS, Azure"
+keywords: 容器, 微服務, DC/OS, Azure
 ms.service: container-service
 ms.devlang: na
 ms.topic: get-started-article
@@ -20,6 +20,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "22877253"
 ---
 > [!NOTE]
 > 這適用於使用 DC/OS 型 ACS 叢集時。 若是 Swarm 型 ACS 叢集，就不需要執行此工作。

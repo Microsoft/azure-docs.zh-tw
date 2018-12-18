@@ -2,23 +2,18 @@
 title: 使用 Azure 入口網站管理 Azure 檔案共用
 description: 了解使用 Azure 入口網站來管理 Azure 檔案服務。
 services: storage
-documentationcenter: ''
 author: wmgries
-manager: jeconnoc
-editor: ''
-ms.assetid: ''
 ms.service: storage
-ms.workload: storage
-ms.tgt_pltfrm: na
-ms.devlang: na
 ms.topic: get-started-article
 ms.date: 03/26/2018
 ms.author: wgries
-ms.openlocfilehash: 588d260bb939c8f6439ca66828296ea455f1524a
-ms.sourcegitcommit: c3d53d8901622f93efcd13a31863161019325216
+ms.component: files
+ms.openlocfilehash: b4cace3922983ed93987069ac7cf59f2cb69403b
+ms.sourcegitcommit: e2ea404126bdd990570b4417794d63367a417856
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/29/2018
+ms.lasthandoff: 09/14/2018
+ms.locfileid: "45578543"
 ---
 # <a name="managing-azure-file-shares-with-the-azure-portal"></a>使用 Azure 入口網站管理 Azure 檔案共用 
 [Azure 檔案](storage-files-introduction.md)是 Microsoft 易於使用的雲端檔案系統。 Azure 檔案共用可在 Windows、Linux 和 macOS 中掛接。 本指南會逐步說明透過 [Azure 入口網站](https://portal.azure.com/)來使用 Azure 檔案共用的基本概念。 了解如何：
@@ -47,10 +42,10 @@ ms.lasthandoff: 03/29/2018
 4. 在 [名稱] 中輸入 *myshare*。
 5. 按一下 [確定] 以建立 Azure 檔案共用。
 
-## <a name="manipulating-the-contents-of-the-azure-file-share"></a>處理 Azure 檔案共用的內容
-您現在已建立 Azure 檔案共用，並且可使用 SMB 將檔案共用掛接在 [Windows](storage-how-to-use-files-windows.md)、[Linux](storage-how-to-use-files-linux.md) 或 [macOS](storage-how-to-use-files-mac.md) 上。 或者，您可以使用 Azure 入口網站來處理 Azure 檔案共用。 所有透過 Azure 入口網站提出的要求都會使用檔案 REST API 來執行，讓您能夠直接建立、修改及刪除用戶端上的檔案和目錄，而不需要 SMB 存取。
+## <a name="work-with-the-contents-of-the-azure-file-share"></a>使用 Azure 檔案共用的內容
+您現在已建立 Azure 檔案共用，並且可使用 SMB 將檔案共用掛接在 [Windows](storage-how-to-use-files-windows.md)、[Linux](storage-how-to-use-files-linux.md) 或 [macOS](storage-how-to-use-files-mac.md) 上。 或者，您可以使用 Azure 入口網站來處理 Azure 檔案共用。 透過 Azure 入口網站提出的所有要求都是使用 REST API 進行，讓您不需 SMB 存取權，即可在用戶端上建立、修改及刪除檔案和目錄。
 
-### <a name="create-directory"></a>建立目錄
+### <a name="create-a-directory"></a>建立目錄
 若要在 Azure 檔案共用的根目錄建立名為 *myDirectory* 的新目錄：
 
 1. 在 [檔案服務] 頁面上，選取 **myshare** 檔案共用。 檔案共用的頁面隨即開啟。
@@ -74,7 +69,7 @@ ms.lasthandoff: 03/29/2018
 
 ## <a name="create-and-modify-share-snapshots"></a>建立及修改共用快照集
 可以使用 Azure 檔案共用來執行的另一項實用工作，是建立共用快照集。 快照集會保留 Azure 檔案共用的時間點。 共用快照集類似於您可能已經很熟悉的下列作業系統技術：
-- Windows 檔案系統的[磁碟區陰影複製服務 (VSS)](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/ee923636)，例如 NTFS 和 ReFS
+- Windows 檔案系統的[磁碟區陰影複製服務 (VSS)](https://docs.microsoft.com/windows/desktop/VSS/volume-shadow-copy-service-portal)，例如 NTFS 和 ReFS
 - Linux 系統的[邏輯磁碟區管理員 (LVM)](https://en.wikipedia.org/wiki/Logical_Volume_Manager_(Linux)#Basic_functionality) 快照集
 - macOS 的 [Apple 檔案系統 (APFS)](https://developer.apple.com/library/content/documentation/FileManagement/Conceptual/APFS_Guide/Features/Features.html) 快照集。 
 

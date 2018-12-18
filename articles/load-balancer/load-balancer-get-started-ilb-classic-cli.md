@@ -1,11 +1,11 @@
 ---
-title: "建立內部負載平衡器 - Azure CLI 傳統 | Microsoft Docs"
-description: "瞭解如何使用 Azure CLI 在傳統部署模型中建立內部負載平衡器"
+title: 建立內部負載平衡器 - Azure 傳統 CLI | Microsoft Docs
+description: 瞭解如何使用 Azure 傳統 CLI 在傳統部署模型中建立內部負載平衡器
 services: load-balancer
 documentationcenter: na
-author: KumudD
-manager: timlt
-editor: 
+author: genlin
+manager: cshepard
+editor: ''
 tags: azure-service-management
 ms.assetid: becbbbde-a118-4269-9444-d3153f00bf34
 ms.service: load-balancer
@@ -13,15 +13,16 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 01/23/2017
-ms.author: kumud
-ms.openlocfilehash: f740633230b2479f77d7d09a31dbbf3f72ffb174
-ms.sourcegitcommit: 68aec76e471d677fd9a6333dc60ed098d1072cfc
+ms.date: 06/18/2018
+ms.author: genli
+ms.openlocfilehash: fb8929b31fa4325b996ddf4c5ec48e4acb0b930a
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/18/2017
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46966884"
 ---
-# <a name="get-started-creating-an-internal-load-balancer-classic-using-the-azure-cli"></a>開始使用 Azure CLI 建立內部負載平衡器 (傳統)
+# <a name="get-started-creating-an-internal-load-balancer-using-the-azure-classic-cli"></a>開始使用 Azure 傳統 CLI 建立內部負載平衡器
 
 > [!div class="op_single_selector"]
 > * [PowerShell](../load-balancer/load-balancer-get-started-ilb-classic-ps.md)
@@ -43,11 +44,11 @@ ms.lasthandoff: 12/18/2017
 2. 新增對應到虛擬機器 (可接收連入流量) 的端點。
 3. 設定伺服器以將其流量傳送到內部負載平衡執行個體的虛擬 IP (VIP) 位址。
 
-## <a name="step-by-step-creating-an-internal-load-balancer-using-cli"></a>使用 CLI 逐步建立內部負載平衡器
+## <a name="step-by-step-creating-an-internal-load-balancer-using-classic-cli"></a>使用傳統 CLI 逐步建立內部負載平衡器
 
 本指南會根據上述案例，說明如何建立內部負載平衡器。
 
-1. 如果您從未使用過 Azure CLI，請參閱 [安裝和設定 Azure CLI](../cli-install-nodejs.md) ，並依照指示進行，直到選取您的 Azure 帳戶和訂用帳戶為止。
+1. 如果您從未使用過傳統 CLI，請參閱 [安裝和設定 Azure CLI](../cli-install-nodejs.md)，並依照指示進行，直到選取您的 Azure 帳戶和訂用帳戶為止。
 2. 執行 **azure config mode** 命令，以切換為傳統模式，如下所示。
 
     ```azurecli

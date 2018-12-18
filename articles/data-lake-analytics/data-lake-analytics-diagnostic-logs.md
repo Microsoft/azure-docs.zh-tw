@@ -1,24 +1,19 @@
 ---
-title: "檢視 Azure Data Lake Analytics 的診斷記錄 | Microsoft Docs"
-description: "了解如何設定及存取 Azure Data Lake Analytics 的診斷記錄  "
+title: 啟用及檢視 Azure Data Lake Analytics 的診斷記錄
+description: 了解如何設定及存取 Azure Data Lake Analytics 的診斷記錄
 services: data-lake-analytics
-documentationcenter: 
-author: Blackmist
-manager: jhubbard
-editor: cgronlun
-ms.assetid: cf5633d4-bc43-444e-90fc-f90fbd0b7935
 ms.service: data-lake-analytics
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
+author: jasonwhowell
+ms.author: jasonh
+ms.assetid: cf5633d4-bc43-444e-90fc-f90fbd0b7935
+ms.topic: conceptual
 ms.date: 02/12/2018
-ms.author: larryfr
-ms.openlocfilehash: e6cc5fd3d45691dbdc004f346c10d7b4568ae9aa
-ms.sourcegitcommit: b32d6948033e7f85e3362e13347a664c0aaa04c1
+ms.openlocfilehash: 0bade9f393d879123b7b1485052f70924d9c9b9c
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/13/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43045476"
 ---
 # <a name="accessing-diagnostic-logs-for-azure-data-lake-analytics"></a>存取 Azure Data Lake Analytics 的診斷記錄
 
@@ -130,7 +125,7 @@ ms.lasthandoff: 02/13/2018
 
 #### <a name="request-log-schema"></a>要求記錄的結構描述
 
-| Name | 類型 | 說明 |
+| 名稱 | 類型 | 說明 |
 | --- | --- | --- |
 | 分析 |字串 |記錄的時間戳記 (UTC 時間) |
 | ResourceId |字串 |執行作業所在資源的識別碼 |
@@ -144,7 +139,7 @@ ms.lasthandoff: 02/13/2018
 
 #### <a name="request-log-properties-schema"></a>要求記錄屬性結構描述
 
-| Name | 類型 | 說明 |
+| 名稱 | 類型 | 說明 |
 | --- | --- | --- |
 | HttpMethod |字串 |作業使用的 HTTP 方法。 例如，GET。 |
 | Path |字串 |執行作業的所在路徑 |
@@ -182,7 +177,7 @@ ms.lasthandoff: 02/13/2018
 
 #### <a name="audit-log-schema"></a>稽核記錄的結構描述
 
-| Name | 類型 | 說明 |
+| 名稱 | 類型 | 說明 |
 | --- | --- | --- |
 | 分析 |字串 |記錄的時間戳記 (UTC 時間) |
 | ResourceId |字串 |執行作業所在資源的識別碼 |
@@ -200,7 +195,7 @@ ms.lasthandoff: 02/13/2018
 
 #### <a name="audit-log-properties-schema"></a>稽核記錄屬性結構描述
 
-| Name | 類型 | 說明 |
+| 名稱 | 類型 | 說明 |
 | --- | --- | --- |
 | JobId |字串 |指派給作業的識別碼 |
 | JobName |字串 |為作業提供的名稱 |
@@ -215,7 +210,7 @@ ms.lasthandoff: 02/13/2018
 
 ## <a name="process-the-log-data"></a>處理記錄資料
 
-Azure Data Lake Analytics 會提供有關如何處理和分析記錄資料的範例。 您可以在 [https://github.com/Azure/AzureDataLake/tree/master/Samples/AzureDiagnosticsSample](https://github.com/Azure/AzureDataLake/tree/master/Samples/AzureDiagnosticsSample)找到範例。
+Azure Data Lake Analytics 會提供有關如何處理和分析記錄資料的範例。 您可以在 [https://github.com/Azure/AzureDataLake/tree/master/Samples/AzureDiagnosticsSample](https://github.com/Azure/AzureDataLake/tree/master/Samples/AzureDiagnosticsSample) 找到範例。
 
 ## <a name="next-steps"></a>後續步驟
 * [Azure Data Lake Analytics 概觀](data-lake-analytics-overview.md)

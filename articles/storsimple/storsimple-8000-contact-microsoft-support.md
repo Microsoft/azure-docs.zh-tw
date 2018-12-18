@@ -1,12 +1,12 @@
 ---
-title: "針對 StorSimple 8000 系列建立支援票證或案例 | Microsoft Docs"
-description: "了解如何記錄支援要求和在 StorSimple 8000 系列裝置上啟動支援工作階段。"
+title: 針對 StorSimple 8000 系列建立支援票證或案例 | Microsoft Docs
+description: 了解如何記錄支援要求和在 StorSimple 8000 系列裝置上啟動支援工作階段。
 services: storsimple
-documentationcenter: 
+documentationcenter: ''
 author: alkohli
 manager: jeconnoc
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: na
 ms.topic: article
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 9292e15fc80cc9df3e62731bafdcb0bb98c256e1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 01/10/2018
+ms.locfileid: "27743038"
 ---
 # <a name="contact-microsoft-support"></a>連絡 Microsoft 支援服務
 

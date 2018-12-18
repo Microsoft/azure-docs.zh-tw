@@ -33,7 +33,6 @@
 ### [使用 Azure PowerShell 管理您的 VM](manage-psh-classic.md)
 ### [關於 VM 代理程式與擴充功能](agents-and-extensions-classic.md)
 ### [管理 VM 擴充功能](manage-extensions-classic.md)
-### [VM 的自訂指令碼擴充功能](extensions-customscript-classic.md)
 
 ## 管理工作負載
 ### [高效能運算 (HPC)](../../virtual-machines-windows-hpcpack-cluster-options.md)

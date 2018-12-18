@@ -1,0 +1,86 @@
+### YamlMime:YamlDocument
+ms.openlocfilehash: 07a24db7d611f7d29b7fcf9feb22d6fab208c89e
+ms.sourcegitcommit: e2348a7a40dc352677ae0d7e4096540b47704374
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/05/2018
+ms.locfileid: "43781927"
+documentType: LandingData
+title: Azure CDN 文件
+metadata:
+  title: Azure CDN 文件 - 教學課程和 API 參考 | Microsoft Docs
+  description: Azure 內容傳遞網路 (CDN) 是全球 CDN 解決方案，用來傳遞高頻寬內容。 It它可以裝載在 Azure 或任何其他位置。 使用 Azure CDN 可讓您使用網路連接點 (POP) 伺服器，從 Azure Blob 儲存體、Web 應用程式或任何可公開存取的 Web 伺服器載入的公用物件來快取靜態物件。 Azure CDN 也可運用各種網路和路由最佳化，來加速提供無法快取的動態內容。
+  services: cdn
+  author: czeumault
+  manager: carolz
+  ms.service: cdn
+  ms.tgt_pltfrm: na
+  ms.devlang: na
+  ms.topic: landing-page
+  ms.date: 06/08/2018
+  ms.author: carolz
+abstract:
+  description: Azure 內容傳遞網路 (CDN) 是全球 CDN 解決方案，用來傳遞高頻寬內容。 It它可以裝載在 Azure 或任何其他位置。 使用 Azure CDN 可讓您使用網路連接點 (POP) 伺服器，從 Azure Blob 儲存體、Web 應用程式或任何可公開存取的 Web 伺服器載入的公用物件來快取靜態物件。 Azure CDN 也可運用各種網路和路由最佳化，來加速提供無法快取的動態內容。
+sections:
+- title: 
+  items:
+  - type: list
+    style: icon48
+    items:
+    - image:
+        src: media/index/cdn.svg
+      text: 了解 Azure CDN
+      href: /azure/cdn/cdn-overview
+- title: 5 分鐘快速入門
+  items:
+  - type: paragraph
+    text: 了解如何藉由建立 CDN 設定檔和 CDN 端點來啟用 Azure CDN。
+  - type: list
+    style: icon48
+    items:
+    - image:
+        src: media/index/get-started.svg
+      text: 開始使用 Azure CDN
+      href: /azure/cdn/cdn-create-new-endpoint
+- title: 逐步教學課程
+  items:
+  - type: paragraph
+    text: 了解如何針對您的需求設定 Azure CDN。
+  - type: list
+    style: ordered
+    items:
+    - html: <a href="/azure/cdn/cdn-map-content-to-custom-domain">將自訂網域新增至 CDN 端點</a>
+    - html: <a href="/azure/cdn/cdn-custom-ssl">在自訂網域上設定 HTTPS</a>
+    - html: <a href="/azure/cdn/cdn-caching-rules-tutorial">設定快取規則</a>
+- title: 影片
+  items:
+  - type: paragraph
+    text: 觀看影片，了解 Azure CDN 如何運作。
+  - type: list
+    style: icon48
+    items:
+    - image:
+        src: media/index/video-library.svg
+      text: Azure CDN 影片庫
+      href: https://azure.microsoft.com/documentation/videos/index/?services=cdn
+- title: 範例
+  items:
+  - type: paragraph
+    text: 尋找指令碼來管理常見工作。
+  - type: list
+    style: unordered
+    className: spaced noBullet
+    items:
+    - html: <a href="https://azure.microsoft.com/resources/samples/?service=cdn">程式碼範例</a>
+- title: 參考
+  items:
+  - type: list
+    style: cards
+    className: cardsD
+    items:
+    - title: 命令列
+      html: <p><a href="/powershell/module/azurerm.cdn">PowerShell</a></p>
+    - title: 語言
+      html: <p><a href="/dotnet/api/microsoft.azure.management.cdn">.NET</a></p><p><a href="/java/api/com.microsoft.azure.management.cdn">Java</a></p>
+    - title: REST
+      html: <p><a href="/rest/api/cdn/">REST API 參考資料</a></p>

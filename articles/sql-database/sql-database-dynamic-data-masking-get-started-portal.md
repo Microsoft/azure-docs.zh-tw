@@ -6,18 +6,20 @@ author: ronitr
 manager: craigg
 ms.service: sql-database
 ms.custom: security
-ms.topic: article
-ms.date: 11/22/2016
+ms.topic: conceptual
+ms.date: 04/01/2018
 ms.author: ronitr
-ms.openlocfilehash: 2db546d8165956dc6f9fad21f66af315ba301c11
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.reviewer: vanto
+ms.openlocfilehash: 8aaaa9f2b8821be18b321c202e62333858d7d266
+ms.sourcegitcommit: f983187566d165bc8540fdec5650edcc51a6350a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/13/2018
+ms.locfileid: "45543823"
 ---
 # <a name="get-started-with-sql-database-dynamic-data-masking-with-the-azure-portal"></a>透過 Azure 入口網站開始使用 SQL Database 動態資料遮罩
 
-本文說明如何使用 Azure 入口網站來實作[動態資料遮罩](sql-database-dynamic-data-masking-get-started.md)。 您也可以使用 [Azure SQL Database Cmdlet](https://msdn.microsoft.com/library/azure/mt574084.aspx) 或 [REST API](https://msdn.microsoft.com/library/dn505719.aspx) 來實作動態資料遮罩。
+本文說明如何使用 Azure 入口網站來實作[動態資料遮罩](sql-database-dynamic-data-masking-get-started.md)。 您也可以使用 [Azure SQL Database Cmdlet](https://docs.microsoft.com/powershell/module/azurerm.sql/) 或 [REST API](https://msdn.microsoft.com/library/dn505719.aspx) 來實作動態資料遮罩。
 
 
 ## <a name="set-up-dynamic-data-masking-for-your-database-using-the-azure-portal"></a>使用 Azure 入口網站為您的資料庫設定動態資料遮罩
@@ -53,4 +55,4 @@ ms.lasthandoff: 03/16/2018
 ## <a name="next-steps"></a>後續步驟
 
 * 如需動態資料遮罩的概觀，請參閱[動態資料遮罩](sql-database-dynamic-data-masking-get-started.md)。
-* 您也可以使用 [Azure SQL Database Cmdlet](https://msdn.microsoft.com/library/azure/mt574084.aspx) 或 [REST API](https://msdn.microsoft.com/library/dn505719.aspx) 來實作動態資料遮罩。
+* 您也可以使用 [Azure SQL Database Cmdlet](https://docs.microsoft.com/powershell/module/azurerm.sql/) 或 [REST API](https://msdn.microsoft.com/library/dn505719.aspx) 來實作動態資料遮罩。

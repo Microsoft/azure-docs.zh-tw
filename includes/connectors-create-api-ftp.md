@@ -1,4 +1,4 @@
-### <a name="prerequisites"></a>先決條件
+### <a name="prerequisites"></a>必要條件
 * [FTP](https://wikipedia.org/wiki/File_Transfer_Protocol) 帳戶  
 
 您必須先授權邏輯應用程式連線到您的 FTP 帳戶，才能在該邏輯應用程式中使用您的 FTP 帳戶。幸運的是，您可以在「Azure 入口網站」上，從邏輯應用程式內輕鬆完成此操作。  

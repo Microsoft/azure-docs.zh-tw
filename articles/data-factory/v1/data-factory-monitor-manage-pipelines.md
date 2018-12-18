@@ -10,15 +10,16 @@ ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 01/10/2018
+ms.topic: conceptual
+ms.date: 04/30/2018
 ms.author: shlo
 robots: noindex
-ms.openlocfilehash: 94b3c1e812bdf3345d5fb1f7308fb7a55be8f922
-ms.sourcegitcommit: c3d53d8901622f93efcd13a31863161019325216
+ms.openlocfilehash: 843b92c20b2ec930ce67659802a4287328a08650
+ms.sourcegitcommit: 35ceadc616f09dd3c88377a7f6f4d068e23cceec
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/29/2018
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39618864"
 ---
 # <a name="monitor-and-manage-azure-data-factory-pipelines-by-using-the-azure-portal-and-powershell"></a>使用 Azure 入口網站和 PowerShell 監視和管理 Azure Data Factory 管線
 > [!div class="op_single_selector"]
@@ -26,13 +27,15 @@ ms.lasthandoff: 03/29/2018
 > * [使用監視及管理應用程式](data-factory-monitor-manage-app.md)
 
 > [!NOTE]
-> 本文適用於正式推出 (GA) 的第 1 版 Data Factory。 如果您使用第 2 版 Data Factory 服務 (預覽版)，請參閱[在第 2 版中監視和管理 Data Factory 管線](../monitor-visually.md)。
+> 本文適用於 Data Factory 第 1 版。 如果您使用目前版本的 Data Factory 服務，請參閱[監視和管理 Data Factory 管線](../monitor-visually.md)。
+
+本文描述如何使用 Azure 入口網站和 PowerShell 來監視、管理和偵錯您的管線。
 
 > [!IMPORTANT]
 > 監視及管理應用程式對監視及管理您的資料管線，以及針對任何問題進行疑難排解，提供更佳的支援。 如需使用應用程式的詳細資訊，請參閱[使用監視及管理應用程式來監視及管理 Data Factory 管線](data-factory-monitor-manage-app.md)。 
 
-
-本文描述如何使用 Azure 入口網站和 PowerShell 來監視、管理和偵錯您的管線。
+> [!IMPORTANT]
+> Azure Data Factory 第 1 版現在會使用新的 [Azure 監視器警示基礎結構](../../monitoring-and-diagnostics/monitor-alerts-unified-usage.md)。 舊的警示基礎結構已淘汰。 因此，針對第 1 版 Data Factory 所設定的現有警示不再有效。 第 1 版 Data Factory 的現有警示不會自動遷移。 您必須在新的警示基礎結構上重新建立這些警示。 登入 Azure 入口網站，並選取 [監視器] 來對第 1 版 Data Factory 的計量建立新警示 (例如，執行失敗或執行成功)。
 
 ## <a name="understand-pipelines-and-activity-states"></a>了解管線和活動狀態
 藉由使用 Azure 入口網站，您可以：
@@ -103,7 +106,7 @@ Data Factory 中的資料集配量可以有下列狀態之一：
 <td>ActivityResume</td><td>活動已暫停，除非活動繼續，否則無法執行配量。</td>
 </tr>
 <tr>
-<td>Retry</td><td>正在重試活動執行。</td>
+<td>重試</td><td>正在重試活動執行。</td>
 </tr>
 <tr>
 <td>驗證</td><td>驗證尚未啟動。</td>
@@ -196,7 +199,8 @@ Resume-AzureRmDataFactoryPipeline -ResourceGroupName ADF -DataFactoryName produc
 ## <a name="debug-pipelines"></a>偵錯管線
 Azure Data Factory 提供了許多功能供您使用 Azure 入口網站和 Azure PowerShell 來對管線進行偵錯和疑難排解。
 
-> [!NOTE} 使用監視及管理應用程式針對錯誤進行疑難排解更加容易。 如需使用應用程式的詳細資訊，請參閱[使用監視及管理應用程式來監視及管理 Data Factory 管線](data-factory-monitor-manage-app.md)一文。 
+> [!NOTE] 
+> 使用監視及管理應用程式針對錯誤進行疑難排解更加容易。 如需使用應用程式的詳細資訊，請參閱[使用監視及管理應用程式來監視及管理 Data Factory 管線](data-factory-monitor-manage-app.md)一文。 
 
 ### <a name="find-errors-in-a-pipeline"></a>尋找管線中的錯誤
 如果管線中的活動執行失敗，管線所產生的資料集會因為該失敗而處於錯誤狀態。 您可以使用下列方法，在 Azure Data Factory 中偵錯和疑難排解錯誤。
@@ -285,7 +289,7 @@ Azure Data Factory 提供了許多功能供您使用 Azure 入口網站和 Azure
 ![修正錯誤並進行驗證](./media/data-factory-monitor-manage-pipelines/fix-error-and-validate.png)
 
 ### <a name="use-azure-powershell"></a>使用 Azure PowerShell
-您可以使用 **Set-AzureRmDataFactorySliceStatus** Cmdlet 來重新執行失敗。 如需該 Cmdlet 的語法及其他詳細資料，請參閱 [Set-AzureRmDataFactorySliceStatus](https://msdn.microsoft.com/library/mt603522.aspx) 主題。
+您可以使用 **Set-AzureRmDataFactorySliceStatus** Cmdlet 來重新執行失敗。 如需該 Cmdlet 的語法及其他詳細資料，請參閱 [Set-AzureRmDataFactorySliceStatus](https://docs.microsoft.com/powershell/module/azurerm.datafactories/set-azurermdatafactoryslicestatus) 主題。
 
 **範例：**
 
@@ -296,6 +300,35 @@ Azure Data Factory 提供了許多功能供您使用 Azure 入口網站和 Azure
 ```powershell
 Set-AzureRmDataFactorySliceStatus -ResourceGroupName ADF -DataFactoryName WikiADF -DatasetName DAWikiAggregatedData -Status Waiting -UpdateType UpstreamInPipeline -StartDateTime 2014-05-21T16:00:00 -EndDateTime 2014-05-21T20:00:00
 ```
+## <a name="create-alerts-in-the-azure-portal"></a>在 Azure 入口網站中建立警示
+
+1.  登入 Azure 入口網站，然後選取 [監視器]-> [警示] 以開啟 [警示] 頁面。
+
+    ![開啟 [警示] 頁面。](media/data-factory-monitor-manage-pipelines/v1alerts-image1.png)
+
+2.  選取 [+ 新增警示規則] 來新建警示。
+
+    ![建立新警示](media/data-factory-monitor-manage-pipelines/v1alerts-image2.png)
+
+3.  定義**警示條件**。 (請務必在 [依資源類型篩選] 欄位中選取 [Data Factory])。您也可以指定 [維度] 的值。
+
+    ![定義警示條件 - 選取目標](media/data-factory-monitor-manage-pipelines/v1alerts-image3.png)
+
+    ![定義警示條件 - 新增警示準則](media/data-factory-monitor-manage-pipelines/v1alerts-image4.png)
+
+    ![定義警示條件 - 新增警示邏輯](media/data-factory-monitor-manage-pipelines/v1alerts-image5.png)
+
+4.  定義**警示詳細資料**。
+
+    ![定義警示詳細資料](media/data-factory-monitor-manage-pipelines/v1alerts-image6.png)
+
+5.  定義**動作群組**。
+
+    ![定義動作群組 -建立新的動作群組](media/data-factory-monitor-manage-pipelines/v1alerts-image7.png)
+
+    ![定義動作群組 -設定屬性](media/data-factory-monitor-manage-pipelines/v1alerts-image8.png)
+
+    ![定義動作群組 -已建立新的動作群組](media/data-factory-monitor-manage-pipelines/v1alerts-image9.png)
 
 ## <a name="move-a-data-factory-to-a-different-resource-group-or-subscription"></a>將 Data Factory 移至另一個資源群組或訂用帳戶
 您可以使用 Data Factory 首頁上的 [移動]  命令列按鈕，將 Data Factory 移至另一個資源群組或訂用帳戶。

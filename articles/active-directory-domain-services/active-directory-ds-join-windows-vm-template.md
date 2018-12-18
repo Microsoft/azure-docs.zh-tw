@@ -1,27 +1,31 @@
 ---
-title: "將 Windows Server VM 加入 Azure Active Directory Domain Services | Microsoft Docs"
-description: "使用 Azure Resource Manager 範本將 Windows Server 虛擬機器加入受控網域。"
+title: 將 Windows Server VM 加入 Azure Active Directory Domain Services | Microsoft Docs
+description: 使用 Azure Resource Manager 範本將 Windows Server 虛擬機器加入受控網域。
 services: active-directory-ds
-documentationcenter: 
+documentationcenter: ''
 author: mahesh-unnikrishnan
 manager: mtillman
 editor: curtand
 ms.assetid: 4eabfd8e-5509-4acd-86b5-1318147fddb5
-ms.service: active-directory-ds
+ms.service: active-directory
+ms.component: domain-services
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 10/19/2017
+ms.topic: conceptual
+ms.date: 06/22/2018
 ms.author: maheshu
-ms.openlocfilehash: b90198696b7bdb9277fd2f2b8e8e727af42c5cfa
-ms.sourcegitcommit: e266df9f97d04acfc4a843770fadfd8edf4fa2b7
+ms.openlocfilehash: 40eb0e8133626e77a1f61ddfc5df69ecf1b958f2
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/11/2017
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46950789"
 ---
 # <a name="join-a-windows-server-virtual-machine-to-a-managed-domain-using-a-resource-manager-template"></a>使用 Resource Manager 範本將 Windows Server 虛擬機器加入受控網域
 本文示範如何使用 Resource Manager 範本，將 Windows Server 虛擬機器加入至 Azure Active Directory Domain Services 之受控網域。
+
+[!INCLUDE [active-directory-ds-prerequisites.md](../../includes/active-directory-ds-prerequisites.md)]
 
 ## <a name="before-you-begin"></a>開始之前
 若要執行本文中所列的工作，您需要︰
@@ -35,7 +39,7 @@ ms.lasthandoff: 12/11/2017
 ## <a name="install-and-configure-required-tools"></a>安裝並設定必要的工具
 您可以使用下列選項之一來執行這份文件所述的步驟：
 * **Azure PowerShell**：[安裝和設定](https://azure.microsoft.com/documentation/articles/powershell-install-configure/)
-* **Azure 跨平台命令列介面**：[安裝和設定](https://azure.microsoft.com/documentation/articles/xplat-cli-install/)
+* **Azure CLI**：[安裝及設定](https://azure.microsoft.com/documentation/articles/xplat-cli-install/)
 
 
 ## <a name="option-1-provision-a-new-windows-server-vm-and-join-it-to-a-managed-domain"></a>選項 1：佈建新的 Windows Server VM，並將它加入至受控網域

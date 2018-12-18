@@ -10,14 +10,15 @@ ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 01/16/2018
 ms.author: shlo
-ms.openlocfilehash: f84bb3546260622eec921684be8e2492adcdcd52
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 4eed11b312bce27dc0cd98daa3e2599a28fcabbd
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39524425"
 ---
 # <a name="update-azure-machine-learning-models-by-using-update-resource-activity"></a>使用更新資源活動更新 Azure Machine Learning 模型
 本文補充主要 Azure Data Factory - Azure Machine Learning 整合文件︰[使用 Azure Machine Learning 和 Azure Data Factory 建立預測管線](transform-data-using-machine-learning.md)。 如果您尚未檢閱主要文件，請在閱讀這篇文章之前先這麼做。 
@@ -62,13 +63,13 @@ ms.lasthandoff: 03/23/2018
 
 | 屬性                      | 說明                              | 必要 |
 | :---------------------------- | :--------------------------------------- | :------- |
-| name                          | 管線中的活動名稱     | yes      |
+| name                          | 管線中的活動名稱     | 是      |
 | 說明                   | 說明活動用途的文字。  | 否       |
-| type                          | 對於 Azure Machine Learning 更新資源活動，活動類型為 **AzureMLUpdateResource**。 | yes      |
-| 預設容器             | 包含 updateResourceEndpoint 屬性的 Azure Machine Learning 連結服務。 | yes      |
-| trainedModelName              | 要更新之 Web 服務實驗中的「定型模型」模組名稱 | yes      |
-| trainedModelLinkedServiceName | 具備由更新作業上傳之 ilearner 檔案的 Azure 儲存體連結服務名稱 | yes      |
-| trainedModelFilePath          | trainedModelLinkedService 中的相對檔案路徑，表示由更新作業上傳的 ilearner 檔案 | yes      |
+| type                          | 對於 Azure Machine Learning 更新資源活動，活動類型為 **AzureMLUpdateResource**。 | 是      |
+| 預設容器             | 包含 updateResourceEndpoint 屬性的 Azure Machine Learning 連結服務。 | 是      |
+| trainedModelName              | 要更新之 Web 服務實驗中的「定型模型」模組名稱 | 是      |
+| trainedModelLinkedServiceName | 具備由更新作業上傳之 ilearner 檔案的 Azure 儲存體連結服務名稱 | 是      |
+| trainedModelFilePath          | trainedModelLinkedService 中的相對檔案路徑，表示由更新作業上傳的 ilearner 檔案 | 是      |
 
 
 ## <a name="end-to-end-workflow"></a>端對端工作流程

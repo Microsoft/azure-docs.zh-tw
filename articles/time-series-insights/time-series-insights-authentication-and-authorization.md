@@ -1,22 +1,22 @@
 ---
-title: "如何在 Azure 時間序列深入解析中以 API 驗證和授權"
-description: "本文說明如何為呼叫 Azure Time Series Insights API 的自訂應用程式設定驗證和授權。"
-services: time-series-insights
+title: 如何在 Azure 時間序列深入解析中以 API 驗證和授權
+description: 本文說明如何為呼叫 Azure Time Series Insights API 的自訂應用程式設定驗證和授權。
 ms.service: time-series-insights
-author: dmdenmsft
-ms.author: dmden
-manager: jhubbard
-editor: MicrosoftDocs/tsidocs
+services: time-series-insights
+author: ashannon7
+ms.author: anshan
+manager: cshankar
 ms.reviewer: v-mamcge, jasonh, kfile, anshan
 ms.devlang: csharp
 ms.workload: big-data
-ms.topic: article
+ms.topic: conceptual
 ms.date: 11/27/2017
-ms.openlocfilehash: dd78e1e726029aaceef5aff0e0eed84acac646cf
-ms.sourcegitcommit: f847fcbf7f89405c1e2d327702cbd3f2399c4bc2
+ms.openlocfilehash: d219e6f020b02a46084f1862cf468227bcd8d74c
+ms.sourcegitcommit: 74941e0d60dbfd5ab44395e1867b2171c4944dbe
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/28/2017
+ms.lasthandoff: 10/15/2018
+ms.locfileid: "49317971"
 ---
 # <a name="authentication-and-authorization-for-azure-time-series-insights-api"></a>Azure Time Series Insights API 的驗證和授權
 
@@ -83,8 +83,10 @@ ms.lasthandoff: 11/28/2017
     如果您使用 C#，您可以使用下列程式碼來代表應用程式取得權杖。 如需完整範例，請參閱[使用 C# 查詢資料](time-series-insights-query-data-csharp.md)。
 
     ```csharp
+    // Enter your Active Directory tenant domain name
+    var tenant = "YOUR_AD_TENANT.onmicrosoft.com";
     var authenticationContext = new AuthenticationContext(
-        "https://login.microsoftonline.com/common",
+        $"https://login.microsoftonline.com/{tenant}",
         TokenCache.DefaultShared);
 
     AuthenticationResult token = await authenticationContext.AcquireTokenAsync(

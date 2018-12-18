@@ -1,24 +1,25 @@
 ---
-title: "使用 Azure Site Recovery 複寫多層式 SharePoint 應用程式 | Microsoft Docs"
-description: "本文說明如何使用 Azure Site Recovery 功能複寫多層式 SharePoint 應用程式。"
+title: 使用 Azure Site Recovery 複寫多層式 SharePoint 應用程式 | Microsoft Docs
+description: 本文說明如何使用 Azure Site Recovery 功能複寫多層式 SharePoint 應用程式。
 services: site-recovery
-documentationcenter: 
+documentationcenter: ''
 author: sujayt
 manager: rochakm
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: site-recovery
 ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/23/2017
+ms.date: 07/06/2018
 ms.author: sutalasi
-ms.openlocfilehash: 3610409691b71fcce0c36a3af94184dbe6db8661
-ms.sourcegitcommit: 9d317dabf4a5cca13308c50a10349af0e72e1b7e
+ms.openlocfilehash: eb5801988b6fa966a0326c39be4a267ea08500a8
+ms.sourcegitcommit: a06c4177068aafc8387ddcd54e3071099faf659d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 07/09/2018
+ms.locfileid: "37916780"
 ---
 # <a name="replicate-a-multi-tier-sharepoint-application-for-disaster-recovery-using-azure-site-recovery"></a>使用 Azure Site Recovery 複寫多層式 SharePoint 應用程式以便進行災害復原
 
@@ -53,7 +54,7 @@ Microsoft SharePoint 是功能強大的應用程式，可協助群組或部門�
 
 ## <a name="sharepoint-architecture"></a>SharePoint 架構
 
-可以使用分層式拓撲和伺服器角色在一或多部伺服器上部署 SharePoint，以實作符合特定目標的伺服器陣列設計。 支援大量並行使用者和大量內容項目的典型大型、高需求 SharePoint 伺服器陣列，會使用服務群組作為其延展性策略的一部分。 這種方法涉及在專用伺服器上執行服務、將這些服務群組在一起，然後將伺服器相應放大為群組。 下列拓撲說明三層式 SharePoint 伺服器陣列的服務與伺服器群組。 如需不同 SharePoint 拓撲的詳細指引，請參閱 SharePoint 文件集和產品線架構。 您可以在[這份文件](https://technet.microsoft.com/en-us/library/cc303422.aspx)中找到有關 SharePoint 2013 部署的詳細資訊。
+可以使用分層式拓撲和伺服器角色在一或多部伺服器上部署 SharePoint，以實作符合特定目標的伺服器陣列設計。 支援大量並行使用者和大量內容項目的典型大型、高需求 SharePoint 伺服器陣列，會使用服務群組作為其延展性策略的一部分。 這種方法涉及在專用伺服器上執行服務、將這些服務群組在一起，然後將伺服器相應放大為群組。 下列拓撲說明三層式 SharePoint 伺服器陣列的服務與伺服器群組。 如需不同 SharePoint 拓撲的詳細指引，請參閱 SharePoint 文件集和產品線架構。 您可以在[這份文件](https://technet.microsoft.com/library/cc303422.aspx)中找到有關 SharePoint 2013 部署的詳細資訊。
 
 
 

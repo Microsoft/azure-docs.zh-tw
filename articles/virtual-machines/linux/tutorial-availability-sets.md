@@ -1,29 +1,29 @@
 ---
-title: "Azure 中 Linux VM 的可用性設定組教學課程 | Microsoft Docs"
-description: "了解 Azure 中 Linux VM 的可用性設定組。"
-documentationcenter: 
+title: 教學課程 - Azure 中 Linux VM 的高可用性 | Microsoft Docs
+description: 在本教學課程中，您會了解如何使用 Azure CLI 在可用性設定組中部署高可用性的虛擬機器
+documentationcenter: ''
 services: virtual-machines-linux
 author: cynthn
-manager: timlt
-editor: 
+manager: jeconnoc
+editor: ''
 tags: azure-resource-manager
-ms.assetid: 
+ms.assetid: ''
 ms.service: virtual-machines-linux
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: tutorial
-ms.date: 10/05/2017
+ms.date: 08/24/2018
 ms.author: cynthn
 ms.custom: mvc
-ms.openlocfilehash: 504c4a666d1abd7a495d6759d62815f53f0b54fa
-ms.sourcegitcommit: 059dae3d8a0e716adc95ad2296843a45745a415d
+ms.openlocfilehash: ee1c3cb079d77fe8e510695514e77c8ae9795c30
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46950500"
 ---
-# <a name="how-to-use-availability-sets"></a>如何使用可用性設定組
-
+# <a name="tutorial-create-and-deploy-highly-available-virtual-machines-with-the-azure-cli"></a>教學課程：使用 Azure CLI 建立及部署高可用性的虛擬機器
 
 在本教學課程中，您會學到如何使用稱為「可用性設定組」的功能，增加 Azure 虛擬機器解決方案的可用性和可靠性。 可用性設定組可確保您在 Azure 上部署的 VM 會分散到多個各自獨立的硬體叢集中。 這麼做可以確保當 Azure 發生硬體或軟體故障時，受到影響的只會是一部分的 VM 子集，您整體的解決方案則會維持可用且正常運作。
 
@@ -34,10 +34,9 @@ ms.lasthandoff: 02/09/2018
 > * 在可用性設定組中建立 VM
 > * 檢查可用的 VM 大小
 
-
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-如果您選擇在本機安裝和使用 CLI，本教學課程會要求您執行 Azure CLI 2.0.4 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
+如果您選擇在本機安裝和使用 CLI，本教學課程會要求您執行 Azure CLI 2.0.30 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI]( /cli/azure/install-azure-cli)。
 
 ## <a name="availability-set-overview"></a>可用性設定組概觀
 
@@ -50,16 +49,13 @@ ms.lasthandoff: 02/09/2018
 
 ## <a name="create-an-availability-set"></a>建立可用性設定組
 
-您可以使用 [az vm availability-set create](/cli/azure/vm/availability-set#az_vm_availability_set_create) 來建立可用性設定組。 在此範例中，我們將針對 *myResourceGroupAvailability* 資源群組中名為 *myAvailabilitySet* 的可用性設定組，同時將更新數目和容錯網域數目設為 *2*。
+您可以使用 [az vm availability-set create](/cli/azure/vm/availability-set#az_vm_availability_set_create) 來建立可用性設定組。 在此範例中，我們會針對 myResourceGroupAvailability 資源群組中名為 myAvailabilitySet 的可用性設定組，將更新和容錯網域數目設定為 2。
 
-建立資源群組。
+首先，使用 [az group create](/cli/azure/group#az-group-create) 建立資源群組，然後建立可用性設定組：
 
-```azurecli-interactive 
+```azurecli-interactive
 az group create --name myResourceGroupAvailability --location eastus
-```
 
-
-```azurecli-interactive 
 az vm availability-set create \
     --resource-group myResourceGroupAvailability \
     --name myAvailabilitySet \
@@ -67,44 +63,45 @@ az vm availability-set create \
     --platform-update-domain-count 2
 ```
 
-可用性設定組可讓您跨容錯網域和更新網域來隔離資源。 **容錯網域**代表以隔離方式集合在一起的伺服器、網路和儲存體資源。 在前面的範例中，我們表示我們想在部署 VM 時，讓可用性設定組分散到至少兩個容錯網域。 我們也表示我們想要讓可用性設定組分散到兩個**更新網域**。  兩個更新網域可確保當 Azure 執行軟體更新時，我們的 VM 資源是隔離的，以免 VM 中執行的所有軟體同時更新。
+可用性設定組可讓您跨容錯網域和更新網域來隔離資源。 **容錯網域**代表以隔離方式集合在一起的伺服器、網路和儲存體資源。 在前面的範例中，在部署 VM 時，可用性設定組會分散到至少兩個容錯網域。 可用性設定組也會分散到兩個**更新網域**。 兩個更新網域可確保當 Azure 執行軟體更新時，VM 資源是隔離的，以免在 VM 上執行的所有軟體同時更新。
 
 
 ## <a name="create-vms-inside-an-availability-set"></a>建立位於可用性設定組內的 VM
 
-您必須將 VM 建立於可用性設定組內，才能確保 VM 會在硬體中正確地分散。 您無法在建立可用性設定組之後，將現有的 VM 加入至其中。 
+您必須將 VM 建立於可用性設定組內，才能確保 VM 會在硬體中正確地分散。 建立可用性設定組之後，就無法在其中新增現有的 VM。
 
-當您使用 [az vm create](/cli/azure/vm#az_vm_create) 建立 VM 時，會使用 `--availability-set` 參數來指定可用性設定組，以指定可用性設定組的名稱。
+透過 [az vm create](/cli/azure/vm#az_vm_create) 建立 VM 時，使用 `--availability-set` 參數來指定可用性設定組的名稱。
 
-```azurecli-interactive 
+```azurecli-interactive
 for i in `seq 1 2`; do
    az vm create \
      --resource-group myResourceGroupAvailability \
      --name myVM$i \
      --availability-set myAvailabilitySet \
      --size Standard_DS1_v2  \
-     --image Canonical:UbuntuServer:14.04.4-LTS:latest \
+     --vnet-name myVnet \
+     --subnet mySubnet \
+     --image UbuntuLTS \
      --admin-username azureuser \
-     --generate-ssh-keys \
-     --no-wait
-done 
+     --generate-ssh-keys
+done
 ```
 
-現在，我們新建立的可用性設定組內有兩部虛擬機器。 由於它們位於相同的可用性設定組內，Azure 會確保 VM 和其所有資源 (包括資料磁碟) 會分散到隔離開來的實體硬體中。 這樣的分佈方式有助於確保 VM 解決方案整體有更高的可用性。
+可用性設定組內有兩部虛擬機器。 由於它們位於相同的可用性設定組內，Azure 會確保 VM 和其所有資源 (包括資料磁碟) 會分散到隔離開來的實體硬體中。 這樣的分佈方式有助於確保 VM 解決方案整體有更高的可用性。
 
-如果您在入口網站中移至 [資源群組] > [myResourceGroupAvailability] > [myAvailabilitySet] 來查看可用性設定組，您應會看到 VM 分散在 2 個容錯和更新網域上。
+移至 [資源群組] > [myResourceGroupAvailability] > [myAvailabilitySet]，即可在入口網站中檢視可用性設定組分佈方式。 VM 會分散到兩個容錯和更新網域，如下列範例所示：
 
 ![入口網站中的可用性設定組](./media/tutorial-availability-sets/fd-ud.png)
 
-## <a name="check-for-available-vm-sizes"></a>檢查可用的 VM 大小 
+## <a name="check-for-available-vm-sizes"></a>檢查可用的 VM 大小
 
-您稍後可以將更多 VM 加入至可用性設定組，但是需要知道硬體上有哪些可用的 VM 大小。  針對可用性設定組，使用 [az vm availability-set list-sizes](/cli/azure/availability-set#az_availability_set_list_sizes) 來列出硬體叢集上所有可用的大小。
+稍後可以將其他 VM 新增至可用性設定組，其中的 VM 大小可用於硬體上。 針對可用性設定組，使用 [az vm availability-set list-sizes](/cli/azure/vm/availability-set#az-vm-availability-set-list-sizes) 列出硬體叢集上所有可用的大小。
 
-```azurecli-interactive 
+```azurecli-interactive
 az vm availability-set list-sizes \
      --resource-group myResourceGroupAvailability \
      --name myAvailabilitySet \
-     --output table  
+     --output table
 ```
 
 ## <a name="next-steps"></a>後續步驟
@@ -120,4 +117,3 @@ az vm availability-set list-sizes \
 
 > [!div class="nextstepaction"]
 > [建立虛擬機器擴展集](tutorial-create-vmss.md)
-

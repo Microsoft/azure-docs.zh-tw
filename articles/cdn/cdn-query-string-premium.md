@@ -1,44 +1,53 @@
 ---
-title: "使用查詢字串控制 Azure CDN 快取行為 - Premium | Microsoft Docs"
-description: "Azure CDN 查詢字串快取可控制檔案內含查詢字串時的檔案快取方式。"
+title: 使用查詢字串來控制 Azure CDN 快取行為 - 進階層 | Microsoft Docs
+description: Azure CDN 查詢字串快取可控制當 Web 要求包含查詢字串時，要如何快取檔案。 本文說明「來自 Verizon 的進階 Azure CDN」產品中的查詢字串快取。
 services: cdn
-documentationcenter: 
-author: zhangmanling
-manager: erikre
-editor: 
+documentationcenter: ''
+author: mdgattuso
+manager: danielgi
+editor: ''
 ms.assetid: 99db4a85-4f5f-431f-ac3a-69e05518c997
 ms.service: cdn
 ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/09/2017
-ms.author: mazha
-ms.openlocfilehash: 2021b5b7602605a7c264e9cd575399077691da34
-ms.sourcegitcommit: b5c6197f997aa6858f420302d375896360dd7ceb
+ms.date: 06/11/2018
+ms.author: magattus
+ms.openlocfilehash: 2f0a361d53489e22ccc8e41406e5b86b423ea2f6
+ms.sourcegitcommit: 4047b262cf2a1441a7ae82f8ac7a80ec148c40c4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/21/2017
+ms.lasthandoff: 10/11/2018
+ms.locfileid: "49091397"
 ---
-# <a name="control-azure-content-delivery-network-caching-behavior-with-query-strings---premium"></a>使用查詢字串控制 Azure 內容傳遞網路快取行為 - 進階
+# <a name="control-azure-cdn-caching-behavior-with-query-strings---premium-tier"></a>使用查詢字串來控制 Azure CDN 快取行為 - 進階層
 > [!div class="op_single_selector"]
-> * [標準](cdn-query-string.md)
-> * [來自 Verizon 的 Azure CDN 進階](cdn-query-string-premium.md)
-> 
+> * [標準層](cdn-query-string.md)
+> * [進階層](cdn-query-string-premium.md)
 > 
 
 ## <a name="overview"></a>概觀
-使用 Azure 內容傳遞網路 (CDN)，可以控制 Web 要求內含查詢字串時的檔案快取方式。 在包含查詢字串的 Web 要求中，查詢字串是要求中問號 (?) 之後的部分。 查詢字串可以包含一或多個索引鍵/值組，其中的欄位名稱與其值是以等號 (=) 分隔。 每個索引鍵/值組是以 & 符號分隔。 例如 `http://www.contoso.com/content.mov?field1=value1&field2=value2`。 如果要求的查詢字串中有不止一個索引鍵/值組，其順序無關緊要。 
+使用 Azure 內容傳遞網路 (CDN)，可以控制 Web 要求內含查詢字串時的檔案快取方式。 在包含查詢字串的 Web 要求中，查詢字串是要求中問號 (?) 之後的部分。 查詢字串可以包含一或多個索引鍵/值組，其中的欄位名稱與其值是以等號 (=) 分隔。 每個索引鍵/值組是以 & 符號分隔。 例如 http:\//www.contoso.com/content.mov?field1=value1&field2=value2。 如果要求的查詢字串中有不止一個索引鍵/值組，其順序無關緊要。 
 
 > [!IMPORTANT]
-> 「標準」與「進階」CDN 產品提供相同的查詢字串快取功能，但兩者的使用者介面不同。  本文描述**來自 Verizon 的進階 Azure CDN** 介面。 如需利用**來自 Akamai 的 Azure CDN 標準**和**來自 Verizon 的 Azure CDN 標準**查詢字串快取，請參閱[利用查詢字串控制 CDN 要求的快取行為](cdn-query-string.md)。
+> 「標準」與「進階」CDN 產品提供相同的查詢字串快取功能，但兩者的使用者介面不同。 本文描述**來自 Verizon 的進階 Azure CDN** 介面。 如需了解使用 Azure CDN 標準產品進行的查詢字串快取，請參閱[使用查詢字串控制 Azure CDN 快取行為 - 標準層](cdn-query-string.md)。
 >
+
 
 查詢字串模式有三種：
 
-- **標準快取**：預設模式。 在此模式中，CDN 邊緣節點會將要求者發出的查詢字串，傳遞至第一個要求的來源並快取資產。 快取的資產到期之前，所有從邊緣節點提供且針對該資產的後續查詢皆會忽略查詢字串。
-- **無快取**：在此模式中，系統不會於 CDN 邊緣節點快取使查詢字串的要求。 邊緣節點會直接從來源擷取資產，然後透過每個要求將其傳遞給要求者。
-- **唯一快取**：在此模式中，每個要求都有一個唯一 URL (包含查詢字串)，會被視為具有專屬快取的唯一資產。 例如，系統會於邊緣節點快取 `example.ashx?q=test1` 要求的來源回應，並使用相同的查詢字串針對後續快取傳回。 系統快取針對 `example.ashx?q=test2` 的要求，會將其視為具有專屬存留時間設定的個別資產。
+- **標準快取**：預設模式。 在此模式中，CDN 存在點 (POP) 節點會在發生第一次要求時，將來自要求者的查詢字串傳遞給原始伺服器並快取資產。 所有後續對該資產提出並由 POP 伺服器提供服務的要求則會忽略查詢字串，直到所快取的資產到期為止。
+
+    >[!IMPORTANT] 
+    > 如果已針對此帳戶上的任何路徑啟用權杖授權，則標準快取模式就會是唯一可使用的模式。 
+
+- **無快取**：在此模式中，系統不會在 CDN POP 節點快取包含查詢字串的要求。 POP 節點會直接從原始伺服器擷取資產，然後隨著每個要求將其傳遞給要求者。
+
+- **唯一快取**：在此模式中，每個要求都有一個唯一 URL (包含查詢字串)，會被視為具有專屬快取的唯一資產。 例如，系統會將原始伺服器對 example.ashx?q=test1 要求做出的回應快取在 POP 節點，然後針對後續具有相同查詢字串的快取傳回此回應。 針對 example.ashx?q=test2 的要求，系統會將其快取為具有專屬存留時間設定的個別資產。
+   
+    >[!IMPORTANT] 
+    > 當查詢字串包含會隨著每個要求變更的參數 (例如工作階段識別碼或使用者名稱) 時，請勿使用此模式，因為這會造成快取命中率偏低。
 
 ## <a name="changing-query-string-caching-settings-for-premium-cdn-profiles"></a>變更進階 CDN 設定檔的查詢字串快取設定
 1. 開啟 CDN 設定檔，然後按一下 [管理]。
@@ -54,6 +63,6 @@ ms.lasthandoff: 12/21/2017
 3. 選取查詢字串模式，然後按一下 [更新]。
 
 > [!IMPORTANT]
-> 因為註冊資訊需要一段時間才能傳遍 CDN，快取字串設定的變更可能無法立即看見。 以**來自 Verizon 的進階 Azure CDN** 設定檔來說，通常會在 90 分鐘之內完成傳播，但在某些情況下可能會更久。
+> 因為註冊資訊需要一段時間才能傳遍 CDN，快取字串設定的變更可能無法立即看見。 傳播通常會在 10 分鐘內完成。
  
 

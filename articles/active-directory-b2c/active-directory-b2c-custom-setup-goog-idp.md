@@ -1,21 +1,21 @@
 ---
-title: Azure Active Directory B2C︰使用自訂原則新增 Google+ 作為 OAuth2 識別提供者
-description: 透過 OAuth2 通訊協定使用 Google+ 作為識別提供者的範例
+title: 在 Azure Active Directory B2C 中使用自訂原則新增 Google+ 作為 OAuth2 識別提供者 | Microsoft Docs
+description: 透過 OAuth2 通訊協定使用 Google+ 作為識別提供者的範例。
 services: active-directory-b2c
-documentationcenter: ''
 author: davidmu1
 manager: mtillman
-editor: ''
-ms.service: active-directory-b2c
+ms.service: active-directory
 ms.workload: identity
-ms.topic: article
+ms.topic: conceptual
 ms.date: 08/04/2017
 ms.author: davidmu
-ms.openlocfilehash: f12bbc2472aa2d83088c7d4d7b8f173744fb36b4
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: B2C
+ms.openlocfilehash: f076a906ba38e6c8e8c9530baba1607553b41ea6
+ms.sourcegitcommit: 0c64460a345c89a6b579b1d7e273435a5ab4157a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43338323"
 ---
 # <a name="azure-active-directory-b2c-add-google-as-an-oauth2-identity-provider-using-custom-policies"></a>Azure Active Directory B2C︰使用自訂原則新增 Google+ 作為 OAuth2 識別提供者
 
@@ -23,7 +23,7 @@ ms.lasthandoff: 03/23/2018
 
 本指南將說明如何使用[自訂原則](active-directory-b2c-overview-custom.md)，讓 Google+ 帳戶的使用者登入。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 完成[開始使用自訂原則](active-directory-b2c-get-started-custom.md)一文中的步驟。
 
@@ -78,7 +78,7 @@ ms.lasthandoff: 03/23/2018
 
     ![Google+ - 選取應用程式類型](media/active-directory-b2c-custom-setup-goog-idp/goog-web-app.png)
 
-13.  提供應用程式的**名稱**，在 [授權 JavaScript 來源] 欄位中輸入 `https://login.microsoftonline.com`，接著在 [授權重新導向 URI] 欄位中輸入 `https://login.microsoftonline.com/te/{tenant}/oauth2/authresp`。 使用您的租用戶名稱 (例如 contosob2c.onmicrosoft.com) 來取代 **{tenant}**。 **{tenant}** 值會區分大小寫。 按一下頁面底部的 [新增] 。
+13.  提供應用程式的**名稱**，在 [授權 JavaScript 來源] 欄位中輸入 `https://{tenant}.b2clogin.com`，接著在 [授權重新導向 URI] 欄位中輸入 `https://{tenant}.b2clogin.com/te/{tenant}.onmicrosoft.com/oauth2/authresp`。 使用您的租用戶名稱 (例如 contosob2c) 來取代 **{tenant}**。 **{tenant}** 值會區分大小寫。 按一下頁面底部的 [新增] 。
 
     ![Google+ - 提供授權的 JavaScript 來源及重新導向 URI](media/active-directory-b2c-custom-setup-goog-idp/goog-create-client-id.png)
 

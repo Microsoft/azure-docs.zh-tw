@@ -1,11 +1,11 @@
 ---
-title: "Azure 資訊安全中心和 Azure 虛擬機器 | Microsoft Docs"
-description: "本文件協助您了解 Azure 資訊安全中心可如何保護您的 Azure 虛擬機器。"
+title: Azure 資訊安全中心和 Azure 虛擬機器 | Microsoft Docs
+description: 本文件協助您了解 Azure 資訊安全中心可如何保護您的 Azure 虛擬機器。
 services: security-center
 documentationcenter: na
-author: YuriDio
-manager: swadhwa
-editor: 
+author: terrylan
+manager: mbaldwin
+editor: ''
 ms.assetid: 5fe5a12c-5d25-430c-9d47-df9438b1d7c5
 ms.service: security-center
 ms.devlang: na
@@ -14,11 +14,12 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 02/24/2017
 ms.author: yurid
-ms.openlocfilehash: 137ed1c65d2eb619192364dd7d0d17a55d98403c
-ms.sourcegitcommit: 5d772f6c5fd066b38396a7eb179751132c22b681
+ms.openlocfilehash: bbf3549502bf3f1a7e7a813101f970a9163165ed
+ms.sourcegitcommit: 870d372785ffa8ca46346f4dfe215f245931dae1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/13/2017
+ms.lasthandoff: 05/08/2018
+ms.locfileid: "33896032"
 ---
 # <a name="azure-security-center-and-azure-virtual-machines"></a>Azure 資訊安全中心和 Azure 虛擬機器
 [Azure 資訊安全中心](https://azure.microsoft.com/services/security-center/)可協助您保護、偵測威脅並採取相應的措施。 它提供您 Azure 訂用帳戶之間的整合式安全性監視和原則管理，協助您偵測可能會忽略的威脅，且適用於廣泛的安全性解決方案生態系統。

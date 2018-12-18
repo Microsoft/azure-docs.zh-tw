@@ -1,11 +1,11 @@
 ---
-title: "安裝 StorSimple Adapter for SharePoint | Microsoft Docs"
-description: "描述如何在 SharePoint 伺服器陣列中安裝、設定或移除 StorSimple Adapter for SharePoint。"
+title: 安裝 StorSimple Adapter for SharePoint | Microsoft Docs
+description: 描述如何在 SharePoint 伺服器陣列中安裝、設定或移除 StorSimple Adapter for SharePoint。
 services: storsimple
 documentationcenter: NA
 author: SharS
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 36c20b75-f2e5-4184-a6b5-9c5e618f79b2
 ms.service: storsimple
 ms.devlang: NA
@@ -14,11 +14,12 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 06/06/2017
 ms.author: v-sharos
-ms.openlocfilehash: 8910471e09b9ecc797005818538ccfc6a91c68a9
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 2e1b231a5cf13d2655ff66c7e48752729c580f48
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38232862"
 ---
 # <a name="install-and-configure-the-storsimple-adapter-for-sharepoint"></a>安裝和設定 StorSimple Adapter for SharePoint
 ## <a name="overview"></a>概觀
@@ -139,7 +140,7 @@ StorSimple 裝置是一種區塊裝置，因此需要可裝載資料的檔案伺
   3. 在左窗格中按一下 [本機伺服器] 。
   4. 在右窗格中，按一下 [IE 增強式安全性設定] 旁邊的 [開啟]。
   5. 在 [系統管理員] 下，按一下 [關閉]。
-  6. 按一下 [SERVICEPRINCIPAL] 。
+  6. 按一下 [確定]。
 
 ## <a name="remote-blob-storage-rbs-prerequisites"></a>遠端 BLOB 儲存 (RBS) 必要條件
 請確定您使用支援的 SQL Server 版本。 僅下列版本才支援和能夠使用 RBS：
@@ -261,4 +262,4 @@ StorSimple 裝置是一種區塊裝置，因此需要可裝載資料的檔案伺
 [3]: https://technet.microsoft.com/library/ff628583(v=office.14).aspx
 [4]: https://technet.microsoft.com/library/ff628569(v=office.14).aspx
 [5]: https://technet.microsoft.com/library/ff628583(v=office.15).aspx
-[8]: https://technet.microsoft.com/en-us/library/ff943565.aspx
+[8]: https://technet.microsoft.com/library/ff943565.aspx

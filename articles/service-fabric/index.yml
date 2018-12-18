@@ -1,8 +1,8 @@
 ### YamlMime:YamlDocument
 documentType: LandingData
-title: "Azure Service Fabric 文件"
+title: Azure Service Fabric 文件
 metadata:
-  title: "Azure Service Fabric 文件 - 教學課程和 API 參考 | Microsoft Docs"
+  title: Azure Service Fabric 文件 - 教學課程和 API 參考 | Microsoft Docs
   meta.description: Learn how to use Service Fabric middleware platform to package and deploy microservices for cloud-scale applications. Tutorials, API references, and code samples.
   services: service-fabric
   author: 
@@ -20,13 +20,14 @@ metadata:
   ms.translationtype: HT
   ms.contentlocale: zh-TW
   ms.lasthandoff: 03/16/2018
+  ms.locfileid: "29941927"
 abstract:
-  description: "Azure Service Fabric 是一個分散式系統平台，可讓您輕鬆封裝、部署及管理可調整和可信賴的微服務與容器。 開發人員與管理員能夠避免複雜的基礎結構問題，專注於實作關鍵且嚴格要求之可調整、可信賴且可管理的工作負載。 了解如何透過我們的快速入門、教學課程和範例使用Azure Service Fabric。"
+  description: Azure Service Fabric 是一個分散式系統平台，可讓您輕鬆封裝、部署及管理可調整和可信賴的微服務與容器。 開發人員與管理員能夠避免複雜的基礎結構問題，專注於實作關鍵且嚴格要求之可調整、可信賴且可管理的工作負載。 了解如何透過我們的快速入門、教學課程和範例使用Azure Service Fabric。
 sections:
-- title: "5 分鐘快速入門"
+- title: 5 分鐘快速入門
   items:
   - type: paragraph
-    text: "了解如何將第一個 Service Fabric 應用程式部署至雲端："
+    text: 了解如何將第一個 Service Fabric 應用程式部署至雲端：
   - type: list
     style: icon48
     items:
@@ -44,74 +45,74 @@ sections:
       href: service-fabric-quickstart-java-spring-boot
     - image:
         src: https://docs.microsoft.com/media/logos/logo_linux.svg
-      text: "Linux 容器"
+      text: Linux 容器
       href: service-fabric-quickstart-containers-linux
     - image:
         src: https://docs.microsoft.com/media/logos/logo_Windows.svg
-      text: "Windows 容器"
+      text: Windows 容器
       href: service-fabric-quickstart-containers
-- title: "逐步教學課程"
+- title: 逐步教學課程
   items:
   - type: paragraph
-    text: "了解如何在 Azure 中部署、管理和監視安全的 Web 應用程式"
+    text: 了解如何在 Azure 中部署、管理和監視安全的 Web 應用程式
   - type: list
     style: unordered
     items:
-    - html: "<a href=\"service-fabric-tutorial-create-dotnet-app\">部署 .NET 應用程式</a>"
-    - html: "<a href=\"service-fabric-tutorial-create-java-app\">部署 Java 應用程式</a>"
-    - html: "<a href=\"service-fabric-host-app-in-a-container\">將現有的 .NET 應用程式容器化</a>"
-    - html: "<a href=\"service-fabric-tutorial-create-container-images\">建立 Linux 容器應用程式</a>"
-    - html: "建立和管理 <a href=\"service-fabric-tutorial-create-vnet-and-windows-cluster\">Windows</a> 或 <a href=\"service-fabric-tutorial-create-vnet-and-linux-cluster\">Linux</a> 叢集"
-- title: "免費 Pluralsight 影片訓練"
+    - html: <a href="service-fabric-tutorial-create-dotnet-app">部署 .NET 應用程式</a>
+    - html: <a href="service-fabric-tutorial-create-java-app">部署 Java 應用程式</a>
+    - html: <a href="service-fabric-host-app-in-a-container">將現有的 .NET 應用程式容器化</a>
+    - html: <a href="service-fabric-tutorial-create-container-images">建立 Linux 容器應用程式</a>
+    - html: 建立和管理 <a href="service-fabric-tutorial-create-vnet-and-windows-cluster">Windows</a> 或 <a href="service-fabric-tutorial-create-vnet-and-linux-cluster">Linux</a> 叢集
+- title: 免費 Pluralsight 影片訓練
   items:
   - type: list
     style: cards
     className: cardsFTitle
     items:
-    - title: "使用 .NET 進行開發"
+    - title: 使用 .NET 進行開發
       href: https://www.pluralsight.com/courses/developing-dotnet-microsoft-azure-getting-started?twoid=FEED65A23CB221A7
       image:
         src: https://docs.microsoft.com/media/logos/logo_pluralsight.svg
         href: https://www.pluralsight.com/courses/developing-dotnet-microsoft-azure-getting-started?twoid=FEED65A23CB221A7
-    - title: "雲端模式和架構"
+    - title: 雲端模式和架構
       href: https://www.pluralsight.com/courses/microsoft-azure-dotnet-cloud-architecture?twoid=FEED65A23CB221A7
       image:
         src: https://docs.microsoft.com/media/logos/logo_pluralsight.svg
         href: https://www.pluralsight.com/courses/microsoft-azure-dotnet-cloud-architecture?twoid=FEED65A23CB221A7
-- title: "概念"
+- title: 概念
   items:
   - type: list
     style: unordered
     items:
-    - html: "<a href=\"service-fabric-overview-microservices\">了解微服務</a>"
-    - html: "<a href=\"service-fabric-content-roadmap\">概觀</a>"
-    - html: "<a href=\"service-fabric-application-scenarios\">應用程式案例</a>"
-    - html: "<a href=\"service-fabric-patterns-and-scenarios\">模式和案例</a>"
-    - html: "<a href=\"service-fabric-architecture\">架構</a>"
-    - html: "<a href=\"service-fabric-technical-overview\">術語</a>"
-- title: "範例"
+    - html: <a href="service-fabric-overview-microservices">了解微服務</a>
+    - html: <a href="service-fabric-content-roadmap">概觀</a>
+    - html: <a href="service-fabric-application-scenarios">應用程式案例</a>
+    - html: <a href="service-fabric-patterns-and-scenarios">模式和案例</a>
+    - html: <a href="service-fabric-architecture">架構</a>
+    - html: <a href="service-fabric-technical-overview">術語</a>
+- title: 範例
   items:
   - type: paragraph
-    text: "尋找適合一般管理工作的指令碼："
+    text: 尋找適合一般管理工作的指令碼：
   - type: list
     style: cards
     className: cardsD
     items:
-    - title: "指令碼範例"
+    - title: 指令碼範例
       html: <p><a href="service-fabric-powershell-samples">Azure PowerShell</a></p><p><a href="samples-cli">Service Fabric CLI</a></p>
     - title: .NET
-      html: "<p><a href=\"https://azure.microsoft.com/resources/samples/service-fabric-dotnet-getting-started/\">開始使用</a></p><p><a href=\"https://github.com/Azure-Samples/service-fabric-dotnet-quickstart\">投票</a></p><p><a href=\"https://azure.microsoft.com/resources/samples/service-fabric-dotnet-web-reference-app/\">Web 參考</a></p><p><a href=\"https://azure.microsoft.com/resources/samples/service-fabric-dotnet-iot/\">IoT</a></p><p><a href=\"https://azure.microsoft.com/resources/samples/service-fabric-watchdog-service/\">Watchdog</a></p>"
+      html: <p><a href="https://azure.microsoft.com/resources/samples/service-fabric-dotnet-getting-started/">開始使用</a></p><p><a href="https://github.com/Azure-Samples/service-fabric-dotnet-quickstart">投票</a></p><p><a href="https://azure.microsoft.com/resources/samples/service-fabric-dotnet-web-reference-app/">Web 參考</a></p><p><a href="https://azure.microsoft.com/resources/samples/service-fabric-dotnet-iot/">IoT</a></p><p><a href="https://azure.microsoft.com/resources/samples/service-fabric-watchdog-service/">Watchdog</a></p>
     - title: Java
-      html: "<p><a href=\"https://azure.microsoft.com/resources/samples/service-fabric-java-getting-started/\">開始使用</a></p>"
-- title: "參考"
+      html: <p><a href="https://azure.microsoft.com/resources/samples/service-fabric-java-getting-started/">開始使用</a></p>
+- title: 參考
   items:
   - type: list
     style: cards
     className: cardsD
     items:
-    - title: "命令列"
+    - title: 命令列
       html: <p><a href="/cli/azure/sf">Azure CLI</a></p><p><a href="https://docs.microsoft.com/azure/service-fabric/service-fabric-sfctl">Service Fabric CLI</a></p><p><a href="/powershell/module/azurerm.servicefabric">Azure PowerShell</a></p><p><a href="/powershell/module/servicefabric/?view=azureservicefabricps">PowerShell</a></p>
-    - title: "語言"
-      html: "<p><a href=\"/java/api/overview/azure/servicefabric\">Java API</a></p><p><a href=\"/dotnet/api/overview/azure/service-fabric?view=azure-dotnet\">.NET</a></p><p><a href=\"/azure/service-fabric/service-fabric-service-model-schema\">服務模型 XML 結構描述</a></p>"
+    - title: 語言
+      html: <p><a href="/java/api/overview/azure/servicefabric">Java API</a></p><p><a href="/dotnet/api/overview/azure/service-fabric?view=azure-dotnet">.NET</a></p><p><a href="/azure/service-fabric/service-fabric-service-model-schema">服務模型 XML 結構描述</a></p>
     - title: REST
-      html: "<p><a href=\"/rest/api/servicefabric\">REST API 參考</a></p>"
+      html: <p><a href="/rest/api/servicefabric">REST API 參考</a></p>

@@ -1,22 +1,24 @@
 ---
-title: "Application Insights 遙測相互關聯 | Microsoft Docs"
-description: "Application Insights 遙測相互關聯"
+title: Application Insights 遙測相互關聯 | Microsoft Docs
+description: Application Insights 遙測相互關聯
 services: application-insights
 documentationcenter: .net
-author: SergeyKanzhelev
+author: mrbullwinkle
 manager: carmonm
 ms.service: application-insights
 ms.workload: TBD
 ms.tgt_pltfrm: ibiza
 ms.devlang: multiple
-ms.topic: article
-ms.date: 04/25/2017
+ms.topic: conceptual
+ms.date: 04/09/2018
+ms.reviewer: sergkanz
 ms.author: mbullwin
-ms.openlocfilehash: 5d4abbf8194d633305877275e3dd273352906ad3
-ms.sourcegitcommit: 168426c3545eae6287febecc8804b1035171c048
+ms.openlocfilehash: 696843363bc6617bb11c01cdccb9dbbb7b719a82
+ms.sourcegitcommit: cf606b01726df2c9c1789d851de326c873f4209a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/08/2018
+ms.lasthandoff: 09/19/2018
+ms.locfileid: "46298195"
 ---
 # <a name="telemetry-correlation-in-application-insights"></a>Application Insights 中的遙測相互關聯
 
@@ -73,6 +75,34 @@ Application Insights 資料模型會定義兩個欄位來解決這個問題：`r
 
 Application Insights 會定義相互關聯 HTTP 通訊協定的[延伸](https://github.com/lmolkova/correlation/blob/master/http_protocol_proposal_v2.md)。 它會使用 `Request-Context` 名稱值組，來傳播立即呼叫端或被呼叫端所使用的屬性集合。 Application Insights SDK 會使用此標頭來設定 `dependency.target` 和 `request.source` 欄位。
 
+### <a name="w3c-distributed-tracing"></a>W3C 分散式追蹤
+
+我們正在轉換至 (W3C 分散式追蹤格式) [https://w3c.github.io/distributed-tracing/report-trace-context.html]。 其定義：
+- `traceparent`：帶有全域唯一的作業識別碼和唯一的呼叫識別碼
+- `tracestate`：帶有追蹤系統的特定內容。
+
+#### <a name="enable-w3c-distributed-tracing-support-for-aspnet-classic-apps"></a>啟用 ASP.NET Classic 應用程式的 W3C 分散式追蹤支援
+
+2.8.0-beta1 版開始的 Microsoft.ApplicationInsights.Web 和 Microsoft.ApplicationInsights.DependencyCollector 封裝會提供此功能。
+依預設為 [關閉]，若要啟用，請變更 `ApplicationInsights.config`：
+
+* 在 `RequestTrackingTelemetryModule` 下新增值設為 `true` 的 `EnableW3CHeadersExtraction` 元素
+* 在 `DependencyTrackingTelemetryModule` 下新增值設為 `true` 的 `EnableW3CHeadersInjection` 元素
+
+#### <a name="enable-w3c-distributed-tracing-support-for-aspnet-core-apps"></a>啟用 ASP.NET Core 應用程式的 W3C 分散式追蹤支援
+
+2.5.0-beta1 版的 Microsoft.ApplicationInsights.AspNetCore 和 2.8.0-beta1 版的 Microsoft.ApplicationInsights.DependencyCollector 會提供此功能。
+依預設為 [關閉]，若要啟用，請將 `ApplicationInsightsServiceOptions.RequestCollectionOptions.EnableW3CDistributedTracing` 設定為 `true`：
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddApplicationInsightsTelemetry(o => 
+        o.RequestCollectionOptions.EnableW3CDistributedTracing = true );
+    // ....
+}
+```
+
 ## <a name="open-tracing-and-application-insights"></a>Open Tracing 與 Application Insights
 
 [Open Tracing](http://opentracing.io/) 和 Application Insights 的資料模型外觀 
@@ -104,9 +134,36 @@ ASP.NET Classic 有新的 Http 模組 [Microsoft.AspNet.TelemetryCorrelation](ht
 
 Application Insights SDK 起始版本 `2.4.0-beta1` 會使用 DiagnosticsSource 和 Activity 來收集遙測，並將它與目前活動產生關聯。 
 
+<a name="java-correlation"></a>
+## <a name="telemetry-correlation-in-the-java-sdk"></a>Java SDK 中的遙測相互關聯
+自 `2.0.0` 版開始，[Application Insights Java SDK](app-insights-java-get-started.md) 支援遙測的自動相互關聯。 它會自動填入在要求範圍內發出的所有遙測 (追蹤、例外狀況、自訂事件等等) 的 `operation_id`。 如果有設定 [Java SDK 代理程式](app-insights-java-agent.md)，它也會負責透過 HTTP 傳播服務對服務呼叫的相互關聯標頭 (前述)。 請注意：相互關聯功能僅支援透過 Apache HTTP 用戶端所提出的呼叫。 如果您使用 Spring Rest 範本或 Feign，這兩者都可以在幕後搭配 Apache HTTP 用戶端。
+
+目前不支援跨訊息技術 (例如 Kafka、RabbitMQ、Azure 服務匯流排) 的自動內容傳播。 不過，使用 `trackDependency` 和 `trackRequest` API 以手動方式編寫這類案例的程式碼是可行的，藉由此方式，相依性遙測代表由產生者加入佇列的訊息，要求則代表取用者所處理的訊息。 在此情況下，`operation_id` 和 `operation_parentId` 應該同時在訊息的屬性中傳播。
+
+<a name="java-role-name"></a>
+### <a name="role-name"></a>角色名稱
+有時候，您可以自訂元件名稱在[應用程式對應](app-insights-app-map.md)中的顯示方式。 若要這樣做，您可以用下列其中一項動作手動設定 `cloud_roleName`：
+
+透過遙測初始設定式 (會標記所有遙測項目)
+```Java
+public class CloudRoleNameInitializer extends WebTelemetryInitializerBase {
+
+    @Override
+    protected void onInitializeTelemetry(Telemetry telemetry) {
+        telemetry.getContext().getTags().put(ContextTagKeys.getKeys().getDeviceRoleName(), "My Component Name");
+    }
+  }
+```
+透過[裝置內容類別](https://docs.microsoft.com/et-ee/java/api/com.microsoft.applicationinsights.extensibility.context._device_context) (只會標記此遙測項目)
+```Java
+telemetry.getContext().getDevice().setRoleName("My Component Name");
+```
+
 ## <a name="next-steps"></a>後續步驟
 
 - [撰寫自訂遙測](app-insights-api-custom-events-metrics.md)
 - 在 Application Insights 上將微服務的所有元件上架。 查看[支援的平台](app-insights-platforms.md)。
 - 如需 Application Insights 類型和資料模型，請參閱[資料模型](application-insights-data-model.md)。
 - 了解如何[擴充和篩選遙測](app-insights-api-filtering-sampling.md)。
+- [Application Insights confg 參考](app-insights-configuration-with-applicationinsights-config.md)
+

@@ -5,19 +5,20 @@
 ## [PowerShell - 快速入門](quickstart-powershell.md)
 
 # 功能和工具
-## [Bash - 功能和工具](features.md)
-## [PowerShell - 功能和工具](features-powershell.md)
+## [功能和工具](features.md)
 
 # 作法
-## [Bash - 持續性儲存體](persisting-shell-storage.md)
-## [PowerShell - 持續性儲存體](persisting-shell-storage-powershell.md)
-## [使用時段](using-the-shell-window.md)
+## [PowerShell Cloud Shell (適用於 Windows 使用者)](cloud-shell-windows-users.md)
+## [在儲存體中保存檔案](persisting-shell-storage.md)
+## [使用視窗](using-the-shell-window.md)
+## [使用 Cloud Shell 中的 MSI](msi-authorization.md)
+## [內嵌 Cloud Shell](embed-cloud-shell.md)
 
 # 範例
 ## [Bash - 使用 Terraform 建立資源](example-terraform-bash.md)
 ## [Bash - 執行 Ansible 腳本](../ansible/ansible-run-playbook-in-cloudshell.md)
 
-# [內嵌 Cloud Shell](embed-cloud-shell.md)
+# [使用 Cloud Shell 編輯器](using-cloud-shell-editor.md)
 
 # [疑難排解和限制](troubleshooting.md)
 

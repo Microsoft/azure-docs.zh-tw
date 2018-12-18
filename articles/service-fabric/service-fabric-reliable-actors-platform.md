@@ -9,16 +9,17 @@ editor: amanbha
 ms.assetid: 45839a7f-0536-46f1-ae2b-8ba3556407fb
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 3/9/2018
 ms.author: vturecek
-ms.openlocfilehash: 088f56f33c85d3c590acf4a2eaa660a9d586f7ec
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: f8e6ad4b23eeaf46cccac9c8ff9d41f71511129d
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34642847"
 ---
 # <a name="how-reliable-actors-use-the-service-fabric-platform"></a>Reliable Acto 如何使用 Service Fabric 平台
 本文說明 Reliable Actors 在 Azure Service Fabric 平台上的運作方式。 Reliable Actors 會在名為*動作項目服務*的具狀態可靠服務實作上裝載的架構中執行。 動作項目服務包含管理生命週期和您的動作項目用於發送之訊息所需的所有元件︰
@@ -41,9 +42,6 @@ ms.lasthandoff: 03/23/2018
 * 服務備份與還原。
 * 適用於所有動作項目的共用功能，例如斷路器。
 * 遠端處理程序會在動作項目服務本身，以及每個個別動作項目上進行呼叫。
-
-> [!NOTE]
-> Java/Linux 上目前不支援具狀態服務。
 
 如需詳細資訊，請參閱[在動作項目服務中實作服務層級功能](service-fabric-reliable-actors-using.md)。
 

@@ -10,30 +10,27 @@ ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 03/27/2018
 ms.author: jingwang
-ms.openlocfilehash: 4fef9a9d30adb48f8f68d34e35a7436c04b63125
-ms.sourcegitcommit: c3d53d8901622f93efcd13a31863161019325216
+ms.openlocfilehash: 6c76820b39f31d92362295d54984069393fa0dec
+ms.sourcegitcommit: 0c490934b5596204d175be89af6b45aafc7ff730
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/29/2018
+ms.lasthandoff: 06/27/2018
+ms.locfileid: "37055295"
 ---
 #  <a name="fault-tolerance-of-copy-activity-in-azure-data-factory"></a>Azure Data Factory 中複製活動的容錯
 > [!div class="op_single_selector" title1="Select the version of Data Factory service you are using:"]
-> * [第 1 版 - 正式推出](v1/data-factory-copy-activity-fault-tolerance.md)
-> * [第 2 版 - 預覽](copy-activity-fault-tolerance.md)
+> * [第 1 版](v1/data-factory-copy-activity-fault-tolerance.md)
+> * [目前的版本](copy-activity-fault-tolerance.md)
 
 Azure Data Factory 中的複製活動可在來源和接收資料存放區之間複製資料時，提供您兩個方式來處理不相容的資料列：
 
 - 遇到不相容的資料時，您可以中止並捨棄複製活動 (預設行為)。
 - 您可以繼續複製所有的資料，方法是新增容錯並跳過不相容的資料列。 此外，您可以在 Azure Blob 儲存體或 Azure Data Lake Store 中記錄不相容的資料列。 接著，您可以檢查記錄來了解失敗的原因、修正資料來源上的資料，並重試複製活動。
 
-> [!NOTE]
-> 本文適用於第 2 版的 Data Fatory (目前為預覽版)。 如果您使用第 1 版的 Data Factory 服務，也就是正式推出 (GA) 的版本，請參閱[第 1 版的複製活動容錯](v1/data-factory-copy-activity-fault-tolerance.md)。
-
-
- ## <a name="supported-scenarios"></a>支援的案例
+## <a name="supported-scenarios"></a>支援的案例
 複製活動支援三種情節，以偵測、跳過並記錄不相容的資料：
 
 - **來源資料類型和接收原生類型之間的不相容**。 

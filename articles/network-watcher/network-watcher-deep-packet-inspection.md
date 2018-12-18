@@ -1,11 +1,11 @@
 ---
-title: "使用 Azure 網路監看員進行封包檢查 | Microsoft Docs"
-description: "本文說明如何使用網路監看員執行從 VM 收集的深度封包檢查"
+title: 使用 Azure 網路監看員進行封包檢查 | Microsoft Docs
+description: 本文說明如何使用網路監看員執行從 VM 收集的深度封包檢查
 services: network-watcher
 documentationcenter: na
 author: jimdial
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 7b907d00-9c35-40f5-a61e-beb7b782276f
 ms.service: network-watcher
 ms.devlang: na
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23036333"
 ---
 # <a name="packet-inspection-with-azure-network-watcher"></a>使用 Azure 網路監看員進行封包檢查
 

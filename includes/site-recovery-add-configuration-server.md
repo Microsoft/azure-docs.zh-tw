@@ -1,3 +1,21 @@
+---
+title: 包含檔案
+description: 包含檔案
+services: site-recovery
+author: rayne-wiselman
+manager: carmonm
+ms.service: site-recovery
+ms.topic: include
+ms.date: 09/06/2018
+ms.author: raynew
+ms.custom: include file
+ms.openlocfilehash: 2ca4916d48da6fe8a2c061056a1ea0fed9a78bb6
+ms.sourcegitcommit: d211f1d24c669b459a3910761b5cacb4b4f46ac9
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/06/2018
+ms.locfileid: "44058308"
+---
 1. 執行統一安裝的安裝檔案。
 2. 在 [開始之前] 選取 [安裝設定伺服器和處理序伺服器]。
 
@@ -17,14 +35,11 @@
      ![防火牆](./media/site-recovery-add-configuration-server/combined-wiz4.png)
 6. 在 [必要條件檢查] 中，安裝程式會執行檢查來確定可以執行安裝。 如果出現有關「通用時間同步處理檢查」的警告，請確認系統時鐘上的時間 ([日期和時間] 設定) 與時區相同。
 
-    ![先決條件](./media/site-recovery-add-configuration-server/combined-wiz5.png)
+    ![必要條件](./media/site-recovery-add-configuration-server/combined-wiz5.png)
 7. 在 [MySQL 組態] 中，建立認證來登入已安裝的 MySQL 伺服器執行個體。
 
     ![MySQL](./media/site-recovery-add-configuration-server/combined-wiz6.png)
-8. 在 [環境詳細資料] 中，選取您是否要複寫 VMware VM。 如果是的話，安裝程式就會檢查是否已安裝 PowerCLI 6.0。
-
-    ![MySQL](./media/site-recovery-add-configuration-server/combined-wiz7.png)
-
+8. 在 [環境詳細資料] 中，如果您要複寫 Azure Stack VM 或實體伺服器，請選取 [否]。 
 9. 在 [安裝位置] 中，選取您要安裝二進位檔及儲存快取的位置。 您選取的磁碟機至少必須有 5 GB 的可用磁碟空間，但我們建議快取磁碟機至少有 600 GB 的可用空間。
 
     ![安裝位置](./media/site-recovery-add-configuration-server/combined-wiz8.png)

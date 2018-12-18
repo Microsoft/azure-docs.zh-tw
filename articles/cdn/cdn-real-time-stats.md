@@ -1,11 +1,11 @@
 ---
-title: "Azure CDN 中的即時統計資料 | Microsoft Docs"
-description: "將內容傳遞給您的用戶端時，即時統計資料可提供關於 Azure CDN 效能的即時資料。"
+title: Azure CDN 中的即時統計資料 | Microsoft Docs
+description: 將內容傳遞給您的用戶端時，即時統計資料可提供關於 Azure CDN 效能的即時資料。
 services: cdn
-documentationcenter: 
+documentationcenter: ''
 author: zhangmanling
 manager: erikre
-editor: 
+editor: ''
 ms.assetid: c7989340-1172-4315-acbb-186ba34dd52a
 ms.service: cdn
 ms.workload: tbd
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "22997903"
 ---
 # <a name="real-time-stats-in-microsoft-azure-cdn"></a>Microsoft Azure CDN 中的即時統計資料
 [!INCLUDE [cdn-premium-feature](../../includes/cdn-premium-feature.md)]

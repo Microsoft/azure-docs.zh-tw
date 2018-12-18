@@ -1,24 +1,25 @@
 ---
-title: "將 Azure 雲端服務應用程式轉換成微服務 | Microsoft Docs"
-description: "本指南會比較雲端服務的 Web 角色和背景工作角色以及 Service Fabric 的無狀態服務，以協助您從雲端服務移轉到 Service Fabric。"
+title: 將 Azure 雲端服務應用程式轉換成 Service Fabric | Microsoft Docs
+description: 本指南會比較雲端服務的 Web 角色和背景工作角色以及 Service Fabric 的無狀態服務，以協助您從雲端服務移轉到 Service Fabric。
 services: service-fabric
 documentationcenter: .net
 author: vturecek
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 5880ebb3-8b54-4be8-af4b-95a1bc082603
 ms.service: service-fabric
 ms.devlang: dotNet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 11/02/2017
 ms.author: vturecek
-ms.openlocfilehash: fd24881444846d3905f8db61356656960698b7eb
-ms.sourcegitcommit: 9890483687a2b28860ec179f5fd0a292cdf11d22
+ms.openlocfilehash: 4eed3825d52fe52025077980e21f3763cc5751ac
+ms.sourcegitcommit: ebd06cee3e78674ba9e6764ddc889fc5948060c4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/24/2018
+ms.lasthandoff: 09/07/2018
+ms.locfileid: "44049944"
 ---
 # <a name="guide-to-converting-web-and-worker-roles-to-service-fabric-stateless-services"></a>將 Web 角色和背景工作角色轉換成 Service Fabric 無狀態服務的指南
 本文說明如何將雲端服務的 Web 角色和背景工作角色移轉至 Service Fabric 無狀態服務。 對於整體架構會大致保持相同的應用程式來說，這是最簡單的雲端服務至 Service Fabric 移轉路徑。
@@ -43,7 +44,7 @@ ms.lasthandoff: 01/24/2018
 | ASP.NET Web Forms |否 |轉換為 ASP.NET Core 1 MVC |
 | ASP.NET MVC |移轉 |升級至 ASP.NET Core 1 MVC |
 | ASP.NET Web API |移轉 |使用自我裝載的伺服器或 ASP.NET Core 1 |
-| ASP.NET Core 1 |yes |N/A |
+| ASP.NET Core 1 |是 |N/A |
 
 ## <a name="entry-point-api-and-lifecycle"></a>進入點 API 和生命週期
 背景工作角色和 Service Fabric 服務 API 提供類似的進入點： 
@@ -110,7 +111,7 @@ namespace Stateless1
 背景工作角色和 Service Fabric 服務的生命週期與存留期之間有幾個主要差異：
 
 * **生命週期：** 最大的差異是背景工作角色是 VM，因此其生命週期繫結至 VM，且包含 VM 啟動和停止時的事件。 Service Fabric 服務的生命週期則和 VM 的生命週期不同，因此不包含主機 VM 或機器啟動和停止時的事件，因為它們彼此不相關。
-* **存留期：**背景工作角色執行個體會在 `Run` 方法結束時回收。 不過，Service Fabric 服務中的 `RunAsync` 方法可以執行到完成為止，且服務執行個體會維持啟動狀態。 
+* **存留期：** 背景工作角色執行個體會在 `Run` 方法結束時回收。 不過，Service Fabric 服務中的 `RunAsync` 方法可以執行到完成為止，且服務執行個體會維持啟動狀態。 
 
 Service Fabric 為接聽用戶端要求的服務提供選擇性的通訊設定進入點。 RunAsync 和通訊進入點都是 Service Fabric 服務中的選擇性覆寫 (服務可選擇只接聽用戶端要求或只執行處理迴圈，或兩者都選擇)，這就是 RunAsync 方法不必重新啟動服務執行個體就可以結束的原因，因為它可以繼續接聽用戶端要求。
 
@@ -207,7 +208,7 @@ private void CodePackageActivationContext_ConfigurationPackageModifiedEvent(obje
 ## <a name="startup-tasks"></a>啟動工作
 啟動工作是應用程式啟動前所採取的動作。 啟動工作通常用來以提高的權限執行安裝指令碼。 雲端服務和 Service Fabric 皆支援啟動工作。 兩者的主要差異是，雲端服務中的啟動工作繫結至 VM，因為它是角色執行個體的一部分，而 Service Fabric 中的啟動工作則繫結至服務，而不會繫結至任何特定 VM。
 
-| 雲端服務 | Service Fabric |
+| Service Fabric | 雲端服務 |
 | --- | --- | --- |
 | 組態位置 |ServiceDefinition.csdef |
 | 權限 |「有限」或「提高」 |

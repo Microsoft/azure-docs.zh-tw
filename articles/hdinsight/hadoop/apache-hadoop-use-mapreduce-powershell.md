@@ -1,26 +1,20 @@
 ---
-title: "搭配使用 MapReduce 和 PowerShell 與 Hadoop - Azure HDInsight | Microsoft Docs"
-description: "了解如何使用 PowerShell 從遠端搭配執行 MapReduce 工作與 HDInsight 上的 Hadoop。"
+title: 搭配使用 MapReduce 和 PowerShell 與 Hadoop - Azure HDInsight
+description: 了解如何使用 PowerShell 從遠端搭配執行 MapReduce 工作與 HDInsight 上的 Hadoop。
 services: hdinsight
-documentationcenter: 
-author: Blackmist
-manager: jhubbard
-editor: cgronlun
-tags: azure-portal
-ms.assetid: 21b56d32-1785-4d44-8ae8-94467c12cfba
+author: jasonwhowell
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 02/16/2018
-ms.author: larryfr
-ms.openlocfilehash: ba4a2dfc6a69e9ab18948bc9e33597a56bdd3bd9
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.topic: conceptual
+ms.date: 05/09/2018
+ms.author: jasonh
+ms.openlocfilehash: 5f2b6f11a611446ca13dff074b36a4040fb27d62
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43049041"
 ---
 # <a name="run-mapreduce-jobs-with-hadoop-on-hdinsight-using-powershell"></a>使用 PowerShell 搭配執行 MapReduce 工作與 HDInsight 上的 Hadoop
 
@@ -37,13 +31,13 @@ ms.lasthandoff: 02/21/2018
 
 * **具有 Azure PowerShell 的工作站**。
 
-## <a id="powershell"></a>執行 MapReduce 工作
+## <a id="powershell"></a>執行 MapReduce 作業
 
 Azure PowerShell 提供 *Cmdlet* ，可讓您從遠端在 HDInsight 上執行 MapReduce 工作。 在內部，PowerShell 會對 HDInsight 叢集上執行的 [WebHCat](https://cwiki.apache.org/confluence/display/Hive/WebHCat) (先前稱為 Templeton) 發出 REST 呼叫。
 
 在遠端 HDInsight 叢集中執行 MapReduce 工作時，會使用下列 Cmdlet。
 
-* **Login-AzureRmAccount**：向您的 Azure 訂用帳戶驗證 Azure PowerShell。
+* **Connect-AzureRmAccount**：向您的 Azure 訂用帳戶驗證 Azure PowerShell。
 
 * **New-AzureRmHDInsightMapReduceJobDefinition**：使用指定的 MapReduce 資訊建立新的「工作定義」。
 

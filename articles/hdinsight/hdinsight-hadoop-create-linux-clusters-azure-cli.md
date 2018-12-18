@@ -1,52 +1,40 @@
 ---
-title: "使用命令列建立 Hadoop 叢集 - Azure HDInsight | Microsoft Docs"
-description: "了解如何使用跨平台 Azure CLI 1.0 建立 HDInsight 叢集。"
+title: 使用 Azure 傳統 CLI 建立 Hadoop 叢集 - Azure HDInsight
+description: 了解如何使用跨平台 Azure 傳統 CLI 建立 HDInsight 叢集。
 services: hdinsight
-documentationcenter: 
-author: Blackmist
-manager: jhubbard
-editor: cgronlun
-tags: azure-portal
-ms.assetid: 50b01483-455c-4d87-b754-2229005a8ab9
+author: jasonwhowell
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
+ms.topic: conceptual
 ms.date: 02/27/2018
-ms.author: larryfr
-ms.openlocfilehash: 983e167d248d711efde9c64a70f59d5a9e81769a
-ms.sourcegitcommit: c765cbd9c379ed00f1e2394374efa8e1915321b9
+ms.author: jasonh
+ms.openlocfilehash: 84b352fea0c5b9c98cd3b4e814e448cf8b706402
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/28/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46992808"
 ---
-# <a name="create-hdinsight-clusters-using-the-azure-cli"></a>使用 Azure CLI 建立 HDInsight 叢集
+# <a name="create-hdinsight-clusters-using-the-azure-classic-cli"></a>使用 Azure 傳統 CLI 建立 HDInsight 叢集
 
 [!INCLUDE [selector](../../includes/hdinsight-create-linux-cluster-selector.md)]
 
-此文件中的步驟詳細說明如何使用 Azure CLI 1.0 建立 HDInsight 3.5 叢集。
+此文件中的步驟詳細說明如何使用 Azure 傳統 CLI 建立 HDInsight 3.5 叢集。
 
-> [!IMPORTANT]
-> 本主題說明如何使用 Azure CLI 1.0 建立 HDInsight 叢集。 此版本的 CLI 已過時，且建立 HDInsight 叢集的支援尚未加入 Azure CLI 2.0 中。
->
-> 您也可以使用 Azure PowerShell 來建立和管理 HDInsight 叢集。 如需詳細資訊，請參閱[使用 Azure PowerShell 建立 HDInsight 叢集](hdinsight-hadoop-create-linux-clusters-azure-powershell.md)文件。
+[!INCLUDE [classic-cli-warning](../../includes/requires-classic-cli.md)]
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
 * **Azure 訂用帳戶**。 請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
 
-* **Azure CLI**。 這份文件中的步驟最近一次是以 Azure CLI 版本 0.10.14 來測試。
-
-    > [!IMPORTANT]
-    > Azure CLI 1.0 已過時，且建立 HDInsight 叢集的支援尚未加入 Azure CLI 2.0 中。
+* **Azure 傳統 CLI**。 此文件中的步驟最近一次是以 Azure 傳統 CLI 版本 0.10.14 來測試。
 
 ## <a name="log-in-to-your-azure-subscription"></a>登入您的 Azure 訂用帳戶
 
-依照 [從 Azure 命令列介面 (Azure CLI) 連接到 Azure 訂用帳戶](/cli/azure/authenticate-azure-cli) 中記載的步驟，使用 **login** 方法連線到您的訂用帳戶。
+依照 [從 Azure 命令列介面連線到 Azure 訂用帳戶](/cli/azure/authenticate-azure-cli)中記載的步驟，使用 **login** 方法連線到您的訂用帳戶。
 
 ## <a name="create-a-cluster"></a>建立叢集
 
@@ -56,7 +44,7 @@ ms.lasthandoff: 02/28/2018
 
         azure login
 
-    系統會提示您提供使用者名稱與密碼。 如果您有多個 Azure 訂用帳戶，則可以使用 `azure account set <subscriptionname>` 來設定 Azure CLI 命令所使用的訂用帳戶。
+    系統會提示您提供使用者名稱與密碼。 如果您有多個 Azure 訂用帳戶，則可以使用 `azure account set <subscriptionname>` 來設定傳統 CLI 命令所使用的訂用帳戶。
 
 2. 使用下列命令來切換至 Azure 資源管理員模式︰
 
@@ -130,13 +118,13 @@ ms.lasthandoff: 02/28/2018
 
 ## <a name="next-steps"></a>後續步驟
 
-既然您已使用 Azure CLI 順利建立 HDInsight 叢集，請使用下列內容來了解如何使用您的叢集：
+既然您已使用傳統 CLI 順利建立 HDInsight 叢集，請使用下列內容來了解如何使用您的叢集：
 
 ### <a name="hadoop-clusters"></a>Hadoop 叢集
 
-* [〈搭配 HDInsight 使用 Hivet〉](hadoop/hdinsight-use-hive.md)
+* [搭配 HDInsight 使用 Hivet](hadoop/hdinsight-use-hive.md)
 * [搭配 HDInsight 使用 Pig](hadoop/hdinsight-use-pig.md)
-* [〈搭配 HDInsight 使用 MapReduce〉](hadoop/hdinsight-use-mapreduce.md)
+* [搭配 HDInsight 使用 MapReduce](hadoop/hdinsight-use-mapreduce.md)
 
 ### <a name="hbase-clusters"></a>HBase 叢集
 

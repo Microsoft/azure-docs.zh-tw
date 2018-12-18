@@ -1,19 +1,20 @@
 ---
-title: "應用程式或使用者特定的 Marathon 服務"
-description: "建立應用程式或使用者特定的 Marathon 服務"
+title: 應用程式或使用者特定的 Marathon 服務
+description: 建立應用程式或使用者特定的 Marathon 服務
 services: container-service
 author: rgardler
-manager: timlt
+manager: jeconnoc
 ms.service: container-service
 ms.topic: article
 ms.date: 04/12/2016
 ms.author: rogardle
 ms.custom: mvc
-ms.openlocfilehash: 61cc379bf32f3e0db11d8fd9dae36d9ecb6b1a6c
-ms.sourcegitcommit: 5d3e99478a5f26e92d1e7f3cec6b0ff5fbd7cedf
+ms.openlocfilehash: 4ff263fe0ca4f435199127ed64faadee1c2527f9
+ms.sourcegitcommit: e2adef58c03b0a780173df2d988907b5cb809c82
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/06/2017
+ms.lasthandoff: 04/28/2018
+ms.locfileid: "32164535"
 ---
 # <a name="create-an-application-or-user-specific-marathon-service"></a>建立應用程式或使用者特定的 Marathon 服務
 

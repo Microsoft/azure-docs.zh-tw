@@ -1,26 +1,23 @@
 ---
-title: "將 AS2 訊息解碼 - Azure Logic Apps | Microsoft Docs"
-description: "如何在 Azure Logic Apps 的企業整合套件中使用 AS2 解碼器"
+title: 將 AS2 訊息解碼 - Azure Logic Apps | Microsoft Docs
+description: 使用 Azure Logic Apps 與 Enterprise Integration Pack 為 AS 訊息解碼
 services: logic-apps
-documentationcenter: .net,nodejs,java
-author: padmavc
-manager: anneta
-editor: 
-ms.assetid: cf44af18-1fe5-41d5-9e06-cc57a968207c
 ms.service: logic-apps
-ms.workload: integration
-ms.tgt_pltfrm: na
-ms.devlang: na
+ms.suite: integration
+author: divyaswarnkar
+ms.author: divswa
+ms.reviewer: jonfan, estfan, LADocs
 ms.topic: article
-ms.date: 01/27/2016
-ms.author: LADocs; padmavc
-ms.openlocfilehash: 4acae9f1837069c494985ff1456979490485f609
-ms.sourcegitcommit: be9a42d7b321304d9a33786ed8e2b9b972a5977e
+ms.assetid: cf44af18-1fe5-41d5-9e06-cc57a968207c
+ms.date: 08/08/2018
+ms.openlocfilehash: 06ffa6bddc1340ad548f9baf30eba65ba503bf73
+ms.sourcegitcommit: 2ad510772e28f5eddd15ba265746c368356244ae
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/19/2018
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "43128276"
 ---
-# <a name="decode-as2-messages-for-azure-logic-apps-with-the-enterprise-integration-pack"></a>使用企業整合套件將 Azure Logic Apps 的 AS2 訊息解碼 
+# <a name="decode-as2-messages-with-azure-logic-apps-and-enterprise-integration-pack"></a>使用 Azure Logic Apps 與 Enterprise Integration Pack 為 AS2 訊息解碼 
 
 若要在傳輸訊息時建立安全性和可靠性，請使用解碼 AS2 訊息連接器。 此連接器可透過訊息處置通知 (MDN) 提供數位簽章、解密和通知。
 
@@ -66,6 +63,7 @@ ms.lasthandoff: 01/19/2018
 
     ![從要求輸出選取內文和標頭](media/logic-apps-enterprise-integration-as2-decode/as2decodeimage5.png) 
 
+
 ## <a name="as2-decoder-details"></a>AS2 解碼器詳細資料
 
 解碼 AS2 連接器會執行下列工作︰ 
@@ -74,6 +72,7 @@ ms.lasthandoff: 01/19/2018
 * 驗證簽章 (若已設定)
 * 將訊息解密 (若已設定)
 * 將訊息解壓縮 (若已設定)
+* 檢查且不允許訊息識別碼重複項 (若已設定)
 * 協調收到的 MDN 與原始輸出訊息
 * 更新不可否認性資料庫中的記錄並使其相互關聯
 * 寫入記錄以便進行 AS2 狀態報告
@@ -81,6 +80,13 @@ ms.lasthandoff: 01/19/2018
 * 決定是否需要 MDN，以及根據 AS2 合約中的組態決定 MDN 應為同步或非同步
 * 產生同步或非同步 MDN (根據合約組態)
 * 在 MDN 上設定相互關聯權杖和屬性
+
+
+  > [!NOTE]
+  > 如果您使用 Azure 金鑰保存庫來管理憑證，請確定您已設定允許**解密**作業的金鑰。
+  > 否則，AS2 解碼會失敗。
+  >
+  > ![金鑰保存庫解密](media/logic-apps-enterprise-integration-as2-decode/keyvault1.png)
 
 ## <a name="try-this-sample"></a>嘗試此範例
 

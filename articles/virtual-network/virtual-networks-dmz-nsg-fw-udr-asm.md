@@ -1,11 +1,11 @@
 ---
-title: "DMZ 範例 – 建置 DMZ 以透過防火牆、UDR 和 NSG 保護網路 | Microsoft Docs"
-description: "建置具有防火牆、使用者定義的路由 (UDR) 和網路安全性群組 (NSG) 的 DMZ"
+title: DMZ 範例 – 建置 DMZ 以透過防火牆、UDR 和 NSG 保護網路 | Microsoft Docs
+description: 建置具有防火牆、使用者定義的路由 (UDR) 和網路安全性群組 (NSG) 的 DMZ
 services: virtual-network
 documentationcenter: na
 author: tracsman
 manager: rossort
-editor: 
+editor: ''
 ms.assetid: dc01ccfb-27b0-4887-8f0b-2792f770ffff
 ms.service: virtual-network
 ms.devlang: na
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23127156"
 ---
 # <a name="example-3--build-a-dmz-to-protect-networks-with-a-firewall-udr-and-nsg"></a>範例 3 – 建置 DMZ 以透過防火牆、UDR 和 NSG 保護網路
 [返回 [安全性界限最佳作法] 頁面][HOME]

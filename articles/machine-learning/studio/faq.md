@@ -10,16 +10,18 @@ manager: hjerez
 editor: cgronlun
 ms.assetid: a4a32a06-dbed-4727-a857-c10da774ce66
 ms.service: machine-learning
+ms.component: studio
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: get-started-article
+ms.topic: conceptual
 ms.date: 06/02/2017
-ms.openlocfilehash: ceec69ee822e118adfa3825620a31575109894ea
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 22d060ca38663f21bef977f5d506f215fd947a50
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46998316"
 ---
 # <a name="azure-machine-learning-frequently-asked-questions-billing-capabilities-limitations-and-support"></a>Azure Machine Learning 常見問題集：計費、功能、限制及支援
 以下是有關 Azure Machine Learning 的一些常見問題和對應解答，而 Azure Machine Learning 是適合透過 Web 服務開發預測性模型和運作方案的雲端服務。 這個常見問題涵蓋如何使用服務的相關問題，包括計費模型、功能、限制及支援。
@@ -73,7 +75,7 @@ Azure Machine Learning 有兩種 Web 服務類型：
 
 **Azure Machine Learning 的主要更新為何？**
 
-如需最新更新，請參閱 [Azure Machine Learning 新增功能](whats-new.md)。
+如需最新更新，請參閱 [Azure Machine Learning 新增功能](../../active-directory/fundamentals/whats-new.md)。
 
 ## <a name="machine-learning-studio-questions"></a>Machine Learning Studio 問題
 ### <a name="import-and-export-data-for-machine-learning"></a>匯入和匯出 Machine Learning 的資料
@@ -173,7 +175,7 @@ Machine Learning Studio 提供頂級演算法，例如 Scalable Boosted Decision
 
 **可以使用內建模組來視覺化類神經網路模型的層級嗎？**
 
-編號
+否。
 
 **可以以 C# 或其他語言建立自己的模組嗎？**
 
@@ -210,7 +212,7 @@ Machine Learning Studio 目前支援 400 個以上的 CRAN 套件，以下是所
 ### <a name="create"></a>建立
 **可以在本機或在沒有網際網路連線的應用程式中部署模型嗎？**
 
-編號
+否。
 
 **所有 Web 服務是否有預期的基準延遲？**
 
@@ -251,7 +253,7 @@ Machine Learning Studio 目前支援 400 個以上的 CRAN 套件，以下是所
 
 **R 作業會分散於節點嗎？**
 
-編號  
+否。  
 
 **我可以將多少資料用於訓練？**
 
@@ -280,7 +282,7 @@ Machine Learning Studio 中的模組對常見使用案例支援最多 10 GB 的�
 
 **可以調整用來執行 Web 服務的虛擬機器大小嗎？**
 
-編號  
+否。  
 
 ## <a name="security-and-availability"></a>安全性和可用性
 **根據預設，哪些人可以存取 Web 服務的 HTTP 端點？如何限制對此端點的存取？**
@@ -310,7 +312,7 @@ Machine Learning Studio 依賴使用者提供的 Azure 儲存體帳戶，才能�
 
 **如何取得 Azure Machine Learning 的支援？**
 
-若要取得 Azure Machine Learning 的技術支援，請移至 [Azure 支援](/support/options/)，並選取 [Machine Learning]。
+若要取得 Azure Machine Learning 的技術支援，請移至 [Azure 支援](https://azure.microsoft.com/support/options/)，並選取 [Machine Learning]。
 
 Azure Machine Learning 在 MSDN 上也設有社群論壇，可供您詢問 Azure Machine Learning 的相關問題。 此論壇由 Azure Machine Learning 團隊控管。 請移至 [Azure 論壇](http://social.msdn.microsoft.com/Forums/windowsazure/home?forum=MachineLearning)。
 
@@ -372,7 +374,7 @@ Resource Manager 架構 Web 服務提供多個層級供您佈建計費方案。 
 
 **Machine Learning 是否支援高可用性？**
 
-是。 如需詳細資訊，請參閱[機器學習服務價格](https://azure.microsoft.com/en-us/pricing/details/machine-learning/)，以取得服務等級協定 (SLA) 的說明。
+是。 如需詳細資訊，請參閱[機器學習服務價格](https://azure.microsoft.com/pricing/details/machine-learning/)，以取得服務等級協定 (SLA) 的說明。
 
 **我的生產 API 呼叫將使用哪些特定種類的計算資源來執行？**
 
@@ -472,7 +474,7 @@ BES 工作負載採用相同的計費方式。 不過，API 交易費用代表�
 ### <a name="azure-machine-learning-free-and-standard-tier"></a>Azure Machine Learning 的免費層和標準層
 **Azure Machine Learning 免費層包含什麼？**
 
-Azure Machine Learning 免費層主要是用來提供 Azure Machine Learning Studio 的深入介紹。 您只需要 Microsoft 帳戶即可註冊。 免費層可讓每個 [Microsoft 帳戶](https://www.microsoft.com/account/default.aspx)免費存取一個 Azure Machine Learning Studio 工作區。 在此層中，您可以使用最多 10 GB 的儲存體，以及讓模型能以預備 API 運作。 免費層工作負載不包含在 SLA 內，且僅供開發與個人使用。 
+Azure Machine Learning 免費層主要是用來提供 Azure Machine Learning Studio 的深入介紹。 您只需要 Microsoft 帳戶即可註冊。 免費層可讓每個 [Microsoft 帳戶](https://account.microsoft.com/account)免費存取一個 Azure Machine Learning Studio 工作區。 在此層中，您可以使用最多 10 GB 的儲存體，以及讓模型能以預備 API 運作。 免費層工作負載不包含在 SLA 內，且僅供開發與個人使用。 
 
 免費層工作區有下列限制：
 

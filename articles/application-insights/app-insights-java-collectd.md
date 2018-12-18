@@ -1,23 +1,24 @@
 ---
-title: "監視 Linux - Azure 上的 Java Web 應用程式效能 | Microsoft Docs"
-description: "使用 Application Insights 的 CollectD 外掛程式擴充您的 Java 網站的應用程式效能監視功能。"
+title: 監視 Linux - Azure 上的 Java Web 應用程式效能 | Microsoft Docs
+description: 使用 Application Insights 的 CollectD 外掛程式擴充您的 Java 網站的應用程式效能監視功能。
 services: application-insights
 documentationcenter: java
-author: harelbr
+author: mrbullwinkle
 manager: carmonm
 ms.assetid: 40c68f45-197a-4624-bf89-541eb7323002
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 08/24/2016
 ms.author: mbullwin
-ms.openlocfilehash: cde0fc020f1774e0e7669e7573e4aaff3534b34c
-ms.sourcegitcommit: e462e5cca2424ce36423f9eff3a0cf250ac146ad
+ms.openlocfilehash: fd8c45bf3d7fd9e392d55a82001aa8768fcce8ba
+ms.sourcegitcommit: cc4fdd6f0f12b44c244abc7f6bc4b181a2d05302
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/01/2017
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47096594"
 ---
 # <a name="collectd-linux-performance-metrics-in-application-insights"></a>collectd：Application Insights 中的 Linux 效能計量
 

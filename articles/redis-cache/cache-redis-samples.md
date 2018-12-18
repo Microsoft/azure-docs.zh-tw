@@ -1,11 +1,11 @@
 ---
-title: "Azure Redis 快取範例 | Microsoft Docs"
-description: "了解如何使用 Azure Redis 快取"
+title: Azure Redis 快取範例 | Microsoft Docs
+description: 了解如何使用 Azure Redis 快取
 services: redis-cache
-documentationcenter: 
+documentationcenter: ''
 author: wesmc7777
 manager: cfowler
-editor: 
+editor: ''
 ms.assetid: 1f8d210c-ee09-4fe2-b63f-1e69246a27d8
 ms.service: cache
 ms.workload: tbd
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 2a70752d0987585d480f374c3e2dba0cd5097880
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 01/19/2018
+ms.locfileid: "27909691"
 ---
 # <a name="azure-redis-cache-samples"></a>Azure Redis 快取範例
 本主題提供 Azure Redis 快取範例清單，其中涵蓋下列這類案例：連線至快取、在快取中讀取和寫入資料，以及使用 ASP.NET Redis 快取提供者。 有些範例是可下載的專案，有些則提供逐步指導並包括程式碼片段，但沒有可下載專案的連結。

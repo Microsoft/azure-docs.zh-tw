@@ -1,36 +1,38 @@
 ---
-title: "使用 Azure Log Analytics 跨資源搜尋 | Microsoft Docs"
-description: "本文說明如何針對來自訂用帳戶中多個工作區和 App Insights 應用程式的資源執行查詢。"
+title: 使用 Azure Log Analytics 跨資源搜尋 | Microsoft Docs
+description: 本文說明如何針對來自訂用帳戶中多個工作區和 App Insights 應用程式的資源執行查詢。
 services: log-analytics
-documentationcenter: 
-author: MGoedtel
+documentationcenter: ''
+author: mgoedtel
 manager: carmonm
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 02/21/2018
+ms.topic: conceptual
+ms.date: 04/17/2018
 ms.author: magoedte
-ms.openlocfilehash: 5485b1634013c73b58932aafa6e17d636558715d
-ms.sourcegitcommit: fbba5027fa76674b64294f47baef85b669de04b7
+ms.component: ''
+ms.openlocfilehash: d3fb6557571042be7db1380010738bacd72e50f5
+ms.sourcegitcommit: 0bb8db9fe3369ee90f4a5973a69c26bff43eae00
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/24/2018
+ms.lasthandoff: 10/08/2018
+ms.locfileid: "48869495"
 ---
 # <a name="perform-cross-resource-log-searches-in-log-analytics"></a>在 Log Analytics 中執行跨資源記錄搜尋  
 
 先前使用 Azure Log Analytics 時，您只能分析來自目前工作區內的資料，這項限制讓您無法跨訂用帳戶中定義的多個工作區執行查詢。  此外，您只能搜尋在 Application Insights 中或從 Visual Studio 直接使用 Application Insights 從 Web 應用程式收集的遙測項目。  如此一來，也難以將作業和應用程式資料一起以原生方式分析。   
 
-現在您不僅可以跨多個 Log Analytics 工作區查詢，也可以查詢來自相同資源群組、另一個資源群組或其他訂用帳戶中特定 Application Insights 應用程式中的資料。 這讓您對資料能有全系統的檢視。  您只能在[進階入口網站](log-analytics-log-search-portals.md#advanced-analytics-portal) (無法在 Azure 入口網站) 中執行這些類型的查詢。  
+現在您不僅可以跨多個 Log Analytics 工作區查詢，也可以查詢來自相同資源群組、另一個資源群組或其他訂用帳戶中特定 Application Insights 應用程式中的資料。 這讓您對資料能有全系統的檢視。  您只能在 [Log Analytics](log-analytics-log-search-portals.md#log-analytics-page) 中執行這些類型的查詢。 單一查詢中可納入的資源 (Log Analytics 工作區和 Application Insights 應用程式) 數目上限為 100 個。 
 
 ## <a name="querying-across-log-analytics-workspaces-and-from-application-insights"></a>跨 Log Analytics 工作區和從 Application Insights 查詢
 若要在查詢中參考另一個工作區，請使用 [*workspace*](https://docs.loganalytics.io/docs/Language-Reference/Scope-functions/workspace()) 識別項，而若要查詢來自 Application Insights 的應用程式，請使用 [*app*](https://docs.loganalytics.io/docs/Language-Reference/Scope-functions/app()) 識別項。  
 
 ### <a name="identifying-workspace-resources"></a>識別工作區資源
-下列範例示範對 Log Analytics 工作區的查詢，從目前工作區和名為 *contosoretail-it* 的另一個工作區中的 Update 資料表，傳回其分類所需的更新項目彙總計數。 
+下列範例示範對 Log Analytics 工作區的查詢，從名為 contosoretail-it 工作區上的 Update 資料表，傳回記錄彙總計數。 
 
 您可以下列數種方式之一來完成識別工作區：
 
@@ -43,7 +45,7 @@ ms.lasthandoff: 02/24/2018
 
 * 限定名稱 - 是工作區的「完整名稱」，由訂用帳戶名稱、資源群組及元件名稱所組成，格式如下：*subscriptionName/resourceGroup/componentName*。 
 
-    `workspace('contoso/contosoretail/development').requests | count `
+    `workspace('contoso/contosoretail/contosoretail-it').Update | count `
 
     >[!NOTE]
     >由於 Azure 訂用帳戶名稱並非唯一，因此這個識別碼可能語意模糊。 
@@ -57,7 +59,7 @@ ms.lasthandoff: 02/24/2018
 
     例如︰
     ``` 
-    workspace("/subscriptions/e427519-5645-8x4e-1v67-3b84b59a1985/resourcegroups/ContosoAzureHQ/providers/Microsoft.OperationalInsights/workspaces/contosoretail").Event | count
+    workspace("/subscriptions/e427519-5645-8x4e-1v67-3b84b59a1985/resourcegroups/ContosoAzureHQ/providers/Microsoft.OperationalInsights/workspaces/contosoretail").Update | count
     ```
 
 ### <a name="identifying-an-application"></a>識別應用程式
@@ -87,6 +89,18 @@ ms.lasthandoff: 02/24/2018
     ```
     app("/subscriptions/b459b4f6-912x-46d5-9cb1-b43069212ab4/resourcegroups/Fabrikam/providers/microsoft.insights/components/fabrikamapp").requests | count
     ```
+
+### <a name="performing-a-query-across-multiple-resources"></a>跨多個資源執行查詢
+您可以查詢任何資源執行個體的多個資源，資源執行個體可以是合併的工作區和應用程式。
+    
+跨兩個工作區的查詢範例：    
+
+```
+union Update, workspace("contosoretail-it").Update, workspace("b459b4u5-912x-46d5-9cb1-p43069212nb4").Update
+| where TimeGenerated >= ago(1h)
+| where UpdateState == "Needed"
+| summarize dcount(Computer) by Classification
+```
 
 ## <a name="next-steps"></a>後續步驟
 

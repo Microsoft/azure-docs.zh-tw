@@ -1,10 +1,10 @@
 ### YamlMime:YamlDocument
 documentType: LandingData
-title: "Azure 自動化使用者文件"
+title: Azure 自動化使用者文件
 metadata:
   document_id: 
-  title: "Azure 自動化文件 - 教學課程和 API 參考"
-  description: "了解如何使用 Azure 自動化"
+  title: Azure 自動化文件 - 教學課程和 API 參考
+  description: 了解如何使用 Azure 自動化
   services: automation
   author: georgewallace
   manager: carmonm
@@ -19,49 +19,50 @@ metadata:
   ms.translationtype: HT
   ms.contentlocale: zh-TW
   ms.lasthandoff: 01/11/2018
+  ms.locfileid: "27773820"
 abstract:
-  description: "了解如何在跨混合式環境中，使用自動化來設定並自動化作業工作。 教學課程、API 參考和其他文件會示範如何自動執行程序、執行更新管理、遞送希望的狀態組態、追蹤變更及收集清查資料。"
+  description: 了解如何在跨混合式環境中，使用自動化來設定並自動化作業工作。 教學課程、API 參考和其他文件會示範如何自動執行程序、執行更新管理、遞送希望的狀態組態、追蹤變更及收集清查資料。
 sections:
-- title: "5 分鐘快速入門"
+- title: 5 分鐘快速入門
   items:
   - type: paragraph
-    text: "了解如何使用自動化來自動化及設定您的 Azure 和混合式環境："
+    text: 了解如何使用自動化來自動化及設定您的 Azure 和混合式環境：
   - type: list
     style: icon48
     items:
     - image:
         src: /azure/automation/media/index/automation.svg
-      text: "建立自動化帳戶"
+      text: 建立自動化帳戶
       href: /azure/automation/automation-quickstart-create-account
     - image:
         src: /azure/automation/media/index/runbook.svg
-      text: "建立 Runbook"
+      text: 建立 Runbook
       href: /azure/automation/automation-quickstart-create-runbook
     - image:
         src: /azure/automation/media/index/dscconfig.svg
-      text: "建立 DSC 組態"
+      text: 建立 DSC 組態
       href: /azure/automation/automation-quickstart-dsc-configuration
-- title: "逐步教學課程"
+- title: 逐步教學課程
   items:
   - type: paragraph
-    text: "了解如何整合、部署及管理您的 Azure 和混合式環境。"
+    text: 了解如何整合、部署及管理您的 Azure 和混合式環境。
   - type: list
     style: ordered
     items:
-    - html: "<a href=\"/azure/automation/automation-watchers-tutorial\">設定監看員工作</a>"
-    - html: "<a href=\"/azure/automation/automation-tutorial-update-management\">在虛擬機器上管理更新</a>"
-    - html: "<a href=\"/azure/automation/automation-onboard-solutions\">大規模上架</a>"
-    - html: "<a href=\"/azure/automation/automation-tutorial-installed-software\">識別虛擬機器中安裝的軟體</a>"
-    - html: "<a href=\"/azure/automation/automation-tutorial-troubleshoot-changes\">虛擬機器上的疑難排解變更</a>"
-- title: "參考"
+    - html: <a href="/azure/automation/automation-watchers-tutorial">設定監看員工作</a>
+    - html: <a href="/azure/automation/automation-tutorial-update-management">在虛擬機器上管理更新</a>
+    - html: <a href="/azure/automation/automation-onboard-solutions">大規模上架</a>
+    - html: <a href="/azure/automation/automation-tutorial-installed-software">識別虛擬機器中安裝的軟體</a>
+    - html: <a href="/azure/automation/automation-tutorial-troubleshoot-changes">虛擬機器上的疑難排解變更</a>
+- title: 參考
   items:
   - type: list
     style: cards
     className: cardsD
     items:
-    - title: "命令列"
+    - title: 命令列
       html: <p><a href="/powershell/module/azurerm.automation">PowerShell</a></p>
-    - title: "語言"
+    - title: 語言
       html: <p><a href="/dotnet/api/microsoft.azure.management.automation">.NET</a></p>
     - title: REST
-      html: "<p><a href=\"/rest/api/automation\">自動化 REST API</a></p>"
+      html: <p><a href="/rest/api/automation">自動化 REST API</a></p>

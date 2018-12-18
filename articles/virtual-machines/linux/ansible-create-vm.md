@@ -1,68 +1,188 @@
 ---
-title: "使用 Ansible 在 Azure 中建立基本 Linux VM | Microsoft Docs"
-description: "了解如何使用 Ansible 在 Azure 中建立及管理基本 Linux 虛擬機器"
-services: virtual-machines-linux
-documentationcenter: virtual-machines
-author: iainfoulds
+title: 使用 Ansible 在 Azure 中建立 Linux 虛擬機器
+description: 了解如何使用 Ansible 在 Azure 中建立 Linux 虛擬機器
+ms.service: ansible
+keywords: ansible, azure, devops, 虛擬機器
+author: tomarcher
 manager: jeconnoc
-editor: na
-tags: azure-resource-manager
-ms.assetid: 
-ms.service: virtual-machines-linux
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: vm-linux
-ms.workload: infrastructure
-ms.date: 12/18/2017
-ms.author: iainfou
-ms.openlocfilehash: 80406994402b488f4172069b13dca593c470efe4
-ms.sourcegitcommit: 059dae3d8a0e716adc95ad2296843a45745a415d
+ms.author: tarcher
+ms.topic: quickstart
+ms.date: 08/22/2018
+ms.openlocfilehash: bf2116d7fc143e66309e3bbbdefc50bfa33f1521
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46974556"
 ---
-# <a name="create-a-basic-virtual-machine-in-azure-with-ansible"></a>使用 Ansible 在 Azure 中建立基本虛擬機器
-Ansible 可讓您將環境中的資源部署和設定自動化。 您可以使用 Ansible 在 Azure 中管理虛擬機器 (VM)，就像是任何其他資源一樣。 本文示範如何使用 Ansible 建立基本 VM。 您也可以了解如何[使用 Ansible 建立完整的 VM 環境](ansible-create-complete-vm.md)。
+# <a name="use-ansible-to-create-a-linux-virtual-machine-in-azure"></a>使用 Ansible 在 Azure 中建立 Linux 虛擬機器
+使用宣告式語言時，Ansible 可讓您透過 Ansible *腳本*自動建立、設定及部署 Azure 資源。 本文的各節將分別顯示 Ansible 腳本的各個區段在建立及設定 Linux 虛擬機器的不同層面時所呈現的樣貌。 [完整 Ansible 腳本](#complete-sample-ansible-playbook)會列在本文結尾處。
 
+## <a name="prerequisites"></a>必要條件
 
-## <a name="prerequisites"></a>先決條件
-若要使用 Ansible 管理 Azure 資源，您需要下列各項：
+- **Azure 訂用帳戶** - 如果您沒有 Azure 訂用帳戶，請建立[免費帳戶](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio)。
 
-- 在您的主機系統上安裝 Ansible 和 Azure Python SDK 模組。
-    - 在 [Ubuntu 16.04 LTS](ansible-install-configure.md#ubuntu-1604-lts)、[CentOS 7.3](ansible-install-configure.md#centos-73) 和 [SLES 12 SP2](ansible-install-configure.md#sles-12-sp2) 上安裝 Ansible
-- Azure 認證，並設定 Ansible 使用這些認證。
-    - [建立 Azure 認證和設定 Ansible](ansible-install-configure.md#create-azure-credentials)
-- Azure CLI 2.0.4 版或更新版本。 執行 `az --version` 以尋找版本。 
-    - 如果您需要升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 您也可以在瀏覽器中使用 [Cloud Shell](/azure/cloud-shell/quickstart)。
+- [!INCLUDE [ansible-prereqs-for-cloudshell-use-or-vm-creation1.md](../../../includes/ansible-prereqs-for-cloudshell-use-or-vm-creation1.md)]
 
+## <a name="create-a-resource-group"></a>建立資源群組
+Ansible 需要用來部署資源的資源群組。 下列範例 Ansible 腳本區段會在 `eastus` 位置中建立名為 `myResourceGroup` 的資源群組：
 
-## <a name="create-supporting-azure-resources"></a>建立支援用 Azure 資源
-在此範例中，您會建立一個 Runbook 來將 VM 部署到現有的基礎結構中。 首先，使用 [az group create](/cli/azure/vm#az_vm_create) 建立資源群組。 下列範例會在 eastus 位置建立名為 myResourceGroup 的資源群組：
-
-```azurecli
-az group create --name myResourceGroup --location eastus
+```yaml
+- name: Create resource group
+    azure_rm_resourcegroup:
+      name: myResourceGroup
+      location: eastus
 ```
 
-使用 [az network vnet create](/cli/azure/network/vnet#az_network_vnet_create) 為您的 VM 建立虛擬網路。 下列範例會建立名為 *myVnet* 的虛擬網路和名為 *mySubnet* 的子網路：
+## <a name="create-a-virtual-network"></a>建立虛擬網路
+當您建立 Azure 虛擬機器時，您必須建立[虛擬網路](/azure/virtual-network/virtual-networks-overview)或使用現有的虛擬網路。 您也需要決定如何在虛擬網路上存取您的虛擬機器。 下列範例 Ansible 腳本區段會在 `10.0.0.0/16` 位址空間中建立名為 `myVnet` 的虛擬網路：
 
-```azurecli
-az network vnet create \
-  --resource-group myResourceGroup \
-  --name myVnet \
-  --address-prefix 10.0.0.0/16 \
-  --subnet-name mySubnet \
-  --subnet-prefix 10.0.1.0/24
+```yaml
+- name: Create virtual network
+  azure_rm_virtualnetwork:
+    resource_group: myResourceGroup
+    name: myVnet
+    address_prefixes: "10.0.0.0/16"
+```
+
+所有部署到虛擬網路的 Azure 資源都會部署到虛擬網路內的[子網路](/azure/virtual-network/virtual-network-manage-subnet)。 
+
+下列範例 Ansible 腳本區段會在 `myVnet` 虛擬網路中建立名為 `mySubnet` 的子網路：
+
+```yaml
+- name: Add subnet
+  azure_rm_subnet:
+    resource_group: myResourceGroup
+    name: mySubnet
+    address_prefix: "10.0.1.0/24"
+    virtual_network: myVnet
+```
+
+## <a name="create-a-public-ip-address"></a>建立公用 IP 位址
+[公用 IP 位址](/azure/virtual-network/virtual-network-ip-addresses-overview-arm)可讓網際網路資源向 Azure 資源進行輸入通訊。 公用 IP 位址也可透過指派給資源的 IP 位址，讓 Azure 資源向網際網路和公眾對應的 Azure 服務進行輸出通訊。 位址是資源專用，直到您取消指派為止。 如果未將公用 IP 位址指派給資源，資源仍可向網際網路進行輸出通訊，但 Azure 會以動態方式指派非資源專用的可用 IP 位址。 
+
+下列範例 Ansible 腳本區段會建立名為 `myPublicIP` 的公用 IP 位址：
+
+```yaml
+- name: Create public IP address
+  azure_rm_publicipaddress:
+    resource_group: myResourceGroup
+    allocation_method: Static
+    name: myPublicIP
+```
+
+## <a name="create-a-network-security-group"></a>建立網路安全性群組
+[網路安全性群組](/azure/virtual-network/security-overview)可讓您篩選在 Azure 虛擬網路中進出於 Azure 資源的網路流量。 網路安全性群組包含安全性規則，可允許或拒絕進出於多種 Azure 資源類型的輸入和輸出網路流量。 
+
+下列範例 Ansible 腳本區段會建立名為 `myNetworkSecurityGroup` 的網路安全性群組，並定義規則以允許 TCP 通訊埠 22 上的 SSH 流量：
+
+```yaml
+- name: Create Network Security Group that allows SSH
+  azure_rm_securitygroup:
+    resource_group: myResourceGroup
+    name: myNetworkSecurityGroup
+    rules:
+      - name: SSH
+        protocol: Tcp
+        destination_port_range: 22
+        access: Allow
+        priority: 1001
+        direction: Inbound
 ```
 
 
-## <a name="create-and-run-ansible-playbook"></a>建立及執行 Ansible 腳本
-建立名為 *azure_create_vm.yml* 的 Ansible 腳本，然後貼上下列內容。 此範例會建立單一 VM 並設定 SSH 認證。 在 key_data 配對中輸入您自己的完整公開金鑰資料，如下所示：
+## <a name="create-a-virtual-network-interface-card"></a>建立虛擬網路介面卡
+虛擬網路介面卡會將您的虛擬機器連線至指定的虛擬網路、公用 IP 位址和網路安全性群組。 
+
+範例 Ansible 腳本的下列區段會建立名為 `myNIC` 的虛擬網路介面卡，並連線至您所建立的虛擬網路資源：
+
+```yaml
+- name: Create virtual network inteface card
+  azure_rm_networkinterface:
+    resource_group: myResourceGroup
+    name: myNIC
+    virtual_network: myVnet
+    subnet: mySubnet
+    public_ip_name: myPublicIP
+    security_group: myNetworkSecurityGroup
+```
+
+## <a name="create-a-virtual-machine"></a>建立虛擬機器
+最後一個步驟是建立虛擬機器，並使其使用您在本文的前面幾節中建立的所有資源。 
+
+本節介紹的範例 Ansible 腳本區段會建立名為 `myVM` 的虛擬機器，並連接名為 `myNIC` 的虛擬網路介面卡。 請將 &lt;your-key-data> 預留位置取代為您自己的完整公開金鑰資料。
+
+```yaml
+- name: Create VM
+  azure_rm_virtualmachine:
+    resource_group: myResourceGroup
+    name: myVM
+    vm_size: Standard_DS1_v2
+    admin_username: azureuser
+    ssh_password_enabled: false
+    ssh_public_keys:
+      - path: /home/azureuser/.ssh/authorized_keys
+        key_data: <your-key-data>
+    network_interfaces: myNIC
+    image:
+      offer: CentOS
+      publisher: OpenLogic
+      sku: '7.5'
+      version: latest
+```
+
+## <a name="complete-sample-ansible-playbook"></a>完整範例 Ansible 腳本
+
+此節列出您在本文的步驟中建置的整個範例 Ansible 腳本。 
 
 ```yaml
 - name: Create Azure VM
   hosts: localhost
   connection: local
   tasks:
+  - name: Create resource group
+    azure_rm_resourcegroup:
+      name: myResourceGroup
+      location: eastus
+  - name: Create virtual network
+    azure_rm_virtualnetwork:
+      resource_group: myResourceGroup
+      name: myVnet
+      address_prefixes: "10.0.0.0/16"
+  - name: Add subnet
+    azure_rm_subnet:
+      resource_group: myResourceGroup
+      name: mySubnet
+      address_prefix: "10.0.1.0/24"
+      virtual_network: myVnet
+  - name: Create public IP address
+    azure_rm_publicipaddress:
+      resource_group: myResourceGroup
+      allocation_method: Static
+      name: myPublicIP
+    register: output_ip_address
+  - name: Dump public IP for VM which will be created
+    debug:
+      msg: "The public IP is {{ output_ip_address.state.ip_address }}."
+  - name: Create Network Security Group that allows SSH
+    azure_rm_securitygroup:
+      resource_group: myResourceGroup
+      name: myNetworkSecurityGroup
+      rules:
+        - name: SSH
+          protocol: Tcp
+          destination_port_range: 22
+          access: Allow
+          priority: 1001
+          direction: Inbound
+  - name: Create virtual network inteface card
+    azure_rm_networkinterface:
+      resource_group: myResourceGroup
+      name: myNIC
+      virtual_network: myVnet
+      subnet: mySubnet
+      public_ip_name: myPublicIP
+      security_group: myNetworkSecurityGroup
   - name: Create VM
     azure_rm_virtualmachine:
       resource_group: myResourceGroup
@@ -70,37 +190,93 @@ az network vnet create \
       vm_size: Standard_DS1_v2
       admin_username: azureuser
       ssh_password_enabled: false
-      ssh_public_keys: 
+      ssh_public_keys:
         - path: /home/azureuser/.ssh/authorized_keys
-          key_data: "ssh-rsa AAAAB3Nz{snip}hwhqT9h"
+          key_data: <your-key-data>
+      network_interfaces: myNIC
       image:
         offer: CentOS
         publisher: OpenLogic
-        sku: '7.3'
+        sku: '7.5'
         version: latest
 ```
 
-若要使用 Ansible 建立 VM，請如下所示執行腳本：
+## <a name="run-the-sample-ansible-playbook"></a>執行範例 Ansible 腳本
 
-```bash
-ansible-playbook azure_create_vm.yml
-```
+本節會引導您執行本文中介紹的範例 Ansible 腳本。
 
-輸出看起來會類似下列範例，顯示已成功建立 VM：
+1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
 
-```bash
-PLAY [Create Azure VM] ****************************************************
+1. 開啟 [Cloud Shell](/azure/cloud-shell/overview)。
 
-TASK [Gathering Facts] ****************************************************
-ok: [localhost]
+1. 建立名為 `azure_create_complete_vm.yml` 的檔案 (以包含您腳本)，然後在 VI 編輯器中加以開啟，如下所示：
 
-TASK [Create VM] **********************************************************
-changed: [localhost]
+  ```azurecli-interactive
+  vi azure_create_complete_vm.yml
+  ```
 
-PLAY RECAP ****************************************************************
-localhost                  : ok=2    changed=1    unreachable=0    failed=0
-```
+1. 選取 **I** 鍵輸入插入模式。
 
+1. 將[完整範例 Ansible 腳本](#complete-sample-ansible-playbook)貼到編輯器中。
+
+1. 選取 **Esc** 鍵結束插入模式。
+
+1. 輸入下列命令來儲存檔案及結束 vi 編輯器：
+
+    ```bash
+    :wq
+    ```
+
+1. 執行範例 Ansible 腳本。
+
+  ```bash
+  ansible-playbook azure_create_complete_vm.yml
+  ```
+
+1. 輸出看起來會類似於下列內容，在其中您可以看到已成功建立虛擬機器：
+
+  ```bash
+  PLAY [Create Azure VM] ****************************************************
+
+  TASK [Gathering Facts] ****************************************************
+  ok: [localhost]
+
+  TASK [Create resource group] *********************************************
+  changed: [localhost]
+
+  TASK [Create virtual network] *********************************************
+  changed: [localhost]
+
+  TASK [Add subnet] *********************************************************
+  changed: [localhost]
+
+  TASK [Create public IP address] *******************************************
+  changed: [localhost]
+
+  TASK [Dump public IP for VM which will be created] ********************************************************************
+  ok: [localhost] => {
+      "msg": "The public IP is <ip-address>."
+  }
+
+  TASK [Create Network Security Group that allows SSH] **********************
+  changed: [localhost]
+
+  TASK [Create virtual network inteface card] *******************************
+  changed: [localhost]
+
+  TASK [Create VM] **********************************************************
+  changed: [localhost]
+
+  PLAY RECAP ****************************************************************
+  localhost                  : ok=8    changed=7    unreachable=0    failed=0
+  ```
+
+1. SSH 命令可用來存取您的 Linux VM。 請將 &lt;ip-address> 預留位置取代為先前步驟中的 IP 位址。
+
+  ```bash
+  ssh azureuser@<ip-address>
+  ```
 
 ## <a name="next-steps"></a>後續步驟
-此範例會在現有的資源群組中建立 VM，並已部署虛擬網路。 如需如何使用 Ansible 建立支援資源 (例如虛擬網路和網路安全性群組規則) 的更詳細範例，請參閱[使用 Ansible 建立完整的 VM 環境](ansible-create-complete-vm.md)。
+> [!div class="nextstepaction"] 
+> [使用 Ansible 在 Azure 中管理 Linux 虛擬機器](./ansible-manage-linux-vm.md)

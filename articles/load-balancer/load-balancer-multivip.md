@@ -1,6 +1,6 @@
 ---
-title: "單一雲端服務有多重 VIP"
-description: "MultiVIP 的概觀以及如何在雲端服務上設定多重 VIP"
+title: 單一雲端服務有多重 VIP
+description: MultiVIP 的概觀以及如何在雲端服務上設定多重 VIP
 services: load-balancer
 documentationcenter: na
 author: KumudD
@@ -18,6 +18,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23020843"
 ---
 # <a name="configure-multiple-vips-for-a-cloud-service"></a>為單一雲端服務設定多個 VIP
 

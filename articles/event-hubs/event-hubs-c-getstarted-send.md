@@ -1,31 +1,32 @@
 ---
-title: "使用 C 將事件傳送至 Azure 事件中樞 | Microsoft Docs"
-description: "使用 C 將事件傳送至 Azure 事件中樞"
+title: 使用 C 將事件傳送至 Azure 事件中樞 | Microsoft Docs
+description: 使用 C 將事件傳送至 Azure 事件中樞
 services: event-hubs
-documentationcenter: 
-author: sethmanheim
+documentationcenter: ''
+author: ShubhaVijayasarathy
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: event-hubs
 ms.workload: na
 ms.tgt_pltfrm: c
 ms.devlang: csharp
 ms.topic: article
 ms.date: 12/4/2017
-ms.author: sethm
-ms.openlocfilehash: 2b714c5de96a8fb7ed66a30c62daaa38b84fdc5b
-ms.sourcegitcommit: 7136d06474dd20bb8ef6a821c8d7e31edf3a2820
+ms.author: shvija
+ms.openlocfilehash: 25da8255af6a23a4f01db5a1ec4f1ddcd2eeb1bb
+ms.sourcegitcommit: d0ea925701e72755d0b62a903d4334a3980f2149
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/05/2017
+ms.lasthandoff: 08/09/2018
+ms.locfileid: "40002452"
 ---
 # <a name="send-events-to-azure-event-hubs-using-c"></a>使用 C 將事件傳送至 Azure 事件中樞
 
 ## <a name="introduction"></a>簡介
 事件中樞是高度可擴充的擷取系統，每秒可擷取數百萬個事件，讓應用程式能處理並分析已連線裝置與應用程式產生的大量資料。 資料收集到事件中樞後，您可以使用任何即時分析提供者或儲存體叢集來轉換與儲存資料。
 
-如需詳細資訊，請參閱 [事件中樞概觀][Event Hubs overview]。
+如需詳細資訊，請參閱 [事件中樞概觀](https://docs.microsoft.com/azure/event-hubs/event-hubs-overview)。
 
 本教學課程說明如何使用以 C 撰寫的主控台應用程式將事件傳送到事件中樞。若要了解接收事件相關資訊，請按一下左側目錄中適當的接收語言。
 

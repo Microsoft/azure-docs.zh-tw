@@ -3,7 +3,7 @@ title: 在不同 Azure Stack 開發套件環境中的兩個虛擬網路之間建
 description: 雲端系統管理員用來在兩個單節點「Azure Stack 開發套件」環境之間建立站對站 VPN 連線的逐步程序。
 services: azure-stack
 documentationcenter: ''
-author: brenduns
+author: sethmanheim
 manager: femila
 editor: ''
 ms.assetid: 3f1b4e02-dbab-46a3-8e11-a777722120ec
@@ -12,14 +12,16 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 7/10/2017
-ms.author: brenduns
+ms.date: 09/12/2018
+ms.author: sethm
 ms.reviewer: scottnap
-ms.openlocfilehash: 8bb10be63ef31ebe6241c15a79dafe71923a4cf7
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ROBOTS: NOINDEX
+ms.openlocfilehash: b17b1b077a1acac5ddb0e9eea8c4a2cf44697979
+ms.sourcegitcommit: 4b1083fa9c78cd03633f11abb7a69fdbc740afd1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 10/10/2018
+ms.locfileid: "49078897"
 ---
 # <a name="create-a-site-to-site-vpn-connection-between-two-virtual-networks-in-different-azure-stack-development-kit-environments"></a>在不同 Azure Stack 開發套件環境中的兩個虛擬網路之間建立站對站 VPN 連線
 ## <a name="overview"></a>概觀
@@ -34,7 +36,7 @@ ms.lasthandoff: 03/23/2018
 若要完成連線組態，請務必在開始前備妥下列項目：
 
 * 兩部符合如[快速入門：評估 Azure Stack 開發套件](azure-stack-deploy-overview.md)所述之 Azure Stack 開發套件硬體需求的伺服器和其他先決條件。 
-* [Azure Stack 開發套件](https://azure.microsoft.com/en-us/overview/azure-stack/try/)部署套件。
+* [Azure Stack 開發套件](https://azure.microsoft.com/overview/azure-stack/try/)部署套件。
 
 ## <a name="deploy-the-azure-stack-development-kit-environments"></a>部署 Azure Stack 開發套件環境
 若要完成連線組態，您必須部署兩個「Azure Stack 開發套件」環境。
@@ -90,10 +92,7 @@ ms.lasthandoff: 03/23/2018
 
 ### <a name="create-the-virtual-network-and-vm-subnet"></a>建立虛擬網路和 VM 子網路
 1. 使用租用戶帳戶來登入使用者入口網站。
-2. 在使用者入口網站中，選取 [新增]。
-
-    ![建立新的虛擬網路](media/azure-stack-create-vpn-connection-one-node-tp2/image3.png)
-
+2. 在使用者入口網站中，選取 [+ 建立資源]。
 3. 移至 [Marketplace]，然後選取 [網路]。
 4. 選取 [虛擬網路]。
 5. 針對 [名稱]、[位址空間]、[子網路名稱] 及 [子網路位址範圍]，使用先前網路組態表中顯示的值。
@@ -116,7 +115,7 @@ ms.lasthandoff: 03/23/2018
 6. 選取 [確定] 以建立閘道子網路。
 
 ### <a name="create-the-virtual-network-gateway"></a>建立虛擬網路閘道
-1. 在 Azure 入口網站中，選取 [新增]。 
+1. 在 Azure 入口網站中，選取 [+ 建立資源]。 
 2. 移至 [Marketplace]，然後選取 [網路]。
 3. 從網路資源清單中，選取 [虛擬網路閘道]。
 4. 在 [名稱] 中，輸入 **GW1**。
@@ -138,7 +137,7 @@ ms.lasthandoff: 03/23/2018
 
 ### <a name="create-the-local-network-gateway-resource"></a>建立區域網路閘道資源
 1. 登入 POC1 的 Azure Stack 實體機器。
-2. 在使用者入口網站中，選取 [新增]。
+2. 在使用者入口網站中，選取 [+ 建立資源]。
 3. 移至 [Marketplace]，然後選取 [網路]。
 4. 從資源清單中，選取 [區域網路閘道]。
 5. 在 [名稱] 中，輸入 **POC2-GW**。
@@ -147,7 +146,7 @@ ms.lasthandoff: 03/23/2018
 8. 確認您的 [訂用帳戶]、[資源群組] 和 [位置] 正確無誤，然後選取 [建立]。
 
 ### <a name="create-the-connection"></a>建立連線
-1. 在使用者入口網站中，選取 [新增]。
+1. 在使用者入口網站中，選取 [+ 建立資源]。
 2. 移至 [Marketplace]，然後選取 [網路]。
 3. 從資源清單中，選取 [連線]。
 4. 在 [基本] 設定刀鋒視窗上，針對 [連線類型]，選取 [站對站 (IPSec)]。
@@ -161,7 +160,7 @@ ms.lasthandoff: 03/23/2018
 ### <a name="create-a-vm"></a>建立 VM
 若要驗證透過 VPN 連線傳輸的資料，您將需要虛擬機器，以在每個「Azure Stack 開發套件」中傳送和接收資料。 立即在 POC1 中建立虛擬機器，然後將它放在您虛擬網路的 VM 子網路上。
 
-1. 在 Azure 入口網站中，選取 [新增]。
+1. 在 Azure 入口網站中，選取 [+ 建立資源]。
 2. 移至 [Marketplace]，然後選取 [計算]。
 3. 在虛擬機器映像清單中，選取 [Windows Server 2016 Datacenter 評估版] 映像。
 4. 在 [基本] 刀鋒視窗的 [名稱] 中，輸入 **VM01**。
@@ -183,7 +182,7 @@ ms.lasthandoff: 03/23/2018
 ### <a name="create-the-virtual-network-and-vm-subnet"></a>建立虛擬網路和 VM 子網路
 
 1. 使用租用戶帳戶來登入。
-2. 在使用者入口網站中，選取 [新增]。
+2. 在使用者入口網站中，選取 [+ 建立資源]。
 3. 移至 [Marketplace]，然後選取 [網路]。
 4. 選取 [虛擬網路]。
 5. 使用先前網路組態表中顯示的資訊，來指定 POC2 [名稱]、[位址空間]、[子網路名稱] 及 [子網路位址範圍] 的值。
@@ -203,7 +202,7 @@ ms.lasthandoff: 03/23/2018
 6. 選取 [確定] 以建立閘道子網路。
 
 ### <a name="create-the-virtual-network-gateway"></a>建立虛擬網路閘道
-1. 在 Azure 入口網站中，選取 [新增]。  
+1. 在 Azure 入口網站中，選取 [+ 建立資源]。  
 2. 移至 [Marketplace]，然後選取 [網路]。
 3. 從網路資源清單中，選取 [虛擬網路閘道]。
 4. 在 [名稱] 中，輸入 **GW2**。
@@ -216,7 +215,7 @@ ms.lasthandoff: 03/23/2018
 
 ### <a name="create-the-local-network-gateway-resource"></a>建立區域網路閘道資源
 
-1. 在 POC2 使用者入口網站中，選取 [新增]。 
+1. 在 POC2 使用者入口網站中，選取 [+ 建立資源]。 
 4. 移至 [Marketplace]，然後選取 [網路]。
 5. 從資源清單中，選取 [區域網路閘道]。
 6. 在 [名稱] 中，輸入 **POC1-GW**。
@@ -225,7 +224,7 @@ ms.lasthandoff: 03/23/2018
 9. 確認您的 [訂用帳戶]、[資源群組] 和 [位置] 正確無誤，然後選取 [建立]。
 
 ## <a name="create-the-connection"></a>建立連線
-1. 在使用者入口網站中，選取 [新增]。 
+1. 在使用者入口網站中，選取 [+ 建立資源]。 
 2. 移至 [Marketplace]，然後選取 [網路]。
 3. 從資源清單中，選取 [連線]。
 4. 在 [基本] 設定刀鋒視窗上，針對 [連線類型]，選擇 [站對站 (IPSec)]。
@@ -239,7 +238,7 @@ ms.lasthandoff: 03/23/2018
 ## <a name="create-a-virtual-machine"></a>建立虛擬機器
 請立即在 POC2 中建立虛擬機器，然後將它放在您虛擬網路的 VM 子網路上。
 
-1. 在 Azure 入口網站中，選取 [新增]。
+1. 在 Azure 入口網站中，選取 [+ 建立資源]。
 2. 移至 [Marketplace]，然後選取 [計算]。
 3. 在虛擬機器映像清單中，選取 [Windows Server 2016 Datacenter 評估版] 映像。
 4. 在 [基本] 刀鋒視窗上，針對 [名稱]，輸入 **VM02**。

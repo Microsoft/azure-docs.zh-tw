@@ -9,16 +9,17 @@ editor: ''
 ms.assetid: ed324f23-242f-47b7-af1a-e55c839e7d5d
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/18/2017
 ms.author: masnider
-ms.openlocfilehash: aeda1184610398c0445238ea2e7ccbea866ed418
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: 88c563876940da14f75d7ab30aa3f79a8f6dd870
+ms.sourcegitcommit: eb75f177fc59d90b1b667afcfe64ac51936e2638
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 05/16/2018
+ms.locfileid: "34209367"
 ---
 # <a name="scaling-in-service-fabric"></a>Service Fabric 中的縮放比例
 Azure Service Fabric 可管理叢集節點上的服務、分割區和複本，讓您輕鬆建置可調整的應用程式。 在相同硬體上執行許多工作負載時，會獲得最大資源使用量，還可以針對您選擇調整工作負載的方式提供彈性。 這個 Channel 9 影片說明如何建置可調整的微服務應用程式：
@@ -117,12 +118,7 @@ Service Fabric 支援資料分割。 分割區會將服務分割成數個邏輯�
 ## <a name="scaling-by-adding-and-removing-nodes-from-the-cluster"></a>透過新增和移除叢集中的節點進行縮放比例 
 使用 Service Fabric 縮放比例的另一個選項是變更叢集的大小。 變更叢集大小表示新增或移除叢集中一個或多個節點類型的節點。 例如，試想一個情況，叢集中所有的節點都會作用。 這表示叢集的資源幾乎全部耗用。 在此情況下，縮放比例的最佳方式就是將多個節點新增到叢集。 一旦新的節點加入叢集，Service Fabric 叢集 Service Fabric 會將服務移動至這些節點，使現有節點上的總負載較低。 針對執行個體計數 = -1 的無狀態服務，會自動建立多個服務執行個體。 這可讓某些呼叫從現有的節點移至新的節點。 
 
-透過 Service Fabric Azure Resource Manager PowerShell 模組，即可完成新增和移除叢集節點。
-
-```posh
-Add-AzureRmServiceFabricNode -ResourceGroupName $resourceGroupName -Name $clusterResourceName -NodeType $nodeTypeName  -NumberOfNodesToAdd 5 
-Remove-AzureRmServiceFabricNode -ResourceGroupName $resourceGroupName -Name $clusterResourceName -NodeType $nodeTypeName -NumberOfNodesToRemove 5
-```
+如需詳細資訊，請參閱[叢集調整](service-fabric-cluster-scaling.md)。
 
 ## <a name="putting-it-all-together"></a>總整理
 讓我們根據這裡討論的所有概念來探討範例。 假設下列服務︰您嘗試建置一個服務作為通訊錄，以儲存名稱和連絡人資訊。 

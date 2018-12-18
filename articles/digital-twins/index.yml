@@ -1,0 +1,37 @@
+### YamlMime:YamlDocument
+ms.openlocfilehash: 74743b3e9e32a844098f3097e3c036b38c391c02
+ms.sourcegitcommit: 74941e0d60dbfd5ab44395e1867b2171c4944dbe
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/15/2018
+ms.locfileid: "49322990"
+documentType: LandingData
+title: Azure Digital Twins 文件
+metadata:
+  title: Azure Digital Twins 文件 - 教學課程和 API 參考 | Microsoft Docs
+  description: 使用 Azure Digital Twins 建立智慧型空間解決方案。
+  author: dsk-2015
+  manager: timlt
+  ms.service: digital-twins
+  services: digital-twins
+  ms.topic: landing-page
+  ms.date: 10/15/2018
+  ms.author: dkshir
+abstract:
+  description: 了解如何使用 Azure Digital Twins 讓人員、地點及項目相互聯繫，並利用空間智慧建置 IoT 解決方案。 逐步了解快速入門及教學課程，以監控虛構的智慧型建築、深入學習各項概念並建立新一代的 IoT 解決方案，以作為實體環境的模型。
+sections:
+- title: 5 分鐘快速入門
+  items:
+  - type: paragraph
+    text: 了解如何使用 Azure Digital Twins .NET 範例，<a href="quickstart-view-occupancy-dotnet">找出空氣品質良好的閒置空間</a>。
+- title: 逐步教學課程
+  items:
+  - type: paragraph
+    text: 了解如何自訂並使用 Azure Digital Twins 解決方案來監控您的設備。
+  - type: list
+    style: ordered
+    items:
+    - html: <a href="/azure/digital-twins/tutorial-facilities-setup">佈建範例建築</a>
+    - html: <a href="/azure/digital-twins/tutorial-facilities-udf">監控建築物的內部情況</a>
+    - html: <a href="/azure/digital-twins/tutorial-facilities-events">接收建築物發出的通知</a>
+    - html: <a href="/azure/digital-twins/tutorial-facilities-analyze">分析建築物內的活動</a>

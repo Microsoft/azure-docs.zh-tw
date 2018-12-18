@@ -1,31 +1,27 @@
 ---
-title: 透過 Azure PowerShell 開始使用 Azure Data Lake Analytics | Microsoft Docs
-description: '使用 Azure PowerShell 建立 Data Lake Analytics 帳戶、使用 U-SQL 建立 Data Lake Analytics 作業，以及提交作業。 '
+title: 使用 Azure PowerShell 開始使用 Azure Data Lake Analytics
+description: 使用 Azure PowerShell 來建立 Azure Data Lake Analytics 帳戶和提交 U-SQL 作業。
 services: data-lake-analytics
-documentationcenter: ''
-author: saveenr
-manager: saveenr
-editor: cgronlun
-ms.assetid: 8a4e901e-9656-4a60-90d0-d78ff2f00656
 ms.service: data-lake-analytics
-ms.devlang: na
-ms.topic: get-started-article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 05/04/2017
+author: saveenr
 ms.author: saveenr
-ms.openlocfilehash: f37a4563a758d442760f4a6be3c11bb9a9ddfc28
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.reviewer: jasonwhowell
+ms.assetid: 8a4e901e-9656-4a60-90d0-d78ff2f00656
+ms.topic: conceptual
+ms.date: 05/04/2017
+ms.openlocfilehash: 4b4fa05164db402122efc745302dffe8c130b97b
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43048063"
 ---
 # <a name="get-started-with-azure-data-lake-analytics-using-azure-powershell"></a>使用 Azure PowerShell 開始使用 Azure Data Lake Analytics
 [!INCLUDE [get-started-selector](../../includes/data-lake-analytics-selector-get-started.md)]
 
 了解如何使用 Azure PowerShell 建立 Azure Data Lake Analytics 帳戶，然後提交和執行 U-SQL 作業。 如需有關 Data Lake Analytics 的詳細資訊，請參閱 [Azure Data Lake Analytics 概觀](data-lake-analytics-overview.md)。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 開始進行本教學課程之前，您必須具備下列資訊：
 
@@ -39,13 +35,13 @@ ms.lasthandoff: 03/16/2018
 若要使用訂用帳戶名稱登入：
 
 ```
-Login-AzureRmAccount -SubscriptionName "ContosoSubscription"
+Connect-AzureRmAccount -SubscriptionName "ContosoSubscription"
 ```
 
 除了訂用帳戶名稱之外，您也可以使用訂用帳戶識別碼來登入：
 
 ```
-Login-AzureRmAccount -SubscriptionId "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+Connect-AzureRmAccount -SubscriptionId "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 ```
 
 如果成功，這個命令的輸出看起來會類似下列文字：
@@ -96,34 +92,33 @@ OUTPUT @a
 "@
 ```
 
-提交指令碼。
+使用 `Submit-AdlJob` Cmdlet 和 `-Script` 參數提交指令碼文字。
 
 ```
-$job = Submit-AdlJob -Account $adla -Name "My Job" –Script $script
+$job = Submit-AdlJob -Account $adla -Name "My Job" �Script $script
 ```
 
-或者，您可以將指令碼儲存為檔案，並使用下列命令提交：
+或者，您也可以使用 `-ScriptPath` 參數提交指令檔：
 
 ```
 $filename = "d:\test.usql"
 $script | out-File $filename
-$job = Submit-AdlJob -Account $adla -Name "My Job" –ScriptPath $filename
+$job = Submit-AdlJob -Account $adla -Name "My Job" �ScriptPath $filename
 ```
 
-
-取得特定作業的狀態。 繼續使用這個 Cmdlet，直到您看到作業完成為止。
+使用 `Get-AdlJob` 取得作業狀態。 
 
 ```
 $job = Get-AdlJob -Account $adla -JobId $job.JobId
 ```
 
-您可以使用 Wait-AdlJob Cmdlet，而不需在作業完成前反覆呼叫 Get-AdlAnalyticsJob。
+使用 `Wait-AdlJob` Cmdlet，而不是一再呼叫 Get-AdlJob 直到作業完成。
 
 ```
 Wait-AdlJob -Account $adla -JobId $job.JobId
 ```
 
-下載輸出檔案。
+使用 `Export-AdlStoreItem` 下載輸出檔案。
 
 ```
 Export-AdlStoreItem -Account $adls -Path "/data.csv" -Destination "C:\data.csv"

@@ -6,16 +6,22 @@ manager: craigg
 author: stevestein
 ms.service: sql-database
 ms.custom: scale out apps
-ms.topic: article
-ms.date: 10/24/2016
+ms.topic: conceptual
+ms.date: 06/14/2018
 ms.author: sstein
-ms.openlocfilehash: e6a86a3571301f6fa2a356714721daa141e696bf
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: 395bbf50373d3a6e3848fba9fd3db0d6989023f4
+ms.sourcegitcommit: c29d7ef9065f960c3079660b139dd6a8348576ce
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/13/2018
+ms.locfileid: "35633366"
 ---
 # <a name="uninstall-elastic-database-jobs-components"></a>解除安裝彈性資料庫工作元件
+
+
+[!INCLUDE [elastic-database-jobs-deprecation](../../includes/sql-database-elastic-jobs-deprecate.md)]
+
+
 **彈性資料庫工作**元件可以使用 Azure 入口網站或 PowerShell 加以解除安裝。
 
 ## <a name="uninstall-elastic-database-jobs-components-using-the-azure-portal"></a>使用 Azure 入口網站解除安裝彈性資料庫工作元件

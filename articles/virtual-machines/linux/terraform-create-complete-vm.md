@@ -4,7 +4,7 @@ description: 了解如何使用 Terraform 在 Azure 中建立及管理完整的 
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: echuvyrov
-manager: timlt
+manager: jeconnoc
 editor: na
 tags: azure-resource-manager
 ms.assetid: ''
@@ -15,11 +15,12 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 09/14/2017
 ms.author: echuvyrov
-ms.openlocfilehash: aaa8235d5fe47e72963ef4942876ea9827a38ef6
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: dfebda8f92837f8573fb3362c9210bce9b70d23d
+ms.sourcegitcommit: b5ac31eeb7c4f9be584bb0f7d55c5654b74404ff
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 08/23/2018
+ms.locfileid: "42751560"
 ---
 # <a name="create-a-complete-linux-virtual-machine-infrastructure-in-azure-with-terraform"></a>在 Azure 中使用 Terraform 建立完整的 Linux 虛擬機器基礎結構
 
@@ -74,7 +75,8 @@ resource "azurerm_virtual_network" "myterraformnetwork" {
     }
 }
 ```
-：下列區段會在 *myVnet* 虛擬網路中建立名為 *mySubnet* 的子網路
+
+下列區段會在 *myVnet* 虛擬網路中建立名為 *mySubnet* 的子網路：
 
 ```tf
 resource "azurerm_subnet" "myterraformsubnet" {
@@ -107,11 +109,11 @@ resource "azurerm_public_ip" "myterraformpublicip" {
 網路安全性群組會控制進出 VM 的網路流量。 以下區段會建立名為 *myNetworkSecurityGroup* 的網路安全性群組，並定義規則以允許 TCP 通訊埠 22 上的 SSH 流量：
 
 ```tf
-resource "azurerm_network_security_group" "temyterraformpublicipnsg" {
+resource "azurerm_network_security_group" "myterraformnsg" {
     name                = "myNetworkSecurityGroup"
     location            = "eastus"
     resource_group_name = "${azurerm_resource_group.myterraformgroup.name}"
-    ;
+    
     security_rule {
         name                       = "SSH"
         priority                   = 1001

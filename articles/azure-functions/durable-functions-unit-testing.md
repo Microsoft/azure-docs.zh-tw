@@ -14,11 +14,12 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 02/28/2018
 ms.author: kadimitr
-ms.openlocfilehash: a8d2a2281dcaf6e5e308ad4a2aafb167f9ba9121
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: 7de9a6f0d4dfcb45932b89504c0d38c3c70283e9
+ms.sourcegitcommit: e221d1a2e0fb245610a6dd886e7e74c362f06467
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 05/07/2018
+ms.locfileid: "33762755"
 ---
 # <a name="durable-functions-unit-testing"></a>Durable Functions 單元測試
 
@@ -128,7 +129,7 @@ ms.lasthandoff: 03/16/2018
 
 ## <a name="unit-testing-orchestrator-functions"></a>針對協調器函式進行單元測試
 
-針對協調器函式進行單元測試更加有趣，因為它們通常有更多商務邏輯。 目前，協調器函式只能在 C# 中實作。
+針對協調器函式進行單元測試更加有趣，因為它們通常有更多商務邏輯。
 
 在本節中，單元測試會驗證 `E1_HelloSequence` 協調器函式的輸出：
 

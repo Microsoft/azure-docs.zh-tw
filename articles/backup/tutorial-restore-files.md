@@ -1,26 +1,21 @@
 ---
-title: "使用 Azure 備份將檔案還原到 VM | Microsoft Docs"
-description: "了解如何使用備份與復原服務，在 Azure VM 上執行檔案層級還原。"
+title: 使用 Azure 備份將檔案還原到 VM
+description: 了解如何使用備份與復原服務，在 Azure VM 上執行檔案層級還原。
 services: backup
-documentationcenter: virtual-machines
 author: markgalioto
 manager: carmonm
-editor: 
 tags: azure-resource-manager, virtual-machine-backup
-ms.assetid: 
 ms.service: backup
-ms.devlang: na
 ms.topic: tutorial
-ms.tgt_pltfrm: vm-linux
-ms.workload: infrastructure
 ms.date: 2/14/2018
-ms.author: iainfou
+ms.author: markgal
 ms.custom: mvc
-ms.openlocfilehash: 77084c5663f9e12347c243c4e78160657d7443b2
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.openlocfilehash: 2bd5e3e022c0e780b1efede6facb8924fa6cde4f
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46998180"
 ---
 # <a name="restore-files-to-a-virtual-machine-in-azure"></a>在 Azure 中將檔案還原到虛擬機器
 Azure 備份會建立復原點，並儲存在異地備援復原保存庫。 當您從復原點還原時，可以還原整個 VM 或個別檔案。 本文詳細說明如何還原個別檔案。 在本教學課程中，您將了解如何：
@@ -32,10 +27,10 @@ Azure 備份會建立復原點，並儲存在異地備援復原保存庫。 當�
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
-如果您選擇在本機安裝和使用 CLI，本教學課程會要求您執行 Azure CLI 2.0.18 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0](/cli/azure/install-azure-cli)。 
+如果您選擇在本機安裝和使用 CLI，本教學課程會要求您執行 Azure CLI 2.0.18 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI](/cli/azure/install-azure-cli)。 
 
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 本教學課程需要已使用 Azure 備份保護的 Linux VM。 若要模擬意外刪除檔案和復原程序，您可以從網頁伺服器刪除頁面。 如果您需要執行網頁伺服器並已使用 Azure 備份保護的 Linux VM，請參閱[使用 CLI 在 Azure 中備份虛擬機器](quick-backup-vm-cli.md)。
 
 
@@ -50,7 +45,7 @@ Azure 備份會建立復原點，並儲存在異地備援復原保存庫。 當�
 ## <a name="delete-a-file-from-a-vm"></a>從 VM 刪除檔案
 如果您意外刪除或變更檔案，您可以從復原點還原個別檔案。 此程序可讓您瀏覽復原點中備份的檔案，只還原所需的檔案。 在此範例中，我們會從網頁伺服器刪除檔案，以示範檔案層級復原程序。
 
-1. 若要連線到您的 VM，請使用 [az vm show](/cli/azure/vm?view=azure-cli-latest#az_vm_show) 取得 VM 的 IP 位址：
+1. 若要連線到您的 VM，請使用 [az vm show](/cli/azure/vm?view=azure-cli-latest#az-vm-show) 取得 VM 的 IP 位址：
 
      ```azurecli-interactive
      az vm show --resource-group myResourceGroup --name myVM -d --query [publicIps] --o tsv
@@ -86,7 +81,7 @@ Azure 備份會建立復原點，並儲存在異地備援復原保存庫。 當�
 ## <a name="generate-file-recovery-script"></a>產生檔案復原指令碼
 為了還原您的檔案，Azure 備份會提供指令碼，以在作為本機磁碟區連線到復原點的 VM 上執行。 您可以瀏覽此本機磁碟機、將檔案還原到 VM 本身，然後中斷復原點連線。 Azure 備份會根據排程和保留的指派原則，繼續備份您的資料。
 
-1. 若要列出您 VM 的復原點，請使用 [az backup recoverypoint list](https://docs.microsoft.com/cli/azure/backup/recoverypoint?view=azure-cli-latest#az_backup_recoverypoint_list)。 在此範例中，我們為 *myRecoveryServicesVault* 中受保護的 VM (名為 *myVM*) 選取最近的復原點：
+1. 若要列出您 VM 的復原點，請使用 [az backup recoverypoint list](https://docs.microsoft.com/cli/azure/backup/recoverypoint?view=azure-cli-latest#az-backup-recoverypoint-list)。 在此範例中，我們為 *myRecoveryServicesVault* 中受保護的 VM (名為 *myVM*) 選取最近的復原點：
 
     ```azurecli-interactive
     az backup recoverypoint list \
@@ -98,7 +93,7 @@ Azure 備份會建立復原點，並儲存在異地備援復原保存庫。 當�
         --output tsv
     ```
 
-2. 若要取得將復原點連線或掛接到 VM 的指令碼，請使用 [az backup restore files mount-rp](https://docs.microsoft.com/cli/azure/backup/restore/files?view=azure-cli-latest#az_backup_restore_files_mount_rp)。 下列範例會取得 *myRecoveryServicesVault* 中受保護之 VM (名為 *myVM*) 的指令碼。
+2. 若要取得將復原點連線或掛接到 VM 的指令碼，請使用 [az backup restore files mount-rp](https://docs.microsoft.com/cli/azure/backup/restore/files?view=azure-cli-latest#az-backup-restore-files-mount-rp)。 下列範例會取得 *myRecoveryServicesVault* 中受保護之 VM (名為 *myVM*) 的指令碼。
 
     以您在上一個命令中取得的復原點名稱取代 *myRecoveryPointName*：
 
@@ -145,7 +140,7 @@ Azure 備份會建立復原點，並儲存在異地備援復原保存庫。 當�
     ./myVM_we_1571974050985163527.sh
     ```
 
-    當指令碼執行時，系統會提示您輸入密碼以存取復原點。 輸入透過上一個 [az backup restore files mount-rp](https://docs.microsoft.com/cli/azure/backup/restore/files?view=azure-cli-latest#az_backup_restore_files_mount_rp) 命令產生復原指令碼之輸出中所顯示的密碼。
+    當指令碼執行時，系統會提示您輸入密碼以存取復原點。 輸入透過上一個 [az backup restore files mount-rp](https://docs.microsoft.com/cli/azure/backup/restore/files?view=azure-cli-latest#az-backup-restore-files-mount-rp) 命令產生復原指令碼之輸出中所顯示的密碼。
 
     指令碼的輸出會提供復原點的路徑。 下列範例輸出顯示復原點掛接在 */home/azureuser/myVM-20170919213536/Volume1*：
 
@@ -185,7 +180,7 @@ Azure 備份會建立復原點，並儲存在異地備援復原保存庫。 當�
     exit
     ```
 
-8. 使用 [az backup restore files unmount-rp](https://docs.microsoft.com/cli/azure/backup/restore/files?view=azure-cli-latest#az_backup_restore_files_unmount_rp) 從您的 VM 卸載復原點。 下列範例會從 *myRecoveryServicesVault* 中名為 *myVM* 的 VM 卸載復原點。
+8. 使用 [az backup restore files unmount-rp](https://docs.microsoft.com/cli/azure/backup/restore/files?view=azure-cli-latest#az-backup-restore-files-unmount-rp) 從您的 VM 卸載復原點。 下列範例會從 *myRecoveryServicesVault* 中名為 *myVM* 的 VM 卸載復原點。
 
     以您在先前命令中取得的復原點名稱取代 *myRecoveryPointName*：
     

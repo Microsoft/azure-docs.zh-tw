@@ -1,25 +1,19 @@
 ---
-title: "Azure Analysis Services 教學課程第 13 課：部署 | Microsoft Docs"
-description: "說明如何將教學課程專案部署至 Azure Analysis Services。"
-services: analysis-services
-documentationcenter: 
-author: Minewiskan
+title: Azure Analysis Services 教學課程第 13 課：部署 | Microsoft Docs
+description: 說明如何將教學課程專案部署至 Azure Analysis Services。
+author: minewiskan
 manager: kfile
-editor: 
-tags: 
-ms.assetid: 
-ms.service: analysis-services
-ms.devlang: NA
-ms.topic: get-started-article
-ms.tgt_pltfrm: NA
-ms.workload: na
-ms.date: 01/08/2018
+ms.service: azure-analysis-services
+ms.topic: conceptual
+ms.date: 07/03/2018
 ms.author: owend
-ms.openlocfilehash: 251795f394d30418e1c03ec7b92fec40a75b2c3d
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.reviewer: minewiskan
+ms.openlocfilehash: 84cdae1694608814167641417781cd22c12656a4
+ms.sourcegitcommit: 86cb3855e1368e5a74f21fdd71684c78a1f907ac
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37443923"
 ---
 # <a name="deploy"></a>部署
 
@@ -59,7 +53,7 @@ ms.lasthandoff: 02/21/2018
 
 2.  以滑鼠右鍵按一下 [AW 網際網路銷售] 專案 > [部署]。
 
-    當部署至 Azure Analysis Services 時，可能會提示您輸入您的帳戶。 請輸入您的組織帳戶和密碼，例如 nancy@adventureworks.com。此帳戶必須在伺服器上的 Admins 中。
+    當部署至 Azure Analysis Services 時，可能會提示您輸入您的帳戶。 請輸入您的組織帳戶和密碼，例如 nancy@adventureworks.com。 此帳戶必須在伺服器上的 Admins 中。
   
     [部署] 對話方塊隨即出現，並顯示中繼資料和模型中每個資料表的部署狀態。  
     

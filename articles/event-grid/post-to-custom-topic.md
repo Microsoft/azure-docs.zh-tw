@@ -1,18 +1,19 @@
 ---
-title: "張貼事件以自訂 Azure Event Grid 主題"
-description: "描述如何針對 Azure Event Grid 將事件張貼到自訂主題"
+title: 張貼事件以自訂 Azure Event Grid 主題
+description: 描述如何針對 Azure Event Grid 將事件張貼到自訂主題
 services: event-grid
 author: tfitzmac
 manager: timlt
 ms.service: event-grid
-ms.topic: article
-ms.date: 01/30/2018
+ms.topic: conceptual
+ms.date: 04/17/2018
 ms.author: tomfitz
-ms.openlocfilehash: 43dcdf9ab0fee5f7e61ecdc42aaf40430e272d92
-ms.sourcegitcommit: 9d317dabf4a5cca13308c50a10349af0e72e1b7e
+ms.openlocfilehash: e4256de1d9112d785b6d1cd52067fc99144a0a04
+ms.sourcegitcommit: 688a394c4901590bbcf5351f9afdf9e8f0c89505
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 05/18/2018
+ms.locfileid: "34303329"
 ---
 # <a name="post-to-custom-topic-for-azure-event-grid"></a>針對 Azure Event Grid 張貼到自訂主題
 
@@ -73,7 +74,7 @@ az eventgrid topic key list --name <topic-name> -g <topic-resource-group> --quer
 ]
 ```
 
-如需這些屬性的說明，請參閱 [Azure Event Grid 事件結構描述](event-schema.md)。
+如需這些屬性的說明，請參閱 [Azure Event Grid 事件結構描述](event-schema.md)。 張貼事件到事件方格主題時，陣列總大小最大為 1 MB。 陣列中的每個事件會限制為 64 KB。
 
 例如，有效的事件資料結構描述為：
 
@@ -91,8 +92,35 @@ az eventgrid topic key list --name <topic-name> -g <topic-resource-group> --quer
 }]
 ```
 
+## <a name="response"></a>Response
+
+在張貼到主題端點之後，您會收到回應。 回應是標準的 HTTP 回應碼。 一些常見回應有：
+
+|結果  |Response  |
+|---------|---------|
+|成功  | 200 確定  |
+|事件資料的格式不正確 | 400 不正確的要求 |
+|存取金鑰無效 | 401 未經授權 |
+|端點不正確 | 404 找不到 |
+|陣列或事件超過大小限制 | 413 承載太大 |
+
+對於錯誤，訊息內文的格式如下：
+
+```json
+{
+    "error": {
+        "code": "<HTTP status code>",
+        "message": "<description>",
+        "details": [{
+            "code": "<HTTP status code>",
+            "message": "<description>"
+    }]
+  }
+}
+```
+
 ## <a name="next-steps"></a>後續步驟
 
-* 如需路由傳送自訂事件的簡介，請參閱[使用 Azure CLI 和 Event Grid 建立和路由傳送自訂事件](custom-event-quickstart.md)或[使用 Azure PowerShell 和 Event Grid 建立和路由傳送自訂事件](custom-event-quickstart-powershell.md)。
+* 如需關於監視事件傳遞的資訊，請參閱[監視 Event Grid 訊息傳遞](monitor-event-delivery.md)。
 * 如需驗證金鑰的詳細資訊，請參閱 [Event Grid 安全性和驗證](security-authentication.md)。
 * 若要了解 Event Grid 訂用帳戶的建立，請參閱 [Event Grid 訂用帳戶結構描述](subscription-creation-schema.md)。

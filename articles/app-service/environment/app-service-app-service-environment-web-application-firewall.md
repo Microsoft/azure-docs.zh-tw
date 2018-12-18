@@ -1,8 +1,8 @@
 ---
-title: "設定 App Service 環境的 Web 應用程式防火牆 (WAF)"
-description: "了解如何設定 Web 應用程式防火牆來保護 App Service 環境。"
+title: 設定 App Service 環境的 Web 應用程式防火牆 (WAF)
+description: 了解如何設定 Web 應用程式防火牆來保護 App Service 環境。
 services: app-service\web
-documentationcenter: 
+documentationcenter: ''
 author: naziml
 manager: erikre
 editor: jimbe
@@ -12,18 +12,22 @@ ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: tutorial
-ms.date: 08/17/2016
+ms.date: 03/03/2018
 ms.author: naziml
 ms.custom: mvc
-ms.openlocfilehash: bfe36ee5365e71db4280e8e2ccff6db8e552dd39
-ms.sourcegitcommit: b854df4fc66c73ba1dd141740a2b348de3e1e028
+ms.openlocfilehash: 3fc9677d72dacd06bde2fcfa4812cf4613efef01
+ms.sourcegitcommit: b4a46897fa52b1e04dd31e30677023a29d9ee0d9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/04/2017
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49394259"
 ---
 # <a name="configuring-a-web-application-firewall-waf-for-app-service-environment"></a>設定 App Service 環境的 Web 應用程式防火牆 (WAF)
 ## <a name="overview"></a>概觀
-Web 應用程式防火牆 (例如可在 [Azure Marketplace](https://azure.microsoft.com/marketplace/partners/barracudanetworks/waf-byol/) 取得之[適用於 Azure 的 Barracuda WAF](https://www.barracuda.com/programs/azure) \(英文\)) 可檢查傳入的 Web 流量，以封鎖 SQL 插入式攻擊、跨網站指令碼攻擊、惡意軟體上傳及應用程式分散式阻斷服務攻擊 (DDoS) 等其他攻擊，協助保護您的 Web 應用程式。 它也會針對資料外洩防護 (DLP) 檢查來自後端 Web 伺服器的回應。 這與隔離以及 App Service 環境所提供的額外調整合併使用，以提供裝載商務關鍵 Web 應用程式的理想環境，而這些 Web 應用程式需要防禦惡意要求和大量流量。
+
+Web 應用程式防火牆 (WAF) 會檢查輸入的 Web 流量以封鎖 SQL 插入、跨網站指令碼、惡意程式碼上傳和應用程式 DDoS 以及其他攻擊，以保護您的 Web 應用程式。 它們也會檢查來自後端 Web 伺服器的回應，以進行資料外洩防護 (DLP)。 這與隔離以及 App Service 環境所提供的額外調整合併使用，以提供裝載商務關鍵 Web 應用程式的理想環境，而這些 Web 應用程式需要防禦惡意要求和大量流量。 Azure 提供隨附於[應用程式閘道](http://docs.microsoft.com/azure/application-gateway/application-gateway-introduction)的 WAF 功能。  若想了解如何整合您的 App Service 環境與應用程式閘道，請參閱[整合您的 ILB ASE 與應用程式閘道](http://docs.microsoft.com/azure/app-service/environment/integrate-with-application-gateway)一文。
+
+除了 Azure 應用程式閘道以外，[Azure Marketplace](https://azure.microsoft.com/marketplace/partners/barracudanetworks/waf-byol/) 還提供多個市集選項，例如 [Barracuda WAF for Azure](https://www.barracuda.com/programs/azure)。 本文的其餘內容將著重於如何整合您的 App Service 環境與 Barracuda WAF 裝置。
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../../includes/app-service-web-to-api-and-mobile.md)] 
 
@@ -62,7 +66,7 @@ Barracuda WAF 使用 TCP 連接埠 8000，以透過其管理入口網站進行�
 
 ![加入管理端點][AddManagementEndpoint]
 
-使用瀏覽器瀏覽至雲端服務上的管理端點。 如果您的雲端服務稱為 test.cloudapp.net，則瀏覽至 http://test.cloudapp.net:8000 即可存取此端點。 您應該會看到如下圖的登入頁面，可以使用您在 WAF VM 設定階段中指定的認證登入。
+使用瀏覽器瀏覽至雲端服務上的管理端點。 如果您的雲端服務名為 test.cloudapp.net，則瀏覽至 http://test.cloudapp.net:8000 即可存取此端點。 您應該會看到如下圖的登入頁面，可以使用您在 WAF VM 設定階段中指定的認證登入。
 
 ![管理登入頁面][ManagementLoginPage]
 

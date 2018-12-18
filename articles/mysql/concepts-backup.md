@@ -1,19 +1,20 @@
 ---
-title: "在適用於 MySQL 的 Azure 資料庫中備份與還原"
-description: "了解自動備份和還原適用於 MySQL 的 Azure 資料庫資料庫。"
+title: 在適用於 MySQL 的 Azure 資料庫中備份與還原
+description: 了解自動備份和還原適用於 MySQL 的 Azure 資料庫資料庫。
 services: mysql
-author: kamathsun
-ms.author: sukamat
+author: ajlam
+ms.author: andrela
 manager: kfile
 editor: jasonwhowell
-ms.service: mysql-database
+ms.service: mysql
 ms.topic: article
 ms.date: 02/28/2018
-ms.openlocfilehash: 1cc2c6ccb4459c5c942297cab46378502b63c5bc
-ms.sourcegitcommit: c765cbd9c379ed00f1e2394374efa8e1915321b9
+ms.openlocfilehash: 9d07f6cd5fa6a2df82dc2cbf9c1ebe08e5941acf
+ms.sourcegitcommit: f10653b10c2ad745f446b54a31664b7d9f9253fe
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/28/2018
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46125012"
 ---
 # <a name="backup-and-restore-in-azure-database-for-mysql"></a>在適用於 MySQL 的 Azure 資料庫中備份與還原
 
@@ -52,7 +53,7 @@ ms.lasthandoff: 02/28/2018
 預估的復原時間取決於數個因素，包括資料庫大小、交易記錄大小、網路頻寬，以及在相同區域中同時進行復原的資料庫總數。 復原時間通常不到 12 小時。
 
 > [!IMPORTANT]
-> 如果您刪除伺服器，所有屬於該伺服器的資料庫也會一併刪除且無法復原。 您無法還原已刪除的伺服器。
+> 已刪除的伺服器**無法**還原。 如果您刪除伺服器，所有屬於該伺服器的資料庫也會一併刪除，且無法復原。 
 
 ### <a name="point-in-time-restore"></a>還原時間點
 
@@ -65,6 +66,8 @@ ms.lasthandoff: 02/28/2018
 ### <a name="geo-restore"></a>異地還原
 
 如果您已將伺服器設定為使用異地備援備份，您可以將伺服器還原到另一個可使用服務的 Azure 區域中。 當您的伺服器因為裝載伺服器區域中的事件而無法使用時，異地還原就是預設的復原選項。 如果區域中的大規模意外導致您無法使用資料庫應用程式，則您可以從異地備援備份，將伺服器還原到任何其他區域中的伺服器。 在建立備份及將它複寫至不同區域之間會有延遲。 此延遲可能最長達一小時，因此當發生災害時，最多可能會遺失最長達一小時的資料。
+
+在異地還原期間，可以進行變更的伺服器設定包括計算世代、vCore、備份保留期間及備份備援選項。 異地還原期間不支援變更定價層 (基本、一般，或記憶體最佳化) 或儲存體大小。
 
 ### <a name="perform-post-restore-tasks"></a>執行還原之後的工作
 

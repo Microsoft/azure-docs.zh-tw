@@ -1,0 +1,87 @@
+items:
+- name: 服務匯流排轉送文件
+  href: index.yml
+- name: 概觀
+  items:
+  - name: 什麼是轉送？
+    href: relay-what-is-it.md
+  - name: 常見問題集
+    href: relay-faq.md
+- name: 快速入門
+  items:
+  - name: 建立混合式內部部署/雲端應用程式
+    href: service-bus-dotnet-hybrid-app-using-service-bus-relay.md
+  - name: 混合式連線
+    items:
+    - name: .NET Websockets
+      href: relay-hybrid-connections-dotnet-get-started.md
+    - name: .NET HTTP
+      href: relay-hybrid-connections-http-requests-dotnet-get-started.md
+    - name: Node Websockets
+      href: relay-hybrid-connections-node-get-started.md
+    - name: Node HTTP
+      href: relay-hybrid-connections-http-requests-node-get-started.md
+  - name: WCF 轉送教學課程
+    href: service-bus-relay-tutorial.md
+  - name: WCF 轉送 REST 教學課程
+    href: service-bus-relay-rest-tutorial.md
+- name: 作法
+  items:
+  - name: 規劃和設計
+    items:
+    - name: 驗證和安全性
+      href: relay-authentication-and-authorization.md
+      items:
+      - name: 從 ACS 遷移至 SAS
+        href: relay-migrate-acs-sas.md
+    - name: 混合式連線通訊協定
+      href: relay-hybrid-connections-protocol.md
+  - name: 開發
+    items:
+    - name: 建立命名空間
+      href: relay-create-namespace-portal.md
+    - name: 使用 WCF 轉送對外部用戶端公開 WCF 服務
+      href: relay-wcf-dotnet-get-started.md
+    - name: 可用的 API
+      href: relay-api-overview.md
+      items:
+      - name: .NET
+        href: relay-hybrid-connections-dotnet-api-overview.md
+      - name: 節點
+        href: relay-hybrid-connections-node-ws-api-overview.md
+  - name: 管理
+    items:
+    - name: 透過 Azure 監視器監視 Azure 轉送
+      href: relay-metrics-azure-monitor.md
+- name: 參考
+  items:
+  - name: .NET
+    items:
+    - name: Microsoft.Azure.Relay
+      href: /dotnet/api/microsoft.azure.relay
+    - name: Microsoft.ServiceBus
+      href: /dotnet/api/Microsoft.ServiceBus
+  - name: 例外狀況
+    href: relay-exceptions.md
+  - name: 連接埠設定
+    href: relay-port-settings.md
+- name: 資源
+  items:
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/?category=enterprise-integration
+  - name: 部落格
+    href: https://blogs.msdn.microsoft.com/servicebus/
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/service-bus/
+  - name: 定價計算機
+    href: https://azure.microsoft.com/pricing/calculator/
+  - name: 範例
+    href: https://github.com/azure/azure-relay/tree/master/samples
+  - name: 堆疊溢位
+    href: http://stackoverflow.com/questions/tagged/azure-servicebusrelay
+ms.openlocfilehash: 1c15d984e19f0585f386620f1e6e12667c69da5e
+ms.sourcegitcommit: a1140e6b839ad79e454186ee95b01376233a1d1f
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "43144842"

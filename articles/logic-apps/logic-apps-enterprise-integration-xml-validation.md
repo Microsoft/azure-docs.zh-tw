@@ -1,26 +1,23 @@
 ---
-title: "驗證 XML - Azure Logic Apps | Microsoft Docs"
-description: "使用企業整合套件，以 Azure Logic Apps 與 B2B 案例的結構描述來驗證 XML"
+title: 驗證適用於 B2B 企業整合的 XML - Azure Logic Apps | Microsoft Docs
+description: 在採用 Enterprise Integration Pack 的 Azure Logic Apps 中使用適用於 B2B 解決方案的結構描述來驗證 XML
 services: logic-apps
-documentationcenter: .net,nodejs,java
-author: msftman
-manager: anneta
-editor: cgronlun
-ms.assetid: d700588f-2d8a-4c92-93eb-e1e6e250e760
 ms.service: logic-apps
-ms.workload: integration
-ms.tgt_pltfrm: na
-ms.devlang: na
+ms.suite: integration
+author: divyaswarnkar
+ms.author: divswa
+ms.reviewer: jonfan, estfan, LADocs
 ms.topic: article
+ms.assetid: d700588f-2d8a-4c92-93eb-e1e6e250e760
 ms.date: 07/08/2016
-ms.author: LADocs; padmavc
-ms.openlocfilehash: 9c4b2c1b2fdd9bf70775e5fd4369d1633258ae2a
-ms.sourcegitcommit: 68aec76e471d677fd9a6333dc60ed098d1072cfc
+ms.openlocfilehash: e25f4e633b8cf9030bb0ce395f093f630db59f38
+ms.sourcegitcommit: 2ad510772e28f5eddd15ba265746c368356244ae
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/18/2017
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "43121108"
 ---
-# <a name="validate-xml-for-enterprise-integration"></a>針對企業整合驗證 XML
+# <a name="validate-xml-for-b2b-enterprise-integration-in-azure-logic-apps-with-enterprise-integration-pack"></a>在採用 Enterprise Integration Pack 的 Azure Logic Apps 中驗證適用於 B2B 企業整合的 XML
 
 通常在 B2B 案例中，協議中的合作夥伴必須先確認他們交換的訊息是有效的，才能開始處理資料。 您可以使用企業整合套件中的 XML 驗證連接器，根據預先定義的結構描述來驗證文件。
 

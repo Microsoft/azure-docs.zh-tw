@@ -3,32 +3,30 @@ title: Azure Cosmos DB 的 Python Flask Web 應用程式教學課程 | Microsoft
 description: 檢閱資料庫教學課程，了解如何使用 Azure Cosmos DB，來儲存和存取 Azure 上所託管的 Python Flask Web 應用程式資料。 尋找應用程式開發解決方案。
 keywords: 應用程式部署、python flask、python Web 應用程式、python Web 開發
 services: cosmos-db
-documentationcenter: python
-author: mimig1
-manager: jhubbard
-editor: cgronlun
-ms.assetid: 20ebec18-67c2-4988-a760-be7c30cfb745
+author: SnehaGunda
+manager: kfile
 ms.service: cosmos-db
-ms.workload: data-management
-ms.tgt_pltfrm: na
+ms.component: cosmosdb-sql
 ms.devlang: python
-ms.topic: article
+ms.topic: tutorial
 ms.date: 02/23/2017
-ms.author: mimig
+ms.author: sngun
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 333d34e2c7b07b1ec09d1375d4d05075ed7dde0d
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: d9470df09c2724bf89a371ec62e7fb8a7e2132c6
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46953917"
 ---
 # <a name="build-a-python-flask-web-application-using-azure-cosmos-db"></a>使用 Azure Cosmos DB 建置 Python Flask Web 應用程式
+
 > [!div class="op_single_selector"]
 > * [.NET](sql-api-dotnet-application.md)
-> * [Node.js](sql-api-nodejs-application.md)
 > * [Java](sql-api-java-application.md)
+> * [Node.js](sql-api-nodejs-application.md)
 > * [Python](sql-api-python-application.md)
-> 
+> * [Xamarin](mobile-apps-with-xamarin.md)
 > 
 
 本教學課程說明如何使用 Azure Cosmos DB 來儲存和存取 Azure App Service 上裝載之 Python Flask 應用程式中的資料。 本教學課程假設您先前有過使用 Python 和 Azure 網站的經驗。
@@ -138,7 +136,7 @@ ms.lasthandoff: 03/28/2018
 2. 將下列程式碼加入 forms.py 檔案，然後儲存該檔案。
 
 ```python
-from flask.ext.wtf import Form
+from flask_wtf import Form
 from wtforms import RadioField
 
 class VoteForm(Form):
@@ -369,7 +367,7 @@ def vote():
 6. 按下 Shift+F5 停止對專案進行偵錯。
 
 ## <a name="step-5-deploy-the-web-application-to-azure"></a>步驟 5：將 Web 應用程式部署至 Azure
-現在您已在本機完成可搭配 Azure Cosmos DB 正常運作的應用程式，我們將建立 web.config 檔、更新伺服器上的檔案以符合本機環境，然後在 Azure 上檢視已完成的應用程式。 此程序為 Visual Studio 2017 專用。 如果您使用其他版本的 Visual Studio，請參閱[發佈至 Azure App Service](/visualstudio/python/publishing-to-azure.md)。
+現在您已在本機完成可搭配 Azure Cosmos DB 正常運作的應用程式，我們將建立 web.config 檔、更新伺服器上的檔案以符合本機環境，然後在 Azure 上檢視已完成的應用程式。 此程序為 Visual Studio 2017 專用。 如果您使用其他版本的 Visual Studio，請參閱[發佈至 Azure App Service](/visualstudio/python/publishing-to-azure)。
 
 1. 在 Visual Studio [方案總管] 中，以滑鼠右鍵按一下專案，然後選取 [新增] > [新增項目...]。在出現的對話方塊中，選取 [Azure web.config (Fast CGI)] 範本，然後選取 [確定]。 這會在您的專案根目錄中建立 `web.config` 檔案。 
 
@@ -407,7 +405,7 @@ def vote():
 
 10. 在 [選擇擴充功能] 頁面上，向下捲動至最新的 Python 2.7 安裝，並選取 x86 或 x64 位元選項，然後按一下 [確定] 接受法律條款。  
    
-11. 瀏覽至 `https://<your app service name>.scm.azurewebsites.net/DebugConsole` 進入 Kudu 主控台，使用主控台安裝應用程式的 `requirements.txt` 檔案中列出的套件。 做法是在Kudu 診斷主控台中，瀏覽至您的 Python 資料夾 `D:\home\Python27`，然後執行下列命令 (如 [Kudu 主控台](/visual-studio/python/managing-python-on-azure-app-service.md#azure-app-service-kudu-console)一節中所述)：
+11. 瀏覽至 `https://<your app service name>.scm.azurewebsites.net/DebugConsole` 進入 Kudu 主控台，使用主控台安裝應用程式的 `requirements.txt` 檔案中列出的套件。 做法是在Kudu 診斷主控台中，瀏覽至您的 Python 資料夾 `D:\home\Python27`，然後執行下列命令 (如 [Kudu 主控台](/visualstudio/python/managing-python-on-azure-app-service#azure-app-service-kudu-console)一節中所述)：
 
     ```
     D:\home\Python27>python -m pip install --upgrade -r /home/site/wwwroot/requirements.txt
@@ -440,9 +438,3 @@ def vote():
 如需 Azure、Visual Studio 及 Python 的詳細資訊，請參閱 [Python 開發人員中心](https://azure.microsoft.com/develop/python/)。 
 
 如需其他的 Python Flask 教學課程，請參閱 [Flask 教學課程庫，第一部分：Hello, World!](http://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)。 
-
-[Visual Studio Express]: http://www.visualstudio.com/products/visual-studio-express-vs.aspx
-[2]: https://www.python.org/downloads/windows/
-[3]: https://www.microsoft.com/download/details.aspx?id=44266
-[Microsoft Web Platform Installer]: http://www.microsoft.com/web/downloads/platform.aspx
-[Azure portal]: http://portal.azure.com

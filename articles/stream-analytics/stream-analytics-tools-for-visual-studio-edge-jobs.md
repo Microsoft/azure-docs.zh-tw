@@ -1,30 +1,26 @@
 ---
-title: 使用串流分析 Visual Studio 工具設定持續整合和部署程序 | Microsoft Docs
-description: 開發 Visual Studio 的串流分析工具，以撰寫、偵錯及建立串流分析 Edge 作業的教學課程。
-keywords: visual studio, NuGet, DevOps, Edge 作業, 串流分析
-documentationcenter: ''
+title: 適用於 Visual Studio 的 Azure 串流分析工具中的 Edge 作業
+description: 本文說明如何使用適用於 Visual Studio 的串流分析工具來撰寫、偵錯及建立串流分析 Edge 作業。
 services: stream-analytics
 author: su-jie
-manager: ''
-ms.assetid: ''
-ms.service: stream-analytics
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: data-services
-ms.date: 03/13/2018
 ms.author: sujie
-ms.openlocfilehash: c6e1d0693035ef343e20cee4b09f0669e089afee
-ms.sourcegitcommit: 34e0b4a7427f9d2a74164a18c3063c8be967b194
+manager: kfile
+ms.reviewer: jasonh
+ms.service: stream-analytics
+ms.topic: conceptual
+ms.date: 03/13/2018
+ms.openlocfilehash: 5dc90a1334b525c02be3eae2985900ab07cf2e05
+ms.sourcegitcommit: cb61439cf0ae2a3f4b07a98da4df258bfb479845
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/30/2018
+ms.lasthandoff: 09/05/2018
+ms.locfileid: "43696243"
 ---
-# <a name="develop-stream-analytics-edge-jobs-by-using-visual-studio-tools"></a>使用 Visual Studio 工具來開發串流分析 Edge 作業
+# <a name="develop-stream-analytics-edge-jobs-using-visual-studio-tools"></a>使用 Visual Studio 工具來開發串流分析 Edge 作業
 
 在本教學課程中，您可以了解如何使用 Visual Studio 的串流分析工具來撰寫、偵錯及建立串流分析 Edge 作業。 建立和測試作業之後，您可以前往 Azure 入口網站將其部署到您的裝置。 
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 若要完成本教學課程，您需要下列必要條件：
 
@@ -97,7 +93,7 @@ FROM EdgeInput
 4. 您可以在本機執行該檔案或提交至 Azure。 若要測試查詢 > 選取 [在本機執行]。  
    ![執行選項](./media/stream-analytics-tools-for-visual-studio-edge-jobs/run-options.png)
  
-5. 命令提示字元視窗會顯示作業的狀態。 作業執行成功時，它會在您的專案資料夾路徑 “Visual Studio 2015\Projects\MyASAEdgejob\MyASAEdgejob\ASALocalRun\2018-02-23-11-31-42” 中建立一個類似 “2018-02-23-11-31-42” 的資料夾。 巡覽至資料夾路徑以檢視本機資料夾中的結果：
+5. 命令提示字元視窗會顯示作業的狀態。 作業執行成功時，它會在您的專案資料夾路徑 "Visual Studio 2015\Projects\MyASAEdgejob\MyASAEdgejob\ASALocalRun\2018-02-23-11-31-42" 中建立一個類似 "2018-02-23-11-31-42" 的資料夾。 巡覽至資料夾路徑以檢視本機資料夾中的結果：
 
    您也可以登入 Azure 入口網站，並確認已建立作業。 
 
@@ -127,6 +123,6 @@ FROM EdgeInput
 
 ## <a name="next-steps"></a>後續步驟
 
-* [Azure Iot Edge 的詳細資訊](../iot-edge/how-iot-edge-works.md)
+* [Azure Iot Edge 的詳細資訊](../iot-edge/about-iot-edge.md)
 * [ASA IoT Edge 教學課程](../iot-edge/tutorial-deploy-stream-analytics.md)
 * [使用這個調查將意見反應傳送給小組](https://forms.office.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR2czagZ-i_9Cg6NhAZlH9ypUMjNEM0RDVU9CVTBQWDdYTlk0UDNTTFdUTC4u) 

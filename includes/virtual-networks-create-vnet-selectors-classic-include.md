@@ -13,6 +13,7 @@ ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 03/16/2018
+ms.locfileid: "29958787"
 ---
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](../articles/virtual-network/quick-create-portal.md)

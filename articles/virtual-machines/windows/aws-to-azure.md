@@ -1,31 +1,32 @@
 ---
-title: "將 Windows AWS VM 移至 Azure | Microsoft Docs"
-description: "使用 Azure PowerShell 將 Amazon Web Services (AWS) EC2 Windows 執行個體移至 Azure 虛擬機器。"
+title: 將 Windows AWS VM 移至 Azure | Microsoft Docs
+description: 使用 Azure PowerShell 將 Amazon Web Services (AWS) EC2 Windows 執行個體移至 Azure 虛擬機器。
 services: virtual-machines-windows
-documentationcenter: 
+documentationcenter: ''
 author: cynthn
-manager: timlt
-editor: 
+manager: jeconnoc
+editor: ''
 tags: azure-resource-manager
-ms.assetid: 
+ms.assetid: ''
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: article
-ms.date: 06/01/2017
+ms.date: 06/01/2018
 ms.author: cynthn
-ms.openlocfilehash: 7d2b498d3f84c4fd6cccf97c6d7781f293f5b395
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: cb5b68e7bd0a1b247327e7147fe38eae19395f50
+ms.sourcegitcommit: 59fffec8043c3da2fcf31ca5036a55bbd62e519c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 06/04/2018
+ms.locfileid: "34726528"
 ---
 # <a name="move-a-windows-vm-from-amazon-web-services-aws-to-azure-using-powershell"></a>使用 PowerShell 將 Windows VM 從 Amazon Web Services (AWS) 移至 Azure
 
 如果您正在評估 Azure 虛擬機器來裝載您的工作負載，您可以匯出現有的 Amazon Web Services (AWS) EC2 Windows VM 執行個體，然後將虛擬硬碟 (VHD) 上傳至 Azure。 上傳 VHD 後，您可以從 VHD 在 Azure 中建立新的 VM。 
 
-本主題涵蓋將單一 VM 從 AWS 移至 Azure 的說明。 如果您想要將 VM 大規模從 AWS 移至 Azure，[使用 Azure Site Recovery 將 Amazon Web Services (AWS) 中的虛擬機器移轉至 Azure](../../site-recovery/site-recovery-migrate-aws-to-azure.md)。
+本文涵蓋將單一虛擬機器從 AWS 移至 Azure 的說明。 如果您想要將 VM 大規模從 AWS 移至 Azure，[使用 Azure Site Recovery 將 Amazon Web Services (AWS) 中的虛擬機器移轉至 Azure](../../site-recovery/site-recovery-migrate-aws-to-azure.md)。
 
 ## <a name="prepare-the-vm"></a>準備 VM 
  
@@ -45,7 +46,7 @@ ms.lasthandoff: 10/11/2017
 
 ## <a name="export-and-download-the-vhd"></a>匯出和下載 VHD 
 
-將 EC2 執行個體匯出至 Amazon S3 貯體中的 VHD。 請依照 Amazon 文件主題 [Exporting an Instance as a VM Using VM Import/Export](http://docs.aws.amazon.com/vm-import/latest/userguide/vmexport.html)中所述的步驟，並執行 [create-instance-export-task](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-instance-export-task.html) 命令，將 EC2 執行個體匯出到 VHD 檔案。 
+將 EC2 執行個體匯出至 Amazon S3 貯體中的 VHD。 請依照 Amazon 文件文章[使用虛擬機器匯入/匯出將執行個體匯出為虛擬機器](http://docs.aws.amazon.com/vm-import/latest/userguide/vmexport.html)中的步驟，並執行 [create-instance-export-task](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-instance-export-task.html) 命令，將 EC2 執行個體匯出到 VHD 檔案。 
 
 已匯出的 VHD 檔案會儲存在您指定的 Amazon S3 貯體中。 匯出 VHD 的基本語法如下，只要以您的資訊取代 <brackets> 中的預留位置文字。
 

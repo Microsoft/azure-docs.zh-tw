@@ -1,8 +1,8 @@
 ---
-title: "使用 Application Insights 來監視應用程式的健康情況和流量"
-description: "開始使用 Application Insights。 分析內部部署或 Microsoft Azure 應用程式的使用情況、可用性和效能。"
+title: 使用 Application Insights 來監視應用程式的健康情況和流量
+description: 開始使用 Application Insights。 分析內部部署或 Microsoft Azure 應用程式的使用情況、可用性和效能。
 services: application-insights
-documentationcenter: 
+documentationcenter: ''
 author: mrbullwinkle
 manager: carmonm
 ms.assetid: 40650472-e860-4c1b-a589-9956245df307
@@ -10,14 +10,16 @@ ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
-ms.topic: article
-ms.date: 09/20/2017
+ms.topic: conceptual
+ms.date: 05/10/2018
+ms.reviewer: sdash
 ms.author: mbullwin
-ms.openlocfilehash: 32000f5a85c84913aa820df00f1bb7f877bf037f
-ms.sourcegitcommit: e462e5cca2424ce36423f9eff3a0cf250ac146ad
+ms.openlocfilehash: 7e6aad6f6a0664d7834e6ea889dba14c1cbcdf0a
+ms.sourcegitcommit: cc4fdd6f0f12b44c244abc7f6bc4b181a2d05302
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/01/2017
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47095356"
 ---
 # <a name="monitor-performance-in-web-applications"></a>監視 Web 應用程式的效能
 
@@ -27,9 +29,6 @@ ms.lasthandoff: 11/01/2017
 Application Insights 可以監視 Java 和 ASP.NET Web 應用程式與服務、WCF 服務。 這些服務可以裝載在內部部署、虛擬機器上，或作為 Microsoft Azure 網站。 
 
 用戶端方面，Application Insights 可從網頁及各種裝置 (包括 iOS、Android 和 Windows 市集應用程式) 上取得遙測。
-
->[!Note]
-> 我們讓尋找您的 Web 應用程式中緩慢執行分頁有新的體驗。 如果您沒有它的存取權，藉由使用[預覽刀鋒視窗](app-insights-previews.md)以設定預覽選項來啟用它。 在[使用互動式效能調查尋找及修正效能瓶頸](#Find-and-fix-performance-bottlenecks-with-an-interactive-Performance-investigation)中深入了解這個新體驗。
 
 ## <a name="setup"></a>設定效能監視
 如果您尚未將 Application Insights 新增至專案中 (亦即專案沒有 ApplicationInsights.config)，請選擇以下任一種方法來開始使用：
@@ -116,62 +115,29 @@ HTTP 要求包括分頁、資料及映像的所有 GET 或 POST 要求。
 * 使用[即時計量資料流][livestream]監視作業中的 Web 應用程式。
 * 使用[快照集偵錯工具][snapshot]擷取 .Net 應用程式的狀態。
 
->[!Note]
-> 我們正在將 Application Insights 效能調查的程序轉換到互動式的全螢幕體驗。 下列文件先涵蓋新的體驗，接著檢閱先前的體驗，萬一您仍需要存取它時，仍可在整個轉換時取得。
+## <a name="find-and-fix-performance-bottlenecks-with-performance-investigation-experience"></a>使用效能調查體驗尋找及修正效能瓶頸
 
-## <a name="find-and-fix-performance-bottlenecks-with-an-interactive-full-screen-performance-investigation"></a>使用互動式效能調查尋找及修正全螢幕效能瓶頸
-
-您可以使用新的 Application Insights 互動式效能調查，來檢閱 Web 應用程式中緩慢執行的作業。 您可以快速地選取特定的緩慢作業，並使用[分析工具](app-insights-profiler.md)來查詢程式碼中使作業緩慢的根本原因。 使用所選取作業的新持續時間分佈，您可以快速地一眼看出該體驗對客戶的不良影響程度。 事實上，對於每個緩慢作業，您可以查看受到影響的使用者互動數量。 在下列範例中，我們已決定要詳細看看「取得客戶/詳細資料」作業的體驗。 在分佈持續時間中，我們可以看到有三個高峰。 最左邊的高峰大約在 400 毫秒，並代表良好的回應體驗。 中間的高峰大約在 1.2 秒，並代表中等體驗。 最後在 3.6 秒有另一個小型高峰，代表第 99 個百分位數體驗，它可能導致我們的客戶離開時不滿意。 該體驗較相同作業的良好體驗低十倍。 
+您可以使用效能調查體驗來檢閱 Web 應用程式中緩慢執行的作業。 您可以快速地選取特定的緩慢作業，並使用[分析工具](app-insights-profiler.md)來查詢程式碼中使作業緩慢的根本原因。 使用所選取作業的新持續時間分佈，您可以快速地一眼看出該體驗對客戶的不良影響程度。 可以查看每個緩慢作業影響的使用者互動數量。 在下列範例中，我們已決定要詳細看看「取得客戶/詳細資料」作業的體驗。 在分佈持續時間中，我們可以看到有三個高峰。 最左邊的高峰大約在 400 毫秒，代表良好的回應體驗。 中間的高峰大約在 1.2 秒，代表中等體驗。 最後在 3.6 秒有另一個小型高峰，代表第 99 百分位數的體驗，它可能導致我們的客戶離開時並不滿意。 該體驗較相同作業的良好體驗低十倍。 
 
 ![取得客戶/詳細資料，三個持續時間高峰](./media/app-insights-web-monitor-performance/PerformanceTriageViewZoomedDistribution.png)
 
-若要獲得此作業使用者體驗的較佳意義，我們可以選取較大的時間範圍。 然後我們也可以將時間縮小在作業特別緩慢的特定時間間隔位置。 在下列範例中，我們已從預設的 24 小時時間範圍切換至 7 天的時間範圍，然後放大到 12 日星期二與 13 日星期三之間的 9:47 至 12:47 時段。 請注意，右邊的分佈持續時間和範例與分析工具的追蹤數目已更新。
+若要獲得此作業使用者體驗的較佳意義，我們可以選取較大的時間範圍。 然後我們也可以將時間縮小在作業緩慢的特定時段。 在下列範例中，我們已從預設的 24 小時時間範圍切換至 7 天的時間範圍，然後放大到 12 日星期二與 13 日星期三之間的 9:47 至 12:47 時段。 右邊的分佈持續時間和範例與分析工具的追蹤數已更新。
 
 ![取得客戶/詳細資料，7 天範圍的時段中三個持續時間高峰](./media/app-insights-web-monitor-performance/PerformanceTriageView7DaysZoomedTrend.png)
 
-若要縮小到緩慢的體驗，我們接下來放大到落在第 95 個及第 99 個百分位數之間的持續時間。 這些代表的是特別緩慢的 4% 使用者互動。
+若要縮小到緩慢的體驗，我們接下來放大到落在第 95 個及第 99 個百分位數之間的持續時間。 這些代表 4% 的緩慢使用者互動。
 
 ![取得客戶/詳細資料，7 天範圍的時段中三個持續時間高峰](./media/app-insights-web-monitor-performance/PerformanceTriageView7DaysZoomedTrendZoomed95th99th.png)
 
-我們現在可以按一下 [範例] 按鈕來查看代表性的範例，或按一下 [分析工具追蹤] 按鈕來查看代表性的分析工具追蹤。 在此範例中，針對感興趣的時間段和範圍持續時間，已對取得客戶/詳細資料已收集到四個追蹤。
+我們現在可以按一下 [範例] 按鈕來查看代表性的範例，或按一下 [分析工具追蹤] 按鈕來查看代表性的分析工具追蹤。 在此範例中，已針對感興趣的時段和範圍持續時間，對「取得客戶/詳細資料」收集了四項追蹤。
 
-有時候問題不會在您的程式碼，而是在程式碼呼叫的相依性中。 您可以切換到 [效能分級] 檢視的 [相依性] 索引標籤，以調查這類緩慢的相依性。 請注意，根據預設，效能檢視是趨勢的平均，但您真正要查看的是第 95 個百分位數 (或第 99 個，萬一您要監視的是非常成熟的服務)。 在下列範例中，我們已經著重於緩慢的 Azure BLOB 相依性，我們在此處呼叫 PUT fabrikamaccount。 良好的體驗叢集大約為 40 毫秒，而對相同相依性的緩慢呼叫則慢了三倍，叢集處理大約為 120 毫秒。 它不會接受許多呼叫的加總，讓對應作業明顯變慢。 您可以切入代表性範例和分析工具追蹤，就像透過 [作業] 索引標籤可以完成的工作一般。
+有時候問題不會在您的程式碼，而是在程式碼呼叫的相依性中。 您可以切換到 [效能分級] 檢視的 [相依性] 索引標籤，以調查這類緩慢的相依性。 預設情況下，效能檢視是趨勢的平均值，但真正要注意的是第 95 個百分位數 (如果所監視的是成熟的服務，則為第 99 個百分位數)。 在下列範例中，我們已經著重於緩慢的 Azure BLOB 相依性，我們在此處呼叫 PUT fabrikamaccount。 良好的體驗叢集大約為 40 毫秒，而對相同相依性的緩慢呼叫則慢了三倍，叢集處理大約為 120 毫秒。 它不會接受許多呼叫的加總，讓對應作業明顯變慢。 您可以切入代表性範例和分析工具追蹤，就像透過 [作業] 索引標籤可以完成的工作一般。
 
 ![取得客戶/詳細資料，7 天範圍的時段中三個持續時間高峰](./media/app-insights-web-monitor-performance/SlowDependencies95thTrend.png)
 
-另一個互動式全螢幕效能調查的新非常強大功能是與深入解析的整合。 Application Insights 可以偵測及浮現深入解析回應性迴歸，並協助您識別您決定專注的範例集合中的通用屬性。 查看所有可用的深入解析的最佳方式是切換到 30 天的時間範圍，然後選取 [整體] 來查看過去一個月所有作業的深入解析。
+效能調查體驗會顯示您決定要特別注意的範例組，以及相關的深入分析資訊。 查看所有可用的深入解析的最佳方式是切換到 30 天的時間範圍，然後選取 [整體] 來查看過去一個月所有作業的深入解析。
 
 ![取得客戶/詳細資料，7 天範圍的時段中三個持續時間高峰](./media/app-insights-web-monitor-performance/Performance30DayOveralllnsights.png)
-
-新效能分級檢視中的 Application Insights 可確實協助您在造成 Web 應用程式使用者體驗不佳的大海中撈針。
-
-## <a name="deprecated-find-and-fix-performance-bottlenecks-with-a-narrow-bladed-legacy-performance-investigation"></a>已淘汰：使用窄刀鋒傳統效能調查尋找及修正效能瓶頸
-
-您可以使用舊版 Application Insights 刀鋒視窗效能調查，以找出減緩整體效能的 Web 應用程式區域。 您可以尋找速度正在變緩慢的特定頁面，並使用[分析工具](app-insights-profiler.md)來追蹤程式碼中這些問題的根本原因。 
-
-### <a name="create-a-list-of-slow-performing-pages"></a>建立一份執行緩慢分頁的清單 
-
-找出效能問題的第一個步驟是取得緩慢回應分頁的清單。 下列螢幕擷取畫面示範如何使用 [效能] 刀鋒視窗取得一份要進一步調查的潛在分頁清單。 您可以從這個分頁快速地查看應用程式的回應時間在大約下午 6:00 時以及再次於大約下午 10 點時減緩。 您也可以看到 GET 客戶/詳細資料作業有一些長時間執行的作業，回應時間中間值為 507.05 毫秒。 
-
-![Application Insights 互動式效能](./media/app-insights-web-monitor-performance/performance1.png)
-
-### <a name="drill-down-on-specific-pages"></a>向下鑽研特定分頁
-
-您有了應用程式效能的快照集之後，您可以取得更多特定執行緩慢作業的詳細資料。 按一下清單中的任何作業以查看詳細資料，如下所示。 您可以從圖表中查看效能是否以相依性為基礎。 您也可以查看有多少使用者遇到各種不同的回應時間。 
-
-![Application Insights 作業刀鋒視窗](./media/app-insights-web-monitor-performance/performance5.png)
-
-### <a name="drill-down-on-a-specific-time-period"></a>在特定時間週期向下鑽研
-
-您識別要調查的時間點之後，更進一步向下鑽研以查看可能導致效能減緩的特定作業。 當您按一下特定時間點時，會取得分頁的詳細資料，如下所示。 在以下範例中，您可以看到針對指定時間週期列出的作業，以及伺服器回應碼和作業持續時間。 如果您需要將此資訊傳送給開發小組，您也有開啟 TFS 工作項目的 URL。
-
-![Application Insights 時間配量](./media/app-insights-web-monitor-performance/performance2.png)
-
-### <a name="drill-down-on-a-specific-operation"></a>在特定作業向下鑽研
-
-您識別要調查的時間點之後，更進一步向下鑽研以查看可能導致效能減緩的特定作業。 從清單按一下作業，以查看作業的詳細資料，如下所示。 在此範例中，您可以看到作業失敗，且 Application Insights 提供應用程式擲回之例外狀況的詳細資料。 同樣地，您可以從這個刀鋒視窗輕鬆地建立 TFS 工作項目。
-
-![Application Insights 作業刀鋒視窗](./media/app-insights-web-monitor-performance/performance3.png)
 
 
 ## <a name="next"></a>後續步驟

@@ -1,24 +1,19 @@
 ---
 title: Azure IoT 中樞裝置身分識別的匯入匯出 | Microsoft Docs
 description: 如何使用 Azure IoT 服務 SDK 對身分識別登錄執行大量作業，以匯入和匯出裝置身分識別。 匯入作業可讓您建立、更新和刪除大量裝置身分識別。
-services: iot-hub
-documentationcenter: .net
 author: dominicbetts
 manager: timlt
-editor: ''
-ms.assetid: 2ade1494-45ea-46a7-ade7-cf6e11ce62da
 ms.service: iot-hub
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: na
+services: iot-hub
+ms.topic: conceptual
 ms.date: 07/03/2017
 ms.author: dobett
-ms.openlocfilehash: 97b0e4c4dd8c67fdcd422fb04b7c32815b6c3fdb
-ms.sourcegitcommit: 20d103fb8658b29b48115782fe01f76239b240aa
+ms.openlocfilehash: aedf2d0012f5af8ea2eb8e944f06b20c7f1a6bb8
+ms.sourcegitcommit: a2ae233e20e670e2f9e6b75e83253bd301f5067c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2018
+ms.lasthandoff: 08/13/2018
+ms.locfileid: "42145516"
 ---
 # <a name="manage-your-iot-hub-device-identities-in-bulk"></a>管理大量的 IoT 中樞裝置身分識別
 
@@ -30,7 +25,7 @@ ms.lasthandoff: 04/03/2018
 
 **RegistryManager** 類別包含使用**作業**架構的 **ExportDevicesAsync** 和 **ImportDevicesAsync** 方法。 這些方法可讓您匯出、匯入和同步處理整個 IoT 中樞身分識別登錄。
 
-本主題討論使用 **RegistryManager** 類別和**作業**的系統來執行將裝置大量匯入和匯出 IoT 中樞的身分識別登錄。 您也可以使用 Azure IoT 中樞裝置佈建服務，以無須人為介入的方式對一或多個 IoT 中樞進行 Just-In-Time 自動佈建。 若要深入了解，請參閱[佈建服務文件][lnk-dps]。
+本主題討論使用 **RegistryManager** 類別和**作業**的系統來執行將裝置大量匯入和匯出 IoT 中樞的身分識別登錄。 您也可以使用 Azure IoT 中樞裝置佈建服務，以無須人為介入的方式對一或多個 IoT 中樞進行 Just-In-Time 自動佈建。 若要深入了解，請參閱[佈建服務文件](/azure/iot-dps)。
 
 
 ## <a name="what-are-jobs"></a>什麼是作業？
@@ -38,6 +33,7 @@ ms.lasthandoff: 04/03/2018
 身分識別登錄操作會使用**作業** 系統的前提是操作符合下列條件時：
 
 * 相較於標準執行階段作業，執行時間可能很長。
+
 * 會傳回大量資料給使用者。
 
 與其讓單一 API 呼叫等候或封鎖操作的結果，操作會以非同步方式建立該 IoT 中樞的**作業**。 然後操作會立即傳回 **JobProperties** 物件。
@@ -46,23 +42,28 @@ ms.lasthandoff: 04/03/2018
 
 ```csharp
 // Call an export job on the IoT Hub to retrieve all devices
-JobProperties exportJob = await registryManager.ExportDevicesAsync(containerSasUri, false);
+JobProperties exportJob = await 
+  registryManager.ExportDevicesAsync(containerSasUri, false);
 ```
 
 > [!NOTE]
 > 若要在 C# 程式碼中使用 **RegistryManager** 類別，請將 **Microsoft.Azure.Devices** NuGet 套件新增至您的專案。 **RegistryManager** 類別位於 **Microsoft.Azure.Devices** 命名空間。
 
-您可以使用 **RegistryManager** 類別來查詢**作業**的狀態 (使用所傳回的 **JobProperties** 中繼資料)。 若要建立 **RegistryManager** 類別的執行個體，請使用 **CreateFromConnectionString** 方法：
+您可以使用 **RegistryManager** 類別來查詢**作業**的狀態 (使用所傳回的 **JobProperties** 中繼資料)。 若要建立 **RegistryManager** 類別的執行個體，請使用 **CreateFromConnectionString** 方法。
 
 ```csharp
-RegistryManager registryManager = RegistryManager.CreateFromConnectionString("{your IoT Hub connection string}");
+RegistryManager registryManager =
+  RegistryManager.CreateFromConnectionString("{your IoT Hub connection string}");
 ```
 
 若要尋找 IoT 中樞的連接字串，請在 Azure 入口網站中：
 
 - 瀏覽至您的 IoT 中樞。
+
 - 選取 [共用存取原則]。
+
 - 選取原則，並將您需要的權限列入考量。
+
 - 從螢幕右側的面板複製連接字串。
 
 下列 C# 程式碼片段示範如何每五秒輪詢一次以查看作業是否已執行完成：
@@ -95,7 +96,8 @@ while(true)
 * 包含 Blob 容器 URI 的「字串」 。 此 URI 必須包含可授與容器寫入權限的 SAS 權杖。 作業會在這個容器中建立用來儲存序列化匯出裝置資料的區塊 Blob。 SAS 權杖必須包含這些權限：
 
    ```csharp
-   SharedAccessBlobPermissions.Write | SharedAccessBlobPermissions.Read | SharedAccessBlobPermissions.Delete
+   SharedAccessBlobPermissions.Write | SharedAccessBlobPermissions.Read 
+     | SharedAccessBlobPermissions.Delete
    ```
 
 * 指出是否要在匯出資料中排除驗證金鑰的 *布林值* 。 若為 **false**，驗證金鑰就會包含在匯出輸出中。 否則，會將金鑰匯出為 **null**。
@@ -104,7 +106,8 @@ while(true)
 
 ```csharp
 // Call an export job on the IoT Hub to retrieve all devices
-JobProperties exportJob = await registryManager.ExportDevicesAsync(containerSasUri, false);
+JobProperties exportJob = 
+  await registryManager.ExportDevicesAsync(containerSasUri, false);
 
 // Wait until job is finished
 while(true)
@@ -213,10 +216,12 @@ using (var streamReader = new StreamReader(await blob.OpenReadAsync(AccessCondit
    ```csharp
    SharedAccessBlobPermissions.Read
    ```
+
 * 包含 [Azure 儲存體](https://azure.microsoft.com/documentation/services/storage/) Blob 容器 URI 以作為作業之「輸出」的「字串」。 作業會在此容器中建立區塊 Blob，以儲存來自已完成之匯入 **作業**的任何錯誤資訊。 SAS 權杖必須包含這些權限：
 
    ```csharp
-   SharedAccessBlobPermissions.Write | SharedAccessBlobPermissions.Read | SharedAccessBlobPermissions.Delete
+   SharedAccessBlobPermissions.Write | SharedAccessBlobPermissions.Read 
+     | SharedAccessBlobPermissions.Delete
    ```
 
 > [!NOTE]
@@ -225,7 +230,8 @@ using (var streamReader = new StreamReader(await blob.OpenReadAsync(AccessCondit
 下列 C# 程式碼片段示範如何啟動匯入作業：
 
 ```csharp
-JobProperties importJob = await registryManager.ImportDevicesAsync(containerSasUri, containerSasUri);
+JobProperties importJob = 
+   await registryManager.ImportDevicesAsync(containerSasUri, containerSasUri);
 ```
 
 這個方法也可用來匯入裝置對應項的資料。 資料輸入的格式與 **ExportDevicesAsync** 的區段中顯示的格式相同。 如此一來，您可以重新匯入已匯出的資料。 **$metadata** 是選擇性參數。
@@ -313,7 +319,8 @@ using (CloudBlobStream stream = await blob.OpenWriteAsync())
 // Call import using the blob to add new devices
 // Log information related to the job is written to the same container
 // This normally takes 1 minute per 100 devices
-JobProperties importJob = await registryManager.ImportDevicesAsync(containerSasUri, containerSasUri);
+JobProperties importJob =
+   await registryManager.ImportDevicesAsync(containerSasUri, containerSasUri);
 
 // Wait until job is finished
 while(true)
@@ -412,22 +419,14 @@ static string GetContainerSasUri(CloudBlobContainer container)
 
 在本文中，您已了解如何對 IoT 中樞內的身分識別登錄執行大量操作。 遵循下列連結以深入了解如何管理 Azure IoT 中樞：
 
-* [IoT 中樞度量][lnk-metrics]
-* [作業監視][lnk-monitor]
+* [IoT 中樞計量](iot-hub-metrics.md)
+* [作業監視](iot-hub-operations-monitoring.md)
 
 若要進一步探索 IoT 中樞的功能，請參閱︰
 
-* [IoT 中樞開發人員指南][lnk-devguide]
-* [使用 Azure IoT Edge 將 AI 部署到 Edge 裝置][lnk-iotedge]
+* [IoT 中樞開發人員指南](iot-hub-devguide.md)
+* [使用 Azure IoT Edge 將 AI 部署到 Edge 裝置](../iot-edge/tutorial-simulate-device-linux.md)
 
 若要探索使用 IoT 中樞裝置佈建服務進行 Just-In-Time 自動佈建，請參閱： 
 
-* [Azure IoT 中樞裝置佈建服務][lnk-dps]
-
-
-[lnk-metrics]: iot-hub-metrics.md
-[lnk-monitor]: iot-hub-operations-monitoring.md
-
-[lnk-devguide]: iot-hub-devguide.md
-[lnk-iotedge]: ../iot-edge/tutorial-simulate-device-linux.md
-[lnk-dps]: https://azure.microsoft.com/documentation/services/iot-dps
+* [Azure IoT 中樞裝置佈建服務](/azure/iot-dps)

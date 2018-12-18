@@ -1,12 +1,12 @@
 ---
-title: "StorSimple 容錯移轉、災害復原至 StorSimple 雲端設備| Microsoft Docs"
-description: "了解如何將您的 StorSimple 8000 系列實體裝置容錯移轉至雲端設備。"
+title: StorSimple 容錯移轉、災害復原至 StorSimple 雲端設備| Microsoft Docs
+description: 了解如何將您的 StorSimple 8000 系列實體裝置容錯移轉至雲端設備。
 services: storsimple
-documentationcenter: 
+documentationcenter: ''
 author: alkohli
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: na
 ms.topic: article
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23108326"
 ---
 # <a name="fail-over-to-your-storsimple-cloud-appliance"></a>容錯移轉至您的 StorSimple 雲端設備
 

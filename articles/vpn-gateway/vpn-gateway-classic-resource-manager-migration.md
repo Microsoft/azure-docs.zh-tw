@@ -1,6 +1,6 @@
 ---
-title: "從傳統 VPN 閘道到 Resource Manager 移轉 |Microsoft Docs"
-description: "此頁面提供傳統 VPN 閘道到 Resource Manager 移轉的概觀。"
+title: 從傳統 VPN 閘道到 Resource Manager 移轉 |Microsoft Docs
+description: 此頁面提供傳統 VPN 閘道到 Resource Manager 移轉的概觀。
 documentationcenter: na
 services: vpn-gateway
 author: amsriva
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23127096"
 ---
 # <a name="vpn-gateway-classic-to-resource-manager-migration"></a>從傳統 VPN 閘道到 Resource Manager 移轉
 VPN 閘道現在可以用來從傳統移轉至 Resource Manager 部署模型。 您可以進一步了解 Azure Resource Manager [功能和優點](../azure-resource-manager/resource-group-overview.md)。 在本文中，我們會詳細說明如何從傳統部署移轉至較新的 Resource Manager 為基礎模型。 

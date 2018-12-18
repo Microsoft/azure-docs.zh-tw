@@ -10,14 +10,15 @@ ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
-ms.topic: get-started-article
-ms.date: 04/01/2018
+ms.topic: conceptual
+ms.date: 07/11/2018
 ms.author: mbullwin
-ms.openlocfilehash: 9eb7f74a365b51431aabd78de3c6d36c3c969bb6
-ms.sourcegitcommit: 20d103fb8658b29b48115782fe01f76239b240aa
+ms.openlocfilehash: 3a7d657a21b414d51375f912513ae045adec6d6e
+ms.sourcegitcommit: df50934d52b0b227d7d796e2522f1fd7c6393478
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2018
+ms.lasthandoff: 07/12/2018
+ms.locfileid: "38992195"
 ---
 # <a name="monitor-a-sharepoint-site-with-application-insights"></a>使用 Application Insights 監視 SharePoint 網站
 Azure Application Insights 會監視應用程式的可用性、效能和使用情況。 您將在這裡深入了解如何針對 SharePoint 網站進行設定。
@@ -33,7 +34,7 @@ Azure Application Insights 會監視應用程式的可用性、效能和使用�
 
 ```HTML
 <!-- 
-To collect end-user usage analytics about your application, 
+To collect user behavior analytics tools about your application, 
 insert the following script into each page you want to track.
 Place this code immediately before the closing </head> tag,
 and before any other scripts. Your first data will appear 
@@ -83,18 +84,6 @@ window.appInsights=appInsights,appInsights.queue&&0===appInsights.queue.length&&
 ![](./media/app-insights-sharepoint/09-search.png)
 
 如果您預期有更多資料，請在幾秒之後按一下 [重新整理]。
-
-從 [概觀] 刀鋒視窗按一下 [使用情況分析]  以查看使用者、工作階段和頁面檢視次數的圖表：
-
-![](./media/app-insights-sharepoint/06-usage.png)
-
-按一下任何圖表以查看更多詳細資料 - 例如頁面檢視次數：
-
-![](./media/app-insights-sharepoint/07-pages.png)
-
-或使用者：
-
-![](./media/app-insights-sharepoint/08-users.png)
 
 ## <a name="capturing-user-id"></a>擷取使用者識別碼
 標準網頁程式碼片段不會從 SharePoint 擷取使用者識別碼，但只要稍做修改就能執行此作業。

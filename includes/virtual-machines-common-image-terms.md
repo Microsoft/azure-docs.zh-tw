@@ -1,6 +1,6 @@
 ---
-title: "包含檔案"
-description: "包含檔案"
+title: 包含檔案
+description: 包含檔案
 services: virtual-machines-windows, virtual-machines-linux
 author: dlepow
 ms.service: multiple
@@ -9,10 +9,11 @@ ms.date: 02/28/2018
 ms.author: danlep
 ms.custom: include file
 ms.openlocfilehash: 47ef014f31c628fed9d7b2b005e67e8138d3e7e9
-ms.sourcegitcommit: 782d5955e1bec50a17d9366a8e2bf583559dca9e
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/02/2018
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38941154"
 ---
 ## <a name="terminology"></a>術語
 

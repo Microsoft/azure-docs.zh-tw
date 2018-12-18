@@ -1,32 +1,27 @@
 ---
-title: "Raspberry Pi 至 cloud (Node.js) - 將 Raspberry Pi 連接至 Azure IoT 中樞 | Microsoft Docs"
-description: "了解在本教學課程中如何設定及連線 Raspberry Pi 至 Azure IoT 中樞，讓 Raspberry Pi 將資料傳送到 Azure 雲端平台。"
-services: iot-hub
-documentationcenter: 
-author: shizn
-manager: timlt
-tags: 
-keywords: "azure iot raspberry pi, raspberry pi iot 中樞, raspberry pi 將資料傳送至雲端, raspberry pi 至 cloud"
-ms.assetid: b0e14bfa-8e64-440a-a6ec-e507ca0f76ba
+title: Raspberry Pi 至 cloud (Node.js) - 將 Raspberry Pi 連接至 Azure IoT 中樞 | Microsoft Docs
+description: 了解在本教學課程中如何設定及連線 Raspberry Pi 至 Azure IoT 中樞，讓 Raspberry Pi 將資料傳送到 Azure 雲端平台。
+author: rangv
+manager: ''
+keywords: azure iot raspberry pi, raspberry pi iot 中樞, raspberry pi 將資料傳送至雲端, raspberry pi 至 cloud
 ms.service: iot-hub
-ms.devlang: node
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: na
-ms.date: 9/14/2017
-ms.author: xshi
-ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 7bf423fd05d6651bf16693e6d6930fada8b5da70
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+services: iot-hub
+ms.devlang: nodejs
+ms.topic: conceptual
+ms.date: 04/11/2018
+ms.author: rangv
+ms.openlocfilehash: 348186bcb29b272b7e6512ce42221d54d6b388d9
+ms.sourcegitcommit: 2d961702f23e63ee63eddf52086e0c8573aec8dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 09/07/2018
+ms.locfileid: "44161810"
 ---
 # <a name="connect-raspberry-pi-to-azure-iot-hub-nodejs"></a>將 Raspberry Pi 連接至 Azure IoT Hub (Node.js)
 
 [!INCLUDE [iot-hub-get-started-device-selector](../../includes/iot-hub-get-started-device-selector.md)]
 
-在本教學課程中，您會開始了解執行 Raspbian 的 Raspberry Pi 在使用方面的基本知識。 接著會了解如何使用 [Azure IoT 中樞](iot-hub-what-is-iot-hub.md)讓您的裝置順暢地與雲端連線。 如需 Windows 10 IoT 核心範例，請移至 [Windows 開發人員中心](http://www.windowsondevices.com/)。
+在本教學課程中，您會開始了解執行 Raspbian 的 Raspberry Pi 在使用方面的基本知識。 接著會了解如何使用 [Azure IoT 中樞](about-iot-hub.md)讓您的裝置順暢地與雲端連線。 如需 Windows 10 IoT 核心範例，請移至 [Windows 開發人員中心](http://www.windowsondevices.com/)。
 
 還沒有套件嗎？ 試用 [Raspberry Pi 線上模擬器](iot-hub-raspberry-pi-web-simulator-get-started.md)。 或在[這裡](https://azure.microsoft.com/develop/iot/starter-kits)購買新的套件。
 
@@ -50,7 +45,7 @@ ms.lasthandoff: 10/11/2017
 ![您需要什麼](media/iot-hub-raspberry-pi-kit-node-get-started/0_starter_kit.jpg)
 
 * Raspberry Pi 2 或 Raspberry Pi 3 主機板。
-* 有效的 Azure 訂用帳戶。 如果您沒有 Azure 帳戶，請花幾分鐘的時間[建立免費的 Azure 試用帳戶](https://azure.microsoft.com/free/)。
+* Azure 訂用帳戶。 如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
 * 連接至 Pi 的監視器、USB 鍵盤及滑鼠。
 * 執行 Windows 或 Linux 的 Mac 或 PC。
 * 網際網路連線。
@@ -65,9 +60,8 @@ ms.lasthandoff: 10/11/2017
 * 6 條 F/M 跳線。
 * 1 顆漫射型 10 mm LED。
 
-
 > [!NOTE] 
-如果您沒有選用項目，則可以使用模擬的感應器資料。
+> 如果您沒有選用項目，則可以使用模擬的感應器資料。
 
 [!INCLUDE [iot-hub-get-started-create-hub-and-device](../../includes/iot-hub-get-started-create-hub-and-device.md)]
 
@@ -78,34 +72,44 @@ ms.lasthandoff: 10/11/2017
 準備好用來安裝 Raspbian 映像的 microSD 記憶卡。
 
 1. 下載 Raspbian。
-   1. [下載 Raspbian Stretch](http://downloads.raspberrypi.org/raspbian/images/raspbian-2017-07-05/) (.zip 檔案)。
+
+   a. [下載 Raspbian Stretch](http://downloads.raspberrypi.org/raspbian/images/raspbian-2017-07-05/) (.zip 檔案)。
 
    > [!WARNING]
    > 請使用上面的連結來下載 `raspbian-2017-07-5` zip 映像。 最新版的 Raspbian 映像有一些已知的 Wiring-Pi Node 問題，這可能會導致您後續步驟失敗。
-   1. 將 Raspbian 映像解壓縮到您電腦上的資料夾。
+ 
+   b. 將 Raspbian 映像解壓縮到您電腦上的資料夾。
 
-1. 將 Raspbian 安裝到 microSD 記憶卡。
-   1. [下載並安裝 Etcher SD 記憶卡燒錄器公用程式](https://etcher.io/)。
-   1. 執行 Etcher 並選取您在步驟 1 中解壓縮的 Raspbian 映像。
-   1. 選取 microSD 記憶卡磁碟機。 Etcher 可能已經選取正確的磁碟機。
-   1. 按一下 [Flash] 以將 Raspbian 安裝到 microSD 記憶卡。
-   1. 安裝完成時，請將 microSD 記憶卡從電腦移除。 您可以放心地直接移除 microSD 記憶卡，因為 Etcher 會在完成時自動退出或卸載 microSD 記憶卡。
-   1. 將 microSD 記憶卡插入 Pi。
+2. 將 Raspbian 安裝到 microSD 記憶卡。
+
+   a. [下載並安裝 Etcher SD 記憶卡燒錄器公用程式](https://etcher.io/)。
+
+   b. 執行 Etcher 並選取您在步驟 1 中解壓縮的 Raspbian 映像。
+
+   c. 選取 microSD 記憶卡磁碟機。 Etcher 可能已經選取正確的磁碟機。
+
+   d. 按一下 [Flash] 以將 Raspbian 安裝到 microSD 記憶卡。
+
+   e. 安裝完成時，請將 microSD 記憶卡從電腦移除。 您可以放心地直接移除 microSD 記憶卡，因為 Etcher 會在完成時自動退出或卸載 microSD 記憶卡。
+
+   f. 將 microSD 記憶卡插入 Pi。
 
 ### <a name="enable-ssh-and-i2c"></a>啟用 SSH 和 I2C
 
 1. 將 Pi 連接至監視器、鍵盤及滑鼠。 
-1. 啟動 Pi，然後使用 `pi` 作為使用者名稱和 `raspberry` 作為密碼來登入 Raspbian。
-1. 按一下 Raspberry 圖示 > [偏好設定] > [Raspberry Pi 組態]。
+
+2. 啟動 Pi，然後使用 `pi` 作為使用者名稱和 `raspberry` 作為密碼來登入 Raspbian。
+
+3. 按一下 Raspberry 圖示 > [偏好設定] > [Raspberry Pi 組態]。
 
    ![[Raspbian 偏好設定] 功能表](media/iot-hub-raspberry-pi-kit-node-get-started/1_raspbian-preferences-menu.png)
 
-1. 在 [介面]索引標籤上，將 [I2C] 和 [SSH] 設定為 [啟用]，然後按一下 [確定]。 如果您沒有實體感應器，而且想要使用模擬的感應器資料，這便是選擇性步驟。
+4. 在 [介面]索引標籤上，將 [I2C] 和 [SSH] 設定為 [啟用]，然後按一下 [確定]。 如果您沒有實體感應器，而且想要使用模擬的感應器資料，這便是選擇性步驟。
 
    ![在 Raspberry Pi 上啟用 I2C 和 SSH](media/iot-hub-raspberry-pi-kit-node-get-started/2_enable-i2c-ssh-on-raspberry-pi.png)
 
 > [!NOTE] 
-若要啟用 I2C 和 SPI，您可以在 [raspberrypi.org](https://www.raspberrypi.org/documentation/remote-access/ssh/) 和[Adafruit.com](https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c) 找到更多參考文件。
+> 若要啟用 I2C 和 SPI，您可以在 [raspberrypi.org](https://www.raspberrypi.org/documentation/remote-access/ssh/) 和[Adafruit.com](https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c) 找到更多參考文件。
 
 ### <a name="connect-the-sensor-to-pi"></a>將感應器連接至 Pi
 
@@ -148,18 +152,21 @@ BME280 感應器可以收集溫度和溼度資料。 當裝置將訊息傳送至
 1. 使用下列其中一個 SSH 用戶端，從您的主機電腦連接到 Raspberry Pi：
    
    **Windows 使用者**
-   1. 下載並安裝適用於 Windows 的 [PuTTY](http://www.putty.org/)。 
-   1. 將 Pi 的 IP 位址複製到 [主機名稱] 或 [IP 位址] 區段，並且選取 SSH 作為連線類型。
+  
+   a. 下載並安裝適用於 Windows 的 [PuTTY](http://www.putty.org/)。 
+
+   b. 將 Pi 的 IP 位址複製到 [主機名稱] 或 [IP 位址] 區段，並且選取 SSH 作為連線類型。
    
    ![PuTTy](media/iot-hub-raspberry-pi-kit-node-get-started/7_putty-windows.png)
    
    **Mac 和 Ubuntu 使用者**
    
    在 Ubuntu 或 macOS 上使用內建的 SSH 用戶端。 您可能需要執行 `ssh pi@<ip address of pi>`，才能透過 SSH 來連線 Pi。
-   > [!NOTE] 
-   預設使用者名稱為 `pi`，密碼為 `raspberry`。
 
-1. 將 Node.js 和 NPM 安裝到 Pi。
+   > [!NOTE] 
+   > 預設使用者名稱為 `pi`，密碼為 `raspberry`。
+
+2. 將 Node.js 和 NPM 安裝到 Pi。
    
    請先檢查您的 Node.js 版本。 
    
@@ -174,20 +181,20 @@ BME280 感應器可以收集溫度和溼度資料。 當裝置將訊息傳送至
    sudo apt-get -y install nodejs
    ```
 
-1. 複製範例應用程式。
+3. 複製範例應用程式。
 
    ```bash
    git clone https://github.com/Azure-Samples/iot-hub-node-raspberrypi-client-app
    ```
 
-1. 安裝該範例的所有套件。 此安裝包含 Azure IoT 裝置 SDK、BME280 感應器程式庫及 Wiring Pi 程式庫。
+4. 安裝該範例的所有套件。 此安裝包含 Azure IoT 裝置 SDK、BME280 感應器程式庫及 Wiring Pi 程式庫。
 
    ```bash
    cd iot-hub-node-raspberrypi-client-app
    sudo npm install
    ```
    > [!NOTE] 
-   端視網路連線而定，可能需要幾分鐘才能完成此安裝程序。
+   >端視網路連線而定，可能需要幾分鐘才能完成此安裝程序。
 
 ### <a name="configure-the-sample-application"></a>設定範例應用程式
 
@@ -203,7 +210,7 @@ BME280 感應器可以收集溫度和溼度資料。 當裝置將訊息傳送至
 
    如果**沒有感應器**，請將 `simulatedData` 值設定為 `true`，使範例應用程式建立和使用模擬感應器資料。
 
-1. 輸入 Control-O > 按 Enter 鍵 > Control-X 來儲存並結束。
+2. 輸入 Control-O > 按 Enter 鍵 > Control-X 來儲存並結束。
 
 ### <a name="run-the-sample-application"></a>執行範例應用程式
 
@@ -214,7 +221,7 @@ BME280 感應器可以收集溫度和溼度資料。 當裝置將訊息傳送至
    ```
 
    > [!NOTE] 
-   確定複製裝置連接字串，並貼到單引號中。
+   > 確定複製裝置連接字串，並貼到單引號中。
 
 
 您應該會看見下列輸出，顯示傳送至 IoT 中樞的感應器資料和訊息。
@@ -223,6 +230,6 @@ BME280 感應器可以收集溫度和溼度資料。 當裝置將訊息傳送至
 
 ## <a name="next-steps"></a>後續步驟
 
-您已執行範例應用程式收集感應器資料並傳送至 IoT 中樞。 若要查看 Raspberry Pi 傳送給 IoT 中樞的訊息，或是在命令列介面中將訊息傳送給 Raspberry Pi，請參閱[使用 iothub-explorer 來管理雲端裝置訊息傳遞教學課程](https://docs.microsoft.com/en-gb/azure/iot-hub/iot-hub-explorer-cloud-device-messaging)。
+您已執行範例應用程式收集感應器資料並傳送至 IoT 中樞。 若要查看 Raspberry Pi 傳送至 IoT 中樞的訊息，或要傳送訊息至 Raspberry Pi，請參閱[使用適用於 Visual Studio Code 的 Azure IoT 工具組擴充功能來傳送和接收裝置與 IoT 中樞之間的訊息](iot-hub-vscode-iot-toolkit-cloud-device-messaging.md)。
 
 [!INCLUDE [iot-hub-get-started-next-steps](../../includes/iot-hub-get-started-next-steps.md)]

@@ -2,28 +2,24 @@
 title: 跨原始資源共用 (CORS) 支援 | Microsoft Docs
 description: 了解如何啟用 Microsoft Azure 儲存體服務的 CORS 支援。
 services: storage
-documentationcenter: .net
 author: cbrooksmsft
-manager: carmonm
-editor: tysonn
-ms.assetid: a0229595-5b64-4898-b8d6-fa2625ea6887
 ms.service: storage
-ms.workload: storage
-ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
 ms.date: 2/22/2017
 ms.author: cbrooks
-ms.openlocfilehash: 8d189d3ec3e6081dd37b912824f287cd75f39b35
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.component: common
+ms.openlocfilehash: fd5df50128885f6a96e68c8ad46204bc21d80264
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39529707"
 ---
 # <a name="cross-origin-resource-sharing-cors-support-for-the-azure-storage-services"></a>Azure 儲存體服務的跨原始資源共用 (CORS) 支援
 從 2013-08-15 版本開始，Azure 儲存體服務就針對 Blob、資料表、佇列及檔案服務提供跨原始資源共用 (CORS) 的支援。 CORS 是一項 HTTP 功能，可讓 Web 應用程式在某個網域下執行，以存取其他網域中的資源。 網頁瀏覽器會實作稱為 [相同原始原則](http://www.w3.org/Security/wiki/Same_Origin_Policy) 的安全性限制，它可防止網頁呼叫不同網域中的 API；CORS 則提供了一個安全的方式，可讓一個網域 (原始網域) 能夠呼叫其他網域中的 API。 如需 CORS 的詳細資訊，請參閱 [CORS 規格](http://www.w3.org/TR/cors/) 。
 
-您可以透過呼叫[設定 Blob 服務屬性](https://msdn.microsoft.com/library/hh452235.aspx)、[設定佇列服務屬性](https://msdn.microsoft.com/library/hh452232.aspx)和[設定表格服務屬性](https://msdn.microsoft.com/library/hh452240.aspx)，個別為每個儲存體服務設定 CORS 規則。 一旦設定服務的 CORS 規則之後，將評估從不同網域對服務所提出的適當驗證要求，以判斷是否可根據您指定的規則來允許它。
+您可以透過呼叫[設定 Blob 服務屬性](https://msdn.microsoft.com/library/hh452235.aspx)、[設定佇列服務屬性](https://msdn.microsoft.com/library/hh452232.aspx)和[設定表格服務屬性](https://msdn.microsoft.com/library/hh452240.aspx)，個別為每個儲存體服務設定 CORS 規則。 一旦設定服務的 CORS 規則之後，將評估從不同網域對服務所提出的適當授權要求，以判斷是否可根據您指定的規則來允許它。
 
 > [!NOTE]
 > 請注意，CORS 不是一種驗證機制。 啟用 CORS 時，對儲存體資源所提出的任何要求都必須具有適當的驗證簽章，或者必須對公用資源提出。
@@ -71,7 +67,7 @@ CORS 規則是設定於服務層級，因此您需要針對每個服務 (Blob、
 
 CORS 規則中包含的每個項目敘述如下：
 
-* **AllowedOrigins**：允許透過 CORS 對儲存體服務發出要求的原始網域。 原始網域是要求的來源網域。 請注意，原始網域的大小寫必須與使用者代理程式傳送至服務的原始網域完全相符。 您也可以使用萬用字元 '*'，允許所有原始網域透過 CORS 提出要求。 在上述範例中，[http://www.contoso.com](http://www.contoso.com) 和 [http://www.fabrikam.com](http://www.fabrikam.com) 網域可以使用 CORS，對服務發出要求。
+* **AllowedOrigins**：允許透過 CORS 對儲存體服務發出要求的原始網域。 原始網域是要求的來源網域。 請注意，原始網域的大小寫必須與使用者代理程式傳送至服務的原始網域完全相符。 您也可以使用萬用字元 '*'，允許所有原始網域透過 CORS 提出要求。 在上述範例中，[http://www.contoso.com](http://www.contoso.com) 和 [http://www.fabrikam.com](http://www.fabrikam.com) 網域可以使用 CORS 對服務發出要求。
 * **AllowedMethods**：原始網域可能針對 CORS 要求使用的方法 (HTTP 要求動詞命令)。 在上述範例中，只允許 PUT 和 GET 要求。
 * **AllowedHeaders**：原始網域可在 CORS 要求上指定的要求標頭。 在上述範例中，允許以 x-ms-meta-data、x-ms-meta-target 及 x-ms-meta-abc 開始的所有中繼資料標頭。 請注意，萬用字元 '*' 表示允許任何以指定前置詞開頭的標頭。
 * **ExposedHeaders**：可能包含在對 CORS 要求的回應中傳送，而且由瀏覽器對要求簽發者公開的回應標頭。 在上述範例中，會指示瀏覽器公開任何以 x-ms-meta 開頭的標頭。
@@ -169,12 +165,12 @@ CORS 規則的評估，如下所示：
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | **要求上存在的 Origin 標頭** |**針對此服務指定的 CORS 規則** |**有允許所有原始網域的比對規則存在 (*)** |**有完全符合原始網域的比對規則存在** |**回應包含已設為 Origin 的 Vary 標頭** |**回應包含 Access-Control-Allowed-Origin："*"** |**回應包含 Access-Control-Exposed-Headers** |
 | 否 |否 |否 |否 |否 |否 |否 |
-| 否 |yes |否 |否 |yes |否 |否 |
+| 否 |是 |否 |否 |是 |否 |否 |
 | 否 |yes |yes |否 |否 |yes |yes |
 | yes |否 |否 |否 |否 |否 |否 |
 | yes |yes |否 |yes |yes |否 |yes |
-| yes |yes |否 |否 |yes |否 |否 |
-| yes |yes |yes |否 |否 |yes |yes |
+| yes |yes |否 |否 |是 |否 |否 |
+| yes |yes |yes |否 |否 |yes |是 |
 
 ## <a name="billing-for-cors-requests"></a>CORS 要求的計費方式
 如果您已針對帳戶的所有儲存體服務啟用 CORS (透過呼叫[設定 Blob 服務屬性](https://msdn.microsoft.com/library/hh452235.aspx)、[設定佇列服務屬性](https://msdn.microsoft.com/library/hh452232.aspx)或[設定表格服務屬性](https://msdn.microsoft.com/library/hh452240.aspx))，則成功的預檢要求就會列入計費。 為了將費用降至最低，請考慮將 CORS 規則中的 **MaxAgeInSeconds** 元素設為較大的值，讓使用者代理程式能夠快取要求。

@@ -1,0 +1,240 @@
+items:
+- name: Azure Resource Manager 文件
+  href: index.md
+- name: 概觀
+  items:
+  - name: 什麼是 Resource Manager？
+    href: resource-group-overview.md
+- name: 快速入門
+  items:
+  - name: 建立範本 - 入口網站
+    href: resource-manager-quickstart-create-templates-use-the-portal.md
+  - name: 建立範本 - VS Code
+    href: resource-manager-quickstart-create-templates-use-visual-studio-code.md
+  - name: 建立範本 - Visual Studio
+    href: vs-azure-tools-resource-groups-deployment-projects-create-deploy.md
+  expanded: true
+- name: 教學課程
+  items:
+  - name: 利用範本參考
+    href: resource-manager-tutorial-create-encrypted-storage-accounts.md
+  - name: 建立多個資源執行個體
+    href: resource-manager-tutorial-create-multiple-instances.md
+  - name: 設定資源部署順序
+    href: resource-manager-tutorial-create-templates-with-dependent-resources.md
+  - name: 使用條件
+    href: resource-manager-tutorial-use-conditions.md
+  - name: 整合 Key Vault
+    href: resource-manager-tutorial-use-key-vault.md
+  - name: 建立連結的範本
+    href: resource-manager-tutorial-create-linked-templates.md
+  - name: 使用安全部署實務
+    href: deployment-manager-tutorial.md
+- name: 概念
+  items:
+  - name: 資源提供者和類型
+    href: resource-manager-supported-services.md
+  - name: 管理群組
+    href: management-groups-overview.md
+  - name: 部署管理員
+    href: deployment-manager-overview.md
+  - name: 訂用帳戶治理
+    href: /azure/architecture/cloud-adoption-guide/subscription-governance
+    maintainContext: true
+  - name: 雲端一致性範本
+    href: templates-cloud-consistency.md
+  - name: 部署模式
+    href: deployment-modes.md
+  - name: Resource Manager 與傳統部署
+    href: resource-manager-deployment-model.md
+- name: 作法
+  items:
+  - name: 建立範本
+    items:
+    - name: 範本區段
+      href: resource-group-authoring-templates.md
+      items:
+      - name: 參數
+        href: resource-manager-templates-parameters.md
+      - name: 變數
+        href: resource-manager-templates-variables.md
+      - name: Functions
+        href: resource-group-authoring-templates.md#functions
+      - name: 資源
+        href: resource-manager-templates-resources.md
+      - name: 輸出
+        href: resource-manager-templates-outputs.md
+    - name: 連結和巢狀的範本
+      href: resource-group-linked-templates.md
+    - name: 資源相依性
+      href: resource-group-define-dependencies.md
+    - name: 建立多個執行個體
+      href: resource-group-create-multiple.md
+    - name: 在範本中建立資源群組
+      href: create-resource-group-in-template.md
+    - name: 在訂用帳戶中建立資源
+      href: deploy-to-subscription.md
+    - name: 更新資源
+      href: /azure/architecture/building-blocks/extending-templates/update-resource
+  - name: 部署
+    items:
+    - name: Azure PowerShell
+      items:
+      - name: 部署範本
+        href: resource-group-template-deploy.md
+      - name: 使用 SAS 權杖部署私人範本
+        href: resource-manager-powershell-sas-token.md
+      - name: 匯出範本並重新部署
+        href: resource-manager-export-template-powershell.md
+    - name: Azure CLI
+      items:
+      - name: 部署範本
+        href: resource-group-template-deploy-cli.md
+      - name: 使用 SAS 權杖部署私人範本
+        href: resource-manager-cli-sas-token.md
+      - name: 匯出範本並重新部署
+        href: resource-manager-export-template-cli.md
+    - name: Azure 入口網站
+      items:
+      - name: 部署資源
+        href: resource-group-template-deploy-portal.md
+      - name: 匯出範本
+        href: resource-manager-export-template.md
+    - name: REST API
+      href: resource-group-template-deploy-rest.md
+    - name: 多個資源群組或訂用帳戶
+      href: resource-manager-cross-resource-group-deployment.md
+    - name: 使用 Azure DevOps Services 持續整合
+      href: ../vs-azure-tools-resource-groups-ci-in-vsts.md
+      maintainContext: true
+    - name: 在部署期間傳遞安全值
+      href: resource-manager-keyvault-parameter.md
+  - name: 管理
+    items:
+    - name: Azure PowerShell
+      href: powershell-azure-resource-manager.md
+    - name: Azure CLI
+      href: cli-azure-resource-manager.md
+    - name: Azure 入口網站
+      href: resource-group-portal.md
+    - name: 使用標籤來整理資源
+      href: resource-group-using-tags.md
+    - name: 將資源移至新群組或訂用帳戶
+      href: resource-group-move-resources.md
+      items:
+      - name: 依資源類型移動支援
+        href: move-support-resources.md
+    - name: 建立 EA 訂用帳戶
+      href: programmatically-create-subscription.md
+    - name: 授與存取權以建立 EA 訂用帳戶
+      href: grant-access-to-create-subscription.md
+  - name: 控制存取權
+    items:
+    - name: 建立服務主體
+      items:
+      - name: Azure PowerShell
+        href: resource-group-authenticate-service-principal.md
+      - name: Azure CLI
+        href: /cli/azure/create-an-azure-service-principal-azure-cli
+        maintainContext: true
+      - name: Azure 入口網站
+        href: resource-group-create-service-principal-portal.md
+    - name: 驗證 API 以存取訂用帳戶
+      href: resource-manager-api-authentication.md
+    - name: 鎖定資源
+      href: resource-group-lock-resources.md
+  - name: 稽核
+    items:
+    - name: 檢視活動記錄檔
+      href: resource-group-audit.md
+    - name: 檢視部署作業
+      href: resource-manager-deployment-operations.md
+  - name: 疑難排解
+    items:
+    - name: 針對部署錯誤進行疑難排解
+      href: resource-manager-common-deployment-errors.md
+    - name: AccountNameInvalid
+      href: resource-manager-storage-account-name-errors.md
+    - name: InvalidTemplate
+      href: resource-manager-invalid-template-errors.md
+    - name: Linux 部署問題
+      href: ../virtual-machines/linux/troubleshoot-deploy-vm.md
+    - name: NoRegisteredProviderFound
+      href: resource-manager-register-provider-errors.md
+    - name: NotFound
+      href: resource-manager-not-found-errors.md
+    - name: ParentResourceNotFound
+      href: resource-manager-parent-resource-errors.md
+    - name: Linux 佈建和配置問題
+      href: ../virtual-machines/linux/troubleshoot-deployment-new-vm.md
+    - name: Windows 佈建和配置問題
+      href: ../virtual-machines/windows/troubleshoot-deployment-new-vm.md
+    - name: RequestDisallowedByPolicy
+      href: resource-manager-policy-requestdisallowedbypolicy-error.md
+    - name: ReservedResourceName
+      href: resource-manager-reserved-resource-name.md
+    - name: ResourceQuotaExceeded
+      href: resource-manager-quota-errors.md
+    - name: SkuNotAvailable
+      href: resource-manager-sku-not-available-errors.md
+    - name: Windows 部署問題
+      href: ../virtual-machines/windows/troubleshoot-deploy-vm.md
+  - name: 節流要求
+    href: resource-manager-request-limits.md
+  - name: 追蹤非同步作業
+    href: resource-manager-async-operations.md
+- name: 參考
+  items:
+  - name: 範本參考
+    href: subtoc/toc.yml
+  - name: 範本函式
+    href: resource-group-template-functions.md
+    items:
+    - name: 陣列和物件函式
+      href: resource-group-template-functions-array.md
+    - name: 比較函式
+      href: resource-group-template-functions-comparison.md
+    - name: 部署函式
+      href: resource-group-template-functions-deployment.md
+    - name: 邏輯函式
+      href: resource-group-template-functions-logical.md
+    - name: 數值函式
+      href: resource-group-template-functions-numeric.md
+    - name: 資源函式
+      href: resource-group-template-functions-resource.md
+    - name: 字串函數
+      href: resource-group-template-functions-string.md
+  - name: REST - Resource Manager
+    href: /rest/api/resources/
+  - name: REST - 部署管理員
+    href: /rest/api/deploymentmanager/
+  - name: PowerShell
+    href: /powershell/module/azurerm.resources
+  - name: Azure CLI
+    href: /cli/azure/resource
+  - name: .NET
+    href: /dotnet/api/microsoft.azure.management.resourcemanager
+  - name: Java
+    href: /java/api/com.microsoft.azure.management.resources
+  - name: Python
+    href: http://azure-sdk-for-python.readthedocs.io/en/latest/resourcemanagement.html
+- name: 資源
+  items:
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/?category=monitoring-management
+  - name: 定價計算機
+    href: https://azure.microsoft.com/pricing/calculator/
+  - name: 服務更新
+    href: https://azure.microsoft.com/updates/?product=azure-resource-manager
+  - name: 堆疊溢位
+    href: http://stackoverflow.com/questions/tagged/azure-resource-manager
+  - name: 管理個人資料
+    href: resource-manager-personal-data.md
+  - name: 影片
+    href: https://azure.microsoft.com/documentation/videos/index/?services=azure-resource-manager
+ms.openlocfilehash: 3e7fc5f0e26bcfd0c52b874196eff1ac332b62bc
+ms.sourcegitcommit: 07a09da0a6cda6bec823259561c601335041e2b9
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/18/2018
+ms.locfileid: "49403351"

@@ -1,24 +1,25 @@
 ---
-title: "以安全的方式連線到 Azure Service Fabric 叢集 | Microsoft Docs"
-description: "說明如何驗證用戶端對 Service Fabric 叢集的存取，以及如何保護用戶端與叢集之間的通訊。"
+title: 以安全的方式連線到 Azure Service Fabric 叢集 | Microsoft Docs
+description: 說明如何驗證用戶端對 Service Fabric 叢集的存取，以及如何保護用戶端與叢集之間的通訊。
 services: service-fabric
 documentationcenter: .net
 author: rwike77
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 759a539e-e5e6-4055-bff5-d38804656e10
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/10/2018
+ms.date: 05/18/2018
 ms.author: ryanwi
-ms.openlocfilehash: 15ea4cbc02a0311b26e75ae7156c42f6bc2b9b82
-ms.sourcegitcommit: c4cc4d76932b059f8c2657081577412e8f405478
+ms.openlocfilehash: f2a181fbae8ab1e08669021c42c5b4be08f66172
+ms.sourcegitcommit: b6319f1a87d9316122f96769aab0d92b46a6879a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2018
+ms.lasthandoff: 05/20/2018
+ms.locfileid: "34364806"
 ---
 # <a name="connect-to-a-secure-cluster"></a>連線到安全的叢集
 
@@ -89,25 +90,53 @@ Connect-ServiceFabricCluster -ConnectionEndpoint <Cluster FQDN>:19000 `
 ```
 
 ### <a name="connect-to-a-secure-cluster-using-a-client-certificate"></a>使用用戶端憑證連線到安全的叢集
-執行下列 PowerShell 命令來連線至使用用戶端憑證授權系統管理員存取權的安全叢集。 提供叢集憑證指紋，以及已授與權限來管理叢集的用戶端憑證指紋。 憑證詳細資料必須與叢集節點上的憑證相符。
+執行下列 PowerShell 命令來連線至使用用戶端憑證授權系統管理員存取權的安全叢集。 
+
+#### <a name="connect-using-certificate-common-name"></a>使用憑證一般名稱的連線
+提供叢集憑證一般名稱，以及已授與權限來管理叢集的用戶端憑證一般名稱。 憑證詳細資料必須與叢集節點上的憑證相符。
 
 ```powershell
-Connect-ServiceFabricCluster -ConnectionEndpoint <Cluster FQDN>:19000 `
-          -KeepAliveIntervalInSec 10 `
-          -X509Credential -ServerCertThumbprint <Certificate Thumbprint> `
-          -FindType FindByThumbprint -FindValue <Certificate Thumbprint> `
+Connect-serviceFabricCluster -ConnectionEndpoint $ClusterName -KeepAliveIntervalInSec 10 `
+    -X509Credential `
+    -ServerCommonName <certificate common name>  `
+    -FindType FindBySubjectName `
+    -FindValue <certificate common name> `
+    -StoreLocation CurrentUser `
+    -StoreName My 
+```
+*ServerCommonName* 是安裝在叢集節點上的伺服器憑證的一般名稱。 *FindValue* 是系統管理員用戶端憑證的一般名稱。 填入參數後，命令看起來如下列範例所示︰
+```powershell
+$ClusterName= "sf-commonnametest-scus.southcentralus.cloudapp.azure.com:19000"
+$certCN = "sfrpe2eetest.southcentralus.cloudapp.azure.com"
+
+Connect-serviceFabricCluster -ConnectionEndpoint $ClusterName -KeepAliveIntervalInSec 10 `
+    -X509Credential `
+    -ServerCommonName $certCN  `
+    -FindType FindBySubjectName `
+    -FindValue $certCN `
+    -StoreLocation CurrentUser `
+    -StoreName My 
+```
+
+#### <a name="connect-using-certificate-thumbprint"></a>使用憑證指紋連線
+提供叢集憑證指紋，以及已授與權限來管理叢集的用戶端憑證指紋。 憑證詳細資料必須與叢集節點上的憑證相符。
+
+```powershell
+Connect-ServiceFabricCluster -ConnectionEndpoint <Cluster FQDN>:19000 `  
+          -KeepAliveIntervalInSec 10 `  
+          -X509Credential -ServerCertThumbprint <Certificate Thumbprint> `  
+          -FindType FindByThumbprint -FindValue <Certificate Thumbprint> `  
           -StoreLocation CurrentUser -StoreName My
 ```
 
-*ServerCertThumbprint* 是安裝在叢集節點上的伺服器憑證指紋。 *FindValue* 是系統管理員用戶端憑證的指紋。
-填入參數後，命令看起來如下列範例所示︰ 
+*ServerCertThumbprint* 是安裝在叢集節點上的伺服器憑證指紋。 *FindValue* 是系統管理員用戶端憑證的指紋。  填入參數後，命令看起來如下列範例所示︰
 
 ```powershell
-Connect-ServiceFabricCluster -ConnectionEndpoint clustername.westus.cloudapp.azure.com:19000 `
-          -KeepAliveIntervalInSec 10 `
-          -X509Credential -ServerCertThumbprint A8136758F4AB8962AF2BF3F27921BE1DF67F4326 `
-          -FindType FindByThumbprint -FindValue 71DE04467C9ED0544D021098BCD44C71E183414E `
-          -StoreLocation CurrentUser -StoreName My
+Connect-ServiceFabricCluster -ConnectionEndpoint clustername.westus.cloudapp.azure.com:19000 `  
+          -KeepAliveIntervalInSec 10 `  
+          -X509Credential -ServerCertThumbprint A8136758F4AB8962AF2BF3F27921BE1DF67F4326 `  
+          -FindType FindByThumbprint -FindValue 71DE04467C9ED0544D021098BCD44C71E183414E `  
+          -StoreLocation CurrentUser -StoreName My 
 ```
 
 ### <a name="connect-to-a-secure-cluster-using-windows-active-directory"></a>使用 Windows Active Directory 連線到安全的叢集

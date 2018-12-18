@@ -1,24 +1,26 @@
 ---
-title: "在 OMS Log Analytics 中收集 Linux 應用程式效能 | Microsoft Docs"
-description: "本文詳細說明如何設定 OMS Agent for Linux，以收集 MySQL 和 Apache HTTP Server 的效能計數器。"
+title: 在 OMS Log Analytics 中收集 Linux 應用程式效能 | Microsoft Docs
+description: 本文詳細說明如何設定 OMS Agent for Linux，以收集 MySQL 和 Apache HTTP Server 的效能計數器。
 services: log-analytics
-documentationcenter: 
+documentationcenter: ''
 author: mgoedtel
 manager: carmonm
 editor: tysonn
 ms.assetid: f1d5bde4-6b86-4b8e-b5c1-3ecbaba76198
 ms.service: log-analytics
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/04/2017
 ms.author: magoedte
-ms.openlocfilehash: 04ea6f728e59ec8b47e54fe45e1adc6cbbfb85ff
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.component: ''
+ms.openlocfilehash: 5120fa869d9c3fe28630b189b84b9c3e3f5577e2
+ms.sourcegitcommit: 3856c66eb17ef96dcf00880c746143213be3806a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 10/02/2018
+ms.locfileid: "48044564"
 ---
 # <a name="collect-performance-counters-for-linux-applications-in-log-analytics"></a>在 Log Analytics 中收集 Linux 應用程式的效能計數器 
 本文詳細說明如何設定 [OMS Agent for Linux](https://github.com/Microsoft/OMS-Agent-for-Linux)，以收集特定應用程式的效能計數器。  本文包含的應用程式如下︰  
@@ -78,9 +80,9 @@ MySQL OMI 驗證檔案可以定義預設執行個體和連接埠號碼，讓您�
 
 | 作業 | 範例 | 說明
 |:--|:--|:--|
-| autoupdate *false\|true* | mycimprovauth autoupdate false | 設定是否在重新啟動或更新時自動更新驗證檔案。 |
+| autoupdate *false or true* | mycimprovauth autoupdate false | 設定是否在重新啟動或更新時自動更新驗證檔案。 |
 | default *bind-address username password* | mycimprovauth default 127.0.0.1 root pwd | 在 MySQL OMI 驗證檔案中設定預設執行個體。<br>應以純文字輸入 password 欄位 - MySQL OMI 驗證檔案中的密碼將會以 Base 64 編碼。 |
-| delete *default\|port_num* | mycimprovauth 3308 | 依預設值或依連接埠號碼刪除指定的執行個體。 |
+| delete *default or port_num* | mycimprovauth 3308 | 依預設值或依連接埠號碼刪除指定的執行個體。 |
 | help | mycimprov help | 印出可使用的命令清單。 |
 | print | mycimprov print | 印出方便閱讀的 MySQL OMI 驗證檔案。 |
 | update port_num *bind-address username password* | mycimprov update 3307 127.0.0.1 root pwd | 更新指定的執行個體，而如果不存在，則新增執行個體。 |

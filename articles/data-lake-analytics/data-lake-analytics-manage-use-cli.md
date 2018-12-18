@@ -1,25 +1,21 @@
 ---
-title: "使用 Azure 命令列介面管理 Azure Data Lake Analytics | Microsoft Docs"
-description: "了解如何使用 Azure CLI 管理 Data Lake Analytics 帳戶、資料來源、工作和使用者"
+title: 使用 Azure 命令列介面管理 Azure Data Lake Analytics
+description: 本文說明如何使用 Azure CLI 入口網站來管理 Data Lake Analytics 作業、資料來源和使用者。
 services: data-lake-analytics
-documentationcenter: 
-author: SnehaGunda
-manager: Kfile
+author: jasonwhowell
+ms.author: jasonh
 ms.assetid: 4e5a3a0a-6d7f-43ed-aeb5-c3b3979a1e0a
 ms.service: data-lake-analytics
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
+ms.topic: conceptual
 ms.date: 01/29/2018
-ms.author: sngun
-ms.openlocfilehash: edaedaa517a672cd4bad5dc35527f4595ab4a85f
-ms.sourcegitcommit: 9d317dabf4a5cca13308c50a10349af0e72e1b7e
+ms.openlocfilehash: e265a46533264bbb1d437edbfe1bbfb3306614ad
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43044818"
 ---
-# <a name="manage-azure-data-lake-analytics-using-azure-command-line-interface-cli"></a>使用 Azure 命令列介面 (CLI) 管理 Azure Data Lake Analytics
+# <a name="manage-azure-data-lake-analytics-using-the-azure-command-line-interface-cli"></a>使用 Azure 命令列介面 (CLI) 管理 Azure Data Lake Analytics
 
 [!INCLUDE [manage-selector](../../includes/data-lake-analytics-selector-manage.md)]
 
@@ -32,7 +28,7 @@ ms.lasthandoff: 02/01/2018
 
 * Azure 訂用帳戶。 請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
-* Azure CLI。 請參閱 [安裝和設定 Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)。
+* Azure CLI。 請參閱 [安裝和設定 Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli?view=azure-cli-latest)。
 
    * 下載並安裝 **Azure CLI 工具** [發行前版本](https://github.com/MicrosoftBigData/AzureDataLake/releases) ，才能完成這個示範。
 
@@ -195,22 +191,25 @@ Data Lake Analytics 目前支援以下兩個資料來源：
    az dla job cancel --account "<Data Lake Analytics account name>" --job-identity "<Job Id>"
    ```
 
-## <a name="use-azure-resource-manager-groups"></a>使用 Azure 資源管理員群組
-應用程式通常由許多元件組成，例如 Web 應用程式、資料庫、資料庫伺服器、儲存體及協力廠商服務。 Azure Resource Manager 可讓您將應用程式中的資源做為群組使用，稱為 Azure 資源群組。 您可以透過單一、協調的作業來部署、更新、監視或刪除應用程式的所有資源。 您會使用部署的範本，且該範本可以用於不同的環境，例如測試、預備和生產環境。 您可以檢視整個群組的彙總成本，為您的組織釐清計費。 如需詳細資訊，請參閱 [Azure 資源管理員概觀](../azure-resource-manager/resource-group-overview.md)。 
+## <a name="pipelines-and-recurrences"></a>管線和週期
 
-Data Lake Analytics 服務可包含下列元件：
+**取得管線和週期的相關資訊**
 
-* Azure Data Lake Analytics 帳戶
-* 必要的預設 Azure Data Lake 儲存體帳戶
-* 其他 Azure Data Lake 儲存體帳戶
-* 其他 Azure 儲存體帳戶
+使用 `az dla job pipeline` 命令來查看先前提交作業的管線資訊。
 
-您可以在某個資源管理員群組下建立上述所有元件，這樣更容易管理。
+```
+az dla job pipeline list --account "<Data Lake Analytics Account Name>"
 
-![Azure Data Lake Analytics 帳戶與儲存體](./media/data-lake-analytics-manage-use-portal/data-lake-analytics-arm-structure.png)
+az dla job pipeline show --account "<Data Lake Analytics Account Name>" --pipeline-identity "<Pipeline ID>"
+```
 
-Data Lake Analytics 帳戶和相依的儲存體帳戶必須位於相同的 Azure 資料中心。
-但資源管理員群組可位在不同的資料中心內。  
+使用 `az dla job recurrence` 命令來查看先前提交作業的週期資訊。
+
+```
+az dla job recurrence list --account "<Data Lake Analytics Account Name>"
+
+az dla job recurrence show --account "<Data Lake Analytics Account Name>" --recurrence-identity "<Recurrence ID>"
+```
 
 ## <a name="see-also"></a>另請參閱
 * [Microsoft Azure Data Lake Analytics 概觀](data-lake-analytics-overview.md)

@@ -1,27 +1,29 @@
 ---
-title: "將 StorSimple 5000-7000 系列的資料移轉到 8000 系列裝置| Microsoft Docs"
-description: "提供移轉功能的概觀和必要條件。"
+title: 將 StorSimple 5000-7000 系列的資料移轉到 8000 系列裝置| Microsoft Docs
+description: 提供移轉功能的概觀和必要條件。
 services: storsimple
 documentationcenter: NA
 author: alkohli
-manager: jeconnoc
-ms.assetid: 
+manager: twooley
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 12/11/2017
+ms.date: 08/23/2018
 ms.author: alkohli
-ms.openlocfilehash: 36df62c4b01c623702707d39c6af59f4752ee6e0
-ms.sourcegitcommit: a5f16c1e2e0573204581c072cf7d237745ff98dc
+ms.openlocfilehash: 23fde5fab8f223ff1d958a8fac6a31818f1fdd7c
+ms.sourcegitcommit: 58c5cd866ade5aac4354ea1fe8705cee2b50ba9f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/11/2017
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42818911"
 ---
 # <a name="migrate-data-from-storsimple-5000-7000-series-to-8000-series-device"></a>將 StorSimple 5000-7000 系列的資料移轉到 8000 系列裝置
 
 > [!IMPORTANT]
+> - StorSimple 5000/7000 系列將於 2019 年 7 月 31 日到達結束支援 (EOS) 狀態。 建議 StorSimple 5000/7000 系列的客戶遷移至文件中所述的其中一個替代方案。
 > - 移轉目前是協助進行的作業。 如果您要將 StorSimple 5000-7000 系列裝置的資料移轉到 8000 系列裝置，您需要向 Microsoft 支援服務排定移轉的時間。 Microsoft 支援服務接著會啟用移轉用的訂用帳戶。 如需詳細資訊，請參閱如何[開啟支援票證](storsimple-8000-contact-microsoft-support.md)。
 > - 您提出服務要求之後，可能需要幾週的時間來執行移轉計劃並實際開始移轉。
 > - 連絡 Microsoft 支援服務之前，務必詳閱和完成本文提及的[移轉必要條件](#migration-prerequisites)。
@@ -55,7 +57,7 @@ ms.lasthandoff: 12/11/2017
 | 3.   | 成功移轉之後，所有資料都會在設備本機上。 存取資料時不會有任何延遲。 | Azure 儲存體耗用量會增加，直到從 5000/7000 裝置刪除資料為止。                                                                                                        |
 | 4.   |                                                                                                                           | 如果 7000/5000 系列裝置有大量的資料，在移轉期間必須將資料從 Azure 下載，因此會產生與 Azure 下載資料有關的費用，並會出現延遲情況 |
 
-本文僅著重在從 5000/7000 到 8000 系列裝置的移轉功能。 如需有關主機端移轉的詳細資訊，請移至[從其他儲存體裝置移轉](http://download.microsoft.com/download/9/4/A/94AB8165-CCC4-430B-801B-9FD40C8DA340/Migrating Data to StorSimple Volumes_09-02-15.pdf)。
+本文僅著重在從 5000/7000 到 8000 系列裝置的移轉功能。 如需有關主機端移轉的詳細資訊，請移至[從其他儲存體裝置移轉](http://download.microsoft.com/download/9/4/A/94AB8165-CCC4-430B-801B-9FD40C8DA340/Migrating%20Data%20to%20StorSimple%20Volumes_09-02-15.pdf)。
 
 ## <a name="migration-prerequisites"></a>移轉必要條件
 

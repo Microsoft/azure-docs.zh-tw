@@ -1,0 +1,23 @@
+### YamlMime:YamlDocument
+ms.openlocfilehash: ceffd2a6e4bfcfac167ab26de757286c6905e9b3
+ms.sourcegitcommit: cc4fdd6f0f12b44c244abc7f6bc4b181a2d05302
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47096462"
+documentType: LandingData
+title: 專案 URL 預覽文件
+metadata:
+  title: 專案 URL 預覽文件
+  description: 如何建置使用 Project URL Preview API 的應用程式。
+  services: cognitive-services
+  author: mikedodaro
+  manager: rosh
+  ms.service: project-url-preview
+  ms.tgt_pltfrm: na
+  ms.devlang: na
+  ms.topic: landing-page
+  ms.date: 03/19/2018
+  ms.author: rosh, v-gedod
+abstract:
+  description: Bing URL Preview API 取得有關目標 URL 的簡短資訊，包括描述、isFamilyFriendly 旗標、代表影像，以及頁面連結。

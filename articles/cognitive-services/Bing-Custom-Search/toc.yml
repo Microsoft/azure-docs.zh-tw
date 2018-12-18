@@ -1,0 +1,93 @@
+items:
+- name: Bing 自訂搜尋文件
+  href: index.yml
+- name: 概觀
+  items:
+  - name: 什麼是 Bing 自訂搜尋？
+    href: overview.md
+  expanded: true
+- name: REST API 快速入門
+  items:
+  - name: 建立第一個執行個體
+    href: quick-start.md
+  - name: C#
+    href: call-endpoint-csharp.md
+  - name: Java
+    href: call-endpoint-java.md
+  - name: Node.js
+    href: call-endpoint-nodejs.md
+  - name: Python
+    href: call-endpoint-python.md
+  expanded: true
+- name: SDK 快速入門
+  items:
+  - name: C# SDK 快速入門
+    href: sdk-csharp-quick-start.md
+- name: 教學課程
+  items:
+  - name: 建置自訂搜尋網頁
+    href: ./tutorials/custom-search-web-page.md
+- name: 範例
+  items:
+  - name: 程式碼範例
+    href: https://azure.microsoft.com/resources/samples/?sort=0&service=cognitive-services&term=Bing+Custom+Search
+- name: 使用說明指南
+  items:
+  - name: 設定自訂搜尋體驗
+    href: define-your-custom-view.md
+  - name: 呼叫自訂搜尋
+    href: search-your-custom-view.md
+  - name: 設定託管的 UI 體驗
+    href: hosted-ui.md
+  - name: 共用自訂搜尋
+    href: share-your-custom-search.md
+  - name: 從您的執行個體取得影像
+    href: get-images-from-instance.md
+  - name: 從您的執行個體取得影片
+    href: get-videos-from-instance.md
+  - name: 設定自訂自動建議體驗
+    href: define-custom-suggestions.md
+  - name: 處理命中結果醒目提示
+    href: hit-highlighting.md
+  - name: 網頁頁面
+    href: page-webpages.md
+- name: 參考
+  items:
+  - name: Bing 自訂自動建議 API 參考
+    href: https://docs.microsoft.com/rest/api/cognitiveservices/bing-custom-autosuggest-api-v7-reference
+  - name: Bing 自訂影像搜尋 API 參考
+    href: https://docs.microsoft.com/rest/api/cognitiveservices/bing-custom-images-api-v7-reference
+  - name: Bing 自訂搜尋 API 參考
+    href: https://docs.microsoft.com/rest/api/cognitiveservices/bing-custom-search-api-v7-reference
+  - name: Bing 自訂影搜尋 API 參考
+    href: https://docs.microsoft.com/rest/api/cognitiveservices/bing-custom-videos-api-v7-reference
+  - name: Bing 搜尋 API 使用和顯示需求
+    href: use-and-display-requirements.md
+- name: 資源
+  items:
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/cognitive-services/bing-custom-search/
+  - name: UserVoice
+    href: https://cognitive.uservoice.com/forums/598147-bing-custom-search-api
+  - name: 堆疊溢位
+    href: https://stackoverflow.com/search?q=bing+custom+search
+  - name: 區域可用性
+    href: https://azure.microsoft.com/global-infrastructure/services/
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/
+  - name: 知識庫
+    href: https://cognitive.uservoice.com/knowledgebase/topics/127875-bing-search-web-image-video-news-autosuggest
+  - name: 取得 API 金鑰
+    href: https://azure.microsoft.com/try/cognitive-services/?api=bing-custom-search-api
+  - name: 試試看！
+    href: https://aka.ms/bingcustomsearchtryit
+  - name: Bing 自訂搜尋端點
+    href: endpoint-custom.md
+  - name: 語言與區域支援
+    href: language-support.md
+ms.openlocfilehash: 62392b7ff226072108c61f10b3f0519677aaba6b
+ms.sourcegitcommit: 7c4fd6fe267f79e760dc9aa8b432caa03d34615d
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47431974"

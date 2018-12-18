@@ -1,24 +1,19 @@
 ---
-title: "預覽 Azure 匯入/匯出作業的磁碟機使用量 - v1 | Microsoft Docs"
-description: "了解如何預覽您已針對 Azure 匯入/匯出服務中的匯出作業選取的 blob 清單。"
+title: 預覽 Azure 匯入/匯出作業的磁碟機使用量 - v1 | Microsoft Docs
+description: 了解如何預覽您已針對 Azure 匯入/匯出服務中的匯出作業選取的 blob 清單。
 author: muralikk
-manager: syadav
-editor: tysonn
 services: storage
-documentationcenter: 
-ms.assetid: 7707d744-7ec7-4de8-ac9b-93a18608dc9a
 ms.service: storage
-ms.workload: storage
-ms.tgt_pltfrm: na
-ms.devlang: na
 ms.topic: article
 ms.date: 01/15/2017
 ms.author: muralikk
-ms.openlocfilehash: 6ec74ae0b0931f3fed99a43f4f7e58f9d425b138
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.component: common
+ms.openlocfilehash: 21c0fd9b258100e769172332713769024fb12969
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39520566"
 ---
 # <a name="previewing-drive-usage-for-an-export-job"></a>預覽匯出作業的磁碟機使用量
 建立匯出作業之前，您必須先選擇一組要匯出的 blob。 Microsoft Azure 匯入/匯出服務可讓您使用一份 blob 路徑或 blob 前置詞清單來代表您已選取的 blob。  

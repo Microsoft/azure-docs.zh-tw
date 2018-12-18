@@ -1,8 +1,8 @@
 ---
-title: "智慧偵測 - Azure Application Insights 偵測到雲端資源的低使用率 | Microsoft Docs"
-description: "使用 Azure Application Insights 監視應用程式是否有雲端資源低使用率。"
+title: 智慧偵測 - Azure Application Insights 偵測到雲端資源的低使用率 | Microsoft Docs
+description: 使用 Azure Application Insights 監視應用程式是否有雲端資源低使用率。
 services: application-insights
-documentationcenter: 
+documentationcenter: ''
 author: mrbullwinkle
 manager: carmonm
 ms.assetid: ea2a28ed-4cd9-4006-bd5a-d4c76f4ec20b
@@ -10,16 +10,17 @@ ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 12/12/2017
 ms.author: mbullwin
-ms.openlocfilehash: 8382f6047ae222a01cc0e8d6ca9dcf5593d0dff6
-ms.sourcegitcommit: 48fce90a4ec357d2fb89183141610789003993d2
+ms.openlocfilehash: ca4f944f605db96a2cedf2682f3ff4c811007ffb
+ms.sourcegitcommit: cc4fdd6f0f12b44c244abc7f6bc4b181a2d05302
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/12/2018
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47094907"
 ---
-# <a name="low-utilization-of-cloud-resources-preview"></a>雲端資源低使用率 (預覽)
+# <a name="low-cpu-utilization-in-cloud-resources-preview"></a>雲端資源的低 CPU 使用率 (預覽)
 
 Application Insights 會自動分析應用程式中每個角色執行個體的 CPU 消耗，並且偵測低 CPU 使用率的執行個體。 這項偵測可讓您減少您的 Azure 資源並降低成本，方法是降低每個角色利用的角色執行個體數目，或是降低角色數目。
 

@@ -1,11 +1,11 @@
 ---
-title: "在瀏覽器索引標籤和搜尋結果中顯示的頁面標題"
-description: "會顯示在登陸頁面以及大部分搜尋結果中的文章描述"
+title: 在瀏覽器索引標籤和搜尋結果中顯示的頁面標題
+description: 會顯示在登陸頁面以及大部分搜尋結果中的文章描述
 services: service-name
 documentationcenter: dev-center-name
 author: GitHub-alias-of-only-one-author
 manager: manager-alias
-editor: 
+editor: ''
 tags: comma-separates-additional-tags-if-required
 ms.service: required
 ms.devlang: may be required
@@ -19,6 +19,7 @@ ms.sourcegitcommit: e19f6a1709b0fe0f898386118fbef858d430e19d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 01/16/2018
+ms.locfileid: "26730552"
 ---
 # <a name="title-maximum-120-characters-target-the-primary-keyword"></a>標題 (最多 120 個字元，目標為主要關鍵字)
 *在描述中使用 2-3 個次要關鍵字。*

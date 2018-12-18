@@ -1,11 +1,11 @@
 ---
-title: "Azure CDN 規則引擎條件運算式 | Microsoft Docs"
-description: "Azure CDN 規則引擎比對條件和功能的參考文件。"
+title: Azure CDN 規則引擎條件運算式 | Microsoft Docs
+description: Azure CDN 規則引擎比對條件和功能的參考文件。
 services: cdn
-documentationcenter: 
+documentationcenter: ''
 author: Lichard
 manager: akucer
-editor: 
+editor: ''
 ms.assetid: 669ef140-a6dd-4b62-9b9d-3f375a14215e
 ms.service: cdn
 ms.workload: media
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "22997973"
 ---
 # <a name="azure-cdn-rules-engine-conditional-expressions"></a>Azure CDN 規則引擎條件運算式
 本主題會針對 Azure 內容傳遞網路 (CDN) [規則引擎](cdn-rules-engine.md)的條件運算式列出詳細說明。

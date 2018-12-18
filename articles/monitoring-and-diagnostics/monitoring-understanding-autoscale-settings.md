@@ -1,24 +1,19 @@
 ---
-title: "了解 Azure 中的自動調整設定 | Microsoft Docs"
-description: "自動調整設定及其運作方式的詳細解說。"
+title: 了解 Azure 中的自動調整設定
+description: 自動調整規模設定及其運作方式的詳細解說。 適用於虛擬機器、雲端服務、Web Apps
 author: anirudhcavale
-manager: orenr
-editor: 
-services: monitoring-and-diagnostics
-documentationcenter: monitoring-and-diagnostics
-ms.assetid: ce2930aa-fc41-4b81-b0cb-e7ea922467e1
-ms.service: monitoring-and-diagnostics
-ms.workload: na
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+services: azure-monitor
+ms.service: azure-monitor
+ms.topic: conceptual
 ms.date: 12/18/2017
 ms.author: ancav
-ms.openlocfilehash: 73c79ec4ee1beb5220e088421c78ffffd932eef1
-ms.sourcegitcommit: eeb5daebf10564ec110a4e83874db0fb9f9f8061
+ms.component: autoscale
+ms.openlocfilehash: 982bc43fd86a808da07833d77bde17e17789b2d6
+ms.sourcegitcommit: 1b8665f1fff36a13af0cbc4c399c16f62e9884f3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/03/2018
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35264991"
 ---
 # <a name="understand-autoscale-settings"></a>了解自動調整設定
 自動調整設定可協助您確保執行中的資源數量正確，能夠處理變動的應用程式負載。 您可以設定根據指出負載或效能的計量，或是在排定的日期和時間，觸發自動調整設定。 本文將詳細探討自動調整設定的剖析。 本文開頭是設定的結構描述和屬性，然後逐步說明可以設定的各種設定檔類型。 最後，本文會討論 Azure 中的自動調整功能如何評估在任何指定的時間要執行哪個設定檔。
@@ -122,11 +117,11 @@ ms.lasthandoff: 02/03/2018
 
 自動調整規模設定檔有三種類型：
 
-- **一般設定檔：**最常見的設定檔。 如果您不需要根據星期幾或特定日子調整資源規模，您可以使用一般設定檔。 接著，可以為此設定檔設定計量規則，以指定何時要相應放大及何時要相應縮小。 您應該只定義一個一般設定檔。
+- **一般設定檔：** 最常見的設定檔。 如果您不需要根據星期幾或特定日子調整資源規模，您可以使用一般設定檔。 接著，可以為此設定檔設定計量規則，以指定何時要相應放大及何時要相應縮小。 您應該只定義一個一般設定檔。
 
     本文中稍早使用的範例設定檔是一般設定檔範例。 請注意，您也可以將設定檔設定成調整至資源的靜態執行個體計數。
 
-- **固定日期設定檔：**這個設定檔用於特殊案例。 例如，假設您有一個在 2017 年 12 月 26 日 (PST) 發生的重要事件。 您希望當天資源的最小和最大容量不同，但仍會依據相同的計量進行調整。 在此情況下，您應該在設定的設定檔清單中新增一個固定日期設定檔。 此設定檔會設定為只在事件當天執行。 在任何其他日子，自動調整會使用一般設定檔。
+- **固定日期設定檔：** 這個設定檔用於特殊案例。 例如，假設您有一個在 2017 年 12 月 26 日 (PST) 發生的重要事件。 您希望當天資源的最小和最大容量不同，但仍會依據相同的計量進行調整。 在此情況下，您應該在設定的設定檔清單中新增一個固定日期設定檔。 此設定檔會設定為只在事件當天執行。 在任何其他日子，自動調整會使用一般設定檔。
 
     ``` JSON
     "profiles": [{
@@ -159,7 +154,7 @@ ms.lasthandoff: 02/03/2018
     ]
     ```
     
-- **週期設定檔：**此類型的設定檔可讓您確保在特定的星期幾一律使用此設定檔。 週期設定檔只有開始時間。 它們會一直執行，直到所設定的下一個週期設定檔或固定日期設定檔開始為止。 如果自動調整設定只有一個週期設定檔，則即使在相同設定中已定義一般設定檔，也會執行該週期設定檔。 下列兩個範例說明如何使用此設定檔：
+- **週期設定檔：** 此類型的設定檔可讓您確保在特定的星期幾一律使用此設定檔。 週期設定檔只有開始時間。 它們會一直執行，直到所設定的下一個週期設定檔或固定日期設定檔開始為止。 如果自動調整設定只有一個週期設定檔，則即使在相同設定中已定義一般設定檔，也會執行該週期設定檔。 下列兩個範例說明如何使用此設定檔：
 
     **範例 1：工作日與週末**
     

@@ -1,12 +1,12 @@
 ---
-title: "Azure PowerShell 指令碼範例 - 輪替儲存體帳戶存取金鑰 | Microsoft Docs"
-description: "建立 Azure 儲存體帳戶，然後擷取並輪替其中一個帳戶存取金鑰。"
+title: Azure PowerShell 指令碼範例 - 輪替儲存體帳戶存取金鑰 | Microsoft Docs
+description: 建立 Azure 儲存體帳戶，然後擷取並輪替其中一個帳戶存取金鑰。
 services: storage
 documentationcenter: na
 author: tamram
 manager: timlt
 editor: tysonn
-ms.assetid: 
+ms.assetid: ''
 ms.custom: mvc
 ms.service: storage
 ms.workload: storage
@@ -20,6 +20,7 @@ ms.sourcegitcommit: 29bac59f1d62f38740b60274cb4912816ee775ea
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 11/29/2017
+ms.locfileid: "25984156"
 ---
 # <a name="create-a-storage-account-and-rotate-its-account-access-keys"></a>建立儲存體帳戶，並輪替其帳戶存取金鑰
 

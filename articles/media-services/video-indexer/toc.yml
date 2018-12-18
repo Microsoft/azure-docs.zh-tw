@@ -1,0 +1,61 @@
+items:
+- name: 影片索引器文件
+  href: ./index.yml
+- name: 概觀
+  items:
+  - name: 什麼是影片索引子？
+    href: ../../cognitive-services/video-indexer/video-indexer-overview.md?toc=/azure/media-services/video-indexer/toc.json&bc=/azure/media-services/video-indexer/breadcrumb/toc.json
+- name: 快速入門
+  items:
+  - name: 開始使用
+    href: ../../cognitive-services/video-indexer/video-indexer-get-started.md?toc=/azure/media-services/video-indexer/toc.json&bc=/azure/media-services/video-indexer/breadcrumb/toc.json
+  expanded: true
+- name: 教學課程
+  items:
+  - name: 使用影片索引器 API
+    href: ../../cognitive-services/video-indexer/video-indexer-use-apis.md?toc=/azure/media-services/video-indexer/toc.json&bc=/azure/media-services/video-indexer/breadcrumb/toc.json
+- name: 概念
+  href: ../../cognitive-services/video-indexer/video-indexer-concepts.md?toc=/azure/media-services/video-indexer/toc.json&bc=/azure/media-services/video-indexer/breadcrumb/toc.json
+  items:
+  - name: 比較 VI 和 AMS 預設
+    href: compare-video-indexer-with-media-services-presets.md
+- name: 使用說明指南
+  items:
+  - name: 從 v1 遷移至 v2
+    href: ../../cognitive-services/video-indexer/migrate-from-v1-to-v2.md?toc=/azure/media-services/video-indexer/toc.json&bc=/azure/media-services/video-indexer/breadcrumb/toc.json
+  - name: 連接到 Azure
+    href: ../../cognitive-services/video-indexer/connect-to-azure.md?toc=/azure/media-services/video-indexer/toc.json&bc=/azure/media-services/video-indexer/breadcrumb/toc.json
+  - name: 管理與 Azure 連線的帳戶
+    href: ../../cognitive-services/video-indexer/manage-account-connected-to-azure.md?toc=/azure/media-services/video-indexer/toc.json&bc=/azure/media-services/video-indexer/breadcrumb/toc.json
+  - name: 使用 API 上傳並為影片製作索引
+    href: ../../cognitive-services/video-indexer/upload-index-videos.md?toc=/azure/media-services/video-indexer/toc.json&bc=/azure/media-services/video-indexer/breadcrumb/toc.json
+  - name: 檢查影片索引器輸出
+    href: ../../cognitive-services/video-indexer/video-indexer-output-json-v2.md?toc=/azure/media-services/video-indexer/toc.json&bc=/azure/media-services/video-indexer/breadcrumb/toc.json
+  - name: 尋找影片中的確切時間
+    href: ../../cognitive-services/video-indexer/video-indexer-search.md?toc=/azure/media-services/video-indexer/toc.json&bc=/azure/media-services/video-indexer/breadcrumb/toc.json
+  - name: 檢視及編輯影片索引器深入解析
+    href: ../../cognitive-services/video-indexer/video-indexer-view-edit.md?toc=/azure/media-services/video-indexer/toc.json&bc=/azure/media-services/video-indexer/breadcrumb/toc.json
+  - name: 從現有影片建立影片深入解析
+    href: ../../cognitive-services/video-indexer/video-indexer-create-new.md?toc=/azure/media-services/video-indexer/toc.json&bc=/azure/media-services/video-indexer/breadcrumb/toc.json
+  - name: 將小工具內嵌至您的應用程式
+    href: ../../cognitive-services/video-indexer/video-indexer-embed-widgets.md?toc=/azure/media-services/video-indexer/toc.json&bc=/azure/media-services/video-indexer/breadcrumb/toc.json
+- name: 參考
+  items:
+  - name: 影片索引器 API
+    href: https://api-portal.videoindexer.ai/
+- name: 資源
+  items:
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/cognitive-services/video-indexer/
+  - name: UserVoice
+    href: https://cognitive.uservoice.com/forums/598144-video-indexer
+  - name: 堆疊溢位
+    href: https://stackoverflow.com/questions/tagged/microsoft-cognitive
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/?category=ai-machine-learning
+ms.openlocfilehash: c12301abac85fd4faf8a393c9f7a6bf8ff7276b6
+ms.sourcegitcommit: 3a7c1688d1f64ff7f1e68ec4bb799ba8a29a04a8
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49380259"

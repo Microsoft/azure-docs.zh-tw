@@ -1,3 +1,20 @@
+---
+title: 包含檔案
+description: 包含檔案
+services: iot-suite
+author: dominicbetts
+ms.service: iot-suite
+ms.topic: include
+ms.date: 04/24/2018
+ms.author: dobett
+ms.custom: include file
+ms.openlocfilehash: 7d7cd8a197a89781a75f47bb4b4e2ec8fe7c3cb4
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38944737"
+---
 # <a name="secure-your-iot-deployment"></a>保護您的 IoT 部署
 
 本文針對以 Azure IoT 為主的物聯網 (IoT) 基礎結構提供更進一層的詳細資料。 它會連結到設定及部署每個元件的實作層級詳細資料。 另外也會提供各種競爭方法之間的比較和選擇。
@@ -12,7 +29,7 @@
 
 ## <a name="secure-device-provisioning-and-authentication"></a>保護裝置佈建和驗證
 
-Azure IoT 套件利用下列兩種方法保護 IoT 裝置：
+IoT 解決方案加速器透過以下兩種方法保護 IoT 裝置：
 
 * 提供每部裝置唯一識別金鑰 (安全性權杖)，裝置可使用這個金鑰與 IoT 中樞通訊。
 * 使用裝置上的 [X.509 憑證][lnk-x509]和私密金鑰做為向 IoT 中樞驗證裝置的方法。 這種驗證方法可在任何時候確保無法從裝置外部知道裝置上的私密金鑰，提供較高的安全性等級。
@@ -89,7 +106,7 @@ Azure IoT 中樞和可能屬於解決方案的其他服務，能允許使用 Azu
 [lnk-sas-tokens]: ../articles/iot-hub/iot-hub-devguide-security.md#use-sas-tokens-in-a-device-app
 [lnk-identity-registry]: ../articles/iot-hub/iot-hub-devguide-identity-registry.md
 [lnk-protocols]: ../articles/iot-hub/iot-hub-devguide-security.md
-[lnk-custom-auth]: ../articles/iot-hub/iot-hub-devguide-security.md#custom-device-authentication
+[lnk-custom-auth]: ../articles/iot-hub/iot-hub-devguide-security.md#custom-device-and-module-authentication
 [lnk-x509]: http://www.itu.int/rec/T-REC-X.509-201210-I/en
 [lnk-use-x509]: ../articles/iot-hub/iot-hub-devguide-security.md
 [lnk-tls12]: https://tools.ietf.org/html/rfc5246

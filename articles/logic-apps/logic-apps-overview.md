@@ -1,38 +1,35 @@
 ---
-title: "概觀 - 與 Azure Logic Apps 進行企業整合 | Microsoft Docs"
-description: "建立自動化工作流程和商務程序，以整合各企業與組織的資料、服務、應用程式和系統。 建立資料整合、系統整合、企業應用程式整合 (EAI) 和協調流程案例的解決方案。"
-keywords: "自動化, 工作流程, 企業應用程式整合, EAI, 系統整合, 資料整合, 協調流程, 整合服務, iPaaS"
+title: 與 Azure Logic Apps 進行企業整合方案 | Microsoft Docs
+description: 了解 Logic Apps 如何協助您建立自動化工作流程和商務程序，以整合各企業與組織的資料、服務、應用程式和系統。 建立資料整合、系統整合、企業應用程式整合 (EAI) 和協調流程案例的解決方案。
 services: logic-apps
-author: ecfan
-manager: anneta
-editor: 
-documentationcenter: 
-ms.assetid: 07765c05-72a6-4169-a8ab-f6420bfbaf07
 ms.service: logic-apps
-ms.workload: na
-ms.tgt_pltfrm: na
-ms.devlang: na
+author: ecfan
+ms.author: estfan
+manager: jeconnoc
 ms.topic: overview
 ms.custom: mvc
-ms.date: 01/12/2018
-ms.author: LADocs; estfan
-ms.openlocfilehash: 6c88c51eb4def92164e221efa5c6293f9b2247e4
-ms.sourcegitcommit: be9a42d7b321304d9a33786ed8e2b9b972a5977e
+ms.date: 6/29/2018
+ms.reviewer: klam, LADocs
+ms.suite: integration
+ms.openlocfilehash: d3640710b3ba209c8e701cf5e340103c1d3d6fa7
+ms.sourcegitcommit: d1eefa436e434a541e02d938d9cb9fcef4e62604
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/19/2018
+ms.lasthandoff: 06/28/2018
+ms.locfileid: "37082210"
 ---
 # <a name="what-is-azure-logic-apps"></a>什麼是 Azure Logic Apps？
 
-[Logic Apps](https://azure.microsoft.com/services/logic-apps) 可協助您建立、排程程序，並以[工作流程](#logic-app-concepts)的形式自動執行程序，以便整合各企業或組織的應用程式、資料、系統和服務。 Logic Apps 會簡化設計和建立可調整解決方案的方式，以便在雲端、內部部署環境或兩者中進行應用程式整合、資料整合、系統整合、企業應用程式整合 (EAI) 和企業對企業 (B2B) 通訊。
+[Logic Apps](https://azure.microsoft.com/services/logic-apps) 可協助您建置解決方案，以[工作流程](#logic-app-concepts)的形式自動執行工作和商務程序，以便整合各企業或組織的應用程式、資料、系統和服務。 Logic Apps 是 Azure 中的雲端服務，可簡化設計和建立可調整解決方案的方式，以便在雲端、內部部署環境或兩者中進行應用程式整合、資料整合、系統整合、企業應用程式整合 (EAI) 和企業對企業 (B2B) 通訊。
 
 例如，以下是可利用邏輯應用程式自動執行的幾項工作負載：
 
 * 處理並路由傳送跨內部部署系統與雲端服務的訂單。
-* 將上傳的檔案從 FTP 伺服器移到 Azure 儲存體。 
+* 將上傳的檔案從 FTP 或 FTP 伺服器移到 Azure 儲存體。 
+* 在各種系統、應用程式和服務中發生事件時，透過 Office 365 傳送電子郵件通知。
 * 監視特定主旨的推文、分析情緒，以及針對需要檢閱的項目建立警示或工作。
 
-若要使用邏輯應用程式建置整合解決方案，請從[大約 200 個內建連接器](../connectors/apis-list.md)的成長中資源庫進行選擇，例如 SQL Database、Azure 服務、Office 365、Salesforce、Google 等等。 這些[連接器](#logic-app-concepts)會提供[觸發程序](#logic-app-concepts)、[動作](#logic-app-concepts)或兩者，以便建立可即時安全地存取及處理資料的邏輯應用程式。
+若要使用解決方案來建置整合解決方案，請從具有 [200 個以上連接器](../connectors/apis-list.md)的成長中資源庫進行選擇，其中包括 Azure 服務，例如服務匯流排、Functions 和儲存體；SQL、Office 365、Dynamics、BizTalk、Salesforce、SAP、Oracle DB、檔案共用等等。 這些[連接器](#logic-app-concepts)會提供[觸發程序](#logic-app-concepts)、[動作](#logic-app-concepts)或兩者，以便建立可即時安全地存取及處理資料的邏輯應用程式。
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/Introducing-Azure-Logic-Apps/player]
 
@@ -58,56 +55,59 @@ Logic Apps、Functions 和 Event Grid 都是由 Microsoft Azure 完全管理，�
 
 以下是有關 Logic Apps 功能和優點的詳細資訊：
 
-* **使用容易使用的工具以視覺化方式建立工作流程**
+### <a name="visually-build-workflows-with-easy-to-use-tools"></a>使用容易使用的工具以視覺化方式建立工作流程
 
-  使用視覺化設計工具，節省時間並簡化複雜程序。 
-  透過瀏覽器在 Azure 入口網站中或在 Visual Studio 中使用 Logic Apps 設計工具，自始至終建立邏輯應用程式。 使用觸發程序啟動您的工作流程，並從[連接器資源庫](../connectors/apis-list.md)新增任意數目的動作。
+使用視覺化設計工具，節省時間並簡化複雜程序。 透過瀏覽器在 Azure 入口網站中或在 Visual Studio 中使用 Logic Apps 設計工具，自始至終建立邏輯應用程式。 使用觸發程序啟動您的工作流程，並從[連接器資源庫](../connectors/apis-list.md)新增任意數目的動作。
 
-* **使用邏輯應用程式範本更快入門**
+### <a name="get-started-faster-with-logic-app-templates"></a>使用邏輯應用程式範本更快入門
 
-  當您選擇[範本資源庫](../logic-apps/logic-apps-create-logic-apps-from-templates.md)中預先定義的工作流程時，可以更快速地建立常用的解決方案。 
-  範本涵蓋軟體即服務 (SaaS) 應用程式的簡易連線、進階 B2B 解決方案，以及「有趣的」範本。 了解如何[從預先建置的範本建立邏輯應用程式](../logic-apps/logic-apps-create-logic-apps-from-templates.md)。
+當您選擇[範本資源庫](../logic-apps/logic-apps-create-logic-apps-from-templates.md)中預先定義的工作流程時，可以更快速地建立常用的解決方案。 範本涵蓋軟體即服務 (SaaS) 應用程式的簡易連線、進階 B2B 解決方案，以及「有趣的」範本。 了解如何[從預先建置的範本建立邏輯應用程式](../logic-apps/logic-apps-create-logic-apps-from-templates.md)。
 
-* **跨越不同環境連線不同的系統**
+### <a name="connect-disparate-systems-across-different-environments"></a>跨越不同環境連線不同的系統
 
-  有些模式和工作流程很輕易描述，但難以在程式碼中實作。 
-  邏輯應用程式可協助您順暢地跨越內部部署和雲端環境連線不同的系統。 例如，您可以將雲端行銷解決方案連線至內部部署計費系統，或使用企業服務匯流排集中處理跨越 API 和系統的傳訊。 邏輯應用程式會提供快速、可靠且一致的方式，為這些案例提供可重複使用並可重新設定的解決方案。
+有些模式和工作流程很輕易描述，但難以在程式碼中實作。 邏輯應用程式可協助您順暢地跨越內部部署和雲端環境連線不同的系統。 例如，您可以將雲端行銷解決方案連線至內部部署計費系統，或使用企業服務匯流排集中處理跨越 API 和系統的傳訊。 邏輯應用程式會提供快速、可靠且一致的方式，為這些案例提供可重複使用並可重新設定的解決方案。
 
-* **企業整合和 B2B 案例的頂級支援**
+### <a name="first-class-support-for-enterprise-integration-and-b2b-scenarios"></a>企業整合和 B2B 案例的頂級支援
 
-  企業和組織可使用業界標準，但不同的訊息通訊協定和格式 (例如 EDIFACT、AS2 和 X12)，以電子方式彼此通訊。 
-  您可以使用[企業整合套件 (EIP)](../logic-apps/logic-apps-enterprise-integration-overview.md) 中的功能來建立邏輯應用程式，以將合作夥伴使用的訊息格式轉換成貴組織的系統可解譯和處理的格式。 邏輯應用程式會利用加密與數位簽章，順暢且安全地處理這些交換。
+企業和組織可使用業界標準，但不同的訊息通訊協定和格式 (例如 EDIFACT、AS2 和 X12)，以電子方式彼此通訊。 您可以使用[企業整合套件 (EIP)](../logic-apps/logic-apps-enterprise-integration-overview.md) 中的功能來建立邏輯應用程式，以將合作夥伴使用的訊息格式轉換成貴組織的系統可解譯和處理的格式。 Logic Apps 會利用加密與數位簽章，順暢且安全地處理這些交換。
 
-  從您目前的系統與服務著手，並以您自己的步調逐漸成長。 當您準備就緒時，Logic Apps 和 EIP 會提供下列功能等，協助您實作及相應增加至更多成熟的整合案例：
+從您目前的系統與服務著手，並以您自己的步調逐漸成長。 當您準備就緒時，Logic Apps 和 EIP 會提供下列功能等，協助您實作及相應增加至更多成熟的整合案例：
 
-  * 打造下列產品與服務： 
-    * [Microsoft BizTalk Server](https://docs.microsoft.com/biztalk/core/introducing-biztalk-server) 
-    * [API 管理](../api-management/api-management-key-concepts.md) 
-    * [Azure Functions](../azure-functions/functions-overview.md) 
-    * [Azure 服務匯流排](../service-bus-messaging/service-bus-messaging-overview.md)
-  * 處理 [XML 訊息](../logic-apps/logic-apps-enterprise-integration-xml.md)
-  * 處理[一般檔案](../logic-apps/logic-apps-enterprise-integration-flatfile.md)
-  * 透過 [EDIFACT](../logic-apps/logic-apps-enterprise-integration-edifact.md)、[AS2](../logic-apps/logic-apps-enterprise-integration-as2.md) 和 [X12](../logic-apps/logic-apps-enterprise-integration-x12.md) 通訊協定交換訊息
-  * 使用[整合帳戶](../logic-apps/logic-apps-enterprise-integration-accounts.md)集中儲存和管理這些 B2B 成品等：
-    * [合作夥伴](../logic-apps/logic-apps-enterprise-integration-partners.md)
-    * [合約](../logic-apps/logic-apps-enterprise-integration-agreements.md) 
-    * [XML 轉換的對應](../logic-apps/logic-apps-enterprise-integration-maps.md)
-    * [XML 驗證的結構描述](../logic-apps/logic-apps-enterprise-integration-schemas.md)
+* 打造下列產品與服務：
 
-* **撰寫一次，經常重複使用**
+  * [Microsoft BizTalk Server](https://docs.microsoft.com/biztalk/core/introducing-biztalk-server)
+  * [Azure Functions](../azure-functions/functions-overview.md)
+  * [Azure API 管理](../api-management/api-management-key-concepts.md)
+  * [Azure 服務匯流排](../service-bus-messaging/service-bus-messaging-overview.md)
 
-  建立您的邏輯應用程式作為範本，您便可跨越多個環境和區域[部署和重新設定應用程式](../logic-apps/logic-apps-create-deploy-template.md)。
+* 處理 [XML 訊息](../logic-apps/logic-apps-enterprise-integration-xml.md)
+* 處理[一般檔案](../logic-apps/logic-apps-enterprise-integration-flatfile.md)
+* 透過 [EDIFACT](../logic-apps/logic-apps-enterprise-integration-edifact.md)、[AS2](../logic-apps/logic-apps-enterprise-integration-as2.md) 和 [X12](../logic-apps/logic-apps-enterprise-integration-x12.md) 通訊協定交換訊息
+* 使用[整合帳戶](../logic-apps/logic-apps-enterprise-integration-accounts.md)集中儲存和管理這些 B2B 成品等：
 
-* **內建擴充性**
+  * [合作夥伴](../logic-apps/logic-apps-enterprise-integration-partners.md)
+  * [合約](../logic-apps/logic-apps-enterprise-integration-agreements.md) 
+  * [XML 轉換對應](../logic-apps/logic-apps-enterprise-integration-maps.md)
+  * [XML 驗證結構描述](../logic-apps/logic-apps-enterprise-integration-schemas.md)
+   
+例如，如果您使用 Microsoft BizTalk Server，則邏輯應用程式可以使用 [BizTalk Server 連接器](../connectors/apis-list.md#on-premises-connectors)連線到 BizTalk Server 並且進行通訊。 您可以接著在邏輯應用程式中包含[整合帳戶連接器](../connectors/apis-list.md#integration-account-connectors) (可透過企業整合套件取得)，以便擴充或執行類似 BizTalk 的作業。 
 
-  如果找不到您想要或執行自訂程式碼所需的連接器，您可以透過 [Azure Functions](../azure-functions/functions-overview.md) 建立自己的程式碼片段並依照需求進行呼叫，以擴充邏輯應用程式。 
-  建立您可以從邏輯應用程式呼叫的自有 [API](../logic-apps/logic-apps-create-api-app.md) 和[自訂連接器](../logic-apps/custom-connector-overview.md)。
+BizTalk Server 可以透過另一種方式，使用[適用於 Logic Apps 的 Microsoft BizTalk Server 配接器](https://www.microsoft.com/download/details.aspx?id=54287)連線到邏輯應用程式並且進行通訊。 了解如何在 BizTalk Server 中[設定和使用 BizTalk Server 配接器](https://docs.microsoft.com/biztalk/core/logic-app-adapter)。
 
-* **用多少付多少**
+### <a name="write-once-reuse-often"></a>撰寫一次，經常重複使用
+
+建立您的邏輯應用程式作為範本，您便可跨越多個環境和區域[部署和重新設定應用程式](../logic-apps/logic-apps-create-deploy-template.md)。
+
+### <a name="built-in-extensibility"></a>內建擴充性
+
+如果找不到您想要或執行自訂程式碼所需的連接器，您可以透過 [Azure Functions](../azure-functions/functions-overview.md) 建立自己的程式碼片段並依照需求進行呼叫，以擴充邏輯應用程式。 建立您可以從邏輯應用程式呼叫的自有 [API](../logic-apps/logic-apps-create-api-app.md) 和[自訂連接器](../logic-apps/custom-connector-overview.md)。
+
+### <a name="pay-only-for-what-you-use"></a>用多少付多少
   
-  除非您有先前使用 App Service 方案建立的邏輯應用程式，否則 Logic Apps 會使用以取用量為基礎的[定價和計量](../logic-apps/logic-apps-pricing.md)。
+除非您有先前使用 App Service 方案建立的邏輯應用程式，否則 Logic Apps 會使用以取用量為基礎的[定價和計量](../logic-apps/logic-apps-pricing.md)。
 
 利用下列介紹影片深入了解 Logic Apps：
+
 * [與 Logic Apps 整合 - 從狗熊變英雄](https://channel9.msdn.com/Events/Build/2017/C9R17)
 * [利用 Microsoft Azure Logic App 進行企業整合](https://channel9.msdn.com/Events/Ignite/Microsoft-Ignite-Orlando-2017/BRK2188)
 * [使用 Logic Apps 建立進階商務程序](https://channel9.msdn.com/Events/Ignite/Microsoft-Ignite-Orlando-2017/BRK3179)

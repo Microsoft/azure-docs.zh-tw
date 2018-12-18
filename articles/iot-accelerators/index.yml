@@ -1,0 +1,46 @@
+### YamlMime:YamlDocument
+ms.openlocfilehash: e901ba81b92a5d7a7454fbfaca96902e1e8008a8
+ms.sourcegitcommit: 4ea0cea46d8b607acd7d128e1fd4a23454aa43ee
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/14/2018
+ms.locfileid: "41929639"
+documentType: LandingData
+title: IoT 解決方案加速器文件
+metadata:
+  title: IoT 解決方案加速器文件
+  meta.description: Learn how to use the IoT solution accelerators. These articles show you how to use the solution accelerators to kick-start your implementation of common IoT scenarios such as remote monitoring, industrial IoT, predictive maintenance, and device simulation.
+  services: iot-accelerators
+  author: dominicbetts
+  manager: timlt
+  ms.service: iot-accelerators
+  ms.tgt_pltfrm: na
+  ms.devlang: na
+  ms.topic: landing-page
+  ms.date: 07/24/2018
+  ms.author: dobett
+abstract:
+  description: 了解如何使用 IoT 解決方案加速器。 這些文章會示範如何使用解決方案加速器，以便您開始實作常見的 IoT 案例，例如遠端監視、工業 IoT、預測性維護，以及裝置模擬。
+sections:
+- title: 5 分鐘快速入門
+  items:
+  - type: paragraph
+    text: 開始使用 IoT 解決方案加速器：
+  - type: list
+    style: unordered
+    items:
+    - html: <a href="/azure/iot-accelerators/quickstart-remote-monitoring-deploy">試用雲端式遠端監視解決方案</a>
+    - html: <a href="/azure/iot-accelerators/quickstart-predictive-maintenance-deploy">試用雲端式預測性維護解決方案</a>
+    - html: <a href="/azure/iot-accelerators/quickstart-connected-factory-deploy">試用雲端式連線的處理站解決方案</a>
+    - html: <a href="/azure/iot-accelerators/quickstart-device-simulation-deploy">試用雲端式裝置模擬解決方案</a>
+- title: 逐步教學課程
+  items:
+  - type: paragraph
+    text: 了解 IoT 解決方案加速器以及實作的主要案例：
+  - type: list
+    style: ordered
+    items:
+    - html: <a href="/azure/iot-accelerators/iot-accelerators-remote-monitoring-monitor">監視您的 IoT 裝置</a>
+    - html: <a href="/azure/iot-accelerators/iot-accelerators-remote-monitoring-automate">偵測與監視解決方案連線的裝置問題</a>
+    - html: <a href="/azure/iot-accelerators/iot-accelerators-remote-monitoring-manage">設定和管理與監視解決方案連線的裝置問題</a>
+    - html: <a href="/azure/iot-accelerators/iot-accelerators-remote-monitoring-maintain">使用警示並修正裝置問題</a>

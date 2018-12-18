@@ -1,24 +1,25 @@
 ---
-title: "稽核和記錄 - Microsoft Threat Modeling Tool - Azure | Microsoft Docs"
-description: "降低威脅模型化工具所暴露的威脅"
+title: 稽核和記錄 - Microsoft Threat Modeling Tool - Azure | Microsoft Docs
+description: 降低威脅模型化工具所暴露的威脅
 services: security
 documentationcenter: na
-author: RodSan
-manager: RodSan
-editor: RodSan
+author: jegeib
+manager: jegeib
+editor: jegeib
 ms.assetid: na
 ms.service: security
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/17/2017
-ms.author: rodsan
-ms.openlocfilehash: 3f1933fc59862eca7ae6ee40bbd5136e449e5cf1
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.date: 02/07/2017
+ms.author: jegeib
+ms.openlocfilehash: 990f300055f7c0c7132dd44271dea73044649fc5
+ms.sourcegitcommit: 1fb353cfca800e741678b200f23af6f31bd03e87
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/30/2018
+ms.locfileid: "43306993"
 ---
 # <a name="security-frame-auditing-and-logging--mitigations"></a>安全框架︰稽核和記錄 | 緩和措施 
 | 產品/服務 | 文章 |
@@ -161,7 +162,7 @@ ms.lasthandoff: 10/11/2017
 | **SDL 階段**               | 建置 |  
 | **適用的技術** | .NET Framework |
 | **屬性**              | N/A  |
-| **參考**              | [MSDN](https://msdn.microsoft.com/library/ff648500.aspx)、[Fortify Kingdom](https://vulncat.fortify.com/en/vulncat/index.html) |
+| **參考**              | [MSDN](https://msdn.microsoft.com/library/ff648500.aspx)、[Fortify Kingdom](https://vulncat.fortify.com/en/detail?id=desc.config.dotnet.wcf_misconfiguration_insufficient_logging) |
 | **步驟** | <p>在安全性事件之後，若缺少適當的稽核線索，可能會拖累鑑識努力。 Windows Communication Foundation (WCF) 可讓您記錄成功和/或失敗的驗證嘗試。</p><p>記錄失敗的驗證嘗試可以警告系統管理員可能的暴力破解攻擊。 同樣地，記錄成功的驗證事件可以在合法帳戶遭到入侵時提供有用的稽核線索。 啟用 WCF 的服務安全性稽核功能 |
 
 ### <a name="example"></a>範例
@@ -190,7 +191,7 @@ ms.lasthandoff: 10/11/2017
 | **SDL 階段**               | 建置 |  
 | **適用的技術** | .NET Framework |
 | **屬性**              | N/A  |
-| **參考**              | [MSDN](https://msdn.microsoft.com/library/ff648500.aspx)、[Fortify Kingdom](https://vulncat.fortify.com/en/vulncat/index.html) |
+| **參考**              | [MSDN](https://msdn.microsoft.com/library/ff648500.aspx)、[Fortify Kingdom](https://vulncat.fortify.com/en/detail?id=desc.config.dotnet.wcf_misconfiguration_insufficient_audit_failure_handling) |
 | **步驟** | <p>所開發的解決方案已設定成：不會在無法寫入稽核記錄檔時產生例外狀況。 如果 WCF 已設定成：不會在無法寫入稽核記錄檔時擲回例外狀況，程式就不會接獲失敗通知，而可能不會發生重大安全性事件的稽核。</p>|
 
 ### <a name="example"></a>範例

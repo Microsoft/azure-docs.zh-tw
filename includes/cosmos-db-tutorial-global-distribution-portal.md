@@ -2,17 +2,18 @@
 title: Azure Cosmos DB 全域散發
 description: 了解如何在 Azure 入口網站中使用 Azure Cosmos DB 進行全域資料複寫
 services: cosmos-db
-author: mimig1
+author: SnehaGunda
 ms.service: cosmos-db
 ms.topic: include
 ms.date: 03/26/2018
-ms.author: mimig
+ms.author: sngun
 ms.custom: include file
-ms.openlocfilehash: b62d1cc3b7ea79adbf24f214ba3bb9e92c3a1f0c
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: fb9418d47d2888467e1c1c40862833029111b75b
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38747514"
 ---
 您可以透過下列影片了解 Azure Cosmos DB 全域散發；在此影片中，Azure Cosmos DB 專案經理 Andrew Liu 會逐步解說全域散發功能。
 

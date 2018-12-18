@@ -1,30 +1,27 @@
 ---
-title: "如何使用 Azure CLI 2.0 和 IoT 擴充功能來管理裝置佈建服務 | Microsoft Docs"
-description: "了解如何使用 Azure CLI 2.0 和 IoT 擴充功能來管理裝置佈建服務"
-services: iot-dps
-keywords: 
+title: 如何使用 Azure CLI 和 IoT 擴充功能來管理 IoT 中樞裝置佈建服務 | Microsoft Docs
+description: 了解如何使用 Azure CLI 和 IoT 擴充功能來管理 IoT 中樞裝置佈建服務
 author: chrissie926
 ms.author: menchi
 ms.date: 01/17/2018
-ms.topic: tutorial
+ms.topic: conceptual
 ms.service: iot-dps
-documentationcenter: 
-manager: timlt
-ms.devlang: na
-ms.custom: mvc
-ms.openlocfilehash: a1224c48537441726c0e01134f6a9256cf3b71c6
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+services: iot-dps
+manager: briz
+ms.openlocfilehash: cfbebf8570ee044698b0f4e0abdd58370b04f759
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46992859"
 ---
-# <a name="how-to-use-azure-cli-20-and-the-iot-extension-to-manage-device-provisioning-services"></a>如何使用 Azure CLI 2.0 和 IoT 擴充功能來管理裝置佈建服務
+# <a name="how-to-use-azure-cli-and-the-iot-extension-to-manage-the-iot-hub-device-provisioning-service"></a>如何使用 Azure CLI 和 IoT 擴充功能來管理 IoT 中樞裝置佈建服務
 
-[Azure CLI 2.0](https://docs.microsoft.com/en-us/cli/azure?view=azure-cli-latest) 是一個開放原始碼跨平台命令列工具，用來管理 Azure 資源 (例如 IoT Edge)。 Azure CLI 2.0 適用於 Windows、Linux 和 MacOS。 Azure CLI 2.0 可讓您管理 Azure IoT 中樞資源、裝置佈建服務執行個體，以及現成的連結中樞。
+[Azure CLI](https://docs.microsoft.com/cli/azure?view=azure-cli-latest) 是一個開放原始碼跨平台命令列工具，用來管理 Azure 資源 (例如 IoT Edge)。 Azure CLI 適用於 Windows、Linux 和 MacOS。 Azure CLI 可讓您管理 Azure IoT 中樞資源、裝置佈建服務執行個體，以及現成的連結中樞。
 
-IoT 擴充功能以裝置管理和完整 IoT Edge 功能來擴充 Azure CLI 2.0 的功能。
+IoT 擴充功能以裝置管理和完整 IoT Edge 功能來擴充 Azure CLI 的功能。
 
-在本教學課程中，您會先完成設定 Azure CLI 2.0 和 IoT 擴充功能的步驟。 然後您會了解如何執行 CLI 命令，以執行基本裝置佈建服務作業。 
+在本教學課程中，您會先完成設定 Azure CLI 和 IoT 擴充功能的步驟。 然後您會了解如何執行 CLI 命令，以執行基本裝置佈建服務作業。 
 
 ## <a name="installation"></a>安裝 
 
@@ -32,9 +29,9 @@ IoT 擴充功能以裝置管理和完整 IoT Edge 功能來擴充 Azure CLI 2.0 
 
 需要 [Python 2.7x 或 Python 3.x](https://www.python.org/downloads/)。
 
-### <a name="step-2---install-azure-cli-20"></a>步驟 2 - 安裝 Azure CLI 2.0
+### <a name="step-2---install-the-azure-cli"></a>步驟 2 - 安裝 Azure CLI
 
-請遵循[安裝指示](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)在您的環境中設定 Azure CLI 2.0。 您的 Azure CLI 2.0 版本至少必須是 2.0.24 或更新版本。 使用 `az –version` 進行驗證。 這個版本支援 az 擴充命令並引進 Knack 命令架構。 在 Windows 上進行安裝的最簡單方式就是下載並安裝 [MSI](https://aka.ms/InstallAzureCliWindows)。
+請遵循[安裝指示](https://docs.microsoft.com/cli/azure/install-azure-cli?view=azure-cli-latest)在您的環境中設定 Azure CLI。 您的 Azure CLI 版本至少必須是 2.0.24 或更新版本。 使用 `az –version` 進行驗證。 這個版本支援 az 擴充命令並引進 Knack 命令架構。 在 Windows 上進行安裝的最簡單方式就是下載並安裝 [MSI](https://aka.ms/InstallAzureCliWindows)。
 
 ### <a name="step-3---install-iot-extension"></a>步驟 3 - 安裝 IoT 擴充功能
 
@@ -64,7 +61,7 @@ IoT 擴充功能以裝置管理和完整 IoT Edge 功能來擴充 Azure CLI 2.0 
 
     az iot dps create --resource-group IoTHubBlogDemo --name demodps
 
-![建立 DPS][3]
+![建立裝置佈建服務][3]
 
     az iot dps create --resource-group IoTHubBlogDemo --name demodps2
 
@@ -72,7 +69,7 @@ IoT 擴充功能以裝置管理和完整 IoT Edge 功能來擴充 Azure CLI 2.0 
 
     az iot dps list --resource-group IoTHubBlogDemo
 
-![列出 DPS][4]
+![列出裝置佈建服務][4]
 
 
 ### <a name="5-create-an-iot-hub-blogdemohub-under-the-newly-created-resource-group"></a>5.在新建立的資源群組之下建立 IoT 中樞 blogDemoHub

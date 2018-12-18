@@ -1,10 +1,10 @@
 ---
-title: "Azure Mobile Apps 中的離線資料同步處理 | Microsoft Docs"
-description: "Azure 行動應用程式離線資料同步處理功能的概念參考與概觀"
+title: Azure Mobile Apps 中的離線資料同步處理 | Microsoft Docs
+description: Azure 行動應用程式離線資料同步處理功能的概念參考與概觀
 documentationcenter: windows
 author: conceptdev
 manager: crdun
-editor: 
+editor: ''
 services: app-service\mobile
 ms.assetid: 982fb683-8884-40da-96e6-77eeca2500e3
 ms.service: app-service-mobile
@@ -14,11 +14,12 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 10/30/2016
 ms.author: crdun
-ms.openlocfilehash: 5ea1d655f50da49be88f7b6ae91231c4d2258fa7
-ms.sourcegitcommit: df4ddc55b42b593f165d56531f591fdb1e689686
+ms.openlocfilehash: 403b3289a6135a59e888c4a7bf1cd9cbe40c8ac0
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/04/2018
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34597972"
 ---
 # <a name="offline-data-sync-in-azure-mobile-apps"></a>Azure 行動應用程式中的離線資料同步處理
 ## <a name="what-is-offline-data-sync"></a>什麼是離線資料同步處理？
@@ -52,7 +53,7 @@ ms.lasthandoff: 01/04/2018
 ## <a name="what-is-a-local-store"></a>什麼是本機存放區？
 本機存放區是用戶端裝置上的資料持續層。 Azure 行動應用程式用戶端 SDK 提供預設的本機存放區實作。 在 Windows、Xamarin 和 Android 上，它是以 SQLite 為基礎。 在 iOS 上，它是以 Core Data 為基礎。
 
-若要在 Windows Phone 或 Windows 市集 8.1 上使用 SQLite 為基礎的實作，您需要安裝 SQLite 擴充。 如需詳細資訊，請參閱[通用 Windows 平台︰啟用離線同步處理]。Android 與 iOS 裝置的作業系統本身即包含 SQLite 版本，因此您不需要再參考自己的 SQLite 版本。
+若要在 Windows Phone 或 Microsoft Store 上使用 SQLite 為基礎的實作，您需要安裝 SQLite 擴充。 如需詳細資訊，請參閱[通用 Windows 平台︰啟用離線同步處理]。Android 與 iOS 裝置的作業系統本身即包含 SQLite 版本，因此您不需要再參考自己的 SQLite 版本。
 
 開發人員也可以實作自己的本機存放區。 例如，如果您希望將資料以加密格式儲存在行動用戶端上，則您可以定義使用 SQLCipher 進行加密的本機存放區。
 

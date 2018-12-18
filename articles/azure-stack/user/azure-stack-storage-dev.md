@@ -1,29 +1,31 @@
 ---
-title: "開始使用 Azure Stack 儲存體開發工具"
-description: "開始使用 Azure Stack 儲存體開發工具的指引"
+title: 開始使用 Azure Stack 儲存體開發工具 | Microsoft Docs
+description: 開始使用 Azure Stack 儲存體開發工具的指引
 services: azure-stack
 author: mabriggs
 ms.author: mabrigg
-ms.date: 02/21/2018
+ms.date: 07/03/2018
 ms.topic: get-started-article
 ms.service: azure-stack
 manager: femila
 ms.reviewer: xiaofmao
-ms.openlocfilehash: 81c62fc569e9f758d08bfca0bdfc5bcc9ed5860f
-ms.sourcegitcommit: 168426c3545eae6287febecc8804b1035171c048
+ms.openlocfilehash: 40f256b7a2be5a5a1d642983fa6ce018ee602ac2
+ms.sourcegitcommit: 86cb3855e1368e5a74f21fdd71684c78a1f907ac
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/08/2018
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37441707"
 ---
 # <a name="get-started-with-azure-stack-storage-development-tools"></a>開始使用 Azure Stack 儲存體開發工具
 
 *適用於：Azure Stack 整合系統和 Azure Stack 開發套件*
 
-Microsoft Azure Stack 提供一組儲存體服務，包括 Azure Blob、資料表和佇列儲存體。
+Microsoft Azure Stack 提供一組儲存體服務，包括 Blob、資料表和佇列儲存體。
 
-本文提供如何開始使用 Azure Stack 儲存體開發工具的快速指引。 您可以在對應的 Azure 儲存體教學課程中，找到更詳細的資訊和範例程式碼。
+使用本文作為開始使用 Azure Stack 儲存體開發工具的指南。 您可以在對應的 Azure 儲存體教學課程中，找到更詳細的資訊和範例程式碼。
 
-Azure 儲存體和 Azure Stack 儲存體之間有一些已知的差異，包括每個平台的一些特定需求。 例如，Azure Stack 有特定的用戶端程式庫以及特定的端點尾碼需求。 如需詳細資訊，請參閱 [Azure Stack 儲存體：差異與注意事項](azure-stack-acs-differences.md)。
+> [!NOTE]  
+> Azure Stack 儲存體與 Azure 儲存體之間有一些已知的差異，包括每個平台的特定需求。 例如，Azure Stack 有特定的用戶端程式庫以及特定的端點尾碼需求。 如需詳細資訊，請參閱 [Azure Stack 儲存體：差異與注意事項](azure-stack-acs-differences.md)。
 
 ## <a name="azure-client-libraries"></a>Azure 用戶端程式庫
 
@@ -46,6 +48,7 @@ Azure Stack 儲存體支援的 REST API 版本包括適用於 1802 更新或更�
 若要透過編輯器安裝：(以 Blob 為例)。
 
 1. 在專案的根目錄中，使用下列程式碼建立一個名為 **composer.json** 的檔案：
+
   ```php
     {
       "require": {
@@ -53,6 +56,7 @@ Azure Stack 儲存體支援的 REST API 版本包括適用於 1802 更新或更�
       }
     }
   ```
+
 2. 將 [composer.phar](http://getcomposer.org/composer.phar) 下載到專案根目錄中。
 3. 執行：`php composer.phar install`。
 
@@ -73,6 +77,7 @@ Azure Stack 儲存體支援的 REST API 版本包括適用於 1802 更新或更�
 透過編輯器安裝：
 
 1. 在專案的根目錄中，使用下列程式碼建立一個名為 **composer.json** 的檔案：
+
   ```php
     {
           "require":{
@@ -80,6 +85,7 @@ Azure Stack 儲存體支援的 REST API 版本包括適用於 1802 更新或更�
           }
     }
   ```
+
 2. 將 [composer.phar](http://getcomposer.org/composer.phar) 下載到專案根目錄中。
 3. 執行：`php composer.phar install`。
 
@@ -91,16 +97,16 @@ Azure Stack 端點包含兩個部分：區域的名稱和 Azure Stack 網域。
 
 ## <a name="examples"></a>範例
 
-
 ### <a name="net"></a>.NET
 
 若是 Azure Stack，在 app.config 檔案中會指定端點尾碼：
 
 ```
-<add key="StorageConnectionString" 
+<add key="StorageConnectionString"
 value="DefaultEndpointsProtocol=https;AccountName=myaccount;AccountKey=mykey;
 EndpointSuffix=local.azurestack.external;" />
 ```
+
 ### <a name="java"></a>Java
 
 若是 Azure Stack，在連接字串設定中會指定端點尾碼：
@@ -121,6 +127,7 @@ public static final String storageConnectionString =
 var blobSvc = azure.createBlobService('myaccount', 'mykey',
 'myaccount.blob.local.azurestack.external');
 ```
+
 ### <a name="c"></a>C++
 
 若是 Azure Stack，在連接字串設定中會指定端點尾碼：
@@ -152,6 +159,7 @@ block_blob_service = BlockBlobService(account_name='myaccount',
 account_key='mykey',
 endpoint_suffix='local.azurestack.external')
 ```
+
 ### <a name="ruby"></a>Ruby
 
 若是 Azure Stack，在連接字串設定中會指定端點尾碼：
@@ -187,7 +195,6 @@ EndpointSuffix=local.azurestack.external
 * [如何使用 PHP 的佇列儲存體](../../storage/queues/storage-php-how-to-use-queues.md)
 * [如何使用 Python 的佇列儲存體](../../storage/queues/storage-python-how-to-use-queue-storage.md)
 * [如何使用 Ruby 的佇列儲存體](../../storage/queues/storage-ruby-how-to-use-queue-storage.md)
-
 
 ## <a name="table-storage"></a>表格儲存體
 

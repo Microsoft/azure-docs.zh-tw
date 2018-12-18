@@ -7,14 +7,15 @@ manager: craigg
 ms.reviewer: genemi
 ms.service: sql-database
 ms.custom: develop apps
-ms.topic: article
-ms.date: 08/17/2016
+ms.topic: conceptual
+ms.date: 06/20/2018
 ms.author: sstein
-ms.openlocfilehash: ec3569d37d399590b0c306a85f199221e7812253
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: 1986c19e6625df7c281f7de9b322124da6a12c45
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46973828"
 ---
 # <a name="sql-database-application-development-overview"></a>SQL Database 應用程式開發概觀
 本文將逐步解說開發人員在撰寫程式碼以連接到 Azure SQL Database 時應注意的基本考量事項。
@@ -32,9 +33,12 @@ ms.lasthandoff: 03/16/2018
 您可以利用 [cheetah](https://github.com/wunderlist/cheetah)、[sql-cli](https://www.npmjs.com/package/sql-cli)、[VS Code](https://code.visualstudio.com/) 等開放原始碼工具。 此外，Azure SQL Database 使用 [Visual Studio](https://www.visualstudio.com/downloads/) 和 [SQL Server Management Studio](https://msdn.microsoft.com/library/ms174173.aspx) 等 Microsoft 工具。  您也可以使用 Azure 管理入口網站、PowerShell 和 REST API 協助您獲得額外生產力。
 
 ## <a name="resource-limitations"></a>資源限制
-Azure SQL Database 使用兩種不同機制來管理資料庫可使用的資源：資源管理和限制強制執行。
+Azure SQL Database 使用兩種不同機制來管理資料庫可使用的資源：資源管理和限制強制執行。 如需詳細資訊，請參閱
 
-* 詳細資訊：[Azure SQL Database 資源限制](sql-database-service-tiers.md)。
+- [以 DTU 為基礎的資源模型限制 - 單一資料庫](sql-database-dtu-resource-limits-single-databases.md)
+- [以 DTU 為基礎的資源模型限制 - 彈性集區](sql-database-dtu-resource-limits-elastic-pools.md)
+- [以虛擬核心為基礎的資源限制 - 單一資料庫](sql-database-vcore-resource-limits-single-databases.md)
+- [以虛擬核心為基礎的資源限制 - 彈性集區](sql-database-vcore-resource-limits-elastic-pools.md)
 
 ## <a name="security"></a>安全性
 Azure SQL Database 提供資源以在 SQL Database 上限制存取、保護資料，以及監視活動。
@@ -47,7 +51,7 @@ Azure SQL Database 提供資源以在 SQL Database 上限制存取、保護資�
 * 您無法在 SQL Database 上使用 **USE myDatabaseName;** 陳述式來切換到其他資料庫。
 * 詳細資訊：[SQL Database 安全性：管理資料庫存取與登入安全性](sql-database-manage-logins.md)。
 
-## <a name="resiliency"></a>復原功能
+## <a name="resiliency"></a>災害復原
 當連接到 SQL Database 發生暫時性錯誤時，您的程式碼應該重試呼叫。  我們建議重試邏輯使用輪詢邏輯，因此它不會同時重試多個用戶端而讓 SQL Database 超過負荷。
 
 * 程式碼範例︰如需示範重試邏輯的程式碼範例，請在以下位置參閱您選擇語言的範例︰[SQL Database 和 SQL Server 的連線庫](sql-database-libraries.md)。

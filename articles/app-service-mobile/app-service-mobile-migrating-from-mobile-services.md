@@ -1,11 +1,11 @@
 ---
-title: "從行動服務移轉到應用程式服務行動應用程式"
-description: "了解如何輕鬆地將您的行動服務應用程式移轉至應用程式服務行動應用程式"
+title: 從行動服務移轉到應用程式服務行動應用程式
+description: 了解如何輕鬆地將您的行動服務應用程式移轉至應用程式服務行動應用程式
 services: app-service\mobile
-documentationcenter: 
+documentationcenter: ''
 author: conceptdev
 manager: crdun
-editor: 
+editor: ''
 ms.assetid: 07507ea2-690f-4f79-8776-3375e2adeb9e
 ms.service: app-service-mobile
 ms.workload: mobile
@@ -14,11 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/03/2016
 ms.author: crdun
-ms.openlocfilehash: e94f08b9b9dad20c6f47367c47eb49aea59f4bd8
-ms.sourcegitcommit: d1f35f71e6b1cbeee79b06bfc3a7d0914ac57275
+ms.openlocfilehash: 5001704f47af0c7b07744f1dceb7aa58bdb6448c
+ms.sourcegitcommit: e2adef58c03b0a780173df2d988907b5cb809c82
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/22/2018
+ms.lasthandoff: 04/28/2018
+ms.locfileid: "32158863"
 ---
 # <a name="article-top"></a>將您現有的 Azure 行動服務移轉至 Azure App Service
 透過 [Azure App Service 的公開上市版]，Azure 行動服務網站將可輕易地就地移轉，以使用 Azure App Service 的所有功能。  本文件說明將您的網站從 Azure 行動服務移轉至 Azure App Service 時的情形。
@@ -128,7 +129,7 @@ PublishSettings 檔案會下載至您的電腦。  此檔案通常名為 *sitena
 1. 開啟 Visual Studio 和您的 Azure 行動服務專案。
 2. 在 [方案總管] 中，以滑鼠右鍵按一下專案，然後選取 [發佈...]。
 3. 按一下 [匯入]。
-4. 按一下 [瀏覽]，然後選取已下載的發佈設定檔案。  按一下 [確定] 
+4. 按一下 [瀏覽]，然後選取已下載的發佈設定檔案。  按一下 [檔案] &gt; [新增] &gt; [專案] 
 5. 按一下 [驗證連接]，確保發佈設定可運作。
 6. 選擇 [發佈] 來發佈您的網站。
 
@@ -372,16 +373,16 @@ Azure App Service 通常會停用 [診斷記錄]。  若要啟用診斷記錄：
 [2]: ./media/app-service-mobile-migrating-from-mobile-services/triggering-job-with-postman.png
 
 <!-- Links -->
-[App Service 價格]: https://azure.microsoft.com/en-us/pricing/details/app-service/
+[App Service 價格]: https://azure.microsoft.com/pricing/details/app-service/
 [Application Insights]: ../application-insights/app-insights-overview.md
 [自動調整]: ../app-service/web-sites-scale.md
 [Azure App Service]: ../app-service/app-service-web-overview.md
 [Azure 傳統入口網站]: https://manage.windowsazure.com
 [Azure 入口網站]: https://portal.azure.com
-[Azure Region]: https://azure.microsoft.com/en-us/regions/
+[Azure Region]: https://azure.microsoft.com/regions/
 [Azure 排程器方案]: ../scheduler/scheduler-plans-billing.md
 [連續部署]: ../app-service/app-service-continuous-deployment.md
-[轉換混合式命名空間]: https://azure.microsoft.com/en-us/blog/updates-from-notification-hubs-independent-nuget-installation-model-pmt-and-more/
+[轉換混合式命名空間]: https://azure.microsoft.com/blog/updates-from-notification-hubs-independent-nuget-installation-model-pmt-and-more/
 [curl]: http://curl.haxx.se/
 [自訂網域名稱]: ../app-service/app-service-web-tutorial-custom-domain.md
 [Fiddler]: http://www.telerik.com/fiddler

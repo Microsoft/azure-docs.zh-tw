@@ -6,13 +6,14 @@ author: sujaytalasila
 manager: rochakm
 ms.service: site-recovery
 ms.topic: article
-ms.date: 02/12/2018
+ms.date: 07/06/2018
 ms.author: sutalasi
-ms.openlocfilehash: ea4c2ed287619b92dba1b9b966cc0d52e0eb89c5
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: 0fecc7ba48daf396c3d25969cdda5891bdf08232
+ms.sourcegitcommit: a06c4177068aafc8387ddcd54e3071099faf659d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 07/09/2018
+ms.locfileid: "37917960"
 ---
 # <a name="replicate-hyper-v-vms-to-a-secondary-site-by-using-powershell-resource-manager"></a>使用 PowerShell (Resource Manager) 將 Hyper-V VM 複寫至次要網站
 
@@ -58,7 +59,7 @@ ms.lasthandoff: 03/16/2018
         $Password = "<password>"
         $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
         $Cred = New-Object System.Management.Automation.PSCredential -ArgumentList $UserName, $SecurePassword
-        Login-AzureRmAccount #-Credential $Cred
+        Connect-AzureRmAccount #-Credential $Cred
 2. 使用訂用帳戶識別碼擷取您的訂用帳戶清單。 記下要建立復原服務保存庫的訂用帳戶識別碼。 
 
         Get-AzureRmSubscription

@@ -1,32 +1,33 @@
 ---
-title: "使用 Visual Studio 專案範本開始建置 Batch 解決方案 - Azure | Microsoft Docs"
-description: "了解 Visual Studio 專案範本如何協助您在 Azure Batch 中實作和執行計算密集型工作負載。"
+title: 使用 Visual Studio 範本建置 Batch 解決方案 - Azure | Microsoft Docs
+description: 了解 Visual Studio 專案範本如何協助您在 Azure Batch 中實作和執行計算密集型工作負載。
 services: batch
 documentationcenter: .net
-author: fayora
-manager: timlt
-editor: 
+author: dlepow
+manager: jeconnoc
+editor: ''
 ms.assetid: 5e041ae2-25af-4882-a79e-3aa63c4bfb20
 ms.service: batch
 ms.devlang: multiple
 ms.topic: article
-ms.tgt_pltfrm: vm-windows
+ms.tgt_pltfrm: ''
 ms.workload: big-compute
 ms.date: 02/27/2017
-ms.author: tamram
+ms.author: danlep
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: da77ce827c65deb18d9d84ce5cf768d89788e205
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 5a44c249a957050afb500decd094183c71d6ca5e
+ms.sourcegitcommit: 7827d434ae8e904af9b573fb7c4f4799137f9d9b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 07/18/2018
+ms.locfileid: "39114091"
 ---
 # <a name="use-visual-studio-project-templates-to-jump-start-batch-solutions"></a>使用 Visual Studio 專案範本快速啟動 Batch 解決方案
 
 Batch 的**作業管理員**和**工作處理器 Visual Studio 範本**提供了程式碼，協助您以最少的心力在 Batch 上實作並執行計算密集型工作負載。 本文件會說明這些範本，並提供其使用方式指引。
 
 > [!IMPORTANT]
-> 本文只討論適用於這兩個範本的資訊，並假設您熟悉與其相關的 Batch 服務和重要概念︰集區、計算節點、作業和工作、作業管理員工作、環境變數和其他相關資訊。 您可以在 [Azure Batch 的基本概念](batch-technical-overview.md)、[適用於開發人員的 Batch 功能概觀](batch-api-basics.md)和[開始使用適用於 .NET 的 Azure Batch 程式庫](batch-dotnet-get-started.md)中找到更多資訊。
+> 本文只討論適用於這兩個範本的資訊，並假設您熟悉與其相關的 Batch 服務和重要概念︰集區、計算節點、作業和工作、作業管理員工作、環境變數和其他相關資訊。 您可以在 [Azure Batch 基本概念](batch-technical-overview.md)和[適用於開發人員的 Batch 功能概觀](batch-api-basics.md)中找到詳細資訊。
 > 
 > 
 
@@ -51,7 +52,7 @@ Batch 的**作業管理員**和**工作處理器 Visual Studio 範本**提供了
 
 ![顯示用戶端程式碼與 Batch 服務互動方式的圖表][diagram01]
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 若要使用 Batch 範本，您需要下列項目︰
 
 * 已安裝 Visual Studio 2015 的電腦。 目前只有針對 Visual Studio 2015 支援批次範本。
@@ -438,10 +439,7 @@ parameters.json 的資源檔案，如果找到，即會將它載入以做為參�
 ### <a name="persist-job-and-task-output-to-azure-storage"></a>將作業和工作輸出保存到 Azure 儲存體
 開發 Batch 解決方案時的另一個實用工具是 [Azure Batch 檔案慣例][nuget_package]。 在 Batch .NET 應用程式中使用此 .NET 類別庫 (目前為預覽版) 可在 Azure 儲存體中輕鬆地儲存或擷取工作輸出。 [保存 Azure Batch 作業和工作輸出](batch-task-output.md) 包含類別庫及其使用方式的完整討論。
 
-### <a name="batch-forum"></a>Batch 論壇
-MSDN 上的 [Azure Batch 論壇][forum]是一個很棒的地方，可以討論 Batch 和詢問有關此服務的問題。 請前去查看很有幫助的「便利貼」文章，在建立 Batch 解決方案時，出現問題就張貼。
 
-[forum]: https://social.msdn.microsoft.com/forums/azure/en-US/home?forum=azurebatch
 [net_jobmanagertask]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.jobmanagertask.aspx
 [github_samples]: https://github.com/Azure/azure-batch-samples
 [nuget_package]: https://www.nuget.org/packages/Microsoft.Azure.Batch.Conventions.Files

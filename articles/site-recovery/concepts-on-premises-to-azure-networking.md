@@ -3,17 +3,18 @@ title: 設定 IP 位址以在使用 Azure Site Recovery 容錯移轉至 Azure �
 description: 說明如何設定 IP 位址以在使用 Azure Site Recovery 從內部部署容錯移轉之後連線至 Azure VM
 services: site-recovery
 documentationcenter: ''
-author: mayanknayar
-manager: carmonm
+author: mayurigupta13
+manager: rochakm
 ms.service: site-recovery
-ms.topic: article
-ms.date: 03/24/2018
-ms.author: manayar
-ms.openlocfilehash: e74ad30ea8c4be994c1c67735ee91ef8c033b9b3
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.topic: conceptual
+ms.date: 10/16/2018
+ms.author: mayg
+ms.openlocfilehash: 9b7797ba58a44e64460f4dbc58d562b4c470c043
+ms.sourcegitcommit: 8e06d67ea248340a83341f920881092fd2a4163c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 10/16/2018
+ms.locfileid: "49353082"
 ---
 # <a name="set-up-ip-addressing-to-connect-after-failover-to-azure"></a>設定 IP 位址以在容錯移轉至 Azure 之後進行連線
 

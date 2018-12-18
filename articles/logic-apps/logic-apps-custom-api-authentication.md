@@ -1,26 +1,22 @@
 ---
-title: "為自訂 API 新增驗證 - Azure Logic Apps | Microsoft Docs"
-description: "為從邏輯應用程式對自訂 API 發出的呼叫設定驗證"
-author: ecfan
-manager: anneta
-editor: 
+title: 為自訂 API 新增驗證 - Azure Logic Apps | Microsoft Docs
+description: 為從 Azure Logic Apps 呼叫自訂 API 的作業設定驗證
 services: logic-apps
-documentationcenter: 
-ms.assetid: 
 ms.service: logic-apps
-ms.workload: logic-apps
-ms.tgt_pltfrm: na
-ms.devlang: na
+ms.suite: integration
+author: ecfan
+ms.author: estfan
+ms.reviewer: klam, LADocs
 ms.topic: article
 ms.date: 09/22/2017
-ms.author: LADocs; estfan
-ms.openlocfilehash: 2528f4318d92bbfdc1008795876f0240a5e3e4f6
-ms.sourcegitcommit: f8437edf5de144b40aed00af5c52a20e35d10ba1
+ms.openlocfilehash: b329fb1416d28b0732e7b9ea4612f5bac8580b3a
+ms.sourcegitcommit: 2ad510772e28f5eddd15ba265746c368356244ae
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/03/2017
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "43132670"
 ---
-# <a name="secure-calls-to-your-custom-apis-from-logic-apps"></a>保護從邏輯應用程式對自訂 API 發出的呼叫
+# <a name="secure-calls-to-custom-apis-from-azure-logic-apps"></a>保護從 Azure Logic Apps 對自訂 API 發出的呼叫
 
 若要保護對 API 發出的呼叫，您可以透過 Azure 入口網站設定 Azure Active Directory (Azure AD) 驗證，如此便不需要更新您的程式碼。 或者，您可以透過您的 API 程式碼要求並強制執行驗證。
 
@@ -28,7 +24,7 @@ ms.lasthandoff: 11/03/2017
 
 您可以以下列方式保護對自訂 API 的呼叫：
 
-* [無程式碼變更](#no-code)：透過 Azure 入口網站使用 [Azure Active Directory (Azure AD)](../active-directory/active-directory-whatis.md) 來保護您的 API，因此您不需要更新程式碼或重新部署您的 API。
+* [無程式碼變更](#no-code)：透過 Azure 入口網站使用 [Azure Active Directory (Azure AD)](../active-directory/fundamentals/active-directory-whatis.md) 來保護您的 API，因此您不需要更新程式碼或重新部署您的 API。
 
   > [!NOTE]
   > 根據預設，您在 Azure 入口網站中開啟的 Azure AD 驗證不提供精細的授權。 例如，這項驗證會將您的 API 鎖定為僅限特定租用戶，而非特定使用者或應用程式。 
@@ -53,7 +49,7 @@ ms.lasthandoff: 11/03/2017
 
 **在 Azure 入口網站中建立邏輯應用程式的應用程式識別碼**
 
-1. 在 [Azure 入口網站](https://portal.azure.com "https://portal.azure.com")中，選擇 **Azure Active Directory**。 
+1. 在 [Azure 入口網站](https://portal.azure.com "https://portal.azure.com")中，選擇 [Azure Active Directory]。 
 
 2. 請確認您與 web 應用程式或 API 應用程式位於相同的目錄中。
 
@@ -106,7 +102,7 @@ ms.lasthandoff: 11/03/2017
 
 3. `New-AzureADApplication -DisplayName "MyLogicAppID" -HomePage "http://mydomain.tld" -IdentifierUris "http://mydomain.tld" -Password "identity-password"`
 
-4. 請務必複製 [租用戶識別碼] (您 Azure AD 租用戶的 GUID)、[應用程式識別碼] 和您所使用的密碼。
+4. 請務必複製 [租用戶識別碼] \(您 Azure AD 租用戶的 GUID)、[應用程式識別碼] 和您所使用的密碼。
 
 如需詳細資訊，請了解如何[使用 PowerShell 建立用來存取資源的服務主體](../azure-resource-manager/resource-group-authenticate-service-principal.md)。
 
@@ -116,7 +112,7 @@ ms.lasthandoff: 11/03/2017
 
 **建立應用程式識別碼，並在 Azure 入口網站中開啟已部署應用程式的驗證**
 
-1. 在 [Azure 入口網站](https://portal.azure.com "https://portal.azure.com")中，尋找並選取您的 web 應用程式或 API 應用程式。 
+1. 在 [Azure 入口網站](https://portal.azure.com "https://portal.azure.com")中，找出並選取您的 Web 應用程式或 API 應用程式。 
 
 2. 在 [設定] 下，選擇 [驗證/授權]。 在 [App Service 驗證] 下，將驗證 [開啟]。 在 [驗證提供者] 下，選擇 [Azure Active Directory]。
 
@@ -192,11 +188,11 @@ ms.lasthandoff: 11/03/2017
 
 | 元素 | 必要 | 說明 | 
 | ------- | -------- | ----------- | 
-| tenant | yes | Azure AD 租用戶的 GUID | 
-| audience | yes | 您想要存取之目標資源的 GUID - 這是來自您 Web 應用程式或 API 應用程式之應用程式識別碼的用戶端識別碼 | 
-| clientId | yes | 要求存取權之用戶端的 GUID - 這是來自您邏輯應用程式之應用程式識別碼的用戶端識別碼 | 
-| secret | yes | 來自要求存取權杖的用戶端之應用程式識別碼的金鑰或密碼 | 
-| type | yes | 驗證類型。 若為 ActiveDirectoryOAuth 驗證，值為 `ActiveDirectoryOAuth`。 | 
+| tenant | 是 | Azure AD 租用戶的 GUID | 
+| audience | 是 | 您想要存取之目標資源的 GUID - 這是來自您 Web 應用程式或 API 應用程式之應用程式識別碼的用戶端識別碼 | 
+| clientId | 是 | 要求存取權之用戶端的 GUID - 這是來自您邏輯應用程式之應用程式識別碼的用戶端識別碼 | 
+| secret | 是 | 來自要求存取權杖的用戶端之應用程式識別碼的金鑰或密碼 | 
+| type | 是 | 驗證類型。 若為 ActiveDirectoryOAuth 驗證，值為 `ActiveDirectoryOAuth`。 | 
 |||| 
 
 例如︰
@@ -238,9 +234,9 @@ ms.lasthandoff: 11/03/2017
 
 | 元素 | 必要 | 說明 | 
 | ------- | -------- | ----------- | 
-| type | yes | 驗證類型。 若為 SSL 用戶端憑證，值必須是 `ClientCertificate`。 | 
-| password | yes | 用以存取用戶端憑證的密碼 (PFX 檔案) | 
-| pfx | yes | 用戶端憑證的 Base64 編碼內容 (PFX 檔案) | 
+| type | 是 | 驗證類型。 若為 SSL 用戶端憑證，值必須是 `ClientCertificate`。 | 
+| password | 是 | 用以存取用戶端憑證的密碼 (PFX 檔案) | 
+| pfx | 是 | 用戶端憑證的 Base64 編碼內容 (PFX 檔案) | 
 |||| 
 
 <a name="basic"></a>
@@ -255,9 +251,9 @@ ms.lasthandoff: 11/03/2017
 
 | 元素 | 必要 | 說明 | 
 | ------- | -------- | ----------- | 
-| type | yes | 您想要使用的驗證類型。 若為基本驗證，值必須是 `Basic`。 | 
-| username | yes | 您想要用來進行驗證的使用者名稱 | 
-| password | yes | 您想要用來進行驗證的密碼 | 
+| type | 是 | 您想要使用的驗證類型。 若為基本驗證，值必須是 `Basic`。 | 
+| username | 是 | 您想要用來進行驗證的使用者名稱 | 
+| password | 是 | 您想要用來進行驗證的密碼 | 
 |||| 
 
 <a name="azure-ad-code"></a>

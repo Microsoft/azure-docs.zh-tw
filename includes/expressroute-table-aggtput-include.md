@@ -13,6 +13,7 @@ ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 03/23/2018
+ms.locfileid: "30197443"
 ---
 |  | **每秒 MB 數** | **每秒封包數** | **每秒連線數** | **VPN 閘道與 ExpressRoute 共存** |
 | --- | --- | --- | --- | --- |

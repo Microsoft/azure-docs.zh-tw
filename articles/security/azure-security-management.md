@@ -1,6 +1,6 @@
 ---
-title: "加強 Azure 中的遠端管理安全性 | Microsoft Docs"
-description: "本文探討管理 Microsoft Azure 環境時提升遠端管理安全性的步驟，這些環境包括雲端服務、虛擬機器及自訂應用程式。"
+title: 加強 Azure 中的遠端管理安全性 | Microsoft Docs
+description: 本文探討管理 Microsoft Azure 環境時提升遠端管理安全性的步驟，這些環境包括雲端服務、虛擬機器及自訂應用程式。
 services: security
 documentationcenter: na
 author: TerryLanfear
@@ -9,16 +9,17 @@ editor: TomSh
 ms.assetid: 2431feba-3364-4a63-8e66-858926061dd3
 ms.service: security
 ms.devlang: na
-ms.topic: get-started-article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/21/2017
 ms.author: terrylan
-ms.openlocfilehash: 026a22355ab1d35fa1fe6b7ba624fed5d10b3e38
-ms.sourcegitcommit: 8aa014454fc7947f1ed54d380c63423500123b4a
+ms.openlocfilehash: efab734cc7d6facf82f622b95c12a1a27e99c5f7
+ms.sourcegitcommit: e2ea404126bdd990570b4417794d63367a417856
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/23/2017
+ms.lasthandoff: 09/14/2018
+ms.locfileid: "45575927"
 ---
 # <a name="security-management-in-azure"></a>Azure 的安全性管理
 Azure 訂閱者可從多種裝置管理其雲端環境，這些裝置包括管理工作站、開發人員的電腦，甚至是具有工作專用權限的特殊權限使用者裝置。 有時候，管理功能是透過 Web 式主控台來執行，例如 [Azure 入口網站](https://azure.microsoft.com/features/azure-portal/)。 至於其他時候，則可能會從內部部署系統，透過虛擬私人網路 (VPN)、終端機服務、用戶端應用程式通訊協定或 Azure 服務管理 API (SMAPI) (以程式設計方式) 直接連線至 Azure。 此外，用戶端端點也可以加入網域或是遭到隔離且非受控，例如平板電腦或智慧型手機。
@@ -64,7 +65,7 @@ Azure 訂閱者可從多種裝置管理其雲端環境，這些裝置包括管�
 ### <a name="providing-security-for-azure-remote-management"></a>為 Azure 的遠端管理提供安全性
 Azure 提供了安全性機制來協助系統管理員管理 Azure 雲端服務和虛擬機器。 這些機制包括︰
 
-* 驗證和[角色型存取控制](../active-directory/role-based-access-control-configure.md)。
+* 驗證和[角色型存取控制](../role-based-access-control/role-assignments-portal.md)。
 * 監視、記錄和稽核。
 * 憑證和加密通訊。
 * Web 管理入口網站。
@@ -92,14 +93,14 @@ Azure 提供了安全性機制來協助系統管理員管理 Azure 雲端服務�
 * 執行限制。 僅允許執行一組管理所需的預先定義可執行檔 (稱為「預設拒絕」)。 根據預設，除非程式明確定義於允許清單中，否則應該拒絕使用者執行程式的權限。
 * 最小特殊權限。 管理工作站的使用者不應該擁有本機電腦本身的任何系統管理特殊權限。 如此一來，他們才無法變更系統組態或系統檔案，不論是有意或無意。
 
-透過在 Active Directory Domain Services (AD DS) 中使用[群組原則物件](https://www.microsoft.com/download/details.aspx?id=2612) (GPO)，並透過 (本機) 管理網域將其套用到所有管理帳戶，您即可強制執行上述所有要素。
+透過在 Active Directory Domain Services (AD DS) 中使用[群組原則物件](https://docs.microsoft.com/azure/active-directory-domain-services/active-directory-ds-admin-guide-administer-group-policy) (GPO)，並透過 (本機) 管理網域將其套用到所有管理帳戶，您即可強制執行上述所有要素。
 
 ### <a name="managing-services-applications-and-data"></a>管理服務、應用程式和資料
 Azure 雲端服務組態是透過 Azure 入口網站或 SMAPI，經由 Windows PowerShell 命令列介面或利用這些符合 REST 限制之介面的自建應用程式來執行。 使用這些機制的服務包括 Azure Active Directory (Azure AD)、Azure 儲存體、Azure 網站和 Azure 虛擬網路等。
 
 虛擬機器部署的應用程式會視需要提供自己的用戶端工具和介面 (例如 Microsoft Management Console (MMC))、企業管理主控台 (例如 Microsoft System Center 或 Windows Intune) 或其他管理應用程式 (例如 Microsoft SQL Server Management Studio)。 這些工具通常位在企業環境或用戶端網路中。 它們可能仰賴需要直接、具狀態之連線的特定網路通訊協定，例如遠端桌面通訊協定 (RDP)。 有些則可能會有不應該透過網際網路公開發佈或存取的具有 Web 功能的介面。
 
-您可以使用 [Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md)、[X.509 管理憑證](https://blogs.msdn.microsoft.com/azuresecurity/2015/07/13/certificate-management-in-azure-dos-and-donts/)和防火牆規則來限制存取 Azure 中的基礎結構和平台服務管理。 Azure 入口網站和 SMAPI 需要傳輸層安全性 (TLS)。 不過，您部署至 Azure 的服務和應用程式需要您根據應用程式採取合適的保護措施。 這些機制可以透過標準化的強化後工作站組態更容易地經常啟用。
+您可以使用 [Multi-Factor Authentication](../active-directory/authentication/multi-factor-authentication.md)、[X.509 管理憑證](https://blogs.msdn.microsoft.com/azuresecurity/2015/07/13/certificate-management-in-azure-dos-and-donts/)和防火牆規則來限制存取 Azure 中的基礎結構和平台服務管理。 Azure 入口網站和 SMAPI 需要傳輸層安全性 (TLS)。 不過，您部署至 Azure 的服務和應用程式需要您根據應用程式採取合適的保護措施。 這些機制可以透過標準化的強化後工作站組態更容易地經常啟用。
 
 ### <a name="management-gateway"></a>管理閘道
 若要集中管理所有系統管理存取權並簡化監視與記錄，您可以在內部部署網路中部署連線到 Azure 環境的專用[遠端桌面閘道](https://technet.microsoft.com/library/dd560672) (RD 閘道) 伺服器。
@@ -110,8 +111,8 @@ Azure 雲端服務組態是透過 Azure 入口網站或 SMAPI，經由 Windows P
 * 將 RD 閘道加入至相同的[管理網域](http://technet.microsoft.com/library/bb727085.aspx)以做為系統管理員的工作站。 當您在具有對 Azure AD 之單向信任的網域內使用網站間 IPsec VPN 或 ExpressRoute 時，或是如果您要同盟內部部署 AD DS 執行個體與 Azure AD 之間的認證，就必須這麼做。
 * 設定[用戶端連線授權原則](http://technet.microsoft.com/library/cc753324.aspx)，讓 RD 閘道驗證用戶端電腦名稱是否有效 (已加入網域)，並允許存取 Azure 入口網站。
 * 針對 [Azure VPN](https://azure.microsoft.com/documentation/services/vpn-gateway/) 使用 IPsec 以進一步防止管理流量遭到竊聽以及權杖遭竊，或考慮使用透過 [Azure ExpressRoute](https://azure.microsoft.com/documentation/services/expressroute/) 的隔離網際網路連結。
-* 針對透過 RD 閘道登入的系統管理員啟用 Multi-Factor Authentication (透過 [Azure Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md)) 或智慧卡驗證。
-* 在 Azure 中設定來源 [IP 位址限制](http://azure.microsoft.com/blog/2013/08/27/confirming-dynamic-ip-address-restrictions-in-windows-azure-web-sites/)或[網路安全性群組](../virtual-network/virtual-networks-nsg.md)以將允許的管理端點數目降到最低。
+* 針對透過 RD 閘道登入的系統管理員啟用 Multi-Factor Authentication (透過 [Azure Multi-Factor Authentication](../active-directory/authentication/multi-factor-authentication.md)) 或智慧卡驗證。
+* 在 Azure 中設定來源 [IP 位址限制](http://azure.microsoft.com/blog/2013/08/27/confirming-dynamic-ip-address-restrictions-in-windows-azure-web-sites/)或[網路安全性群組](../virtual-network/security-overview.md)以將允許的管理端點數目降到最低。
 
 ## <a name="security-guidelines"></a>安全性方針
 協助保護搭配雲端使用之系統管理員工作站的做法，通常會與用於任何內部部署工作站的做法類似 - 例如，最小化的組建和嚴格的權限。 雲端管理的幾項特點則更類似於遠端或頻外企業管理。 這些特點包括使用和稽核認證、增強安全性的遠端存取以及威脅偵測和回應。
@@ -223,8 +224,8 @@ Azure 雲端服務組態是透過 Azure 入口網站或 SMAPI，經由 Windows P
 除了本白皮書所提到的特定項目外，下列資源還可提供更多有關 Azure 和相關 Microsoft 服務的一般資訊：
 
 * [保護特殊權限存取](https://technet.microsoft.com/library/mt631194.aspx) – 取得設計和建置安全的系統管理工作站以管理 Azure 的技術詳細資料
-* [Microsoft 信任中心](https://www.microsoft.com/TrustCenter/Security/AzureSecurity) - 了解可保護 Azure 網狀架構和在 Azure 上執行之工作負載的 Azure 平台功能
-* [Microsoft 安全性回應中心](http://www.microsoft.com/security/msrc/default.aspx) -- 可在其中回報 Microsoft 安全性弱點 (包括 Azure 的問題) 或透過電子郵件傳送給 [secure@microsoft.com](mailto:secure@microsoft.com)
+* [Microsoft 信任中心](https://microsoft.com/en-us/trustcenter/cloudservices/azure) - 了解可保護 Azure 網狀架構和在 Azure 上執行之工作負載的 Azure 平台功能
+* [Microsoft 安全性回應中心](https://technet.microsoft.com/security/dn440717.aspx) -- 可在其中回報 Microsoft 安全性弱點 (包括 Azure 的問題) 或透過電子郵件傳送給 [secure@microsoft.com](mailto:secure@microsoft.com)
 * [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) – 隨時掌握 Azure 安全性的最新消息
 
 <!--Image references-->

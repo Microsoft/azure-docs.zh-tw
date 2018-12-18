@@ -1,25 +1,25 @@
 ---
-title: "管理 Azure Stack 儲存體帳戶 | Microsoft Docs"
-description: "了解如何尋找、管理、復原及回收 Azure Stack 儲存體帳戶"
+title: 管理 Azure Stack 儲存體帳戶 | Microsoft Docs
+description: 了解如何尋找、管理、復原及回收 Azure Stack 儲存體帳戶
 services: azure-stack
-documentationcenter: 
+documentationcenter: ''
 author: mattbriggs
 manager: femila
-editor: 
-ms.assetid: 627d355b-4812-45cb-bc1e-ce62476dab34
+editor: ''
 ms.service: azure-stack
 ms.workload: na
 ms.tgt_pltfrm: na
-ms.devlang: na
+ms.devlang: PowerShell
 ms.topic: get-started-article
-ms.date: 02/22/2018
+ms.date: 09/28/2018
 ms.author: mabrigg
-ms.reviewer: anirudha
-ms.openlocfilehash: 395cd113e21bf747c796ff28026f552f30656b47
-ms.sourcegitcommit: 168426c3545eae6287febecc8804b1035171c048
+ms.reviewer: xiaofmao
+ms.openlocfilehash: 35c15613192ac12a7d4c64cbe28f62200724d311
+ms.sourcegitcommit: f31bfb398430ed7d66a85c7ca1f1cc9943656678
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/08/2018
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47452270"
 ---
 # <a name="manage-storage-accounts-in-azure-stack"></a>在 Azure Stack 中管理儲存體帳戶
 了解如何在 Azure Stack 中管理儲存體帳戶，以便根據業務需求來尋找、復原及回收儲存體容量。
@@ -27,19 +27,19 @@ ms.lasthandoff: 03/08/2018
 ## <a name="find"></a>尋找儲存體帳戶
 區域中的儲存體帳戶清單可在 Azure Stack 中，透過下列方式檢視：
 
-1. 在網際網路瀏覽器中，瀏覽至 https://adminportal.local.azurestack.external。
-2. 以雲端操作員身分 (使用您在部署期間所提供的認證)，登入 Azure Stack 系統管理入口網站
-3. 在預設儀表板上，尋找 [區域管理] 清單，然後按一下您想要探索的區域，例如 **(local**)。
+1. 登入[管理入口網站](https://adminportal.local.azurestack.external)。
+
+2. 在 [系統管理]底下選取 [所有服務]  >  [區域管理]。
+
+3. 從 [資源提供者] 清單中選取 [儲存體]。
    
-   ![](media/azure-stack-manage-storage-accounts/image1.png)
-4. 從 [資源提供者] 清單中選取 [儲存體]。
+   ![儲存體資源提供者](media/azure-stack-manage-storage-accounts/image1.png)
+
+5. 在 [儲存體] 中選取 [儲存體帳戶]。
    
    ![](media/azure-stack-manage-storage-accounts/image2.png)
-5. 現在，在儲存體資源提供者系統管理員窗格中，向下捲動至 [儲存體帳戶] 索引標籤，然後按一下。
    
-   ![](media/azure-stack-manage-storage-accounts/image3.png)
-   
-   所產生的頁面就是在該區域中的儲存體帳戶清單。
+   所顯示的刀鋒視窗就是在該區域中的儲存體帳戶清單。
    
    ![](media/azure-stack-manage-storage-accounts/image4.png)
 
@@ -52,12 +52,12 @@ ms.lasthandoff: 03/08/2018
 
 **篩選帳戶：**
 
-1. 按一下窗格頂端的 [篩選]。
-2. 在 [篩選] 窗格上，您可以指定 [帳戶名稱]、[訂用帳戶識別碼] 或 [狀態]，以微調要顯示的儲存體帳戶清單。 請適當地指定。
-3. 按一下 [更新] 。 清單應該會隨著重新整理。
+1. 選取窗格頂端的 [篩選]。
+2. 在 [篩選] 窗格上，您可以指定 [帳戶名稱]、\*\*[訂用帳戶識別碼] 或 [狀態]，以微調要顯示的儲存體帳戶清單。 請適當地指定。
+3. 選取 [更新]。 清單應該會隨著重新整理。
    
     ![](media/azure-stack-manage-storage-accounts/image5.png)
-4. 若要重設篩選：按一下 [篩選]、清除選取項目，然後更新。
+4. 若要重設篩選：選取 [篩選]、清除選取項目，然後更新。
 
 [搜尋] 文字方塊 (在儲存體帳戶清單窗格的頂端) 可讓您醒目提示帳戶清單中選取的文字。 如果無法輕易地取得完整名稱或識別碼，您可以使用此種方式。
 
@@ -66,7 +66,7 @@ ms.lasthandoff: 03/08/2018
 ![](media/azure-stack-manage-storage-accounts/image6.png)
 
 ## <a name="look-at-account-details"></a>查看帳戶詳細資料
-一旦找到您想檢視的帳戶之後，可以按一下特定的帳戶，以檢視特定的詳細資料。 新窗格隨即開啟，其中包含帳戶詳細資料，例如：帳戶類型、建立時間、位置等等。
+一旦找到您想檢視的帳戶之後，您可以選取特定的帳戶，以檢視特定的詳細資料。 新窗格隨即開啟，其中包含帳戶詳細資料，例如：帳戶類型、建立時間、位置等等。
 
 ![](media/azure-stack-manage-storage-accounts/image7.png)
 
@@ -75,16 +75,16 @@ ms.lasthandoff: 03/08/2018
 
 在 Azure Stack 中，有一個很簡單的方式可以執行此作業：
 
-1. 瀏覽至儲存體帳戶清單。 如需詳細資訊，請參閱本主題中的[尋找儲存體帳戶](#find)。
+1. 瀏覽至儲存體帳戶清單。 如需詳細資訊，請參閱本文中的[尋找儲存體帳戶](#find)。
 2. 在清單中找出該特定帳戶。 您可能需要篩選。
 3. 請檢查帳戶的 [狀態]。 它應該指出 [已刪除]。
-4. 按一下可開啟 [帳戶詳細資料] 窗格的帳戶。
-5. 在這個窗格的頂端，找出 [復原] 按鈕，然後按一下它。
-6. 按一下 [ **是** ] 以確認。
+4. 選取可開啟 [帳戶詳細資料] 窗格的帳戶。
+5. 在這個窗格的頂端，找出 [復原] 按鈕，並加以選取。
+6. 選取 [是]  加以確認。
    
    ![](media/azure-stack-manage-storage-accounts/image8.png)
 7. 復原現在處於 [處理中...請等待] 的狀態，正在等待復原成功的訊息出現。
-   您也可以按一下入口網站頂端的「鈴鐺」圖示，以檢視進度指示。
+   您也可以選取入口網站頂端的「鈴鐺」圖示，以檢視進度指示。
    
    ![](media/azure-stack-manage-storage-accounts/image9.png)
    
@@ -96,19 +96,18 @@ ms.lasthandoff: 03/08/2018
   超出保留期表示已刪除的帳戶已超出保留期限，可能無法復原。
 * 已刪除的帳戶未顯示在帳戶清單中。
   
-  如果已刪除的帳戶已經被記憶體回收，您的帳戶就不會顯示在帳戶清單中。 在此情況下，便無法復原該帳戶。 請參閱本主題中的[回收容量](#reclaim)。
+  如果已刪除的帳戶已經被記憶體回收，您的帳戶就不會顯示在帳戶清單中。 在此情況下，便無法復原該帳戶。 請參閱本文中的[回收容量](#reclaim)。
 
 ## <a name="set-the-retention-period"></a>設定保留期限
-保留期限設定可讓雲端操作員指定時間間隔天數 (介於 0 到 9999 天)，在此期間，任何已刪除的帳戶都可能復原。 預設保留期限設定為 15 天。 將值設定為 "0" 表示立即不保留任何已刪除的帳戶，並標示供定期記憶體回收。
+保留期限設定可讓雲端操作員指定時間間隔天數 (介於 0 到 9999 天)，在此期間，任何已刪除的帳戶都可能復原。 預設保留期限設定為 0 天。 將值設定為 "0" 表示立即不保留任何已刪除的帳戶，並標示供定期記憶體回收。
 
 **變更保留期限：**
 
-1. 在網際網路瀏覽器中，瀏覽至 https://adminportal.local.azurestack.external。
-2. 以雲端操作員身分 (使用您在部署期間所提供的認證)，登入 Azure Stack 系統管理入口網站
-3. 在預設儀表板上，尋找 [區域管理] 清單，然後按一下您想要探索的區域，例如 **(local**)。
-4. 從 [資源提供者] 清單中選取 [儲存體]。
-5. 按一下頂端的 [設定]，開啟 [設定] 窗格。
-6. 按一下 [設定]，然後編輯保留期限值。
+1. 登入[管理入口網站](https://adminportal.local.azurestack.external)。
+2. 在 [系統管理]底下選取 [所有服務]  >  [區域管理]。
+3. 從 [資源提供者] 清單中選取 [儲存體]。
+4. 選取頂端的 [設定]，以開啟 [設定] 窗格。
+5. 選取 [設定]，然後編輯保留期限值。
 
    設定天數，然後加以儲存。
    
@@ -123,8 +122,8 @@ ms.lasthandoff: 03/08/2018
 
 **使用入口網站回收容量：**
 1. 瀏覽至 [儲存體帳戶] 窗格。 請參閱[尋找儲存體帳戶](#find)。
-2. 按一下窗格頂端的 [回收空間]。
-3. 讀取訊息，然後按一下 [確定]。
+2. 選取窗格頂端的 [回收空間]。
+3. 讀取訊息，然後選取 [確定]。
 
     ![](media/azure-stack-manage-storage-accounts/image11.png)
 4. 等候成功通知。請查看入口網站上的鈴鐺圖示。
@@ -141,82 +140,18 @@ ms.lasthandoff: 03/08/2018
    如需有關 Azure Resource Manager Cmdlet 的詳細資訊，請參閱[搭配使用 Azure PowerShell 與 Azure Resource Manager](http://go.microsoft.com/fwlink/?LinkId=394767)
 2. 執行下列 Cmdlet：
 
-> [!NOTE]
-> 如果您執行這個 Cmdlet，將會永久刪除帳戶及其內容。 無法復原。 使用時請務必小心。
+> [!NOTE]  
+> 如果您執行這些 Cmdlet，將會永久刪除帳戶及其內容。 無法復原。 使用時請務必小心。
 
+```PowerShell  
+    $farm_name = (Get-AzsStorageFarm)[0].name
+    Start-AzsReclaimStorageCapacity -FarmName $farm_name
+````
 
-        Clear-ACSStorageAccount -ResourceGroupName system.local -FarmName <farm ID>
-
-
-如需詳細資訊，請參閱 [Azure Stack PowerShell 文件](https://msdn.microsoft.com/library/mt637964.aspx)。
+如需詳細資訊，請參閱 [Azure Stack PowerShell 文件](https://docs.microsoft.com/powershell/module/azurerm.azurestackstorage)。
  
 
-## <a name="migrate-a-container"></a>移轉容器
-由於租用戶的儲存體用量不平均，因此雲端操作員可能會發現其中一或多個基礎租用戶共用所使用的空間比其他租用戶更多。 如果發生這種情況，雲端操作員可以嘗試將部分 Blob 容器手動移轉至另一個共用，為使用量較大的共用釋放一些空間。 
+## <a name="next-steps"></a>後續步驟
 
-您必須使用 PowerShell 來移轉容器。
-> [!NOTE]
->Blob 容器移轉不支援即時移轉，而且目前是離線作業。 在移轉期間以及完成移轉之前，該容器中的基礎 Blob 都無法使用，而且是處於「離線」狀態。 
-
-**使用 PowerShell 來移轉容器：**
-
-1. 確認您已安裝並設定 Azure PowerShell。 否則，請使用下列指示：
-    * 若要安裝最新的 Azure PowerShell 版本，並將它與您的 Azure 訂用帳戶建立關聯，請參閱[如何安裝和設定 Azure PowerShell](http://azure.microsoft.com/documentation/articles/powershell-install-configure/)。 如需有關 Azure Resource Manager Cmdlet 的詳細資訊，請參閱[搭配使用 Azure PowerShell 與 Azure Resource Manager](http://go.microsoft.com/fwlink/?LinkId=394767)
-2. 取得伺服器陣列名稱： 
-      
-      `$farm = Get-ACSFarm -ResourceGroupName system.local`
-3. 取得共用： 
-
-   `$shares = Get-ACSShare -ResourceGroupName system.local -FarmName $farm.FarmName`
-
-4. 取得指定共用的容器。 請注意，count 和 intent 都是選擇性參數：
-            
-   `$containers = Get-ACSContainer -ResourceGroupName system.local -FarmName $farm.FarmName -ShareName $shares[0].ShareName -Count 4 -Intent Migration`  
-
-   接著，檢查 $containers：
-
-   `$containers`
-
-    ![](media/azure-stack-manage-storage-accounts/image13.png)
-5. 取得用於容器移轉的最佳目的地共用：
-
-    `$destinationshares= Get-ACSSharesForMigration  -ResourceGroupName system.local -FarmName $farm.farmname -SourceShareName $shares[0].ShareName`
-
-    接著，檢查 $destinationshares：
-
-    `$destinationshares`
-
-    ![](media/azure-stack-manage-storage-accounts/image14.png)
-6. 開始進行容器移轉。請注意，這是非同步實作，因此可以循環處理共用中的所有容器，並使用傳回的作業識別碼來追蹤狀態。
-
-    `$jobId = Start-ACSContainerMigration -ResourceGroupName system.local -FarmName $farm.farmname -ContainerToMigrate $containers[1] -DestinationShareUncPath $destinationshares.UncPath`
-
-    接著，檢查 $jobId：
-
-   ```
-   $jobId
-   d1d5277f-6b8d-4923-9db3-8bb00fa61b65
-   ```
-7. 依作業識別碼檢查移轉作業的狀態。 當容器移轉完成時，MigrationStatus 會設定為 [已完成]。
-
-    `Get-ACSContainerMigrationStatus -ResourceGroupName system.local -FarmName $farm.farmname -JobId $jobId`
-
-    ![](media/azure-stack-manage-storage-accounts/image15.png)
-
-8. 您可以取消進行中的移轉工作。 這仍然是非同步作業，而且可以使用 $jobid 來追蹤：
-
-    `Stop-ACSContainerMigration-ResourceGroupName system.local -FarmName $farm.farmname -JobId $jobId-Verbose`
-
-    ![](media/azure-stack-manage-storage-accounts/image16.png)
-
-    您可以再次檢查移轉取消的狀態：
-
-    `Get-ACSContainerMigrationStatus-ResourceGroupName system.local -FarmName $farm.farmname -JobId $jobId`
-
-    ![](media/azure-stack-manage-storage-accounts/image17.png)
-
-
-
-
-  
-  
+ - 如需管理權限的相關資訊，請參閱[管理角色型存取控制](azure-stack-manage-permissions.md)。
+ - 如需管理 Azure Stack 儲存體容量的相關資訊，請參閱[管理 Azure Stack 的儲存體容量](azure-stack-manage-storage-shares.md)。

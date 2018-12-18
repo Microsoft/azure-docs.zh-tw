@@ -1,11 +1,11 @@
 ---
-title: "StorSimple 8000 系列 Update 2 版本資訊 | Microsoft Docs"
-description: "說明 StorSimple 8000 系列 Update 2 的新功能、問題及因應措施。"
+title: StorSimple 8000 系列 Update 2 版本資訊 | Microsoft Docs
+description: 說明 StorSimple 8000 系列 Update 2 的新功能、問題及因應措施。
 services: storsimple
 documentationcenter: NA
 author: SharS
 manager: carmonm
-editor: 
+editor: ''
 ms.assetid: e2c8bffd-7fc5-4b77-b632-a4f59edacc3a
 ms.service: storsimple
 ms.devlang: NA
@@ -14,15 +14,14 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 11/03/2017
 ms.author: v-sharos
-ms.openlocfilehash: 285c5abf574544737f3d30981a6c5b8f9548922a
-ms.sourcegitcommit: 0930aabc3ede63240f60c2c61baa88ac6576c508
+ms.openlocfilehash: 0667c62e2ee2039c2b96b8c4ba81619969c3611b
+ms.sourcegitcommit: d28bba5fd49049ec7492e88f2519d7f42184e3a8
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/07/2017
+ms.lasthandoff: 05/11/2018
+ms.locfileid: "34057990"
 ---
 # <a name="storsimple-8000-series-update-2-release-notes"></a>StorSimple 8000 系列 Update 2 版本資訊
-> [!NOTE]
-> StorSimple 的傳統入口網站已過時。 按照淘汰排程，StorSimple 裝置管理員會自動移至新的 Azure 入口網站。 您將收到關於此移動的電子郵件和入口網站通知。 本文件也即將遭到淘汰。 若有關於移動的任何問題，請參閱[常見問題集：移至 Azure 入口網站](storsimple-8000-move-azure-portal-faq.md)。
 
 ## <a name="overview"></a>概觀
 下列版本資訊說明 StorSimple 8000 系列 Update 2 的新功能，並識別未決的重要問題。 當中也包含此版本中隨附之 StorSimple 軟體、驅動程式與磁碟韌體更新的清單。 

@@ -1,37 +1,32 @@
 ---
 title: 了解 Azure IoT 中樞查詢語言 | Microsoft Docs
-description: 開發人員指南 - 說明類似 SQL 的 IoT 中樞查詢語言，用於從 IoT 中樞擷取裝置對應項和作業的相關資訊。
-services: iot-hub
-documentationcenter: .net
+description: 開發人員指南 - 說明類似 SQL 的 IoT 中樞查詢語言，用於從 IoT 中樞擷取裝置/模組對應項和作業的相關資訊。
 author: fsautomata
-manager: timlt
-editor: ''
-ms.assetid: 851a9ed3-b69e-422e-8a5d-1d79f91ddf15
+manager: ''
 ms.service: iot-hub
-ms.devlang: multiple
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: na
+services: iot-hub
+ms.topic: conceptual
 ms.date: 02/26/2018
 ms.author: elioda
-ms.openlocfilehash: ef0d135a744cd37d888496073c7959ddc815ec91
-ms.sourcegitcommit: 20d103fb8658b29b48115782fe01f76239b240aa
+ms.openlocfilehash: 2e4b356fec642e06e3223700967eeacd19f1c49c
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46952472"
 ---
-# <a name="iot-hub-query-language-for-device-twins-jobs-and-message-routing"></a>裝置對應項、作業和訊息路由的 IoT 中樞查詢語言
+# <a name="iot-hub-query-language-for-device-and-module-twins-jobs-and-message-routing"></a>裝置與模組對應項、作業和訊息路由的 IoT 中樞查詢語言
 
 IoT 中樞提供功能強大、類似 SQL 的語言，來擷取有關[裝置對應項][lnk-twins]、[作業][lnk-jobs]和[訊息路由][lnk-devguide-messaging-routes]的資訊。 本文提供︰
 
 * IoT 中樞查詢語言主要功能的簡介，以及
-* 語言的詳細說明。
+* 語言的詳細說明。 如需訊息路由查詢語言的詳細資訊，請參閱[訊息路由中的查詢](../iot-hub/iot-hub-devguide-routing-query-syntax.md)。
 
 [!INCLUDE [iot-hub-basic](../../includes/iot-hub-basic-partial.md)]
 
-## <a name="device-twin-queries"></a>裝置對應項查詢
-[裝置對應項][lnk-twins]可以包含標籤和屬性形式的任意 JSON 物件。 IoT 中樞可讓您以包含所有裝置對應項資訊的單一 JSON 文件形式查詢裝置對應項。
-比方說，假設您的 IoT 中樞裝置對應項有下列結構︰
+## <a name="device-and-module-twin-queries"></a>裝置與模組對應項查詢
+[裝置對應項][lnk-twins]與模組對應項可以包含標籤和屬性形式的任意 JSON 物件。 IoT 中樞可讓您以包含所有對應項資訊的單一 JSON 文件形式查詢裝置對應項與模組對應項。
+例如，假設 IoT 中樞裝置對應項有下列結構 (模組對應項很類似，只是具有額外的 moduleId)：
 
 ```json
 {
@@ -82,6 +77,8 @@ IoT 中樞提供功能強大、類似 SQL 的語言，來擷取有關[裝置對�
     }
 }
 ```
+
+### <a name="device-twin-queries"></a>裝置對應項查詢
 
 IoT 中樞可以將裝置對應項公開為稱為**裝置**的文件集合。
 因此，下列查詢會擷取整組裝置對應項︰
@@ -158,6 +155,26 @@ GROUP BY properties.reported.telemetryConfig.status
 
 ```sql
 SELECT LastActivityTime FROM devices WHERE status = 'enabled'
+```
+
+### <a name="module-twin-queries"></a>模組對應項查詢
+
+查詢模組對應項和查詢裝置對應項很類似，但使用不同的集合/命名空間，也就是不用您可以查詢的 “from devices”
+
+```sql
+SELECT * FROM devices.modules
+```
+
+我們不允許 devices 與 devices.modules 集合之間的聯結。 如果您想要跨裝置查詢模組對應項，可以根據標籤來執行。 此查詢會傳回所有裝置上具有 scanning 狀態的所有模組對應項：
+
+```sql
+Select * from devices.modules where properties.reported.status = 'scanning'
+```
+
+此查詢會傳回具有 scanning 狀態的所有模組對應項，但僅以指定的裝置子集為限。
+
+```sql
+Select * from devices.modules where properties.reported.status = 'scanning' and deviceId IN ('device1', 'device2')  
 ```
 
 ### <a name="c-example"></a>C# 範例
@@ -288,126 +305,6 @@ WHERE devices.jobs.jobId = 'myJobId'
 * 參照裝置對應項 (作業屬性除外) 的條件 (請參閱上一節)。
 * 執行彙總，例如計數、平均、分組依據。
 
-## <a name="device-to-cloud-message-routes-query-expressions"></a>裝置到雲端訊息路由查詢運算式
-
-使用[裝置對雲端路由][lnk-devguide-messaging-routes]時，您可以設定讓「IoT 中樞」將裝置到雲端的訊息分派至不同的端點。 分派時會根據針對個別訊息評估的運算式來進行分派。
-
-路由[條件][lnk-query-expressions]會使用相同的 IoT 中樞查詢語言做為對應項和作業查詢中的條件。 路由條件會依據訊息標頭和內文進行評估。 您的路由查詢運算式可以只涉及訊息標頭、只涉及訊息本文，或同時涉及上述兩者。 為了路由傳送訊息，「IoT 中樞」會針對標頭和訊息內文採用特定的結構描述。 下列各節將說明需要哪些項目才能讓 IoT 中樞正確路由傳送。
-
-### <a name="routing-on-message-headers"></a>依據訊息標頭進行路由
-
-IoT 中樞假設訊息路由的訊息標頭採用下列 JSON 表示法：
-
-```json
-{
-  "message": {
-    "systemProperties": {
-      "contentType": "application/json",
-      "contentEncoding": "utf-8",
-      "iothub-message-source": "deviceMessages",
-      "iothub-enqueuedtime": "2017-05-08T18:55:31.8514657Z"
-    },
-    "appProperties": {
-      "processingPath": "<optional>",
-      "verbose": "<optional>",
-      "severity": "<optional>",
-      "testDevice": "<optional>"
-    },
-    "body": "{\"Weather\":{\"Temperature\":50}}"
-  }
-}
-```
-
-訊息系統屬性前面會加上 `'$'` 符號。
-使用者屬性則一律透過其名稱來存取。 如果使用者屬性名稱恰巧與系統屬性 (例如 `$contentType`) 相同，就會使用 `$contentType` 運算式來擷取使用者屬性。
-您一律可以使用括弧 `{}` 來存取系統屬性：例如，您可以使用運算式 `{$contentType}` 來存取系統屬性 `contentType`。 以括弧括住的屬性名稱一律會擷取對應的系統屬性。
-
-請記住，屬性名稱不區分大小寫。
-
-> [!NOTE]
-> 所有屬性皆為字串。 系統屬性 (如[開發人員指南][lnk-devguide-messaging-format]所述) 目前無法使用於查詢中。
->
-
-例如，如果您使用 `messageType` 屬性，您可能想要將所有遙測都路由傳送至一個端點，以及將所有警示路由傳送至另一個端點。 您可以撰寫下列運算式來路由傳送遙測資料︰
-
-```sql
-messageType = 'telemetry'
-```
-
-以及撰寫下列運算式來路由傳送警示訊息︰
-
-```sql
-messageType = 'alert'
-```
-
-也支援布林運算式和函式。 這項功能可讓您區分嚴重性層級，例如︰
-
-```sql
-messageType = 'alerts' AND as_number(severity) <= 2
-```
-
-請參閱[運算式和條件][lnk-query-expressions]一節，以取得支援的完整運算子和函式清單。
-
-### <a name="routing-on-message-bodies"></a>依據訊息內文進行路由
-
-只有當訊息本文是以 UTF-8、UTF-16 或 UTF-32 編碼的正確格式 JSON 時，「IoT 中樞」才能依據訊息本文內容進行路由。 請將訊息的內容類型設定為 `application/json`。 請在訊息標頭中，將內容編碼設定為其中一種支援的 UTF 編碼。 如果未指定任一標頭，「IoT 中樞」就不會嘗試針對訊息評估任何涉及本文的查詢運算式。 如果您的訊息不是 JSON 訊息，或如果訊息未指定內容類型和內容編碼，您仍然可以使用訊息路由來依據訊息標頭路由傳送訊息。
-
-下列範例說明如何以經過正確格式化和編碼的 JSON 主體建立訊息：
-
-```csharp
-string messageBody = @"{ 
-                            ""Weather"":{ 
-                                ""Temperature"":50, 
-                                ""Time"":""2017-03-09T00:00:00.000Z"", 
-                                ""PrevTemperatures"":[ 
-                                    20, 
-                                    30, 
-                                    40 
-                                ], 
-                                ""IsEnabled"":true, 
-                                ""Location"":{ 
-                                    ""Street"":""One Microsoft Way"", 
-                                    ""City"":""Redmond"", 
-                                    ""State"":""WA"" 
-                                }, 
-                                ""HistoricalData"":[ 
-                                    { 
-                                    ""Month"":""Feb"", 
-                                    ""Temperature"":40 
-                                    }, 
-                                    { 
-                                    ""Month"":""Jan"", 
-                                    ""Temperature"":30 
-                                    } 
-                                ] 
-                            } 
-                        }"; 
- 
-// Encode message body using UTF-8 
-byte[] messageBytes = Encoding.UTF8.GetBytes(messageBody); 
- 
-using (var message = new Message(messageBytes)) 
-{ 
-    // Set message body type and content encoding. 
-    message.ContentEncoding = "utf-8"; 
-    message.ContentType = "application/json"; 
- 
-    // Add other custom application properties.  
-    message.Properties["Status"] = "Active";    
- 
-    await deviceClient.SendEventAsync(message); 
-}
-```
-
-您可以在查詢運算式中使用 `$body` 來路由傳送訊息。 您可以在查詢運算式中使用簡單內文參考、內文陣列參考或多個內文參考。 您的查詢運算式也可以將內文參考與訊息標頭參考合併。 例如，以下是所有有效的查詢運算式：
-
-```sql
-$body.Weather.HistoricalData[0].Month = 'Feb'
-$body.Weather.Temperature = 50 AND $body.Weather.IsEnabled
-length($body.Weather.Location.State) = 2
-$body.Weather.Temperature = 50 AND Status = 'Active'
-```
-
 ## <a name="basics-of-an-iot-hub-query"></a>IoT 中樞查詢的基本概念
 每個「IoT 中樞」查詢都包含 SELECT 和 FROM 子句，以及選擇性的 WHERE 和 GROUP BY 子句。 每個查詢都會在 JSON 文件的集合上執行，例如裝置對應項。 FROM 子句會指出要在其上反覆運算的文件集合 (**devices** 或 **devices.jobs**)。 然後，會套用 WHERE 子句中的篩選。 使用彙總時，此步驟的結果會依照 GROUP BY 子句中所指定的方式進行分組。 針對每個群組，會依照 SELECT 子句中所指定的方式產生一個資料列。
 
@@ -537,7 +434,7 @@ GROUP BY <group_by_element>
 | 邏輯 |AND、OR、NOT |
 | 比較 |=、!=、<、>、<=、>=、<> |
 
-### <a name="functions"></a>Functions
+### <a name="functions"></a>函式
 查詢對應項和作業時唯一支援的函式為：
 
 | 函式 | 說明 |
@@ -597,8 +494,7 @@ GROUP BY <group_by_element>
 [lnk-devguide-endpoints]: iot-hub-devguide-endpoints.md
 [lnk-devguide-quotas]: iot-hub-devguide-quotas-throttling.md
 [lnk-devguide-mqtt]: iot-hub-mqtt-support.md
-[lnk-devguide-messaging-routes]: iot-hub-devguide-messages-read-custom.md
+[lnk-devguide-messaging-routes]: iot-hub-devguide-messages-d2c.md
 [lnk-devguide-messaging-format]: iot-hub-devguide-messages-construct.md
-[lnk-devguide-messaging-routes]: ./iot-hub-devguide-messages-read-custom.md
 
 [lnk-hub-sdks]: iot-hub-devguide-sdks.md

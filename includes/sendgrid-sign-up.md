@@ -61,9 +61,9 @@ Azure 客戶每月可以解除鎖定 25,000 封免費電子郵件。 這些每�
 
 若要管理電子郵件傳遞能力設定，按一下 [管理] 按鈕。 這將會重新導向至您的 SendGrid 儀表板。
 
-    ![manage][manage]
+![manage][manage]
 
-    For more information on sending email through SendGrid, visit the [Email API Overview][Email API Overview].
+如需透過 SendGrid 傳送電子郵件的詳細資訊，請造訪[電子郵件 API 概觀][Email API Overview]。
 
 <!--images-->
 

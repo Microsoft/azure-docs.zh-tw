@@ -3,18 +3,22 @@ title: SQL 錯誤碼 - 資料庫連線錯誤 | Microsoft Docs
 description: '了解 SQL Database 用戶端應用程式的 SQL 錯誤碼，例如常見的資料庫連線錯誤、資料庫副本問題，以及一般錯誤。 '
 keywords: sql error code,access sql,database connection error,sql error codes,sql 錯誤碼,存取 sql,資料庫連線錯誤,sql 錯誤碼
 services: sql-database
-author: stevestein
-manager: craigg
 ms.service: sql-database
-ms.custom: develop apps
-ms.topic: article
-ms.date: 09/28/2017
+ms.subservice: development
+ms.custom: ''
+ms.devlang: ''
+ms.topic: conceptual
+author: stevestein
 ms.author: sstein
-ms.openlocfilehash: 5031ab1ec8c7b42c65fb35e47c32d10ff2898501
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.reviewer: ''
+manager: craigg
+ms.date: 09/14/2018
+ms.openlocfilehash: d5b98f573b60115002e813ebbef59eb7983ce3c2
+ms.sourcegitcommit: cc4fdd6f0f12b44c244abc7f6bc4b181a2d05302
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47064385"
 ---
 # <a name="sql-error-codes-for-sql-database-client-applications-database-connection-errors-and-other-issues"></a>SQL Database 用戶端應用程式的 SQL 錯誤碼：資料庫連線錯誤和其他問題
 
@@ -34,7 +38,7 @@ Azure 基礎結構能夠在 SQL Database 服務出現繁重的工作負載時動
 * 伺服器 &lt;Azure_instance&gt; 上的資料庫 &lt;db_name&gt; 目前無法使用。 請稍後重試連接。 如果問題持續發生，請連絡客戶支援服務，並提供工作階段追蹤識別碼 &lt;session_id&gt;。 (Microsoft SQL Server，錯誤：40613)
 * 遠端主機已強制關閉現有的連接。
 * System.Data.Entity.Core.EntityCommandExecutionException: 執行命令定義時發生錯誤。 詳細資訊請參閱內部例外狀況。 ---> System.Data.SqlClient.SqlException: 從伺服器接收結果時發生傳輸層級錯誤。 (提供者: 工作階段提供者, 錯誤: 19 - 無法使用實際連線)
-* 嘗試連線到次要資料庫失敗，因為資料庫正在重新設定，且在主要資料庫上的使用中交易時，忙碌於套用新的頁面。 
+* 嘗試連線到次要資料庫失敗，因為資料庫正在重新設定，且在主要資料庫上的使用中交易期間忙於套用新的頁面。 
 
 如需重試邏輯的程式碼範例，請參閱：
 
@@ -50,10 +54,10 @@ Azure 基礎結構能夠在 SQL Database 服務出現繁重的工作負載時動
 | ---:| ---:|:--- |
 | 4060 |16 |無法開啟登入所要求的資料庫 "%.&#x2a;ls"。 登入失敗。 |
 | 40197 |17 |服務處理您的要求時發生錯誤。 請再試一次。 錯誤代碼 %d。<br/><br/>當服務因為軟體或硬體升級、硬體故障或任何其他容錯移轉問題而關閉時，您會收到這個錯誤。 內嵌在錯誤 40197 訊息中的錯誤代碼 (%d) 提供發生的失敗或容錯移轉種類的其他資訊。 錯誤代碼會內嵌在錯誤 40197 的訊息錯誤範例包括 40020、40143、40166 和 40540。<br/><br/>重新連線到您的 SQL Database 伺服器時，會自動連線至健康情況良好的資料庫複本。 您的應用程式必須攔截錯誤 40197、記錄訊息中內嵌的錯誤碼 (%d) 以進行疑難排解，並嘗試重新連接到 SQL Database 直到資源可供使用，並再次建立您的連線。 |
-| 40501 |20 |服務目前忙碌中。 在 10 秒後重試要求。 事件識別碼：%ls。 程式碼：%d。<br/><br/>如需詳細資訊，請參閱<br/>• [Azure SQL Database 資源限制](sql-database-service-tiers.md)。 |
+| 40501 |20 |服務目前忙碌中。 在 10 秒後重試要求。 事件識別碼：%ls。 程式碼：%d。<br/><br/>如需詳細資訊，請參閱<br/>• [Azure SQL Database 資源限制](sql-database-service-tiers-dtu.md)。 |
 | 40613 |17 |資料庫 '%.&#x2a;ls' (在伺服器 '%.&#x2a;ls' 上) 目前無法使用。 請稍後重試連接。 如果問題持續發生，請連絡客戶支援服務，並提供工作階段追蹤識別碼 '%.&#x2a;ls'。 |
 | 49918 |16 |無法處理要求。 資源不足，無法處理要求。<br/><br/>服務目前忙碌中。 請稍後再重試要求。 |
-| 49919 |16 |無法處理建立或更新要求。 訂用帳戶 "%ld" 太多建立或更新作業進行中。<br/><br/>服務正忙於處理多個建立或更新您訂用帳戶或伺服器的要求。 要求目前已封鎖以求資源最佳化。 查詢 [sys.dm_operation_status](https://msdn.microsoft.com/library/dn270022.aspx) 以查看暫止的作業。 等待直到暫止的建立或更新要求已完成，或刪除您其中一個暫止要求，稍後再重試您的要求。 |
+| 49919 |16 |無法處理建立或更新要求。 訂用帳戶 "%ld" 太多建立或更新作業進行中。<br/><br/>服務正忙於處理多個建立或更新您訂用帳戶或伺服器的要求。 要求目前已封鎖以求資源最佳化。 查詢 [sys.dm_operation_status](https://msdn.microsoft.com/library/dn270022.aspx) 以查看暫止的作業。 等待直到暫止的建立或更新要求完成，或刪除您的其中一個暫止要求，稍後再重試您的要求。 |
 | 49920 |16 |無法處理要求。 訂用帳戶 "%ld" 太多作業進行中。<br/><br/>服務正忙於處理這個訂用帳戶的多個要求。 要求目前已封鎖以求資源最佳化。 查詢 [sys.dm_operation_status](https://msdn.microsoft.com/library/dn270022.aspx) 以查看作業狀態。 等候直到暫止的要求已完成，或刪除您其中一個暫止要求，稍後再重試您的要求。 |
 | 4221 |16 |登入 read-secondary 失敗，因為 'HADR_DATABASE_WAIT_FOR_TRANSITION_TO_VERSIONING' 上的等候時間很長。 無法使用複本進行登入，因為在複本回收時執行中之交易的資料列版本已遺失。 將主要複本上的使用中交易復原或認可，就可以解決問題。 避免在主要伺服器上的冗長寫入交易，就可讓此條件發生率降至最低。 |
 
@@ -86,12 +90,12 @@ Azure 基礎結構能夠在 SQL Database 服務出現繁重的工作負載時動
 
 相關主題：
 
-* 以下可提供更詳細的資訊︰[Azure SQL Database 資源限制](sql-database-service-tiers.md)。
+* 以下可提供更詳細的資訊︰[Azure SQL Database 資源限制](sql-database-service-tiers-dtu.md)。
 
 | 錯誤碼 | 嚴重性 | 說明 |
 | ---:| ---:|:--- |
-| 10928 |20 |資源識別碼：%d。 資料庫的 %s 限制是 %d，且已達到。 如需詳細資訊，請參閱 [http://go.microsoft.com/fwlink/?LinkId=267637](http://go.microsoft.com/fwlink/?LinkId=267637)。<br/><br/>資源識別碼可指出已達到限制的資源。 對於背景工作執行緒，資源識別碼 = 1。 對於工作階段，資源識別碼 = 2。<br/><br/>如需有關此錯誤以及其解決方法的詳細資訊，請參閱：<br/>• [Azure SQL Database 資源限制](sql-database-service-tiers.md)。 |
-| 10929 |20 |資源識別碼：%d。 %s 最小保證是 %d，最大限制是 %d，而資料庫的目前使用量是 %d。 但伺服器目前太忙碌，無法針對此資料庫支援大於 %d 的要求。 如需詳細資訊，請參閱 [http://go.microsoft.com/fwlink/?LinkId=267637](http://go.microsoft.com/fwlink/?LinkId=267637)。 或者，請稍後再試一次。<br/><br/>資源識別碼可指出已達到限制的資源。 對於背景工作執行緒，資源識別碼 = 1。 對於工作階段，資源識別碼 = 2。<br/><br/>如需有關此錯誤以及其解決方法的詳細資訊，請參閱：<br/>• [Azure SQL Database 資源限制](sql-database-service-tiers.md)。 |
+| 10928 |20 |資源識別碼：%d。 資料庫的 %s 限制是 %d，且已達到。 如需詳細資訊，請參閱 [http://go.microsoft.com/fwlink/?LinkId=267637](http://go.microsoft.com/fwlink/?LinkId=267637)。<br/><br/>資源識別碼可指出已達到限制的資源。 對於背景工作執行緒，資源識別碼 = 1。 對於工作階段，資源識別碼 = 2。<br/><br/>如需有關此錯誤以及其解決方法的詳細資訊，請參閱：<br/>• [Azure SQL Database 資源限制](sql-database-service-tiers-dtu.md)。 |
+| 10929 |20 |資源識別碼：%d。 %s 最小保證是 %d，最大限制是 %d，而資料庫的目前使用量是 %d。 但伺服器目前太忙碌，無法針對此資料庫支援大於 %d 的要求。 如需詳細資訊，請參閱 [http://go.microsoft.com/fwlink/?LinkId=267637](http://go.microsoft.com/fwlink/?LinkId=267637)。 或者，請稍後再試一次。<br/><br/>資源識別碼可指出已達到限制的資源。 對於背景工作執行緒，資源識別碼 = 1。 對於工作階段，資源識別碼 = 2。<br/><br/>如需有關此錯誤以及其解決方法的詳細資訊，請參閱：<br/>• [Azure SQL Database 資源限制](sql-database-service-tiers-dtu.md)。 |
 | 40544 |20 |資料庫已達到大小配額。 資料分割或刪除資料、卸除索引，或參閱可能解決方式的文件。 |
 | 40549 |16 |工作階段已終止，因為您有長時間執行的交易。 請嘗試縮短您的交易時間。 |
 | 40550 |16 |工作階段已終止，因為它取得太多鎖定。 嘗試在單一交易中讀取或修改較少的資料列。 |
@@ -104,13 +108,13 @@ Azure 基礎結構能夠在 SQL Database 服務出現繁重的工作負載時動
 
 | 錯誤號碼 | 錯誤嚴重性 | 錯誤格式 | 錯誤說明 | 錯誤原因 | 錯誤修正動作 |
 |:--- |:--- |:--- |:--- |:--- |:--- |
-| 1132 |EX_RESOURCE |彈性集區已達到其儲存體限制。 彈性集區的儲存體使用量不能超過 (%d) MB。 |彈性集區空間限制 (MB)。 |當彈性集區達到儲存體限制時，嘗試將資料寫入資料庫。 |請考慮盡可能增加彈性集區的 DTU 數，以提高其儲存體限制、減少彈性集區中個別資料庫所使用的儲存體量，或是從彈性集區移除資料庫。 |
-| 10929 |EX_USER |%s 最小保證是 %d，最大限制是 %d，而資料庫的目前使用量是 %d。 但伺服器目前太忙碌，無法針對此資料庫支援大於 %d 的要求。 請參閱 [http://go.microsoft.com/fwlink/?LinkId=267637](http://go.microsoft.com/fwlink/?LinkId=267637) 以取得協助。 或者，請稍後再試一次。 |每個資料庫的最小 DTU、每個資料庫的最大 DTU |彈性集區中的所有資料庫並行背景工作 (要求) 總數試圖超過集區限制。 |請考慮盡可能增加彈性集區的 DTU 數，以提高其背景工作數的限制，或是從彈性集區移除資料庫。 |
+| 1132 |EX_RESOURCE |彈性集區已達到其儲存體限制。 彈性集區的儲存體使用量不能超過 (%d) MB。 |彈性集區空間限制 (MB)。 |當彈性集區達到儲存體限制時，嘗試將資料寫入資料庫。 |請考慮盡可能增加彈性集區的 DTU 及/或儲存體，以提高其儲存體限制、減少彈性集區中個別資料庫所使用的儲存體量，或是從彈性集區移除資料庫。 |
+| 10929 |EX_USER |%s 最小保證是 %d，最大限制是 %d，而資料庫的目前使用量是 %d。 但伺服器目前太忙碌，無法針對此資料庫支援大於 %d 的要求。 請參閱 [http://go.microsoft.com/fwlink/?LinkId=267637](http://go.microsoft.com/fwlink/?LinkId=267637) 以取得協助。 或者，請稍後再試一次。 |每個資料庫的最小 DTU / vCore、每個資料庫的最大 DTU / vCore |彈性集區中的所有資料庫並行背景工作 (要求) 總數試圖超過集區限制。 |請考慮盡可能增加彈性集區的 DTU 或 vCore，以提高其背景工作數的限制，或是從彈性集區移除資料庫。 |
 | 40844 |EX_USER |伺服器 '%ls' 上的資料庫 '%ls' 是彈性集區中的 '%ls' 版資料庫，且無法有連續複製關聯性。 |資料庫名稱、資料庫版本、伺服器名稱 |針對彈性集區中的非高階資料庫發出了 StartDatabaseCopy 命令。 |敬請期待 |
 | 40857 |EX_USER |找不到伺服器 '%ls' 的彈性集區，彈性集區名稱: '%ls'。 |伺服器名稱、彈性集區名稱 |指定的彈性集區不存在於指定的伺服器中。 |請提供有效的彈性集區名稱。 |
 | 40858 |EX_USER |彈性集區 '%ls' 已存在於伺服器 '%ls' 中 |彈性集區名稱、伺服器名稱 |指定的彈性集區已存在於指定的邏輯伺服器中。 |請提供新的彈性集區名稱。 |
 | 40859 |EX_USER |彈性集區不支援服務層 '%ls'。 |彈性集區服務層 |指定的服務層不支援彈性集區佈建。 |請提供正確的版本，或者將服務層保留空白，以使用預設的服務層。 |
-| 40860 |EX_USER |彈性集區 '%ls' 和服務目標 '%ls' 的組合無效。 |彈性集區名稱、服務層級目標名稱 |如果服務目標指定為 'ElasticPool'，才能同時指定彈性集區和服務目標。 |請指定正確的彈性集區和服務目標組合。 |
+| 40860 |EX_USER |彈性集區 '%ls' 和服務目標 '%ls' 的組合無效。 |彈性集區名稱; 服務層 |如果資源類型指定為 'ElasticPool'，才能同時指定彈性集區和服務層。 |請指定正確的彈性集區和服務層組合。 |
 | 40861 |EX_USER |資料庫版本 '%.ls' 不能和彈性集區服務層 ('%.ls') 不同。 |資料庫版本、彈性集區服務層 |資料庫版本和彈性集區服務層不同。 |請勿指定與彈性集區服務層不同的資料庫版本。  請注意，不需要指定資料庫版本。 |
 | 40862 |EX_USER |指定彈性集區服務目標時，必須指定彈性集區名稱。 |None |彈性集區服務目標不是彈性集區的唯一識別依據。 |使用彈性集區服務目標時，請指定彈性集區名稱。 |
 | 40864 |EX_USER |服務層 '%.*ls' 的彈性集區 DTU 數必須至少為 (%d) 個 DTU。 |彈性集區的 DTU 數、彈性集區服務層。 |試圖將彈性集區的 DTU 數設為低於最小限制。 |請重試將彈性集區的 DTU 數至少設為等於最小限制。 |
@@ -173,7 +177,7 @@ Azure 基礎結構能夠在 SQL Database 服務出現繁重的工作負載時動
 | 40607 |16 |Windows 登入在這個版本的 SQL Server 中不受支援。 |
 | 40611 |16 |伺服器最多可以定義 128 個防火牆規則。 |
 | 40614 |16 |防火牆規則的起始 IP 位址不能超過結束 IP 位址。 |
-| 40615 |16 |無法開啟登入所要求的伺服器 '{0}'。 不允許 IP 位址 '{1}' 的用戶端存取伺服器。<br /><br />若要啟用存取，請使用 SQL Database 入口網站，或在 master 資料庫上執行 sp\_set\_firewall\_rule，為此 IP 位址或位址範圍建立防火牆規則。 可能需要五分鐘的時間，這項變更才會生效。 |
+| 40615 |16 |無法開啟登入所要求的伺服器 '{0}'。 不允許 IP 位址為 '{1}' 的用戶端存取伺服器。<br /><br />若要啟用存取，請使用 SQL Database 入口網站，或在 master 資料庫上執行 sp\_set\_firewall\_rule，為此 IP 位址或位址範圍建立防火牆規則。 可能需要五分鐘的時間，這項變更才會生效。 |
 | 40617 |16 |以 (規則名稱) 開頭的防火牆規則名稱太長。 最大長度為 128。 |
 | 40618 |16 |防火牆規則名稱不可為空白。 |
 | 40620 |16 |使用者 "%.&#x2a;ls" 登入失敗。 密碼變更失敗。 在登入期間變更密碼在這個版本的 SQL Server 中不受支援。 |
@@ -205,5 +209,6 @@ Azure 基礎結構能夠在 SQL Database 服務出現繁重的工作負載時動
 
 ## <a name="next-steps"></a>後續步驟
 * 深入了解 [Azure SQL Database 功能](sql-database-features.md)。
-* 深入了解[服務層](sql-database-service-tiers.md)。
+* 深入了解[以 DTU 為基礎的購買模型](sql-database-service-tiers-dtu.md)。
+* 深入了解[虛擬核心形式的購買模型](sql-database-service-tiers-vcore.md)。
 

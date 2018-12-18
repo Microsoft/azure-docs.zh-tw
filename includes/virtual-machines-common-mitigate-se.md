@@ -5,27 +5,31 @@ services: virtual-machines
 author: cynthn
 ms.service: virtual-machines
 ms.topic: include
-ms.date: 03/09/2018
-ms.author: cynthn
+ms.date: 08/14/2018
+ms.author: cynthn;kareni
 ms.custom: include file
-ms.openlocfilehash: bf4adf075842effeb26aa5a600c09f7bd1866264
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: 130cc66831b25621cb022eb19005c624fcd71b9e
+ms.sourcegitcommit: 7b845d3b9a5a4487d5df89906cc5d5bbdb0507c8
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 08/14/2018
+ms.locfileid: "40105501"
 ---
-**上次文件更新**：3 月 6 日上午 10:00 PST。
+**上次文件更新**：太平洋標準時間 2018 年 8 月 14 日上午 10:00。
 
-最近揭露的[新 CPU 漏洞類別](https://portal.msrc.microsoft.com/en-US/security-guidance/advisory/ADV180002)也稱為推測性執行旁路攻擊，讓許多客戶不知所措。  
+揭露的[新 CPU 漏洞類別](https://portal.msrc.microsoft.com/en-US/security-guidance/advisory/ADV180002) (也稱為推測性執行旁路攻擊)，讓許多客戶不知所措。  
 
-執行 Azure 的基礎結構，以及將客戶的工作負載互相隔離這方面已受到保護。  這表示在 Azure 上執行的其他客戶無法使用這些漏洞來攻擊您的應用程式。
+Microsoft 已在我們所有的雲端服務上部署防護功能。 執行 Azure 的基礎結構，以及將客戶的工作負載互相隔離這方面已受到保護。 這表示，使用相同基礎結構的潛在攻擊者不能利用這些漏洞來攻擊您的應用程式。
+
+Azure 會盡可能使用[記憶體保留維護](https://docs.microsoft.com/azure/virtual-machines/windows/maintenance-and-updates#memory-preserving-maintenance)，將客戶的影響降到最低，以及避免重新開機。 Azure 會在對主機進行全系統更新時，繼續使用這些方法，並且保護我們的客戶。
+
+如何將安全性整合至 Azure 各個層面的詳細資訊位於 [Azure 安全性文件](https://docs.microsoft.com/azure/security/)網站。 
 
 > [!NOTE] 
-> 在 2018 年 2 月下旬，Intel Corporation 針對其微碼版本狀態發佈了更新的[微碼修訂指引](https://newsroom.intel.com/wp-content/uploads/sites/11/2018/03/microcode-update-guidance.pdf)，以改善穩定性並降低最近由 [Google Project Zero](https://googleprojectzero.blogspot.com/2018/01/reading-privileged-memory-with-side.html) 所揭露的弱點風險。 Azure 在 [2018 年 1 月 3 日](https://azure.microsoft.com/en-us/blog/securing-azure-customers-from-cpu-vulnerability/)實施的緩和措施不會受到 Intel 的微碼更新影響。 Microsoft 已經實施強大的緩和措施，以保護 Azure 客戶免於遭受其他 Azure 租用戶的危害。  
->
-> Intel 的微碼可解決 Spectre Variant 2 ([CVE-2017-5715](https://www.cve.mitre.org/cgi-bin/cvename.cgi?name=2017-5715))，以防禦在 Azure 上的 VM 內執行共用或未受信任工作負載的情況下才適用的攻擊。 我們的工程師會測試穩定性，以將微碼的效能影響降至最低，然後才會將它提供給 Azure 客戶使用。  因為很少客戶會在其 VM 內執行未受信任的工作負載，所以大部分客戶都不需要在此功能發行後立即啟用。 
->
-> 此頁面會隨時更新並提供更多資訊。  
+> 自從這份文件首次發行以來，已揭露此弱點類別的多個變體。 Microsoft 持續致力於保護客戶和提供指引。 我們會持續發行進一步的修正，而此頁面也會隨之更新。 
+> 
+> 在 2018 年 8 月 14 日，業界揭露了新的推測性執行旁路弱點，亦稱為 [L1 終端故障](https://portal.msrc.microsoft.com/en-US/security-guidance/advisory/ADV180018) (L1TF)，其已獲派多個 CVE ([CVE-2018-3615、CVE-2018-3620 和 CVE-2018-3646](https://www.intel.com/content/www/us/en/security-center/advisory/intel-sa-00161.html))。 此弱點會影響 Intel® Core® 處理器和 Intel® Xeon® 處理器。 Microsoft 已在我們的雲端服務上部署防護功能，可加強客戶之間的隔離。 請往下閱讀，以了解防禦 L1TF 和先前弱點 ([Spectre Variant 2 CVE-2017-5715 和 Meltdown Variant 3 CVE-2017-5754](https://support.microsoft.com/help/4072698/windows-server-guidance-to-protect-against-the-speculative-execution)) 的其他指引。
+>  
 
 
 
@@ -34,40 +38,80 @@ ms.lasthandoff: 03/16/2018
 
 ## <a name="keeping-your-operating-systems-up-to-date"></a>讓您的作業系統維持最新狀態
 
-雖然無需更新作業系統，就能隔離您在 Azure 上執行的應用程式與其他在 Azure 上執行的客戶，但最佳做法是讓作業系統版本維持在最新狀態。 
+雖然無需更新作業系統，就能讓 Azure 上執行的應用程式與其他 Azure 客戶隔離，但最佳做法是讓軟體維持在最新狀態。 Windows 最新的安全性彙總套件包含數個推測性執行旁路弱點的防護功能。 同樣地，Linux 散發套件已發行多個更新來解決這些弱點。 以下是我們對更新作業系統提供的建議動作：
 
-在下列供應項目中，以下是我們對更新作業系統提供的建議的動作： 
-
-<table>
-<tr>
-<th>供應項目</th> <th>建議的動作 </th>
-</tr>
-<tr>
-<td>Azure 雲端服務 </td>  <td>啟用自動更新，或確定您執行最新的客體作業系統。</td>
-</tr>
-<tr>
-<td>Azure Linux 虛擬機器</td> <td>從您作業系統提供者安裝更新 (若可用)。 </td>
-</tr>
-<tr>
-<td>Azure Windows 虛擬機器 </td> <td>請確認您執行的是支援的防毒應用程式，再安裝作業系統更新。 請連絡您的防毒軟體廠商以取得相容性資訊。<p> 安裝 [1 月份的安全性彙總](https://portal.msrc.microsoft.com/en-US/security-guidance/advisory/ADV180002)。 </p></td>
-</tr>
-<tr>
-<td>其他 Azure PaaS 服務</td> <td>使用這些服務的客戶無需採取任何行動。 Azure 會自動將您的作業系統版本保持在最新狀態。 </td>
-</tr>
-</table>
+| 供應項目 | 建議的動作  |
+|----------|---------------------|
+| Azure 雲端服務  | 啟用[自動更新](https://docs.microsoft.com/azure/cloud-services/cloud-services-how-to-configure-portal)，或確定您執行最新的客體作業系統。 |
+| Azure Linux 虛擬機器 | 安裝來自作業系統提供者的更新。 如需詳細資訊，請參閱本文後面的 [Linux](#linux)。 |
+| Azure Windows 虛擬機器  | 安裝最新的安全性彙總套件。
+| 其他 Azure PaaS 服務 | 使用這些服務的客戶無需採取任何行動。 Azure 會自動將您的作業系統版本保持在最新狀態。 |
 
 ## <a name="additional-guidance-if-you-are-running-untrusted-code"></a>如果您執行的是不受信任的程式碼的其他指引 
 
-除非您執行的是不受信任的程式碼，否則客戶無需採取任何其他行動。 如果您允許不信任的程式碼 (例如，您允許您的其中一位客戶之上傳二進位檔或程式碼片段，然後在雲端的應用程式中執行)，則應該進行以下的其他步驟。  
+如果客戶允許不受信任的使用者執行任意程式碼，則可以建議他們在 Azure 虛擬機器或雲端服務內實作一些額外的安全性功能。 這些功能可抵禦多個推測性執行弱點描述的程序內洩漏向量。
 
+建議使用額外安全性功能的案例：
+
+- 您允許不受信任的程式碼在 VM 內執行。  
+    - 例如，您允許其中一個客戶上傳二進位檔或指令碼，然後在您的應用程式內執行。 
+- 您允許不受信任的使用者以低權限帳戶登入 VM。   
+    - 例如，您允許低權限的使用者透過遠端桌面或 SSH 登入您其中一個 VM。  
+- 允許不受信任的使用者存取透過巢狀虛擬化實作的虛擬機器。  
+    - 例如，您控制 HYPER-V 主機，但將 VM 配置給不受信任的使用者。 
+
+如果客戶實作的案例並未包含不受信任的程式碼，則無須啟用這些額外的安全性功能。 
+
+## <a name="enabling-additional-security"></a>啟用額外的安全性 
+
+您可以在 VM 或雲端服務內啟用額外的安全性功能。
 
 ### <a name="windows"></a>Windows 
-如果您是使用 Windows，而且裝載未受信任的程式碼，您應該也會啟用名為核心虛擬位址 (KVA) 的遮蔽功能；此功能可針對推測性執行旁路攻擊漏洞提供額外的防護措施。 依預設此功能為關閉，若啟用可能會影響效能。 請遵循 [Windows 伺服器 KB4072698](https://support.microsoft.com/help/4072698/windows-server-guidance-to-protect-against-the-speculative-execution) 啟用伺服器保護中的指示。 如果您執行的是 Azure 雲端服務，請確認您正在執行 WA-GUEST-OS-5.15_201801-01 或 WA-GUEST-OS-4.50_201801-01 (於2018 年 1 月 10 日起可用) 並透過啟動工作啟用登錄機碼。
+
+目標作業系統必須是最新版本，才能啟用這些額外的安全性功能。 雖然許多推測性執行旁路攻擊的防護功能會預設為啟用，但此處描述的其他功能必須手動啟用，並可能會對效能造成影響。 
+
+**步驟 1**：[連絡 Azure 支援](https://aka.ms/MicrocodeEnablementRequest-SupportTechnical)，將更新的韌體 (微碼) 公開到您的虛擬機器中。 
+
+**步驟 2**：啟用核心虛擬位址遮蔽功能 (Kernel Virtual Address Shadowing，KVAS) 和分支目標注入 (Branch Target Injection，BTI) 作業系統支援。 請依照 [KB4072698](https://support.microsoft.com/help/4072698/windows-server-guidance-to-protect-against-the-speculative-execution) 中的指示，透過 `Session Manager` 登錄機碼啟用保護功能。 需要重新開機。 
+
+**步驟 3**：針對使用[巢狀虛擬化](https://docs.microsoft.com/azure/virtual-machines/windows/nested-virtualization)的部署 (僅限 D3 和 E3)：這些指示適用於作為 HYPER-V 主機的 VM。 
+
+1. 請依照 [KB4072698](https://support.microsoft.com/help/4072698/windows-server-guidance-to-protect-against-the-speculative-execution) 中的指示，透過 `MinVmVersionForCpuBasedMitigations` 登錄機碼啟用保護功能。  
+ 
+1. 請遵循[這裡](https://docs.microsoft.com/windows-server/virtualization/hyper-v/manage/manage-hyper-v-scheduler-types)的指示，將 Hypervisor 排程器類型設定為**核心**。 
+
+**步驟 4**：遵循 [KB4072698](https://support.microsoft.com/help/4072698/windows-server-guidance-to-protect-against-the-speculative-execution) 中的指示，使用 [SpeculationControl](https://aka.ms/SpeculationControlPS) PowerShell 模組確認保護功能已啟用。 
+
+> [!NOTE]
+> 如果您先前已下載此模組，則必須安裝最新版本。
+>
+
+所有 VM 應該會顯示：
+
+```
+branch target injection mitigation is enabled: True
+
+kernel VA shadow is enabled: True  
+
+L1TFWindowsSupportEnabled: True
+```
 
 
 ### <a name="linux"></a>Linux
-如果您使用的是 Linux 而且裝載未受信任的程式碼，您應該將 Linux 一併更新為最新版本，以實作核心分頁表隔離 (KPTI)，從屬於使用者空間的分頁表中分隔出核心使用的分頁表。 這些防護功能需要進行 Linux 作業系統更新，並可以在可用時從散發提供者處取得這些功能。 您的作業系統提供者可以告訴您依預設，保護是否已啟用或停用。
 
+<a name="linux"></a>若要在內部啟用一組額外安全性功能，目標作業系統必須完全是最新版本。 有些防護功能會預設為啟用。 下節會描述預設為關閉的功能，以及 (或) 相依於硬體支援 (微碼) 的功能。 啟用這些功能可能會對效能造成影響。 請參閱作業系統提供者的文件，以取得進一步的指示
+ 
+**步驟 1**：[連絡 Azure 支援](https://aka.ms/MicrocodeEnablementRequest-SupportTechnical)，將更新的韌體 (微碼) 公開到您的虛擬機器中。
+ 
+**步驟 2**：遵循作業系統提供者的文件，啟用分支目標注入 (BTI) 作業系統支援來減輕 CVE-2017-5715 (Spectre Variant 2) 的影響。 
+ 
+**步驟 3**：遵循作業系統提供者的文件，啟用核心分頁表隔離 (KPTI) 來減輕 CVE-2017-5754 (Meltdown Variant 3) 的影響。 
+ 
+作業系統提供者可提供的更多資訊：  
+ 
+- [Redhat 和 CentOS](https://access.redhat.com/security/vulnerabilities/speculativeexecution) 
+- [Suse](https://www.suse.com/support/kb/doc/?id=7022512) 
+- [Ubuntu](https://wiki.ubuntu.com/SecurityTeam/KnowledgeBase/SpectreAndMeltdown) 
 
 
 ## <a name="next-steps"></a>後續步驟

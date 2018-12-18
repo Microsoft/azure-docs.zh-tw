@@ -9,10 +9,11 @@ ms.date: 03/21/2018
 ms.author: cherylmc
 ms.custom: include file
 ms.openlocfilehash: f135665b6fa7eb640526be513d2757c8e17ab8df
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.sourcegitcommit: 95d9a6acf29405a533db943b1688612980374272
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 06/23/2018
+ms.locfileid: "30196763"
 ---
 > [!NOTE]
 > 只有 Resource Manager 部署模型支援新的 VPN 閘道 SKU (VpnGw1、VpnGw2 和 VpnGw3)。 傳統虛擬網路應該繼續使用舊式 (舊版) SKU。

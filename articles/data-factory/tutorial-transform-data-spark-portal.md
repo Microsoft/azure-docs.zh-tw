@@ -3,21 +3,21 @@ title: 使用 Azure Data Factory 中的 Spark 轉換資料 | Microsoft Docs
 description: 本教學課程提供逐步指示，說明如何使用 Azure Data Factory 中的 Spark 活動來轉換資料。
 services: data-factory
 documentationcenter: ''
-author: shengcmsft
+author: douglaslMS
 manager: craigg
-ms.reviewer: douglasl
 ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: get-started-article
+ms.topic: tutorial
 ms.date: 01/10/2018
-ms.author: shengc
-ms.openlocfilehash: af8045a6681443cfc9cfa681cedce5d290aac0f1
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.author: douglasl
+ms.openlocfilehash: f1cc1b728a91c22f9b4b2062ed5c423314e561c8
+ms.sourcegitcommit: 7bc4a872c170e3416052c87287391bc7adbf84ff
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 10/02/2018
+ms.locfileid: "48017579"
 ---
 # <a name="transform-data-in-the-cloud-by-using-a-spark-activity-in-azure-data-factory"></a>使用 Azure Data Factory 中的 Spark 活動來轉換雲端中的資料
 在本教學課程中，您會使用 Azure 入口網站來建立 Azure Data Factory 管線。 此管線使用 Spark 活動和隨選 Azure HDInsight 連結服務來轉換資料。 
@@ -30,13 +30,14 @@ ms.lasthandoff: 03/23/2018
 > * 觸發管線執行。
 > * 監視管道執行。
 
-> [!NOTE]
-> 本文適用於第 2 版的 Data Fatory (目前為預覽版)。 如果您使用第 1 版的 Data Factory 服務 (正式推出版本 (GA))，請參閱 [Data Factory 第 1 版文件](v1/data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
-
 如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/) 。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 * **Azure 儲存體帳戶**。 您需要建立 Python 指令碼和輸入檔案，並上傳至 Azure 儲存體。 Spark 程式的輸出會儲存在這個儲存體帳戶中。 隨選 Spark 叢集與其主要儲存體是使用相同的儲存體帳戶。  
+
+> [!NOTE]
+> HdInsight 僅支援標準層的一般用途儲存體帳戶。 請確定帳戶不是進階或僅限 Blob 儲存體帳戶。
+
 * **Azure PowerShell**(英文)。 遵循[如何安裝並設定 Azure PowerShell](/powershell/azure/install-azurerm-ps) 中的指示。
 
 
@@ -66,17 +67,17 @@ ms.lasthandoff: 03/23/2018
     if __name__ == "__main__":
         main()
     ```
-2. 以您的 Azure 儲存體帳戶名稱取代 *&lt;storageAccountName&gt;*。 然後儲存檔案。 
-3. 在 Azure Blob 儲存體中，建立名為 **adftutorial** 的容器 (如果不存在)。 
-4. 建立名為 **spark** 的資料夾。
-5. 在 **spark** 資料夾下，建立名為 **script** 的子資料夾。 
-6. 將 **WordCount_Spark.py** 檔案上傳至 **script** 子資料夾。 
+1. 以您的 Azure 儲存體帳戶名稱取代 *&lt;storageAccountName&gt;*。 然後儲存檔案。 
+1. 在 Azure Blob 儲存體中，建立名為 **adftutorial** 的容器 (如果不存在)。 
+1. 建立名為 **spark** 的資料夾。
+1. 在 **spark** 資料夾下，建立名為 **script** 的子資料夾。 
+1. 將 **WordCount_Spark.py** 檔案上傳至 **script** 子資料夾。 
 
 
 ### <a name="upload-the-input-file"></a>上傳輸入檔案
 1. 建立名為 **minecraftstory.txt** 的檔案並填入一些文字。 Spark 程式會計算這段文字中的字數。 
-2. 在 **spark** 資料夾下，建立名為 **inputfiles** 的子資料夾。 
-3. 將 **minecraftstory.txt** 檔案上傳至 **inputfiles** 子資料夾。 
+1. 在 **spark** 資料夾下，建立名為 **inputfiles** 的子資料夾。 
+1. 將 **minecraftstory.txt** 檔案上傳至 **inputfiles** 子資料夾。 
 
 ## <a name="create-a-data-factory"></a>建立 Data Factory
 
@@ -84,30 +85,28 @@ ms.lasthandoff: 03/23/2018
 1. 選取左側功能表上的 [新增]、[資料 + 分析]，然後選取 [資料處理站]。 
    
    ![在 [新增] 窗格中選取資料處理站](./media/tutorial-transform-data-spark-portal/new-azure-data-factory-menu.png)
-2. 在 [新增資料處理站] 窗格的 [名稱] 下，輸入 **ADFTutorialDataFactory**。 
+1. 在 [新增資料處理站] 窗格的 [名稱] 下，輸入 **ADFTutorialDataFactory**。 
       
    ![[新增資料處理站] 窗格](./media/tutorial-transform-data-spark-portal/new-azure-data-factory.png)
  
    Azure Data Factory 的名稱必須是 *全域唯一的*。 如果您看到下列錯誤，請變更資料處理站的名稱。 (例如，使用 **&lt;yourname&gt;ADFTutorialDataFactory**)。 如需 Data Factory 成品的命名規則，請參閱 [Data Factory - 命名規則](naming-rules.md)一文。
   
    ![名稱無法使用時的錯誤](./media/tutorial-transform-data-spark-portal/name-not-available-error.png)
-3. 針對 [訂用帳戶]，選取您要用來建立資料處理站的 Azure 訂用帳戶。 
-4. 針對 [資源群組]，採取下列其中一個步驟︰
+1. 針對 [訂用帳戶]，選取您要用來建立資料處理站的 Azure 訂用帳戶。 
+1. 針對 [資源群組]，採取下列其中一個步驟︰
      
    - 選取 [使用現有的] ，然後從下拉式清單選取現有的資源群組。 
    - 選取 [建立新的] ，然後輸入資源群組的名稱。   
          
    本快速入門的某些步驟是假設您使用 **ADFTutorialResourceGroup** 作為資源群組名稱。 若要了解資源群組，請參閱 [使用資源群組管理您的 Azure 資源](../azure-resource-manager/resource-group-overview.md)。  
-5. 針對 [版本]，選取 [V2 (預覽版)]。
-6. 針對 [位置]，選取資料處理站的位置。 
+1. 針對 [版本]，選取 [V2]。
+1. 針對 [位置]，選取資料處理站的位置。 
 
-   目前，Data Factory V2 只允許您在美國東部、美國東部 2 和西歐區域中建立資料處理站。 Data Factory 所使用的資料存放區 (Azure 儲存體和 Azure SQL Database 等) 和計算 (HDInsight 等) 可位於其他區域。
-7. 選取 [釘選到儀表板]。     
-8. 選取 [建立] 。
-9. 在儀表板上，您會看到 [正在部署 Data Factory] 狀態的下列圖格︰ 
+   如需目前可使用 Data Factory 的 Azure 區域清單，請在下列頁面上選取您感興趣的區域，然後展開 [分析] 以找出 [Data Factory]：[依區域提供的產品](https://azure.microsoft.com/global-infrastructure/services/)。 Data Factory 所使用的資料存放區 (Azure 儲存體和 Azure SQL Database 等) 和計算 (HDInsight 等) 可位於其他區域。
 
-   ![[部署 Data Factory] 圖格](media//tutorial-transform-data-spark-portal/deploying-data-factory.png)
-10. 建立完成之後，您會看到 [Data Factory] 頁面。 選取 [編寫與監視] 圖格，以在個別的索引標籤上啟動 Data Factory UI 應用程式。
+1. 選取 [建立] 。
+
+1. 建立完成之後，您會看到 [Data Factory] 頁面。 選取 [編寫與監視] 圖格，以在個別的索引標籤上啟動 Data Factory UI 應用程式。
 
     ![資料處理站的首頁，具有 [編寫與監視] 圖格](./media/tutorial-transform-data-spark-portal/data-factory-home-page.png)
 
@@ -123,13 +122,13 @@ ms.lasthandoff: 03/23/2018
 
    ![[現在就開始吧] 頁面](./media/tutorial-transform-data-spark-portal/get-started-page.png)
 
-2. 選取視窗底部的 [連線]，然後選取 [+ 新增]。 
+1. 選取視窗底部的 [連線]，然後選取 [+ 新增]。 
 
    ![用於建立新連線的按鈕](./media/tutorial-transform-data-spark-portal/new-connection.png)
-3. 在 [新增連結服務] 視窗中，選取 [資料存放區] > [Azure Blob 儲存體]，然後選取 [繼續]。 
+1. 在 [新增連結服務] 視窗中，選取 [資料存放區] > [Azure Blob 儲存體]，然後選取 [繼續]。 
 
    ![選取 [Azure Blob 儲存體] 圖格](./media/tutorial-transform-data-spark-portal/select-azure-storage.png)
-4. 針對 [儲存體帳戶名稱]，從清單中選取名稱，然後選取 [儲存]。 
+1. 針對 [儲存體帳戶名稱]，從清單中選取名稱，然後選取 [儲存]。 
 
    ![用於指定儲存體帳戶名稱的方塊](./media/tutorial-transform-data-spark-portal/new-azure-storage-linked-service.png)
 
@@ -137,10 +136,10 @@ ms.lasthandoff: 03/23/2018
 ### <a name="create-an-on-demand-hdinsight-linked-service"></a>建立隨選 HDInsight 連結服務
 
 1. 再次選取 [+新增] 按鈕以建立另一個連結服務。 
-2. 在 [新增連結服務] 視窗中，選取 [計算] > [Azure HDInsight]，然後選取 [繼續]。 
+1. 在 [新增連結服務] 視窗中，選取 [計算] > [Azure HDInsight]，然後選取 [繼續]。 
 
    ![選取 [Azure HDInsight] 圖格](./media/tutorial-transform-data-spark-portal/select-azure-hdinsight.png)
-2. 在 [新增連結服務] 視窗中，完成下列步驟： 
+1. 在 [新增連結服務] 視窗中，完成下列步驟： 
 
    a. 針對 [名稱]，輸入 **AzureHDInsightLinkedService**。
    
@@ -160,11 +159,11 @@ ms.lasthandoff: 03/23/2018
    
    h. 展開 [OS 類型]。
    
-   i. 輸入叢集使用者的名稱。 
+   i. 針對**叢集使用者名稱**輸入名稱。 
    
-   j. 輸入使用者的密碼。 
+   j. 輸入使用者的**叢集密碼**。 
    
-   k. 選取 [ **儲存**]。 
+   k. 選取 [完成]。 
 
    ![HDInsight 連結服務設定](./media/tutorial-transform-data-spark-portal/azure-hdinsight-linked-service-settings.png)
 
@@ -176,17 +175,17 @@ ms.lasthandoff: 03/23/2018
 1. 選取 **+** (加號) 按鈕，然後選取功能表上的 [管線]。
 
    ![用於建立新管線的按鈕](./media/tutorial-transform-data-spark-portal/new-pipeline-menu.png)
-2. 在 [活動] 工具箱中，展開 [HDInsight]。 將 [活動] 工具箱中的 [Spark] 活動拖到管線設計工具介面。 
+1. 在 [活動] 工具箱中，展開 [HDInsight]。 將 [活動] 工具箱中的 [Spark] 活動拖到管線設計工具介面。 
 
    ![拖曳 Spark 活動](./media/tutorial-transform-data-spark-portal/drag-drop-spark-activity.png)
-3. 在 [Spark] 活動視窗底部的屬性中，完成下列步驟： 
+1. 在 [Spark] 活動視窗底部的屬性中，完成下列步驟： 
 
    a. 切換至 [HDI 叢集] 索引標籤。
    
    b. 選取您在上一個程序中建立的 **AzureHDInsightLinkedService**。 
         
    ![指定 HDInsight 連結服務](./media/tutorial-transform-data-spark-portal/select-hdinsight-linked-service.png)
-4. 切換至 [指令碼/Jar] 索引標籤並完成下列步驟： 
+1. 切換至 [指令碼/Jar] 索引標籤並完成下列步驟： 
 
    a. 針對 [作業連結服務]，選取 [AzureStorage1]。
    
@@ -196,10 +195,10 @@ ms.lasthandoff: 03/23/2018
    
    c. 瀏覽至 **adftutorial/spark/script** 資料夾，選取 **WordCount_Spark.py**，然後選取 [完成]。      
 
-5. 若要驗證管線，選取工具列上的 [驗證] 按鈕。 選取 **>>** (右箭頭) 按鈕以關閉驗證視窗。 
+1. 若要驗證管線，選取工具列上的 [驗證] 按鈕。 選取 **>>** (右箭頭) 按鈕以關閉驗證視窗。 
     
    ![[驗證] 按鈕](./media/tutorial-transform-data-spark-portal/validate-button.png)
-6. 選取 [全部發佈]。 Data Factory UI 會將實體 (連結服務和管線) 發佈至 Azure Data Factory 服務。 
+1. 選取 [全部發佈]。 Data Factory UI 會將實體 (連結服務和管線) 發佈至 Azure Data Factory 服務。 
     
    ![[全部發佈] 按鈕](./media/tutorial-transform-data-spark-portal/publish-button.png)
 
@@ -213,11 +212,11 @@ ms.lasthandoff: 03/23/2018
 
 1. 切換至 [監視] 索引標籤。確認您看到管線執行。 建立 Spark 叢集需要約 20 分鐘。 
    
-2. 定期選取 [重新整理] 以檢查管線執行的狀態。 
+1. 定期選取 [重新整理] 以檢查管線執行的狀態。 
 
    ![用來監視管線執行的索引標籤，具有 [重新整理] 按鈕](./media/tutorial-transform-data-spark-portal/monitor-tab.png)
 
-3. 若要檢視與管線執行相關聯的活動執行，請選取 [動作] 資料行中的 [檢視活動執行]。
+1. 若要檢視與管線執行相關聯的活動執行，請選取 [動作] 資料行中的 [檢視活動執行]。
 
    ![管線執行狀態](./media/tutorial-transform-data-spark-portal/pipeline-run-succeeded.png) 
 

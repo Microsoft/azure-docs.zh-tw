@@ -1,25 +1,20 @@
 ---
-title: "SCP.NET 程式設計指南 | Microsoft Docs"
-description: "了解如何使用 SCP.NET 建立以 .NET 為基礎的 Storm 拓撲並用於 HDInsight 上的 Storm。"
+title: Azure HDInsight 中的 Storm 適用的 SCP.NET 程式設計指南
+description: 了解如何使用 SCP.NET 建立以 .NET 為基礎的 Storm 拓撲，用於在 Azure HDInsight 中執行的 Storm。
 services: hdinsight
-documentationcenter: 
-author: raviperi
-manager: jhubbard
-editor: cgronlun
-ms.assetid: 34192ed0-b1d1-4cf7-a3d4-5466301cf307
 ms.service: hdinsight
+author: jasonwhowell
+ms.author: jasonwhowell
+ms.reviewer: jasonh
 ms.custom: hdinsightactive
-ms.devlang: dotnet
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
+ms.topic: conceptual
 ms.date: 05/16/2016
-ms.author: raviperi
-ms.openlocfilehash: a0ce92ba58fbcda812a3d4e5e275178b73400d6c
-ms.sourcegitcommit: f8437edf5de144b40aed00af5c52a20e35d10ba1
+ms.openlocfilehash: daf9efb2f9044ed1395b0f2aa3663c2471406e2f
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/03/2017
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43045459"
 ---
 # <a name="scp-programming-guide"></a>SCP 程式設計指南
 SCP 是一個用來建置即時、可靠、一致和高效能資料處理應用程式的平台。 建置在由 OSS 社群所設計的串流處理系統 [Apache Storm](http://storm.incubator.apache.org/) 之上。 Storm 由 Nathan Marz 所設計，由 Twitter 公開原始碼。 它採用 [Apache ZooKeeper](http://zookeeper.apache.org/)，這是另一個可發揮極可靠的分散式協調和狀態管理的 Apache 專案。 
@@ -351,7 +346,7 @@ SCPRuntime 提供下列兩個方法：
         }
 
 ## <a name="topology-specification-language"></a>拓撲規格語言
-SCP 拓撲規格是特定領域的語言，用來描述和設定 SCP 拓撲。 它以 Storm 的 Clojure DSL 為基礎 (<http://storm.incubator.apache.org/documentation/Clojure-DSL.html>)，而由 SCP 擴充。
+SCP 拓撲規格是特定領域的語言，用來描述和設定 SCP 拓撲。 它是以 Storm 為基礎的 Clojure DSL (<http://storm.incubator.apache.org/documentation/Clojure-DSL.html>) 並由 SCP 進行擴充。
 
 拓撲規格可透過 ***runspec*** 命令直接提交給 storm 叢集來執行。
 

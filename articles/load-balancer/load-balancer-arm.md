@@ -14,11 +14,12 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 09/25/2017
 ms.author: kumud
-ms.openlocfilehash: d1d098f45c391363523b6a56ec0c6fdb40e64d68
-ms.sourcegitcommit: c3d53d8901622f93efcd13a31863161019325216
+ms.openlocfilehash: 599c016763fde6f1dc8221fffa554cf68e8c498f
+ms.sourcegitcommit: fa493b66552af11260db48d89e3ddfcdcb5e3152
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/29/2018
+ms.lasthandoff: 04/23/2018
+ms.locfileid: "31790384"
 ---
 # <a name="using-azure-resource-manager-support-with-azure-load-balancer"></a>搭配 Azure Load Balancer 使用 Azure Resource Manager 支援
 
@@ -46,7 +47,7 @@ Azure 資源管理員可讓您使用宣告式範本佈建應用程式。 在單�
 
 [深入了解範本](../azure-resource-manager/resource-manager-template-walkthrough.md)
 
-[深入了解網路資源](../virtual-network/resource-groups-networking.md)
+[深入了解網路資源](../networking/networking-overview.md)
 
 如需使用 Azure Load Balancer 的快速入門範本，請參閱 [GitHub 存放庫](https://github.com/Azure/azure-quickstart-templates) (裡面裝載了一組由社群產生的範本)。
 

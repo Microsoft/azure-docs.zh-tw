@@ -1,32 +1,27 @@
 ---
-title: 使用 Node.js 的 Azure SDK 管理 Azure Data Lake Analytics | Microsoft Docs
-description: 了解如何使用 Node.js 的 Azure SDK，管理資料湖分析帳戶、資料來源、工作與使用者
+title: 使用 Node.js 的 Azure SDK 管理 Azure 資料湖分析
+description: 本文說明如何使用 Azure SDK for Node.js 來管理 Data Lake Analytics 帳戶、資料來源、作業和使用者。
 services: data-lake-analytics
-documentationcenter: ''
-author: saveenr
-manager: kfile
-editor: cgronlun
-ms.assetid: 9de1bcf4-b15b-4d0b-9284-8889ecf0c438
 ms.service: data-lake-analytics
-ms.devlang: na
-ms.topic: get-started-article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 12/05/2016
+author: saveenr
 ms.author: saveenr
-ms.openlocfilehash: f11695df74e30f7ba9b1459f443a720208e542c4
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.reviewer: jasonwhowell
+ms.assetid: 9de1bcf4-b15b-4d0b-9284-8889ecf0c438
+ms.topic: conceptual
+ms.date: 12/05/2016
+ms.openlocfilehash: 0603a60ea73d47dd6107ee80afc5c776ff8c83bc
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43047106"
 ---
 # <a name="manage-azure-data-lake-analytics-using-azure-sdk-for-nodejs"></a>使用 Node.js 的 Azure SDK 管理 Azure 資料湖分析
 [!INCLUDE [manage-selector](../../includes/data-lake-analytics-selector-manage.md)]
 
-Node.js 的 Azure SDK 可用於管理 Azure Data Lake Analytics 帳戶、作業與目錄。 若要使用其他工具查看管理主題，請按一下上方選取的索引標籤。
+本文說明如何使用以 Azure SDK for Node.js 所撰寫的應用程式，來管理 Azure Data Lake Analytics 帳戶、資料來源、使用者和作業。 
 
-它目前支援︰
-
+支援的版本如下：
 * **Node.js 版本：0.10.0 或更高版本**
 * **帳戶的 REST API 版本：2015-10-01-preview**
 * **目錄的 REST API 版本：2015-10-01-preview**

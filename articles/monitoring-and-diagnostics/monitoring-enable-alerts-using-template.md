@@ -1,27 +1,28 @@
 ---
-title: "使用 Resource Manager 範本建立度量警示 | Microsoft Docs"
-description: "了解如何使用 Resource Manager 範本來建立度量警示，以接收電子郵件或 webhook 的通知。"
+title: 使用 Resource Manager 範本在 Azure 中建立傳統計量警示
+description: 了解如何使用 Resource Manager 範本來建立傳統計量警示，以接收電子郵件或 Webhook 的通知。
 author: johnkemnetz
-manager: orenr
-editor: 
-services: monitoring-and-diagnostics
-documentationcenter: monitoring-and-diagnostics
-ms.assetid: 41d62044-6bc5-4674-b277-45b919f58efe
-ms.service: monitoring-and-diagnostics
-ms.workload: na
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
-ms.date: 6/21/2017
+services: azure-monitor
+ms.service: azure-monitor
+ms.topic: conceptual
+ms.date: 4/27/2018
 ms.author: johnkem
-ms.openlocfilehash: ac12605636d21fd0b5c89512c454ef2d899ef6dc
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.component: metric
+ms.openlocfilehash: 67dac4f8d9b66f4b5f2654ffb16d9829387fc060
+ms.sourcegitcommit: 1b8665f1fff36a13af0cbc4c399c16f62e9884f3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35263291"
 ---
-# <a name="create-a-metric-alert-with-a-resource-manager-template"></a>使用 Resource Manager 範本建立度量警示
+# <a name="create-a-classic-metric-alert-with-a-resource-manager-template"></a>使用 Resource Manager 範本建立傳統計量警示
 本文章將說明如何使用 [Azure Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md) 設定 Azure 度量警示。 這可讓您在建立警示以確保正確地監視所有資源時，自動在您的資源上設定警示。
+
+> [!NOTE]
+> 
+> 本文說明如何使用 Resource Manager 範本建立**傳統計量警示**。 如果您要尋找使用範本建立[新版計量警示](monitoring-near-real-time-metric-alerts.md)的方式，[此文章](monitoring-create-metric-alerts-with-templates.md)提供詳細資訊。
+>
+
 
 基本步驟如下：
 
@@ -30,7 +31,7 @@ ms.lasthandoff: 10/11/2017
 
 下面我們會先單獨針對警示，然後針對建立其他資源期間的警示，描述如何建立 Resource Manager 範本。
 
-## <a name="resource-manager-template-for-a-metric-alert"></a>度量警示的 Resource Manager 範本
+## <a name="resource-manager-template-for-a-classic-metric-alert"></a>傳統計量警示的 Resource Manager 範本
 若要使用 Resource Manager 範本建立警示，您要建立 `Microsoft.Insights/alertRules` 類型的資源，並填入所有相關的屬性。 以下是建立警示規則的範本。
 
 ```json
@@ -180,7 +181,7 @@ ms.lasthandoff: 10/11/2017
 
 警示規則的結構描述和屬性說明 [請見這裡](https://msdn.microsoft.com/library/azure/dn933805.aspx)。
 
-## <a name="resource-manager-template-for-a-resource-with-an-alert"></a>具有警示之資源的 Resource Manager 範本
+## <a name="resource-manager-template-for-a-resource-with-a-classic-metric-alert"></a>具有傳統計量警示之資源的 Resource Manager 範本
 在建立資源時建立警示，Resource Manager 範本上的警示通常很有用。 例如，您可能想要確保在每次部署虛擬機器時設定 “CPU % > 80” 規則。 若要這樣做，在 VM 範本的資源陣列中將警示規則新增為資源，並使用 `dependsOn` 屬性將相依性新增至 VM 資源識別碼。 以下是建立 Windows VM，並在 CPU 使用率高於 80% 時新增警示以通知訂用帳戶管理員的範例完整。
 
 ```json

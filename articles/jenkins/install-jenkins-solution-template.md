@@ -1,26 +1,25 @@
 ---
 title: 在 Azure 上建立 Jenkins 伺服器
 description: 從 Jenkins 方案範本在 Azure Linux 虛擬機器上安裝 Jenkins，並建置範例 Java 應用程式。
+ms.service: jenkins
+keywords: jenkins, azure, devops, 入口網站, 虛擬機器, 解決方案範本
 author: tomarcher
-manager: rloutlaw
-ms.service: multiple
-ms.workload: web
-ms.devlang: na
-ms.topic: article
-ms.date: 03/12/2018
+manager: jeconnoc
 ms.author: tarcher
-ms.custom: Jenkins
-ms.openlocfilehash: c9f86ab2536d3c598bb8c7084524395b41f18db0
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.topic: quickstart
+ms.date: 6/7/2017
+ms.openlocfilehash: 92a0583ad01c4dc9263988f6ef48c95c380c9289
+ms.sourcegitcommit: f6e2a03076679d53b550a24828141c4fb978dcf9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43086569"
 ---
 # <a name="create-a-jenkins-server-on-an-azure-linux-vm-from-the-azure-portal"></a>從 Azure 入口網站在 Azure Linux VM 上建立 Jenkins 伺服器
 
 本快速入門示範如何在 Ubuntu Linux VM 上安裝 [Jenkins](https://jenkins.io)，以及設定為使用 Azure 的工具和外掛程式。 當您完成時，您可讓在 Azure 中執行的 Jenkins 伺服器從 [GitHub](https://github.com) 建置範例 Java 應用程式。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 * Azure 訂用帳戶
 * 在您電腦的命令列上存取SSH (例如 Bash 殼層或 [PuTTY](http://www.putty.org/))
@@ -44,7 +43,7 @@ Jenkins 支援由 Jenkins 伺服器將工作委派給一或多個代理程式的
 ssh -L 127.0.0.1:8080:localhost:8080 jenkinsadmin@jenkins2517454.eastus.cloudapp.azure.com
 ```
 
-啟動您的通道後，在本機電腦上瀏覽至 http://localhost:8080/。 
+啟動通道後，在本機電腦上瀏覽至 http://localhost:8080/。 
 
 透過 SSH 連線到 Jenkins VM 時，在命令列中執行下列命令，以取得初始密碼。
 
@@ -76,7 +75,7 @@ Jenkins 伺服器現在已準備要建置程式碼。
 
 ![使用要建置的 Gradle 包裝函式](./media/install-jenkins-solution-template/jenkins-job-gradle-config.png) 
 
-選取 [進階...] 然後在 [根組建指令碼] 欄位中輸入 `complete`。 選取 [ **儲存**]。
+選取 [進階]，然後在 [根組建指令碼] 欄位中輸入 `complete`。 選取 [ **儲存**]。
 
 ![在 Gradle 包裝函式建置步驟中設定進階設定](./media/install-jenkins-solution-template/jenkins-job-gradle-advances.png) 
 
@@ -87,6 +86,10 @@ Jenkins 伺服器現在已準備要建置程式碼。
 ![瀏覽至可從組建取得 JAR 檔案的工作區](./media/install-jenkins-solution-template/jenkins-access-workspace.png) 
 
 瀏覽至 `complete/build/libs`，並確定 `gs-spring-boot-0.1.0.jar` 在那裡以確認您的組建成功。 您的 Jenkins 伺服器現在已準備要在 Azure 中建置自己的專案。
+
+## <a name="troubleshooting-the-jenkins-solution-template"></a>針對 Jenkins 解決方案範本進行疑難排解
+
+如果您遇到任何有關 Jenkins 解決方案範本的錯誤，請在 [Jenkins GitHub 存放庫](https://github.com/azure/jenkins/issues)中提交問題。
 
 ## <a name="next-steps"></a>後續步驟
 

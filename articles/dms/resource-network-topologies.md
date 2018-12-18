@@ -1,24 +1,25 @@
 ---
-title: 使用 Azure 資料庫移轉服務進行 Azure SQL DB 受控執行個體移轉的網路拓樸 | Microsoft Docs
+title: 使用 Azure 資料庫移轉服務進行 Azure SQL Database 受控執行個體移轉的網路拓撲 | Microsoft Docs
 description: 了解資料庫移轉服務的來源和目標設定。
 services: database-migration
-author: HJToland3
-ms.author: jtoland
+author: pochiraju
+ms.author: rajpo
 manager: ''
 ms.reviewer: ''
 ms.service: database-migration
 ms.workload: data-services
 ms.custom: mvc
 ms.topic: article
-ms.date: 03/06/2018
-ms.openlocfilehash: 5904864ffba656dab17e1549ed9832be4258a67f
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.date: 10/10/2018
+ms.openlocfilehash: 39bcea36f3599530413aa9fc4dbb308ee2fb1681
+ms.sourcegitcommit: 7b0778a1488e8fd70ee57e55bde783a69521c912
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 10/10/2018
+ms.locfileid: "49066848"
 ---
 # <a name="network-topologies-for-azure-sql-db-managed-instance-migrations-using-the-azure-database-migration-service"></a>使用 Azure 資料庫移轉服務進行 Azure SQL DB 受控執行個體移轉的網路拓樸
-在本文中，您將了解 Azure 資料庫移轉服務進行內部部署 SQL Server 到 Azure SQL Database 受控執行個體移轉時，用於提供順暢移轉體驗的各種網路拓撲。
+本文會討論 Azure 資料庫移轉服務進行內部部署 SQL Server 到 Azure SQL Database 受控執行個體移轉時，用於提供全面移轉體驗的各種網路拓撲。
 
 ## <a name="azure-sql-database-managed-instance-configured-for-hybrid-workloads"></a>針對混合式工作負載設定 Azure SQL Database 受控執行個體 
 如果您的 Azure SQL Database 受控執行個體是連線到內部部署網路，請使用此拓撲。 這種方法提供最簡單的網路路由，並在移轉期間產生最大的資料輸送量。
@@ -39,7 +40,7 @@ ms.lasthandoff: 03/28/2018
 
 **需求**
 - 此案例中 Azure 資料庫移轉服務使用的 VNET 也必須使用 https://docs.microsoft.com/azure/expressroute/expressroute-introduction) 或 [VPN](https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-about-vpngateways) 來連線到內部部署網路。
-- 在 Azure SQL Database 受控執行個體和 Azure 資料庫移轉服務使用的 VNET 之間，您必須設定 [VNET 網路對等互連](https://docs.microsoft.com/azure/virtual-network/virtual-network-peering-overview)。
+- 在 Azure SQL Database 受控執行個體和 Azure 資料庫移轉服務使用的 VNET 之間設定 [VNET 網路對等互連](https://docs.microsoft.com/azure/virtual-network/virtual-network-peering-overview)。
 
 
 ## <a name="cloud-to-cloud-migrations-shared-vnet"></a>雲端至雲端的移轉：共用的 VNET
@@ -61,7 +62,7 @@ ms.lasthandoff: 03/28/2018
 ![使用隔離的 VNET 進行雲端至雲端移轉的網路拓撲](media\resource-network-topologies\cloud-to-cloud-isolated.png)
 
 **需求**
-- 在 Azure SQL Database 受控執行個體和 Azure 資料庫移轉服務使用的 VNET 之間，您必須設定 [VNET 網路對等互連](https://docs.microsoft.com/azure/virtual-network/virtual-network-peering-overview)。
+- 在 Azure SQL Database 受控執行個體和 Azure 資料庫移轉服務使用的 VNET 之間設定 [VNET 網路對等互連](https://docs.microsoft.com/azure/virtual-network/virtual-network-peering-overview)。
 
 
 ## <a name="see-also"></a>另請參閱

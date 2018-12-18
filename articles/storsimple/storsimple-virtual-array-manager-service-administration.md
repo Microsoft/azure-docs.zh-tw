@@ -1,11 +1,11 @@
 ---
-title: "Microsoft Azure StorSimple Manager Virtual Array 管理 | Microsoft Docs"
-description: "了解如何使用 Azure 入口網站中的 StorSimple 裝置管理員服務管理 StorSimple 內部部署 Virtual Array。"
+title: Microsoft Azure StorSimple Manager Virtual Array 管理 | Microsoft Docs
+description: 了解如何使用 Azure 入口網站中的 StorSimple 裝置管理員服務管理 StorSimple 內部部署 Virtual Array。
 services: storsimple
-documentationcenter: 
+documentationcenter: ''
 author: alkohli
 manager: carmonm
-editor: 
+editor: ''
 ms.assetid: 958244a5-f9f5-455e-b7ef-71a65558872e
 ms.service: storsimple
 ms.devlang: na
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23109896"
 ---
 # <a name="use-the-storsimple-device-manager-service-to-administer-your-storsimple-virtual-array"></a>使用 StorSimple 裝置管理員服務管理 StorSimple Virtual Array
 ![安裝程序流程](./media/storsimple-virtual-array-manager-service-administration/manage4.png)

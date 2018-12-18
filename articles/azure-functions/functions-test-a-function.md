@@ -1,13 +1,13 @@
 ---
-title: "測試 Azure Functions | Microsoft Docs"
-description: "使用 Postman、cURL、和 Node.js 來測試您的 Azure Functions。"
+title: 測試 Azure Functions | Microsoft Docs
+description: 使用 Postman、cURL、和 Node.js 來測試您的 Azure Functions。
 services: functions
 documentationcenter: na
-author: wesmc7777
+author: ggailey777
 manager: cfowler
-editor: 
-tags: 
-keywords: "azure functions, 函數, 事件處理, webhook, 動態計算, 無伺服器架構, 測試"
+editor: ''
+tags: ''
+keywords: azure functions, 函數, 事件處理, webhook, 動態計算, 無伺服器架構, 測試
 ms.assetid: c00f3082-30d2-46b3-96ea-34faf2f15f77
 ms.service: functions
 ms.devlang: multiple
@@ -15,13 +15,14 @@ ms.topic: article
 ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 02/02/2017
-ms.author: wesmc
+ms.author: glenga
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 41796a8cdde0756e5157ba276463a56b07679d04
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: a57d5f8d857a8cfcdc81e86650466aec740f41e3
+ms.sourcegitcommit: f94f84b870035140722e70cab29562e7990d35a3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/30/2018
+ms.locfileid: "43286804"
 ---
 # <a name="strategies-for-testing-your-code-in-azure-functions"></a>在 Azure Functions 中測試程式碼的策略
 
@@ -33,9 +34,9 @@ ms.lasthandoff: 10/11/2017
 + 計時器觸發函式
 + 測試應用程式或架構
 
-所有測試方法都是使用會透過查詢字串參數或要求主體接受輸入的 HTTP 觸發程序函式。 您會在第一節中建立此函式。
+所有測試方法都是使用會透過查詢字串參數或要求主體接受輸入的 HTTP 觸發程序函式。 您會在第一節中使用 Azure 入口網站建立此函式。
 
-## <a name="create-a-function-for-testing"></a>建立用於測試的函數
+## <a name="create-a-simple-function-for-testing-using-the-azure-portal"></a>對於使用 Azure 入口網站進行測試建立簡單函式
 在本教學課程中的大多數時間裡，我們將使用建立函式時可使用的 HttpTrigger JavaScript 函式範本的稍經修改版本。 如果您需要建立函式的協助，請檢閱這個[教學課程](functions-create-first-azure-function.md)。 在 [Azure 入口網站]中建立測試函式時，選擇 **HttpTrigger- JavaScript** 範本。
 
 預設函式範本基本上是 "hello world" 函式，可從要求主體或查詢字串參數 `name=<your name>`回應名稱。  我們將更新程式碼，以讓您在要求主體中以 JSON 內容的形式提供名稱和地址。 然後函式會在可使用時將這些內容回應給用戶端。   

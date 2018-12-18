@@ -1,27 +1,21 @@
 ---
-title: "在 HDInsight 上執行 Hadoop MapReduce 範例 - Azure | Microsoft Docs"
-description: "開始使用 HDInsight 中隨附的 jar 檔案中的 MapReduce 範例。 使用 SSH 連接到叢集，然後使用 Hadoop 命令執行範例工作。"
-keywords: "hadoop 範例 jar、Hadoop 範例 jar、hadoop mapreduce 範例、mapreduce 範例"
+title: 在 HDInsight 上執行 Hadoop MapReduce 範例 - Azure
+description: 開始使用 HDInsight 中隨附的 jar 檔案中的 MapReduce 範例。 使用 SSH 連接到叢集，然後使用 Hadoop 命令執行範例工作。
+keywords: hadoop 範例 jar、Hadoop 範例 jar、hadoop mapreduce 範例、mapreduce 範例
 services: hdinsight
-documentationcenter: 
-author: Blackmist
-manager: jhubbard
-editor: cgronlun
-tags: azure-portal
-ms.assetid: e1d2a0b9-1659-4fab-921e-4a8990cbb30a
+author: jasonwhowell
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive,hdiseo17may2017
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
-ms.date: 02/20/2018
-ms.author: larryfr
-ms.openlocfilehash: 1882412236e630322d52cb1875060798fef6c017
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.topic: conceptual
+ms.date: 05/16/2018
+ms.author: jasonh
+ms.openlocfilehash: b0a4088a4473a731f9dec2d5f1e495b2eb9e937c
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43047775"
 ---
 # <a name="run-the-mapreduce-examples-included-in-hdinsight"></a>執行包含在 HDInsight 中的 MapReduce 範例
 
@@ -29,7 +23,7 @@ ms.lasthandoff: 02/21/2018
 
 了解如何執行隨附於 HDInsight 上之 Hadoop 的 MapReduce 範例。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 * **HDInsight 叢集**：請參閱 [在 Linux 上開始在 HDInsight 中搭配使用 Hadoop 與 Hive](apache-hadoop-linux-tutorial-get-started.md)
 

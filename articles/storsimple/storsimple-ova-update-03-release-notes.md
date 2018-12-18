@@ -1,11 +1,11 @@
 ---
-title: "StorSimple Virtual Array 更新版本資訊 | Microsoft Docs"
-description: "描述執行 Update 0.3 之 StorSimple Virtual Array 的重大未決問題和解決方式。"
+title: StorSimple Virtual Array 更新版本資訊 | Microsoft Docs
+description: 描述執行 Update 0.3 之 StorSimple Virtual Array 的重大未決問題和解決方式。
 services: storsimple
-documentationcenter: 
+documentationcenter: ''
 author: alkohli
 manager: carmonm
-editor: 
+editor: ''
 ms.assetid: b197651a-3c40-4185-b23d-4c8f22cfa8f4
 ms.service: storsimple
 ms.devlang: NA
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23109336"
 ---
 # <a name="storsimple-virtual-array-update-03-release-notes"></a>StorSimple Virtual Array Update 0.3 版本資訊
 ## <a name="overview"></a>概觀

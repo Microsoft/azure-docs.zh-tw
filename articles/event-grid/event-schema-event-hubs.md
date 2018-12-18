@@ -1,22 +1,24 @@
 ---
-title: "Azure Event Grid 事件中樞事件結構描述"
-description: "描述 Azure Event Grid 中事件中樞事件的屬性"
+title: Azure Event Grid 事件中樞事件結構描述
+description: 描述 Azure Event Grid 中事件中樞事件的屬性
 services: event-grid
 author: tfitzmac
-manager: timlt
 ms.service: event-grid
-ms.topic: article
-ms.date: 01/30/2018
+ms.topic: reference
+ms.date: 08/17/2018
 ms.author: tomfitz
-ms.openlocfilehash: 9fdc8816d8db88d4f1fd7b6ce722b7d2763eeaeb
-ms.sourcegitcommit: 9d317dabf4a5cca13308c50a10349af0e72e1b7e
+ms.openlocfilehash: e301f3895126ed52b8d4c1f046f69dfcedb3563c
+ms.sourcegitcommit: f057c10ae4f26a768e97f2cb3f3faca9ed23ff1b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 08/17/2018
+ms.locfileid: "42145745"
 ---
 # <a name="azure-event-grid-event-schema-for-event-hubs"></a>Azure Event Grid 事件中樞事件結構描述
 
 本文提供事件中樞事件的屬性與結構描述。 如需事件結構描述的簡介，請參閱 [Azure Event Grid 事件結構描述](event-schema.md)。
+
+如需範例指令碼和教學課程的清單，請參閱[事件中樞事件來源](event-sources.md#event-hubs)。
 
 ### <a name="available-event-types"></a>可用的事件類型
 

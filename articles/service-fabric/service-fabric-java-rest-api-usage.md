@@ -1,28 +1,29 @@
 ---
-title: "Azure Service Fabric JAVA 用戶端 API | Microsoft Docs"
-description: "使用 Service Fabric 用戶端 REST API 規格產生並使用 Service Fabric JAVA 用戶端 API"
+title: Azure Service Fabric JAVA 用戶端 API | Microsoft Docs
+description: 使用 Service Fabric 用戶端 REST API 規格產生並使用 Service Fabric JAVA 用戶端 API
 services: service-fabric
 documentationcenter: java
 author: rapatchi
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: service-fabric
 ms.devlang: java
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 11/27/2017
 ms.author: rapatchi
-ms.openlocfilehash: 6f9b9d46be36b292fe2c3be92d90d4cf87155210
-ms.sourcegitcommit: 1fbaa2ccda2fb826c74755d42a31835d9d30e05f
+ms.openlocfilehash: 987959742335940dca8eb57c54d593aea90dec15
+ms.sourcegitcommit: 5a7f13ac706264a45538f6baeb8cf8f30c662f8f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/22/2018
+ms.lasthandoff: 06/29/2018
+ms.locfileid: "37111179"
 ---
 # <a name="azure-service-fabric-java-client-apis"></a>Azure Service Fabric JAVA 用戶端 API
 
-Service Fabric 用戶端 API 允許在 Azure、內部佈署、本機開發機器或其他雲端上，部署及管理微服務架構應用程式和 Service Fabric 叢集內的容器。 本文說明如何在 Service Fabric client REST API 上產生及使用 Service Fabric JAVA 用戶端 API
+Service Fabric 用戶端 API 允許在 Azure、內部佈署、本機開發機器或其他雲端上，部署及管理微服務型應用程式和 Service Fabric 叢集內的容器。 本文說明如何在 Service Fabric client REST API 上產生及使用 Service Fabric JAVA 用戶端 API
 
 ## <a name="generate-the-client-code-using-autorest"></a>使用 AutoRest 產生用戶端程式碼
 
@@ -133,5 +134,5 @@ Service Fabric 用戶端 API 允許在 Azure、內部佈署、本機開發機器
     * 如果您想要使用回應式非同步程式設計，並處理 RAW REST 回應，可使用此 API 呼叫的變數
 
 ## <a name="next-steps"></a>後續步驟
-* 了解 [Service Fabric REST API](https://docs.microsoft.com/en-us/rest/api/servicefabric/)
+* 了解 [Service Fabric REST API](https://docs.microsoft.com/rest/api/servicefabric/)
 

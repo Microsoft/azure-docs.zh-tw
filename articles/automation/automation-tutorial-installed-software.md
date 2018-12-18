@@ -1,20 +1,22 @@
 ---
-title: "探索您具有 Azure 自動化的機器上安裝了哪些軟體 | Microsoft Docs"
-description: "使用清查探索您的環境中安裝了哪些軟體在電腦上。"
+title: 探索您具有 Azure 自動化的機器上安裝了哪些軟體 | Microsoft Docs
+description: 使用清查探索您的環境中安裝了哪些軟體在電腦上。
 services: automation
-keywords: "清查、自動化、變更、追蹤"
+keywords: 清查、自動化、變更、追蹤
 author: jennyhunter-msft
 ms.author: jehunte
-ms.date: 02/28/2018
+ms.date: 04/11/2018
 ms.topic: tutorial
 ms.service: automation
+ms.component: change-inventory-management
 ms.custom: mvc
 manager: carmonm
-ms.openlocfilehash: 97cd2c91ca2c70b044518c43d49356918202d5ff
-ms.sourcegitcommit: 83ea7c4e12fc47b83978a1e9391f8bb808b41f97
+ms.openlocfilehash: d8fb8ca84f68e6e8c503375b3b2fae1ce1eb72ba
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/28/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46989204"
 ---
 # <a name="discover-what-software-is-installed-on-your-azure-and-non-azure-machines"></a>探索您的 Azure 電腦和非 Azure 電腦上安裝了哪些軟體
 
@@ -23,11 +25,13 @@ ms.lasthandoff: 02/28/2018
 在本教學課程中，您將了解如何：
 
 > [!div class="checklist"]
-> * 將 VM 上架以進行變更追蹤和清查
+> * 啟用解決方案
+> * 使 Azure 虛擬機器上線
+> * 讓非 Azure VM 上架
 > * 檢視已安裝的軟體
 > * 搜尋已安裝軟體的清查記錄
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 若要完成本教學課程，您需要：
 
@@ -37,14 +41,15 @@ ms.lasthandoff: 02/28/2018
 
 ## <a name="log-in-to-azure"></a>登入 Azure
 
-登入 Azure 入口網站，網址是 http://portal.azure.com/。
+在 http://portal.azure.com 上登入 Azure 入口網站。
 
 ## <a name="enable-change-tracking-and-inventory"></a>啟用變更追蹤和清查
 
-您必須先在本教學課程中啟用 VM 的變更追蹤和清查。 如果您先前已針對 VM 啟用 [變更追蹤] 解決方案，就不需要此步驟。
+您必須先在本教學課程中啟用變更追蹤和清查。 如果您先前已啟用 [變更追蹤] 解決方案，就不需要此步驟。
 
-1. 在左側功能表上，選取 [虛擬機器]，然後從清單中選取 VM
-2. 在左側功能表的 [作業] 區段下，按一下 [清查]。 [啟用變更追蹤和清查] 頁面隨即開啟。
+瀏覽至您的自動化帳戶，然後選取 [組態管理] 下的 [清查]。
+
+選擇 Log Analytics 工作區與自動化帳戶，然後按一下 [啟用] 來啟用解決方案。 啟用解決方案最多需要 15 分鐘。
 
 ![清查上架設定橫幅](./media/automation-tutorial-installed-software/enableinventory.png)
 
@@ -57,11 +62,27 @@ ms.lasthandoff: 02/28/2018
 啟用解決方案之後，有關在 VM 上已安裝軟體和變更的相關資訊會流向 Log Analytics。
 可能需要 30 分鐘到 6 小時，資料才可供分析。
 
+## <a name="onboard-a-vm"></a>讓 VM 上架
+
+在您的自動化帳戶中，瀏覽置 [組態管理] 下的 [清查]。
+
+選取 [+ 新增 Azure VM]，這會開啟 [虛擬機器] 頁面，並可讓您從清單中選取現有的 VM。 選取您要上架的 VM。 在開啟的頁面上，按一下 [啟用] 以啟用 VM 上的解決方案。 系統會將 Microsoft Management Agent 部署至 VM　　，並將代理程式設定為能與啟用方案時設定的 Log Analytics 工作區通訊。 這需要數分鐘的時間來完成上架。 此時，您可以從清單中選取新的 VM，然後讓另一個 VM 上架。
+
+## <a name="onboard-a-non-azure-machine"></a>讓非 Azure 機器上線
+
+若要新增非 Azure 機器，請安裝 [Windows](../log-analytics/log-analytics-agent-windows.md) 或 [Linux](automation-linux-hrw-install.md) 的代理程式 (視作業系統而定)。 安裝代理程式之後，瀏覽至您的自動化帳戶，然後移至 [組態管理] 下的 [清查]。 當您按一下 [管理機器] 時，您會看到向 Log Analytics 工作區回報的機器清單，而其中並沒有啟用解決方案。 為您的環境選取適當選項。
+
+* **在所有可用機器上啟用** - 此選項可在此時向您 Log Analytics 工作區回報的所有機器上，啟用解決方案。
+* **在所有可用機器和未來機器上啟用** - 此選項可在向您 Log Analytics 工作區回報的所有機器上，以及之後會新增至工作區的所有未來機器上，啟用解決方案。
+* **在選取的機器上啟用** - 此選項只會在您選取的電腦上啟用解決方案。
+
+![管理機器](./media/automation-tutorial-installed-software/manage-machines.png)
+
 ## <a name="view-installed-software"></a>檢視已安裝的軟體
 
 一旦啟用變更追蹤和清查解決方案後，您就可以檢視 [清查] 頁面上的結果。
 
-從您的 VM 內，選取 [作業] 下的 [清查]。
+從您的自動化帳戶中，選取 [組態管理] 下的 [清查]。
 
 在 [清查] 頁面上，按一下 [軟體] 索引標籤。
 
@@ -83,28 +104,29 @@ ms.lasthandoff: 02/28/2018
 清查所產生的記錄資料會傳送到 Log Analytics。 若要透過執行查詢來搜尋記錄，請選取 [清查] 視窗頂端的 [Log Analytics]。
 
 清查資料會儲存在 **ConfigurationData** 類型之下。
-下列範例 Log Analytics 查詢會傳回包含 "Microsoft" 的發行者，以及每個發行者的軟體記錄數目 (依軟體名稱和電腦群組)。
+下列的 Log Analytics 查詢範例會傳回清查結果，其中「發行者」是 "Microsoft Corporation"。
 
-```
+```loganalytics
 ConfigurationData
-| summarize arg_max(TimeGenerated, *) by SoftwareName, Computer
 | where ConfigDataType == "Software"
-| search Publisher:"Microsoft"
-| summarize count() by Publisher
+| where Publisher == "Microsoft Corporation"
+| summarize arg_max(TimeGenerated, *) by SoftwareName, Computer
 ```
 
-若要深入了解在 Log Analytics 中執行和搜尋記錄檔，請參閱 [Azure Log Analytics](https://docs.loganalytics.io/index)。
+若要深入了解在 Log Analytics 中執行和搜尋記錄檔，請參閱 [Azure Log Analytics](../log-analytics/log-analytics-queries.md)。
 
 ### <a name="single-machine-inventory"></a>單一電腦清查
 
-若要查看單一電腦的軟體清查，您可以從 Azure VM 資源頁面存取清查，或是使用 Log Analytics 來篩選到對應的機器。 下列範例 Log Analytics 查詢會傳回名為 ContosoVM 的電腦之軟體清單。
+若要查看單一電腦的軟體清查，您可以從 Azure VM 資源頁面存取清查，或是使用 Log Analytics 來篩選到對應的機器。
+下列範例 Log Analytics 查詢會傳回名為 ContosoVM 的電腦之軟體清單。
 
-```
+```loganalytics
 ConfigurationData
-| where ConfigDataType == "Software" 
+| where ConfigDataType == "Software"
 | summarize arg_max(TimeGenerated, *) by SoftwareName, CurrentVersion
 | where Computer =="ContosoVM"
 | render table
+| summarize by Publisher, SoftwareName
 ```
 
 ## <a name="next-steps"></a>後續步驟
@@ -112,7 +134,9 @@ ConfigurationData
 在此教學課程中，您已了解如何檢視軟體清查，例如要如何：
 
 > [!div class="checklist"]
-> * 將 VM 上架以進行變更追蹤和清查
+> * 啟用解決方案
+> * 使 Azure 虛擬機器上線
+> * 讓非 Azure VM 上架
 > * 檢視已安裝的軟體
 > * 搜尋已安裝軟體的清查記錄
 

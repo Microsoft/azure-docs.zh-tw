@@ -1,0 +1,46 @@
+items:
+- name: Azure Resource Graph 文件
+  href: index.yml
+- name: 概觀
+  items:
+  - name: Azure Resource Graph 概觀
+    href: overview.md
+- name: 快速入門
+  items:
+  - name: 執行您的第一個查詢 - Azure CLI
+    href: first-query-azurecli.md
+  - name: 執行您的第一個查詢 - PowerShell
+    href: first-query-powershell.md
+  expanded: true
+- name: 範例
+  items:
+  - name: 入門查詢
+    href: ./samples/starter.md
+  - name: 進階查詢
+    href: ./samples/advanced.md
+  expanded: true
+- name: 概念
+  items:
+  - name: 了解查詢語言
+    href: ./concepts/query-language.md
+  - name: 使用 Resource Graph 探索您的 Azure 資源
+    href: ./concepts/explore-resources.md
+  expanded: true
+- name: 參考
+  items:
+  - name: REST API
+    href: /rest/api/azureresourcegraph/resources/resources
+- name: 資源
+  items:
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/
+  - name: 定價計算機
+    href: https://azure.microsoft.com/pricing/calculator/
+  - name: UserVoice
+    href: https://feedback.azure.com/forums/915958-azure-governance
+ms.openlocfilehash: 3aa7384bfe8dda15167ab679f689e691e64278c9
+ms.sourcegitcommit: 9e179a577533ab3b2c0c7a4899ae13a7a0d5252b
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/23/2018
+ms.locfileid: "49943701"

@@ -7,17 +7,18 @@ manager: craigg
 ms.reviewer: MightyPen
 ms.service: sql-database
 ms.custom: develop databases
-ms.topic: article
-ms.date: 11/22/2016
+ms.topic: conceptual
+ms.date: 04/01/2018
 ms.author: jodebrui
-ms.openlocfilehash: 77e73ec1004babb5fce1e293acfade9264cd6945
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: a2f0d901abfa0013a6f53bacd72a9f8db2e0fd99
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34648042"
 ---
 # <a name="use-in-memory-oltp-to-improve-your-application-performance-in-sql-database"></a>使用記憶體內部 OLTP 改善 SQL Database 中的應用程式效能
-[記憶體內部 OLTP](sql-database-in-memory.md) 可用來改善交易處理、資料擷取和暫時性資料的效能，在[高階](sql-database-service-tiers.md) Azure SQL Database 而無須增加定價層。 
+在[進階和業務關鍵層](sql-database-service-tiers-vcore.md)資料庫中，[記憶體內部 OLTP](sql-database-in-memory.md) 可用來改善交易處理、資料擷取和暫時性資料案例的效能，而無須增加定價層。 
 
 > [!NOTE] 
 > [了解仲裁如何透過 SQL Database 讓重要資料庫的工作負載加倍，同時降低 70% 的 DTU](https://customers.microsoft.com/story/quorum-doubles-key-databases-workload-while-lowering-dtu-with-sql-database)
@@ -25,8 +26,8 @@ ms.lasthandoff: 03/16/2018
 
 請依照下列步驟，在您現有的資料庫中採用 In-Memory OLTP。
 
-## <a name="step-1-ensure-you-are-using-a-premium-database"></a>步驟 1︰請確定您使用高階資料庫
-只有高階資料庫支援記憶體內部 OLTP。 如果傳回的結果為 1 (不是 0)，則支援 In-Memory：
+## <a name="step-1-ensure-you-are-using-a-premium-and-business-critical-tier-database"></a>步驟 1︰確定您使用進階和業務關鍵層資料庫
+只有進階和業務關鍵層資料庫支援記憶體內部 OLTP。 如果傳回的結果為 1 (不是 0)，則支援 In-Memory：
 
 ```
 SELECT DatabasePropertyEx(Db_Name(), 'IsXTPSupported');

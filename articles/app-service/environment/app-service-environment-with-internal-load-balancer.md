@@ -1,11 +1,11 @@
 ---
-title: "搭配 App Service 環境建立及使用內部負載平衡器 | Microsoft Docs"
-description: "搭配 ILB 建立及使用 ASE"
+title: 搭配 App Service 環境建立及使用內部負載平衡器 | Microsoft Docs
+description: 搭配 ILB 建立及使用 ASE
 services: app-service
-documentationcenter: 
+documentationcenter: ''
 author: ccompy
 manager: stefsch
-editor: 
+editor: ''
 ms.assetid: ad9a1e00-d5e5-413e-be47-e21e5b285dbf
 ms.service: app-service
 ms.workload: na
@@ -19,6 +19,7 @@ ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 02/21/2018
+ms.locfileid: "29388810"
 ---
 # <a name="using-an-internal-load-balancer-with-an-app-service-environment"></a>搭配 App Service 環境使用內部負載平衡器
 

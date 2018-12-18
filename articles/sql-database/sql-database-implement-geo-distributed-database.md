@@ -2,18 +2,22 @@
 title: 實作異地分散的 Azure SQL Database 解決方案| Microsoft Docs
 description: 了解如何設定您的 Azure SQL Database 和應用程式來容錯移轉至複寫資料庫，並測試容錯移轉。
 services: sql-database
-author: CarlRabeler
-manager: craigg
 ms.service: sql-database
-ms.custom: mvc,business continuity
-ms.topic: tutorial
-ms.date: 05/26/2017
-ms.author: carlrab
-ms.openlocfilehash: ea94a311d409d8c5d6142746dc1009ff67ef3a82
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.subservice: operations
+ms.custom: ''
+ms.devlang: ''
+ms.topic: conceptual
+author: anosov1960
+ms.author: sashan
+ms.reviewer: carlrab
+manager: craigg
+ms.date: 09/07/2018
+ms.openlocfilehash: 65cf954f5d91176715181620671f620264069bdc
+ms.sourcegitcommit: 51a1476c85ca518a6d8b4cc35aed7a76b33e130f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47166243"
 ---
 # <a name="implement-a-geo-distributed-database"></a>實作異地分散資料庫
 
@@ -29,7 +33,7 @@ ms.lasthandoff: 03/16/2018
 如果您沒有 Azure 訂用帳戶，請在開始之前先[建立免費帳戶](https://azure.microsoft.com/free/)。
 
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 若要完成本教學課程，請確定已完成下列必要條件：
 
@@ -37,8 +41,8 @@ ms.lasthandoff: 03/16/2018
 - 已安裝 Azure SQL Database。 本教學課程使用下列其中一個快速入門中，名稱為 **mySampleDatabase** 的 AdventureWorksLT 範例資料庫︰
 
    - [建立 DB - 入口網站](sql-database-get-started-portal.md)
-   - [建立 DB - CLI](sql-database-get-started-cli.md)
-   - [建立 DB - PowerShell](sql-database-get-started-powershell.md)
+   - [建立 DB - CLI](sql-database-cli-samples.md)
+   - [建立 DB - PowerShell](sql-database-powershell-samples.md)
 
 - 已找出對您資料庫執行 SQL 指令碼的方法，您可以使用下列其中一個查詢工具：
    - [Azure 入口網站](https://portal.azure.com)中的查詢編輯器。 如需在 Azure 入口網站中使用查詢編輯器的詳細資訊，請參閱[使用查詢編輯器連線和查詢](sql-database-get-started-portal.md#query-the-sql-database)。
@@ -53,7 +57,7 @@ ms.lasthandoff: 03/16/2018
 - SQL Server Management Studio
 - Visual Studio Code
 
-這些使用者帳戶會自動複寫到次要伺服器 (並保持同步)。 若要使用 SQL Server Management Studio 或 Visual Studio Code，如果您從 IP 位址尚未設定防火牆的用戶端連線，則可能需要設定防火牆規則。 如需詳細步驟，請參閱[建立伺服器層級防火牆規則](sql-database-get-started-portal.md#create-a-server-level-firewall-rule)。
+這些使用者帳戶會自動複寫到次要伺服器 (並保持同步)。 若要使用 SQL Server Management Studio 或 Visual Studio Code，如果您從 IP 位址尚未設定防火牆的用戶端連線，則可能需要設定防火牆規則。 如需詳細步驟，請參閱[建立伺服器層級防火牆規則](sql-database-get-started-portal-firewall.md)。
 
 - 在查詢視窗中，執行下列查詢以在資料庫中建立兩個使用者帳戶。 此指令碼會將 **db_owner** 權限授與 **app_admin** 帳戶，並將 **SELECT** 和 **UPDATE** 權限授與 **app_user** 帳戶。 
 
@@ -69,7 +73,7 @@ ms.lasthandoff: 03/16/2018
 
 ## <a name="create-database-level-firewall"></a>建立資料庫層級防火牆
 
-為 SQL Database 建立[資料庫層級防火牆規則](https://docs.microsoft.com/sql/relational-databases/system-stored-procedures/sp-set-database-firewall-rule-azure-sql-database)。 此資料庫層級防火牆規則會自動複寫到您在本教學課程中建立的次要伺服器中。 為求簡化 (在本教學課程中)，請使用您在本教學課程中執行步驟之電腦的公用 IP 位址。 若要判斷用於目前電腦之伺服器層級防火牆規則的 IP 位址，請參閱[建立伺服器層級防火牆](sql-database-get-started-portal.md#create-a-server-level-firewall-rule)。  
+為 SQL Database 建立[資料庫層級防火牆規則](https://docs.microsoft.com/sql/relational-databases/system-stored-procedures/sp-set-database-firewall-rule-azure-sql-database)。 此資料庫層級防火牆規則會自動複寫到您在本教學課程中建立的次要伺服器中。 為求簡化 (在本教學課程中)，請使用您在本教學課程中執行步驟之電腦的公用 IP 位址。 若要判斷用於目前電腦之伺服器層級防火牆規則的 IP 位址，請參閱[建立伺服器層級防火牆](sql-database-get-started-portal-firewall.md)。  
 
 - 在開啟的查詢視窗中，將先前的查詢取代為下列查詢，將 IP 位址取代為環境的適當 IP 位址。  
 
@@ -380,4 +384,17 @@ sudo apt-get install maven
 
 ## <a name="next-steps"></a>後續步驟
 
-如需詳細資訊，請參閱[作用中異地複寫和容錯移轉群組](sql-database-geo-replication-overview.md)。
+在本教學課程中，您已了解如何設定 Azure SQL 資料庫和應用程式來容錯移轉到遠端區域，然後測試您的容錯移轉計畫。  您已了解如何︰ 
+
+> [!div class="checklist"]
+> * 建立資料庫使用者並授與其權限
+> * 設定資料庫層級防火牆規則
+> * 建立異地複寫容錯移轉群組
+> * 建立及編譯 Java 應用程式以查詢 Azure SQL Database
+> * 執行災害復原演練
+
+前進到下一個教學課程，以使用 DMS 將 SQL Server 遷移至 Azure SQL Database 受控執行個體。
+
+> [!div class="nextstepaction"]
+>[使用 DMS 將 SQL Server 移轉至 Azure SQL Database 受控執行個體](../dms/tutorial-sql-server-to-managed-instance.md)
+

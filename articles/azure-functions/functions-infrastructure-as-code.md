@@ -1,13 +1,13 @@
 ---
-title: "Azure Functions 中函數應用程式的自動化資源部署 | Microsoft Docs"
-description: "了解如何建置能部署函數應用程式的 Azure Resource Manager 範本。"
+title: Azure Functions 中函數應用程式的自動化資源部署 | Microsoft Docs
+description: 了解如何建置能部署函數應用程式的 Azure Resource Manager 範本。
 services: Functions
 documtationcenter: na
 author: ggailey777
 manager: cfowler
-editor: 
-tags: 
-keywords: "azure functions, 函數, 無伺服器架構, 基礎結構即程式碼, azure resource manager"
+editor: ''
+tags: ''
+keywords: azure functions, 函數, 無伺服器架構, 基礎結構即程式碼, azure resource manager
 ms.assetid: d20743e3-aab6-442c-a836-9bcea09bfd32
 ms.server: functions
 ms.devlang: multiple
@@ -16,11 +16,12 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 05/25/2017
 ms.author: glenga
-ms.openlocfilehash: 6f31ba7b43c70f52bdd67d27512a322ec6258608
-ms.sourcegitcommit: be9a42d7b321304d9a33786ed8e2b9b972a5977e
+ms.openlocfilehash: 28b2f5aba69e5c058feb7119eb31352220922998
+ms.sourcegitcommit: d98d99567d0383bb8d7cbe2d767ec15ebf2daeb2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/19/2018
+ms.lasthandoff: 05/10/2018
+ms.locfileid: "33937056"
 ---
 # <a name="automate-resource-deployment-for-your-function-app-in-azure-functions"></a>Azure Functions 中函數應用程式的自動化資源部署
 
@@ -56,7 +57,9 @@ ms.lasthandoff: 01/19/2018
 }
 ```
 
-此外，您必須在網站組態中將 `AzureWebJobsStorage` 和 `AzureWebJobsDashboard` 屬性指定為應用程式設定。 Azure Functions 執行階段會使用 `AzureWebJobsStorage` 連接字串來建立內部佇列。 連接字串 `AzureWebJobsDashboard` 可用來記錄到 Azure 資料表儲存體，以及啟動入口網站中的 [監視] 索引標籤。
+此外，您必須在網站設定中將 `AzureWebJobsStorage` 屬性指定為應用程式設定。 若函式應用程式不使用 Application Insights 以進行監視，也應該將 `AzureWebJobsDashboard` 指定為應用程式設定。
+
+Azure Functions 執行階段會使用 `AzureWebJobsStorage` 連接字串來建立內部佇列。  在未啟用 Application Insights 的情況下，執行階段會使用 `AzureWebJobsDashboard` 連接字串來記錄至 Azure 資料表儲存體，並啟動入口網站中的 [監視] 索引標籤。
 
 這些屬性會在 `siteConfig` 物件的 `appSettings`集合中指定：
 

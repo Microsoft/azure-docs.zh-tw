@@ -1,28 +1,29 @@
 ---
-title: Azure 虛擬網路和 Windows 虛擬機器 | Microsoft Docs
-description: 教學課程 - 使用 Azure PowerShell 來管理 Azure 虛擬網路和 Windows 虛擬機器
+title: 教學課程 - 建立和管理適用於 Windows VM 的 Azure 虛擬網路 | Microsoft Docs
+description: 在本教學課程中，了解如何使用 Azure PowerShell 來建立及管理 Windows 虛擬機器的 Azure 虛擬網路
 services: virtual-machines-windows
 documentationcenter: virtual-machines
-author: iainfoulds
+author: cynthn
 manager: jeconnoc
 editor: ''
 tags: azure-resource-manager
 ms.assetid: ''
 ms.service: virtual-machines-windows
 ms.devlang: na
-ms.topic: article
+ms.topic: tutorial
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 ms.date: 02/27/2018
-ms.author: iainfou
+ms.author: cynthn
 ms.custom: mvc
-ms.openlocfilehash: feaef679a3090491b64c69ac69bf22153c281d31
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 6e5b9ce7a4625cccdfaa29492250a5e8255ec23d
+ms.sourcegitcommit: dc646da9fbefcc06c0e11c6a358724b42abb1438
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 07/18/2018
+ms.locfileid: "39136514"
 ---
-# <a name="manage-azure-virtual-networks-and-windows-virtual-machines-with-azure-powershell"></a>使用 Azure PowerShell 來管理 Azure 虛擬網路和 Windows 虛擬機器
+# <a name="tutorial-create-and-manage-azure-virtual-networks-for-windows-virtual-machines-with-azure-powershell"></a>教學課程：使用 Azure PowerShell 來建立及管理 Windows 虛擬機器的 Azure 虛擬網路
 
 Azure 虛擬機器會使用 Azure 網路進行內部和外部的網路通訊。 本教學課程會逐步部署兩部虛擬機器 (VM)，並設定這兩部 VM 的 Azure 網路功能。 本教學課程中的範例假設 VM 已裝載 Web 應用程式與資料庫後端，不過應用程式的部署不在本教學課程範圍中。 在本教學課程中，您了解如何：
 
@@ -33,9 +34,9 @@ Azure 虛擬機器會使用 Azure 網路進行內部和外部的網路通訊。 
 > * 保護網路流量
 > * 建立後端 VM
 
+[!INCLUDE [cloud-shell-powershell.md](../../../includes/cloud-shell-powershell.md)]
 
-
-本教學課程需要 AzureRM.Compute 模組 4.3.1 版或更新版本。 執行 `Get-Module -ListAvailable AzureRM.Compute` 以尋找版本。 如果您需要升級，請參閱[安裝 Azure PowerShell 模組](/powershell/azure/install-azurerm-ps)。
+如果您選擇在本機安裝和使用 PowerShell，則在執行本教學課程時，必須使用 Azure PowerShell 模組 5.7.0 版或更新版本。 執行 `Get-Module -ListAvailable AzureRM` 以尋找版本。 如果您需要升級，請參閱[安裝 Azure PowerShell 模組](/powershell/azure/install-azurerm-ps)。 如果您在本機執行 PowerShell，則也需要執行 `Connect-AzureRmAccount` 以建立與 Azure 的連線。
 
 ## <a name="vm-networking-overview"></a>VM 網路概觀
 
@@ -48,7 +49,7 @@ Azure 虛擬網路可以讓虛擬機器、網際網路與其他 Azure 服務 (�
 - *myVNet* - VM 彼此進行通訊以及與網際網路進行通訊使用的虛擬網路。
 - *myFrontendSubnet* - 前端資源所使用之 *myVNet* 中的子網路。
 - *myPublicIPAddress* - 從網際網路存取 *myFrontendVM* 所使用的公用 IP 位址。
-- *myFrontentNic* - *myFrontendVM* 與 *myBackendVM* 進行通訊所使用的網路介面。
+- *myFrontendNic* - *myFrontendVM* 與 *myBackendVM* 進行通訊所使用的網路介面。
 - *myFrontendVM* - VM 在網際網路和 *myBackendVM* 之間進行通訊所使用的 VM。
 - *myBackendNSG* - 控制 *myFrontendVM* 和 *myBackendVM* 之間通訊的網路安全性群組。
 - *myBackendSubnet* - 與 *myBackendNSG* 相關聯且由後端資源所使用的子網路。
@@ -266,7 +267,7 @@ New-AzureRmVM `
    -ImageName "MicrosoftSQLServer:SQL2016SP1-WS2016:Enterprise:latest" `
    -ResourceGroupName myRGNetwork `
    -Location "EastUS" `
-   -SubnetName myFrontendSubnet `
+   -SubnetName MyBackendSubnet `
    -VirtualNetworkName myVNet
 ```
 

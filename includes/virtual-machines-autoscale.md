@@ -2,7 +2,7 @@
 
 ## <a name="horizontal-or-vertical-scaling"></a>水平和垂直調整
 
-Azure 監視器的自動調整功能只會水平調整，亦即增加 (相應放大) 或減少 (相應縮小) VM 數目。 在雲端的情況下，水平調整會更有彈性，因為它可讓您有機會執行數千台 VM 來處理負載。 您可以自動或手動變更擴展集 (或執行個體計數) 的容量來進行水平調整。 
+Azure 監視器的自動調整功能只會水平調整，亦即增加 (相應放大) 或減少 (相應縮小) VM 數目。 在雲端的情況下，水平調整會更有彈性，因為它可讓您有機會執行數千台 VM 來處理負載。 您可以自動或手動變更擴展集的容量 (或執行個體計數) 來進行水平調整。 
 
 垂直調整會保持相同數量的 VM，但會讓 VM 的能力變強 (相應增加) 或變弱 (相應減少)。 會以諸如記憶體、CPU 速度或磁碟空間等屬性來測量能力。 垂直調整取決於是否有較大容量的硬體可供使用，因此會很快達到上限，而且會因區域而異。 此外，垂直調整通常會需要 VM 停止並重新啟動。 您進行垂直調整的方法為在擴展集中設定 VM 設定的新大小。
 
@@ -10,7 +10,7 @@ Azure 監視器的自動調整功能只會水平調整，亦即增加 (相應放
 
 ## <a name="create-a-virtual-machine-scale-set"></a>建立虛擬機器擴展集
 
-擴展集可讓您將完全相同的 VM 以集合的方式進行部署和管理。 您可以建立 Linux 或 Windows 擴展集，方法為使用 [Azure 入口網站](../articles/virtual-machine-scale-sets/virtual-machine-scale-sets-portal-create.md)、[Azure PowerShell](../articles/virtual-machines/windows/tutorial-create-vmss.md) 或 [Azure CLI](../articles/virtual-machines/linux/tutorial-create-vmss.md)。 您也可以使用 SDK (例如 [Python](/develop/python) 或 [Node.js](/nodejs/azure))，或直接使用 [REST API](/rest/api/compute/virtualmachinescalesets) 來建立及管理規模集。 會透過將計量和規則套用至擴展集來完成自動調整 VM。
+擴展集可讓您將完全相同的 VM 以集合的方式進行部署和管理。 您可以建立 Linux 或 Windows 擴展集，方法為使用 [Azure 入口網站](../articles/virtual-machine-scale-sets/virtual-machine-scale-sets-portal-create.md)、[Azure PowerShell](../articles/virtual-machines/windows/tutorial-create-vmss.md) 或 [Azure CLI](../articles/virtual-machines/linux/tutorial-create-vmss.md)。 您也可以使用 SDK (例如 [Python](https://azure.microsoft.com/develop/python/) 或 [Node.js](/nodejs/azure))，或直接使用 [REST API](/rest/api/compute/virtualmachinescalesets) 來建立及管理規模集。 會透過將計量和規則套用至擴展集來完成自動調整 VM。
 
 ## <a name="configure-autoscale-for-a-scale-set"></a>設定自動調整擴展集
 

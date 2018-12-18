@@ -1,25 +1,20 @@
 ---
-title: "HDInsight 上 Hadoop 服務使用的連接埠 - Azure | Microsoft Docs"
-description: "在 HDInsight 上執行的 Hadoop 服務所使用的連接埠清單。"
+title: HDInsight 上 Hadoop 服務所使用的連接埠 - Azure
+description: 在 HDInsight 上執行的 Hadoop 服務所使用的連接埠清單。
 services: hdinsight
-documentationcenter: 
-author: Blackmist
-manager: jhubbard
-editor: cgronlun
-ms.assetid: dd14aed9-ec25-4bb3-a20c-e29562735a7d
+author: jasonwhowell
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 02/07/2018
-ms.author: larryfr
-ms.openlocfilehash: 70bb69c78a23c9ffe012c0b775c98355da7cbce6
-ms.sourcegitcommit: 059dae3d8a0e716adc95ad2296843a45745a415d
+ms.topic: conceptual
+ms.date: 04/20/2018
+ms.author: jasonh
+ms.openlocfilehash: 3dea97d674c2027307ac7eb7cae34b6664e40b0b
+ms.sourcegitcommit: f6e2a03076679d53b550a24828141c4fb978dcf9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43108115"
 ---
 # <a name="ports-used-by-hadoop-services-on-hdinsight"></a>HDInsight 上 Hadoop 服務所使用的連接埠
 
@@ -58,6 +53,7 @@ HDInsight 叢集中的所有節點都位於 Azure 虛擬網路中，無法直接
 | --- | --- | --- | --- | --- |
 | Stargate |443 |HTTPS |hbase |HBase REST API。 請參閱 [開始使用 HBase](hbase/apache-hbase-tutorial-get-started-linux.md) |
 | Livy |443 |HTTPS |Spark |Spark REST API。 請參閱 [使用 Livy 從遠端提交 Spark 作業](spark/apache-spark-livy-rest-interface.md) |
+| Spark Thrift 伺服器 |443 |HTTPS |Spark |用來提交 Hive 查詢的 Spark Thrift 伺服器。 請參閱[搭配使用 Beeline 與 HDInsight 上的 Hive](hadoop/apache-hadoop-use-hive-beeline.md) |
 | Storm |443 |HTTPS |Storm |Storm Web UI。 請參閱 [部署和管理 HDInsight 上的 Storm 拓撲](storm/apache-storm-deploy-monitor-topology-linux.md) |
 
 ### <a name="authentication"></a>驗證

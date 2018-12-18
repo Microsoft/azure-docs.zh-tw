@@ -2,24 +2,20 @@
 title: 已淘汰的 Azure Cosmos DB 效能層級 | Microsoft Docs
 description: 了解 Azure Cosmos DB 中先前可用的 S1、S2 和 S3 效能層級。
 services: cosmos-db
-author: mimig1
-manager: jhubbard
-editor: monicar
-documentationcenter: ''
-ms.assetid: 7dc21c71-47e2-4e06-aa21-e84af52866f4
+author: SnehaGunda
+manager: kfile
 ms.service: cosmos-db
-ms.workload: data-services
-ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 11/29/2017
-ms.author: mimig
+ms.topic: conceptual
+ms.date: 06/04/2018
+ms.author: sngun
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 62ef3c8988b0f11d6d8bcb69080f4e1b98a44641
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: d1bb7551e6dfb6c42853ab95096f17f5285c69c1
+ms.sourcegitcommit: 6116082991b98c8ee7a3ab0927cf588c3972eeaa
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 06/05/2018
+ms.locfileid: "34796643"
 ---
 # <a name="retiring-the-s1-s2-and-s3-performance-levels"></a>淘汰 S1、S2 和 S3 效能層級
 
@@ -27,16 +23,15 @@ ms.lasthandoff: 03/28/2018
 > 本文所討論的 S1、S2 和 S3 效能層級即將淘汰，而且再也無法供新的 Azure Cosmos DB 帳戶使用。
 >
 
-本文概述 S1、S2 和 S3 效能層級，並討論使用這些效能層級的集合如何在 2017 年底移轉至單一資料分割集合。 閱讀本文後，您將能夠回答下列問題：
+本文概述 S1、S2 和 S3 效能層級，並討論如何將使用這些效能層級的集合移轉至單一分割區的集合。 閱讀本文後，您將能夠回答下列問題：
 
-- [為何 S1、S2 和 S3 效能層級將要淘汰？](#why-retired)
+- [為何要淘汰 S1、S2 和 S3 效能層級？](#why-retired)
 - [單一分割區集合和資料分割的集合與 S1、S2、S3 效能層級之比較為何？](#compare)
 - [我該怎麼做才能確保不中斷地的存取我的資料？](#uninterrupted-access)
 - [在移轉之後我的集合會如何變更？](#collection-change)
 - [我移轉至單一資料分割集合之後，我的帳單將如何變更呢？](#billing-change)
 - [如果我需要超過 10 GB 的儲存體會如何？](#more-storage-needed)
 - [在計劃性移轉之前，我可以在 S1、S2 和 S3 效能層級之間變更嗎？](#change-before)
-- [如何得知我的收藏何時已移轉？](#when-migrated)
 - [如何自己從 S1、S2、S3 效能層級移轉至單一資料分割集合？](#migrate-diy)
 - [如果我是 EA 客戶會受到什麼影響？](#ea-customer)
 
@@ -65,25 +60,23 @@ S1、S2 和 S3 效能層級不提供標準 Azure Cosmos DB 所提供的彈性。
 
 ## <a name="what-do-i-need-to-do-to-ensure-uninterrupted-access-to-my-data"></a>我該怎麼做才能確保不中斷地的存取我的資料？
 
-無須執行任何動作，Cosmos DB 會處理您的移轉。 如果您有 S1、S2 或 S3 集合，您目前的集合將會在 2017 年底移轉至單一磁碟分割集合。 
+如果您有 S1、S2 或 S3 集合，就應該[使用 .NET SDK](#migrate-diy)，以程式設計方式將該集合移轉至單一分割區的集合。 
 
 <a name="collection-change"></a>
 
 ## <a name="how-will-my-collection-change-after-the-migration"></a>在移轉之後我的集合會如何變更？
 
-如果您有一個 S1 集合，將會以 400 RU/秒的輸送量移轉至單一資料分割集合。 400 RU/秒是適用於單一資料分割集合的最低輸送量。 不過，單一資料分割集合中 400 RU/秒的成本，大致上與您已支付的 S1 集合與 250 RU/秒相同 – 因此您不需要支付供您使用的額外 150 RU/秒。
+如果您有 S1 集合，就能以 400 RU/秒的輸送量將它們移轉至單一分割區的集合。 400 RU/秒是適用於單一資料分割集合的最低輸送量。 不過，單一資料分割集合中 400 RU/秒的成本，大致上與您已支付的 S1 集合與 250 RU/秒相同 – 因此您不需要支付供您使用的額外 150 RU/秒。
 
-如果您有一個 S2 集合，將會以 1 K RU/秒移轉至單一資料分割集合。 您不會看到您的輸送量層級有任何變更。
+如果您有 S2 集合，就能以 1 K RU/秒的輸送量將它們移轉至單一分割區的集合。 您不會看到您的輸送量層級有任何變更。
 
-如果您有一個 S3 集合，將會以 2.5 K RU/秒移轉至單一資料分割集合。 您不會看到您的輸送量層級有任何變更。
+如果您有 S3 集合，就能以 2.5 K RU/秒的輸送量將它們移轉至單一分割區的集合。 您不會看到您的輸送量層級有任何變更。
 
-在每一個情況下，在移轉您的集合之後，您將能夠自訂您的輸送量層級，或視需要將它相應增加及減少，為使用者提供低延遲存取。 若要在移轉您的集合之後變更輸送量層級，只要在 Azure 入口網站中開啟 Cosmos DB 帳戶，按一下 [調整]、選擇您的集合，然後調整輸送量層級，如下列螢幕擷取畫面所示︰
-
-![如何在 Azure 入口網站中調整輸送量](./media/performance-levels/portal-scale-throughput.png)
+在這其中的每一個情況下，當您移轉集合之後，將能自訂輸送量層級，或視需要將它相應增加及減少，以便為使用者提供低延遲存取。 
 
 <a name="billing-change"></a>
 
-## <a name="how-will-my-billing-change-after-im-migrated-to-the-single-partition-collections"></a>我移轉至單一資料分割集合之後，我的帳單將如何變更呢？
+## <a name="how-will-my-billing-change-after-i-migrated-to-the-single-partition-collections"></a>當我移轉至單一分割區的集合之後，帳單會如何變更？
 
 假設您在美國東部區域有 10 個 S1 集合，每個有 1 GB 的儲存空間，您將這 10 個 S1 集合以 400 RU/秒 (最小層級) 移轉至 10 個單一資料分割集合。 如果您一整個月保留 10 個單一資料分割集合，您的帳單會看起來如下︰
 
@@ -93,55 +86,23 @@ S1、S2 和 S3 效能層級不提供標準 Azure Cosmos DB 所提供的彈性。
 
 ## <a name="what-if-i-need-more-than-10-gb-of-storage"></a>如果我需要超過 10 GB 的儲存空間怎麼辦？
 
-無論您擁有具有 S1、S2 或 S3 效能層級的集合，或是擁有單一資料分割集合，全部都有 10 GB 的可用儲存空間，您可以利用幾乎不受限制的儲存空間使用 Cosmos DB 資料移轉工具將您的資料移轉至資料分割的集合。 如需資料分割集合優點的相關詳細資訊，請參閱 [Azure Cosmos DB 中的資料分割與規模調整](sql-api-partition-data.md)。 
+無論您擁有具備 S1、S2 或 S3 效能層級的集合，或是擁有單一分割區的集合，全部都有 10 GB 的可用儲存空間。您可以利用幾乎不受限制的儲存空間，使用 Azure Cosmos DB 資料移轉工具來將資料移轉至分割區的集合。 如需資料分割集合優點的相關詳細資訊，請參閱 [Azure Cosmos DB 中的資料分割與規模調整](sql-api-partition-data.md)。 
 
 <a name="change-before"></a>
 
 ## <a name="can-i-change-between-the-s1-s2-and-s3-performance-levels-before-the-planned-migration"></a>在計劃性移轉之前，我可以在 S1、S2 和 S3 效能層級之間變更嗎？
 
-只有 S1、S2 和 S3 效能的現有帳戶可以變更，且透過入口網站或以程式設計的方式變更效能層級層。 如果您從 S1、S3 或 S3 變更為單一資料分割集合，將無法回到 S1、S2 或 S3 效能層級。
-
-<a name="when-migrated"></a>
-
-## <a name="how-will-i-know-when-my-collection-has-migrated"></a>如何得知我的收藏何時已移轉？
-
-移轉會在 2017 年底發生。 如果您擁有的集合是使用 S1、S2 或 S3 效能層級，Cosmos DB 小組會在進行移轉之前，透過電子郵件與您連絡。 一旦完成移轉，Azure 入口網站會顯示您的集合使用標準價格。
-
-![如何確認您的集合已移轉至標準定價層](./media/performance-levels/portal-standard-pricing-applied.png)
+只有具備 S1、S2 和 S3 效能的現有帳戶可以變更，並[使用 .NET SDK](#migrate-diy)，以程式設計方式改變效能層級層。 如果您從 S1、S3 或 S3 變更為單一資料分割集合，將無法回到 S1、S2 或 S3 效能層級。
 
 <a name="migrate-diy"></a>
 
 ## <a name="how-do-i-migrate-from-the-s1-s2-s3-performance-levels-to-single-partition-collections-on-my-own"></a>如何自己從 S1、S2、S3 效能層級移轉至單一資料分割集合？
 
-您可以使用 Azure 入口網站或以程式設計的方式，從 S1、S2 和 S3 效能層級移轉至單一資料分割集合。 您可以計劃性移轉之前自行進行此動作，以受益於單一資料分割的集合具彈性的可用輸送量，或者我們會在 2017 年底為您移轉集合。
+您可以[使用 .NET SDK](#migrate-diy)，以程式設計方式從 S1、S2 和 S3 效能層級移轉至單一分割區的集合。 您可以在計劃移轉之前自行執行此動作，以利用單一分割區集合所提供的彈性輸送量選項。
 
-**若要使用 Azure 入口網站移轉至單一資料分割集合**
+### <a name="migrate-to-single-partition-collections-by-using-the-net-sdk"></a>使用 .NET SDK 移轉至單一分割區的集合
 
-1. 在 [Azure 入口網站](https://portal.azure.com)中，按一下 [Azure Cosmos DB]，然後選取要修改的 Cosmos DB 帳戶。 
- 
-    如果 [Azure Cosmos DB] 不在動態工具列中，按一下 >，捲動到 [資料庫]，選取 [Azure Cosmos DB]，然後選取帳戶。  
-
-2. 在 [資源] 功能表上，於 [容器] 下，按一下 [級別]，從下拉式清單選取要修改的集合，然後按一下 [定價層]。 使用預先定義的輸送量的帳戶具有 S1、S2 或 S3 定價層。  在 [選擇定價層] 頁面中，按一下 [標準] 來變更使用者定義的輸送量，然後按一下 [選取] 以儲存變更。
-
-    ![[設定] 頁面的螢幕擷取畫面，其中顯示可供變更輸送量值的位置](./media/performance-levels/change-performance-set-thoughput.png)
-
-3. 回到 [調整] 頁面中，[定價層] 已變更為 [標準]，並且 [輸送量 (RU/秒)] 方塊會顯示預設值 400。 將輸送量設定為介於 400 到 10,000 個 [要求單位](request-units.md)/秒 (RU/秒)。 頁面底部的 [估計每月帳單] 會自動更新以提供每月成本估計。 
-
-    >[!IMPORTANT] 
-    > 一旦您儲存變更並移至標準定價層後，將無法復原為 S1、S2 或 S3 效能層級。
-
-4. 按一下 [確定] 儲存變更。
-
-    如果您判斷您需要更多輸送量 (大於 10,000 RU/秒) 或更多儲存體 (大於 10 GB)，您可以建立資料分割的集合。 若要將單一資料分割集合移轉到資料分割的集合，請參閱[從單一資料分割移轉至資料分割集合](sql-api-partition-data.md#migrating-from-single-partition)。
-
-    > [!NOTE]
-    > 從 S1、S2 或 S3 變更為標準可能需要 2 分鐘。
-    > 
-    > 
-
-**若要使用 .NET SDK 移轉至單一資料分割集合**
-
-另一個變更集合的效能層級的選項是透過 Azure Cosmos DB SDK。 本節只涵蓋使用 [SQL .NET API](sql-api-sdk-dotnet.md) 來變更集合的效能層級，但程序類似於我們的其他 SDK。
+本節只涵蓋使用 [SQL .NET API](sql-api-sdk-dotnet.md) 來變更集合的效能層級，但程序類似於我們的其他 SDK。
 
 以下是變更集合輸送量為每秒 5,000 要求單位的程式碼片段：
     

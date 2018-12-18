@@ -1,11 +1,11 @@
 ---
-title: "使用 Azure API 管理、事件中樞和 Runscope 監視 API | Microsoft Docs"
-description: "藉由連接「Azure API 管理」、「Azure 事件中樞」和 Runscope 來進行 HTTP 記錄和監視，示範 log-to-eventhub 原則的範例應用程式"
+title: 使用 Azure API 管理、事件中樞和 Runscope 監視 API | Microsoft Docs
+description: 藉由連接「Azure API 管理」、「Azure 事件中樞」和 Runscope 來進行 HTTP 記錄和監視，示範 log-to-eventhub 原則的範例應用程式
 services: api-management
-documentationcenter: 
+documentationcenter: ''
 author: darrelmiller
 manager: erikre
-editor: 
+editor: ''
 ms.assetid: c528cf6f-5f16-4a06-beea-fa1207541a47
 ms.service: api-management
 ms.workload: mobile
@@ -14,11 +14,12 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 01/23/2018
 ms.author: apimpm
-ms.openlocfilehash: 8ef8d64ba90960281faffc350821d7934e35749a
-ms.sourcegitcommit: 059dae3d8a0e716adc95ad2296843a45745a415d
+ms.openlocfilehash: 4c58be8f501e72027e1692ceb73552a3f252f92a
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38603173"
 ---
 # <a name="monitor-your-apis-with-azure-api-management-event-hubs-and-runscope"></a>利用 Azure API 管理、事件中樞及 Runscope 監視您的 API
 [API 管理服務](api-management-key-concepts.md) 提供許多功能，以增強傳送至 HTTP API 之 HTTP 要求的處理。 不過，要求和回應的存在都是暫時的。 提出要求並透過 API 管理服務送到您的後端 API。 您的 API 會處理此要求，而回應會傳回給 API 取用者。 API 管理服務會保留一些有關 API 的重要統計資料，以顯示在 Azure 入口網站儀表板上，但除此之外，詳細資料會消失。
@@ -280,5 +281,5 @@ Azure API 管理服務提供了一個理想位置，可供擷取您的 API 的�
   * [事件中樞程式設計指南](../event-hubs/event-hubs-programming-guide.md)
 * 深入了解 API 管理和事件中樞的整合
   * [如何將事件記錄到 Azure API 管理中的 Azure 事件中樞](api-management-howto-log-event-hubs.md)
-  * [記錄器實體參考](https://msdn.microsoft.com/library/azure/mt592020.aspx)
+  * [記錄器實體參考](https://docs.microsoft.com/rest/api/apimanagement/apimanagementrest/azure-api-management-rest-api-logger-entity)
   * [log-to-eventhub 原則參考](https://msdn.microsoft.com/library/azure/dn894085.aspx#log-to-eventhub)

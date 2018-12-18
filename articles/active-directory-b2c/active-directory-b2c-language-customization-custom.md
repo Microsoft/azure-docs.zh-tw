@@ -1,21 +1,21 @@
 ---
-title: Azure Active Directory B2C：自訂原則中的語言自訂 | Microsoft Docs
-description: 了解如何在多語言的自訂原則中使用當地語系化內容
+title: Azure Active Directory B2C 中的自訂原則語言自訂 | Microsoft Docs
+description: 了解如何在多語言的自訂原則中使用當地語系化內容。
 services: active-directory-b2c
-documentationcenter: ''
 author: davidmu1
 manager: mtillman
-editor: ''
-ms.service: active-directory-b2c
+ms.service: active-directory
 ms.workload: identity
-ms.topic: article
+ms.topic: conceptual
 ms.date: 11/13/2017
 ms.author: davidmu
-ms.openlocfilehash: 45cfa152615da1447cc695e0dd201e5b8d046cf4
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: B2C
+ms.openlocfilehash: 6269ac65e5db20521346d5312bcbadd0905c36e2
+ms.sourcegitcommit: 86cb3855e1368e5a74f21fdd71684c78a1f907ac
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37440559"
 ---
 # <a name="language-customization-in-custom-policies"></a>自訂原則中的語言自訂
 

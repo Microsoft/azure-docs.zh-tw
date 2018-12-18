@@ -1,6 +1,6 @@
 ---
-title: "沒有要進行疑難排解的資料 - Application Insights for .NET"
-description: "在 Azure Application Insights 中看不到資料？ 試試這裡。"
+title: 沒有要進行疑難排解的資料 - Application Insights for .NET
+description: 在 Azure Application Insights 中看不到資料？ 試試這裡。
 services: application-insights
 documentationcenter: .net
 author: mrbullwinkle
@@ -10,14 +10,15 @@ ms.service: application-insights
 ms.workload: mobile
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
-ms.topic: article
-ms.date: 03/14/2017
+ms.topic: conceptual
+ms.date: 07/23/2018
 ms.author: mbullwin
-ms.openlocfilehash: 951a3217d795df6360cd3cfa2d47db08c11f978e
-ms.sourcegitcommit: 3f33787645e890ff3b73c4b3a28d90d5f814e46c
+ms.openlocfilehash: 1a46564c324edb1999a2e1b1d482817685df2893
+ms.sourcegitcommit: 30221e77dd199ffe0f2e86f6e762df5a32cdbe5f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/03/2018
+ms.lasthandoff: 07/23/2018
+ms.locfileid: "39205981"
 ---
 # <a name="troubleshooting-no-data---application-insights-for-net"></a>沒有要進行疑難排解的資料 - Application Insights for .NET
 ## <a name="some-of-my-telemetry-is-missing"></a>我遺失了部分遙測
@@ -40,7 +41,7 @@ ms.lasthandoff: 01/03/2018
 當我以滑鼠右鍵按一下 [方案總管] 中的現有專案時，沒有看到任何 Application Insights 選項。
 
 * 工具並非支援所有類型的 .NET 專案。 支援 Web 和 WCF 專案。 對於其他像是傳統型或服務應用程式的專案類型，您仍然可以 [手動將 Application Insights SDK 新增至您的專案](app-insights-windows-desktop.md)。
-* 請確定您有 [Visual Studio 2013 Update 3 或更新版本](http://go.microsoft.com/fwlink/?LinkId=397827)。 它會預先安裝開發人員分析工具，這些工具提供 Application Insights SDK。
+* 請確定您有 [Visual Studio 2013 Update 3 或更新版本](https://docs.microsoft.com/visualstudio/releasenotes/vs2013-update3-rtm-vs)。 它會預先安裝開發人員分析工具，這些工具提供 Application Insights SDK。
 * 選取 [工具]、[擴充功能和更新]，檢查 [開發人員分析工具] 是否已安裝並啟用。 如果是，按一下 [更新]  以查看是否有可用的更新。
 * 開啟 [新增專案] 對話方塊，並且選擇 [ASP.NET Web 應用程式]。 如果您在那裡看到 Application Insights 選項，則工具已安裝。 如果沒有，請嘗試解除安裝 Application Insights Tools，再重新安裝。
 
@@ -174,8 +175,11 @@ ApplicationInsights.config 中的檢測金鑰會控制遙測傳送的位置。 �
 
 您可以停用它，但是這不是建議的作法。 取樣經過設計，以便能正確傳輸相關的遙測，供診斷之用。 
 
+## <a name="client-ip-address-is-0000"></a>用戶端 IP 位址為 0.0.0.0 
+我們已在 2018 年 2 月[宣布](https://blogs.msdn.microsoft.com/applicationinsights-status/2018/02/01/all-octets-of-ip-address-will-be-set-to-zero/) \(英文\) 我們已移除記錄用戶端 IP 位址的功能。 這不會影響地理位置。
+
 ## <a name="wrong-geographical-data-in-user-telemetry"></a>使用者遙測中錯誤的地理資料
-城市、區域和國家/地區維度衍生自 IP 位址，而且不一定準確。
+城市、區域和國家/地區維度衍生自 IP 位址，而且不一定準確。 這些 IP 位址會先針對位置進行處理，然後變更為 0.0.0.0 以進行儲存。
 
 ## <a name="exception-method-not-found-on-running-in-azure-cloud-services"></a>在 Azure 雲端服務中執行時發生的「找不到方法」例外狀況
 您是否已針對 .NET 4.6 組建？ Azure 雲端服務角色不自動支援 4.6。 [在每個角色上安裝 4.6](../cloud-services/cloud-services-dotnet-install-dotnet.md) ，再執行您的 App。

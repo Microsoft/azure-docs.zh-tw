@@ -1,11 +1,11 @@
 ---
-title: "新增快取以改善 Azure API 管理的效能 | Microsoft Docs"
-description: "了解如何改善 API 管理服務呼叫的延遲、頻寬耗用量和 Web 服務負載。"
+title: 新增快取以改善 Azure API 管理的效能 | Microsoft Docs
+description: 了解如何改善 API 管理服務呼叫的延遲、頻寬耗用量和 Web 服務負載。
 services: api-management
-documentationcenter: 
+documentationcenter: ''
 author: vladvino
 manager: erikre
-editor: 
+editor: ''
 ms.assetid: 740f6a27-8323-474d-ade2-828ae0c75e7a
 ms.service: api-management
 ms.workload: mobile
@@ -19,6 +19,7 @@ ms.sourcegitcommit: b854df4fc66c73ba1dd141740a2b348de3e1e028
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 12/04/2017
+ms.locfileid: "26127772"
 ---
 # <a name="add-caching-to-improve-performance-in-azure-api-management"></a>新增快取以改善 Azure API 管理的效能
 可以設定 API 管理中的作業進行回應快取。 對於不常變更的資料，回應快取可大幅降低 API 延遲、頻寬耗用量和 Web 服務負載。

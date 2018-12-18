@@ -1,31 +1,26 @@
 ---
-title: "執行自訂 MapReduce 程式 - Azure HDInsight | Microsoft Docs"
-description: "何時及如何在 HDInsight 中執行自訂 MapReduce 程式。"
+title: 執行自訂 MapReduce 程式 - Azure HDInsight
+description: 何時及如何在 HDInsight 中執行自訂 MapReduce 程式。
 services: hdinsight
-documentationcenter: 
 author: ashishthaps
-manager: jhubbard
-editor: cgronlun
-ms.assetid: 
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
+ms.topic: conceptual
 ms.date: 12/04/2017
 ms.author: ashishth
-ms.openlocfilehash: 8e65c946d2cfcc830a1b9fa59b3f7886857f4f7d
-ms.sourcegitcommit: be9a42d7b321304d9a33786ed8e2b9b972a5977e
+ms.openlocfilehash: 80f58157e69ff5a6e707408d795889b5bcd677b7
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/19/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43045566"
 ---
 # <a name="run-custom-mapreduce-programs"></a>執行自訂 MapReduce 程式
 
 Hadoop 型巨量資料系統 (例如 HDInsight) 可讓您使用各種工具和技術來處理資料。 下表說明各項工具和技術的主要優點和注意事項。
 
-| 查詢機制 | 優點 | 注意事項 |
+| 查詢機制 | 優點 | 考量 |
 | --- | --- | --- |
 | **使用 HiveQL 的 Hive** | <ul><li>這是一個絕佳的解決方案，除了適用於大量不可變資料的批次處理與分析之外，也適用於進行資料摘要及依需求進行查詢。 它使用類似 SQL 的熟悉語法。</li><li>可用來產生可輕鬆進行分割和編製索引的永久資料表。</li><li>可在相同的資料上建立多個外部資料表和檢視表。</li><li>支援簡單的資料倉儲實作，可提供大規模向外延展和容錯功能來進行資料儲存和處理。</li></ul> | <ul><li>要求來源資料必須至少有某種可識別的結構。</li><li>不適用於即時查詢和資料列層級的更新。 最適合用於在大型資料集上進行的批次工作。</li><li>可能無法執行某些類型的複雜處理工作。</li></ul> |
 | **使用 Pig Latin 的 Pig** | <ul><li>這是一個絕佳的解決方案，除了適用於以集合方式操作資料、合併及篩選資料集、將函式套用至記錄或記錄群組之外，也適用於透過定義資料行、將值分組或將資料行轉換成資料列來重組資料結構。</li><li>可使用以工作流程為基礎的方法作為資料上的一系列作業。</li></ul> | <ul><li>SQL 使用者可能會發現與 HiveQL 相比，Pig Latin 的語法較為陌生而較難使用。</li><li>預設輸出通常是文字檔，因此較難與視覺化工具 (例如 Excel) 搭配使用。 通常您會在輸出上加上一層 Hive 資料表。</li></ul> |

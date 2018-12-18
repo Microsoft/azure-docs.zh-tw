@@ -23,12 +23,12 @@
 ### [停用 Stretch Database](/sql/sql-server/stretch-database/disable-stretch-database-and-bring-back-remote-data)
 
 # 參考
-## [程式碼範例](https://azure.microsoft.com/en-us/resources/samples/?service=sql-server-database)
+## [程式碼範例](https://azure.microsoft.com/resources/samples/?service=sql-server-database)
 
 # 資源
 ## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
 ## [部落格](https://blogs.technet.microsoft.com/dataplatforminsider/tag/stretch-database/)
-## [價格](https://azure.microsoft.com/pricing/details/sql-server-stretch-database/)
+## [定價](https://azure.microsoft.com/pricing/details/sql-server-stretch-database/)
 ## [定價計算機](https://azure.microsoft.com/pricing/calculator/)
 ## [服務更新](https://azure.microsoft.com/updates/?product=sql-server-stretch-database)
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=sql-server-stretch-database)

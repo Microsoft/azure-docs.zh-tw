@@ -1,19 +1,22 @@
 ---
 title: 監視並改善效能 - Azure SQL Database | Microsoft Docs
 description: Azure SQL Database 會提供可協助您找出可改善目前查詢效能區域的效能工具。
-services: sql-database
-author: stevestein
-manager: craigg
 ms.service: sql-database
-ms.custom: monitor & tune
-ms.topic: article
-ms.date: 07/19/2016
-ms.author: sstein
-ms.openlocfilehash: 1d327e33a84917688e70f234df311e7b7cf4b30b
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.subservice: performance
+ms.custom: ''
+ms.devlang: ''
+ms.topic: conceptual
+author: danimir
+ms.author: v-daljep
+ms.reviewer: carlrab
+manager: craigg
+ms.date: 04/01/2018
+ms.openlocfilehash: 35af3a926ab3c3a3046eab921e86b6610edc309c
+ms.sourcegitcommit: 51a1476c85ca518a6d8b4cc35aed7a76b33e130f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47162949"
 ---
 # <a name="monitor-and-improve-performance"></a>監視並改善效能
 Azure SQL Database 可找出資料庫中的潛在問題，並透過提供智慧型微調動作和建議來建議可以改善工作負載效能的動作。
@@ -54,7 +57,7 @@ Azure SQL Database 可找出資料庫中的潛在問題，並透過提供智慧�
 在[尋找和套用效能建議](sql-database-advisor-portal.md)文章中，了解如何找到和套用效能建議。
 
 ## <a name="automatic-tuning"></a>自動微調
-Azure SQL Databases 能透過套用[效能建議](sql-database-advisor.md)來自動微調資料庫效能。 若要深入了解，請參閱[自動調整文章](sql-database-automatic-tuning.md)。 若要啟用它，請參閱[如何啟用自動調整](sql-database-automatic-tuning-enable.md)。
+Azure SQL 資料庫能透過套用[效能建議](sql-database-advisor.md)來自動調整資料庫效能。 若要深入了解，請參閱[自動調整文章](sql-database-automatic-tuning.md)。 若要啟用它，請參閱[如何啟用自動調整](sql-database-automatic-tuning-enable.md)。
 
 ## <a name="query-performance-insight"></a>查詢效能深入解析
 [查詢效能深入解析](sql-database-query-performance.md) 提供了下列各項，讓您得以花費較少的時間來針對資料庫效能進行疑難排解：
@@ -65,7 +68,7 @@ Azure SQL Databases 能透過套用[效能建議](sql-database-advisor.md)來自
 
   ![效能儀表板](./media/sql-database-query-performance/performance.png)
 
-如需此頁面的詳細資訊，可在**[如何使用查詢效能深入解析](sql-database-query-performance.md)**一文中找到。
+如需此頁面的詳細資訊，可在**[如何使用查詢效能深入解析](sql-database-query-performance.md)** 一文中找到。
 
 ## <a name="additional-resources"></a>其他資源
 * [單一資料庫的 Azure SQL Database 效能指引](sql-database-performance-guidance.md)

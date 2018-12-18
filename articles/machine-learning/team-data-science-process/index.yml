@@ -1,23 +1,23 @@
 ### YamlMime:YamlDocument
+ms.openlocfilehash: 608ba8a5bb6fe4376a569eb3ee5d630b1517061a
+ms.sourcegitcommit: d1aef670b97061507dc1343450211a2042b01641
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47391933"
 documentType: LandingData
-title: Team Data Science Process 文件
 metadata:
-  title: Team Data Science Process 文件
-  description: 了解如何使用 Team Data Science Process。
-  services: machine-learning
-  author: bradsev
-  manager: cgronlun
+  author: cjgronlund
+  description: 了解如何使用 Team Data Science Process 這種敏捷式反覆資料科學方法，有效產出預測分析解決方案和智慧型應用程式。 TDSP 有助於改善團隊共同作業和學習。 其中包含 Microsoft 及業界其他公司的最佳做法和結構，有助於順利實作資料科學計劃。 目標是協助公司完全了解其分析程式的優點。
+  ms.author: cgronlun
+  ms.component: team-data-science-process
+  ms.date: 01/18/2018
+  ms.devlang: na
   ms.service: machine-learning
   ms.tgt_pltfrm: na
-  ms.devlang: na
   ms.topic: landing-page
-  ms.date: 01/18/2018
-  ms.author: bradsev
-  ms.openlocfilehash: a12326f4e3822bc32b863dd61de3b5f2a440dd23
-  ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
-  ms.translationtype: HT
-  ms.contentlocale: zh-TW
-  ms.lasthandoff: 03/28/2018
+  services: machine-learning
+  title: Team Data Science Process 文件
 abstract:
   description: Team Data Science Process 是一種敏捷式反覆資料科學方法，可有效產出預測分析解決方案和智慧型應用程式。 TDSP 有助於改善團隊共同作業和學習。 其中包含 Microsoft 及業界其他公司的最佳做法和結構，有助於順利實作資料科學計劃。 目標是協助公司完全了解其分析程式的優點。
 sections:
@@ -28,8 +28,8 @@ sections:
   - type: list
     style: unordered
     items:
-    - html: <a href:"overview">概觀</a>
-    - html: <a href:"lifecycle">生命週期</a>
+    - html: <a href="overview">概觀</a>
+    - html: <a href="lifecycle">生命週期</a>
 - title: 逐步教學課程
   items:
   - type: paragraph

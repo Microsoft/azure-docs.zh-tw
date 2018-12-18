@@ -1,642 +1,767 @@
+items:
 - name: Service Fabric 文件
   href: index.yml
 - name: 概觀
   items:
-    - name: 什麼是 Service Fabric？
-      href: service-fabric-overview.md
+  - name: 什麼是 Service Fabric？
+    href: service-fabric-overview.md
 - name: 快速入門
-  expanded: true
   items:
-    - name: 建立 .NET 應用程式
-      href: service-fabric-quickstart-dotnet.md
-    - name: 部署 Linux 容器應用程式
-      href: service-fabric-quickstart-containers-linux.md
-    - name: 部署 Windows 容器應用程式
-      href: service-fabric-quickstart-containers.md
-    - name: Java 快速入門
-      items:
-        - name: 部署 Spring Boot 應用程式
-          href: service-fabric-quickstart-java-spring-boot.md
-        - name: 部署 Reliable Services 應用程式
-          href: service-fabric-quickstart-java-reliable-services.md
+  - name: 建立 .NET 應用程式
+    href: service-fabric-quickstart-dotnet.md
+  - name: 部署 Linux 容器應用程式
+    href: service-fabric-quickstart-containers-linux.md
+  - name: 部署 Windows 容器應用程式
+    href: service-fabric-quickstart-containers.md
+  - name: Java 快速入門
+    items:
+    - name: 部署 Spring Boot 應用程式
+      href: service-fabric-quickstart-java-spring-boot.md
+    - name: 部署 Reliable Services 應用程式
+      href: service-fabric-quickstart-java-reliable-services.md
+  expanded: true
 - name: 教學課程
   items:
-    - name: 部署 .NET 應用程式
+  - name: 部署 .NET 應用程式
+    items:
+    - name: 1- 建置 .NET 應用程式
+      href: service-fabric-tutorial-create-dotnet-app.md
+    - name: 2- 部署應用程式
+      href: service-fabric-tutorial-deploy-app-to-party-cluster.md
+    - name: 3 - 啟用 HTTPS
+      href: service-fabric-tutorial-dotnet-app-enable-https-endpoint.md
+    - name: 4 - 設定 CI/CD
+      href: service-fabric-tutorial-deploy-app-with-cicd-vsts.md
+    - name: 5 - 監視與診斷
+      href: service-fabric-tutorial-monitoring-aspnet.md
+  - name: 部署 Java 應用程式
+    items:
+    - name: 1 - 建置 Java 應用程式
+      href: service-fabric-tutorial-create-java-app.md
+    - name: 2 - 偵錯應用程式
+      href: service-fabric-tutorial-debug-log-local-cluster.md
+    - name: 3 - 部署應用程式
+      href: service-fabric-tutorial-java-deploy-azure.md
+    - name: 4 - 監視與診斷
+      href: service-fabric-tutorial-java-elk.md
+    - name: 5 - 設定 CI/CD
+      href: service-fabric-tutorial-java-jenkins.md
+  - name: 將現有的 .NET 應用程式容器化
+    items:
+    - name: 1- 使用 Docker Compose 部署 .NET 應用程式
+      href: service-fabric-host-app-in-a-container.md
+    - name: 2 - 使用 CI/CD 部署容器應用程式
+      href: service-fabric-tutorial-deploy-container-app-with-cicd-vsts.md
+    - name: 3 - 監視您的容器
+      href: service-fabric-tutorial-monitoring-wincontainers.md
+  - name: 建立 Linux 容器應用程式
+    items:
+    - name: 1 - 建立容器映像
+      href: service-fabric-tutorial-create-container-images.md
+    - name: 2 - 封裝和部署容器
+      href: service-fabric-tutorial-package-containers.md
+    - name: 3 - 容錯移轉和調整
+      href: service-fabric-tutorial-containers-failover.md
+  - name: 建立和管理叢集
+    items:
+    - name: 1 - 在 Azure 上建立叢集
       items:
-        - name: 1- 建置 .NET 應用程式
-          href: service-fabric-tutorial-create-dotnet-app.md
-        - name: 2- 部署應用程式
-          href: service-fabric-tutorial-deploy-app-to-party-cluster.md
-        - name: 3- 設定 CI/CD
-          href: service-fabric-tutorial-deploy-app-with-cicd-vsts.md
-        - name: 4- 監視與診斷
-          href: service-fabric-tutorial-monitoring-aspnet.md
-    - name: 部署 Java 應用程式
-      items:
-        - name: 1 - 建置 Java 應用程式
-          href: service-fabric-tutorial-create-java-app.md
-        - name: 2 - 偵錯應用程式
-          href: service-fabric-tutorial-debug-log-local-cluster.md
-        - name: 3 - 部署應用程式
-          href: service-fabric-tutorial-java-deploy-azure.md
-        - name: 4 - 監視與診斷
-          href: service-fabric-tutorial-java-elk.md
-        - name: 5 - 設定 CI/CD
-          href: service-fabric-tutorial-java-jenkins.md
-    - name: 將現有的 .NET 應用程式容器化
-      items:
-        - name: 1- 使用 Docker Compose 部署 .NET 應用程式
-          href: service-fabric-host-app-in-a-container.md
-        - name: 2 - 監視您的容器
-          href: service-fabric-tutorial-monitoring-wincontainers.md
-    - name: 建立 Linux 容器應用程式
-      items:
-        - name: 1 - 建立容器映像
-          href: service-fabric-tutorial-create-container-images.md
-        - name: 2 - 封裝和部署容器
-          href: service-fabric-tutorial-package-containers.md
-        - name: 3 - 容錯移轉和調整
-          href: service-fabric-tutorial-containers-failover.md
-    - name: 建立和管理叢集
-      items:
-        - name: 1 - 在 Azure 上建立叢集
-          items:
-            - name: 1a- 建立 Windows 叢集
-              href: service-fabric-tutorial-create-vnet-and-windows-cluster.md
-            - name: 1b- 建立 Linux 叢集
-              href: service-fabric-tutorial-create-vnet-and-linux-cluster.md
-        - name: 2- 調整叢集
-          href: service-fabric-tutorial-scale-cluster.md
-        - name: 3- 升級叢集執行階段
-          href: service-fabric-tutorial-upgrade-cluster.md
-        - name: 4- 使用 Service Fabric 部署 API 管理
-          href: service-fabric-tutorial-deploy-api-management.md
+      - name: 1a- 建立 Windows 叢集
+        href: service-fabric-tutorial-create-vnet-and-windows-cluster.md
+      - name: 1b- 建立 Linux 叢集
+        href: service-fabric-tutorial-create-vnet-and-linux-cluster.md
+    - name: 2- 調整叢集
+      href: service-fabric-tutorial-scale-cluster.md
+    - name: 3- 升級叢集執行階段
+      href: service-fabric-tutorial-upgrade-cluster.md
+    - name: 4- 刪除叢集
+      href: service-fabric-tutorial-delete-cluster.md
+  - name: 在 AWS 上建立獨立叢集
+    items:
+    - name: 1- 在 AWS 上建立基礎結構
+      href: service-fabric-tutorial-standalone-create-infrastructure.md
+    - name: 2- 設定 Service Fabric
+      href: service-fabric-tutorial-standalone-create-service-fabric-cluster.md
+    - name: 3- 將應用程式部署到叢集
+      href: service-fabric-tutorial-standalone-install-an-application.md
+    - name: 4- 清除叢集並刪除基礎結構
+      href: service-fabric-tutorial-standalone-clean-up.md
 - name: 範例
   items:
-    - name: 程式碼範例
-      href: 'https://azure.microsoft.com/resources/samples/?service=service-fabric'
-    - name: Azure PowerShell
-      href: service-fabric-powershell-samples.md
-    - name: Service Fabric CLI
-      href: samples-cli.md
+  - name: 程式碼範例
+    href: https://azure.microsoft.com/resources/samples/?service=service-fabric
+  - name: Azure PowerShell
+    href: service-fabric-powershell-samples.md
+  - name: Service Fabric CLI
+    href: samples-cli.md
 - name: 概念
   items:
-    - name: 了解微服務
-      href: service-fabric-overview-microservices.md
-    - name: 概觀
-      href: service-fabric-content-roadmap.md
-    - name: 應用程式案例
-      href: service-fabric-application-scenarios.md
-    - name: 模式和案例
-      href: service-fabric-patterns-and-scenarios.md
-    - name: 架構
-      href: service-fabric-architecture.md
-    - name: 術語
-      href: service-fabric-technical-overview.md
-    - name: 建置應用程式
+  - name: 了解微服務
+    href: service-fabric-overview-microservices.md
+  - name: 概觀
+    href: service-fabric-content-roadmap.md
+  - name: 應用程式案例
+    href: service-fabric-application-scenarios.md
+  - name: 模式和案例
+    href: service-fabric-patterns-and-scenarios.md
+  - name: 架構
+    href: service-fabric-architecture.md
+  - name: 術語
+    href: service-fabric-technical-overview.md
+  - name: 建置應用程式
+    items:
+    - name: 建置應用程式概觀
       href: service-fabric-choose-framework.md
+    - name: 容器
       items:
-        - name: 容器
-          href: service-fabric-containers-overview.md
-          items:
-            - name: Docker Compose (預覽)
-              href: service-fabric-docker-compose.md
-            - name: 資源管理
-              href: service-fabric-resource-governance.md
-        - name: Reliable Services
-          href: service-fabric-reliable-services-introduction.md
-          items:
-            - name: 服務分割
-              href: service-fabric-concepts-partitioning.md
-            - name: 'Reliable Services 生命週期 - C#'
-              href: service-fabric-reliable-services-lifecycle.md
-            - name: Reliable Services 生命週期 - Java
-              href: service-fabric-reliable-services-lifecycle-java.md
-            - name: 複本和執行個體生命週期
-              href: service-fabric-concepts-replica-lifecycle.md
-            - name: Reliable Collections
-              href: service-fabric-reliable-services-reliable-collections.md
-            - name: Reliable Collections 指導方針與建議
-              href: service-fabric-reliable-services-reliable-collections-guidelines.md
-            - name: 使用可靠的集合
-              href: service-fabric-work-with-reliable-collections.md
-            - name: 交易和鎖定
-              href: service-fabric-reliable-services-reliable-collections-transactions-locks.md
-            - name: 可靠的並行佇列
-              href: service-fabric-reliable-services-reliable-concurrent-queue.md
-            - name: Reliable Collection 序列化
-              href: service-fabric-reliable-services-reliable-collections-serialization.md
-        - name: Reliable Actors
-          href: service-fabric-reliable-actors-introduction.md
-          items:
-            - name: 架構
-              href: service-fabric-reliable-actors-platform.md
-            - name: 實作服務層級功能
-              href: service-fabric-reliable-actors-using.md
-            - name: 生命週期與記憶體回收
-              href: service-fabric-reliable-actors-lifecycle.md
-            - name: 狀態管理
-              href: service-fabric-reliable-actors-state-management.md
-            - name: Polymorphism
-              href: service-fabric-reliable-actors-polymorphism.md
-            - name: 重新進入
-              href: service-fabric-reliable-actors-reentrancy.md
-            - name: 類型序列化
-              href: service-fabric-reliable-actors-notes-on-actor-type-serialization.md
-        - name: 客體可執行檔
-          href: service-fabric-guest-executables-introduction.md
-    - name: 應用程式與服務
+      - name: 容器概觀
+        href: service-fabric-containers-overview.md
+      - name: Docker Compose (預覽)
+        href: service-fabric-docker-compose.md
+      - name: 資源管理
+        href: service-fabric-resource-governance.md
+    - name: Reliable Services
       items:
-        - name: 應用程式模型
-          href: service-fabric-application-model.md
-        - name: 應用程式及服務資訊清單
-          href: service-fabric-application-and-service-manifests.md
-        - name: 裝載模型
-          href: service-fabric-hosting-model.md
-        - name: 應用程式安全性
-          href: service-fabric-application-and-service-security.md
-        - name: 服務狀態
-          href: service-fabric-concepts-state.md
-        - name: 應用程式的延展性
-          href: service-fabric-concepts-scalability.md
-        - name: 服務的可用性
-          href: service-fabric-availability-services.md
-        - name: 服務通訊
-          href: service-fabric-connect-and-communicate-with-services.md
-          items:
-            - name: DNS 服務
-              href: service-fabric-dnsservice.md
-            - name: 反向 proxy
-              href: service-fabric-reverseproxy.md
-            - name: 設定安全通訊的反向 proxy
-              href: service-fabric-reverseproxy-configure-secure-communication.md
-            - name: 反向 Proxy 診斷
-              href: service-fabric-reverse-proxy-diagnostics.md
-            - name: ASP.NET Core
-              href: service-fabric-reliable-services-communication-aspnetcore.md
-        - name: 應用程式生命週期
-          href: service-fabric-application-lifecycle.md
-          items:
-            - name: 應用程式升級
-              href: service-fabric-application-upgrade.md
-              items:
-                - name: 組態
-                  href: service-fabric-visualstudio-configure-upgrade.md
-                - name: 應用程式升級參數
-                  href: service-fabric-application-upgrade-parameters.md
-                - name: 應用程式升級的資料序列化
-                  href: service-fabric-application-upgrade-data-serialization.md
-                - name: 應用程式升級進階主題
-                  href: service-fabric-application-upgrade-advanced.md
-            - name: 管理多個環境的應用程式
-              href: service-fabric-manage-multiple-environment-app-configuration.md
-            - name: 以錯誤分析測試應用程式
-              href: service-fabric-testability-overview.md
-            - name: ImageStoreConnectionString 設定
-              href: service-fabric-image-store-connection-string.md
-        - name: 服務資源
-          href: service-fabric-service-manifest-resources.md
-    - name: 叢集
+      - name: Reliable Services 概觀
+        href: service-fabric-reliable-services-introduction.md
+      - name: 服務分割
+        href: service-fabric-concepts-partitioning.md
+      - name: Reliable Services 生命週期 - C#
+        href: service-fabric-reliable-services-lifecycle.md
+      - name: Reliable Services 生命週期 - Java
+        href: service-fabric-reliable-services-lifecycle-java.md
+      - name: 複本和執行個體生命週期
+        href: service-fabric-concepts-replica-lifecycle.md
+      - name: Reliable Collections
+        href: service-fabric-reliable-services-reliable-collections.md
+      - name: Reliable Collections 指導方針與建議
+        href: service-fabric-reliable-services-reliable-collections-guidelines.md
+      - name: 使用可靠的集合
+        href: service-fabric-work-with-reliable-collections.md
+      - name: 交易和鎖定
+        href: service-fabric-reliable-services-reliable-collections-transactions-locks.md
+      - name: 可靠的並行佇列
+        href: service-fabric-reliable-services-reliable-concurrent-queue.md
+      - name: Reliable Collection 序列化
+        href: service-fabric-reliable-services-reliable-collections-serialization.md
+    - name: Reliable Actors
+      items:
+      - name: Reliable Actors 概觀
+        href: service-fabric-reliable-actors-introduction.md
+      - name: 架構
+        href: service-fabric-reliable-actors-platform.md
+      - name: 實作服務層級功能
+        href: service-fabric-reliable-actors-using.md
+      - name: 生命週期與記憶體回收
+        href: service-fabric-reliable-actors-lifecycle.md
+      - name: 狀態管理
+        href: service-fabric-reliable-actors-state-management.md
+      - name: Polymorphism
+        href: service-fabric-reliable-actors-polymorphism.md
+      - name: 重新進入
+        href: service-fabric-reliable-actors-reentrancy.md
+      - name: 類型序列化
+        href: service-fabric-reliable-actors-notes-on-actor-type-serialization.md
+    - name: 客體可執行檔
+      href: service-fabric-guest-executables-introduction.md
+  - name: 應用程式與服務
+    items:
+    - name: 應用程式模型
+      href: service-fabric-application-model.md
+    - name: 應用程式及服務資訊清單
+      href: service-fabric-application-and-service-manifests.md
+    - name: 應用程式和服務資訊清單範例
+      href: service-fabric-manifest-examples.md
+      items:
+      - name: Reliable Services 應用程式和服務資訊清單範例
+        href: service-fabric-manifest-example-reliable-services-app.md
+      - name: 多容器應用程式和服務資訊清單範例
+        href: service-fabric-manifest-example-container-app.md
+    - name: 裝載模型
+      href: service-fabric-hosting-model.md
+    - name: 應用程式安全性
+      href: service-fabric-application-and-service-security.md
+    - name: 服務狀態
+      href: service-fabric-concepts-state.md
+    - name: 應用程式的延展性
+      href: service-fabric-concepts-scalability.md
+    - name: 服務的可用性
+      href: service-fabric-availability-services.md
+    - name: 服務通訊
+      items:
+      - name: 服務通訊概觀
+        href: service-fabric-connect-and-communicate-with-services.md
+      - name: DNS 服務
+        href: service-fabric-dnsservice.md
+      - name: 反向 proxy
+        href: service-fabric-reverseproxy.md
+      - name: ASP.NET Core
+        href: service-fabric-reliable-services-communication-aspnetcore.md
+    - name: 應用程式生命週期
+      items:
+      - name: 應用程式生命週期概觀
+        href: service-fabric-application-lifecycle.md
+      - name: 應用程式升級
+        items:
+        - name: 應用程式升級概觀
+          href: service-fabric-application-upgrade.md
+        - name: 組態
+          href: service-fabric-visualstudio-configure-upgrade.md
+        - name: 應用程式升級參數
+          href: service-fabric-application-upgrade-parameters.md
+        - name: 應用程式升級的資料序列化
+          href: service-fabric-application-upgrade-data-serialization.md
+        - name: 應用程式升級進階主題
+          href: service-fabric-application-upgrade-advanced.md
+      - name: 管理多個環境的應用程式
+        href: service-fabric-manage-multiple-environment-app-configuration.md
+      - name: 測試應用程式
+        items:
+        - name: 單元測試具狀態服務
+          href: service-fabric-concepts-unit-testing.md
+        - name: 以錯誤分析測試應用程式
+          href: service-fabric-testability-overview.md
+      - name: ImageStoreConnectionString 設定
+        href: service-fabric-image-store-connection-string.md
+    - name: 服務資源
+      href: service-fabric-service-manifest-resources.md
+    - name: 定期備份和還原
+      items:
+      - name: 了解定期備份組態
+        href: service-fabric-backuprestoreservice-configure-periodic-backup.md
+  - name: 叢集
+    items:
+    - name: 叢集概觀
       href: service-fabric-deploy-anywhere.md
+    - name: 叢集安全性
+      href: service-fabric-cluster-security.md
+    - name: 調整大小
+      href: service-fabric-cluster-scaling.md
+    - name: Linux 和 Windows 間的功能差異
+      href: service-fabric-linux-windows-differences.md
+    - name: Azure 上的叢集
       items:
-        - name: 叢集安全性
-          href: service-fabric-cluster-security.md
-        - name: Linux 和 Windows 間的功能差異
-          href: service-fabric-linux-windows-differences.md
-        - name: Azure 上的叢集
-          items:
-            - name: 節點類型與 VM 擴展集
-              href: service-fabric-cluster-nodetypes.md
-            - name: 叢集網路模式
-              href: service-fabric-patterns-networking.md
-        - name: 叢集資源管理員
-          href: service-fabric-cluster-resource-manager-introduction.md
-          items:
-            - name: 架構
-              href: service-fabric-cluster-resource-manager-architecture.md
-            - name: 描述叢集
-              href: service-fabric-cluster-resource-manager-cluster-description.md
-            - name: 應用程式群組概觀
-              href: service-fabric-cluster-resource-manager-application-groups.md
-            - name: 設定叢集資源管理員的設定
-              href: service-fabric-cluster-resource-manager-configure-services.md
-            - name: 資源耗用計量
-              href: service-fabric-cluster-resource-manager-metrics.md
-            - name: 使用服務親和性
-              href: service-fabric-cluster-resource-manager-advanced-placement-rules-affinity.md
-            - name: 服務放置原則
-              href: service-fabric-cluster-resource-manager-advanced-placement-rules-placement-policies.md
-            - name: 管理叢集
-              href: service-fabric-cluster-resource-manager-management-integration.md
-            - name: 叢集磁碟重組
-              href: service-fabric-cluster-resource-manager-defragmentation-metrics.md
-            - name: 平衡叢集
-              href: service-fabric-cluster-resource-manager-balancing.md
-            - name: 節流
-              href: service-fabric-cluster-resource-manager-advanced-throttling.md
-            - name: 服務動作
-              href: service-fabric-cluster-resource-manager-movement-cost.md
-    - name: 監視和診斷
+      - name: 節點類型與 VM 擴展集
+        href: service-fabric-cluster-nodetypes.md
+      - name: 叢集網路模式
+        href: service-fabric-patterns-networking.md
+    - name: 叢集資源管理員
       items:
-        - name: 監視概觀
-          href: service-fabric-diagnostics-overview.md
-        - name: 叢集事件
-          href: service-fabric-diagnostics-event-generation-infra.md
-          items:
-            - name: 作業通道
-              href: service-fabric-diagnostics-event-generation-operational.md
-            - name: Reliable Services 事件
-              href: service-fabric-reliable-services-diagnostics.md
-            - name: Reliable Actors 事件
-              href: service-fabric-reliable-actors-diagnostics.md
-            - name: 監視服務遠端處理
-              href: service-fabric-reliable-serviceremoting-diagnostics.md
-        - name: 應用程式記錄檔
-          href: service-fabric-diagnostics-event-generation-app.md
-        - name: 效能度量
-          href: service-fabric-diagnostics-event-generation-perf.md
-        - name: 健康情況模型概觀
-          href: service-fabric-health-introduction.md
-        - name: 報告健康情況事件
-          href: service-fabric-report-health.md
-        - name: 透過 OMS 進行監視
-          href: service-fabric-diagnostics-event-analysis-oms.md
-    - name: 與 API 管理整合
-      href: service-fabric-api-management-overview.md
+      - name: 叢集資源管理員概觀
+        href: service-fabric-cluster-resource-manager-introduction.md
+      - name: 架構
+        href: service-fabric-cluster-resource-manager-architecture.md
+      - name: 描述叢集
+        href: service-fabric-cluster-resource-manager-cluster-description.md
+      - name: 應用程式群組概觀
+        href: service-fabric-cluster-resource-manager-application-groups.md
+      - name: 設定叢集資源管理員的設定
+        href: service-fabric-cluster-resource-manager-configure-services.md
+      - name: 資源耗用計量
+        href: service-fabric-cluster-resource-manager-metrics.md
+      - name: 使用服務親和性
+        href: service-fabric-cluster-resource-manager-advanced-placement-rules-affinity.md
+      - name: 服務放置原則
+        href: service-fabric-cluster-resource-manager-advanced-placement-rules-placement-policies.md
+      - name: 管理叢集
+        href: service-fabric-cluster-resource-manager-management-integration.md
+      - name: 叢集磁碟重組
+        href: service-fabric-cluster-resource-manager-defragmentation-metrics.md
+      - name: 平衡叢集
+        href: service-fabric-cluster-resource-manager-balancing.md
+      - name: 節流
+        href: service-fabric-cluster-resource-manager-advanced-throttling.md
+      - name: 服務動作
+        href: service-fabric-cluster-resource-manager-movement-cost.md
+      - name: 自動調整服務
+        href: service-fabric-cluster-resource-manager-autoscaling.md
+  - name: 監視和診斷
+    items:
+    - name: 監視概觀
+      href: service-fabric-diagnostics-overview.md
+    - name: 叢集監視
+      href: service-fabric-diagnostics-event-generation-infra.md
+      items:
+      - name: Service Fabric 事件
+        href: service-fabric-diagnostics-events.md
+      - name: EventStore 概觀
+        href: service-fabric-diagnostics-eventstore.md
+      - name: Reliable Services 事件
+        href: service-fabric-reliable-services-diagnostics.md
+      - name: Reliable Actors 事件
+        href: service-fabric-reliable-actors-diagnostics.md
+      - name: 監視服務遠端處理
+        href: service-fabric-reliable-serviceremoting-diagnostics.md
+    - name: 應用程式記錄檔
+      href: service-fabric-diagnostics-event-generation-app.md
+    - name: 效能度量
+      href: service-fabric-diagnostics-event-generation-perf.md
+    - name: 健康情況模型概觀
+      href: service-fabric-health-introduction.md
+    - name: 報告健康情況事件
+      href: service-fabric-report-health.md
+  - name: 與 API 管理整合
+    href: service-fabric-api-management-overview.md
 - name: 使用說明指南
   items:
-    - name: 設定開發環境
+  - name: 設定開發環境
+    items:
+    - name: Windows
+      href: service-fabric-get-started.md
+    - name: Linux
+      href: service-fabric-get-started-linux.md
+    - name: Mac OS
+      href: service-fabric-get-started-mac.md
+    - name: 設定 Service Fabric CLI
+      href: service-fabric-cli.md
+  - name: 規劃和準備
+    items:
+    - name: 規劃叢集容量
+      href: service-fabric-cluster-capacity.md
+    - name: 規劃獨立叢集部署
+      href: service-fabric-cluster-standalone-deployment-preparation.md
+    - name: 準備進行災害復原
+      href: service-fabric-disaster-recovery.md
+    - name: 規劃應用程式容量
+      href: service-fabric-capacity-planning.md
+  - name: 建立您的第一個...
+    items:
+    - name: Visual Studio 中的 C# 應用程式
+      href: service-fabric-create-your-first-application-in-visual-studio.md
+    - name: Windows 容器應用程式
+      href: service-fabric-get-started-containers.md
+    - name: Linux 容器應用程式
+      href: service-fabric-get-started-containers-linux.md
+    - name: Windows 中的 C# Reliable Services 應用程式
+      href: service-fabric-reliable-services-quick-start.md
+    - name: Linux 中的 Java Reliable Services 應用程式
+      href: service-fabric-reliable-services-quick-start-java.md
+    - name: Linux 中的 C# Reliable Services 應用程式
+      href: service-fabric-create-your-first-linux-application-with-csharp.md
+    - name: Windows 中的 C# Reliable Actors 應用程式
+      href: service-fabric-reliable-actors-get-started.md
+    - name: Linux 中的 Java Reliable Actors 應用程式
+      href: service-fabric-create-your-first-linux-application-with-java.md
+    - name: Windows 中的來賓可執行檔應用程式
+      href: quickstart-guest-app.md
+  - name: 建置應用程式
+    items:
+    - name: 建置可供來賓執行的服務
       items:
-        - name: Windows
-          href: service-fabric-get-started.md
-        - name: Linux
-          href: service-fabric-get-started-linux.md
-        - name: Mac OS
-          href: service-fabric-get-started-mac.md
-        - name: 設定 Service Fabric CLI
-          href: service-fabric-cli.md
-    - name: 規劃和準備
+      - name: 部署來賓可執行檔
+        href: service-fabric-deploy-existing-app.md
+      - name: 部署多個來賓可執行檔
+        href: service-fabric-deploy-multiple-apps.md
+    - name: 建置容器服務
       items:
-        - name: 規劃叢集容量
-          href: service-fabric-cluster-capacity.md
-        - name: 規劃獨立叢集部署
-          href: service-fabric-cluster-standalone-deployment-preparation.md
-        - name: 準備進行災害復原
-          href: service-fabric-disaster-recovery.md
-        - name: 規劃應用程式容量
-          href: service-fabric-capacity-planning.md
-    - name: 建立您的第一個...
+      - name: Docker Compose (預覽)
+        href: service-fabric-docker-compose.md
+      - name: 容器和服務的資源管理
+        href: service-fabric-resource-governance.md
+      - name: 磁碟區與記錄驅動程式
+        href: service-fabric-containers-volume-logging-drivers.md
+      - name: 檢視容器記錄
+        href: service-fabric-containers-view-logs.md
+      - name: 容器內的服務
+        href: service-fabric-services-inside-containers.md
+      - name: 容器網路服務模式
+        href: service-fabric-networking-modes.md
+    - name: 建置 Reliable Services 服務
       items:
-        - name: 'Visual Studio 中的 C# 應用程式'
-          href: service-fabric-create-your-first-application-in-visual-studio.md
-        - name: Windows 容器應用程式
-          href: service-fabric-get-started-containers.md
-        - name: Linux 容器應用程式
-          href: service-fabric-get-started-containers-linux.md
-        - name: 'Windows 中的 C# Reliable Services 應用程式'
-          href: service-fabric-reliable-services-quick-start.md
-        - name: Linux 中的 Java Reliable Services 應用程式
-          href: service-fabric-reliable-services-quick-start-java.md
-        - name: 'Linux 中的 C# Reliable Services 應用程式'
-          href: service-fabric-create-your-first-linux-application-with-csharp.md
-        - name: 'Windows 中的 C# Reliable Actors 應用程式'
-          href: service-fabric-reliable-actors-get-started.md
-        - name: Linux 中的 Java Reliable Actors 應用程式
-          href: service-fabric-create-your-first-linux-application-with-java.md
-        - name: Windows 中的來賓可執行檔應用程式
-          href: quickstart-guest-app.md
-        - name: 獨立叢集
-          href: service-fabric-get-started-standalone-cluster.md
-    - name: 建置應用程式
+      - name: Reliable Collections
+        items:
+        - name: 使用可靠的集合
+          href: service-fabric-work-with-reliable-collections.md
+        - name: 可靠的並行佇列
+          href: service-fabric-reliable-services-reliable-concurrent-queue.md
+        - name: Reliable Collection 序列化
+          href: service-fabric-reliable-services-reliable-collections-serialization.md
+      - name: 與服務通訊
+        items:
+        - name: 與 Reliable Services 通訊
+          href: service-fabric-reliable-services-communication.md
+        - name: 服務遠端處理 - C#
+          href: service-fabric-reliable-services-communication-remoting.md
+        - name: 服務遠端處理 - Java
+          href: service-fabric-reliable-services-communication-remoting-java.md
+        - name: WCF
+          href: service-fabric-reliable-services-communication-wcf.md
+        - name: 安全通訊 - C#
+          href: service-fabric-reliable-services-secure-communication.md
+        - name: 安全通訊 - Java
+          href: service-fabric-reliable-services-secure-communication-java.md
+        - name: 保護 WCF 通訊
+          href: service-fabric-reliable-services-secure-communication-wcf.md
+      - name: 設定
+        href: service-fabric-reliable-services-configuration.md
+      - name: 傳送通知
+        href: service-fabric-reliable-services-notifications.md
+      - name: 備份與還原
+        href: service-fabric-reliable-services-backup-restore.md
+    - name: 建置 Reliable Actors 服務
       items:
-        - name: 建置可供來賓執行的服務
-          items:
-            - name: 部署來賓可執行檔
-              href: service-fabric-deploy-existing-app.md
-            - name: 部署多個來賓可執行檔
-              href: service-fabric-deploy-multiple-apps.md
-        - name: 建置容器服務
-          items:
-            - name: Docker Compose (預覽)
-              href: service-fabric-docker-compose.md
-            - name: 容器和服務的資源管理
-              href: service-fabric-resource-governance.md
-            - name: 磁碟區與記錄驅動程式
-              href: service-fabric-containers-volume-logging-drivers.md
-            - name: 容器內的服務
-              href: service-fabric-services-inside-containers.md
-            - name: 容器網路服務模式
-              href: service-fabric-networking-modes.md
-        - name: 建置 Reliable Services 服務
-          items:
-            - name: Reliable Collections
-              items:
-                - name: 使用可靠的集合
-                  href: service-fabric-work-with-reliable-collections.md
-                - name: 可靠的並行佇列
-                  href: service-fabric-reliable-services-reliable-concurrent-queue.md
-                - name: Reliable Collection 序列化
-                  href: service-fabric-reliable-services-reliable-collections-serialization.md
-            - name: 與服務通訊
-              items:
-                - name: 與 Reliable Services 通訊
-                  href: service-fabric-reliable-services-communication.md
-                - name: '服務遠端處理 - C#'
-                  href: service-fabric-reliable-services-communication-remoting.md
-                - name: 服務遠端處理 - Java
-                  href: service-fabric-reliable-services-communication-remoting-java.md
-                - name: WCF
-                  href: service-fabric-reliable-services-communication-wcf.md
-                - name: '安全通訊 - C#'
-                  href: service-fabric-reliable-services-secure-communication.md
-                - name: 安全通訊 - Java
-                  href: service-fabric-reliable-services-secure-communication-java.md
-                - name: 保護 WCF 通訊
-                  href: service-fabric-reliable-services-secure-communication-wcf.md
-            - name: 設定
-              href: service-fabric-reliable-services-configuration.md
-            - name: 傳送通知
-              href: service-fabric-reliable-services-notifications.md
-            - name: 備份與還原
-              href: service-fabric-reliable-services-backup-restore.md
-        - name: 建置 Reliable Actors 服務
-          items:
-            - name: 存取、儲存及移除動作項目狀態
-              href: service-fabric-reliable-actors-access-save-remove-state.md
-            - name: 列舉動作項目
-              href: service-fabric-reliable-actors-enumerate.md
-            - name: 刪除動作項目與其狀態
-              href: service-fabric-reliable-actors-delete-actors.md
-            - name: 備份與還原動作項目
-              href: service-fabric-reliable-actors-backup-and-restore.md
-            - name: 傳送動作項目通知
-              href: service-fabric-reliable-actors-events.md
-            - name: 設定計時器和提醒
-              href: service-fabric-reliable-actors-timers-reminders.md
-            - name: 設定 KvsActorStateProvider
-              href: service-fabric-reliable-actors-kvsactorstateprovider-configuration.md
-            - name: 設定通訊設定
-              href: service-fabric-reliable-actors-fabrictransportsettings.md
-            - name: 設定 ReliableDictionaryActorStateProvider
-              href: service-fabric-reliable-actors-reliabledictionarystateprovider-configuration.md
-        - name: 建置 ASP.NET Core 服務
-          href: service-fabric-add-a-web-frontend.md
-        - name: 設定安全性
-          items:
-            - name: 管理應用程式密碼
-              href: service-fabric-application-secret-management.md
-            - name: 設定安全通訊的反向 proxy
-              href: service-fabric-reverseproxy-configure-secure-communication.md
-            - name: 以本機使用者或系統帳戶身分執行服務啟動指令碼
-              href: service-fabric-run-script-at-service-startup.md
-            - name: 以本機使用者或系統帳戶身分執行服務
-              href: service-fabric-application-runas-security.md
-            - name: 為端點指派安全性存取原則
-              href: service-fabric-assign-policy-to-endpoint.md
-            - name: 以 AD 使用者或群組身分執行服務
-              href: service-fabric-run-service-as-ad-user-or-group.md
-            - name: 以群組受控受控服務帳戶身分執行服務
-              href: service-fabric-run-service-as-gmsa.md
-            - name: 在容器中使用憑證
-              href: service-fabric-securing-containers.md
-            - name: 為 Windows 容器設定 gMSA
-              href: service-fabric-setup-gmsa-for-windows-containers.md
-        - name: 移轉舊的 Java 應用程式以支援 Maven
-          href: service-fabric-migrate-old-javaapp-to-use-maven.md
-    - name: 在 Windows/VS 開發人員環境中工作
+      - name: 存取、儲存及移除動作項目狀態
+        href: service-fabric-reliable-actors-access-save-remove-state.md
+      - name: 列舉動作項目
+        href: service-fabric-reliable-actors-enumerate.md
+      - name: 刪除動作項目與其狀態
+        href: service-fabric-reliable-actors-delete-actors.md
+      - name: 備份與還原動作項目
+        href: service-fabric-reliable-actors-backup-and-restore.md
+      - name: 傳送動作項目通知
+        href: service-fabric-reliable-actors-events.md
+      - name: 設定計時器和提醒
+        href: service-fabric-reliable-actors-timers-reminders.md
+      - name: 設定 KvsActorStateProvider
+        href: service-fabric-reliable-actors-kvsactorstateprovider-configuration.md
+      - name: 設定通訊設定
+        href: service-fabric-reliable-actors-fabrictransportsettings.md
+      - name: 設定 ReliableDictionaryActorStateProvider
+        href: service-fabric-reliable-actors-reliabledictionarystateprovider-configuration.md
+    - name: 建置 ASP.NET Core 服務
+      href: service-fabric-add-a-web-frontend.md
+    - name: 在 Linux 上建置 Apache Tomcat 伺服器容器
+      href: service-fabric-get-started-tomcat.md
+    - name: 設定安全性
       items:
-        - name: 在 Visual Studio 中管理應用程式
-          href: service-fabric-manage-application-in-visual-studio.md
-        - name: 在 Visual Studio 中設定安全連線
-          href: service-fabric-visualstudio-configure-secure-connections.md
-        - name: 在 VS 中對 .NET 服務進行偵錯
-          href: service-fabric-debugging-your-application.md
-        - name: 常見錯誤及例外狀況
-          href: service-fabric-errors-and-exceptions.md
-        - name: 在本機上監視及診斷
-          href: service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md
-        - name: 在 Windows 上設定 Linux 叢集
-          href: service-fabric-local-linux-cluster-windows.md
-    - name: 在 Linux/Eclipse 開發人員環境中工作
+      - name: 與 API 管理整合
+        href: service-fabric-tutorial-deploy-api-management.md
+      - name: 管理應用程式密碼
+        href: service-fabric-application-secret-management.md
+      - name: 設定安全通訊的反向 proxy
+        href: service-fabric-reverseproxy-configure-secure-communication.md
+      - name: 以本機使用者或系統帳戶身分執行服務啟動指令碼
+        href: service-fabric-run-script-at-service-startup.md
+      - name: 以本機使用者或系統帳戶身分執行服務
+        href: service-fabric-application-runas-security.md
+      - name: 為端點指派安全性存取原則
+        href: service-fabric-assign-policy-to-endpoint.md
+      - name: 以 AD 使用者或群組身分執行服務
+        href: service-fabric-run-service-as-ad-user-or-group.md
+      - name: 以群組受控服務帳戶身分執行服務
+        href: service-fabric-run-service-as-gmsa.md
+      - name: 在容器中使用憑證
+        href: service-fabric-securing-containers.md
+      - name: 為 Windows 容器設定 gMSA
+        href: service-fabric-setup-gmsa-for-windows-containers.md
+      - name: 在 Linux 上設定憑證
+        href: service-fabric-configure-certificates-linux.md
+    - name: 設定定期備份 (在 Azure 上的叢集)
+      href: service-fabric-backuprestoreservice-quickstart-azurecluster.md
+    - name: 設定定期備份 (獨立的叢集)
+      href: service-fabric-backuprestoreservice-quickstart-standalonecluster.md
+    - name: 移轉舊的 Java 應用程式以支援 Maven
+      href: service-fabric-migrate-old-javaapp-to-use-maven.md
+  - name: 在 Windows/VS 開發人員環境中工作
+    items:
+    - name: 在 Visual Studio 中管理應用程式
+      href: service-fabric-manage-application-in-visual-studio.md
+    - name: 在 Visual Studio 中設定安全連線
+      href: service-fabric-visualstudio-configure-secure-connections.md
+    - name: 在 VS 中對 .NET 服務進行偵錯
+      href: service-fabric-debugging-your-application.md
+    - name: 使用 Service Fabric 和 VS 對 Windows 容器進行偵錯
+      href: service-fabric-how-to-debug-windows-containers.md
+    - name: 常見錯誤及例外狀況
+      href: service-fabric-errors-and-exceptions.md
+    - name: 在本機上監視及診斷
+      href: service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md
+    - name: 在 Windows 上設定 Linux 叢集
+      href: service-fabric-local-linux-cluster-windows.md
+  - name: 在 Linux/Eclipse 開發人員環境中工作
+    items:
+    - name: 開始使用 Eclipse 外掛程式進行 Java 部署
+      href: service-fabric-get-started-eclipse.md
+    - name: 在 Eclipse 中的 Java 服務中進行偵錯
+      href: service-fabric-debugging-your-application-java.md
+    - name: 在本機上監視及診斷
+      href: service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally-linux.md
+  - name: 在 VS 環境中工作
+    items:
+    - name: 開始使用 VS Code
+      href: service-fabric-get-started-vs-code.md
+    - name: 使用 VS Code 開發 C# Service Fabric 應用程式
+      href: service-fabric-develop-csharp-applications-with-vs-code.md
+    - name: 使用 VS Code 開發 Java Service Fabric 應用程式
+      href: service-fabric-develop-java-applications-with-vs-code.md
+  - name: 從雲端服務移轉
+    items:
+    - name: 比較雲端服務與 Service Fabric
+      href: service-fabric-cloud-services-migration-differences.md
+    - name: 移轉至 Service Fabric
+      href: service-fabric-cloud-services-migration-worker-role-stateless-service.md
+    - name: 建議的做法
+      href: /azure/architecture/service-fabric/migrate-from-cloud-services
+    - name: 重構已遷移的應用程式
+      href: /azure/architecture/service-fabric/refactor-migrated-app
+  - name: 管理應用程式生命週期
+    items:
+    - name: 封裝應用程式
+      href: service-fabric-package-apps.md
+    - name: 使用組態檔中的參數
+      href: service-fabric-how-to-parameterize-configuration-files.md
+    - name: 使用參數指定連接埠號碼
+      href: service-fabric-how-to-specify-port-number-using-parameters.md
+    - name: 指定環境變數
+      href: service-fabric-how-to-specify-environment-variables.md
+    - name: 部署或移除應用程式
       items:
-        - name: 開始使用 Eclipse 外掛程式進行 Java 部署
-          href: service-fabric-get-started-eclipse.md
-        - name: 在 Eclipse 中的 Java 服務中進行偵錯
-          href: service-fabric-debugging-your-application-java.md
-        - name: 在本機上監視及診斷
-          href: service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally-linux.md
-    - name: 從雲端服務移轉
+      - name: 在本機叢集上部署應用程式
+        href: service-fabric-get-started-with-a-local-cluster.md
+      - name: Azure Resource Manager
+        href: service-fabric-application-arm-resource.md
+      - name: Azure PowerShell
+        href: service-fabric-deploy-remove-applications.md
+      - name: Service Fabric CLI
+        href: service-fabric-application-lifecycle-sfctl.md
+      - name: FabricClient API
+        href: service-fabric-deploy-remove-applications-fabricclient.md
+    - name: 升級應用程式
       items:
-        - name: 比較雲端服務與 Service Fabric
-          href: service-fabric-cloud-services-migration-differences.md
-        - name: 移轉至 Service Fabric
-          href: service-fabric-cloud-services-migration-worker-role-stateless-service.md
-        - name: 建議的做法
-          href: /azure/architecture/service-fabric/migrate-from-cloud-services
-        - name: 重構已遷移的應用程式
-          href: /azure/architecture/service-fabric/refactor-migrated-app
-    - name: 管理應用程式生命週期
+      - name: 使用 Azure PowerShell 升級
+        href: service-fabric-application-upgrade-tutorial-powershell.md
+      - name: 使用 Visual Studio 升級
+        href: service-fabric-application-upgrade-tutorial.md
+      - name: 疑難排解應用程式升級
+        href: service-fabric-application-upgrade-troubleshooting.md
+    - name: 測試應用程式與服務
       items:
-        - name: 封裝應用程式
-          href: service-fabric-package-apps.md
-        - name: 使用組態檔中的參數
-          href: service-fabric-how-to-parameterize-configuration-files.md
-        - name: 使用參數指定連接埠號碼
-          href: service-fabric-how-to-specify-port-number-using-parameters.md
-        - name: 指定環境變數
-          href: service-fabric-how-to-specify-environment-variables.md
-        - name: 部署或移除應用程式
-          items:
-            - name: 在本機叢集上部署應用程式
-              href: service-fabric-get-started-with-a-local-cluster.md
-            - name: Azure Resource Manager
-              href: service-fabric-application-arm-resource.md
-            - name: Azure PowerShell
-              href: service-fabric-deploy-remove-applications.md
-            - name: Service Fabric CLI
-              href: service-fabric-application-lifecycle-sfctl.md
-            - name: FabricClient API
-              href: service-fabric-deploy-remove-applications-fabricclient.md
-        - name: 升級應用程式
-          items:
-            - name: 使用 Azure PowerShell 升級
-              href: service-fabric-application-upgrade-tutorial-powershell.md
-            - name: 使用 Visual Studio 升級
-              href: service-fabric-application-upgrade-tutorial.md
-            - name: 疑難排解應用程式升級
-              href: service-fabric-application-upgrade-troubleshooting.md
-        - name: 測試應用程式與服務
-          items:
-            - name: 測試服務對服務的通訊
-              href: service-fabric-testability-scenarios-service-communication.md
-            - name: 模擬失敗
-              items:
-                - name: 使用受控的混亂
-                  href: service-fabric-controlled-chaos.md
-                - name: 使用測試動作
-                  href: service-fabric-testability-actions.md
-                - name: 工作負載期間
-                  href: service-fabric-testability-workload-tests.md
-                - name: 使用測試案例
-                  href: service-fabric-testability-scenarios.md
-                - name: 使用節點轉換 API
-                  href: service-fabric-node-transition-apis.md
-        - name: 設定連續整合
-          items:
-            - name: 透過 VSTS 設定連續整合
-              href: service-fabric-set-up-continuous-integration.md
-            - name: 使用 Jenkins 部署您的 Linux 應用程式
-              href: service-fabric-cicd-your-linux-applications-with-jenkins.md
-    - name: 建立和管理叢集
+      - name: 單元測試具狀態服務
+        href: service-fabric-how-to-unit-test-stateful-services.md
+      - name: 測試服務對服務的通訊
+        href: service-fabric-testability-scenarios-service-communication.md
+      - name: 模擬失敗
+        items:
+        - name: 使用受控的混亂
+          href: service-fabric-controlled-chaos.md
+        - name: 使用測試動作
+          href: service-fabric-testability-actions.md
+        - name: 工作負載期間
+          href: service-fabric-testability-workload-tests.md
+        - name: 使用測試案例
+          href: service-fabric-testability-scenarios.md
+        - name: 使用節點轉換 API
+          href: service-fabric-node-transition-apis.md
+    - name: 設定連續整合
       items:
-        - name: Azure 上的叢集
-          items:
-            - name: 建立
-              items:
-                - name: Azure 入口網站
-                  href: service-fabric-cluster-creation-via-portal.md
-                - name: Azure Resource Manager
-                  href: service-fabric-cluster-creation-via-arm.md
-            - name: 調整
-              items:
-                - name: 手動
-                  href: service-fabric-cluster-scale-up-down.md
-                - name: 以程式設計方式
-                  href: service-fabric-cluster-programmatic-scaling.md
-            - name: 升級
-              href: service-fabric-cluster-upgrade.md
-            - name: 設定存取控制
-              href: service-fabric-cluster-security-roles.md
-            - name: 在負載平衡器中開啟連接埠
-              href: create-load-balancer-rule.md
-            - name: 管理叢集憑證
-              href: service-fabric-cluster-security-update-certs-azure.md
-            - name: 刪除
-              href: service-fabric-cluster-delete.md
-            - name: 遠端連線到叢集節點 VM
-              href: service-fabric-cluster-remote-connect-to-azure-cluster-node.md
-        - name: 獨立叢集
-          items:
-            - name: 建立
-              items:
-                - name: 建立內部部署
-                  href: service-fabric-cluster-creation-for-windows-server.md
-                - name: 使用憑證保護安全
-                  href: service-fabric-windows-cluster-x509-security.md
-                - name: 使用 Windows 安全性保護安全
-                  href: service-fabric-windows-cluster-windows-security.md
-                - name: 獨立套件的內容
-                  href: service-fabric-cluster-standalone-package-contents.md
-            - name: 調整
-              href: service-fabric-cluster-windows-server-add-remove-nodes.md
-            - name: 設定存取控制
-              href: service-fabric-cluster-security-roles.md
-            - name: 設定
-              href: service-fabric-cluster-manifest.md
-            - name: 升級
-              href: service-fabric-cluster-upgrade-windows-server.md
-        - name: 視覺化叢集
-          href: service-fabric-visualizing-your-cluster.md
-        - name: 連線到安全的叢集
-          href: service-fabric-connect-to-secure-cluster.md
-        - name: 修補叢集節點
-          href: service-fabric-patch-orchestration-application.md
-    - name: 監視與診斷
+      - name: 透過 Azure Pipelines 設定連續整合
+        href: service-fabric-set-up-continuous-integration.md
+      - name: 使用 Jenkins 部署您的 Linux 應用程式
+        href: service-fabric-cicd-your-linux-applications-with-jenkins.md
+  - name: 設定反向 Proxy
+    items:
+    - name: 設定反向 Proxy
+      href: service-fabric-reverseproxy-setup.md
+    - name: 設定安全通訊的反向 proxy
+      href: service-fabric-reverseproxy-configure-secure-communication.md
+  - name: 建立和管理叢集
+    items:
+    - name: Azure 上的叢集
       items:
-        - name: 使用 OMS 分析
-          items:
-            - name: 設定 OMS Log Analytics
-              href: service-fabric-diagnostics-oms-setup.md
-            - name: 新增 OMS 代理程式
-              href: service-fabric-diagnostics-oms-agent.md
-            - name: 監視容器
-              href: service-fabric-diagnostics-oms-containers.md
-        - name: 使用 Application Insights 分析
-          href: service-fabric-diagnostics-event-analysis-appinsights.md
-        - name: 彙總事件 - EventFlow
-          href: service-fabric-diagnostics-event-aggregation-eventflow.md
-        - name: 彙總事件 - Azure 診斷
-          items:
-            - name: Windows
-              href: service-fabric-diagnostics-event-aggregation-wad.md
-            - name: Linux
-              href: service-fabric-diagnostics-event-aggregation-lad.md
-        - name: 使用 WAD 進行效能監視
-          href: service-fabric-diagnostics-perf-wad.md
-        - name: 回報和檢查健康情況
-          href: service-fabric-diagnostics-how-to-report-and-check-service-health.md
-        - name: 將記錄新增至您的服務
-          href: service-fabric-how-to-diagnostics-log.md
-        - name: 使用系統健康情況報表進行疑難排解
-          href: service-fabric-understand-and-troubleshoot-with-system-health-reports.md
-        - name: 檢視健康情況報表
-          href: service-fabric-view-entities-aggregated-health.md
-        - name: 針對本機叢集進行疑難排解
-          href: service-fabric-troubleshoot-local-cluster-setup.md
+      - name: 建立
+        items:
+        - name: 在 Azure 入口網站中建立
+          href: service-fabric-cluster-creation-via-portal.md
+        - name: 設定 Azure Active Directory 驗證
+          href: service-fabric-cluster-creation-setup-aad.md
+        - name: 建立自訂叢集範本
+          href: service-fabric-cluster-creation-create-template.md
+        - name: 使用資源管理員建立
+          href: service-fabric-cluster-creation-via-arm.md
+        - name: 使用憑證通用名稱建立
+          href: service-fabric-create-cluster-using-cert-cn.md
+      - name: 調整
+        items:
+        - name: 手動相應放大
+          href: service-fabric-cluster-scale-up-down.md
+        - name: 以程式設計方式相應放大
+          href: service-fabric-cluster-programmatic-scaling.md
+        - name: 虛擬機器擴展集節點類型相應放大
+          href: virtual-machine-scale-set-scale-node-type-scale-out.md
+      - name: 升級
+        href: service-fabric-cluster-upgrade.md
+      - name: 設定存取控制
+        href: service-fabric-cluster-security-roles.md
+      - name: 在負載平衡器中開啟連接埠
+        href: create-load-balancer-rule.md
+      - name: 將叢集憑證變更為一般名稱
+        href: service-fabric-cluster-change-cert-thumbprint-to-cn.md
+      - name: 手動變換叢集憑證
+        href: service-fabric-cluster-rollover-cert-cn.md
+      - name: 管理叢集憑證
+        href: service-fabric-cluster-security-update-certs-azure.md
+      - name: 遠端連線到叢集節點 VM
+        href: service-fabric-cluster-remote-connect-to-azure-cluster-node.md
+    - name: 獨立叢集
+      items:
+      - name: 建立
+        items:
+        - name: 建立內部部署
+          href: service-fabric-cluster-creation-for-windows-server.md
+        - name: 使用憑證保護安全
+          href: service-fabric-windows-cluster-x509-security.md
+        - name: 使用 Windows 安全性保護安全
+          href: service-fabric-windows-cluster-windows-security.md
+        - name: 獨立套件的內容
+          href: service-fabric-cluster-standalone-package-contents.md
+      - name: 調整
+        href: service-fabric-cluster-windows-server-add-remove-nodes.md
+      - name: 設定存取控制
+        href: service-fabric-cluster-security-roles.md
+      - name: 設定
+        href: service-fabric-cluster-manifest.md
+      - name: 升級
+        href: service-fabric-cluster-upgrade-windows-server.md
+    - name: 視覺化叢集
+      href: service-fabric-visualizing-your-cluster.md
+    - name: 連線到安全的叢集
+      href: service-fabric-connect-to-secure-cluster.md
+    - name: 修補叢集節點 (Windows)
+      href: service-fabric-patch-orchestration-application.md
+    - name: 修補叢集節點 (Linux)
+      href: service-fabric-patch-orchestration-application-linux.md
+  - name: 監視與診斷
+    items:
+    - name: 監視應用程式
+      items:
+      - name: 使用 Application Insights 分析
+        href: service-fabric-diagnostics-event-analysis-appinsights.md
+      - name: 將記錄新增至您的應用程式
+        href: service-fabric-how-to-diagnostics-log.md
+      - name: 使用 EventFlow 彙總事件
+        href: service-fabric-diagnostics-event-aggregation-eventflow.md
+      - name: 監視容器
+        href: service-fabric-diagnostics-oms-containers.md
+    - name: 監視叢集
+      items:
+      - name: 查詢 EventStore API
+        href: service-fabric-diagnostics-eventstore-query.md
+      - name: Microsoft Azure 診斷
+        href: service-fabric-diagnostics-event-aggregation-wad.md
+      - name: Linux Azure 診斷
+        href: service-fabric-diagnostics-event-aggregation-lad.md
+      - name: 設定 Log Analytics
+        href: service-fabric-diagnostics-oms-setup.md
+      - name: 透過 Log Analytics 監視
+        href: service-fabric-diagnostics-event-analysis-oms.md
+    - name: 監視基礎結構
+      items:
+      - name: 使用 Log Analytics 代理程式來監視效能
+        href: service-fabric-diagnostics-oms-agent.md
+      - name: 使用 WAD 進行效能監視
+        href: service-fabric-diagnostics-perf-wad.md
+    - name: 監視健康情況
+      items:
+      - name: 回報和檢查健康情況
+        href: service-fabric-diagnostics-how-to-report-and-check-service-health.md
+      - name: 使用系統健康情況報表進行疑難排解
+        href: service-fabric-understand-and-troubleshoot-with-system-health-reports.md
+      - name: 檢視健康情況報表
+        href: service-fabric-view-entities-aggregated-health.md
+    - name: 診斷反向 Proxy 事件
+      href: service-fabric-reverse-proxy-diagnostics.md
+    - name: 針對本機叢集進行疑難排解
+      href: service-fabric-troubleshoot-local-cluster-setup.md
+    - name: 診斷常見案例
+      href: service-fabric-diagnostics-common-scenarios.md
+  - name: 最佳作法
+    items:
+    - name: 實際執行整備檢查清單
+      href: service-fabric-production-readiness-checklist.md
 - name: 參考
   items:
-    - name: Azure PowerShell
-      href: /powershell/module/azurerm.servicefabric/
-    - name: PowerShell
-      href: /powershell/module/servicefabric/?view=azureservicefabricps
-    - name: Azure CLI (az sf)
-      href: /cli/azure/sf
-    - name: Service Fabric CLI (sfctl)
-      href: service-fabric-sfctl.md
+  - name: Azure PowerShell
+    href: /powershell/module/azurerm.servicefabric/
+  - name: PowerShell
+    href: /powershell/module/servicefabric/?view=azureservicefabricps
+  - name: Azure CLI (az sf)
+    href: /cli/azure/sf
+  - name: Service Fabric CLI (sfctl)
+    href: service-fabric-sfctl.md
+    items:
+    - name: sfctl application
+      href: service-fabric-sfctl-application.md
+    - name: sfctl chaos
+      href: service-fabric-sfctl-chaos.md
       items:
-        - name: sfctl application
-          href: service-fabric-sfctl-application.md
-        - name: sfctl chaos
-          href: service-fabric-sfctl-chaos.md
-        - name: sfctl cluster
-          href: service-fabric-sfctl-cluster.md
-        - name: sfctl compose
-          href: service-fabric-sfctl-compose.md
-        - name: sfctl is
-          href: service-fabric-sfctl-is.md
-        - name: sfctl node
-          href: service-fabric-sfctl-node.md
-        - name: sfctl partition
-          href: service-fabric-sfctl-partition.md
-        - name: sfctl replica
-          href: service-fabric-sfctl-replica.md
-        - name: sfctl rpm
-          href: service-fabric-sfctl-rpm.md
-        - name: sfctl service
-          href: service-fabric-sfctl-service.md
-        - name: sfctl store
-          href: service-fabric-sfctl-store.md
-    - name: Java API
-      href: /java/api/overview/azure/servicefabric
-    - name: .NET
-      href: /dotnet/api/overview/azure/service-fabric?view=azure-dotnet
-    - name: REST
-      href: /rest/api/servicefabric
-    - name: 設定叢集設定和網狀架構升級原則
-      href: service-fabric-cluster-fabric-settings.md
-    - name: 服務模型 XML 結構描述
-      href: service-fabric-service-model-schema.md
-    - name: 環境變數
-      href: service-fabric-environment-variables-reference.md
+      - name: sfctl chaos schedule
+        href: service-fabric-sfctl-chaos-schedule.md
+    - name: sfctl cluster
+      href: service-fabric-sfctl-cluster.md
+    - name: sfctl compose
+      href: service-fabric-sfctl-compose.md
+    - name: sfctl container
+      href: service-fabric-sfctl-container.md
+    - name: sfctl is
+      href: service-fabric-sfctl-is.md
+    - name: sfctl node
+      href: service-fabric-sfctl-node.md
+    - name: sfctl partition
+      href: service-fabric-sfctl-partition.md
+    - name: sfctl property
+      href: service-fabric-sfctl-property.md
+    - name: sfctl replica
+      href: service-fabric-sfctl-replica.md
+    - name: sfctl rpm
+      href: service-fabric-sfctl-rpm.md
+    - name: sfctl sa-cluster
+      href: service-fabric-sfctl-sa-cluster.md
+    - name: sfctl service
+      href: service-fabric-sfctl-service.md
+    - name: sfctl store
+      href: service-fabric-sfctl-store.md
+  - name: Java API
+    href: /java/api/overview/azure/servicefabric
+  - name: .NET
+    href: /dotnet/api/overview/azure/service-fabric?view=azure-dotnet
+  - name: REST
+    href: /rest/api/servicefabric
+  - name: Service Fabric 事件
+    href: service-fabric-diagnostics-event-generation-operational.md
+  - name: 設定叢集設定和網狀架構升級原則
+    href: service-fabric-cluster-fabric-settings.md
+  - name: 服務模型 XML 結構描述
+    href: service-fabric-service-model-schema.md
+    items:
+    - name: 元素
+      href: service-fabric-service-model-schema-elements.md
+    - name: 複雜類型
+      href: service-fabric-service-model-schema-complex-types.md
+    - name: 屬性群組
+      href: service-fabric-service-model-schema-attribute-groups.md
+    - name: 簡單型別
+      href: service-fabric-service-model-schema-simple-types.md
+    - name: 元素群組
+      href: service-fabric-service-model-schema-element-groups.md
+  - name: 環境變數
+    href: service-fabric-environment-variables-reference.md
 - name: 資源
   items:
-    - name: Azure 藍圖
-      href: 'https://azure.microsoft.com/roadmap/'
-    - name: 常見問題
-      href: service-fabric-common-questions.md
-    - name: 學習路徑
-      href: 'https://azure.microsoft.com/documentation/learning-paths/service-fabric/'
-    - name: MSDN 論壇
-      href: 'https://social.msdn.microsoft.com/Forums/home?forum=AzureServiceFabric'
-    - name: 價格
-      href: 'https://azure.microsoft.com/pricing/details/service-fabric/'
-    - name: 定價計算機
-      href: 'https://azure.microsoft.com/pricing/calculator/'
-    - name: 範例程式碼
-      href: 'http://aka.ms/servicefabricsamples'
-    - name: 支援選項
-      href: service-fabric-support.md
-    - name: 服務更新
-      href: 'https://azure.microsoft.com/updates/?product=service-fabric'
-    - name: 影片
-      href: 'https://azure.microsoft.com/documentation/videos/index/?services=service-fabric'
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/
+  - name: 常見問題
+    href: service-fabric-common-questions.md
+  - name: 學習路徑
+    href: https://azure.microsoft.com/documentation/learning-paths/service-fabric/
+  - name: MSDN 論壇
+    href: https://social.msdn.microsoft.com/Forums/home?forum=AzureServiceFabric
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/service-fabric/
+  - name: 定價計算機
+    href: https://azure.microsoft.com/pricing/calculator/
+  - name: 範例程式碼
+    href: http://aka.ms/servicefabricsamples
+  - name: 支援選項
+    href: service-fabric-support.md
+  - name: Service Fabric 版本
+    href: service-fabric-versions.md
+  - name: 服務更新
+    href: https://azure.microsoft.com/updates/?product=service-fabric
+  - name: 影片
+    href: https://azure.microsoft.com/documentation/videos/index/?services=service-fabric
+ms.openlocfilehash: fc85458db829f66ad90d846aec7148fa58a3bbc0
+ms.sourcegitcommit: 7bc4a872c170e3416052c87287391bc7adbf84ff
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/02/2018
+ms.locfileid: "48018871"

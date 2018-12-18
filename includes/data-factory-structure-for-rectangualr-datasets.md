@@ -5,7 +5,7 @@
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| name |資料行的名稱。 |yes |
+| name |資料行的名稱。 |是 |
 | type |資料行的資料類型。 有關何時應指定類型資訊的詳細資訊，請參閱下文類型轉換的部份 |否 |
 | culture |當有指定 type (類型) 時要使用的 .NET 型文化特性，且是 .NET 類型的 Datetime 或 Datetimeoffset。 預設值為 “en-us”。 |否 |
 | format |當有指定 type (類型) 時要使用的格式字串，且是 .NET 類型的 Datetime 或 Datetimeoffset。 |否 |

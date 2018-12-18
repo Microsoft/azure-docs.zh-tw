@@ -1,13 +1,13 @@
 ---
-title: "Azure Functions C# 指令碼開發人員參考"
-description: "了解如何使用 C# 指令碼開發 Azure Functions。"
+title: Azure Functions C# 指令碼開發人員參考
+description: 了解如何使用 C# 指令碼開發 Azure Functions。
 services: functions
 documentationcenter: na
 author: ggailey777
 manager: cfowler
-editor: 
-tags: 
-keywords: "azure functions, 函式, 事件處理, webhook, 動態計算, 無伺服器架構"
+editor: ''
+tags: ''
+keywords: azure functions, 函式, 事件處理, webhook, 動態計算, 無伺服器架構
 ms.service: functions
 ms.devlang: dotnet
 ms.topic: reference
@@ -15,11 +15,12 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 12/12/2017
 ms.author: glenga
-ms.openlocfilehash: 683ef1ebffaec74df95b454d717857d55b8026dd
-ms.sourcegitcommit: fbba5027fa76674b64294f47baef85b669de04b7
+ms.openlocfilehash: 8206b4a0673c9744abf74e75a06d20e064475349
+ms.sourcegitcommit: 30fd606162804fe8ceaccbca057a6d3f8c4dd56d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/24/2018
+ms.lasthandoff: 07/30/2018
+ms.locfileid: "39344268"
 ---
 # <a name="azure-functions-c-script-csx-developer-reference"></a>Azure Functions C# 指令碼 (.csx) 開發人員參考
 
@@ -80,7 +81,7 @@ public static void Run(CloudQueueMessage myQueueItem, TraceWriter log)
 
 ## <a name="referencing-custom-classes"></a>參考自訂類別
 
-如果您需要使用自訂純舊 CLR 物件 (POCO) 類別，則可以包含相同檔案內的類別定義，或將它放在個別檔案中。
+如果您需要使用自訂簡單的 CLR 物件 (POCO) 類別，則可以包含相同檔案內的類別定義，或將它放在個別檔案中。
 
 下列範例示範內含 POCO 類別定義的 run.csx 範例。
 
@@ -201,17 +202,19 @@ public class Order
 
 您可以使用 *function.json* 中的名稱 `$return`，使用輸出繫結的方法傳回值。 如需範例，請參閱[觸發程序和繫結](functions-triggers-bindings.md#using-the-function-return-value)。
 
+唯有成功的函式執行一律導致傳回值傳遞至輸出繫結時，才使用此傳回值。 否則，使用 `ICollector` 或 `IAsyncCollector`，如下一節所示。
+
 ## <a name="writing-multiple-output-values"></a>撰寫多個輸出值
 
-若要多個值寫入至輸出繫結，請使用 [`ICollector`](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/ICollector.cs) 或 [`IAsyncCollector`](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/IAsyncCollector.cs) 類型。 這些類型是在方法完成時，寫入至輸出繫結的唯寫集合。
+若要將多個值寫入至輸出繫結，或者如果成功的函式引動過程可能未導致任何項目傳遞至輸出繫結，請使用 [`ICollector`](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/ICollector.cs) 或 [`IAsyncCollector`](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/IAsyncCollector.cs) 類型。 這些類型是在方法完成時，寫入至輸出繫結的唯寫集合。
 
 這個範例會使用 `ICollector` 將多個佇列訊息寫入相同佇列：
 
 ```csharp
-public static void Run(ICollector<string> myQueueItem, TraceWriter log)
+public static void Run(ICollector<string> myQueue, TraceWriter log)
 {
-    myQueueItem.Add("Hello");
-    myQueueItem.Add("World!");
+    myQueue.Add("Hello");
+    myQueue.Add("World!");
 }
 ```
 
@@ -233,7 +236,7 @@ public static void Run(string myBlob, TraceWriter log)
 
 ## <a name="async"></a>非同步處理
 
-若要讓函式變成非同步，請使用 `async` 關鍵字並傳回 `Task` 物件。
+若要讓函式變成[非同步](https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/async/)，請使用 `async` 關鍵字並傳回 `Task` 物件。
 
 ```csharp
 public async static Task ProcessQueueMessageAsync(
@@ -244,6 +247,8 @@ public async static Task ProcessQueueMessageAsync(
     await blobInput.CopyToAsync(blobOutput, 4096);
 }
 ```
+
+您無法在非同步函式中使用 `out` 參數。 針對輸出繫結，請改為使用[函式傳回值](#binding-to-method-return-value)或[收集器物件](#writing-multiple-output-values)。
 
 ## <a name="cancellation-tokens"></a>取消權杖
 
@@ -335,7 +340,7 @@ simple-name 可能會參考下列組件 (例如，`#r "AssemblyName"`)：
 ## <a name="referencing-custom-assemblies"></a>參考自訂組件
 
 若要參考自訂組件，您可以使用「共用」組件或「私人」組件：
-- 共用組件會共用於函式應用程式內的所有函式。 若要參考自訂組件上，請將組件上傳至應用程式函式，例如在函式應用程式根目錄的 `bin` 資料夾中。 
+- 共用組件會共用於函式應用程式內的所有函式。 若要參考自訂組件，請將組件上傳至[函式應用程式根資料夾](functions-reference.md#folder-structure) (wwwroot) 中名為 `bin` 的資料夾。 
 - 私人組件屬於所指定函式的內容，而且支援不同版本的側載。 應該在函式目錄的 `bin` 資料夾中上傳私人組件。 使用檔案名稱 (例如 `#r "MyAssembly.dll"`) 參考組件。 
 
 如需如何將檔案上傳至函式資料夾的資訊，請參閱[套件管理](#using-nuget-packages)一節。
@@ -409,6 +414,8 @@ public static string GetEnvironmentVariable(string name)
         System.Environment.GetEnvironmentVariable(name, EnvironmentVariableTarget.Process);
 }
 ```
+
+[System.Configuration.ConfigurationManager.AppSettings](https://docs.microsoft.com/dotnet/api/system.configuration.configurationmanager.appsettings) 屬性是用於取得應用程式設定值的替代 API，但建議您使用 `GetEnvironmentVariable`，如下所示。
 
 <a name="imperative-bindings"></a> 
 

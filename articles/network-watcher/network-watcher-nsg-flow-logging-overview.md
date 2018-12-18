@@ -1,11 +1,11 @@
 ---
-title: "Azure 網路監看員的網路安全性群組流量記錄簡介 | Microsoft Docs"
-description: "本頁說明如何使用 Azure 網路監看員的 NSG 流量記錄功能"
+title: Azure 網路監看員的網路安全性群組流量記錄簡介 | Microsoft Docs
+description: 本文說明如何使用 Azure 網路監看員的 NSG 流量記錄功能。
 services: network-watcher
 documentationcenter: na
 author: jimdial
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 47d91341-16f1-45ac-85a5-e5a640f5d59e
 ms.service: network-watcher
 ms.devlang: na
@@ -14,33 +14,34 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: jdial
-ms.openlocfilehash: 4eaffba08ccf601e440709d804891668340a376d
-ms.sourcegitcommit: 234c397676d8d7ba3b5ab9fe4cb6724b60cb7d25
+ms.openlocfilehash: ae4edb82fa5e192a30d297dae82199bb7efca0c2
+ms.sourcegitcommit: 3f8f973f095f6f878aa3e2383db0d296365a4b18
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/20/2017
+ms.lasthandoff: 08/20/2018
+ms.locfileid: "42145153"
 ---
 # <a name="introduction-to-flow-logging-for-network-security-groups"></a>網路安全性群組流量記錄簡介
 
-網路安全性群組流量記錄是網路監看員的一項功能，可讓您檢視透過網路安全性群組傳輸之輸入和輸出 IP 流量的相關資訊。 這些流量記錄是以 json 格式撰寫，會顯示每一規則的輸出和輸入流量、流量套用至的 NIC、有關流量的 5 個 Tuple 資訊 (來源/目的地 IP、來源/目的地連接埠、通訊協定)，以及流量是被允許或拒絕。
+網路安全性群組 (NSG) 流量記錄是網路監看員的一項功能，可讓您檢視透過 NSG 輸入和輸出 IP 流量的相關資訊。 流量記錄是以 json 格式撰寫，會顯示每一規則的輸出和輸入流量、套用流量的網路介面 (NIC)、關於流量的 5 個 Tuple 資訊 (來源/目的地 IP、來源/目的地連接埠、通訊協定)，以及流量是被允許或拒絕。
 
-![流量記錄概觀][1]
+![流量記錄概觀](./media/network-watcher-nsg-flow-logging-overview/figure1.png)
 
-雖然流程記錄檔是以「網路安全性群組」為目標，但其顯示方式與其他記錄檔不同。 流程記錄檔只會儲存在儲存體帳戶內，並且會採用如以下範例所示的記錄路徑：
+雖然流量記錄是以 NSG 為目標，但其顯示方式與其他記錄不同。 流量記錄只會儲存在儲存體帳戶內，並且會採用以下範例所示的記錄路徑：
 
 ```
 https://{storageAccountName}.blob.core.windows.net/insights-logs-networksecuritygroupflowevent/resourceId=/SUBSCRIPTIONS/{subscriptionID}/RESOURCEGROUPS/{resourceGroupName}/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/{nsgName}/y={year}/m={month}/d={day}/h={hour}/m=00/macAddress={macAddress}/PT1H.json
 ```
 
-在其他記錄上看到的保留原則也同樣適用於流量記錄。 記錄的保留原則可設定為 1 天到 365 天。 如果未設定保留原則，則會永遠保留記錄檔。
+在其他記錄上看到的保留原則也同樣適用於流量記錄。 您可以設定 1 天到 2147483647 天的記錄保留原則。 如果未設定保留原則，則會永遠保留記錄檔。
 
 ## <a name="log-file"></a>記錄檔
 
-流量記錄有多個屬性。 下列清單列出 NSG 流量記錄內會傳回的屬性︰
+流量記錄包含下列屬性：
 
 * **time** - 事件的記錄時間
 * **systemId** - 網路安全性群組資源識別碼。
-* **category** - 事件的類別，此屬性一律是 NetworkSecurityGroupFlowEvent
+* **類別** - 事件的類別。 類別一律為 **NetworkSecurityGroupFlowEvent**
 * **resourceid** - NSG 的資源識別碼
 * **operationName** - 一律是 NetworkSecurityGroupFlowEvents
 * **properties** - 流量屬性的集合
@@ -59,15 +60,14 @@ https://{storageAccountName}.blob.core.windows.net/insights-logs-networksecurity
                     * **流量流動** - 流量的流動方向。 有效值為 **I** (若為輸入) 和 **O** (若為輸出)。
                     * **流量** - 流量受到允許或拒絕。 有效值為 **A** (若允許) 和 **D** (若拒絕)。
 
-
-以下是流量記錄的範例。 如您所見，有多筆記錄遵循上一節所述的屬性清單。 
+之後的文字是流量記錄範例。 如您所見，有多筆記錄遵循上一節所述的屬性清單。
 
 > [!NOTE]
-> flowTuples 屬性中的值是逗號分隔清單。
+> \*flowTuples 屬性中的值是逗號分隔清單。
  
 ```json
 {
-    "records": 
+    "records":
     [
         
         {
@@ -102,12 +102,6 @@ https://{storageAccountName}.blob.core.windows.net/insights-logs-networksecurity
 
 ## <a name="next-steps"></a>後續步驟
 
-瀏覽[啟用流量記錄](network-watcher-nsg-flow-logging-portal.md)，以了解如何啟用流量記錄。
-
-瀏覽[網路安全性群組 (NSG) 的 Log Analytics](../virtual-network/virtual-network-nsg-manage-log.md)，以了解 NSG 記錄。
-
-瀏覽[使用 IP 流量驗證來驗證流量](network-watcher-check-ip-flow-verify-portal.md)，以了解流量在 VM 上受到允許或拒絕
-
-<!-- Image references -->
-[1]: ./media/network-watcher-nsg-flow-logging-overview/figure1.png
-
+- 若要了解如何啟用流量記錄，請參閱[啟用 NSG 流量記錄](network-watcher-nsg-flow-logging-portal.md)。
+- 若要深入了解 NSG 記錄，請參閱[網路安全性群組 (NSG) 的記錄檔分析](../virtual-network/virtual-network-nsg-manage-log.md?toc=%2fazure%2fnetwork-watcher%2ftoc.json)。
+- 若要判斷是否允許或拒絕流量進出 VM，請參閱[診斷 VM 網路流量篩選問題](diagnose-vm-network-traffic-filtering-problem.md)

@@ -1,503 +1,642 @@
+items:
 - name: SQL DB 文件
   href: index.yml
-- name: 概觀
+- name: SQL Database 服務
   items:
-    - name: 關於 SQL DB
-      href: sql-database-technical-overview.md
-    - name: PaaS 或 IaaS
-      href: sql-database-paas-vs-sql-server-iaas.md
+  - name: 關於 SQL DB
+    href: sql-database-technical-overview.md
+  - name: 選擇 Azure SQL 的版本
+    href: sql-database-paas-vs-sql-server-iaas.md
 - name: 快速入門
-  expanded: true
   items:
-    - name: 建立 DB - 入口網站
+  - name: 建立
+    items:
+    - name: 單一資料庫
       href: sql-database-get-started-portal.md
-    - name: 建立 DB - Azure CLI
-      href: sql-database-get-started-cli.md
-    - name: 建立 DB - Azure PowerShell
-      href: sql-database-get-started-powershell.md
-    - name: 連線和查詢
-      href: sql-database-connect-query.md
-      items:
-        - name: SSMS
-          href: sql-database-connect-query-ssms.md
-        - name: SQL Operations Studio
-          href: 'https://docs.microsoft.com/sql/sql-operations-studio/quickstart-sql-database?toc=/azure/sql-database/toc.json'
-        - name: Azure 入口網站
-          href: sql-database-connect-query-portal.md
-        - name: VS 程式碼
-          href: sql-database-connect-query-vscode.md
-        - name: .NET 搭配 Visual Studio
-          href: sql-database-connect-query-dotnet-visual-studio.md
-        - name: .NET Core
-          href: sql-database-connect-query-dotnet-core.md
-        - name: Go
-          href: sql-database-connect-query-go.md
-        - name: Java
-          href: sql-database-connect-query-java.md
-        - name: Node.js
-          href: sql-database-connect-query-nodejs.md
-        - name: PHP
-          href: sql-database-connect-query-php.md
-        - name: Python
-          href: sql-database-connect-query-python.md
-        - name: Ruby
-          href: sql-database-connect-query-ruby.md
+    - name: 受控執行個體
+      href: sql-database-managed-instance-get-started.md
+  - name: 設定
+    items:
+    - name: 邏輯伺服器防火牆規則
+      href: sql-database-get-started-portal-firewall.md
+    - name: 用戶端 VM 連線至受控執行個體
+      href: sql-database-managed-instance-configure-vm.md
+    - name: 點到站連線至受控執行個體
+      href: sql-database-managed-instance-configure-p2s.md
+  - name: 載入資料
+    items:
+    - name: 將 BACPAC 匯入單一資料庫
+      href: sql-database-import.md
+    - name: 將資料庫備份還原到受控執行個體
+      href: sql-database-managed-instance-get-started-restore.md
+  - name: 查詢
+    href: sql-database-connect-query.md
+    items:
+    - name: SSMS
+      href: sql-database-connect-query-ssms.md
+    - name: Azure Data Studio
+      href: https://docs.microsoft.com/sql/azure-data-studio/quickstart-sql-database?toc=/azure/sql-database/toc.json
+    - name: Azure 入口網站
+      href: sql-database-connect-query-portal.md
+    - name: VS 程式碼
+      href: sql-database-connect-query-vscode.md
+    - name: .NET 搭配 Visual Studio
+      href: sql-database-connect-query-dotnet-visual-studio.md
+    - name: .NET Core
+      href: sql-database-connect-query-dotnet-core.md
+    - name: .NET 搭配 Active Directory MFA
+      href: active-directory-interactive-connect-azure-sql-db.md
+    - name: Go
+      href: sql-database-connect-query-go.md
+    - name: Java
+      href: sql-database-connect-query-java.md
+    - name: Node.js
+      href: sql-database-connect-query-nodejs.md
+    - name: PHP
+      href: sql-database-connect-query-php.md
+    - name: Python
+      href: sql-database-connect-query-python.md
+    - name: Ruby
+      href: sql-database-connect-query-ruby.md
+  expanded: true
 - name: 教學課程
   items:
-    - name: 1 - 使用 SSMS 設計 DB
-      href: sql-database-design-first-database.md
-    - name: 1 - 使用 .NET 設計 DB
-      href: sql-database-design-first-database-csharp.md
-    - name: 2 - 移轉至 SQL Server DB
-      href: sql-database-migrate-your-sql-server-database.md
-    - name: 3 - 保護您的 SQL DB
-      href: sql-database-security-tutorial.md
-    - name: 4 - 實作異地分散式資料庫
-      href: sql-database-implement-geo-distributed-database.md
-    - name: 5 - 建立受控執行個體
-      href: sql-database-managed-instance-tutorial-portal.md
+  - name: 1 - 使用 SSMS 設計 DB
+    href: sql-database-design-first-database.md
+  - name: 2 - 使用 .NET 設計 DB
+    href: sql-database-design-first-database-csharp.md
+  - name: 3 - 使用 DMS 遷移到 Azure SQL 資料庫
+    href: ../dms/tutorial-sql-server-to-azure-sql.md?toc=/azure/sql-database/toc.json
+  - name: 4 - 保護您的 SQL DB
+    href: sql-database-security-tutorial.md
+  - name: 5 - 實作異地分散式資料庫
+    href: sql-database-implement-geo-distributed-database.md
+  - name: 6 - 使用 DMS 遷移到受控執行個體
+    href: ../dms/tutorial-sql-server-to-managed-instance.md?toc=/azure/sql-database/toc.json
+  - name: 7 - 設定 Azure SQL 資料同步
+    href: sql-database-get-started-sql-data-sync.md
 - name: 範例
   items:
-    - name: 程式碼範例
-      href: 'https://azure.microsoft.com/resources/samples/?service=sql-database'
-    - name: Azure CLI
-      href: sql-database-cli-samples.md
-    - name: Azure PowerShell
-      href: sql-database-powershell-samples.md
+  - name: 程式碼範例
+    href: https://azure.microsoft.com/resources/samples/?service=sql-database
+  - name: Azure CLI
+    href: sql-database-cli-samples.md
+  - name: Azure PowerShell
+    href: sql-database-powershell-samples.md
 - name: 概念
   items:
-    - name: 伺服器和資料庫
-      href: sql-database-servers-databases.md
-    - name: 受控執行個體
-      href: sql-database-managed-instance.md
-    - name: 服務層
+  - name: 購買模型
+    items:
+    - name: 虛擬核心與 DTU
       href: sql-database-service-tiers.md
-    - name: 讀取向外延展
-      href: sql-database-read-scale-out.md
-    - name: 以 DTU 為基礎的資源限制
-      href: sql-database-dtu-resource-limits.md
-    - name: 以 vCore 為基礎的資源限制
-      href: sql-database-vcore-resource-limits.md
-    - name: 單一資料庫
-      href: sql-database-single-database-resources.md
-    - name: 彈性集區
-      href: sql-database-elastic-pool.md
+    - name: 以虛擬核心為基礎的購買模型
+      items:
+      - name: 選擇虛擬核心服務層
+        href: sql-database-service-tiers-vcore.md
+      - name: 一般用途/業務關鍵
+        href: sql-database-service-tiers-general-purpose-business-critical.md
+      - name: 超大規模
+        href: sql-database-service-tier-hyperscale.md
+      - name: 超大規模常見問題集
+        href: sql-database-service-tier-hyperscale-faq.md
+    - name: DTU 服務層
+      href: sql-database-service-tiers-dtu.md
+    - name: 預付保留容量
+      href: sql-database-reserved-capacity.md
+  - name: 邏輯伺服器
+    items:
+    - name: 建立和管理
+      href: sql-database-logical-servers.md
+    - name: 資源限制
+      href: sql-database-resource-limits-logical-server.md
     - name: 連線架構
       href: sql-database-connectivity-architecture.md
-    - name: DTU 和 eDTU
-      href: sql-database-what-is-a-dtu.md
-    - name: DTU 基準測試
-      href: sql-database-benchmark-overview.md
-    - name: SQL Server 常用功能
-      href: sql-database-features.md
+    - name: T-SQL 差異
+      href: sql-database-transact-sql-information.md
+    - name: 異動複寫 - 單一 DB 和彈性集區
+      href: replication-to-sql-database.md
+  - name: 單一資料庫
+    items:
+    - name: 建立和管理
+      href: sql-database-single-databases-manage.md
+    - name: 以 vCore 為基礎的資源限制
+      href: sql-database-vcore-resource-limits-single-databases.md
+    - name: 以 DTU 為基礎的資源限制
+      href: sql-database-dtu-resource-limits-single-databases.md
+    - name: 調整資源
+      href: sql-database-single-database-scale.md
+  - name: 彈性集區
+    items:
+    - name: 彈性集區
+      href: sql-database-elastic-pool.md
+    - name: 建立和管理
+      href: sql-database-elastic-pool-manage.md
+    - name: 以 vCore 為基礎的資源限制
+      href: sql-database-vcore-resource-limits-elastic-pools.md
+    - name: 以 DTU 為基礎的資源限制
+      href: sql-database-dtu-resource-limits-elastic-pools.md
+    - name: 調整資源
+      href: sql-database-elastic-pool-scale.md
+  - name: 受控執行個體
+    items:
+    - name: 受控執行個體
+      href: sql-database-managed-instance.md
+    - name: 資源限制
+      href: sql-database-managed-instance-resource-limits.md
+    - name: VNET 組態
+      href: sql-database-managed-instance-vnet-configuration.md
+    - name: 自訂 DNS
+      href: sql-database-managed-instance-custom-dns.md
+    - name: 同步網路組態
+      href: sql-database-managed-instance-sync-network-configuration.md
+    - name: 連線架構
+      href: sql-database-managed-instance-connectivity-architecture.md
+    - name: 連線應用程式
+      href: sql-database-managed-instance-connect-app.md
+    - name: T-SQL 差異
+      href: sql-database-managed-instance-transact-sql-information.md
+    - name: 異動複寫
+      href: replication-with-sql-database-managed-instance.md
+  - name: 業務持續性
+    items:
+    - name: 業務持續性
+      href: sql-database-business-continuity.md
     - name: 高可用性
       href: sql-database-high-availability.md
+    - name: 加速資料庫復原
+      href: sql-database-accelerated-database-recovery.md
+    - name: 資料庫備份
+      href: sql-database-automated-backups.md
+    - name: 長期備份保留期
+      items:
+      - name: 長期備份保留期
+        href: sql-database-long-term-retention.md
+      - name: 使用 Azure Blob 儲存體設定
+        href: sql-database-long-term-backup-retention-configure.md
+      - name: 使用 Azure 保存庫設定 (已取代)
+        href: sql-database-long-term-backup-retention-configure-vault.md
+    - name: 容錯移轉群組和異地複寫
+      items:
+      - name: 容錯移轉群組和異地複寫
+        href: sql-database-geo-replication-overview.md
+      - name: 設定異地複寫 - 入口網站
+        href: sql-database-geo-replication-portal.md
+      - name: 設定複本安全性
+        href: sql-database-geo-replication-security-config.md
+    - name: 資料庫復原選項
+      items:
+      - name: 使用備份進行復原
+        href: sql-database-recovery-using-backups.md
+      - name: 中斷復原指引
+        href: sql-database-disaster-recovery.md
+      - name: 復原鑽研
+        href: sql-database-disaster-recovery-drills.md
+    - name: 應用程式設計
+      items:
+      - name: 為災害復原而設計
+        href: sql-database-designing-cloud-solutions-for-disaster-recovery.md
+      - name: 為彈性集區而設計
+        href: sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool.md
+      - name: 為應用程式升級而設計
+        href: sql-database-manage-application-rolling-upgrade.md
+  - name: 安全性
+    items:
     - name: 安全性
+      href: sql-database-security-overview.md
+    - name: 進階威脅防護
       items:
-        - name: 概觀
-          href: sql-database-security-overview.md
-        - name: 防火牆規則
-          href: sql-database-firewall-configure.md
-        - name: 防火牆虛擬網路規則
-          href: sql-database-vnet-service-endpoint-rule-overview.md
-        - name: 存取控制
-          href: sql-database-control-access.md
-        - name: Azure AD
-          href: sql-database-aad-authentication.md
-        - name: 登入和使用者
-          href: sql-database-manage-logins.md
-        - name: 多因素驗證
-          href: sql-database-ssms-mfa-authentication.md
-        - name: 稽核 - SQL Database
-          href: sql-database-auditing.md
-        - name: 稽核 - 受控執行個體
-          href: sql-database-managed-instance-auditing.md
-        - name: 威脅偵測 - SQL Database
-          href: sql-database-threat-detection.md
-        - name: 威脅偵測 - 受控執行個體
-          href: sql-database-managed-instance-threat-detection.md
-        - name: 資料表稽核與 TDS
-          href: sql-database-auditing-and-dynamic-data-masking-downlevel-clients.md
-        - name: 動態資料遮罩
-          href: sql-database-dynamic-data-masking-get-started.md
-        - name: 弱點評估
-          href: sql-vulnerability-assessment.md
-        - name: 資料探索與分類
-          href: sql-database-data-discovery-and-classification.md
-    - name: 業務持續性
+      - name: 進階威脅防護
+        href: sql-advanced-threat-protection.md
+      - name: 資料探索與分類
+        href: sql-database-data-discovery-and-classification.md
+      - name: 弱點評估
+        href: sql-vulnerability-assessment.md
+      - name: 威脅偵測 - SQL Database
+        href: sql-database-threat-detection.md
+      - name: 威脅偵測 - 受控執行個體
+        href: sql-database-managed-instance-threat-detection.md
+    - name: 防火牆規則
       items:
-        - name: 概觀
-          href: sql-database-business-continuity.md
-        - name: 資料庫備份
-          href: sql-database-automated-backups.md
-        - name: 長期備份保留期
-          href: sql-database-long-term-retention.md
-        - name: 容錯移轉群組
-          href: sql-database-geo-replication-overview.md
-        - name: 資料庫復原
-          href: sql-database-recovery-using-backups.md
-        - name: 設定安全性
-          href: sql-database-geo-replication-security-config.md
-        - name: 應用程式設計與復原
-          href: sql-database-designing-cloud-solutions-for-disaster-recovery.md
-        - name: 應用程式設計與集區
-          href: sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool.md
-        - name: 應用程式設計與應用程式升級
-          href: sql-database-manage-application-rolling-upgrade.md
-        - name: 從中斷復原
-          href: sql-database-disaster-recovery.md
-        - name: 執行復原切入
-          href: sql-database-disaster-recovery-drills.md
-    - name: 移轉至 SQL Database
+      - name: 建立和管理
+        href: sql-database-firewall-configure.md
+      - name: 虛擬網路端點
+        href: sql-database-vnet-service-endpoint-rule-overview.md
+      - name: 虛擬網路端點 - PowerShell
+        href: sql-database-vnet-service-endpoint-rule-powershell.md
+    - name: 存取控制
       items:
-        - name: 移轉至 SQL Database
-          href: sql-database-cloud-migrate.md
-        - name: 移轉至受控執行個體
-          href: sql-database-managed-instance-migrate.md
-        - name: SQL Database T-SQL 詳細資料
-          href: sql-database-transact-sql-information.md
-        - name: 受控執行個體 T-SQL 詳細資料
-          href: sql-database-managed-instance-transact-sql-information.md
-        - name: 移轉後管理 SQL Database
-          href: sql-database-manage-after-migration.md
-    - name: 載入與移動資料
+      - name: 存取控制
+        href: sql-database-control-access.md
+      - name: 登入和使用者
+        href: sql-database-manage-logins.md
+    - name: Azure AD 驗證
       items:
-        - name: 複製 DB
-          href: sql-database-copy.md
-        - name: 匯出 DB
-          href: sql-database-import.md
-        - name: 匯出 DB
-          href: sql-database-export.md
-        - name: 同步資料
-          href: sql-database-sync-data.md
-    - name: 監視與微調
+      - name: Azure AD 驗證
+        href: sql-database-aad-authentication.md
+      - name: 設定 Azure AD 驗證
+        href: sql-database-aad-authentication-configure.md
+      - name: 條件式存取
+        href: sql-database-conditional-access.md
+      - name: 多因素驗證
+        href: sql-database-ssms-mfa-authentication.md
+      - name: 設定多因素驗證
+        href: sql-database-ssms-mfa-authentication-configure.md
+    - name: 稽核
       items:
-        - name: 概觀
-          href: sql-database-troubleshoot-performance.md
-        - name: 效能監視
-          href: sql-database-single-database-monitor.md
-        - name: 效能建議
+      - name: 稽核 - 伺服器、集區和資料庫
+        href: sql-database-auditing.md
+      - name: 稽核 - 受控執行個體
+        href: sql-database-managed-instance-auditing.md
+      - name: 資料表稽核 (已取代)
+        href: sql-database-auditing-and-dynamic-data-masking-downlevel-clients.md
+    - name: 動態資料遮罩
+      items:
+      - name: 動態資料遮罩
+        href: sql-database-dynamic-data-masking-get-started.md
+      - name: 設定遮罩
+        href: sql-database-dynamic-data-masking-get-started-portal.md
+    - name: 一律加密
+      items:
+      - name: 使用憑證存放區
+        href: sql-database-always-encrypted.md
+      - name: 使用 Azure Key Vault
+        href: sql-database-always-encrypted-azure-key-vault.md
+    - name: 具有 Azure SQL 的 TDE
+      items:
+      - name: 具有 Azure SQL 的 TDE
+        href: transparent-data-encryption-azure-sql.md
+      - name: 具有 BYOK 的 TDE
+        href: transparent-data-encryption-byok-azure-sql.md
+      - name: 使用 BYOK 設定 TDE
+        href: transparent-data-encryption-byok-azure-sql-configure.md
+      - name: 旋轉 TDE BYOK 金鑰
+        href: transparent-data-encryption-byok-azure-sql-key-rotation.md
+      - name: 移除 TDE 保護裝置
+        href: transparent-data-encryption-byok-azure-sql-remove-tde-protector.md
+  - name: 彈性延展性
+    items:
+    - name: 資源延展性
+      href: sql-database-scale-resources.md
+    - name: 讀取向外延展
+      href: sql-database-read-scale-out.md
+    - name: 資料庫分區
+      items:
+      - name: 資料庫分區
+        href: sql-database-elastic-scale-introduction.md
+      - name: 彈性用戶端程式庫 - 合併
+        href: sql-database-elastic-database-client-library.md
+      - name: 升級彈性資料庫用戶端程式庫
+        href: sql-database-elastic-scale-upgrade-client-library.md
+      - name: 分區對應
+        href: sql-database-elastic-scale-shard-map-management.md
+      - name: 查詢路由
+        href: sql-database-elastic-scale-data-dependent-routing.md
+      - name: 管理認證
+        href: sql-database-elastic-scale-manage-credentials.md
+      - name: 分區查詢
+        href: sql-database-elastic-scale-multishard-querying.md
+      - name: 彈性工具
+        href: sql-database-elastic-scale-glossary.md
+      - name: 移動分區化資料
+        href: sql-database-elastic-scale-overview-split-and-merge.md
+      - name: 彈性用戶端程式庫 - Dapper
+        href: sql-database-elastic-scale-working-with-dapper.md
+      - name: 彈性工具常見問題
+        href: sql-database-elastic-scale-faq.md
+      - name: 建立分區化應用程式
+        href: sql-database-elastic-scale-get-started.md
+      - name: 查詢水平分區化資料
+        href: sql-database-elastic-query-getting-started.md
+      - name: 移動分區化資料
+        href: sql-database-elastic-scale-configure-deploy-split-and-merge.md
+      - name: 安全性組態
+        href: sql-database-elastic-scale-split-merge-security-configuration.md
+      - name: 新增分區
+        href: sql-database-elastic-scale-add-a-shard.md
+      - name: 修正分區對應問題
+        href: sql-database-elastic-database-recovery-manager.md
+      - name: 移轉分區化 DB
+        href: sql-database-elastic-convert-to-use-elastic-tools.md
+      - name: 建立計數器
+        href: sql-database-elastic-database-perf-counters.md
+      - name: 使用 Entity Framework
+        href: sql-database-elastic-scale-use-entity-framework-applications-visual-studio.md
+  - name: SQL 功能比較
+    href: sql-database-features.md
+  - name: 監視和效能微調
+    items:
+    - name: 監視和微調概觀
+      href: sql-database-monitor-tune-overview.md
+    - name: 智慧效能
+      items:
+      - name: 查詢
+        items:
+        - name: 智慧查詢處理
+          href: https://docs.microsoft.com/sql/relational-databases/performance/intelligent-query-processing?toc=/azure/sql-database/toc.json
+        - name: 自適性查詢處理
+          href: https://docs.microsoft.com/sql/relational-databases/performance/adaptive-query-processing?toc=/azure/sql-database/toc.json
+      - name: 監視和微調
+        items:
+        - name: 資料庫建議程式效能建議
           href: sql-database-advisor.md
-        - name: 自動微調
-          href: sql-database-automatic-tuning.md
-        - name: Intelligent Insights
-          href: sql-database-intelligent-insights.md
-        - name: Intelligence Insights 診斷記錄
-          href: sql-database-intelligent-insights-use-diagnostics-log.md
-        - name: 手動微調
-          href: sql-database-performance-guidance.md
-        - name: 操作查詢存放區
-          href: sql-database-operate-query-store.md
-        - name: 擴充事件
-          href: sql-database-xevent-db-diff-from-svr.md
-        - name: 監視記憶體內部
-          href: sql-database-in-memory-oltp-monitoring.md
-    - name: 相應放大
-      items:
-        - name: 概觀
-          href: sql-database-elastic-scale-introduction.md
-        - name: 彈性用戶端程式庫
-          href: sql-database-elastic-database-client-library.md
-        - name: 彈性查詢
-          href: sql-database-elastic-query-overview.md
-        - name: 彈性交易
-          href: sql-database-elastic-transactions-overview.md
-        - name: 彈性工作
-          href: sql-database-elastic-jobs-overview.md
-        - name: 分區對應
-          href: sql-database-elastic-scale-shard-map-management.md
-        - name: 查詢路由
-          href: sql-database-elastic-scale-data-dependent-routing.md
-        - name: 管理認證
-          href: sql-database-elastic-scale-manage-credentials.md
-        - name: 分區查詢
-          href: sql-database-elastic-scale-multishard-querying.md
-        - name: 彈性工具
-          href: sql-database-elastic-scale-glossary.md
-        - name: 移動分區化資料
-          href: sql-database-elastic-scale-overview-split-and-merge.md
-        - name: 彈性用戶端程式庫 - Dapper
-          href: sql-database-elastic-scale-working-with-dapper.md
-        - name: 彈性工具常見問題
-          href: sql-database-elastic-scale-faq.md
-    - name: 多租用戶 SaaS
-      items:
-        - name: SaaS 設計模式
-          href: saas-tenancy-app-design-patterns.md
-        - name: SaaS 影片索引子
-          href: saas-tenancy-video-index-wingtip-brk3120-20171011.md
-        - name: SaaS 應用程式安全性
-          href: saas-tenancy-elastic-tools-multi-tenant-row-level-security.md
-    - name: 開發資料庫
-      items:
-        - name: 概觀
-          href: sql-database-develop-overview.md
-        - name: JSON 資料
-          href: sql-database-json-features.md
-        - name: 記憶體內
-          href: sql-database-in-memory.md
-        - name: 暫存資料表
-          href: sql-database-temporal-tables.md
-        - name: 保留原則
-          href: sql-database-temporal-tables-retention-policy.md
-        - name: 設定記憶體內部
-          href: sql-database-in-memory-oltp-migration.md
-    - name: 開發應用程式
-      items:
-        - name: 連線能力
-          href: sql-database-libraries.md
-        - name: 驗證應用程式
-          href: sql-database-client-id-keys.md
-        - name: 錯誤訊息
-          href: sql-database-develop-error-messages.md
-        - name: 效能批次處理
-          href: sql-database-use-batching-to-improve-performance.md
-        - name: 連線指導方針
-          href: sql-database-connectivity-issues.md
-        - name: DNS 別名概觀
-          href: dns-alias-overview.md
-        - name: DNS 別名 PowerShell
-          href: dns-alias-powershell.md
-        - name: 連接埠 - ADO.NET
-          href: sql-database-develop-direct-route-ports-adonet-v12.md
-- name: 使用說明指南
-  items:
-    - name: 服務功能
-      items:
-        - name: 升級彈性資料庫用戶端程式庫
-          href: sql-database-elastic-scale-upgrade-client-library.md
-        - name: 安裝彈性作業
-          href: sql-database-elastic-jobs-service-installation.md
-        - name: 建立作業 - 入口網站
-          href: sql-database-elastic-jobs-create-and-manage.md
-        - name: 建立作業 - Azure PowerShell
-          href: sql-database-elastic-jobs-powershell.md
-        - name: 建立作業 - 範例應用程式
-          href: sql-database-elastic-jobs-getting-started.md
-        - name: 將彈性作業解除安裝
-          href: sql-database-elastic-jobs-uninstall.md
-        - name: 查詢垂直分割的資料
-          href: sql-database-elastic-query-getting-started-vertical.md
-        - name: 跨相應放大的資料層報告
-          href: sql-database-elastic-query-horizontal-partitioning.md
-        - name: 對不同的結構描述執行跨資料表查詢
-          href: sql-database-elastic-query-vertical-partitioning.md
-    - name: 受控執行個體
-      items:
-        - name: VNET 組態
-          href: sql-database-managed-instance-vnet-configuration.md
-        - name: 自訂 DNS
-          href: sql-database-managed-instance-custom-dns.md
-        - name: 連線應用程式
-          href: sql-database-managed-instance-connect-app.md
-        - name: 同步網路組態
-          href: sql-database-managed-instance-sync-network-configuration.md
-    - name: 安全性
-      items:
-        - name: 設定 Azure AD 驗證
-          href: sql-database-aad-authentication-configure.md
-        - name: 條件式存取
-          href: sql-database-conditional-access.md
-        - name: 一律加密憑證存放區
-          href: sql-database-always-encrypted.md
-        - name: 一律加密金鑰保存庫
-          href: sql-database-always-encrypted-azure-key-vault.md
-        - name: 設定遮罩
-          href: sql-database-dynamic-data-masking-get-started-portal.md
-        - name: 設定多因素驗證
-          href: sql-database-ssms-mfa-authentication-configure.md
-        - name: PowerShell 的虛擬網路規則
-          href: sql-database-vnet-service-endpoint-rule-powershell.md
-    - name: 業務持續性
-      items:
-        - name: 地理複寫 - 入口網站
-          href: sql-database-geo-replication-portal.md
-        - name: 設定長期備份保留期 - SQL 儲存體
-          href: sql-database-long-term-backup-retention-configure.md
-        - name: 設定長期備份保留期 - Azure 保存庫
-          href: sql-database-long-term-backup-retention-configure-vault.md
-    - name: 載入與移動資料
-      items:
-        - name: 使用 BCP 載入資料
-          href: sql-database-load-from-csv-with-bcp.md
-        - name: 使用 ADF 載入資料
-          href: ../data-factory/connector-azure-sql-database.md
-        - name: 同步資料
-          href: sql-database-get-started-sql-data-sync.md
-    - name: 監視與微調
-      items:
-        - name: 監視及改善效能
+        - name: 微調動作和建議
           href: sql-database-performance.md
-        - name: 使用查詢效能深入解析
-          href: sql-database-query-performance.md
         - name: 套用效能建議
           href: sql-database-advisor-portal.md
+      - name: Intelligent Insights
+        items:
+        - name: Intelligent Insights 概觀
+          href: sql-database-intelligent-insights.md
+        - name: 診斷記錄
+          href: sql-database-metrics-diag-logging.md
+        - name: 使用診斷記錄
+          href: sql-database-intelligent-insights-use-diagnostics-log.md
+        - name: 查詢效能深入解析
+          href: sql-database-query-performance.md
+        - name: 效能疑難排解
+          href: sql-database-intelligent-insights-troubleshoot-performance.md
+      - name: 自動微調
+        items:
+        - name: 自動微調概觀
+          href: sql-database-automatic-tuning.md
         - name: 啟用自動微調
           href: sql-database-automatic-tuning-enable.md
-        - name: 自動調整電子郵件通知
+        - name: 啟用電子郵件通知
           href: sql-database-automatic-tuning-email-notifications.md
-        - name: Intelligent Insights 效能疑難排解
-          href: sql-database-intelligent-insights-troubleshoot-performance.md
-        - name: 使用 DMV 監視效能
-          href: sql-database-monitoring-with-dmvs.md
-        - name: 建立警示
-          href: sql-database-insights-alerts-portal.md
+    - name: 手動微調
+      items:
+      - name: 手動微調
+        href: sql-database-performance-guidance.md
+      - name: 使用 DMV 監視效能
+        href: sql-database-monitoring-with-dmvs.md
+      - name: 操作查詢存放區
+        href: sql-database-operate-query-store.md
+      - name: 記憶體內
+        href: sql-database-in-memory-oltp-monitoring.md
+      - name: 擴充事件
+        items:
+        - name: 擴充事件
+          href: sql-database-xevent-db-diff-from-svr.md
         - name: 擴充事件 - 事件檔案
           href: sql-database-xevent-code-event-file.md
         - name: 擴充事件 - 信號緩衝區
           href: sql-database-xevent-code-ring-buffer.md
-        - name: 診斷記錄
-          href: sql-database-metrics-diag-logging.md
-        - name: 針對連線問題進行疑難排解
-          href: sql-database-troubleshoot-common-connection-issues.md
-        - name: Azure 自動化
-          href: sql-database-manage-automation.md
-        - name: 透過 OMS Log Analytics 監視 SQL 資料同步
-          href: sql-database-sync-monitor-oms.md
-        - name: SQL 資料同步最佳做法
-          href: sql-database-best-practices-data-sync.md
-        - name: 針對 SQL 資料同步進行疑難排解
-          href: sql-database-troubleshoot-data-sync.md
-    - name: 相應放大
+    - name: 建立警示
+      href: sql-database-insights-alerts-portal.md
+    - name: 針對連線問題進行疑難排解
+      href: sql-database-troubleshoot-common-connection-issues.md
+    - name: Azure 自動化
+      href: sql-database-manage-automation.md
+  - name: 跨資料庫作業
+    items:
+    - name: 彈性資料庫工作
       items:
-        - name: 建立分區化應用程式
-          href: sql-database-elastic-scale-get-started.md
-        - name: 查詢水平分區化資料
-          href: sql-database-elastic-query-getting-started.md
-        - name: 移動分區化資料
-          href: sql-database-elastic-scale-configure-deploy-split-and-merge.md
-        - name: 安全性組態
-          href: sql-database-elastic-scale-split-merge-security-configuration.md
-        - name: 新增分區
-          href: sql-database-elastic-scale-add-a-shard.md
-        - name: 修正分區對應問題
-          href: sql-database-elastic-database-recovery-manager.md
-        - name: 移轉分區化 DB
-          href: sql-database-elastic-convert-to-use-elastic-tools.md
-        - name: 建立計數器
-          href: sql-database-elastic-database-perf-counters.md
-        - name: 使用 Entity Framework
-          href: sql-database-elastic-scale-use-entity-framework-applications-visual-studio.md
-    - name: 多租用戶 SaaS
+      - name: 彈性資料庫工作
+        href: elastic-jobs-overview.md
+      - name: 建立和管理 (PowerShell)
+        href: elastic-jobs-powershell.md
+      - name: 建立和管理 (T-SQL)
+        href: elastic-jobs-tsql.md
+      - name: 移轉 (從舊的彈性工作)
+        href: elastic-jobs-migrate.md
+      - name: 彈性工作 (取代)
+        items:
+        - name: 彈性工作 (取代)
+          href: sql-database-elastic-jobs-overview.md
+        - name: 安裝彈性工作 (取代)
+          href: sql-database-elastic-jobs-service-installation.md
+        - name: 建立工作 - 入口網站 (取代)
+          href: sql-database-elastic-jobs-create-and-manage.md
+        - name: 建立工作 - Azure PowerShell (取代)
+          href: sql-database-elastic-jobs-powershell.md
+        - name: 建立工作 - 範例應用程式 (取代)
+          href: sql-database-elastic-jobs-getting-started.md
+        - name: 解除安裝彈性工作 (取代)
+          href: sql-database-elastic-jobs-uninstall.md
+    - name: 彈性查詢
       items:
-        - name: Wingtip Tickets 範例
-          href: saas-tenancy-welcome-wingtip-tickets-app.md
-        - name: 一般方針
-          href: saas-tenancy-wingtip-app-guidance-tips.md
-        - name: 獨立應用程式
-          items:
-            - name: 部署範例應用程式
-              href: saas-standaloneapp-get-started-deploy.md
-            - name: 佈建租用戶
-              href: saas-standaloneapp-provision-and-catalog.md
-        - name: 每一租用戶一個資料庫
-          items:
-            - name: 教學課程簡介
-              href: saas-dbpertenant-wingtip-app-overview.md
-            - name: 部署範例應用程式
-              href: saas-dbpertenant-get-started-deploy.md
-            - name: 佈建租用戶
-              href: saas-dbpertenant-provision-and-catalog.md
-            - name: 監視資料庫效能
-              href: saas-dbpertenant-performance-monitoring.md
-            - name: 透過 Log Analytics 監視
-              href: saas-dbpertenant-log-analytics.md
-            - name: 還原單一租用戶
-              href: saas-dbpertenant-restore-single-tenant.md
-            - name: 管理租用戶結構描述
-              href: saas-tenancy-schema-management.md
-            - name: 跨租用戶報告
-              href: saas-tenancy-cross-tenant-reporting.md
-            - name: 供分析的 ETL
-              href: saas-tenancy-tenant-analytics.md
-        - name: 多租用戶資料庫
-          items:
-            - name: 部署範例應用程式
-              href: saas-multitenantdb-get-started-deploy.md
-            - name: 佈建租用戶
-              href: saas-multitenantdb-provision-and-catalog.md
-            - name: 監視資料庫效能
-              href: saas-multitenantdb-performance-monitoring.md
-            - name: 執行特定查詢
-              href: saas-multitenantdb-adhoc-reporting.md
-            - name: 管理租用戶結構描述
-              href: saas-multitenantdb-schema-management.md
-            - name: 供分析的 ETL
-              href: saas-multitenantdb-tenant-analytics.md
-    - name: 開發應用程式
+      - name: 彈性查詢
+        href: sql-database-elastic-query-overview.md
+      - name: 查詢垂直分割的資料
+        href: sql-database-elastic-query-getting-started-vertical.md
+      - name: 跨相應放大的資料層報告
+        href: sql-database-elastic-query-horizontal-partitioning.md
+      - name: 對不同的結構描述執行跨資料表查詢
+        href: sql-database-elastic-query-vertical-partitioning.md
+    - name: 彈性交易
+      href: sql-database-elastic-transactions-overview.md
+  - name: 多租用戶 SaaS
+    items:
+    - name: SaaS 設計模式
+      href: saas-tenancy-app-design-patterns.md
+    - name: SaaS 影片索引子
+      href: saas-tenancy-video-index-wingtip-brk3120-20171011.md
+    - name: SaaS 應用程式安全性
+      href: saas-tenancy-elastic-tools-multi-tenant-row-level-security.md
+  - name: 開發資料庫
+    items:
+    - name: 開發資料庫
+      href: sql-database-develop-overview.md
+    - name: JSON 資料
+      href: sql-database-json-features.md
+    - name: 記憶體內
+      href: sql-database-in-memory.md
+    - name: 暫存資料表
+      href: sql-database-temporal-tables.md
+    - name: 保留原則
+      href: sql-database-temporal-tables-retention-policy.md
+    - name: 設定記憶體內部
+      href: sql-database-in-memory-oltp-migration.md
+- name: 使用說明指南
+  items:
+  - name: 移轉至 SQL Database
+    items:
+    - name: 移轉至 SQL Database
+      href: sql-database-cloud-migrate.md
+    - name: 移轉至受控執行個體
+      href: sql-database-managed-instance-migrate.md
+    - name: 將 TDE 憑證遷移至受控執行個體
+      href: sql-database-managed-instance-migrate-tde-certificate.md
+    - name: 移轉後管理 SQL Database
+      href: sql-database-manage-after-migration.md
+  - name: 載入和移動資料
+    items:
+    - name: 在 Azure 中複製 DB
+      href: sql-database-copy.md
+    - name: 從 BACPAC 匯入 DB
+      href: sql-database-import.md
+    - name: 從 BACPAC 匯出 DB
+      href: sql-database-export.md
+    - name: 資料同步
       items:
-        - name: C 和 C ++
-          href: sql-database-develop-cplusplus-simple.md
-        - name: Excel
-          href: sql-database-connect-excel.md
+      - name: SQL 資料同步
+        href: sql-database-sync-data.md
+      - name: 複寫結構描述變更
+        href: sql-database-update-sync-schema.md
+      - name: 透過 OMS 進行監視
+        href: sql-database-sync-monitor-oms.md
+      - name: 資料同步最佳做法
+        href: sql-database-best-practices-data-sync.md
+      - name: 資料同步疑難排解
+        href: sql-database-troubleshoot-data-sync.md
+    - name: 使用 BCP 載入資料
+      href: sql-database-load-from-csv-with-bcp.md
+    - name: 使用 ADF 載入資料
+      href: ../data-factory/connector-azure-sql-database.md?toc=/azure/sql-database/toc.json
+  - name: 管理檔案空間
+    href: sql-database-file-space-management.md
+  - name: 開發應用程式
+    items:
+    - name: 連線能力
+      href: sql-database-libraries.md
+    - name: 使用 Spark 連接器
+      href: sql-database-spark-connector.md
+    - name: 驗證應用程式
+      href: sql-database-client-id-keys.md
+    - name: 錯誤訊息
+      href: sql-database-develop-error-messages.md
+    - name: 效能批次處理
+      href: sql-database-use-batching-to-improve-performance.md
+    - name: 連線指導方針
+      href: sql-database-connectivity-issues.md
+    - name: DNS 別名
+      href: dns-alias-overview.md
+    - name: DNS 別名 PowerShell
+      href: dns-alias-powershell.md
+    - name: 連接埠 - ADO.NET
+      href: sql-database-develop-direct-route-ports-adonet-v12.md
+    - name: C 和 C ++
+      href: sql-database-develop-cplusplus-simple.md
+    - name: Excel
+      href: sql-database-connect-excel.md
+  - name: 多租用戶 SaaS 應用程式範例
+    items:
+    - name: Wingtip Tickets 範例
+      href: saas-tenancy-welcome-wingtip-tickets-app.md
+    - name: 一般方針
+      href: saas-tenancy-wingtip-app-guidance-tips.md
+    - name: 獨立應用程式
+      items:
+      - name: 部署範例應用程式
+        href: saas-standaloneapp-get-started-deploy.md
+      - name: 佈建租用戶
+        href: saas-standaloneapp-provision-and-catalog.md
+    - name: 每一租用戶一個資料庫
+      items:
+      - name: 教學課程簡介
+        href: saas-dbpertenant-wingtip-app-overview.md
+      - name: 部署範例應用程式
+        href: saas-dbpertenant-get-started-deploy.md
+      - name: 佈建租用戶
+        href: saas-dbpertenant-provision-and-catalog.md
+      - name: 監視資料庫效能
+        href: saas-dbpertenant-performance-monitoring.md
+      - name: 透過 Log Analytics 監視
+        href: saas-dbpertenant-log-analytics.md
+      - name: 還原單一租用戶
+        href: saas-dbpertenant-restore-single-tenant.md
+      - name: 管理租用戶結構描述
+        href: saas-tenancy-schema-management.md
+      - name: 跨租用戶報告
+        href: saas-tenancy-cross-tenant-reporting.md
+      - name: 租用戶分析
+        items:
+        - name: 使用 SQL DB
+          href: saas-tenancy-tenant-analytics.md
+        - name: 使用 SQL DW
+          href: saas-tenancy-tenant-analytics-adf.md
+      - name: 使用異地還原進行災害復原
+        href: saas-dbpertenant-dr-geo-restore.md
+      - name: 使用資料庫異地複寫進行災害復原
+        href: saas-dbpertenant-dr-geo-replication.md
+    - name: 多租用戶資料庫
+      items:
+      - name: 部署範例應用程式
+        href: saas-multitenantdb-get-started-deploy.md
+      - name: 佈建租用戶
+        href: saas-multitenantdb-provision-and-catalog.md
+      - name: 監視資料庫效能
+        href: saas-multitenantdb-performance-monitoring.md
+      - name: 執行特定查詢
+        href: saas-multitenantdb-adhoc-reporting.md
+      - name: 管理租用戶結構描述
+        href: saas-multitenantdb-schema-management.md
+      - name: 供分析的 ETL
+        href: saas-multitenantdb-tenant-analytics.md
 - name: 參考
   items:
-    - name: Azure PowerShell
-      href: '/powershell/module/azurerm.sql/#sql'
-    - name: PowerShell (彈性資料庫)
-      href: '/powershell/module/elasticdatabasejobs/#elasticdatabasejobs'
-    - name: Azure CLI 2.0
-      href: /cli/azure/sql
-    - name: .NET
-      href: /dotnet/api/microsoft.azure.management.sql.models
-    - name: Java
-      href: /java/api/com.microsoft.azure.management.sql
-    - name: Node.js
-      href: /sql/connect/node-js/node-js-driver-for-sql-server
-    - name: Python
-      href: /sql/connect/python/python-driver-for-sql-server
-    - name: Ruby
-      href: /sql/connect/ruby/ruby-driver-for-sql-server
-    - name: PHP
-      href: /sql/connect/php/microsoft-php-driver-for-sql-server
-    - name: T-SQL
-      href: /sql/t-sql/language-reference
-    - name: REST
-      href: /rest/api/sql/
-    - name: SQL Server 工具
-      href: /sql/tools/overview-sql-tools
-    - name: SQL Server Management Studio (SSMS)
-      href: /sql/ssms/download-sql-server-management-studio-ssms
-    - name: SQL Server 資料工具 (SSDT)
-      href: /sql/ssdt/download-sql-server-data-tools-ssdt
-    - name: BCP
-      href: /sql/tools/bcp-utility
-    - name: SQLCMD
-      href: /sql/tools/sqlcmd-utility
-    - name: SqlPackage
-      href: 'https://msdn.microsoft.com/hh550080.aspx'
-    - name: SQL Database 管理程式庫套件
-      href: 'https://www.nuget.org/packages/Microsoft.Azure.Management.Sql'
-    - name: SQL Server 驅動程式
-      href: /sql/connect/sql-server-drivers
-      items:
-        - name: ADO.NET
-          href: /sql/connect/ado-net/microsoft-ado-net-for-sql-server
-        - name: JDBC
-          href: /sql/connect/jdbc/microsoft-jdbc-driver-for-sql-server
-        - name: ODBC
-          href: /sql/connect/odbc/microsoft-odbc-driver-for-sql-server
+  - name: Azure PowerShell
+    href: /powershell/module/azurerm.sql/#sql
+  - name: Azure CLI
+    href: /cli/azure/sql
+  - name: .NET
+    href: /dotnet/api/microsoft.azure.management.sql.models
+  - name: Java
+    href: /java/api/com.microsoft.azure.management.sql
+  - name: Node.js
+    href: /sql/connect/node-js/node-js-driver-for-sql-server
+  - name: Python
+    href: /sql/connect/python/python-driver-for-sql-server
+  - name: Ruby
+    href: /sql/connect/ruby/ruby-driver-for-sql-server
+  - name: PHP
+    href: /sql/connect/php/microsoft-php-driver-for-sql-server
+  - name: T-SQL
+    href: /sql/t-sql/language-reference
+  - name: REST
+    href: /rest/api/sql/
+  - name: SQL Server 工具
+    href: /sql/tools/overview-sql-tools
+  - name: SQL Server Management Studio (SSMS)
+    href: /sql/ssms/download-sql-server-management-studio-ssms
+  - name: SQL Server 資料工具 (SSDT)
+    href: /sql/ssdt/download-sql-server-data-tools-ssdt
+  - name: BCP
+    href: /sql/tools/bcp-utility
+  - name: SQLCMD
+    href: /sql/tools/sqlcmd-utility
+  - name: SqlPackage
+    href: https://docs.microsoft.com/sql/tools/sqlpackage?toc=/azure/sql-database/toc.json
+  - name: SQL Database 管理程式庫套件
+    href: https://www.nuget.org/packages/Microsoft.Azure.Management.Sql
+  - name: SQL Server 驅動程式
+    href: /sql/connect/sql-server-drivers
+    items:
+    - name: ADO.NET
+      href: /sql/connect/ado-net/microsoft-ado-net-for-sql-server
+    - name: JDBC
+      href: /sql/connect/jdbc/microsoft-jdbc-driver-for-sql-server
+    - name: ODBC
+      href: /sql/connect/odbc/microsoft-odbc-driver-for-sql-server
 - name: 資源
   items:
-    - name: Azure 藍圖
-      href: 'https://azure.microsoft.com/roadmap/'
-    - name: 常見問題集
-      href: sql-database-faq.md
-    - name: 公用資料集
-      href: sql-database-public-data-sets.md
-    - name: 針對連線問題進行疑難排解
-      href: 'https://support.microsoft.com/help/10085/troubleshooting-connectivity-issues-with-microsoft-azure-sql-database'
-    - name: 價格
-      href: 'https://azure.microsoft.com/pricing/details/sql-database/'
-    - name: MSDN 論壇
-      href: 'https://social.msdn.microsoft.com/Forums/home?forum=ssdsgetstarted'
-    - name: 堆疊溢位
-      href: 'http://stackoverflow.com/questions/tagged/sql-azure'
-    - name: 影片
-      href: 'https://azure.microsoft.com/documentation/videos/index/?services=sql-database'
-    - name: 服務更新
-      href: 'https://azure.microsoft.com/updates/?service=sql-database'
-    - name: 架構中心
-      href: /azure/architecture/
-    - name: 客戶案例
-      href: 'https://customers.microsoft.com/search?sq=%22Azure%20SQL%20Database%22&ff=&p=0&so=story_publish_date%20desc'
+  - name: 透過 Microsoft Learn 增進您的技巧
+    href: /learn/browse/?products=azure-sql-database
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/
+  - name: 常見問題集
+    href: sql-database-faq.md
+  - name: 公用資料集
+    href: sql-database-public-data-sets.md
+  - name: 針對連線問題進行疑難排解
+    href: https://support.microsoft.com/help/10085/troubleshooting-connectivity-issues-with-microsoft-azure-sql-database
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/sql-database/
+  - name: MSDN 論壇
+    href: https://social.msdn.microsoft.com/Forums/home?forum=ssdsgetstarted
+  - name: 堆疊溢位
+    href: http://stackoverflow.com/questions/tagged/sql-azure
+  - name: 影片
+    href: https://azure.microsoft.com/documentation/videos/index/?services=sql-database
+  - name: 服務更新
+    href: https://azure.microsoft.com/updates/?service=sql-database
+  - name: 架構中心
+    href: /azure/architecture/
+  - name: 客戶案例
+    href: http://customers.microsoft.com/en-us/search?sq=%22Azure%20SQL%20Database%22&ff=&p=0&so=story_publish_date%20desc
+ms.openlocfilehash: 416f74c395f331de6af749f3de1d3a3e966b8b35
+ms.sourcegitcommit: ccdea744097d1ad196b605ffae2d09141d9c0bd9
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/23/2018
+ms.locfileid: "49650055"

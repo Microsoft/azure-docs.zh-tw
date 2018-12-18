@@ -11,17 +11,19 @@ ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: powershell
-ms.topic: article
+ms.topic: conceptual
 ms.date: 11/21/2016
 ms.author: richrund
-ms.openlocfilehash: 6a3f91323a017533d2d012f1e81760396c17a643
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: ''
+ms.openlocfilehash: f30114797c7ba62fde555487d3202de5edf48ecb
+ms.sourcegitcommit: 5b8d9dc7c50a26d8f085a10c7281683ea2da9c10
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/26/2018
+ms.locfileid: "47182343"
 ---
 # <a name="manage-log-analytics-using-powershell"></a>使用 PowerShell 管理 Log Analytics
-您可以從命令列或在指令碼中，使用 [Log Analytics PowerShell Cmdlet](https://msdn.microsoft.com/library/mt188224\(v=azure.300\).aspx) 在 Log Analytics 中執行各種功能。  您可以使用 PowerShell 執行的工作範例包括︰
+您可以從命令列或在指令碼中，使用 [Log Analytics PowerShell Cmdlet](https://docs.microsoft.com/powershell/module/azurerm.operationalinsights/) 在 Log Analytics 中執行各種功能。  您可以使用 PowerShell 執行的工作範例包括︰
 
 * 建立工作區
 * 新增或移除方案
@@ -35,14 +37,14 @@ ms.lasthandoff: 03/23/2018
 * 將 Log Analytics 代理程式加入至 Azure 虛擬機器
 * 設定 Log Analytics 將 Azure 診斷所收集的資料編製索引
 
-本文提供兩個程式碼範例，示範您可以從 PowerShell 執行的一些功能。  關於其他功能，您可以參考 [Log Analytics PowerShell Cmdlet 參考文件](https://msdn.microsoft.com/library/mt188224\(v=azure.300\).aspx) 。
+本文提供兩個程式碼範例，示範您可以從 PowerShell 執行的一些功能。  關於其他功能，您可以參考 [Log Analytics PowerShell Cmdlet 參考文件](https://docs.microsoft.com/powershell/module/azurerm.operationalinsights/) 。
 
 > [!NOTE]
 > Log Analytics 在以前稱為 Operational Insights，這也是 Cmdlet 中使用此名稱的原因。
 > 
 > 
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 這些範例可與 AzureRm.OperationalInsights 模組的 2.3.0 版或更新版本搭配運作。
 
 
@@ -191,24 +193,24 @@ New-AzureRmOperationalInsightsCustomLogDataSource -ResourceGroupName $ResourceGr
 
 | 資源類型 | 記錄檔 | 度量 |
 | --- | --- | --- |
-| 應用程式閘道    | yes | yes |
-| 自動化帳戶     | yes | |
-| Batch 帳戶          | yes | yes |
-| Data Lake Analytics     | yes | | 
-| Data Lake Store         | yes | |
-| SQL 彈性集區        |     | yes |
-| 事件中樞命名空間     |     | yes |
-| IoT 中樞                |     | yes |
-| Key Vault               | yes | |
-| 負載平衡器          | yes | |
-| Logic Apps              | yes | yes |
-| 網路安全性群組 | yes | |
-| Redis 快取             |     | yes |
-| 搜尋服務         | yes | yes |
-| 服務匯流排命名空間   |     | yes |
-| SQL (v12)               |     | yes |
-| 網站               |     | yes |
-| Web 伺服器陣列        |     | yes |
+| 應用程式閘道    | 是 | 是 |
+| 自動化帳戶     | 是 | |
+| Batch 帳戶          | 是 | 是 |
+| Data Lake Analytics     | 是 | | 
+| Data Lake Store         | 是 | |
+| SQL 彈性集區        |     | 是 |
+| 事件中樞命名空間     |     | 是 |
+| IoT 中樞                |     | 是 |
+| Key Vault               | 是 | |
+| 負載平衡器          | 是 | |
+| Logic Apps              | 是 | 是 |
+| 網路安全性群組 | 是 | |
+| Redis 快取             |     | 是 |
+| 搜尋服務         | 是 | 是 |
+| 服務匯流排命名空間   |     | 是 |
+| SQL (v12)               |     | 是 |
+| 網站               |     | 是 |
+| Web 伺服器陣列        |     | 是 |
 
 如需可用度量的詳細資訊，請參閱[支援 Azure 監視器的度量](../monitoring-and-diagnostics/monitoring-supported-metrics.md)。
 
@@ -264,5 +266,5 @@ Remove-AzureRmOperationalInsightsStorageInsight -ResourceGroupName $workspace.Re
 
 
 ## <a name="next-steps"></a>後續步驟
-* [檢閱 Log Analytics PowerShell Cmdlet](https://msdn.microsoft.com/library/mt188224\(v=azure.300\).aspx) 。
+* [檢閱 Log Analytics PowerShell Cmdlet](https://docs.microsoft.com/powershell/module/azurerm.operationalinsights/) 。
 

@@ -1,26 +1,20 @@
 ---
-title: "使用外部中繼資料存放區 - Azure HDInsight | Microsoft Docs"
-description: "搭配 HDInsight 叢集使用外部中繼資料存放區。"
+title: 使用外部中繼資料存放區 - Azure HDInsight
+description: 搭配 HDInsight 叢集使用外部中繼資料存放區。
 services: hdinsight
-documentationcenter: 
-author: mumian
-manager: cgronlun
-tags: azure-portal
-editor: cgronlun
-ms.assetid: 
+author: jasonwhowell
+ms.reviewer: jasonh
+ms.author: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 02/16/2018
-ms.author: jgao
-ms.openlocfilehash: 767a1b8a8213b0139878c82d64639b2ba10b5f4f
-ms.sourcegitcommit: d1f35f71e6b1cbeee79b06bfc3a7d0914ac57275
+ms.topic: conceptual
+ms.date: 05/14/2018
+ms.openlocfilehash: a2c992a47e40a4f8764f5950c65bb90f1cd9e066
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/22/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43045138"
 ---
 # <a name="use-external-metadata-stores-in-azure-hdinsight"></a>在 Azure HDInsight 中使用外部中繼資料存放區
 

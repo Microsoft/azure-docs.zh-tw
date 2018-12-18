@@ -3,17 +3,18 @@ title: Azure Container Service 教學課程 - 部署應用程式
 description: Azure Container Service 教學課程 - 部署應用程式
 services: container-service
 author: neilpeterson
-manager: timlt
+manager: jeconnoc
 ms.service: container-service
 ms.topic: tutorial
 ms.date: 02/26/2018
 ms.author: nepeters
 ms.custom: mvc
-ms.openlocfilehash: 7119976ada00e10ebeadf6fcff2daf125f439c17
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: e7f9c0c3ad11cb6988f528503d614ab26dcc0968
+ms.sourcegitcommit: 4ea0cea46d8b607acd7d128e1fd4a23454aa43ee
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 08/15/2018
+ms.locfileid: "41918313"
 ---
 # <a name="run-applications-in-kubernetes"></a>在 Kubernetes 中執行應用程式
 
@@ -42,7 +43,7 @@ ms.lasthandoff: 03/28/2018
 
 在本教學課程中，我們一直使用 Azure Container Registry (ACR) 來儲存容器映像。 執行應用程式之前，您需要在 Kubernetes 資訊清單檔中更新 ACR 登入伺服器名稱。
 
-請使用 [az acr list](/cli/azure/acr#az_acr_list) 命令來取得 ACR 登入伺服器名稱。
+請使用 [az acr list](/cli/azure/acr#az-acr-list) 命令來取得 ACR 登入伺服器名稱。
 
 ```azurecli-interactive
 az acr list --resource-group myResourceGroup --query "[].{acrLoginServer:loginServer}" --output table
@@ -66,7 +67,7 @@ containers:
 
 ## <a name="deploy-application"></a>部署應用程式
 
-使用 [kubectl create](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#create) 命令來執行應用程式。 此命令會剖析資訊清單檔，並建立已定義的 Kubernetes 物件。
+使用 [kubectl create](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#create) 命令來執行應用程式。 此命令會剖析資訊清單檔，並建立已定義的 Kubernetes 物件。
 
 ```azurecli-interactive
 kubectl create -f azure-vote-all-in-one-redis.yml
@@ -85,7 +86,7 @@ service "azure-vote-front" created
 
 已建立 [Kubernetes 服務](https://kubernetes.io/docs/concepts/services-networking/service/)，會將應用程式公開至網際網路。 此程序需要數分鐘的時間。 
 
-若要監視進度，請使用 [kubectl get service](https://review.docs.microsoft.com/azure/container-service/container-service-kubernetes-walkthrough?branch=pr-en-us-17681) 命令搭配 `--watch` 引數。
+若要監視進度，請使用 [kubectl get service](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#get) 命令搭配 `--watch` 引數。
 
 ```azurecli-interactive
 kubectl get service azure-vote-front --watch

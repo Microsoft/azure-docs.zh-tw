@@ -1,29 +1,25 @@
 ---
-title: "設定 Azure 儲存體防火牆和虛擬網路 | Microsoft Docs"
-description: "為儲存體帳戶設定多層式的網路安全性。"
+title: 設定 Azure 儲存體防火牆和虛擬網路 | Microsoft Docs
+description: 為儲存體帳戶設定多層式的網路安全性。
 services: storage
-documentationcenter: 
 author: cbrooksmsft
-manager: cbrooks
-editor: cbrooks
 ms.service: storage
-ms.devlang: na
 ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: storage
 ms.date: 10/25/2017
 ms.author: cbrooks
-ms.openlocfilehash: fc13b7cc164c948f25a6908bdf71124a5be02fb9
-ms.sourcegitcommit: 9d317dabf4a5cca13308c50a10349af0e72e1b7e
+ms.component: common
+ms.openlocfilehash: ff382becb71f187ac38b0ef5d31c1b29c43f3fe7
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46972550"
 ---
 # <a name="configure-azure-storage-firewalls-and-virtual-networks"></a>設定 Azure 儲存體防火牆和虛擬網路
 Azure 儲存體提供多層式的安全性模型，讓您保護特定允許網路集合的儲存體帳戶。  設定網路規則時，只有來自允許網路的應用程式可以存取儲存體帳戶。  從允許的網路呼叫時，應用程式仍然需要適當的權限 (有效的存取金鑰或 SAS 權杖) 才能存取儲存體帳戶。
 
 > [!IMPORTANT]
-> 開啟儲存體帳戶的防火牆規則，將封鎖存取資料的傳入要求，包括來自其他 Azure 服務的要求。  這包括使用入口網站、寫入記錄等。針對參與服務，您可以透過下列[例外狀況](#Exceptions)一節來重新啟用功能。  若要存取入口網站，必須從位於您已設定之信任界限 (IP 或 VNet) 內的電腦來執行此作業。
+> 開啟儲存體帳戶的防火牆規則，將封鎖存取資料的傳入要求，包括來自其他 Azure 服務的要求。  這包括使用入口網站、寫入記錄等。針對參與服務，您可以透過下列[例外狀況](https://docs.microsoft.com/azure/storage/common/storage-network-security#exceptions)一節來重新啟用功能。  若要存取入口網站，必須從位於您已設定之信任界限 (IP 或 VNet) 內的電腦來執行此作業。
 >
 
 ## <a name="scenarios"></a>案例
@@ -37,11 +33,9 @@ Azure 儲存體提供多層式的安全性模型，讓您保護特定允許網�
 
 虛擬機器磁碟流量 (包括掛接和取消掛接作業以及磁碟 IO) **不**受網路規則影響。  分頁 Blob 的 REST存取受網路規則保護。
 
-> [!NOTE]
-> 目前不支援在套用網路規則的儲存體帳戶中，使用未受管理的磁碟備份與還原虛擬機器。  如需詳細資訊，請參閱[備份與還原 VM 時的限制](/azure/backup/backup-azure-arm-vms-prepare#limitations-when-backing-up-and-restoring-a-vm)
->
-
 傳統的儲存體帳戶**不**支援防火牆與虛擬網路。
+
+透過如本文[例外狀況](https://docs.microsoft.com/azure/storage/common/storage-network-security#exceptions)一節所述的方式建立例外狀況，可支援在套用網路規則的儲存體帳戶中使用非受控磁碟備份與還原虛擬機器。  防火牆例外不適用於受控磁碟，因為它們已受 Azure 管理。
 
 ## <a name="change-the-default-network-access-rule"></a>變更預設的網路存取規則
 儲存體帳戶預設接受來自任何網路用戶端的連線。  若要限制對所選網路的存取，您必須先變更預設動作。
@@ -76,7 +70,7 @@ Update-AzureRmStorageAccountNetworkRuleSet -ResourceGroupName "myresourcegroup" 
 ```    
 
 #### <a name="cliv2"></a>CLIv2
-1. [安裝 Azure CLI 2.0](/cli/azure/install-azure-cli) 並[登入](/cli/azure/authenticate-azure-cli)。
+1. [安裝 Azure CLI](/cli/azure/install-azure-cli) 並[登入](/cli/azure/authenticate-azure-cli)。
 2. 顯示儲存體帳戶的預設規則狀態。
 ```azurecli
 az storage account show --resource-group "myresourcegroup" --name "mystorageaccount" --query networkRuleSet.defaultAction
@@ -100,7 +94,7 @@ az storage account update --name "mystorageaccount" --resource-group "myresource
 每個儲存體帳戶最多可支援 100 個虛擬網路規則，它們也可以結合 [IP 網路規則](#grant-access-from-an-internet-ip-range)。
 
 ### <a name="available-virtual-network-regions"></a>可用的虛擬網路區域
-一般情況下，服務端點是在虛擬網路與相同 Azure 區域的服務執行個體之間運作。  當服務端點搭配 Azure 儲存體使用時，此範圍會擴充包含[配對的區域](/azure/best-practices-availability-paired-regions)。  這允許持續性的地區性容錯移轉，以及無縫存取唯讀的異地備援儲存體 (RA-GRS) 執行個體。  將虛擬網路存取權授與儲存體帳戶的網路規則，也會將存取權授與任何 RA-GRS 執行個體。
+一般情況下，服務端點是在虛擬網路與相同 Azure 區域的服務執行個體之間運作。  當服務端點搭配 Azure 儲存體使用時，此範圍會擴充包含[配對的區域](/azure/best-practices-availability-paired-regions)。  這可在地區性容錯移轉期間維持持續性，而且能讓您順暢存取唯讀的異地備援儲存體 (RA-GRS) 執行個體。  將虛擬網路存取權授與儲存體帳戶的網路規則，也會將存取權授與任何 RA-GRS 執行個體。
 
 規劃地區服務中斷期間的災害復原時，應該事先在配對區域中佈建虛擬網路。 應該啟用 Azure 儲存體的服務端點，而授與這些替代虛擬網路存取權的網路規則應該套用至您的異地備援儲存體帳戶。
 
@@ -158,7 +152,7 @@ Remove-AzureRmStorageAccountNetworkRule -ResourceGroupName "myresourcegroup" -Na
 >
 
 #### <a name="cliv2"></a>CLIv2
-1. [安裝 Azure CLI 2.0](/cli/azure/install-azure-cli) 並[登入](/cli/azure/authenticate-azure-cli)。
+1. [安裝 Azure CLI](/cli/azure/install-azure-cli) 並[登入](/cli/azure/authenticate-azure-cli)。
 2. 列出虛擬網路規則
 ```azurecli
 az storage account network-rule list --resource-group "myresourcegroup" --account-name "mystorageaccount" --query virtualNetworkRules
@@ -194,7 +188,7 @@ az storage account network-rule remove --resource-group "myresourcegroup" --acco
 > 不支援使用 "/31" 或 "/32" 前置詞大小的小型位址範圍。  這些範圍應該使用個別的 IP 位址規則設定。
 >
 
-只有**公用網際網路** IP 位址允許使用 IP 網路規則。  IP 規則中不允許保留私人網路的 IP 位址範圍 (如 RFC 1918 中所定義)。  私人網路包括以 *10.\**、 *172.16.\** 和 *192.168.\** 開頭的位址。
+只有**公用網際網路** IP 位址允許使用 IP 網路規則。  IP 規則中不允許保留私人網路的 IP 位址範圍 (如 RFC 1918 中所定義)。  私人網路包括以 *10.\**、*172.16.\** 和 *192.168.\** 開頭的位址。
 
 目前僅支援 IPV4 位址。
 
@@ -214,7 +208,7 @@ az storage account network-rule remove --resource-group "myresourcegroup" --acco
 2. 按一下名為 [防火牆與虛擬網路] 的設定功能表。
 3. 請確定您已提升權限可允許「所選網路」存取權。
 4. 若要授與網際網路 IP 範圍存取權，請在 [防火牆] 的 [位址範圍] 之下輸入 IP 位址或位址範圍 (採用 CIDR 格式)。
-5. 若要移除 IP 網路規則，請按一下 […] 開啟規則的操作功能表，然後按一下 [移除]。
+5. 若要移除 IP 網路規則，請按一下網路規則旁的垃圾桶圖示。
 6. 按一下 [儲存] 套用變更。
 
 #### <a name="powershell"></a>PowerShell
@@ -249,7 +243,7 @@ Remove-AzureRMStorageAccountNetworkRule -ResourceGroupName "myresourcegroup" -Ac
 >
 
 #### <a name="cliv2"></a>CLIv2
-1. [安裝 Azure CLI 2.0](/cli/azure/install-azure-cli) 並[登入](/cli/azure/authenticate-azure-cli)。
+1. [安裝 Azure CLI](/cli/azure/install-azure-cli) 並[登入](/cli/azure/authenticate-azure-cli)。
 2. 列出 IP 網路規則
 ```azurecli
 az storage account network-rule list --resource-group "myresourcegroup" --account-name "mystorageaccount" --query ipRules
@@ -291,11 +285,14 @@ az storage account network-rule remove --resource-group "myresourcegroup" --acco
 
 |服務|資源提供者名稱|目的|
 |:------|:---------------------|:------|
+|Azure 備份|Microsoft.Backup|在 IAAS 虛擬機器中執行未受控磁碟備份與還原。 (若為受控磁碟則非必要)。 [深入了解](https://docs.microsoft.com/azure/backup/backup-introduction-to-azure-backup)。|
 |Azure DevTest Labs|Microsoft.DevTestLab|自訂映像建立和成品安裝。  [深入了解](https://docs.microsoft.com/azure/devtest-lab/devtest-lab-overview)。|
 |Azure Event Grid|Microsoft.EventGrid|啟用 Blob 儲存體事件發佈。  [深入了解](https://docs.microsoft.com/azure/event-grid/overview)。|
 |Azure 事件中心|Microsoft.EventHub|使用事件中樞擷取封存資料。  [深入了解](https://docs.microsoft.com/azure/event-hubs/event-hubs-capture-overview)。|
 |Azure 網路|Microsoft.Networking|儲存及分析網路流量記錄檔。  [深入了解](https://docs.microsoft.com/azure/network-watcher/network-watcher-packet-capture-overview)。|
-||||
+|Azure 監視器|Microsoft.Insights| 允許將監視資料寫入受保護的儲存體帳戶 [深入了解](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-roles-permissions-security#monitoring-and-secured-Azure-storage-and-networks)。|
+|
+
 
 ### <a name="storage-analytics-data-access"></a>儲存體分析資料存取
 在某些情況下，需要來自網路界限外的存取權才能讀取診斷記錄檔和計量。  您可以授與網路規則的例外狀況，允許讀取存取儲存體帳戶記錄檔、計量資料表，或兩者都存取。 [深入了解儲存體分析的使用方式。](/azure/storage/storage-analytics)
@@ -332,7 +329,7 @@ Update-AzureRmStorageAccountNetworkRuleSet -ResourceGroupName "myresourcegroup" 
 >
 
 #### <a name="cliv2"></a>CLIv2
-1. [安裝 Azure CLI 2.0](/cli/azure/install-azure-cli) 並[登入](/cli/azure/authenticate-azure-cli)。
+1. [安裝 Azure CLI](/cli/azure/install-azure-cli) 並[登入](/cli/azure/authenticate-azure-cli)。
 2. 顯示儲存體帳戶網路規則的例外狀況。
 ```azurecli
 az storage account show --resource-group "myresourcegroup" --name "mystorageaccount" --query networkRuleSet.bypass

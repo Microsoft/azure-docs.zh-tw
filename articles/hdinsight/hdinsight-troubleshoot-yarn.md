@@ -1,25 +1,18 @@
 ---
-title: "使用 Azure HDInsight 來為 YARN 進行疑難排解 | Microsoft Docs"
-description: "取得有關使用 Apache Hadoop YARN 和 Azure HDInsight 的常見問題解答。"
-keywords: "Azure HDInsight, YARN, 常見問題集, 疑難排解指南, 常見問題"
-services: Azure HDInsight
-documentationcenter: na
-author: arijitt
-manager: 
-editor: 
-ms.assetid: F76786A9-99AB-4B85-9B15-CA03528FC4CD
-ms.service: multiple
-ms.workload: na
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+title: 在 Azure HDInsight 中對 YARN 進行疑難排解
+description: 取得有關使用 Apache Hadoop YARN 和 Azure HDInsight 的常見問題解答。
+services: hdinsight
+ms.service: hdinsight
+author: jasonwhowell
+ms.author: jasonh
+ms.topic: conceptual
 ms.date: 11/2/2017
-ms.author: arijitt
-ms.openlocfilehash: fbcb4807aa7f6a3d6227cd630c77714c4d2834b3
-ms.sourcegitcommit: b07d06ea51a20e32fdc61980667e801cb5db7333
+ms.openlocfilehash: f1f332164b5e954b2576f9fbde519241c7288006
+ms.sourcegitcommit: 1f0587f29dc1e5aef1502f4f15d5a2079d7683e9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2017
+ms.lasthandoff: 08/07/2018
+ms.locfileid: "39596459"
 ---
 # <a name="troubleshoot-yarn-by-using-azure-hdinsight"></a>使用 Azure HDInsight 進行 YARN 的疑難排解
 

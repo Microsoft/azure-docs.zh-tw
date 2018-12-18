@@ -1,24 +1,25 @@
 ---
-title: "Azure 事件中樞擷取概觀 | Microsoft Docs"
-description: "使用事件中樞擷取來擷取遙測資料"
+title: Azure 事件中樞擷取概觀 | Microsoft Docs
+description: 使用事件中樞擷取來擷取遙測資料
 services: event-hubs
-documentationcenter: 
-author: sethmanheim
+documentationcenter: ''
+author: ShubhaVijayasarathy
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: e53cdeea-8a6a-474e-9f96-59d43c0e8562
 ms.service: event-hubs
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/19/2017
-ms.author: sethm;darosa
-ms.openlocfilehash: fbd4aef62891341ad3760b74cd8aaee7abf7b827
-ms.sourcegitcommit: d6984ef8cc057423ff81efb4645af9d0b902f843
+ms.date: 08/16/2018
+ms.author: shvija
+ms.openlocfilehash: 603a5dfcf2137c15ae19ea248f3e0f4f136c22f1
+ms.sourcegitcommit: f057c10ae4f26a768e97f2cb3f3faca9ed23ff1b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/05/2018
+ms.lasthandoff: 08/17/2018
+ms.locfileid: "42145750"
 ---
 # <a name="azure-event-hubs-capture"></a>Azure 事件中樞擷取
 
@@ -71,13 +72,13 @@ https://mystorageaccount.blob.core.windows.net/mycontainer/mynamespace/myeventhu
 
 瀏覽 Avro 檔案的簡易方式是使用 Apache 所提供的 [Avro Tools][Avro Tools] jar。 下載這個 jar 之後，您可以執行下列命令來查看特定 Avro 檔案的結構描述︰
 
-```
+```shell
 java -jar avro-tools-1.8.2.jar getschema <name of capture file>
 ```
 
 此命令會傳回
 
-```
+```json
 {
 
     "type":"record",

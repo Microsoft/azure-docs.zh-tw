@@ -1,26 +1,27 @@
 ---
-title: "使用 Visual Studio 部署虛擬機器擴展集 | Microsoft Docs"
-description: "使用 Visual Studio 和 Resource Manager 範本部署虛擬機器調整集"
+title: 使用 Visual Studio 部署虛擬機器擴展集 | Microsoft Docs
+description: 使用 Visual Studio 和 Resource Manager 範本部署虛擬機器調整集
 services: virtual-machine-scale-sets
-documentationcenter: 
+ms.custom: H1Hack27Feb2017
+ms.workload: na
+documentationcenter: ''
 author: gatneil
 manager: jeconnoc
-editor: 
+editor: ''
 tags: azure-resource-manager
 ms.assetid: ed0786b8-34b2-49a8-85b5-2a628128ead6
 ms.service: virtual-machine-scale-sets
-ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 03/13/2017
 ms.author: negat
-ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 73454abc11a832a1b7f4131bf13699bd0a94edea
-ms.sourcegitcommit: f46cbcff710f590aebe437c6dd459452ddf0af09
+ms.openlocfilehash: f0bd57836d6d54fe3e3460af27ebea4cffe3ee40
+ms.sourcegitcommit: fab878ff9aaf4efb3eaff6b7656184b0bafba13b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/20/2017
+ms.lasthandoff: 08/22/2018
+ms.locfileid: "42443927"
 ---
 # <a name="how-to-create-a-virtual-machine-scale-set-with-visual-studio"></a>如何使用 Visual Studio 建立虛擬機器擴展集
 本文說明如何使用 Visual Studio 資源群組部署，部署 Azure 虛擬機器調整集。

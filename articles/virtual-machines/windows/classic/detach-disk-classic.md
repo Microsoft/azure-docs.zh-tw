@@ -1,11 +1,11 @@
 ---
-title: "從 Windows VM 卸離磁碟 | Microsoft Docs"
-description: "了解如何使用傳統部署模型從 Azure 中的虛擬機器卸離磁碟。"
+title: 從 Windows VM 卸離磁碟 | Microsoft Docs
+description: 了解如何使用傳統部署模型從 Azure 中的虛擬機器卸離磁碟。
 services: virtual-machines-windows
-documentationcenter: 
+documentationcenter: ''
 author: cynthn
-manager: timlt
-editor: 
+manager: jeconnoc
+editor: ''
 tags: azure-service-management
 ROBOTS: NOINDEX
 ms.assetid: b6406768-1726-41bb-9451-1fda0905cc24
@@ -16,11 +16,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/24/2017
 ms.author: cynthn
-ms.openlocfilehash: 19c4de4af21b64819a57c8ad8b8c6a11cf2e1358
-ms.sourcegitcommit: 176c575aea7602682afd6214880aad0be6167c52
+ms.openlocfilehash: 7479970eb1a6a11a51dfb93f9fd4251f220a75bd
+ms.sourcegitcommit: 5b2ac9e6d8539c11ab0891b686b8afa12441a8f3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/09/2018
+ms.lasthandoff: 04/06/2018
+ms.locfileid: "30914978"
 ---
 # <a name="how-to-detach-a-disk-from-a-windows-virtual-machine"></a>如何從 Windows 虛擬機器卸離磁碟
 > [!IMPORTANT]

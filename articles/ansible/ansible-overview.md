@@ -4,15 +4,16 @@ description: 簡介使用 Ansible 自動佈建雲端、進行組態管理和應�
 ms.service: ansible
 keywords: ansible, azure, devops, 概觀, 雲端佈建, 組態管理, 應用程式部署, ansible 模組, ansible 腳本
 author: tomarcher
-manager: routlaw
+manager: jeconnoc
 ms.author: tarcher
-ms.date: 01/19/2018
+ms.date: 09/02/2018
 ms.topic: article
-ms.openlocfilehash: a7ce3c239a50462a9af137eb958268f72dbf79d1
-ms.sourcegitcommit: ded74961ef7d1df2ef8ffbcd13eeea0f4aaa3219
+ms.openlocfilehash: 977fef390c0efecd47ec5e19b1a82c05e2ecfd0f
+ms.sourcegitcommit: 2d961702f23e63ee63eddf52086e0c8573aec8dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/29/2018
+ms.lasthandoff: 09/07/2018
+ms.locfileid: "44160740"
 ---
 # <a name="ansible-with-azure"></a>Ansible 搭配 Azure
 
@@ -43,6 +44,10 @@ Ansible 能夠透過其[動態清查](http://docs.ansible.com/ansible/intro_dyna
 
 ## <a name="additional-azure-marketplace-options"></a>Azure Marketplace 的其他選項
 Red Hat 提供的 [Ansible Tower](https://azuremarketplace.microsoft.com/marketplace/apps/redhat.ansible-tower) Azure Marketplace 映像能夠協助組織調整 IT 自動化，以及管理各個實體、虛擬及雲端基礎結構之間的複雜部署。 Ansible Tower 所包含的功能可因應現今的企業需求，提供額外的可見性層級、控制項、安全性與效率。 Ansible Tower 可將 Azure 和 SSH 金鑰等認證加密，以便您將作業委派給新進的員工時，能夠避免將認證公開的風險。
+
+## <a name="ansible-module-and-version-matrix-for-azure"></a>Azure 的 Ansible 模組和版本對照表
+Ansible 隨附於許多模組，這些模組可以直接在遠端主機上或透過劇本來執行。
+[Ansible 模組和版本對照表](./ansible-matrix.md)會列出 Azure 的 Ansible 模組，這些模組可以佈建 Azure 雲端資源，例如虛擬機器、網路及容器服務。 
 
 ## <a name="next-steps"></a>後續步驟
 - [設定 Ansible](/azure/virtual-machines/linux/ansible-install-configure?toc=%2Fen-us%2Fazure%2Fansible%2Ftoc.json&bc=%2Fen-us%2Fazure%2Fbread%2Ftoc.json)

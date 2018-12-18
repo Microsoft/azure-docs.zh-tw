@@ -1,0 +1,233 @@
+items:
+- name: Azure 原則文件
+  href: index.yml
+- name: 概觀
+  items:
+  - name: Azure 原則的概觀
+    href: overview.md
+- name: 快速入門
+  items:
+  - name: 指派原則 - 入口網站
+    href: assign-policy-portal.md
+  - name: 指派原則 - PowerShell
+    href: assign-policy-powershell.md
+  - name: 指派原則 - Azure CLI
+    href: assign-policy-azurecli.md
+  expanded: true
+- name: 教學課程
+  items:
+  - name: 建立和管理 Azure 原則
+    href: ./tutorials/create-and-manage.md
+- name: 範例
+  href: ./samples/index.md
+  items:
+  - name: 一般
+    items:
+    - name: 命名
+      items:
+      - name: 允許多個名稱模式
+        href: samples/allow-multiple-name-patterns.md
+      - name: 需要類似模式
+        href: samples/enforce-like-pattern.md
+      - name: 需要比對模式
+        href: samples/enforce-match-pattern.md
+      - name: 需要標籤比對模式
+        href: samples/enforce-tag-match-pattern.md
+    - name: 標記
+      items:
+      - name: 套用標籤及其預設值
+        href: samples/apply-tag-def-val.md
+      - name: 計費標籤原則計畫
+        href: samples/billing-tags-policy-init.md
+      - name: 強制執行標籤和其值
+        href: samples/enforce-tag-val.md
+      - name: 對資源群組強制執行標籤及其值
+        href: samples/enforce-tag-rg.md
+    - name: 位置
+      items:
+      - name: 允許的位置
+        href: samples/allowed-locs.md
+    - name: 資源類型
+      items:
+      - name: 允許的資源類型
+        href: samples/allowed-res-types.md
+      - name: 不允許的資源類型
+        href: samples/not-allowed-res-type.md
+  - name: 計算
+    items:
+    - name: 虛擬機器
+      items:
+      - name: 允許來自某個資源群組的自訂 VM 映像
+        href: samples/allow-custom-vm-image.md
+      - name: 允許的儲存體帳戶和虛擬機器 SKU
+        href: samples/allowed-skus-storage.md
+      - name: 已核准的 VM 映像
+        href: samples/allowed-custom-images.md
+      - name: 稽核擴充功能是否不存在
+        href: samples/audit-ext-not-exist.md
+      - name: 不允許的 VM 擴充功能
+        href: samples/not-allowed-vm-ext.md
+    - name: 虛擬機器擴展集
+      items:
+      - name: 在 VM 不使用受控磁碟時稽核
+        href: samples/create-vm-managed-disk.md
+      - name: 使用受控磁碟來建立 VM
+        href: samples/use-managed-disk-vm.md
+      - name: 拒絕 Hybrid Use Benefit
+        href: samples/deny-hybrid-use.md
+      - name: 只允許特定的 VM 平台映像
+        href: samples/allow-certain-vm-image.md
+  - name: 資料湖
+    items:
+    - name: 強制使用 Data Lake Store 加密
+      href: samples/enforce-datalakestore-encryption.md
+  - name: 監視
+    items:
+    - name: 稽核診斷設定
+      href: samples/audit-diag-setting.md
+  - name: 網路
+    items:
+    - name: 網路介面
+      items:
+      - name: 對每個 NIC 使用 NSG X
+        href: samples/nsg-on-nic.md
+      - name: 針對 VM 網路介面使用已核准的子網路
+        href: samples/use-approved-subnet-vm-nics.md
+      - name: 針對 VM 網路介面使用已核准的 vNet
+        href: samples/use-approved-vnet-vm-nics.md
+    - name: 虛擬網路
+      items:
+      - name: 允許的應用程式閘道 SKU
+        href: samples/allowed-app-gate-sku.md
+      - name: 禁止對 ER 網路進行網路對等互連
+        href: samples/no-peering-er-net.md
+      - name: 禁止使用者定義的路由表
+        href: samples/no-user-def-route-table.md
+      - name: 對每個子網路使用 NSG X
+        href: samples/nsg-on-subnet.md
+      - name: 針對 VM 網路介面使用已核准的子網路
+        href: samples/use-approved-subnet-vm-nics.md
+      - name: 針對 VM 網路介面使用已核准的 vNet
+        href: samples/use-approved-vnet-vm-nics.md
+    - name: 網路安全性群組
+      items:
+      - name: 對每個 NIC 使用 NSG X
+        href: samples/nsg-on-nic.md
+      - name: 對每個子網路使用 NSG X
+        href: samples/nsg-on-subnet.md
+    - name: Express Route
+      items:
+      - name: 允許的 Express Route 頻寬
+        href: samples/allowed-er-band.md
+      - name: 允許的 Express Route SKU
+        href: samples/allowed-er-skus.md
+      - name: 允許的 Express Route 對等互連位置
+        href: samples/allowed-peering-er.md
+    - name: 網路監看員
+      items:
+      - name: 稽核是否未針對區域啟用網路監看員
+        href: samples/net-watch-not-enabled.md
+    - name: 應用程式閘道
+      items:
+      - name: 允許的應用程式閘道 SKU
+        href: samples/allowed-app-gate-sku.md
+  - name: SQL
+    items:
+    - name: SQL Server
+      items:
+      - name: 在沒有 Azure Active Directory 系統管理員時稽核
+        href: samples/audit-no-aad-admin.md
+      - name: 稽核伺服器層級威脅偵測設定
+        href: samples/audit-sql-ser-threat-det-setting.md
+      - name: 稽核 SQL Server 稽核設定
+        href: samples/sql-server-audit.md
+      - name: 稽核 SQL Server 層級稽核設定
+        href: samples/audit-sql-ser-leve-audit-setting.md
+      - name: 需要 SQL Server 12.0 版
+        href: samples/req-sql-12.md
+    - name: SQL Database
+      items:
+      - name: 允許的 SQL DB SKU
+        href: samples/allowed-sql-db-skus.md
+      - name: 稽核 SQL DB 層級威脅偵測設定
+        href: samples/audit-db-threat-det-setting.md
+      - name: 稽核 SQL DB 加密
+        href: samples/sql-database-encryption-audit.md
+      - name: 稽核 SQL DB 層級稽核設定
+        href: samples/audit-sql-db-audit-setting.md
+      - name: 稽核透明資料加密狀態
+        href: samples/audit-trans-data-enc-status.md
+  - name: 儲存體
+    items:
+    - name: 儲存體帳戶和 VM 允許的 SKU
+      href: samples/allowed-skus-storage.md
+    - name: 允許的儲存體帳戶 SKU
+      href: samples/allowed-stor-acct-skus.md
+    - name: 針對儲存體帳戶拒絕使用非經常性存取層處理
+      href: samples/deny-cool-access-tiering.md
+    - name: 針對儲存體帳戶確保只允許 HTTPS 流量
+      href: samples/ensure-https-stor-acct.md
+    - name: 確保儲存體檔案加密
+      href: samples/ensure-store-file-enc.md
+    - name: 需要儲存體帳戶加密
+      href: samples/req-store-acct-enc.md
+- name: 概念
+  items:
+  - name: Azure 原則定義結構
+    href: ./concepts/definition-structure.md
+  - name: 了解原則效果
+    href: ./concepts/effects.md
+  - name: 使用來賓設定稽核 VM
+    href: ./concepts/guest-configuration.md
+- name: 使用說明指南
+  items:
+  - name: 以程式設計方式建立原則
+    href: ./how-to/programmatically-create.md
+  - name: 取得合規性資料
+    href: ./how-to/getting-compliance-data.md
+  - name: 補救不相容的資源
+    href: ./how-to/remediate-resources.md
+- name: 參考
+  items:
+  - name: Azure CLI
+    href: /cli/azure/policy
+  - name: Azure PowerShell
+    items:
+    - name: 原則
+      href: /powershell/module/azurerm.resources/#policies
+    - name: 來賓設定 (預覽)
+      href: https://www.powershellgallery.com/packages/AzureRM.GuestConfiguration
+  - name: REST API
+    items:
+    - name: 活動
+      href: /rest/api/policy-insights/policyevents
+    - name: 狀態
+      href: /rest/api/policy-insights/policystates
+    - name: 指派
+      href: /rest/api/resources/policyassignments
+    - name: 原則定義
+      href: /rest/api/resources/policydefinitions
+    - name: 計劃定義
+      href: /rest/api/resources/policysetdefinitions
+    - name: 來賓設定 (預覽)
+      href: /rest/api/guestconfiguration/
+- name: 資源
+  items:
+  - name: GitHub - Azure 原則範例
+    href: https://github.com/Azure/azure-policy
+  - name: 影片 - Build 2018
+    href: https://channel9.msdn.com/events/Build/2018/THR2030
+  - name: 影片 - Ignite 2017
+    href: https://myignite.microsoft.com/videos/54781
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/
+  - name: 定價計算機
+    href: https://azure.microsoft.com/pricing/calculator/
+  - name: UserVoice
+    href: https://feedback.azure.com/forums/915958-azure-governance
+ms.openlocfilehash: a71c43e53e9e4ab85c6b550d6e446814be0e16ba
+ms.sourcegitcommit: 9e179a577533ab3b2c0c7a4899ae13a7a0d5252b
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/23/2018
+ms.locfileid: "49944264"

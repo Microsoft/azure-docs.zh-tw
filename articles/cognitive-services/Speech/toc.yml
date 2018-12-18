@@ -1,0 +1,49 @@
+- name: 概觀
+  href: Home.md
+- name: 開始使用
+  expanded: true
+  href: GetStarted/GetStarted.md
+  items:
+    - name: REST
+      href: GetStarted/GetStartedREST.md
+    - name: 用戶端程式庫
+      href: GetStarted/GetStartedClientLibraries.md
+      items:
+        - name: 'C# 桌面程式庫'
+          href: GetStarted/GetStartedCSharpDesktop.md
+        - name: 'C# 服務程式庫'
+          href: GetStarted/GetStartedCSharpServiceLibrary.md
+        - name: JavaScript 程式庫
+          href: GetStarted/GetStartedJSWebsockets.md
+        - name: 適用於 Android 的 JAVA 程式庫
+          href: GetStarted/GetStartedJavaAndroid.md
+        - name: 適用於 iOS 的 Objective-C 程式庫
+          href: GetStarted/Get-Started-ObjectiveC-iOS.md
+- name: 範例
+  href: samples.md
+- name: 概念
+  href: concepts.md
+- name: 使用說明指南
+  items:
+    - name: 使用服務的驗證
+      href: How-to/how-to-authentication.md
+    - name: 選擇辨識模式
+      href: How-to/how-to-choose-recognition-mode.md
+    - name: 音訊串流的區塊傳輸
+      href: How-to/how-to-chunked-transfer.md
+- name: 參考
+  items:
+    - name: Microsoft 語音 WebSocket 通訊協定
+      href: API-Reference-REST/websocketprotocol.md
+    - name: 文字轉換語音 API 參考
+      href: API-Reference-REST/BingVoiceOutput.md
+    - name: 支援的語言
+      href: API-Reference-REST/supportedlanguages.md
+- name: 疑難排解
+  href: troubleshooting.md
+- name: 資源
+  items:
+    - name: 支援
+      href: support.md
+    - name: 知識庫
+      href: 'https://cognitive.uservoice.com/knowledgebase/topics/127980-bing-speech'

@@ -1,0 +1,51 @@
+items:
+- name: Azure IoT 基礎
+  href: index.yml
+- name: 概觀
+  items:
+  - name: 簡介
+    href: iot-introduction.md
+  - name: Azure IoT 服務與技術
+    href: iot-services-and-technologies.md
+- name: 解決方案
+  items:
+  - name: IoT 解決方案加速器
+    href: /azure/iot-suite
+  - name: IoT 中心
+    href: https://docs.microsoft.com/microsoft-iot-central/
+- name: 平台服務
+  items:
+  - name: IoT 中樞
+    href: /azure/iot-hub
+  - name: IoT 中樞裝置佈建服務
+    href: /azure/iot-dps
+  - name: Azure Digital Twins
+    href: /azure/digital-twins
+  - name: Azure 地圖服務
+    href: /azure/azure-maps
+  - name: 時間序列深入解析
+    href: /azure/time-series-insights
+  - name: 服務 SDK
+    href: /azure/iot-hub/iot-hub-devguide-sdks#azure-iot-service-sdks
+- name: Edge
+  items:
+  - name: IoT Edge
+    href: /azure/iot-edge
+  - name: IoT 裝置 SDK
+    href: /azure/iot-hub/iot-hub-devguide-sdks#azure-iot-device-sdks
+- name: 安全性
+  items:
+  - name: 安全性架構
+    href: iot-security-architecture.md
+  - name: 安全性最佳作法
+    href: iot-security-best-practices.md
+  - name: 安全部署
+    href: iot-security-deployment.md
+  - name: 從頭建立安全性
+    href: iot-security-ground-up.md
+ms.openlocfilehash: df43416b0d1e72e152a2917846ba0407c861421b
+ms.sourcegitcommit: 74941e0d60dbfd5ab44395e1867b2171c4944dbe
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/15/2018
+ms.locfileid: "49321355"

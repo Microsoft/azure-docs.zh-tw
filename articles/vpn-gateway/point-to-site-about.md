@@ -1,25 +1,26 @@
 ---
-title: "關於 Azure 點對站 VPN 連線 | Microsoft 文件"
-description: "本文可協助您了解點對站連線，並協助您決定所要使用的 P2S VPN 閘道驗證類型。"
+title: 關於 Azure 點對站 VPN 連線 | Microsoft 文件
+description: 本文可協助您了解點對站連線，並協助您決定所要使用的 P2S VPN 閘道驗證類型。
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
 manager: timlt
-editor: 
+editor: ''
 tags: azure-resource-manager,azure-service-management
-ms.assetid: 
+ms.assetid: ''
 ms.service: vpn-gateway
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 01/17/2018
+ms.date: 06/06/2018
 ms.author: cherylmc
-ms.openlocfilehash: 708027b6cea8ac6a2fe7f713f5c6639fc6f8258a
-ms.sourcegitcommit: 79683e67911c3ab14bcae668f7551e57f3095425
+ms.openlocfilehash: 8cdc80e8e4f8d3feb36ca82740d5610e60716ec6
+ms.sourcegitcommit: e0a678acb0dc928e5c5edde3ca04e6854eb05ea6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/25/2018
+ms.lasthandoff: 07/13/2018
+ms.locfileid: "39003354"
 ---
 # <a name="about-point-to-site-vpn"></a>關於點對站 VPN
 
@@ -47,7 +48,7 @@ ms.lasthandoff: 01/25/2018
 
 使用原生 Azure 憑證驗證時，裝置上存在的用戶端憑證會用來驗證連線使用者。 用戶端憑證是從根憑證產生，然後安裝在每部用戶端電腦上。 您可以使用透過企業解決方案產生的根憑證，也可以產生自我簽署憑證。
 
-用戶端憑證的驗證是由 VPN 閘道執行，並發生於 P2S VPN 連線建立期間。 根憑證需要驗證，且必須上傳至 Azure。 
+用戶端憑證的驗證是由 VPN 閘道執行，並發生於 P2S VPN 連線建立期間。 根憑證需要驗證，且必須上傳至 Azure。
 
 ### <a name="authenticate-using-active-directory-ad-domain-server"></a>使用 Azure Active Directory (AD) 網域伺服器進行驗證
 
@@ -57,9 +58,13 @@ AD 網域驗證可讓使用者使用其組織網域認證來連線至 Azure。 �
 
 RADIUS 伺服器也可以與其他外部身分識別系統整合。 這會開啟 P2S VPN 的許多驗證選項，包括多重因素選項。
 
-![point-to-site]](./media/point-to-site-about/p2s.png "Point-to-Site")
+![點對站](./media/point-to-site-about/p2s.png "點對站")
 
-### <a name="configuration-requirements-for-client-devices"></a>用戶端裝置的設定需求
+## <a name="what-are-the-client-configuration-requirements"></a>設定用戶端有哪些需求？
+
+>[!NOTE]
+>對於 Windows 用戶端，您在用戶端裝置上必須具備系統管理員權限，才能將用戶端裝置到 Azure 的 VPN 連線初始化。
+>
 
 使用者會在 P2S 的 Windows 和 Mac 裝置上使用原生 VPN 用戶端。 Azure 會提供 VPN 用戶端組態 zip 檔案，其中包含這些原生用戶端連線到 Azure 所需的設定。
 
@@ -69,10 +74,10 @@ RADIUS 伺服器也可以與其他外部身分識別系統整合。 這會開啟
 Zip 檔案也會提供 Azure 端的某些重要設定值，以便用於為這些裝置建立自己的設定檔。 這些值包括 VPN 閘道位址，已設定的通道類型、路由，以及用於閘道驗證的根憑證。
 
 >[!NOTE]
->對於 Windows 用戶端，您在用戶端裝置上必須具備系統管理員權限，才能將用戶端裝置到 Azure 的 VPN 連線初始化。
+>[!INCLUDE [TLS version changes](../../includes/vpn-gateway-tls-change.md)]
 >
 
-### <a name="gwsku"></a>哪些閘道 SKU 支援 P2S VPN？
+## <a name="gwsku"></a>哪些閘道 SKU 支援 P2S VPN？
 
 [!INCLUDE [p2s-skus](../../includes/vpn-gateway-table-point-to-site-skus-include.md)]
 

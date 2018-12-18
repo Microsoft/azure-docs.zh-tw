@@ -2,24 +2,22 @@
 title: Azure Cosmos DB：SQL .NET Core API、SDK 和資源 | Microsoft Docs
 description: 全面了解 SQL .NET Core API 和 SDK，包括發行日期、停用日期及 Azure Cosmos DB .NET Core SDK 每個版本之間的變更。
 services: cosmos-db
-documentationcenter: .net
 author: rnagpal
-manager: jhubbard
+manager: kfile
 editor: cgronlun
-ms.assetid: f899b314-26ac-4ddb-86b2-bfdf05c2abf2
 ms.service: cosmos-db
-ms.workload: data-services
-ms.tgt_pltfrm: na
+ms.component: cosmosdb-sql
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: reference
 ms.date: 03/22/2018
 ms.author: rnagpal
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 8b26a06f1dfba6124254f42c216891596b118d4d
-ms.sourcegitcommit: 34e0b4a7427f9d2a74164a18c3063c8be967b194
+ms.openlocfilehash: 7000fc13a792f4f6def592e78dc759c8cf165881
+ms.sourcegitcommit: f31bfb398430ed7d66a85c7ca1f1cc9943656678
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/30/2018
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47451913"
 ---
 # <a name="azure-cosmos-db-net-core-sdk-for-sql-api-release-notes-and-resources"></a>Azure Cosmos DB .NET Core SDK for SQL API：版本資訊與資源
 > [!div class="op_single_selector"]
@@ -33,8 +31,8 @@ ms.lasthandoff: 03/30/2018
 > * [REST](https://docs.microsoft.com/rest/api/cosmos-db/)
 > * [REST 資源提供者](https://docs.microsoft.com/rest/api/cosmos-db-resource-provider/)
 > * [SQL](https://msdn.microsoft.com/library/azure/dn782250.aspx)
-> 
-> 
+> * [BulkExecutor - .NET](sql-api-sdk-bulk-executor-dot-net.md)
+> * [BulkExecutor - Java](sql-api-sdk-bulk-executor-java.md)
 
 <table>
 
@@ -54,6 +52,42 @@ ms.lasthandoff: 03/30/2018
 ## <a name="release-notes"></a>版本資訊
 
 Azure Cosmos DB .NET Core SDK 有與最新版 [Azure Cosmos DB .NET SDK](sql-api-sdk-dotnet.md) 類似的功能。
+
+### <a name="a-name211211"></a><a name="2.1.1"/>2.1.1
+
+* 對多區域要求暫時性失敗新增更多復原能力。
+
+### <a name="a-name210210"></a><a name="2.1.0"/>2.1.0
+
+* 已新增多區域寫入支援。
+* 透過 TOP 和 MaxBufferedItemCount 改善了跨分割區查詢效能。
+
+### <a name="a-name200200"></a><a name="2.0.0"/>2.0.0
+
+* 已新增要求取消支援。
+* 已將 SetCurrentLocation 新增至 ConnectionPolicy，以根據區域自動填入所要的位置。
+* 已修正具有 Min/Max 和篩選條件且不符合個別分割區上任何文件的跨分割區查詢所發生的錯誤。
+* DocumentClient 方法現在會與 IDocumentClient 對應。
+* 已更新直接 TCP 傳輸堆疊來減少所建立的連線數。
+* 已新增對於非 Windows 用戶端的直接模式 TCP 支援。
+
+### <a name="a-name200-preview2200-preview2"></a><a name="2.0.0-preview2"/>2.0.0-preview2
+
+* 已新增要求取消支援。
+* 已將 SetCurrentLocation 新增至 ConnectionPolicy，以根據區域自動填入所要的位置。
+* 已修正具有 Min/Max 和篩選條件且不符合個別分割區上任何文件的跨分割區查詢所發生的錯誤。
+
+### <a name="a-name200-preview200-preview"></a><a name="2.0.0-preview"/>2.0.0-preview
+
+* DocumentClient 方法現在會與 IDocumentClient 對應。
+* 已更新直接 TCP 傳輸堆疊來減少所建立的連線數。
+* 已新增對於非 Windows 用戶端的直接模式 TCP 支援。
+
+### <a name="a-name11001100"></a><a name="1.10.0"/>1.10.0
+
+* 已將 ConsistencyLevel 屬性新增至 FeedOptions。
+* 已將 JsonSerializerSettings 新增至 RequestOptions 和 FeedOptions。
+* 已將 EnableReadRequestsFallback 新增至 ConnectionPolicy。
 
 ### <a name="a-name191191"></a><a name="1.9.1"/>1.9.1
 
@@ -170,6 +204,9 @@ Azure Cosmos DB .NET Core Preview SDK 有與最新版本 [Azure Cosmos DB .NET S
 
 | 版本 | 發行日期 | 停用日期 |
 | --- | --- | --- |
+| [2.1.1](#2.1.1) |2018 年 9 月 27 日 |--- |
+| [2.1.0](#2.1.0) |2018 年 9 月 21 日 |--- |
+| [2.0.0](#2.0.0) |2018 年 9 月 7 日 |--- |
 | [1.9.1](#1.9.1) |2018 年 3 月 9 日 |--- |
 | [1.8.2](#1.8.2) |2018 年 2 月 21 日 |--- |
 | [1.8.1](#1.8.1) |2018 年 2 月 5 日 |--- |

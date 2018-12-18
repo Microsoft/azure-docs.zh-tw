@@ -3,8 +3,8 @@ title: 依縮寫排列的 Azure CDN POP 位置 | Microsoft Docs
 description: 本文會針對「來自 Verizon 的 Azure CDN」列出 Azure CDN POP 位置，並依 POP 縮寫排序。
 services: cdn
 documentationcenter: ''
-author: dksimpson
-manager: akucer
+author: mdgattuso
+manager: danielgi
 editor: ''
 ms.assetid: ''
 ms.service: cdn
@@ -13,17 +13,18 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 03/20/2018
-ms.author: mazha
-ms.openlocfilehash: bbb62a5f47c2fda6e24a204f30939e43676b33a9
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.author: magattus
+ms.openlocfilehash: cc866691aac884def72030345bb4dfcbe87ea689
+ms.sourcegitcommit: 4047b262cf2a1441a7ae82f8ac7a80ec148c40c4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 10/11/2018
+ms.locfileid: "49092264"
 ---
 # <a name="azure-cdn-pop-locations-by-abbreviation"></a>依縮寫排列的 Azure CDN POP 位置
 > [!div class="op_single_selector"]
-> * [依地區排列的 POP 位置](cdn-pop-locations.md)
-> * [依縮寫排列的 POP 位置](cdn-pop-abbreviations.md)
+> * [依地區的 POP 位置](cdn-pop-locations.md)
+> * [依縮寫的 POP 位置](cdn-pop-abbreviations.md)
 > 
 
 
@@ -35,10 +36,12 @@ AGA | 美國喬治亞州亞特蘭大 | 北美洲：美國東岸
 AGB | 美國喬治亞州亞特蘭大 | 北美洲：美國東岸
 AKL | 奧克蘭，紐西蘭 | 亞洲
 AMA | 阿姆斯特丹，荷蘭 | 歐洲
+AMB | 阿姆斯特丹，荷蘭 | 歐洲
 AMS | 阿姆斯特丹，荷蘭 | 歐洲
 ARN | 瑞典斯德哥爾摩 | 歐洲
 ATL | 美國喬治亞州亞特蘭大 | 北美洲：美國東岸
 BAQ | 巴蘭幾亞，哥倫比亞 | 拉丁美洲
+BLR | 班加羅爾，印度 | 亞洲
 BNJ | 美國紐澤西州紐華克 | 北美洲：美國東岸
 BOS | 美國麻塞諸塞州波士頓 | 北美洲：美國東岸
 BTH | 巴淡島，印尼 | 亞洲
@@ -49,10 +52,10 @@ CGH | 聖保羅，巴西 | 拉丁美洲
 CGK | 雅加達，印尼 | 亞洲
 CHA | 美國伊利諾斯州芝加哥 | 北美洲：美國東岸
 CHB | 美國伊利諾斯州芝加哥 | 北美洲：美國東岸
-CJB | 班加羅爾，印度 | 亞洲
 CNJ | 美國紐澤西州紐華克 | 北美洲：美國東岸
 CPH | 丹麥哥本哈根 | 歐洲
 CPM | 美國加利福尼亞州洛杉磯 | 北美洲：美國西岸
+CVA | 美國維吉尼亞州阿什本 | 北美洲：美國東岸
 DAA | 美國德克薩斯州達拉斯 | 北美洲：美國中部海岸
 DAB | 美國德克薩斯州達拉斯 | 北美洲：美國中部海岸
 DCA | 美國維吉尼亞州阿什本 | 北美洲：美國東岸
@@ -79,7 +82,7 @@ HKC | 香港 | 亞洲
 HKG | 香港 | 亞洲
 HND | 東京，日本 | 亞洲
 IAD | 美國維吉尼亞州阿什本 | 北美洲：美國東岸
-ICN | 韓國首爾 | 亞洲
+ICN | 南韓首爾 | 亞洲
 ITM | 大阪，日本 | 亞洲
 JFK | 美國紐約州紐約 | 北美洲：美國東岸
 JNB | 南非約翰尼斯堡 | 歐洲
@@ -108,9 +111,10 @@ MEX | 墨西哥墨西哥城 | 北美洲
 MIA | 美國佛羅里達州邁阿密 | 北美洲：美國東岸
 MIB | 美國佛羅里達州邁阿密 | 北美洲：美國東岸
 MIC | 美國佛羅里達州邁阿密 | 北美洲：美國東岸
+MRS | 馬賽，法國 | 歐洲
 MXP | 米蘭，義大利 | 歐洲
 NAG | 孟買，印度 | 亞洲
-NJA | 東京，日本 | 亞洲
+NDL | 新德里，印度 | 亞洲
 NRT | 東京，日本 | 亞洲
 NYA | 美國紐約州紐約 | 北美洲：美國東岸
 NYB | 美國紐約州紐約 | 北美洲：美國東岸
@@ -118,6 +122,7 @@ OMM | 馬斯喀特，阿曼 | 中東
 ORD | 美國伊利諾斯州芝加哥 | 北美洲：美國中部
 ORY | 巴黎，法國 | 歐洲
 OXR | 美國加利福尼亞州洛杉磯 | 北美洲：美國西岸
+PAB | 巴黎，法國 | 歐洲
 PAE | 美國華盛頓州西雅圖 | 北美洲：美國西岸
 PBC | 普埃布拉，墨西哥 | 北美洲
 PHL | 美國賓夕法尼亞州費城 | 北美洲：美國東岸
@@ -125,6 +130,7 @@ PNQ | 孟買，印度 | 亞洲
 POX | 巴黎，法國 | 歐洲
 QRO | 墨西哥奎雷塔洛州聖地牙哥 | 北美洲
 RHV | 美國加利福尼亞州聖荷西 | 北美洲：美國西岸
+RIB | 里約熱內盧，巴西 | 拉丁美洲
 RIX | 里加，拉脫維亞 | 歐洲
 RTM | 阿姆斯特丹，荷蘭 | 歐洲
 SAA | 美國加利福尼亞州聖荷西 | 北美洲：美國西岸
@@ -133,12 +139,13 @@ SCL | 瓦爾帕萊索，智利 | 拉丁美洲
 SEA | 美國華盛頓州西雅圖 | 北美洲：美國西岸
 SEB | 美國華盛頓州西雅圖 | 北美洲：美國西岸
 SEC | 美國華盛頓州西雅圖 | 北美洲：美國西岸
+SGB | 新加坡 | 亞洲
 SIN | 新加坡 | 亞洲
 SJC | 美國加利福尼亞州聖荷西 | 北美洲：美國西岸
 SJO | 美國加利福尼亞州聖荷西 | 北美洲：美國西岸
 STO | 瑞典斯德哥爾摩 | 歐洲
 SYD | 雪梨，澳大利亞 | 亞洲
-TEB | 美國紐約州紐約 | 北美洲：美國東岸
+TIR | 辰內，印度 | 亞洲
 TKA | 東京，日本 | 亞洲
 TKB | 東京，日本 | 亞洲
 TOJ | 馬德里，西班牙 | 歐洲

@@ -1,26 +1,20 @@
 ---
-title: "在 HDInsight 上提交 Hadoop 工作 | Microsoft Docs"
-description: "了解如何在 Azure HDInsight 上提交 Hadoop 作業。"
-editor: cgronlun
-manager: jhubbard
+title: 在 HDInsight 上提交 Hadoop 工作
+description: 了解如何在 Azure HDInsight 上提交 Hadoop 作業。
+ms.reviewer: jasonh
 services: hdinsight
-documentationcenter: 
-tags: azure-portal
-author: mumian
-ms.assetid: 50430b96-2329-4775-9713-19c5795b775f
+ms.author: jasonh
+author: jasonwhowell
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
-ms.date: 12/20/2017
-ms.author: jgao
-ms.openlocfilehash: f6173fed78345a2339e9bf40f414202c0ce62c0b
-ms.sourcegitcommit: 901a3ad293669093e3964ed3e717227946f0af96
+ms.topic: conceptual
+ms.date: 05/16/2018
+ms.openlocfilehash: 19f81e3ba5ecf928020e1527374b5c46299fbd21
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/21/2017
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43051754"
 ---
 # <a name="submit-hadoop-jobs-in-hdinsight"></a>在 HDInsight 上提交 Hadoop 工作
 

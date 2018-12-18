@@ -1,24 +1,26 @@
 ---
-title: "Azure Active Directory Domain Services：部署案例 | Microsoft Docs"
-description: "Azure AD 網域服務的部署案例"
+title: Azure Active Directory Domain Services：部署案例 | Microsoft Docs
+description: Azure AD 網域服務的部署案例
 services: active-directory-ds
-documentationcenter: 
+documentationcenter: ''
 author: mahesh-unnikrishnan
 manager: mtillman
 editor: curtand
 ms.assetid: c5216ec9-4c4f-4b7e-830b-9d70cf176b20
-ms.service: active-directory-ds
+ms.service: active-directory
+ms.component: domain-services
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 09/21/2017
 ms.author: maheshu
-ms.openlocfilehash: 11844fb8fabada9d863fe4adf0839ae6fa2ed101
-ms.sourcegitcommit: e266df9f97d04acfc4a843770fadfd8edf4fa2b7
+ms.openlocfilehash: db2bd855300d93d832a3dd7ca0ce526478824ccc
+ms.sourcegitcommit: 9222063a6a44d4414720560a1265ee935c73f49e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/11/2017
+ms.lasthandoff: 08/03/2018
+ms.locfileid: "39502564"
 ---
 # <a name="deployment-scenarios-and-use-cases"></a>部署案例和使用案例
 在本節中，我們會看一些受益於 Azure Active Directory (AD) 網域服務的部署案例和使用案例。

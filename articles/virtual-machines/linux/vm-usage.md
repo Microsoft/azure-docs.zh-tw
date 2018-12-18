@@ -1,31 +1,32 @@
 ---
-title: "了解 Azure 虛擬機器使用情況 | Microsoft Docs"
-description: "了解虛擬機器使用情況詳細資料"
+title: 了解 Azure 虛擬機器使用情況 | Microsoft Docs
+description: 了解虛擬機器使用情況詳細資料
 services: virtual-machines
-documentationcenter: 
+documentationcenter: ''
 author: mmccrory
 manager: jeconnoc
-editor: 
+editor: ''
 tags: azure-virtual-machine
-ms.assetid: 
-ms.service: 
-ms.devlang: 
+ms.assetid: ''
+ms.service: ''
+ms.devlang: ''
 ms.topic: article
 ms.tgt_pltfrm: vm
 ms.workload: infrastructure-services
 ms.date: 12/04/2017
 ms.author: memccror
-ms.openlocfilehash: c87c4256aa193a4971b75c3230d1996c2efdc352
-ms.sourcegitcommit: 7f1ce8be5367d492f4c8bb889ad50a99d85d9a89
+ms.openlocfilehash: d9df71f6fa2f64544cbefc7d9aca8c153c86ac98
+ms.sourcegitcommit: af60bd400e18fd4cf4965f90094e2411a22e1e77
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/06/2017
+ms.lasthandoff: 09/07/2018
+ms.locfileid: "44094250"
 ---
 # <a name="understanding-azure-virtual-machine-usage"></a>了解 Azure 虛擬機器使用情況
-分析您的 Azure 使用情況資料，可以深入了解使用量，以在整個組織內實現更妥善的成本管理與配置。 本文件會針對您的 Azure 計算使用量詳細資料，提供深入探討。 如需有關一般 Azure 使用情況的詳細資訊，請瀏覽至[了解您的帳單](/billing/billing-understand-your-bill.md)。
+分析您的 Azure 使用情況資料，可以深入了解使用量，以在整個組織內實現更妥善的成本管理與配置。 本文件會針對您的 Azure 計算使用量詳細資料，提供深入探討。 如需有關一般 Azure 使用情況的詳細資訊，請瀏覽至[了解您的帳單](https://docs.microsoft.com/azure/billing/billing-understand-your-bill)。
 
 ## <a name="download-your-usage-details"></a>下載使用情況詳細資料
-若要開始，請[下載使用情況詳細資料](/billing/billing-download-azure-invoice-daily-usage-date#download-usage-from-the-account-center-csv.md)。 下表針對透過 Azure Resource Manager 部署的虛擬機器，提供其使用情況的定義和範例值。 本文件不包含透過傳統模型部署之 VM 的詳細資訊。
+若要開始，請[下載使用情況詳細資料](https://docs.microsoft.com/azure/billing/billing-download-azure-invoice-daily-usage-date#download-usage-from-the-account-center-csv)。 下表針對透過 Azure Resource Manager 部署的虛擬機器，提供其使用情況的定義和範例值。 本文件不包含透過傳統模型部署之 VM 的詳細資訊。
 
 
 | 欄位             | 意義                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | 範例值                                                                                                                                                                                                                                                                                                                                                   |
@@ -39,13 +40,13 @@ ms.lasthandoff: 12/06/2017
 | 已耗用           | 當日已耗用的資源量。 對於計算，我們會針對 VM 在指定時間內運作的每一分鐘計費 (精確度高達 6 個小數位數)。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |    “1”, “0.5”                                                                                                                                                                                                                                                                                                                                                    |
 | 資源位置  | 識別正在執行資源的資料中心。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | “日本東部”                                                                                                                                                                                                                                                                                                                                                        |
 | 已耗用的服務   | 您所使用的 Azure 平台服務。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | "Microsoft.Compute"                                                                                                                                                                                                                                                                                                                                              |
-| 資源群組     | 部署的資源正在其中執行的資源群組。 如需詳細資訊，請參閱 [Azure Resource Manager 概觀](/azure-resource-manager/resource-group-overview.md)。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |    "MyRG"                                                                                                                                                                                                                                                                                                                                                        |
+| 資源群組     | 部署的資源正在其中執行的資源群組。 如需詳細資訊，請參閱 [Azure Resource Manager 概觀](https://docs.microsoft.com/azure/virtual-machines/linux/vm-usage)。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |    "MyRG"                                                                                                                                                                                                                                                                                                                                                        |
 | 執行個體識別碼        | 資源的識別碼。 識別碼包含在建立時為資源指定的名稱。 針對 VM，執行個體識別碼將會包含 SubscriptionId、ResourceGroupName 和 VMName (或用於擴展集的擴展集名稱)。                                                                                                                                                                                                                                                                                                                                                                                                                    | "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/ resourceGroups/MyRG/providers/Microsoft.Compute/virtualMachines/MyVM1”<br><br>或<br><br>"/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/ resourceGroups/MyRG/providers/Microsoft.Compute/virtualMachineScaleSets/MyVMSS1”                                                                                           |
 | 標記               | 您指派給資源的標記。 使用標記為帳單記錄分組。 深入了解如何[標記虛擬機器](tag.md)。 這僅適用於 Resource Manager VM。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | "{"myDepartment":"RD","myUser":"myName"}"                                                                                                                                                                                                                                                                                                                        |
-| 其他資訊    | 服務專屬的中繼資料。 針對 VM，我們會在其他資訊欄位中填入下列資訊： <ul><li>您所執行之映像類型專屬的映像。 在 [映像類型] 底下，尋找以下支援字串的完整清單。</li><li>服務類型：您部署的大小。</li><li>VMName：您 VM 的名稱。 這只會針對擴展集 VM 填入。 如果您需要您擴展集 VM 的 VM 名稱，可以在上面的執行個體識別碼字串中找到。</li><li>UsageType：這會指定此項目代表的使用情況類型。<ul><li>ComputeHR 是底層 VM 的「計算時數」使用情況，例如 Standard_D1_v2。</li><li>如果 VM 使用的是進階軟體 (如 Microsoft R Server)，則 ComputeHR_SW 將是進階軟體費用。</li></ul></li></ul>    | 虛擬機器 {"ImageType":"Canonical","ServiceType":"Standard_DS1_v2","VMName":"", "UsageType":"ComputeHR"}<br><br>虛擬機器擴展集 {"ImageType":"Canonical","ServiceType":"Standard_DS1_v2","VMName":"myVM1", "UsageType":"ComputeHR"}<br><br>進階軟體 {"ImageType":"","ServiceType":"Standard_DS1_v2","VMName":"", "UsageType":"ComputeHR_SW"} |
+| 其他資訊    | 服務專屬的中繼資料。 針對 VM，我們會在其他資訊欄位中填入下列資料： <ul><li>您所執行之映像類型專屬的映像。 在 [映像類型] 底下，尋找以下支援字串的完整清單。</li><li>服務類型：您部署的大小。</li><li>VMName：您 VM 的名稱。 只會針對擴展集 VM 填入此欄位。 如果您需要您擴展集 VM 的 VM 名稱，可以在上面的執行個體識別碼字串中找到。</li><li>UsageType：這會指定此項目代表的使用情況類型。<ul><li>ComputeHR 是底層 VM 的「計算時數」使用情況，例如 Standard_D1_v2。</li><li>如果 VM 使用的是進階軟體 (如 Microsoft R Server)，則 ComputeHR_SW 將是進階軟體費用。</li></ul></li></ul>    | 虛擬機器 {"ImageType":"Canonical","ServiceType":"Standard_DS1_v2","VMName":"", "UsageType":"ComputeHR"}<br><br>虛擬機器擴展集 {"ImageType":"Canonical","ServiceType":"Standard_DS1_v2","VMName":"myVM1", "UsageType":"ComputeHR"}<br><br>進階軟體 {"ImageType":"","ServiceType":"Standard_DS1_v2","VMName":"", "UsageType":"ComputeHR_SW"} |
 
 ## <a name="image-type"></a>映像類型
-對於 Azure 資源庫中的部分映像，系統會在 [其他資訊] 欄位中填入映像類型。 這可讓使用者了解並追蹤他們在虛擬機器上部署的類型。 以您所部署的映像作為基礎，填入此欄位的值如下所示：
+對於 Azure 資源庫中的部分映像，系統會在 [其他資訊] 欄位中填入映像類型。 這可讓使用者了解並追蹤他們在虛擬機器上部署的類型。 根據您所部署的映像填入此欄位中以下的值：
   - BitRock 
   - Canonical 
   - FreeBSD 
@@ -87,7 +88,7 @@ ms.lasthandoff: 12/06/2017
 |    GermanyNortheast      |    德國東北部                          |
 |    japaneast             |    日本東部                               |
 |    japanwest             |    日本西部                               |
-|    KoreaCentral          |    韓國中部                            |
+|    KoreaCentral          |    南韓中部                            |
 |    KoreaSouth            |    韓國南部                              |
 |    northcentralus        |    美國中北部                      |
 |    northeurope           |    北歐                          |
@@ -131,7 +132,7 @@ ComputeHR 代表「計算時數」，代表底層基礎結構成本的使用事�
 ### <a name="how-do-i-know-if-i-am-charged-for-premium-software"></a>如何知道我是否要支付進階軟體的費用？
 探索最適合您需求的 VM 映像時，請務必簽出 [Azure Marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/category/compute)。 該映像所使用的是軟體方案費率。 如果您看到費率為「免費」，就是沒有額外的軟體成本。 
 ### <a name="what-is-the-difference-between-microsoftclassiccompute-and-microsoftcompute-in-the-consumed-service"></a>Microsoft.ClassicCompute 和 Microsoft.Compute 在已使用的服務中有哪些差異？
-Microsoft.ClassicCompute 代表透過 Azure Service Manager 部署的傳統資源。 如果您透過 Resource Manager 進行部署，則 Microsoft.Compute 會填入已使用的服務中。 深入了解 [Azure 部署模型](/azure-resource-manager/resource-manager-deployment-model.md)。
+Microsoft.ClassicCompute 代表透過 Azure Service Manager 部署的傳統資源。 如果您透過 Resource Manager 進行部署，則 Microsoft.Compute 會填入已使用的服務中。 深入了解 [Azure 部署模型](https://docs.microsoft.com/azure/azure-resource-manager/resource-manager-deployment-model)。
 ### <a name="why-is-the-instanceid-field-blank-for-my-virtual-machine-usage"></a>為什麼我的虛擬機器使用情況的 InstanceID 欄位是空白的？
 如果您透過傳統部署模型進行部署，就無法使用 InstanceID 字串。
 ### <a name="why-are-the-tags-for-my-vms-not-flowing-to-the-usage-details"></a>為什麼我的 VM 的標記不會傳送至使用情況詳細資料？
@@ -142,5 +143,6 @@ Microsoft.ClassicCompute 代表透過 Azure Service Manager 部署的傳統資�
 支援進階儲存體的 VM 與不支援進階儲存體的 VM 都是以相同的費率計費。 只有儲存體成本有所差異。 如需詳細資訊，請瀏覽[儲存體定價頁面](https://azure.microsoft.com/pricing/details/storage/unmanaged-disks/)。
 
 ## <a name="next-steps"></a>後續步驟
-若要深入了解使用情況詳細資料，請參閱[了解 Microsoft Azure 的計費](/billing/billing-understand-your-bill.md)。
+若要深入了解使用情況詳細資料，請參閱[了解 Microsoft Azure 的計費](https://docs.microsoft.com/azure/billing/billing-understand-your-bill
+)。
 

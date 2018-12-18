@@ -1,11 +1,11 @@
 ---
-title: "Azure 虛擬機器的多個 IP 位址 - 入口網站 | Microsoft Docs"
-description: "了解如何使用 Azure 入口網站 / Resource Manager 對虛擬機器指派多個 IP 位址。"
+title: Azure 虛擬機器的多個 IP 位址 - 入口網站 | Microsoft Docs
+description: 了解如何使用 Azure 入口網站 / Resource Manager 對虛擬機器指派多個 IP 位址。
 services: virtual-network
 documentationcenter: na
 author: anavinahar
 manager: narayan
-editor: 
+editor: ''
 tags: azure-resource-manager
 ms.assetid: 3a8cae97-3bed-430d-91b3-274696d91e34
 ms.service: virtual-network
@@ -15,11 +15,12 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 11/30/2016
 ms.author: annahar
-ms.openlocfilehash: 906105e737087de91e7393861e9057f8acb06aa4
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.openlocfilehash: ff6f3444847d9c78836a44ca95f9b00160c29ef4
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38630723"
 ---
 # <a name="assign-multiple-ip-addresses-to-virtual-machines-using-the-azure-portal"></a>使用 Azure 入口網站將多個 IP 位址指派給虛擬機器
 
@@ -27,7 +28,7 @@ ms.lasthandoff: 02/21/2018
 >
 本文說明如何使用 Azure 入口網站透過 Azure Resource Manager 部署模型建立虛擬機器 (VM)。 無法將多個 IP 位址指派給透過傳統部署模型建立的資源。 若要深入了解 Azure 部署模型，請參閱[了解部署模型](../resource-manager-deployment-model.md)文章。
 
-[!INCLUDE [virtual-network-multiple-ip-addresses-template-scenario.md](../../includes/virtual-network-multiple-ip-addresses-scenario.md)]
+[!INCLUDE [virtual-network-multiple-ip-addresses-scenario.md](../../includes/virtual-network-multiple-ip-addresses-scenario.md)]
 
 ## <a name = "create"></a>建立有多個 IP 位址的 VM
 
@@ -35,7 +36,7 @@ ms.lasthandoff: 02/21/2018
 
 ## <a name="add"></a>將 IP 位址新增至 VM
 
-您可以完成後續步驟，將私人和公用 IP 位址新增至 NIC。 下列各節中的範例假設您已經有一個 VM，其具有[案例](#Scenario)中所述的三項 IP 組態，但這不是必要項目。
+您可以完成後續步驟，將私人和公用 IP 位址新增至 Azure 網路介面。 下列各節中的範例假設您已經有一個 VM，其具有[案例](#Scenario)中所述的三項 IP 組態，但這不是必要項目。
 
 ### <a name="coreadd"></a>核心步驟
 

@@ -5,20 +5,23 @@ services: event-grid
 author: banisadr
 manager: timlt
 ms.service: event-grid
-ms.topic: article
-ms.date: 03/22/2018
+ms.topic: reference
+ms.date: 07/20/2018
 ms.author: babanisa
-ms.openlocfilehash: 7af0e1cc8ae36774ef1cebf1bada6477888860d0
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: f7be7e5f5e51a47b95d39047af9bcf08e463ca34
+ms.sourcegitcommit: bf522c6af890984e8b7bd7d633208cb88f62a841
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 07/20/2018
+ms.locfileid: "39186106"
 ---
 # <a name="azure-event-grid-event-schema"></a>Azure Event Grid 事件結構描述
 
 本文說明出現在所有事件中的屬性和結構描述。 事件包含一組五個必要字串屬性和一個必要資料物件。 這些屬性通用於任何發行者的所有事件。 資料物件含有各發行者特有的屬性。 系統主題下的屬性專屬於資源提供者，像是 Microsoft Azure 儲存體或 Azure 事件中樞。
 
-事件會以陣列型態傳送至 Azure Event Grid，陣列中可包含多個事件物件。 如果陣列中只有一個事件，則陣列長度為 1。 陣列可以具有的最多 1 MB 的總計大小。 陣列中的每個事件會限制為 64 KB。
+事件來源會將事件以陣列型態傳送至 Azure 事件方格，陣列中可包含數個事件物件。 張貼事件到事件方格主題時，陣列總大小最大為 1 MB。 陣列中的每個事件會限制為 64 KB。 如果事件或陣列超過大小限制，您會收到 **413 承載太大**回應。
+
+事件方格會將事件傳送給包含單一事件之陣列中的訂閱者。 此行為未來可能會變更。
 
 您可以在[事件結構描述存放區](https://github.com/Azure/azure-rest-api-specs/tree/master/specification/eventgrid/data-plane)中找到 Event Grid 事件的 JSON 結構描述和每個 Azure 發行者的資料承載。
 
@@ -91,11 +94,13 @@ ms.lasthandoff: 03/23/2018
 若要了解資料物件中的屬性，請參閱事件來源：
 
 * [Azure 訂用帳戶 (管理作業)](event-schema-subscriptions.md)
+* [容器登錄](event-schema-container-registry.md)
 * [Blob 儲存體](event-schema-blob-storage.md)
 * [事件中樞](event-schema-event-hubs.md)
-* [服務匯流排](event-schema-service-bus.md)
 * [IoT 中心](event-schema-iot-hub.md)
+* [媒體服務](../media-services/latest/media-services-event-schemas.md?toc=%2fazure%2fevent-grid%2ftoc.json)
 * [資源群組 (管理作業)](event-schema-resource-groups.md)
+* [服務匯流排](event-schema-service-bus.md)
 
 針對自訂主題，事件發行者會決定資料物件。 最高層級的資料應包含與標準資源定義事件相同的欄位。
 

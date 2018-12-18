@@ -1,24 +1,26 @@
 ---
-title: "收集與分析 OMS Log Analytics 中的 Syslog 訊息 | Microsoft Docs"
-description: "Syslog 是通用於 Linux 的事件記錄通訊協定。 本文說明如何在 Log Analytics 中設定收集 Syslog 訊息，以及它們在 OMS 儲存機制中建立的記錄詳細資料。"
+title: 收集與分析 OMS Log Analytics 中的 Syslog 訊息 | Microsoft Docs
+description: Syslog 是通用於 Linux 的事件記錄通訊協定。 本文說明如何在 Log Analytics 中設定收集 Syslog 訊息，以及它們在 OMS 儲存機制中建立的記錄詳細資料。
 services: log-analytics
-documentationcenter: 
+documentationcenter: ''
 author: mgoedtel
 manager: carmonm
 editor: tysonn
 ms.assetid: f1d5bde4-6b86-4b8e-b5c1-3ecbaba76198
 ms.service: log-analytics
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 09/28/2017
 ms.author: magoedte;bwren
-ms.openlocfilehash: 061c32fe39530f8b67899b1b9e1104e7fe006380
-ms.sourcegitcommit: 5735491874429ba19607f5f81cd4823e4d8c8206
+ms.component: na
+ms.openlocfilehash: 1e7806e802f9b1dda16a9d5d477783663d03d416
+ms.sourcegitcommit: 5892c4e1fe65282929230abadf617c0be8953fd9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/16/2017
+ms.lasthandoff: 06/29/2018
+ms.locfileid: "37131781"
 ---
 # <a name="syslog-data-sources-in-log-analytics"></a>Log Analytics 中的 Syslog 資料來源
 Syslog 是通用於 Linux 的事件記錄通訊協定。  應用程式將傳送的訊息可能會儲存在本機電腦上，或傳遞到 Syslog 收集器。  安裝 OMS Agent for Linux 時，它會設定本機 Syslog 精靈來將訊息轉送到代理程式。  接著，代理程式會將訊息傳送到 Log Analytics，其中對應的記錄會建立於 OMS 儲存機制中。  
@@ -31,12 +33,12 @@ Syslog 是通用於 Linux 的事件記錄通訊協定。  應用程式將傳送�
 ![Syslog 收集](media/log-analytics-data-sources-syslog/overview.png)
 
 ## <a name="configuring-syslog"></a>設定 Syslog
-OMS Agent for Linux 只會收集具有其組態中指定之設備和嚴重性的事件。  您可以透過 OMS 入口網站，或藉由管理您 Linux 代理程式上的組態檔來設定 Syslog。
+OMS Agent for Linux 只會收集具有其組態中指定之設備和嚴重性的事件。  您可以透過 Azure 入口網站，或藉由管理您 Linux 代理程式上的組態檔來設定 Syslog。
 
-### <a name="configure-syslog-in-the-oms-portal"></a>在 OMS 入口網站中設定 Syslog
-從 [Log Analytics 設定中的 [資料] 功能表](log-analytics-data-sources.md#configuring-data-sources)設定 Syslog。  這個組態會傳遞到每個 Linux 代理程式上的組態檔。
+### <a name="configure-syslog-in-the-azure-portal"></a>在 Azure 入口網站中設定 Syslog
+從 [Log Analytics 進階設定中的 [資料] 功能表](log-analytics-data-sources.md#configuring-data-sources)設定 Syslog。  這個組態會傳遞到每個 Linux 代理程式上的組態檔。
 
-您可以輸入新設備的名稱，然後按一下 **+**設定 Syslog。  針對每個設備，僅會收集包含所選嚴重性的訊息。  請檢查您想要收集之特定設備的嚴重性。  您無法提供任何其他準則來篩選訊息。
+您可以輸入新設備的名稱，然後按一下 **+** 設定 Syslog。  針對每個設備，僅會收集包含所選嚴重性的訊息。  請檢查您想要收集之特定設備的嚴重性。  您無法提供任何其他準則來篩選訊息。
 
 ![設定 Syslog](media/log-analytics-data-sources-syslog/configure.png)
 

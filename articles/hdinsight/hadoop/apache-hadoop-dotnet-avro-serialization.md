@@ -1,27 +1,21 @@
 ---
-title: "序列化 Hadoop 中的資料 - Microsoft Avro Library - Azure | Microsoft Docs"
-description: "了解如何使用 Microsoft Avro Library 序列化和還原序列化 HDInsight 上 Hadoop 中的資料來保存到記憶體、資料庫或檔案中。"
+title: 序列化 Hadoop 中的資料 - Microsoft Avro Library - Azure
+description: 了解如何使用 Microsoft Avro Library 序列化和還原序列化 HDInsight 上 Hadoop 中的資料來保存到記憶體、資料庫或檔案中。
 keywords: avro, hadoop avro
 services: hdinsight
-documentationcenter: 
-tags: azure-portal
-author: mumian
-manager: jhubbard
-editor: cgronlun
-ms.assetid: c78dc20d-5d8d-4366-94ac-abbe89aaac58
+author: jasonwhowell
+ms.reviewer: jasonh
 ms.service: hdinsight
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
-ms.date: 02/22/2018
-ms.author: jgao
+ms.topic: conceptual
+ms.date: 05/16/2018
+ms.author: jasonh
 ms.custom: hdiseo17may2017
-ms.openlocfilehash: 5bb2ee2b9b838cc9feca60eca6b2c721ca58ed45
-ms.sourcegitcommit: 12fa5f8018d4f34077d5bab323ce7c919e51ce47
+ms.openlocfilehash: ad8d0392b4b0e1e9e8d94e0d5a7a0c72455ecfcb
+ms.sourcegitcommit: cb61439cf0ae2a3f4b07a98da4df258bfb479845
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/23/2018
+ms.lasthandoff: 09/05/2018
+ms.locfileid: "43700992"
 ---
 # <a name="serialize-data-in-hadoop-with-the-microsoft-avro-library"></a>使用 Microsoft Avro Library 將 Hadoop 中的資料序列化
 

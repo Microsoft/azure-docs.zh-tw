@@ -2,18 +2,22 @@
 title: SQL Database 1433 以外的連接埠 | Microsoft Docs
 description: 從 ADO.NET 至 Azure SQL Database 的用戶端連線可以略過 Proxy，並且使用 1433 以外的連接埠直接與資料庫互動。
 services: sql-database
-author: MightyPen
-manager: jhubbard
 ms.service: sql-database
-ms.custom: develop apps
-ms.topic: article
-ms.date: 08/17/2016
-ms.author: sstein
-ms.openlocfilehash: 2f80e95b6d3828bf8c63e2346b6ba4d14bde70bb
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.subservice: development
+ms.custom: ''
+ms.devlang: ''
+ms.topic: conceptual
+author: MightyPen
+ms.author: genemi
+ms.reviewer: sstein
+manager: craigg
+ms.date: 04/01/2018
+ms.openlocfilehash: 89802722e9e848b5cd5ede952287d5c934c142c3
+ms.sourcegitcommit: 8e06d67ea248340a83341f920881092fd2a4163c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 10/16/2018
+ms.locfileid: "49351314"
 ---
 # <a name="ports-beyond-1433-for-adonet-45"></a>ADO.NET 4.5 超過 1433 以外的連接埠
 本主題針對使用 ADO.NET 4.5 或更新版本的用戶端，說明 Azure SQL Database 的連接行為。 
@@ -53,13 +57,25 @@ ms.lasthandoff: 03/16/2018
 * ADO.NET 4.0 支援 TDS 7.3 通訊協定，但不支援 7.4。
 * ADO.NET 4.5 和更新版本支援 TDS 7.4 通訊協定。
 
+#### <a name="odbc"></a>ODBC
+* Microsoft SQL Server ODBC 11 或更新版本
+
+#### <a name="jdbc"></a>JDBC
+* Microsoft SQL Server JDBC 4.2 或更新版本 (JDBC 4.0 實際上支援 TDS 7.4，但不會實作「重新導向」)
+
+
 ## <a name="related-links"></a>相關連結
 * ADO.NET 4.6 於 2015 年 7 月 20 日發行。 您可以在 [這裡](http://blogs.msdn.com/b/dotnet/archive/2015/07/20/announcing-net-framework-4-6.aspx)查看 .NET 小組的部落格公告。
-* ADO.NET 4.5 於 2012 年 8 月 15 日發行。 您可以在 [這裡](http://blogs.msdn.com/b/dotnet/archive/2012/08/15/announcing-the-release-of-net-framework-4-5-rtm-product-and-source-code.aspx)查看 .NET 小組的部落格公告。
-  
+* ADO.NET 4.5 於 2012 年 8 月 15 日發行。 您可以在 [這裡](http://blogs.msdn.com/b/dotnet/archive/2012/08/15/announcing-the-release-of-net-framework-4-5-rtm-product-and-source-code.aspx)查看 .NET 小組的部落格公告。 
   * 您可以在 [這裡](http://blogs.msdn.com/b/dotnet/archive/2013/06/26/announcing-the-net-framework-4-5-1-preview.aspx)查看有關 ADO.NET 4.5.1 的部落格文章。
+
+* Microsoft® ODBC Driver 17 for SQL Server® - Windows、Linux 和 macOS https://www.microsoft.com/download/details.aspx?id=56567
+
+* 透過重新導向連線到 Azure SQL Database V12 https://blogs.msdn.microsoft.com/sqlcat/2016/09/08/connect-to-azure-sql-database-v12-via-redirection/
+
 * [TDS 通訊協定版本清單](http://www.freetds.org/userguide/tdshistory.htm)
 * [SQL Database 開發概觀](sql-database-develop-overview.md)
 * [Azure SQL Database 防火牆](sql-database-firewall-configure.md)
 * [如何：在 SQL Database 上進行防火牆設定](sql-database-configure-firewall-settings.md)
+
 

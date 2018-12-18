@@ -10,16 +10,18 @@ manager: hjerez
 editor: cjgronlund
 ms.assetid: d502062c-da70-4b21-9054-0bfd9902612e
 ms.service: machine-learning
+ms.component: studio
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/03/2018
-ms.openlocfilehash: 2d9c66d89b82c63561b147f3d2537ba6ad07c511
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 5ab3c7716485053432240cb74be8ebc60c9ad274
+ms.sourcegitcommit: 944d16bc74de29fb2643b0576a20cbd7e437cef2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 06/07/2018
+ms.locfileid: "34834612"
 ---
 # <a name="is-your-data-ready-for-data-science"></a>已備妥資料來進行資料科學嗎？
 ## <a name="video-2-data-science-for-beginners-series"></a>影片 2：適用於初學者的資料科學系列
@@ -78,7 +80,7 @@ ms.lasthandoff: 03/23/2018
 
 不過，右邊是完整且完全的表格 - 連貫的資料範例。
 
-## <a name="is-your-data-accurate"></a>您的資料精確嗎？
+## <a name="is-your-data-accurate"></a>是您的資料精確嗎？
 下一個要素是精確度。 以下是四個要達到的目標。
 
 ![準確的資料與不準確的資料 - 資料準則](./media/data-science-for-beginners-is-your-data-ready-for-data-science/inaccurate-vs-accurate-data.png)

@@ -3,16 +3,17 @@ title: Azure Container Registry 中的映像儲存體
 description: 有關您的 Docker 容器映像如何儲存在 Azure Container Registry 中的詳細資料，包括安全性、備援和容量。
 services: container-registry
 author: mmacy
-manager: timlt
+manager: jeconnoc
 ms.service: container-registry
 ms.topic: article
 ms.date: 03/21/2018
 ms.author: marsma
-ms.openlocfilehash: df46712889a3eba54f1a2288ba93c82b21b92deb
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 65ff60be992440c69e50a084b467a8efbb19574e
+ms.sourcegitcommit: 1fb353cfca800e741678b200f23af6f31bd03e87
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 08/30/2018
+ms.locfileid: "43307144"
 ---
 # <a name="container-image-storage-in-azure-container-registry"></a>Azure Container Registry 中的容器映像儲存體
 
@@ -36,13 +37,13 @@ Azure 使用異地備援儲存體配置來避免您的容器映像遺失。 Azur
 
 | 資源 | 限制 |
 | -------- | :---- |
-| 存放庫 | 沒有限制 |
+| 儲存機制 | 沒有限制 |
 | 映像 | 沒有限制 |
 | 層次 | 沒有限制 |
 | 標記 | 沒有限制|
 | 儲存體 | 5 TB |
 
-大量的存放庫和標籤可能會影響您的登錄效能。 使用 [Azure CLI](/cli/azure/acr)、ACR [REST API](/rest/api/containerregistry/) 或 [Azure 入口網站][portal]定期刪除未使用的存放庫、標籤和映像，將此作為登錄維護例行工作的一部分。 存放庫、映像和標籤等登錄資源一旦刪除就「無法」復原。
+大量的存放庫和標籤可能會影響您的登錄效能。 定期刪除未使用的存放庫、標籤和映像，將此作為登錄維護例行工作的一部分。 存放庫、映像和標籤等登錄資源一旦刪除就「無法」復原。 如需刪除登錄資源的詳細資訊，請參閱[刪除 Azure Container Registry 中的容器映像](container-registry-delete.md)。
 
 ## <a name="storage-cost"></a>儲存成本
 

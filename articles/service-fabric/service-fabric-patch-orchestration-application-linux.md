@@ -1,24 +1,25 @@
 ---
-title: "適用於 Linux 的 Azure Service Fabric 修補程式協調流程應用程式 | Microsoft Docs"
-description: "在 Linux Service Fabric 叢集上將作業系統修補自動化的應用程式。"
+title: 適用於 Linux 的 Azure Service Fabric 修補程式協調流程應用程式 | Microsoft Docs
+description: 在 Linux Service Fabric 叢集上將作業系統修補自動化的應用程式。
 services: service-fabric
 documentationcenter: .net
 author: novino
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: de7dacf5-4038-434a-a265-5d0de80a9b1d
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 1/22/2018
+ms.date: 5/22/2018
 ms.author: nachandr
-ms.openlocfilehash: dac8068705e284b04d84d128eb1ce62c459d44ff
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.openlocfilehash: 0aadb5964b5fe08b02397588dd9b2695fb4db4ce
+ms.sourcegitcommit: b5ac31eeb7c4f9be584bb0f7d55c5654b74404ff
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 08/23/2018
+ms.locfileid: "42746712"
 ---
 # <a name="patch-the-linux-operating-system-in-your-service-fabric-cluster"></a>修補 Service Fabric 叢集中的 Linux 作業系統
 
@@ -56,14 +57,14 @@ ms.lasthandoff: 02/21/2018
 > [!NOTE]
 > 修補程式協調流程應用程式是使用 Service Fabric 的修復管理器系統服務，將節點停用或啟用以及執行健康情況檢查。 修補程式協調流程應用程式所建立的修復工作會追蹤每個節點的更新進度。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 ### <a name="ensure-that-your-azure-vms-are-running-ubuntu-1604"></a>確定您的 Azure VM 執行 Ubuntu 16.04
 在撰寫本文時，Ubuntu 16.04 (`Xenial Xerus`) 是唯一支援的版本。
 
-### <a name="ensure-that-the-service-fabric-linux-cluster-is-version-61x-and-above"></a>確定 Service Fabric Linux 叢集的版本是 6.1.x 和更新版本
+### <a name="ensure-that-the-service-fabric-linux-cluster-is-version-62x-and-above"></a>確定 Service Fabric Linux 叢集的版本是 6.2.x 和更新版本
 
-修補程式協調流程應用程式 Linux 會使用只能在 Service Fabric 執行階段 6.1.x 版和更新版本中使用的特定執行階段功能。
+修補程式協調流程應用程式 Linux 會使用只能在 Service Fabric 執行階段 6.2.x 版和更新版本中使用的特定執行階段功能。
 
 ### <a name="enable-the-repair-manager-service-if-its-not-running-already"></a>啟用修復管理器服務 (如果尚未執行中)
 
@@ -118,7 +119,9 @@ ms.lasthandoff: 02/21/2018
 
 ## <a name="download-the-app-package"></a>下載安裝套件
 
-從[下載連結](https://go.microsoft.com/fwlink/?linkid=867984)下載應用程式。
+應用程式和安裝指令碼可以從[封存連結](https://go.microsoft.com/fwlink/?linkid=867984)下載。
+
+Sfpkg 格式的應用程式可以從 [sfpkg 連結](https://aka.ms/POA/POA_v2.0.2.sfpkg)下載。 這對於 [Azure Resource Manager 型應用程式部署](service-fabric-application-arm-resource.md)非常有用。
 
 ## <a name="configure-the-app"></a>設定應用程式
 
@@ -229,7 +232,7 @@ RejectedList | 預設值為 "" | 此更新已拒絕的修補程式清單
 
 如果尚未排程更新，JSON 結果會是空的。
 
-登入叢集以查詢更新結果。 接著，找出主要協調員服務的複本位址，然後點閱瀏覽器的 URL：http://&lt;REPLICA-IP&gt;:&lt;ApplicationPort&gt;/PatchOrchestrationApplication/v1/GetResults。
+登入叢集以查詢更新結果。 接著，找出主要協調員服務的複本位址，然後點閱瀏覽器的 URL： http://&lt;REPLICA-IP&gt;:&lt;ApplicationPort&gt;/PatchOrchestrationApplication/v1/GetResults。
 
 協調器服務的 REST 端點具有動態連接埠。 若要知道確切 URL，請查看 Service Fabric Explorer。 例如，可在 `http://10.0.0.7:20000/PatchOrchestrationApplication/v1/GetResults` 找到結果。
 
@@ -319,6 +322,10 @@ A. 當您在叢集上安裝修補程式協調流程應用程式時，您的叢�
 
 A. 是，清理會在後續安裝步驟中執行。 
 
+問： **修補協調流程應用程式可用來更新我的開發叢集 (一個雙節點的叢集) 嗎？**
+
+A. 否，修補協調流程應用程式無法用來修補單一節點的叢集。 此限制的設計：因為 [Service Fabric 系統服務](https://docs.microsoft.com/azure/service-fabric/service-fabric-technical-overview#system-services)或任何客戶應用程式將會面臨停機時間，所以修復管理員決不會核准以任何修復作業進行修補。
+
 ## <a name="troubleshooting"></a>疑難排解
 
 ### <a name="a-node-is-not-coming-back-to-up-state"></a>節點不會回到開啟狀態
@@ -360,5 +367,11 @@ A. 是，清理會在後續安裝步驟中執行。
 ### <a name="version-010"></a>0.1.0 版
 - 私人預覽版本
 
-### <a name="version-200-latest"></a>2.0.0 版 (最新版)
+### <a name="version-200"></a>版本 2.0.0
 - 公開版本
+
+### <a name="version-201"></a>版本 2.0.1
+- 已使用最新 Service Fabric SDK 重新編譯應用程式
+
+### <a name="version-202-latest"></a>版本 2.0.2 (最新)
+- 已修正會在重新啟動期間遺留健康情況警告的問題。

@@ -1,12 +1,12 @@
 ---
-title: "Azure CLI 指令碼範例 - 根據前置詞刪除容器 | Microsoft Docs"
-description: "根據容器名稱前置詞來刪除 Azure 儲存體 Blob 容器。"
+title: Azure CLI 指令碼範例 - 根據前置詞刪除容器 | Microsoft Docs
+description: 根據容器名稱前置詞來刪除 Azure 儲存體 Blob 容器。
 services: storage
 documentationcenter: na
 author: tamram
 manager: timlt
 editor: tysonn
-ms.assetid: 
+ms.assetid: ''
 ms.custom: mvc
 ms.service: storage
 ms.workload: storage
@@ -20,6 +20,7 @@ ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 03/09/2018
+ms.locfileid: "29848282"
 ---
 # <a name="delete-containers-based-on-container-name-prefix"></a>根據容器名稱前置詞來刪除容器
 

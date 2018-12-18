@@ -1,24 +1,26 @@
 ---
-title: "Azure Active Directory Domain Services 概觀 | Microsoft Docs"
-description: "Azure Active Directory Domain Services 概觀"
+title: Azure Active Directory Domain Services 概觀 | Microsoft Docs
+description: Azure Active Directory Domain Services 概觀
 services: active-directory-ds
-documentationcenter: 
+documentationcenter: ''
 author: mahesh-unnikrishnan
 manager: mtillman
 editor: curtand
 ms.assetid: 0d47178f-773e-45f9-9ff4-9e8cffa4ffa2
-ms.service: active-directory-ds
+ms.service: active-directory
+ms.component: domain-services
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 10/26/2017
 ms.author: maheshu
-ms.openlocfilehash: 2c00d324adfc1b71d436cb017214af98ff3002cf
-ms.sourcegitcommit: 176c575aea7602682afd6214880aad0be6167c52
+ms.openlocfilehash: d30d164a3e2896b1a300bf665ca09f57ce97fdf3
+ms.sourcegitcommit: cf606b01726df2c9c1789d851de326c873f4209a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/09/2018
+ms.lasthandoff: 09/19/2018
+ms.locfileid: "46295864"
 ---
 # <a name="azure-active-directory-ad-domain-services"></a>Azure Active Directory (AD) Domain Services
 ## <a name="overview"></a>概觀
@@ -63,7 +65,7 @@ Azure Active Directory Domain Services 所佈建的受控網域的幾個顯著�
 ### <a name="azure-ad-domain-services-for-hybrid-organizations"></a>混合式組織的 Azure AD 網域服務
 具有混合式 IT 基礎結構的組織會混合取用雲端資源和內部部署資源。 這類組織會從其內部部署目錄同步身分識別資訊到其 Azure AD 租用戶。 隨著混合式組織尋求將他們的更多內部部署應用程式移轉至雲端，尤其是舊版目錄感知應用程式，Azure AD 網域服務對組織而言可說是非常有用。
 
-Litware Corporation 已部署 [Azure AD Connect](../active-directory/active-directory-aadconnect.md)，以便從其內部部署目錄同步身分識別資訊到其 Azure AD 租用戶。 同步處理的身分識別資訊包括使用者帳戶、用於驗證的認證雜湊 (密碼同步) 與群組成員資格。
+Litware Corporation 已部署 [Azure AD Connect](../active-directory/hybrid/whatis-hybrid-identity.md)，以便從其內部部署目錄同步身分識別資訊到其 Azure AD 租用戶。 同步處理的身分識別資訊包括使用者帳戶、用於驗證的認證雜湊 (密碼同步) 與群組成員資格。
 
 > [!NOTE]
 > **混合式組織必須使用密碼同步處理，才能使用 Azure AD 網域服務**。 這是因為在 Azure AD 網域服務提供的受控網域中需要使用者的認證，才能透過 NTLM 或 Kerberos 驗證方法驗證這些使用者。
@@ -86,7 +88,7 @@ Azure Active Directory Domain Services 所佈建的受控網域的幾個顯著�
 
 * **簡單** – 只要簡單按幾下，就可以滿足部署至 Azure 基礎結構服務的虛擬機器的身分識別需求。 您不需要部署和管理 Azure 中的身分識別基礎結構，或安裝至您的內部部署身分識別基礎結構的連線。
 * **整合** - Azure AD 網域服務與 Azure AD 租用戶密切整合。 您現在可以使用 Azure AD 做為能夠同時迎合現代化應用程式及傳統目錄感知應用程式需求的整合雲端式企業目錄。
-* **相容** - Azure AD 網域服務是以 Windows Server Active Directory 經實證的企業級基礎結構為基礎。 因此，您的應用程式可仰賴相容性更高的 Windows Server Active Directory 功能。 並非 Windows Server AD 中的所有功能目前都可在 Azure AD 網域服務中使用。 不過，可用的功能與您在內部部署基礎結構中依賴的相對應 Windows Server AD 功能相容。 LDAP、Kerberos、NTLM、群組原則和網域加入功能構成了成熟的產品服務，已對各種 Windows Server 版本經過測試並進一步修改。
+* **相容** - Azure AD 網域服務是以 Windows Server Active Directory 經實證的企業級基礎結構為基礎。 因此，您的應用程式可仰賴相容性更高的 Windows Server Active Directory 功能。 並非 Windows Server AD 中的所有功能目前都可在 Azure AD 網域服務中使用。 不過，可用的功能與您在內部部署基礎結構中依賴的相對應 Windows Server AD 功能相容。 LDAP、Kerberos、NTLM、群組原則和網域加入功能構成了成熟的供應項目，已對各種 Windows Server 版本經過測試並進一步修改。
 * **符合成本效益** - 有了 Azure AD 網域服務，您可以免除為支援傳統目錄感知應用程式所需承受與管理身分識別基礎結構相關聯的基礎結構和管理負擔。 您可以將這些應用程式移至 Azure 基礎結構服務，並受益於營運費用的大幅節約。
 
 

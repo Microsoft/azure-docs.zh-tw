@@ -1,21 +1,21 @@
 ---
-title: Azure Active Directory B2C：使用方式報告 API 範例和定義 | Microsoft Docs
-description: 取得關於 Azure AD B2C 租用戶使用者、驗證及多重要素驗證之報告的相關指南和範例
+title: Azure Active Directory B2C 中的使用方式報告 API 範例和定義 | Microsoft Docs
+description: 取得關於 Azure AD B2C 租用戶使用者、驗證及多重要素驗證報告的相關指南和範例。
 services: active-directory-b2c
-documentationcenter: dev-center-name
 author: davidmu1
 manager: mtillman
-editor: ''
-ms.service: active-directory-b2c
-ms.topic: article
+ms.service: active-directory
+ms.topic: conceptual
 ms.workload: identity
 ms.date: 08/04/2017
 ms.author: davidmu
-ms.openlocfilehash: 3470f45683ea508dfe338c313a5307eb6c1164d8
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: B2C
+ms.openlocfilehash: 544b0618f9135b684846c42bb7edeb37cf599883
+ms.sourcegitcommit: 86cb3855e1368e5a74f21fdd71684c78a1f907ac
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37445529"
 ---
 # <a name="accessing-usage-reports-in-azure-ad-b2c-via-the-reporting-api"></a>透過報告 API 存取 Azure AD B2C 中的使用報告
 
@@ -125,7 +125,7 @@ if ($oauth.access_token -ne $null) {
 下列程式碼示範將輸出傳送至 JSON、名稱值清單及 XML 的範例：
 ```powershell
 # to output to JSON use following line in the PowerShell sample
-$myReport.Content | Out-File -FilePath b2cUserJourneySummaryEvents.json -Force
+$myReport.Content | Out-File -FilePath name-your-file.json -Force
 
 # to output the content to a name value list
 ($myReport.Content | ConvertFrom-Json).value | Out-File -FilePath name-your-file.txt -Force

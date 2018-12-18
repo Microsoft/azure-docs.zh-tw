@@ -1,24 +1,20 @@
 ---
-title: "設定 Azure 虛擬網路中的 HBase 叢集複寫 | Microsoft Docs"
-description: "了解如何針對負載平衡、高可用性、零停機時間移轉和更新，以及災害復原來設定 HDInsight 版本之間的 HBase 複寫。"
+title: 設定 Azure 虛擬網路中的 HBase 叢集複寫
+description: 了解如何針對負載平衡、高可用性、零停機時間移轉和更新，以及災害復原來設定 HDInsight 版本之間的 HBase 複寫。
 services: hdinsight,virtual-network
-documentationcenter: 
-author: mumian
-manager: jhubbard
-editor: cgronlun
+author: jasonwhowell
+ms.author: jasonh
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 01/03/2018
-ms.author: jgao
-ms.openlocfilehash: b0a22815dc0bf0ea31e47efe5152498f9aa45de4
-ms.sourcegitcommit: 9a8b9a24d67ba7b779fa34e67d7f2b45c941785e
+ms.topic: conceptual
+ms.date: 09/15/2018
+ms.openlocfilehash: 51f5f3b9742de45b1b72104c8cf08079d0719763
+ms.sourcegitcommit: ad08b2db50d63c8f550575d2e7bb9a0852efb12f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2018
+ms.lasthandoff: 09/26/2018
+ms.locfileid: "47224371"
 ---
 # <a name="set-up-hbase-cluster-replication-in-azure-virtual-networks"></a>設定 Azure 虛擬網路中的 HBase 叢集複寫
 
@@ -43,7 +39,7 @@ ms.lasthandoff: 01/08/2018
 
 您可以從 [GitHub](https://github.com/Azure/hbase-utils/tree/master/replication) 使用[指令碼動作](../hdinsight-hadoop-customize-cluster-linux.md)指令碼複寫叢集。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 開始進行本教學課程之前，您必須擁有 Azure 訂用帳戶。 請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
 
 ## <a name="set-up-the-environments"></a>設定環境
@@ -54,51 +50,18 @@ ms.lasthandoff: 01/08/2018
 - 有兩個 HBase 叢集位於相同區域但不同的兩個虛擬網路中。
 - 有兩個 HBase 叢集位於不同區域且不同的兩個虛擬網路中 (異地複寫)。
 
+本文涵蓋異地複寫案例。
+
 為了協助您設定環境，我們建立了一些 [Azure Resource Manager 範本](../../azure-resource-manager/resource-group-overview.md)。 如果您偏好使用其他方法設定環境，請參閱：
 
 - [在 HDInsight 中建立 Hadoop 叢集](../hdinsight-hadoop-provision-linux-clusters.md)
 - [在 Azure 虛擬網路上建立 HBase 叢集](apache-hbase-provision-vnet.md)
 
-### <a name="set-up-one-virtual-network"></a>設定一個虛擬網路
-
-若要在相同的虛擬網路中建立兩個 HBase 叢集，請選取下列圖像。 範本會儲存在 [Azure 快速入門範本](https://azure.microsoft.com/resources/templates/101-hdinsight-hbase-replication-one-vnet/)。
-
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-hbase-replication-one-vnet%2Fazuredeploy.json" target="_blank"><img src="./media/apache-hbase-replication/deploy-to-azure.png" alt="Deploy to Azure"></a>
-
-### <a name="set-up-two-virtual-networks-in-the-same-region"></a>在相同區域中設定兩個虛擬網路
-
-若要在相同區域中建立具有虛擬網路對等互連的兩個虛擬網路以及兩個 HBase 叢集，請選取下列圖像。 範本會儲存在 [Azure 快速入門範本](https://azure.microsoft.com/resources/templates/101-hdinsight-hbase-replication-two-vnets-same-region/)。
-
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-hbase-replication-two-vnets-same-region%2Fazuredeploy.json" target="_blank"><img src="./media/apache-hbase-replication/deploy-to-azure.png" alt="Deploy to Azure"></a>
-
-
-
-在此案例需要[虛擬網路對等互連](../../virtual-network/virtual-network-peering-overview.md)。 範本可啟用虛擬網路對等互連。   
-
-HBase 複寫會使用 ZooKeeper VM 的 IP 位址。 您必須設定目的地 HBase ZooKeeper 節點的靜態 IP 位址。
-
-**設定靜態 IP 位址**
-
-1. 登入 [Azure 入口網站](https://portal.azure.com)。
-2. 在左功能表上選取 [資源群組]。
-3. 選取包含目的地 HBase 叢集的資源群組。 這是當您使用 Resource Manager 範本來建立環境時所指定的資源群組。 您可以使用篩選來縮減清單。 您可以看到包含兩個虛擬網路的資源清單。
-4. 選取包含目的地 HBase 叢集的虛擬網路。 例如，選取 **xxxx-vnet2**。 系統就會列出名稱開頭為 **nic-zookeepermode-** 的三個裝置。 這三個裝置為 ZooKeeper VM。
-5. 選取其中一個 ZooKeeper VM。
-6. 選取 [IP 組態]。
-7. 在清單中，選取 **ipConfig1**。
-8. 選取 [靜態]，並複製或記下實際 IP 位址。 在執行指令碼動作啟用複寫時，需要該 IP 位址。
-
-  ![HDInsight HBase 複寫 ZooKeeper 靜態 IP 位址](./media/apache-hbase-replication/hdinsight-hbase-replication-zookeeper-static-ip.png)
-
-9. 重複步驟 6 以設定其他兩個 ZooKeeper 節點的靜態 IP 位址。
-
-如果是跨虛擬網路的案例，您必須在呼叫 `hdi_enable_replication.sh` 指令碼動作時使用 **ip** 切換。
-
 ### <a name="set-up-two-virtual-networks-in-two-different-regions"></a>在兩個不同區域中設定兩個虛擬網路
 
-若要在兩個不同區域中建立兩個虛擬網路，以及在 VNet 之間建立 VPN 連線，請按一下下面的圖像。 範本儲存在 [Azure 快速入門範本 (英文)](https://azure.microsoft.com/resources/templates/101-hdinsight-hbase-replication-geo/)。
+若要使用會兩不同區域建立兩個虛擬網路，並在 VNet 之間建立 VPN 連線的範本，請選取下列 [部署至 Azure] 按鈕。 範本定義會儲存於[公用 Blob 儲存體](https://hditutorialdata.blob.core.windows.net/hbaseha/azuredeploy.json)。
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-hbase-replication-geo%2Fazuredeploy.json" target="_blank"><img src="./media/apache-hbase-replication/deploy-to-azure.png" alt="Deploy to Azure"></a>
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Fhbaseha%2Fazuredeploy.json" target="_blank"><img src="./media/apache-hbase-replication/deploy-to-azure.png" alt="Deploy to Azure"></a>
 
 範本中的一些硬式編碼值：
 
@@ -118,11 +81,6 @@ HBase 複寫會使用 ZooKeeper VM 的 IP 位址。 您必須設定目的地 HBa
 | 閘道 VPN 類型 | RouteBased |
 | 閘道 SKU | 基本 |
 | 閘道 IP | vnet1gwip |
-| 叢集名稱 | &lt;ClusterNamePrefix>1 |
-| 叢集版本 | 3.6 |
-| 叢集種類 | hbase |
-| 叢集背景工作節點計數 | 2 |
-
 
 **VNet 2**
 
@@ -140,14 +98,177 @@ HBase 複寫會使用 ZooKeeper VM 的 IP 位址。 您必須設定目的地 HBa
 | 閘道 VPN 類型 | RouteBased |
 | 閘道 SKU | 基本 |
 | 閘道 IP | vnet1gwip |
-| 叢集名稱 | &lt;ClusterNamePrefix>2 |
-| 叢集版本 | 3.6 |
-| 叢集種類 | hbase |
-| 叢集背景工作節點計數 | 2 |
 
-HBase 複寫會使用 ZooKeeper VM 的 IP 位址。 您必須設定目的地 HBase ZooKeeper 節點的靜態 IP 位址。 若要設定靜態 IP，請參閱本文的[在相同區域中設定兩個虛擬網路](#set-up-two-virtual-networks-in-the-same-region)一節。
+## <a name="setup-dns"></a>設定 DNS
 
-如果是跨虛擬網路的案例，您必須在呼叫 `hdi_enable_replication.sh` 指令碼動作時使用 **ip** 切換。
+在最後一節，範本會在兩個虛擬網路中各建立一個 Ubuntu 虛擬機器。  而在這一節，您會在兩個 DNS 虛擬機器上安裝 Bind，然後在兩個虛擬機器上設定 DNS 轉送。
+
+為了安裝 Bind，您需要尋找兩個 DNS 虛擬機器的公用 IP 位址。
+
+1. 開啟 [Azure 入口網站](https://portal.azure.com)。
+2. 選取 [資源群組] > [資源群組名稱] > [vnet1DNS] 來開啟 DNS 虛擬機器。  資源群組名稱是您在上一個程序中所建立的名稱。 預設 DNS 虛擬機器名稱是 vnet1DNS 和 vnet2NDS。
+3. 選取 [屬性] 以開啟虛擬網路的屬性頁面。
+4. 記下 [公用 IP 位址]，並另外確認 [私人 IP 位址]。  私人 IP 位址應該是 **10.1.0.4** (如果是 vnet1DNS) 和 **10.2.0.4** (如果是 vnet2DNS)。  
+5. 變更兩個虛擬網路的 DNS 伺服器，使用預設 (Azure 提供) 的 DNS 伺服器，以允許對內及對外存取，在下列步驟中下載套件來安裝 Bind。
+
+若要安裝 Bind，請使用下列程序：
+
+1. 使用 SSH 連線至 DNS 虛擬機器的__公用 IP 位址__。 下列範例會連線到 40.68.254.142 的虛擬機器：
+
+    ```bash
+    ssh sshuser@40.68.254.142
+    ```
+
+    將 `sshuser` 取代為建立 DNS 虛擬機器時所指定的 SSH 使用者帳戶。
+
+    > [!NOTE]
+    > 有多種方式可取得 `ssh` 公用程式。 在 Linux、Unix 及 macOS 上，它會提供作為作業系統的一部分。 如果您是使用 Windows，請考慮下列選項的其中之一：
+    >
+    > * [Azure Cloud Shell](../../cloud-shell/quickstart.md)
+    > * [在 Windows 10 上 Ubuntu 上的 Bash](https://msdn.microsoft.com/commandline/wsl/about)
+    > * [Git (https://git-scm.com/)](https://git-scm.com/)
+    > * [OpenSSH (https://github.com/PowerShell/Win32-OpenSSH/wiki/Install-Win32-OpenSSH)](https://github.com/PowerShell/Win32-OpenSSH/wiki/Install-Win32-OpenSSH)
+
+2. 若要安裝 Bind，使用下列 SSH 工作階段中的命令：
+
+    ```bash
+    sudo apt-get update -y
+    sudo apt-get install bind9 -y
+    ```
+
+3. 將 Bind 設定為把名稱解析要求轉送到您的內部 DNS 伺服器。 若要這樣做，請使用下列文字作為 `/etc/bind/named.conf.options` 檔案的內容：
+
+    ```
+    acl goodclients {
+        10.1.0.0/16; # Replace with the IP address range of the virtual network 1
+        10.2.0.0/16; # Replace with the IP address range of the virtual network 2
+        localhost;
+        localhost;
+    };
+    
+    options {
+        directory "/var/cache/bind";
+        recursion yes;
+        allow-query { goodclients; };
+
+        forwarders {
+            168.63.129.16; #This is the Azure DNS server
+        };
+
+        dnssec-validation auto;
+
+        auth-nxdomain no;    # conform to RFC1035
+        listen-on-v6 { any; };
+    };
+    ```
+    
+    > [!IMPORTANT]
+    > 將 `goodclients` 區段中的值取代為兩個虛擬網路的 IP 位址範圍。 本章節會定義此 DNS 伺服器接受要求的來源位址。
+
+    若要編輯這個檔案，請使用下列命令：
+
+    ```bash
+    sudo nano /etc/bind/named.conf.options
+    ```
+
+    若要儲存檔案，請使用 __Ctrl+X__、__Y__ 和 __Enter__ 鍵。
+
+4. 在 SSH 工作階段中，使用下列命令：
+
+    ```bash
+    hostname -f
+    ```
+
+    此命令會傳回類似下列文字的值：
+
+        vnet1DNS.icb0d0thtw0ebifqt0g1jycdxd.ex.internal.cloudapp.net
+
+    `icb0d0thtw0ebifqt0g1jycdxd.ex.internal.cloudapp.net` 文字是此虛擬網路的 __DNS 尾碼__。 儲存這個值以便稍後使用。
+
+    您也必須從另一個 DNS 伺服器找出 DNS 尾碼。 您在下一步需要用到它。
+
+5. 若要將 Bind 設定為解析虛擬網路內資源的 DNS 名稱，請使用下列文字作為 `/etc/bind/named.conf.local` 檔案的內容：
+
+    ```
+    // Replace the following with the DNS suffix for your virtual network
+    zone "v5ant3az2hbe1edzthhvwwkcse.bx.internal.cloudapp.net" {
+            type forward;
+            forwarders {10.2.0.4;}; # The Azure recursive resolver
+    };
+    ```
+
+    > [!IMPORTANT]
+    > 您必須將 `v5ant3az2hbe1edzthhvwwkcse.bx.internal.cloudapp.net` 取代為其他虛擬網路的 DNS 尾碼。 轉寄站 IP 是 DNS 伺服器在其他虛擬網路的私人 IP 位址。
+
+    若要編輯這個檔案，請使用下列命令：
+
+    ```bash
+    sudo nano /etc/bind/named.conf.local
+    ```
+
+    若要儲存檔案，請使用 __Ctrl+X__、__Y__ 和 __Enter__ 鍵。
+
+6. 若要啟動 Bind，請使用下列命令：
+
+    ```bash
+    sudo service bind9 restart
+    ```
+
+7. 若要確認該 Bind 可以解析另一個虛擬網路中的資源名稱，請使用下列命令：
+
+    ```bash
+    sudo apt install dnsutils
+    nslookup vnet2dns.v5ant3az2hbe1edzthhvwwkcse.bx.internal.cloudapp.net
+    ```
+
+    > [!IMPORTANT]
+    > 將 `vnet2dns.v5ant3az2hbe1edzthhvwwkcse.bx.internal.cloudapp.net` 取代為另一個網路中 DNS 虛擬機器的完整網域名稱 (FQDN)。
+    >
+    > 將 `10.2.0.4` 取代為另一個虛擬網路中自訂 DNS 伺服器的__內部 IP 位址__。
+
+    回應看起來類似下列文字：
+
+    ```
+    Server:         10.2.0.4
+    Address:        10.2.0.4#53
+    
+    Non-authoritative answer:
+    Name:   vnet2dns.v5ant3az2hbe1edzthhvwwkcse.bx.internal.cloudapp.net
+    Address: 10.2.0.4
+    ```
+
+    到目前為止，您仍無法在沒有指定 DNS 伺服器 IP 位址的情況下查閱其他網路的 IP 位址。
+
+### <a name="configure-the-virtual-network-to-use-the-custom-dns-server"></a>將虛擬網路設定為使用自訂的 DNS 伺服器
+
+若要將虛擬網路設定為使用自訂的 DNS 伺服器，而不使用 Azure 遞迴解析程式，請使用下列步驟：
+
+1. 在 [Azure 入口網站](https://portal.azure.com)中，選取虛擬網路，然後選取 [DNS 伺服器]。
+
+2. 選取 [自訂]，並輸入自訂 DNS 伺服器的__內部 IP 位址__。 最後，選取 [儲存]。
+
+6. 在 vnet1 中開啟 DNS 伺服器虛擬機器，然後按一下 [重新啟動]。  您必須重新啟動虛擬網路中的所有虛擬機器，才能讓 DNS 組態生效。
+7. 重複步驟，為 vnet2 設定自訂 DNS 伺服器。
+
+若要測試 DNS 組態，您可以使用 SSH 連線至兩個 DNS 虛擬機器，然後使用另一個虛擬網路的 DNS 伺服器主機名稱對該 DNS 伺服器執行 ping。 如果沒有作用，請使用下列命令來檢查 DNS 狀態：
+
+```bash
+sudo service bind9 status
+```
+
+## <a name="create-hbase-clusters"></a>建立 HBase 叢集
+
+使用下列組態在兩個虛擬網路中各建立一個 HBase 叢集：
+
+- **資源群組名稱**︰使用和您在虛擬網路中所建立的名稱相同的資源群組名稱。
+- **叢集類型**：HBase
+- **版本**：HBase 1.1.2 (HDI 3.6)
+- **位置**：使用與虛擬網路相同的位置。  根據預設，vnet1 是「美國西部」，vnet2 是「美國東部」。
+- **儲存體**︰為叢集建立新的儲存體帳戶。
+- **虛擬網路** (從入口網站上的 [進階] 設定)：選取您在上一個程序中所建立的 vnet1。
+- **子網路**：範本中所使用的預設名稱為 **subnet1**。
+
+若要確定環境的設定是否正確，您必須能夠對兩個叢集之間的前端節點 FQDN 執行 ping。
 
 ## <a name="load-test-data"></a>載入測試資料
 
@@ -157,7 +278,7 @@ HBase 複寫會使用 ZooKeeper VM 的 IP 位址。 您必須設定目的地 HBa
 
 ## <a name="enable-replication"></a>啟用複寫
 
-下列步驟會說明如何從 Azure 入口網站呼叫指令碼動作指令碼。 如需了解如何使用 Azure PowerShell 和 Azure 命令列介面 (Azure CLI) 來執行指令碼動作，請參閱[使用指令碼動作來自訂 HDInsight 叢集](../hdinsight-hadoop-customize-cluster-linux.md)。
+下列步驟會說明如何從 Azure 入口網站呼叫指令碼動作指令碼。 如需了解如何使用 Azure PowerShell 和 Azure 傳統 CLI 來執行指令碼動作，請參閱[使用指令碼動作來自訂 HDInsight 叢集](../hdinsight-hadoop-customize-cluster-linux.md)。
 
 **從 Azure 入口網站啟用 HBase 複寫**
 
@@ -182,7 +303,7 @@ HBase 複寫會使用 ZooKeeper VM 的 IP 位址。 您必須設定目的地 HBa
 
 必要的引數︰
 
-|Name|說明|
+|名稱|說明|
 |----|-----------|
 |-s, --src-cluster | 指定來源 HBase 叢集的 DNS 名稱。 例如：-s hbsrccluster, --src-cluster=hbsrccluster |
 |-d, --dst-cluster | 指定目的地 (複本) HBase 叢集的 DNS 名稱。 例如：-s dsthbcluster, --src-cluster=dsthbcluster |
@@ -191,13 +312,12 @@ HBase 複寫會使用 ZooKeeper VM 的 IP 位址。 您必須設定目的地 HBa
 
 選擇性的引數︰
 
-|Name|說明|
+|名稱|說明|
 |----|-----------|
 |-su, --src-ambari-user | 指定來源 HBase 叢集上 Ambari 的管理員使用者名稱。 預設值為 **admin**。 |
 |-du, --dst-ambari-user | 指定目的地 HBase 叢集上 Ambari 的管理員使用者名稱。 預設值為 **admin**。 |
 |-t, --table-list | 指定要複寫的資料表。 例如：--table-list="table1;table2;table3"。 如果您未指定資料表，則會複寫所有現有的 HBase 資料表。|
 |-m, --machine | 指定用來執行指令碼動作的前端節點。 值為 **hn1** 或 **hn0**。 因為 **hn0** 前端節點通常較忙碌，我們建議您使用 **hn1**。 如果您從 HDInsight 入口網站或 Azure PowerShell 以指令碼動作執行 $0 指令碼，則使用此選項。|
-|-ip | 當您啟用兩個虛擬網路之間的複寫時會需要此引數。 此引數會作為交換器，以使用複本叢集 (而非 FQDN 名稱) 的 ZooKeeper 節點靜態 IP 位址。 啟用複寫之前，您必須預先設定靜態 IP 位址。 |
 |-cp, -copydata | 在已啟用複寫的資料表上，啟用現有資料的移轉。 |
 |-rpm, -replicate-phoenix-meta | 在 Phoenix 系統資料表上啟用複寫。 <br><br>*請謹慎使用此選項。* 建議您在使用此指令碼前，於複本叢集上重新建立 Phoenix 資料表。 |
 |-h, --help | 顯示使用資訊。 |

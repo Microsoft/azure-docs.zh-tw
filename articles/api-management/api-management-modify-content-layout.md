@@ -1,11 +1,11 @@
 ---
-title: "在 Azure API 管理中修改開發人員入口網站的頁面內容 | Microsoft Docs"
-description: "了解如何在 Azure API 管理中編輯開發人員入口網站的頁面內容。"
+title: 在 Azure API 管理中修改開發人員入口網站的頁面內容 | Microsoft Docs
+description: 了解如何在 Azure API 管理中編輯開發人員入口網站的頁面內容。
 services: api-management
-documentationcenter: 
-author: antonba
+documentationcenter: ''
+author: vlvinogr
 manager: vlvinogr
-editor: 
+editor: ''
 ms.assetid: 186128fe-41c0-4efb-9efe-2478ad4d103f
 ms.service: api-management
 ms.workload: mobile
@@ -13,12 +13,13 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
 ms.date: 02/09/2017
-ms.author: antonba
-ms.openlocfilehash: bcf48ab8dd3b57ace70fa713074b13a992940002
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.author: vlvinogr
+ms.openlocfilehash: 4a372b54ace87816b9e7cccbd38466331b5ebfc7
+ms.sourcegitcommit: e0834ad0bad38f4fb007053a472bde918d69f6cb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37437591"
 ---
 # <a name="modify-the-content-and-layout-of-pages-on-the-developer-portal-in-azure-api-management"></a>在 Azure API 管理中修改開發人員入口網站的頁面內容和配置
 在 Azure API 管理中自訂開發人員入口網站的基本方式有三種：
@@ -33,7 +34,7 @@ ms.lasthandoff: 02/21/2018
 
 ![開發人員入口網站頁面結構][api-management-customization-widget-structure]
 
-所有 Widget 都是可編輯的。 
+所有 Widget 都是可編輯的。
 * 每個個別頁面特定的核心內容是位於 [內容] Widget 中。 編輯網頁，表示編輯此 Widget 的內容。
 * 所有頁面配置元素均隨附於其餘的 Widget 中。 對這些小工具所做的變更會套用至所有頁面。 它們也稱為「配置小工具」。
 
@@ -41,12 +42,12 @@ ms.lasthandoff: 02/21/2018
 
 ## <a name="modify-layout-widget"> </a>修改配置 Widget 的內容
 
-您可以從 Azure 入口網站存取開發人員入口網站。 
+您可以從 Azure 入口網站存取開發人員入口網站。
 
 1. 從 API 管理執行個體的工具列中按一下 [開發人員入口網站]。
-2. 若要編輯小工具的內容，請從左側的 [開發人員入口網站] 功能表中按一下由兩個筆刷所組成的圖示。 
+2. 若要編輯小工具的內容，請從左側的 [開發人員入口網站] 功能表中按一下由兩個筆刷所組成的圖示。
 3. 若要修改標頭內容，請捲動到左側清單中的 [標頭] 區段。
-    
+
     您可以從欄位中編輯小工具。
 4. 當您準備好發佈變更時，請按一下頁面底部的 [發佈]。
 

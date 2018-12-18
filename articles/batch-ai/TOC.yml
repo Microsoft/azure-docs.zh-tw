@@ -1,39 +1,72 @@
+items:
 - name: Batch AI 文件
-  href: index.md
+  href: index.yml
 - name: 概觀
   items:
-    - name: Batch AI 是什麼？
-      href: overview.md
-- name: 開始使用
-  expanded: true
+  - name: Batch AI 是什麼？
+    href: overview.md
+- name: 快速入門
   items:
-    - name: 執行定型作業 - CLI
-      href: quickstart-cli.md
-    - name: 執行定型作業 - Python
-      href: quickstart-python.md
+  - name: 建立叢集 - CLI
+    href: quickstart-create-cluster-cli.md
+  - name: 建立叢集 - 入口網站
+    href: quickstart-create-cluster-portal.md
+  - name: 將 AI 模型定型 - CLI
+    href: quickstart-tensorflow-training-cli.md
+  expanded: true
+- name: 教學課程
+  items:
+  - name: 使用 Horovod 的分散式訓練
+    href: tutorial-horovod-tensorflow.md
+- name: 範例
+  items:
+  - name: Azure CLI
+    href: cli-samples.md
+- name: 概念
+  items:
+  - name: Batch AI 資源
+    href: resource-concepts.md
+  - name: Batch AI 配額與限制
+    href: quota-limits.md
+- name: 使用說明指南
+  items:
+  - name: 運用叢集
+    href: clusters.md
+  - name: 使用 Azure 儲存體
+    href: use-azure-storage.md
+  - name: 使用 Python SDK 將模型定型
+    href: cntk-training-python.md
+  - name: 遷移至已更新的 API
+    href: migrate-to-new-api.md
 - name: 參考
   items:
-    - name: Azure CLI
-      href: /cli/azure/batchai
-    - name: .NET
-      href: /dotnet/api/overview/azure/batchai
-    - name: Java
-      href: /java/api/overview/azure/batchai
-    - name: Node.js
-      href: /javascript/api/overview/azure/batchai
-    - name: Python
-      href: /python/api/overview/azure/batchai
-    - name: REST
-      href: /rest/api/batchai
+  - name: Azure CLI
+    href: /cli/azure/batchai
+  - name: .NET
+    href: /dotnet/api/overview/azure/batchai
+  - name: Java
+    href: /java/api/overview/azure/batchai
+  - name: Node.js
+    href: /javascript/api/overview/azure/batchai
+  - name: Python
+    href: /python/api/overview/azure/batchai
+  - name: REST
+    href: /rest/api/batchai
 - name: 資源
   items:
-    - name: 定型訣竅
-      href: 'https://github.com/Azure/BatchAI'
-    - name: Azure 藍圖
-      href: 'https://azure.microsoft.com/roadmap/'
-    - name: 價格
-      href: 'https://azure.microsoft.com/pricing/details/batch-ai'
-    - name: 定價計算機
-      href: 'https://azure.microsoft.com/pricing/calculator/'
-    - name: 區域可用性
-      href: 'https://azure.microsoft.com/regions/services/'
+  - name: 定型訣竅
+    href: https://github.com/Azure/BatchAI
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/batch-ai
+  - name: 定價計算機
+    href: https://azure.microsoft.com/pricing/calculator/
+  - name: 區域可用性
+    href: https://azure.microsoft.com/regions/services/
+ms.openlocfilehash: ad3ffb48dd035f189054c40c9c1a3466230ac11d
+ms.sourcegitcommit: ebd06cee3e78674ba9e6764ddc889fc5948060c4
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/07/2018
+ms.locfileid: "44051685"

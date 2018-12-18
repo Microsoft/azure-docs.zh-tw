@@ -1,11 +1,11 @@
 ---
-title: "在 Azure 資訊安全中心新增新一代防火牆 | Microsoft Docs"
-description: "本文件說明如何實作 Azure 資訊安全中心建議的「新增新一代防火牆」與「僅透過 NGFW 路由傳送流量」。"
+title: 在 Azure 資訊安全中心新增新一代防火牆 | Microsoft Docs
+description: 本文件說明如何實作 Azure 資訊安全中心建議的「新增新一代防火牆」與「僅透過 NGFW 路由傳送流量」。
 services: security-center
 documentationcenter: na
 author: TerryLanfear
 manager: MBaldwin
-editor: 
+editor: ''
 ms.assetid: 48b99015-4db8-4ce8-85e4-b544c0fa203e
 ms.service: security-center
 ms.devlang: na
@@ -14,11 +14,12 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 02/02/2017
 ms.author: terrylan
-ms.openlocfilehash: 30589d0a943517c03394a3aae7c03c8094e78c1f
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 25601b01489b95de0e86b314b4b934d3cffd38c2
+ms.sourcegitcommit: 95d9a6acf29405a533db943b1688612980374272
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 06/23/2018
+ms.locfileid: "36330735"
 ---
 # <a name="add-a-next-generation-firewall-in-azure-security-center"></a>在 Azure 資訊安全中心新增新一代防火牆
 Azure 資訊安全中心可能會建議您新增由 Microsoft 合作夥伴提供的新一代防火牆 (NGFW)，以提升您的安全防護。 本文件逐步解說如何進行這項操作的範例。
@@ -49,7 +50,7 @@ Azure 資訊安全中心可能會建議您新增由 Microsoft 合作夥伴提供
    ![僅透過 NGFW 路由傳送流量][7]
 2. 這樣會開啟 [僅透過 NGFW 路由傳送流量] 刀鋒視窗，其中列出您可以路由傳送流量的 VM。 從清單中選取 VM。
    ![選取 VM][8]
-3. 所選 VM 的刀鋒視窗隨即開啟，其中顯示相關的輸入規則。 說明提供後續可能步驟的詳細資訊。 選取 [編輯輸入規則]  繼續編輯輸入規則。 預期的情況是與 NGFW 連結的網際網路面向端點其 [來源] 不設定為 [任何]。 若要深入了解輸入規則的內容，請參閱 [NSG 規則](../virtual-network/virtual-networks-nsg.md#nsg-rules)。
+3. 所選 VM 的刀鋒視窗隨即開啟，其中顯示相關的輸入規則。 說明提供後續可能步驟的詳細資訊。 選取 [編輯輸入規則]  繼續編輯輸入規則。 預期的情況是與 NGFW 連結的網際網路面向端點其 [來源] 不設定為 [任何]。 若要深入了解輸入規則的內容，請參閱[安全性規則](../virtual-network/security-overview.md#security-rules)。
    ![設定規則以限制存取][9]
    ![編輯輸入規則][10]
 
@@ -57,7 +58,7 @@ Azure 資訊安全中心可能會建議您新增由 Microsoft 合作夥伴提供
 本文件說明如何實作資訊安全中心建議的「新增新一代防火牆」。 若要了解 NGFW 與檢查點合作夥伴解決方案的詳細資訊，請參閱：
 
 * [新一代防火牆](https://en.wikipedia.org/wiki/Next-Generation_Firewall)
-* [檢查點 vSEC](https://azure.microsoft.com/marketplace/partners/checkpoint/check-point-r77-10/)
+* [檢查點 vSEC](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/checkpoint.vsec)
 
 如要深入了解資訊安全中心，請參閱下列主題：
 

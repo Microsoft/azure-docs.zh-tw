@@ -1,11 +1,11 @@
 ---
-title: "BizTalk 服務的管理與開發工作清單 | Microsoft Docs"
-description: "部署 Azure BizTalk 服務的規劃和作業協助。"
+title: BizTalk 服務的管理與開發工作清單 | Microsoft Docs
+description: 部署 Azure BizTalk 服務的規劃和作業協助。
 services: biztalk-services
-documentationcenter: 
+documentationcenter: ''
 author: msftman
 manager: erikre
-editor: 
+editor: ''
 ms.assetid: 0ab70b5b-1a88-4ba5-b329-ec51b785010e
 ms.service: biztalk-services
 ms.workload: integration
@@ -19,6 +19,7 @@ ms.sourcegitcommit: e266df9f97d04acfc4a843770fadfd8edf4fa2b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 12/11/2017
+ms.locfileid: "26736669"
 ---
 # <a name="administration-and-development-task-list-in-biztalk-services"></a>BizTalk 服務的管理與開發工作清單
 

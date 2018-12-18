@@ -1,3 +1,20 @@
+---
+title: 包含檔案
+description: 包含檔案
+services: active-directory-b2c
+author: davidmu1
+ms.service: active-directory-b2c
+ms.topic: include
+ms.date: 04/09/2018
+ms.author: davidmu
+ms.custom: include file
+ms.openlocfilehash: 8363d023e89c77aabc0d123f19264c9a0758a656
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38740456"
+---
 [!INCLUDE [active-directory-b2c-portal-add-application](active-directory-b2c-portal-add-application.md)]
 
 若要註冊您的行動或原生應用程式，請使用資料表中所指定的設定。
@@ -8,7 +25,7 @@
 | ------------ | ------- | -------------------------------------------------- |
 | **名稱** | Contoso B2C 應用程式 | 輸入應用程式的 [名稱]，此名稱可為取用者說明您的應用程式。 |
 | **原生用戶端** | yes | 針對行動或原生應用程式選取 [是]。 |
-| **自訂重新導向 URI** | `com.onmicrosoft.contoso.appname://redirect/path` | 輸入具有自訂配置的重新導向 URI。 務必選擇[良好的重新導向 URI](../articles/active-directory-b2c/active-directory-b2c-app-registration.md#choosing-a-native-application-redirect-uri)，但不包含特殊字元 (例如底線)。 |
+| **自訂重新導向 URI** | `com.onmicrosoft.contoso.appname://redirect/path` | 輸入具有自訂配置的重新導向 URI。 務必選擇[良好的重新導向 URI](../articles/active-directory-b2c/active-directory-b2c-app-registration.md)，但不包含特殊字元 (例如底線)。 |
 
 按一下 [建立]  以註冊您的應用程式。
 

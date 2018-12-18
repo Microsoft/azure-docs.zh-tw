@@ -1,111 +1,112 @@
 ---
-title: "使用本機執行和 Azure Data Lake U-SQL SDK 對 U-SQL 作業進行測試和偵錯 | Microsoft Docs"
-description: "了解如何使用 Azure Data Lake Tools for Visual Studio 和 Azure Data Lake U-SQL SDK 在本機工作站上對 U-SQL 作業進行測試和偵錯。"
+title: 在本機電腦上執行 Azure Data Lake U-SQL 指令碼
+description: 了解如何使用 Azure Data Lake Tools for Visual Studio 在本機電腦上執行 U-SQL 作業。
 services: data-lake-analytics
-documentationcenter: 
-author: mumian
-manager: jhubbard
-editor: cgronlun
+author: yanancai
+ms.author: yanacai
+ms.reviewer: jasonwhowell
 ms.assetid: 66dd58b1-0b28-46d1-aaae-43ee2739ae0a
 ms.service: data-lake-analytics
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
+ms.topic: conceptual
 ms.workload: big-data
-ms.date: 11/15/2016
-ms.author: yanacai
-ms.openlocfilehash: 771a96df5cc66bac46e7144785be8cc072b57b31
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.date: 07/03/2018
+ms.openlocfilehash: 8f110a88558b4479d8fdadb2967c7dedeca60ce9
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43043552"
 ---
-# <a name="test-and-debug-u-sql-jobs-by-using-local-run-and-the-azure-data-lake-u-sql-sdk"></a>使用本機執行和 Azure Data Lake U-SQL SDK 對 U-SQL 作業進行測試和偵錯
+# <a name="run-u-sql-scripts-on-your-local-machine"></a>在本機電腦上執行 U-SQL 指令碼
 
-您可以使用 Azure Data Lake Tools for Visual Studio 和 Azure Data Lake U-SQL SDK，和在 Azure Data Lake 服務中一樣地在工作站上執行 U-SQL 作業。 這兩個本機執行功能可節省您對 U-SQL 作業進行測試和偵錯的時間。
+在開發 U-SQL 指令碼時，您可以藉由在本機執行指令碼來節省時間和金錢。 Azure Data Lake Tools for Visual Studio 可支援在本機電腦上執行 U-SQL 指令碼。 
 
-## <a name="understand-the-data-root-folder-and-the-file-path"></a>了解資料根資料夾和檔案路徑
+## <a name="basic-concepts-for-local-runs"></a>本機執行的基本概念
 
-本機執行和 U-SQL SDK 兩者都需要資料根資料夾。 資料根資料夾是本機計算帳戶的「本機存放區」。 它就相當於 Data Lake Analytics 帳戶的 Azure Data Lake Store 帳戶。 切換到不同的資料根資料夾，就如同切換到不同的存放區帳戶。 如果您想要存取具有不同資料根資料夾的常用共用資料，便必須在指令碼中使用絕對路徑。 或者，您可以在資料根資料夾下建立檔案系統符號連結 (例如 NTFS 上的 **mklink**)，來指向共用資料。
+以下圖表顯示的是本機執行的元件，以及元件對應至雲端執行的方式。
 
-資料根資料夾是用來︰
+|元件|本機執行|雲端執行|
+|---------|---------|---------|
+|儲存體|本機資料根資料夾|預設 Azure Data Lake Store 帳戶|
+|計算|U-SQL 本機執行引擎|Azure Data Lake Analytics 服務|
+|執行環境|本機電腦上的工作目錄|Azure Data Lake Analytics 叢集|
 
-- 儲存中繼資料，包括資料庫、資料表，資料表值函式 (TVF)，以及組件。
-- 查詢在 U-SQL 中定義為相對路徑的輸入和輸出路徑。 使用相對路徑能夠更容易將 U-SQL 專案部署至 Azure。
+下列各節會提供關於本機執行元件的詳細資訊。
 
-您可以在 U-SQL 指令碼中使用相對路徑和本機絕對路徑。 相對路徑是相對於指定的資料根資料夾路徑。 我們建議您使用 "/" 做為路徑分隔符號，讓您的指令碼與伺服器端相容。 以下是一些相對路徑及其對等絕對路徑的範例。 在這些範例中，C:\LocalRunDataRoot 是資料根資料夾。
+### <a name="local-data-root-folders"></a>本機資料根資料夾
 
-|相對路徑|絕對路徑|
-|-------------|-------------|
-|/abc/def/input.csv |C:\LocalRunDataRoot\abc\def\input.csv|
-|abc/def/input.csv  |C:\LocalRunDataRoot\abc\def\input.csv|
-|D:/abc/def/input.csv |D:\abc\def\input.csv|
+本機根資料夾是本機計算帳戶的**本機存放區**。 在本機電腦上，本機檔案系統中的任何資料夾都可以作為本機資料根資料夾。 它就和 Data Lake Analytics 帳戶的預設 Azure Data Lake Store 帳戶一樣。 切換到不同的資料根資料夾，就如同切換到不同的預設存放區帳戶。 
 
-## <a name="use-local-run-from-visual-studio"></a>從 Visual Studio 使用本機執行
+資料根資料夾的用途如下︰
+- 儲存中繼資料。 範例有資料庫、資料表，資料表值函式及組件。
+- 查詢在 U-SQL 指令碼中定義為相對路徑的輸入和輸出路徑。 藉由使用相對路徑，您可以更輕鬆地將 U-SQL 指令碼部署至 Azure。
 
-Data Lake Tools for Visual Studio 提供 Visual Studio 中的 U-SQL 本機執行體驗。 透過使用這項功能，您可以︰
+### <a name="u-sql-local-run-engines"></a>U-SQL 本機執行引擎
 
-- 在本機執行 U-SQL 指令碼及 C# 組件。
-- 在本機對 C# 組件進行偵錯。
-- 從伺服器總管建立、檢視和刪除 U-SQL 目錄 (本機資料庫、組件、結構描述和資料表)。 您也可以從伺服器總管中找到本機目錄。
+U-SQL 本機執行引擎是 U-SQL 作業的**本機計算帳戶**。 使用者能透過 Azure Data Lake Tools for Visual Studio 在本機執行 U-SQL 作業。 本機執行也支援透過 Azure Data Lake U-SQL SDK 命令列和程式設計介面來進行。 深入了解 [Azure Data Lake U-SQL SDK](https://www.nuget.org/packages/Microsoft.Azure.DataLake.USQL.SDK/)。
 
-    ![Data Lake Tools for Visual Studio 本機執行的本機目錄](./media/data-lake-analytics-data-lake-tools-local-run/data-lake-tools-for-visual-studio-local-run-local-catalog.png)
+### <a name="working-directories"></a>工作目錄
 
-Data Lake Tools 安裝程式會建立 C:\LocalRunRoot 資料夾，做為預設的資料根資料夾。 預設的本機執行平行處理原則是 1。
+在執行 U-SQL 指令碼時，需要有工作目錄資料夾才能快取編譯結果、執行記錄，以及執行其他功能。 在 Azure Data Lake Tools for Visual Studio 中，工作目錄即是 U-SQL 專案的工作目錄。 它位於 `<U-SQL project root path>/bin/debug>` 底下。 每當觸發新執行時，工作目錄就會清空。
 
-### <a name="to-configure-local-run-in-visual-studio"></a>在 Visual Studio 中設定本機執行
+## <a name="local-runs-in-microsoft-visual-studio"></a>Microsoft Visual Studio 中的本機執行
 
-1. 開啟 Visual Studio。
-2. 開啟 [伺服器總管]。
-3. 展開 [Azure]  >  [Data Lake Analytics]。
-4. 按一下 [Data Lake] 功能表，然後按一下 [選項和設定]。
-5. 在左邊的樹狀目錄中，展開 [Azure Data Lake]，然後展開 [一般]。
+Azure Data Lake Tools for Visual Studio 擁有內建的本機執行引擎。 工具會以本機計算帳戶的形式呈現引擎。 若要在本機執行 U-SQL 指令碼，請在指令碼的編輯器邊界下拉式功能表中選取 [Local-machine] 或 [Local-project] 帳戶。 然後，選取 [提交]。
 
-    ![Data Lake Tools for Visual Studio 本機執行的組態設定](./media/data-lake-analytics-data-lake-tools-local-run/data-lake-tools-for-visual-studio-local-run-configure.png)
+![將 U-SQL 指令碼提交至本機帳戶](./media/data-lake-analytics-data-lake-tools-local-run/data-lake-tools-submit-script-to-local-account.png) 
+ 
+## <a name="local-runs-with-a-local-machine-account"></a>使用 Local-machine 帳戶進行本機執行
 
-必須要有 Visual Studio U-SQL 專案才能執行本機執行。 這與從 Azure 執行 U-SQL 指令碼不同。
+**Local-machine** 帳戶是共用本機電腦帳戶，擁有一個作為本機存放區帳戶的本機資料根資料夾。 資料根資料夾的位置預設為 **C:\Users\<使用者名稱>\AppData\Local\USQLDataRoot**。 您也可以透過 [工具] > [Data Lake] > [選項和設定] 來設定此位置。
 
-### <a name="to-run-a-u-sql-script-locally"></a>在本機執行 U-SQL 指令碼
-1. 從 Visual Studio 開啟您的 U-SQL 專案。   
-2. 在 [方案總管] 中的 U-SQL 指令碼上按一下滑鼠右鍵，然後按一下 [提交指令碼]。
-3. 選取 [(本機)] 做為要在本機執行指令碼的 Analytics 帳戶。
-您也可以按一下指令碼視窗頂端的 [(本機)] 帳戶，然後按一下 [提交] \(或使用 Ctrl + F5 鍵盤快速鍵)。
+![設定本機資料的根資料夾](./media/data-lake-analytics-data-lake-tools-local-run/data-lake-tools-configure-local-data-root.png)
+  
+本機執行須有 U-SQL 專案。 U-SQL 專案的工作目錄可以當做 U-SQL 本機執行工作目錄。 本機執行時產生的編譯結果、執行記錄和其他作業執行相關檔案會存放在工作目錄資料夾下。 每當您重新執行指令碼時，工作目錄中的所有檔案都會清空並重新產生。
 
-    ![Data Lake Tools for Visual Studio 本機執行的提交作業](./media/data-lake-analytics-data-lake-tools-local-run/data-lake-tools-for-visual-studio-local-run-submit-job.png)
+## <a name="local-runs-with-a-local-project-account"></a>使用 Local-project 帳戶進行本機執行
 
-### <a name="debug-scripts-and-c-assemblies-locally"></a>在本機偵錯指令碼和 C# 組件
+**Local-project** 帳戶是依照專案區分的本機計算帳戶，每個專案都有各自獨立的本機資料根資料夾。 在 Visual Studio 的 [方案總管] 中開啟的每個作用中 U-SQL 專案，都有對應的 `(Local-project: <project name>)` 帳戶。 這些帳戶會在 Visual Studio 的 [伺服器總管] 和 U-SQL 指令碼編輯器邊界中列出。  
 
-您可以在無需將 C# 組件提交並註冊至 Azure Data Lake Analytics 服務的情況下，對它進行偵錯。 您可以在這兩個程式碼後置檔案和參考的 C# 專案中設定中斷點。
+**Local-project** 帳戶提供了一個精簡又獨立的開發環境。 **Local-machine** 帳戶具有共用的本機資料根資料夾，可儲存中繼資料以及所有本機作業的輸入和輸出資料。 但是 **Local-project** 帳戶會在每次 U-SQL 指令碼執行時，於 U-SQL 專案的工作目錄底下建立暫存的本機資料根資料夾。 這個暫存的資料根資料夾會在重建或重新執行發生時清空。 
 
-#### <a name="to-debug-local-code-in-code-behind-file"></a>如何為程式碼後置檔案中的本機程式碼偵錯
+U-SQL 專案可透過專案參考和屬性來管理這個隔離的本機執行環境。 您可以在專案和所參考的資料庫環境中設定 U-SQL 指令碼的輸入資料來源。
 
-1. 在程式碼後置檔案中設定中斷點。
-2. 按下 F5 以便在本機為指令碼偵錯。
+### <a name="manage-the-input-data-source-for-a-local-project-account"></a>管理 Local-project 帳戶的輸入資料來源 
 
-> [!NOTE]
-   > 下列程序僅適用於 Visual Studio 2015。 在舊版 Visual Studio 中，您可能需要手動加入 pdb 檔案。  
-   >
-   >
+U-SQL 專案會建立本機資料根資料夾，並設定 **Local-project** 帳戶的資料。 每當重建和本機執行發生時，U-SQL 專案工作目錄下的暫存資料根資料夾都會清空及重新建立。 在本機作業執行前，U-SQL 專案設定的所有資料來源都會複製到這個暫存本機資料根資料夾。 
 
-#### <a name="to-debug-local-code-in-a-referenced-c-project"></a>如何為參考的 C# 專案中的本機程式碼偵錯
+您可以設定資料來源的根資料夾。 以滑鼠右鍵按一下 [U-SQL 專案] > [屬性] > [測試資料來源]。 以 **Local-project** 帳戶執行 U-SQL 指令碼時，[測試資料來源] 資料夾內的所有檔案和子資料夾都會複製到暫存本機資料根資料夾。 子資料夾底下的檔案也包含在內。 本機作業執行後，您可以在專案工作目錄的暫存本機資料根資料夾下方找到輸出結果。 在重建及清理專案時，這個輸出內容會全部遭到刪除和清空。 
 
-1. 建立 C# 組件專案，並建置它來產生輸出 dll。
-2. 使用 U-SQL 陳述式來註冊 dll：
+![設定專案的測試資料來源](./media/data-lake-analytics-data-lake-tools-local-run/data-lake-tools-configure-project-test-data-source.png)
 
-        CREATE ASSEMBLY assemblyname FROM @"..\..\path\to\output\.dll";
-        
-3. 在 C# 程式碼中設定中斷點。
-4. 按下 F5 以便在本機為參考 C# dll 的指令碼偵錯。
+### <a name="manage-a-referenced-database-environment-for-a-local-project-account"></a>管理 **Local-project** 帳戶的參考資料庫環境 
 
-## <a name="use-local-run-from-the-data-lake-u-sql-sdk"></a>從 Data Lake U-SQL SDK 使用本機執行
+如果 U-SQL 查詢使用的是 U-SQL 資料庫物件，或是以該物件進行查詢，您必須先在本機將資料庫環境準備妥當，才能在本機執行該 U-SQL 指令碼。 對於 **Local-project** 帳戶，您可以透過 U-SQL 專案參考來管理 U-SQL 資料庫相依性。 您可以將 U-SQL 資料庫專案參考新增到 U-SQL 專案。 在以 **Local-project** 帳戶執行 U-SQL 指令碼之前，所有參考資料庫都會部署到暫存本機資料根資料夾。 而在每次執行時，暫存資料根資料夾都會清空，成為全新的隔離環境。
 
-除了使用 Visual Studio 在本機執行 U-SQL 指令碼之外，您可以利用 Azure Data Lake U-SQL SDK，使用命令列和程式設計介面在本機執行 U-SQL 指令碼。 這能讓您調整 U-SQL 本機測試。
+請參閱此相關文章：
+* 了解如何在 [U-SQL 資料庫專案](data-lake-analytics-data-lake-tools-develop-usql-database.md)中管理 U-SQL 資料庫定義和參考。
+
+## <a name="the-difference-between-local-machine-and-local-project-accounts"></a>**Local-machine** 和 **Local-project** 帳戶之間的差異
+
+**Local-machine** 帳戶會在使用者的本機電腦上模擬 Azure Data Lake Analytics 帳戶。 它的體驗與 Azure Data Lake Analytics 帳戶相同。 **Local-project** 帳戶則會提供方便使用者使用的本機開發環境。 這個環境可協助使用者先在本機部署資料庫參考和輸入資料再執行指令碼。 **Local-machine** 帳戶提供共用的永久環境，供使用者透過所有專案存取。 **Local-project** 帳戶提供每個專案各地獨立的開發環境。 每次執行時，系統都會重新整理此環境。 **Local-project** 帳戶能讓使用者迅速套用新變更，因而創造快速的開發體驗。
+
+下表會顯示更多 **Local-machine** 和 **Local-project** 帳戶之間的差異：
+
+|差異角度|Local-machine|Local-project|
+|----------------|---------------|---------------|
+|本機存取|所有專案均可存取。|只有對應的專案能存取這個帳戶。|
+|本機資料根資料夾|永久本機資料夾。 透過 [工具] > [Data Lake] > [選項和設定] 設定。|每次本機執行時，會在 U-SQL 專案工作資料夾下建立暫存資料夾。 資料夾會在重建或重新執行發生時清空。|
+|U-SQL 指令碼的輸入資料|永久本機資料根資料夾下方的相對路徑。|透過 [U-SQL 專案屬性] > [測試資料來源] 設定。 所有檔案和子資料夾都會在本機執行前複製到暫存資料根資料夾。|
+|U-SQL 指令碼的輸出資料|永久本機資料根資料夾下方的相對路徑。|輸出到暫存資料根資料夾。 結果會在重建或重新執行發生時清空。|
+|參考資料庫部署|以 **Local-machine** 帳戶執行時，不會自動部署參考資料庫。 提交到 Azure Data Lake Analytics 帳戶時也是如此。|參考資料庫會在本機執行前自動部署到 **Local-project** 帳戶。 所有資料庫環境都會在重建或重新執行發生時清空及重新部署。|
+
+## <a name="a-local-run-with-the-u-sql-sdk"></a>使用 U-SQL SDK 進行本機執行
+
+您可以在 Visual Studio 中本機執行 U-SQL 指令碼，也可以使用 Azure Data Lake U-SQL SDK，利用命令列和程式設計介面在本機執行 U-SQL 指令碼。 透過這些介面，您可以將 U-SQL 本機執行和測試自動化。
 
 深入了解 [Azure Data Lake U-SQL SDK](data-lake-analytics-u-sql-sdk.md)。
 
-
 ## <a name="next-steps"></a>後續步驟
 
-* 若要了解更複雜的查詢，請參閱 [使用 Azure Data Lake Analytics 來分析網站記錄檔](data-lake-analytics-analyze-weblogs.md)。
-* 若要檢視作業詳細資料，請參閱[針對 Azure Data Lake Analytics 作業使用作業瀏覽器和作業檢視](data-lake-analytics-data-lake-tools-view-jobs.md)。
-* 若要使用頂點執行檢視，請參閱[在 Data Lake Tools for Visual Studio 中使用頂點執行檢視](data-lake-analytics-data-lake-tools-use-vertex-execution-view.md)。
+- [如何設定 Azure Data Lake Analytics 的 CI/CD 管線](data-lake-analytics-cicd-overview.md)。
+- [如何測試 Azure Data Lake Analytics 程式碼](data-lake-analytics-cicd-test.md)。

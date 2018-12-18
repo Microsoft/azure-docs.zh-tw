@@ -1,11 +1,11 @@
 ---
-title: "Azure 服務匯流排驗證和授權 | Microsoft Docs"
-description: "使用共用存取簽章 (SAS) 驗證向服務匯流排驗證應用程式。"
+title: Azure 服務匯流排驗證和授權 | Microsoft Docs
+description: 使用共用存取簽章 (SAS) 驗證向服務匯流排驗證應用程式。
 services: service-bus-messaging
 documentationcenter: na
-author: sethmanheim
+author: spelluru
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 18bad0ed-1cee-4a5c-a377-facc4785c8c9
 ms.service: service-bus-messaging
 ms.devlang: na
@@ -13,12 +13,13 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/14/2017
-ms.author: sethm
-ms.openlocfilehash: b8b5887f2003dd793ae7a50f066b893f685002a0
-ms.sourcegitcommit: 9a61faf3463003375a53279e3adce241b5700879
+ms.author: spelluru
+ms.openlocfilehash: e98d980747edfb9987430a635ff3118cdd455828
+ms.sourcegitcommit: cb61439cf0ae2a3f4b07a98da4df258bfb479845
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/15/2017
+ms.lasthandoff: 09/05/2018
+ms.locfileid: "43702307"
 ---
 # <a name="service-bus-authentication-and-authorization"></a>服務匯流排驗證和授權
 

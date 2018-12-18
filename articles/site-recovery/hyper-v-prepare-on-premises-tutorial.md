@@ -5,18 +5,19 @@ services: site-recovery
 author: rayne-wiselman
 ms.service: site-recovery
 ms.topic: article
-ms.date: 03/15/2018
+ms.date: 09/12/2018
 ms.author: raynew
 ms.custom: MVC
-ms.openlocfilehash: 1290a186ca8e83b09f53b286e80c5ce75f08d88c
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: f1899817ee2d0efec4ab561a64f24e49cb173c29
+ms.sourcegitcommit: c29d7ef9065f960c3079660b139dd6a8348576ce
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/12/2018
+ms.locfileid: "44720764"
 ---
 # <a name="prepare-on-premises-hyper-v-servers-for-disaster-recovery-to-azure"></a>準備內部部署 Hyper-V 伺服器以進行至 Azure 的災害復原
 
-本教學課程說明如何基於災害復原的目的，在您想要將 Hyper-V VM 複寫至 Azure 時，準備內部部署 Hyper-V 基礎結構。 Hyper-V 主機可由 System Center Virtual Machine Manager (VMM) 管理，但並非必要。  在本教學課程中，您將了解如何：
+此教學課程說明如何基於災害復原的目的，在您想要將 Hyper-V VM 複寫至 Azure 時，準備內部部署 Hyper-V 基礎結構。 Hyper-V 主機可由 System Center Virtual Machine Manager (VMM) 管理，但並非必要。  在此教學課程中，您將了解如何：
 
 > [!div class="checklist"]
 > * 檢閱 Hyper-V 需求和 VMM 需求 (如果適用)。
@@ -28,7 +29,7 @@ ms.lasthandoff: 03/16/2018
 
 
 
-## <a name="review-requirements-and-prerequisites"></a>檢閱需求和必要條件
+## <a name="review-requirements-and-prerequisites"></a>檢閱需求和先決條件
 
 確定 Hyper-V 主機和 VM 符合下列需求。
 
@@ -58,15 +59,16 @@ ms.lasthandoff: 03/16/2018
 
 ## <a name="verify-internet-access"></a>確認網際網路存取
 
-1. 基於本教學課程的目的，最簡單的設定適用於 Hyper-V 主機和 VMM 伺服器，如果適用，可使其直接存取網際網路，而不需使用 Proxy。 
-2. 確定 Hyper-V 主機和 VMM 伺服器 (如果相關) 可以存取這些 URL： 
-
-    [!INCLUDE [site-recovery-URLS](../../includes/site-recovery-URLS.md)]
+1. 對此教學課程來說，最簡單的設定是讓 Hyper-V 主機和 VMM 伺服器可直接存取網際網路，而不需使用 Proxy。 
+2. 確定 Hyper-V 主機和 VMM 伺服器 (如果相關) 可以存取以下必要的 URL。   
+3. 如果您要依據 IP 位址來控制存取，請確定：
+    - 以 IP 位址為基礎的防火牆規則可以連線至 [Azure Datacenter IP 範圍](https://www.microsoft.com/download/confirmation.aspx?id=41653)，以及 HTTPS (443) 連接埠。
+    - 允許訂用帳戶之 Azure 區域的 IP 位址範圍。
     
-3. 請確定：
-    - 任何以 IP 位址為基礎的防火牆規則都應該允許對 Azure 的通訊。
-    - 允許 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/confirmation.aspx?id=41653)和 HTTPS (443) 連接埠。
-    - 允許訂用帳戶的 Azure 區域和美國西部 (用於存取控制和身分識別管理) 使用 IP 位址範圍。
+### <a name="required-urls"></a>必要的 URL
+
+
+[!INCLUDE [site-recovery-URLS](../../includes/site-recovery-URLS.md)]
 
 
 ## <a name="prepare-to-connect-to-azure-vms-after-failover"></a>準備在容錯移轉後連接到 Azure VM

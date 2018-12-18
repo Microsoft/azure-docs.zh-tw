@@ -1,24 +1,25 @@
 ---
-title: "指定 Azure 微服務中的計量和放置設定 | Microsoft Docs"
-description: "藉由指定計量、放置條件約束及其他放置原則來描述 Service Fabric 服務。"
+title: 在 Azure Service Fabric 中指定計量和放置設定 | Microsoft Docs
+description: 藉由指定計量、放置條件約束及其他放置原則，了解如何描述 Service Fabric 服務。
 services: service-fabric
 documentationcenter: .net
 author: masnider
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 16e135c1-a00a-4c6f-9302-6651a090571a
 ms.service: Service-Fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/18/2017
 ms.author: masnider
-ms.openlocfilehash: 0ae4e874d0fd0922295a4ec7ad719a0a1fb108c8
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.openlocfilehash: ea781b5dbbf09c0a21fbcf781ae129295d02dbad
+ms.sourcegitcommit: ebd06cee3e78674ba9e6764ddc889fc5948060c4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 09/07/2018
+ms.locfileid: "44054786"
 ---
 # <a name="configuring-cluster-resource-manager-settings-for-service-fabric-services"></a>設定 Service Fabric 服務的叢集資源管理員設定
 「Service Fabric 叢集資源管理員」可讓您細微地控制管控每個個別具名服務的規則。 每個具名服務都可以指定規則來規定它在叢集中的配置方式。 每個具名服務還可以定義一組它想要報告的計量，包括它們對該服務的重要程度。 設定服務可細分成三個不同的工作︰

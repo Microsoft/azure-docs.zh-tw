@@ -11,14 +11,16 @@ ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 02/20/2018
 ms.author: abshamsft
-ms.openlocfilehash: 65497548d0b8066627be25520c28d39491918d09
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.component: na
+ms.openlocfilehash: 3d51399edbb9679d1cf7b62b075ba34aa5ede42f
+ms.sourcegitcommit: 5892c4e1fe65282929230abadf617c0be8953fd9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 06/29/2018
+ms.locfileid: "37131333"
 ---
 # <a name="network-performance-monitor-solution-performance-monitoring"></a>網路效能監控解決方案：效能監控
 
@@ -48,7 +50,7 @@ ms.lasthandoff: 03/28/2018
 
 
 1. 選取 [網路] 索引標籤。
-1. 選取 [新增網路] ****，然後輸入網路名稱和描述。 
+1. 選取  **新增網路**，然後輸入網路名稱和描述。 
 2. 選取一或多個子網路，然後選取 [新增]。 
 3. 選取 [儲存] 以儲存組態。 
 
@@ -101,7 +103,7 @@ ms.lasthandoff: 03/28/2018
 
 如果您在部署期間選擇使用 ICMP，您可以隨時編輯預設監視規則來切換為 TCP。
 
-1. 移至 [效能監控] [監視]> **** >[設定] **** [監視]> ****。 然後選取 [預設規則] ****。 
+1. 移至 **[效能監控]** > **[監視]** > **[設定]** > **[監視]**。 然後選取  **[預設規則]**。 
 2. 捲動至 [通訊協定] 區段，然後選取您要使用的通訊協定。 
 3. 選取 [儲存] 來套用設定。 
 

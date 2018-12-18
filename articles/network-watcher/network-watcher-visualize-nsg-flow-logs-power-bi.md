@@ -1,11 +1,11 @@
 ---
-title: "使用 Power BI 將 Azure 網路安全性群組流程記錄視覺化 | Microsoft Docs"
-description: "此頁面說明如何使用 Power BI 將 NSG 流程記錄視覺化。"
+title: 使用 Power BI 將 Azure 網路安全性群組流程記錄視覺化 | Microsoft Docs
+description: 此頁面說明如何使用 Power BI 將 NSG 流程記錄視覺化。
 services: network-watcher
 documentationcenter: na
-author: jimdial
-manager: timlt
-editor: 
+author: mattreatMSFT
+manager: vitinnan
+editor: ''
 ms.assetid: 1e4f95fa-f5f0-4e03-bc25-008fbfc4934c
 ms.service: network-watcher
 ms.devlang: na
@@ -13,18 +13,19 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
-ms.author: jdial
-ms.openlocfilehash: 19bd7ed4bab915d7918a192a046653666cfaa498
-ms.sourcegitcommit: c7215d71e1cdeab731dd923a9b6b6643cee6eb04
+ms.author: mareat
+ms.openlocfilehash: bcd67d2e879d199296289dbaef2141ba659b2412
+ms.sourcegitcommit: 4ecc62198f299fc215c49e38bca81f7eb62cdef3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/17/2017
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "47032673"
 ---
 # <a name="visualizing-network-security-group-flow-logs-with-power-bi"></a>使用 Power BI 將網路安全性群組流程記錄視覺化
 
 網路安全性群組流程記錄可讓您檢視網路安全性群組上輸入和輸出 IP 流量的相關資訊。 這些流程記錄顯示每一個規則的輸出和輸入流程、套用流程的 NIC、有關流程的 5 組資訊 (來源/目的地 IP、來源/目的地連接埠、通訊協定)，以及允許或拒絕流量。
 
-手動搜尋記錄檔很難深入探索流程記錄資料。 在本文中，我們提供解決方案將最近的流程記錄視覺化，並了解您網路上的流量。
+手動搜尋記錄檔很難深入探索流程記錄資料。 在此文章中，我們提供解決方案將最近的流程記錄視覺化，並了解您網路上的流量。
 
 ## <a name="scenario"></a>案例
 
@@ -103,7 +104,7 @@ ms.lasthandoff: 11/17/2017
 
 ## <a name="conclusion"></a>結論
 
-我們在此案例中說明，藉由使用網路監看員和 Power BI 所提供的網路安全性群組流程記錄，我們就能夠視覺化並了解流量。 使用提供的範本時，Power BI 會直接從儲存體下載記錄，然後在本機處理。 載入範本所花費的時間，取決於所要求的檔案數目和下載的檔案大小總計。
+我們在此案例中說明，透過使用網路監看員和 Power BI 所提供的網路安全性群組流程記錄，我們就能夠視覺化並了解流量。 使用提供的範本時，Power BI 會直接從儲存體下載記錄，然後在本機處理。 載入範本所花費的時間，取決於所要求的檔案數目和下載的檔案大小總計。
 
 請儘管自訂此範本以符合您的需求。 Power BI 和網路安全性群組流程記錄互相搭配有許多做法。 
 

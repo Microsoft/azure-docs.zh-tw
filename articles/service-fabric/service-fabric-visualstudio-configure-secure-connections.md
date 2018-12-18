@@ -1,6 +1,6 @@
 ---
-title: "設定安全的 Azure Service Fabric 叢集連線 | Microsoft Docs"
-description: "了解如何使用 Visual Studio 設定 Azure Service Fabric 叢集支援的安全連線。"
+title: 設定安全的 Azure Service Fabric 叢集連線 | Microsoft Docs
+description: 了解如何使用 Visual Studio 設定 Azure Service Fabric 叢集支援的安全連線。
 services: service-fabric
 documentationcenter: na
 author: cawaMS
@@ -9,16 +9,17 @@ editor: tglee
 ms.assetid: 80501867-dd7a-4648-8bd6-d4f26b68402d
 ms.service: multiple
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: multiple
 ms.date: 8/04/2017
 ms.author: cawa
-ms.openlocfilehash: dc07b2f38d6fd2de941ebbe99303f6e63cbf122d
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 8d76a2144234591792359ed8dd4a0779e6a2fc5c
+ms.sourcegitcommit: 17fe5fe119bdd82e011f8235283e599931fa671a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/11/2018
+ms.locfileid: "42141871"
 ---
 # <a name="configure-secure-connections-to-a-service-fabric-cluster-from-visual-studio"></a>從 Visual Studio 設定對 Service Fabric 叢集的安全連線
 了解如何使用 Visual Studio 安全地存取已設定存取控制原則的 Azure Service Fabric 叢集。
@@ -45,7 +46,7 @@ Visual Studio Service Fabric 工具支援所有用於連線到叢集來進行發
    
    由於您正手動編輯「發行設定檔」XML 檔案以指定憑證資訊，因此請務必記下憑證存放區名稱、存放區位置，以及憑證指紋。 您將必須為憑證的存放區名稱和存放區位置提供這些值。 如需詳細資訊，請參閱[做法：擷取憑證的指紋](https://msdn.microsoft.com/library/ms734695\(v=vs.110\).aspx)。
    
-   您可以使用 *ClusterConnectionParameters* 參數指定連線到 Service Fabric 叢集時要使用的 PowerShell 參數。 有效的參數是 Connect-ServiceFabricCluster Cmdlet 所接受的任何參數。 如需可用參數的清單，請參閱 [Connect-ServiceFabricCluster](https://msdn.microsoft.com/library/mt125938.aspx) 。
+   您可以使用 *ClusterConnectionParameters* 參數指定連線到 Service Fabric 叢集時要使用的 PowerShell 參數。 有效的參數是 Connect-ServiceFabricCluster Cmdlet 所接受的任何參數。 如需可用參數的清單，請參閱 [Connect-ServiceFabricCluster](https://docs.microsoft.com/powershell/module/servicefabric/connect-servicefabriccluster) 。
    
    如果要發行至遠端叢集，您需要指定該特定叢集的適當參數。 以下是連線到非安全叢集的範例：
    

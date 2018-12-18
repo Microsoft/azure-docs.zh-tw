@@ -1,25 +1,20 @@
 ---
-title: 使用 Azure 備份代理程式來備份檔案和資料夾 | Microsoft Docs
+title: 使用 Azure 備份代理程式來備份檔案和資料夾
 description: 使用 Microsoft Azure 備份代理程式，可將 Windows 檔案和資料夾備份至 Azure。 建立復原服務保存庫、安裝備份代理程式、定義備份原則，並對檔案和資料夾執行初始備份。
 services: backup
-documentationcenter: ''
 author: markgalioto
 manager: carmonm
-editor: ''
 keywords: 備份保存庫；備份 Windows Server；備份Windows；
-ms.assetid: 7f5b1943-b3c1-4ddb-8fb7-3560533c68d5
 ms.service: backup
-ms.workload: storage-backup-recovery
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
-ms.date: 1/5/2018
-ms.author: markgal;trinadhk;
-ms.openlocfilehash: 38f98a29edc2a0bfb0141a0a6fabad2727175f29
-ms.sourcegitcommit: 20d103fb8658b29b48115782fe01f76239b240aa
+ms.topic: conceptual
+ms.date: 8/5/2018
+ms.author: markgal
+ms.openlocfilehash: fd988e2209d8a6547ec30edb4ee62fc8ff2c803d
+ms.sourcegitcommit: 35ceadc616f09dd3c88377a7f6f4d068e23cceec
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2018
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39619950"
 ---
 # <a name="back-up-a-windows-server-or-client-to-azure-using-the-resource-manager-deployment-model"></a>使用資源管理員部署模型將 Windows Server 或用戶端備份至 Azure
 本文說明如何 Resource Manager 部署模型將 Windows Server (或 Windows 用戶端) 檔案和資料夾備份至 Azure。
@@ -241,7 +236,7 @@ Microsoft Azure 備份代理程式提供網路節流。 節流會控制資料傳
 3. 在您啟用節流之後，請指定允許的頻寬進行 [工作時間] 和 [非工作時間] 期間的備份資料傳輸。
 
     頻寬值從每秒 512 KB (Kbps) 開始，並可高達每秒 1023 MB (Mbps)。 您也可以指定 [工作時間] 的開始和完成時間，以及一週中有哪幾天視為工作天。 指定之工作時間以外的時間則視為非工作時間。
-4. 按一下 [SERVICEPRINCIPAL] 。
+4. 按一下 [確定]。
 
 ### <a name="to-back-up-files-and-folders-for-the-first-time"></a>第一次備份檔案和資料夾
 1. 在備份代理程式中，按一下 [立即備份]  ，以透過網路完成初始植入。

@@ -1,24 +1,25 @@
 ---
-title: "使用 Java 建立您第一個可靠的 Azure 微服務 | Microsoft Docs"
-description: "概述使用無狀態與具狀態服務來建立 Microsoft Azure Service Fabric 應用程式。"
+title: 以 Java 建立您的第一個 Azure Service Fabric 可靠服務 | Microsoft Docs
+description: 概述使用無狀態與具狀態服務來建立 Microsoft Azure Service Fabric 應用程式。
 services: service-fabric
 documentationcenter: java
 author: suhuruli
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 7831886f-7ec4-4aef-95c5-b2469a5b7b5d
 ms.service: service-fabric
 ms.devlang: java
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/02/2017
 ms.author: suhuruli
-ms.openlocfilehash: e885a482edcba48c18e425c54f4acc28ee650ddd
-ms.sourcegitcommit: 48fce90a4ec357d2fb89183141610789003993d2
+ms.openlocfilehash: d4e3419241d44744f8a692896848edb6cebb56a0
+ms.sourcegitcommit: ebd06cee3e78674ba9e6764ddc889fc5948060c4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/12/2018
+ms.lasthandoff: 09/07/2018
+ms.locfileid: "44049689"
 ---
 # <a name="get-started-with-reliable-services"></a>開始使用 Reliable Service
 > [!div class="op_single_selector"]
@@ -115,10 +116,10 @@ protected List<ServiceInstanceListener> createServiceInstanceListeners() {
 }
 ```
 
-在本教學課程中，我們會著重在 `runAsync()` 進入點方法。 這就是您可以立即開始執行程式碼的地方。
+本教學課程著重在 `runAsync()` 進入點方法。 這就是您可以立即開始執行程式碼的地方。
 
 ### <a name="runasync"></a>RunAsync
-當服務的執行個體已放置並且可以執行時，平台會呼叫這個方法。 針對無狀態服務，這僅表示開啟服務執行個體的時間。 會提供取消語彙基元以協調服務執行個體何時需要關閉。 在 Service Fabric 中，服務執行個體的開啟/關閉循環可能會在整個服務存留期中發生許多次。 發生這種情形的原因有很多，包括：
+當服務的執行個體已放置並且可以執行時，平台會呼叫這個方法。 針對無狀態服務，這表示開啟服務執行個體的時間。 會提供取消語彙基元以協調服務執行個體何時需要關閉。 在 Service Fabric 中，服務執行個體的開啟/關閉循環可能會在整個服務存留期中發生許多次。 發生這種情形的原因有很多，包括：
 
 * 系統可能為了資源平衡移動您的服務執行個體。
 * 在您的程式碼中發生錯誤。
@@ -200,16 +201,16 @@ protected CompletableFuture<?> runAsync(CancellationToken cancellationToken) {
 ReliableHashMap<String,Long> map = this.stateManager.<String, Long>getOrAddReliableHashMapAsync("myHashMap")
 ```
 
-[ReliableHashMap](https://docs.microsoft.com/java/api/microsoft.servicefabric.data.collections._reliable_hash_map) 是一個字典實作，您可以在服務中可靠地儲存狀態。 有了 Service Fabric 和可靠的 Hashmaps，您可以直接在服務中儲存資料，而不需要外部的持續性存放區。 可靠的 Hashmaps 可讓您的資料具備高可用性。 Service Fabric 會藉由為您建立與管理服務的多個複本  來完成此作業。 它也提供 API 讓管理這些複本和其狀態轉換的複雜性抽象化。
+[ReliableHashMap](https://docs.microsoft.com/java/api/microsoft.servicefabric.data.collections._reliable_hash_map) 是一個字典實作，您可以在服務中可靠地儲存狀態。 有了 Service Fabric 和可靠的 HashMaps，您可以直接在服務中儲存資料，而不需要外部的持續性存放區。 可靠的 HashMaps 可讓您的資料具備高可用性。 Service Fabric 會藉由為您建立與管理服務的多個複本  來完成此作業。 它也提供 API 讓管理這些複本和其狀態轉換的複雜性抽象化。
 
 可靠的集合可以儲存任何 JAVA 型別 (包括您的自訂型別)，不過有幾個需要注意的事項：
 
-* Service Fabric 藉由在節點之間*複寫*狀態來使您的狀態高度可用，而可靠的 Hashmap 會將您的資料儲存到每個複本上的本機磁碟。 這表示所有儲存在可靠的 Hashmaps 中的項目必須*可序列化*。 
-* 當您在可靠的 Hashmaps 上認可交易時，物件會複寫以獲得高可用性。 儲存在可靠的 Hashmaps 中的物件會保留在服務中的本機記憶體。 這表示您有物件的本機參考。
+* Service Fabric 藉由在節點之間「複寫」狀態來使您的狀態高度可用，而可靠的 HashMap 會將您的資料儲存到每個複本上的本機磁碟。 這表示所有儲存在可靠的 HashMaps 中的項目必須「可序列化」。 
+* 當您在可靠的 HashMaps 上認可交易時，物件會複寫以獲得高可用性。 儲存在可靠的 HashMaps 中的物件會保留在服務中的本機記憶體。 這表示您有物件的本機參考。
   
-   很重要的一點是，您不要改變那些物件的本機執行個體而不在交易中的可靠集合上執行更新作業。 這是因為不會自動複寫對本機物件執行個體所做的變更。 您必須將物件重新插入到字典中，或在字典上使用其中一個更新  方法。
+   很重要的一點是，您不要改變那些物件的本機執行個體而不在交易中的可靠集合上執行更新作業。 這是因為不會自動複寫對本機物件執行個體所做的變更。 您必須將物件重新插入到字典中，或在字典上使用其中一個「更新」方法。
 
-可靠狀態管理員會為您管理可靠的 Hashmaps。 在您的服務中隨時隨地，您只需要以名稱向可靠狀態管理員要求可靠的集合。 可靠狀態管理員會確保您取回參考。 不建議您將可靠集合執行個體的參考儲存在類別成員變數或屬性中。 請特別小心以確保在服務生命週期中隨時將參考設定為執行個體。 可靠狀態管理員會為您處理這項工作，並且針對重複造訪最佳化。
+可靠狀態管理員會為您管理可靠的 HashMaps。 在您的服務中，您可以隨時隨地以名稱向可靠狀態管理員要求可靠的集合。 可靠狀態管理員會確保您取回參考。 不建議您將可靠集合執行個體的參考儲存在類別成員變數或屬性中。 請特別小心以確保在服務生命週期中隨時將參考設定為執行個體。 可靠狀態管理員會為您處理這項工作，並且針對重複造訪最佳化。
 
 
 ### <a name="transactional-and-asynchronous-operations"></a>交易式和非同步作業
@@ -230,12 +231,12 @@ return map.computeAsync(tx, "counter", (k, v) -> {
 });
 ```
 
-可靠的 Hashmaps 上的作業是非同步的。 這是因為具備可靠集合的寫入作業執行 I/O 作業以將資料複寫並保存至磁碟。
+可靠 HashMaps 上的作業是非同步的。 這是因為具備可靠集合的寫入作業執行 I/O 作業以將資料複寫並保存至磁碟。
 
-可靠的 Hashmap 作業為*交易式*作業，因此您可以在多個可靠的 Hashmaps 和作業之間維持狀態的一致。 比方說，您可能會從可靠的字典取得一個工作項目、對它執行作業，然後將結果儲存在另一個可靠的 Hashmap 中，全都在單一交易中完成。 這會被視為不可部分完成的作業，而且它可保證整個作業都會成功，或整個作業都會回復。 如果您從佇列取消項目之後，但在您儲存結果之前發生錯誤，那麼會回復整個交易，且項目會保持在佇列中進行處理。
+可靠的 HashMap 作業為「交易式」作業，因此您可以在多個可靠的 HashMaps 和作業之間維持狀態一致。 比方說，您可能會從可靠的字典取得一個工作項目、對它執行作業，然後將結果儲存在另一個可靠的 HashMap 中，全都在單一交易中完成。 這會被視為不可部分完成的作業，而且它可保證整個作業都會成功，或整個作業都會回復。 如果您從佇列取消項目之後，但在您儲存結果之前發生錯誤，那麼會回復整個交易，且項目會保持在佇列中進行處理。
 
 
-## <a name="run-the-application"></a>執行應用程式
+## <a name="build-the-application"></a>建置應用程式
 
 Yeoman 樣板包含可建置應用程式的 gradle 指令碼，以及可部署和移除應用程式的 bash 指令碼。 若要執行應用程式，先建置含 gradle的應用程式︰
 
@@ -245,13 +246,31 @@ $ gradle
 
 這會產生可使用 Service Fabric CLI 來部署的 Service Fabric 應用程式套件。
 
-### <a name="deploy-with-service-fabric-cli"></a>使用 Service Fabric CLI 部署
+## <a name="deploy-the-application"></a>部署應用程式
 
-Install.sh 指令碼包含部署應用程式套件所需的 Service Fabric CLI 命令。 請執行 install.sh 指令碼來部署應用程式。
+建置應用程式後，可以將它部署到本機叢集。
 
-```bash
-$ ./install.sh
-```
+1. 連接到本機 Service Fabric 叢集。
+
+    ```bash
+    sfctl cluster select --endpoint http://localhost:19080
+    ```
+
+2. 執行範本中所提供的安裝指令碼，將應用程式套件複製到叢集的映像存放區、註冊應用程式類型，以及建立應用程式的執行個體。
+
+    ```bash
+    ./install.sh
+    ```
+
+部署建置的應用程式與部署其他任何 Service Fabric 應用程式相同。 請參閱[使用 Service Fabric CLI 管理 Service Fabric 應用程式](service-fabric-application-lifecycle-sfctl.md)文件以取得詳細指示。
+
+這些命令的參數可以在應用程式套件內產生的資訊清單中找到。
+
+部署應用程式後，開啟瀏覽器並瀏覽至 [http://localhost:19080/Explorer](http://localhost:19080/Explorer) 的 [Service Fabric Explorer](service-fabric-visualizing-your-cluster.md)。 接著展開 [應用程式] 節點，請注意，您的應用程式類型現在有一個項目，而另一個項目則在該類型的第一個執行個體。
+
+> [!IMPORTANT]
+> 若要將應用程式部署到 Azure 中的安全 Linux 叢集，您需要設定憑證來向 Service Fabric 執行階段驗證您的應用程式。 這樣做就能讓您的 Reliable Services 服務可與基礎 Service Fabric 執行階段 API 進行通訊。 若要深入了解，請參閱[將 Reliable Services 應用程式設定為在 Linux 叢集上執行](./service-fabric-configure-certificates-linux.md#configure-a-reliable-services-app-to-run-on-linux-clusters)。  
+>
 
 ## <a name="next-steps"></a>後續步驟
 

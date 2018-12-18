@@ -1,11 +1,11 @@
 ---
-title: "使用 PowerShell 移轉到 Resource Manager | Microsoft Docs"
-description: "本文逐步解說使用 Azure PowerShell 命令進行平台支援之 IaaS 資源 (例如虛擬機器 (VM)、虛擬網路 (VNET) 和儲存體帳戶) 移轉 (從傳統移轉至 Azure Resource Manager (ARM))"
+title: 使用 PowerShell 移轉到 Resource Manager | Microsoft Docs
+description: 本文逐步解說使用 Azure PowerShell 命令進行平台支援之 IaaS 資源 (例如虛擬機器 (VM)、虛擬網路 (VNET) 和儲存體帳戶) 移轉 (從傳統移轉至 Azure Resource Manager (ARM))
 services: virtual-machines-windows
-documentationcenter: 
+documentationcenter: ''
 author: singhkays
-manager: timlt
-editor: 
+manager: jeconnoc
+editor: ''
 tags: azure-resource-manager
 ms.assetid: 2b3dff9b-2e99-4556-acc5-d75ef234af9c
 ms.service: virtual-machines-windows
@@ -15,11 +15,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/30/2017
 ms.author: kasing
-ms.openlocfilehash: 38bc949917f6bb56486ad6267044ef2f19e33fcb
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.openlocfilehash: 9cfdd6828a6d7ec699501a485519f843c59d0422
+ms.sourcegitcommit: d8ffb4a8cef3c6df8ab049a4540fc5e0fa7476ba
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 06/20/2018
+ms.locfileid: "36291923"
 ---
 # <a name="migrate-iaas-resources-from-classic-to-azure-resource-manager-by-using-azure-powershell"></a>使用 Azure PowerShell 將 IaaS 資源從傳統移轉至 Azure Resource Manager
 以下步驟說明如何使用 Azure PowerShell 命令，將基礎結構即服務 (IaaS) 資源從傳統部署模型移轉至 Azure Resource Manager 部署模型。
@@ -45,8 +46,6 @@ ms.lasthandoff: 02/21/2018
 > 目前不支援將應用程式閘道從傳統環境移轉至 Resource Manager。 若要使用應用程式閘道來移轉傳統虛擬網路，請先移除閘道，再執行「準備」作業來移動網路。 在完成移轉之後，於 Azure Resource Manager 中重新連接閘道。
 >
 >如果 ExpressRoute 閘道連線至另一個訂用帳戶中的 ExpressRoute 線路，則無法自動移轉。 在這種情況下，請移除 ExpressRoute 閘道，移轉虛擬網路，然後重新建立閘道。 如需相關步驟和詳細資訊，請參閱[將 ExpressRoute 線路和相關聯的虛擬網路從傳統部署模型移轉至 Resource Manager 部署模型](../../expressroute/expressroute-migration-classic-resource-manager.md)。
->
->
 
 ## <a name="step-2-install-the-latest-version-of-azure-powershell"></a>步驟 2：安裝最新版的 Azure PowerShell
 Azure PowerShell 的主要安裝選項有兩個：[PowerShell 資源庫](https://www.powershellgallery.com/profiles/azure-sdk/)或 [Web Platform Installer (WebPI)](http://aka.ms/webpi-azps)。 WebPI 接收每月更新。 PowerShell 資源庫則是持續接收更新。 本文是以 Azure PowerShell 2.1.0 為基礎。
@@ -70,7 +69,7 @@ Azure PowerShell 的主要安裝選項有兩個：[PowerShell 資源庫](https:/
 登入您的 Resource Manager 模型帳戶。
 
 ```powershell
-    Login-AzureRmAccount
+    Connect-AzureRmAccount
 ```
 
 請使用下列命令來取得可用的訂用帳戶：
@@ -89,8 +88,6 @@ Azure PowerShell 的主要安裝選項有兩個：[PowerShell 資源庫](https:/
 > 註冊是一次性步驟，但您必須在嘗試移轉之前完成。 如果不註冊，您會看到下列錯誤訊息：
 >
 > *不正確的要求︰訂用帳戶未針對移轉進行註冊。*
->
->
 
 請使用下列命令向移轉資源提供者註冊：
 
@@ -136,12 +133,15 @@ Get-AzureRmVMUsage -Location "West US"
 ```
 
 ## <a name="step-6-run-commands-to-migrate-your-iaas-resources"></a>步驟 6︰執行命令來移轉 IaaS 資源
+* [移轉雲端服務中的 VM (不在虛擬網路中)](#step-61-option-1---migrate-virtual-machines-in-a-cloud-service-not-in-a-virtual-network)
+* [移轉虛擬網路中的 VM](#step-61-option-2---migrate-virtual-machines-in-a-virtual-network)
+* [移轉儲存體帳戶](#step-62-migrate-a-storage-account)
+
 > [!NOTE]
 > 下述所有作業都是等冪的。 如果您有不支援的功能或組態錯誤以外的任何問題，建議您重新嘗試準備、中止或認可作業。 平台將會重新嘗試該動作。
->
->
 
-## <a name="step-61-option-1---migrate-virtual-machines-in-a-cloud-service-not-in-a-virtual-network"></a>步驟 6.1：選項 1 - 移轉雲端服務中的虛擬機器 (不在虛擬網路中)
+
+### <a name="step-61-option-1---migrate-virtual-machines-in-a-cloud-service-not-in-a-virtual-network"></a>步驟 6.1：選項 1 - 移轉雲端服務中的虛擬機器 (不在虛擬網路中)
 使用下列命令來取得雲端服務清單，然後選擇您想要移轉的雲端服務。 如果雲端服務中的 VM 是在虛擬網路中，或是具有 Web 角色或背景工作角色，命令就會傳回錯誤訊息。
 
 ```powershell
@@ -168,7 +168,7 @@ Get-AzureRmVMUsage -Location "West US"
     $validate.ValidationMessages
     ```
 
-    上述命令會顯示封鎖移轉的任何警告及錯誤。 如果驗證成功，您便可以繼續進行下列「準備」步驟：
+    下列命令會顯示封鎖移轉的任何警告和錯誤。 如果驗證成功，您便可以繼續進行下列「準備」步驟：
 
     ```powershell
     Move-AzureService -Prepare -ServiceName $serviceName `
@@ -192,7 +192,7 @@ Get-AzureRmVMUsage -Location "West US"
     $validate.ValidationMessages
     ```
 
-    上述命令會顯示封鎖移轉的任何警告及錯誤。 如果驗證成功，您便可以繼續進行下列「準備」步驟：
+    下列命令會顯示封鎖移轉的任何警告和錯誤。 如果驗證成功，您便可以繼續進行下列「準備」步驟：
 
     ```powershell
         Move-AzureService -Prepare -ServiceName $serviceName -DeploymentName $deploymentName `
@@ -222,7 +222,7 @@ Get-AzureRmVMUsage -Location "West US"
     Move-AzureService -Commit -ServiceName $serviceName -DeploymentName $deploymentName
 ```
 
-## <a name="step-61-option-2---migrate-virtual-machines-in-a-virtual-network"></a>步驟 6.1：選項 2 - 移轉虛擬網路中的虛擬機器
+### <a name="step-61-option-2---migrate-virtual-machines-in-a-virtual-network"></a>步驟 6.1：選項 2 - 移轉虛擬網路中的虛擬機器
 
 若要移轉虛擬網路中的虛擬機器，您將需要移轉虛擬網路。 虛擬機器會自動隨著虛擬網路移轉。 選取您想要移轉的虛擬網路。
 > [!NOTE]
@@ -240,8 +240,6 @@ Get-AzureRmVMUsage -Location "West US"
 
 > [!NOTE]
 > 如果虛擬網路包含 Web 角色或背景工作角色，或有具備不支援之組態的 VM，您就會收到驗證錯誤訊息。
->
->
 
 首先，請使用下列命令來驗證您是否可以移轉虛擬網路︰
 
@@ -249,7 +247,7 @@ Get-AzureRmVMUsage -Location "West US"
     Move-AzureVirtualNetwork -Validate -VirtualNetworkName $vnetName
 ```
 
-上述命令會顯示封鎖移轉的任何警告及錯誤。 如果驗證成功，您便可以繼續進行下列「準備」步驟：
+下列命令會顯示封鎖移轉的任何警告和錯誤。 如果驗證成功，您便可以繼續進行下列「準備」步驟：
 
 ```powershell
     Move-AzureVirtualNetwork -Prepare -VirtualNetworkName $vnetName
@@ -267,78 +265,81 @@ Get-AzureRmVMUsage -Location "West US"
     Move-AzureVirtualNetwork -Commit -VirtualNetworkName $vnetName
 ```
 
-## <a name="step-62-migrate-a-storage-account"></a>步驟 6.2：移轉儲存體帳戶
-完成虛擬機器的移轉之後，建議您移轉儲存體帳戶。
+### <a name="step-62-migrate-a-storage-account"></a>步驟 6.2：移轉儲存體帳戶
+完成虛擬機器的移轉之後，建議您先執行下列先決條件檢查，再移轉儲存體帳戶。
 
-移轉儲存體帳戶之前，請執行上述必要條件檢查︰
+> [!NOTE]
+> 如果您的儲存體帳戶有沒有相關聯的磁碟或 VM 資料，您可以直接跳到**驗證儲存體帳戶並開始移轉**一節。
 
-* **移轉磁碟儲存於儲存體帳戶的傳統虛擬機器**
+* **先決條件會檢查您已移轉的任何 VM 或儲存體帳戶是否具有磁碟資源**
+    * **移轉磁碟儲存於儲存體帳戶的傳統虛擬機器**
 
-    上述命令會傳回儲存體帳戶中所有傳統 VM 磁碟的 RoleName 和 DiskName 屬性。 RoleName 是磁碟所連線的虛擬機器名稱。 如果上述命令傳回磁碟，則確保這些磁碟所連線的虛擬機器會在移轉儲存體帳戶之前移轉。
+        下列命令會傳回儲存體帳戶中所有傳統 VM 磁碟的 RoleName 和 DiskName 屬性。 RoleName 是磁碟所連線的虛擬機器名稱。 如果下列命令傳回磁碟，請確定這些磁碟所連結的虛擬機器會在移轉儲存體帳戶之前移轉。
+        ```powershell
+         $storageAccountName = 'yourStorageAccountName'
+          Get-AzureDisk | where-Object {$_.MediaLink.Host.Contains($storageAccountName)} | Select-Object -ExpandProperty AttachedTo -Property `
+          DiskName | Format-List -Property RoleName, DiskName
+
+        ```
+    * **刪除儲存於儲存體帳戶的未連結傳統 VM 磁碟**
+
+        使用下列命令，尋找儲存體帳戶中未連線的傳統 VM 磁碟︰
+
+        ```powershell
+            $storageAccountName = 'yourStorageAccountName'
+            Get-AzureDisk | where-Object {$_.MediaLink.Host.Contains($storageAccountName)} | Where-Object -Property AttachedTo -EQ $null | Format-List -Property DiskName  
+
+        ```
+        如果上述命令傳回磁碟，則使用下列命令刪除這些磁碟︰
+
+        ```powershell
+           Remove-AzureDisk -DiskName 'yourDiskName'
+        ```
+    * **刪除儲存於儲存體帳戶的 VM 映像**
+
+        下列命令會傳回將作業系統磁碟儲存於儲存體帳戶的所有 VM 映像。
+         ```powershell
+            Get-AzureVmImage | Where-Object { $_.OSDiskConfiguration.MediaLink -ne $null -and $_.OSDiskConfiguration.MediaLink.Host.Contains($storageAccountName)`
+                                    } | Select-Object -Property ImageName, ImageLabel
+         ```
+         下列命令會傳回將資料磁碟儲存於儲存體帳戶的所有 VM 映像。
+         ```powershell
+
+            Get-AzureVmImage | Where-Object {$_.DataDiskConfigurations -ne $null `
+                                             -and ($_.DataDiskConfigurations | Where-Object {$_.MediaLink -ne $null -and $_.MediaLink.Host.Contains($storageAccountName)}).Count -gt 0 `
+                                            } | Select-Object -Property ImageName, ImageLabel
+         ```
+        使用下列命令，刪除上述命令所傳回的所有 VM 映像︰
+        ```powershell
+        Remove-AzureVMImage -ImageName 'yourImageName'
+        ```
+* **驗證儲存體帳戶並開始移轉**
+
+    請使用下列命令來驗證每個要移轉的儲存體帳戶。 在此範例中，儲存體帳戶名稱是 **myStorageAccount**。 將範例名稱取代為您自己的儲存體帳戶名稱。
+
     ```powershell
-     $storageAccountName = 'yourStorageAccountName'
-      Get-AzureDisk | where-Object {$_.MediaLink.Host.Contains($storageAccountName)} | Select-Object -ExpandProperty AttachedTo -Property `
-      DiskName | Format-List -Property RoleName, DiskName
-
+        $storageAccountName = "myStorageAccount"
+        Move-AzureStorageAccount -Validate -StorageAccountName $storageAccountName
     ```
-* **刪除儲存於儲存體帳戶的未連結傳統 VM 磁碟**
 
-    使用下列命令，尋找儲存體帳戶中未連線的傳統 VM 磁碟︰
+    下一個步驟是準備儲存體帳戶以進行移轉
 
     ```powershell
-        $storageAccountName = 'yourStorageAccountName'
-        Get-AzureDisk | where-Object {$_.MediaLink.Host.Contains($storageAccountName)} | Where-Object -Property AttachedTo -EQ $null | Format-List -Property DiskName  
-
+        $storageAccountName = "myStorageAccount"
+        Move-AzureStorageAccount -Prepare -StorageAccountName $storageAccountName
     ```
-    如果上述命令傳回磁碟，則使用下列命令刪除這些磁碟︰
+
+    請使用 Azure PowerShell 或 Azure 入口網站來檢查已備妥之儲存體帳戶的組態。 如果您尚未準備好進行移轉，而想要回到舊狀態，請使用下列命令：
 
     ```powershell
-       Remove-AzureDisk -DiskName 'yourDiskName'
+        Move-AzureStorageAccount -Abort -StorageAccountName $storageAccountName
     ```
-* **刪除儲存於儲存體帳戶的 VM 映像**
 
-    上述命令會傳回 OS 磁碟儲存於儲存體帳戶的所有 VM 映像。
-     ```powershell
-        Get-AzureVmImage | Where-Object { $_.OSDiskConfiguration.MediaLink -ne $null -and $_.OSDiskConfiguration.MediaLink.Host.Contains($storageAccountName)`
-                                } | Select-Object -Property ImageName, ImageLabel
-     ```
-     上述命令會傳回資料磁碟儲存於儲存體帳戶的所有 VM 映像。
-     ```powershell
+    如果備妥的組態看起來沒問題，您就可以繼續進行並使用下列命令來認可資源：
 
-        Get-AzureVmImage | Where-Object {$_.DataDiskConfigurations -ne $null `
-                                         -and ($_.DataDiskConfigurations | Where-Object {$_.MediaLink -ne $null -and $_.MediaLink.Host.Contains($storageAccountName)}).Count -gt 0 `
-                                        } | Select-Object -Property ImageName, ImageLabel
-     ```
-    使用上述命令，刪除上述命令傳回的所有 VM 映像︰
     ```powershell
-    Remove-AzureVMImage -ImageName 'yourImageName'
+        Move-AzureStorageAccount -Commit -StorageAccountName $storageAccountName
     ```
-
-請使用下列命令來驗證每個要移轉的儲存體帳戶。 在此範例中，儲存體帳戶名稱是 **myStorageAccount**。 將範例名稱取代為您自己的儲存體帳戶名稱。
-
-```powershell
-    $storageAccountName = "myStorageAccount"
-    Move-AzureStorageAccount -Validate -StorageAccountName $storageAccountName
-```
-
-下一個步驟是準備儲存體帳戶以進行移轉
-
-```powershell
-    $storageAccountName = "myStorageAccount"
-    Move-AzureStorageAccount -Prepare -StorageAccountName $storageAccountName
-```
-
-請使用 Azure PowerShell 或 Azure 入口網站來檢查已備妥之儲存體帳戶的組態。 如果您尚未準備好進行移轉，而想要回到舊狀態，請使用下列命令：
-
-```powershell
-    Move-AzureStorageAccount -Abort -StorageAccountName $storageAccountName
-```
-
-如果備妥的組態看起來沒問題，您就可以繼續進行並使用下列命令來認可資源：
-
-```powershell
-    Move-AzureStorageAccount -Commit -StorageAccountName $storageAccountName
-```
 
 ## <a name="next-steps"></a>後續步驟
 * [平台支援的 IaaS 資源移轉 (從傳統移轉至 Azure Resource Manager) 的概觀](migration-classic-resource-manager-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)

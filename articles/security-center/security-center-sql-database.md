@@ -1,11 +1,11 @@
 ---
-title: "Azure 資訊安全中心和 Azure SQL Database 服務 | Microsoft Docs"
-description: "本文說明資訊安全中心如何協助您保護 Azure SQL Database 中的資料庫。"
+title: Azure 資訊安全中心和 Azure SQL Database 服務 | Microsoft Docs
+description: 本文說明資訊安全中心如何協助您保護 Azure SQL Database 中的資料庫。
 services: sql-database
 documentationcenter: na
 author: TerryLanfear
 manager: MBaldwin
-editor: 
+editor: ''
 ms.assetid: f109adfd-daed-4257-9692-2042a1399480
 ms.service: security-center
 ms.devlang: na
@@ -14,11 +14,12 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 02/02/2017
 ms.author: terrylan
-ms.openlocfilehash: 46dd298a5664d914e55d45c5b7599d5983287476
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: b507a62db9a80866005cb63d2008fb14612b516f
+ms.sourcegitcommit: 9cdd83256b82e664bd36991d78f87ea1e56827cd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 04/16/2018
+ms.locfileid: "31415940"
 ---
 # <a name="azure-security-center-and-azure-sql-database-service"></a>Azure 資訊安全中心和 Azure SQL Database 服務
 [Azure 資訊安全中心](https://azure.microsoft.com/documentation/services/security-center/)可協助您保護、偵測威脅並採取相應的措施。 它提供您 Azure 訂用帳戶之間的整合式安全性監視和原則管理，協助您偵測可能會忽略的威脅，且適用於廣泛的安全性解決方案生態系統。
@@ -38,7 +39,7 @@ ms.lasthandoff: 10/11/2017
 ## <a name="prerequisites"></a>先決條件
 若要開始使用資訊安全中心，您必須有 Microsoft Azure 訂用帳戶。 您的訂用帳戶已經啟用資訊安全中心的免費層。 如需資訊安全中心的免費和標準層的詳細資訊，請參閱[安全性中心價格](https://azure.microsoft.com/pricing/details/security-center/)。
 
-資訊安全中心支援角色型存取。 若要深入了解 Azure 中的角色型存取控制 (RBAC)，請參閱 [Azure Active Directory 角色型存取控制](../active-directory/role-based-access-control-configure.md)。 資訊安全中心常見問題集提供[在資訊安全中心處理權限的方式](security-center-faq.md#permissions)。
+資訊安全中心支援角色型存取。 若要深入了解 Azure 中的角色型存取控制 (RBAC)，請參閱 [Azure Active Directory 角色型存取控制](../role-based-access-control/role-assignments-portal.md)。 資訊安全中心常見問題集提供[在資訊安全中心處理權限的方式](security-center-faq.md#permissions)。
 
 ## <a name="access-security-center"></a>存取資訊安全中心
 您可以從 [Azure 入口網站](https://azure.microsoft.com/features/azure-portal/)存取資訊安全中心。 [登入入口網站](https://portal.azure.com/)，然後選取 [資訊安全中心] 選項。

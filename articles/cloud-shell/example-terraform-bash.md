@@ -1,8 +1,8 @@
 ---
-title: "在 Azure Cloud Shell 中從 Bash 使用 Terraform 進行部署 | Microsoft Docs"
-description: "在 Azure Cloud Shell 中從 Bash 使用 Terraform 進行部署"
+title: 在 Azure Cloud Shell 中從 Bash 使用 Terraform 進行部署 | Microsoft Docs
+description: 在 Azure Cloud Shell 中從 Bash 使用 Terraform 進行部署
 services: Azure
-documentationcenter: 
+documentationcenter: ''
 author: tomarcher
 manager: routlaw
 tags: azure-cloud-shell
@@ -13,21 +13,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/15/2017
 ms.author: tarcher
-ms.openlocfilehash: 6df6a3a5242e0a5fc5c03136e1cd20967a93487a
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.openlocfilehash: 8512c04cb0efc698ca688724c3806291bb02d200
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46947634"
 ---
 # <a name="deploy-with-terraform-from-bash-in-azure-cloud-shell"></a>在 Azure Cloud Shell 中從 Bash 使用 Terraform 進行部署
-本文逐步引導您使用 [Terraform AzureRM 提供者](https://www.terraform.io/docs/providers/azurerm/index.html)建立資源群組。 
+此文章逐步引導您使用 [Terraform AzureRM 提供者](https://www.terraform.io/docs/providers/azurerm/index.html)建立資源群組。 
 
 [Hashicorp Terraform](https://www.terraform.io/) 是開放原始碼工具，可將 API 制訂到宣告式組態檔，以便與小組成員共用，供其編輯、檢閱和設定版本。 透過 AzureRM API，Microsoft AzureRM 提供者可用來與 Azure Resource Manager 所支援的資源互動。 
 
 ## <a name="automatic-authentication"></a>自動驗證
-根據預設，Terraform 會安裝在 Cloud Shell 的 Bash 中。 此外，Cloud Shell 會自動驗證預設的 Azure CLI 2.0 訂用帳戶，以透過 Terraform Azure 模組部署資源。
+根據預設，Terraform 會安裝在 Cloud Shell 的 Bash 中。 此外，Cloud Shell 會自動驗證預設的 Azure CLI 訂用帳戶，以透過 Terraform Azure 模組部署資源。
 
-Terraform 會使用所設定的預設 Azure CLI 2.0 訂用帳戶。 若要更新預設的訂用帳戶，請執行：
+Terraform 會使用所設定的預設 Azure CLI 訂用帳戶。 若要更新預設的訂用帳戶，請執行：
 
 ```azurecli-interactive
 az account set --subscription mySubscriptionName
@@ -143,7 +144,7 @@ Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 
 [terraform apply 命令](https://www.terraform.io/docs/commands/apply.html)可用來套用所需的變更以達到組態所需的狀態。
 
-### <a name="verify-deployment-with-azure-cli-20"></a>使用 Azure CLI 2.0 確認部署
+### <a name="verify-deployment-with-azure-cli"></a>使用 Azure CLI 確認部署
 執行 `az group show -n myRgName` 以確認該資源已成功佈建。
 
 ```azcliinteractive

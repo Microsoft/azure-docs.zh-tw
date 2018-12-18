@@ -1,24 +1,24 @@
 ---
-title: Azure Active Directory B2C：Multi-Factor Authentication | Microsoft Docs
-description: 如何在受 Azure Active Directory B2C 保護的取用者導向應用程式中啟用 Multi-Factor Authentication
+title: Azure Active Directory B2C 中的 Multi-Factor Authentication | Microsoft Docs
+description: 如何在受 Azure Active Directory B2C 保護的取用者導向應用程式中啟用 Multi-Factor Authentication。
 services: active-directory-b2c
-documentationcenter: ''
 author: davidmu1
 manager: mtillman
-editor: ''
-ms.service: active-directory-b2c
+ms.service: active-directory
 ms.workload: identity
-ms.topic: article
+ms.topic: conceptual
 ms.date: 12/06/2016
 ms.author: davidmu
-ms.openlocfilehash: 0f560a02a51239cff0a7d4057ec7beb2f0f5c5c5
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: B2C
+ms.openlocfilehash: 3d18e1b2e45aba4e83989e29c533cfc7bf5033fc
+ms.sourcegitcommit: 86cb3855e1368e5a74f21fdd71684c78a1f907ac
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37442703"
 ---
 # <a name="azure-active-directory-b2c-enable-multi-factor-authentication-in-your-consumer-facing-applications"></a>Azure Active Directory B2C：在取用者導向應用程式中啟用 Multi-Factor Authentication
-Azure Active Directory (Azure AD) B2C 直接整合 [Azure Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md) ，讓您能夠針對取用者導向應用程式的註冊與登入使用體驗，增添第二層安全性。 您連一行程式碼都不用寫，即可達成此目標。 目前我們支援撥打電話與簡訊驗證。 如果您已經建立註冊和登入原則，您仍然可以啟用 Multi-Factor Authentication。
+Azure Active Directory (Azure AD) B2C 直接整合 [Azure Multi-Factor Authentication](../active-directory/authentication/multi-factor-authentication.md) ，讓您能夠針對取用者導向應用程式的註冊與登入使用體驗，增添第二層安全性。 您連一行程式碼都不用寫，即可達成此目標。 目前我們支援撥打電話與簡訊驗證。 如果您已經建立註冊和登入原則，您仍然可以啟用 Multi-Factor Authentication。
 
 > [!NOTE]
 > Multi-Factor Authentication 也可以在建立註冊和登入原則時啟用，而非單靠編輯現有原則來啟用。
@@ -34,7 +34,7 @@ Azure Active Directory (Azure AD) B2C 直接整合 [Azure Multi-Factor Authentic
 1. 遵循下列步驟以[瀏覽至 B2C 功能刀鋒視窗](active-directory-b2c-app-registration.md#navigate-to-b2c-settings) (位於 Azure 入口網站上)。
 2. 按一下 [註冊原則] 。
 3. 按一下以開啟註冊原則 (例如 "B2C_1_SiUp")。
-4. 按一下 [多重要素驗證]，並將 [狀態] 設為 [開啟]。 按一下 [SERVICEPRINCIPAL] 。
+4. 按一下 [多重要素驗證]，並將 [狀態] 設為 [開啟]。 按一下 [確定]。
 5. 按一下刀鋒視窗頂端的 [儲存]  。
 
 您可以使用原則上的「立即執行」功能來驗證取用者體驗。 確認下列項目：
@@ -45,7 +45,7 @@ Azure Active Directory (Azure AD) B2C 直接整合 [Azure Multi-Factor Authentic
 1. 遵循下列步驟以[瀏覽至 B2C 功能刀鋒視窗](active-directory-b2c-app-registration.md#navigate-to-b2c-settings) (位於 Azure 入口網站上)。
 2. 按一下 [登入原則] 。
 3. 按一下以開啟登入原則 (例如 "B2C_1_SiIn")。 按一下刀鋒視窗頂端的 [編輯] 。
-4. 按一下 [多重要素驗證]，並將 [狀態] 設為 [開啟]。 按一下 [SERVICEPRINCIPAL] 。
+4. 按一下 [多重要素驗證]，並將 [狀態] 設為 [開啟]。 按一下 [確定]。
 5. 按一下刀鋒視窗頂端的 [儲存]  。
 
 您可以使用原則上的「立即執行」功能來驗證取用者體驗。 確認下列項目：

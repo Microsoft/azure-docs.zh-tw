@@ -3,32 +3,31 @@ title: Azure Cosmos DB 的 ASP.NET MVC 教學課程：Web 應用程式開發 | M
 description: 使用 Azure Cosmos DB 建立 MVC Web 應用程式的 ASP.NET MVC 教學課程。 您將在託管於 Azure 網站的待辦事項應用程式儲存 JSON 和存取資料 - ASP NET MVC 教學課程逐步解說。
 keywords: asp.net mvc 教學課程, web 應用程式開發, mvc web 應用程式, asp net mvc 教學課程逐步解說
 services: cosmos-db
-documentationcenter: .net
-author: mimig1
-manager: jhubbard
-editor: cgronlun
-ms.assetid: 52532d89-a40e-4fdf-9b38-aadb3a4cccbc
+author: SnehaGunda
+manager: kfile
 ms.service: cosmos-db
-ms.workload: data-services
-ms.tgt_pltfrm: na
+ms.component: cosmosdb-sql
+ms.workload: azure-vs
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: tutorial
 ms.date: 08/03/2017
-ms.author: mimig
-ms.custom: devcenter
-ms.openlocfilehash: e4f9360bfde5f3212f0bbf184c52f59b2dd43d0b
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.author: sngun
+ms.custom: devcenter, vs-azure
+ms.openlocfilehash: 110f787866296ec08b9937d56461d37574270a43
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46980918"
 ---
 # <a name="_Toc395809351"></a>ASP.NET MVC 教學課程：使用 Azure Cosmos DB 進行 Web 應用程式開發
+
 > [!div class="op_single_selector"]
 > * [.NET](sql-api-dotnet-application.md)
-> * [Node.js](sql-api-nodejs-application.md)
 > * [Java](sql-api-java-application.md)
+> * [Node.js](sql-api-nodejs-application.md)
 > * [Python](sql-api-python-application.md)
-> 
+> * [Xamarin](mobile-apps-with-xamarin.md)
 > 
 
 為了特別說明您可以如何有效率地利用 Azure Cosmos DB 來儲存和查詢 JSON 文件，本文提供如何使用 Azure Cosmos DB 建置待辦事項應用程式的完整逐步解說。 在 Azure Cosmos DB 中，這些工作將會儲存為 JSON 文件。
@@ -240,7 +239,7 @@ ms.lasthandoff: 03/28/2018
         using System.Configuration;
         using System.Linq.Expressions;
         using System.Threading.Tasks;
-        using System.Net
+        using System.Net;
         
     現在，將此程式碼取代 
    

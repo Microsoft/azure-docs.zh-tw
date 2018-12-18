@@ -1,8 +1,8 @@
 ---
-title: "從 Excel、Python 或 R 連線到 Azure Databricks | Microsoft Docs"
-description: "了解如何使用 Simba 驅動程式將 Azure Databricks 連線至 Excel、Python 或 R。"
+title: 從 Excel、Python 或 R 連線到 Azure Databricks | Microsoft Docs
+description: 了解如何使用 Simba 驅動程式將 Azure Databricks 連線至 Excel、Python 或 R。
 services: azure-databricks
-documentationcenter: 
+documentationcenter: ''
 author: nitinme
 manager: cgronlun
 editor: cgronlun
@@ -11,13 +11,14 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/02/2018
+ms.date: 06/27/2018
 ms.author: nitinme
-ms.openlocfilehash: 9daa7d30036d0a0f98d079e03a69c29d11e49664
-ms.sourcegitcommit: 0b02e180f02ca3acbfb2f91ca3e36989df0f2d9c
+ms.openlocfilehash: 333ff3ac3de053eae604ffeab600df7d35874f69
+ms.sourcegitcommit: d1eefa436e434a541e02d938d9cb9fcef4e62604
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/05/2018
+ms.lasthandoff: 06/28/2018
+ms.locfileid: "37085227"
 ---
 # <a name="connect-to-azure-databricks-from-excel-python-or-r"></a>從 Excel、Python 或 R 連線到 Azure Databricks
 
@@ -68,8 +69,8 @@ ms.lasthandoff: 03/05/2018
     
     在 DSN 設定對話方塊中，執行下列額外的步驟。
     
-    * 按一下 [HTTP 選項]。 在開啟的對話方塊中，貼上從 Databricks 工作區複製的「HTTP 路徑」值。 按一下 [SERVICEPRINCIPAL] 。
-    * 按一下 [SSL 選項]。 在開啟的對話方塊中，選取 [啟用 SSL] 核取方塊。 按一下 [SERVICEPRINCIPAL] 。
+    * 按一下 [HTTP 選項]。 在開啟的對話方塊中，貼上從 Databricks 工作區複製的「HTTP 路徑」值。 按一下 [確定]。
+    * 按一下 [SSL 選項]。 在開啟的對話方塊中，選取 [啟用 SSL] 核取方塊。 按一下 [確定]。
     * 按一下 [測試] 以測試與 Azure Databricks 的連線。 按一下 [確定] 以儲存組態。
     * 在 [ODBC 資料來源管理員] 對話方塊中，按一下 [確定]。
 
@@ -98,6 +99,9 @@ ms.lasthandoff: 03/05/2018
 當您的 Excel 活頁簿中有資料後，您可以對其執行分析作業。
 
 ## <a name="connect-from-r"></a>從 R 連線
+
+> [!NOTE]
+> 本節針對如何使用 Azure Databricks 整合在您的桌面上執行的 R Studio 用戶端，提供相關資訊。 如需如何在 Azure Databricks 叢集本身使用 R Studio 的指示，請參閱 [Azure Databricks 上的 R Studio](https://docs.azuredatabricks.net/spark/latest/sparkr/rstudio.html)。
 
 在本節中，您可以使用 R 語言的整合式開發環境 (IDE)，來參考 Azure Databricks 中的可用資料。 在開始之前，您必須已在電腦上安裝下列項目。
 

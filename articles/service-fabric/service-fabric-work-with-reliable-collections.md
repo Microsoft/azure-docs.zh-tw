@@ -1,24 +1,25 @@
 ---
-title: "使用可靠的集合 | Microsoft Docs"
-description: "了解使用可靠的集合的最佳做法。"
+title: 使用可靠的集合 | Microsoft Docs
+description: 了解使用可靠的集合的最佳做法。
 services: service-fabric
 documentationcenter: .net
 author: rajak
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 39e0cd6b-32c4-4b97-bbcf-33dad93dcad1
 ms.service: Service-Fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 04/19/2017
 ms.author: rajak
-ms.openlocfilehash: f53f13e4fb83b1cd370ec673e86e5311cd93055f
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 2568e116fdb3f80976d49787877d2ecf68f128ef
+ms.sourcegitcommit: eb75f177fc59d90b1b667afcfe64ac51936e2638
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 05/16/2018
+ms.locfileid: "34210812"
 ---
 # <a name="working-with-reliable-collections"></a>使用可靠的集合
 Service Fabric 透過可靠的集合向 .NET 開發人員提供具狀態的程式設計模型。 具體來說，Service Fabric 提供了可靠的字典和可靠的佇列類別。 當您使用這些類別時，您的狀態是分割的 (延展性)、複寫的 (可用性)，且在分割區內交易 (ACID 語意)。 讓我們看看可靠字典物件的一般用法，並看看它究竟做些什麼。
@@ -142,7 +143,7 @@ using (ITransaction tx = StateManager.CreateTransaction()) {
 ```
 
 ## <a name="define-immutable-data-types-to-prevent-programmer-error"></a>定義不可變的資料類型，以防止程式設計人員犯錯。
-理想情況下，我們希望編譯器能在您不小心產生改變物件狀態的程式碼，而這個物件又不該改變時報告錯誤。 但是 C# 編譯器做不到這一點。 所以，為避免潛在的程式設計人員錯誤，我們強烈建議您將可靠集合所使用的類型定義為不可變的類型。 具體來說，這表示您要堅持核心值類型 (例如數字 [Int32、UInt64 等等]、DateTime、Guid、TimeSpan 等等)。 當然，您也可以使用字串。 最好是避免集合屬性，因為將其序列化和還原序列化經常會降低效能。 不過，如果您想要使用集合屬性，強烈建議您使用 .NET 的不可變集合程式庫 ([System.Collections.Immutable](https://www.nuget.org/packages/System.Collections.Immutable/))。 可以從 http://nuget.org 下載這個程式庫。另外，也建議您盡可能密封類別，並將欄位變成唯讀。
+理想情況下，我們希望編譯器能在您不小心產生改變物件狀態的程式碼，而這個物件又不該改變時報告錯誤。 但是 C# 編譯器做不到這一點。 所以，為避免潛在的程式設計人員錯誤，我們強烈建議您將可靠集合所使用的類型定義為不可變的類型。 具體來說，這表示您要堅持核心值類型 (例如數字 [Int32、UInt64 等等]、DateTime、Guid、TimeSpan 等等)。 當然，您也可以使用字串。 最好是避免集合屬性，因為將其序列化和還原序列化經常會降低效能。 不過，如果您想要使用集合屬性，強烈建議您使用 .NET 的不可變集合程式庫 ([System.Collections.Immutable](https://www.nuget.org/packages/System.Collections.Immutable/))。 您可以從 http://nuget.org 下載這個程式庫。另外，也建議您盡可能密封類別，並將欄位變成唯讀。
 
 以下的 UserInfo 類型會示範如何利用上述建議定義不可變的類型。
 

@@ -1,0 +1,195 @@
+### YamlMime:YamlDocument
+ms.openlocfilehash: ceb148953952228e3c1c277454f93fe44f478b44
+ms.sourcegitcommit: f20e43e436bfeafd333da75754cd32d405903b07
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49386657"
+documentType: LandingData
+title: Azure 事件中樞文件
+metadata:
+  document_id: ''
+  title: Azure 事件中樞文件 - 教學課程、快速入門和 API 參考
+  meta.description: Learn how to use Event Hubs to ingest millions of events per second from connected IoT devices and applications on a broad set of platforms.
+  services: event-hubs
+  author: spelluru
+  manager: timlt
+  ms.service: event-hubs
+  ms.topic: landing-page
+  ms.date: 10/15/2018
+  ms.author: spelluru
+abstract:
+  description: Azure 事件中樞是巨量資料串流平台和事件擷取服務，每秒可接收和處理數百萬個事件。 事件中樞可以處理及儲存分散式軟體和裝置所產生的事件、資料或遙測。 傳送至事件中樞的資料可以透過任何即時分析提供者或批次/儲存體配接器來轉換和儲存。 只需變更一些組態，適用於 Apache Kafka 的事件中樞即可讓原生 Kafka 用戶端、工具及類似 Mirror Maker、Apache Flink 和 Akka Streams 等應用程式順暢地與事件中樞搭配使用。
+  aside:
+    image:
+      alt: 
+      height: 110
+      src: /azure/event-hubs/media/index/stream-big-data-kafka-event-hubs.png
+      width: 250
+    title: 使用 Kafka 和事件中樞在 Azure 中串流巨量資料 (1:20:13)
+    href: https://azure.microsoft.com/resources/videos/streaming-big-data-in-azure-with-kafka-and-event-hubs/
+    width: 250
+sections:
+- title: 5 分鐘快速入門
+  items:
+  - type: paragraph
+    text: 了解如何<b>建立</b>事件中樞：
+  - type: list
+    style: icon48
+    items:
+    - image:
+        src: /azure/event-hubs/media/index/portal.svg
+      text: Azure 入口網站
+      href: /azure/event-hubs/event-hubs-quickstart-portal
+    - image:
+        src: /azure/event-hubs/media/index/cli.svg
+      text: Azure CLI
+      href: /azure/event-hubs/event-hubs-quickstart-cli
+    - image:
+        src: /azure/event-hubs/media/index/logo_powershell.svg
+      text: Azure PowerShell
+      href: /azure/event-hubs/event-hubs-quickstart-powershell
+  - type: paragraph
+    text: 了解如何<b>將事件傳送至事件中樞</b>：
+  - type: list
+    style: icon48
+    items:
+    - image:
+        src: /azure/event-hubs/media/index/logo_net.svg
+      text: .NET Framework
+      href: /azure/event-hubs/event-hubs-dotnet-framework-getstarted-send
+    - image:
+        src: /azure/event-hubs/media/index/logo_netcore.svg
+      text: .NET Standard
+      href: /azure/event-hubs/event-hubs-dotnet-standard-getstarted-send
+    - image:
+        src: /azure/event-hubs/media/index/logo_java.svg
+      text: Java
+      href: /azure/event-hubs/event-hubs-java-get-started-send
+    - image:
+        src: /azure/event-hubs/media/index/logo_python.svg
+      text: Python
+      href: /azure/event-hubs/event-hubs-python-get-started-send
+    - image:
+        src: /azure/event-hubs/media/index/logo_nodejs.svg
+      text: Node.js
+      href: /azure/event-hubs/event-hubs-node-get-started-send
+    - image:
+        src: /azure/event-hubs/media/index/logo_go.svg
+      text: Go
+      href: /azure/event-hubs/event-hubs-go-get-started-send
+    - image:
+        src: /azure/event-hubs/media/index/logo_c.svg
+      text: C
+      href: /azure/event-hubs/event-hubs-c-getstarted-send
+  - type: paragraph
+    text: 了解如何<b>將事件接收至事件中樞</b>：
+  - type: list
+    style: icon48
+    items:
+    - image:
+        src: /azure/event-hubs/media/index/logo_net.svg
+      text: .NET Framework
+      href: /azure/event-hubs/event-hubs-dotnet-framework-getstarted-receive-eph
+    - image:
+        src: /azure/event-hubs/media/index/logo_netcore.svg
+      text: .NET Standard
+      href: /azure/event-hubs/event-hubs-dotnet-standard-getstarted-receive-eph
+    - image:
+        src: /azure/event-hubs/media/index/logo_java.svg
+      text: Java
+      href: /azure/event-hubs/event-hubs-java-get-started-receive-eph
+    - image:
+        src: /azure/event-hubs/media/index/logo_python.svg
+      text: Python
+      href: /azure/event-hubs/event-hubs-python-get-started-receive
+    - image:
+        src: /azure/event-hubs/media/index/logo_nodejs.svg
+      text: Node.js
+      href: /azure/event-hubs/event-hubs-node-get-started-receive
+    - image:
+        src: /azure/event-hubs/media/index/logo_go.svg
+      text: Go
+      href: /azure/event-hubs/event-hubs-go-get-started-receive-eph
+- title: 逐步教學課程
+  items:
+  - type: paragraph
+    text: 了解如何使用 Azure 事件中樞建立、管理和串流事件
+  - type: list
+    style: unordered
+    items:
+    - html: <a href="https://docs.microsoft.com/azure/event-hubs/event-hubs-tutorial-visualize-anomalies">使用 Azure 串流分析讀取事件中樞資料串流，並將異常事件視覺化</a>
+    - html: <a href="https://docs.microsoft.com/azure/event-hubs/store-captured-data-data-warehouse">使用事件方格和 Azure Functions 將擷取的事件中樞資料處理並遷移至 SQL 資料倉儲</a>
+    - html: <a href="https://docs.microsoft.com/azure/azure-databricks/databricks-stream-from-eventhubs">使用事件中樞將資料串流至 Azure Databricks</a>
+    - html: <a href="https://docs.microsoft.com/azure/event-hubs/event-hubs-kafka-mirror-maker-tutorial">在已啟用 Kafka 的事件中樞中鏡射 Kafka 訊息代理程式</a>
+    - html: <a href="https://docs.microsoft.com/azure/event-hubs/event-hubs-kafka-flink-tutorial">將 Apache Flink 連線到已啟用 Kafka 的事件中樞</a>
+    - html: <a href="https://docs.microsoft.com/azure/event-hubs/event-hubs-kafka-akka-streams-tutorial">將 Akka Streams 連線到已啟用 Kafka 的事件中樞</a>
+- title: 透過 Microsoft Learn 增進您的技巧
+  items:
+  - type: list
+    style: cards
+    className: cardsFTitle
+    items:
+    - title: 使用 Azure 事件中樞 針對巨量資料應用程式啟用可靠傳訊
+      href: /learn/modules/enable-reliable-messaging-for-big-data-apps-using-event-hubs/
+      image:
+        src: /learn/achievements/enable-reliable-messaging-for-big-data-apps-using-azure-event-hubs.svg
+        href: /learn/modules/enable-reliable-messaging-for-big-data-apps-using-event-hubs/
+  - type: paragraph
+    text: <a href="/learn/browse/?products=azure-event-hubs">更多互動式學習...</a>
+- title: 免費 Pluralsight 影片訓練
+  items:
+  - type: list
+    style: cards
+    className: cardsFTitle
+    items:
+    - title: 適用於 .NET 開發人員的 Azure 事件中樞 - 基本概念
+      href: https://www.pluralsight.com/courses/azure-event-hubs-dotnet-developers-fundamentals
+      image:
+        src: https://docs.microsoft.com/media/logos/logo_pluralsight.svg
+        href: https://www.pluralsight.com/courses/azure-event-hubs-dotnet-developers-fundamentals
+- title: 範例
+  items:
+  - type: list
+    style: icon48
+    items:
+    - image:
+        src: /azure/event-hubs/media/index/logo_net.svg
+      text: .NET Framework
+      href: https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet
+    - image:
+        src: /azure/event-hubs/media/index/logo_java.svg
+      text: Java
+      href: https://github.com/Azure/azure-event-hubs/tree/master/samples/Java
+    - image:
+        src: /azure/event-hubs/media/index/logo_python.svg
+      text: Python
+      href: https://github.com/Azure/azure-event-hubs-python/tree/master/examples
+    - image:
+        src: /azure/event-hubs/media/index/logo_nodejs.svg
+      text: Node.js
+      href: https://github.com/Azure/azure-event-hubs-node
+    - image:
+        src: /azure/event-hubs/media/index/logo_go.svg
+      text: Go
+      href: https://github.com/Azure/azure-event-hubs-go/tree/master/_examples
+    - image:
+        src: /azure/event-hubs/media/index/cli.svg
+      text: Azure CLI
+      href: https://github.com/Azure/azure-event-hubs/tree/master/samples/Management/CLI
+    - image:
+        src: /azure/event-hubs/media/index/logo_powershell.svg
+      text: Azure PowerShell
+      href: https://github.com/Azure/azure-event-hubs/tree/master/samples/Management/PowerShell
+- title: 參考
+  items:
+  - type: list
+    style: cards
+    className: cardsD
+    items:
+    - title: 命令列
+      html: <p><a href="/powershell/module/azurerm.eventhub/">Azure PowerShell</a></p><p><a href="/cli/azure/eventhubs">Azure CLI</a></p>
+    - title: 語言
+      html: <p><a href="/dotnet/api/microsoft.servicebus.messaging">.NET Framework</a></p><p><a href="/dotnet/api/microsoft.azure.eventhubs">.NET Standard</a></p><p><a href="/java/api/overview/azure/eventhub">Java</a></p>
+    - title: REST
+      html: <p><a href="/rest/api/eventhub/">REST API 參考</a></p>

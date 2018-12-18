@@ -1,24 +1,19 @@
 ---
-title: "使用自動調整動作傳送電子郵件和 Webhook 警示通知 | Microsoft Docs"
-description: "了解如何在 Azure 監視器中使用自動調整動作呼叫 Web URL 或傳送電子郵件通知。 "
+title: 使用自動調整傳送電子郵件和 Webhook 警示通知
+description: '了解如何在 Azure 監視器中使用自動調整動作呼叫 Web URL 或傳送電子郵件通知。 '
 author: anirudhcavale
-manager: orenr
-editor: 
-services: monitoring-and-diagnostics
-documentationcenter: monitoring-and-diagnostics
-ms.assetid: eb9a4c98-0894-488c-8ee8-5df0065d094f
-ms.service: monitoring-and-diagnostics
-ms.workload: na
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+services: azure-monitor
+ms.service: azure-monitor
+ms.topic: conceptual
 ms.date: 04/03/2017
 ms.author: ancav
-ms.openlocfilehash: 16caf14028494800e9259f0296c292b606d0210a
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.component: autoscale
+ms.openlocfilehash: 65405a6d7f1d49911da1e2a5d26b02098a261c01
+ms.sourcegitcommit: 1b8665f1fff36a13af0cbc4c399c16f62e9884f3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35262217"
 ---
 # <a name="use-autoscale-actions-to-send-email-and-webhook-alert-notifications-in-azure-monitor"></a>使用自動調整動作在 Azure 監視器中傳送電子郵件和 Webhook 警示通知
 本文將告訴您如何設定觸發程序，讓您可以根據 Azure 中的自動調整動作呼叫特定的 Web URl 或傳送電子郵件。  
@@ -72,10 +67,10 @@ Webhook 可讓您將 Azure 警示通知路由到其他系統進行後處理或�
 | customEmails |是 |值可以是 null 或電子郵件的字串陣列 |
 | Webhook |是 |值可以是 null 或有效的 Uri |
 | serviceUri |是 |有效的 https Uri |
-| properties |是 |值必須是空的 {}，或可以包含索引鍵-值組 |
+| properties |是 |值必須是空的 {}，也可以包含索引鍵-值組 |
 
 ## <a name="authentication-in-webhooks"></a>Webhook 中的驗證
-Webhook 可以使用權杖型驗證來驗證，您會在其中儲存 Webhook URI 並以權杖識別碼做為查詢參數。 例如，https://mysamplealert/webcallback?tokenid=sometokenid&someparameter=somevalue
+Webhook 可以使用權杖型驗證來驗證，您會在其中儲存 Webhook URI 並以權杖識別碼做為查詢參數。 例如， https://mysamplealert/webcallback?tokenid=sometokenid&someparameter=somevalue
 
 ## <a name="autoscale-notification-webhook-payload-schema"></a>自動調整通知 Webhook 承載結構描述
 產生自動調整通知時，Webhook 承載會包含下列中繼資料︰

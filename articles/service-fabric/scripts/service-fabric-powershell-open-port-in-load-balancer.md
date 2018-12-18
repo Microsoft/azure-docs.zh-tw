@@ -12,14 +12,15 @@ ms.service: service-fabric
 ms.workload: multiple
 ms.devlang: na
 ms.topic: sample
-ms.date: 03/19/2018
+ms.date: 05/18/2018
 ms.author: ryanwi
 ms.custom: mvc
-ms.openlocfilehash: 1edaca9c354a7b65b47213c7970e823aee3cbe87
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 0549f5f2b5b0f8fdfc18b8c091c1065d6137b8c6
+ms.sourcegitcommit: b6319f1a87d9316122f96769aab0d92b46a6879a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 05/20/2018
+ms.locfileid: "34366166"
 ---
 # <a name="open-an-application-port-in-the-azure-load-balancer"></a>在 Azure Load Balancer 中開啟應用程式連接埠
 

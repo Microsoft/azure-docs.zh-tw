@@ -3,17 +3,18 @@ title: Azure Container Service 教學課程 - 更新應用程式
 description: Azure Container Service 教學課程 - 更新應用程式
 services: container-service
 author: neilpeterson
-manager: timlt
+manager: jeconnoc
 ms.service: container-service
 ms.topic: tutorial
 ms.date: 02/26/2018
 ms.author: nepeters
 ms.custom: mvc
-ms.openlocfilehash: 87de0f23a00b035b12bac6cf655781961b1fb9e5
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: 9cb5769d7f54a1036bf14199c87961c95ed2e7ce
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39432401"
 ---
 # <a name="update-an-application-in-kubernetes"></a>在 Kubernetes 中更新應用程式
 
@@ -79,7 +80,7 @@ docker-compose up --build -d
 
 以容器登錄的 loginServer 標記 `azure-vote-front` 映像。 
 
-使用 [az acr list](/cli/azure/acr#az_acr_list) 命令來取得登入伺服器名稱。
+使用 [az acr list](/cli/azure/acr#az-acr-list) 命令來取得登入伺服器名稱。
 
 ```azurecli
 az acr list --resource-group myResourceGroup --query "[].{acrLoginServer:loginServer}" --output table
@@ -99,7 +100,7 @@ docker push <acrLoginServer>/azure-vote-front:redis-v2
 
 ## <a name="deploy-update-application"></a>部署更新應用程式
 
-若要確保最大執行時間，則應用程式 pod 必須有多個執行個體正在執行中。 請使用 [kubectl get pod](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#get) 命令驗證此組態。
+若要確保最大執行時間，則應用程式 pod 必須有多個執行個體正在執行中。 請使用 [kubectl get pod](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#get) 命令驗證此組態。
 
 ```bash
 kubectl get pod
@@ -122,13 +123,13 @@ azure-vote-front-233282510-pqbfk   1/1       Running   0          10m
 kubectl scale --replicas=3 deployment/azure-vote-front
 ```
 
-若要更新應用程式，請使用 [kubectl set](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#set) 命令。 以容器登錄的登入伺服器或主機名稱來更新 `<acrLoginServer>`。
+若要更新應用程式，請使用 [kubectl set](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#set) 命令。 以容器登錄的登入伺服器或主機名稱來更新 `<acrLoginServer>`。
 
 ```azurecli-interactive
 kubectl set image deployment azure-vote-front azure-vote-front=<acrLoginServer>/azure-vote-front:redis-v2
 ```
 
-若要監視部署，請使用 [kubectl get pod](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#get) 命令。 部署已更新的應用程式後，您的 pod 會終止並以新的容器映像重建。
+若要監視部署，請使用 [kubectl get pod](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#get) 命令。 部署已更新的應用程式後，您的 pod 會終止並以新的容器映像重建。
 
 ```azurecli-interactive
 kubectl get pod

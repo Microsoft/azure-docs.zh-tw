@@ -1,25 +1,19 @@
 ---
 title: 了解 Azure IoT 中樞 MQTT 支援 | Microsoft Docs
 description: 開發人員指南 - 支援裝置使用 MQTT 通訊協定連接至 IoT 中樞對向端點。 包含 Azure IoT 裝置 SDK 內建的 MQTT 支援的相關資訊。
-services: iot-hub
-documentationcenter: .net
 author: fsautomata
-manager: timlt
-editor: ''
-ms.assetid: 1d71c27c-b466-4a40-b95b-d6550cf85144
+manager: ''
 ms.service: iot-hub
-ms.devlang: multiple
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: na
+services: iot-hub
+ms.topic: conceptual
 ms.date: 03/05/2018
 ms.author: elioda
-ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 23f98d4e9f711496480d5e02b4d5b23cd8abab0c
-ms.sourcegitcommit: 20d103fb8658b29b48115782fe01f76239b240aa
+ms.openlocfilehash: 2e45422ca6a861894193600eff17f192bc20b357
+ms.sourcegitcommit: 17fe5fe119bdd82e011f8235283e599931fa671a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2018
+ms.lasthandoff: 08/11/2018
+ms.locfileid: "42140447"
 ---
 # <a name="communicate-with-your-iot-hub-using-the-mqtt-protocol"></a>使用 MQTT 通訊協定來與 IoT 中樞通訊
 
@@ -27,6 +21,8 @@ IoT 中樞可使用下列項目讓裝置與 IoT 中樞裝置端點進行通訊�
 
 * 連接埠 8883 上的 [MQTT v3.1.1][lnk-mqtt-org]
 * 連接埠 443 上使用 WebSocket 的 MQTT v3.1.1。
+
+IoT 中樞不是功能完整的 MQTT 訊息代理程式，而且不支援 MQTT v3.1.1 標準中所指定的所有行為。 本文說明裝置如何使用受支援的 MQTT 行為來與 IoT 中樞通訊。
 
 [!INCLUDE [iot-hub-basic](../../includes/iot-hub-basic-partial.md)]
 
@@ -85,7 +81,16 @@ IoT 中樞可使用下列項目讓裝置與 IoT 中樞裝置端點進行通訊�
 
   如需如何產生 SAS 權杖的詳細資訊，請參閱[使用 IoT 中樞安全性權杖][lnk-sas-tokens]的裝置一節。
 
-  測試時，您也可以使用[裝置總管][lnk-device-explorer]工具來快速產生 SAS 權杖，方便您複製並貼到您的程式碼中︰
+  測試時，您也可以使用[適用於 Visual Studio Code 的 Azure IoT Toolkit 延伸模組](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.azure-iot-toolkit) 或 [Device Explorer][lnk-device-explorer] 來快速產生 SAS 權杖，方便您複製並貼到您的程式碼中︰
+
+Azure IoT 工具組：
+
+  1. 展開 Visual Studio Code 左下角的 [AZURE IOT 中樞裝置] 索引標籤。
+  2. 以滑鼠右鍵按一下您的裝置，然後選取 [產生裝置的 SAS 權杖]。
+  3. 設定 [到期時間]，然後按 'Enter' 鍵。
+  4. SAS 權杖已建立並複製到剪貼簿。
+
+Device Explorer：
 
   1. 移至 [裝置總管] 中的 [管理] 索引標籤。
   2. 按一下 [SAS 權杖]  \(右上角)。
@@ -303,7 +308,7 @@ IoT 中樞會附上**主題名稱** `devices/{device_id}/messages/devicebound/` 
 [lnk-sample-node]: https://github.com/Azure/azure-iot-sdk-node/blob/master/device/samples/simple_sample_device.js
 [lnk-sample-java]: https://github.com/Azure/azure-iot-sdk-java/blob/master/device/iot-device-samples/send-receive-sample/src/main/java/samples/com/microsoft/azure/sdk/iot/SendReceive.java
 [lnk-sample-c]: https://github.com/Azure/azure-iot-sdk-c/tree/master/iothub_client/samples/iothub_client_sample_mqtt_dm
-[lnk-sample-csharp]: https://github.com/Azure/azure-iot-sdk-csharp/tree/master/device/samples
+[lnk-sample-csharp]: https://github.com/Azure/azure-iot-sdk-csharp/tree/master/iothub/device/samples
 [lnk-sample-python]: https://github.com/Azure/azure-iot-sdk-python/tree/master/device/samples
 [lnk-device-explorer]: https://github.com/Azure/azure-iot-sdk-csharp/blob/master/tools/DeviceExplorer
 [lnk-sas-tokens]: iot-hub-devguide-security.md#use-sas-tokens-in-a-device-app

@@ -4,7 +4,7 @@ description: 了解如何建立及上傳包含 CentOS 型 Linux 作業系統的 
 services: virtual-machines-linux
 documentationcenter: ''
 author: szarkos
-manager: timlt
+manager: jeconnoc
 editor: tysonn
 tags: azure-resource-manager,azure-service-management
 ms.assetid: 0e518e92-e981-43f4-b12c-9cba1064c4bb
@@ -13,13 +13,14 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: article
-ms.date: 03/12/2018
+ms.date: 05/04/2018
 ms.author: szark
-ms.openlocfilehash: 11876b1d178eceb209a36fcc0eeae5779b90a4e8
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: d7c35b79dcdf75dbb3f891dc4c66cbf893b61c03
+ms.sourcegitcommit: e221d1a2e0fb245610a6dd886e7e74c362f06467
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 05/07/2018
+ms.locfileid: "33777683"
 ---
 # <a name="prepare-a-centos-based-virtual-machine-for-azure"></a>準備適用於 Azure 的 CentOS 型虛擬機器
 * [準備適用於 Azure 的 CentOS 6.x 虛擬機器](#centos-6x)
@@ -297,7 +298,7 @@ ms.lasthandoff: 03/16/2018
    
         # sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 
-10. 若要從 **VMWare、VirtualBox 或 KVM 建置映像：**請確定 initramfs 中已包括 Hyper-V 驅動程式：
+10. 若要從 **VMWare、VirtualBox 或 KVM 建置映像：** 請確定 initramfs 中已包括 Hyper-V 驅動程式：
    
    編輯 `/etc/dracut.conf`，新增內容：
    
@@ -305,7 +306,7 @@ ms.lasthandoff: 03/16/2018
    
    重建 initramfs：
    
-        # sudo dracut –f -v
+        # sudo dracut -f -v
 
 11. 安裝 Azure Linux 代理程式與相依性：
 

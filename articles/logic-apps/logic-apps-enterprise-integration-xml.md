@@ -1,27 +1,23 @@
 ---
-title: 使用工作流程中的 XML 訊息 - Azure Logic Apps | Microsoft Docs
-description: 使用企業整合套件處理、驗證、轉換和擴充邏輯應用程式和商務中的 XML 訊息案例
+title: 適用於 B2B 企業整合的 XML 訊息 - Azure Logic Apps | Microsoft Docs
+description: 在採用 Enterprise Integration Pack 的 Azure Logic Apps 中處理、驗證、轉換及擴充適用於 B2B 解決方案的 XML 訊息
 services: logic-apps
-documentationcenter: .net,nodejs,java
-author: divyaswarnkar
-manager: anneta
-editor: ''
-ms.assetid: 47672dc4-1caa-44e5-b8cb-68ec3a76b7dc
 ms.service: logic-apps
-ms.workload: integration
-ms.tgt_pltfrm: na
-ms.devlang: na
+ms.suite: integration
+author: divyaswarnkar
+ms.author: divswa
+ms.reviewer: jonfan, estfan, LADocs
 ms.topic: article
-ms.custom: H1Hack27Feb2017
+ms.assetid: 47672dc4-1caa-44e5-b8cb-68ec3a76b7dc
 ms.date: 02/27/2017
-ms.author: LADocs; divswa
-ms.openlocfilehash: 495cb44219ee9d8ca20ea17c373545668839f4c5
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: 5f804bf656b423d6dbe8f5c2ed73ba54d8361000
+ms.sourcegitcommit: 2ad510772e28f5eddd15ba265746c368356244ae
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "43124530"
 ---
-# <a name="validate-and-transform-xml-encode-and-decode-flat-files-and-enrich-messages-features-in-logic-apps"></a>驗證和轉換的 XML、編碼和解碼一般檔案，並擴充邏輯應用程式中的訊息功能
+# <a name="xml-messages-and-flat-files-in-azure-logic-apps-with-enterprise-integration-pack"></a>採用 Enterprise Integration Pack 的 Azure Logic Apps 中的 X12 訊息和一般檔案
 
 使用邏輯應用程式，您可以處理您傳送和接收的 XML 訊息。 這項功能包含於企業整合套件。 針對具有 BizTalk Server 背景的這些使用者，企業整合套件可為您提供與轉換和驗證訊息、使用一般檔案，甚至使用 XPath 加強或從訊息擷取特定屬性的類似功能。 
 

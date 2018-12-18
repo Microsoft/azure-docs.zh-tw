@@ -1,11 +1,11 @@
 ---
-title: "使用 API 管理服務產生 HTTP 要求"
-description: "了解如何使用 API 管理中的要求和回應原則，從您的 API 呼叫外部服務"
+title: 使用 API 管理服務產生 HTTP 要求
+description: 了解如何使用 API 管理中的要求和回應原則，從您的 API 呼叫外部服務
 services: api-management
-documentationcenter: 
+documentationcenter: ''
 author: vladvino
 manager: erikre
-editor: 
+editor: ''
 ms.assetid: 4539c0fa-21ef-4b1c-a1d4-d89a38c242fa
 ms.service: api-management
 ms.devlang: dotnet
@@ -14,11 +14,12 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 12/15/2016
 ms.author: apimpm
-ms.openlocfilehash: d7c32e5ae02e294ee88c19f058e04249c7c9969e
-ms.sourcegitcommit: 83ea7c4e12fc47b83978a1e9391f8bb808b41f97
+ms.openlocfilehash: fdcc230171006c6388e75b947e10a73fb953001a
+ms.sourcegitcommit: cf606b01726df2c9c1789d851de326c873f4209a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/28/2018
+ms.lasthandoff: 09/19/2018
+ms.locfileid: "46294669"
 ---
 # <a name="using-external-services-from-the-azure-api-management-service"></a>使用來自 Azure API 管理服務的外部服務
 Azure API 管理服務中可用的原則可純粹根據傳入的要求、傳出的回應及基本組態資訊來進行各式各樣的有用工作。 不過，能夠與來自 API 管理原則的外部服務進行互動，可開啟更多的機會。
@@ -67,7 +68,7 @@ Slack 具有傳入 Web 攔截的概念。 在設定輸入 Web Hook 時，Slack �
 `send-request` 原則能夠使用外部服務來執行複雜的處理函式，並將資料傳回 API 管理服務，此服務可用來進一步處理原則。
 
 ### <a name="authorizing-reference-tokens"></a>授權參考權杖
-API 管理的主要功能是保護後端資源。 如果您的 API 所使用的授權伺服器會建立 [JWT 權杖](http://jwt.io/) 做為其 OAuth2 流程的一部分，當 [Azure Active Directory](../active-directory/active-directory-aadconnect.md) 這樣做時，則您可以使用 `validate-jwt` 原則來驗證權杖的有效性。 某些授權伺服器會建立所謂的[參考權杖](http://leastprivilege.com/2015/11/25/reference-tokens-and-introspection/)，此類權杖無法在不對授權伺服器進行回呼的情況下進行驗證。
+API 管理的主要功能是保護後端資源。 如果您的 API 所使用的授權伺服器會建立 [JWT 權杖](http://jwt.io/) 做為其 OAuth2 流程的一部分，當 [Azure Active Directory](../active-directory/hybrid/whatis-hybrid-identity.md) 這樣做時，則您可以使用 `validate-jwt` 原則來驗證權杖的有效性。 某些授權伺服器會建立所謂的[參考權杖](http://leastprivilege.com/2015/11/25/reference-tokens-and-introspection/)，此類權杖無法在不對授權伺服器進行回呼的情況下進行驗證。
 
 ### <a name="standardized-introspection"></a>將自我檢查標準化
 過去一直沒有標準化的方式可使用授權伺服器來驗證參考權杖。 不過，IETF 最近發佈的提議標準 [RFC 7662](https://tools.ietf.org/html/rfc7662) 定義了資源伺服器如何驗證權杖的有效性。

@@ -1,24 +1,19 @@
 ---
-title: "Azure 搜尋服務多種語言 | Microsoft Docs"
-description: "Azure 搜尋服務支援 56 種語言，運用來自 Lucene 的語言分析器和來自 Microsoft 的自然語言處理技術。"
-services: search
-documentationcenter: 
+title: 在 Azure 搜尋服務中編製多種語言的索引 | Microsoft Docs
+description: Azure 搜尋服務支援 56 種語言，運用來自 Lucene 的語言分析器和來自 Microsoft 的自然語言處理技術。
 author: yahnoosh
-manager: pablocas
-editor: 
-ms.assetid: 55a00b44-804d-41bb-9c96-e6ea498616f5
+manager: jlembicz
+services: search
 ms.service: search
-ms.devlang: na
-ms.workload: search
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.date: 01/23/2017
+ms.topic: conceptual
+ms.date: 04/20/2018
 ms.author: jlembicz
-ms.openlocfilehash: dbbab31bac66ce73dbf9883992713a2c16581e19
-ms.sourcegitcommit: b5c6197f997aa6858f420302d375896360dd7ceb
+ms.openlocfilehash: 38f93f5415282d2f976d9f3acc2b0a7aeead6c3d
+ms.sourcegitcommit: e8f443ac09eaa6ef1d56a60cd6ac7d351d9271b9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/21/2017
+ms.lasthandoff: 09/12/2018
+ms.locfileid: "35767803"
 ---
 # <a name="create-an-index-for-documents-in-multiple-languages-in-azure-search"></a>在 Azure 搜尋服務中建立多種語言的文件索引
 > [!div class="op_single_selector"]
@@ -68,7 +63,7 @@ ms.lasthandoff: 12/21/2017
 
 如果已知發出查詢之代理程式的語言，則可使用 **searchFields** 查詢參數將搜尋要求的範圍限制為特定欄位。 下列查詢只會針對波蘭文描述發出：
 
-`https://[service name].search.windows.net/indexes/[index name]/docs?search=darmowy&searchFields=description_pl&api-version=2016-09-01`
+`https://[service name].search.windows.net/indexes/[index name]/docs?search=darmowy&searchFields=description_pl&api-version=2017-11-11`
 
 您可以使用 [搜尋總管]  貼上類似上述的查詢，便可從入口網站查詢您的索引。 從服務刀鋒視窗的命令列可以存取搜尋總管。 如需詳細資料，請參閱 [在入口網站查詢 Azure 搜尋服務索引](search-explorer.md) 。
 
@@ -83,7 +78,7 @@ ms.lasthandoff: 12/21/2017
       }
     ]
 
-`https://[service name].search.windows.net/indexes/[index name]/docs?search=Microsoft&scoringProfile=englishFirst&api-version=2016-09-01`
+`https://[service name].search.windows.net/indexes/[index name]/docs?search=Microsoft&scoringProfile=englishFirst&api-version=2017-11-11`
 
 如果您是 .NET 開發人員，請注意您可以使用 [Azure 搜尋服務 .NET SDK](http://www.nuget.org/packages/Microsoft.Azure.Search)來設定語言分析器。 最新版本包含對 Microsoft 語言分析器的支援。
 

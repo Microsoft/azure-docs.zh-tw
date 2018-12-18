@@ -1,22 +1,22 @@
 ---
-title: "如何將事件傳送至 Azure 時間序列深入解析環境 | Microsoft Docs"
-description: "本教學課程說明如何建立和設定事件中樞，並執行應用程式範例以將事件推送至 Azure 時間序列深入解析來加以顯示。"
-services: time-series-insights
+title: 如何將事件傳送至 Azure 時間序列深入解析環境 | Microsoft Docs
+description: 本教學課程說明如何建立和設定事件中樞，並執行應用程式範例以將事件推送至 Azure 時間序列深入解析來加以顯示。
 ms.service: time-series-insights
-author: venkatgct
-ms.author: venkatja
-manager: jhubbard
-editor: MarkMcGeeAtAquent
-ms.reviewer: v-mamcge, jasonh, kfile, anshan
+services: time-series-insights
+author: ashannon7
+ms.author: anshan
+manager: cshankar
+ms.reviewer: v-mamcge, jasonh, kfile
 ms.devlang: csharp
 ms.workload: big-data
-ms.topic: article
-ms.date: 11/15/2017
-ms.openlocfilehash: 2c1b91fb87857eee8ca938be193b61e01bbdb886
-ms.sourcegitcommit: afc78e4fdef08e4ef75e3456fdfe3709d3c3680b
+ms.topic: conceptual
+ms.date: 04/09/2018
+ms.openlocfilehash: 30b83c54d314934f1de170955eec22e7b2a264b8
+ms.sourcegitcommit: 4de6a8671c445fae31f760385710f17d504228f8
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/16/2017
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39629747"
 ---
 # <a name="send-events-to-a-time-series-insights-environment-using-event-hub"></a>使用事件中樞將事件傳送至 Time Series Insights 環境
 本文說明如何建立和設定事件中樞，並執行應用程式範例以推送事件。 如果您現有的事件中樞內含 JSON 格式的事件，請跳過本教學課程，並在[時間序列深入解析](https://insights.timeseries.azure.com)檢視您的環境。
@@ -48,6 +48,18 @@ ms.lasthandoff: 11/16/2017
   ![選取 [共用存取原則]，然後按一下 [新增] 按鈕](media/send-events/shared-access-policy.png)  
 
   ![新增共用存取原則](media/send-events/shared-access-policy-2.png)  
+
+## <a name="add-time-series-insights-reference-data-set"></a>新增時間序列深入解析參考資料集 
+在 TSI 中使用參考資料與您的遙測資料內容關聯。  該內容會將意義新增到您的資料，讓您更輕鬆地篩選及彙總。  TSI 會在輸入階段聯結參考資料，且無法回溯聯結此資料。  因此，在新增具有資料的事件來源之前，請務必新增參考資料。  諸如位置或感應器類型等資料是有用的維度，您可以將其聯結至裝置/標記/感應器識別碼，以更輕鬆地配量及篩選。  
+
+> [!IMPORTANT]
+> 當您上傳歷史資料時，務必要設定參考資料集。
+
+在將歷史資料大量上傳至 TSI 時，請確定您已備妥參考資料。  請記住，如果該事件來源包含資料，則 TSI 會立即從已聯結的事件來源開始讀取。  等到您備妥參考資料之後才將事件來源聯結至 TSI 會很有幫助，特別是在該事件來源中有資料時。 或者，您也可以等到參考資料集備妥之後，才將資料推送至該事件來源。
+
+若要管理參考資料，在 TSI 總管中有 Web 式使用者介面，且有程式設計 C# API。 TSI 總管具有視覺化使用者體驗，可透過 JSON 或 CSV 格式上傳檔案或貼上現有的參考資料集。 您可以透過 API，視需要建置自訂應用程式。
+
+如需有關如何在時間序列深入解析中管理參考資料的詳細資訊，請參閱[參考資料文章](https://docs.microsoft.com/azure/time-series-insights/time-series-insights-add-reference-data-set)。
 
 ## <a name="create-time-series-insights-event-source"></a>建立 Time Series Insights 事件來源
 1. 如果您尚未建立事件來源，請遵循[這些指示](time-series-insights-how-to-add-an-event-source-eventhub.md)來建立事件來源。
@@ -143,7 +155,7 @@ namespace Microsoft.Rdx.DataGenerator
     "timestamp":"2016-01-08T01:08:00Z"
 }
 ```
-#### <a name="output---1-event"></a>輸出 - 1 個事件
+#### <a name="output---one-event"></a>輸出 - 一個事件
 
 |id|timestamp|
 |--------|---------------|
@@ -165,7 +177,7 @@ namespace Microsoft.Rdx.DataGenerator
     }
 ]
 ```
-#### <a name="output---2-events"></a>輸出 - 2 個事件
+#### <a name="output---two-events"></a>輸出 - 兩個事件
 
 |id|timestamp|
 |--------|---------------|
@@ -176,7 +188,7 @@ namespace Microsoft.Rdx.DataGenerator
 
 #### <a name="input"></a>輸入
 
-具有巢狀 JSON 陣列的 JSON 物件，此陣列中包含兩個 JSON 物件。
+具有巢狀 JSON 陣列的 JSON 物件，此陣列中包含兩個 JSON 物件：
 ```json
 {
     "location":"WestUs",
@@ -193,8 +205,8 @@ namespace Microsoft.Rdx.DataGenerator
 }
 
 ```
-#### <a name="output---2-events"></a>輸出 - 2 個事件
-請注意，系統會將「location」屬性複製到每個事件。
+#### <a name="output---two-events"></a>輸出 - 兩個事件
+請注意，系統會將 "location" 屬性複製到每個事件。
 
 |location|events.id|events.timestamp|
 |--------|---------------|----------------------|
@@ -236,12 +248,14 @@ namespace Microsoft.Rdx.DataGenerator
     ]
 }
 ```
-#### <a name="output---2-events"></a>輸出 - 2 個事件
+#### <a name="output---two-events"></a>輸出 - 兩個事件
 
 |location|manufacturer.name|manufacturer.location|events.id|events.timestamp|events.data.type|events.data.units|events.data.value|
 |---|---|---|---|---|---|---|---|
 |WestUs|manufacturer1|EastUs|device1|2016-01-08T01:08:00Z|pressure|psi|108.09|
 |WestUs|manufacturer1|EastUs|device2|2016-01-08T01:17:00Z|vibration|abs G|217.09|
+
+
 
 ## <a name="next-steps"></a>後續步驟
 > [!div class="nextstepaction"]

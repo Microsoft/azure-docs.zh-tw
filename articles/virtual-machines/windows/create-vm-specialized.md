@@ -1,11 +1,11 @@
 ---
-title: "從 Azure 中的特製化 VHD 建立 Windows VM | Microsoft Docs"
-description: "在 Resource Manager 部署模型中連結特製化受控磁碟作為 OS 磁碟，以建立新的 Windows VM。"
+title: 從 Azure 中的特製化 VHD 建立 Windows VM | Microsoft Docs
+description: 在 Resource Manager 部署模型中連結特製化受控磁碟作為 OS 磁碟，以建立新的 Windows VM。
 services: virtual-machines-windows
-documentationcenter: 
+documentationcenter: ''
 author: cynthn
 manager: jeconnoc
-editor: 
+editor: ''
 tags: azure-resource-manager
 ms.assetid: 3b7d3cd5-e3d7-4041-a2a7-0290447458ea
 ms.service: virtual-machines-windows
@@ -13,13 +13,14 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: article
-ms.date: 01/09/2017
+ms.date: 01/09/2018
 ms.author: cynthn
-ms.openlocfilehash: 578d31aef5ddeafbd806d0bae4231c135968f78a
-ms.sourcegitcommit: 71fa59e97b01b65f25bcae318d834358fea5224a
+ms.openlocfilehash: 34bfe7733c60337d6ab7d81c498d2fb0fd15e1fd
+ms.sourcegitcommit: 0c64460a345c89a6b579b1d7e273435a5ab4157a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2018
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43338481"
 ---
 # <a name="create-a-windows-vm-from-a-specialized-disk-using-powershell"></a>使用 PowerShell 從特製化磁碟建立 Windows 虛擬機器
 
@@ -40,13 +41,13 @@ ms.lasthandoff: 01/11/2018
 如果您使用 PowerShell，請確定您擁有最新版的 AzureRM.Compute PowerShell 模組。 
 
 ```powershell
-Install-Module AzureRM.Compute -RequiredVersion 2.6.0
+Install-Module AzureRM -RequiredVersion 6.0.0
 ```
 如需詳細資訊，請參閱 [Azure PowerShell 版本控制](/powershell/azure/overview)。
 
 ## <a name="option-1-use-an-existing-disk"></a>選項 1. 使用現有磁碟
 
-如果您已刪除虛擬機器，而想要重複使用 OS 磁碟建立新的虛擬機器，請使用 [Get-AzureRmDisk](/azure/powershell/get-azurermdisk)。
+如果您已刪除虛擬機器，而想要重複使用 OS 磁碟建立新的虛擬機器，請使用 [Get-AzureRmDisk](https://docs.microsoft.com/powershell/module/azurerm.compute/get-azurermdisk?view=azurermps-6.8.1)。
 
 ```powershell
 $resourceGroupName = 'myResourceGroup'
@@ -137,7 +138,7 @@ C:\Users\Public\Doc...  https://mystorageaccount.blob.core.windows.net/mycontain
 
 ### <a name="create-a-managed-disk-from-the-vhd"></a>從 VHD 建立受控磁碟
 
-使用 [New-AzureRMDisk](/powershell/module/azurerm.compute/new-azurermdisk)，從儲存體帳戶中的特製化 VHD 建立受控磁碟。 這個範例使用 **myOSDisk1** 作為磁碟名稱，將磁碟放入 *StandardLRS* 儲存體，並使用 *https://storageaccount.blob.core.windows.net/vhdcontainer/osdisk.vhd* 作為來源 VHD 的 URI。
+使用 [New-AzureRMDisk](/powershell/module/azurerm.compute/new-azurermdisk)，從儲存體帳戶中的特製化 VHD 建立受控磁碟。 此範例會使用 **myOSDisk1** 作為磁碟名稱，將磁碟 *Standard_LRS* 放入儲存體，並使用 *https://storageaccount.blob.core.windows.net/vhdcontainer/osdisk.vhd* 作為來源 VHD 的 URI。
 
 建立新 VM 的新資源群組。
 
@@ -153,7 +154,7 @@ New-AzureRmResourceGroup -Location $location `
 $sourceUri = (https://storageaccount.blob.core.windows.net/vhdcontainer/osdisk.vhd)
 $osDiskName = 'myOsDisk'
 $osDisk = New-AzureRmDisk -DiskName $osDiskName -Disk `
-    (New-AzureRmDiskConfig -AccountType StandardLRS  `
+    (New-AzureRmDiskConfig -AccountType Standard_LRS  `
     -Location $location -CreateOption Import `
     -SourceUri $sourceUri) `
     -ResourceGroupName $destinationResourceGroup
@@ -337,7 +338,7 @@ $vm = Add-AzureRmVMNetworkInterface -VM $vmConfig -Id $nic.Id
 使用 [Set-AzureRmVMOSDisk](/powershell/module/azurerm.compute/set-azurermvmosdisk) 將 OS 磁碟新增至組態。 這個範例將磁碟大小設定為 *128GB*，並附加受控磁碟作為 *Windows* OS 磁碟。
  
 ```powershell
-$vm = Set-AzureRmVMOSDisk -VM $vm -ManagedDiskId $osDisk.Id -StorageAccountType StandardLRS `
+$vm = Set-AzureRmVMOSDisk -VM $vm -ManagedDiskId $osDisk.Id -StorageAccountType Standard_LRS `
     -DiskSizeInGB 128 -CreateOption Attach -Windows
 ```
 
@@ -367,5 +368,5 @@ $vmList.Name
 ```
 
 ## <a name="next-steps"></a>後續步驟
-若要登入新的虛擬機器，請瀏覽至[入口網站](https://portal.azure.com)中的 VM，按一下 [連接] 並開啟遠端桌面 RDP 檔案。 使用原始虛擬機器的帳戶認證來登入新的虛擬機器。 如需詳細資訊，請參閱 [如何連接和登入執行 Windows 的 Azure 虛擬機器](connect-logon.md)。
+登入至新的虛擬機器。 如需詳細資訊，請參閱 [如何連接和登入執行 Windows 的 Azure 虛擬機器](connect-logon.md)。
 

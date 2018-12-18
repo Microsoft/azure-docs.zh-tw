@@ -1,23 +1,24 @@
 ---
-title: "設定 Azure Application Insights 的預覽喜好設定 | Microsoft Docs"
-description: "Azure Application Insights 開發小組推出新體驗。 您可以設定想要在 Azure 入口網站中預覽哪個新體驗。"
+title: 設定 Azure Application Insights 的預覽喜好設定 | Microsoft Docs
+description: Azure Application Insights 開發小組推出新體驗。 您可以設定想要在 Azure 入口網站中預覽哪個新體驗。
 services: application-insights
-documentationcenter: 
+documentationcenter: ''
 author: mrbullwinkle
 manager: carmonm
-ms.assetid: 
+ms.assetid: ''
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 06/01/2017
 ms.author: mbullwin
-ms.openlocfilehash: f39ed880003c6ead0e720b730e6b70a4287b5f3f
-ms.sourcegitcommit: e462e5cca2424ce36423f9eff3a0cf250ac146ad
+ms.openlocfilehash: 98081bc50696156f7b2e3da95889efb8db653807
+ms.sourcegitcommit: cc4fdd6f0f12b44c244abc7f6bc4b181a2d05302
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/01/2017
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47095145"
 ---
 # <a name="preview-upcoming-changes-to-azure-application-insights"></a>預覽 Azure Application Insights 的近期變更 
 

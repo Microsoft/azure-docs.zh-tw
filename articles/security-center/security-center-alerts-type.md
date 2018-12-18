@@ -1,11 +1,11 @@
 ---
-title: "Azure 資訊安全中心不同類型的安全性警示 | Microsoft Docs"
-description: "本文討論 Azure 資訊安全中心各種可用的安全性警示。"
+title: Azure 資訊安全中心不同類型的安全性警示 | Microsoft Docs
+description: 本文討論 Azure 資訊安全中心各種可用的安全性警示。
 services: security-center
 documentationcenter: na
-author: YuriDio
+author: terrylan
 manager: mbaldwin
-editor: 
+editor: ''
 ms.assetid: b3e7b4bc-5ee0-4280-ad78-f49998675af1
 ms.service: security-center
 ms.topic: hero-article
@@ -14,11 +14,12 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 02/21/2018
 ms.author: yurid
-ms.openlocfilehash: a5c95fc7ddf78987d8a7b135d54f359eb5c49946
-ms.sourcegitcommit: d1f35f71e6b1cbeee79b06bfc3a7d0914ac57275
+ms.openlocfilehash: 3337736ebcf31ec6aa75725c37e51b1c733f5d9d
+ms.sourcegitcommit: ca05dd10784c0651da12c4d58fb9ad40fdcd9b10
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/22/2018
+ms.lasthandoff: 05/03/2018
+ms.locfileid: "32778422"
 ---
 # <a name="understanding-security-alerts-in-azure-security-center"></a>了解 Azure 資訊安全中心的安全性警示
 本文可協助您了解 Azure 資訊安全中心各種可用的安全性警示和相關深入資訊的類型。 如需如何管理警示和事件的詳細資訊，請參閱[管理及回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md)。

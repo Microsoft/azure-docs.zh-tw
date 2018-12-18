@@ -1,8 +1,8 @@
 ---
-title: "檢視 Azure 活動記錄以監視資源 | Microsoft Docs"
-description: "使用活動記錄檢閱使用者動作和錯誤。 顯示 Azure 入口網站 PowerShell、Azure CLI 和 REST。"
+title: 檢視 Azure 活動記錄以監視資源 | Microsoft Docs
+description: 使用活動記錄檢閱使用者動作和錯誤。 顯示 Azure 入口網站 PowerShell、Azure CLI 和 REST。
 services: azure-resource-manager
-documentationcenter: 
+documentationcenter: ''
 author: tfitzmac
 manager: timlt
 editor: tysonn
@@ -11,16 +11,18 @@ ms.service: azure-resource-manager
 ms.workload: multiple
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 01/09/2017
+ms.topic: conceptual
+ms.date: 04/04/2018
 ms.author: tomfitz
-ms.openlocfilehash: fb6fb3f7172673be70b1a6dcfd77e42cd982e248
-ms.sourcegitcommit: 059dae3d8a0e716adc95ad2296843a45745a415d
+ms.openlocfilehash: 2dcf93a635a8eb0a01ec266d2478b6e5a336ec00
+ms.sourcegitcommit: b6319f1a87d9316122f96769aab0d92b46a6879a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 05/20/2018
+ms.locfileid: "34358688"
 ---
 # <a name="view-activity-logs-to-audit-actions-on-resources"></a>檢視活動記錄以稽核對資源的動作
+
 透過活動記錄檔，您可以判斷︰
 
 * 訂用帳戶的資源在進行哪些作業
@@ -29,7 +31,7 @@ ms.lasthandoff: 02/09/2018
 * 作業的狀態
 * 其他可能協助您研究作業的屬性值
 
-活動記錄包含在您的資源上執行的所有寫入作業 (PUT、POST、DELETE)。 不包含讀取作業 (GET)。 如需資源動作的清單，請參閱 [Azure Resource Manager 資源提供者作業](../active-directory/role-based-access-control-resource-provider-operations.md)。 您可以使用稽核記錄檔在進行疑難排解時發現錯誤，或是監視貴組織使用者修改資源的方式。
+活動記錄包含在您的資源上執行的所有寫入作業 (PUT、POST、DELETE)。 不包含讀取作業 (GET)。 如需資源動作的清單，請參閱 [Azure Resource Manager 資源提供者作業](../role-based-access-control/resource-provider-operations.md)。 您可以使用稽核記錄檔在進行疑難排解時發現錯誤，或是監視貴組織使用者修改資源的方式。
 
 活動記錄檔會保留 90 天。 您可以查詢任何的日期範圍，只要開始日期不是在過去 90 天以前。
 
@@ -38,6 +40,7 @@ ms.lasthandoff: 02/09/2018
 您可以透過入口網站、PowerShell、Azure CLI、Insights REST API 或 [Insights .NET Library](https://www.nuget.org/packages/Microsoft.Azure.Insights/)擷取活動記錄檔中的資訊。
 
 ## <a name="portal"></a>入口網站
+
 1. 若要透過入口網站檢視活動記錄，請選取 [監視]。
    
     ![檢視活動記錄檔](./media/resource-group-audit/select-monitor.png)
@@ -68,6 +71,7 @@ ms.lasthandoff: 02/09/2018
     ![檢視作業](./media/resource-group-audit/view-operation.png)  
 
 ## <a name="powershell"></a>PowerShell
+
 1. 若要擷取記錄檔項目，請執行 **Get-AzureRmLog** 命令。 您可提供額外的參數來篩選項目清單。 如果未指定開始和結束時間，則會傳回最後一個小時的項目。 例如，若要在過去一小時執行期間擷取資源群組的作業：
 
   ```powershell
@@ -136,20 +140,23 @@ ms.lasthandoff: 02/09/2018
 
 
 ## <a name="azure-cli"></a>Azure CLI
-* 若要擷取記錄檔項目，您可執行 **azure group log show** 命令。
+
+若要取出記錄項目，請執行 [az monitor activity-log list](/cli/azure/monitor/activity-log#az-monitor-activity-log-list) 命令。
 
   ```azurecli
-  azure group log show ExampleGroup --json
+  az monitor activity-log list --resource-group <group name>
   ```
 
 
 ## <a name="rest-api"></a>REST API
+
 可用來處理活動記錄檔的 REST 作業屬於 [Insights REST API](https://msdn.microsoft.com/library/azure/dn931943.aspx)的一部分。 若要擷取活動記錄檔事件，請參閱 [列出訂用帳戶中的管理事件](https://msdn.microsoft.com/library/azure/dn931934.aspx)。
 
 ## <a name="next-steps"></a>後續步驟
+
 * Azure 活動記錄檔可以搭配 Power BI 用來更深入了解訂用帳戶中的動作。 請參閱 [在 Power BI 和其他工具中檢視和分析 Azure 活動記錄檔](https://azure.microsoft.com/blog/analyze-azure-audit-logs-in-powerbi-more/)。
-* 如要了解如何設定安全性原則，請參閱 [Azure 角色型存取控制](../active-directory/role-based-access-control-configure.md)。
+* 如要了解如何設定安全性原則，請參閱 [Azure 角色型存取控制](../role-based-access-control/role-assignments-portal.md)。
 * 若要深入了解檢視部署作業的命令，請參閱[檢視部署作業](resource-manager-deployment-operations.md)。
 * 若要了解如何防止刪除所有使用者的資源，請參閱 [使用 Azure Resource Manager 鎖定資源](resource-group-lock-resources.md)。
-* 若要查看每個 Microsoft Azure Resource Manager 提供者可用的作業清單，請參閱 [Azure Resource Manager 資源提供者作業](~/articles/active-directory/role-based-access-control-resource-provider-operations.md)
+* 若要查看每個 Microsoft Azure Resource Manager 提供者可用的作業清單，請參閱 [Azure Resource Manager 資源提供者作業](../role-based-access-control/resource-provider-operations.md)
 

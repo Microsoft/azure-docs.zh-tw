@@ -1,4 +1,26 @@
-
+---
+title: 包含檔案
+description: 包含檔案
+services: active-directory
+documentationcenter: dev-center-name
+author: jmprieur
+manager: mtillman
+editor: ''
+ms.service: active-directory
+ms.devlang: na
+ms.topic: include
+ms.tgt_pltfrm: na
+ms.workload: identity
+ms.date: 09/17/2018
+ms.author: jmprieur
+ms.custom: include file
+ms.openlocfilehash: fb521fc9d4927a953cdd66948101969dfc102de4
+ms.sourcegitcommit: 6f59cdc679924e7bfa53c25f820d33be242cea28
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48843542"
+---
 ## <a name="register-your-application"></a>註冊您的應用程式
 您可以使用兩種方式之一來註冊您的應用程式。
 

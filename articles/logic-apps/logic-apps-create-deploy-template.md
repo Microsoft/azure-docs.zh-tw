@@ -2,24 +2,20 @@
 title: 建立 Azure Logic Apps 的部署範本 | Microsoft Docs
 description: 建立用來部署邏輯應用程式的 Azure Resource Manager 範本
 services: logic-apps
-documentationcenter: .net,nodejs,java
-author: ecfan
-manager: SyntaxC4
-editor: ''
-ms.assetid: 85928ec6-d7cb-488e-926e-2e5db89508ee
 ms.service: logic-apps
-ms.devlang: multiple
+ms.suite: integration
+author: ecfan
+ms.author: estfan
+ms.reviewer: klam, LADocs
 ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: integration
-ms.custom: H1Hack27Feb2017
+ms.assetid: 85928ec6-d7cb-488e-926e-2e5db89508ee
 ms.date: 10/18/2016
-ms.author: LADocs; estfan
-ms.openlocfilehash: 91d93a02bb9bf48c5bda0304c9d3d52c22e30209
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: 393543bbb1891e14ed67487aff26a7bda1eebcd5
+ms.sourcegitcommit: f3bd5c17a3a189f144008faf1acb9fabc5bc9ab7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/10/2018
+ms.locfileid: "44304232"
 ---
 # <a name="create-azure-resource-manager-templates-for-deploying-logic-apps"></a>建立用來部署邏輯應用程式的 Azure Resource Manager 範本
 
@@ -177,7 +173,7 @@ Visual Studio 工具產生的有效部署範本，可以在任何訂用帳戶或
 
 ## <a name="deploy-a-logic-app-template"></a>部署邏輯應用程式範本
 
-您可以使用任何工具部署範本，例如 PowerShell、REST API、[Visual Studio Team Services Release Management](#team-services)，以及透過 Azure 入口網站進行範本部署。
+您可以使用任何工具部署範本，例如 PowerShell、REST API、[Azure DevOps Release Management](#team-services)，以及透過 Azure 入口網站進行範本部署。
 此外，為了儲存參數的值，我們也建議您建立[參數檔](../azure-resource-manager/resource-group-template-deploy.md#parameter-files)。
 了解如何[使用 Azure Resource Manager 範本和 PowerShell 部署資源](../azure-resource-manager/resource-group-template-deploy.md)或[使用 Azure Resource Manager 範本和 Azure 入口網站部署資源](../azure-resource-manager/resource-group-template-deploy-portal.md)。
 
@@ -189,13 +185,13 @@ Visual Studio 工具產生的有效部署範本，可以在任何訂用帳戶或
 在 GitHub 上的 [LogicAppConnectionAuth](https://github.com/logicappsio/LogicAppConnectionAuth) 專案下方有一個範例指令碼。
 
 <a name="team-services"></a>
-## <a name="visual-studio-team-services-release-management"></a>Visual Studio Team Services Release Management
+## <a name="azure-devops-release-management"></a>Azure DevOps Release Management
 
-有一個適用於部署和管理環境的常見案例是，搭配使用 Visual Studio Team Services 中 Release Management 之類的工具與邏輯應用程式部署範本。 Visual Studio Team Services 包含可加入至任何組建或版本管線的 [部署 Azure 資源群組](https://github.com/Microsoft/vsts-tasks/tree/master/Tasks/DeployAzureResourceGroup) 工作。 您必須擁有 [服務主體](https://blogs.msdn.microsoft.com/visualstudioalm/2015/10/04/automating-azure-resource-group-deployment-using-a-service-principal-in-visual-studio-online-buildrelease-management/) 才能授權部署，而後可以產生版本定義。
+部署和管理環境的常見案例，是搭配使用 Azure DevOps 中的 Release Management 之類的工具與邏輯應用程式部署範本。 Azure DevOps 包含可新增至任何組建或發行管線的[部署 Azure 資源群組](https://github.com/Microsoft/vsts-tasks/tree/master/Tasks/DeployAzureResourceGroup)工作。 您必須擁有[服務主體](https://blogs.msdn.microsoft.com/visualstudioalm/2015/10/04/automating-azure-resource-group-deployment-using-a-service-principal-in-visual-studio-online-buildrelease-management/)才能授權部署，進而能夠產生發行管線。
 
-1. 在 Release Management 中，選取 [空白]，如此就能建立空白的定義。
+1. 在 Release Management 中，選取 [空白]，如此就能建立空白的管線。
 
-    ![建立空白定義][1]
+    ![建立空管線][1]
 
 2. 選擇此定義所需的任何資源，很可能會包含手動產生或在建置流程中產生的邏輯應用程式範本。
 3. 新增 [Azure 資源群組部署]  工作。

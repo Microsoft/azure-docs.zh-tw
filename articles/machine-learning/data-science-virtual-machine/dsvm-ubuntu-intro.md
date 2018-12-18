@@ -3,26 +3,27 @@ title: 在 Azure 上佈建 Linux (Ubuntu) 資料科學虛擬機器 | Microsoft D
 description: 在 Azure 上設定和建立 Linux (Ubuntu) 適用的資料科學虛擬機器以進行分析和機器學習服務。
 services: machine-learning
 documentationcenter: ''
-author: bradsev
+author: gopitk
+ms.author: gokuma
 manager: cgronlun
-editor: cgronlun
 ms.assetid: 3bab0ab9-3ea5-41a6-a62a-8c44fdbae43b
 ms.service: machine-learning
+ms.component: data-science-vm
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 03/16/2018
-ms.author: bradsev
-ms.openlocfilehash: 721b18845a3b839d59c7eb0a04646635fa8d9fe7
-ms.sourcegitcommit: a36a1ae91968de3fd68ff2f0c1697effbb210ba8
+ms.openlocfilehash: d9008956d3a5542d71438ee13050a3951230e101
+ms.sourcegitcommit: 0c64460a345c89a6b579b1d7e273435a5ab4157a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/17/2018
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43338802"
 ---
 # <a name="provision-the-data-science-virtual-machine-for-linux-ubuntu"></a>佈建適用於 Linux (Ubuntu) 的資料科學虛擬機器
 
-適用於 Linux 的資料科學虛擬機器是以 Ubuntu 為基礎的虛擬機器映像，可幫助您在 Azure 上輕鬆展開深入學習。 深入學習工具包含：
+適用於 Linux 的資料科學虛擬機器是以 Ubuntu 為基礎的虛擬機器映像，可幫助您在 Azure 上輕鬆展開機器學習，包括深度學習。 深入學習工具包含：
 
   * [Caffe](http://caffe.berkeleyvision.org/)︰一種深入學習架構，講求速度、表現度及模組化
   * [Caffe2](https://github.com/caffe2/caffe2)：Caffe 的跨平台版本
@@ -31,6 +32,7 @@ ms.lasthandoff: 03/17/2018
   * [Keras](https://keras.io/)：以 Python 撰寫且適用於 Theano 和 TensorFlow 的高層級類神經網路 API
   * [MXNet](http://mxnet.io/)：彈性、有效率的深入學習程式庫，包含許多語言繫結
   * [NVIDIA DIGITS](https://developer.nvidia.com/digits)：一種圖形化系統，可簡化常見的深入學習工作
+  * [PyTorch](http://pytorch.org/)：高層級的 Python 程式庫，支援動態網路
   * [TensorFlow](https://www.tensorflow.org/)︰Google 提供的機器智慧開放原始碼程式庫
   * [Theano](http://deeplearning.net/software/theano/)：一種 Python 程式庫，可定義、最佳化和有效地評估涉及多維陣列的數學運算式
   * [Torch](http://torch.ch/)︰廣泛支援機器學習演算法的科學運算架構
@@ -51,7 +53,7 @@ ms.lasthandoff: 03/17/2018
 * 機器學習工具
   * [Vowpal Wabbit](https://github.com/JohnLangford/vowpal_wabbit)︰快速的機器學習系統，支援像是線上、雜湊，allreduce、簡化、learning2search、主動和互動式學習的技術
   * [XGBoost](https://xgboost.readthedocs.org/en/latest/)︰提供快速且正確的推進式決策樹實作的工具
-  * [Rattle](http://rattle.togaware.com/)︰一種圖形化工具，可幫助您輕鬆地開始使用 R 中的資料分析和機器學習
+  * [Rattle](https://togaware.com/rattle/)︰一種圖形化工具，可幫助您輕鬆地開始使用 R 中的資料分析和機器學習
   * [LightGBM](https://github.com/Microsoft/LightGBM)︰快速、分散式的高效能漸層提升架構
 * Java、Python、node.js、Ruby、PHP 中的 Azure SDK
 * R 和 Python 語言的程式庫，可用於 Azure Machine Learning 和其他 Azure 服務
@@ -61,8 +63,8 @@ ms.lasthandoff: 03/17/2018
 執行資料科學涉及反覆進行一連串的工作︰
 
 1. 尋找、載入和前置處理資料
-2. 建置和測試模型
-3. 部署要在智慧型應用程式中使用的模型
+1. 建置和測試模型
+1. 部署要在智慧型應用程式中使用的模型
 
 資料科學家使用各種工具來完成這些工作。 尋找適當版本的軟體然後下載、編譯並安裝這些版本是相當耗費時間的工作。
 
@@ -73,46 +75,49 @@ Linux 適用的資料科學虛擬機器可以大幅減輕這樣的負擔。 使�
 ## <a name="other-versions-of-the-data-science-virtual-machine"></a>其他版本的資料科學虛擬機器
 另提供 [CentOS](linux-dsvm-intro.md) 映像，其中包含許多與 Ubuntu 映像相同的工具。 亦提供 [Windows](provision-vm.md) 映像。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 您必須先具有 Azure 訂用帳戶，才可以建立 Linux 適用的資料科學虛擬機器。 若要取得訂用帳戶，請參閱[取得 Azure 免費試用](https://azure.microsoft.com/free/)。
 
 ## <a name="create-your-data-science-virtual-machine-for-linux"></a>建立 Linux 適用的資料科學虛擬機器
 建立 Linux 適用的資料科學虛擬機器執行個體的步驟如下：
 
-1. 瀏覽至 [Azure 入口網站](https://portal.azure.com/#create/microsoft-ads.linux-data-science-vm-ubuntulinuxdsvmubuntu)上的虛擬機器清單。
-2. 按一下底部的 [建立] 以進入 wizard.![configure-data-science-vm](./media/dsvm-ubuntu-intro/configure-data-science-virtual-machine.png)
-3. 下列各節提供精靈中每個步驟 (列舉於上圖的右邊) 的輸入，可用來建立 Microsoft 資料科學虛擬機器。 以下是設定每個步驟所需的輸入：
+1. 瀏覽至 [Azure 入口網站](https://portal.azure.com/#create/microsoft-dsvm.linux-data-science-vm-ubuntulinuxdsvmubuntu)上的虛擬機器清單。 如果您還沒登入，則系統會提示您登入 Azure 帳戶。 
+1. 按一下底部的 [建立] 以進入 wizard.![configure-data-science-vm](./media/dsvm-ubuntu-intro/configure-data-science-virtual-machine.png)
+1. 下列各節提供精靈中每個步驟 (列舉於上圖的右邊) 的輸入，可用來建立 Microsoft 資料科學虛擬機器。 以下是設定每個步驟所需的輸入：
    
    a. **基本**：
    
    * **名稱**：您建立的資料科學伺服器名稱。
+   * **VM 磁碟類型**：如果您偏好固態硬碟 (SSD)，請選擇 [進階 SSD]。 否則請選擇 [標準 HDD]。 
    * **使用者名稱**：第一個帳戶登入識別碼。
    * **密碼**︰第一個帳戶密碼 (您可以使用 SSH 公開金鑰來代替密碼)。
    * **訂用帳戶**：如果您有多個訂用帳戶，請選取要用來建立機器和開立帳單的訂用帳戶。 您必須有此訂用帳戶的資源建立權限。
    * **資源群組**：您可以建立新群組或使用現有的群組。
    * **位置**：選取最適合的資料中心。 它通常是擁有您大部分資料的資訊中心，或是最接近您實際位置可進行最快速網路存取的資料中心。
    
-   b. ：
+   b. **大小**：
    
-   * 選取其中一個符合您的功能性需求和成本條件約束的伺服器類型。 選取 [檢視全部]  以查看更多 VM 大小的選項。 針對 GPU 訓練選取一個 NC 類別的 VM。
+   * 選取其中一個符合您的功能性需求和成本條件約束的伺服器類型。 針對 GPU 型 VM 執行個體，選取一個 NC 或 ND 類別的 VM。 [依區域提供的產品](https://azure.microsoft.com/global-infrastructure/services/)頁面會列出使用 GPU 的區域。
    
    c. **設定**：
    
-   * **磁碟類型**：如果您偏好固態硬碟 (SSD)，請選擇 [進階]。 否則請選擇 [標準]。 GPU VM 需要標準磁碟。
-   * **儲存體帳戶**：您可以在訂用帳戶中建立新的 Azure 儲存體帳戶，或使用在精靈的**基本**步驟上選擇的相同位置中的現有儲存體帳戶。
-   * **其他參數**：在大部分情況下只會使用預設值。 若考慮使用非預設值，可將滑鼠停留在特定欄位的資訊連結上以取得說明。
+   * 在大部分情況下，您可以只使用預設值。 若考慮使用非預設值，可將滑鼠停留在特定欄位的資訊連結上以取得說明。
    
    d. **摘要**：
    
-   * 請確認您輸入的所有資訊都正確無誤。
+   * 請確認您輸入的所有資訊都正確無誤。 系統會提供使用規定的連結。 VM 除了計算您在 [大小]  步驟中所選擇的伺服器大小之外，不會收取任何其他費用。 若要開始佈建，請按一下 [建立]。 
    
-   e. ：
-   
-   * 若要開始佈建，按一下 [購買] 。 會提供一個交易條款的連結。 VM 除了計算您在 [大小]  步驟中所選擇的伺服器大小之外，不會收取任何其他費用。
-
-佈建大約 5-10 分鐘。 在 Azure 入口網站中會顯示佈建的狀態。
+佈建大約需要 5 分鐘。 在 Azure 入口網站中會顯示佈建的狀態。
 
 ## <a name="how-to-access-the-data-science-virtual-machine-for-linux"></a>如何存取 Linux 適用的資料科學虛擬機器
+
+您可以使用三種方法存取 Ubuntu DSVM：
+1. SSH (如果是終端機工作階段)
+1. X2Go (如果是圖形化工作階段)
+1. JupyterHub 和 JupyterLab (如果是 Jupyter 筆記本)
+
+### <a name="ssh"></a>SSH
+
 建立 VM 之後，您就可以使用 SSH 登入。 針對文字殼層介面，使用您在步驟 3 的 **基本** 區段中建立的帳戶認證。 在 Windows 上，您可以下載 SSH 用戶端工具，例如 [Putty](http://www.putty.org)。 如果您偏好圖形化桌面 (X Windows 系統)，您可以在 Putty 上使用 X11 轉寄或安裝 X2Go 用戶端。
 
 > [!NOTE]
@@ -120,11 +125,11 @@ Linux 適用的資料科學虛擬機器可以大幅減輕這樣的負擔。 使�
 > 
 > 
 
-## <a name="installing-and-configuring-x2go-client"></a>安裝和設定 X2Go 用戶端
+### <a name="x2go"></a>X2Go
 Linux VM 已經佈建了 X2Go 伺服器，並準備接受用戶端連接。 若要連線到 Linux VM 圖形化桌面，請在用戶端上完成下列程序：
 
 1. 從 [X2Go](http://wiki.x2go.org/doku.php/doc:installation:x2goclient)下載並安裝您用戶端平台適用的 X2Go 用戶端。    
-2. 執行 X2Go 用戶端，然後選取 [新增工作階段] 。 會開啟具有多個索引標籤的組態視窗。 輸入下列組態參數︰
+1. 執行 X2Go 用戶端，然後選取 [新增工作階段] 。 會開啟具有多個索引標籤的組態視窗。 輸入下列組態參數︰
    * **[工作階段] 索引標籤**：
      * **主機**︰Linux 資料科學 VM 的主機名稱或 IP 位址。
      * **登入**︰Linux VM 上的使用者名稱。
@@ -134,6 +139,14 @@ Linux VM 已經佈建了 X2Go 伺服器，並準備接受用戶端連接。 若�
    * **共用資料夾**︰如果您想要用戶端機器的目錄掛接在 Linux VM 上，請在此索引標籤上加入要與 VM 分享的目錄。
 
 當您透過 X2Go 用戶端使用 SSH 用戶端或 XFCE 圖形化桌面登入 VM 之後，便可開始使用已安裝並設定於 VM 上的工具。 在 XFCE 上，您可以看到許多工具的應用程式功能表捷徑和桌面圖示。
+
+### <a name="jupyterhub-and-jupyterlab"></a>JupyterHub 和 JupyterLab
+
+Ubuntu DSVM 執行 [JupyterHub](https://github.com/jupyterhub/jupyterhub)，這是一個多使用者的 Jupyter 伺服器。 若要連線，請在您的膝上型電腦或桌上型電腦瀏覽至 https://your-vm-ip:8000，輸入您用來建立 VM 的使用者名稱和密碼，然後登入。 有許多範例筆記本可供您瀏覽和嘗試。
+
+也提供 JupyterLab (新一代的 Jupyter 筆記本) 與 JupyterHub。 若要存取，請登入 JupyterHub，然後瀏覽至 URL https://your-vm-ip:8000/user/your-username/lab。 您可以在 /etc/jupyterhub/jupyterhub_config.py 中加入下面這一行，設定 JupyterLab 為預設的筆記本伺服器：
+
+    c.Spawner.default_url = '/lab'
 
 ## <a name="tools-installed-on-the-data-science-virtual-machine-for-linux"></a>適用於 Linux 的資料科學虛擬機器上所安裝的工具
 ### <a name="deep-learning-libraries"></a>深入學習程式庫
@@ -159,7 +172,7 @@ Caffe2 是來自 Facebook (以 Caffe 為基礎而建置) 的深入學習架構�
 您可以在 JupyterHub 找到一些範例筆記本。
 
 #### <a name="h2o"></a>H2O
-H2O 是快速、記憶體內的分散式機器學習和預測性分析平台。 Python 封裝同時安裝於根環境和 py35 Anaconda 環境中。 同時也會安裝 R 封裝。 若要從命令列啟動 H2O，請執行 `java -jar /dsvm/tools/h2o/current/h2o.jar`；有各種您可能會想要設定的[命令列選項](http://docs.h2o.ai/h2o/latest-stable/h2o-docs/starting-h2o.html#from-the-command-line) \(英文\)。 可以瀏覽至 http://localhost:54321 存取 Flow Web UI，以便開始。 您也可以在 JupyterHub 找到範例筆記本。
+H2O 是快速、記憶體內的分散式機器學習和預測性分析平台。 Python 封裝同時安裝於根環境和 py35 Anaconda 環境中。 同時也會安裝 R 封裝。 若要從命令列啟動 H2O，請執行 `java -jar /dsvm/tools/h2o/current/h2o.jar`；有各種您可能會想要設定的[命令列選項](http://docs.h2o.ai/h2o/latest-stable/h2o-docs/starting-h2o.html#from-the-command-line) \(英文\)。 可以瀏覽至 http://localhost:54321 存取 Flow Web UI 以開始使用。 您也可以在 JupyterHub 找到範例筆記本。
 
 #### <a name="keras"></a>Keras
 Keras 是以 Python 撰寫的高層級類神經網路 API，可在 TensorFlow 或 Theano 上執行。 它位於根環境和 py35 Python 環境中。 
@@ -193,35 +206,37 @@ R 是其中一種最受歡迎的資料分析和機器學習語言。 如果您�
 如果您想要的話，另外也會有 R 指令碼讓您安裝[最熱門的 20 個 R 套件](http://www.kdnuggets.com/2015/06/top-20-r-packages.html)。 當您位於 R 互動式介面 (在殼層中輸入 **R** (如上所述)，即可進入) 時，就可以執行這個指令碼。  
 
 ### <a name="python"></a>Python
-為了能夠使用 Python 進行開發，我們已安裝了 Anaconda Python 散佈 2.7 與 3.5。 這個散發套件包含基本的 Python 以及大約 300 個最受歡迎的數學運算、工程設計和資料分析封裝。 您可以使用預設的文字編輯器。 此外，您也可以使用 Spyder，這是與 Anaconda Python 散發套件配套的 Python IDE。 Spyder 需要圖形化桌面或 X11 轉寄。 圖形化桌面中提供了 Spyder 的捷徑。
+Anaconda Python 是隨著 Python 2.7 和 3.5 環境一起安裝。 2.7 環境稱為 _root_，而 3.5 環境稱為 _py35_。 這個散發套件包含基本的 Python 以及大約 300 個最受歡迎的數學運算、工程設計和資料分析封裝。 
 
-由於我們有 Python 2.7 和 3.5，您必須明確啟動您想要在目前工作階段中使用的 Python 版本 (conda 環境)。 啟動程序會將 PATH 變數設定為所需的 Python 版本。
+py35 環境是預設環境。 啟用 root (2.7) 環境：
 
-若要啟用 Python 2.7 conda 環境，請從殼層執行下列命令：
+    source activate root
 
-    source /anaconda/bin/activate root
+再次啟用 py35 環境：
 
-Python 2.7 安裝於「/anaconda/bin」 。
+    source activate py35
 
-若要啟用 Python 3.5 conda 環境，從殼層執行下列命令：
+若要叫用 Python 互動式工作階段，只需在殼層中輸入 **python** 。 
 
-    source /anaconda/bin/activate py35
+使用 ```conda``` 或 ````pip```` 安裝其他 Python 程式庫。 對於 pip，如果您不想要預設值，請先啟用正確的環境：
 
+    source activate root
+    pip install <package>
 
-Python 3.5 安裝於 */anaconda/envs/py35/bin*上。
+或指定 pip 的完整路徑：
 
-若要叫用 Python 互動式工作階段，只需在殼層中輸入 **python** 。 如果您位於圖形化介面，或已設定 X11 轉寄，則可輸入 **pycharm** 來啟動 PyCharm Python IDE。
+    /anaconda/bin/pip install <package>
+    
+對於 conda，您一律要指定環境名稱 (_py35_ 或 _root_)：
 
-若要安裝其他的 Python 程式庫，您需要在 sudo 底下執行 ```conda``` 或 ````pip```` 命令，並提供 Python 套件管理員的完整路徑 (conda 或 pip) 以安裝到正確的 Python 環境。 例如︰
+    conda install <package> -n py35
 
-    sudo /anaconda/bin/pip install -n <package> #for Python 2.7 environment
-    sudo /anaconda/envs/py35/bin/pip install -n <package> # for Python 3.5 environment
-
+如果您位於圖形化介面，或已設定 X11 轉寄，則可輸入 **pycharm** 來啟動 PyCharm Python IDE。 您可以使用預設的文字編輯器。 此外，您也可以使用 Spyder，這是與 Anaconda Python 散發套件配套的 Python IDE。 Spyder 需要圖形化桌面或 X11 轉寄。 圖形化桌面中提供了 Spyder 的捷徑。
 
 ### <a name="jupyter-notebook"></a>Jupyter 筆記本
 Jupyter Notebook 中也隨附 Anaconda 散發套件，這是一個共用程式碼與分析的環境。 Jupyter 筆記本是透過 JupyterHub 來存取。 您可以使用本機 Linux 使用者名稱和密碼來登入。
 
-Jupyter 筆記本伺服器已使用 Python 2、Python 3 及 R 核心進行預先設定。 有一個名為「Jupyter 筆記本」的桌面圖示可以啟動瀏覽器來存取 Notebook 伺服器。 如果您是透過 SSH 或 X2Go 用戶端進入 VM，您也可以造訪 [https://localhost:8000/](https://localhost:8000/) 來存取 Jupyter 筆記本伺服器。
+Jupyter 筆記本伺服器已使用 Python 2、Python 3 及 R 核心進行預先設定。 有一個名為「Jupyter 筆記本」的桌面圖示可以啟動瀏覽器來存取 Notebook 伺服器。 如果您透過 SSH 或 X2Go 用戶端進入 VM，則也可以造訪 [https://localhost:8000/](https://localhost:8000/) 來存取 Jupyter 筆記本伺服器。
 
 > [!NOTE]
 > 如果您收到任何憑證警告，請繼續。
@@ -396,16 +411,16 @@ Rattle (**R** **A**nalytical **T**ool **T**o **L**earn **E**asily) 會使用 GUI
 > 
 
 1. 按一下 [Execute (執行)] 。
-2. 隨即會顯示對話方塊，詢問您是否要使用範例天氣資料集。 按一下 [是]  載入範例。
-3. 按一下 [模型]  索引標籤。
-4. 按一下 [執行]  建立決策樹。
-5. 按一下 [繪圖]  顯示決策樹。
-6. 按一下 [樹系] 選項按鈕，然後按一下 [執行] 建置隨機樹系。
-7. 按一下 [評估]  索引標籤。
-8. 按一下 [風險] 選項按鈕，然後按一下 [執行] 顯示兩個風險 (累積) 效能繪圖。
-9. 按一下 [記錄檔] 索引標籤，顯示針對先前作業產生的 R 程式碼。
+1. 隨即會顯示對話方塊，詢問您是否要使用範例天氣資料集。 按一下 [是]  載入範例。
+1. 按一下 [模型]  索引標籤。
+1. 按一下 [執行]  建立決策樹。
+1. 按一下 [繪圖]  顯示決策樹。
+1. 按一下 [樹系] 選項按鈕，然後按一下 [執行] 建置隨機樹系。
+1. 按一下 [評估]  索引標籤。
+1. 按一下 [風險] 選項按鈕，然後按一下 [執行] 顯示兩個風險 (累積) 效能繪圖。
+1. 按一下 [記錄檔] 索引標籤，顯示針對先前作業產生的 R 程式碼。
    (由於目 Rattle 版本中的錯誤，您必須在記錄檔的文字中，於 *Export this log ...* 前面插入 *#* 字元。)
-10. 按一下 [匯出] 按鈕，將名為 weather_script.R 的 R 指令碼檔案儲存到主資料夾。
+1. 按一下 [匯出] 按鈕，將名為 weather_script.R 的 R 指令碼檔案儲存到主資料夾。
 
 您可以結束 Rattle 和 R。現在您可以修改產生的 R 指令碼，或照原樣使用它，隨時執行，以便重複執行在 Rattle UI 中完成的所有動作。 這是特別適合 R 初學者的簡單方式，讓他們得以在簡單的圖形介面中快速進行分析和機器學習，同時自動產生 R 程式碼來修改及/或學習。
 
@@ -414,6 +429,6 @@ Rattle (**R** **A**nalytical **T**ool **T**o **L**earn **E**asily) 會使用 GUI
 
 * [適用於 Linux 的資料科學虛擬機器上的資料科學](linux-dsvm-walkthrough.md)逐步解說示範如何使用此處佈建的 Linux 資料科學 VM 來執行數個常見的資料科學工作。 
 * 試試本文中所述的工具，在資料科學 VM 上探索各種資料科學工具。 您也可以在虛擬機器內的殼層上執行 *dsvm-more-info* ，以獲得關於 VM 上所安裝工具的基本簡介和詳細資訊的指標。  
-* 了解如何使用 [Team Data Science Process](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/)，以系統化方式建置端對端分析方案。
-* 請造訪 [Cortana Analytics Gallery](http://gallery.cortanaanalytics.com) ，以取得使用 Cortana Analytics Suite 的機器學習和資料分析範例。
+* 了解如何使用 [Team Data Science Process](http://aka.ms/tdsp)，以系統化方式建置端對端分析方案。
+* 瀏覽 [Azure AI 資源庫](https://gallery.azure.ai/)，可取得使用 Azure AI 服務的機器學習和資料分析範例。
 

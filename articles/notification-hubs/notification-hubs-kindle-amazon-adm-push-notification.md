@@ -1,37 +1,48 @@
 ---
-title: "開始使用適用於 Kindle 應用程式的 Azure 通知中樞 | Microsoft Docs"
-description: "在本教學課程中，您會了解如何使用 Azure 通知中樞將推播通知傳送至 Kindle 應用程式。"
+title: 使用 Azure 通知中樞將通知推送至 Kindle 應用程式 | Microsoft Docs
+description: 在本教學課程中，您會了解如何使用 Azure 通知中樞將推播通知傳送至 Kindle 應用程式。
 services: notification-hubs
-documentationcenter: 
-author: ysxu
-manager: erikre
-editor: 
+documentationcenter: ''
+author: dimazaid
+manager: kpiteira
+editor: spelluru
 ms.assetid: 346fc8e5-294b-4e4f-9f27-7a82d9626e93
 ms.service: notification-hubs
 ms.workload: mobile
 ms.tgt_pltfrm: mobile-kindle
 ms.devlang: Java
-ms.topic: hero-article
-ms.date: 06/29/2016
-ms.author: yuaxu
-ms.openlocfilehash: 7206f152ed7270abc62536a9ee164f7227833bcc
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.topic: tutorial
+ms.custom: mvc
+ms.date: 04/14/2018
+ms.author: dimazaid
+ms.openlocfilehash: 41319ba446994da1669e58e33008a943e74ab417
+ms.sourcegitcommit: 95d9a6acf29405a533db943b1688612980374272
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 06/23/2018
+ms.locfileid: "36331385"
 ---
 # <a name="get-started-with-notification-hubs-for-kindle-apps"></a>開始使用適用於 Kindle 應用程式的通知中樞
 [!INCLUDE [notification-hubs-selector-get-started](../../includes/notification-hubs-selector-get-started.md)]
 
-## <a name="overview"></a>概觀
-本教學課程將說明如何使用 Azure 通知中樞將推播通知傳送至 Kindle 應用程式。
-您將使用 Amazon 裝置傳訊 (ADM)，建立可接收推播通知的空白 Kindle app。
+本教學課程將說明如何使用 Azure 通知中樞將推播通知傳送至 Kindle 應用程式。 您會使用 Amazon 裝置傳訊 (ADM)，建立可接收推播通知的空白 Kindle 應用程式。
+
+在本教學課程中，您會建立/更新程式碼以執行下列工作： 
+
+> [!div class="checklist"]
+> * 將新的應用程式新增至開發人員入口網站
+> * 建立 API 金鑰
+> * 將認證新增至中樞
+> * 設定您的應用程式
+> * 建立您的 ADM 訊息處理常式
+> * 將您的 API 金鑰新增至 app
+> * 執行應用程式
+> * 傳送測試通知 
 
 ## <a name="prerequisites"></a>先決條件
-本教學課程需要下列各項：
 
-* 從 <a href="http://go.microsoft.com/fwlink/?LinkId=389797">Android 網站</a>取得 Android SDK (我們假設您將使用 Eclipse)。
-* 依照<a href="https://developer.amazon.com/appsandservices/resources/development-tools/ide-tools/tech-docs/01-setting-up-your-development-environment">設定開發環境</a>中的步驟，為 Kindle 設定您的開發環境。
+* 從 <a href="http://go.microsoft.com/fwlink/?LinkId=389797">Android 網站</a>取得 Android SDK (我們假設您使用 Eclipse)。
+* 依照<a href="https://developer.amazon.com/docs/fire-tablets/ft-set-up-your-development-environment.html">設定開發環境</a>中的步驟，為 Kindle 設定您的開發環境。
 
 ## <a name="add-a-new-app-to-the-developer-portal"></a>將新的應用程式新增至開發人員入口網站
 1. 首先，在 [Amazon 開發人員入口網站]中建立 app。
@@ -46,7 +57,7 @@ ms.lasthandoff: 10/11/2017
 4. 按一下 [建立新的安全性設定檔]，然後建立新的安全性設定檔 (例如 **TestAdm 安全性設定檔**)。 然後按一下 [儲存] 。
    
     ![][3]
-5. 按一下 [Security Profiles]  以檢視您剛建立的安全性設定檔。 複製 [用戶端識別碼] 和 [用戶端密碼] 值，以供後續使用。
+5. 按一下 [安全性設定檔]，以檢視您已建立的安全性設定檔。 複製 [用戶端識別碼] 和 [用戶端密碼] 值，以供後續使用。
    
     ![][4]
 
@@ -68,8 +79,6 @@ ms.lasthandoff: 10/11/2017
 ## <a name="set-up-your-application"></a>設定您的應用程式
 > [!NOTE]
 > 建立應用程式時，至少應使用 API 層級 17。
-> 
-> 
 
 將 ADM 程式庫新增至您的 Eclipse 專案：
 
@@ -82,10 +91,13 @@ ms.lasthandoff: 10/11/2017
 
 1. 在根資訊清單元素中新增 Amazon 命名空間：
 
+    ```xml
         xmlns:amazon="http://schemas.amazon.com/apk/res/android"
+    ```
 
 1. 在資訊清單元素下，將權限新增為第一個元素。 將 **[YOUR PACKAGE NAME]** 取代為您用來建立 app 的封裝。
    
+    ```xml
         <permission
          android:name="[YOUR PACKAGE NAME].permission.RECEIVE_ADM_MESSAGE"
          android:protectionLevel="signature" />
@@ -100,8 +112,10 @@ ms.lasthandoff: 10/11/2017
    
         <!-- ADM uses WAKE_LOCK to keep the processor from sleeping when a message is received. -->
         <uses-permission android:name="android.permission.WAKE_LOCK" />
+    ```
 2. 插入下列元素，做為應用程式元素的第一個子項。 請務必將 **[YOUR SERVICE NAME]** 取代為您在下一節中建立的 ADM 訊息處理常式的名稱 (包括封裝)，並將 **[YOUR PACKAGE NAME]** 取代為您用來建立應用程式的封裝名稱。
    
+    ```xml
         <amazon:enable-feature
               android:name="com.amazon.device.messaging"
                      android:required="true"/>
@@ -124,6 +138,7 @@ ms.lasthandoff: 10/11/2017
           <category android:name="[YOUR PACKAGE NAME]" />
             </intent-filter>
         </receiver>
+    ```
 
 ## <a name="create-your-adm-message-handler"></a>建立您的 ADM 訊息處理常式
 1. 建立繼承自 `com.amazon.device.messaging.ADMMessageHandlerBase` 的新類別，並將其命名為 `MyADMMessageHandler`，如下圖所示：
@@ -131,6 +146,7 @@ ms.lasthandoff: 10/11/2017
     ![][6]
 2. 新增下列 `import` 陳述式：
    
+    ```java
         import android.app.NotificationManager;
         import android.app.PendingIntent;
         import android.content.Context;
@@ -138,8 +154,10 @@ ms.lasthandoff: 10/11/2017
         import android.support.v4.app.NotificationCompat;
         import com.amazon.device.messaging.ADMMessageReceiver;
         import com.microsoft.windowsazure.messaging.NotificationHub
+    ```
 3. 在您建立的類別中新增下列程式碼。 請務必取代中心名稱和連接字串 (接聽)：
    
+    ```java
         public static final int NOTIFICATION_ID = 1;
         private NotificationManager mNotificationManager;
         NotificationCompat.Builder builder;
@@ -184,29 +202,39 @@ ms.lasthandoff: 10/11/2017
              mBuilder.setContentIntent(contentIntent);
              mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
         }
+    ```
 4. 將下列程式碼新增至 `OnMessage()` 方法：
    
+    ```java
         String nhMessage = intent.getExtras().getString("msg");
         sendNotification(nhMessage);
+    ```
 5. 將下列程式碼新增至 `OnRegistered` 方法：
    
-            try {
-        getNotificationHub(getApplicationContext()).register(registrationId);
-            } catch (Exception e) {
-        Log.e("[your package name]", "Fail onRegister: " + e.getMessage(), e);
-            }
+    ```java
+        try {
+            getNotificationHub(getApplicationContext()).register(registrationId);
+        } catch (Exception e) {
+            Log.e("[your package name]", "Fail onRegister: " + e.getMessage(), e);
+        }
+    ```
 6. 將下列程式碼新增至 `OnUnregistered` 方法：
    
+    ```java
          try {
              getNotificationHub(getApplicationContext()).unregister();
          } catch (Exception e) {
              Log.e("[your package name]", "Fail onUnregister: " + e.getMessage(), e);
          }
+    ```
 7. 在 `MainActivity` 方法中新增下列 import 陳述式：
    
+    ```java
         import com.amazon.device.messaging.ADM;
+    ```
 8. 在 `OnCreate` 方法的結尾新增下列程式碼：
    
+    ```java
         final ADM adm = new ADM(this);
         if (adm.getRegistrationId() == null)
         {
@@ -224,7 +252,8 @@ ms.lasthandoff: 10/11/2017
                  }
                }.execute(null, null, null);
         }
-
+    ```
+    
 ## <a name="add-your-api-key-to-your-app"></a>將您的 API 金鑰新增至 app
 1. 在 Eclipse 中，在您專案的目錄資產中建立名為 **api_key.txt** 的新檔案。
 2. 開啟該檔案，並複製您在 Amazon 開發人員入口網站中產生的 API 金鑰。
@@ -237,21 +266,31 @@ ms.lasthandoff: 10/11/2017
 > [!NOTE]
 > 如果發生問題，請檢查模擬器 (或裝置) 的時間。 時間值必須是正確的。 若要變更 Kindle 模擬器的時間，您可以從 Android SDK platform-tools 目錄執行下列命令：
 > 
-> 
 
-        adb shell  date -s "yyyymmdd.hhmmss"
+```
+adb shell  date -s "yyyymmdd.hhmmss"
+```
 
-## <a name="send-a-message"></a>傳送訊息
+## <a name="send-a-notification-message"></a>傳送通知訊息
+
 使用 .NET 傳送訊息：
 
-        static void Main(string[] args)
-        {
-            NotificationHubClient hub = NotificationHubClient.CreateClientFromConnectionString("[conn string]", "[hub name]");
+```csharp
+static void Main(string[] args)
+{
+    NotificationHubClient hub = NotificationHubClient.CreateClientFromConnectionString("[conn string]", "[hub name]");
 
-            hub.SendAdmNativeNotificationAsync("{\"data\":{\"msg\" : \"Hello from .NET!\"}}").Wait();
-        }
+    hub.SendAdmNativeNotificationAsync("{\"data\":{\"msg\" : \"Hello from .NET!\"}}").Wait();
+}
+```
 
 ![][7]
+
+## <a name="next-steps"></a>後續步驟
+在本教學課程中，您已將廣播通知傳送至所有向後端註冊的 Kindle 裝置。 若要了解如何將通知推送至特定 Kindle 裝置，請繼續進行下列教學課程：下列教學課程將說明如何將通知推送至特定 Android 裝置，但您可以使用相同的邏輯將通知推送至特定 Kindle 裝置。 
+
+> [!div class="nextstepaction"]
+>[將通知推送至特定裝置](notification-hubs-aspnet-backend-android-xplat-segmented-gcm-push-notification.md)
 
 <!-- URLs. -->
 [Amazon 開發人員入口網站]: https://developer.amazon.com/home.html

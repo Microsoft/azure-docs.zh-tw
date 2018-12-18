@@ -1,0 +1,209 @@
+items:
+- name: 串流分析文件
+  href: index.yml
+- name: 概觀
+  items:
+  - name: 什麼是串流分析？
+    href: stream-analytics-introduction.md
+- name: 快速入門
+  items:
+  - name: 建立作業 - Azure 入口網站
+    href: stream-analytics-quick-create-portal.md
+  - name: 建立作業 - PowerShell
+    href: stream-analytics-quick-create-powershell.md
+  - name: 建立作業 - Visual Studio
+    href: stream-analytics-quick-create-vs.md
+- name: 教學課程
+  items:
+  - name: 1 - 建立/管理作業
+    href: stream-analytics-manage-job.md
+  - name: 2 - 執行 Azure Functions
+    href: stream-analytics-with-azure-functions.md
+  - name: 3 - 執行 Javascript UDF
+    href: stream-analytics-javascript-user-defined-functions.md
+  - name: 4 - 在 Aure Pipelines 中使用 CI/CD 部署
+    href: stream-analytics-tools-visual-studio-cicd-vsts.md
+  - name: 5 - 在邊緣上執行 C# UDF
+    href: stream-analytics-edge-csharp-udf.md
+- name: 範例
+  items:
+  - name: 程式碼範例
+    href: https://azure.microsoft.com/resources/samples/?service=stream-analytics
+- name: 概念
+  items:
+  - name: 作業的輸入類型
+    href: stream-analytics-add-inputs.md
+    items:
+    - name: 串流資料輸入
+      href: stream-analytics-define-inputs.md
+    - name: 參考資料輸入
+      href: stream-analytics-use-reference-data.md
+  - name: 作業的輸出類型
+    href: stream-analytics-define-outputs.md
+    items:
+    - name: 輸出至 Cosmos DB
+      href: stream-analytics-documentdb-output.md
+    - name: 輸出到 Azure SQL DB
+      href: stream-analytics-sql-output-perf.md
+    - name: Blob 自訂路徑模式
+      href: stream-analytics-custom-path-patterns-blob-storage-output.md
+  - name: 視窗函式
+    href: stream-analytics-window-functions.md
+  - name: GeoSpatial 函式
+    href: stream-analytics-geospatial-functions.md
+  - name: 相容性層級
+    href: stream-analytics-compatibility-level.md
+  - name: 常見查詢模式
+    href: stream-analytics-stream-analytics-query-patterns.md
+  - name: 剖析 JSON 和 AVRO 資料
+    href: stream-analytics-parsing-json.md
+  - name: 事件順序的考量
+    href: stream-analytics-out-of-order-and-late-events.md
+  - name: 檢查點和重新執行
+    href: stream-analytics-concepts-checkpoint-replay.md
+  - name: 錯誤原則
+    href: output-error-policy.md
+- name: 使用指南
+  items:
+  - name: 管理
+    items:
+    - name: 更新認證
+      href: stream-analytics-login-credentials-inputs-outputs.md
+    - name: 設定警示
+      href: stream-analytics-set-up-alerts.md
+    - name: 測試作業
+      href: stream-analytics-test-query.md
+    - name: 在儀表板上檢視結果
+      href: stream-analytics-power-bi-dashboard.md
+    - name: 清除作業
+      href: stream-analytics-clean-up-your-job.md
+    - name: 配對作業以獲得較高的可靠性
+      href: stream-analytics-job-reliability.md
+    - name: 使用受控識別進行驗證
+      href: stream-analytics-managed-identities-adls.md
+  - name: 建置解決方案
+    items:
+    - name: Twitter 情緒分析
+      href: stream-analytics-twitter-sentiment-analysis-trends.md
+    - name: 即時詐欺偵測
+      href: stream-analytics-real-time-fraud-detection.md
+    - name: 在 IoT Edge 上執行作業
+      href: stream-analytics-edge.md
+    - name: 收費亭感應器資料分析
+      href: stream-analytics-build-an-iot-solution-using-stream-analytics.md
+    - name: 執行 JavaScript UDA
+      href: stream-analytics-javascript-user-defined-aggregates.md
+    - name: 高頻率交易
+      href: stream-analytics-high-frequency-trading.md
+    - name: 處理 IoT 串流資料
+      href: stream-analytics-get-started-with-azure-stream-analytics-to-process-data-from-iot-devices.md
+    - name: 閾值型規則
+      href: stream-analytics-threshold-based-rules.md
+    - name: 處理 Kafka 事件
+      href: ../event-hubs/event-hubs-kafka-stream-analytics.md
+      maintainContext: true
+  - name: 監視
+    items:
+    - name: 監視作業 - Azure 入口網站
+      href: stream-analytics-monitoring.md
+    - name: 監視作業- PowerShell
+      href: stream-analytics-monitor-and-manage-jobs-use-powershell.md
+    - name: 監視作業 Azure .Net SDK
+      href: stream-analytics-monitor-jobs.md
+    - name: 監視作業 - Visual Studio
+      href: stream-analytics-monitor-jobs-use-vs.md
+  - name: 調整
+    items:
+    - name: 隨著串流單位縮放
+      href: stream-analytics-streaming-unit-consumption.md
+    - name: 隨著平行化查詢縮放
+      href: stream-analytics-parallelization.md
+      items:
+      - name: 增加輸送量
+        href: stream-analytics-scale-jobs.md
+    - name: 隨著 ML 函式縮放
+      href: stream-analytics-scale-with-machine-learning-functions.md
+  - name: 自動化
+    items:
+    - name: 使用 .NET SDK
+      href: stream-analytics-dotnet-management-sdk.md
+    - name: 使用 Azure PowerShell
+      href: https://github.com/Azure/azure-stream-analytics/tree/master/Samples/ASAOneClick
+  - name: Visual Studio 工具
+    items:
+    - name: 安裝工具
+      href: stream-analytics-tools-for-visual-studio-install.md
+    - name: 使用範例資料來測試
+      href: stream-analytics-vs-tools-local-run.md
+    - name: 使用實際資料來測試
+      href: stream-analytics-live-data-local-testing.md
+    - name: 檢視 Visual Studio 中的作業
+      href: stream-analytics-vs-tools.md
+    - name: 開發 Edge 作業
+      href: stream-analytics-tools-for-visual-studio-edge-jobs.md
+    - name: 設定 CI/CD 管線
+      href: stream-analytics-tools-for-visual-studio-cicd.md
+    - name: 針對邊緣撰寫 .NET UDF
+      href: stream-analytics-edge-csharp-udf-methods.md
+  - name: 疑難排解
+    items:
+    - name: 輸入
+      href: stream-analytics-troubleshoot-input.md
+    - name: 輸出
+      href: stream-analytics-troubleshoot-output.md
+    - name: 查詢邏輯
+      href: stream-analytics-troubleshoot-query.md
+    - name: 診斷記錄檔
+      href: stream-analytics-job-diagnostic-logs.md
+  - name: 與 Machine Learning 整合
+    items:
+    - name: 使用 ML 模型進行情感分析
+      href: stream-analytics-machine-learning-integration-tutorial.md
+    - name: 異常偵測
+      href: stream-analytics-machine-learning-anomaly-detection.md
+    - name: 使用 REST API
+      href: stream-analytics-how-to-configure-azure-machine-learning-endpoints-in-stream-analytics.md
+  - name: 使用作業圖表偵錯
+    href: stream-analytics-job-diagram-with-metrics.md
+- name: 參考
+  items:
+  - name: Azure PowerShell
+    href: /powershell/module/azurerm.streamanalytics
+  - name: 查詢語言
+    href: https://msdn.microsoft.com/library/azure/dn834998
+  - name: .NET
+    href: /dotnet/api/microsoft.azure.management.streamanalytics
+  - name: REST
+    href: /rest/api/streamanalytics
+- name: 資源
+  items:
+  - name: 串流分析預覽
+    href: stream-analytics-previews.md
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/
+  - name: 部落格
+    href: http://blogs.msdn.com/b/streamanalytics/
+  - name: 意見反應論壇
+    href: http://feedback.azure.com/forums/270577-azure-stream-analytics
+  - name: 論壇
+    href: https://social.msdn.microsoft.com/Forums/azure/home?forum=AzureStreamAnalytics
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/stream-analytics/
+  - name: 定價計算機
+    href: https://azure.microsoft.com/pricing/calculator/
+  - name: 服務更新
+    href: https://azure.microsoft.com/updates/?product=stream-analytics
+  - name: 堆疊溢位
+    href: http://stackoverflow.com/questions/tagged/azure-stream-analytics
+  - name: 影片
+    href: https://azure.microsoft.com/resources/videos/index/?services=stream-analytics&sort=newest
+  - name: 客戶案例研究
+    href: https://azure.microsoft.com/case-studies/?service=stream-analytics
+  - name: 白皮書 - 即時事件處理
+    href: stream-analytics-real-time-event-processing-reference-architecture.md
+ms.openlocfilehash: 913bae9e1f19a29fda10bb2362b7c3d05fb7e2b7
+ms.sourcegitcommit: 07a09da0a6cda6bec823259561c601335041e2b9
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/18/2018
+ms.locfileid: "49403470"

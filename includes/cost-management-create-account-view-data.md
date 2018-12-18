@@ -1,3 +1,21 @@
+---
+title: 包含檔案
+description: 包含檔案
+services: cost-management
+author: bandersmsft
+ms.service: cost-management
+ms.topic: include
+ms.date: 09/17/2018
+ms.author: banders
+manager: dougeby
+ms.custom: include file
+ms.openlocfilehash: 4acc3f43f04c51e5303c8eba1d934580802312b5
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "47017640"
+---
 ## <a name="view-cost-data"></a>檢視成本資料
 
 Cloudyn 的 Azure 成本管理可讓您存取您的所有雲端資源資料。 您可以從儀表板的報告中找到以索引標籤式檢視呈現的標準和自訂報告。 以下是可立即向您顯示成本資料的常見儀表板和報告範例。
@@ -12,23 +30,23 @@ Cloudyn 的 Azure 成本管理可讓您存取您的所有雲端資源資料。 �
 
 ![實際成本分析](./media/cost-management-create-account-view-data/actual-cost-01.png)
 
-在此範例中，總成本是 75,970 美元，預算是 130,000 美元。
+在此範例中，總成本是 122,273美元，預算是 290,000 美元。
 
 現在，讓我們修改報告格式，並設定群組和篩選器來縮小 Azure 成本的結果。 將 [日期範圍] 設定為過去 30 天。 在右上方按一下要格式化為長條圖的資料行符號，並在 [群組] 下選取 [提供者]。 然後，將 [提供者] 的篩選器設定為 [Azure]。
 
 ![已篩選的實際成本分析](./media/cost-management-create-account-view-data/actual-cost-02.png)
 
-在此範例中，過去 30 天 Azure 資源的總成本是 3,839 美元。
+在此範例中，過去 30 天 Azure 資源的總成本是 3,309 美元。
 
 以滑鼠右鍵按一下 [提供者] \(Azure) 長條，並向下鑽研至 [資源類型]。
 
 ![向下鑽研](./media/cost-management-create-account-view-data/actual-cost-03.png)
 
-下圖顯示 Contoso 所產生的 Azure 資源成本。 總計為 3,839 美元。 在此範例中，大約一半的成本是用在本機備援儲存體，另一半成本則是用在各種 VM 執行個體。
+下圖顯示 Contoso 所產生的 Azure 資源成本。 總計為 3,309 美元。 在此範例中，大約一半的成本是用在 Standard_A1 虛擬機器，另一半成本則是用在各種 Azure 服務和虛擬機器執行個體。
 
 ![資源類型](./media/cost-management-create-account-view-data/actual-cost-04.png)
 
-以滑鼠右鍵按一下 [資源類型]，然後選取 [成本實體] 來檢視取用資源的成本實體和服務。 在此範例中，DevOps 中的 VM 和背景工作服務分別取用了 486.60 美元和 435.71 美元。 兩者的總計是 922 美元。
+以滑鼠右鍵按一下 [資源類型]，然後選取 [成本實體] 來檢視取用資源的成本實體和服務。 在下列範例影像中，本地備援儲存體設定為「資源」類型。 Contoso|Azure/Storage 取用 $15.65。 Engineering|Azure Storage 取用 $164.25。 Shared Infrastructure|Azure/Storage 取用 $116.58。 服務總成本為 $296。
 
 ![成本實體和服務](./media/cost-management-create-account-view-data/actual-cost-05.png)
 

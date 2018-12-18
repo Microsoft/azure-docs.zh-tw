@@ -3,17 +3,19 @@ title: 使用 Azure 自動化追蹤變更
 description: 「變更追蹤」解決方案可協助您識別您環境中發生的軟體及 Windows 服務變更。
 services: automation
 ms.service: automation
+ms.component: change-inventory-management
 author: georgewallace
 ms.author: gwallace
-ms.date: 03/15/2018
-ms.topic: article
+ms.date: 08/31/2018
+ms.topic: conceptual
 manager: carmonm
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 91a093a44106ad861449b6defb140532698fa668
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 0707726ec86b0a0c69d1ec752ebd6761327f3f0f
+ms.sourcegitcommit: 31241b7ef35c37749b4261644adf1f5a029b2b8e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/04/2018
+ms.locfileid: "43669478"
 ---
 # <a name="track-changes-in-your-environment-with-the-change-tracking-solution"></a>使用變更追蹤解決方案來追蹤環境中的變更
 
@@ -21,20 +23,39 @@ ms.lasthandoff: 03/23/2018
 
 受監視的伺服器上安裝的軟體、Windows 服務、Windows 登錄和檔案以及 Linux 精靈的變更，會傳送至雲端中的 Log Analytics 服務進行處理。 會將邏輯套用至接收的資料，且雲端服務會記錄資料。 使用 [變更追蹤] 儀表板上的資訊，您可以輕鬆地看到您的伺服器基礎結構中所做的變更。
 
-## <a name="enable-change-tracking-and-inventory"></a>啟用變更追蹤和清查
+## <a name="supported-windows-operating-systems"></a>支援的 Windows 作業系統
 
+Windows 代理程式正式支援下列 Windows 作業系統版本：
+
+* Windows Server 2008 R2 或更新版本
+
+## <a name="supported-linux-operating-systems"></a>支援的 Linux 作業系統
+
+以下為正式支援的 Linux 散發套件。 不過，Linux 代理程式也可能在未列出的其他散發套件上執行。 除非另有說明，列出的每個主要版本都支援所有次要版本。  
+
+* Amazon Linux 2012.09 至 2015.09 (x86/x64)
+* CentOS Linux 5、6 和 7 (x86/x64)  
+* Oracle Linux 5、6 和 7 (x86/x64)
+* Red Hat Enterprise Linux Server 5、6 和 7 (x86/x64)
+* Debian GNU/Linux 6、7 和 8 (x86/x64)
+* Ubuntu 12.04 LTS、14.04 LTS、16.04 LTS (x86/x64)
+* SUSE Linux Enterprise Server 11 和 12 (x86/x64)
+
+## <a name="enable-change-tracking-and-inventory"></a>啟用變更追蹤和清查
 
 若要開始追蹤變更，您必須為自動化帳戶啟用變更追蹤和清查解決方案。
 
 1. 在 Azure 入口網站中，瀏覽至您的自動化帳戶
-1. 選取 [組態] 下的 [變更追蹤]。
-2. 選取現有的 Log Analytics 工作區或 [建立新的工作區]，然後按一下 [啟用]。
+2. 選取 [組態] 下的 [變更追蹤]。
+3. 選取現有的 Log Analytics 工作區或 [建立新的工作區]，然後按一下 [啟用]。
 
 這會為您的自動化帳戶啟用解決方案。 啟用解決方案可能需要 15 分鐘。 解決方案啟用時，會有藍色橫幅通知您。 瀏覽回 [變更追蹤] 頁面，以管理解決方案。
 
 ## <a name="configuring-change-tracking-and-inventory"></a>設定變更追蹤和清查
 
-若要了解如何將電腦登入解決方案，請瀏覽：[登入自動化解決方案](automation-onboard-solutions-from-automation-account.md)。 當您啟用新的檔案或登錄機碼加以追蹤時，其變更追蹤和清查都會啟用。
+若要了解如何將電腦登入解決方案，請瀏覽：[登入自動化解決方案](automation-onboard-solutions-from-automation-account.md)。 一旦您有已安裝變更追蹤和清查解決方案的機器，即可設定要追蹤的項目。當您啟用新的檔案或登錄機碼加以追蹤時，其變更追蹤和清查都會啟用。
+
+如需追蹤 Windows 和 Linux 上的檔案變更，則會使用檔案的 MD5 雜湊。 這些雜湊接著用來偵測自上次清查後是否已進行變更。
 
 ### <a name="configure-linux-files-to-track"></a>設定要追蹤的 Linux 檔案
 
@@ -54,6 +75,7 @@ ms.lasthandoff: 03/23/2018
 |遞迴     | 決定在尋找所要追蹤的項目時是否使用遞迴。        |
 |使用 Sudo     | 此設定會決定在檢查項目時是否使用 sudo。         |
 |連結     | 此設定會決定在周遊目錄時處理符號連結的方式。<br> **忽略** - 忽略符號連結，而不包含參考的檔案/目錄。<br>**遵循** - 在遞迴期間遵循符號連結，並且包含參考的檔案/目錄。<br>**管理** - 遵循符號連結並允許變更傳回的內容。     |
+|上傳所有的檔案內容設定| 開啟或關閉追蹤變更上的檔案內容上傳。 可用的選項：**True** 或 **False**。|
 
 > [!NOTE]
 > 不建議選擇「管理」連結選項。 不支援檔案內容擷取。
@@ -71,7 +93,24 @@ ms.lasthandoff: 03/23/2018
 |已啟用     | 判斷是否已套用設定。        |
 |項目名稱     | 要追蹤之檔案的易記名稱。        |
 |群組     | 以邏輯方式分組檔案的群組名稱。        |
-|輸入路徑     | 要檢查檔案的路徑，例如："c:\temp\myfile.txt"       |
+|輸入路徑     | 要檢查檔案的路徑，例如："c:\temp\\\*.txt"<br>您也可以使用環境變數，例如 "%winDir%\System32\\\*.*"       |
+|遞迴     | 決定在尋找所要追蹤的項目時是否使用遞迴。        |
+|上傳所有的檔案內容設定| 開啟或關閉追蹤變更上的檔案內容上傳。 可用的選項：**True** 或 **False**。|
+
+## <a name="wildcard-recursion-and-environment-settings"></a>萬用字元、遞迴和環境設定
+
+遞迴可讓您指定萬用字元，以簡化跨目錄的追蹤，而環境變數則可讓您以多個或動態的磁碟機名稱跨環境追蹤檔案。 以下列出您在設定遞迴時所應知悉的一般資訊：
+
+* 追蹤多個檔案時需使用萬用字元
+* 使用萬用字元時，這些字元只能在路徑的最後一個部分使用。 (例如 C:\folder\\**file** 或 /etc/*.conf)
+* 如果環境變數具有無效路徑，驗證仍會成功，但執行清查時，該路徑將會失敗。
+* 在設定路徑應避免使用 `c:\*.*` 這類的一般路徑，因為這會導致過多資料夾的周遊。
+
+## <a name="configure-file-content-tracking"></a>設定檔案內容追蹤
+
+您可以使用檔案內容變更追蹤，以檢視檔案變更之前和之後的內容。 此功能可用於 Windows 和 Linux 檔案。對於檔案的每項變更，檔案的內容會儲存在儲存體帳戶中，並以內嵌或並排方式來顯示變更之前和之後的檔案。 若要進一步了解，請參閱[檢視追蹤檔案的內容](change-tracking-file-contents.md)。
+
+![檢視檔案中的變更](./media/change-tracking-file-contents/view-file-changes.png)
 
 ### <a name="configure-windows-registry-keys-to-track"></a>設定要追蹤的 Windows 登錄機碼
 
@@ -92,12 +131,8 @@ ms.lasthandoff: 03/23/2018
 
 變更追蹤解決方案目前不支援下列項目︰
 
-* Windows 檔案追蹤的資料夾 (目錄)
-* Windows 檔案追蹤的遞迴
-* Windows 檔案追蹤的萬用字元
-* 路徑變數
+* Windows 登錄追蹤的遞迴
 * 網路檔案系統
-* 檔案內容
 
 其他限制：
 
@@ -109,6 +144,7 @@ ms.lasthandoff: 03/23/2018
 ## <a name="known-issues"></a>已知問題
 
 「變更追蹤」解決方案目前有下列問題︰
+
 * Windows 10 Creators Update 和 Windows Server 2016 Core RS3 機器不會收集 Hotfix 更新。
 
 ## <a name="change-tracking-data-collection-details"></a>「變更追蹤」資料收集詳細資訊
@@ -117,14 +153,25 @@ ms.lasthandoff: 03/23/2018
 
 | **變更類型** | **頻率** |
 | --- | --- |
-| Windows 登錄 | 50 分鐘 | 
-| Windows 檔案 | 30 分鐘 | 
-| Linux 檔案 | 15 分鐘 | 
-| Windows 服務 | 30 分鐘 | 
+| Windows 登錄 | 50 分鐘 |
+| Windows 檔案 | 30 分鐘 |
+| Linux 檔案 | 15 分鐘 |
+| Windows 服務 | 10 秒到 30 分鐘</br> 預設值：30 分鐘 |
 | Linux 精靈 | 5 分鐘 |
-| Windows 軟體 | 30 分鐘 | 
-| Linux 軟體軟體 | 5 分鐘 | 
+| Windows 軟體 | 30 分鐘 |
+| Linux 軟體軟體 | 5 分鐘 |
 
+### <a name="windows-service-tracking"></a>Windows 服務追蹤
+
+Windows 服務的預設收集頻率為 30 分鐘。 若要設定頻率，請移至**變更追蹤**。 在 [Windows 服務] 索引標籤上的 [編輯設定] 下有一個滑桿，可以將 Windows 服務的收集頻率從 10 秒變更為長達 30 分鐘。 將滑桿移至您想要的頻率，它會自動儲存。
+
+![Windows 服務滑桿](./media/automation-change-tracking/windowservices.png)
+
+代理程式只會追蹤變更，這樣可最佳化代理程式的效能。 設定過高的閾值時，若服務還原成原始狀態，則可能會遺漏變更。 若將頻率設為較小的值，則可以攔截可能遺漏的變更。
+
+> [!NOTE]
+> 雖然代理程式可以追蹤 10 秒間隔內的變更，但資料仍需要幾分鐘才會顯示在入口網站中。 在入口網站中顯示所需時間內仍會追蹤並記錄變更。
+  
 ### <a name="registry-key-change-tracking"></a>登錄機碼變更追蹤
 
 監視登錄機碼變更的目的是找出第三方程式碼和惡意程式碼可啟用的擴充點。 下列清單顯示預先設定的登錄機碼清單。 這些機碼已設定，但並未啟用。 若要追蹤這些登錄機碼，必須每個都啟用。

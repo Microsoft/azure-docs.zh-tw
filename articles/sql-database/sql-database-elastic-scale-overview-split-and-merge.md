@@ -2,18 +2,22 @@
 title: 在向外延展的雲端資料庫之間移動資料 | Microsoft Docs
 description: 說明如何使用彈性資料庫 API 透過自我託管服務操作分區和移動資料。
 services: sql-database
-manager: craigg
-author: stevestein
 ms.service: sql-database
-ms.custom: scale out apps
-ms.topic: article
-ms.date: 10/24/2016
+ms.subservice: elastic-scale
+ms.custom: ''
+ms.devlang: ''
+ms.topic: conceptual
+author: stevestein
 ms.author: sstein
-ms.openlocfilehash: 9e2b231ad2e9fc5ab07532daef44da9870cef4ae
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.reviewer: ''
+manager: craigg
+ms.date: 04/01/2018
+ms.openlocfilehash: 518d7659df603ed0fcab4aebf5f35c3b92e75ccf
+ms.sourcegitcommit: 51a1476c85ca518a6d8b4cc35aed7a76b33e130f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47162623"
 ---
 # <a name="moving-data-between-scaled-out-cloud-databases"></a>在向外延展的雲端資料庫之間移動資料
 如果您是軟體服務開發人員，您的應用程式突然出現巨量需求，您需要因應這種成長。 所以，您加入了更多的資料庫 (分區)。 您該如何將資料重新發佈到新的資料庫，卻不打斷資料的完整性？ 使用 **分割合併工具** 將資料從受條件約束的資料庫移到新的資料庫。  
@@ -60,11 +64,11 @@ ms.lasthandoff: 03/16/2018
 
 **分區對應整合**
 
-分割合併服務會與應用程式的分區對應互動。 當使用分割合併服務來分割或合併範圍，或在分區之間移動 Shardlet 時，服務會自動將分區對應保持在最新狀態。 為了這樣做，服務會連接到應用程式的分區對應管理員資料庫，並於分割/合併/移動要求進行時維護範圍和對應。 這可確保當分割合併作業持續進行時，分區對應一律呈現最新的檢視。 分割、合併和 Shardlet 移動作業的實作方式是將一批 Shardlet 從來源分區移至目標分區。 在 Shardlet 移動作業期間，屬於目前批次中的 Shardlet 在分區對應中會標示為離線，也無法供使用 **OpenConnectionForKey** API 的資料相依路由連線使用。 
+分割合併服務會與應用程式的分區對應互動。 如果使用分割合併服務來分割或合併範圍，或在分區之間移動 Shardlet，則服務會自動將分區對應保持在最新狀態。 為了這樣做，服務會連接到應用程式的分區對應管理員資料庫，並於分割/合併/移動要求進行時維護範圍和對應。 這可確保當分割合併作業持續進行時，分區對應一律呈現最新的檢視。 分割、合併和 Shardlet 移動作業的實作方式是將一批 Shardlet 從來源分區移至目標分區。 在 Shardlet 移動作業期間，屬於目前批次中的 Shardlet 在分區對應中會標示為離線，也無法供使用 **OpenConnectionForKey** API 的資料相依路由連線使用。 
 
 **一致的 Shardlet 連線**
 
-當新一批 Shardlet 的資料移動開始時，分區對應提供指向分區 (儲存 Shardlet) 的任何資料相依路由連接會終止，而當資料移動正在進行時，也會封鎖後續從分區對應 API 至這些 Shardlet 的連接，以避免不一致。 對同一個分區的其他 Shardlet 的連接也會終止，但重試就會立即成功。 移動批次後，目標分區的 Shardlet 會再次標示為線上，並從來源分區移除來源資料。 服務會對每個批次執行這些步驟，直到所有 Shardlet 都已經移動為止。 在整個分割/合併/移動作業的過程中，這將會產生數個連接終止作業。  
+當新一批 Shardlet 的資料移動開始時，分區對應提供指向分區 (儲存 Shardlet) 的任何資料相依路由連線會終止，而當資料移動正在進行時，也會封鎖後續從分區對應 API 至 Shardlet 的連線，以避免不一致。 對同一個分區的其他 Shardlet 的連接也會終止，但重試就會立即成功。 移動批次後，目標分區的 Shardlet 會再次標示為線上，並從來源分區移除來源資料。 服務會對每個批次執行這些步驟，直到所有 Shardlet 都已經移動為止。 在整個分割/合併/移動作業的過程中，這將會產生數個連接終止作業。  
 
 **管理 Shardlet 可用性**
 

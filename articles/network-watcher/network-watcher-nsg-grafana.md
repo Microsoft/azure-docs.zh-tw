@@ -1,13 +1,13 @@
 ---
-title: "使用網路監看員和 Grafana 管理網路安全性群組流量記錄 | Microsoft Docs"
-description: "使用網路監看員和 Grafana 在 Azure 中管理和分析網路安全性群組流量記錄。"
+title: 使用網路監看員和 Grafana 管理網路安全性群組流量記錄 | Microsoft Docs
+description: 使用網路監看員和 Grafana 在 Azure 中管理和分析網路安全性群組流量記錄。
 services: network-watcher
 documentationcenter: na
 author: kumudD
 manager: timlt
-editor: 
+editor: ''
 tags: azure-resource-manager
-ms.assetid: 
+ms.assetid: ''
 ms.service: network-watcher
 ms.devlang: na
 ms.topic: article
@@ -20,6 +20,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23036523"
 ---
 # <a name="manage-and-analyze-network-security-group-flow-logs-using-network-watcher-and-grafana"></a>使用網路監看員和 Grafana 來管理和分析網路安全性群組流量記錄
 

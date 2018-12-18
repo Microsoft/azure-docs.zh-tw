@@ -1,25 +1,20 @@
 ---
-title: "搭配 Hortonworks 沙箱使用 Data Lake tools for Visual Studio - Azure HDInsight | Microsoft Docs"
-description: "了解如何搭配在本機 VM 中執行的 Hortonworks 沙箱使用 Azure Data Lake tools for Visual Studio。 您可以使用這些工具，在沙箱上建立和執行 Hive 和 Pig 作業，以及檢視作業輸出和歷程記錄。"
+title: 搭配 Hortonworks 沙箱使用 Data Lake tools for Visual Studio - Azure HDInsight
+description: 了解如何搭配在本機 VM 中執行的 Hortonworks 沙箱使用 Azure Data Lake tools for Visual Studio。 您可以使用這些工具，在沙箱上建立和執行 Hive 和 Pig 作業，以及檢視作業輸出和歷程記錄。
 services: hdinsight
-documentationcenter: 
-author: Blackmist
-manager: jhubbard
-editor: cgronlun
-ms.assetid: e3434c45-95d1-4b96-ad4c-fb59870e2ff0
+author: jasonwhowell
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 02/07/2018
-ms.author: larryfr
-ms.openlocfilehash: 7c79e66c6ee4d5aa3ffd052306f57666df866313
-ms.sourcegitcommit: 059dae3d8a0e716adc95ad2296843a45745a415d
+ms.topic: conceptual
+ms.date: 05/07/2018
+ms.author: jasonh
+ms.openlocfilehash: c657048d22ca3bee6b41b7351d8fdc5bacdb44be
+ms.sourcegitcommit: f6e2a03076679d53b550a24828141c4fb978dcf9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43106289"
 ---
 # <a name="use-the-azure-data-lake-tools-for-visual-studio-with-the-hortonworks-sandbox"></a>搭配 Hortonworks 沙箱使用 Azure Data Lake tools for Visual Studio
 
@@ -27,7 +22,7 @@ Azure Data Lake 包含使用於一般 Hadoop 叢集的工具。 針對在本機�
 
 使用 Hortonworks 沙箱，可讓您在本機開發環境上使用 Hadoop。 開發解決方案之後並想要進行大規模部署時，您可以接著移至 HDInsight 叢集。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 * 在您的開發環境上虛擬機器中執行的 Hortonworks 沙箱。 此文件是使用在 Oracle VirtualBox 上執行的沙箱所撰寫並測試。 若要了解沙箱的設定，請參閱 [Hortonworks 沙箱使用者入門](hadoop/apache-hadoop-emulator-get-started.md) 文件。
 

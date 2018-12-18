@@ -14,11 +14,12 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 03/19/2018
 ms.author: azfuncdf
-ms.openlocfilehash: 35877831c7f63c20fee2f2bc3838e73bb98328c0
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 4e7b7b6af1f41eb0077d8a8605eb2a553c251f8e
+ms.sourcegitcommit: e221d1a2e0fb245610a6dd886e7e74c362f06467
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 05/07/2018
+ms.locfileid: "33763843"
 ---
 # <a name="fan-outfan-in-scenario-in-durable-functions---cloud-backup-example"></a>Durable Functions 中的展開傳送/收合傳送情節 - 雲端備份範例
 
@@ -57,7 +58,13 @@ Durable Functions 方法提供上述所有優點，而且額外負荷極低。
 
 以下是實作協調器函式的程式碼：
 
+### <a name="c"></a>C#
+
 [!code-csharp[Main](~/samples-durable-functions/samples/csx/E2_BackupSiteContent/run.csx)]
+
+### <a name="javascript-functions-v2-only"></a>JavaScript (僅限 Functions v2)
+
+[!code-javascript[Main](~/samples-durable-functions/samples/javascript/E2_BackupSiteContent/index.js)]
 
 此協調器函式基本上會執行下列動作：
 
@@ -67,9 +74,11 @@ Durable Functions 方法提供上述所有優點，而且額外負荷極低。
 4. 等候所有上傳完成。
 5. 傳回已上傳到 Azure Blob 儲存體的位元組總數。
 
-請注意 `await Task.WhenAll(tasks);` 這一行。 呼叫 `E2_CopyFileToBlob` 函式時全部都「不會」等候。 這是為了平行執行而刻意設計。 將這一批工作傳給 `Task.WhenAll` 時，將會傳回一個「直到所有複製作業都完成」才會完成的工作。 如果您熟悉 .NET 中的工作平行程式庫 (TPL)，則對此不會感到陌生。 差別在於，這些工作可以在多個虛擬機器上同時執行，而 Durable Functions 擴充可確保端對端執行在處理序回收的情況下迅速恢復。
+請注意 `await Task.WhenAll(tasks);` (C#) 和 `yield context.df.Task.all(tasks);` (JS) 行。 呼叫 `E2_CopyFileToBlob` 函式時全部都「不會」等候。 這是為了平行執行而刻意設計。 將這一批工作傳給 `Task.WhenAll` 時，將會傳回一個「直到所有複製作業都完成」才會完成的工作。 如果您熟悉 .NET 中的工作平行程式庫 (TPL)，則對此不會感到陌生。 差別在於，這些工作可以在多個虛擬機器上同時執行，而 Durable Functions 擴充可確保端對端執行在處理序回收的情況下迅速恢復。
 
-結束等候 `Task.WhenAll` 之後，就可知道所有函式呼叫已完成，而值也已傳回給我們。 每次呼叫 `E2_CopyFileToBlob` 都會傳回已上傳的位元組數，因此，只要合計所有這些傳回值，就能算出位元組總數。
+工作非常類似於承諾的 JavaScript 概念。 不過，`Promise.all` 與 `Task.WhenAll` 有些差異。 `Task.WhenAll` 的概念已成為 `durable-functions` JavaScript 模組的一部分且專屬於它。
+
+結束等候 `Task.WhenAll` (或暫止 `context.df.Task.all`) 之後，就可知道所有函式呼叫已完成，而值也已傳回給我們。 每次呼叫 `E2_CopyFileToBlob` 都會傳回已上傳的位元組數，因此，只要合計所有這些傳回值，就能算出位元組總數。
 
 ## <a name="helper-activity-functions"></a>協助程式活動函式
 
@@ -79,7 +88,15 @@ Durable Functions 方法提供上述所有優點，而且額外負荷極低。
 
 實作如下：
 
+### <a name="c"></a>C#
+
 [!code-csharp[Main](~/samples-durable-functions/samples/csx/E2_GetFileList/run.csx)]
+
+### <a name="javascript-functions-v2-only"></a>JavaScript (僅限 Functions v2)
+
+[!code-javascript[Main](~/samples-durable-functions/samples/javascript/E2_GetFileList/index.js)]
+
+`E2_GetFileList` 的 JavaScript 實作會使用 `readdirp` 模組以遞迴方式讀取目錄結構。
 
 > [!NOTE]
 > 您可能覺得奇怪，為何不能直接將此程式碼放入協調器函式中。 您可以這樣做，但這會違反協調器函式的基本規則之一，也就是永遠都不該執行 I/O，包括本機檔案系統存取。
@@ -88,9 +105,17 @@ Durable Functions 方法提供上述所有優點，而且額外負荷極低。
 
 [!code-json[Main](~/samples-durable-functions/samples/csx/E2_CopyFileToBlob/function.json)]
 
-實作也相當直接。 碰巧用到 Azure Functions 繫結的一些進階功能 (也就是使用 `Binder` 參數)，但基於本逐步解說的目的，您不必擔心這些細節。
+C# 實作也相當直接。 碰巧用到 Azure Functions 繫結的一些進階功能 (也就是使用 `Binder` 參數)，但基於本逐步解說的目的，您不必擔心這些細節。
+
+### <a name="c"></a>C#
 
 [!code-csharp[Main](~/samples-durable-functions/samples/csx/E2_CopyFileToBlob/run.csx)]
+
+### <a name="javascript-functions-v2-only"></a>JavaScript (僅限 Functions v2)
+
+JavaScript 實作無法存取 Azure Functions 的 `Binder` 功能，所以 [Azure Storage SDK for Node](https://github.com/Azure/azure-storage-node) 取代之。 請注意 SDK 需要 `AZURE_STORAGE_CONNECTION_STRING` 應用程式設定。
+
+[!code-javascript[Main](~/samples-durable-functions/samples/javascript/E2_CopyFileToBlob/index.js)]
 
 實作會從磁碟載入檔案，並以非同步方式將內容串流至 "backups" 容器中相同名稱的 blob。 傳回值是複製到儲存體的位元組數，協調器函式接著會利用此值來計算的總數。
 

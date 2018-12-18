@@ -1,11 +1,11 @@
 ---
-title: "Azure 事件中樞擷取逐步解說 | Microsoft Docs"
-description: "此範例使用 Azure Python SDK 來示範如何使用事件中樞擷取功能。"
+title: Azure 事件中樞擷取逐步解說 | Microsoft Docs
+description: 此範例使用 Azure Python SDK 來示範如何使用事件中樞擷取功能。
 services: event-hubs
-documentationcenter: 
-author: djrosanova
+documentationcenter: ''
+author: ShubhaVijayasarathy
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: bdff820c-5b38-4054-a06a-d1de207f01f6
 ms.service: event-hubs
 ms.workload: na
@@ -13,12 +13,13 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 10/05/2017
-ms.author: sethm
-ms.openlocfilehash: 97cadbde2ddedade1a8688f1380b9ff9194613e7
-ms.sourcegitcommit: 9890483687a2b28860ec179f5fd0a292cdf11d22
+ms.author: shvija
+ms.openlocfilehash: b38e64891ce1065290d46f0fae2d22e151e03e4d
+ms.sourcegitcommit: d0ea925701e72755d0b62a903d4334a3980f2149
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/24/2018
+ms.lasthandoff: 08/09/2018
+ms.locfileid: "40005609"
 ---
 # <a name="event-hubs-capture-walkthrough-python"></a>事件中樞擷取逐步解說︰Python
 
@@ -34,7 +35,7 @@ ms.lasthandoff: 01/24/2018
 4. 使用 Python 指令碼，將資料傳送到事件中樞。
 5. 使用另一個 Python 指令碼，讀取擷取的檔案並加以處理。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 - Python 2.7.x
 - Azure 訂用帳戶

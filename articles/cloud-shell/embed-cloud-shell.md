@@ -1,12 +1,12 @@
 ---
-title: "內嵌 Azure Cloud Shell | Microsoft Docs"
-description: "了解如何內嵌 Azure Cloud Shell。"
+title: 內嵌 Azure Cloud Shell | Microsoft Docs
+description: 了解如何內嵌 Azure Cloud Shell。
 services: cloud-shell
-documentationcenter: 
+documentationcenter: ''
 author: jluk
 manager: timlt
 tags: azure-resource-manager
-ms.assetid: 
+ms.assetid: ''
 ms.service: azure
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
@@ -19,6 +19,7 @@ ms.sourcegitcommit: f1c1789f2f2502d683afaf5a2f46cc548c0dea50
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 01/18/2018
+ms.locfileid: "27864879"
 ---
 # <a name="embed-azure-cloud-shell"></a>內嵌 Azure Cloud Shell
 

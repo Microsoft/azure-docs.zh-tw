@@ -12,13 +12,14 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 03/26/2018
+ms.date: 09/24/2018
 ms.author: kumud
-ms.openlocfilehash: b5443cb1d883bd829a13b6d941d2c87c6205c64f
-ms.sourcegitcommit: 20d103fb8658b29b48115782fe01f76239b240aa
+ms.openlocfilehash: 17b4bc68b2dc996134626b1822cfd17f0a9a7572
+ms.sourcegitcommit: 51a1476c85ca518a6d8b4cc35aed7a76b33e130f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2018
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47161636"
 ---
 # <a name="azure-load-balancer-standard-overview"></a>Azure Load Balancer Standard 概觀
 
@@ -32,7 +33,7 @@ Azure Load Balancer 可讓您調整您的應用程式，並為您的服務建立
 
 您可以使用標準 Load Balancer 作為公用或內部 Load Balancer。 此外，虛擬機器可以連接至一個公用和一個內部 Load Balancer 資源。
 
-Load Balancer 資源的運作方式，一律以前端、規則、健康情況探查和後端集區定義來表示。  一個資源可包含多項規則。 您可以從虛擬機器的 NIC 資源指定後端集區，以將虛擬機器放入後端集區中。  在使用虛擬機器擴展集時，此參數會傳遞至網路設定檔並擴充。
+Load Balancer 資源的運作方式，一律以前端、規則、健康情況探查和後端集區定義來表示。  一個資源可包含多項規則。 您可以從虛擬機器的 NIC 資源指定後端集區，以將虛擬機器放入後端集區中。  使用虛擬機器擴展集時，此參數會透過網路設定檔傳遞並進行擴充。
 
 資源的虛擬網路範圍，是重要層面之一。  基本 Load Balancer 存在於可用性設定組的範圍內，而標準 Load Balancer 則與虛擬網路範圍完全整合，並且適用所有的虛擬網路概念。
 
@@ -43,26 +44,14 @@ Load Balancer 資源是一種物件，而您可以在其中表示 Azure 應如�
 
 ## <a name="why-use-standard-load-balancer"></a>為何要使用標準 Load Balancer？
 
-您可以將標準 Load Balancer 用於各種規模的虛擬資料中心，從小規模的部署到大型且複雜的多重區域架構均適用。
+標準負載平衡器可讓您將小規模部署的應用程式調整為大型且複雜的多重區域架構，並建立高可用性。
 
 請檢閱下表，大致了解標準 Load Balancer 與基本 Load Balancer 之間的差異：
 
 >[!NOTE]
-> 新的設計應考慮使用標準 Load Balancer。 
+> 新的設計應該使用 Standard Load Balancer。 
 
-| | 標準 SKU | 基本 SKU |
-| --- | --- | --- |
-| 後端集區大小 | 最多 1000 個執行個體 | 最多 100 個執行個體 |
-| 後端集區端點 | 在單一虛擬網路中的任何虛擬機器，包括虛擬機器混合、可用性設定組、虛擬機器擴展集。 | 在單一可用性設定組或虛擬機器擴展集中的虛擬機器 |
-| 可用性區域 | 輸入和輸出的區域備援和區域性前端、輸出流程對應存活區域失敗、跨區域負載平衡 | / |
-| 診斷 | Azure 監視器、多維度計量 (包括位元組和封包計數器)、健康情況探查狀態、連線嘗試 (TCP SYN)、輸出連線的健康情況 (SNAT 成功和失敗的流程)、使用中資料層測量 | 僅適用於公用 Load Balancer 的 Azure Log Analytics、SNAT 耗盡警示、後端集區健康情況計數 |
-| HA 連接埠 | 內部 Load Balancer | / |
-| 預設保護 | 針對公用 IP 和 Load Balancer 端點的保護預設為關閉，必須使用網路安全性群組明確地將流程的流量加入白名單 | 預設為開啟，網路安全性群組為選擇性 |
-| 輸出連線 | 多個可選擇退出個別規則的前端。「必須」明確建立輸出案例，虛擬機器才能使用輸出連線能力。  不用輸出連線能力即可與 [VNet 服務端點](../virtual-network/virtual-network-service-endpoints-overview.md)連線，且不會計入已處理的資料。  必須透過輸出連線能力連線到任何公用 IP 位址 (包括無法作為 VNet 服務端點的 Azure PaaS 服務)，並計入已處理的資料。 只有內部 Load Balancer 在提供虛擬機器時，就無法透過預設 SNAT 進行輸出連線。 輸出 SNAT 的程式設計依傳輸通訊協定而異，以輸入負載平衡規則的通訊協定為依據。 | 單一前端，有多個前端時會隨機選取。  只有內部 Load Balancer 在提供虛擬機器時，會使用預設 SNAT。 |
-| 多個前端 | 輸入和輸出 | 僅輸入 |
-| 管理作業 | 大部分的作業 < 30 秒 | 通常是 60-90+ 秒 |
-| SLA | 99.99% (當資料路徑具有兩個狀況良好的虛擬機器時) | 內含在 VM SLA 中 | 
-| 價格 | 根據規則數目、與資源相關聯的輸入或輸出所處理的資料來計費  | 不收費 |
+[!INCLUDE [comparison table](../../includes/load-balancer-comparison-table.md)]
 
 請檢閱 [Load Balancer 的服務限制](https://aka.ms/lblimits)、[定價](https://aka.ms/lbpricing)和 [SLA](https://aka.ms/lbsla)。
 
@@ -71,11 +60,19 @@ Load Balancer 資源是一種物件，而您可以在其中表示 Azure 應如�
 
 標準 Load Balancer 後端集區可擴充至虛擬網路中的任何虛擬機器資源。  它最多可包含 1000 個後端執行個體。  後端執行個體是 IP 組態，也就是 NIC 資源的屬性。
 
-後端集區可包含獨立虛擬機器、可用性設定組或虛擬機器擴展集。  您可以混合搭配後端集區中的資源，且集區中最多可包含 150 項這些資源的任意組合。
+後端集區可包含獨立虛擬機器、可用性設定組或虛擬機器擴展集。  您也可以混合搭配後端集區中的資源。 每個負載平衡器的後端集區可結合最多 150 項資源。
 
 在考量如何設計您的後端集區時，您可以將最少量的個別後端集區資源作為設計原則，以進一步最佳化執行管理作業所需的時間。  在資料平面的效能或規模方面沒有任何差異。
 
-## <a name="az"></a>可用性區域
+### <a name="probes"></a>健康情況探查
+  
+Standard Load Balancer 會新增對 [HTTPS 健康情況探查](load-balancer-custom-probe-overview.md#httpprobe) (使用傳輸層安全性 (TLS) 包裝函式的 HTTP 探查) 的支援，以便精確地監視 HTTPS 應用程式。  
+
+此外，當整個後端集區[向下探查](load-balancer-custom-probe-overview.md#probedown)時，Standard Load Balancer 允許所有已建立的 TCP 連線繼續。 (Basic Load Balancer 會終止對所有執行個體的現有 TCP 連線)。
+
+檢閱[負載平衡器健康情況探查](load-balancer-custom-probe-overview.md)中的詳細資料。
+
+### <a name="az"></a>可用性區域
 
 標準 Load Balancer 在可使用「可用性區域」的區域中可支援較多功能。  這些功能會累加於所有標準 Standard Load Balancer 所提供的功能之上。  公用和內部標準 Load Balancer 皆可進行可用性區域設定。
 
@@ -89,7 +86,7 @@ Load Balancer 資源是一種物件，而您可以在其中表示 Azure 應如�
 
 ### <a name="diagnostics"></a> 診斷
 
-標準 Load Balancer 可透過 Azure 監視器提供多維度計量。  這些計量可進行篩選和分組，並且可讓您深入檢視您的服務目前和過去的效能和健康情況。  此外也支援資源健康情況。  以下將簡單說明支援的診斷：
+標準 Load Balancer 可透過 Azure 監視器提供多維度計量。  您可針對指定維度篩選、分組及劃分這些計量，  且您可深入檢視服務目前和過去的效能和健康情況。  此外也支援資源健康情況。  以下將簡單說明支援的診斷：
 
 | 計量 | 說明 |
 | --- | --- |
@@ -108,7 +105,7 @@ Load Balancer 資源是一種物件，而您可以在其中表示 Azure 應如�
 
 您可以設定負載平衡規則，讓應用程式延展並變得高度可靠。 當您使用 HA 連接埠負載平衡規則時，標準 Load Balancer 將會在內部標準 Load Balancer 之前端 IP 位址的每個暫時連接埠上提供以流量為準的負載平衡。  對於那些指定個別連接埠並不實際或不符合需求的其他案例來說，此功能相當實用。
 
-HA 連接埠負載平衡規則可讓您為虛擬網路設備和任何需要大範圍輸入連接埠的應用程式，建立主動-被動或主動-主動 n + 1 的案例。  健康情況探查可用來判斷哪個後端應接收新的流量。  您可以使用網路安全性群組來模擬連接埠範圍案例。
+HA 連接埠負載平衡規則可讓您為網路虛擬設備和任何需要大範圍輸入連接埠的應用程式，建立主動-被動或主動-主動 n + 1 的案例。  健康情況探查可用來判斷哪個後端應接收新的流量。  您可以使用網路安全性群組來模擬連接埠範圍案例。
 
 >[!IMPORTANT]
 > 如果您打算使用網路虛擬設備，請要求廠商提供相關指引以了解是否其產品是否經過 HA 連接埠的測試，並遵循其指引進行實作。 
@@ -117,9 +114,9 @@ HA 連接埠負載平衡規則可讓您為虛擬網路設備和任何需要大�
 
 ### <a name="securebydefault"></a>預設保護
 
-標準 Load Balancer 完全架構於虛擬網路上。  虛擬網路是封閉的私人網路。  由於標準 Load Balancer 和標準公用 IP 位址設計為允許從虛擬網路外部存取此虛擬網路，因此這些資源目前預設為關閉，除非您加以開啟。 這表示目前會使用網路安全性群組 (NSG) 來明確許可和放行允許的流量。  您可以在建立整個虛擬資料中心之後，透過 NSG 決定該中心可供使用的項目和時間。  如果您沒有子網路的 NSG 或虛擬機器資源的 NIC，我們將不會允許存取此資源的流量。
+標準 Load Balancer 完全架構於虛擬網路上。  虛擬網路是封閉的私人網路。  由於標準 Load Balancer 和標準公用 IP 位址設計為允許從虛擬網路外部存取此虛擬網路，因此這些資源目前預設為關閉，除非您加以開啟。 這表示目前會使用網路安全性群組 (NSG) 來明確許可和放行允許的流量。  您可以在建立整個虛擬資料中心之後，透過 NSG 決定該中心可供使用的項目和時間。  如果您沒有子網路的 NSG 或虛擬機器資源的 NIC，系統不會允許流量存取此資源。
 
-若要深入了解 NSG 及如何將其套用至您的案例，請參閱[網路安全性群組](../virtual-network/virtual-networks-nsg.md)。
+若要深入了解 NSG 及如何將其套用至您的案例，請參閱[網路安全性群組](../virtual-network/security-overview.md)。
 
 ### <a name="outbound"></a> 輸出連線
 
@@ -178,9 +175,9 @@ SKU 是不可變動的。 請依照本節中的步驟從一個資源 SKU 移到�
 
 ### <a name="migrate-from-basic-to-standard-sku"></a>從 Basic 移轉到 Standard SKU
 
-1. 視需要針對 Load Balancer 和「公用 IP」建立一個新的 Standard 資源。 重新建立您的規則和探查定義。
+1. 視需要針對 Load Balancer 和「公用 IP」建立一個新的 Standard 資源。 重新建立您的規則和探查定義。  如果您先前使用對 443/tcp 的 TCP 探查，請考慮將此探查通訊協定變更為 HTTPS 探查並新增路徑。
 
-2. 在 NIC 或子網路上建立新的或更新現有的 NSG，以將已負載平衡的流量、探查及任何其他您想要允許的流量列入白名單。
+2. 在 NIC 或子網路上建立新的或更新現有的 NSG，以將已負載平衡的流量、探查及任何其他您想要允許的流量列入允許清單。
 
 3. 從所有 VM 執行個體中移除 Basic SKU 資源 (看 Load Balancer 和「公用 IP」哪一個適用)。 請務必也移除可用性設定組的所有 VM 執行個體。
 
@@ -188,7 +185,7 @@ SKU 是不可變動的。 請依照本節中的步驟從一個資源 SKU 移到�
 
 ### <a name="migrate-from-standard-to-basic-sku"></a>從 Standard 移轉到 Basic SKU
 
-1. 視需要針對 Load Balancer 和「公用 IP」建立一個新的 Basic 資源。 重新建立您的規則和探查定義。 
+1. 視需要針對 Load Balancer 和「公用 IP」建立一個新的 Basic 資源。 重新建立您的規則和探查定義。  將 HTTPS 探查變更為對 443/tcp 的 TCP 探查。 
 
 2. 從所有 VM 執行個體中移除 Standard SKU 資源 (看 Load Balancer 和「公用 IP」哪一個適用)。 請務必也移除可用性設定組的所有 VM 執行個體。
 
@@ -218,23 +215,29 @@ Load Balancer Standard 目前已在所有公用雲端地區推出。
 
 ## <a name="limitations"></a>限制
 
-- Load Balancer 後端執行個體目前不能位於對等互連的虛擬網路中。 所有後端執行個體都必須在相同的區域中。
 - SKU 是不可變動的。 您無法變更現有資源的 SKU。
 - 獨立虛擬機器資源、可用性設定組資源或虛擬機器擴展集資源都只能參考一個 SKU，絕不會同時參考兩者。
-- 目前不支援 [Azure 監視器警示](../monitoring-and-diagnostics/monitoring-overview-alerts.md)。
+- Load Balancer 規則無法跨越兩個虛擬網路。  前端和其相關的後端執行個體必須位於相同的虛擬網路。  
+- 無法跨全域虛擬網路對等互連存取 Load Balancer 前端。
 - 標準 SKU LB 與 PIP 資源不支援[移動訂用帳戶作業](../azure-resource-manager/resource-group-move-resources.md)。
+- 由於預先 VNet 服務和其他平台服務的運作方式產生副作用，而只使用內部標準 Load Balancer 時，才可存取沒有 VNet 和其他 Microsoft 平台服務的 Web 背景工作角色。 請勿以此作為個別服務本身，否則基礎平台可能會在不經通知的情況下變更。 如果在只使用內部標準 Load Balancer 時有需要，請一律假設您需要明確建立[輸出連線](load-balancer-outbound-connections.md)。
+- Load Balancer 是一款 TCP 或 UDP 產品，用於針對特定的 IP 通訊協定，進行負載平衡和連接埠轉送作業。  負載平衡規則和 NAT 傳入規則均支援 TCP 和 UDP ，但不支援包含 ICMP 在內的其他 IP 通訊協定。 Load Balancer 並不會終止、回應或與 UDP 或 TCP 流程的承載互動。 Load Balancer 並非 Proxy。 前端連線能力必須在與負載平衡或是 NAT 傳入規則 (TCP 或 UDP) 所使用的相同通訊協定中，成功進行頻內驗證，而且至少要有一個虛擬機器必須對用戶端產生回應，以查看來自前端的回應。  未從 Load Balancer 前端接收到頻內回應，即表示沒有任何虛擬機器能夠回應。  在虛擬機器未回應的情況下，無法和 Load Balancer 前端互動。  這也適用於傳出連線，其中[連接埠偽裝 SNAT](load-balancer-outbound-connections.md#snat) 僅支援 TCP 和 UDP，包括 ICMP 在內的任何其他 IP 通訊協定也會失敗。  指派執行個體層級的公用 IP 可減輕負擔。
+- 公用 Load Balancer 從虛擬網路內的私人 IP 位址轉換至公用 IP 位址時會提供[傳出連線](load-balancer-outbound-connections.md)，但是內部 Load Balancers 與公用 Load Balancer 不同，不會將傳出的起源連線轉譯至內部 Load Balancer，因為兩者都位於私人 IP 位址空間內。  如此可避免在無需轉譯的專屬內部 IP 位址空間中將 SNAT 耗盡。  副作用是，如果後端集區 VM 的傳出流程嘗試將流程傳送到其所在集區之內部 Load Balancer 前端的，並且對應回本身，則這兩個流程互不相符，而且流程會失敗。  如果流程未對應回建立流程至前端之後端集區中的相同 VM，則流程將會成功。   當流程對應回本身時，傳出流程似乎是來自 VM 而傳至前端，而對應的傳入流程似乎來自 VM 至而傳至本身。 以客體作業系統來看，相同流程的傳入和傳出部分在虛擬機器內部不相符。 由於來源和目的地不同，TCP 堆疊無法將其中半數的流程視為相同流程的一部分。  當流程對應至後端集區中的任何其他 VM 時，半數流程將會相符，而 VM 就能成功回應流程。  此案例的症狀是間歇性出現連線逾時。 有數個常見的因應措施能夠可靠地實現此情節 (將來自後端集區的流程產生至個別內部 Load Balancer 前端的後端集區)，包括在內部 Load Balancer 後插入協力廠商 Proxy 或[使用 DSR 樣式規則](load-balancer-multivip-overview.md)。  儘管可以使用公用 Load Balancer 來減輕負擔，但產生的情節容易造成 [SNAT 耗盡](load-balancer-outbound-connections.md#snat)，除非謹慎控管，否則應該避免。
 
 ## <a name="next-steps"></a>後續步驟
 
-- 了解如何使用[標準 Load Balancer 和可用性區域](load-balancer-standard-availability-zones.md)
+- 了解如何使用[標準 Load Balancer 和可用性區域](load-balancer-standard-availability-zones.md)。
+- 深入了解[健康情況探查](load-balancer-custom-probe-overview.md)。
 - 深入了解[可用性區域](../availability-zones/az-overview.md)。
 - 了解[標準 Load Balancer 診斷](load-balancer-standard-diagnostics.md)。
 - 參閱[支援的多維度計量](../monitoring-and-diagnostics/monitoring-supported-metrics.md#microsoftnetworkloadbalancers)，以了解 [Azure 監視器](../monitoring-and-diagnostics/monitoring-overview.md)中的診斷。
-- 了解如何使用[輸出連線的 Load Balancer](load-balancer-outbound-connections.md)
-- 了解[具有 HA 連接埠負載平衡規則的標準 Load Balancer](load-balancer-ha-ports-overview.md)
-- 了解如何使用[多個前端的 Load Balancer](load-balancer-multivip-overview.md)
+- 了解如何使用 [Load Balancer 來進行輸出連線](load-balancer-outbound-connections.md)。
+- 深入了解[輸出規則](load-balancer-outbound-rules-overview.md)。
+- 深入了解[閒置時重設 TCP](load-balancer-tcp-reset.md)。
+- 了解[具有 HA 連接埠負載平衡規則的標準 Load Balancer](load-balancer-ha-ports-overview.md)。
+- 了解如何搭配使用 [Load Balancer 與多個前端](load-balancer-multivip-overview.md)。
 - 了解[虛擬網路](../virtual-network/virtual-networks-overview.md)。
-- 深入了解[網路安全性群組](../virtual-network/virtual-networks-nsg.md)。
-- 了解 [VNET 服務端點](../virtual-network/virtual-network-service-endpoints-overview.md)
+- 深入了解[網路安全性群組](../virtual-network/security-overview.md)。
+- 了解 [VNET 服務端點](../virtual-network/virtual-network-service-endpoints-overview.md)。
 - 了解 Azure 中的一些其他重要[網路功能](../networking/networking-overview.md)。
 - 深入了解 [Load Balancer](load-balancer-overview.md)。

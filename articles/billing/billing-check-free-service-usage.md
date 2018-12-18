@@ -1,24 +1,25 @@
 ---
-title: "監視和追蹤免費服務的使用量 - Azure| Microsoft Docs"
-description: "了解如何檢查免費服務的使用量 使用 Azure 入口網站和使用量 csv。"
-services: 
-documentationcenter: 
+title: 監視和追蹤 Azure 免費服務的使用量 | Microsoft Docs
+description: 了解如何檢查免費服務的使用量 使用 Azure 入口網站和使用量 csv。
+services: ''
+documentationcenter: ''
 author: amberbhargava
 manager: amberb
-editor: 
+editor: ''
 tags: billing
 ms.service: billing
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 09/25/2017
-ms.author: amberb
-ms.openlocfilehash: 8bc63091dfba822f9839f61dd12c212154ba695d
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.author: cwatson
+ms.openlocfilehash: df049a87763f3aae8da2db153f876b88ed39b988
+ms.sourcegitcommit: d1aef670b97061507dc1343450211a2042b01641
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47390233"
 ---
 # <a name="check-usage-of-free-services-included-with-your-azure-free-account"></a>檢查 Azure 免費帳戶隨附的免費服務使用量 
 
@@ -30,13 +31,13 @@ ms.lasthandoff: 02/21/2018
 
 2.  在左側導覽區域中，選取 [所有服務]。
 
-3.  選取 [訂用帳戶]。
+3.  選取 **訂用帳戶** 。
 
 4.  選取您註冊免費帳戶時建立的訂用帳戶。
 
     ![顯示全部訂用帳戶的螢幕擷取畫面](./media/billing-check-usage-of-free-services/select-free-account-subscription.png)
 
-5.  概觀區段會顯示與您的訂用帳戶有關的基本資訊，例如訂用帳戶識別碼、優惠類型和訂用帳戶名稱。 您也可以找到免費帳戶信用額度到期的資訊。
+5.  概觀區段會顯示與您的訂用帳戶有關的基本資訊，例如訂用帳戶識別碼、供應項目類型和訂用帳戶名稱。 您也可以找到免費帳戶信用額度到期的資訊。
 
     ![顯示訂用帳戶基本資訊的螢幕擷取畫面](./media/billing-check-usage-of-free-services/subscription-essential-information.png)
 
@@ -50,13 +51,13 @@ ms.lasthandoff: 02/21/2018
 
     該表格包含下列資料行：
 
-* **計量名稱：**識別耗用計量的量值單位。 若要了解服務與計量的對應，請參閱[了解免費服務與計量的對應](billing-understand-free-service-meter-mapping.md)。 
-* **使用量/限制：**目前月份的使用量和計量的限額。 您也可在狀態列中找到此資訊。
-* **狀態：**計量的使用量狀態。 根據您的使用量模式而定，會出現下列其中一個狀態。
-  * **不在使用中：**您未使用計量，或計費的使用量未達到計費系統的標準。
-  * **已在 \<Date> 超過：**您在 \<Date> 超過計量的限額。
-  * **不太可能超過：**您不太可能超過計量的限額。
-  * **將在 \<Date> 超過：**您可能在 \<Date> 超過計量的限額。
+* **計量名稱：** 識別耗用計量的量值單位。 若要了解服務與計量的對應，請參閱[了解免費服務與計量的對應](billing-understand-free-service-meter-mapping.md)。 
+* **使用量/限制：** 目前月份的使用量和計量的限額。 您也可在狀態列中找到此資訊。
+* **狀態：** 計量的使用量狀態。 根據您的使用量模式而定，會出現下列其中一個狀態。
+  * **不在使用中：** 您未使用計量，或計費的使用量未達到計費系統的標準。
+  * **已在 \<Date> 超過：** 您在 \<Date> 超過計量的限額。
+  * **不太可能超過：** 您不太可能超過計量的限額。
+  * **將在 \<Date> 超過：** 您可能在 \<Date> 超過計量的限額。
 
 
 ## <a name="check-usage-through-the-usage-file"></a>透過使用量檔案查看使用量

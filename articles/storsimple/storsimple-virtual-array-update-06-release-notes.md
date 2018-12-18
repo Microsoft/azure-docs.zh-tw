@@ -1,12 +1,12 @@
 ---
-title: "StorSimple Virtual Array Update 0.6 版本資訊 | Microsoft Docs"
-description: "描述執行 Update 0.6 之 StorSimple Virtual Array 的重大未決問題和解決方式。"
+title: StorSimple Virtual Array Update 0.6 版本資訊 | Microsoft Docs
+description: 描述執行 Update 0.6 之 StorSimple Virtual Array 的重大未決問題和解決方式。
 services: storsimple
-documentationcenter: 
+documentationcenter: ''
 author: alkohli
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: NA
 ms.topic: article
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23110856"
 ---
 # <a name="storsimple-virtual-array-update-06-release-notes"></a>StorSimple Virtual Array Update 0.6 版本資訊
 

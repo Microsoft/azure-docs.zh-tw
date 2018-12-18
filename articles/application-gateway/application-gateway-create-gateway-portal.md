@@ -2,20 +2,21 @@
 title: 建立應用程式閘道 - Azure 入口網站 | Microsoft Docs
 description: 了解如何使用 Azure 入口網站來建立應用程式閘道。
 services: application-gateway
-author: davidmu1
-manager: timlt
+author: vhorne
+manager: jpconnock
 editor: ''
 tags: azure-resource-manager
 ms.service: application-gateway
 ms.topic: article
 ms.workload: infrastructure-services
 ms.date: 01/25/2018
-ms.author: davidmu
-ms.openlocfilehash: df9235bc7ff61943de52a0bcc4064bf9fab6636a
-ms.sourcegitcommit: ded74961ef7d1df2ef8ffbcd13eeea0f4aaa3219
+ms.author: victorh
+ms.openlocfilehash: 0df71c445d2c5fc6827b69f708203a3b3e6e2b53
+ms.sourcegitcommit: c47ef7899572bf6441627f76eb4c4ac15e487aec
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/29/2018
+ms.lasthandoff: 05/04/2018
+ms.locfileid: "33202383"
 ---
 # <a name="create-an-application-gateway-using-the-azure-portal"></a>使用 Azure 入口網站建立應用程式閘道
 
@@ -25,7 +26,7 @@ ms.lasthandoff: 01/29/2018
 
 ## <a name="log-in-to-azure"></a>登入 Azure
 
-登入 Azure 入口網站，網址是 [http://portal.azure.com](http://portal.azure.com)
+在 [http://portal.azure.com](http://portal.azure.com) 上登入 Azure 入口網站
 
 ## <a name="create-an-application-gateway"></a>建立應用程式閘道
 
@@ -79,7 +80,7 @@ ms.lasthandoff: 01/29/2018
     - *Azure123456!* 作為密碼。
     - 選取 [使用現有的]，然後選取 [myResourceGroupAG]。
 
-4. 按一下 [SERVICEPRINCIPAL] 。
+4. 按一下 [確定]。
 5. 選取 [DS1_V2] 作為虛擬機器的大小，然後按一下 [選取]。
 6. 確定您已選取 [myVNet] 作為虛擬網路，而且子網路是 [myBackendSubnet]。 
 7. 按一下 [停用] 來停用開機診斷。

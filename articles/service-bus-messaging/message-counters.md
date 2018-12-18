@@ -1,23 +1,24 @@
 ---
-title: "Azure 服務匯流排訊息計數 | Microsoft Docs"
-description: "擷取 Azure 服務匯流排訊息的計數。"
+title: Azure 服務匯流排訊息計數 | Microsoft Docs
+description: 擷取 Azure 服務匯流排訊息的計數。
 services: service-bus-messaging
-documentationcenter: 
+documentationcenter: ''
 author: clemensv
 manager: timlt
-editor: 
+editor: ''
 ms.service: service-bus-messaging
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/26/2018
-ms.author: sethm
-ms.openlocfilehash: e6524fe056ee2a1d81c9cccf257008b2369352b1
-ms.sourcegitcommit: ded74961ef7d1df2ef8ffbcd13eeea0f4aaa3219
+ms.date: 09/26/2018
+ms.author: spelluru
+ms.openlocfilehash: bd9d1b813c90be09301eeff1de7580f22c15500b
+ms.sourcegitcommit: b7e5bbbabc21df9fe93b4c18cc825920a0ab6fab
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/29/2018
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47407581"
 ---
 # <a name="message-counters"></a>訊息計數器
 

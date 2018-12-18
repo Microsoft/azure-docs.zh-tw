@@ -1,11 +1,11 @@
 ---
-title: "Azure API 管理常見問題集 | Microsoft Docs"
-description: "了解 Azure API 管理中常見問題集 (FAQ)、模式和最佳做法的答案。"
+title: Azure API 管理常見問題集 | Microsoft Docs
+description: 了解 Azure API 管理中常見問題集 (FAQ)、模式和最佳做法的答案。
 services: api-management
-documentationcenter: 
+documentationcenter: ''
 author: vladvino
 manager: erikre
-editor: 
+editor: ''
 ms.assetid: 2fa193cd-ea71-4b33-a5ca-1f55e5351e23
 ms.service: api-management
 ms.workload: mobile
@@ -14,11 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/19/2017
 ms.author: apimpm
-ms.openlocfilehash: 091cfaaf8fa1cccf2f8b819732946bbbd08fd426
-ms.sourcegitcommit: 0b02e180f02ca3acbfb2f91ca3e36989df0f2d9c
+ms.openlocfilehash: 7082edf43e53766d32bd967d0b894f6439eaa492
+ms.sourcegitcommit: 4ea0cea46d8b607acd7d128e1fd4a23454aa43ee
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/05/2018
+ms.lasthandoff: 08/15/2018
+ms.locfileid: "42144803"
 ---
 # <a name="azure-api-management-faqs"></a>Azure API 管理常見問題集
 得到 Azure API 管理常見問題、模式和最佳作法的答案。
@@ -77,7 +78,7 @@ ms.lasthandoff: 03/05/2018
 
 * [API 管理 REST API](https://msdn.microsoft.com/library/azure/dn776326.aspx)。
 * [Microsoft Azure ApiManagement 服務管理資源庫 SDK](http://aka.ms/apimsdk)。
-* [服務部署](https://msdn.microsoft.com/library/mt619282.aspx)和[服務管理](https://msdn.microsoft.com/library/mt613507.aspx) PowerShell Cmdlet。
+* [服務部署](https://docs.microsoft.com/powershell/module/wds)和[服務管理](https://docs.microsoft.com/powershell/azure/servicemanagement/overview) PowerShell Cmdlet。
 
 ### <a name="how-do-i-add-a-user-to-the-administrators-group"></a>如何將使用者新增至 Administrators 群組？
 將使用者新增至 Administrators 群組的步驟如下：
@@ -86,9 +87,9 @@ ms.lasthandoff: 03/05/2018
 2. 移至包含您要更新之 API 管理執行個體的資源群組。
 3. 在 API 管理中，將 [Api 管理參與者] 角色指派給使用者。
 
-新增的參與者現在即可使用 Azure PowerShell [Cmdlet](https://msdn.microsoft.com/library/mt613507.aspx)。 以系統管理員身分登入的步驟如下︰
+新增的參與者現在即可使用 Azure PowerShell [Cmdlet](https://docs.microsoft.com/powershell/azure/overview)。 以系統管理員身分登入的步驟如下︰
 
-1. 使用 `Login-AzureRmAccount` Cmdlet 進行登入。
+1. 使用 `Connect-AzureRmAccount` Cmdlet 進行登入。
 2. 使用 `Set-AzureRmContext -SubscriptionID <subscriptionGUID>` 將內容設定為具有服務的訂用帳戶。
 3. 使用 `Get-AzureRmApiManagementSsoToken -ResourceGroupName <rgName> -Name <serviceName>` 取得單一登入 URL。
 4. 使用此 URL 來存取系統管理入口網站。

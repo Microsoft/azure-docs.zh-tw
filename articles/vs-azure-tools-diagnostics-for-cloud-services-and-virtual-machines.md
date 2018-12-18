@@ -12,13 +12,14 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: multiple
-ms.date: 11/11/2016
+ms.date: 06/28/2018
 ms.author: mikejo
-ms.openlocfilehash: 34c667b0a594682e4d099e7bff64bfdb336b850b
-ms.sourcegitcommit: 34e0b4a7427f9d2a74164a18c3063c8be967b194
+ms.openlocfilehash: 2ff2a619dabd7dfabf89361172557efa4884ba12
+ms.sourcegitcommit: 5a7f13ac706264a45538f6baeb8cf8f30c662f8f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/30/2018
+ms.lasthandoff: 06/29/2018
+ms.locfileid: "37110482"
 ---
 # <a name="set-up-diagnostics-for-azure-cloud-services-and-virtual-machines"></a>為 Azure 雲端服務和虛擬機器設定診斷
 需要針對 Azure 雲端服務或 Azure 虛擬機器進行疑難排解時，您可以使用 Visual Studio 更輕鬆地設定 Azure 診斷。 診斷會在執行雲端服務的虛擬機器和虛擬機器執行個體上擷取系統資料和記錄資料。 診斷資料會傳輸到您選擇的儲存體帳戶。 如需 Azure 中診斷記錄的詳細資訊，請參閱[在 Azure App Service 中針對 Web 應用程式啟用診斷記錄](app-service/web-sites-enable-diagnostic-log.md)。
@@ -86,7 +87,11 @@ ms.lasthandoff: 03/30/2018
    * 如果選取 [您的訂用帳戶]，您可以選取要使用的 Azure 訂用帳戶，並輸入帳戶名稱。 若要管理您的 Azure 訂用帳戶，請選取 [管理帳戶]。
    * 如果您選取 [手動輸入的認證]，請輸入您想要使用之 Azure 帳戶的名稱和金鑰。
 5. 若要檢視 [診斷設定] 對話方塊，請選取 [設定] 對話方塊。 除了 [一般] 和 [記錄目錄] 之外，每個索引標籤都代表您可以收集的診斷資料來源。 預設 [一般] 索引標籤提供下列診斷資料收集選項：[只記錄錯誤]、[所有資訊] 和 [自訂計劃]。 預設 [只記錄錯誤] 選項會佔用最少的儲存體，因為它不會傳輸警告或追蹤訊息。 [所有資訊]  選項會傳輸大部分的資訊、使用最多的儲存體，因此它是最昂貴的選項。
-   
+
+   > [!NOTE]
+   > 針對「磁碟配額 (以 MB 為單位)」支援的大小下限為 4GB。 不過，如果您有收集記憶體傾印，請將這個值增加為較高的值，例如 10GB。
+   >
+  
     ![啟用 Azure 診斷和組態](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC758144.png)
 6. 在此範例中，請選取 [自訂計劃]  選項，您就可以自訂收集的資料。
 7. 在 [以 MB 為單位的磁碟配額]  方塊中，您可以設定要在儲存體帳戶中配置診斷資料的空間大小。 您可以變更或接受預設值。

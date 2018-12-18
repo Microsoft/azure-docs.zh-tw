@@ -1,36 +1,37 @@
 ---
-title: 建立 Azure 虛擬網路 - 入口網站 | Microsoft Docs
-description: 快速了解如何使用 Azure 入口網站來建立虛擬網路。 虛擬網路可讓 Azure 資源 (例如虛擬機器) 彼此及與網際網路進行私密通訊。
+title: 建立虛擬網路 -快速入門 - Azure 入口網站 | Microsoft Docs
+description: 在此快速入門中，您將了解如何使用 Azure 入口網站建立虛擬網路。 虛擬網路可讓 Azure 資源 (例如虛擬機器) 彼此及與網際網路進行私密通訊。
 services: virtual-network
 documentationcenter: virtual-network
 author: jimdial
 manager: jeconnoc
 editor: ''
 tags: azure-resource-manager
+Customer intent: I want to create a virtual network so that virtual machines can communicate with privately with each other and with the internet.
 ms.assetid: ''
 ms.service: virtual-network
 ms.devlang: na
-ms.topic: ''
+ms.topic: quickstart
 ms.tgt_pltfrm: virtual-network
 ms.workload: infrastructure
 ms.date: 03/09/2018
 ms.author: jdial
-ms.custom: ''
-ms.openlocfilehash: c8f2cbe6b7377772e019a4ff90f91355ba0815ae
-ms.sourcegitcommit: a0be2dc237d30b7f79914e8adfb85299571374ec
+ms.custom: mvc
+ms.openlocfilehash: 7107dc72686004141d8bea0083089cba065a9f4c
+ms.sourcegitcommit: 6fcd9e220b9cd4cb2d4365de0299bf48fbb18c17
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/12/2018
+ms.lasthandoff: 04/05/2018
 ---
-# <a name="create-a-virtual-network-using-the-azure-portal"></a>使用 Azure 入口網站建立虛擬網路
+# <a name="quickstart-create-a-virtual-network-using-the-azure-portal"></a>快速入門：使用 Azure 入口網站建立虛擬網路
 
-虛擬網路可讓 Azure 資源 (例如虛擬機器 (VM)) 彼此及與網際網路進行私密通訊。 在本文中，您將了解如何建立虛擬網路。 建立虛擬網路之後，您需將兩個 VM 部署至虛擬網路中。 接著，您需從網際網路連線至其中一個 VM，然後在兩個 VM 之間進行私密通訊。
+虛擬網路可讓 Azure 資源 (例如虛擬機器 (VM)) 彼此及與網際網路進行私密通訊。 在此快速入門中，您將了解如何建立虛擬網路。 建立虛擬網路之後，您需將兩個 VM 部署至虛擬網路中。 接著，您需從網際網路連線至其中一個 VM，然後在兩個 VM 之間進行私密通訊。
 
 如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
 
 ## <a name="log-in-to-azure"></a>登入 Azure 
 
-登入 Azure 入口網站，網址是 https://portal.azure.com。
+在 https://portal.azure.com 上登入 Azure 入口網站。
 
 ## <a name="create-a-virtual-network"></a>建立虛擬網路
 
@@ -90,9 +91,9 @@ ms.lasthandoff: 03/12/2018
 4. 選取 [確定] 。
 5. 您可能會在登入過程中收到憑證警告。 如果您收到警告，請選取 [是] 或 [繼續] 以繼續進行連線。
 
-## <a name="communicate-privately-between-vms"></a>在 VM 之間進行私密通訊
+## <a name="communicate-between-vms"></a>虛擬機器之間的通訊
 
-1. 從 PowerShell，輸入 `ping myvm2`。 Ping 會失敗，因為 Ping 使用網際網路控制訊息通訊協定 (ICMP)，而 Windows 防火牆預設並不允許 ICMP 通過。
+1. 從 PowerShell，輸入 `ping myvm2`。 Ping 會失敗，因為 Ping 使用網際網路控制訊息通訊協定 (ICMP)，而 Windows 防火牆依預設並不允許 ICMP 通過。
 2. 若要允許 *myVm2* 在稍後的步驟中對 *myVm1* 執行 Ping，請從 PowerShell 輸入下列命令，這會允許連入的 ICMP 通過 Windows 防火牆：
 
     ```powershell
@@ -117,9 +118,6 @@ ms.lasthandoff: 03/12/2018
 
 ## <a name="next-steps"></a>後續步驟
 
-在本文中，您已建立一個預設的虛擬網路和兩個 VM。 您已從網際網路連線至其中一個 VM，然後在該 VM 與另一個 VM 之間進行私密通訊。 若要深入了解虛擬網路設定，請參閱[管理虛擬網路](manage-virtual-network.md)。
+在此快速入門中，您建立了一個預設的虛擬網路和兩個 VM。 您從網際網路連線至其中一個 VM，然後在該 VM 與另一個 VM 進行私密通訊。 若要深入了解虛擬網路設定，請參閱[管理虛擬網路](manage-virtual-network.md)。
 
-Azure 預設會允許虛擬機器之間進行不受限制的私密通訊，但只允許從網際網路到 Windows VM 連入遠端桌面連線。 若要了解如何允許或限制進出 VM 的不同類型網路通訊，請前進到下一個教學課程。
-
-> [!div class="nextstepaction"]
-> [篩選網路流量](virtual-networks-create-nsg-arm-pportal.md)
+Azure 預設會允許虛擬機器之間進行不受限制的私密通訊，但只允許從網際網路到 Windows VM 的輸入遠端桌面連線。 若要了解如何允許或限制進出 VM 的不同網路通訊類型，請移至[篩選網路流量](tutorial-filter-network-traffic.md)教學課程。

@@ -1,28 +1,24 @@
 ---
-title: Microsoft Azure Data Lake Analytics 概觀 | Microsoft Docs
-description: Data Lake Analytics 可讓您使用從雲端資料取得的深入解析來推動業務。
+title: Azure Data Lake Analytics 概觀
+description: Data Lake Analytics 可讓您使用在任意規模的雲端資料所取得的深入解析來推動業務。
 services: data-lake-analytics
-documentationcenter: ''
 author: saveenr
-manager: saveenr
-editor: cgronlun
+ms.author: saveenr
+ms.reviewer: jasonwhowell
 ms.assetid: 1e1d443a-48a2-47fb-bc00-bf88274222de
 ms.service: data-lake-analytics
-ms.devlang: na
-ms.topic: get-started-article
-ms.tgt_pltfrm: na
-ms.workload: big-data
+ms.topic: overview
 ms.date: 06/23/2017
-ms.author: saveenr
-ms.openlocfilehash: 4ee0bdf486fa59c2d32b0d28ee25618996a57c6e
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: ec0e8c11a1d60d4454d962b8ec4c363e35d1182a
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46988745"
 ---
-# <a name="overview-of-azure-data-lake-analytics"></a>Azure Data Lake Analytics 概觀
+# <a name="what-is-azure-data-lake-analytics"></a>什麼是 Azure Data Lake Analytics？
 
-Azure Data Lake Analytics 是隨選分析作業服務，可簡化巨量資料。 無需部署、設定及調整硬體，您只需寫入查詢便可轉換資料並擷取寶貴的深入見解。 透過針對所需的功能設定級別，此項分析服務便可立即處理任何規模的工作。 只有在作業進行時您才需要支付費用，十分符合成本效益。 分析服務支援包括 U-SQL，該語言可將 SQL 的優勢與命令式程式碼的能力結合在一起。 U-SQL 可讓您在 Azure、Azure SQL Database 及 Azure SQL 資料倉儲中分析橫跨 Data Lake Store、SQL Server 的資料。
+Azure Data Lake Analytics 是隨選分析作業服務，可簡化巨量資料。 無需部署、設定及調整硬體，您只需寫入查詢便可轉換資料並擷取寶貴的深入見解。 透過針對所需的功能設定級別，此項分析服務便可立即處理任何規模的工作。 只有在作業進行時您才需要支付費用，十分符合成本效益。 
 
 ### <a name="dynamic-scaling"></a>動態調整
   
@@ -42,7 +38,7 @@ Data Lake Analytics 可利用您現有的 IT 投資，進行身分識別、管�
 
 ### <a name="affordable-and-cost-effective"></a>經濟實惠並符合成本效益
 
-Data Lake Analytics 可用於執行巨量資料工作負載，是十分符合成本效益的解決方案。 所處理的資料將會以每件工作來計費。 您無需簽訂任何硬體、授權或服務相關的支援合約。 系統會自動在作業開始及完成時相應增加或減少，讓您的每一分錢都花在刀口上。 [深入了解如何控制成本及節省金錢](https://1drv.ms/f/s!AvdZLquGMt47h213Hg3rhl-Tym1c)。
+Data Lake Analytics 可用於執行巨量資料工作負載，是十分符合成本效益的解決方案。 所處理的資料將會以每件工作來計費。 您無需簽訂任何硬體、授權或服務相關的支援合約。 系統會自動在作業開始及完成時相應增加或減少，讓您的每一分錢都花在刀口上。 [深入了解如何控制成本及節省金錢](https://aka.ms/adlasavemoney)。
     
 ### <a name="works-with-all-your-azure-data"></a>使用所有的 Azure 資料
   
@@ -50,6 +46,6 @@ Data Lake Analytics 可與 Azure Data Lake Store 搭配運作，以達到最高�
 
 ### <a name="next-steps"></a>後續步驟
  
-  * 透過 [Azure 入口網站](data-lake-analytics-get-started-portal.md) | [Azure PowerShell](data-lake-analytics-get-started-powershell.md) | [CLI](data-lake-analytics-get-started-cli2.md)開始使用 Data Lake Analytics
+  * 透過 [Azure 入口網站](data-lake-analytics-get-started-portal.md) | [Azure PowerShell](data-lake-analytics-get-started-powershell.md) | [CLI](data-lake-analytics-get-started-cli.md)開始使用 Data Lake Analytics
   * 透過 [Azure 入口網站](data-lake-analytics-manage-use-portal.md) | [Azure PowerShell](data-lake-analytics-manage-use-powershell.md) | [CLI](data-lake-analytics-manage-use-cli.md) | [Azure .NET SDK](data-lake-analytics-manage-use-dotnet-sdk.md) | [Node.js](data-lake-analytics-manage-use-nodejs.md) 來開始使用 Data Lake Analytics
   * [如何使用 Data Lake Analytics 控制成本及節省成本](https://1drv.ms/f/s!AvdZLquGMt47h213Hg3rhl-Tym1c)

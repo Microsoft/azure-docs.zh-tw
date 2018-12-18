@@ -1,25 +1,21 @@
 ---
-title: "將您的結構描述移轉至 SQL 資料倉儲 | Microsoft Docs"
-description: "將您的結構描述移轉至 Azure SQL 資料倉儲來開發解決方案的秘訣。"
+title: 將您的結構描述移轉至 SQL 資料倉儲 | Microsoft Docs
+description: 將您的結構描述移轉至 Azure SQL 資料倉儲來開發解決方案的秘訣。
 services: sql-data-warehouse
-documentationcenter: NA
-author: sqlmojo
-manager: jhubbard
-editor: 
-ms.assetid: 538b60c9-a07f-49bf-9ea3-1082ed6699fb
+author: jrowlandjones
+manager: craigg
 ms.service: sql-data-warehouse
-ms.devlang: NA
-ms.topic: article
-ms.tgt_pltfrm: NA
-ms.workload: data-services
-ms.custom: migrate
-ms.date: 10/31/2016
-ms.author: joeyong;barbkess
-ms.openlocfilehash: 07ca2321852e276502187e768177e7e82bdfd080
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.topic: conceptual
+ms.component: implement
+ms.date: 04/17/2018
+ms.author: jrj
+ms.reviewer: igorstan
+ms.openlocfilehash: 51ad7eed0bf37194b1e5ff2c605b39246e9a1191
+ms.sourcegitcommit: 1fb353cfca800e741678b200f23af6f31bd03e87
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/30/2018
+ms.locfileid: "43301177"
 ---
 # <a name="migrate-your-schemas-to-sql-data-warehouse"></a>將您的結構描述移轉至 SQL 資料倉儲
 將您的 SQL 結構描述移轉至 SQL 資料倉儲的指引。 

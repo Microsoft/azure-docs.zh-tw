@@ -1,6 +1,6 @@
 ---
-title: "取得 ARP 表格：Resource Manager：Azure ExpressRoute 疑難排解 | Microsoft Docs"
-description: "此頁面提供相關指示，協助您取得適用於 ExpressRoute 線路的 ARP 表格"
+title: 取得 ARP 表格：Resource Manager：Azure ExpressRoute 疑難排解 | Microsoft Docs
+description: 此頁面提供相關指示，協助您取得適用於 ExpressRoute 線路的 ARP 表格
 documentationcenter: na
 services: expressroute
 author: ganesr
@@ -19,6 +19,7 @@ ms.sourcegitcommit: b5c6197f997aa6858f420302d375896360dd7ceb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 12/21/2017
+ms.locfileid: "23013133"
 ---
 # <a name="getting-arp-tables-in-the-resource-manager-deployment-model"></a>在 Resource Manager 部署模型中取得 ARP 表格
 > [!div class="op_single_selector"]

@@ -1,12 +1,12 @@
 ---
-title: "Azure Service Fabric 安全性最佳做法 | Microsoft Docs"
-description: "本文提供一組 Azure Service Fabric 安全性的最佳做法。"
+title: Azure Service Fabric 安全性最佳做法 | Microsoft Docs
+description: 本文提供一組 Azure Service Fabric 安全性的最佳做法。
 services: security
 documentationcenter: na
 author: unifycloud
-manager: swadhwa
+manager: mbaldwin
 editor: tomsh
-ms.assetid: 
+ms.assetid: ''
 ms.service: security
 ms.devlang: na
 ms.topic: article
@@ -14,11 +14,12 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/01/2017
 ms.author: tomsh
-ms.openlocfilehash: a8b76e2895edcdbbddafbee7116e163d1789c06d
-ms.sourcegitcommit: b07d06ea51a20e32fdc61980667e801cb5db7333
+ms.openlocfilehash: b908589903d243b2d284e2a23b6111785229c16f
+ms.sourcegitcommit: 870d372785ffa8ca46346f4dfe215f245931dae1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2017
+ms.lasthandoff: 05/08/2018
+ms.locfileid: "33894124"
 ---
 # <a name="azure-service-fabric-security-best-practices"></a>Azure Service Fabric 安全性最佳做法
 在 Azure 上部署應用程式很快速、輕鬆且符合成本效益。 將您的雲端應用程式部署至生產環境之前，請檢閱重要和建議最佳做法，以在應用程式中實作安全叢集。
@@ -69,7 +70,7 @@ Azure Service Fabric 是分散式系統平台，可讓您輕鬆封裝、部署�
 -   角色型存取控制 (RBAC)：這個情節會針對存取叢集的每個系統管理員和使用者用戶端角色使用不同的身分識別 (憑證、Azure AD 等等)。 當您建立叢集時，可以指定角色身分識別。
 
 >[!NOTE]
->**Azure 叢集的安全性建議：**針對節點對節點安全性使用 Azure AD 安全性來驗證用戶端和憑證。
+>**Azure 叢集的安全性建議：** 針對節點對節點安全性使用 Azure AD 安全性來驗證用戶端和憑證。
 
 若要設定獨立 Windows 叢集，請參閱[設定獨立 Windows 叢集的設定](https://docs.microsoft.com/azure/service-fabric/service-fabric-cluster-manifest)。
 

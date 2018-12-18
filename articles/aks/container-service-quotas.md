@@ -1,22 +1,23 @@
 ---
-title: "Azure Container Service (AKS) 配額和區域可用性"
-description: "Azure Container Service (AKS) 的預設配額和區域可用性。"
+title: Azure Kubernetes Service (AKS) 配額和區域可用性
+description: Azure Kubernetes Service (AKS) 的預設配額和區域可用性。
 services: container-service
-author: david-stanford
-manager: timlt
+author: iainfoulds
+manager: jeconnoc
 ms.service: container-service
 ms.topic: overview
-ms.date: 01/16/2018
-ms.author: dastanfo
-ms.openlocfilehash: eddfab874501fd045820d7da3c968d340fdffe93
-ms.sourcegitcommit: f1c1789f2f2502d683afaf5a2f46cc548c0dea50
+ms.date: 08/01/2018
+ms.author: iainfou
+ms.openlocfilehash: 266e2c1f986ba78c9aac40887bc9a7dee1cbff82
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/18/2018
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39420343"
 ---
-# <a name="quotas-and-region-availability-for-azure-container-service-aks"></a>Azure Container Service (AKS) 的配額和區域可用性
+# <a name="quotas-and-region-availability-for-azure-kubernetes-service-aks"></a>Azure Kubernetes Service (AKS) 的配額和區域可用性
 
-所有 Azure 服務都包含資源和功能的特定預設限制和配額。 下列各節詳細說明數個 Azure Container Service (AKS) 資源的預設資源限制，以及 Azure 區域中 AKS 服務的可用性。
+所有 Azure 服務都包含資源和功能的特定預設限制和配額。 下列各節詳細說明數個 Azure Kubernetes Service (AKS) 資源的預設資源限制，以及 Azure 區域中 AKS 服務的可用性。
 
 ## <a name="service-quotas-and-limits"></a>服務配額和限制
 
@@ -28,12 +29,21 @@ ms.lasthandoff: 01/18/2018
 
 ## <a name="region-availability"></a>區域可用性
 
-Azure Container Service (AKS) 會在下列區域內提供預覽版本：
-- 美國東部
-- 西歐
-- 美國中部
+Azure Kubernetes Service (AKS) 適用於下列區域：
+
+- 澳洲東部
 - 加拿大中部
 - 加拿大東部
+- 美國中部
+- 美國東部
+- 美國東部 2
+- 日本東部
+- 北歐
+- 東南亞
+- 英國南部
+- 西歐
+- 美國西部
+- 美國西部 2
 
 ## <a name="next-steps"></a>後續步驟
 

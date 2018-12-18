@@ -1,7 +1,7 @@
 ---
-title: "什麼是 Microsoft Genomics？ | Microsoft Docs"
+title: 什麼是 Microsoft Genomics？ | Microsoft Docs
 titleSuffix: Azure
-description: "了解 Microsoft Genomics 如何強化基因組定序，其目前提供 BWA-GATK 的雲端實作以進行次級分析。"
+description: 了解 Microsoft Genomics 如何強化基因組定序，其目前提供 BWA-GATK 的雲端實作以進行次級分析。
 services: microsoft-genomics
 author: grhuynh
 manager: jhubbard
@@ -11,11 +11,12 @@ ms.service: microsoft-genomics
 ms.workload: genomics
 ms.topic: article
 ms.date: 12/07/2017
-ms.openlocfilehash: edfe6cc608a74b61777ce54eba3aa42c239b6090
-ms.sourcegitcommit: 922687d91838b77c038c68b415ab87d94729555e
+ms.openlocfilehash: 8743905d6e415049a563bcd6b4736d6569f59b7f
+ms.sourcegitcommit: 95d9a6acf29405a533db943b1688612980374272
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/13/2017
+ms.lasthandoff: 06/23/2018
+ms.locfileid: "36333252"
 ---
 # <a name="what-is-microsoft-genomics"></a>什麼是 Microsoft Genomics？
 Microsoft Genomics 提供 Burrows-Wheeler Aligner (BWA) 和 Genome Analysis Toolkit (GATK) 的雲端實作，以進行次級分析。 此服務已通過 ISO 認證並符合 HIPAA 法規，可針對您的基因組定序需求提供價格預測能力。 藉由閱讀我們的快速入門、教學課程和說明文件，了解如何使用 Microsoft Genomics 服務並與我們的 API 整合。
@@ -29,12 +30,12 @@ Microsoft Genomics 提供 99.99% 可用性服務等級協定 (SLA) 以供接收�
 
 
 ## <a name="secure-your-data"></a>保護您的資料
-Microsoft Genomics 服務已通過 ISO 27001、ISO 27018 和 ISO 9001 認證並符合 HIPAA 法規。 如需 Azure 平台安全性的相關資訊，請造訪 [Azure 信任中心](https://www.microsoft.com/TrustCenter/Security/default.aspx) \(英文\)。
+Microsoft Genomics 服務已通過 ISO 27001、ISO 27018 和 ISO 9001 認證並符合 HIPAA 法規。 如需 Azure 平台安全性的相關資訊，請造訪 [Azure 信任中心](https://www.microsoft.com/en-us/trustcenter/security) \(英文\)。
 
 
 ## <a name="next-steps"></a>後續步驟
 既然您已閱讀 Microsoft Genomics 簡介，您即可：
-- 查看定價頁面的成本比較和計算機。 [價格](https://azure.microsoft.com/pricing/details/genomics/)
+- 查看定價頁面的成本比較和計算機。 [定價](https://azure.microsoft.com/pricing/details/genomics/)
 - 透過 Microsoft Genomics 服務開始執行您的第一個工作流程。 [透過 Microsoft Genomics 服務執行工作流程](quickstart-run-genomics-workflow-portal.md)
 - 提交您自己的資料以供 Microsoft Genomics 服務處理：[配對的 FASTQ](quickstart-input-pair-FASTQ.md) | [BAM](quickstart-input-BAM.md) | [多重 FASTQ 或 BAM](quickstart-input-multiple.md) 
 

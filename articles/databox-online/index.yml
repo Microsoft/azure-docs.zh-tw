@@ -1,0 +1,45 @@
+### YamlMime:YamlDocument
+ms.openlocfilehash: cd544367113986b3a3959c2bf50fac80a8b36bc5
+ms.sourcegitcommit: 3a02e0e8759ab3835d7c58479a05d7907a719d9c
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/13/2018
+ms.locfileid: "49309071"
+documentType: LandingData
+title: Azure 資料箱文件 - 線上傳輸
+metadata:
+  title: Azure 資料箱文件 - 線上傳輸
+  description: 使用資料箱裝置，透過快速、成本低廉且可靠的方式，以網路將高效能資料轉送至 Azure。
+  services: databox
+  author: alkohli
+  manager: twooley
+  ms.service: databox
+  ms.subservice: edge
+  ms.topic: landing-page
+  ms.date: 10/12/2018
+  ms.author: alkohli
+abstract:
+  description: Azure 資料箱系列可讓您以快速、實惠和可靠的方式，將數百 TB 的資料轉送到 Azure 中。 使用資料箱裝置，透過網路進行高效能資料轉送。<p>選擇資料箱閘道 <SUP>預覽</SUP> 來傳送資料，以便雲端封存、災害復原，或以雲端規模處理資料。  當您的資料移至 Azure 時，使用 Data Box Edge <SUP>預覽</SUP> 來篩選、分析及轉換資料。</p><p>透過我們的教學課程，了解如何運用資料箱閘道和 Data Box Edge 進行網路式傳輸。</p>
+sections:
+- title: 教學課程
+  items:
+  - type: paragraph
+    text: <b>針對資料箱閘道<SUP>預覽</SUP></b>
+  - type: list
+    style: ordered
+    items:
+    - html: <a href="data-box-gateway-deploy-prep">準備部署 Azure 資料箱閘道</a>
+    - html: <a href="data-box-gateway-deploy-provision-hyperv">在 Hyper-V 中佈建 Azure 資料箱閘道</a>
+    - html: <a href="data-box-gateway-deploy-provision-vmware">在 VMware 中佈建 Azure 資料箱閘道</a>
+    - html: <a href="data-box-gateway-deploy-connect-setup-activate">連線、設定、啟用 Azure 資料箱閘道</a>
+    - html: <a href="data-box-gateway-deploy-add-shares">使用 Azure 資料箱閘道傳輸資料</a>
+  - type: paragraph
+    text: <b>針對 Data Box Edge <SUP>預覽</SUP></b>
+  - type: list
+    style: ordered
+    items:
+    - html: <a href="data-box-edge-deploy-prep">準備部署 Azure Data Box Edge</a>
+    - html: <a href="data-box-edge-deploy-install">安裝 Azure Data Box Edge</a>
+    - html: <a href="data-box-edge-deploy-connect-setup-activate">連線、設定、啟用 Azure Data Box Edge</a>
+    - html: <a href="data-box-edge-deploy-add-shares">使用 Azure Data Box Edge 傳輸資料</a>
+    - html: <a href="data-box-edge-deploy-configure-compute">使用 Azure Data Box Edge 轉換資料</a>

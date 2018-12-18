@@ -1,13 +1,13 @@
 ---
-title: "設定 Azure ExpressRoute Microsoft 對等互連的路由篩選：入口網站 | Microsoft Docs"
-description: "本文說明如何使用 Azure 入口網站針對 Microsoft 對等互連設定路由篩選"
+title: 設定 Azure ExpressRoute Microsoft 對等互連的路由篩選：入口網站 | Microsoft Docs
+description: 本文說明如何使用 Azure 入口網站針對 Microsoft 對等互連設定路由篩選
 documentationcenter: na
 services: expressroute
 author: ganesr
 manager: rossort
-editor: 
+editor: ''
 tags: azure-resource-manager
-ms.assetid: 
+ms.assetid: ''
 ms.service: expressroute
 ms.devlang: na
 ms.topic: article
@@ -20,6 +20,7 @@ ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 02/21/2018
+ms.locfileid: "29387722"
 ---
 # <a name="configure-route-filters-for-microsoft-peering-azure-portal"></a>針對 Microsoft 對等互連設定路由篩選：Azure 入口網站
 > [!div class="op_single_selector"]

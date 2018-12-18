@@ -2,23 +2,20 @@
 title: Azure Cosmos DB 診斷記錄 | Microsoft Docs
 description: 使用本教學課程來協助您開始使用 Azure Cosmos DB 記錄。
 services: cosmos-db
-documentationcenter: ''
-author: mimig1
-manager: jhubbard
+author: SnehaGunda
+manager: kfile
 tags: azure-resource-manager
-ms.assetid: ''
 ms.service: cosmos-db
-ms.workload: data-services
-ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 03/07/2018
-ms.author: mimig
-ms.openlocfilehash: 3b7c9f1acd79a2f170ecead9dedd200ad37d9388
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.author: sngun
+ms.openlocfilehash: 68eb567235897641d5d4027160f62c5aa6e7e4f9
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46963384"
 ---
 # <a name="azure-cosmos-db-diagnostic-logging"></a>Azure Cosmos DB 診斷記錄
 
@@ -26,15 +23,15 @@ ms.lasthandoff: 03/28/2018
 
 ## <a name="logs-available-in-azure"></a>Azure 中可用的記錄
 
-在討論如何監視您的 Azure Cosmos DB 帳戶之前，讓我們釐清關於記錄和監視的一些事項。 Azure 平台上有不同類型的記錄。 我們有 [Azure 活動記錄](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview-activity-logs)、[Azure 診斷記錄](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs)、[Azure 計量](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview-metrics)、事件、活動訊號監視、作業記錄等。 記錄十分繁多。 您可以在 Azure 入口網站的 [Azure Log Analytics](https://azure.microsoft.com/en-us/services/log-analytics/) 中查看完整記錄清單。 
+在討論如何監視您的 Azure Cosmos DB 帳戶之前，讓我們釐清關於記錄和監視的一些事項。 Azure 平台上有不同類型的記錄。 我們有 [Azure 活動記錄](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview-activity-logs)、[Azure 診斷記錄](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs)、[Azure 計量](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview-metrics)、事件、活動訊號監視、作業記錄等。 記錄十分繁多。 您可以在 Azure 入口網站的 [Azure Log Analytics](https://azure.microsoft.com/services/log-analytics/) 中查看完整記錄清單。 
 
 下圖顯示不同種類的可用 Azure 記錄：
 
 ![不同種類的 Azure 記錄](./media/logging/azurelogging.png)
 
-在上圖中，**計算資源**代表您可以存取其 Microsoft 客體 OS 的 Azure 資源。 例如，Azure 虛擬機器、虛擬機器擴展集、Azure Container Service 等皆被視為計算資源。 計算資源會產生「活動記錄」、「診斷記錄」及「應用程式記錄」。 若要深入了解，請參閱 [Azure 監視：計算資源](../monitoring-and-diagnostics/monitoring-overview-azure-monitor.md#azure-monitor-sources---compute-subset)一文。
+在上圖中，**計算資源**代表您可以存取其 Microsoft 客體 OS 的 Azure 資源。 例如，Azure 虛擬機器、虛擬機器擴展集、Azure Container Service 等皆被視為計算資源。 計算資源會產生「活動記錄」、「診斷記錄」及「應用程式記錄」。 若要深入了解，請參閱 [Azure 中的監視資料來源](../monitoring/monitoring-data-sources.md#)一文。
 
-**非計算資源**係指您無法存取基礎 OS 並直接使用資源的資源。 例如，網路安全性群組、Logic Apps 等。 Azure Cosmos DB 是非計算資源。 您可以在「活動記錄」中檢視非計算資源的記錄，或是在入口網站中啟用 [診斷記錄] 選項。 若要深入了解，請參閱 [Azure 監視：非計算資源](../monitoring-and-diagnostics/monitoring-overview-azure-monitor.md#azure-monitor-sources---everything-else)一文。
+**非計算資源**係指您無法存取基礎 OS 並直接使用資源的資源。 例如，網路安全性群組、Logic Apps 等。 Azure Cosmos DB 是非計算資源。 您可以在「活動記錄」中檢視非計算資源的記錄，或是在入口網站中啟用 [診斷記錄] 選項。 若要深入了解，請參閱 [Azure 監視器中的資源來源](../monitoring/monitoring-data-sources.md)一文。
 
 「活動記錄」會記錄 Azure Cosmos DB 的訂用帳戶層級作業。 像是 ListKeys、Write DatabaseAccounts 等作業，都會記錄。 「診斷記錄」提供更細微的記錄功能，並可讓您記錄 DataPlaneRequests (Create、Read、Query 等) 和 MongoRequests。
 
@@ -45,13 +42,13 @@ ms.lasthandoff: 03/28/2018
 
 「Azure 活動記錄」是訂用帳戶記錄，可讓您深入探索 Azure 中發生的訂用帳戶層級事件。 活動記錄會報告系統管理類別下您的訂用帳戶的控制平面事件。 您可以使用活動記錄來判斷對您訂用帳戶中的資源執行的任何寫入作業 (PUT、POST、DELETE) 的「內容、執行者和時間」。 您也可以了解作業的狀態和其他相關屬性。 
 
-活動記錄不同於診斷記錄。 活動記錄會提供關於外部資源 (_控制平面_) 之作業的資料。 在 Azure Cosmos DB 內容中，控制平面作業包括建立集合、列出金鑰、刪除金鑰、列出資料庫等。 診斷記錄是由資源所發出，會提供該資源作業的相關資訊 (_資料平面_)。 舉例來說，Delete、Insert 和 ReadFeed 都是診斷記錄中的資料平面作業。
+活動記錄不同於診斷記錄。 活動記錄會提供關於外部資源 (_控制平面_) 之作業的資料。 在 Azure Cosmos DB 內容中，控制平面作業包括建立容器、列出金鑰、刪除金鑰、列出資料庫等。 診斷記錄是由資源所發出，會提供該資源作業的相關資訊 (_資料平面_)。 舉例來說，Delete、Insert 和 ReadFeed 都是診斷記錄中的資料平面作業。
 
-活動記錄 (控制平面作業) 在本質上可能更豐富，且可能會包含呼叫端的完整電子郵件地址、呼叫端 IP 位址、資源名稱、作業名稱和 TenantId 等等。 活動記錄包含數個資料[類別](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-activity-log-schema)。 如需這些類別結構描述的完整詳細資料，請參閱 [Azure 活動記錄事件結構描述](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-activity-log-schema)。 不過，診斷記錄在本質上有所限制，因為 PII 資料通常會從這些記錄中移除。 您可能會有呼叫端的 IP 位址，但最後一個 octent 會被移除。
+活動記錄 (控制平面作業) 在本質上可能更豐富，且可能會包含呼叫端的完整電子郵件地址、呼叫端 IP 位址、資源名稱、作業名稱和 TenantId 等等。 活動記錄包含數個資料[類別](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-activity-log-schema)。 如需這些類別結構描述的完整詳細資料，請參閱 [Azure 活動記錄事件結構描述](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-activity-log-schema)。 不過，診斷記錄在本質上有所限制，因為個人資料通常會從這些記錄中移除。 您可能會有呼叫端的 IP 位址，但最後一個 octent 會被移除。
 
 ### <a name="azure-metrics"></a>Azure 計量
 
-[Azure 計量](https://docs.microsoft.com/en-us/azure/monitoring-and-diagnostics/monitoring-overview-metrics)具有由大多數 Azure 資源發出的關鍵 Azure 遙測資料 (也稱為_效能計數器_)。 計量可讓您檢視關於輸送量、儲存體、一致性、可用性和 Azure Cosmos DB 資源延遲的資訊。 如需詳細資訊，請參閱[使用 Azure Cosmos DB 中的計量監控及偵錯](use-metrics.md)。
+[Azure 計量](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview-metrics)具有由大多數 Azure 資源發出的關鍵 Azure 遙測資料 (也稱為_效能計數器_)。 計量可讓您檢視關於輸送量、儲存體、一致性、可用性和 Azure Cosmos DB 資源延遲的資訊。 如需詳細資訊，請參閱[使用 Azure Cosmos DB 中的計量監控及偵錯](use-metrics.md)。
 
 ### <a name="azure-diagnostic-logs"></a>Azure 診斷記錄
 
@@ -140,7 +137,7 @@ Azure 診斷記錄是由資源所發出，提供關於該資源之作業的豐�
 開始 Azure PowerShell 工作階段，並使用下列命令登入您的 Azure 帳戶：  
 
 ```powershell
-Login-AzureRmAccount
+Connect-AzureRmAccount
 ```
 
 在快顯瀏覽器視窗中，輸入您的 Azure 帳戶使用者名稱與密碼。 Azure PowerShell 會取得與此帳戶相關聯的所有訂用帳戶，並依預設使用第一個訂用帳戶。
@@ -357,7 +354,7 @@ Azure Cosmos DB 作業執行後兩個小時，就可以在您的帳戶中使用�
 <a id="#view-in-loganalytics"></a>
 ## <a name="view-logs-in-log-analytics"></a>檢視 Log Analytics 中的記錄
 
-如果您開啟診斷記錄時選取 [傳送至 Log Analytics] 選項，集合中的診斷資料會在兩個小時內轉送到 Log Analytics。 如果您在開啟記錄功能後立即查看 Log Analytics，將不會看到任何資料。 只需等待兩個小時，然後再試一次。 
+如果您開啟診斷記錄時選取 [傳送至 Log Analytics] 選項，容器中的診斷資料會在兩個小時內轉送到 Log Analytics。 如果您在開啟記錄功能後立即查看 Log Analytics，將不會看到任何資料。 只需等待兩個小時，然後再試一次。 
 
 檢視記錄前，請確認您的 Log Analytics 工作區是否已升級為使用新的 Log Analytics 查詢語言。 若要進行此確認，請開啟 [Azure 入口網站](https://portal.azure.com)，選取靠左側的 [Log Analytics]，然後選取工作區名稱，如下圖所示。 [OMS 工作區] 頁面隨即顯示：
 
@@ -449,7 +446,7 @@ Azure Cosmos DB 作業執行後兩個小時，就可以在您的帳戶中使用�
 | **properties** | n/a | 此欄位的內容說明於下列資料列中。 |
 | **activityId** | **activityId_g** | 所記錄作業的唯一 GUID。 |
 | **userAgent** | **userAgent_s** | 此字串指定執行要求的用戶端使用者代理程式。 格式為 {使用者代理程式名稱}/{版本}。|
-| **resourceType** | **ResourceType** | 存取的資源類型。 這個值可以是下列任一資源類型：Database、Collection、Document、Attachment、User、Permission、StoredProcedure、Trigger、UserDefinedFunction 或 Offer。 |
+| **resourceType** | **ResourceType** | 存取的資源類型。 這個值可以是下列任一資源類型：Database、Container、Document、Attachment、User、Permission、StoredProcedure、Trigger、UserDefinedFunction 或 Offer。 |
 | **statusCode** | **statusCode_s** | 作業的回應狀態。 |
 | **requestResourceId** | **ResourceId** | 關於要求的 resourceId。 根據執行的作業，此值可能表示 databaseRid、collectionRid 或 documentRid。|
 | **clientIpAddress** | **clientIpAddress_s** | 用戶端的 IP 位址。 |

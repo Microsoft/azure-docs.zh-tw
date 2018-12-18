@@ -1,3 +1,20 @@
+---
+title: 包含檔案
+description: 包含檔案
+services: storage
+author: tamram
+ms.service: storage
+ms.topic: include
+ms.date: 09/15/2018
+ms.author: tamram
+ms.custom: include file
+ms.openlocfilehash: 075e19ecb078bbbd5be0d46ed58405b18ebc8334
+ms.sourcegitcommit: 1b561b77aa080416b094b6f41fce5b6a4721e7d5
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/17/2018
+ms.locfileid: "45738462"
+---
 ## <a name="set-up-your-development-environment"></a>設定開發環境
 接下來，在 Visual Studio 中設定您的開發環境，以便您開始嘗試本指南中的程式碼範例。
 
@@ -41,7 +58,7 @@
 * 您可以對雲端中的 Azure 儲存體帳戶執行您的程式碼。 
 * 您可以對 Azure 儲存體模擬器執行您的程式碼。 儲存體模擬器是模擬雲端中 Azure 儲存體帳戶的本機環境。 模擬器是一個免費選項，在開發您的應用程式時可用於測試和偵錯您的程式碼。 模擬器會使用已知的帳戶和金鑰。 如需詳細資訊，請參閱[使用 Azure 儲存體模擬器進行開發和測試](../articles/storage/common/storage-use-emulator.md)。
 
-如果您要選擇以雲端中的儲存體帳戶為目標，請從 Azure 入口網站複製您的儲存體帳戶的主要存取金鑰。 如需詳細資訊，請參閱 [檢視和複製儲存體存取金鑰](../articles/storage/common/storage-create-storage-account.md#view-and-copy-storage-access-keys)。
+如果您要選擇以雲端中的儲存體帳戶為目標，請從 Azure 入口網站複製您的儲存體帳戶的主要存取金鑰。 如需詳細資訊，請參閱[存取金鑰](../articles/storage/common/storage-account-manage.md#access-keys)。
 
 > [!NOTE]
 > 您可以選擇以儲存體模擬器為目標，以避免產生與 Azure 儲存體相關聯的任何費用。 不過，如果您選擇以雲端中的 Azure 儲存體帳戶為目標，則執行本教學課程的費用可以忽略不計。

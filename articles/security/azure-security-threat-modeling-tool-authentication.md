@@ -1,24 +1,25 @@
 ---
-title: "驗證 - Microsoft Threat Modeling Tool - Azure | Microsoft Docs"
-description: "降低威脅模型化工具所暴露的威脅"
+title: 驗證 - Microsoft Threat Modeling Tool - Azure | Microsoft Docs
+description: 降低威脅模型化工具所暴露的威脅
 services: security
 documentationcenter: na
-author: RodSan
-manager: RodSan
-editor: RodSan
+author: jegeib
+manager: jegeib
+editor: jegeib
 ms.assetid: na
 ms.service: security
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/17/2017
-ms.author: rodsan
-ms.openlocfilehash: 1ac614156755b9b29db7c968c708a5cff706f7a8
-ms.sourcegitcommit: 9890483687a2b28860ec179f5fd0a292cdf11d22
+ms.date: 02/07/2017
+ms.author: jegeib
+ms.openlocfilehash: 23e219fa49146158c97f392427eee7c42c347a7a
+ms.sourcegitcommit: 1fb353cfca800e741678b200f23af6f31bd03e87
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/24/2018
+ms.lasthandoff: 08/30/2018
+ms.locfileid: "43307415"
 ---
 # <a name="security-frame-authentication--mitigations"></a>安全框架︰驗證 | 緩和措施 
 | 產品/服務 | 文章 |
@@ -101,7 +102,7 @@ ms.lasthandoff: 01/24/2018
 | **適用的技術** | 泛型 |
 | **屬性**              | N/A  |
 | **參考**              | N/A  |
-| 詳細資料 | <p>必須實作符合組織原則和最佳作法的密碼和帳戶原則。</p><p>若要防止暴力密碼破解及以字典為基礎的猜測︰必須實作強式密碼原則，以確保使用者建立複雜的密碼 (例如，長度最少 12 個字元、英數字元和特殊字元)。</p><p>帳戶鎖定原則可能會以下列方式實作︰</p><ul><li>**軟式鎖定︰**這是保護使用者以對抗暴力密碼破解攻擊的理想選項。 例如，當使用者輸入錯誤密碼三次時，應用程式會鎖定帳戶一分鐘，以減緩暴力破解其密碼的進度，讓攻擊者有機可趁的機會變少。 如果您對此範例執行硬式鎖定對策，您可藉由永久鎖定帳戶來達成 "Dos"。 或者，應用程式可產生 OTP (一次性密碼) 並以頻外方式 (透過電子郵件、簡訊等) 將它傳送給使用者。 另一種方法則是在達到嘗試失敗次數閾值之後，實作 CAPTCHA。</li><li>**硬式鎖定︰**每當您偵測到攻擊應用程式的使用者時，應套用這類型的鎖定，並透過永久鎖定其帳戶來對抗他，直到因應小組有時間進行鑑識為止。 在此程序之後，您可以決定將帳戶還給使用者，或採取進一步的法律動作來對抗他。 這種方法可防止攻擊者進一步入侵您的應用程式和基礎結構。</li></ul><p>若要防禦對於預設和可預測帳戶的攻擊，請確認所有金鑰和密碼均可取代，而且會在安裝階段後產生或取代。</p><p>如果應用程式必須自動產生密碼，請確保所產生的密碼是隨機的且具有高熵。</p>|
+| 詳細資料 | <p>必須實作符合組織原則和最佳作法的密碼和帳戶原則。</p><p>若要防止暴力密碼破解及以字典為基礎的猜測︰必須實作強式密碼原則，以確保使用者建立複雜的密碼 (例如，長度最少 12 個字元、英數字元和特殊字元)。</p><p>帳戶鎖定原則可能會以下列方式實作︰</p><ul><li>**軟式鎖定︰** 這是保護使用者以對抗暴力密碼破解攻擊的理想選項。 例如，當使用者輸入錯誤密碼三次時，應用程式會鎖定帳戶一分鐘，以減緩暴力破解其密碼的進度，讓攻擊者有機可趁的機會變少。 如果您對此範例執行硬式鎖定對策，您可藉由永久鎖定帳戶來達成 "Dos"。 或者，應用程式可產生 OTP (一次性密碼) 並以頻外方式 (透過電子郵件、簡訊等) 將它傳送給使用者。 另一種方法則是在達到嘗試失敗次數閾值之後，實作 CAPTCHA。</li><li>**硬式鎖定︰** 每當您偵測到攻擊應用程式的使用者時，應套用這類型的鎖定，並透過永久鎖定其帳戶來對抗他，直到因應小組有時間進行鑑識為止。 在此程序之後，您可以決定將帳戶還給使用者，或採取進一步的法律動作來對抗他。 這種方法可防止攻擊者進一步入侵您的應用程式和基礎結構。</li></ul><p>若要防禦對於預設和可預測帳戶的攻擊，請確認所有金鑰和密碼均可取代，而且會在安裝階段後產生或取代。</p><p>如果應用程式必須自動產生密碼，請確保所產生的密碼是隨機的且具有高熵。</p>|
 
 ## <a id="controls-username-enum"></a>實作控制項以避免列舉使用者名稱
 
@@ -134,7 +135,7 @@ ms.lasthandoff: 01/24/2018
 | **適用的技術** | SQL Azure |
 | **屬性**              | SQL 版本 - V12 |
 | **參考**              | [使用 Azure Active Directory 驗證連線到 SQL Database](https://azure.microsoft.com/documentation/articles/sql-database-aad-authentication/) |
-| **步驟** | **最小版本︰**允許 Azure SQL Database 對 Microsoft 目錄使用 AAD 驗證所需的 Azure SQL Database V12 |
+| **步驟** | **最小版本︰** 允許 Azure SQL Database 對 Microsoft 目錄使用 AAD 驗證所需的 Azure SQL Database V12 |
 
 ## <a id="authn-account-pword"></a>使用 SQL 驗證模式時，確保在 SQL Server 上強制執行帳戶和密碼原則
 
@@ -174,7 +175,7 @@ ms.lasthandoff: 01/24/2018
 | 標題                   | 詳細資料      |
 | ----------------------- | ------------ |
 | **元件**               | Azure 信任邊界 | 
-| **SDL 階段**               | Deployment |  
+| **SDL 階段**               | 部署 |  
 | **適用的技術** | 泛型 |
 | **屬性**              | N/A  |
 | **參考**              | [什麼是 Azure Multi-Factor Authentication？](https://azure.microsoft.com/documentation/articles/multi-factor-authentication/) |
@@ -185,7 +186,7 @@ ms.lasthandoff: 01/24/2018
 | 標題                   | 詳細資料      |
 | ----------------------- | ------------ |
 | **元件**               | Service Fabric 信任邊界 | 
-| **SDL 階段**               | Deployment |  
+| **SDL 階段**               | 部署 |  
 | **適用的技術** | 泛型 |
 | **屬性**              | 環境 - Azure  |
 | **參考**              | [Service Fabric 叢集安全性案例](https://azure.microsoft.com/documentation/articles/service-fabric-cluster-security) |
@@ -196,7 +197,7 @@ ms.lasthandoff: 01/24/2018
 | 標題                   | 詳細資料      |
 | ----------------------- | ------------ |
 | **元件**               | Service Fabric 信任邊界 | 
-| **SDL 階段**               | Deployment |  
+| **SDL 階段**               | 部署 |  
 | **適用的技術** | 泛型 |
 | **屬性**              | 環境 - Azure、環境 - 獨立 |
 | **參考**              | [Service Fabric 用戶端對節點憑證安全性](https://azure.microsoft.com/documentation/articles/service-fabric-cluster-security/#_client-to-node-certificate-security)、[使用用戶端憑證連線到安全的叢集](https://azure.microsoft.com/documentation/articles/service-fabric-connect-to-secure-cluster/) |
@@ -207,7 +208,7 @@ ms.lasthandoff: 01/24/2018
 | 標題                   | 詳細資料      |
 | ----------------------- | ------------ |
 | **元件**               | Service Fabric 信任邊界 | 
-| **SDL 階段**               | Deployment |  
+| **SDL 階段**               | 部署 |  
 | **適用的技術** | 泛型 |
 | **屬性**              | 環境 - Azure |
 | **參考**              | [叢集安全性案例 - 安全性建議](https://azure.microsoft.com/documentation/articles/service-fabric-cluster-security/#security-recommendations) |
@@ -218,7 +219,7 @@ ms.lasthandoff: 01/24/2018
 | 標題                   | 詳細資料      |
 | ----------------------- | ------------ |
 | **元件**               | Service Fabric 信任邊界 | 
-| **SDL 階段**               | Deployment |  
+| **SDL 階段**               | 部署 |  
 | **適用的技術** | 泛型 |
 | **屬性**              | 環境 - Azure |
 | **參考**              | [X.509 憑證和 Service Fabric](https://azure.microsoft.com/documentation/articles/service-fabric-cluster-security/#x509-certificates-and-service-fabric) |
@@ -240,7 +241,7 @@ ms.lasthandoff: 01/24/2018
 | 標題                   | 詳細資料      |
 | ----------------------- | ------------ |
 | **元件**               | Identity Server | 
-| **SDL 階段**               | Deployment |  
+| **SDL 階段**               | 部署 |  
 | **適用的技術** | 泛型 |
 | **屬性**              | N/A  |
 | **參考**              | [Identity Server 部署 - 快取](https://identityserver.github.io/Documentation/docsv2/advanced/deployment.html) |
@@ -251,7 +252,7 @@ ms.lasthandoff: 01/24/2018
 | 標題                   | 詳細資料      |
 | ----------------------- | ------------ |
 | **元件**               | 電腦信任邊界 | 
-| **SDL 階段**               | Deployment |  
+| **SDL 階段**               | 部署 |  
 | **適用的技術** | 泛型 |
 | **屬性**              | N/A  |
 | **參考**              | N/A  |
@@ -305,7 +306,7 @@ ms.lasthandoff: 01/24/2018
 | **SDL 階段**               | 建置 |  
 | **適用的技術** | .NET Framework 3 |
 | **屬性**              | 用戶端認證類型 - None |
-| **參考**              | [MSDN](https://msdn.microsoft.com/library/ff648500.aspx)、[Fortify](https://vulncat.fortify.com/en/vulncat/index.html) |
+| **參考**              | [MSDN](https://msdn.microsoft.com/library/ff648500.aspx)、[Fortify](https://vulncat.fortify.com/en/detail?id=desc.semantic.dotnet.wcf_misconfiguration_anonymous_message_client) |
 | **步驟** | 缺少驗證表示每個人都能夠存取此服務。 不會驗證其用戶端的服務可允許所有使用者進行存取。 設定應用程式以針對用戶端認證進行驗證。 將訊息 clientCredentialType 設定為 Windows 或 [憑證] 即可完成此作業。 |
 
 ### <a name="example"></a>範例
@@ -321,7 +322,7 @@ ms.lasthandoff: 01/24/2018
 | **SDL 階段**               | 建置 |  
 | **適用的技術** | 泛型、.NET Framework 3 |
 | **屬性**              | 用戶端認證類型 - None |
-| **參考**              | [MSDN](https://msdn.microsoft.com/library/ff648500.aspx)、[Fortify](https://vulncat.fortify.com/en/vulncat/index.html) |
+| **參考**              | [MSDN](https://msdn.microsoft.com/library/ff648500.aspx)、[Fortify](https://vulncat.hpefod.com/en/detail?id=desc.semantic.dotnet.wcf_misconfiguration_anonymous_transport_client) |
 | **步驟** | 缺少驗證表示每個人都能夠存取此服務。 不會驗證其用戶端的服務可允許所有使用者存取其功能。 設定應用程式以針對用戶端認證進行驗證。 將傳輸 clientCredentialType 設定為 Windows 或 [憑證] 即可完成此作業。 |
 
 ### <a name="example"></a>範例
@@ -454,7 +455,7 @@ OpenIdConnectOptions openIdConnectOptions = new OpenIdConnectOptions
 | **適用的技術** | 泛型、C#、Node.JS  |
 | **屬性**              | N/A、閘道選擇 - Azure IoT 中樞 |
 | **參考**              | N/A、[採用 .NET 的 Azure IoT 中樞](https://azure.microsoft.com/documentation/articles/iot-hub-csharp-csharp-getstarted/)、[開始使用 IoT 中樞和 Node JS](https://azure.microsoft.com/documentation/articles/iot-hub-node-node-getstarted)、[使用 SAS 和憑證保護 IoT](https://azure.microsoft.com/documentation/articles/iot-hub-sas-tokens/)、[Git 儲存機制](https://github.com/Azure/azure-iot-sdks/tree/master/node) |
-| **步驟** | <ul><li>**泛型︰**使用傳輸層安全性 (TLS) 或 IPSec 來驗證裝置。 如果裝置無法處理完整的非對稱密碼編譯，則基礎結構應該支援在這些裝置上使用預先共用金鑰 (PSK)。 利用 Azure AD、Oauth。</li><li>**C#：**建立 DeviceClient 執行個體時，Create 方法預設會建立一個使用 AMQP 通訊協定來與 IoT 中樞通訊的 DeviceClient 執行個體。 若要使用 HTTPS 通訊協定，請使用可讓您指定通訊協定的 Create 方法的覆寫。 若您使用 HTTPS 通訊協定，您也應該將 `Microsoft.AspNet.WebApi.Client` Nuget 套件新增至您的專案，以包含 `System.Net.Http.Formatting` 命名空間。</li></ul>|
+| **步驟** | <ul><li>**泛型︰** 使用傳輸層安全性 (TLS) 或 IPSec 來驗證裝置。 如果裝置無法處理完整的非對稱密碼編譯，則基礎結構應該支援在這些裝置上使用預先共用金鑰 (PSK)。 利用 Azure AD、Oauth。</li><li>**C#：** 建立 DeviceClient 執行個體時，Create 方法預設會建立一個使用 AMQP 通訊協定來與 IoT 中樞通訊的 DeviceClient 執行個體。 若要使用 HTTPS 通訊協定，請使用可讓您指定通訊協定的 Create 方法的覆寫。 若您使用 HTTPS 通訊協定，您也應該將 `Microsoft.AspNet.WebApi.Client` Nuget 套件新增至您的專案，以包含 `System.Net.Http.Formatting` 命名空間。</li></ul>|
 
 ### <a name="example"></a>範例
 ```csharp

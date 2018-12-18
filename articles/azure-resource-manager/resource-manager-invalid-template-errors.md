@@ -1,7 +1,7 @@
 ---
 title: Azure 無效範本錯誤 | Microsoft Docs
 description: 描述如何解決無效範本錯誤。
-services: azure-resource-manager,azure-portal
+services: azure-resource-manager
 documentationcenter: ''
 author: tfitzmac
 manager: timlt
@@ -10,14 +10,15 @@ ms.service: azure-resource-manager
 ms.workload: multiple
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: support-article
+ms.topic: troubleshooting
 ms.date: 03/08/2018
 ms.author: tomfitz
-ms.openlocfilehash: 1c6712eaf17cf55c1422baca355ce99ed319df28
-ms.sourcegitcommit: a0be2dc237d30b7f79914e8adfb85299571374ec
+ms.openlocfilehash: 59f07b9ba8116cb1a4b5ab50382d89d01a78853b
+ms.sourcegitcommit: b6319f1a87d9316122f96769aab0d92b46a6879a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/12/2018
+ms.lasthandoff: 05/20/2018
+ms.locfileid: "34357685"
 ---
 # <a name="resolve-errors-for-invalid-template"></a>解決無效範本的錯誤
 
@@ -38,6 +39,8 @@ Message=<varies>
 
 此錯誤可能起因於數個不同類型的錯誤。 通常涉及範本中的語法或結構錯誤。
 
+<a id="syntax-error" />
+
 ## <a name="solution-1---syntax-error"></a>解決方案 1 - 語法錯誤
 
 如果您收到錯誤訊息指出無法驗證範本，則可能是範本中發生語法問題。
@@ -56,6 +59,8 @@ Message=Deployment template validation failed
 如果您未提供相符的語法，範本會產生與您所要的值截然不同的值。
 
 當您收到此類錯誤時，請仔細檢閱運算式語法。 請考慮使用 [Visual Studio](vs-azure-tools-resource-groups-deployment-projects-create-deploy.md) 或 [Visual Studio Code](resource-manager-vs-code.md) 等 JSON 編輯器，它們可以警告您有語法錯誤。
+
+<a id="incorrect-segment-lengths" />
 
 ## <a name="solution-2---incorrect-segment-lengths"></a>解決方案 2 - 不正確的區段長度
 
@@ -116,6 +121,8 @@ for type {resource-type} has incorrect segment lengths.
 }
 ```
 
+<a id="parameter-not-valid" />
+
 ## <a name="solution-3---parameter-is-not-valid"></a>解決方案 3 - 參數無效
 
 如果您提供的參數值不是其中一個允許值，則會收到類似下列錯誤的訊息：
@@ -129,9 +136,13 @@ part of the allowed values
 
 在範本中重複檢查允許的值，並在部署期間提供一個值。 如需允許的參數值詳細資訊，請參閱 [Azure Resource Manager 範本的 Parameters 區段](resource-manager-templates-parameters.md)。
 
+<a id="too-many-resource-groups" />
+
 ## <a name="solution-4---too-many-target-resource-groups"></a>解決方案 4 - 太多目標資源群組
 
 如果您在單一部署中指定五個以上的目標資源群組，就會收到此錯誤。 請考慮合併部署中的資源群組數目，或將一些範本部署為個別部署。 如需詳細資訊，請參閱[將 Azure 資源部署至多個訂用帳戶和資源群組](resource-manager-cross-resource-group-deployment.md)。
+
+<a id="circular-dependency" />
 
 ## <a name="solution-5---circular-dependency-detected"></a>解決方案 5 - 偵測到循環相依性
 

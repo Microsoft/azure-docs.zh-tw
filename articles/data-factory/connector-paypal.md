@@ -1,5 +1,5 @@
 ---
-title: 使用 Azure Data Factory (搶鮮版 (Beta)) 從 PayPal 複製資料 | Microsoft Docs
+title: 使用 Azure Data Factory 從 PayPal 複製資料 (預覽) | Microsoft Docs
 description: 了解如何使用 Azure Data Factory 管線中的複製活動，將資料從 PayPal 複製到支援的接收資料存放區。
 services: data-factory
 documentationcenter: ''
@@ -10,24 +10,22 @@ ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 02/07/2018
+ms.topic: conceptual
+ms.date: 06/15/2018
 ms.author: jingwang
-ms.openlocfilehash: f0f28e5c38c95d1d9564506a432865832da47a97
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 6d752eb5d638171aa510bbbf17a197eddd2b6f60
+ms.sourcegitcommit: f10653b10c2ad745f446b54a31664b7d9f9253fe
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46127194"
 ---
-# <a name="copy-data-from-paypal-using-azure-data-factory-beta"></a>使用 Azure Data Factory (搶鮮版 (Beta)) 從 PayPal 複製資料
+# <a name="copy-data-from-paypal-using-azure-data-factory-preview"></a>使用 Azure Data Factory 從 PayPal 複製資料 (預覽)
 
 本文概述如何使用 Azure Data Factory 中的「複製活動」，從 PayPal 複製資料。 本文是根據[複製活動概觀](copy-activity-overview.md)一文，該文提供複製活動的一般概觀。
 
-> [!NOTE]
-> 本文適用於第 2 版的 Data Fatory (目前為預覽版)。 如果您使用第 1 版的 Data Factory 服務，也就是正式推出 (GA) 的版本，請參閱[第 1 版的複製活動](v1/data-factory-data-movement-activities.md)。
-
 > [!IMPORTANT]
-> 此連接器目前為搶鮮版 (Beta)。 您可以親身體驗並提供意見反應。 請勿在生產環境中使用它。
+> 此連接器目前為預覽版。 您可以親身體驗並提供意見反應。 如果您需要依賴解決方案中的預覽連接器，請連絡 [Azure 支援](https://azure.microsoft.com/support/)。
 
 ## <a name="supported-capabilities"></a>支援的功能
 
@@ -37,7 +35,7 @@ Azure Data Factory 提供的內建驅動程式可啟用連線，因此使用此�
 
 ## <a name="getting-started"></a>開始使用
 
-[!INCLUDE [data-factory-v2-connector-get-started-2](../../includes/data-factory-v2-connector-get-started-2.md)]
+[!INCLUDE [data-factory-v2-connector-get-started](../../includes/data-factory-v2-connector-get-started.md)]
 
 下列各節提供屬性的相關詳細資料，這些屬性是用來定義 PayPal 連接器專屬的 Data Factory 實體。
 
@@ -47,10 +45,10 @@ Azure Data Factory 提供的內建驅動程式可啟用連線，因此使用此�
 
 | 屬性 | 說明 | 必要 |
 |:--- |:--- |:--- |
-| type | Type 屬性必須設定為：**PayPal** | yes |
-| host | PayPal 執行個體的 URL。 (也就是 api.sandbox.paypal.com)  | yes |
-| clientId | 與您 PayPal 應用程式相關聯的用戶端識別碼。  | yes |
-| clientSecret | 與您 PayPal 應用程式相關聯的用戶端祕密。 將此欄位標記為 SecureString，將它安全地儲存在 Data Factory 中，或[參考 Azure Key Vault 中儲存的祕密](store-credentials-in-key-vault.md)。 | yes |
+| type | Type 屬性必須設定為：**PayPal** | 是 |
+| host | PayPal 執行個體的 URL。 (也就是 api.sandbox.paypal.com)  | 是 |
+| clientId | 與您 PayPal 應用程式相關聯的用戶端識別碼。  | 是 |
+| clientSecret | 與您 PayPal 應用程式相關聯的用戶端祕密。 將此欄位標記為 SecureString，將它安全地儲存在 Data Factory 中，或[參考 Azure Key Vault 中儲存的祕密](store-credentials-in-key-vault.md)。 | 是 |
 | useEncryptedEndpoints | 指定是否使用 HTTPS 來加密資料來源端點。 預設值為 true。  | 否 |
 | useHostVerification | 指定在透過 SSL 連線時，是否要求伺服器憑證中的主機名稱符合伺服器的主機名稱。 預設值為 true。  | 否 |
 | usePeerVerification | 指定在透過 SSL 連線時，是否要確認伺服器的身分識別。 預設值為 true。  | 否 |
@@ -105,8 +103,8 @@ Azure Data Factory 提供的內建驅動程式可啟用連線，因此使用此�
 
 | 屬性 | 說明 | 必要 |
 |:--- |:--- |:--- |
-| type | 複製活動來源的 type 屬性必須設定為：**PayPalSource** | yes |
-| query | 使用自訂 SQL 查詢來讀取資料。 例如：`"SELECT * FROM Payment_Experience"`。 | yes |
+| type | 複製活動來源的 type 屬性必須設定為：**PayPalSource** | 是 |
+| query | 使用自訂 SQL 查詢來讀取資料。 例如： `"SELECT * FROM Payment_Experience"` 。 | 是 |
 
 **範例：**
 

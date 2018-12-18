@@ -1,8 +1,8 @@
 ---
-title: "Azure Data Lake Store 效能微調指導方針 | Microsoft Docs"
-description: "Azure Data Lake Store 效能微調指導方針"
+title: Azure Data Lake Store 效能微調指導方針 | Microsoft Docs
+description: Azure Data Lake Store 效能微調指導方針
 services: data-lake-store
-documentationcenter: 
+documentationcenter: ''
 author: stewu
 manager: amitkul
 editor: cgronlun
@@ -10,15 +10,14 @@ ms.assetid: ebde7b9f-2e51-4d43-b7ab-566417221335
 ms.service: data-lake-store
 ms.devlang: na
 ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
 ms.date: 06/30/2017
 ms.author: stewu
-ms.openlocfilehash: 15832f94b73057a8bfce7be27e3fd57c7771940d
-ms.sourcegitcommit: b07d06ea51a20e32fdc61980667e801cb5db7333
+ms.openlocfilehash: 29b662aa2f30083b444483554a78d53f0d05cb7f
+ms.sourcegitcommit: eb75f177fc59d90b1b667afcfe64ac51936e2638
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2017
+ms.lasthandoff: 05/16/2018
+ms.locfileid: "34196979"
 ---
 # <a name="tuning-azure-data-lake-store-for-performance"></a>針對效能目的調整 Azure Data Lake Store
 
@@ -42,7 +41,7 @@ Azure Data Lake Store 可以調整以提供所有分析案例的需要輸送量�
 
 ### <a name="network-connectivity-to-azure-data-lake-store"></a>與 Azure Data Lake Store 的網路連線
 
-您的來源資料與 Azure Data Lake Store 之間的網路連線有時可能是瓶頸。 當您的來源資料是內部部署時，請考慮使用與 [Azure ExpressRoute](https://azure.microsoft.com/en-us/services/expressroute/) 的專用連結。 如果您的來源資料是在 Azure 中，當資料位於與 Data Lake Store 相同的 Azure 區域時，效能最佳。
+您的來源資料與 Azure Data Lake Store 之間的網路連線有時可能是瓶頸。 當您的來源資料是內部部署時，請考慮使用與 [Azure ExpressRoute](https://azure.microsoft.com/services/expressroute/) 的專用連結。 如果您的來源資料是在 Azure 中，當資料位於與 Data Lake Store 相同的 Azure 區域時，效能最佳。
 
 ### <a name="configure-data-ingestion-tools-for-maximum-parallelization"></a>設定最大平行處理的資料擷取工具
 
@@ -66,7 +65,7 @@ Azure Data Lake Store 可以調整以提供所有分析案例的需要輸送量�
 
 一般情況下，將您的資料組織成較大大小的檔案，以提升效能。  根據經驗法則，將檔案中的資料集組織為 256MB 以上。 在例如映像和二進位資料的某些情況下，不能夠平行處理。  在這些情況下，建議將個別檔案保持在 2GB 以下。
 
-有時候，資料管線對於具有大量小型檔案的未經處理資料，具有受限制的控制權。  建議進行「cooking」程序，該程序會產生較大的檔案，以用於下游應用程式。  
+有時候，資料管線對於具有大量小型檔案的未經處理資料，具有受限制的控制權。  建議進行「cooking」程序，該程序會產生較大的檔案，以用於下游應用程式。
 
 ### <a name="organizing-time-series-data-in-folders"></a>組織資料夾中的時間序列資料
 
@@ -123,7 +122,7 @@ HDInsight 叢集內有三個層級可以微調，以增加容器數目並且使�
 
 根據您的工作負載，一定有需要的最小 YARN 容器大小。 如果您挑選的容器太小，您的作業會遇到記憶體不足的問題。 通常 YARN 容器應該不小於 1GB。 通常會看到 3GB YARN 容器。 針對某些工作負載，您可能需要較大的 YARN 容器。  
 
-**增加每個 YARN 容器的核心。**  增加配置給每個容器的核心數目，以增加在每個容器中執行的平行工作數目。  這適用於類似 Spark 的應用程式，它會在每個容器執行多項工作。  對於像是 Hive 的應用程式，它會在每個容器中執行單一執行緒，所以最好是有多個容器，而不是每個容器有多個核心。   
+**增加每個 YARN 容器的核心。**  增加配置給每個容器的核心數目，以增加在每個容器中執行的平行工作數目。  這適用於類似 Spark 的應用程式，它會在每個容器執行多項工作。  對於像是 Hive 的應用程式，它會在每個容器中執行單一執行緒，所以最好是有多個容器，而不是每個容器有多個核心。
 
 ### <a name="workload-layer"></a>工作負載層
 

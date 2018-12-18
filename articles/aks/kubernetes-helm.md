@@ -1,35 +1,36 @@
 ---
 title: 在 Azure 上的 Kubernetes 中運用 Helm 部署容器
-description: 使用 Helm 套件工具，將容器部署在 AKS 的 Kubernetes 叢集中。
+description: 使用 Helm 封裝工具，在 Azure Kubernetes Service (AKS) 叢集中部署容器
 services: container-service
-author: neilpeterson
-manager: timlt
+author: iainfoulds
+manager: jeconnoc
 ms.service: container-service
 ms.topic: article
-ms.date: 02/24/2018
-ms.author: nepeters
+ms.date: 07/13/2018
+ms.author: iainfou
 ms.custom: mvc
-ms.openlocfilehash: 6a8565c70097b3ac9a419b652a652824adebba88
-ms.sourcegitcommit: a36a1ae91968de3fd68ff2f0c1697effbb210ba8
+ms.openlocfilehash: dd2deba25615373765dd3492d03c1ba547c8ba8c
+ms.sourcegitcommit: 7208bfe8878f83d5ec92e54e2f1222ffd41bf931
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/17/2018
+ms.lasthandoff: 07/14/2018
+ms.locfileid: "39055129"
 ---
-# <a name="use-helm-with-azure-container-service-aks"></a>使用 Helm 搭配 Azure Container Service (AKS)
+# <a name="install-applications-with-helm-in-azure-kubernetes-service-aks"></a>在 Azure Kubernetes Service (AKS) 中使用 Helm 安裝應用程式
 
 [Helm][helm] 是開放原始碼的封裝工具，可協助您安裝和管理 Kubernetes 應用程式的生命週期。 Helm 類似於 *APT* 和 *Yum* 等 Linux 套件管理工具，可用於管理 Kubernetes 圖表 (即預先設定的 Kubernetes 資源套件)。
 
-本文將逐步引導您在 AKS 的 Kubernetes 叢集中設定及使用 Helm。
+本文示範如何在 AKS 上的 Kubernetes 叢集中設定及使用 Helm。
 
 ## <a name="before-you-begin"></a>開始之前
 
-本文件中詳述的步驟假設您已建立 AKS 叢集，並建立與叢集的 kubectl 連線。 如果您需要這些項目，請參閱 [AKS 快速入門][aks-quickstart]。
+本文件中詳述的步驟假設您已建立 AKS 叢集，並建立與叢集的 `kubectl` 連線。 如果您需要這些項目，請參閱 [AKS 快速入門][aks-quickstart]。
 
 ## <a name="install-helm-cli"></a>安裝 Helm CLI
 
-Helm CLI 是在您的開發系統上執行的用戶端，可讓您啟動、停止和管理具有 Helm 圖表的應用程式。
+Helm CLI 是在開發系統上執行的用戶端，可讓您透過 Helm 啟動、停止和管理應用程式。
 
-如果您是使用 Azure CloudShell，即已安裝 Helm CLI。 若要在 Mac 上安裝 Helm CLI，請使用 `brew`。 如需其他安裝選項，請參閱[安裝 Helm][helm-install-options]。
+如果您使用 Azure Cloud Shell，則已安裝 Helm CLI。 若要在 Mac 上安裝 Helm CLI，請使用 `brew`。 如需其他安裝選項，請參閱[安裝 Helm][helm-install-options]。
 
 ```console
 brew install kubernetes-helm
@@ -38,75 +39,124 @@ brew install kubernetes-helm
 輸出：
 
 ```
-==> Downloading https://homebrew.bintray.com/bottles/kubernetes-helm-2.6.2.sierra.bottle.1.tar.gz
+==> Downloading https://homebrew.bintray.com/bottles/kubernetes-helm-2.9.1.high_sierra.bottle.tar.gz
 ######################################################################## 100.0%
-==> Pouring kubernetes-helm-2.6.2.sierra.bottle.1.tar.gz
+==> Pouring kubernetes-helm-2.9.1.high_sierra.bottle.tar.gz
 ==> Caveats
 Bash completion has been installed to:
   /usr/local/etc/bash_completion.d
 ==> Summary
-🍺  /usr/local/Cellar/kubernetes-helm/2.6.2: 50 files, 132.4MB
+🍺  /usr/local/Cellar/kubernetes-helm/2.9.1: 50 files, 66.2MB
 ```
+
+## <a name="create-a-service-account"></a>建立服務帳戶
+
+在已啟用 RBAC 的叢集中部署 Helm 之前，您需要適用於 Tiller 服務的服務帳戶與角色繫結。 如需在已啟用 RBAC 的叢集中保護 Helm / Tiller 的詳細資訊，請參閱 [Tiller、命名空間和 RBAC][tiller-rbac]。 如果您的叢集未啟用 RBAC，請略過此步驟。
+
+建立名為 `helm-rbac.yaml` 的檔案，然後將下列 YAML 複製進來：
+
+```yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: tiller
+  namespace: kube-system
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: tiller
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: tiller
+    namespace: kube-system
+```
+
+使用 `kubectl create` 命令來建立服務帳戶和角色繫結：
+
+```console
+kubectl create -f helm-rbac.yaml
+```
+
+## <a name="secure-tiller-and-helm"></a>保護 Tiller 和 Helm
+
+Helm 用戶端和 Tiller 服務會使用 TLS/SSL 互相驗證及通訊。 這個驗證方法有助於保護 Kubernetes 叢集，以及驗證可以部署哪些服務。 為了提高安全性，您可以產生自己的簽署憑證。 每個 Helm 使用者會收到自己的用戶端憑證，而 Tiller 會在 Kubernetes 叢集中初始化，並且套用憑證。 如需詳細資訊，請參閱[在 Helm 與 Tiller 之間使用 TLS/SSL][helm-ssl]。
+
+使用了已啟用 RBAC 的 Kubernetes 叢集，您就可以控制 Tiller 對於叢集的存取權層級。 您可以定義 Kubernetes 命名空間 (Tiller 部署於其中)，並且限制 Tiller 後續可以在其中部署資源的命名空間。 這個方法可讓您在不同的命名空間中建立 Tiller 執行個體並且限制部署界限，以及將 Helm 用戶端使用者的範圍限制為特定命名空間。 如需詳細資訊，請參閱 [Helm 角色型存取控制][helm-rbac]。
 
 ## <a name="configure-helm"></a>設定 Helm
 
-[helm init][helm-init] 命令是用來在 Kubernetes 叢集中安裝 Helm 元件，並進行用戶端設定。 執行下列命令以在 AKS 叢集上安裝 Helm 和設定 Helm 用戶端。
+若要將基本 Tiller 部署到 AKS 叢集，請使用 [helm init][helm-init] 命令。 如果您的叢集並未啟用 RBAC，請移除 `--service-account` 引數和值。 如果您已為 Tiller 和 Helm 設定 TLS/SSL，請略過這個基本初始化步驟，改為提供必要的 `--tiller-tls-`，如接下來的範例所示。
 
-```azurecli-interactive
-helm init
+```console
+helm init --service-account tiller
 ```
 
-輸出：
+如果您已在 Helm 與 Tiller 之間設定 TLS/SSL，請提供 `--tiller-tls-` 參數和您自己的憑證名稱，如下列範例所示：
 
-```
-$HELM_HOME has been configured at /Users/neilpeterson/.helm.
-
-Tiller (the Helm server-side component) has been installed into your Kubernetes Cluster.
-
-Please note: by default, Tiller is deployed with an insecure 'allow unauthenticated users' policy.
-For more information on securing your installation see: https://docs.helm.sh/using_helm/#securing-your-helm-installation
-Happy Helming!
+```console
+helm init \
+    --tiller-tls \
+    --tiller-tls-cert tiller.cert.pem \
+    --tiller-tls-key tiller.key.pem \
+    --tiller-tls-verify \
+    --tls-ca-cert ca.cert.pem \
+    --service-account tiller
 ```
 
 ## <a name="find-helm-charts"></a>尋找 Helm 圖表
 
-使用 Helm 圖表將應用程式部署到 Kubernetes 叢集中。 若要搜尋預先建立的 Helm 圖表，請使用 [helm search][helm-search] 命令。
+使用 Helm 圖表將應用程式部署到 Kubernetes 叢集中。 若要搜尋預先建立的 Helm 圖表，請使用 [helm search][helm-search] 命令：
 
-```azurecli-interactive
+```console
 helm search
 ```
 
-輸出看起來與下列內容類似，不過多了許多圖表。
+下列扼要範例輸出顯示一些可供使用的 Helm 圖表：
 
 ```
-NAME                            VERSION DESCRIPTION
-stable/acs-engine-autoscaler    2.0.0   Scales worker nodes within agent pools
-stable/artifactory              6.1.0   Universal Repository Manager supporting all maj...
-stable/aws-cluster-autoscaler   0.3.1   Scales worker nodes within autoscaling groups.
-stable/buildkite                0.2.0   Agent for Buildkite
-stable/centrifugo               2.0.0   Centrifugo is a real-time messaging server.
-stable/chaoskube                0.5.0   Chaoskube periodically kills random pods in you...
-stable/chronograf               0.3.0   Open-source web application written in Go and R...
-stable/cluster-autoscaler       0.2.0   Scales worker nodes within autoscaling groups.
-stable/cockroachdb              0.5.0   CockroachDB is a scalable, survivable, strongly...
-stable/concourse                0.7.0   Concourse is a simple and scalable CI system.
-stable/consul                   0.4.1   Highly available and distributed service discov...
-stable/coredns                  0.5.0   CoreDNS is a DNS server that chains middleware ...
-stable/coscale                  0.2.0   CoScale Agent
-stable/dask-distributed         2.0.0   Distributed computation in Python
-stable/datadog                  0.8.0   DataDog Agent
+$ helm search
+
+NAME                           CHART VERSION    APP VERSION  DESCRIPTION
+stable/acs-engine-autoscaler   2.2.0            2.1.1        Scales worker nodes within agent pools
+stable/aerospike               0.1.7            v3.14.1.2    A Helm chart for Aerospike in Kubernetes
+stable/anchore-engine          0.1.7            0.1.10       Anchore container analysis and policy evaluatio...
+stable/apm-server              0.1.0            6.2.4        The server receives data from the Elastic APM a...
+stable/ark                     1.0.1            0.8.2        A Helm chart for ark
+stable/artifactory             7.2.1            6.0.0        Universal Repository Manager supporting all maj...
+stable/artifactory-ha          0.2.1            6.0.0        Universal Repository Manager supporting all maj...
+stable/auditbeat               0.1.0            6.2.4        A lightweight shipper to audit the activities o...
+stable/aws-cluster-autoscaler  0.3.3                         Scales worker nodes within autoscaling groups.
+stable/bitcoind                0.1.3            0.15.1       Bitcoin is an innovative payment network and a ...
+stable/buildkite               0.2.3            3            Agent for Buildkite
+stable/burrow                  0.4.4            0.17.1       Burrow is a permissionable smart contract machine
+stable/centrifugo              2.0.1            1.7.3        Centrifugo is a real-time messaging server.
+stable/cerebro                 0.1.0            0.7.3        A Helm chart for Cerebro - a web admin tool tha...
+stable/cert-manager            v0.3.3           v0.3.1       A Helm chart for cert-manager
+stable/chaoskube               0.7.0            0.8.0        Chaoskube periodically kills random pods in you...
+stable/chartmuseum             1.5.0            0.7.0        Helm Chart Repository with support for Amazon S...
+stable/chronograf              0.4.5            1.3          Open-source web application written in Go and R...
+stable/cluster-autoscaler      0.6.4            1.2.2        Scales worker nodes within autoscaling groups.
+stable/cockroachdb             1.1.1            2.0.0        CockroachDB is a scalable, survivable, strongly...
+stable/concourse               1.10.1           3.14.1       Concourse is a simple and scalable CI system.
+stable/consul                  3.2.0            1.0.0        Highly available and distributed service discov...
+stable/coredns                 0.9.0            1.0.6        CoreDNS is a DNS server that chains plugins and...
+stable/coscale                 0.2.1            3.9.1        CoScale Agent
+stable/dask                    1.0.4            0.17.4       Distributed computation in Python with task sch...
+stable/dask-distributed        2.0.2                         DEPRECATED: Distributed computation in Python
+stable/datadog                 0.18.0           6.3.0        DataDog Agent
 ...
 ```
 
-若要更新圖表清單，請使用 [helm repo update][helm-repo-update] 命令。
+若要更新圖表清單，請使用 [helm repo update][helm-repo-update] 命令。 以下範例顯示成功存放庫更新的情況：
 
-```azurecli-interactive
-helm repo update
-```
+```console
+$ helm repo update
 
-輸出：
-
-```
 Hang tight while we grab the latest from your chart repositories...
 ...Skip local chart repository
 ...Successfully got an update from the "stable" chart repository
@@ -115,71 +165,89 @@ Update Complete. ⎈ Happy Helming!⎈
 
 ## <a name="run-helm-charts"></a>執行 Helm 圖表
 
-若要部署 NGINX 輸入控制器，請使用 [helm install][helm-install] 命令。
+若要使用 Helm 來安裝圖表，請使用 [helm install][helm-install] 命令並且指定要安裝的圖表名稱。 為了查看這個動作，讓我們使用 Helm 圖表來安裝基本 Wordpress 部署。 如果您已設定 TLS/SSL，請新增 `--tls` 參數以使用 Helm 用戶端憑證。
 
-```azurecli-interactive
-helm install stable/nginx-ingress
+```console
+helm install stable/wordpress
 ```
 
-輸出看起來類似下列內容，但包含如何使用 Kubernetes 部署指示等的其他資訊。
+下列扼要範例輸出顯示 Helm 圖表所建立的 Kubernetes 資源部署狀態：
 
 ```
-NAME:   tufted-ocelot
-LAST DEPLOYED: Thu Oct  5 00:48:04 2017
+$ helm install stable/wordpress
+
+NAME:   wishful-mastiff
+LAST DEPLOYED: Thu Jul 12 15:53:56 2018
 NAMESPACE: default
 STATUS: DEPLOYED
 
 RESOURCES:
+==> v1beta1/Deployment
+NAME                       DESIRED  CURRENT  UP-TO-DATE  AVAILABLE  AGE
+wishful-mastiff-wordpress  1        1        1           0          1s
+
+==> v1beta1/StatefulSet
+NAME                     DESIRED  CURRENT  AGE
+wishful-mastiff-mariadb  1        1        1s
+
+==> v1/Pod(related)
+NAME                                        READY  STATUS   RESTARTS  AGE
+wishful-mastiff-wordpress-6f96f8fdf9-q84sz  0/1    Pending  0         1s
+wishful-mastiff-mariadb-0                   0/1    Pending  0         1s
+
+==> v1/Secret
+NAME                       TYPE    DATA  AGE
+wishful-mastiff-mariadb    Opaque  2     2s
+wishful-mastiff-wordpress  Opaque  2     2s
+
 ==> v1/ConfigMap
-NAME                                    DATA  AGE
-tufted-ocelot-nginx-ingress-controller  1     5s
+NAME                           DATA  AGE
+wishful-mastiff-mariadb        1     2s
+wishful-mastiff-mariadb-tests  1     2s
+
+==> v1/PersistentVolumeClaim
+NAME                       STATUS   VOLUME   CAPACITY  ACCESS MODES  STORAGECLASS  AGE
+wishful-mastiff-wordpress  Pending  default  2s
 
 ==> v1/Service
-NAME                                         CLUSTER-IP   EXTERNAL-IP  PORT(S)                     AGE
-tufted-ocelot-nginx-ingress-controller       10.0.140.10  <pending>    80:30486/TCP,443:31358/TCP  5s
-tufted-ocelot-nginx-ingress-default-backend  10.0.34.132  <none>       80/TCP                      5s
-
-==> v1beta1/Deployment
-NAME                                         DESIRED  CURRENT  UP-TO-DATE  AVAILABLE  AGE
-tufted-ocelot-nginx-ingress-controller       1        1        1           0          5s
-tufted-ocelot-nginx-ingress-default-backend  1        1        1           1          5s
+NAME                       TYPE          CLUSTER-IP   EXTERNAL-IP  PORT(S)                     AGE
+wishful-mastiff-mariadb    ClusterIP     10.1.116.54  <none>       3306/TCP                    2s
+wishful-mastiff-wordpress  LoadBalancer  10.1.217.64  <pending>    80:31751/TCP,443:31264/TCP  2s
 ...
 ```
 
-如需使用 NGINX 輸入控制器與 Kubernetes 的詳細資訊，請參閱 [NGINX 輸入控制器][nginx-ingress]。
+需要一兩分鐘的時間讓 Wordpress 服務的 EXTERNAL-IP 位址填入，讓您可以使用網頁瀏覽器來加以存取。
 
-## <a name="list-helm-charts"></a>列出 Helm 圖表
+## <a name="list-helm-releases"></a>列出 Helm 版本
 
-若要查看安裝於叢集上的圖表清單，請使用 [helm list][helm-list] 命令。
+若要查看安裝於叢集上的版本清單，請使用 [helm list][helm-list] 命令。 下列範例顯示在上一個步驟中部署的 Wordpress 版本。 如果您已設定 TLS/SSL，請新增 `--tls` 參數以使用 Helm 用戶端憑證。
 
-```azurecli-interactive
-helm list
-```
+```console
+$ helm list
 
-輸出：
-
-```
-NAME            REVISION    UPDATED                     STATUS      CHART               NAMESPACE
-bilging-ant     1           Thu Oct  5 00:11:11 2017    DEPLOYED    nginx-ingress-0.8.7 default
+NAME             REVISION    UPDATED                     STATUS      CHART              NAMESPACE
+wishful-mastiff  1           Thu Jul 12 15:53:56 2018    DEPLOYED    wordpress-2.1.3  default
 ```
 
 ## <a name="next-steps"></a>後續步驟
 
-如需管理 Kubernetes 圖表的詳細資訊，請參閱 Helm 文件。
+如需使用 Helm 管理 Kubernetes 應用程式部署的詳細資訊，請參閱 Helm 文件。
 
 > [!div class="nextstepaction"]
 > [Helm 文件][helm-documentation]
 
 <!-- LINKS - external -->
 [helm]: https://github.com/kubernetes/helm/
-[helm-documentation]: https://github.com/kubernetes/helm/blob/master/docs/index.md
+[helm-documentation]: https://docs.helm.sh/
 [helm-init]: https://docs.helm.sh/helm/#helm-init
 [helm-install]: https://docs.helm.sh/helm/#helm-install
 [helm-install-options]: https://github.com/kubernetes/helm/blob/master/docs/install.md
 [helm-list]: https://docs.helm.sh/helm/#helm-list
+[helm-rbac]: https://docs.helm.sh/using_helm/#role-based-access-control
 [helm-repo-update]: https://docs.helm.sh/helm/#helm-repo-update
 [helm-search]: https://docs.helm.sh/helm/#helm-search
-[nginx-ingress]: https://github.com/kubernetes/ingress-nginx
+[tiller-rbac]: https://docs.helm.sh/using_helm/#tiller-namespaces-and-rbac
+[helm-ssl]: https://docs.helm.sh/using_helm/#using-ssl-between-helm-and-tiller
 
 <!-- LINKS - internal -->
 [aks-quickstart]: ./kubernetes-walkthrough.md

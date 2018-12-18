@@ -1,13 +1,13 @@
 ---
-title: "適用於 SAP NetWeaver 的 Azure 虛擬機器 DBMS 部署 | Microsoft Docs"
-description: "SAP NetWeaver 的 Azure 虛擬機器 DBMS 部署"
+title: 適用於 SAP NetWeaver 的 Azure 虛擬機器 DBMS 部署 | Microsoft Docs
+description: SAP NetWeaver 的 Azure 虛擬機器 DBMS 部署
 services: virtual-machines-linux,virtual-machines-windows
-documentationcenter: 
+documentationcenter: ''
 author: MSSedusch
-manager: timlt
-editor: 
+manager: jeconnoc
+editor: ''
 tags: azure-resource-manager
-keywords: 
+keywords: ''
 ms.assetid: 5654dac7-4204-4387-b312-3d8b2898eb3a
 ms.service: virtual-machines-linux
 ms.devlang: NA
@@ -17,11 +17,12 @@ ms.workload: infrastructure-services
 ms.date: 02/26/2018
 ms.author: sedusch
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 855fc155bbdef9a3a0ab8415067102e607fab0f9
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+ms.openlocfilehash: 2caa9a5137edd4e012adf704c01dc5c470e1bb51
+ms.sourcegitcommit: f606248b31182cc559b21e79778c9397127e54df
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 07/12/2018
+ms.locfileid: "38972439"
 ---
 # <a name="azure-virtual-machines-dbms-deployment-for-sap-netweaver"></a>SAP NetWeaver 的 Azure 虛擬機器 DBMS 部署
 [767598]:https://launchpad.support.sap.com/#/notes/767598
@@ -237,7 +238,7 @@ ms.lasthandoff: 03/09/2018
 [powershell-install-configure]:https://docs.microsoft.com/powershell/azure/install-azurerm-ps
 [resource-group-authoring-templates]:../../../resource-group-authoring-templates.md
 [resource-group-overview]:../../../azure-resource-manager/resource-group-overview.md
-[resource-groups-networking]:../../../virtual-network/resource-groups-networking.md
+[resource-groups-networking]:../../../networking/networking-overview.md
 [sap-pam]:https://support.sap.com/pam 
 [sap-templates-2-tier-marketplace-image]:https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fsap-2-tier-marketplace-image%2Fazuredeploy.json
 [sap-templates-2-tier-os-disk]:https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fsap-2-tier-user-disk%2Fazuredeploy.json
@@ -287,15 +288,15 @@ ms.lasthandoff: 03/09/2018
 [virtual-machines-sql-server-performance-best-practices]:./../../windows/sql/virtual-machines-windows-sql-performance.md
 [virtual-machines-upload-image-windows-resource-manager]:../../virtual-machines-windows-upload-image.md
 [virtual-machines-windows-tutorial]:../../virtual-machines-windows-hero-tutorial.md
-[virtual-machines-workload-template-sql-alwayson]:https://azure.microsoft.com/documentation/templates/sql-server-2014-alwayson-dsc/
+[virtual-machines-workload-template-sql-alwayson]:https://azure.microsoft.com/resources/templates/sql-server-2014-alwayson-existing-vnet-and-ad/
 [virtual-network-deploy-multinic-arm-cli]:../linux/multiple-nics.md
 [virtual-network-deploy-multinic-arm-ps]:../windows/multiple-nics.md
-[virtual-network-deploy-multinic-arm-template]:../../../virtual-network/virtual-network-deploy-multinic-arm-template.md
+[virtual-network-deploy-multinic-arm-template]:../../../virtual-network/template-samples.md
 [virtual-networks-configure-vnet-to-vnet-connection]:../../../vpn-gateway/vpn-gateway-vnet-vnet-rm-ps.md
 [virtual-networks-create-vnet-arm-pportal]:../../../virtual-network/manage-virtual-network.md#create-a-virtual-network
 [virtual-networks-manage-dns-in-vnet]:../../../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md
 [virtual-networks-multiple-nics]:../../../virtual-network/virtual-network-deploy-multinic-classic-ps.md
-[virtual-networks-nsg]:../../../virtual-network/virtual-networks-nsg.md
+[virtual-networks-nsg]:../../../virtual-network/security-overview.md
 [virtual-networks-reserved-private-ip]:../../../virtual-network/virtual-networks-static-private-ip-arm-ps.md
 [virtual-networks-static-private-ip-arm-pportal]:../../../virtual-network/virtual-networks-static-private-ip-arm-pportal.md
 [virtual-networks-udr-overview]:../../../virtual-network/virtual-networks-udr-overview.md
@@ -369,7 +370,7 @@ ms.lasthandoff: 03/09/2018
 您應該具備有關 Microsoft Azure 架構以及如何部署和操作 Microsoft Azure 虛擬機器的有效知識。 您可以在 <https://azure.microsoft.com/documentation/> 找到詳細資訊
 
 > [!NOTE]
-> 我們將「不」討論「Microsoft Azure 平台」的「Microsoft Azure 平台即服務」(PaaS) 產品。 本白皮書的內容是關於如何在 Microsoft Azure 虛擬機器 (IaaS) 上執行資料庫管理系統 (DBMS)，就像在內部部署環境中執行 DBMS 一樣。 這兩個產品之間所提供的資料庫性能與功能差異極大，不應混用彼此。 另請參閱：<https://azure.microsoft.com/services/sql-database/>
+> 我們將「不」討論「Microsoft Azure 平台」的「Microsoft Azure 平台即服務」(PaaS) 供應項目。 本白皮書的內容是關於如何在 Microsoft Azure 虛擬機器 (IaaS) 上執行資料庫管理系統 (DBMS)，就像在內部部署環境中執行 DBMS 一樣。 這兩個產品之間所提供的資料庫性能與功能差異極大，不應混用彼此。 另請參閱：<https://azure.microsoft.com/services/sql-database/>
 > 
 > 
 
@@ -539,9 +540,10 @@ SAP 目前僅支援進階受控磁碟。 如需詳細資訊，請讀取 SAP 附�
 如果您使用受控磁碟，您可以移轉到進階儲存體，方法如下：
 
 1. 解除配置虛擬機器
-2. 如有需要，將虛擬機器的大小調整為支援進階儲存體 (例如 DS 或 GS) 的大小
-3. 將受控磁碟帳戶類型變更為進階 (SSD)
-4. 啟動虛擬機器
+1. 如有需要，將虛擬機器的大小調整為支援進階儲存體 (例如 DS 或 GS) 的大小
+1. 將受控磁碟帳戶類型變更為進階 (SSD)
+1. 如 [VM 和資料磁碟快取][dbms-guide-2.1]一章的建議，變更資料磁碟的快取
+1. 啟動虛擬機器
 
 ### <a name="deployment-of-vms-for-sap-in-azure"></a>在 Azure 中部署適用於 SAP 的 VM
 Microsoft Azure 提供多種方法來部署 VM 和相關聯的磁碟。 因此，請務必了解這些差異，因為 VM 的準備工作可能會因部署方法而異。 我們通常會查看下列章節中所描述的案例。
@@ -604,7 +606,7 @@ Azure 平台不會針對部署的 VM 提供像是即時移轉等功能。 這表
 從 Microsoft Azure 開始，您就能輕易地將建置於 Windows Server 平台上現有的 SQL Server 應用程式移轉至 Azure 虛擬機器。 虛擬機器中的 SQL Server 可讓您輕鬆地將這些應用程式移轉到 Microsoft Azure，藉以減少部署、管理和維護企業級應用程式的擁有權總成本。 透過 Azure 虛擬機器中的 SQL Server，系統管理員和開發人員仍然可以使用可在內部部署使用的相同開發和管理工具。 
 
 > [!IMPORTANT]
-> 我們不討論 Microsoft Azure SQL Database，此為 Microsoft Azure 平台的「平台即服務」產品。 本白皮書中討論的是如何執行 SQL Server 產品 (已知適用於 Azure 虛擬機器中的內部部署)，以及如何運用 Azure 的「基礎架構即為服務」功能。 這兩個產品之間所提供的資料庫性能與功能並不相同，不應混用彼此。 另請參閱：<https://azure.microsoft.com/services/sql-database/>
+> 我們不討論 Microsoft Azure SQL Database，此為 Microsoft Azure 平台的「平台即服務」供應項目。 本白皮書中討論的是如何執行 SQL Server 產品 (已知適用於 Azure 虛擬機器中的內部部署)，以及如何運用 Azure 的「基礎架構即為服務」功能。 這兩個產品之間所提供的資料庫性能與功能並不相同，不應混用彼此。 另請參閱：<https://azure.microsoft.com/services/sql-database/>
 > 
 > 
 
@@ -617,7 +619,8 @@ Azure 平台不會針對部署的 VM 提供像是即時移轉等功能。 這表
 * **虛擬機器 SLA**：如需在 Azure 中執行的虛擬機器適用的 SLA，請參閱：<https://azure.microsoft.com/support/legal/sla/>  
 * **SQL 版本支援**︰針對 SAP 客戶，我們在「Microsoft Azure 虛擬機器」上支援 SQL Server 2008 R2 和更新版本。 不支援舊版。 如需更多詳細資料，請檢閱這份通用的 [支援聲明](https://support.microsoft.com/kb/956893) 。 請注意，Microsoft 通常也支援 SQL Server 2008。 不過，由於適用於 SAP 的重大功能是透過 SQL Server 2008 R2 所引進，因此 SQL Server 2008 R2 是適用於 SAP 的最低版本。 請記住，SQL Server 2012 和 2014 已擴充來與 IaaS 案例進行更深入整合 (例如，直接對 Azure 儲存體進行備份)。 因此，我們將本白皮書範圍限制為 SQL Server 2012 和 2014 及其適用於 Azure 的最新修補程式等級。
 * **SQL 功能支援**︰「Microsoft Azure 虛擬機器」上支援大部分的 SQL Server 功能，但有一些例外。 **不支援使用共用磁碟的 SQL Server 容錯移轉叢集**。  單一 Azure 區域內支援分散式技術 (例如，資料庫鏡像、AlwaysOn 可用性群組、複寫、記錄傳送，以及 Service Broker)。 在不同的 Azure 區域之間也可支援 SQL Server AlwaysOn，相關資訊請見：<https://blogs.technet.com/b/dataplatforminsider/archive/2014/06/19/sql-server-alwayson-availability-groups-supported-between-microsoft-azure-regions.aspx>。  如需更多詳細資料，請檢閱這份 [支援聲明](https://support.microsoft.com/kb/956893) 。 如需有關如何部署 AlwaysOn 組態的範例，請參閱[這篇][virtual-machines-workload-template-sql-alwayson]文章。 此外，也請參閱[這裡][virtual-machines-sql-server-infrastructure-services]所記載的最佳做法。 
-* **SQL 效能**︰相較於其他公用雲端虛擬化產品，我們確信 Microsoft Azure 裝載的「虛擬機器」會有非常好的表現，但個別結果可能有所不同。 請參閱[這篇][virtual-machines-sql-server-performance-best-practices]文章。
+* 
+  **SQL 效能**︰相較於其他公用雲端虛擬化供應項目，我們確信 Microsoft Azure 裝載的「虛擬機器」會有非常好的表現，但個別結果可能有所不同。 請參閱[這篇][virtual-machines-sql-server-performance-best-practices]文章。
 * **使用來自 Azure Marketplace 的映像**︰部署新 Microsoft Azure VM 的最快方式就是使用來自 Azure Marketplace 的映像。 Azure Marketplace 中提供包含 SQL Server 的映像。 已經安裝 SQL Server 的映像不能立即用於 SAP NetWeaver 應用程式。 原因是預設的 SQL Server 定序是安裝於這些映像內，而不是 SAP NetWeaver 系統所需的定序。 若要使用這類映像，請參閱[使用來自 Microsoft Azure Marketplace 的 SQL Server 映像][dbms-guide-5.6]一章中記載的步驟。 
 * 如需詳細資訊，請參閱 [定價詳細資料](https://azure.microsoft.com/pricing/) 。 [SQL Server 2012 授權指南](https://download.microsoft.com/download/7/3/C/73CAD4E0-D0B5-4BE5-AB49-D5B886A5AE00/SQL_Server_2012_Licensing_Reference_Guide.pdf)和 [SQL Server 2014 授權指南](https://download.microsoft.com/download/B/4/E/B4E604D9-9D38-4BBA-A927-56E4C872E41C/SQL_Server_2014_Licensing_Guide.pdf)也是相當重要的資源。
 
@@ -810,7 +813,7 @@ SAP 支援的「資料庫鏡像」(請參閱 SAP 附註 [965908]) 有賴於在 S
 
 [comment]: <> (TODO 舊部落格)
 [comment]: <> (若要了解在 Azure 上安裝 AlwaysOn 組態的詳細步驟和必要條件，最佳體驗方式就是逐步完成[這裡][virtual-machines-windows-classic-ps-sql-alwayson-availability-groups]提供的教學課程)
-[comment]: <> (透過 Azure 資源庫 <https://blogs.technet.com/b/dataplatforminsider/archive/2014/08/25/sql-server-alwayson-offering-in-microsoft-azure-portal-gallery.aspx> 執行之預先設定的 AlwaysOn 設定)
+[comment]: <> (透過 Azure 映像庫預先設定的 AlwaysOn 安裝程式 <https://blogs.technet.com/b/dataplatforminsider/archive/2014/08/25/sql-server-alwayson-offering-in-microsoft-azure-portal-gallery.aspx>)
 [comment]: <> ([這個][virtual-machines-windows-classic-ps-sql-int-listener] 教學課程提供建立「可用性群組接聽程式」的最佳說明)
 [comment]: <> (以下提供使用 ACL 來保護網路端點的最佳說明：)
 [comment]: <> (*    <https://michaelwasham.com/windows-azure-powershell-reference-guide/network-access-control-list-capability-in-windows-azure-powershell/>)
@@ -821,7 +824,7 @@ SAP 支援的「資料庫鏡像」(請參閱 SAP 附註 [965908]) 有賴於在 S
 您也可以在不同的 Azure 區域上部署 SQL Server AlwaysOn 可用性群組。 此功能會利用 Azure VNet 對 Vnet 連線 ([更多詳細資料][virtual-networks-configure-vnet-to-vnet-connection])。
 
 [comment]: <> (TODO 舊部落格)
-[comment]: <> (以下提供在這類案例中設定「SQL Server AlwaysOn 可用性群組」的說明：<https://blogs.technet.com/b/dataplatforminsider/archive/2014/06/19/sql-server-alwayson-availability-groups-supported-between-microsoft-azure-regions.aspx>。) 
+[comment]: <> (這裡描述了在這種情況下 SQL Server AlwaysOn 可用性群組的設定：<https://blogs.technet.com/b/dataplatforminsider/archive/2014/06/19/sql-server-alwayson-availability-groups-supported-between-microsoft-azure-regions.aspx>。) 
 
 #### <a name="summary-on-sql-server-high-availability-in-azure"></a>Azure 中 SQL Server 高可用性的摘要
 由於 Azure 儲存體會保護內容，因此沒有理由堅持要有熱待命映像。 這表示您的高可用性案例只需要在下列情況中提供保護：
@@ -862,7 +865,7 @@ SAP 支援的「資料庫鏡像」(請參閱 SAP 附註 [965908]) 有賴於在 S
 
 Azure 虛擬機器有 SLA，可以在下列位置中找到：<https://azure.microsoft.com/support/legal/sla/virtual-machines>
 
-相較於其他公用雲端虛擬化產品，我們確信 Microsoft Azure 裝載的虛擬機器會執行得很順利，但產生的個別結果可能不同。 如需不同 SAP 認證之 VM SKU 的 SAP 大小調整 SAPS 數目，請參閱個別的 SAP 附註 [1928533]。
+相較於其他公用雲端虛擬化供應項目，我們確信 Microsoft Azure 裝載的虛擬機器會執行得很順利，但產生的個別結果可能不同。 如需不同 SAP 認證之 VM SKU 的 SAP 大小調整 SAPS 數目，請參閱個別的 SAP 附註 [1928533]。
 
 關於 Azure 儲存體使用方式、部署 SAP VM 或 SAP 監視的陳述與建議適用於搭配 SAP 應用程式來部署 SAP ASE，如本文件前四章所述。
 

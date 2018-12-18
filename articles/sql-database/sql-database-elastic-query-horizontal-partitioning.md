@@ -2,19 +2,22 @@
 title: 跨相應放大的雲端資料庫報告 | Microsoft Docs
 description: 如何設定水平資料分割的彈性查詢
 services: sql-database
-documentationcenter: ''
-manager: craigg
-author: MladjoA
 ms.service: sql-database
-ms.custom: scale out apps
-ms.topic: article
-ms.date: 05/27/2016
+subservice: elastic-scale
+ms.custom: ''
+ms.devlang: ''
+ms.topic: conceptual
+author: MladjoA
 ms.author: mlandzic
-ms.openlocfilehash: ec47a10fcfcb3ef52810ba2b3da9599b65db375a
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.reviewer: ''
+manager: craigg
+ms.date: 04/01/2018
+ms.openlocfilehash: 906c6825dbfdf7d4873c765d0b3eba626ef52e1b
+ms.sourcegitcommit: 51a1476c85ca518a6d8b4cc35aed7a76b33e130f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47159358"
 ---
 # <a name="reporting-across-scaled-out-cloud-databases-preview"></a>跨相應放大的雲端資料庫報告 (預覽)
 ![跨分區查詢][1]
@@ -25,7 +28,7 @@ ms.lasthandoff: 03/16/2018
 
 如需非分區化資料庫，請參閱 [對不同結構描述的雲端資料庫執行查詢](sql-database-elastic-query-vertical-partitioning.md)。 
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 * 使用彈性資料庫用戶端程式庫，建立分區對應。 請參閱 [分區對應管理](sql-database-elastic-scale-shard-map-management.md)。 或使用 [開始使用彈性資料庫工具](sql-database-elastic-scale-get-started.md)中的範例應用程式。
 * 或者，請參閱 [轉換現有的資料庫以使用彈性資料庫工具](sql-database-elastic-convert-to-use-elastic-tools.md)。
 * 使用者必須擁有 ALTER ANY EXTERNAL DATA SOURCE 權限。 這個權限包含在 ALTER DATABASE 權限中。
@@ -48,7 +51,7 @@ ms.lasthandoff: 03/16/2018
     [;]
 
 > [!NOTE]
-> 請確定 *"\<username\>"* 不含任何 *"@servername"* 後置詞。 
+> 請確定 *"\<username\>"* 不含任何 *"\@servername"* 後置詞。 
 > 
 > 
 

@@ -1,6 +1,6 @@
 ---
-title: "針對 Azure 微服務建立混亂與容錯移轉測試 | Microsoft Docs"
-description: "使用 Service Fabric 混亂測試和容錯移轉測試案例來引發錯誤並確認服務的可靠性。"
+title: 針對 Azure Service Fabric 建立混亂與容錯移轉測試 | Microsoft Docs
+description: 使用 Service Fabric 混亂測試和容錯移轉測試案例來引發錯誤並確認服務的可靠性。
 services: service-fabric
 documentationcenter: .net
 author: motanv
@@ -9,16 +9,17 @@ editor: toddabel
 ms.assetid: 8eee7e89-404a-4605-8f00-7e4d4fb17553
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/07/2017
 ms.author: motanv
-ms.openlocfilehash: d06026c750e01ad5825338a78d9af331265f434a
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: d12c5097d4ba5e0ccfe0e2b2cbc8ccd758c32d98
+ms.sourcegitcommit: ebd06cee3e78674ba9e6764ddc889fc5948060c4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 09/07/2018
+ms.locfileid: "44051284"
 ---
 # <a name="testability-scenarios"></a>Testability 案例
 雲端基礎結構之類的大型分散式系統本身並不可靠。 Azure Service Fabric 讓開發人員能夠撰寫可在不可靠的基礎結構上執行的服務。 為了撰寫高品質的服務，開發人員必須能夠產生這類不可靠的基礎結構，才能測試其服務的穩定性。

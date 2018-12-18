@@ -1,36 +1,42 @@
 ---
-title: "快速入門：圖形 API 與 Python - Azure Cosmos DB | Microsoft Docs"
-description: "本快速入門示範如何使用 Azure Cosmos DB 圖形 API，搭配 Azure 入口網站與 Python 建立主控台應用程式"
+title: 快速入門：Gremlin API 搭配 Python - Azure Cosmos DB | Microsoft Docs
+description: 本快速入門說明如何使用 Azure Cosmos DB Gremlin API，並搭配 Azure 入口網站與 Python，以建立主控台應用程式
 services: cosmos-db
-documentationcenter: python
 author: luisbosquez
-manager: jhubbard
-editor: 
-ms.assetid: 383a51c5-7857-440d-ab54-1efb1c0c7079
+manager: kfile
 ms.service: cosmos-db
+ms.component: cosmosdb-graph
 ms.custom: quick start connect, mvc
-ms.workload: 
-ms.tgt_pltfrm: na
 ms.devlang: python
 ms.topic: quickstart
 ms.date: 01/22/2018
 ms.author: lbosq
-ms.openlocfilehash: bb39cc25cc1c431c7ab98bfc3ed816934cb03e45
-ms.sourcegitcommit: 5ac112c0950d406251551d5fd66806dc22a63b01
+ms.openlocfilehash: d01ee78c4e3fdf0eab694deaeed03e0f61989851
+ms.sourcegitcommit: cb61439cf0ae2a3f4b07a98da4df258bfb479845
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2018
+ms.lasthandoff: 09/05/2018
+ms.locfileid: "43699442"
 ---
 # <a name="azure-cosmos-db-create-a-graph-database-using-python-and-the-azure-portal"></a>Azure Cosmos DB︰使用 Python 和 Azure 入口網站建立圖形資料庫
 
-本快速入門示範如何使用 Python 與 Azure Cosmos DB [圖形 API](graph-introduction.md)，透過從 GitHub 複製範例來建置主控台應用程式。 本快速入門也會逐步引導您使用網頁型 Azure 入口網站建立 Azure Cosmos DB 帳戶。   
+> [!div class="op_single_selector"]
+> * [Gremlin 主控台](create-graph-gremlin-console.md)
+> * [.NET](create-graph-dotnet.md)
+> * [Java](create-graph-java.md)
+> * [Node.js](create-graph-nodejs.md)
+> * [Python](create-graph-python.md)
+> * [PHP](create-graph-php.md)
+>  
+
+本快速入門說明如何使用 Python 與 Azure Cosmos DB [Gremlin API](graph-introduction.md)，透過從 GitHub 複製範例來組建主控台應用程式。 本快速入門也會逐步引導您使用網頁型 Azure 入口網站建立 Azure Cosmos DB 帳戶。   
 
 Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您可以快速建立及查詢文件、資料表、索引鍵/值及圖形資料庫，所有這些都受惠於位於 Azure Cosmos DB 核心的全域散發和水平調整功能。  
 
 > [!NOTE]
 > 此快速入門需要 2017 年 12 月 20 日之後建立的圖形資料庫帳戶。 現有帳戶在移轉至正式運作之後便會支援 Python。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]或者，您可以[免費試用 Azure Cosmos DB](https://azure.microsoft.com/try/cosmosdb/)，無須 Azure 訂用帳戶，也無須任何費用和約定付款。
 
@@ -48,28 +54,11 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
 
 ## <a name="add-a-graph"></a>新增圖形
 
-您現在可以在 Azure 入口網站中使用 [資料總管] 工具，建立圖形資料庫。 
-
-1. 按一下 [資料總管] > [新增圖形]。
-
-    [新增圖形] 區域會顯示在最右邊，您可能需要向右捲動才會看到。
-
-    ![Azure 入口網站資料總管 [新增圖形] 頁面](./media/create-graph-python/azure-cosmosdb-data-explorer-graph.png)
-
-2. 在 [新增圖形] 頁面上，輸入新圖形的設定。
-
-    設定|建議的值|說明
-    ---|---|---
-    資料庫識別碼|sample-database|輸入 *sample-database* 作為新資料庫的名稱。 資料庫名稱的長度必須介於 1 到 255 個字元，且不能包含 `/ \ # ?` 或尾端空格。
-    圖形識別碼|sample-graph|輸入 *sample-graph* 作為新集合的名稱。 圖形名稱與資料庫識別碼具有相同的字元需求。
-    儲存體容量|固定 (10 GB)|保持使用預設值 [固定 (10 GB)]。 此值是資料庫的儲存體容量。
-    Throughput|400 RU|將輸送量變更為每秒 400 個要求單位 (RU/秒)。 如果您想要降低延遲，稍後可以相應增加輸送量。
-
-3. 填妥表單後，按一下 [確定]。
+[!INCLUDE [cosmos-db-create-graph](../../includes/cosmos-db-create-graph.md)]
 
 ## <a name="clone-the-sample-application"></a>複製範例應用程式
 
-現在讓我們切換為使用程式碼。 我們將從 GitHub 複製圖形 API 應用程式、設定連接字串，然後加以執行。 您會看到，以程式設計方式來處理資料有多麼的容易。  
+現在讓我們切換為使用程式碼。 我們將從 GitHub 複製 Gremlin API 應用程式、設定連接字串，然後加以執行。 您會看到，以程式設計方式來處理資料有多麼的容易。  
 
 1. 開啟命令提示字元，建立名為 git-samples 的新資料夾，然後關閉命令提示字元。
 
@@ -91,13 +80,13 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
 
 ## <a name="review-the-code"></a>檢閱程式碼
 
-此為選用步驟。 若您想要瞭解如何在程式碼中建立資料庫資源，則可檢閱下列程式碼片段。 程式碼片段皆取自 C:\git-samples\azure-cosmos-db-graph-python-getting-started\ 資料夾中的 `connect.py` 檔案。 或者也可以直接跳至[更新您的連接字串](#update-your-connection-information)。 
+此為選用步驟。 若您想要瞭解如何在程式碼中建立資料庫資源，則可檢閱下列程式碼片段。 程式碼片段皆取自 C:\git-samples\azure-cosmos-db-graph-python-getting-started\ 資料夾中的 connect.py 檔案。 或者也可以直接跳至[更新您的連接字串](#update-your-connection-information)。 
 
 * Gremlin `client` 是於 `connect.py` 的第 104 行初始化：
 
     ```python
     ...
-    client = client.Client('wss://<YOUR_ENDPOINT>.graphs.azure.com:443/','g', 
+    client = client.Client('wss://<YOUR_ENDPOINT>.gremlin.cosmosdb.azure.com:443/','g', 
         username="/dbs/<YOUR_DATABASE>/colls/<YOUR_COLLECTION_OR_GRAPH>", 
         password="<YOUR_PASSWORD>")
     ...
@@ -122,7 +111,7 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
 2. 開啟 connect.py 檔案，並在第 104 行將 URI 值貼至下列程式碼的 `<YOUR_ENDPOINT>` 上：
 
     ```python
-    client = client.Client('wss://<YOUR_ENDPOINT>.graphs.azure.com:443/','g', 
+    client = client.Client('wss://<YOUR_ENDPOINT>.gremlin.cosmosdb.azure.com:443/','g', 
         username="/dbs/<YOUR_DATABASE>/colls/<YOUR_COLLECTION_OR_GRAPH>", 
         password="<YOUR_PASSWORD>")
     ```
@@ -130,14 +119,12 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
     用戶端物件的 URI 部分現在看起來應該類似以下程式碼：
 
     ```python
-    client = client.Client('wss://test.graphs.azure.com:443/','g', 
+    client = client.Client('wss://test.gremlin.cosmosdb.azure.com:443/','g', 
         username="/dbs/<YOUR_DATABASE>/colls/<YOUR_COLLECTION_OR_GRAPH>", 
         password="<YOUR_PASSWORD>")
     ```
 
-3. 將用戶端名稱中的 `graphs.azure.com` 變更為 `gremlin.cosmosdb.azure.com`。 (如果您的圖形資料庫帳戶是在 2017 年 12 月 20 日之前建立的，就不需要變更，繼續下一步。)
-
-4. 變更 `client` 物件的第二個參數，來取代 `<YOUR_DATABASE>` 和 `<YOUR_COLLECTION_OR_GRAPH>` 字串。 如果您使用建議的值，參數看起來應該類似以下程式碼：
+3. 變更 `client` 物件的第二個參數，來取代 `<YOUR_DATABASE>` 和 `<YOUR_COLLECTION_OR_GRAPH>` 字串。 如果您使用建議的值，參數看起來應該類似以下程式碼：
 
     `username="/dbs/sample-database/colls/sample-graph"`
 
@@ -149,7 +136,7 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
         password="<YOUR_PASSWORD>")
     ```
 
-5. 在 Azure 入口網站中，使用複製按鈕複製 PRIMARY KEY，然後將其貼上至 `password=<YOUR_PASSWORD>` 參數中的 `<YOUR_PASSWORD>`。
+4. 在 Azure 入口網站中，使用複製按鈕複製 PRIMARY KEY，然後將其貼上至 `password=<YOUR_PASSWORD>` 參數中的 `<YOUR_PASSWORD>`。
 
     整個 `client` 物件定義現在看起來應該類似以下程式碼：
     ```python
@@ -216,7 +203,7 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
     > [!NOTE]
     > 在本快速入門中，建立非資料分割集合。 不過，如果您藉由在集合建立期間指定資料分割索引鍵來建立資料分割集合，您就必須包含資料分割索引鍵作為每個新頂點的索引鍵。 
 
-6. 按一下 [SERVICEPRINCIPAL] 。 您可能需要展開畫面，才能在螢幕底部看到 [確定]。
+6. 按一下 [確定]。 您可能需要展開畫面，才能在螢幕底部看到 [確定]。
 
 7. 再次按一下 [新增頂點] 並新增額外的新使用者。 
 
@@ -230,7 +217,7 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
     gender|male| 
     school|MIT| 
 
-10. 按一下 [SERVICEPRINCIPAL] 。 
+10. 按一下 [確定]。 
 
 11. 按一下 [套用篩選條件] 按鈕，預設的 `g.V()` 篩選條件會顯示圖形中的所有值。 所有使用者現在會顯示在 [結果] 清單中。 
 

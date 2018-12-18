@@ -1,12 +1,12 @@
 ---
-title: "管理您的 StorSimple 備份類別目錄 | Microsoft Docs"
-description: "說明如何使用 StorSimple 裝置管理員服務的 [備份類別目錄] 頁面列出、選取和刪除備份組。"
+title: 管理您的 StorSimple 備份類別目錄 | Microsoft Docs
+description: 說明如何使用 StorSimple 裝置管理員服務的 [備份類別目錄] 頁面列出、選取和刪除備份組。
 services: storsimple
 documentationcenter: NA
 author: alkohli
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: NA
 ms.topic: article
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23108376"
 ---
 # <a name="use-the-storsimple-device-manager-service-to-manage-your-backup-catalog"></a>使用 StorSimple 裝置管理員服務管理備份類別目錄
 ## <a name="overview"></a>概觀

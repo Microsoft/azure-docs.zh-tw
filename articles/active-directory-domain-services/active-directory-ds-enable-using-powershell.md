@@ -1,24 +1,26 @@
 ---
-title: "使用 PowerShell 啟用 Azure Active Directory Domain Services | Microsoft Docs"
-description: "使用 PowerShell 啟用 Azure Active Directory Domain Services"
+title: 使用 PowerShell 啟用 Azure Active Directory Domain Services | Microsoft Docs
+description: 使用 PowerShell 啟用 Azure Active Directory Domain Services
 services: active-directory-ds
-documentationcenter: 
+documentationcenter: ''
 author: mahesh-unnikrishnan
 manager: mtillman
 editor: curtand
 ms.assetid: d4bc5583-6537-4cd9-bc4b-7712fdd9272a
-ms.service: active-directory-ds
+ms.service: active-directory
+ms.component: domain-services
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 12/06/2017
 ms.author: maheshu
-ms.openlocfilehash: a456a6265400abe1d3a3620df74e41d8b4399b97
-ms.sourcegitcommit: e266df9f97d04acfc4a843770fadfd8edf4fa2b7
+ms.openlocfilehash: ee3f65b7afde19a1f9c730334043cc7dae9ea791
+ms.sourcegitcommit: 9222063a6a44d4414720560a1265ee935c73f49e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/11/2017
+ms.lasthandoff: 08/03/2018
+ms.locfileid: "39503803"
 ---
 # <a name="enable-azure-active-directory-domain-services-using-powershell"></a>使用 PowerShell 啟用 Azure Active Directory Domain Services
 本文說明如何使用 PowerShell 啟用 Azure Active Directory (AD) Domain Services。
@@ -134,9 +136,8 @@ New-AzureRmResource -ResourceId "/subscriptions/$AzureSubscriptionId/resourceGro
 ```
 
 > [!WARNING]
-> 
->             **佈建受控網域之後，別忘了其他設定步驟。**
-佈建受控網域之後，您仍然需要完成下列工作：
+> **佈建受控網域之後，別忘了其他設定步驟。**
+> 佈建受控網域之後，您仍然需要完成下列工作：
 > * 為虛擬網路**[更新 DNS 設定](active-directory-ds-getting-started-dns.md)**，讓虛擬機器可以找到受管理的網域來進行網域聯結或驗證。
 * **[啟用 Azure AD Domain Services 的密碼同步化](active-directory-ds-getting-started-password-sync.md)**，讓使用者可使用他們的公司認證來登入受管理的網域。
 >
@@ -162,7 +163,7 @@ $AzureLocation = "westus"
 Connect-AzureAD
 
 # Login to your Azure subscription.
-Login-AzureRmAccount
+Connect-AzureRmAccount
 
 # Create the service principal for Azure AD Domain Services.
 New-AzureADServicePrincipal -AppId “2565bd9d-da50-47d4-8b85-4c97f669dc36”
@@ -220,9 +221,8 @@ New-AzureRmResource -ResourceId "/subscriptions/$AzureSubscriptionId/resourceGro
 ```
 
 > [!WARNING]
-> 
->             **佈建受控網域之後，別忘了其他設定步驟。**
-佈建受控網域之後，您仍然需要完成下列工作：
+> **佈建受控網域之後，別忘了其他設定步驟。**
+> 佈建受控網域之後，您仍然需要完成下列工作：
 > * 為虛擬網路更新 DNS 設定，讓虛擬機器可以找到受控網域來進行網域聯結或驗證。
 * 啟用 Azure AD Domain Services 的密碼同步化，讓使用者可使用他們的公司認證來登入受控網域。
 >
@@ -230,7 +230,5 @@ New-AzureRmResource -ResourceId "/subscriptions/$AzureSubscriptionId/resourceGro
 ## <a name="next-steps"></a>後續步驟
 建立受控網域之後，請執行下列設定工作，如此一來您就可以使用受控網域：
 
-* 
-            [更新虛擬網路的 DNS 伺服器設定，以指向受控網域](active-directory-ds-getting-started-dns.md)
-* 
-            [為受控網域啟用密碼同步化](active-directory-ds-getting-started-password-sync.md)
+* [更新虛擬網路的 DNS 伺服器設定，以指向受控網域](active-directory-ds-getting-started-dns.md)
+* [為受控網域啟用密碼同步化](active-directory-ds-getting-started-password-sync.md)

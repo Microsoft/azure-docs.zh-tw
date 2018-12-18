@@ -1,25 +1,21 @@
 ---
-title: "建立索引 (REST API - Azure 搜尋服務) | Microsoft Docs"
-description: "使用 Azure 搜尋服務 HTTP REST API 在程式碼中建立索引。"
-services: search
-documentationcenter: 
-author: ashmaka
-manager: jhubbard
-editor: 
+title: 建立索引 (REST API - Azure 搜尋服務) | Microsoft Docs
+description: 使用 Azure 搜尋服務 HTTP REST API 在程式碼中建立索引。
+author: chaosrealm
+manager: jlembicz
+ms.author: eugenesh
 tags: azure-portal
-ms.assetid: ac6c5fba-ad59-492d-b715-d25a7a7ae051
+services: search
 ms.service: search
 ms.devlang: rest-api
-ms.workload: search
-ms.topic: get-started-article
-ms.tgt_pltfrm: na
-ms.date: 12/08/2016
-ms.author: ashmaka
-ms.openlocfilehash: 9a64d1436471e406b7d9b700257d3dd96b5edcde
-ms.sourcegitcommit: 68aec76e471d677fd9a6333dc60ed098d1072cfc
+ms.topic: quickstart
+ms.date: 04/20/2018
+ms.openlocfilehash: 86260e1929e8bd5c31682ef7f59cacae19a66020
+ms.sourcegitcommit: e2adef58c03b0a780173df2d988907b5cb809c82
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/18/2017
+ms.lasthandoff: 04/28/2018
+ms.locfileid: "32182026"
 ---
 # <a name="create-an-azure-search-index-using-the-rest-api"></a>使用 REST API 建立 Azure 搜尋服務索引
 > [!div class="op_single_selector"]
@@ -88,12 +84,12 @@ ms.lasthandoff: 12/18/2017
 `description_fr` 欄位會用來儲存法文文字，因此上述索引定義會對此欄位使用語言分析器。 如需語言分析器的詳細資訊，請參閱[語言支援主題](https://docs.microsoft.com/rest/api/searchservice/Language-support)以及對應的[部落格文章](https://azure.microsoft.com/blog/language-support-in-azure-search/)。
 
 ## <a name="issue-the-http-request"></a>發出 HTTP 要求
-1. 請使用索引定義做為要求主體來對 Azure 搜尋服務端點 URL 發出 HTTP POST 要求。 在 URL 中，請務必使用服務名稱做為主機名稱，然後放置適當的 `api-version` 做為查詢字串參數 (本文件發行時的最新 API 版本是 `2016-09-01`)。
+1. 請使用索引定義做為要求主體來對 Azure 搜尋服務端點 URL 發出 HTTP POST 要求。 在 URL 中，請務必使用服務名稱做為主機名稱，然後放置適當的 `api-version` 做為查詢字串參數 (本文件發行時的最新 API 版本是 `2017-11-11`)。
 2. 在要求標頭中，指定 `Content-Type` 做為 `application/json`。 您也必須提供您在步驟 I 中於 `api-key` 標頭所識別的服務系統管理金鑰。
 
 您必須提供自己的服務名稱和 API 金鑰來發出以下要求︰
 
-    POST https://[service name].search.windows.net/indexes?api-version=2016-09-01
+    POST https://[service name].search.windows.net/indexes?api-version=2017-11-11
     Content-Type: application/json
     api-key: [api-key]
 
@@ -102,7 +98,7 @@ ms.lasthandoff: 12/18/2017
 
 索引已使用完畢而想要將其刪除時，請直接發出 HTTP DELETE 要求。 例如，以下是我們刪除 "hotels" 索引的方式：
 
-    DELETE https://[service name].search.windows.net/indexes/hotels?api-version=2016-09-01
+    DELETE https://[service name].search.windows.net/indexes/hotels?api-version=2017-11-11
     api-key: [api-key]
 
 

@@ -1,6 +1,6 @@
 ---
-title: "Resource Manager 與傳統部署 | Microsoft Docs"
-description: "描述資源管理員部署模型與傳統 (或服務管理) 部署模型之間的差異。"
+title: Resource Manager 與傳統部署 | Microsoft Docs
+description: 描述資源管理員部署模型與傳統 (或服務管理) 部署模型之間的差異。
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -8,18 +8,23 @@ manager: timlt
 editor: tysonn
 ms.service: azure-resource-manager
 ms.devlang: na
-ms.topic: article
+ms.topic: overview
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/15/2017
 ms.author: tomfitz
-ms.openlocfilehash: 2144e3527b44e3cf508d23fedf7abb4cda595bbf
-ms.sourcegitcommit: afc78e4fdef08e4ef75e3456fdfe3709d3c3680b
+ms.openlocfilehash: 704bbe5cc566833ef1279e84f0fab9f363dfaa11
+ms.sourcegitcommit: 3d0295a939c07bf9f0b38ebd37ac8461af8d461f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/16/2017
+ms.lasthandoff: 09/06/2018
+ms.locfileid: "43841621"
 ---
 # <a name="azure-resource-manager-vs-classic-deployment-understand-deployment-models-and-the-state-of-your-resources"></a>Azure Resource Manager vs. 傳統部署：了解資源的部署模型和狀態
+
+> [!NOTE]
+> 本文中所提供的資訊，僅會在您從傳統部署遷移至 Azure Resource Manager 部署時使用。
+
 在本文中，您將了解 Azure Resource Manager 與傳統部署模型。 Resource Manager 和傳統部署模型代表部署和管理 Azure 解決方案的兩個不同方式。 您會透過兩個不同的 API 集使用它們，而所部署的資源可能包含重要的差異。 兩個模型彼此無法相容。 本文將說明這些差異。
 
 為了簡化資源的部署和管理，Microsoft 建議您針對所有新資源使用 Resource Manager。 可能的話，Microsoft 建議您透過 Resource Manager 重新部署現有的資源。
@@ -108,7 +113,7 @@ Get-AzureRmVM -ResourceGroupName ExampleGroup
 | 儲存體帳戶 |虛擬機器需要能儲存作業系統的 VHD、暫存磁碟及其他資料磁碟的儲存體帳戶。 |虛擬機器需要儲存體帳戶，才能將其磁碟儲存在 Blob 儲存體。 |
 | 可用性設定組 (Availability Sets) |在虛擬機器上設定相同的 "AvailabilitySetName" 之後，即表示平台的可用性。 容錯網域的最大個數為 2。 |「可用性設定組」是 Microsoft.Compute 提供者公開的資源。 需要高可用性的虛擬機器必須包含在「可用性設定組」中。 容錯網域的最大個數現在是 3。 |
 | 同質群組 |建立虛擬網路時需要同質群組。 不過，隨著區域虛擬網路引進，就再也不需要了。 |簡而言之，透過 Azure Resource Manager 而公開的 API，其實不存在同質群組這種概念。 |
-| 負載平衡 |雲端服務的建立，為部署的虛擬機器提供隱含的負載平衡器。 |負載平衡器是 Microsoft.Network 提供者所公開的資源。 虛擬機器如果需要平衡負載，其主要網路介面應該參考負載平衡器。 負載平衡器可以放在內部或外部。 負載平衡器執行個體會參考 IP 位址的後端集區，其中包含虛擬機器的 NIC (選擇性)，以及參考負載平衡器的公用或私人 IP 位址 (選擇性)。 [閱讀更多。](../virtual-network/resource-groups-networking.md) |
+| 負載平衡 |雲端服務的建立，為部署的虛擬機器提供隱含的負載平衡器。 |負載平衡器是 Microsoft.Network 提供者所公開的資源。 虛擬機器如果需要平衡負載，其主要網路介面應該參考負載平衡器。 負載平衡器可以放在內部或外部。 負載平衡器執行個體會參考 IP 位址的後端集區，其中包含虛擬機器的 NIC (選擇性)，以及參考負載平衡器的公用或私人 IP 位址 (選擇性)。 |
 | 虛擬 IP 位址 |將虛擬機器新增到雲端服務後，雲端服務會得到預設的 VIP (虛擬 IP 位址)。 虛擬 IP 位址是隱含性負載平衡器的相關位址。 |公用 IP 位址是 Microsoft.Network 提供者所公開的資源。 公用 IP 位址可以是靜態 (保留) 或動態。 動態公用 IP 可以指派至負載平衡器。 使用安全性群組可以保護公用 IP。 |
 | 保留 IP 位址 |您可以將 IP 位址保留在 Azure 中，然後與雲端服務建立關聯，確保 IP 位址不會變動。 |您可以在靜態模式中建立公用 IP 位址，然後它就具有與保留 IP 位址一樣的功能。 |
 | 每一個 VM 的公用 IP 位址 (PIP) |公用 IP 位址也可以直接與 VM 建立關聯。 |公用 IP 位址是 Microsoft.Network 提供者所公開的資源。 公用 IP 位址可以是靜態 (保留) 或動態。 |

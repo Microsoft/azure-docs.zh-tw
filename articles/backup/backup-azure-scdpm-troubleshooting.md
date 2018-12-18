@@ -1,30 +1,25 @@
 ---
-title: "使用 Azure 備份針對 System Center Data Protection Manager 進行疑難排解 | Microsoft Docs"
-description: "針對 System Center Data Protection Manager 的問題進行疑難排解。"
+title: 使用 Azure 備份針對 System Center Data Protection Manager 進行疑難排解
+description: 針對 System Center Data Protection Manager 的問題進行疑難排解。
 services: backup
-documentationcenter: 
 author: adigan
 manager: shreeshd
-editor: 
-ms.assetid: 2d73c349-0fc8-4ca8-afd8-8c9029cb8524
 ms.service: backup
-ms.workload: storage-backup-recovery
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 11/24/2017
-ms.author: pullabhk;markgal;adigan
-ms.openlocfilehash: bf4ea676c5309bb732f6a4ce71849606b4d2e4df
-ms.sourcegitcommit: b32d6948033e7f85e3362e13347a664c0aaa04c1
+ms.author: adigan
+ms.openlocfilehash: d3776df8184523999433059e95bc72e1d3abb1c7
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/13/2018
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34606438"
 ---
 # <a name="troubleshoot-system-center-data-protection-manager"></a>針對 System Center Data Protection Manager 疑難排解
 
 本文說明您在使用 Data Protection Manager 時可能遇到的問題解決方案。
 
-如需 System Center Data Protection Manager 的最新版本資訊，請參閱 [System Center 文件](https://docs.microsoft.com/en-us/system-center/dpm/dpm-release-notes?view=sc-dpm-2016)。 您可以在[此對照表](https://docs.microsoft.com/en-us/system-center/dpm/dpm-protection-matrix?view=sc-dpm-2016)中深入了解對於 Data Protection Manager 的支援。
+如需 System Center Data Protection Manager 的最新版本資訊，請參閱 [System Center 文件](https://docs.microsoft.com/system-center/dpm/dpm-release-notes?view=sc-dpm-2016)。 您可以在[此對照表](https://docs.microsoft.com/system-center/dpm/dpm-protection-matrix?view=sc-dpm-2016)中深入了解對於 Data Protection Manager 的支援。
 
 
 ## <a name="error-replica-is-inconsistent"></a>錯誤：複本不一致

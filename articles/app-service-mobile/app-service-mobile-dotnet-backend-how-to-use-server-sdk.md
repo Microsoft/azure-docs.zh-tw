@@ -1,12 +1,12 @@
 ---
-title: "如何使用適用於 Mobile Apps 的 .NET 後端伺服器 SDK | Microsoft Docs"
-description: "了解如何使用適用於 Azure App Service Mobile Apps 的 .NET 後端伺服器 SDK。"
-keywords: "App Service, Azure App Service, 行動應用程式, 行動服務, 調整, 可調整, 應用程式部署, Azure 應用程式部署"
+title: 如何使用適用於 Mobile Apps 的 .NET 後端伺服器 SDK | Microsoft Docs
+description: 了解如何使用適用於 Azure App Service Mobile Apps 的 .NET 後端伺服器 SDK。
+keywords: App Service, Azure App Service, 行動應用程式, 行動服務, 調整, 可調整, 應用程式部署, Azure 應用程式部署
 services: app-service\mobile
-documentationcenter: 
+documentationcenter: ''
 author: conceptdev
 manager: crdun
-editor: 
+editor: ''
 ms.assetid: 0620554f-9590-40a8-9f47-61c48c21076b
 ms.service: app-service-mobile
 ms.workload: mobile
@@ -15,11 +15,12 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 10/01/2016
 ms.author: crdun
-ms.openlocfilehash: a1a29d87864bff8cb2ecda70d8a0a7833c70d481
-ms.sourcegitcommit: c4cc4d76932b059f8c2657081577412e8f405478
+ms.openlocfilehash: 8216dafdd846f10ca1c8fc33b710a093aca20c7b
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2018
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38473708"
 ---
 # <a name="work-with-the-net-backend-server-sdk-for-azure-mobile-apps"></a>使用適用於 Azure Mobile Apps 的 .NET 後端伺服器 SDK
 [!INCLUDE [app-service-mobile-selector-server-sdk](../../includes/app-service-mobile-selector-server-sdk.md)]
@@ -46,7 +47,21 @@ ms.lasthandoff: 01/11/2018
 
 回到 [開始使用] 刀鋒視窗，在 [建立資料表 API] 底下，選擇 [C#] 作為您的 [後端語言]。 按一下 [下載] ，將壓縮的專案檔案解壓縮至您的本機電腦，並在 Visual Studio 中開啟方案。
 
-### <a name="create-a-net-backend-using-visual-studio-2013-and-visual-studio-2015"></a>使用 Visual Studio 2013 和 Visual Studio 2015 建立 .NET 後端
+### <a name="create-a-net-backend-using-visual-studio-2017"></a>使用 Visual Studio 2017 建立 .NET 後端
+
+透過 Visual Studio 安裝程式安裝 Azure 工作負載，以從 Visual Studio 發佈至 Azure 行動應用程式專案。 當您安裝 SDK 之後，使用下列步驟建立 ASP.NET 應用程式：
+
+1. 開啟 [新增專案] 對話方塊 (從 [檔案]  >  [新增]  >  [專案...])。
+2. 展開 [Visual C#]，然後選取 [Web]。
+3. 選取 [ASP.NET Web 應用程式 (.NET Framework)]。
+4. 填入專案名稱。 然後按一下 [確定] 。
+5. 從範本清單選取 [Azure 行動應用程式]。
+6. 按一下 [確定] 以建立方案。
+7. 以滑鼠右鍵按一下 [方案總管] 中的專案，選擇 [發佈]，然後選擇 [應用程式服務] 作為發佈目標。
+8. 遵循提示進行驗證，並選擇新的或現有 Azure 應用程式服務來發佈。
+
+### <a name="create-a-net-backend-using-visual-studio-2015"></a>使用 Visual Studio 2015 建立 .NET 後端
+
 安裝 [Azure SDK for .NET][4] (2.9.0 版或更新版本)，以在 Visual Studio 中建立 Azure Mobile Apps 專案。 當您安裝 SDK 之後，使用下列步驟建立 ASP.NET 應用程式：
 
 1. 開啟 [新增專案] 對話方塊 (從 [檔案]  >  [新增]  >  [專案...])。
@@ -54,7 +69,7 @@ ms.lasthandoff: 01/11/2018
 3. 選取 [ASP.NET Web 應用程式] 。
 4. 填入專案名稱。 然後按一下 [確定] 。
 5. 在 [ASP.NET 4.5.2 範本] 底下，選取 [Azure 行動應用程式]。 核取 [雲端中的主機]  以在雲端 (您可以在其中發佈這個專案) 建立行動後端。
-6. 按一下 [SERVICEPRINCIPAL] 。
+6. 按一下 [確定]。
 
 ## <a name="install-sdk"></a>如何：下載並初始化 SDK
 SDK 可於 [NuGet.org]取得。此封裝包含開始使用 SDK 所需的基本功能。 若要初始化 SDK，您需要在 **HttpConfiguration** 物件上執行動作。
@@ -64,7 +79,7 @@ SDK 可於 [NuGet.org]取得。此封裝包含開始使用 SDK 所需的基本�
 
 ### <a name="server-project-setup"></a> 初始化伺服器專案
 初始化 .NET 後端伺服器專案的方式類似其他 ASP.NET 專案，可藉由包含 OWIN 啟動類別來完成。 請確定您已參考 NuGet 封裝 `Microsoft.Owin.Host.SystemWeb`。 若要在 Visual Studio 中新增這個類別，請在伺服器專案上按一下滑鼠右鍵，選取 **[新增]** >
-**[新項目]**，然後依序選取 **[Web]** > **[一般]** > **[OWIN 啟動類別]**。  隨即產生具有下列屬性的類別：
+ **[新項目]**，然後依序選取 **[Web]** > **[一般]** > **[OWIN 啟動類別]**。  隨即產生具有下列屬性的類別：
 
     [assembly: OwinStartup(typeof(YourServiceName.YourStartupClassName))]
 

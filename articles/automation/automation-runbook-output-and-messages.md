@@ -3,16 +3,18 @@ title: Azure 自動化中的 Runbook 輸出與訊息
 description: 描述如何在 Azure 自動化中建立及擷取 Runbook 的輸出與錯誤訊息。
 services: automation
 ms.service: automation
+ms.component: process-automation
 author: georgewallace
 ms.author: gwallace
 ms.date: 03/16/2018
-ms.topic: article
+ms.topic: conceptual
 manager: carmonm
-ms.openlocfilehash: d4b8d485906701b4f05e057996bc31232a29e620
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 5dc1a4bc1de3560338e1734e73ad04910535be5b
+ms.sourcegitcommit: 6eb14a2c7ffb1afa4d502f5162f7283d4aceb9e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 06/25/2018
+ms.locfileid: "36751297"
 ---
 # <a name="runbook-output-and-messages-in-azure-automation"></a>Azure 自動化中的 Runbook 輸出與訊息
 大部分的 Azure 自動化 Runbook 會有某種形式的輸出，例如向使用者提供錯誤訊息，或供其他工作流程使用的複雜物件。 Windows PowerShell 提供 [多個資料流](http://blogs.technet.com/heyscriptingguy/archive/2014/03/30/understanding-streams-redirection-and-write-host-in-powershell.aspx) 從指令碼或工作流程傳送輸出。 Azure 自動化會以不同的方式使用這些資料流，而在您建立 Runbook 時，應遵循使用每個資料流的最佳作法。
@@ -29,33 +31,36 @@ ms.lasthandoff: 03/23/2018
 | 偵錯 |適用於互動式使用者的訊息。 不應在 Runbook 中使用。 |不會寫入工作歷程記錄。 |不會寫入 [測試輸出] 窗格。 |
 
 ## <a name="output-stream"></a>輸出資料流
-「輸出資料流」適用於指令碼或工作流程正確執行時所建立之物件的輸出。 在 Azure 自動化中，此資料流主要用於由 [呼叫目前 Runbook 的父 Runbook](automation-child-runbooks.md)所使用的物件。 當您從父 Runbook [呼叫 Runbook 內嵌](automation-child-runbooks.md#invoking-a-child-runbook-using-inline-execution)時，它會將輸出串流的資料傳回給父代。 如果您知道 Runbook 絕對不會被另一個 Runbook 呼叫時，您應該只使用輸出資料流將一般資訊傳達給使用者。 但最佳的作法一般是使用 [詳細資訊資料流](#Verbose) 將一般資訊傳達給使用者。
+「輸出資料流」適用於指令碼或工作流程正確執行時所建立之物件的輸出。 在 Azure 自動化中，此資料流主要用於由 [呼叫目前 Runbook 的父 Runbook](automation-child-runbooks.md)所使用的物件。 當您從父 Runbook [呼叫 Runbook 內嵌](automation-child-runbooks.md#invoking-a-child-runbook-using-inline-execution)時，它會將輸出串流的資料傳回給父代。 如果您知道 Runbook 絕對不會被另一個 Runbook 呼叫時，您應該只使用輸出資料流將一般資訊傳達給使用者。 但最佳的作法一般是使用 [詳細資訊資料流](#verbose-stream) 將一般資訊傳達給使用者。
 
 您可以使用 [Write-Output](http://technet.microsoft.com/library/hh849921.aspx) ，或將物件放在 Runbook 中它自己所屬的那一行，來將資料寫入到輸出資料流。
 
-    #The following lines both write an object to the output stream.
-    Write-Output –InputObject $object
-    $object
+```PowerShell
+#The following lines both write an object to the output stream.
+Write-Output –InputObject $object
+$object
+```
 
 ### <a name="output-from-a-function"></a>從函式輸出
 當您在您的 Runbook 所包括之函式的輸出資料流中寫入時，會將輸出傳遞回 Runbook。 如果 Runbook 將該輸出指派給變數，則不會將它寫入至輸出資料流。 若從函式中寫入至任何其他資料流，將會寫入至 Runbook 的相對應資料流。
 
 請考慮以下的 Runbook 範例：
 
-    Workflow Test-Runbook
-    {
-        Write-Verbose "Verbose outside of function" -Verbose
-        Write-Output "Output outside of function"
-        $functionOutput = Test-Function
-        $functionOutput
+```PowerShell
+Workflow Test-Runbook
+{
+  Write-Verbose "Verbose outside of function" -Verbose
+  Write-Output "Output outside of function"
+  $functionOutput = Test-Function
+  $functionOutput
 
-    Function Test-Function
-     {
-        Write-Verbose "Verbose inside of function" -Verbose
-        Write-Output "Output inside of function"
-      }
-    }
-
+  Function Test-Function
+  {
+    Write-Verbose "Verbose inside of function" -Verbose
+    Write-Output "Output inside of function"
+  }
+}
+```
 
 Runbook 工作的輸出資料流會是：
 
@@ -81,13 +86,15 @@ Runbook 工作的詳細資訊資料流會是：
 
 以下範例 Runbook 會輸出字串物件，並包含其輸出類型的宣告。 如果您的 Runbook 會輸出特定類型的陣列，那麼您仍應指定類型而非陣列類型。
 
-    Workflow Test-Runbook
-    {
-       [OutputType([string])]
+```PowerShell
+Workflow Test-Runbook
+{
+  [OutputType([string])]
 
-       $output = "This is some string output."
-       Write-Output $output
-    }
+  $output = "This is some string output."
+  Write-Output $output
+}
+ ```
 
 若要在圖形化或圖形化 PowerShell 工作流程 Runbook 中宣告輸出類型，您可以選取 [輸入及輸出] 功能表選項，然後輸入輸出類型的名稱。 建議您使用完整的 .NET 類別名稱，以便在從父 Runbook 參考此名稱時可以輕鬆地找到。 這會將該類別的所有屬性公開至 Runbook 中的資料匯流排，並在將其用於條件式邏輯、記錄及參考以作為 Runbook 中其他活動的值時提供很大的彈性。<br> ![Runbook 輸入和輸出選項](media/automation-runbook-output-and-messages/runbook-menu-input-and-output-option.png)
 
@@ -111,15 +118,17 @@ Runbook 工作的詳細資訊資料流會是：
 與輸出資料流不同，訊息資料流的用意在於將資訊傳達給使用者。 有多個訊息資料流適用於不同類型的資訊，且 Azure 自動化以不同的方式處理每個資料流。
 
 ### <a name="warning-and-error-streams"></a>警告和錯誤資料流
-警告和錯誤資料流適用於記錄在 Runbook 中發生的問題。 當 Runbook 執行時，會將它們寫入工作歷程記錄，並且會在 Runbook 測試時包含在 Azure 入口網站中的 [測試輸出] 窗格中。 根據預設，Runbook 將在出現警告或錯誤後繼續執行。 建立訊息之前，您可以藉由在 Runbook 中設定 [喜好設定變數](#PreferenceVariables) ，指定 Runbook 應該在警告或錯誤時暫停。 例如，若要讓 Runbook 在發生錯誤時暫停 (就像發生例外狀況時一樣)，請將 **$ErrorActionPreference** 設定為 Stop。
+警告和錯誤資料流適用於記錄在 Runbook 中發生的問題。 當 Runbook 執行時，會將它們寫入工作歷程記錄，並且會在 Runbook 測試時包含在 Azure 入口網站中的 [測試輸出] 窗格中。 根據預設，Runbook 將在出現警告或錯誤後繼續執行。 建立訊息之前，您可以藉由在 Runbook 中設定 [喜好設定變數](#preference-variables) ，指定 Runbook 應該在警告或錯誤時暫停。 例如，若要讓 Runbook 在發生錯誤時暫停 (就像發生例外狀況時一樣)，請將 **$ErrorActionPreference** 設定為 Stop。
 
 使用 [Write-Warning](https://technet.microsoft.com/library/hh849931.aspx) 或 [Write-Error](http://technet.microsoft.com/library/hh849962.aspx) Cmdlet 來建立警告或錯誤訊息。 活動也可能會被寫入這些資料流。
 
-    #The following lines create a warning message and then an error message that will suspend the runbook.
+```PowerShell
+#The following lines create a warning message and then an error message that will suspend the runbook.
 
-    $ErrorActionPreference = "Stop"
-    Write-Warning –Message "This is a warning message."
-    Write-Error –Message "This is an error message that will stop the runbook because of the preference variable."
+$ErrorActionPreference = "Stop"
+Write-Warning –Message "This is a warning message."
+Write-Error –Message "This is an error message that will stop the runbook because of the preference variable."
+```
 
 ### <a name="verbose-stream"></a>詳細資訊資料流
 詳細資訊訊息流是 Runbook 作業的一般相關資訊。 由於 [偵錯資料流](#Debug) 無法在 Runbook 中使用，因此詳細資訊資料流應用於偵錯資訊。 根據預設，已發行 Runbook 的詳細訊息不會儲存在作業記錄中。 若要儲存詳細訊息，請在 Azure 入口網站中 Runbook 的 [設定] 索引標籤上，將已發佈的 Runbook 設為 [記錄詳細記錄]。 在大部分情況下，您應該保留預設設定，亦即基於效能考量，不記錄 Runbook 的詳細資訊記錄。 只有在疑難排解或偵錯 Runbook 時才開啟此選項。
@@ -128,9 +137,11 @@ Runbook 工作的詳細資訊資料流會是：
 
 使用 [Write-Verbose](http://technet.microsoft.com/library/hh849951.aspx) Cmdlet 建立詳細訊息。
 
-    #The following line creates a verbose message.
+```PowerShell
+#The following line creates a verbose message.
 
-    Write-Verbose –Message "This is a verbose message."
+Write-Verbose –Message "This is a verbose message."
+```
 
 ### <a name="debug-stream"></a>偵錯資料流
 偵錯資料流適用於互動式使用者，且不應用於 Runbook。
@@ -161,31 +172,32 @@ Windows PowerShell 使用 [喜好設定變數](http://technet.microsoft.com/libr
 
 ## <a name="retrieving-runbook-output-and-messages"></a>擷取 Runbook 輸出和訊息
 ### <a name="azure-portal"></a>Azure 入口網站
-您可以從 Runbook 的 [工作] 索引標籤，在 Azure 入口網站中檢視 Runbook 工作詳細資料。 除了工作和任何例外狀況 (如果發生) 的一般資訊，工作的 [摘要] 也會顯示輸入參數和[輸出資料流](#Output)。 除了[詳細串流](#Verbose)和[進度記錄](#Progress)之外 (如果設定 Runbook 來記錄詳細資訊和進度記錄)，「歷程記錄」還會包含來自[輸出串流](#Output)和[警告和錯誤串流](#WarningError)的訊息。
+您可以從 Runbook 的 [工作] 索引標籤，在 Azure 入口網站中檢視 Runbook 工作詳細資料。 除了工作和任何例外狀況 (如果發生) 的一般資訊，工作的 [摘要] 也會顯示輸入參數和[輸出資料流](#output-stream)。 除了[詳細串流](#verbose-stream)和[進度記錄](#progress-records)之外 (如果設定 Runbook 來記錄詳細資訊和進度記錄)，「歷程記錄」還會包含來自[輸出串流](#output-stream)和[警告和錯誤串流](#warning-and-error-streams)的訊息。
 
 ### <a name="windows-powershell"></a>Windows PowerShell
 在 Windows PowerShell中，您可以使用 [Get-AzureAutomationJobOutput](https://msdn.microsoft.com/library/mt603476.aspx) Cmdlet 從 Runbook 擷取輸出與訊息。 這個 Cmdlet 需要工作的識別碼，而且具有稱為 Stream 的參數，可讓您指定要傳回的資料流。 您可以指定 **Any** 來傳回工作的所有資料流。
 
 下列範例會啟動 Runbook 範例，然後等候它完成。 完成後，將會從工作收集其輸出資料流。
 
-    $job = Start-AzureRmAutomationRunbook -ResourceGroupName "ResourceGroup01" `
-    –AutomationAccountName "MyAutomationAccount" –Name "Test-Runbook"
+```PowerShell
+$job = Start-AzureRmAutomationRunbook -ResourceGroupName "ResourceGroup01" `
+  –AutomationAccountName "MyAutomationAccount" –Name "Test-Runbook"
 
-    $doLoop = $true
-    While ($doLoop) {
-       $job = Get-AzureRmAutomationJob -ResourceGroupName "ResourceGroup01" `
-       –AutomationAccountName "MyAutomationAccount" -Id $job.JobId
-       $status = $job.Status
-       $doLoop = (($status -ne "Completed") -and ($status -ne "Failed") -and ($status -ne "Suspended") -and ($status -ne "Stopped"))
-    }
+$doLoop = $true
+While ($doLoop) {
+  $job = Get-AzureRmAutomationJob -ResourceGroupName "ResourceGroup01" `
+    –AutomationAccountName "MyAutomationAccount" -Id $job.JobId
+  $status = $job.Status
+  $doLoop = (($status -ne "Completed") -and ($status -ne "Failed") -and ($status -ne "Suspended") -and ($status -ne "Stopped"))
+}
 
-    Get-AzureRmAutomationJobOutput -ResourceGroupName "ResourceGroup01" `
-    –AutomationAccountName "MyAutomationAccount" -Id $job.JobId –Stream Output
-    
-    # For more detailed job output, pipe the output of Get-AzureRmAutomationJobOutput to Get-AzureRmAutomationJobOutputRecord
-    Get-AzureRmAutomationJobOutput -ResourceGroupName "ResourceGroup01" `
-    –AutomationAccountName "MyAutomationAccount" -Id $job.JobId –Stream Any | Get-AzureRmAutomationJobOutputRecord
-    
+Get-AzureRmAutomationJobOutput -ResourceGroupName "ResourceGroup01" `
+  –AutomationAccountName "MyAutomationAccount" -Id $job.JobId –Stream Output
+
+# For more detailed job output, pipe the output of Get-AzureRmAutomationJobOutput to Get-AzureRmAutomationJobOutputRecord
+Get-AzureRmAutomationJobOutput -ResourceGroupName "ResourceGroup01" `
+  –AutomationAccountName "MyAutomationAccount" -Id $job.JobId –Stream Any | Get-AzureRmAutomationJobOutputRecord
+``` 
 
 ### <a name="graphical-authoring"></a>圖形化編寫
 對於圖形化 Runbook，額外的記錄功能會以活動等級追蹤的形式提供。 追蹤有兩種等級：基本及詳細。 在基本追蹤中，您可以看到 Runbook 中每個活動的開始及結束時間，以及任何活動重試作業的相關資訊，例如嘗試次數及活動開始時間。 在詳細追蹤中，您會得到基本追蹤的結果，加上每個活動的輸入及輸出資料。 目前的追蹤記錄是利用詳細資訊資料流來寫入的，因此當您啟用追蹤時，必須啟用詳細資訊記錄功能。 對於已啟用追蹤功能的圖形化 Runbook，就不需要記錄進度記錄，因為基本追蹤有同樣的效果，且提供更有用的資訊。

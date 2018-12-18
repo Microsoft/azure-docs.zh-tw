@@ -1,39 +1,47 @@
 ### YamlMime:YamlDocument
+ms.openlocfilehash: 258ab57d621c23c305bd37b4e32a8220de8a9521
+ms.sourcegitcommit: 55952b90dc3935a8ea8baeaae9692dbb9bedb47f
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/09/2018
+ms.locfileid: "48886770"
 documentType: LandingData
-title: "Azure Machine Learning 文件"
+title: Azure Machine Learning 文件
 metadata:
-  title: "Azure Machine Learning 文件 - 教學課程和 API 參考"
-  description: "Machine Learning 的文件、影片和範例模型，專為那些在應用程式中使用預測性分析的資料科學家和開發人員所設計的雲端服務。"
+  title: Azure Machine Learning 文件 – 教學課程和 API 參考 | Microsoft Docs
+  description: 了解如何在應用程式、網站和 Bot 中融入智慧型演算法，透過自然的溝通方式，來查看、聆聽、述說及了解您的使用者需求。 教學課程、快速入門和 API 參考和範例示範。
   services: machine-learning
-  author: garyericson
-  manager: jhubbard
+  author: j-martens
   ms.service: machine-learning
+  ms.component: core
   ms.tgt_pltfrm: na
   ms.devlang: na
   ms.topic: landing-page
-  ms.date: 02/01/2018
-  ms.author: garye
-  ms.openlocfilehash: 3303174486e9fd7a5b0f6dfe713be93e569a80a7
-  ms.sourcegitcommit: b32d6948033e7f85e3362e13347a664c0aaa04c1
-  ms.translationtype: HT
-  ms.contentlocale: zh-TW
-  ms.lasthandoff: 02/13/2018
+  ms.date: 9/24/2018
+  ms.author: jmartens
 abstract:
-  description: "了解如何使用 Azure Machine Learning 搭配其完全受控的服務，在雲端中建置、 部署及管理機器學習服務 AI 模型。 教學課程、快速入門、參考資料和範例會帶您了解如何建置和部署任何應用程式模型。"
+  description: 了解如何使用 Azure Machine Learning 產品，將智慧型演算法建置到應用程式與網站中。  教學課程、快速入門和 API 參考和範例示範。
 sections:
-- title: 
-  items:
+- items:
   - type: list
     style: cards
-    className: cardsA
+    className: cardsM
+    columns: 2
     items:
-    - html: "<a href=\"/azure/machine-learning/preview/\"> <img height=\"48\" width=\"48\" src=\"/azure/machine-learning/media/index/i_machine-learning.svg\" alt=\"Azure Machine Learning services\"> (預覽) <br><b>Azure Machine Learning 服務</b></a> <p>了解這些服務能如何強化資料科學家的能力，以使用 Python 工具和程式庫搭配各種 Azure 資料和計算服務，開發 AI 解決方案。</p>"
-    - html: "<a href=\"/azure/machine-learning/studio/\"> <img height=\"48\" width=\"48\" src=\"/azure/machine-learning/media/index/machine-learning-studio.svg\" alt=\"Azure Machine Learning Studio\"> <br><b>Azure Machine Learning Studio</b></a> <p>了解如何使用這項共同作業式的拖放工具，依據您的資料建置、測試及部署預測分析解決方案。</p>"
-    - html: "<a href=\"/azure/machine-learning/data-science-virtual-machine/index\"> <img height=\"48\" width=\"48\" src=\"/azure/machine-learning/media/index/virtualmachine.svg\" alt=\"Data Science Virtual Machine\"> <br><b>資料科學虛擬機器</b></a> <p>了解如何使用用來建置智慧型應用程式以進行進階分析的資料科學工具，來載入資料科學和深入學習虛擬機器， 及 Azure 中自訂的虛擬機器映像。</p>"
-- title: "5 分鐘快速入門"
+    - href: /azure/machine-learning/service/overview-what-is-azure-ml
+      html: <p>了解這項服務能如何強化資料科學家的能力，<br/> 以使用 CLI 及 Python 工具和程式庫搭配各種 Azure 資料和計算服務，開發及管理 AI 解決方案。 深入了解...</p>
+      image:
+        src: /azure/machine-learning/media/index/i_machine-learning.svg
+      title: Azure Machine Learning 服務 (預覽)
+    - href: /azure/machine-learning/studio/
+      html: <p>了解如何使用這項共同作業式的拖放工具，依據您的資料建置、測試及部署預測分析解決方案。 深入了解... &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+      image:
+        src: /azure/machine-learning/media/index/machine-learning-studio.svg
+      title: Azure Machine Learning Studio
+- title: 快速入門與教學課程
   items:
   - type: paragraph
-    text: "了解如何快速設定及使用 Azure Machine Learning 服務 (預覽)、Studio 和資料科學虛擬機器："
+    text: 了解如何快速設定及使用 Azure Machine Learning 服務 (預覽) 和 Studio：
   - type: table
     style: dataMatrix
     columns:
@@ -41,56 +49,65 @@ sections:
         src: media/index/i_machine-learning.svg
     - image:
         src: media/index/machine-learning-studio.svg
-    - image:
-        src: media/index/virtualmachine.svg
     rows:
-    - title: "設定"
+    - title: 開始使用服務
       values:
-      - href: /azure/machine-learning/preview/quickstart-installation
+      - href: /azure/machine-learning/service/quickstart-get-started
       - href: /azure/machine-learning/studio/create-workspace
-      - href: /azure/machine-learning/data-science-virtual-machine/provision-vm
-    - title: "建置模型"
+    - title: 準備資料以進行模型化
       values:
-      - href: /azure/machine-learning/preview/quickstart-installation
-      - href: /azure/machine-learning/studio/create-experiment
-      - href: 
-- title: "逐步教學課程"
-  items:
-  - type: paragraph
-    text: "了解如何使用 Azure Machine Learning 服務 (預覽) 和 Studio 來建置、 部署及取用模型："
-  - type: table
-    style: dataMatrix
-    columns:
-    - image:
-        src: media/index/i_machine-learning.svg
-    - image:
-        src: media/index/machine-learning-studio.svg
-    rows:
-    - title: "準備資料"
-      values:
-      - href: /azure/machine-learning/preview/tutorial-classifying-iris-part-1
+      - href: /azure/machine-learning/service/concept-data-preparation
       - href: /azure/machine-learning/studio/walkthrough-2-upload-data
-    - title: "建置模型"
+    - title: 建立自己的機器學習模型
       values:
-      - href: /azure/machine-learning/preview/tutorial-classifying-iris-part-2
+      - href: /azure/machine-learning/service/tutorial-train-models-with-aml
       - href: /azure/machine-learning/studio/walkthrough-3-create-new-experiment
-    - title: "模型運作"
+    - title: 自動產生和微調演算法
       values:
-      - href: /azure/machine-learning/preview/tutorial-classifying-iris-part-3
+      - href: /azure/machine-learning/service/tutorial-auto-train-models
+      - href: 
+    - title: 將模型部署為 Web 服務
+      values:
+      - href: /azure/machine-learning/service/tutorial-deploy-models-with-aml
       - href: /azure/machine-learning/studio/walkthrough-5-publish-web-service
-    - title: "取用模型"
+    - title: 取用機器學習模型
       values:
-      - href: /azure/machine-learning/preview/model-management-consumption
+      - href: 
       - href: /azure/machine-learning/studio/walkthrough-6-access-web-service
-- title: "更多的 Microsoft Azure Machine Learning 技術"
+- title: 其他 Microsoft Azure Machine Learning 技術
   items:
   - type: list
     style: cards
-    className: cardsA
+    className: cardsM
+    columns: 2
     items:
-    - html: "<a href=\"/azure/machine-learning/team-data-science-process\"> <img src=\"media/index/tdsp.png\" alt=\"Team Data Science Process\" height=\"32\" width=\"32\"> <p><b>Team Data Science Process</b></p> </a>一種共同作業式資料科學方法，可協助團隊有效產出預測分析解決方案和智慧型應用程式。"
-    - html: "<a href=\"/sql/advanced-analytics/r/r-services\"> <img src=\"media/index/logo_sql.png\" alt=\"SQL Server Machine Learning Services\" height=\"32\" width=\"32\"> <p><b>SQL Server Machine Learning 服務</b></p> </a>資料庫中支援使用 R 和 Python 進行分析。"
-    - html: "<a href=\"/machine-learning-server/\"> <img src=\"media/index/ml-server.png\" alt=\"Microsoft Machine Learning Server\" height=\"32\" width=\"32\"> <p><b>Microsoft Machine Learning Server</b></p> </a>彈性靈活的企業機器學習服務平台，支援在 Windows、Linux、HDInsight Spark 和 Hadoop 叢集中進行 R 和 Python 部署。"
-    - html: "<a href=\"/azure/batch-ai/\"> <img src=\"media/index/batch.png\" alt=\"Batch AI Training\" height=\"32\" width=\"32\"> <p><b>Batch AI 訓練</b></p> </a>是一種受控服務，可協助您使用任何架構搭配您的 AI 模型並行測試，然後在叢集化的 GPU 之間大規模定型。"
-    - html: "<a href=\"/azure/#pivot=products&panel=cognitive\"> <img src=\"media/index/cognitive-services.png\" alt=\"Cognitive Services\" height=\"32\" width=\"32\"> <p><b>認知服務</b></p> </a>支援您應用程式、網站和聊天機器人採用的智慧型演算法 API。"
-    - html: "<a href=\"/cognitive-toolkit/\"> <img src=\"media/index/cntk.png\" alt=\"Microsoft Cognitive Toolkit\" height=\"32\" width=\"32\"> <p><b>Microsoft 辨識工具組</b></p> </a>免費的開放原始碼工具組，用來訓練深入學習演算法。"
+    - href: /azure/cognitive-services/
+      html: <p>支援您應用程式、網站和聊天機器人採用的智慧型演算法 API。</p>
+      image:
+        src: /azure/machine-learning/media/index/cognitive-services.png
+      title: 認知服務
+    - href: /azure/batch-ai/
+      html: <p>一種受控服務，可協助您使用任何架構搭配您的 AI 模型並行測試，然後在叢集化的 GPU 之間大規模定型。</p>
+      image:
+        src: /azure/machine-learning/media/index/batch.png
+      title: Batch AI 定型
+    - href: /sql/advanced-analytics/r/r-services
+      html: <p>資料庫中支援使用 R 和 Python 進行分析。</p>
+      image:
+        src: /azure/machine-learning/media/index/logo_sql.png
+      title: SQL Server Machine Learning 服務
+    - href: /machine-learning-server/
+      html: <p>彈性靈活的企業機器學習平台，支援在 Windows、Linux、HDInsight Spark 和 Hadoop 叢集中進行 R 和 Python 部署。</p>
+      image:
+        src: /azure/machine-learning/media/index/ml-server.png
+      title: Microsoft Machine Learning Server
+    - href: /azure/machine-learning/team-data-science-process
+      html: <p>一種共同作業式資料科學方法，可協助團隊有效產出預測分析解決方案和智慧型應用程式。</p>
+      image:
+        src: /azure/machine-learning/media/index/tdsp.png
+      title: Team Data Science Process
+    - href: /azure/machine-learning/data-science-virtual-machine/
+      html: <p>使用這些資料科學 (DSVM) 和深度學習 (DLVM) 虛擬機器進行實驗，而不需擔心安裝或設定軟體。 已預先安裝熱門的資料分析、機器學習和 AI 工具。</p>
+      image:
+        src: /azure/machine-learning/media/index/virtualmachine.svg
+      title: 資料科學虛擬機器

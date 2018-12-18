@@ -1,26 +1,28 @@
 ---
-title: "從 Microsoft Flow 呼叫 Azure 函式 | Microsoft Docs"
-description: "建立自訂連接器，然後使用該連接器來呼叫函式。"
+title: 從 Microsoft Flow 呼叫 Azure 函式 | Microsoft Docs
+description: 建立自訂連接器，然後使用該連接器來呼叫函式。
 services: functions
-keywords: "雲端應用程式, 雲端服務, Microsoft Flow, 商務程序, 商務應用程式"
-documentationcenter: 
-author: mgblythe
+keywords: 雲端應用程式, 雲端服務, Microsoft Flow, 商務程序, 商務應用程式
+documentationcenter: ''
+author: ggailey777
 manager: cfowler
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: functions
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 12/14/2017
-ms.author: mblythe
-ms.custom: 
-ms.openlocfilehash: 38d2e3f2f2aa057b50ba12138cafc512ac110f9b
-ms.sourcegitcommit: 68aec76e471d677fd9a6333dc60ed098d1072cfc
+ms.author: glenga
+ms.reviewer: sunayv
+ms.custom: ''
+ms.openlocfilehash: 57d80ad836a16b8821ba0cce42c822728c654dfd
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/18/2017
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38467739"
 ---
 # <a name="call-a-function-from-microsoft-flow"></a>從 Microsoft Flow 呼叫函式
 

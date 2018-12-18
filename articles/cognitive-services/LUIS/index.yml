@@ -1,0 +1,120 @@
+### YamlMime:YamlDocument
+ms.openlocfilehash: 987eea72ff991eb90eb4e6f9acba6ccb4b8a750f
+ms.sourcegitcommit: 07a09da0a6cda6bec823259561c601335041e2b9
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/18/2018
+ms.locfileid: "49406546"
+documentType: LandingData
+title: Language Understanding (LUIS) 文件
+metadata:
+  document_id: 
+  title: Language Understanding (LUIS) - 教學課程、快速入門、API 參考
+  description: 了解如何使用 Language Understanding 服務，讓應用程式了解人在文字中所表達的意思。
+  author: nitinme
+  manager: cgronlun
+  ms.service: cognitive-services
+  ms.tgt_pltfrm: na
+  ms.devlang: na
+  ms.topic: landing-page
+  ms.date: 09/24/2018
+  ms.author: nitinme
+abstract:
+  description: Language Understanding 服務 (LUIS) 可讓應用程式了解人在文字中所表達的意思。 LUIS 使用機器學習，讓開發人員建置應用程式，來可接收使用者的自然語言輸入，並從其中擷取意義。
+  aside:
+    image:
+      alt: 
+      height: 110
+      src: ../media/index/luis-landing-page-video.png
+      width: 250
+    title: LUIS 的最新消息 (18:28)
+    href: https://azure.microsoft.com/resources/videos/whats-new-with-language-understanding-service-luis
+    width: 250
+sections:
+- items:
+  - type: list
+    style: cards
+    className: cardsM
+    columns: 3
+    items:
+    - href: /azure/cognitive-services/luis/what-is-luis
+      html: <p>了解 Language Understanding 服務 (LUIS)。</p>
+      image:
+        src: ../media/index/i_overview.svg
+      title: LUIS 是什麼？
+    - href: /azure/cognitive-services/luis/luis-how-plan-your-app
+      html: <p>準備與您的應用程式相關的意圖與實體大綱。</p>
+      image:
+        src: ../media/index/i_guidelines.svg
+      title: 規劃 LUIS 應用程式
+    - href: /azure/cognitive-services/luis/luis-concept-best-practices
+      html: <p>建立 LUIS 應用程式時使用這些最佳做法。</p>
+      image:
+        src: ../media/index/i_guidelines.svg
+      title: LUIS 應用程式的最佳做法
+- title: 5 分鐘快速入門
+  items:
+  - type: table
+    style: dataMatrix
+    columns:
+    - image:
+        src: media/index/logo_csharp.svg
+    - image:
+        src: media/index/logo_java.svg
+    - image:
+        src: media/index/logo_nodejs.svg
+    - image:
+        src: media/index/logo_python.svg
+    rows:
+    - title: 端點 API
+      values:
+      - href: luis-get-started-cs-get-intent
+      - href: luis-get-started-java-get-intent
+      - href: luis-get-started-node-get-intent
+      - href: luis-get-started-python-get-intent
+    - title: 編寫 API
+      values:
+      - href: luis-get-started-cs-add-utterance
+      - href: luis-get-started-java-add-utterance
+      - href: luis-get-started-node-add-utterance
+      - href: luis-get-started-python-add-utterance
+- title: 逐步教學課程
+  items:
+  - type: list
+    style: ordered
+    items:
+    - html: <a href="luis-quickstart-intents-only">建置適用於人力資源 (HR) 網域的應用程式</a>
+    - html: <a href="luis-tutorial-prebuilt-intents-entities">新增預先建置的意圖和實體</a>
+    - html: <a href="luis-quickstart-intents-regex-entity">新增規則運算式實體</a>
+    - html: <a href="luis-quickstart-intent-and-list-entity">新增清單實體</a>
+    - html: <a href="luis-quickstart-intent-and-hier-entity">新增階層式實體</a>
+    - html: <a href="luis-quickstart-primary-and-secondary-data">新增簡單實體和片語清單</a>
+    - html: <a href="luis-quickstart-intent-and-key-phrase">新增 KeyPhrase 實體</a>
+    - html: <a href="luis-quickstart-intent-and-sentiment-analysis">新增情感分析</a>
+- title: 範例
+  items:
+  - type: list
+    style: unordered
+    items:
+    - html: <a href="https://aka.ms/luis-code-samples">GitHub 上的範例</a><br/>
+- title: 影片
+  items:
+  - type: list
+    style: unordered
+    items:
+    - html: <a href="https://channel9.msdn.com/Shows/Azure-Friday/At-Build-2018-Cognitive-Services-Language-LUIS/player" >組建 2018 的 Azure Friday - 認知服務 - 語言 (LUIS)</a>
+    - html: <a href="https://channel9.msdn.com/events/Build/2018/BRK3208" >組建 2018 工作階段 - Bot 智慧、語音功能和 NLU 最佳做法</a>
+- title: 參考
+  items:
+  - type: list
+    style: cards
+    className: cardsD
+    items:
+    - title: REST API v2
+      html: <p><a href="https://aka.ms/luis-endpoint-apis">端點 API</a></p><p><a href="https://aka.ms/luis-authoring-apis">編寫 API</a></p>
+    - title: SDK
+      html: <p><a href="https://aka.ms/luis-endpoint-sdk">.NET 端點 SDK</a></p><p><a href="https://aka.ms/luis-authoring-sdk">.NET 編寫 SDK</a></p>
+    - title: PowerShell
+      html: <p><a href=https://docs.microsoft.com/powershell/module/azurerm.cognitiveservices/?view=azurermps-4.4.1#cognitive_services">Azure PowerShell</a></p>
+    - title: CLI
+      html: <p><a href="https://docs.microsoft.com/cli/azure/cognitiveservices">Azure CLI</a></p>

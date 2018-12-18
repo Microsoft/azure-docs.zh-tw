@@ -1,27 +1,23 @@
 ---
-title: "建立以排程器為基礎的自動化工作流程 - Azure Logic Apps | Microsoft Docs"
-description: "本教學課程說明如何使用 Azure Logic Apps 建立以排程器為基礎、週期性、自動化工作流程"
-author: ecfan
-manager: anneta
-editor: 
+title: 建置以排程為基礎的自動化工作流程 - Azure Logic Apps | Microsoft Docs
+description: 教學課程 - 如何使用 Azure Logic Apps 建立以排程為基礎的週期性自動化工作流程
 services: logic-apps
-documentationcenter: 
-ms.assetid: 
 ms.service: logic-apps
-ms.workload: logic-apps
-ms.tgt_pltfrm: na
-ms.devlang: na
+ms.suite: integration
+author: ecfan
+ms.author: estfan
+ms.reviewer: klam, LADocs
 ms.topic: tutorial
 ms.custom: mvc
 ms.date: 01/12/2018
-ms.author: LADocs; estfan
-ms.openlocfilehash: 4360249367632a01e4357c527f595f8416c7cc38
-ms.sourcegitcommit: 088a8788d69a63a8e1333ad272d4a299cb19316e
+ms.openlocfilehash: 70d7adc9ea8c65a7e6a21165864b7e6d661c6f8c
+ms.sourcegitcommit: 3856c66eb17ef96dcf00880c746143213be3806a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/27/2018
+ms.lasthandoff: 10/02/2018
+ms.locfileid: "48042286"
 ---
-# <a name="check-traffic-with-a-scheduler-based-logic-app"></a>使用以排程為基礎的邏輯應用程式來檢查流量
+# <a name="check-traffic-on-a-schedule-with-azure-logic-apps"></a>使用 Azure Logic Apps 來檢查排程上的流量
 
 Azure Logic Apps 可協助您自動化定期執行的工作流程。 本教學課程說明如何建置具有排程器觸發程序的[邏輯應用程式](../logic-apps/logic-apps-overview.md)，而該觸發程序會在每個工作天早上執行並檢查兩地間的行進時間 (包括流量)。 如果時間超過特定限制，則邏輯應用程式會傳送包含行進時間和前往目的地所需額外時間的電子郵件。
 
@@ -41,7 +37,7 @@ Azure Logic Apps 可協助您自動化定期執行的工作流程。 本教學�
 
 如果您沒有 Azure 訂用帳戶，請在開始前，先<a href="https://azure.microsoft.com/free/" target="_blank">註冊一個免費的 Azure 帳戶</a>。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 * Logic Apps 支援的任何電子郵件提供者 (例如 Office 365 Outlook、Outlook.com 或 Gmail) 所提供的電子郵件帳戶。 對於其他提供者，請[檢閱這裡的連接器清單](https://docs.microsoft.com/connectors/)。 本快速入門使用 Outlook.com 帳戶。 如果您使用不同的電子郵件帳戶，整體步驟將維持不變，但您的 UI 外觀可能會略有不同。
 

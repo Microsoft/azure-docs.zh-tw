@@ -1,6 +1,6 @@
 ---
-title: "Azure PowerShell 指令碼範例 - 建立受控應用程式定義 | Microsoft Docs"
-description: "Azure PowerShell 指令碼範例 - 建立受控應用程式定義"
+title: Azure PowerShell 指令碼範例 - 建立受控應用程式定義 | Microsoft Docs
+description: Azure PowerShell 指令碼範例 - 建立受控應用程式定義
 services: managed-applications
 documentationcenter: na
 author: tfitzmac
@@ -17,6 +17,7 @@ ms.sourcegitcommit: 804db51744e24dca10f06a89fe950ddad8b6a22d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/30/2017
+ms.locfileid: "23636988"
 ---
 # <a name="create-a-managed-application-definition-with-powershell"></a>使用 PowerShell 建立受控應用程式定義
 

@@ -1,10 +1,10 @@
 ---
-title: "使用 .NET SDK 在 Azure DNS 中建立 DNS 區域和記錄集 | Microsoft Docs"
-description: "如何使用 .NET SDK 在 Azure DNS 中建立 DNS 區域和記錄集。"
+title: 使用 .NET SDK 在 Azure DNS 中建立 DNS 區域和記錄集 | Microsoft Docs
+description: 如何使用 .NET SDK 在 Azure DNS 中建立 DNS 區域和記錄集。
 services: dns
 documentationcenter: na
-author: jtuliani
-manager: carmonm
+author: vhorne
+manager: jeconnoc
 ms.assetid: eed99b87-f4d4-4fbf-a926-263f7e30b884
 ms.service: dns
 ms.devlang: na
@@ -12,12 +12,13 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 09/19/2016
-ms.author: jonatul
-ms.openlocfilehash: c0fb0be8da1c0ca48a4d43ea027d30a0bc17fe30
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.author: victorh
+ms.openlocfilehash: 14860ae48e520f86ce9d5bea739605d1a4baf0c7
+ms.sourcegitcommit: 4e5ac8a7fc5c17af68372f4597573210867d05df
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 07/20/2018
+ms.locfileid: "39173188"
 ---
 # <a name="create-dns-zones-and-record-sets-using-the-net-sdk"></a>使用 .NET SDK 建立 DNS 區域和記錄集
 
@@ -29,7 +30,7 @@ ms.lasthandoff: 10/11/2017
 
 1. 遵循 [這些指示](../azure-resource-manager/resource-group-authenticate-service-principal.md) 建立服務主體帳戶 (Azure DNS SDK 範例專案會採用密碼型驗證)。
 2. 建立資源群組 ([方法在此](../azure-resource-manager/resource-group-template-deploy-portal.md))。
-3. 使用 Azure RBAC 將資源群組的「DNS 區域參與者」權限授與服務主體帳戶 ([方法在此](../active-directory/role-based-access-control-configure.md))。
+3. 使用 Azure RBAC 將資源群組的「DNS 區域參與者」權限授與服務主體帳戶 ([方法在此](../role-based-access-control/role-assignments-portal.md))。
 4. 如果使用 Azure DNS SDK 範例專案，請如下編輯 'program.cs' 檔案︰
 
    * 針對 tenantId、clientId (也稱為帳戶識別碼)、secret (服務主體帳戶密碼) 和 subscriptionId 插入步驟 1 所使用的正確值。

@@ -1,12 +1,12 @@
 ---
-title: "StorSimple 8000 系列裝置使用摘要 | Microsoft Docs"
-description: "描述 StorSimple 裝置管理員服務裝置摘要，以及如何用它來檢視儲存體計量和連線的啟動器，並尋找序號和 IQN。"
+title: StorSimple 8000 系列裝置使用摘要 | Microsoft Docs
+description: 描述 StorSimple 裝置管理員服務裝置摘要，以及如何用它來檢視儲存體計量和連線的啟動器，並尋找序號和 IQN。
 services: storsimple
 documentationcenter: NA
 author: alkohli
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: NA
 ms.topic: article
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23108256"
 ---
 # <a name="use-the-device-summary-in-storsimple-device-manager-service"></a>使用 StorSimple 裝置管理員服務中的裝置摘要
 

@@ -14,11 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/15/2017
 ms.author: wesmc
-ms.openlocfilehash: ba3a7ccc059dd5036753f471b762e27f22a179af
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+ms.openlocfilehash: 250c66c3a39519a6eddc1ecb51259ec1944c88a9
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38671117"
 ---
 # <a name="how-to-configure-virtual-network-support-for-a-premium-azure-redis-cache"></a>如何設定高階 Azure Redis 快取的虛擬網路支援
 Azure Redis 快取有不同的快取供應項目，可讓您彈性選擇快取大小和功能，包括叢集、持續性和虛擬網路支援等進階層功能。 VNet 是雲端中的私人網路。 當 Azure Redis 快取執行個體是以 VNet 設定時，它不是公開定址，只能從 VNet 中的虛擬機器和應用程式存取。 本文說明如何設定進階 Azure Redis 快取執行個體的虛擬網路支援。
@@ -84,12 +85,13 @@ Azure Redis 快取有不同的快取供應項目，可讓您彈性選擇快取�
 
 * [Azure Redis 快取和 VNet 的某些常見錯誤設定有哪些？](#what-are-some-common-misconfiguration-issues-with-azure-redis-cache-and-vnets)
 * [如何確認我的快取是在 VNET 中運作？](#how-can-i-verify-that-my-cache-is-working-in-a-vnet)
+* [當我嘗試連線到 VNET 中的 Redis 快取時，為什麼會收到錯誤，指出遠端憑證不正確呢？](#when-trying-to-connect-to-my-redis-cache-in-a-vnet-why-am-i-getting-an-error-stating-the-remote-certificate-is-invalid)
 * [可以搭配標準或基本快取使用 VNet 嗎？](#can-i-use-vnets-with-a-standard-or-basic-cache)
 * [為什麼無法在某些子網路中建立 Redis 快取，但其他的可以？](#why-does-creating-a-redis-cache-fail-in-some-subnets-but-not-others)
 * [子網路位址空間需求為何？](#what-are-the-subnet-address-space-requirements)
 * [將快取裝載於 VNET 時，所有快取功能都可以正常運作嗎？](#do-all-cache-features-work-when-hosting-a-cache-in-a-vnet)
 
-## <a name="what-are-some-common-misconfiguration-issues-with-azure-redis-cache-and-vnets"></a>Azure Redis 快取和 VNet 的某些常見錯誤設定有哪些？
+### <a name="what-are-some-common-misconfiguration-issues-with-azure-redis-cache-and-vnets"></a>Azure Redis 快取和 VNet 的某些常見錯誤設定有哪些？
 Azure Redis 快取裝載在 VNet 時，會使用下表中的連接埠。 
 
 >[!IMPORTANT]
@@ -100,7 +102,7 @@ Azure Redis 快取裝載在 VNet 時，會使用下表中的連接埠。
 - [輸出連接埠需求](#outbound-port-requirements)
 - [輸入連接埠需求](#inbound-port-requirements)
 
-### <a name="outbound-port-requirements"></a>輸出連接埠需求
+#### <a name="outbound-port-requirements"></a>輸出連接埠需求
 
 有七項輸出連接埠需求。
 
@@ -120,7 +122,7 @@ Azure Redis 快取裝載在 VNet 時，會使用下表中的連接埠。
 | 6379-6380 |輸出 |TCP |Redis 內部通訊 | (Redis 子網路) |(Redis 子網路) |
 
 
-### <a name="inbound-port-requirements"></a>輸入連接埠需求
+#### <a name="inbound-port-requirements"></a>輸入連接埠需求
 
 有八項輸入連接埠範圍需求。 在這些範圍的輸入要求如下：從相同 VNET 中裝載的其他服務輸入，或是 Redis 子網路內部通訊。
 
@@ -135,12 +137,12 @@ Azure Redis 快取裝載在 VNet 時，會使用下表中的連接埠。
 | 16001 |輸入 |TCP/UDP |Azure 負載平衡 | (Redis 子網路) |Azure Load Balancer |
 | 20226 |輸入 |TCP |Redis 內部通訊 | (Redis 子網路) |(Redis 子網路) |
 
-### <a name="additional-vnet-network-connectivity-requirements"></a>其他 VNET 網路連線需求
+#### <a name="additional-vnet-network-connectivity-requirements"></a>其他 VNET 網路連線需求
 
 在虛擬網路中，可能一開始就不符合 Azure Redis 快取的一些網路連線需求。 Azure Redis Cache 需要符合下列項目，才能在虛擬網路內使用時正確運作。
 
 * 全球 Azure 儲存體端點的輸出網路連線。 這包括位於與 Azure Redis 快取執行個體相同區域中的端點，以及位於 **其他** Azure 區域的儲存體端點。 Azure 儲存體端點在下列 DNS 網域之下解析：table.core.windows.net、blob.core.windows.net、queue.core.windows.net 和 file.core.windows.net。 
-* *ocsp.msocsp.com*、*mscrl.microsoft.com* 和 *crl.microsoft.com* 的輸出網路連線。需要此連線才能支援 SSL 功能。
+* *ocsp.msocsp.com*、*mscrl.microsoft.com* 和 *crl.microsoft.com* 的輸出網路連線。 需要此連線才能支援 SSL 功能。
 * 虛擬網路的 DNS 設定必須能夠解析前面幾點所提到的所有端點和網域。 確定已針對虛擬網路設定及維護有效的 DNS 基礎結構，即可符合 DNS 需求。
 * 在下列 DNS 網域下解析之下列 Azure 監視端點的輸出網路連線︰shoebox2-black.shoebox2.metrics.nsatc.net、north-prod2.prod2.metrics.nsatc.net、azglobal-black.azglobal.metrics.nsatc.net、shoebox2-red.shoebox2.metrics.nsatc.net、east-prod2.prod2.metrics.nsatc.net、azglobal-red.azglobal.metrics.nsatc.net。
 
@@ -164,6 +166,24 @@ Azure Redis 快取裝載在 VNet 時，會使用下表中的連接埠。
   - 另一種測試的方式是建立測試快取用戶端 (可能是使用 StackExchange.Redis 的簡單主控台應用程式)，其會連線到快取，並從快取新增及擷取某些項目。 將範例用戶端應用程式安裝到與快取位於相同 VNET 的 VM 並加以執行，來驗證對快取的連線能力。
 
 
+### <a name="when-trying-to-connect-to-my-redis-cache-in-a-vnet-why-am-i-getting-an-error-stating-the-remote-certificate-is-invalid"></a>當我嘗試連線到 VNET 中的 Redis 快取時，為什麼會收到錯誤，指出遠端憑證不正確呢？
+
+當您嘗試連線到 VNET 中的 Redis 快取時，會看到如下的憑證驗證錯誤：
+
+`{"No connection is available to service this operation: SET mykey; The remote certificate is invalid according to the validation procedure.; …"}`
+
+原因可能是您正透過 IP 位址連線到主機。 建議您使用主機名稱。 換句話說，請使用下列內容：     
+
+`[mycachename].redis.windows.net:6380,password=xxxxxxxxxxxxxxxxxxxx,ssl=True,abortConnect=False`
+
+避免使用類似下列連接字串的 IP 位址：
+
+`10.128.2.84:6380,password=xxxxxxxxxxxxxxxxxxxx,ssl=True,abortConnect=False`
+
+如果您無法解析 DNS 名稱，某些用戶端程式庫就會包含像是 `sslHost` 的設定選項，其是由 StackExchange.Redis 用戶端所提供的。 這可讓您覆寫用於憑證驗證的主機名稱。 例如︰
+
+`10.128.2.84:6380,password=xxxxxxxxxxxxxxxxxxxx,ssl=True,abortConnect=False;sslHost=[mycachename].redis.windows.net`
+
 ### <a name="can-i-use-vnets-with-a-standard-or-basic-cache"></a>可以搭配標準或基本快取使用 VNet 嗎？
 VNet 僅適用於進階快取。
 
@@ -182,7 +202,9 @@ Azure 會在每個子網路中保留一些 IP 位址，但這些位址無法使�
 
 * Redis 主控台 - 由於 Redis 主控台在您的本機瀏覽器 (位於 VNET 之外) 中執行，因此無法連接到您的快取。
 
+
 ## <a name="use-expressroute-with-azure-redis-cache"></a>搭配 Azure Redis 快取使用 ExpressRoute
+
 客戶可以將 [Azure ExpressRoute](https://azure.microsoft.com/services/expressroute/) 循環連接至虛擬網路基礎結構，因而將其內部部署網路延伸至 Azure。 
 
 根據預設，新建立的 ExpressRoute 循環並不會在 VNET 上執行強制通道 (預設路由的公告 0.0.0.0/0)。 如此一來，會直接從 VNET 允許輸出網際網路連線，且用戶端應用程式能連線到其他的 Azure 端點，包括 Azure Redis 快取。

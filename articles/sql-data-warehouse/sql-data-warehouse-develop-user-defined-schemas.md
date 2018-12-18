@@ -1,27 +1,27 @@
 ---
-title: "SQL 資料倉儲中使用者定義的結構描述 | Microsoft Docs"
-description: "在 Azure SQL 資料倉儲中使用 Transact-SQL 結構描述開發解決方案的秘訣。"
+title: 在 SQL 資料倉儲中使用使用者定義結構描述 | Microsoft Docs
+description: 在 Azure SQL 資料倉儲中使用 T-SQL 使用者定義結構描述開發解決方案的秘訣。
 services: sql-data-warehouse
-documentationcenter: NA
-author: jrowlandjones
-manager: jhubbard
-editor: 
-ms.assetid: 52af5bd5-d5d3-4f9b-8704-06829fb924e3
+author: ronortloff
+manager: craigg
 ms.service: sql-data-warehouse
-ms.devlang: NA
-ms.topic: article
-ms.tgt_pltfrm: NA
-ms.workload: data-services
-ms.custom: t-sql
-ms.date: 10/31/2016
-ms.author: jrj;barbkess
-ms.openlocfilehash: dfb58956ad6637cf0f50b4c052ab98fb7c26139d
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.topic: conceptual
+ms.component: implement
+ms.date: 04/17/2018
+ms.author: rortloff
+ms.reviewer: igorstan
+ms.openlocfilehash: d46f41e75538fae230219068d3530b7181564ac0
+ms.sourcegitcommit: 1fb353cfca800e741678b200f23af6f31bd03e87
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/30/2018
+ms.locfileid: "43302636"
 ---
-# <a name="user-defined-schemas-in-sql-data-warehouse"></a>SQL 資料倉儲中使用者定義的結構描述
+# <a name="using-user-defined-schemas-in-sql-data-warehouse"></a>在 SQL 資料倉儲中使用使用者定義結構描述
+在 Azure SQL 資料倉儲中使用 T-SQL 使用者定義結構描述開發解決方案的秘訣。
+
+## <a name="schemas-for-application-boundaries"></a>應用程式界限的結構描述
+
 傳統資料倉儲通常使用不同的資料庫，根據工作負載、網域或安全性來建立應用程式界限。 例如，傳統 SQL Server 資料倉儲可能包含臨時資料庫、資料倉儲資料庫和某些資料市集資料庫。 在此拓撲中，每個資料庫均作為架構中的工作負載和安全性界限運作。
 
 相反地，SQL 資料倉儲會在某個資料庫中執行整個資料倉儲工作負載。 不允許跨資料庫聯結。 因此，SQL 資料倉儲預期倉儲使用的所有資料表都會儲存在一個資料庫內。
@@ -121,13 +121,5 @@ FROM    [edw].customer
 > 
 
 ## <a name="next-steps"></a>後續步驟
-如需更多開發秘訣，請參閱[開發概觀][development overview]。
+如需更多開發秘訣，請參閱[開發概觀](sql-data-warehouse-overview-develop.md)。
 
-<!--Image references-->
-
-<!--Article references-->
-[development overview]: sql-data-warehouse-overview-develop.md
-
-<!--MSDN references-->
-
-<!--Other Web references-->

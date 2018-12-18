@@ -3,16 +3,18 @@ title: 建立 Azure 自動化整合模組
 description: 引導您在 Azure 自動化中建立、測試和舉例使用整合模組的逐步解說教學課程。
 services: automation
 ms.service: automation
+ms.component: shared-capabilities
 author: georgewallace
 ms.author: gwallace
 ms.date: 03/16/2018
-ms.topic: article
+ms.topic: conceptual
 manager: carmonm
-ms.openlocfilehash: 7b7aa09776045705ce98a472adbbe2f36d827ccc
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 93c61f0b9b923f84b2c84d2db4456442e2f9fb27
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39444499"
 ---
 # <a name="azure-automation-integration-modules"></a>Azure 自動化整合模組
 PowerShell 是 Azure 自動化背後的基本技術。 由於 Azure 自動化的基礎是 PowerShell，PowerShell 模組會是 Azure 自動化的擴充性關鍵。 本文會引導您了解 Azure 自動化在使用 PowerShell 模組 (稱為「整合模組」) 方面的細節以及用來建立自有 PowerShell 模組的最佳做法，以確保 PowerShell 模組可作為 Azure 自動化內的整合模組。 
@@ -100,7 +102,7 @@ PowerShell 模組是一組 PowerShell Cmdlet (例如 **Get-Date** 或 **Copy-Ite
     }
     ```
    <br> 提供此資訊不只能在 PowerShell 主控台中透過 **Get-Help** Cmdlet 來顯示此說明，也會在 Azure 自動化內公開這個說明功能。  例如，在製作 Runbook 期間插入活動時。 按一下 [檢視詳細說明]，就會在用來存取 Azure 自動化之 Web 瀏覽器的另一個索引標籤中，開啟說明 URI。<br>![整合模組說明](media/automation-integration-modules/automation-integration-module-activitydesc.png)
-2. 如果針對遠端系統來執行模組，
+1. 如果針對遠端系統來執行模組，
 
     a. 它應該包含整合模組中繼資料檔案，以定義用來連線到該遠端系統所需的資訊，也就是連線類型。  
     b. 模組中的每個 Cmdlet 應該要能夠採用連線物件 (該連線類型的執行個體) 來做為參數。  
@@ -155,8 +157,8 @@ PowerShell 模組是一組 PowerShell Cmdlet (例如 **Get-Date** 或 **Copy-Ite
     }
     ```
    <br>
-3. 為模組中的所有 Cmdlet 定義輸出類型。 為 Cmdlet 定義輸出類型，可讓設計階段 IntelliSense 協助您判斷 Cmdlet 的輸出屬性，以供在撰寫期間使用。 在圖形化撰寫自動化 Runbook 期間，它會特別有幫助，因為設計階段的知識是讓模組的使用者獲得容易使用體驗的關鍵。<br><br> ![圖形化 Runbook 輸出類型](media/automation-integration-modules/runbook-graphical-module-output-type.png)<br> 這類似於 Cmdlet 在 PowerShell ISE 中的輸出的「自動提示」功能，但不需要加以執行。<br><br> ![POSH IntelliSense](media/automation-integration-modules/automation-posh-ise-intellisense.png)<br>
-4. 模組中的 Cmdlet 不應該採用複雜物件類型來做為參數。 PowerShell 工作流程與 PowerShell 的不同之處在於，它會以還原序列化的形式儲存複雜類型。 基本類型會保持基本，但複雜類型則會轉換為已還原序列化的版本，基本上來說也就是屬性包。 例如，如果您在 Runbook 使用 **Get-Process** Cmdlet (或任何類似用途的 PowerShell 工作流程)，它會傳回類型為 [Deserialized.System.Diagnostic.Process] 的物件，而非預期的 [System.Diagnostic.Process] 類型。 這個類型擁有和非還原序列化類型相同的屬性，但沒有任何方法。 而且如果您嘗試將此值作為參數傳遞至 Cmdlet，而此 Cmdlet 預期此參數要有 [System.Diagnostic.Process] 值，則您會收到下列錯誤︰*「無法處理參數 'process' 的引數轉換。錯誤：「無法將類型為 "Deserialized.System.Diagnostics.Process" 的 "System.Diagnostics.Process (CcmExec)" 值，轉換為 "System.Diagnostics.Process" 類型。」*   這是因為預期的 [System.Diagnostic.Process] 類型和給定的 [Deserialized.System.Diagnostic.Process] 類型不相符。 此問題的解決方式是確保模組的 Cmdlet 不會採用複雜類型來做為參數。 以下是錯誤的處理方式。
+1. 為模組中的所有 Cmdlet 定義輸出類型。 為 Cmdlet 定義輸出類型，可讓設計階段 IntelliSense 協助您判斷 Cmdlet 的輸出屬性，以供在撰寫期間使用。 在圖形化撰寫自動化 Runbook 期間，它會特別有幫助，因為設計階段的知識是讓模組的使用者獲得容易使用體驗的關鍵。<br><br> ![圖形化 Runbook 輸出類型](media/automation-integration-modules/runbook-graphical-module-output-type.png)<br> 這類似於 Cmdlet 在 PowerShell ISE 中的輸出的「自動提示」功能，但不需要加以執行。<br><br> ![POSH IntelliSense](media/automation-integration-modules/automation-posh-ise-intellisense.png)<br>
+1. 模組中的 Cmdlet 不應該採用複雜物件類型來做為參數。 PowerShell 工作流程與 PowerShell 的不同之處在於，它會以還原序列化的形式儲存複雜類型。 基本類型會保持基本，但複雜類型則會轉換為已還原序列化的版本，基本上來說也就是屬性包。 例如，如果您在 Runbook 使用 **Get-Process** Cmdlet (或任何類似用途的 PowerShell 工作流程)，它會傳回類型為 [Deserialized.System.Diagnostic.Process] 的物件，而非預期的 [System.Diagnostic.Process] 類型。 這個類型擁有和非還原序列化類型相同的屬性，但沒有任何方法。 而且如果您嘗試將此值作為參數傳遞至 Cmdlet，而此 Cmdlet 預期此參數要有 [System.Diagnostic.Process] 值，則您會收到下列錯誤︰*「無法處理參數 'process' 的引數轉換。錯誤：「無法將類型為 "Deserialized.System.Diagnostics.Process" 的 "System.Diagnostics.Process (CcmExec)" 值，轉換為 "System.Diagnostics.Process" 類型。」*   這是因為預期的 [System.Diagnostic.Process] 類型和給定的 [Deserialized.System.Diagnostic.Process] 類型不相符。 此問題的解決方式是確保模組的 Cmdlet 不會採用複雜類型來做為參數。 以下是錯誤的處理方式。
    
     ```
     function Get-ProcessDescription {
@@ -181,7 +183,7 @@ PowerShell 模組是一組 PowerShell Cmdlet (例如 **Get-Date** 或 **Copy-Ite
     ```
    <br>
    Runbook 中的連線資產是雜湊表，其為複雜類型，然而這些雜湊表似乎可以傳遞給 Cmdlet 供 –Connection 參數完美使用，而不會發生轉換例外狀況。 技術上來說，某些 PowerShell 類型能夠從其序列化形式正確轉換成還原序列化形式，因此可以傳遞給 Cmdlet 以供接受非還原序列化類型的參數使用。 雜湊表便是其中之一。 模組作者所定義的類型也有可能以可正確還原序列化的方式來實作，但必須考量一些取捨。 此類型需要有預設建構函式、其所有公用的屬性和 PSTypeConverter。 不過，對於模組作者未擁有的已定義類型，則沒有辦法加以「修正」，因此才會建議所有參數全都避免使用複雜類型。 Runbook 製作提示︰如果 Cmdlet 因為某些原因需要採用複雜類型的參數，或要使用他人需要複雜類型參數的模組，則在 PowerShell 工作流程 Runbook 中和本機 PowerShell 內的 PowerShell 工作流程中，因應措施是將會產生複雜類型的 Cmdlet 和在相同 InlineScript 活動中使用複雜類型的 Cmdlet 包裝起來。 由於 InlineScript 會以 PowerShell 形式而非 PowerShell 工作流程形式來執行其內容，產生複雜類型 Cmdlet 會產生該正確類型，而不會產生還原序列化的複雜類型。
-5. 讓模組中的所有 Cmdlet 變成無狀態。 PowerShell 工作流程會在不同工作階段執行工作流程中所呼叫的每個 Cmdlet。 這表示任何相依於同一模組中其他 Cmdlet 所建立/修改的工作階段狀態的 Cmdlet，將不會在 PowerShell 工作流程 Runbook 中運作。  以下是不該做之事情的範例：
+1. 讓模組中的所有 Cmdlet 變成無狀態。 PowerShell 工作流程會在不同工作階段執行工作流程中所呼叫的每個 Cmdlet。 這表示任何相依於同一模組中其他 Cmdlet 所建立/修改的工作階段狀態的 Cmdlet，將不會在 PowerShell 工作流程 Runbook 中運作。  以下是不該做之事情的範例：
    
     ```
     $globalNum = 0
@@ -199,7 +201,7 @@ PowerShell 模組是一組 PowerShell Cmdlet (例如 **Get-Date** 或 **Copy-Ite
     }
     ```
    <br>
-6. 模組應該完全包含在可 Xcopy 的封裝中。 當 Runbook 需要執行時，Azure 自動化模組會散發到自動化沙箱中，因此它們需要獨立於其執行所在的主機之外單獨運作。 其所代表的意義是，您應該能夠壓縮模組封裝，將它移至擁有相同或較新 PowerShell 版本的任何其他主機，並讓它在匯入到該主機的 PowerShell 環境時正常運作。 為了達成此一情況，模組不應該相依於模組資料夾 (匯入至 Azure 自動化時遭到壓縮的資料夾) 以外的任何檔案，或相依於主機上的任何唯一的登錄設定，例如產品安裝時所設定的登錄設定。 若未遵循此最佳做法，模組在 Azure 自動化中將無法使用。  
+1. 模組應該完全包含在可 Xcopy 的封裝中。 當 Runbook 需要執行時，Azure 自動化模組會散發到自動化沙箱中，因此它們需要獨立於其執行所在的主機之外單獨運作。 其所代表的意義是，您應該能夠壓縮模組封裝，將它移至擁有相同或較新 PowerShell 版本的任何其他主機，並讓它在匯入到該主機的 PowerShell 環境時正常運作。 為了達成此一情況，模組不應該相依於模組資料夾 (匯入至 Azure 自動化時遭到壓縮的資料夾) 以外的任何檔案，或相依於主機上的任何唯一的登錄設定，例如產品安裝時所設定的登錄設定。 若未遵循此最佳做法，模組在 Azure 自動化中將無法使用。  
 
 ## <a name="next-steps"></a>後續步驟
 

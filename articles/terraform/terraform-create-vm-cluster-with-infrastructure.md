@@ -1,19 +1,20 @@
 ---
-title: "以 Terraform 和 HCL 建立 VM 叢集"
-description: "使用 Terraform 和 HashiCorp Configuration Language (HCL) 在 Azure 中建立具有負載平衡器的 Linux 虛擬機器叢集"
-keywords: "terraform, devops, 虛擬機器, 網路, 模組"
+title: 以 Terraform 和 HCL 建立 VM 叢集
+description: 使用 Terraform 和 HashiCorp Configuration Language (HCL) 在 Azure 中建立具有負載平衡器的 Linux 虛擬機器叢集
+services: terraform
+ms.service: terraform
+keywords: terraform, devops, 虛擬機器, 網路, 模組
 author: tomarcher
-manager: routlaw
-ms.service: virtual-machines-linux
-ms.custom: devops
-ms.topic: article
-ms.date: 11/13/2017
+manager: jeconnoc
 ms.author: tarcher
-ms.openlocfilehash: 2435d694e6a1671a234d02f90860e5cafe98c2df
-ms.sourcegitcommit: 659cc0ace5d3b996e7e8608cfa4991dcac3ea129
+ms.topic: tutorial
+ms.date: 11/13/2017
+ms.openlocfilehash: fffaf275a98791885b87ee8ffdc275e911b26341
+ms.sourcegitcommit: 31241b7ef35c37749b4261644adf1f5a029b2b8e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/13/2017
+ms.lasthandoff: 09/04/2018
+ms.locfileid: "43667595"
 ---
 # <a name="create-a-vm-cluster-with-terraform-and-hcl"></a>以 Terraform 和 HCL 建立 VM 叢集
 
@@ -219,7 +220,7 @@ ms.lasthandoff: 11/13/2017
 
 ## <a name="3-initialize-terraform"></a>3.初始化 Terraform 
 
-[terraform init 命令](https://www.terraform.io/docs/commands/init.html) \(英文\) 是用來初始化包含 Terraform 設定檔 (也就是您在先前小節建立的檔案) 的目錄。 撰寫新的 Terraform 設定之後，您應該一律執行 `terraform init` 命令。 
+[terraform init 命令](https://www.terraform.io/docs/commands/init.html) \(英文\) 是用來初始化包含 Terraform 設定檔 (也就是您在先前小節建立的檔案) 的目錄。 撰寫新的 Terraform 設定之後，最好一律執行 `terraform init` 命令。 
 
 > [!TIP]
 > `terraform init` 命令具有等冪性，表示它能夠被重複呼叫並不斷產生相同的結果。 因此，如果您是在共同作業環境中工作，且認為設定檔可能已經被他人變更，最好先一律呼叫 `terraform init` 命令，然後再執行或套用計畫。
@@ -266,7 +267,7 @@ ms.lasthandoff: 11/13/2017
   terraform apply
   ```
 
-如果您想要套用先前儲存的執行計畫，請執行下列命令 (將 &lt;path> 預留位置取代為包含已儲存執行計畫的路徑)：
+如果您想要套用先前儲存的執行計畫，請執行下列命令 (將 &lt;path> 預留位置取代為執行計畫的儲存路徑)：
 
   ```cmd
   terraform apply <path>

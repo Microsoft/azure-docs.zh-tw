@@ -1,10 +1,10 @@
 ---
-title: "建立適用於 Azure 雲端服務的網際網路對向負載平衡器 | Microsoft Docs"
-description: "了解如何針對雲端服務在傳統部署模型中建立網際網路面向的負載平衡器"
+title: 建立適用於 Azure 雲端服務的網際網路對向負載平衡器 | Microsoft Docs
+description: 了解如何針對雲端服務在傳統部署模型中建立網際網路面向的負載平衡器
 services: load-balancer
 documentationcenter: na
-author: KumudD
-manager: timlt
+author: genlin
+manager: cshepard
 tags: azure-service-management
 ms.assetid: 0bb16f96-56a6-429f-88f5-0de2d0136756
 ms.service: load-balancer
@@ -13,12 +13,13 @@ ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
-ms.author: kumud
-ms.openlocfilehash: b389d9a01db394b79d07ff9c3d6d1cd94e811472
-ms.sourcegitcommit: 68aec76e471d677fd9a6333dc60ed098d1072cfc
+ms.author: genli
+ms.openlocfilehash: b292739f5f4b7184a24ac9b14d40ed98d4921bde
+ms.sourcegitcommit: c52123364e2ba086722bc860f2972642115316ef
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/18/2017
+ms.lasthandoff: 05/11/2018
+ms.locfileid: "34067481"
 ---
 # <a name="get-started-creating-an-internet-facing-load-balancer-for-cloud-services"></a>開始為雲端服務建立網際網路面向的負載平衡器
 
@@ -43,22 +44,22 @@ ms.lasthandoff: 12/18/2017
 檢查雲端部署所產生之 .csdef 檔的片段，您可以看到已設定為在連接埠 10000、10001 和 10002 上使用連接埠 HTTP 的外部端點。
 
 ```xml
-<ServiceDefinition name=“Tenant“>
-    <WorkerRole name=“FERole” vmsize=“Small“>
-<Endpoints>
-    <InputEndpoint name=“FE_External_Http” protocol=“http” port=“10000“ />
-    <InputEndpoint name=“FE_External_Tcp“  protocol=“tcp“  port=“10001“ />
-    <InputEndpoint name=“FE_External_Udp“  protocol=“udp“  port=“10002“ />
+<ServiceDefinition name="Tenant">
+    <WorkerRole name="FERole" vmsize="Small">
+        <Endpoints>
+            <InputEndpoint name="FE_External_Http" protocol="http" port="10000" />
+            <InputEndpoint name="FE_External_Tcp"  protocol="tcp"  port="10001" />
+            <InputEndpoint name="FE_External_Udp"  protocol="udp"  port="10002" />
 
-    <InputEndpointname=“HTTP_Probe” protocol=“http” port=“80” loadBalancerProbe=“MyProbe“ />
+            <InputEndpoint name="HTTP_Probe" protocol="http" port="80" loadBalancerProbe="MyProbe" />
 
-    <InstanceInputEndpoint name=“InstanceEP” protocol=“tcp” localPort=“80“>
-        <AllocatePublicPortFrom>
-            <FixedPortRange min=“10110” max=“10120“  />
-        </AllocatePublicPortFrom>
-    </InstanceInputEndpoint>
-    <InternalEndpoint name=“FE_InternalEP_Tcp” protocol=“tcp“ />
-</Endpoints>
+            <InstanceInputEndpoint name="InstanceEP" protocol="tcp" localPort="80">
+                <AllocatePublicPortFrom>
+                    <FixedPortRange min="10110" max="10120"  />
+                </AllocatePublicPortFrom>
+            </InstanceInputEndpoint>
+            <InternalEndpoint name="FE_InternalEP_Tcp" protocol="tcp" />
+        </Endpoints>
     </WorkerRole>
 </ServiceDefinition>
 ```
@@ -69,7 +70,7 @@ ms.lasthandoff: 12/18/2017
 
 ```xml
 <LoadBalancerProbes>
-    <LoadBalancerProbe name=“MyProbe” protocol=“http” path=“Probe.aspx” intervalInSeconds=“5” timeoutInSeconds=“100“ />
+    <LoadBalancerProbe name="MyProbe" protocol="http" path="Probe.aspx" intervalInSeconds="5" timeoutInSeconds="100" />
 </LoadBalancerProbes>
 ```
 

@@ -9,23 +9,24 @@ editor: ''
 ms.assetid: ''
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 03/26/2018
-ms.author: dekapur; srrengar
-ms.openlocfilehash: b2b740c2ececba2c3f95f8fbfbfb55e7f4811112
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.author: srrengar
+ms.openlocfilehash: f99206fe673f69c78bf130026207ed58344ccea5
+ms.sourcegitcommit: 7ad9db3d5f5fd35cfaa9f0735e8c0187b9c32ab1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 07/27/2018
+ms.locfileid: "39324420"
 ---
 # <a name="performance-monitoring-with-the-windows-azure-diagnostics-extension"></a>使用 Windows Azure 診斷延伸模組進行效能監視
 
 本文件說明如何以 Windows 叢集的 Windows Azure 診斷 (WAD) 延伸模組逐步設定效能計數器集合。 若為 Linux 叢集，請設定 [OMS 代理程式](service-fabric-diagnostics-oms-agent.md)以收集您節點的效能計數器。 
 
  > [!NOTE]
-> 應該在您的叢集上部署 WAD 延伸模組，以便這些步驟產生效用。 如果未設定，請參閱[使用 Windows Azure 診斷的事件彙總和收集](service-fabric-reliable-serviceremoting-diagnostics.md#list-of-performance-counters)。
+> 應該在您的叢集上部署 WAD 延伸模組，以便這些步驟產生效用。 如果未設定，請參閱[使用 Windows Azure 診斷的事件彙總和收集](service-fabric-diagnostics-event-aggregation-wad.md)。  
 
 ## <a name="collect-performance-counters-via-the-wadcfg"></a>透過 WadCfg 收集效能計數器
 
@@ -44,7 +45,9 @@ ms.lasthandoff: 03/28/2018
 
     `scheduledTransferPeriod` 所定義的是收集的計數器值傳輸到 Azure 儲存體資料表和任何已設定的接收之頻率。 
 
-3. 將您想要收集的效能計數器新增至上一步中宣告的 `PerformanceCounterConfiguration`。 您想要收集的每個計數器皆可透過 `counterSpecifier`、`sampleRate`、`unit`、`annotation`，以及任何相關的 `sinks` 定義。 *處理器時間總計* (CPU 用於處理作業的時間量) 和*每秒 Service Fabric 動作項目方法引動過程* (其中一個 Service Fabric 自訂效能計數器) 的計數器組態範例如下。 請參閱 [Reliable Actor 效能計數器](service-fabric-reliable-actors-diagnostics.md#list-of-events-and-performance-counters)和 [Reliable Service 效能計數器](service-fabric-reliable-serviceremoting-diagnostics.md#list-of-performance-counters)，取得 Service Fabric 自訂效能計數器的完整清單。
+3. 將您想要收集的效能計數器新增至上一步中宣告的 `PerformanceCounterConfiguration`。 您想要收集的每個計數器皆可透過 `counterSpecifier`、`sampleRate`、`unit`、`annotation`，以及任何相關的 `sinks` 定義。
+
+*處理器時間總計* (CPU 用於處理作業的時間量) 和*每秒 Service Fabric 動作項目方法引動過程* (其中一個 Service Fabric 自訂效能計數器) 的計數器組態範例如下。 請參閱 [Reliable Actor 效能計數器](service-fabric-reliable-actors-diagnostics.md#list-of-events-and-performance-counters)和 [Reliable Service 效能計數器](service-fabric-reliable-serviceremoting-diagnostics.md#list-of-performance-counters)，取得 Service Fabric 自訂效能計數器的完整清單。
 
  ```json
  "WadCfg": {
@@ -112,9 +115,8 @@ ms.lasthandoff: 03/28/2018
     New-AzureRmResourceGroupDeployment -ResourceGroupName <ResourceGroup> -TemplateFile <PathToTemplateFile> -TemplateParameterFile <PathToParametersFile> -Verbose
     ```
 
-5. 升級完成積存後 (大約需要 15-45 分鐘)，WAD 應該會收集效能計數器，並將其傳送至在與您的叢集有觀的儲存體帳戶中名稱為 WADPerformanceCountersTable 的表格。
+5. 升級完成積存後 (大約需要 15-45 分鐘)，WAD 應該會收集效能計數器，並將其傳送至在與您的叢集有觀的儲存體帳戶中名稱為 WADPerformanceCountersTable 的表格。 藉由[將 AI 接收新增至 Resource Manager 範本](service-fabric-diagnostics-event-analysis-appinsights.md#add-the-ai-sink-to-the-resource-manager-template)，查看 Application Insights 中的效能計數器。
 
 ## <a name="next-steps"></a>後續步驟
-* 藉由[將 AI 接收新增至 Resource Manager 範本](service-fabric-diagnostics-event-analysis-appinsights.md#add-the-ai-sink-to-the-resource-manager-template)，查看 Application Insights 中的效能計數器
 * 為您的叢集收集更多效能計數器。 請參閱[效能度量](service-fabric-diagnostics-event-generation-perf.md)，以取得您應該收集的計數器清單。
 * [透過 Windows VM 與 Azure Resource Manager 範本使用監視和診斷](../virtual-machines/windows/extensions-diagnostics-template.md)，對 `WadCfg` 做進一步的修改，包括設定診斷資料要傳送到的其他儲存體帳戶。

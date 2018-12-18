@@ -14,11 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/12/2018
 ms.author: juluk
-ms.openlocfilehash: e48c54216c5c4ae8e53d4802aafce8883ee97c11
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: 0b3616a723e793ab1ce8d7bcca1f53ca10ec4f96
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46970648"
 ---
 # <a name="quickstart-for-bash-in-azure-cloud-shell"></a>Azure Cloud Shell 中 Bash 的快速入門
 
@@ -35,7 +36,7 @@ ms.lasthandoff: 03/16/2018
 3. 選取 [建立儲存體]
 
 > [!TIP]
-> 在每個工作階段會自動驗證您以使用 Azure CLI 2.0。
+> 在每個工作階段會自動驗證您以使用 Azure CLI。
 
 ### <a name="select-the-bash-environment"></a>選取 Bash 環境
 確認殼層視窗左側的環境下拉式清單顯示為 `Bash`。 <br>
@@ -62,14 +63,14 @@ az group create --location westus --name MyRG
 ```
 
 ### <a name="create-a-linux-vm"></a>建立 Linux VM
-在您的新資源群組中建立 Ubuntu VM。 Azure CLI 2.0 將會建立 SSH 金鑰，並使用它們來設定 VM。 <br>
+在您的新資源群組中建立 Ubuntu VM。 Azure CLI 會建立 SSH 金鑰，並使用它們來設定 VM。 <br>
 
 ```azurecli-interactive
 az vm create -n myVM -g MyRG --image UbuntuLTS --generate-ssh-keys
 ```
 
 > [!NOTE]
-> 使用 `--generate-ssh-keys` 指示 Azure CLI 2.0 在您的 VM 和 `$Home` 目錄中建立並設定公用和私密金鑰。 根據預設，金鑰會放在 Cloud Shell 的 `/home/<user>/.ssh/id_rsa` 和 `/home/<user>/.ssh/id_rsa.pub` 上。 您的 `.ssh` 資料夾會保存在已連接之檔案共用的 5-GB 映像中，用以保存 `$Home`。
+> 使用 `--generate-ssh-keys` 會指示 Azure CLI 在您的 VM 和 `$Home` 目錄中建立並設定公用和私密金鑰。 根據預設，金鑰會放在 Cloud Shell 的 `/home/<user>/.ssh/id_rsa` 和 `/home/<user>/.ssh/id_rsa.pub` 上。 您的 `.ssh` 資料夾會保存在已連接之檔案共用的 5-GB 映像中，用以保存 `$Home`。
 
 您在此 VM 上的使用者名稱，將會是用於 Cloud Shell 中的使用者名稱 ($User@Azure:)。
 
@@ -94,10 +95,10 @@ exit
 
 2. 刪除您的資源群組以及其中的任何資源。
 ```azurecli-interactive
-Run `az group delete -n MyRG`
+az group delete -n MyRG
 ```
 
 ## <a name="next-steps"></a>後續步驟
 [了解保存 Cloud Shell 中 Bash 的檔案](persisting-shell-storage.md) <br>
-[了解 Azure CLI 2.0](https://docs.microsoft.com/cli/azure/) <br>
+[了解 Azure CLI](https://docs.microsoft.com/cli/azure/) <br>
 [了解 Azure 檔案儲存體](../storage/files/storage-files-introduction.md) <br>

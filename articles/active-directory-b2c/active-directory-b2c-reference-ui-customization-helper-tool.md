@@ -1,21 +1,21 @@
 ---
-title: Azure Active Directory B2C︰頁面 UI 自訂協助程式工具 | Microsoft Docs
-description: 用來示範 Azure Active Directory B2C 中頁面 UI 自訂功能的協助程式工具
+title: Azure Active Directory B2C 中的頁面 UI 自訂協助程式工具 | Microsoft Docs
+description: 用來示範 Azure Active Directory B2C 中頁面 UI 自訂功能的協助程式工具。
 services: active-directory-b2c
-documentationcenter: ''
 author: davidmu1
 manager: mtillman
-editor: ''
-ms.service: active-directory-b2c
+ms.service: active-directory
 ms.workload: identity
-ms.topic: article
+ms.topic: conceptual
 ms.date: 01/07/2017
 ms.author: davidmu
-ms.openlocfilehash: f898c626d52b1a4e7df72284190749f4481999ad
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: B2C
+ms.openlocfilehash: 1a37a37dbed3b5ef9733f1105444529b4d255bcf
+ms.sourcegitcommit: 0c64460a345c89a6b579b1d7e273435a5ab4157a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43336776"
 ---
 # <a name="azure-active-directory-b2c-a-helper-tool-used-to-demonstrate-the-page-user-interface-ui-customization-feature"></a>Azure Active Directory B2C︰用來示範頁面使用者介面 (UI) 自訂功能的協助程式工具
 本文可搭配 Azure Active Directory (Azure AD) B2C 中的 [主要 UI 自訂文章](active-directory-b2c-reference-ui-customization.md) 一起閱讀。 以下步驟說明如何使用我們提供的範例 HTML 和 CSS 內容，來練習頁面 UI 自訂功能。
@@ -29,7 +29,7 @@ ms.lasthandoff: 03/23/2018
 ## <a name="register-an-application"></a>註冊應用程式
 您需要在 B2C 租用戶中 [註冊應用程式](active-directory-b2c-app-registration.md) ，此應用程式可用於執行原則。 註冊應用程式之後，有幾個選項可用來實際執行註冊原則：
 
-* 建置 [在您的應用程式中註冊與登入取用者](active-directory-b2c-overview.md#get-started)的＜開始使用＞一節中所列的其中一個 Azure AD B2C 快速啟動應用程式。
+* 建置 [在您的應用程式中註冊與登入取用者](active-directory-b2c-overview.md)的＜開始使用＞一節中所列的其中一個 Azure AD B2C 快速啟動應用程式。
 * 使用預先建置的 [Azure AD B2C 遊樂場](https://aadb2cplayground.azurewebsites.net) 應用程式。 如果您選擇使用遊樂場，您必須在 B2C 租用戶中使用**重新導向 URI** `https://aadb2cplayground.azurewebsites.net/` 註冊應用程式。
 * 在 [Azure 入口網站](https://portal.azure.com/)中，使用原則的 [立即執行] 按鈕。
 
@@ -39,9 +39,9 @@ ms.lasthandoff: 03/23/2018
 基於本教學課程的目的，我們已經建立一些範例內容並裝載於 Azure Blob 儲存體。 範例內容會以虛構的公司 "Wingtip Toys" 為例，示範如何以非常基本的方式自訂佈景主題。 若要在您自己的原則中試用一下，請遵循下列步驟：
 
 1. 在 [Azure 入口網站](https://portal.azure.com/) 上登入您的租用戶並瀏覽至 B2C 功能刀鋒視窗。
-2. 按一下 [註冊或登入原則]，然後按一下您的原則 (例如 "b2c\_1\_sign\_up\_sign\_in")。
+2. 按一下 [註冊或登入原則]，然後按一下您的原則，再按一下 [編輯] (例如 "b2c\_1\_sign\_up\_sign\_in")。
 3. 依序按一下 [頁面 UI 自訂] 和 [統一的註冊或登入頁面]。
-4. 將 [使用自訂頁面] 開關切換到 [是]。 在 [自訂頁面 URI] 欄位中輸入 `https://wingtiptoysb2c.blob.core.windows.net/b2c/wingtip/unified.html`。 按一下 [SERVICEPRINCIPAL] 。
+4. 將 [使用自訂頁面] 開關切換到 [是]。 在 [自訂頁面 URI] 欄位中輸入 `https://wingtiptoysb2c.blob.core.windows.net/b2c/wingtip/unified.html`。 按一下 [確定]。
 5. 按一下 [本機帳戶註冊頁面] 。 將 [使用自訂範本] 開關切換到 [是]。 在 [自訂頁面 URI] 欄位中輸入 `https://wingtiptoysb2c.blob.core.windows.net/b2c/wingtip/selfasserted.html`。
 6. 針對 [社交帳戶註冊頁面] 重複相同步驟。
    按兩次 [確定]  ，關閉 UI 自訂刀鋒視窗。
@@ -58,7 +58,7 @@ ms.lasthandoff: 03/23/2018
 3. 提供儲存體帳戶的 [名稱] \(例如 "contoso")，並針對 [定價層]、[資源群組] 和 [訂用帳戶] 挑選適當的選取項目。 確定您已核取 [釘選到「開始面板」]  選項。 按一下頁面底部的 [新增] 。
 4. 回到「開始面板」，然後按一下您剛建立的儲存體帳戶。
 5. 在 [摘要] 區段中，按一下 [容器]，然後按一下 [+新增]。
-6. 提供容器的 [名稱] \(例如 "b2c")，並選取 [Blob] 作為 [存取類型]。 按一下 [SERVICEPRINCIPAL] 。
+6. 提供容器的 [名稱] \(例如 "b2c")，並選取 [Blob] 作為 [存取類型]。 按一下 [確定]。
 7. 您建立的容器將會出現在 [Blob]  刀鋒視窗的清單中。 記下容器的 URL；例如，其看起來應該類似 `https://contoso.blob.core.windows.net/b2c`。 關閉 [Blob]  刀鋒視窗。
 8. 在儲存體帳戶刀鋒視窗中，按一下 [金鑰]，並記下 [儲存體帳戶名稱] 和 [主要存取金鑰] 欄位的值。
 
@@ -74,7 +74,7 @@ ms.lasthandoff: 03/23/2018
 git clone https://github.com/azureadquickstarts/b2c-azureblobstorage-client
 ```
 
-此儲存機制包含 `sample_templates\wingtip` 目錄，其中含有範例 HTML、CSS 和影像。 為了讓這些範本參考您自己的 Azure Blob 儲存體帳戶，您必須編輯 HTML 檔案。 開啟 `unified.html` 和 `selfasserted.html`，並以您自己容器的 URL (您在上述步驟中記下的 URL) 來取代任何出現的 `https://localhost`。 您必須使用 HTML 檔案的絕對路徑，因為在此案例中，HTML 將是由 Azure AD 在 `https://login.microsoftonline.com`網域下提供。
+此儲存機制包含 `sample_templates\wingtip` 目錄，其中含有範例 HTML、CSS 和影像。 為了讓這些範本參考您自己的 Azure Blob 儲存體帳戶，您必須編輯 HTML 檔案。 開啟 `unified.html` 和 `selfasserted.html`，並以您自己容器的 URL (您在上述步驟中記下的 URL) 來取代任何出現的 `https://localhost`。 您必須使用 HTML 檔案的絕對路徑，因為在此案例中，HTML 將是由 Azure AD 在 `tenantname.b2clogin.com`網域下提供。
 
 ### <a name="upload-the-sample-files"></a>上傳範例檔案
 在相同的儲存機制中，解壓縮 `B2CAzureStorageClient.zip` 並執行其中的 `B2CAzureStorageClient.exe` 檔案。 這個程式只會將您指定目錄中的所有檔案上傳至您的儲存體帳戶，並允許 CORS 存取這些檔案。 如果您遵循上述步驟操作，HTML 和 CSS 檔案現在會指向您的儲存體帳戶。 請注意您的儲存體帳戶名稱是 `blob.core.windows.net` 前面的部分，例如 `contoso`。 您可以試著在瀏覽器上存取 `https://{storage-account-name}.blob.core.windows.net/{container-name}/wingtip/unified.html` ，確認該內容已正確地上傳。 此外，使用 [http://test-cors.org/](http://test-cors.org/) 來確定該內容現在已啟用 CORS。 (在結果中尋找 "XHR status: 200")。

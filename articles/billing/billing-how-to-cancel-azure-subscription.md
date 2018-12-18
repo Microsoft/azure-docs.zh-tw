@@ -1,25 +1,26 @@
 ---
-title: "取消 Azure 訂用帳戶 | Microsoft Docs"
-description: "說明如何取消 Azure 訂用帳戶，例如免費試用訂用帳戶"
-services: 
-documentationcenter: 
+title: 取消 Azure 訂用帳戶 | Microsoft Docs
+description: 說明如何取消 Azure 訂用帳戶，例如免費試用訂用帳戶
+services: ''
+documentationcenter: ''
 author: genlin
 manager: jlian
-editor: 
+editor: ''
 tags: billing
 ms.assetid: 3051d6b0-179f-4e3a-bda4-3fee7135eac5
 ms.service: billing
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 08/30/2017
+ms.topic: conceptual
+ms.date: 07/18/2018
 ms.author: genli
-ms.openlocfilehash: 51fe2ab891e86ae4bd7402622231af47f35aa01d
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 0bd0fca54ae5bf4292564a15adf38b7586768450
+ms.sourcegitcommit: 727a0d5b3301fe20f20b7de698e5225633191b06
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 07/19/2018
+ms.locfileid: "39145446"
 ---
 # <a name="cancel-your-subscription-for-azure"></a>取消您的 Azure 訂用帳戶
 
@@ -31,7 +32,7 @@ ms.lasthandoff: 10/11/2017
 * 關閉您的服務。 移至[管理入口網站中的資源頁面](https://ms.portal.azure.com/?flight=1#blade/HubsExtension/Resources/resourceType/Microsoft.Resources%2Fresources)，並**停止**任何執行中的虛擬機器、應用程式或其他服務。
 * 考慮移轉您的資料。 請參閱[將資源移動到新的資源群組或訂用帳戶](../azure-resource-manager/resource-group-move-resources.md)。
 
-如果您取消付費 [Azure 支援方案](https://azure.microsoft.com/support/plans/)，6 個月期剩下的每個月仍會計費。
+如果您取消付費 Azure 支援方案，剩餘的訂閱期間仍會計費。 如需詳細資訊，請參閱 [Azure 支援方案](https://azure.microsoft.com/support/plans/)。
 
 ## <a name="cancel-subscription-using-the-azure-portal"></a>使用 Azure 入口網站取消訂用帳戶
 

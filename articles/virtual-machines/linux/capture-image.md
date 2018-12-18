@@ -1,11 +1,11 @@
 ---
-title: "使用 CLI 2.0 在 Azure 中擷取 Linux VM 的映像 | Microsoft Docs"
-description: "使用 Azure CLI 2.0 擷取要用於大型部署的 Azure VM 映像。"
+title: 使用 Azure CLI 在 Azure 中擷取 Linux VM 的映像 | Microsoft Docs
+description: 使用 Azure CLI 擷取要用於大量部署的 Azure VM 映像。
 services: virtual-machines-linux
-documentationcenter: 
+documentationcenter: ''
 author: cynthn
-manager: timlt
-editor: 
+manager: jeconnoc
+editor: ''
 tags: azure-resource-manager
 ms.assetid: e608116f-f478-41be-b787-c2ad91b5a802
 ms.service: virtual-machines-linux
@@ -13,13 +13,14 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: azurecli
 ms.topic: article
-ms.date: 07/10/2017
+ms.date: 03/22/2018
 ms.author: cynthn
-ms.openlocfilehash: 15ad240ea9b635cd7995bfae403a93e0b392850a
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+ms.openlocfilehash: 98d98c1337830ce54c7ff96c19812169be129584
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46946811"
 ---
 # <a name="how-to-create-an-image-of-a-virtual-machine-or-vhd"></a>如何建立虛擬機器或 VHD 的映像
 
@@ -37,7 +38,7 @@ ms.lasthandoff: 03/09/2018
 
 * 您需要在 Resource Manager 部署模型中使用受控磁碟建立的 Azure VM。 如果您尚未建立 Linux VM，可以使用[入口網站](quick-create-portal.md)、[Azure CLI](quick-create-cli.md) 或 [Resource Manager 範本](create-ssh-secured-vm-from-template.md)。 視需要設定 VM。 例如，[新增資料磁碟](add-disk.md)、套用更新，並安裝應用程式。 
 
-* 您還需要安裝最新的 [Azure CLI 2.0](/cli/azure/install-az-cli2)，並使用 [az login](/cli/azure/reference-index#az_login) 來登入 Azure 帳戶。
+* 您還需要安裝最新的 [Azure CLI](/cli/azure/install-az-cli2)，並使用 [az login](/cli/azure/reference-index#az_login) 來登入 Azure 帳戶。
 
 ## <a name="quick-commands"></a>快速命令
 
@@ -45,7 +46,7 @@ ms.lasthandoff: 03/09/2018
 
 
 ## <a name="step-1-deprovision-the-vm"></a>步驟 1：取消佈建 VM
-使用 Azure VM 代理程式來取消佈建 VM，以將電腦特定的檔案和資料刪除。 在來源 Linux VM 上使用 `waagent` 命令搭配 -deprovision+user 參數。 如需詳細資訊，請參閱 [Azure Linux 代理程式使用者指南](../windows/agent-user-guide.md)。
+使用 Azure VM 代理程式來取消佈建 VM，以將電腦特定的檔案和資料刪除。 在來源 Linux VM 上使用 `waagent` 命令搭配 -deprovision+user 參數。 如需詳細資訊，請參閱 [Azure Linux 代理程式使用者指南](../extensions/agent-linux.md)。
 
 1. 使用 SSH 用戶端連線到 Linux VM。
 2. 在 SSH 視窗中，輸入下列命令：
@@ -61,7 +62,7 @@ ms.lasthandoff: 03/09/2018
 4. 在命令完成之後，請輸入 **exit**。 此步驟會關閉 SSH 用戶端。
 
 ## <a name="step-2-create-vm-image"></a>步驟 2：建立 VM 映像
-使用 Azure CLI 2.0 將 VM 標記為一般化，並擷取映像。 在下列範例中，請以您自己的值取代範例參數名稱。 範例參數名稱包含 *myResourceGroup*、*myVnet* 和 *myVM*。
+使用 Azure CLI 將 VM 標記為一般化，並擷取映像。 在下列範例中，請以您自己的值取代範例參數名稱。 範例參數名稱包含 *myResourceGroup*、*myVnet* 和 *myVM*。
 
 1. 使用 [az vm deallocate](/cli//azure/vm#deallocate) 解除配置已取消佈建的 VM。 下列範例會解除配置名為 myResourceGroup 資源群組中名為 myVM 的 VM：
    
@@ -89,6 +90,8 @@ ms.lasthandoff: 03/09/2018
    
    > [!NOTE]
    > 此映像與來源 VM 建立於相同的資源群組中。 您可以從此映像，在您訂用帳戶的任何資源群組中建立 VM。 從管理觀點來看，您可能想為您的 VM 資源和映像建立特定的資源群組。
+   >
+   > 如果您想要將映像儲存於區域復原的儲存體中，則需要在支援[可用性區域](../../availability-zones/az-overview.md)且包含 `--zone-resilient true` 參數的區域中建立它。
 
 ## <a name="step-3-create-a-vm-from-the-captured-image"></a>步驟 3：從擷取的映像建立 VM
 使用您以 [az vm create](/cli/azure/vm#az_vm_create) 建立的映像來建立 VM。 下列範例會從名為 myImage 的映像建立名為 myVMDeployed 的 VM：
@@ -143,4 +146,4 @@ az vm show \
 - 再次遵循相關步驟，以取消佈建、解除配置、一般化及建立映像。
 - 在日後的部署中使用這個新映像。 如有需要，刪除原始的映像。
 
-如需有關使用 CLI 管理 VM 的詳細資訊，請參閱[Azure CLI 2.0](/cli/azure)。
+如需使用 CLI 管理 VM 的詳細資訊，請參閱 [Azure CLI](/cli/azure)。

@@ -1,19 +1,22 @@
 ---
-title: "Azure 快速入門 - 使用 DSC 設定 VM | Microsoft Docs"
-description: "使用 Desired State Configuration 在 Linux 虛擬機器上設定 LAMP 堆疊"
+title: Azure 快速入門 - 使用 DSC 設定 VM | Microsoft Docs
+description: 使用 Desired State Configuration 在 Linux 虛擬機器上設定 LAMP 堆疊
 services: automation
-keywords: "dsc, 設定, 自動化"
+ms.service: automation
+ms.component: dsc
+keywords: dsc, 設定, 自動化
 author: KrisBash
 ms.author: krbash
 ms.date: 12/17/2017
 ms.topic: quickstart
 ms.custom: mvc
 manager: carmonm
-ms.openlocfilehash: 7f35acc0d8d553a3f5d1576ae18cbafd1dcbb225
-ms.sourcegitcommit: 48fce90a4ec357d2fb89183141610789003993d2
+ms.openlocfilehash: 959171963bcdc721c81823fcf4f9769174b32636
+ms.sourcegitcommit: d28bba5fd49049ec7492e88f2519d7f42184e3a8
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/12/2018
+ms.lasthandoff: 05/11/2018
+ms.locfileid: "34053710"
 ---
 # <a name="configure-a-linux-virtual-machine-with-desired-state-configuration"></a>使用 Desired State Configuration 來設定 Linux 虛擬機器
 
@@ -28,7 +31,7 @@ ms.lasthandoff: 01/12/2018
 * 執行 Red Hat Enterprise Linux、CentOS 或 Oracle Linux 的 Azure Resource Manager VM (非傳統)。 如需建立 VM 的指示，請參閱 [在 Azure 入口網站中建立第一個 Linux 虛擬機器](../virtual-machines/linux/quick-create-portal.md)
 
 ## <a name="log-in-to-azure"></a>登入 Azure
-登入 Azure，網址是 https://portal.azure.com
+在 https://portal.azure.com 登入 Azure
 
 ## <a name="onboard-a-virtual-machine"></a>將虛擬機器上架
 有許多不同的方法可將電腦上架及啟用 Desired State Configuration。 本快速入門涵蓋透過自動化帳戶進行上架。 您可以閱讀[上架](https://docs.microsoft.com/azure/automation/automation-dsc-onboarding)文章，深入了解將您的電腦上架至 Desired State Configuration 的不同方法。
@@ -40,7 +43,7 @@ ms.lasthandoff: 01/12/2018
 1. 尋找您需要啟用 DSC 的虛擬機器。 若要尋找特定的虛擬機器，您可以使用搜尋欄位和篩選選項。
 1. 按一下虛擬機器，然後選取 [連線]
 1. 選取適用於虛擬機器的 DSC 設定。 如果您已經備妥設定，可以將它指定為「節點設定名稱」。 您可以設定[設定模式](https://docs.microsoft.com/powershell/dsc/metaconfig)來控制電腦的設定行為。
-1. 按一下 [確定] 
+1. 按一下 [檔案] &gt; [新增] &gt; [專案] 
 
 ![將 Azure VM 上架至 DSC](./media/automation-quickstart-dsc-configuration/dsc-onboard-azure-vm.png)
 
@@ -101,7 +104,7 @@ configuration LAMPServer {
 1. 在自動化帳戶的左側窗格中，選取 [DSC 設定]。
 1. 按一下功能表選項可 [新增設定]
 1. 選取您在先前步驟中儲存的組態檔
-1. 按一下 [確定] 
+1. 按一下 [檔案] &gt; [新增] &gt; [專案] 
 
 ## <a name="compile-a-configuration"></a>編譯設定
 

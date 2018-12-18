@@ -1,25 +1,19 @@
 ---
-title: "Azure 資料目錄常見案例 | Microsoft Docs"
-description: "Azure 資料目錄常見案例的概觀，包括高價值資料來源的註冊和探索、啟用自助商業智慧，以及擷取有關資料來源和處理程序的現有知識。"
+title: Azure 資料目錄常見案例
+description: Azure 資料目錄常見案例的概觀，包括高價值資料來源的註冊和探索、啟用自助商業智慧，以及擷取有關資料來源和處理程序的現有知識。
 services: data-catalog
-documentationcenter: 
-author: steelanddata
-manager: NA
-editor: 
-tags: 
+author: markingmyname
+ms.author: maghan
 ms.assetid: 60930d78-d2d4-4d5d-9651-bdda50b0da0e
 ms.service: data-catalog
-ms.devlang: NA
-ms.topic: article
-ms.tgt_pltfrm: NA
-ms.workload: data-catalog
+ms.topic: conceptual
 ms.date: 01/18/2018
-ms.author: maroche
-ms.openlocfilehash: 156710ad50349e8a3632e31c7752387d4449a65d
-ms.sourcegitcommit: be9a42d7b321304d9a33786ed8e2b9b972a5977e
+ms.openlocfilehash: 531c5890cb2164b51d7b383d0b1fdd1b92d9e8eb
+ms.sourcegitcommit: b7e5bbbabc21df9fe93b4c18cc825920a0ab6fab
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/19/2018
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47405024"
 ---
 # <a name="azure-data-catalog-common-scenarios"></a>Azure 資料目錄常見案例
 本文介紹 Azure 資料目錄幫助您的組織從其現有的資料來源獲得更多價值的常見案例。

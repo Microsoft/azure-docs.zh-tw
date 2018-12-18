@@ -3,8 +3,8 @@ title: 針對 Azure Load Balancer 進行疑難排解 | Microsoft Docs
 description: 針對 Azure Load Balancer 的已知問題進行疑難排解
 services: load-balancer
 documentationcenter: na
-author: RamanDhillon
-manager: timlt
+author: chadmath
+manager: cshepard
 editor: ''
 ms.assetid: ''
 ms.service: load-balancer
@@ -12,13 +12,14 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 09/25/2017
-ms.author: kumud
-ms.openlocfilehash: 560e2ed7cafd1018f4b64ac6d0e45134560082b6
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.date: 08/09/2018
+ms.author: genli
+ms.openlocfilehash: 1a4be7b5caba751f0f90e865d8ef23e5e9c899d6
+ms.sourcegitcommit: 17fe5fe119bdd82e011f8235283e599931fa671a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 08/11/2018
+ms.locfileid: "42140618"
 ---
 # <a name="troubleshoot-azure-load-balancer"></a>針對 Azure Load Balancer 進行疑難排解
 
@@ -86,7 +87,7 @@ ms.lasthandoff: 03/23/2018
 * 負載平衡器後端集區 VM 未接聽資料連接埠 
 * 網路安全性群組封鎖負載平衡器後端集區 VM 上的連接埠  
 * 從相同的 VM 和 NIC 存取負載平衡器 
-* 從參與的負載平衡器後端集區 VM 存取網際網路負載平衡器 VIP 
+* 從參與的負載平衡器後端集區 VM 存取網際網路負載平衡器前端 
 
 ### <a name="cause-1-load-balancer-backend-pool-vm-is-not-listening-on-the-data-port"></a>原因 1：負載平衡器後端集區 VM 未接聽資料連接埠 
 如果 VM 未回應資料流量，則可能是因為參與的 VM 上未開啟目標連接埠，或 VM 未接聽該連接埠。 
@@ -103,9 +104,7 @@ ms.lasthandoff: 03/23/2018
 
 如果在子網路或 VM 上設定的一或多個網路安全性群組封鎖來源 IP 或連接埠，VM 就無法回應。
 
-* 列出在後端 VM 上設定的網路安全性群組。 如需詳細資訊，請參閱
-    -  [使用入口網站管理網路安全性群組](../virtual-network/virtual-network-manage-nsg-arm-portal.md)
-    -  [使用 PowerShell 管理網路安全性群組](../virtual-network/virtual-network-manage-nsg-arm-ps.md)
+* 列出在後端 VM 上設定的網路安全性群組。 如需詳細資訊，請參閱[管理網路安全性群組](../virtual-network/manage-network-security-group.md)。
 * 從網路安全性群組的清單中，檢查︰
     - 資料連接埠上的傳入或傳出流量是否有干擾。 
     - VM 之 NIC 上或子網路上的 [全部拒絕] 網路安全性群組規則的優先順序是否高於允許負載平衡器探查與流量的預設規則 (網路安全性群組必須允許 168.63.129.16 的負載平衡器 IP，亦即探查連接埠)。 
@@ -120,15 +119,15 @@ ms.lasthandoff: 03/23/2018
 * 每個應用程式都設定個別的後端集區 VM。 
 * 在有兩個 NIC 的 VM 中設定應用程式，讓每個應用程式使用自己的網路介面和 IP 位址。 
 
-### <a name="cause-4-accessing-the-internal-load-balancer-vip-from-the-participating-load-balancer-backend-pool-vm"></a>原因 4：從參與的負載平衡器後端集區 VM 存取內部負載平衡器 VIP
+### <a name="cause-4-accessing-the-internal-load-balancer-frontend-from-the-participating-load-balancer-backend-pool-vm"></a>原因 4：從參與的負載平衡器後端集區 VM 存取內部負載平衡器前端
 
-如果在 VNet 內設定 ILB VIP，其中一個參與的後端 VM 會嘗試存取內部負載平衡器 VIP，這會導致失敗。 這是不支援的案例。
-**解決方式** 評估使用應用程式閘道或其他 Proxy (例如 nginx 或 haproxy) 來支援這種案例。 如需應用程式閘道的詳細資訊，請參閱[應用程式閘道的概觀](../application-gateway/application-gateway-introduction.md)
+如果在 VNet 內設定內部 Load Balancer，且其中一個參與的後端 VM 嘗試存取內部 Load Balancer 前端，則當流程對應至原始 VM 時，會發生失敗。 不支援這種案例。 請檢閱[限制](load-balancer-overview.md#limitations)以取得詳細討論。
+
+**解決方式** 有數種方式可為此案例排除障礙，包括使用 Proxy。 請評估使用應用程式閘道或其他第三方 Proxy (例如 nginx 或 haproxy)。 如需應用程式閘道的詳細資訊，請參閱[應用程式閘道的概觀](../application-gateway/application-gateway-introduction.md)
 
 ## <a name="additional-network-captures"></a>其他網路擷取
 如果您決定開啟支援案例，請收集下列資訊以便更快解決問題。 選擇單一的後端 VM 來執行下列測試︰
 - 從 VNet 內的其中一個後端 VM 使用 Psping 測試探查連接埠回應 (範例︰psping 10.0.0.4:3389) 並記錄結果。 
-- 從 VNet 內的其中一個後端 VM 使用 TCPing 測試探查連接埠回應 (範例︰psping 10.0.0.4:3389) 並記錄結果。
 - 如果這些 ping 測試沒有收到任何回應，請在執行 PsPing 時對後端 VM 和 VNet 測試 VM 同時執行 Netsh trace，然後停止 Netsh trace。 
   
 ## <a name="next-steps"></a>後續步驟

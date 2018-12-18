@@ -1,3 +1,20 @@
+---
+title: 包含檔案
+description: 包含檔案
+services: iot-suite
+author: dominicbetts
+ms.service: iot-suite
+ms.topic: include
+ms.date: 04/24/2018
+ms.author: dobett
+ms.custom: include file
+ms.openlocfilehash: 5702c6e9c9d75c6cccb82f1c57684ef7b9898c34
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34665995"
+---
 ## <a name="view-device-telemetry"></a>檢視裝置遙測資料
 
 您可以在解決方案中，檢視從您 [裝置] 頁面上之裝置所傳送的遙測。
@@ -16,7 +33,7 @@
 
 ## <a name="act-on-your-device"></a>在裝置上採取行動
 
-若要在您的裝置上叫用方法，請使用遠端監視解決方案中的 [裝置] 頁面。 例如，在遠端監視解決方案中，**Chiller** 裝置會實作 **FirmwareUpdate** 方法。
+若要在您的裝置上叫用方法，請使用遠端監視解決方案中的**裝置**頁面。 例如，在遠端監視解決方案中，**Chiller** 裝置會實作 **FirmwareUpdate** 方法。
 
 1. 選擇 [裝置] 以瀏覽至解決方案中的 [裝置] 頁面。
 
@@ -24,9 +41,9 @@
 
     ![選取您的實體裝置](media/iot-suite-visualize-connecting/devicesselect.png)
 
-1. 若要顯示您可以在裝置上呼叫的方法清單，選擇 [排程]。 若要排程可在多個裝置上執行的方法，您可以在清單中選取多個裝置。 [排程] 面板會顯示所有您選取之裝置的通用方法。
+1. 若要顯示您可以在裝置上呼叫的方法清單，請依序選擇 [作業] 和 [執行方法]。 若要排程可在多個裝置上執行的作業，您可以在清單中選取多個裝置。 [作業] 面板會顯示所有您選取之裝置的通用方法。
 
-1. 選擇 [FirmwareUpdate]，將作業名稱設定為 [UpdatePhysicalChiller]。 將 [韌體版本] 設定為 [2.0.0]，將 [韌體 URI] 設定為 [http://contoso.com/updates/firmware.bin]，然後選擇 [套用]：
+1. 選擇 [FirmwareUpdate]，將作業名稱設定為 [UpdatePhysicalChiller]。 將 [韌體版本] 設定為 [2.0.0]，將 [韌體 URI] 設定為 **http://contoso.com/updates/firmware.bin**，然後選擇 [套用]：
 
     ![排程韌體更新](media/iot-suite-visualize-connecting/deviceschedule.png)
 
@@ -41,4 +58,4 @@
 
 ## <a name="next-steps"></a>後續步驟
 
-[自訂遠端監視預先設定解決方案](../articles/iot-suite/iot-suite-remote-monitoring-customize.md)文章中說明一些自訂預先設定解決方案的方法。
+[自訂遠端監視解決方案加速器](../articles/iot-accelerators/iot-accelerators-remote-monitoring-customize.md)一文中，說明了一些自訂解決方案加速器的方法。

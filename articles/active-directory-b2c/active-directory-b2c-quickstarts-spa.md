@@ -1,23 +1,23 @@
 ---
-title: 測試已啟用 Azure AD B2C 的單一頁面應用程式
-description: 試用範例單一頁面應用程式的快速入門，而該應用程式使用 Azure Active Directory B2C 來驗證和註冊使用者。
+title: 快速入門 - 使用 Azure Active Directory B2C 為單一頁面應用程式設定登入 | Microsoft Docs
+description: 執行範例單一頁面應用程式，而該應用程式使用 Azure Active Directory B2C 來提供帳戶登入。
 services: active-directory-b2c
-documentationcenter: ''
 author: davidmu1
 manager: mtillman
-editor: ''
-ms.service: active-directory-b2c
+ms.service: active-directory
 ms.workload: identity
-ms.topic: article
-ms.date: 2/13/2018
+ms.topic: quickstart
+ms.date: 7/13/2018
 ms.author: davidmu
-ms.openlocfilehash: 02a0515ff7c461370f29a511ac576d857676cb2b
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: B2C
+ms.openlocfilehash: 155cdaf51ac5725a315259a0d809ba644f64110c
+ms.sourcegitcommit: 7208bfe8878f83d5ec92e54e2f1222ffd41bf931
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 07/14/2018
+ms.locfileid: "39048911"
 ---
-# <a name="quickstart-test-drive-an-azure-ad-b2c-enabled-single-page-app"></a>快速入門：測試已啟用 Azure AD B2C 的單一頁面應用程式
+# <a name="quickstart-set-up-sign-in-for-a-single-page-app-using-azure-active-directory-b2c"></a>快速入門：使用 Azure Active Directory B2C 為單一頁面應用程式設定登入
 
 Azure Active Directory (Azure AD) B2C 提供雲端身分識別管理，使您的應用程式、企業和客戶受到保護。 Azure AD B2C 可讓您的應用程式使用開放式標準通訊協定，向社交帳戶和企業帳戶進行驗證。
 
@@ -25,11 +25,11 @@ Azure Active Directory (Azure AD) B2C 提供雲端身分識別管理，使您的
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 * [Visual Studio 2017](https://www.visualstudio.com/downloads/)，其中包含 **ASP.NET 和 Web 部署**工作負載。
 * 安裝 [Node.js](https://nodejs.org/en/download/)
-* Facebook、Google、Microsoft 或 Twitter 社交帳戶。
+* Facebook 帳戶。
 
 ## <a name="download-the-sample"></a>下載範例
 
@@ -63,21 +63,17 @@ Listening on port 6420...
 
 按一下 [登入] 按鈕，以根據 Azure AD B2C 原則啟動 Azure AD B2C 的「註冊或登入」工作流程。 
 
-此範例支援數個登入選項，包括使用社交識別提供者或使用電子郵件地址建立本機帳戶。 在本快速入門中，請使用 Facebook、Google、Microsoft 或 Twitter 的社交身分識別提供者帳戶。 
+此範例的目的是支援數個登入選項，包括使用電子郵件地址建立本機帳戶。 針對此快速入門，請使用 Facebook 帳戶。 
 
 ### <a name="sign-up-using-a-social-identity-provider"></a>使用社交識別提供者註冊
 
 Azure AD B2C 會針對範例 Web 應用程式，呈現 Wingtip Toys 虛構品牌的自訂登入頁面。 
 
-1. 若要使用社交識別提供者註冊，按一下您想要使用之識別提供者的按鈕。
-
-    ![登入或註冊提供者](media/active-directory-b2c-quickstarts-spa/sign-in-or-sign-up-spa.png)
+1. 若要使用社交識別提供者註冊，請按一下 Facebook 識別提供者的按鈕。
 
     您可使用您的社交帳戶認證進行驗證 (登入)，以及授權應用程式讀取您的社交帳戶資訊。 透過授與存取權，應用程式可以從社交帳戶擷取設定檔資訊，例如您的名稱與縣/市。 
 
-2. 完成識別提供者的登入程序。 比方說，如果您選擇 Twitter，請輸入 Twitter 認證，然後按一下 [登入]。
-
-    ![使用社交帳戶驗證和授權](media/active-directory-b2c-quickstarts-spa/twitter-authenticate-authorize-spa.png)
+2. 藉由輸入您的認證來完成識別提供者的登入程序。
 
     您的新帳戶設定檔詳細資料會預先填入來自您社交帳戶的資訊。 
 
@@ -104,4 +100,4 @@ Azure AD B2C 會針對範例 Web 應用程式，呈現 Wingtip Toys 虛構品牌
 下一個步驟是建立您自己的 Azure AD B2C 租用戶，並設定使用您的租用戶來執行的範例。 
 
 > [!div class="nextstepaction"]
-> [在 Azure 入口網站中建立 Azure Active Directory B2C 租用戶](active-directory-b2c-get-started.md)
+> [在 Azure 入口網站中建立 Azure Active Directory B2C 租用戶](tutorial-create-tenant.md)

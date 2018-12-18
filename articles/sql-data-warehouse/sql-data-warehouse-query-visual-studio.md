@@ -1,25 +1,21 @@
 ---
-title: "連線到 Azure SQL 資料倉儲 - VSTS | Microsoft Docs"
-description: "使用 Visual Studio 查詢 SQL 資料倉儲。"
+title: 連線到 Azure SQL 資料倉儲 - VSTS | Microsoft Docs
+description: 使用 Visual Studio 查詢 SQL 資料倉儲。
 services: sql-data-warehouse
-documentationcenter: NA
-author: antvgski
-manager: jhubbard
-editor: 
-ms.assetid: daace889-95e5-4826-b2fc-047eac9d6d95
+author: kavithaj
+manager: craigg
 ms.service: sql-data-warehouse
-ms.devlang: NA
-ms.topic: get-started-article
-ms.tgt_pltfrm: NA
-ms.workload: data-services
-ms.custom: connect
-ms.date: 10/31/2016
-ms.author: anvang;barbkess
-ms.openlocfilehash: 1e44c6c3c47034a892753c69c5ef22a5eac18c0d
-ms.sourcegitcommit: 68aec76e471d677fd9a6333dc60ed098d1072cfc
+ms.topic: conceptual
+ms.component: consume
+ms.date: 04/17/2018
+ms.author: kavithaj
+ms.reviewer: igorstan
+ms.openlocfilehash: db1c6117072157e0ca3a1bfcc735872b795a34d7
+ms.sourcegitcommit: 1fb353cfca800e741678b200f23af6f31bd03e87
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/18/2017
+ms.lasthandoff: 08/30/2018
+ms.locfileid: "43306718"
 ---
 # <a name="connect-to-sql-data-warehouse-with-visual-studio-and-ssdt"></a>使用 Visual Studio 和 SSDT 連接到 SQL 資料倉儲
 > [!div class="op_single_selector"]
@@ -33,7 +29,7 @@ ms.lasthandoff: 12/18/2017
 
 使用 Visual Studio 在短短幾分鐘內查詢 Azure SQL 資料倉儲。 這個方法會在 Visual Studio 中使用 SQL Server Data Tools (SSDT) 延伸模組。 
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 若要使用本教學課程，您需要：
 
 * 現有的 SQL 資料倉儲。 若要建立資料倉儲，請參閱 [建立 SQL 資料倉儲][Create a SQL Data Warehouse]。

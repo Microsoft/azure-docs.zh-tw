@@ -18,6 +18,7 @@ ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 03/28/2018
+ms.locfileid: "30233821"
 ---
 # <a name="api-management-advanced-policies"></a>API 管理進階原則
 本主題提供下列 API 管理原則的參考。 如需有關新增和設定原則的資訊，請參閱 [API 管理中的原則](http://go.microsoft.com/fwlink/?LinkID=398186)。
@@ -137,9 +138,9 @@ ms.lasthandoff: 03/28/2018
 ###  <a name="ChooseUsage"></a>使用方式
  此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。
 
--   **原則區段︰**輸入、輸出、後端、錯誤
+-   **原則區段︰** 輸入、輸出、後端、錯誤
 
--   **原則範圍：**所有範圍
+-   **原則範圍：** 所有範圍
 
 ##  <a name="ForwardRequest"></a>轉送要求
  `forward-request` 原則會將內送要求轉送給要求[內容](api-management-policy-expressions.md#ContextVariables)中指定的後端服務。 後端服務 URL 會指定於 API [設定](https://azure.microsoft.com/documentation/articles/api-management-howto-create-apis/#configure-api-settings)中，而且可以使用[設定後端服務](api-management-transformation-policies.md)原則加以變更。
@@ -248,8 +249,8 @@ ms.lasthandoff: 03/28/2018
 ### <a name="usage"></a>使用量
  此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。
 
--   **原則區段︰**後端
--   **原則範圍：**所有範圍
+-   **原則區段︰** 後端
+-   **原則範圍：** 所有範圍
 
 ##  <a name="LimitConcurrency"></a> 限制並行
  `limit-concurrency` 原則可防止超過指定之要求數目在指定的時間執行括住的原則。 超出該數目時，新的要求會立即失敗，並產生「429 太多要求」狀態碼。
@@ -295,9 +296,9 @@ ms.lasthandoff: 03/28/2018
 ### <a name="usage"></a>使用量
  此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。
 
--   **原則區段︰**輸入、輸出、後端、錯誤
+-   **原則區段︰** 輸入、輸出、後端、錯誤
 
--   **原則範圍：**所有範圍
+-   **原則範圍：** 所有範圍
 
 ##  <a name="log-to-eventhub"></a>記錄到事件中樞
  `log-to-eventhub` 原則會將指定格式的訊息傳送至記錄器實體所定義的事件中樞。 此原則正如其名，可用來儲存選取的要求或回應內容資訊，以進行線上或離線分析。
@@ -346,9 +347,9 @@ ms.lasthandoff: 03/28/2018
 ### <a name="usage"></a>使用量
  此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。
 
--   **原則區段︰**輸入、輸出、後端、錯誤
+-   **原則區段︰** 輸入、輸出、後端、錯誤
 
--   **原則範圍：**所有範圍
+-   **原則範圍：** 所有範圍
 
 ##  <a name="mock-response"></a> Mock 回應
 如名稱所示，`mock-response` 是用來模擬 API 和作業。 它會中止正常的管線執行，並將模擬回應傳回給呼叫者。 原則一律會嘗試傳回最高精確度的回應。 它偏好使用回應內容範例 (若可使用)。 當提供結構描述而無提供範例時，它會從結構描述產生範例回應。 如果沒有找到範例或結構描述，則會傳回沒有內容的回應。
@@ -388,9 +389,9 @@ status code and media type. If no example or schema found, the content is empty.
 ### <a name="usage"></a>使用方式
  此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。
 
--   **原則區段︰**輸入、輸出、錯誤
+-   **原則區段︰** 輸入、輸出、錯誤
 
--   **原則範圍：**所有範圍
+-   **原則範圍：** 所有範圍
 
 ##  <a name="Retry"></a>重試
  `retry` 原則會執行其子原則一次，然後重試子原則的執行，直到重試 `condition` 變成 `false` 或重試 `count` 用盡。
@@ -453,9 +454,9 @@ status code and media type. If no example or schema found, the content is empty.
 ### <a name="usage"></a>使用量
  此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。 請注意，此原則會繼承子原則的使用方式限制。
 
--   **原則區段︰**輸入、輸出、後端、錯誤
+-   **原則區段︰** 輸入、輸出、後端、錯誤
 
--   **原則範圍：**所有範圍
+-   **原則範圍：** 所有範圍
 
 ##  <a name="ReturnResponse"></a>傳回回應
  `return-response` 原則會中止管線的執行，並將預設或自訂的回應傳回給呼叫者。 預設回應是 `200 OK`，且沒有本文。 透過內容變數或原則陳述式即可指定自訂回應。 若同時提供兩者，原則陳述式會先修改內容變數中包含的回應，再傳回給呼叫者。
@@ -501,9 +502,9 @@ status code and media type. If no example or schema found, the content is empty.
 ### <a name="usage"></a>使用量
  此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。
 
--   **原則區段︰**輸入、輸出、後端、錯誤
+-   **原則區段︰** 輸入、輸出、後端、錯誤
 
--   **原則範圍：**所有範圍
+-   **原則範圍：** 所有範圍
 
 ##  <a name="SendOneWayRequest"></a>傳送單向要求
  `send-one-way-request` 原則會將所提供的要求傳送到指定的 URL，無須等待回應。
@@ -573,9 +574,9 @@ status code and media type. If no example or schema found, the content is empty.
 ### <a name="usage"></a>使用量
  此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。
 
--   **原則區段︰**輸入、輸出、後端、錯誤
+-   **原則區段︰** 輸入、輸出、後端、錯誤
 
--   **原則範圍：**所有範圍
+-   **原則範圍：** 所有範圍
 
 ##  <a name="SendRequest"></a>傳送要求
  `send-request` 原則會將所提供的要求傳送至指定的 URL，等候時間不會超過所設定的逾時值。
@@ -657,9 +658,9 @@ status code and media type. If no example or schema found, the content is empty.
 ### <a name="usage"></a>使用量
  此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。
 
--   **原則區段︰**輸入、輸出、後端、錯誤
+-   **原則區段︰** 輸入、輸出、後端、錯誤
 
--   **原則範圍：**所有範圍
+-   **原則範圍：** 所有範圍
 
 ##  <a name="SetHttpProxy"></a> 設定 HTTP Proxy
  `proxy` 原則可讓您透過 HTTP Proxy 將要求路由轉送至後端。 在閘道與 Proxy 之間僅支援 HTTP (不是 HTTPS)。 僅限基本和 NTLM 驗證。
@@ -696,9 +697,9 @@ status code and media type. If no example or schema found, the content is empty.
 ### <a name="usage"></a>使用量
  此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。
 
--   **原則區段︰**inbound
+-   **原則區段︰** inbound
 
--   **原則範圍：**所有範圍
+-   **原則範圍：** 所有範圍
 
 ##  <a name="SetRequestMethod"></a>設定要求方法
  `set-method` 原則允許您變更要求的 HTTP 要求方法。
@@ -748,9 +749,9 @@ status code and media type. If no example or schema found, the content is empty.
 ### <a name="usage"></a>使用量
  此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。
 
--   **原則區段︰**輸入、錯誤
+-   **原則區段︰** 輸入、錯誤
 
--   **原則範圍：**所有範圍
+-   **原則範圍：** 所有範圍
 
 ##  <a name="SetStatus"></a>設定狀態碼
  `set-status` 原則會將 HTTP 狀態碼設為指定值。
@@ -795,8 +796,8 @@ status code and media type. If no example or schema found, the content is empty.
 ### <a name="usage"></a>使用量
  此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。
 
--   **原則區段︰**輸出、後端、錯誤
--   **原則範圍：**所有範圍
+-   **原則區段︰** 輸出、後端、錯誤
+-   **原則範圍：** 所有範圍
 
 ##  <a name="set-variable"></a>設定變數
  `set-variable` 原則會宣告[內容](api-management-policy-expressions.md#ContextVariables)變數，並對其指派透過[運算式](api-management-policy-expressions.md)或字串常值指定的值。 包含常值的運算式會轉換成字串，且值的類型為 `System.String`。
@@ -830,8 +831,8 @@ status code and media type. If no example or schema found, the content is empty.
 ### <a name="usage"></a>使用量
  此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。
 
--   **原則區段︰**輸入、輸出、後端、錯誤
--   **原則範圍：**所有範圍
+-   **原則區段︰** 輸入、輸出、後端、錯誤
+-   **原則範圍：** 所有範圍
 
 ###  <a name="set-variableAllowedTypes"></a>允許的類型
  `set-variable` 原則中使用的運算式必須傳回下列其中一個基本類型。
@@ -896,9 +897,9 @@ status code and media type. If no example or schema found, the content is empty.
 ### <a name="usage"></a>使用量
  此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。
 
--   **原則區段︰**輸入、輸出、後端、錯誤
+-   **原則區段︰** 輸入、輸出、後端、錯誤
 
--   **原則範圍：**所有範圍
+-   **原則範圍：** 所有範圍
 
 ##  <a name="Wait"></a>等候
  `wait` 原則會以平行方式執行其直屬子原則，並等候其所有或其中一個直屬子原則完成後再完成。 等候原則可擁有做為其直屬子原則[傳送要求](api-management-advanced-policies.md#SendRequest)、[從快取取得值](api-management-caching-policies.md#GetFromCacheByKey)和[控制流程](api-management-advanced-policies.md#choose)原則。
@@ -964,8 +965,8 @@ status code and media type. If no example or schema found, the content is empty.
 
 此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。
 
--   **原則區段︰**輸入、輸出、後端
--   **原則範圍：**所有範圍
+-   **原則區段︰** 輸入、輸出、後端
+-   **原則範圍：** 所有範圍
 
 ## <a name="next-steps"></a>後續步驟
 

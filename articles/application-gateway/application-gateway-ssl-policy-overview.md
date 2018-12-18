@@ -1,11 +1,11 @@
 ---
-title: "Azure 應用程式閘道的 SSL 原則概觀 | Microsoft Docs"
-description: "深入了解 Azure 應用程式閘道如何讓您設定 SSL 原則"
+title: Azure 應用程式閘道的 SSL 原則概觀 | Microsoft Docs
+description: 深入了解 Azure 應用程式閘道如何讓您設定 SSL 原則
 services: application gateway
 documentationcenter: na
 author: amsriva
-manager: 
-editor: 
+manager: ''
+editor: ''
 tags: azure resource manager
 ms.service: application gateway
 ms.devlang: na
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "22987073"
 ---
 # <a name="application-gateway-ssl-policy-overview"></a>應用程式閘道 SSL 原則概觀
 

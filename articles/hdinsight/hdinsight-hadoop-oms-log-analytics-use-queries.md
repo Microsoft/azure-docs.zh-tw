@@ -1,25 +1,20 @@
 ---
-title: "查詢 Azure Log Analytics 以監視 Azure HDInsight 叢集 | Microsoft Docs"
-description: "了解如何在 Log Analytics 上執行查詢，以監視在 HDInsight 叢集中執行的作業。"
+title: 查詢 Azure Log Analytics 以監視 Azure HDInsight 叢集
+description: 了解如何在 Log Analytics 上執行查詢，以監視在 HDInsight 叢集中執行的作業。
 services: hdinsight
-documentationcenter: 
-author: nitinme
-manager: jhubbard
-editor: cgronlun
-tags: azure-portal
+author: jasonwhowell
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
-ms.date: 02/21/2018
-ms.author: nitinme
-ms.openlocfilehash: f9e023ae8d6c50049b588cf056629cd8d46ee603
-ms.sourcegitcommit: fbba5027fa76674b64294f47baef85b669de04b7
+ms.topic: conceptual
+ms.date: 06/15/2018
+ms.author: jasonh
+ms.openlocfilehash: 9550468e8bc9b93216fd4c1ecf144415badfc7dc
+ms.sourcegitcommit: f6e2a03076679d53b550a24828141c4fb978dcf9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/24/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43103652"
 ---
 # <a name="query-azure-log-analytics-to-monitor-hdinsight-clusters"></a>查詢 Azure Log Analytics 以監視 HDInsight 叢集
 
@@ -29,28 +24,19 @@ ms.lasthandoff: 02/24/2018
 * [搜尋特定的記錄訊息](#search-for-specific-log-messages)
 * [建立事件警示](#create-alerts-for-tracking-events)
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
-* 您必須先設定好 HDInsight 叢集，才可使用 Azure Log Analytics。 如需指示，請參閱[搭配使用 Azure Log Analytics 與 HDInsight 叢集](hdinsight-hadoop-oms-log-analytics-tutorial.md)。
-
-* 您必須已將 HDInsight 叢集特定的管理解決方案新增至 [Operations Management Suite (OMS)](../operations-management-suite/operations-management-suite-overview.md) 工作區，如[將 HDInsight 叢集管理解決方案新增至 Log Analytics](hdinsight-hadoop-oms-log-analytics-management-solutions.md) 中所描述。
+* 您必須已將 HDInsight 叢集設定為使用 Azure Log Analytics，並將 HDInsight 叢集專用的 Log Analytics 管理解決方案新增至工作區。 如需指示，請參閱[搭配使用 Azure Log Analytics 與 HDInsight 叢集](hdinsight-hadoop-oms-log-analytics-tutorial.md)。
 
 ## <a name="analyze-hdinsight-cluster-metrics"></a>分析 HDInsight 叢集計量
 
 了解如何為您的 HDInsight 叢集尋找特定的計量。
 
-1. 在 Azure 入口網站中，開啟您已經與 Azure Log Analytics 相關聯的 HDInsight 叢集。
-2. 按一下 [監視]，然後按一下 [開啟 OMS 儀表板]。
+1. 從 Azure 入口網站開啟與您的 HDInsight 叢集相關聯的 OMS 工作區。
+2. 選取 [記錄搜尋] 圖格。
+3. 在搜尋方塊中輸入以下查詢，針對已設定為使用 Azure Log Analytics 的所有 HDInsight 叢集搜尋所有可用的計量，然後選取 [執行]。
 
-    ![開啟 OMS 儀表板](./media/hdinsight-hadoop-oms-log-analytics-use-queries/hdinsight-log-analytics-open-oms-dashboard.png "開啟 OMS 儀表板")
-
-2. 在左側功能表上按一下 [記錄搜尋]。
-
-    ![開啟記錄搜尋](./media/hdinsight-hadoop-oms-log-analytics-use-queries/hdinsight-log-analytics-click-log-search.png "開啟記錄搜尋")
-
-3. 在搜尋方塊中輸入以下查詢，針對已設定為使用 Azure Log Analytics 的所有 HDInsight 叢集搜尋所有可用的計量，然後按 **ENTER**。
-
-        `search *` 
+        search *
 
     ![搜尋所有計量](./media/hdinsight-hadoop-oms-log-analytics-use-queries/hdinsight-log-analytics-search-all-metrics.png "搜尋所有計量")
 
@@ -58,12 +44,10 @@ ms.lasthandoff: 02/24/2018
 
     ![搜尋所有計量的輸出](./media/hdinsight-hadoop-oms-log-analytics-use-queries/hdinsight-log-analytics-search-all-metrics-output.png "都搜尋所有計量的輸出")
 
-5. 在左窗格中的 [類型] 下，選取您想要深入探討的計量，然後按一下 [套用]。 以下螢幕擷取畫面顯示選取了 `metrics_resourcemanager_queue_root_default_CL` 類型。 
+5. 在左窗格中的 [類型] 下方，選取您想要深入探討的計量，然後選取 [套用]。 以下螢幕擷取畫面顯示選取了 `metrics_resourcemanager_queue_root_default_CL` 類型。
 
     > [!NOTE]
-    > 您可能需要按一下 [[+] 更多資訊] 按鈕來尋找您要的計量。 此外，[套用] 按鈕位於清單底部，您必須向下捲動才看的到。
-    > 
-    >    
+    > 您可能需要選取 [[+] 更多資訊] 按鈕來尋找您要的計量。 此外，[套用] 按鈕位於清單底部，您必須向下捲動才看的到。
 
     請注意，文字方塊中的查詢會如同以下螢幕擷取畫面所示：
 
@@ -81,16 +65,9 @@ ms.lasthandoff: 02/24/2018
 
 了解如何查看特定時間範圍的錯誤訊息。 這裡的步驟只是其中一個方法範例，讓您可以找到想了解的錯誤訊息。 您可以使用任何可用屬性來找出想尋找的錯誤。
 
-1. 在 Azure 入口網站中，開啟您已經與 Azure Log Analytics 相關聯的 HDInsight 叢集。
-2. 按一下 [監視]，然後按一下 [開啟 OMS 儀表板]。
-
-    ![開啟 OMS 儀表板](./media/hdinsight-hadoop-oms-log-analytics-use-queries/hdinsight-log-analytics-open-oms-dashboard.png "開啟 OMS 儀表板")
-
-2. 在 OMS 儀表板的主畫面上，按一下 [記錄搜尋]。
-
-    ![開啟記錄搜尋](./media/hdinsight-hadoop-oms-log-analytics-use-queries/hdinsight-log-analytics-click-log-search.png "開啟記錄搜尋")
-
-3. 輸入以下查詢，針對已設定為使用 Azure Log Analytics 的所有 HDInsight 叢集搜尋所有錯誤訊息，然後按 **ENTER**。 
+1. 從 Azure 入口網站開啟與您的 HDInsight 叢集相關聯的 OMS 工作區。
+2. 選取 [記錄搜尋] 圖格。
+3. 輸入以下查詢，針對已設定為使用 Azure Log Analytics 的所有 HDInsight 叢集搜尋所有錯誤訊息，然後選取 [執行]。 
 
          search "Error"
 
@@ -98,8 +75,8 @@ ms.lasthandoff: 02/24/2018
 
     ![搜尋所有錯誤的輸出](./media/hdinsight-hadoop-oms-log-analytics-use-queries/hdinsight-log-analytics-search-all-errors-output.png "搜尋所有錯誤的輸出")
 
-5. 在左窗格中的 [類型] 類別下，選取您想要深入探討的錯誤類型，然後按一下 [套用]。  請注意結果會調整成只顯示您所選取類型的錯誤。
-7. 您可以使用左側窗格提供的選項深入探討此特定錯誤。 例如， 
+4. 在左窗格中的 [類型] 類別下方，選取您想要深入探討的錯誤類型，然後選取 [套用]。  請注意結果會調整成只顯示您所選取類型的錯誤。
+5. 您可以使用左側窗格提供的選項深入探討此特定錯誤。 例如︰
 
     - 查看特定背景工作節點的錯誤訊息：
 
@@ -109,48 +86,42 @@ ms.lasthandoff: 02/24/2018
 
         ![搜尋特定錯誤的輸出](./media/hdinsight-hadoop-oms-log-analytics-use-queries/hdinsight-log-analytics-search-specific-error-time.png "搜尋特定錯誤的輸出")
 
-9. 查看特定的錯誤。 您可以按一下 [[+] 顯示更多]，以查看實際的錯誤訊息。
+6. 查看特定的錯誤。 您可以選取 [[+] 顯示更多]，以查看實際的錯誤訊息。
 
     ![搜尋特定錯誤的輸出](./media/hdinsight-hadoop-oms-log-analytics-use-queries/hdinsight-log-analytics-search-specific-error-arrived.png "搜尋特定錯誤的輸出")
 
 ## <a name="create-alerts-for-tracking-events"></a>建立追蹤事件的警示
 
-建立警示的第一個步驟是取得要觸發警示的查詢。 為方便說明，我們使用下列查詢，該查詢會提供在 HDInsight 叢集上執行失敗的應用程式清單。
+建立警示的第一個步驟是取得要觸發警示的查詢。 您可以使用任何您想要建立警示的查詢。
 
-    metrics_resourcemanager_queue_root_default_CL | where AppsFailed_d > 0
+1. 從 Azure 入口網站開啟與您的 HDInsight 叢集相關聯的 Log Analytics 工作區。
+2. 選取 [記錄搜尋] 圖格。
+3. 執行下列您想要建立警示的查詢，然後選取 [執行]。
 
-您可以使用任何您想要建立警示的查詢。
+        metrics_resourcemanager_queue_root_default_CL | where AppsFailed_d > 0
 
-1. 在 Azure 入口網站中，開啟您已經與 Azure Log Analytics 相關聯的 HDInsight 叢集。
-2. 按一下 [監視]，然後按一下 [開啟 OMS 儀表板]。
+    查詢會提供在 HDInsight 叢集上執行失敗的應用程式清單。
 
-    ![開啟 OMS 儀表板](./media/hdinsight-hadoop-oms-log-analytics-use-queries/hdinsight-log-analytics-open-oms-dashboard.png "開啟 OMS 儀表板")
-
-2. 在 OMS 儀表板的主畫面上，按一下 [記錄搜尋]。
-
-    ![開啟記錄搜尋](./media/hdinsight-hadoop-oms-log-analytics-use-queries/hdinsight-log-analytics-click-log-search.png "開啟記錄搜尋")
-
-3. 執行下列您想要建立警示的查詢，然後按 **ENTER**。
-
-        metrics_resourcemanager_queue_root-default-CL | where AppsFailed_d > 0
-
-4. 按一下頁面頂端的 [警示]。
+4. 選取頁面頂端的 [新增警示規則]。
 
     ![輸入要建立警示的查詢](./media/hdinsight-hadoop-oms-log-analytics-use-queries/hdinsight-log-analytics-create-alert-query.png "輸入要建立警示的查詢")
 
-4. 在 [新增警示規則] 視窗中，輸入查詢和其他詳細資料以建立警示，然後按一下 [儲存]。
+5. 在 [建立規則] 視窗中，輸入查詢和其他詳細資料以建立警示，然後選取 [建立警示規則]。
 
     ![輸入要建立警示的查詢](./media/hdinsight-hadoop-oms-log-analytics-use-queries/hdinsight-log-analytics-create-alert.png "輸入要建立警示的查詢")
 
-    螢幕擷取畫面顯示在警示查詢傳回輸出時傳送電子郵件通知的設定。
+若要編輯或刪除現有警示：
 
-5. 您也可以編輯或刪除現有警示。 若要這樣做，請從 OMS 入口網站中的任何頁面上，按一下 [設定] 圖示。
+1. 從 Azure 入口網站開啟 Log Analytics 工作區。
+2. 在左側功能表中，選取 [警示]。
+3. 選取您要編輯或刪除的警示。
+4. 您可以使用下列選項：**儲存**、**捨棄**、**停用**和**刪除**。
 
-    ![輸入要建立警示的查詢](./media/hdinsight-hadoop-oms-log-analytics-use-queries/hdinsight-log-analytics-edit-alert.png "輸入要建立警示的查詢")
+    ![HDInsight Log Analytics OMS 警示刪除編輯](media/hdinsight-hadoop-oms-log-analytics-use-queries/hdinsight-log-analytics-edit-alert.png)
 
-6. 按一下 [設定] 頁面上的 [警示]，以查看您已建立的警示。 您也可以啟用、停用、編輯或刪除警示。 如需詳細資訊，請參閱[使用 Log Analytics 中的警示規則](../log-analytics/log-analytics-alerts-creating.md)。
+如需詳細資訊，請參閱[使用 Log Analytics 中的警示規則](../log-analytics/log-analytics-alerts-creating.md)。
 
 ## <a name="see-also"></a>另請參閱
 
-* [使用 Operations Management Suite Log Analytics](https://blogs.msdn.microsoft.com/wei_out_there_with_system_center/2016/07/03/oms-log-analytics-create-tiles-drill-ins-and-dashboards-with-the-view-designer/)
+* [使用 Log Analytics](https://blogs.msdn.microsoft.com/wei_out_there_with_system_center/2016/07/03/oms-log-analytics-create-tiles-drill-ins-and-dashboards-with-the-view-designer/)
 * [在 Log Analytics 中建立警示規則](../log-analytics/log-analytics-alerts-creating.md)

@@ -1,0 +1,45 @@
+- name: Translator Speech API 文件
+  href: index.yml
+- name: 概觀
+  items:
+    - name: 關於 Translator Speech API
+      href: Overview.md
+    - name: 支援的語言
+      href: languages.md
+- name: 快速入門
+  items:
+    - name: 'C#'
+      href: quickstarts/csharp.md
+    - name: Java
+      href: quickstarts/java.md
+    - name: Node.js
+      href: quickstarts/nodejs.md
+    - name: Python
+      href: quickstarts/python.md
+- name: 教學課程
+  items:
+    - name: Translator 應用程式
+      href: tutorial-translator-speech-csharp.md
+- name: 範例
+  items:
+    - name: GitHub 上的範例
+      href: 'https://aka.ms/TranslatorGitHub'
+- name: 使用說明指南
+  items:
+    - name: 註冊 Translator Speech API
+      href: translator-speech-how-to-signup.md
+- name: 參考
+  href: reference.md
+  items:
+    - name: 語言
+      href: languages-reference.md
+- name: 資源
+  items:
+    - name: 常見問題集
+      href: 'https://www.microsoft.com/en-us/translator/faq.aspx'
+    - name: 價格
+      href: 'https://azure.microsoft.com/pricing/details/cognitive-services/translator-speech-api/'
+    - name: UserVoice
+      href: 'https://cognitive.uservoice.com/forums/558796-translator'
+    - name: 堆疊溢位
+      href: 'https://stackoverflow.com/questions/tagged/microsoft-translator'

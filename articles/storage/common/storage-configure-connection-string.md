@@ -1,24 +1,19 @@
 ---
 title: 設定 Azure 儲存體的連接字串 | Microsoft Docs
-description: 設定 Azure 儲存體帳戶的連接字串。 連接字串包含在執行階段從應用程式驗證儲存體帳戶存取所需的資訊。
+description: 設定 Azure 儲存體帳戶的連接字串。 連接字串包含在執行階段從應用程式授與儲存體帳戶存取權所需的資訊。
 services: storage
-documentationcenter: ''
 author: craigshoemaker
-manager: jeconnoc
-editor: tysonn
-ms.assetid: ecb0acb5-90a9-4eb2-93e6-e9860eda5e53
 ms.service: storage
-ms.workload: storage
-ms.tgt_pltfrm: na
-ms.devlang: na
 ms.topic: article
 ms.date: 04/12/2017
 ms.author: cshoe
-ms.openlocfilehash: dee0fd68ccaf80ff6e44ee10fa24bb19e220d0d5
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.component: common
+ms.openlocfilehash: 1c6ba727bf9c19b5da0d0d0313377d5d4ad1e2ac
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39529701"
 ---
 # <a name="configure-azure-storage-connection-strings"></a>設定 Azure 儲存體連接字串
 
@@ -31,7 +26,7 @@ ms.lasthandoff: 03/28/2018
 [!INCLUDE [storage-account-key-note-include](../../../includes/storage-account-key-note-include.md)]
 
 ## <a name="storing-your-connection-string"></a>儲存您的連接字串
-您的應用程式需要在執行階段存取連接字串，才能驗證對 Azure 儲存體進行的要求。 您有幾種選項可用來儲存連接字串：
+您的應用程式需要在執行階段存取連接字串，才能授權給對 Azure 儲存體進行的要求。 您有幾種選項可用來儲存連接字串：
 
 * 在桌面上或裝置上執行的應用程式可將連接字串儲存在 **app.config** 或 **web.config** 檔案。 將連接字串新增至這些檔案中的 **AppSettings** 區段。
 * 在 Azure 雲端服務中執行的應用程式可將連接字串儲存在 [Azure 服務組態結構描述 (.cscfg) 檔](https://msdn.microsoft.com/library/ee758710.aspx)中。 將此連接字串加入服務組態檔的 [ConfigurationSettings]  區段。

@@ -1,12 +1,12 @@
 ---
-title: "管理 StorSimple 8000 系列裝置上的 StorSimple 磁碟區容器 | Microsoft Docs"
-description: "說明如何使用 StorSimple 裝置管理員服務磁碟區容器頁面新增、修改或刪除磁碟區容器。"
+title: 管理 StorSimple 8000 系列裝置上的 StorSimple 磁碟區容器 | Microsoft Docs
+description: 說明如何使用 StorSimple 裝置管理員服務磁碟區容器頁面新增、修改或刪除磁碟區容器。
 services: storsimple
 documentationcenter: NA
 author: alkohli
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: NA
 ms.topic: article
@@ -15,10 +15,11 @@ ms.workload: TBD
 ms.date: 07/19/2017
 ms.author: alkohli
 ms.openlocfilehash: 0f8e00d6d07224f56625482f339e612e68914be2
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38606584"
 ---
 # <a name="use-the-storsimple-device-manager-service-to-manage-storsimple-volume-containers"></a>使用 StorSimple 裝置管理員服務管理 StorSimple 磁碟區容器
 

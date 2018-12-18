@@ -1,30 +1,26 @@
 ---
-title: "Azure 事件中樞 .NET Framework API 概觀 | Microsoft Docs"
-description: "一些主要事件中樞 .NET Framework 用戶端 API 的摘要。"
+title: Azure 事件中樞 .NET Framework API 概觀 | Microsoft Docs
+description: 一些主要事件中樞 .NET Framework 用戶端 API 的摘要。
 services: event-hubs
-documentationcenter: na
-author: sethmanheim
+author: ShubhaVijayasarathy
 manager: timlt
-editor: 
-ms.assetid: 7f3b6cc0-9600-417f-9e80-2345411bd036
 ms.service: event-hubs
 ms.devlang: dotnet
 ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: na
-ms.date: 12/19/2017
-ms.author: sethm
-ms.openlocfilehash: a51d4552df2643a25ce492b8525b9aa7fa36e21c
-ms.sourcegitcommit: f46cbcff710f590aebe437c6dd459452ddf0af09
+ms.date: 08/16/2018
+ms.author: shvija
+ms.openlocfilehash: 46b0599e6c4d5b4cc2dd9370a28616019b79b50d
+ms.sourcegitcommit: b5ac31eeb7c4f9be584bb0f7d55c5654b74404ff
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/20/2017
+ms.lasthandoff: 08/23/2018
+ms.locfileid: "42745646"
 ---
 # <a name="event-hubs-net-framework-api-overview"></a>事件中樞 .NET Framework API 概觀
 
-本文將摘要列出一些主要事件中樞 .NET Framework 用戶端 API。 分為兩種類別：管理和執行階段 API。 執行階段 API 是由傳送和接收訊息所需的所有作業組成。 管理作業可讓您管理事件中樞實體狀態，方法是建立、更新和刪除實體。
+本文將摘要列出一些主要 Azure 事件中樞 [.NET Framework 用戶端 API](https://www.nuget.org/packages/WindowsAzure.ServiceBus/)。 分為兩種類別：管理和執行階段 API。 執行階段 API 是由傳送和接收訊息所需的所有作業組成。 管理作業可讓您管理事件中樞實體狀態，方法是建立、更新和刪除實體。
 
-[監視案例](event-hubs-metrics-azure-monitor.md)跨越管理和執行階段。 如需 .NET API 的詳細參考文件，請參閱[服務匯流排 .NET](/dotnet/api/microsoft.servicebus.messaging) 和 [EventProcessorHost API](/dotnet/api/microsoft.azure.eventhubs.processor) 參考。
+[監視案例](event-hubs-metrics-azure-monitor.md)跨越管理和執行階段。 如需 .NET API 的詳細參考文件，請參閱 [.NET Framework](/dotnet/api/microsoft.servicebus.messaging.eventhubclient)、[.NET Standard](/dotnet/api/microsoft.azure.eventhubs) 和 [EventProcessorHost API](/dotnet/api/microsoft.azure.eventhubs.processor) 參考。
 
 ## <a name="management-apis"></a>管理 API
 
@@ -179,6 +175,7 @@ public class SimpleEventProcessor : IEventProcessor
 ```
 
 ## <a name="next-steps"></a>後續步驟
+
 若要深入了解事件中樞案例，請造訪下列連結：
 
 * [Azure 事件中樞是什麼？](event-hubs-what-is-event-hubs.md)

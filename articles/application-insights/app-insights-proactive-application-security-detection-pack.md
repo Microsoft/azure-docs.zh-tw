@@ -1,8 +1,8 @@
 ---
-title: "智慧偵測 - 使用 Azure Application Insights 的智慧偵測套件 | Microsoft Docs"
-description: "使用 Azure Application Insights 監視應用程式的潛在安全性問題。"
+title: 智慧偵測 - 使用 Azure Application Insights 的智慧偵測套件 | Microsoft Docs
+description: 使用 Azure Application Insights 監視應用程式的潛在安全性問題。
 services: application-insights
-documentationcenter: 
+documentationcenter: ''
 author: mrbullwinkle
 manager: carmonm
 ms.assetid: ea2a28ed-4cd9-4006-bd5a-d4c76f4ec20b
@@ -10,14 +10,15 @@ ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 12/12/2017
 ms.author: mbullwin
-ms.openlocfilehash: 837525d70f28c0710b8a8b86d411a7854402207f
-ms.sourcegitcommit: 48fce90a4ec357d2fb89183141610789003993d2
+ms.openlocfilehash: edfe2956da84347abf3e5da7a7d0fd448361c7f5
+ms.sourcegitcommit: e8f443ac09eaa6ef1d56a60cd6ac7d351d9271b9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/12/2018
+ms.lasthandoff: 09/12/2018
+ms.locfileid: "35632542"
 ---
 # <a name="application-security-detection-pack-preview"></a>應用程式安全性偵測套件 (預覽)
 

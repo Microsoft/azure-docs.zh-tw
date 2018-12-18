@@ -1,6 +1,6 @@
 ---
-title: "Windows 虛擬機器概觀 | Microsoft Docs"
-description: "Azure 入口網站內 Windows 虛擬機器概觀的說明內容"
+title: Windows 虛擬機器概觀 | Microsoft Docs
+description: Azure 入口網站內 Windows 虛擬機器概觀的說明內容
 services: virtual-machines-windows
 author: sewatson
 manager: lwelicki
@@ -8,11 +8,12 @@ ms.service: virtual-machines-windows
 ms.topic: article
 ms.date: 04/27/2017
 ms.author: sewatson
-ms.openlocfilehash: 03b204d9970a3831543a03dfa08e2a4d8b274034
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: ebaa72f87a64484dd8687a0ec7548e67b0df9510
+ms.sourcegitcommit: 63613e4c7edf1b1875a2974a29ab2a8ce5d90e3b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/29/2018
+ms.locfileid: "43190670"
 ---
 # <a name="windows-virtual-machines-documentation"></a>Windows 虛擬機器文件
 
@@ -22,7 +23,7 @@ Azure Windows 虛擬機器使用 Windows Server 提供隨選、高度可調整�
 
 了解如何在執行 Windows Server 2016 的虛擬機器中部署 IIS 網頁伺服器：
 
-- [HttpTrigger Nodejs 函數](/azure/virtual-machines/virtual-machines-windows-quick-create-portal?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+- [Azure 入口網站](/azure/virtual-machines/virtual-machines-windows-quick-create-portal?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 - [Azure PowerShell](/azure/virtual-machines/virtual-machines-windows-quick-create-powershell?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 - [Azure CLI](/azure/virtual-machines/virtual-machines-windows-quick-create-cli?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
@@ -45,9 +46,7 @@ Azure Windows 虛擬機器使用 Windows Server 提供隨選、高度可調整�
 
 ## <a name="free-pluralsight-video-training"></a>免費 Pluralsight 影片訓練
 
-- [管理基礎結構](https://www.pluralsight.com/courses/managing-infrastructure-microsoft-azure-getting-started?twoid=d6abac77-7dcc-4d33-9e03-f85e78989f02)
-- [開始使用虛擬機器](https://www.pluralsight.com/courses/azure-vms-getting-started?twoid=d6abac77-7dcc-4d33-9e03-f85e78989f02)
-- [開始使用 IaaS 監視](https://www.pluralsight.com/courses/azure-iaas-monitoring-management-getting-started?twoid=d6abac77-7dcc-4d33-9e03-f85e78989f02")
+- [Azure 系統管理員](https://go.microsoft.com/fwlink/?linkid=2012827)
 
 ## <a name="samples"></a>範例
 

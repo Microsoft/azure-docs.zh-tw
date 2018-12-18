@@ -1,36 +1,39 @@
 ---
-title: "App Service 概觀：Azure Stack | Microsoft Docs"
-description: "Azure Stack 上的 App Service 概觀"
+title: App Service 概觀：Azure Stack | Microsoft Docs
+description: Azure Stack 上的 App Service 概觀
 services: azure-stack
-documentationcenter: 
+documentationcenter: ''
 author: brenduns
 manager: femila
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: azure-stack
 ms.workload: app-service
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/29/2018
+ms.date: 06/28/2018
 ms.author: brenduns
 ms.reviewer: anwestg
-ms.openlocfilehash: 1884574bcb39a1cbbd95b481adabdd06ebd499a9
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.openlocfilehash: 42258a352b05d97341f20c13bf837e1398dd8979
+ms.sourcegitcommit: d7725f1f20c534c102021aa4feaea7fc0d257609
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 06/29/2018
+ms.locfileid: "37099957"
 ---
 # <a name="app-service-on-azure-stack-overview"></a>Azure Stack 概觀上的 App Service
+
 *適用於：Azure Stack 整合系統和 Azure Stack 開發套件*
 
 Azure App Service on Azure Stack 是 Microsoft Azure 的平台即服務 (PaaS) 供應項目，提供給 Azure Stack 使用。 服務可讓您的客戶 (內部或外部) 為任何平台或裝置建立 Web、API 和 Azure Functions 應用程式。 他們可以將您的應用程式與內部部署應用程式整合，並將其商務程序自動化。 Azure Stack 雲端操作員可以使用所選的共用 VM 資源或專用的 VM，在完全受控的虛擬機器 (VM) 上執行客戶應用程式。
 
-Azure App Service 包含可用來自動執行商務程序及裝載雲端 API 的功能。 Azure App Service 是單一的整合式服務，可讓您將各種元件 (網站、RESTful API 和商務程序) 撰寫成單一解決方案。
+Azure App Service 可讓您自動執行商務程序及裝載雲端 API。 Azure App Service 是單一的整合式服務，可讓您將各種元件 (網站、RESTful API 和商務程序) 組合成單一解決方案。
 
 ## <a name="why-offer-azure-app-service-on-azure-stack"></a>為什麼提供 Azure App Service on Azure Stack？
 
 以下是 App Service 的一些重要功能和能力︰
+
 - **多種語言和架構**：App Service 有 ASP.NET、Node.js、Java、PHP 和 Python 的頂級支援。 您也可以在 App Service VM 上執行 Windows PowerShell 和其他指令碼或可執行檔。
 - **DevOps 最佳化**：使用 GitHub、本機 Git 或 BitBucket 設定連續整合和部署。 透過測試和預備環境升級更新。 使用 Azure PowerShell 或跨平台命令列介面 (CLI)，在 App Service 中管理您的應用程式。
 - **Visual Studio 整合**：Visual Studio 中的專用工具可簡化建立和部署應用程式。
@@ -46,10 +49,11 @@ App Service 提供數個「應用程式類型」，而每個類型主要裝載�
 應用程式一詞在這裡是指專門用來執行工作負載的裝載資源。 以「Web 應用程式」為例，您可能已習慣將 Web 應用程式視為可一起提供瀏覽器功能的計算資源和應用程式程式碼。 但是在 App Service 中，Web 應用程式是 Azure Stack 提供用來裝載應用程式程式碼的計算資源。
 
 您的應用程式可能是由多個各種不同的 App Service 應用程式所組成。 例如，如果您的應用程式包含 Web 前端和 RESTful API 後端，您可以：
+
 - 將兩者 (前端和 API) 部署至單一 Web 應用程式
 - 將前端程式碼部署至 Web 應用程式，而將後端程式碼部暑至 API 應用程式。
 
-   ![](media/azure-stack-app-service-overview/image01.png)
+   ![使用 App Service 監視資料的概觀](media/azure-stack-app-service-overview/image01.png)
 
 ## <a name="what-is-an-app-service-plan"></a>什麼是 App Service 方案？
 
@@ -59,10 +63,9 @@ App Service 資源提供者所使用的程式碼與 Azure App Service 使用的�
 
 ## <a name="portal-features"></a>入口網站功能
 
-Azure Stack 上的 App Service 所使用的 UI 與 Azure App Service 使用的相同，後端也是如此。 某些功能已停用且無法在 Azure Stack 中運作。 Azure Stack 中尚未提供那些功能所需的 Azure 特有預期或服務。
+Azure Stack 上的 App Service 所使用的 UI 與 Azure App Service 使用的相同，後端也是如此。 不過，某些功能已停用且無法在 Azure Stack 中運作。 Azure Stack 中目前未提供那些功能所需的 Azure 特有預期或服務。
 
 ## <a name="next-steps"></a>後續步驟
-
 
 - [開始使用 Azure Stack 上的 App Service 之前](azure-stack-app-service-before-you-get-started.md)
 - [安裝 App Service 資源提供者](azure-stack-app-service-deploy.md)

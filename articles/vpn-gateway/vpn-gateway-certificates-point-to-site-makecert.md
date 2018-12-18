@@ -1,38 +1,23 @@
 ---
-title: "產生並匯出點對站的憑證：MakeCert：Azure | Microsoft Docs"
-description: "建立自我簽署的根憑證、匯出公開金鑰，以及使用 MakeCert 產生用戶端憑證。"
+title: 產生並匯出點對站的憑證：MakeCert：Azure | Microsoft Docs
+description: 建立自我簽署的根憑證、匯出公開金鑰，以及使用 MakeCert 產生用戶端憑證。
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
-manager: jpconnock
-editor: 
-tags: azure-resource-manager
-ms.assetid: 
 ms.service: vpn-gateway
-ms.devlang: na
 ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: infrastructure-services
-ms.date: 02/12/2018
+ms.date: 09/05/2018
 ms.author: cherylmc
-ms.openlocfilehash: b2f31761e4560cf4b9b9a5b92f5de9982a663a75
-ms.sourcegitcommit: 95500c068100d9c9415e8368bdffb1f1fd53714e
+ms.openlocfilehash: 3ff7e754a55e15a8fa8a32f846efbbbe5025e46e
+ms.sourcegitcommit: f3bd5c17a3a189f144008faf1acb9fabc5bc9ab7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 09/10/2018
+ms.locfileid: "44297854"
 ---
 # <a name="generate-and-export-certificates-for-point-to-site-connections-using-makecert"></a>使用 MakeCert 來產生並匯出點對站連線的憑證
 
-點對站連線使用憑證進行驗證。 本文說明如何建立自我簽署的根憑證，以及使用 MakeCert 來產生用戶端憑證。 如果您要尋找點對站設定步驟 (例如如何上傳根憑證)，請從下列清單中選取其中一篇＜設定點對站＞文章：
-
-> [!div class="op_single_selector"]
-> * [建立自我簽署憑證 - PowerShell](vpn-gateway-certificates-point-to-site.md)
-> * [建立自我簽署憑證 - MakeCert](vpn-gateway-certificates-point-to-site-makecert.md)
-> * [設定點對站 - Resource Manager - Azure 入口網站](vpn-gateway-howto-point-to-site-resource-manager-portal.md)
-> * [設定點對站 - Resource Manager - PowerShell](vpn-gateway-howto-point-to-site-rm-ps.md)
-> * [設定點對站 - 傳統 - Azure 入口網站](vpn-gateway-howto-point-to-site-classic-azure-portal.md)
-> 
-> 
+點對站連線使用憑證進行驗證。 本文說明如何建立自我簽署的根憑證，以及使用 MakeCert 來產生用戶端憑證。 如果您要尋找不同的憑證指示，請參閱[憑證 - PowerShell](vpn-gateway-certificates-point-to-site.md) 或[憑證 - Linux](vpn-gateway-certificates-point-to-site-linux.md)。
 
 雖然建議您使用 [Windows 10 PowerShell 步驟](vpn-gateway-certificates-point-to-site.md)建立您的憑證，但是提供這些 MakeCert 指示作為選擇性方法。 您使用任一種方法所產生的憑證可以安裝於[任何支援的用戶端作業系統](vpn-gateway-howto-point-to-site-resource-manager-portal.md#faq)。 不過，MakeCert 具有下列限制：
 
@@ -100,4 +85,4 @@ ms.lasthandoff: 02/14/2018
 * 如需 **Resource Manager** 部署模型的步驟，請參閱[使用原生 Azure 憑證驗證來設定 P2S](vpn-gateway-howto-point-to-site-resource-manager-portal.md)。
 * 如需**傳統**部署模型步驟，請參閱[設定 VNet 的點對站 VPN 連線 (傳統)](vpn-gateway-howto-point-to-site-classic-azure-portal.md)。
 
-如需 P2S 疑難排解詳細資訊，請參閱[針對 Azure 點對站連線進行疑難排解](vpn-gateway-troubleshoot-vpn-point-to-site-connection-problems.md)。
+如需有關為 P2S 疑難排解的資訊，請參閱[針對 Azure 點對站連線進行疑難排解](vpn-gateway-troubleshoot-vpn-point-to-site-connection-problems.md)。

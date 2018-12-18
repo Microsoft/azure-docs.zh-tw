@@ -1,24 +1,22 @@
 ---
-title: "Azure Cosmos DB MongoDB API 中的索引功能 | Microsoft Docs"
-description: "提供 Azure Cosmos DB MongoDB API 中的索引功能概觀。"
+title: Azure Cosmos DB MongoDB API 中的索引功能 | Microsoft Docs
+description: 提供 Azure Cosmos DB MongoDB API 中的索引功能概觀。
 services: cosmos-db
-documentationcenter: 
 author: orestis-ms
-manager: jhubbard
-editor: 
-ms.assetid: daacbabf-1bb5-497f-92db-079910703047
+manager: kfile
+editor: ''
 ms.service: cosmos-db
-ms.workload: 
-ms.tgt_pltfrm: na
-ms.devlang: javascript
-ms.topic: quickstart
+ms.component: cosmosdb-mongo
+ms.devlang: nodejs
+ms.topic: conceptual
 ms.date: 03/01/2018
 ms.author: orkostak
-ms.openlocfilehash: 090f8a664409d9cde1e4440ca9e2390a7c9def7a
-ms.sourcegitcommit: 168426c3545eae6287febecc8804b1035171c048
+ms.openlocfilehash: a3dadfc4257d43f9df1b93f5d486e5577b7889d6
+ms.sourcegitcommit: ebd06cee3e78674ba9e6764ddc889fc5948060c4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/08/2018
+ms.lasthandoff: 09/07/2018
+ms.locfileid: "44055306"
 ---
 # <a name="indexing-in-the-azure-cosmos-db-mongodb-api"></a>Azure Cosmos DB MongoDB API 中的索引功能
 
@@ -43,7 +41,7 @@ Azure Cosmos DB MongoDB API 會運用 Azure Cosmos DB 的自動索引管理功�
 >[!important] 
 > 目前，只有在集合是空的 (不包含任何文件) 時，才能建立唯一索引。 
 
-下列命令可在 “student_id” 欄位上建立唯一索引：
+下列命令可在 "student_id" 欄位上建立唯一索引：
 
 ```JavaScript
 globaldb:PRIMARY> db.coll.createIndex( { "student_id" : 1 }, {unique:true} ) 

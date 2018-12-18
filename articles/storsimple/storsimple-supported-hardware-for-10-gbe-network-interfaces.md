@@ -1,11 +1,11 @@
 ---
-title: "StorSimple 10 GbE 介面的硬體 | Microsoft Docs"
-description: "說明 StorSimple 裝置上的 10 GbE 網路介面所支援的小型可插拔 (SFP) 收發器、纜線及交換器。"
+title: StorSimple 10 GbE 介面的硬體 | Microsoft Docs
+description: 說明 StorSimple 裝置上的 10 GbE 網路介面所支援的小型可插拔 (SFP) 收發器、纜線及交換器。
 services: storsimple
 documentationcenter: NA
 author: alkohli
 manager: carmonm
-editor: 
+editor: ''
 ms.assetid: df8d40c7-f5ad-4f84-93eb-779fbd5f7243
 ms.service: storsimple
 ms.devlang: NA
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23110566"
 ---
 # <a name="supported-hardware-for-the-10-gbe-network-interfaces-on-your-storsimple-device"></a>10 GbE 網路介面在 StorSimple 裝置上支援的硬體
 ## <a name="overview"></a>概觀

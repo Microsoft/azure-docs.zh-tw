@@ -1,5 +1,5 @@
 
-1. 使用[從 Azure CLI 1.0 連接到 Azure](/cli/azure/authenticate-azure-cli) 中列出的步驟登入 Azure 訂用帳戶。
+1. 使用[從 Azure 傳統 CLI 連線到 Azure](/cli/azure/authenticate-azure-cli) 中列出的步驟登入 Azure 訂用帳戶。
 
 2. 請確定您處於傳統部署模式，如下所示：
 
@@ -52,5 +52,5 @@
     ```
 
 ## <a name="next-steps"></a>後續步驟
-如需所有 Azure CLI 1.0 虛擬機器命令的詳細資料，請參閱[搭配使用 Azure CLI 1.0 和傳統部署 API](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)。
+如需所有 Azure 傳統 CLI 虛擬機器命令的詳細資料，請參閱[搭配傳統部署 API 使用 Azure 傳統 CLI](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)。
 

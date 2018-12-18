@@ -1,92 +1,57 @@
 ---
-title: "使用 Azure CLI 在 Linux VM 中新增磁碟 | Microsoft Docs"
-description: "了解如何使用 Azure CLI 1.0 和 2.0 在 Linux VM 中新增永續性磁碟。"
-keywords: "linux 虛擬機器,新增資源磁碟"
+title: 使用 Azure CLI 在 Linux VM 中新增資料磁碟 | Microsoft Docs
+description: 了解如何使用 Azure CLI 在 Linux VM 中新增永續性資料磁碟
 services: virtual-machines-linux
-documentationcenter: 
-author: rickstercdn
-manager: timlt
+documentationcenter: ''
+author: cynthn
+manager: jeconnoc
 editor: tysonn
 tags: azure-resource-manager
-ms.assetid: 3005a066-7a84-4dc5-bdaa-574c75e6e411
 ms.service: virtual-machines-linux
 ms.topic: article
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: azurecli
-ms.date: 02/02/2017
-ms.author: rclaus
+ms.date: 06/13/2018
+ms.author: cynthn
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 9db7d300b745001906bdc38769dcbe6e4d7c7b83
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 578488163482dd0b7b486ca152455ff9686f1a43
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46949208"
 ---
 # <a name="add-a-disk-to-a-linux-vm"></a>在 Linux VM 中新增磁碟
 本文說明如何將持續性磁碟連結到您的 VM，以便您保留資料 - 即使您的 VM 會由於維護或調整大小而重新佈建。 
 
 
-## <a name="use-managed-disks"></a>使用受控磁碟
-Azure 受控磁碟會藉由管理與 VM 磁碟相關聯的儲存體帳戶，來簡化 Azure VM 的磁碟管理。 您只需要指定類型 (進階或標準) 還有您需要的磁碟大小，Azure 就會替您建立並管理磁碟。 如需詳細資訊，請參閱[受控磁碟概觀](managed-disks-overview.md)。
+## <a name="attach-a-new-disk-to-a-vm"></a>將新磁碟附加至 VM
 
-
-### <a name="attach-a-new-disk-to-a-vm"></a>將新磁碟附加至 VM
-如果您的 VM 只需要新的磁碟，請使用 [az vm disk attach](/cli/azure/vm/disk?view=azure-cli-latest#az_vm_disk_attach) 命令並搭配 `--new` 參數。 如果您的 VM 位於可用性區域，系統會自動在與 VM 相同的區域中建立磁碟。 如需詳細資訊，請參閱[可用性區域概觀](../../availability-zones/az-overview.md)。 下列範例會建立名為 myDataDisk 的磁碟，其大小為 50 GB：
+如果您想要在 VM 上新增空的新資料磁碟，請使用 [az vm disk attach](/cli/azure/vm/disk?view=azure-cli-latest#az_vm_disk_attach) 命令並搭配 `--new` 參數。 如果您的 VM 位於可用性區域，系統會自動在與 VM 相同的區域中建立磁碟。 如需詳細資訊，請參閱[可用性區域概觀](../../availability-zones/az-overview.md)。 下列範例會建立名為 *myDataDisk* 且大小為 50 GB 的磁碟：
 
 ```azurecli
-az vm disk attach -g myResourceGroup --vm-name myVM --disk myDataDisk \
-  --new --size-gb 50
+az vm disk attach \
+   -g myResourceGroup \
+   --vm-name myVM \
+   --disk myDataDisk \
+   --new \
+   --size-gb 50
 ```
 
-### <a name="attach-an-existing-disk"></a>連接現有磁碟 
-在許多情況下， 您會連結已建立的磁碟。 若要連結現有磁碟，請找出磁碟識別碼，並將識別碼傳遞到 [az vm disk attach](/cli/azure/vm/disk?view=azure-cli-latest#az_vm_disk_attach) 命令。 下列範例會查詢 myResourceGroup 中名為 myDataDisk 的磁碟，然後將其連結至名為 myVM 的 VM：
+## <a name="attach-an-existing-disk"></a>連接現有磁碟 
+
+若要連結現有磁碟，請找出磁碟識別碼，並將識別碼傳遞到 [az vm disk attach](/cli/azure/vm/disk?view=azure-cli-latest#az_vm_disk_attach) 命令。 下列範例會查詢 myResourceGroup 中名為 myDataDisk 的磁碟，然後將其連結至名為 myVM 的 VM：
 
 ```azurecli
-# find the disk id
 diskId=$(az disk show -g myResourceGroup -n myDataDisk --query 'id' -o tsv)
+
 az vm disk attach -g myResourceGroup --vm-name myVM --disk $diskId
-```
-
-輸出如下所示 (您可將 `-o table` 選項使用於任何命令，以格式化輸出)：
-
-```json
-{
-  "accountType": "Standard_LRS",
-  "creationData": {
-    "createOption": "Empty",
-    "imageReference": null,
-    "sourceResourceId": null,
-    "sourceUri": null,
-    "storageAccountId": null
-  },
-  "diskSizeGb": 50,
-  "encryptionSettings": null,
-  "id": "/subscriptions/<guid>/resourceGroups/rasquill-script/providers/Microsoft.Compute/disks/myDataDisk",
-  "location": "westus",
-  "name": "myDataDisk",
-  "osType": null,
-  "ownerId": null,
-  "provisioningState": "Succeeded",
-  "resourceGroup": "myResourceGroup",
-  "tags": null,
-  "timeCreated": "2017-02-02T23:35:47.708082+00:00",
-  "type": "Microsoft.Compute/disks"
-}
-```
-
-
-## <a name="use-unmanaged-disks"></a>使用非受控磁碟
-非受控磁碟需要額外的負荷來建立及管理基礎儲存體帳戶。 非受控磁碟會建立在與作業系統磁碟相同的儲存體帳戶中。 若要建立及連結非受控磁碟，請使用 [az vm unmanaged-disk attach](/cli/azure/vm/unmanaged-disk?view=azure-cli-latest#az_vm_unmanaged_disk_attach) 命令。 下列範例會將 50 GB 的非受控磁碟，連結到 myResourceGroup 資源群組中名為 myVM 的 VM：
-
-```azurecli
-az vm unmanaged-disk attach -g myResourceGroup -n myUnmanagedDisk --vm-name myVM \
-  --new --size-gb 50
 ```
 
 
 ## <a name="connect-to-the-linux-vm-to-mount-the-new-disk"></a>連接到 Linux VM 以掛接新磁碟
-若要分割、格式化和掛接新磁碟以供 Linux VM 使用，請使用 SSH 登入 Azure VM。 如需詳細資訊，請參閱[如何在 Azure 上搭配使用 SSH 與 Linux](mac-create-ssh-keys.md)。 下列範例會以 azureuser 這個使用者名稱，利用 mypublicdns.westus.cloudapp.azure.com 的公用 DNS 項目來連線至 VM： 
+若要分割、格式化和掛接新磁碟以供 Linux VM 使用，請使用 SSH 登入您的 VM。 如需詳細資訊，請參閱[如何在 Azure 上搭配使用 SSH 與 Linux](mac-create-ssh-keys.md)。 下列範例會以 azureuser 這個使用者名稱，利用 mypublicdns.westus.cloudapp.azure.com 的公用 DNS 項目來連線至 VM： 
 
 ```bash
 ssh azureuser@mypublicdns.westus.cloudapp.azure.com
@@ -114,7 +79,7 @@ dmesg | grep SCSI
 sudo fdisk /dev/sdc
 ```
 
-輸出類似於下列範例：
+使用 `n` 命令來新增新的磁碟分割。 在此範例中，我們也會針對主要磁碟分割選擇 `p`，並接受其餘的預設值。 輸出將類似下列範例：
 
 ```bash
 Device contains neither a valid DOS partition table, nor Sun, SGI or OSF disklabel
@@ -136,7 +101,7 @@ Last sector, +sectors or +size{K,M,G} (2048-10485759, default 10485759):
 Using default value 10485759
 ```
 
-在命令提示字元中輸入 `p` 來建立磁碟分割，如下所示：
+輸入 `p` 來列印磁碟分割表格，接著使用 `w` 來將此表格寫入磁碟，然後結束。 輸出應看起來應類似下列範例：
 
 ```bash
 Command (m for help): p
@@ -224,7 +189,7 @@ sudo -i blkid
 sudo vi /etc/fstab
 ```
 
-在此範例中，我們會使用先前步驟所建立之 /dev/sdc1 裝置的 UUID 值，並使用掛接點 /datadrive。 在 */etc/fstab* 檔案的結尾加入以下程式碼：
+在此範例中，使用先前步驟中所建立之 */dev/sdc1* 裝置的 UUID 值以及 */datadrive* 的掛接點。 在 */etc/fstab* 檔案的結尾加入以下程式碼：
 
 ```bash
 UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   ext4   defaults,nofail   1   2
@@ -265,7 +230,6 @@ UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   ext4   defaults,nofail 
 [!INCLUDE [virtual-machines-linux-lunzero](../../../includes/virtual-machines-linux-lunzero.md)]
 
 ## <a name="next-steps"></a>後續步驟
-* 請記住，如果將新磁碟重新開機，除非您將該資訊寫入 [/etc/fstab](http://en.wikipedia.org/wiki/Fstab) 檔案，否則該磁碟無法供 VM 使用。
 * 若要確保您的 Linux VM 已正確設定，請檢閱 [最佳化您的 Linux 機器效能](optimization.md) 建議。
 * 新增其他磁碟以擴充儲存體容量，並 [設定 RAID](configure-raid.md) 以提升效能。
 

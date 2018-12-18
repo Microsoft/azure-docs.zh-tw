@@ -1,28 +1,23 @@
 ---
 title: 了解 Azure IoT 中樞作業 | Microsoft Docs
 description: 開發人員指南 - 排定在連接至 IoT 中樞的多個裝置上執行作業。 作業可以在多個裝置上更新標籤和所需的屬性，並叫用直接方法。
-services: iot-hub
-documentationcenter: .net
 author: dominicbetts
 manager: timlt
-editor: ''
-ms.assetid: fe78458f-4f14-4358-ac83-4f7bd14ee8da
 ms.service: iot-hub
-ms.devlang: multiple
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: na
+services: iot-hub
+ms.topic: conceptual
 ms.date: 01/29/2018
 ms.author: dobett
-ms.openlocfilehash: 367eb703465b2fbc6f1e06a383bc9df709cabe78
-ms.sourcegitcommit: 20d103fb8658b29b48115782fe01f76239b240aa
+ms.openlocfilehash: e2beec1308b9664d35ccd9d355403b7076567f2f
+ms.sourcegitcommit: b5ac31eeb7c4f9be584bb0f7d55c5654b74404ff
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2018
+ms.lasthandoff: 08/23/2018
+ms.locfileid: "42745839"
 ---
 # <a name="schedule-jobs-on-multiple-devices"></a>排程多個裝置上的作業
 
-「Azure IoT 中樞」啟用了一些建置組塊，例如[裝置對應項屬性和標籤][lnk-twin-devguide]及[直接方法][lnk-dev-methods]。  一般而言，後端應用程式可讓裝置管理員和操作員在排定的時間大量更新 IoT 裝置並與之互動。  作業可在排定時間，針對一組裝置執行裝置對應項更新和直接方法。  例如，操作員會使用後端應用程式來起始和追蹤作業，在不干擾大樓運作的時段，將 43 號大樓 3 樓的一組裝置重新開機。
+「Azure IoT 中樞」啟用了一些建置組塊，例如[裝置對應項屬性和標籤][lnk-twin-devguide]及[直接方法][lnk-dev-methods]。 一般而言，後端應用程式可讓裝置管理員和操作員在排定的時間大量更新 IoT 裝置並與之互動。  作業可在排定時間，針對一組裝置執行裝置對應項更新和直接方法。  例如，操作員會使用後端應用程式來起始和追蹤作業，在不干擾大樓運作的時段，將 43 號大樓 3 樓的一組裝置重新開機。
 
 [!INCLUDE [iot-hub-basic](../../includes/iot-hub-basic-whole.md)]
 
@@ -89,7 +84,7 @@ queryCondition = "deviceId IN ['MyDevice1']
     }
 
 ## <a name="querying-for-progress-on-jobs"></a>查詢作業的進度
-以下程式碼片段顯示 HTTPS 1.1 要求詳細資料，適用於[查詢作業][lnk-query]的情況：
+以下程式碼片段顯示 HTTPS 1.1 要求詳細資料，適用於查詢作業的情況：
 
     GET /jobs/v2/query?api-version=2016-11-14[&jobType=<jobType>][&jobStatus=<jobStatus>][&pageSize=<pageSize>][&continuationToken=<continuationToken>]
 
@@ -99,6 +94,8 @@ queryCondition = "deviceId IN ['MyDevice1']
     User-Agent: <sdk-name>/<sdk-version>
 
 ContinuationToken 會從回應來提供。  
+
+您可以使用[裝置對應項、作業和訊息路由的 IoT 中樞查詢語言][lnk-query]，查詢每個裝置上的作業執行狀態。
 
 ## <a name="jobs-properties"></a>作業屬性
 以下清單顯示屬性和對應的描述，可在查詢作業或作業結果時使用。
@@ -148,7 +145,7 @@ IoT 中樞開發人員指南中的其他參考主題包括︰
 [lnk-query]: iot-hub-devguide-query-language.md
 [lnk-devguide-mqtt]: iot-hub-mqtt-support.md
 [lnk-jobs-tutorial]: iot-hub-node-node-schedule-jobs.md
-[lnk-c2d-methods]: iot-hub-node-node-direct-methods.md
+[lnk-c2d-methods]: quickstart-control-device-node.md
 [lnk-dev-methods]: iot-hub-devguide-direct-methods.md
 [lnk-get-started-twin]: iot-hub-node-node-twin-getstarted.md
 [lnk-twin-devguide]: iot-hub-devguide-device-twins.md

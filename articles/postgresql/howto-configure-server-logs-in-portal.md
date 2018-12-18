@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 入口網站中設定和存取 PostgreSQL 的伺服器記錄"
-description: "本文描述如何從 Azure 入口網站，在適用於 PostgreSQL 的 Azure 資料庫中設定和存取伺服器記錄。"
+title: 在 Azure 入口網站中設定和存取 PostgreSQL 的伺服器記錄
+description: 本文描述如何從 Azure 入口網站，在適用於 PostgreSQL 的 Azure 資料庫中設定和存取伺服器記錄。
 services: postgresql
 author: rachel-msft
 ms.author: raagyema
@@ -14,6 +14,7 @@ ms.sourcegitcommit: c765cbd9c379ed00f1e2394374efa8e1915321b9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 02/28/2018
+ms.locfileid: "29692159"
 ---
 # <a name="configure-and-access-server-logs-in-the-azure-portal"></a>在 Azure 入口網站中設定和存取伺服器記錄
 

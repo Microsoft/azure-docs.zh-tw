@@ -1,24 +1,26 @@
 ---
-title: "Log Analytics 中的連線資料方案 | Microsoft Docs"
-description: "網路資料是來自具有 OMS 代理程式 (包括 Operations Manager 和 Windows 連線的代理程式) 的電腦的網路和效能彙總資料。 網路資料結合記錄資料可協助您將資料相互關聯。"
+title: Log Analytics 中的連線資料方案 | Microsoft Docs
+description: 網路資料是來自具有 OMS 代理程式 (包括 Operations Manager 和 Windows 連線的代理程式) 的電腦的網路和效能彙總資料。 網路資料結合記錄資料可協助您將資料相互關聯。
 services: log-analytics
-documentationcenter: 
-author: MGoedtel
+documentationcenter: ''
+author: mgoedtel
 manager: carmonm
-editor: 
+editor: ''
 ms.assetid: fc3d7127-0baa-4772-858a-5ba995d1519b
 ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 01/16/2018
+ms.topic: conceptual
+ms.date: 05/09/2018
 ms.author: magoedte
-ms.openlocfilehash: 658d92900763249aeeb3542132f4fe0c43ba005f
-ms.sourcegitcommit: b32d6948033e7f85e3362e13347a664c0aaa04c1
+ms.component: na
+ms.openlocfilehash: 32e76d1593f8bda0ebf745e76373908970aeb181
+ms.sourcegitcommit: 2ad510772e28f5eddd15ba265746c368356244ae
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/13/2018
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "43124164"
 ---
 # <a name="wire-data-20-preview-solution-in-log-analytics"></a>Log Analytics 中的 Wire Data 2.0 (預覽) 解決方案
 
@@ -54,22 +56,20 @@ ms.lasthandoff: 02/13/2018
 
 ## <a name="connected-sources"></a>連接的來源
 
-Wire Data 會從 Microsoft 相依性代理程式取得其資料。 相依性代理程式相依於連線到 Log Analytics 的 OMS 代理程式。 這表示，伺服器必須先安裝並設定 OMS 代理程式，然後才能安裝相依性代理程式。 下表描述 Wire Data 解決方案支援的連線來源。
+Wire Data 會從 Microsoft 相依性代理程式取得其資料。 Dependency Agent 須憑藉 Log Analytics 代理程式才能連線至 Log Analytics。 這表示，伺服器必須先安裝 Log Analytics 代理程式，並設定 Dependency Agent。 下表描述 Wire Data 解決方案支援的連線來源。
 
 | **連線的來源** | **支援** | **說明** |
 | --- | --- | --- |
-| Windows 代理程式 | yes | Wire Data 會分析並收集來自 Windows 代理程式電腦的資料。 <br><br> 除了 [OMS 代理程式](log-analytics-windows-agent.md)外，Windows 代理程式還需要 Microsoft 相依性代理程式。 如需作業系統版本的完整清單，請參閱[支援的作業系統](../operations-management-suite/operations-management-suite-service-map-configure.md#supported-operating-systems)。 |
-| Linux 代理程式 | yes | Wire Data 會分析並收集來自 Linux 代理程式電腦的資料。<br><br> 除了 [OMS 代理程式](log-analytics-quick-collect-linux-computer.md)外，Linux 代理程式還需要 Microsoft 相依性代理程式。 如需作業系統版本的完整清單，請參閱[支援的作業系統](../operations-management-suite/operations-management-suite-service-map-configure.md#supported-operating-systems)。 |
-| System Center Operations Manager 管理群組 | yes | Wire Data 會在連線的 [System Center Operations Manager 管理群組](log-analytics-om-agents.md)中，分析並收集來自 Windows 和 Linux 代理程式的資料。 <br><br> System Center Operations Manager 代理程式電腦必須直接連線到 Log Analytics。 資料會從管理群組轉送至 Log Analytics。 |
+| Windows 代理程式 | 是 | Wire Data 會分析並收集來自 Windows 代理程式電腦的資料。 <br><br> 除了[適用於 Windows 的 Log Analytics 代理程式](log-analytics-windows-agent.md)以外，Windows 代理程式還需要 Microsoft 相依性代理程式。 如需作業系統版本的完整清單，請參閱[支援的作業系統](../monitoring/monitoring-service-map-configure.md#supported-windows-operating-systems)。 |
+| Linux 代理程式 | 是 | Wire Data 會分析並收集來自 Linux 代理程式電腦的資料。<br><br> 除了[適用於 Linux 的 Log Analytics 代理程式](log-analytics-quick-collect-linux-computer.md)以外，Linux 代理程式還需要 Microsoft Dependency Agent。 如需作業系統版本的完整清單，請參閱[支援的作業系統](../monitoring/monitoring-service-map-configure.md#supported-linux-operating-systems)。 |
+| System Center Operations Manager 管理群組 | 是 | Wire Data 會在連線的 [System Center Operations Manager 管理群組](log-analytics-om-agents.md)中，分析並收集來自 Windows 和 Linux 代理程式的資料。 <br><br> System Center Operations Manager 代理程式電腦必須直接連線到 Log Analytics。 |
 | Azure 儲存體帳戶 | 否 | Wire Data 會收集來自代理程式電腦的資料，因此沒有要從 Azure 儲存體收集的資料。 |
 
 在 Windows 上，System Center Operations Manager 和 Log Analytics 會使用 Microsoft Monitoring Agent (MMA) 來收集和傳送資料。 視內容而定，此代理程式可稱為 System Center Operations Manager 代理程式、OMS 代理程式、Log Analytics 代理程式、MMA 或直接代理程式。 System Center Operations Manager 和 Log Analytics 提供的 MMA 版本稍有不同。 這些版本可以各自向 System Center Operations Manager 或 Log Analytics 報告，或同時向兩者報告。
 
-在 Linux 上，OMS Agent for Linux 會收集資料並傳送給 Log Analytics。 您可以在具有 OMS 直接代理程式的伺服器上，或在透過 System Center Operations Manager 管理群組連結至 Log Analytics 的伺服器上，使用 Wire Data。
+在 Linux 上，適用於 Linux 的 Log Analytics 代理程式會收集資料並傳送給 Log Analytics。 您可以在代理程式直接連線至 Log Analytics 的伺服器上，或在透過 System Center Operations Manager 管理群組連線至 Log Analytics 的伺服器上，使用 Wire Data。
 
-在本文中，所有代理程式 (無論 Linux 或 Windows、無論是連線到 System Center Operations Manager 管理群組或直接連線到 Log Analytics) 一律稱為「OMS 代理程式」。 只有在內容需要時，我們才會使用代理程式特定的部署名稱。
-
-相依性代理程式本身不會傳輸任何資料，因此不需要變更防火牆或連接埠。 Wire Data 中的資料一律會由 OMS 代理程式 (直接或使用 OMS 閘道) 傳輸給 Log Analytics。
+相依性代理程式本身不會傳輸任何資料，因此不需要變更防火牆或連接埠。 Wire Data 中的資料一律會由 Log Analytics 代理程式 (直接或透過 OMS 閘道) 傳輸給 Log Analytics。
 
 ![代理程式圖表](./media/log-analytics-wire-data/agents.png)
 
@@ -78,9 +78,9 @@ Wire Data 會從 Microsoft 相依性代理程式取得其資料。 相依性代�
 - 當您的 System Center Operations Manager 代理程式可透過網際網路連線到 Log Analytics 時，就不需要額外的設定。
 - 當您的 System Center Operations Manager 代理程式無法透過網際網路存取 Log Analytics 時，就必須設定 OMS 閘道以搭配 System Center Operations Manager 使用。
 
-如果您使用直接代理程式，您需要將 OMS 代理程式本身設定為連線到 Log Analytics 或 OMS 閘道。 您可以從 [Microsoft 下載中心](https://www.microsoft.com/download/details.aspx?id=52666)下載 OMS 閘道。
+如果您的 Windows 或 Linux 電腦無法直接連線至服務，您必須將 Log Analytics 代理程式設定為使用 OMS 閘道連線至 Log Analytics。 您可以從 [Microsoft 下載中心](https://www.microsoft.com/download/details.aspx?id=52666)下載 OMS 閘道。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 - 需要[洞察力與分析](https://www.microsoft.com/cloud-platform/operations-management-suite-pricing)解決方案供應項目。
 - 如果您使用舊版 Wire Data 解決方案，則必須先將它移除。 不過，您仍然可以在 Wire Data 2.0 和記錄搜尋中使用透過原始 Wire Data 解決方案擷取的所有資料。
@@ -379,15 +379,13 @@ rpm -e dependency-agent dependency-agent-connector
 
 ## <a name="using-the-wire-data-20-solution"></a>使用 Wire Data 2.0 解決方案
 
-在 OMS 入口網站中，按一下 [Wire Data 2.0] 磚以開啟 Wire Data 儀表板。 此儀表板包含下表中的刀鋒視窗。 每個刀鋒視窗最多會列出 10 個與該刀鋒視窗中指定範圍和時間範圍的準則相符的項目。 您可以按一下刀鋒視窗底部的 [查看全部]，或按一下刀鋒視窗標頭，以執行記錄搜尋來傳回所有記錄。
+在 Azure 入口網站 Log Analytics 工作區的 [概觀] 頁面中，按一下 [Wire Data 2.0] 磚以開啟 [Wire Data] 儀表板。 此儀表板包含下表中的刀鋒視窗。 每個刀鋒視窗最多會列出 10 個與該刀鋒視窗中指定範圍和時間範圍的準則相符的項目。 您可以按一下刀鋒視窗底部的 [查看全部]，或按一下刀鋒視窗標頭，以執行記錄搜尋來傳回所有記錄。
 
 | **刀鋒視窗** | **說明** |
 | --- | --- |
 | 擷取網路流量的代理程式數 | 顯示擷取網路流量的代理程式數，並列出擷取最多流量的前 10 部電腦。 按一下此數字可執行記錄搜尋，以搜尋 <code>Type:WireData &#124; measure Sum(TotalBytes) by Computer &#124; top 500000</code>。 按一下清單中的電腦可執行記錄搜尋，以傳回擷取的位元組總數。 |
 | 區域子網路數 | 顯示代理程式探索到的區域子網路數。  按一下此數字可執行記錄搜尋，以搜尋 <code>Type:WireData &#124; Measure Sum(TotalBytes) by LocalSubnet</code>，其中列出所有子網路及透過每個子網路傳送的位元組數目。 按一下清單中的子網路可執行記錄搜尋，以傳回透過子網路傳送的位元組總數。 |
 | 應用程式層級通訊協定數 | 顯示代理程式探索到的使用中應用程式層級通訊協定數。 按一下此數字可執行記錄搜尋，以搜尋 <code>Type:WireData &#124; Measure Sum(TotalBytes) by ApplicationProtocol</code>。 按一下通訊協定可執行記錄搜尋，以傳回使用該通訊協定傳送的位元組總數。 |
-
-[!INCLUDE[log-analytics-log-search-nextgeneration](../../includes/log-analytics-log-search-nextgeneration.md)]
 
 ![Wire Data 儀表板](./media/log-analytics-wire-data/wire-data-dash.png)
 

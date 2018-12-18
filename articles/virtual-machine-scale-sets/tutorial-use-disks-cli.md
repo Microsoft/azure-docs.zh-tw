@@ -1,9 +1,9 @@
 ---
-title: 教學課程 - 使用 Azure CLI 2.0 建立及使用擴展集所適用的磁碟 | Microsoft Docs
-description: 了解如何使用 Azure CLI 2.0 來建立及使用虛擬機器擴展集所適用的受控磁碟，包括如何新增、準備、列出和中斷連結磁碟。
+title: 教學課程 - 使用 Azure CLI 建立及使用擴展集所適用的磁碟 | Microsoft Docs
+description: 了解如何使用 Azure CLI 來建立及使用虛擬機器擴展集所適用的受控磁碟，包括如何新增、準備、列出及中斷連結磁碟。
 services: virtual-machine-scale-sets
 documentationcenter: ''
-author: iainfoulds
+author: cynthn
 manager: jeconnoc
 editor: ''
 tags: azure-resource-manager
@@ -14,16 +14,17 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: tutorial
 ms.date: 03/27/2018
-ms.author: iainfou
+ms.author: cynthn
 ms.custom: mvc
-ms.openlocfilehash: 86ab38fffa8099f2f9f758a4da89fdfcbb3c7543
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: ae26e851e60f654a502779fe2a8b41e13dc47915
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46993624"
 ---
-# <a name="tutorial-create-and-use-disks-with-virtual-machine-scale-set-with-the-azure-cli-20"></a>教學課程：使用 Azure CLI 2.0 建立及使用虛擬機器擴展集所適用的磁碟
-虛擬機器擴展集會使用磁碟來儲存 VM 執行個體的作業系統、應用程式和資料。 當您建立及管理擴展集時，請務必選擇預期的工作負載所適用的磁碟大小和組態。 本教學課程將說明如何建立及管理 VM 磁碟。 在本教學課程中，您將了解如何：
+# <a name="tutorial-create-and-use-disks-with-virtual-machine-scale-set-with-the-azure-cli"></a>教學課程：使用 Azure CLI 建立及使用虛擬機器擴展集所適用的磁碟
+虛擬機器擴展集會使用磁碟來儲存 VM 執行個體的作業系統、應用程式和資料。 當您建立及管理擴展集時，請務必選擇預期的工作負載所適用的磁碟大小和組態。 此教學課程將說明如何建立及管理 VM 磁碟。 在此教學課程中，您將了解如何：
 
 > [!div class="checklist"]
 > * OS 磁碟和暫存磁碟
@@ -36,13 +37,13 @@ ms.lasthandoff: 03/28/2018
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
-如果您選擇在本機安裝和使用 CLI，則在本教學課程中，您必須執行 Azure CLI 2.0.29 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。
+如果您選擇在本機安裝和使用 CLI，則在此教學課程中，您必須執行 Azure CLI 2.0.29 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI]( /cli/azure/install-azure-cli)。
 
 
 ## <a name="default-azure-disks"></a>預設 Azure 磁碟
 建立或調整擴展集後，有兩個磁碟會自動連結到各個 VM 執行個體。
 
-**作業系統磁碟** - 作業系統磁碟可裝載 VM 執行個體的作業系統，其大小可以高達 2 TB。 OS 磁碟預設會標示為 /dev/sda。 OS 磁碟的磁碟快取組態已針對 OS 效能進行最佳化。 因為此組態，OS 磁碟**不得**裝載應用程式或資料。 請對應用程式和資料使用資料磁碟，本文稍後會詳細說明。
+**作業系統磁碟** - 作業系統磁碟可裝載 VM 執行個體的作業系統，其大小可以高達 2 TB。 OS 磁碟預設會標示為 /dev/sda。 OS 磁碟的磁碟快取組態已針對 OS 效能進行最佳化。 因為此組態，OS 磁碟**不得**裝載應用程式或資料。 請對應用程式和資料使用資料磁碟，此文章稍後會詳細說明。
 
 **暫存磁碟** - 暫存磁碟會使用與 VM 執行個體位於相同 Azure 主機的固態磁碟機。 暫存磁碟的效能非常好，可用於暫存資料處理等作業。 不過，如果 VM 執行個體移至新的主機，則會移除儲存在暫存磁碟上的任何資料。 暫存磁碟的大小取決於 VM 執行個體大小。 暫存磁碟會標示為 /dev/sdb，其掛接點為 /mnt。
 
@@ -297,7 +298,7 @@ az group delete --name myResourceGroup --no-wait --yes
 
 
 ## <a name="next-steps"></a>後續步驟
-在本教學課程中，您已了解如何使用 Azure CLI 2.0 來建立及使用擴展集所適用的磁碟：
+在此教學課程中，您已了解如何使用 Azure CLI 來建立及使用擴展集所適用的磁碟：
 
 > [!div class="checklist"]
 > * OS 磁碟和暫存磁碟

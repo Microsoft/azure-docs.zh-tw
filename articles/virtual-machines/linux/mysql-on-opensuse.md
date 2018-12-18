@@ -1,11 +1,11 @@
 ---
-title: "在 Azure 中的 OpenSUSE VM 上安裝 MySQL | Microsoft Docs"
-description: "了解如何在 Azure 中的 OpenSUSE Linux 虛擬機器上安裝 MySQL。"
+title: 在 Azure 中的 OpenSUSE VM 上安裝 MySQL | Microsoft Docs
+description: 了解如何在 Azure 中的 OpenSUSE Linux 虛擬機器上安裝 MySQL。
 services: virtual-machines-linux
-documentationcenter: 
+documentationcenter: ''
 author: cynthn
 manager: jeconnoc
-editor: 
+editor: ''
 tags: azure-resource-manager
 ms.assetid: 1594e10e-c314-455a-9efb-a89441de364b
 ms.service: virtual-machines-linux
@@ -13,13 +13,14 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: article
-ms.date: 01/22/2018
+ms.date: 07/11/2018
 ms.author: cynthn
-ms.openlocfilehash: 88bd895cb3a384f1ada0394fe2da206aca86b981
-ms.sourcegitcommit: 5ac112c0950d406251551d5fd66806dc22a63b01
+ms.openlocfilehash: 838915e7a5fe1d1838c9bd802305e83ec9a773d9
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46986773"
 ---
 # <a name="install-mysql-on-a-virtual-machine-running-opensuse-linux-in-azure"></a>在 Azure 中執行 OpenSUSE Linux 的虛擬機器上安裝 MySQL
 
@@ -28,17 +29,17 @@ ms.lasthandoff: 01/23/2018
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-如果您選擇在本機安裝和使用 CLI，需要 Azure CLI 2.0 版或更新版本。 若要尋找版本，請執行 `az --version`。 如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。
+如果您選擇在本機安裝和使用 CLI，需要 Azure CLI 2.0 版或更新版本。 若要尋找版本，請執行 `az --version`。 如果您需要安裝或升級，請參閱[安裝 Azure CLI]( /cli/azure/install-azure-cli)。
 
 ## <a name="create-a-virtual-machine-running-opensuse-linux"></a>建立執行 OpenSUSE Linux 的虛擬機器
 
-首先，建立資源群組。 在此範例中，我們將資源群組命名為 *mySQSUSEResourceGroup*，並將其建立在「美國東部」區域。
+首先，建立資源群組。 在此範例中，資源群組的名稱為 mySQSUSEResourceGroup，並且會建立在「美國東部」區域。
 
 ```azurecli-interactive
 az group create --name mySQLSUSEResourceGroup --location eastus
 ```
 
-建立 VM。 在此範例中，我們將 VM 命名為 *myVM*。 我們也將使用虛擬機器大小 *Standard_D2s_v3*，但您應該選擇您認為最適合您工作負載的[虛擬機器大小](sizes.md)。
+建立 VM。 在此範例中，VM 的名稱為 myVM，而 VM 的大小為 Standard_D2s_v3，但您應該選擇您認為最適合您工作負載的 [VM 大小](sizes.md)。
 
 ```azurecli-interactive
 az vm create --resource-group mySQLSUSEResourceGroup \
@@ -95,17 +96,30 @@ systemctl is-enabled mysql
 
 這應該會傳回：enabled。
 
+重新啟動伺服器。
+
+```bash
+sudo reboot
+```
+
 
 ## <a name="mysql-password"></a>MySQL 密碼
 
 安裝之後，MySQL 根密碼預設為空白。 執行 **mysql\_secure\_installation** 指令碼以保護 MySQL。 指令碼會提示您變更 MySQL 根密碼、移除匿名使用者帳戶、停用遠端根登入、移除測試資料庫，以及重新載入權限資料表。 
+
+伺服器重新開機後，再次透過 SSH 連線至 VM。
+
+```azurecli-interactive  
+ssh 10.111.112.113
+```
+
 
 
 ```bash
 mysql_secure_installation
 ```
 
-## <a name="log-in-to-mysql"></a>登入 MySQL
+## <a name="sign-in-to-mysql"></a>登入 MySQL
 
 您現在可以登入，並輸入 MySQL 提示。
 
@@ -135,7 +149,7 @@ GRANT ALL ON testdatabase.* TO 'mysqluser'@'localhost' IDENTIFIED BY 'password';
    
 只有連線到資料庫的指令碼會使用資料庫使用者名稱和密碼。  資料庫使用者帳戶名稱不一定代表系統上的實際使用者帳戶。
 
-啟用從另一部電腦登入。 在此範例中，我們想要從中登入電腦的 IP 位址是 *10.112.113.114*。
+啟用從另一部電腦登入。 在此範例中，允許從中登入的電腦 IP 位址是 10.112.113.114。
 
 ```   
 GRANT ALL ON testdatabase.* TO 'mysqluser'@'10.112.113.114' IDENTIFIED BY 'password';

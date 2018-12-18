@@ -9,16 +9,17 @@ editor: ''
 ms.assetid: ''
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 10/15/2017
 ms.author: dekapur
-ms.openlocfilehash: 37cae133dda2f274a83db1df37e798c5da58c539
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: 9b851b2d75cf78a02dd223788085ac9a0963376e
+ms.sourcegitcommit: eb75f177fc59d90b1b667afcfe64ac51936e2638
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 05/16/2018
+ms.locfileid: "34211349"
 ---
 # <a name="event-aggregation-and-collection-using-eventflow"></a>使用 EventFlow 的事件彙總與集合
 
@@ -156,5 +157,5 @@ servicefabric:/<section-name>/<setting-name>
 ## <a name="next-steps"></a>後續步驟
 
 * [使用 Application Insights 進行事件分析和視覺效果](service-fabric-diagnostics-event-analysis-appinsights.md)
-* [使用 OMS 進行事件分析和視覺效果](service-fabric-diagnostics-event-analysis-oms.md)
+* [使用 Log Analytics 進行事件分析和視覺效果](service-fabric-diagnostics-event-analysis-oms.md)
 * [EventFlow 文件](https://github.com/Azure/diagnostics-eventflow)

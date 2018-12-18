@@ -1,25 +1,21 @@
 ---
-title: "連線到 Azure SQL 資料倉儲 sqlcmd | Microsoft Docs"
-description: "使用 [sqlcmd][sqlcmd] 命令列公用程式來連接及查詢 Azure SQL 資料倉儲。"
+title: 連線到 Azure SQL 資料倉儲 sqlcmd | Microsoft Docs
+description: 使用 [sqlcmd][sqlcmd] 命令列公用程式來連接及查詢 Azure SQL 資料倉儲。
 services: sql-data-warehouse
-documentationcenter: NA
-author: antvgski
-manager: jhubbard
-editor: 
-ms.assetid: 6e2b69e5-4806-4e91-9ea1-e2b63bf28c46
+author: kavithaj
+manager: craigg
 ms.service: sql-data-warehouse
-ms.devlang: NA
-ms.topic: get-started-article
-ms.tgt_pltfrm: NA
-ms.workload: data-services
-ms.custom: connect
-ms.date: 10/31/2016
-ms.author: anvang;barbkess
-ms.openlocfilehash: 5a3fe1046c3417070ba8ff5bd18a0485e2152eff
-ms.sourcegitcommit: 68aec76e471d677fd9a6333dc60ed098d1072cfc
+ms.topic: conceptual
+ms.component: consume
+ms.date: 04/17/2018
+ms.author: kavithaj
+ms.reviewer: igorstan
+ms.openlocfilehash: 94f3955f9ce94fa52e89180fa649c4e412b80109
+ms.sourcegitcommit: 2b2129fa6413230cf35ac18ff386d40d1e8d0677
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/18/2017
+ms.lasthandoff: 08/30/2018
+ms.locfileid: "43247708"
 ---
 # <a name="connect-to-sql-data-warehouse-with-sqlcmd"></a>使用 sqlcmd 連接到 SQL 資料倉儲
 > [!div class="op_single_selector"]

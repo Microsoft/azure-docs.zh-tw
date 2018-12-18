@@ -1,0 +1,49 @@
+### YamlMime:YamlDocument
+documentType: LandingData
+title: Azure AD 驗證文件
+metadata:
+  document_id: 
+  title: Azure Active Directory 驗證文件
+  description: 了解如何管理和部署 Azure Active Directory 自助式密碼重設、Multi-Factor Authentication、自訂的禁用密碼清單與智慧鎖定。
+  services: active-directory
+  ms.component: authentication
+  author: MicrosoftGuyJFlo
+  manager: mtillman
+  ms.service: active-directory
+  ms.tgt_pltfrm: na
+  ms.devlang: na
+  ms.topic: landing-page
+  ms.date: 07/19/2018
+  ms.author: joflore
+  ms.openlocfilehash: f1317c78570ace901c076ae2814bee3216fc5b79
+  ms.sourcegitcommit: 4e5ac8a7fc5c17af68372f4597573210867d05df
+  ms.translationtype: HT
+  ms.contentlocale: zh-TW
+  ms.lasthandoff: 07/20/2018
+  ms.locfileid: "39172899"
+abstract:
+  description: 了解如何部署和管理 Azure Active Directory 自助式密碼重設、Multi-Factor Authentication、自訂的禁用密碼清單與智慧鎖定。 這些功能會透過各種驗證方法提供強式驗證，同時提供簡單的組織登入程序。
+sections:
+- title: 5 分鐘快速入門
+  items:
+  - type: paragraph
+    text: 了解如何啟用自助式密碼重設，減少使用者詢問技術相關服務的來電。
+  - type: list
+    style: icon48
+    items:
+    - image:
+        src: ./media/index/i_protect.png
+      text: 啟用自助式密碼重設
+      href: https://docs.microsoft.com/azure/active-directory/authentication/quickstart-sspr
+- title: 逐步教學課程
+  items:
+  - type: paragraph
+    text: 了解如何為組織啟用簡單且安全的登入程序。
+  - type: list
+    style: unordered
+    items:
+    - html: <a href="/azure/active-directory/authentication/tutorial-sspr-pilot">啟用自助式密碼重設試驗</a>
+    - html: <a href="/azure/active-directory/authentication/tutorial-mfa-applications">Azure 入口網站需要使用 MFA</a>
+    - html: <a href="/azure/active-directory/authentication/tutorial-enable-writeback">啟用自助式密碼重設內部部署整合</a>
+    - html: <a href="/azure/active-directory/authentication/tutorial-sspr-windows">啟用 Windows 10 密碼重設</a>
+    - html: <a href="/azure/active-directory/authentication/tutorial-risk-based-sspr-mfa">與 Azure Identity Protection 整合</a>

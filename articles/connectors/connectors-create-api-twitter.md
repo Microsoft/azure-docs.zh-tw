@@ -1,104 +1,96 @@
 ---
-title: 了解如何在邏輯應用程式中使用 Twitter 連接器 | Microsoft Docs
-description: 搭配 REST API 參數來使用 Twitter 連接器的概觀
-services: ''
-documentationcenter: ''
+title: 從 Azure Logic Apps 連線到 Twitter | Microsoft Docs
+description: 藉由使用 Azure Logic Apps，讓監視及管理推文，加上從您的 Twitter 帳戶取得跟隨者、您跟隨的使用者、其他使用者、時間軸等等相關資訊的工作和工作流程自動化
+services: logic-apps
+ms.service: logic-apps
+ms.suite: integration
 author: ecfan
-manager: anneta
-editor: ''
-tags: connectors
+ms.author: estfan
+ms.reviewer: klam, LADocs
 ms.assetid: 8bce2183-544d-4668-a2dc-9a62c152d9fa
-ms.service: multiple
-ms.devlang: na
 ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: na
-ms.date: 07/18/2016
-ms.author: estfan; ladocs
-ms.openlocfilehash: eb953ee7701d407b9b75a0699f53b9b64828a0e5
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+tags: connectors
+ms.date: 08/25/2018
+ms.openlocfilehash: eea70d979a69a4855b6eeb892d1705ecadaa8434
+ms.sourcegitcommit: ebb460ed4f1331feb56052ea84509c2d5e9bd65c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42918640"
 ---
-# <a name="get-started-with-the-twitter-connector"></a>開始使用 Twitter 連接器
-使用 Twitter 連接器，您可以：
+# <a name="monitor-and-manage-twitter-by-using-azure-logic-apps"></a>藉由使用 Azure Logic Apps 來監視及管理 Twitter
 
-* 張貼推文並取得推文
-* 存取時間軸、好友和粉絲
-* 執行本文所述的任何其他動作和觸發程序
+您可以使用 Azure Logic Apps 和 Twitter 連接器，建立自動化工作和工作流程，以便監視及管理您在 Twitter 中關心的資料，例如推文、跟隨者、使用者和跟隨的使用者、時間軸等等，以及其他動作，例如：
 
-若要使用[任何連接器](apis-list.md)，您必須先建立邏輯應用程式。 您可以從[立即建立邏輯應用程式](../logic-apps/quickstart-create-first-logic-app-workflow.md)來開始。  
+* 監視、貼文和搜尋推文。
+* 取得例如跟隨者、跟隨的使用者、時間軸等等的資料。
+
+您可以使用觸發程序，從您的 Twitter 帳戶收到回應，並且讓輸出可供其他動作使用。 您可以使用動作，該動作會使用您的 Twitter 帳戶來執行工作。 您也可以讓其他動作使用 Twitter 動作的輸出。 例如，當具有特定主題標籤的新推文出現時，您可以使用 Slack 連接器來傳送訊息。 如果您不熟悉邏輯應用程式，請檢閱[什麼是 Azure Logic Apps？](../logic-apps/logic-apps-overview.md)
+
+## <a name="prerequisites"></a>必要條件
+
+* Azure 訂用帳戶。 如果您沒有 Azure 訂用帳戶，請先<a href="https://azure.microsoft.com/free/" target="_blank">註冊免費的 Azure 帳戶</a>。 
+
+* 您的 Twitter 帳戶和使用者認證
+
+   您的認證會授權邏輯應用程式建立連線並存取 Twitter 帳戶。
+
+* [如何建立邏輯應用程式](../logic-apps/quickstart-create-first-logic-app-workflow.md)的基本知識
+
+* 您要在其中存取 Twitter 帳戶的邏輯應用程式。 若要開始使用 Twitter 觸發程序，請[建立空白邏輯應用程式](../logic-apps/quickstart-create-first-logic-app-workflow.md)。 若要使用 Twitter 動作，請使用其他觸發程序來啟動邏輯應用程式，例如「週期」觸發程序。
 
 ## <a name="connect-to-twitter"></a>連接到 Twitter
-您必須先建立與服務的連線，才能透過邏輯應用程式存取任何服務。 [連線](connectors-overview.md)可讓邏輯應用程式與另一個服務連線。  
 
-### <a name="create-a-connection-to-twitter"></a>建立 Twitter 連線
-> [!INCLUDE [Steps to create a connection to Twitter](../../includes/connectors-create-api-twitter.md)]
-> 
-> 
+[!INCLUDE [Create connection general intro](../../includes/connectors-create-connection-general-intro.md)]
 
-## <a name="use-a-twitter-trigger"></a>使用 Twitter 觸發程序
-觸發程序是可用來啟動邏輯應用程式中所定義之工作流程的事件。 [深入了解觸發程序](../logic-apps/logic-apps-overview.md#logic-app-concepts)。
+1. 登入 [Azure 入口網站](https://portal.azure.com)，如果邏輯應用程式尚未開啟，請在邏輯應用程式設計工具中開啟邏輯應用程式。
 
-在此範例中，您會使用「**當有新推文張貼時**」觸發程序來搜尋 #Seattle。 如果找到 #Seattle，則使用推文中的文字更新 Dropbox 中的檔案。 在企業範例中，您可以搜尋您的公司名稱，並以推文中的文字更新 SQL Database。
+1. 選擇路徑： 
 
-1. 在 Logic Apps 設計工具的搜尋方塊中輸入 *twitter*，然後選取 [Twitter - 當有新推文張貼時] 觸發程序   
-   ![Twitter 觸發程序圖 1](./media/connectors-create-api-twitter/trigger-1.png)  
-2. 在 [搜尋文字] 控制項中輸入 *#Seattle*  
-   ![Twitter 觸發程序圖 2](./media/connectors-create-api-twitter/trigger-2.png) 
+   * 針對空白邏輯應用程式，請在搜尋方塊中輸入 "twitter" 作為篩選條件。 
+   請在觸發程序清單底下，選取您想要的觸發程序。 
 
-此時，邏輯應用程式已設有觸發程序，該觸發程序會開始執行工作流程中的其他觸發程序和動作。 
+     -或-
 
-> [!NOTE]
-> 為了讓邏輯應用程式能正常運作，它必須包含至少一個觸發程序和一個動作。 請使用下一節中的步驟新增動作。
+   * 針對現有的邏輯應用程式： 
+   
+     * 請在想要新增動作的最後一個步驟底下，選擇 [新增步驟]。 
 
-## <a name="add-a-condition"></a>新增條件
-我們只關注粉絲有 50 位以上的使用者貼文。 因此，確認粉絲人數的條件會先新增至邏輯應用程式。  
+       -或-
 
-1. 選取 [+ 新步驟] 來新增您想要在新推文中找到 #Seattle 時採取的動作  
-   ![Twitter 動作圖 1](../../includes/media/connectors-create-api-twitter/action-1.png)  
-2. 選取 [新增條件] 連結。  
-   ![Twitter 條件圖 1](../../includes/media/connectors-create-api-twitter/condition-1.png)   
-   這會開啟可供您檢查條件的 [條件] 控制項，例如「等於」、「小於」、「大於」、「包含」等等。  
-   ![Twitter 條件圖 2](../../includes/media/connectors-create-api-twitter/condition-2.png)   
-3. 選取 [選擇值] 控制項。 在此控制項中，您可以從任何先前的動作或觸發程序選取一或多個屬性。 此屬性值的條件會評估為 true 或 false。
-   ![Twitter 條件圖 3](../../includes/media/connectors-create-api-twitter/condition-3.png)   
-4. 選取 [...] 展開屬性清單，以便查看所有的可用屬性。        
-   ![Twitter 條件圖 4](../../includes/media/connectors-create-api-twitter/condition-4.png)   
-5. 選取 [粉絲計數] 屬性。    
-   ![Twitter 條件圖 5](../../includes/media/connectors-create-api-twitter/condition-5.png)   
-6. 請注意，[粉絲計數] 屬性現在位於值控制項中。    
-   ![Twitter 條件影像 6](../../includes/media/connectors-create-api-twitter/condition-6.png)   
-7. 從運算子清單選取 [大於]。    
-   ![Twitter 條件圖 7](../../includes/media/connectors-create-api-twitter/condition-7.png)   
-8. 輸入 50 做為「大於」運算子的運算元。  
-   現已新增此條件。 使用功能表的 [儲存] 連結來儲存您的工作。    
-   ![Twitter 條件圖 8](../../includes/media/connectors-create-api-twitter/condition-8.png)   
+     * 請在想要新增動作的步驟之間，將指標移至步驟之間的箭號。 
+     選擇顯示的加號 (**+**)，然後選取 [新增動作]。
+     
+       在搜尋方塊中，輸入 "twitter" 作為篩選條件。 
+       請在動作清單底下，選取您想要的動作。
 
-## <a name="use-a-twitter-action"></a>使用 Twitter 動作
-動作是由邏輯應用程式中定義的工作流程所執行的作業。 [深入了解動作](../logic-apps/logic-apps-overview.md#logic-app-concepts)。  
+1. 如果系統提示您登入 Twitter，請立即登入，方可授與邏輯應用程式存取權。
 
-現在已有了觸發程序，請新增動作以張貼包含觸發程序所找到之推文內容的新推文。 針對本逐步解說，只會張貼粉絲有 50 位以上的使用者推文。  
+1. 為您選取的觸發程序或動作提供必要的詳細資料，並且繼續建置邏輯應用程式的工作流程。
 
-下一個步驟中會新增 Twitter 動作，若使用者的粉絲有 50 位以上，則此動作會使用該使用者每則貼文的部分屬性來張貼推文。  
+## <a name="examples"></a>範例
 
-1. 選取 [新增動作]。 此步驟會開啟搜尋控制項，您可以在其中搜尋其他動作和觸發程序。  
-   ![Twitter 條件圖 9](../../includes/media/connectors-create-api-twitter/condition-9.png)   
-2. 在搜尋方塊中輸入 *twitter*，然後選取 [Twitter - 張貼推文] 動作。 此步驟會開啟 [張貼推文] 控制項，您將在其中輸入所張貼推文的所有詳細資料。      
-   ![Twitter 動作圖 1-5](../../includes/media/connectors-create-api-twitter/action-1-5.png)   
-3. 選取 [推文文字] 控制項。 前述動作和觸發程序的所有輸出現在可顯示在邏輯應用程式中。 您可以選取上述任何輸出，並使用它們做為新推文的部分推文文字。     
-   ![Twitter 動作圖 2](../../includes/media/connectors-create-api-twitter/action-2.png)   
-4. 選取 [使用者名稱]   
-5. 在推文文字控制項中的使用者名稱後，立即輸入「說：」。
-6. 選取「推文文字」。       
-   ![Twitter 動作圖 3](../../includes/media/connectors-create-api-twitter/action-3.png)   
-7. 啟動您的工作流程並儲存工作，然後傳送具有 #Seattle 主題標籤的推文。
+### <a name="twitter-trigger-when-a-new-tweet-is-posted"></a>Twitter 觸發程序：有新推文張貼時
 
+此觸發程序會在偵測到新推文時 (例如，具有主題標籤 #Seattle 時)，啟動邏輯應用程式工作流程。 所以舉例來說，當找到這些推文時，您可以將具有推文內容的檔案新增至儲存體，例如藉由使用 Dropbox 連接器新增到 Dropbox 帳戶。 
 
-## <a name="connector-specific-details"></a>連接器特定的詳細資料
+您可以選擇性地包含條件，要求合格的推文必須來自至少具有指定跟隨者數目的使用者。
 
-檢視 Swagger 中定義的任何觸發程序和動作，另請參閱[連接器詳細資料](/connectors/twitterconnector/)的所有限制。 
+**企業範例**：您可以使用此觸發程序來監視與貴公司有關的推文，以及將推文內容上傳至 SQL 資料庫。
+
+### <a name="twitter-action-post-a-tweet"></a>Twitter 動作：張貼推文
+
+此動作會張貼推文，但是您可以設定動作，讓推文包含由先前所述觸發程序找到的推文內容。 
+
+## <a name="connector-reference"></a>連接器參考
+
+如需觸發程序、動作和限制的技術詳細資訊，它們是由連接器的 OpenAPI (以前稱為 Swagger) 來描述，請檢閱連接器的[參考頁面](/connectors/twitterconnector/)。
+
+## <a name="get-support"></a>取得支援
+
+* 如有問題，請瀏覽 [Azure Logic Apps 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurelogicapps)。
+* 若要提交或票選功能構想，請造訪 [Logic Apps 使用者意見反應網站](http://aka.ms/logicapps-wish)。
 
 ## <a name="next-steps"></a>後續步驟
-[建立邏輯應用程式](../logic-apps/quickstart-create-first-logic-app-workflow.md)
+
+* 了解其他 [Logic Apps 連接器](../connectors/apis-list.md)

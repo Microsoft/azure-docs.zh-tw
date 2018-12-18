@@ -1,25 +1,26 @@
 ---
-title: "針對 Azure 中的 OpenShift 部署進行疑難排解 | Microsoft Docs"
-description: "針對 Azure 中的 OpenShift 部署進行疑難排解"
+title: 針對 Azure 中的 OpenShift 部署進行疑難排解 | Microsoft Docs
+description: 針對 Azure 中的 OpenShift 部署進行疑難排解
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: haroldw
 manager: najoshi
-editor: 
+editor: ''
 tags: azure-resource-manager
-ms.assetid: 
+ms.assetid: ''
 ms.service: virtual-machines-linux
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
-ms.date: 
+ms.date: ''
 ms.author: haroldw
 ms.openlocfilehash: 35e554d3a9c7e7d56546ae9723c33eb59e906472
 ms.sourcegitcommit: 6a22af82b88674cd029387f6cedf0fb9f8830afd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 11/11/2017
+ms.locfileid: "24139445"
 ---
 # <a name="troubleshoot-openshift-deployment-in-azure"></a>針對 Azure 中的 OpenShift 部署進行疑難排解
 

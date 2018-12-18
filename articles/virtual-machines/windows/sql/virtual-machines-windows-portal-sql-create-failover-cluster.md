@@ -14,13 +14,14 @@ ms.custom: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
-ms.date: 13/22/2018
+ms.date: 06/11/2018
 ms.author: mikeray
-ms.openlocfilehash: faa849fc53aa15a47e850a20531c4fa30544f750
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 8e107c1721d5623239a694eba39b32e8a2a6089d
+ms.sourcegitcommit: 8ebcecb837bbfb989728e4667d74e42f7a3a9352
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 08/21/2018
+ms.locfileid: "42145362"
 ---
 # <a name="configure-sql-server-failover-cluster-instance-on-azure-virtual-machines"></a>在 Azure 虛擬機器上設定 SQL Server 容錯移轉叢集執行個體
 
@@ -71,12 +72,15 @@ S2D 支援兩種類型的架構 - 交集和超交集。 本文件中的架構為
 您應了解下列技術的操作方式：
 
 - [Windows 叢集技術](http://technet.microsoft.com/library/hh831579.aspx)
--  [SQL Server 容錯移轉叢集執行個體](http://msdn.microsoft.com/library/ms189134.aspx)。
+- [SQL Server 容錯移轉叢集執行個體](http://msdn.microsoft.com/library/ms189134.aspx)。
 
 此外，您也應對下列技術有大概了解：
 
 - [在 Windows Server 2016 中使用儲存空間直接存取的超交集解決方案](http://technet.microsoft.com/windows-server-docs/storage/storage-spaces/hyper-converged-solution-using-storage-spaces-direct)
 - [Azure 資源群組](../../../azure-resource-manager/resource-group-portal.md)
+
+> [!IMPORTANT]
+> 目前不支援將 [SQL Server IaaS 代理程式擴充功能](virtual-machines-windows-sql-server-agent-extension.md)用於 Azure 上的 SQL Server FCI。 建議您在參與 FCI 的 VM 上解除安裝此擴充功能。 針對 SQL，此擴充功能支援自動備份和修補之類的功能，以及部分入口網站功能。 在代理程式解除安裝後，這些功能即不適用於 SQL VM。
 
 ### <a name="what-to-have"></a>應備項目
 
@@ -278,7 +282,7 @@ New-Cluster -Name <FailoverCluster-Name> -Node ("<node1>","<node2>") –StaticAd
 
 1. 儲存存取金鑰和容器 URL。
 
-1. 設定容錯移轉叢集的叢集仲裁見證。 請參閱使用者介面中的 [在使用者介面中設定仲裁見證]\(機器翻譯\)。(http://technet.microsoft.com/windows-server-docs/failover-clustering/deploy-cloud-witness#to-configure-cloud-witness-as-a-quorum-witness)。
+1. 設定容錯移轉叢集的叢集仲裁見證。 請參閱使用者介面中的[在使用者介面中設定仲裁見證](http://technet.microsoft.com/windows-server-docs/failover-clustering/deploy-cloud-witness#to-configure-cloud-witness-as-a-quorum-witness)。
 
 ### <a name="add-storage"></a>新增儲存體
 
@@ -375,27 +379,13 @@ S2D 的磁碟需為空白且不含分割區或其他資料。 若要清理磁碟
 
 1. 透過虛擬機器返回 Azure 資源群組，並尋找新的負載平衡器。 您可能需要重新整理資源群組的畫面。 按一下 [負載平衡器]。
 
-1. 在 [負載平衡器] 刀鋒視窗中，按一下 [後端集區]。
+1. 按一下 [後端集區]，然後按一下 [+ 新增] 以新增後端集區。
 
-1. 按一下 [+ 新增] 以新增後端集區。
+1. 將後端集區關聯至包含 VM 的可用性設定組。
 
-1. 輸入後端集區的名稱。
+1. 在 [目標網路 IP 設定] 下方，檢查**虛擬機器**並選擇將加入為叢集節點的虛擬機器。 請務必包含將裝載 FCI 的所有虛擬機器。 
 
-1. 按一下 [+ 新增虛擬機器]。
-
-1. 在 [選擇虛擬機器] 刀鋒視窗中，按一下 [選擇可用性設定組]。
-
-1. 選擇您放置 SQL Server 虛擬機器的可用性設定組。
-
-1. 在 [選擇虛擬機器] 刀鋒視窗中，按一下 [選擇虛擬機器]。
-
-   您的 Azure 入口網站看起來應如下圖所示︰
-
-   ![CreateLoadBalancerBackEnd](./media/virtual-machines-windows-portal-sql-create-failover-cluster/33-load-balancer-back-end.png)
-
-1. 在 [選擇虛擬機器] 刀鋒視窗中，按一下 [選取]。
-
-1. 按兩次 [確定]  。
+1. 按一下 [確定]  以建立後端集區。
 
 ### <a name="configure-a-load-balancer-health-probe"></a>設定負載平衡器健全狀況探查
 
@@ -431,7 +421,7 @@ S2D 的磁碟需為空白且不含分割區或其他資料。 若要清理磁碟
    - **閒置逾時 (分鐘)**：4。
    - **浮動 IP (伺服器直接回傳)**：已啟用。
 
-1. 按一下 [SERVICEPRINCIPAL] 。
+1. 按一下 [確定]。
 
 ## <a name="step-6-configure-cluster-for-probe"></a>步驟 6：設定探查叢集
 
@@ -491,7 +481,13 @@ S2D 的磁碟需為空白且不含分割區或其他資料。 若要清理磁碟
 >如有需要，您可以[下載 SQL Server Management Studio](http://msdn.microsoft.com/library/mt238290.aspx)。
 
 ## <a name="limitations"></a>限制
-在 Azure 虛擬機器中，由於負載平衡器不支援 RPC 連接埠，因此 FCI 不支援 Microsoft Distributed Transaction Coordinator (DTC)。
+
+Azure 虛擬機器支援 Windows Server 2019 上的 Microsoft 分散式交易協調器 (MSDTC)，並且可使用叢集共用磁碟區 (CSV) 上的儲存體和[標準負載平衡器](../../../load-balancer/load-balancer-standard-overview.md)。
+
+在 Azure 虛擬機器上，Windows Server 2016 或更早版本無法支援 MSDTC，因為：
+
+- 叢集 MSDTC 資源無法設定為使用共用儲存體。 若在 Windows Server 2016 上建立 MSDTC 資源，即使有共用儲存體存在，系統也不會顯示任何可用的共用儲存體。 Windows Server 2019 中已修正此問題。
+- 基本負載平衡器不會處理 RPC 連接埠。
 
 ## <a name="see-also"></a>另請參閱
 

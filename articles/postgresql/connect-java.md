@@ -1,6 +1,6 @@
 ---
-title: "使用 Java 連線至適用於 PostgreSQL 的 Azure 資料庫"
-description: "本快速入門提供 Java 程式碼範例，您可用於從 Azure Database for PostgreSQL 連線及查詢資料。"
+title: 使用 Java 連線至適用於 PostgreSQL 的 Azure 資料庫
+description: 本快速入門提供 Java 程式碼範例，您可用於從 Azure Database for PostgreSQL 連線及查詢資料。
 services: postgresql
 author: rachel-msft
 ms.author: raagyema
@@ -16,6 +16,7 @@ ms.sourcegitcommit: c765cbd9c379ed00f1e2394374efa8e1915321b9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 02/28/2018
+ms.locfileid: "29686838"
 ---
 # <a name="azure-database-for-postgresql-use-java-to-connect-and-query-data"></a>Azure Database for PostgreSQL︰使用 Java 連線及查詢資料
 本快速入門示範如何使用 Java 應用程式來連線到 Azure Database for PostgreSQL。 它會顯示如何使用 SQL 陳述式來查詢、插入、更新和刪除資料庫中的資料。 本文中的步驟假設您已熟悉使用 Java 進行開發，但不熟悉適用於 PostgreSQL 的 Azure 資料庫。

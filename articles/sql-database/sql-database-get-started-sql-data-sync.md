@@ -1,27 +1,28 @@
 ---
-title: 設定 Azure SQL 資料同步 (預覽) | Microsoft Docs
-description: 本教學課程說明如何設定 Azure SQL 資料同步 (預覽)
+title: 設定 Azure SQL 資料同步 | Microsoft Docs
+description: 本教學課程說明如何設定 Azure SQL 資料同步
 services: sql-database
-author: douglaslms
+author: allenwux
 manager: craigg
 ms.service: sql-database
 ms.custom: load & move data
-ms.topic: article
-ms.date: 11/13/2017
-ms.author: douglasl
+ms.topic: conceptual
+ms.date: 04/10/2018
+ms.author: xiwu
 ms.reviewer: douglasl
-ms.openlocfilehash: 237a34c955f8ef36e25c30a6b13787f6a9296612
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: 7cb7ce0ea81cf99c2ee14a6f209864894563d237
+ms.sourcegitcommit: 5a7f13ac706264a45538f6baeb8cf8f30c662f8f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 06/29/2018
+ms.locfileid: "37111774"
 ---
-# <a name="set-up-sql-data-sync-preview"></a>設定 SQL 資料同步 (預覽)
+# <a name="set-up-sql-data-sync"></a>設定 SQL 資料同步
 在本教學課程中，您將了解如何使用包含 Azure SQL Database 和 SQL Server 執行個體的混合式同步群組設定 Azure SQL 資料同步。 新的同步處理群組會依照您設定的排程完整設定和同步。
 
 本教學課程假設您先前至少有一些使用 SQL Database 和 SQL Server 的經驗。 
 
-如需 SQL 資料同步的概觀，請參閱[使用 Azure SQL 資料同步 (預覽)，跨多個雲端和內部部署資料庫同步處理資料](sql-database-sync-data.md)。
+如需 SQL 資料同步的概觀，請參閱[使用 Azure SQL 資料同步，跨多個雲端和內部部署資料庫同步處理資料](sql-database-sync-data.md)。
 
 如需示範如何設定 SQL 資料同步的完整 PowerShell 範例，請參閱下列文章：
 -   [使用 PowerShell 在多個 Azure SQL Database 之間進行同步處理](scripts/sql-database-sync-data-between-sql-databases.md)
@@ -38,6 +39,8 @@ ms.lasthandoff: 03/16/2018
     ![Azure SQL 資料庫清單](media/sql-database-get-started-sql-data-sync/datasync-preview-sqldbs.png)
 
 3.  在 [SQL 資料庫] 頁面上，選取您想要作為資料同步的中樞資料庫使用的現有 SQL 資料庫。[SQL 資料庫] 頁面隨即開啟。
+
+    中樞資料庫是同步拓撲的中央端點，其中的同步群組具有多個資料庫端點。 同一個同步群組中的所有其他資料庫端點 (也就是，所有成員資料庫) 都會與中樞資料庫進行同步。
 
 4.  在所選取資料庫的 [SQL 資料庫] 頁面上，選取 [同步至其他資料庫]。 [資料同步] 頁面隨即開啟。
 
@@ -67,6 +70,8 @@ ms.lasthandoff: 03/16/2018
         ![指定同步處理頻率](media/sql-database-get-started-sql-data-sync/datasync-preview-syncfreq.png)
 
     4.  在 [衝突解決] 區段中，選取 [中樞獲勝] 或 [成員獲勝]。
+
+        「中樞獲勝」表示，發生衝突時，中樞資料庫中的資料會覆寫成員資料庫中的衝突資料。 「成員獲勝」表示，發生衝突時，成員資料庫中的資料會覆寫中樞資料庫中的衝突資料。 
 
         ![指定解決衝突的方式](media/sql-database-get-started-sql-data-sync/datasync-preview-conflictres.png)
 
@@ -147,7 +152,7 @@ ms.lasthandoff: 03/16/2018
         ![輸入代理程式金鑰和伺服器認證](media/sql-database-get-started-sql-data-sync/datasync-preview-agent-enterkey.png)
 
         >   [!NOTE] 
-        >   如果在此時收到防火牆錯誤，您必須在 Azure 上建立防火牆規則，以允許來自 SQL Server 電腦的傳入流量。 您可以在入口網站手動建立規則，但在 SQL Server Management Studio (SSMS) 中建立可能會更容易。 在 SSMS 中，嘗試連線到 Azure 上的中樞資料庫。 請將其名稱輸入為 \<hub_database_name\>.database.windows.net。 若要設定 Azure 防火牆規則，請按照對話方塊中的步驟操作。 然後返回用戶端同步代理程式應用程式。
+        >   如果在此時收到防火牆錯誤，您必須在 Azure 上建立防火牆規則，以允許來自 SQL Server 電腦的傳入流量。 您可以在入口網站手動建立規則，但在 SQL Server Management Studio (SSMS) 中建立可能會更容易。 在 SSMS 中，嘗試連線到 Azure 上的中樞資料庫。 請將其名稱輸入為 <hub_database_name>.database.windows.net。 若要設定 Azure 防火牆規則，請按照對話方塊中的步驟操作。 然後返回用戶端同步代理程式應用程式。
 
     9.  在用戶端同步代理程式應用程式中，按一下 [註冊]，以向代理程式註冊 SQL Server 資料庫。 [SQL Server 組態] 對話方塊隨即開啟。
 
@@ -194,7 +199,7 @@ ms.lasthandoff: 03/16/2018
 
 ### <a name="does-sql-data-sync-fully-create-and-provision-tables"></a>SQL 資料同步是否會完整地建立和佈建資料表？
 
-如果尚未在目的地資料庫中建立同步結構描述資料表，SQL 資料同步 (預覽) 會使用您選取的資料行建立。 然而，此行為不會導致結構描述完整無缺，原因如下：
+如果尚未在目的地資料庫中建立同步結構描述資料表，SQL 資料同步會使用您選取的資料行來建立它們。 然而，此行為不會導致結構描述完整無缺，原因如下：
 
 -   只會在目的地資料表中建立您選取的資料行。 如果來源資料表中有些資料行不是同步群組的一部分，那些資料行便不會佈建在目的地資料表中。
 
@@ -210,7 +215,7 @@ ms.lasthandoff: 03/16/2018
 
 由於有這些限制，我們的建議事項如下：
 -   在生產環境自行佈建完整無缺結構描述。
--   只是試用服務時，非常適合使用 SQL 資料同步 (預覽) 的自動佈建功能。
+-   試用服務時，非常適合使用 SQL 資料同步的自動佈建功能。
 
 ### <a name="why-do-i-see-tables-that-i-did-not-create"></a>為什麼我會看到並非自己建立的資料表？  
 資料同步會在資料庫中建立側邊資料表，以便進行變更追蹤。 請勿刪除它們，否則資料同步無法正常運作。
@@ -221,7 +226,16 @@ ms.lasthandoff: 03/16/2018
 
 ### <a name="how-do-i-get-schema-changes-into-a-sync-group"></a>如何變更同步群組中的結構描述？
 
-您必須手動執行結構描述變更。
+您必須以手動方式進行及傳播所有結構描述變更。
+1. 以手動方式將結構描述變更複寫至中樞和所有的同步成員。
+2. 更新同步結構描述。
+
+**新增資料表和資料行**。 新的資料表和資料行不會影響目前的同步。資料同步會忽略新的資料表和資料行，直到您將它們新增至同步結構描述。 當您新增新的資料庫物件時，這是要遵循的最佳順序：
+1. 將新的資料表或資料行新增至中樞和所有的同步成員。
+2. 將新的資料表或資料行新增至同步結構描述。
+3. 開始將值插入新的資料表和資料行。
+
+**變更資料行的資料類型**。 當您變更現有資料行的資料類型時，只要新的值符合同步結構描述中定義的原始資料類型，資料同步就會繼續運作。 例如，如果您將來源資料庫中的類型從 **int** 變更為 **bigint**，資料同步就會繼續運作，直到您將對於 **int** 資料類型太大的值插入為止。 若要完成變更，請以手動方式將結構描述變更複寫至中樞和所有的同步成員，然後更新同步結構描述。
 
 ### <a name="how-can-i-export-and-import-a-database-with-data-sync"></a>如何使用資料同步匯出和匯入資料庫？
 將資料庫匯出為 `.bacpac` 檔案，並將該檔案匯入以建立新資料庫之後，您必須執行下列兩個動作，才能在新的資料庫中使用資料同步：
@@ -232,7 +246,7 @@ ms.lasthandoff: 03/16/2018
 
 ### <a name="why-do-i-need-a-client-agent"></a>我為何需要用戶端代理程式？
 
-SQL 資料同步 (預覽) 服務會透過用戶端代理程式與 SQL Server 資料庫通訊。 這項安全性功能可防止直接與防火牆後方的資料庫通訊。 當 SQL 資料同步 (預覽) 服務與代理程式通訊時，會使用加密連線與唯一的權杖或代理程式金鑰來這麼做。 SQL Server 資料庫會使用連接字串和代理程式金鑰來驗證代理程式。 這項設計可為您的資料提供高階安全性。
+SQL 資料同步服務會透過用戶端代理程式來與 SQL Server 資料庫通訊。 這項安全性功能可防止直接與防火牆後方的資料庫通訊。 當 SQL 資料同步服務與代理程式通訊時，會使用加密的連線與唯一的權杖或「代理程式金鑰」來執行此動作。 SQL Server 資料庫會使用連接字串和代理程式金鑰來驗證代理程式。 這項設計可為您的資料提供高階安全性。
 
 ### <a name="how-many-instances-of-the-local-agent-ui-can-be-run"></a>一共可執行多少個本機代理程式 UI 執行個體？
 
@@ -244,7 +258,7 @@ SQL 資料同步 (預覽) 服務會透過用戶端代理程式與 SQL Server 資
 
 ### <a name="how-do-i-change-my-agent-key"></a>如何變更我的代理程式金鑰？
 
-代理程式只會使用代理程式金鑰一次。 當您移除再重新安裝新的代理程式時，並不能重複使用它，也不能由多個代理程式使用。 如果您需要為現有代理程式建立新的金鑰，務必確定要以用戶端代理程式和 SQL 資料同步 (預覽) 服務來記錄相同的金鑰。
+代理程式只會使用代理程式金鑰一次。 當您移除再重新安裝新的代理程式時，並不能重複使用它，也不能由多個代理程式使用。 如果您需要為現有代理程式建立新的金鑰，務必確定會以用戶端代理程式和 SQL 資料同步服務來記錄相同的金鑰。
 
 ### <a name="how-do-i-retire-a-client-agent"></a>如何淘汰用戶端代理程式？
 
@@ -256,11 +270,11 @@ SQL 資料同步 (預覽) 服務會透過用戶端代理程式與 SQL Server 資
 
 1. 在所需電腦上安裝代理程式。
 
-2. 登入 SQL 資料同步 (預覽) 入口網站，然後為新的代理程式重新產生代理程式金鑰。
+2. 登入 SQL 資料同步入口網站，然後為新的代理程式重新產生代理程式金鑰。
 
 3. 使用新的代理程式 UI 來提交新的代理程式金鑰。
 
-4. 等待用戶端代理程式下載先前所註冊內部部署資料庫的清單。
+4. 請等待用戶端代理程式下載先前所註冊內部部署資料庫的清單。
 
 5. 提供資料庫認證給顯示為無法連線的所有資料庫。 這些資料庫必須要能從安裝該代理程式的新電腦連線。
 
@@ -271,7 +285,7 @@ SQL 資料同步 (預覽) 服務會透過用戶端代理程式與 SQL Server 資
 
 -   [使用 Azure SQL 資料同步，跨多個雲端和內部部署資料庫同步處理資料](sql-database-sync-data.md)
 -   [Azure SQL 資料同步最佳做法](sql-database-best-practices-data-sync.md)
--   [透過 OMS Log Analytics 監視 Azure SQL 資料同步](sql-database-sync-monitor-oms.md)
+-   [透過 Log Analytics 監視 Azure SQL 資料同步](sql-database-sync-monitor-oms.md)
 -   [對 Azure SQL 資料同步的問題進行疑難排解](sql-database-troubleshoot-data-sync.md)
 
 -   示範如何設定 SQL 資料同步的完整 PowerShell 範例：

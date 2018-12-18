@@ -1,0 +1,95 @@
+### YamlMime:YamlDocument
+ms.openlocfilehash: 9fd163db5b727c5284756e2d24a35c6c6e57a794
+ms.sourcegitcommit: 5b8d9dc7c50a26d8f085a10c7281683ea2da9c10
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/26/2018
+ms.locfileid: "47181376"
+documentType: LandingData
+title: Azure Active Directory B2C 文件
+metadata:
+  title: Azure Active Directory B2C 文件
+  meta.description: Learn how to use Azure Active Directory B2C to customize and control how customers sign up, sign in, and manage their profiles when using your applications.
+  services: active-directory-b2c
+  author: davidmu1
+  manager: mtillman
+  ms.service: active-directory
+  ms.component: B2C
+  ms.topic: landing-page
+  ms.date: 03/29/2018
+  ms.author: davidmu
+abstract:
+  description: Azure Active Directory (Azure AD) B2C 是一項身分識別管理服務，可讓您自訂和控制客戶在使用您的應用程式時如何註冊、登入及管理其設定檔。 其中包括針對 iOS、Android 和 .NET 等平台開發的應用程式。 Azure AD B2C 可讓您執行這些動作，同時保護客戶的身分識別。 了解如何透過快速入門、教學課程和範例使用 Azure AD B2C。
+  aside:
+    image:
+      alt: 
+      height: 110
+      src: ./media/index/active-directory-b2c-video.PNG
+      width: 250
+    title: 透過 Azure AD B2C 進行客戶身分識別管理 (20:56)
+    href: https://channel9.msdn.com/Shows/On-NET/Customer-Identity-Management-with-Azure-AD-B2C
+    width: 250
+sections:
+- items:
+  - type: list
+    style: cards
+    className: cardsM
+    columns: 3
+    items:
+    - href: /azure/active-directory-b2c/active-directory-b2c-overview
+      html: <p>深入了解 Azure AD B2C 與各項功能及能力。</p>
+      image:
+        src: ./media/index/i_get-started.svg
+      title: 關於 Azure AD B2C
+    - href: /azure/active-directory-b2c/solution-articles
+      html: <p>透過 Azure AD B2C 調查解決方案與 訓練機會。</p>
+      image:
+        src: ./media/index/i_advanced.svg
+      title: 解決方案與訓練
+    - href: /azure/active-directory-b2c/trustframeworkpolicy
+      html: <p>在 Azure AD B2C 中使用自訂原則建立進階註冊及登入案例。</p>
+      image:
+        src: ./media/index/i_investigate.svg
+      title: 身分識別體驗架構
+- title: 5 分鐘快速入門
+  items:
+  - type: paragraph
+    text: 了解如何為使用您應用程式的客戶設定身分識別管理：
+  - type: list
+    style: icon48
+    items:
+    - image:
+        src: https://docs.microsoft.com/azure/active-directory-b2c/media/index/logo_NET.svg
+      text: .NET
+      href: https://docs.microsoft.com/azure/active-directory-b2c/active-directory-b2c-quickstarts-web-app
+    - image:
+        src: https://docs.microsoft.com/azure/active-directory-b2c/media/index/logo_windows.svg
+      text: 桌上型
+      href: https://docs.microsoft.com/azure/active-directory-b2c/active-directory-b2c-quickstarts-desktop-app
+    - image:
+        src: https://docs.microsoft.com/azure/active-directory-b2c/media/index/logo_nodejs.svg
+      text: 單一頁面
+      href: https://docs.microsoft.com/azure/active-directory-b2c/active-directory-b2c-quickstarts-spa
+- title: 逐步教學課程
+  items:
+  - type: paragraph
+    text: 了解如何管理 ASP.NET、桌面或單一頁面 Node.js 應用程式中的註冊、登入和客戶設定檔。
+  - type: list
+    style: cards
+    className: cardsD
+    items:
+    - title: ASP.NET
+      html: <p>1. <a href="/azure/active-directory-b2c/tutorial-create-tenant">建立租用戶</a></p><p>2. <a href="/azure/active-directory-b2c/active-directory-b2c-tutorials-web-app">驗證使用者</a></p><p>3. <a href="/azure/active-directory-b2c/active-directory-b2c-tutorials-web-api">授與 API 存取權限</a></p>
+    - title: 桌上型
+      html: <p>1. <a href="/azure/active-directory-b2c/tutorial-create-tenant">建立租用戶</a></p><p>2. <a href="/azure/active-directory-b2c/active-directory-b2c-tutorials-desktop-app">驗證使用者</a></p><p>3. <a href="/azure/active-directory-b2c/active-directory-b2c-tutorials-desktop-app-webapi">授與 API 存取權限</a></p>
+    - title: 單一頁面
+      html: <p>1. <a href="/azure/active-directory-b2c/tutorial-create-tenant">建立租用戶</a></p><p>2. <a href="/azure/active-directory-b2c/active-directory-b2c-tutorials-spa">驗證使用者</a></p><p>3. <a href="/azure/active-directory-b2c/active-directory-b2c-tutorials-spa-webapi">授與 API 存取權限</a></p>
+- title: 範例
+  items:
+  - type: paragraph
+    text: 尋找示範如何管理應用程式中客戶身分識別的範例。
+  - type: list
+    style: unordered
+    className: spaced noBullet
+    items:
+    - html: <a href="/azure/active-directory-b2c/code-samples">行動裝置、桌面、Web 和單一頁面應用程式</a>

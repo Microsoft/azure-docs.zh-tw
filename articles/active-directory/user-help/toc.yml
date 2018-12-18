@@ -1,0 +1,81 @@
+items:
+- name: 使用者說明文件
+  href: index.md
+- name: 雙步驟驗證說明
+  items:
+  - name: 概觀
+    href: user-help-two-step-verification-overview.md
+  - name: 關閉我的帳戶
+    href: multi-factor-authentication-end-user-first-time.md
+  - name: 測試您的設定
+    href: multi-factor-authentication-end-user-manage-settings.md
+  - name: 取得說明
+    href: multi-factor-authentication-end-user-troubleshoot.md
+  - name: 管理應用程式密碼
+    href: multi-factor-authentication-end-user-app-passwords.md
+  - name: 登入方式
+    href: user-help-sign-in.md?toc=./toc.json
+- name: 密碼重設說明
+  items:
+  - name: 概觀
+    href: user-help-password-reset-overview.md
+  - name: 註冊以進行密碼重設
+    href: active-directory-passwords-reset-register.md
+  - name: 重設密碼
+    href: user-help-reset-password.md
+- name: 安全性資訊 (預覽) 說明
+  items:
+  - name: 概觀
+    href: user-help-security-info-overview.md
+  - name: 設定驗證器應用程式
+    href: security-info-setup-auth-app.md
+  - name: 安裝文字傳訊
+    href: security-info-setup-text-msg.md
+  - name: 設定撥打電話
+    href: security-info-setup-phone-number.md
+  - name: 設定電子郵件
+    href: security-info-setup-email.md
+  - name: 設定安全性問題
+    href: security-info-setup-questions.md
+  - name: 管理應用程式密碼
+    href: security-info-app-passwords.md
+  - name: 管理安全性資訊
+    href: security-info-manage-settings.md
+  - name: 登入方式
+    href: user-help-sign-in.md?toc=./toc.json
+- name: Microsoft Authenticator 應用程式說明
+  items:
+  - name: 概觀
+    href: user-help-auth-app-overview.md
+  - name: 開始使用
+    href: microsoft-authenticator-app-how-to.md
+  - name: 備份和復原
+    href: microsoft-authenticator-app-backup-and-recovery.md
+  - name: 使用您的電話登入
+    href: microsoft-authenticator-app-phone-signin-faq.md
+  - name: 常見問題集
+    href: microsoft-authenticator-app-faq.md
+- name: 「我的應用程式」入口網站說明
+  items:
+  - name: 概觀
+    href: user-help-my-apps-overview.md
+  - name: 什麼是「我的應用程式」入口網站？
+    href: active-directory-saas-access-panel-introduction.md
+  - name: 針對問題進行疑難排解
+    href: active-directory-saas-access-panel-user-help.md
+- name: 管理裝置說明
+  items:
+  - name: 概觀
+    href: user-help-device-mgmt-overview.md
+  - name: 加入工作裝置
+    href: user-help-join-device-on-network.md
+  - name: 註冊用於工作的個人裝置
+    href: user-help-register-device-on-network.md
+  - name: 針對「無法執行」訊息進行疑難排解
+    href: user-help-device-remediation.md
+ms.openlocfilehash: 27d0d3300a19d4c27bec48ebf411c7ac3ee6ad87
+ms.sourcegitcommit: ccdea744097d1ad196b605ffae2d09141d9c0bd9
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/23/2018
+ms.locfileid: "49649580"

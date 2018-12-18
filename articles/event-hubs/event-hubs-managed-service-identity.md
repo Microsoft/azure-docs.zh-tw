@@ -1,24 +1,21 @@
 ---
-title: "搭配使用受控服務識別與 Azure 事件中樞預覽 | Microsoft Docs"
-description: "搭配使用受控服務識別與 Azure 事件中樞"
+title: 搭配使用受控服務識別與 Azure 事件中樞預覽 | Microsoft Docs
+description: 搭配使用受控服務識別與 Azure 事件中樞
 services: event-hubs
 documentationcenter: na
-author: sethmanheim
+author: ShubhaVijayasarathy
 manager: timlt
-editor: 
-ms.assetid: 
 ms.service: event-hubs
 ms.devlang: na
 ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: na
-ms.date: 12/18/2017
-ms.author: sethm
-ms.openlocfilehash: dd50e4f6ebc5fdf5496a5127fde20bd052087b59
-ms.sourcegitcommit: f46cbcff710f590aebe437c6dd459452ddf0af09
+ms.date: 07/05/2018
+ms.author: shvija
+ms.openlocfilehash: f87a04b3b78bab124ca1b75006ed2c93a74f9198
+ms.sourcegitcommit: d0ea925701e72755d0b62a903d4334a3980f2149
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/20/2017
+ms.lasthandoff: 08/09/2018
+ms.locfileid: "40005828"
 ---
 # <a name="managed-service-identity-preview"></a>受控服務識別 (預覽)
 
@@ -36,7 +33,7 @@ ms.lasthandoff: 12/20/2017
 
 下列章節說明建立和部署範例應用程式 (在受控服務識別底下執行) 所需的步驟、如何將識別存取權授與事件中樞命名空間，以及應用程式如何與使用該識別的事件中樞互動。
 
-本簡介說明 [Azure App Service](https://azure.microsoft.com/services/app-service/) 中裝載的 Web 應用程式。 VM 裝載應用程式所需的步驟類似。
+本簡介說明 [Azure App Service](https://azure.microsoft.com/services/app-service/) 中裝載的 Web 應用程式。 虛擬機器裝載之應用程式所需的步驟類似。
 
 ### <a name="create-an-app-service-web-application"></a>建立 App Service Web 應用程式
 
@@ -64,7 +61,10 @@ Web 應用程式的受控服務識別現在具有事件中樞命名空間的存�
 
 現在修改您建立之 ASP.NET 應用程式的預設分頁。 您也可以使用來自[這個 GitHub 存放庫](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/MSI/EventHubsMSIDemoWebApp)的 Web 應用程式程式碼。 
 
-一旦您啟動應用程式，將您的瀏覽器指向 EventHubsMSIDemo.aspx。 或者，將它設為您的起始畫面。 可以在 EventHubsMSIDemo.aspx.cs 檔案中找到程式碼。 結果是最小的 Web 應用程式，具有數個項目欄位，以及具有連線到事件中樞的 [傳送] 和 [接收] 按鈕，以傳送或接收訊息。 
+>[!NOTE] 
+> 雖然 MSI 功能處於預覽狀態，不過若要存取新 API，請務必使用[預覽版本的服務匯流排程式庫](https://www.nuget.org/packages/WindowsAzure.ServiceBus/4.2.2-preview)。 
+
+一旦您啟動應用程式，將您的瀏覽器指向 EventHubsMSIDemo.aspx。 或者，將它設為您的起始畫面。 可以在 EventHubsMSIDemo.aspx.cs 檔案中找到程式碼。 結果是最小的 Web 應用程式，具有數個項目欄位，以及具有連線到事件中樞的 [傳送] 和 [接收] 按鈕，以傳送或接收事件。 
 
 請注意 [MessagingFactory](/dotnet/api/microsoft.servicebus.messaging.messagingfactory) 物件如何初始化。 並非使用共用存取權杖 (SAS) 權杖提供者，程式碼會使用 `TokenProvider.CreateManagedServiceIdentityTokenProvider(ServiceAudience.EventHubAudience)` 呼叫建立受控服務識別的權杖提供者。 因此，不會保留及使用密碼。 受控服務識別內容到事件中樞的流程以及授權交握，是由權杖提供者自動處理，這是比使用 SAS 還要簡單的模型。
 

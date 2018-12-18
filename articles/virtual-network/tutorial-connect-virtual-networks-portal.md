@@ -1,36 +1,40 @@
 ---
-title: 使用虛擬網路對等互連連線虛擬網路 - Azure 入口網站 | Microsoft Docs
-description: 深入了解如何使用虛擬網路對等互連連線虛擬網路。
+title: 使用虛擬網路對等互連來連線虛擬網路 -教學課程 - Azure 入口網站 | Microsoft Docs
+description: 在本教學課程中，您將了解如何使用 Azure 入口網站，透過虛擬網路對等互連來連線虛擬網路。
 services: virtual-network
 documentationcenter: virtual-network
 author: jimdial
 manager: jeconnoc
 editor: ''
 tags: azure-resource-manager
+Customer intent: I want to connect two virtual networks so that virtual machines in one virtual network can communicate with virtual machines in the other virtual network.
 ms.assetid: ''
 ms.service: virtual-network
 ms.devlang: azurecli
-ms.topic: ''
+ms.topic: tutorial
 ms.tgt_pltfrm: virtual-network
 ms.workload: infrastructure
 ms.date: 03/13/2018
 ms.author: jdial
 ms.custom: ''
-ms.openlocfilehash: 0962a917186277a34abbda17b8fea87bcf4ad1e9
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: d702253c7b58b0a29c03e6563238b56ae75fa0d1
+ms.sourcegitcommit: 6fcd9e220b9cd4cb2d4365de0299bf48fbb18c17
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 04/05/2018
+ms.locfileid: "30841783"
 ---
-# <a name="connect-virtual-networks-with-virtual-network-peering-using-the-azure-portal"></a>使用 Azure 入口網站以虛擬網路對等互連連線虛擬網路
+# <a name="tutorial-connect-virtual-networks-with-virtual-network-peering-using-the-azure-portal"></a>教學課程：使用 Azure 入口網站透過虛擬網路對等互連來連線虛擬網路
 
-您可以使用虛擬網路對等互連，讓虛擬網路彼此連線。 一旦虛擬網路對等互連，兩個虛擬網路中的資源就可以彼此通訊，且通訊時會有相同的延遲和頻寬，彷彿這些資源是位於相同的虛擬網路中。 在本文中，您將了解：
+您可以使用虛擬網路對等互連，讓虛擬網路彼此連線。 一旦虛擬網路對等互連，兩個虛擬網路中的資源就可以彼此通訊，且通訊時會有相同的延遲和頻寬，彷彿這些資源是位於相同的虛擬網路中。 在本教學課程中，您了解如何：
 
 > [!div class="checklist"]
 > * 建立兩個虛擬網路
 > * 使用虛擬網路對等互連連線兩個虛擬網路
 > * 將虛擬機器 (VM) 部署到每個虛擬網路
 > * 虛擬機器之間的通訊
+
+您可以依偏好使用 [Azure CLI](tutorial-connect-virtual-networks-cli.md) 或 [Azure PowerShell](tutorial-connect-virtual-networks-powershell.md) 完成本教學課程。
 
 如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
 
@@ -147,13 +151,13 @@ ms.lasthandoff: 03/16/2018
 3. 若要連線至虛擬機器，請開啟所下載的 RDP 檔案。 如果出現提示，請選取 [連接]。
 4. 輸入您在建立虛擬機器時指定的使用者名稱和密碼 (您可能需要選取 [更多選擇]，然後選取 [使用不同的帳戶] 以指定您在建立虛擬機器時輸入的認證)，然後選取 [確定]。
 5. 您可能會在登入過程中收到憑證警告。 選取 [是] 以繼續進行連線。
-6. 稍後的步驟會使用 ping 從 myVm1 虛擬機器與 myVm2 虛擬機器通訊。 Ping 會使用網際網路控制訊息通訊協定 (ICMP)，它在通過 Windows 防火牆時預設會遭到拒絕。 在 myVm1 虛擬機器上，讓網際網路控制訊息通訊協定 (ICMP) 通過 Windows 防火牆，您就可以在稍後的步驟中使用 PowerShell 從 myVm2 針對此虛擬機器進行 Ping 操作：
+6. 稍後的步驟會使用 ping 從 myVm1 虛擬機器與 myVm2 虛擬機器通訊。 Ping 會使用網際網路控制訊息通訊協定 (ICMP)，它在通過 Windows 防火牆時預設會遭到拒絕。 在 *myVm1* VM 上，讓 ICMP 能夠通過 Windows 防火牆，您就能在稍後的步驟中使用 PowerShell，從 *myVm2* 針對此 VM 進行 Ping 操作：
 
     ```powershell
     New-NetFirewallRule –DisplayName “Allow ICMPv4-In” –Protocol ICMPv4
     ```
     
-    雖然本文使用 Ping 在虛擬機器之間進行通訊，但不建議在生產環境部署中允許 ICMP 通過 Windows 防火牆。
+    雖然本教學課程使用 Ping 在 VM 之間進行通訊，但不建議在生產環境部署中允許 ICMP 通過 Windows 防火牆。
 
 7. 若要連線至 myVm2 虛擬機器，請在 myVm1 虛擬機器上從命令提示字元輸入下列命令：
 
@@ -177,15 +181,8 @@ ms.lasthandoff: 03/16/2018
 2. 選取 [刪除資源群組]。
 3. 針對 [輸入資源群組名稱:] 輸入 myResourceGroup，然後選取 [刪除]。
 
-**<a name="register"></a>註冊可獲得虛擬網路對等互連全球預覽版**
-
-在一般情況下，可以為相同地區中的虛擬網路建立對等互連。 讓不同區域中的虛擬網路進行對等互連的功能目前為預覽版。 如需了解有哪些可用的區域，請參閱[虛擬網路更新](https://azure.microsoft.com/updates/?product=virtual-network)。 若要跨區域對等互連虛擬網路，您必須先註冊預覽版。 您無法使用入口網站註冊，但可以使用 [PowerShell](tutorial-connect-virtual-networks-powershell.md#register) 或 [Azure CLI](tutorial-connect-virtual-networks-cli.md#register) 註冊。 如果您在註冊功能之前嘗試對等互連不同區域中的虛擬網路，則對等互連會失敗。
-
 ## <a name="next-steps"></a>後續步驟
 
-在本文中，您已了解如何使用虛擬網路對等互連來連線相同 Azure 位置中的兩個網路。 您也可以對等互連[不同區域](#register)、[不同 Azure 訂用帳戶](create-peering-different-subscriptions.md#portal)中的虛擬網路，而且您可以使用對等互連建立[中樞和輪輻網路設計](/azure/architecture/reference-architectures/hybrid-networking/hub-spoke?toc=%2fazure%2fvirtual-network%2ftoc.json#vnet-peering)。 在對等互連生產環境虛擬網路之前，建議您徹底熟悉[對等互連概觀](virtual-network-peering-overview.md)、[管理對等互連](virtual-network-manage-peering.md)以及[虛擬網路限制](../azure-subscription-service-limits.md?toc=%2fazure%2fvirtual-network%2ftoc.json#azure-resource-manager-virtual-networking-limits)。 
+在本教學課程中，您已了解如何使用虛擬網路對等互連來連線相同 Azure 區域中的兩個網路。 您也可以針對不同[支援區域](virtual-network-manage-peering.md#cross-region)和[不同 Azure 訂用帳戶](create-peering-different-subscriptions.md#portal)中的虛擬網路進行對等互連，以及使用對等互連來建立[中樞和輪輻網路設計](/azure/architecture/reference-architectures/hybrid-networking/hub-spoke?toc=%2fazure%2fvirtual-network%2ftoc.json#vnet-peering)。 若要深入了解虛擬網路對等互連，請參閱[虛擬網路對等互連概觀](virtual-network-peering-overview.md)和[管理虛擬網路對等互連](virtual-network-manage-peering.md)。
 
-繼續透過 VPN 將自己的電腦連線到虛擬網路，並且與虛擬網路中或已對等互連虛擬網路中的資源進行互動。
-
-> [!div class="nextstepaction"]
-> [將您的電腦連線到虛擬網路](../vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
+若要透過 VPN 將自己的電腦連線到虛擬網路，並且與虛擬網路中或已對等互連之虛擬網路中的資源進行互動，請參閱[將電腦連線至虛擬網路](../vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal.md?toc=%2fazure%2fvirtual-network%2ftoc.json)。

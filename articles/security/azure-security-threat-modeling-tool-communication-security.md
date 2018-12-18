@@ -1,24 +1,25 @@
 ---
-title: "通訊安全性 - Microsoft 威脅模型化工具 - Azure | Microsoft Docs"
-description: "降低威脅模型化工具所暴露的威脅"
+title: 通訊安全性 - Microsoft 威脅模型化工具 - Azure | Microsoft Docs
+description: 降低威脅模型化工具所暴露的威脅
 services: security
 documentationcenter: na
-author: RodSan
-manager: RodSan
-editor: RodSan
+author: jegeib
+manager: jegeib
+editor: jegeib
 ms.assetid: na
 ms.service: security
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/17/2017
-ms.author: rodsan
-ms.openlocfilehash: 71bbe53595f2afab50d6220f335d615ada957a85
-ms.sourcegitcommit: 9890483687a2b28860ec179f5fd0a292cdf11d22
+ms.date: 02/07/2017
+ms.author: jegeib
+ms.openlocfilehash: 7e8afc02c738a2bba445b1d84b7cb899dfbb93a0
+ms.sourcegitcommit: 1fb353cfca800e741678b200f23af6f31bd03e87
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/24/2018
+ms.lasthandoff: 08/30/2018
+ms.locfileid: "43301549"
 ---
 # <a name="security-frame-communication-security--mitigations"></a>安全性架構︰通訊安全性 | 風險降低 
 | 產品/服務 | 文章 |
@@ -64,7 +65,7 @@ ms.lasthandoff: 01/24/2018
 | 標題                   | 詳細資料      |
 | ----------------------- | ------------ |
 | **元件**               | Azure Data Factory | 
-| **SDL 階段**               | Deployment |  
+| **SDL 階段**               | 部署 |  
 | **適用的技術** | 泛型 |
 | **屬性**              | 連結服務類型 - Azure 和內部部署 |
 | **參考**              |[在內部部署與 Azure Data Factory 之間移動資料](https://azure.microsoft.com/documentation/articles/data-factory-move-data-between-onprem-and-cloud/#create-gateway)、[資料管理閘道](https://azure.microsoft.com/documentation/articles/data-factory-data-management-gateway/) |
@@ -75,7 +76,7 @@ ms.lasthandoff: 01/24/2018
 | 標題                   | 詳細資料      |
 | ----------------------- | ------------ |
 | **元件**               | Identity Server | 
-| **SDL 階段**               | Deployment |  
+| **SDL 階段**               | 部署 |  
 | **適用的技術** | 泛型 |
 | **屬性**              | N/A  |
 | **參考**              | [IdentityServer3 - 金鑰、簽章和密碼編譯](https://identityserver.github.io/Documentation/docsv2/configuration/crypto.html)、[IdentityServer3 - 部署](https://identityserver.github.io/Documentation/docsv2/advanced/deployment.html) |
@@ -134,7 +135,7 @@ ms.lasthandoff: 01/24/2018
   </system.webServer>
 </configuration>
 ```
-此規則的運作方式是當使用者使用 HTTP 要求頁面時，便傳回 HTTP 狀態碼 301 (永久重新導向)。 301 會將要求重新導向至與訪客要求相同的 URL，但使用 HTTPS 來取代要求的 HTTP 部分。 例如，HTTP://contoso.com 會被重新導向至 HTTPS://contoso.com。 
+此規則的運作方式是當使用者使用 HTTP 要求頁面時，便傳回 HTTP 狀態碼 301 (永久重新導向)。 301 會將要求重新導向至與訪客要求相同的 URL，但使用 HTTPS 來取代要求的 HTTP 部分。 例如，HTTP://contoso.com 會重新導向至 HTTPS://contoso.com。 
 
 ## <a id="http-hsts"></a>啟用 HTTP Strict Transport Security (HSTS)
 
@@ -174,7 +175,7 @@ ms.lasthandoff: 01/24/2018
 | 標題                   | 詳細資料      |
 | ----------------------- | ------------ |
 | **元件**               | Azure 儲存體 | 
-| **SDL 階段**               | Deployment |  
+| **SDL 階段**               | 部署 |  
 | **適用的技術** | 泛型 |
 | **屬性**              | N/A  |
 | **參考**              | [Azure 儲存體傳輸層級加密 – 使用 HTTPS](https://azure.microsoft.com/documentation/articles/storage-security-guide/#_encryption-in-transit) |
@@ -287,8 +288,8 @@ namespace CertificatePinningExample
 | **SDL 階段**               | 建置 |  
 | **適用的技術** | NET Framework 3 |
 | **屬性**              | N/A  |
-| **參考**              | [MSDN](https://msdn.microsoft.com/library/ff648500.aspx)、[Fortify Kingdom](https://vulncat.fortify.com/en/vulncat/index.html) |
-| **步驟** | 應用程式組態應確定敏感性資訊的所有存取都會使用 HTTPS。<ul><li>**說明︰**如果某應用程式負責處理敏感性資訊，卻未使用訊息層級加密，則只應允許其透過加密的傳輸通道進行通訊。</li><li>**建議︰**確定已停用 HTTP 傳輸，並改為啟用 HTTPS 傳輸。 例如，以 `<httpsTransport/>` 標籤取代 `<httpTransport/>`。 請勿依賴網路組態 (防火牆) 來保證應用程式只能透過安全通道加以存取。 從哲學觀點來看，應用程式不該仰賴網路來確保其安全性。</li></ul><p>但從現實觀點來看，負責保護網路的人員不一定能跟隨應用程式安全性需求的演變腳步。</p>|
+| **參考**              | [MSDN](https://msdn.microsoft.com/library/ff648500.aspx)、[Fortify Kingdom](https://vulncat.fortify.com/en/detail?id=desc.semantic.dotnet.wcf_misconfiguration_transport_security_enabled) |
+| **步驟** | 應用程式組態應確定敏感性資訊的所有存取都會使用 HTTPS。<ul><li>**說明︰** 如果某應用程式負責處理敏感性資訊，卻未使用訊息層級加密，則只應允許其透過加密的傳輸通道進行通訊。</li><li>**建議︰** 確定已停用 HTTP 傳輸，並改為啟用 HTTPS 傳輸。 例如，以 `<httpsTransport/>` 標籤取代 `<httpTransport/>`。 請勿依賴網路組態 (防火牆) 來保證應用程式只能透過安全通道加以存取。 從哲學觀點來看，應用程式不該仰賴網路來確保其安全性。</li></ul><p>但從現實觀點來看，負責保護網路的人員不一定能跟隨應用程式安全性需求的演變腳步。</p>|
 
 ## <a id="message-protection"></a>WCF︰將訊息安全性保護層級設定為 EncryptAndSign
 
@@ -299,7 +300,7 @@ namespace CertificatePinningExample
 | **適用的技術** | .NET Framework 3 |
 | **屬性**              | N/A  |
 | **參考**              | [MSDN](https://msdn.microsoft.com/library/ff650862.aspx) |
-| **步驟** | <ul><li>**說明︰**保護層級設定為「無」時，它會停用訊息保護。 機密性和完整性要有適當的設定層級才能實現。</li><li>**建議︰**<ul><li>當 `Mode=None` 時 - 停用訊息保護</li><li>當 `Mode=Sign` 時 - 會簽署但不加密訊息；若您認為資料完整性很重要，便應使用</li><li>當 `Mode=EncryptAndSign` 時 - 簽署並加密訊息</li></ul></li></ul><p>若您只需要驗證資訊的完整性而不必擔心機密性，請考慮關閉加密功能，只要簽署訊息即可。 對於需要驗證原始傳送者，但不會傳輸敏感性資料的作業或服務合約，這會非常實用。 在降低保護層級時，請注意訊息中並未包含任何個人識別資訊 (PII)。</p>|
+| **步驟** | <ul><li>**說明︰** 保護層級設定為「無」時，它會停用訊息保護。 機密性和完整性要有適當的設定層級才能實現。</li><li>**建議︰**<ul><li>當 `Mode=None` 時 - 停用訊息保護</li><li>當 `Mode=Sign` 時 - 會簽署但不加密訊息；若您認為資料完整性很重要，便應使用</li><li>當 `Mode=EncryptAndSign` 時 - 簽署並加密訊息</li></ul></li></ul><p>若您只需要驗證資訊的完整性而不必擔心機密性，請考慮關閉加密功能，只要簽署訊息即可。 對於需要驗證原始傳送者，但不會傳輸敏感性資料的作業或服務合約，這會非常實用。 在降低保護層級時，請注意訊息中並未包含任何個人識別資訊 (PII)。</p>|
 
 ### <a name="example"></a>範例
 下列範例顯示將服務和作業設定為只簽署訊息的情況。 `ProtectionLevel.Sign` 的服務合約範例：以下是在服務合約層級使用 ProtectionLevel.Sign 的範例︰ 
@@ -328,7 +329,7 @@ string GetData(int value);
 | **適用的技術** | .NET Framework 3 |
 | **屬性**              | N/A  |
 | **參考**              | [MSDN](https://msdn.microsoft.com/library/ff648826.aspx ) |
-| **步驟** | <ul><li>**說明︰**請勿使用系統管理員或高權限帳戶執行 WCF 服務。 萬一發生服務入侵，這會造成很大的影響。</li><li>**建議︰**使用最低權限帳戶來裝載 WCF 服務，因為這會降低應用程式的受攻擊面，並減少遭受攻擊時可能受到的損害。 如果服務帳戶需要其他的基礎結構資源存取權限 (例如 MSMQ、事件記錄、效能計數器和檔案系統)，則應對這些資源提供適當權限，WCF 服務才能夠順利執行。</li></ul><p>如果您的服務需要代表原始呼叫者存取特定資源，請使用模擬與委派來傳送呼叫者的身分識別以進行下游授權檢查。 在開發案例中，請使用區域網路服務帳戶，這是擁有較小權限的特殊內建帳戶。 在生產案例中，請建立最低權限的自訂網域服務帳戶。</p>|
+| **步驟** | <ul><li>**說明︰** 請勿使用系統管理員或高權限帳戶執行 WCF 服務。 萬一發生服務入侵，這會造成很大的影響。</li><li>**建議︰** 使用最低權限帳戶來裝載 WCF 服務，因為這會降低應用程式的受攻擊面，並減少遭受攻擊時可能受到的損害。 如果服務帳戶需要其他的基礎結構資源存取權限 (例如 MSMQ、事件記錄、效能計數器和檔案系統)，則應對這些資源提供適當權限，WCF 服務才能夠順利執行。</li></ul><p>如果您的服務需要代表原始呼叫者存取特定資源，請使用模擬與委派來傳送呼叫者的身分識別以進行下游授權檢查。 在開發案例中，請使用區域網路服務帳戶，這是擁有較小權限的特殊內建帳戶。 在生產案例中，請建立最低權限的自訂網域服務帳戶。</p>|
 
 ## <a id="webapi-https"></a>強制所有前往 Web API 的流量透過 HTTPS 連線來進行
 

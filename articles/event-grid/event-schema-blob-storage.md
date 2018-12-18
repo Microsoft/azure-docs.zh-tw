@@ -1,22 +1,24 @@
 ---
-title: "Azure Event Grid blob 儲存體事件結構描述"
-description: "描述 Azure Event Grid blob 儲存體事件的屬性"
+title: Azure Event Grid blob 儲存體事件結構描述
+description: 描述 Azure Event Grid blob 儲存體事件的屬性
 services: event-grid
 author: tfitzmac
-manager: timlt
 ms.service: event-grid
-ms.topic: article
-ms.date: 01/30/2018
+ms.topic: reference
+ms.date: 08/17/2018
 ms.author: tomfitz
-ms.openlocfilehash: d0a8a3726ac3c33668d8ad91c97c35937c299b46
-ms.sourcegitcommit: 9d317dabf4a5cca13308c50a10349af0e72e1b7e
+ms.openlocfilehash: 11524f8868a0102e30b06f3385a26b1bd06aae6e
+ms.sourcegitcommit: f057c10ae4f26a768e97f2cb3f3faca9ed23ff1b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 08/17/2018
+ms.locfileid: "42141088"
 ---
 # <a name="azure-event-grid-event-schema-for-blob-storage"></a>blob 儲存體的 Azure Event Grid 事件結構描述
 
 本文提供 blob 儲存體事件的屬性與結構描述。 如需事件結構描述的簡介，請參閱 [Azure Event Grid 事件結構描述](event-schema.md)。
+
+如需範例指令碼和教學課程的清單，請參閱[儲存體事件來源](event-sources.md#storage)。
 
 ## <a name="available-event-types"></a>可用的事件類型
 

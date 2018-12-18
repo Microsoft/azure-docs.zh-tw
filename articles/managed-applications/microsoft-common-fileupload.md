@@ -1,26 +1,27 @@
 ---
-title: "Azure 受控應用程式 FileUpload UI 元素 | Microsoft Docs"
-description: "描述 Azure 受控應用程式的 Microsoft.Common.FileUpload UI 元素"
-services: azure-resource-manager
+title: Azure FileUpload UI 元素 | Microsoft Docs
+description: 描述 Azure 入口網站的 Microsoft.Common.FileUpload UI 元素。
+services: managed-applications
 documentationcenter: na
 author: tfitzmac
 manager: timlt
 editor: tysonn
-ms.service: azure-resource-manager
+ms.service: managed-applications
 ms.devlang: na
 ms.topic: reference
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/12/2017
+ms.date: 09/05/2018
 ms.author: tomfitz
-ms.openlocfilehash: 095880322ba801895a22efcf3476fa37d9e2ac3c
-ms.sourcegitcommit: 3ab5ea589751d068d3e52db828742ce8ebed4761
+ms.openlocfilehash: 2886dbafe6bf20718f4e3cd2976764fc432dbb04
+ms.sourcegitcommit: d211f1d24c669b459a3910761b5cacb4b4f46ac9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/27/2017
+ms.lasthandoff: 09/06/2018
+ms.locfileid: "44021747"
 ---
 # <a name="microsoftcommonfileupload-ui-element"></a>Microsoft.Common.FileUpload UI 元素
-控制項可讓使用者指定要上傳的一個或多個檔案。 您可以在[建立 Azure 受控應用程式](publish-service-catalog-app.md)時使用此元素。
+控制項可讓使用者指定要上傳的一個或多個檔案。
 
 ## <a name="ui-sample"></a>UI 範例
 ![Microsoft.Common.FileUpload](./media/managed-application-elements/microsoft.common.fileupload.png)
@@ -49,7 +50,8 @@ ms.lasthandoff: 10/27/2017
 ## <a name="remarks"></a>備註
 - `constraints.accept` 會指定在瀏覽器的 [檔案] 對話方塊中顯示的檔案類型。 請參閱 [HTML5 規格](http://www.w3.org/TR/html5/forms.html#attr-input-accept) 以取得允許的值。 預設值為 **null**。
 - 如果將 `options.multiple` 設為 **true**，使用者就允許在瀏覽器的 [檔案] 對話方塊中選取一個以上的檔案。 預設值為 **false**。
-- 這個元素會根據 `options.uploadMode` 的值，支援兩種檔案上傳模式。 如果是指定 **file**，輸出就會包含檔案內容作為 blob。 如果是指定 **url**，檔案就會上傳至暫存位置，而輸出會包含 blob 的 URL。 24 小時之後，就會清除暫存 blob。 預設值為 **file**。
+- 這個元素會根據 `options.uploadMode` 的值，支援兩種檔案上傳模式。 如果是指定 **file**，輸出就會包含檔案內容作為 Blob。 如果是指定 **URL**，檔案就會上傳至暫存位置，而輸出會包含 Blob 的 URL。 24 小時之後，就會清除暫存 blob。 預設值為 **file**。
+- 上傳的檔案已受保護。 輸出 URL 包含 [SAS 權杖](../storage/common/storage-dotnet-shared-access-signature-part-1.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json)，可供在部署期間存取檔案。
 - `options.openMode` 的值會決定讀取檔案的方式。 如果預期是純文字檔案，則指定為 **text**；否則，指定為 **binary**。 預設值為 **text**。
 - 如果將 `options.uploadMode` 設為 **file**，且將 `options.openMode` 設為 **binary**，輸出就會是 base64 編碼。
 - `options.encoding` 會指定讀取檔案時要使用的編碼方式。 預設值為 **UTF-8**，且僅在 `options.openMode` 設為 **text** 時才會使用。
@@ -91,6 +93,5 @@ ms.lasthandoff: 10/27/2017
 
 
 ## <a name="next-steps"></a>後續步驟
-* 如需受控應用程式的簡介，請參閱 [Azure 受控應用程式概觀](overview.md)。
 * 如需建立 UI 定義的簡介，請參閱[開始使用 CreateUiDefinition](create-uidefinition-overview.md)。
 * 如需 UI 元素中通用屬性的說明，請參閱 [CreateUiDefinition 元素](create-uidefinition-elements.md)。

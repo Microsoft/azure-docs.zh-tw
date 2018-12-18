@@ -1,0 +1,40 @@
+items:
+- name: Azure
+  tocHref: /azure/
+  topicHref: /azure/index
+  items:
+  - name: Active Directory
+    tocHref: /azure/event-hubs/
+    topicHref: /azure/active-directory/index
+    items:
+    - name: 適用於 Azure 資源的受控識別
+      tocHref: /azure/event-hubs/
+      topicHref: /azure/active-directory/managed-identities-azure-resources/index
+- name: Azure
+  tocHref: /azure/
+  topicHref: /azure/index
+  items:
+  - name: Active Directory
+    tocHref: /azure/service-bus-messaging/
+    topicHref: /azure/active-directory/index
+    items:
+    - name: 適用於 Azure 資源的受控識別
+      tocHref: /azure/service-bus-messaging/
+      topicHref: /azure/active-directory/managed-identities-azure-resources/index
+- name: Azure
+  tocHref: /azure/
+  topicHref: /azure/index
+  items:
+  - name: Active Directory
+    tocHref: /azure/app-service/
+    topicHref: /azure/active-directory/index
+    items:
+    - name: 適用於 Azure 資源的受控識別
+      tocHref: /azure/app-service/
+      topicHref: /azure/active-directory/managed-identities-azure-resources/index
+ms.openlocfilehash: 8f3ddaa6ea4cf2844f25c528678c5b01716f5d88
+ms.sourcegitcommit: d211f1d24c669b459a3910761b5cacb4b4f46ac9
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/06/2018
+ms.locfileid: "44029370"

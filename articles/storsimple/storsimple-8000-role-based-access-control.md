@@ -1,12 +1,12 @@
 ---
-title: "使用適用於 StorSimple 的角色型存取控制 | Microsoft Docs"
-description: "說明如何在 StorSimple 內容中使用 Azure 角色型存取控制 (RBAC)。"
+title: 使用適用於 StorSimple 的角色型存取控制 | Microsoft Docs
+description: 說明如何在 StorSimple 內容中使用 Azure 角色型存取控制 (RBAC)。
 services: storsimple
-documentationcenter: 
+documentationcenter: ''
 author: alkohli
 manager: jconnoc
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: na
 ms.topic: article
@@ -14,15 +14,16 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 10/11/2017
 ms.author: alkohli
-ms.openlocfilehash: d040849360a47c611d44b3a5d7649c685dcc8068
-ms.sourcegitcommit: d03907a25fb7f22bec6a33c9c91b877897e96197
+ms.openlocfilehash: c500725508d2bf9f09279e665871ab286d9e495a
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/12/2017
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34652064"
 ---
 # <a name="role-based-access-control-for-storsimple"></a>適用於 StorSimple 的角色型存取控制
 
-本文會簡短說明如何將 Azure 角色型存取控制 (RBAC) 用於 StorSimple 裝置。 RBAC 可提供細部的 Azure 存取管理能力。 使用 RBAC 授與 StorSimple 使用者適量的存取權以執行其工作，而非讓所有人不受限制地存取。 如需有關 Azure 存取權管理的基本資訊，請參閱[在 Azure 入口網站中開始使用角色型存取控制](../active-directory/role-based-access-control-what-is.md)。
+本文會簡短說明如何將 Azure 角色型存取控制 (RBAC) 用於 StorSimple 裝置。 RBAC 可提供細部的 Azure 存取管理能力。 使用 RBAC 授與 StorSimple 使用者適量的存取權以執行其工作，而非讓所有人不受限制地存取。 如需有關 Azure 存取權管理的基本資訊，請參閱[在 Azure 入口網站中開始使用角色型存取控制](../role-based-access-control/overview.md)。
 
 本文僅適用於 Azure 入口網站中執行 3.0 更新版本或以上版本的 StorSimple 8000 系列裝置。
 
@@ -30,9 +31,9 @@ ms.lasthandoff: 10/12/2017
 
 您可以根據角色指派 RBAC。 該角色會以環境中可用的資源作為基礎來確保特定權限等級。 StorSimple 使用者可以選擇兩種角色類型：內建或自訂。
 
-* **內建角色** - 內建角包可能是擁有者、參與者、讀者或使用者存取管理員。 如需詳細資訊，請參閱 [Azure 角色型存取控制的內建角色](../active-directory/role-based-access-control-what-is.md#built-in-roles)。
+* **內建角色** - 內建角包可能是擁有者、參與者、讀者或使用者存取管理員。 如需詳細資訊，請參閱 [Azure 角色型存取控制的內建角色](../role-based-access-control/built-in-roles.md)。
 
-* **自訂角色** - 如果內建角色不符合需求，您可以建立適用於 StorSimple 的自訂 RBAC 角色。 若要建立自訂的 RBAC 角色，請從內建角色開始，對角色加以編輯，然後將其匯入回環境中。 系統會使用 Azure PowerShell 或 Azure CLI 管理角色的上傳和下載。 如需詳細資訊，請參閱[建立角色型存取控制的自訂角色](../active-directory/role-based-access-control-custom-roles.md)。
+* **自訂角色** - 如果內建角色不符合需求，您可以建立適用於 StorSimple 的自訂 RBAC 角色。 若要建立自訂的 RBAC 角色，請從內建角色開始，對角色加以編輯，然後將其匯入回環境中。 系統會使用 Azure PowerShell 或 Azure CLI 管理角色的上傳和下載。 如需詳細資訊，請參閱[建立角色型存取控制的自訂角色](../role-based-access-control/custom-roles.md)。
 
 若要在 Azure 入口網站中檢視適用於 StorSimple 裝置使用者的不同角色，請移至 StorSimple 裝置管理員服務，然後至 [存取控制 (IAM)] > [角色]。
 
@@ -45,7 +46,7 @@ ms.lasthandoff: 10/12/2017
 
 2. 登入 Azure。
 
-    `Login-AzureRMAccount`
+    `Connect-AzureRmAccount`
 
 3. 在電腦上將讀者角色匯出為 JSON 範本。
 
@@ -108,12 +109,12 @@ ms.lasthandoff: 10/12/2017
 
 ![檢視 RBAC 角色](./media/storsimple-8000-role-based-access-control/rbac-role-types.png)
 
-如需詳細資訊，請移至[使用 PowerShell 建立自訂 RBAC 角色](../active-directory/role-based-access-control-create-custom-roles-for-internal-external-users.md#create-a-custom-rbac-role-to-open-support-requests-using-powershell)。
+如需詳細資訊，請移至[自訂角色](../role-based-access-control/custom-roles.md)。
 
 ### <a name="sample-output-for-custom-role-creation-via-the-powershell"></a>透過 PowerShell 建立自訂角色的範例輸出
 
 ```
-PS C:\WINDOWS\system32> Login-AzureRMAccount
+PS C:\WINDOWS\system32> Connect-AzureRmAccount
 
 Environment           : AzureCloud
 Account               : john.doe@contoso.com
@@ -153,7 +154,7 @@ PS C:\WINDOWS\system32>
 
 ## <a name="add-users-to-the-custom-role"></a>將使用者新增至自訂角色
 
-您可從角色指派範圍內的資源、資源群組或訂用帳戶授與存取權。 提供存取權時，請記住子節點將繼承授與父節點的存取權。 如需詳細資訊，請移至[資源階層和存取繼承](../active-directory/role-based-access-control-what-is.md#resource-hierarchy-and-access-inheritance)。
+您可從角色指派範圍內的資源、資源群組或訂用帳戶授與存取權。 提供存取權時，請記住子節點將繼承授與父節點的存取權。 如需詳細資訊，請移至[角色型存取控制](../role-based-access-control/overview.md)。
 
 1. 移至 [存取控制 (IAM)]。 在 [存取控制] 刀鋒視窗上，按一下 [+ 新增]。
 
@@ -186,5 +187,5 @@ PS C:\WINDOWS\system32>
 
 ## <a name="next-steps"></a>後續步驟
 
-了解如何[為內部及外部使用者指派自訂角色](../active-directory/role-based-access-control-create-custom-roles-for-internal-external-users.md)。
+了解如何[為內部及外部使用者指派自訂角色](../role-based-access-control/role-assignments-external-users.md)。
 

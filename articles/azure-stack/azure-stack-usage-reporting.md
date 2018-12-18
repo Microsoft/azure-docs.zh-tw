@@ -3,7 +3,7 @@ title: 向 Azure 回報 Azure Stack 使用情況資料 | Microsoft Docs
 description: 了解如何在 Azure Stack 中設定使用情況資料報告。
 services: azure-stack
 documentationcenter: ''
-author: mattbriggs
+author: sethmanheim
 manager: femila
 editor: ''
 ms.service: azure-stack
@@ -11,14 +11,15 @@ ms.workload: na
 pms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/27/2018
-ms.author: mabrigg
+ms.date: 05/30/2018
+ms.author: sethm
 ms.reviewer: alfredop
-ms.openlocfilehash: 9153efb73e84d7b84a732217b92a9c66617e90ae
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: cf6604730ab3bd9ee04fac36e703022f63dcb949
+ms.sourcegitcommit: 4047b262cf2a1441a7ae82f8ac7a80ec148c40c4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 10/11/2018
+ms.locfileid: "49090360"
 ---
 # <a name="report-azure-stack-usage-data-to-azure"></a>向 Azure 回報 Azure Stack 使用情況資料 
 
@@ -27,7 +28,7 @@ ms.lasthandoff: 03/28/2018
 使用取用型計費模型的 Azure Stack 多節點系統應該向 Azure 回報使用量資料以供計費。  Azure Stack 操作員應該設定其 Azure Stack 執行個體，以向 Azure 回報使用量資料。
 
 > [!NOTE]
-> 對採用依使用量付費授權模型的 Azure Stack 多節點使用者而言，使用量資料回報是必要功能。 對採用容量授權模型的客戶而言，則為選用功能 (請參閱[購買方式頁面](https://azure.microsoft.com/en-us/overview/azure-stack/how-to-buy/))。 對於 Azure Stack 開發套件使用者，Azure Stack 操作員可以回報使用量資料，並測試此功能。 不過，使用者不會因為其造成的任何使用量而需要付費。 
+> 對採用依使用量付費授權模型的 Azure Stack 多節點使用者而言，使用量資料回報是必要功能。 對採用容量授權模型的客戶而言，則為選用功能 (請參閱[購買方式頁面](https://azure.microsoft.com/overview/azure-stack/how-to-buy/))。 對於 Azure Stack 開發套件使用者，Azure Stack 操作員可以回報使用量資料，並測試此功能。 不過，使用者不會因為其造成的任何使用量而需要付費。 
 
 
 ![計費流程](media/azure-stack-usage-reporting/billing-flow.png)
@@ -42,7 +43,7 @@ ms.lasthandoff: 03/28/2018
 - **數量** – 資源使用量。
 - **位置**：目前 Azure Stack 資源部署所在位置。
 - **資源 URI**：將回報其使用狀況之資源的完整 URI。
-- **訂用帳戶識別碼**：Azure Stack 使用者的訂用帳戶識別碼。 這是本機 (Azure Stack) 訂用帳戶。
+- **訂用帳戶識別碼**：Azure Stack 使用者的訂用帳戶識別碼，這是本機 (Azure Stack) 訂用帳戶。
 - **時間**：使用情況資料的開始與結束時間。 在 Azure Stack 中取用這些資源與向商務系統回報使用情況資料的時間有一些延遲。 Azure Stack 每隔 24 小時會彙總一次使用情況資料，而向 Azure 中的商務管線回報使用情況資料則需要數小時。 因此，在午夜前短暫發生的使用情況可能會在隔天顯示在 Azure 中。
 
 ## <a name="generate-usage-data-reporting"></a>產生使用情況資料回報
@@ -68,7 +69,7 @@ ms.lasthandoff: 03/28/2018
 
    ![計費流程](media/azure-stack-usage-reporting/pricing-details.png)
 
-針對 Azure Stack 開發套件，我們不會就使用的 Azure Stack 資源收費，因此價格顯示為 $0.00。 當 Azure Stack 多節點公開推出時，您可以看到這些資源中每個資源的實際成本。
+針對 Azure Stack 開發套件，我們不會就使用的 Azure Stack 資源收費，因此價格顯示為 $0.00。
 
 ## <a name="which-azure-stack-deployments-are-charged"></a>哪些 Azure Stack 部署需要付費？
 
@@ -76,13 +77,13 @@ ms.lasthandoff: 03/28/2018
 
 ## <a name="are-users-charged-for-the-infrastructure-vms"></a>使用基礎結構 VM 是否需要付費？
 
-編號 某些 Azure Stack 資源提供者 VM 的使用量資料會回報給 Azure，但這些 VM 以及在部署期間為了啟用 Azure Stack 基礎結構所建立的 VM，都沒有費用。  
+否。 某些 Azure Stack 資源提供者 VM 的使用量資料會回報給 Azure，但這些 VM 以及在部署期間為了啟用 Azure Stack 基礎結構所建立的 VM，都沒有費用。  
 
 使用者只需針對在租用戶訂用帳戶下執行的 VM 付費。 必須將所有工作負載部署在租用戶訂用帳戶底下，才符合 Azure Stack 的授權條款。
 
 ## <a name="i-have-a-windows-server-license-i-want-to-use-on-azure-stack-how-do-i-do-it"></a>我有 Windows Server 授權並想要用在 Azure Stack 上，我該怎麼做？
 
-使用現有授權可避免產生使用量計量。 如 [Azure Stack 授權指南](https://go.microsoft.com/fwlink/?LinkId=851536&clcid=0x409)的＜在 Azure Stack 使用現有軟體＞一節所述，現有的 Windows Server 授權可用在 Azure Stack 中。 客戶必須依照[適用於 Windows Server 授權的混合式權益](https://docs.microsoft.com/azure/virtual-machines/windows/hybrid-use-benefit-licensing)主題中所述的方式部署其 Windows Server 虛擬機器，才能使用其現有授權。
+使用現有授權可避免產生使用量計量。 如 [Azure Stack 授權指南](https://go.microsoft.com/fwlink/?LinkId=851536&clcid=0x409)的＜在 Azure Stack 使用現有軟體＞一節所述，現有的 Windows Server 授權可用在 Azure Stack 中。 客戶必須依照[適用於 Windows Server 授權的混合式權益](https://docs.microsoft.com/azure/virtual-machines/windows/hybrid-use-benefit-licensing)一文中所述的方式部署其 Windows Server 虛擬機器，才能使用其現有授權。
 
 ## <a name="which-subscription-is-charged-for-the-resources-consumed"></a>會針對哪個訂用帳戶就所取用的資源收費？
 我們會對[向 Azure 註冊 Azure Stack](azure-stack-register.md) 時提供的訂用帳戶收費。
@@ -94,10 +95,6 @@ ms.lasthandoff: 03/28/2018
 ## <a name="does-usage-data-reporting-work-in-sovereign-clouds"></a>使用情況資料回報在主權雲端中是否能運作？
 
 在 Azure Stack 開發套件中，使用情況資料回報需要在全球 Azure 系統中建立的訂用帳戶。 在其中一個主權雲端 (Azure Government、Azure 德國與 Azure 中國雲端) 中建立的訂用帳戶無法向 Azure 註冊，因此它們不支援使用情況資料回報。
-
-## <a name="how-can-users-identify-azure-stack-usage-data-in-the-azure-billing-portal"></a>使用者如何在 Azure 計費入口網站中識別 Azure Stack 使用情況資料？
-
-使用者可以在使用情況詳細資料檔案中看到 Azure Stack 使用情況資料。 若要了解如何取得使用情況詳細資料檔案，請參閱[從 Azure 帳戶中心下載使用情況檔案](https://docs.microsoft.com/azure/billing/billing-download-azure-invoice-daily-usage-date#download-usage-from-the-account-center-csv)文章。 使用情況詳細資料檔案包含可識別 Azure Stack 儲存體與 VM 的 Azure Stack 計量。 在 Azure Stack 中使用的所有資源都會在名為 “Azure Stack” 的區域下回報。
 
 ## <a name="why-doesnt-the-usage-reported-in-azure-stack-match-the-report-generated-from-azure-account-center"></a>為何在 Azure Stack 中回報的使用情況與從 Azure 帳戶中心產生的報告不符？
 

@@ -1,24 +1,25 @@
 ---
-title: "在 Azure 資訊安全中心管理連線的合作夥伴解決方案 | Microsoft Docs"
-description: "本文件逐步引導您使用 Azure 資訊安全中心，讓您監視與您的 Azure 訂用帳戶整合之合作夥伴解決方案的健康狀態，一目了然。"
+title: 在 Azure 資訊安全中心管理連線的合作夥伴解決方案 | Microsoft Docs
+description: 本文件逐步引導您使用 Azure 資訊安全中心，讓您監視與您的 Azure 訂用帳戶整合之合作夥伴解決方案的健康狀態，一目了然。
 services: security-center
 documentationcenter: na
 author: TerryLanfear
 manager: MBaldwin
-editor: 
+editor: ''
 ms.assetid: 70c076ef-3ad4-4000-a0c1-0ac0c9796ff1
 ms.service: security-center
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/16/2017
+ms.date: 08/20/2018
 ms.author: terrylan
-ms.openlocfilehash: 181e1e00716987732ee809df6171c2f71087f3e1
-ms.sourcegitcommit: bd0d3ae20773fc87b19dd7f9542f3960211495f9
+ms.openlocfilehash: 3d4c9c79ff90ee816719f0179fbb5096b0035854
+ms.sourcegitcommit: 3f8f973f095f6f878aa3e2383db0d296365a4b18
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/18/2017
+ms.lasthandoff: 08/20/2018
+ms.locfileid: "42142331"
 ---
 # <a name="managing-connected-partner-solutions-with-azure-security-center"></a>在 Azure 資訊安全中心管理連線的合作夥伴解決方案
 這篇文章會逐步解說如何管理和監視 Azure 資訊安全中心連線的安全性解決方案。

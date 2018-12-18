@@ -1,205 +1,153 @@
 ---
-title: Azure Active Directory B2C：開始使用自訂原則 | Microsoft Docs
-description: 如何開始使用 Azure Active Directory B2C 自訂原則
+title: 在 Azure Active Directory B2C 中開始使用自訂原則 | Microsoft Docs
+description: 如何開始使用 Azure Active Directory B2C 自訂原則。
 services: active-directory-b2c
-documentationcenter: ''
 author: davidmu1
 manager: mtillman
-editor: ''
-ms.service: active-directory-b2c
+ms.service: active-directory
 ms.workload: identity
-ms.topic: article
-ms.date: 08/04/2017
+ms.topic: conceptual
+ms.date: 09/17/2018
 ms.author: davidmu
-ms.openlocfilehash: 502f88bd08c05f71988763fedeba4d596aa409b6
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: B2C
+ms.openlocfilehash: b4ff8b607f9fded02a519b5f2a3abdfeedf93d88
+ms.sourcegitcommit: 5b8d9dc7c50a26d8f085a10c7281683ea2da9c10
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/26/2018
+ms.locfileid: "47181768"
 ---
-# <a name="azure-active-directory-b2c-get-started-with-custom-policies"></a>Azure Active Directory B2C：開始使用自訂原則
+# <a name="get-started-with-custom-policies-in-azure-active-directory-b2c"></a>在 Azure Active Directory B2C 中開始使用自訂原則
 
 [!INCLUDE [active-directory-b2c-advanced-audience-warning](../../includes/active-directory-b2c-advanced-audience-warning.md)]
 
-完成本文中的步驟之後，您的自訂原則將支援透過電子郵件地址和密碼執行「本機帳戶」註冊或登入。 您也會準備環境以新增識別提供者 (例如 Facebook 或 Azure Active Directory)。 我們建議您先完成這些步驟，然後再了解 Azure Active Directory (Azure AD) B2C 識別體驗架構的其他用途。
+[自訂原則](active-directory-b2c-overview-custom.md)是定義 Azure Active Directory (Azure AD) B2C 租用戶行為的設定檔。 在此文章中，您會建立自訂原則，使用電子郵件地址與密碼來支援本機帳戶註冊或登入。 您也會準備環境以新增識別提供者，例如 Facebook 或 Azure Active Directory。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
-繼續之前，請確定具有 Azure AD B2C 租用戶。此租用戶是存放您的所有使用者、應用程式、原則等的容器。 如果您還沒有租用戶，則必須[建立 Azure AD B2C 租用戶](active-directory-b2c-get-started.md)。 我們強烈建議所有開發人員完成 Azure AD B2C 內建原則的逐步解說，並使用內建原則來設定他們的應用程式，然後再繼續。 當您對原則名稱進行些微變更以叫用自訂原則之後，應用程式將會使用這兩種類型的原則。
+如果您還沒有租用戶，就必須[建立 Azure AD B2C 租用戶](tutorial-create-tenant.md)並連結到您的 Azure 訂用帳戶。
 
->[!NOTE]
->為了存取自訂原則編輯功能，您需要已與租用戶連結的有效 Azure 訂用帳戶。 如果您尚未[將 Azure AD B2C 租用戶連結到 Azure 訂用帳戶](active-directory-b2c-how-to-enable-billing.md)或已停用 Azure 訂用帳戶，將無法使用 [身分識別體驗架構] 按鈕。
+## <a name="add-signing-and-encryption-keys"></a>新增簽署與加密金鑰
 
-## <a name="add-signing-and-encryption-keys-to-your-b2c-tenant-for-use-by-custom-policies"></a>將簽署和加密金鑰新增至 B2C 租用戶以供自訂原則使用
+1. 以 Azure AD B2C 租用戶的全域管理員身分登入 [Azure 入口網站](https://portal.azure.com/)。
+2. 按一下頂端功能表中的 [目錄和訂用帳戶] 篩選，然後選擇包含您租用戶的目錄，以確定您使用的是包含 Azure AD B2C 租用戶的目錄。 
 
-1. 在您的 Azure AD B2C 租用戶設定中，開啟 [識別體驗架構] 刀鋒視窗。
-2. 選取**原則金鑰**以檢視您的租用戶中可用的金鑰。
-3. 如果 B2C_1A_TokenSigningKeyContainer 不存在，請加以建立：<br>
-    a. 選取 [新增] 。 <br>
-    b. 選取 [產生]。<br>
-    c. 針對 [名稱] 使用 `TokenSigningKeyContainer`。 <br> 
-    可能會自動加入前置詞 `B2C_1A_`。<br>
-    d. 針對 [金鑰類型] 使用 [RSA]。<br>
-    e. 針對 [日期] 使用預設值。 <br>
-    f. 針對 [金鑰使用方法] 使用 [簽章]。<br>
-    g. 選取 [建立] 。<br>
-4. 如果 B2C_1A_TokenEncryptionKeyContainer 不存在，請加以建立：<br>
- a. 選取 [新增] 。<br>
- b. 選取 [產生]。<br>
- c. 針對 [名稱] 使用 `TokenEncryptionKeyContainer`。 <br>
-   可能會自動加入前置詞 `B2C_1A`_。<br>
- d. 針對 [金鑰類型] 使用 [RSA]。<br>
- e. 針對 [日期] 使用預設值。<br>
- f. 針對 [金鑰使用方法] 使用 [加密]。<br>
- g. 選取 [建立] 。<br>
-5. 建立 B2C_1A_FacebookSecret。 <br>
-如果您已有 Facebook 應用程式的祕密，請將它當作原則金鑰來新增到您的租用戶。 否則，您必須建立具有預留位置值的金鑰，原則才能通過驗證。<br>
- a. 選取 [新增] 。<br>
- b. 針對 [選項] 使用 [手動]。<br>
- c. 針對 [名稱] 使用 `FacebookSecret`。 <br>
- 可能會自動加入前置詞 `B2C_1A_`。<br>
- d. 在 [祕密] 方塊中，輸入 developers.facebook.com 提供給您的 FacebookSecret，或輸入 `0` 作為預留位置。 這不是您的 Facebook 應用程式識別碼。 <br>
- e. 針對 [金鑰使用方法] 使用 [簽章]。 <br>
- f. 選取 [建立] 並確認建立。
+    ![切換為您的 Azure AD B2C 租用戶](./media/active-directory-b2c-setup-fb-app/switch-directories.png)
 
-## <a name="register-identity-experience-framework-applications"></a>註冊身分識別體驗架構應用程式
+3. 選擇 Azure 入口網站左上角的 [所有服務]，搜尋並選取 [Azure AD B2C]。
+4. 在 [概觀] 頁面上，選取 [識別體驗架構 - 預覽]。
 
-Azure AD B2C 會要求您註冊兩個額外的應用程式，由引擎用來註冊和登入使用者。
+### <a name="create-the-signing-key"></a>建立簽署金鑰
 
->[!NOTE]
->您必須建立兩個應用程式，以使用本機帳戶來啟用登入︰IdentityExperienceFramework (Web 應用程式) 和 ProxyIdentityExperienceFramework (原生應用程式)，且具有來自 IdentityExperienceFramework 應用程式的委派權限。 本機帳戶只存在於您的租用戶。 您的使用者會使用唯一的電子郵件地址/密碼組合進行註冊，以存取您租用戶所註冊的應用程式。
+1. 選取 [原則金鑰]，然後選取 [新增]。
+2. 針對 [選項] 選擇 `Generate`。
+3. 在 [名稱] 中輸入 `TokenSigningKeyContainer`。 可能會自動加入前置詞 `B2C_1A_`。
+4. 針對 [金鑰類型] 選取 [RSA]。
+5. 針對 [金鑰使用方法] 選取 [簽章]。
+6. 按一下頁面底部的 [新增]。
 
-### <a name="create-the-identityexperienceframework-application"></a>建立 IdentityExperienceFramework 應用程式
+### <a name="create-the-encryption-key"></a>建立加密金鑰
 
-1. 在 [Azure 入口網站](https://portal.azure.com)中，切換至[您的 Azure AD B2C 租用戶環境](active-directory-b2c-navigate-to-b2c-context.md)。
-2. 開啟 [Azure Active Directory] 刀鋒視窗 (不是 [Azure AD B2C] 刀鋒視窗)。 您可能需要選取 [更多服務]，才能找到它。
-3. 選取 [應用程式註冊]。
-4. 選取 [新增應用程式註冊]。
-   * 針對 [名稱] 使用 `IdentityExperienceFramework`。
-   * 針對 [應用程式類型] 使用 [Web 應用程式/API]。
-   * 針對 [登入 URL] 使用 `https://login.microsoftonline.com/yourtenant.onmicrosoft.com`，其中 `yourtenant` 是您的 Azure AD B2C 租用戶網域名稱。
-5. 選取 [建立] 。
-6. 建立之後，選取新建立的應用程式 **IdentityExperienceFramework**。<br>
-   * 選取 [屬性] 。<br>
-   * 複製應用程式識別碼並加以儲存，以供稍後使用。
+1. 選取 [原則金鑰]，然後選取 [新增]。
+2. 針對 [選項] 選擇 `Generate`。
+3. 在 [名稱] 中輸入 `TokenEncryptionKeyContainer`。 可能會自動加入前置詞 `B2C_1A`_。
+4. 針對 [金鑰類型] 選取 [RSA]。
+5. 針對 [金鑰使用方法] 選取 [加密]。
+6. 按一下頁面底部的 [新增]。
 
-### <a name="create-the-proxyidentityexperienceframework-application"></a>建立 ProxyIdentityExperienceFramework 應用程式
+### <a name="create-the-facebook-key"></a>建立 Facebook 金鑰
 
-1. 選取 [應用程式註冊]。
-1. 選取 [新增應用程式註冊]。
-   * 針對 [名稱] 使用 `ProxyIdentityExperienceFramework`。
-   * 針對 [應用程式類型] 使用 [原生]。
-   * 針對 [重新導向 URI] 使用 `https://login.microsoftonline.com/yourtenant.onmicrosoft.com`，其中 `yourtenant` 是您的 Azure AD B2C 租用戶。
-1. 選取 [建立] 。
-1. 建立之後，選取應用程式 **ProxyIdentityExperienceFramework**。<br>
-   * 選取 [屬性] 。 <br>
-   * 複製應用程式識別碼並加以儲存，以供稍後使用。
-1. 選取 [必要權限]。
-1. 選取 [新增] 。
-1. 選取 [選取 API]。
-1. 搜尋名稱 IdentityExperienceFramework。 在結果中選取 [IdentityExperienceFramework]，然後按一下 [選取]。
-1. 選取 [存取 IdentityExperienceFramework] 旁的核取方塊，然後按一下 [選取]。
-1. 選取 [完成] 。
-1. 選取 [授與權限]，然後選取 [是] 加以確認。
+如果您已經有 [Facebook 應用程式祕密](active-directory-b2c-setup-fb-app.md)，請將它當作原則金鑰來新增到您的租用戶。 否則，您必須建立具有預留位置值的金鑰，原則才能通過驗證。
+
+1. 選取 [原則金鑰]，然後選取 [新增]。
+2. 針對 [選項] 選擇 `Manual`。
+3. 針對 [名稱] 輸入 `FacebookSecret`。 可能會自動加入前置詞 `B2C_1A_`。
+4. 在 [祕密] 中，輸入 developers.facebook.com 提供給您的 Facebook 祕密，或輸入 `0` 作為預留位置。 這是祕密，而非應用程式識別碼。
+5. 針對 [金鑰使用方法] 選取 [簽章]。
+6. 按一下頁面底部的 [新增]。
+
+## <a name="register-applications"></a>註冊應用程式
+
+Azure AD B2C 會要求您註冊兩個應用程式，以用來註冊和登入使用者︰IdentityExperienceFramework (Web 應用程式) 和 ProxyIdentityExperienceFramework (原生應用程式)，並具有來自 IdentityExperienceFramework 應用程式的委派權限。 本機帳戶只存在於您的租用戶。 您的使用者會使用唯一的電子郵件地址/密碼組合進行註冊，以存取您租用戶所註冊的應用程式。
+
+### <a name="register-the-identityexperienceframework-application"></a>註冊 IdentityExperienceFramework 應用程式
+
+1. 選擇 Azure 入口網站左上角的 [所有服務]，搜尋並選取 [Azure Active Directory]，然後選取 [應用程式註冊]。
+2. 選取 [新增應用程式註冊]。
+3. 針對 [名稱] 輸入 `IdentityExperienceFramework`。
+4. 針對 [應用程式類型] 選擇 [Web 應用程式/API]。
+5. 針對 [登入 URL] 輸入 `https://your-tenant-name.b2clogin.com/your-tenant-name.onmicrosoft.com`，其中 `your-tenant-name` 是您的 Azure AD B2C 租用戶網域名稱。
+6. 按一下頁面底部的 [新增]。 
+7. 建立之後，複製應用程式識別碼，並儲存它以供日後使用。
+
+### <a name="register-the-proxyidentityexperienceframework-application"></a>註冊 ProxyIdentityExperienceFramework 應用程式
+
+1. 選取 [應用程式註冊]，然後選取 [新增應用程式註冊]。
+2. 針對 [名稱] 輸入 `ProxyIdentityExperienceFramework`。
+3. 針對 [應用程式類型] 選擇 [原生]。
+4. 針對 [重新導向 URI] 輸入 `https://your-tenant-name.b2clogin.com/your-tenant-name.onmicrosoft.com`，其中 `yourtenant` 是您的 Azure AD B2C 租用戶。
+5. 按一下頁面底部的 [新增]。 建立之後，複製應用程式識別碼，並儲存它以供日後使用。
+6. 在 [設定] 頁面上，選取 [必要權限]，然後選取 [新增]。
+7. 選取 [選取 API]。
+8. 搜尋並選取 [IdentityExperienceFramework]，然後按一下 [選取]。
+9. 選取 [存取 IdentityExperienceFramework] 旁的核取方塊、按一下 [選取]，然後按一下 [完成]。
+10. 選取 [授與權限]，然後選取 [是] 以確認。
 
 ## <a name="download-starter-pack-and-modify-policies"></a>下載入門套件和修改原則
 
-自訂原則是一組需要上傳至 Azure AD B2C 租用戶的 XML 檔案。 我們提供了入門套件以協助您加快進展速度。 下列清單中的每個入門套件，針對要完成所述的案例，均包含所需的最小數目技術設定檔與使用者旅程圖：
- * LocalAccounts。 只能使用本機帳戶。
- * SocialAccounts。 只能使用社交 (或同盟) 帳戶。
- * **SocialAndLocalAccounts**。 我們將在逐步解說中使用此檔案。
- * SocialAndLocalAccountsWithMFA。 此處包含社交、本機及 Multi-Factor Authentication 選項。
+自訂原則是一組需要上傳至 Azure AD B2C 租用戶的 XML 檔案。 我們提供檔案的入門套件以協助您加快進展速度。 下列清單中的每個入門套件，針對要完成所述的案例，均包含所需的最小數目技術設定檔與使用者旅程圖：
+
+- LocalAccounts - 只能使用本機帳戶。
+- SocialAccounts - 只能使用社交 (或同盟) 帳戶。
+- SocialAndLocalAccounts - 可使用本機帳戶與社交帳戶。
+- SocialAndLocalAccountsWithMFA - 啟用社交、本機與 Multi-Factor Authentication 選項。
 
 每個入門套件均包含：
 
-* 原則的[基底檔案](active-directory-b2c-overview-custom.md#policy-files)。 需要對基底做一些修改。
-* 原則的[擴充檔案](active-directory-b2c-overview-custom.md#policy-files)。  大部分的設定變更都在這個檔案中完成。
-* [信賴憑證者檔案](active-directory-b2c-overview-custom.md#policy-files)是工作特定檔案，由應用程式呼叫。
+- 基底檔案。 需要對基底做一些修改。
+* 擴充檔案。  大部分的設定變更都在這個檔案中完成。
+* 信賴憑證者檔案。 工作特有的檔案，由應用程式所呼叫。
 
 >[!NOTE]
 >如果 XML 編輯器支援驗證，請根據入門套件根目錄中的 TrustFrameworkPolicy_0.3.0.0.xsd XML 結構描述來驗證檔案。 在上載之前，XML 結構描述驗證會識別錯誤。
 
- 現在就開始吧！
-
-1. 從 GitHub 下載 active-directory-b2c-custom-policy-starterpack。 [下載 .zip 檔案](https://github.com/Azure-Samples/active-directory-b2c-custom-policy-starterpack/archive/master.zip)或執行
+1. [下載 .zip 檔案](https://github.com/Azure-Samples/active-directory-b2c-custom-policy-starterpack/archive/master.zip)或執行：
 
     ```console
     git clone https://github.com/Azure-Samples/active-directory-b2c-custom-policy-starterpack
     ```
-2. 開啟 SocialAndLocalAccounts 資料夾。  此資料夾中的基底檔案 (TrustFrameworkBase.xml) 包含本機和社交/公司帳戶所需的內容。 社交內容不會干擾本機帳戶的啟動和執行步驟。
-3. 開啟 TrustFrameworkBase.xml。 如果您需要 XML 編輯器，請[試用 Visual Studio 程式碼](https://code.visualstudio.com/download)，這是一個輕巧的跨平台編輯器。
-4. 在 `TrustFrameworkPolicy` 根元素中，更新 `TenantId` 和 `PublicPolicyUri` 屬性，以您的 Azure AD B2C 租用戶網域名稱取代 `yourtenant.onmicrosoft.com`：
-   ```xml
-    <TrustFrameworkPolicy
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-    xmlns="http://schemas.microsoft.com/online/cpim/schemas/2013/06"
-    PolicySchemaVersion="0.3.0.0"
-    TenantId="yourtenant.onmicrosoft.com"
-    PolicyId="B2C_1A_TrustFrameworkBase"
-    PublicPolicyUri="http://yourtenant.onmicrosoft.com">
-    ```
-   >[!NOTE]
-   >`PolicyId` 是您將在入口網站看到的原則名稱，也是其他原則檔案用來參考此原則檔案的名稱。
 
-5. 儲存檔案。
-6. 開啟 TrustFrameworkExtensions.xml。 以您的 Azure AD B2C 租用戶取代 `yourtenant.onmicrosoft.com` 來進行這兩項相同的變更。 加上在 `<TenantId>` 元素中進行相同的取代作業，總共進行三項變更。 儲存檔案。
-7. 開啟 SignUpOrSignIn.xml。 在三個地方以您的 Azure AD B2C 租用戶取代 `yourtenant.onmicrosoft.com` 來進行相同的變更。 儲存檔案。
-8. 開啟密碼重設和設定檔編輯檔案。 在每個檔案中的三個地方，以您的 Azure AD B2C 租用戶取代 `yourtenant.onmicrosoft.com` 來進行相同的變更。 儲存檔案。
+2. 在 SocialAndLocalAccounts 資料夾中，透過使用您的租用戶名稱取代 `yourtenant.onmicrosoft.com` 以編輯所有檔案。 例如：`contosoTenant.onmicrosoft.com`。 如果您需要 XML 編輯器，請[試用 Visual Studio 程式碼](https://code.visualstudio.com/download)，這是一個輕巧的跨平台編輯器。
 
-### <a name="add-the-application-ids-to-your-custom-policy"></a>將應用程式識別碼新增至您的自訂原則
-在擴充檔案 (`TrustFrameworkExtensions.xml`) 中新增應用程式識別碼：
+### <a name="add-application-ids-to-the-custom-policy"></a>將應用程式識別碼新增至自訂原則
 
-1. 在擴充檔案 (TrustFrameworkExtensions.xml) 中，尋找 `<TechnicalProfile Id="login-NonInteractive">` 元素。
-2. 以您稍早建立之身分識別體驗架構應用程式的應用程式識別碼，取代 `IdentityExperienceFrameworkAppId` 的兩個執行個體。 下列是一個範例：
+將應用程式識別碼新增至擴充檔案 *TrustFrameworkExtensions.xml*。
 
-   ```xml
-   <Item Key="IdTokenAudience">8322dedc-cbf4-43bc-8bb6-141d16f0f489</Item>
-   ```
-3. 以您稍早建立之 Proxy 識別體驗架構應用程式的應用程式識別碼，取代 `ProxyIdentityExperienceFrameworkAppId` 的兩個執行個體。
-4. 儲存擴充檔案。
+1. 開啟 *TrustFrameworkExtensions.xml* 檔案，並尋找 `<TechnicalProfile Id="login-NonInteractive">` 元素。
+2. 以您稍早建立之身分識別體驗架構應用程式的應用程式識別碼，取代 `IdentityExperienceFrameworkAppId` 的兩個執行個體。 以您稍早建立之 Proxy 識別體驗架構應用程式的應用程式識別碼，取代 `ProxyIdentityExperienceFrameworkAppId` 的兩個執行個體。 下列範例顯示變更之後的 **login-NonInteractive** 技術設定檔：
 
-## <a name="upload-the-policies-to-your-tenant"></a>將原則上傳至您的租用戶
+    ![應用程式識別碼](./media/active-directory-b2c-get-started-custom/login-NonInteractive.png)
 
-1. 在 [Azure 入口網站](https://portal.azure.com)中，切換至[您的 Azure AD B2C 租用戶環境](active-directory-b2c-navigate-to-b2c-context.md)，然後開啟 [Azure AD B2C] 刀鋒視窗。
-2. 選取 [識別體驗架構]。
-3. 選取 [上傳原則]。
+3. 儲存擴充檔案。
 
-    >[!WARNING]
-    >必須依下列順序上傳自訂原則檔︰
+## <a name="upload-the-policies"></a>上傳原則
 
-1. 上傳 TrustFrameworkBase.xml。
-2. 上傳 TrustFrameworkExtensions.xml。
-3. 上傳 SignUpOrSignin.xml。
-4. 上傳其他原則檔案。
+1. 在識別體驗架構的 [自訂原則] 頁面上，選取 [上傳原則]。
+1. 依此順序上傳 *TrustFrameworkBase.xml*、*TrustFrameworkExtensions.xml*、*SignUpOrSignin.xml*、*ProfileEdit.xml* 與 *PasswordReset.xml*。 上傳檔案時，原則檔案的名稱前面會加上 `B2C_1A_`。
 
-上傳檔案時，原則檔案的名稱前面會加上 `B2C_1A_`。
+## <a name="test-the-custom-policy"></a>測試自訂原則
 
-## <a name="test-the-custom-policy-by-using-run-now"></a>使用 [立即執行] 測試自訂原則
-
-1. 開啟 [Azure AD B2C 設定]，然後移至 [識別體驗架構]。
-
-   >[!NOTE]
-   >[立即執行] 需要在租用戶上至少預先註冊一個應用程式。 您必須在 B2C 租用戶中 (使用 Azure AD B2C 中的 [應用程式] 功能表選取項目，或者使用識別體驗架構) 註冊應用程式，以同時叫用內建和自訂原則。 每個應用程式只需要一個註冊。<br><br>
-   若要了解如何註冊應用程式，請參閱 Azure AD B2C [開始使用](active-directory-b2c-get-started.md)一文或[應用程式註冊](active-directory-b2c-app-registration.md)一文。  
-
-2. 開啟 B2C_1A_signup_signin，此為您上傳的信賴憑證者 (RP) 自訂原則。 選取 [立即執行]。
+1. 在 [自訂原則] 頁面上，選取 [B2C_1A_signup_signin]。 
+2. 選取 [立即執行]。
 
 3. 您應該可以使用電子郵件地址註冊。
 
 4. 使用相同的帳戶登入，以確認您的設定正確。
 
->[!NOTE]
->登入失敗的常見原因是 IdentityExperienceFramework 應用程式設定不正確。
+## <a name="add-facebook-as-an-identity-provider"></a>將 Facebook 新增為識別提供者
 
-
-## <a name="next-steps"></a>後續步驟
-
-### <a name="add-facebook-as-an-identity-provider"></a>將 Facebook 新增為識別提供者
-若要設定 Facebook：
-1. [在 developers.facebook.com 中設定 Facebook 應用程式](active-directory-b2c-setup-fb-app.md)。
-2. [在 Azure AD B2C 租用戶中新增 Facebook 應用程式祕密](#add-signing-and-encryption-keys-to-your-b2c-tenant-for-use-by-custom-policies)。
-3. 在 TrustFrameworkExtensions 原則檔案中，使用 Facebook 應用程式識別碼取代 `client_id` 的值：
+1. 設定 [Facebook 應用程式](active-directory-b2c-setup-fb-app.md)。
+2. 在 *TrustFrameworkExtensions.xml* 檔案中，使用 Facebook 應用程式識別碼來取代 `client_id` 的值：
 
    ```xml
    <TechnicalProfile Id="Facebook-OAUTH">
@@ -207,10 +155,9 @@ Azure AD B2C 會要求您註冊兩個額外的應用程式，由引擎用來註�
      <!--Replace the value of client_id in this technical profile with the Facebook app ID"-->
        <Item Key="client_id">00000000000000</Item>
    ```
-4. 將 TrustFrameworkExtensions.xml 原則檔案上傳至您的租用戶。
-5. 使用 [立即執行] 進行測試，或直接從您已註冊的應用程式中叫用原則。
+3. 將 *TrustFrameworkExtensions.xml* 檔案上傳至您的租用戶。
+4. 使用 [立即執行] 進行測試，或直接從您已註冊的應用程式中叫用原則。
 
-### <a name="add-azure-active-directory-as-an-identity-provider"></a>將 Azure Active Directory 新增為識別提供者
-此入門指南中所使用的基底檔案已經包含您新增其他識別提供者時所需的部分內容。 如需設定登入的相關資訊，請參閱 [Azure Active Directory B2C：使用 Azure AD 帳戶登入](active-directory-b2c-setup-aad-custom.md)一文。
+## <a name="next-steps"></a>後續步驟
 
-如需使用識別體驗架構之 Azure AD B2C 中自訂原則的概觀，請參閱 [Azure Active Directory B2C：自訂原則](active-directory-b2c-overview-custom.md)一文。 
+- 將 Azure Active Directory 新增為識別提供者。 此入門指南中所使用的基底檔案已經包含您新增其他識別提供者時所需的部分內容。 如需設定登入的相關資訊，請參閱[使用 Active Directory B2C 自訂原則透過 Azure Active Directory 帳戶設定註冊和登入](active-directory-b2c-setup-aad-custom.md)一文。

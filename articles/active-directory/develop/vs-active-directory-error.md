@@ -2,24 +2,22 @@
 title: 如何使用 Azure Active Directory 連線服務診斷錯誤
 description: Active directory 連線服務偵測到不相容的驗證類型
 services: active-directory
-documentationcenter: ''
 author: ghogen
 manager: douge
-editor: ''
 ms.assetid: dd89ea63-4e45-4da1-9642-645b9309670a
-ms.service: active-directory
-ms.workload: web
-ms.tgt_pltfrm: vs-getting-started
-ms.devlang: na
-ms.topic: article
+ms.prod: visual-studio-dev15
+ms.technology: vs-azure
+ms.workload: azure-vs
+ms.topic: conceptual
 ms.date: 03/12/2018
 ms.author: ghogen
-ms.custom: aaddev
-ms.openlocfilehash: c3494102703b68d6861e8755ca9dafe19c7fa6d6
-ms.sourcegitcommit: 34e0b4a7427f9d2a74164a18c3063c8be967b194
+ms.custom: aaddev, vs-azure
+ms.openlocfilehash: 82449c3a8154142a64aa264f72d2dec75fe2f23c
+ms.sourcegitcommit: 30c7f9994cf6fcdfb580616ea8d6d251364c0cd1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/30/2018
+ms.lasthandoff: 08/18/2018
+ms.locfileid: "42145756"
 ---
 # <a name="diagnosing-errors-with-the-azure-active-directory-connected-service"></a>使用 Azure Active Directory 連線服務診斷錯誤
 
@@ -96,4 +94,4 @@ ms.lasthandoff: 03/30/2018
 
 若要變更驗證類型，請移除不相容的驗證類型，然後嘗試重新新增連線服務。
 
-如需詳細資訊，請參閱 [Azure AD 的驗證案例](active-directory-authentication-scenarios.md)。
+如需詳細資訊，請參閱 [Azure AD 的驗證案例](authentication-scenarios.md)。

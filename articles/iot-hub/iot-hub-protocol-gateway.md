@@ -1,24 +1,19 @@
 ---
-title: "Azure IoT 通訊協定閘道 | Microsoft Docs"
-description: "如何使用 Azure IoT 通訊協定閘道器來擴充 IoT 中樞功能和通訊協定支援，讓裝置能夠使用 IoT 中樞原本不支援的通訊協定來連接至您的中樞。"
-services: iot-hub
-documentationcenter: 
+title: Azure IoT 通訊協定閘道 | Microsoft Docs
+description: 如何使用 Azure IoT 通訊協定閘道器來擴充 IoT 中樞功能和通訊協定支援，讓裝置能夠使用 IoT 中樞原本不支援的通訊協定來連接至您的中樞。
 author: fsautomata
-manager: timlt
-editor: 
-ms.assetid: 555e59ae-3136-4533-8ba8-f3a3b6acf648
+manager: ''
 ms.service: iot-hub
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: na
+services: iot-hub
+ms.topic: conceptual
 ms.date: 07/11/2017
 ms.author: elioda
-ms.openlocfilehash: 1ed8ec28b95bbc91b731fd7bb7b3f1f6654e7fcf
-ms.sourcegitcommit: ccb84f6b1d445d88b9870041c84cebd64fbdbc72
+ms.openlocfilehash: 2c90ee899d0002d41ca21ed4a4927470ee53b2e1
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/14/2017
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34635299"
 ---
 # <a name="support-additional-protocols-for-iot-hub"></a>讓 IoT 中樞支援其他通訊協定
 「Azure IoT 中樞」原生就支援透過 MQTT、AMQP 及 HTTPS 通訊協定進行通訊。 在某些情況下，裝置或現場閘道可能無法使用這些標準通訊協定之一，因此需要通訊協定調適。 在這種情況下，您可以使用自訂閘道。 自訂閘道可以橋接進出 IoT 中樞的流量，藉此為 IoT 中樞端點啟用通訊協定調適。 您可以使用 [Azure IoT 通訊協定閘道](https://github.com/Azure/azure-iot-protocol-gateway/blob/master/README.md) 做為自訂閘道，來為 IoT 中樞啟用通訊協定調適。

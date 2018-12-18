@@ -1,6 +1,6 @@
 ---
-title: "包含檔案"
-description: "包含檔案"
+title: 包含檔案
+description: 包含檔案
 services: event-hubs
 author: sethmanheim
 ms.service: event-hubs
@@ -9,14 +9,15 @@ ms.date: 02/26/2018
 ms.author: sethm
 ms.custom: include file
 ms.openlocfilehash: ab4c5b98ed9f6fcc8c271797db2d81dcc7ec4449
-ms.sourcegitcommit: c765cbd9c379ed00f1e2394374efa8e1915321b9
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/28/2018
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38755610"
 ---
 下表列出 [Azure 事件中樞](https://azure.microsoft.com/services/event-hubs/)的特定配額與限制。 如需事件中樞價格的相關資訊，請參閱[事件中樞價格](https://azure.microsoft.com/pricing/details/event-hubs/)。
 
-| 限制 | Scope | 注意 | 值 |
+| 限制 | 影響範圍 | 注意 | 值 |
 | --- | --- | --- | --- | --- |
 | 每個命名空間的事件中樞數目 |命名空間 |建立新的事件中樞的後續要求將遭到拒絕。 |10 |
 | 事件中樞內的資料分割數目 |實體 |- |32 |

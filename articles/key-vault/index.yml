@@ -1,0 +1,98 @@
+### YamlMime:YamlDocument
+ms.openlocfilehash: 790d036d297e33462fd1b8b0f23c32e445548939
+ms.sourcegitcommit: f20e43e436bfeafd333da75754cd32d405903b07
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49384940"
+documentType: LandingData
+title: 金鑰保存庫文件
+metadata:
+  title: Azure Key Vault 文件 - 教學課程和 API 參考 | Microsoft Docs
+  meta.description: Learn how to use Key Vault to create and maintain keys that access and encrypt your cloud resources, apps, and solutions. Tutorials, API references, and more.
+  author: barclayn
+  manager: mbaldwin
+  layout: LandingPage
+  ms.service: key-vault
+  ms.tgt_pltfrm: na
+  ms.devlang: na
+  ms.topic: landing-page
+  ms.date: 09/14/2018
+  ms.author: barclayn
+abstract:
+  description: 了解如何使用 Azure 金鑰保存庫來保護及管理雲端應用程式和服務所使用的密碼編譯金鑰和密碼。 教學課程、API 參考和其他文件會示範如何建立及維護金鑰和祕密，以便存取和加密您的資源和解決方案。
+sections:
+- items:
+  - type: list
+    style: cards
+    className: cardsM
+    columns: 3
+    items:
+    - href: /azure/key-vault/key-vault-whatis
+      html: <p>了解與 Azure Key Vault 相關的基本概念。</p>
+      image:
+        src: https://docs.microsoft.com/media/common/i_article.svg
+      title: 概念
+- title: 5 分鐘快速入門
+  items:
+  - type: paragraph
+    text: ''
+  - type: list
+    style: icon48
+    items:
+    - image:
+        src: media/index/cli.svg
+      text: Azure CLI
+      href: /azure/key-vault/quick-create-cli
+    - image:
+        src: media/index/logo_powershell.svg
+      text: PowerShell
+      href: /azure/key-vault/quick-create-powershell
+    - image:
+        src: media/index/portal.svg
+      text: Azure 入口網站
+      href: /azure/key-vault/quick-create-portal
+    - image:
+        src: media/index/logo_NET.svg
+      text: .NET
+      href: /azure/key-vault/quick-create-net
+    - image:
+        src: media/index/logo_nodejs.svg
+      text: Node.js
+      href: /azure/key-vault/quick-create-node
+- title: 逐步教學課程
+  items:
+  - type: list
+    style: cards
+    className: cardsFTitle
+    items:
+    - title: 從 Web 應用程式開始使用金鑰保存庫
+      href: /azure/key-vault/key-vault-use-from-web-application
+      image:
+        src: media/index/get-started.svg
+        href: /azure/key-vault/key-vault-use-from-web-application
+- title: 透過 Microsoft Learn 增進您的技巧
+  items:
+  - type: list
+    style: cards
+    className: cardsFTitle
+    items:
+    - title: 使用 Azure Key Vault 在您的伺服器應用程式中管理祕密
+      href: /learn/modules/manage-secrets-with-azure-key-vault/
+      image:
+        src: /learn/achievements/manage-secrets-with-azure-key-vault.svg
+        href: /learn/modules/manage-secrets-with-azure-key-vault/
+  - type: paragraph
+    text: <a href="/learn/browse/?products=azure-key-vault">更多互動式學習...</a>
+- title: 參考
+  items:
+  - type: list
+    style: cards
+    className: cardsD
+    items:
+    - title: 命令列
+      html: <p><a href="/powershell/module/azurerm.keyvault/">PowerShell</a></p><p><a href="/cli/azure/keyvault">Azure CLI 2</a></p>
+    - title: 語言
+      html: <p><a href="/dotnet/api/overview/azure/key-vault">.NET</a></p><p><a href="/java/api/overview/azure/keyvault">Java</a></p><p><a href="/python/api/overview/azure/key-vault">Python</a></p><p><a href="/javascript/api/overview/azure/key-vault">Node.js</a></p>
+    - title: REST
+      html: <p><a href="/rest/api/keyvault">REST API</a></p>

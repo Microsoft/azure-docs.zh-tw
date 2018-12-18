@@ -1,0 +1,93 @@
+### YamlMime:YamlDocument
+ms.openlocfilehash: 77707525533079630807f472e2106dc3fbadbc75
+ms.sourcegitcommit: f20e43e436bfeafd333da75754cd32d405903b07
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49386479"
+documentType: LandingData
+title: Azure HDInsight 文件
+metadata:
+  title: Azure HDInsight 文件 - 教學課程和 API 參考 | Microsoft Docs
+  description: 了解 Hadoop on HDInsight。 文件會示範如何使用 Hadoop、Spark、Kafka、HBase 等來處理、分析及深入解析巨量資料。
+  services: hdinsight
+  author: jasonwhowell
+  ms.author: jasonh
+  ms.service: hdinsight
+  ms.topic: landing-page
+  ms.date: 05/07/2018
+abstract:
+  description: 了解如何使用 Azure HDInsight 來分析串流或歷史資料。 教學課程和其他文件會示範如何建立叢集、處理和分析巨量資料，以及如何使用 Hadoop、Spark、Hive、LLAP、Kafka、Storm 和 Microsoft Machine Learning Server 等熱門的開放原始碼架構來開發解決方案。<p>Azure HDInsight 是供企業使用的完全受控、全方位的開放原始碼分析服務。 HDInsight 是一種雲端服務，可輕鬆快速地處理大量資料，同時節省成本。 HDInsight 也支援各種案例，例如擷取、轉換和載入 (ETL)；資料倉儲、機器學習和 IoT。</p>
+  aside:
+    image:
+      alt: 
+      height: 110
+      src: media/index/video.png
+      width: 250
+    title: HDInsight 上的 Apache Kafka (17:19)
+    href: https://azure.microsoft.com/resources/videos/azure-friday-apache-kafka-on-hdinsight-ga/
+    width: 250
+sections:
+- title: 5 分鐘快速入門
+  items:
+  - type: paragraph
+    text: 了解如何建立 HDInsight 叢集並且執行作業：
+  - type: list
+    style: icon64
+    items:
+    - image:
+        src: media/index/hadoop_r.svg
+      text: Hadoop
+      href: /azure/hdinsight/hadoop/apache-hadoop-linux-create-cluster-get-started-portal
+    - image:
+        src: media/index/spark_r.svg
+      text: Spark
+      href: /azure/hdinsight/spark/apache-spark-jupyter-spark-sql-use-portal
+    - image:
+        src: media/index/kafka_r.svg
+      text: Kafka
+      href: /azure/hdinsight/kafka/apache-kafka-get-started
+    - image:
+        src: media/index/hbase_r.svg
+      text: hbase
+      href: /azure/hdinsight/hbase/apache-hbase-tutorial-get-started-linux
+    - image:
+        src: media/index/hive_r.svg
+      text: 互動式查詢
+      href: /azure/hdinsight/interactive-query/apache-interactive-query-get-started
+    - image:
+        src: media/index/storm_r.svg
+      text: Storm
+      href: /azure/hdinsight/storm/apache-storm-tutorial-get-started-linux
+    - image:
+        src: media/index/ml-server_r.svg
+      text: ML 服務
+      href: /azure/hdinsight/r-server/r-server-get-started
+- title: 逐步教學課程
+  items:
+  - type: paragraph
+    text: 了解如何在不同的案例中使用 Azure HDInsight：
+  - type: list
+    style: unordered
+    items:
+    - html: Hadoop &#58; <a href="/azure/hdinsight/hdinsight-analyze-flight-delay-data-linux">執行 ETL 作業</a> | <a href="/azure/hdinsight/hdinsight-hadoop-create-linux-clusters-adf">建立隨選叢集</a>
+    - html: Spark &#58; <a href="/azure/hdinsight/spark/apache-spark-load-data-run-query">執行互動式查詢</a> | <a href="/azure/hdinsight/spark/apache-spark-use-bi-tools">將資料視覺化</a> | <a href="/azure/hdinsight/spark/apache-spark-ipython-notebook-machine-learning">機器學習</a>
+    - html: Kafka &#58; <a href="/azure/hdinsight/hdinsight-apache-kafka-spark-structured-streaming">使用 Kafka 將串流結構化</a> | <a href="/azure/hdinsight/hdinsight-apache-storm-with-kafka">使用 HDInsight 上的 Storm</a> | <a href="/azure/hdinsight/kafka/apache-kafka-producer-consumer-api">使用 Kafka Producer 和 Consumer API</a>
+    - html: HBase &#58; <a href="/azure/hdinsight/hbase/apache-hbase-provision-vnet">在 VNET 中建立 HBase 叢集</a> | <a href="/azure/hdinsight/hdinsight-phoenix-in-hdinsight">使用 Apache Phoenix</a> | <a href="/azure/hdinsight/hdinsight-using-spark-query-hbase">連線至 Spark</a>
+    - html: 互動式查詢 &#58; <a href="/azure/hdinsight/interactive-query/apache-hadoop-connect-hive-power-bi-directquery">使用直接查詢與 Power BI 連線</a>
+    - html: Storm &#58; <a href="/azure/hdinsight/storm/apache-storm-develop-java-topology">在 Java 中建立 Storm 拓撲</a> | <a href="/azure/hdinsight/storm/apache-storm-deploy-monitor-topology-linux">在 HDInsight 上部署 Storm 拓撲</a> | <a href="/azure/hdinsight/storm/apache-storm-write-data-lake-store">從 Storm 寫入 Data Lake Store</a>
+    - html: ML 服務 &#58; <a href="/azure/hdinsight/r-server/r-server-submit-jobs-r-tools-vs">使用適用於 Visual Studio 的 R 工具</a>
+- title: 參考
+  items:
+  - type: list
+    style: cards
+    className: cardsD
+    items:
+    - title: 工具
+      html: <p><a href="https://docs.microsoft.com/azure/hdinsight/spark/apache-spark-intellij-tool-plugin">HDInsight IntelliJ 工具</a></p><p><a href="https://docs.microsoft.com/azure/hdinsight/spark/apache-spark-eclipse-tool-plugin">HDInsight Eclipse 工具</a></p><p><a href="https://docs.microsoft.com/azure/hdinsight/hdinsight-for-vscode">HDInsight VSCode 工具</a></p><p><a href="https://docs.microsoft.com/azure/hdinsight/hadoop/apache-hadoop-visual-studio-tools-get-started">HDInsight Visual Studio 工具</a></p>
+    - title: 命令列
+      html: <p><a href="/powershell/module/azurerm.hdinsight">Azure PowerShell</a></p>
+    - title: 語言
+      html: <p><a href="https://docs.microsoft.com/dotnet/api/overview/azure/hdinsight">.NET (Hadoop)</a></p><p><a href="https://www.nuget.org/packages/Microsoft.HBase.Client/">.NET (HBase)</a></p><p><a href="https://archive.codeplex.com/?p=hadoopsdk">.NET (Avro)</a></p>
+    - title: REST
+      html: <p><a href="https://docs.microsoft.com/rest/api/hdinsight/">REST API</a></p><p><a href="https://docs.microsoft.com/rest/api/hdinsightspark/">REST API (Spark)</a></p>

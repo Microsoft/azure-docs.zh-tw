@@ -1,24 +1,25 @@
 ---
-title: "在 Azure Service Fabric 中重新設定 | Microsoft Docs"
-description: "了解在 Service Fabric 中重新設定分割區"
+title: 在 Azure Service Fabric 中重新設定 | Microsoft Docs
+description: 了解在 Service Fabric 中重新設定分割區
 services: service-fabric
 documentationcenter: .net
 author: appi101
 manager: anuragg
-editor: 
+editor: ''
 ms.assetid: d5ab75ff-98b9-4573-a2e5-7f5ab288157a
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 01/10/2018
 ms.author: aprameyr
-ms.openlocfilehash: 8371c4b268e1181e61542261ad7fc5fd04f6e59c
-ms.sourcegitcommit: 384d2ec82214e8af0fc4891f9f840fb7cf89ef59
+ms.openlocfilehash: a24aa6aa1695a3d1166816b7960bdd7b551e1a37
+ms.sourcegitcommit: eb75f177fc59d90b1b667afcfe64ac51936e2638
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/16/2018
+ms.lasthandoff: 05/16/2018
+ms.locfileid: "34212801"
 ---
 # <a name="reconfiguration-in-azure-service-fabric"></a>在 Azure Service Fabric 中重新設定
 對於具狀態服務的分割區而言，*設定*定義為複本及其角色。

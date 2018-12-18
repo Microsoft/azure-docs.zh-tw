@@ -168,7 +168,7 @@ docker info
 
 5. 選取 [SSH] > [通道] 並設定下列已轉送的連接埠︰
 
-    * **來源連接埠：**DC/OS 使用 80 或 Swarm 使用 2375。
+    * **來源連接埠：** DC/OS 使用 80 或 Swarm 使用 2375。
     * **目的地：** DC/OS 使用 localhost:80 或 Swarm 使用 localhost:2375。
 
     下列範例是針對 DC/OS 而設定，但對於 Docker Swarm 而言也很類似。

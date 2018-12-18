@@ -3,8 +3,8 @@ title: 透過 Microsoft Azure 認證計劃取得預先核准 | Microsoft Docs
 description: 了解 Microsoft Azure 認證合作夥伴方案，以及如何在 Azure Marketplace 銷售您的虛擬機器映像、解決方案範本、開發人員服務或資料服務
 services: marketplace-publishing
 documentationcenter: na
-author: msmbaldwin
-manager: mbaldwin
+author: HannibalSII
+manager: hascipio
 editor: ''
 tags: ''
 ms.assetid: 7e9ebf17-07a1-4796-921f-d1d62046892d
@@ -14,12 +14,13 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 12/05/2016
-ms.author: mbaldwin
-ms.openlocfilehash: 6db5c8dc6aba4246b3672cf7931a266b26ad11db
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.author: hascipio
+ms.openlocfilehash: aadc695b1f07d04f1fcc7f2f2e3ff90fb7f54849
+ms.sourcegitcommit: d16b7d22dddef6da8b6cfdf412b1a668ab436c1f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39713997"
 ---
 # <a name="get-pre-approved-via-the-microsoft-azure-certified-program"></a>透過 Microsoft Azure 認證計劃取得預先核准
 本文提供如何取得 Microsoft Azure 認證的指示，以便您將解決方案發佈至 Azure Marketplace 並有資格享有行銷優勢。 如需 Microsoft Azure 認證計劃及其優點的詳細概觀，請造訪 [http://azure.com/certified](http://azure.com/certified)。

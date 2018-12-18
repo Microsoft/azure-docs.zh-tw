@@ -1,35 +1,35 @@
 ---
-title: Azure Active Directory B2C︰參考︰使用自訂原則來自訂使用者旅程的 UI | Microsoft Docs
-description: Azure Active Directory B2C 自訂原則的主題
+title: 使用自訂原則來自訂使用者旅程的 UI | Microsoft Docs
+description: 了解 Azure Active Directory B2C 自訂原則。
 services: active-directory-b2c
-documentationcenter: ''
 author: davidmu1
 manager: mtillman
-editor: ''
-ms.service: active-directory-b2c
+ms.service: active-directory
 ms.workload: identity
-ms.topic: article
+ms.topic: conceptual
 ms.date: 04/25/2017
 ms.author: davidmu
-ms.openlocfilehash: b0f68f76bfb746b91cb82b2b7e9e750f15f14253
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: B2C
+ms.openlocfilehash: c6882dd56ee96e1fcab5926b77f11ce928bf950b
+ms.sourcegitcommit: 86cb3855e1368e5a74f21fdd71684c78a1f907ac
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37442350"
 ---
 # <a name="customize-the-ui-of-a-user-journey-with-custom-policies"></a>使用自訂原則來自訂使用者旅程的 UI
 
 [!INCLUDE [active-directory-b2c-advanced-audience-warning](../../includes/active-directory-b2c-advanced-audience-warning.md)]
 
 > [!NOTE]
-> 本文會進一步說明如何自訂 UI，以及如何使用身分識別體驗架構來對 B2C 自訂原則啟用 UI 自訂功能
+> 本文會進一步說明如何自訂 UI，以及如何使用身分識別體驗架構來對 Azure AD B2C 自訂原則啟用 UI 自訂功能。
 
 
 順暢的使用者體驗是任何「企業對客戶」解決方案的成功關鍵。 所謂順暢的使用者體驗，不論是在裝置或瀏覽器上，使用者在使用服務時所經歷的旅程，和其使用客戶服務時的旅程沒有差異。
 
 ## <a name="understand-the-cors-way-for-ui-customization"></a>了解以 CORS 來自訂 UI 的方法
 
-Azure AD B2C 可讓您在各種頁面上自訂使用者體驗 (UX) 的外觀與風格，並由 Azure AD B2C 透過您的自訂原則來提供和顯示這些自訂。
+Azure AD B2C 可讓您在各種頁面上自訂使用者體驗 (UX) 的外觀與風格，並由 Azure AD B2C 使用您的自訂原則來提供和顯示這些自訂。
 
 為了達成該目的，Azure AD B2C 會在取用者的瀏覽器中執行程式碼，並使用現代且標準的方法 ([跨原始資源共用 (CORS)](http://www.w3.org/TR/cors/)) 來載入自訂內容，內容來源則是您在自訂原則中指定為指向 HTML5/CSS 範本的特定 URL。 CORS 機制可讓您從網頁上受限制資源 (如字型) 來源網域以外的其他網域，對該項資源提出要求。
 
@@ -57,7 +57,7 @@ Azure AD B2C 可讓您在各種頁面上自訂使用者體驗 (UX) 的外觀與�
 </html>
 ```
 
-頁面的 Azure AD B2C 相關內容會插入這個 div 中，頁面的其餘部分則由您控制。 Azure AD B2C 的 JavaScript 程式碼會提取您的內容，並將 HTML 插入到這個特定的 div 元素。 Azure AD B2C 會適當插入下列控制項︰帳戶選擇器控制項、登入控制項、多因素 (目前為電話式) 控制項和屬性集合控制項。 Azure AD B2C 可確保所有控制項都符合 HTML5 規範且可供存取、所有控制項都可完全自訂樣式，且控制項版本不會倒退。
+頁面的 Azure AD B2C 相關內容會插入這個 div 中，頁面的其餘部分則由您控制。 Azure AD B2C JavaScript 程式碼會提取您的內容，並將 HTML 插入到這個特定的 div 元素。 Azure AD B2C 會適當插入下列控制項︰帳戶選擇器控制項、登入控制項、多因素 (目前為電話式) 控制項和屬性集合控制項。 Azure AD B2C 可確保所有控制項都符合 HTML5 規範且可供存取、所有控制項都可完全自訂樣式，且控制項版本不會倒退。
 
 合併的內容最終會以動態文件的形式向取用者顯示。
 
@@ -115,7 +115,7 @@ Azure AD B2C 可讓您在各種頁面上自訂使用者體驗 (UX) 的外觀與�
 
 ## <a name="ensure-the-storage-account-has-cors-enabled"></a>確定儲存體帳戶已啟用 CORS
 
-在您的端點上必須啟用 CORS (跨原始來源資源分享)，讓 Azure AD B2C Premium 可以載入您的內容，因為您的內容裝載在與 Azure AD B2C Premium 服務頁面的網域不同的網域上。
+您的端點必須啟用 CORS (跨原始資源共用)，Azure AD B2C 才能載入您的內容。 這是因為您的內容裝載所在的網域，與 Azure AD B2C 用來從中提供頁面的網域不同。
 
 若要確認您要用來裝載內容的儲存體已啟用 CORS，請進行下列步驟︰
 

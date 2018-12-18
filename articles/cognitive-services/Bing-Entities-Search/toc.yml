@@ -1,0 +1,75 @@
+- name: Bing 實體搜尋文件
+  href: index.yml
+- name: 概觀
+  items:
+    - name: 什麼是 Bing 實體搜尋？
+      href: search-the-web.md
+- name: REST API 快速入門
+  expanded: true
+  items:
+    - name: 'C#'
+      href: quickstarts/csharp.md
+    - name: Java
+      href: quickstarts/java.md
+    - name: Node.js
+      href: quickstarts/nodejs.md
+    - name: PHP
+      href: quickstarts/php.md
+    - name: Python
+      href: quickstarts/python.md
+    - name: Ruby
+      href: quickstarts/ruby.md
+- name: SDK 快速入門
+  items:
+    - name: SDK 範例概觀
+      href: sdk.md
+    - name: '實體搜尋 C# 快速入門'
+      href: entity-search-sdk-quickstart.md
+    - name: 實體搜尋 Node.js 快速入門
+      href: entity-search-sdk-node-quickstart.md
+    - name: 實體搜尋 Python 快速入門
+      href: entity-sdk-python-quickstart.md
+    - name: 實體搜尋 JAVA 快速入門
+      href: entity-sdk-java-quickstart.md
+- name: 教學課程
+  items:
+    - name: 單一頁面 Web 應用程式
+      href: tutorial-bing-entities-search-single-page-app.md
+    - name: 單一頁面 Web 應用程式 (原始程式碼)
+      href: tutorial-bing-entities-search-single-page-app-source.md
+- name: 範例
+  items:
+    - name: 程式碼範例
+      href: 'https://azure.microsoft.com/resources/samples/?sort=0&service=cognitive-services&term=Bing+Entity+Search'
+- name: 使用說明指南
+  items:
+    - name: 使用和顯示需求
+      href: use-display-requirements.md
+    - name: 調整大小和裁剪縮圖
+      href: resize-and-crop-thumbnails.md
+- name: 參考
+  items:
+    - name: Bing 實體搜尋 API v7
+      href: 'https://docs.microsoft.com/rest/api/cognitiveservices/bing-entities-api-v7-reference'
+- name: 資源
+  items:
+    - name: 價格
+      href: 'https://azure.microsoft.com/pricing/details/cognitive-services/bing-entity-search-api/'
+    - name: UserVoice
+      href: 'https://cognitive.uservoice.com/forums/601036-bing-entity-search-api'
+    - name: 堆疊溢位
+      href: 'https://stackoverflow.com/search?q=bing+entity+search'
+    - name: 區域可用性
+      href: 'https://azure.microsoft.com/global-infrastructure/services/'
+    - name: Azure 藍圖
+      href: 'https://azure.microsoft.com/roadmap/'
+    - name: 知識庫
+      href: 'https://cognitive.uservoice.com/knowledgebase/topics/127875-bing-search-web-image-video-news-autosuggest'
+    - name: 取得 API 金鑰
+      href: 'https://azure.microsoft.com/try/cognitive-services/?api=bing-entities-search-api'
+    - name: 試試看！
+      href: 'https://dev.cognitive.microsoft.com/docs/services/7a3fb374be374859a823b79fd938cc65/'
+    - name: Bing 實體搜尋端點
+      href: entity-search-endpoint.md
+    - name: Bing 實體搜尋 API 的分析
+      href: bing-entity-stats.md

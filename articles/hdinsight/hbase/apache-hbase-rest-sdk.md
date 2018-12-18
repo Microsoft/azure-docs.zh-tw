@@ -1,26 +1,20 @@
 ---
-title: "使用 HBase .NET SDK - Azure HDInsight | Microsoft Docs"
-description: "使用 HBase .NET SDK 建立和刪除資料表，以及讀取和寫入資料。"
+title: 使用 HBase .NET SDK - Azure HDInsight
+description: 使用 HBase .NET SDK 建立和刪除資料表，以及讀取和寫入資料。
 services: hdinsight
-documentationcenter: 
-tags: azure-portal
 author: ashishthaps
-manager: jhubbard
-editor: cgronlun
-ms.assetid: 
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 12/13/2017
 ms.author: ashishth
-ms.openlocfilehash: 083150fe5f8787ba791d3d692db73c5156f11e55
-ms.sourcegitcommit: 9890483687a2b28860ec179f5fd0a292cdf11d22
+ms.openlocfilehash: af3b87fbe79624143b6c2b7e0a3c50852e532524
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/24/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43042116"
 ---
 # <a name="use-the-hbase-net-sdk"></a>使用 HBase .NET SDK
 

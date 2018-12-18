@@ -1,7 +1,7 @@
 ---
 title: Azure 資源原則產生的 RequestDisallowedByPolicy 錯誤 | Microsoft Docs
 description: 描述 RequestDisallowedByPolicy 錯誤的原因。
-services: azure-resource-manager,azure-portal
+services: azure-resource-manager
 documentationcenter: ''
 author: genlin
 manager: cshepard
@@ -10,18 +10,19 @@ ms.service: azure-resource-manager
 ms.workload: multiple
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: support-article
+ms.topic: troubleshooting
 ms.date: 03/09/2018
 ms.author: genli
-ms.openlocfilehash: 5a9efa6b807e933726104e7af315589ede5d9b74
-ms.sourcegitcommit: a0be2dc237d30b7f79914e8adfb85299571374ec
+ms.openlocfilehash: a9993942c20f2c33d944b74fb124a363d0663ced
+ms.sourcegitcommit: cc4fdd6f0f12b44c244abc7f6bc4b181a2d05302
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/12/2018
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47094628"
 ---
 # <a name="requestdisallowedbypolicy-error-with-azure-resource-policy"></a>Azure 資源原則產生的 RequestDisallowedByPolicy 錯誤
 
-本文說明 RequestDisallowedByPolicy 錯誤的原因，其中也會提供此錯誤的解決方案。
+此文章說明 RequestDisallowedByPolicy 錯誤的原因，其中也會提供此錯誤的解決方案。
 
 ## <a name="symptom"></a>徵狀
 
@@ -50,7 +51,7 @@ ms.lasthandoff: 03/12/2018
 
 ### <a name="azure-cli"></a>Azure CLI
 
-在 Azure CLI 2.0 中，提供原則定義的名稱：
+在 Azure CLI 中，提供原則定義的名稱︰
 
 ```azurecli
 az policy definition show --name regionPolicyAssignment

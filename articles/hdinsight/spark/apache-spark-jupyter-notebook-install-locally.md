@@ -1,26 +1,20 @@
 ---
-title: "在本機安裝 Jupyter 並連線到 Azure HDInsight Spark 叢集 | Microsoft Docs"
-description: "了解如何在電腦本機安裝 Jupyter Notebook，並連線到 Azure HDInsight 上的 Apache Spark 叢集。"
+title: 在本機安裝 Jupyter 並連線到 Azure HDInsight 中的 Spark
+description: 了解如何在電腦本機安裝 Jupyter Notebook，並連線到 Apache Spark 叢集。
 services: hdinsight
-documentationcenter: 
-author: nitinme
-manager: jhubbard
-editor: cgronlun
-tags: azure-portal
-ms.assetid: 48593bdf-4122-4f2e-a8ec-fdc009e47c16
 ms.service: hdinsight
+author: jasonwhowell
+ms.reviewer: jasonh
 ms.custom: hdinsightactive
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 11/28/2017
-ms.author: nitinme
-ms.openlocfilehash: 5549c175c280961b09f5996e3387a50dae31222f
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.author: jasonh
+ms.openlocfilehash: 83e9596f37850ef5b26b530cd4424a024355fc8a
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43042550"
 ---
 # <a name="install-jupyter-notebook-on-your-computer-and-connect-to-apache-spark-on-hdinsight"></a>在電腦上安裝 Jupyter Notebook，並連線到 HDInsight 上的 Apache Spark
 
@@ -34,7 +28,7 @@ ms.lasthandoff: 02/21/2018
 
 如需有關可供 HDInsight 叢集之相關 Jupyter Notebook 使用的自訂核心和 Spark magic 的詳細資訊，請參閱 [HDInsight 上的 Apache Spark Linux 叢集可供 Jupyter Notebook 使用的核心](apache-spark-jupyter-notebook-kernels.md)。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 此處所列的必要條件不是針對安裝 Jupyter。 這些是用來在安裝 Notebook 之後將 Jupyter Notebook 連接到 HDInsight 叢集。
 
 * Azure 訂用帳戶。 請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
@@ -45,7 +39,7 @@ ms.lasthandoff: 02/21/2018
 您必須先安裝 Python，才能安裝 Jupyter Notebook。 Python 和 Jupyter 皆為 [Anaconda 發行版本](https://www.continuum.io/downloads)的一部分。 當您安裝 Anaconda 時，會安裝某個 Python 發行版本。 安裝 Anaconda 之後，您便可以執行適當的命令來新增 Jupyter 安裝。
 
 1. 下載您平台適用的 [Anaconda 安裝程式](https://www.continuum.io/downloads) ，然後執行安裝程式。 執行安裝精靈時，請確定您選取將 Anaconda 新增至 PATH 變數的選項。
-2. 執行下列命令來安裝 Jupyter。
+1. 執行下列命令來安裝 Jupyter。
 
         conda install jupyter
 
@@ -74,8 +68,8 @@ ms.lasthandoff: 02/21/2018
         import os
         print(os.path.expanduser('~'))
 
-2. 瀏覽至主目錄，然後建立一個叫做 **.sparkmagic** 的資料夾 (如果尚未存在)。
-3. 在該資料夾中，建立一個叫做 **config.json** 的檔案，然後在檔案中新增下列 JSON 程式碼片段。
+1. 瀏覽至主目錄，然後建立一個叫做 **.sparkmagic** 的資料夾 (如果尚未存在)。
+1. 在該資料夾中，建立一個叫做 **config.json** 的檔案，然後在檔案中新增下列 JSON 程式碼片段。
 
         {
           "kernel_python_credentials" : {
@@ -90,9 +84,9 @@ ms.lasthandoff: 02/21/2018
           }
         }
 
-4. 以適當的值替代 **{USERNAME}**、**{CLUSTERDNSNAME}** 和 **{BASE64ENCODEDPASSWORD}**。 您可以在慣用的程式設計語言中或在線上，使用一些公用程式來產生 base64 編碼的密碼，以做為您的實際密碼。
+1. 以適當的值替代 **{USERNAME}**、**{CLUSTERDNSNAME}** 和 **{BASE64ENCODEDPASSWORD}**。 您可以在慣用的程式設計語言中或在線上，使用一些公用程式來產生 base64 編碼的密碼，以做為您的實際密碼。
 
-5. 在 `config.json` 中設定正確的活動訊號設定。 您應該依照加入稍早的 `kernel_python_credentials` 和 `kernel_scala_credentials` 程式碼片段，在相同層級新增這些設定。 如需有關加入活動訊號設定的方法與位置範例，請參閱此[範例 config.json (sample config.json)](https://github.com/jupyter-incubator/sparkmagic/blob/master/sparkmagic/example_config.json)。
+1. 在 `config.json` 中設定正確的活動訊號設定。 您應該依照加入稍早的 `kernel_python_credentials` 和 `kernel_scala_credentials` 程式碼片段，在相同層級新增這些設定。 如需有關加入活動訊號設定的方法與位置範例，請參閱此[範例 config.json (sample config.json)](https://github.com/jupyter-incubator/sparkmagic/blob/master/sparkmagic/example_config.json)。
 
     * 若為 `sparkmagic 0.2.3` (叢集 3.4 版)，請加入︰
 
@@ -109,11 +103,11 @@ ms.lasthandoff: 02/21/2018
     >[!TIP]
     >傳送活動訊號可確保不會流失工作階段。 當電腦進入睡眠或已關機時，則不會傳送活動訊號，導致工作階段被清除。 若為叢集 3.4 版，如果想要停用此行為，您可以從 Ambari UI 將 Livy 組態 `livy.server.interactive.heartbeat.timeout` 設定為 `0`。 若為叢集 3.5 版，如果您未設定上述的 3.5 組態，則不會刪除工作階段。
 
-6. 啟動 Jupyter。 從命令提示字元使用下列命令。
+1. 啟動 Jupyter。 從命令提示字元使用下列命令。
 
         jupyter notebook
 
-7. 確認您可以使用 Jupyter Notebook 來連接到叢集，並且可以使用核心隨附的 Spark magic。 請執行下列步驟：
+1. 確認您可以使用 Jupyter Notebook 來連接到叢集，並且可以使用核心隨附的 Spark magic。 請執行下列步驟：
 
     a. 建立新的 Notebook。 從右下角，按一下 [新增]。 您應該會看到預設核心 **Python2**，以及您安裝的兩個新核心 **PySpark** 和 **Spark**。 按一下 [PySpark] 。
 

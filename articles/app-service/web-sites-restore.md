@@ -1,8 +1,8 @@
 ---
-title: "在 Azure 中還原應用程式"
-description: "了解如何從備份還原您的應用程式。"
+title: 在 Azure 中還原應用程式
+description: 了解如何從備份還原您的應用程式。
 services: app-service
-documentationcenter: 
+documentationcenter: ''
 author: cephalin
 manager: erikre
 editor: jimbe
@@ -14,17 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/06/2016
 ms.author: cephalin
-ms.openlocfilehash: 60b55acaf687dae76e054b428b8d6584d8eb09f8
-ms.sourcegitcommit: 933af6219266cc685d0c9009f533ca1be03aa5e9
+ms.openlocfilehash: 69e0e8282ee0b8503fe11a57b8ba6037247822dd
+ms.sourcegitcommit: 1478591671a0d5f73e75aa3fb1143e59f4b04e6a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/18/2017
+ms.lasthandoff: 07/19/2018
+ms.locfileid: "39160496"
 ---
 # <a name="restore-an-app-in-azure"></a>在 Azure 中還原應用程式
 本文說明如何在 [Azure App Service](../app-service/app-service-web-overview.md) 中還原您先前備份的應用程式 (請參閱[在 Azure 中備份應用程式](web-sites-backup.md))。 您可以依需求將應用程式及其連結的資料庫還原到先前的狀態，或是根據您的其中一個原始應用程式備份來建立新的應用程式。 Azure App Service 支援使用下列資料庫來進行備份與還原︰
-- [SQL Database](https://azure.microsoft.com/en-us/services/sql-database/)
-- [適用於 MySQL 的 Azure 資料庫 (預覽)](https://azure.microsoft.com/en-us/services/mysql)
-- [適用於 PostgreSQL 的 Azure 資料庫 (預覽)](https://azure.microsoft.com/en-us/services/postgres)
+- [SQL Database](https://azure.microsoft.com/services/sql-database/)
+- [適用於 MySQL 的 Azure 資料庫](https://azure.microsoft.com/services/mysql)
+- [適用於 PostgreSQL 的 Azure 資料庫](https://azure.microsoft.com/services/postgresql)
 - [應用程式內 MySQL](https://blogs.msdn.microsoft.com/appserviceteam/2017/03/06/announcing-general-availability-for-mysql-in-app)
 
 從備份還原是提供給在**標準**和**進階**層中執行的應用程式使用。 如需有關相應增加應用程式的詳細資訊，請參閱 [在 Azure 中調整應用程式規模](web-sites-scale.md)。 **進階**層所允許執行的每日備份數量比**標準**層多。
@@ -51,9 +52,14 @@ ms.lasthandoff: 11/18/2017
    > 
    > 
    
+   > [!WARNING]
+   > 如果 App Service 在您還原資料庫時將資料寫入資料庫，則可能會導致主索引鍵違規和資料遺失等徵兆。 建議您在開始還原資料庫之前，先停止 App Service。
+   > 
+   > 
+   
     您可以選取 [現有應用程式]  ，將應用程式備份還原到相同資源群組中的另一個應用程式。 使用此選項之前，您應該已經在資源群組中，建立具有應用程式備份中所定義之資料庫組態的鏡像資料庫組態的另一個應用程式。 您也可以建立**新**應用程式作為還原內容的目標。
 
-4. 按一下 [SERVICEPRINCIPAL] 。
+4. 按一下 [確定]。
 
 <a name="StorageAccount"></a>
 

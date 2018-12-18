@@ -3,7 +3,7 @@ title: Azure Log Analytics 中的 IT 服務管理連接器 | Microsoft Docs
 description: 本文提供 IT Service Management Connector (ITSMC) 的概觀，以及說明如何使用此解決方案，在 Azure Log Analytics 集中監視及管理 ITSM 工作項目，並快速解決所有問題。
 services: log-analytics
 documentationcenter: ''
-author: JYOTHIRMAISURI
+author: jyothirmaisuri
 manager: riyazp
 editor: ''
 ms.assetid: 0b1414d9-b0a7-4e4e-a652-d3a6ff1118c4
@@ -11,14 +11,16 @@ ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 01/23/2018
+ms.topic: conceptual
+ms.date: 05/24/2018
 ms.author: v-jysur
-ms.openlocfilehash: c39cf464a7e838fecf7ebd4a3cbb08612388a5fa
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.component: ''
+ms.openlocfilehash: 5f5b03090f374f936e03d487596ca0462feea348
+ms.sourcegitcommit: 3856c66eb17ef96dcf00880c746143213be3806a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 10/02/2018
+ms.locfileid: "48042423"
 ---
 # <a name="connect-azure-to-itsm-tools-using-it-service-management-connector"></a>使用 IT Service Management Connector 將 Azure 連線到 ITSM 工具
 
@@ -98,7 +100,7 @@ ITSMC 支援與下列 ITSM 工具連線：
 
     > [!NOTE]
 
-    > 根據預設，ITSMC 每隔 24 小時就會將連線的設定資料重新整理一次。 若要針對所做的任何編輯或範本更新將連線的資料立即重新整理，按一下連線旁顯示的 [重新整理] 按鈕。
+    > 根據預設，ITSMC 每隔 24 小時就會將連線的設定資料重新整理一次。 若要針對所做的任何編輯或範本更新將連線的資料立即重新整理，按一下連線刀鋒視窗上的 [同步] 按鈕。
 
     ![連線重新整理](./media/log-analytics-itsmc/itsmc-connections-refresh.png)
 
@@ -130,65 +132,13 @@ ITSMC 支援與下列 ITSM 工具連線：
 
 6. 從下拉式功能表選取 [工作項目] 類型。
    選擇使用現有範本，或填滿 ITSM 產品所需的欄位。
-7. 按一下 [SERVICEPRINCIPAL] 。
+7. 按一下 [確定]。
 
 建立/編輯 Azure 警示規則時，請使用具有 ITSM 動作的動作群組。 警示觸發時，會在 ITSM 工具中建立/更新工作項目。
 
 >[!NOTE]
 
 > 如需 ITSM 動作的價格相關資訊，請參閱動作群組的[價格頁面](https://azure.microsoft.com/pricing/details/monitor/)。
-
-
-## <a name="create-itsm-work-items-from-log-analytics-alerts"></a>從 Log Analytics 警示建立 ITSM 工作項目
-
-您可以使用下列程序，在 Azure Log Analytics 入口網站中設定警示規則，以在 ITSM 工具中建立工作項目。
-
-1. 從 [記錄搜尋] 視窗中，執行記錄搜尋查詢來檢視資料。 查詢結果為工作項目的來源。
-2. 在 [記錄搜尋] 中，按一下 [警示] 可開啟 [新增警示規則] 頁面。
-
-    ![Log Analytics 畫面](./media/log-analytics-itsmc/itsmc-work-items-for-azure-alerts.png)
-
-3. 在 **[新增警示規則]** 視窗中，提供 **[名稱]** 、 **[嚴重性]** 、 **[搜尋查詢]** 和 **[警示準則]** \(時間範圍/計量的度量單位) 的必要詳細資料。
-4. 在 [ITSM 動作] 選取 [是]。
-5. 從 [選取連線] 清單中選取您的 ITSM 連線。
-6. 提供所需的詳細資料。
-7. 若要為這項警示的每個記錄項目建立個別的工作項目，請選取 [為每個記錄項目建立個別的工作項目] 核取方塊。
-
-    或
-
-    將此核取方塊取消選取，可在此警示下對任意數目的記錄項目只建立一個工作項目。
-
-7. 按一下 [檔案] 。
-
-您可以在 [設定] > [警示] 下方，檢視您建立的 Log Analytics 警示。 符合所指定警示的條件時，會建立對應 ITSM 連線的工作項目。
-
-
-## <a name="create-itsm-work-items-from-log-analytics-log-records"></a>從 Log Analytics 記錄檔記錄建立 ITSM 工作項目
-
-您也可以直接從記錄檔記錄，在連線的 ITSM 來源中建立工作項目。 這可用來測試連線是否正常運作。
-
-
-1. 從 [記錄搜尋] 中，搜尋必要的資料、選取詳細資料，然後按一下 [建立工作項目]。
-
-    [建立 ITSM 工作項目] 視窗隨即出現：
-
-    ![Log Analytics 畫面](media/log-analytics-itsmc/itsmc-work-items-from-azure-logs.png)
-
-2.   新增下列詳細資料︰
-
-  - **工作項目標題**︰工作項目的標題。
-  - **工作項目描述**︰新工作項目的描述。
-  - **受影響電腦**︰找到此記錄資料的電腦之名稱。
-  - **選取連線**：您要在其中建立此工作項目的 ITSM 連線。
-  - **工作項目**︰工作項目的類型。
-
-3. 若要使用事件的現有工作項目範本，在 [依據範本產生工作項目] 選項下按一下 [是]，然後按一下 [建立]。
-
-    或者，
-
-    如果您想要提供自訂的值，請按一下 [否]。
-
-4. 在 [連絡人類型]、[影響]、[急迫性]、[類別] 和 [子類別] 文字方塊中提供適當的值，然後按一下 [建立]。
 
 
 ## <a name="visualize-and-analyze-the-incident-and-change-request-data"></a>將事件和變更要求資料視覺化並加以分析
@@ -223,7 +173,7 @@ ITSMC 支援與下列 ITSM 工具連線：
 
 > 根據匯入 Log Analytics 的工作項目類型，**ServiceDesk_CL** 會包含下列欄位︰
 
-**工作項目︰****事件**  
+**工作項目︰** **事件**  
 ServiceDeskWorkItemType_s="Incident"
 
 **欄位**
@@ -250,7 +200,7 @@ ServiceDeskWorkItemType_s="Incident"
 - 電腦
 
 
-**工作項目︰****變更要求**
+**工作項目︰** **變更要求**
 
 ServiceDeskWorkItemType_s="ChangeRequest"
 
@@ -333,11 +283,11 @@ ServiceDeskWorkItemType_s="ChangeRequest"
 
 ## <a name="troubleshoot-itsm-connections"></a>針對 ITSM 連線進行疑難排解
 1.  如果從已連線的來源 UI 連線失敗，並顯示 [儲存連線時發生錯誤] 訊息，請執行下列步驟：
-- 對於 ServiceNow、 Cherwell 和 Provance 連線，  
-           - 請確定您已正確輸入每個連線的使用者名稱、密碼、用戶端識別碼及用戶端密碼。  
-           - 檢查您在對應的 ITSM 產品中是否擁有足夠權限來進行連線。  
-- 對於服務管理連線，  
-           - 請確定已成功部署 Web 應用程式，且已建立混合式連線。 若要確認是否已成功與內部部署 Service Manager 機器建立連線，請瀏覽 Web 應用程式 URL，如文件中針對建立[混合式連線](log-analytics-itsmc-connections.md#configure-the-hybrid-connection)所述。  
+ - 對於 ServiceNow、 Cherwell 和 Provance 連線，  
+    - 請確定您已正確輸入每個連線的使用者名稱、密碼、用戶端識別碼及用戶端密碼。  
+    - 請檢查您在對應的 ITSM 產品中是否擁有足夠權限來進行連線。  
+ - 對於服務管理連線，  
+    - 請確定已成功部署 Web 應用程式，且已建立混合式連線。 若要確認是否已成功與內部部署 Service Manager 機器建立連線，請瀏覽 Web 應用程式 URL，如文件中針對建立[混合式連線](log-analytics-itsmc-connections.md#configure-the-hybrid-connection)所述。  
 
 2.  如果 ServiceNow 的資料未同步處理至 Log Analytics，請確定 ServiceNow 執行個體並非處在睡眠中。 ServiceNow 開發人員執行個體閒置很長的時間時，有時會進入睡眠狀態。 否則，請回報問題。
 3.  如果引發 OMS 警示，但未在 ITSM 產品中建立工作項目，或未將設定項目建立為/連結至工作項目，或需任何其他一般資訊，請查看下列位置：

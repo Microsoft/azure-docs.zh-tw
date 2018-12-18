@@ -1,9 +1,9 @@
 ---
-title: Azure CLI 2.0 範例 | Microsoft Docs
-description: Azure CLI 2.0 範例
+title: Azure CLI 範例 | Microsoft Docs
+description: Azure CLI 範例
 services: virtual-machine-scale-sets
 documentationcenter: ''
-author: iainfoulds
+author: cynthn
 manager: jeconnoc
 editor: ''
 tags: azure-resource-manager
@@ -14,17 +14,18 @@ ms.topic: sample
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/27/2018
-ms.author: iainfou
+ms.author: cynthn
 ms.custom: mvc
-ms.openlocfilehash: 69fc81d4d0569ee7a66fbda5ab500ef2ee15c694
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: d563afc6545cd84654ef1bfa0fac3931e2b80152
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46970357"
 ---
-# <a name="azure-cli-20-samples-for-virtual-machine-scale-sets"></a>虛擬機器擴展集的 Azure CLI 2.0 範例
+# <a name="azure-cli-samples-for-virtual-machine-scale-sets"></a>虛擬機器擴展集的 Azure CLI 範例
 
-下表包含使用 Azure CLI 2.0 所建置之 Bash 指令碼的連結。
+下表包含使用 Azure CLI 所建置之 Bash 指令碼的連結。
 
 | | |
 |---|---|

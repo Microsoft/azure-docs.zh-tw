@@ -1,24 +1,25 @@
 ---
-title: "將 Azure Active Directory Identity Protection 連線至 Azure 資訊安全中心 | Microsoft Docs"
-description: "了解 Azure 資訊安全中心如何整合 Azure Active Directory Identity Protection。"
+title: 將 Azure Active Directory Identity Protection 連線至 Azure 資訊安全中心 | Microsoft Docs
+description: 了解 Azure 資訊安全中心如何整合 Azure Active Directory Identity Protection。
 services: security-center
 documentationcenter: na
-author: YuriDio
+author: terrylan
 manager: MBaldwin
-editor: 
+editor: ''
 ms.assetid: 0d4b77c2-dba4-4e46-8f55-ab04ddd92496
 ms.service: security-center
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 10/13/2017
 ms.author: yurid
-ms.openlocfilehash: 7562dd5e1c303a6cb97d25bda5aa080bb5643583
-ms.sourcegitcommit: ccb84f6b1d445d88b9870041c84cebd64fbdbc72
+ms.openlocfilehash: 6ab3611d47b32eddd41736df69a3e7382c2b220d
+ms.sourcegitcommit: f3bd5c17a3a189f144008faf1acb9fabc5bc9ab7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/14/2017
+ms.lasthandoff: 09/10/2018
+ms.locfileid: "44298756"
 ---
 # <a name="connecting-azure-active-directory-identity-protection-to-azure-security-center"></a>將 Azure Active Directory Identity Protection 連線至 Azure 資訊安全中心
 本文件可協助您設定 Azure Active Directory (AD) Identity Protection 與 Azure 資訊安全中心之間的整合。

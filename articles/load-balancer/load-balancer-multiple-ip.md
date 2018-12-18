@@ -14,11 +14,12 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 09/25/2017
 ms.author: kumud
-ms.openlocfilehash: fcd9ff8b726b5dc3e0d447bc384dbcc7cc1a4e88
-ms.sourcegitcommit: c3d53d8901622f93efcd13a31863161019325216
+ms.openlocfilehash: 3b7971fec0aa0c354476073b01699f516f9439cc
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/29/2018
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34637373"
 ---
 # <a name="load-balancing-on-multiple-ip-configurations-by-using-the-azure-portal"></a>使用 Azure 入口網站在多個 IP 組態上進行負載平衡
 
@@ -62,7 +63,7 @@ ms.lasthandoff: 03/29/2018
 
 為虛擬網路中的每部 VM，新增次要 NIC 的 IP 組態︰  
 
-1. 瀏覽至 Azure 入口網站：http://portal.azure.com。使用您的 Azure 帳戶進行登入。
+1. 瀏覽至 Azure 入口網站：http://portal.azure.com。 使用您的 Azure 帳戶進行登入。
 
 2. 選取畫面左上方的 [資源群組] 圖示。 然後選取 VM 所在的資源群組 (例如，**contosofabrikam**)。 [資源群組] 窗格會顯示 VM 的所有資源和 NIC。
 
@@ -86,7 +87,7 @@ ms.lasthandoff: 03/29/2018
 
 建立組態的負載平衡器：
 
-1. 瀏覽至 Azure 入口網站：http://portal.azure.com。使用您的 Azure 帳戶進行登入。
+1. 瀏覽至 Azure 入口網站：http://portal.azure.com。 使用您的 Azure 帳戶進行登入。
 
 2. 在畫面的左上方，選取 [建立資源] > [網路] > [負載平衡器]。 接下來，選取 [建立]。
 
@@ -120,7 +121,7 @@ ms.lasthandoff: 03/29/2018
 
 4. 選取要新增前端 IP 集區的負載平衡器 (**mylb**)。
 
-5. 在 [設定] 底下選取 [前端集區]。 在下一個窗格中，選取頂端附近的 [新增]。
+5. 在 [設定] 底下選取 [前端 IP 組態]。 在下一個窗格中，選取頂端附近的 [新增]。
 
 6. 輸入前端 IP 位址的名稱 (例如 **contosofe** 或 **fabrikamfe**)。
 
@@ -128,7 +129,7 @@ ms.lasthandoff: 03/29/2018
 
 8. 重複本節中的<a href="#step3-3">步驟 3</a> 到<a href="#step3-7">步驟 7</a>，以建立第二個前端 IP 位址。
 
-設定前端集區之後，IP 位址會顯示在負載平衡器的 [前端 IP 集區] 設定之下。 
+設定前端集區之後，IP 位址會顯示在負載平衡器的 [前端 IP 組態] 設定之下。 
     
 ### <a name="step-4-configure-the-back-end-pool"></a>步驟 4：設定後端集區
 
@@ -172,7 +173,7 @@ ms.lasthandoff: 03/29/2018
 
 針對每個網站 (contoso.com 和 fabrikam.com)，設定負載平衡規則：
     
-1. <a name="step6-1"></a>在 [設定] 之下，選取 [健康狀態探查]。 在下一個窗格中，選取頂端附近的 [新增]。 
+1. <a name="step6-1"></a>在 [設定] 下，選取 [負載平衡規則]。 在下一個窗格中，選取頂端附近的 [新增]。 
 
 2. 在 [名稱] 中，輸入負載平衡規則的名稱 (例如，對 contoso.com 輸入 **HTTPc**，或對 fabrikam.com 輸入 **HTTPf**)。
 

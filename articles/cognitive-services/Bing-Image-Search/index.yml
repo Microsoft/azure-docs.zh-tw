@@ -1,0 +1,109 @@
+### YamlMime:YamlDocument
+ms.openlocfilehash: 6c4e265d5ecc1ba099b5cf43ed27b1e512f63412
+ms.sourcegitcommit: 668b486f3d07562b614de91451e50296be3c2e1f
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/19/2018
+ms.locfileid: "49456861"
+documentType: LandingData
+title: Bing 圖片搜尋 API 文件
+metadata:
+  document_id: ce69fd12-adf8-11e7-abc4-cec278b6b50a
+  title: Bing 圖片搜尋 API 文件 - 教學課程、快速入門、API 參考 | Microsoft Docs
+  description: 了解如何使用 Bing 影像搜尋 API 取得與使用者查詢相關的 Web 影像。 教學課程會示範如何建置使用此服務的應用程式。
+  services: cognitive-services
+  author: nitinme
+  manager: cgronlun
+  ms.service: cognitive-services
+  ms.component: bing-image-search
+  ms.tgt_pltfrm: na
+  ms.devlang: na
+  ms.topic: landing-page
+  ms.date: 9/24/2018
+  ms.author: nitinme
+abstract:
+  description: Bing 影像搜尋 API 提供的體驗與 Bing.com/images 類似，都會傳回 Bing 判斷與使用者查詢相關的影像。
+sections:
+- items:
+  - type: list
+    style: cards
+    className: cardsM
+    columns: 3
+    items:
+    - href: /azure/cognitive-services/bing-image-search/overview
+      html: <p>了解 Bing 圖片搜尋 API</p>
+      image:
+        src: ../media/index/i_overview.svg
+      title: 什麼是 Bing 影像搜尋？
+    - href: /azure/cognitive-services/bing-image-search/concepts/bing-image-search-sending-queries
+      html: <p>了解如何傳送圖片搜尋查詢到 Bing</p>
+      image:
+        src: ../media/index/i_guidelines.svg
+      title: 圖片搜尋查詢
+    - href: /azure/cognitive-services/bing-image-search/concepts/bing-image-search-get-images
+      html: <p>了解圖片搜尋回應</p>
+      image:
+        src: ../media/index/i_guidelines.svg
+      title: 圖片搜尋回應
+- title: 5 分鐘快速入門
+  items:
+  - type: paragraph
+    text: 透過進行查詢並檢視 JSON 回應，開始使用 Bing 影像搜尋 API：
+  - type: list
+    style: icon48
+    items:
+    - image:
+        src: media/index/logo_csharp.svg
+      href: quickstarts/csharp
+      text: C&#35;
+    - image:
+        src: media/index/logo_java.svg
+      href: quickstarts/java
+      text: Java
+    - image:
+        src: media/index/logo_nodejs.svg
+      href: quickstarts/nodejs
+      text: Node.js
+    - image:
+        src: media/index/logo_php.svg
+      href: quickstarts/php
+      text: PHP
+    - image:
+        src: media/index/logo_python.svg
+      href: quickstarts/python
+      text: Python
+    - image:
+        src: media/index/logo_ruby.svg
+      href: quickstarts/ruby
+      text: Ruby
+- title: 逐步教學課程
+  items:
+  - type: paragraph
+    text: 了解如何使用 Bing 影像搜尋 API 開發應用程式：
+  - type: list
+    style: unordered
+    items:
+    - html: <a href="tutorial-bing-image-search-single-page-app">單頁 Web 應用程式</a>
+    - html: <a href="tutorial-image-post">Bing 圖片上傳見解</a>
+- title: 範例
+  items:
+  - type: paragraph
+    text: 尋找 Bing 圖片搜尋 API 範例：
+  - type: list
+    style: unordered
+    items:
+    - html: <a href="https://azure.microsoft.com/resources/samples/?sort=0&service=cognitive-services&term=Bing+Image+Search">程式碼範例</a>
+- title: 參考
+  items:
+  - type: list
+    style: cards
+    className: cardsD
+    items:
+    - title: REST
+      html: <p><a href="https://docs.microsoft.com/rest/api/cognitiveservices/bing-images-api-v7-reference">Bing 影像搜尋 API v7</a></p><p><a href="https://docs.microsoft.com/rest/api/cognitiveservices/bing-images-api-v5-reference/">Bing 影像搜尋 API v5</p>
+    - title: SDK
+      html: <p><a href="sdk.md">Bing 搜尋 SDK</a></p>
+    - title: PowerShell
+      html: <p><a href="https://docs.microsoft.com/powershell/module/azurerm.cognitiveservices/?view=azurermps-4.4.1#cognitive_services">Azure PowerShell</a></p>
+    - title: CLI
+      html: <p><a href="https://docs.microsoft.com/cli/azure/cognitiveservices?view=azure-cli-latest#az_cognitiveservices_list">Azure CLI</a></p>

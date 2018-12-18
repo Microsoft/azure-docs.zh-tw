@@ -1,24 +1,25 @@
 ---
-title: "如何搭配 Java 使用 Azure 服務匯流排主題 | Microsoft Docs"
-description: "使用 Azure 中的服務匯流排主題和訂用帳戶。"
+title: 如何搭配 Java 使用 Azure 服務匯流排主題 | Microsoft Docs
+description: 使用 Azure 中的服務匯流排主題和訂用帳戶。
 services: service-bus-messaging
 documentationcenter: java
-author: sethmanheim
+author: spelluru
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 63d6c8bd-8a22-4292-befc-545ffb52e8eb
 ms.service: service-bus-messaging
 ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: Java
 ms.topic: article
-ms.date: 10/17/2017
-ms.author: sethm
-ms.openlocfilehash: 632af7294a7e6766d791d1d9ab08f98308fb2c02
-ms.sourcegitcommit: bd0d3ae20773fc87b19dd7f9542f3960211495f9
+ms.date: 09/17/2018
+ms.author: spelluru
+ms.openlocfilehash: 0be5f9842cd3aa90d82f3efe44451e624ed5d371
+ms.sourcegitcommit: d1aef670b97061507dc1343450211a2042b01641
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/18/2017
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47395673"
 ---
 # <a name="how-to-use-service-bus-topics-and-subscriptions-with-java"></a>如何透過 Java 使用服務匯流排主題和訂用帳戶
 
@@ -31,9 +32,9 @@ ms.lasthandoff: 10/18/2017
 
 ![主題概念](./media/service-bus-java-how-to-use-topics-subscriptions/sb-topics-01.png)
 
-有別於服務匯流排佇列，服務匯流排佇列中的每個訊息只會由單一取用者處理，主題和訂用帳戶採用發佈/訂用帳戶模式，提供一對多的通訊形式。 一個主題可以登錄多個訂用帳戶。 當訊息傳送至主題時，每個訂用帳戶都可取得訊息來個別處理。
+有別於服務匯流排佇列，服務匯流排佇列中的每個訊息只會由單一取用者處理，主題和訂用帳戶採用發佈/訂閱模式，提供一對多的通訊形式。 一個主題可以登錄多個訂用帳戶。 當訊息傳送至主題時，每個訂用帳戶都可取得訊息來個別處理。
 
-主題的訂用帳戶類似於虛擬佇列，同樣可接收已傳送到主題的訊息複本。 您可以選擇為個別訂用帳戶來登錄主題的篩選規則，以篩選/限制主題的哪些訊息由哪些主題訂用帳戶接收。
+主題的訂用帳戶類似於虛擬佇列，同樣可接收已傳送到主題的訊息複本。 您可以選擇為個別訂用帳戶登錄主題的篩選規則，以篩選或限制主題的哪些訊息由哪些主題訂用帳戶接收。
 
 服務匯流排主題和訂用帳戶可讓您擴大處理非常多使用者和應用程式上大量的訊息。
 
@@ -61,7 +62,7 @@ import javax.xml.datatype.*;
 將 Azure Libraries for Java 新增至您的建置路徑，並將其納入專案部署組件中。
 
 ## <a name="create-a-topic"></a>建立主題
-服務匯流排主題的管理作業可透過 **ServiceBusContract** 類別來執行。 **ServiceBusContract** 物件是利用使用權限來封裝 SAS 權杖以加以管理的適當組態所建構，而 **ServiceBusContract** 類別是唯一可與 Azure 通訊的點。
+服務匯流排主題的管理作業可透過 **ServiceBusContract** 類別來執行。 **ServiceBusContract** 物件是利用使用權限來封裝 SAS 權杖以進行管理的適當組態所建構，而 **ServiceBusContract** 類別是唯一可與 Azure 通訊的點。
 
 **ServiceBusService** 類別會提供建立、列舉及刪除主題的方法。 下列範例顯示如何使用 **ServiceBusService** 物件來建立名為 `TestTopic` 且命名空間為 `HowToSample` 的主題：
 
@@ -102,7 +103,7 @@ CreateTopicResult result = service.createTopic(topicInfo);
 **ServiceBusService** 類別也能用來建立主題的訂用帳戶。 為訂閱命名，且能包含選擇性篩選器，以用來限制傳遞至訂閱的虛擬佇列的訊息集合。
 
 ### <a name="create-a-subscription-with-the-default-matchall-filter"></a>使用預設 (MatchAll) 篩選器建立訂用帳戶
-如果在建立新的訂用帳戶時未指定篩選器，**MatchAll** 篩選器就會是預設使用的篩選器。 使用 **MatchAll** 篩選器時，所有發佈至主題的訊息都會被置於訂用帳戶的虛擬佇列中。 下列範例將建立名為 "AllMessages" 的訂用帳戶，並使用預設的 **MatchAll** 篩選器。
+如果在建立新的訂用帳戶時未指定篩選器，**MatchAll** 篩選器就會是預設使用的篩選器。 使用 **MatchAll** 篩選器時，所有發佈至主題的訊息都會被置於訂用帳戶的虛擬佇列中。 下列範例將建立名為 `AllMessages` 的訂用帳戶，並使用預設的 `MatchAll` 篩選器。
 
 ```java
 SubscriptionInfo subInfo = new SubscriptionInfo("AllMessages");
@@ -154,7 +155,7 @@ service.sendTopicMessage("TestTopic", message);
 傳送至服務匯流排主題的訊息是 [BrokeredMessage][BrokeredMessage] 類別的執行個體。 [BrokeredMessage][BrokeredMessage]* 物件具有一組標準方法 (例如 **setLabel** 和 **TimeToLive**)、一個用來保存自訂應用程式特定屬性的字典，以及一個任意應用程式資料的主體。 應用程式可設定訊息內文，方法是將任何可序列化的物件傳遞到 [BrokeredMessage][BrokeredMessage] 的建構函式，接著系統會使用適當的 **DataContractSerializer** 來將物件序列化。 或者，也可以提供 **java.io.InputStream**。
 
 下列範例示範如何將五個測試訊息傳送至上述程式碼片段中所取得的 `TestTopic` **MessageSender**。
-請注意，迴圈反覆運算上每個訊息的 **MessageNumber** 屬性值會產生何種變化 (此值可判斷哪些訂用帳戶會接收訊息)：
+請注意，迴圈反覆運算上每個訊息的 **MessageNumber** 屬性值會產生哪種變化 (此值可判斷哪些訂用帳戶會接收訊息)：
 
 ```java
 for (int i=0; i<5; i++)  {
@@ -232,11 +233,11 @@ catch (Exception e) {
 ```
 
 ## <a name="how-to-handle-application-crashes-and-unreadable-messages"></a>如何處理應用程式當機與無法讀取的訊息
-服務匯流排提供一種功能，可協助您從應用程式的錯誤或處理訊息的問題中順利復原。 如果接收者應用程式因為某些原因無法處理訊息，它可以在已接收的訊息上呼叫 **unlockMessage** 方法 (而不是 **deleteMessage** 方法)。 這會導致服務匯流排將主題中的訊息解除鎖定，讓此訊息可由相同的取用應用程式或其他取用應用程式重新接收。
+服務匯流排提供一種功能，可協助您從應用程式的錯誤或處理訊息的問題中順利復原。 如果接收者應用程式因為某些原因無法處理訊息，它可以在已接收的訊息上呼叫 **unlockMessage** 方法 (而不是 **deleteMessage** 方法)。 此方法呼叫會導致服務匯流排將主題中的訊息解除鎖定，讓此訊息可由相同的取用應用程式或其他取用應用程式重新接收。
 
 與主題內鎖定之訊息相關的還有逾時，如果應用程式無法在鎖定逾時到期之前處理訊息 (例如，若應用程式當機)，則服務匯流排會自動解除鎖定訊息，並讓訊息可以被重新接收。
 
-在處理訊息之後和發出 **deleteMessage** 要求之前，如果應用程式當機，則會在應用程式重新啟動時，將訊息重新傳遞給該應用程式。 此程序通常稱為 **至少處理一次**，也就是說，每個訊息至少會被處理一次，但在特定狀況下，可能會重新傳遞相同訊息。 如果案例無法容許重複處理，則應用程式開發人員應在其應用程式中加入其他邏輯，以處理重複的訊息傳遞。 通常您可使用訊息的 **getMessageId** 方法來達到此目的，該方法將在各個傳遞嘗試中保持不變。
+在處理訊息之後和發出 **deleteMessage** 要求之前，如果應用程式當機，則會在應用程式重新啟動時，將訊息重新傳遞給該應用程式。 此程序通常稱為**至少處理一次**，也就是說，每個訊息至少會被處理一次，但在特定狀況下，可能會重新傳遞相同訊息。 如果案例無法容許重複處理，則應用程式開發人員應在其應用程式中加入其他邏輯，以處理重複的訊息傳遞。 您可以使用訊息的 **getMessageId** 方法來達到此目的，該方法將在各個傳遞嘗試中保持不變。
 
 ## <a name="delete-topics-and-subscriptions"></a>刪除主題和訂用帳戶
 刪除主題和訂用帳戶的主要方式，是使用 **ServiceBusContract** 物件。 刪除主題也將會刪除對主題註冊的任何訂用帳戶。 您也可以個別刪除訂用帳戶。
@@ -252,13 +253,13 @@ service.deleteTopic("TestTopic");
 ```
 
 ## <a name="next-steps"></a>後續步驟
-現在您已了解服務匯流排佇列的基本概念，請參閱[服務匯流排佇列、主題和訂用帳戶][Service Bus queues, topics, and subscriptions]，以取得詳細資訊。
+如需詳細資訊，請參閱[服務匯流排佇列、主題和訂用帳戶][Service Bus queues, topics, and subscriptions]。
 
 [Azure SDK for Java]: http://azure.microsoft.com/develop/java/
 [Azure Toolkit for Eclipse]: ../azure-toolkit-for-eclipse.md
 [Service Bus queues, topics, and subscriptions]: service-bus-queues-topics-subscriptions.md
-[SqlFilter]: /dotnet/api/microsoft.azure.servicebus.filters.sqlfilter
-[SqlFilter.SqlExpression]: /dotnet/api/microsoft.azure.servicebus.filters.sqlfilter.sqlexpression
+[SqlFilter]: /dotnet/api/microsoft.azure.servicebus.sqlfilter
+[SqlFilter.SqlExpression]: /dotnet/api/microsoft.azure.servicebus.sqlfilter.sqlexpression
 [BrokeredMessage]: /dotnet/api/microsoft.servicebus.messaging.brokeredmessage
 
 [0]: ./media/service-bus-java-how-to-use-topics-subscriptions/sb-queues-13.png

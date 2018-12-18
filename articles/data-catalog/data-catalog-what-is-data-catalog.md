@@ -1,25 +1,19 @@
 ---
-title: "Azure 資料目錄簡介 | Microsoft Docs"
-description: "本文提供 Microsoft Azure 資料目錄的概觀，包括其具備的功能以及所解決的問題。 資料目錄可讓任何使用者註冊、探索、了解及取用資料來源。"
+title: Azure 資料目錄簡介
+description: 本文提供 Microsoft Azure 資料目錄的概觀，包括其具備的功能以及所解決的問題。 資料目錄可讓任何使用者註冊、探索、了解及取用資料來源。
 services: data-catalog
-documentationcenter: 
-author: steelanddata
-manager: NA
-editor: 
-tags: 
+author: markingmyname
+ms.author: maghan
 ms.assetid: cc733907-17ec-4153-9f0c-5b3754b2db19
 ms.service: data-catalog
-ms.devlang: NA
-ms.topic: get-started-article
-ms.tgt_pltfrm: NA
-ms.workload: data-catalog
+ms.topic: conceptual
 ms.date: 01/18/2018
-ms.author: maroche
-ms.openlocfilehash: edf6e1d8b86d9773b54353bb70f000bcdf40e5ec
-ms.sourcegitcommit: be9a42d7b321304d9a33786ed8e2b9b972a5977e
+ms.openlocfilehash: 3da12ae290730869026de24761b28f332927f01e
+ms.sourcegitcommit: b7e5bbbabc21df9fe93b4c18cc825920a0ab6fab
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/19/2018
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47408448"
 ---
 # <a name="what-is-azure-data-catalog"></a>什麼是 Azure 資料目錄？
 Azure 資料目錄是完全受控的雲端服務，能讓其使用者探索它們需要的資料來源，並了解他們所尋找的資料來源。 同時，資料目錄可協助組織從現有的投資中獲得更多價值。 

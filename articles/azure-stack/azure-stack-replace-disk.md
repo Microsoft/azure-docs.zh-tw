@@ -1,24 +1,25 @@
 ---
-title: "更換 Azure Stack 中的實體磁碟 | Microsoft Docs"
-description: "概述如何更換 Azure Stack 中實體磁碟的程序。"
+title: 更換 Azure Stack 中的實體磁碟 | Microsoft Docs
+description: 概述如何更換 Azure Stack 中實體磁碟的程序。
 services: azure-stack
-documentationcenter: 
+documentationcenter: ''
 author: mattbriggs
 manager: femila
-editor: 
+editor: ''
 ms.assetid: 449ae53e-b951-401a-b2c9-17fee2f491f1
 ms.service: azure-stack
 ms.workload: na
 pms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/25/2017
+ms.date: 03/30/2018
 ms.author: mabrigg
-ms.openlocfilehash: a95617a8dd2a8f296164c672e2b4b2628574ce5a
-ms.sourcegitcommit: a5f16c1e2e0573204581c072cf7d237745ff98dc
+ms.openlocfilehash: f168c005c729ae75a5369b80b3dc5eab03ee0243
+ms.sourcegitcommit: 20d103fb8658b29b48115782fe01f76239b240aa
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/11/2017
+ms.lasthandoff: 04/03/2018
+ms.locfileid: "30311316"
 ---
 # <a name="replace-a-physical-disk-in-azure-stack"></a>更換 Azure Stack 中的實體磁碟
 
@@ -40,6 +41,9 @@ ms.lasthandoff: 12/11/2017
  ## <a name="replace-the-disk"></a>更換磁碟
 
 請依照您 OEM 硬體廠商的 FRU 指示來實際更換磁碟。
+
+> [!note]
+> 請一次只更換一個縮放單位節點的磁碟。 等候虛擬磁碟修復作業完成之後，再移至下一個縮放單位節點
 
 為了避免在整合系統中使用不支援的磁碟，系統會封鎖您廠商不支援的磁碟。 如果您嘗試使用不支援的磁碟，將會有新警示通知您因為不支援該磁碟的型號或韌體，所以已將該磁碟隔離。
 

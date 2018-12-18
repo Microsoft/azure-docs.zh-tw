@@ -1,8 +1,8 @@
 ---
-title: "如何在 App Service 環境中調整應用程式"
-description: "在 App Service 環境中調整應用程式"
+title: 如何在 App Service 環境中調整應用程式
+description: 在 App Service 環境中調整應用程式
 services: app-service
-documentationcenter: 
+documentationcenter: ''
 author: ccompy
 manager: stefsch
 editor: jimbe
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "22986313"
 ---
 # <a name="scaling-apps-in-an-app-service-environment"></a>在 App Service 環境中調整應用程式
 在 Azure App Service 中，您通常有三件事可以調整：

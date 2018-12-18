@@ -1,12 +1,12 @@
 ---
-title: "StorSimple 技術規格 | Microsoft Docs"
-description: "說明適用於 StorSimple 硬體元件的技術規格與法規標準符合性資訊。"
+title: StorSimple 技術規格 | Microsoft Docs
+description: 說明適用於 StorSimple 硬體元件的技術規格與法規標準符合性資訊。
 services: storsimple
 documentationcenter: NA
 author: alkohli
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: NA
 ms.topic: article
@@ -14,11 +14,12 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 06/02/2017
 ms.author: alkohli
-ms.openlocfilehash: 95dbd80e740210c3800a0af10071875a6d6f0939
-ms.sourcegitcommit: 48fce90a4ec357d2fb89183141610789003993d2
+ms.openlocfilehash: 855ea6c34082b859bb5b5b6e69b3e3f2fa54eb4a
+ms.sourcegitcommit: 7208bfe8878f83d5ec92e54e2f1222ffd41bf931
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/12/2018
+ms.lasthandoff: 07/14/2018
+ms.locfileid: "39056458"
 ---
 # <a name="technical-specifications-and-compliance-for-the-storsimple-device"></a>適用於 StorSimple 裝置的技術規格和相容性
 
@@ -40,9 +41,9 @@ EBOD 機箱使用 580 W PCM，而主要機箱會使用 764 W PCM。 下表列出
 | 最大瞬間電流 |20 A |20 A |
 | 功率因素校正 |> 95% 額定輸入電壓 |> 95% 額定輸入電壓 |
 | 諧波 |符合 EN61000-3-2 |符合 EN61000-3-2 |
-| 輸出 |5V 待機電壓 @ 2.0 A |5V 待機電壓 @ 2.7 A |
-| +5V @ 42 A |+5V @ 40 A | |
-| +12V @ 38 A |+12V @ 38 A | |
+| 輸出 |5V 待機電壓 \@ 2.0 A |5V 待機電壓 \@ 2.7 A |
+| +5V \@ 42 A |+5V \@ 40 A | |
+| +12V \@ 38 A |+12V \@ 38 A | |
 | 隨插即用 |是 |是 |
 | 開關和 LED |AC ON/OFF 開關和四個狀態指示器 LED |AC ON/OFF 開關和六個狀態指示器 LED |
 | 機箱冷卻 |具有變動風扇速度控制的軸流散熱風扇 |具有變動風扇速度控制的軸流散熱風扇 |

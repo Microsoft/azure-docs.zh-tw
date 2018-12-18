@@ -1,24 +1,19 @@
 ---
-title: "決定何時使用 Azure Blob、Azure 檔案服務或 Azure 磁碟"
-description: "深入了解在 Azure 中儲存和存取資料的不同方法，協助您決定使用哪種技術。"
+title: 決定何時使用 Azure Blob、Azure 檔案服務或 Azure 磁碟
+description: 深入了解在 Azure 中儲存和存取資料的不同方法，協助您決定使用哪種技術。
 services: storage
-documentationcenter: 
 author: tamram
-manager: timlt
-editor: tysonn
-ms.assetid: 
 ms.service: storage
-ms.workload: storage
-ms.tgt_pltfrm: na
-ms.devlang: na
 ms.topic: article
-ms.date: 06/13/2017
+ms.date: 03/28/2018
 ms.author: tamram
-ms.openlocfilehash: b9c7913d1e95693a5ec72b24cf020928d67f0133
-ms.sourcegitcommit: 28178ca0364e498318e2630f51ba6158e4a09a89
+ms.component: common
+ms.openlocfilehash: 3f2609ea57ea5a5a0cce2544a1031c55199d137b
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/24/2018
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39529105"
 ---
 # <a name="deciding-when-to-use-azure-blobs-azure-files-or-azure-disks"></a>決定何時使用 Azure Blob、Azure 檔案服務或 Azure 磁碟
 
@@ -47,9 +42,9 @@ Microsoft Azure 在 Azure 儲存體中提供數種功能，用以在雲端儲存
 |端點|`http://myaccount.blob.core.windows.net/mycontainer/myblob`|`\\myaccount.file.core.windows.net\myshare\myfile.txt`<br /><br /> `http://myaccount.file.core.windows.net/myshare/myfile.txt`|  
 |目錄|一般命名空間|真實目錄物件|  
 |名稱區分大小寫|區分大小寫|不區分大小寫，但保留大小寫|  
-|Capacity|最大 500 TB 的容器|5 TB 檔案共用|  
-|Throughput|每個區塊 Blob 最大每秒 60 MB|每個共用最大每秒 60 MB|  
-|物件大小|最大 200 GB/區塊 Blob|最大 1TB/檔案|  
+|Capacity|最高可達 500 TiB 的容器|5 TiB 的檔案共用|  
+|Throughput|每個區塊 Blob 最高可達每秒 60 MiB|每個共用最高可達每秒 60 MiB|  
+|物件大小|每個區塊 Blob 最高約可達 4.75 TiB|每個檔案最高可達 1 TiB|  
 |計費的容量|根據寫入的位元組|根據檔案大小|  
 |用戶端程式庫|多種語言|多種語言|  
   
@@ -62,15 +57,15 @@ Azure 檔案服務可補強 Azure 磁碟。 磁碟一次只能連結到一部 Az
 ||||  
 |-|-|-|  
 |**屬性**|**Azure 磁碟**|**Azure 檔案**|  
-|Scope|單一虛擬機器專用|跨多部虛擬機器的共用存取|  
-|快照與複製|yes|否|  
+|影響範圍|單一虛擬機器專用|跨多部虛擬機器的共用存取|  
+|快照與複製|是|是|  
 |組態|在啟動虛擬機器時連線|在虛擬機器啟動之後連線|  
 |驗證|內建|使用 net use 設定|  
 |清除|自動|手動|  
 |使用 REST 存取|無法存取 VHD 內的檔案|可以存取儲存在共用中的檔案|  
-|大小上限|4 TB 磁碟|5 TB 檔案共用和 1 TB 共用內的檔案|  
+|大小上限|4 TiB 的磁碟|5 TiB 的檔案共用和 1 TiB 的共用內檔案|  
 |最大 8KB IOps|500 IOps|1000 IOps|  
-|Throughput|每個磁碟最大每秒 60 MB|每個檔案共用最大每秒 60 MB|  
+|Throughput|每個磁碟最高可達每秒 60 MiB|每個檔案共用最高可達每秒 60 MiB|  
 
 ## <a name="next-steps"></a>後續步驟
 

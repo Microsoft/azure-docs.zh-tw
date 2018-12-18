@@ -1,24 +1,19 @@
 ---
-title: "從 Azure 中的雲端儲存體來回移動大量資料 | Microsoft Docs"
-description: "從 Azure 儲存體來回移動資料之不同方法的概觀。"
+title: 從 Azure 中的雲端儲存體來回移動大量資料 | Microsoft Docs
+description: 從 Azure 儲存體來回移動資料之不同方法的概觀。
 services: storage
-documentationcenter: 
-author: JarrettRenshaw
-manager: msmets
-editor: tysonn
-ms.assetid: 5e3947a9-d99b-4108-9d57-3eb67c03e7ba
+author: tamram
 ms.service: storage
-ms.workload: storage
-ms.tgt_pltfrm: na
-ms.devlang: na
 ms.topic: article
-ms.date: 01/30/2017
-ms.author: jarrettr
-ms.openlocfilehash: 980e4675c2d2e88716a3133abb027988aecd538f
-ms.sourcegitcommit: eeb5daebf10564ec110a4e83874db0fb9f9f8061
+ms.date: 08/26/2018
+ms.author: tamram
+ms.component: common
+ms.openlocfilehash: 1df237a65a8b5312b20de19a99399b3a3dd075ff
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/03/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43049605"
 ---
 # <a name="moving-data-to-and-from-azure-storage"></a>從 Azure 儲存體來回移動資料
 如果您想要將內部部署資料移至 Azure 儲存體 (或相反)，有各種不同的方法可以辦到。 最適合的方法將取決於您的案例。 本文將提供不同案例的快速概觀和每個案例的適當供應項目。
@@ -26,7 +21,7 @@ ms.lasthandoff: 02/03/2018
 ## <a name="building-applications"></a>建置應用程式
 如果您要建置應用程式，針對 REST API 或許多用戶端程式庫進行開發是從 Azure 儲存體來回移動資料的好方法。
 
-Azure 儲存體提供 .NET、iOS、Java、Android、通用 Windows 平台 (UWP)、Xamarin、c++、Node.JS、PHP、Ruby 和 Python 等豐富的用戶端程式庫。 這些用戶端程式庫提供多種進階功能，例如大重試邏輯、記錄與並行上傳等等。 您也可以直接透過 REST API 開發，它可以透過提出 HTTP/HTTPS 要求的任何語言進行呼叫。
+Azure 儲存體為許多熱門語言提供豐富的用戶端程式庫，這些語言包含 .NET、Java、Android、Go、Xamarin、C++、Node.JS、PHP、Ruby、Python 和 iOS。 這些用戶端程式庫提供多種進階功能，例如大重試邏輯、記錄與並行上傳等等。 您也可以直接透過 REST API 開發，它可以透過提出 HTTP/HTTPS 要求的任何語言進行呼叫。
 
 若要深入了解，請參閱 [開始使用 Azure Blob 儲存體](../blobs/storage-dotnet-how-to-use-blobs.md) 。
 

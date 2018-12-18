@@ -6,14 +6,15 @@ author: ajlam
 ms.author: andrela
 manager: kfile
 editor: jasonwhowell
-ms.service: mysql-database
+ms.service: mysql
 ms.topic: article
-ms.date: 03/20/2018
-ms.openlocfilehash: ef35ee881923c69d41b79fd6cb8464c695c614f9
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.date: 06/02/2018
+ms.openlocfilehash: c801426ad354a165ac749333ddd4671c13536edb
+ms.sourcegitcommit: 1b8665f1fff36a13af0cbc4c399c16f62e9884f3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35265838"
 ---
 # <a name="migrate-your-mysql-database-to-azure-database-for-mysql-using-dump-and-restore"></a>使用傾印和還原來將 MySQL 資料庫移轉至適用於 MySQL 的 Azure 資料庫
 本文將說明兩個常見方法，讓您可在適用於 MySQL 的 Azure 資料庫中用來備份和還原資料庫
@@ -44,13 +45,14 @@ ms.lasthandoff: 03/23/2018
 ## <a name="performance-considerations"></a>效能考量
 若要最佳化效能，請在傾印大型資料庫時注意這些考量：
 -   傾印資料庫時在 mysqldump 中使用 `exclude-triggers` 選項。 從傾印檔案排除觸發程序以避免在資料還原期間引發觸發程序命令。 
--   使用 `single-transaction` 選項將交易隔離模式設為 REPEATABLE READ，然後在傾印資料之前，將 START TRANSACTION 的 SQL 陳述式傳送到伺服器。 在單一交易中傾印許多資料表會導致在還原期間耗用某些額外的儲存體。 `single-transaction` 選項和 `lock-tables` 選項是互斥的，因為 LOCK TABLES 會導致隱含認可任何暫止交易。若要傾印大型資料表，請結合 `single-transaction` 選項與 `quick` 選項。 
+-   使用 `single-transaction` 選項將交易隔離模式設為 REPEATABLE READ，然後在傾印資料之前，將 START TRANSACTION 的 SQL 陳述式傳送到伺服器。 在單一交易中傾印許多資料表會導致在還原期間耗用某些額外的儲存體。 `single-transaction` 選項和 `lock-tables` 選項是互斥的，因為 LOCK TABLES 會導致隱含認可任何暫止交易。 若要傾印大型資料表，請結合 `single-transaction` 選項與 `quick` 選項。 
 -   使用包含數個 VALUE 清單的 `extended-insert` 多個資料列語法。 這會產生較小的傾印檔案，並在重新載入檔案時加速插入。
 -  傾印資料庫時在 mysqldump 中使用 `order-by-primary` 選項，以便將資料以主索引鍵的順序編寫指令碼。
 -   傾印資料時在 mysqldump 中使用 `disable-keys` 選項，以在載入之前停用外部索引鍵限制式。 停用外部索引鍵檢查會提供效能提升。 啟用限制式並且確認載入之後的資料，以確保參考完整性。
 -   適當時使用資料分割資料表。
 -   平行載入資料。 避免會導致您達到資源限制的太多平行處理原則，以及使用 Azure 入口網站中可用的計量監視資源。 
 -   傾印資料庫時在 mysqlpump 中使用 `defer-table-indexes` 選項，以便在載入資料表資料之後建立索引。
+-   請將備份檔案複製到 Azure blob/存放區，並從該處執行還原，這樣應該會比在網際網路上執行還原更快。
 
 ## <a name="create-a-backup-file-from-the-command-line-using-mysqldump"></a>使用 mysqldump 從命令列建立備份檔案
 若要在本機內部部署伺服器或虛擬機器中備份現有的 MySQL 資料庫，請執行下列命令： 
@@ -74,7 +76,6 @@ $ mysqldump -u root -p testdb > testdb_backup.sql
 ```bash
 $ mysqldump -u root -p testdb table1 table2 > testdb_tables_backup.sql
 ```
-
 若要一次備份多個資料庫，請使用 --database 參數，並列出以空格分隔的資料庫名稱。 
 ```bash
 $ mysqldump -u root -p --databases testdb1 testdb3 testdb5 > testdb135_backup.sql 
@@ -108,21 +109,22 @@ $ mysql -h mydemoserver.mysql.database.azure.com -u myadmin@mydemoserver -p test
 
 ## <a name="export-using-phpmyadmin"></a>使用 PHPMyAdmin 匯出
 若要匯出，您可以使用一般工具 phpMyAdmin，而您可能已在環境中本機安裝此工具。 使用 PHPMyAdmin 匯出 MySQL 資料庫：
-- 開啟 phpMyAdmin。
-- 選取您的資料庫。 按一下左邊清單中的資料庫名稱。 
-- 按一下 [匯出] 連結。 新的分頁隨即出現，以供檢視資料庫的傾印。
-- 在 [匯出] 區域中，按一下 [全選] 連結來選擇資料庫中的資料表。 
-- 在 [SQL 選項] 區域中，按一下適當的選項。 
-- 依序按一下 [另存新檔] 和對應的壓縮選項，然後按一下 [執行] 按鈕。 接著應該會出現一個對話方塊，提示您在本機儲存檔案。
+1. 開啟 phpMyAdmin。
+2. 選取您的資料庫。 按一下左邊清單中的資料庫名稱。 
+3. 按一下 [匯出] 連結。 新的分頁隨即出現，以供檢視資料庫的傾印。
+4. 在 [匯出] 區域中，按一下 [全選] 連結來選擇資料庫中的資料表。 
+5. 在 [SQL 選項] 區域中，按一下適當的選項。 
+6. 依序按一下 [另存新檔] 和對應的壓縮選項，然後按一下 [執行] 按鈕。 接著應該會出現一個對話方塊，提示您在本機儲存檔案。
 
 ## <a name="import-using-phpmyadmin"></a>使用 PHPMyAdmin 匯入
 匯入資料庫的程序與匯出類似。 請執行下列動作：
-- 開啟 phpMyAdmin。 
-- 在 [phpMyAdmin 安裝] 分頁中，按一下 [新增] 以新增適用於 MySQL 伺服器的 Azure 資料庫。 提供連線詳細資料和登入資訊。
-- 建立已適當命名的資料庫，然後在畫面左邊選取它。 若要重寫現有的資料庫，按一下資料庫名稱、選取資料表名稱旁的所有核取方塊，然後選取 [捨棄] 以刪除現有的資料表。 
-- 按一下 **SQL** 連結，以顯示您可以在其中輸入 SQL 命令或上傳 SQL 檔案的分頁。 
-- 您可以使用**瀏覽**按鈕來尋找資料庫檔案。 
-- 按一下 [執行] 按鈕以匯出備份、執行 SQL 命令，並重新建立您的資料庫。
+1. 開啟 phpMyAdmin。 
+2. 在 [phpMyAdmin 安裝] 分頁中，按一下 [新增] 以新增適用於 MySQL 伺服器的 Azure 資料庫。 提供連線詳細資料和登入資訊。
+3. 建立已適當命名的資料庫，然後在畫面左邊選取它。 若要重寫現有的資料庫，按一下資料庫名稱、選取資料表名稱旁的所有核取方塊，然後選取 [捨棄] 以刪除現有的資料表。 
+4. 按一下 **SQL** 連結，以顯示您可以在其中輸入 SQL 命令或上傳 SQL 檔案的分頁。 
+5. 您可以使用**瀏覽**按鈕來尋找資料庫檔案。 
+6. 按一下 [執行] 按鈕以匯出備份、執行 SQL 命令，並重新建立您的資料庫。
 
 ## <a name="next-steps"></a>後續步驟
-[將應用程式連線至適用於 MySQL 的 Azure 資料庫](./howto-connection-string.md)
+- [將應用程式連線至適用於 MySQL 的 Azure 資料庫](./howto-connection-string.md)。
+- 若要深入了解如何將資料庫移轉至適用於 MySQL 的 Azure 資料庫，請參閱[資料庫移轉指南](http://aka.ms/datamigration)。

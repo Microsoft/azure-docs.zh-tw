@@ -3,8 +3,8 @@ title: 建立 Azure Marketplace 的內部部署虛擬機器映像 | Microsoft Do
 description: 了解及執行建立內部部署的 VM 映像，並且部署至 Azure Marketplace 以供他人購買的步驟。
 services: marketplace-publishing
 documentationcenter: ''
-author: msmbaldwin
-manager: mbaldwin
+author: HannibalSII
+manager: hascipio
 editor: ''
 ms.assetid: 26dfbd5a-8685-4b19-987e-c20ca60540ec
 ms.service: marketplace
@@ -13,12 +13,13 @@ ms.topic: article
 ms.tgt_pltfrm: Azure
 ms.workload: na
 ms.date: 04/29/2016
-ms.author: mbaldwin
-ms.openlocfilehash: 6b927ce6032092ce258eeebca49da0571439dbfb
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.author: hascipio; v-divte
+ms.openlocfilehash: f68dadab96e27cc7b90f44681d87ffa7cce8126b
+ms.sourcegitcommit: f20e43e436bfeafd333da75754cd32d405903b07
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49390052"
 ---
 # <a name="develop-an-on-premises-virtual-machine-image-for-the-azure-marketplace"></a>開發 Azure Marketplace 的內部部署虛擬機器映像
 強烈建議您使用遠端桌面通訊協定，在雲端中直接開發您的 Azure 虛擬硬碟 (VHD)。 不過如果需要，可以使用內部部署基礎結構來下載 VHD 並進行開發。  
@@ -112,11 +113,11 @@ ms.lasthandoff: 03/16/2018
   ![繪圖](media/marketplace-publishing-vm-image-creation-on-premise/img10.png)
 
 ### <a name="create-a-storage-account-by-using-powershell"></a>使用 PowerShell 建立儲存體帳戶
-使用 PowerShell，執行 [New-AzureStorageAccount](http://msdn.microsoft.com/library/dn495115.aspx) Cmdlet 建立儲存體帳戶。
+使用 PowerShell，執行 [New-AzureStorageAccount](https://docs.microsoft.com/powershell/module/servicemanagement/azure/new-azurestorageaccount) Cmdlet 建立儲存體帳戶。
 
         New-AzureStorageAccount -StorageAccountName “mystorageaccount” -Location “West US”
 
-然後可以使用 [NewAzureStorageContainer](http://msdn.microsoft.com/library/dn495291.aspx) Cmdlet，在該儲存體帳戶內建立容器。
+然後可以使用 [New-AzureStorageContainer](https://docs.microsoft.com/powershell/module/azure.storage/new-azurestoragecontainer) Cmdlet，在該儲存體帳戶內建立容器。
 
         New-AzureStorageContainer -Name “containername” -Permission “Off”
 

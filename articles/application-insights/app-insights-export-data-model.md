@@ -1,8 +1,8 @@
 ---
-title: "Azure Application Insights 資料模型 | Microsoft Docs"
-description: "描述從 JSON 中的連續匯出匯出的屬性，並做為篩選器。"
+title: Azure Application Insights 資料模型 | Microsoft Docs
+description: 描述從 JSON 中的連續匯出匯出的屬性，並做為篩選器。
 services: application-insights
-documentationcenter: 
+documentationcenter: ''
 author: mrbullwinkle
 manager: carmonm
 ms.assetid: cabad41c-0518-4669-887f-3087aef865ea
@@ -10,14 +10,15 @@ ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 03/21/2016
 ms.author: mbullwin
-ms.openlocfilehash: 86aef6ba93224bbbb41bc7e651aaeec394fd8718
-ms.sourcegitcommit: e462e5cca2424ce36423f9eff3a0cf250ac146ad
+ms.openlocfilehash: ee6597b78ac8de8fc3a7f3796010f22919243b23
+ms.sourcegitcommit: 6f6d073930203ec977f5c283358a19a2f39872af
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/01/2017
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35294889"
 ---
 # <a name="application-insights-export-data-model"></a>Application Insights 匯出資料模型
 此表列出從 [Application Insights](app-insights-overview.md) SDK 傳送至入口網站的遙測屬性。
@@ -151,7 +152,7 @@ ms.lasthandoff: 11/01/2017
 | context.user.authAcquisitionDate |字串 |[已驗證的使用者](app-insights-api-custom-events-metrics.md#authenticated-users) |
 | context.user.isAuthenticated |布林值 | |
 | internal.data.documentVersion |字串 | |
-| internal.data.id |字串 | |
+| internal.data.id |字串 | 項目內嵌至 Application Insights 時所指派的的唯一識別碼 |
 
 ## <a name="events"></a>活動
 [TrackEvent()](app-insights-api-custom-events-metrics.md#trackevent)產生的自訂事件。
@@ -272,7 +273,7 @@ ms.lasthandoff: 11/01/2017
 | 檢視 [0] urlData.hashTag |字串 | |
 | 檢視 [0] urlData.host |字串 | |
 
-## <a name="availability"></a>Availability
+## <a name="availability"></a>可用性
 回報 [可用性 Web 測試](app-insights-monitor-web-app-availability.md)。
 
 | Path | 類型 | 注意 |

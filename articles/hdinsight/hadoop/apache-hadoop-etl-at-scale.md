@@ -1,26 +1,20 @@
 ---
-title: "大規模擷取、轉換和載入 (ETL) - Azure HDInsight | Microsoft Docs"
-description: "了解如何在 HDInsight 中搭配 Hadoop 使用 ETL。"
+title: 大規模擷取、轉換和載入 (ETL) - Azure HDInsight
+description: 了解如何在 HDInsight 中搭配 Hadoop 使用 ETL。
 services: hdinsight
-documentationcenter: 
 author: ashishthaps
-manager: jhubbard
-editor: cgronlun
-tags: azure-portal
-ms.assetid: 
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
+ms.topic: conceptual
 ms.date: 11/14/2017
 ms.author: ashishth
-ms.openlocfilehash: 8b55bafee83dd43d535f9ebb0488134b5c7b3446
-ms.sourcegitcommit: e19742f674fcce0fd1b732e70679e444c7dfa729
+ms.openlocfilehash: 6af55bf8311efc14687ee16c3226988fd730081d
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43048997"
 ---
 # <a name="extract-transform-and-load-etl-at-scale"></a>大規模擷取、轉換和載入 (ETL)
 
@@ -82,11 +76,11 @@ ADLS 還針對使用「Azure 事件中樞」或 Apache Storm 來執行的事件�
 
 #### <a name="considerations-for-both-storage-options"></a>兩種儲存體選項的考量
 
-如果上傳的資料集達到幾 TB，網路延遲可能會是主要問題，尤其是當資料來自內部部署位置時。  在這類情況下，您可以使用下列選項：
+如果上傳的資料集達到數 TB，網路延遲可能會是主要問題，尤其是當資料來自內部部署位置時。  在這類情況下，您可以使用下列選項：
 
 * Azure ExpressRoute：Azure ExpressRoute 可讓您在 Azure 資料中心與內部部署的基礎結構之間建立私人連線。 這些連線為傳輸大量資料提供一個可靠的選項。 如需詳細資訊，請參閱 [Azure ExpressRoute 文件](../../expressroute/expressroute-introduction.md)。
 
-* 「離線」上傳資料。 您可以使用 [Azure 匯入/匯出服務](../../storage/common/storage-import-export-service.md)，將含有您資料的硬碟送到 Azure 資料中心。 您的資料會先上傳到 Azure 儲存體 Blob。 接下來，您可以使用 [Azure Data Factory](../../data-factory/v1/data-factory-azure-datalake-connector.md) 或 [AdlCopy](../../data-lake-store/data-lake-store-copy-data-azure-storage-blob.md) 工具，將資料從 Azure 儲存體 Blob 複製到 Data Lake Store。
+* 「離線」上傳資料。 您可以使用 [Azure 匯入/匯出服務](../../storage/common/storage-import-export-service.md)，將含有您資料的硬碟送到 Azure 資料中心。 您的資料會先上傳到 Azure 儲存體 Blob。 接下來，您可以使用 [Azure Data Factory](../../data-factory/connector-azure-data-lake-store.md) 或 [AdlCopy](../../data-lake-store/data-lake-store-copy-data-azure-storage-blob.md) 工具，將資料從 Azure 儲存體 Blob 複製到 Data Lake Store。
 
 ### <a name="azure-sql-data-warehouse"></a>Azure SQL 資料倉儲
 
@@ -134,7 +128,7 @@ Sqoop 使用 MapReduce 來匯入和匯出資料，可提供平行作業和容錯
 
 Apache Flume 是一個分散式、可靠且可用的服務，可有效率地收集、彙總及移動大量的記錄資料。 Flume 具有以串流資料流程為基礎的簡單彈性架構。 Flume 提供可微調的可靠性機制及許多容錯移轉與復原機制，既健全又能容錯。 Flume 使用已將線上分析應用程式納入考量的簡單可延伸資料模型。
 
-Apache Flume 無法與 Azure HDInsight 搭配使用。  內部部署 Hadoop 安裝可以使用 Flume 將資料傳送至 Azure 儲存體 Blob 或 Azure Data Lake Store。  如需詳細資訊，請參閱[搭配 HDInsight 使用 Apache Flume](https://blogs.msdn.microsoft.com/bigdatasupport/2014/03/18/using-apache-flume-with-hdinsight/) \(英文\)。
+Apache Flume 無法與 Azure HDInsight 搭配使用。  內部部署 Hadoop 安裝可以使用 Flume，將資料傳送至 Azure 儲存體 Blob 或 Azure Data Lake Store。  如需詳細資訊，請參閱[搭配 HDInsight 使用 Apache Flume](https://blogs.msdn.microsoft.com/bigdatasupport/2014/03/18/using-apache-flume-with-hdinsight/) \(英文\)。
 
 ## <a name="transform"></a>轉換
 

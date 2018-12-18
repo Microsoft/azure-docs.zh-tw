@@ -1,47 +1,46 @@
 ---
-title: "設定 Azure App Service 的 PremiumV2 層 | Microsoft Docs"
-description: "了解如何藉由調整為新的 PremiumV2 定價層，讓 Azure App Service 中的 Web 應用程式、行動應用程式和 API 應用程式獲得更好的效能。"
-keywords: "App Service, Azure App Service, 級別, 可調整, App Service方案, App Service 成本"
+title: 設定 Azure App Service 的 PremiumV2 層 | Microsoft Docs
+description: 了解如何藉由調整為新的 PremiumV2 定價層，讓 Azure App Service 中的 Web 應用程式、行動應用程式和 API 應用程式獲得更好的效能。
+keywords: App Service, Azure App Service, 級別, 可調整, App Service方案, App Service 成本
 services: app-service
-documentationcenter: 
+documentationcenter: ''
 author: cephalin
 manager: cfowler
-editor: 
+editor: ''
 ms.assetid: ff00902b-9858-4bee-ab95-d3406018c688
 ms.service: app-service
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/19/2017
+ms.date: 07/25/2018
 ms.author: cephalin
-ms.openlocfilehash: 76897173d9fdfffe7139e7c5648ad0efb1c05b97
-ms.sourcegitcommit: 95500c068100d9c9415e8368bdffb1f1fd53714e
+ms.openlocfilehash: 59e5825554843ef7265cbccdd9a63db0426891fa
+ms.sourcegitcommit: ad08b2db50d63c8f550575d2e7bb9a0852efb12f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 09/26/2018
+ms.locfileid: "47226304"
 ---
 # <a name="configure-premiumv2-tier-for-azure-app-service"></a>設定 Azure App Service 的 PremiumV2 層
 
 新 **PremiumV2** 定價層提供更快速的處理器、SSD 儲存體，而且記憶體與核心的比例是現有定價層的兩倍。 有此效能優勢，您可在較少的執行個體上執行應用程式來節省成本。 在本文中，您將了解如何在 **PremiumV2** 層建立應用程式，或將應用程式相應增加為 **PremiumV2** 層。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
-若要將 Web 應用程式相應增加為 **PremiumV2**，您在 Azure App Service 中所擁有的 Web 應用程式必須是在低於 **PremiumV2** 的定價層中執行。
+若要將 Web 應用程式相應增加為 **PremiumV2**，您必須讓 Azure App Service 中的 Web 應用程式在低於 **PremiumV2** 的定價層中執行，而且 Web 應用程式必須在支援 PremiumV2 的 App Service 部署中執行。
 
 <a name="availability"></a>
 
 ## <a name="premiumv2-availability"></a>PremiumV2 可用性
 
-PremiumV2 層目前僅提供給 Windows 上的 App Service 使用。 尚不支援 Linux 容器。
+**PremiumV2** 層可提供給 _Windows_ 和 _Linux_ 上的 App Service 使用。
 
-PremiumV2 目前已在大部分 Azure 區域中推出，且適用範圍仍在擴大。 若要查看您的區域是否可以使用，請在 [Azure Cloud Shell](../cloud-shell/overview.md) 中執行下列 Azure CLI 命令：
+在大部分 Azure 區域中都可使用 **PremiumV2**。 若要查看您的區域是否可以使用，請在 [Azure Cloud Shell](../cloud-shell/overview.md) 中執行下列 Azure CLI 命令：
 
 ```azurecli-interactive
 az appservice list-locations --sku P1V2
 ```
-
-如果您在建立應用程式或 App Service 方案時收到錯誤，很可能表示您所選擇的區域無法使用 **PremiumV2**。
 
 <a name="create"></a>
 
@@ -51,16 +50,16 @@ App Service 應用程式的定價層會定義在其執行所在的 [App Service 
 
 在 <a href="https://portal.azure.com" target="_blank">Azure 入口網站</a>中設定 App Service 方案時，請選取 [定價層]。 
 
-選擇其中一個 **PremiumV2** 選項，然後按一下 [選取]。
+選取 [生產]，然後選取 [P1V2]、[P2V2] 或 [P3V2]，然後按一下 [套用]。
 
-![](media/app-service-configure-premium-tier/pick-premium-tier.png)
+![](media/app-service-configure-premium-tier/scale-up-tier-select.png)
 
 > [!IMPORTANT] 
-> 如果您沒有看到 **P1V2**、**P2V2** 和 **P3V2** 選項，原因可能是您所選擇的區域不提供 **PremiumV2**，也可能是您所設定的是 Linux 的 App Service 方案，因此不支援 **PremiumV2**。
+> 如果您沒有看到 **P1V2**、**P2V2** 和 **P3V2** 選項，或是選項呈現灰色，則 **PremiumV2** 可能無法在包含 App Service 方案的基礎 App Service 部署中使用。 如需詳細資訊，請參閱[從不支援的資源群組與區域組合中相應增加](#unsupported)。
 
 ## <a name="scale-up-an-existing-app-to-premiumv2-tier"></a>將現有應用程式相應增加為 PremiumV2 層
 
-在將現有應用程式相應增加為 **PremiumV2** 層之前，請確定您的區域有提供 **PremiumV2**。 如需資訊，請參閱 [PremiumV2 可用性](#availability)。 如果您的區域未提供，請參閱[從不受支援的區域相應增加](#unsupported)。
+在將現有應用程式相應增加為 **PremiumV2** 層之前，請確定 **PremiumV2** 可供使用。 如需資訊，請參閱 [PremiumV2 可用性](#availability)。 如果無法使用，請參閱[從不支援的資源群組與區域組合中相應增加](#unsupported)。
 
 視裝載環境而定，相應增加可能需要執行額外的步驟。 
 
@@ -70,7 +69,7 @@ App Service 應用程式的定價層會定義在其執行所在的 [App Service 
 
 ![](media/app-service-configure-premium-tier/scale-up-tier-portal.png)
 
-選取其中一個 **PremiumV2** 大小，然後按一下 [選取]。
+選取 [生產]，然後選取 [P1V2]、[P2V2] 或 [P3V2]，然後按一下 [套用]。
 
 ![](media/app-service-configure-premium-tier/scale-up-tier-select.png)
 
@@ -80,32 +79,20 @@ App Service 應用程式的定價層會定義在其執行所在的 [App Service 
 
 ### <a name="if-you-get-an-error"></a>如果您收到錯誤
 
-某些 App Service 方案無法相應增加為 PremiumV2 層。 如果相應增加作業對您發送錯誤訊息，就表示您的應用程式需要新的 App Service 方案。
-
-在與現有 App Service 應用程式相同的區域和資源群組中，建立 Windows App Service 方案。 遵循[在 PremiumV2 層中建立應用程式](#create)中的步驟，將它設定為 **PremiumV2** 層。 如果您想要的話，可以使用與現有 App Service 方案相同的相應放大組態 (執行個體數目、自動調整等等)。
-
-再次開啟 App Service 應用程式頁面。 在 App Service 的左側導覽中，選取 [變更 App Service 方案]。
-
-![](media/app-service-configure-premium-tier/change-plan.png)
-
-選取您建立的 App Service 方案。
-
-![](media/app-service-configure-premium-tier/select-plan.png)
-
-變更作業完成後，應用程式就會在 **PremiumV2** 層執行。
+如果基礎 App Service 部署不支援 PremiumV2，則某些 App Service 方案會無法相應增加為 PremiumV2 層。  如需詳細資訊，請參閱[從不支援的資源群組與區域組合中相應增加](#unsupported)。
 
 <a name="unsupported"></a>
 
-## <a name="scale-up-from-an-unsupported-region"></a>從不受支援的區域相應增加
+## <a name="scale-up-from-an-unsupported-resource-group-and-region-combination"></a>從不支援的資源群組與區域組合中相應增加
 
-如果應用程式是在尚未提供 **PremiumV2** 的區域內執行，您可以將應用程式移到不同區域以利用 **PremiumV2**。 您有兩個選擇：
+如果您的應用程式在無法使用 **PremiumV2** 的 App Service 部署中執行；或是，如果您的應用程式在目前不支援 **PremiumV2** 的區 域中執行，則您必須重新部署應用程式，才能利用 **PremiumV2** 的優勢。  您有兩個選擇：
 
-- 在新的 **PremiumV2** 方案中建立應用程式，然後重新部署應用程式程式碼。 遵循[在 PremiumV2 層中建立應用程式](#create)中的步驟，將它設定為 **PremiumV2** 層。 如有需要，請使用與現有 App Service 方案相同的相應放大組態 (執行個體數目、自動調整等等)。
-- 如果應用程式已在現有的**進階**層執行，則可以複製應用程式與所有應用程式設定、連接字串和部署組態。
+- 建立**新的**資源群組，然後在**新的**資源群組中建立**新的** Web 應用程式和 App Service 方案，並且在建立程序期間選擇需要的 Azure 區域。  您**必須**在建立新的 App Service 方案時選取 **PremiumV2** 方案。  這可確保資源群組、App Service 方案及 Azure 區域組合產生的 App Service 方案會建立在支援 **PremiumV2** 的 App Service 部署中。  然後將應用程式的程式碼部署到新建立的應用程式和 App Service 方案中。 如有需要，您之後可以從 **PremiumV2** 相應縮小 App Service 方案來節省成本，而未來仍可再使用 **PremiumV2** 成功地進行相應增加。
+- 如果應用程式已在現有的**進階**層執行，則可以將應用程式與所有應用程式設定、連接字串和部署組態複製到使用 **PremiumV2** 的新 App Service 方案中。
 
     ![](media/app-service-configure-premium-tier/clone-app.png)
 
-    在 [複製應用程式] 頁面上，您可以在您想要的區域建立 App Service 方案，並指定您要複製的設定。
+    在 [複製應用程式] 頁面上，您可以使用 **PremiumV2** 在您想要的區域中建立 App Service 方案，並指定您要複製的應用程式設定和組態。
 
 ## <a name="automate-with-scripts"></a>使用指令碼進行自動化
 

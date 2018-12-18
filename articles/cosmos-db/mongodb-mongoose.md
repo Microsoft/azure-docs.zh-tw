@@ -1,24 +1,21 @@
 ---
-title: "使用 Mongoose 架構搭配 Azure Cosmos DB | Microsoft Docs"
-description: "了解如何將 Node.js Mongoose 應用程式連線至 Azure Cosmos DB"
+title: 使用 Mongoose 架構搭配 Azure Cosmos DB | Microsoft Docs
+description: 了解如何將 Node.js Mongoose 應用程式連線至 Azure Cosmos DB
 services: cosmos-db
-documentationcenter: 
-author: romitgirdhar
-manager: jhubbard
-editor: 
-ms.assetid: de5eea58-ee7c-4609-b1c9-4af3e61a5883
+author: slyons
+manager: kfile
 ms.service: cosmos-db
-ms.workload: 
-ms.tgt_pltfrm: na
+ms.component: cosmosdb-mongo
 ms.devlang: nodejs
-ms.topic: tutorial
+ms.topic: conceptual
 ms.date: 01/08/2018
-ms.author: rogirdh
-ms.openlocfilehash: fb6db6555171b65767a715c6b4c8ff37f42c94ef
-ms.sourcegitcommit: e19742f674fcce0fd1b732e70679e444c7dfa729
+ms.author: sclyon
+ms.openlocfilehash: aa178a24f0c36a1c5fb56b342141b066c150c7c3
+ms.sourcegitcommit: 387d7edd387a478db181ca639db8a8e43d0d75f7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 08/10/2018
+ms.locfileid: "40037974"
 ---
 # <a name="azure-cosmos-db-using-the-mongoose-framework-with-azure-cosmos-db"></a>Azure Cosmos DB：使用 Mongoose 架構搭配 Azure Cosmos DB
 
@@ -26,7 +23,7 @@ ms.lasthandoff: 02/01/2018
 
 Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您可以快速建立及查詢文件、索引鍵/值及圖形資料庫，所有這些都受惠於位於 Azure Cosmos DB 核心的全域散發和水平調整功能。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 

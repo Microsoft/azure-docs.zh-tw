@@ -1,59 +1,131 @@
 ---
-title: "Azure 服務匯流排傳訊概觀 | Microsoft Docs"
-description: "描述服務匯流排傳訊與 Azure 轉送"
+title: Azure 服務匯流排傳訊概觀 | Microsoft Docs
+description: 描述服務匯流排傳訊
 services: service-bus-messaging
-documentationcenter: .net
-author: sethmanheim
+documentationcenter: ''
+author: spelluru
 manager: timlt
-editor: 
-ms.assetid: f99766cb-8f4b-4baf-b061-4b1e2ae570e4
+editor: ''
 ms.service: service-bus-messaging
-ms.workload: na
-ms.tgt_pltfrm: na
-ms.devlang: multiple
-ms.topic: get-started-article
-ms.date: 12/21/2017
-ms.author: sethm
-ms.openlocfilehash: e299ccfe587d37757cd67cb4367f019b21a09b4a
-ms.sourcegitcommit: 6f33adc568931edf91bfa96abbccf3719aa32041
+ms.topic: overview
+ms.date: 09/22/2018
+ms.custom: mvc
+ms.author: spelluru
+ms.openlocfilehash: 870cfcf8712cc5bee2674b82d5292e4241433386
+ms.sourcegitcommit: 1aacea6bf8e31128c6d489fa6e614856cf89af19
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/22/2017
+ms.lasthandoff: 10/16/2018
+ms.locfileid: "49342202"
 ---
-# <a name="service-bus-messaging-flexible-data-delivery-in-the-cloud"></a>服務匯流排傳訊：雲端彈性資料傳遞
+# <a name="what-is-azure-service-bus"></a>什麼是 Azure 服務匯流排？
 
-Microsoft Azure 服務匯流排是一項可靠的資訊傳遞服務。 此服務的目的是簡化通訊。 若有兩個以上的對象想要交換資訊，他們就需要一個通訊協調者。 服務匯流排是一項代理通訊機制或第三方通訊機制。 這類似於實體世界的郵遞服務。 郵遞服務讓您能夠很容易地將不同種類的信件與包裹寄送至世界上的任何地方，且提供各種不同的傳遞保證。
+Microsoft Azure 服務匯流排是完全受控的企業整合訊息代理程式。 服務匯流排最常用來讓應用程式和服務彼此分離，對於非同步的資料和狀態傳輸來說，是可靠且安全的平台。 資料會使用「訊息」在不同的應用程式和服務之間傳輸。 訊息使用的是二進位格式，可包含 JSON、XML 或純文字。 
 
-服務匯流排類似於郵遞服務，可在傳送者與接收者之間靈活地傳遞資訊。 即使雙方從未同時上線，或從未在同一時間有空，此傳訊服務也能傳遞資訊。 在這種方式下，訊息類似於寄送信件，而非代理式通訊則類似於撥打電話 (在有通話插播與來電顯示功能之前的舊式撥打電話方式則比較類似於代理式訊息)。
+一些常見的傳訊案例如下：
 
-訊息傳送者也可能需要各種傳遞特性，包括交易、重複資料檢測、以時間為基礎的到期，以及批次處理特性。 這些模式也具備類似郵遞服務的特性：重複傳遞、需要簽名、地址變更或回收。
+* 傳訊：傳輸業務資料，例如銷售額、採購訂單、日誌或庫存進出狀況。
+* 將應用程式分離：提升應用程式和服務的可靠性與延展性 (用戶端和服務不需要同時在線上)。
+* 主題和訂用帳戶：讓「發行者」和「訂閱者」之間有 1:n 關聯性。
+* 訊息工作階段：實作需要訊息排序或訊息延遲的工作流程。
 
-服務匯流排支援兩種不同的傳訊模式：「Azure 轉送」和「服務匯流排傳訊」。
+## <a name="namespaces"></a>命名空間
 
-## <a name="azure-relay"></a>Azure 轉送
+命名空間是所有傳訊元件的範圍容器。 多個佇列和主題可以位於單一命名空間，而且命名空間通常會做為應用程式容器。
 
-Azure 轉送的 [WCF 轉送](../service-bus-relay/relay-what-is-it.md)元件是集中式 (但高度負載平衡) 服務，可支援各種不同的傳輸通訊協定及 Web 服務標準。 這包括 SOAP、WS- * ，甚至是 REST。 [轉送](../service-bus-relay/service-bus-dotnet-how-to-use-relay.md)服務提供各種不同的轉送連接選項，會在可行的狀況下，協助交涉直接的對等連接。 服務匯流排已針對使用 Windows Communication Foundation (WCF) 的 .NET 開發人員最佳化，包括效能和可用性兩方面，並且可讓您透過 SOAP 和 REST 介面完整存取其轉送服務。 這可讓所有的 SOAP 或 REST 程式設計環境與服務匯流排整合。
+## <a name="queues"></a>佇列
 
-轉送服務支援傳統的單向訊息、要求/回應訊息，以及對等式訊息。 它也支援網際網路範圍內的事件散發，以啟用發佈/訂閱案例和雙向通訊端通訊來提高點對點效率。 在轉送傳訊模式中，內部部署服務會透過輸出連接埠連接到轉送服務，並且針對繫結至特定聚合位址的通訊建立雙向通訊端。 用戶端接著可將訊息傳送至以會合位址為目標的轉送服務，藉此與內部部署服務通訊。 轉送服務接著會透過已就緒的雙向通訊端，將訊息「轉送」至內部部署服務。 用戶端無須直接連接到內部部署服務，也無須知道服務的所在位置，而且內部部署服務也不需要在防火牆上開啟任何連入連接埠。
+「佇列」會收發訊息。 在接收端應用程式有空接收並處理訊息之前，佇列可讓您先儲存訊息。
 
-您在內部部署服務與使用一組 WCF「轉送」繫結的轉送服務之間起始連線。 實際上轉送繫結會對應到傳輸繫結項目，這些項目的設計用途在建立與雲端中之服務匯流排整合的 WCF 通道元件。
+![佇列](./media/service-bus-messaging-overview/about-service-bus-queue.png)
 
-WCF 轉送提供許多優點，但需要伺服器和用戶端同時在線上，以便傳送和接收訊息。 這對於 HTTP 通訊並非最好的方式，因為其中的要求可能無法一直留存，對於偶爾才連線的用戶端 (例如瀏覽器、行動應用程式等等) 也是。 代理傳訊支援解耦合通訊，而且有其優勢。用戶端和伺服器可以在需要時連線，並且以非同步方式執行其作業。
+佇列中的訊息會進行排序並加上抵達時間戳記。 訊息一經接受就會安全地保存在備援儲存體中。 訊息會採用「提取」模式來傳遞，此模式會在收到要求時傳遞訊息。
 
-## <a name="brokered-messaging"></a>代理傳訊
+## <a name="topics"></a>主題
 
-與轉送配置相反，您可以將具有[佇列、主題和訂用帳戶](service-bus-queues-topics-subscriptions.md)的服務匯流排傳訊視為非同步或「暫時性解耦」。 產生者 (傳送者) 和消費者 (接收者) 不需要同時在線上。 其傳訊基礎結構可確實將訊息儲存在「代理者」(例如佇列) 當中，直到取用方準備接收這些訊息為止。 如此一來，分散式應用程式的元件即使主動中斷連線 (例如基於維護理由) 或由於元件損毀而意外中斷，也不會影響整體系統。 此外，接收應用程式可能只需要在當日的某個時段上線即可，就好比庫存管理系統只需要在營業日結束時執行一樣。
+您也可以使用「主題」來收送訊息。 佇列通常用於點對點通訊，主題則適用於發佈/訂閱案例。
 
-服務匯流排傳訊基礎結構的核心元件，就是佇列、主題和訂用帳戶。 主要差異在於主題支援發佈/訂閱功能，可用於複雜並以內容為基礎的路由和傳遞邏輯，包括傳送給多個接收者。 這些元件能夠執行新的非同步傳訊案例，例如暫時解耦合、發佈/訂閱，以及負載平衡。 如需這些傳訊實體的詳細資訊，請參閱[服務匯流排佇列、主題及訂閱](service-bus-queues-topics-subscriptions.md)。
+![話題](./media/service-bus-messaging-overview/about-service-bus-topic.png)
 
-如同 WCF 轉送基礎結構一樣，也提供 WCF 和 .NET Framework 程式設計人員代理傳訊的功能，而且也可以透過 REST 進行。
+主題可以有多個獨立的訂用帳戶。 主題的訂閱者會收到該主題所接收每則訊息的複本。 訂用帳戶是具名實體，會以永久存在的方式建立，但您可以選擇讓其過期或自動刪除。
 
+在某些案例中，您或許不會想要讓個別訂用帳戶接收某個主題所收到的所有訊息。 如果是這樣，您可以使用[規則和篩選](topic-filters.md)來定義各種條件，以觸發選擇性[動作](topic-filters.md#actions)、篩選指定訊息，以及設定或修改訊息屬性。
+
+## <a name="advanced-features"></a>進階功能
+
+服務匯流排也有進階功能可讓您解決更複雜的傳訊問題。 下列幾節會說明這些重要功能：
+
+### <a name="message-sessions"></a>訊息工作階段
+
+若要在服務匯流排中實現先進先出 (FIFO) 保證，請使用工作階段。 [訊息工作階段](message-sessions.md)能夠聯合和依序處理未繫結的相關訊息序列。 
+
+### <a name="auto-forwarding"></a>自動轉寄
+
+[自動轉寄](service-bus-auto-forwarding.md)功能可讓您將佇列或訂用帳戶鏈結至另一個屬於相同命名空間的佇列或主題。 啟用自動轉寄後，服務匯流排會自動移除放在第一個佇列或訂用帳戶 (來源) 中的訊息，然後將它們放入第二個佇列或主題 (目的地) 中。
+
+### <a name="dead-lettering"></a>無效信件處理
+
+服務匯流排支援[無效信件佇列](service-bus-dead-letter-queues.md) (DLQ)，以便保留無法傳遞至任何收件者的訊息，或是無法加以處理的訊息。 您隨後可以從 DLQ 移除訊息並加以檢查。
+
+### <a name="scheduled-delivery"></a>排程傳遞
+
+您可以將訊息提交到佇列或主題，以利[延遲處理](message-sequencing.md#scheduled-messages)。例如，排定作業讓系統在某個時間處理。
+
+### <a name="message-deferral"></a>訊息延遲
+
+當佇列或訂用帳戶用戶端接收到其願意處理的訊息，但目前因為應用程式內部的特殊情況而無法進行處理時，該實體可以選擇在稍後某個時點才[延遲擷取訊息](message-deferral.md)。 訊息會保留於佇列或訂用帳戶中，但會將它擱置於一旁。
+
+### <a name="batching"></a>批次處理
+
+[用戶端批次處理](service-bus-performance-improvements.md#client-side-batching)可讓佇列或主題用戶端將訊息的傳送延遲一段時間。 如果用戶端在此期間傳送其他訊息，它將以單一批次傳輸訊息。 
+
+### <a name="transactions"></a>交易
+
+[交易](service-bus-transactions.md)會將兩個以上的作業一起分組到執行範圍。 服務匯流排支援交易範圍內單一傳訊實體 (佇列、主題、訂用帳戶) 的分組作業。
+
+### <a name="filtering-and-actions"></a>篩選和動作
+
+訂閱者可以定義他們想要接收某個主題的哪些訊息。 這些訊息會以一或多個[具名訂用帳戶規則](topic-filters.md)的形式來指定。 對於每個比對規則條件，訂用帳戶會產生一份能針對每條比對規則加上不同註解的訊息。
+
+### <a name="auto-delete-on-idle"></a>閒置時自動刪除
+
+[閒置時自動刪除](/dotnet/api/microsoft.servicebus.messaging.queuedescription.autodeleteonidle)可讓您指定閒置間隔，此時間過後就自動刪除佇列。 最小持續期間為 5 分鐘。
+
+### <a name="duplicate-detection"></a>重複偵測
+
+如果發生錯誤而導致用戶端對於傳送作業結果有疑慮，[重複偵測](duplicate-detection.md)能透過讓寄件者重新傳送同樣的訊息，將這些情況下的疑慮排除，而佇列或主題則會捨棄任何重複的複本。
+
+### <a name="sas-rbac-and-managed-identities-for-azure-resources"></a>SAS、RBAC 和 Azure 資源的受控識別
+
+服務匯流排支援安全性通訊協定，例如[共用存取簽章](service-bus-sas.md) (SAS)、[角色型存取控制](service-bus-role-based-access-control.md) (RBAC) 和[Azure 資源的受控識別](service-bus-managed-service-identity.md)。
+
+### <a name="geo-disaster-recovery"></a>異地災害復原
+
+當 Azure 區域或資料中心遇到停機時，[異地災害復原](service-bus-geo-dr.md)能繼續在不同的區域或資料中心進行資料處理。
+
+### <a name="security"></a>安全性
+
+服務匯流排支援標準的 [AMQP 1.0](service-bus-amqp-overview.md) 和 [HTTP/REST](/rest/api/servicebus/) 通訊協定。
+
+## <a name="client-libraries"></a>用戶端程式庫
+
+服務匯流排支援 [.NET](https://github.com/Azure/azure-service-bus-dotnet/tree/master)、[Java](https://github.com/Azure/azure-service-bus-java/tree/master)、[JMS](https://github.com/Azure/azure-service-bus/tree/master/samples/Java/qpid-jms-client) 用戶端程式庫。
+
+## <a name="integration"></a>整合
+
+服務匯流排可與下列 Azure 服務完全整合︰
+
+- [Event Grid](https://azure.microsoft.com/services/event-grid/) 
+- [Logic Apps](https://azure.microsoft.com/services/logic-apps/) 
+- [函式](https://azure.microsoft.com/services/functions/) 
+- [Dynamics 365](https://dynamics.microsoft.com)
+- [串流分析](https://azure.microsoft.com/services/stream-analytics/)
+ 
 ## <a name="next-steps"></a>後續步驟
 
-若要深入了解服務匯流排訊息，請參閱下列主題。
+若要開始使用服務匯流排傳訊，請參閱下列文章：
 
-* [服務匯流排基本概念](service-bus-fundamentals-hybrid-solutions.md)
-* [服務匯流排佇列、主題和訂用帳戶](service-bus-queues-topics-subscriptions.md)
-* [開始使用服務匯流排佇列](service-bus-dotnet-get-started-with-queues.md)
-* [如何使用服務匯流排主題和訂用帳戶](service-bus-dotnet-how-to-use-topics-subscriptions.md)
-
+* [比較 Azure 傳訊服務](../event-grid/compare-messaging-services.md?toc=%2fazure%2fservice-bus-messaging%2ftoc.json&bc=%2fazure%2fservice-bus-messaging%2fbreadcrumb%2ftoc.json)
+* 深入了解 Azure 服務匯流排的[標準和進階](https://azure.microsoft.com/pricing/details/service-bus/)層及其定價
+* [Azure 服務匯流排進階層的效能和延遲](https://blogs.msdn.microsoft.com/servicebus/2016/07/18/premium-messaging-how-fast-is-it/)
+* 在 [.NET](service-bus-quickstart-powershell.md)、[Java](service-bus-quickstart-powershell.md) 或 [JMS](service-bus-quickstart-powershell.md) 中嘗試快速入門

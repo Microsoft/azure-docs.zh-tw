@@ -1,26 +1,20 @@
 ---
-title: "針對速度變慢或失敗的 HDInsight 叢集進行疑難排解 - Azure HDInsight | Microsoft Docs"
-description: "針對速度變慢或失敗的 HDInsight 叢集進行診斷和疑難排解。"
+title: 針對速度變慢或失敗的 HDInsight 叢集進行疑難排解 - Azure HDInsight
+description: 針對速度變慢或失敗的 HDInsight 叢集進行診斷和疑難排解。
 services: hdinsight
-documentationcenter: 
-tags: azure-portal
 author: ashishthaps
-manager: jhubbard
-editor: cgronlun
-ms.assetid: 
+ms.author: ashishth
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 01/11/2018
-ms.author: ashishth
-ms.openlocfilehash: 00c4ac0e2ac059efebbfbe0b2426b27361ad8e37
-ms.sourcegitcommit: e19742f674fcce0fd1b732e70679e444c7dfa729
+ms.openlocfilehash: 6c9e980e4f448f705743b2e6dce268c671ffe9b6
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46950706"
 ---
 # <a name="troubleshoot-a-slow-or-failing-hdinsight-cluster"></a>針對速度變慢或失敗的 HDInsight 叢集進行疑難排解
 
@@ -63,12 +57,13 @@ Azure 入口網站可以提供以下資訊：
 
 ![HDInsight Azure 入口網站資訊](./media/hdinsight-troubleshoot-failed-cluster/portal.png)
 
-您也可以使用 Azure CLI：
+您也可以使用 Azure 傳統 CLI：
 
 ```
     azure hdinsight cluster list
     azure hdinsight cluster show <ClusterName>
 ```
+[!INCLUDE [classic-cli-warning](../../includes/requires-classic-cli.md)]
 
 另一個選項是使用 PowerShell。 如需詳細資訊，請參閱[使用 Azure PowerShell 來管理 HDInsight 中的 Hadoop 叢集](hdinsight-administer-use-powershell.md)。
 
@@ -106,7 +101,7 @@ HDInsight 倚賴數個 Azure 服務。 它會在 Azure HDInsight 上執行虛擬
 
 #### <a name="restart-your-cluster-services"></a>重新啟動您的叢集服務
 
-如果您的叢集發生速度變慢的情況，請考慮透過 Ambari UI 或 Azure CLI 來重新啟動服務。 叢集可能是發生暫時性錯誤，而重新啟動是可穩定您環境的最快方式，並且可能改善效能。
+如果您的叢集發生速度變慢的情況，請考慮透過 Ambari UI 或 Azure 傳統 CLI 來重新啟動服務。 叢集可能是發生暫時性錯誤，而重新啟動是可穩定您環境的最快方式，並且可能改善效能。
 
 ## <a name="step-3-view-your-clusters-health"></a>步驟 3：檢視叢集健康情況
 

@@ -1,26 +1,20 @@
 ---
-title: "管理 HDInsight 叢集的記錄 - Azure HDInsight | Microsoft Docs"
-description: "判斷 HDInsight 活動記錄檔的類型、大小及保留原則。"
+title: 管理 HDInsight 叢集的記錄 - Azure HDInsight
+description: 判斷 HDInsight 活動記錄檔的類型、大小及保留原則。
 services: hdinsight
-documentationcenter: 
-tags: azure-portal
 author: ashishthaps
-manager: jhubbard
-editor: cgronlun
-ms.assetid: 
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 01/11/2018
 ms.author: ashishth
-ms.openlocfilehash: a161a5c639ff02e1e8a2ea987d9f913ff41c5618
-ms.sourcegitcommit: 48fce90a4ec357d2fb89183141610789003993d2
+ms.openlocfilehash: 339d5d39c637369420e197acf65df802cefd5cb9
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/12/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46988479"
 ---
 # <a name="manage-logs-for-an-hdinsight-cluster"></a>管理 HDInsight 叢集的記錄
 
@@ -49,12 +43,13 @@ HDInsight 叢集會產生各式各樣的記錄檔。 例如 Apache Hadoop 及相
 * 叢集狀態，包括上次狀態變更的詳細資料
 * 為主要、核心及工作節點指定的 HDInsight 執行個體類型和數目
 
-您可以使用 Azure 入口網站來取得此最上層資訊的大部分。  或者，您也可以使用 Azure CLI 來取得有關 HDInsight 叢集的資訊：
+您可以使用 Azure 入口網站來取得此最上層資訊的大部分。  或者，您也可以使用 Azure 傳統 CLI 來取得有關 HDInsight 叢集的資訊：
 
 ```
     azure hdinsight cluster list
     azure hdinsight cluster show <ClusterName>
 ```
+[!INCLUDE [classic-cli-warning](../../includes/requires-classic-cli.md)]
 
 您還可以使用 PowerShell 來檢視此資訊。  如需詳細資訊，請參閱[使用 Azure PowerShell 來管理 HDInsight 中的 Hadoop 叢集](hdinsight-administer-use-powershell.md)。
 
@@ -107,17 +102,6 @@ HDInsight [指令碼動作](hdinsight-hadoop-customize-cluster-linux.md)會以�
 HDInsight 會將其記錄檔同時儲存在叢集檔案系統和 Azure 儲存體中。 您可以開啟與叢集的 SSH 連線並瀏覽檔案系統，或是使用遠端前端節點伺服器上的 Hadoop YARN 狀態入口網站，來檢查叢集中的記錄檔。 您可以使用任何能夠存取和下載 Azure 儲存體中資料的工具，來檢查 Azure 儲存體中的記錄檔。 範例包括 AZCopy、CloudXplorer 及「Visual Studio 伺服器總管」。 您也可以使用 PowerShell 和「Azure 儲存體用戶端」程式庫或 Azure .NET SDK，來存取 Azure Blob 儲存體中的資料。
 
 Hadoop 會將作業的工作以「工作嘗試」的形式在叢集中的各種節點上執行。 HDInsight 可以起始理論式工作嘗試，其中會先終止所有其他未完成的工作嘗試。 這會產生將即時記錄至控制器、stderr 及 syslog 記錄檔的重要活動。 此外，多個工作嘗試會同時執行，但記錄檔只能以線性方式顯示結果。
-
-#### <a name="hdinsight-logs-written-to-azure-tables"></a>寫入至 Azure 資料表的 HDInsight 記錄檔
-
-寫入至 Azure 資料表的記錄檔可讓您深入了解 HDInsight 叢集發生什麼情況。 當您建立以 Linux 為基礎的 HDInsight 叢集時，系統會自動在預設的資料表儲存體中建立 6 個資料表：
-
-* hdinsightagentlog
-* syslog
-* daemonlog
-* hadoopservicelog
-* ambariserverlog
-* ambariagentlog
 
 #### <a name="hdinsight-logs-written-to-azure-blob-storage"></a>寫入至 Azure Blob 儲存體的 HDInsight 記錄檔
 

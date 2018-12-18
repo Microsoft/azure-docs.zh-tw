@@ -1,3 +1,4 @@
+items:
 - name: Team Data Science Process 文件
   href: index.yml
 - name: 概觀
@@ -5,293 +6,281 @@
 - name: 生命週期
   href: lifecycle.md
   items:
-    - name: 1. 了解商務
-      href: lifecycle-business-understanding.md
-    - name: 2. 資料取得與認知
-      href: lifecycle-data.md
-    - name: 3. 模型化
-      href: lifecycle-modeling.md
-    - name: 4. 部署
-      href: lifecycle-deployment.md
-    - name: 5. 客戶接受度
-      href: lifecycle-acceptance.md
-    - name: 取得 Azure ML
-      href: 'http://aka.ms/datascienceprocess'
+  - name: 1. 了解商務
+    href: lifecycle-business-understanding.md
+  - name: 2. 資料取得與認知
+    href: lifecycle-data.md
+  - name: 3. 模型化
+    href: lifecycle-modeling.md
+  - name: 4. 部署
+    href: lifecycle-deployment.md
+  - name: 5. 客戶接受度
+    href: lifecycle-acceptance.md
 - name: 角色和工作
   href: roles-tasks.md
   items:
-    - name: 群組管理員
-      href: group-manager-tasks.md
-    - name: 小組負責人
-      href: team-lead-tasks.md
-    - name: 專案負責人
-      href: project-lead-tasks.md
-    - name: 個別參與者
-      href: project-ic-tasks.md
-- name: 專案結構
-  href: 'https://github.com/Azure/Azure-TDSP-ProjectTemplate'
+  - name: 群組管理員
+    href: group-manager-tasks.md
+  - name: 小組負責人
+    href: team-lead-tasks.md
+  - name: 專案負責人
+    href: project-lead-tasks.md
+  - name: 個別參與者
+    href: project-ic-tasks.md
 - name: 專案規劃
   href: team-data-science-process-project-templates.md
-- name: 專案執行
+- name: 開發
   items:
-    - name: 敏捷式開發
-      href: agile-development.md
-    - name: 使用 Git 共同撰寫程式碼
-      href: collaborative-coding-with-git.md
-    - name: 執行資料科學工作
-      href: execute-data-science-tasks.md
-    - name: 追蹤進度
-      href: track-progress.md
-- name: 範例
+  - name: 敏捷式開發
+    href: agile-development.md
+  - name: 使用 Git 共同撰寫程式碼
+    href: collaborative-coding-with-git.md
+  - name: 執行資料科學工作
+    href: execute-data-science-tasks.md
+  - name: 測試程式碼
+    href: code-test.md
+  - name: 追蹤進度
+    href: track-progress.md
+- name: 運算化
+  items:
+  - name: DevOps - CI/CD
+    href: ci-cd-flask.md
+- name: 實用範例
   href: walkthroughs.md
   items:
-    - name: Azure Machine Learning
-      href: walkthroughs-aml-with-tdsp.md
-      items:
-        - name: 情感分類
-          href: predict-twitter-sentiment.md
-        - name: 美國收入分類
-          href: ../preview/scenario-tdsp-classifying-us-incomes.md
-          maintainContext: true
-        - name: 生物醫學實體辨識
-          href: ../preview/scenario-tdsp-biomedical-recognition.md
-          maintainContext: true
-    - name: Spark 與 PySpark 和 Scala
-      href: walkthroughs-spark.md
-      items:
-        - name: 探索並將資料模型化
-          href: spark-data-exploration-modeling.md
-        - name: 探索和模型化進階資料
-          href: spark-advanced-data-exploration-modeling.md
-        - name: 分數模型
-          href: spark-model-consumption.md
-    - name: Hive 與 HDInsight Hadoop
-      href: walkthroughs-hdinsight-hadoop.md
-    - name: U-SQL 與 Azure Data Lake
-      href: walkthroughs-azure-data-lake.md
-    - name: R、Python 和 T-SQL 與 SQL Server
-      href: walkthroughs-sql-server.md
-    - name: T-SQL 和 Python 與 SQL DW
-      href: walkthroughs-sql-data-warehouse.md
+  - name: Azure Machine Learning
+    href: walkthroughs-aml-with-tdsp.md
+    items:
+    - name: 使用 Keras & Scikit Learn 學習人氣分類
+      href: predict-twitter-sentiment.md
+    - name: 使用 AML 文字分析套件進行人氣分類
+      href: predict-twitter-sentiment-amltextpackage.md
+    - name: 美國收入分類
+      href: ../desktop-workbench/scenario-tdsp-classifying-us-incomes.md
+      maintainContext: true
+    - name: 生物醫學實體辨識
+      href: ../desktop-workbench/scenario-tdsp-biomedical-recognition.md
+      maintainContext: true
+    - name: 使用 AML 辨識套件進行皮膚癌影像分類
+      href: isic-image-classification.md
+      maintainContext: true
+  - name: Spark 與 PySpark 和 Scala
+    href: walkthroughs-spark.md
+    items:
+    - name: 探索並將資料模型化
+      href: spark-data-exploration-modeling.md
+    - name: 探索和模型化進階資料
+      href: spark-advanced-data-exploration-modeling.md
+    - name: 分數模型
+      href: spark-model-consumption.md
+  - name: Hive 與 HDInsight Hadoop
+    href: walkthroughs-hdinsight-hadoop.md
+  - name: U-SQL 與 Azure Data Lake
+    href: walkthroughs-azure-data-lake.md
+  - name: R、Python 和 T-SQL 與 SQL Server
+    href: walkthroughs-sql-server.md
+  - name: T-SQL 和 Python 與 SQL DW
+    href: walkthroughs-sql-data-warehouse.md
+- name: 公用事業和工具
+  items:
+  - name: 資料瀏覽和模型化公用程式 (GitHub)
+    href: https://github.com/Azure/Azure-TDSP-Utilities
 - name: 訓練
   items:
-    - name: 適用於資料科學家
-      href: team-data-science-process-for-data-scientists.md
-    - name: 適用於 DevOps
-      href: team-data-science-process-for-devops.md
-- name: |
-    作法
+  - name: 適用於資料科學家
+    href: team-data-science-process-for-data-scientists.md
+  - name: 適用於 DevOps
+    href: team-data-science-process-for-devops.md
+- name: 作法
   items:
-    - name: 在 Azure ML 中使用 TDSP
-      href: ../preview/how-to-use-tdsp-in-azure-ml.md
+  - name: 設定資料科學環境
+    href: environment-setup.md
+    items:
+    - name: Azure 儲存體帳戶
+      href: ../../storage/common/storage-create-storage-account.md
       maintainContext: true
-    - name: 設定資料科學環境
-      href: environment-setup.md
+    - name: 平台和工具
+      href: platforms-and-tools.md
+    - name: 在 HDInsight 叢集上安裝 R 和 Python
       items:
-        - name: Azure 儲存體帳戶
-          href: ../../storage/common/storage-create-storage-account.md
-          maintainContext: true
-        - name: 平台和工具
-          href: platforms-and-tools.md
-        - name: 在 HDInsight 叢集上安裝 R 和 Python
-          items:
-            - name: Spark on HDInsight 簡介
-              href: ../../hdinsight/spark/apache-spark-overview.md
-              maintainContext: true
-            - name: 在 Azure HDInsight 中建立 Apache Spark 叢集
-              href: ../../hdinsight/spark/apache-spark-jupyter-spark-sql.md
-              maintainContext: true
-            - name: Jupyter Notebook 的 PySpark 核心
-              href: ../../hdinsight/spark/apache-spark-jupyter-notebook-kernels.md
-              maintainContext: true
-            - name: HDInsight 上的 R 伺服器
-              href: ../../hdinsight/r-server/r-server-overview.md
-              maintainContext: true
-            - name: 開始使用 HDInsight 中的 R Server
-              href: ../../hdinsight/r-server/r-server-get-started.md
-              maintainContext: true
-        - name: Azure Machine Learning 工作區
-          href: ../studio/create-workspace.md
-          maintainContext: true
-        - name: 設定資料科學 VM
-          items:
-            - name: 建立 Windows 資料科學 VM
-              href: ../data-science-virtual-machine/provision-vm.md
-              maintainContext: true
-            - name: 建立 Ubuntu 資料科學 VM
-              href: ../data-science-virtual-machine/dsvm-ubuntu-intro.md
-              maintainContext: true
-            - name: 建立 CentOS 資料科學 VM
-              href: ../data-science-virtual-machine/linux-dsvm-intro.md
-              maintainContext: true
-            - name: 建立深度學習 VM
-              href: ../data-science-virtual-machine/provision-deep-learning-dsvm.md
-              maintainContext: true
-    - name: 分析商務需求
+      - name: Spark on HDInsight 簡介
+        href: ../../hdinsight/spark/apache-spark-overview.md
+        maintainContext: true
+      - name: 在 Azure HDInsight 中建立 Apache Spark 叢集
+        href: ../../hdinsight/spark/apache-spark-jupyter-spark-sql.md
+        maintainContext: true
+      - name: Jupyter Notebook 的 PySpark 核心
+        href: ../../hdinsight/spark/apache-spark-jupyter-notebook-kernels.md
+        maintainContext: true
+      - name: HDInsight 上的 R 伺服器
+        href: ../../hdinsight/r-server/r-server-overview.md
+        maintainContext: true
+      - name: 開始使用 HDInsight 中的 R Server
+        href: ../../hdinsight/r-server/r-server-get-started.md
+        maintainContext: true
+    - name: Azure Machine Learning 工作區
+      href: ../studio/create-workspace.md
+      maintainContext: true
+  - name: 分析商務需求
+    items:
+    - name: 識別您的案例
+      href: plan-your-environment.md
+  - name: 獲得並瞭解資料
+    items:
+    - name: 管理資料邏輯
       items:
-        - name: 識別您的案例
-          href: plan-your-environment.md
-    - name: 獲得並瞭解資料
+      - name: 概觀
+        href: ingest-data.md
+      - name: Blob 儲存體
+        href: move-azure-blob.md
+      - name: 使用儲存體總管
+        href: move-data-to-azure-blob-using-azure-storage-explorer.md
+      - name: 使用 AzCopy
+        href: move-data-to-azure-blob-using-azcopy.md
+      - name: 使用 Python
+        href: ../../storage/blobs/storage-python-how-to-use-blob-storage.md
+        maintainContext: true
+      - name: 使用 SSIS
+        href: move-data-to-azure-blob-using-ssis.md
+      - name: 移至 VM
+        href: move-sql-server-virtual-machine.md
+      - name: 移至 SQL Database
+        href: move-sql-azure.md
+      - name: 載入到 Hive 資料表
+        href: move-hive-tables.md
+      - name: 從內部部署 SQL 載入
+        href: move-sql-azure-adf.md
+      - name: 從 SQL 磁碟分割表格載入
+        href: parallel-load-sql-partitioned-tables.md
+    - name: 探索資料並加以視覺化
       items:
-        - name: 管理資料邏輯
-          items:
-            - name: 概觀
-              href: ingest-data.md
-            - name: Blob 儲存體
-              href: move-azure-blob.md
-            - name: 使用儲存體總管
-              href: move-data-to-azure-blob-using-azure-storage-explorer.md
-            - name: 使用 AzCopy
-              href: move-data-to-azure-blob-using-azcopy.md
-            - name: 使用 Python
-              href: ../../storage/blobs/storage-python-how-to-use-blob-storage.md
-              maintainContext: true
-            - name: 使用 SSIS
-              href: move-data-to-azure-blob-using-ssis.md
-            - name: 移至 VM
-              href: move-sql-server-virtual-machine.md
-            - name: 移至 SQL Database
-              href: move-sql-azure.md
-            - name: 載入到 Hive 資料表
-              href: move-hive-tables.md
-            - name: 從內部部署 SQL 載入
-              href: move-sql-azure-adf.md
-            - name: 從 SQL 磁碟分割表格載入
-              href: parallel-load-sql-partitioned-tables.md
-        - name: 探索資料並加以視覺化
-          items:
-            - name: 準備資料
-              href: prepare-data.md
-            - name: 探索資料
-              items:
-                - name: 概觀
-                  href: explore-data.md
-                - name: 使用 Pandas
-                  href: explore-data-blob.md
-                - name: 使用 SQL VM
-                  href: explore-data-sql-server.md
-                - name: 使用 Hive 資料表
-                  href: explore-data-hive-tables.md
-            - name: 範例資料
-              items:
-                - name: 概觀
-                  href: sample-data.md
-                - name: 使用 Blob 儲存體
-                  href: sample-data-blob.md
-                - name: 使用 SQL Server
-                  href: sample-data-sql-server.md
-                - name: 使用 Hive 資料表
-                  href: sample-data-hive.md
-            - name: 處理資料
-              items:
-                - name: 使用 Python 存取
-                  href: python-data-access.md
-                - name: 處理 Blob 資料
-                  href: data-blob.md
-                - name: 使用 Azure Data Lake
-                  href: data-lake-walkthrough.md
-                - name: 使用 SQL VM
-                  href: sql-server-virtual-machine.md
-                - name: 使用 Data Pipeline
-                  href: automated-data-pipeline-cheat-sheet.md
-                - name: 使用 Spark
-                  href: spark-overview.md
-                - name: 使用 Scala 和 Spark
-                  href: scala-walkthrough.md
-    - name: 開發模型
+      - name: 準備資料
+        href: prepare-data.md
+      - name: 探索資料
+        items:
+        - name: 概觀
+          href: explore-data.md
+        - name: 使用 Pandas
+          href: explore-data-blob.md
+        - name: 使用 SQL VM
+          href: explore-data-sql-server.md
+        - name: 使用 Hive 資料表
+          href: explore-data-hive-tables.md
+      - name: 範例資料
+        items:
+        - name: 概觀
+          href: sample-data.md
+        - name: 使用 Blob 儲存體
+          href: sample-data-blob.md
+        - name: 使用 SQL Server
+          href: sample-data-sql-server.md
+        - name: 使用 Hive 資料表
+          href: sample-data-hive.md
+      - name: 處理資料
+        items:
+        - name: 使用 Python 存取
+          href: python-data-access.md
+        - name: 處理 Blob 資料
+          href: data-blob.md
+        - name: 使用 Azure Data Lake
+          href: data-lake-walkthrough.md
+        - name: 使用 SQL VM
+          href: sql-server-virtual-machine.md
+        - name: 使用 Data Pipeline
+          href: automated-data-pipeline-cheat-sheet.md
+        - name: 使用 Spark
+          href: spark-overview.md
+        - name: 使用 Scala 和 Spark
+          href: scala-walkthrough.md
+  - name: 開發模型
+    items:
+    - name: 特性工程設計
       items:
-        - name: 特性工程設計
-          items:
-            - name: 概觀
-              href: create-features.md
-            - name: 使用 Pandas
-              href: create-features-blob.md
-            - name: 使用 SQL+Python
-              href: create-features-sql-server.md
-            - name: 使用 Hive 查詢
-              href: create-features-hive.md
-        - name: 特性選取
-          href: select-features.md
-        - name: 建立模型並加以定型
-          items:
-            - name: 選擇演算法
-              href: ../studio/algorithm-choice.md
-              maintainContext: true
-            - name: 演算法功能提要
-              href: ../studio/algorithm-cheat-sheet.md
-              maintainContext: true
-    - name: 在生產環境中部署模型
-      href: deploy-models-in-production.md
+      - name: 概觀
+        href: create-features.md
+      - name: 使用 SQL+Python
+        href: create-features-sql-server.md
+      - name: 使用 Hive 查詢
+        href: create-features-hive.md
+    - name: 特性選取
+      href: select-features.md
+    - name: 建立模型並加以定型
+      items:
+      - name: 選擇演算法
+        href: ../studio/algorithm-choice.md
+        maintainContext: true
+      - name: 演算法功能提要
+        href: ../studio/algorithm-cheat-sheet.md
+        maintainContext: true
+  - name: 在生產環境中部署模型
+    href: deploy-models-in-production.md
+  - name: 在 Azure ML 中使用 TDSP
+    href: ../desktop-workbench/how-to-use-tdsp-in-azure-ml.md
+    maintainContext: true
 - name: 相關參考
   items:
-    - name: Microsoft 辨識工具組 - CNTK
-      href: 'https://docs.microsoft.com/cognitive-toolkit/'
-      maintainContext: true
-    - name: Cortana Intelligence Partner Solutions
+  - name: Azure Machine Learning - AML
+    href: https://docs.microsoft.com/azure/machine-learning/service/
+  - name: Microsoft 辨識工具組 - CNTK
+    href: https://docs.microsoft.com/cognitive-toolkit/
+    maintainContext: true
+  - name: Azure AI 資源庫
+    href: https://gallery.azure.ai
+  - name: Cortana Analytics
+    items:
+    - name: 異常偵測
+      href: apps-anomaly-detection-api.md
+    - name: 認知服務
+      href: https://docs.microsoft.com/azure/cognitive-services/
+    - name: 預測性維護
       items:
-        - name: Cortana Intelligence Gallery
-          href: 'https://gallery.cortanaintelligence.com'
-        - name: Cortana Intelligence 發佈指南
-          href: cortana-intelligence-appsource-publishing-guide.md
-        - name: Cortana Intelligence 解決方案評估工具
-          href: cortana-intelligence-appsource-evaluation-tool.md
-    - name: Cortana Analytics
+      - name: 概觀
+        href: cortana-analytics-playbook-predictive-maintenance.md
+      - name: 架構
+        href: cortana-analytics-architecture-predictive-maintenance.md
+      - name: 技術指南
+        href: cortana-analytics-technical-guide-predictive-maintenance.md
+    - name: 車輛遙測
       items:
-        - name: API
-          items:
-            - name: 異常偵測
-              href: apps-anomaly-detection-api.md
-            - name: 認知服務
-              href: 'https://docs.microsoft.com/azure/cognitive-services/'
-            - name: 預測性維護
-              items:
-                - name: 概觀
-                  href: cortana-analytics-playbook-predictive-maintenance.md
-                - name: 架構
-                  href: cortana-analytics-architecture-predictive-maintenance.md
-                - name: 技術指南
-                  href: cortana-analytics-technical-guide-predictive-maintenance.md
-            - name: 車輛遙測
-              items:
-                - name: 概觀
-                  href: cortana-analytics-playbook-vehicle-telemetry.md
-                - name: 腳本
-                  href: cortana-analytics-playbook-vehicle-telemetry-deep-dive.md
-                - name: 設定
-                  href: cortana-analytics-playbook-vehicle-telemetry-powerbi.md
+      - name: 概觀
+        href: cortana-analytics-playbook-vehicle-telemetry.md
+      - name: 腳本
+        href: cortana-analytics-playbook-vehicle-telemetry-deep-dive.md
+      - name: 設定
+        href: cortana-analytics-playbook-vehicle-telemetry-powerbi.md
 - name: 資源
   items:
-    - name: TSDP 工具和公用程式
-      items:
-        - name: 從 GitHub 下載
-          href: 'https://github.com/Azure/Azure-TDSP-Utilities'
-        - name: 適用於 TSDP 的資料科學公用程式 v.0.11
-          href: 'https://blogs.technet.microsoft.com/machinelearning/2017/01/11/announcing-data-science-utilities-version-0-11-for-the-team-data-science-process/'
-        - name: 適用於 TSDP 的最新公用程式
-          href: 'https://blogs.technet.microsoft.com/machinelearning/2017/04/05/latest-rev-of-utilities-for-microsoft-team-data-science-process-tdsp-now-available/'
-    - name: 部落格
-      items:
-        - name: 最近的 TDSP 更新
-          href: 'https://blogs.technet.microsoft.com/machinelearning/2017/10/09/the-microsoft-team-data-science-process-tdsp-recent-updates/'
-        - name: 在 Azure Machine Learning 中使用 TDSP
-          href: 'https://blogs.technet.microsoft.com/machinelearning/2017/09/25/using-the-team-data-science-process-tdsp-in-azure-machine-learning/'
-        - name: 資料科學專案規劃範本
-          href: 'https://blogs.msdn.microsoft.com/buckwoody/2017/10/24/a-data-science-microsoft-project-template-you-can-use-in-your-solutions/'
-        - name: Cortana Intelligence 和 Machine Learning 部落格
-          href: 'https://blogs.technet.microsoft.com/machinelearning/'
-    - name: 使用 TDSP 的組織
-      items:
-        - name: 新增簽名
-          href: 'https://newsignature.com/services/professional-services/advanced-analytics/'
-        - name: Blue Granite
-          href: 'https://www.blue-granite.com/blog/getting-more-from-your-data-science-teams-organization-and-process-considerations'
-        - name: Microsoft 諮詢服務
-          href: 'https://www.microsoft.com/en-us/microsoftservices/business-analytics.aspx'
-    - name: 相關的 Microsoft 資源
-      items:
-        - name: MSDN 論壇
-          href: 'https://social.msdn.microsoft.com/forums/azure/home?forum=MachineLearning'
-        - name: 堆疊溢位
-          href: 'http://stackoverflow.com/questions/tagged/azure-machine-learning'
-        - name: 影片
-          href: 'https://azure.microsoft.com/resources/videos/index/?services=machine-learning'
+  - name: 部落格
+    items:
+    - name: 最近的 TDSP 更新
+      href: https://blogs.technet.microsoft.com/machinelearning/2017/10/09/the-microsoft-team-data-science-process-tdsp-recent-updates/
+    - name: 在 Azure Machine Learning 中使用 TDSP
+      href: https://blogs.technet.microsoft.com/machinelearning/2017/09/25/using-the-team-data-science-process-tdsp-in-azure-machine-learning/
+    - name: 適用於 TSDP 的資料科學公用程式 v.0.11
+      href: https://blogs.technet.microsoft.com/machinelearning/2017/01/11/announcing-data-science-utilities-version-0-11-for-the-team-data-science-process/
+    - name: 適用於 TSDP 的最新公用程式
+      href: https://blogs.technet.microsoft.com/machinelearning/2017/04/05/latest-rev-of-utilities-for-microsoft-team-data-science-process-tdsp-now-available/
+    - name: 資料科學專案規劃範本
+      href: https://blogs.msdn.microsoft.com/buckwoody/2017/10/24/a-data-science-microsoft-project-template-you-can-use-in-your-solutions/
+    - name: Cortana Intelligence 和 Machine Learning 部落格
+      href: https://blogs.technet.microsoft.com/machinelearning/
+  - name: 使用 TDSP 的組織
+    items:
+    - name: 新增簽名
+      href: https://newsignature.com/services/professional-services/advanced-analytics/
+    - name: Blue Granite
+      href: https://www.blue-granite.com/blog/getting-more-from-your-data-science-teams-organization-and-process-considerations
+  - name: 相關的 Microsoft 資源
+    items:
+    - name: MSDN 論壇
+      href: https://social.msdn.microsoft.com/forums/azure/home?forum=MachineLearning
+    - name: 堆疊溢位
+      href: http://stackoverflow.com/questions/tagged/azure-machine-learning
+    - name: 影片
+      href: https://azure.microsoft.com/resources/videos/index/?services=machine-learning
+ms.openlocfilehash: 44e7c5626158c0ead56f4e36853fce85813b905c
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46989697"

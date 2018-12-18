@@ -1,11 +1,11 @@
 ---
-title: "管理 StorSimple Virtual Array 儲存體帳戶認證 | Microsoft Docs"
-description: "針對與 StorSimple Virtual Array 相關聯的儲存體帳戶認證，說明如何使用 StorSimple 裝置管理員的 [設定] 頁面來新增、編輯、刪除或替換安全性金鑰。"
+title: 管理 StorSimple Virtual Array 儲存體帳戶認證 | Microsoft Docs
+description: 針對與 StorSimple Virtual Array 相關聯的儲存體帳戶認證，說明如何使用 StorSimple 裝置管理員的 [設定] 頁面來新增、編輯、刪除或替換安全性金鑰。
 services: storsimple
 documentationcenter: NA
 author: alkohli
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 234bf8bb-d5fe-40be-9d25-721d7482bc3b
 ms.service: storsimple
 ms.devlang: NA
@@ -14,11 +14,12 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 02/27/2017
 ms.author: alkohli
-ms.openlocfilehash: a4ce2d329d0e1399cffaf886adf2b95e34b9cd7b
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: d2b6b7a5d2baf9e46cca18aec97f31beda1e2a38
+ms.sourcegitcommit: 1b561b77aa080416b094b6f41fce5b6a4721e7d5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 09/17/2018
+ms.locfileid: "45736728"
 ---
 # <a name="use-storsimple-device-manager-to-manage-storage-account-credentials-for-storsimple-virtual-array"></a>使用 StorSimple 裝置管理員來管理 StorSimple Virtual Array 的儲存體帳戶認證
 
@@ -109,7 +110,7 @@ ms.lasthandoff: 10/11/2017
 4. 在儲存體帳戶認證的 [屬性] 刀鋒視窗中，執行下列動作︰
    
    1. 如有必要，您可以修改 [啟用 SSL] 模式選項。
-   2. 您可以選擇重新產生儲存體帳戶認證的存取金鑰。 如需詳細資訊，請參閱[重新產生儲存體帳戶金鑰](../storage/common/storage-create-storage-account.md#manage-your-storage-access-keys)。 提供新的儲存體帳戶認證金鑰。 而每個 Azure 儲存體帳戶，都有主要存取金鑰。
+   2. 您可以選擇重新產生儲存體帳戶認證的存取金鑰。 如需詳細資訊，請參閱[重新產生儲存體帳戶金鑰](../storage/common/storage-account-manage.md#access-keys)。 提供新的儲存體帳戶認證金鑰。 而每個 Azure 儲存體帳戶，都有主要存取金鑰。
    3. 按一下 [屬性] 刀鋒視窗頂端的 [儲存] 以儲存設定。 [儲存體帳戶認證] 刀鋒視窗上會更新設定。
       
       ![編輯儲存體帳戶認證](./media/storsimple-virtual-array-manage-storage-accounts/ova-edit-storageacct.png)

@@ -1,20 +1,21 @@
 ---
-title: "從 MySQL Workbench 連線到適用於 MySQL 的 Azure 資料庫"
-description: "本快速入門提供的步驟，可以使用 MySQL Workbench 來連線及查詢 Azure Database for MySQL 的資料。"
+title: 從 MySQL Workbench 連線到適用於 MySQL 的 Azure 資料庫
+description: 本快速入門提供的步驟，可以使用 MySQL Workbench 來連線及查詢 Azure Database for MySQL 的資料。
 services: mysql
 author: jasonwhowell
 ms.author: jasonh
 manager: kfile
 editor: seanli1988
-ms.service: mysql-database
+ms.service: mysql
 ms.custom: mvc
 ms.topic: quickstart
 ms.date: 02/28/2018
-ms.openlocfilehash: 7c49f3586036efd5784f63fcd79dacea6fb51546
-ms.sourcegitcommit: c765cbd9c379ed00f1e2394374efa8e1915321b9
+ms.openlocfilehash: def984a6a31cdfe9b9dfbba93ccfb5016b5e315d
+ms.sourcegitcommit: 1b8665f1fff36a13af0cbc4c399c16f62e9884f3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/28/2018
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35265162"
 ---
 # <a name="azure-database-for-mysql-use-mysql-workbench-to-connect-and-query-data"></a>Azure Database for MySQL︰使用 MySQL Workbench 來連線及查詢資料
 本快速入門示範如何使用 MySQL Workbench 應用程式來連線到 Azure Database for MySQL。 
@@ -52,7 +53,7 @@ ms.lasthandoff: 02/28/2018
     |---|---|---|
     |   連線名稱 | 示範連線 | 指定此連線的標籤。 |
     | 連線方式 | 標準 (TCP/IP) | 標準 (TCP/IP) 就足夠了。 |
-    | 主機名稱 | 伺服器名稱 | 指定您稍早建立 Azure Database for MySQL 時所使用的伺服器名稱值。 顯示的範例伺服器是 mydemoserver.mysql.database.azure.com。使用如範例所示的完整網域名稱 (\*.mysql.database.azure.com)。 如果您不記得您的伺服器名稱，請依照上一節中的步驟執行，以取得連線資訊。  |
+    | 主機名稱 | 伺服器名稱 | 指定您稍早建立 Azure Database for MySQL 時所使用的伺服器名稱值。 顯示的範例伺服器是 mydemoserver.mysql.database.azure.com。 使用如範例所示的完整網域名稱 (\*.mysql.database.azure.com)。 如果您不記得您的伺服器名稱，請依照上一節中的步驟執行，以取得連線資訊。  |
     | Port | 3306 | 連線至 Azure Database for MySQL 時一律使用連接埠 3306。 |
     | 使用者名稱 |  伺服器管理員登入名稱 | 輸入您稍早建立 Azure Database for MySQL 時所提供的伺服器管理員登入名稱。 我們的範例使用者名稱為 myadmin@mydemoserver。 如果您不記得使用者名稱，請依照上一節中的步驟執行，以取得連線資訊。 格式為 *username@servername*。
     | 密碼 | 您的密碼 | 按一下 [儲存在保存庫...] 按鈕以儲存密碼。 |

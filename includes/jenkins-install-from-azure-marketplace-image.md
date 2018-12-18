@@ -9,11 +9,12 @@ ms.topic: include
 ms.date: 03/12/2018
 ms.author: tarcher
 ms.custom: Jenkins
-ms.openlocfilehash: 552e93e9bd1b17c73fb1638fbae2ac30b051c261
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: d5a832909f060ad8c8b3f0e7c7ea4504e5e5aadb
+ms.sourcegitcommit: 828d8ef0ec47767d251355c2002ade13d1c162af
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 06/25/2018
+ms.locfileid: "36943465"
 ---
 1. 在瀏覽器中開啟[適用於 Jenkins 的 Azure Marketplace 映像](https://azuremarketplace.microsoft.com/marketplace/apps/azure-oss.jenkins?tab=Overview)。
 
@@ -32,7 +33,7 @@ ms.lasthandoff: 03/16/2018
 1. 在 [基本] 索引標籤中，指定下列值：
 
     - **Name** (名稱)：輸入 `Jenkins`。
-    - **使用者名稱** - 輸入當登入 Jenkins 執行所在的虛擬機器時要使用的使用者名稱。 使用者名稱必須符合[特定需求](/azure/virtual-machines/linux/faq#what-are-the-username-requirements-when-creating-a-vm)。
+    - **使用者名稱** - 輸入當登入執行 Jenkins 所在的虛擬機器時，要使用的使用者名稱。 使用者名稱必須符合[特定需求](/azure/virtual-machines/linux/faq#what-are-the-username-requirements-when-creating-a-vm)。
     - **驗證類型** - 選取 [SSH 公開金鑰]。
     - **SSH 公開金鑰** - 複製並貼上 RSA 公開金鑰，可以是單行格式 (開頭為 `ssh-rsa`) 或多行 PEM 格式。 您可以使用 Linux 和 macOS 上的 ssh-keygen 或 Windows 上的 PuTTYGen 來產生 SSH 金鑰。 如需有關 SSH 金鑰和 Azure 的詳細資訊，請參閱[如何在 Azure 上搭配 Windows 使用 SSH 金鑰](/azure/virtual-machines/linux/ssh-from-windows)一文。
     - **訂用帳戶** - 選取您要在其中安裝 Jenkins 的 Azure 訂用帳戶。

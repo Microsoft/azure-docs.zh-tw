@@ -18,6 +18,7 @@ ms.sourcegitcommit: 68aec76e471d677fd9a6333dc60ed098d1072cfc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 12/18/2017
+ms.locfileid: "26753055"
 ---
 # <a name="sample-projects-for-azure-managed-applications"></a>適用於 Azure 受控應用程式之範例專案
 

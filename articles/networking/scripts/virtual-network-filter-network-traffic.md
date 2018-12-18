@@ -1,17 +1,17 @@
 ---
-title: "Azure CLI 指令碼範例 - 篩選 VM 網路流量 | Microsoft Docs"
-description: "Azure CLI 指令碼範例 - 篩選輸入和輸出 VM 網路流量。"
+title: Azure CLI 指令碼範例 - 篩選 VM 網路流量 | Microsoft Docs
+description: Azure CLI 指令碼範例 - 篩選輸入和輸出 VM 網路流量。
 services: virtual-network
 documentationcenter: virtual-network
 author: jimdial
 manager: timlt
 editor: tysonn
-tags: 
-ms.assetid: 
+tags: ''
+ms.assetid: ''
 ms.service: virtual-network
 ms.devlang: azurecli
 ms.topic: article
-ms.tgt_pltfrm: 
+ms.tgt_pltfrm: ''
 ms.workload: infrastructure
 ms.date: 07/07/2017
 ms.author: jdial
@@ -20,6 +20,7 @@ ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 03/09/2018
+ms.locfileid: "29849975"
 ---
 # <a name="filter-inbound-and-outbound-vm-network-traffic"></a>篩選輸入和輸出 VM 網路流量
 

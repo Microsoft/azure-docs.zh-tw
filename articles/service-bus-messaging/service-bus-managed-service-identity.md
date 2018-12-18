@@ -1,24 +1,25 @@
 ---
-title: "搭配使用受控服務識別與 Azure 服務匯流排預覽 | Microsoft Docs"
-description: "搭配使用受控服務識別與 Azure 服務匯流排"
+title: 搭配使用受控服務識別與 Azure 服務匯流排預覽 | Microsoft Docs
+description: 搭配使用受控服務識別與 Azure 服務匯流排
 services: service-bus-messaging
 documentationcenter: na
-author: sethmanheim
+author: spelluru
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: service-bus-messaging
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 12/19/2017
-ms.author: sethm
-ms.openlocfilehash: 7b9901ee3478cb193c808b65d2dbbcf8b596a3c1
-ms.sourcegitcommit: a0be2dc237d30b7f79914e8adfb85299571374ec
+ms.date: 08/01/2018
+ms.author: spelluru
+ms.openlocfilehash: e886089bbceff5fc1963044c4c1f2f7a012ea2a2
+ms.sourcegitcommit: cb61439cf0ae2a3f4b07a98da4df258bfb479845
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/12/2018
+ms.lasthandoff: 09/05/2018
+ms.locfileid: "43697725"
 ---
 # <a name="managed-service-identity-preview"></a>受控服務識別 (預覽)
 
@@ -62,7 +63,7 @@ Web 應用程式的受控服務識別現在具有服務匯流排命名空間的�
 
 ### <a name="run-the-app"></a>執行應用程式
 
-現在修改您建立之 ASP.NET 應用程式的預設分頁。 您也可以使用來自[這個 GitHub 存放庫](https://github.com/Azure/azure-service-bus/tree/master/samples/DotNet/Microsoft.ServiceBus.Messaging/ManagedServiceIdentity)的 Web 應用程式程式碼。
+現在修改您建立之 ASP.NET 應用程式的預設分頁。 您可以使用來自[這個 GitHub 存放庫](https://github.com/Azure-Samples/app-service-msi-servicebus-dotnet)的 Web 應用程式程式碼。  
 
 Default.aspx 頁面是您的登陸頁面。 您可以在 Default.aspx.cs 檔案中找到程式碼。 結果是最小的 Web 應用程式，具有數個項目欄位，以及具有連線到服務匯流排的 [傳送] 和 [接收] 按鈕，以傳送或接收訊息。
 
@@ -73,8 +74,12 @@ Default.aspx 頁面是您的登陸頁面。 您可以在 Default.aspx.cs 檔案�
 ![](./media/service-bus-managed-service-identity/msi3.png)
  
 若要傳送或接收訊息，請輸入命名空間名稱和您建立之實體的名稱，然後按一下 [傳送] 或 [接收]。
- 
-請注意，受控服務識別只適用於 Azure 環境中，以及您在其中設定它的 App Service 部署。 另外請注意，受控服務識別目前不會使用 App Service 部署位置。
+
+
+> [!NOTE]
+> - 受控服務識別只能在 Azure 環境中、在應用程式服務、Azure VM 和擴展集上運作。 對於 .NET 應用程式，Microsoft.Azure.Services.AppAuthentication 程式庫 (由服務匯流排 NuGet 套件使用) 提供讓應用程式透過此通訊協定進行提取的功能，也能支援本機部署經驗。 該程式庫還能讓您使用來自 Visual Studio、Azure CLI 2.0 或 Active Directory 整合式驗證的使用者帳戶，在部署機器上以本機方式測試程式碼。 如需使用此程式庫的本機開發選項詳細資訊，請參閱[使用 .NET 對 Azure Key Vault 進行服務對服務驗證](../key-vault/service-to-service-authentication.md)。  
+> 
+> - 受控服務識別目前不會使用 App Service 部署位置。
 
 ## <a name="next-steps"></a>後續步驟
 

@@ -1,247 +1,296 @@
+items:
 - name: Functions 文件
   href: index.yml
 - name: 概觀
   items:
-    - name: 關於函式
-      href: functions-overview.md
-    - name: 無伺服器比較
-      href: functions-compare-logic-apps-ms-flow-webjobs.md
+  - name: 關於函式
+    href: functions-overview.md
+  - name: 無伺服器比較
+    href: functions-compare-logic-apps-ms-flow-webjobs.md
 - name: 快速入門
-  expanded: true
   items:
-    - name: 建立函式 - 入口網站
-      href: functions-create-first-azure-function.md
-    - name: 建立函式 - Azure CLI
-      href: functions-create-first-azure-function-azure-cli.md
-    - name: 建立函式 - Visual Studio
-      href: functions-create-your-first-function-visual-studio.md
-    - name: 建立函式 - Java/Maven
-      href: functions-create-first-java-maven.md
-    - name: 建立函式 - Linux
-      href: functions-create-first-azure-function-azure-cli-linux.md
-    - name: 觸發程序
-      items:
-        - name: Blob 儲存體
-          href: functions-create-storage-blob-triggered-function.md
-        - name: Azure Cosmos DB
-          href: functions-create-cosmos-db-triggered-function.md
-        - name: 計時器
-          href: functions-create-scheduled-function.md
-        - name: 一般 Webhook
-          href: functions-create-generic-webhook-triggered-function.md
-        - name: GitHub webhook
-          href: functions-create-github-webhook-triggered-function.md
-        - name: 佇列儲存體
-          href: functions-create-storage-queue-triggered-function.md
-    - name: 整合
-      items:
-        - name: 儲存體
-          href: functions-integrate-storage-queue-output-binding.md
-        - name: Azure Cosmos DB
-          href: functions-integrate-store-unstructured-data-cosmosdb.md
+  - name: 建立函式 - 入口網站
+    href: functions-create-first-azure-function.md
+  - name: 建立函式 - Visual Studio
+    href: functions-create-your-first-function-visual-studio.md
+  - name: 建立函式 - Visual Studio Code
+    href: functions-create-first-function-vs-code.md
+  - name: 建立函式 - Java/Maven
+    href: functions-create-first-java-maven.md
+  - name: 建立函式 - Azure CLI
+    href: functions-create-first-azure-function-azure-cli.md
+  - name: 建立函式 - Linux
+    href: functions-create-first-azure-function-azure-cli-linux.md
+  - name: 觸發程序
+    items:
+    - name: Azure Cosmos DB
+      href: functions-create-cosmos-db-triggered-function.md
+    - name: Blob 儲存體
+      href: functions-create-storage-blob-triggered-function.md
+    - name: 佇列儲存體
+      href: functions-create-storage-queue-triggered-function.md
+    - name: 計時器
+      href: functions-create-scheduled-function.md
+  - name: 整合
+    items:
+    - name: Azure Cosmos DB
+      href: functions-integrate-store-unstructured-data-cosmosdb.md
+    - name: 儲存體
+      href: functions-integrate-storage-queue-output-binding.md
+  expanded: true
 - name: 教學課程
   items:
-    - name: 搭配使用 Functions 與 Logic Apps
-      href: functions-twitter-email.md
-    - name: 建立無伺服器 API
-      href: functions-create-serverless-api.md
-    - name: 建立 OpenAPI 定義
-      href: functions-openapi-definition.md
-    - name: 使用 Event Grid 進行映像大小調整
-      href: ../event-grid/resize-images-on-storage-blob-upload-event.md?toc=%2fazure%2fazure-functions%2ftoc.json
-    - name: 在 Linux 上的 Functions
-      items:
-        - name: 自訂映像
-          href: functions-create-function-linux-custom-image.md
-        - name: IoT Edge 裝置
-          href: ../iot-edge/tutorial-deploy-function.md?toc=%2fazure%2fazure-functions%2ftoc.json
+  - name: 搭配使用 Functions 與 Logic Apps
+    href: functions-twitter-email.md
+  - name: 建立無伺服器 API
+    href: functions-create-serverless-api.md
+  - name: 建立 OpenAPI 定義
+    href: functions-openapi-definition.md
+  - name: 使用 Event Grid 進行映像大小調整
+    href: ../event-grid/resize-images-on-storage-blob-upload-event.md?toc=%2fazure%2fazure-functions%2ftoc.json
+  - name: 建立無伺服器 Web 應用程式
+    href: https://docs.microsoft.com/azure/functions/tutorial-static-website-serverless-api-with-database
+  - name: 在 Linux 上的 Functions
+    items:
+    - name: 自訂映像
+      href: functions-create-function-linux-custom-image.md
+    - name: IoT Edge 裝置
+      href: ../iot-edge/tutorial-deploy-function.md?toc=%2fazure%2fazure-functions%2ftoc.json
 - name: 範例
   items:
-    - name: 程式碼範例
-      href: 'https://azure.microsoft.com/en-us/resources/samples/?service=functions'
-    - name: Azure CLI
-      href: functions-cli-samples.md
+  - name: 程式碼範例
+    href: https://azure.microsoft.com/resources/samples/?service=functions
+  - name: Azure CLI
+    href: functions-cli-samples.md
+  - name: Azure Functions 配方
+    href: https://docs.microsoft.com/sandbox/functions-recipes/
 - name: 概念
   items:
-    - name: 比較 1.x 和 2.x
-      href: functions-versions.md
-    - name: 調整和託管
-      href: functions-scale.md
-    - name: 觸發和繫結
-      href: functions-triggers-bindings.md
-    - name: 語言
-      items:
-        - name: 支援的語言
-          href: supported-languages.md
-        - name: 'C# (類別庫)'
-          href: functions-dotnet-class-library.md
-        - name: 'C# 指令碼 (.csx)'
-          href: functions-reference-csharp.md
-        - name: 'F#'
-          href: functions-reference-fsharp.md
-        - name: JavaScript
-          href: functions-reference-node.md
-        - name: Java
-          href: functions-reference-java.md
-    - name: 效能考量
-      href: functions-best-practices.md
-    - name: 函式 Proxy
-      href: functions-proxies.md
-    - name: 內部部署函式
-      href: functions-runtime-overview.md
-    - name: 長期函式
-      items:
-        - name: 概觀
-          href: durable-functions-overview.md
-        - name: 繫結
-          href: durable-functions-bindings.md
-        - name: 檢查點和重新執行
-          href: durable-functions-checkpointing-and-replay.md
-        - name: 執行個體管理
-          href: durable-functions-instance-management.md
-        - name: HTTP API
-          href: durable-functions-http-api.md
-        - name: 錯誤處理
-          href: durable-functions-error-handling.md
-        - name: 診斷
-          href: durable-functions-diagnostics.md
-        - name: 計時器
-          href: durable-functions-timers.md
-        - name: 外部事件
-          href: durable-functions-external-events.md
-        - name: Eternal 協調流程
-          href: durable-functions-eternal-orchestrations.md
-        - name: Singleton 協調流程
-          href: durable-functions-singletons.md
-        - name: 子協調流程
-          href: durable-functions-sub-orchestrations.md
-        - name: 工作中樞
-          href: durable-functions-task-hubs.md
-        - name: 版本控制
-          href: durable-functions-versioning.md
-        - name: 效能和延展性
-          href: durable-functions-perf-and-scale.md
+  - name: 比較版本 1.x 和 2.x
+    href: functions-versions.md
+  - name: 調整和託管
+    href: functions-scale.md
+  - name: 觸發和繫結
+    href: functions-triggers-bindings.md
+  - name: 語言
+    items:
+    - name: 支援的語言
+      href: supported-languages.md
+    - name: C# (類別庫)
+      href: functions-dotnet-class-library.md
+    - name: C# 指令碼 (.csx)
+      href: functions-reference-csharp.md
+    - name: F#
+      href: functions-reference-fsharp.md
+    - name: JavaScript
+      href: functions-reference-node.md
+    - name: Java
+      href: functions-reference-java.md
+  - name: 診斷
+    href: ../app-service/app-service-diagnostics.md
+  - name: 效能考量
+    href: functions-best-practices.md
+  - name: 函式 Proxy
+    href: functions-proxies.md
+  - name: IP 位址
+    href: ip-addresses.md
+  - name: 內部部署函式
+    href: functions-runtime-overview.md
+  - name: 長期函式
+    items:
+    - name: 概觀
+      href: durable-functions-overview.md
+    - name: 函式類型和功能
+      href: durable-functions-types-features-overview.md
+    - name: 繫結
+      href: durable-functions-bindings.md
+    - name: 檢查點和重新執行
+      href: durable-functions-checkpointing-and-replay.md
+    - name: 自訂協調流程狀態
+      href: durable-functions-custom-orchestration-status.md
+    - name: 執行個體管理
+      href: durable-functions-instance-management.md
+    - name: HTTP API
+      href: durable-functions-http-api.md
+    - name: 錯誤處理
+      href: durable-functions-error-handling.md
+    - name: 診斷
+      href: durable-functions-diagnostics.md
+    - name: 計時器
+      href: durable-functions-timers.md
+    - name: 外部事件
+      href: durable-functions-external-events.md
+    - name: Eternal 協調流程
+      href: durable-functions-eternal-orchestrations.md
+    - name: Singleton 協調流程
+      href: durable-functions-singletons.md
+    - name: 子協調流程
+      href: durable-functions-sub-orchestrations.md
+    - name: 工作中樞
+      href: durable-functions-task-hubs.md
+    - name: 版本控制
+      href: durable-functions-versioning.md
+    - name: 效能和延展性
+      href: durable-functions-perf-and-scale.md
+    - name: 災難復原和異地複寫
+      href: durable-functions-disaster-recovery-geo-distribution.md
 - name: 使用說明指南
   items:
-    - name: 開發
-      items:
-        - name: 開發人員指南
-          href: functions-reference.md
-        - name: 測試函式
-          href: functions-test-a-function.md
-        - name: 在本機開發及偵錯
-          href: functions-run-local.md
-        - name: Visual Studio 開發
-          href: functions-develop-vs.md
-        - name: 錯誤處理
-          href: functions-bindings-error-pages.md
-    - name: 部署
-      items:
-        - name: 連續部署
-          href: functions-continuous-deployment.md
-        - name: ZIP 推送部署
-          href: deployment-zip-push.md
-        - name: 自動資源部署
-          href: functions-infrastructure-as-code.md
-        - name: 內部部署函式
-          href: functions-runtime-install.md
-    - name: 設定
-      items:
-        - name: 管理函式應用程式
-          href: functions-how-to-use-azure-function-app-settings.md
-        - name: 設定執行階段版本
-          href: set-runtime-version.md
-    - name: 監視
-      href: functions-monitoring.md
-    - name: 整合
-      items:
-        - name: 連線到 SQL Database
-          href: functions-scenario-database-table-cleanup.md
-        - name: 建立 OpenAPI 2.0 定義
-          href: functions-api-definition-getting-started.md
-        - name: 匯出至 PowerApps 和 Microsoft Flow
-          href: app-service-export-api-to-powerapps-and-flow.md
-        - name: 從 PowerApps 呼叫函式
-          href: functions-powerapps-scenario.md
-        - name: 從 Microsoft Flow 呼叫函式
-          href: functions-flow-scenario.md
-        - name: 使用受控服務識別
-          href: ../app-service/app-service-managed-service-identity.md?toc=%2fazure%2fazure-functions%2ftoc.json
-    - name: 長期函式
-      items:
-        - name: Install
-          href: durable-functions-install.md
-        - name: 鏈結
-          href: durable-functions-sequence.md
-        - name: 展開傳送/收合傳送
-          href: durable-functions-cloud-backup.md
-        - name: 監視器
-          href: durable-functions-monitor.md
-        - name: 與使用者互動
-          href: durable-functions-phone-verification.md
-        - name: 單元測試
-          href: durable-functions-unit-testing.md
+  - name: 開發
+    items:
+    - name: 開發人員指南
+      href: functions-reference.md
+    - name: 測試函式
+      href: functions-test-a-function.md
+    - name: 在本機開發及偵錯
+      href: functions-develop-local.md
+    - name: Visual Studio 開發
+      href: functions-develop-vs.md
+    - name: 核心工具開發
+      href: functions-run-local.md
+    - name: IntelliJ IDEA 開發
+      href: functions-create-maven-intellij.md
+    - name: Eclipse 開發
+      href: functions-create-maven-eclipse.md
+    - name: 管理連線
+      href: manage-connections.md
+    - name: 錯誤處理
+      href: functions-bindings-error-pages.md
+  - name: 部署
+    items:
+    - name: 連續部署
+      href: functions-continuous-deployment.md
+    - name: ZIP 部署
+      href: deployment-zip-push.md
+    - name: 從套件執行
+      href: run-functions-from-deployment-package.md
+    - name: 自動資源部署
+      href: functions-infrastructure-as-code.md
+    - name: 內部部署函式
+      href: functions-runtime-install.md
+  - name: 設定
+    items:
+    - name: 管理函式應用程式
+      href: functions-how-to-use-azure-function-app-settings.md
+    - name: 設定執行階段版本
+      href: set-runtime-version.md
+    - name: 手動登錄擴充功能
+      href: install-update-binding-extensions-manual.md
+    - name: 停用函式
+      href: disable-function.md
+  - name: 監視
+    href: functions-monitoring.md
+  - name: 整合
+    items:
+    - name: 連線到 SQL Database
+      href: functions-scenario-database-table-cleanup.md
+    - name: 建立 OpenAPI 2.0 定義
+      href: functions-api-definition-getting-started.md
+    - name: 匯出至 PowerApps 和 Microsoft Flow
+      href: app-service-export-api-to-powerapps-and-flow.md
+    - name: 從 PowerApps 呼叫函式
+      href: functions-powerapps-scenario.md
+    - name: 從 Microsoft Flow 呼叫函式
+      href: functions-flow-scenario.md
+    - name: 建立受控識別
+      href: ../app-service/app-service-managed-service-identity.md?toc=%2fazure%2fazure-functions%2ftoc.json
+  - name: 長期函式
+    items:
+    - name: Install
+      href: durable-functions-install.md
+    - name: 鏈結
+      href: durable-functions-sequence.md
+    - name: 展開傳送/收合傳送
+      href: durable-functions-cloud-backup.md
+    - name: 監視器
+      href: durable-functions-monitor.md
+    - name: 與使用者互動
+      href: durable-functions-phone-verification.md
+    - name: 單元測試
+      href: durable-functions-unit-testing.md
+    - name: 事件發佈
+      href: durable-functions-event-publishing.md
+    - name: 使用 WebJobs SDK
+      href: durable-functions-webjobs-sdk.md
+  - name: 疑難排解
+    items:
+    - name: 針對儲存體進行疑難排解
+      href: functions-recover-storage-account.md
 - name: 參考
   items:
-    - name: 繫結
+  - name: 繫結
+    items:
+    - name: Blob 儲存體
+      href: functions-bindings-storage-blob.md
+    - name: Azure Cosmos DB
       items:
-        - name: Blob 儲存體
-          href: functions-bindings-storage-blob.md
-        - name: Azure Cosmos DB
-          href: functions-bindings-cosmosdb.md
-        - name: Event Grid
-          href: functions-bindings-event-grid.md
-        - name: 事件中樞
-          href: functions-bindings-event-hubs.md
-        - name: 外部檔案
-          href: functions-bindings-external-file.md
-        - name: 外部資料表
-          href: functions-bindings-external-table.md
-        - name: HTTP 和 Webhook
-          href: functions-bindings-http-webhook.md
-        - name: Microsoft Graph
-          href: functions-bindings-microsoft-graph.md
-        - name: Mobile Apps
-          href: functions-bindings-mobile-apps.md
-        - name: 通知中樞
-          href: functions-bindings-notification-hubs.md
-        - name: 佇列儲存體
-          href: functions-bindings-storage-queue.md
-        - name: SendGrid
-          href: functions-bindings-sendgrid.md
-        - name: 服務匯流排
-          href: functions-bindings-service-bus.md
-        - name: 表格儲存體
-          href: functions-bindings-storage-table.md
-        - name: 計時器
-          href: functions-bindings-timer.md
-        - name: Twilio
-          href: functions-bindings-twilio.md
-    - name: host.json 參考
-      href: functions-host-json.md
-    - name: 應用程式設定參考
-      href: functions-app-settings.md
-    - name: OpenAPI 參考
-      href: functions-api-definition.md
+      - name: Functions 1.x
+        href: functions-bindings-cosmosdb.md
+      - name: Functions 2.x
+        href: functions-bindings-cosmosdb-v2.md
+    - name: Event Grid
+      href: functions-bindings-event-grid.md
+    - name: 事件中樞
+      href: functions-bindings-event-hubs.md
+    - name: 外部檔案
+      href: functions-bindings-external-file.md
+    - name: 外部資料表
+      href: functions-bindings-external-table.md
+    - name: HTTP 和 Webhook
+      href: functions-bindings-http-webhook.md
+    - name: Microsoft Graph
+      href: functions-bindings-microsoft-graph.md
+    - name: Mobile Apps
+      href: functions-bindings-mobile-apps.md
+    - name: 通知中樞
+      href: functions-bindings-notification-hubs.md
+    - name: 佇列儲存體
+      href: functions-bindings-storage-queue.md
+    - name: SendGrid
+      href: functions-bindings-sendgrid.md
+    - name: 服務匯流排
+      href: functions-bindings-service-bus.md
+    - name: SignalR Service
+      href: functions-bindings-signalr-service.md
+    - name: 表格儲存體
+      href: functions-bindings-storage-table.md
+    - name: 計時器
+      href: functions-bindings-timer.md
+    - name: Twilio
+      href: functions-bindings-twilio.md
+  - name: host.json 參考
+    href: functions-host-json.md
+  - name: 應用程式設定參考
+    href: functions-app-settings.md
+  - name: OpenAPI 參考
+    href: functions-api-definition.md
 - name: 資源
   items:
-    - name: Azure 藍圖
-      href: 'https://azure.microsoft.com/roadmap/?category=compute'
-    - name: 價格
-      href: 'https://azure.microsoft.com/pricing/details/functions/'
-    - name: 定價計算機
-      href: 'https://azure.microsoft.com/pricing/calculator/'
-    - name: 區域可用性
-      href: 'https://azure.microsoft.com/regions/services/'
-    - name: 影片
-      href: 'https://www.youtube.com/c/AzureFunctions'
-    - name: MSDN 論壇
-      href: 'https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureFunctions'
-    - name: 堆疊溢位
-      href: 'http://stackoverflow.com/questions/tagged/azure-functions'
-    - name: Twitter
-      href: 'https://twitter.com/azurefunctions'
-    - name: Azure Functions GitHub 存放庫
-      href: 'https://github.com/Azure/Azure-Functions/'
-    - name: 服務更新
-      href: 'https://azure.microsoft.com/en-us/updates/?product=functions&updatetype=&platform='
+  - name: 透過 Microsoft Learn 增進您的技巧
+    href: /learn/browse/?products=azure-functions
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/?category=compute
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/functions/
+  - name: 定價計算機
+    href: https://azure.microsoft.com/pricing/calculator/
+  - name: 區域可用性
+    href: https://azure.microsoft.com/regions/services/
+  - name: 影片
+    href: https://www.youtube.com/c/AzureFunctions
+  - name: MSDN 論壇
+    href: https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureFunctions
+  - name: 堆疊溢位
+    href: http://stackoverflow.com/questions/tagged/azure-functions
+  - name: Twitter
+    href: https://twitter.com/azurefunctions
+  - name: Azure Functions GitHub 存放庫
+    href: https://github.com/Azure/Azure-Functions/
+  - name: 服務更新
+    href: https://azure.microsoft.com/updates/?product=functions&updatetype=&platform=
+ms.openlocfilehash: ebca3260b7837959d11256601abc25d1e043f851
+ms.sourcegitcommit: ccdea744097d1ad196b605ffae2d09141d9c0bd9
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/23/2018
+ms.locfileid: "49645968"

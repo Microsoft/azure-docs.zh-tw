@@ -1,12 +1,12 @@
 ---
-title: "BGP 與 Azure VPN 閘道概觀 | Microsoft Docs"
-description: "本文提供 BGP 與 Azure VPN 閘道的概觀。"
+title: BGP 與 Azure VPN 閘道概觀 | Microsoft Docs
+description: 本文提供 BGP 與 Azure VPN 閘道的概觀。
 services: vpn-gateway
 documentationcenter: na
 author: yushwang
 manager: rossort
-editor: 
-tags: 
+editor: ''
+tags: ''
 ms.assetid: f8c3985c-c128-4f34-835c-0e88742bf36e
 ms.service: vpn-gateway
 ms.devlang: na
@@ -16,10 +16,11 @@ ms.workload: infrastructure-services
 ms.date: 01/12/2017
 ms.author: yushwang
 ms.openlocfilehash: 13a17eb3d78e70a09864bf218f1027d6e98486a6
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38720045"
 ---
 # <a name="overview-of-bgp-with-azure-vpn-gateways"></a>BGP 與 Azure VPN 閘道概觀
 這篇文章提供 Azure VPN 閘道中的 BGP (邊界閘道協定) 支援概觀。

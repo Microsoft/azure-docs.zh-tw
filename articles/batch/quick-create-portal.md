@@ -1,20 +1,21 @@
 ---
-title: "Azure 快速入門 - 執行 Batch 作業 - 入口網站"
-description: "快速了解如何使用 Azure 入口網站執行 Batch 作業。"
+title: Azure 快速入門 - 執行 Batch 作業 - 入口網站
+description: 快速了解如何使用 Azure 入口網站執行 Batch 作業。
 services: batch
 author: dlepow
 manager: jeconnoc
 ms.service: batch
 ms.devlang: na
 ms.topic: quickstart
-ms.date: 01/19/2018
+ms.date: 07/03/2018
 ms.author: danlep
 ms.custom: mvc
-ms.openlocfilehash: a00c8ea07c31d2ab4ba2638f2a7e4adcf5ca4a10
-ms.sourcegitcommit: 9d317dabf4a5cca13308c50a10349af0e72e1b7e
+ms.openlocfilehash: 7daaf042d22ba4ac0369b732b586a3760d8cd51c
+ms.sourcegitcommit: 0b4da003fc0063c6232f795d6b67fa8101695b61
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 07/05/2018
+ms.locfileid: "37859569"
 ---
 # <a name="quickstart-run-your-first-batch-job-in-the-azure-portal"></a>快速入門：在 Azure 入口網站中執行您的第一個 Batch 作業
 
@@ -24,22 +25,22 @@ ms.lasthandoff: 02/01/2018
 
 ## <a name="sign-in-to-azure"></a>登入 Azure 
 
-登入 Azure 入口網站，網址為 https://portal.azure.com。
+在 https://portal.azure.com 登入 Azure 入口網站。
 
 ## <a name="create-a-batch-account"></a>建立批次帳戶：
 
 請依照下列步驟來建立用於測試的範例 Batch 帳戶。 您需有 Batch 帳戶才能建立集區和作業。 如這裡所示，您可以連結 Azure 儲存體帳戶與 Batch 帳戶。 本快速入門雖然不要求這麼做，但儲存體帳戶很適合用於部署應用程式以及儲存大部分真實工作負載的輸入和輸出資料。
 
 
-1. 按一下 [新增]  >  [計算]   >  [Batch 服務]。 
+1. 選取 [建立資源] > [計算] > [Batch 服務]。 
 
   ![Marketplace 中的批次][marketplace_portal]
 
 2. 輸入 [帳戶名稱] 和 [資源群組] 的值。 帳戶名稱必須是所選取 [Azure 位置] 中的唯一名稱，只能使用小寫字元或數字，而且包含 3-24 個字元。 
 
-3. 在 [儲存體帳戶] 中，選取現有的一般用途儲存體帳戶或建立新的儲存體帳戶。
+3. 在 [儲存體帳戶] 中，選取現有的儲存體帳戶或建立新的儲存體帳戶。
 
-4. 保留其餘設定的預設值，然後按一下 [建立] 以建立帳戶。
+4. 保留其餘設定的預設值，然後選取 [建立] 以建立帳戶。
 
   ![建立批次帳戶：][account_portal]  
 
@@ -50,7 +51,7 @@ ms.lasthandoff: 02/01/2018
 您現在已有一個 Batch 帳戶，請建立 Windows 計算節點的範例集區，以便用於測試。 這個快速範例的集區是由執行 Azure Marketplace 中 Windows Server 2012 R2 映像的 2 個節點所組成。
 
 
-1. 在 Batch 帳戶中，按一下 [集區] > [新增]。
+1. 在 Batch 帳戶中，選取 [集區] > [新增]。
 
 2. 輸入名為 mypool 的 [集區識別碼]。 
 
@@ -60,7 +61,7 @@ ms.lasthandoff: 02/01/2018
   |---------|---------|
   |**映像類型**|Marketplace (Linux/Windows)|
   |**發行者**     |MicrosoftWindowsServer|
-  |**提供項目**     |WindowsServer|
+  |**供應項目**     |WindowsServer|
   |**Sku**     |2012-R2-Datacenter-smalldisk|
 
   ![選取集區作業系統][pool_os] 
@@ -74,21 +75,21 @@ ms.lasthandoff: 02/01/2018
 
   ![選取集區大小][pool_size] 
 
-5. 保留其餘設定的預設值，然後按一下 [確定] 以建立集區。
+5. 保留其餘設定的預設值，然後選取 [確定] 以建立集區。
 
 Batch 會立即建立集區，但需花費數分鐘的時間來配置和啟動計算節點。 在這段期間，集區的 [配置狀態] 為 [調整大小]。 當集區在調整大小時，您可以繼續建立作業和工作。 
 
 ![調整大小狀態的集區][pool_resizing]
 
-幾分鐘之後，集區的狀態為 [穩定]，而節點會啟動。 按一下 [節點] 以檢查節點的狀態。 當節點的狀態為 [閒置] 時，它就準備好執行工作。 
+幾分鐘之後，集區的狀態為 [穩定]，而節點會啟動。 選取 [節點] 以檢查節點的狀態。 當節點的狀態為 [閒置] 時，它就準備好執行工作。 
 
 ## <a name="create-a-job"></a>建立工作
 
 既然您有集區，請建立要在其中執行的作業。 Batch 作業是一或多項工作的邏輯群組。 作業包含工作通用的設定，例如優先順序以及要執行工作的集區。 一開始作業沒有任何工作。 
 
-1. 在 Batch 帳戶檢視中，按一下 [作業] > [新增]。 
+1. 在 Batch 帳戶檢視中，選取 [作業] > [新增]。 
 
-2. 輸入名為 myjob 的 [作業識別碼]。 在 [集區] 中，選取 mypool。 保留其餘設定的預設值，然後按一下 [確定]。
+2. 輸入名為 myjob 的 [作業識別碼]。 在 [集區] 中，選取 mypool。 保留其餘設定的預設值，然後選取 [確定]。
 
   ![建立工作][job_create]
 
@@ -102,11 +103,11 @@ Batch 會立即建立集區，但需花費數分鐘的時間來配置和啟動�
 
 若要建立第一個工作：
 
-1. 按一下 [新增] 。
+1. 選取 [新增] 。
 
 2. 輸入名為 mytask 的 [工作識別碼]。 
 
-3. 在 [命令列] 中，輸入 `cmd /c "set AZ_BATCH & timeout /t 90 > NUL"`。 保留其餘設定的預設值，然後按一下 [確定]。
+3. 在 [命令列] 中，輸入 `cmd /c "set AZ_BATCH & timeout /t 90 > NUL"`。 保留其餘設定的預設值，然後選取 [確定]。
 
   ![建立工作][task_create]
 
@@ -116,7 +117,7 @@ Batch 會立即建立集區，但需花費數分鐘的時間來配置和啟動�
 
 ## <a name="view-task-output"></a>檢視工作輸出
 
-上述的工作範例會在幾分鐘內完成。 若要檢視已完成工作的輸出，請按一下 [節點上的檔案]，然後選取 `stdout.txt` 檔案。 此檔案會顯示工作的標準輸出。 內容如下所示：
+上述的工作範例會在幾分鐘內完成。 若要檢視已完成工作的輸出，請選取 [節點上的檔案]，然後選取 `stdout.txt` 檔案。 此檔案會顯示工作的標準輸出。 內容如下所示：
 
 ![檢視工作輸出][task_output]
 
@@ -126,9 +127,9 @@ Batch 會立即建立集區，但需花費數分鐘的時間來配置和啟動�
 
 如果您想要繼續執行 Batch 教學課程和範例，請使用本快速入門中建立的 Batch 帳戶和連結的儲存體帳戶。 Batch 帳戶本身不收費。
 
-即使沒有排定的作業，您仍需支付節點執行時的集區費用。 當您不再需要集區時，請將它刪除。 在帳戶檢視中，按一下 [集區] 和集區名稱。 然後按一下 [刪除] 。  當您刪除集區時，節點上的所有工作輸出也會跟著刪除。 
+即使沒有排定的作業，您仍需支付節點執行時的集區費用。 當您不再需要集區時，請將它刪除。 在帳戶檢視中，選取 [集區] 和集區名稱。 然後選取 [刪除]。  當您刪除集區時，節點上的所有工作輸出也會跟著刪除。 
 
-若不再需要，可刪除資源群組、Batch 帳戶和所有相關資源。 若要這麼做，請選取 Batch 帳戶的資源群組，然後按一下 [刪除資源群組]。
+若不再需要，可刪除資源群組、Batch 帳戶和所有相關資源。 若要這麼做，請選取 Batch 帳戶的資源群組，然後選取 [刪除資源群組]。
 
 ## <a name="next-steps"></a>後續步驟
 

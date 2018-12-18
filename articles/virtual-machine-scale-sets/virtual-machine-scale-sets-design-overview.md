@@ -1,9 +1,9 @@
 ---
-title: "Azure 虛擬機器擴展集的設計考量 | Microsoft Docs"
-description: "深入了解 Azure 虛擬機器擴展集的設計考量"
-keywords: "linux 虛擬機器, 虛擬機器擴展集"
+title: Azure 虛擬機器擴展集的設計考量 | Microsoft Docs
+description: 深入了解 Azure 虛擬機器擴展集的設計考量
+keywords: linux 虛擬機器, 虛擬機器擴展集
 services: virtual-machine-scale-sets
-documentationcenter: 
+documentationcenter: ''
 author: gatneil
 manager: jeconnoc
 editor: tysonn
@@ -16,36 +16,34 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/01/2017
 ms.author: negat
-ms.openlocfilehash: efb9f7f7daa5dbb8cd3120b21ef812106fdc7fb9
-ms.sourcegitcommit: f46cbcff710f590aebe437c6dd459452ddf0af09
+ms.openlocfilehash: e03016b80b0a7043a72e55b6c8b68b67b55283b1
+ms.sourcegitcommit: f20e43e436bfeafd333da75754cd32d405903b07
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/20/2017
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49388121"
 ---
 # <a name="design-considerations-for-scale-sets"></a>擴展集的設計考量
 本文會討論虛擬機器擴展集的設計考量。 如需虛擬機器擴展集的相關資訊，請參閱 [虛擬機器擴展集概觀](virtual-machine-scale-sets-overview.md)。
 
 ## <a name="when-to-use-scale-sets-instead-of-virtual-machines"></a>何時應使用擴展集而非虛擬機器？
-一般而言，擴展集適用於部署高可用性的基礎結構，其中會有一組電腦具備類似的組態。 不過，部分功能僅適用於擴展集，而其他功能僅適用於 VM。 為了在使用每種技術時做出明智的決策，您應該先看一下部分只能在擴展集而非 VM 中使用的常用功能：
+一般而言，擴展集適用於部署高可用性的基礎結構，其中會有一組機器具備類似的設定。 不過，部分功能僅適用於擴展集，而其他功能僅適用於 VM。 為了在使用每種技術時做出明智的決策，您應該先看一下部分只能在擴展集而非 VM 中使用的常用功能：
 
 ### <a name="scale-set-specific-features"></a>擴展集特定的功能
 
-- 在指定擴展集設定後，您可以更新「容量」屬性以透過平行方式部署更多虛擬機器。 比起撰寫指令碼，以平行方式協調部署許多個別 VM 來說，這個方法簡單許多。
+- 在指定擴展集設定後，您可以更新「容量」屬性以同時部署更多 VM。 比起撰寫指令碼，此程序更適合用來協調同時部署許多個別 VM 的作業。
 - 您可以[使用 Azure 自動調整規模自動調整擴展集](./virtual-machine-scale-sets-autoscale-overview.md)，但無法針對個別 VM 執行。
-- 您可以[重新安裝擴展集 VM 的映像](https://docs.microsoft.com/rest/api/virtualmachinescalesets/manage-a-vm)，但[無法針對個別 VM](https://docs.microsoft.com/rest/api/compute/virtualmachines) 執行。
-- 您可以[過度佈建](./virtual-machine-scale-sets-design-overview.md)擴展集 VM，以提高可靠性並加快部署速度。 除非您撰寫自訂程式碼來執行這項操作，否則無法使用個別 VM 來執行此操作。
+- 您可以[重新安裝擴展集 VM 的映像](https://docs.microsoft.com/rest/api/compute/virtualmachinescalesets/reimage)，但[無法針對個別 VM](https://docs.microsoft.com/rest/api/compute/virtualmachines) 執行。
+- 您可以[過度佈建](https://docs.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-design-overview#overprovisioning)擴展集 VM，以提高可靠性並加快部署速度。 除非您撰寫自訂程式碼來執行這個動作，否則無法過度佈建個別 VM。
 - 您可以指定[升級原則](./virtual-machine-scale-sets-upgrade-scale-set.md)，以便輕鬆地在擴展集的 VM 之間進行升級。 使用個別的 VM，您必須自行協調更新。
 
 ### <a name="vm-specific-features"></a>VM 特定的功能
 
 某些功能目前僅適用於虛擬機器：
 
-- 您可以將資料磁碟連接至特定的個別 VM，但連接的資料磁碟會針對擴展集中的所有 VM 加以設定。
-- 您可以將非空白的資料磁碟連接至個別 VM，但無法針對擴展集中的 VM 執行。
-- 您可以擷取個別 VM 的快照集，但無法針對擴展集中的 VM 執行。
-- 您可以擷取個別 VM 的映像，但無法擴展集中的 VM 執行。
-- 您可以將個別 VM 從原生磁碟移轉至受控磁碟，但無法針對擴展集中的 VM 執行此操作。
-- 您可以將 IPv6 公用 IP 位址指派給個別 VM NIC，但無法針對擴展集中的 VM 執行此操作。 您可以將 IPv6 公用 IP 位址指派給個別 VM或擴展集 VM 之前的負載平衡器。
+- 您可以從個別 VM 擷取映像，但無法從擴展集中的 VM 擷取。
+- 您可以將個別 VM 從原生磁碟移轉至受控磁碟，但無法移轉擴展集中的 VM 執行個體。
+- 您可以將 IPv6 公用 IP 位址指派給個別 VM 虛擬網路介面卡 (NIC)，但無法針對擴展集中的 VM 執行個體執行此操作。 您可以將 IPv6 公用 IP 位址指派給個別 VM或擴展集 VM 之前的負載平衡器。
 
 ## <a name="storage"></a>儲存體
 

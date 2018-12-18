@@ -1,10 +1,10 @@
 ---
-title: "Microsoft Azure 上的 Oracle 解決方案 | Microsoft Docs"
-description: "了解 Microsoft Azure 上支援的 Oracle 解決方案組態和限制。"
+title: Microsoft Azure 上的 Oracle 解決方案 | Microsoft Docs
+description: 了解 Microsoft Azure 上支援的 Oracle 解決方案組態和限制。
 services: virtual-machines-linux
-documentationcenter: 
-manager: timlt
-author: rickstercdn
+documentationcenter: ''
+author: romitgirdhar
+manager: jeconnoc
 tags: azure-resource-management
 ms.assetid: 5d71886b-463a-43ae-b61f-35c6fc9bae25
 ms.service: virtual-machines-windows
@@ -12,13 +12,14 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
-ms.date: 11/28/2017
-ms.author: rclaus
-ms.openlocfilehash: 1bc03d15096e7f1d4538d6642a61aaee9bb572f7
-ms.sourcegitcommit: 5a6e943718a8d2bc5babea3cd624c0557ab67bd5
+ms.date: 08/02/2018
+ms.author: rogirdh
+ms.openlocfilehash: 6435c866f6cdf5abea3862a718579f3a6e4d7378
+ms.sourcegitcommit: eaad191ede3510f07505b11e2d1bbfbaa7585dbd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/01/2017
+ms.lasthandoff: 08/03/2018
+ms.locfileid: "39493059"
 ---
 # <a name="oracle-solutions-and-their-deployment-on-microsoft-azure"></a>Microsoft Azure 上的 Oracle 解決方案及其部署
 本文涵蓋在 Microsoft Azure 上成功部署各種 Oracle 解決方案的必要資訊。 這些解決方案以 Oracle 在 Azure Marketplace 中發佈的虛擬機器映像為基礎。 若要取得目前可用的映像清單，請執行下列命令：
@@ -89,7 +90,7 @@ Oracle RAC 是用來在內部部署的多節點叢集組態中，減少發生單
 
          -Dweblogic.rjvm.enableprotocolswitch=true
 
-如需相關資訊，請參閱知識庫文章 **860340.1**，位於：<http://support.oracle.com>。
+如需相關資訊，請參閱位於 <http://support.oracle.com> 的 KB 文章 **860340.1**。
 
 * **動態叢集和負載平衡限制。** 假設您想要在 WebLogic Server 中使用動態叢集，並透過 Azure 中的單一、公用負載平衡端點將它公開。 做法是只要您使用各個受控伺服器的固定連接埠號碼 (不是從範圍動態指派)，且不要啟動比系統管理員正在追蹤之機器的數量還多的受控伺服器 (也就是每台虛擬機器不超過一個受控伺服器)。 若您的設定會導致啟動的 WebLogic 伺服器多於可用的虛擬機器 (也就是多個 WebLogic Server 執行個體共用相同的虛擬機器)，則那些 WebLogic 伺服器執行個體中只有一個可以繫結到指定的連接埠號碼，該虛擬機器上的其他執行個體則會失敗。
 

@@ -1,24 +1,19 @@
 ---
-title: "在 Azure 備份伺服器 v2 中使用新式備份儲存體 | Microsoft Docs"
-description: "了解 Azure 備份伺服器 v2 中的新功能。 本文說明如何升級您的備份伺服器安裝。"
+title: 在 Azure 備份伺服器 v2 中使用新式備份儲存體
+description: 了解 Azure 備份伺服器 v2 中的新功能。 本文說明如何升級您的備份伺服器安裝。
 services: backup
-documentationcenter: 
 author: markgalioto
 manager: carmonm
-editor: 
-ms.assetid: 
 ms.service: backup
-ms.workload: storage-backup-recovery
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 05/15/2017
-ms.author: masaran;markgal
-ms.openlocfilehash: 751b9b495fd368dff1f72429707f5f33a0ccb569
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.author: markgal
+ms.openlocfilehash: 7c583ea048ed1837c662869c62039165aaa3c024
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34606749"
 ---
 # <a name="add-storage-to-azure-backup-server-v2"></a>在 Azure 備份伺服器 v2 中新增儲存體
 

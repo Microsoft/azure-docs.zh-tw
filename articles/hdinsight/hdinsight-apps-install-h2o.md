@@ -1,26 +1,20 @@
 ---
-title: 安裝已發佈的應用程式 - H2O Sparkling Water - Azure HDInsight | Microsoft Docs
+title: 安裝已發佈的應用程式 - H2O Sparkling Water - Azure HDInsight
 description: 安裝及使用 H2O Sparkling Water 第三方 Hadoop 應用程式。
 services: hdinsight
-documentationcenter: ''
 author: ashishthaps
-manager: jhubbard
-editor: cgronlun
-tags: azure-portal
-ms.assetid: ''
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
+ms.topic: conceptual
 ms.date: 01/10/2018
 ms.author: ashish
-ms.openlocfilehash: 8734daa5303aa76e9f8a074b5f709727cabb58b2
-ms.sourcegitcommit: ded74961ef7d1df2ef8ffbcd13eeea0f4aaa3219
+ms.openlocfilehash: e5a9505c41c14016768a5da42f9ac1836240b98f
+ms.sourcegitcommit: f6e2a03076679d53b550a24828141c4fb978dcf9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/29/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43095013"
 ---
 # <a name="install-published-application---h2o-sparkling-water"></a>安裝已發佈的應用程式 - H2O Sparkling Water
 
@@ -39,13 +33,13 @@ H2O Sparkling Water 提供：
 
 ### <a name="resource-links"></a>資源連結
 
-* [H2O.ai 工程藍圖](https://jira.h2o.ai/)
+* [H2O.ai 工程藍圖](http://jira.h2o.ai/)
 * [H2O.ai 首頁](http://www.h2o.ai/)
 * [H2O.ai 文件](http://docs.h2o.ai/)
 * [H2O.ai 支援](https://support.h2o.ai/)
 * [H2O.ai 開放原始碼程式碼基底](https://github.com/h2oai/)
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 若要在新的 HDInsight 叢集或現有叢集上安裝此應用程式，您必須具有下列設定：
 
@@ -84,9 +78,9 @@ H2O Sparkling Water 提供：
 
     ![選取 Million_Songs.flow](./media/hdinsight-apps-install-h2o/million-songs.png)
 
-7. 尋找包含 **milsongs-cls-train.csv.gz** 的路徑，並以 **https://h2o-public-test-data.s3.amazonaws.com/bigdata/laptop/milsongs/milsongs-cls-train.csv.gz** 取代完整路徑。
+7. 尋找包含 **milsongs-cls-train.csv.gz** 的路徑，並且以 **https://h2o-public-test-data.s3.amazonaws.com/bigdata/laptop/milsongs/milsongs-cls-train.csv.gz** 取代整個路徑。
 
-8. 尋找包含 **milsongs-cls-test.csv.gz** 的路徑，並以 **https://h2o-public-test-data.s3.amazonaws.com/bigdata/laptop/milsongs/milsongs-cls-test.csv.gz** 取代該路徑。
+8. 尋找包含 **milsongs-cls-test.csv.gz** 的路徑，並且以 **https://h2o-public-test-data.s3.amazonaws.com/bigdata/laptop/milsongs/milsongs-cls-test.csv.gz** 加以取代。
 
 9. 若要執行 Notebook 資料格內的所有陳述式，請選取工具列上的 [全部執行] 按鈕。
 

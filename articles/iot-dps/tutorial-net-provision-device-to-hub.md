@@ -1,33 +1,32 @@
 ---
-title: "使用 Azure IoT 中樞裝置佈建服務 (.NET) 佈建裝置 | Microsoft Docs"
-description: "使用 Azure IoT 中樞裝置佈建服務 (.NET) 將裝置佈建到單一 IoT 中樞"
-services: iot-dps
-keywords: 
-author: msebolt
-ms.author: v-masebo
+title: 使用 Azure IoT 中樞裝置佈建服務 (.NET) 佈建裝置 | Microsoft Docs
+description: 使用 Azure IoT 中樞裝置佈建服務 (.NET) 將裝置佈建到單一 IoT 中樞
+author: wesmc7777
+ms.author: wesmc
 ms.date: 09/05/2017
 ms.topic: tutorial
 ms.service: iot-dps
-documentationcenter: 
+services: iot-dps
 manager: timlt
-ms.devlang: na
+ms.devlang: csharp
 ms.custom: mvc
-ms.openlocfilehash: 6919f962d853faa572ee7ad5d0cb9aeacd3bd2b6
-ms.sourcegitcommit: 817c3db817348ad088711494e97fc84c9b32f19d
+ms.openlocfilehash: 1d82ccdf85b34416dc630b9fcad969d87cc53ff1
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/20/2018
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39520661"
 ---
 # <a name="enroll-the-device-to-an-iot-hub-using-the-azure-iot-hub-provisioning-service-client-net"></a>使用 Azure IoT 中樞佈建服務用戶端 (.NET) 將裝置註冊到 IoT 中樞
 
-在上一個教學課程中，您已了解如何將裝置設定為連線到裝置佈建服務。 在本教學課程中，您將了解如何使用這項服務，透過**_個別註冊_**和**_註冊群組_**將裝置佈建到單一 IoT 中樞。 本教學課程說明如何：
+在上一個教學課程中，您已了解如何將裝置設定為連線到裝置佈建服務。 在本教學課程中，您將了解如何使用這項服務，透過**_個別註冊_** 和**_註冊群組_** 將裝置佈建到單一 IoT 中樞。 本教學課程說明如何：
 
 > [!div class="checklist"]
 > * 註冊裝置
 > * 啟動裝置
 > * 確認裝置已註冊
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 在繼續之前，請務必依照[將裝置設定為使用 Azure IoT 中樞裝置佈建服務來進行佈建](./tutorial-set-up-device.md)教學課程所討論的方法，來設定裝置和其*硬體安全模組*。
 
@@ -49,7 +48,7 @@ ms.lasthandoff: 01/20/2018
 
 - 若為 X.509 架構的裝置：
     - [核發給裝置的 X.509 憑證](https://msdn.microsoft.com/library/windows/desktop/bb540819.aspx)，其格式為 .pem 或 .cer 檔案。 若要進行個別註冊，您必須對 X.509 系統使用「分葉憑證」，若要進行群組註冊，則必須使用「根憑證」或等同的「簽署者憑證」。
-    - 註冊識別碼，用來唯一識別命名空間/範圍中的裝置。 註冊識別碼與裝置識別碼不一定相同。 每個裝置都必須有註冊識別碼。 對於以 X.509 為基礎的裝置，註冊識別碼會衍生自憑證的通用名稱 (CN)。 如需這些需求的詳細資訊，請參閱[裝置概念](https://docs.microsoft.com/en-us/azure/iot-dps/concepts-device)。
+    - 註冊識別碼，用來唯一識別命名空間/範圍中的裝置。 註冊識別碼與裝置識別碼不一定相同。 每個裝置都必須有註冊識別碼。 對於以 X.509 為基礎的裝置，註冊識別碼會衍生自憑證的通用名稱 (CN)。 如需這些需求的詳細資訊，請參閱[裝置概念](https://docs.microsoft.com/azure/iot-dps/concepts-device)。
 
 有兩種方式可向裝置佈建服務註冊裝置：
 

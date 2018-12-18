@@ -1,11 +1,11 @@
 ---
-title: "管理 Linux 型虛擬機器擴充功能 | Microsoft Docs"
-description: "描述如何在傳統部署模型中加入、尋找、更新和移除 Azure 虛擬機器的延伸模組。"
+title: 管理 Linux 型虛擬機器擴充功能 | Microsoft Docs
+description: 描述如何在傳統部署模型中加入、尋找、更新和移除 Azure 虛擬機器的延伸模組。
 services: virtual-machines-linux
-documentationcenter: 
+documentationcenter: ''
 author: squillace
-manager: timlt
-editor: 
+manager: jeconnoc
+editor: ''
 tags: azure-service-management
 ROBOTS: NOINDEX
 ms.assetid: 1dd06f8a-96d7-4c8c-8a74-ad2c553a5f2a
@@ -16,11 +16,12 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 08/29/2016
 ms.author: rasquill
-ms.openlocfilehash: 047b807fdd5c45c310454b1c1dd5d942bb430b44
-ms.sourcegitcommit: 9a8b9a24d67ba7b779fa34e67d7f2b45c941785e
+ms.openlocfilehash: 201a23d7ce9ec6edd74b7695bab3187212e1b042
+ms.sourcegitcommit: 6fcd9e220b9cd4cb2d4365de0299bf48fbb18c17
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2018
+ms.lasthandoff: 04/05/2018
+ms.locfileid: "30841447"
 ---
 # <a name="manage-virtual-machine-extensions"></a>管理虛擬機器擴充功能
 描述如何尋找、加入、修改或移除 Azure 上之 Windows 或 Linux 虛擬機器的 VM 擴充功能。

@@ -1,0 +1,136 @@
+items:
+- name: 流量管理員文件
+  href: index.yml
+- name: 概觀
+  items:
+  - name: 什麼是流量管理員？
+    href: traffic-manager-overview.md
+- name: 快速入門
+  items:
+  - name: 建立流量管理員設定檔
+    href: quickstart-create-traffic-manager-profile.md
+- name: 教學課程
+  items:
+  - name: 低延遲的路由傳送流量
+    href: tutorial-traffic-manager-improve-website-response.md
+  - name: 依據端點地理位置路由傳送流量
+    href: traffic-manager-configure-geographic-routing-method.md
+  - name: 將流量散發至一組端點
+    href: traffic-manager-configure-weighted-routing-method.md
+  - name: 路由傳送流量至優先順序的端點
+    href: traffic-manager-configure-priority-routing-method.md
+- name: 範例
+  items:
+  - name: Azure CLl
+    href: cli-samples.md
+  - name: Azure PowerShell
+    href: powershell-samples.md
+- name: 概念
+  items:
+  - name: 路由方法
+    href: traffic-manager-routing-methods.md
+    items:
+    - name: 流量管理員使用的國家/區域階層
+      href: traffic-manager-geographic-regions.md
+  - name: 巢狀流量管理員設定檔
+    href: traffic-manager-nested-profiles.md
+  - name: 端點類型
+    href: traffic-manager-endpoint-types.md
+  - name: 端點監視
+    href: traffic-manager-monitoring.md
+  - name: 實際使用者度量
+    href: traffic-manager-rum-overview.md
+  - name: 流量檢視
+    href: traffic-manager-traffic-view-overview.md
+  - name: 計量與警示
+    href: traffic-manager-metrics-alerts.md
+  - name: 使用 Azure DNS 和流量管理員進行災害復原
+    href: ../networking/disaster-recovery-dns-traffic-manager.md
+  - name: 流量管理員的運作方式
+    href: traffic-manager-how-it-works.md
+  - name: 常見問題集
+    href: traffic-manager-FAQs.md
+- name: 作法
+  items:
+  - name: 在流量管理員中設定效能路由
+    href: traffic-manager-configure-performance-routing-method.md
+  - name: 在流量管理員中設定多值路由
+    href: traffic-manager-configure-multivalue-routing-method.md
+  - name: 在流量管理員中設定子網路路由
+    href: traffic-manager-configure-subnet-routing-method.md
+  - name: 將真實使用者度量單位傳送至流量管理員
+    items:
+    - name: 使用 Visual Studio SDK
+      href: traffic-manager-create-rum-visual-studio.md
+    - name: 使用網頁
+      href: traffic-manager-create-rum-web-pages.md
+  - name: 管理端點
+    href: traffic-manager-manage-endpoints.md
+  - name: 管理設定檔
+    href: traffic-manager-manage-profiles.md
+  - name: 驗證流量管理員設定
+    href: traffic-manager-testing-settings.md
+  - name: 合併負載平衡服務
+    href: traffic-manager-load-balancing-azure.md
+  - name: 測量流量管理員效能
+    href: traffic-manager-performance-considerations.md
+  - name: 使用 Azure PowerShell 管理流量管理員
+    href: traffic-manager-powershell-arm.md
+  - name: 將您的網際網路網域指向流量管理員
+    href: traffic-manager-point-internet-domain.md
+  - name: 疑難排解
+    items:
+    - name: 疑難排解 Azure 流量管理員上的已降級狀態
+      href: traffic-manager-troubleshooting-degraded.md
+- name: 參考
+  items:
+  - name: 程式碼範例
+    href: https://azure.microsoft.com/resources/samples/?service=traffic-manager
+  - name: Azure PowerShell
+    href: /powershell/module/azurerm.trafficmanager
+  - name: Azure CLI
+    href: /cli/azure/network/traffic-manager
+  - name: Java
+    href: /java/api/com.microsoft.azure.management.trafficmanager
+  - name: Node.js
+    href: http://azure.github.io/azure-sdk-for-node/azure-arm-trafficmanager/latest/
+  - name: Ruby
+    href: http://www.rubydoc.info/gems/azure_mgmt_traffic_manager
+  - name: Python
+    href: http://azure-sdk-for-python.readthedocs.io/en/latest/sample_azure-mgmt-trafficmanager.html
+  - name: REST
+    href: https://msdn.microsoft.com/library/mt163667.aspx
+- name: 相關參考
+  items:
+  - name: 應用程式閘道
+    href: /azure/application-gateway/
+  - name: 負載平衡器
+    href: /azure/load-balancer/
+  - name: Azure DNS
+    href: /azure/dns/
+- name: 資源
+  items:
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/
+  - name: 部落格
+    href: https://azure.microsoft.com/blog/topics/networking/
+  - name: MSDN 論壇
+    href: https://social.msdn.microsoft.com/Forums/en-US/home?forum=WAVirtualMachinesVirtualNetwork
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/traffic-manager/
+  - name: 定價計算機
+    href: https://azure.microsoft.com/pricing/calculator/
+  - name: 服務限制
+    href: ../azure-subscription-service-limits.md#traffic-manager-limits
+  - name: 服務更新
+    href: https://azure.microsoft.com/updates/?product=traffic-manager
+  - name: SLA
+    href: https://azure.microsoft.com/support/legal/sla/traffic-manager/
+  - name: 影片
+    href: https://azure.microsoft.com/resources/videos/index/?services=traffic-manager
+ms.openlocfilehash: 31549ccb0241d174d42d1cb748a905539b01cfef
+ms.sourcegitcommit: f10653b10c2ad745f446b54a31664b7d9f9253fe
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46124281"

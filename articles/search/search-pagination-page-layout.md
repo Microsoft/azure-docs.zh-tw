@@ -1,32 +1,28 @@
 ---
-title: "如何在 Azure 搜尋服務中對搜尋結果分頁 | Microsoft Docs"
-description: "Azure 搜尋服務 (Microsoft Azure 上之託管的雲端搜尋服務) 中的分頁方式。"
-services: search
-documentationcenter: 
+title: 如何在 Azure 搜尋服務中對搜尋結果分頁 | Microsoft Docs
+description: Azure 搜尋服務 (Microsoft Azure 上之託管的雲端搜尋服務) 中的分頁方式。
 author: HeidiSteen
-manager: jhubbard
-editor: 
-ms.assetid: a0a1d315-8624-4cdf-b38e-ba12569c6fcc
+manager: cgronlun
+services: search
 ms.service: search
 ms.devlang: rest-api
-ms.workload: search
-ms.topic: article
-ms.tgt_pltfrm: na
+ms.topic: conceptual
 ms.date: 08/29/2016
 ms.author: heidist
-ms.openlocfilehash: 1054e15a2751c53aad5dbc8054c4cec41102dee9
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 8953be2be77c14a82294e56ac60b8bc993ec6c2f
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39527064"
 ---
 # <a name="how-to-page-search-results-in-azure-search"></a>如何在 Azure 搜尋服務中對搜尋結果分頁
 本文提供指引，關於如何使用 Azure 搜尋服務 REST API 來實作搜尋結果頁面的標準項目，例如次數總計、擷取文件、排序次序和導覽。
 
-在以下提到的每個案例中，發表資料或資訊到您的搜尋結果頁面的頁面相關選項，會由傳送到 Azure 搜尋服務的 [搜尋文件](http://msdn.microsoft.com/library/azure/dn798927.aspx) 要求所指定。 要求會包含 GET 命令、路徑和查詢參數，這些會對服務通知要求是什麼，以及如何制訂回應。
+在以下提到的每個案例中，發表資料或資訊到您的搜尋結果頁面的頁面相關選項，會由傳送到 Azure 搜尋服務的 [搜尋文件](https://docs.microsoft.com/rest/api/searchservice/Search-Documents) 要求所指定。 要求會包含 GET 命令、路徑和查詢參數，這些會對服務通知要求是什麼，以及如何制訂回應。
 
 > [!NOTE]
-> 有效的要求包含一些項目，例如服務 URL 及路徑、HTTP 動詞命令、`api-version` 等。 為求簡單明瞭，我們縮減此範例，只突顯與分頁相關的語法。 如需要求語法的詳細資訊，請參閱 [Azure 搜尋服務 REST API](http://msdn.microsoft.com/library/azure/dn798935.aspx) 文件。
+> 有效的要求包含一些項目，例如服務 URL 及路徑、HTTP 動詞命令、`api-version` 等。 為求簡單明瞭，我們縮減此範例，只突顯與分頁相關的語法。 如需要求語法的詳細資訊，請參閱 [Azure 搜尋服務 REST API](https://docs.microsoft.com/rest/api/searchservice) 文件。
 > 
 > 
 
@@ -64,7 +60,7 @@ ms.lasthandoff: 10/11/2017
 
 不能直接搜尋影像和媒體檔案，且應儲存在其他儲存體平台，例如 Azure Blob 儲存體，以降低成本。 在索引和文件中，請定義儲存外部內容 URL 位址的欄位。 然後您可以使用此欄位做為影像參考。 此影像的 URL 應位於此文件中。
 
-若要擷取 **onClick** 事件的產品描述頁面，請使用 [查閱文件](http://msdn.microsoft.com/library/azure/dn798929.aspx) 來傳入此文件的金鑰以進行擷取。 此金鑰的資料類型為 `Edm.String`。 在此範例中為 *246810*。 
+若要擷取 **onClick** 事件的產品描述頁面，請使用 [查閱文件](https://docs.microsoft.com/rest/api/searchservice/Lookup-Document) 來傳入此文件的金鑰以進行擷取。 此金鑰的資料類型為 `Edm.String`。 在此範例中為 *246810*。 
 
         GET /indexes/onlineCatalog/docs/246810
 
@@ -86,7 +82,7 @@ ms.lasthandoff: 10/11/2017
  ![][5]
 
 > [!NOTE]
-> 雖然預設評分對大多數案例都已足夠，但我們建議改用自訂評分設定檔來建立相關性。 自訂評分設定檔給您提升項目的方式，這會對您的企業更有助益。 如需詳細資訊，請參閱 [新增評分設定檔](http://msdn.microsoft.com/library/azure/dn798928.aspx) 。 
+> 雖然預設評分對大多數案例都已足夠，但我們建議改用自訂評分設定檔來建立相關性。 自訂評分設定檔給您提升項目的方式，這會對您的企業更有助益。 如需詳細資訊，請參閱 [新增評分設定檔](https://docs.microsoft.com/rest/api/searchservice/Add-scoring-profiles-to-a-search-index) 。 
 > 
 > 
 
@@ -100,13 +96,12 @@ ms.lasthandoff: 10/11/2017
 
         GET /indexes/onlineCatalog/docs?$filter=brandname eq ‘Microsoft’ and category eq ‘Games’
 
-如需 `$filter` 運算式的詳細資訊，請參閱[搜尋文件 (Azure 搜尋服務 API)](http://msdn.microsoft.com/library/azure/dn798927.aspx)。
+如需 `$filter` 運算式的詳細資訊，請參閱[搜尋文件 (Azure 搜尋服務 API)](https://docs.microsoft.com/rest/api/searchservice/Search-Documents)。
 
 ## <a name="see-also"></a>另請參閱
-* [Azure 搜尋服務 REST API](http://msdn.microsoft.com/library/azure/dn798935.aspx)
-* [索引作業](http://msdn.microsoft.com/library/azure/dn798918.aspx)
-* [文件作業](http://msdn.microsoft.com/library/azure/dn800962.aspx)
-* [Azure 搜尋服務的影片和教學課程](search-video-demo-tutorial-list.md)
+* [Azure 搜尋服務 REST API](https://docs.microsoft.com/rest/api/searchservice)
+* [索引作業](https://docs.microsoft.com/rest/api/searchservice/Index-operations)
+* [文件作業](https://docs.microsoft.com/rest/api/searchservice/Document-operations)
 * [Azure 搜尋服務中的多面向導覽](search-faceted-navigation.md)
 
 <!--Image references-->

@@ -1,26 +1,20 @@
 ---
-title: "機器學習服務概觀 - Azure HDInsight | Microsoft Docs"
-description: "描述 HDInsight 中的機器學習服務選項。"
+title: 機器學習服務概觀 - Azure HDInsight
+description: 描述 HDInsight 中的機器學習服務選項。
 services: hdinsight
-documentationcenter: 
-tags: azure-portal
-author: nitinme
-manager: jhubbard
-editor: cgronlun
-ms.assetid: 
+author: jasonwhowell
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 01/19/2018
-ms.author: nitinme
-ms.openlocfilehash: ff99a7a60573cad5e6dd30d4ca48903423e9f87f
-ms.sourcegitcommit: 1fbaa2ccda2fb826c74755d42a31835d9d30e05f
+ms.author: jasonh
+ms.openlocfilehash: 10d4056ea9d78bd56710b7b5d67297b90232cf0b
+ms.sourcegitcommit: f6e2a03076679d53b550a24828141c4fb978dcf9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/22/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43107726"
 ---
 # <a name="machine-learning-on-hdinsight"></a>HDInsight 上的機器學習服務
 
@@ -28,19 +22,19 @@ HDInsight 能以巨量資料實現機器學習服務，有能力從大量 (PB，
 
 ## <a name="sparkml-and-mllib"></a>SparkML 與 MLlib
 
-[HDInsight Spark](spark/apache-spark-overview.md) 是 Azure 代管的 [Spark](http://spark.apache.org/) 產品方案，是一個支援記憶體內部處理來大幅提升巨量資料分析效能的統一、開放原始碼的平行資料處理架構。 Spark 處理引擎是專為速度、易用性及精密分析打造的產品。 Spark 的記憶體內分散式計算功能，使其成為機器學習和圖表計算中所使用反覆演算法的絕佳選擇。 有兩個可將演算法模型化功能導入此分散式環境的可調整機器學習服務程式庫：MLlib 與 SparkML。 MLlib 包含建置在 RDD 上的原始 API。 SparkML 是較新的套件，可提供建置在 DataFrames 上的較高階 API 來建構 ML 管線。 SparkML 尚未支援 MLlib 的所有功能，但逐漸取代 MLlib 成為 Spark 的標準機器學習程式庫。
+[HDInsight Spark](spark/apache-spark-overview.md) 是 Azure 代管的 [Spark](http://spark.apache.org/) 供應項目，是一個支援記憶體內部處理來大幅提升巨量資料分析效能的統一、開放原始碼的平行資料處理架構。 Spark 處理引擎是專為速度、易用性及精密分析打造的產品。 Spark 的記憶體內分散式計算功能，使其成為機器學習和圖表計算中所使用反覆演算法的絕佳選擇。 有兩個可將演算法模型化功能導入此分散式環境的可調整機器學習服務程式庫：MLlib 與 SparkML。 MLlib 包含建置在 RDD 上的原始 API。 SparkML 是較新的套件，可提供建置在 DataFrames 上的較高階 API 來建構 ML 管線。 SparkML 尚未支援 MLlib 的所有功能，但逐漸取代 MLlib 成為 Spark 的標準機器學習程式庫。
 
 適用於 Apache Spark 的 Microsoft Machine Learning 程式庫為 [MMLSpark](https://github.com/Azure/mmlspark)。 此程式庫是設計來提升資料科學家在 Spark 上的生產力，不僅可提高實驗率，還可在非常大型的資料集上運用最先進的機器學習服務技術，包括深度學習。 建立可調整的 ML 模型時 (例如，編製索引字串)，MMLSpark 會在 SparkML 的低階 API 上提供一個層級，將資料強制轉型成機器學習服務演算法預期的版面配置，並組合功能向量。 MMLSpark 程式庫簡化了這些流程，以及在 PySpark 中建立模型的常見工作。
 
 ## <a name="r"></a>R
 
-[R](https://www.r-project.org/) 目前是全球最常用的統計程式設計語言， 是開放原始碼的資料視覺效果工具，社群使用者超過 250 萬人，而且還在持續成長。 憑藉其蓬勃發展的使用者群，加上提供超過 8,000 個封裝，許多需要機器學習服務的公司可能會選擇使用 R。 您可以使用現成可與大量資料集和模型搭配使用的 R 伺服器來建立 HDInsight 叢集。 此功能可為資料科學家和統計人員提供一個熟悉的 R 介面，此介面可視需要透過 HDInsight 進行調整，而不會產生叢集設定和維護的額外負荷。
+[R](https://www.r-project.org/) 目前是全球最常用的統計程式設計語言， 是開放原始碼的資料視覺效果工具，社群使用者超過 250 萬人，而且還在持續成長。 憑藉其蓬勃發展的使用者群，加上提供超過 8,000 個封裝，許多需要機器學習服務的公司可能會選擇使用 R。 您可以使用現成可與大量資料集和模型搭配使用的 ML 服務來建立 HDInsight 叢集。 此功能可為資料科學家和統計人員提供一個熟悉的 R 介面，此介面可視需要透過 HDInsight 進行調整，而不會產生叢集設定和維護的額外負荷。
 
 ![使用 R 伺服器進行預測訓練](./media/hdinsight-machine-learning-overview/r-training.png)
 
 叢集的邊緣節點提供便利的地方，以便連線到叢集以及執行 R 指令碼。  您也可以選擇透過使用 ScaleR 的 Hadoop Map Reduce 或 Spark 計算內容，跨叢集的節點執行 R 指令碼。
 
-在具有 Spark 的 HDInsight 上使用 R 伺服器，您可以使用 Spark 計算內容，在叢集的節點之間進行並行訓練。 您可以視需要透過並行方式使用所有可用核心，在邊緣節點上直接執行 R 指令碼。 或者，您可以從邊緣節點執行程式碼，啟動分散在叢集中所有節點上的處理作業。 如有需要，具有 Spark 之 HDInsight 上的 R 伺服器也能以開放原始碼 R 封裝達到平行處理功能。
+在具有 Spark 的 HDInsight 上使用 ML 服務，您可以使用 Spark 計算內容，在叢集的節點之間進行並行訓練。 您可以視需要透過並行方式使用所有可用核心，在邊緣節點上直接執行 R 指令碼。 或者，您可以從邊緣節點執行程式碼，啟動分散在叢集中所有節點上的處理作業。 如有需要，具有 Spark 的 HDInsight 上 ML 服務也能以開放原始碼 R 套件達到平行處理功能。
 
 ## <a name="azure-machine-learning-and-hive"></a>Azure Machine Learning 和 Hive
 

@@ -10,19 +10,20 @@ ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 01/10/2018
 ms.author: douglasl
 robots: noindex
-ms.openlocfilehash: 4cf77a2267cd2a49a873c1a1c742dc4205cad29a
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: cbd51c48ec5b1801062e7aaf0b77e7b347018b31
+ms.sourcegitcommit: 0c490934b5596204d175be89af6b45aafc7ff730
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 06/27/2018
+ms.locfileid: "37051860"
 ---
 # <a name="troubleshoot-data-factory-issues"></a>資料處理站的疑難排解
 > [!NOTE]
-> 本文適用於第 1 版 Azure Data Factory (正式運作版)。 
+> 本文適用於 Azure Data Factory 的第 1 版。 
 
 這篇文章提供使用 Azure Data Factory 時的問題疑難排解提示。 這篇文章並未列出使用服務時的所有可能問題，但是涵蓋部分問題和一般疑難排解提示。   
 
@@ -34,7 +35,7 @@ ms.lasthandoff: 03/23/2018
 2. 使用下列命令來登入您的 Azure 帳戶。
 
     ```powershell
-    Login-AzureRmAccount
+    Connect-AzureRmAccount
     ```
 3. 執行下列命令以註冊 Azure Data Factory 提供者。
 
@@ -45,7 +46,7 @@ ms.lasthandoff: 03/23/2018
 ### <a name="problem-unauthorized-error-when-running-a-data-factory-cmdlet"></a>問題：執行 Data Factory Cmdlet 時發生未授權錯誤
 您在 Azure PowerShell 中可能未使用正確的 Azure 帳戶或訂用帳戶。 請使用下列 Cmdlet 來選取要用於 Azure PowerShell 的正確 Azure 帳戶和訂用帳戶帳戶。
 
-1. Login-AzureRmAccount - 使用正確的使用者識別碼和密碼
+1. Connect-AzureRmAccount：使用正確的使用者識別碼和密碼
 2. Get-AzureRmSubscription - 檢視帳戶的所有訂用帳戶。
 3. Select-AzureRmSubscription &lt;訂用帳戶名稱&gt; - 選取正確的訂用帳戶。 請使用您在 Azure 入口網站上用來建立 Data Factory 的相同帳戶。
 

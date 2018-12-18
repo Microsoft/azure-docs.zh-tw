@@ -1,0 +1,52 @@
+### YamlMime:YamlDocument
+ms.openlocfilehash: 153c3884d3802259fafac82650d79534472d7641
+ms.sourcegitcommit: 30c7f9994cf6fcdfb580616ea8d6d251364c0cd1
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/18/2018
+ms.locfileid: "40209049"
+documentType: LandingData
+title: Azure Active Directory 使用者管理文件
+metadata:
+  document_id: 
+  title: Azure Active Directory 使用者、群組、角色與授權文件
+  description: 了解如何使用使用者、群組、角色和授權來管理租用戶中 Azure 雲端服務的驗證。
+  services: active-directory
+  ms.component: users-groups-roles
+  author: curtand
+  manager: mtillman
+  ms.service: active-directory
+  ms.topic: landing-page
+  ms.date: 08/12/2018
+  ms.author: curtand
+abstract:
+  description: 類似群組和系統管理員角色指派等的 Azure AD 使用者管理工具，可協助您更快速地完成常用的工作，並因應成長。 您可以將授權或 SaaS 應用程式的存取權指派給群組而非個人，或委派權限以分散 Azure AD 身分識別管理的額外負荷。
+sections:
+- title: 5 分鐘快速入門
+  items:
+  - type: paragraph
+    text: 了解如何在 Azure Active Directory 中使用管理工具
+  - type: list
+    style: unordered
+    items:
+    - html: <a href="/azure/active-directory/fundamentals/add-users-azure-active-directory">在 Azure AD 中新增使用者</a>
+    - html: <a href="/azure/active-directory/fundamentals/license-users-groups">將授權指派給使用者</a>
+    - html: <a href="/azure/active-directory/fundamentals/active-directory-get-started-premium">註冊 Azure AD Premium</a>
+    - html: <a href="/azure/active-directory/users-groups-roles/groups-quickstart-expiration">針對使用者建立的群組設定到期日</a>
+    - html: <a href="/azure/active-directory/users-groups-roles/groups-quickstart-naming-policy">針對使用者建立的群組設定命名原則</a>
+- title: 逐步教學課程
+  items:
+  - type: paragraph
+    text: 了解如何在 Azure Active Directory 中以動態方式填入群組
+  - type: list
+    style: unordered
+    items:
+    - html: <a href="/azure/active-directory/users-groups-roles/groups-dynamic-tutorial">建立以動態方式填入的群組</a>
+- title: 參考
+  items:
+  - type: list
+    style: cards
+    className: cardsD
+    items:
+    - title: 參考連結
+      html: <p><a href="https://docs.microsoft.com/powershell/module/azuread/?view=azureadps-2.0">Azure AD PowerShell Cmdlet</a></p>

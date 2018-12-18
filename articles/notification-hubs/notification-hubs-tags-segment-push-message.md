@@ -1,24 +1,24 @@
 ---
-title: "路由與標記運算式"
-description: "本主題說明 Azure 通知中樞的路由與標記運算式。"
+title: 路由與標記運算式
+description: 本主題說明 Azure 通知中樞的路由與標記運算式。
 services: notification-hubs
 documentationcenter: .net
-author: ysxu
-manager: erikre
-editor: 
+author: dimazaid
+manager: kpiteira
+editor: spelluru
 ms.assetid: 0fffb3bb-8ed8-4e0f-89e8-0de24a47f644
 ms.service: notification-hubs
 ms.workload: mobile
 ms.tgt_pltfrm: mobile-multiple
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 06/29/2016
-ms.author: yuaxu
-ms.openlocfilehash: c3266698a6077e85806286fadf1f48b7194a4d88
-ms.sourcegitcommit: c765cbd9c379ed00f1e2394374efa8e1915321b9
+ms.date: 04/14/2018
+ms.author: dimazaid
+ms.openlocfilehash: e08fca0b6b57d654f2b2ff7b935f38d8c517487b
+ms.sourcegitcommit: e221d1a2e0fb245610a6dd886e7e74c362f06467
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/28/2018
+ms.lasthandoff: 05/07/2018
 ---
 # <a name="routing-and-tag-expressions"></a>路由與標記運算式
 ## <a name="overview"></a>概觀
@@ -33,7 +33,7 @@ ms.lasthandoff: 02/28/2018
 3. **標記運算式**：所有標記設定符合指定運算式的註冊都會收到通知。
 
 ## <a name="tags"></a>標記
-標記可以是任何字串，包括英數字元及下列非英數字元，且長度不得超過 120 個字元：‘_’、‘@’、‘#’、‘.’、‘:’、‘-’。 下列範例示範的應用程式可以讓您從中接收有關特定音樂群組的快顯通知。 在此案例中，一個簡單路由通知的方法是為註冊加上標記，以指出不同的樂團，如下列圖片所示。
+標記可以是任何字串，包括英數字元及下列非英數字元，且長度不得超過 120 個字元：‘_’、‘@’、‘#’、‘.’、‘:’、‘-’。 下列範例示範的應用程式可以讓您從中接收有關特定音樂群組的快顯通知。 在此案例中，一個簡單路由通知的方法是為註冊加上標記，以指出不同的樂團，如下列圖片所示：
 
 ![](./media/notification-hubs-routing-tag-expressions/notification-hubs-tags.png)
 
@@ -69,11 +69,11 @@ ms.lasthandoff: 02/28/2018
 如何使用標記傳送到您所關注之群組的完整逐步教學課程，請參閱 [即時新聞](notification-hubs-windows-notification-dotnet-push-xplat-segmented-wns.md)。
 
 ## <a name="using-tags-to-target-users"></a>使用標記指定使用者
-另一種使用標記的方法，是指定特定使用者的所有裝置。 註冊可以加上包含使用者識別碼的特殊標記，如圖所示：
+另一種使用標記的方法，是指定特定使用者的所有裝置。 註冊可以加上包含使用者識別碼的特殊標記，如圖所示：註冊可以加上包含使用者識別碼的特殊標記，如圖所示：
 
 ![](./media/notification-hubs-routing-tag-expressions/notification-hubs-tags3.png)
 
-在此圖片中，標記 uid:Alice 的訊息會傳送給所有標記 uid:Alice 的註冊，也就是 Alice 的所有裝置。
+在此圖片中，標記 uid: Alice 的訊息會傳送給所有標記 uid:Alice 的註冊，也就是 Alice 的所有裝置。
 
 ## <a name="tag-expressions"></a>標記運算式
 在有些情況下，通知的目標是一組註冊，而這些註冊又不是以單一標記識別，而須透過標記上的布林運算式。

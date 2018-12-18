@@ -1,12 +1,12 @@
 ---
-title: "使用 Azure Cloud Shell 視窗 | Microsoft Docs"
-description: "如何使用 Azure Cloud Shell 視窗的概觀。"
+title: 使用 Azure Cloud Shell 視窗 | Microsoft Docs
+description: 如何使用 Azure Cloud Shell 視窗的概觀。
 services: azure
-documentationcenter: 
+documentationcenter: ''
 author: jluk
 manager: timlt
 tags: azure-resource-manager
-ms.assetid: 
+ms.assetid: ''
 ms.service: azure
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 9d317dabf4a5cca13308c50a10349af0e72e1b7e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 02/01/2018
+ms.locfileid: "28919989"
 ---
 # <a name="using-the-azure-cloud-shell-window"></a>使用 Azure Cloud Shell 視窗
 

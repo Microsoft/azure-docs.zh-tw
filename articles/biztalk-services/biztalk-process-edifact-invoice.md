@@ -1,11 +1,11 @@
 ---
-title: "教學課程：使用 Azure BizTalk 服務處理 EDIFACT 發票 | Microsoft Docs"
-description: "如何建立並設定 Box 連接器或 API 應用程式，並在 Azure App Service 的邏輯應用程式中使用它"
+title: 教學課程：使用 Azure BizTalk 服務處理 EDIFACT 發票 | Microsoft Docs
+description: 如何建立並設定 Box 連接器或 API 應用程式，並在 Azure App Service 的邏輯應用程式中使用它
 services: biztalk-services
 documentationcenter: .net,nodejs,java
 author: msftman
 manager: erikre
-editor: 
+editor: ''
 ms.assetid: 7e0b93fa-3e2b-4a9c-89ef-abf1d3aa8fa9
 ms.service: biztalk-services
 ms.devlang: multiple
@@ -19,6 +19,7 @@ ms.sourcegitcommit: e266df9f97d04acfc4a843770fadfd8edf4fa2b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 12/11/2017
+ms.locfileid: "26737545"
 ---
 # <a name="tutorial-process-edifact-invoices-using-azure-biztalk-services"></a>教學課程：使用 Azure BizTalk 服務處理 EDIFACT 發票
 
@@ -204,8 +205,8 @@ ms.lasthandoff: 12/11/2017
    ```
 8. 更新 EDIBridge.config 檔案以納入設定詳細資料
    
-   * 在 [傳輸設定] &gt; [傳輸類型] *<behaviors>*下，提供與 BizTalk 服務訂用帳戶相關聯的 ACS 命名空間和金鑰。
-   * 在 [傳輸設定] &gt; [傳輸類型] *<client>*下，提供 EDI 傳送協議部署所在的端點。
+   * 在 [傳輸設定] &gt; [傳輸類型] *<behaviors>* 下，提供與 BizTalk 服務訂用帳戶相關聯的 ACS 命名空間和金鑰。
+   * 在 [傳輸設定] &gt; [傳輸類型] *<client>* 下，提供 EDI 傳送協議部署所在的端點。
    
    儲存變更並關閉設定檔。
 9. 從 [工具箱] 中按一下 [連接器]，然後聯結 [ProcessInvoiceBridge] 和 [EDIBridge] 元件。 選取連接器，然後在 [屬性] 方塊中將 [篩選條件] 設定為 [全部符合]。 這可確保 EAI 橋接器處理的所有訊息都會路由傳送至 EDI 橋接器。

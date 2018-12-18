@@ -1,223 +1,240 @@
+items:
 - name: Azure API 管理文件
   href: index.yml
 - name: 概觀
   items:
-    - name: 關於 API 管理
-      href: api-management-key-concepts.md
+  - name: 關於 API 管理
+    href: api-management-key-concepts.md
 - name: 快速入門
-  expanded: true
   items:
-    - name: 建立執行個體 - 入口網站
-      href: get-started-create-service-instance.md
-    - name: 建立執行個體 - PowerShell
-      href: powershell-create-service-instance.md
+  - name: 建立執行個體 - 入口網站
+    href: get-started-create-service-instance.md
+  - name: 建立執行個體 - PowerShell
+    href: powershell-create-service-instance.md
+  expanded: true
 - name: 教學課程
   items:
-    - name: 1 - 匯入第一個 API
-      href: import-and-publish.md
-    - name: 2 - 建立和發佈產品
-      href: api-management-howto-add-products.md
-    - name: 3 - 模擬 API 回應
-      href: mock-api-responses.md
-    - name: 4 - 保護您的 API
-      href: transform-api.md
-    - name: 5 - 監視已發佈的 API
-      href: api-management-howto-use-azure-monitor.md
-    - name: 6 - 對 API 進行偵錯
-      href: api-management-howto-api-inspector.md
-    - name: 7 - 新增修訂
-      href: api-management-get-started-revise-api.md
-    - name: 8 - 新增多個版本
-      href: api-management-get-started-publish-versions.md
-    - name: 9 - 自訂開發人員入口網站
-      href: api-management-customize-styles.md
+  - name: 1 - 匯入第一個 API
+    href: import-and-publish.md
+  - name: 2 - 建立和發佈產品
+    href: api-management-howto-add-products.md
+  - name: 3 - 模擬 API 回應
+    href: mock-api-responses.md
+  - name: 4 - 保護您的 API
+    href: transform-api.md
+  - name: 5 - 監視已發佈的 API
+    href: api-management-howto-use-azure-monitor.md
+  - name: 6 - 對 API 進行偵錯
+    href: api-management-howto-api-inspector.md
+  - name: 7 - 新增修訂
+    href: api-management-get-started-revise-api.md
+  - name: 8 - 新增多個版本
+    href: api-management-get-started-publish-versions.md
+  - name: 9 - 自訂開發人員入口網站
+    href: api-management-customize-styles.md
 - name: 範例
   items:
-    - name: 原則
-      href: policy-samples.md
-    - name: Azure PowerShell
-      href: powershell-samples.md
+  - name: 原則
+    href: policy-samples.md
+  - name: Azure PowerShell
+    href: powershell-samples.md
 - name: 概念
   items:
-    - name: 術語
-      href: api-management-terminology.md
-    - name: 原則
-      items:
-        - name: 概觀
-          href: api-management-howto-policies.md
-        - name: 原則參考索引
-          href: api-management-policies.md
-    - name: 使用自動化管理
-      href: automation-manage-api-management.md
-    - name: 錯誤處理
-      href: api-management-error-handling-policies.md
-    - name: API 匯出限制
-      href: api-management-api-import-restrictions.md
+  - name: 術語
+    href: api-management-terminology.md
+  - name: 原則
+    items:
+    - name: 概觀
+      href: api-management-howto-policies.md
+    - name: 原則參考索引
+      href: api-management-policies.md
+  - name: 使用自動化管理
+    href: automation-manage-api-management.md
+  - name: 錯誤處理
+    href: api-management-error-handling-policies.md
+  - name: API 匯出限制
+    href: api-management-api-import-restrictions.md
 - name: 使用說明指南
   items:
-    - name: '定義 API '
+  - name: '定義 API '
+    items:
+    - name: 手動新增 API
+      href: add-api-manually.md
+    - name: 匯入 OpenAPI 規格
+      href: import-api-from-oas.md
+    - name: 匯入 SOAP API
+      href: import-soap-api.md
+    - name: 匯入 SOAP API 並轉換為 REST
+      href: restify-soap-api.md
+    - name: 匯入 API 應用程式
+      href: import-api-app-as-api.md
+    - name: 匯入函數應用程式
+      href: import-function-app-as-api.md
+    - name: 匯入邏輯應用程式
+      href: import-logic-app-as-api.md
+    - name: 匯入 Service Fabric 應用程式
+      href: ../service-fabric/service-fabric-tutorial-deploy-api-management.md
+    - name: 編輯 API
+      href: edit-api.md
+  - name: 佈建和調整
+    items:
+    - name: 容量計量
+      href: api-management-capacity.md
+    - name: 升級和調整規模
+      href: upgrade-and-scale.md
+    - name: 設定自動調整
+      href: api-management-howto-autoscale.md
+    - name: 設定自訂網域
+      href: configure-custom-domain.md
+  - name: 快取
+    items:
+    - name: 新增快取以改善效能
+      href: api-management-howto-cache.md
+  - name: 保護您的後端
+    items:
+    - name: 以 Azure AD 保護您的 API
+      href: api-management-howto-protect-backend-with-aad.md
+    - name: 連接到虛擬網路
+      href: api-management-using-with-vnet.md
+    - name: 連接到內部虛擬網路
+      href: api-management-using-with-internal-vnet.md
+    - name: 在內部 VNET 中整合應用程式閘道
+      href: api-management-howto-integrate-internal-vnet-appgateway.md
+    - name: 相互憑證驗證
+      href: api-management-howto-mutual-certificates.md
+    - name: 管理 CA 憑證
+      href: api-management-howto-ca-certificates.md
+    - name: 管理通訊協定和加密
+      href: api-management-howto-manage-protocols-ciphers.md
+  - name: 自訂開發人員經驗
+    items:
+    - name: 修改頁面內容和版面配置
+      href: api-management-modify-content-layout.md
+    - name: 使用範本自訂系統頁面
+      href: api-management-developer-portal-templates.md
+    - name: 使用 Azure AD 進行驗證
+      href: api-management-howto-aad.md
+    - name: 使用 Azure AD B2C 進行驗證
+      href: api-management-howto-aad-b2c.md
+    - name: 委派的驗證
+      href: api-management-howto-setup-delegation.md
+    - name: 電子郵件通知及範本
+      href: api-management-howto-configure-notifications.md
+    - name: 啟用主控台 OAuth 支援
+      href: api-management-howto-oauth2.md
+  - name: 定義原則
+    items:
+    - name: 設定或編輯原則
+      href: set-edit-policies.md
+    - name: 原則運算式
+      href: api-management-policy-expressions.md
+    - name: 自訂快取
+      href: api-management-sample-cache-by-key.md
+    - name: 進階監視
+      href: api-management-log-to-eventhub-sample.md
+    - name: 進階要求節流
+      href: api-management-sample-flexible-throttling.md
+    - name: 使用外部服務
+      href: api-management-sample-send-request.md
+    - name: 使用屬性管理密碼
+      href: api-management-howto-properties.md
+    - name: 使用用戶端憑證驗證保護 API
+      href: api-management-howto-mutual-certificates-for-clients.md
+    - name: 存取限制原則
+      href: api-management-access-restriction-policies.md
+    - name: 進階原則
+      href: api-management-advanced-policies.md
+    - name: 驗證原則
+      href: api-management-authentication-policies.md
+    - name: 快取原則
+      href: api-management-caching-policies.md
+    - name: 跨網域原則
+      href: api-management-cross-domain-policies.md
+    - name: 轉換原則
+      href: api-management-transformation-policies.md
+  - name: 範本參考
+    items:
+    - name: 範本
+      href: api-management-developer-portal-templates-reference.md
+    - name: API
+      href: api-management-api-templates.md
+    - name: 產品
+      href: api-management-product-templates.md
+    - name: '[應用程式]'
+      href: api-management-application-templates.md
+    - name: 問題
+      href: api-management-issue-templates.md
+    - name: 使用者設定檔
+      href: api-management-user-profile-templates.md
+    - name: 頁面
+      href: api-management-page-templates.md
+    - name: 範本資源
+      href: api-management-template-resources.md
+  - name: 資料模型參考
+    href: api-management-template-data-model-reference.md
+  - name: 頁面控制項
+    href: api-management-page-controls.md
+  - name: 生產管理
+    items:
+    - name: 管理群組
+      href: api-management-howto-create-groups.md
+    - name: 部署至多個 Azure 區域
+      href: api-management-howto-deploy-multi-region.md
+    - name: 將事件記錄到 Azure 事件中樞
+      href: api-management-howto-log-event-hubs.md
+    - name: 使用 Azure Application Insights 記錄要求
+      href: api-management-howto-app-insights.md
+    - name: 使用備份/還原設定 DR
+      href: api-management-howto-disaster-recovery-backup-restore.md
+    - name: 管理使用者帳戶
+      href: api-management-howto-create-or-invite-developers.md
+    - name: 使用 Git 進行設定
+      href: api-management-configuration-repository-git.md
+    - name: 使用角色型存取控制
+      href: api-management-role-based-access-control.md
+    - name: 使用適用於 Azure 資源的受控識別
+      href: api-management-howto-use-managed-service-identity.md
+    - name: 與 Service Fabric 整合
       items:
-        - name: 手動新增 API
-          href: add-api-manually.md
-        - name: 匯入 OpenAPI 規格
-          href: import-api-from-oas.md
-        - name: 匯入 SOAP API
-          href: import-soap-api.md
-        - name: 匯入 SOAP API 並轉換為 REST
-          href: restify-soap-api.md
-        - name: 匯入 API 應用程式
-          href: import-api-app-as-api.md
-        - name: 匯入函數應用程式
-          href: import-function-app-as-api.md
-        - name: 匯入邏輯應用程式
-          href: import-logic-app-as-api.md
-        - name: 匯入 Service Fabric 應用程式
-          href: ../service-fabric/service-fabric-tutorial-deploy-api-management.md
-        - name: 編輯 API
-          href: edit-api.md
-    - name: 佈建和調整
-      items:
-        - name: 升級和調整規模
-          href: upgrade-and-scale.md
-        - name: 設定自訂網域
-          href: configure-custom-domain.md
-    - name: 快取
-      items:
-        - name: 新增快取以改善效能
-          href: api-management-howto-cache.md
-    - name: 保護您的後端
-      items:
-        - name: 以 Azure AD 保護您的 API
-          href: api-management-howto-protect-backend-with-aad.md
-        - name: 連接到虛擬網路
-          href: api-management-using-with-vnet.md
-        - name: 連接到內部虛擬網路
-          href: api-management-using-with-internal-vnet.md
-        - name: 在內部 VNET 中整合應用程式閘道
-          href: api-management-howto-integrate-internal-vnet-appgateway.md
-        - name: 相互憑證驗證
-          href: api-management-howto-mutual-certificates.md
-    - name: 自訂開發人員經驗
-      items:
-        - name: 修改頁面內容和版面配置
-          href: api-management-modify-content-layout.md
-        - name: 使用範本自訂系統頁面
-          href: api-management-developer-portal-templates.md
-        - name: 使用 Azure AD 進行驗證
-          href: api-management-howto-aad.md
-        - name: 使用 Azure AD B2C 進行驗證
-          href: api-management-howto-aad-b2c.md
-        - name: 委派的驗證
-          href: api-management-howto-setup-delegation.md
-        - name: 電子郵件通知及範本
-          href: api-management-howto-configure-notifications.md
-        - name: 啟用主控台 OAuth 支援
-          href: api-management-howto-oauth2.md
-    - name: 定義原則
-      items:
-        - name: 設定或編輯原則
-          href: set-edit-policies.md
-        - name: 原則運算式
-          href: api-management-policy-expressions.md
-        - name: 自訂快取
-          href: api-management-sample-cache-by-key.md
-        - name: 進階監視
-          href: api-management-log-to-eventhub-sample.md
-        - name: 進階要求節流
-          href: api-management-sample-flexible-throttling.md
-        - name: 使用外部服務
-          href: api-management-sample-send-request.md
-        - name: 使用屬性管理密碼
-          href: api-management-howto-properties.md
-        - name: 使用用戶端憑證驗證保護 API
-          href: api-management-howto-mutual-certificates-for-clients.md
-        - name: 存取限制原則
-          href: api-management-access-restriction-policies.md
-        - name: 進階原則
-          href: api-management-advanced-policies.md
-        - name: 驗證原則
-          href: api-management-authentication-policies.md
-        - name: 快取原則
-          href: api-management-caching-policies.md
-        - name: 跨網域原則
-          href: api-management-cross-domain-policies.md
-        - name: 轉換原則
-          href: api-management-transformation-policies.md
-    - name: 範本參考
-      items:
-        - name: 範本
-          href: api-management-developer-portal-templates-reference.md
-        - name: API
-          href: api-management-api-templates.md
-        - name: 產品
-          href: api-management-product-templates.md
-        - name: '[應用程式]'
-          href: api-management-application-templates.md
-        - name: 問題
-          href: api-management-issue-templates.md
-        - name: 使用者設定檔
-          href: api-management-user-profile-templates.md
-        - name: 頁面
-          href: api-management-page-templates.md
-        - name: 範本資源
-          href: api-management-template-resources.md
-    - name: 資料模型參考
-      href: api-management-template-data-model-reference.md
-    - name: 頁面控制項
-      href: api-management-page-controls.md
-    - name: 生產管理
-      items:
-        - name: 管理群組
-          href: api-management-howto-create-groups.md
-        - name: 部署至多個 Azure 區域
-          href: api-management-howto-deploy-multi-region.md
-        - name: 將事件記錄到 Azure 事件中樞
-          href: api-management-howto-log-event-hubs.md
-        - name: 使用備份/還原設定 DR
-          href: api-management-howto-disaster-recovery-backup-restore.md
-        - name: 管理使用者帳戶
-          href: api-management-howto-create-or-invite-developers.md
-        - name: 使用 Git 進行設定
-          href: api-management-configuration-repository-git.md
-        - name: 使用角色型存取控制
-          href: api-management-role-based-access-control.md
-        - name: 使用受控服務識別
-          href: api-management-howto-use-managed-service-identity.md
-        - name: 與 Service Fabric 整合
-          items:
-            - name: 概觀
-              href: ../service-fabric/service-fabric-api-management-overview.md
-            - name: 教學課程
-              href: ../service-fabric/service-fabric-tutorial-deploy-api-management.md
+      - name: 概觀
+        href: ../service-fabric/service-fabric-api-management-overview.md
+      - name: 教學課程
+        href: ../service-fabric/service-fabric-tutorial-deploy-api-management.md
 - name: 參考
   items:
-    - name: Azure PowerShell
-      href: /powershell/azure/overview
-    - name: REST
-      href: /rest/api/apimanagement/
-    - name: REST (原始)
-      href: /rest/api/apimanagement/ApiManagementREST/api-management-REST
+  - name: Azure PowerShell
+    href: /powershell/azure/overview
+  - name: REST
+    href: /rest/api/apimanagement/
+  - name: REST (原始)
+    href: /rest/api/apimanagement/ApiManagementREST/api-management-REST
 - name: 資源
   items:
-    - name: 常見問題集
-      href: api-management-faq.md
-    - name: 區域可用性
-      href: 'https://azure.microsoft.com/regions/services/'
-    - name: API 設計指引
-      href: 'https://docs.microsoft.com/azure/architecture/best-practices/api-design?toc=%2Fazure%2Fapi-management%2Ftoc.json'
-    - name: API 實作指引
-      href: 'https://docs.microsoft.com/azure/architecture/best-practices/api-implementation?toc=%2Fazure%2Fapi-management%2Ftoc.json'
-    - name: MSDN 論壇
-      href: 'https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=azureapimgmt'
-    - name: 堆疊溢位
-      href: 'http://stackoverflow.com/questions/tagged/azure-api-management'
-    - name: 影片
-      href: 'https://azure.microsoft.com/documentation/videos/index/?services=api-management'
-    - name: 藍圖
-      href: 'http://aka.ms/apimroadmap'
-    - name: 適用於 API 管理的 Power BI 解決方案範本
-      href: 'http://aka.ms/apimpbi'
-    - name: 部落格
-      href: 'http://aka.ms/apimblog'
-    - name: 功能要求
-      href: 'http://aka.ms/apimwish'
+  - name: 常見問題集
+    href: api-management-faq.md
+  - name: 區域可用性
+    href: https://azure.microsoft.com/regions/services/
+  - name: API 設計指引
+    href: https://docs.microsoft.com/azure/architecture/best-practices/api-design?toc=%2Fazure%2Fapi-management%2Ftoc.json
+  - name: API 實作指引
+    href: https://docs.microsoft.com/azure/architecture/best-practices/api-implementation?toc=%2Fazure%2Fapi-management%2Ftoc.json
+  - name: MSDN 論壇
+    href: https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=azureapimgmt
+  - name: 堆疊溢位
+    href: http://stackoverflow.com/questions/tagged/azure-api-management
+  - name: 影片
+    href: https://azure.microsoft.com/documentation/videos/index/?services=api-management
+  - name: 藍圖
+    href: http://aka.ms/apimroadmap
+  - name: 適用於 API 管理的 Power BI 解決方案範本
+    href: http://aka.ms/apimpbi
+  - name: 部落格
+    href: http://aka.ms/apimblog
+  - name: 功能要求
+    href: http://aka.ms/apimwish
+ms.openlocfilehash: bbd98974e763ae98d7f754e9d8e690d0a8c62870
+ms.sourcegitcommit: 1aacea6bf8e31128c6d489fa6e614856cf89af19
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/16/2018
+ms.locfileid: "49339385"

@@ -13,13 +13,14 @@ metadata:
   ms.topic: landing-page
   ms.date: 07/26/2017
   ms.author: carolz
-  ms.openlocfilehash: 97ccab1070bbf045b6ca7f9659bbdd82265b7075
-  ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+  ms.openlocfilehash: dc21a3a7a75035c253213bcb7f2e3f033c54b54c
+  ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
   ms.translationtype: HT
   ms.contentlocale: zh-TW
-  ms.lasthandoff: 03/28/2018
+  ms.lasthandoff: 06/01/2018
+  ms.locfileid: "34609720"
 abstract:
-  description: Azure Container Instances 提供更簡單快速的方法，讓您無需佈建任何虛擬機器或採用更高層級的服務，就能在 Azure 中執行容器。 了解如何使用快速入門、教學課程和範例來建立和管理容器執行個體。<p>如果您需要完整的容器協調流程解決方案，請參閱 <a href="/azure/aks/">Azure Container Service (AKS) 文件</a>。</p>
+  description: Azure Container Instances 提供更簡單快速的方法，讓您無需佈建任何虛擬機器或採用更高層級的服務，就能在 Azure 中執行容器。 了解如何使用快速入門、教學課程和範例來建立和管理容器執行個體。<p>如果您需要完整的容器協調流程解決方案，請參閱 <a href="/azure/aks/">Azure Kubernetes Service (AKS) 文件</a>。</p>
 sections:
 - title: 5 分鐘快速入門
   items:
@@ -59,6 +60,6 @@ sections:
     - title: 命令列
       html: <p><a href="/cli/azure/container">Azure CLI</a></p><p><a href="/powershell/module/azurerm.containerinstance#container_instances">PowerShell</a></p>
     - title: 語言
-      html: <p><a href="/dotnet/api/overview/azure/containerinstances">.NET</a></p><p><a href="/python/api/overview/azure/containerinstance">Python</a></p><p><a href="/java/api/overview/azure/containerinstance">Java</a></p><p><a href="/javascript/api/overview/azure/containerinstances">Node.js</a></p>
+      html: <p><a href="/dotnet/api/overview/azure/containerinstance">.NET</a></p><p><a href="/python/api/overview/azure/containerinstance">Python</a></p><p><a href="/java/api/overview/azure/containerinstance">Java</a></p><p><a href="/javascript/api/overview/azure/containerinstances">Node.js</a></p>
     - title: REST
       html: <p><a href="/rest/api/container-instances">REST API 參考</a></p><p><a href="/azure/templates/microsoft.containerinstance/containergroups">Resource Manager 範本</a></p>

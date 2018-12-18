@@ -1,25 +1,19 @@
 ---
-title: "使用 Jenkins 來執行 Azure CLI | Microsoft Docs"
-description: "了解如何在 Jenkins 管線中使用 Azure CLI 將 Java Web 應用程式部署到 Azure"
-services: app-service\web
-documentationcenter: 
-author: mlearned
-manager: douge
-editor: 
-ms.assetid: 
+title: 使用 Jenkins 執行 Azure CLI
+description: 了解如何在 Jenkins 管線中使用 Azure CLI 將 Java Web 應用程式部署到 Azure
 ms.service: jenkins
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: web
+keywords: jenkins, azure, devops, app service, cli
+author: tomarcher
+manager: jeconnoc
+ms.author: tarcher
+ms.topic: tutorial
 ms.date: 6/7/2017
-ms.author: mlearned
-ms.custom: Jenkins
-ms.openlocfilehash: 2b568bd22858a42178e2821e0e97a3b4ebdfccd5
-ms.sourcegitcommit: 9d317dabf4a5cca13308c50a10349af0e72e1b7e
+ms.openlocfilehash: b9ca8848da543bbfb27246109c3a4ab97eb6bc58
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46974913"
 ---
 # <a name="deploy-to-azure-app-service-with-jenkins-and-the-azure-cli"></a>使用 Jenkins 和 Azure CLI 來部署到 Azure App Service
 若要將 Java Web 應用程式部署到 Azure，您可以在 [Jenkins 管線](https://jenkins.io/doc/book/pipeline/)中使用 Azure CLI。 在本教學課程中，您會在 Azure VM 上建立 CI/CD 管線，包括如何︰
@@ -32,7 +26,7 @@ ms.lasthandoff: 02/01/2018
 > * 建立 Jenkins 管線
 > * 執行管線並確認 Web 應用程式
 
-本教學課程需要 Azure CLI 2.0.4 版或更新版本。 若要尋找版本，請執行 `az --version`。 如果您需要升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。
+本教學課程需要 Azure CLI 2.0.4 版或更新版本。 若要尋找版本，請執行 `az --version`。 如果您需要升級，請參閱[安裝 Azure CLI]( /cli/azure/install-azure-cli)。
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
@@ -45,7 +39,7 @@ ms.lasthandoff: 02/01/2018
 * 在 Jenkins 儀表板中，按一下 [Manage Jenkins] \(管理 Jenkins\) -> [Plugin Manager] \(外掛程式管理員\)，然後搜尋 [Azure Credential] \(Azure 認證\)。 
 * 如果版本比 1.2 版舊，請更新外掛程式。
 
-Jenkins Master 中也必須有 Java JDK 和 Maven。 若要安裝，請使用 SSH 來登入 Jenkins Master，然後執行下列命令：
+Jenkins Master 中也必須有 Java JDK 和 Maven。 若要安裝，請使用 SSH 登入 Jenkins Master，然後執行下列命令：
 ```bash
 sudo apt-get install -y openjdk-7-jdk
 sudo apt-get install -y maven
@@ -62,7 +56,7 @@ sudo apt-get install -y maven
 
 ## <a name="create-an-azure-app-service-for-deploying-the-java-web-app"></a>建立 Azure App Service 來部署 Java Web 應用程式
 
-使用 [az appservice plan create](/cli/azure/appservice/plan#az_appservice_plan_create) CLI 命令，建立搭配**免費**定價層的 Azure App Service 方案。 Appservice 方案會定義用來託管應用程式的實體資源。 所有指派給 Appservice 方案的應用程式都會共用這些資源，從而讓您節省託管多個應用程式的成本。 
+使用 [az appservice plan create](/cli/azure/appservice/plan#az-appservice-plan-create) CLI 命令，建立搭配**免費**定價層的 Azure App Service 方案。 Appservice 方案會定義用來託管應用程式的實體資源。 所有指派給 Appservice 方案的應用程式都會共用這些資源，從而讓您節省託管多個應用程式的成本。 
 
 ```azurecli-interactive
 az appservice plan create \
@@ -91,7 +85,7 @@ az appservice plan create \
 
 ### <a name="create-an-azure-web-app"></a>建立 Azure Web 應用程式
 
- 使用 [az webapp create](/cli/azure/webapp?view=azure-cli-latest#az_webapp_create) CLI 命令，在 `myAppServicePlan` App Service 方案中建立 Web 應用程式定義。 Web 應用程式定義會提供一個 URL 以存取您的應用程式，並設定數個選項將您的程式碼部署至 Azure。 
+ 使用 [az webapp create](/cli/azure/webapp?view=azure-cli-latest#az-webapp-create) CLI 命令，在 `myAppServicePlan` App Service 方案中建立 Web 應用程式定義。 Web 應用程式定義會提供一個 URL 以存取您的應用程式，並設定數個選項將您的程式碼部署至 Azure。 
 
 ```azurecli-interactive
 az webapp create \
@@ -121,7 +115,7 @@ Web 應用程式定義備妥之後，Azure CLI 會顯示類似下列範例的資
 
 ### <a name="configure-java"></a>設定 Java 
 
-使用 [az appservice web config update](/cli/azure/appservice/web/config#az_appservice_web_config_update) 命令來設定您的應用程式需要的 Java 執行階段組態。
+使用 [az appservice web config update](/cli/azure/webapp/config#az-appservice-web-config-update) 命令來設定您的應用程式需要的 Java 執行階段組態。
 
 下列命令會將 Web 應用程式設定為在最新的 Java 8 JDK 和 [Apache Tomcat](http://tomcat.apache.org/) 8.0 上執行。
 
@@ -153,7 +147,7 @@ withCredentials([azureServicePrincipal('<mySrvPrincipal>')]) {
 ## <a name="create-jenkins-pipeline"></a>建立 Jenkins 管線
 在網頁瀏覽器中開啟 Jenkins，按一下 [New Item] \(新增項目\)。 
 
-* 為作業提供一個名稱，然後選取 [Pipeline] \(管線\)。 按一下 [SERVICEPRINCIPAL] 。
+* 為作業提供一個名稱，然後選取 [Pipeline] \(管線\)。 按一下 [確定]。
 * 接著，按一下 [Pipeline] \(管線\) 索引標籤。 
 * 針對 [Definition] \(定義\)，選取 [Pipeline script from SCM] \(來自 SCM 的管線指令碼\)。
 * 針對 [SCM]，選取 [Git]。

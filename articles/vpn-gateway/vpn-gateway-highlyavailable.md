@@ -1,12 +1,12 @@
 ---
-title: "使用 Azure VPN 閘道的高可用性組態概觀 | Microsoft Docs"
-description: "本文提供使用 Azure VPN 閘道的高可用性組態選項概觀。"
+title: 使用 Azure VPN 閘道的高可用性組態概觀 | Microsoft Docs
+description: 本文提供使用 Azure VPN 閘道的高可用性組態選項概觀。
 services: vpn-gateway
 documentationcenter: na
 author: yushwang
 manager: rossort
-editor: 
-tags: 
+editor: ''
+tags: ''
 ms.assetid: a8bfc955-de49-4172-95ac-5257e262d7ea
 ms.service: vpn-gateway
 ms.devlang: na
@@ -15,11 +15,12 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 09/24/2016
 ms.author: yushwang
-ms.openlocfilehash: 3708a2f7c445a161f02416cf8427b1707e1db8f0
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: c510bb060d5c0dc866c3802fab751c1cbeff3745
+ms.sourcegitcommit: 1af4bceb45a0b4edcdb1079fc279f9f2f448140b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/09/2018
+ms.locfileid: "42141465"
 ---
 # <a name="highly-available-cross-premises-and-vnet-to-vnet-connectivity"></a>高可用性跨單位和 VNet 對 VNet 連線
 本文針對使用 Azure VPN 閘道的跨單位和 VNet 對 VNet 連線提供高可用性組態選項的概觀。
@@ -43,7 +44,7 @@ ms.lasthandoff: 10/11/2017
 
 此組態會提供多個作用中通道 (從同一個 Azure VPN 閘道到相同位置的內部部署裝置)。 有一些需求和限制︰
 
-1. 您需要建立從 VPN 裝置至 Azure 的多個 S2S VPN 連線。 當您從同一個內部部署網路的多個 VPN 裝置連接到 Azure 時，您需要為每個 VPN 裝置建立一個區域網路閘道，以及一個從 Azure VPN 閘道至區域網路閘道的連線。
+1. 您需要建立從 VPN 裝置至 Azure 的多個 S2S VPN 連線。 當您從同一個內部部署網路的多個 VPN 裝置連接到 Azure 時，您需要為每個 VPN 裝置建立一個區域網路閘道，以及一個從 Azure VPN 閘道至各個區域網路閘道的連線。
 2. 對應到 VPN 裝置的區域網路閘道在 "GatewayIpAddress" 屬性中必須有唯一的公用 IP 位址。
 3. 此組態需要 BGP。 代表 VPN 裝置的每個區域網路閘道都必須有在 "BgpPeerIpAddress" 屬性中指定的唯一 BGP 對等 IP 位址。
 4. 每個區域網路閘道中的 AddressPrefix 屬性欄位不得重疊。 您應該在 AddressPrefix 欄位中指定 /32 CIDR 格式的 "BgpPeerIpAddress"，例如 10.200.200.254/32。

@@ -5,14 +5,15 @@ services: event-grid
 author: tfitzmac
 manager: timlt
 ms.service: event-grid
-ms.topic: article
-ms.date: 03/16/2018
+ms.topic: overview
+ms.date: 07/05/2018
 ms.author: tomfitz
-ms.openlocfilehash: 30bbe7442cac96a1dcf6959cac2abedd61454a29
-ms.sourcegitcommit: a36a1ae91968de3fd68ff2f0c1697effbb210ba8
+ms.openlocfilehash: c54f5c5fba31933a6dd9f98d1ecfb6d03a3ad9be
+ms.sourcegitcommit: e0a678acb0dc928e5c5edde3ca04e6854eb05ea6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/17/2018
+ms.lasthandoff: 07/13/2018
+ms.locfileid: "39003742"
 ---
 # <a name="choose-between-azure-services-that-deliver-messages"></a>在傳遞訊息的 Azure 服務之間進行選擇
 
@@ -26,13 +27,13 @@ Azure 提供三種服務，協助在整個解決方案中傳遞事件訊息。 �
 
 ## <a name="event-vs-message-services"></a>事件與訊息服務
 
-傳遞事件服務和傳遞訊息服務之間有一個重要的區別。
+傳遞事件的服務和傳遞訊息的服務之間有一個重要的區別。
 
 ### <a name="event"></a>Event
 
 事件是狀況或狀態變更的輕量級通知。 事件發行者不會預期事件的處理方式。 事件取用者會決定要如何處理通知。 事件可以是離散單位或系列的一部分。
 
-離散事件會報告狀態變更並可採取動作。 若要採取下一個步驟，取用者只需要知道發生狀況。 事件資料包含發生事件的資訊，但沒有觸發該事件的資料。 例如，事件會通知取用者檔案已建立。 通知中可能包含關於檔案的一般資訊，但不包含檔案本身。 離散事件非常適合需要調整的無伺服器解決方案。
+離散事件會報告狀態變更並可採取動作。 若要採取下一個步驟，取用者只需要知道發生狀況。 事件資料包含所發生事件的資訊，但沒有觸發該事件的資料。 例如，事件會通知取用者檔案已建立。 通知中可能具有關於檔案的一般資訊，但不包含檔案本身。 離散事件非常適合需要調整的無伺服器解決方案。
 
 系列事件會報告狀況且可進行分析。 事件會依時間排序且相互關聯。 取用者需要循序的事件系列，才能分析所發生的狀況。
 
@@ -52,13 +53,14 @@ Azure 提供三種服務，協助在整個解決方案中傳遞事件訊息。 �
 
 Event Grid 是可供進行回應式事件導向程式設計的事件背板。 其使用的是發行 - 訂閱模型。 發行者發布事件，但不會預期要處理哪些事件。 由訂閱者決定要處理的事件。
 
-Event Grid 不僅與 Azure 服務緊密整合，並可與第三方服務整合。 它可簡化事件取用，並且無須不斷輪詢來降低成本。 Event Grid 有效且可靠地從 Azure 和非 Azure 資源中路由事件。 其會將事件發佈至已註冊的訂閱者端點。 事件訊息中包含了您必須對服務和應用程式中的變更做出回應的資訊。 Event Grid 不是資料管線，因此並不會傳遞已更新的實際物件。
+Event Grid 不僅與 Azure 服務緊密整合，並可與第三方服務整合。 它可簡化事件取用，並且無須不斷輪詢來降低成本。 Event Grid 有效且可靠地從 Azure 和非 Azure 資源中路由事件。 其會將事件發佈至已註冊的訂閱者端點。 事件訊息中具有您必須對服務和應用程式中的變更做出回應的資訊。 事件方格不是資料管線，因此並不會傳遞已更新的實際物件。
 
 其具有下列特性︰
 
 * 可動態擴充
 * 低成本
 * 無伺服器
+* 至少一次傳遞
 
 ### <a name="event-hubs"></a>事件中樞
 
@@ -68,6 +70,7 @@ Azure 事件中樞是巨量資料管線。 它有助於擷取、保留和重送�
 
 * 低延遲
 * 每秒可接收和處理數百萬個事件
+* 至少一次傳遞
 
 ### <a name="service-bus"></a>服務匯流排
 
@@ -79,6 +82,8 @@ Azure 事件中樞是巨量資料管線。 它有助於擷取、保留和重送�
 
 * 需要輪詢之可靠的非同步訊息傳遞 (企業傳訊即服務)
 * 進階傳訊功能，例如 FIFO、批次處理/工作階段、交易、無效信件處理、暫存控制項、路由和篩選，以及重複偵測
+* 至少一次傳遞
+* 選擇性依序傳遞
 
 ## <a name="use-the-services-together"></a>一起使用服務
 

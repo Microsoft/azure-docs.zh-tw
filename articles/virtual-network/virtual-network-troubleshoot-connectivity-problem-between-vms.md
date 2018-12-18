@@ -1,24 +1,25 @@
 ---
-title: "為 Azure VM 之間的連線問題疑難排解 | Microsoft Docs"
-description: "了解如何為 Azure VM 之間的連線問題進行疑難排解。"
+title: 為 Azure VM 之間的連線問題疑難排解 | Microsoft Docs
+description: 了解如何為 Azure VM 之間的連線問題進行疑難排解。
 services: virtual-network
 documentationcenter: na
 author: chadmath
 manager: cshepard
-editor: 
+editor: ''
 tags: azure-resource-manager
 ms.service: virtual-network
 ms.devlang: na
 ms.topic: troubleshooting
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 08/25/2017
+ms.date: 05/11/2018
 ms.author: genli
-ms.openlocfilehash: 3011ef7eced5a24ba07d06e2db2f5e4d344b94de
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 02f6e2648c007cfe87984e8de886b8b76e1e8d16
+ms.sourcegitcommit: b7e5bbbabc21df9fe93b4c18cc825920a0ab6fab
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47409910"
 ---
 # <a name="troubleshooting-connectivity-problems-between-azure-vms"></a>為 Azure VM 之間的連線問題疑難排解
 
@@ -102,7 +103,7 @@ ms.lasthandoff: 10/11/2017
 
 ### <a name="step-8-try-to-connect-to-a-vm-network-share"></a>步驟 8：嘗試連線至 VM 網路共用
 
-如果您無法連線到 VM 網路共用，此問題可能是由 VM 中無法使用的 NIC 所造成的。 若要刪除無法使用的 NIC，請參閱[如何刪除無法使用的 NIC](../virtual-machines/windows/reset-network-interface.md#delete-the-unavailable-nics)
+如果您無法連線到 VM 網路共用，此問題可能是由 VM 中無法使用的 NIC 所造成的。 若要刪除無法使用的 NIC，請參閱[如何刪除無法使用的 NIC](../virtual-machines/troubleshooting/reset-network-interface.md#delete-the-unavailable-nics)
 
 ### <a name="step-9-check-inter-vnet-connectivity"></a>步驟 9：檢查內部 Vnet 連線
 

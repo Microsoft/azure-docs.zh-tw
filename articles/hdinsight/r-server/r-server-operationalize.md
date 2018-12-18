@@ -1,46 +1,45 @@
 ---
-title: 讓 HDInsight 上的 R Server 能夠運作 - Azure | Microsoft Docs
-description: 了解如何讓 Azure HDInsight 上的 R Server 能夠運作。
-services: HDInsight
-documentationcenter: ''
-author: nitinme
-manager: cgronlun
-editor: cgronlun
-ms.service: HDInsight
+title: 在 HDInsight 上運作 ML 服務 - Azure
+description: 了解如何在 Azure HDInsight 中運作 ML 服務。
+services: hdinsight
+ms.service: hdinsight
+author: jasonwhowell
+ms.author: jasonh
+ms.reviewer: jasonh
 ms.custom: hdinsightactive
-ms.devlang: R
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 03/23/2018
-ms.author: nitinme
-ms.openlocfilehash: 93957b7ee10527039bf2e96cc5470420cdef0651
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.topic: conceptual
+ms.date: 06/27/2018
+ms.openlocfilehash: 0a275405530c60c5e2f08a2af120382f81c2b6f8
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43041366"
 ---
-# <a name="operationalize-r-server-cluster-on-azure-hdinsight"></a>讓 Azure HDInsight 上的 R Server 叢集能夠運作
+# <a name="operationalize-ml-services-cluster-on-azure-hdinsight"></a>在 Azure HDInsight 上運作 ML 服務叢集
 
-當您使用 HDInsight 上的 R Server 叢集來完成資料模型之後，您可以讓該模型運作以做出預測。 本文提供如何執行此工作的相關指示。
+當您使用 HDInsight 中的 ML 服務叢集來完成資料模型建構之後，便可以讓該模型運作以做出預測。 本文提供如何執行此工作的相關指示。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
-* **HDInsight 上的 R Server 叢集**：如需相關指示，請參閱[開始在 HDInsight 上使用 R Server](r-server-get-started.md)。
+* **HDInsight 上的 ML 服務叢集**：如需相關指示，請參閱[開始在 HDInsight 上使用 ML 服務](r-server-get-started.md)。
 
 * **安全殼層 (SSH) 用戶端**：SSH 用戶端可用來從遠端連線至 HDInsight 叢集，並直接在叢集上執行命令。 如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](../hdinsight-hadoop-linux-use-ssh-unix.md)。
 
-## <a name="operationalize-r-server-cluster-with-one-box-configuration"></a>使用單一方塊設定來讓 R Server 叢集能夠運作
+## <a name="operationalize-ml-services-cluster-with-one-box-configuration"></a>使用單一方塊設定來運作 ML 服務叢集
 
-1. 透過 SSH 連線到邊緣節點。  
+> [!NOTE]
+> 下列步驟適用於 R Server 9.0 和 ML Server 9.1。 針對 ML Server 9.3，請參閱[使用管理工具來管理運作設定](https://docs.microsoft.com/machine-learning-server/operationalize/configure-admin-cli-launch) \(英文\)。
+
+1. 透過 SSH 連線到邊緣節點。
 
         ssh USERNAME@CLUSTERNAME-ed-ssh.azurehdinsight.net
 
     如需如何使用 Azure HDInsight 上的 SSH 相關指示，請參閱[搭配使用 SSH 與 HDInsight](../hdinsight-hadoop-linux-use-ssh-unix.md)。
 
-2. 變更相關版本的目錄並對 dot net dll 進行 sudo： 
+1. 變更相關版本的目錄並對 dot net dll 進行 sudo： 
 
-    - 對於 Microsoft R Server 9.1：
+    - 針對 Microsoft ML Server 9.1：
 
             cd /usr/lib64/microsoft-r/rserver/o16n/9.1.0
             sudo dotnet Microsoft.RServer.Utils.AdminUtil/Microsoft.RServer.Utils.AdminUtil.dll
@@ -50,21 +49,21 @@ ms.lasthandoff: 03/28/2018
             cd /usr/lib64/microsoft-deployr/9.0.1
             sudo dotnet Microsoft.DeployR.Utils.AdminUtil/Microsoft.DeployR.Utils.AdminUtil.dll
 
-3. 您會看到可從中選擇的選項。 選擇第一個選項 (如下列螢幕擷取畫面所示) 來**設定要實作的 R Server**。
+1. 您會看到可從中選擇的選項。 選擇第一個選項 (如下列螢幕擷取畫面所示) 來**設定要運作的 ML Server**。
 
     ![one box op](./media/r-server-operationalize/admin-util-one-box-1.png)
 
-4. 您現在會看到可選擇來讓 R Server 能夠運作的選項。 從顯示的選項中，輸入 **A** 來選擇第一項。
+1. 系統會顯示可讓您選擇 ML Server 運作方式的選項。 從顯示的選項中，輸入 **A** 來選擇第一項。
 
     ![one box op](./media/r-server-operationalize/admin-util-one-box-2.png)
 
-5. 出現提示時，輸入並重新輸入本機系統管理員使用者的密碼。
+1. 出現提示時，輸入並重新輸入本機系統管理員使用者的密碼。
 
-6. 您應該會看到意味著作業已成功的輸出。 您也會看見從功能表中選取另一個選項的提示。 選取 E 以返回主功能表。
+1. 您應該會看到意味著作業已成功的輸出。 您也會看見從功能表中選取另一個選項的提示。 選取 E 以返回主功能表。
 
     ![one box op](./media/r-server-operationalize/admin-util-one-box-3.png)
 
-7. 您也可以選擇性地執行診斷測試來執行診斷檢查，如下所示：
+1. 您也可以選擇性地執行診斷測試來執行診斷檢查，如下所示：
 
     a. 從主功能表中，選取 **6** 來執行診斷測試。
 
@@ -100,7 +99,7 @@ ms.lasthandoff: 03/28/2018
 
 在此階段中，運算化的設定已完成。 現在您可以在 RClient 上使用 `mrsdeploy` 套件來連線至邊緣節點上的實作，並開始使用其功能，像是[遠端執行](https://docs.microsoft.com/machine-learning-server/r/how-to-execute-code-remotely) \(英文\) 和 [Web 服務](https://docs.microsoft.com/machine-learning-server/operationalize/concept-what-are-web-services) \(英文\)。 根據叢集是否設定在虛擬網路上，您可能必須設定透過 SSH 登入的連接埠轉送通道。 下列各節說明如何設定此通道。
 
-### <a name="r-server-cluster-on-virtual-network"></a>虛擬網路上的 R Server 叢集
+### <a name="ml-services-cluster-on-virtual-network"></a>虛擬網路上的 ML 服務叢集
 
 確定您允許流量通過連接埠 12800 到達邊緣節點。 這樣一來，您就可以使用 Edge 節點連線到實作功能。
 
@@ -116,13 +115,13 @@ ms.lasthandoff: 03/28/2018
 
 如果 `remoteLogin()` 無法連線到邊緣節點，但您可以透過 SSH 連線到邊緣節點，則必須確認是否已正確設定在連接埠 12800 上允許流量的規則。 如果您持續遇到此問題，您可以藉由設定透過 SSH 的連接埠轉送通道來處理此問題。 如需相關指示，請參閱下一節：
 
-### <a name="r-server-cluster-not-set-up-on-virtual-network"></a>R Server 叢集未設定於虛擬網路上
+### <a name="ml-services-cluster-not-set-up-on-virtual-network"></a>ML 服務叢集未在虛擬網路上設定
 
 如果您的叢集未設定於 vnet 上，或如果您在透過 vnet 連線時遇到問題，可以使用 SSH 連接埠轉送通道︰
 
     ssh -L localhost:12800:localhost:12800 USERNAME@CLUSTERNAME-ed-ssh.azurehdinsight.net
 
-SSH 工作階段變為作用中後，來自電腦連接埠 12800 的流量就會透過 SSH 工作階段轉送到邊緣節點的連接埠 12800。 請務必在 `remoteLogin()` 方法中使用 `127.0.0.1:12800`。 這會透過連接埠轉送登入邊緣節點的實作。
+SSH 工作階段變為作用中後，來自本機電腦連接埠 12800 的流量就會透過 SSH 工作階段轉送到邊緣節點的連接埠 12800。 請務必在 `remoteLogin()` 方法中使用 `127.0.0.1:12800`。 這會透過連接埠轉送登入邊緣節點的實作。
 
 
     library(mrsdeploy)
@@ -140,15 +139,15 @@ SSH 工作階段變為作用中後，來自電腦連接埠 12800 的流量就會
 
 ### <a name="step-1-decommission-the-worker-nodes"></a>步驟 1：將背景工作節點解除委任
 
-R Server 叢集並非透過 YARN 來管理。 如果未將背景工作節點解除委任，YARN Resource Manager 就無法如預期般運作，因為它不會知道伺服器目前所佔用的資源。 為了避免這個狀況，建議您相應放大計算節點之前，將背景工作角色節點解除委任。
+ML 服務叢集並非透過 YARN 來管理。 如果未將背景工作節點解除委任，YARN Resource Manager 就無法如預期般運作，因為它不會知道伺服器目前所佔用的資源。 為了避免這個狀況，建議您相應放大計算節點之前，將背景工作角色節點解除委任。
 
 請遵循下列步驟來將背景工作節點解除委任：
 
 1. 登入叢集的 Ambari 主控台，然後按一下 [Hosts] \(主機\) 索引標籤。
 
-2. 選取背景工作節點 (以解除委任)。
+1. 選取背景工作節點 (以解除委任)。
 
-3. 按一下 [Actions] \(動作\) > [Selected Hosts] \(選取的主機\) > [Hosts] \(主機\) > [Turn ON Maintenance Mode] \(開啟維護模式\)。 例如，在以下映像中，我們選取了要解除委任 wn3 和 wn4。  
+1. 按一下 [Actions] \(動作\) > [Selected Hosts] \(選取的主機\) > [Hosts] \(主機\) > [Turn ON Maintenance Mode] \(開啟維護模式\)。 例如，在以下映像中，我們選取了要解除委任 wn3 和 wn4。  
 
    ![解除委任背景工作節點](./media/r-server-operationalize/get-started-operationalization.png)  
 
@@ -164,25 +163,25 @@ R Server 叢集並非透過 YARN 來管理。 如果未將背景工作節點解�
 
 1. 透過 SSH 連線到每個已解除委任的背景工作角色節點。
 
-2. 使用適用於您所擁有之 R Server 叢集的相關 DLL 來執行管理公用程式。 針對 R Server 9.1，執行下列動作：
+1. 針對您所擁的 ML 服務叢集，使用相關的 DLL 來執行系統管理公用程式。 針對 ML Server 9.1，執行下列動作：
 
         dotnet /usr/lib64/microsoft-deployr/9.0.1/Microsoft.DeployR.Utils.AdminUtil/Microsoft.DeployR.Utils.AdminUtil.dll
 
-3. 輸入 **1** 以選取選項 [Configure R Server for Operationalization] \(設定要實作的 R Server\)。
+1. 輸入 **1** 以選取 [設定要運作的 ML Server] 選項。
 
-4. 輸入 **C** 以選取選項 `C. Compute node`。 這會設定背景工作角色節點上的計算節點。
+1. 輸入 **C** 以選取選項 `C. Compute node`。 這會設定背景工作角色節點上的計算節點。
 
-5. 結束系統管理公用程式。
+1. 結束系統管理公用程式。
 
 ### <a name="step-3-add-compute-nodes-details-on-web-node"></a>步驟 3：在 Web 節點上新增計算節點詳細資料
 
-當所有已解除委任的背景工作節點皆已設定為執行計算節點後，請回到邊緣節點，然後在 R Server Web 節點的設定中新增已解除委任之背景工作節點的 IP 位址：
+當所有已解除委任的背景工作角色節點都已設定為執行計算節點之後，請回到邊緣節點，然後在 ML Server Web 節點的設定中新增已解除委任之背景工作角色節點的 IP 位址：
 
 1. 透過 SSH 連線到邊緣節點。
 
-2. 執行 `vi /usr/lib64/microsoft-deployr/9.0.1/Microsoft.DeployR.Server.WebAPI/appsettings.json`。
+1. 執行 `vi /usr/lib64/microsoft-deployr/9.0.1/Microsoft.DeployR.Server.WebAPI/appsettings.json`。
 
-3. 尋找 [Uris] 區段，並新增背景工作節點的 IP 和連接埠詳細資料。
+1. 尋找 [Uris] 區段，並新增背景工作節點的 IP 和連接埠詳細資料。
 
        "Uris": {
          "Description": "Update 'Values' section to point to your backend machines. Using HTTPS is highly recommended",
@@ -193,6 +192,6 @@ R Server 叢集並非透過 YARN 來管理。 如果未將背景工作節點解�
 
 ## <a name="next-steps"></a>後續步驟
 
-* [管理 HDInsight 上的 R Server 叢集](r-server-hdinsight-manage.md)
-* [適用於 HDInsight 上 R Server 叢集的計算內容選項](r-server-compute-contexts.md)
-* [適用於 HDInsight 上 R Server 叢集的 Azure 儲存體選項](r-server-storage.md)
+* [在 HDInsight 上管理 ML 服務叢集](r-server-hdinsight-manage.md)
+* [在 HDInsight 上計算 ML 服務叢集的內容選項](r-server-compute-contexts.md)
+* [HDInsight 上適用於 ML 服務叢集的 Azure 儲存體選項](r-server-storage.md)

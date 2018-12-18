@@ -1,9 +1,9 @@
 ---
-title: "使用 PowerShell 建立具有原生模式報表伺服器的 VM | Microsoft Docs"
-description: "本主題說明並逐步引導您在 Azure 虛擬機器中，部署並設定 SQL Server Reporting Services 原生模式報表伺服器。 "
+title: 使用 PowerShell 建立具有原生模式報表伺服器的 VM | Microsoft Docs
+description: '本主題說明並逐步引導您在 Azure 虛擬機器中，部署並設定 SQL Server Reporting Services 原生模式報表伺服器。 '
 services: virtual-machines-windows
 documentationcenter: na
-author: guyinacube
+author: markingmyname
 manager: erikre
 editor: monicar
 tags: azure-service-management
@@ -14,12 +14,13 @@ ms.topic: article
 ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
 ms.date: 01/11/2017
-ms.author: asaxton
-ms.openlocfilehash: 0b9f12127276f5aa689c4a1d3a5bf9fe645a0fc7
-ms.sourcegitcommit: a5f16c1e2e0573204581c072cf7d237745ff98dc
+ms.author: maghan
+ms.openlocfilehash: c688de79c985eda9b0898d0f7d989de58f7dbc71
+ms.sourcegitcommit: 387d7edd387a478db181ca639db8a8e43d0d75f7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/11/2017
+ms.lasthandoff: 08/10/2018
+ms.locfileid: "40038014"
 ---
 # <a name="use-powershell-to-create-an-azure-vm-with-a-native-mode-report-server"></a>使用 PowerShell 建立具有原生模式報表伺服器的 Azure VM
 > [!IMPORTANT] 
@@ -39,7 +40,7 @@ ms.lasthandoff: 12/11/2017
   * 若要增加核心配額，請連絡 [Azure 支援](https://azure.microsoft.com/support/options/)。 如需 VM 大小的資訊，請參閱 [Azure 的虛擬機器大小](../sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 * **Windows PowerShell 指令碼**：本主題假設您對 Windows PowerShell 已有基本的技術知識。 如需有關如何使用 Windows PowerShell 的詳細資訊，請參閱下列文章：
   
-  * [在 Windows Server 上啟動 Windows PowerShell (英文)](https://technet.microsoft.com/library/hh847814.aspx)
+  * [在 Windows Server 上啟動 Windows PowerShell (英文)](https://docs.microsoft.com/powershell/scripting/setup/starting-windows-powershell)
   * [開始使用 Windows PowerShell (英文)](https://technet.microsoft.com/library/hh857337.aspx)
 
 ## <a name="step-1-provision-an-azure-virtual-machine"></a>步驟 1：佈建 Azure 虛擬機器
@@ -585,7 +586,7 @@ ms.lasthandoff: 12/11/2017
   
   * [Microsoft SQL Server Data Tools - Business Intelligence for Visual Studio 2013](https://www.microsoft.com/download/details.aspx?id=42313)
   * [Microsoft SQL Server Data Tools - Business Intelligence for Visual Studio 2012](https://www.microsoft.com/download/details.aspx?id=36843)
-  * [SQL Server Data Tools and SQL Server Business Intelligence (SSDT-BI)](http://curah.microsoft.com/30004/sql-server-data-tools-ssdt-and-sql-server-business-intelligence)
+  * [SQL Server Data Tools and SQL Server Business Intelligence (SSDT-BI)](https://docs.microsoft.com/sql/ssdt/previous-releases-of-sql-server-data-tools-ssdt-and-ssdt-bi)
 * **SQL Server Data Tools：遠端**：在本機電腦上，以 SQL Server Data Tools 建立含有 Reporting Services 報告的 Reporting Services 專案。 設定專案以連接至 Web 服務 URL。
   
     ![SSRS 專案的 SSDT 專案屬性](./media/virtual-machines-windows-classic-ps-sql-report/IC650114.gif)
@@ -597,7 +598,7 @@ ms.lasthandoff: 12/11/2017
 
 ## <a name="more-information"></a>相關資訊
 ### <a name="resources"></a>資源
-* 如需與 SQL Server Business Intelligence 及 SharePoint 2013 單一伺服器部署相關的類似內容，請參閱 [使用 Windows PowerShell 建立 Azure VM 搭配 SQL Server BI 及 SharePoint 2013](https://msdn.microsoft.com/library/azure/dn385843.aspx)。
+* 如需與 SQL Server Business Intelligence 及 SharePoint 2013 單一伺服器部署相關的類似內容，請參閱 [使用 Windows PowerShell 建立 Azure VM 搭配 SQL Server BI 及 SharePoint 2013](https://blogs.technet.microsoft.com/ptsblog/2013/10/24/use-powershell-to-create-a-windows-azure-vm-with-sql-server-bi-and-sharepoint-2013/)。
 * 如需與 SQL Server Business Intelligence 及 SharePoint 2013 多伺服器部署相關的類似內容，請參閱 [在 Azure 虛擬機器部署 SQL Server Business Intelligence](https://msdn.microsoft.com/library/dn321998.aspx)。
 * 如需與 Azure 虛擬機器的 SQL Server Business Intelligence 部署相關的一般資訊，請參閱 [Azure 虛擬機器的 SQL Server Business Intelligence](virtual-machines-windows-classic-ps-sql-bi.md)。
 * 如需有關 Azure 計算費用成本的詳細資訊，請參閱 [Azure 價格計算機](https://azure.microsoft.com/pricing/calculator/?scenario=virtual-machines)中的 [虛擬機器] 索引標籤。

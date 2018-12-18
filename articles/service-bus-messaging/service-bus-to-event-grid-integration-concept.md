@@ -3,7 +3,7 @@ title: Azure 服務匯流排與 Event Grid 的整合概觀 | Microsoft Docs
 description: 描述服務匯流排傳訊與 Event Grid 的整合
 services: service-bus-messaging
 documentationcenter: .net
-author: ChristianWolf42
+author: spelluru
 manager: timlt
 editor: ''
 ms.assetid: f99766cb-8f4b-4baf-b061-4b1e2ae570e4
@@ -12,13 +12,14 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: multiple
 ms.topic: get-started-article
-ms.date: 02/15/2018
-ms.author: chwolf
-ms.openlocfilehash: e0c32510ee49b95bc3606ea1efff7e2a6f72799b
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.date: 09/15/2018
+ms.author: spelluru
+ms.openlocfilehash: 2173a24eb3bbaafe9dcf25461eb5357ba3a6e7ad
+ms.sourcegitcommit: c282021dbc3815aac9f46b6b89c7131659461e49
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 10/12/2018
+ms.locfileid: "49166894"
 ---
 # <a name="azure-service-bus-to-event-grid-integration-overview"></a>Azure 服務匯流排與 Event Grid 的整合概觀
 
@@ -47,9 +48,9 @@ Azure 服務匯流排已開始與 Azure Event Grid 進行全新整合。 此功�
 * [ActiveMessagesWithNoListenersAvailable](#active-messages-available-event)
 * [DeadletterMessagesAvailable](#dead-lettered-messages-available-event)
 
-此外服務匯流排會使用標準 Event Grid 安全性和[驗證機制](https://docs.microsoft.com/en-us/azure/event-grid/security-authentication)。
+此外服務匯流排會使用標準 Event Grid 安全性和[驗證機制](https://docs.microsoft.com/azure/event-grid/security-authentication)。
 
-如需詳細資訊，請參閱 [Azure Event Grid 事件結構描述](https://docs.microsoft.com/en-us/azure/event-grid/event-schema)。
+如需詳細資訊，請參閱 [Azure Event Grid 事件結構描述](https://docs.microsoft.com/azure/event-grid/event-schema)。
 
 #### <a name="active-messages-available-event"></a>作用中訊息可用事件
 
@@ -128,9 +129,9 @@ Azure 服務匯流排已開始與 Azure Event Grid 進行全新整合。 此功�
 2. 在左窗格中，選取 [Event Grid]。 
 3. 選取 [事件訂用帳戶]。  
 
-   下圖顯示一個命名空間，而該命名空間有一些 Event Grid 訂用帳戶：
+   下圖顯示一個命名空間，而該命名空間有事件方格訂用帳戶：
 
-   ![20][]
+   ![事件方格訂用帳戶](./media/service-bus-to-event-grid-integration-concept/sbtoeventgridportal.png)
 
    下圖顯示如何在不使用任何特定篩選條件的情況下，訂閱函式或 Web Hook：
 
@@ -138,7 +139,7 @@ Azure 服務匯流排已開始與 Azure Event Grid 進行全新整合。 此功�
 
 ## <a name="azure-cli-instructions"></a>Azure CLI 指示
 
-首先，確定已安裝 Azure CLI 2.0 版或更新版本。 [下載安裝程式](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)。 選取 [Windows + X]，然後以系統管理員權限開啟新的 PowerShell 主控台。 或者，也可以在 Azure 入口網站中使用命令 shell。
+首先，確定已安裝 Azure CLI 2.0 版或更新版本。 [下載安裝程式](https://docs.microsoft.com/cli/azure/install-azure-cli?view=azure-cli-latest)。 選取 [Windows + X]，然後以系統管理員權限開啟新的 PowerShell 主控台。 或者，也可以在 Azure 入口網站中使用命令 shell。
 
 執行以下程式碼：
 
@@ -154,10 +155,10 @@ az eventgrid event-subscription create --resource-id $namespaceid --name “<YOU
 
 ## <a name="powershell-instructions"></a>PowerShell 指示
 
-確定您已安裝 Azure PowerShell。 [下載安裝程式](https://docs.microsoft.com/en-us/powershell/azure/install-azurerm-ps?view=azurermps-5.4.0)。 選取 [Windows + X]，然後以系統管理員權限開啟新的 PowerShell 主控台。 或者，也可以在 Azure 入口網站中使用命令 shell。
+確定您已安裝 Azure PowerShell。 [下載安裝程式](https://docs.microsoft.com/powershell/azure/install-azurerm-ps?view=azurermps-5.4.0)。 選取 [Windows + X]，然後以系統管理員權限開啟新的 PowerShell 主控台。 或者，也可以在 Azure 入口網站中使用命令 shell。
 
 ```PowerShell-interactive
-Login-AzureRmAccount
+Connect-AzureRmAccount
 
 Select-AzureRmSubscription -SubscriptionName "<YOUR SUBSCRIPTION NAME>"
 
@@ -175,10 +176,10 @@ New-AzureRmEVentGridSubscription -EventSubscriptionName “<YOUR EVENT GRID SUBS
 ## <a name="next-steps"></a>後續步驟
 
 * 取得服務匯流排和 Event Grid [範例](service-bus-to-event-grid-integration-example.md)。
-* 深入了解 [Event Grid](https://docs.microsoft.com/en-us/azure/azure-functions/)。
-* 深入了解 [Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/)。
-* 深入了解 [Logic Apps](https://docs.microsoft.com/en-us/azure/logic-apps/)。
-* 深入了解[服務匯流排](https://docs.microsoft.com/en-us/azure/azure-functions/)。
+* 深入了解 [Event Grid](https://docs.microsoft.com/azure/event-grid/)。
+* 深入了解 [Azure Functions](https://docs.microsoft.com/azure/azure-functions/)。
+* 深入了解 [Logic Apps](https://docs.microsoft.com/azure/logic-apps/)。
+* 深入了解[服務匯流排](https://docs.microsoft.com/azure/service-bus/)。
 
 [1]: ./media/service-bus-to-event-grid-integration-concept/sbtoeventgrid1.png
 [19]: ./media/service-bus-to-event-grid-integration-concept/sbtoeventgriddiagram.png

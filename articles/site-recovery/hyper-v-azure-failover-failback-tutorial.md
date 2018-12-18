@@ -1,80 +1,75 @@
 ---
-title: "使用 Site Recovery 將複寫的 Hyper-V VM 容錯移轉及容錯回復至 Azure | Microsoft Docs"
-description: "了解如何使用 Site Recovery，將 Hyper-V VM 容錯移轉至 Azure，然後容錯回復至內部部署網站"
+title: 使用 Site Recovery 將複寫的 Hyper-V VM 容錯移轉及容錯回復至 Azure | Microsoft Docs
+description: 了解如何使用 Site Recovery，將 Hyper-V VM 容錯移轉至 Azure，然後容錯回復至內部部署網站
 services: site-recovery
 author: rayne-wiselman
+manager: carmonm
 ms.service: site-recovery
-ms.topic: article
-ms.date: 03/8/2018
+ms.topic: tutorial
+ms.date: 10/10/2018
 ms.author: raynew
-ms.openlocfilehash: 7863feb29fbb04f643aa3b7e1984209f44cdbe9a
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+ms.custom: MVC
+ms.openlocfilehash: 31de654e6746cecf5aedabbfe481ab99b2aa3510
+ms.sourcegitcommit: 4b1083fa9c78cd03633f11abb7a69fdbc740afd1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 10/10/2018
+ms.locfileid: "49076978"
 ---
-# <a name="fail-over-and-fail-back-hyper-v-vms-replicated-to-azure"></a>將 Hyper-V VM 容錯移轉及容錯回復至 Azure
+# <a name="failover-and-failback-hyper-v-vms-replicated-to-azure"></a>將 Hyper-V VM 容錯移轉及容錯回復至 Azure
 
 本教學課程說明如何將 Hyper-V VM 容錯移轉至 Azure。 在容錯移轉之後，您可以容錯回復至可用的內部部署網站。 在本教學課程中，您了解如何：
 
 > [!div class="checklist"]
 > * 確認要檢查的 Hyper-V VM 屬性符合 Azure 需求
 > * 執行容錯移轉到 Azure
-> * 將 Azure VM 放到內部部署網站重新保護
 > * 從 Azure 容錯回復至內部部署
-> * 重新保護內部部署 VM，再次開始複寫至 Azure
+> * 反向複寫內部部署 VM 以再次開始複寫至 Azure
 
-這是本系列的第五個教學課程。 本教學課程假設您已經完成了先前教學課程中的工作。
+此教學課程是本系列的第五個教學課程。 其內容假設您已經完成了先前教學課程中的工作。    
 
 1. [準備 Azure](tutorial-prepare-azure.md)
-2. [準備內部部署 VMware](tutorial-prepare-on-premises-hyper-v.md)
+2. [準備內部部署 Hyper-V](tutorial-prepare-on-premises-hyper-v.md)
 3. 設定適用於 [Hyper-V VM](tutorial-hyper-v-to-azure.md)，或適用於 [System Center VMM 雲端中所管理的 Hyper-V VM](tutorial-hyper-v-vmm-to-azure.md) 的災害復原
 4. [執行災害復原演練](tutorial-dr-drill-azure.md)
 
 ## <a name="prepare-for-failover-and-failback"></a>準備容錯移轉和容錯回復
 
-請確認 VM 上有沒有快照集，且在重新保護期間已將內部部署 VM 關閉。 這有助於確保資料在複寫期間的一致性。 重新保護完成後，請勿開啟 VM。 
+請確認 VM 上有沒有快照集，且在容錯回復期間已將內部部署 VM 關閉。 這有助於確保資料在複寫期間的一致性。 請勿在容錯回復期間開啟內部部署 VM。 
 
-容錯移轉和容錯回復有四個階段：
+容錯移轉和容錯回復有三個階段：
 
-1. **容錯移轉至 Azure**：將機器從內部部署網站容錯移轉至 Azure。
-2. **重新保護 Azure VM**：重新保護 Azure VM，使其開始複寫回到內部部署 Hyper-V VM。
-3. **容錯移轉至內部部署**：當可用時，執行從 Azure 容錯移轉到您的內部部署網站。
-4. **重新保護內部部署 VM**：在資料容錯回復之後，請重新保護內部部署 VM，開始將其複寫至 Azure。
+1. **容錯移轉至 Azure**：從內部部署網站將 Hyper-V VM 容錯移轉至 Azure。
+2. **容錯回復至內部部署**：在內部部署網站可供使用時，將 Azure VM 容錯回復至內部部署網站。 它會開始將資料從 Azure 同步處理至內部部署，並在完成時，於內部部署上啟動 VM。  
+3. **反向複寫內部部署 VM**：容錯回復至內部部署之後，請反向複寫內部部署 VM，以開始將這些 VM 複寫至 Azure。
 
 ## <a name="verify-vm-properties"></a>驗證 VM 屬性
 
-驗證 VM 屬性，並確定 VM 符合 [Azure 需求](hyper-v-azure-support-matrix.md#replicated-vms)。
+在容錯移轉之前，請驗證 VM 屬性，並確定 VM 符合 [Azure 需求](hyper-v-azure-support-matrix.md#replicated-vms)。
 
-1. 在 [受保護的項目] 中，按一下 [複寫的項目] > <VM-name>。
+在 [受保護的項目] 中，按一下 [複寫的項目] > VM。
 
-2. 在 [複寫的項目] 窗格中，檢閱 VM 資訊、健康情況狀態，以及最新可用復原點。 如需檢視詳細資訊，請按一下 [屬性]。
-     - 在 [計算與網路] 中，您可以修改 VM 設定和網路設定，包括 Azure VM 中的網路/子網路。 受控磁碟不支援從 Azure 容錯回復到 Hyper-V。
-   將在容錯移轉之後找到，且會將 IP 位址指派給它。
-    - 在 [磁碟] 中，您可以看見 VM 上作業系統和資料磁碟的相關資訊。
+2. 在 [複寫的項目] 窗格中，將會呈現 VM 資訊、健康情況狀態，以及最新可用復原點的摘要。 如需檢視詳細資訊，請按一下 [屬性]。
 
-## <a name="fail-over-to-azure"></a>容錯移轉至 Azure
+3. 在 [計算與網路] 中，您可以修改 Azure 的名稱、資源群組、目標大小、[可用性設定組](../virtual-machines/windows/tutorial-availability-sets.md)，及管理磁碟設定。
 
-1. 在 [設定] > [複寫的項目] 中，按一下 VM > [容錯移轉]。
+4. 您可以檢視及修改網路設定，包括在容錯移轉後 Azure VM 所在的網路/子網路，以及要指派給它的 IP 位址。
+
+5. 在 [磁碟] 中，您可以看見 VM 上作業系統和資料磁碟的相關資訊。
+
+## <a name="failover-to-azure"></a>容錯移轉至 Azure
+
+1. 在 [設定] > [複寫的項目] 中，按一下 [VM] > [容錯移轉]。
 2. 在 [容錯移轉] 中，選取 [最新的] 復原點。 
 3. 選取 [Shut down machine before beginning failover] \(先將機器關機再開始容錯移轉)。 Site Recovery 會嘗試先關閉來源 VM 後，再觸發容錯移轉。 即使關機失敗，仍會繼續容錯移轉。 您可以 [作業] 頁面上追蹤容錯移轉進度。
 4. 驗證容錯移轉之後，請按一下 [認可]。 這會刪除所有可用的復原點。
 
 > [!WARNING]
-> **不要取消正在進行的容錯移轉**：在啟動容錯移轉之前，已停止 VM 複寫。 如果您在進行中取消，容錯移轉會停止，但 VM 不會再次複寫。
+> **請勿取消進行中的容錯移轉**：如果您在進行時取消，容錯移轉會停止，但 VM 不會再次複寫。
 
-## <a name="reprotect-azure-vms"></a>重新保護 Azure VM
+## <a name="failback-azure-vm-to-on-premises-and-reverse-replicate-the-on-premises-vm"></a>將 Azure VM 容錯回復至內部部署並反向複寫內部部署 VM
 
-1. 在 [AzureVMVault] > [已複寫的項目] 中，以滑鼠右鍵按一下已容錯移轉的 VM，然後選取 [重新保護]。
-2. 確認保護方向設定為 [Azure 到內部部署]。
-3. 內部部署 VM 會在重新保護期間關閉，以協助確保資料一致性。 重新保護完成後，請勿將它開啟。
-4. 在重新保護程序之後，在 VM 會開始從 Azure 複寫到內部部署網站。
-
-
-
-## <a name="fail-over-from-azure-and-reprotect-the-on-premises-vm"></a>從 Azure 容錯移轉，然後重新保護內部部署 VM
-
-從 Azure 容錯移轉至內部部署網站，並開始將 VM 從內部部署網站複寫至 Azure。
+基本上，容錯回復作業是從 Azure 容錯移轉至內部部署網站，而在反向複寫中，此作業會再次開始將 VM 從內部部署網站複寫至 Azure。
 
 1. 在 [設定] > [複寫的項目] 中，按一下 VM > [規劃的容錯移轉]。
 2. 在 [確認規劃的容錯移轉] 中，確認容錯移轉方向 (從 Azure)，並選取來源和目標位置。

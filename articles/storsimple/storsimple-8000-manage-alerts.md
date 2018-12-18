@@ -1,12 +1,12 @@
 ---
-title: "檢視和管理 StorSimple 8000 系列裝置的警示 | Microsoft Docs"
-description: "描述 StorSimple 警示條件和嚴重性、如何設定警示通知，以及如何使用 StorSimple 裝置管理員服務管理警示。"
+title: 檢視和管理 StorSimple 8000 系列裝置的警示 | Microsoft Docs
+description: 描述 StorSimple 警示條件和嚴重性、如何設定警示通知，以及如何使用 StorSimple 裝置管理員服務管理警示。
 services: storsimple
 documentationcenter: NA
 author: alkohli
 manager: jeconnoc
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: NA
 ms.topic: article
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 9292e15fc80cc9df3e62731bafdcb0bb98c256e1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 01/10/2018
+ms.locfileid: "27745773"
 ---
 # <a name="use-the-storsimple-device-manager-service-to-view-and-manage-storsimple-alerts"></a>使用 StorSimple 裝置管理員服務來檢視和管理 StorSimple 警示
 

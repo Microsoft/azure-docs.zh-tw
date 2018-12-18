@@ -1,26 +1,27 @@
 ---
-title: "Azure PowerShell 指令碼範例 - 建立 Windows VM | Microsoft Docs"
-description: "Azure PowerShell 指令碼範例 - 建立 Windows VM"
+title: Azure PowerShell 指令碼範例 - 建立 Windows VM | Microsoft Docs
+description: Azure PowerShell 指令碼範例 - 建立 Windows VM
 services: virtual-machines-windows
 documentationcenter: virtual-machines
-author: neilpeterson
-manager: timlt
+author: cynthn
+manager: jeconnoc
 editor: tysonn
 tags: azure-service-management
-ms.assetid: 
+ms.assetid: ''
 ms.service: virtual-machines-windows
 ms.devlang: na
 ms.topic: sample
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 ms.date: 12/12/2017
-ms.author: nepeters
+ms.author: cynthn
 ms.custom: mvc
-ms.openlocfilehash: 2c1e86b0ef3dabdea8220747e3ada98d888a8593
-ms.sourcegitcommit: 562a537ed9b96c9116c504738414e5d8c0fd53b1
+ms.openlocfilehash: bd8d009608d1e263657c1cf3e87d446552dfc29b
+ms.sourcegitcommit: aa988666476c05787afc84db94cfa50bc6852520
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/12/2018
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37928411"
 ---
 # <a name="create-a-virtual-machine-with-powershell"></a>使用 PowerShell 建立虛擬機器
 
@@ -34,7 +35,7 @@ ms.lasthandoff: 01/12/2018
 
 [!code-powershell[main](../../../powershell_scripts/virtual-machine/create-vm-detailed/create-windows-vm-quick.ps1 "Create VM")]
 
-## <a name="clean-up-deployment"></a>清除部署 
+## <a name="clean-up-deployment"></a>清除部署
 
 執行下列命令來移除資源群組、VM 和所有相關資源。
 

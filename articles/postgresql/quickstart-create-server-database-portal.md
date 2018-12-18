@@ -1,6 +1,6 @@
 ---
 title: 快速入門 - 使用 Azure 入口網站建立適用於 PostgreSQL 的 Azure 資料庫伺服器
-description: 本快速入門指南說明如何使用 Azure 入口網站使用者介面，建立及管理 Azure Database for PostgreSQL 伺服器。
+description: 此快速入門指南說明如何使用 Azure 入口網站使用者介面，建立及管理 Azure Database for PostgreSQL 伺服器。
 services: postgresql
 author: rachel-msft
 ms.author: raagyema
@@ -10,15 +10,16 @@ ms.service: postgresql
 ms.custom: mvc
 ms.topic: quickstart
 ms.date: 03/20/2018
-ms.openlocfilehash: c1acb568598184974b65d666075032e74aa49eb3
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: d32fb6e1a85865d89a2f8ee1483eb8fd599b4bb6
+ms.sourcegitcommit: b7e5bbbabc21df9fe93b4c18cc825920a0ab6fab
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47408907"
 ---
 # <a name="quickstart-create-an-azure-database-for-postgresql-server-in-the-azure-portal"></a>快速入門：在 Azure 入口網站中建立適用於 PostgreSQL 的 Azure 資料庫伺服器
 
-Azure Database for PostgreSQL 是一種受控服務，您用來在雲端執行、管理及調整高可用性的 PostgreSQL 資料庫。 本快速入門說明如何使用 Azure 入口網站，在大約五分鐘內建立適用於 PostgreSQL 的 Azure 資料庫伺服器。
+Azure Database for PostgreSQL 是一種受控服務，您用來在雲端執行、管理及調整高可用性的 PostgreSQL 資料庫。 此快速入門說明如何使用 Azure 入口網站，在大約五分鐘內建立適用於 PostgreSQL 的 Azure 資料庫伺服器。
 
 如果您沒有 Azure 訂用帳戶，請在開始前建立[免費 Azure 帳戶](https://azure.microsoft.com/free/)。
 
@@ -49,21 +50,21 @@ Azure Database for PostgreSQL 是一種受控服務，您用來在雲端執行�
     伺服器管理員登入 |myadmin| 連線至伺服器時所要使用之自己的登入帳戶。 管理員登入名稱不能是 **azure_superuser**、**azure_pg_admin****admin****administrator****root****guest** 或 **public**。 它不能以 **pg_** 開頭。
     密碼 |您的密碼| 伺服器管理帳戶的新密碼。 其必須包含 8 到 128 個字元。 您的密碼必須包含下列三個類別的字元：英文大寫字母、英文小寫字母、數字 (0 到 9) 和非英數字元 (!、$、#、% 等)。
     位置|最接近使用者的區域| 最靠近您使用者的位置。
-    版本|最新版本| 最新 PostgreSQL 版本 (除非您有其他特定需求)。
+    版本|最新的主要版本| 最新 PostgreSQL 主要版本 (除非您有其他特定需求)。
     定價層 | **一般用途**、**Gen 4**、**2 個虛擬核心**、**5GB**、**7 天**、**異地備援** | 新伺服器的計算、儲存體和備份組態。 選取 [定價層]。 接下來，選取 [一般用途] 索引標籤。Gen 4、2 個虛擬核心、5 GB 和 7 天是**計算世代**、**虛擬核心**、**儲存體**和**備份保留期限**。 您可以讓這些滑桿保留原狀。 若要啟用異地備援儲存體中的伺服器備份，請從 [備份備援選項] 中選取 [異地備援]。 若要儲存此定價層選取項目，請選取 [確定]。 下方螢幕擷取畫面會擷取這些選取項目。
 
     > [!IMPORTANT]
-    > 需要伺服器系統管理員登入以及您在此處指定的密碼，稍後才能在本快速入門中登入伺服器及其資料庫。 請記住或記錄此資訊，以供稍後使用。
+    > 需要伺服器系統管理員登入以及您在此處指定的密碼，稍後才能在此快速入門中登入伺服器及其資料庫。 請記住或記錄此資訊，以供稍後使用。
 
     ![[定價層] 窗格](./media/quickstart-create-database-portal/2-pricing-tier.png)
 
-4. 選取 [建立] 以佈建伺服器。 這項作業可能需要幾分鐘的時間。
+4. 選取 [建立] 以佈建伺服器。 此作業可能需要幾分鐘的時間。
 
 5. 在工具列上，選取 [通知] 圖示 (鈴鐺) 以監視部署程序。 完成部署後，您可以選取 [釘選到儀表板]，在 Azure 入口網站儀表板上建立此伺服器的圖格，以作為伺服器 [概觀] 頁面的捷徑。 選取 [移至資源] 會開啟伺服器的 [概觀] 頁面。
 
     ![[通知] 窗格](./media/quickstart-create-database-portal/3-notifications.png)
    
-  根據預設，**postgres** 資料庫會建立在您的伺服器底下。 [postgres](https://www.postgresql.org/docs/9.6/static/app-initdb.html) 資料庫是要供使用者、公用程式及第三方應用程式使用的預設資料庫。 
+   根據預設，**postgres** 資料庫會建立在您的伺服器底下。 [postgres](https://www.postgresql.org/docs/9.6/static/app-initdb.html) 資料庫是要供使用者、公用程式及第三方應用程式使用的預設資料庫。 (其他預設資料庫是 **azure_maintenance**。 其功能是分隔受控服務處理程序和使用者動作。 您無法存取此資料庫。)
 
 ## <a name="configure-a-server-level-firewall-rule"></a>設定伺服器層級防火牆規則
 
@@ -77,13 +78,10 @@ Azure Database for PostgreSQL 會在伺服器層級建立防火牆。 它會防�
 
 3. 在 [防火牆規則] 之下，選取 [規則名稱] 欄中的空白文字方塊，開始建立防火牆規則。 
 
-    在本快速入門中，我們可允許所有 IP 位址連到伺服器。 使用下列值填入每個資料行中的文字方塊：
+   在文字方塊中填寫名稱，以及將存取您伺服器之用戶端 IP 範圍的起點與終點。 如果是單一 IP，則起始 IP 與結尾 IP 使用相同的值。
 
-    規則名稱 | 起始 IP | 結束 IP 
-    ---|---|---
-    AllowAllIps | 0.0.0.0 | 255.255.255.255
-
-     ![設定防火牆規則](./media/quickstart-create-database-portal/5-firewall-2.png)
+   ![設定防火牆規則](./media/quickstart-create-database-portal/5-firewall-2.png)
+     
 
 4. 在 [連線安全性] 頁面的工具列上，選取 [儲存]。 等到陳述連線安全性更新已成功完成的通知出現，您才能繼續進行。
 
@@ -107,11 +105,11 @@ Azure Database for PostgreSQL 會在伺服器層級建立防火牆。 它會防�
 
    ![Azure Cloud Shell 終端符號](./media/quickstart-create-database-portal/7-cloud-console.png)
 
-2. Cloud Shell 會在您的瀏覽器中開啟，您可在其中鍵入 Bash shell 命令。
+2. Cloud Shell 會在您的瀏覽器中開啟，您可以在其中輸入 Bash shell 命令。
 
    ![Cloud Shell Bash 提示字元](./media/quickstart-create-database-portal/8-bash.png)
 
-3. 在 Cloud Shell 提示字元，鍵入 psql 命令列，以連線到 Azure Database for PostgreSQL 伺服器。
+3. 在 Cloud Shell 提示字元，輸入 psql 命令列，以連線到 Azure Database for PostgreSQL 伺服器。
 
     若要透過 [psql](https://www.postgresql.org/docs/9.6/static/app-psql.html) 公用程式連線到 Azure Database for PostgreSQL 伺服器，請使用下列格式：
     ```bash
@@ -126,7 +124,7 @@ Azure Database for PostgreSQL 會在伺服器層級建立防火牆。 它會防�
 
     psql 參數 |值|說明
     ---|---|---
-    --host | 伺服器名稱 | 您稍早建立 Azure Database for PostgreSQL 伺服器時所用的伺服器名稱值。 顯示的範例伺服器是 **mydemoserver.postgres.database.azure.com**。使用如範例所示的完整網域名稱 (**\*.postgres.database.azure.com**)。 如果您不記得您的伺服器名稱，請依照上一節中的步驟執行，以取得連線資訊。 
+    --host | 伺服器名稱 | 您稍早建立 Azure Database for PostgreSQL 伺服器時所用的伺服器名稱值。 顯示的範例伺服器是 **mydemoserver.postgres.database.azure.com**。 使用如範例所示的完整網域名稱 (**\*.postgres.database.azure.com**)。 如果您不記得您的伺服器名稱，請依照上一節中的步驟執行，以取得連線資訊。 
     --port | 5432 | 當您連線至 Azure Database for PostgreSQL 伺服器時所要使用的連接埠。 
     --username | 伺服器管理員登入名稱 |您稍早建立 Azure Database for PostgreSQL 時所提供的伺服器管理員登入使用者名稱。 如果您不記得使用者名稱，請依照上一節中的步驟執行，以取得連線資訊。 格式為 *username@servername*。
     --dbname | *postgres* | 針對第一次連線所建立之系統產生的預設資料庫名稱。 您稍後會建立自己的資料庫。
@@ -137,7 +135,7 @@ Azure Database for PostgreSQL 會在伺服器層級建立防火牆。 它會防�
     ---|---|---
     password | 您的系統管理員密碼 | 輸入的密碼字元不會顯示在 bash 提示字元上。 在您輸入所有字元之後，按 Enter 鍵以進行驗證和連線。
 
-    連線之後，psql 公用程式會顯示 postgres 提示字元，供您鍵入 sql 命令。 在初始連線輸出中，可能會因為 Cloud Shell 中的 psql 版本與適用於 PostgreSQL 的 Azure 資料庫伺服器版本不同，而顯示警告。 
+    連線之後，psql 公用程式會顯示 postgres 提示字元，供您輸入 sql 命令。 在初始連線輸出中，可能會因為 Cloud Shell 中的 psql 版本與適用於 PostgreSQL 的 Azure 資料庫伺服器版本不同，而顯示警告。 
     
     psql 輸出範例：
     ```bash
@@ -155,7 +153,7 @@ Azure Database for PostgreSQL 會在伺服器層級建立防火牆。 它會防�
     > 
     > "psql: FATAL:  no pg_hba.conf entry for host "0.0.0.0", user "myadmin", database "postgres", SSL on FATAL：需要 SSL 連線。 指定 SSL 選項，然後再試一次。
     > 
-    > 若要解決此錯誤，請確定伺服器組態符合本文的「設定伺服器層級防火牆規則」一節中的步驟。
+    > 若要解決此錯誤，請確定伺服器組態符合此文章的「設定伺服器層級防火牆規則」一節中的步驟。
 
 4. 在提示字元輸入下列命令以建立名為 "mypgsqldb" 的空白資料庫︰
     ```bash
@@ -174,7 +172,7 @@ Azure Database for PostgreSQL 會在伺服器層級建立防火牆。 它會防�
 
 ## <a name="connect-to-the-postgresql-server-using-pgadmin"></a>使用 pgAdmin 連線到 PostgreSQL 伺服器
 
-pgAdmin 是搭配 PostgreSQL 使用的開放原始碼工具。 您可以從 [pgAdmin 網站](http://www.pgadmin.org/)安裝 pgAdmin。 您使用的 pgAdmin 版本可能不同於本快速入門中使用的版本。 如果您需要其他指引，請閱讀 pgAdmin 文件。
+pgAdmin 是搭配 PostgreSQL 使用的開放原始碼工具。 您可以從 [pgAdmin 網站](http://www.pgadmin.org/)安裝 pgAdmin。 您使用的 pgAdmin 版本可能不同於此快速入門中使用的版本。 如果您需要其他指引，請閱讀 pgAdmin 文件。
 
 1. 在您的用戶端電腦上開啟 pgAdmin 應用程式。
 
@@ -190,11 +188,11 @@ pgAdmin 是搭配 PostgreSQL 使用的開放原始碼工具。 您可以從 [pgA
 
     pgAdmin 參數 |值|說明
     ---|---|---
-    主機名稱/位址 | 伺服器名稱 | 您稍早建立 Azure Database for PostgreSQL 伺服器時所用的伺服器名稱值。 我們的範例伺服器是 **mydemoserver.postgres.database.azure.com**。使用如範例所示的完整網域名稱 (**\*.postgres.database.azure.com**)。 如果您不記得您的伺服器名稱，請依照上一節中的步驟執行，以取得連線資訊。 
-    Port | 5432 | 當您連線至 Azure Database for PostgreSQL 伺服器時所要使用的連接埠。 
+    主機名稱/位址 | 伺服器名稱 | 您稍早建立 Azure Database for PostgreSQL 伺服器時所用的伺服器名稱值。 我們的範例伺服器是 **mydemoserver.postgres.database.azure.com**。 使用如範例所示的完整網域名稱 (**\*.postgres.database.azure.com**)。 如果您不記得您的伺服器名稱，請依照上一節中的步驟執行，以取得連線資訊。 
+    連接埠 | 5432 | 當您連線至 Azure Database for PostgreSQL 伺服器時所要使用的連接埠。 
     維護資料庫 | *postgres* | 系統產生的預設資料庫名稱。
     使用者名稱 | 伺服器管理員登入名稱 | 您稍早建立 Azure Database for PostgreSQL 時所提供的伺服器管理員登入使用者名稱。 如果您不記得使用者名稱，請依照上一節中的步驟執行，以取得連線資訊。 格式為 *username@servername*。
-    密碼 | 您的系統管理員密碼 | 您在本快速入門稍早建立伺服器時所選擇的密碼。
+    密碼 | 您的系統管理員密碼 | 您在此快速入門稍早建立伺服器時所選擇的密碼。
     角色 | 保留空白 | 此時不需要提供角色名稱。 將欄位保留空白。
     SSL 模式 | *必要* | 您可以在 pgAdmin 的 [SSL] 索引標籤中設定 SSL 模式。根據預設，所有適用於 PostgreSQL 的 Azure 資料庫伺服器建立時都會開啟強制執行 SSL。 若要關閉強制執行 SSL，請參閱[強制執行 SSL](./concepts-ssl-connection-security.md)。
     
@@ -218,10 +216,10 @@ pgAdmin 是搭配 PostgreSQL 使用的開放原始碼工具。 您可以從 [pgA
 
 
 ## <a name="clean-up-resources"></a>清除資源
-您有兩種方式可以清除您在本快速入門中建立的資源。 您可以刪除 [Azure 資源群組](../azure-resource-manager/resource-group-overview.md)，其中包括資源群組中的所有資源。 如果您想要讓其他資源保持不變，則只刪除該伺服器資源。
+您有兩種方式可以清除您在此快速入門中建立的資源。 您可以刪除 [Azure 資源群組](../azure-resource-manager/resource-group-overview.md)，其中包括資源群組中的所有資源。 如果您想要讓其他資源保持不變，則只刪除該伺服器資源。
 
 > [!TIP]
-> 此集合中的其他快速入門會以本快速入門為基礎。 如果您打算繼續進行快速入門，請勿清除您在此快速入門中建立的資源。 如果您不打算繼續，請遵循下列步驟，在入口網站中刪除本快速入門所建立的資源。
+> 此集合中的其他快速入門會以此快速入門為基礎。 如果您打算繼續進行快速入門，請勿清除您在此快速入門中建立的資源。 如果您不打算繼續，請遵循下列步驟，在入口網站中刪除此快速入門所建立的資源。
 
 若要刪除整個資源群組 (包括新建立的伺服器)：
 1. 在入口網站中找出您的資源群組。 在左側功能表中，選取 [資源群組]。 然後選取您的資源群組名稱，例如範例中的 **myresourcegroup**。

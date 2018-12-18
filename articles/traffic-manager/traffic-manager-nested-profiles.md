@@ -1,11 +1,11 @@
 ---
-title: "巢狀流量管理員設定檔 | Microsoft Docs"
-description: "這篇文章說明「Azure 流量管理員」的「巢狀設定檔」功能"
+title: 巢狀流量管理員設定檔 | Microsoft Docs
+description: 這篇文章說明「Azure 流量管理員」的「巢狀設定檔」功能
 services: traffic-manager
-documentationcenter: 
+documentationcenter: ''
 author: kumudd
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: f1b112c4-a3b1-496e-90eb-41e235a49609
 ms.service: traffic-manager
 ms.devlang: na
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23111696"
 ---
 # <a name="nested-traffic-manager-profiles"></a>巢狀流量管理員設定檔
 

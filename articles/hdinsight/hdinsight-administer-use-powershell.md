@@ -1,31 +1,25 @@
 ---
-title: "使用 PowerShell 管理 HDInsight 中的 Hadoop 叢集 - Azure | Microsoft Docs"
-description: "了解如何使用 Azure PowerShell 對 HDInsight 中的 Hadoop 叢集執行管理工作。"
+title: 使用 PowerShell 管理 HDInsight 中的 Hadoop 叢集 - Azure
+description: 了解如何使用 Azure PowerShell 對 HDInsight 中的 Hadoop 叢集執行管理工作。
 services: hdinsight
-editor: cgronlun
-manager: jhubbard
-tags: azure-portal
-author: mumian
-documentationcenter: 
-ms.assetid: bfdfa754-18e5-4ef9-b0d6-2dbdcebc0283
+ms.reviewer: jasonh
+author: jasonwhowell
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
-ms.date: 12/15/2017
-ms.author: jgao
-ms.openlocfilehash: 04bb16d4779741d71f686f53a8f325243ab8499e
-ms.sourcegitcommit: 68aec76e471d677fd9a6333dc60ed098d1072cfc
+ms.topic: conceptual
+ms.date: 05/14/2018
+ms.author: jasonh
+ms.openlocfilehash: 7abd75347d7bd2673a9e6040ee15def6638de440
+ms.sourcegitcommit: f6e2a03076679d53b550a24828141c4fb978dcf9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/18/2017
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43096577"
 ---
 # <a name="manage-hadoop-clusters-in-hdinsight-by-using-azure-powershell"></a>使用 Azure PowerShell 管理 HDInsight 上的 Hadoop 叢集
 [!INCLUDE [selector](../../includes/hdinsight-portal-management-selector.md)]
 
-Azure PowerShell 可讓您在 Azure 中用來控制和自動化工作負載的部署及管理。 在本文中，您將了解如何使用 Azure PowerShell 來管理Azure HDInsight 中的 Hadoop 叢集。 如需 HDInsight PowerShell Cmdlet 的清單，請參閱 [HDInsight Cmdlet 參考文件][hdinsight-powershell-reference]。
+Azure PowerShell 可讓您在 Azure 中用來控制和自動化工作負載的部署及管理。 在本文中，您將了解如何使用 Azure PowerShell 來管理Azure HDInsight 中的 Hadoop 叢集。 如需 HDInsight PowerShell Cmdlet 的清單，請參閱 [HDInsight Cmdlet 參考文件](https://msdn.microsoft.com/library/azure/dn479228.aspx)。
 
 **先決條件**
 
@@ -178,7 +172,7 @@ Grant-AzureRmHDInsightHttpServicesAccess -ClusterName $clusterName -HttpCredenti
 下列 PowerShell 指令碼示範如何取得預設儲存體帳戶名稱和相關資訊：
 
 ```powershell
-#Login-AzureRmAccount
+#Connect-AzureRmAccount
 $clusterName = "<HDInsight Cluster Name>"
 
 $clusterInfo = Get-AzureRmHDInsightCluster -ClusterName $clusterName
@@ -237,7 +231,7 @@ $resourceGroupName = $cluster.ResourceGroup
 請參閱[將資料上傳至 HDInsight][hdinsight-upload-data]。
 
 ## <a name="see-also"></a>另請參閱
-* [HDInsight Cmdlet 參考文件][hdinsight-powershell-reference]
+* [HDInsight Cmdlet 參考文件](https://msdn.microsoft.com/library/azure/dn479228.aspx)
 * [使用 Azure 入口網站管理 HDInsight][hdinsight-admin-portal]
 * [使用命令列介面管理 HDInsight][hdinsight-admin-cli]
 * [建立 HDInsight 叢集][hdinsight-provision]

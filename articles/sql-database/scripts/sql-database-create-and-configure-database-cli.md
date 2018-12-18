@@ -1,9 +1,9 @@
 ---
-title: "CLI 範例 - 建立 Azure SQL Database | Microsoft Docs"
-description: "使用 Azure CLI 範例指令碼來建立 SQL Database。"
+title: CLI 範例 - 建立 Azure SQL Database | Microsoft Docs
+description: 使用 Azure CLI 範例指令碼來建立 SQL Database。
 services: sql-database
 documentationcenter: sql-database
-author: janeng
+author: CarlRabeler
 manager: janeng
 editor: carlrab
 ms.service: sql-database
@@ -12,13 +12,14 @@ ms.devlang: azurecli
 ms.topic: sample
 ms.tgt_pltfrm: sql-database
 ms.workload: database
-ms.date: 03/01/2018
-ms.author: janeng
-ms.openlocfilehash: bb80421b360f43df82ea4a9b2dff5ccc1efdb4a9
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+ms.author: carlrab
+ms.date: 09/07/2018
+ms.openlocfilehash: a7537b59a73c00a5364bfa4a758a6584a9ef6003
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46964270"
 ---
 # <a name="use-cli-to-create-a-single-azure-sql-database-and-configure-a-firewall-rule"></a>使用 CLI 建立單一 Azure SQL Database 並設定防火牆規則
 
@@ -28,7 +29,7 @@ ms.lasthandoff: 03/09/2018
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-如果您選擇在本機安裝和使用 CLI，本主題會要求您執行 Azure CLI 2.0 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
+如果您選擇在本機安裝和使用 CLI，本主題會要求您執行 Azure CLI 2.0 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI]( /cli/azure/install-azure-cli)。 
 
 ## <a name="sample-script"></a>範例指令碼
 

@@ -9,16 +9,17 @@ editor: masnider,rajak,zhol
 ms.assetid: 62857523-604b-434e-bd1c-2141ea4b00d1
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: required
 ms.date: 12/10/2017
 ms.author: mcoskun
-ms.openlocfilehash: b0eb6a5aab5e71c0a8ac8263e177c493a07dafc0
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: 72091d592475e41f254ef7c3882e3d3fee0c491b
+ms.sourcegitcommit: e3d5de6d784eb6a8268bd6d51f10b265e0619e47
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 08/01/2018
+ms.locfileid: "39389526"
 ---
 # <a name="guidelines-and-recommendations-for-reliable-collections-in-azure-service-fabric"></a>Azure Service Fabric 中 Reliable Collection 的指導方針與建議
 本節提供使用 Reliable State Manager 和 Reliable Collection 的指導方針。 目標是要協助使用者避開常見的陷阱。
@@ -48,6 +49,7 @@ ms.lasthandoff: 03/28/2018
 * 次要複本上的讀取作業可能會讀取未認可的仲裁版本。
   這表示從單一次要複本讀取的資料版本進度可能有誤。
   從主要複本讀取一定最穩定︰進度一定不會有誤。
+* 應用程式保存在可靠集合中的資料會有何種安全性/隱私權將由您決定，且會受到儲存體管理的保護；也就是說， 作業系統磁碟加密可用來保護待用資料。  
 
 ### <a name="next-steps"></a>後續步驟
 * [使用 Reliable Collections](service-fabric-work-with-reliable-collections.md)

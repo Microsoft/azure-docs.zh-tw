@@ -1,23 +1,24 @@
 ---
-title: Azure Active Directory B2C：自訂原則 | 登陸頁面 | Microsoft Docs
-description: 使用自訂原則透過 Azure Active Directory B2C 開發取用者導向應用程式
+title: Azure Active Directory B2C 自訂原則 | Microsoft Docs
+description: 使用自訂原則透過 Azure Active Directory B2C 開發取用者導向應用程式。
 services: active-directory-b2c
-documentationcenter: ''
 author: davidmu1
 manager: mtillman
-editor: ''
-ms.service: active-directory-b2c
+ms.service: active-directory
 ms.workload: identity
-ms.topic: article
+ms.topic: conceptual
 ms.date: 5/06/2017
 ms.author: davidmu
-ms.openlocfilehash: f3db8c80d6faef3af0909efb7306dd7aa0336ab0
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: B2C
+ms.openlocfilehash: 26469d735d7165e8b21665df6c169bc4668d8a5a
+ms.sourcegitcommit: 86cb3855e1368e5a74f21fdd71684c78a1f907ac
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37440513"
 ---
-# <a name="azure-active-directory-b2c-sign-up-and-sign-in-consumers-in-your-applications-using-custom-policies"></a>Azure Active Directory B2C：使用自訂原則在您的應用程式中註冊與登入取用者
+# <a name="sign-up-and-sign-in-consumers-in-your-applications-using-custom-policies-in-azure-active-directory-b2c"></a>在 Azure Active Directory B2C 中使用自訂原則，在您的應用程式中註冊與登入取用者
+
 自訂原則是定義 Azure AD B2C 租用戶行為的組態檔。 身分識別開發人員可以完全編輯自訂原則，可完成的工作數量幾乎沒有限制。
 
 ## <a name="how-to-articles"></a>操作說明文章

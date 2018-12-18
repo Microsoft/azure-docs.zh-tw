@@ -1,22 +1,23 @@
 ---
-title: "建立 Azure API 管理執行個體 | Microsoft Docs"
-description: "請依照本教學課程的步驟來建立新的 Azure API 管理執行個體。"
+title: 建立 Azure API 管理執行個體 | Microsoft Docs
+description: 請依照本教學課程的步驟來建立新的 Azure API 管理執行個體。
 services: api-management
-documentationcenter: 
-author: juliako
+documentationcenter: ''
+author: vladvino
 manager: cflower
-editor: 
+editor: ''
 ms.service: api-management
 ms.workload: integration
 ms.topic: quickstart
 ms.custom: mvc
 ms.date: 11/28/2017
 ms.author: apimpm
-ms.openlocfilehash: 84758fbf8f19728370280d5d94acb478ff739019
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.openlocfilehash: 7fb4182c0b5149a9006a30ad34782ad968e16758
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38595583"
 ---
 # <a name="create-a-new-azure-api-management-service-instance"></a>建立新的 Azure API 管理服務執行個體
 
@@ -30,7 +31,7 @@ ms.lasthandoff: 02/21/2018
 
 ## <a name="log-in-to-azure"></a>登入 Azure
 
-登入 Azure 入口網站，網址是 http://portal.azure.com/。
+在 http://portal.azure.com 上登入 Azure 入口網站。
 
 ## <a name="create-a-new-service"></a>建立新的服務
 

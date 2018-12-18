@@ -2,32 +2,38 @@
 title: 使用 AzCopy on Windows 複製或移動資料到 Azure 儲存體 | Microsoft Docs
 description: 使用 AzCopy on Windows 公用程式來從 Blob、資料表和檔案內容移動或來回複製資料。 從本機檔案複製資料到 Azure 儲存體，或在儲存體帳戶內或之間複製資料。 輕鬆地將資料移轉至 Azure 儲存體。
 services: storage
-documentationcenter: ''
 author: seguler
-manager: jahogg
-editor: tysonn
-ms.assetid: aa155738-7c69-4a83-94f8-b97af4461274
 ms.service: storage
-ms.workload: storage
-ms.tgt_pltfrm: na
-ms.devlang: na
 ms.topic: article
-ms.date: 01/29/2018
+ms.date: 08/13/2018
 ms.author: seguler
-ms.openlocfilehash: 13e09a3081c9dfa2d88625489a82c687d6722f20
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.component: common
+ms.openlocfilehash: a0e2400163433ba5290525d0fe807ede624a31ed
+ms.sourcegitcommit: 4ea0cea46d8b607acd7d128e1fd4a23454aa43ee
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 08/15/2018
+ms.locfileid: "42140055"
 ---
 # <a name="transfer-data-with-the-azcopy-on-windows"></a>使用 AzCopy on Windows 傳送資料
 AzCopy 是個命令列公用程式，專為使用針對最佳效能而設計的簡單命令來將資料複製到/複製出 Microsoft Azure Blob、檔案和表格儲存體所設計。 您可以在檔案系統和儲存體帳戶之間，或者儲存體帳戶之間複製資料。  
 
-有兩個 AzCopy 版本可供您下載。 AzCopy on Windows 內建有 .NET Framework，並且提供 Windows 樣式的命令列選項。 [AzCopy on Linux](storage-use-azcopy-linux.md) 內建有 .NET Core Framework，其以提供 POSIX 樣式命令列選項的 Linux 平台為目標。 本文涵蓋之內容包括 AzCopy on Windows。
+有兩個 AzCopy 版本可供您下載。 AzCopy on Windows 提供了 Windows 樣式的命令列選項。 [AzCopy on Linux](storage-use-azcopy-linux.md) 以 Linux 平台為目標，提供 POSIX 樣式的命令列選項。 本文涵蓋之內容包括 AzCopy on Windows。
 
 ## <a name="download-and-install-azcopy-on-windows"></a>在 Windows 上下載並安裝 AzCopy
 
-下載 [最新版本的 AzCopy on Windows](http://aka.ms/downloadazcopy)。
+### <a name="latest-version-v81"></a>最新版本 (v8.1)
+下載 [最新版本的 AzCopy on Windows](https://aka.ms/downloadazcopy)。
+
+#### <a name="azcopy-on-windows-81-release-notes"></a>AzCopy on Windows 8.1 版本資訊
+- 最新版不再支援資料表服務。 如果您會使用資料表匯出功能，請下載 AzCopy 7.3 版。
+- 使用 .NET Core 2.1 建置，且現已在安裝中封裝所有 .NET Core 相依項目。
+- 已新增 OAuth 驗證支援。 使用 ```azcopy login``` 以 Azure Active Directory 登入。
+
+### <a name="azcopy-with-table-support-v73"></a>AzCopy (含資料表支援) (v7.3)
+下載 [AzCopy 7.3 (含資料表支援)](https://aka.ms/downloadazcopynet)。
+
+### <a name="post-installation-step"></a>後續安裝步驟
 
 使用安裝程式安裝 AzCopy on Windows 之後，請開啟命令視窗並瀏覽至電腦上的 AzCopy 安裝目錄，也就是 `AzCopy.exe` 可執行檔的所在位置。 若有需要，您可以在您的系統路徑中加入 AzCopy 安裝位置。 根據預設，AzCopy 會安裝到 `%ProgramFiles(x86)%\Microsoft SDKs\Azure\AzCopy` 或 `%ProgramFiles%\Microsoft SDKs\Azure\AzCopy`。
 
@@ -288,7 +294,7 @@ AzCopy /Source:https://myaccount1.blob.core.windows.net/myContainer/ /Dest:https
 AzCopy /Source:https://myaccount.file.core.windows.net/myfileshare/myfolder1/ /Dest:C:\myfolder /SourceKey:key /Pattern:abc.txt
 ```
 
-如果指定的來源是 Azure 檔案共用，您就必須指定確切檔案名稱 (例如，`abc.txt`) 以下載單一檔案，或指定 `/S` 選項以遞迴方式下載共用中的所有檔案。 嘗試同時指定檔案模式和 `/S` 選項會造成錯誤。
+如果指定的來源是 Azure 檔案共用，則您必須指定確切檔案名稱 (例如，`abc.txt`) 以下載單一檔案，或指定 `/S` 選項以遞迴方式下載共用中的所有檔案。 嘗試同時指定檔案模式和 `/S` 選項會造成錯誤。
 
 ### <a name="download-all-files-in-a-directory"></a>下載目錄中的所有檔案
 
@@ -340,7 +346,7 @@ AzCopy /Source:https://myaccount1.file.core.windows.net/myfileshare/ /Dest:https
 ```
 當您將檔案從檔案共用複製到 Blob 時，系統會執行[伺服器端複製](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-asynchronous-cross-account-copy-blob.aspx)作業。
 
-### <a name="copy-a-blob-from-blob-storage-to-an-azure-file-share"></a>將 blob 從 Blob 儲存體複製到 Azure 檔案共用
+### <a name="copy-a-blob-from-blob-storage-to-an-azure-file-share"></a>將 Blob 從 Blob 儲存體複製到 Azure 檔案共用
 
 ```azcopy
 AzCopy /Source:https://myaccount1.blob.core.windows.net/mycontainer/ /Dest:https://myaccount2.file.core.windows.net/myfileshare/ /SourceKey:key1 /DestKey:key2 /S
@@ -609,6 +615,20 @@ AzCopy /Source:https://127.0.0.1:10000/myaccount/mycontainer/ /Dest:C:\myfolder 
 ```azcopy
 AzCopy /Source:https://127.0.0.1:10002/myaccount/mytable/ /Dest:C:\myfolder /SourceKey:key /SourceType:Table
 ```
+
+### <a name="automatically-determine-content-type-of-a-blob"></a>自動判斷 Blob 的內容類型
+
+AzCopy 會根據儲存副檔名對應內容類型的 JSON 檔案，以判斷 Blob 的內容類型。 此 JSON 檔案名為 AzCopyConfig.json 且位在 AzCopy 目錄中。 如果清單中沒有您的檔案類型，可以將該對應附加至 JSON 檔案：
+
+```
+{
+  "MIMETypeMapping": {
+    ".myext": "text/mycustomtype",
+    .
+    .
+  }
+}
+```     
 
 ## <a name="azcopy-parameters"></a>AzCopy 參數
 
@@ -942,10 +962,6 @@ AzCopy 預設會將 blob 或檔案的內容類型設定為 application/octet-str
 使用 AzCopy 複製 Blob 或檔案時，請留意當您在複製資料時，另一個應用程式可能正在修改該資料。 請儘可能地確定在複製作業過程中，您正要複製的資料並不在修改中。 例如，當複製與 Azure 虛擬機器相關聯的 VHD 時，請確定目前沒有其他應用程式正在寫入此 VHD。 要這樣做的一個好方法是租用要複製的資源。 此外，您可以首先建立 VHD 的快照，然後複製此快照。
 
 如果您無法在複製時防止其他應用程式寫入 Blob 或檔案，請記住，工作完成時，複製的資源可能不再與來源資源完全相同。
-
-### <a name="run-one-azcopy-instance-on-one-machine"></a>在一部電腦上執行一個 AzCopy 執行個體。
-
-AzCopy 設計為充分利用電腦資源來加速資料傳輸，建議您在一部電腦上只執行一個 AzCopy 執行個體，如果需要更多並行作業，您可以指定 `/NC` 選項。 如需詳細資訊，請在命令列上輸入 `AzCopy /?:NC` 。
 
 ### <a name="enable-fips-compliant-md5-algorithms-for-azcopy-when-you-use-fips-compliant-algorithms-for-encryption-hashing-and-signing"></a>當您「使用 FIPS 相容演算法於加密、雜湊及簽章」時，請為 AzCopy 啟用 FIPS 相容的 MD5 演算法。
 

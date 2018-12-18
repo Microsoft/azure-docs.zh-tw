@@ -1,31 +1,36 @@
 ---
-title: "建立和安裝適用於 P2S RADIUS 連線的 VPN 用戶端組態檔：PowerShell：Azure | Microsoft Docs"
-description: "為使用 RADIUS 驗證的連線建立 Windows、Mac OS X 和 Linux VPN 用戶端組態檔。"
+title: 建立和安裝適用於 P2S RADIUS 連線的 VPN 用戶端組態檔：PowerShell：Azure | Microsoft Docs
+description: 為使用 RADIUS 驗證的連線建立 Windows、Mac OS X 和 Linux VPN 用戶端組態檔。
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
 manager: jpconnock
-editor: 
+editor: ''
 tags: azure-resource-manager
-ms.assetid: 
+ms.assetid: ''
 ms.service: vpn-gateway
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 02/12/2018
+ms.date: 06/07/2018
 ms.author: cherylmc
-ms.openlocfilehash: 1d57537428f5ac1085b6cbae93be6f77c71b12e7
-ms.sourcegitcommit: 0b02e180f02ca3acbfb2f91ca3e36989df0f2d9c
+ms.openlocfilehash: 19b1090a37ae1f97537fcabe128e7958fc26a96a
+ms.sourcegitcommit: 4e36ef0edff463c1edc51bce7832e75760248f82
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/05/2018
+ms.lasthandoff: 06/08/2018
+ms.locfileid: "35235884"
 ---
 # <a name="create-and-install-vpn-client-configuration-files-for-p2s-radius-authentication"></a>建立和安裝 VPN 用戶端組態檔以便進行 P2S RADIUS 驗證
 
 若要透過點對站 (P2S) 連線至虛擬網路，您需要設定要從中連線的用戶端裝置。 您可以從 Windows、Mac OS X 和 Linux 用戶端裝置建立 P2S VPN 連線。 
 
 使用 RADIUS 驗證時，有多個驗證選項：使用者名稱/密碼驗證、憑證驗證，以及其他驗證類型。 每一類型驗證的 VPN 用戶端設定都是不一樣的。 若要設定 VPN 用戶端，您可以使用包含必要設定的用戶端組態檔。 本文可協助您為想要使用的 RADIUS 驗證類型建立及安裝 VPN 用戶端設定。
+
+>[!IMPORTANT]
+>[!INCLUDE [TLS](../../includes/vpn-gateway-tls-change.md)]
+>
 
 P2S RADIUS 驗證的設定工作流程如下所示：
 
@@ -153,6 +158,10 @@ Get-AzureRmVpnClientConfiguration -ResourceGroupName "TestRG" -Name "VNet1GW"
  
 您可以建立 VPN 用戶端組態檔，以便進行採用 EAP-TLS 通訊協定的 RADIUS 憑證驗證。 通常，企業所發行的憑證可用來驗證 VPN 的使用者。 請確定所有連線中的使用者都已在其裝置上安裝憑證，且您的 RADIUS 伺服器可以驗證該憑證。
 
+>[!NOTE]
+>[!INCLUDE [TLS](../../includes/vpn-gateway-tls-change.md)]
+>
+
 在命令中，`-AuthenticationMethod` 是 `EapTls`。 在憑證驗證期間，用戶端會藉由驗證憑證來驗證 RADIUS 伺服器。 `-RadiusRootCert` 是 .cer 檔案，其中包含用來驗證 RADIUS 伺服器的根憑證。
 
 每個 VPN 用戶端裝置都需要安裝用戶端憑證。 Windows 裝置有時會有多個用戶端憑證。 在驗證期間，這可能會導致快顯對話方塊列出所有憑證。 接著，使用者必須選擇要使用的憑證。 指定用戶端憑證所應鏈結的根憑證，即可篩選出正確的憑證。 
@@ -227,7 +236,7 @@ Get-AzureRmVpnClientConfiguration -ResourceGroupName "TestRG" -Name "VNet1GW" | 
 7. [選擇身分識別] 會顯示一份憑證清單供您選擇。 選取適當憑證，然後選取 [繼續]。
 
    ![[選擇身分識別] 清單](./media/point-to-site-vpn-client-configuration-radius/identity.png)
-8. 在 [本機識別碼] 方塊中指定憑證名稱 (來自步驟 6)。 在此範例中，名稱是 **ikev2Client.com**。然後，選取 [套用] 按鈕以儲存變更。
+8. 在 [本機識別碼] 方塊中指定憑證名稱 (來自步驟 6)。 在此範例中，名稱是 **ikev2Client.com**。 然後，選取 [套用] 按鈕以儲存變更。
 
    ![[本機識別碼] 方塊](./media/point-to-site-vpn-client-configuration-radius/applyconnect.png)
 9. 在 [網路] 對話方塊中，選取 [套用] 以儲存所有變更。 然後，選取 [連線] 以啟動 Azure 虛擬網路的 P2S 連線。

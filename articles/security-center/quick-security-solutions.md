@@ -1,11 +1,11 @@
 ---
-title: "Azure 資訊安全中心快速入門 - 連線安全性解決方案 | Microsoft Docs"
-description: "Azure 資訊安全中心快速入門 - 連線安全性解決方案"
+title: Azure 資訊安全中心快速入門 - 連線安全性解決方案 | Microsoft Docs
+description: Azure 資訊安全中心快速入門 - 連線安全性解決方案
 services: security-center
 documentationcenter: na
-author: YuriDio
+author: terrylan
 manager: mbaldwin
-editor: 
+editor: ''
 ms.assetid: 3263bb3d-befc-428c-9f80-53de65761697
 ms.service: security-center
 ms.devlang: na
@@ -15,11 +15,12 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 02/22/2018
 ms.author: yurid
-ms.openlocfilehash: 95cc85f0c742d465ab1ed68d6c29b61a6919dd5b
-ms.sourcegitcommit: 12fa5f8018d4f34077d5bab323ce7c919e51ce47
+ms.openlocfilehash: afc72f5b18460578b0cfcd085fe601184a2f898b
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/23/2018
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38561292"
 ---
 # <a name="quickstart-connect-security-solutions-to-security-center"></a>快速入門：將安全性解決方案連線至資訊安全中心
 

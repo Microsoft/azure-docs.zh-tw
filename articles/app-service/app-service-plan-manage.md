@@ -1,12 +1,12 @@
 ---
-title: "管理 Azure 中的 App Service 方案 | Microsoft Docs"
-description: "了解如何執行不同的工作來管理 App Service 方案。"
-keywords: "App Service, Azure App Service, 級別, App Service方案, 變更, 建立, 管理, 管控"
+title: 管理 Azure 中的 App Service 方案 | Microsoft Docs
+description: 了解如何執行不同的工作來管理 App Service 方案。
+keywords: App Service, Azure App Service, 級別, App Service方案, 變更, 建立, 管理, 管控
 services: app-service
-documentationcenter: 
+documentationcenter: ''
 author: cephalin
 manager: cfowler
-editor: 
+editor: ''
 ms.assetid: 4859d0d5-3e3c-40cc-96eb-f318b2c51a3d
 ms.service: app-service
 ms.workload: na
@@ -15,11 +15,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/09/2017
 ms.author: cephalin
-ms.openlocfilehash: 1dfe8a903e19ff524a1c4a0228e6aefcbe9ff183
-ms.sourcegitcommit: 059dae3d8a0e716adc95ad2296843a45745a415d
+ms.openlocfilehash: 2c08522df598bd5c6313c3f026efe48e1c4a2c56
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39449354"
 ---
 # <a name="manage-an-app-service-plan-in-azure"></a>在 Azure 建立管理 App Service 方案
 
@@ -34,7 +35,7 @@ ms.lasthandoff: 02/09/2018
 
 1. 在 [Azure 入口網站](https://portal.azure.com)中，選取 [新增] > [Web + 行動]，然後選取 [Web 應用程式] 或其他 App Service 應用程式種類。
 
-2. 選取現有的 App Service 方案或為新應用程式建立方案。
+1. 選取現有的 App Service 方案或為新應用程式建立方案。
 
    ![在 Azure 入口網站中建立應用程式。][createWebApp]
 
@@ -58,13 +59,13 @@ ms.lasthandoff: 02/09/2018
 
 1. 在 [Azure 入口網站](https://portal.azure.com)中，瀏覽至您要移動的應用程式。
 
-2. 在功能表中，尋找 [App Service 方案] 區段。
+1. 在功能表中，尋找 [App Service 方案] 區段。
 
-3. 選取 [變更 App Service 方案] 以開啟 [App Service 方案] 選取器。
+1. 選取 [變更 App Service 方案] 以開啟 [App Service 方案] 選取器。
 
    ![App Service 方案選取器。][change] 
 
-4. 在 [App Service 方案] 選取器中，選取現有的方案以移動此應用程式。   
+1. 在 [App Service 方案] 選取器中，選取現有的方案以移動此應用程式。   
 
 > [!IMPORTANT]
 > [選取 App Service 方案] 頁面會依下列準則進行篩選： 

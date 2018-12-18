@@ -1,11 +1,11 @@
 ---
-title: "Azure API 管理範本資料模型參考 | Microsoft Docs"
-description: "了解在 Azure API 管理的開發人員入口網站範本資料模型中，所使用之一般項目的實體和類型表示法。"
+title: Azure API 管理範本資料模型參考 | Microsoft Docs
+description: 了解在 Azure API 管理的開發人員入口網站範本資料模型中，所使用之一般項目的實體和類型表示法。
 services: api-management
-documentationcenter: 
+documentationcenter: ''
 author: vladvino
 manager: erikre
-editor: 
+editor: ''
 ms.assetid: b0ad7e15-9519-4517-bb73-32e593ed6380
 ms.service: api-management
 ms.workload: mobile
@@ -15,10 +15,11 @@ ms.topic: article
 ms.date: 12/05/2017
 ms.author: apimpm
 ms.openlocfilehash: 0f27b6b529c2591e37d48e3386190077fc8efc32
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.sourcegitcommit: 59914a06e1f337399e4db3c6f3bc15c573079832
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 04/20/2018
+ms.locfileid: "29378151"
 ---
 # <a name="azure-api-management-template-data-model-reference"></a>Azure API 管理範本資料模型參考
 本主題說明在 Azure API 管理的開發人員入口網站範本資料模型中，所使用之一般項目的實體和類型表示法。  

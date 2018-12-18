@@ -1,26 +1,21 @@
 ---
-title: "將檔案從 Azure 復原至 Windows Server | Microsoft Docs"
-description: "本教學課程會詳細說明從 Azure 復原到 Windows Server 的項目。"
+title: 將檔案從 Azure 復原至 Windows Server
+description: 本教學課程會詳細說明從 Azure 復原到 Windows Server 的項目。
 services: backup
-documentationcenter: 
 author: saurabhsensharma
 manager: shivamg
-editor: 
-keywords: "Windows Server 備份; 還原檔案 Windows Server; 備份與災害復原"
-ms.assetid: 
+keywords: Windows Server 備份; 還原檔案 Windows Server; 備份與災害復原
 ms.service: backup
-ms.workload: storage-backup-recovery
-ms.tgt_pltfrm: na
-ms.devlang: na
 ms.topic: tutorial
 ms.date: 2/14/2018
-ms.author: saurabhsensharma;markgal;
+ms.author: saurse
 ms.custom: mvc
-ms.openlocfilehash: 3bda261bae8155ccb48196a980b14afc56004da8
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.openlocfilehash: e05c80e52605e051bdd6815608ca8c12e1393727
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34607016"
 ---
 # <a name="recover-files-from-azure-to-a-windows-server"></a>將檔案從 Azure 復原至 Windows Server
 

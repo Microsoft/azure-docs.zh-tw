@@ -4,7 +4,7 @@ description: 使用 Azure 入口網站快速建立路由型 VPN 閘道
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
-manager: jpconnock
+manager: jeconnoc
 editor: ''
 tags: azure-resource-manager
 ms.assetid: ''
@@ -13,13 +13,14 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 03/27/2018
+ms.date: 04/04/2018
 ms.author: cherylmc
-ms.openlocfilehash: 2d6133e974e24c8c4f769995d8245b30a29a3983
-ms.sourcegitcommit: c3d53d8901622f93efcd13a31863161019325216
+ms.openlocfilehash: 550f655f6eac5a114636978255578eb3753e0d4b
+ms.sourcegitcommit: 5b2ac9e6d8539c11ab0891b686b8afa12441a8f3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/29/2018
+ms.lasthandoff: 04/06/2018
+ms.locfileid: "30918127"
 ---
 # <a name="create-a-route-based-vpn-gateway-using-the-azure-portal"></a>使用 Azure 入口網站建立路由型 VPN 閘道
 
@@ -42,7 +43,7 @@ ms.lasthandoff: 03/29/2018
   - **子網路**：Frontend
   - **位址範圍**：10.1.0.0/24
 
-  ![建立虛擬網路頁面](./media/create-routebased-vpn-gateway-portal/vnet1.png "建立虛擬網路頁面")
+  ![建立虛擬網路頁面](./media/create-routebased-vpn-gateway-portal/create-virtual-network.png "建立虛擬網路頁面")
 5. 輸入值之後，選取 [釘選到儀表板]，讓您能夠輕易地在儀表板上找到您的 VNet，然後按一下 [建立]。 按一下 [建立] 之後，您會看到儀表板上有一個圖格會反映 VNet 的進度。 建立 VNet 時，此圖格會變更。
 
 ## <a name="gwsubnet"></a>新增閘道子網路
@@ -53,17 +54,17 @@ ms.lasthandoff: 03/29/2018
 2. 在您的虛擬網路頁面上，按一下 [子網路] 以展開 [VNet1 - 子網路] 頁面。
 3. 按一下頂端的 [+閘道子網路] 以開啟 [新增子網路] 頁面。
 
-  ![新增閘道子網路](./media/create-routebased-vpn-gateway-portal/gateway_subnet.png "新增閘道子網路")
+  ![新增閘道子網路](./media/create-routebased-vpn-gateway-portal/add-gateway-subnet.png "新增閘道子網路")
 4. 子網路的**名稱**會自動填入 'GatewaySubnet' 這個必要值。 調整自動填入的**位址範圍**值，以符合下列值：
 
   **位址範圍 (CIDR 區塊)**：10.1.255.0/27
 
-  ![新增閘道子網路](./media/create-routebased-vpn-gateway-portal/add_gw_subnet.png "新增閘道子網路")
+  ![新增閘道子網路](./media/create-routebased-vpn-gateway-portal/gateway-subnet.png "新增閘道子網路")
 5. 若要建立閘道子網路，按一下頁面底部的 [確定]。
 
 ## <a name="gwvalues"></a>設定閘道設定
 
-1. 在入口網站頁面的左側，按一下 [+ 建立資源]，並在搜尋方塊中輸入「虛擬網路閘道」。 在 [結果] 中，找出並按一下 [虛擬網路閘道]。
+1. 在入口網站頁面的左側，按一下 [+ 建立資源]，並在搜尋方塊中輸入「虛擬網路閘道」，然後按 **Enter**。 在 [結果] 中，找出並按一下 [虛擬網路閘道]。
 2. 在 [虛擬網路閘道] 頁面底部，按一下 [建立]，以開啟 [建立虛擬網路閘道] 頁面。
 3. 在 [建立虛擬網路閘道] 頁面上，指定您虛擬網路閘道的值。
 
@@ -74,7 +75,7 @@ ms.lasthandoff: 03/29/2018
   - **位置**：美國東部
   - **虛擬網路**：按一下 [虛擬網路/選擇虛擬網路] 以開啟 [選擇虛擬網路] 頁面。 選取 [VNet1]。
 
-  ![設定閘道設定](./media/create-routebased-vpn-gateway-portal/configure_gw.png "設定閘道設定")
+  ![設定閘道設定](./media/create-routebased-vpn-gateway-portal/configure-gateway.png "設定閘道設定")
 
 ## <a name="pip"></a>建立公用 IP 位址
 
@@ -82,21 +83,21 @@ VPN 閘道必須具有動態配置的公用 IP 位址。 當您建立與 VPN 閘
 
 1. 選取 [第一個 IP 設定] > [建立閘道 IP 設定]，以要求公用 IP 位址。
 
-  ![第一個 IP 設定](./media/create-routebased-vpn-gateway-portal/ip.png "第一個 IP 設定")
+  ![第一個 IP 設定](./media/create-routebased-vpn-gateway-portal/add-public-ip-address.png "第一個 IP 設定")
 2. 在 [選擇公用 IP 位址] 頁面上，按一下 [+新建] 以開啟 [建立公用 IP 位址] 頁面。
 3. 使用下列值進行設定：
 
-  - **名稱**：**VNet1GWPIP**
+  - **名稱**：**VNet1GWIP**
   - **SKU**：**基本**
 
-  ![建立公用 IP](./media/create-routebased-vpn-gateway-portal/gw_ip.png "建立 PIP")
+  ![建立公用 IP](./media/create-routebased-vpn-gateway-portal/public-ip-address-name.png "建立 PIP")
 4. 按一下此頁面底部的 [確定] 來儲存變更。
 
 ## <a name="creategw"></a>建立 VPN 閘道
 
 1. 確認 [建立虛擬網路閘道] 頁面上的設定。 如有必要，請調整值。
 
-  ![建立 VPN 閘道](./media/create-routebased-vpn-gateway-portal/create_gw.png "建立 VPN 閘道")
+  ![建立 VPN 閘道](./media/create-routebased-vpn-gateway-portal/create-vpn-gateway.png "建立 VPN 閘道")
 2. 按一下頁面底部的 [建立]。
 
 按一下 [建立] 之後，即會驗證設定，而 [部署虛擬網路閘道] 圖格會出現在儀表板上。 可能需要 45 分鐘的時間才能建立 VPN 閘道。 您可能需要重新整理入口網站頁面，才能看到完成的狀態。
@@ -105,17 +106,17 @@ VPN 閘道必須具有動態配置的公用 IP 位址。 當您建立與 VPN 閘
 
 1. 建立閘道之後，瀏覽至入口網站中的 VNet1。 VPN 閘道會在 [概觀] 頁面上顯示為連線的裝置。
 
-  ![連線的裝置](./media/create-routebased-vpn-gateway-portal/connected_devices.png "連線的裝置")
+  ![連線的裝置](./media/create-routebased-vpn-gateway-portal/view-connected-devices.png "連線的裝置")
 
 2. 在裝置清單中，按一下 [VNet1GW] 以檢視詳細資訊。
 
-  ![檢視 VPN 閘道](./media/create-routebased-vpn-gateway-portal/view_gw2.png "檢視 VPN 閘道")
+  ![檢視 VPN 閘道](./media/create-routebased-vpn-gateway-portal/view-gateway.png "檢視 VPN 閘道")
 
 ## <a name="next-steps"></a>後續步驟
 
 閘道建立完成之後，您便可在您的虛擬網路與另一個 VNet 之間建立連線。 或是在您的虛擬網路與內部部署位置之間建立連線。
 
 > [!div class="nextstepaction"]
-> [建立站對站連線](vpn-gateway-howto-site-to-site-resource-manager-portal.md)
-> [建立點對站連線](vpn-gateway-howto-point-to-site-resource-manager-portal.md)
-> [建立另一個 VNet 的連線](vpn-gateway-howto-vnet-vnet-resource-manager-portal.md)
+> [建立站對站連線](vpn-gateway-howto-site-to-site-resource-manager-portal.md)<br><br>
+> [建立點對站連線](vpn-gateway-howto-point-to-site-resource-manager-portal.md)<br><br>
+> [建立與另一個 VNet 的連線](vpn-gateway-howto-vnet-vnet-resource-manager-portal.md)

@@ -6,14 +6,15 @@ author: bonova
 manager: craigg
 ms.service: sql-database
 ms.custom: develop databases
-ms.topic: article
-ms.date: 10/12/2016
+ms.topic: conceptual
+ms.date: 04/01/2018
 ms.author: bonova
-ms.openlocfilehash: 36ce6889cccbf5ae7df519c5c73846f12eed4a08
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: f65f7ec44ccbeb6f64d43d20b1bd7a77329fa97f
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34649018"
 ---
 # <a name="manage-historical-data-in-temporal-tables-with-retention-policy"></a>使用保留原則管理時態表中的歷史資料
 時態表會讓資料庫變得更大，特別是當您保留一段很長時間的歷史資料時，而一般資料表還不至於讓資料庫變得這麼大。 因此，在規劃及管理每個時態表的生命週期時，歷史資料的保留原則很重要。 Azure SQL Database 中的時態表隨附方便使用的保留機制，可協助您完成這項工作。
@@ -102,7 +103,7 @@ ON T1.history_table_id = T2.object_id WHERE T1.temporal_type = 2
 
 ## <a name="how-sql-database-deletes-aged-rows"></a>SQL Database 如何刪除過時資料列？
 清除程序取決於記錄資料表的索引配置。 請務必注意，具有叢集索引 (B 型樹狀目錄或資料行存放區) 的記錄資料表才能設定有限保留原則。 對於設定有限保留期限的所有時態表，將會建立背景工作來清除過時資料。
-資料列存放區 (B 型樹狀目錄) 叢集索引的清除邏輯會以較小區塊刪除過時資料列 (最多 10K)，以儘量減輕資料庫記錄檔和 I/O 子系統的壓力。 雖然清除邏輯採用必要的 B 型樹狀目錄索引，但在刪除比保留期限更舊的資料列時，就無法確實保證刪除順序。 因此，在您的應用程式中，絕對不要依賴清除順序。
+資料列存放區 (B 型樹狀目錄) 叢集索引的清除邏輯會以較小區塊刪除過時資料列 (最多 10K)，以儘量減輕資料庫記錄檔和 IO 子系統的壓力。 雖然清除邏輯採用必要的 B 型樹狀目錄索引，但在刪除比保留期限更舊的資料列時，就無法確實保證刪除順序。 因此，在您的應用程式中，絕對不要依賴清除順序。
 
 叢集資料行存放區的清除工作會一次移除整個[資料列群組](https://msdn.microsoft.com/library/gg492088.aspx) (每個通常包含 1 百萬個資料列)，這非常有效率，特別當歷史資料快速產生時。
 

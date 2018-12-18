@@ -1,25 +1,21 @@
 ---
-title: "June-1-2016 結構描述更新 - Azure Logic Apps | Microsoft Docs"
-description: "使用結構描述 2016-06-01 版本建立 Azure Logic Apps 的 JSON 定義"
-author: jeffhollan
-manager: anneta
-editor: 
+title: June-1-2016 結構描述更新 - Azure Logic Apps | Microsoft Docs
+description: Azure Logic Apps 中邏輯應用程式定義的更新後結構描述版本 2016-06-01
 services: logic-apps
-documentationcenter: 
-ms.assetid: 349d57e8-f62b-4ec6-a92f-a6e0242d6c0e
 ms.service: logic-apps
-ms.workload: integration
-ms.tgt_pltfrm: na
-ms.devlang: na
+ms.suite: integration
+author: kevinlam1
+ms.author: klam
+ms.reviewer: estfan, LADocs
+ms.assetid: 349d57e8-f62b-4ec6-a92f-a6e0242d6c0e
 ms.topic: article
-ms.custom: H1Hack27Feb2017
 ms.date: 07/25/2016
-ms.author: LADocs; jehollan
-ms.openlocfilehash: 525df7ddb8cd569bfd361da10d14ae08c1a721e0
-ms.sourcegitcommit: 9d317dabf4a5cca13308c50a10349af0e72e1b7e
+ms.openlocfilehash: 43fd52dd04e679b9756c07e8c6e260323469026a
+ms.sourcegitcommit: 2ad510772e28f5eddd15ba265746c368356244ae
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "43126197"
 ---
 # <a name="schema-updates-for-azure-logic-apps---june-1-2016"></a>Azure Logic Apps 的結構描述更新 - 2016 年 6 月 1 日
 

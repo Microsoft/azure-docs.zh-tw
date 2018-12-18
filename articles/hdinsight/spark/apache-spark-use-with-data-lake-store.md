@@ -1,35 +1,30 @@
 ---
-title: "使用 Apache Spark 來分析 Azure Data Lake Store 中的資料 | Microsoft Docs"
-description: "執行 Spark 作業來分析 Azure Data Lake Store 中所儲存的資料"
+title: 使用 Apache Spark 來分析 Azure Data Lake Store 中的資料
+description: 執行 Spark 作業來分析 Azure Data Lake Store 中所儲存的資料
 services: hdinsight
-documentationcenter: 
-author: nitinme
-manager: jhubbard
-editor: cgronlun
-ms.assetid: 1f174323-c17b-428c-903d-04f0e272784c
 ms.service: hdinsight
+author: jasonwhowell
+ms.author: jasonh
+ms.reviewer: jasonh
 ms.custom: hdinsightactive
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
+ms.topic: conceptual
 ms.date: 02/21/2018
-ms.author: nitinme
-ms.openlocfilehash: 6e44ffc26bbb618e0ff14d412ed77e4827232b42
-ms.sourcegitcommit: fbba5027fa76674b64294f47baef85b669de04b7
+ms.openlocfilehash: aae63b06999c0b8eafa0d42608d32a4d467a900c
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/24/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43041056"
 ---
 # <a name="use-hdinsight-spark-cluster-to-analyze-data-in-data-lake-store"></a>使用 HDInsight Spark 叢集來分析 Data Lake Store 中的資料
 
 在本教學課程中，您可使用 HDInsight Spark 叢集提供的 Jupyter Notebook 來執行可從 Data Lake Store 帳戶讀取資料的作業。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 * Azure Data Lake Store 帳戶。 遵循[使用 Azure 入口網站開始使用 Azure Data Lake Store](../../data-lake-store/data-lake-store-get-started-portal.md) 的指示。
 
-* 以 Data Lake Store 做為儲存體的 Azure HDInsight Spark 叢集。 遵循[使用 Azure 入口網站建立具有 Data Lake Store 的 HDInsight 叢集](../../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md) 的指示。
+* 以 Data Lake Store 做為儲存體的 Azure HDInsight Spark 叢集。 請遵循[快速入門：在 HDInsight 中設定叢集](../../storage/data-lake-storage/quickstart-create-connect-hdi-cluster.md)中的指示。
 
     
 ## <a name="prepare-the-data"></a>準備資料

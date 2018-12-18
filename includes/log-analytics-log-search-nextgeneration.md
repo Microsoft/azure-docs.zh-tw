@@ -1,2 +1,0 @@
->[!NOTE]
-> 如果您的工作區已升級為[新的 Log Analytics 查詢語言](../articles/log-analytics/log-analytics-log-search-upgrade.md)，則需要轉換下列查詢。 您可以使用[語言轉換器](../articles/log-analytics/log-analytics-log-search-transition.md#language-converter)來執行這項轉譯。

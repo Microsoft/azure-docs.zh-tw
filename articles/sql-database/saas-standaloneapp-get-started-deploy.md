@@ -1,20 +1,23 @@
 ---
-title: 多租用戶 SaaS 教學課程 - Azure SQL Database | Microsoft Docs
+title: 單一租用戶 SaaS 教學課程 - Azure SQL Database | Microsoft Docs
 description: 部署及探索使用 Azure SQL Database 的獨立單一租用戶 SaaS 應用程式。
-keywords: SQL Database Azure
 services: sql-database
-author: stevestein
-manager: craigg
 ms.service: sql-database
-ms.custom: scale out apps
-ms.topic: article
-ms.date: 11/30/2017
+ms.subservice: scenario
+ms.custom: ''
+ms.devlang: ''
+ms.topic: conceptual
+author: MightyPen
 ms.author: genemi
-ms.openlocfilehash: e30f096a9f02214839550c2dc143ab665e1cd85c
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.reviewer: sstein
+manager: craigg
+ms.date: 09/19/2018
+ms.openlocfilehash: 1e74a0c915471fecb3b8e0662559eb5bfe189b3d
+ms.sourcegitcommit: 42405ab963df3101ee2a9b26e54240ffa689f140
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47423012"
 ---
 # <a name="deploy-and-explore-a-standalone-single-tenant-application-that-uses-azure-sql-database"></a>部署及探索使用 Azure SQL Database 的獨立單一租用戶應用程式
 
@@ -24,7 +27,7 @@ ms.lasthandoff: 03/16/2018
 
 在本教學課程中，您會將三個租用戶的三個獨立應用程式部署到您的 Azure 訂用帳戶中。  您可以完整存取探索和使用個別應用程式元件。
 
-在 [WingtipTicketsSaaS-StandaloneApp](https://github.com/Microsoft/WingtipTicketsSaaS-StandaloneApp) GitHub 存放庫可取得應用程式原始程式碼和管理指令碼。
+在 [WingtipTicketsSaaS-StandaloneApp](https://github.com/Microsoft/WingtipTicketsSaaS-StandaloneApp) GitHub 存放庫可取得應用程式原始程式碼和管理指令碼。 應用程式是使用 Visual Studio 2015 建立的，若未更新，則無法在 Visual Studio 2017 中成功開啟及編譯。
 
 
 您會在本教學課程中學到：

@@ -1,53 +1,56 @@
 ---
-title: Azure 儲存體簡介 | Microsoft Docs
-description: Azure 儲存體 (Microsoft 的雲端資料儲存體) 簡介。
+title: Azure 儲存體簡介 - Azure 中的雲端儲存體 | Microsoft Docs
+description: Azure 儲存體是 Microsoft 的雲端儲存體解決方案。 Azure 儲存體提供了高可用性、安全、持久、可大幅調整且具有備援的資料物件儲存體。
 services: storage
 author: tamram
-manager: jeconnoc
 ms.service: storage
 ms.topic: get-started-article
-ms.date: 03/06/2018
+ms.date: 07/11/2018
 ms.author: tamram
-ms.openlocfilehash: 18a8065bba8a4a0ec2025d6b9134fe9fab21eb5f
-ms.sourcegitcommit: 20d103fb8658b29b48115782fe01f76239b240aa
+ms.component: common
+ms.openlocfilehash: f03872a125e4e4d2f1e0b458a31d67a07802f2c8
+ms.sourcegitcommit: f20e43e436bfeafd333da75754cd32d405903b07
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2018
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49387442"
 ---
-# <a name="introduction-to-microsoft-azure-storage"></a>Microsoft Azure 儲存體簡介
+# <a name="introduction-to-azure-storage"></a>Azure 儲存體簡介
 
-Microsoft Azure 儲存體是 Microsoft 管理的雲端服務，可提供高度可用、安全、持久、可擴充和備援的儲存體。 Microsoft 會為您進行維護和處理重大問題。
+Azure 儲存體是 Microsoft 針對最新資料儲存體環境推出的雲端儲存體解決方案。 Azure 儲存體提供可大幅調整的資料物件存放區、雲端檔案系統服務、能可靠傳訊的訊息存放區，以及 NoSQL 存放區。 Azure 儲存體的特色：
 
-Azure 儲存體包含三項資料服務：Blob 儲存體、檔案儲存體和佇列儲存體。 Blob 儲存體同時支援標準和進階儲存體，而進階儲存體僅使用 SSD 以取得可能最快的效能。 另一項功能是非經常性存取儲存體，可讓您以較低的成本儲存大量很少存取的資料。
+- **持久與高可用性。** 備援功能可在發生暫時性硬體失敗時，確保您的資料安全無虞。 您也可以選擇在資料中心或地理區域間複寫資料，以便在發生地方性災難或天然災害時獲得額外保護。 以此方式複寫資料，可在發生未預期的中斷事件時保持高可用性。 
+- **安全。** 所有寫入 Azure 儲存體的資料皆會由服務進行加密。 Azure 儲存體在存取您資料的人員控管上，提供更細微的控制。
+- **可調整。** Azure 儲存體設計為可大幅調整，以符合現今應用程式的資料儲存和效能需求。 
+- **受控。** Microsoft Azure 會為您處理維護作業和任何重大問題。
+- **可存取。** 您可以從世界各地透過 HTTP 或 HTTPS 存取 Azure 儲存體中的資料。 Microsoft 提供多種語言的 Azure 儲存體 SDK (.NET、Java、Node.js、Python、PHP、Ruby、Go 等) 和成熟的 REST API。 Azure 儲存體支援在 Azure PowerShell 或 Azure CLI 中使用指令碼。 而且在使用資料方面，Azure 入口網站和 Azure 儲存體總管提供簡易的視覺式解決方案。  
 
-您會在本文中了解下列各項：
-* Azure 儲存體服務
-* 儲存體帳戶類型
-* 存取您的 blob、佇列和檔案
-* 加密
-* 複寫
-* 將資料傳入或傳出儲存體
-* 許多可用的儲存體用戶端程式庫。
+## <a name="azure-storage-services"></a>Azure 儲存體服務
 
-若要讓 Azure 儲存體啟動並執行，請參閱[建立儲存體帳戶](storage-quickstart-create-account.md)。
+Azure 儲存體包含以下資料服務： 
 
-## <a name="introducing-the-azure-storage-services"></a>Azure 儲存體服務簡介
+- [Azure Blob](../blobs/storage-blobs-introduction.md)：適用於文字和二進位資料且可大幅調整的物件存放區。
+- [Azure 檔案服務](../files/storage-files-introduction.md)：雲端或內部部署的受控檔案共用。
+- [Azure 佇列](../queues/storage-queues-introduction.md)：可在應用程式元件之間可靠傳訊的訊息存放區。 
+- [Azure 資料表](../tables/table-storage-overview.md)：以無結構描述方式儲存結構化資料的 NoSQL 存放區。
 
-若要使用 Azure 儲存體所提供的任何服務 (Blob 儲存體、檔案儲存體和佇列儲存體)，請先建立儲存體帳戶，再從該儲存體帳戶中的特定服務傳入/出資料。
+每個服務都會透過儲存體帳戶存取。 若要開始使用，請參閱[建立儲存體帳戶](storage-quickstart-create-account.md)。
 
 ## <a name="blob-storage"></a>Blob 儲存體
 
-Blob 基本上類似您在電腦 (或平板電腦、行動裝置等) 上儲存的檔案。 它們可以是圖片、Microsoft Excel 檔案、HTML 檔案、虛擬硬碟 (VHD)、巨量資料 (例如記錄、資料庫備份) - 幾乎涵蓋任何項目。 Blob 會儲存在容器 (類似於資料夾) 中。
+Azure Blob 儲存體是 Microsoft 針對雲端推出的物件儲存體解決方案。 Blob 儲存體已針對儲存大量非結構化物件資料 (例如文字或二進位資料) 最佳化。 
 
-在 Blob 儲存體中儲存檔案之後，您可以從世界各地使用 URL、REST 介面，或其中一個 Azure SDK 儲存體用戶端程式庫存取這些檔案。 儲存體用戶端程式庫提供多種語言，包括 Node.js、Java、PHP、Ruby、Python 和 .NET。
+Blob 儲存體是適合用於：
 
-Blob 有三種類型：區塊 Blob、分頁 Blob (用於 VHD 檔案) 和附加 Blob。
+* 直接提供映像或文件給瀏覽器。
+* 儲存檔案供分散式存取。
+* 串流傳輸視訊和音訊。
+* 儲存備份和還原、災害復原和封存資料。
+* 儲存資料供內部部署或 Azure 託管服務進行分析。
 
-* 區塊 Blob 用來保存高達 4.7 TB 的一般檔案。
-* 分頁 Blob 用來保存隨機存取檔案 (大小上限為 8 TB)。 這些用來備份 VM 的 VHD 檔案。
-* 附加 Blob 和區塊 Blob 相似，由區塊所組成，但已針對附加作業最佳化。 這些 Blob 用於將資訊記錄至多個 VM 中的相同 Blob 之類的事情。
+使用者可從世界各地透過 HTTP 或 HTTPS 存取 Blob 儲存體中的物件。 使用者或用戶端應用程式可以透過 URL、[Azure 儲存體 REST API](https://docs.microsoft.com/rest/api/storageservices/blob-service-rest-api)、[Azure PowerShell](https://docs.microsoft.com/powershell/module/azure.storage)、[Azure CLI](https://docs.microsoft.com/cli/azure/storage) 或 Azure 儲存體用戶端程式庫存取 Blob。 儲存體用戶端程式庫提供多種語言，包括 [.NET](https://docs.microsoft.com/dotnet/api/overview/azure/storage/client)、[Java](https://docs.microsoft.com/java/api/overview/azure/storage/client)、[Node.js](http://azure.github.io/azure-storage-node)、[Python](https://azure-storage.readthedocs.io/)、[PHP](http://azure.github.io/azure-storage-php/) 和 [Ruby](http://azure.github.io/azure-storage-ruby)。
 
-若是超大型資料集，網路限制會使得透過線路上傳或下載資料至 Blob 儲存體變得不切實際，您可以將一組硬碟送至 Microsoft，以便直接從資料中心匯入或匯出資料。 請參閱 [使用 Microsoft Azure 匯入/匯出服務將資料移轉至 Blob 儲存體](../storage-import-export-service.md)。
+若要深入了解 Blob 儲存體，請參閱 [Azure 上的物件儲存體簡介](../blobs/storage-blobs-introduction.md)。
 
 ## <a name="azure-files"></a>Azure 檔案
 [Azure 檔案服務](../files/storage-files-introduction.md)可讓您設定高可用性網路檔案共用，其可使用標準伺服器訊息區塊 (SMB) 通訊協定來存取。 這表示多個 VM 可以透過讀取和寫入權限共用相同的檔案。 您也可以使用 REST 介面或儲存體用戶端程式庫來讀取檔案。
@@ -64,19 +67,25 @@ Blob 有三種類型：區塊 Blob、分頁 Blob (用於 VHD 檔案) 和附加 B
 
 這個階段不支援以 Active Directory 為基礎的驗證和存取控制清單 (ACL)，但未來將會提供支援。 儲存體帳戶認證用來提供檔案共用存取權的驗證。 這表示任何掛接共用的人員都具有共用的完整讀取/寫入權限。
 
+如需 Azure 檔案服務的詳細資訊，請參閱 [Azure 檔案服務簡介](../files/storage-files-introduction.md)。
+
 ## <a name="queue-storage"></a>佇列儲存體
 
 Azure 佇列服務用來儲存及擷取訊息。 佇列訊息的大小上限為 64 KB，而一個佇列可以包含數百萬則訊息。 佇列通常用來儲存要以非同步方式處理的訊息清單。
 
 例如，假設您希望客戶能夠上傳圖片，而且要建立每張圖片的縮圖。 您可以讓客戶在上傳圖片時等候您建立縮圖。 另外，也可以使用佇列。 當客戶完成上傳時，將訊息寫入佇列。 然後讓 Azure Function 從佇列擷取訊息並建立縮圖。 這項處理的每個部分都可以個別調整，讓您在針對您的使用量進行微調時有更多控制權。
 
+如需 Azure 佇列的詳細資訊，請參閱[佇列簡介](../queues/storage-queues-introduction.md)。
+
 ## <a name="table-storage"></a>表格儲存體
 
-Azure 資料表儲存體現在屬於 Azure Cosmos DB。 若要查看 Azure 資料表儲存體文件，請參閱 [Azure 資料表儲存體概觀](../../cosmos-db/table-storage-overview.md)。 除了現有的 Azure 資料表儲存體服務，有新的 Azure Cosmos DB 資料表 API 供應項目，可提供輸送量最佳化的資料表、全域發佈，以及自動次要索引。 若要深入了解並試用新的進階體驗，請查看 [Azure Cosmos DB 資料表 API](https://aka.ms/premiumtables)。
+Azure 資料表儲存體現在屬於 Azure Cosmos DB。 若要查看 Azure 資料表儲存體文件，請參閱 [Azure 資料表儲存體概觀](../tables/table-storage-overview.md)。 除了現有的 Azure 資料表儲存體服務，有新的 Azure Cosmos DB 資料表 API 供應項目，可提供輸送量最佳化的資料表、全域發佈，以及自動次要索引。 若要深入了解並試用新的進階體驗，請查看 [Azure Cosmos DB 資料表 API](https://aka.ms/premiumtables)。
+
+如需資料表儲存體的詳細資訊，請參閱 [Azure 資料表儲存體概觀](../tables/table-storage-overview.md)。
 
 ## <a name="disk-storage"></a>磁碟儲存體
 
-Azure 儲存體也包含虛擬機器所使用的受控和非受控磁碟功能。 如需有關這些功能的詳細資訊，請參閱[計算服務文件](https://docs.microsoft.com/azure/#pivot=services&panel=Compute)。
+Azure 儲存體也包含虛擬機器所使用的受控和非受控磁碟功能。 如需有關這些功能的詳細資訊，請參閱[計算服務文件](https://docs.microsoft.com/azure/#pivot=products&panel=Compute)。
 
 ## <a name="types-of-storage-accounts"></a>儲存體帳戶類型
 
@@ -84,7 +93,7 @@ Azure 儲存體也包含虛擬機器所使用的受控和非受控磁碟功能�
 
 |**儲存體帳戶的類型**|**一般用途：標準**|**一般用途：進階**|**Blob 儲存體、經常性存取和非經常性存取層**|
 |-----|-----|-----|-----|
-|**支援的服務**| Blob、檔案、佇列服務 | Blob 服務 | Blob 服務|
+|**支援的服務**| Blob、檔案、佇列和資料表服務 | Blob 服務 | Blob 服務|
 |**支援的 Blob 類型**|區塊 Blob、分頁 Blob 及附加 Blob | 分頁 Blob | 區塊 Blob 和附加 Blob|
 
 ### <a name="general-purpose-storage-accounts"></a>一般用途的儲存體帳戶
@@ -131,6 +140,7 @@ Blob 服務可讓您提供容器與其 Blob 或特定 Blob 的公開存取權。
 
 待用的 Azure 儲存體服務加密 (SSE) 會協助您保護資料安全，以符合組織安全性和合規性承諾。 利用此功能，Azure 儲存體會自動加密資料，再保存到儲存體，以及在擷取之前解密。 以完全無感的方式處理所有加密、解密和金鑰管理。
 
+
 SSE 會自動將所有效能層 (標準和進階)、所有部署模型 (Azure Resource Manager 和傳統) 以及所有「Azure 儲存體」服務 (Blob、佇列、資料表和檔案) 中的資料加密。 SSE 不會影響「Azure 儲存體」效能。
 
 如需待用 SSE 加密的詳細資訊，請參閱[待用資料的 Azure 儲存體服務加密](storage-service-encryption.md)。
@@ -160,6 +170,8 @@ AzCopy 建置於 [Azure 資料移動程式庫](https://www.nuget.org/packages/Mi
 
 Azure 匯入/匯出服務可用於從儲存體帳戶匯入或匯出大量 blob 資料。 您可準備多個硬碟並將其郵寄至 Azure 資料中心，這些硬碟會在其中從硬碟機傳入/傳出資料並將硬碟機傳送給您。 如需匯入/匯出服務的詳細資訊，請參閱 [使用 Microsoft Azure 匯入/匯出服務將資料傳輸至 Blob 儲存體](../storage-import-export-service.md)。
 
+若要以快速、便宜且可靠的方式，將大量 blob 資料匯入您的儲存體帳戶中，您也可以使用 Azure 資料箱磁碟。 Microsoft 會透過區域電訊廠商，將最多 5 個包含 40 TB 容量的加密固態硬碟 (SSD) 寄送至您的資料中心。 您可快速設定磁碟、透過 USB 連線將資料複製到磁碟，並將磁碟寄回 Azure。 在 Azure 資料中心內，您的資料會從磁碟自動上傳至雲端。 如需有關此解決方案的詳細資訊，請移至 [Azure 資料箱磁碟概觀](https://docs.microsoft.com/azure/databox/data-box-disk-overview)。
+
 ## <a name="pricing"></a>價格
 
 如需 Azure 儲存體價格的詳細資訊，請參閱[價格頁面](https://azure.microsoft.com/pricing/details/storage/blobs/)。
@@ -167,101 +179,33 @@ Azure 匯入/匯出服務可用於從儲存體帳戶匯入或匯出大量 blob �
 ## <a name="storage-apis-libraries-and-tools"></a>儲存體 API、程式庫和工具
 任何可提出 HTTP/HTTPS 要求的語言皆可存取 Azure 儲存體資源。 另外，Azure 儲存體還提供了幾種熱門語言的程式設計程式庫。 這些程式庫可透過處理詳細資料 (例如同步和非同步叫用、進行批次作業、例外狀況管理、自動重試、運作方式等等) 來簡化使用 Azure 儲存體的許多項目。 程式庫目前適用於下列語言和平台，以及正在研發的其他語言和平台：
 
-### <a name="azure-storage-data-services"></a>Azure 儲存體資料服務
-* [儲存體服務 REST API](/rest/api/storageservices/)
-* [適用於 .NET 的儲存體用戶端程式庫](https://docs.microsoft.com/dotnet/api/?view=azurestorage-8.1.1)
+### <a name="azure-storage-data-api-and-library-references"></a>Azure 儲存體資料 API 和程式庫參考
+* [儲存體服務 REST API](https://docs.microsoft.com/rest/api/storageservices/)
+* [適用於 .NET 的儲存體用戶端程式庫](https://docs.microsoft.com/dotnet/api/overview/azure/storage)
+* [適用於 Java/Android 的儲存體用戶端程式庫](https://docs.microsoft.com/java/api/overview/azure/storage)
+* [適用於 Node.js 的儲存體用戶端程式庫](https://docs.microsoft.com/javascript/api/azure-storage)
+* [適用於 Python 的儲存體用戶端程式庫](https://github.com/Azure/azure-storage-python)
+* [適用於 PHP 的儲存體用戶端程式庫](https://github.com/Azure/azure-storage-php)
+* [適用於 Ruby 的儲存體用戶端程式庫](https://github.com/Azure/azure-storage-ruby)
 * [Storage Client Library for C++](https://github.com/Azure/azure-storage-cpp)
-* [適用於 Java/Android 的儲存體用戶端程式庫](https://azure.microsoft.com/develop/java/)
-* [適用於 Node.js 的儲存體用戶端程式庫](http://dl.windowsazure.com/nodestoragedocs/index.html)
-* [適用於 PHP 的儲存體用戶端程式庫](https://azure.microsoft.com/develop/php/)
-* [適用於 Python 的儲存體用戶端程式庫](https://azure.microsoft.com/develop/python/)
-* [適用於 Ruby 的儲存體用戶端程式庫](https://azure.microsoft.com/develop/ruby/)
-* [適用於 PowerShell 的儲存體 Cmdlet](/powershell/module/azure.storage/?view=azurermps-4.1.0&viewFallbackFrom=azurermps-4.0.0)
-* [適用於 CLI 2.0 的儲存體命令](/cli/azure/storage)
+
+### <a name="azure-storage-management-api-and-library-references"></a>Azure 儲存體管理 API 和程式庫參考
+* [儲存體資源提供者 REST API](https://docs.microsoft.com/rest/api/storagerp/)
+* [適用於 .NET 的儲存體資源提供者用戶端程式庫](https://docs.microsoft.com/dotnet/api/overview/azure/storage/management)
+* [儲存體服務管理 REST API (傳統)](https://msdn.microsoft.com/library/azure/ee460790.aspx)
+
+### <a name="azure-storage-data-movement-api-and-library-references"></a>Azure 儲存體資料移動 API 和程式庫參考
+* [儲存體匯入/匯出服務 REST API](https://docs.microsoft.com/rest/api/storageimportexport/)
+* [適用於 .NET 的儲存體資料移動 用戶端程式庫](https://docs.microsoft.com/dotnet/api/microsoft.windowsazure.storage.datamovement)
+
+### <a name="tools-and-utilities"></a>工具和公用程式
+* [儲存體的 Azure PowerShell Cmdlet](https://docs.microsoft.com/powershell/module/azure.storage)
+* [儲存體的 Azure CLI Cmdlet](https://docs.microsoft.com/cli/azure/storage)
+* [AzCopy 命令列公用程式](http://aka.ms/downloadazcopy)
+* [Azure 儲存體總管](https://azure.microsoft.com/features/storage-explorer/) 是一個免費的獨立應用程式，可讓您在 Windows、MacOS 和 Linux 上以視覺化方式處理 Azure 儲存體資料。
+* [Azure 儲存體用戶端工具](../storage-explorers.md)
+* [Azure 開發人員工具](https://azure.microsoft.com/tools/)
 
 ## <a name="next-steps"></a>後續步驟
 
-* [深入了解 Blob 儲存體](../blobs/storage-blobs-introduction.md)
-* [深入了解檔案儲存體](../storage-files-introduction.md)
-* [深入了解佇列儲存體](../queues/storage-queues-introduction.md)
-
 若要讓 Azure 儲存體啟動並執行，請參閱[建立儲存體帳戶](storage-quickstart-create-account.md)。
-
-<!-- FIGURE OUT WHAT TO DO WITH ALL THESE LINKS.
-
-Azure Storage resources can be accessed by any language that can make HTTP/HTTPS requests. Additionally, Azure Storage offers programming libraries for several popular languages. These libraries simplify many aspects of working with Azure Storage by handling details such as synchronous and asynchronous invocation, batching of operations, exception management, automatic retries, operational behavior and so forth. Libraries are currently available for the following languages and platforms, with others in the pipeline:
-
-### Azure Storage data services
-* [Storage Services REST API](https://docs.microsoft.com/rest/api/storageservices/)
-* [Storage Client Library for .NET](https://docs.microsoft.com/dotnet/api/?view=azurestorage-8.1.1)
-* [Storage Client Library for C++](https://github.com/Azure/azure-storage-cpp)
-* [Storage Client Library for Java/Android](https://azure.microsoft.com/develop/java/)
-* [Storage Client Library for Node.js](http://dl.windowsazure.com/nodestoragedocs/index.html)
-* [Storage Client Library for PHP](https://azure.microsoft.com/develop/php/)
-* [Storage Client Library for Python](https://azure.microsoft.com/develop/python/)
-* [Storage Client Library for Ruby](https://azure.microsoft.com/develop/ruby/)
-* [Storage Cmdlets for PowerShell](/powershell/module/azure.storage/?view=azurermps-4.1.0&viewFallbackFrom=azurermps-4.0.0)
-
-### Azure Storage management services
-* [Storage Resource Provider REST API Reference](/rest/api/storagerp/)
-* [Storage Resource Provider Client Library for .NET](/dotnet/api/microsoft.azure.management.storage)
-* [Storage Resource Provider Cmdlets for PowerShell 1.0](/powershell/module/azure.storage)
-* [Storage Service Management REST API (Classic)](https://msdn.microsoft.com/library/azure/ee460790.aspx)
-
-### Azure Storage data movement services
-* [Storage Import/Export Service REST API](../storage-import-export-service.md)
-* [Storage Data Movement Client Library for .NET](https://www.nuget.org/packages/Microsoft.Azure.Storage.DataMovement/)
-
-### Tools and utilities
-* [Microsoft Azure Storage Explorer](../../vs-azure-tools-storage-manage-with-storage-explorer.md) is a free, standalone app from Microsoft that enables you to work visually with Azure Storage data on Windows, macOS, and Linux.
-* [Azure Storage Client Tools](../storage-explorers.md)
-* [Azure SDKs and Tools](https://azure.microsoft.com/tools/)
-* [Azure Storage Emulator](http://www.microsoft.com/download/details.aspx?id=43709)
-* [Azure PowerShell](/powershell/azure/overview)
-* [AzCopy Command-Line Utility](http://aka.ms/downloadazcopy)
-
-## Next steps
-To learn more about Azure Storage, explore these resources:
-
-### Documentation
-* [Azure Storage Documentation](https://azure.microsoft.com/documentation/services/storage/)
-* [Create a storage account](../storage-create-storage-account.md)
-
--->
-
-### <a name="for-administrators"></a>針對系統管理員
-* [搭配使用 Azure PowerShell 與 Azure 儲存體](storage-powershell-guide-full.md)
-* [使用 Azure CLI 搭配 Azure 儲存體](../storage-azure-cli.md)
-
-### <a name="for-net-developers"></a>針對 .NET 開發人員
-* [以 .NET 開始使用 Azure Blob 儲存體](../blobs/storage-dotnet-how-to-use-blobs.md)
-* [使用 .NET 開發 Azure 檔案服務](../files/storage-dotnet-how-to-use-files.md)
-* [以 .NET 開始使用 Azure 表格儲存體](../../cosmos-db/table-storage-how-to-use-dotnet.md)
-* [以 .NET 開始使用 Azure 佇列儲存體](../storage-dotnet-how-to-use-queues.md)
-
-### <a name="for-javaandroid-developers"></a>針對 Java/Android 開發人員
-* [如何使用 Java 的 Blob 儲存體](../blobs/storage-java-how-to-use-blob-storage.md)
-* [使用 Java 開發 Azure 檔案服務](../files/storage-java-how-to-use-file-storage.md)
-* [如何使用 Java 的表格儲存體](../../cosmos-db/table-storage-how-to-use-java.md)
-* [如何使用 Java 的佇列儲存體](../storage-java-how-to-use-queue-storage.md)
-
-### <a name="for-nodejs-developers"></a>針對 Node.js 開發人員
-* [如何使用 Node.js 的 Blob 儲存體](../blobs/storage-nodejs-how-to-use-blob-storage.md)
-* [如何使用 Node.js 的表格儲存體](../../cosmos-db/table-storage-how-to-use-nodejs.md)
-* [如何使用 Node.js 的佇列儲存體](../storage-nodejs-how-to-use-queues.md)
-
-### <a name="for-php-developers"></a>針對 PHP 開發人員
-* [如何使用 PHP 的 Blob 儲存體](../blobs/storage-php-how-to-use-blobs.md)
-* [如何使用 PHP 的表格儲存體](../../cosmos-db/table-storage-how-to-use-php.md)
-* [如何使用 PHP 的佇列儲存體](../storage-php-how-to-use-queues.md)
-
-### <a name="for-ruby-developers"></a>針對 Ruby 開發人員
-* [如何使用 Ruby 的 Blob 儲存體](../blobs/storage-ruby-how-to-use-blob-storage.md)
-* [如何使用 Ruby 的表格儲存體](../../cosmos-db/table-storage-how-to-use-ruby.md)
-* [如何使用 Ruby 的佇列儲存體](../storage-ruby-how-to-use-queue-storage.md)
-
-### <a name="for-python-developers"></a>針對 Python 開發人員
-* [如何使用 Python 的 Blob 儲存體](../blobs/storage-python-how-to-use-blob-storage.md)
-* [使用 Python 開發 Azure 檔案服務](../files/storage-python-how-to-use-file-storage.md)
-* [如何使用 Python 的表格儲存體](../../cosmos-db/table-storage-how-to-use-python.md)
-* [如何使用 Python 的佇列儲存體](../storage-python-how-to-use-queue-storage.md)

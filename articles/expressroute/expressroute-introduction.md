@@ -1,24 +1,18 @@
 ---
 title: ExpressRoute 概觀：透過私人連線將內部部署網路延伸至 Azure | Microsoft Docs
 description: 此「ExpressRoute 技術概觀」說明 ExpressRoute 連線如何透過私人連線，將內部部署網路延伸至 Azure。
-documentationcenter: na
 services: expressroute
 author: cherylmc
-manager: timlt
-editor: ''
-ms.assetid: fd95dcd5-df1d-41d6-85dd-e91d0091af05
 ms.service: expressroute
-ms.devlang: na
-ms.topic: get-started-article
-ms.tgt_pltfrm: na
-ms.workload: infrastructure-services
-ms.date: 03/12/2018
+ms.topic: overview
+ms.date: 09/19/2018
 ms.author: cherylmc
-ms.openlocfilehash: 75d69669945d31fbc9876d0c1e709b37f96aee6d
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: f1bc447f73912ccf04f0c0cf7d6460d472bace4c
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46961898"
 ---
 # <a name="expressroute-overview"></a>ExpressRoute 概欟
 Microsoft Azure ExpressRoute 可讓您透過連線提供者所提供的私人連線，將內部部署網路延伸至 Microsoft 雲端。 透過 ExpressRoute，您可以建立 Microsoft 雲端服務的連線，例如 Microsoft Azure、Office 365 和 Dynamics 365。
@@ -27,7 +21,7 @@ Microsoft Azure ExpressRoute 可讓您透過連線提供者所提供的私人連
 
 ![](./media/expressroute-introduction/expressroute-connection-overview.png)
 
-## <a name="key-benefits"></a>主要權益
+## <a name="key-benefits"></a>主要優點
 
 * 內部部署網路與 Microsoft Cloud 之間透過連線提供者的第 3 層連線能力。 從任意點對任意點 (IP VPN) 網路、點對點乙太網路，或透過乙太網路交換經由虛擬交叉連接，都可以進行連線。
 * 跨地理政治區域中的所有區域連接到 Microsoft 雲端服務。
@@ -69,11 +63,29 @@ Microsoft 採用業界標準動態路由通訊協定 (BGP)，在您的內部部�
 ### <a name="global-connectivity-with-expressroute-premium-add-on"></a>使用 ExpressRoute Premium 附加元件從全球連線
 您可以啟用 ExpressRoute Premium 附加功能，將連線能力延伸到跨越地理政治的界限。 例如，如果您在阿姆斯特丹透過 ExpressRoute 連接到 Microsoft，您就能夠存取全球所有區域裝載的所有 Microsoft 雲端服務 (不包括國家雲端)。 就像存取北歐和西歐區域一樣，您也可以存取部署在南美洲或澳大利亞的服務。
 
+### <a name="across-on-premises-connectivity-with-expressroute-global-reach"></a>使用 ExpressRoute Global Reach 跨內部部署連線
+
+您可以啟用 ExpressRoute Global Reach 來將多個 ExpressRoute 線路連線，以在遠端站台之間交換資料。 例如，如果您有位在加州的私人資料中心連線到位在矽谷的 ExpressRoute，以及另一個位在德州的私人資料中心連線到位在達拉斯的 ExpressRoute，使用 ExpressRoute Global Reach 您就可以透過兩個 ExpressRoute 線路將您的私人資料中心連線在一起。 您跨資料中心的流量會透過 Microsoft 的網路周遊。
+
+如需詳細資訊，請參閱 [ExpressRoute Global Reach](expressroute-global-reach.md)。
+
 ### <a name="rich-connectivity-partner-ecosystem"></a>豐富的連線合作夥伴生態系統
 ExpressRoute 的連線提供者和 SI 合作夥伴生態系統持續成長茁壯。 如需最新資訊，請參閱 [ExpressRoute 提供者和位置](expressroute-locations.md)一文。
 
 ### <a name="connectivity-to-national-clouds"></a>連線到國家雲端
 Microsoft 為特殊的地理政治地區和客戶群提供隔離的雲端環境。 如需國家雲端和提供者的清單，請參閱 [ExpressRoute 提供者和位置](expressroute-locations.md) 頁面。
+
+### <a name="expressroute-direct"></a>ExpressRoute Direct
+
+ExpressRoute Direct 為客戶提供能夠將策略性分散於世界各地的對等互連位置，都直接連線至 Microsoft 全球網路的能力。 ExpressRoute Direct 提供雙 100Gbps 連線，且支援大規模主動/主動連線。 
+
+ExpressRoute Direct 提供的主要功能包括但不限於：
+
+* 將資料大量擷取至儲存體與 Cosmos DB 等服務 
+* 實體隔離，適用於銀行、政府與零售等受規範且需要專用、隔離之連線的產業 
+* 根據業務單位決定的細微線路分散控制
+
+如需詳細資訊，請參閱[關於 ExpressRoute Direct](https://go.microsoft.com/fwlink/?linkid=2022973)。
 
 ### <a name="bandwidth-options"></a>頻寬選項
 您可以購買各種頻寬的 ExpressRoute 線路。 支援的頻寬如下所列。 請務必洽詢您的連線提供者，以判斷他們支援的頻寬清單。

@@ -1,19 +1,20 @@
 ---
-title: "在適用於 MySQL 的 Azure 資料庫伺服器中建立使用者"
-description: "本文說明如何建立新的使用者帳戶，來與「適用於 MySQL 的 Azure 資料庫」伺服器互動。"
+title: 在適用於 MySQL 的 Azure 資料庫伺服器中建立使用者
+description: 本文說明如何建立新的使用者帳戶，來與「適用於 MySQL 的 Azure 資料庫」伺服器互動。
 services: mysql
 author: jasonwhowell
 ms.author: jasonh
 editor: jasonwhowell
 manager: kfile
-ms.service: mysql-database
+ms.service: mysql
 ms.topic: article
 ms.date: 02/28/2018
-ms.openlocfilehash: 9fd592efe48adefc6aca7a6caea24f546da23fa5
-ms.sourcegitcommit: c765cbd9c379ed00f1e2394374efa8e1915321b9
+ms.openlocfilehash: ee74ea9e114f6401bfcafe44ca3caedfcd0005c5
+ms.sourcegitcommit: 1b8665f1fff36a13af0cbc4c399c16f62e9884f3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/28/2018
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35265613"
 ---
 # <a name="create-users-in-azure-database-for-mysql-server"></a>在適用於 MySQL 的 Azure 資料庫伺服器中建立使用者 
 本主題說明如在「適用於 MySQL 的 Azure 資料庫」伺服器中建立使用者。

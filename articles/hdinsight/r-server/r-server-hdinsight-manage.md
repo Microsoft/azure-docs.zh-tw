@@ -1,52 +1,48 @@
 ---
-title: 管理 HDInsight 上的 R Server 叢集 - Azure | Microsoft Docs
-description: 了解如何管理 Azure HDInsight 上的 R Server 叢集。
-services: HDInsight
-documentationcenter: ''
-author: nitinme
-manager: cgronlun
-editor: cgronlun
-ms.service: HDInsight
+title: 在 HDInsight 上管理 ML 服務叢集 - Azure
+description: 了解如何在 Azure HDInsight 中管理 ML 服務叢集。
+services: hdinsight
+ms.service: hdinsight
+author: jasonwhowell
+ms.author: jasonh
+ms.reviewer: jasonh
 ms.custom: hdinsightactive
-ms.devlang: R
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 03/23/2018
-ms.author: nitinme
-ms.openlocfilehash: c0a996555e35a99a6025e92bcb41fa192b18eece
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.topic: conceptual
+ms.date: 06/27/2018
+ms.openlocfilehash: 38a8366a586b032c3b11cbef8ee5f01ad2b822a5
+ms.sourcegitcommit: cb61439cf0ae2a3f4b07a98da4df258bfb479845
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 09/05/2018
+ms.locfileid: "43702396"
 ---
-# <a name="manage-r-server-cluster-on-azure-hdinsight"></a>管理 Azure HDInsight 上的 R Server 叢集
+# <a name="manage-ml-services-cluster-on-azure-hdinsight"></a>在 HDInsight 上管理 ML 服務叢集
 
-在本文中，您將了解如何管理 Azure HDInsight 上現有的 R Server 叢集，以執行像是新增多個並行使用者、遠端連線至 R Server (Microsoft ML 伺服器) 或用戶端、變更計算內容等工作。
+在本文中，您將了解如何在 Azure HDInsight 上管理現有的 ML 服務叢集，以執行像是新增多個並行使用者、遠端連線至 ML 服務叢集、變更計算內容等工作。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
-* **HDInsight 上的 R Server 叢集**：如需相關指示，請參閱[開始在 HDInsight 上使用 R Server](r-server-get-started.md)。
+* **HDInsight 上的 ML 服務叢集**：如需相關指示，請參閱[開始在 HDInsight 上使用 ML 服務](r-server-get-started.md)。
 
 * **安全殼層 (SSH) 用戶端**：SSH 用戶端可用來從遠端連線至 HDInsight 叢集，並直接在叢集上執行命令。 如需詳細資訊，請參閱[搭配使用 SSH 與 HDInsight](../hdinsight-hadoop-linux-use-ssh-unix.md)。
 
 
 ## <a name="enable-multiple-concurrent-users"></a>啟用多個並行使用者
 
-藉由為 RStudio Community 版本執行所在的邊緣節點新增更多使用者，即可為 HDInsight 上的 R Server 叢集啟用多個並行使用者。 當您建立 HDInsight 叢集時，您必須提供兩個使用者 (HTTP 使用者和 SSH 使用者)：
+為 RStudio 社群版本執行所在的邊緣節點新增更多使用者，即可藉此為 HDInsight 上的 ML 服務叢集啟用多個並行使用者。 當您建立 HDInsight 叢集時，您必須提供兩個使用者 (HTTP 使用者和 SSH 使用者)：
 
 ![並行使用者 1](./media/r-server-hdinsight-manage/concurrent-users-1.png)
 
 - **叢集登入使用者名稱**：透過 HDInsight 閘道 (用來保護您所建立的 HDInsight 叢集) 進行驗證的 HTTP 使用者。 此 HTTP 使用者用於存取 Ambari UI、YARN UI，以及其他 UI 元件。
 - **安全殼層 (SSH) 使用者名稱**：透過安全殼層存取叢集的 SSH 使用者。 此使用者是在 Linux 系統中適用於所有前端節點、背景工作節點和邊緣節點的使用者。 因此您可以使用安全殼層來存取遠端叢集中的任何節點。
 
-HDInsight 上 R Server 叢集中所使用的 R Studio Server Community 版本，只接受 Linux 使用者名稱和密碼作為登入機制。 但不支援傳遞權杖。 因此，當您首次嘗試存取 R Server 叢集上的 R Studio 時，您需要登入兩次。
+HDInsight 上 ML 服務叢集中所使用的 R Studio Server 社群版本，只接受 Linux 使用者名稱和密碼作為登入機制。 但不支援傳遞權杖。 因此，當您首次嘗試存取 ML 服務叢集上的 R Studio 時，您需要登入兩次。
 
-- 先透過 HDInsight 閘道使用 HTTP 使用者認證登入。 
+- 先透過 HDInsight 閘道使用 HTTP 使用者認證登入， 
 
-- 然後使用 SSH 使用者認證來登入 RStudio。
+- 然後使用 SSH 使用者認證登入 RStudio。
   
-目前，在佈建 HDInsight 叢集時，只可以建立一個 SSH 使用者帳戶。 因此，若要讓多個使用者存取 HDInsight 上的 R Server 叢集，您必須在 Linux 系統中建立其他使用者。
+目前，在佈建 HDInsight 叢集時，只可以建立一個 SSH 使用者帳戶。 因此，若要讓多個使用者存取 HDInsight 上的 ML 服務叢集，您必須在 Linux 系統中建立其他使用者。
 
 因為 RStudio 會在叢集的邊緣節點上執行，所以有下列數個步驟：
 
@@ -54,9 +50,9 @@ HDInsight 上 R Server 叢集中所使用的 R Studio Server Community 版本，
 2. 在邊緣節點中新增更多 Linux 使用者
 3. 使用 RStudio 社群版本搭配所建立的使用者
 
-### <a name="step-1-use-the-created-ssh-user-to-log-in-to-the-edge-node"></a>步驟 1：使用所建立的 SSH 使用者來登入邊緣節點
+### <a name="step-1-use-the-created-ssh-user-to-sign-in-to-the-edge-node"></a>步驟 1：使用所建立的 SSH 使用者來登入邊緣節點
 
-遵循[使用 SSH 連線到 HDInsight (Hadoop)](../hdinsight-hadoop-linux-use-ssh-unix.md) 中的指示來存取邊緣節點。 HDInsight 上 R Server 叢集的邊緣節點位址是 `CLUSTERNAME-ed-ssh.azurehdinsight.net`。
+遵循[使用 SSH 連線到 HDInsight (Hadoop)](../hdinsight-hadoop-linux-use-ssh-unix.md) 中的指示來存取邊緣節點。 HDInsight 上 ML 服務叢集的邊緣節點位址是 `CLUSTERNAME-ed-ssh.azurehdinsight.net`。
 
 ### <a name="step-2-add-more-linux-users-in-edge-node"></a>步驟 2：在邊緣節點中新增更多 Linux 使用者
 
@@ -65,7 +61,7 @@ HDInsight 上 R Server 叢集中所使用的 R Studio Server Community 版本，
     # Add a user 
     sudo useradd <yournewusername> -m
 
-    # Set password for the new user 
+    # Set password for the new user
     sudo passwd <yournewusername>
 
 以下螢幕擷取畫面會顯示輸出。
@@ -76,21 +72,21 @@ HDInsight 上 R Server 叢集中所使用的 R Studio Server Community 版本，
 
 ### <a name="step-3-use-rstudio-community-version-with-the-user-created"></a>步驟 3：使用 RStudio 社群版本搭配建立的使用者
 
-從 https://CLUSTERNAME.azurehdinsight.net/rstudio/ 存取 RStudio。 如果您在建立叢集之後首次進行登入，請輸入叢集系統管理員認證，後面接著您剛建立的 SSH 使用者認證。 如果這不是您第一次登入，則只需針對您所建立的 SSH 使用者輸入認證。
+從 https://CLUSTERNAME.azurehdinsight.net/rstudio/ 存取 RStudio。 如果您在建立叢集之後首次進行登入，請輸入叢集系統管理員認證，後面接著您建立的 SSH 使用者認證。 如果這不是您第一次登入，則只需針對您所建立的 SSH 使用者輸入認證。
 
-您也可以使用原始認證 (預設是 sshuser)，從另一個瀏覽器視窗同時登入。
+您也可以使用原始認證 (預設是 *sshuser*)，從另一個瀏覽器視窗同時登入。
 
 也請注意，新增的使用者在 Linux 系統中沒有根權限，但是他們對遠端 HDFS 與 WASB 儲存體中的所有檔案具有相同的存取權。
 
-## <a name="connect-remotely-to-microsoft-ml-server-or-client"></a>遠端連線到 Microsoft ML 伺服器或用戶端
+## <a name="connect-remotely-to-microsoft-ml-services"></a>遠端連線到 Microsoft ML 服務
 
-您可以設定從桌上型電腦上執行的 Microsoft ML 伺服器或 Microsoft ML 用戶端遠端執行個體，來存取 HDInsight Hadoop Spark 計算內容。 若要這樣做，在桌上型電腦上定義 RxSpark 計算內容時，您必須指定選項 (hdfsShareDir、shareDir、sshUsername、sshHostname、sshSwitches 和 sshProfileScript)：例如：
+您可以設定從桌上型電腦上執行的 ML 用戶端遠端執行個體，來存取 HDInsight Hadoop Spark 計算內容。 若要這樣做，在桌上型電腦上定義 RxSpark 計算內容時，您必須指定選項 (hdfsShareDir、shareDir、sshUsername、sshHostname、sshSwitches 和 sshProfileScript)：例如：
 
     myNameNode <- "default"
     myPort <- 0
 
-    mySshHostname  <- 'rkrrehdi1-ed-ssh.azurehdinsight.net'  # HDI secure shell hostname
-    mySshUsername  <- 'remoteuser'# HDI SSH username
+    mySshHostname  <- '<clustername>-ed-ssh.azurehdinsight.net'  # HDI secure shell hostname
+    mySshUsername  <- '<sshuser>'# HDI SSH username
     mySshSwitches  <- '-i /cygdrive/c/Data/R/davec'   # HDI SSH private key
 
     myhdfsShareDir <- paste("/user/RevoShare", mySshUsername, sep="/")
@@ -108,7 +104,7 @@ HDInsight 上 R Server 叢集中所使用的 R Studio Server Community 版本，
       consoleOutput= TRUE
     )
 
-如需詳細資訊，請參閱[建立 Spark 的計算內容](https://docs.microsoft.com/machine-learning-server/r/how-to-revoscaler-spark#more-spark-scenarios) \(英文\) 中的＜使用 Microsoft R Server 作為 Hadoop 用戶端＞一節。
+如需詳細資訊，請參閱[如何在 Spark 計算內容中使用 RevoScaleR](https://docs.microsoft.com/machine-learning-server/r/how-to-revoscaler-spark#more-spark-scenarios) \(英文\) 中的＜使用 Microsoft Machine Learning Server 作為 a Hadoop 用戶端＞一節
 
 ## <a name="use-a-compute-context"></a>使用計算內容
 
@@ -147,7 +143,7 @@ HDInsight 上 R Server 叢集中所使用的 R Studio Server Community 版本，
         # Copy the data from source to input
         rxHadoopCopyFromLocal(source, bigDataDirRoot)
 
-2. 接下來，建立一些資料資訊，並定義兩個資料來源，以便使用資料。
+2. 接下來，建立一些資料資訊並定義兩個資料來源。
 
         # Define the HDFS (WASB) file system
         hdfsFS <- RxHdfsFileSystem()
@@ -185,7 +181,7 @@ HDInsight 上 R Server 叢集中所使用的 R Studio Server Community 版本，
         # Display a summary
         summary(modelLocal)
 
-    您應該會看到結尾類似以下幾行的輸出：
+    您應該會看到結尾類似以下程式碼片段的輸出：
 
         Data: airOnTimeDataLocal (RxTextData Data Source)
         File name: /tmp/AirOnTimeCSV2012
@@ -225,43 +221,41 @@ HDInsight 上 R Server 叢集中所使用的 R Studio Server Community 版本，
         system.time(  
            modelSpark <- rxLogit(formula, data = airOnTimeData)
         )
-        
+
         # Display a summary
         summary(modelSpark)
 
 
    > [!NOTE]
-   > 您也可以使用 MapReduce，將計算分散到叢集節點。 如需計算內容的詳細資訊，請參閱[適用於 HDInsight 中 R 伺服器的計算內容選項](r-server-compute-contexts.md)。
-
+   > 您也可以使用 MapReduce，將計算分散到叢集節點。 如需計算內容的詳細資訊，請參閱[適用於 HDInsight 中 ML 服務叢集的計算內容選項](r-server-compute-contexts.md)。
 
 ## <a name="distribute-r-code-to-multiple-nodes"></a>將 R 程式碼分散到多個節點
 
-使用 HDInsight 上的 R Server 時，您可以採用現有的 R 程式碼，並使用 `rxExec` 跨叢集中的多個節點執行。 執行參數掃掠或模擬時，這個函式非常有用。 以下是使用 `rxExec` 的範例程式碼：
+有了 HDInsight 上的 ML 服務，您就可以採用現有的 R 程式碼，並使用 `rxExec` 在跨叢集中的多個節點執行。 執行參數掃掠或模擬時，這個函式非常有用。 以下是使用 `rxExec` 的範例程式碼：
 
     rxExec( function() {Sys.info()["nodename"]}, timesToRun = 4 )
 
-如果您仍在使用 Spark 或 MapReduce 內容，此命令會針對執行程式碼 `(Sys.info()["nodename"])` 的背景工作節點傳回 nodename 值。 例如，若是在四個節點叢集上，您應會收到類似下列的輸出：
+如果您仍在使用 Spark 或 MapReduce 內容，此命令會針對執行程式碼 `(Sys.info()["nodename"])` 的背景工作節點傳回 nodename 值。 例如，在四節點叢集上時，您應會取得如下列程式碼片段的輸出：
 
     $rxElem1
         nodename
-    "wn3-myrser"
+    "wn3-mymlser"
 
     $rxElem2
         nodename
-    "wn0-myrser"
+    "wn0-mymlser"
 
     $rxElem3
         nodename
-    "wn3-myrser"
+    "wn3-mymlser"
 
     $rxElem4
         nodename
-    "wn3-myrser"
-
+    "wn3-mymlser"
 
 ## <a name="access-data-in-hive-and-parquet"></a>存取 Hive 和 Parquet 中的資料
 
-R 伺服器 9.1 版所提供的功能，可讓您直接存取 Hive 和 Parquet 中的資料，以供 ScaleR 函式用於 Spark 計算內容中。 這些功能可透過新的 ScaleR 資料來源函式 (稱為 RxHiveData 和 RxParquetData) 來使用，而透過使用 Spark SQL 將資料直接載入到 Spark 資料框架供 ScaleR 進行分析，即可讓這些函式運作。  
+HDInsight ML 服務可讓您在 Hive 和 Parquet 中直接存取資料，以供 ScaleR 函式在 Spark 計算內容使用。 這些功能可透過新的 ScaleR 資料來源函式 (稱為 RxHiveData 和 RxParquetData) 來使用，而透過使用 Spark SQL 將資料直接載入到 Spark 資料框架供 ScaleR 進行分析，即可讓這些函式運作。
 
 下面程式碼提供一些關於新函式使用方式的範例程式碼︰
 
@@ -296,7 +290,7 @@ R 伺服器 9.1 版所提供的功能，可讓您直接存取 Hive 和 Parquet �
     rxSparkDisconnect(myHadoopCluster)
 
 
-如需如何使用這些新函式的詳細資訊，請透過使用 `?RxHivedata` 和 `?RxParquetData` 命令參閱 ML 伺服器中的線上說明。  
+如需如何使用這些新函式的詳細資訊，請透過 `?RxHivedata` 和 `?RxParquetData` 命令參閱 ML 服務中的線上說明。  
 
 ## <a name="install-additional-r-packages-on-the-cluster"></a>在叢集上安裝其他 R 封裝
 
@@ -309,7 +303,7 @@ R 伺服器 9.1 版所提供的功能，可讓您直接存取 Hive 和 Parquet �
 若要在叢集的背景工作節點上安裝 R 封裝，就必須使用指令碼動作。 指令碼動作是一種 Bash 指令碼，可用來變更 HDInsight 叢集的設定或安裝其他軟體，例如其他 R 套件。 
 
 > [!IMPORTANT]
-> 僅有在建立叢集之後，才可以使用指令碼動作來安裝其他 R 封裝。 在叢集建立期間，請勿使用此程序，因為指令碼是相依於已完整安裝與設定的 R 伺服器。
+> 僅有在建立叢集之後，才可以使用指令碼動作來安裝其他 R 封裝。 在叢集建立期間，請勿使用此程序，因為指令碼依賴已完整設定的 ML 服務。
 >
 >
 
@@ -330,8 +324,8 @@ R 伺服器 9.1 版所提供的功能，可讓您直接存取 Hive 和 Parquet �
    * 選取此核取方塊以**持續此指令碼動作**。  
 
    > [!NOTE]
-   > 1. 根據預設，會從與安裝之 R 伺服器同版本的 Microsoft MRAN 存放庫的快照安裝所有的 R 封裝。 如果您想要安裝較新版的套件，則會有不相容的風險。 不過，將 `useCRAN` 指定為套件清單的第一個元素 (例如 `useCRAN bitops, stringr, arules`)，這種安裝就可行。  
-   > 2. 有些 R 套件需要額外的 Linux 系統程式庫。 為了方便起見，我們已預先安裝前 100 個最受歡迎的 R 封裝所需的相依性。 然而，如果您安裝的 R 封裝需要的程式庫不在這之中，則必須下載此處所使用的基底指令碼，並加入安裝系統程式庫的步驟。 接下來，您必須將修改過的指令碼上傳至 Azure 儲存體中的公用 Blob 容器，並使用修改過的指令碼來安裝封裝。
+   > 1. 根據預設，系統在安裝所有的 R 封裝時，會透過已安裝 Machine Learning Server 相同版本的 Microsoft MRAN 存放庫快照。 如果您想要安裝較新版的套件，則會有不相容的風險。 不過，將 `useCRAN` 指定為套件清單的第一個元素 (例如 `useCRAN bitops, stringr, arules`)，這種安裝就可行。  
+   > 2. 有些 R 套件需要額外的 Linux 系統程式庫。 為了方便起見，HDInsight ML 服務已預先安裝前 100 個最受歡迎的 R 封裝所需的相依性。 然而，如果您安裝的 R 封裝需要的程式庫不在這之中，則必須下載此處所使用的基底指令碼，並加入安裝系統程式庫的步驟。 接下來，您必須將修改過的指令碼上傳至 Azure 儲存體中的公用 Blob 容器，並使用修改過的指令碼來安裝封裝。
    >    如需開發指令碼動作的詳細資訊，請參閱 [指令碼動作開發](../hdinsight-hadoop-script-actions-linux.md)。  
    >
    >
@@ -342,6 +336,6 @@ R 伺服器 9.1 版所提供的功能，可讓您直接存取 Hive 和 Parquet �
 
 ## <a name="next-steps"></a>後續步驟
 
-* [讓 HDInsight 上的 R Server 叢集能夠運作](r-server-operationalize.md)
-* [適用於 HDInsight 上 R Server 叢集的計算內容選項](r-server-compute-contexts.md)
-* [適用於 HDInsight 上 R Server 叢集的 Azure 儲存體選項](r-server-storage.md)
+* [在 HDInsight 上運作 ML 服務叢集](r-server-operationalize.md)
+* [在 HDInsight 上計算 ML 服務叢集的內容選項](r-server-compute-contexts.md)
+* [HDInsight 上適用於 ML 服務叢集的 Azure 儲存體選項](r-server-storage.md)

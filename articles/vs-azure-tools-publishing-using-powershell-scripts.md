@@ -1,24 +1,23 @@
 ---
-title: "使用 Windows PowerShell 指令碼來發佈至開發和測試環境 | Microsoft Docs"
-description: "了解如何從 Visual Studio 使用 Windows PowerShell 指令碼來發佈至開發和測試環境。"
+title: 使用 Windows PowerShell 指令碼來發佈至開發和測試環境 | Microsoft Docs
+description: 了解如何從 Visual Studio 使用 Windows PowerShell 指令碼來發佈至開發和測試環境。
 services: visual-studio-online
-documentationcenter: na
-author: kraigb
-manager: ghogen
-editor: 
-ms.assetid: 5fff1301-5469-4d97-be88-c85c30f837c1
-ms.service: multiple
-ms.devlang: dotnet
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: multiple
+author: ghogen
+manager: douge
+assetId: 5fff1301-5469-4d97-be88-c85c30f837c1
+ms.prod: visual-studio-dev15
+ms.technology: vs-azure
+ms.custom: vs-azure
+ms.workload: azure-vs
+ms.topic: conceptual
 ms.date: 11/11/2016
-ms.author: kraigb
-ms.openlocfilehash: 4e9409aac836a60e7ea01261840c084ff09e954e
-ms.sourcegitcommit: f847fcbf7f89405c1e2d327702cbd3f2399c4bc2
+ms.author: ghogen
+ms.openlocfilehash: 99d723eee6bd5b60289af5490e4b1cd6a855cabb
+ms.sourcegitcommit: 74941e0d60dbfd5ab44395e1867b2171c4944dbe
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/28/2017
+ms.lasthandoff: 10/15/2018
+ms.locfileid: "49319144"
 ---
 # <a name="using-windows-powershell-scripts-to-publish-to-dev-and-test-environments"></a>使用 Windows PowerShell 指令碼來發行至開發和測試環境
 
@@ -26,7 +25,7 @@ ms.lasthandoff: 11/28/2017
 
 使用這些指令碼，您可以佈建網站的自訂版本 (也稱為開發和測試環境)，以做臨時使用。 例如，您可以在 Azure 虛擬機器上或網站的預備位置上設定網站的特定版本，以執行測試套件、重現錯誤、測試錯誤修正、試驗提議的變更，或設定用來進行示範或展示的自訂環境。 在建立用來發佈專案的指令碼後，您可以視需要重新執行指令碼來重建相同環境，或對 Web 應用程式的自有組建執行指令碼以建立用於測試的自訂環境。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 * Azure SDK 2.3 或更新版本。 請參閱 [Visual Studio 下載](http://go.microsoft.com/fwlink/?LinkID=624384)。 (要產生 Web 專案的指令碼並不需要用到 Azure SDK。 這項功能是供 Web 專案使用，而非供雲端服務中的 Web 角色使用。)
 * Azure PowerShell 0.7.4 或更新版本。 請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview)。
@@ -38,7 +37,7 @@ ms.lasthandoff: 11/28/2017
 
 ## <a name="generating-the-publish-scripts"></a>產生發佈指令碼
 
-您可以遵循 [這些指示](virtual-machines/windows/classic/web-app-visual-studio.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)，在建立新專案時產生裝載網站之虛擬機器的發佈指令碼。 您也可以 [在 Azure App Service 中產生 Web 應用程式的發佈指令碼](app-service/app-service-web-get-started-dotnet.md)。
+您可以遵循 [這些指示](virtual-machines/windows/classic/web-app-visual-studio.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)，在建立新專案時產生裝載網站之虛擬機器的發佈指令碼。 您也可以 [在 Azure App Service 中產生 Web 應用程式的發佈指令碼](app-service/scripts/app-service-powershell-deploy-github.md)。
 
 ## <a name="scripts-that-visual-studio-generates"></a>Visual Studio 所產生的指令碼
 
@@ -53,6 +52,7 @@ Visual Studio 會產生名為 **PublishScripts** 的方案層級資料夾，並�
 Visual Studio 所產生的 Windows PowerShell 模組包含發佈指令碼所使用的函式。 不可修改這些 Azure PowerShell 函式。 請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview)。
 
 ### <a name="json-configuration-file"></a>JSON 組態檔
+
 JSON 檔案建立在 [組態]  資料夾，其包含的組態資料可確切指定要部署至 Azure 的資源。 Visual Studio 所產生之檔案的名稱是 project-name-WAWS-dev.json (如果您建立網站) 或 project name-VM-dev.json (如果您建立虛擬機器)。 以下是建立網站時所產生之 JSON 組態檔的範例。 其中大多數的值都簡單易懂。 網站名稱是由 Azure 產生，因此可能不符合您的專案名稱。
 
 ```json
@@ -160,29 +160,29 @@ JSON 檔案建立在 [組態]  資料夾，其包含的組態資料可確切指�
 如需詳細資訊，請參閱 [如何：在 Visual Studio 中建立 Web 部署封裝](https://msdn.microsoft.com/library/dd465323.aspx)。 您也可以自動建立 Web Deploy 封裝，如 [自訂和擴充發佈指令碼 (#customizing-and-extending-publish-scripts)]所述。
 
 1. 在 [方案總管] 中，開啟指令碼的內容功能表，然後選擇 [以 PowerShell ISE 開啟]。
-2. 如果第一次在此電腦上執行 Windows PowerShell 指令碼，請以系統管理員權限開啟命令提示字元視窗，並輸入下列命令：
+1. 如果第一次在此電腦上執行 Windows PowerShell 指令碼，請以系統管理員權限開啟命令提示字元視窗，並輸入下列命令：
 
     ```powershell
     Set-ExecutionPolicy RemoteSigned
     ```
 
-3. 使用下列命令登入 Azure。
+1. 使用下列命令登入 Azure。
 
     ```powershell
     Add-AzureAccount
     ```
 
-    出現提示時，提供您的使用者名稱和密碼。
+出現提示時，提供您的使用者名稱和密碼。
 
-    請注意，當您自動執行指令碼時，這個提供 Azure 認證的方法將沒有作用。 您應該改用 `.publishsettings` 檔案來提供認證。 請使用 **Get-AzurePublishSettingsFile** 命令從 Azure 下載檔案，之後使用 **Import-AzurePublishSettingsFile** 匯入檔案 (此程序只需執行一次)。 如需詳細指示，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview)。
+請注意，當您自動執行指令碼時，這個提供 Azure 認證的方法將沒有作用。 您應該改用 `.publishsettings` 檔案來提供認證。 請使用 **Get-AzurePublishSettingsFile** 命令從 Azure 下載檔案，之後使用 **Import-AzurePublishSettingsFile** 匯入檔案 (此程序只需執行一次)。 如需詳細指示，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview)。
 
-4. (選用) 如果您想要建立虛擬機器、資料庫和網站等 Azure 資源，而不要發佈 Web 應用程式，請使用 **Publish-WebApplication.ps1** 命令搭配設定為 JSON 組態檔的 **-Configuration** 引數。 此命令列使用 JSON 組態檔來決定要建立哪些資源。 因為它使用其他命令列引數的預設設定，所以會建立資源，但不會發佈 Web 應用程式。 –Verbose 選項可讓您進一步了解會發生什麼事。
+1. (選用) 如果您想要建立虛擬機器、資料庫和網站等 Azure 資源，而不要發佈 Web 應用程式，請使用 **Publish-WebApplication.ps1** 命令搭配設定為 JSON 組態檔的 **-Configuration** 引數。 此命令列使用 JSON 組態檔來決定要建立哪些資源。 因為它使用其他命令列引數的預設設定，所以會建立資源，但不會發佈 Web 應用程式。 –Verbose 選項可讓您進一步了解會發生什麼事。
 
     ```powershell
     Publish-WebApplication.ps1 -Verbose –Configuration C:\Path\WebProject-WAWS-dev.json
     ```
 
-5. 如下列其中一個範例所示使用 **Publish-WebApplication.ps1** 命令叫用指令碼並發佈 Web 應用程式。 如果您需要覆寫任何其他引數的預設設定，例如訂用帳戶名稱、發佈封裝名稱、虛擬機器認證或資料庫伺服器認證，可以指定這些參數。 使用 **–Verbose** 選項可檢視發佈程序進度的詳細資訊。
+1. 如下列其中一個範例所示使用 **Publish-WebApplication.ps1** 命令叫用指令碼並發佈 Web 應用程式。 如果您需要覆寫任何其他引數的預設設定，例如訂用帳戶名稱、發佈封裝名稱、虛擬機器認證或資料庫伺服器認證，可以指定這些參數。 使用 **–Verbose** 選項可檢視發佈程序進度的詳細資訊。
 
     ```powershell
     Publish-WebApplication.ps1 –Configuration C:\Path\WebProject-WAWS-dev-json `
@@ -192,27 +192,29 @@ JSON 檔案建立在 [組態]  資料夾，其包含的組態資料可確切指�
     -Verbose
     ```
 
-    如果您要建立虛擬機器，其命令如下所示。 此範例也顯示如何指定多個資料庫的認證。 針對這些指令碼所建立的虛擬機器，其 SSL 憑證不是來自受信任的根授權單位。 因此，您需要使用 **–AllowUntrusted** 選項。
+如果您要建立虛擬機器，其命令如下所示。 此範例也顯示如何指定多個資料庫的認證。 針對這些指令碼所建立的虛擬機器，其 SSL 憑證不是來自受信任的根授權單位。 因此，您需要使用 **–AllowUntrusted** 選項。
 
-    ```powershell
-    Publish-WebApplication.ps1 `
-    -Configuration C:\Path\ADVM-VM-test.json `
-    -SubscriptionName Contoso `
-    -WebDeployPackage C:\Path\ADVM.zip `
-    -AllowUntrusted `
-    -VMPassword @{name = "vmUserName"; password = "YourPasswordHere"} `
-    -DatabaseServerPassword @{Name="server1";Password="adminPassword1"}, @{Name="server2";Password="adminPassword2"} `
-    -Verbose
-    ```
+```powershell
+Publish-WebApplication.ps1 `
+-Configuration C:\Path\ADVM-VM-test.json `
+-SubscriptionName Contoso `
+-WebDeployPackage C:\Path\ADVM.zip `
+-AllowUntrusted `
+-VMPassword @{name = "vmUserName"; password = "YourPasswordHere"} `
+-DatabaseServerPassword @{Name="server1";Password="adminPassword1"}, @{Name="server2";Password="adminPassword2"} `
+-Verbose
+```
 
-    指令碼可以建立資料庫，但不會建立資料庫伺服器。 如果您想要建立資料庫伺服器，您可以使用 Azure 模組中的 **New-AzureSqlDatabaseServer** 函式。
+指令碼可以建立資料庫，但不會建立資料庫伺服器。 如果您想要建立資料庫伺服器，您可以使用 Azure 模組中的 **New-AzureSqlDatabaseServer** 函式。
 
 ## <a name="customizing-and-extending-the-publish-scripts"></a>自訂和擴充發佈指令碼
+
 您可以自訂發佈指令碼和 JSON 組態檔。 Windows PowerShell 模組 **AzureWebAppPublishModule.psm1** 中的函式不可進行修改。 如果您想要指定不同的資料庫或變更虛擬機器的某些屬性，請編輯 JSON 組態檔。 如果您想要擴充指令碼的功能來自動建置和測試專案，您可以在 **Publish-WebApplication.ps1**中實作函式虛設常式。
 
 若要自動建置專案，請將呼叫 MSBuild 的程式碼加入 `New-WebDeployPackage` ，如此程式碼範例所示。 MSBuild 命令的路徑會因為您所安裝的 Visual Studio 版本而有所不同。 若要取得正確路徑，您可以使用函式 **Get-MSBuildCmd**，如此範例所示。
 
 ### <a name="to-automate-building-your-project"></a>自動建置專案
+
 1. 在全域參數區段新增 `$ProjectFile` 參數。
 
     ```powershell
@@ -222,7 +224,7 @@ JSON 檔案建立在 [組態]  資料夾，其包含的組態資料可確切指�
     $ProjectFile,
     ```
 
-2. 將函式 `Get-MSBuildCmd` 複製到指令碼檔案。
+1. 將函式 `Get-MSBuildCmd` 複製到指令碼檔案。
 
     ```powershell
     function Get-MSBuildCmd
@@ -243,7 +245,7 @@ JSON 檔案建立在 [組態]  資料夾，其包含的組態資料可確切指�
     }
     ```
 
-3. 以下列程式碼取代 `New-WebDeployPackage`，並取代建構 `$msbuildCmd` 的程式行中的預留位置。 此程式碼係用於 Visual Studio 2017。 如果您使用 Visual Studio 2015，請將 **VisualStudioVersion** 屬性變更為 `14.0` (對於 Visual Studio 2013 則為 `12.0`)。
+1. 以下列程式碼取代 `New-WebDeployPackage`，並取代建構 `$msbuildCmd` 的程式行中的預留位置。 此程式碼係用於 Visual Studio 2017。 如果您使用 Visual Studio 2015，請將 **VisualStudioVersion** 屬性變更為 `14.0` (對於 Visual Studio 2013 則為 `12.0`)。
 
     ```powershell
     function New-WebDeployPackage
@@ -251,15 +253,15 @@ JSON 檔案建立在 [組態]  資料夾，其包含的組態資料可確切指�
         #Write a function to build and package your web application
     ```
 
-    若要建置 Web 應用程式，使用 MsBuild.exe。 如需協助，請參閱 MSBuild 命令列參考︰[http://go.microsoft.com/fwlink/?LinkId=391339](http://go.microsoft.com/fwlink/?LinkId=391339)
+若要建置 Web 應用程式，使用 MsBuild.exe。 如需說明，請參閱下列網址中的 MSBuild 命令列參考：[http://go.microsoft.com/fwlink/?LinkId=391339](http://go.microsoft.com/fwlink/?LinkId=391339)
 
-    ```powershell
-    Write-VerboseWithTime 'Build-WebDeployPackage: Start'
+```powershell
+Write-VerboseWithTime 'Build-WebDeployPackage: Start'
 
-    $msbuildCmd = '"{0}" "{1}" /T:Rebuild;Package /P:VisualStudioVersion=15.0 /p:OutputPath="{2}\MSBuildOutputPath" /flp:logfile=msbuild.log,v=d' -f (Get-MSBuildCmd), $ProjectFile, $scriptDirectory
+$msbuildCmd = '"{0}" "{1}" /T:Rebuild;Package /P:VisualStudioVersion=15.0 /p:OutputPath="{2}\MSBuildOutputPath" /flp:logfile=msbuild.log,v=d' -f (Get-MSBuildCmd), $ProjectFile, $scriptDirectory
 
-    Write-VerboseWithTime ('Build-WebDeployPackage: ' + $msbuildCmd)
-    ```
+Write-VerboseWithTime ('Build-WebDeployPackage: ' + $msbuildCmd)
+```
 
 ### <a name="start-execution-of-the-build-command"></a>開始執行建置命令
 
@@ -294,7 +296,7 @@ return $WebDeployPackage
     }
     ```
 
-2. 從命令列使用傳遞 `$Project` 引數叫用自訂指令碼，如下列範例所示：
+1. 從命令列使用傳遞 `$Project` 引數叫用自訂指令碼，如下列範例所示：
 
     ```powershell
     .\Publish-WebApplicationVM.ps1 -Configuration .\Configurations\WebApplication5-VM-dev.json `
@@ -304,9 +306,10 @@ return $WebDeployPackage
     -Verbose
     ```
 
-    若要自動測試應用程式，請將程式碼加入 `Test-WebApplication`。 請務必要將 **Publish-WebApplication.ps1** 中呼叫這些函式的程式行取消註解。 如果您沒有提供實作，您可以使用 Visual Studio 手動建置專案，然後執行發佈指令碼以發佈至 Azure。
+若要自動測試應用程式，請將程式碼加入 `Test-WebApplication`。 請務必要將 **Publish-WebApplication.ps1** 中呼叫這些函式的程式行取消註解。 如果您沒有提供實作，您可以使用 Visual Studio 手動建置專案，然後執行發佈指令碼以發佈至 Azure。
 
 ## <a name="publishing-function-summary"></a>發佈函式摘要
+
 若要取得可以在 Windows PowerShell 命令提示字元使用之函式的說明，請使用 `Get-Help function-name`命令。 說明中會包括參數說明和範例。 **AzureWebAppPublishModule.psm1** 和 **Publish-WebApplication.ps1** 指令碼原始程式檔中也有相同的說明文字。 指令碼和說明都已當地語系化為 Visual Studio 所使用的語言。
 
 **AzureWebAppPublishModule**
@@ -323,7 +326,7 @@ return $WebDeployPackage
 | Find-AzureVM |取得指定的 Azure 虛擬機器。 |
 | Format-DevTestMessageWithTime |在訊息前面加上日期和時間。 此函式是專為寫入 Error 和 Verbose 串流的訊息所設計。 |
 | Get-AzureSQLDatabaseConnectionString |組合連接字串來連線到 Azure SQL Database。 |
-| Get-AzureVMStorage |傳回指定位置或同質群組中具有 "devtest*" (不區分大小寫) 名稱模式的第一個儲存體帳戶的名稱。如果 "devtest*" 儲存體帳戶不符合位置或同質群組，此函式會忽略它。 指定位置或同質群組。 |
+| Get-AzureVMStorage |傳回指定位置或同質群組中具有 "devtest *" (不區分大小寫) 名稱模式的第一個儲存體帳戶的名稱。如果 "devtest*" 儲存體帳戶不符合位置或同質群組，此函式會忽略它。 指定位置或同質群組。 |
 | Get-MSDeployCmd |傳回執行 MsDeploy.exe 工具的命令。 |
 | New-AzureVMEnvironment |在訂用帳戶中尋找或建立符合 JSON 組態檔中的值的虛擬機器。 |
 | Publish-WebPackage |使用 MsDeploy.exe 和 Web 發佈封裝 .Zip 檔案將資源部署至網站。 此函式不會產生任何輸出。 如果呼叫 MSDeploy.exe 失敗，此函式會擲回例外狀況。 若要取得更詳細的輸出，請使用 **-Verbose** 選項。 |

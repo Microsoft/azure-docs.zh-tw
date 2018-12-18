@@ -1,12 +1,12 @@
 ---
-title: "整合 Azure 自動化與事件格線 | Microsoft Docs"
-description: "了解如何在新的 VM 建立時自動加入標記，並傳送通知給 Microsoft Teams。"
-keywords: "自動化, Runbook, 小組, 事件格線, 虛擬機器, VM"
+title: 整合 Azure 自動化與事件格線 | Microsoft Docs
+description: 了解如何在新的 VM 建立時自動加入標記，並傳送通知給 Microsoft Teams。
+keywords: 自動化, Runbook, 小組, 事件格線, 虛擬機器, VM
 services: automation
-documentationcenter: 
+documentationcenter: ''
 author: eamonoreilly
-manager: 
-editor: 
+manager: ''
+editor: ''
 ms.service: automation
 ms.devlang: na
 ms.topic: tutorial
@@ -14,11 +14,12 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 12/06/2017
 ms.author: eamono
-ms.openlocfilehash: 9a4d6ecf19fc96a9c7b92cf246effbf3948fb478
-ms.sourcegitcommit: cc03e42cffdec775515f489fa8e02edd35fd83dc
+ms.openlocfilehash: 6270f8bad893798f46d8db91e7b1140b6a125350
+ms.sourcegitcommit: 7208bfe8878f83d5ec92e54e2f1222ffd41bf931
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/07/2017
+ms.lasthandoff: 07/14/2018
+ms.locfileid: "39049859"
 ---
 # <a name="integrate-azure-automation-with-event-grid-and-microsoft-teams"></a>將 Azure 自動化與事件格線和 Microsoft Teams 整合
 
@@ -33,18 +34,21 @@ ms.lasthandoff: 12/07/2017
 
 如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 若要完成本教學課程，需要有 [Azure 自動化帳戶](../automation/automation-offering-get-started.md)，才能保留從 Azure 事件格線訂用帳戶觸發的 Runbook。
 
+* 需將 `AzureRM.Tags` 模組載入自動化帳戶中，請參閱[如何將模組匯入 Azure 自動化](../automation/automation-update-azure-modules.md)，了解如何將模組匯入 Azure 自動化。
+
 ## <a name="import-an-event-grid-sample-runbook"></a>匯入事件格線範例 Runbook
+
 1. 選取您的自動化帳戶，然後選取 [Runbook] 頁面。
 
    ![選取 Runbook](./media/ensure-tags-exists-on-new-virtual-machines/select-runbooks.png)
 
 2. 選取 [瀏覽資源庫] 按鈕。
 
-3. 搜尋**事件格線**，然後選取 [整合 Azure 自動化與事件格線]。 
+3. 搜尋**事件格線**，然後選取 [整合 Azure 自動化與事件格線]。
 
     ![匯入資源庫 Runbook](media/ensure-tags-exists-on-new-virtual-machines/gallery-event-grid.png)
 
@@ -52,7 +56,11 @@ ms.lasthandoff: 12/07/2017
 
 5. 匯入之後，選取 [編輯] 以檢視 Runbook 來源。 選取 [發佈] 按鈕。
 
+> [!NOTE]
+> 指令碼中第 74 行需有變更為 `Update-AzureRmVM -ResourceGroupName $VMResourceGroup -VM $VM -Tag $Tag | Write-Verbose` 的這一行。 `-Tags` 參數現在是 `-Tag`。
+
 ## <a name="create-an-optional-microsoft-teams-webhook"></a>建立選用的 Microsoft Teams Webhook
+
 1. 在 Microsoft Teams 中，選取通道名稱旁的 [更多選項]，然後選取 [連接器]。
 
     ![Microsoft Teams 連線](media/ensure-tags-exists-on-new-virtual-machines/teams-webhook.png)
@@ -66,6 +74,7 @@ ms.lasthandoff: 12/07/2017
 5. 選取 [完成] 以儲存此 Webhook。
 
 ## <a name="create-a-webhook-for-the-runbook"></a>建立 Runbook 的 Webhook
+
 1. 開啟 Watch-VMWrite Runbook。
 
 2. 選取 [Webhook]，然後選取 [新增 Webhook] 按鈕。

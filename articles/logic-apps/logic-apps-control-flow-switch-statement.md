@@ -1,29 +1,25 @@
 ---
-title: "Switch 陳述式 - 根據特定值執行步驟 - Azure Logic Apps | Microsoft Docs"
-description: "根據邏輯應用程式中的物件、運算式或權杖值執行不同的步驟"
+title: 將 Switch 陳述式新增至工作流程 - Azure Logic Apps | Microsoft Docs
+description: 如何建立 Switch 陳述式，以根據 Azure Logic Apps 中的特定值控制工作流程動作
 services: logic-apps
-keywords: "Switch 陳述式"
-author: ecfan
-manager: anneta
-editor: 
-documentationcenter: 
-ms.assetid: 
 ms.service: logic-apps
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: na
+author: ecfan
+ms.author: estfan
+manager: jeconnoc
 ms.date: 03/05/2018
-ms.author: estfan; LADocs
-ms.openlocfilehash: e1f515189be8a5659af0f6c29b3fac0550abc9f9
-ms.sourcegitcommit: 0b02e180f02ca3acbfb2f91ca3e36989df0f2d9c
+ms.topic: article
+ms.reviewer: klam, LADocs
+ms.suite: integration
+ms.openlocfilehash: e15f89d4b7e33ce7e28676c219344f7d7d9cd465
+ms.sourcegitcommit: 6f6d073930203ec977f5c283358a19a2f39872af
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/05/2018
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35299611"
 ---
-# <a name="switch-statements-run-different-steps-based-on-specific-values-in-logic-apps"></a>Switch 陳述式：根據邏輯應用程式中的特定值執行不同步驟
+# <a name="create-switch-statements-that-run-workflow-actions-based-on-specific-values-in-azure-logic-apps"></a>建立 Switch 陳述式，以根據 Azure Logic Apps 中的特定值執行工作流程動作
 
-若要根據物件、運算式或權杖的值來執行不同步驟，可使用 switch 陳述式。 此結構會評估物件、運算式或權杖，然後選擇符合結果的案例，並只針對該案例執行步驟。 Switch 陳述式執行時，應該只會有一個案例符合結果。
+若要根據物件、運算式或權杖的值執行特定動作，請新增 *Switch* 陳述式。 此結構會評估物件、運算式或權杖，然後選擇符合結果的案例，並只針對該案例執行特定動作。 Switch 陳述式執行時，應該只會有一個案例符合結果。
 
 例如，假設您想要讓邏輯應用程式根據電子郵件中所選的選項，採取不同的步驟。 在此範例中，邏輯應用程式會檢查網站的 RSS 摘要是否有新內容。 當 RSS 摘要中出現新項目時，邏輯應用程式會傳送電子郵件給核准者。 根據核准者選取「核准」或「拒絕」，邏輯應用程式會遵循不同的步驟。
 
@@ -48,7 +44,7 @@ ms.lasthandoff: 03/05/2018
 
 ## <a name="add-a-switch-statement"></a>新增 Switch 陳述式
 
-1. 在範例工作流程尾端，選擇 [+ 新增步驟] > **...**更多 > [新增 Switch 案例]。 
+1. 在範例工作流程尾端，選擇 [+ 新增步驟] > **...** 更多 > [新增 Switch 案例]。 
 
    ![新增 Switch 陳述式](./media/logic-apps-control-flow-switch-statement/add-switch-statement.png)
 
@@ -56,7 +52,7 @@ ms.lasthandoff: 03/05/2018
    Switch 陳述式需要至少一個案例加上預設案例。 
 
    如果您要在步驟之間新增 Switch 陳述式，請將指標移您要新增 Switch 陳述式的箭號上。 
-   選擇顯示的 **加號** \(**+**\)，然後選擇 [新增 Switch 案例]。
+   選擇顯示的 **加號** \(**+** \)，然後選擇 [新增 Switch 案例]。
 
 4. 在 [依據] 方塊中，選取 [SelectedOption] 欄位，其輸出會決定要執行的動作。 
    

@@ -1,30 +1,31 @@
 ---
-title: 使用 OpenFaaS 搭配 Azure Container Service (AKS)
-description: 部署及使用 OpenFaaS 搭配 Azure Container Service (AKS)
+title: 使用 OpenFaaS 搭配 Azure Kubernetes Service (AKS)
+description: 部署及使用 OpenFaaS 搭配 Azure Kubernetes Service (AKS)
 services: container-service
 author: justindavies
-manager: timlt
+manager: jeconnoc
 ms.service: container-service
 ms.topic: article
 ms.date: 03/05/2018
 ms.author: juda
 ms.custom: mvc
-ms.openlocfilehash: d531bb40421716bf9fb3c253a3e76207b2806912
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: dc0f4bd1e5b07e30f3c89807fbbbc908b3149810
+ms.sourcegitcommit: f983187566d165bc8540fdec5650edcc51a6350a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 09/13/2018
+ms.locfileid: "45542526"
 ---
 # <a name="using-openfaas-on-aks"></a>在 AKS 上使用 OpenFaaS
 
-[OpenFaaS][open-faas] 是一種架構，用於在容器上建置無伺服器的函式。 由於是開放原始碼專案，它在社群內被廣泛採用。 本文件詳述在 Azure 容器服務 (AKS) 叢集上安裝和使用 OpenFaas 的做法。
+[OpenFaaS][open-faas] 是一種架構，用於在容器上建置無伺服器的函式。 由於是開放原始碼專案，它在社群內被廣泛採用。 此文件詳述在 Azure Kubernetes Service (AKS) 叢集上安裝和使用 OpenFaas 的做法。
 
 ## <a name="prerequisites"></a>先決條件
 
-為了要完成本文中的步驟，您需要下列項目。
+為了要完成此文章中的步驟，您需要下列項目。
 
 * 對 Kubernetes 的基本了解。
-* Azure Container Service (AKS) 叢集，並在您的開發系統上設定好 AKS 認證。
+* Azure Kubernetes Service (AKS) 叢集，並在您的開發系統上設定好 AKS 認證。
 * 在您的開發系統上安裝 Azure CLI。
 * 在您的系統上安裝 Git 命令列工具。
 
@@ -39,7 +40,7 @@ git clone https://github.com/openfaas/faas-netes
 變更為複製的存放庫目錄。
 
 ```azurecli-interactive
-cd faas-netes 
+cd faas-netes
 ```
 
 ## <a name="deploy-openfaas"></a>部署 OpenFaaS
@@ -54,7 +55,7 @@ kubectl create namespace openfaas
 
 建立第二個命名空間用於 OpenFaaS 函式。
 
-```azurecli-interactive 
+```azurecli-interactive
 kubectl create namespace openfaas-fn
 ```
 
@@ -64,7 +65,7 @@ kubectl create namespace openfaas-fn
 helm install --namespace openfaas -n openfaas \
   --set functionNamespace=openfaas-fn, \
   --set serviceType=LoadBalancer, \
-  --set rbac=false chart/openfaas/ 
+  --set rbac=false chart/openfaas/
 ```
 
 輸出：
@@ -95,7 +96,7 @@ To verify that openfaas has started, run:
 kubectl get service -l component=gateway --namespace openfaas
 ```
 
-輸出。 
+輸出。
 
 ```console
 NAME               TYPE           CLUSTER-IP     EXTERNAL-IP    PORT(S)          AGE
@@ -130,8 +131,8 @@ curl -X POST http://52.186.64.52:8080/function/figlet -d "Hello Azure"
 輸出：
 
 ```console
- _   _      _ _            _                        
-| | | | ___| | | ___      / \    _____   _ _ __ ___ 
+ _   _      _ _            _
+| | | | ___| | | ___      / \    _____   _ _ __ ___
 | |_| |/ _ \ | |/ _ \    / _ \  |_  / | | | '__/ _ \
 |  _  |  __/ | | (_) |  / ___ \  / /| |_| | | |  __/
 |_| |_|\___|_|_|\___/  /_/   \_\/___|\__,_|_|  \___|
@@ -140,7 +141,7 @@ curl -X POST http://52.186.64.52:8080/function/figlet -d "Hello Azure"
 
 ## <a name="create-second-function"></a>建立第二個函式
 
-現在，建立第二個函式。 這個範例會使用 OpenFaaS CLI 進行部署，並包含自訂容器映像，以及從 Cosmos DB 擷取資料。 建立函式之前必須先設定數個項目。 
+現在，建立第二個函式。 這個範例會使用 OpenFaaS CLI 進行部署，並包含自訂容器映像，以及從 Cosmos DB 擷取資料。 建立函式之前必須先設定數個項目。
 
 首先，為 Cosmos DB 建立新資源群組。
 
@@ -148,13 +149,13 @@ curl -X POST http://52.186.64.52:8080/function/figlet -d "Hello Azure"
 az group create --name serverless-backing --location eastus
 ```
 
-部署 `MongoDB` 類型的 CosmosDB 執行個體。 此執行個體需有唯一名稱，將 `openfaas-cosmos` 更新為您環境中的特有項目。 
+部署 `MongoDB` 類型的 CosmosDB 執行個體。 此執行個體需有唯一名稱，將 `openfaas-cosmos` 更新為您環境中的特有項目。
 
 ```azurecli-interactive
 az cosmosdb create --resource-group serverless-backing --name openfaas-cosmos --kind MongoDB
 ```
 
-取得 Cosmos 資料庫連接字串，並儲存在變數中。 
+取得 Cosmos 資料庫連接字串，並儲存在變數中。
 
 將 `--resource-group` 引數的值更新為您的資源群組名稱，將 `--name` 引數更新為您的 Cosmos DB 名稱。
 
@@ -180,7 +181,7 @@ COSMOS=$(az cosmosdb list-connection-strings \
 }
 ```
 
-使用 *mongoimport* 工具載入包含資料的 CosmosDB 執行個體。 
+使用 *mongoimport* 工具載入包含資料的 CosmosDB 執行個體。
 
 視需要安裝 MongoDB 工具。 下列範例會使用 brew 安裝這些工具，如需其他選項請參閱 [MongoDB 文件][install-mongo]。
 
@@ -232,7 +233,7 @@ curl -s http://52.186.64.52:8080/function/cosmos-query
 
 ## <a name="next-steps"></a>後續步驟
 
-OpenFaas 的預設部署需要鎖定 OpenFaaS 閘道和函式。 [Alex Ellis 部落格文章](https://blog.alexellis.io/lock-down-openfaas/)中有更詳細的安全組態選項說明。 
+OpenFaas 的預設部署需要鎖定 OpenFaaS 閘道和函式。 [Alex Ellis 部落格文章](https://blog.alexellis.io/lock-down-openfaas/)中有更詳細的安全組態選項說明。
 
 <!-- LINKS - external -->
 [install-mongo]: https://docs.mongodb.com/manual/installation/

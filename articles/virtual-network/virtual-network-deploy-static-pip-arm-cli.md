@@ -1,11 +1,11 @@
 ---
-title: "建立具有靜態公用 IP 位址的 VM - Azure CLI | Microsoft Docs"
-description: "了解如何使用 Azure 命令列介面 (CLI) 建立具有靜態公用 IP 位址的 VM。"
+title: 建立具有靜態公用 IP 位址的 VM - Azure CLI | Microsoft Docs
+description: 了解如何使用 Azure 命令列介面 (CLI) 建立具有靜態公用 IP 位址的 VM。
 services: virtual-network
 documentationcenter: na
 author: jimdial
 manager: jeconnoc
-editor: 
+editor: ''
 tags: azure-resource-manager
 ms.assetid: 55bc21b0-2a45-4943-a5e7-8d785d0d015c
 ms.service: virtual-network
@@ -13,139 +13,71 @@ ms.devlang: azurecli
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 03/15/2016
+ms.date: 08/08/2018
 ms.author: jdial
-ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: c50f685745a645b5fbe383a5fe4726faa0e36345
-ms.sourcegitcommit: b5c6197f997aa6858f420302d375896360dd7ceb
+ms.openlocfilehash: 974c984cda2dd2198d09fb0dd004e640727b8c48
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/21/2017
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46982642"
 ---
-# <a name="create-a-vm-with-a-static-public-ip-address-using-the-azure-cli"></a>使用 Azure CLI 建立具有靜態公用 IP 位址的 VM
+# <a name="create-a-virtual-machine-with-a-static-public-ip-address-using-the-azure-cli"></a>使用 Azure CLI 建立具有靜態公用 IP 位址的虛擬機器
 
-> [!div class="op_single_selector"]
-> * [Azure 入口網站](virtual-network-deploy-static-pip-arm-portal.md)
-> * [PowerShell](virtual-network-deploy-static-pip-arm-ps.md)
-> * [Azure CLI](virtual-network-deploy-static-pip-arm-cli.md)
-> * [範本](virtual-network-deploy-static-pip-arm-template.md)
-> * [PowerShell (傳統)](virtual-networks-reserved-public-ip.md)
+您可以建立具有靜態公用 IP 位址的虛擬機器。 公用 IP 位址可讓您從網際網路與虛擬機器通訊。 指派靜態公用 IP 位址 (而非動態位址)，以確保位址永遠不會變更。 深入了解[靜態公用 IP 位址](virtual-network-ip-addresses-overview-arm.md#allocation-method)。 若要將指派給現有虛擬機器的公用 IP 位址從動態變更為靜態，或要處理私人 IP 位址，請參閱[新增、變更或移除 IP 位址](virtual-network-network-interface-addresses.md)。 公用 IP 位址有[象徵性費用](https://azure.microsoft.com/pricing/details/ip-addresses)，而每個訂用帳戶可用的公用 IP 位址數目都有[限制](../azure-subscription-service-limits.md?toc=%2fazure%2fvirtual-network%2ftoc.json#azure-resource-manager-virtual-networking-limits)。
 
-[!INCLUDE [virtual-network-deploy-static-pip-intro-include.md](../../includes/virtual-network-deploy-static-pip-intro-include.md)]
+## <a name="create-a-virtual-machine"></a>建立虛擬機器
 
-Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../resource-manager-deployment-model.md?toc=%2fazure%2fvirtual-network%2ftoc.json)。 本文涵蓋之內容包括使用 Resource Manager 部署模型，Microsoft 建議大部分的新部署使用此模型，而不是傳統部署模型。
+您可以從本機電腦或使用 Azure Cloud Shell 來完成下列步驟。 若要使用您的本機電腦，請確定已[安裝 Azure CLI](/cli/azure/install-azure-cli?toc=%2fazure%2fvirtual-network%2ftoc.json)。 若要使用 Azure Cloud Shell，請選取後續任何命令方塊右上角的 [試試看]。 Cloud Shell 可讓您登入 Azure。
 
-[!INCLUDE [virtual-network-deploy-static-pip-scenario-include.md](../../includes/virtual-network-deploy-static-pip-scenario-include.md)]
+1. 如果使用 Cloud Shell，請跳至步驟 2。 開啟命令工作階段，然後使用 `az login` 登入 Azure。
+2. 使用 [az group create](/cli/azure/group#az-group-create) 命令來建立資源群組。 下列範例會在美國東部 Azure 區域中建立一個資源群組：
 
-## <a name = "create"></a>建立 VM
+   ```azurecli-interactive
+   az group create --name myResourceGroup --location eastus
+   ```
 
-後續步驟所含變數之 "" 中的值，會使用案例中的設定建立資源。 請針對您的環境適當地變更值。
+3. 使用 [az vm create](/cli/azure/vm#az-vm-create) 命令建立虛擬機器。 `--public-ip-address-allocation=static` 選項可將靜態公用 IP 位址指派給虛擬機器。 下列範例會建立 Ubuntu 虛擬機器，其具有名為 *myPublicIpAddress* 的靜態、基本 SKU 公用 IP 位址：
 
-1. 如果尚未安裝 [Azure CLI 2.0](/cli/azure/install-az-cli2)，請先安裝此軟體。
-2. 完成[建立 Linux VM 的 SSH 公用和私用金鑰組](../virtual-machines/linux/mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-network%2ftoc.json)中的步驟，為 Linux VM 建立 SSH 公用和私用金鑰組。
-3. 從命令殼層使用命令 `az login` 進行登入。
-4. 在 Linux 或 Mac 電腦上執行後續的指令碼以建立 VM。 Azure 公用 IP 位址、虛擬網路、網路介面和 VM 資源必須全都位於相同的位置。 雖然資源不需要全都位於相同的資源群組中，但在下列指令碼中，它們卻是如此。
+   ```azurecli-interactive
+   az vm create \
+     --resource-group myResourceGroup \
+     --name myVM \
+     --image UbuntuLTS \
+     --admin-username azureuser \
+     --generate-ssh-keys \
+     --public-ip-address myPublicIpAddress \
+     --public-ip-address-allocation static
+   ```
 
-```bash
-RgName="IaaSStory"
-Location="westus"
+   如果公用 IP 位址必須是標準 SKU，請將 `--public-ip-sku Standard` 新增至前一個命令。 深入了解[公用 IP 位址 SKU](virtual-network-ip-addresses-overview-arm.md#sku)。 如果虛擬機器將會新增至公用 Azure Load Balancer 的後端集區，則虛擬機器公用 IP 位址的 SKU 必須符合負載平衡器公用 IP 位址的 SKU。 如需詳細資訊，請參閱 [Azure Load Balancer](../load-balancer/load-balancer-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json#skus)。
 
-# Create a resource group.
+4. 使用 [az network public-ip show](/cli/azure/network/public-ip#az-network-public-ip-show) 檢視指派的公用 IP 位址，並確認它已建立為靜態、基本 SKU 位址：
 
-az group create \
---name $RgName \
---location $Location
+   ```azurecli-interactive
+   az network public-ip show \
+     --resource-group myResourceGroup \
+     --name myPublicIpAddress \
+     --query [ipAddress,publicIpAllocationMethod,sku] \
+     --output table
+   ```
 
-# Create a public IP address resource with a static IP address using the --allocation-method Static option.
-# If you do not specify this option, the address is allocated dynamically. The address is assigned to the
-# resource from a pool of IP adresses unique to each Azure region. The DnsName must be unique within the
-# Azure location it's created in. Download and view the file from https://www.microsoft.com/en-us/download/details.aspx?id=41653#
-# that lists the ranges for each region.
+   Azure 已從您建立虛擬機器所在區域使用的位址中指派公用 IP 位址。 您可以針對 Azure [公開](https://www.microsoft.com/download/details.aspx?id=56519)、[美國政府](https://www.microsoft.com/download/details.aspx?id=57063)、[中國](https://www.microsoft.com/download/details.aspx?id=57062)及[德國](https://www.microsoft.com/download/details.aspx?id=57064)雲端，下載範圍 (前置詞) 清單。
 
-PipName="PIPWEB1"
-DnsName="iaasstoryws1"
-az network public-ip create \
---name $PipName \
---resource-group $RgName \
---location $Location \
---allocation-method Static \
---dns-name $DnsName
+> [!WARNING]
+請勿修改虛擬機器的作業系統內的 IP 位址設定。 作業系統不會察覺 Azure 公用 IP 位址。 雖然您可以將私人 IP 位址設定新增至作業系統，但是建議不要這麼做 (除非有需要)，而且在閱讀[將私人 IP 位址新增至作業系統](virtual-network-network-interface-addresses.md#private)之後才能這麼做。
 
-# Create a virtual network with one subnet
+## <a name="clean-up-resources"></a>清除資源
 
-VnetName="TestVNet"
-VnetPrefix="192.168.0.0/16"
-SubnetName="FrontEnd"
-SubnetPrefix="192.168.1.0/24"
-az network vnet create \
---name $VnetName \
---resource-group $RgName \
---location $Location \
---address-prefix $VnetPrefix \
---subnet-name $SubnetName \
---subnet-prefix $SubnetPrefix
+您可以使用 [az group delete](/cli/azure/group#az-group-delete) 來移除不再需要的資源群組，以及其所包含的所有資源：
 
-# Create a network interface connected to the VNet with a static private IP address and associate the public IP address
-# resource to the NIC.
-
-NicName="NICWEB1"
-PrivateIpAddress="192.168.1.101"
-az network nic create \
---name $NicName \
---resource-group $RgName \
---location $Location \
---subnet $SubnetName \
---vnet-name $VnetName \
---private-ip-address $PrivateIpAddress \
---public-ip-address $PipName
-
-# Create a new VM with the NIC
-
-VmName="WEB1"
-
-# Replace the value for the VmSize variable with a value from the
-# https://docs.microsoft.com/azure/virtual-machines/virtual-machines-linux-sizes article.
-VmSize="Standard_DS1"
-
-# Replace the value for the OsImage variable with a value for *urn* from the output returned by entering
-# the `az vm image list` command. 
-
-OsImage="credativ:Debian:8:latest"
-Username='adminuser'
-
-# Replace the following value with the path to your public key file.
-SshKeyValue="~/.ssh/id_rsa.pub"
-
-az vm create \
---name $VmName \
---resource-group $RgName \
---image $OsImage \
---location $Location \
---size $VmSize \
---nics $NicName \
---admin-username $Username \
---ssh-key-value $SshKeyValue
-# If creating a Windows VM, remove the previous line and you'll be prompted for the password you want to configure for the VM.
+```azurecli-interactive
+az group delete --name myResourceGroup --yes
 ```
-
-除了建立 VM 外，該指令碼還會建立︰
-- 單一的進階受控磁碟 (預設)，但有其他選項可讓您選擇可以建立的磁碟類型。 如需詳細資料，請閱讀[使用 Azure CLI 2.0 建立 Linux VM](../virtual-machines/linux/quick-create-cli.md?toc=%2fazure%2fvirtual-network%2ftoc.json) 一文。
-- 虛擬網路、子網路、NIC 和公用 IP 位址資源。 或者，您可以使用「現有」虛擬網路、子網路、NIC 或公用 IP 位址資源。 若要了解如何使用現有網路資源，而不是另外建立資源，請輸入 `az vm create -h`。
-
-## <a name = "validate"></a>驗證 VM 建立和公用 IP 位址
-
-1. 輸入命令 `az resource list --resouce-group IaaSStory --output table` 以查看指令碼所建立的資源清單。 所傳回的輸出中應該會有五個資源︰網路介面、磁碟、公用 IP 位址、虛擬網路及虛擬機器。
-2. 輸入命令 `az network public-ip show --name PIPWEB1 --resource-group IaaSStory --output table`。 請注意，在傳回的輸出中，**IpAddress** 的值和 **PublicIpAllocationMethod** 的值是 Static。
-3. 在執行下列命令之前，請移除 <>，以指令碼中的 **Username** 變數所用之名稱取代 *Username*，並以上一個步驟中的 **ipAddress** 取代 *ipAddress*。 執行下列命令以連線至 VM：`ssh -i ~/.ssh/azure_id_rsa <Username>@<ipAddress>`。 
-
-## <a name= "clean-up"></a>移除 VM 和相關聯的資源
-
-如果您不會在生產環境使用這個練習中所建立的資源，建議您刪除它們。 VM、公用 IP 位址和磁碟資源在佈建後就會產生費用。 若要刪除這個練習當中所建立的資源，請完成下列步驟：
-
-1. 若要檢視資源群組中的資源，請執行 `az resource list --resource-group IaaSStory` 命令。
-2. 確認資源群組中除了本文指令碼所建立的資源外，沒有其他資源。 
-3. 若要刪除本練習中建立的所有資源，請執行 `az group delete -n IaaSStory` 命令。 此命令會刪除資源群組以及其中包含的所有資源。
 
 ## <a name="next-steps"></a>後續步驟
 
-任何網路流量均可流入和流出本文所建立的 VM。 您可以在 NSG 內定義輸入和輸出規則，以限制網路介面和 (或) 子網路可以流入和流出的流量。 若要深入了解 NSG，請閱讀 [NSG 概觀](virtual-networks-nsg.md)一文。
+- 深入了解 Azure 中的[公用 IP 位址](virtual-network-ip-addresses-overview-arm.md#public-ip-addresses)
+- 深入了解所有[公用 IP 位址設定](virtual-network-public-ip-address.md#create-a-public-ip-address)
+- 深入了解[私人 IP 位址](virtual-network-ip-addresses-overview-arm.md#private-ip-addresses)，並將[靜態私人 IP 位址](virtual-network-network-interface-addresses.md#add-ip-addresses)指派給 Azure 虛擬機器
+- 深入了解如何建立 [Linux](../virtual-machines/windows/tutorial-manage-vm.md?toc=%2fazure%2fvirtual-network%2ftoc.json) 和 [Windows](../virtual-machines/windows/tutorial-manage-vm.md?toc=%2fazure%2fvirtual-network%2ftoc.json) 虛擬機器

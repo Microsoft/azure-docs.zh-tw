@@ -1,24 +1,18 @@
 ---
 title: Azure ExpressRoute 常見問題集 | Microsoft Docs
 description: ExpressRoute 常見問題集包含支援的 Azure 服務、費用、資料和連線、SLA、提供者和位置、頻寬等資訊及其他技術詳細資料。
-documentationcenter: na
 services: expressroute
 author: cherylmc
-manager: timlt
-editor: ''
-ms.assetid: 09b17bc4-d0b3-4ab0-8c14-eed730e1446e
 ms.service: expressroute
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: infrastructure-services
-ms.date: 03/28/2018
+ms.topic: conceptual
+ms.date: 08/29/2018
 ms.author: cherylmc
-ms.openlocfilehash: 3f33703ec86f131d18c89cf4b29514c5002349d1
-ms.sourcegitcommit: c3d53d8901622f93efcd13a31863161019325216
+ms.openlocfilehash: 101dec93713983e5f2082a59103288fcda346740
+ms.sourcegitcommit: 3150596c9d4a53d3650cc9254c107871ae0aab88
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/29/2018
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47419299"
 ---
 # <a name="expressroute-faq"></a>ExpressRoute 常見問題集
 
@@ -44,7 +38,7 @@ ExpressRoute 連線不會經過公用網際網路。 相較於網際網路一般
 
 ### <a name="if-i-pay-for-an-expressroute-circuit-of-a-given-bandwidth-does-the-vpn-connection-i-purchase-from-my-network-service-provider-have-to-be-the-same-speed"></a>如果我支付指定頻寬的 ExpressRoute 電路，則我是否必須從網路服務提供者購買相同速度的 VPN 連線？
 
-編號 您可以從服務提供者購買任何速度的 VPN 連線。 不過，您與 Azure 的連線受限於您所購買的 ExpressRoute 線路頻寬。
+否。 您可以從服務提供者購買任何速度的 VPN 連線。 不過，您與 Azure 的連線受限於您所購買的 ExpressRoute 線路頻寬。
 
 ### <a name="if-i-pay-for-an-expressroute-circuit-of-a-given-bandwidth-do-i-have-the-ability-to-burst-up-to-higher-speeds-if-necessary"></a>如果我支付指定頻寬的 ExpressRoute 線路，是否能夠在需要時突增到較高的速度？
 
@@ -52,7 +46,7 @@ ExpressRoute 連線不會經過公用網際網路。 相較於網際網路一般
 
 ### <a name="can-i-use-the-same-private-network-connection-with-virtual-network-and-other-azure-services-simultaneously"></a>我是否可以在虛擬網路和其他 Azure 服務中同時使用相同的私人網路連線？
 
-是。 設定 ExpressRoute 線路之後，您就可以同時存取虛擬網路內部的服務和其他 Azure 服務。 您可透過私用對等互連路徑連線至虛擬網路，並透過公用對等互連路徑連線至其他服務。
+是。 設定 ExpressRoute 線路之後，您就可以同時存取虛擬網路內部的服務和其他 Azure 服務。 您可透過私用對等互連路徑連線至虛擬網路，並透過 Microsoft 對等互連路徑連線至其他服務。
 
 ### <a name="does-expressroute-offer-a-service-level-agreement-sla"></a>ExpressRoute 是否提供服務等級協定 (SLA)？
 
@@ -68,28 +62,29 @@ ExpressRoute 針對各種服務類型支援[三種路由網域](expressroute-cir
 
 ### <a name="public-peering"></a>公用對等互連
 
+>[!NOTE]
+>新的 ExpressRoute 線路已停用公用對等互連。 Azure 服務可以使用 Microsoft 對等互連。
+>
+
 * Power BI
 * Dynamics 365 for Finance and Operations (先前稱為 Dynamics AX Online)
-* 除了下列少數例外狀況的大部分 Azure 服務：
-  * CDN
-  * Visual Studio Team Services 負載測試 
-  * 多因素驗證
-  * 流量管理員
+* 支援大部分 Azure 服務。 請直接檢查您要用來驗證支援的服務。<br>
+  不支援下列服務：
+    * CDN
+    * Azure DevOps Services 負載測試
+    * 多因素驗證
+    * 流量管理員
 
 ### <a name="microsoft-peering"></a>Microsoft 對等互連
 
 * [Office 365](http://aka.ms/ExpressRouteOffice365)
-* Dynamics 365 Customer Engagement 應用程式 (先前稱為 CRM Online)
-  * Dynamics 365 for Sales
-  * Dynamics 365 for Customer Service
-  * Dynamics 365 for Field Service
-  * Dynamics 365 for Project Service
-* 使用[路由篩選器](#route-filters-for-microsoft-peering)，您就可以存取與 Microsoft 對等互連相同的公用服務：
-  * Power BI
-  * Dynamics 365 for Finance and Operations
-  * 除了下列少數例外狀況的大部分 Azure 服務：
+* Dynamics 365 
+* Power BI
+* Azure Active Directory
+* Azure DevOps Services 負載測試
+* 支援大部分 Azure 服務。 請直接檢查您要用來驗證支援的服務。<br>**不支援**下列服務：
     * CDN
-    * Visual Studio Team Services 負載測試 
+    * Azure DevOps Services 負載測試
     * 多因素驗證
     * 流量管理員
 
@@ -101,7 +96,7 @@ ExpressRoute 針對各種服務類型支援[三種路由網域](expressroute-cir
 
 ### <a name="what-connection-speeds-are-supported-by-expressroute"></a>ExpressRoute 支援的連線速度為何？
 
-支援的頻寬優惠：
+支援的頻寬供應項目：
 
 50 Mbps、100 Mbps、200 Mbps、500 Mbps、1 Gbps、2 Gbps、5 Gbps、10 Gbps
 
@@ -125,7 +120,7 @@ ExpressRoute 針對各種服務類型支援[三種路由網域](expressroute-cir
 
 ### <a name="how-do-i-ensure-high-availability-on-a-virtual-network-connected-to-expressroute"></a>如何確保在連線到 ExpressRoute 之虛擬網路上的高可用性？
 
-您可以將不同對等互連位置 (例如新加坡、新加坡 2) 中的 ExpressRoute 線路連線到虛擬網路，以達到高可用性。 如果有一個 ExpressRoute 線路當機時，連線就會容錯移轉到另一個 ExpressRoute 線路。 根據預設，離開您虛擬網路的流量會以等價多路徑路由 (ECMP) 作為基礎進行路由。 您可以使用「連線權數」來偏好兩條線路中的某一條。 如需「連線加權」的其他詳細資料，請參閱[最佳化 ExpressRoute 路由](expressroute-optimize-routing.md)。
+您可以將不同對等互連位置 (例如新加坡、新加坡 2) 中的 ExpressRoute 線路連線到虛擬網路，以達到高可用性。 如果有一個 ExpressRoute 線路當機時，連線就會容錯移轉到另一個 ExpressRoute 線路。 根據預設，離開您虛擬網路的流量會以等價多路徑路由 (ECMP) 作為基礎進行路由。 您可以使用「連線權數」來偏好兩條線路中的某一條。 如需詳細資訊，請參閱[最佳化 ExpressRoute 路由](expressroute-optimize-routing.md)。
 
 ### <a name="onep2plink"></a>如果我不要在雲端交換中共置，而我的服務提供者提供點對點連線，我需要在內部部署網路與 Microsoft 之間訂購兩個實體連線嗎？
 
@@ -135,7 +130,7 @@ ExpressRoute 針對各種服務類型支援[三種路由網域](expressroute-cir
 
 ### <a name="can-i-extend-one-of-my-vlans-to-azure-using-expressroute"></a>我可以使用 ExpressRoute 來擴充其中一個至 Azure 的 VLAN 嗎？
 
-編號 我們不支援至 Azure 的第 2 層連線擴充程式。
+否。 我們不支援至 Azure 的第 2 層連線擴充程式。
 
 ### <a name="can-i-have-more-than-one-expressroute-circuit-in-my-subscription"></a>我的訂用帳戶是否可以有多個 ExpressRoute 電路？
 
@@ -145,12 +140,12 @@ ExpressRoute 針對各種服務類型支援[三種路由網域](expressroute-cir
 
 是。 您可以使用許多服務提供者的 ExpressRoute 電路。 每個 ExpressRoute 線路只會與一個服務提供者產生關聯。 
 
-### <a name="i-see-two-expressroute-peering-locations-in-the-same-metro-eg-singapore-and-singapore2-which-peering-location-should-i-choose-to-create-my-expressroute-circuit"></a>我在相同的城市中看到兩個 ExpressRoute 對等互連位置，例如新加坡和新加坡 2。 我應該選擇哪一個對等互連位置來建立我的 ExpressRoute 線路？
+### <a name="i-see-two-expressroute-peering-locations-in-the-same-metro-for-example-singapore-and-singapore2-which-peering-location-should-i-choose-to-create-my-expressroute-circuit"></a>我在相同的城市中看到兩個 ExpressRoute 對等互連位置，例如新加坡和新加坡 2。 我應該選擇哪一個對等互連位置來建立我的 ExpressRoute 線路？
 如果您的服務提供者在兩個地點都有提供 ExpressRoute，您可以與提供者合作，挑選其中一個地點來設定 ExpressRoute。 
 
 ### <a name="can-i-have-multiple-expressroute-circuits-in-the-same-metro-can-i-link-them-to-the-same-virtual-network"></a>我可以在相同的城市擁有多個 ExpressRoute 線路嗎？ 是否可以將這些線路連結至相同的虛擬網路？
 
-是。 您可以有多個 ExpressRoute 線路，且服務提供者不一定要相同。 如果城市中有多個 ExpressRoute 對等互連位置，且線路是建立在不同的對等互連位置，您就可以將這些線路連結至相同的虛擬網路。 如果線路是建立在相同的對等互連位置，則無法將線路連結至相同的虛擬網路。
+是。 您可以有多個 ExpressRoute 線路，且服務提供者不一定要相同。 如果城市中有多個 ExpressRoute 對等互連位置，且線路是建立在不同的對等互連位置，您就可以將這些線路連結至相同的虛擬網路。 如果線路是建立在相同的對等互連位置，則無法將線路連結至相同的虛擬網路。 Azure 入口網站或 PowerShell/CLI API 中的每個位置名稱各代表一個對等互連位置。 例如，您可以選取對等互連位置「新加坡」和「新加坡 2」，並將其中的線路連線至相同的虛擬網路。 
 
 ### <a name="how-do-i-connect-my-virtual-networks-to-an-expressroute-circuit"></a>我要如何將虛擬網路連線至 ExpressRoute 電路
 
@@ -184,7 +179,7 @@ ExpressRoute 針對各種服務類型支援[三種路由網域](expressroute-cir
 
 ### <a name="are-virtual-networks-connected-to-the-same-circuit-isolated-from-each-other"></a>連線到相同電路的虛擬網路會相互隔離嗎？
 
-編號 從路由的觀點來看，所有連結至相同 ExpressRoute 線路的虛擬網路都屬於相同的路由網域，因此不會相互隔離。 如果需要路由隔離，您必須建立個別的 ExpressRoute 線路。
+否。 從路由的觀點來看，所有連結至相同 ExpressRoute 線路的虛擬網路都屬於相同的路由網域，因此不會相互隔離。 如果需要路由隔離，您必須建立個別的 ExpressRoute 線路。
 
 ### <a name="can-i-have-one-virtual-network-connected-to-more-than-one-expressroute-circuit"></a>我可以將一個虛擬網路連結至多個 ExpressRoute 電路嗎？
 
@@ -198,7 +193,7 @@ ExpressRoute 針對各種服務類型支援[三種路由網域](expressroute-cir
 
 是。 針對部署於虛擬網路內的虛擬機器，您可以公告預設路由 (0.0.0.0/0)，以封鎖所有的網際網路連線，並將所有流量透過 ExpressRoute 線路路由傳送出去。
 
-如果您公告預設路由，針對透過公用對等互連 (例如 Azure 儲存體和 SQL DB) 所提供的服務，我們會強制讓流量回到您的內部。 您將必須設定路由器，透過公用對等互連路徑或透過網際網路以將流量傳回 Azure。 如果您已啟用服務的服務端點 (預覽)，就不會將服務的流量強制到您的內部部署。 流量會保持在 Azure 中樞網路內。 如需深入了解服務端點，請參閱[虛擬網路服務端點](../virtual-network/virtual-network-service-endpoints-overview.md?toc=%2fazure%2fexpressroute%2ftoc.json)
+如果您公告預設路由，針對透過 Microsoft 對等互連 (例如 Azure 儲存體和 SQL DB) 所提供的服務，我們會強制讓流量回到您的內部。 您將必須設定路由器，透過 Microsoft 對等互連路徑或透過網際網路以將流量傳回 Azure。 如果您已啟用服務的服務端點，就不會將服務的流量強制到您的內部部署。 流量會保持在 Azure 中樞網路內。 如需深入了解服務端點，請參閱[虛擬網路服務端點](../virtual-network/virtual-network-service-endpoints-overview.md?toc=%2fazure%2fexpressroute%2ftoc.json)
 
 ### <a name="can-virtual-networks-linked-to-the-same-expressroute-circuit-talk-to-each-other"></a>連結至相同 ExpressRoute 電路的虛擬網路是否可以互通訊息？
 
@@ -214,19 +209,15 @@ ExpressRoute 針對各種服務類型支援[三種路由網域](expressroute-cir
 
 ### <a name="why-is-there-a-public-ip-address-associated-with-the-expressroute-gateway-on-a-virtual-network"></a>為什麼虛擬網路上的 ExpressRoute 閘道會有相關聯的公用 IP 位址？
 
-這個公用 IP 位址僅用於內部管理。 此公用 IP 位址不會向網際網路公開，並不會構成虛擬網路的安全性風險。
-
-### <a name="what-do-i-need-to-connect-to-azure-storage-over-expressroute"></a>我該採取什麼動作才能透過 ExpressRoute 連線至 Azure 儲存體？
-
-您必須建立 ExpressRoute 電路，並設定公用對等互連的路由。
+公用 IP 位址僅供內部管理使用，並不會構成虛擬網路的安全性風險。
 
 ### <a name="are-there-limits-on-the-number-of-routes-i-can-advertise"></a>是否有可通告的路由數限制？
 
-是。 我們接受私人對等互連最多使用 4000 個路由首碼；公用對等互連和 Microsoft 對等互連各自最多使用 200 個路由首碼。 如果您啟用 ExpressRoute 進階功能，您可以針對私人對等互連將此值提高至 10,000 個路由。
+是。 我們接受私人對等互連最多使用 4000 個路由首碼；Microsoft 對等互連最多使用 200 個路由首碼。 如果您啟用 ExpressRoute 進階功能，您可以針對私人對等互連將此值提高至 10,000 個路由。
 
 ### <a name="are-there-restrictions-on-ip-ranges-i-can-advertise-over-the-bgp-session"></a>我可以透過 BGP 工作階段通告的 IP 範圍有無限制？
 
-在公用和 Microsoft 對等互連 BGP 工作階段中，我們不接受私人首碼 (RFC1918)。
+對於 Microsoft 對等互連 BGP 工作階段，我們不接受私人首碼 (RFC1918)。
 
 ### <a name="what-happens-if-i-exceed-the-bgp-limits"></a>如果超過 BGP 限制，該怎麼辦？
 
@@ -235,18 +226,6 @@ BGP 工作階段將會被刪除。 當首碼計數降至限制以下時，系統
 ### <a name="what-is-the-expressroute-bgp-hold-time-can-it-be-adjusted"></a>什麼是 ExpressRoute BGP 保留時間？ 可調整此保留時間嗎？
 
 保留時間為 180。 會每隔 60 秒傳送保持運作訊息。 這些是 Microsoft 端固定的設定，無法變更。 您可以設定不同的計時器，系統將會據此交涉 BGP 工作階段參數。
-
-### <a name="after-i-advertise-the-default-route-00000-to-my-virtual-networks-i-cant-activate-windows-running-on-my-azure-vms-how-to-i-fix-this"></a>在將預設路由 (0.0.0.0/0) 通告至虛擬網路之後，我無法啟動在 Azure VM 上執行的 Windows。 我該怎麼辦？
-
-下列步驟有助於 Azure 識別啟用要求：
-
-1. 為您的 ExpressRoute 電路建立公用對等互連。
-2. 執行 DNS 查詢，並尋找 **kms.core.windows.net**
-3. 金鑰管理服務必須識別來自 Azure 的啟用要求並接受要求。 執行下列三項工作的其中一項：
-
-   * 在您的內部部署網路上，針對目的地為步驟 2 所取得 IP 位址的流量，透過公用對等互連將流量路由回到 Azure。
-   * 要求您的 NSP 提供者將流量透過公用對等互連夾帶回 Azure。
-   * 建立使用者定義的路由，以指向下一個躍點為網際網路的 IP，並將它套用至這些虛擬機器所在的子網路。
 
 ### <a name="can-i-change-the-bandwidth-of-an-expressroute-circuit"></a>我可以變更 ExpressRoute 電路的頻寬嗎？
 
@@ -273,7 +252,7 @@ ExpressRoute Premium 是下列功能的集合：
     **範例：**
 
     *  您可將在歐洲西部建立的 VNet 連結至在矽谷建立的 ExpressRoute 線路。 
-    *  在公用對等互連上，會公告其他地緣政治區域的首碼，舉例來說，讓您可以從矽谷的線路連線至歐洲西部的 SQL Azure。
+    *  在 Microsoft 對等互連上，會公告其他地緣政治區域的首碼，舉例來說，讓您可以從矽谷的線路連線至歐洲西部的 SQL Azure。
 
 
 ### <a name="limits"></a>如果已啟用 ExpressRoute Premium，我可以將多少個 VNet 連結至 ExpressRoute 線路？
@@ -292,7 +271,7 @@ ExpressRoute Premium 是下列功能的集合：
 
 ### <a name="can-i-pick-and-choose-the-features-i-want-from-the-premium-feature-set"></a>我可以從進階功能集中挑選和選擇所需功能嗎？
 
-編號 您無法挑選功能。 當您開啟 ExpressRoute Premium 時，我們便會將所有功能啟用。
+否。 您無法挑選功能。 當您開啟 ExpressRoute Premium 時，我們便會將所有功能啟用。
 
 ### <a name="how-much-does-expressroute-premium-cost"></a>ExpressRoute Premium 需要多少錢？
 
@@ -302,11 +281,11 @@ ExpressRoute Premium 是下列功能的集合：
 
 是。 除了 ExpressRoute 電路費用和連線提供者所需費用以外，還需另行支付 ExpressRoute Premium 費用。
 
-## <a name="expressroute-for-office-365-and-dynamics-365"></a>Office 365 和 Dynamics 365 的 ExpressRoute
+## <a name="expressroute-for-office-365"></a>ExpressRoute for Office 365
 
 [!INCLUDE [expressroute-office365-include](../../includes/expressroute-office365-include.md)]
 
-### <a name="how-do-i-create-an-expressroute-circuit-to-connect-to-office-365-services-and-dynamics-365"></a>我要如何建立可連線到 Office 365 服務和 Dynamics 365 的ExpressRoute 線路？
+### <a name="how-do-i-create-an-expressroute-circuit-to-connect-to-office-365-services"></a>我要如何建立可連線到 Office 365 服務的ExpressRoute 線路？
 
 1. 請檢閱 [ExpressRoute 必要條件頁面](expressroute-prerequisites.md)，以確定您符合需求。
 2. 若要確保符合您的連線需求，請檢閱 [ExpressRoute 合作夥伴和位置](expressroute-locations.md)文章中的服務提供者和位置清單。
@@ -314,13 +293,9 @@ ExpressRoute Premium 是下列功能的集合：
 4. 遵循工作流程中所列的步驟來設定連線：[ExpressRoute 工作流程線路佈建和線路狀態](expressroute-workflows.md)。
 
 > [!IMPORTANT]
-> 設定與 Office 365 服務和 Dynamics 365 的連線時，請確定您已啟用 ExpressRoute Premium 附加元件。
+> 設定與 Office 365 服務的連線時，請確定您已啟用 ExpressRoute Premium 附加元件。
 > 
 > 
-
-### <a name="do-i-need-to-enable-azure-public-peering-to-connect-to-office-365-services-and-dynamics-365"></a>我是否需要啟用 Azure 公用對等互連以連線至 Office 365 服務和 Dynamics 365？
-
-否，您只需要啟用 Microsoft 對等互連。 流向 Azure AD 的驗證流量會透過 Microsoft 對等互連來傳送。 
 
 ### <a name="can-my-existing-expressroute-circuits-support-connectivity-to-office-365-services-and-dynamics-365"></a>我的現有 ExpressRoute 線路是否支援與 Office 365 服務和 Dynamics 365 連線？
 
@@ -330,9 +305,9 @@ ExpressRoute Premium 是下列功能的集合：
 
 請參閱 [Office 365 URL 與 IP 位址範圍](http://aka.ms/o365endpoints)頁面，以取得透過 ExpressRoute 支援的最新服務清單。
 
-### <a name="how-much-does-expressroute-for-office-365-services-and-dynamics-365-cost"></a>適用於 Office 365 服務和 Dynamics 365 的 ExpressRoute 費用是多少？
+### <a name="how-much-does-expressroute-for-office-365-services-cost"></a>適用於 Office 365 服務的 ExpressRoute 費用是多少？
 
-必須啟用 Premium 附加元件，才能使用 Office 365 服務和 Dynamics 365。 請參閱[定價詳細資料頁面](https://azure.microsoft.com/pricing/details/expressroute/)以了解成本。
+必須啟用 Premium 附加元件，才能使用 Office 365 服務。 請參閱[定價詳細資料頁面](https://azure.microsoft.com/pricing/details/expressroute/)以了解成本。
 
 ### <a name="what-regions-is-expressroute-for-office-365-supported-in"></a>哪些區域支援 ExpressRoute for Office 365？
 
@@ -349,10 +324,6 @@ ExpressRoute Premium 是下列功能的集合：
 
 是。 Office 365 GCC 服務端點可以透過 Azure 美國政府 ExpressRoute 存取。 不過，您必須先在 Azure 入口網站上開立支援票證，以提供您想要公告給 Microsoft 的首碼。 在解決該支援票證之後，您便可以連線至 Office 365 GCC 服務。 
 
-### <a name="can-dynamics-365-for-operations-formerly-known-as-dynamics-ax-online-be-accessed-over-an-expressroute-connection"></a>是否可透過 ExpressRoute 連線存取 Dynamics 365 for Operations (先前稱為 Dynamics AX Online)？
-
-是。 [Dynamics 365 for Operations](https://www.microsoft.com/dynamics365/operations) 是裝載於 Azure 上。 您可以在您的 ExpressRoute 線路上啟用 Azure 公用對等來和它連線。
-
 ## <a name="route-filters-for-microsoft-peering"></a>Microsoft 對等互連的路由篩選
 
 ### <a name="i-am-turning-on-microsoft-peering-for-the-first-time-what-routes-will-i-see"></a>第一次開啟 Microsoft 對等互連時，會看到哪些路由？
@@ -367,7 +338,7 @@ ExpressRoute Premium 是下列功能的集合：
 
 否，您不需要 Dynamics 365 的授權。 您不需授權就可建立規則和選取 Dynamics 365 社群。
 
-### <a name="i-enabled-microsoft-peering-prior-to-august-1st-2017-how-can-i-take-advantage-of-route-filters"></a>我在 2017 年 8 月 1 日之前啟用了 Microsoft 對等互連，該如何利用路由篩選？
+### <a name="i-enabled-microsoft-peering-prior-to-august-1-2017-how-can-i-take-advantage-of-route-filters"></a>我在 2017 年 8 月 1 日之前啟用了 Microsoft 對等互連，該如何利用路由篩選？
 
 您現有的線路會繼續公告 Office 365 和 Dynamics 365 的前置詞。 如果您需要透過相同的 Microsoft 對等互連新增 Azure 公用首碼公告，可以建立路由篩選器、選取您需要公告的服務 (包括您需要的 Office 365 服務和 Dynamics 365)，並將篩選連接到您的 Microsoft 對等互連。 如需指示，請參閱[針對 Microsoft 對等互連設定路由篩選](how-to-routefilter-powershell.md)。
 
@@ -376,3 +347,11 @@ ExpressRoute Premium 是下列功能的集合：
 * 在 2017 年 8 月 1 日以前設定之 ExpressRoute 線路的 Microsoft 對等互連，會透過 Microsoft 對等互連公告所有服務首碼，即使未定義路由篩選也一樣。
 
 * 在 2017 年 8 月 1 日當日或以後設定之 ExpressRoute 線路的 Microsoft 對等互連，不會公告任何首碼，直到路由篩選連結至線路為止。 根據預設，您不會看見任何首碼。
+
+## <a name="expressRouteDirect"></a>ExpressRoute Direct (預覽)
+
+[!INCLUDE [ExpressRoute Direct](../../includes/expressroute-direct-faq-include.md)]
+
+## <a name="globalreach"></a>Global Reach (預覽)
+
+[!INCLUDE [Global Reach](../../includes/expressroute-global-reach-faq-include.md)]

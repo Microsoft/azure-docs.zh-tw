@@ -2,23 +2,26 @@
 title: 了解如何提供選擇性宣告給 Azure AD 應用程式 | Microsoft Docs
 description: 將自訂或額外宣告新增至 Azure Active Directory 所簽發之 SAML 2.0 和 JSON Web Token (JWT) 權杖的指南。
 documentationcenter: na
-author: hpsin
+author: CelesteDG
 services: active-directory
 manager: mtillman
 editor: ''
 ms.service: active-directory
+ms.component: develop
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 03/15/2018
-ms.author: hirsin
+ms.date: 07/12/2018
+ms.author: celested
+ms.reviewer: hirsin
 ms.custom: aaddev
-ms.openlocfilehash: f9cc4f900428e1337fc9b9d428879d6527c60017
-ms.sourcegitcommit: 20d103fb8658b29b48115782fe01f76239b240aa
+ms.openlocfilehash: d924c1fc9697bff77f12f7f0bf33a1654d1e7d6e
+ms.sourcegitcommit: 1f0587f29dc1e5aef1502f4f15d5a2079d7683e9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2018
+ms.lasthandoff: 08/07/2018
+ms.locfileid: "39597968"
 ---
 # <a name="optional-claims-in-azure-ad-preview"></a>Azure AD 中的選擇性宣告 (預覽)
 
@@ -30,7 +33,7 @@ ms.lasthandoff: 04/03/2018
 > [!Note]
 > 這項功能目前為公開預覽版。 您應做好將任何變更還原或移除的準備。 在公開預覽版期間，所有 Azure AD 訂用帳戶中都有提供此功能。 不過，當此功能變成正式運作版時，可能需要 Azure AD Premium 訂用帳戶，才能使用此功能的某些層面。
 
-如需標準宣告的清單及其在權杖中的使用方式，請參閱 [Azure AD 所簽發權杖的基本概念](active-directory-token-and-claims.md)。 
+如需標準宣告的清單及其在權杖中的使用方式，請參閱 [Azure AD 所簽發權杖的基本概念](v1-id-and-access-tokens.md)。 
 
 [v2.0 Azure AD 端點](active-directory-appmodel-v2-overview.md)的其中一個目標是縮小權杖大小，以確保用戶端獲得最佳效能。  因此，數個先前包含在存取和識別碼權杖中的宣告在 v2.0 權杖中已不再提供，而必須依據個別應用程式明確提出要求才會提供。  
 
@@ -38,36 +41,42 @@ ms.lasthandoff: 04/03/2018
 
 | 帳戶類型 | V1.0 端點                      | V2.0 端點  |
 |--------------|------------------------------------|----------------|
-| MSA          | N/A - 改用 RPS 票證 | 即將支援 |
-| AAD          | 支援                          | 支援      |
+| 個人 Microsoft 帳戶  | N/A - 改用 RPS 票證 | 即將支援 |
+| Azure AD 帳戶          | 支援                          | 支援      |
 
 ## <a name="standard-optional-claims-set"></a>標準選擇性宣告集
 以下列出預設可供應用程式使用的一組選擇性宣告。  若要為您的應用程式新增自訂選擇性宣告，請參閱下方的[目錄延伸模組](active-directory-optional-claims.md#Configuring-custom-claims-via-directory-extensions)。 
 
 > [!Note]
->這些宣告中大多數都可包含在 JWT 中，但不可包含在 SAML 權杖中 (「權杖類型」欄中已註明者除外)。  此外，雖然目前僅針對 AAD 使用者支援選擇性宣告，但已正在新增 MSA 支援。  當 MSA 在 v2.0 端點上具有選擇性宣告支援時，「使用者類型」欄會指出宣告可供 AAD 還是 MSA 使用者使用。  
+>這些宣告中大多數都可包含在 v1.0 和 v2.0 權杖的 JWT 中，但不可包含在 SAML 權杖中 (「權杖類型」欄中已註明者除外)。  此外，雖然目前僅針對 AAD 使用者支援選擇性宣告，但已正在新增 MSA 支援。  當 MSA 在 v2.0 端點上具有選擇性宣告支援時，「使用者類型」欄會指出宣告可供 AAD 還是 MSA 使用者使用。  
 
 **表 2：標準選擇性宣告集**
 
-| Name                     | 說明                                                                                                                                                                                     | 權杖類型 | 使用者類型 | 注意                                                                                                                                                                                                                                                                                   |
-|--------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `auth_time`                | 上次驗證使用者的時間。  請參閱 OpenID Connect 規格。                                                                                                                                | JWT        |           |                                                                                                                                                                                                                                                                                         |
-| `tenant_region_scope`      | 資源租用戶的區域                                                                                                                                                                   | JWT        |           |                                                                                                                                                                                                                                                                                         |
-| `signin_state`             | 登入狀態宣告                                                                                                                                                                             | JWT        |           | 6 個以旗標形式表示的傳回值：<br> "dvc_mngd"：裝置為受控裝置<br> "dvc_cmp"：裝置符合規範<br> "dvc_dmjd"：裝置已加入網域<br> "dvc_mngd_app"：裝置是透過 MDM 管理的裝置<br> "inknownntwk"：裝置位於已知的網路內。<br> "kmsi"：已使用 [讓我保持登入]。 <br> |
-| `controls`                 | 包含「條件式存取」原則所強制執行之工作階段控制項的多值宣告。                                                                                                       | JWT        |           | 3 個值：<br> "app_res"：應用程式必須強制執行更細微的限制。 <br> "ca_enf"：「條件式存取」強制執行已延遲但仍需要。 <br> "no_cookie"：此權杖不足以在瀏覽器中交換 Cookie。 <br>                              |
-| `home_oid`                 | 就來賓使用者而言，是使用者主租用戶中的使用者物件識別碼。                                                                                                                           | JWT        |           |                                                                                                                                                                                                                                                                                         |
-| `sid`                      | 工作階段識別碼，用於個別工作階段使用者登出。                                                                                                                                                  | JWT        |           |                                                                                                                                                                                                                                                                                         |
-| `platf`                    | 裝置平台                                                                                                                                                                                 | JWT        |           | 限制為可驗證裝置類型的受控裝置。                                                                                                                                                                                                                              |
-| `verified_primary_email`   | 以使用者的 PrimaryAuthoritativeEmail 為來源                                                                                                                                               | JWT        |           |                                                                                                                                                                                                                                                                                         |
-| `verified_secondary_email` | 以使用者的 SecondaryAuthoritativeEmail 為來源                                                                                                                                             | JWT        |           |                                                                                                                                                                                                                                                                                         |
-| `enfpolids`                | 強制執行的原則識別碼。 已針對目前使用者評估的原則識別碼清單。                                                                                                         | JWT        |           |                                                                                                                                                                                                                                                                                         |
-| `vnet`                     | VNET 規範資訊。                                                                                                                                                                     | JWT        |           |                                                                                                                                                                                                                                                                                         |
-| `fwd`                      | IP 位址。  新增發出要求之用戶端的原始 IPv4 位址 (位於 VNET 內部時)                                                                                                       | JWT        |           |                                                                                                                                                                                                                                                                                         |
-| `ctry`                     | 使用者的國家/地區                                                                                                                                                                                  | JWT        |           |                                                                                                                                                                                                                                                                                         |
-| `tenant_ctry`              | 資源租用戶的國家/地區                                                                                                                                                                       | JWT        |           |                                                                                                                                                                                                                                                                                         |
-| `upn`                      | UserPrincipalName 宣告。  雖然會自動包含此宣告，但在來賓使用者案例中，您可以將它指定為選擇性宣告來附加額外屬性，以修改其行為。 | JWT、SAML  |           | 額外屬性： <br> `include_externally_authenticated_upn` <br> `include_externally_authenticated_upn_without_hash`                                                                                                                                                                 |
+| Name                        | 說明   | 權杖類型 | 使用者類型 | 注意  |
+|-----------------------------|----------------|------------|-----------|--------|
+| `auth_time`                | 上次驗證使用者的時間。  請參閱 OpenID Connect 規格。| JWT        |           |  |
+| `tenant_region_scope`      | 資源租用戶的區域 | JWT        |           | |
+| `signin_state`             | 登入狀態宣告   | JWT        |           | 6 個以旗標形式表示的傳回值：<br> "dvc_mngd"：裝置為受控裝置<br> "dvc_cmp"：裝置符合規範<br> "dvc_dmjd"：裝置已加入網域<br> "dvc_mngd_app"：裝置是透過 MDM 管理的裝置<br> "inknownntwk"：裝置位於已知的網路內。<br> "kmsi"：已使用 [讓我保持登入]。 <br> |
+| `controls`                 | 包含「條件式存取」原則所強制執行之工作階段控制項的多值宣告。  | JWT        |           | 3 個值：<br> "app_res"：應用程式必須強制執行更細微的限制。 <br> "ca_enf"：「條件式存取」強制執行已延遲但仍需要。 <br> "no_cookie"：此權杖不足以在瀏覽器中交換 Cookie。 <br>  |
+| `home_oid`                 | 就來賓使用者而言，是使用者主租用戶中的使用者物件識別碼。| JWT        |           | |
+| `sid`                      | 工作階段識別碼，用於個別工作階段使用者登出。 | JWT        |           |         |
+| `platf`                    | 裝置平台    | JWT        |           | 限制為可驗證裝置類型的受控裝置。|
+| `verified_primary_email`   | 以使用者的 PrimaryAuthoritativeEmail 為來源      | JWT        |           |         |
+| `verified_secondary_email` | 以使用者的 SecondaryAuthoritativeEmail 為來源   | JWT        |           |        |
+| `enfpolids`                | 強制執行的原則識別碼。 已針對目前使用者評估的原則識別碼清單。  | JWT |  |  |
+| `vnet`                     | VNET 規範資訊。    | JWT        |           |      |
+| `fwd`                      | IP 位址。| JWT    |   | 新增發出要求之用戶端的原始 IPv4 位址 (位於 VNET 內部時) |
+| `ctry`                     | 使用者的國家/地區 | JWT |           | 如果出現且宣告值是兩個字母的國家/地區碼 (例如 FR、JP、SZ 等等)，則 Azure AD 會傳回 `ctry` 選擇性宣告。 |
+| `tenant_ctry`              | 資源租用戶的國家/地區 | JWT | | |
+| `xms_pdl`          | 慣用資料位置   | JWT | | 針對多地理位置租用戶，這是 3 個字母的代碼，用以顯示使用者位於哪一個地理區域。  如需詳細資訊，請參閱[關於慣用資料位置的 Azure AD Connect 文件](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnectsync-feature-preferreddatalocation)。 <br> 例如：`APC` 是指亞太地區。 |
+| `xms_pl`                   | 使用者慣用語言  | JWT ||如果設定，則為使用者的慣用語言。  在來賓存取案例中，來源是其主租用戶。  格式化 LL-CC (“en-us”)。 |
+| `xms_tpl`                  | 租用戶慣用語言| JWT | | 如果設定，則為資源租用戶的慣用語言。  格式化 LL (“en”)。 |
+| `ztdid`                    | 全自動部署識別碼 | JWT | | 裝置身分識別，用於 [Windows AutoPilot](https://docs.microsoft.com/windows/deployment/windows-autopilot/windows-10-autopilot) |
+| `acct`             | 租用戶中的使用者帳戶狀態。   | JWT、SAML | | 如果使用者是租用戶的成員，則值為 `0`。  如果是來賓使用者，則值為 `1`。  |
+| `upn`                      | UserPrincipalName 宣告。  | JWT、SAML  |           | 雖然會自動包含此宣告，但在來賓使用者案例中，您可以將它指定為選擇性宣告來附加額外屬性，以修改其行為。  <br> 額外屬性： <br> `include_externally_authenticated_upn` <br> `include_externally_authenticated_upn_without_hash` |
+
 ### <a name="v20-optional-claims"></a>V2.0 選擇性宣告
-在 v1.0 權杖中一律會包含這些宣告，但在 v2.0 權杖中則除非提出要求，否則會移除這些宣告。  這些宣告僅適用於 JWT (識別碼權杖和存取權杖)。  
+在 v1.0 權杖中一律會包含這些宣告，但在 v2.0 權杖中除非提出要求，否則不會包含。  這些宣告僅適用於 JWT (識別碼權杖和存取權杖)。  
 
 **表 3：僅適用於 V2.0 的選擇性宣告**
 
@@ -90,7 +99,7 @@ ms.lasthandoff: 04/03/2018
 
 | 屬性名稱                                     | 額外屬性名稱                                                                                                             | 說明 |
 |---------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------|-------------|
-| `upn`                                                 |                                                                                                                                      |             |
+| `upn`                                                 |                                                                                                                                      |  可用於 SAML 和 JWT 回應。            |
 | | `include_externally_authenticated_upn`              | 包含儲存在資源租用戶中的來賓 UPN。  例如， `foo_hometenant.com#EXT#@resourcetenant.com`                            |             
 | | `include_externally_authenticated_upn_without_hash` | 同上，除了將井號 (`#`) 取代成底線 (`_`) 之外，例如 `foo_hometenant.com_EXT_@resourcetenant.com` |             
 
@@ -113,11 +122,11 @@ ms.lasthandoff: 04/03/2018
 }
 ```
 
-這個 OptionalClaims 物件會導致傳回給用戶端的識別碼權杖包含另一個 UPN，該 UPN 含有額外的主租用戶和資源租用戶資訊。  
+這個 OptionalClaims 物件會導致傳回給用戶端的識別碼權杖包含另一個 UPN，該 UPN 含有額外的主租用戶和資源租用戶資訊。  如果使用者是租用戶中的來賓 (使用不同的 IDP 進行驗證)，則這樣只會變更權杖中的 `upn` 宣告。 
 
 ## <a name="configuring-optional-claims"></a>設定選擇性宣告
 
-您可以藉由修改應用程式資訊清單，來為應用程式設定選擇性宣告 (請參閱以下範例)。 如需詳細資訊，請參閱[了解 Azure AD 應用程式資訊清單](active-directory-application-manifest.md)一文。
+您可以藉由修改應用程式資訊清單，來為應用程式設定選擇性宣告 (請參閱以下範例)。 如需詳細資訊，請參閱[了解 Azure AD 應用程式資訊清單](reference-app-manifest.md)一文。
 
 **範例結構描述：**
 
@@ -126,14 +135,13 @@ ms.lasthandoff: 04/03/2018
    {
        "idToken": [
              { 
-                   "name": "upn", 
-                   "essential": false, 
-                   "additionalProperties": [ "include_externally_authenticated_upn"]  
+                   "name": "auth_time", 
+                   "essential": false
               }
         ],
  "accessToken": [ 
              {
-                    "name": "auth_time", 
+                    "name": "ipaddr", 
                     "essential": false
               }
         ],
@@ -200,7 +208,7 @@ ms.lasthandoff: 04/03/2018
 -   您可以修改應用程式資訊清單。 以下範例將使用此方法來執行設定。 請先閱讀介紹資訊清單的[了解 Azure AD 應用程式資訊清單](https://docs.microsoft.com/azure/active-directory/develop/active-directory-application-manifest)文件。
 -   您也可以撰寫使用[圖形 API](https://docs.microsoft.com/azure/active-directory/develop/active-directory-graph-api)來更新您應用程式的應用程式。 「圖形 API」參考指南中的[實體和複雜類型參考](https://msdn.microsoft.com/library/azure/ad/graph/api/entity-and-complex-type-reference#optionalclaims-type) \(英文\) 可協助您設定選擇性宣告。
 
-**範例：**在以下範例中，您將修改應用程式的資訊清單，以將宣告新增至要用於應用程式的存取權杖、識別碼權杖及 SAML 權杖中。
+**範例：** 在以下範例中，您將修改應用程式的資訊清單，以將宣告新增至要用於應用程式的存取權杖、識別碼權杖及 SAML 權杖中。
 1.  登入 [Azure 入口網站](https://portal.azure.com)。
 2.  驗證後，在頁面右上角選取您的 Azure AD 租用戶。
 3.  從左側導覽面板中選取 [Azure AD 延伸模組]，然後按一下 [應用程式註冊]。
@@ -239,4 +247,4 @@ ms.lasthandoff: 04/03/2018
 
 
 ## <a name="related-content"></a>相關內容
-* 深入了解 Azure AD 所提供的[標準宣告](active-directory-token-and-claims.md)。 
+* 深入了解 Azure AD 所提供的[標準宣告](v1-id-and-access-tokens.md)。 

@@ -1,24 +1,22 @@
 ---
-title: "設定 Azure 函數應用程式的設定 | Microsoft Docs"
-description: "了解如何設定 Azure Functions 應用程式設定。"
-services: 
+title: 設定 Azure 函數應用程式的設定 | Microsoft Docs
+description: 了解如何設定 Azure Functions 應用程式設定。
+services: ''
 documentationcenter: .net
 author: ggailey777
-manager: cfowler
-editor: 
+manager: jeconnoc
 ms.assetid: 81eb04f8-9a27-45bb-bf24-9ab6c30d205c
-ms.service: functions
-ms.workload: na
-ms.tgt_pltfrm: dotnet
-ms.devlang: na
-ms.topic: article
-ms.date: 04/23/2017
+ms.service: azure-functions
+ms.topic: conceptual
+ms.date: 03/28/2018
 ms.author: glenga
-ms.openlocfilehash: 2aa35cf814f8de2af89c6f7e0eda1f919301d6a3
-ms.sourcegitcommit: 782d5955e1bec50a17d9366a8e2bf583559dca9e
+ms.custom: cc996988-fb4f-47
+ms.openlocfilehash: 18e4adb47ecf8e6d44edea873a4b3cc73492b273
+ms.sourcegitcommit: f3bd5c17a3a189f144008faf1acb9fabc5bc9ab7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/02/2018
+ms.lasthandoff: 09/10/2018
+ms.locfileid: "44301478"
 ---
 # <a name="how-to-manage-a-function-app-in-the-azure-portal"></a>如何在 Azure 入口網站中管理函數應用程式 
 
@@ -27,6 +25,24 @@ ms.lasthandoff: 03/02/2018
 若要開始，請移至 [Azure 入口網站](http://portal.azure.com)，然後登入您的 Azure 帳戶。 在入口網站頂端的搜尋列中，輸入函數應用程式的名稱，然後從清單中選取它。 選取函數應用程式之後，您會看到下列頁面：
 
 ![Azure 入口網站中的函數應用程式概觀](./media/functions-how-to-use-azure-function-app-settings/azure-function-app-main.png)
+
+## <a name="favorite"></a>入口網站中的我的最愛函式 
+
+有時候很難在 [Azure 入口網站]中找到您的資源。 若要更輕鬆地尋找您所建立的函數應用程式，在入口網站中將函數應用程式新增至我的最愛。 
+
+1. 登入 [Azure 入口網站]。
+
+2. 按一下左下方的箭號以展開所有服務，在 [篩選] 欄位中輸入 `Functions`，然後按一下 [函式應用程式] 旁的星號。  
+ 
+    ![在 Azure 入口網站中建立函式應用程式](./media/functions-how-to-use-azure-function-app-settings/functions-favorite-function-apps.png)
+
+    這會在入口網站左側的功能表中新增 [Functions] 圖示。
+
+3. 關閉功能表，然後捲動到底部就能看到 [Functions] 圖示。 按一下此圖示可查看所有函式應用程式的清單。 按一下函式應用程式可在此應用程式中使用函式。 
+ 
+    ![[我的最愛] 中的函式應用程式](./media/functions-how-to-use-azure-function-app-settings/functions-function-apps-hub.png)
+ 
+[Azure 入口網站]: https://portal.azure.com/
 
 ## <a name="manage-app-service-settings"></a>函數應用程式設定索引標籤
 
@@ -95,7 +111,7 @@ Functions 支援「取用」主控方案和 App Service 主控方案。 如需�
 
 | | |
 |-|-|
-| ![Azure 入口網站中的函數應用程式部署選項](./media/functions-how-to-use-azure-function-app-settings/function-app-deployment-source.png) | Functions 可讓您在本機電腦上開發函數程式碼。 您可以接著將本機函數應用程式專案上傳到 Azure。 除了傳統 FTP 上傳之外，Functions 還可讓您使用常用的持續整合解決方案 (例如 GitHub、VSTS、Dropbox、Bitbucket 等) 來部署函數應用程式。 如需詳細資訊，請參閱 [Azure Functions 的持續部署](functions-continuous-deployment.md)。 若要使用 FTP 或本機 Git 來手動上傳，您還必須[設定您的部署認證](functions-continuous-deployment.md#credentials)。 |
+| ![Azure 入口網站中的函數應用程式部署選項](./media/functions-how-to-use-azure-function-app-settings/function-app-deployment-source.png) | Functions 可讓您在本機電腦上開發函數程式碼。 您可以接著將本機函數應用程式專案上傳到 Azure。 除了傳統 FTP 上傳之外，Functions 還可讓您使用常用的持續整合解決方案 (例如 GitHub、Azure DevOps、Dropbox、Bitbucket 等) 來部署函式應用程式。 如需詳細資訊，請參閱 [Azure Functions 的持續部署](functions-continuous-deployment.md)。 若要使用 FTP 或本機 Git 來手動上傳，您還必須[設定您的部署認證](functions-continuous-deployment.md#credentials)。 |
 
 
 ### <a name="cors"></a>CORS

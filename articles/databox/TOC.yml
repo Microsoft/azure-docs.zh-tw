@@ -1,0 +1,102 @@
+items:
+- name: Azure 資料箱文件 - 離線傳輸
+  href: /azure/databox
+  items:
+  - name: 資料箱
+    items:
+    - name: 概觀
+      items:
+      - name: 什麼是資料箱？
+        href: data-box-overview.md
+    - name: 快速入門
+      items:
+      - name: 設定 - Azure 入口網站
+        href: data-box-quickstart-portal.md
+      expanded: true
+    - name: 教學課程
+      items:
+      - name: 1 - 訂購
+        href: data-box-deploy-ordered.md
+      - name: 2 - 設定
+        href: data-box-deploy-set-up.md
+      - name: 3 - 複製資料
+        href: data-box-deploy-copy-data.md
+      - name: 4 - 傳回、上傳並確認
+        href: data-box-deploy-picked-up.md
+    - name: 概念
+      items:
+      - name: 閱讀安全性方針
+        href: data-box-safety.md
+      - name: 檢閱需求
+        href: data-box-system-requirements.md
+      - name: 了解限制
+        href: data-box-limits.md
+      - name: 檢閱安全性
+        href: data-box-security.md
+      - name: 常見問題集
+        href: data-box-faq.md
+    - name: 作法
+      items:
+      - name: 透過 Azure 入口網站管理
+        href: data-box-portal-admin.md
+      - name: 透過本機 Web UI 管理
+        href: data-box-local-web-ui-admin.md
+      - name: 請連絡支援人員
+        href: data-box-disk-contact-microsoft-support.md
+  - name: 資料箱磁碟
+    items:
+    - name: 概觀
+      items:
+      - name: 什麼是資料箱磁碟？
+        href: data-box-disk-overview.md
+    - name: 快速入門
+      items:
+      - name: 設定 - Azure 入口網站
+        href: data-box-disk-quickstart-portal.md
+      expanded: true
+    - name: 教學課程
+      items:
+      - name: 1 - 訂購
+        href: data-box-disk-deploy-ordered.md
+      - name: 2 - 設定
+        href: data-box-disk-deploy-set-up.md
+      - name: 3 - 複製及驗證
+        href: data-box-disk-deploy-copy-data.md
+      - name: 4 - 傳回、上傳並確認
+        href: data-box-disk-deploy-picked-up.md
+    - name: 概念
+      items:
+      - name: 檢閱需求
+        href: data-box-disk-system-requirements.md
+      - name: 了解限制
+        href: data-box-disk-limits.md
+      - name: 檢閱安全性
+        href: data-box-disk-security.md
+      - name: 常見問題集
+        href: data-box-disk-faq.md
+    - name: 作法
+      items:
+      - name: 透過 Azure 入口網站管理
+        href: data-box-portal-ui-admin.md
+      - name: 針對磁碟問題進行疑難排解
+        href: data-box-disk-troubleshoot.md
+      - name: 請連絡支援人員
+        href: data-box-disk-contact-microsoft-support.md
+  - name: Data Box Heavy
+    items:
+    - name: 概觀
+      items:
+      - name: 什麼是 Data Box Heavy？
+        href: data-box-heavy-overview.md
+  - name: 資源
+    items:
+    - name: 資料箱產品
+      href: https://azure.microsoft.com/services/storage/databox/data/
+    - name: 價格
+      href: https://azure.microsoft.com/pricing/details/storage/databox/
+ms.openlocfilehash: aa95ba5708ec72d6a4665fb18126a6eadead6ff2
+ms.sourcegitcommit: 3a02e0e8759ab3835d7c58479a05d7907a719d9c
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/13/2018
+ms.locfileid: "49309128"

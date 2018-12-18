@@ -8,7 +8,7 @@
 
     ![啟用 TCP](./media/virtual-machines-sql-server-connection-tcp-protocol/enable-tcp.png)
 
-1. 在主控台窗格中，按一下 [SQL Server 服務]。 在詳細資料窗格中，以滑鼠右鍵按一下 [SQL Server (執行個體名稱)] (預設執行個體是 SQL Server (MSSQLSERVER))，然後按一下 [重新啟動] 以停止及重新啟動 SQL Server 執行個體。
+1. 在主控台窗格中，按一下 [SQL Server 服務]。 在詳細資料窗格中，以滑鼠右鍵按一下 [SQL Server (執行個體名稱)] \(預設執行個體是 SQL Server (MSSQLSERVER))，然後按一下 [重新啟動] 以停止及重新啟動 SQL Server 執行個體。
 
     ![重新啟動 Database Engine](./media/virtual-machines-sql-server-connection-tcp-protocol/restart-sql-server.png)
 

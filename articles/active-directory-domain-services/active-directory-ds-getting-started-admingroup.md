@@ -1,24 +1,26 @@
 ---
-title: "Azure Active Directory Domain Services：開始使用 | Microsoft Docs"
-description: "使用 Azure 入口網站啟用 Azure Active Directory Domain Services"
+title: Azure Active Directory Domain Services：開始使用 | Microsoft Docs
+description: 使用 Azure 入口網站啟用 Azure Active Directory Domain Services
 services: active-directory-ds
-documentationcenter: 
+documentationcenter: ''
 author: mahesh-unnikrishnan
 manager: mtillman
 editor: curtand
 ms.assetid: ace1ed4a-bf7f-43c1-a64a-6b51a2202473
-ms.service: active-directory-ds
+ms.service: active-directory
+ms.component: domain-services
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 09/26/2017
+ms.topic: conceptual
+ms.date: 05/23/2018
 ms.author: maheshu
-ms.openlocfilehash: 2a171490faf9804196c93d33c5ee74d22533c044
-ms.sourcegitcommit: e266df9f97d04acfc4a843770fadfd8edf4fa2b7
+ms.openlocfilehash: 2290273c1b998a2d75046fcbcf613762ddd588ee
+ms.sourcegitcommit: 9222063a6a44d4414720560a1265ee935c73f49e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/11/2017
+ms.lasthandoff: 08/03/2018
+ms.locfileid: "39503201"
 ---
 # <a name="enable-azure-active-directory-domain-services-using-the-azure-portal"></a>使用 Azure 入口網站啟用 Azure Active Directory Domain Services
 
@@ -40,16 +42,19 @@ ms.lasthandoff: 12/11/2017
 
 3. 完成時，按一下 [確定] 以繼續前往精靈的 [摘要] 分頁。
 
-4. 在精靈的 [摘要] 分頁中，檢閱受控網域的組態設定。 您可以視需要返回精靈的任何步驟以進行變更。 完成時，按一下 [確定] 來建立新的受控網域。
+
+## <a name="deploy-your-managed-domain"></a>部署受控網域
+
+1. 在精靈的 [摘要] 分頁中，檢閱受控網域的組態設定。 您可以視需要返回精靈的任何步驟以進行變更。 完成時，按一下 [確定] 來建立新的受控網域。
 
     ![總結](./media/getting-started/domain-services-blade-summary.png)
 
-5. 您會看到通知，顯示 Azure AD Domain Services 部署的進度。 按一下通知以查看部署的詳細進度。
+2. 您會看到通知，顯示 Azure AD Domain Services 部署的進度。 按一下通知以查看部署的詳細進度。
 
     ![通知 - 部署進行中](./media/getting-started/domain-services-blade-deployment-in-progress.png)
 
 
-## <a name="provision-your-managed-domain"></a>佈建受控網域
+## <a name="check-the-deployment-status-of-your-managed-domain"></a>檢查受控網域的部署狀態
 佈建受控網域的程序可能需要一小時的時間。
 
 1. 部署進行時，您可以在 [搜尋資源] 搜尋方塊中搜尋「網域服務」。 從搜尋結果選取 [Azure AD Domain Services]。 [Azure AD Domain Services] 刀鋒視窗會列出正在佈建的受控網域。
@@ -67,6 +72,9 @@ ms.lasthandoff: 12/11/2017
 4. 當受控網域完整佈建時，[概觀] 索引標籤會將網域狀態顯示為 [執行中]。
 
     ![Domain Services - 完全佈建後的 [概觀] 索引標籤](./media/getting-started/domain-services-provisioned.png)
+    >[!NOTE]
+    >在佈建過程中，Azure AD Domain Services 會在您的目錄中建立名為 "Domain Controller Services" 和 "AzureActiveDirectoryDomainControllerServices" 的企業應用程式。 處理受控網域時需要這些企業應用程式。 這些企業應用程式絕對不能刪除。
+    >
 
 5. 在 [屬性] 索引標籤上，您會看到網域控制站可供虛擬網路使用的兩個 IP 位址。
 

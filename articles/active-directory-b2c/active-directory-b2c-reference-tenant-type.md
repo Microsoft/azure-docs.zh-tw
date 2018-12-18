@@ -1,21 +1,21 @@
 ---
-title: Azure Active Directory B2C：區域可用性和資料存留處 | Microsoft Docs
-description: 有關 Azure Active Directory B2C 租用戶類型的主題
+title: Azure Active Directory B2C 中的區域可用性和資料落地 | Microsoft Docs
+description: 有關 Azure Active Directory B2C 租用戶類型的主題。
 services: active-directory-b2c
-documentationcenter: ''
 author: davidmu1
 manager: mtillman
-editor: ''
-ms.service: active-directory-b2c
+ms.service: active-directory
 ms.workload: identity
-ms.topic: article
+ms.topic: conceptual
 ms.date: 04/10/2017
 ms.author: davidmu
-ms.openlocfilehash: b982a6b6e0068370ef7b5cb30ea689829e90d494
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: B2C
+ms.openlocfilehash: 7c0348dad507b118af542c1bbc47f6ceb88ae7be
+ms.sourcegitcommit: 86cb3855e1368e5a74f21fdd71684c78a1f907ac
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37443047"
 ---
 # <a name="azure-active-directory-b2c-region-availability--data-residency"></a>Azure Active Directory B2C：區域可用性和資料存留處
 區域可用性和資料存留處是兩個非常不同的概念，這些概念套用到 Azure AD B2C 的方式與套用到其餘 Azure 的方式不同。 本文將說明這兩個概念之間的差異，並比較它們如何套用在 Azure 與 Azure AD B2C。
@@ -49,7 +49,7 @@ Azure AD B2C 會將使用者資料儲存在美國或歐洲。
 
 其餘國家/地區正在新增到清單。  目前，您仍可透過挑選上述任何國家/地區來使用 Azure AD B2C。
 
-> 阿富汗、阿根廷、澳洲、巴西、智利、哥倫比亞、厄瓜多、香港特別行政區、印度、印尼、伊拉克、日本、韓國、馬來西亞、紐西蘭、巴拉圭、祕魯、菲律賓、新加坡、斯里蘭卡、台灣、泰國、烏拉圭和委內瑞拉。
+> 阿富汗、阿根廷、澳洲、巴西、智利、哥倫比亞、厄瓜多、香港特別行政區、印度、印尼、伊拉克、日本、南韓、馬來西亞、紐西蘭、巴拉圭、祕魯、菲律賓、新加坡、斯里蘭卡、台灣、泰國、烏拉圭和委內瑞拉。
 
 ## <a name="preview-tenant"></a>預覽租用戶
 如果您已在 Azure AD B2C 的預覽期間建立 B2C 租用戶，您的 [租用戶類型] 可能會顯示為 [預覽租用戶]。 如果情況如此，您只能將租用戶用於開發和測試用途，而不能用於生產應用程式。

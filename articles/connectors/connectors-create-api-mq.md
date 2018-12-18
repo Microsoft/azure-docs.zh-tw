@@ -1,25 +1,22 @@
 ---
-title: "了解如何在 Azure Logic Apps 中使用 MQ 連接器 | Microsoft Docs"
-description: "從邏輯應用程式工作流程連線到內部部署或 Azure MQ Server，來瀏覽、接收及傳送訊息至 WebSphere MQ"
-services: logic-apps
+title: 連線到 MQ 伺服器 - Azure Logic Apps | Microsoft Docs
+description: 使用 Azure 或內部部署 MQ 伺服器和 Azure Logic Apps 來傳送及取出訊息
 author: valthom
-manager: anneta
-documentationcenter: 
-editor: 
-tags: connectors
-ms.assetid: 
-ms.service: logic-apps
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: integration
+manager: jeconnoc
+ms.author: valthom
 ms.date: 06/01/2017
-ms.author: valthom; ladocs
-ms.openlocfilehash: 24ea1ef4d3c6229707458ef2f2005f90d8273304
-ms.sourcegitcommit: be9a42d7b321304d9a33786ed8e2b9b972a5977e
+ms.topic: article
+ms.service: logic-apps
+services: logic-apps
+ms.reviewer: klam, LADocs
+ms.suite: integration
+tags: connectors
+ms.openlocfilehash: 6b34bd7b286ca3b206c611343217c90e0d57fbfb
+ms.sourcegitcommit: 6f6d073930203ec977f5c283358a19a2f39872af
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/19/2018
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35295905"
 ---
 # <a name="connect-to-an-ibm-mq-server-from-logic-apps-using-the-mq-connector"></a>使用 MQ 連接器從 Logic Apps 連線到 IBM MQ Server 
 
@@ -49,7 +46,7 @@ MQ 連接器包含下列動作。 但不包含觸發程序。
 ## <a name="create-a-logic-app"></a>建立邏輯應用程式
 
 1. 在 **Azure 開始面板**中，依序選取 **+** (加號)、[Web + 行動] 和 [邏輯應用程式]。 
-2. 輸入 [名稱]，例如 MQTestApp、[訂用帳戶]、[資源群組]，和 [位置] \(使用已設定內部部署資料閘道連線的位置)。 選取 [釘選到儀表板]，然後選取 [建立]。  
+2. 輸入 [名稱]，例如 MQTestApp、[訂用帳戶]、[資源群組]，和 [位置](使用已設定內部部署資料閘道連線的位置)。 選取 [釘選到儀表板]，然後選取 [建立]。  
 ![建立邏輯應用程式](media/connectors-create-api-mq/Create_Logic_App.png)
 
 ## <a name="add-a-trigger"></a>新增觸發程序

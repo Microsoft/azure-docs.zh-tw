@@ -1,11 +1,11 @@
 ---
-title: "什麼是 Azure 網路存取控制清單？"
-description: "了解 Azure 中的存取控制清單"
+title: 什麼是 Azure 網路存取控制清單？
+description: 了解 Azure 中的存取控制清單
 services: virtual-network
 documentationcenter: na
-author: jimdial
-manager: timlt
-editor: 
+author: genlin
+manager: cshepard
+editor: ''
 tags: azure-service-management
 ms.assetid: 83d66c84-8f6b-4388-8767-cd2de3e72d76
 ms.service: virtual-network
@@ -14,19 +14,20 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/15/2016
-ms.author: jdial
-ms.openlocfilehash: 9a0c85367968c9b38104012d75b1f3975be82cc1
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.author: genli
+ms.openlocfilehash: 6265a7f9f60b60d7b79e15a04feb0ec76dc59f6d
+ms.sourcegitcommit: 1438b7549c2d9bc2ace6a0a3e460ad4206bad423
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 06/20/2018
+ms.locfileid: "36293113"
 ---
 # <a name="what-is-an-endpoint-access-control-list"></a>什麼是端點存取控制清單？
 
 > [!IMPORTANT]
 > Azure 有兩種不同的[部署模型](../azure-resource-manager/resource-manager-deployment-model.md?toc=%2fazure%2fvirtual-network%2ftoc.json)來建立和使用資源：Resource Manager 和傳統。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署都使用 Resource Manager 部署模型。 
 
-端點存取控制清單 (ACL) 是可供您的 Azure 部署使用的安全性增強功能。 ACL 提供針對虛擬機器端點選擇性允許或拒絕流量的功能。 此封包篩選功能提供了一層額外的安全性。 您可以僅針對端點指定網路 ACL。 您無法針對虛擬網路或是包含在虛擬網路中的特定子網路指定 ACL。 建議您儘可能使用網路安全性群組 (NSG) 來取代 ACL。 若要深入了解 NSG，請參閱[網路安全性群組概觀](virtual-networks-nsg.md)
+端點存取控制清單 (ACL) 是可供您的 Azure 部署使用的安全性增強功能。 ACL 提供針對虛擬機器端點選擇性允許或拒絕流量的功能。 此封包篩選功能提供了一層額外的安全性。 您可以僅針對端點指定網路 ACL。 您無法針對虛擬網路或是包含在虛擬網路中的特定子網路指定 ACL。 建議您儘可能使用網路安全性群組 (NSG) 來取代 ACL。 使用 NSG 時，端點存取控制清單會遭到取代，且不必再強制使用。 若要深入了解 NSG，請參閱[網路安全性群組概觀](security-overview.md)
 
 您可以使用 PowerShell 或 Azure 入口網站來設定 ACL。 若要使用 PowerShell 來設定網路 ACL，請參閱[使用 PowerShell 來管理端點的存取控制清單](virtual-networks-acl-powershell.md)。 若要使用 Azure 入口網站來設定網路 ACL，請參閱[如何設定虛擬機器的端點](../virtual-machines/windows/classic/setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
 

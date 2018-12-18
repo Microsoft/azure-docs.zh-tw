@@ -1,21 +1,22 @@
 ---
-title: "使用 Azure 角色型存取控制 (RBAC) 控制建立及管理支援要求的存取權 | Microsoft Docs"
-description: "使用 Azure 角色型存取控制 (RBAC) 控制建立及管理支援要求的存取權"
+title: 使用 Azure 角色型存取控制 (RBAC) 控制建立及管理支援要求的存取權 | Microsoft Docs
+description: 使用 Azure 角色型存取控制 (RBAC) 控制建立及管理支援要求的存取權
 author: ganganarayanan
 ms.author: gangan
 ms.date: 1/31/2017
 ms.topic: article
 ms.service: microsoft-docs
 ms.assetid: 58a0ca9d-86d2-469a-9714-3b8320c33cf5
-ms.openlocfilehash: 20ebd324cbf379980b43d255d468673de2b6d950
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: c3557d54b9fb3fd0173eec1e327050ac7cc80fc2
+ms.sourcegitcommit: 9cdd83256b82e664bd36991d78f87ea1e56827cd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 04/16/2018
+ms.locfileid: "31392896"
 ---
 # <a name="azure-role-based-access-control-rbac-to-control-access-rights-to-create-and-manage-support-requests"></a>使用 Azure 角色型存取控制 (RBAC) 控制建立及管理支援要求的存取權
 
-[角色型存取控制 (RBAC)](https://docs.microsoft.com/azure/active-directory/role-based-access-control-what-is) 提供適用於 Azure 的詳細存取權管理。
+[角色型存取控制 (RBAC)](https://docs.microsoft.com/azure/role-based-access-control/overview) 提供適用於 Azure 的詳細存取權管理。
 Azure 入口網站 ([portal.azure.com](https://portal.azure.com)) 中建立支援要求的功能是使用 Azure 的 RBAC 模型來定義可以建立及管理支援要求的人員。
 在訂用帳戶、資源群組和應用程式等特定範圍，將適當的 RBAC 角色指派給使用者、群組和應用程式，即可授與存取權。
 

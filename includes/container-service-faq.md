@@ -32,13 +32,13 @@ Azure Container Service 是具有 SLA 保證的 Azure 服務，其功能可在 A
 
 您可以在作業系統上使用標準工具來建立 SSH RSA 公用和私用金鑰組，以針對叢集的 Linux 虛擬機器進行驗證。 如需相關步驟，請參閱 [OS X 及 Linux](../articles/virtual-machines/linux/mac-create-ssh-keys.md) 或 [Windows](../articles/virtual-machines/linux/ssh-from-windows.md) 指引。 
 
-如果您使用 [Azure CLI 2.0 命令](../articles/container-service/dcos-swarm/container-service-create-acs-cluster-cli.md)部署容器服務叢集，系統會自動為叢集產生 SSH 金鑰。
+如果您使用 [Azure CLI 命令](../articles/container-service/dcos-swarm/container-service-create-acs-cluster-cli.md)部署容器服務叢集，系統會自動為叢集產生 SSH 金鑰。
 
 ### <a name="how-do-i-create-a-service-principal-for-my-kubernetes-cluster"></a>如何為 Kubernetes 叢集建立服務主體？
 
 另外需要 Azure Active Directory 服務主體識別碼和密碼，才能在 Azure Container Service 中建立 Kubernetes 叢集。 如需詳細資訊，請參閱[關於 Kubernetes 叢集的服務主體](../articles/container-service/kubernetes/container-service-kubernetes-service-principal.md)。
 
-如果您使用 [Azure CLI 2.0 命令](../articles/container-service/dcos-swarm/container-service-create-acs-cluster-cli.md)部署 Kubernetes 叢集，系統會自動為叢集產生服務主體認證。
+如果您使用 [Azure CLI 命令](../articles/container-service/dcos-swarm/container-service-create-acs-cluster-cli.md)部署 Kubernetes 叢集，系統會自動為叢集產生服務主體認證。
 
 ### <a name="how-large-a-cluster-can-i-create"></a>可以建立多大的叢集？
 您可以建立含有 1、3 或 5 個主要節點的叢集。 您最多可以選擇 100 個代理程式節點。
@@ -64,7 +64,7 @@ DNSnamePrefix.AzureRegion.cloudapp.azure.net
 
 ### <a name="how-do-i-tell-which-orchestrator-version-is-running-in-my-cluster"></a>如何分辨在我的叢集中執行哪個 Orchestrator 版本？
 
-* DC/OS︰請參閱 [Mesosphere 文件](https://support.mesosphere.com/hc/en-us/articles/207719793-How-to-get-the-DCOS-version-from-the-command-line-)
+* DC/OS︰請參閱 [Mesosphere 文件](https://docs.mesosphere.com/1.7/usage/cli/command-reference/)
 * Docker Swarm：請執行 `docker version`
 * Kubernetes：請執行 `kubectl version`
 
@@ -92,7 +92,17 @@ ssh userName@masterFQDN –A –p 22
 
 如需詳細資訊，請參閱[連接到 Azure Container Service 叢集](../articles/container-service/kubernetes/container-service-connect.md)。
 
+### <a name="my-dns-name-resolution-isnt-working-on-windows-what-should-i-do"></a>我的 DNS 名稱解析在 Windows 中沒有作用。 我該怎麼辦？
+
+Windows 上有一些其修正仍在主動地慢慢淘汰的已知 DNS 問題。請確定您所使用的是最新更新的 acs-engine 和 Windows 版本 (已安裝 [KB4074588](https://www.catalog.update.microsoft.com/Search.aspx?q=KB4074588) 和 [KB4089848](https://www.catalog.update.microsoft.com/Search.aspx?q=KB4089848))，以便環境可從此版本獲益。 否則，請參閱下表中的風險降低步驟：
+
+| DNS 徵兆 | 因應措施  |
+|-------------|-------------|
+|當工作負載容器不穩定而當機時，便會清除網路命名空間 | 重新部署任何受影響的服務 |
+| 服務 VIP 存取中斷 | 設定 [DaemonSet](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/)，使其一律讓一個標準 (非特殊權限的) Pod 保持執行 |
+|當容器執行所在的節點變得無法使用，DNS 查詢就可能會失敗，而導致「負數快取項目」 | 在受影響的容器內執行下列命令： <ul><li> `New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters' -Name MaxCacheTtl -Value 0 -Type DWord`</li><li>`New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters' -Name MaxNegativeCacheTtl -Value 0 -Type DWord`</li><li>`Restart-Service dnscache` </li></ul><br> 如果這仍無法解決問題，則請嘗試徹底停用 DNS 快取： <ul><li>`Set-Service dnscache -StartupType disabled`</li><li>`Stop-Service dnscache`</li></ul> |
+
 ## <a name="next-steps"></a>後續步驟
 
 * [深入了解](../articles/container-service/kubernetes/container-service-intro-kubernetes.md) Azure Container Service。
-* 使用[入口網站](../articles/container-service/dcos-swarm/container-service-deployment.md)或 [Azure CLI 2.0](../articles/container-service/dcos-swarm/container-service-create-acs-cluster-cli.md) 部署容器服務叢集。
+* 使用[入口網站](../articles/container-service/dcos-swarm/container-service-deployment.md)或 [Azure CLI ](../articles/container-service/dcos-swarm/container-service-create-acs-cluster-cli.md) 部署容器服務叢集。

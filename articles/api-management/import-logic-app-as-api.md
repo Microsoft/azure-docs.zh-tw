@@ -1,11 +1,11 @@
 ---
-title: "使用 Azure 入口網站匯入 Logic App 作為 API | Microsoft Docs"
-description: "本教學課程示範如何使用 API 管理 (APIM) 來匯入 Logic App 作為 API。"
+title: 使用 Azure 入口網站匯入 Logic App 作為 API | Microsoft Docs
+description: 本教學課程示範如何使用 API 管理 (APIM) 來匯入 Logic App 作為 API。
 services: api-management
-documentationcenter: 
-author: juliako
+documentationcenter: ''
+author: vladvino
 manager: cfowler
-editor: 
+editor: ''
 ms.service: api-management
 ms.workload: mobile
 ms.tgt_pltfrm: na
@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: tutorial
 ms.date: 11/22/2017
 ms.author: apimpm
-ms.openlocfilehash: 96ac8ce81087717f05ae6480a8f875079139b7b6
-ms.sourcegitcommit: be9a42d7b321304d9a33786ed8e2b9b972a5977e
+ms.openlocfilehash: 4b5f884fe6e1f1fdc12d7993418f7a10614a4cbe
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/19/2018
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38602950"
 ---
 # <a name="import-a-logic-app-as-an-api"></a>匯入 Logic App 作為 API
 

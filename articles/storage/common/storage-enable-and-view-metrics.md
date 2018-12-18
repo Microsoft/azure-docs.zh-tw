@@ -2,23 +2,19 @@
 title: 在 Azure 入口網站中啟用儲存體計量功能 | Microsoft Docs
 description: 如何啟用 Blob、佇列、表格和檔案服務的儲存體度量
 services: storage
-documentationcenter: ''
 author: roygara
-manager: jeconnoc
-editor: tysonn
-ms.assetid: 0407adfc-2a41-4126-922d-b76e90b74563
 ms.service: storage
-ms.workload: storage
-ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
 ms.date: 02/14/2017
 ms.author: rogarana
-ms.openlocfilehash: 0caa4eff80877ad4bf8d501a276e82922b1a84c7
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.component: common
+ms.openlocfilehash: a12f2f3775808edb2045be5a1d955280f515ff7d
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39529677"
 ---
 # <a name="enabling-azure-storage-metrics-and-viewing-metrics-data"></a>啟用 Azure 儲存體計量和檢視計量資料
 [!INCLUDE [storage-selector-portal-enable-and-view-metrics](../../../includes/storage-selector-portal-enable-and-view-metrics.md)]
@@ -115,8 +111,8 @@ blobClient.SetServiceProperties(properties);
 
 > [!NOTE]
 > 從 [Microsoft Azure 儲存體總管](http://storageexplorer.com/) 0.8.0 版開始，您便可以檢視和下載分析計量資料表。
-> 
-> 
+>
+>
 
 為了能編寫程式來存取分析資料表，請注意，如果您在儲存體帳戶中列出所有資料表，則分析資料表就不會出現。 您可以直接依名稱存取它們，或在 .NET 用戶端程式庫中使用 [CloudAnalyticsClient API](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.analytics.cloudanalyticsclient.aspx) 查詢資料表名稱。
 
@@ -135,7 +131,7 @@ blobClient.SetServiceProperties(properties);
 
 您可以在 [儲存體分析度量資料表結構描述](https://msdn.microsoft.com/library/azure/hh343264.aspx)上找到這些資料表之結構描述的完整詳細資料。 下列資料列範例只會顯示可用的資料行子集，但可說明儲存體度量儲存這些度量資訊之方式的一些重要功能：
 
-| PartitionKey | RowKey | Timestamp | TotalRequests | TotalBillableRequests | TotalIngress | TotalEgress | Availability | AverageE2ELatency | AverageServerLatency | PercentSuccess |
+| PartitionKey | RowKey | Timestamp | TotalRequests | TotalBillableRequests | TotalIngress | TotalEgress | 可用性 | AverageE2ELatency | AverageServerLatency | PercentSuccess |
 | --- |:---:| ---:| --- | --- | --- | --- | --- | --- | --- | --- |
 | 20140522T1100 |user;All |2014-05-22T11:01:16.7650250Z |7 |7 |4003 |46801 |100 |104.4286 |6.857143 |100 |
 | 20140522T1100 |user;QueryEntities |2014-05-22T11:01:16.7640250Z |5 |5 |2694 |45951 |100 |143.8 |7.8 |100 |
@@ -148,6 +144,8 @@ blobClient.SetServiceProperties(properties);
 * 要求類型就是全部 (在此情況下它是摘要行)，或者它會識別特定的 API，例如 QueryEntity 或 UpdateEntity。
 
 上述範例資料會為單一分鐘 (從上午 11:00 開始) 顯示所有記錄，因此 QueryEntities 要求的數目加上 QueryEntity 要求的數目再加上 UpdateEntity 要求的數目最多七個，也就是 user:All 資料列上顯示的總數。 同樣地，您可以藉由計算 ((143.8 * 5) + 3 + 9)/7，在 user:All 資料列上衍生平均的端對端延遲 104.4286。
+
+請注意，**Blob 每小時計量設定**會同時套用至 **Blob 容量計量** ($MetricsCapacityBlob) 和**每小時 Blob 交易計量** ($MetricsHourPrimaryTransactionsBlob)。 兩者會同時啟用或停用，並使用相同的保留原則。
 
 ## <a name="metrics-alerts"></a>計量警示
 您應該考慮在 [Azure 入口網站](https://portal.azure.com)中設定警示，以便讓「儲存體計量」自動通知您有關您儲存體服務行為的重要變更。 若使用儲存體總管工具來下載此計量資料 (以使用分隔字元分隔的形式)，您可以使用 Microsoft Excel 來分析資料。 如需可用的儲存體總管工具清單，請參閱 [Azure 儲存體用戶端工具](storage-explorers.md)。 您可以在 [警示規則] 窗格 (可從 [儲存體帳戶] 功能表窗格中的 [監視] 下存取) 中設定警示。

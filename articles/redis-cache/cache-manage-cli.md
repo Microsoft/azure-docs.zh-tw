@@ -1,11 +1,11 @@
 ---
-title: "使用 Azure CLI 管理 Azure Redis Cache | Microsoft Docs"
-description: "了解如何在任何平台上安裝 Azure CLI、如何使用它來連接到您的 Azure 帳戶，以及如何從 Azure CLI 建立和管理 Redis 快取。"
+title: 使用 Azure 傳統 CLI 管理 Azure Redis Cache | Microsoft Docs
+description: 了解如何在任何平台上安裝 Azure 傳統 CLI、如何使用它來連線到您的 Azure 帳戶，以及如何從傳統 CLI 建立及管理 Redis 快取。
 services: redis-cache
-documentationcenter: 
+documentationcenter: ''
 author: wesmc7777
 manager: cfowler
-editor: 
+editor: ''
 ms.assetid: 964ff245-859d-4bc1-bccf-62e4b3c1169f
 ms.service: cache
 ms.workload: tbd
@@ -14,33 +14,32 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: wesmc
-ms.openlocfilehash: fdb0989af2215166b69f10474a0d22aab7b4d593
-ms.sourcegitcommit: 2a70752d0987585d480f374c3e2dba0cd5097880
+ms.openlocfilehash: 0e8bbaad920f35028c51641779a3272f73f81f37
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/19/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46978398"
 ---
-# <a name="how-to-create-and-manage-azure-redis-cache-using-the-azure-command-line-interface-azure-cli"></a>如何使用 Azure 命令列介面 (Azure CLI) 建立並管理 Azure Redis 快取
+# <a name="how-to-create-and-manage-azure-redis-cache-using-the-azure-classic-cli"></a>如何使用 Azure 傳統 CLI 來建立及管理 Azure Redis Cache
 > [!div class="op_single_selector"]
 > * [PowerShell](cache-howto-manage-redis-cache-powershell.md)
-> * [Azure CLI](cache-manage-cli.md)
->
+> * [Azure 傳統 CLI](cache-manage-cli.md)
 >
 
-Azure CLI 是從任何平台管理 Azure 基礎結構的一個好方法。 本文將說明如何使用 Azure CLI 建立並管理 Azure Redis 快取執行個體。
+Azure 傳統 CLI 是從任何平台管理 Azure 基礎結構的一個好方法。 此文章說明如何使用 Azure 傳統 CLI 來建立及管理您的 Azure Redis Cache 執行個體。
 
+[!INCLUDE [outdated-cli-content](../../includes/contains-classic-cli-content.md)]
 > [!NOTE]
-> 此文章適用於舊版 Azure CLI。 對於最新的 Azure CLI 2.0 範例指令碼，請參閱 [Azure CLI Redis 快取範例](cli-samples.md)。
-> 
-> 
+> 如需最新的 Azure CLI 範例指令碼，請參閱 [Azure CLI Redis 快取範例](cli-samples.md)。
 
-## <a name="prerequisites"></a>先決條件
-若要使用 Azure CLI 建立並管理 Azure Redis 快取執行個體，您必須完成下列步驟：
+## <a name="prerequisites"></a>必要條件
+若要使用 Azure 傳統 CLI 來建立及管理 Azure Redis Cache 執行個體，您必須完成下列步驟。
 
-* 您必須具有 Azure 帳號。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立 [免費帳戶](https://azure.microsoft.com/pricing/free-trial/) 。
-* [安裝 Azure CLI](../cli-install-nodejs.md)。
-* 使用個人 Azure 帳戶，或是使用工作或學校的 Azure 帳戶連接 Azure CLI 安裝，並使用 `azure login` 命令從 Azure CLI 登入。 若要了解其中的差異和選擇，請參閱 [從 Azure 命令列介面 (Azure CLI) 連線到 Azure 訂用帳戶](/cli/azure/authenticate-azure-cli)。
-* 在執行以下任何命令之前，執行 `azure config mode arm` 命令將 Azure CLI 切換至資源管理員模式。 如需詳細資訊，請參閱[使用 Azure CLI 管理 Azure 資源和資源群組](../xplat-cli-azure-resource-manager.md)。
+* 您必須具有 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立 [免費帳戶](https://azure.microsoft.com/pricing/free-trial/) 。
+* [安裝 Azure 傳統 CLI](../cli-install-nodejs.md)。
+* 將您的 Azure CLI 安裝連結到個人 Azure 帳戶，或連結到公司或學校 Azure 帳戶，並使用 `azure login` 命令從傳統 CLI 登入。
+* 在執行下列任何命令之前，執行 `azure config mode arm` 命令以將傳統 CLI 切換至資源管理員模式。 如需詳細資訊，請參閱[使用 Azure 傳統 CLI 來管理 Azure 資源與資源群組](../xplat-cli-azure-resource-manager.md)。
 
 ## <a name="redis-cache-properties"></a>Redis 快取屬性
 當建立並更新 Redis 快取執行個體時會使用下列屬性。
@@ -53,8 +52,8 @@ Azure CLI 是從任何平台管理 Azure 基礎結構的一個好方法。 本�
 | size |-z, --size |Redis 快取的大小。 有效的值：[C0, C1, C2, C3, C4, C5, C6, P1, P2, P3, P4] |
 | sku |-x, --sku |Redis SKU。 應為其中一個：[Basic, Standard, Premium] |
 | EnableNonSslPort |-e, --enable-non-ssl-port |Redis 快取的 EnableNonSslPort 屬性。 如果您想針對您的快取啟用非 SSL 連接埠，則加入此旗標 |
-| Redis 組態 |-c, --redis-configuration |Redis 組態。 在這裡輸入組態金鑰和值的 JSON 格式字串。 格式："{"":"","":""}" |
-| Redis 組態 |-f, --redis-configuration-file |Redis 組態。 在這裡輸入包含組態金鑰和值的檔案路徑。 檔案項目的格式：{"":"","":""} |
+| Redis 設定 |-c, --redis-configuration |Redis 設定。 在這裡輸入設定金鑰和值的 JSON 格式字串。 格式："{"":"","":""}" |
+| Redis 設定 |-f, --redis-configuration-file |Redis 設定。 在這裡輸入包含設定金鑰和值的檔案路徑。 檔案項目的格式：{"":"","":""} |
 | 分區計數 |-r, --shard-count |建立在具有叢集之進階叢集快取的分區數目。 |
 | 虛擬網路 |-v, --virtual-network |當快取是裝載在 VNET 中時，指定確切的虛擬網路 ARM 資源識別碼以將 Redis 快取部署到其中。 範例格式：/subscriptions/{subid}/resourceGroups/{resourceGroupName}/Microsoft.ClassicNetwork/VirtualNetworks/vnet1 |
 | 金鑰類型 |-t, --key-type |要更新的金鑰類型。 有效的值：[Primary, Secondary] |

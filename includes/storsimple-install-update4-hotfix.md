@@ -28,7 +28,7 @@
 執行下列步驟來安裝及驗證一般模式 Hotfix。 如果您已使用 Azure 傳統入口網站安裝這些 Hotfix，請直接跳到[安裝及驗證維護模式 Hotfix](#to-install-and-verify-maintenance-mode-hotfixes)。
 
 1. 若要安裝 Hotfix，請存取 StorSimple 裝置序列主控台上的 Windows PowerShell 介面。 請依照[使用 PuTTy 連接到序列主控台](../articles/storsimple/storsimple-8000-deployment-walkthrough-u2.md#use-putty-to-connect-to-the-device-serial-console)中的詳細指示執行作業。 在命令提示字元中，按 **Enter**鍵。
-2. 選取 [ **選項 1** ] 以使用完整的存取權限登入裝置。 建議您先在被動控制站上安裝此 Hotfix。
+2. 選取選項 1 [以完整存取權登入]。 建議您先在被動控制站上安裝此 Hotfix。
 3. 若要安裝 Hotfix，請在命令提示字元中輸入：
    
     `Start-HcsHotfix -Path <path to update file> -Credential <credentials in domain\username format>`
@@ -153,7 +153,7 @@
         [Y] Yes [N] No (Default is "Y"): Y
         WARNING: Installation is currently in progress. This operation can take several minutes to complete.
 3. 使用 `Get-HcsUpdateStatus` 命令監視安裝進度。 當 `RunInProgress` 變成 `False` 時，代表更新完成。
-4. 安裝完成之後，維護模式 Hotfix 安裝所在的控制器將會重新開機。 以具有完整存取權的選項 1 登入，並驗證磁碟韌體版本。 輸入：
+4. 安裝完成之後，維護模式 Hotfix 安裝所在的控制器將會重新開機。 利用 [以完整存取權登入] 的選項 1 登入，並驗證磁碟韌體版本。 輸入：
    
    `Get-HcsFirmwareVersion`
    

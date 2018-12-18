@@ -1,24 +1,26 @@
 ---
-title: "探索 Team Data Science Process 中的資料 | Microsoft Docs"
-description: "如何在不同的儲存體環境中探索資料。"
+title: 探索 Team Data Science Process 中的資料 | Microsoft Docs
+description: 如何在不同的儲存體環境中探索資料。
 services: machine-learning,storage
-documentationcenter: 
-author: bradsev
+documentationcenter: ''
+author: deguhath
 manager: cgronlun
 editor: cgronlun
 ms.assetid: 6eae8772-f479-4627-bb12-64f6d1440b22
 ms.service: machine-learning
+ms.component: team-data-science-process
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 11/09/2017
-ms.author: bradsev
-ms.openlocfilehash: 7983ec6f9ffcfcfa8e57181b8ec5db24a004f3f5
-ms.sourcegitcommit: bc8d39fa83b3c4a66457fba007d215bccd8be985
+ms.author: deguhath
+ms.openlocfilehash: 168d2852d8905735b450850c8bb32a1ae07a620d
+ms.sourcegitcommit: 944d16bc74de29fb2643b0576a20cbd7e437cef2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/10/2017
+ms.lasthandoff: 06/07/2018
+ms.locfileid: "34837283"
 ---
 # <a name="explore-data-in-the-team-data-science-process"></a>探索 Team Data Science Process 中的資料
 本文件說明如何在 Team Data Science Process 中四個常用的不同環境中探索資料：

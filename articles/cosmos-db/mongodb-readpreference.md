@@ -1,31 +1,28 @@
 ---
-title: "搭配 Azure Cosmos DB MongoDB API 使用 MongoDB 讀取喜好設定 | Microsoft 文件"
-description: "了解如何搭配 Azure Cosmos DB MongoDB API 使用 MongoDB 讀取喜好設定"
+title: 搭配 Azure Cosmos DB MongoDB API 使用 MongoDB 讀取喜好設定 | Microsoft 文件
+description: 了解如何搭配 Azure Cosmos DB MongoDB API 使用 MongoDB 讀取喜好設定
 services: cosmos-db
-documentationcenter: 
 author: vidhoonv
-manager: jhubbard
-editor: 
-ms.assetid: 
+manager: kfile
 ms.service: cosmos-db
-ms.custom: 
-ms.workload: 
-ms.tgt_pltfrm: na
-ms.devlang: 
-ms.topic: article
+ms.component: cosmosdb-mongo
+ms.custom: ''
+ms.devlang: nodejs
+ms.topic: conceptual
 ms.date: 02/26/2018
-ms.author: viviswan
-ms.openlocfilehash: b28285695f52d6dbcc33d9fb0efe06b43cdf1cab
-ms.sourcegitcommit: 782d5955e1bec50a17d9366a8e2bf583559dca9e
+ms.author: sclyon
+ms.openlocfilehash: 90c8d73e32f4c99c6871ce9cdb7839cd1d380b9b
+ms.sourcegitcommit: 30c7f9994cf6fcdfb580616ea8d6d251364c0cd1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/02/2018
+ms.lasthandoff: 08/18/2018
+ms.locfileid: "42140892"
 ---
 # <a name="how-to-globally-distribute-reads-using-read-preference-with-the-azure-cosmos-db-mongodb-api"></a>如何搭配 Azure Cosmos DB MongoDB API 使用讀取喜好設定全域散發讀取 
 
 本文說明如何搭配 Azure Cosmos DB 的 MongoDB API 使用 [MongoDB 讀取喜好設定](https://docs.mongodb.com/manual/core/read-preference/) \(英文\) 全域散發讀取作業。 
 
-## <a name="prerequisites"></a>先決條件 
+## <a name="prerequisites"></a>必要條件 
 如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。 
 [!INCLUDE [cosmos-db-emulator-mongodb](../../includes/cosmos-db-emulator-mongodb.md)]
 

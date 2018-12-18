@@ -1,11 +1,11 @@
 ---
-title: "在 Microsoft Azure StorSimple Virtual Array 上安裝更新 | Microsoft Docs"
-description: "描述如何透過 StorSimple Virtual Array Web UI，使用入口網站和 Hotfix 方法套用更新"
+title: 在 Microsoft Azure StorSimple Virtual Array 上安裝更新 | Microsoft Docs
+description: 描述如何透過 StorSimple Virtual Array Web UI，使用入口網站和 Hotfix 方法套用更新
 services: storsimple
 documentationcenter: NA
 author: alkohli
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 9997a97b-9382-43ed-b56e-61369335c987
 ms.service: storsimple
 ms.devlang: NA
@@ -20,6 +20,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23110166"
 ---
 # <a name="install-updates-on-your-storsimple-virtual-array---azure-portal"></a>在 StorSimple Virtual Array 上安裝更新 - Azure 入口網站
 

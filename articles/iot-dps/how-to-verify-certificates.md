@@ -1,22 +1,19 @@
 ---
-title: "如何使用 Azure IoT 中樞的裝置佈建服務執行 X.509 CA 憑證擁有權證明 | Microsoft Docs"
-description: "如何使用 DPS 服務驗證 X.509 CA 憑證"
-services: iot-dps
-keywords: 
-author: JimacoMS
-ms.author: v-jamebr
+title: 如何使用 Azure IoT 中樞的裝置佈建服務執行 X.509 CA 憑證擁有權證明 | Microsoft Docs
+description: 如何使用裝置佈建服務驗證 X.509 CA 憑證
+author: wesmc7777
+ms.author: wesmc
 ms.date: 02/26/2018
-ms.topic: article
+ms.topic: conceptual
 ms.service: iot-dps
-documentationcenter: 
+services: iot-dps
 manager: timlt
-ms.devlang: na
-ms.custom: mvc
-ms.openlocfilehash: 07fe5f975e59c10fcd716db6585e2ae0fefc90e4
-ms.sourcegitcommit: 088a8788d69a63a8e1333ad272d4a299cb19316e
+ms.openlocfilehash: 6a6782c5e1cd7b5f42b619cd52470b640813a905
+ms.sourcegitcommit: f057c10ae4f26a768e97f2cb3f3faca9ed23ff1b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/27/2018
+ms.lasthandoff: 08/17/2018
+ms.locfileid: "42144817"
 ---
 # <a name="how-to-do-proof-of-possession-for-x509-ca-certificates-with-your-device-provisioning-service"></a>如何使用您的裝置佈建服務執行 X.509 CA 憑證擁有權證明
 
@@ -58,7 +55,6 @@ Microsoft 提供了工具和範例，協助您建立已簽署的驗證憑證：
 
 - **Azure IoT 中樞 C SDK**提供 PowerShell (Windows) 及 Bash (Linux) 指令碼，協助您建立 CA 憑證和分葉憑證來進行開發，以及使用驗證碼執行擁有權證明。 您可以將適用您系統的[檔案](https://github.com/Azure/azure-iot-sdk-c/tree/master/tools/CACertificates)下載至工作資料夾，並遵循[管理 CA 憑證讀我檔案](https://github.com/Azure/azure-iot-sdk-c/blob/master/tools/CACertificates/CACertificateOverview.md)中的指示，對 CA 憑證執行擁有權證明。 
 - **Azure IoT 中樞 C# SDK** 包含[群組憑證驗證範例](https://github.com/Azure/azure-iot-sdk-csharp/tree/master/provisioning/service/samples/GroupCertificateVerificationSample)，可用來執行擁有權證明。
-- 您可以遵循[可管理 CA 簽署之 X.509 憑證的 PowerShell 指令碼](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-security-x509-create-certificates)一文 (位於 IoT 中樞文件內) 所述的步驟，特別是 [X.509 CA 憑證擁有權證明](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-security-x509-create-certificates#signverificationcode)標題區段中提到的指令碼。
  
 > [!IMPORTANT]
 > 除了執行擁有權證明外，先前所提到的 PowerShell 和 Bash 指令碼也可讓您建立根憑證、中繼憑證和分葉憑證，以用於驗證和佈建裝置。 這些憑證應只限用於開發。 一律不能用在生產環境中。 

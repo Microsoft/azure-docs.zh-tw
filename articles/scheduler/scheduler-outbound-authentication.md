@@ -1,59 +1,74 @@
 ---
-title: "排程器輸出驗證"
-description: "排程器輸出驗證"
+title: 連出驗證 - Azure 排程器
+description: 了解如何針對 Azure 排程器設定或移除連出驗證
 services: scheduler
-documentationcenter: .NET
-author: derek1ee
-manager: kevinlam1
-editor: 
-ms.assetid: 6707f82b-7e32-401b-a960-02aae7bb59cc
 ms.service: scheduler
-ms.workload: infrastructure-services
-ms.tgt_pltfrm: na
-ms.devlang: dotnet
+author: derek1ee
+ms.author: deli
+ms.reviewer: klam
+ms.assetid: 6707f82b-7e32-401b-a960-02aae7bb59cc
 ms.topic: article
 ms.date: 08/15/2016
-ms.author: deli
-ms.openlocfilehash: e345b2e22daae5b24c23645f7d2636f66df630ff
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 88f2fe0781bad4b652826b6a8d1961dd39b063e1
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46993323"
 ---
-# <a name="scheduler-outbound-authentication"></a>排程器輸出驗證
-排程器工作可能需要對外呼叫需要驗證的服務。 如此一來，被呼叫的服務可以判定排程器工作是否可以存取它的資源。 其中某些服務包括其他 Azure 服務、Salesforce.com、Facebook 和安全的自訂網站。
+# <a name="outbound-authentication-for-azure-scheduler"></a>Azure 排程器的連出驗證
 
-## <a name="adding-and-removing-authentication"></a>新增和移除驗證
-將驗證加入至排程器工作輕而易舉 – 建立或更新工作時，將 JSON 子元素 `authentication` 加入至 `request` 元素。 回應中永不傳回 PUT、PATCH 或 POST 要求中傳送給排程器服務的密碼 (屬於 `authentication` 物件)。 在回應中，密碼資訊會設定為 null，或可能具有一個代表已驗證之實體的公用權杖。
+> [!IMPORTANT]
+> [Azure Logic Apps](../logic-apps/logic-apps-overview.md) 將會取代 Azure 排程器，Azure 排程器將會被淘汰。 若要排定作業，請[改為嘗試 Azure Logic Apps](../scheduler/migrate-from-scheduler-to-logic-apps.md)。 
 
-若要移除驗證，明確地 PUT 或 PATCH 工作，同時將 `authentication` 物件設定為 null。 您將不會看到回應中傳回的任何驗證屬性。
+Azure 排程器作業可能必須呼叫要求驗證的服務，例如其他 Azure 服務、Salesforce.com、Facebook 與安全自訂網站。 被呼叫的服務可以決定排程器作業是否能存取要求的資源。 
 
-目前，唯一支援的驗證類型為 `ClientCertificate` 模型 (適用於使用 SSL/TLS 用戶端憑證)、`Basic` 模型 (適用於基本驗證)，和 `ActiveDirectoryOAuth` 模型 (適用於 Active Directory OAuth 驗證)。
+排程器支援下列驗證方法： 
 
-## <a name="request-body-for-clientcertificate-authentication"></a>ClientCertificate 驗證的要求本文
-加入驗證時，請使用 `ClientCertificate` 模型，在要求本文中指定下列其他元素。  
+* *用戶端憑證*驗證 (當使用 SSL/TLS 用戶端憑證時)
+* *基本*驗證
+* *Active Directory OAuth* 驗證
 
-| 元素 | 說明 |
-|:--- |:--- |
-| *authentication (父元素)* |使用 SSL 用戶端憑證的驗證物件。 |
-| *type* |必要。 驗證類型。若為 SSL 用戶端憑證，值必須是 `ClientCertificate`。 |
-| *pfx* |必要。 Base64 編碼的 PFX 檔案內容。 |
-| *password* |必要。 存取 PFX 檔案的密碼。 |
+## <a name="add-or-remove-authentication"></a>新增或移除驗證
 
-## <a name="response-body-for-clientcertificate-authentication"></a>ClientCertificate 驗證的回應本文
-當傳送要求與驗證資訊時，回應包含下列驗證相關的元素。
+* 若要將驗證新增到排程器作業，當您建立或更新作業時，請將 `authentication` JavaScript 物件標記法 (JSON) 子元素新增到 `request` 元素。 
 
-| 元素 | 說明 |
-|:--- |:--- |
-| *authentication (父元素)* |使用 SSL 用戶端憑證的驗證物件。 |
-| *type* |驗證類型。 若為 SSL 用戶端憑證，值為 `ClientCertificate`。 |
-| *certificateThumbprint* |憑證的指紋。 |
-| *certificateSubjectName* |憑證的主旨辨別名稱。 |
-| *certificateExpiration* |憑證的到期日 |
+  回應一律不會傳回透過 `authentication` 物件中的 PUT、PATCH 或 POST 要求傳遞到排程器服務的祕密。 
+  回應會將祕密資訊設定為 Null 或可能會使用代表已驗證之實體的公用權杖。 
 
-## <a name="sample-rest-request-for-clientcertificate-authentication"></a>ClientCertificate 驗證的範例 REST 要求
-```
-PUT https://management.azure.com/subscriptions/1fe0abdf-581e-4dfe-9ec7-e5cb8e7b205e/resourceGroups/CS-SoutheastAsia-scheduler/providers/Microsoft.Scheduler/jobcollections/southeastasiajc/jobs/httpjob?api-version=2016-01-01 HTTP/1.1
+* 若要將驗證從排程器作業移除，請明確地在作業上執行 PUT 或 PATCH 要求，然後將 `authentication` 物件設定為 Null。 回應將不會包然任何驗證屬性。
+
+## <a name="client-certificate"></a>用戶端憑證
+
+### <a name="request-body---client-certificate"></a>要求主體 - 用戶端憑證
+
+使用 `ClientCertificate` 模型新增驗證時，請在要求主體中指定這些額外元素。  
+
+| 元素 | 必要 | 說明 |
+|---------|----------|-------------|
+| **authentication** (父元素) | 要用於使用 SSL 用戶端憑證的驗證物件 |
+| **type** | 是 | 驗證類型。 若為 SSL 用戶端憑證，值為 `ClientCertificate`。 |
+| **pfx** | 是 | PFX 檔案的 base64 編碼內容 |
+| **password** | 是 | 用於存取 PFX 檔案的密碼 |
+||| 
+
+### <a name="response-body---client-certificate"></a>回應主體 - 用戶端憑證 
+
+當傳送具有驗證資訊的要求時，回應包含下列驗證元素。
+
+| 元素 | 說明 | 
+|---------|-------------| 
+| **authentication** (父元素) | 要用於使用 SSL 用戶端憑證的驗證物件 |
+| **type** | 驗證類型。 若為 SSL 用戶端憑證，值為 `ClientCertificate`。 |
+| **certificateThumbprint** |憑證的指紋 |
+| **certificateSubjectName** |憑證的主體辨別名稱 |
+| **certificateExpiration** | 憑證的到期日 |
+||| 
+
+### <a name="sample-rest-request---client-certificate"></a>範例 REST 要求 - 用戶端憑證
+
+```json
+PUT https://management.azure.com/subscriptions/<Azure-subscription-ID>/resourceGroups/CS-SoutheastAsia-scheduler/providers/Microsoft.Scheduler/jobcollections/southeastasiajc/jobs/httpjob?api-version=2016-01-01 HTTP/1.1
 User-Agent: Fiddler
 Host: management.azure.com
 Authorization: Bearer sometoken
@@ -82,15 +97,15 @@ Content-Type: application/json; charset=utf-8
       "endTime": "2016-04-10T08:00:00Z",
       "interval": 1
     },
-    "state": "enabled",
+    "state": "enabled"
   }
 }
 ```
 
-## <a name="sample-rest-response-for-clientcertificate-authentication"></a>ClientCertificate 驗證的範例 REST 回應
-```
-HTTP/1.1 200 OK
-Cache-Control: no-cache
+### <a name="sample-rest-response---client-certificate"></a>範例 REST 回應 - 用戶端憑證
+
+```json
+HTTP/1.1 200 OKCache-Control: no-cache
 Pragma: no-cache
 Content-Length: 858
 Content-Type: application/json; charset=utf-8
@@ -106,7 +121,7 @@ Strict-Transport-Security: max-age=31536000; includeSubDomains
 Date: Wed, 16 Mar 2016 19:04:23 GMT
 
 {
-  "id": "/subscriptions/1fe0abdf-581e-4dfe-9ec7-e5cb8e7b205e/resourceGroups/CS-SoutheastAsia-scheduler/providers/Microsoft.Scheduler/jobCollections/southeastasiajc/jobs/httpjob",
+  "id": "/subscriptions/<Azure-subscription-ID>/resourceGroups/CS-SoutheastAsia-scheduler/providers/Microsoft.Scheduler/jobCollections/southeastasiajc/jobs/httpjob",
   "type": "Microsoft.Scheduler/jobCollections/jobs",
   "name": "southeastasiajc/httpjob",
   "properties": {
@@ -143,28 +158,35 @@ Date: Wed, 16 Mar 2016 19:04:23 GMT
 }
 ```
 
-## <a name="request-body-for-basic-authentication"></a>基本驗證的要求本文
-加入驗證時，請使用 `Basic` 模型，在要求本文中指定下列其他元素。
+## <a name="basic"></a>基本
 
-| 元素 | 說明 |
-|:--- |:--- |
-| *authentication (父元素)* |使用基本驗證的驗證物件。 |
-| *type* |必要。 驗證類型。 若為基本驗證，值必須是 `Basic`。 |
-| *username* |必要。 要驗證的使用者名稱。 |
-| *password* |必要。 要驗證的密碼。 |
+### <a name="request-body---basic"></a>要求主體 - 基本
 
-## <a name="response-body-for-basic-authentication"></a>基本驗證的回應本文
-當傳送要求與驗證資訊時，回應包含下列驗證相關的元素。
+使用 `Basic` 模型新增驗證時，請在要求主體中指定這些額外元素。
 
-| 元素 | 說明 |
-|:--- |:--- |
-| *authentication (父元素)* |使用基本驗證的驗證物件。 |
-| *type* |驗證類型。 若為基本驗證，值為 `Basic`。 |
-| *username* |已驗證的使用者名稱。 |
+| 元素 | 必要 | 說明 |
+|---------|----------|-------------|
+| **authentication** (父元素) | 用於使用基本驗證的驗證物件 | 
+| **type** | 是 | 驗證類型。 若為基本驗證，值為 `Basic`。 | 
+| **username** | 是 | 要驗證的使用者名稱 | 
+| **password** | 是 | 要驗證的密碼 |
+|||| 
 
-## <a name="sample-rest-request-for-basic-authentication"></a>基本驗證的範例 REST 要求
-```
-PUT https://management.azure.com/subscriptions/1d908808-e491-4fe5-b97e-29886e18efd4/resourceGroups/CS-SoutheastAsia-scheduler/providers/Microsoft.Scheduler/jobcollections/southeastasiajc/jobs/httpjob?api-version=2016-01-01 HTTP/1.1
+### <a name="response-body---basic"></a>回應主體 - 基本
+
+當傳送具有驗證資訊的要求時，回應包含下列驗證元素。
+
+| 元素 | 說明 | 
+|---------|-------------|
+| **authentication** (父元素) | 用於使用基本驗證的驗證物件 |
+| **type** | 驗證類型。 針對基本驗證，值為 `Basic`。 |
+| **username** | 已驗證的使用者名稱 |
+||| 
+
+### <a name="sample-rest-request---basic"></a>範例 REST 要求 - 基本
+
+```json
+PUT https://management.azure.com/subscriptions/<Azure-subscription-ID>/resourceGroups/CS-SoutheastAsia-scheduler/providers/Microsoft.Scheduler/jobcollections/southeastasiajc/jobs/httpjob?api-version=2016-01-01 HTTP/1.1
 User-Agent: Fiddler
 Host: management.azure.com
 Authorization: Bearer sometoken
@@ -194,13 +216,14 @@ Content-Type: application/json; charset=utf-8
       "endTime": "2016-04-10T08:00:00Z",
       "interval": 1
     },
-    "state": "enabled",
+    "state": "enabled"
   }
 }
 ```
 
-## <a name="sample-rest-response-for-basic-authentication"></a>基本驗證的範例 REST 回應
-```
+### <a name="sample-rest-response---basic"></a>範例 REST 回應 - 基本
+
+```json
 HTTP/1.1 200 OK
 Cache-Control: no-cache
 Pragma: no-cache
@@ -218,7 +241,7 @@ Strict-Transport-Security: max-age=31536000; includeSubDomains
 Date: Wed, 16 Mar 2016 19:05:06 GMT
 
 {  
-   "id":"/subscriptions/1d908808-e491-4fe5-b97e-29886e18efd4/resourceGroups/CS-SoutheastAsia-scheduler/providers/Microsoft.Scheduler/jobCollections/southeastasiajc/jobs/httpjob",
+   "id":"/subscriptions/<Azure-subscription-ID>/resourceGroups/CS-SoutheastAsia-scheduler/providers/Microsoft.Scheduler/jobCollections/southeastasiajc/jobs/httpjob",
    "type":"Microsoft.Scheduler/jobCollections/jobs",
    "name":"southeastasiajc/httpjob",
    "properties":{  
@@ -235,14 +258,14 @@ Date: Wed, 16 Mar 2016 19:05:06 GMT
                "type":"Basic"
             }
          },
-         "type":"http"
+         "type":"Http"
       },
       "recurrence":{  
-         "frequency":"minute",
+         "frequency":"Minute",
          "endTime":"2016-04-10T08:00:00Z",
          "interval":1
       },
-      "state":"enabled",
+      "state":"Enabled",
       "status":{  
          "nextExecutionTime":"2016-03-16T19:06:00Z",
          "executionCount":0,
@@ -253,35 +276,39 @@ Date: Wed, 16 Mar 2016 19:05:06 GMT
 }
 ```
 
-## <a name="request-body-for-activedirectoryoauth-authentication"></a>ActiveDirectoryOAuth 驗證的要求本文
-加入驗證時，請使用 `ActiveDirectoryOAuth` 模型，在要求本文中指定下列其他元素。
+## <a name="active-directory-oauth"></a>Active Directory OAuth
+
+### <a name="request-body---active-directory-oauth"></a>要求主體 - Active Directory OAuth 
+
+使用 `ActiveDirectoryOAuth` 模型新增驗證時，請在要求主體中指定這些額外元素。
+
+| 元素 | 必要 | 說明 |
+|---------|----------|-------------|
+| **authentication** (父元素) | 是 | 用於使用 ActiveDirectoryOAuth 驗證的驗證物件 |
+| **type** | 是 | 驗證類型。 若為 ActiveDirectoryOAuth 驗證，值為 `ActiveDirectoryOAuth`。 |
+| **tenant** | 是 | Azure AD 租用戶的租用戶識別碼。 若要尋找 Azure AD 租用戶的租用戶識別碼，請在 Azure PowerShell 中執行 `Get-AzureAccount`。 |
+| **audience** | 是 | 此值會設定為 `https://management.core.windows.net/`。 | 
+| **clientId** | 是 | Azure AD 應用程式的用戶端識別碼 | 
+| **secret** | 是 | 要求權杖之用戶端的祕密 | 
+|||| 
+
+### <a name="response-body---active-directory-oauth"></a>回應主體 - Active Directory OAuth
+
+當傳送具有驗證資訊的要求時，回應包含下列驗證元素。
 
 | 元素 | 說明 |
-|:--- |:--- |
-| *authentication (父元素)* |使用 ActiveDirectoryOAuth 驗證的驗證物件。 |
-| *type* |必要。 驗證類型。 若為 ActiveDirectoryOAuth 驗證，值必須是 `ActiveDirectoryOAuth`。 |
-| *tenant* |必要。 Azure AD 租用戶的租用戶識別碼。 |
-| *audience* |必要。 這是設為 https://management.core.windows.net/。 |
-| *clientId* |必要。 提供 Azure AD 應用程式的用戶端識別碼。 |
-| *secret* |必要。 要求權杖之用戶端的密碼。 |
+|---------|-------------|
+| **authentication** (父元素) | 用於使用 ActiveDirectoryOAuth 驗證的驗證物件 |
+| **type** | 驗證類型。 若為 ActiveDirectoryOAuth 驗證，值為 `ActiveDirectoryOAuth`。 | 
+| **tenant** | Azure AD 租用戶的租用戶識別碼 |
+| **audience** | 此值會設定為 `https://management.core.windows.net/`。 |
+| **clientId** | Azure AD 應用程式的用戶端識別碼 |
+||| 
 
-### <a name="determining-your-tenant-identifier"></a>判斷您的租用戶識別碼
-您也可以透過在 Azure PowerShell 中執行 `Get-AzureAccount` ，找到 Azure AD 租用戶的租用戶識別碼。
+### <a name="sample-rest-request---active-directory-oauth"></a>範例 REST 要求 - Active Directory OAuth
 
-## <a name="response-body-for-activedirectoryoauth-authentication"></a>ActiveDirectoryOAuth 驗證的回應本文
-當傳送要求與驗證資訊時，回應包含下列驗證相關的元素。
-
-| 元素 | 說明 |
-|:--- |:--- |
-| *authentication (父元素)* |使用 ActiveDirectoryOAuth 驗證的驗證物件。 |
-| *type* |驗證類型。 若為 ActiveDirectoryOAuth 驗證，值為 `ActiveDirectoryOAuth`。 |
-| *tenant* |Azure AD 租用戶的租用戶識別碼。 |
-| *audience* |這是設為 https://management.core.windows.net/。 |
-| *clientId* |Azure AD 應用程式的用戶端識別碼。 |
-
-## <a name="sample-rest-request-for-activedirectoryoauth-authentication"></a>ActiveDirectoryOAuth 驗證的範例 REST 要求
-```
-PUT https://management.azure.com/subscriptions/1d908808-e491-4fe5-b97e-29886e18efd4/resourceGroups/CS-SoutheastAsia-scheduler/providers/Microsoft.Scheduler/jobcollections/southeastasiajc/jobs/httpjob?api-version=2016-01-01 HTTP/1.1
+```json
+PUT https://management.azure.com/subscriptions/<Azure-subscription-ID>/resourceGroups/CS-SoutheastAsia-scheduler/providers/Microsoft.Scheduler/jobcollections/southeastasiajc/jobs/httpjob?api-version=2016-01-01 HTTP/1.1
 User-Agent: Fiddler
 Host: management.azure.com
 Authorization: Bearer sometoken
@@ -306,20 +333,21 @@ Content-Type: application/json; charset=utf-8
           "type":"ActiveDirectoryOAuth"
         }
       },
-      "type": "http"
+      "type": "Http"
     },
     "recurrence": {
-      "frequency": "minute",
+      "frequency": "Minute",
       "endTime": "2016-04-10T08:00:00Z",
       "interval": 1
     },
-    "state": "enabled",
+    "state": "Enabled"
   }
 }
 ```
 
-## <a name="sample-rest-response-for-activedirectoryoauth-authentication"></a>ActiveDirectoryOAuth 驗證的範例 REST 回應
-```
+### <a name="sample-rest-response---active-directory-oauth"></a>範例 REST 回應 - Active Directory OAuth
+
+```json
 HTTP/1.1 200 OK
 Cache-Control: no-cache
 Pragma: no-cache
@@ -336,59 +364,49 @@ x-ms-routing-request-id: WESTUS:20160316T191003Z:5183bbf4-9fa1-44bb-98c6-6872e3f
 Strict-Transport-Security: max-age=31536000; includeSubDomains
 Date: Wed, 16 Mar 2016 19:10:02 GMT
 
-{  
-   "id":"/subscriptions/1d908808-e491-4fe5-b97e-29886e18efd4/resourceGroups/CS-SoutheastAsia-scheduler/providers/Microsoft.Scheduler/jobCollections/southeastasiajc/jobs/httpjob",
-   "type":"Microsoft.Scheduler/jobCollections/jobs",
-   "name":"southeastasiajc/httpjob",
-   "properties":{  
-      "startTime":"2015-05-14T14:10:00Z",
-      "action":{  
-         "request":{  
-            "uri":"https://mywebserviceendpoint.com",
-            "method":"GET",
-            "headers":{  
-               "x-ms-version":"2013-03-01"
+{
+   "id": "/subscriptions/<Azure-subscription-ID>/resourceGroups/CS-SoutheastAsia-scheduler/providers/Microsoft.Scheduler/jobCollections/southeastasiajc/jobs/httpjob",
+   "type": "Microsoft.Scheduler/jobCollections/jobs",
+   "name": "southeastasiajc/httpjob",
+   "properties": {
+      "startTime": "2015-05-14T14:10:00Z",
+      "action": {  
+         "request": {
+            "uri": "https://mywebserviceendpoint.com",
+            "method": "GET",
+            "headers": {  
+               "x-ms-version": "2013-03-01"
             },
-            "authentication":{  
-               "tenant":"microsoft.onmicrosoft.com",
-               "audience":"https://management.core.windows.net/",
-               "clientId":"dc23e764-9be6-4a33-9b9a-c46e36f0c137",
-               "type":"ActiveDirectoryOAuth"
+            "authentication": {  
+               "tenant": "microsoft.onmicrosoft.com",
+               "audience": "https://management.core.windows.net/",
+               "clientId": "dc23e764-9be6-4a33-9b9a-c46e36f0c137",
+               "type": "ActiveDirectoryOAuth"
             }
          },
-         "type":"http"
+         "type": "Http"
       },
-      "recurrence":{  
-         "frequency":"minute",
-         "endTime":"2016-04-10T08:00:00Z",
-         "interval":1
+      "recurrence": {  
+         "frequency": "minute",
+         "endTime": "2016-04-10T08:00:00Z",
+         "interval": 1
       },
-      "state":"enabled",
-      "status":{  
-         "lastExecutionTime":"2016-03-16T19:10:00.3762123Z",
-         "nextExecutionTime":"2016-03-16T19:11:00Z",
-         "executionCount":5,
-         "failureCount":5,
-         "faultedCount":1
+      "state": "Enabled",
+      "status": {  
+         "lastExecutionTime": "2016-03-16T19:10:00.3762123Z",
+         "nextExecutionTime": "2016-03-16T19:11:00Z",
+         "executionCount": 5,
+         "failureCount": 5,
+         "faultedCount": 1
       }
    }
 }
 ```
 
 ## <a name="see-also"></a>另請參閱
- [排程器是什麼？](scheduler-intro.md)
 
- [Azure 排程器概念、術語及實體階層](scheduler-concepts-terms.md)
-
- [在 Azure 入口網站中開始使用排程器](scheduler-get-started-portal.md)
-
- [Azure 排程器的計劃和計費](scheduler-plans-billing.md)
-
- [Azure 排程器 REST API 參考](https://msdn.microsoft.com/library/mt629143)
-
- [Azure 排程器 PowerShell Cmdlet 參考](scheduler-powershell-reference.md)
-
- [Azure 排程器高可用性和可靠性](scheduler-high-availability-reliability.md)
-
- [Azure 排程器限制、預設值和錯誤碼](scheduler-limits-defaults-errors.md)
-
+* [Azure 排程器是什麼？](scheduler-intro.md)
+* [Azure 排程器概念、術語及實體階層](scheduler-concepts-terms.md)
+* [Azure 排程器限制、預設值和錯誤碼](scheduler-limits-defaults-errors.md)
+* [Azure 排程器 REST API](https://msdn.microsoft.com/library/mt629143)
+* [Azure 排程器 PowerShell Cmdlet 參考](scheduler-powershell-reference.md)

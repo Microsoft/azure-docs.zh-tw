@@ -1,24 +1,25 @@
 ---
-title: "在 Azure 入口網站中部署 StorSimple 8000 系列裝置 | Microsoft Docs"
-description: "描述部署執行 Update 3 和更新版本之 StorSimple 8000 系列裝置和 StorSimple 裝置管理員服務的步驟與最佳做法。"
+title: 在 Azure 入口網站中部署 StorSimple 8000 系列裝置 | Microsoft Docs
+description: 描述部署執行 Update 3 和更新版本之 StorSimple 8000 系列裝置和 StorSimple 裝置管理員服務的步驟與最佳做法。
 services: storsimple
 documentationcenter: NA
 author: alkohli
-manager: timlt
-editor: 
-ms.assetid: 
+manager: jeconnoc
+editor: ''
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: NA
 ms.topic: hero-article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 09/28/2017
+ms.date: 04/23/2018
 ms.author: alkohli
-ms.openlocfilehash: dc021d2277c419dd5a892aacd7bff0707e5564fa
-ms.sourcegitcommit: f8437edf5de144b40aed00af5c52a20e35d10ba1
+ms.openlocfilehash: 85a493e05fb87292f303bccdcef65d119223bc76
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/03/2017
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38698608"
 ---
 # <a name="deploy-your-on-premises-storsimple-device-update-3-and-later"></a>部署您的內部部署 StorSimple 裝置 (Update 3 和更新版本)
 
@@ -33,7 +34,7 @@ ms.lasthandoff: 11/03/2017
 您需要有系統管理員權限，才能完成安裝和設定程序。 建議您在開始之前，檢閱設定檢查清單。 部署與設定程序可能需要一些時間才能完成。
 
 > [!NOTE]
-> 發佈於 Microsoft Azure 網站上的 StorSimple 部署資訊僅適用於 StorSimple 8000 系列裝置。 如需 7000 系列裝置的完整資訊，請移至： [http://onlinehelp.storsimple.com/](http://onlinehelp.storsimple.com)。 如需 7000 系列部署資訊，請參閱 [StorSimple 系統快速入門指南](http://onlinehelp.storsimple.com/111_Appliance/)。 
+> 發佈於 Microsoft Azure 網站上的 StorSimple 部署資訊僅適用於 StorSimple 8000 系列裝置。 如需 7000 系列裝置的完整資訊，請移至：[http://onlinehelp.storsimple.com/](http://onlinehelp.storsimple.com)。 如需 7000 系列部署資訊，請參閱 [StorSimple 系統快速入門指南](http://onlinehelp.storsimple.com/111_Appliance/)。 
 
 
 ## <a name="deployment-steps"></a>部署步驟
@@ -195,6 +196,19 @@ StorSimple 裝置管理員服務可以管理多個 StorSimple 裝置。 執行�
 請在 Azure 入口網站中執行下列步驟，針對 StorSimple 裝置上的單一磁碟區建立隨選手動備份。
 
 [!INCLUDE [Create a manual backup](../../includes/storsimple-8000-create-manual-backup.md)]
+
+## <a name="view-the-pinout-diagram-for-serial-cable-for-storsimple"></a>檢視 StorSimple 序列纜線的接腳圖
+下列接腳圖可用於 StorSimple 序列主控台纜線。
+
+在這裡，DB9 母接頭是 P1，3.5 公釐接頭是 P2。
+
+![StorSimple 序列主控台纜線的接腳圖 1](./media/storsimple-8000-deployment-walkthrough-u2/pinout-diagram1.png)
+
+立體聲插頭尖端會視為 PIN 3 RX、中間是 PIN 2 TX，底部是 PIN 1 GND，如下圖所示。
+
+![StorSimple 序列主控台纜線的接腳圖 2](./media/storsimple-8000-deployment-walkthrough-u2/pinout-diagram2.png)
+
+
 
 ## <a name="next-steps"></a>後續步驟
 * [設定 StorSimple 雲端設備](storsimple-8000-cloud-appliance-u2.md)。

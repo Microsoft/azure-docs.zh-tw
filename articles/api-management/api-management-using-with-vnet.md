@@ -3,7 +3,7 @@ title: 如何將 Azure API 管理與虛擬網路搭配使用
 description: 了解如何在「Azure API 管理」中設定虛擬網路連線，然後透過它存取 Web 服務。
 services: api-management
 documentationcenter: ''
-author: antonba
+author: vlvinogr
 manager: erikre
 editor: ''
 ms.service: api-management
@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/05/2017
 ms.author: apimpm
-ms.openlocfilehash: db0fab5b619ddbca4663a0f6afedfff373d406f9
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: deba3ad8a283b111dc94a5361f3fa4e73d95c0b8
+ms.sourcegitcommit: bf522c6af890984e8b7bd7d633208cb88f62a841
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 07/20/2018
+ms.locfileid: "39187378"
 ---
 # <a name="how-to-use-azure-api-management-with-virtual-networks"></a>如何將 Azure API 管理與虛擬網路搭配使用
 「Azure 虛擬網路」(VNET) 可讓您將任何 Azure 資源，放在您控制存取權的非網際網路可路由網路中。 然後，可以使用各種 VPN 技術，將這些網路連線到您的內部部署網路。 若要深入了解「Azure 虛擬網路」，請從以下資訊著手：[Azure 虛擬網路概觀](../virtual-network/virtual-networks-overview.md)。
@@ -28,7 +29,7 @@ Azure API 管理可以部署在虛擬網路 (VNET) 內，因此它可以存取�
 > Azure API 管理支援傳統和 Azure Resource Manager Vnet。
 >
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 若要執行本文所述的步驟，您必須具有：
 
@@ -49,22 +50,22 @@ Azure API 管理可以部署在虛擬網路 (VNET) 內，因此它可以存取�
 
     ![API 管理的虛擬網路功能表][api-management-using-vnet-menu]
 4. 選取所需的存取類型：
-    
+
     * **外部**：可透過外部負載平衡器，從公用網際網路存取「API 管理」閘道和開發人員入口網站。 閘道可以存取虛擬網路內的資源。
-    
+
     ![公用對等互連][api-management-vnet-public]
-    
+
     * **內部**：只能透過內部負載平衡器，從虛擬網路內存取「API 管理」閘道和開發人員入口網站。 閘道可以存取虛擬網路內的資源。
-    
+
     ![私人對等互連][api-management-vnet-private]`
 
     您現在會看見佈建 API 管理服務所在的所有區域的清單。 為每個區域選取 VNET 和子網路。 此清單中會同時填入傳統和 Resource Manager 虛擬網路，這些您要設定之區域中所設定 Azure 訂用帳戶可用的虛擬網路。
-    
+
     > [!NOTE]
     > 上圖中的**服務端點**包括閘道/Proxy、Azure 入口網站、開發人員入口網站、GIT 及直接管理端點。
     > 上圖中的「管理端點」是裝載在服務上以透過 Azure 入口網站和 Powershell 來管理組態的端點。
     > 此外，請注意，即使此圖顯示其各種端點的「IP 位址」，「API 管理」服務仍然「只」會在其已設定的「主機名稱」上回應。
-    
+
     > [!IMPORTANT]
     > 將 Azure API 管理執行個體部署至 Resource Manager VNET 時，服務必須在除了 Azure API 管理執行個體之外不包含其他資源的專用子網路中。 如果嘗試將 Azure API 管理執行個體部署到含有其他資源的 Resource Manager VNET 子網路，則部署將會失敗。
     >
@@ -74,7 +75,7 @@ Azure API 管理可以部署在虛擬網路 (VNET) 內，因此它可以存取�
 5. 按一下畫面頂端的 [儲存]。
 
 > [!NOTE]
-> 「API 管理」執行個體的 VIP 位址在每次啟用或停用 VNET 時都會變更。  
+> 「API 管理」執行個體的 VIP 位址在每次啟用或停用 VNET 時都會變更。
 > 將 API 管理中**外部**移動至**內部**或反之時，也會變更的 VIP 位址
 >
 
@@ -109,8 +110,8 @@ Azure API 管理可以部署在虛擬網路 (VNET) 內，因此它可以存取�
 | --- | --- | --- | --- | --- | --- |
 | * / 80, 443 |輸入 |TCP |INTERNET / VIRTUAL_NETWORK|與 API 管理的用戶端通訊|外部 |
 | * / 3443 |輸入 |TCP |INTERNET / VIRTUAL_NETWORK|Azure 入口網站和 PowerShell 的管理端點 |內部 |
-| * / 80, 443 |輸出 |TCP |VIRTUAL_NETWORK / INTERNET|與「Azure 儲存體」、「Azure 服務匯流排」及 Azure Active Directory 的**相依性** (如果適用)。|外部和內部 | 
-| * / 1433 |輸出 |TCP |VIRTUAL_NETWORK / INTERNET|**存取 Azure SQL 端點** |外部和內部 |
+| * / 80, 443 |輸出 |TCP |VIRTUAL_NETWORK / INTERNET|與「Azure 儲存體」、「Azure 服務匯流排」及 Azure Active Directory 的**相依性** (如果適用)。|外部和內部 |
+| * / 1433 |輸出 |TCP |VIRTUAL_NETWORK / SQL|**存取 Azure SQL 端點** |外部和內部 |
 | * / 5672 |輸出 |TCP |VIRTUAL_NETWORK / INTERNET|「記錄到事件中樞」原則和監視代理程式的相依性 |外部和內部 |
 | * / 445 |輸出 |TCP |VIRTUAL_NETWORK / INTERNET|與「適用於 GIT 的 Azure 檔案共用」的相依性 |外部和內部 |
 | * / 1886 |輸出 |TCP |VIRTUAL_NETWORK / INTERNET|將健康情況狀態發佈至 [資源健康狀態] 時所需 |外部和內部 |
@@ -121,11 +122,17 @@ Azure API 管理可以部署在虛擬網路 (VNET) 內，因此它可以存取�
 >[!IMPORTANT]
 > 要成功部署 API 管理服務，就必須有以**粗體**表示其「目的」的連接埠。 不過，封鎖其他連接埠將會降低使用和監視執行中服務的能力。
 
-* **SSL 功能**︰若要啟用 SSL 憑證鏈結建立和驗證，API 管理服務需要 ocsp.msocsp.com、mscrl.microsoft.com 和 crl.microsoft.com 的輸出網路連線。如果您上傳至 API 管理的任何憑證包含 CA 根的完整鏈結，則不需要此相依性。
+* **SSL 功能**︰若要啟用 SSL 憑證鏈結建立和驗證，API 管理服務需要 ocsp.msocsp.com、mscrl.microsoft.com 和 crl.microsoft.com 的輸出網路連線。 如果您上傳至 API 管理的任何憑證包含 CA 根的完整鏈結，則不需要此相依性。
 
 * **DNS 存取**：需要有連接埠 53 的輸出存取，才能與 DNS 伺服器通訊。 如果 VPN 閘道的另一端有自訂 DNS 伺服器存在，則必須可從裝載 API 管理的子網路連接該 DNS 伺服器。
 
-* **計量和健康情況監視**︰對於解析為屬於下列網域之 Azure 監視器端點的輸出網路連線能力︰global.metrics.nsatc.net、shoebox2.metrics.nsatc.net、prod3.metrics.nsatc.net、prod.warmpath.msftcloudes.com、prod3-black.prod3.metrics.nsatc.net 和 prod3-red.prod3.metrics.nsatc.net。
+* **計量和健康情況監視**︰對 Azure 監視端點 (解析為屬於下列網域) 的輸出網路連線能力︰ 
+
+    | Azure 環境 | 端點 |
+    | --- | --- |
+    | Azure 公用 | <ul><li>prod.warmpath.msftcloudes.com</li><li>shoebox2.metrics.nsatc.net</li><li>prod3.metrics.nsatc.net</li><li>prod3-black.prod3.metrics.nsatc.net</li><li>prod3-red.prod3.metrics.nsatc.net</li></ul> |
+    | Azure Government | <ul><li>fairfax.warmpath.usgovcloudapi.net</li><li>shoebox2.metrics.nsatc.net</li><li>prod3.metrics.nsatc.net</li></ul> |
+    | Azure China | <ul><li>mooncake.warmpath.chinacloudapi.cn</li><li>shoebox2.metrics.nsatc.net</li><li>prod3.metrics.nsatc.net</li></ul> |
 
 * **快速路由安裝**：常見的客戶組態是定義其專屬預設路由 (0.0.0.0/0)，以強制輸出網際網路流量來替代透過內部部署方式流動。 此流量流程一定會中斷與 Azure API 管理的連線，因為已在內部部署封鎖輸出流量，或者 NAT 至無法再使用各種 Azure 端點的一組無法辨識位址。 解決方法是在子網路上定義包含 Azure API 管理的一 (或多個) 使用者定義路由 ([UDR][UDRs])。 UDR 會定義將使用的子網路特有路由，而非預設路由。
   如果可能，建議使用下列設定：
@@ -135,21 +142,24 @@ Azure API 管理可以部署在虛擬網路 (VNET) 內，因此它可以存取�
 
 * **透過網路虛擬設備進行路由傳送**：組態如果是使用 UDR 搭配預設路由 (0.0.0.0/0)，透過在 Azure 中執行的網路虛擬設備來路由傳送從「API 管理」子網路流向網際網路的流量，將可防止來自網際網路的管理流量流向虛擬網路子網路內所部署的「API 管理」服務執行個體。 不支援這樣的設定。
 
->[!WARNING]  
+>[!WARNING]
 >**未正確交叉通告從公用對等互連路徑至私人對等互連路徑之路由**的 ExpressRoute 組態不支援 Azure API 管理。 已設定公用對等互連的 ExpressRoute 組態，會收到來自 Microsoft 的一大組 Microsoft Azure IP 位址範圍的路由通告。 如果這些位址範圍在私人對等互連路徑上不正確地交叉通告，最後的結果會是來自 Azure API 管理執行個體子網路的所有輸出網路封包，都會不正確地使用強制通道傳送至客戶的內部部署網路基礎結構。 這個網路流量會中斷 Azure API 管理。 此問題的解決方案是停止從公用對等互連路徑至私人對等互連路徑的交叉通告路由。
 
 
 ## <a name="troubleshooting"> </a>疑難排解
-* **初始安裝**：若未能成功地將 API 管理服務初始部署到子網路，建議您先將虛擬機器部署到相同的子網路。 接下來，再將桌面遠端連線到虛擬機器，並驗證您可以連線到 Azure 訂用帳戶中的下列其中一個資源 
+* **初始安裝**：若未能成功地將 API 管理服務初始部署到子網路，建議您先將虛擬機器部署到相同的子網路。 接下來，再將桌面遠端連線到虛擬機器，並驗證您可以連線到 Azure 訂用帳戶中的下列其中一個資源
     * Azure 儲存體 Blob
     * 連接字串
+    * Azure 儲存體資料表
 
  > [!IMPORTANT]
  > 驗證過連線能力後，請務必先移除子網路中部署的所有資源，再將 API 管理部署至子網路。
 
 * **累加式更新**：對您的網路進行變更時，請參閱 [NetworkStatus API](https://docs.microsoft.com/rest/api/apimanagement/networkstatus)，以確認 API 管理服務未遺失相依之任何關鍵資源的存取權。 連線狀態應該每隔 15 分鐘更新一次。
 
-* **資源導覽連結**：在部署到 Resource Manager 樣式 VNet 子網路時，API 管理會藉由建立資源導覽連結來保留子網路。 如果子網路已包含來自不同提供者的資源，部署將會**失敗**。 同樣地，當您將 API 管理服務移至不同子網路或將它刪除時，我們也會移除該資源導覽連結。 
+* **資源導覽連結**：在部署到 Resource Manager 樣式 VNet 子網路時，API 管理會藉由建立資源導覽連結來保留子網路。 如果子網路已包含來自不同提供者的資源，部署將會**失敗**。 同樣地，當您將 API 管理服務移至不同子網路或將它刪除時，我們也會移除該資源導覽連結。
+
+* **從 Azure 入口網站測試 API**：從 Azure 入口網站測試 API 時，您的 API 管理執行個體會與內部 VNet 整合，且在 VNet 上設定的 DNS 伺服器將用於名稱解析。 如果您從 Azure 入口網站進行測試時出現 404，請確定 VNet 的 DNS 伺服器可以正確解析您的 API 管理執行個體的主機名稱。 
 
 ## <a name="subnet-size"> </a> 子網路大小需求
 Azure 會在每個子網路中保留一些 IP 位址，但這些位址無法使用。 子網路的第一個和最後一個 IP 位址會保留給相容的通訊協定，以及用於 Azure 服務的額外 3 個位址。 如需詳細資訊，請參閱 [在這些子網路內使用 IP 位址是否有任何限制？](../virtual-network/virtual-networks-faq.md#are-there-any-restrictions-on-using-ip-addresses-within-these-subnets)
@@ -168,6 +178,7 @@ Azure 會在每個子網路中保留一些 IP 位址，但這些位址無法使�
 * 子網路和「API 管理」服務必須位於同一個訂用帳戶中。
 * 包含「API 管理」執行個體的子網路無法跨訂用帳戶移動。
 * 針對設定為內部虛擬網路模式的多區域 API 管理部署，使用者需負責管理跨多個區域的負載平衡，因為他們擁有路由。
+* 由於平台限制，無法從另一個區域中全域對等互連 VNET 中的資源連線到內部模式中的 API 管理服務。 如需詳細資訊，請參閱[一個虛擬網路中的資源無法與對等互連虛擬網路中的 Azure 內部負載平衡器通訊](../virtual-network/virtual-network-manage-peering.md#requirements-and-constraints)。
 
 
 ## <a name="related-content"> </a>相關內容
@@ -188,4 +199,4 @@ Azure 會在每個子網路中保留一些 IP 位址，但這些位址無法使�
 [Related content]: #related-content
 
 [UDRs]: ../virtual-network/virtual-networks-udr-overview.md
-[Network Security Group]: ../virtual-network/virtual-networks-nsg.md
+[Network Security Group]: ../virtual-network/security-overview.md

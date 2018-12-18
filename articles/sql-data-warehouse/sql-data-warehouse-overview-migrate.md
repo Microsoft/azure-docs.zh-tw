@@ -1,25 +1,21 @@
 ---
-title: "將您的解決方案移轉至 SQL 資料倉儲 | Microsoft Docs"
-description: "將您的解決方案帶入 Azure SQL 資料倉儲平台的移轉指導。"
+title: 將您的解決方案移轉至 SQL 資料倉儲 | Microsoft Docs
+description: 將您的解決方案帶入 Azure SQL 資料倉儲平台的移轉指導。
 services: sql-data-warehouse
-documentationcenter: NA
-author: sqlmojo
-manager: jhubbard
-editor: 
-ms.assetid: 198365eb-7451-4222-b99c-d1d9ef687f1b
+author: jrowlandjones
+manager: craigg
 ms.service: sql-data-warehouse
-ms.devlang: NA
-ms.topic: article
-ms.tgt_pltfrm: NA
-ms.workload: data-services
-ms.custom: migrate
-ms.date: 06/27/2017
-ms.author: joeyong;barbkess
-ms.openlocfilehash: 771b9456e66b8a1e41f72340b695b19e2adaf793
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.topic: conceptual
+ms.component: implement
+ms.date: 04/17/2018
+ms.author: jrj
+ms.reviewer: igorstan
+ms.openlocfilehash: b3e01968c74060bd0dc366609275d63753ad62dd
+ms.sourcegitcommit: 1fb353cfca800e741678b200f23af6f31bd03e87
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/30/2018
+ms.locfileid: "43306701"
 ---
 # <a name="migrate-your-solution-to-azure-sql-data-warehouse"></a>將您的解決方案移轉至 Azure SQL 資料倉儲
 查看將現有資料庫解決方案移轉至 Azure SQL 資料倉儲所需採取的步驟。 

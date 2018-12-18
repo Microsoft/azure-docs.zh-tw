@@ -1,22 +1,23 @@
 ---
-title: "在 Azure 中建立 Linux SQL Server 2017 VM | Microsoft Docs"
-description: "本教學課程會示範如何在 Azure 入口網站中建立 Linux SQL Server 2017 虛擬機器。"
+title: 在 Azure 中建立 Linux SQL Server 2017 VM | Microsoft Docs
+description: 本教學課程會示範如何在 Azure 入口網站中建立 Linux SQL Server 2017 虛擬機器。
 services: virtual-machines-linux
 author: rothja
 ms.author: jroth
 manager: jhubbard
-ms.date: 10/25/2017
+ms.date: 05/11/2018
 ms.topic: hero-article
 tags: azure-service-management
 ms.devlang: na
 ms.service: virtual-machines-sql
 ms.workload: iaas-sql-server
 ms.technology: database-engine
-ms.openlocfilehash: 4105e0b4038f5dc09c503ac90ba7ad67c2fd93b8
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.openlocfilehash: b86dd47c112c38bc65c045158787d19b470899a0
+ms.sourcegitcommit: c52123364e2ba086722bc860f2972642115316ef
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 05/11/2018
+ms.locfileid: "34071708"
 ---
 # <a name="provision-a-linux-sql-server-virtual-machine-in-the-azure-portal"></a>在 Azure 入口網站中佈建 Linux SQL Server 虛擬機器
 
@@ -69,9 +70,9 @@ ms.lasthandoff: 02/21/2018
     > [!Note]
     > 您可以選擇使用 SSH 公開金鑰或密碼進行驗證。 SSH 較為安全。 如需有關如何產生 SSH 金鑰的指示，請參閱[在 Linux 和 Mac 上為 Azure 中的 Linux VM 建立 SSH 金鑰](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-linux-mac-create-ssh-keys)。
 
-1. 按一下 [SERVICEPRINCIPAL] 。
+1. 按一下 [確定]。
 
-1. 在 [大小] 視窗中，選擇機器大小。 若要查看其他大小，請選取 [檢視全部]。 如需關於 VM 機器大小的詳細資訊，請參閱 [Linux VM 大小](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-linux-sizes)。
+1. 在 [大小] 視窗中，選擇機器大小。 如需關於 VM 機器大小的詳細資訊，請參閱 [Linux VM 大小](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-linux-sizes)。
 
     ![選擇 VM 大小](./media/provision-sql-server-linux-virtual-machine/vmsizes.png)
 
@@ -80,9 +81,11 @@ ms.lasthandoff: 02/21/2018
 
 1. 按一下 [選取] 。
 
-1. 在 [設定] 視窗中，您可以對設定進行變更或保留預設設定。
+1. 在 [設定] 視窗中，選取 [選取公用輸入連接埠] 清單中的 [SSH (22)] 連接埠。 這是在本快速入門中連線並完成 SQL Server 組態所需執行的動作。 如果您想要從遠端連線至 SQL Server，請同時選取 [MS SQL (1433)]，以開啟網際網路連線所需的連接埠 1433。
 
-1. 按一下 [SERVICEPRINCIPAL] 。
+   ![輸入連接埠](./media/provision-sql-server-linux-virtual-machine/port-settings.png)
+
+1. 您可以對其他設定進行變更，或保留預設設定。 然後按一下 [確定] 。
 
 1. 在 [摘要] 頁面上，按一下 [購買] 以建立 VM。
 
@@ -145,7 +148,10 @@ ssh azureadmin@40.55.55.555
 
 ## <a id="remote"></a>設定遠端連線
 
-如果您需要在 Azure VM 上遠端連線到 SQL Server，就必須設定網路安全性群組上的輸入規則。 此規則可允許 SQL Server 所接聽之連接埠 (預設為 1433) 上的流量。 下列步驟說明如何使用此步驟的 Azure 入口網站。 
+如果您需要在 Azure VM 上遠端連線到 SQL Server，就必須設定網路安全性群組上的輸入規則。 此規則可允許 SQL Server 所接聽之連接埠 (預設為 1433) 上的流量。 下列步驟說明如何使用此步驟的 Azure 入口網站。
+
+> [!TIP]
+> 如果您在佈建期間於設定中選取了輸入連接埠 [MS SQL (1433)]，則系統會為您執行這些變更。 您可以移至下一節，了解如何設定防火牆。
 
 1. 在入口網站中，選取 [虛擬機器] ，然後選取 SQL Server VM。
 

@@ -18,6 +18,7 @@ ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 03/23/2018
+ms.locfileid: "30174032"
 ---
 # <a name="connect-to-data-sources-from-azure-databricks"></a>從 Azure Databricks 連線到資料來源
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure Application Insights 中的相依性追蹤 | Microsoft Docs"
-description: "使用 Application Insights 分析內部部署或 Microsoft Azure Web 應用程式的使用情況、可用性和效能。"
+title: Azure Application Insights 中的相依性追蹤 | Microsoft Docs
+description: 使用 Application Insights 分析內部部署或 Microsoft Azure Web 應用程式的使用情況、可用性和效能。
 services: application-insights
 documentationcenter: .net
 author: mrbullwinkle
@@ -10,14 +10,15 @@ ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
-ms.topic: article
-ms.date: 05/04/2017
+ms.topic: conceptual
+ms.date: 06/08/2018
 ms.author: mbullwin
-ms.openlocfilehash: 060f1c9d2c74ed45e8077ec99503a1d7b885d325
-ms.sourcegitcommit: 9890483687a2b28860ec179f5fd0a292cdf11d22
+ms.openlocfilehash: f1a1c0bd759a88b2e84584f1d52458ac6f56d97f
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/24/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46999684"
 ---
 # <a name="set-up-application-insights-dependency-tracking"></a>設定 Application Insights：追蹤相依性
 「相依性」  是由應用程式呼叫的外部元件。 這通常是使用 HTTP 呼叫的服務，或資料庫，或檔案系統。 [Application Insights](app-insights-overview.md) 會測量您應用程式等待相依性所花費的時間，以及相依性呼叫失敗的頻率。 您可以調查特定的呼叫，然後將它們與要求和例外狀況建立關聯。
@@ -132,7 +133,7 @@ ms.lasthandoff: 01/24/2018
 ![按一下要求類型，按一下執行個體以取得同一個執行個體的不同檢視，按一下執行個體以取得例外狀況的詳細資料。](./media/app-insights-asp-net-dependencies/07-faildetail.png)
 
 ## <a name="analytics"></a>分析
-您可以在 [Log Analytics 查詢語言](https://docs.loganalytics.io/)中追蹤相依性。 以下是一些範例。
+您可以在 [Log Analytics 查詢語言](https://aka.ms/LogAnalyticsLanguage)中追蹤相依性。 以下是一些範例。
 
 * 尋找任何失敗的相依性呼叫：
 
@@ -190,6 +191,8 @@ ms.lasthandoff: 01/24/2018
             {
                 timer.Stop();
                 telemetry.TrackDependency("myDependency", "myCall", startTime, timer.Elapsed, success);
+                // The call above has been made obsolete in the latest SDK. The updated call follows this format:
+                // TrackDependency (string dependencyTypeName, string dependencyName, string data, DateTimeOffset startTime, TimeSpan duration, bool success);
             }
 ```
 
@@ -200,9 +203,13 @@ ms.lasthandoff: 01/24/2018
 
 *SQL 查詢未完整顯示。*
 
-* 升級到最新版本的 SDK。 如果您的 .NET 版本低於 4.6：
-  * IIS 主機：在主機伺服器上安裝 [Application Insights 代理程式](app-insights-monitor-performance-live-website-now.md)。
-  * Azure Web 應用程式：在 Web 應用程式控制台中，開啟 [Application Insights] 索引標籤，然後安裝 Application Insights。
+請參閱下表，確保您已選擇正確的設定來啟用應用程式的相依性監視。
+
+| 平台 | Install |
+| --- | --- |
+| IIS 伺服器 |[在您的伺服器上安裝狀態監視器](app-insights-monitor-performance-live-website-now.md)， 或[將您的應用程式升級到 .NET Framework 4.6 或更新版本](http://go.microsoft.com/fwlink/?LinkId=528259)，然後在應用程式中安裝 [Application Insights SDK](app-insights-asp-net.md)。 |
+| Azure Web 應用程式 |在您的 Web 應用程式控制台中，[開啟 Application Insights 刀鋒視窗](app-insights-azure-web-apps.md)，然後在出現提示時選擇 [安裝]。 |
+| Azure 雲端服務 |[使用啟動工作](app-insights-cloudservices.md)或[安裝 .NET Framework 4.6+](../cloud-services/cloud-services-dotnet-install-dotnet.md) |
 
 ## <a name="video"></a>影片
 

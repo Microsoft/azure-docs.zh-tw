@@ -1,26 +1,27 @@
 ---
-title: "重新啟動用已停用的 Azure 訂用帳戶 | Microsoft Docs"
-description: "描述當您何時可能有停用的 Azure 訂用帳戶，以及如何重新啟動它。"
-keywords: "Azure 訂用帳戶已停用"
-services: 
-documentationcenter: 
+title: 重新啟動用已停用的 Azure 訂用帳戶 | Microsoft Docs
+description: 描述當您何時可能有停用的 Azure 訂用帳戶，以及如何重新啟動它。
+keywords: Azure 訂用帳戶已停用
+services: ''
+documentationcenter: ''
 author: genlin
 manager: jlian
-editor: 
+editor: ''
 tags: billing
 ms.assetid: 4529d685-3a87-49d9-8d7a-49baad552d76
 ms.service: billing
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 12/22/2017
-ms.author: genli
-ms.openlocfilehash: 0b573a3745cbaa3deb583458159faaa0ac93f202
-ms.sourcegitcommit: 4256ebfe683b08fedd1a63937328931a5d35b157
+ms.topic: conceptual
+ms.date: 05/11/2018
+ms.author: cwatson
+ms.openlocfilehash: 3fc7e316289201f5a800b56a7dc63f559c1f90a2
+ms.sourcegitcommit: 42405ab963df3101ee2a9b26e54240ffa689f140
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/23/2017
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47422655"
 ---
 # <a name="why-is-my-azure-subscription-disabled-and-how-do-i-reactivate-it"></a>我的 Azure 訂用帳戶為何停用，以及如何重新啟動它？
 
@@ -37,7 +38,7 @@ ms.lasthandoff: 12/23/2017
 > [!NOTE] 
 > 如果您使用免費試用訂閱且已移除消費限制，免費試用結束時，系統會將您的訂閱轉換成預付型方案。 您可以在建立訂用帳戶之後保留剩餘點數達整整 30 天之久。 您也可以在 12 個月內存取免費服務。
 
-若要監視和管理 Azure 計費活動，請參閱[使用 Azure 計費與成本管理避免非預期的成本](billing-getting-started.md)和[為您的 Microsoft Azure 訂用帳戶設定付款通知](billing-set-up-alerts.md)。
+若要監視和管理 Azure 計費活動，請參閱[使用 Azure 計費與成本管理避免非預期的成本](billing-getting-started.md)。
 
 
 ## <a name="your-bill-is-past-due"></a>您的帳單逾期未繳

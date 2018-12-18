@@ -1,8 +1,8 @@
 ---
-title: "使用 Azure Application Insights 診斷執行階段例外狀況 | Microsoft Docs"
-description: "使用 Azure Application Insights 來尋找並診斷應用程式執行階段例外狀況的教學課程。"
+title: 使用 Azure Application Insights 診斷執行階段例外狀況 | Microsoft Docs
+description: 使用 Azure Application Insights 來尋找並診斷應用程式執行階段例外狀況的教學課程。
 services: application-insights
-keywords: 
+keywords: ''
 author: mrbullwinkle
 ms.author: mbullwin
 ms.date: 09/19/2017
@@ -10,11 +10,12 @@ ms.service: application-insights
 ms.custom: mvc
 ms.topic: tutorial
 manager: carmonm
-ms.openlocfilehash: 115611c5d4eeffb0f0600dd0a792ee9f80247e36
-ms.sourcegitcommit: 5ac112c0950d406251551d5fd66806dc22a63b01
+ms.openlocfilehash: f45cb6a47756fae7b75d8c3df80a0bc754742063
+ms.sourcegitcommit: f3bd5c17a3a189f144008faf1acb9fabc5bc9ab7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2018
+ms.lasthandoff: 09/10/2018
+ms.locfileid: "44298994"
 ---
 # <a name="find-and-diagnose-run-time-exceptions-with-azure-application-insights"></a>使用 Azure Application Insights 尋找並診斷執行階段例外狀況
 
@@ -29,7 +30,7 @@ Azure Application Insights 會從您的應用程式收集遙測，以協助識�
 > * 建立新的工作項目，以更正錯誤程式碼
 
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 若要完成本教學課程：
 
@@ -42,7 +43,7 @@ Azure Application Insights 會從您的應用程式收集遙測，以協助識�
 - 本教學課程會追蹤您應用程式中的例外狀況識別情形，因此，請修改您開發或測試環境中的程式碼以產生例外狀況。 
 
 ## <a name="log-in-to-azure"></a>登入 Azure
-登入 Azure 入口網站，網址為 [https://portal.azure.com](https://portal.azure.com)。
+在 [https://portal.azure.com](https://portal.azure.com) 上登入 Azure 入口網站。
 
 
 ## <a name="analyze-failures"></a>分析失敗
@@ -61,20 +62,17 @@ Application Insights 會收集應用程式中的任何失敗，並可讓您檢�
 
     ![[失敗的要求] 視窗](media/app-insights-tutorial-runtime-exceptions/failed-requests-window.png)
 
-5. 按一下 [檢視詳細資料] 以查看作業的詳細資料。  這包括顯示兩個失敗相依項目的甘特圖，兩者共花了近半秒的時間才完成。  您可以完成[使用 Azure Application Insights 尋找並診斷效能問題](app-insights-tutorial-performance.md)教學課程，進一步了解分析效能問題。
+5. 按一下附有篩選結果數目的按鈕，以查看相關範例。 「建議」範例會包含來自所有元件的相關遙測資料，儘管取樣的標的可能是其中任一元件。 按一下搜尋結果可查看失敗的詳細資料。
 
-    ![[失敗的要求] 詳細資料](media/app-insights-tutorial-runtime-exceptions/failed-requests-details.png)
+    ![失敗的要求範例](media/app-insights-tutorial-runtime-exceptions/failed-requests-search.png)
 
-6. 作業詳細資料亦顯示 FormatException 似乎是導致失敗的原因。  按一下該例外狀況，或在「前 3 個例外狀況類型」計數上按一下，以檢視其詳細資料。  您可以看到這是因為郵遞區號不正確。
+6. 失敗要求的詳細資料會顯示甘特圖，說明此交易中有兩個相依性失敗，而這也造就了該交易 50% 以上的總持續時間。 此體驗顯示了所有遙測資料，來源包括與此作業識別碼相關的分散式應用程式的各個元件。 [深入了解新的體驗](app-insights-transaction-diagnostics.md)。 您可以選取任何項目，以在右側查看其詳細資料。 
+
+    ![失敗的要求詳細資料](media/app-insights-tutorial-runtime-exceptions/failed-request-details.png)
+
+7. 作業詳細資料亦顯示 FormatException 似乎是導致失敗的原因。  您可以看到這是因為郵遞區號不正確。 您可以在 Visual Studio 中開啟偵錯快照集，以查看程式碼層級的偵錯資訊。
 
     ![例外狀況詳細資料](media/app-insights-tutorial-runtime-exceptions/failed-requests-exception.png)
-
-> [!NOTE]
-啟用「整合詳細資料：E2E 交易診斷」[預覽版體驗](app-insights-previews.md)，可在單一全螢幕檢視中查看所有相關的伺服器端遙測資料，例如要求、相依性、例外狀況、追蹤、事件等。 
-
-啟用預覽版時，您將可檢視相依性呼叫所花費的時間，以及整合體驗中的任何失敗或例外狀況。 對於跨元件交易，甘特圖以及詳細資料窗格將可協助您快速診斷與根本原因有關的元件、相依性或例外狀況。 您可以展開底部區段，檢視任何針對所選元件作業收集之追蹤或事件的時間序列。 [深入了解新的體驗](app-insights-transaction-diagnostics.md)  
-
-![交易診斷](media/app-insights-tutorial-runtime-exceptions/e2e-transaction-preview.png)
 
 ## <a name="identify-failing-code"></a>識別失敗的程式碼
 快照集偵錯工具會收集您應用程式中最常見之例外狀況的快照集，以協助您診斷生產環境中的根本原因。  您可以檢視入口網站中的偵錯快照集，以查看呼叫堆疊並檢查每個呼叫堆疊框架的變數。 您可接著下載該快照集並在 Visual Studio 2017 中開啟，以對原始程式碼進行偵錯。
@@ -105,7 +103,7 @@ Application Insights 收集的所有資料都會儲存在 Azure Log Analytics �
 9. 按一下 [分析影響] 以開啟 Application Insights 分析。  它已填入數個查詢，提供失敗要求的詳細資料，例如受影響的使用者、瀏覽器和區域。<br><br>![分析](media/app-insights-tutorial-runtime-exceptions/analytics.png)<br>
 
 ## <a name="add-work-item"></a>新增工作項目
-如果您將 Application Insights 與追蹤系統 (例如 Visual Studio Team Services 或 GitHub) 連結，即可直接從 Application Insights 建立工作項目。
+如果您將 Application Insights 與追蹤系統 (例如 Azure DevOps 或 GitHub) 連結，即可直接從 Application Insights 建立工作項目。
 
 1. 返回 Application Insights 中的 [例外狀況屬性] 面板。
 2. 按一下 [新增工作項目]。

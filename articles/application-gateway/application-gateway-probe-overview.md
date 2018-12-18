@@ -1,25 +1,19 @@
 ---
-title: "Azure 應用程式閘道的健全狀況監視概觀 | Microsoft Docs"
-description: "了解 Azure 應用程式閘道的監視功能"
+title: Azure 應用程式閘道的健全狀況監視概觀
+description: 了解 Azure 應用程式閘道的監視功能
 services: application-gateway
-documentationcenter: na
-author: davidmu1
-manager: timlt
-editor: 
-tags: azure-resource-manager
-ms.assetid: 7eeba328-bb2d-4d3e-bdac-7552e7900b7f
+author: vhorne
+manager: jpconnock
 ms.service: application-gateway
-ms.devlang: na
 ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: infrastructure-services
-ms.date: 12/14/2016
-ms.author: davidmu
-ms.openlocfilehash: 83a0b1be1aba48146aa1aaedb36ad9d9d23f17d6
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.date: 8/6/2018
+ms.author: victorh
+ms.openlocfilehash: b34e5317a35d694e8521e73b0846da973661d9df
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39529682"
 ---
 # <a name="application-gateway-health-monitoring-overview"></a>應用程式閘道健全狀況監視概觀
 
@@ -29,9 +23,6 @@ Azure 應用程式閘道預設會監視其後端集區中所有資源的健康�
 
 除了使用預設的健全狀況探查監視，您也可以自訂健全狀況探查，以符合應用程式的需求。 本文會探討預設和自訂健全狀態探查。
 
-> [!NOTE]
-> 如果應用程式閘道子網路上有 NSG，則應在應用程式閘道子網路上開啟連接埠範圍 65503-65534，以供輸入流量使用。 需要這些連接埠，後端健康狀態 API 才能運作。
-
 ## <a name="default-health-probe"></a>預設的健全狀況探查
 
 如果您沒有設定任何自訂探查組態，應用程式閘道就會自動設定預設健全狀況探查。 監視行為的運作方式是對後端集區所設定的 IP 位址提出 HTTP 要求。 針對預設探查，如果後端 http 設定設為使用 HTTPS，探查也會使用 HTTPS 測試後端的健康狀態。
@@ -40,19 +31,44 @@ Azure 應用程式閘道預設會監視其後端集區中所有資源的健康�
 
 如果伺服器 A 的預設探查檢查失敗，應用程式閘道就會將其從後端集區中移除，網路流量也不會再流向此伺服器。 預設探查仍會繼續每 30 秒檢查一次伺服器 A。 當伺服器 A 成功回應預設健全狀態探查所提出的要求時，就會變為狀況良好並重新回到後端集區中，而流量也會開始再次流向該伺服器。
 
+### <a name="probe-matching"></a>探查比對
+
+根據預設，狀態碼 200 的 HTTP 回應會被視為狀況良好。 自訂的健全狀況探查額外支援兩個比對準則。 比對準則可用來選擇性地修改其預設解譯會構成狀況良好回應的項目。
+
+以下為比對準則： 
+
+- **HTTP 回應狀態碼比對**：探查比對準則，以接受使用者指定的 HTTP 回應碼或回應碼範圍。 支援以逗號分隔的個別回應狀態碼或一個狀態碼範圍。
+- **HTTP 回應主體比對**：探查比對準則，其會查看 HTTP 回應主體並與使用者指定的字串進行比對。 比對只會在回應主體中尋找是否有使用者指定的字串，並不會進行完整的規則運算式比對。
+
+比對準則是使用 `New-AzureRmApplicationGatewayProbeHealthResponseMatch` Cmdlet 來指定的。
+
+例如︰
+
+```
+$match = New-AzureRmApplicationGatewayProbeHealthResponseMatch -StatusCode 200-399
+$match = New-AzureRmApplicationGatewayProbeHealthResponseMatch -Body "Healthy"
+```
+一旦指定比對準則之後，就可使用 PowerShell 中的 `-Match` 參數，將它附加至探查設定。
+
 ### <a name="default-health-probe-settings"></a>預設的健全狀況探查設定
 
 | 探查屬性 | 值 | 說明 |
 | --- | --- | --- |
-| 探查 URL |http://127.0.0.1:\<連接埠\>/ |URL 路徑 |
-| 間隔 |30 |探查間隔 (秒) |
-| 逾時 |30 |探查逾時 (秒) |
-| 狀況不良臨界值 |3 |探查重試計數。 連續探查失敗計數到達狀況不良臨界值後，就會將後端伺服器標示為故障。 |
+| 探查 URL |http://127.0.0.1:\<port\>/ |URL 路徑 |
+| 間隔 |30 |在傳送下一個健康情況探查之前的等候時間，以秒為單位。|
+| 逾時 |30 |應用程式閘道在將探查標示為狀況不良之前等待探查回應的時間，以秒為單位。 如果傳回狀況良好的探查，則對應的後端會立即標示為狀況良好。|
+| 狀況不良臨界值 |3 |控管在定期健康情況探查失敗時所要傳送的探查數量。 這些額外的健康情況探查會緊密地連續傳送，以快速判斷後端的健康情況，而不等待探查間隔。 連續探查失敗計數到達狀況不良臨界值後，就會將後端伺服器標示為故障。 |
 
 > [!NOTE]
 > 連接埠會是和後端 HTTP 設定相同的連接埠。
 
-預設探查只會查看 http://127.0.0.1:\<連接埠\> 來判斷健康狀態。 如果您需要設定健全狀態探查，使其移至自訂 URL 或修改任何其他設定，則必須使用如下列步驟所述的自訂探查：
+預設探查只會查看 http://127.0.0.1:\<port\> 來判斷健康情況。 如果您需要設定健康情況探查，使其移至自訂 URL 或修改任何其他設定，則必須使用自訂探查。
+
+### <a name="probe-intervals"></a>探查間隔
+
+所有應用程式閘道執行個體會彼此獨立地探查後端。 每個應用程式閘道執行個體都會套用相同的探查組態。 例如，如果探查組態是每 30 秒傳送健康情況探查一次，而應用程式閘道具有兩個執行個體，則這兩個執行個體都每 30 秒傳送健康情況探查一次。
+
+此外，如果有多個接聽程式，則每個接聽程式會彼此獨立地探查後端。 例如，如果有兩個接聽程式在兩個不同的連接埠上指向相同的後端集區 (由兩個後端 HTTP 設定所設定)，則這兩個接聽程式會獨立地探查相同的後端。 在此情況下，每個應用程式閘道執行個體會有兩個探查，分別來自兩個接聽程式。 如果在相同的情況下有兩個應用程式閘道執行個體，則後端虛擬機器在每個設定的探查間隔內將會看到四個探查。
 
 ## <a name="custom-health-probe"></a>自訂的健全狀況探查
 
@@ -75,6 +91,12 @@ Azure 應用程式閘道預設會監視其後端集區中所有資源的健康�
 > [!IMPORTANT]
 > 如果已將應用程式閘道設定為單一站台，根據預設，除非已在自訂探查中加以設定，否則應將主機名稱指定為 '127.0.0.1'。
 > 僅供參考，自訂探查會傳送到 \<通訊協定\>://\<主機\>:\<連接埠\>\<路徑\>。 所使用的連接埠會是和後端 HTTP 設定中所定義者相同的連接埠。
+
+## <a name="nsg-considerations"></a>NSG 考量
+
+如果應用程式閘道子網路上有網路安全性群組 (NSG)，則必須在應用程式閘道子網路上開啟連接埠範圍 65503-65534，供輸入流量使用。 需要這些連接埠，後端健康狀態 API 才能運作。
+
+此外，輸出網際網路連線不可封鎖，而必須允許來自 AzureLoadBalancer 標記的流量。
 
 ## <a name="next-steps"></a>後續步驟
 在了解應用程式閘道的健全狀態監視之後，您可以在 Azure 入口網站中[自訂健全狀態探查](application-gateway-create-probe-portal.md)，或使用 PowerShell 和 Azure Resource Manager 部署模型設定[自訂健全狀態探查](application-gateway-create-probe-ps.md)。

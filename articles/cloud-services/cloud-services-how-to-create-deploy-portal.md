@@ -1,11 +1,11 @@
 ---
-title: "如何建立和部署雲端服務 | Microsoft Docs"
-description: "了解如何使用 Azure 入口網站建立和部署雲端服務。"
+title: 如何建立和部署雲端服務 | Microsoft Docs
+description: 了解如何使用 Azure 入口網站建立和部署雲端服務。
 services: cloud-services
-documentationcenter: 
-author: Thraka
+documentationcenter: ''
+author: jpconnock
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 56ea2f14-34a2-4ed9-857c-82be4c9d0579
 ms.service: cloud-services
 ms.workload: tbd
@@ -13,12 +13,13 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 05/18/2017
-ms.author: adegeo
-ms.openlocfilehash: 96b92690cd164b1012380f82a1d1bd3336350e57
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.author: jeconnoc
+ms.openlocfilehash: ece3511d0d3c12be13a649385ea9b6dd5c75bfe0
+ms.sourcegitcommit: f3bd5c17a3a189f144008faf1acb9fabc5bc9ab7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 09/10/2018
+ms.locfileid: "44303702"
 ---
 # <a name="how-to-create-and-deploy-a-cloud-service"></a>如何建立和部署雲端服務
 Azure 入口網站提供兩種方法讓您建立和部署雲端服務：「快速建立」和「自訂建立」。
@@ -26,7 +27,7 @@ Azure 入口網站提供兩種方法讓您建立和部署雲端服務：「快�
 本主題說明如何使用「快速建立」方法建立新的雲端服務，然後使用 [上傳]  上傳雲端服務封裝並在 Azure 中部署。 當您使用這個方法時，Azure 入口網站會在過程中提供便利的連結，讓您完成所有要求。 如果您準備在建立雲端服務時加以部署，可以同時使用 [自訂建立] 進行這兩項作業。
 
 > [!NOTE]
-> 如果您計劃從 Visual Studio Team Services (VSTS) 發佈您的雲端服務，請使用快速建立，然後從 Azure 快速入門或儀表板設定 VSTS 發佈。 如需詳細資訊，請參閱[使用 Visual Studio Team Services 連續傳遞至 Azure][TFSTutorialForCloudService]，或參閱 [快速入門] 頁面的說明。
+> 如果您計劃從 Azure DevOps 發佈您的雲端服務，請使用快速建立，然後從 Azure 快速入門或儀表板設定 Azure DevOps 發佈。 如需詳細資訊，請參閱[使用 Azure DevOps 持續傳遞至 Azure][TFSTutorialForCloudService]，或參閱 [快速入門] 頁面的說明。
 >
 >
 

@@ -1,11 +1,11 @@
 ---
-title: "使用 Azure 入口網站匯入 SOAP API | Microsoft Docs"
-description: "了解如何使用 API 管理匯入 SOAP API。"
+title: 使用 Azure 入口網站匯入 SOAP API | Microsoft Docs
+description: 了解如何使用 API 管理匯入 SOAP API。
 services: api-management
-documentationcenter: 
-author: juliako
+documentationcenter: ''
+author: vladvino
 manager: cfowler
-editor: 
+editor: ''
 ms.service: api-management
 ms.workload: mobile
 ms.tgt_pltfrm: na
@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: tutorial
 ms.date: 11/22/2017
 ms.author: apimpm
-ms.openlocfilehash: 0a013aa63e8b04748e1b64126795189a5d189fa1
-ms.sourcegitcommit: b854df4fc66c73ba1dd141740a2b348de3e1e028
+ms.openlocfilehash: 108758751b7c8ef5906cb55495a2604f918b2714
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/04/2017
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38488909"
 ---
 # <a name="import-soap-api"></a>匯入 SOAP API
 

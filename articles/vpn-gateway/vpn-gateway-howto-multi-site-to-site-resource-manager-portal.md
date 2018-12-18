@@ -1,11 +1,11 @@
 ---
-title: "將多個 VPN 閘道站對站連線新增到 VNet：Azure 入口網站：Resource Manager| Microsoft Docs"
-description: "將多個 S2S 連線新增至具有現有連線的 VPN 閘道"
+title: 將多個 VPN 閘道站對站連線新增到 VNet：Azure 入口網站：Resource Manager| Microsoft Docs
+description: 將多個 S2S 連線新增至具有現有連線的 VPN 閘道
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
 manager: jpconnock
-editor: 
+editor: ''
 tags: azure-resource-manager
 ms.assetid: f3e8b165-f20a-42ab-afbb-bf60974bb4b1
 ms.service: vpn-gateway
@@ -20,6 +20,7 @@ ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 02/21/2018
+ms.locfileid: "29398597"
 ---
 # <a name="add-a-site-to-site-connection-to-a-vnet-with-an-existing-vpn-gateway-connection"></a>將站台對站台連線新增至使用現有 VPN 閘道連線的 VNet
 
@@ -61,8 +62,8 @@ ms.lasthandoff: 02/21/2018
     ![新增連線按鈕](./media/vpn-gateway-howto-multi-site-to-site-resource-manager-portal/addbutton.png "新增連線按鈕")<br>
 5. 在 [新增連線] 頁面上，填寫下列欄位︰
    
-   * **名稱︰**為您要建立連線的網站提供名稱。
-   * **連線類型：**選取 [站對站 (IPSec)]。
+   * **名稱︰** 為您要建立連線的網站提供名稱。
+   * **連線類型：** 選取 [站對站 (IPSec)]。
      
      ![新增連線頁面](./media/vpn-gateway-howto-multi-site-to-site-resource-manager-portal/addconnectionblade.png "新增連線頁面")<br>
 
@@ -75,9 +76,9 @@ ms.lasthandoff: 02/21/2018
     ![建立區域網路閘道頁面](./media/vpn-gateway-howto-multi-site-to-site-resource-manager-portal/createlngblade.png "建立區域網路閘道")<br>
 3. 在 [建立區域網路閘道] 頁面上，填寫下列欄位︰
    
-   * **名稱：**您要給區域網路閘道資源的名稱。
-   * **IP 位址：**您要連線之網站上 VPN 裝置的公用 IP 位址。
-   * **位址空間︰**您要路由傳送至新的區域網路網站的位址空間。
+   * **名稱：** 您要給區域網路閘道資源的名稱。
+   * **IP 位址：** 您要連線之網站上 VPN 裝置的公用 IP 位址。
+   * **位址空間︰** 您要路由傳送至新的區域網路網站的位址空間。
 4. 按一下 [建立區域網路閘道] 頁面上的 [確定]，即可儲存變更。
 
 ## <a name="part3"></a>第 3 部 - 新增共用金鑰並建立連線

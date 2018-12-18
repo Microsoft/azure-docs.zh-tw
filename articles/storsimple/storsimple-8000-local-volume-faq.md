@@ -1,12 +1,12 @@
 ---
-title: "StorSimple 本機固定磁碟區常見問題集 | Microsoft Docs"
-description: "提供 StorSimple 本機固定磁碟區相關常見問題的解答。"
+title: StorSimple 本機固定磁碟區常見問題集 | Microsoft Docs
+description: 提供 StorSimple 本機固定磁碟區相關常見問題的解答。
 services: storsimple
 documentationcenter: NA
 author: manuaery
 manager: syadav
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: NA
 ms.topic: article
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23109466"
 ---
 # <a name="storsimple-locally-pinned-volumes-frequently-asked-questions-faq"></a>StorSimple 本機固定磁碟區︰常見問題集 (FAQ)
 ## <a name="overview"></a>概觀
@@ -35,11 +36,11 @@ ms.lasthandoff: 10/11/2017
 ## <a name="questions-about-creating-a-locally-pinned-volume"></a>有關建立本機固定磁碟區的問題
 **問：** 在 8000 系列裝置上可以建立之本機固定磁碟區的大小上限為何？
 
-**答：**在執行 StorSimple 8000 系列 Update 3.0 的裝置上，您可以在 8100 裝置上佈建最多 8.5 TB 固定在本機的磁碟區，或最多 200 TB 的分層磁碟區。 在較大的 8600 裝置上，您可以佈建最多 22.5 TB 的本機固定磁碟區，或者最多 500 TB 的階層式磁碟區。
+**答：** 在執行 StorSimple 8000 系列 Update 3.0 的裝置上，您可以在 8100 裝置上佈建最多 8.5 TB 固定在本機的磁碟區，或最多 200 TB 的分層磁碟區。 在較大的 8600 裝置上，您可以佈建最多 22.5 TB 的本機固定磁碟區，或者最多 500 TB 的階層式磁碟區。
 
 **問：** 我最近將 8100 裝置升級至 Update 3.0，而當我嘗試建立固定在本機的磁碟區時，可用大小上限只有 6 TB，而不是 8.5 TB。 為什麼我無法建立 8.5 TB 的磁碟區？
 
-**答：**如果您的裝置執行 Update 3.0，您可以在 8100 裝置上佈建最多 8.5 TB 固定在本機的磁碟區，或最多 200 TB 的分層磁碟區。 如果您的裝置已經有階層式磁碟區，則可用於建立本機固定磁碟區的空間將會相應地低於此最大限制。 舉例來說，如果已在 8100 裝置上佈建大約 106 TB 的分層磁碟區 (這是分層容量的一半)，則您可以在 8100 裝置上建立的本機磁碟區大小上限會相應縮小為 4 TB (大約是固定在本機之磁碟區容量上限的一半)。
+**答：** 如果您的裝置執行 Update 3.0，您可以在 8100 裝置上佈建最多 8.5 TB 固定在本機的磁碟區，或最多 200 TB 的分層磁碟區。 如果您的裝置已經有階層式磁碟區，則可用於建立本機固定磁碟區的空間將會相應地低於此最大限制。 舉例來說，如果已在 8100 裝置上佈建大約 106 TB 的分層磁碟區 (這是分層容量的一半)，則您可以在 8100 裝置上建立的本機磁碟區大小上限會相應縮小為 4 TB (大約是固定在本機之磁碟區容量上限的一半)。
 
 由於裝置上的某些本機空間會用來裝載分層磁碟區的工作集，因此如果裝置有分層磁碟區，可用於建立固定在本機之磁碟區的空間就會減少。 相對地，建立固定在本機的磁碟區也會相應地減少分層磁碟區可用的空間。 下表摘要說明建立固定在本機的磁碟區時，8100 和 8600 裝置上可用的分層容量。
 
@@ -161,7 +162,7 @@ ms.lasthandoff: 10/11/2017
 
 **問：** 可以在還原期間變更磁碟區的類型嗎？
 
-**答：**否，您無法在還原期間變更磁碟區類型。
+**答：** 否，您無法在還原期間變更磁碟區類型。
 
 * 已刪除的磁碟區會還原為快照中儲存的類型。
 * 無論快照中儲存的類型為何，磁碟區都會根據其目前的類型還原 (請參考前兩個問題)。

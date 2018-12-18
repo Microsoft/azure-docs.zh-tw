@@ -1,10 +1,10 @@
 ---
-title: "擷取 Linux VM 的映像 | Microsoft Docs"
-description: "了解如何對以傳統部署模型建立的 Linux Azure 虛擬機器 (VM) 擷取映像。"
+title: 擷取 Linux VM 的映像 | Microsoft Docs
+description: 了解如何對以傳統部署模型建立的 Linux Azure 虛擬機器 (VM) 擷取映像。
 services: virtual-machines-linux
-documentationcenter: 
-author: iainfoulds
-manager: timlt
+documentationcenter: ''
+author: cynthn
+manager: jeconnoc
 editor: tysonn
 tags: azure-service-management
 ROBOTS: NOINDEX
@@ -15,12 +15,13 @@ ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: article
 ms.date: 03/14/2017
-ms.author: iainfou
-ms.openlocfilehash: be463b18c049c8b92c21cfde82defcf76718a5f0
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.author: cynthn
+ms.openlocfilehash: ae87af45ffc442c0de6c7f703694a994e536cdb8
+ms.sourcegitcommit: aa988666476c05787afc84db94cfa50bc6852520
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37929207"
 ---
 # <a name="how-to-capture-a-classic-linux-virtual-machine-as-an-image"></a>如何將傳統 Linux 虛擬機器擷取成映像
 > [!IMPORTANT]
@@ -107,7 +108,7 @@ Azure 會將映像儲存在 [映像] 底下，連同您已上傳的任何映像�
 
 或者，您也可以透過 [Azure 入口網站](http://portal.azure.com)，使用 [映像] 方法並選取您已建立的映像來建立自訂 VM。 如需詳細資訊，請參閱[如何建立自訂 VM][How to Create a Custom Virtual Machine]。
 
-**另請參閱：** [Azure Linux 代理程式使用者指南](../agent-user-guide.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+**另請參閱：** [Azure Linux 代理程式使用者指南](../../extensions/agent-linux.md)
 
 [About Virtual Machine Images in Azure]:../../virtual-machines-linux-classic-about-images.md
 [How to Create a Custom Virtual Machine]:create-custom-classic.md

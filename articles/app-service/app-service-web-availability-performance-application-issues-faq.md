@@ -1,11 +1,11 @@
 ---
-title: "Azure Web 應用程式的應用程式效能常見問題集 | Microsoft Docs"
-description: "對於 Azure App Service 的 Web 應用程式功能之中的可用性、效能和應用程式問題的常見問題集獲得解答。"
+title: Azure Web 應用程式的應用程式效能常見問題集 | Microsoft Docs
+description: 對於 Azure App Service 的 Web 應用程式功能之中的可用性、效能和應用程式問題的常見問題集獲得解答。
 services: app-service\web
-documentationcenter: 
+documentationcenter: ''
 author: genlin
 manager: cshepard
-editor: 
+editor: ''
 tags: top-support-issue
 ms.assetid: 2fa5ee6b-51a6-4237-805f-518e6c57d11b
 ms.service: app-service-web
@@ -13,13 +13,14 @@ ms.workload: web
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 11/03/2017
+ms.date: 05/11/2018
 ms.author: genli
-ms.openlocfilehash: 926005eace0acde27e26619a2787368ba0954351
-ms.sourcegitcommit: 7edfa9fbed0f9e274209cec6456bf4a689a4c1a6
+ms.openlocfilehash: 06fe9f1fd65f70e41d528a513e44e61edb4a7e4f
+ms.sourcegitcommit: cfff72e240193b5a802532de12651162c31778b6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/17/2018
+ms.lasthandoff: 07/27/2018
+ms.locfileid: "39307903"
 ---
 # <a name="application-performance-faqs-for-web-apps-in-azure"></a>Azure Web 應用程式的應用程式效能常見問題集
 
@@ -157,7 +158,7 @@ ms.lasthandoff: 01/17/2018
 
 如需詳細資訊，請參閱 [在 App Service 中設定 Web 應用程式](web-sites-configure.md)。
 
-## <a name="why-does-my-request-time-out-after-240-seconds"></a>為何我的要求在 240 秒後逾時？
+## <a name="why-does-my-request-time-out-after-230-seconds"></a>為何我的要求在 230 秒後逾時？
 
 Azure Load Balancer 有預設四分鐘的閒置逾時設定。 這通常對於 Web 要求是合理的回應時間限制。 如果您的 Web 應用程式需要幕後處理，我們建議您使用 Azure WebJobs。 Azure Web 應用程式可以呼叫 WebJobs，並且在幕後處理完成時收到通知。 您可以從使用 WebJobs 的多個方法中選擇，包括佇列和觸發程序。
 

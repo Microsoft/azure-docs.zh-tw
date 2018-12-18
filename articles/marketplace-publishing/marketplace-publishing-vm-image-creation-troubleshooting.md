@@ -3,7 +3,7 @@ title: 如何針對 VHD 建立常見問題進行疑難排解 | Microsoft Docs
 description: VHD 建立常見疑難排解問題的解答。
 services: Azure Marketplace
 documentationcenter: ''
-author: msmbaldwin
+author: HannibalSII
 manager: ''
 editor: ''
 ms.assetid: e39563d8-8646-4cb7-b078-8b10ac35b494
@@ -13,12 +13,13 @@ ms.topic: article
 ms.tgt_pltfrm: Azure
 ms.workload: na
 ms.date: 09/26/2016
-ms.author: mbaldwin
-ms.openlocfilehash: 65361ad5bd7c3311c428b64b8476ec8f2ea2d17b
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.author: hascipio; v-divte
+ms.openlocfilehash: c4e88a9fbb15dd90d619b159ae1065dfacc1907f
+ms.sourcegitcommit: d16b7d22dddef6da8b6cfdf412b1a668ab436c1f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39713392"
 ---
 # <a name="how-to-troubleshoot-common-issues-encountered-during-vhd-creation"></a>如何針對 VHD 建立常見問題進行疑難排解
 這篇文章可協助 Azure Marketplace 發行者和 (或) 共同管理員解決在發行或管理其虛擬機器解決方案時發生的問題或常見問題。

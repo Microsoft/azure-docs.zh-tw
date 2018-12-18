@@ -1,24 +1,26 @@
 ---
-title: "在 Visual Studio 中進行應用程式偵錯 | Microsoft Docs"
-description: "利用本機開發叢集上的 Visual Studio 來開發服務及為服務偵錯，以便改善您服務的可靠性和效能。"
+title: 在 Visual Studio 中進行應用程式偵錯 | Microsoft Docs
+description: 利用本機開發叢集上的 Visual Studio 來開發服務及為服務偵錯，以便改善您服務的可靠性和效能。
 services: service-fabric
 documentationcenter: .net
 author: vturecek
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: cb888532-bcdb-4e47-95e4-bfbb1f644da4
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
-ms.workload: na
+ms.custom: vs-azure
+ms.workload: azure-vs
 ms.date: 11/02/2017
-ms.author: vturecek;mikhegn
-ms.openlocfilehash: 8c29b54415a42ec435f2b4c3ce6b407b2155f70c
-ms.sourcegitcommit: b5c6197f997aa6858f420302d375896360dd7ceb
+ms.author: vturecek
+ms.openlocfilehash: 30e432b34cc586e1671c9ffdf7b48c3997e9eb23
+ms.sourcegitcommit: fab878ff9aaf4efb3eaff6b7656184b0bafba13b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/21/2017
+ms.lasthandoff: 08/22/2018
+ms.locfileid: "42442381"
 ---
 # <a name="debug-your-service-fabric-application-by-using-visual-studio"></a>使用 Visual Studio 偵錯 Service Fabric 應用程式
 > [!div class="op_single_selector"]

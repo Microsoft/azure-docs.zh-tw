@@ -3,31 +3,26 @@ title: 在 Azure 儲存體總管中管理 Azure Cosmos DB
 description: 學習如何在 Azure 儲存體總管中管理 Azure Cosmos DB。
 Keywords: Azure Cosmos DB, Azure Storage Explorer, MongoDB
 services: cosmos-db
-documentationcenter: ''
 author: Jejiang
-manager: omafnan
+manager: kfile
 editor: ''
 tags: Azure Cosmos DB
-ms.assetid: ''
 ms.service: cosmos-db
 ms.custom: Azure Cosmos DB active
-ms.workload: big-data
-ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: tutorial
+ms.topic: conceptual
 ms.date: 03/20/2018
 ms.author: jejiang
-ms.openlocfilehash: 18f580f1eae31c9bf3626e100217467bb48ca881
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: b45328425cff978377d5e05de487d42e786c063b
+ms.sourcegitcommit: 756f866be058a8223332d91c86139eb7edea80cc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 07/02/2018
+ms.locfileid: "37345102"
 ---
-# <a name="manage-azure-cosmos-db-in-azure-storage-explorer-preview"></a>在 Azure 儲存體總管 (預覽版本) 中管理 Azure Cosmos DB
+# <a name="manage-azure-cosmos-db-in-azure-storage-explorer"></a>在 Azure 儲存體總管中管理 Azure Cosmos DB
 
 在 Azure 儲存體總管中使用 Azure Cosmos DB 可讓使用者管理 Azure Cosmos DB 實體、操縱資料、更新預存程序及觸發程序，以及其他 Azure 實體 (例如儲存體 Blob 及佇列)。 現在您可以使用同一個工具在同一處管理您不同的 Azure 實體。 目前，Azure 儲存體總管支援 SQL、MongoDB、圖表和資料表帳戶。
-
-在本文中，您將會了解如何使用儲存體總管來管理 Azure Cosmos DB。
 
 
 ## <a name="prerequisites"></a>先決條件
@@ -75,8 +70,11 @@ SQL API <!--or MongoDB API--> 的 Azure Cosmos DB 帳戶。 若您還沒有帳�
     ![連接字串](./media/storage-explorer/connection-string.png)
 
 ## <a name="connect-to-azure-cosmos-db-by-using-local-emulator"></a>使用本機模擬器連線到 Azure Cosmos DB
+
 若要使用模擬器連線到 Azure Cosmos DB，請使用下列步驟 (目前僅支援 SQL 帳戶)。
-1. 安裝模擬器並啟動。 如需了解如何安裝模擬器，請參閱 [Cosmos DB 模擬器](https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator)
+
+1. 安裝模擬器並啟動。 如需了解如何安裝模擬器，請參閱 [Cosmos DB 模擬器](https://docs.microsoft.com/azure/cosmos-db/local-emulator)
+
 2. 在左邊的樹狀目錄中尋找 [Local and Attached] \(本機與已連結)，以滑鼠右鍵按一下 [Cosmos DB 帳戶]，選擇 [連線到 Cosmos DB 模擬器...]
 
     ![使用模擬器連線到 Cosmos DB](./media/storage-explorer/emulator-entry.png)
@@ -84,7 +82,6 @@ SQL API <!--or MongoDB API--> 的 Azure Cosmos DB 帳戶。 若您還沒有帳�
 3. 目前僅支援 SQL API。 貼上**連接字串**、輸入**帳戶標籤**、按 [下一步] 以檢查摘要，然後按一下 [連線] 以連線到 Azure Cosmos DB 帳戶。 如需擷取連接字串的資訊，請參閱[取得連接字串](https://docs.microsoft.com/azure/cosmos-db/manage-account#get-the--connection-string)。
 
     ![使用模擬器對話方塊連線到 Cosmos DB](./media/storage-explorer/emulator-dialog.png)
-
 
 
 ## <a name="azure-cosmos-db-resource-management"></a>Azure Cosmos DB 資源管理
@@ -208,8 +205,111 @@ SQL API <!--or MongoDB API--> 的 Azure Cosmos DB 帳戶。 若您還沒有帳�
     ![預存程序](./media/storage-explorer/stored-procedure.png)
 * **觸發程序**及 **UDF** 的作業與**預存程序**雷同。
 
+## <a name="troubleshooting"></a>疑難排解
+
+[Azure 儲存體總管中的 Azure Cosmos DB](https://docs.microsoft.com/azure/cosmos-db/storage-explorer) 是獨立應用程式，可讓您從 Windows、macOS 或 Linux 連線到裝載在 Azure 和主權雲端上的 Azure Cosmos DB 帳戶。 也可讓您管理 Azure Cosmos DB 實體、操縱資料、更新預存程序及觸發程序，以及其他 Azure 實體 (例如儲存體 Blob 及佇列)。
+
+這些是儲存體總管中有關 Azure Cosmos DB 常見問題的解決方案。
+
+### <a name="sign-in-issues"></a>登入問題
+
+在繼續之前，請先嘗試重新啟動您的應用程式，查看是否能修正問題。
+
+#### <a name="self-signed-certificate-in-certificate-chain"></a>信任鏈結中的自我簽署憑證
+
+有幾個原因可能會導致此錯誤，最常見的兩個原因是：
+
++ 您在「透明 Proxy」背後，這表示有人 (例如您的 IT 部門) 正使用自我簽署憑證攔截 HTTPS 流量、解密再加密。
+
++ 您正在執行的軟體，例如防毒軟體，會將自我簽署的 SSL 憑證插入您收到的 HTTPS 訊息中。
+
+當儲存體總管遇到這些「自我簽署憑證」的其中一個時，它可能就無法知曉收到的 HTTPS 訊息是否已遭竄改。 如果您有一份自我簽署憑證，則可以告知儲存體總管信任該憑證。 如果您不確定插入憑證的是誰，可以嘗試執行下列步驟來自行尋找：
+
+1. 安裝 Open SSL
+     - [Windows](https://slproweb.com/products/Win32OpenSSL.html) (任一輕裝版即可)
+     - Mac 和 Linux：應該包含在作業系統中
+2. 執行 Open SSL
+    - Windows：移至安裝目錄並找到 **/bin/**，然後按兩下 **openssl.exe**。
+    - Mac 和 Linux：從終端機執行 **openssl**
+3. 執行 `s_client -showcerts -connect microsoft.com:443`
+4. 尋找自我簽署憑證。 如果不確定哪些是自我簽署的憑證，請尋找主旨 ("s:") 和簽發者 ("i:") 相同的所有位置。
+5.  一旦發現任何自我簽署的憑證，請針對每個憑證，將從 **-----BEGIN CERTIFICATE-----** 到 **-----END CERTIFICATE-----** (含) 的所有內容，複製並貼到新的 .cer 檔案。
+6.  開啟儲存體總管，然後移至 [編輯] > [SSL 憑證] > [匯入憑證]。 使用檔案選擇器來尋找、選取及開啟您所建立的 .cer 檔案。
+
+如果使用上述步驟找不到任何自我簽署的憑證，請傳送意見反應給我們，以取得更多協助。
+
+#### <a name="unable-to-retrieve-subscriptions"></a>無法擷取訂用帳戶
+
+如果您成功登入之後，卻無法擷取訂用帳戶：
+
+- 透過登入 [Azure 入口網站](http://portal.azure.com/)確認您的帳戶可存取訂用帳戶的項目
+- 確定已使用正確的環境登入 ([Azure](http://portal.azure.com/)、[Azure 中國](https://portal.azure.cn/)、[Azure 德國](https://portal.microsoftazure.de/)、[Azure 美國政府](http://portal.azure.us/)或自訂環境/Azure Stack)
+- 如果您是在 Proxy 背景，請確定已正確設定儲存體總管的 Proxy
+- 嘗試移除再重新新增帳戶
+- 嘗試從主目錄 (例如：C:\Users\ContosoUser) 刪除下列檔案，再重新新增帳戶：
+  - .adalcache
+  - .devaccounts
+  - .extaccounts
+- 登入時若出現任何錯誤訊息，請查看開發人員工具主控台 (f12)
+
+![console](./media/storage-explorer/console.png)
+
+#### <a name="unable-to-see-the-authentication-page"></a>看不到驗證頁面 
+
+如果您看不到驗證頁面：
+
+- 載入登入頁面可能需要一些時間，視連線速度而定，請等待至少一分鐘再關閉 [驗證] 對話方塊
+- 如果您是在 Proxy 背景，請確定已正確設定儲存體總管的 Proxy
+- 按下 F12 鍵，開發人員主控台會隨即顯示。 查看開發人員主控台的回應，看看能否找到任何驗證無法運作的線索
+
+#### <a name="cannot-remove-account"></a>無法移除帳戶
+
+如果無法移除帳戶，或重新驗證連結不執行任何動作
+
+- 嘗試從主目錄刪除下列檔案，再重新新增帳戶：
+  - .adalcache
+  - .devaccounts
+  - .extaccounts
+- 如果您想要移除 SAS 連結的儲存體資源，請刪除：
+  - Windows 是 %AppData%/StorageExplorer 資料夾
+  - Mac 是 /Users/<您的名稱>/Library/Applicaiton SUpport/StorageExplorer
+  - Linux 是 ~/.config/StorageExplorer
+  - 如果刪除這些檔案，**您必須重新輸入所有認證**
+
+
+### <a name="httphttps-proxy-issue"></a>Http/Https Proxy 的問題
+
+在 ASE 中設定 Http/Https Proxy 時，無法在左側樹狀目錄中列出 Azure Cosmos DB 節點。 這是已知問題，並將在下一個版本中修正。 目前您可以使用 Azure 入口網站中的 Azure Cosmos DB 資料總管解決此問題。 
+
+### <a name="development-node-under-local-and-attached-node-issue"></a>「本機與已連結」節點下的「開發」節點問題
+
+當您在左側樹狀目錄中，按一下 [本機及連結] 節點下的 [開發] 節點後，系統沒有回應。  這是預期中的行為。 將在下一個版本中提供 Azure DB Cosmos 本機模擬器支援。
+
+![開發節點](./media/storage-explorer/development.png)
+
+### <a name="attaching-azure-cosmos-db-account-in-local-and-attached-node-error"></a>在「本機與已連結」節點中連結 Azure Cosmos DB 帳戶的錯誤
+
+如果您在「本機與已連結」節點中連結 Azure Cosmos DB 帳戶後看到以下錯誤，請檢查您是否使用正確的連接字串。
+
+![在本機與已連結中連結 Azure Cosmos DB 的錯誤](./media/storage-explorer/attached-error.png)
+
+### <a name="expand-azure-cosmos-db-node-error"></a>展開 Azure Cosmos DB 節點錯誤
+
+當您嘗試展開左側的樹狀節點時，可能會看到下列錯誤。 
+
+![展開錯誤](./media/storage-explorer/expand-error.png)
+
+請嘗試下列建議：
+
+- 檢查 Azure Cosmos DB 帳戶是否正在進行佈建，並在帳戶成功建立後再試一次。
+- 如果帳戶是在「快速存取」節點或「本機與已連結」節點下，請檢查帳戶是否已遭到刪除。 如果是這樣，您需要以手動方式移除節點。
+
+## <a name="contact-us"></a>與我們連絡
+
+如果沒有適合您的解決方案，請將問題詳細資料以電子郵件傳送給 Azure Cosmos DB 開發工具小組 ([cosmosdbtooling@microsoft.com](mailto:cosmosdbtooling@microsoft.com))，以修正問題。
+
 ## <a name="next-steps"></a>後續步驟
 
 * 請觀看下列影片以了解如何在 Azure 儲存體總管中使用 Azure Cosmos DB：[在 Azure 儲存體總管中使用 Azure Cosmos DB](https://www.youtube.com/watch?v=iNIbg1DLgWo&feature=youtu.be)。
-* 在[開始使用儲存體總管 (預覽)](https://docs.microsoft.com/azure/vs-azure-tools-storage-manage-with-storage-explorer) 中深入了解儲存體總管並連線更多服務。
+* 在[開始使用儲存體總管](https://docs.microsoft.com/azure/vs-azure-tools-storage-manage-with-storage-explorer)中深入了解儲存體總管並連線更多服務。
 

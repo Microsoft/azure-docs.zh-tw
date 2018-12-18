@@ -1,11 +1,11 @@
 ---
-title: "使用 StorSimple Snapshot Manager 來管理裝置 | Microsoft Docs"
-description: "描述如何使用 StorSimple Snapshot Manager MMC 嵌入式管理單元，來連接和管理 StorSimple 裝置。"
+title: 使用 StorSimple Snapshot Manager 來管理裝置 | Microsoft Docs
+description: 描述如何使用 StorSimple Snapshot Manager MMC 嵌入式管理單元，來連接和管理 StorSimple 裝置。
 services: storsimple
-documentationcenter: 
+documentationcenter: ''
 author: SharS
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 966ecbe3-a7fa-4752-825f-6694dd949946
 ms.service: storsimple
 ms.devlang: NA
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "23111436"
 ---
 # <a name="use-storsimple-snapshot-manager-to-connect-and-manage-storsimple-devices"></a>使用 StorSimple Snapshot Manager 來連接和管理 StorSimple 裝置
 ## <a name="overview"></a>概觀

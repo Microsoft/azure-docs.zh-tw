@@ -9,19 +9,22 @@ editor: ''
 ms.assetid: 91adc3d3-a4ca-46cf-ac5f-368fb6458d74
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 02/23/2018
 ms.author: chackdan
-ms.openlocfilehash: 65ade0f2526bf444c2205c74cce0e20be540998d
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: a1cfd68b526d8ce63fcfbc3b6e0eac84926fabaa
+ms.sourcegitcommit: 30c7f9994cf6fcdfb580616ea8d6d251364c0cd1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 08/18/2018
+ms.locfileid: "42141505"
 ---
 # <a name="add-or-remove-certificates-for-a-service-fabric-cluster-in-azure"></a>新增或移除 Azure 中 Service Fabric 叢集的憑證
 建議您熟悉 Service Fabric 使用 X.509 憑證的方式，以及熟悉[叢集安全性案例](service-fabric-cluster-security.md)。 您必須瞭解什麼是叢集憑證及其用途，方可繼續進行後續作業。
+
+Azure Service Fabric SDK 的預設憑證載入行為，是部署和使用到期日最久的已定義憑證；而不管其主要或次要設定定義為何。 退回使用傳統行為是進階動作 (不建議您這麼做)，而且需要將 Fabric.Code 設定內的 "UseSecondaryIfNever" 設定參數值設為 false。
 
 當您在叢集建立期間設定憑證安全性時，除了用戶端憑證之外，Service Fabric 還可讓您指定兩個叢集憑證：主要與次要。 請參閱[透過入口網站建立 Azure 叢集](service-fabric-cluster-creation-via-portal.md)或[透過 Azure Resource Manager 建立 Azure 叢集](service-fabric-cluster-creation-via-arm.md)，以詳細了解如何在建立這些叢集時進行叢集設定。 如果您在建立時僅指定一個叢集憑證，該憑證就會作為主要憑證。 在叢集建立完成後，您可新增憑證做為次要憑證。
 
@@ -33,17 +36,12 @@ ms.lasthandoff: 03/16/2018
 ## <a name="add-a-secondary-cluster-certificate-using-the-portal"></a>使用入口網站來新增次要叢集憑證
 您無法透過 Azure 入口網站使用 Azure PowerShell 新增次要叢集憑證。 本文件稍後會簡要說明此程序。
 
-## <a name="swap-the-cluster-certificates-using-the-portal"></a>使用入口網站來交換叢集憑證
-在成功部署次要叢集憑證之後，如果您想要將主要憑證與次要憑證交換，則請瀏覽至 [安全性] 區段，然後從操作功能表中選取 [與主要憑證交換] 選項，以將次要憑證與主要憑證交換。
-
-![交換憑證][Delete_Swap_Cert]
-
 ## <a name="remove-a-cluster-certificate-using-the-portal"></a>使用入口網站來移除叢集憑證
-針對安全叢集，您一律必須至少部署一個有效 (未撤銷或過期) 的憑證 (主要或次要)，否則叢集將停止運作。
+針對安全叢集，您一律必須至少有一個有效 (未撤銷或過期) 的憑證。 系統會使用部署了最久到期日的憑證，若將它移除，則叢集會停止運作；請務必只移除過期的憑證，或移除最快到期的未使用憑證。
 
-若要移除次要憑證，使其不用於叢集安全性，請瀏覽至 [安全性] 區段，然後從次要憑證上的操作功能表中選取 [刪除] 選項。
+若要移除未使用的叢集安全性憑證，請瀏覽至 [安全性] 區段，然後在未使用的憑證上，從快顯功能表中選取 [刪除] 選項。
 
-如果您的目的是移除標示為主要的憑證，則您需要先將它與次要憑證交換，然後再於升級完成後刪除次要憑證。
+如果您的目的是要移除標記為主要的憑證，則必須部署到期日比主要憑證還久的次要憑證，以啟用自動變換行為；再於自動變換完成後刪除主要憑證。
 
 ## <a name="add-a-secondary-certificate-using-resource-manager-powershell"></a>使用 Resource Manager Powershell 來新增次要憑證
 > [!TIP]
@@ -197,7 +195,7 @@ ms.lasthandoff: 03/16/2018
 - 登入您的 Azure 帳戶，並選取特定的 Azure 訂用帳戶。 對於擁有多個 Azure 訂用帳戶存取權的使用者而言，這是一個重要步驟。
 
 ```powershell
-Login-AzureRmAccount
+Connect-AzureRmAccount
 Select-AzureRmSubscription -SubscriptionId <Subcription ID> 
 
 ```
@@ -294,7 +292,6 @@ Get-ServiceFabricClusterHealth
 * [設定用戶端的角色型存取](service-fabric-cluster-security-roles.md)
 
 <!--Image references-->
-[Delete_Swap_Cert]: ./media/service-fabric-cluster-security-update-certs-azure/SecurityConfigurations_09.PNG
 [Add_Client_Cert]: ./media/service-fabric-cluster-security-update-certs-azure/SecurityConfigurations_13.PNG
 [Json_Pub_Setting1]: ./media/service-fabric-cluster-security-update-certs-azure/SecurityConfigurations_14.PNG
 [Json_Pub_Setting2]: ./media/service-fabric-cluster-security-update-certs-azure/SecurityConfigurations_15.PNG

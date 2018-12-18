@@ -1,12 +1,12 @@
 ---
-title: "Azure Service Fabric 安全性檢查清單 | Microsoft Docs"
-description: "本文提供一組 Azure 網狀架構安全性的檢查清單。"
+title: Azure Service Fabric 安全性檢查清單 | Microsoft Docs
+description: 本文提供一組 Azure 網狀架構安全性的檢查清單。
 services: security
 documentationcenter: na
 author: unifycloud
-manager: swadhwa
+manager: mbaldwin
 editor: tomsh
-ms.assetid: 
+ms.assetid: ''
 ms.service: security
 ms.devlang: na
 ms.topic: article
@@ -14,11 +14,12 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/04/2017
 ms.author: tomsh
-ms.openlocfilehash: 526f10bab30b7d0fae796e47f5a27a58428b9a3b
-ms.sourcegitcommit: b07d06ea51a20e32fdc61980667e801cb5db7333
+ms.openlocfilehash: d0826d60d766874ddd186bcf406ea987134dab16
+ms.sourcegitcommit: f20e43e436bfeafd333da75754cd32d405903b07
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2017
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49385850"
 ---
 # <a name="azure-service-fabric-security-checklist"></a>Azure Service Fabric 安全性檢查清單
 本文提供便於使用的檢查清單，以協助您保護 Azure Service Fabric 環境。
@@ -42,7 +43,7 @@ Azure Service Fabric 是分散式系統平台，可讓您輕鬆封裝、部署�
 |[ServerCertificate](https://docs.microsoft.com/azure/service-fabric/service-fabric-windows-cluster-x509-security)| <ul><li>用戶端嘗試連線到此叢集時，會向用戶端此憑證顯示此憑證。 您可以使用兩個不同的伺服器憑證 (主要和次要) 進行更新。</li></ul>|
 |ClientCertificateThumbprints| <ul><li>這是您想在經過驗證的用戶端上安裝的一組憑證。 </li></ul>|
 |ClientCertificateCommonNames| <ul><li>針對 CertificateCommonName 設定第一個用戶端憑證的一般名稱。 CertificateIssuerThumbprint 是此憑證的簽發者指紋。 </li></ul>|
-|ReverseProxyCertificate| <ul><li>如果您想要保護[反向 Proxy](https://docs.microsoft.com/en-in/azure/service-fabric/service-fabric-reverseproxy)，可以指定此選擇性憑證。 </li></ul>|
+|ReverseProxyCertificate| <ul><li>如果您想要保護[反向 Proxy](https://docs.microsoft.com/azure/service-fabric/service-fabric-reverseproxy)，可以指定此選擇性憑證。 </li></ul>|
 |Key Vault| <ul><li>用來管理 Azure 中 Service Fabric 叢集的憑證。  </li></ul>|
 
 

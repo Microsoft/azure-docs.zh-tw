@@ -9,24 +9,29 @@ editor: ''
 ms.assetid: ''
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 03/19/2018
+ms.date: 04/25/2018
 ms.author: dekapur
-ms.openlocfilehash: 46ba7b6e638fafa512d4a3f291c49acc1ddf02e4
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: 31f23e3f8e792c6b61870c640f99ec3392a940d3
+ms.sourcegitcommit: eb75f177fc59d90b1b667afcfe64ac51936e2638
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 05/16/2018
+ms.locfileid: "34211169"
 ---
 # <a name="monitoring-the-cluster-and-platform"></a>監視叢集和平台
 
 請務必在平台層級進行監視，以判斷硬體和叢集是否如預期運作。 雖然 Service Fabric 可在硬體故障時讓應用程式繼續執行，但是您仍需要診斷錯誤是發生在應用程式中，還是發生在基礎結構中。 您也應該監視叢集，更妥善地規劃容量，以協助決定如何新增或移除硬體。
 
-Service Fabric 提供下列現成的記錄通道：
+透過 EventStore 和各種現成的記錄通道，Service Fabric 能公開好幾種結構化的平台事件 (稱為 [Service Fabric 事件](service-fabric-diagnostics-events.md))。 
 
-* **作業**  
+EventStore 能讓您以實體為單位存取叢集事件 (實體包括叢集、節點、應用程式、服務、分割區、複本及容器)，並且透過 REST API 和 Service Fabric 用戶端程式庫公開事件。 請使用 EventStore 來監視開發/測試叢集，以及了解生產叢集在特定時間點的狀態。 若要深入瞭解此資訊，請參閱 [EventStore 概觀](service-fabric-diagnostics-eventstore.md)。
+
+Service Fabric 另提供以下現成記錄通道，供您設定生產叢集的監視管線：
+
+* [**作業**](service-fabric-diagnostics-event-generation-operational.md)  
 由 Service Fabric 與叢集執行的高階作業，包括即將進行的節點、正在部署的新應用程式，或升級復原等事件。
 
 * **作業 - 詳細**  

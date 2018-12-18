@@ -3,6 +3,8 @@
 
 * 轉換是無法復原的。 
 
+* 請注意任何具有[虛擬機器參與者](../articles/role-based-access-control/built-in-roles.md#virtual-machine-contributor)角色的使用者將無法變更 VM 大小 (因為它們可能為轉換前)。 這是因為具有受控磁碟的 VM 需要使用者具有 OS 磁碟上的 Microsoft.Compute/disks/write 權限。
+
 * 請務必先進行轉換測試。 在生產環境中執行移轉之前，請先移轉測試虛擬機器。
 
 * 在轉換期間，您會解除配置 VM。 在轉換後啟動 VM 時，VM 會接收新的 IP 位址。 如有必要，您可以對 VM [指派靜態 IP 位址](../articles/virtual-network/virtual-network-ip-addresses-overview-arm.md)。

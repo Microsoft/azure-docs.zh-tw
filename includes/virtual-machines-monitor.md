@@ -1,4 +1,4 @@
-您可以利用許多機會，藉由收集、檢視及分析診斷和記錄資料來監視 VM。 若要執行簡單的 VM [監視](../articles/monitoring-and-diagnostics/monitoring-overview-azure-monitor.md)，您可以在 Azure 入口網站中使用 VM 的 [概觀] 畫面。 您可以使用[擴充功能](../articles/virtual-machines/windows/extensions-features.md)來設定 VM 診斷，以收集其他計量資料。 您也可以使用更進階的監視選項，例如 [Application Insights](../articles/application-insights/app-insights-overview.md) 和 [Log Analytics](../articles/log-analytics/log-analytics-overview.md)。
+您可以利用許多機會，藉由收集、檢視及分析診斷和記錄資料來監視 VM。 若要執行簡單的 VM [監視](../articles/azure-monitor/overview.md)，您可以在 Azure 入口網站中使用 VM 的 [概觀] 畫面。 您可以使用[擴充功能](../articles/virtual-machines/windows/extensions-features.md)來設定 VM 診斷，以收集其他計量資料。 您也可以使用更進階的監視選項，例如 [Application Insights](../articles/application-insights/app-insights-overview.md) 和 [Log Analytics](../articles/log-analytics/log-analytics-queries.md)。
 
 ## <a name="diagnostics-and-metrics"></a>診斷和計量 
 
@@ -20,7 +20,7 @@
 
 您可以根據特定效能計量來建立[警示](../articles/monitoring-and-diagnostics/monitoring-overview-alerts.md)。 舉例來說，當平均 CPU 使用量超過特定臨界值，或可用的磁碟空間低於特定數量時，您即可接獲問題的警示。 您可以使用 [Azure PowerShell](../articles/monitoring-and-diagnostics/insights-alerts-powershell.md) 或 [Azure CLI](../articles/monitoring-and-diagnostics/insights-alerts-command-line-interface.md)，在 [Azure 入口網站](../articles/monitoring-and-diagnostics/insights-alerts-portal.md)中設定警示。
 
-## <a name="azure-service-health"></a>Azure 服務健康情況
+## <a name="azure-service-health"></a>Azure 服務健康狀態
 
 [Azure 服務健康情況](../articles/service-health/service-health-overview.md)提供個人化的指導方針並在 Azure 服務問題影響到您時提供支援，同時協助您準備即將進行的已規劃維護。 「Azure 服務健康情況」會使用有目標且有彈性的通知來警示您和您的小組。
 

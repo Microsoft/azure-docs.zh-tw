@@ -1,12 +1,12 @@
 ---
-title: "Azure Functions 執行階段概觀 | Microsoft Docs"
-description: "Azure Functions 執行階段預覽的概觀"
+title: Azure Functions 執行階段概觀 | Microsoft Docs
+description: Azure Functions 執行階段預覽的概觀
 services: functions
-documentationcenter: 
+documentationcenter: ''
 author: apwestgarth
 manager: stefsch
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: functions
 ms.workload: na
 ms.tgt_pltfrm: na
@@ -14,15 +14,16 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 11/28/2017
 ms.author: anwestg
-ms.openlocfilehash: 557f071e2cd8d4f639c881274e6e74a8fb745859
-ms.sourcegitcommit: a48e503fce6d51c7915dd23b4de14a91dd0337d8
+ms.openlocfilehash: 2be04c7037dd26755300cf8b7794678a6a958278
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/05/2017
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38488455"
 ---
-# <a name="azure-functions-runtime-overview"></a>Azure Functions 執行階段概觀
+# <a name="azure-functions-runtime-overview-preview"></a>Azure Functions 執行階段概觀 (預覽)
 
-Azure Functions 執行階段提供新的方法，讓您在內部部署利用 Azure Functions 程式設計模型的簡易性和彈性。 與 Azure Functions 一樣，Azure Functions 執行階段以相同的開放原始碼根源為基礎，並於內部部署，提供與雲端服務幾乎完全相同的開發經驗。
+Azure Functions 執行階段 (預覽) 提供新的方法，讓您在內部部署利用 Azure Functions 程式設計模型的簡易性和彈性。 與 Azure Functions 一樣，Azure Functions 執行階段以相同的開放原始碼根源為基礎，並於內部部署，提供與雲端服務幾乎完全相同的開發經驗。
 
 ![Azure Functions 執行階段預覽入口網站][1]
 

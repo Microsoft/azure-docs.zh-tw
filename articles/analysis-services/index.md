@@ -1,22 +1,23 @@
 ---
-title: "Azure 分析服務文件 - 教學課程和 API 參考 | Microsoft Docs"
-description: "了解如何在雲端使用 Analysis Services 設定資料模型。 文件會示範如何使用表格式資料來建立企業 BI 解決方案。"
+title: Azure 分析服務文件 - 教學課程和 API 參考 | Microsoft Docs
+description: 了解如何在雲端使用 Analysis Services 設定資料模型。 文件會示範如何使用表格式資料來建立企業 BI 解決方案。
 services: analysis-services
 author: czeumault
 manager: carolz
 layout: LandingPage
-ms.assetid: 
-ms.service: analysis-services
+ms.assetid: ''
+ms.service: azure-analysis-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: landing-page
 ms.date: 02/14/2018
 ms.author: carolz
-ms.openlocfilehash: e33dd7b691781926ab6dfc7cf08352fc9e7eca90
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.openlocfilehash: 39b1870eebbaa1322e956576947bddb6b848c994
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34595687"
 ---
 # <a name="analysis-services-documentation"></a>Analysis Services 文件
 

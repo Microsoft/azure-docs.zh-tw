@@ -1,26 +1,21 @@
 ---
-title: "開始使用 Microsoft Power BI 工作區集合"
-description: "Power BI 工作區集合是一項 Azure 服務，可讓應用程式開發人員將互動式 Power BI 報告加入至自己的應用程式。"
+title: 開始使用 Microsoft Power BI 工作區集合
+description: Power BI 工作區集合是一項 Azure 服務，可讓應用程式開發人員將互動式 Power BI 報告加入至自己的應用程式。
 services: power-bi-embedded
-documentationcenter: 
-author: guyinacube
-manager: erikre
-editor: 
-tags: 
+author: markingmyname
 ROBOTS: NOINDEX
 ms.assetid: 4787cf44-5d1c-4bc3-b3fd-bf396e5c1176
 ms.service: power-bi-embedded
-ms.devlang: NA
-ms.topic: hero-article
-ms.tgt_pltfrm: NA
+ms.topic: conceptual
 ms.workload: powerbi
 ms.date: 09/25/2017
-ms.author: asaxton
-ms.openlocfilehash: 4ee113ed25142507f381d8c9d49b25ee6553c525
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.author: maghan
+ms.openlocfilehash: b565955abaae44efe20291a6e46b57a5fec941d1
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43046553"
 ---
 # <a name="get-started-with-microsoft-power-bi-workspace-collections"></a>開始使用 Microsoft Power BI 工作區集合
 
@@ -42,7 +37,7 @@ ms.lasthandoff: 10/11/2017
 
 讓我們逐步解說使用 Azure 入口網站建立**工作區集合**的步驟。
 
-1. 開啟並登入 **Azure 入口網站**：[http://portal.azure.com](http://portal.azure.com)。
+1. 開啟 **Azure 入口網站**並登入：[http://portal.azure.com](http://portal.azure.com)。
 2. 選取頂端面板上的 [+ 新增]。
    
    ![Azure 入口網站內的 [+ 新增]](media/get-started/create-workspace-1.png)

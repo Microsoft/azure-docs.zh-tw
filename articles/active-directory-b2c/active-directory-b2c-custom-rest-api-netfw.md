@@ -1,23 +1,26 @@
 ---
-title: Azure Active Directory B2C：將 REST API 宣告交換整合到 Azure AD B2C 使用者旅程圖中以作為使用者輸入的驗證
+title: 將 REST API 宣告交換整合到 Azure Active Directory B2C 使用者旅程圖中 | Microsoft Docs
 description: 將 REST API 宣告交換整合到 Azure AD B2C 使用者旅程圖中以作為使用者輸入的驗證。
 services: active-directory-b2c
-documentationcenter: ''
 author: davidmu1
 manager: mtillman
-editor: ''
-ms.service: active-directory-b2c
+ms.service: active-directory
 ms.workload: identity
-ms.topic: article
+ms.topic: conceptual
 ms.date: 09/30/2017
 ms.author: davidmu
-ms.openlocfilehash: 9429f690940e1282d94b4d67ad1c618a24655cb5
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.component: B2C
+ms.openlocfilehash: e3d938c4464fc5141b97f85220bf096920e17d00
+ms.sourcegitcommit: 0c64460a345c89a6b579b1d7e273435a5ab4157a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43339588"
 ---
 # <a name="integrate-rest-api-claims-exchanges-in-your-azure-ad-b2c-user-journey-as-validation-of-user-input"></a>將 REST API 宣告交換整合到 Azure AD B2C 使用者旅程圖中以作為使用者輸入的驗證
+
+[!INCLUDE [active-directory-b2c-advanced-audience-warning](../../includes/active-directory-b2c-advanced-audience-warning.md)]
+
 您可以使用構成 Azure Active Directory B2C (Azure AD B2C) 基礎的識別體驗架構，與使用者旅程圖中的 RESTful API 整合。 在本逐步解說中，您將了解 Azure AD B2C 與.NET Framework RESTful 服務 (Web API) 之間的互動方式。
 
 ## <a name="introduction"></a>簡介
@@ -50,7 +53,7 @@ ms.lasthandoff: 03/23/2018
 * 傳回忠誠度號碼。 
 * 將忠誠度號碼新增至 JSON Web 權杖 (JWT)。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 完成[開始使用自訂原則](active-directory-b2c-get-started-custom.md)一文中的步驟。
 
 ## <a name="step-1-create-an-aspnet-web-api"></a>步驟 1：建立 ASP.NET Web API
@@ -363,7 +366,7 @@ ms.lasthandoff: 03/23/2018
   "exp": 1507125903,
   "nbf": 1507122303,
   "ver": "1.0",
-  "iss": "https://login.microsoftonline.com/f06c2fe8-709f-4030-85dc-38a4bfd9e82d/v2.0/",
+  "iss": "https://contoso.b2clogin.com/f06c2fe8-709f-4030-85dc-38a4bfd9e82d/v2.0/",
   "aud": "e1d2612f-c2bc-4599-8e7b-d874eaca1ee1",
   "acr": "b2c_1a_signup_signin",
   "nonce": "defaultNonce",

@@ -1,26 +1,20 @@
 ---
-title: "調整叢集大小 - Azure HDInsight | Microsoft Docs"
-description: "調整 HDInsight 叢集以因應工作負載。"
+title: 調整叢集大小 - Azure HDInsight
+description: 調整 HDInsight 叢集以因應工作負載。
 services: hdinsight
-documentationcenter: 
 author: ashishthaps
-manager: jhubbard
-editor: cgronlun
-tags: azure-portal
-ms.assetid: 
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
+ms.topic: conceptual
 ms.date: 02/02/2018
 ms.author: ashish
-ms.openlocfilehash: 7e9ee660c07d6265e55e94cf79ed13334fcb3d16
-ms.sourcegitcommit: eeb5daebf10564ec110a4e83874db0fb9f9f8061
+ms.openlocfilehash: 93eb6fb0da86909dfc880db2a9bb2331abe4418a
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/03/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46948112"
 ---
 # <a name="scale-hdinsight-clusters"></a>調整 HDInsight 叢集
 
@@ -34,11 +28,13 @@ HDInsight 具有彈性，可讓您選擇相應增加和相應減少叢集中的�
     Set-AzureRmHDInsightClusterSize -ClusterName <Cluster Name> -TargetInstanceCount <NewSize>
     ```
     
-* 若要透過 [Azure CLI](hdinsight-administer-use-command-line.md) 調整叢集：
+* 若要透過 [Azure 傳統 CLI](hdinsight-administer-use-command-line.md) 調整叢集：
 
     ```
     azure hdinsight cluster resize [options] <clusterName> <Target Instance Count>
     ```
+
+[!INCLUDE [classic-cli-warning](../../includes/requires-classic-cli.md)]
     
 * 若要透過 [Azure 入口網站](https://portal.azure.com)調整叢集，請開啟 [HDInsight 叢集] 窗格，選取左側功能表中的 [調整叢集]，然後在 [調整叢集] 窗格中輸入背景工作節點數，再選取 [儲存]。
 
@@ -123,7 +119,7 @@ hdfs dfsadmin -D 'fs.default.name=hdfs://mycluster/' -safemode leave
 
 * H070 無法開啟 Hive 工作階段。 org.apache.hadoop.ipc.RemoteException(org.apache.hadoop.ipc.RetriableException): org.apache.hadoop.hdfs.server.namenode.SafeModeException: **無法建立目錄** /tmp/hive/hive/819c215c-6d87-4311-97c8-4f0b9d2adcf0。 **名稱節點處於安全模式**。 所報告的區塊 75 個還需要 12 個區塊才能觸達閾值 0.9900 (總計 87 個區塊)。 即時資料節點數目 10 個已觸達最小值 0 個。 一旦觸達閾值，安全模式就會自動關閉。
 
-* H100 無法提交陳述式顯示資料庫: org.apache.thrift.transport.TTransportException: org.apache.http.conn.HttpHostConnectException: 連線至 hn0-clustername.servername.internal.cloudapp.net:10001 [hn0-clustername.servername. internal.cloudapp.net/1.1.1.1] 失敗: **拒絕連線** internal.cloudapp.net/1.1.1.1] failed: <bpt id="p1">**</bpt>Connection refused<ept id="p1">**</ept>
+* H100 無法提交陳述式顯示資料庫: org.apache.thrift.transport.TTransportException: org.apache.http.conn.HttpHostConnectException: 連線至 hn0-clustername.servername.internal.cloudapp.net:10001 [hn0-clustername.servername。 internal.cloudapp.net/1.1.1.1] 失敗: **拒絕連線**
 
 * H020 無法連線至 hn0-hdisrv.servername.bx.internal.cloudapp.net:10001: org.apache.thrift.transport.TTransportException: 無法以 http 連線至 http://hn0-hdisrv.servername.bx.internal.cloudapp.net:10001/。 org.apache.http.conn.HttpHostConnectException: 連線至 hn0-hdisrv.servername.bx.internal.cloudapp.net:10001 [hn0-hdisrv.servername.bx.internal.cloudapp.net/10.0.0.28] 失敗: 拒絕連線: org.apache.thrift.transport.TTransportException: 無法以 http 連線至 http://hn0-hdisrv.servername.bx.internal.cloudapp.net:10001/。 org.apache.http.conn.HttpHostConnectException: 連線至 hn0-hdisrv.servername.bx.internal.cloudapp.net:10001 [hn0-hdisrv.servername.bx.internal.cloudapp.net/10.0.0.28] 失敗: **拒絕連線**
 

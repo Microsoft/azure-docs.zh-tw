@@ -3,27 +3,24 @@ title: Azure Cosmos DB 自動化 - 使用 Powershell 管理 | Microsoft Docs
 description: 使用 Azure Powershell 管理 Azure Cosmos DB 資料庫帳戶。
 services: cosmos-db
 author: dmakwana
-manager: jhubbard
+manager: kfile
 editor: ''
 tags: azure-resource-manager
-documentationcenter: ''
-ms.assetid: ''
 ms.service: cosmos-db
-ms.workload: data-services
-ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 04/21/2017
 ms.author: dimakwan
-ms.openlocfilehash: 12c7800ee2a823cca5394841cae86eeacc20fb1b
-ms.sourcegitcommit: 34e0b4a7427f9d2a74164a18c3063c8be967b194
+ms.openlocfilehash: 60b13c8284708ce46d62b6659b2631a4f551c2ab
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/30/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46983103"
 ---
 # <a name="create-an-azure-cosmos-db-account-using-powershell"></a>使用 PowerShell 建立 Azure Cosmos DB 帳戶
 
-下列指南說明使用 Azure Powershell 自動管理 Azure Cosmos DB 資料庫帳戶的命令。 它也包含在[多重區域資料庫帳戶][scaling-globally]中管理帳戶金鑰和容錯移轉優先順序的命令。 更新資料庫帳戶可讓您修改一致性原則和新增/移除區域。 如需跨平台管理 Azure Cosmos DB 資料庫帳戶，您可以使用 [Azure CLI](cli-samples.md)、[資源提供者 REST API][rp-rest-api] 或 [Azure 入口網站](create-sql-api-dotnet.md#create-account)。
+下列指南說明使用 Azure Powershell 自動管理 Azure Cosmos DB 資料庫帳戶的命令。 它也包含在[多重區域資料庫帳戶][distribute-data-globally.md]中管理帳戶金鑰和容錯移轉優先順序的命令。 更新資料庫帳戶可讓您修改一致性原則和新增/移除區域。 如需跨平台管理 Azure Cosmos DB 資料庫帳戶，您可以使用 [Azure CLI](cli-samples.md)、[資源提供者 REST API][rp-rest-api] 或 [Azure 入口網站](create-sql-api-dotnet.md#create-account)。
 
 ## <a name="getting-started"></a>開始使用
 
@@ -36,7 +33,7 @@ ms.lasthandoff: 03/30/2018
 
 ## <a id="create-documentdb-account-powershell"></a> 建立 Azure Cosmos DB 帳戶
 
-此命令可讓您建立 Azure Cosmos DB 資料庫帳戶。 將新的資料庫帳戶設定為單一區域或有特定[一致性原則](consistency-levels.md)的[多重區域][scaling-globally]。
+此命令可讓您建立 Azure Cosmos DB 資料庫帳戶。 將新的資料庫帳戶設定為單一區域具或有特定[一致性原則](consistency-levels.md)的[多重區域][distribute-data-globally.md]。
 
     $locations = @(@{"locationName"="<write-region-location>"; "failoverPriority"=0}, @{"locationName"="<read-region-location>"; "failoverPriority"=1})
     $iprangefilter = "<ip-range-filter>"
@@ -63,7 +60,7 @@ ms.lasthandoff: 03/30/2018
     New-AzureRmResource -ResourceType "Microsoft.DocumentDb/databaseAccounts" -ApiVersion "2015-04-08" -ResourceGroupName "rg-test" -Location "West US" -Name "docdb-test" -Properties $CosmosDBProperties
 
 ### <a name="notes"></a>注意
-* 上述範例會建立一個有兩個區域的資料庫帳戶。 也可以建立一個有一個區域 (指定為寫入區域，容錯移轉優先順序值為 0)，或有兩個以上區域的資料庫帳戶。 如需詳細資訊，請參閱[多重區域資料庫帳戶][scaling-globally]。
+* 上述範例會建立一個有兩個區域的資料庫帳戶。 也可以建立一個有一個區域 (指定為寫入區域，容錯移轉優先順序值為 0)，或有兩個以上區域的資料庫帳戶。 如需詳細資訊，請參閱[多重區域資料庫帳戶][distribute-data-globally.md]。
 * locations 必須是已正式推出 Azure Cosmos DB 的區域。 [Azure 區域頁面](https://azure.microsoft.com/regions/#services)會提供目前的區域清單。
 
 ## <a id="update-documentdb-account-powershell"></a> 更新 Azure Cosmos DB 資料庫帳戶
@@ -132,8 +129,8 @@ ms.lasthandoff: 03/30/2018
 
 範例：
 
-    $tags = @{"dept" = "Finance”; environment = “Production”}
-    Set-AzureRmResource -ResourceType “Microsoft.DocumentDB/databaseAccounts”  -ResourceGroupName "rg-test" -Name "docdb-test" -Tags $tags
+    $tags = @{"dept" = "Finance"; environment = "Production"}
+    Set-AzureRmResource -ResourceType "Microsoft.DocumentDB/databaseAccounts"  -ResourceGroupName "rg-test" -Name "docdb-test" -Tags $tags
 
 ## <a id="list-account-keys-powershell"></a> 列出帳戶金鑰
 

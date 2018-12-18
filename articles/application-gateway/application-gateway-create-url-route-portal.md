@@ -10,11 +10,12 @@ ms.topic: article
 ms.workload: infrastructure-services
 ms.date: 3/26/2018
 ms.author: victorh
-ms.openlocfilehash: 4ffaeedf125b6f74aeb88e22248040c6c3ef001c
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: 5bec7be5f7ad744960d2602aaf24fec51d869267
+ms.sourcegitcommit: 7208bfe8878f83d5ec92e54e2f1222ffd41bf931
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 07/14/2018
+ms.locfileid: "39056244"
 ---
 # <a name="create-an-application-gateway-with-path-based-routing-rules-using-the-azure-portal"></a>使用 Azure 入口網站建立包含 URL 路徑型路由規則的應用程式閘道
 
@@ -87,7 +88,7 @@ ms.lasthandoff: 03/28/2018
     - *Azure123456!* 作為密碼。
     - 選取 [使用現有的]，然後選取 [myResourceGroupAG]。
 
-4. 按一下 [SERVICEPRINCIPAL] 。
+4. 按一下 [確定]。
 5. 選取 [DS1_V2] 作為虛擬機器的大小，然後按一下 [選取]。
 6. 確定您已選取 [myVNet] 作為虛擬網路，而且子網路是 [myBackendSubnet]。 
 7. 按一下 [停用] 來停用開機診斷。
@@ -102,7 +103,7 @@ ms.lasthandoff: 03/28/2018
 2. 執行下列命令以在虛擬機器上安裝 IIS： 
 
     ```azurepowershell-interactive
-    $publicSettings = @{ "fileUris" = (,"https://raw.githubusercontent.com/davidmu1/samplescripts/master/appgatewayurl.ps1");  "commandToExecute" = "powershell -ExecutionPolicy Unrestricted -File appgatewayurl.ps1" }
+    $publicSettings = @{ "fileUris" = (,"https://raw.githubusercontent.com/Azure/azure-docs-powershell-samples/master/application-gateway/iis/appgatewayurl.ps1");  "commandToExecute" = "powershell -ExecutionPolicy Unrestricted -File appgatewayurl.ps1" }
     Set-AzureRmVMExtension `
       -ResourceGroupName myResourceGroupAG `
       -Location eastus `
@@ -127,25 +128,25 @@ ms.lasthandoff: 03/28/2018
 4. 按一下 [檔案] 。
 5. 依序按一下 [後端集區] 和 [新增]。
 6. 輸入 imagesBackendPool 的名稱，並使用 [新增目標] 來新增 myVM2。
-7. 按一下 [SERVICEPRINCIPAL] 。
+7. 按一下 [確定]。
 8. 再次按一下 [新增]，以 videoBackendPool 名稱新增另一個後端集區，並將 myVM3 新增給該後端集區。
 
 ## <a name="create-a-backend-listener"></a>建立後端接聽程式
 
 1. 按一下 [接聽程式]，然後按一下 [基本]。
 2. 依序輸入 myBackendListener 作為名稱、myFrontendPort 作為前端連接埠的名稱，以及 8080 作為接聽程式的通訊埠。
-3. 按一下 [SERVICEPRINCIPAL] 。
+3. 按一下 [確定]。
 
 ## <a name="create-a-path-based-routing-rule"></a>建立路徑型路由規則
 
 1. 按一下 [規則]，然後按一下 [路徑型]。
 2. 輸入 rule2 作為名稱。
-3. 輸入 Images 作為第一個路徑的名稱。 輸入 /images/* 作為路徑。 選取 **imagesBackendPool** 作為後端集區。
-4. 輸入 Video 作為第二個路徑的名稱。 輸入 /video/* 作為路徑。 選取 **videoBackendPool** 作為後端集區。
+3. 輸入 Images 作為第一個路徑的名稱。 輸入 */images/*\* 作為路徑。 選取 **imagesBackendPool** 作為後端集區。
+4. 輸入 Video 作為第二個路徑的名稱。 輸入 */video/*\* 作為路徑。 選取 **videoBackendPool** 作為後端集區。
 
     ![建立路徑型規則](./media/application-gateway-create-url-route-portal/application-gateway-route-rule.png)
 
-5. 按一下 [SERVICEPRINCIPAL] 。
+5. 按一下 [確定]。
 
 ## <a name="test-the-application-gateway"></a>測試應用程式閘道
 

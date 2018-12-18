@@ -9,11 +9,12 @@ ms.topic: include
 ms.date: 03/22/2018
 ms.author: vlvinogr
 ms.custom: include file
-ms.openlocfilehash: bee289da3f18edd0cb425f3d9acde084567a3b13
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: b40e2ba448236bcef72ffe501b4b14fa0dd64e1c
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38755530"
 ---
 | 資源 | 限制 |
 | --- | --- |
@@ -21,6 +22,7 @@ ms.lasthandoff: 03/28/2018
 | 快取 | 每個單位 5 GB<sup>1</sup> |
 | 每個 HTTP 授權單位的並行後端連線數目<sup>2</sup> | 每個單位 2048 個<sup>3</sup> |
 | 最大快取回應大小 | 10MB |
+| 原則文件大小上限 | 256KB |
 | 最大自訂閘道網域數目 | 每個服務執行個體 20 個<sup>4</sup> |
 
 

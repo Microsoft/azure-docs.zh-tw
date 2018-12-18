@@ -12,14 +12,15 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: ''
 ms.workload: na
-ms.date: 05/22/2017
+ms.date: 06/01/2018
 ms.author: danlep
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: a9aa896bfc4c860c87757f9379fc44cc5ee8d18a
-ms.sourcegitcommit: 20d103fb8658b29b48115782fe01f76239b240aa
+ms.openlocfilehash: 713583a6a184a583145c610b4e014f56941efa4c
+ms.sourcegitcommit: 7827d434ae8e904af9b573fb7c4f4799137f9d9b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2018
+ms.lasthandoff: 07/18/2018
+ms.locfileid: "39113506"
 ---
 # <a name="provision-linux-compute-nodes-in-batch-pools"></a>在 Batch 集區中佈建 Linux 計算節點
 
@@ -38,14 +39,14 @@ ms.lasthandoff: 04/03/2018
 **虛擬機器組態** 可提供適用於計算節點的 Linux 和 Windows 映像。 可用的計算節點大小列於 [Azure 中的虛擬機器大小](../virtual-machines/linux/sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) (Linux) 和 [Azure 中的虛擬機器大小](../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (Windows)。 在建立包含虛擬機器組態節點的集區時，您必須指定節點大小、虛擬機器映像參考以及要在節點上安裝的 Batch 節點代理程式 SKU。
 
 ### <a name="virtual-machine-image-reference"></a>虛擬機器映像參考
-Batch 服務使用[虛擬機器擴展集](../virtual-machine-scale-sets/virtual-machine-scale-sets-overview.md)來提供 Linux 計算節點。 您可以指定來自 [Azure Marketplace][vm_marketplace] 的映像，或提供您準備好的自訂映像。 如需自訂映像的詳細資訊，請參閱[使用 Batch 開發大規模的平行計算解決方案](batch-api-basics.md#pool)。
+Batch 服務使用[虛擬機器擴展集](../virtual-machine-scale-sets/virtual-machine-scale-sets-overview.md)來提供虛擬機器設定中的計算節點。 您可以指定來自 [Azure Marketplace][vm_marketplace] 的映像，或提供您準備好的自訂映像。 如需自訂映像的詳細資料，請參閱[使用自訂映像建立集區](batch-custom-images.md)。
 
 設定虛擬機器映像參考時，您會指定虛擬機器映像的屬性。 建立虛擬機器映像參考時，會需要下列屬性︰
 
 | **映像參考屬性** | **範例** |
 | --- | --- |
 | 發行者 |Canonical |
-| 提供項目 |UbuntuServer |
+| 供應項目 |UbuntuServer |
 | SKU |14.04.4-LTS |
 | 版本 |最新 |
 
@@ -69,7 +70,7 @@ Batch 節點代理程式是一項程式，會在集區中的每個節點上執�
 ## <a name="create-a-linux-pool-batch-python"></a>建立 Linux 集區︰Batch Python
 下列程式碼片段舉例示範如何使用 [Python 適用的 Microsoft Azure Batch 用戶端程式庫][py_batch_package]來建立 Ubuntu Server 計算節點的集區。 您可以在「閱讀文件」的 [azure.batch 套件][py_batch_docs]中找到 Batch Python 模組的參考文件。
 
-此程式碼片段會明確建立 [ImageReference][py_imagereference]，並指定其每一個屬性 (發行者、優惠、SKU、版本)。 不過，在實際執行程式碼中，我們建議您使用 [list_node_agent_skus][py_list_skus] 方法，在執行階段判斷並從可用的映像和節點代理程式 SKU 組合中選取。
+此程式碼片段會明確建立 [ImageReference][py_imagereference]，並指定其每一個屬性 (發行者、供應項目、SKU、版本)。 不過，在實際執行程式碼中，我們建議您使用 [list_node_agent_skus][py_list_skus] 方法，在執行階段判斷並從可用的映像和節點代理程式 SKU 組合中選取。
 
 ```python
 # Import the required modules from the
@@ -145,7 +146,7 @@ vmc = batchmodels.VirtualMachineConfiguration(
 ```
 
 ## <a name="create-a-linux-pool-batch-net"></a>建立 Linux 集區︰Batch .NET
-下列程式碼片段舉例示範如何使用 [Batch .NET][nuget_batch_net] 用戶端程式庫來建立 Ubuntu Server 計算節點的集區。 您可以在 MSDN 上找到 [Batch .NET 參考文件][api_net]。
+下列程式碼片段舉例示範如何使用 [Batch .NET][nuget_batch_net] 用戶端程式庫來建立 Ubuntu Server 計算節點的集區。 您可以在 docs.microsoft.com 上找到 [Batch .NET 參考文件][api_net]。
 
 下列程式碼片段使用 [PoolOperations][net_pool_ops].[ListNodeAgentSkus][net_list_skus] 方法，從目前支援的 Marketplace 映像和節點代理程式 SKU 組合清單中選取。 這項技術最理想，因為支援的組合清單可能會隨著時間變更。 最常見的是新增支援的組合。
 
@@ -206,35 +207,42 @@ ImageReference imageReference = new ImageReference(
 ```
 
 ## <a name="list-of-virtual-machine-images"></a>虛擬機器映像的清單
-下表列出本文最後一次更新時，與可用 Batch 節點代理程式相容的 Marketplace 虛擬機器映像。 請務必注意，此清單並非永久不變，因為可能隨時新增或移除映像和節點代理程式。 我們建議您的 Batch 應用程式和服務一律使用 [list_node_agent_skus][py_list_skus] (Python) 和 [ListNodeAgentSkus][net_list_skus] (Batch .NET)，以判斷並從目前可用的 SKU 中選取。
+下表列出本文最後一次更新時，與可用 Batch 節點代理程式相容的 Marketplace 虛擬機器映像。 請務必注意，此清單並非永久不變，因為可能隨時新增或移除映像和節點代理程式。 建議您的 Batch 應用程式和服務一律使用 [list_node_agent_skus][py_list_skus] (Python) 或 [ListNodeAgentSkus][net_list_skus] (Batch .NET)，以判斷並從目前可用的 SKU 中選取。
 
 > [!WARNING]
 > 下列清單可能會隨時變更。 一律使用 Batch API 中提供的 **清單節點代理程式 SKU** 方法，在執行 Batch 作業時，列出相容的虛擬機器和節點代理程式的 SKU。
 >
 >
 
-| **發行者** | **提供項目** | **映像 SKU** | **版本** | **節點代理程式 SKU 識別碼** |
+| **發行者** | **供應項目** | **映像 SKU** | **版本** | **節點代理程式 SKU 識別碼** |
 | ------------- | --------- | ------------- | ----------- | --------------------- |
+| 批次 | rendering-centos73 | 轉譯 | 最新 | batch.node.centos 7 |
+| 批次 | rendering-windows2016 | 轉譯 | 最新 | batch.node.windows amd64 |
+| Canonical | UbuntuServer | 16.04-LTS | 最新 | batch.node.ubuntu 16.04 |
 | Canonical | UbuntuServer | 14.04.5-LTS | 最新 | batch.node.ubuntu 14.04 |
-| Canonical | UbuntuServer | 16.04.0-LTS | 最新 | batch.node.ubuntu 16.04 |
+| Credativ | Debian | 9 | 最新 | batch.node.debian 9 |
 | Credativ | Debian | 8 | 最新 | batch.node.debian 8 |
-| OpenLogic | CentOS | 7.0 | 最新 | batch.node.centos 7 |
-| OpenLogic | CentOS | 7.1 | 最新 | batch.node.centos 7 |
-| OpenLogic | CentOS-HPC | 7.1 | 最新 | batch.node.centos 7 |
-| OpenLogic | CentOS | 7.2 | 最新 | batch.node.centos 7 |
-| Oracle | Oracle-Linux | 7.0 | 最新 | batch.node.centos 7 |
-| Oracle | Oracle-Linux | 7.2 | 最新 | batch.node.centos 7 |
-| SUSE | openSUSE | 13.2 | 最新 | batch.node.opensuse 13.2 |
-| SUSE | openSUSE-Leap | 42.1 | 最新 | batch.node.opensuse 42.1 |
-| SUSE | SLES | 12-SP1 | 最新 | batch.node.opensuse 42.1 |
-| SUSE | SLES-HPC | 12-SP1 | 最新 | batch.node.opensuse 42.1 |
 | microsoft-ads | linux-data-science-vm | linuxdsvm | 最新 | batch.node.centos 7 |
 | microsoft-ads | standard-data-science-vm | standard-data-science-vm | 最新 | batch.node.windows amd64 |
-| MicrosoftWindowsServer | WindowsServer | 2008-R2-SP1 | 最新 | batch.node.windows amd64 |
-| MicrosoftWindowsServer | WindowsServer | 2012-Datacenter | 最新 | batch.node.windows amd64 |
-| MicrosoftWindowsServer | WindowsServer | 2012-R2-Datacenter | 最新 | batch.node.windows amd64 |
+| microsoft-azure-batch | centos-container | 7-4 | 最新 | batch.node.centos 7 |
+| microsoft-azure-batch | centos-container-rdma | 7-4 | 最新 | batch.node.centos 7 |
+| microsoft-azure-batch | ubuntu-server-container | 16-04-lts | 最新 | batch.node.ubuntu 16.04 |
+| microsoft-azure-batch | ubuntu-server-container-rdma | 16-04-lts | 最新 | batch.node.ubuntu 16.04 |
 | MicrosoftWindowsServer | WindowsServer | 2016-Datacenter | 最新 | batch.node.windows amd64 |
+| MicrosoftWindowsServer | WindowsServer | 2016-Datacenter-smalldisk | 最新 | batch.node.windows amd64 |
 | MicrosoftWindowsServer | WindowsServer | 2016-Datacenter-with-Containers | 最新 | batch.node.windows amd64 |
+| MicrosoftWindowsServer | WindowsServer | 2012-R2-Datacenter | 最新 | batch.node.windows amd64 |
+| MicrosoftWindowsServer | WindowsServer | 2012-R2-Datacenter-smalldisk | 最新 | batch.node.windows amd64 |
+| MicrosoftWindowsServer | WindowsServer | 2012-Datacenter | 最新 | batch.node.windows amd64 |
+| MicrosoftWindowsServer | WindowsServer | 2012-Datacenter-smalldisk | 最新 | batch.node.windows amd64 |
+| MicrosoftWindowsServer | WindowsServer | 2008-R2-SP1 | 最新 | batch.node.windows amd64 |
+| MicrosoftWindowsServer | WindowsServer | 2008-R2-SP1-smalldisk | 最新 | batch.node.windows amd64 |
+| OpenLogic | CentOS | 7.4 | 最新 | batch.node.centos 7 |
+| OpenLogic | CentOS-HPC | 7.4 | 最新 | batch.node.centos 7 |
+| OpenLogic | CentOS-HPC | 7.3 | 最新 | batch.node.centos 7 |
+| OpenLogic | CentOS-HPC | 7.1 | 最新 | batch.node.centos 7 |
+| Oracle | Oracle-Linux | 7.4 | 最新 | batch.node.centos 7 |
+| SUSE | SLES-HPC | 12-SP2 | 最新 | batch.node.opensuse 42.1 |
 
 ## <a name="connect-to-linux-nodes-using-ssh"></a>使用 SSH 連線至 Linux 節點
 在開發期間或問題進行疑難排解時，您可能會發現需要登入您的集區中的節點。 不同於 Windows 計算節點，您無法使用遠端桌面通訊協定 (RDP) 連線到 Linux 節點。 相反地，Batch 服務可讓您遠端連線的每個節點上的 SSH 存取。
@@ -316,20 +324,13 @@ Azure Batch 採用 Azure 雲端服務和 Azure 虛擬機器技術。 Batch 服�
 如果您是使用[應用程式套件](batch-application-packages.md)將應用程式部署到您的 Batch 節點，也需要支付應用程式套件使用的 Azure 儲存體資源。 一般情況下，Azure 儲存體成本很低。 
 
 ## <a name="next-steps"></a>後續步驟
-### <a name="batch-python-tutorial"></a>Batch Python 教學課程
-如需如何透過 Python 使用 Batch 的深入教學課程，請參閱 [開始使用 Azure Batch Python 用戶端](batch-python-tutorial.md)。 隨附的[程式碼範例][github_samples_pyclient]包含 Helper 函式 `get_vm_config_for_distro`，展示另一種技術來取得虛擬機器組態。
 
-### <a name="batch-python-code-samples"></a>Batch Python 程式碼範例
 GitHub 上 [azure-batch-samples][github_samples] 存放庫中的 [Python 程式碼範例][github_samples_py]包含幾個指令碼，會示範如何執行一般 Batch 作業 (例如建立集區、作業和工作)。 Python 範例隨附的[讀我檔案][github_py_readme]詳細說明如何安裝必要的套件。
-
-### <a name="batch-forum"></a>批次論壇
-MSDN 上的 [Azure Batch 論壇][forum]是一個很棒的地方，可以討論 Batch 和詢問有關此服務的問題。 請閱讀實用的「釘選」文章，並在建置 Batch 解決方案時，若發生問題就張貼問題。
 
 [api_net]: http://msdn.microsoft.com/library/azure/mt348682.aspx
 [api_net_mgmt]: https://msdn.microsoft.com/library/azure/mt463120.aspx
 [api_rest]: http://msdn.microsoft.com/library/azure/dn820158.aspx
 [cloud_services_pricing]: https://azure.microsoft.com/pricing/details/cloud-services/
-[forum]: https://social.msdn.microsoft.com/forums/azure/en-US/home?forum=azurebatch
 [github_py_readme]: https://github.com/Azure/azure-batch-samples/blob/master/Python/Batch/README.md
 [github_samples]: https://github.com/Azure/azure-batch-samples
 [github_samples_py]: https://github.com/Azure/azure-batch-samples/tree/master/Python/Batch
@@ -341,14 +342,14 @@ MSDN 上的 [Azure Batch 論壇][forum]是一個很棒的地方，可以討論 B
 [net_list_skus]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.pooloperations.listnodeagentskus.aspx
 [net_pool_ops]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.pooloperations.aspx
 [net_ssh_key]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.computenodeuser.sshpublickey.aspx
-[nuget_batch_net]: https://www.nuget.org/packages/Azure.Batch/
+[nuget_batch_net]: https://www.nuget.org/packages/Microsoft.Azure.Batch/
 [rest_add_pool]: https://msdn.microsoft.com/library/azure/dn820174.aspx
 [py_account_ops]: http://azure-sdk-for-python.readthedocs.org/en/dev/ref/azure.batch.operations.html#azure.batch.operations.AccountOperations
 [py_azure_sdk]: https://pypi.python.org/pypi/azure
-[py_batch_docs]: http://azure-sdk-for-python.readthedocs.org/en/dev/ref/azure.batch.html
+[py_batch_docs]: https://azure-sdk-for-python.readthedocs.io/batch.html
 [py_batch_package]: https://pypi.python.org/pypi/azure-batch
-[py_computenodeuser]: http://azure-sdk-for-python.readthedocs.org/en/dev/ref/azure.batch.models.html#azure.batch.models.ComputeNodeUser
-[py_imagereference]: http://azure-sdk-for-python.readthedocs.org/en/dev/ref/azure.batch.models.html#azure.batch.models.ImageReference
+[py_computenodeuser]: https://docs.microsoft.com/python/api/azure.batch.models.computenodeuser
+[py_imagereference]: https://docs.microsoft.com/python/api/azure.mgmt.batch.models.imagereference
 [py_list_skus]: http://azure-sdk-for-python.readthedocs.org/en/dev/ref/azure.batch.operations.html#azure.batch.operations.AccountOperations.list_node_agent_skus
 [vm_marketplace]: https://azure.microsoft.com/marketplace/virtual-machines/
 [vm_pricing]: https://azure.microsoft.com/pricing/details/virtual-machines/

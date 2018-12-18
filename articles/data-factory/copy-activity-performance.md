@@ -10,25 +10,23 @@ ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 03/27/2018
+ms.topic: conceptual
+ms.date: 07/06/2018
 ms.author: jingwang
-ms.openlocfilehash: c43973a7e5070676fc0f32a4c8923d57a479f884
-ms.sourcegitcommit: c3d53d8901622f93efcd13a31863161019325216
+ms.openlocfilehash: 958d1ea09ce4d85afc59af412e1050efc6290a1a
+ms.sourcegitcommit: e0a678acb0dc928e5c5edde3ca04e6854eb05ea6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/29/2018
+ms.lasthandoff: 07/13/2018
+ms.locfileid: "39002240"
 ---
 # <a name="copy-activity-performance-and-tuning-guide"></a>複製活動的效能及微調指南
 > [!div class="op_single_selector" title1="Select the version of Data Factory service you are using:"]
-> * [第 1 版 - 正式推出](v1/data-factory-copy-activity-performance.md)
-> * [第 2 版 - 預覽](copy-activity-performance.md)
+> * [第 1 版](v1/data-factory-copy-activity-performance.md)
+> * [目前的版本](copy-activity-performance.md)
 
 
 Azure Data Factory 複製活動會提供安全、可靠、高效能的頂級資料載入解決方案。 它可讓您複製每天在各式各樣雲端和內部部署資料存放區上數十 TB 的資料。 超快的資料載入效能是可確保您能夠專注於核心「巨量資料」問題的關鍵︰建置進階的分析解決方案，並從該所有資料獲得深入解析。
-
-> [!NOTE]
-> 本文適用於第 2 版的 Data Fatory (目前為預覽版)。 如果您使用第 1 版的 Data Factory 服務 (也就是正式推出版 (GA))，請參閱 [Data Factory 第 1 版中的複製活動效能](v1/data-factory-copy-activity-performance.md)。
 
 Azure 提供一組企業級資料儲存與資料倉儲解決方案，而「複製活動」則提供一個容易設定的高度最佳化資料載入體驗。 只要使用單一的複製活動，您便可以達成下列目的︰
 
@@ -39,7 +37,7 @@ Azure 提供一組企業級資料儲存與資料倉儲解決方案，而「複�
 本文章說明：
 
 * [效能參考數字](#performance-reference) ；
-* 可在不同案例中 (包括[雲端資料移動單位](#cloud-data-movement-units)、[平行複製](#parallel-copy)及[分段複製](#staged-copy)) 大幅提升複製輸送量的功能；
+* 可在不同案例中 (包括[資料整合單位](#data-integration-units)、[平行複製](#parallel-copy)及[分段複製](#staged-copy)) 大幅提升複製輸送量的功能；
 * [效能微調指導方針](#performance-tuning-steps) 。
 
 > [!NOTE]
@@ -48,12 +46,12 @@ Azure 提供一組企業級資料儲存與資料倉儲解決方案，而「複�
 
 ## <a name="performance-reference"></a>效能參考
 
-下表顯示根據內部測試中「單一複製活動執行」之給定來源與接收配對的複製輸送量數字 (以 **MBps** 為單位)，以供參考。 為了進行比較，該表格也會示範[雲端資料移動單位](#cloud-data-movement-units)或[自我裝載整合執行階段延展性](concepts-integration-runtime.md#self-hosted-integration-runtime) (多個節點) 的不同設定如何協助複製效能。
+下表顯示根據內部測試中「單一複製活動執行」之給定來源與接收配對的複製輸送量數字 (以 **MBps** 為單位)，以供參考。 為了進行比較，該表格也會示範[資料整合單位](#data-integration-units)或[自我裝載 Integration Runtime 延展性](concepts-integration-runtime.md#self-hosted-integration-runtime) (多個節點) 的不同設定如何協助複製效能。
 
 ![效能矩陣](./media/copy-activity-performance/CopyPerfRef.png)
 
->[!IMPORTANT]
->在 Azure Data Factory 第 2 版中，當複製活動在 Azure Integration Runtime 上執行時，允許的最小雲端資料移動單位是兩個。 如果未指定，請參閱用於[雲端資料移動單位](#cloud-data-movement-units)中的預設資料移動單位。
+> [!IMPORTANT]
+> 當複製活動在 Azure Integration Runtime 上執行時，允許的最小資料整合單位 (先前稱為資料移動單位) 是兩個。 如果未指定，請參閱[資料整合單位](#data-integration-units)中所使用的預設資料整合單位。
 
 注意事項：
 
@@ -78,25 +76,25 @@ Azure 提供一組企業級資料儲存與資料倉儲解決方案，而「複�
 
 
 > [!TIP]
-> 您可以利用比預設最大資料移動單位 (DMU) 更多的 DMU，也就是對雲端到雲端複製活動執行使用 32 單位，以達到更高的輸送量。 比方說，使用 100 DMU，您就可以用 **1.0GBps** 的速率將資料從 Azure Blob 複製到 Azure Data Lake Store。 如需此功能和支援案例的詳細資訊，請參閱[雲端資料移動單位](#cloud-data-movement-units)一節。 請連絡 [Azure 支援](https://azure.microsoft.com/support/)來要求更多 DMU。
+> 您可以利用比預設最大資料整合單位 (DIU) 更多的 DIU，也就是對雲端到雲端複製活動執行使用 32 單位，以達到更高的輸送量。 例如，使用 100 DIU，您就可以用 **1.0GBps** 的速率將資料從 Azure Blob 複製到 Azure Data Lake Store。 如需此功能和支援案例的詳細資訊，請參閱[資料整合單位](#data-integration-units)一節。 請連絡 [Azure 支援](https://azure.microsoft.com/support/)來要求更多 DIU。
 
-## <a name="cloud-data-movement-units"></a>雲端資料移動單位
+## <a name="data-integration-units"></a>資料整合單位
 
-**雲端資料移動單位 (DMU)** 是一項量值，代表 Data Factory 中單一單位的能力 (CPU、記憶體和網路資源配置的組合)。 **DMU 僅適用於 [Azure 整合執行階段](concepts-integration-runtime.md#azure-integration-runtime)**，而非[自我裝載整合執行階段](concepts-integration-runtime.md#self-hosted-integration-runtime)。
+**資料整合單位 (DIU)** (先前稱為雲端資料移動單位或 DMU) 是一項量值，代表 Data Factory 中單一單位的能力 (CPU、記憶體和網路資源配置的組合)。 **DIU 僅適用於 [Azure Integration Runtime](concepts-integration-runtime.md#azure-integration-runtime)**，而非[自我裝載 Integration Runtime](concepts-integration-runtime.md#self-hosted-integration-runtime)。
 
-**複製活動執行所需的最小雲端資料移動單位是兩個。** 如果未指定，下表列出用於不同複製案例中的預設 DMU：
+**複製活動執行所需的最小資料整合單位是兩個。** 如果未指定，下表列出用於不同複製案例中的預設 DIU：
 
-| 複製案例 | 服務決定的預設 DMU |
+| 複製案例 | 服務決定的預設 DIU |
 |:--- |:--- |
 | 在以檔案為基礎的存放區之間複製資料 | 依據檔案的數量和大小，介於 4 到 32 之間。 |
 | 所有其他複製案例 | 4 |
 
-若要覆寫此預設值，請如下所示指定 **cloudDataMovementUnits** 屬性的值。 **cloudDataMovementUnits** 屬性的**允許值****最高為 256**。 根據您的資料模式，複製作業會在執行階段使用的 **實際雲端 DMU 數目** 等於或小於所設定的值。 如需在為特定複製來源和接收設定更多單位時可能獲得之效能增益水準的相關資訊，請參閱 [效能參考](#performance-reference)。
+若要覆寫此預設值，請如下所示指定 **dataIntegrationUnits** 屬性的值。 **dataIntegrationUnits** 屬性的**允許值****最高為 256**。 根據您的資料模式，複製作業會在執行階段使用的 **實際 DIU 數目** 等於或小於所設定的值。 如需在為特定複製來源和接收設定更多單位時可能獲得之效能增益水準的相關資訊，請參閱 [效能參考](#performance-reference)。
 
-監視活動執行時，您可以在複製活動輸出中查看每個複製執行實際使用的雲端資料移動單位。 請參閱[複製活動監視](copy-activity-overview.md#monitoring)了解詳細資料。
+監視活動執行時，您可以在複製活動輸出中查看每個複製執行實際使用的資料整合單位。 請參閱[複製活動監視](copy-activity-overview.md#monitoring)了解詳細資料。
 
 > [!NOTE]
-> 如果您需要更多雲端 DMU 以提高輸送量，請連絡 [Azure 支援](https://azure.microsoft.com/support/)。 目前只有當您是將多個檔案從 Blob 儲存體/Data Lake Store/Amazon S3/雲端 FTP/雲端 SFTP 複製到任一其他雲端資料存放區時，設定 8 及 8 以上的值才有作用。
+> 如果您需要更多 DIU 以提高輸送量，請連絡 [Azure 支援](https://azure.microsoft.com/support/)。 目前只有當您是將多個檔案從 Blob 儲存體/Data Lake Store/Amazon S3/雲端 FTP/雲端 SFTP 複製到任一其他雲端資料存放區時，設定 8 及 8 以上的值才有作用。
 >
 
 **範例：**
@@ -115,15 +113,15 @@ Azure 提供一組企業級資料儲存與資料倉儲解決方案，而「複�
             "sink": {
                 "type": "AzureDataLakeStoreSink"
             },
-            "cloudDataMovementUnits": 32
+            "dataIntegrationUnits": 32
         }
     }
 ]
 ```
 
-### <a name="cloud-data-movement-units-billing-impact"></a>雲端資料移動單位的計費影響
+### <a name="data-integration-units-billing-impact"></a>資料整合單位計費影響
 
-請 **務必** 要記住，您必須根據複製作業的總時間付費。 針對資料移動付費的總持續時間，是跨 DMU 的持續時間總和。 若過去某複製作業使用 2 個雲端單位花費 1 小時，現在使用 8 個雲端單位花費 15 分鐘，則兩者的整體費用幾乎相同。
+請 **務必** 要記住，您必須根據複製作業的總時間付費。 針對資料移動付費的總持續時間，是跨 DIU 的持續時間總和。 若過去某複製作業使用 2 個雲端單位花費 1 小時，現在使用 8 個雲端單位花費 15 分鐘，則兩者的整體費用幾乎相同。
 
 ## <a name="parallel-copy"></a>平行複製
 
@@ -133,7 +131,7 @@ Azure 提供一組企業級資料儲存與資料倉儲解決方案，而「複�
 
 | 複製案例 | 由服務決定的預設平行複製計數 |
 | --- | --- |
-| 在以檔案為基礎的存放區之間複製資料 |取決於檔案大小和用來在兩個雲端資料存放區之間複製資料的雲端資料移動單位 (DMU) 數，或自我裝載整合執行階段電腦的實體組態。 |
+| 在以檔案為基礎的存放區之間複製資料 |取決於檔案大小和用來在兩個雲端資料存放區之間複製資料的資料整合單位 (DIU) 數，或自我裝載 Integration Runtime 電腦的實體組態。 |
 | 將資料從任何來源資料存放區複製到 Azure 表格儲存體 |4 |
 | 所有其他複製案例 |1 |
 
@@ -167,7 +165,7 @@ Azure 提供一組企業級資料儲存與資料倉儲解決方案，而「複�
 * 在檔案型存放區之間複製資料時，**parallelCopies** 決定檔案層級的平行處理原則。 在底層則會自動且直接在單一檔案中進行區塊化，而這是設計來為指定的來源資料存放區類型使用最適合的區塊大小，以載入平行於和垂直於 parallelCopies 的資料。 資料移動服務在執行階段用於複製作業的實際平行複製數目不會超過您擁有的檔案數目。 如果複製行為是 **mergeFile**，則複製活動無法利用檔案層級的平行處理原則。
 * 當您指定 **parallelCopies** 屬性的值時，請考慮來源和接收資料存放區的負載增加，以及自我裝載整合執行階段 (若複製活動 (例如混合式複製) 需要自我裝載整合執行階段) 的負載增加。 當您有多個活動或是會對相同資料存放區執行相同活動的並行執行時，尤其如此。 如果您注意到資料存放區或自我裝載整合執行階段已無法應付負載，請減少 **parallelCopies** 值以減輕負載。
 * 將資料從非檔案型存放區複製到檔案型存放區時，資料移動服務會忽略 **parallelCopies** 屬性。 即使已指定平行處理原則，也不會套用於此案例。
-* **parallelCopies** 正交於 **cloudDataMovementUnits**。 前者會跨所有雲端資料移動單位計算。
+* **parallelCopies** 正交於 **dataIntegrationUnits**。 前者會跨所有資料整合單位計算。
 
 ## <a name="staged-copy"></a>分段複製
 
@@ -245,7 +243,7 @@ Azure 提供一組企業級資料儲存與資料倉儲解決方案，而「複�
 
    * 效能功能︰
      * [平行複製](#parallel-copy)
-     * [雲端資料移動單位](#cloud-data-movement-units)
+     * [資料整合單位](#data-integration-units)
      * [分段複製](#staged-copy)
      * [自我裝載整合執行階段延展性](concepts-integration-runtime.md#self-hosted-integration-runtime)
    * [自我裝載整合執行階段](#considerations-for-self-hosted-integration-runtime)
@@ -360,7 +358,7 @@ Azure 提供一組企業級資料儲存與資料倉儲解決方案，而「複�
 
 ## <a name="sample-scenario-copy-from-an-on-premises-sql-server-to-blob-storage"></a>範例案例：從內部部署 SQL Server 複製到 Blob 儲存體
 
-**案例：**建置從內部部署 SQL Server 將資料以 CSV 格式複製到 Blob 儲存體的管線。 為了加快複製作業速度，CSV 檔案應該壓縮為 bzip2 格式。
+**案例：** 建置從內部部署 SQL Server 將資料以 CSV 格式複製到 Blob 儲存體的管線。 為了加快複製作業速度，CSV 檔案應該壓縮為 bzip2 格式。
 
 **測試和分析**：複製活動的輸送量小於 2 MBps，遠低於效能基準。
 

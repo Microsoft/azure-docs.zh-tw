@@ -1,23 +1,20 @@
 ---
-title: "在 Azure 搜尋服務中建立多租用戶模型 | Microsoft Docs"
-description: "了解使用「Azure 搜尋服務」時常見的多租用戶 SaaS 應用程式設計模式。"
-services: search
-manager: jhubbard
+title: 在 Azure 搜尋服務中建立多租用戶模型 | Microsoft Docs
+description: 了解使用「Azure 搜尋服務」時常見的多租用戶 SaaS 應用程式設計模式。
+manager: jlembicz
 author: ashmaka
-documentationcenter: 
-ms.assetid: 72e9696a-553b-47dc-9e05-a82db0ebf094
+services: search
 ms.service: search
 ms.devlang: NA
-ms.workload: search
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.date: 11/09/2017
+ms.topic: conceptual
+ms.date: 07/30/2018
 ms.author: ashmaka
-ms.openlocfilehash: 622ae64e118dd2498aff0bf2e9f6c1dbfb0ab045
-ms.sourcegitcommit: bc8d39fa83b3c4a66457fba007d215bccd8be985
+ms.openlocfilehash: 54646a7d4962c5dfe255d28bdb91d272062530dd
+ms.sourcegitcommit: f86e5d5b6cb5157f7bde6f4308a332bfff73ca0f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/10/2017
+ms.lasthandoff: 07/31/2018
+ms.locfileid: "39364269"
 ---
 # <a name="design-patterns-for-multitenant-saas-applications-and-azure-search"></a>多租用戶 SaaS 應用程式與 Azure 搜尋服務的設計模式
 多租用戶應用程式是為不能查看或共用任何其他租用戶之資料的租用戶提供相同服務和功能的應用程式，其中租用戶的數目並無限制。 本文件將討論以「Azure 搜尋服務」建置的多租用戶應用程式的租用戶隔離策略。
@@ -46,9 +43,7 @@ Azure 搜尋服務有幾個不同的[定價層](https://azure.microsoft.com/pric
 | 每項服務的複本數目上限 |3 |12 |12 |12 |12 |
 | 每項服務的資料分割數目上限 |1 |12 |12 |12 |3 |
 | 每項服務的搜尋單位數目上限 (複本數*資料分割數) |3 |36 |36 |36 |36 (最多 3 個資料分割) |
-| 每項服務的文件數目上限 |100 萬 |1 億 8000 萬 |7 億 2000 萬 |140 億 |6 億 |
 | 每項服務的儲存體上限 |2 GB |300 GB |1.2 TB |2.4 TB |600 GB |
-| 每個資料分割的文件數目上限 |100 萬 |1500 萬 |6000 萬 |1 億 2000 萬 |2 億 |
 | 每個資料分割的儲存體上限 |2 GB |25 GB |100 GB |200 GB |200 GB |
 | 每項服務的索引數目上限 |5 |50 |200 |200 |3000 (最多 1000 個索引/資料分割) |
 
@@ -74,7 +69,8 @@ S3 HD 會以使用資料分割相應放大索引的能力換取在單一服務�
 在多租用戶案例的情況中，應用程式開發人員會使用一或多個搜尋服務，然後將其租用戶劃分到服務、索引或兩者。 建立多租用戶案例模型時，「Azure 搜尋服務」有幾個常見的模式︰
 
 1. *每個租用戶都使用專屬索引︰* 每個租用戶在與其他租用戶共用的搜尋服務內都有自己的索引。
-2. *每個租用戶都使用專屬服務︰* 每個租用戶都有自己的專用「Azure 搜尋服務」服務，可提供最高層級的資料和工作負載分隔。
+2. 
+  *每個租用戶都使用專屬服務︰* 每個租用戶都有自己的專用「Azure 搜尋服務」服務，可提供最高層級的資料和工作負載分隔。
 3. *兩者混合︰* 針對較大且較活躍的租用戶會指派專用服務，而針對較小的租用戶則會在共用服務內指派個別的索引。
 
 ## <a name="1-index-per-tenant"></a>1.每個租用戶都使用專屬索引

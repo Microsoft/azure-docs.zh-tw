@@ -10,19 +10,20 @@ ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 01/10/2018
 ms.author: shlo
 robots: noindex
-ms.openlocfilehash: b9884dac8a2716cbce6fca7b8172f7d272ad8f2f
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: b4d9a684c2c21ed9ec00b04963432f9ebcff7493
+ms.sourcegitcommit: 0c490934b5596204d175be89af6b45aafc7ff730
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 06/27/2018
+ms.locfileid: "37048449"
 ---
 # <a name="azure-data-factory---functions-and-system-variables"></a>Azure Data Factory - 函式與系統變數
 > [!NOTE]
-> 本文適用於正式推出 (GA) 的第 1 版 Data Factory。 如果您使用處於預覽狀態的 Data Factory 服務第 2 版，請參閱 [Data Factory 第 2 版中的系統變數](../control-flow-system-variables.md)。
+> 本文適用於 Data Factory 的第 1 版。 如果您使用目前版本的 Data Factory 服務，請參閱 [Data Factory 中的系統變數](../control-flow-system-variables.md)。
 
 本文提供 Azure Data Factory 支援之函式和變數的相關資訊。
 
@@ -83,7 +84,7 @@ ms.lasthandoff: 03/23/2018
 | 時間 |AddMinutes(X,Y) |X：DateTime  <br/><br/>Y：int |將 Y 分鐘新增至 X。<br/><br/>範例： `9/15/2013 12: 00:00 PM + 15 minutes = 9/15/2013 12: 15:00 PM` |
 | 時間 |StartOfHour(X) |X：DateTime  |取得 X 之小時元件代表的小時開始時間。 <br/><br/>範例： `StartOfHour of 9/15/2013 05: 10:23 PM is 9/15/2013 05: 00:00 PM` |
 | 日期 |AddDays(X,Y) |X：DateTime <br/><br/>Y：int |將 Y 天數新增至 X。 <br/><br/>範例：9/15/2013 12:00:00 PM + 2 天 = 9/17/2013 12:00:00 PM。<br/><br/>您也可以藉由將 Y 指定為負數來減去天。<br/><br/>範例： `9/15/2013 12:00:00 PM - 2 days = 9/13/2013 12:00:00 PM`. |
-| 日期 |AddMonths(X,Y) |X：DateTime <br/><br/>Y：int |將 Y 月數新增至 X。<br/><br/>`Example: 9/15/2013 12:00:00 PM + 1 month = 10/15/2013 12:00:00 PM`。<br/><br/>您也可以藉由將 Y 指定為負數來減去月份。<br/><br/>範例：`9/15/2013 12:00:00 PM - 1 month = 8/15/2013 12:00:00 PM`.|
+| 日期 |AddMonths(X,Y) |X：DateTime <br/><br/>Y：int |將 Y 月數新增至 X。<br/><br/>`Example: 9/15/2013 12:00:00 PM + 1 month = 10/15/2013 12:00:00 PM` 。<br/><br/>您也可以藉由將 Y 指定為負數來減去月份。<br/><br/>範例：`9/15/2013 12:00:00 PM - 1 month = 8/15/2013 12:00:00 PM`.|
 | 日期 |AddQuarters(X,Y) |X：DateTime  <br/><br/>Y：int |將 Y * 3 個月新增至 X。<br/><br/>範例： `9/15/2013 12:00:00 PM + 1 quarter = 12/15/2013 12:00:00 PM` |
 | 日期 |AddWeeks(X,Y) |X：DateTime <br/><br/>Y：int |將 Y * 7 天新增至 X<br/><br/>範例：9/15/2013 12:00:00 PM + 1 週 = 9/22/2013 12:00:00 PM<br/><br/>您也可以藉由將 Y 指定為負數來減去週。<br/><br/>範例： `9/15/2013 12:00:00 PM - 1 week = 9/7/2013 12:00:00 PM`. |
 | 日期 |AddYears(X,Y) |X：DateTime <br/><br/>Y：int |將 Y 年新增至 X。<br/><br/>`Example: 9/15/2013 12:00:00 PM + 1 year = 9/15/2014 12:00:00 PM`<br/><br/>您也可以藉由將 Y 指定為負數來減去年。<br/><br/>範例： `9/15/2013 12:00:00 PM - 1 year = 9/15/2012 12:00:00 PM`. |

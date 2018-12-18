@@ -1,25 +1,20 @@
 ---
-title: "從以 Windows 為基礎的 HDInsight 移轉至以 Linux 為基礎的 HDInsight - Azure | Microsoft Docs"
-description: "了解如何從以 Windows 為基礎的 HDInsight 叢集移轉至以 Linux 為基礎的 HDInsight 叢集。"
+title: 從以 Windows 為基礎的 HDInsight 移轉至以 Linux 為基礎的 HDInsight - Azure
+description: 了解如何從以 Windows 為基礎的 HDInsight 叢集移轉至以 Linux 為基礎的 HDInsight 叢集。
 services: hdinsight
-documentationcenter: 
-author: Blackmist
-manager: jhubbard
-editor: cgronlun
-ms.assetid: ff35be59-bae3-42fd-9edc-77f0041bab93
+author: jasonwhowell
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 02/27/2018
-ms.author: larryfr
-ms.openlocfilehash: dff9eaad252a71942b07212b7cfa9d9ddf346a3f
-ms.sourcegitcommit: c765cbd9c379ed00f1e2394374efa8e1915321b9
+ms.topic: conceptual
+ms.date: 05/30/2018
+ms.author: jasonh
+ms.openlocfilehash: ee97d2005752c9e0cd40de238d1f4a946bb9ee3d
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/28/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46948412"
 ---
 # <a name="migrate-from-a-windows-based-hdinsight-cluster-to-a-linux-based-cluster"></a>從以 Windows 為基礎的 HDInsight 叢集移轉至以 Linux 為基礎的叢集
 
@@ -102,7 +97,7 @@ ms.lasthandoff: 02/28/2018
 
 ## <a name="client-side-technologies"></a>用戶端技術
 
-[Azure PowerShell Cmdlet](/powershell/azureps-cmdlets-docs)、[Azure CLI](../cli-install-nodejs.md) 或 [.NET SDK for Hadoop](https://hadoopsdk.codeplex.com/) 之類的用戶端技術會繼續使用以 Linux 為基礎的叢集。 這些依賴 REST API 的技術在兩種叢集作業系統類型上都相同。
+[Azure PowerShell Cmdlet](/powershell/azureps-cmdlets-docs)、[Azure 傳統 CLI](../cli-install-nodejs.md) 或 [.NET SDK for Hadoop](https://hadoopsdk.codeplex.com/) 之類的用戶端技術會繼續使用以 Linux 為基礎的叢集。 這些依賴 REST API 的技術在兩種叢集作業系統類型上都相同。
 
 ## <a name="server-side-technologies"></a>伺服器端技術
 
@@ -111,7 +106,7 @@ ms.lasthandoff: 02/28/2018
 | 如果您正在使用這項技術... | 請執行此動作... |
 | --- | --- |
 | **PowerShell** (伺服器端指令碼，包含於叢集建立期間使用的指令碼動作) |重寫為 Bash 指令碼。 針對指令碼動作，請參閱[使用指令碼動作自訂 Linux 型 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)和[以 Linux 為基礎之 HDInsight 的指令碼動作開發](hdinsight-hadoop-script-actions-linux.md)。 |
-| **Azure CLI** (伺服器端指令碼) |雖然 Azure CLI 可在 Linux 上使用，它並沒有預先安裝在 HDInsight 叢集前端節點上。 如需有關安裝 Azure CLI 的詳細資訊，請參閱[開始使用 Azure CLI 2.0 (英文)](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli)。 |
+| **Azure 傳統 CLI** (伺服器端指令碼) |雖然 Azure 傳統 CLI 可在 Linux 上使用，它並沒有預先安裝在 HDInsight 叢集前端節點上。 如需有關安裝 Azure 傳統 CLI 的詳細資訊，請參閱[開始使用 Azure 傳統 CLI](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli)。 |
 | **.NET 元件** |以 Linux 為基礎的 HDInsight 透過 [Mono](https://mono-project.com) 支援 .NET。 如需詳細資訊，請參閱[將 .NET 方案移轉至以 Linux 為基礎的 HDInsight](hdinsight-hadoop-migrate-dotnet-to-linux.md)。 |
 | **Win32 元件或其他僅限 Windows 的技術** |指導方針將視元件或技術而有所不同。 您可以尋找與 Linux 相容的版本。 如果沒有，您就必須找出替代解決方案或重新撰寫此元件。 |
 
@@ -148,7 +143,7 @@ ms.lasthandoff: 02/28/2018
 
 ## <a name="management-and-monitoring"></a>管理與監視
 
-有許多您可能曾搭配以 Windows 為基礎之 HDInsight 使用的 Web UI (例如工作歷程記錄或 Yarn UI)，皆可透過 Ambari 使用。 此外，Ambari Hive 檢視能提供使用您的網頁瀏覽器執行 Hive 查詢的方法。 Ambari Web UI 可以在以 Linux 為基礎的叢集上使用，位於：https://CLUSTERNAME.azurehdinsight.net。
+有許多您可能曾搭配以 Windows 為基礎之 HDInsight 使用的 Web UI (例如工作歷程記錄或 Yarn UI)，皆可透過 Ambari 使用。 此外，Ambari Hive 檢視能提供使用您的網頁瀏覽器執行 Hive 查詢的方法。 Ambari Web UI 可以在以 Linux 為基礎的叢集上使用，位於： https://CLUSTERNAME.azurehdinsight.net。
 
 如需使用 Ambari 的詳細資訊，請參閱下列文件：
 
@@ -234,7 +229,7 @@ Oozie 工作流程允許殼層動作。 殼層動作會使用作業系統的預�
 | 以 Windows 為基礎時，我是使用... | 以 Linux 為基礎時... |
 | --- | --- |
 | Storm Dashboard |無法使用 Storm Dashboard。 請參閱 [在以 Linux 為基礎的 HDInsight 上部署與管理 Storm 拓撲](storm/apache-storm-deploy-monitor-topology-linux.md) ，以了解提交拓撲的方法。 |
-| Storm UI |Storm UI 可以在 https://CLUSTERNAME.azurehdinsight.net/stormui 使用 |
+| Storm UI |Storm UI 位於 https://CLUSTERNAME.azurehdinsight.net/stormui |
 | Visual Studio 以建立、部署及管理 C# 或混合式拓撲 |在以 Linux 作為基礎的 Storm on HDInsight 上，可以使用 Visual Studio 來建立、部署和管理 C# (SCP.NET) 或混合式拓撲。 僅能搭配使用 10/28/2016 之後建立的叢集。 |
 
 ## <a name="hbase"></a>hbase

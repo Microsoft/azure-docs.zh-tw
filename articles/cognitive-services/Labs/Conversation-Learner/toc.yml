@@ -1,0 +1,70 @@
+- name: 對話學習模組文件
+- name: 概觀
+  expanded: true
+  items:
+    - name: 什麼是對話學習模組？
+      href: overview.md
+    - name: 支援的語言
+      href: languages-supported.md
+- name: 概念
+  items:
+    - name: 控制流程
+      href: control-flow.md
+    - name: 預設值和界限
+      href: cl-values-and-boundaries.md
+- name: 使用說明指南
+  items:
+    - name: 開始使用對話學習模組
+      href: quickstart.md
+    - name: Hello world
+      href: tutorials/1-hello-world.md
+    - name: 等候與非等候動作
+      href: tutorials/2-wait-vs-nonwait-actions.md
+    - name: 實體簡介
+      href: tutorials/3-introduction-to-entities.md
+    - name: 預期的實體
+      href: tutorials/4-expected-entity.md
+    - name: Negatable 實體
+      href: tutorials/5-negatable-entities.md
+    - name: 多重值實體
+      href: tutorials/6-multi-value-entities.md
+    - name: 內建實體
+      href: tutorials/7-built-in-entities.md
+    - name: 替代輸入
+      href: tutorials/8-alternative-inputs.md
+    - name: 記錄對話方塊
+      href: tutorials/9-log-dialogs.md
+    - name: 實體偵測回呼
+      href: tutorials/10-entity-detection-callback.md
+    - name: 工作階段回呼
+      href: tutorials/11-session-callbacks.md
+    - name: API 呼叫
+      href: tutorials/12-api-calls.md
+    - name: 卡片第 1 部分
+      href: tutorials/13-cards-1.md
+    - name: 卡片第 2 部分
+      href: tutorials/14-cards-2.md
+    - name: 分支和復原
+      href: tutorials/15-branching-and-undo.md
+    - name: 版本控制和標記
+      href: tutorials/16-versioning-and-tagging.md
+    - name: 混合式 Bot
+      href: tutorials/17-hybrid-bots.md
+    - name: 示範 - 密碼重設
+      href: tutorials/demo-password-reset.md
+    - name: 示範 - 披薩訂單
+      href: tutorials/demo-pizza-order.md
+    - name: 示範 - VR 應用程式啟動器
+      href: tutorials/demo-vr-app-launcher.md
+    - name: 部署對話學習模組 Bot
+      href: deploy-to-bf.md
+    - name: 如何教導對話學習模組
+      href: how-to-teach-cl.md
+    - name: 如何管理使用者資料
+      href: managing-data.md
+- name: 資源
+  items:
+    - name: 對話學習模組範例 Bot
+      href: 'https://github.com/Microsoft/ConversationLearner-Samples'
+    - name: Azure 藍圖
+      href: 'https://azure.microsoft.com/roadmap/'

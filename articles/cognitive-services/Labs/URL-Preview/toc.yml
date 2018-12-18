@@ -1,0 +1,28 @@
+- name: 專案 URL 預覽文件
+- name: 概觀
+  expanded: true
+  items:
+    - name: 什麼是專案 URL 預覽？
+      href: overview.md
+    - name: URL 預覽端點
+      href: endpoint.md
+- name: 快速入門
+  expanded: true
+  items:
+    - name: 'C#'
+      href: csharp.md
+    - name: Java
+      href: java-quickstart.md
+    - name: JavaScript
+      href: javascript.md
+    - name: 節點
+      href: node-quickstart.md
+    - name: Python
+      href: python-quickstart.md
+- name: 參考
+  expanded: true
+  items:
+    - name: 使用和顯示需求
+      href: use-display-requirements.md
+    - name: URL 預覽參考
+      href: url-preview-reference.md

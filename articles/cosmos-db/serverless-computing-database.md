@@ -2,23 +2,19 @@
 title: 無伺服器資料庫計算 - Azure Functions 和 Azure Cosmos DB | Microsoft Docs
 description: 了解 Azure Cosmos DB 和 Azure Functions 如何一起使用以建立事件驅動無伺服器計算的應用程式。
 services: cosmos-db
-author: mimig1
-manager: jhubbard
-editor: monicar
-documentationcenter: ''
-ms.assetid: ''
+author: SnehaGunda
+manager: kfile
 ms.service: cosmos-db
-ms.workload: data-services
-ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 03/26/2018
-ms.author: mimig
-ms.openlocfilehash: 39155a2407efa0cc13236a1bbbbcd292daac86b6
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.author: sngun
+ms.openlocfilehash: b7908f9f9aef51857f0ffb07102e1df245b7a259
+ms.sourcegitcommit: cc4fdd6f0f12b44c244abc7f6bc4b181a2d05302
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47064449"
 ---
 # <a name="azure-cosmos-db-serverless-database-computing-using-azure-functions"></a>Azure Cosmos DB：使用 Azure Functions 的無伺服器資料庫計算
 
@@ -31,11 +27,11 @@ ms.lasthandoff: 03/28/2018
 Azure Cosmos DB 與 Azure Functions 可讓您以下列方式整合資料庫與無伺服器的應用程式：
 
 * 在 Azure Function 中建立事件驅動的 **Azure Cosmos DB 觸發程序**。 此觸發程序依賴[變更摘要](change-feed.md)串流，以監控 Azure Cosmos DB 容器的變更。 對容器進行任何變更時，變更摘要串流會傳送至觸發程序，其叫用 Azure Function。
-* 或者，使用**輸入繫結**將 Azure Function 繫結至 Azure Cosmos DB 集合。 函式執行時，輸入繫結會從容器讀取資料。
-* 使用**輸出繫結**將函式繫結至 Azure Cosmos DB 集合。 函式完成時，輸出繫結會將資料寫入容器。
+* 或者，使用**輸入繫結**將 Azure Function 繫結至 Azure Cosmos DB 容器。 函式執行時，輸入繫結會從容器讀取資料。
+* 使用**輸出繫結**將函式繫結至 Azure Cosmos DB 容器。 函式完成時，輸出繫結會將資料寫入容器。
 
 > [!NOTE]
-> 此時，Azure Cosmos DB 觸發程序、輸入繫結，以及輸出繫結只會使用 SQL API 和圖形 API 帳戶。
+> 此時，Azure Cosmos DB 觸發程序、輸入繫結，以及輸出繫結只會使用 SQL API 和 Gremlin API 帳戶。
 
 下圖逐一說明這三個整合： 
 
@@ -54,7 +50,7 @@ Azure Cosmos DB 觸發程序、輸入繫結及輸出繫結皆可用於下列組�
 
 在 IoT 實作中，您可以在檢查已連線汽車中顯示的引擎燈時，叫用函式。
 
-**實作：**使用 Azure Cosmos DB 觸發程序和輸出繫結
+**實作：** 使用 Azure Cosmos DB 觸發程序和輸出繫結
 
 1. **Azure Cosmos DB 觸發程序**用來觸發與汽車警示相關的事件，例如檢查已連線汽車亮起的引擎燈。
 2. 檢查引擎燈時，感應器資料會傳送到 Azure Cosmos DB。
@@ -62,7 +58,7 @@ Azure Cosmos DB 觸發程序、輸入繫結及輸出繫結皆可用於下列組�
 4. 在感應器資料收集每次資料變更時叫用觸發程序，因為所有變更會透過變更摘要串流處理。
 5. 閾值條件用於函式中以將感應器資料傳送至保修部門。
 6. 如果溫度亦超過特定值，也會向擁有者發送警報。
-7. 函式上的**輸出繫結**會更新另一個 Azure Cosmos DB 集合中的汽車記錄，以儲存檢查引擎事件的相關資訊。
+7. 函式上的**輸出繫結**會更新另一個 Azure Cosmos DB 容器中的汽車記錄，以儲存檢查引擎事件的相關資訊。
 
 下圖顯示此觸發程序在 Azure 入口網站中撰寫的程式碼。
 
@@ -72,7 +68,7 @@ Azure Cosmos DB 觸發程序、輸入繫結及輸出繫結皆可用於下列組�
 
 在財務實作中，當銀行帳戶餘額低於特定金額時，您可以叫用函式。
 
-**實作：**具有 Azure Cosmos DB 輸入繫結的計時器觸發程序
+**實作：** 具有 Azure Cosmos DB 輸入繫結的計時器觸發程序
 
 1. 使用[計時器觸發程序](../azure-functions/functions-bindings-timer.md)，您可以使用**輸入繫結**，以定時間隔擷取儲存在 Azure Cosmos DB 容器的銀行帳戶餘額資訊。
 2. 如果餘額低於使用者設定的低餘額閾值，則追蹤 Azure Function 中的動作。
@@ -86,9 +82,9 @@ Azure Cosmos DB 觸發程序、輸入繫結及輸出繫結皆可用於下列組�
 
 ### <a name="gaming-use-case---azure-cosmos-db-trigger-and-output-binding"></a>遊戲使用案例 - Azure Cosmos DB 觸發程序和輸出繫結
 
-在遊戲中建立新的使用者時，您可以使用 [Azure Cosmos DB 圖形 API](graph-introduction.md) 搜尋可能知道的其他使用者。 然後，您可以將結果寫入 [Azure Cosmos DB SQL 資料庫] 以方便擷取。
+在遊戲中建立新的使用者時，您可以使用 [Azure Cosmos DB Gremlin API](graph-introduction.md) 搜尋可能知道的其他使用者。 然後，您可以將結果寫入 [Azure Cosmos DB SQL 資料庫] 以方便擷取。
 
-**實作：**使用 Azure Cosmos DB 觸發程序和輸出繫結
+**實作：** 使用 Azure Cosmos DB 觸發程序和輸出繫結
 
 1. 使用 Azure Cosmos DB [圖表資料庫](graph-introduction.md)來儲存所有使用者，您可以使用 Azure Cosmos DB 觸發程序來建立新的函式。 
 2. 每當插入新的使用者時，會叫用函式，然後使用**輸出繫結**來儲存結果。
@@ -99,7 +95,7 @@ Azure Cosmos DB 觸發程序、輸入繫結及輸出繫結皆可用於下列組�
 
 在零售實作中，當使用者將項目加入其購物籃中時，您可以靈活地為可選的業務管道元件建立和叫用函式。
 
-**實作：**接聽單一集合的多個 Azure Cosmos DB 觸發程序
+**實作：** 接聽單一容器的多個 Azure Cosmos DB 觸發程序
 
 1. 您可以藉由將 Azure Cosmos DB 觸發程序新增至每個函式，以建立多個 Azure Functions，所有函式皆會接聽購物車資料的相同變更摘要。 請注意，若有多個函式接聽相同的變更摘要，則每個函式皆需要新的租用集合。 如需有關租用集合的詳細資訊，請參閱[了解變更摘要處理器程式庫](change-feed.md#understand-cf)。
 2. 每當新的項目新增至使用者的購物車時，會根據購物車容器的變更摘要單獨叫用每個函式。
@@ -114,15 +110,12 @@ Azure Cosmos DB 觸發程序、輸入繫結及輸出繫結皆可用於下列組�
 ## <a name="tooling"></a>工具
 
 Azure 入口網站和 Visual Studio 2017 提供 Azure Cosmos DB 與 Azure Functions 之間的原生整合。
-* 在 Azure Functions 入口網站中，您可以建立 Azure Cosmos DB 觸發程序。 如需快速入門指示，請參閱[在 Azure 入口網站中建立 Azure Cosmos DB 觸發程序](https://aka.ms/cosmosdbtriggerportalfunc) ![在 Azure Functions 入口網站中建立 Azure Cosmos DB 觸發程序](./media/serverless-computing-database/azure-function-cosmos-db-trigger.png) 
-* 在 Azure Functions 入口網站中，您也可以將 Azure Cosmos DB 輸入繫結與輸出繫結新增至其他類型的觸發程序。 如需快速入門指示，請參閱[使用 Azure Functions 和 Cosmos DB 儲存非結構化資料](../azure-functions/functions-integrate-store-unstructured-data-cosmosdb.md)。
-    ![在 Azure Functions 入口網站中建立 Azure Cosmos DB 觸發程序](./media/serverless-computing-database/function-portal-input-binding.png)
-*   在 Azure Cosmos DB 入口網站中，您可以將 Azure Cosmos DB 觸發程序新增至相同資源群組中現有的 Azure Function 應用程式。
-    ![在 Azure Functions 入口網站中建立 Azure Cosmos DB 觸發程序](./media/serverless-computing-database/cosmos-db-portal.png)
-* 在 Visual Studio 2017 中，您可以使用整合式範本建立 Azure Cosmos DB 觸發程序：
+
+* 在 Azure Functions 入口網站中，您可以建立 Azure Cosmos DB 觸發程序。 如需快速入門指示，請參閱[在 Azure 入口網站中建立 Azure Cosmos DB 觸發程序](https://aka.ms/cosmosdbtriggerportalfunc)。
+* 在 Azure Cosmos DB 入口網站中，您可以將 Azure Cosmos DB 觸發程序新增至相同資源群組中現有的 Azure Function 應用程式。
+* 在 Visual Studio 2017 中，您可以使用 [Azure Functions Tools for Visual Studio 2017](../azure-functions/functions-develop-vs.md) 建立 Azure Cosmos DB 觸發程序：
 
     >[!VIDEO https://www.youtube.com/embed/iprndNsUeeg]
-
 
 ## <a name="why-choose-azure-functions-integration-for-serverless-computing"></a>為何選擇 Azure Functions 整合以用於無伺服器的計算？
 
@@ -134,7 +127,7 @@ Azure Functions 提供了建立可擴展工作單位的功能，或可視需要�
 
 * **無結構描述**。 Azure Cosmos DB 是無結構描述的 - 因此它有獨特的能力可處理來自 Azure Function 的任何資料輸出。 這種「處理任何事」的方法使其可直接建立所有輸出至 Azure Cosmos DB 的各種函式。
 
-* **可擴充的輸送量**。 輸送量可以在 Azure Cosmos DB 中即時地相應增加或相應減少。 如果您有數百或數千個功能查詢，並且寫入同一個集合，您可以相應增加輸送量的 [RU/秒](request-units.md)以處理負載。 所有函式可以使用您分配的 RU/秒來並行工作，且保證您的資料[一致](consistency-levels.md)。
+* **可擴充的輸送量**。 輸送量可以在 Azure Cosmos DB 中即時地相應增加或相應減少。 如果您有數百或數千個功能查詢，並且寫入相同容器，則可以相應增加輸送量的 [RU/s](request-units.md) 以處理負載。 所有函式可以使用您分配的 RU/秒來並行工作，且保證您的資料[一致](consistency-levels.md)。
 
 * **全域複寫**。 您可以複寫[全域範圍內](distribute-data-globally.md)的 Azure Cosmos DB 資料以降低延遲，並異地尋找最靠近使用者所在位置的資料。 如同所有 Azure Cosmos DB 查詢，事件驅動觸發程序的資料是從最靠近使用者的 Azure Cosmos DB 讀取資料。
 
@@ -156,7 +149,6 @@ Azure Functions 的優點：
 
 * [在 Azure 入口網站中建立 Azure Cosmos DB 觸發程序](https://aka.ms/cosmosdbtriggerportalfunc)
 * [使用 Azure Cosmos DB 輸入繫結建立 Azure Functions HTTP 觸發程序 (Create an Azure Functions HTTP trigger with an Azure Cosmos DB input binding)](https://aka.ms/cosmosdbinputbind)
-* [使用 Azure Functions 和 Cosmos DB 儲存非結構化資料](../azure-functions/functions-integrate-store-unstructured-data-cosmosdb.md)
 * [Azure DB Cosmos 繫結和觸發程序](../azure-functions/functions-bindings-cosmosdb.md)
 
 

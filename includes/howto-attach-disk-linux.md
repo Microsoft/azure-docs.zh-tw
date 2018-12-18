@@ -1,10 +1,9 @@
-
 如需有關磁碟的詳細資訊，請參閱[關於虛擬機器的磁碟和 VHD](../articles/virtual-machines/linux/about-disks-and-vhds.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 <a id="attachempty"></a>
 
 ## <a name="attach-an-empty-disk"></a>連接空的磁碟
-1. 開啟 Azure CLI 1.0，並[連接到您的 Azure 訂用帳戶](/cli/azure/authenticate-azure-cli)。 確定處於 Azure 服務管理模式 (`azure config mode asm`)。
+1. 開啟 Azure 傳統 CLI 並 [連接至您的 Azure 訂用帳戶](/cli/azure/authenticate-azure-cli)。 確定處於 Azure 服務管理模式 (`azure config mode asm`)。
 2. 輸入 `azure vm disk attach-new` 建立並連接新的磁碟，如下列範例所示。 將 *myVM* 取代為 Linux 虛擬機器的名稱，並指定磁碟大小 (GB) (在此範例中為 100 GB)：
 
     ```azurecli
@@ -37,7 +36,7 @@
 ## <a name="attach-an-existing-disk"></a>連接現有磁碟
 連接現有磁碟要求您在儲存體帳戶中需要有可用的 .vhd。
 
-1. 開啟 Azure CLI 1.0，並[連接到您的 Azure 訂用帳戶](/cli/azure/authenticate-azure-cli)。 確定處於 Azure 服務管理模式 (`azure config mode asm`)。
+1. 開啟 Azure 傳統 CLI 並 [連接至您的 Azure 訂用帳戶](/cli/azure/authenticate-azure-cli)。 確定處於 Azure 服務管理模式 (`azure config mode asm`)。
 2. 檢查您想要附加的 VHD 是否已上傳至 Azure 訂用帳戶：
    
     ```azurecli

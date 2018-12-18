@@ -1,26 +1,20 @@
 ---
-title: "深入探討 - 進階分析 - Azure HDInsight | Microsoft Docs"
-description: "了解進階分析如何使用演算法來處理巨量資料。"
+title: 深入探討 - 進階分析 - Azure HDInsight
+description: 了解進階分析如何使用演算法來處理巨量資料。
 services: hdinsight
-documentationcenter: 
 author: ashishthaps
-manager: jhubbard
-editor: cgronlun
-tags: azure-portal
-ms.assetid: 
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
+ms.topic: conceptual
 ms.date: 11/14/2017
 ms.author: ashishth
-ms.openlocfilehash: 61a00c902be5cd3e37dabba09c15f9226e5e88b4
-ms.sourcegitcommit: 562a537ed9b96c9116c504738414e5d8c0fd53b1
+ms.openlocfilehash: 40536aae15f2ae9fa5e186cdbea1f75f7d264437
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/12/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43047135"
 ---
 # <a name="deep-dive---advanced-analytics"></a>深入探討 - 進階分析
 
@@ -63,13 +57,13 @@ HDInsight 提供可從大量結構化、非結構化及快速移動之資料取�
 HDInsight 有多個適用於進階分析工作流程的機器學習服務選項：
 
 * [機器學習服務和 Spark](#machine-learning-and-spark)
-* [R 和 R 伺服器](#r-and-r-server)
+* [R 和 ML 服務](#r-and-r-server)
 * [Azure Machine Learning 和 Hive](#azure-machine-learning-and-hive)
 * [Spark 和深度學習](#spark-and-deep-learning)
 
 ### <a name="machine-learning-and-spark"></a>機器學習服務和 Spark
 
-[HDInsight Spark](../spark/apache-spark-overview.md) 是 Azure 代管的 [Spark](http://spark.apache.org/) 產品方案，是一個使用記憶體內處理來大幅提升巨量資料分析效能的統一、開放原始碼平行資料處理架構。 Spark 處理引擎是專為速度、易用性及精密分析打造的產品。 Spark 的記憶體內分散式計算功能，使其成為機器學習和圖表計算中所使用反覆演算法的絕佳選擇。 
+[HDInsight Spark](../spark/apache-spark-overview.md) 是 Azure 代管的 [Spark](http://spark.apache.org/) 供應項目方案，是一個使用記憶體內處理來大幅提升巨量資料分析效能的統一、開放原始碼平行資料處理架構。 Spark 處理引擎是專為速度、易用性及精密分析打造的產品。 Spark 的記憶體內分散式計算功能，使其成為機器學習和圖表計算中所使用反覆演算法的絕佳選擇。 
 
 有三個可將演算法模型化功能導入此分散式環境的可調整機器學習服務程式庫：
 
@@ -77,9 +71,9 @@ HDInsight 有多個適用於進階分析工作流程的機器學習服務選項�
 * [**SparkML**](https://spark.apache.org/docs/1.2.2/ml-guide.html) - SparkML 是較新的套件，可提供建置在 Spark DataFrames 上的較高階 API 來建構 ML 管線。
 * [**MMLSpark**](https://github.com/Azure/mmlspark)  - 適用於 Apache Spark 的 Microsoft Machine Learning 程式庫 (MMLSpark) 是設計來提升資料科學家在 Spark 上的生產力，不僅可提高實驗率，還可在非常大型的資料集上運用最先進的機器學習服務技術，包括深度學習。 MMLSpark 程式庫簡化了在 PySpark 中建置模型的常見模型化工作。 
 
-### <a name="r-and-r-server"></a>R 和 R 伺服器
+### <a name="r-and-ml-services"></a>R 和 ML 服務
 
-R 伺服器為 HDInsight 的一部分，您可以使用現成可與大量資料集和模型搭配使用的 [R 伺服器](../r-server/r-server-overview.md)來建立 HDInsight 叢集。 這個新功能可為資料科學家和統計人員提供一個熟悉的 R 介面，此介面可視需要透過 HDInsight 進行調整，而不會產生叢集設定和維護的額外負荷。
+ML 服務為 HDInsight 的一部分，您可以使用現成可與大量資料集和模型搭配使用的 [ML 服務](../r-server/r-server-overview.md)來建立 HDInsight 叢集。 這個新功能可為資料科學家和統計人員提供一個熟悉的 R 介面，此介面可視需要透過 HDInsight 進行調整，而不會產生叢集設定和維護的額外負荷。
 
 ### <a name="azure-machine-learning-and-hive"></a>Azure Machine Learning 和 Hive
 
@@ -87,7 +81,7 @@ R 伺服器為 HDInsight 的一部分，您可以使用現成可與大量資料�
 
 ### <a name="spark-and-deep-learning"></a>Spark 和深度學習
 
-[深度學習](https://www.microsoft.com/research/group/dltc/)是機器學習服務的一個分支，使用以人類大腦的生物學程序為靈感來源的*深度類神經網路* (DNN)。 許多研究人員都將深度學習視為一個有前景的人工智慧方法。 深度學習的一些範例包括口語語言翻譯工具、影像辨識系統，以及機器推理。 為了協助推展自己在深度學習方面的工作，Microsoft 開發了免費、容易使用的開放原始碼 [Microsoft Cognitive Toolkit](https://www.microsoft.com/cognitive-toolkit/)。 各種 Microsoft 產品、世界各地需要大規模部署深度學習的公司，以及對最新演算法和技術感興趣的學生，都廣泛使用此工具組。 
+[深度學習](https://www.microsoft.com/research/group/dltc/)是機器學習服務的一個分支，使用以人類大腦的生物學程序為靈感來源的*深度類神經網路* (DNN)。 許多研究人員都將深度學習視為一個有前景的人工智慧方法。 深度學習的一些範例包括口語語言翻譯工具、影像辨識系統，以及機器推理。 為了協助推展自己在深度學習方面的工作，Microsoft 開發了免費、容易使用的開放原始碼 [Microsoft Cognitive Toolkit](https://www.microsoft.com/en-us/cognitive-toolkit/)。 各種 Microsoft 產品、世界各地需要大規模部署深度學習的公司，以及對最新演算法和技術感興趣的學生，都廣泛使用此工具組。 
 
 ## <a name="scenario---score-images-to-identify-patterns-in-urban-development"></a>案例 - 進行影像評分來識別都市發展模式
 

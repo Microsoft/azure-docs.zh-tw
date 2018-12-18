@@ -1,26 +1,27 @@
 ---
-title: "使用 Sysdig 監視 Azure 容器服務叢集"
-description: "使用 Sysdig 監視 Azure 容器服務叢集。"
+title: 使用 Sysdig 監視 Azure 容器服務叢集
+description: 使用 Sysdig 監視 Azure 容器服務叢集。
 services: container-service
 author: sauryadas
-manager: timlt
+manager: jeconnoc
 ms.service: container-service
 ms.topic: article
 ms.date: 08/08/2016
 ms.author: saudas
 ms.custom: mvc
-ms.openlocfilehash: d694744665ef6399560fc12c6976c2d88d232148
-ms.sourcegitcommit: 5d3e99478a5f26e92d1e7f3cec6b0ff5fbd7cedf
+ms.openlocfilehash: 0c0f4fd1f3a8242061e198d7b5447656f9008e96
+ms.sourcegitcommit: e2adef58c03b0a780173df2d988907b5cb809c82
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/06/2017
+ms.lasthandoff: 04/28/2018
+ms.locfileid: "32162131"
 ---
 # <a name="monitor-an-azure-container-service-cluster-with-sysdig"></a>使用 Sysdig 監視 Azure 容器服務叢集
 
 本文中，我們會將 Sysdig 代理程式部署到 Azure 容器服務叢集中的所有代理程式節點。 您需要 Sysdig 帳戶以進行這項設定。 
 
 ## <a name="prerequisites"></a>先決條件
-[部署](container-service-deployment.md)和[連接](../container-service-connect.md) Azure Container Service 所設定的叢集。 瀏覽 [Marathon UI](container-service-mesos-marathon-ui.md)。 移至 [http://app.sysdigcloud.com](http://app.sysdigcloud.com) 設定 Sysdig 雲端帳戶。 
+[部署](container-service-deployment.md)和[連接](../container-service-connect.md) Azure Container Service 所設定的叢集。 瀏覽 [Marathon UI](container-service-mesos-marathon-ui.md)。 移至 [http://app.sysdigcloud.com](http://app.sysdigcloud.com) 以設定 Sysdig 雲端帳戶。 
 
 ## <a name="sysdig"></a>Sysdig
 Sysdig 是一項監視服務，可讓您在叢集內監視您的容器。 Sysdig 以協助疑難排解而知名，不過 Sysdig 也具有針對 CPU、網路功能、記憶體和 I/O 的基本監視計量。 Sysdig 讓您更容易查看哪些容器作用最密集或基本上使用最多記憶體和 CPU。 此檢視位於 [概觀] 一節中，目前是 Beta 版。 

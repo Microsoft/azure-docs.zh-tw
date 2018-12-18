@@ -1,25 +1,26 @@
 ---
-title: "使用 Site Recovery 將實體伺服器容錯移轉及容錯回復至 Azure | Microsoft Docs"
-description: "了解如何使用 Site Recovery，將實體伺服器容錯移轉到 Azure，然後容錯回復到內部部署網站"
+title: 使用 Site Recovery 將實體伺服器容錯移轉及容錯回復至 Azure | Microsoft Docs
+description: 了解如何使用 Site Recovery，將實體伺服器容錯移轉到 Azure，然後容錯回復到內部部署網站
 services: site-recovery
 author: rayne-wiselman
 ms.service: site-recovery
 ms.topic: article
-ms.date: 03/09/2018
+ms.date: 09/11/2018
 ms.author: raynew
-ms.openlocfilehash: d58dfd482b66d90748f0ca661e56fa281c14598a
-ms.sourcegitcommit: a0be2dc237d30b7f79914e8adfb85299571374ec
+ms.openlocfilehash: 4036ab6e62f4738f4b2906eb7571dc5d0e972988
+ms.sourcegitcommit: 794bfae2ae34263772d1f214a5a62ac29dcec3d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/12/2018
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44391142"
 ---
 # <a name="fail-over-and-fail-back-physical-servers-replicated-to-azure"></a>將複寫的實體伺服器容錯移轉及容錯回復至 Azure
 
-本教學課程說明如何將實體伺服器容錯移轉至 Azure。 在容錯移轉之後，您可以將伺服器容錯回復至可用的內部部署網站。 
+本教學課程說明如何將實體伺服器容錯移轉至 Azure。 在容錯移轉之後，您可以將伺服器容錯回復至可用的內部部署網站。
 
 ## <a name="preparing-for-failover-and-failback"></a>準備容錯移轉和容錯回復
 
-使用站台復原複寫至 Azure 的實體伺服器，僅可以容錯回復為 VMware VM。 您需要 VMware VM 基礎結構，才能容錯回復。 
+使用站台復原複寫至 Azure 的實體伺服器，僅可以容錯回復為 VMware VM。 您需要 VMware VM 基礎結構，才能容錯回復。
 
 容錯移轉和容錯回復有四個階段：
 
@@ -43,7 +44,7 @@ ms.lasthandoff: 03/12/2018
 
 1. 在 [設定] > [複寫的項目] 中，按一下機器 > [容錯移轉]。
 2. 在 [容錯移轉] 中，選取容錯移轉的目標**復原點**。 您可以使用下列其中一個選項：
-   - **最新** (預設值)：此選項會先處理所有傳送至 Site Recovery 的資料。 它會提供最低的 RPO (復原點目標)，因為在容錯移轉後建立的 Azure VM 具有在觸發容錯移轉時複寫到 Site Recovery 的所有資料。
+   - **最新**：此選項會先處理所有傳送至 Site Recovery 的資料。 它會提供最低的 RPO (復原點目標)，因為在容錯移轉後建立的 Azure VM 具有在觸發容錯移轉時複寫到 Site Recovery 的所有資料。
    - **最近處理**：此選項會將機器容錯移轉到 Site Recovery 所處理的最新復原點。 此選項提供低 RTO (復原時間目標)，因為無須花費時間處理未處理的資料。
    - **最新應用程式一致**：此選項會將機器容錯移轉到 Site Recovery 所處理的最近應用程式一致復原點。
    - **自訂**：指定任何復原點。
@@ -54,7 +55,13 @@ ms.lasthandoff: 03/12/2018
 
 > [!WARNING]
 > 請勿取消正在進行中的容錯移轉。 容錯移轉開始之前，就會停止機器複寫。 如果您取消容錯移轉，容錯移轉會隨即停止，但機器不會重新複寫一次。
-> 若是實體伺服器，其他的容錯移轉可能需要處理約 8 到 10 分鐘才能完成。 
+> 若是實體伺服器，其他的容錯移轉可能需要處理約 8 到 10 分鐘才能完成。
+
+## <a name="prepare-to-connect-to-azure-vms-after-failover"></a>準備在容錯移轉後連接到 Azure VM
+
+如果您想要在容錯移轉後使用 RDP/SSH 連線到 Azure VM，請遵循資料表 ([這裡](site-recovery-test-failover-to-azure.md#prepare-to-connect-to-azure-vms-after-failover)) 中摘要說明的需求。
+
+請依照[這裡](site-recovery-failover-to-azure-troubleshoot.md)所述的步驟，對容錯移轉後的連線問題進行疑難排解。
 
 ## <a name="create-a-process-server-in-azure"></a>在 Azure 中建立處理序伺服器
 
@@ -119,4 +126,3 @@ ms.lasthandoff: 03/12/2018
 2. 選取用於將複寫的資料傳送至 Azure 的處理序伺服器，然後按一下 [確定]。
 
 重新保護完成之後，VM 會複寫回到 Azure，而您可以視需要執行容錯移轉。
-

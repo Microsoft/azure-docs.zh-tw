@@ -2,25 +2,25 @@
 title: 開始使用 Azure 佇列儲存體和 Visual Studio 已連線的服務 (ASP.NET) | Microsoft Docs
 description: 在使用 Visual Studio 已連接服務連接到儲存體帳戶之後，如何在 Visual Studio ASP.NET 專案中開始使用 Azure 佇列儲存體
 services: storage
-documentationcenter: ''
 author: ghogen
 manager: douge
-editor: ''
 ms.assetid: 94ca3413-5497-433f-abbe-836f83a9de72
-ms.service: storage
-ms.workload: web
-ms.tgt_pltfrm: vs-getting-started
-ms.devlang: na
-ms.topic: article
+ms.prod: visual-studio-dev15
+ms.technology: vs-azure
+ms.custom: vs-azure
+ms.workload: azure-vs
+ms.topic: conceptual
 ms.date: 12/23/2016
 ms.author: ghogen
-ms.openlocfilehash: 89baa741dcd916b70514f9703255b9e6d01c689b
-ms.sourcegitcommit: 34e0b4a7427f9d2a74164a18c3063c8be967b194
+ms.openlocfilehash: a114833b40fe834aa0108d1a2f3821f0b7cbddbc
+ms.sourcegitcommit: 74941e0d60dbfd5ab44395e1867b2171c4944dbe
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/30/2018
+ms.lasthandoff: 10/15/2018
+ms.locfileid: "49321847"
 ---
 # <a name="get-started-with-azure-queue-storage-and-visual-studio-connected-services-aspnet"></a>開始使用 Azure 佇列儲存體和 Visual Studio 已連線的服務 (ASP.NET)
+
 [!INCLUDE [storage-try-azure-tools-queues](../../includes/storage-try-azure-tools-queues.md)]
 
 ## <a name="overview"></a>概觀
@@ -29,10 +29,10 @@ Azure 佇列儲存體可提供應用程式元件之間的雲端傳訊。 設計�
 
 本教學課程說明如何使用 Azure 佇列儲存體實體撰寫一些常見案例的 ASP.NET 程式碼。 這些案例包括一般工作，例如建立 Azure 佇列，以及新增、修改、讀取和移除佇列訊息。
 
-##<a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 * [Microsoft Visual Studio](https://www.visualstudio.com/downloads/)
-* [Azure 儲存體帳戶](../storage/common/storage-create-storage-account.md#create-a-storage-account)
+* [Azure 儲存體帳戶](../storage/common/storage-quickstart-create-account.md)
 
 [!INCLUDE [storage-queue-concepts-include](../../includes/storage-queue-concepts-include.md)]
 
@@ -453,7 +453,7 @@ Azure 佇列儲存體可提供應用程式元件之間的雲端傳訊。 設計�
     queue.FetchAttributes();
     ```
 
-6. 存取 **CloudQueue.ApproximateMessageCount** 屬性，以取得佇列的長度。
+1. 存取 **CloudQueue.ApproximateMessageCount** 屬性，以取得佇列的長度。
  
     ```csharp
     int? nMessages = queue.ApproximateMessageCount;

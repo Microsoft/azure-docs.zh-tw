@@ -1,10 +1,10 @@
 ---
-title: "啟用 Azure 行動應用程式 (Xamarin iOS) 的離線同步處理"
-description: "了解如何在 Xamarin iOS 應用程式中使用應用程式服務行動應用程式快取和同步離線資料"
+title: 啟用 Azure 行動應用程式 (Xamarin iOS) 的離線同步處理
+description: 了解如何在 Xamarin iOS 應用程式中使用應用程式服務行動應用程式快取和同步離線資料
 documentationcenter: xamarin
 author: conceptdev
 manager: cfowler
-editor: 
+editor: ''
 services: app-service\mobile
 ms.assetid: 828a287c-5d58-4540-9527-1309ebb0f32b
 ms.service: app-service-mobile
@@ -19,6 +19,7 @@ ms.sourcegitcommit: df4ddc55b42b593f165d56531f591fdb1e689686
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 01/04/2018
+ms.locfileid: "27594661"
 ---
 # <a name="enable-offline-sync-for-your-xamarinios-mobile-app"></a>啟用 Xamarin iOS 行動應用程式的離線同步處理
 [!INCLUDE [app-service-mobile-selector-offline](../../includes/app-service-mobile-selector-offline.md)]

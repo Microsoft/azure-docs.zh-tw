@@ -1,0 +1,37 @@
+### YamlMime:YamlDocument
+ms.openlocfilehash: e4fd0831ed40d8c2052f2da1b2b5c8f8c4367f92
+ms.sourcegitcommit: ccdea744097d1ad196b605ffae2d09141d9c0bd9
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/23/2018
+ms.locfileid: "49648928"
+documentType: LandingData
+title: Azure 藍圖文件
+metadata:
+  title: Azure 藍圖文件 - 教學課程、API 參考
+  description: 「Azure 藍圖」是 Azure 中的服務，可讓您用來建立、定義及在您的 Azure 環境中部署成品。
+  services: blueprints
+  author: DCtheGeek
+  manager: carmonm
+  ms.service: blueprints
+  ms.topic: landing-page
+  ms.date: 09/18/2018
+  ms.author: dacoulte
+abstract:
+  description: Azure 藍圖使用類似原則、角色型存取控制以及 Azure Resource Manager 範本等等可組合的成品，協助您透過重複的步驟部署及更新雲端環境。
+sections:
+- title: 5 分鐘快速入門
+  items:
+  - type: paragraph
+    text: 了解如何在 Azure 中建立、指派和管理藍圖定義。
+  - type: list
+    style: icon48
+    items:
+    - image:
+        src: ./media/portal.svg
+      text: Azure 入口網站
+      href: create-blueprint-portal.md
+    - image:
+        src: ./media/rest.svg
+      text: REST API
+      href: create-blueprint-rest-api.md

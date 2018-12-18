@@ -1,24 +1,19 @@
 ---
-title: 將 Azure 活動記錄檔串流至事件中樞 | Microsoft Docs
+title: 將 Azure 活動記錄檔串流至事件中樞
 description: 了解如何將 Azure 活動記錄檔串流至事件中樞。
 author: johnkemnetz
-manager: orenr
-editor: ''
-services: monitoring-and-diagnostics
-documentationcenter: monitoring-and-diagnostics
-ms.assetid: ec4c2d2c-8907-484f-a910-712403a06829
-ms.service: monitoring-and-diagnostics
-ms.workload: na
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
-ms.date: 03/02/2018
+services: azure-monitor
+ms.service: azure-monitor
+ms.topic: conceptual
+ms.date: 07/25/2018
 ms.author: johnkem
-ms.openlocfilehash: 4b2d9866839f943f65beb271d44bc691441b0fb3
-ms.sourcegitcommit: 8c3267c34fc46c681ea476fee87f5fb0bf858f9e
+ms.component: activitylog
+ms.openlocfilehash: 7a5372174fcc7cd9552c00c9d283772c9863b815
+ms.sourcegitcommit: c2c64fc9c24a1f7bd7c6c91be4ba9d64b1543231
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 07/26/2018
+ms.locfileid: "39257993"
 ---
 # <a name="stream-the-azure-activity-log-to-event-hubs"></a>將 Azure 活動記錄檔串流至事件中樞
 您可以藉由下列任一方式，將 [Azure 活動記錄](monitoring-overview-activity-logs.md)近乎即時地串流至任何應用程式：
@@ -39,7 +34,7 @@ ms.lasthandoff: 03/09/2018
 
 共用存取原則會定義串流機制具有的權限。 目前，串流至「事件中樞」需要**管理**、**傳送**及**接聽**權限。 您可以在 Azure 入口網站中您「事件中樞」命名空間的 [設定] 索引標籤下，為「事件中樞」命名空間建立或修改共用存取原則。 
 
-若要更新「活動記錄」記錄設定檔以包含串流，進行變更的使用者必須擁有該「事件中樞」授權規則的 ListKey 權限。 「事件中樞」命名空間不一定要和發出記錄檔的訂用帳戶屬於相同訂用帳戶，只要進行設定的使用者有這兩個訂用帳戶的適當 RBAC 存取權即可。
+若要更新「活動記錄」記錄設定檔以包含串流，進行變更的使用者必須擁有該「事件中樞」授權規則的 ListKey 權限。 事件中樞命名空間不一定要和發出記錄檔的訂用帳戶屬於相同的訂用帳戶，只要進行設定的使用者有這兩個訂用帳戶的適當 RBAC 存取權，而且這兩個訂用帳戶都屬於同一個 ADD 租用戶。
 
 ### <a name="via-the-azure-portal"></a>透過 Azure 入口網站
 1. 藉由使用入口網站左側的 [所有服務] 搜尋，瀏覽至 [活動記錄] 區段。
@@ -56,38 +51,49 @@ ms.lasthandoff: 03/09/2018
 
    > [!WARNING]  
    > 如果您選取 [所有區域] 以外的選項，則會遺漏您預期接收的重要事件。 「活動記錄」是一個全域 (非區域性) 記錄，因此大多數事件都沒有關聯的區域。 
-   > 
+   >
 
-4. 選取 [儲存] 以儲存這些設定。 設定會立即套用至您的訂用帳戶。
-5. 如果您有數個訂用帳戶，請重複執行此動作，並將所有資料傳送給相同的事件中樞。
+4. 按一下 [Azure 事件中樞]  選項，然後選取中樞命名空間來將記錄檔傳送給它，然後按一下 [確定]。
+5. 選取 [儲存] 以儲存這些設定。 設定會立即套用至您的訂用帳戶。
+6. 如果您有數個訂用帳戶，請重複執行此動作，並將所有資料傳送給相同的事件中樞。
 
 ### <a name="via-powershell-cmdlets"></a>透過 PowerShell Cmdlet
-如果記錄檔設定檔已存在，您必須先移除該設定檔。
+如果記錄設定檔已經存在，您必須先移除現有的記錄設定檔，然後再建立新的記錄設定檔。
 
-1. 使用 `Get-AzureRmLogProfile` 來識別記錄設定檔是否存在。
-2. 如果有，使用 `Remove-AzureRmLogProfile` 來進行移除。
-3. 使用 `Set-AzureRmLogProfile` 來建立設定檔：
+1. 使用 `Get-AzureRmLogProfile` 來識別記錄設定檔是否存在。  如果記錄設定檔存在，請找出 name 屬性。
+2. 使用 `Remove-AzureRmLogProfile` 透過 name 屬性中的值來移除記錄設定檔。
+
+    ```powershell
+    # For example, if the log profile name is 'default'
+    Remove-AzureRmLogProfile -Name "default"
+    ```
+3. 使用 `Add-AzureRmLogProfile` 來建立新的記錄設定檔：
 
    ```powershell
+   # Settings needed for the new log profile
+   $logProfileName = "default"
+   $locations = (Get-AzureRmLocation).Location
+   $locations += "global"
+   $subscriptionId = "<your Azure subscription Id>"
+   $resourceGroupName = "<resource group name your event hub belongs to>"
+   $eventHubNamespace = "<event hub namespace>"
 
-   Add-AzureRmLogProfile -Name my_log_profile -serviceBusRuleId /subscriptions/s1/resourceGroups/Default-ServiceBus-EastUS/providers/Microsoft.ServiceBus/namespaces/mytestSB/authorizationrules/RootManageSharedAccessKey -Locations global,westus,eastus -RetentionInDays 90 -Categories Write,Delete,Action
+   # Build the service bus rule Id from the settings above
+   $serviceBusRuleId = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.EventHub/namespaces/$eventHubNamespace/authorizationrules/RootManageSharedAccessKey"
 
+   Add-AzureRmLogProfile -Name $logProfileName -Location $locations -ServiceBusRuleId $serviceBusRuleId
    ```
-
-「服務匯流排」規則識別碼是一個採用此格式的字串︰`{service bus resource ID}/authorizationrules/{key name}`。 
 
 ### <a name="via-azure-cli"></a>透過 Azure CLI
-如果記錄檔設定檔已存在，您必須先移除該設定檔。
+如果記錄設定檔已經存在，您必須先移除現有的記錄設定檔，然後再建立新的記錄設定檔。
 
-1. 使用 `azure insights logprofile list` 來識別記錄設定檔是否存在。
-2. 如果有，使用 `azure insights logprofile delete` 來進行移除。
-3. 使用 `azure insights logprofile add` 來建立設定檔：
+1. 使用 `az monitor log-profiles list` 來識別記錄設定檔是否存在。
+2. 使用 `az monitor log-profiles delete --name "<log profile name>` 透過 name 屬性中的值來移除記錄設定檔。
+3. 使用 `az monitor log-profiles create` 來建立新的記錄設定檔：
 
    ```azurecli-interactive
-   azure insights logprofile add --name my_log_profile --storageId /subscriptions/s1/resourceGroups/insights-integration/providers/Microsoft.Storage/storageAccounts/my_storage --serviceBusRuleId /subscriptions/s1/resourceGroups/Default-ServiceBus-EastUS/providers/Microsoft.ServiceBus/namespaces/mytestSB/authorizationrules/RootManageSharedAccessKey --locations global,westus,eastus,northeurope --retentionInDays 90 –categories Write,Delete,Action
+   az monitor log-profiles create --name "default" --location null --locations "global" "eastus" "westus" --categories "Delete" "Write" "Action"  --enabled false --days 0 --service-bus-rule-id "/subscriptions/<YOUR SUBSCRIPTION ID>/resourceGroups/<RESOURCE GROUP NAME>/providers/Microsoft.EventHub/namespaces/<EVENT HUB NAME SPACE>/authorizationrules/RootManageSharedAccessKey"
    ```
-
-「服務匯流排」規則識別碼是一個採用此格式的字串︰`{service bus resource ID}/authorizationrules/{key name}`。
 
 ## <a name="consume-the-log-data-from-event-hubs"></a>從事件中樞取用記錄資料
 如需了解「活動記錄」的結構描述，請參閱[使用 Azure 活動記錄監視訂用帳戶活動](monitoring-overview-activity-logs.md)。 每個事件都位於名為 *records* 的 JSON Blob 陣列中。

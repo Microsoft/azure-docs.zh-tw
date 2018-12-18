@@ -1,8 +1,8 @@
 ---
-title: "Azure App Service 上的作業系統功能"
-description: "了解 Azure App Service 上 Web 應用程式、行動應用程式後端和 API Apps 可以使用的作業系統功能"
+title: Azure App Service 上的作業系統功能
+description: 了解 Azure App Service 上 Web 應用程式、行動應用程式後端和 API Apps 可以使用的作業系統功能
 services: app-service
-documentationcenter: 
+documentationcenter: ''
 author: cephalin
 manager: erikre
 editor: mollybos
@@ -14,11 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/01/2016
 ms.author: cephalin
-ms.openlocfilehash: 6b5939341ad05fb8f80415c5335c24d216fc2555
-ms.sourcegitcommit: a0be2dc237d30b7f79914e8adfb85299571374ec
+ms.openlocfilehash: 00b5f9c78000fbb9bf86e8c1d8b06e3645795a12
+ms.sourcegitcommit: 3c3488fb16a3c3287c3e1cd11435174711e92126
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/12/2018
+ms.lasthandoff: 06/07/2018
+ms.locfileid: "34850149"
 ---
 # <a name="operating-system-functionality-on-azure-app-service"></a>Azure App Service 上的作業系統功能
 本文說明在 [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714)上執行的所有應用程式可用的一般基礎作業系統功能。 此功能包含檔案、網路、登錄存取、診斷記錄和事件。 
@@ -49,16 +50,22 @@ App Service 中的各種磁碟機，包含本機磁碟機和網路磁碟機。
 <a id="LocalDrives"></a>
 
 ### <a name="local-drives"></a>本機磁碟機
-基本上，App Service 是一項在 Azure PaaS (平台即服務) 基礎結構之上執行的服務。 因此，「附加」至虛擬機器的本機磁碟機就是任何在 Azure 中執行之背景工作角色可用的相同磁碟機類型。 這包括作業系統磁碟機 (D:\ 磁碟機)、含 App Service 專用的 Azure 封裝 cspkg 檔案的應用程式磁碟機 (客戶無法存取)，以及「使用者」磁碟機 (C:\ 磁碟機，其大小因 VM 的大小而異)。 請務必在您應用程式增加之際監視磁碟使用狀況。 如果達到磁碟配額時，可能會對您的應用程式造成不良影響。
+基本上，App Service 是一項在 Azure PaaS (平台即服務) 基礎結構之上執行的服務。 因此，「附加」至虛擬機器的本機磁碟機就是任何在 Azure 中執行之背景工作角色可用的相同磁碟機類型。 其中包括：
+
+- 作業系統磁碟機 (D:\ 磁碟機)
+- 應用程式磁碟機，包含 App Service 專用的 Azure 封裝 cspkg 檔案 (客戶無法存取)
+- 「使用者」磁碟機 (C:\ 磁碟機)，它的大小會隨著虛擬機器大小而異。 
+
+請務必在您應用程式增加之際監視磁碟使用狀況。 如果達到磁碟配額時，可能會對您的應用程式造成不良影響。
 
 <a id="NetworkDrives"></a>
 
 ### <a name="network-drives-aka-unc-shares"></a>網路磁碟機 (亦稱為 UNC 共用)
-App Service 將所有使用者內容儲存在一組 UNC 共用上，此種獨特做法讓應用程式的部署和維護變得直接。 此種模型非常符合具有多個負載平衡伺服器的內部部署 Web 主控環境所用內容儲存體的一般模式。 
+App Service 將所有使用者內容儲存在一組 UNC 共用上，此種獨特做法讓應用程式的部署和維護變得直接。 此種模型非常符合一種內容儲存體模式，該模式通常是由具有多個負載平衡伺服器的內部部署虛擬主機所使用。 
 
 在 App Service 中，每個資料中心內都已建立許多 UNC 共用。 每個 UNC 共用都會配置每個資料中心內各客戶某個百分比的使用者內容。 此外，單一客戶訂閱的所有檔案內容一律放在相同的 UNC 共用上。 
 
-請注意，由於雲端服務的運作方式，負責主控 UNC 共用的特定虛擬機器將隨著時間而改變。 但保證當 UNC 共用在雲端作業的正常過程中啟動和關閉時，將會由不同的虛擬機器掛接。 基於這個理由，應用程式不得硬性假設 UNC 檔案路徑中的機器資訊會隨時保持穩定。 反之，應該使用 App Service 所提供的方便 *faux* 絕對路徑 **D:\home\site**。 這個假的絕對路徑提供了一種無需知道應用程式和使用者的可攜式方法，即可參考某人擁有的應用程式。 使用 **D:\home\site**，即可在應用程式之間傳輸共用檔案，而不需針對每次傳輸設定新的絕對路徑。
+由於 Azure 服務的運作方式，負責裝載 UNC 共用的特定虛擬機器將隨著時間而改變。 UNC 共用在 Azure 作業的正常過程中啟動和關閉時，一定會由不同的虛擬機器掛接。 基於這個理由，應用程式不得硬性假設 UNC 檔案路徑中的機器資訊會隨時保持穩定。 反之，應該使用 App Service 所提供的方便 *faux* 絕對路徑 **D:\home\site**。 這個假的絕對路徑提供了一種無需知道應用程式和使用者的可攜式方法，即可參考某人擁有的應用程式。 使用 **D:\home\site**，即可在應用程式之間傳輸共用檔案，而不需針對每次傳輸設定新的絕對路徑。
 
 <a id="TypesOfFileAccess"></a>
 
@@ -69,7 +76,7 @@ App Service 將所有使用者內容儲存在一組 UNC 共用上，此種獨特
 
 App Service 對於暫存本機儲存體的兩種使用方式範例：暫存 ASP.NET 檔案的目錄和 IIS 壓縮檔案的目錄。 ASP.NET 編譯系統會使用 "Temporary ASP.NET Files" 目錄作為暫存編譯快取位置。 IIS 則使用 "IIS Temporary Compressed Files" 目錄來儲存壓縮回應輸出。 這兩種檔案使用方式 (和其他方式) 都會在 App Service 中重新對應至每個應用程式的暫存本機儲存體。 此重新對應可確保功能如預期般繼續運作。
 
-App Service 中的每個應用程式都會以隨機獨特的低權限背景工作角色處理序身分識別 (稱為「應用程式集區身分識別」) 執行，進一步的說明如下： [http://www.iis.net/learn/manage/configuring-security/application-pool-identities](http://www.iis.net/learn/manage/configuring-security/application-pool-identities)。 應用程式程式碼會將此識別用於作業系統磁碟機 (D:\ 磁碟機) 的基本唯讀存取。 這表示應用程式程式碼可以列出通用目錄結構和讀取作業系統磁碟機上的通用檔案。 雖然這似乎是有點廣泛的存取層級，但是當您在 Azure 託管服務中佈建背景工作角色和讀取磁碟機內容時，可以存取的目錄和檔案相同。 
+App Service 中的每個應用程式都會以隨機獨特的低權限背景工作角色處理序身分識別 (稱為「應用程式集區身分識別」) 執行，進一步的說明如下：[http://www.iis.net/learn/manage/configuring-security/application-pool-identities](http://www.iis.net/learn/manage/configuring-security/application-pool-identities)。 應用程式程式碼會將此識別用於作業系統磁碟機 (D:\ 磁碟機) 的基本唯讀存取。 這表示應用程式程式碼可以列出通用目錄結構和讀取作業系統磁碟機上的通用檔案。 雖然這似乎是有點廣泛的存取層級，但是當您在 Azure 託管服務中佈建背景工作角色和讀取磁碟機內容時，可以存取的目錄和檔案相同。 
 
 <a name="multipleinstances"></a>
 
@@ -81,7 +88,7 @@ App Service 中的每個應用程式都會以隨機獨特的低權限背景工�
 ## <a name="network-access"></a>網路存取
 應用程式程式碼可以使用 TCP/IP 和 UDP 型通訊協定，對公開外部服務的網際網路可存取端點進行輸出網路連線。 應用程式可以使用這些相同通訊協定來連接至 Azure&#151; 內的服務，例如，建立與 SQL Database 的 HTTPS 連線。
 
-此外，應用程式可以在有限的情況下建立一個本機回送連線，並且讓應用程式在該本機回送通訊端上接聽。 這項功能主要是讓在本機回送通訊端上接聽的應用程式成為其功能的一部分。 請注意，每個應用程式都可看見一個「私人」回送連線，但應用程式「A」無法接聽應用程式「B」所建立的本機回送通訊端。
+此外，應用程式可以在有限的情況下建立一個本機回送連線，並且讓應用程式在該本機回送通訊端上接聽。 這項功能主要是讓在本機回送通訊端上接聽的應用程式成為其功能的一部分。 每個應用程式都會看到「私人」回送連線。 應用程式 "A" 無法接聽由應用程式 "B" 建立的本機回送通訊端。
 
 此外，還支援具名管道作為共同執行應用程式的不同處理序之間的處理序間通訊 (IPC) 機制。 例如，IIS FastCGI 模組會依賴具名管道來協調執行 PHP 頁面的個別處理序。
 

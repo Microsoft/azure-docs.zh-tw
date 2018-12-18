@@ -1,24 +1,27 @@
 ---
 title: 針對 Azure SQL Database 執行分析查詢 | Microsoft Docs
-description: 使用從多個 Azure SQL Database 資料庫擷取的資料執行跨租用戶分析查詢。
-keywords: sql 教學課程
+description: 在多租用戶應用程式中使用從多個 Azure SQL Database 資料庫擷取的資料執行跨租用戶分析查詢。
 services: sql-database
-author: stevestein
-manager: jhubbard
 ms.service: sql-database
-ms.custom: scale out apps
-ms.topic: article
-ms.date: 11/08/2017
-ms.author: anjangsh; billgib; genemi
-ms.openlocfilehash: 7f04ca4bf324586e0cb34effa324b1703d92d065
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.subservice: scenario
+ms.custom: ''
+ms.devlang: ''
+ms.topic: conceptual
+author: stevestein
+ms.author: sstein
+ms.reviewer: anjangsh,billgib,genemi
+manager: craigg
+ms.date: 09/19/2018
+ms.openlocfilehash: 5de707f3f2e6a82d880363eea91fb8ce644fb3aa
+ms.sourcegitcommit: 715813af8cde40407bd3332dd922a918de46a91a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "47055032"
 ---
-# <a name="cross-tenant-analytics-using-extracted-data"></a>使用擷取的資料執行跨租用戶分析
-
-在此教學課程中，您會逐步完成整個分析案例。 案例會示範分析如何讓企業做出智慧的決策。 使用從分區資料庫擷取的資料，您使用分析來取得租用戶行為的深入解析，包括他們對於範例 Wingtip Tickets SaaS 應用程式的使用。 這個案例牽涉到三個步驟： 
+# <a name="cross-tenant-analytics-using-extracted-data---multi-tenant-app"></a>使用擷取的資料執行跨租用戶分析 - 多租用戶應用程式
+ 
+在此教學課程中，您會逐步完成多租用戶實作的整個分析案例。 案例會示範分析如何讓企業做出智慧的決策。 使用從分區資料庫擷取的資料，您使用分析來取得租用戶行為的深入解析，包括他們對於範例 Wingtip Tickets SaaS 應用程式的使用。 這個案例牽涉到三個步驟： 
 
 1.  從每個租用戶資料庫**擷取資料**至分析存放區。
 2.  針對分析處理**最佳化擷取的資料**。
@@ -63,7 +66,7 @@ ms.lasthandoff: 03/16/2018
 
 ## <a name="setup"></a>設定
 
-### <a name="prerequisites"></a>先決條件
+### <a name="prerequisites"></a>必要條件
 
 若要完成本教學課程，請確定符合下列必要條件：
 
@@ -205,7 +208,7 @@ ms.lasthandoff: 03/16/2018
 
 Contoso Concert Hall 的上述繪圖顯示並非所有事件都發生搶購熱潮。 試用篩選選項，以查看其他地點的銷售趨勢。
 
-票證銷售模式的深入解析可能會引導 Wingtip Tickets 最佳化其商務模型。 並非對所有租用戶平均收費，Wingtip 或許應該引進不同效能層級的服務層。 可以為需要每日銷售更多票證的較大地點，提供具有較高服務等級協定 (SLA) 的較高層級。 這些地點可以將其資料庫放在具有較高每個資料庫資源限制的集區中。 每個服務層可以有每小時銷售配置，針對超過的配置收取額外費用。 具有定期銷售爆發的較大地點可以從較高的層級獲益，Wingtip Tickets 也可以更有效率地從其服務創造營收。
+票證銷售模式的深入解析可能會引導 Wingtip Tickets 最佳化其商務模型。 Wingtip 或許應該引進不同計算大小的服務層，而非對所有租用戶平均收費。 可以為需要每日銷售更多票證的較大地點，提供具有較高服務等級協定 (SLA) 的較高層級。 這些地點可以將其資料庫放在具有較高每個資料庫資源限制的集區中。 每個服務層可以有每小時銷售配置，針對超過的配置收取額外費用。 具有定期銷售爆發的較大地點可以從較高的層級獲益，Wingtip Tickets 也可以更有效率地從其服務創造營收。
 
 同時，有些 Wingtip Tickets 客戶抱怨，他們在銷售足夠票證以攤平服務成本方面有難處。 或許在這些深入解析中，有機會可以為表現不佳的地點促進票證銷售。 較高的銷售會增加服務的認知值。 以滑鼠右鍵按一下 fact_Tickets，然後選取 [新的量值]。 針對稱為 **AverageTicketsSold** 的新量值輸入下列運算式：
 
@@ -238,5 +241,6 @@ AverageTicketsSold = DIVIDE(DIVIDE(COUNTROWS(fact_Tickets),DISTINCT(dim_Venues[V
 
 ## <a name="additional-resources"></a>其他資源
 
-<!-- - Additional [tutorials that build upon the Wingtip SaaS application](saas-dbpertenant-wingtip-app-overview.md#sql-database-wingtip-saas-tutorials). -->
+其他[以 Wingtip SaaS 應用程式為基礎的教學課程](saas-dbpertenant-wingtip-app-overview.md#sql-database-wingtip-saas-tutorials)。 
 - [彈性作業](sql-database-elastic-jobs-overview.md)。
+- [使用擷取的資料執行跨租用戶分析 - 單一租用戶應用程式](saas-tenancy-tenant-analytics.md) 

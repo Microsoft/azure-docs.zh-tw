@@ -2,23 +2,21 @@
 title: 如何管理服務組態和設定檔 | Microsoft Docs
 description: 了解如何使用服務組態和設定檔組態檔案 | 其儲存部署環境的設定及雲端服務的發佈設定。
 services: visual-studio-online
-documentationcenter: na
 author: ghogen
 manager: douge
-editor: ''
-ms.assetid: 7da8c551-fb06-4057-b5c7-c77f4b39d803
-ms.service: multiple
-ms.devlang: dotnet
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: multiple
+assetId: 7da8c551-fb06-4057-b5c7-c77f4b39d803
+ms.prod: visual-studio-dev15
+ms.technology: vs-azure
+ms.workload: azure
+ms.topic: conceptual
 ms.date: 8/11/2017
 ms.author: ghogen
-ms.openlocfilehash: 411daa8892bee1858c6930dfd8b2b811f164ec5d
-ms.sourcegitcommit: 34e0b4a7427f9d2a74164a18c3063c8be967b194
+ms.openlocfilehash: 4f2dce7cdbf81718f9ccf0c1b7d52c6678cc847f
+ms.sourcegitcommit: fa493b66552af11260db48d89e3ddfcdcb5e3152
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/30/2018
+ms.lasthandoff: 04/23/2018
+ms.locfileid: "31799051"
 ---
 # <a name="how-to-manage-service-configurations-and-profiles"></a>如何管理服務組態和設定檔
 ## <a name="overview"></a>概觀
@@ -96,7 +94,7 @@ ms.lasthandoff: 03/30/2018
 1. 開啟 Azure 專案的捷徑功能表，然後選取 [發佈] 。
 2. 在 [目標設定檔]  清單中，選取您要變更的設定檔。
 3. 選取 [上一步] 和 [下一步] 按鈕以顯示「發佈精靈」的每個頁面，然後變更您想要的設定。 如需相關資訊，請參閱 [發佈 Azure 應用程式精靈](http://go.microsoft.com/fwlink/p/?LinkID=623085) 。
-4. 變更完設定之後，選取 [下一步] 以返回**「設定」**頁面。
+4. 變更完設定之後，選取 [下一步] 以返回 **「設定」** 頁面。
 5. (選擇性) 選取 [發佈]  以使用新設定來發佈雲端服務。 如果您不想在此時發佈雲端服務，而關閉 [發佈精靈]，Visual Studio 會詢問您是否要將變更儲存至設定檔。
 
 ## <a name="next-steps"></a>後續步驟

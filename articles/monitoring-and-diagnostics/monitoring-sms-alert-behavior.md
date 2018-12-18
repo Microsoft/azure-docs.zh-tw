@@ -1,32 +1,27 @@
 ---
-title: "動作群組中的 SMS 警示行為 | Microsoft Docs"
-description: "SMS 訊息格式和回應 SMS 訊息以取消訂閱、重新訂閱，或要求說明。"
+title: 動作群組中的 SMS 警示行為
+description: SMS 訊息格式和回應 SMS 訊息以取消訂閱、重新訂閱，或要求說明。
 author: dkamstra
-manager: chrad
-editor: 
-services: monitoring-and-diagnostics
-documentationcenter: monitoring-and-diagnostics
-ms.assetid: 
-ms.service: monitoring-and-diagnostics
-ms.workload: na
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+services: monitoring
+ms.service: azure-monitor
+ms.topic: conceptual
 ms.date: 02/16/2018
 ms.author: dukek
-ms.openlocfilehash: ce6908de0f6bcc30d1ee846fe92171a0cb589cbb
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.component: alerts
+ms.openlocfilehash: f2f463f6c428ce6c72e2640472376fa17a2bfe5a
+ms.sourcegitcommit: 1b8665f1fff36a13af0cbc4c399c16f62e9884f3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35263002"
 ---
 # <a name="sms-alert-behavior-in-action-groups"></a>動作群組中的 SMS 警示行為
 ## <a name="overview"></a>概觀 ##
 動作群組可讓您設定動作清單。 定義警示時會使用這些群組；確保觸發警示時，特定動作群組可以收到通知。 SMS 是其中一個支援的動作；SMS 通知示支援雙向通訊。 使用者可以回應 SMS 以便：
 
-- **取消訂閱警示：**使用者可取消訂閱所有動作群組或單一動作群組的 SMS 警示。
-- **重新訂閱警示：**使用者可重新訂閱所有動作群組或單一動作群組的 SMS 警示。  
-- **要求說明︰**使用者可在 SMS 上要求其他資訊。 系統會將他們導向本文。
+- **取消訂閱警示：** 使用者可取消訂閱所有動作群組或單一動作群組的 SMS 警示。
+- **重新訂閱警示：** 使用者可重新訂閱所有動作群組或單一動作群組的 SMS 警示。  
+- **要求說明︰** 使用者可在 SMS 上要求其他資訊。 系統會將他們導向本文。
 
 本文涵蓋 SMS 警示的行為，以及使用者可依據其所在位置採取的回應動作：
 

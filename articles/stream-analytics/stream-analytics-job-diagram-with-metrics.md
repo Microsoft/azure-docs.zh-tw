@@ -1,24 +1,19 @@
 ---
-title: 使用作業圖表對 Azure 串流分析進行資料導向偵錯 | Microsoft Docs
-description: 使用作業圖表和計量對串流分析作業進行移難排解。
-keywords: ''
-documentationcenter: ''
+title: 在 Azure 串流分析中進行資料導向的偵錯
+description: 本文說明如何使用 Azure 入口網站中的作業圖表和計量，針對 Azure 串流分析作業進行疑難排解。
 services: stream-analytics
 author: jseb225
-manager: ryanw
-ms.assetid: ''
-ms.service: stream-analytics
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: data-services
-ms.date: 05/01/2017
 ms.author: jeanb
-ms.openlocfilehash: 65eeeee7daa22b94074f55defdfd1219049774c9
-ms.sourcegitcommit: 34e0b4a7427f9d2a74164a18c3063c8be967b194
+manager: kfile
+ms.reviewer: jasonh
+ms.service: stream-analytics
+ms.topic: conceptual
+ms.date: 05/01/2017
+ms.openlocfilehash: 3d50f96f3dea3646bb32a3a42d0248957dabf9f0
+ms.sourcegitcommit: 1362e3d6961bdeaebed7fb342c7b0b34f6f6417a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/30/2018
+ms.lasthandoff: 04/18/2018
 ---
 # <a name="data-driven-debugging-by-using-the-job-diagram"></a>使用作業圖表進行資料導向偵錯
 
@@ -81,11 +76,11 @@ ms.lasthandoff: 03/30/2018
  
 ### <a name="are-we-falling-behind-in-reading-data"></a>讀取資料的速度太慢了嗎？
 
-*   **InputEventsSourcesBackloggedTotal** 會告訴您事件中樞及 Azure IoT 中樞輸入還需要讀取多少訊息數量。
+*   **Input Events Backlogged (Total)** 會告訴您事件中樞及 Azure IoT 中樞輸入還需要讀取多少訊息數量。 當這個數目大於 0 時，表示您的作業無法以資料進來的速度處理資料。 此時，您可能需要增加串流單位數目，並/或確定您的工作可平行處理。 您可以在[查詢平行化作業頁面](https://docs.microsoft.com/azure/stream-analytics/stream-analytics-parallelization)參閱相關的詳細資訊。 
 
 
 ## <a name="get-help"></a>取得說明
-如需其他協助，請參閱我們的 [Azure 串流分析論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)。
+如需其他協助，請參閱我們的 [Azure 串流分析論壇](https://social.msdn.microsoft.com/Forums/azure/home?forum=AzureStreamAnalytics)。 
 
 ## <a name="next-steps"></a>後續步驟
 * [串流分析介紹](stream-analytics-introduction.md)

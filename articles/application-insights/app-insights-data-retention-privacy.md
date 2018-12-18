@@ -1,8 +1,8 @@
 ---
-title: "Azure Application Insights 中的資料保留和儲存 | Microsoft Docs"
-description: "保留和隱私權原則聲明"
+title: Azure Application Insights 中的資料保留和儲存 | Microsoft Docs
+description: 保留和隱私權原則聲明
 services: application-insights
-documentationcenter: 
+documentationcenter: ''
 author: mrbullwinkle
 manager: carmonm
 ms.assetid: a6268811-c8df-42b5-8b1b-1d5a7e94cbca
@@ -10,14 +10,15 @@ ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
-ms.topic: article
-ms.date: 04/07/2017
+ms.topic: conceptual
+ms.date: 06/29/2018
 ms.author: mbullwin
-ms.openlocfilehash: 1818e564acb0e9b5fa620d6f38db141811ca9777
-ms.sourcegitcommit: 2a70752d0987585d480f374c3e2dba0cd5097880
+ms.openlocfilehash: 897671ef592ac691402a4e452f7a0baa04aa228a
+ms.sourcegitcommit: 5892c4e1fe65282929230abadf617c0be8953fd9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/19/2018
+ms.lasthandoff: 06/29/2018
+ms.locfileid: "37129052"
 ---
 # <a name="data-collection-retention-and-storage-in-application-insights"></a>Application Insights 中的資料收集、保留和儲存
 
@@ -103,7 +104,7 @@ Microsoft 只會使用這項資料，以將服務提供給您。
 
 
 #### <a name="does-that-mean-my-app-has-to-be-hosted-in-the-usa-europe-or-southeast-asia"></a>這是否表示我的應用程式必須裝載在美國、歐洲或東南亞？
-* 編號 您的應用程式可以在任何地方執行，在您自己的內部部署主機上或雲端中皆可。
+* 否。 您的應用程式可以在任何地方執行，在您自己的內部部署主機上或雲端中皆可。
 
 ## <a name="how-secure-is-my-data"></a>我的資料有多安全？
 Application Insights 是一項 Azure 服務。 如需安全性原則的相關說明，請參閱[ Azure 安全性、隱私權及法規遵循白皮書](http://go.microsoft.com/fwlink/?linkid=392408)。
@@ -125,35 +126,60 @@ Microsoft 人員對您的資料存取會受到限制。 我們只有在獲得您
 所有資料在資料中心之間移動時會予以加密。
 
 #### <a name="is-the-data-encrypted-in-transit-from-my-application-to-application-insights-servers"></a>將資料從我的應用程式傳輸到 Application Insights 伺服器時是否進行加密？
-是，我們使用 https，將資料從幾乎所有 SDK (包括網頁伺服器、裝置和 HTTPS 網頁) 傳送至入口網站。 唯一的例外是從純 HTTP 網頁傳送的資料。 
+是，我們使用 https，將資料從幾乎所有 SDK (包括網頁伺服器、裝置和 HTTPS 網頁) 傳送至入口網站。 唯一的例外是從純 HTTP 網頁傳送的資料。
 
-## <a name="personally-identifiable-information"></a>個人識別資訊
-#### <a name="could-personally-identifiable-information-pii-be-sent-to-application-insights"></a>個人識別資訊 (PII) 會傳送到 Application Insights 嗎？
-是，可以的。 
+## <a name="how-do-i-send-data-to-application-insights-using-tls-12"></a>如何使用 TLS 1.2 將資料傳送至 Application Insights？
 
-一般指引為：
+為了確保傳送至 Application Insights 端點時的資料安全性，我們強烈建議客戶至少使用傳輸層安全性 (TLS) 1.2 來設定他們的應用程式。 我們已發現較舊版本的 TLS/安全通訊端層 (SSL) 較易受到攻擊，而且在其目前的運作中仍允許回溯相容性，因此並**不建議使用**這些版本，很快地，業界也會捨棄這些舊版通訊協定的支援。 
 
-* 大部分的標準遙測 (即，在未撰寫任何程式碼的情況下所傳送的遙測) 都不包括明確的 PII。 不過，從事件集合推斷，即可識別個人。
-* 例外狀況和追蹤訊息可能包含 PII
-* 自訂遙測 (即，使用 API 以程式碼撰寫的呼叫 (例如 TrackEvent) 或記錄檔追蹤) 可以包含您選擇的任何資料。
+[PCI 安全標準委員會](https://www.pcisecuritystandards.org/)已設定 [2018 年 6 月 30 日作為最後期限](https://www.pcisecuritystandards.org/pdfs/PCI_SSC_Migrating_from_SSL_and_Early_TLS_Resource_Guide.pdf)，在此之後將停用舊版 TLS/SSL，並升級至更安全的通訊協定。 當 Azure 捨棄舊版的支援後，如果您的應用程式/用戶端無法透過 TLS 1.2 (至少) 進行通訊，您就無法將資料傳送至 Application Insights。 用來測試及驗證您應用程式 TLS 支援的方法，會因為作業系統/平台及應用程式所用的語言/架構不同而有所差異。
 
-這份文件結尾的資料表包含所收集資料的更詳細描述。
+除非有絕對必要，否則我們不建議將應用程式明確地設定為只使用 TLS 1.2，因為這樣可能會中斷平台層級的安全性功能，此功能可在更安全的較新通訊協定 (例如 TLS 1.3) 推出時，自動偵測並加以運用。 我們建議您對應用程式的程式碼執行全面稽核，以檢查特定 TLS/SSL 版本的硬式編碼。
 
-#### <a name="am-i-responsible-for-complying-with-laws-and-regulations-in-regard-to-pii"></a>我是否要負責遵守有關 PII 的法規？
-是。 您必須負責確保資料的收集與使用符合法規和 Microsoft Online Services 條款。
+### <a name="platformlanguage-specific-guidance"></a>平台/語言的特定指引
 
-您應該適當地通知您的客戶有關您應用程式所收集的資料和資料使用方式。
+|平台/語言 | 支援 | 相關資訊 |
+| --- | --- | --- |
+| Azure App Service  | 支援，可能需要設定。 | 已在 2018 年 4 月宣告支援。 請參閱公告以了解[設定的詳細資訊](https://blogs.msdn.microsoft.com/appserviceteam/2018/04/17/app-service-and-functions-hosted-apps-can-now-update-tls-versions/)。  |
+| Azure 函式應用程式 | 支援，可能需要設定。 | 已在 2018 年 4 月宣告支援。 請參閱公告以了解[設定的詳細資訊](https://blogs.msdn.microsoft.com/appserviceteam/2018/04/17/app-service-and-functions-hosted-apps-can-now-update-tls-versions/)。 |
+|.NET | 支援，設定會因版本不同而有所差異。 | 如需 .NET 4.7 和更早版本的詳細設定資訊，請參閱[這些指示](https://docs.microsoft.com/en-us/dotnet/framework/network-programming/tls#support-for-tls-12)。  |
+|狀態監視器 | 支援，需要設定 | 狀態監視須依賴 [OS 組態](https://docs.microsoft.com/en-us/windows-server/security/tls/tls-registry-settings) + [.NET 組態](https://docs.microsoft.com/en-us/dotnet/framework/network-programming/tls#support-for-tls-12)來支援 TLS 1.2。
+|Node.js |  支援，可能需要對 v10.5.0 進行設定。 | 使用[官方 Node.js TLS/SSL 文件](https://nodejs.org/api/tls.html)以了解任何應用程式專屬的設定。 |
+|Java | 支援，[JDK 6 更新 121](http://www.oracle.com/technetwork/java/javase/overview-156328.html#R160_121) 和 [JDK 7](http://www.oracle.com/technetwork/java/javase/7u131-relnotes-3338543.html) 中已新增 TLS 1.2 的 JDK 支援。 | JDK 8 會使用[預設的 TLS 1.2](https://blogs.oracle.com/java-platform-group/jdk-8-will-use-tls-12-as-default)。  |
+|Linux | Linux 發行版本通常會依賴 [OpenSSL](https://www.openssl.org) 來取得 TLS 1.2 支援。  | 請檢查 [OpenSSL 變更記錄](https://www.openssl.org/news/changelog.html)來確認支援的 OpenSSL 版本。|
+| Windows 8.0 - 10 | 支援，而且已預設為啟用。 | 請確認您仍在使用[預設設定](https://docs.microsoft.com/en-us/windows-server/security/tls/tls-registry-settings)。  |
+| Windows Server 2012 - 2016 | 支援，而且已預設為啟用。 | 請確認您仍在使用[預設設定](https://docs.microsoft.com/en-us/windows-server/security/tls/tls-registry-settings) |
+| Windows 7 SP1 和 Windows Server 2008 R2 SP1 | 支援，但預設為不啟用。 | 請參閱[傳輸層安全性 (TLS) 登錄設定](https://docs.microsoft.com/en-us/windows-server/security/tls/tls-registry-settings)頁面，了解詳細的啟用方式。  |
+| Windows Server 2008 SP2 | TLS 1.2 支援需要更新。 | 請在 Windows Server 2008 SP2 中參閱[新增 TLS 1.2 支援的更新](https://support.microsoft.com/help/4019276/update-to-add-support-for-tls-1-1-and-tls-1-2-in-windows-server-2008-s)。 |
+|Windows Vista | 不支援。 | N/A
+
+### <a name="check-what-version-of-openssl-your-linux-distribution-is-running"></a>請檢查您 Linux 發行版本所執行的 OpenSSL 版本
+
+若要檢查您已安裝的 OpenSSL 是哪個版本，請開啟終端機並執行：
+
+```terminal
+openssl version -a
+```
+
+### <a name="run-a-test-tls-12-transaction-on-linux"></a>在 Linux 上執行用於測試的 TLS 1.2 交易
+
+執行基本的初步測試，以查看您的 Linux 系統是否可透過 TLS 1.2 通訊。 開啟終端機並執行：
+
+```terminal
+openssl s_client -connect bing.com:443 -tls1_2
+```
+
+## <a name="personal-data-stored-in-application-insights"></a>儲存在 Application Insights 中的個人資料
+
+我們的 [Application Insights 個人資料文章](app-insights-customer-data.md)會深入討論此議題。
 
 #### <a name="can-my-users-turn-off-application-insights"></a>我的使用者是否可以關閉 Application Insights？
 無法直接進行。 我們不提供您的使用者可以操作來關閉 Application Insights 的參數。
 
 不過，您可以在應用程式中實作這類功能。 所有 SDK 都包括關閉遙測收集的 API 設定。 
 
-#### <a name="my-application-is-unintentionally-collecting-sensitive-information-can-application-insights-scrub-this-data-so-it-isnt-retained"></a>我的應用程式不小心收集到機密資訊。 Application Insights 是否可以刪除此資料，不予保留？
-Application Insights 不會篩選或刪除資料。 您應該適當地管理資料，並避免將這類資料傳送至 Application Insights。
-
 ## <a name="data-sent-by-application-insights"></a>Application Insights 所傳送的資料
-不同的平台會有不同的 SDK，而且有數個可安裝的元件  (請參閱 [Application Insights - 概觀][start])。每個元件都會傳送不同的資料。
+不同的平台會有不同的 SDK，而且有數個可安裝的元件。 (請參閱 [Application Insights - 概觀][start])。每個元件都會傳送不同的資料。
 
 #### <a name="classes-of-data-sent-in-different-scenarios"></a>不同情況下所傳送資料的類別
 | 您的動作 | 收集的資料類別 (請參閱下一個資料表) |
@@ -190,13 +216,13 @@ Application Insights 不會篩選或刪除資料。 您應該適當地管理資�
 | 損毀 |處理序識別碼、父處理序識別碼、損毀執行緒識別碼；應用程式修補程式、識別碼、組建；例外狀況類型、位址、原因；模糊符號和暫存器、二進位開始和結束位址、二進位檔名稱和路徑、CPU 類型 |
 | 追蹤 |**訊息** 和嚴重性層級 |
 | 效能計數器 |處理器時間、可用記憶體、要求率、例外狀況率、處理序私用位元組、IO 率、要求持續期間、要求佇列長度 |
-| Availability |Web 測試回應程式碼、每個測試步驟的持續時間、測試名稱、時間戳記、成功、回應時間、測試位置 |
+| 可用性 |Web 測試回應程式碼、每個測試步驟的持續時間、測試名稱、時間戳記、成功、回應時間、測試位置 |
 | SDK 診斷 |追蹤訊息或例外狀況 |
 
 您可以[編輯 ApplicationInsights.config 來關閉某些資料][config]
 
 ## <a name="credits"></a>學分
-此產品包含由 MaxMind 建立的 GeoLite2 資料，可從 [http://www.maxmind.com](http://www.maxmind.com)取得。
+此產品包含由 MaxMind 建立的 GeoLite2 資料，可從 [http://www.maxmind.com](http://www.maxmind.com) 取得。
 
 
 

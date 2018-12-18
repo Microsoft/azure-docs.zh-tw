@@ -1,26 +1,20 @@
 ---
-title: "部署和管理 HDInsight 上的 Apache Storm 拓撲 | Microsoft Docs"
-description: "使用 Storm Dashboard on HDInsight，了解如何部署、監視和管理 Apache Storm 拓撲。 使用適用於 Visual Studio 的 Hadoop 工具。"
+title: 部署和管理 HDInsight 中的 Apache Storm 拓撲
+description: 了解如何使用以 Windows 為基礎 HDInsight 上的 Storm Dashboard 部署、監視及管理 Apache Storm 拓撲。 使用適用於 Visual Studio 的 Hadoop 工具。
 services: hdinsight
-documentationcenter: 
-author: Blackmist
-manager: jhubbard
-editor: cgronlun
-tags: azure-portal
-ms.assetid: 5e542072-f014-42aa-82d6-2694a76df520
 ms.service: hdinsight
-ms.devlang: java
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
+author: jasonwhowell
+ms.reviewer: jasonh
+ms.topic: conceptual
 ms.date: 03/01/2017
-ms.author: larryfr
+ms.author: jasonh
 ROBOTS: NOINDEX
-ms.openlocfilehash: 92c1a02cd7d435809914e7f5bb43b2f8d6aa0cdb
-ms.sourcegitcommit: f8437edf5de144b40aed00af5c52a20e35d10ba1
+ms.openlocfilehash: 97dfa2ffc103de377b4c510d2a3a7404b5e96747
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/03/2017
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43050724"
 ---
 # <a name="deploy-and-manage-apache-storm-topologies-on-windows-based-hdinsight"></a>部署和管理以 Windows 為基礎的 HDInsight 上的 Apache Storm 拓撲
 
@@ -33,7 +27,7 @@ HDInsight Tools 的 Storm Dashboard 和 Storm 功能依賴 Storm REST API，此 
 >
 > 如需透過使用 Linux 的 HDInsight 叢集來部署和管理 Storm 拓撲的詳細資訊，請參閱[部署和管理以 Linux 為基礎的 HDInsight 上的 Apache Storm 拓撲](apache-storm-deploy-monitor-topology-linux.md)
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 
 * **Apache Storm on HDInsight** - 請參閱[開始使用 Apache Storm on HDInsight](apache-storm-tutorial-get-started-linux.md)，以取得建立叢集的步驟。
 
@@ -94,7 +88,7 @@ Storm UI 的主頁面會提供下列資訊：
 
   * **重新平衡**：調整拓撲的平行處理原則。 變更叢集中的節點數目之後，您應該重新平衡執行中拓撲。 這可讓拓撲調整平行處理原則，以彌補叢集中增加或減少的節點數目。
 
-      如需詳細資訊，請參閱[了解 Storm 拓撲的平行處理原則 (http://storm.apache.org/documentation/Understanding-the-parallelism-of-a-Storm-topology.html) (英文)](http://storm.apache.org/documentation/Understanding-the-parallelism-of-a-Storm-topology.html)。
+      如需詳細資訊，請參閱[了解 Storm 拓撲的平行處理原則](http://storm.apache.org/documentation/Understanding-the-parallelism-of-a-Storm-topology.html)。
 
   * **終止**：在指定的逾時之後結束 Storm 拓撲。
 

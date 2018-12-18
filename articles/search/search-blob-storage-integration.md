@@ -1,19 +1,19 @@
 ---
-title: "將 Azure 搜尋服務新增至 Blob 儲存體 | Microsoft Docs"
-description: "使用 Azure 搜尋服務 HTTP REST API 在程式碼中建立索引。"
+title: 將 Azure 搜尋服務新增至 Blob 儲存體 | Microsoft Docs
+description: 使用 Azure 搜尋服務 HTTP REST API 在程式碼中建立索引。
 services: search
-documentationcenter: 
-author: ashmaka
-manager: jhubbard
 ms.service: search
-ms.topic: article
+ms.topic: conceptual
 ms.date: 05/04/2017
-ms.author: ashmaka
-ms.openlocfilehash: 15469e8a2d28bdf00d6e8d8c9f823c51975ee90e
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+author: chaosrealm
+manager: jlembicz
+ms.author: eugenesh
+ms.openlocfilehash: 71e43920f0e6a64beb7cdb28d0707dd30502bf05
+ms.sourcegitcommit: fa493b66552af11260db48d89e3ddfcdcb5e3152
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 04/23/2018
+ms.locfileid: "31790775"
 ---
 # <a name="searching-blob-storage-with-azure-search"></a>使用 Azure 搜尋服務搜尋 Blob 儲存體
 

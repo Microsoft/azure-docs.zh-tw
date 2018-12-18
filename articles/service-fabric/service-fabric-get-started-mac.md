@@ -2,23 +2,24 @@
 title: 在 Mac OS X 上設定開發環境以搭配 Azure Service Fabric 運作 | Microsoft Docs
 description: 安裝執行階段、SDK 和工具，並建立本機開發叢集。 完成此設定之後，您就可以開始在 Mac OS X 上建置應用程式。
 services: service-fabric
-documentationcenter: java
-author: sayantancs
+documentationcenter: linux
+author: suhuruli
 manager: timlt
 editor: ''
 ms.assetid: bf84458f-4b87-4de1-9844-19909e368deb
 ms.service: service-fabric
-ms.devlang: java
-ms.topic: get-started-article
+ms.devlang: linux
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 11/17/2017
-ms.author: saysa
-ms.openlocfilehash: 81265dd61faee38d578a380ca392e7851662329c
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.author: suhuruli
+ms.openlocfilehash: 618180f9cbd1c65863e3e039bac40d1cc493bc37
+ms.sourcegitcommit: ebb460ed4f1331feb56052ea84509c2d5e9bd65c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42918495"
 ---
 # <a name="set-up-your-development-environment-on-mac-os-x"></a>在 Mac OS X 上設定開發環境
 > [!div class="op_single_selector"]
@@ -30,7 +31,7 @@ ms.lasthandoff: 03/23/2018
 
 您可以建置 Azure Service Fabric 應用程式，以使用 Mac OS X 在 Linux 叢集上執行。本文件涵蓋如何設定您的 Mac 進行開發。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 Azure Service Fabric 不會在 Mac OS X 上以原生方式執行。若要執行本機 Service Fabric 叢集，我們提供預先設定的 Docker 容器映像。 開始之前，您需要：
 
 * 至少 4 GB 的 RAM。
@@ -62,7 +63,7 @@ Azure Service Fabric 不會在 Mac OS X 上以原生方式執行。若要執行�
     >
     >測試大型應用程式時，建議提高配置給 Docker 的資源。 選取 [Docker 圖示]，然後選取 [進階] 來調整核心數目和記憶體，即可完成此作業。
 
-2. 在新目錄中建立一個名為 `.Dockerfile` 的檔案，以建置 Service Fabric 映像：
+2. 在新目錄中建立一個名為 `Dockerfile` 的檔案，以建置 Service Fabric 映像：
 
     ```dockerfile
     FROM microsoft/service-fabric-onebox
@@ -86,7 +87,7 @@ Azure Service Fabric 不會在 Mac OS X 上以原生方式執行。若要執行�
     >[!TIP]
     > 根據預設，這會提取包含最新版 Service Fabric 的映像。 如需特定版本，請造訪 [Docker Hub](https://hub.docker.com/r/microsoft/service-fabric-onebox/) 頁面。
 
-3. 若要從 `.Dockerfile` 建置可重複使用的映像，請開啟終端機並 `cd` 到直接保留的 `.Dockerfile`，然後執行：
+3. 若要從 `Dockerfile` 建置可重複使用的映像，請開啟終端機並 `cd` 到直接保留的 `Dockerfile`，然後執行：
 
     ```bash 
     docker build -t mysfcluster .
@@ -98,7 +99,7 @@ Azure Service Fabric 不會在 Mac OS X 上以原生方式執行。若要執行�
 4. 您現在可以在需要時快速啟動 Service Fabric 的本機複本，方法是執行以下項目：
 
     ```bash 
-    docker run --name sftestcluster -d -p 19080:19080 -p 19000:19000 -p 25100-25200:25100-25200 mysfcluster
+    docker run --name sftestcluster -d -v /var/run/docker.sock:/var/run/docker.sock -p 19080:19080 -p 19000:19000 -p 25100-25200:25100-25200 mysfcluster
     ```
 
     >[!TIP]
@@ -109,7 +110,7 @@ Azure Service Fabric 不會在 Mac OS X 上以原生方式執行。若要執行�
     >`docker run -itd -p 19080:19080 -p 8080:8080 --name sfonebox microsoft/service-fabric-onebox`
     >
 
-5. 叢集會在短時間內啟動，您可以使用下列命令來檢視記錄，或跳到儀表板檢視叢集健康狀態 [http://localhost:19080](http://localhost:19080)：
+5. 叢集會在短時間內啟動，您可以使用下列命令來檢視記錄，或跳到儀表板檢視叢集健康情況 [http://localhost:19080](http://localhost:19080)：
 
     ```bash 
     docker logs sftestcluster
@@ -117,12 +118,17 @@ Azure Service Fabric 不會在 Mac OS X 上以原生方式執行。若要執行�
 
 
 
-6. 當您完成，可以使用此命令來停止和清除容器：
+6. 當您完成時，請使用此命令來停止和清除容器：
 
     ```bash 
     docker rm -f sftestcluster
     ```
 
+### <a name="known-limitations"></a>已知限制 
+ 
+ 在 Mac 的容器中執行的本機叢集已知有下列限制： 
+ 
+ * DNS 服務未執行，且不受支援 ([問題 #132](https://github.com/Microsoft/service-fabric/issues/132))
 
 ## <a name="set-up-the-service-fabric-cli-sfctl-on-your-mac"></a>設定 Mac 上的 Service Fabric CLI (sfctl)
 
@@ -187,9 +193,9 @@ Service Fabric 提供的 Scaffolding 工具可協助您從終端機使用 Yeoman
 
 安裝 [.NET Core 2.0 SDK for Mac](https://www.microsoft.com/net/core#macos) 以開始[建立 C# Service Fabric 應用程式](service-fabric-create-your-first-linux-application-with-csharp.md)。 .NET Core 2.0 Service Fabric 應用程式的套件裝載於 NuGet.org (目前處於預覽狀態)。
 
-## <a name="install-the-service-fabric-plug-in-for-eclipse-neon-on-your-mac"></a>在 Mac 上安裝適用於 Eclipse Neon 的 Service Fabric 外掛程式
+## <a name="install-the-service-fabric-plug-in-for-eclipse-on-your-mac"></a>在 Mac 上安裝適用於 Eclipse 的 Service Fabric 外掛程式
 
-Azure Service Fabric 會針對 Java IDE 提供 Eclipse Neon 的外掛程式。 外掛程式可簡化建立、建置和部署 Java 服務的程序。 若要安裝或更新為最新版的 Eclipse Service Fabric 外掛程式，請遵循[這些步驟](service-fabric-get-started-eclipse.md#install-or-update-the-service-fabric-plug-in-in-eclipse-neon)。 [Eclipse 的 Service Fabric 文件](service-fabric-get-started-eclipse.md)中的其他步驟也適用：建置應用程式、將服務新增至應用程式、解除安裝應用程式等。
+Azure Service Fabric 會針對 Java IDE 提供 Eclipse Neon (或更新版本) 的外掛程式。 外掛程式可簡化建立、建置和部署 Java 服務的程序。 若要安裝或更新為最新版的 Eclipse Service Fabric 外掛程式，請遵循[這些步驟](service-fabric-get-started-eclipse.md#install-or-update-the-service-fabric-plug-in-in-eclipse)。 [Eclipse 的 Service Fabric 文件](service-fabric-get-started-eclipse.md)中的其他步驟也適用：建置應用程式、將服務新增至應用程式、解除安裝應用程式等。
 
 最後一個步驟是使用與您的主機共用的路徑將容器具現化。 外掛程式需要這種類型的具現化，才能在您的 Mac 上使用 Docker 容器。 例如︰
 

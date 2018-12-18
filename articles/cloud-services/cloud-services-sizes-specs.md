@@ -1,11 +1,11 @@
 ---
-title: "Azure 雲端服務的虛擬機器大小 | Microsoft Docs"
-description: "列出 Azure 雲端服務 Web 和背景工作角色的各種虛擬機器大小 (和識別碼)。"
+title: Azure 雲端服務的虛擬機器大小 | Microsoft Docs
+description: 列出 Azure 雲端服務 Web 和背景工作角色的各種虛擬機器大小 (和識別碼)。
 services: cloud-services
-documentationcenter: 
-author: Thraka
+documentationcenter: ''
+author: jpconnock
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 1127c23e-106a-47c1-a2e9-40e6dda640f6
 ms.service: cloud-services
 ms.devlang: na
@@ -13,12 +13,13 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: tbd
 ms.date: 07/18/2017
-ms.author: adegeo
-ms.openlocfilehash: 542632dc61f1acecd8ca8ac45fb29bfa6aa839c2
-ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
+ms.author: jeconnoc
+ms.openlocfilehash: 60ee7c2be29791db91db78472cc002e15390d36b
+ms.sourcegitcommit: e0a678acb0dc928e5c5edde3ca04e6854eb05ea6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 07/13/2018
+ms.locfileid: "39004783"
 ---
 # <a name="sizes-for-cloud-services"></a>雲端服務的大小
 本主題描述雲端服務角色執行個體 (Web 角色和背景工作角色)的可用大小和選項。 同時也提供計劃使用這些資源時，需注意的部署考量。 每種大小都有一個識別碼，可讓您放入[服務定義檔](cloud-services-model-and-package.md#csdef)。 每種大小的價格可以在[雲端服務價格](https://azure.microsoft.com/pricing/details/cloud-services/)頁面上取得。
@@ -81,11 +82,11 @@ ms.lasthandoff: 02/21/2018
 * 最大網路頻寬是依據各 VM 類型而配置與指派的最大彙總頻寬。 最大頻寬能指導我們選取正確的 VM 類型，以確保有適當的網路容量可用。 在低、中度、高和極高之間移動時，輸送量將隨之增加。 實際的網路效能將取決於許多因素，包括網路和應用程式負載，以及應用程式的網路設定。
 
 ## <a name="a-series"></a>A 系列
-| 大小            | CPU 核心 | 記憶體：GiB  | 本機 HDD: GiB       | 最大 NIC / 網路頻寬 |
+| 大小            | CPU 核心 | 記憶體：GiB  | 暫存位置：GiB       | 最大 NIC / 網路頻寬 |
 |---------------- | --------- | ------------ | -------------------- | ---------------------------- |
 | 特小型      | 1         | 0.768        | 20                   | 1 / 低 |
 | 小型           | 1         | 1.75         | 225                  | 1 / 中 |
-| 中          | 2         | 3.5 GB       | 490                  | 1 / 中 |
+| 中          | 2         | 3.5          | 490                  | 1 / 中 |
 | 大型           | 4         | 7            | 1000                 | 2 / 高 |
 | 特大型      | 8         | 14           | 2040                 | 4 / 高 |
 | A5              | 2         | 14           | 490                  | 1 / 中 |
@@ -95,7 +96,7 @@ ms.lasthandoff: 02/21/2018
 ## <a name="a-series---compute-intensive-instances"></a>A 系列 - 大量計算執行個體
 如需有關使用這些大小的資訊與考量，請參閱[高效能計算 VM 大小](../virtual-machines/windows/sizes-hpc.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
-| 大小            | CPU 核心 | 記憶體：GiB  | 本機 HDD: GiB       | 最大 NIC / 網路頻寬 |
+| 大小            | CPU 核心 | 記憶體：GiB  | 暫存位置：GiB       | 最大 NIC / 網路頻寬 |
 |---------------- | --------- | ------------ | -------------------- | ---------------------------- |
 | A8*             |8          | 56           | 1817                 | 2 / 高 |
 | A9*             |16         | 112          | 1817                 | 4 / 非常高 |
@@ -106,7 +107,7 @@ ms.lasthandoff: 02/21/2018
 
 ## <a name="av2-series"></a>Av2 系列
 
-| 大小            | CPU 核心 | 記憶體：GiB  | 本機 SSD: GiB       | 最大 NIC / 網路頻寬 |
+| 大小            | CPU 核心 | 記憶體：GiB  | 暫存位置 (SSD)：GiB       | 最大 NIC / 網路頻寬 |
 |---------------- | --------- | ------------ | -------------------- | ---------------------------- |
 | Standard_A1_v2  | 1         | 2            | 10                   | 1 / 中                 |
 | Standard_A2_v2  | 2         | 4            | 20                   | 2 / 中                 |
@@ -118,7 +119,7 @@ ms.lasthandoff: 02/21/2018
 
 
 ## <a name="d-series"></a>D 系列
-| 大小            | CPU 核心 | 記憶體：GiB  | 本機 SSD: GiB       | 最大 NIC / 網路頻寬 |
+| 大小            | CPU 核心 | 記憶體：GiB  | 暫存位置 (SSD)：GiB       | 最大 NIC / 網路頻寬 |
 |---------------- | --------- | ------------ | -------------------- | ---------------------------- |
 | 標準_D1     | 1         | 3.5          | 50                   | 1 / 中 |
 | 標準_D2     | 2         | 7            | 100                  | 2 / 高 |
@@ -130,7 +131,7 @@ ms.lasthandoff: 02/21/2018
 | 標準_D14    | 16        | 112          | 800                  | 8 / 非常高 |
 
 ## <a name="dv2-series"></a>Dv2 系列
-| 大小            | CPU 核心 | 記憶體：GiB  | 本機 SSD: GiB       | 最大 NIC / 網路頻寬 |
+| 大小            | CPU 核心 | 記憶體：GiB  | 暫存位置 (SSD)：GiB       | 最大 NIC / 網路頻寬 |
 |---------------- | --------- | ------------ | -------------------- | ---------------------------- |
 | Standard_D1_v2  | 1         | 3.5          | 50                   | 1 / 中 |
 | Standard_D2_v2  | 2         | 7            | 100                  | 2 / 高 |
@@ -145,7 +146,7 @@ ms.lasthandoff: 02/21/2018
 
 ## <a name="dv3-series"></a>Dv3 系列
 
-| 大小            | CPU 核心 | 記憶體：GiB   | 本機 SSD: GiB       | 最大 NIC / 網路頻寬 |
+| 大小            | CPU 核心 | 記憶體：GiB   | 暫存位置 (SSD)：GiB       | 最大 NIC / 網路頻寬 |
 |---------------- | --------- | ------------- | -------------------- | ---------------------------- |
 | Standard_D2_v3  | 2         | 8             | 50                   | 2 / 中 |
 | Standard_D4_v3  | 4         | 16            | 100                  | 2 / 高 |
@@ -156,7 +157,7 @@ ms.lasthandoff: 02/21/2018
 
 ## <a name="ev3-series"></a>Ev3 系列
 
-| 大小            | CPU 核心 | 記憶體：GiB   | 本機 SSD: GiB       | 最大 NIC / 網路頻寬 |
+| 大小            | CPU 核心 | 記憶體：GiB   | 暫存位置 (SSD)：GiB       | 最大 NIC / 網路頻寬 |
 |---------------- | --------- | ------------- | -------------------- | ---------------------------- |
 | Standard_E2_v3  | 2         | 16            | 50                   | 2 / 中 |
 | Standard_E4_v3  | 4         | 32            | 100                  | 2 / 高 |
@@ -167,7 +168,7 @@ ms.lasthandoff: 02/21/2018
 
 
 ## <a name="g-series"></a>G 系列
-| 大小            | CPU 核心 | 記憶體：GiB  | 本機 SSD: GiB       | 最大 NIC / 網路頻寬 |
+| 大小            | CPU 核心 | 記憶體：GiB  | 暫存位置 (SSD)：GiB       | 最大 NIC / 網路頻寬 |
 |---------------- | --------- | ------------ | -------------------- | ---------------------------- |
 | Standard_G1     | 2         | 28           | 384                  |1 / 高 |
 | Standard_G2     | 4         | 56           | 768                  |2 / 高 |
@@ -180,7 +181,7 @@ Azure H 系列虛擬機器是下一代高效能運算 VM，以高端運算需求
 
 除了大量的 CPU 能力，H 系列使用 FDR InfiniBand 與數個記憶體組態，針對低延遲 RDMA 網路提供不同的選項，以支援記憶體大量運算需求。
 
-| 大小            | CPU 核心 | 記憶體：GiB  | 本機 SSD: GiB       | 最大 NIC / 網路頻寬 |
+| 大小            | CPU 核心 | 記憶體：GiB  | 暫存位置 (SSD)：GiB       | 最大 NIC / 網路頻寬 |
 |---------------- | --------- | ------------ | -------------------- | ---------------------------- |
 | Standard_H8     | 8         | 56           | 1000                 | 8 / 高 |
 | Standard_H16    | 16        | 112          | 2000                 | 8 / 非常高 |

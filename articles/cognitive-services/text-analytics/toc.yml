@@ -1,0 +1,84 @@
+items:
+- name: 文字分析 API 文件
+  href: index.yml
+- name: 概觀
+  items:
+  - name: 什麼是文字分析 API？
+    href: overview.md
+  expanded: true
+- name: 快速入門
+  items:
+  - name: C#
+    href: quickstarts/csharp.md
+  - name: Go
+    href: quickstarts/go.md
+  - name: Java
+    href: quickstarts/java.md
+  - name: Node.js
+    href: quickstarts/nodejs.md
+  - name: PHP
+    href: quickstarts/php.md
+  - name: Python
+    href: quickstarts/python.md
+  - name: Ruby
+    href: quickstarts/ruby.md
+- name: 教學課程
+  items:
+  - name: 文字分析與 Power BI
+    href: Tutorials/tutorial-power-bi-key-phrases.md
+  - name: Power 應用程式中的文字分析
+    href: https://powerapps.microsoft.com/tutorials/cognitive-services-api/
+- name: 使用說明指南
+  items:
+  - name: 註冊
+    href: How-tos/text-analytics-how-to-signup.md
+  - name: 取得存取金鑰
+    href: How-tos/text-analytics-how-to-access-key.md
+  - name: 呼叫文字分析 API
+    href: How-tos/text-analytics-how-to-call-api.md
+  - name: 偵測語言種類
+    href: How-tos/text-analytics-how-to-language-detection.md
+  - name: 分析人氣
+    href: How-tos/text-analytics-how-to-sentiment-analysis.md
+  - name: 擷取關鍵片語
+    href: How-tos/text-analytics-how-to-keyword-extraction.md
+  - name: 呼叫具名實體辨識
+    href: How-tos/text-analytics-how-to-entity-linking.md
+  - name: 使用 Visual Studio
+    items:
+    - name: 使用文字分析連線服務
+      href: vs-text-connected-service.md
+- name: 參考
+  items:
+  - name: CLI 參考
+    href: https://docs.microsoft.com/cli/azure/cognitiveservices?view=azure-cli-latest#az_cognitiveservices_list
+  - name: PowerShell 參考
+    href: https://aka.ms/azure-powershell-cognitiveservices
+  - name: 文字分析 API
+    href: https://westus.dev.cognitive.microsoft.com/docs/services/TextAnalytics.V2.0/operations/56f30ceeeda5650db055a3c7
+- name: 資源
+  items:
+  - name: 外部及社群內容
+    href: text-analytics-resource-external-community.md
+  - name: 常見問題集
+    href: text-analytics-resource-faq.md
+  - name: 語言與區域支援
+    href: language-support.md
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/cognitive-services/text-analytics/
+  - name: 區域可用性
+    href: https://azure.microsoft.com/global-infrastructure/services/
+  - name: 堆疊溢位
+    href: https://stackoverflow.com/questions/tagged/text-analytics-api
+  - name: 訂用帳戶金鑰
+    href: https://azure.microsoft.com/try/cognitive-services/?api=text-analytics
+  - name: 試試看！
+    href: https://azure.microsoft.com/services/cognitive-services/text-analytics/
+  - name: UserVoice
+    href: https://cognitive.uservoice.com/forums/555922-text-analytics
+ms.openlocfilehash: bb48c8573621a2d43f8daf4552b5e663f702b146
+ms.sourcegitcommit: f20e43e436bfeafd333da75754cd32d405903b07
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49389833"

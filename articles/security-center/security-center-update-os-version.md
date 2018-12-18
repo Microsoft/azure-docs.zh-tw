@@ -1,24 +1,25 @@
 ---
-title: "Azure 資訊安全中心的更新作業系統版本 | Microsoft Docs"
-description: "本文說明了如何實作 Azure 資訊安全中心建議的「更新作業系統版本」。"
+title: Azure 資訊安全中心的更新作業系統版本 | Microsoft Docs
+description: 本文說明如何實作 Azure 資訊安全中心建議的**更新作業系統版本**。
 services: security-center
 documentationcenter: na
 author: TerryLanfear
 manager: MBaldwin
-editor: 
+editor: ''
 ms.assetid: aa372492-ecdb-4368-8fdd-d8ed31e216ee
 ms.service: security-center
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/01/2016
 ms.author: terrylan
-ms.openlocfilehash: ce0d178914907750e5da59f223a4b1e04b9bb6fb
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: cab773412005093f8acabe9bd6e93e8740b14ece
+ms.sourcegitcommit: f3bd5c17a3a189f144008faf1acb9fabc5bc9ab7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 09/10/2018
+ms.locfileid: "44298400"
 ---
 # <a name="update-os-version-in-azure-security-center"></a>Azure 資訊安全中心的更新作業系統版本
 對於雲端服務中的虛擬機器 (VM)，如果有更新的版本可用，則 Azure 資訊安全中心會建議更新作業系統 (OS)。  只監視生產位置中執行的雲端服務 Web 角色和背景工作角色。

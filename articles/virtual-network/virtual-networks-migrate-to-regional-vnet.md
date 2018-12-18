@@ -1,11 +1,11 @@
 ---
-title: "將 Azure 虛擬網路 (傳統) 從同質群組移轉至區域 | Microsoft Docs"
-description: "了解如何將虛擬網路 (傳統) 從同質群組移轉至區域。"
+title: 將 Azure 虛擬網路 (傳統) 從同質群組移轉至區域 | Microsoft Docs
+description: 了解如何將虛擬網路 (傳統) 從同質群組移轉至區域。
 services: virtual-network
 documentationcenter: na
-author: jimdial
-manager: timlt
-editor: 
+author: genlin
+manager: cshepard
+editor: ''
 tags: azure-service-management
 ms.assetid: 84febcb9-bb8b-4e79-ab91-865ad9de41cb
 ms.service: virtual-network
@@ -14,12 +14,13 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/15/2016
-ms.author: jdial
-ms.openlocfilehash: b9b3bd0f2184ac85261166d5fe2ab67e1bf319d4
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.author: genli
+ms.openlocfilehash: 1fca7f6165998b95254f841638cf8bcbc1fb352d
+ms.sourcegitcommit: fa493b66552af11260db48d89e3ddfcdcb5e3152
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 04/23/2018
+ms.locfileid: "31792149"
 ---
 # <a name="migrate-a-virtual-network-classic-from-an-affinity-group-to-a-region"></a>將虛擬網路 (傳統) 從同質群組移轉至區域
 

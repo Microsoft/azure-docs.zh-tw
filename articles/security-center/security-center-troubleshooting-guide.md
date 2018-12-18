@@ -1,24 +1,25 @@
 ---
-title: "Azure 資訊安全中心疑難排解指南 | Microsoft Docs"
-description: "本文件有助於在 Azure 資訊安全中心排解疑難問題。"
+title: Azure 資訊安全中心疑難排解指南 | Microsoft Docs
+description: 本文件有助於在 Azure 資訊安全中心排解疑難問題。
 services: security-center
 documentationcenter: na
-author: YuriDio
+author: rkarlin
 manager: mbaldwin
-editor: 
+editor: ''
 ms.assetid: 44462de6-2cc5-4672-b1d3-dbb4749a28cd
 ms.service: security-center
 ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/01/2018
-ms.author: yurid
-ms.openlocfilehash: e2e8b16bf720e2be8b8bc8ae81fc944af79dddab
-ms.sourcegitcommit: eeb5daebf10564ec110a4e83874db0fb9f9f8061
+ms.date: 08/26/2018
+ms.author: rkarlin
+ms.openlocfilehash: eebdff338454b1fb50b27d5b3d8c1c37d28f6b6f
+ms.sourcegitcommit: 2ad510772e28f5eddd15ba265746c368356244ae
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/03/2018
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "43121197"
 ---
 # <a name="azure-security-center-troubleshooting-guide"></a>Azure 資訊安全中心疑難排解指南
 本指南適用於組織目前採用 Azure 資訊安全中心，且需要針對資訊安全中心相關問題進行疑難排解的資訊技術 (IT) 專業人員、資訊安全性分析師和雲端系統管理員。
@@ -39,7 +40,7 @@ ms.lasthandoff: 02/03/2018
 稽核記錄檔包含在您的資源上執行的所有寫入作業 (PUT、POST、DELETE)，但不包含讀取作業 (GET)。
 
 ## <a name="microsoft-monitoring-agent"></a>Microsoft Monitoring Agent
-資訊安全中心會使用 Microsoft Monitoring Agent (這是 Operations Management Suite 和 Log Analytics 服務所用的相同代理程式) 從 Azure 虛擬機器收集安全性資料。 啟用資料收集且代理程式已正確安裝在目標電腦之後，以下處理序應在執行中︰
+資訊安全中心會使用 Microsoft Monitoring Agent (這是 Log Analytics 服務所使用的相同代理程式) 從 Azure 虛擬機器收集安全性資料。 啟用資料收集且代理程式已正確安裝在目標電腦之後，以下處理序應在執行中︰
 
 * HealthService.exe
 
@@ -63,7 +64,7 @@ ms.lasthandoff: 02/03/2018
 > 若要避免第二個案例中說明的行為，務必下載最新版的代理程式。
 >
 
-## <a name="monitoring-agent-health-issues"></a>監視代理程式健康情況問題
+## 監視代理程式健康情況問題<a name="mon-agent"></a>
 [監視狀態] 可定義資訊安全中心無法成功監視為了自動佈建而初始化之 VM 和電腦的原因。 下表顯示 [監視狀態] 值、描述和解決步驟。
 
 | 監視狀態 | 說明 | 解決步驟 |
@@ -80,20 +81,20 @@ ms.lasthandoff: 02/03/2018
 | 未安裝代理程式 | 資料收集已啟用。 | 在安全性原則中開啟資料收集，或手動安裝 Microsoft Monitoring Agent。 |
 
 
-## <a name="troubleshooting-monitoring-agent-network-requirements"></a>針對監視代理程式網路需求進行疑難排解
+## 對監視代理程式網路需求進行疑難排解<a name="mon-network-req"></a>
 代理程式若要連線到資訊安全中心並向其註冊，就必須能夠存取網路資源，包括連接埠號碼和網域 URL。
 
 - 對於 Proxy 伺服器，您需要確保代理程式設定中已設定了適當的 Proxy 伺服器資源。 如需有關[如何變更 Proxy 設定](https://docs.microsoft.com/azure/log-analytics/log-analytics-windows-agents#configure-proxy-settings)的詳細資訊，請參閱這篇文章。
-- 對於限制網際網路存取的防火牆，您需要設定防火牆以允許存取 OMS。 您不需要在代理程式設定中進行任何動作。
+- 對於限制網際網路存取的防火牆，您需要設定防火牆以允許存取 Log Analytics。 您不需要在代理程式設定中進行任何動作。
 
 下表說明通訊所需資源。
 
 | 代理程式資源 | 連接埠 | 略過 HTTPS 檢查 |
 |---|---|---|
-| *.ods.opinsights.azure.com | 443 | yes |
-| *.oms.opinsights.azure.com | 443 | yes |
-| *.blob.core.windows.net | 443 | yes |
-| *.azure-automation.net | 443 | yes |
+| *.ods.opinsights.azure.com | 443 | 是 |
+| *.oms.opinsights.azure.com | 443 | 是 |
+| *.blob.core.windows.net | 443 | 是 |
+| *.azure-automation.net | 443 | 是 |
 
 如果您遇到代理程式的登入問題，請務必閱讀[如何針對 Operations Management Suite 登入問題進行疑難排解](https://support.microsoft.com/en-us/help/3126513/how-to-troubleshoot-operations-management-suite-onboarding-issues)一文。
 

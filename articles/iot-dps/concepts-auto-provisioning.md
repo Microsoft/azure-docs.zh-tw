@@ -1,22 +1,19 @@
 ---
 title: IoT 中樞裝置佈建服務 - 自動佈建概念
 description: 本文提供使用「IoT 裝置佈建服務」、「IoT 中樞」及用戶端 SDK 來進行之裝置自動佈建階段的概念性概觀。
-services: iot-dps
-keywords: ''
-author: BryanLa
-ms.author: bryanla
-ms.date: 03/27/2018
+author: wesmc7777
+ms.author: wesmc
+ms.date: 06/01/2018
 ms.topic: conceptual
 ms.service: iot-dps
-documentationcenter: ''
+services: iot-dps
 manager: timlt
-ms.devlang: na
-ms.custom: ''
-ms.openlocfilehash: cd458b1f6d26fbd5f5821a04cd01be5c3a4e4514
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.openlocfilehash: 9a45f8269e0ca2bc4188016af0ace06831c762b6
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39521273"
 ---
 # <a name="auto-provisioning-concepts"></a>自動佈建概念
 
@@ -31,9 +28,9 @@ Azure IoT 自動佈建可分成三個階段：
    > [!NOTE]
    > 不論您的 IoT 解決方案規模為何，即使您打算支援數百萬個裝置，這仍然是**一次性設定**。
 
-2. **裝置註冊** - 讓「裝置佈建服務」執行個體知道未來會嘗試註冊之裝置的程序。 註冊時會一併在佈建服務中設定裝置身分識別資訊，針對單一裝置，會採用「個別註冊」的形式，針對多個裝置，則會採用「群組註冊」的形式。 身分識別會根據已指定裝置使用的[證明機制](concepts-security.md#attestation-mechanism)，這可讓佈建服務在登錄期間證明裝置的真確性：
+2. **裝置註冊** - 讓「裝置佈建服務」執行個體知道未來會嘗試註冊之裝置的程序。 [註冊](concepts-service.md#enrollment)時會一併在佈建服務中設定裝置身分識別資訊，針對單一裝置，會採用「個別註冊」的形式，針對多個裝置，則會採用「群組註冊」的形式。 身分識別會根據已指定裝置使用的[證明機制](concepts-security.md#attestation-mechanism)，這可讓佈建服務在登錄期間證明裝置的真確性：
 
-   - **TPM**：以「個別註冊」的形式設定，裝置身分識別會根據 TPM 註冊識別碼和公開簽署金鑰。 由於 TPM 是一個[規格]((https://trustedcomputinggroup.org/work-groups/trusted-platform-module/))，因此不論 TPM 實作 (硬體或軟體) 為何，服務只會依據此規格來證明。 如需有關 TPM 型證明的詳細資料，請參閱[裝置佈建：使用 TPM 進行身分識別證明](https://azure.microsoft.com/blog/device-provisioning-identity-attestation-with-tpm/) \(英文\)。 
+   - **TPM**：以「個別註冊」的形式設定，裝置身分識別會根據 TPM 註冊識別碼和公開簽署金鑰。 由於 TPM 是一個[規格](https://trustedcomputinggroup.org/work-groups/trusted-platform-module/)，因此不論 TPM 實作 (硬體或軟體) 為何，服務只會依據此規格來證明。 如需有關 TPM 型證明的詳細資料，請參閱[裝置佈建：使用 TPM 進行身分識別證明](https://azure.microsoft.com/blog/device-provisioning-identity-attestation-with-tpm/) \(英文\)。 
 
    - **X509**：以「個別註冊」或「群組註冊」的形式設定，裝置身分識別會根據 X.509 數位憑證 (以 .pem 或 .cer 檔案的形式上傳至註冊)。
 
@@ -54,7 +51,7 @@ Azure IoT 自動佈建可分成三個階段：
 |------| --------- | ------------| 
 | 製造商 | 將身分識別和登錄 URL 編碼 | 根據所使用的證明機制，製造商需負責將裝置身分識別資訊及「裝置佈建服務」登錄 URL 編碼。<br><br>**快速入門**：由於裝置是模擬裝置，因此沒有「製造商」角色。 如需有關如何取得此資訊的詳細資料，請參閱「開發人員」角色，撰寫範例登錄應用程式的程式碼時會使用此角色。 |  
 | | 提供裝置身分識別 | 作為裝置身分識別資訊的來源，製造商需負責向操作員 (或指定的代理人) 傳達此資訊，或透過 API 將直接向「裝置佈建服務」註冊此資訊。<br><br>**快速入門**：由於裝置是模擬裝置，因此沒有「製造商」角色。 如需有關如何取得裝置身分識別的詳細資料，請參閱「操作員」角色，在於「裝置佈建服務」執行個體中註冊模擬裝置時會使用此角色。 | 
-| 操作員 | 設定自動佈建 | 此作業與自動佈建的第一個階段對應。<br><br>**快速入門**：您需執行「操作員」角色，在您的 Azure 訂用帳戶中設定「裝置佈建服務」和「IoT 中樞」執行個體。 | 設定自動佈建 |
+| 運算子 | 設定自動佈建 | 此作業與自動佈建的第一個階段對應。<br><br>**快速入門**：您需執行「操作員」角色，在您的 Azure 訂用帳戶中設定「裝置佈建服務」和「IoT 中樞」執行個體。 | 設定自動佈建 |
 |  | 註冊裝置身分識別 | 此作業與自動佈建的第二個階段對應。<br><br>**快速入門**：您需執行「操作員」角色，在您的「裝置佈建服務」執行個體中註冊模擬裝置。 裝置身分識別取決於快速入門中所模擬的證明方法 (TPM 或 X.509)。 如需了解證明詳細資料，請參閱「開發人員」角色。 | 
 | 裝置佈建服務、<br>IoT 中樞 | \<所有作業\> | 不論是使用實體裝置進行的生產環境實作，還是使用模擬裝置進行的快速入門，都是透過您在 Azure 訂用帳戶中所設定的 IoT 服務來執行這些角色。 這些角色/作業完全相同，因為 IoT 服務並不在乎佈建的是實體裝置還是模擬裝置。 | 
 | 開發人員 | 建置/部署登錄軟體 | 此作業與自動佈建的第三個階段對應。 「開發人員」需負責使用適當的 SDK 來建置登錄軟體並部署至裝置。<br><br>**快速入門**：您所建置的範例登錄應用程式會針對您選擇的平台/語言來模擬真實裝置，此應用程式會在您的工作站上執行 (而不會部署至實體裝置)。 此登錄應用程式所執行的作業，會與部署至實體裝置之應用程式所執行的作業相同。 您需指定證明方法 (TPM 或 X.509 憑證)，再加上「裝置佈建服務」執行個體的登錄 URL 及「識別碼範圍」。 裝置身分識別取決於執行階段的 SDK 證明邏輯，根據的是您所指定的方法： <ul><li>**TPM 證明** - 您的開發工作站會執行 [TPM 模擬器應用程式](how-to-use-sdk-tools.md#trusted-platform-module-tpm-simulator)。 一旦執行，就會使用個別的應用程式來擷取 TPM 的「簽署金鑰」和「註冊識別碼」，以用於註冊和裝置識別碼。 SDK 證明邏輯也會在登錄期間使用模擬器，以針對驗證和註冊驗證出示已簽署的 SAS 權杖。</li><li>**X509 證明** - 您需使用工具來[產生憑證](how-to-use-sdk-tools.md#x509-certificate-generator)。 產生憑證之後，您需建立要在註冊作業中使用的必要憑證檔。 SDK 證明邏輯也會在登錄期間使用憑證，以針對驗證和註冊驗證出示憑證。</li></ul> | 
@@ -62,7 +59,7 @@ Azure IoT 自動佈建可分成三個階段：
 
 下圖摘要說明裝置自動佈建期間的角色和作業順序：
 <br><br>
-![裝置的自動佈建順序](./media/concepts-auto-provisioning/sequence-auto-provision-device-vs.png) 
+[![裝置的自動佈建順序](./media/concepts-auto-provisioning/sequence-auto-provision-device-vs.png)](./media/concepts-auto-provisioning/sequence-auto-provision-device-vs.png#lightbox) 
 
 > [!NOTE]
 > 製造商也可以視需要使用「裝置佈建服務 API」(而不透過「操作員」) 來執行「註冊裝置身分識別」作業。 如需此排序及更多的詳細討論，請觀看[向 Azure IoT 進行全自動裝置登錄](https://myignite.microsoft.com/sessions/55087)影片 (從 41:00 標記開始)

@@ -1,65 +1,76 @@
 ---
-title: "Azure Stack 中的 DNS | Microsoft Docs"
-description: "Azure Stack 中的 DNS"
+title: Azure Stack 中的 DNS | Microsoft Docs
+description: 在 Azure Stack 中使用 DNS
 services: azure-stack
-documentationcenter: 
-author: mattbriggs
+documentationcenter: ''
+author: sethmanheim
 manager: femila
-ms.assetid: 
+ms.assetid: ''
 ms.service: azure-stack
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/28/2018
-ms.author: mabrigg
-ms.openlocfilehash: 394abe5295af4ed99e48d50b5886ac93af87e875
-ms.sourcegitcommit: 782d5955e1bec50a17d9366a8e2bf583559dca9e
+ms.date: 08/15/2018
+ms.author: sethm
+ms.openlocfilehash: acb8b262256031ae8615180e0f55c98cb56b538d
+ms.sourcegitcommit: d2f2356d8fe7845860b6cf6b6545f2a5036a3dd6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/02/2018
+ms.lasthandoff: 08/16/2018
+ms.locfileid: "41946545"
 ---
-# <a name="dns-in-azure-stack"></a>Azure Stack 中的 DNS
+# <a name="using-dns-in-azure-stack"></a>在 Azure Stack 中使用 DNS
 
 *適用於：Azure Stack 整合系統和 Azure Stack 開發套件*
 
-Azure Stack 包括下列 DNS 功能：
-* 支援 DNS 主機名稱解析
+Azure Stack 支援下列網域名稱系統 (DNS) 功能：
+
+* DNS 主機名稱解析
 * 使用 API 建立和管理 DNS 區域和記錄
 
 ## <a name="support-for-dns-hostname-resolution"></a>支援 DNS 主機名稱解析
-您可以指定公用 IP 資源的 DNS 網域名稱標籤，以建立 domainnamelabel.location 與 Azure Stack 受控 DNS 伺服器中公用 IP 位址的對應。  
 
-例如，如果您建立公用 IP 資源並以 **contoso** 作為本機 Azure Stack 位置的網域名稱標籤，則完整網域名稱 (FQDN) **contoso.local.cloudapp.azurestack.external** 會解析為資源的公用 IP 位址。 您可以使用此 FQDN 來建立自訂網域 CNAME 記錄，其指向 Azure Stack 中的公用 IP 位址。
+您可以指定公用 IP 資源的 DNS 網域名稱標籤。 Azure Stack 使用 *domainnamelabel.location*.cloudapp.azurestack.external 作為標籤名稱，並將它對應至 Azure Stack 受控 DNS 伺服器中的公用 IP 位址。
+
+例如，如果您建立公用 IP 資源並以 **contoso** 作為本機 Azure Stack 位置的網域名稱標籤，則[完整網域名稱](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) (FQDN) **contoso.local.cloudapp.azurestack.external** 會解析為資源的公用 IP 位址。 您可以使用此 FQDN 來建立自訂網域 CNAME 記錄，其指向 Azure Stack 中的公用 IP 位址。
+
+若要深入了解名稱解析，請參閱 [DNS 解析](https://docs.microsoft.com/azure/dns/dns-for-azure-services?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)一文。
 
 > [!IMPORTANT]
-> 每個所建立的網域名稱標籤，皆必須具有唯一的 Azure Stack 位置。
+> 您所建立的每個網域名稱標籤在其 Azure Stack 位置中都必須是唯一的。
 
-如果您使用入口網站建立公用 IP 位址，會看起來像這樣：
+下一個螢幕擷取畫面顯示 [建立公用 IP 位址] 對話方塊，以便使用入口網站建立公用 IP 位址。
 
 ![建立公用 IP 位址](media/azure-stack-whats-new-dns/image01.png)
 
-如果您想要用負載平衡資源與公用 IP 位址建立關聯，此設定非常實用。 例如，您將可能有負載平衡器處理來自 Web 應用程式的要求。 在負載平衡器的背後，是位於一或多個虛擬機器上的網站。 現在您可以透過 DNS 名稱來存取負載平衡網站，而不必透過 IP 位址。
+**範例案例**
 
-## <a name="create-and-manage-dns-zones-and-records-using-api"></a>使用 API 建立和管理 DNS 區域和記錄
-您可以建立和管理 DNS 區域和 Azure Stack 中的記錄。  
+您可讓負載平衡器處理來自 Web 應用程式的要求。 負載平衡器的背後是在一或多個虛擬機器上執行的網站。 您可以使用 DNS 名稱 (而不是 IP 位址) 來存取負載平衡的網站。
 
-Azure Stack 提供就像 Azure 的 DNS 服務，使用與 Azure DNS API 一致的 API。  只要將您的網域裝載於 Azure Stack DNS 中，就可以像管理其他 Azure 服務一樣，使用相同的認證、API、工具、計費方式和支援來管理 DNS 記錄。 
+## <a name="create-and-manage-dns-zones-and-records-using-the-api"></a>使用 API 建立和管理 DNS 區域和記錄
 
-很明顯地，Azure Stack DNS 的基礎結構會比 Azure 更為精簡。 因此，範圍、級別和效能會取決於 Azure Stack 部署和其部署環境的級別。  所以，像是效能、可用性、全域發佈和高可用性 (HA)，每個部署都不盡相同。
+您可以建立和管理 DNS 區域和 Azure Stack 中的記錄。
+
+Azure Stack 提供就像 Azure 的 DNS 服務，使用與 Azure DNS API 一致的 API。  將您的網域裝載於 Azure Stack DNS，您就可以使用相同的認證、API 和工具來管理 DNS 記錄。 您也可以使用與其他 Azure 服務相同的計費方式和支援。
+
+Azure Stack DNS 的基礎結構會比 Azure 更為精簡。 Azure Stack 部署的大小和位置將會影響 DNS 範圍、級別和效能。 這也表示每個部署的效能、可用性、全域發佈和高可用性不盡相同。
 
 ## <a name="comparison-with-azure-dns"></a>與 Azure DNS 比較
-Azure Stack 中的 DNS 與 Azure 中的 DNS 類似，僅有兩個主要例外狀況：
+
+Azure Stack 中的 DNS 與 Azure 中的 DNS 類似，但有一些您需要了解的主要例外狀況。
+
 * **不支援 AAAA 記錄**
 
     Azure Stack「不」支援 AAAA 記錄，因為 Azure Stack 並不支援 IPv6 位址。  這是 Azure 和 Azure Stack DNS 之間的主要差異。
 * **不是多租用戶**
 
-    有別於 Azure，在 Azure Stack 中的 DNS 服務不是多租用戶。 因此每個租用戶無法建立相同的 DNS 區域。 僅有首個訂用帳戶嘗試建立區域會成功，後續要求皆會失敗。  這是已知問題，也是 Azure 和 Azure Stack DNS 之間的主要差異。 此問題將在未來版本中解決。
+    Azure Stack 中的 DNS 服務不是多租用戶。 每個租用戶無法建立相同的 DNS 區域。 僅有首個訂用帳戶嘗試建立區域會成功，後續要求皆會失敗。  這是已知問題，也是 Azure 和 Azure Stack DNS 之間的主要差異。 此問題將在未來版本中解決。
+* **標記、中繼資料和 Etag**
 
-此外，Azure Stack DNS 如何實作標記、中繼資料、Etag 和限制皆有細微差異。
+    Azure Stack 處理標記、中繼資料、Etag 和限制的方式有些許差異。
 
-下列資訊針對適用於 Azure Stack 的 DNS，並會與 Azure DNS 稍有不同。 若要深入了解 Azure DNS，請在 Microsoft Azure 文件網站中參閱《[DNS 區域和及記錄](../../dns/dns-zones-records.md)》。
+若要深入了解 Azure DNS，請參閱 [DNS 區域和記錄](../../dns/dns-zones-records.md)。
 
 ### <a name="tags-metadata-and-etags"></a>標記、中繼資料和 Etag
 
@@ -99,4 +110,5 @@ Azure Stack DNS 使用 Etag 以安全地處理相同資源的並行變更。 Eta
 | 每一記錄集的記錄| 20|
 
 ## <a name="next-steps"></a>後續步驟
+
 [適用於 Azure Stack 的 iDNS 簡介](azure-stack-understanding-dns.md)

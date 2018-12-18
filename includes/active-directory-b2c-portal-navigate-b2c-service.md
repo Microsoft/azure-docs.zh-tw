@@ -1,3 +1,1 @@
-從 Azure 入口網站的服務清單中選取 [Azure AD B2C]。
-
-![選取 B2C 服務](media/active-directory-b2c-find-service-settings/select-b2c-service.png)
+選擇 Azure 入口網站左上角的 [所有服務]，搜尋並選取 [Azure AD B2C]。 您現在應使用在前一個教學課程中建立的租用戶。

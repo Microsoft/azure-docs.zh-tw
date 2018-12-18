@@ -1,11 +1,11 @@
 ---
-title: "Azure API 管理原則範例 - 將錯誤傳送至 Stackify 進行記錄 | Microsoft Docs"
-description: "Azure API 管理原則範例 - 示範如何新增錯誤記錄原則，以將錯誤傳送到 Stackify 進行記錄。"
+title: Azure API 管理原則範例 - 將錯誤傳送至 Stackify 進行記錄 | Microsoft Docs
+description: Azure API 管理原則範例 - 示範如何新增錯誤記錄原則，以將錯誤傳送到 Stackify 進行記錄。
 services: api-management
-documentationcenter: 
-author: juliako
+documentationcenter: ''
+author: vladvino
 manager: cfowler
-editor: 
+editor: ''
 ms.service: api-management
 ms.workload: mobile
 ms.tgt_pltfrm: na
@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/13/2017
 ms.author: apimpm
-ms.openlocfilehash: 34319e43789d0f2c7d3e48a0277926eb598e88fc
-ms.sourcegitcommit: b854df4fc66c73ba1dd141740a2b348de3e1e028
+ms.openlocfilehash: 5daf21cb55289c874d56910b1240e1433f3d55d0
+ms.sourcegitcommit: e34afd967d66aea62e34d912a040c4622a737acb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/04/2017
+ms.lasthandoff: 06/26/2018
+ms.locfileid: "36945950"
 ---
 # <a name="send-errors-to-stackify-for-logging"></a>將錯誤傳送至 Stackify 進行記錄
 
@@ -27,7 +28,7 @@ ms.lasthandoff: 12/04/2017
 
 將程式碼貼至 [on-error] 區塊。
 
-[!code-xml[Main](../../../api-management-policy-samples/Snippets/Log errors to Stackify.policy.xml)]
+[!code-xml[Main](../../../api-management-policy-samples/examples/Log errors to Stackify.policy.xml)]
 
 ## <a name="next-steps"></a>後續步驟
 

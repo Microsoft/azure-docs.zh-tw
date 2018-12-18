@@ -1,4 +1,4 @@
-**[Azure AI 資源庫](http://gallery.cortanaintelligence.com)**是一個由社群驅動的網站，可用於探索及共用利用 Cortana Intelligence Suite 建置而成的解決方案。
+**[Azure AI 資源庫](http://gallery.cortanaintelligence.com)** 是一個由社群驅動的網站，可用於探索及共用利用 Cortana Intelligence Suite 建置而成的解決方案。
 資源庫具有各種資源，可供您開發自己的分析解決方案。
 
 <!-- On the new DOCS platform, this is a drop-down list, not tabs, which doesn't work well in this context. So I'm just removing it for now.

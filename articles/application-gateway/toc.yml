@@ -1,0 +1,190 @@
+items:
+- name: 應用程式閘道文件
+  href: index.yml
+- name: 概觀
+  items:
+  - name: 關於應用程式閘道
+    href: overview.md
+- name: 快速入門
+  items:
+  - name: 管理網路流量 - 入口網站
+    href: quick-create-portal.md
+  - name: 管理網路流量 - PowerShell
+    href: quick-create-powershell.md
+  - name: 管理網路流量 - Azure CLI
+    href: quick-create-cli.md
+  expanded: true
+- name: 教學課程
+  items:
+  - name: 管理網路流量
+    href: tutorial-manage-web-traffic-cli.md
+  - name: 啟用 Web 應用程式防火牆
+    href: tutorial-restrict-web-traffic-cli.md
+  - name: 使用 SSL 保護
+    href: tutorial-ssl-cli.md
+  - name: 裝載多個網站
+    href: tutorial-multiple-sites-cli.md
+  - name: 藉由 URL 路由傳送
+    href: tutorial-url-route-cli.md
+  - name: 重新導向網路流量
+    href: tutorial-url-redirect-cli.md
+  - name: 自動調整和區域備援
+    href: tutorial-autoscale-ps.md
+- name: 範例
+  items:
+  - name: Azure PowerShell
+    href: powershell-samples.md
+  - name: Azure CLI
+    href: cli-samples.md
+- name: 概念
+  items:
+  - name: 端對端 SSL
+    href: ssl-overview.md
+  - name: SSL 原則概觀
+    href: application-gateway-ssl-policy-overview.md
+  - name: Web 應用程式防火牆
+    href: waf-overview.md
+  - name: WAF 設定
+    href: application-gateway-waf-configuration.md
+  - name: URL 路由
+    href: url-route-overview.md
+  - name: 多網站裝載
+    href: multiple-site-overview.md
+  - name: 自動調整規模和區域備援
+    href: application-gateway-autoscaling-zone-redundant.md
+  - name: 重新支援
+    href: redirect-overview.md
+  - name: 多租用戶支援
+    href: application-gateway-web-app-overview.md
+  - name: 健康狀況監視
+    href: application-gateway-probe-overview.md
+  - name: WebSocket 支援
+    href: application-gateway-websocket.md
+- name: 使用說明指南
+  items:
+  - name: 管理網路流量
+    items:
+    - name: Azure PowerShell
+      href: tutorial-manage-web-traffic-powershell.md
+    - name: 範本
+      href: create-vmss-template.md
+  - name: 設定內部負載平衡器
+    items:
+    - name: Azure PowerShell
+      href: application-gateway-ilb-arm.md
+  - name: 設定 SSL 終止
+    items:
+    - name: SSL 終止 - 入口網站
+      href: create-ssl-portal.md
+    - name: SSL 終止 - PowerShell
+      href: tutorial-ssl-powershell.md
+    - name: 端對端 SSL - PowerShell
+      href: application-gateway-end-to-end-ssl-powershell.md
+    - name: 更新憑證
+      href: renew-certificates.md
+    - name: 設定 SSL 原則
+      href: application-gateway-configure-ssl-policy-powershell.md
+  - name: 設定 Web 應用程式防火牆
+    items:
+    - name: Azure 入口網站
+      href: application-gateway-web-application-firewall-portal.md
+    - name: Azure PowerShell
+      href: tutorial-restrict-web-traffic-powershell.md
+  - name: 自訂 WAF 規則
+    items:
+    - name: Azure 入口網站
+      href: application-gateway-customize-waf-rules-portal.md
+    - name: Azure PowerShell
+      href: application-gateway-customize-waf-rules-powershell.md
+    - name: Azure CLI
+      href: application-gateway-customize-waf-rules-cli.md
+  - name: 藉由 URL 路由傳送
+    items:
+    - name: Azure 入口網站
+      href: create-url-route-portal.md
+    - name: Azure PowerShell
+      href: tutorial-url-route-powershell.md
+  - name: 裝載多個網站
+    items:
+    - name: Azure 入口網站
+      href: create-multiple-sites-portal.md
+    - name: Azure PowerShell
+      href: tutorial-multiple-sites-powershell.md
+  - name: 重新導向流量
+    items:
+    - name: HTTP 至 HTTPS
+      items:
+      - name: Azure PowerShell
+        href: redirect-http-to-https-powershell.md
+      - name: Azure CLI
+        href: redirect-http-to-https-cli.md
+    - name: 重新導向內部流量
+      items:
+      - name: Azure PowerShell
+        href: redirect-internal-site-powershell.md
+      - name: Azure CLI
+        href: redirect-internal-site-cli.md
+  - name: 多租用戶支援
+    items:
+    - name: 設定多租用戶支援
+      href: create-web-app.md
+  - name: 使用 Azure PowerShell 重新導向網路流量
+    href: tutorial-url-redirect-powershell.md
+  - name: 自訂探查
+    items:
+    - name: 入口網站
+      href: application-gateway-create-probe-portal.md
+    - name: 傳統 PowerShell
+      href: application-gateway-create-probe-classic-ps.md
+    - name: 資源管理員 PowerShell
+      href: application-gateway-create-probe-ps.md
+  - name: 疑難排解
+    items:
+    - name: 針對不正確的閘道 (502) 錯誤進行疑難排解
+      href: application-gateway-troubleshooting-502.md
+    - name: 診斷
+      href: application-gateway-diagnostics.md
+  - name: 自訂錯誤頁面
+    href: custom-error.md
+- name: 參考
+  items:
+  - name: CRS 規則
+    href: application-gateway-crs-rulegroups-rules.md
+  - name: Azure CLI
+    href: /cli/azure/network/application-gateway
+  - name: Azure PowerShell
+    href: /powershell/azure/overview
+  - name: .NET
+    href: /dotnet/api
+  - name: Java
+    href: /java/api
+  - name: Node.js
+    href: https://azure.microsoft.com/develop/nodejs/#azure-sdk
+  - name: Python
+    href: https://azure.microsoft.com/develop/python/
+  - name: REST
+    href: /rest/api/applicationgateway
+  - name: Azure Resource Manager
+    href: ../azure-resource-manager/resource-group-overview.md
+- name: 資源
+  items:
+  - name: 作者範本
+    href: ../azure-resource-manager/resource-group-authoring-templates.md
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/
+  - name: 社群範本
+    href: https://azure.microsoft.com/documentation/templates
+  - name: 價格
+    href: https://azure.microsoft.com/pricing/details/#Linux
+  - name: 區域可用性
+    href: https://azure.microsoft.com/regions/services/
+  - name: 堆疊溢位
+    href: http://stackoverflow.com/questions/tagged/azure-application-gateway
+  - name: 常見問題集
+    href: application-gateway-faq.md
+ms.openlocfilehash: 7105df03e8dbef1f225c26c4b52243100118782f
+ms.sourcegitcommit: 9e179a577533ab3b2c0c7a4899ae13a7a0d5252b
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/23/2018
+ms.locfileid: "49944241"

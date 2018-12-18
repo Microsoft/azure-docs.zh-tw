@@ -1,24 +1,25 @@
 ---
-title: "Azure Service Fabric 模式和案例 | Microsoft Docs"
-description: "了解最佳作法，並證明可重複使用的模式來設計、開發及操作您的微服務，Service Fabric 上。"
+title: Azure Service Fabric 模式和案例 | Microsoft Docs
+description: 了解最佳作法，並證明可重複使用的模式來設計、開發及操作您的微服務，Service Fabric 上。
 services: service-fabric
 documentationcenter: .net
 author: rwike77
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: d5aa75ff-98b9-4573-a2e5-7f5ab288157a
 ms.service: service-fabric
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 01/19/2018
 ms.author: ryanwi
-ms.openlocfilehash: d0b385c10df61e9719d95b29b60e0f92766b2637
-ms.sourcegitcommit: 817c3db817348ad088711494e97fc84c9b32f19d
+ms.openlocfilehash: 3bd77891cc7508eeb1fee2152d37478c654a7e37
+ms.sourcegitcommit: f3bd5c17a3a189f144008faf1acb9fabc5bc9ab7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/20/2018
+ms.lasthandoff: 09/10/2018
+ms.locfileid: "44294690"
 ---
 # <a name="service-fabric-patterns-and-scenarios"></a>Service Fabric 模式和案例
 如果您正在觀看如何使用 Azure Service Fabric 建置大規模微服務，請向負責設計及建置此平台即服務 (PaaS) 的專家學習。 從適當的架構開始，接著了解如何將您應用程式的資源最佳化。 [Service Fabric 模式和實務](https://mva.microsoft.com/en-US/training-courses/service-fabric-patterns-and-practices-16925?l=mudwqISGD_6005167344)課程會回答真實客戶最常詢問的 Service Fabric 案例和應用程式領域相關問題。
@@ -71,7 +72,7 @@ ms.lasthandoff: 01/20/2018
 </table>
 
 ## <a name="continuous-delivery"></a>持續傳遞
-探索相關概念，包括使用 Visual Studio Team Services、建置/封裝/發佈工作流程、多重環境設定及服務套件/共用的連續整合/連續傳遞。
+探索相關概念，包括使用 Azure Pipelines、建置/封裝/發佈工作流程、多重環境設定及服務套件/共用的連續整合/連續傳遞。
 
 <table><tr><th>影片</th><th>PowerPoint 簡報</th></tr>
 <tr><td><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/service-fabric-patterns-and-practices-16925?l=78h5ofSGD_305167344">

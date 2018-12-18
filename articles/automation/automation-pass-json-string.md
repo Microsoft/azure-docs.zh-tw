@@ -3,17 +3,19 @@ title: 將 JSON 物件傳送至 Azure 自動化 Runbook
 description: 如何將參數傳遞給 Runbook 作為 JSON 物件
 services: automation
 ms.service: automation
+ms.component: process-automation
 author: georgewallace
 ms.author: gwallace
 ms.date: 03/16/2018
-ms.topic: article
+ms.topic: conceptual
 manager: carmonm
 keywords: powershell, runbook, json, azure 自動化
-ms.openlocfilehash: dd90c15ca70b08a010215a10f35abb3706825dea
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.openlocfilehash: 5e1ab8d6bd2de24251851cfc60d270a2fef4090d
+ms.sourcegitcommit: ebb460ed4f1331feb56052ea84509c2d5e9bd65c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42918813"
 ---
 # <a name="pass-a-json-object-to-an-azure-automation-runbook"></a>將 JSON 物件傳送至 Azure 自動化 Runbook
 
@@ -21,13 +23,13 @@ ms.lasthandoff: 03/23/2018
 例如，您可以建立 JSON 檔案，其中包含您要傳送至 Runbook 的所有參數。
 若要這樣做，您必須將 JSON 轉換為字串，然後先將字串轉換為 PowerShell 物件，再將其內容傳送至 Runbook。
 
-在此範例中，我們將建立 PowerShell 指令碼，該指令碼會呼叫 [Start-AzureRmAutomationRunbook](https://msdn.microsoft.com/library/mt603661.aspx) 以啟動 PowerShell Runbook，並將 JSON 內容傳送至 Runbook。
+在此範例中，我們將建立 PowerShell 指令碼，該指令碼會呼叫 [Start-AzureRmAutomationRunbook](https://docs.microsoft.com/powershell/module/azurerm.automation/start-azurermautomationrunbook) 以啟動 PowerShell Runbook，並將 JSON 內容傳送至 Runbook。
 PowerShell Runbook 會啟動 Azure VM，並從傳入的 JSON 取得 VM 的參數。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 若要完成此教學課程，您需要下列項目：
 
-* Azure 訂用帳戶。 如果您沒有這類帳戶，可以[啟用自己的 MSDN 訂戶權益<a href="/pricing/free-account/" target="_blank">或](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)[註冊免費帳戶](https://azure.microsoft.com/free/)。
+* Azure 訂用帳戶。 如果您沒有這類帳戶，可以[啟用自己的 MSDN 訂閱者權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)或[註冊免費帳戶](https://azure.microsoft.com/free/)。
 * [自動化帳戶](automation-sec-configure-azure-runas-account.md) ，用來保存 Runbook 以及向 Azure 資源驗證。  此帳戶必須擁有啟動和停止虛擬機器的權限。
 * Azure 虛擬機器。 我們會停止並啟動這部電腦，因此它不該是生產 VM。
 * 本機電腦上安裝的 Azure Powershell。 如需如何取得 Azure PowerShell 的詳細資訊，請參閱[安裝和設定 Azure PowerShell](https://docs.microsoft.com/powershell/azure/install-azurerm-ps?view=azurermps-4.1.0)。
@@ -60,7 +62,7 @@ Param(
 
 # Connect to Azure account   
 $Conn = Get-AutomationConnection -Name AzureRunAsConnection
-Add-AzureRMAccount -ServicePrincipal -Tenant $Conn.TenantID `
+Connect-AzureRmAccount -ServicePrincipal -Tenant $Conn.TenantID `
     -ApplicationID $Conn.ApplicationID -CertificateThumbprint $Conn.CertificateThumbprint
 
 # Convert object to actual JSON
@@ -79,9 +81,13 @@ Start-AzureRmVM -Name $json.VMName -ResourceGroupName $json.ResourceGroup
 
 1. 登入 Azure：
    ```powershell
-   Login-AzureRmAccount
+   Connect-AzureRmAccount
    ```
     系統會提示您輸入 Azure 認證。
+
+   > [!IMPORTANT]
+   > **Add-AzureRmAccount** 現在是 **Connect-AzureRMAccount** 的別名。 搜尋您的程式庫項目時，如果沒有看到 **Connect-AzureRMAccount**，便可以使用 **Add-AzureRmAccount**，或是在自動化帳戶中更新模組。
+
 1. 取得 JSON 檔案的內容，並將它轉換成字串：
     ```powershell
     $json =  (Get-content -path 'JsonPath\test.json' -Raw) | Out-string

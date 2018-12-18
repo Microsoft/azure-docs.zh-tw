@@ -1,13 +1,13 @@
 ---
-title: "將傳統 VM 移轉到 ARM 受控磁碟 VM | Microsoft Docs"
-description: "將單一 Azure VM 從傳統部署模型移轉至 Resource Manager 部署模型中的受控磁碟。"
+title: 將傳統 VM 移轉到 ARM 受控磁碟 VM | Microsoft Docs
+description: 將單一 Azure VM 從傳統部署模型移轉至 Resource Manager 部署模型中的受控磁碟。
 services: virtual-machines-windows
-documentationcenter: 
+documentationcenter: ''
 author: cynthn
-manager: timlt
-editor: 
+manager: jeconnoc
+editor: ''
 tags: azure-resource-manager
-ms.assetid: 
+ms.assetid: ''
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
@@ -15,11 +15,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/15/2017
 ms.author: cynthn
-ms.openlocfilehash: 82389834d85981c0ed71bdcc891fbfdbe1377654
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: d0307b26741a6bbbf29626e670467cdd72697646
+ms.sourcegitcommit: d98d99567d0383bb8d7cbe2d767ec15ebf2daeb2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 05/10/2018
+ms.locfileid: "33943576"
 ---
 # <a name="manually-migrate-a-classic-vm-to-a-new-arm-managed-disk-vm-from-the-vhd"></a>手動從 VHD 將傳統 VM 移轉到新的 ARM 受控磁碟 VM 
 
@@ -72,7 +73,7 @@ ms.lasthandoff: 10/11/2017
 
 ### <a name="pricing"></a>價格
 
-請檢閱[受控磁碟的價格](https://azure.microsoft.com/en-us/pricing/details/managed-disks/)。 進階受控磁碟與進階非受控磁碟的價格相同。 但標準受控磁碟與標準非受控磁碟的價格不同。
+請檢閱[受控磁碟的價格](https://azure.microsoft.com/pricing/details/managed-disks/)。 進階受控磁碟與進階非受控磁碟的價格相同。 但標準受控磁碟與標準非受控磁碟的價格不同。
 
 
 ## <a name="checklist"></a>檢查清單
@@ -91,6 +92,8 @@ ms.lasthandoff: 10/11/2017
 ## <a name="migrate-the-vm"></a>移轉 VM
 
 為您的應用程式做好停機準備。 若要進行全新移轉，您必須停止目前系統中的所有處理。 只有這樣，您才可以使其維持在可移轉至新平台的一致狀態。 停機持續時間取決於磁碟中要移轉的資料量。
+
+這個部分需要有 Azure PowerShell 模組 6.0.0 版或更新版本。 執行 ` Get-Module -ListAvailable AzureRM` 以尋找版本。 如果您需要升級，請參閱[安裝 Azure PowerShell 模組](/powershell/azure/install-azurerm-ps)。 您也需要執行 `Connect-AzureRmAccount` 來建立與 Azure 的連線。
 
 
 1.  首先，設定一般參數：
@@ -121,11 +124,11 @@ ms.lasthandoff: 10/11/2017
 
 2.  使用傳統 VM 中的 VHD 建立受控 OS 磁碟。
 
-    請確定您已將 OS VHD 的完整 URI 提供給 $osVhdUri 參數。 此外，根據您要移轉至的磁碟類型 (進階或標準)，將 **-AccountType** 輸入為 **PremiumLRS** 或 **StandardLRS**。
+    請確定您已將 OS VHD 的完整 URI 提供給 $osVhdUri 參數。 此外，根據您要移轉至的磁碟類型 (進階或標準)，將 **-AccountType** 輸入為 **Premium_LRS** 或 **Standard_LRS**。
 
     ```powershell
     $osDisk = New-AzureRmDisk -DiskName $osDiskName -Disk (New-AzureRmDiskConfig '
-    -AccountType PremiumLRS -Location $location -CreateOption Import -SourceUri $osVhdUri) '
+    -AccountType Premium_LRS -Location $location -CreateOption Import -SourceUri $osVhdUri) '
     -ResourceGroupName $resourceGroupName
     ```
 
@@ -134,14 +137,14 @@ ms.lasthandoff: 10/11/2017
     ```powershell
     $VirtualMachine = New-AzureRmVMConfig -VMName $virtualMachineName -VMSize $virtualMachineSize
     $VirtualMachine = Set-AzureRmVMOSDisk -VM $VirtualMachine -ManagedDiskId $osDisk.Id '
-    -StorageAccountType PremiumLRS -DiskSizeInGB 128 -CreateOption Attach -Windows
+    -StorageAccountType Premium_LRS -DiskSizeInGB 128 -CreateOption Attach -Windows
     ```
 
 4.  從資料 VHD 檔案建立受控資料磁碟，並將它新增到新的 VM。
 
     ```powershell
     $dataDisk1 = New-AzureRmDisk -DiskName $dataDiskName -Disk (New-AzureRmDiskConfig '
-    -AccountType PremiumLRS -Location $location -CreationDataCreateOption Import '
+    -AccountType Premium_LRS -Location $location -CreationDataCreateOption Import '
     -SourceUri $dataVhdUri ) -ResourceGroupName $resourceGroupName
     
     $VirtualMachine = Add-AzureRmVMDataDisk -VM $VirtualMachine -Name $dataDiskName '

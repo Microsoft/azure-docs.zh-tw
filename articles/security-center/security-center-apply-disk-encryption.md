@@ -1,11 +1,11 @@
 ---
-title: "在 Azure 資訊安全中心中套用磁碟加密 | Microsoft Docs"
-description: "本文件說明如何實作 Azure 資訊安全中心建議的「套用磁碟加密」。"
+title: 在 Azure 資訊安全中心中套用磁碟加密 | Microsoft Docs
+description: 本文件說明如何實作 Azure 資訊安全中心建議的「套用磁碟加密」。
 services: security-center
 documentationcenter: na
 author: TerryLanfear
 manager: MBaldwin
-editor: 
+editor: ''
 ms.assetid: 6cc7824a-8d6b-4a5f-ab40-e3bbaebc4a91
 ms.service: security-center
 ms.devlang: na
@@ -14,11 +14,12 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 02/02/2017
 ms.author: terrylan
-ms.openlocfilehash: 67cff664f3723b2194ecd1519729cca17069d07f
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: bcfa6ead0eac4a8a631c0388466534406c7a594b
+ms.sourcegitcommit: f1e6e61807634bce56a64c00447bf819438db1b8
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42887333"
 ---
 # <a name="apply-disk-encryption-in-azure-security-center"></a>在 Azure 資訊安全中心中套用磁碟加密
 如果您有未使用 Azure 磁碟加密進行加密的 Windows 或 Linux VM 磁碟，Azure 資訊安全中心會建議您套用磁碟加密。 磁碟加密可讓您替 Windows 和 Linux IaaS VM 磁碟加密。  建議您的 VM 上的作業系統和資料磁碟區都進行加密。
@@ -43,7 +44,7 @@ ms.lasthandoff: 10/11/2017
 * 取得並執行 Azure 磁碟加密先決條件 Azure PowerShell 指令碼。
 * 加密虛擬機器。
 
-[加密 Azure 虛擬機器](security-center-disk-encryption.md)逐步引導您完成這些步驟。  本主題假設您使用 Windows 10 做為用戶端電腦，並從中設定磁碟加密。
+[使用 Azure PowerShell 為 Windows IaaS VM 加密](../security/quick-encrypt-vm-powershell.md)可引導您完成這些步驟。 本主題假設您使用 Windows 用戶端電腦，並從中設定磁碟加密。
 
 有許多方法可以用於 Azure 虛擬機器。 如果您已經很熟悉 Azure PowerShell 或 Azure CLI，可能會想要使用其他方法。 若要深入了解其他這些方法，請參閱 [Azure 磁碟加密](../security/azure-security-disk-encryption.md)。
 
@@ -51,8 +52,7 @@ ms.lasthandoff: 10/11/2017
 本文件說明如何實作 Azure 資訊安全中心建議的「套用磁碟加密」。 若要深入了解磁碟加密，請參閱下列主題：
 
 * [Azure 金鑰保存庫的加密和金鑰管理](https://azure.microsoft.com/documentation/videos/azurecon-2015-encryption-and-key-management-with-azure-key-vault/) (影片，36 分 39 秒) -- 了解如何使用 IaaS VM 和 Azure 金鑰保存庫的磁碟加密管理功能，協助保護您的資料。
-* [加密 Azure 虛擬機器](security-center-disk-encryption.md) (文件) - 了解如何加密 Azure 虛擬機器。
-* [Azure 磁碟加密](../security/azure-security-disk-encryption.md) (文件) -- 了解如何為 Windows 和 Linux VM 啟用磁碟加密。
+* [Azure 磁碟加密](../security/azure-security-disk-encryption-overview.md) (文件) -- 了解如何為 Windows 和 Linux VM 啟用磁碟加密。
 
 如要深入了解資訊安全中心，請參閱下列主題：
 

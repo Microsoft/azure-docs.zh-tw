@@ -24,9 +24,9 @@
 ### <a name="set-your-azure-account-and-subscription"></a>設定 Azure 帳戶和訂用帳戶
 如果您還沒有 Azure 訂用帳戶，則可以啟用 [MSDN 訂戶權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)或申請[免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
-使用這個命令，開啟 Azure PowerShell 命令提示字元，並登入 Azure。
+開啟 Azure PowerShell 命令提示字元，然後使用這個命令登入 Azure。
 
-    Login-AzureRmAccount
+    Connect-AzureRmAccount
 
 如果您有多個 Azure 訂用帳戶，則可以使用這個命令列出 Azure 訂用帳戶。
 

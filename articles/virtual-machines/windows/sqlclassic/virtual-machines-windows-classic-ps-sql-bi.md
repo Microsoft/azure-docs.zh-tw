@@ -1,9 +1,9 @@
 ---
 title: SQL Server Business Intelligence | Microsoft Docs
-description: "本主題使用以傳統部署模型建立的資源，並描述 Azure 虛擬機器 (VM) 上執行的 SQL Server 提供的商業智慧 (BI) 功能。"
+description: 本主題使用以傳統部署模型建立的資源，並描述 Azure 虛擬機器 (VM) 上執行的 SQL Server 提供的商業智慧 (BI) 功能。
 services: virtual-machines-windows
 documentationcenter: na
-author: guyinacube
+author: markingmyname
 manager: erikre
 editor: monicar
 tags: azure-service-management
@@ -14,12 +14,13 @@ ms.topic: article
 ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
 ms.date: 05/30/2017
-ms.author: asaxton
-ms.openlocfilehash: a010e60df2d86d2b1cc923b427aa7d7452f58089
-ms.sourcegitcommit: be9a42d7b321304d9a33786ed8e2b9b972a5977e
+ms.author: maghan
+ms.openlocfilehash: a41dcd5f2c93e5c1279e1c7511e10e6d72574b3b
+ms.sourcegitcommit: d7725f1f20c534c102021aa4feaea7fc0d257609
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/19/2018
+ms.lasthandoff: 06/29/2018
+ms.locfileid: "37098741"
 ---
 # <a name="sql-server-business-intelligence-in-azure-virtual-machines"></a>Azure 虛擬機器中的 SQL Server Business Intelligence
 > [!IMPORTANT] 
@@ -33,7 +34,7 @@ Microsoft Azure 虛擬機器資源庫含有包含 SQL Server 安裝的映像。 
 1. 屬於軟體保證的授權機動性優點。 如需詳細資訊，請參閱 [Azure 上透過軟體保證的授權機動性](https://azure.microsoft.com/pricing/license-mobility/)。
 2. 支付安裝了 SQL Server 的 Azure 虛擬機器每小時的費用。 請參閱 [虛擬機器定價](https://azure.microsoft.com/pricing/details/virtual-machines/#Sql)中的＜SQL Server＞一節。
 
-如需有關授權和目前費率的詳細資訊，請參閱 [虛擬機器授權常見問題集](https://azure.microsoft.com/pricing/licensing-faq/%20/)。
+如需有關授權和目前費率的詳細資訊，請參閱 [虛擬機器授權常見問題集](https://azure.microsoft.com/pricing/licensing-faq/)。
 
 ## <a name="sql-server-images-available-in-azure-virtual-machine-gallery"></a>Azure 虛擬機器資源庫中提供 SQL Server 映像
 Microsoft Azure 虛擬機器資源庫涵蓋數個包含 Microsoft SQL Server 的映像。 虛擬機器映像上安裝的軟體因作業系統版本與 SQL Server 版本而異。 Azure 虛擬機器資源庫中提供的映像清單經常變更。
@@ -62,7 +63,7 @@ Microsoft Azure 虛擬機器資源庫涵蓋數個包含 Microsoft SQL Server 的
 
 如需有關版本與 SQL Server 所支援的功能的詳細資訊，請參閱下列各項：
 
-* [SQL Server 版本](https://www.microsoft.com/server-cloud/products/sql-server-editions/#fbid=Zae0-E6r5oh)
+* [SQL Server 版本](https://www.microsoft.com/sql-server/sql-server-2017-editions)
 * [SQL Server 2016 的版本所支援的功能](https://msdn.microsoft.com/library/cc645993.aspx)
 
 ### <a name="bi-features-installed-on-the-sql-server-virtual-machine-gallery-images"></a>SQL Server 虛擬機器資源庫映像上安裝的 BI 功能
@@ -216,7 +217,7 @@ SQL Server 的虛擬機器資源庫映像包含 Reporting Services 原生模式�
 若要驗證組態，瀏覽至 VM 上的報表管理員。
 
 1. 在 VM 上，以系統管理員權限啟動 Internet Explorer。
-2. 瀏覽至 VM 上 http://localhost/reports。
+2. 在 VM 上瀏覽至 http://localhost/reports。
 
 ### <a name="to-connect-to-remote-web-portal-or-report-manager-for-2014-and-2012"></a>若要連接遠端入口網站或 2012 和 2014 版的報表管理員
 如果您想要從遠端電腦連接到虛擬機器上的入口網站或 2012 和 2014 版報表管理員，請建立新的虛擬機器 TCP 端點。 根據預設，報表伺服器會接聽 **連接埠 80**上的 HTTP 要求。 如果您將報表伺服器 URL 設定為使用不同的連接埠，您必須在下列指示中指定該連接埠編號。
@@ -225,7 +226,7 @@ SQL Server 的虛擬機器資源庫映像包含 Reporting Services 原生模式�
 2. 在虛擬機器防火牆中開啟連接埠 80。
 3. 使用 Azure 虛擬機器 **DNS 名稱** 做為 URL 中的伺服器名稱，瀏覽至入口網站或報表管理員。 例如︰
    
-    **報表伺服器**：http://uebi.cloudapp.net/reportserver **Web 入口網站**：http://uebi.cloudapp.net/reports
+    **報表伺服器**：http://uebi.cloudapp.net/reportserver**Web 入口網站**：http://uebi.cloudapp.net/reports
    
     [為報表伺服器存取設定防火牆](https://msdn.microsoft.com/library/bb934283.aspx)
 
@@ -350,5 +351,5 @@ Analysis Services 的**預設執行個體**會接聽 TCP 連接埠 **2383**。 �
 > [透過 Microsoft SQL Server Connect 提交意見和連絡資訊](https://connect.microsoft.com/SQLServer/Feedback)
 
 ### <a name="community-content"></a>社群內容
-* [使用 PowerShell 管理 Azure SQL Database](http://blogs.msdn.com/b/windowsazure/archive/2013/02/07/windows-azure-sql-database-management-with-powershell.aspx)
+* [使用 PowerShell 管理 Azure SQL Database](https://azure.microsoft.com/blog/windows-azure-sql-database-management-with-powershell/)
 

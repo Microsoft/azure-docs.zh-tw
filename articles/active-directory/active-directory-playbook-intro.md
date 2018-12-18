@@ -1,12 +1,12 @@
 ---
-title: "Azure Active Directory PoC 腳本簡介 | Microsoft Docs"
-description: "探索並快速實作身分識別和存取管理案例"
+title: Azure Active Directory PoC 腳本簡介 | Microsoft Docs
+description: 探索並快速實作身分識別和存取管理案例
 services: active-directory
-keywords: "azure active directory, 腳本, 概念證明, PoC"
-documentationcenter: 
+keywords: azure active directory, 腳本, 概念證明, PoC
+documentationcenter: ''
 author: dstefanMSFT
 manager: mtillman
-ms.assetid: 
+ms.assetid: ''
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -19,6 +19,7 @@ ms.sourcegitcommit: e266df9f97d04acfc4a843770fadfd8edf4fa2b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 12/11/2017
+ms.locfileid: "26731428"
 ---
 # <a name="azure-active-directory-proof-of-concept-playbook-introduction"></a>Azure Active Directory 概念證明腳本：簡介
 

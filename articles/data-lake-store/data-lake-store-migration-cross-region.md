@@ -1,8 +1,8 @@
 ---
-title: "Azure Data Lake Store 跨區域移轉 | Microsoft Docs"
-description: "了解 Azure Data Lake Store 跨區域移轉指引。"
+title: Azure Data Lake Store 跨區域移轉 | Microsoft Docs
+description: 了解 Azure Data Lake Store 跨區域移轉指引。
 services: data-lake-store
-documentationcenter: 
+documentationcenter: ''
 author: swums
 manager: amitkul
 editor: swums
@@ -10,15 +10,14 @@ ms.assetid: ebde7b9f-2e51-4d43-b7ab-566417221335
 ms.service: data-lake-store
 ms.devlang: na
 ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
 ms.date: 01/27/2017
 ms.author: stewu
-ms.openlocfilehash: b04cca6e551a15a31bbebc4932ea05dd39e8e916
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 1199eca457c3f06fdd6a4b68a05da3210ea9a2c9
+ms.sourcegitcommit: eb75f177fc59d90b1b667afcfe64ac51936e2638
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 05/16/2018
+ms.locfileid: "34197234"
 ---
 # <a name="migrate-data-lake-store-across-regions"></a>跨區域移轉 Data Lake Store
 
@@ -45,7 +44,7 @@ ms.lasthandoff: 10/11/2017
 
 * **工具**。 建議您使用 [Azure Data Factory 複製活動](../data-factory/connector-azure-data-lake-store.md)來複製 Data Lake Store 檔案。 Data Factory 支援高效能與可靠性的資料移動。 請記住，Data Factory 只會複製資料夾階層和檔案內容。 您必須將用於舊帳戶的任何存取控制清單 (ACL) 手動套用到新帳戶。 如需詳細資訊 (包括最佳狀況案例的效能目標)，請參閱[複製活動的效能及微調指南](../data-factory/copy-activity-performance.md)。 如果您想要更快速地複製資料，您可能需要使用其他雲端資料移動單位。 AdlCopy 等其他工具不支援在區域之間複製資料。  
 
-* **頻寬費用**。 適用[頻寬費用](https://azure.microsoft.com/en-us/pricing/details/bandwidth/)，因為資料會傳出 Azure 區域。
+* **頻寬費用**。 適用[頻寬費用](https://azure.microsoft.com/pricing/details/bandwidth/)，因為資料會傳出 Azure 區域。
 
 * **資料的 ACL**。 請對檔案和資料夾套用 ACL 以保護新區域內的資料。 如需詳細資訊，請參閱[在 Azure Data Lake Store 中保護資料](data-lake-store-secure-data.md)。 建議您使用移轉來更新和調整 ACL。 您想要使用的設定可能類似目前的設定。 您可以使用 Azure 入口網站、[PowerShell Cmdlet](/powershell/module/azurerm.datalakestore/get-azurermdatalakestoreitempermission) 或 SDK 檢視來套用到任何檔案的 ACL。  
 

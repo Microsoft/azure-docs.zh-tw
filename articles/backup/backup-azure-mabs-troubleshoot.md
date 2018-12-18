@@ -1,24 +1,19 @@
 ---
-title: "針對 Azure 備份伺服器進行疑難排解 | Microsoft Docs"
-description: "針對安裝、註冊「Azure 備份伺服器」以及備份和還原應用程式工作負載進行疑難排解。"
+title: 針對 Azure 備份伺服器進行疑難排解
+description: 針對安裝、註冊「Azure 備份伺服器」以及備份和還原應用程式工作負載進行疑難排解。
 services: backup
-documentationcenter: 
 author: pvrk
 manager: shreeshd
-editor: 
-ms.assetid: 2d73c349-0fc8-4ca8-afd8-8c9029cb8524
 ms.service: backup
-ms.workload: storage-backup-recovery
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 11/24/2017
-ms.author: pullabhk;markgal;
-ms.openlocfilehash: e9517672138a4ea7577af1295dea13771733983e
-ms.sourcegitcommit: d247d29b70bdb3044bff6a78443f275c4a943b11
+ms.author: pullabhk
+ms.openlocfilehash: 2b4c2f8b4c8311580692619cfb6a72fe8bcad6de
+ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/13/2017
+ms.lasthandoff: 06/01/2018
+ms.locfileid: "34605061"
 ---
 # <a name="troubleshoot-azure-backup-server"></a>針對 Azure 備份伺服器進行疑難排解
 
@@ -88,4 +83,4 @@ ms.lasthandoff: 12/13/2017
 ## <a name="configure-email-notifications"></a>設定電子郵件通知
 | 作業 | 錯誤詳細資料 | 因應措施 |
 | --- | --- | --- |
-| 使用 Office 365 帳戶來設定電子郵件通知 |錯誤 ID：2013| **原因：**<br> 嘗試使用 Office 365 帳戶 <br>**建議的動作：**<ol><li> 所要確保的第一件事就是在 Exchange 上已設定 DPM 伺服器的「允許接收連接器上的匿名轉送」。 如需有關如何進行這項設定的詳細資訊，請參閱 TechNet 上的[允許接收連接器上的匿名轉送](http://technet.microsoft.com/en-us/library/bb232021.aspx)。</li> <li> 如果您無法使用內部 SMTP 轉送，而需要使用 Office 365 伺服器來進行設定，您可以將 IIS 設定為轉送。 請將 DPM 伺服器設定為[使用 IIS 將 SMTP 轉送至 O365](https://technet.microsoft.com/en-us/library/aa995718(v=exchg.65).aspx)。<br><br> **重要：**請務必使用 user@domain.com 格式，而「不是」 domain\user。<br><br><li>將 DPM 指向為使用本機伺服器名稱作為 SMTP 伺服器、連接埠 587。 然後將它指向應作為電子郵件來源的使用者電子郵件。<li> DPM SMTP 設定頁面上的使用者名稱和密碼應該用於 DPM 所在網域的網域帳戶。 </li><br> **注意**：變更 SMTP 伺服器位址時，請對新設定進行變更、關閉 [設定] 方塊，然後重新開啟它來確定它反映新的值。  只是變更和測試不一定會讓新設定生效，因此以這種方式測試是最佳做法。<br><br>在進行此程序的期間，您可以隨時關閉 DPM 主控台並編輯下列登錄機碼來清除這些設定W：**HKLM\SOFTWARE\Microsoft\Microsoft Data Protection Manager\Notification\ <br/> 刪除 SMTPPassword 和 SMTPUserName 機碼**。 您可以在再次啟動它時，將它們加回到 UI 中。
+| 使用 Office 365 帳戶來設定電子郵件通知 |錯誤 ID：2013| **原因：**<br> 嘗試使用 Office 365 帳戶 <br>**建議的動作：**<ol><li> 所要確保的第一件事就是在 Exchange 上已設定 DPM 伺服器的「允許接收連接器上的匿名轉送」。 如需有關如何進行這項設定的詳細資訊，請參閱 TechNet 上的[允許接收連接器上的匿名轉送](http://technet.microsoft.com/library/bb232021.aspx)。</li> <li> 如果您無法使用內部 SMTP 轉送，而需要使用 Office 365 伺服器來進行設定，您可以將 IIS 設定為轉送。 請將 DPM 伺服器設定為[使用 IIS 將 SMTP 轉送至 O365](https://technet.microsoft.com/library/aa995718(v=exchg.65).aspx)。<br><br> **重要：** 請務必使用 user@domain.com 格式，而「不是」 domain\user。<br><br><li>將 DPM 指向為使用本機伺服器名稱作為 SMTP 伺服器、連接埠 587。 然後將它指向應作為電子郵件來源的使用者電子郵件。<li> DPM SMTP 設定頁面上的使用者名稱和密碼應該用於 DPM 所在網域的網域帳戶。 </li><br> **注意**：變更 SMTP 伺服器位址時，請對新設定進行變更、關閉 [設定] 方塊，然後重新開啟它來確定它反映新的值。  只是變更和測試不一定會讓新設定生效，因此以這種方式測試是最佳做法。<br><br>在進行此程序的期間，您可以隨時關閉 DPM 主控台並編輯下列登錄機碼來清除這些設定W：**HKLM\SOFTWARE\Microsoft\Microsoft Data Protection Manager\Notification\ <br/> 刪除 SMTPPassword 和 SMTPUserName 機碼**。 您可以在再次啟動它時，將它們加回到 UI 中。

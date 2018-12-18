@@ -1,15 +1,15 @@
 ---
-title: "從 Azure Windows VM 掛接 Azure 檔案儲存體 | Microsoft Docs"
-description: "使用 Azure 檔案儲存體在雲端中儲存檔案，並從 Azure 虛擬機器 (VM) 掛接雲端檔案共用。"
-documentationcenter: 
+title: 從 Azure Windows VM 掛接 Azure 檔案儲存體 | Microsoft Docs
+description: 使用 Azure 檔案儲存體在雲端中儲存檔案，並從 Azure 虛擬機器 (VM) 掛接雲端檔案共用。
+documentationcenter: ''
 author: cynthn
 manager: jeconnoc
 editor: tysonn
-ms.assetid: 
+ms.assetid: ''
 ms.service: virtual-machines-windows
-ms.workload: 
-ms.tgt_pltfrm: 
-ms.devlang: 
+ms.workload: ''
+ms.tgt_pltfrm: ''
+ms.devlang: ''
 ms.topic: article
 ms.date: 01/02/2018
 ms.author: cynthn
@@ -18,6 +18,7 @@ ms.sourcegitcommit: 2e540e6acb953b1294d364f70aee73deaf047441
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 01/03/2018
+ms.locfileid: "27577546"
 ---
 # <a name="use-azure-file-shares-with-windows-vms"></a>搭配 Windows VM 使用 Azure 檔案共用 
 

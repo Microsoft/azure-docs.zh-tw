@@ -1,46 +1,41 @@
 ---
-title: "搭配 Azure HDInsight 使用 ScaleR 與 SparkR | Microsoft Docs"
-description: "使用 ScaleR 與 SparkR 搭配 R Server 與 HDInsight"
+title: 搭配 Azure HDInsight 使用 ScaleR 與 SparkR
+description: 在 HDInsight 上使用 ScaleR 與 SparkR 搭配 ML 服務
 services: hdinsight
-documentationcenter: 
-author: bradsev
-manager: jhubbard
-editor: cgronlun
-tags: azure-portal
-ms.assetid: 5a76f897-02e8-4437-8f2b-4fb12225854a
+author: jasonwhowell
+ms.author: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 06/19/2017
-ms.author: bradsev
-ms.openlocfilehash: b84c365defbaadbc83c86e6e387c15a63e0f17ce
-ms.sourcegitcommit: f8437edf5de144b40aed00af5c52a20e35d10ba1
+ms.openlocfilehash: c59ac5efab8b46463f97c375d999a131667d3cea
+ms.sourcegitcommit: cb61439cf0ae2a3f4b07a98da4df258bfb479845
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/03/2017
+ms.lasthandoff: 09/05/2018
+ms.locfileid: "43699544"
 ---
 # <a name="combine-scaler-and-sparkr-in-hdinsight"></a>在 HDInsight 中結合 ScaleR 與 SparkR
 
-本文說明如何透過以 **SparkR** 聯結的班機延誤和天氣資料來使用 **ScaleR** 羅吉斯迴歸模型，以預測班機抵達延誤。 本案例說明搭配使用 Spark 上用於資料操作的 ScaleR 功能與用於分析的 Microsoft R Server。 這些技術的結合可讓您套用分散式處理的最新功能。
+本文件說明如何使用 **ScaleR** 羅吉斯迴歸模型來預測班機抵達延遲。 此範例會使用班機延遲和天氣資料，並使用 **SparkR** 聯結。
 
-雖然這兩個封裝會在 Hadoop 的 Spark 執行引擎上執行，但它們無法共用記憶體內部資料，因為它們需要自己個別的 Spark 工作階段。 在後續的 R Server 版本處理此問題之前，其因應措施是維護不重疊的 Spark 工作階段，並透過中繼檔案交換資料。 此處的指示說明這些需求是可直接達成的。
+雖然這兩個封裝會在 Hadoop 的 Spark 執行引擎上執行，但它們無法共用記憶體內部資料，因為它們需要自己個別的 Spark 工作階段。 在後續的 ML Server 版本處理此問題之前，其因應措施是維護不重疊的 Spark 工作階段，並透過中繼檔案交換資料。 此處的指示說明這些需求是可直接達成的。
 
-我們在此一開始會使用 Mario Inchiosa 和 Roni Burd 在 Strata 2016 演講 (也可透過 [使用 R 建置可擴充的資料科學平台](http://event.on24.com/eventRegistration/console/EventConsoleNG.jsp?uimode=nextgeneration&eventid=1160288&sessionid=1&key=8F8FB9E2EB1AEE867287CD6757D5BD40&contenttype=A&eventuserid=305999&playerwidth=1000&playerheight=650&caller=previewLobby&text_language_id=en&format=fhaudio) \(Building a Scalable Data Science Platform with R\) 網路研討會觀看) 中分享的範例進行示範。此範例使用 SparkR 聯結已知的航班抵達延誤資料集，和起飛及抵達機場的天氣資料。 聯結的資料將作為 ScaleR 羅吉斯迴歸模型的輸入，以預測班機抵達延誤。
+此範例最初是在 Mario Inchiosa 和 Roni Burd 於 Strata 2016 的談話中分享出來的。 您可以在[使用 R 建置可擴充的資料科學平台](http://event.on24.com/eventRegistration/console/EventConsoleNG.jsp?uimode=nextgeneration&eventid=1160288&sessionid=1&key=8F8FB9E2EB1AEE867287CD6757D5BD40&contenttype=A&eventuserid=305999&playerwidth=1000&playerheight=650&caller=previewLobby&text_language_id=en&format=fhaudio)中找到此談話。
 
-我們所解說的程式碼原先是針對 Azure HDInsight 叢集中的 Spark 上所執行的 R Server 所編寫。 但是，以一個指令碼混合使用 SparkR 和 ScaleR 的概念在內部部署環境的內容中同樣有效。 接下來，我們假設對於 R 和 R Server 的 [ScaleR](https://msdn.microsoft.com/microsoft-r/scaler-user-guide-introduction) 程式庫有中階了解程度。 在逐步解說此案例，同時會介紹 [SparkR](https://spark.apache.org/docs/2.1.0/sparkr.html) 的使用。
+程式碼原先是針對 Azure HDInsight 叢集中 Spark 上所執行的 ML Server 所編寫。 但是，以一個指令碼混合使用 SparkR 和 ScaleR 的概念在內部部署環境的內容中同樣有效。
+
+本文件中的步驟假設您對於 R 和 ML Server 的 [ScaleR](https://msdn.microsoft.com/microsoft-r/scaler-user-guide-introduction) 程式庫有中階了解程度。 在逐步解說此案例的同時，會介紹 [SparkR](https://spark.apache.org/docs/2.1.0/sparkr.html)。
 
 ## <a name="the-airline-and-weather-datasets"></a>航線和天氣資料集
 
-**AirOnTime08to12CSV** 航線公用資料集包含有關美國境內所有商業班機的班機抵達和起飛詳細資料 (從 1987 年 10 月至 2012 年 12 月)。 這是大型資料集︰總計有將近 1 億 5 千萬筆記錄。 解壓縮後，不超過 4 GB。 您可以從[美國政府檔案庫](http://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236) \(U.S. government archives\) 取得。 而 zip 檔案 (AirOnTimeCSV.zip) 較為方便，其中包含 [Revolution Analytics 資料集存放庫](http://packages.revolutionanalytics.com/datasets/AirOnTime87to12/) \(Revolution Analytics dataset repository\) 中的一組 303 個個別每月 CSV 檔案。
+您可以從[美國政府檔案庫](http://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236)取得班機資料。 也可以從 [AirOnTimeCSV.zip](http://packages.revolutionanalytics.com/datasets/AirOnTime87to12/AirOnTimeCSV.zip) 中取得其 zip 檔。
 
-若要了解天氣對於班機延誤的影響，我們也需要每個機場的天氣資料。 您可以依照月份從[美國國家海洋與大氣層管理局存放庫](http://www.ncdc.noaa.gov/orders/qclcd/) \(National Oceanic and Atmospheric Administration repository\) 下載此資料 (未經處理格式的 zip 檔案)。 基於本範例的目的，我們提取 2007 年 5 月至 2012 年 12 月的天氣資料，並使用 68 個每月 zip 檔內的每小時資料檔案。 每月 zip 檔案也包含天氣觀測站識別碼 (WBAN)、相關聯的機場 (CallSign) 以及機場與 UTC 的時差 (TimeZone) 之間的對應 (YYYYMMstation.txt)。 這些都是聯結航班延誤和天氣資料時所需的資料。
+您可以依照月份從[美國國家海洋與大氣層管理局存放庫](http://www.ncdc.noaa.gov/orders/qclcd/)下載天氣資料 (未經處理格式的 zip 檔案)。 針對此範例，請下載 2007 年 5 月 – 2012 年 12 月的資料。 使用每個 zip 內的每小時資料檔案和 `YYYYMMMstation.txt` 檔案。 
 
 ## <a name="setting-up-the-spark-environment"></a>設定 Spark 環境
 
-第一步是設定 Spark 環境。 首先，指向包含輸入資料目錄的目錄、建立 Spark 計算內容，並建立可將資訊記錄至主控台的記錄函式︰
+使用下列程式碼來設定 Spark 環境：
 
 ```
 workDir        <- '~'  
@@ -85,7 +80,7 @@ logmsg('Start')
 logmsg(paste('Number of task nodes=',length(trackers)))
 ```
 
-接下來，我們將 “Spark_Home” 新增至 R 套件的搜尋路徑，以便使用 SparkR，並且初始化 SparkR 工作階段：
+接下來，將 `Spark_Home` 新增至 R 套件的搜尋路徑。 將它新增至搜尋路徑可讓您使用 SparkR，並初始化 SparkR 工作階段：
 
 ```
 #..setup for use of SparkR  
@@ -108,7 +103,7 @@ sqlContext <- sparkRSQL.init(sc)
 
 ## <a name="preparing-the-weather-data"></a>準備天氣資料
 
-為準備天氣資料，我們將資料細分為以下建立模型所需的資料行： 
+若要準備天氣資料，請將資料細分為以下建立模型所需的資料行： 
 
 - "Visibility"
 - "DryBulbCelsius"
@@ -117,17 +112,9 @@ sqlContext <- sparkRSQL.init(sc)
 - "WindSpeed"
 - "Altimeter"
 
-然後，我們加入與天氣觀測站相關聯的機場代碼，並將度量單位從當地時間轉換成 UTC。
+然後，新增與天氣觀測站相關聯的機場代碼，並將度量單位從當地時間轉換成 UTC。
 
-我們首先建立一個可將天氣觀測站 (WBAN) 資訊對應至機場代碼的檔案。 我們可以從天氣資料隨附的對應檔取得此關聯性。 將天氣資料檔案中的*呼號* (例如 LAX) 欄位對應至航班資料中的*出發地*。 不過，我們手邊剛好有另一個已儲存至 CSV 檔案 (“wban-to-airport-id-tz.CSV”) 的可用對應，它將 *WBAN* 對應至 *AirportID* (例如，12892 代表 LAX) ，並且包含 *TimeZone*。 例如︰
-
-| AirportID | WBAN | TimeZone
-|-----------|------|---------
-| 10685 | 54831 | -6
-| 14871 | 24232 | -8
-| . | . | .
-
-下列程式碼會讀取每個每小時未經處理的天氣資料檔案、細分為我們所需的資料行、合併天氣觀測站對應檔案、將度量單位的日期時間調整為 UTC，然後將資料寫到新版的檔案：
+首先建立一個可將天氣觀測站 (WBAN) 資訊對應至機場代碼的檔案。 下列程式碼會讀取每個每小時未經處理的天氣資料檔案、細分為我們所需的資料行、合併天氣觀測站對應檔案、將度量單位的日期時間調整為 UTC，然後將資料寫到新版的檔案：
 
 ```
 # Look up AirportID and Timezone for WBAN (weather station ID) and adjust time
@@ -207,7 +194,7 @@ rxDataStep(weatherDF, outFile = weatherDF1, rowsPerRead = 50000, overwrite = T,
 
 ## <a name="importing-the-airline-and-weather-data-to-spark-dataframes"></a>將航線和天氣資料匯入至 Spark DataFrames
 
-現在我們使用 SparkR [read.df()](https://docs.databricks.com/spark/latest/sparkr/functions/read.df.html) 函式，將天氣和航線資料匯入到 Spark DataFrame。 如同其他許多 Spark 方法一樣，這個函式會延遲執行，意思就是排入佇列等候執行，但等到必要時才會執行。
+現在我們使用 SparkR [read.df()](https://docs.databricks.com/spark/1.6/sparkr/functions/read.df.html#read-df) 函式，將天氣和航線資料匯入到 Spark DataFrame。 如同其他許多 Spark 方法一樣，這個函式會延遲執行，意思就是排入佇列等候執行，但等到必要時才會執行。
 
 ```
 airPath     <- file.path(inputDataDir, "AirOnTime08to12CSV")
@@ -280,7 +267,7 @@ weatherDF <- rename(weatherDF,
 
 ## <a name="joining-the-weather-and-airline-data"></a>聯結天氣與航線資料
 
-現在，我們將使用 SparkR [join()](https://docs.databricks.com/spark/latest/sparkr/functions/join.html) 函式進行航線與天氣資料的左方外部聯結 (依照起飛 AirportID 和日期時間)。 外部聯結讓我們能保留所有的航線資料記錄 (即使沒有相符的天氣資料)。 聯結之後，我們會移除一些多餘的資料行，而將保留的資料行重新命名，以移除聯結所引入的內送 DataFrame 前置詞。
+現在，我們將使用 SparkR [join()](https://docs.databricks.com/spark/1.6/sparkr/functions/join.html#join) 函式進行航線與天氣資料的左方外部聯結 (依照起飛 AirportID 和日期時間)。 外部聯結讓我們能保留所有的航線資料記錄 (即使沒有相符的天氣資料)。 聯結之後，我們會移除一些多餘的資料行，而將保留的資料行重新命名，以移除聯結所引入的內送 DataFrame 前置詞。
 
 ```
 logmsg('Join airline data with weather at Origin Airport')
@@ -344,7 +331,7 @@ joinedDF5 <- rename(joinedDF4,
 
 ## <a name="save-results-to-csv-for-exchange-with-scaler"></a>將結果儲存為 CSV 以便與 ScaleR 交換
 
-SparkR 需要進行的聯結便已完成。 我們會將最終 Spark DataFrame “joinedDF5” 中的資料儲存為 CSV，以便輸入至 ScaleR，然後關閉 SparkR 工作階段。 我們明確告訴 SparkR 在 80 個不同的資料分割中儲存結果產生的 CSV，以在 ScaleR 處理中啟用足夠的平行處理原則：
+SparkR 需要進行的聯結便已完成。 我們會將最終 Spark DataFrame "joinedDF5" 中的資料儲存為 CSV，以便輸入至 ScaleR，然後關閉 SparkR 工作階段。 我們明確告訴 SparkR 在 80 個不同的資料分割中儲存結果產生的 CSV，以在 ScaleR 處理中啟用足夠的平行處理原則：
 
 ```
 logmsg('output the joined data from Spark to CSV') 
@@ -367,7 +354,7 @@ rxHadoopRemove(file.path(dataDir, "joined5Csv/_SUCCESS"))
 ```
 logmsg('Import the CSV to compressed, binary XDF format') 
 
-# set the Spark compute context for R Server 
+# set the Spark compute context for ML Services 
 rxSetComputeContext(sparkCC)
 rxGetComputeContext()
 
@@ -544,15 +531,15 @@ logmsg(paste('Elapsed time=',sprintf('%6.2f',elapsed),'(sec)\n\n'))
 
 ## <a name="summary"></a>總結
 
-在本文中，我們已示範如何在 Hadoop Spark 中結合使用用於資料操作的 SparkR 和用於模型開發的 ScaleR。 此案例需要維護個別的 Spark 工作階段 (一次僅執行一個工作階段)，並透過 CSV 檔案交換資料。 雖然很簡單，但是當 SparkR 和 ScaleR 可以共用 Spark 工作階段和 Spark DataFrame 時，在後續發行的 R Server 中，此程序應會變得更加容易。
+在本文中，我們已示範如何在 Hadoop Spark 中結合使用用於資料操作的 SparkR 和用於模型開發的 ScaleR。 此案例需要維護個別的 Spark 工作階段 (一次僅執行一個工作階段)，並透過 CSV 檔案交換資料。 這雖然已經很單純，但在後續發行的 ML 服務中，SparkR 和 ScaleR 可以共用 Spark 工作階段和 Spark DataFrame，此程序應該還可變得更加容易。
 
 ## <a name="next-steps-and-more-information"></a>後續步驟和更多資訊
 
-- 如需在 Spark 上使用 R Server 的詳細資訊，請參閱 [MSDN 上的使用者入門指南](https://msdn.microsoft.com/microsoft-r/scaler-spark-getting-started)。
+- 如需在 Spark 上使用 ML Server 的詳細資訊，請參閱[入門指南](https://msdn.microsoft.com/microsoft-r/scaler-spark-getting-started)
 
-- 如需 R Server 的一般資訊，請參閱[開始使用 R](https://msdn.microsoft.com/microsoft-r/microsoft-r-get-started-node) 一文。
+- 如需 ML Server 的一般資訊，請參閱[開始使用 R](https://msdn.microsoft.com/microsoft-r/microsoft-r-get-started-node) 一文。
 
-- 如需 HDInsight 上之 R Server 的詳細資訊，請參閱 [Azure HDInsight 上的 R Server 概觀](r-server/r-server-overview.md)和 [Azure HDInsight 上的 R Server](r-server/r-server-get-started.md)。
+- 如需 HDInsight 上 ML 服務的相關資訊，請參閱 [HDInsight 上的 ML 服務概觀](r-server/r-server-overview.md)和[開始使用 Azure HDInsight 上的 ML 服務](r-server/r-server-get-started.md)。
 
 如需使用 SparkR 的詳細資訊，請參閱：
 

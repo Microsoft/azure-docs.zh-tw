@@ -1,24 +1,25 @@
 ---
-title: "了解 Azure 詳細使用量"
-description: "了解如何閱讀並了解 Azure 訂用帳戶的詳細使用量 CSV 區段"
-services: 
-documentationcenter: 
+title: 了解您的 Azure 詳細使用量 | Microsoft Docs
+description: 了解如何閱讀並了解 Azure 訂用帳戶的詳細使用量 CSV 區段
+services: ''
+documentationcenter: ''
 author: tonguyen10
 manager: tonguyen
-editor: 
+editor: ''
 tags: billing
 ms.service: billing
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/31/2017
 ms.author: tonguyen
-ms.openlocfilehash: 999f24b5a5c1bd5d259b785f9107697d2928b4eb
-ms.sourcegitcommit: 176c575aea7602682afd6214880aad0be6167c52
+ms.openlocfilehash: 723e42d2bb2af09eb2236c3cbefeee33987ea45b
+ms.sourcegitcommit: f06925d15cfe1b3872c22497577ea745ca9a4881
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/09/2018
+ms.lasthandoff: 06/27/2018
+ms.locfileid: "37060795"
 ---
 # <a name="understand-terms-on-your-microsoft-azure-detailed-usage-charges"></a>了解您 Microsoft Azure 詳細使用量費用的相關字詞 
 
@@ -50,11 +51,11 @@ ms.lasthandoff: 01/09/2018
 |單位 |識別服務的計費單位。 例如，GB、小時、10,000 秒。 |
 |已耗用的數量 |計費期間所使用之計量的數量 |
 |已包括的數量 |目前計費期間免費提供之計量的數量 |
-|超額數量 |顯示「已耗用的數量」和「已包括的數量」之間的差額。 我們會針對此數量向您收費。 對於不提供優惠所含數量的隨收隨付優惠，這個總數會與「已耗用的數量」相同。 |
-|承諾用量期間 |顯示從您的 6 或 12 個月優惠相關認可用量中減去的計量費用。 計量費用得依時間順序減去。 |
+|超額數量 |顯示「已耗用的數量」和「已包括的數量」之間的差額。 我們會針對此數量向您收費。 對於不提供供應項目所含數量的隨收隨付供應項目，這個總數會與「已耗用的數量」相同。 |
+|承諾用量期間 |顯示從您的 6 或 12 個月供應項目相關認可用量中減去的計量費用。 計量費用得依時間順序減去。 |
 |貨幣 |目前計費期間所使用的貨幣 |
-|超額部分 |顯示超過您的 6 或 12 個月優惠相關認可用量的計量費用 |
-|承諾用量費率 |以您的 6 或 12 個月優惠相關聯總認可用量作為基礎所顯示的認可用量費率 |
+|超額部分 |顯示超過您的 6 或 12 個月供應項目相關認可用量的計量費用 |
+|承諾用量費率 |以您的 6 或 12 個月供應項目相關聯總認可用量作為基礎所顯示的認可用量費率 |
 |費率 |每個計費單位向您收取的費率 |
 |值 |顯示 [超額數量] 資料行和 [費率] 資料行兩者相乘的結果。 如果「已耗用的數量」沒有超過「已包括的數量」，則此資料行中沒有任何費用。 |
 

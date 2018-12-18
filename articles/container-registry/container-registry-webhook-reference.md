@@ -1,18 +1,19 @@
 ---
-title: "Azure Container Registry Webhook 結構描述參考"
-description: "Webhook 會向 JSON 承載參考要求 Azure Container Registry。"
+title: Azure Container Registry Webhook 結構描述參考
+description: Webhook 會向 JSON 承載參考要求 Azure Container Registry。
 services: container-registry
 author: mmacy
-manager: timlt
+manager: jeconnoc
 ms.service: container-registry
 ms.topic: article
 ms.date: 12/02/2017
 ms.author: marsma
-ms.openlocfilehash: 84f0277a7b1a5bd7dfe2178f78f34140b1dd2642
-ms.sourcegitcommit: a48e503fce6d51c7915dd23b4de14a91dd0337d8
+ms.openlocfilehash: f62477a4c68abf1617d9689047913fd820ee5461
+ms.sourcegitcommit: e2adef58c03b0a780173df2d988907b5cb809c82
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/05/2017
+ms.lasthandoff: 04/28/2018
+ms.locfileid: "32166002"
 ---
 # <a name="azure-container-registry-webhook-reference"></a>Azure Container Registry Webhook 參考
 

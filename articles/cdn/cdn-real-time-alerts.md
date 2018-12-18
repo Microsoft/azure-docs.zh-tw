@@ -1,11 +1,11 @@
 ---
-title: "Azure CDN 即時警示 | Microsoft Docs"
-description: "Microsoft Azure CDN 中的即時警示。 即時警示可針對 CDN 設定檔中端點的效能提供通知。"
+title: Azure CDN 即時警示 | Microsoft Docs
+description: Microsoft Azure CDN 中的即時警示。 即時警示可針對 CDN 設定檔中端點的效能提供通知。
 services: cdn
-documentationcenter: 
+documentationcenter: ''
 author: zhangmanling
 manager: erikre
-editor: 
+editor: ''
 ms.assetid: 1e85b809-e1a9-4473-b835-69d1b4ed3393
 ms.service: cdn
 ms.workload: tbd
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "22998323"
 ---
 # <a name="real-time-alerts-in-microsoft-azure-cdn"></a>Microsoft Azure CDN 中的即時警示
 [!INCLUDE [cdn-premium-feature](../../includes/cdn-premium-feature.md)]

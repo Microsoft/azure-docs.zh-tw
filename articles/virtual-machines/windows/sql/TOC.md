@@ -19,7 +19,8 @@
 #### [設定 Azure 金鑰保存庫整合](virtual-machines-windows-ps-sql-keyvault.md)
 ## 備份與還原
 ### [備份與還原](virtual-machines-windows-sql-backup-recovery.md)
-### [自動備份](virtual-machines-windows-sql-automated-backup.md)
+### [適用於 SQL Server 2014 的自動備份](virtual-machines-windows-sql-automated-backup.md)
+### [適用於 SQL Server 2016+ 的自動備份](virtual-machines-windows-sql-automated-backup-v2.md)
 ### [使用 Azure 儲存體進行備份與還原](virtual-machines-windows-use-storage-sql-server-backup-restore.md)
 
 # 使用說明指南
@@ -49,7 +50,7 @@
 
 # 資源
 ## [常見問題集](virtual-machines-windows-sql-server-iaas-faq.md)
-## [價格](virtual-machines-windows-sql-server-pricing-guidance.md)
+## [定價](virtual-machines-windows-sql-server-pricing-guidance.md)
 ## [PaaS 或 IaaS？](../../../sql-database/sql-database-paas-vs-sql-server-iaas.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fsql%2ftoc.json)
 ## [SQL Server Data Tools (SSDT)](https://docs.microsoft.com/sql/ssdt/download-sql-server-data-tools-ssdt)
 ## [SQL Server Management Studio (SSMS)](https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms)

@@ -1,11 +1,11 @@
 ---
-title: "在 Azure 中使用負載平衡服務 | Microsoft Docs"
-description: "本教學課程會示範如何使用 Azure 負載平衡組合建立案例︰流量管理員、應用程式閘道和負載平衡器。"
+title: 在 Azure 中使用負載平衡服務 | Microsoft Docs
+description: 本教學課程會示範如何使用 Azure 負載平衡組合建立案例︰流量管理員、應用程式閘道和負載平衡器。
 services: traffic-manager
-documentationcenter: 
+documentationcenter: ''
 author: liumichelle
 manager: vitinnan
-editor: 
+editor: ''
 ms.assetid: f89be3be-a16f-4d47-bcae-db2ab72ade17
 ms.service: traffic-manager
 ms.devlang: na
@@ -19,6 +19,7 @@ ms.sourcegitcommit: d87b039e13a5f8df1ee9d82a727e6bc04715c341
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 02/21/2018
+ms.locfileid: "29401101"
 ---
 # <a name="using-load-balancing-services-in-azure"></a>在 Azure 中使用負載平衡服務
 

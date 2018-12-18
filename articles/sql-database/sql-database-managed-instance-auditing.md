@@ -2,19 +2,24 @@
 title: Azure SQL Database 受控執行個體稽核 | Microsoft Docs
 description: 了解如何透過 T-SQL 開始使用 Azure SQL Database 受控執行個體稽核
 services: sql-database
-author: giladm
-manager: craigg
-ms.reviewer: carlrab
 ms.service: sql-database
-ms.custom: security
-ms.topic: article
-ms.date: 03/19/2018
-ms.author: giladm
-ms.openlocfilehash: 3d5a4ad3f4046dfdfe6eb3f7ddd931ccb240b1a9
-ms.sourcegitcommit: 48ab1b6526ce290316b9da4d18de00c77526a541
+ms.subservice: security
+ms.custom: ''
+ms.devlang: ''
+ms.topic: conceptual
+f1_keywords:
+- mi.azure.sqlaudit.general.f1
+author: ronitr
+ms.author: ronitr
+ms.reviewer: vanto
+manager: craigg
+ms.date: 09/20/2018
+ms.openlocfilehash: 375e1a0ba4be9483986c088195e380e856d32a67
+ms.sourcegitcommit: 4047b262cf2a1441a7ae82f8ac7a80ec148c40c4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 10/11/2018
+ms.locfileid: "49093743"
 ---
 # <a name="get-started-with-azure-sql-database-managed-instance-auditing"></a>開始使用 Azure SQL Database 受控執行個體稽核
 
@@ -103,13 +108,13 @@ ms.lasthandoff: 03/23/2018
     如果未指定，則 `RETENTION_DAYS` 預設為 0 (無限制的保留期)。
 
     如需其他資訊：
-    - [受控執行個體、Azure SQL DB 和 SQL Server 之間的稽核差異](#subheading-3)
+    - [受控執行個體、Azure SQL DB 和 SQL Server 之間的稽核差異](#auditing-differences-between-managed-instance-azure-sql-database-and-sql-server)
     - [CREATE SERVER AUDIT](https://docs.microsoft.com/sql/t-sql/statements/create-server-audit-transact-sql)
     - [ALTER SERVER AUDIT](https://docs.microsoft.com/sql/t-sql/statements/alter-server-audit-transact-sql)
 
 7. 建立您會針對 SQL Server 建立的「伺服器稽核規格」或「資料庫稽核規格」：
-    - [建立伺服器稽核規格 T-SQL 指南](https://docs.microsoft.com/ sql/t-sql/statements/create-server-audit-specification-transact-sql)
-    - [建立資料庫稽核規格 T-SQL 指南](https://docs.microsoft.com/ sql/t-sql/statements/create-database-audit-specification-transact-sql)
+    - [建立伺服器稽核規格 T-SQL 指南](https://docs.microsoft.com/sql/t-sql/statements/create-server-audit-specification-transact-sql)
+    - [建立資料庫稽核規格 T-SQL 指南](https://docs.microsoft.com/sql/t-sql/statements/create-database-audit-specification-transact-sql)
 
 8. 啟用您在步驟 6 中建立的伺服器稽核：
 

@@ -15,11 +15,12 @@ ms.tgt_pltfrm: vm-multiple
 ms.workload: big-compute
 ms.date: 03/09/2018
 ms.author: danlep
-ms.openlocfilehash: c26dd85d896445e19efb9906d953fd535fc1fb5c
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.openlocfilehash: 91f067de33d1ff4bc272773e3db49de47fac2feb
+ms.sourcegitcommit: e2adef58c03b0a780173df2d988907b5cb809c82
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/16/2018
+ms.lasthandoff: 04/28/2018
+ms.locfileid: "32190007"
 ---
 # <a name="deploy-an-hpc-pack-2016-cluster-in-azure"></a>在 Azure 中部署 HPC Pack 2016 叢集
 
@@ -56,7 +57,7 @@ Microsoft HPC Pack 2016 叢集需要個人資訊交換 (PFX) 憑證來保護 HPC
 
 ### <a name="upload-certificate-to-an-azure-key-vault"></a>將憑證上傳至 Azure 金鑰保存庫
 
-在部署 HPC 叢集之前，將 PFX 憑證上傳至 [Azure 金鑰保存庫](../../key-vault/index.md)作為秘密，並記錄下列資訊以在部署期間使用︰**保存庫名稱**、**保存庫資源群組**、**憑證 URL** 及**憑證指紋**。
+在部署 HPC 叢集之前，將 PFX 憑證上傳至 [Azure 金鑰保存庫](../../key-vault/index.yml)作為秘密，並記錄下列資訊以在部署期間使用︰**保存庫名稱**、**保存庫資源群組**、**憑證 URL** 及**憑證指紋**。
 
 PowerShell 指令碼範例會用來上傳憑證、建立金鑰保存庫及產生後續的必要資訊。 如需將憑證上傳至 Azure 金鑰保存庫的詳細資訊，請參閱[開始使用 Azure 金鑰保存庫](../../key-vault/key-vault-get-started.md)。
 

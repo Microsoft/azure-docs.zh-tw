@@ -1,25 +1,20 @@
 ---
-title: "Java HBase 用戶端 - Azure HDInsight | Microsoft Docs"
-description: "了解如何使用 Apache Maven 建置以 Java 為基礎的 Apache HBase 應用程式，然後將它部署至 Azure HDInsight 上的 HBase。"
+title: Java HBase 用戶端 - Azure HDInsight
+description: 了解如何使用 Apache Maven 建置以 Java 為基礎的 Apache HBase 應用程式，然後將它部署至 Azure HDInsight 上的 HBase。
 services: hdinsight
-documentationcenter: 
-author: Blackmist
-manager: cgronlun
-editor: 
-ms.assetid: 1d1ed180-e0f4-4d1c-b5ea-72e0eda643bc
+author: jasonwhowell
+ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.workload: big-data
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
-ms.date: 01/25/2018
-ms.author: larryfr
-ms.openlocfilehash: 7f5e4cd36b32ae86bc6f498c81d5a558ca6974d2
-ms.sourcegitcommit: 99d29d0aa8ec15ec96b3b057629d00c70d30cfec
+ms.topic: conceptual
+ms.date: 04/30/2018
+ms.author: jasonh
+ms.openlocfilehash: d198db98c07c01a56be118e74ce2bf4b29b8c757
+ms.sourcegitcommit: 161d268ae63c7ace3082fc4fad732af61c55c949
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/25/2018
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43048427"
 ---
 # <a name="build-java-applications-for-apache-hbase"></a>建置 Apache HBase 的 Java 應用程式
 
@@ -43,9 +38,6 @@ ms.lasthandoff: 01/25/2018
 * [Maven](http://maven.apache.org/)
 
 * [具有 HBase 的 Linux 型 Azure HDInsight 叢集](apache-hbase-tutorial-get-started-linux.md#create-hbase-cluster)
-
-  > [!NOTE]
-  > 此文件中的步驟已經過 HDInsight 叢集 3.4 和 3.5 版的測試。 範例中提供的預設值適用於 HDInsight 3.5 叢集。
 
 ## <a name="create-the-project"></a>建立專案
 
@@ -576,7 +568,7 @@ ms.lasthandoff: 01/25/2018
         $sub = Get-AzureRmSubscription -ErrorAction SilentlyContinue
         if(-not($sub))
         {
-            throw "No active Azure subscription found! If you have a subscription, use the Login-AzureRmAccount cmdlet to login to your subscription."
+            throw "No active Azure subscription found! If you have a subscription, use the Connect-AzureRmAccount cmdlet to login to your subscription."
         }
     }
 

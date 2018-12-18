@@ -1,11 +1,11 @@
 ---
-title: "使用 Azure 轉送的 REST 教學課程 | Microsoft Docs"
-description: "建置簡單的 Azure 服務匯流排轉送主機應用程式來公開 REST 架構介面。"
+title: 使用 Azure 轉送的 REST 教學課程 | Microsoft Docs
+description: 建置簡單的 Azure 服務匯流排轉送主機應用程式來公開 REST 架構介面。
 services: service-bus-relay
 documentationcenter: na
-author: sethmanheim
+author: spelluru
 manager: timlt
-editor: 
+editor: ''
 ms.assetid: 1312b2db-94c4-4a48-b815-c5deb5b77a6a
 ms.service: service-bus-relay
 ms.devlang: na
@@ -13,12 +13,13 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/06/2017
-ms.author: sethm
-ms.openlocfilehash: 7a5a2916514a125d0b7443ced42e5ec600c68857
-ms.sourcegitcommit: 295ec94e3332d3e0a8704c1b848913672f7467c8
+ms.author: spelluru
+ms.openlocfilehash: d4ecbb7101e7b1f0f3dd6978ae7d35bb5066126d
+ms.sourcegitcommit: 67abaa44871ab98770b22b29d899ff2f396bdae3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/06/2017
+ms.lasthandoff: 10/08/2018
+ms.locfileid: "48854927"
 ---
 # <a name="azure-wcf-relay-rest-tutorial"></a>Azure WCF 轉送的 REST 教學課程
 
@@ -560,7 +561,6 @@ namespace Microsoft.ServiceBus.Samples
 ## <a name="next-steps"></a>後續步驟
 既然您已經建置了使用 Azure 轉送服務的應用程式，請參閱下列文章以進一步了解：
 
-* [Azure 服務匯流排架構概觀](../service-bus-messaging/service-bus-fundamentals-hybrid-solutions.md)
 * [Azure 轉送概觀](relay-what-is-it.md)
 * [如何使用 WCF 轉送服務搭配 .NET](relay-wcf-dotnet-get-started.md)
 

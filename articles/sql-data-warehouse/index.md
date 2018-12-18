@@ -1,26 +1,26 @@
 ---
-title: "Azure SQL 資料倉儲文件 - 教學課程和 API 參考 | Microsoft Docs"
-description: "了解如何使用 SQL 資料倉儲，其結合了 SQL Server 與大量平行處理。 文件會示範如何載入、分析、管理和匯出資料。"
+title: Azure SQL 資料倉儲文件 - 教學課程和概念 | Microsoft Docs
+description: 了解如何使用 Azure SQL 資料倉儲，其結合了 SQL 關聯式資料庫與大量平行處理。 教學課程和其他文件將示範如何設計、載入、管理及使用資料倉儲分析資料。
 services: sql-data-warehouse
-author: czeumault
-manager: carolz
+author: hirokib
+manager: craigg
 layout: LandingPage
-ms.assetid: 
 ms.service: sql-data-warehouse
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: landing-page
-ms.date: 01/23/2017
-ms.author: carolz
-ms.openlocfilehash: 47807360dd58f0c19360d90ed66f726d8922be1e
-ms.sourcegitcommit: e38120a5575ed35ebe7dccd4daf8d5673534626c
+ms.topic: overview
+ms.component: design
+ms.date: 04/11/2018
+ms.author: elbutter
+ms.reviewer: igorstan
+ms.openlocfilehash: 4e6f8cd6bd1a84e7c2a6024bf6bcdb1b6b61620c
+ms.sourcegitcommit: f94f84b870035140722e70cab29562e7990d35a3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/13/2017
+ms.lasthandoff: 08/30/2018
+ms.locfileid: "43287262"
 ---
 # <a name="sql-data-warehouse-documentation"></a>SQL 資料倉儲文件
 
-了解如何使用 SQL 資料倉儲，其結合了 SQL Server 關聯式資料庫與大量平行處理。 教學課程和其他文件示範如何將資料載入資料倉儲，然後加以分析、管理及匯出。
+了解如何使用 Azure SQL 資料倉儲，其結合了 SQL 關聯式資料庫與大量平行處理。 教學課程和其他文件將示範如何設計、載入、管理及使用資料倉儲分析資料。 
 
 <ul class="panelContent cardsFTitle">
     <li>

@@ -1,24 +1,25 @@
 ---
-title: "於 Azure 部署 StorSimple 裝置管理員服務 | Microsoft Docs"
-description: "說明如何在 Azure 入口網站中建立和刪除 StorSimple 裝置管理員服務，並說明如何管理服務註冊金鑰。"
+title: 於 Azure 部署 StorSimple 裝置管理員服務 | Microsoft Docs
+description: 說明如何在 Azure 入口網站中建立和刪除 StorSimple 裝置管理員服務，並說明如何管理服務註冊金鑰。
 services: storsimple
-documentationcenter: 
+documentationcenter: ''
 author: alkohli
 manager: timlt
-editor: 
-ms.assetid: 
+editor: ''
+ms.assetid: ''
 ms.service: storsimple
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/04/2017
+ms.date: 05/09/2018
 ms.author: alkohli
-ms.openlocfilehash: 96dcda25cde2473387842fd01421b6bb619e4ece
-ms.sourcegitcommit: 48fce90a4ec357d2fb89183141610789003993d2
+ms.openlocfilehash: d6010b7ff03689588251a9649eecb412bf9f3a8d
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/12/2018
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38701915"
 ---
 # <a name="deploy-the-storsimple-device-manager-service-for-storsimple-8000-series-devices"></a>為 StorSimple 8000 系列裝置部署 StorSimple 裝置管理員服務
 
@@ -29,7 +30,9 @@ StorSimple 裝置管理員服務在 Microsoft Azure 中執行，並連接至多�
 本教學課程說明建立、刪除、移轉服務和管理服務註冊金鑰所需的步驟。 本文所含資訊僅適用於 StorSimple 8000 系列裝置。 如需有關 StorSimple Virtual Array 的詳細資訊，請移至[為您的 StorSimple Virtual Array 部署 StorSimple 裝置管理員服務](storsimple-virtual-array-manage-service.md)。
 
 > [!NOTE]
-> 所有傳統的 StorSimple 裝置管理員將會自動移至新的 Azure 入口網站。 如果您有任何疑問，請參閱[常見問題集：移至 Azure 入口網站](storsimple-8000-move-azure-portal-faq.md)。 移至新的 Azure 入口網站之後，就不再支援 Azure 服務管理 (ASM) PowerShell Cmdlet。 請更新指令碼以管理您的裝置，如需詳細資訊，請移至[使用 Azure Resource Manager SDK 型指令碼管理 StorSimple 裝置](storsimple-8000-automation-azurerm-scripts.md)。 新的 Azure 入口網站支援執行 Update 5.0 或更新版本的裝置。 如果您的裝置不是最新的，請立即安裝 Update 5。 如需詳細資訊，請移至[安裝 Update 5](storsimple-8000-install-update-5.md)。 如果您使用 StorSimple 雲端設備 (8010/8020)，則無法更新雲端設備。 使用最新版的軟體搭配 Update 5.0，建立新的雲端設備，然後容錯移轉至所建立的新雲端設備。 執行 Update 4.0 或更舊版本的所有裝置將會遇到[縮減的管理功能](storsimple-8000-manage-service.md#supported-operations-on-devices-running-versions-prior-to-update-5.0)。 
+> -  Azure 入口網站支援執行 Update 5.0 或更新版本的裝置。 如果您的裝置不是最新的，請立即安裝 Update 5。 如需詳細資訊，請移至[安裝 Update 5](storsimple-8000-install-update-5.md)。 
+> - 如果您使用 StorSimple 雲端設備 (8010/8020)，則無法更新雲端設備。 使用最新版的軟體搭配 Update 5.0，建立新的雲端設備，然後容錯移轉至所建立的新雲端設備。 
+> - 執行 Update 4.0 或更舊版本的所有裝置將會遇到[縮減的管理功能](storsimple-8000-manage-service.md#supported-operations-on-devices-running-versions-prior-to-update-5.0)。 
 
 ## <a name="create-a-service"></a>建立服務
 若要建立 StorSimple 裝置管理員服務，必須擁有：
@@ -38,11 +41,7 @@ StorSimple 裝置管理員服務在 Microsoft Azure 中執行，並連接至多�
 * 使用中的 Microsoft Azure 儲存體帳戶
 * 用於存取管理的計費資訊
 
-僅限 Enterprise 合約的訂用帳戶。 Azure 入口網站不支援 Azure 傳統入口網站所允許的 Microsoft 贊助訂用帳戶。 使用不支援的訂用帳戶時，會看到下列訊息：
-
-![訂用帳戶無效](./media/storsimple-8000-manage-service/subscription-not-valid.jpg)
-
-您也可以選擇在建立服務時產生預設儲存體帳戶。
+僅限 Enterprise 合約的訂用帳戶。 您也可以選擇在建立服務時產生預設儲存體帳戶。
 
 單一服務可以管理多個裝置。 不過，裝置不能跨越多個服務。 大型企業可以擁有多個服務執行個體使用不同的訂用帳戶、組織或甚至是部署位置。 
 
@@ -149,8 +148,7 @@ StorSimple 裝置管理員服務在 Microsoft Azure 中執行，並連接至多�
 
 > [!NOTE]
 > 除非金鑰變換完成，否則無法在 Azure 入口網站對 StorSimple Manager 服務執行任何作業。
-> 
-> 
+
 
 如果您使用裝置序列主控台連接到 Windows PowerShell 介面，請執行下列步驟。
 
@@ -191,24 +189,24 @@ Azure 入口網站僅支援執行 Update 5.0 和更新版本的 StorSimple 裝�
 
 | 作業                                                                                                                       | 支援      |
 |---------------------------------------------------------------------------------------------------------------------------------|----------------|
-| 註冊裝置                                                                                                               | 是            |
-| 設定裝置設定，例如一般設定、網路設定和安全性設定                                                                | 是            |
-| 掃描、下載，及安裝更新                                                                                             | 是            |
-| 停用裝置                                                                                                               | 是            |
-| 刪除裝置                                                                                                                   | 是            |
+| 註冊裝置                                                                                                               | yes            |
+| 設定裝置設定，例如一般設定、網路設定和安全性設定                                                                | yes            |
+| 掃描、下載，及安裝更新                                                                                             | yes            |
+| 停用裝置                                                                                                               | yes            |
+| 刪除裝置                                                                                                                   | yes            |
 | 建立、修改及刪除磁碟區容器                                                                                   | 否             |
 | 建立、修改及刪除磁碟區                                                                                             | 否             |
 | 建立、修改及刪除備份原則                                                                                      | 否             |
 | 進行手動備份                                                                                                            | 否             |
 | 進行排程備份                                                                                                         | 不適用 |
 | 從備份組還原                                                                                                        | 否             |
-| 複製至執行 Update 3.0 和更新版本的裝置 <br> 來源裝置執行的是 Update 3.0 之前的版本。                                | 是            |
+| 複製至執行 Update 3.0 和更新版本的裝置 <br> 來源裝置執行的是 Update 3.0 之前的版本。                                | yes            |
 | 複製到執行 Update 3.0 之前版本的裝置                                                                          | 否             |
-| 作為容錯移轉的來源裝置 <br> (從執行 Update 3.0 之前版本的裝置到執行 Update 3.0 和更新版本的裝置)                                                               | 是            |
+| 作為容錯移轉的來源裝置 <br> (從執行 Update 3.0 之前版本的裝置到執行 Update 3.0 和更新版本的裝置)                                                               | yes            |
 | 作為容錯移轉的目標裝置 <br> (到執行 Update 3.0 之前軟體版本的裝置)                                                                                   | 否             |
-| 清除警示                                                                                                                  | 是            |
-| 檢視備份原則、備份類別目錄、磁碟區、磁碟區容器、監視圖表、作業，以及傳統入口網站中建立的警示 | 是            |
-| 開啟和關閉裝置控制器                                                                                              | 是            |
+| 清除警示                                                                                                                  | yes            |
+| 檢視備份原則、備份類別目錄、磁碟區、磁碟區容器、監視圖表、作業，以及傳統入口網站中建立的警示 | yes            |
+| 開啟和關閉裝置控制器                                                                                              | yes            |
 
 
 ## <a name="next-steps"></a>後續步驟

@@ -1,10 +1,10 @@
 ---
-title: "建立網際網路對向負載平衡器 - Azure CLI 傳統 | Microsoft Docs"
-description: "了解如何使用 Azure CLI 在傳統部署模型中建立網際網路面向的負載平衡器"
+title: 建立網際網路對向負載平衡器 - Azure 傳統 CLI | Microsoft Docs
+description: 了解如何使用 Azure 傳統 CLI 在傳統部署模型中建立網際網路面向的負載平衡器
 services: load-balancer
 documentationcenter: na
-author: KumudD
-manager: timlt
+author: genlin
+manager: cshepard
 tags: azure-service-management
 ms.assetid: e433a824-4a8a-44d2-8765-a74f52d4e584
 ms.service: load-balancer
@@ -12,19 +12,20 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 01/23/2017
-ms.author: kumud
-ms.openlocfilehash: c50596d353629c8a320d77e802aa51b9b1cb1a5d
-ms.sourcegitcommit: 68aec76e471d677fd9a6333dc60ed098d1072cfc
+ms.date: 06/18/2018
+ms.author: genli
+ms.openlocfilehash: a91a53070985a24ccd87f16254f652fe48c42c5a
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/18/2017
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46988150"
 ---
-# <a name="get-started-creating-an-internet-facing-load-balancer-classic-in-the-azure-cli"></a>開始在 Azure CLI 中建立網際網路面向的負載平衡器 (傳統)
+# <a name="get-started-creating-an-internet-facing-load-balancer-classic-in-the-azure-classic-cli"></a>開始在 Azure 傳統 CLI 中建立網際網路面向的負載平衡器 (傳統)
 
 > [!div class="op_single_selector"]
 > * [PowerShell](../load-balancer/load-balancer-get-started-internet-classic-ps.md)
-> * [Azure CLI](../load-balancer/load-balancer-get-started-internet-classic-cli.md)
+> * [Azure 傳統 CLI](../load-balancer/load-balancer-get-started-internet-classic-cli.md)
 > * [Azure 雲端服務](../load-balancer/load-balancer-get-started-internet-classic-cloud.md)
 
 [!INCLUDE [load-balancer-get-started-internet-intro-include.md](../../includes/load-balancer-get-started-internet-intro-include.md)]
@@ -32,13 +33,15 @@ ms.lasthandoff: 12/18/2017
 > [!IMPORTANT]
 > 使用 Azure 資源之前，請務必了解 Azure 目前有 Azure Resource Manager 和「傳統」兩種部署模型。 在使用任何 Azure 資源之前，請先確認您了解 [部署模型和工具](../azure-classic-rm.md) 。 您可以按一下本文頂端的索引標籤，檢視不同工具的文件。 本文涵蓋之內容包括傳統部署模型。 您也可以 [了解如何使用 Azure 資源管理員建立網際網路面向的負載平衡器](load-balancer-get-started-internet-arm-ps.md)。
 
+[!INCLUDE [requires-classic-cli](../../includes/contains-classic-cli-content.md)]
+
 [!INCLUDE [load-balancer-get-started-internet-scenario-include.md](../../includes/load-balancer-get-started-internet-scenario-include.md)]
 
 ## <a name="create-an-internet-facing-load-balancer-using-cli"></a>使用 CLI 建立網際網路對向負載平衡器
 
 本指南根據上述案例說明如何建立網際網路面向的負載平衡器。
 
-1. 如果您從未使用過 Azure CLI，請參閱 [安裝和設定 Azure CLI](../cli-install-nodejs.md) ，並依照指示進行，直到選取您的 Azure 帳戶和訂用帳戶為止。
+1. 如果您從未使用過 Azure 傳統 CLI，請參閱 [安裝和設定 Azure 傳統 CLI](../cli-install-nodejs.md)，並依照指示進行，直到選取您的 Azure 帳戶和訂用帳戶為止。
 2. 執行 **azure config mode** 命令，以切換為傳統模式，如下所示。
 
     ```azurecli

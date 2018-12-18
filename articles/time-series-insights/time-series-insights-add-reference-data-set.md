@@ -1,21 +1,21 @@
 ---
-title: "如何將參考資料集新增至 Azure 時間序列深入解析環境"
-description: "本文說明如何新增參考資料集來擴展 Azure 時間序列深入解析環境中的資料。"
-services: time-series-insights
+title: 如何將參考資料集新增至 Azure 時間序列深入解析環境
+description: 本文說明如何新增參考資料集來擴展 Azure 時間序列深入解析環境中的資料。
 ms.service: time-series-insights
-author: jasonwhowell
-ms.author: jasonh
-manager: kfile
-editor: MicrosoftDocs/tsidocs
+services: time-series-insights
+author: ashannon7
+ms.author: anshan
+manager: cshankar
 ms.reviewer: jasonh, kfile, anshan
 ms.workload: big-data
-ms.topic: article
+ms.topic: conceptual
 ms.date: 02/15/2018
-ms.openlocfilehash: e0d11f253d5aa143ff636c4dc8dff7665a80360e
-ms.sourcegitcommit: fbba5027fa76674b64294f47baef85b669de04b7
+ms.openlocfilehash: 2cf9c8baf715acf0eef36d640c22f355435c9ca5
+ms.sourcegitcommit: 4de6a8671c445fae31f760385710f17d504228f8
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/24/2018
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39631039"
 ---
 # <a name="create-a-reference-data-set-for-your-time-series-insights-environment-using-the-azure-portal"></a>使用 Azure 入口網站建立時間序列深入解析環境的參考資料集
 

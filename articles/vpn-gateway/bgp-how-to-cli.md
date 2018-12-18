@@ -1,13 +1,13 @@
 ---
-title: "在 Azure VPN 閘道上設定 BGP：Resource Manager 和 CLI | Microsoft Docs"
-description: "本文將逐步引導您使用 Azure Resource Manager 和 CLI 來設定 Azure VPN 閘道上的 BGP。"
+title: 在 Azure VPN 閘道上設定 BGP：Resource Manager 和 CLI | Microsoft Docs
+description: 本文將逐步引導您使用 Azure Resource Manager 和 CLI 來設定 Azure VPN 閘道上的 BGP。
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
 manager: timlt
-editor: 
+editor: ''
 tags: azure-resource-manager
-ms.assetid: 
+ms.assetid: ''
 ms.service: vpn-gateway
 ms.devlang: na
 ms.topic: article
@@ -15,11 +15,12 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 09/25/2017
 ms.author: cherylmc
-ms.openlocfilehash: 98cd606ce930624ec5c591ffd8f13e0feae1a6c4
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.openlocfilehash: 657cad69fff66aaaeba9819569442981d229f644
+ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 09/24/2018
+ms.locfileid: "46971122"
 ---
 # <a name="how-to-configure-bgp-on-an-azure-vpn-gateway-by-using-cli"></a>如何使用 CLI 在 Azure VPN 閘道上設定 BGP
 
@@ -54,7 +55,7 @@ BGP 是常用於網際網路的標準路由通訊協定，可交換兩個或多�
 
 ### <a name="before-you-begin"></a>開始之前
 
-安裝 CLI 命令的最新版本 (2.0 版或更新版本)。 如需關於安裝 CLI 命令的資訊，請參閱[安裝 Azure CLI 2.0](/cli/azure/install-azure-cli) 和[開始使用 Azure CLI 2.0](/cli/azure/get-started-with-azure-cli)。
+安裝 CLI 命令的最新版本 (2.0 版或更新版本)。 如需關於安裝 CLI 命令的資訊，請參閱[安裝 Azure CLI](/cli/azure/install-azure-cli) 和[開始使用 Azure CLI](/cli/azure/get-started-with-azure-cli)。
 
 ### <a name="step-1-create-and-configure-testvnet1"></a>步驟 1：建立及設定 TestVNet1
 

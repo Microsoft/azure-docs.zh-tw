@@ -1,11 +1,11 @@
 ---
-title: "監視 Azure CDN 資源的健康狀態 | Microsoft Docs"
-description: "了解如何使用 Azure 資源健康狀態監視 Azure CDN 資源的健康狀態。"
+title: 監視 Azure CDN 資源的健康狀態 | Microsoft Docs
+description: 了解如何使用 Azure 資源健康狀態監視 Azure CDN 資源的健康狀態。
 services: cdn
 documentationcenter: .net
 author: zhangmanling
 manager: zhangmanling
-editor: 
+editor: ''
 ms.assetid: bf23bd89-35b2-4aca-ac7f-68ee02953f31
 ms.service: cdn
 ms.devlang: multiple
@@ -19,6 +19,7 @@ ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 10/11/2017
+ms.locfileid: "22997923"
 ---
 # <a name="monitor-the-health-of-azure-cdn-resources"></a>監視 Azure CDN 資源的健康狀態
   

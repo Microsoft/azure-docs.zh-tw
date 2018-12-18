@@ -1,0 +1,76 @@
+### YamlMime:YamlDocument
+ms.openlocfilehash: a46280b59002d529af9649822554cb026fe72fb6
+ms.sourcegitcommit: 67abaa44871ab98770b22b29d899ff2f396bdae3
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/08/2018
+ms.locfileid: "48854400"
+documentType: LandingData
+title: 串流分析文件
+metadata:
+  title: Azure 串流分析文件 - 教學課程和 API 參考
+  meta.description: Learn how to run IoT analytics in the cloud with fully-managed event processing. Analyze data in real time from applications, sensors, devices, and more.
+  services: stream-analytics
+  author: jasonwhowell
+  ms.author: jasonh
+  manager: kfile
+  ms.service: stream-analytics
+  ms.topic: landing-page
+  ms.date: 04/25/2018
+abstract:
+  description: 了解如何利用串流分析 (完全受控的事件處理引擎)，在雲端執行物聯網 (IoT) 分析。 教學課程和其他文件會示範如何即時分析來自應用程式、感應器、裝置、社交媒體等的資料。
+  aside:
+    image:
+      alt: 
+      height: 110
+      src: ./media/index/streaming-analytics-thumbnail.png
+      width: 250
+    title: Microsoft Azure 上的串流分析。 (8:48)
+    href: https://channel9.msdn.com/Events/Connect/2016/161
+    width: 250
+sections:
+- title: 5 分鐘快速入門
+  items:
+  - type: paragraph
+    text: 了解如何部署第一個 Azure 串流分析作業：
+  - type: list
+    style: icon48
+    items:
+    - image:
+        src: media/index/stream-analytics.svg
+      text: Azure 入口網站
+      href: https://docs.microsoft.com/azure/stream-analytics/stream-analytics-quick-create-portal
+    - image:
+        src: https://docs.microsoft.com/media/logos/logo_powershell.svg
+      text: PowerShell
+      href: https://docs.microsoft.com/azure/stream-analytics/stream-analytics-quick-create-powershell
+    - image:
+        src: https://docs.microsoft.com/media/logos/logo_visual-studio.svg
+      text: Visual Studio
+      href: http://docs.microsoft.com/azure/stream-analytics/stream-analytics-quick-create-vs
+- title: 逐步教學課程
+  items:
+  - type: paragraph
+    text: 了解如何部署、管理及監視 Azure 串流分析作業：
+  - type: list
+    style: ordered
+    items:
+    - html: <a href="stream-analytics-manage-job">建立串流分析作業來分析通話資料，並且在 Power BI 儀表板中將結果視覺化</a>
+    - html: <a href="stream-analytics-with-azure-functions">從 Azure 串流分析作業執行 Azure Functions</a>
+    - html: <a href="stream-analytics-javascript-user-defined-functions">在 Azure 串流分析作業中執行 JavaScript 使用者定義函式</a>
+    - html: <a href="stream-analytics-tools-visual-studio-cicd-vsts">使用 Azure Pipelines 部署具有 CI/CD 的 Azure 串流分析作業</a>
+    - html: <a href="stream-analytics-edge-csharp-udf">針對 Azure 串流分析 Edge 作業撰寫 C# 使用者定義的函式 (預覽)</a>
+- title: 參考
+  items:
+  - type: list
+    style: cards
+    className: cardsD
+    items:
+    - title: 預覽
+      html: <p><a href="stream-analytics-previews#public-previews">公開預覽版</a></p><p><a href="stream-analytics-previews#private-previews">個人預覽版</a></p>
+    - title: 命令列
+      html: <p><a href="https://docs.microsoft.com/powershell/module/azurerm.streamanalytics/?view=azurermps-6.8.1#stream_analytics">Azure PowerShell</a></p>
+    - title: 語言
+      html: <p><a href="/dotnet/api/microsoft.azure.management.streamanalytics?view=azuremgmtstreamanalytics-1.8.3">.NET</a></p><p><a href="https://msdn.microsoft.com/azure/stream-analytics/reference/stream-analytics-query-language-reference">Stream Analytics 查詢語言</a></p>
+    - title: REST
+      html: <p><a href="/rest/api/streamanalytics">REST API 參考</a></p>

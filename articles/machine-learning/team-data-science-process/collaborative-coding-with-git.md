@@ -2,22 +2,24 @@
 title: 使用 Git 共同作業撰寫程式碼 - Azure Machine Learning | Microsoft Docs
 description: 如何使用 Git 搭配敏捷式計劃進行資料科學專案的共同作業程式碼開發。
 documentationcenter: ''
-author: bradsev
+author: deguhath
 manager: cgronlun
 editor: cgronlun
 ms.assetid: ''
 ms.service: machine-learning
+ms.component: team-data-science-process
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 11/28/2017
-ms.author: bradsev
-ms.openlocfilehash: f3eabf0b754f777f25811d30c158b647b1d3954e
-ms.sourcegitcommit: d74657d1926467210454f58970c45b2fd3ca088d
+ms.author: deguhath
+ms.openlocfilehash: 78bbdb244d9bd52a06623f7a6fa3bca123ef3828
+ms.sourcegitcommit: f3bd5c17a3a189f144008faf1acb9fabc5bc9ab7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 09/10/2018
+ms.locfileid: "44300064"
 ---
 # <a name="collaborative-coding-with-git"></a>使用 Git 共同作業撰寫程式碼
 
@@ -26,13 +28,13 @@ ms.lasthandoff: 03/28/2018
 
 ## 1.<a name='Linkaworkitemwithagitbranch-1'></a>連結工作項目與 Git 分支 
 
-VSTS 提供連結工作項目 (劇本或工作) 與 Git 分支的便利方式。 這可讓您將劇本或工作直接連接至與它相關聯的程式碼。 
+Azure DevOps Services 提供連結工作項目 (劇本或工作) 與 Git 分支的便利方式。 這可讓您將劇本或工作直接連接至與它相關聯的程式碼。 
 
 若要將工作項目連接至新分支，請按兩下工作項目，然後在快顯視窗中按一下 [+ 新增連結] 底下的 [建立新的分支]。  
 
 ![1](./media/collaborative-coding-with-git/1-sprint-board-view.png)
 
-提供這個新分支的資訊，例如分支名稱、基底 Git 存放庫和分支。 選擇的 Git 存放庫必須是工作項目所屬之相同 Team 專案底下的存放庫。 基底分支可以是主要分支或其他某些現有的分支。
+提供這個新分支的資訊，例如分支名稱、基底 Git 存放庫和分支。 選擇的 Git 存放庫必須是工作項目所屬的相同專案下的存放庫。 基底分支可以是主要分支或其他某些現有的分支。
 
 ![2](./media/collaborative-coding-with-git/2-create-a-branch.png)
 
@@ -68,11 +70,11 @@ VSTS 提供連結工作項目 (劇本或工作) 與 Git 分支的便利方式。
 
 ![5](./media/collaborative-coding-with-git/5-sprint-push-to-branch.png)
 
-## 3.<a name='CreateapullrequestonVSTS-3'></a>在 VSTS 上建立提取要求 
+## 3.<a name='CreateapullrequestonVSTS-3'></a>在 Azure DevOps Services 上建立提取要求 
 
-當您在一些認可和推送之後準備就緒時，若要將目前的分支合併至其基底分支，您可以在 VSTS 伺服器上提交**提取要求**。 
+當您在一些認可和推送之後準備就緒時，若要將目前的分支合併至其基底分支，您可以在 Azure DevOps Services 上建立**提取要求**。 
 
-請移至 Team 專案的主要分頁，然後按一下 [程式碼]。 選取要合併的分支和分支合併所在的 Git 存放庫名稱。 然後按一下 [提取要求]、按一下 [新的提取要求]，在分支上的工作合併至其基底分支之前，建立提取要求檢閱。
+請移至專案的主頁面，然後按一下 [程式碼]。 選取要合併的分支和分支合併所在的 Git 存放庫名稱。 然後按一下 [提取要求]、按一下 [新的提取要求]，在分支上的工作合併至其基底分支之前，建立提取要求檢閱。
 
 ![6](./media/collaborative-coding-with-git/6-spring-create-pull-request.png)
 
