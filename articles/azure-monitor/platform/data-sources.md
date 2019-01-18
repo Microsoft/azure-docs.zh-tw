@@ -44,14 +44,14 @@ Azure 中的監視資料來自各種來源，可分為多層，最高層是您�
 [Azure 服務健康狀態](../../azure-monitor/platform/service-notifications.md)提供您有關應用程式和資源依賴的訂用帳戶中，Azure 服務健康狀態的資訊。 您可以建立警示，針對可能會影響應用程式的目前和預期重大問題進行通知。 服務健康狀態記錄是儲存在 [Azure 活動記錄](../../azure-monitor/platform/activity-logs-overview.md)中，因此您可以在 [活動記錄總管] 中檢視記錄，以及將記錄複製到 Azure 監視器記錄。
 
 ### <a name="azure-activity-log"></a>Azure 活動記錄檔
-[Azure 活動記錄](../../azure-monitor/platform/activity-logs-overview.md)包含服務健康狀態記錄，以及針對 Azure 資源所做的任何組態變更記錄。 所有 Azure 資源都會有活動記錄，也代表了資源的_外部_檢視。 活動記錄中的特定記錄類型會在 [Azure 活動記錄事件結構描述](../../azure-monitor/platform/activity-log-schema.md)中說明。
+[Azure 活動記錄](../../azure-monitor/platform/activity-logs-overview.md)包含服務健康狀態記錄，以及針對 Azure 資源所做的任何組態變更記錄。 所有 Azure 資源都會有活動記錄，也代表了資源的 _外部_ 檢視。 活動記錄中的特定記錄類型會在 [Azure 活動記錄事件結構描述](../../azure-monitor/platform/activity-log-schema.md)中說明。
 
 您可以在 Azure 入口網站中特定資源的頁面上檢視該資源的活動記錄，或是從[活動記錄總管](../../azure-monitor/platform/activity-logs-overview.md)中檢視多個資源的記錄。 這在將記錄項目複製到 Azure 監視器，以便與其他監視資料合併時特別有用。 您也可以使用[事件中樞](../../azure-monitor/platform/activity-logs-stream-event-hubs.md)將它們傳送到其他位置。
 
 
 
 ## <a name="azure-services"></a>Azure 服務
-計量和資源層級診斷記錄會提供 Azure 資源_內部_作業的相關資訊。 這些記錄適用於大部分 Azure 服務，而管理解決方案會為特定服務提供額外的深入解析。
+計量和資源層級診斷記錄會提供 Azure 資源 _內部_ 作業的相關資訊。 這些記錄適用於大部分 Azure 服務，而管理解決方案會為特定服務提供額外的深入解析。
 
 ![Azure 資源集合](media/data-sources/azure-resource-collection.png)
 
