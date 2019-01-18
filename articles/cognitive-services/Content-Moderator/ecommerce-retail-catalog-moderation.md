@@ -97,7 +97,7 @@ GitHub 上的[範例電子商務目錄仲裁](https://github.com/MicrosoftConten
 
 ## <a name="create-reviews-for-review-tool"></a>為審核工具建立審核
 
-在前面幾節中，您注意到掃描傳入影像中是否有成人和猥褻內容 (Content Moderator)、名人 (電腦視覺) 以及各種其他物件 (自訂視覺) 的方法。 接下來，請參閱 **CreateReview** 方法，它會將影像及其套用的所有標記 (當作_中繼資料_傳入) 上傳到 Content Moderator 審核工具，使其可用於人工審核。 
+在前面幾節中，您注意到掃描傳入影像中是否有成人和猥褻內容 (Content Moderator)、名人 (電腦視覺) 以及各種其他物件 (自訂視覺) 的方法。 接下來，請參閱 **CreateReview** 方法，它會將影像及其套用的所有標記 (當作 _Metadata_ 傳入) 上傳到 Content Moderator 審核工具，使其可用於人工審核。 
 
 [!code-csharp[define CreateReview method](~/samples-eCommerceCatalogModeration/Fusion/Program.cs?range=173-196)]
 
