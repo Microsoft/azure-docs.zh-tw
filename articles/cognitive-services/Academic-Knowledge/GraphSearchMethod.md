@@ -52,7 +52,7 @@ https://westus.api.cognitive.microsoft.com/academic/v1.0/graph/search?
 **error** | HTTP 狀態碼。 如果要求失敗，就會呈現此欄位。
 **message** | 錯誤訊息。 如果要求失敗，就會呈現此欄位。
 
-如果無法在 _800 毫秒_內查詢處理，則會傳回_逾時_錯誤。 
+如果無法在 _800 毫秒_ 內查詢處理，則會傳回 _逾時_ 錯誤。 
 
 <br>
 #### <a name="example"></a>範例：
