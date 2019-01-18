@@ -38,13 +38,13 @@ Azure 提供許多強大的 API，能夠在地理特徵之內/依循地理特徵
 
 [GeoJSON 規格][1]不支援 `Circle` 幾何。我們使用 `GeoJSON Feature` 物件代表圓形。
 
-使用 `GeoJSON Feature` 物件代表的 `Circle` 幾何__必須__包含下列項目：
+使用 `GeoJSON Feature` 物件代表的 `Circle` 幾何 __必須__ 包含下列項目：
 
 1. 中心
    >圓形的中心是以 `GeoJSON Point` 型別表示。
 
 2. 半徑
-   >圓形的 `radius` 是以 `GeoJSON Feature` 的屬性表示。 半徑值的單位是_公尺_，而且必須屬於型別 `double`。
+   >圓形的 `radius` 是以 `GeoJSON Feature` 的屬性表示。 半徑值的單位是 _公尺_ ，而且必須屬於型別 `double`。
 
 3. SubType
    >圓形幾何也必須包含 `subType` 屬性。 這個屬性必須屬於 `GeoJSON Feature` 的屬性，它的值應該是 _Circle_
