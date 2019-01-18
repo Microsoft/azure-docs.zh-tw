@@ -89,7 +89,7 @@ ms.locfileid: "49344569"
   speech03.wav  the lazy dog was not amused
 ```
 
-文字記錄會經過文字正規化，以便系統進行處理。 不過，有一些重要的正規化，必須由使用者在將資料上傳到自訂語音服務_之前_完成。 準備您的文字記錄時，請針對適當語言參閱[文字記錄指導方針](cognitive-services-custom-speech-transcription-guidelines.md)上的區段。
+文字記錄會經過文字正規化，以便系統進行處理。 不過，有一些重要的正規化，必須由使用者在將資料上傳到自訂語音服務 _之前_ 完成。 準備您的文字記錄時，請針對適當語言參閱[文字記錄指導方針](cognitive-services-custom-speech-transcription-guidelines.md)上的區段。
 
 使用[自訂語音服務入口網站](https://cris.ai)完成下列步驟。 
 
