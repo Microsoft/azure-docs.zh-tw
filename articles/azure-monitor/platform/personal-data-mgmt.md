@@ -25,7 +25,7 @@ ms.locfileid: "53810265"
 Log Analytics 是有望找到個人資料的資料存放區。 Application Insights 會將其資料儲存在 Log Analytics 分割區中。 本文會討論這類資料一般是放在 Log Analytics 和 Application Insights 中的哪個位置，以及可供您處理這類資料的功能。
 
 > [!NOTE]
-> 根據本文的用途，_記錄資料_是指傳送至 Log Analytics 工作區的資料，而_應用程式資料_則是指 Application Insights 所收集的資料。
+> 根據本文的用途，_記錄資料_是指傳送至 Log Analytics 工作區的資料，而 _應用程式資料_ 則是指 Application Insights 所收集的資料。
 
 [!INCLUDE [gdpr-dsr-and-stp-note](../../../includes/gdpr-dsr-and-stp-note.md)]
 
@@ -79,7 +79,7 @@ Log Analytics 是彈性的存放區，在指定資料結構描述的同時，允
 
 ## <a name="how-to-export-and-delete-private-data"></a>如何匯出及刪除私人資料
 
-如先前的[個人資料處理策略](#strategy-for-personal-data-handling)一節所述，如果可以，__強烈__建議您重新制定資料收集政策以停止收集私人資料，或者模糊、匿名處理或修改私人資料，以免資料成為「私人」資料。 處理資料起先會導致您和團隊需要花費心力來定義並自動執行策略，建置介面供客戶與其資料互動，並產生長期維護成本。 此外，Log Analytics 和 Application Insights 的計算成本很高，而且大量的並行查詢或清除 API 呼叫可能會對 Log Analytics 功能的所有其他互動產生負面影響。 話雖如此，但在某些合理情況下，確實有必要收集私人資料。 在這些情況下，就應該採用本節所述的方式來處理資料。
+如先前的[個人資料處理策略](#strategy-for-personal-data-handling)一節所述，如果可以， __強烈__ 建議您重新制定資料收集政策以停止收集私人資料，或者模糊、匿名處理或修改私人資料，以免資料成為「私人」資料。 處理資料起先會導致您和團隊需要花費心力來定義並自動執行策略，建置介面供客戶與其資料互動，並產生長期維護成本。 此外，Log Analytics 和 Application Insights 的計算成本很高，而且大量的並行查詢或清除 API 呼叫可能會對 Log Analytics 功能的所有其他互動產生負面影響。 話雖如此，但在某些合理情況下，確實有必要收集私人資料。 在這些情況下，就應該採用本節所述的方式來處理資料。
 
 [!INCLUDE [gdpr-intro-sentence](../../../includes/gdpr-intro-sentence.md)]
 
