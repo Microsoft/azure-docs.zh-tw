@@ -32,11 +32,11 @@ Language Understanding (LUIS) 容器執行階段環境可使用 `docker run` 命
 |--|--|--|
 |是|[ApiKey](#apikey-setting)|用來追蹤帳單資訊。|
 |否|[ApplicationInsights](#applicationinsights-setting)|可讓您將 [Azure Application Insights](https://docs.microsoft.com/azure/application-insights) 遙測支援新增至容器。|
-|是|[計費](#billing-setting)|指定 Azure 上服務資源的端點 URI。|
+|是|[Billing](#billing-setting)|指定 Azure 上服務資源的端點 URI。|
 |是|[Eula](#eula-setting)| 表示您已接受容器的授權。|
 |否|[Fluentd](#fluentd-settings)|將記錄 (和選擇性的計量資料) 寫入至 Fluentd 伺服器。|
-|否|[記錄](#logging-settings)|提供適用於容器的 ASP.NET Core 記錄支援。 |
-|是|[裝載](#mount-settings)|從主機電腦將資料讀取和寫入至容器，以及從容器將資料讀取和寫回主機電腦。|
+|否|[Logging](#logging-settings)|提供適用於容器的 ASP.NET Core 記錄支援。 |
+|是|[Mounts](#mount-settings)|從主機電腦將資料讀取和寫入至容器，以及從容器將資料讀取和寫回主機電腦。|
 
 > [!IMPORTANT]
 > 系統會同時使用 [`ApiKey`](#apikey-setting)、[`Billing`](#billing-setting) 及 [`Eula`](#eula-setting) 設定，因此您必須同時為這三個設定提供有效的值，否則容器將不會啟動。 如需使用這些組態設定來將容器具現化的詳細資訊，請參閱[帳單](luis-container-howto.md#billing)。
