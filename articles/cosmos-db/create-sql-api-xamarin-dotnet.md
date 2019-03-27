@@ -62,7 +62,7 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
 
 ## <a name="clone-the-sample-application"></a>複製範例應用程式
 
-現在，我們要從 GitHub 複製 Xamarin SQL API 應用程式、檢閱程式碼、取得 API 金鑰，並加以執行。 您會看到，以程式設計方式來處理資料有多麼的容易。
+現在，我們要從 GitHub 複製 Xamarin SQL API 應用程式、檢閱程式碼、取得 API 金鑰，並加以執行。 您將會了解到，透過程式處理的方式來使用資料有多麼的容易。
 
 1. 開啟命令提示字元，建立名為 git-samples 的新資料夾，然後關閉命令提示字元。
 
@@ -106,7 +106,7 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
 
 ## <a name="review-the-code"></a>檢閱程式碼
 
-這個解決方案會示範如何使用 Azure Cosmos DB SQL API 和 Xamarin.Forms 建立待辦事項應用程式。 此應用程式有兩個索引標籤，第一個索引標籤所包含的清單檢視會顯示尚未完成的待辦事項項目。 第二個索引標籤會顯示已完成的待辦事項項目。 除了在第一個索引標籤中檢視未完成的待辦事項項目以外，您也可以新增待辦事項項目、編輯現有的項目，以及將項目標示為已完成。
+這個解決方案會展示如何使用 Azure Cosmos DB SQL API 和 Xamarin.Forms 建立待辦事項應用程式。 此應用程式有兩個索引頁籤，第一個索引頁籤所包含的清單檢視會顯示尚未完成的待辦事項項目。 第二個索引頁籤會顯示已完成的待辦事項項目。 除了在第一個索引頁籤中檢視未完成的待辦事項項目以外，您也可以新增待辦事項項目、編輯現有的項目，以及將項目標示為已完成。
 
 ![將 json 資料複製在 Azure 入口網站的 [資料總管] 中並按一下 [儲存]](./media/create-sql-api-xamarin-dotnet/android-todo-screen.png)
 
@@ -215,11 +215,11 @@ ToDoItems 解決方案中的程式碼包含：
 
     ![選取要在 Visual Studio for Mac 中偵錯的平台](./media/create-sql-api-xamarin-dotnet/ide-select-platform.png)
 
-2. 若要開始對應用程式偵錯，請按 cmd+Enter 鍵，或按一下 [播放] 按鈕。
+2. 若要開始對應用程式偵錯，請按 Command + Enter 鍵，或按一下 [播放] 按鈕。
 
     ![開始在 Visual Studio for Mac 中偵錯](./media/create-sql-api-xamarin-dotnet/ide-start-debug.png)
 
-3. IOS 模擬器或 Android 模擬器完成啟動時，應用程式將會顯示 2 個索引標籤；在 iOS 的畫面上顯示於底部，在 Android 的畫面上顯示於頂端。 第一個索引標籤會顯示尚未完成的待辦事項項目，第二個會顯示已完成的待辦事項項目。
+3. iOS 模擬器或 Android 模擬器完成啟動時，應用程式將會顯示兩個索引頁籤；在 iOS 的畫面上會顯示於底部，在 Android 的畫面上會顯示於頂端。 第一個索引頁籤會顯示尚未完成的待辦事項項目，第二個會顯示已完成的待辦事項項目。
 
     ![待辦事項應用程式的啟動畫面](./media/create-sql-api-xamarin-dotnet/ios-droid-started.png)
 
