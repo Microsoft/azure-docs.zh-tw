@@ -35,7 +35,7 @@ AzCopy 是個命令列公用程式，專為使用針對最佳效能而設計的�
 
 ### <a name="post-installation-step"></a>後續安裝步驟
 
-使用安裝程式安裝 AzCopy on Windows 之後，請開啟命令視窗並瀏覽至電腦上的 AzCopy 安裝目錄，也就是 `AzCopy.exe` 可執行檔的所在位置。 若有需要，您可以在您的系統路徑中加入 AzCopy 安裝位置。 默认情况下，AzCopy 安装到 `%ProgramFiles(x86)%\Microsoft SDKs\Azure\AzCopy` 或 `%ProgramFiles%\Microsoft SDKs\Azure\AzCopy`。
+使用安裝程式安裝 AzCopy on Windows 之後，請開啟命令視窗並瀏覽至電腦上的 AzCopy 安裝目錄，也就是 `AzCopy.exe` 可執行檔的所在位置。 若有需要，您可以在您的系統路徑中加入 AzCopy 安裝位置。 預設情況下，AzCopy 安裝到 `%ProgramFiles(x86)%\Microsoft SDKs\Azure\AzCopy` 或 `%ProgramFiles%\Microsoft SDKs\Azure\AzCopy`。
 
 ## <a name="writing-your-first-azcopy-command"></a>撰寫第一個 AzCopy 命令
 
@@ -166,7 +166,7 @@ AzCopy /Source:C:\myfolder /Dest:https://myaccount.blob.core.windows.net/myconta
     C:\myfolder\subfolder\a.txt
     C:\myfolder\subfolder\abcd.txt
 
-上传操作完成后，容器中将包括以下文件：
+上傳操作完成後，容器中將包括以下檔案：
 
     abc.txt
     abc1.txt
@@ -174,7 +174,7 @@ AzCopy /Source:C:\myfolder /Dest:https://myaccount.blob.core.windows.net/myconta
     subfolder\a.txt
     subfolder\abcd.txt
 
-如果您未指定選項 `/S`，AzCopy 不會以遞迴方式上傳。 上传操作完成后，容器中将包括以下文件：
+如果您未指定選項 `/S`，AzCopy 不會以遞迴方式上傳。 上傳操作完成後，容器中將包括以下文件：
 
     abc.txt
     abc1.txt
@@ -186,7 +186,7 @@ AzCopy /Source:C:\myfolder /Dest:https://myaccount.blob.core.windows.net/myconta
 AzCopy /Source:C:\myfolder /Dest:https://myaccount.blob.core.windows.net/mycontainer /DestKey:key /Pattern:a* /S
 ```
 
-假定以下文件位于文件夹 `C:\myfolder` 中：
+假定以下檔案位于資料夾 `C:\myfolder` 中：
 
     C:\myfolder\abc.txt
     C:\myfolder\abc1.txt
@@ -195,7 +195,7 @@ AzCopy /Source:C:\myfolder /Dest:https://myaccount.blob.core.windows.net/myconta
     C:\myfolder\subfolder\a.txt
     C:\myfolder\subfolder\abcd.txt
 
-上传操作完成后，容器中将包括以下文件：
+上傳操作完成後，容器中將包括以下檔案：
 
     abc.txt
     abc1.txt
@@ -209,7 +209,7 @@ AzCopy /Source:C:\myfolder /Dest:https://myaccount.blob.core.windows.net/myconta
     C:\myfolder\abc1.txt
     C:\myfolder\abc2.txt
 
-### <a name="specify-the-mime-content-type-of-a-destination-blob"></a>指定目标 blob 的 MIME 内容类型
+### <a name="specify-the-mime-content-type-of-a-destination-blob"></a>指定目標 blob 的 MIME 內容類型
 
 根據預設，AzCopy 會將目的地 blob 的內容類型設定為 `application/octet-stream`。 從 3.1.0 版開始，您可以透過 `/SetContentType:[content-type]`選項明確指定內容類型。 此語法會在上傳作業中設定所有 Blob 的內容類型。
 
@@ -391,7 +391,7 @@ AzCopy /Source:https://myaccount.table.core.windows.net/myTable/ /Dest:C:\myfold
 AzCopy /Source:https://myaccount.table.core.windows.net/mytable/ /Dest:C:\myfolder /SourceKey:key /S /SplitSize:100
 ```
 
-AzCopy 會在分割資料檔案名稱中使用 *磁碟區索引* ，以區分多個檔案。 磁碟區索引由兩部分組成：資料分割索引鍵範圍索引和分割檔案索引。 兩個索引皆以零為基礎。
+AzCopy 會在分割資料檔案名稱中使用 *磁碟區索引* ，以區分多個檔案。 磁碟區索引由兩部分組成：資料分割索引鍵範圍索引和分割檔案索引。 兩個索引皆以 0 為基礎。
 
 如果使用者未指定 `/PKRS`選項，資料分割索引鍵範圍索引會是 0。
 
@@ -434,7 +434,7 @@ AzCopy 會使用下列命令慣例，在 Blob 容器中產生 JSON 資料檔案�
 
 產生的 JSON 資料檔案會遵循基本中繼資料的裝載格式。 如需此裝載格式的詳細資訊，請參閱 [資料表服務作業的裝載格式](https://msdn.microsoft.com/library/azure/dn535600.aspx)。
 
-請注意，在將資料表匯出至 Blob 時，AzCopy 會先將資料表實體下載到本機暫存資料檔，再將這些實體上傳至 Blob。 這些暫存資料檔會放入日誌檔案資料夾中，預設路徑為 "<code>%LocalAppData%\Microsoft\Azure\AzCopy</code>"，您可以指定 /Z:[journal-file-folder] 選項來變更日誌檔案資料夾位置，從而變更暫存資料檔位置。 暫存資料檔大小取決於資料表實體大小和您使用 /SplitSize 選項所指定的大小，雖然本機磁碟中的暫存資料檔在上傳至 Blob 之後就立即刪除，但請確定您有足夠的本機磁碟空間，以儲存尚未刪除的暫存資料檔。
+請注意，在將資料表匯出至 Blob 時，AzCopy 會先將資料表實體下載到本機暫存資料檔，再將這些實體上傳至 Blob。 這些暫存資料檔會放入日誌檔案資料夾中，預設路徑為 "`%LocalAppData%\Microsoft\Azure\AzCopy`"，您可以指定 `/Z:[journal-file-folder]` 選項來變更日誌檔案資料夾位置，從而變更暫存資料檔位置。 暫存資料檔大小取決於資料表實體大小和您使用 `/SplitSize` 選項所指定的大小，雖然本機磁碟中的暫存資料檔在上傳至 Blob 之後就立即刪除，但請確定您有足夠的本機磁碟空間，以儲存尚未刪除的暫存資料檔。
 
 ## <a name="import-data-into-table-storage"></a>將資料匯入資料表儲存體中
 
@@ -475,7 +475,7 @@ AzCopy /Source:https://myaccount.blob.core.windows.net/mycontainer /Dest:https:/
 
 ### <a name="only-copy-data-that-doesnt-exist-in-the-destination"></a>只複製目的地中沒有的資料
 
-`/XO` 和 `/XN` 參數分別可讓您在複製作業中排除較舊或較新的來源資源。 如果只想复制目标中不存在的源资源，可以在 AzCopy 命令中指定这两个参数：
+`/XO` 和 `/XN` 參數分別可讓您在複製作業中排除較舊或較新的來源資源。 如果只想複製目標中不存在的來源資源，可以在 AzCopy 命令中指定這兩個參數：
 
     /Source:http://myaccount.blob.core.windows.net/mycontainer /Dest:C:\myfolder /SourceKey:<sourcekey> /S /XO /XN
 
@@ -485,19 +485,19 @@ AzCopy /Source:https://myaccount.blob.core.windows.net/mycontainer /Dest:https:/
 
 注意，當來源或目的地其中之一是資料表時，不支援此做法。
 
-### <a name="use-a-response-file-to-specify-command-line-parameters"></a>使用响应文件指定命令行参数
+### <a name="use-a-response-file-to-specify-command-line-parameters"></a>使用回應檔案指定命令行參數
 
 ```azcopy
 AzCopy /@:"C:\responsefiles\copyoperation.txt"
 ```
 
-您可以在回應檔案中包含任何 AzCopy 命令列參數。 AzCopy 處理檔案中的參數，就好像在命令列上指定這些參數一様，執行使用檔案內容的直接取代。
+您可以在回應檔案中包含任何 AzCopy 命令列參數。 AzCopy 處理檔案中的參數，就好像在命令列上指定這些參數一樣，執行使用檔案內容的直接取代。
 
 假設名為 `copyoperation.txt`且包含下列資料行的回應檔案。 每個 AzCopy 參數可以指定在同一行
 
     /Source:http://myaccount.blob.core.windows.net/mycontainer /Dest:C:\myfolder /SourceKey:<sourcekey> /S /Y
 
-每个 AzCopy 参数：
+每個 AzCopy 參數：
 
     /Source:http://myaccount.blob.core.windows.net/mycontainer
     /Dest:C:\myfolder
@@ -554,7 +554,7 @@ AzCopy /Source:https://myaccount.blob.core.windows.net/mycontainer1/?SourceSASTo
 
 ### <a name="journal-file-folder"></a>日誌檔案資料夾
 
-每次向 AzCopy 发出命令时，它都会检查默认文件夹中是否存在日志文件，或者通过此选项指定的文件夹中是否存在日志文件。 如果在這兩個地方都找不到日誌檔案，AzCopy 會將此作業視為新的作業，並產生新的日誌檔案。
+每次向 AzCopy 發出命令时，它都會檢查預設資料夾中是否存在日誌檔案，或者通過此選項指定的資料夾中是否存在日誌檔案。 如果在這兩個地方都找不到日誌檔案，AzCopy 會將此作業視為新的作業，並產生新的日誌檔案。
 
 如果找到日誌檔案，則 AzCopy 會檢查所輸入的命令列是否符合日誌檔案中的命令列。 如果這兩個命令列相符，AzCopy 便會繼續未完成的作業。 如果這兩個命令列不符，系統會提示您覆寫日誌檔案並開始新的作業，或取消目前作業。
 
@@ -652,17 +652,17 @@ AzCopy 會根據儲存副檔名對應內容類型的 JSON 檔案，以判斷 Blo
 
 ### <a name="patternfile-pattern"></a>/Pattern:"file-pattern"
 
-指定一個檔案模式以指出所要複製的檔案。 /Pattern 參數的行為取決於來源資料的位置以及是否有遞迴模式選項。 遞迴模式可透過選項 /S 來指定。
+指定一個檔案模式以指出所要複製的檔案。 `/Pattern` 參數的行為取決於來源資料的位置以及是否有遞迴模式選項。 遞迴模式可透過選項 `/S` 來指定。
 
-如果指定來源是檔案系統中的目錄，則標準萬用字元便會立即生效，且所提供的檔案模式會與目錄中的檔案做比對。 如果已指定選項 /S，則 AzCopy 也會將指定模式與該目錄下任何子資料夾中的所有檔案做比對。
+如果指定來源是檔案系統中的目錄，則標準萬用字元便會立即生效，且所提供的檔案模式會與目錄中的檔案做比對。 如果已指定選項 `/S`，則 AzCopy 也會將指定模式與該目錄下任何子資料夾中的所有檔案做比對。
 
-如果指定來源是 Blob 容器或虛擬目錄，則萬用字元並不適用。 如果已指定選項 /S，則 AzCopy 會將指定的檔案模式解譯為 Blob 首碼。 如果未指定選項 /S，則 AzCopy 會將檔案模型與確切 Blob 名稱做比對。
+如果指定來源是 Blob 容器或虛擬目錄，則萬用字元並不適用。 如果已指定選項 `/S`，則 AzCopy 會將指定的檔案模式解譯為 Blob 首碼。 如果未指定選項 `/S`，則 AzCopy 會將檔案模型與確切 Blob 名稱做比對。
 
-如果指定來源是 Azure 檔案共用，則您必須指定確切檔案名稱 (例如 abc.txt) 以複製單一檔案，或指定選項 /S 以遞迴方式複製共用中的所有檔案。 嘗試同時指定檔案模式和 /S 選項會造成錯誤。
+如果指定來源是 Azure 檔案共用，則您必須指定確切檔案名稱 (例如 abc.txt) 以複製單一檔案，或指定選項 `/S` 以遞迴方式複製共用中的所有檔案。 嘗試同時指定檔案模式和 `/S` 選項會造成錯誤。
 
-當 /Source 是 Blob 容器或 Blob 的虛擬目錄時，AzCopy 會使用區分大小寫比對，並在所有其他情況下使用不區分大小寫比對。
+當 `/Source` 是 Blob 容器或 Blob 的虛擬目錄時，AzCopy 會使用區分大小寫比對，並在所有其他情況下使用不區分大小寫比對。
 
-未指定檔案模式時，使用的預設檔案模式如下：針對檔案系統位置，會使用 *。* ，針對「Azure 儲存體」位置，則是使用空白首碼。 不支援指定多個檔案模式。
+未指定檔案模式時，使用的預設檔案模式如下：針對檔案系統位置，會使用 \*.\* ，針對「Azure 儲存體」位置，則是使用空白首碼。 不支援指定多個檔案模式。
 
 **適用於：** Blob、檔案
 
@@ -744,7 +744,7 @@ AzCopy 會根據儲存副檔名對應內容類型的 JSON 檔案，以判斷 Blo
 
 如果作業遭到中斷，AzCopy 絕對支援繼續作業。
 
-如果未指定此選項，或指定此選項但沒有指定資料夾路徑，則 AzCopy 會在預設位置上建立日誌檔案，預設位置是 %LocalAppData%\Microsoft\Azure\AzCopy。
+如果未指定此選項，或指定此選項但沒有指定資料夾路徑，則 AzCopy 會在預設位置上建立日誌檔案，預設位置是 `%LocalAppData%\Microsoft\Azure\AzCopy`。
 
 每次發佈命令至 AzCopy 時，它會檢查預設資料夾或透過此選項指定的資料夾中是否有日誌檔案存在。 如果在這兩個地方都找不到日誌檔案，AzCopy 會將此作業視為新的作業，並產生新的日誌檔案。
 
@@ -758,7 +758,7 @@ AzCopy 會根據儲存副檔名對應內容類型的 JSON 檔案，以判斷 Blo
 
 ### <a name="parameter-file"></a>/@:"parameter-file"
 
-指定包含参数的文件。 AzCopy 處理檔案中的參數，就好像在命令列上指定這些參數一様。
+指定包含參數的檔案。 AzCopy 處理檔案中的參數，就好像在命令列上指定這些參數一樣。
 
 在回應檔案中，您可以在單行中指定多個參數，或每一行各自指定一個參數。 請注意，各個參數無法橫跨多行。
 
@@ -770,7 +770,7 @@ AzCopy 會根據儲存副檔名對應內容類型的 JSON 檔案，以判斷 Blo
 
 ### <a name="y"></a>/Y
 
-隱藏所有 AzCopy 確認提示。 當 /XO 和 /XN 皆未指定時，此選項也允許針對資料上傳案例使用唯寫的 SAS 權杖。
+隱藏所有 AzCopy 確認提示。 當 `/XO` 和 `/XN` 皆未指定時，此選項也允許針對資料上傳案例使用唯寫的 SAS 權杖。
 
 **適用於：** Blob、檔案、資料表
 
@@ -778,9 +778,9 @@ AzCopy 會根據儲存副檔名對應內容類型的 JSON 檔案，以判斷 Blo
 
 僅指定清單作業，不會複製資料。
 
-AzCopy 會解譯使用這個選項為模擬不使用 /L 選項來執行此命令列，而且會計算有多少物件會被複製，您可以同時指定 /V 選項，檢查要複製哪些物件到詳細記錄檔中。
+AzCopy 會解譯使用這個選項為模擬不使用 `/L` 選項來執行此命令列，而且會計算有多少物件會被複製，您可以同時指定 /V 選項，檢查要複製哪些物件到詳細記錄檔中。
 
-這個選項的行為還取決於來源資料的位置，以及是否有遞迴模式選項 /S 和檔案模式選項 /Pattern。
+這個選項的行為還取決於來源資料的位置，以及是否有遞迴模式選項 `/S` 和檔案模式選項 `/Pattern`。
 
 使用此選項時，AzCopy 會需要此來源位置的清單和讀取權限。
 
@@ -851,7 +851,7 @@ AzCopy 會解譯使用這個選項為模擬不使用 /L 選項來執行此命令
 
 指出在 Blob 名稱中，用來分隔虛擬目錄的分隔符號字元。
 
-默认情况下，AzCopy 使用 / 作为分隔符字符。 不過，AzCopy 支援使用任何常見字元 (例如 @、# 或 %) 作為分隔符號。 如果您必須在命令列中包含其中一個特殊字元，請為檔案名稱加上雙引號。
+預設情況下，AzCopy 使用 / 作為分隔符字符。 不過，AzCopy 支援使用任何常見字元 (例如 @、# 或 %) 作為分隔符號。 如果您必須在命令列中包含其中一個特殊字元，請為檔案名稱加上雙引號。
 
 此選項僅適用於下載 Blob。
 
@@ -989,7 +989,7 @@ AzCopy 預設會將 blob 或檔案的內容類型設定為 application/octet-str
 
 ### <a name="azure-storage-documentation"></a>Azure 儲存體文件：
 * [Azure 存储简介](../storage-introduction.md)
-* [如何通过 .NET 使用 Blob 存储](../blobs/storage-dotnet-how-to-use-blobs.md)
+* [如何通過 .NET 使用 Blob 存储](../blobs/storage-dotnet-how-to-use-blobs.md)
 * [如何使用 .NET 的檔案儲存體](../storage-dotnet-how-to-use-files.md)
 * [如何使用 .NET 的資料表儲存體](../../cosmos-db/table-storage-how-to-use-dotnet.md)
 * [如何创建、管理或删除存储帐户](../storage-create-storage-account.md)
