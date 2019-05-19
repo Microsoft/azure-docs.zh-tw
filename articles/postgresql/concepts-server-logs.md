@@ -40,19 +40,19 @@ ms.locfileid: "65067400"
 | TenantId | 租户 ID |
 | SourceSystem | `Azure` |
 | TimeGenerated [UTC] | 以 UTC 記錄記錄時的時間戳記 |
-| 類型 | 記錄的類型。 一律為 `AzureDiagnostics` |
+| Type | 記錄的類型。 一律為 `AzureDiagnostics` |
 | SubscriptionId | 伺服器所屬訂用帳戶的 GUID |
 | ResourceGroup | 伺服器所屬資源群組的名稱 |
 | ResourceProvider | 資源提供者名稱。 一律為 `MICROSOFT.DBFORPOSTGRESQL` |
 | ResourceType | `Servers` |
 | ResourceId | 資源 URI |
-| 資源 | 伺服器的名稱 |
-| 類別 | `PostgreSQLLogs` |
+| Resource | 伺服器的名稱 |
+| Category | `PostgreSQLLogs` |
 | OperationName | `LogEvent` |
 | errorLevel | 記錄層級，範例：記錄、錯誤、通知 |
-| 訊息 | 主要記錄訊息 | 
-| 網域 | 伺服器版本，範例：postgres-10 |
-| 詳細資料 | 次要記錄訊息 (如果適用) |
+| Message | 主要記錄訊息 | 
+| Domain | 伺服器版本，範例：postgres-10 |
+| Detail | 次要記錄訊息 (如果適用) |
 | ColumnName | 資料行的名稱 (如果適用) |
 | SchemaName | 結構描述的名稱 (如果適用) |
 | DatatypeName | 資料類型的名稱 (如果適用) |
