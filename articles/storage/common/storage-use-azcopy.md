@@ -1,4 +1,4 @@
----
+﻿---
 title: 使用 AzCopy on Windows 複製或移動資料到 Azure 儲存體 | Microsoft Docs
 description: 使用 AzCopy on Windows 公用程式來從 Blob、資料表和檔案內容移動或來回複製資料。 從本機檔案複製資料到 Azure 儲存體，或在儲存體帳戶內或之間複製資料。 輕鬆地將資料移轉至 Azure 儲存體。
 services: storage
