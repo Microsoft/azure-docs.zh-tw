@@ -89,11 +89,11 @@ Azure 磁碟加密需要網際網路連線以存取 Active Directory、Key Vault
 | EncryptionOperation | EnableEncryption | string | 
 | KeyEncryptionAlgorithm | RSA-OAEP, RSA1_5 | string |
 | KeyEncryptionKeyURL | url | string |
-| KeyVaultResourceId | 资源 URI | string |
 | KekVaultResourceId | 资源 URI | string |
 | KeyVaultURL | url | string |
+| (選擇性) Passphrase | password | string | 
 | SequenceVersion | uniqueidentifier | string |
-| VolumeType | 作業系統、資料、全部 | string |
+| VolumeType | OS, Data, All | string |
 
 ## <a name="template-deployment"></a>範本部署
 如需範本部署的範例，請參閱[從資源庫映像建立新的加密 Windows VM](https://github.com/Azure/azure-quickstart-templates/tree/master/201-encrypt-create-new-vm-gallery-image)。
