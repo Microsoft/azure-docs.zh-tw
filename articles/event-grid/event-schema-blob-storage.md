@@ -307,14 +307,14 @@ ms.locfileid: "70232428"
 
 | 屬性 | 類型 | 描述 |
 | -------- | ---- | ----------- |
-| API | string | 觸發事件的作業。 |
+| api | string | 觸發事件的作業。 |
 | clientRequestId | string | 用於儲存體 API 作業的用戶端提供要求識別碼。 此識別碼可用來在記錄檔中使用「用戶端要求識別碼」欄位與 Azure 儲存體診斷記錄相互關聯, 並可在使用「x-ms-用戶端要求-識別碼」標頭的用戶端要求中提供。 請參閱[記錄格式](https://docs.microsoft.com/rest/api/storageservices/storage-analytics-log-format)。 |
 | requestId | string | 儲存體 API 作業由服務產生的要求識別碼。 可用於利用記錄中的 "request-id-header" 欄位與 Azure 儲存體診斷記錄建立關聯，並從 'x-ms-request-id' 標頭中的 API 呼叫初始化傳回。 請參閱[記錄格式](https://docs.microsoft.com/rest/api/storageservices/storage-analytics-log-format)。 |
 | eTag | string | 此值可讓您依條件執行作業。 |
 | contentType | string | 為 blob 指定內容類型。 |
-| contentLength | 整數 | Blob 大小 (以位元組為單位)。 |
+| contentLength | integer | Blob 大小 (以位元組為單位)。 |
 | blobType | string | Blob 的類型。 有效值為 "BlockBlob" 或 "PageBlob"。 |
-| contentOffset | 號 | 在事件觸發應用程式完成寫入檔案時, 所採取之寫入作業的位移 (以位元組為單位)。 <br>只有在具有階層命名空間的 blob 儲存體帳戶上觸發的事件才會出現。|
+| contentOffset | number | 在事件觸發應用程式完成寫入檔案時, 所採取之寫入作業的位移 (以位元組為單位)。 <br>只有在具有階層命名空間的 blob 儲存體帳戶上觸發的事件才會出現。|
 | destinationUrl |string | 在作業完成之後, 將會存在的檔案的 url。 例如, 如果檔案已重新命名, 則`destinationUrl`屬性會包含新檔案名的 url。 <br>只有在具有階層命名空間的 blob 儲存體帳戶上觸發的事件才會出現。|
 | sourceUrl |string | 作業之前存在之檔案的 url。 例如, 如果檔案已重新命名, 則`sourceUrl`會包含重新命名作業之前原始檔案名稱的 url。 <br>只有在具有階層命名空間的 blob 儲存體帳戶上觸發的事件才會出現。 |
 | url | string | blob 的路徑。 <br>如果用戶端使用 Blob REST API, 則 url 會有下列結構:  *\< \>blob.core.windows.net/\< /容器名稱檔案名\> \< \>* . <br>如果用戶端使用 Data Lake Storage REST API, 則 url 會有下列結構:  *\< / \> \> \<dfs.core.windows.net/\<檔----name file-name\>* . |
