@@ -24,9 +24,9 @@ ms.locfileid: "71097891"
 
 在某些影響遷移的主要領域中，ACS 和 AKS 會有所不同。 在進行任何遷移之前，您應該先複習並規劃解決下列差異：
 
-* AKS 節點會使用[受控磁片](../virtual-machines/windows/managed-disks-overview.md)。
-    * 您必須先轉換非受控磁片，才能將它們附加至 AKS 節點。
-    * Azure `StorageClass`磁片的自訂物件必須從`unmanaged`變更為`managed`。
+* AKS 節點會使用[受控磁碟](../virtual-machines/windows/managed-disks-overview.md)。
+    * 您必須先轉換非受控磁碟，才能將它們附加至 AKS 節點。
+    * Azure `StorageClass`磁碟的自訂物件必須從`unmanaged`變更為`managed`。
     * 任何`PersistentVolumes`應使用`kind: Managed`。
 * AKS 支援[多個節點](https://docs.microsoft.com/azure/aks/use-multiple-node-pools)集區（目前處於預覽狀態）。
 * 以 Windows Server 為基礎的節點目前在 AKS 中處於[預覽](https://azure.microsoft.com/blog/kubernetes-on-azure/)狀態。
@@ -79,26 +79,26 @@ ms.locfileid: "71097891"
 3. 故障切換，讓次要複本成為新的主要複本。
 4. 將流量指向 AKS 叢集。
 
-#### <a name="migrating-persistent-volumes"></a>遷移持續性磁片區
+#### <a name="migrating-persistent-volumes"></a>遷移持續性磁碟區
 
-如果您要將現有的持續性磁片區遷移至 AKS，通常會遵循下列步驟：
+如果您要將現有的持續性磁碟區遷移至 AKS，通常會遵循下列步驟：
 
 1. 停止寫入應用程式。 （這是選擇性步驟，需要停機）。
-2. 製作磁片的快照集。
-3. 從快照集建立新的受控磁片。
-4. 在 AKS 中建立持續性磁片區。
-5. 將 pod 規格更新為[使用現有的磁片](https://docs.microsoft.com/azure/aks/azure-disk-volume)區，而不是 PersistentVolumeClaims （靜態布建）。
+2. 製作磁碟的快照集。
+3. 從快照集建立新的受控磁碟。
+4. 在 AKS 中建立持續性磁碟區。
+5. 將 pod 規格更新為[使用現有的磁碟](https://docs.microsoft.com/azure/aks/azure-disk-volume)區，而不是 PersistentVolumeClaims （靜態布建）。
 6. 將應用程式部署至 AKS。
 7. 檢查.
 8. 將流量指向 AKS 叢集。
 
 > [!IMPORTANT]
-> 如果您選擇不停止寫入，則必須將資料複寫到新的部署。 否則，您將會錯過在磁片快照集之後所寫入的資料。
+> 如果您選擇不停止寫入，則必須將資料複寫到新的部署。 否則，您將會錯過在磁碟快照集之後所寫入的資料。
 
-某些開放原始碼工具可協助您建立受控磁片，並在 Kubernetes 叢集之間遷移磁片區：
+某些開放原始碼工具可協助您建立受控磁碟，並在 Kubernetes 叢集之間遷移磁碟區：
 
-* [Azure CLI 磁碟複製延伸](https://github.com/noelbundick/azure-cli-disk-copy-extension)模組會在資源群組和 Azure 區域之間複製和轉換磁片。
-* [Azure KUBE CLI 擴充](https://github.com/yaron2/azure-kube-cli)功能會列舉 ACS Kubernetes 磁片區，並將其遷移至 AKS 叢集。
+* [Azure CLI 磁碟複製延伸](https://github.com/noelbundick/azure-cli-disk-copy-extension)模組會在資源群組和 Azure 區域之間複製和轉換磁碟。
+* [Azure KUBE CLI 擴充](https://github.com/yaron2/azure-kube-cli)功能會列舉 ACS Kubernetes 磁碟區，並將其遷移至 AKS 叢集。
 
 #### <a name="azure-files"></a>Azure 檔案儲存體
 
@@ -139,7 +139,7 @@ kubectl get deployment -o=yaml --export > deployments.yaml
 
 2. 對您的 YAML 定義進行任何必要的變更。 例如，將取代`apps/v1beta1` `apps/v1`為`Deployments`。
 
-3. [遷移磁片](#migrating-persistent-volumes)區（選擇性）從您的 ACS 叢集到 AKS 叢集。
+3. [遷移磁碟](#migrating-persistent-volumes)區（選擇性）從您的 ACS 叢集到 AKS 叢集。
 
 4. 使用您的 CI/CD 系統將應用程式部署至 AKS。 或使用 kubectl 來套用 YAML 定義。
 
@@ -147,4 +147,4 @@ kubectl get deployment -o=yaml --export > deployments.yaml
 
 6. 重新導向流量。 將 DNS 更新為將用戶端指向您的 AKS 部署。
 
-7. 完成遷移後工作。 如果您已遷移磁片區，並選擇不停止寫入，請將該資料複製到新的叢集。
+7. 完成遷移後工作。 如果您已遷移磁碟區，並選擇不停止寫入，請將該資料複製到新的叢集。
