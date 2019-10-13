@@ -37,10 +37,10 @@ ms.locfileid: "67174382"
 <sup>1</sup>調整限制取決於定價層。 若要查看定價層和其調整限制，請參閱[API 管理價格](https://azure.microsoft.com/pricing/details/api-management/)。<br/>
 <sup>2</sup>每個單位的快取大小取決於定價層。 若要查看定價層和其調整限制，請參閱[API 管理價格](https://azure.microsoft.com/pricing/details/api-management/)。<br/>
 <sup>3</sup>除非後端明確關閉，否則連線會進行共用並重複使用。<br/>
-<sup>4</sup>這項限制是基本、標準和高階層的每個單位。 開發人員層的限制為1024。 此限制不適用於耗用量層。<br/> 
-<sup>5</sup>此限制適用于基本、標準和 Premium 層。 在取用量層中，原則檔案大小限制為 4 KB。<br/>
-<sup>6</sup>此資源僅適用于 Premium 層。<br/>
-<sup>7</sup>此資源僅適用于耗用量層。<br/>
+<sup>4</sup>這項限制是基本、標準和高階層的每個單位。 開發人員層的限制為1024。 此限制不適用於消費層。<br/> 
+<sup>5</sup>此限制適用于基本、標準和高階層。 在消費層中，原則檔案大小限制為 4 KB。<br/>
+<sup>6</sup>此資源僅適用于高階層。<br/>
+<sup>7</sup>此資源僅適用于消費層。<br/>
 
 
 
