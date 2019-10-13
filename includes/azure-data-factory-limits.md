@@ -21,7 +21,7 @@ Azure Data Factory 是多租使用者服務，具有下列預設限制，以確�
 
 | Resource | 預設限制 | 上限 |
 | -------- | ------------- | ------------- |
-| Azure 訂用帳戶中的資料處理站 | 50 | [連絡客戶支援](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/)。 |
+| Azure 訂用帳戶中的Data Factory數量 | 50 | [連絡客戶支援](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/)。 |
 | 資料處理站內的實體（例如管線、資料集、觸發程式、連結的服務和整合執行時間）總數 | 5,000 | [連絡客戶支援](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/)。 |
 | 一個訂用帳戶下的 Azure SSIS 整合執行時間的總 CPU 核心數 | 256 | [連絡客戶支援](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/)。 |
 | 每個資料處理站的並行管線執行會在 factory 中的所有管線之間共用 | 10,000  | [連絡客戶支援](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/)。 |
