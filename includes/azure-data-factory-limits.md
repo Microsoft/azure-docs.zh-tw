@@ -22,7 +22,7 @@ Azure Data Factory 是多租使用者服務，具有下列預設限制，以確�
 | Resource | 預設限制 | 上限 |
 | -------- | ------------- | ------------- |
 | Azure 訂用帳戶中的Data Factory數量 | 50 | [連絡客戶支援](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/)。 |
-| Data Factory內的實體（例如管線、資料集、觸發程式、連結的服務和整合執行時間）總數 | 5,000 | [連絡客戶支援](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/)。 |
+| Data Factory內的實體總數（例如管線、資料集、觸發程式、連結的服務和整合執行時間） | 5,000 | [連絡客戶支援](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/)。 |
 | 一個訂用帳戶下的 Azure SSIS 整合執行時間的總 CPU 核心數 | 256 | [連絡客戶支援](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/)。 |
 | 每個Data Factory的並行管線執行會在 factory 中的所有管線之間共用 | 10,000  | [連絡客戶支援](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/)。 |
 | 每個訂用帳戶每個[Azure Integration Runtime 區域](../articles/data-factory/concepts-integration-runtime.md#integration-runtime-location)的並行外部活動執行<br><small>外部活動是在整合執行時間上管理，但在連結的服務上執行，包括 Databricks、預存程式、HDInsights 和其他。</small> | 3000 | [連絡客戶支援](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/)。 |
@@ -55,11 +55,11 @@ Azure Data Factory 是多租使用者服務，具有下列預設限制，以確�
 
 | 區域群組 | Regions | 
 | -------- | ------ |
-| 區域群組1 | 美國中部、美國東部、東部美國2、北歐、西歐、美國西部、美國西部2 |
-| 區域群組2 | 澳大利亞東部、澳大利亞東南部、巴西南部、印度中部、日本東部、Northcentral US、中南部 US、東南亞、美國中西部 |
+| 區域群組1 | 美國中部、美國東部、東部美國 2、北歐、西歐、美國西部、美國西部 2 |
+| 區域群組2 | 澳大利亞東部、澳大利亞東南部、巴西南部、印度中部、日本東部、美國中北部、美國中南部、東南亞、美國中西部 |
 | 區域群組3 | 加拿大中部、東亞、法國中部、韓國中部、英國南部 |
 
-<sup>3</sup>管線、資料集和連結的服務物件代表您工作負載的邏輯群組。 這些物件的限制與您可以使用 Azure Data Factory 移動和處理的資料量無關。 Data Factory 的設計目的是要調整以處理數 pb 的資料。
+<sup>3</sup>管線、資料集和連結的服務物件代表您工作負載的邏輯群組。 這些物件的限制與您可以使用 Azure Data Factory 移動和處理的資料量無關。 Data Factory 的設計目的是要調整以處理數 PB 的資料。
 
 ### <a name="version-1"></a>第 1 版
 
@@ -67,7 +67,7 @@ Azure Data Factory 是多租使用者服務，具有下列預設限制，以確�
 | --- | --- | --- |
 | Azure 訂用帳戶中的Data Factory |50 |[連絡客戶支援](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/)。 |
 | Data Factory內的管線 |2,500 |[連絡客戶支援](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/)。 |
-| Data factory 內的資料集 |5,000 |[連絡客戶支援](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/)。 |
+| Data Factory 內的資料集 |5,000 |[連絡客戶支援](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/)。 |
 | 每個資料集的並行配量 |10 |10 |
 | 管線物件的每個物件位元組<sup>1</sup> |200 KB |200 KB |
 | 資料集和連結服務物件的每個物件位元組數<sup>1</sup> |100 KB |2000 KB |
