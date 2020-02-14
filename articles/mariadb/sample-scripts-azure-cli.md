@@ -15,7 +15,7 @@ ms.contentlocale: zh-TW
 ms.lasthandoff: 12/03/2019
 ms.locfileid: "74771720"
 ---
-# <a name="azure-cli-samples-for-azure-database-for-mariadb"></a>「適用於 MariaDB 的 Azure 資料庫」的 Azuer CLI 範例 
+# <a name="azure-cli-samples-for-azure-database-for-mariadb"></a>「適用於 MariaDB 的 Azure 資料庫」的 Azure CLI 範例 
 下表包含「適用於 MariaDB 的 Azure 資料庫」的範例 Azure CLI 指令碼連結。
 
 | |  |
