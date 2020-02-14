@@ -15,7 +15,7 @@ ms.contentlocale: zh-TW
 ms.lasthandoff: 12/03/2019
 ms.locfileid: "74769756"
 ---
-# <a name="azure-cli-samples-for-azure-database-for-mysql"></a>「適用於 MySQL 的 Azure 資料庫」的 Azuer CLI 範例 
+# <a name="azure-cli-samples-for-azure-database-for-mysql"></a>「適用於 MySQL 的 Azure 資料庫」的 Azure CLI 範例 
 下表包含「適用於 MySQL 的 Azure 資料庫」之範例 Azure CLI 指令碼的連結。
 
 | |  |
