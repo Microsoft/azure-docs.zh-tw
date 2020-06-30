@@ -17,7 +17,7 @@ Visual Studio Code 可與 [Azure Functions Core Tools](../articles/azure-functio
 
 1. 若要呼叫您的函式，請按 F5 以啟動函式應用程式專案。 Core Tools 的輸出會顯示在**終端機**面板中。
 
-1. 如果您尚未安裝 Azure Functions Core Tools，請在出現提示時選取 [安裝]  。 安裝 Core Tools 後，您的應用程式將會在 [終端機]  面板中啟動。 您可以查看在本機執行的 HTTP 觸發函式的 URL 端點。 
+1. 若您出現「不支援的偵錯類型'coreclr'」錯誤訊息，請先安裝 C# Extension ，如果您尚未安裝 Azure Functions Core Tools，請在出現提示時選取 [安裝]  。 安裝 Core Tools 後，您的應用程式將會在 [終端機]  面板中啟動。 您可以查看在本機執行的 HTTP 觸發函式的 URL 端點。 
 
     ![Azure 本機輸出](./media/functions-run-function-test-local-vs-code/functions-vscode-f5.png)
 
