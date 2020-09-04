@@ -17,7 +17,7 @@ ms.locfileid: "88604832"
 
 Azure Cosmos DB 支援許多 API，例如 SQL、MongoDB、Cassandra、Gremlin 和資料表。 每個 API 都有它自己的一組資料庫作業。 這些作業的範圍可從簡單的點讀取和寫入到複雜查詢。 每個資料庫作業都會根據作業的複雜度來取用系統資源。
 
-所有資料庫作業的成本會由 Azure Cosmos DB 進行正規化，並以 *要求單位* (或 ru 表示（短) ）。 您可以將 ru 視為效能貨幣，以抽象化執行 Azure Cosmos DB 所支援之資料庫作業所需的系統資源（例如 CPU、IOPS 和記憶體）。
+所有資料庫作業的成本會由 Azure Cosmos DB 進行正規化，並以 *要求單位* （縮寫為 ru ）。 您可以將 ru 視為效能貨幣，以抽象化執行 Azure Cosmos DB 所支援之資料庫作業所需的系統資源（例如 CPU、IOPS 和記憶體）。
 
 進行點讀取的成本 (亦即，1 KB 專案的識別碼和分割區索引鍵值) 的單一專案是1個要求單位 (或 1 RU) 。 所有其他資料庫作業同樣會使用 RU 來指派成本。 無論您使用哪種 API 與 Azure Cosmos 容器互動，成本始終由 RU 測量。 無論資料庫作業是寫入、點讀取或查詢，成本一律會以 ru 來測量。
 
@@ -29,7 +29,7 @@ Azure Cosmos DB 支援許多 API，例如 SQL、MongoDB、Cassandra、Gremlin �
 
 您所使用的 Azure Cosmos 帳戶類型會決定取用 ru 的計費方式：
 
-- 在布 [建的輸送量](set-throughput.md) 模式中，您會以每秒為單位布建應用程式的 ru 數目，以每秒 100 ru 為單位遞增。 若要調整應用程式的布建輸送量，您可以隨時增加或減少 ru 數目（以 100 ru 的遞增或遞減）。 您可藉由程式設計方式或使用 Azure 入口網站來進行變更。 您會針對每秒布建的 ru 量，以每小時為單位計費。 您可以在兩個不同的資料粒度上佈建輸送量：
+- 在 [布建的輸送量](set-throughput.md) 模式中，您會以每秒為單位布建應用程式的 ru 數目，以每秒 100 ru 為單位遞增。 若要調整應用程式的布建輸送量，您可以隨時增加或減少 ru 數目（以 100 ru 的遞增或遞減）。 您可藉由程式設計方式或使用 Azure 入口網站來進行變更。 您會針對每秒布建的 ru 量，以每小時為單位計費。 您可以在兩個不同的資料粒度上佈建輸送量：
   - **容器**：如需詳細資訊，請參閱 [在 Azure Cosmos 容器上](how-to-provision-container-throughput.md)布建輸送量。
   - **資料庫**：如需詳細資訊，請參閱 [在 Azure Cosmos 資料庫上](how-to-provision-database-throughput.md)布建輸送量。
 - 在 [無伺服器](serverless.md) 模式中，在 Azure Cosmos 帳戶中建立資源時，您不需要布建任何輸送量。 在您的計費期間結束時，您會收到資料庫作業所耗用的要求單位數量的費用。
