@@ -1,6 +1,6 @@
 ### YamlMime:Landing
 title: Azure 地圖服務文件
-summary: Micrsoft Azure 地圖服務提供強大的地理空間功能供所有產業的開發人員使用。 這些地理空間功能還包含最詳細的對應資料。 Azure 地圖服務提供網頁和行動裝置應用程式使用。 Azure 地圖服務是 REST API 的 Azure One API 相容集合。 以下只列出 Azure 地圖服務提供的的高階概觀，包括地圖服務、搜尋、路由、流量、行動性、天氣、時區、地理位置、地理柵欄、地圖資料、建立者和空間作業。 網頁和 Android SDK 讓開發工作變得更簡單、更具彈性，且可跨多個平台使用。
+summary: Microsoft Azure 地圖服務提供強大的地理空間功能供所有產業的開發人員使用。 這些地理空間功能還包含最詳細的對應資料。 Azure 地圖服務提供網頁和行動裝置應用程式使用。 Azure 地圖服務是 REST API 的 Azure One API 相容集合。 以下只列出 Azure 地圖服務提供的的高階概觀，包括地圖服務、搜尋、路由、流量、行動性、天氣、時區、地理位置、地理柵欄、地圖資料、建立者和空間作業。 網頁和 Android SDK 讓開發工作變得更簡單、更具彈性，且可跨多個平台使用。
 metadata:
   title: Azure 地圖服務文件 | Microsoft Docs
   description: 了解 Azure 地圖服務以及如何使用它來為 Web 或行動應用程式提供地理空間服務。
