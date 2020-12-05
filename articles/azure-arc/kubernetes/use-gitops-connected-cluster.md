@@ -17,21 +17,21 @@ ms.locfileid: "94659789"
 ---
 # <a name="deploy-configurations-using-gitops-on-arc-enabled-kubernetes-cluster-preview"></a>在啟用 Arc 的 Kubernetes 叢集 (預覽版上使用 Gitops) 將部署設定) 
 
-Gitops) 將是在 Git 存放庫中宣告 Kubernetes 設定的預期狀態 (部署、命名空間等) ，然後使用操作員以將這些設定的輪詢和提取部署到叢集的做法。 本檔涵蓋 Azure Arc 啟用的 Kubernetes 叢集上的這類工作流程設定。
+Gitops 是在 Git 存放庫中宣告 Kubernetes 設定的預期狀態 (部署、命名空間等) ，然後操作員使用設定好的輪詢和提取，部署到叢集的做法。 本檔涵蓋 Azure Arc 啟用的 Kubernetes 叢集上的工作流程設定。
 
-在您的叢集與一或多個 Git 存放庫之間的連線，會在 Azure Resource Manager 中當成 `sourceControlConfiguration` 延伸模組資源進行追蹤。 `sourceControlConfiguration` 資源屬性代表 Kubernetes 資源應該從 Git 流向您叢集的位置和方式。 `sourceControlConfiguration`資料會以待用加密儲存在 Azure Cosmos DB 資料庫中，以確保資料機密性。
+在您的叢集有一或多個 Git 存放庫的連線，這些連線，會在 Azure Resource Manager 中當成 `sourceControlConfiguration` 延伸模組資源進行追蹤。 `sourceControlConfiguration` 資源屬性代表 Kubernetes 資源從 Git 流向您叢集的位置和方式。 `sourceControlConfiguration`資料會以加密儲存在 Azure Cosmos DB 資料庫中，以確保資料機密性。
 
-在您的叢集中執行的 `config-agent` 會負責在 `sourceControlConfiguration` 啟用 Azure Arc 的 Kubernetes 資源上監看新的或更新的延伸模組資源、部署 flux 操作員以監看 Git 存放庫，以及傳播對所做的任何更新 `sourceControlConfiguration` 。 您甚至可以建立多個 `sourceControlConfiguration` 資源， `namespace` 範圍位於相同的 Azure Arc 啟用的 Kubernetes 叢集，以達成多租使用者。 在這種情況下，每個運算子只能將設定部署到其各自的命名空間。
+在您的叢集中執行的 `config-agent` 會負責在 `sourceControlConfiguration` 啟用 Azure Arc 在 Kubernetes 資源上監看新的或更新的延伸模組資源、部署 flux 操作員以監看 Git 存放庫，以及傳播所對 `sourceControlConfiguration` 的任何更新。 您甚至可以在 `namespace` 範圍位相同的 Azure Arc 啟用的 Kubernetes 叢集來建立多個 `sourceControlConfiguration` 資源，以達成多租使用者。在這種情況下，每個運算子只能將設定部署到其各自的命名空間。
 
-Git 存放庫可以包含任何有效的 Kubernetes 資源，包括命名空間、ConfigMaps、部署、Daemonset 等。其也可能包含用來部署應用程式的 Helm 圖表。 常見的一組案例包括定義組織的基準設定，其中可能包括常見的 Azure 角色和系結、監視或記錄代理程式，或全叢集服務。
+Git 存放庫可以包含任何有效的 Kubernetes 資源，包括命名空間、ConfigMaps、部署、Daemonset 等。其也可能包含用來部署應用程式的 Helm 圖表。 常見的一組案例是包括定義組織的基準設定，其中可能包括常見的 Azure 角色和系結、監視或記錄代理程式，或全叢集服務。
 
-您可以使用相同的模式來管理較大的叢集集合，這些叢集可能會跨不同的環境進行部署。 例如，您可能有一個存放庫會定義貴組織的基準設定，並一次將該設定套用至數十個 Kubernetes 叢集。 [Azure 原則可](use-azure-policy.md) 在 `sourceControlConfiguration`)  (訂用帳戶或資源群組的範圍下，以一組特定 Azure Arc 參數自動建立。
+您可以使用相同的模式來管理較大的叢集集合，這些叢集可能會跨不同的環境進行部署。 例如，您可能有一個存放庫會定義貴組織的基準設定，並一次將該設定套用至數十個 Kubernetes 叢集。 [Azure 原則可](use-azure-policy.md) 在 `sourceControlConfiguration` 訂用帳戶或資源群組的範圍下，以一組特定 Azure Arc 參數自動建立。
 
 此快速入門手冊將逐步引導您在叢集管理範圍內套用一組設定。
 
 ## <a name="before-you-begin"></a>開始之前
 
-本文假設您具有現有已啟用 Azure Arc 的 Kubernetes 已連線叢集。 如果您需要已連線的叢集，請參閱[連線叢集快速入門](./connect-cluster.md)。
+本文假設您具有已啟用 Azure Arc 的 Kubernetes 連線叢集。 如果您需要已連線的叢集，請參閱[連線叢集快速入門](./connect-cluster.md)。
 
 ## <a name="create-a-configuration"></a>建立設定
 
