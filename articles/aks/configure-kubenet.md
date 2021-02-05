@@ -24,7 +24,7 @@ ms.locfileid: "97034049"
 
 * 適用於 AKS 叢集的虛擬網路必須允許輸出網際網路連線.
 * 請勿在相同子網路中建立多個 AKS 叢集。
-* AKS 叢集可能不會 `169.254.0.0/16` `172.30.0.0/16` `172.31.0.0/16` `192.0.2.0/24` 針對 Kubernetes 服務位址範圍、pod 位址範圍或叢集虛擬網路位址範圍使用、、或。
+* AKS 叢集可能不會針對 Kubernetes 服務位址範圍、pod 位址範圍或叢集虛擬網路位址範圍使用 `169.254.0.0/16` `172.30.0.0/16` `172.31.0.0/16` `192.0.2.0/24` 。
 * AKS 叢集所使用的服務主體，在您虛擬網路內的子網上必須至少有 [網路參與者](../role-based-access-control/built-in-roles.md#network-contributor) 角色。 您也必須擁有適當的許可權（例如訂用帳戶擁有者），才能建立服務主體並指派其許可權。 如果您想要定義[自訂角色](../role-based-access-control/custom-roles.md)，而不使用內建的網路參與者角色，則需要下列權限：
   * `Microsoft.Network/virtualNetworks/subnets/join/action`
   * `Microsoft.Network/virtualNetworks/subnets/read`
