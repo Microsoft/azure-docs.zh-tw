@@ -29,8 +29,8 @@ ms.locfileid: "63759500"
 
 ### <a name="editing-in-github"></a>在 GitHub 中編輯
 
-請遵循的指導方針[快速編輯現有文件](https://docs.microsoft.com/contribute/#quick-edits-to-existing-documents)我們參與者指南中。
+請遵循我們參與者指南中指導方針的[快速編輯現有文件](https://docs.microsoft.com/contribute/#quick-edits-to-existing-documents)。
 
 ### <a name="pull-request"></a>Pull 要求
 
-檢閱指引[提取要求](https://docs.microsoft.com/contribute/how-to-write-workflows-major#pull-request-processing)我們參與者指南中。
+檢閱我們參與者指南中指引的[提取要求](https://docs.microsoft.com/contribute/how-to-write-workflows-major#pull-request-processing)。
